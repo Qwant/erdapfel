@@ -1,7 +1,6 @@
 # PoC Tileview
 
-Display tiles based on the [osm liberty](https://openmaptiles.org/styles/#osm-liberty) 
-and  [Klokantech Basic](https://openmaptiles.org/styles/#klokantech-basic) styles 
+Display tiles based on [Klokantech Basic](https://openmaptiles.org/styles/#klokantech-basic) style
 from [openmaptiles](https://openmaptiles.org/)
 
 **/index.html**  
