@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title>POC mapbox-gl</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.min.js'></script>
+  <link href='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.css' rel='stylesheet' />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link href='jquery-ui.css' rel='stylesheet' type="text/css" />
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #info {
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+      border-radius: 3px;
+      position: absolute;
+      width: 25%;
+      bottom: 10px;
+      left: 10px;
+      padding: 10px;
+    }
+
+    #control_nav {
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+      border-radius: 3px;
+      position: absolute;
+      width: 25%;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+    }
+
+    form {
+      margin: 5px auto;
+    }
+
+    #layers {
+        position: absolute;
+        background: #fff;
+        padding: 10px;
+        right: 10px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id='map'></div>
+  <pre id='control_nav'>
+    <input type="text" id="search" placeholder="Où allez vous ?"><button onclick="navigator.geolocation.getCurrentPosition(set_user_pos_from_geoloc)">Ici</button>
+  </pre>
+  <pre id='info'>
+  </pre>
+
+<div id='layers'>
+  <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+  <label for='basic'>basic</label>
+  <input id='lite' type='radio' name='rtoggle' value='lite'>
+  <label for='lite'>lite</label>
+</div>
+
+  <script>
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'qwant_style.json',
+      zoom: 14,
+      center: [2.2900, 48.8719],
+      hash: true
+    });
+    var nav_inspect = new MapboxInspect();
+    map.addControl(nav_inspect, 'bottom-right');
+    var nav_control = new mapboxgl.NavigationControl();
+    map.addControl(nav_control, 'bottom-right');
+
+    var inputs = document.getElementById('layers').getElementsByTagName('input');
+
+    function switchLayer(layer) {
+        var layerId = layer.target.id;
+        if (layerId === 'lite') {
+          map.setStyle('osm-liberty_lite.json');
+        } else {
+          map.setStyle('osm-liberty.json');
+        }
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = switchLayer;
+    }
+
+
+    $("#search").autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: "http://photon.komoot.de/api/",
+          dataType: "json",
+          data: {
+            q: request.term
+          },
+          success: function(data) {
+            console.log(data)
+            ListData = [];
+            for (var i = 0; i < data['features'].length; i++) {
+              ListData.push({
+                "id": data['features'][i]['properties']['osm_id'],
+                "value": data['features'][i]['properties']['name'] + " (" + data['features'][i]['properties']['osm_value'] + ", " + data['features'][i]['properties']['country'] + ")",
+                "lat": data['features'][i]['geometry']['coordinates'][0],
+                "lon": data['features'][i]['geometry']['coordinates'][1]
+              })
+            }
+            response(ListData);
+          }
+        });
+      },
+      minLength: 3,
+      select: function(event, ui) {
+        map.flyTo({
+          center: [ui.item.lat, ui.item.lon],
+          zoom: 15
+        })
+      }
+    });
+    //  });
+
+
+
+
+    function set_user_pos_from_geoloc(position) {
+      //map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), 17);
+      navigator.geolocation.getCurrentPosition(
+        map.flyTo({
+          center: [position.coords.longitude, position.coords.latitude],
+          zoom: 15
+        })
+      )
+
+    }
+
+    map.on('load', function() {
+
+      map.on('mousemove', 'poi_z16', function(e) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = 'pointer';
+      });
+      map.on('mouseleave', 'poi_z16', function() {
+        map.getCanvas().style.cursor = '';
+      });
+      map.on('click', 'poi_z16', function(e) {
+        // Single out the first found feature.
+        var feature = e.features[0];
+        var popup_content = feature.properties.name || "pas de nom :("
+
+        if (feature.properties.class == "fuel") {
+          var oedb_url = "http://api.openeventdatabase.org/event?what=fuel.price&when=last5minutes&near=" + e.lngLat.lng + "," + e.lngLat.lat + ",200"
+
+          $(document).ready(function() {
+            //$.getJSON("http://api.openeventdatabase.org/event?what=fuel.price&when=last5minutes&near=1.46593,47.90362,20000", function(geojsonFeatures) {
+            $.getJSON(oedb_url, function(geojsonFeatures) {
+              if (geojsonFeatures.features[0]) {
+                if (geojsonFeatures.features[0].properties.distance < 50) {
+                  document.getElementById('info').innerHTML = geojsonFeatures.features[0].properties.nom
+                  document.getElementById('info').innerHTML += "<br> " + geojsonFeatures.features[0].properties.label;
+
+                } else {
+                  document.getElementById('info').innerHTML = "pas trouvé de prix de carburants :(";
+
+                }
+              } else {
+                document.getElementById('info').innerHTML = "station inconnue :(";
+
+              }
+
+
+            });
+          });
+        }
+
+
+        // Display a popup
+        var popup = new mapboxgl.Popup({
+            closeButton: false
+          }).setLngLat(e.lngLat)
+          .setText(popup_content)
+          .addTo(map);
+      });
+
+
+    });
+  </script>
+
+</body>
+
+</html>

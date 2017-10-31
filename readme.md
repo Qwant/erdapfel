@@ -1,0 +1,1 @@
+display tiles based on the [osm liberty](https://openmaptiles.org/styles/#osm-liberty) and  [Klokantech Basic](https://openmaptiles.org/styles/#klokantech-basic) styles from [openmaptiles](https://openmaptiles.org/)
