@@ -33,7 +33,6 @@
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
       border-radius: 3px;
       position: absolute;
-      width: 25%;
       bottom: 10px;
       left: 10px;
       padding: 10px;
@@ -45,7 +44,6 @@
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
       border-radius: 3px;
       position: absolute;
-      width: 25%;
       top: 10px;
       left: 10px;
       padding: 10px;
@@ -56,31 +54,30 @@
     }
 
     #layers {
-        position: absolute;
-        background: #fff;
-        padding: 10px;
-        right: 10px;
-        font-family: 'Open Sans', sans-serif;
+      position: absolute;
+      background: #fff;
+      padding: 10px;
+      right: 10px;
+      font-family: 'Open Sans', sans-serif;
     }
-
   </style>
 </head>
 
 <body>
 
   <div id='map'></div>
-  <pre id='control_nav'>
+  <div id='control_nav'>
     <input type="text" id="search" placeholder="Où allez vous ?"><button onclick="navigator.geolocation.getCurrentPosition(set_user_pos_from_geoloc)">Ici</button>
-  </pre>
-  <pre id='info'>
-  </pre>
+  </div>
+  <div id='info'>
+  </div>
 
-<div id='layers'>
-  <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
-  <label for='basic'>basic</label>
-  <input id='lite' type='radio' name='rtoggle' value='lite'>
-  <label for='lite'>lite</label>
-</div>
+  <div id='layers'>
+    <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+    <label for='basic'>basic</label>
+    <input id='lite' type='radio' name='rtoggle' value='lite'>
+    <label for='lite'>lite</label>
+  </div>
 
   <script>
     var map = new mapboxgl.Map({
@@ -98,23 +95,23 @@
     var inputs = document.getElementById('layers').getElementsByTagName('input');
 
     function switchLayer(layer) {
-        var layerId = layer.target.id;
-        if (layerId === 'lite') {
-          map.setStyle('osm-liberty_lite.json');
-        } else {
-          map.setStyle('osm-liberty.json');
-        }
+      var layerId = layer.target.id;
+      if (layerId === 'lite') {
+        map.setStyle('osm-liberty_lite.json');
+      } else {
+        map.setStyle('osm-liberty.json');
+      }
     }
 
     for (var i = 0; i < inputs.length; i++) {
-        inputs[i].onclick = switchLayer;
+      inputs[i].onclick = switchLayer;
     }
 
 
     $("#search").autocomplete({
       source: function(request, response) {
         $.ajax({
-          url: "http://photon.komoot.de/api/",
+          url: "https://photon.komoot.de/api/",
           dataType: "json",
           data: {
             q: request.term
@@ -173,7 +170,7 @@
         var popup_content = feature.properties.name || "pas de nom :("
 
         if (feature.properties.class == "fuel") {
-          var oedb_url = "http://api.openeventdatabase.org/event?what=fuel.price&when=last5minutes&near=" + e.lngLat.lng + "," + e.lngLat.lat + ",200"
+          var oedb_url = "https://api.openeventdatabase.org/event?what=fuel.price&when=last5minutes&near=" + e.lngLat.lng + "," + e.lngLat.lat + ",200"
 
           $(document).ready(function() {
             //$.getJSON("http://api.openeventdatabase.org/event?what=fuel.price&when=last5minutes&near=1.46593,47.90362,20000", function(geojsonFeatures) {
