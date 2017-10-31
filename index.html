@@ -72,12 +72,12 @@
   <div id='info'>
   </div>
 
-  <div id='layers'>
-    <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
-    <label for='basic'>basic</label>
-    <input id='lite' type='radio' name='rtoggle' value='lite'>
-    <label for='lite'>lite</label>
-  </div>
+<div id='layers'>
+  <input id='basic' type='radio' name='rtoggle' value='qwant_style.json' checked='checked'>
+  <label for='basic'>basic</label>
+  <input id='lite' type='radio' name='rtoggle' value='qwant_style_lite.json'>
+  <label for='lite'>lite</label>
+</div>
 
   <script>
     var map = new mapboxgl.Map({
@@ -95,12 +95,8 @@
     var inputs = document.getElementById('layers').getElementsByTagName('input');
 
     function switchLayer(layer) {
-      var layerId = layer.target.id;
-      if (layerId === 'lite') {
-        map.setStyle('osm-liberty_lite.json');
-      } else {
-        map.setStyle('osm-liberty.json');
-      }
+        var layerId = layer.target.id;
+        map.setStyle(layer.target.value);
     }
 
     for (var i = 0; i < inputs.length; i++) {
