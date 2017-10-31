@@ -1,5 +1,9 @@
 {
-  "tiles": {{ TILES_HOSTS }},
+  "tiles": [
+  {% for host in TILES_HOSTS.split(',') %}
+    "http://{{ host.strip() }}:6533/{{TILES_SOURCE}}/{z}/{x}/{y}.pbf"{% if not loop.last %},{% endif %}
+  {% endfor %}
+  ],
   "name": "OpenMapTiles",
   "format": "pbf",
   "basename": "v3.6.mbtiles",
