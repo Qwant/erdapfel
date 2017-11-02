@@ -177,20 +177,26 @@
           success: function(data) {
             ListData = [];
             for (var i = 0; i < data['features'].length; i++) {
-              var emoji_picto = ""
+              var emoji_picto = "";
+              var zool_level = 0;
 
-              switch (data['features'][i]['properties']['layer']) {
+              var result_type = data['features'][i]['properties']['layer'];
+              switch (result_type) {
                 case "venue":
                   emoji_picto = "🎀"
+                  zoom_level = 16;
                   break;
                 case "street":
                   emoji_picto = "🛣️"
+                  zoom_level = 15;
                   break;
                 case "locality":
                   emoji_picto = "🏞️"
+                  zoom_level = 12;
                   break;
                 case "address":
                   emoji_picto = "🏠"
+                  zoom_level = 16;
                   break;
                 case "localadmin":
                 case "neighbourhood":
@@ -199,15 +205,22 @@
                 case "macroregion":
                 case "country":
                   emoji_picto = "🏳️"
+                  zoom_level = 12;
+                  break;
+                case "country":
+                  emoji_picto = "🏳️"
+                  zoom_level = 6;
                   break;
                 default:
                   emoji_picto = "❔"
+                  zoom_level = 15;
               }
 
               ListData.push({
                 "id": data['features'][i]['properties']['osm_id'],
                 "value": emoji_picto + "  " + data['features'][i]['properties']['label'],
-                "poi_type": data['features'][i]['properties']['layer'],
+                "poi_type": result_type,
+                "zoom_level": zoom_level,
                 "lat": data['features'][i]['geometry']['coordinates'][0],
                 "lon": data['features'][i]['geometry']['coordinates'][1]
               })
@@ -218,26 +231,9 @@
       },
       minLength: 3,
       select: function(event, ui) {
-        console.log(ui.item.poi_type)
-        var zoom_level = 0;
-        switch (ui.item.poi_type) {
-          case "localadmin":
-          case "neighbourhood":
-          case "macrocounty":
-          case "region":
-          case "macroregion":
-          case "locality":
-            zoom_level = 12
-            break;
-          case "country":
-            zoom_level = 6
-            break;
-          default:
-            zoom_level = 15
-        };
         map.flyTo({
           center: [ui.item.lat, ui.item.lon],
-          zoom: zoom_level
+          zoom: ui.item.zoom_level
         })
       }
     });
