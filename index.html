@@ -3,10 +3,10 @@
 
 <head>
   <meta charset='utf-8' />
-  <title>POC mapbox-gl</title>
+  <title>Qwant Maps - la démo</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
   <script src='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.min.js'></script>
   <link href='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.css' rel='stylesheet' />
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -74,17 +74,8 @@
       outline: none;
     }
 
-    .ui-menu .ui-menu-item-wrapper:before {
-      content: "📌";
-      display: inline-block;
-      width: 25px;
-      font-size: 13px;
-      color: #78E;
-      padding-left: 5px;
-      padding-right: 2px;
-    }
 
-    .ui-menu .ui-menu-item-wrapper.ui-state-active:before{
+    .ui-menu .ui-menu-item-wrapper.ui-state-active:before {
       color: #eee;
     }
 
@@ -94,18 +85,18 @@
       border: none;
     }
 
-    .ui-menu.ui-autocomplete{
+    .ui-menu.ui-autocomplete {
       border: none;
       box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
       min-width: 25em;
     }
 
-    .ui-menu.ui-autocomplete .ui-menu-item-wrapper{
+    .ui-menu.ui-autocomplete .ui-menu-item-wrapper {
       padding-bottom: 7px;
       padding-top: 7px;
     }
 
-    .ui-menu.ui-autocomplete .ui-menu-item-wrapper.ui-state-active{
+    .ui-menu.ui-autocomplete .ui-menu-item-wrapper.ui-state-active {
       border: none;
       margin: 0;
     }
@@ -142,12 +133,12 @@
   <div id='info'>
   </div>
 
-<div id='layers'>
-  <input id='basic' type='radio' name='rtoggle' value='qwant_style.json' checked='checked'>
-  <label for='basic'>basic</label>
-  <input id='lite' type='radio' name='rtoggle' value='qwant_style_lite.json'>
-  <label for='lite'>lite</label>
-</div>
+  <div id='layers'>
+    <input id='basic' type='radio' name='rtoggle' value='qwant_style.json' checked='checked'>
+    <label for='basic'>basic</label>
+    <input id='lite' type='radio' name='rtoggle' value='qwant_style_lite.json'>
+    <label for='lite'>lite</label>
+  </div>
 
   <script>
     var map = new mapboxgl.Map({
@@ -165,8 +156,8 @@
     var inputs = document.getElementById('layers').getElementsByTagName('input');
 
     function switchLayer(layer) {
-        var layerId = layer.target.id;
-        map.setStyle(layer.target.value);
+      var layerId = layer.target.id;
+      map.setStyle(layer.target.value);
     }
 
     for (var i = 0; i < inputs.length; i++) {
@@ -177,18 +168,59 @@
     $("#search").autocomplete({
       source: function(request, response) {
         $.ajax({
-          url: "https://photon.komoot.de/api/",
+          url: "https://search.mapzen.com/v1/search",
           dataType: "json",
           data: {
-            q: request.term
+            text: request.term,
+            api_key: '***REMOVED***'
           },
           success: function(data) {
-            console.log(data)
             ListData = [];
             for (var i = 0; i < data['features'].length; i++) {
+              var emoji_picto = "";
+              var zool_level = 0;
+
+              var result_type = data['features'][i]['properties']['layer'];
+              switch (result_type) {
+                case "venue":
+                  emoji_picto = "🎀"
+                  zoom_level = 16;
+                  break;
+                case "street":
+                  emoji_picto = "🛣️"
+                  zoom_level = 15;
+                  break;
+                case "locality":
+                  emoji_picto = "🏞️"
+                  zoom_level = 12;
+                  break;
+                case "address":
+                  emoji_picto = "🏠"
+                  zoom_level = 16;
+                  break;
+                case "localadmin":
+                case "neighbourhood":
+                case "macrocounty":
+                case "region":
+                case "macroregion":
+                case "country":
+                  emoji_picto = "🏳️"
+                  zoom_level = 12;
+                  break;
+                case "country":
+                  emoji_picto = "🏳️"
+                  zoom_level = 6;
+                  break;
+                default:
+                  emoji_picto = "❔"
+                  zoom_level = 15;
+              }
+
               ListData.push({
                 "id": data['features'][i]['properties']['osm_id'],
-                "value": data['features'][i]['properties']['name'] + " (" + data['features'][i]['properties']['osm_value'] + ", " + data['features'][i]['properties']['country'] + ")",
+                "value": emoji_picto + "  " + data['features'][i]['properties']['label'],
+                "poi_type": result_type,
+                "zoom_level": zoom_level,
                 "lat": data['features'][i]['geometry']['coordinates'][0],
                 "lon": data['features'][i]['geometry']['coordinates'][1]
               })
@@ -201,17 +233,15 @@
       select: function(event, ui) {
         map.flyTo({
           center: [ui.item.lat, ui.item.lon],
-          zoom: 15
+          zoom: ui.item.zoom_level
         })
       }
     });
-    //  });
 
 
 
 
     function set_user_pos_from_geoloc(position) {
-      //map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), 17);
       navigator.geolocation.getCurrentPosition(
         map.flyTo({
           center: [position.coords.longitude, position.coords.latitude],
@@ -230,10 +260,14 @@
       map.on('mouseleave', 'poi_z16', function() {
         map.getCanvas().style.cursor = '';
       });
-      map.on('click', 'poi_z16', function(e) {
+
+      function display_name_and_other_things(e) {
         // Single out the first found feature.
         var feature = e.features[0];
-        var popup_content = feature.properties.name || "pas de nom :("
+        document.getElementById('info').innerHTML = feature.properties.name || "pas de nom :(";
+        map.flyTo({
+          center: feature.geometry.coordinates
+        });
 
         if (feature.properties.class == "fuel") {
           var oedb_url = "https://api.openeventdatabase.org/event?what=fuel.price&when=last5minutes&near=" + e.lngLat.lng + "," + e.lngLat.lat + ",200"
@@ -259,17 +293,16 @@
             });
           });
         }
-
-
-        // Display a popup
-        var popup = new mapboxgl.Popup({
-            closeButton: false
-          }).setLngLat(e.lngLat)
-          .setText(popup_content)
-          .addTo(map);
+      }
+      map.on('click', 'poi_z14', function(e) {
+        display_name_and_other_things(e)
       });
-
-
+      map.on('click', 'poi_z15', function(e) {
+        display_name_and_other_things(e)
+      });
+      map.on('click', 'poi_z16', function(e) {
+        display_name_and_other_things(e)
+      });
     });
   </script>
 
