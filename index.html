@@ -264,10 +264,14 @@
       map.on('mouseleave', 'poi_z16', function() {
         map.getCanvas().style.cursor = '';
       });
-      map.on('click', 'poi_z16', function(e) {
+
+      function display_name_and_other_things(e) {
         // Single out the first found feature.
         var feature = e.features[0];
-        var popup_content = feature.properties.name || "pas de nom :("
+        document.getElementById('info').innerHTML = feature.properties.name || "pas de nom :(";
+        map.flyTo({
+          center: feature.geometry.coordinates
+        });
 
         if (feature.properties.class == "fuel") {
           var oedb_url = "https://api.openeventdatabase.org/event?what=fuel.price&when=last5minutes&near=" + e.lngLat.lng + "," + e.lngLat.lat + ",200"
@@ -293,17 +297,16 @@
             });
           });
         }
-
-
-        // Display a popup
-        var popup = new mapboxgl.Popup({
-            closeButton: false
-          }).setLngLat(e.lngLat)
-          .setText(popup_content)
-          .addTo(map);
+      }
+      map.on('click', 'poi_z14', function(e) {
+        display_name_and_other_things(e)
       });
-
-
+      map.on('click', 'poi_z15', function(e) {
+        display_name_and_other_things(e)
+      });
+      map.on('click', 'poi_z16', function(e) {
+        display_name_and_other_things(e)
+      });
     });
   </script>
 
