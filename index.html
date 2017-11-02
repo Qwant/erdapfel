@@ -41,12 +41,82 @@
     #control_nav {
       font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
       background-color: #fff;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
-      border-radius: 3px;
-      position: absolute;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
       top: 10px;
       left: 10px;
-      padding: 10px;
+      position: absolute;
+      display: flex;
+      padding: 0;
+    }
+
+    #control_nav input {
+      border: none;
+      width: 22em;
+      height: 28px;
+      padding: 10px 10px 10px 37px;
+      border-radius: inherit;
+    }
+
+    #control_nav button {
+      border: none;
+      display: block;
+      color: white;
+      background-color: #78E;
+      width: 50px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 0px 4px 4px 0px;
+      text-shadow: #363e6e 1px 1px 1px;
+    }
+
+    #control_nav input:focus {
+      outline: none;
+    }
+
+    .ui-menu .ui-menu-item-wrapper:before {
+      content: "📌";
+      display: inline-block;
+      width: 25px;
+      font-size: 13px;
+      color: #78E;
+      padding-left: 5px;
+      padding-right: 2px;
+    }
+
+    .ui-menu .ui-menu-item-wrapper.ui-state-active:before{
+      color: #eee;
+    }
+
+    .ui-menu .ui-menu-item {
+      color: #555;
+      font-size: 14px;
+      border: none;
+    }
+
+    .ui-menu.ui-autocomplete{
+      border: none;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+      min-width: 25em;
+    }
+
+    .ui-menu.ui-autocomplete .ui-menu-item-wrapper{
+      padding-bottom: 7px;
+      padding-top: 7px;
+    }
+
+    .ui-menu.ui-autocomplete .ui-menu-item-wrapper.ui-state-active{
+      border: none;
+      margin: 0;
+    }
+
+    div#control_nav:before {
+      content: "🔍";
+      position: absolute;
+      left: 10px;
+      top: 14px;
+      font-size: 14px;
+      color: #888;
     }
 
     form {
@@ -67,7 +137,7 @@
 
   <div id='map'></div>
   <div id='control_nav'>
-    <input type="text" id="search" placeholder="Où allez vous ?"><button onclick="navigator.geolocation.getCurrentPosition(set_user_pos_from_geoloc)">Ici</button>
+    <input type="text" id="search" placeholder="Où allez vous ?"><button onclick="navigator.geolocation.getCurrentPosition(set_user_pos_from_geoloc)">ICI</button>
   </div>
   <div id='info'>
   </div>
