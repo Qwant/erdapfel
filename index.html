@@ -39,56 +39,135 @@
     }
 
     #control_nav {
-      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      font: 12px/20px 'Helvetica', Arial, Helvetica, sans-serif;
       background-color: #fff;
-      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-      top: 10px;
-      left: 10px;
+      font-weight: "300";
+      color: rgba(0,0,0,0.3);
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+      border-radius: 2px;
+      top: 36px;
+      left: 36px;
       position: absolute;
       display: flex;
       padding: 0;
+      min-width: 25em;
+      width: 45em;
+      height: 50px;
     }
 
     #control_nav input {
       border: none;
-      width: 22em;
+      width: 23em;
+      
       height: 28px;
-      padding: 10px 10px 10px 37px;
+      padding: 10px 10px 10px 60px;
       border-radius: inherit;
+      font-size: 16px;
+      font-weight: 300;
+
+      
     }
 
     #control_nav button {
       border: none;
+      background: no-repeat center;
+      cursor: pointer;
+      background-image: url(img/here.png);
+      background-size: 20px 20px;
       display: block;
       color: white;
       background-color: #78E;
+      position: absolute;
+/*      float: right;*/
+      right: 0;
+      top: 0;
+      z-index: 1;
       width: 50px;
+      height: 50px;
       font-size: 15px;
       font-weight: bold;
-      border-radius: 0px 4px 4px 0px;
-      text-shadow: #363e6e 1px 1px 1px;
+      border-radius: 0px 2px 2px 0px;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+      
     }
 
     #control_nav input:focus {
       outline: none;
     }
 
+    #search::placeholder {
+      
+      left: 150px;
+      position: absolute;
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(0,0,0,0.3);
+     
+    }
+  
+    .ui-menu-item-wrapper {
 
+
+    }
+    
     .ui-menu .ui-menu-item-wrapper.ui-state-active:before {
       color: #eee;
+
+    }
+
+    .ui-state-active {
+
+      margin-left: 55px;
+      left: 55px;
+      height: 30px;
+      vertical-align: middle;
+      position: absolute;
+      font-weight: bold;
+      cursor: pointer;
+
     }
 
     .ui-menu .ui-menu-item {
       color: #555;
       font-size: 14px;
-      border: none;
+      font-family:'Helvetica', Arial, Helvetica, sans-serif; 
+      font-weight: 300;
+      width: 400px !important;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      
+    }
+
+    
+
+
+    .ui-menu-item-wrapper {
+
+      margin-left: 55px;
+      height: 30px;
+      vertical-align: middle;
+
+
+    }
+
+
+      .ui-menu-item-wrapper:before {
+      content: "";
+      background-image: url(img/town.svg);
+      background-size: 20px 20px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: -35px;
+      top: 4px;
+      font-size: 14px;
+      color: #888;
     }
 
     .ui-menu.ui-autocomplete {
       border: none;
-      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
-      min-width: 25em;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+
     }
 
     .ui-menu.ui-autocomplete .ui-menu-item-wrapper {
@@ -99,13 +178,36 @@
     .ui-menu.ui-autocomplete .ui-menu-item-wrapper.ui-state-active {
       border: none;
       margin: 0;
+
     }
 
-    div#control_nav:before {
-      content: "🔍";
+    .form-input:before {
+      content: "";
+      background-image: url(img/qwant-logo.png);
+      background-size: 20px 20px;
+      width: 20px;
+      height: 20px;
       position: absolute;
-      left: 10px;
-      top: 14px;
+      left: 20px;
+      top: 13px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .form-input {
+
+      position: relative;
+    }
+
+     .form-input:after {
+      content: "";
+      background-image: url(img/not-active.svg);
+      background-size: 20px 20px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: -30px;
+      top: 15px;
       font-size: 14px;
       color: #888;
     }
@@ -128,7 +230,10 @@
 
   <div id='map'></div>
   <div id='control_nav'>
-    <input type="text" id="search" placeholder="Où allez vous ?"><button onclick="navigator.geolocation.getCurrentPosition(set_user_pos_from_geoloc)">ICI</button>
+    <div class="form-input">
+      <input type="text" id="search" placeholder="Où voulez-vous aller ?">
+    </div>
+    <button onclick="navigator.geolocation.getCurrentPosition(set_user_pos_from_geoloc)"></button>
   </div>
   <div id='info'>
   </div>
@@ -178,24 +283,24 @@
             ListData = [];
             for (var i = 0; i < data['features'].length; i++) {
               var emoji_picto = "";
-              var zool_level = 0;
+              var zoom_level = 0;
 
               var result_type = data['features'][i]['properties']['layer'];
               switch (result_type) {
                 case "venue":
-                  emoji_picto = "🎀"
+                  emoji_picto = ""
                   zoom_level = 16;
                   break;
                 case "street":
-                  emoji_picto = "🛣️"
+                  emoji_picto = ""
                   zoom_level = 15;
                   break;
                 case "locality":
-                  emoji_picto = "🏞️"
+                  emoji_picto = ""
                   zoom_level = 12;
                   break;
                 case "address":
-                  emoji_picto = "🏠"
+                  emoji_picto = ""
                   zoom_level = 16;
                   break;
                 case "localadmin":
@@ -204,15 +309,15 @@
                 case "region":
                 case "macroregion":
                 case "country":
-                  emoji_picto = "🏳️"
+                  emoji_picto = ""
                   zoom_level = 12;
                   break;
                 case "country":
-                  emoji_picto = "🏳️"
+                  emoji_picto = ""
                   zoom_level = 6;
                   break;
                 default:
-                  emoji_picto = "❔"
+                  emoji_picto = ""
                   zoom_level = 15;
               }
 
