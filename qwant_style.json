@@ -20,7 +20,7 @@
       "type": "vector"
     },
 	"poi": {
-      "url": "tileschema_wipoi.json",
+      "url": "tileschema_poi.json",
       "type": "vector"
     }
   },
