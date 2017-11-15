@@ -19,7 +19,7 @@
       "url": "tileschema.json",
       "type": "vector"
     },
-	"poi": {
+    "poi": {
       "url": "tileschema_poi.json",
       "type": "vector"
     }
