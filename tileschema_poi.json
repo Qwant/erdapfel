@@ -1,5 +1,5 @@
 {
-  "tiles": ["http://localhost:6533/wipoi/{z}/{x}/{y}.pbf"],
+  "tiles": ["http://localhost:6533/poi/{z}/{x}/{y}.pbf"],
   "name": "OpenMapTiles",
   "format": "pbf",
   "basename": "v3.6.mbtiles",
