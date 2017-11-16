@@ -27,7 +27,7 @@
             "id": "background",
             "type": "background",
             "paint": {
-                "background-color": "#f8f4f0"
+                "background-color": "hsl(27, 100%, 98%)"
             }
         },
         {
@@ -320,7 +320,7 @@
                 "grass"
             ],
             "paint": {
-                "fill-color": "#d8e8c8",
+                "fill-color": "hsl(90, 81%, 84%)",
                 "fill-opacity": 1
             }
         },
@@ -609,7 +609,7 @@
                     ]
                 },
                 "fill-outline-color": "#dfdbd7",
-                "fill-color": "#f2eae2",
+                "fill-color": "hsl(30, 32%, 94%)",
                 "fill-opacity": {
                     "base": 1,
                     "stops": [
@@ -1674,7 +1674,7 @@
                 "visibility": "visible"
             },
             "paint": {
-                "line-color": "#e9ac77",
+                "line-color": "hsl(36, 100%, 89%)",
                 "line-opacity": 1,
                 "line-width": {
                     "base": 1.2,
@@ -2135,7 +2135,7 @@
                 "visibility": "visible"
             },
             "paint": {
-                "line-color": "#fea",
+                "line-color": "hsl(48, 100%, 95%)",
                 "line-width": {
                     "base": 1.2,
                     "stops": [
@@ -3697,40 +3697,26 @@
                 ]
             ],
             "layout": {
-                "text-padding": 2,
+                "text-size": 14,
+                "icon-image": "{class}_11",
                 "text-font": [
-                    "Open Sans Semibold",
+                    "Open Sans Regular",
                     "Klokantech Noto Sans Regular"
                 ],
-                "text-anchor": "top",
-                "icon-image": "{class}_11",
-                "text-field": "{name}",
+                "text-justify": "left",
+                "text-padding": 2,
                 "text-offset": [
-                    0,
+                    1,
                     0.6
                 ],
-                "text-size": 12,
+                "text-anchor": "bottom-left",
+                "text-field": "{name}",
                 "text-max-width": 9
             },
             "paint": {
                 "text-halo-blur": 0.5,
-                "text-color": {
-                    "base": 1,
-                    "type": "categorical",
-                    "property": "subclass",
-                    "stops": [
-                        [
-                            "restaurant",
-                            "hsl(49, 100%, 50%)"
-                        ],
-                        [
-                            "hairdresser",
-                            "hsl(296, 100%, 50%)"
-                        ]
-                    ],
-                    "default": "hsl(243, 87%, 62%)"
-                },
-                "text-halo-width": 1,
+                "text-color": "hsl(0, 0%, 31%)",
+                "text-halo-width": 0.8,
                 "text-halo-color": "#ffffff"
             }
         },
@@ -3779,18 +3765,7 @@
             },
             "paint": {
                 "text-halo-blur": 0.5,
-                "text-color": {
-                    "base": 1,
-                    "type": "exponential",
-                    "property": "class",
-                    "stops": [
-                        [
-                            1,
-                            "hsl(0, 78%, 63%)"
-                        ]
-                    ],
-                    "default": "hsl(0, 81%, 73%)"
-                },
+                "text-color": "hsl(232, 65%, 75%)",
                 "text-halo-width": 1,
                 "text-halo-color": "#ffffff"
             }
@@ -3822,19 +3797,37 @@
                 ]
             ],
             "layout": {
-                "text-padding": 2,
+                "text-size": 12,
+                "icon-image": {
+                    "base": 1,
+                    "type": "categorical",
+                    "property": "subclass",
+                    "stops": [
+                        [
+                            "bus_stop",
+                            "bus_15"
+                        ],
+                        [
+                            "subway",
+                            "rail_15"
+                        ],
+                        [
+                            "train",
+                            "rail_15"
+                        ]
+                    ]
+                },
                 "text-font": [
                     "Open Sans Semibold",
                     "Klokantech Noto Sans Regular"
                 ],
-                "text-anchor": "top",
-                "icon-image": "{class}_11",
-                "text-field": "{name}",
+                "text-padding": 2,
                 "text-offset": [
                     0,
                     0.6
                 ],
-                "text-size": 12,
+                "text-anchor": "top",
+                "text-field": "{name}",
                 "text-max-width": 9
             },
             "paint": {
@@ -4184,8 +4177,7 @@
                     "Open Sans Bold",
                     "Klokantech Noto Sans Bold"
                 ],
-                "text-field": "{name_en}",
-                "text-transform": "uppercase",
+                "text-field": "{name}",
                 "text-max-width": 9
             },
             "paint": {
@@ -4225,7 +4217,7 @@
                         ]
                     ]
                 },
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-max-width": 8
             },
             "paint": {
@@ -4265,7 +4257,7 @@
                         ]
                     ]
                 },
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-max-width": 8
             },
             "paint": {
@@ -4313,7 +4305,7 @@
                         ]
                     ]
                 },
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-max-width": 8
             },
             "paint": {
@@ -4361,7 +4353,7 @@
                         ]
                     ]
                 },
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-max-width": 8,
                 "icon-image": "star_11",
                 "text-offset": [
@@ -4403,7 +4395,7 @@
                     "Open Sans Bold",
                     "Klokantech Noto Sans Bold"
                 ],
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-size": {
                     "stops": [
                         [
@@ -4452,7 +4444,7 @@
                     "Open Sans Bold",
                     "Klokantech Noto Sans Bold"
                 ],
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-size": {
                     "stops": [
                         [
@@ -4501,7 +4493,7 @@
                     "Open Sans Bold",
                     "Klokantech Noto Sans Bold"
                 ],
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-size": {
                     "stops": [
                         [
@@ -4543,7 +4535,7 @@
                     "Open Sans Bold",
                     "Klokantech Noto Sans Bold"
                 ],
-                "text-field": "{name_en}",
+                "text-field": "{name}",
                 "text-size": 14,
                 "text-max-width": 6.25,
                 "text-transform": "uppercase"
@@ -4558,7 +4550,7 @@
     ],
     "created": "2017-11-06T13:42:10.935Z",
     "id": "cj9o8kani46g02sobsixu0yyp",
-    "modified": "2017-11-10T13:14:56.581Z",
+    "modified": "2017-11-16T13:06:49.639Z",
     "owner": "clementaupiais",
     "visibility": "private",
     "draft": false
