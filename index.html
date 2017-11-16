@@ -42,7 +42,7 @@
       font: 12px/20px 'Helvetica', Arial, Helvetica, sans-serif;
       background-color: #fff;
       font-weight: "300";
-      color: rgba(0,0,0,0.3);
+      color: rgba(0, 0, 0, 0.3);
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
       border-radius: 2px;
       top: 36px;
@@ -58,14 +58,14 @@
     #control_nav input {
       border: none;
       width: 23em;
-      
+
       height: 28px;
       padding: 10px 10px 10px 60px;
       border-radius: inherit;
       font-size: 16px;
       font-weight: 300;
 
-      
+
     }
 
     #control_nav button {
@@ -78,7 +78,7 @@
       color: white;
       background-color: #78E;
       position: absolute;
-/*      float: right;*/
+      /*      float: right;*/
       right: 0;
       top: 0;
       z-index: 1;
@@ -88,7 +88,7 @@
       font-weight: bold;
       border-radius: 0px 2px 2px 0px;
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-      
+
     }
 
     #control_nav input:focus {
@@ -96,20 +96,17 @@
     }
 
     #search::placeholder {
-      
+
       left: 150px;
       position: absolute;
       font-size: 16px;
       font-weight: 300;
-      color: rgba(0,0,0,0.3);
-     
-    }
-  
-    .ui-menu-item-wrapper {
-
+      color: rgba(0, 0, 0, 0.3);
 
     }
-    
+
+    .ui-menu-item-wrapper {}
+
     .ui-menu .ui-menu-item-wrapper.ui-state-active:before {
       color: #eee;
 
@@ -130,15 +127,15 @@
     .ui-menu .ui-menu-item {
       color: #555;
       font-size: 14px;
-      font-family:'Helvetica', Arial, Helvetica, sans-serif; 
+      font-family: 'Helvetica', Arial, Helvetica, sans-serif;
       font-weight: 300;
       width: 400px !important;
       padding-top: 5px;
       padding-bottom: 5px;
-      
+
     }
 
-    
+
 
 
     .ui-menu-item-wrapper {
@@ -151,7 +148,7 @@
     }
 
 
-      .ui-menu-item-wrapper:before {
+    .ui-menu-item-wrapper:before {
       content: "";
       background-image: url(img/town.svg);
       background-size: 20px 20px;
@@ -199,7 +196,7 @@
       position: relative;
     }
 
-     .form-input:after {
+    .form-input:after {
       content: "";
       background-image: url(img/not-active.svg);
       background-size: 20px 20px;
@@ -399,13 +396,13 @@
           });
         }
       }
-      map.on('click', 'poi_z14', function(e) {
+      map.on('click', 'poi-level-3', function(e) {
         display_name_and_other_things(e)
       });
-      map.on('click', 'poi_z15', function(e) {
+      map.on('click', 'poi-level-2', function(e) {
         display_name_and_other_things(e)
       });
-      map.on('click', 'poi_z16', function(e) {
+      map.on('click', 'poi-level-1', function(e) {
         display_name_and_other_things(e)
       });
     });
