@@ -322,6 +322,7 @@
                 "value": emoji_picto + "  " + data['features'][i]['properties']['label'],
                 "poi_type": result_type,
                 "zoom_level": zoom_level,
+                "bbox": data['features'][i]['bbox'],
                 "lat": data['features'][i]['geometry']['coordinates'][0],
                 "lon": data['features'][i]['geometry']['coordinates'][1]
               })
@@ -332,10 +333,21 @@
       },
       minLength: 3,
       select: function(event, ui) {
-        map.flyTo({
-          center: [ui.item.lat, ui.item.lon],
-          zoom: ui.item.zoom_level
-        })
+        if (ui.item.bbox) {
+          map.fitBounds(ui.item.bbox, {
+            padding: {
+              top: 10,
+              bottom: 25,
+              left: 15,
+              right: 5
+            }
+          });
+        } else {
+          map.flyTo({
+            center: [ui.item.lat, ui.item.lon],
+            zoom: ui.item.zoom_level
+          })
+        }
       }
     });
 
