@@ -3,10 +3,23 @@ class ExtendedControl {
     constructor() {
 
 
-        this._container = document.createElement('div');
+        this._container = document.createElement('div')
 
 
-        this._compass = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-compass', 'Reset North', () => {this._resetNorthAndTilt()});
+
+        this._zoomInButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-in', 'Zoom In', () => this._map.zoomIn());
+        this._zoomOutButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-out', 'Zoom Out', () => this._map.zoomOut());
+
+
+
+        this._compass = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-compass', 'Reset North', () => {this._resetNorthAndTilt()})
+
+        this._compassArrow = document.createElement('span')
+        this._compassArrow.setAttribute('class', 'mapboxgl-ctrl-compass-arrow')
+
+
+
+        this._compass.appendChild(this._compassArrow)
 
     }
 
@@ -16,6 +29,15 @@ class ExtendedControl {
         this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
         this._container.textContent = '';
         this._container.appendChild(this._compass)
+        this._container.appendChild(this._zoomInButton)
+        this._container.appendChild(this._zoomOutButton)
+        const aaa = this._pitchAndRotateCompassArrow.bind(this)
+
+        aaa()
+
+        this._map.on('rotate', aaa);
+        this._map.on('pitch', aaa);
+
         return this._container
     }
 
@@ -29,14 +51,22 @@ class ExtendedControl {
         a.setAttribute('class', className)
         a.setAttribute('aria-label', ariaLabel);
         a.addEventListener('click', fn);
-        a.innerText = "test"
         this._container.appendChild(a)
         return a;
     }
 
     _resetNorthAndTilt() {
-        this._map.easeTo({pitch:0,bearing:0})
+        this._map.easeTo({pitch:16,bearing:0})
     }
+
+
+
+    _pitchAndRotateCompassArrow() {
+        const pitchAndRotate = `scale(1, ${(1-this._map.getPitch()/110)}) rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`;
+        this._compassArrow.style.transform = pitchAndRotate;
+    }
+
+
 }
 
 
