@@ -9,6 +9,7 @@
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
   <script src='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.min.js'></script>
   <script src='./extended_nav_controll.js'></script>
+  <script src='./admin_control.js'></script>
   <link href='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.css' rel='stylesheet' />
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <link href='jquery-ui.css' rel='stylesheet' type="text/css" />
@@ -19,6 +20,16 @@
     body {
       margin: 0;
       padding: 0;
+    }
+
+    .mapboxgl-ctrl .mapboxgl-ctrl-icon--active {
+      background-color: #97c0a1;
+      color: #fff;
+    }
+
+    .mapboxgl-ctrl .mapboxgl-ctrl-icon--active:hover {
+      background-color: #54c07c;
+      color: #fff;
     }
 
     #map {
@@ -234,12 +245,6 @@
   <div id='info'>
   </div>
 
-  <div id='layers'>
-    <input id='basic' type='radio' name='rtoggle' value='qwant_style.json' checked='checked'>
-    <label for='basic'>basic</label>
-    <input id='lite' type='radio' name='rtoggle' value='qwant_style_lite.json'>
-    <label for='lite'>lite</label>
-  </div>
 
   <script>
     var map = new mapboxgl.Map({
@@ -255,17 +260,8 @@
     var extended_nav_control = new ExtendedControl();
     map.addControl(extended_nav_control, 'bottom-right');
 
-
-    var inputs = document.getElementById('layers').getElementsByTagName('input');
-
-    function switchLayer(layer) {
-      var layerId = layer.target.id;
-      map.setStyle(layer.target.value);
-    }
-
-    for (var i = 0; i < inputs.length; i++) {
-      inputs[i].onclick = switchLayer;
-    }
+    var admin_control = new AdminControl();
+    map.addControl(admin_control, 'top-right');
 
 
     $("#search").autocomplete({
