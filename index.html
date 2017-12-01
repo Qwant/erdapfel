@@ -8,6 +8,7 @@
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
   <script src='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.min.js'></script>
+  <script src='./extended_nav_controll.js'></script>
   <link href='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.css' rel='stylesheet' />
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <link href='jquery-ui.css' rel='stylesheet' type="text/css" />
@@ -250,7 +251,13 @@
     });
     var nav_inspect = new MapboxInspect();
     map.addControl(nav_inspect, 'bottom-right');
+
+    var extended_nav_control = new ExtendedControl();
+    map.addControl(extended_nav_control, 'bottom-right');
+
+
     var nav_control = new mapboxgl.NavigationControl();
+
     map.addControl(nav_control, 'bottom-right');
 
     var inputs = document.getElementById('layers').getElementsByTagName('input');
