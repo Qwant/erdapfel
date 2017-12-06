@@ -49,7 +49,6 @@ class ExtendedControl {
         const pitchAndRotate = `scale(1, ${(1-this._map.getPitch()/110)}) rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`;
         this._compassArrow.style.transform = pitchAndRotate;
     }
-
-
 }
 
+module.exports = ExtendedControl

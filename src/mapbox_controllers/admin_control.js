@@ -13,9 +13,9 @@ class AdminControl {
     }
 
     onAdd(map) {
-        this._map = map;
-        this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-        this._container.textContent = '';
+        this._map = map
+        this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group'
+        this._container.textContent = ''
 
         this._container.appendChild(this._lte)
         this._container.appendChild(this._bsc)
@@ -24,17 +24,17 @@ class AdminControl {
     }
 
     onRemove() {
-        this._container.parentNode.removeChild(this._container);
-        this._map = undefined;
+        this._container.parentNode.removeChild(this._container)
+        this._map = undefined
     }
 
-    _createButton(className        , ariaLabel        , fn             ) {
-        const a = document.createElement('button');
+    _createButton(className, ariaLabel, fn) {
+        const a = document.createElement('button')
         a.setAttribute('class', className)
-        a.setAttribute('aria-label', ariaLabel);
-        a.addEventListener('click', fn);
+        a.setAttribute('aria-label', ariaLabel)
+        a.addEventListener('click', fn)
         this._container.appendChild(a)
-        return a;
+        return a
     }
 
     _switchTo(to) {
@@ -48,3 +48,5 @@ class AdminControl {
         this._map.setStyle(to);
     }
 }
+
+module.exports = AdminControl

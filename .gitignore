@@ -1,3 +1,15 @@
 tmp/
 *lock.json
 
+node_modules/
+
+public/css/
+public/javascript/
+public/images/
+
+
+#doumentantion
+/docs/
+!/docs/images
+!/docs/src
+!/docs/esdoc.json
