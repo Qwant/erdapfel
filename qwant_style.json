@@ -3705,7 +3705,8 @@
                 "icon-image": "{class}_11",
                 "text-font": [
                     "Open Sans Regular",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-justify": "left",
                 "text-padding": 2,
@@ -3755,7 +3756,8 @@
                 "text-padding": 2,
                 "text-font": [
                     "Open Sans Semibold",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-anchor": "top",
                 "icon-image": "{class}_11",
@@ -3823,7 +3825,8 @@
                 },
                 "text-font": [
                     "Open Sans Semibold",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-padding": 2,
                 "text-offset": [
@@ -3868,7 +3871,8 @@
                 },
                 "text-font": [
                     "Open Sans Regular",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-field": "{name}",
                 "symbol-placement": "line",
@@ -3917,7 +3921,8 @@
                 },
                 "text-font": [
                     "Open Sans Regular",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-field": "{name}",
                 "symbol-placement": "line",
@@ -3959,7 +3964,8 @@
                 },
                 "text-font": [
                     "Open Sans Regular",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-field": "{name}",
                 "symbol-placement": "line",
@@ -4179,7 +4185,8 @@
                 },
                 "text-font": [
                     "Open Sans Bold",
-                    "Klokantech Noto Sans Bold"
+                    "Klokantech Noto Sans Bold",
+                    "Klokantech Noto Sans CJK Bold"
                 ],
                 "text-field": "{name}",
                 "text-max-width": 9
@@ -4206,7 +4213,8 @@
             "layout": {
                 "text-font": [
                     "Open Sans Regular",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-size": {
                     "base": 1.2,
@@ -4246,7 +4254,8 @@
             "layout": {
                 "text-font": [
                     "Open Sans Regular",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-size": {
                     "base": 1.2,
@@ -4294,7 +4303,8 @@
             "layout": {
                 "text-font": [
                     "Open Sans Semibold",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-size": {
                     "base": 1.2,
@@ -4342,7 +4352,8 @@
             "layout": {
                 "text-font": [
                     "Open Sans Semibold",
-                    "Klokantech Noto Sans Regular"
+                    "Klokantech Noto Sans Regular",
+                    "Klokantech Noto Sans CJK Regular"
                 ],
                 "text-size": {
                     "base": 1.2,
@@ -4397,7 +4408,8 @@
             "layout": {
                 "text-font": [
                     "Open Sans Bold",
-                    "Klokantech Noto Sans Bold"
+                    "Klokantech Noto Sans Bold",
+                    "Klokantech Noto Sans CJK Bold"
                 ],
                 "text-field": "{name}",
                 "text-size": {
@@ -4446,7 +4458,8 @@
             "layout": {
                 "text-font": [
                     "Open Sans Bold",
-                    "Klokantech Noto Sans Bold"
+                    "Klokantech Noto Sans Bold",
+                    "Klokantech Noto Sans CJK Bold"
                 ],
                 "text-field": "{name}",
                 "text-size": {
@@ -4537,7 +4550,8 @@
             "layout": {
                 "text-font": [
                     "Open Sans Bold",
-                    "Klokantech Noto Sans Bold"
+                    "Klokantech Noto Sans Bold",
+                    "Klokantech Noto Sans CJK Bold"
                 ],
                 "text-field": "{name}",
                 "text-size": 14,
