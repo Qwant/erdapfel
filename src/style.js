@@ -6,7 +6,7 @@ function genStyle(langCode) {
       "case",
       ["has", "name:en"],
       ["get", "name:en"],
-      ["get", "name:ko"]
+      ["get", "name"]
     ]
   }
   return {

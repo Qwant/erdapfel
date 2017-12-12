@@ -29,6 +29,7 @@ var autoComplete = (function(){
     }
 
     var o = {
+      cachePrefix: true,
       selector: 0,
       source: 0,
       minChars: 3,
@@ -169,10 +170,13 @@ var autoComplete = (function(){
               if (o.cache) {
                 if (val in that.cache) { suggest(that.cache[val]); return; }
                 // no requests if previous suggestions were empty
-                for (var i=1; i<val.length-o.minChars; i++) {
-                  var part = val.slice(0, val.length-i);
-                  if (part in that.cache && !that.cache[part].length) { suggest([]); return; }
+                if(o.cachePrefix) {
+                  for (var i=1; i<val.length-o.minChars; i++) {
+                    var part = val.slice(0, val.length-i);
+                    if (part in that.cache && !that.cache[part].length) { suggest([]); return; }
+                  }
                 }
+
               }
               that.timer = setTimeout(function(){ o.source(val, suggest) }, o.delay);
             }

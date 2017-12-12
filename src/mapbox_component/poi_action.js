@@ -6,11 +6,11 @@ function PoiAction(scene) {
     this.scene = scene
     this.scene.on('load', () => {
 
-      this.scene.on('mousemove', 'poi_z16', () => {
+      this.scene.on('mousemove', 'poi-level-3', () => {
         // Change the cursor style as a UI indicator. // TODO test css
         this.scene.getCanvas().style.cursor = 'pointer';
       })
-      scene.on('mouseleave', 'poi_z16', () =>{
+      scene.on('mouseleave', 'poi-level-3', () =>{
         this.scene.getCanvas().style.cursor = '';
       })
 

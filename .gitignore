@@ -13,3 +13,5 @@ public/images/
 !/docs/images
 !/docs/src
 !/docs/esdoc.json
+
+public/messages

@@ -68,12 +68,13 @@
 }
 
 .autocomplete_suggestion {
+	color: #555;
 	position: relative;
-	padding: 0 .6em;
 	line-height: 23px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-size: 1.02em;
-	color: #333;
+	padding: 7px 0 7px 20px;
+
 }

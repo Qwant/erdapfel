@@ -6,30 +6,41 @@ function SearchInput(tagSelector, scene) {
    new Autocomplete({
     selector : tagSelector,
     minChars : 1,
+     cachePrefix : false,
     delay : 0,
     source : (term, suggest) => {
-      ajax.query('https://search.mapzen.com/v1/search', {text: term, api_key: '***REMOVED***'}, (error, data) => {
-        if(error) {
-          console.error('error while suggest')
-        } else {
-          this.items = extractMapzenData(data)
-          suggest(this.items)
-        }
+      const suggestPromise = ajax.query('https://search.mapzen.com/v1/search', {text: term, api_key: '***REMOVED***'})
+      suggestPromise.then((data) => {
+        this.items = extractMapzenData(data)
+        suggest(this.items)
+      }).catch(() => {
+        console.error('error while suggest')
       })
     },
     renderItem : (item, search) => {
       return `
-        <div class="autocomplete-suggestion autocomplete_suggestion" data-id="${item.id}" data-val="${item.value}">${item.value}</div>
+        <div class="autocomplete-suggestion autocomplete_suggestion" data-id="${item.id}" data-val="${item.value}">
+          ${item.value}
+        </div>
       `
     },
     onSelect : (e, term, item) => {
       const itemId = item.getAttribute('data-id')
       this.items.forEach((item) => {
         if(item.id === itemId) {
-          scene.flyTo({
-            center: [item.lat, item.lon],
-            zoom: item.zoom_level
-          })
+          if(item.bbox) {
+            scene.fitBounds(item.bbox, {
+              padding: {
+                top: 10,
+                bottom: 25,
+                left: 15,
+                right: 5
+              }
+            });
+          } else {
+            scene.flyTo([item.lat, item.lon], item.zoom_level)
+          }
+          return
         }
       })
     }
@@ -37,12 +48,11 @@ function SearchInput(tagSelector, scene) {
 }
 
 function extractMapzenData(response) {
-  const listData = []
-  response['features'].forEach((feature) => {
+  const listData = response.features.map((feature) => {
     let emojiPicto = ''
     var zoomLevel = 0
 
-    var resultType = feature['properties']['layer']
+    const resultType = feature.properties.layer
     switch (resultType) {
       case 'venue':
         emojiPicto = ''
@@ -77,15 +87,16 @@ function extractMapzenData(response) {
         zoomLevel = 15
     }
 
-    listData.push({
+    return {
       id : feature['properties']['id'],
-      value : emojiPicto + "  " + feature['properties']['label'],
+      picto : emojiPicto,
+      value : feature['properties']['label'],
       poi_type : resultType,
       zoom_level : zoomLevel,
       bbox : feature['bbox'],
       lat : feature['geometry']['coordinates'][0],
       lon : feature['geometry']['coordinates'][1]
-    })
+    }
   })
 
   return listData

@@ -5,5 +5,4 @@ const ControlHelper = {
   }
 }
 
-
 export default ControlHelper
