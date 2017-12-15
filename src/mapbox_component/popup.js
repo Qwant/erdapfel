@@ -9,7 +9,7 @@ function Popup(feature) {
   return `
     <div class="scene__popup--idle">
       <h3>${_('popup title')}</h3>
-        ${feature.value}
+      <div>${_n('images left', 'image left', 1)}</div>
     </div>
   `
 }
