@@ -26,6 +26,14 @@ const sassChunkConfig = {
 
         }
       }, {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          publicPath: '/',
+          name: '[name].[ext]',
+          outputPath: 'images/'
+        }
+      }, {
         test : /\.scss$/,
         loader : 'sass-loader'
       }],
@@ -51,16 +59,7 @@ const mainJsChunkConfig = {
       exclude: [
         /\/node_modules/
       ]
-    }, {
-      test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'file-loader',
-      options: {
-        publicPath: '/',
-        name: '[name].[ext]',
-        outputPath: 'images/'
-      }
-    }
-    ]
+    }]
   },
   devtool: 'source-map'
 }

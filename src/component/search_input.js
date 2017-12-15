@@ -17,10 +17,10 @@ function SearchInput(tagSelector, scene) {
         console.error('error while suggest')
       })
     },
-    renderItem : (item, search) => {
+    renderItem : ({id, value}) => {
       return `
-        <div class="autocomplete-suggestion autocomplete_suggestion" data-id="${item.id}" data-val="${item.value}">
-          ${item.value}
+        <div class="autocomplete-suggestion autocomplete_suggestion" data-id="${id}" data-val="${value}">
+          ${value}
         </div>
       `
     },

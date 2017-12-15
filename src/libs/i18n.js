@@ -16,16 +16,16 @@ I18n.prototype.setLang = function(lang, keys) {
   this.keys = keys
 }
 
-I18n.prototype._ = function(key, context, placeholders) {
-  if (key === undefined || key === '') {
+I18n.prototype._ = function(key = '', context, placeholders) {
+  if (key === '') {
     return ''
   }
 
   return replacePlaceholders(this.message[key], placeholders)
 }
 
-I18n.prototype._n = function(key1, key2, count, context, placeholders) {
-  if (key1 === undefined || key1 === '') {
+I18n.prototype._n = function(key1 = '', key2, count, context, placeholders) {
+  if (key1 === '') {
     return  ''
   }
 
@@ -36,10 +36,10 @@ I18n.prototype._n = function(key1, key2, count, context, placeholders) {
 
 function replacePlaceholders(string, placeholders) {
   for (let placeholdersKey in placeholders) {
-    let placeholder = new RegExp('{' + placeholdersKey + '}', 'g');
+    let placeholder = new RegExp('{' + placeholdersKey + '}', 'g')
     string = string.replace(placeholder, placeholders[placeholdersKey])
   }
-  return string;
+  return string
 }
 
 export default I18n
