@@ -1,5 +1,9 @@
 {
-  "tiles": ["http://localhost:6533/poi/{z}/{x}/{y}.pbf"],
+  "tiles": [
+    "http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf",
+    "http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf",
+    "http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf"
+  ],
   "name": "OpenMapTiles",
   "format": "pbf",
   "basename": "v3.6.mbtiles",
@@ -8,7 +12,7 @@
   "center": [-12.2168, 28.6135, 4],
   "description": "Une adaptation des tuiles OpenMapTiles pour Qwant Maps",
   "maxzoom": 14,
-  "minzoom": 0,
+  "minzoom": 14,
   "pixel_scale": "256",
   "vector_layers": [{
     "maxzoom": 14,
