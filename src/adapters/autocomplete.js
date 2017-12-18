@@ -1,13 +1,41 @@
 import Autocomplete from '../vendors/autocomplete'
 import ajax from '../libs/ajax'
+import Poi from '../mapbox/poi'
 
-function SearchInput(tagSelector, scene) {
+function SearchInput(tagSelector) {
   this.items = []
-   new Autocomplete({
+  this.item = null
+  listen('submit_autocomplete', () => {
+    let item = this.items[0]
+    if(this.item) {
+      item = this.item
+    }
+
+    if(item.bbox) {
+      let poi = new Poi(null, item.value)
+      poi.bbox = item.bbox
+      poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
+      fire('fit_bounds', poi);
+    } else {
+      let poi = new Poi([item.lat, item.lon], item.value)
+      poi.zoom = item.zoom_level
+      fire('fly_to',poi)
+      fire('mark_poi', poi)
+    }
+  })
+  new Autocomplete({
     selector : tagSelector,
     minChars : 1,
      cachePrefix : false,
     delay : 0,
+    onUpdate : (e, term, item) => {
+      const itemId = item.getAttribute('data-id')
+      this.items.forEach((item) => {
+        if (item.id === itemId) {
+          this.item = item
+        }
+      })
+    },
     source : (term, suggest) => {
       const suggestPromise = ajax.query('https://search.mapzen.com/v1/search', {text: term, api_key: '***REMOVED***'})
       suggestPromise.then((data) => {
@@ -18,27 +46,22 @@ function SearchInput(tagSelector, scene) {
       })
     },
     renderItem : ({id, value}) => {
-      return `
-        <div class="autocomplete-suggestion autocomplete_suggestion" data-id="${id}" data-val="${value}">
-          ${value}
-        </div>
-      `
+      return `<div class="autocomplete-suggestion autocomplete_suggestion" data-id="${id}" data-val="${value}">${value}</div>`
     },
     onSelect : (e, term, item) => {
       const itemId = item.getAttribute('data-id')
       this.items.forEach((item) => {
         if(item.id === itemId) {
           if(item.bbox) {
-            scene.fitBounds(item.bbox, {
-              padding: {
-                top: 10,
-                bottom: 25,
-                left: 15,
-                right: 5
-              }
-            });
+            let poi = new Poi(null, item.value)
+            poi.bbox = item.bbox
+            poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
+            fire('fit_bounds', poi);
           } else {
-            scene.flyTo([item.lat, item.lon], item.zoom_level)
+            let poi = new Poi([item.lat, item.lon], item.value)
+            poi.zoom = item.zoom_level
+            fire('fly_to',poi)
+            fire('mark_poi', poi)
           }
           return
         }

@@ -1,0 +1,15 @@
+<div class="poi_panel {{= this.poi ? "" : "poi_panel--idle"}}">
+  {{? this.poi }}
+    <div class="poi_panel__logo_demo"></div>
+    <div class="poi_panel__description_container">
+      <h3>{{= this.poi.title }}</h3>
+      {{? this.poi.description }}
+        <p>{{= this.poi.description }}</p>
+      {{?}}
+    </div>
+    <div class="poi_panel__go">
+      {{? this.poi.stored }}★{{??}}☆<button{{= click(this.storePoi, this) }}>+ Add to 💜</button>{{?}}
+    </div>
+  {{?}}
+</div>
+

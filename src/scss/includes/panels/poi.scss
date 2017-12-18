@@ -1,0 +1,13 @@
+.poi_panel {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  background: #f3f5f7;
+  border-top: 3px solid #346f97;
+  padding: 30px;
+}
+
+.poi_panel--idle {
+  bottom: -200px;
+}
