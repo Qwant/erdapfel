@@ -4,7 +4,7 @@ Ajax.query = (url, data, cb, options = {method : 'GET'}) => {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
     let jsonResponse
-    xhr.onload = () => {
+    xhr.onload = function(){
       try {
         jsonResponse = JSON.parse(this.response)
       } catch (e) {
