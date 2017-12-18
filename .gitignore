@@ -14,4 +14,5 @@ public/images/
 !/docs/src
 !/docs/esdoc.json
 
+#generated i18n messages
 public/message
