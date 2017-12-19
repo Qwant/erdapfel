@@ -36,7 +36,7 @@ function genStyle(langCode) {
       }
     },
     "sprite": "https://rawgit.com/lukasmartinelli/osm-liberty/gh-pages/sprites/osm-liberty",
-    "glyphs": "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key={key}",
+    "glyphs": "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=***REMOVED***",
     "layers": [
       {
         "id": "background",
@@ -3695,7 +3695,7 @@ function genStyle(langCode) {
       {
         "id": "poi-level-3",
         "type": "symbol",
-        "source": "openmaptiles",
+        "source": "poi",
         "source-layer": "poi",
         "minzoom": 16,
         "filter": [
@@ -3739,7 +3739,7 @@ function genStyle(langCode) {
       {
         "id": "poi-level-2",
         "type": "symbol",
-        "source": "openmaptiles",
+        "source": "poi",
         "source-layer": "poi",
         "minzoom": 15,
         "filter": [
@@ -3790,7 +3790,7 @@ function genStyle(langCode) {
       {
         "id": "poi-level-1",
         "type": "symbol",
-        "source": "openmaptiles",
+        "source": "poi",
         "source-layer": "poi",
         "minzoom": 14,
         "filter": [

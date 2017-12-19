@@ -42,7 +42,7 @@ PoiAction.prototype.showInfoBox = function(e) {
   if(feature.properties.class === 'fuel') {
     new mapboxgl.Popup({closeOnClick: false})
       .setLngLat(feature._geometry.coordinates)
-      .setHTML(new PopUp(feature))
+      .setHTML(PopUp(feature))
       .addTo(this.scene)
   }
 }

@@ -9,9 +9,11 @@ public/images/
 
 
 #doumentantion
-/docs/
+/docs/*
+
 !/docs/images
-!/docs/src
+!/docs/src/
 !/docs/esdoc.json
 
-public/messages
+#generated i18n messages
+public/message

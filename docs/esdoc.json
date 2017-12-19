@@ -6,7 +6,6 @@
       "manual" : {
         "globalIndex": true,
         "files" : [
-          "./docs/src/home.md",
           "./docs/src/examples.md",
           "./docs/src/code_convention.md"
         ],
