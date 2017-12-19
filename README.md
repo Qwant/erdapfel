@@ -1,20 +1,17 @@
 # Qwant Map
 
-Display tiles based on [Klokantech Basic](https://openmaptiles.org/styles/#klokantech-basic) style
-from [openmaptiles](https://openmaptiles.org/)
-
 **/public/index.html**  
-Map with custom tiles and remote geocoder (photon)
+Map webapp with Qwant map tiles and a search input
 
 
 ## Install
 
 ### prerequisites
 
-- npm > 5 
+- npm > 5
 - node > 6
- 
-### run test server 
+
+### run test server
 ```
 > npm install
 > npm run build
@@ -26,7 +23,7 @@ Map with custom tiles and remote geocoder (photon)
  > npm run doc
 ```
 
-## Poedit settings : 
+## Poedit settings :
 
 File > Preferences > Parsers > New
 
