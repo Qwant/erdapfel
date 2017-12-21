@@ -52,3 +52,16 @@ Source code charset:
 ```
 --from-code=%c
 ```
+
+
+## Deploy
+
+Requirements : Fabric3 (`pip3 install Fabric3`)
+
+### Deploy to dev
+
+First, put your settings in `fab_settings.py` (see `fab_settings.py.example`).
+
+```
+> fab dev deploy
+```
