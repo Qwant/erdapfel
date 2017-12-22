@@ -9,14 +9,13 @@ function PoiPanel() {
     this.showInfoBox(poi)
   })
   this.poi = null
-  this.panel = new Panel(this, PoiPanelView, 'poi_panel')
-  this.panel.render()
+  this.panel = new Panel(this, PoiPanelView)
 }
 
 PoiPanel.prototype.storePoi = function() {
   fire('store_poi', this.poi)
   this.poi.stored = true
-  this.panel.render()
+  this.panel.update()
 }
 
 PoiPanel.prototype.showInfoBox = function(poi) {
@@ -25,7 +24,7 @@ PoiPanel.prototype.showInfoBox = function(poi) {
     if(storePoi) {
       this.poi.stored = true
     }
-    this.panel.render().then(() => {
+    this.panel.update().then(() => {
       this.panel.animate(1,'.poi_panel', {bottom:0})
     })
   })

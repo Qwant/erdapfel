@@ -49,7 +49,7 @@
   color: #888;
 }
 
-.autocomplete-suggestions {
+.autocomplete_suggestions {
   text-align: left;
   cursor: default;
   border: 1px solid #ccc;
@@ -83,6 +83,17 @@
   color: #555;
 }
 
+.autocomplete_suggestion--history {
+  color : #039BE5;
+}
+
+.autocomplete_suggestion--history .autocomplete_prefix {
+  color : #039BE5;
+}
+
+.autocomplete_prefix {
+  color : #fbca04;
+}
 
 @media (max-width: 640px) {
   .search_form {

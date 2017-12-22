@@ -1,5 +1,5 @@
 import Mask from '../libs/mask'
-const masqStore = new Mask('http://127.0.0.1:8081/')
+const masqStore = new Mask()
 
 function Store() {
   listen('store_poi', (poi) => {
@@ -14,14 +14,32 @@ function Store() {
 }
 
 Store.prototype.getAll = function() {
-  masqStore.onConnect().then(() => {
-    masqStore.getAll().then((maskData) => {
-      fire('favorite_loaded', maskData)
+  return new Promise((resolve, reject) => {
+    masqStore.onConnect().then(() => {
+      masqStore.getAll().then((maskData) => {
+        resolve(maskData)
+      }).catch(function (error) {
+        reject(error)
+      })
     }).catch(function (error) {
-      fire('error', error)
+      reject(error)
     })
-  }).catch(function (error) {
-    fire('error', error)
+  })
+
+}
+
+Store.prototype.getPrefixes = function (prefix) {
+  return new Promise((resolve) => {
+    const prefixes = []
+      masqStore.getAll().then((items) => {
+        Object.keys(items).forEach((itemKey) => {
+          let item = items[itemKey]
+          const rePrefix = new RegExp(`${prefix}`, 'i')
+          if(rePrefix.exec(item.title))
+          prefixes.push(item)
+        })
+        resolve(prefixes)
+    })
   })
 }
 

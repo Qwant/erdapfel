@@ -3,17 +3,34 @@ const panels = new Map()
 /**
  * Panel is a simple display component
  */
-function Panel(panel, view, parentId) {
-  this.panel = panel
-  this.view = view
-
-  this.node = document.getElementById(parentId)
-  panels.set(panel.id, this.node)
+function Panel(panel, view, parentId = null) {
+    this.panel = panel
+    this.view = view
+    this.root = false
+    this.cid = parentId || panels.size
+    if(parentId !== null) {
+      this.node = document.getElementById(this.cid)
+      this.root = true
+    } else {
+      this.node = document.createElement('div')
+      this.node.setAttribute('data-cid', this.cid)
+    }
+    panel.render = this.render.bind(this)
+    panel.animate = this.animate.bind(this)
+    panels.set(this.cid, this.node)
 }
 
 Panel.prototype.render = function () {
+  this.node.innerHTML = this.view.call(this.panel)
+  if(this.root === false) {
+    return this.node.outerHTML
+  }
+}
+
+Panel.prototype.update = function () {
+  let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   return new Promise((resolve) => {
-    this.node.innerHTML = this.view.call(this.panel)
+    transitionNode.innerHTML = this.view.call(this.panel)
     requestAnimationFrame(()=>{
       resolve(this)
     })
@@ -21,9 +38,9 @@ Panel.prototype.render = function () {
 }
 
 Panel.prototype.animate = function (t, selector, style = {}) {
-  let transitionNode = this.node
+  let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   if(selector) {
-    transitionNode = this.node.querySelector(selector)
+    transitionNode = transitionNode.querySelector(selector)
   }
   Object.keys(style).forEach((styleKey) => {
     transitionNode.style[styleKey] = style[styleKey]

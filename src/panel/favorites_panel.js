@@ -1,23 +1,26 @@
 import FavoritePanelView from 'dot-loader!../views/favorites_panel.dot'
 import Panel from '../libs/panel'
 import Poi from '../mapbox/poi'
+import Store from '../adapters/store'
+
+const store = new Store()
 
 function Favorite() {
   this.active = false
   this.favoritePois = []
 
-  listen('favorite_loaded', (storeData) => {
+  store.getAll().then((storeData) => {
     this.favoritePois = Object.keys(storeData).map((mapPoint) => {
       return Poi.load(storeData[mapPoint])
     })
-    this.panel.render()
+    this.panel.update()
   })
 
   listen('store_poi', (poi) => {
     this.add(poi)
   })
 
-  this.panel = new Panel(this, FavoritePanelView, 'favorites_panel')
+  this.panel = new Panel(this, FavoritePanelView)
 }
 
 Favorite.prototype.toggle = function() {
@@ -46,8 +49,8 @@ Favorite.prototype.go = function(poi) {
 
 Favorite.prototype.add = function(poi) {
   this.favoritePois.push(poi)
-  const renderPromise = this.panel.render()
-  renderPromise.then(()=>{
+  const updaterPromise = this.panel.update()
+  updaterPromise.then(()=>{
 
   })
 }
@@ -60,7 +63,7 @@ Favorite.prototype.del = function(poi) {
     }
     return true
   })
-  this.panel.render()
+  this.panel.update()
 }
 
 export default Favorite
