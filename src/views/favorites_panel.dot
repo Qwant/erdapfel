@@ -1,4 +1,5 @@
 <div class="favorites_panel">
+  <div {{= click(this.toggle, this) }} class="favorite-panel--handler"></div>
   <div class="favorite_panel__container">
     <h3>Favorites</h3>
     {{? this.favoritePois.length === 0 }}
@@ -17,5 +18,4 @@
     </ul>
     <button onclick="fire('store_clear')">Clear</button>
   </div>
-  <div {{= click(this.toggle, this) }} class="favorite-panel--handler"></div>
 </div>

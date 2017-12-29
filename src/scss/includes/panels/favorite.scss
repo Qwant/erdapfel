@@ -33,3 +33,19 @@
 .favorite_panel__go {
   color : slategrey;
 }
+
+
+@media (max-width: 640px) {
+  .favorites_panel {
+    top: calc(100vh - 30px);
+    left: 0;
+    width: 100%;
+  }
+
+  .favorite-panel--handler {
+    width: 100%;
+    float:none;
+    height: 20px;
+  }
+}
+
