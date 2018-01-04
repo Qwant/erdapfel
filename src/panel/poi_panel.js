@@ -19,15 +19,24 @@ PoiPanel.prototype.storePoi = function() {
 }
 
 PoiPanel.prototype.showInfoBox = function(poi) {
-  store.has(poi).then((storePoi) => {
-    this.poi = poi
-    if(storePoi) {
-      this.poi.stored = true
-    }
+  new Promise((resolve) => {
+    store.has(poi).then((storePoi) => {
+      this.poi = poi
+      if(storePoi) {
+        this.poi.stored = true
+      }
+      resolve()
+    }).catch(() => {
+      this.poi = poi
+      this.poi.stored = false
+      resolve()
+    })
+  }).then(() => {
     this.panel.update().then(() => {
       this.panel.animate(1,'.poi_panel', {bottom:0})
     })
   })
+
 }
 
 export default PoiPanel

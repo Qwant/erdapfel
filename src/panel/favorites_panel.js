@@ -49,10 +49,7 @@ Favorite.prototype.go = function(poi) {
 
 Favorite.prototype.add = function(poi) {
   this.favoritePois.push(poi)
-  const updaterPromise = this.panel.update()
-  updaterPromise.then(()=>{
-
-  })
+  this.panel.update()
 }
 
 Favorite.prototype.del = function(poi) {

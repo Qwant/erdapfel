@@ -1,2 +1,3 @@
 {{= this.favoritePanel.render() }}
 {{= this.poiPanel.render() }}
+{{= this.errorPanel.render() }}

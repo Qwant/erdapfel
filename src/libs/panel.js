@@ -27,13 +27,26 @@ Panel.prototype.render = function () {
   }
 }
 
+/**
+ * Cost 32 ms
+ */
 Panel.prototype.update = function () {
   let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   return new Promise((resolve) => {
     transitionNode.innerHTML = this.view.call(this.panel)
     requestAnimationFrame(()=>{
-      resolve(this)
+      requestAnimationFrame(()=>{
+        resolve(this)
+      })
     })
+  })
+}
+
+Panel.prototype.wait = function (t) {
+  return new Promise((resolve) => {
+    setTimeout(()=> {
+      resolve(this)
+    }, t * 1000)
   })
 }
 
