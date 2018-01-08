@@ -2,9 +2,10 @@
  * simple Poi helper
  */
 
-function Poi(latLon, title, description) {
+function Poi(latLon, id, title, description) {
   this.latLon = latLon
   this.title = title
+  this.id = id ? id + '' : `${this.latLon.lat}_${this.latLon.lng}` // force string type or fallback to latlng key
   this.description = description
 }
 
@@ -27,8 +28,8 @@ Poi.prototype.store = function() {
 }
 
 Poi.load = function (rawPoi) {
-  let poi = new Poi(rawPoi.latLon, rawPoi.title, rawPoi.description)
-  poi.bbox = rawPoi.rawPoi
+  let poi = new Poi(rawPoi.latLon, rawPoi.id, rawPoi.title, rawPoi.description)
+  poi.bbox = rawPoi.bbox
   poi.zoom = rawPoi.zoom
   return poi
 }

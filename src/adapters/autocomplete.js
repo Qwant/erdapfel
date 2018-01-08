@@ -15,12 +15,12 @@ function SearchInput(tagSelector) {
     }
 
     if(item.bbox) {
-      let poi = new Poi(null, item.value)
+      let poi = new Poi(null, item.value, item.id)
       poi.bbox = item.bbox
       poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
       fire('fit_bounds', poi);
     } else {
-      let poi = new Poi([item.lat, item.lon], item.value)
+      let poi = new Poi({lat : item.lat, lng : item.lon}, item.id, item.value)
       poi.zoom = item.zoom_level
       fire('fly_to',poi)
       fire('mark_poi', poi)
@@ -39,28 +39,24 @@ function SearchInput(tagSelector) {
       const suggestPromise = ajax.query('https://search.mapzen.com/v1/search', {text: term, api_key: '***REMOVED***'})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
-        let mapZenData = responses[0]
-        this.items = extractMapzenData(mapZenData)
+        this.items = extractMapzenData(responses[0])
         let historySuggestData = responses[1]
-        historySuggestData = historySuggestData.map((historySuggest,i) => {
-          let poi = new Poi(historySuggest.latLon, historySuggest.description)
+        historySuggestData = historySuggestData.map((historySuggest) => {
+          let poi = Poi.load(historySuggest)
           poi.fromHistory = true
-          poi.id = i
-          poi.zoom = historySuggest.zoom
-          poi.value = historySuggest.title
           return poi
         })
         this.items = this.items.concat(historySuggestData)
         suggest(this.items)
       })
     },
-    renderItem : ({id, value, fromHistory}, search) => {
+    renderItem : ({id, title, fromHistory}, search) => {
       let re = new RegExp(`(${search})`, 'i')
-      let suggestDisplay = value.replace(re, '<span class="autocomplete_prefix">$1</span>')
-      return `<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${value}">${suggestDisplay}</div>`
+      let suggestDisplay = title.replace(re, '<span class="autocomplete_prefix">$1</span>')
+      return `<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${title}">${suggestDisplay}</div>`
     },
     onSelect : (e, term, item) => {
-      const itemId = parseInt(item.getAttribute('data-id'))
+      const itemId = item.getAttribute('data-id')
       this.items.forEach((poi) => {
         if(poi.id === itemId) {
           if(poi.bbox) {
@@ -116,9 +112,8 @@ function extractMapzenData(response) {
         emojiPicto = '〰'
         zoomLevel = 15
     }
+    let poi = new Poi({lat : feature['geometry']['coordinates'][1], lng : feature['geometry']['coordinates'][0]}, feature['properties']['id'], feature['properties']['label'])
 
-    let poi = new Poi([feature['geometry']['coordinates'][0], feature['geometry']['coordinates'][1]], feature['properties']['label'])
-    poi.id = parseInt(feature['properties']['id'])
     poi.value = feature['properties']['label']
     poi.picto = emojiPicto
     poi.poi_type = resultType
