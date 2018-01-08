@@ -41,7 +41,7 @@ const sassChunkConfig = {
   }
 
 const mainJsChunkConfig = {
-  entry: './src/main.js',
+  entry: ['babel-polyfill', './src/main.js'],
 
   output: {
     path: path.join(__dirname, '..', 'public'),
@@ -50,6 +50,22 @@ const mainJsChunkConfig = {
 
   module: {
     loaders: [{
+      test : /style\.json$/,
+      use : [
+        {
+          loader : 'json-loader'
+        },
+        {
+          loader : 'map-style-loader',
+          options : {
+            output: 'dev',
+            conf: __dirname + '/map_dev.json',
+            outPath : __dirname + '/../public/'
+          }
+        }
+      ],
+
+    }, {
       test: /\.yaml$/,
       include: path.resolve('config'),
       loaders: 'json-loader!yaml-loader'
