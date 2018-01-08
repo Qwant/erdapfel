@@ -1,8 +1,6 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const yaml = require('node-yaml')
 const languages = yaml.readSync('./language.yml')
-
 
 const sassChunkConfig = {
     entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
@@ -41,7 +39,7 @@ const sassChunkConfig = {
   }
 
 const mainJsChunkConfig = {
-  entry: ['babel-polyfill', './src/main.js'],
+  entry: ['./src/main.js'],
 
   output: {
     path: path.join(__dirname, '..', 'public'),
@@ -60,7 +58,8 @@ const mainJsChunkConfig = {
           options : {
             output: 'dev',
             conf: __dirname + '/map_dev.json',
-            outPath : __dirname + '/../public/'
+            outPath : __dirname + '/../public/',
+            pixelRatios : [1,2]
           }
         }
       ],
@@ -71,7 +70,6 @@ const mainJsChunkConfig = {
       loaders: 'json-loader!yaml-loader'
     }, {
       test: /\.js$/,
-      use:'babel-loader',
       exclude: [
         /\/node_modules/
       ]
