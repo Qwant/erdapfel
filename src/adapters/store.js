@@ -1,7 +1,7 @@
 let moduleConfig = require("json-loader!yaml-loader!../../config/modules.yml")
 const AbStore = require(`../libs/${moduleConfig.store.name}`)
-
 const abstractStore = new AbStore(moduleConfig.store.remote)
+const isRegisterd = false
 
 function Store() {
   listen('store_poi', (poi) => {
@@ -29,8 +29,13 @@ Store.prototype.getAll = function() {
       reject(error)
     })
   })
-
 }
+
+Store.prototype.register = function () {
+    abst3actStore.registerApp(regParams).then(function (e) {
+    })
+}
+
 
 Store.prototype.getPrefixes = function (prefix) {
   return new Promise((resolve) => {
