@@ -1,6 +1,6 @@
 /**
  *
- * i18n stub
+ * i18n lib
  *
  */
 
@@ -20,15 +20,17 @@ I18n.prototype._ = function(key = '', context, placeholders) {
   if (key === '') {
     return ''
   }
-
-  return replacePlaceholders(this.message[key], placeholders)
+  if(this.message[key]) {
+    return replacePlaceholders(this.message[key], placeholders)
+  } else {
+    return replacePlaceholders(key, placeholders)
+  }
 }
 
 I18n.prototype._n = function(key1 = '', key2, count, context, placeholders) {
   if (key1 === '') {
     return  ''
   }
-
   let pluralKey = this.getPlural(count) ? this.message[key2][0] : this.message[key2][1]
 
   return replacePlaceholders(pluralKey, placeholders).replace(/%d/g, count)

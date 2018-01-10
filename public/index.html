@@ -14,8 +14,9 @@
     <form onsubmit="return false" class="search_form">
       <div class="search_form__logo"></div>
       <input type="text" id="search" type="search" class="search_form__input" placeholder="Où voulez-vous aller ?">
-      <button class="search_form__action" onclick="flyToUserPosition()"></button>
+      <button class="search_form__action" onclick="fire('submit_autocomplete')"></button>
     </form>
+    <div id="panels"></div>
     <script>
       document.onkeydown = () => {
         document.getElementById('search').focus()

@@ -1,0 +1,3 @@
+store:
+  name: local_store # local_store | none | mask | ..
+  remote:

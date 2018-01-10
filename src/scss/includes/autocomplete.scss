@@ -1,80 +1,120 @@
 .search_form {
-	font: 12px/20px 'Helvetica', Arial, Helvetica, sans-serif;
-	background-color: #fff;
-	font-weight: 300;
-	color: rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-	border-radius: 2px;
-	top: 36px;
-	left: 36px;
-	position: absolute;
-	display: flex;
-	padding: 0;
-	min-width: 25em;
-	width: 45em;
-	height: 50px;
-	margin: 5px auto;
+  position: absolute;
+  display: flex;
+  top: 36px;
+  left: 36px;
+  width: 45em;
+  height: 50px;
+  padding: 0;
+  margin: 5px auto;
+  min-width: 25em;
+  font: 12px/20px 'Helvetica', Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  font-weight: 300;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .search_form__input {
-	border: none;
-	width: 415px;
-	height: 28px;
-	padding: 10px 10px 10px 60px;
-	font-size: 16px;
-	font-weight: 300;
-	background: none;
+  width: 415px;
+  height: 50px;
+  padding: 10px 10px 10px 60px;
+  font-size: 16px;
+  font-weight: 300;
+  border: none;
+  background: none;
 }
 
 .search_form__logo {
-	background-image: url(../statics/images/qwant-logo.png);
-	background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-	position: absolute;
-	left: 20px;
-	top: 13px;
-	font-size: 14px;
-	color: #888;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 20px;
+  top: 13px;
+  font-size: 14px;
+  background-image: url(../statics/images/qwant-logo.png);
+  background-size: 20px 20px;
+  color: #888;
 }
 
 .search_form__action {
-	background: #fff url(../statics/images/not-active.svg) center no-repeat;
-	background-size: 20px 20px;
-	width: 50px;
-	height: 50px;
-	position: absolute;
-	right: 0px;
-	font-size: 14px;
-	color: #888;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  background: #fff url(../statics/images/not-active.svg) center no-repeat;
+  background-size: 20px 20px;
+  font-size: 14px;
+  color: #888;
 }
 
-.autocomplete-suggestions {
-	text-align: left;
-	cursor: default;
-	border: 1px solid #ccc;
-	border-top: 0;
-	background: #fff;
-	box-shadow: -1px 1px 3px rgba(0,0,0,.1);
+.autocomplete_suggestions {
+  text-align: left;
+  cursor: default;
+  border: 1px solid #ccc;
+  border-top: 0;
+  background: #fff;
+  box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
 
-	/* core styles should not be changed */
-	position: absolute;
-	display: none;
-	z-index: 9999;
-	max-height: 254px;
-	overflow: hidden;
-	overflow-y: auto;
-	box-sizing: border-box;
+  /* core styles should not be changed */
+  position: absolute;
+  display: none;
+  z-index: 9999;
+  max-height: 254px;
+  overflow: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.autocomplete_suggestion.selected {
+  background: #111;
+  color: #fff
 }
 
 .autocomplete_suggestion {
-	color: #555;
-	position: relative;
-	line-height: 23px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	font-size: 1.02em;
-	padding: 7px 0 7px 20px;
+  position: relative;
+  padding: 7px 0 7px 20px;
+  line-height: 23px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.02em;
+  color: #555;
+}
 
+.autocomplete_suggestion--history {
+  color : #039BE5;
+}
+
+.autocomplete_suggestion--history .autocomplete_prefix {
+  color : #039BE5;
+}
+
+.autocomplete_prefix {
+  color : #fbca04;
+}
+
+@media (max-width: 640px) {
+  .search_form {
+    width: 100%;
+    margin: 0;
+    top:0;
+    left: 0;
+    height: 150px;
+    background-color: #e1e5e0;
+  }
+  .search_form__input {
+    width: 100%;
+    margin: 10px;
+    background: #fff;
+  }
+  .search_form__logo {
+    left: 28px;
+    top: 24px;
+  }
+  .search_form__action {
+    right: 10px;
+    top: 10px;
+  }
 }

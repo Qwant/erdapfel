@@ -2,5 +2,10 @@
 @import "includes/mapbox-gl";
 
 @import "includes/app";
+@import "includes/error";
 @import "includes/autocomplete";
 @import "includes/map_theme";
+
+// panels
+@import "includes/panels/favorite";
+@import "includes/panels/poi";
