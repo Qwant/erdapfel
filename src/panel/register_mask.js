@@ -9,7 +9,7 @@ function RegisterMaskPanel() {
   this.isActive = false
 
   listen('register_panel__show', () => {
-    this.panel.animate(.25, '.register_mask_panel', {top : 0})
+    this.panel.animate(.25, '.register_mask_panel', {top : '100px'})
   })
 }
 
