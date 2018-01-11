@@ -8,12 +8,18 @@ const store = new Store()
 function Favorite() {
   this.active = false
   this.favoritePois = []
-
-  store.getAll().then((storeData) => {
-    this.favoritePois = Object.keys(storeData).map((mapPoint) => {
-      return Poi.load(storeData[mapPoint])
+  store.onConnect()
+    .then(() => store.isRegistered())
+    .then((registered) => {
+      if(registered) {
+        this.getAll()
+      } else {
+        fire('register_panel__show')
+      }
     })
-    this.panel.update()
+
+  listen('store_registered', () => {
+    this.getAll()
   })
 
   listen('store_poi', (poi) => {
@@ -21,6 +27,15 @@ function Favorite() {
   })
 
   this.panel = new Panel(this, FavoritePanelView)
+}
+
+Favorite.prototype.getAll = function () {
+  store.getAll().then((storeData) => {
+    this.favoritePois = Object.keys(storeData).map((mapPoint) => {
+      return Poi.load(storeData[mapPoint])
+    })
+    this.panel.update()
+  })
 }
 
 Favorite.prototype.toggle = function() {

@@ -1,9 +1,10 @@
 let moduleConfig = require("json-loader!yaml-loader!../../config/modules.yml")
 const AbStore = require(`../libs/${moduleConfig.store.name}`)
-const abstractStore = new AbStore(moduleConfig.store.remote)
-const isRegisterd = false
+const abstractStore = new AbStore(moduleConfig.store.endpoint)
 
 function Store() {
+  this.isRegisterd = false
+
   listen('store_poi', (poi) => {
     this.add(poi)
   })
@@ -15,15 +16,11 @@ function Store() {
   })
 }
 
+
 Store.prototype.getAll = function() {
   return new Promise((resolve, reject) => {
-    abstractStore.onConnect().then(() => {
-      abstractStore.getAll().then((maskData) => {
-        resolve(maskData)
-      }).catch(function (error) {
-        fire('error_h' , 'store ' + error)
-        reject(error)
-      })
+    abstractStore.getAll().then((maskData) => {
+      resolve(maskData)
     }).catch(function (error) {
       fire('error_h' , 'store ' + error)
       reject(error)
@@ -31,9 +28,31 @@ Store.prototype.getAll = function() {
   })
 }
 
-Store.prototype.register = function () {
-    abst3actStore.registerApp(regParams).then(function (e) {
+Store.prototype.isRegistered = function () {
+  return new Promise((resolve) => {
+    abstractStore.getAll()
+      .then(() => resolve(true))
+      .catch((e) => {
+      if(e.message === 'UNREGISTERED') {
+        resolve(false)
+      }
     })
+  })
+}
+
+Store.prototype.onConnect = function () {
+  return abstractStore.onConnect()
+}
+
+Store.prototype.register = function () {
+  let regParams = {
+    endpoint: moduleConfig.store.endpoint,
+    url: window.location.origin + window.location.pathname,
+    title: moduleConfig.store.mask.title,
+    desc: moduleConfig.store.mask.desc,
+    icon: moduleConfig.store.mask.icon
+  }
+  return abstractStore.registerApp(regParams)
 }
 
 

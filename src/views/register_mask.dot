@@ -1,1 +1,4 @@
-<h1>Register mask</h1>
+<div class="register_mask_panel" style="top:{{= this.isActive ? '0' : '-300px' }}">
+  <h1>Register mask</h1>
+  <button {{= click(this.register, this) }}>Register</button>
+</div>
