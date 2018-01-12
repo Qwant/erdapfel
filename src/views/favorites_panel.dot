@@ -1,22 +1,29 @@
 <div class="favorites_panel" {{= this.active ? 'style="left:0"' : 'style="left:-280px"' }}>
   <div {{= click(this.toggle, this) }} class="favorite-panel--handler"></div>
   <div class="favorite_panel__container">
-    <h3>Favorites</h3>
+    <h3 class="favorite_panel__container__title">Favorites <span>★</span></h3>
     {{? this.favoritePois.length === 0 }}
       {{= _('favorite folder is empty') }}
     {{??}}
       <ul>
-        {{~ this.favoritePois:poi }}
+        {{~ this.favoritePois:poi:i }}
           <li class="favorite_panel__item">
-            <p>
-              {{= poi.title ? poi.title : 'default' }}
+          <div class="favorite_panel__item__info">
+            <p class="favorite_panel__item__title">
+              <span class="favorite_panel__item__count">{{= i+1 }}</span> {{= poi.title ? poi.title : 'default' }}
             </p>
-            <button class="favorite_panel__remove" {{= click(this.del, this, poi) }}>×</button>
-            <button class="favorite_panel__go" {{= click(this.go, this, poi) }}>▷</button>
+            <p class="favorite_panel__item__desc">
+                {{= poi.description ? poi.description.replace(/_/g, ' ') : '' }}
+            </p>
+           </div>
+           <div class="favorite_panel__item__actions">
+            <button class="favorite_panel__remove favorite_panel__action" {{= click(this.del, this, poi) }}>×</button>
+            <button class="favorite_panel__go favorite_panel__action" {{= click(this.go, this, poi) }}>▶</button>
+           </div>
           </li>
         {{~}}
       </ul>
-      <button onclick="fire('store_clear')">Clear</button>
+      <button class="favorite_panel__clear" onclick="fire('store_clear')">Clear</button>
     {{?}}
   </div>
 </div>
