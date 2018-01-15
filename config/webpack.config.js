@@ -2,6 +2,8 @@ const path = require('path')
 const yaml = require('node-yaml')
 const languages = yaml.readSync('./language.yml')
 
+const env = process.env.ENV || 'local'
+
 const sassChunkConfig = {
     entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
     output: {
@@ -57,13 +59,12 @@ const mainJsChunkConfig = {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
-            conf: __dirname + '/map_dev.json',
+            conf: env === 'local' ? __dirname + '/map_local.json' : __dirname + '/map_prod.json',
             outPath : __dirname + '/../public',
             pixelRatios : [1,2]
           }
         }
       ],
-
     }, {
       test: /\.yaml$/,
       include: path.resolve('config'),
