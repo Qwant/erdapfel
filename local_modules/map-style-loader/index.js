@@ -11,8 +11,8 @@ module.exports = function(source) {
   let options = utils.getOptions(this)
   options = options || {}
   options.styleDir = this.context
-  options.ouput = options.ouput || 'dev'
-  options.config = require(options.conf)
+  options.output = options.output || 'debug'
+  options.conf = require(options.conf)
 
   return styleBuilder(style, options)
 }

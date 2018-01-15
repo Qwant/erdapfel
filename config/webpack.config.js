@@ -56,9 +56,9 @@ const mainJsChunkConfig = {
         {
           loader : 'map-style-loader',
           options : {
-            output: 'dev',
+            output: 'debug', // 'production' | 'omt'
             conf: __dirname + '/map_dev.json',
-            outPath : __dirname + '/../public/',
+            outPath : __dirname + '/../public',
             pixelRatios : [1,2]
           }
         }
