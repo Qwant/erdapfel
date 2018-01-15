@@ -444,7 +444,8 @@
       "name:latin": "String",
       "name:sr-Latn": "String",
       "name:et": "String",
-      "name:es": "String"
+      "name:es": "String",
+      "website" : "String"
     },
     "minzoom": 0,
     "id": "place",
@@ -525,7 +526,9 @@
       "name:latin": "String",
       "name:sr-Latn": "String",
       "name:et": "String",
-      "name:es": "String"
+      "name:es": "String",
+      "website":"String",
+      "opening_hours" : "String"
     },
     "minzoom": 0,
     "id": "poi",
