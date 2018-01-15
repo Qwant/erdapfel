@@ -27,7 +27,9 @@ function Scene() {
     })
 
     this.mb.on('click', 'poi-level-3', (e) => {
-      let poi = new Poi({lat : e.features[0].geometry.coordinates[1], lng : e.features[0].geometry.coordinates[0]},e.features[0].properties.id, e.features[0].properties.class, e.features[0].properties.subclass)
+      let name = e.features[0].properties.name || ''
+      let className = e.features[0].properties.class || ''
+      let poi = new Poi({lat : e.features[0].geometry.coordinates[1], lng : e.features[0].geometry.coordinates[0]},e.features[0].properties.id, name, className)
       poi.zoom = this.mb.getZoom()
       fire('mark_poi', poi)
     })

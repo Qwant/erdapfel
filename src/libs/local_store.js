@@ -14,6 +14,10 @@ LocalStore.prototype.getAll = function () {
   })
 }
 
+LocalStore.prototype.register = function() {
+  console.log('local storage doesn\'t support register method')
+}
+
 LocalStore.prototype.onConnect = function () {
   return new Promise((resolve) => {
     resolve()

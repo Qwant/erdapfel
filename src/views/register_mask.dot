@@ -1,0 +1,8 @@
+<div class="register_mask_panel" style="top:{{= this.isActive ? '0' : '-300px' }}">
+  <h1 class="register_mask_panel__title">Register mask</h1>
+  <p>
+    We use mask to keep your preference data safe
+  </p>
+  <br>
+  <button class="register_mask_panel__action" {{= click(this.register, this) }}>Register</button>
+</div>
