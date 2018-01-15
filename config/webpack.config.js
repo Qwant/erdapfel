@@ -1,8 +1,6 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const yaml = require('node-yaml')
 const languages = yaml.readSync('./language.yml')
-
 
 const sassChunkConfig = {
     entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
@@ -41,7 +39,7 @@ const sassChunkConfig = {
   }
 
 const mainJsChunkConfig = {
-  entry: './src/main.js',
+  entry: ['./src/main.js'],
 
   output: {
     path: path.join(__dirname, '..', 'public'),
@@ -50,12 +48,28 @@ const mainJsChunkConfig = {
 
   module: {
     loaders: [{
+      test : /style\.json$/,
+      use : [
+        {
+          loader : 'json-loader'
+        },
+        {
+          loader : 'map-style-loader',
+          options : {
+            output: 'debug', // 'production' | 'omt'
+            conf: __dirname + '/map_dev.json',
+            outPath : __dirname + '/../public',
+            pixelRatios : [1,2]
+          }
+        }
+      ],
+
+    }, {
       test: /\.yaml$/,
       include: path.resolve('config'),
       loaders: 'json-loader!yaml-loader'
     }, {
       test: /\.js$/,
-      use:'babel-loader',
       exclude: [
         /\/node_modules/
       ]

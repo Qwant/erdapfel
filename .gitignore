@@ -7,6 +7,10 @@ public/css/
 public/javascript/
 public/images/
 
+#map style
+public/sprite*
+
+
 
 #doumentantion
 /docs/*
