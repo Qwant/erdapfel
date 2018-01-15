@@ -1,4 +1,4 @@
-<div class="poi_panel {{= this.poi ? "" : "poi_panel--idle"}}">
+<div {{= this.poi ? 'style="left:0"' : 'style="left:-300px"' }} class="poi_panel {{= this.poi ? "" : "poi_panel--idle"}}">
   {{? this.poi }}
     <div class="poi_panel__logo_demo"></div>
     <div class="poi_panel__description_container">
