@@ -1,5 +1,5 @@
 store:
-  name: mask # local_store | none | mask | ..
+  name: masq # local_store | none | mask | ..
   endpoint: https://sync-beta.qwantresearch.com/
   mask:
     title: Qwant Maps PoC

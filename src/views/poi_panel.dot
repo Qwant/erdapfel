@@ -1,12 +1,42 @@
-<div {{= this.poi ? 'style="left:0"' : 'style="left:-300px"' }} class="poi_panel {{= this.poi ? "" : "poi_panel--idle"}}">
+<div {{= this.active ? 'style="left:0"' : 'style="left:-300px"' }} class="poi_panel">
   {{? this.poi }}
     <div class="poi_panel__logo_demo"></div>
     <div class="poi_panel__description_container">
-      <h3>{{= this.poi.title }}</h3>
+      <h4 class="poi_panel__title">{{= this.poi.title }}</h4>
       {{? this.poi.description }}
-        <p>{{= this.poi.description }}</p>
+        <p class="poi_panel__description">{{= this.poi.description.replace(/_/g, ' ') }}</p>
       {{?}}
     </div>
+
+    <div class="poi_panel__info">
+      {{~ this.poi.tags:tag }}
+        <div class="poi_panel__info__section poi_panel__info__section--{{= tag.name }}">
+
+          <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
+
+          <p class="poi_panel__info__section__description">
+
+            {{? tag.name === 'opening_hours' }}
+
+              {{~ Object.keys(tag.value):day }}
+
+                <b>{{= day }}</b> {{= tag.value[day] }}<br>
+
+              {{~}}
+
+              {{= this.isOpen(tag.value) }}
+
+            {{??}}
+              {{= tag.value }}
+            {{?}}
+
+          </p>
+          <br>
+
+        </div>
+      {{~}}
+    </div>
+
     <div class="poi_panel__go">
       {{? this.poi.stored }}★{{??}}☆<button{{= click(this.storePoi, this) }}>+ Add to 💜</button>{{?}}
     </div>

@@ -19,8 +19,8 @@ function Store() {
 
 Store.prototype.getAll = function() {
   return new Promise((resolve, reject) => {
-    abstractStore.getAll().then((maskData) => {
-      resolve(maskData)
+    abstractStore.getAll().then((masqData) => {
+      resolve(masqData)
     }).catch(function (error) {
       fire('error_h' , 'store ' + error)
       reject(error)
@@ -48,9 +48,9 @@ Store.prototype.register = function () {
   let regParams = {
     endpoint: moduleConfig.store.endpoint,
     url: window.location.origin + window.location.pathname,
-    title: moduleConfig.store.mask.title,
-    desc: moduleConfig.store.mask.desc,
-    icon: moduleConfig.store.mask.icon
+    title: moduleConfig.store.masq.title,
+    desc: moduleConfig.store.masq.desc,
+    icon: moduleConfig.store.masq.icon
   }
   return abstractStore.registerApp(regParams)
 }

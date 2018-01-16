@@ -9,6 +9,7 @@ function PoiPanel() {
     this.showInfoBox(poi)
   })
   this.poi = null
+  this.active = false
   this.panel = new Panel(this, PoiPanelView)
 }
 
@@ -16,6 +17,15 @@ PoiPanel.prototype.storePoi = function() {
   fire('store_poi', this.poi)
   this.poi.stored = true
   this.panel.update()
+}
+
+PoiPanel.prototype.isOpen = function(oh) {
+  let d = new Date()
+  let dn = d.getDay()
+  let rato = oh[days[dn]]
+  const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
+    [hours, minutes] = rato.split(':')
+  return  rato < d.getHours() && rato > d.getHours()
 }
 
 PoiPanel.prototype.showInfoBox = function(poi) {
@@ -33,10 +43,10 @@ PoiPanel.prototype.showInfoBox = function(poi) {
     })
   }).then(() => {
     this.panel.update().then(() => {
-      this.panel.animate(1,'.poi_panel', {bottom:0})
+      this.active = true
+      this.panel.animate(.25,'.poi_panel', {left:0})
     })
   })
-
 }
 
 export default PoiPanel

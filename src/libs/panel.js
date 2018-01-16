@@ -50,6 +50,20 @@ Panel.prototype.wait = function (t) {
   })
 }
 
+Panel.prototype.toggleClassName = function (t, selector, className) {
+  let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
+  if(selector) {
+    transitionNode = transitionNode.querySelector(selector)
+  }
+  transitionNode.classList.toggle(className)
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(this)
+    }, t*1000)
+  })
+}
+
 Panel.prototype.animate = function (t, selector, style = {}) {
   let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   if(selector) {
