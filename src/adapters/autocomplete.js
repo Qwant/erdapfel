@@ -13,11 +13,12 @@ function SearchInput(tagSelector) {
     if(this.poi) {
       poi = this.poi
     }
-
-    if(poi.bbox) {
-      fire('fit_bounds', poi);
-    } else {
-      fire('mark_poi', poi)
+    if(poi) {
+      if(poi.bbox) {
+        fire('fit_bounds', poi);
+      } else {
+        fire('mark_poi', poi)
+      }
     }
   })
 

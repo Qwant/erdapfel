@@ -19,13 +19,42 @@ PoiPanel.prototype.storePoi = function() {
   this.panel.update()
 }
 
+PoiPanel.prototype.close = function() {
+  this.panel.animate(.25,'.poi_panel', {left:'-300px'})
+}
+
 PoiPanel.prototype.isOpen = function(oh) {
+  if(!oh) return -1
   let d = new Date()
   let dn = d.getDay()
-  let rato = oh[days[dn]]
+
   const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
-    [hours, minutes] = rato.split(':')
-  return  rato < d.getHours() && rato > d.getHours()
+  let schedules = oh[days[dn]]
+  if(!schedules) return -1
+  let open = schedules[0]
+  let close = schedules[1]
+
+  let currentTime = d.getHours() * 60 + d.getMinutes()
+
+  let [hours, minutes] = open.split(':')
+  let openingTime = parseInt(hours) * 60 + parseInt(minutes);
+
+  [hours, minutes] = close.split(':')
+  let closingTime = parseInt(hours) * 60 + parseInt(minutes)
+  if(openingTime < closingTime) { // 10h 14h30
+    if(currentTime > openingTime && currentTime < closingTime) {
+      return closingTime - currentTime
+    }
+  } else { // 2h 1h
+    if(currentTime < openingTime || currentTime > closingTime) {
+      return currentTime - closingTime
+    }
+  }
+  return -1
+}
+
+PoiPanel.prototype.openHours = function() {
+  this.panel.toggleClassName(.3, '.poi_panel__info__hours', 'poi_panel__info__hours--open')
 }
 
 PoiPanel.prototype.showInfoBox = function(poi) {

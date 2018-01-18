@@ -25,7 +25,8 @@ Poi.prototype.store = function() {
     title : this.title,
     description : this.description,
     zoom : this.zoom,
-    bbox : this.bbox
+    bbox : this.bbox,
+    tags : this.tags
   }
 }
 
@@ -33,6 +34,7 @@ Poi.load = function (rawPoi) {
   let poi = new Poi(rawPoi.latLon, rawPoi.id, rawPoi.title, rawPoi.description)
   poi.bbox = rawPoi.bbox
   poi.zoom = rawPoi.zoom
+  poi.tags = rawPoi.tags
   return poi
 }
 
@@ -47,8 +49,8 @@ Poi.sceneLoad = function (event, zoom) {
     let tags = JSON.parse(event.features[0].properties.tags)
     poi.tags = []
     Object.keys(tags).forEach((tagKey) => {
-      if(tagKey !== 'name') {
-        if(tagKey === 'opening_hours') {
+      if(tagKey.indexOf('name') === -1) {
+        if(tagKey.indexOf('_hours') !== -1) {
           poi.tags.push({name : tagKey, value : openingHourParse(tags[tagKey])})
         } else {
           poi.tags.push({name : tagKey, value : tags[tagKey]})

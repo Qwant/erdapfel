@@ -3,13 +3,63 @@
   width: 300px;
   height: 100vh;
   background: #fff;
-  padding: 130px 0 30px 30px;
+  padding: 4px 0 30px 30px;
+}
+
+.poi_panel__close {
+  color: #a81111;
+  font-size: 28px;
+  text-align: right;
+  cursor: pointer;
 }
 
 .poi_panel__title {
-  margin-bottom: 8px;
+  background: #039BE5;
+  color: #fff;
+  padding: 16px 4px;
+  margin: 130px 0 18px 0;
+  font-weight: normal;
+  font-size: 20px;
 }
 
 .poi_panel__description {
 
+}
+
+.poi_panel__info__hours {
+  height: 0;
+  transition: height 0.3s;
+  overflow: hidden;
+}
+
+.poi_panel__info__hours_status {
+  cursor: pointer;
+}
+
+.poi_panel__info__hours--open {
+  height: 160px;
+}
+
+.poi_panel__info__hours_status--open {
+  color : #60a820;
+}
+
+.poi_panel__info__hours_status--closing {
+  color : #f99c21;
+}
+
+.poi_panel__info__hours_status--closed {
+  color : #a81111;
+}
+
+.poi_panel__info__hours {
+  .day {
+    text-align: right;
+    padding: 3px 5px 3px 0;
+  }
+}
+
+.poi_panel__info__beer {
+  color: #6e5d00;
+  font-size: 13px;
 }
