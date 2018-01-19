@@ -116,7 +116,9 @@
 
   .favorite-panel--handler {
     width: 100%;
-    float:none;
+    bottom: 0;
+    position: absolute;
+    margin-top: 300px;
     height: 20px;
   }
 
@@ -138,8 +140,7 @@
   }
 
   .favorites_panel--hidden {
-    top:-100vh;
-  }
+    top: calc(-100vh + 170px);  }
 
   .favorite_panel__swipe_window {
     overflow-x: scroll;
@@ -147,7 +148,7 @@
   }
 
   .favorite_panel__swipe_element {
-    width: calc(100vw - 40px);
+    width: calc(100vw - 90px);
     margin-right: 10px;
     border : 2px solid #c4c5c6;
     float: left;
