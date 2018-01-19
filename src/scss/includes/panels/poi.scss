@@ -23,7 +23,8 @@
 }
 
 .poi_panel__description {
-
+  font-size: 12px;
+  color: #777;
 }
 
 .poi_panel__info__hours {
@@ -62,4 +63,12 @@
 .poi_panel__info__beer {
   color: #6e5d00;
   font-size: 13px;
+}
+
+.poi_panel__store_status__add {
+  border-bottom: 3px solid #513156;
+  background: #A55567;
+  color: #fff;
+  font-size: 14px;
+  padding: 3px 6px;
 }

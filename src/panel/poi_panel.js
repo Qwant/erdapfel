@@ -23,7 +23,7 @@ PoiPanel.prototype.close = function() {
   this.panel.animate(.25,'.poi_panel', {left:'-300px'})
 }
 
-PoiPanel.prototype.isOpen = function(oh) {
+PoiPanel.prototype.computeRemainingTime = function(oh) {
   if(!oh) return -1
   let d = new Date()
   let dn = d.getDay()
@@ -34,23 +34,23 @@ PoiPanel.prototype.isOpen = function(oh) {
   let open = schedules[0]
   let close = schedules[1]
 
-  let currentTime = d.getHours() * 60 + d.getMinutes()
+  let currentTime = d.getHours() * 60 + d.getMinutes() //convert time to minutes
 
-  let [hours, minutes] = open.split(':')
+  let [hours, minutes] = open.split(':') // time format is hh:mm
   let openingTime = parseInt(hours) * 60 + parseInt(minutes);
 
   [hours, minutes] = close.split(':')
   let closingTime = parseInt(hours) * 60 + parseInt(minutes)
-  if(openingTime < closingTime) { // 10h 14h30
+  if(openingTime < closingTime) { // 10h00 14h30
     if(currentTime > openingTime && currentTime < closingTime) {
       return closingTime - currentTime
     }
-  } else { // 2h 1h
+  } else { // 17h00 2h00
     if(currentTime < openingTime || currentTime > closingTime) {
       return currentTime - closingTime
     }
   }
-  return -1
+  return -1 // closed
 }
 
 PoiPanel.prototype.openHours = function() {

@@ -19,9 +19,9 @@
             {{? tag.name === 'opening_hours' && tag.value }}
               <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
 
-              {{? this.isOpen(tag.value) > 0 && this.isOpen(tag.value) < 60}}
+              {{? this.computeRemainingTime(tag.value) > 0 && this.computeRemainingTime(tag.value) < 60}}
                 <div class="poi_panel__info__hours_status poi_panel__info__hours_status--closing" {{= click(this.openHours, this) }}>Closing soon 	○</div>
-              {{?? this.isOpen(tag.value) > 0  }}
+              {{?? this.computeRemainingTime(tag.value) > 0  }}
                 <div class="poi_panel__info__hours_status poi_panel__info__hours_status--open" {{= click(this.openHours, this) }}>Open 	○</div>
               {{??}}
                  <div class="poi_panel__info__hours_status poi_panel__info__hours_status--closed" {{= click(this.openHours, this) }}>Closed 	○</div>
@@ -43,32 +43,31 @@
               {{?? tag.name === 'happy_hours' && tag.value }}
                 <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
 
-                {{? this.isOpen(tag.value) > 0  }}
+                {{? this.computeRemainingTime(tag.value) > 0  }}
                   <div class="poi_panel__info__hours_status poi_panel__info__hours_status--open" {{= click(this.openHours, this) }}>In progress</div>
                 {{??}}
                   <div class="poi_panel__info__hours_status poi_panel__info__hours_status--open" {{= click(this.openHours, this) }}>Not now</div>
                 {{?}}
 
-                <div class="poi_panel__info__hours">
-                  <table>
-                    {{~ Object.keys(tag.value):day }}
-                      <tr>
-                        <td class="day">{{= day }}</td>
-                        <td class="hours"> {{? tag.value[day] }} {{= (tag.value[day] + '').replace(',', ' - ') }} {{??}} - no - {{?}}<td>
-                      </tr>
-                    {{~}}
-                  </table>
-                </div>
+                  <div class="poi_panel__info__hours">
+                    <table>
+                      {{~ Object.keys(tag.value):day }}
+                        <tr>
+                          <td class="day">{{= day }}</td>
+                          <td class="hours"> {{? tag.value[day] }} {{= (tag.value[day] + '').replace(',', ' - ') }} {{??}} - no - {{?}}<td>
+                        </tr>
+                      {{~}}
+                    </table>
+                  </div>
 
               {{?? tag.name === 'brewery' }}
                 <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
-
                 {{~ tag.value.split(';'):beer }}
                   <p class="poi_panel__info__beer">{{= beer }}</p>
                 {{~}}
               {{?? tag.name.indexOf('phone') !== -1 }}
                 <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
-                <a href="{{= tag.value }}" type="phone" no-follow>{{= tag.value }}</a>
+                <a  data-rel="external" href="{{= tag.value }}">{{= tag.value }}</a>
               {{?? tag.name === 'website' }}
                 <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
                 <a href="{{= tag.value }}" no-follow>{{= tag.value }}</a>
@@ -81,8 +80,8 @@
       {{~}}
     </div>
 
-    <div class="poi_panel__go">
-      {{? this.poi.stored }}★{{??}}☆<button{{= click(this.storePoi, this) }}>+ Add to 💜</button>{{?}}
+    <div class="poi_panel__store_status">
+      {{? this.poi.stored }}★{{??}}☆<button class="poi_panel__store_status__add" {{= click(this.storePoi, this) }}>Add to favorite</button>{{?}}
     </div>
   {{?}}
 </div>
