@@ -133,6 +133,7 @@
     width: 100vw;
     transition: top .2s;
     top:0;
+    left: 0;
   }
 
   .favorite_panel__item {
@@ -140,7 +141,7 @@
   }
 
   .favorites_panel--hidden {
-    top: calc(-100vh + 170px);  }
+    top: calc(-100vh + 90px);  }
 
   .favorite_panel__swipe_window {
     overflow-x: scroll;
