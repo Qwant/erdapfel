@@ -28,7 +28,7 @@ PoiPanel.prototype.computeRemainingTime = function(oh) {
   let d = new Date()
   let dn = d.getDay()
 
-  const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
+  const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
   let schedules = oh[days[dn]]
   if(!schedules) return -1
   let open = schedules[0]
