@@ -25,6 +25,16 @@ function Scene() {
       this.mb.getCanvas().style.cursor = '';
     })
 
+    this.mb.on('click', 'poi-level-1', (e) => {
+      let poi = Poi.sceneLoad(e, this.mb.getZoom())
+      fire('mark_poi', poi)
+    })
+
+    this.mb.on('click', 'poi-level-2', (e) => {
+      let poi = Poi.sceneLoad(e, this.mb.getZoom())
+      fire('mark_poi', poi)
+    })
+
     this.mb.on('click', 'poi-level-3', (e) => {
       let poi = Poi.sceneLoad(e, this.mb.getZoom())
       fire('mark_poi', poi)
