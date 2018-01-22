@@ -10,9 +10,10 @@ let server
 
 beforeAll(async () => {
   server = await httpServerPwa(__dirname + '/../../public/', {p: 3000});
-
-  browser = await puppeteer.launch({})
+  console.log('>>>')
+  browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']})
   page = await browser.newPage();
+  page.on('console', msg => console.log('PAGE LOG:', ...msg.args));
 })
 
 afterAll(() => {
