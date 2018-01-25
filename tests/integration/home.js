@@ -17,10 +17,6 @@ beforeAll(async () => {
 
 })
 
-afterAll(() => {
-  browser.close()
-  server.close()
-})
 
 test('is dom loaded',async () => {
   expect.assertions(1);
@@ -56,4 +52,9 @@ test('is map loaded',async () => {
   await page.goto(APP_URL)
   let sceneContent = await page.waitForSelector(".mapboxgl-canvas");
   expect(sceneContent).not.toBeFalsy();
+})
+
+afterAll(() => {
+  browser.close()
+  server.close()
 })
