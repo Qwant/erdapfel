@@ -1,8 +1,6 @@
 import puppeteer from 'puppeteer'
 import httpServerPwa from'http-server-pwa'
 
-
-
 const APP_URL = 'http://localhost:3000'
 let browser
 let page
@@ -10,10 +8,11 @@ let server
 
 beforeAll(async () => {
   server = await httpServerPwa(__dirname + '/../../public/', {p: 3000});
-  console.log('>>>')
   browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']})
   page = await browser.newPage();
   page.on('console', msg => console.log('PAGE LOG:', ...msg.args));
+  console.log('>>>')
+
 })
 
 afterAll(() => {
