@@ -48,7 +48,7 @@ HourPanel.prototype.computeRemainingTime = function() {
 HourPanel.prototype.status = function() {
   let remaining = this.computeRemainingTime()
   if(remaining === -1) {
-    return `<span style="color:#${closed.msg}">${closed.msg}</span>`
+    return `<span style="color:#${this.timeMessages.closed.c}">${this.timeMessages.closed.msg}</span>`
   }
   for(let tmKey in this.timeMessages) {
     let tm = this.timeMessages[tmKey]
