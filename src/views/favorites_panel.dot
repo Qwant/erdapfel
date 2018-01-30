@@ -1,4 +1,4 @@
-<div class="favorites_panel" {{= this.active ? 'style="left:0"' : 'style="left:-280px"' }}>
+<div class="favorites_panel favorites_panel--hidden">
   <div {{= click(this.toggle, this) }} class="favorite-panel--handler"></div>
   <div class="favorite_panel__container">
     <h3 class="favorite_panel__container__title">Favorites <span>★</span></h3>
@@ -6,22 +6,37 @@
       {{= _('favorite folder is empty') }}
     {{??}}
       <ul>
-        {{~ this.favoritePois:poi:i }}
+
           <li class="favorite_panel__item">
-          <div class="favorite_panel__item__info">
-            <p class="favorite_panel__item__title">
-              <span class="favorite_panel__item__count">{{= i+1 }}</span> {{= poi.title ? poi.title : 'default' }}
-            </p>
-            <p class="favorite_panel__item__desc">
-                {{= poi.description ? poi.description.replace(/_/g, ' ') : '' }}
-            </p>
-           </div>
-           <div class="favorite_panel__item__actions">
-            <button class="favorite_panel__remove favorite_panel__action" {{= click(this.del, this, poi) }}>×</button>
-            <button class="favorite_panel__go favorite_panel__action" {{= click(this.go, this, poi) }}>▶</button>
-           </div>
+
+            <div class="favorite_panel__swipe_window">
+              <div class="favorite_panel__swipe_flow--{{= this.favoritePois.length }}">
+
+                {{~ this.favoritePois:poi:i }}
+                  <div class="favorite_panel__swipe_element">
+
+                    <div class="favorite_panel__item__info">
+                      <p class="favorite_panel__item__title">
+                        <span class="favorite_panel__item__count">{{= i+1 }}</span> {{= poi.title ? poi.title : 'default' }}
+                      </p>
+                      <p class="favorite_panel__item__desc">
+                          {{= poi.description ? poi.description.replace(/_/g, ' ') : '' }}
+                      </p>
+                    </div>
+
+                    <div class="favorite_panel__item__actions">
+                      <button class="favorite_panel__remove favorite_panel__action" {{= click(this.del, this, poi) }}>×</button>
+                      <button class="favorite_panel__go favorite_panel__action" {{= click(this.go, this, poi) }}>▶</button>
+                    </div>
+
+                  </div>
+                {{~}}
+
+              </div>
+            </div>
+
+
           </li>
-        {{~}}
       </ul>
       <button class="favorite_panel__clear" onclick="fire('store_clear')">Clear</button>
     {{?}}

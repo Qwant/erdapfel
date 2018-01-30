@@ -1,4 +1,4 @@
 {{= this.favoritePanel.render() }}
 {{= this.poiPanel.render() }}
 {{= this.errorPanel.render() }}
-{{= this.maskPanel.render() }}
+{{= this.masqPanel.render() }}

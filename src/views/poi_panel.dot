@@ -1,14 +1,52 @@
-<div class="poi_panel {{= this.poi ? "" : "poi_panel--idle"}}">
+<div {{= this.active ? 'style="left:0"' : 'style="left:-300px"' }} class="poi_panel">
+  <div class="poi_panel__close" {{= click(this.close, this) }} >🞨</div>
   {{? this.poi }}
     <div class="poi_panel__logo_demo"></div>
     <div class="poi_panel__description_container">
-      <h3>{{= this.poi.title }}</h3>
+      <h4 class="poi_panel__title">{{= this.poi.title }}</h4>
       {{? this.poi.description }}
-        <p>{{= this.poi.description }}</p>
+        <p class="poi_panel__description">{{= this.poi.description.replace(/_/g, ' ') }}</p>
       {{?}}
     </div>
-    <div class="poi_panel__go">
-      {{? this.poi.stored }}★{{??}}☆<button{{= click(this.storePoi, this) }}>+ Add to 💜</button>{{?}}
+
+    <div class="poi_panel__info">
+      {{~ this.poi.tags:tag }}
+        <div class="poi_panel__info__section poi_panel__info__section--{{= tag.name }}">
+
+
+          <p class="poi_panel__info__section__description">
+
+            {{? tag.name === 'opening_hours' && tag.value }}
+              {{= new this.hourPanel(tag.name, tag.value, {'open' : {msg : 'Open', c : '60ad51'}, 'soon' : {msg : 'Closing soon', time : 60, c : 'c45713'}, 'closed' : {msg : 'Closed', c : '8c0212'} }).render() }}
+              <br>
+            {{?? tag.name === 'happy_hours' && tag.value }}
+              {{= new this.hourPanel(tag.name, tag.value, {'open' : {msg : 'happy hours!', c : 'fcc035'}, 'soon' : {msg : 'Last paint', time : 60, c : '3f76e2'}, 'closed' : {msg : 'Closed', c : '8c0212'} }).render() }}
+              <br>
+            {{?? tag.name === 'brewery' }}
+              <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
+              {{~ tag.value.split(';'):beer }}
+                <p class="poi_panel__info__beer">{{= beer }}</p>
+              {{~}}
+              <br>
+            {{?? tag.name.indexOf('phone') !== -1 }}
+              <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
+              <a  data-rel="external" href="{{= tag.value }}">{{= tag.value }}</a>
+              <br>
+            {{?? tag.name === 'website' }}
+              <h4 class="poi_panel__info__section__title">{{= tag.name }}</h4>
+              <a href="{{= tag.value }}" no-follow>{{= this.URI.extractDomain(tag.value) }}</a>
+              <br>
+            {{?}}
+
+          </p>
+
+
+        </div>
+      {{~}}
+    </div>
+
+    <div class="poi_panel__store_status">
+      {{? this.poi.stored }}★{{??}}☆<button class="poi_panel__store_status__add" {{= click(this.storePoi, this) }}>Add to favorite</button>{{?}}
     </div>
   {{?}}
 </div>

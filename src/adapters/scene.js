@@ -13,25 +13,29 @@ function Scene() {
     hash: true
   })
 
+  const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
+
   this.mb.on('load', () => {
     const extendedControl = new ExtendedControl()
+
     this.mb.addControl(extendedControl, 'bottom-right')
 
-    this.mb.on('mousemove', 'poi-level-3', () => {
-      this.mb.getCanvas().style.cursor = 'pointer';
+    interactiveLayers.forEach((interactiveLayer) => {
+      this.mb.on('mouseenter', interactiveLayer, () => {
+        this.mb.getCanvas().style.cursor = 'pointer';
+      })
+
+      this.mb.on('mouseleave', interactiveLayer, () =>{
+        this.mb.getCanvas().style.cursor = '';
+      })
+
+      this.mb.on('click', interactiveLayer, (e) => {
+        let poi = Poi.sceneLoad(e, this.mb.getZoom())
+        fire('mark_poi', poi)
+      })
     })
 
-    this.mb.on('mouseleave', 'poi-level-3', () =>{
-      this.mb.getCanvas().style.cursor = '';
-    })
 
-    this.mb.on('click', 'poi-level-3', (e) => {
-      let name = e.features[0].properties.name || ''
-      let className = e.features[0].properties.class || ''
-      let poi = new Poi({lat : e.features[0].geometry.coordinates[1], lng : e.features[0].geometry.coordinates[0]},e.features[0].properties.id, name, className)
-      poi.zoom = this.mb.getZoom()
-      fire('mark_poi', poi)
-    })
   })
 
   listen('fly_to', (poi) => {

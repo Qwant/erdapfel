@@ -1,4 +1,5 @@
 import Autocomplete from '../vendors/autocomplete'
+let geocoderConfig = require("json-loader!yaml-loader!../../config/geocoder.yml")
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 
@@ -13,11 +14,12 @@ function SearchInput(tagSelector) {
     if(this.poi) {
       poi = this.poi
     }
-
-    if(poi.bbox) {
-      fire('fit_bounds', poi);
-    } else {
-      fire('mark_poi', poi)
+    if(poi) {
+      if(poi.bbox) {
+        fire('fit_bounds', poi);
+      } else {
+        fire('mark_poi', poi)
+      }
     }
   })
 
@@ -30,7 +32,7 @@ function SearchInput(tagSelector) {
       this.poi = poi
     },
     source : (term, suggest) => {
-      const suggestPromise = ajax.query('https://search.mapzen.com/v1/search', {text: term, api_key: '***REMOVED***'})
+      const suggestPromise = ajax.query(geocoderConfig.url, {q: term})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
         this.pois = extractMapzenData(responses[0])
@@ -72,7 +74,7 @@ function extractMapzenData(response) {
     let emojiPicto = ''
     let zoomLevel = 0
 
-    const resultType = feature.properties.layer
+    const resultType = feature.properties.geocoding.type
     switch (resultType) {
       case 'venue':
         emojiPicto = '🚘'
@@ -106,9 +108,9 @@ function extractMapzenData(response) {
         emojiPicto = '〰'
         zoomLevel = 15
     }
-    let poi = new Poi({lat : feature['geometry']['coordinates'][1], lng : feature['geometry']['coordinates'][0]}, feature['properties']['id'], feature['properties']['label'])
+    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, feature.properties.geocoding.label)
 
-    poi.value = feature['properties']['label']
+    poi.value = feature.properties.geocoding.label
     poi.picto = emojiPicto
     poi.poi_type = resultType
     poi.zoom = zoomLevel

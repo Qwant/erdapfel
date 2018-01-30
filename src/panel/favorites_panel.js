@@ -40,11 +40,11 @@ Favorite.prototype.getAll = function () {
 
 Favorite.prototype.toggle = function() {
   if(this.active) {
-    this.panel.animate(0.4, '.favorites_panel', {left : '-280px'}).then(() => {
+    this.panel.toggleClassName(0.4, '.favorites_panel', 'favorites_panel--hidden').then(() => {
       this.active = false
     })
   } else {
-    this.panel.animate(0.4, '.favorites_panel', {left : 0}).then(() => {
+    this.panel.toggleClassName(0.4, '.favorites_panel', 'favorites_panel--hidden').then(() => {
       this.active = true
     })
   }

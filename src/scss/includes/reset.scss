@@ -15,3 +15,13 @@ BODY {
 UL {
   list-style: none;
 }
+
+
+A {
+  color: #039BE5;
+  text-decoration: none;
+}
+
+A:hover {
+  text-decoration: underline;
+}
