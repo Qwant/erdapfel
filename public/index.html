@@ -18,8 +18,10 @@
       <button class="search_form__action" onclick="fire('submit_autocomplete')"></button>
     </form>
     <script>
-      document.onkeydown = () => {
-        document.getElementById('search').focus()
+      document.onkeydown = (e) => {
+        console.log(e)
+        if(!e.shiftKey && !e.ctrlKey)
+          document.getElementById('search').focus()
       }
     </script>
     <script src="./message/en_GB.js"></script>

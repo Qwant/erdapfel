@@ -1,6 +1,6 @@
 function Ajax() {}
 
-Ajax.query = (url, data, cb, options = {method : 'GET'}) => {
+Ajax.query = (url, data, options = {method : 'GET'}) => {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
     let jsonResponse
