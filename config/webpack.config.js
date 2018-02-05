@@ -79,7 +79,47 @@ const mainJsChunkConfig = {
   devtool: 'source-map'
 }
 
-webpackChunks = [sassChunkConfig, mainJsChunkConfig]
+
+const mapJsChunkConfig = {
+  entry: ['./src/map.js'],
+
+  output: {
+    path: path.join(__dirname, '..', 'public'),
+    filename: 'javascript/map.js'
+  },
+
+  module: {
+    loaders: [{
+      test : /style\.json$/,
+      use : [
+        {
+          loader : 'json-loader'
+        },
+        {
+          loader : 'map-style-loader',
+          options : {
+            output: 'debug', // 'production' | 'omt'
+            conf: env === 'local' ? __dirname + '/map_local.json' : __dirname + '/map_prod.json',
+            outPath : __dirname + '/../public',
+            pixelRatios : [1,2]
+          }
+        }
+      ],
+    }, {
+      test: /\.yaml$/,
+      include: path.resolve('config'),
+      loaders: 'json-loader!yaml-loader'
+    }, {
+      test: /\.js$/,
+      exclude: [
+        /\/node_modules/
+      ]
+    }]
+  },
+  devtool: 'source-map'
+}
+
+webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
 webpackChunks = webpackChunks.concat(languages.map((language)=> {
   return {
