@@ -24,7 +24,7 @@ PoiPanel.prototype.storePoi = function() {
 }
 
 PoiPanel.prototype.close = function() {
-  this.panel.animate(.25,'.poi_panel', {left:'-300px'})
+  this.panel.toggleClassName(.25,'.poi_panel', 'poi_panel--closed')
 }
 
 PoiPanel.prototype.showInfoBox = function(poi) {
@@ -43,7 +43,7 @@ PoiPanel.prototype.showInfoBox = function(poi) {
   }).then(() => {
     this.panel.update().then(() => {
       this.active = true
-      this.panel.animate(.25,'.poi_panel', {left:0})
+      this.panel.toggleClassName(.25,'.poi_panel', 'poi_panel--closed')
     })
   })
 }

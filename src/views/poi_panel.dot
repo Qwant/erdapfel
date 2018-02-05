@@ -1,4 +1,4 @@
-<div {{= this.active ? 'style="left:0"' : 'style="left:-300px"' }} class="poi_panel">
+<div class="poi_panel  {{= this.active ? '' : 'poi_panel--closed' }}">
   <div class="poi_panel__close" {{= click(this.close, this) }} >🞨</div>
   {{? this.poi }}
     <div class="poi_panel__logo_demo"></div>
