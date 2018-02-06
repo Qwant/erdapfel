@@ -30,7 +30,7 @@ Panel.prototype.render = function () {
 /**
  * Cost 32 ms
  */
-Panel.prototype.update = function () {
+Panel.prototype.update = async function () {
   let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   return new Promise((resolve) => {
     transitionNode.innerHTML = this.view.call(this.panel)
@@ -42,7 +42,7 @@ Panel.prototype.update = function () {
   })
 }
 
-Panel.prototype.wait = function (t) {
+Panel.prototype.wait = async function (t) {
   return new Promise((resolve) => {
     setTimeout(()=> {
       resolve(this)
@@ -50,7 +50,7 @@ Panel.prototype.wait = function (t) {
   })
 }
 
-Panel.prototype.toggleClassName = function (t, selector, className) {
+Panel.prototype.toggleClassName = async function(t, selector, className) {
   let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   if(selector) {
     transitionNode = transitionNode.querySelector(selector)
@@ -64,7 +64,7 @@ Panel.prototype.toggleClassName = function (t, selector, className) {
   })
 }
 
-Panel.prototype.animate = function (t, selector, style = {}) {
+Panel.prototype.animate = async function(t, selector, style = {}) {
   let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   if(selector) {
     transitionNode = transitionNode.querySelector(selector)

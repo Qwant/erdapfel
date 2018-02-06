@@ -55,16 +55,8 @@
   height: 160px;
 }
 
-.poi_panel__info__hours_status--open {
-  color : #60a820;
-}
-
-.poi_panel__info__hours_status--closing {
-  color : #f99c21;
-}
-
-.poi_panel__info__hours_status--closed {
-  color : #a81111;
+.poi_panel__info__hours__status {
+  cursor: pointer;
 }
 
 .poi_panel__info__hours {

@@ -1,5 +1,7 @@
 <h4 class="poi_panel__info__section__title">{{= this.name }}</h4>
-<div {{= click(this.extend, this) }}>{{= this.status() }}</div>
+<div {{= click(this.extend, this) }}>
+  <span class="poi_panel__info__hours__status" style="color:#{{= this.status.color }}">{{= this.status.msg }}</span>
+</div>
 <div class="poi_panel__info__hours">
   <table>
     {{~ Object.keys(this.hours):day }}

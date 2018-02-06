@@ -1,6 +1,6 @@
 function Ajax() {}
 
-Ajax.query = (url, data, options = {method : 'GET'}) => {
+Ajax.query = async (url, data, options = {method : 'GET'}) => {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
     let jsonResponse
@@ -12,6 +12,11 @@ Ajax.query = (url, data, options = {method : 'GET'}) => {
         return
       }
       resolve(jsonResponse)
+    }
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4 && xhr.status === 0) {
+        reject(xhr)
+      }
     }
     xhr.open(options.method,url+'?'+dataToUrl(data))
     xhr.send()
