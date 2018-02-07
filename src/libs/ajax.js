@@ -25,7 +25,7 @@ Ajax.query = async (url, data, options = {method : 'GET'}) => {
 
 const dataToUrl = (data) =>
   Object.keys(data)
-    .map(itemKey => `${itemKey}=${data[itemKey]}`)
+    .map(itemKey => `${encodeURIComponent(itemKey)}=${encodeURIComponent(data[itemKey])}`)
     .join('&')
 
 export default Ajax
