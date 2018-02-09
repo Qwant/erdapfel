@@ -22,7 +22,11 @@ function HourPanel(poi, name, hours, timeMessages) {
 HourPanel.prototype.computeRemainingTime = async function() {
   let rawDate
   try {
-    rawDate = await Ajax.query(services.tz, {latitude : this.latLng.lat, longitude : this.latLng.lng}, {method : 'get'})
+    if(services.tz.active) {
+      rawDate = await Ajax.query(services.tz.url, {latitude : this.latLng.lat, longitude : this.latLng.lng}, {method : 'get'})
+    } else {
+      rawDate = new Date()
+    }
   } catch (e) {
     fire('error_h', 'Unreachable time zone service - using local date 💳')
     rawDate = new Date()
@@ -77,8 +81,6 @@ HourPanel.prototype.computeStatus = function() {
     this.status = {msg : this.timeMessages.open.msg, color : this.timeMessages.open.c}
     this.panel.update()
   })
-
-
 }
 
 
