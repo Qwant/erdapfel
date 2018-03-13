@@ -1,3 +1,7 @@
+BODY {
+  background: url("../statics/images/grid.png");
+}
+
 .map_container {
   position: absolute;
   top: 0;
@@ -21,4 +25,25 @@
   background: #fff;
   padding: 10px;
   right: 10px;
+}
+
+.loader_bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.loader_bar--loaded {
+  opacity: 0;
+}
+
+.loader_bar__progress {
+  width: 0;
+  height: 4px;
+  position: relative;
+  background: linear-gradient(to right, #a83485 0%,#e04c16 25%,#ff2b5c 35%,#f29d26 55%,#77005f 82%,#77005f 82%,#6d45a5 100%);
+  background-size: 100vh;
 }

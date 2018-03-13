@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <title>Qwant Maps - beta</title>
@@ -17,16 +16,29 @@
       <input type="text" id="search" type="search" class="search_form__input" placeholder="Où voulez-vous aller ?">
       <button class="search_form__action" onclick="fire('submit_autocomplete')"></button>
     </form>
+    <div class="loader_bar" id="loader-bar">
+      <div id="progress-bar" class="loader_bar__progress"></div>
+    </div>
+    <script src="./file_loader.js"></script>
+
     <script>
+      /* Autocomplete */
       document.onkeydown = (e) => {
-        console.log(e)
         if(!e.shiftKey && !e.ctrlKey)
           document.getElementById('search').focus()
+      }
+      /* Progress */
+      const progressBar = document.querySelector('#progress-bar')
+      const loaderBar = document.querySelector('#loader-bar')
+      let mapLoader = new LoadFile('./javascript/map.js')
+      mapLoader.onLoad = () => {
+        loaderBar.classList.add('loader_bar--loaded')
+      }
+      mapLoader.onProgress = (e) => {
+        progressBar.style.width = `${e.loaded / e.total * 100}%`
       }
     </script>
     <script src="./message/en_GB.js"></script>
     <script src="./javascript/bundle.js"></script>
-
   </body>
-
 </html>
