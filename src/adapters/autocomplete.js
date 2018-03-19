@@ -1,5 +1,5 @@
 import Autocomplete from '../vendors/autocomplete'
-let geocoderConfig = require("json-loader!yaml-loader!../../config/geocoder.yml")
+let geocoderConfig = require("../../config/geocoder.yml")
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 

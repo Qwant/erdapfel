@@ -1,4 +1,4 @@
-const globals = require('!json-loader!yaml-loader!../../config/global.yml')
+const globals = require('../../config/global.yml')
 
 function Ajax() {}
 

@@ -1,4 +1,4 @@
-let moduleConfig = require("json-loader!yaml-loader!../../config/modules.yml")
+let moduleConfig = require("../../config/modules.yml")
 const AbStore = require(`../libs/${moduleConfig.store.name}`)
 const abstractStore = new AbStore(moduleConfig.store.endpoint)
 

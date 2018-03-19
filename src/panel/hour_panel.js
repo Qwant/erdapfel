@@ -1,7 +1,7 @@
 import HourPanelView from 'dot-loader!../views/hour_panel.dot'
 import Panel from "../libs/panel";
 import Ajax from "../libs/ajax";
-const services = require('json-loader!yaml-loader!../../config/services.yml')
+const services = require('../../config/services.yml')
 /**
  *
  * @param name
