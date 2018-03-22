@@ -24,12 +24,15 @@
   padding: 40px 0 0 0;
 }
 
-.favorite-panel--handler {
-  height: 100vh;
-  width: 8px;
-  transition: background-color .2s;
-  background-color: #f8f9ff;
-  float: right;
+.favorite_panel__close {
+  position: absolute;
+  right: 0;
+  top: 56px;
+  padding: 5px 10px;
+  background: white;
+  color: #a81111;
+  font-size: 14px;
+  text-align: right;
   cursor: pointer;
 }
 

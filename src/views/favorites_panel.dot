@@ -1,5 +1,5 @@
 <div class="favorites_panel favorites_panel--hidden">
-  <div {{= click(this.close, this) }} class="favorite-panel--handler"></div>
+  <div {{= click(this.close, this) }} class="favorite_panel__close">🞨</div>
   <div class="favorite_panel__container">
   <div class="favorite_panel__image_header"></div>
 
