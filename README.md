@@ -59,6 +59,18 @@ Source code charset:
 ```
 
 
+### development guide
+
+## Panel
+
+
+## Events
+
+## i18n
+
+
+
+
 ## Deploy
 
 Requirements : Fabric3 (`pip3 install Fabric3`)

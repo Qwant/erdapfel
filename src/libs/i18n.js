@@ -31,7 +31,13 @@ I18n.prototype._n = function(key1 = '', key2, count, context, placeholders) {
   if (key1 === '') {
     return  ''
   }
-  let pluralKey = this.getPlural(count) ? this.message[key2][0] : this.message[key2][1]
+  let pluralKey = ''
+  if( this.message[key2] && this.message[key2][0] && this.message[key2][1]) {
+    pluralKey = this.getPlural(count) ? this.message[key2][0] : this.message[key2][1]
+  } else {
+    pluralKey = this.getPlural(count) ? key1 : key2
+  }
+
 
   return replacePlaceholders(pluralKey, placeholders).replace(/%d/g, count)
 }

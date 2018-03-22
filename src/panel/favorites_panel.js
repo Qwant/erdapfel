@@ -2,12 +2,14 @@ import FavoritePanelView from 'dot-loader!../views/favorites_panel.dot'
 import Panel from '../libs/panel'
 import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
+import FilterPanel from './filter_panel'
 
 const store = new Store()
 
 function Favorite() {
   this.active = false
   this.favoritePois = []
+  this.filterPanel = new FilterPanel()
   store.onConnect()
     .then(() => store.isRegistered())
     .then((registered) => {
@@ -18,6 +20,10 @@ function Favorite() {
       }
     })
 
+  listen('poi_open', () => {
+    this.close()
+  })
+
   listen('store_registered', () => {
     this.getAll()
   })
@@ -27,7 +33,16 @@ function Favorite() {
   })
 
   this.panel = new Panel(this, FavoritePanelView)
+
+  listen('open_favorite', () => {
+    this.open()
+  })
 }
+
+Favorite.prototype.toggleFilter = function () {
+  fire('toggle_favorite_panel')
+}
+
 
 Favorite.prototype.getAll = function () {
   store.getAll().then((storeData) => {
@@ -38,16 +53,14 @@ Favorite.prototype.getAll = function () {
   })
 }
 
-Favorite.prototype.toggle = function() {
-  if(this.active) {
-    this.panel.toggleClassName(0.4, '.favorites_panel', 'favorites_panel--hidden').then(() => {
-      this.active = false
-    })
-  } else {
-    this.panel.toggleClassName(0.4, '.favorites_panel', 'favorites_panel--hidden').then(() => {
-      this.active = true
-    })
-  }
+Favorite.prototype.open = function() {
+  this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+  this.active = true
+}
+
+Favorite.prototype.close = function() {
+  this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+  this.active = false
 }
 
 Favorite.prototype.go = function(poi) {

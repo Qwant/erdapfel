@@ -1,0 +1,40 @@
+.side_bar {
+  position: absolute;
+  width: $side_bar_width;
+  height: 100vh;
+  background: #fff;
+  border-right: 1px solid #f3f5f7;
+}
+
+.side_bar__logo {
+  width: 46px;
+  height: 46px;
+  margin: 30px 22px;
+  background-image: url("/images/tmp_fixtures/logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.side_bar__result {
+  margin: 60px 18px 10px;
+  width: 56px;
+  height: 65px;
+  background-image: url("/images/tmp_fixtures/result.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.side_bar__fav{
+  margin: 10px 18px;
+  width: 56px;
+  height: 68px;
+  background-image: url("/images/tmp_fixtures/fav.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 640px) {
+  .side_bar {
+    display: none;
+  }
+}

@@ -1,0 +1,17 @@
+<h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--wiki">Wikipedia</h4>
+<div class="poi_panel__info__wiki">
+  {{? this.data }}
+
+  <p class="poi_panel__description">
+    {{? this.data.description }}
+        {{= this.data.description }}
+        <br>
+        <button>Expand...</button>
+    {{?}}
+    {{? this.data.wikiLink }}
+      <a href="{{= this.data.wikiLink.url }}">{{= _('Via Wikipedia') }}</a>
+    {{?}}
+  </p>
+
+  {{?}}
+</div>

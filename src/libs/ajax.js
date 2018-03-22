@@ -2,6 +2,11 @@ const globals = require('../../config/global.yml')
 
 function Ajax() {}
 
+Ajax.queryLang = async (url, data = {}, options) => {
+  data.lang = 'en' // TODO get real lang
+  return Ajax.query(url, data, options)
+}
+
 Ajax.query = async (url, data, options = {method : 'GET'}) => {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
