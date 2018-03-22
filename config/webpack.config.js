@@ -54,8 +54,7 @@ const mainJsChunkConfig = {
       use : [
         {
           loader : 'json-loader'
-        },
-        {
+        }, {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
@@ -66,9 +65,11 @@ const mainJsChunkConfig = {
         }
       ],
     }, {
-      test: /\.yaml$/,
-      include: path.resolve('config'),
-      loaders: 'json-loader!yaml-loader'
+      test: /\.yml$/,
+      use: [
+        {loader :'json-loader'},
+        {loader :'yaml-loader'}
+      ]
     }, {
       test: /\.js$/,
       exclude: [
@@ -105,10 +106,6 @@ const mapJsChunkConfig = {
           }
         }
       ],
-    }, {
-      test: /\.yaml$/,
-      include: path.resolve('config'),
-      loaders: 'json-loader!yaml-loader'
     }, {
       test: /\.js$/,
       exclude: [

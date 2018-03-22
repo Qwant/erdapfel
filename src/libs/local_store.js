@@ -1,6 +1,6 @@
 function LocalStore() {}
 
-LocalStore.prototype.getAll = function () {
+LocalStore.prototype.getAll = async function () {
   return new Promise((resolve) => {
     try {
       const items = Object.keys(localStorage).map((k) => {
@@ -14,17 +14,18 @@ LocalStore.prototype.getAll = function () {
   })
 }
 
-LocalStore.prototype.register = function() {
+LocalStore.prototype.register = async function() {
   console.log('local storage doesn\'t support register method')
+  return new Promise((resolve)=>{resolve()})
 }
 
-LocalStore.prototype.onConnect = function () {
+LocalStore.prototype.onConnect = async function () {
   return new Promise((resolve) => {
     resolve()
   })
 }
 
-LocalStore.prototype.get = function(k) {
+LocalStore.prototype.get = async function(k) {
   return new Promise((resolve) => {
     try {
       resolve(JSON.parse(localStorage.getItem(k)))
@@ -35,7 +36,7 @@ LocalStore.prototype.get = function(k) {
   })
 }
 
-LocalStore.prototype.set = function(k, v) {
+LocalStore.prototype.set = async function(k, v) {
  try {
    localStorage.setItem(k,JSON.stringify(v))
  } catch (err) {

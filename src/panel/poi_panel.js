@@ -27,25 +27,21 @@ PoiPanel.prototype.close = function() {
   this.panel.toggleClassName(.25,'.poi_panel', 'poi_panel--closed')
 }
 
-PoiPanel.prototype.showInfoBox = function(poi) {
-  new Promise((resolve) => {
-    store.has(poi).then((storePoi) => {
-      this.poi = poi
-      if(storePoi) {
-        this.poi.stored = true
-      }
-      resolve()
-    }).catch(() => {
-      this.poi = poi
-      this.poi.stored = false
-      resolve()
-    })
-  }).then(() => {
-    this.panel.update().then(() => {
-      this.active = true
-      this.panel.toggleClassName(.25,'.poi_panel', 'poi_panel--closed')
-    })
-  })
+PoiPanel.prototype.showInfoBox = async function (poi) {
+  try {
+    let storePoi = await store.has(poi)
+    this.poi = poi
+    if(storePoi) {
+      this.poi.stored = true
+    }
+  } catch(e) {
+    this.poi = poi
+    this.poi.stored = false
+  }
+
+  await this.panel.update()
+  this.active = true
+  await this.panel.toggleClassName(.25,'.poi_panel', 'poi_panel--closed')
 }
 
 export default PoiPanel

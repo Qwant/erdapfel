@@ -1,4 +1,4 @@
-let moduleConfig = require("json-loader!yaml-loader!../../config/modules.yml")
+let moduleConfig = require("../../config/modules.yml")
 const AbStore = require(`../libs/${moduleConfig.store.name}`)
 const abstractStore = new AbStore(moduleConfig.store.endpoint)
 
@@ -17,7 +17,7 @@ function Store() {
 }
 
 
-Store.prototype.getAll = function() {
+Store.prototype.getAll = async function() {
   return new Promise((resolve, reject) => {
     abstractStore.getAll().then((masqData) => {
       resolve(masqData)
@@ -28,7 +28,7 @@ Store.prototype.getAll = function() {
   })
 }
 
-Store.prototype.isRegistered = function () {
+Store.prototype.isRegistered = async function () {
   return new Promise((resolve) => {
     abstractStore.getAll()
       .then(() => resolve(true))
@@ -40,11 +40,11 @@ Store.prototype.isRegistered = function () {
   })
 }
 
-Store.prototype.onConnect = function () {
+Store.prototype.onConnect = async function () {
   return abstractStore.onConnect()
 }
 
-Store.prototype.register = function () {
+Store.prototype.register = async function () {
   let regParams = {
     endpoint: moduleConfig.store.endpoint,
     url: window.location.origin + window.location.pathname,
@@ -56,7 +56,7 @@ Store.prototype.register = function () {
 }
 
 
-Store.prototype.getPrefixes = function (prefix) {
+Store.prototype.getPrefixes = async function (prefix) {
   return new Promise((resolve) => {
     const prefixes = []
     abstractStore.getAll().then((items) => {
@@ -71,7 +71,7 @@ Store.prototype.getPrefixes = function (prefix) {
   })
 }
 
-Store.prototype.has = function(poi) {
+Store.prototype.has = async function(poi) {
   return new Promise((resolve) => {
     abstractStore.get(poi.getKey()).then((foundPoi) => {
       resolve(foundPoi)

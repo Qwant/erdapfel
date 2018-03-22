@@ -1,0 +1,3 @@
+tz:
+ url: 'http://localhost:3004/tz/'
+ active: false

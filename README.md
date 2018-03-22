@@ -18,6 +18,11 @@ Map webapp with Qwant map tiles and a search input
 > npm start
 ```
 
+### Start micro services
+```
+>git@github.com:QwantResearch/tz-micro-service.git & start
+```
+
 ## generate doc
 ```
  > npm run doc
