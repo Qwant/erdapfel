@@ -91,9 +91,20 @@
 }
 
 .poi_panel__info__hours {
+  margin-left: 40px;
   height: 0;
   transition: height 0.3s;
   overflow: hidden;
+}
+
+.poi_panel__info__hours .hours {
+  color: #4d4d4c;
+  font-size: 13px;
+  padding: 4px 10px;
+}
+
+.poi_panel__info__hours TR:nth-child(2n) {
+  background-color: #f5f7f9;
 }
 
 .poi_panel__info__hours_status {
@@ -101,7 +112,7 @@
 }
 
 .poi_panel__info__hours--open {
-  height: 160px;
+  height: 170px;
 }
 
 .poi_panel__info__hours__status {

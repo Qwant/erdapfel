@@ -63,16 +63,15 @@ Favorite.prototype.close = function() {
   this.active = false
 }
 
-Favorite.prototype.go = function(poi) {
+Favorite.prototype.go = async function(poi) {
   fire('mark_poi', poi)
   if(poi.bbox) {
     fire('fit_bounds', poi)
   } else {
     fire('fly_to', poi)
   }
-  this.panel.animate(0.4, '.favorites_panel', {left : '-280px'}).then(() => {
-    this.active = false
-  })
+  this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+  this.active = false
 }
 
 Favorite.prototype.add = function(poi) {
