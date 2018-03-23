@@ -1,12 +1,20 @@
-const env = process.env.ENV || 'development'
 const path = require('path')
 const yaml = require('node-yaml')
 
+const ENVIRONMENTS = ['local', 'development', 'production']
+const env = process.env.ENV || 'local'
+let environment = ''
+if(ENVIRONMENTS.includes(env)) {
+  environment = env
+} else {
+  throw `Typo in your environment : ${env}. environment must be ${ENVIRONMENTS.join(', ')}`
+}
+
 console.log('*--------------------*')
-console.log(`Building on ${env} mode`)
+console.log(`Building on ${environment} mode`)
 console.log('*--------------------*')
 
-const languages = yaml.readSync('./language.yml')[env]
+const languages = yaml.readSync('./language.yml')[environment]
 
 const sassChunkConfig = {
     entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
@@ -59,7 +67,7 @@ const mainJsChunkConfig = {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
-            conf: env === 'development' ? __dirname + '/map_development.json' : __dirname + '/map_production.json',
+            conf: `${__dirname}/map_${environment}.json`,
             outPath : __dirname + '/../public',
             pixelRatios : [1,2]
           }
@@ -68,7 +76,7 @@ const mainJsChunkConfig = {
     }, {
       test: /\.yml$/,
       use: [
-        {loader : 'webpack-config-loader', options : {environment : env}},
+        {loader : 'webpack-config-loader', options : {environment : environment}},
         {loader : 'json-loader'},
         {loader : 'yaml-loader'}
       ]
@@ -102,7 +110,7 @@ const mapJsChunkConfig = {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
-            conf: env === 'development' ? __dirname + '/map_development.json' : __dirname + '/map_production.json',
+            conf: `${__dirname}/map_${environment}.json`,
             outPath : __dirname + '/../public',
             pixelRatios : [1,2]
           }
