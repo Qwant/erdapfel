@@ -34,11 +34,11 @@
                 <br>
               {{?? tag.name.indexOf('phone') !== -1 }}
                 <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--phone">{{= tag.name }}</h4>
-                <a  data-rel="external" href="{{= tag.value }}">{{= tag.value }}</a>
+                <a class="poi_panel__info__section__phone" data-rel="external" href="tel:{{= tag.value }}">{{= tag.value }}</a>
                 <br>
               {{?? tag.name === 'website' }}
                 <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--www">{{= tag.name }}</h4>
-                <a class="poi_panel__info__link" href="{{= tag.value }}" no-follow>{{= this.URI.extractDomain(tag.value) }}</a>
+                <a class="poi_panel__info__link" href="{{= this.URI.externalise(tag.value) }}" no-follow>{{= this.URI.extractDomain(tag.value) }}</a>
                 <br>
               {{?? tag.name === 'wikidata' }}
                 {{= this.wikiPanel.render() }}

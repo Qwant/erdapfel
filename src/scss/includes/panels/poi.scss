@@ -29,6 +29,11 @@
   height: 200px;
 }
 
+.poi_panel__info__section__phone {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
 .poi_panel__close {
   position: absolute;
   right: 0;
@@ -128,8 +133,9 @@
 }
 
 .poi_panel__info__beer {
-  color: #6e5d00;
-  font-size: 13px;
+  margin-left: 20px;
+  color: #90750b;
+  font-size: 14px;
 }
 
 .poi_panel__store_status {
