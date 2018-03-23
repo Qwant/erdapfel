@@ -1,8 +1,12 @@
+const env = process.env.ENV || 'development'
 const path = require('path')
 const yaml = require('node-yaml')
-const languages = yaml.readSync('./language.yml')
 
-const env = process.env.ENV || 'local'
+console.log('*--------------------*')
+console.log(`Building on ${env} mode`)
+console.log('*--------------------*')
+
+const languages = yaml.readSync('./language.yml')[env]
 
 const sassChunkConfig = {
     entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
@@ -42,7 +46,6 @@ const sassChunkConfig = {
 
 const mainJsChunkConfig = {
   entry: ['./src/main.js'],
-
   output: {
     path: path.join(__dirname, '..', 'public'),
     filename: 'javascript/bundle.js'
@@ -56,7 +59,7 @@ const mainJsChunkConfig = {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
-            conf: env === 'local' ? __dirname + '/map_local.json' : __dirname + '/map_prod.json',
+            conf: env === 'development' ? __dirname + '/map_development.json' : __dirname + '/map_production.json',
             outPath : __dirname + '/../public',
             pixelRatios : [1,2]
           }
@@ -65,8 +68,9 @@ const mainJsChunkConfig = {
     }, {
       test: /\.yml$/,
       use: [
-        {loader :'json-loader'},
-        {loader :'yaml-loader'}
+        {loader : 'webpack-config-loader', options : {environment : env}},
+        {loader : 'json-loader'},
+        {loader : 'yaml-loader'}
       ]
     }, {
       test: /\.js$/,
@@ -98,7 +102,7 @@ const mapJsChunkConfig = {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
-            conf: env === 'local' ? __dirname + '/map_local.json' : __dirname + '/map_prod.json',
+            conf: env === 'development' ? __dirname + '/map_development.json' : __dirname + '/map_production.json',
             outPath : __dirname + '/../public',
             pixelRatios : [1,2]
           }
@@ -116,7 +120,7 @@ const mapJsChunkConfig = {
 
 webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
-webpackChunks = webpackChunks.concat(languages.map((language)=> {
+webpackChunks = webpackChunks.concat(languages.list.map((language)=> {
   return {
     entry:  path.join(__dirname, '..', 'language', 'message', language + '.po'),
     module : {

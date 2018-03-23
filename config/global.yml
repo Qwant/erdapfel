@@ -1,1 +1,4 @@
-timeout: 3
+development: &development-global
+  timeout: 3
+production:
+  <<: *development-global
