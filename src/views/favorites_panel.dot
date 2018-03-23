@@ -10,9 +10,7 @@
     <button class="favorite_panel__filter" {{= click(this.toggleFilter, this) }}>{{= _('filter', 'favorite panel') }}</button>
     {{= this.filterPanel.render() }}
 
-    {{? this.favoritePois.length === 0 }}
-      {{= _('favorite folder is empty') }}
-    {{??}}
+    {{? this.favoritePois.length !== 0 }}
       <ul>
         <li class="favorite_panel__item">
 
