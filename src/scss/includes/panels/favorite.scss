@@ -20,7 +20,7 @@
 
 .favorite_panel__container {
   float: left;
-  width: $panel_width - 8px;
+  width: $panel_width;
   padding: 40px 0 0 0;
 }
 
@@ -109,9 +109,9 @@
 }
 
 .favorite_panel__swipe_element {
-  width: $panel_width - 8px;
+  width: $panel_width;
   height: 70px;
-  padding: 0 0 0 4px;
+  padding: 0 8px 0 4px;
 }
 
 .favorite_panel__swipe_element:not(:last-child):after {
@@ -137,27 +137,48 @@
   float: right;
   margin: -65px 40px 0 0;
   font-size: 14px;
-  color: #34393c;
-  background-color: #fff;
+  color: #fff;
+  background-color: #00a5fe;
   padding: 5px 16px;
   border-radius: 16px;
-  border: 2px #00a5fe solid
+  border:3px solid transparent;
 }
+
 .favorite_panel__filter:hover {
-  background-color: #00a5fe;
-  color: #fff;
+  background-color: #fff;
+  color: #00a5fe;
+  border:3px solid #00a5fe
 }
 
 .filter_panel {
+  font-size: 13px;
+  color:#353739;
   display: none;
   position: absolute;
   width: 300px;
   padding: 10px;
-  box-shadow: rgba(0, 0, 0, .1) 1px 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.52) 1px 1px 6px;
   background-color: #fff;
   right: 20px;
-  margin-top: 10px;
+  margin-top: -15px;
+  border-radius: 3px;
 }
+
+.filter_panel__label {
+  display: block;
+  width: 100%;
+  padding: 3px 5px;
+}
+
+.filter_panel INPUT[type=checkbox] {
+  display: none;
+}
+
+INPUT[type=checkbox]:checked + .filter_panel__label {
+  font-weight: bold;
+  background-color: #f8fafc;
+}
+
 
 .filter_panel--active {
   display: block;

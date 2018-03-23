@@ -4,7 +4,7 @@
       <li>
 
         <input type="checkbox" id="{{= `_${this.panel.cid}${i}` }}" value="{{= category }}">
-        <label for="{{= `_${this.panel.cid}${i}` }}">{{= category }}</label>
+        <label class="filter_panel__label" for="{{= `_${this.panel.cid}${i}` }}">{{= category }}</label>
 
       </li>
 
