@@ -59,52 +59,50 @@ Source code charset:
 ```
 
 
-### development guide
+## Development guide
+Two words about the project structure :
+  
 
-2 mots sur le découpage du projet map
-
-## Panel
- un _panel_ est une brique élémentaire d'affichage, similaire à un composant-web
- c'est une fonction js qui contient un champ panel 
+### Panel
+ _panel_ is the display elementary brick ,similar to a web components.
+ A panel declaration is a function which contain a panel field
  ```javascript
 function Panel() {
   this.panel = new Panel(this, panelView)
 }
 ```
-> PanelView et un template construit comme suit 
+> PanelView is a dot template imported by the following line
 ```
 import ErrorPanelView from 'dot-loader!../views/error_panel.dot'
 
 ```
+The panel parent function is the state of the displayed panel.
+Ex. function ErrorPanel() declare currentMessage field ```this.currentMessage = "-error-"```
 
-Un panel peut inclure un etat, par exemple un message 
-```this.message```
-Cet etat peut etre utilisé dans le template ```{{= this.message }}``` si message change, le panel n'est pas mis à jours automatiquement, il faut appeler ```this.update()```
+currentMessage will be displayed in the corresponding view like this ```{{= this.currentMessage }}``` 
+If this.currentMessage is updated there is no mechanic to automaticaly redraw ErrorPanem, in order to redraw panel with the new state you have to call ```this.update()```
 
-### methode assistantes
+### Helper methods
 ```
 this.panel.addClassName
 this.panel.removeClassName
 this.panel.toggleClassName
 ```
->ces methodes gerent les délais et retourne une promesse résolu a la fin du délais
+>Theses methods manage delays with promises mechanics
 
-```
-this.update 
-```
-> note sur update : cette methode rédessine le panel cela peut interrompre les animations de ce panel
+note on update : this method redraw panel resulting on interrupting playing css animation of the current panel
 
-## Events
-La communication inter composants se fait par des event customs lancé par fire() et attendus par listen()
-la gestion d'event HTML se fait par un gestionnaire d'évenement 
-### Evénements gérés : 
+### Events
+Communication between components is done by custom event. fire() to propagate custom event & listen() to trigger the action
+
+#### Native Events implemented : 
  - click
  - .. 
-> L'ajout d'evenement se fait dans le fichier actions.js  
+> Add new event by editing actions.js  
 
-## i18n
+### i18n
 
-Les traductions se font par le biais des fichiers .po, peuplé par poedit
+Translations are managed  by .po files. Poedit parse source code & maintain po files
 
 
 ## Deploy
