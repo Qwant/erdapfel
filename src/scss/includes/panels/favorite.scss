@@ -54,6 +54,7 @@
 }
 
 .favorite_panel__item__info {
+  height: 70px;
   float: left;
   padding: 18px 0 10px 64px;
 }
@@ -117,6 +118,7 @@
 .favorite_panel__swipe_element:not(:last-child):after {
   display: block;
   content: '';
+  clear: both;
   height: 1px;
   width: 100%;
   background-color: #f3f3f3;

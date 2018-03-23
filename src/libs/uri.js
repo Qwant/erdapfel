@@ -9,7 +9,7 @@ const URI = {
     return hostname.split('?')[0]
   },
   externalise : function(uri) {
-    if(uri.indexOf('http://') === 0 || uri.indexOf('https://')) {
+    if(uri.indexOf('http://') === 0 || uri.indexOf('https://') === 0) {
       return uri
     } else {
       return `http://${uri}`
