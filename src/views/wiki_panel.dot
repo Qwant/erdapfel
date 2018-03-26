@@ -1,17 +1,29 @@
-<h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--wiki">Wikipedia</h4>
+<h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--wiki">
+  Wikipedia
+</h4>
 <div class="poi_panel__info__wiki">
-  {{? this.data }}
+  {{? this.state === this.STATE.LOADING }}
+      <div class="loading rotating"></div>
+  {{?? this.data }}
+    <div class="poi_panel__description">
+      {{? this.data.description }}
+        {{? this.data.description.length > this.descriptionLength }}
+          <button class="wiki_panel__toggle_ellipsis wiki_panel__toggle_ellipsis--expand"{{= click(this.toggleEllipsis, this) }}>
+           {{= this.collapsed ? 'v' : '<' }}
+          </button>
+        {{?}}
+        <p class="poi_panel__description__ellipsis">
+          {{= this.collapsed ? this.ExtendedString.ellipsis(this.data.description, this.descriptionLength) : this.data.description }}
+        </p>
+      {{?}}
 
-  <p class="poi_panel__description">
-    {{? this.data.description }}
-        {{= this.data.description }}
-        <br>
-        <button>Expand...</button>
-    {{?}}
-    {{? this.data.wikiLink }}
-      <a href="{{= this.data.wikiLink.url }}">{{= _('Via Wikipedia') }}</a>
-    {{?}}
-  </p>
+      {{? this.data.wikiLink }}
+        <a target="_blank" href="{{= this.data.wikiLink.url }}">{{= _('Via Wikipedia') }}</a>
+      {{?}}
 
+      {{? !this.data.description && !this.data.wikiLink }}
+        <a target="_blank" href="https://www.wikidata.org/wiki/{{= this.tag }}">{{= _('Via WikiData') }}</a>
+      {{?}}
+    </p>
   {{?}}
 </div>

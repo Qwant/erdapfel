@@ -10,7 +10,7 @@
   position: relative;
   width: $panel_width;
   height: calc(100vh);
-  padding: 50px 0 10px 0;
+  padding: 85px 0 10px 0;
   overflow-y: auto;
   background: #fff;
 }
@@ -21,7 +21,7 @@
 
 
 .poi_panel__header_image {
-  background-image: url(../statics/images/tmp_fixtures/amsterdam_v02.png);
+  background-image: url(../statics/images/tmp_fixtures/david-marcu-383024-unsplash.jpg);
   background-size: $panel_width;
   background-position: center;
   background-repeat: no-repeat;
@@ -205,8 +205,6 @@
     right: 0;
     top: 72px;
   }
-
-
 
   .poi_panel__description_container {
     margin-top: 0;

@@ -16,6 +16,11 @@ I18n.prototype.setLang = function(lang, keys) {
   this.keys = keys
 }
 
+/**
+ * Translate message
+ * Ex : _('string', 'home page') -> string
+ *
+ */
 I18n.prototype._ = function(key = '', context, placeholders) {
   if (key === '') {
     return ''
@@ -27,19 +32,24 @@ I18n.prototype._ = function(key = '', context, placeholders) {
   }
 }
 
-I18n.prototype._n = function(key1 = '', key2, count, context, placeholders) {
-  if (key1 === '') {
+/**
+ * Translate singular our plural message corresponding to the given arity.
+ * Ex : _n('%d person', '%d people', 1, 'home page') -> 1 person
+ *    : _n('%d person', '%d people', 4, 'home page') -> 4 people
+ *
+ */
+I18n.prototype._n = function(singularMessage = '', pluralMessage, arity, context, placeholders) {
+  if (singularMessage === '') {
     return  ''
   }
-  let pluralKey = ''
-  if( this.message[key2] && this.message[key2][0] && this.message[key2][1]) {
-    pluralKey = this.getPlural(count) ? this.message[key2][0] : this.message[key2][1]
+  let translated = ''
+  /* Generated dictionary store values inside the plural form key. */
+  if(this.message[pluralMessage] && this.message[pluralMessage][0] && this.message[pluralMessage][1]) {
+    translated = this.getPlural(arity) ? this.message[pluralMessage][0] : this.message[pluralMessage][1]
   } else {
-    pluralKey = this.getPlural(count) ? key1 : key2
+    translated = this.getPlural(arity) ? singularMessage : pluralMessage
   }
-
-
-  return replacePlaceholders(pluralKey, placeholders).replace(/%d/g, count)
+  return replacePlaceholders(translated, placeholders).replace(/%d/g, arity)
 }
 
 function replacePlaceholders(string, placeholders) {

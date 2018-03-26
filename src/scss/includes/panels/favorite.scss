@@ -12,7 +12,8 @@
 }
 
 .favorite_panel__image_header {
-  background-image: url("../statics/images/tmp_fixtures/favorite_place.png");
+  background-image: url("../statics/images/tmp_fixtures/anthony-delanoix-8433-unsplash.jpg");
+  background-size: $panel_width;
   background-position: center;
   width: $panel_width - 8px;
   height: 200px;
@@ -21,7 +22,7 @@
 .favorite_panel__container {
   float: left;
   width: $panel_width;
-  padding: 40px 0 0 0;
+  padding: 85px 0 0 0;
 }
 
 .favorite_panel__close {
@@ -95,8 +96,11 @@
 }
 
 .favorite_panel__container__title {
-  color: #454B57;
-  margin:0 0 40px 40px;
+  color: $text_color;
+  padding-top: 10px;
+  margin: 20px 0 -4px 20px;
+  font-weight: normal;
+  font-size: 22px;
 }
 
 .favorite_panel__item__desc {
@@ -137,7 +141,7 @@
 .favorite_panel__filter {
   transition: background-color, color .2s;
   float: right;
-  margin: -65px 40px 0 0;
+  margin: -30px 40px 0 0;
   font-size: 14px;
   color: #fff;
   background-color: #00a5fe;
