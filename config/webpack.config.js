@@ -53,8 +53,6 @@ const mainJsChunkConfig = {
       test : /style\.json$/,
       use : [
         {
-          loader : 'json-loader'
-        }, {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
