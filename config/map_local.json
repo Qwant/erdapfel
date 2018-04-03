@@ -9,5 +9,6 @@
     "http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf",
     "http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf"
   ],
-  "spriteserver": "http://localhost:8080/"
+  "spriteserver": "https://qwantresearch.github.io/qwant-basic-gl-style/",
+  "fontserver": "https://qwantresearch.github.io/fonts/"
 }

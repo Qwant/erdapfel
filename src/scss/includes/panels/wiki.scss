@@ -1,0 +1,37 @@
+.poi_panel__description {
+  position: relative;
+}
+
+.wiki_panel__toggle_ellipsis {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+}
+
+.poi_panel__description__ellipsis {
+  width: 200px;
+}
+
+.loading {
+  margin: 10px 80px 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 6px 10px 6px;
+  border-color: transparent transparent #3a3d48 transparent;
+}
+
+.rotating {
+  animation: rotating 2s linear infinite;
+  transform-origin: 50% 60%;
+}
+
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

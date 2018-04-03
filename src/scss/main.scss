@@ -1,3 +1,4 @@
+@import "includes/config";
 @import "includes/reset";
 @import "includes/mapbox-gl";
 
@@ -7,9 +8,12 @@
 @import "includes/map_theme";
 
 // panels
+@import "includes/panels/side_bar";
 @import "includes/panels/favorite";
 @import "includes/panels/poi";
 @import "includes/panels/register";
+
+@import "includes/panels/wiki";
 
 // z-index
 @import "includes/z_index";

@@ -50,13 +50,25 @@ Panel.prototype.wait = async function (t) {
   })
 }
 
+Panel.prototype.addClassName = async function(t, selector, className) {
+  return operateClassName.call(this, t, selector, className, 'add')
+}
+
+Panel.prototype.removeClassName = async function(t, selector, className) {
+  return operateClassName.call(this, t, selector, className, 'remove')
+}
+
 Panel.prototype.toggleClassName = async function(t, selector, className) {
+  return operateClassName.call(this, t, selector, className, 'toggle')
+}
+
+/* private */
+async function operateClassName(t, selector, className, operation) {
   let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`)
   if(selector) {
     transitionNode = transitionNode.querySelector(selector)
   }
-  transitionNode.classList.toggle(className)
-
+  transitionNode.classList[operation](className)
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(this)

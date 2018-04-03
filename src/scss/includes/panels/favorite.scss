@@ -1,125 +1,207 @@
 .favorites_panel {
   transition: left .2s;
-  left:0;
-  background: #f8f9f7f2;
+  left: $side_bar_width;
+  background: #fff;
   height: 100vh;
-  width: 300px;
+  width: $panel_width;
   position: absolute;
-  box-shadow: inset -5px 0px 25px 0px rgba(26,26,26,0.3);
 }
 
 .favorites_panel--hidden {
-  left: -280px;
+  left: - $panel_width - $side_bar_width;
+}
+
+.favorite_panel__image_header {
+  background-image: url("../statics/images/tmp_fixtures/anthony-delanoix-8433-unsplash.jpg");
+  background-size: $panel_width;
+  background-position: center;
+  width: $panel_width;
+  height: 200px;
 }
 
 .favorite_panel__container {
-  float:left;
-  width:280px;
-  padding: 130px 0;
+  float: left;
+  width: $panel_width;
+  padding: 85px 0 0 0;
 }
 
-.favorite-panel--handler {
-  height: 100vh;
-  width: 8px;
-  background: #5c6367;
-  float: right;
+.favorite_panel__close {
+  position: absolute;
+  right: 0;
+  top: 56px;
+  padding: 5px 10px;
+  background: white;
+  color: #a81111;
+  font-size: 14px;
+  text-align: right;
   cursor: pointer;
 }
 
 .favorite-panel--handler:hover {
-  background-color: #007b88;
+  background-color: #d5d6dc;
 }
 
 .favorite_panel__item {
   font-size: 18px;
-  width: 250px;
 }
 
 .favorite_panel__remove {
   font-size: 18px;
-  color : darkred;
   vertical-align:bottom;
 }
 
 .favorite_panel__go {
-  color : #44cc70;
   line-height: 16px;
 }
 
 .favorite_panel__item__info {
+  height: 70px;
   float: left;
+  padding: 18px 0 10px 64px;
 }
 
 .favorite_panel__action {
   cursor: pointer;
   width: 30px;
   height: 30px;
-  background: #dfe3e629;
+  background: #fff;
   border: 2px solid #d3d5d7;
+  border-radius: 50%;
   vertical-align: center;
 }
 
 .favorite_panel__item__actions {
   float: right;
+  display: none;
+  margin: 20px 0 0 0;
 }
 
 .favorite_panel__clear {
-  padding: 4px 8px;
-  background: linear-gradient(to bottom, rgba(230,0,0,1) 0%, rgb(168, 17, 17) 100%);
-  color: #fff;
+  margin-left: 150px;
+  padding: 9px 24px;
+  color: #7b000c;
+  border: 3px #bc555f solid;
   cursor: pointer;
+  border-radius: 30px;
+  font-size: 18px;
 }
 
 .favorite_panel__item__title {
+  font-size: 16px;
+  max-width: 164px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: #454B57;
-}
-
-.favorite_panel__item__count {
-  font-size: 14px;
-  color: #E78B32;
 }
 
 .favorite_panel__container__title {
-  color: #454B57;
-  margin-bottom: 20px;
-  span { // star
-    color : #E78B32;
-  }
+  color: $text_color;
+  padding-top: 10px;
+  margin: 20px 0 -4px 20px;
+  font-weight: normal;
+  font-size: 22px;
 }
 
 .favorite_panel__item__desc {
-  padding-left: 22px;
   font-size: 12px;
-  color : #505967;
+  color : #8d929c;
 }
 
+.favorite_panel__swipe_window {
+  overflow-x: hidden;
+  clear: both;
+}
 
-
-
-  .favorite_panel__swipe_window {
-    overflow-x: hidden;
-    width: 250px;
-    clear: both;
-  }
 .favorite_panel__swipe_element {
-  width: 250px;
-  height: 60px;
-  padding: 10px;
+  width: $panel_width;
+  height: 70px;
+  padding: 0 8px 0 4px;
 }
 
+.favorite_panel__swipe_element:not(:last-child):after {
+  display: block;
+  content: '';
+  clear: both;
+  height: 1px;
+  width: 100%;
+  background-color: #f3f3f3;
+}
 
+.favorite_panel__swipe_element:hover {
+  background: #f9fbfd;
+  border-left: 4px solid #f95d00;
+  padding-left: 0;
+}
 
+.favorite_panel__swipe_element:hover .favorite_panel__item__actions {
+  display: block;
+}
+
+.favorite_panel__filter {
+  transition: background-color, color .2s;
+  float: right;
+  margin: -30px 40px 0 0;
+  font-size: 14px;
+  color: #fff;
+  background-color: #00a5fe;
+  padding: 5px 16px;
+  border-radius: 16px;
+  border:3px solid transparent;
+}
+
+.favorite_panel__filter:hover {
+  background-color: #fff;
+  color: #00a5fe;
+  border:3px solid #00a5fe
+}
+
+.filter_panel {
+  font-size: 13px;
+  color:#353739;
+  display: none;
+  position: absolute;
+  width: 300px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.52) 1px 1px 6px;
+  background-color: #fff;
+  right: 20px;
+  margin-top: 5px;
+  border-radius: 3px;
+}
+
+.filter_panel__label {
+  display: block;
+  width: 100%;
+  padding: 3px 5px;
+}
+
+.filter_panel INPUT[type=checkbox] {
+  display: none;
+}
+
+INPUT[type=checkbox]:checked + .filter_panel__label {
+  font-weight: bold;
+  background-color: #f8fafc;
+}
+
+.filter_panel--active {
+  display: block;
+}
 
 @media (max-width: 640px) {
 
-
-
   .favorite-panel--handler {
-    width: 100%;
     bottom: 0;
     position: absolute;
     margin-top: 300px;
     height: 20px;
+  }
+
+  .favorite_panel__container {
+    margin-top: 20px;
+    width: 100%;
+    margin-left: $side_bar_width;
   }
 
   @for $i from 1 through 20 {
@@ -141,7 +223,7 @@
   }
 
   .favorites_panel--hidden {
-    top: calc(-100vh + 90px);  }
+    top: calc(-100vh + 70px);  }
 
   .favorite_panel__swipe_window {
     overflow-x: scroll;

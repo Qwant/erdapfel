@@ -26,8 +26,9 @@ function SearchInput(tagSelector) {
   new Autocomplete({
     selector : tagSelector,
     minChars : 1,
-     cachePrefix : false,
+    cachePrefix : false,
     delay : 0,
+    width:'650px',
     onUpdate : (e, poi) => {
       this.poi = poi
     },

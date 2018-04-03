@@ -1,50 +1,115 @@
 .poi_panel {
   position: absolute;
-  height: 100vh;
-  width: 300px;
-  padding-top: 6px;
-  left:0;
-  transition: left 0.3s;
+  top: 0;
+  left:96px;
+  width: $panel_width;
+  transition: left 0.2s;
+}
+
+.poi_panel__content {
+  position: relative;
+  width: $panel_width;
+  height: calc(100vh);
+  padding: 85px 0 10px 0;
+  overflow-y: auto;
   background: #fff;
 }
 
-.poi_panel--closed {
-  left: -100%;
+.poi_panel--hidden {
+  left: - $panel_width - $side_bar_width;
+}
+
+
+.poi_panel__header_image {
+  background-image: url(../statics/images/tmp_fixtures/david-marcu-383024-unsplash.jpg);
+  background-size: $panel_width;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 400px;
+  height: 200px;
+}
+
+.poi_panel__info__section__phone {
+  margin-left: 40px;
+  font-size: 14px;
 }
 
 .poi_panel__close {
+  position: absolute;
+  right: 0;
+  top: 56px;
+  padding: 5px 10px;
+  background: white;
   color: #a81111;
-  font-size: 28px;
+  font-size: 14px;
   text-align: right;
   cursor: pointer;
 }
 
 .poi_panel__description_container {
-  margin-top: 70px;
+  margin-top: 10px;
 }
 
 .poi_panel__title {
-  background: #039BE5;
-  color: #fff;
+  color: $text_color;
+  padding-top: 10px;
+  margin:20px 0 -4px 20px;
   font-weight: normal;
-  font-size: 20px;
-  padding: 20px 10px;
+  font-size: 22px;
+}
+
+.poi_panel__info__section__title {
+  color: $text_alt_color;
+  font-weight: normal;
+  margin: 20px 0 0 20px;
+}
+
+.poi_panel__info__section:not(:last-of-type):after {
+  content: '';
+  display: block;
+  width: 360px;
+  height: 1px;
+  margin: 20px 0 0 20px;
+  background: #e4e7ef;
 }
 
 .poi_panel__description {
   font-size: 12px;
-  color: #777;
-  padding: 10px 20px;
+  padding-left: 40px;
+  color: $emphase_color;
 }
 
 .poi_panel__info__section__description  {
   margin: 0;
 }
 
+.poi_panel__info__link {
+  margin-left: 40px;
+  font-size: 14px;
+  color: #0061b9;
+  border-bottom: 1px solid #c8d6e0;
+}
+
+.poi_panel__info__link:HOVER {
+  text-decoration: none;
+  border-bottom: 1px solid #0061b9;
+}
+
 .poi_panel__info__hours {
+  margin-left: 40px;
   height: 0;
   transition: height 0.3s;
   overflow: hidden;
+}
+
+.poi_panel__info__hours .hours {
+  color: #4d4d4c;
+  font-size: 13px;
+  padding: 4px 10px;
+}
+
+.poi_panel__info__hours TR:nth-child(2n) {
+  background-color: #f5f7f9;
 }
 
 .poi_panel__info__hours_status {
@@ -52,10 +117,11 @@
 }
 
 .poi_panel__info__hours--open {
-  height: 160px;
+  height: 170px;
 }
 
 .poi_panel__info__hours__status {
+  padding-left: 40px;
   cursor: pointer;
 }
 
@@ -67,26 +133,77 @@
 }
 
 .poi_panel__info__beer {
-  color: #6e5d00;
-  font-size: 13px;
+  margin-left: 20px;
+  color: #90750b;
+  font-size: 14px;
 }
 
 .poi_panel__store_status {
-  padding: 10px 20px;
+  float: right;
+  width: 30px;
+  margin-top: -30px;
 }
 
-.poi_panel__store_status__add {
-  border-bottom: 3px solid #513156;
-  background: #A55567;
-  color: #fff;
-  font-size: 14px;
+.poi_panel__store_status__toggle {
+  position: absolute;
+  color: $text_color;
   padding: 3px 6px;
+  font-size: 18px;
+  font-weight: bold;
 }
+
+.poi_panel__store_status__toggle--stored {
+  color: #fbca04;
+}
+
+/* TODO export to external service */
+
+/* title symbols */
+.poi_panel__title__symbol:before {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+
+.poi_panel__title__symbol--park:before {content:"🏢";color: #6b6f73}
+
+/* symbols */
+.poi_panel__section__symbol:before {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.poi_panel__section__symbol--brewery:before {content: "🍺";}
+.poi_panel__section__symbol--wiki:before {content: "W";}
+.poi_panel__section__symbol--phone:before {content: "☎";}
+.poi_panel__section__symbol--time:before {content: "⌚";}
+.poi_panel__section__symbol--www:before {content: "🌐";}
 
 @media (max-width: 640px) {
   .poi_panel {
+    left:0;
     padding-top: 72px;
     width: 100%;
+  }
+
+  .poi_panel__content {
+    width: 100%;
+  }
+
+  .poi_panel--hidden {
+    left: - 100vw;
+  }
+
+  .poi_panel__header_image {
+    background-position: right;
+    width: 100%;
+  }
+
+  .poi_panel__close {
+    right: 0;
+    top: 72px;
   }
 
   .poi_panel__description_container {

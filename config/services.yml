@@ -1,3 +1,7 @@
 tz:
  url: 'http://localhost:3004/tz/'
  active: false
+
+wiki:
+  url: 'http://localhost:4040/wiki/'
+  active: true

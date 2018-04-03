@@ -58,9 +58,6 @@ Poi.sceneLoad = function (event, zoom) {
       }
     })
 
-
-
-
   } catch (e) {
     poi.tags = {}
     fire('alert', 'Tags parse error ' + e)
