@@ -33,7 +33,11 @@ WikiPanel.prototype.getData = async function(tag) {
     this.tag = tag.value
     this.state = this.STATE.LOADING
     await this.panel.update()
-    this.data = await Ajax.queryLang(services.wiki.url, {id : tag.value})
+    try {
+      this.data = await Ajax.queryLang(services.wiki.url, {id : tag.value})
+    } catch(e) {
+      this.data = {}
+    }
     this.state = this.STATE.LOADED
     this.tag = tag.value
     this.panel.update()
