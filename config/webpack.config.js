@@ -128,9 +128,9 @@ const mapJsChunkConfig = {
 
 webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
-webpackChunks = webpackChunks.concat(languages.list.map((language)=> {
+webpackChunks = webpackChunks.concat(languages.supportedLanguages.map((language)=> {
   return {
-    entry:  path.join(__dirname, '..', 'language', 'message', language + '.po'),
+    entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
     module : {
       loaders : [{
         loader : 'file-loader',
