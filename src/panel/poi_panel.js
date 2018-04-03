@@ -5,7 +5,7 @@ import Panel from "../libs/panel";
 import URI from "../libs/uri"
 import Store from "../adapters/store"
 
-const activePoiSections = require("json-loader!yaml-loader!../../config/active_poi_section.yml")
+const activePoiSections = require('../../config/active_poi_section.yml')
 
 const store = new Store()
 
@@ -22,7 +22,7 @@ function PoiPanel() {
   this.poi = null
   this.active = false
   this.panel = new Panel(this, PoiPanelView)
-  this.activePoiSections = activePoiSections
+  this.activePoiSections = activePoiSections.pois
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {

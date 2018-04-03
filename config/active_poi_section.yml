@@ -1,6 +1,14 @@
-- opening_hours
-- happy_hours
-- brewery
-- phone
-- website
-- wikidata
+development: &development-active-poi
+  pois:
+  - opening_hours
+  - happy_hours
+  - brewery
+  - phone
+  - website
+  - wikidata
+
+local:
+  <<: *development-active-poi
+
+production:
+  <<: *development-active-poi

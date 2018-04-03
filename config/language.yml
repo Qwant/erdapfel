@@ -2,7 +2,9 @@ development: &development-lang
   list:
     - en_GB
     - fr_FR
+
 local:
   <<: *development-lang
+
 production:
   <<: *development-lang

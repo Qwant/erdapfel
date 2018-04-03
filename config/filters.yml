@@ -1,5 +1,12 @@
-categories:
- - None
- - Boulangerie
- - Musée
- - Restaurant
+development: &development-geo
+  categories:
+    - None
+    - Boulangerie
+    - Musée
+    - Restaurant
+
+local:
+  <<: *development-geo
+
+production:
+  <<: *development-geo

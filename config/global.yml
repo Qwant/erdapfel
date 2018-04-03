@@ -1,6 +1,8 @@
 development: &development-global
   timeout: 3
+
 local:
   <<: *development-global
+
 production:
   <<: *development-global
