@@ -1,1 +1,8 @@
-url: "http://***REMOVED***:4000/autocomplete"
+development: &development-geo
+  url: http://***REMOVED***:4000/autocomplete
+
+local:
+  <<: *development-geo
+
+production:
+  <<: *development-geo

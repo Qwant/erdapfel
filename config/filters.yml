@@ -1,5 +1,12 @@
-categories:
- - None
- - Boulangerie
- - Musée
- - Restaurant
+development: &development-filters
+  categories:
+    - None
+    - Boulangerie
+    - Musée
+    - Restaurant
+
+local:
+  <<: *development-filters
+
+production:
+  <<: *development-filters
