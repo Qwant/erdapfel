@@ -10,22 +10,27 @@ function I18n() {
   window._ = this._.bind(this)
   window._n = this._n.bind(this)
   window.setLang = this.setLang.bind(this)
+  window.getLang = this.getLang.bind(this)
 
   this.message = i18nData.message
   this.getPlural = i18nData.getPlural
 }
 
 I18n.prototype.setLang = async function(baseLang = navigator.language) {
-
-  let language = languages.supportedLanguages.find((supportedLanguage) => {
+  this.language = languages.supportedLanguages.find((supportedLanguage) => {
     return baseLang === supportedLanguage.code
   })
 
-  if(!language) {
-    language = languages.defaultLanguage
+  if(!this.language) {
+    this.language = languages.defaultLanguage
   }
-  await AsyncFileLoader(`message/${language.locale}.js`)
+  await AsyncFileLoader(`message/${this.language.locale}.js`)
   this.message = i18nData.message
+}
+
+
+I18n.prototype.getLang = function() {
+  return this.language
 }
 
 /**
