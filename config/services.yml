@@ -1,9 +1,9 @@
 development: &development-services
   tz:
-    url: 'http://localhost:4040/tz/'
+    url: 'http://***REMOVED***:4040/tz/'
     active: true
   wiki:
-    url: 'http://localhost:4040/wiki/'
+    url: 'http://***REMOVED***:4040/wiki/'
     active: true
 
 local:

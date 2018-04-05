@@ -1,4 +1,4 @@
-development: &development-geo
+development: &development-filters
   categories:
     - None
     - Boulangerie
@@ -6,7 +6,7 @@ development: &development-geo
     - Restaurant
 
 local:
-  <<: *development-geo
+  <<: *development-filters
 
 production:
-  <<: *development-geo
+  <<: *development-filters
