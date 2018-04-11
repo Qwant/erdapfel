@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-03 15:35+0200\n"
-"PO-Revision-Date: 2018-04-03 15:38+0200\n"
+"POT-Creation-Date: 2018-04-11 11:16+0200\n"
+"PO-Revision-Date: 2018-04-11 11:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -16,34 +16,38 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: public/javascript/bundle.js\n"
 
-#: public/javascript/bundle.js:265 src/libs/i18n.js:34
+#: public/javascript/bundle.js:270
 msgid "string"
 msgstr ""
 
-#: public/javascript/bundle.js:281 public/javascript/bundle.js:282
-#: src/libs/i18n.js:50 src/libs/i18n.js:51
+#: public/javascript/bundle.js:286 public/javascript/bundle.js:287
+#, python-format
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/javascript/bundle.js:900
+#: public/javascript/bundle.js:1843
+msgid "Via Wikipédia"
+msgstr "Voir sur Wikipédia"
+
+#: public/javascript/bundle.js:1843
+msgid "Via WikiData"
+msgstr "Voir sur Wikidata"
+
+#: public/javascript/bundle.js:2518
+#, python-format
 msgid "%d favorites places"
 msgid_plural "%d favorite place"
-msgstr[0] "ma place préférée"
-msgstr[1] "mes %d places préférées"
+msgstr[0] "Ma place préféré"
+msgstr[1] "Mes %d places préférées"
 
-#: public/javascript/bundle.js:900
+#: public/javascript/bundle.js:2518
 msgid "filter"
 msgstr "filtre"
 
-#: public/javascript/bundle.js:2042
-msgid "Via Wikipedia"
-msgstr "Avec Wikipedia"
-
-#: public/javascript/bundle.js:2042
-msgid "Via WikiData"
-msgstr "Avec WikiData"
+#~ msgid "Via Wikipedia"
+#~ msgstr "Avec Wikipedia"
 
 #~ msgid "popup title"
 #~ msgstr "popup title"
