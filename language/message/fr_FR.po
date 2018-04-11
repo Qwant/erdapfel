@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-11 11:16+0200\n"
-"PO-Revision-Date: 2018-04-11 11:18+0200\n"
+"POT-Creation-Date: 2018-04-11 14:44+0200\n"
+"PO-Revision-Date: 2018-04-11 14:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -27,24 +27,36 @@ msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/javascript/bundle.js:1843
-msgid "Via Wikipédia"
-msgstr "Voir sur Wikipédia"
-
-#: public/javascript/bundle.js:1843
-msgid "Via WikiData"
-msgstr "Voir sur Wikidata"
-
-#: public/javascript/bundle.js:2518
+#: public/javascript/bundle.js:946
 #, python-format
 msgid "%d favorites places"
 msgid_plural "%d favorite place"
 msgstr[0] "Ma place préféré"
 msgstr[1] "Mes %d places préférées"
 
-#: public/javascript/bundle.js:2518
+#: public/javascript/bundle.js:946
 msgid "filter"
 msgstr "filtre"
+
+#: public/javascript/bundle.js:1788
+msgid "Register masq"
+msgstr "S'enregistrer sur Mask"
+
+#: public/javascript/bundle.js:1788
+msgid "We use MASQ to keep your preference data safe"
+msgstr "Nous utilisons MASK pour conserver vos préférences en sécurité"
+
+#: public/javascript/bundle.js:1788
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: public/javascript/bundle.js:2090
+msgid "Via Wikipédia"
+msgstr "Voir sur Wikipédia"
+
+#: public/javascript/bundle.js:2090
+msgid "Via WikiData"
+msgstr "Voir sur Wikidata"
 
 #~ msgid "Via Wikipedia"
 #~ msgstr "Avec Wikipedia"
