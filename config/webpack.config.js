@@ -112,7 +112,7 @@ const mapJsChunkConfig = {
             output: 'debug', // 'production' | 'omt'
             conf: `${__dirname}/map_${environment}.json`,
             outPath : __dirname + '/../public',
-            i18n : true,
+            i18n : '{locale}',  /* add wildcard for runtime replace */
             pixelRatios : [1,2]
           }
         }
