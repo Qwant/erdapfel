@@ -27,8 +27,12 @@ function Favorite() {
 
   this.panel = new Panel(this, FavoritePanelView)
 
-  listen('open_favorite', () => {
-    this.open()
+  listen('toggle_favorite', () => {
+    if(this.active) {
+      this.close()
+    } else {
+      this.open()
+    }
   })
 }
 

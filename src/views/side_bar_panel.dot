@@ -3,6 +3,6 @@
   <div class="side_bar__logo"></div>
 
   <div class="side_bar__result"></div>
-  <div {{= click(this.showFavorites, this) }}class="side_bar__fav"></div>
+  <div {{= click(this.toggleFavorite, this) }}class="side_bar__fav"></div>
 
 </div>

@@ -1,6 +1,6 @@
 <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--www">
   {{= _('Website', 'poi') }}
 </h4>
-<a class="poi_panel__info__link" href="{{= this.URI.externalise(this.tag.value) }}" no-follow about="_blank">
+<a class="poi_panel__info__link" href="{{= this.URI.externalise(this.tag.value) }}" no-follow target="_blank">
   {{= this.URI.extractDomain(this.tag.value) }}
 </a>

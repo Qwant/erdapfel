@@ -6,8 +6,8 @@ function SideBarPanel() {
 }
 
 
-SideBarPanel.prototype.showFavorites = function () {
-  fire('open_favorite')
+SideBarPanel.prototype.toggleFavorite = function () {
+  fire('toggle_favorite')
 }
 
 export default SideBarPanel
