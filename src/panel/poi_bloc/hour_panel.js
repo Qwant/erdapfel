@@ -3,11 +3,6 @@ import Panel from "../../libs/panel";
 import Ajax from "../../libs/ajax";
 const services = require('../../../config/services.yml')
 
-/**
- *
- name, hours, timeMessages
- */
-
 function HourPanel(tag, poi, options) {
   this.panel = new Panel(this, HourPanelView)
   this.name = tag.name

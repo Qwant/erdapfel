@@ -1,5 +1,5 @@
 <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--wiki">
-  Wikipedia
+  {{= _('Wikipedia', 'poi') }}
 </h4>
 <div class="poi_panel__info__wiki">
   {{? this.state === this.STATE.LOADING }}

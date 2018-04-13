@@ -4,13 +4,7 @@ import Ajax from "../../libs/ajax"
 import ExtendedString from "../../libs/string"
 
 const services = require('../../../config/services.yml')
-/**
- *
- * @param name
- * @param time
- * @param timeMessages [time : xx, message : 'opening soon' .. // -1 for open message
- * @constructor
- */
+
 function WikiPanel(tag) {
 
   this.STATE = {

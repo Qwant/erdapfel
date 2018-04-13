@@ -1,5 +1,5 @@
 <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--phone">
-  {{= this.tag.name }}
+  {{= _('Phone') }}
 </h4>
 <a class="poi_panel__info__section__phone" data-rel="external" href="tel:{{= this.tag.value }}">
   {{= this.tag.value }}
