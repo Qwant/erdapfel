@@ -1,9 +1,9 @@
-import WikiPanelView from 'dot-loader!../views/wiki_panel.dot'
-import Panel from "../libs/panel"
-import Ajax from "../libs/ajax"
-import ExtendedString from "../libs/string"
+import WikiPanelView from '../../views/poi_bloc/wiki.dot'
+import Panel from "../../libs/panel"
+import Ajax from "../../libs/ajax"
+import ExtendedString from "../../libs/string"
 
-const services = require('../../config/services.yml')
+const services = require('../../../config/services.yml')
 /**
  *
  * @param name
@@ -11,7 +11,7 @@ const services = require('../../config/services.yml')
  * @param timeMessages [time : xx, message : 'opening soon' .. // -1 for open message
  * @constructor
  */
-function WikiPanel() {
+function WikiPanel(tag) {
 
   this.STATE = {
     LOADING : 0,
@@ -25,6 +25,10 @@ function WikiPanel() {
   this.data = null
   this.state = this.STATE.LOADING
   this.collapsed = true
+  /* block are built before displayed */
+  this.panel.onRender = () => {
+    this.getData(tag)
+  }
 }
 
 WikiPanel.prototype.getData = async function(tag) {
@@ -49,13 +53,8 @@ WikiPanel.prototype.toggle = function() {
 }
 
 WikiPanel.prototype.toggleEllipsis = function() {
-  if(this.collapsed) {
-    this.collapsed = false
-  } else {
-    this.collapsed = true
-  }
+  this.collapsed = !this.collapsed
   this.panel.update()
 }
-
 
 export default WikiPanel

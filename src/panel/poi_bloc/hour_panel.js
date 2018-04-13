@@ -1,19 +1,18 @@
-import HourPanelView from 'dot-loader!../views/hour_panel.dot'
-import Panel from "../libs/panel";
-import Ajax from "../libs/ajax";
-const services = require('../../config/services.yml')
+import HourPanelView from '../../views/poi_bloc/hour.dot'
+import Panel from "../../libs/panel";
+import Ajax from "../../libs/ajax";
+const services = require('../../../config/services.yml')
+
 /**
  *
- * @param name
- * @param time
- * @param timeMessages [time : xx, message : 'opening soon' .. // -1 for open message
- * @constructor
+ name, hours, timeMessages
  */
-function HourPanel(poi, name, hours, timeMessages) {
+
+function HourPanel(tag, poi, options) {
   this.panel = new Panel(this, HourPanelView)
-  this.name = name
-  this.timeMessages = timeMessages
-  this.hours = hours
+  this.name = tag.name
+  this.timeMessages = options
+  this.hours = tag.value
   this.latLng = poi.latLon
   this.status = {msg : '', color : 'fff'}
   this.computeStatus()

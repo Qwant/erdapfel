@@ -1,4 +1,4 @@
-import RegisterMasqPanelView from 'dot-loader!../views/register_masq.dot'
+import RegisterMasqPanelView from '../views/register_masq.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 

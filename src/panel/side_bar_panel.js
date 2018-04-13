@@ -1,4 +1,4 @@
-import SideBarPanelView from 'dot-loader!../views/side_bar_panel.dot'
+import SideBarPanelView from '../views/side_bar_panel.dot'
 import Panel from '../libs/panel'
 
 function SideBarPanel() {

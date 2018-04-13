@@ -1,4 +1,4 @@
-import PanelsView from 'dot-loader!../views/app_panel.dot'
+import PanelsView from '../views/app_panel.dot'
 import Panel from '../libs/panel'
 import FavoritePanel from "./favorites_panel";
 import RegisterMasqPanel from "./register_masq";

@@ -74,6 +74,11 @@ const mainJsChunkConfig = {
         }
       ],
     }, {
+      test: /\.dot/,
+      use: [
+        {loader : 'dot-loader'}
+      ]
+    }, {
       test: /\.yml$/,
       use: [
         {loader : 'webpack-config-loader', options : {environment : environment}},

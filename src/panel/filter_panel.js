@@ -1,4 +1,4 @@
-import FilterPanelView from 'dot-loader!../views/filter_panel.dot'
+import FilterPanelView from '../views/filter_panel.dot'
 import Panel from "../libs/panel";
 
 const filters = require('../../config/filters.yml')

@@ -1,11 +1,7 @@
-import PoiPanelView from 'dot-loader!../views/poi_panel.dot'
-import HourPanel from "./hour_panel";
-import WikiPanel from "./wiki_panel";
+import PoiPanelView from '../views/poi_panel.dot'
 import Panel from "../libs/panel";
-import URI from "../libs/uri"
 import Store from "../adapters/store"
-
-const activePoiSections = require('../../config/active_poi_section.yml')
+import PoiBlocContainer from './poi_bloc/poi_bloc_container'
 
 const store = new Store()
 
@@ -16,13 +12,10 @@ function PoiPanel() {
   listen('open_favorite', (poi) => {
     this.close()
   })
-  this.URI = URI
-  this.hourPanel = HourPanel
-  this.wikiPanel = new WikiPanel()
   this.poi = null
   this.active = false
+  this.poiBlocContainer = new PoiBlocContainer()
   this.panel = new Panel(this, PoiPanelView)
-  this.activePoiSections = activePoiSections.pois
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {
@@ -75,12 +68,6 @@ PoiPanel.prototype.showInfoBox = async function (poi) {
   }
   this.active = true
   await this.panel.update()
-
-  this.poi.tags.find((tag) => {
-    if(tag.name === 'wikidata') {
-      this.wikiPanel.getData(tag)
-    }
-  })
 }
 
 export default PoiPanel

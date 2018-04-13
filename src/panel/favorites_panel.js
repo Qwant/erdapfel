@@ -1,4 +1,4 @@
-import FavoritePanelView from 'dot-loader!../views/favorites_panel.dot'
+import FavoritePanelView from '../views/favorites_panel.dot'
 import Panel from '../libs/panel'
 import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
