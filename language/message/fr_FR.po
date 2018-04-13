@@ -40,11 +40,11 @@ msgstr "filtre"
 
 #: public/javascript/bundle.js:1788
 msgid "Register masq"
-msgstr "S'enregistrer sur Mask"
+msgstr "S'enregistrer sur Masq"
 
 #: public/javascript/bundle.js:1788
 msgid "We use MASQ to keep your preference data safe"
-msgstr "Nous utilisons MASK pour conserver vos préférences en sécurité"
+msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
 
 #: public/javascript/bundle.js:1788
 msgid "Register"
