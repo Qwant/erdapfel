@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-11 14:44+0200\n"
-"PO-Revision-Date: 2018-04-11 14:46+0200\n"
+"POT-Creation-Date: 2018-04-16 11:12+0200\n"
+"PO-Revision-Date: 2018-04-16 11:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -28,11 +28,19 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: public/javascript/bundle.js:946
+msgid "Favorites places"
+msgstr "Lieux favoris"
+
+#: public/javascript/bundle.js:946
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgstr "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un lieu"
+
+#: public/javascript/bundle.js:946
 #, python-format
 msgid "%d favorites places"
 msgid_plural "%d favorite place"
-msgstr[0] "Ma place préféré"
-msgstr[1] "Mes %d places préférées"
+msgstr[0] "Lieu favori"
+msgstr[1] "Mes %d lieux favoris"
 
 #: public/javascript/bundle.js:946
 msgid "filter"

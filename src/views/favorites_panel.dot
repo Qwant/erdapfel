@@ -2,15 +2,22 @@
   <div {{= click(this.close, this) }} class="favorite_panel__close">🞨</div>
   <div class="favorite_panel__container">
   <div class="favorite_panel__image_header"></div>
+    {{? this.favoritePois.length === 0 }}
+      <h4 class="favorite_panel__container__title">
+        {{= _('Favorites places', 'favorite panel') }}
+      </h4>
+      <div class="favorite_panel__container__empty">
+        {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
+      </div>
+    {{??}}
+      <h4 class="favorite_panel__container__title">
+        {{= _n('%d favorites places', '%d favorite place', this.favoritePois.length, 'favorite panel') }}
+      </h4>
 
-    <h4 class="favorite_panel__container__title">
-      {{= _n('%d favorites places', '%d favorite place', this.favoritePois.length, 'favorite panel') }}
-    </h4>
+      <button class="favorite_panel__filter" {{= click(this.toggleFilter, this) }}>{{= _('filter', 'favorite panel') }}</button>
+      {{= this.filterPanel.render() }}
 
-    <button class="favorite_panel__filter" {{= click(this.toggleFilter, this) }}>{{= _('filter', 'favorite panel') }}</button>
-    {{= this.filterPanel.render() }}
 
-    {{? this.favoritePois.length !== 0 }}
       <ul>
         <li class="favorite_panel__item">
 
