@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-12-14 11:01+0100\n"
-"PO-Revision-Date: 2017-12-14 16:30+0100\n"
+"POT-Creation-Date: 2018-04-16 11:22+0200\n"
+"PO-Revision-Date: 2018-04-16 11:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -10,17 +10,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.4\n"
-"X-Poedit-Basepath: ../../src\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: public/javascript/bundle.js\n"
 
-#: mapbox_component/popup.js:11
-msgid "popup title"
-msgstr "popup title"
+#: public/javascript/bundle.js:270 src/libs/i18n.js:38
+msgid "string"
+msgstr ""
 
-#: mapbox_component/popup.js:12
-msgid "images left"
-msgid_plural "image left"
-msgstr[0] "images left"
-msgstr[1] "image left"
+#: public/javascript/bundle.js:286 public/javascript/bundle.js:287
+#: src/libs/i18n.js:54 src/libs/i18n.js:55
+#, python-format
+msgid "%d person"
+msgid_plural "%d people"
+msgstr[0] ""
+msgstr[1] ""
+
+#: public/javascript/bundle.js:946
+msgid "Favorites places"
+msgstr ""
+
+#: public/javascript/bundle.js:946
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+
+#: public/javascript/bundle.js:946
+#, python-format
+msgid "%d favorites places"
+msgid_plural "%d favorite place"
+msgstr[0] ""
+msgstr[1] ""
+
+#: public/javascript/bundle.js:946
+msgid "filter"
+msgstr ""
+
+#: public/javascript/bundle.js:1788
+msgid "Register masq"
+msgstr ""
+
+#: public/javascript/bundle.js:1788
+msgid "We use MASQ to keep your preference data safe"
+msgstr ""
+
+#: public/javascript/bundle.js:1788
+msgid "Register"
+msgstr ""
+
+#: public/javascript/bundle.js:2090
+msgid "Via Wikipédia"
+msgstr ""
+
+#: public/javascript/bundle.js:2090
+msgid "Via WikiData"
+msgstr ""
+
+#~ msgid "popup title"
+#~ msgstr "popup title"
+
+#~ msgid "images left"
+#~ msgid_plural "image left"
+#~ msgstr[0] "images left"
+#~ msgstr[1] "image left"

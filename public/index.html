@@ -30,7 +30,7 @@
       /* Progress */
       const progressBar = document.querySelector('#progress-bar')
       const loaderBar = document.querySelector('#loader-bar')
-      let mapLoader = new LoadFile('./javascript/map.js')
+      let mapLoader = new FileLoader('./javascript/map.js')
       mapLoader.onLoad = () => {
         loaderBar.classList.add('loader_bar--loaded')
       }

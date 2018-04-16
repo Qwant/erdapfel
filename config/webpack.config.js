@@ -112,6 +112,7 @@ const mapJsChunkConfig = {
             output: 'debug', // 'production' | 'omt'
             conf: `${__dirname}/map_${environment}.json`,
             outPath : __dirname + '/../public',
+            i18n : true,
             pixelRatios : [1,2]
           }
         }
@@ -128,9 +129,9 @@ const mapJsChunkConfig = {
 
 webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
-webpackChunks = webpackChunks.concat(languages.list.map((language)=> {
+webpackChunks = webpackChunks.concat(languages.supportedLanguages.map((language)=> {
   return {
-    entry:  path.join(__dirname, '..', 'language', 'message', language + '.po'),
+    entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
     module : {
       loaders : [{
         loader : 'file-loader',

@@ -1,4 +1,4 @@
-function LoadFile(uri) {
+function FileLoader(uri) {
   const x = new XMLHttpRequest()
   x.open('GET', uri);
 

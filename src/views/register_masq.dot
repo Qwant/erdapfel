@@ -1,8 +1,11 @@
 <div class="register_masq_panel" style="top:{{= this.isActive ? '0' : '-300px' }}">
-  <h1 class="register_masq_panel__title">Register masq</h1>
+  <h1 class="register_masq_panel__title">
+    {{= _('Register masq', 'mask') }}
+  </h1>
   <p>
-    We use MASQ to keep your preference data safe
+    {{= _('We use MASQ to keep your preference data safe', 'mask') }}
   </p>
   <br>
-  <button class="register_masq_panel__action" {{= click(this.register, this) }}>Register</button>
+  <button class="register_masq_panel__action" {{= click(this.register, this) }}>
+    {{= _('Register', 'mask') }}</button>
 </div>

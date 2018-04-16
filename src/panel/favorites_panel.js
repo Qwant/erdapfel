@@ -4,21 +4,14 @@ import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 
-const store = new Store()
+
 
 function Favorite() {
   this.active = false
   this.favoritePois = []
   this.filterPanel = new FilterPanel()
-  store.onConnect()
-    .then(() => store.isRegistered())
-    .then((registered) => {
-      if(registered) {
-        this.getAll()
-      } else {
-        fire('register_panel__show')
-      }
-    })
+
+  this.connectStore()
 
   listen('poi_open', () => {
     this.close()
@@ -39,18 +32,45 @@ function Favorite() {
   })
 }
 
+Favorite.prototype.connectStore = async function () {
+  this.store = new Store()
+  try {
+    await this.store.onConnect()
+  } catch(e) {
+    console.error(e)
+    fire('register_panel__show')
+  }
+  let registered = false
+  try {
+    registered = await this.store.isRegistered()
+  } catch(e) {
+    console.error(e)
+    fire('register_panel__show')
+  }
+
+  if(registered) {
+    this.getAll()
+  } else {
+    fire('register_panel__show')
+  }
+
+}
+
 Favorite.prototype.toggleFilter = function () {
   fire('toggle_favorite_panel')
 }
 
-
-Favorite.prototype.getAll = function () {
-  store.getAll().then((storeData) => {
-    this.favoritePois = Object.keys(storeData).map((mapPoint) => {
-      return Poi.load(storeData[mapPoint])
-    })
-    this.panel.update()
+Favorite.prototype.getAll = async function () {
+  let storedData = {}
+  try {
+    storedData = this.store.getAll()
+  } catch(e) {
+    console.error(e)
+  }
+  this.favoritePois = Object.keys(storedData).map((mapPoint) => {
+    return Poi.load(storeData[mapPoint])
   })
+  this.panel.update()
 }
 
 Favorite.prototype.open = function() {

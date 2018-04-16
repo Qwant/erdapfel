@@ -18,7 +18,7 @@
       {{?}}
 
       {{? this.data.wikiLink }}
-        <a target="_blank" href="{{= this.data.wikiLink.url }}">{{= _('Via Wikipedia') }}</a>
+        <a target="_blank" href="{{= this.data.wikiLink.url }}">{{= _('Via Wikipédia') }}</a>
       {{?}}
 
       {{? !this.data.description && !this.data.wikiLink }}

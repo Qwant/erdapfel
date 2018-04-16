@@ -1,19 +1,36 @@
+const languages = require('../../config/language.yml')
+import AsyncFileLoader from './async_file_loader'
+
 /**
  *
  * i18n lib
  *
  */
-
 function I18n() {
   window._ = this._.bind(this)
   window._n = this._n.bind(this)
+  window.setLang = this.setLang.bind(this)
+  window.getLang = this.getLang.bind(this)
+
   this.message = i18nData.message
   this.getPlural = i18nData.getPlural
 }
 
-I18n.prototype.setLang = function(lang, keys) {
-  this.lang = lang
-  this.keys = keys
+I18n.prototype.setLang = async function(baseLang = navigator.language) {
+  this.language = languages.supportedLanguages.find((supportedLanguage) => {
+    return baseLang === supportedLanguage.code
+  })
+
+  if(!this.language) {
+    this.language = languages.defaultLanguage
+  }
+  await AsyncFileLoader(`message/${this.language.locale}.js`)
+  this.message = i18nData.message
+}
+
+
+I18n.prototype.getLang = function() {
+  return this.language
 }
 
 /**
@@ -45,9 +62,9 @@ I18n.prototype._n = function(singularMessage = '', pluralMessage, arity, context
   let translated = ''
   /* Generated dictionary store values inside the plural form key. */
   if(this.message[pluralMessage] && this.message[pluralMessage][0] && this.message[pluralMessage][1]) {
-    translated = this.getPlural(arity) ? this.message[pluralMessage][0] : this.message[pluralMessage][1]
+    translated = this.getPlural(arity) ? this.message[pluralMessage][1] : this.message[pluralMessage][0]
   } else {
-    translated = this.getPlural(arity) ? singularMessage : pluralMessage
+    translated = this.getPlural(arity) ? pluralMessage : singularMessage
   }
   return replacePlaceholders(translated, placeholders).replace(/%d/g, arity)
 }
@@ -59,5 +76,6 @@ function replacePlaceholders(string, placeholders) {
   }
   return string
 }
+
 
 export default I18n
