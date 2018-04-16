@@ -36,8 +36,6 @@ function Scene() {
         fire('mark_poi', poi)
       })
     })
-
-
   })
 
   listen('fly_to', (poi) => {

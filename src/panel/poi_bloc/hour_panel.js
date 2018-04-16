@@ -6,10 +6,11 @@ const services = require('../../../config/services.yml')
 function HourPanel(tag, poi, options) {
   this.panel = new Panel(this, HourPanelView)
   this.name = tag.name
-  this.timeMessages = options
+  this.timeMessages = options.messages
+  this.title = options.title
   this.hours = tag.value
   this.latLng = poi.latLon
-  this.status = {msg : '', color : 'fff'}
+  this.status = {msg : '', color : '#fff'}
   this.computeStatus()
 }
 

@@ -1,8 +1,10 @@
 <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--time">
-  {{= _('urly', 'poi') }}
+  {{= this.title }}
 </h4>
 <div {{= click(this.extend, this) }}>
-  <span class="poi_panel__info__hours__status" style="color:#{{= this.status.color }}">{{= this.status.msg }}</span>
+  <span class="poi_panel__info__hours__status" style="color:{{= this.status.color }}">
+    {{= _(this.status.msg) }}
+  </span>
 </div>
 <div class="poi_panel__info__hours">
   <table>

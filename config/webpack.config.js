@@ -82,6 +82,7 @@ const mainJsChunkConfig = {
       test: /\.yml$/,
       use: [
         {loader : 'webpack-config-loader', options : {environment : environment}},
+        {loader : 'config-sanitizer-loader'},
         {loader : 'json-loader'},
         {loader : 'yaml-loader'}
       ]
