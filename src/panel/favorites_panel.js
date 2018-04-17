@@ -55,6 +55,7 @@ Favorite.prototype.connectStore = async function () {
 
   if(registered) {
     this.getAll()
+    this.panel.update()
   } else {
     fire('register_panel__show')
   }
@@ -75,12 +76,14 @@ Favorite.prototype.getAll = async function () {
   this.favoritePois = Object.keys(storedData).map((mapPoint) => {
     return Poi.load(storedData[mapPoint])
   })
-  this.panel.update()
 }
 
-Favorite.prototype.open = function() {
-  this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+Favorite.prototype.open = async function() {
   this.active = true
+  await this.getAll()
+  await this.panel.update()
+  await this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+
 }
 
 Favorite.prototype.close = function() {
@@ -96,6 +99,7 @@ Favorite.prototype.go = async function(poi) {
   } else {
     fire('fly_to', poi)
   }
+  fire('close_favorite_panel')
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   this.active = false
 }
@@ -105,7 +109,9 @@ Favorite.prototype.add = function(poi) {
   this.panel.update()
 }
 
-Favorite.prototype.del = function(poi) {
+Favorite.prototype.del = function({poi, index}) {
+  this.panel.addClassName(0.4, `#favorite_item_${index}`, 'favorite_item--removed')
+
   this.favoritePois = this.favoritePois.filter((favorite) => {
     if(favorite === poi) {
       fire('del_poi', poi)
@@ -113,7 +119,8 @@ Favorite.prototype.del = function(poi) {
     }
     return true
   })
-  this.panel.update()
+//  this.panel.update()
+  fire('close_favorite_panel')
 }
 
 export default Favorite
