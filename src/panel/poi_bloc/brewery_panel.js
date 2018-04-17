@@ -3,7 +3,7 @@ import Panel from "../../libs/panel";
 
 function Brewery(tag) {
   this.panel = new Panel(this, BreweryView)
-  this.beers = tag.values.split(';')
+  this.beers = tag.value.split(';')
 }
 
 export default Brewery

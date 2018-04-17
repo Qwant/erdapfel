@@ -5,6 +5,23 @@
   height: 100vh;
   width: $panel_width;
   position: absolute;
+  overflow-x:hidden;
+  overflow-y: auto;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: #e5e7e9;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #62c3ff;
+  border-radius: 2px;
+}
+/* Scrollable element */
+.favorites_panel::webkit-scrollbar {
 }
 
 .favorites_panel--hidden {
@@ -77,7 +94,7 @@
 }
 
 .favorite_panel__clear {
-  margin-left: 150px;
+  margin: 10px 0 30px 150px;
   padding: 9px 24px;
   color: #7b000c;
   border: 3px #bc555f solid;
