@@ -16,6 +16,9 @@ function HourPanel(tag, poi, options) {
 
 HourPanel.prototype.computeRemainingTime = async function() {
   let rawDate
+  if(this.hours && this.hours['24/7']) {
+    return 999
+  }
   try {
     if(services.tz.active) {
       rawDate = await Ajax.query(services.tz.url, {latitude : this.latLng.lat, longitude : this.latLng.lng}, {method : 'get'})
@@ -61,19 +64,19 @@ HourPanel.prototype.computeStatus = function() {
 
   this.computeRemainingTime().then((remaining) => {
     if(remaining === -1) {
-      this.status = {msg : this.timeMessages.closed.msg, color : this.timeMessages.closed.c}
+      this.status = {msg : this.timeMessages.closed.msg, color : this.timeMessages.closed.color}
       this.panel.update()
       return
     }
     for(let tmKey in this.timeMessages) {
       let tm = this.timeMessages[tmKey]
       if(tm.time && tm.time > remaining) {
-        this.status = {msg : tm.msg, color : this.timeMessages.open.c}
+        this.status = {msg : tm.msg, color : this.timeMessages.open.color}
         this.panel.update()
         return
       }
     }
-    this.status = {msg : this.timeMessages.open.msg, color : this.timeMessages.open.c}
+    this.status = {msg : this.timeMessages.open.msg, color : this.timeMessages.open.color}
     this.panel.update()
   })
 }

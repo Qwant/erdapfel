@@ -96,7 +96,7 @@
 }
 
 .poi_panel__info__hours {
-  margin-left: 40px;
+  margin-left: 44px;
   height: 0;
   transition: height 0.3s;
   overflow: hidden;
@@ -121,7 +121,7 @@
 }
 
 .poi_panel__info__hours__status {
-  padding-left: 40px;
+  padding-left: 44px;
   cursor: pointer;
 }
 
@@ -130,6 +130,12 @@
     text-align: right;
     padding: 3px 5px 3px 0;
   }
+}
+
+.hour_panel__no_data  {
+  padding-left: 44px;
+  color: #777;
+  font-size: 14px;
 }
 
 .poi_panel__info__beer {
@@ -150,6 +156,10 @@
   padding: 3px 6px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.poi_panel__store_status__toggle:after {
+  content: '';
 }
 
 .poi_panel__store_status__toggle--stored {

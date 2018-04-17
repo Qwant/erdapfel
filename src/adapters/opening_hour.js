@@ -1,7 +1,5 @@
 const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
-
-
- function parse(rawOpening) {
+function parse(rawOpening) {
   var result = null;
   if (rawOpening === '' || rawOpening === null) {
     result = null;

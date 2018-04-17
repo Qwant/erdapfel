@@ -17,7 +17,6 @@
       <button class="favorite_panel__filter" {{= click(this.toggleFilter, this) }}>{{= _('filter', 'favorite panel') }}</button>
       {{= this.filterPanel.render() }}
 
-
       <ul>
         <li class="favorite_panel__item">
 

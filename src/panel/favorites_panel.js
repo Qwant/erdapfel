@@ -31,6 +31,7 @@ function Favorite() {
     if(this.active) {
       this.close()
     } else {
+      fire('open_favorite')
       this.open()
     }
   })
@@ -67,12 +68,12 @@ Favorite.prototype.toggleFilter = function () {
 Favorite.prototype.getAll = async function () {
   let storedData = {}
   try {
-    storedData = this.store.getAll()
+    storedData = await this.store.getAll()
   } catch(e) {
     console.error(e)
   }
   this.favoritePois = Object.keys(storedData).map((mapPoint) => {
-    return Poi.load(storeData[mapPoint])
+    return Poi.load(storedData[mapPoint])
   })
   this.panel.update()
 }
@@ -85,6 +86,7 @@ Favorite.prototype.open = function() {
 Favorite.prototype.close = function() {
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   this.active = false
+  fire('close_favorite_panel')
 }
 
 Favorite.prototype.go = async function(poi) {

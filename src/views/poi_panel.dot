@@ -9,7 +9,8 @@
         <p class="poi_panel__description">{{= this.poi.description.replace(/_/g, ' ') }}</p>
       {{?}}
       <div class="poi_panel__store_status">
-        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored' : ''}}" {{= click(this.toggleStorePoi, this) }}>{{? this.poi.stored }}★{{??}}☆{{?}}</button>
+        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-star-full' : 'icon-star-empty'}}" {{= click(this.toggleStorePoi, this) }}>
+        </button>
       </div>
 
     </div>

@@ -1,18 +1,29 @@
 <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--time">
   {{= _(this.title) }}
 </h4>
-<div {{= click(this.extend, this) }}>
-  <span class="poi_panel__info__hours__status" style="color:{{= this.status.color }}">
-    {{= _(this.status.msg) }}
+{{? this.hours }}
+  <div {{= click(this.extend, this) }}>
+    <span class="poi_panel__info__hours__status" style="color:{{= this.status.color }}">
+      {{= _(this.status.msg) }}
+      {{? this.hours['24/7'] }}
+        24 / 7
+      {{?}}
+    </span>
+  </div>
+  <div class="poi_panel__info__hours">
+    {{? !this.hours['24/7'] }}
+      <table>
+        {{~ Object.keys(this.hours):day }}
+          <tr>
+            <td class="day">{{= day }}</td>
+            <td class="hours"> {{? this.hours[day] }} {{= (this.hours[day] + '').replace(',', ' - ') }} {{??}} - no - {{?}}<td>
+          </tr>
+        {{~}}
+      </table>
+    {{?}}
+  </div>
+{{??}}
+  <span class="hour_panel__no_data">
+    {{= _('No data', 'hour panel') }}
   </span>
-</div>
-<div class="poi_panel__info__hours">
-  <table>
-    {{~ Object.keys(this.hours):day }}
-      <tr>
-        <td class="day">{{= day }}</td>
-        <td class="hours"> {{? this.hours[day] }} {{= (this.hours[day] + '').replace(',', ' - ') }} {{??}} - no - {{?}}<td>
-      </tr>
-    {{~}}
-  </table>
-</div>
+{{?}}

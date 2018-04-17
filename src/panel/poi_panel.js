@@ -9,7 +9,7 @@ function PoiPanel() {
   listen('mark_poi', (poi) => {
     this.showInfoBox(poi)
   })
-  listen('open_favorite', (poi) => {
+  listen('open_favorite', () => {
     this.close()
   })
   this.poi = null
@@ -21,16 +21,21 @@ function PoiPanel() {
 PoiPanel.prototype.toggleStorePoi = function() {
   if(this.poi.stored) {
     fire('del_poi', this.poi)
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-full')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-empty')
     this.poi.stored = false
   } else {
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-empty')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-full')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
     fire('store_poi', this.poi)
     this.poi.stored = true
   }
-
-  this.panel.update()
 }
 
 PoiPanel.prototype.toggle = async function() {
+
   if(this.active) {
     this.close()
   } else {

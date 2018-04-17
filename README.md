@@ -39,7 +39,7 @@ JS
 ```
 List of extension:
 ```
-*.js
+*.js, *.yml
 ```
 Parser command:
 ```

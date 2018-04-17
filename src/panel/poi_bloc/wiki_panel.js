@@ -6,7 +6,7 @@ import ExtendedString from "../../libs/string"
 const services = require('../../../config/services.yml')
 
 function WikiPanel(tag) {
-
+  this.tag = null
   this.STATE = {
     LOADING : 0,
     LOADED : 1
