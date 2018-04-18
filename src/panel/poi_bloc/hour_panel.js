@@ -61,7 +61,9 @@ HourPanel.prototype.computeRemainingTime = async function() {
 }
 
 HourPanel.prototype.computeStatus = function() {
-
+  if(!this.hours) {
+    return
+  }
   this.computeRemainingTime().then((remaining) => {
     if(remaining === -1) {
       this.status = {msg : this.timeMessages.closed.msg, color : this.timeMessages.closed.color}

@@ -1,7 +1,7 @@
-<h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--time">
-  {{= _(this.title) }}
-</h4>
 {{? this.hours }}
+  <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--time">
+    {{= _(this.title) }}
+  </h4>
   <div {{= click(this.extend, this) }}>
     <span class="poi_panel__info__hours__status" style="color:{{= this.status.color }}">
       {{= _(this.status.msg) }}
@@ -22,8 +22,4 @@
       </table>
     {{?}}
   </div>
-{{??}}
-  <span class="hour_panel__no_data">
-    {{= _('No data', 'hour panel') }}
-  </span>
 {{?}}

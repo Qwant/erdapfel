@@ -24,7 +24,7 @@ development: &development-active-poi
           msg: _('happy hours!')
           color: '#fcc035'
         soon:
-          msg: _('Last peint')
+          msg: _('Last pint')
           time: 60
           color: '#3f76e2'
         closed:

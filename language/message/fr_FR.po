@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-16 18:08+0200\n"
-"PO-Revision-Date: 2018-04-16 18:09+0200\n"
+"POT-Creation-Date: 2018-04-18 11:26+0200\n"
+"PO-Revision-Date: 2018-04-18 11:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -42,72 +42,87 @@ msgid "happy hours!"
 msgstr "happy hours!"
 
 #: config/active_poi_section.yml:27
-msgid "Last paint"
-msgstr "Dernière peinte"
+msgid "Last pint"
+msgstr "Dernière pinte"
 
-#: public/javascript/bundle.js:369
+#: public/javascript/bundle.js:278
 msgid "string"
 msgstr ""
 
-#: public/javascript/bundle.js:385 public/javascript/bundle.js:386
+#: public/javascript/bundle.js:294 public/javascript/bundle.js:295
 #, python-format
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/javascript/bundle.js:893
+#: public/javascript/bundle.js:962
+msgid "Favorites places"
+msgstr "Lieux favoris"
+
+#: public/javascript/bundle.js:962
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+"Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
+"lieu"
+
+#: public/javascript/bundle.js:962
 #, python-format
 msgid "%d favorites places"
 msgid_plural "%d favorite place"
 msgstr[0] "Lieu favori"
 msgstr[1] "Mes %d lieux favoris"
 
-#: public/javascript/bundle.js:893
+#: public/javascript/bundle.js:1751
 msgid "filter"
 msgstr "filtre"
 
-#: public/javascript/bundle.js:1938
-msgid "Brewery"
-msgstr "Brasserie"
+#: public/javascript/bundle.js:1801
+msgid "Register masq"
+msgstr "S'enregistrer sur Masq"
 
-#: public/javascript/bundle.js:2074
+#: public/javascript/bundle.js:1801
+msgid "We use MASQ to keep your preference data safe"
+msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
+
+#: public/javascript/bundle.js:1801
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: public/javascript/bundle.js:2011
+msgid "Beers"
+msgstr "Bières"
+
+#: public/javascript/bundle.js:2152
 msgid "Phone"
 msgstr "Téléphone"
 
-#: public/javascript/bundle.js:2105
+#: public/javascript/bundle.js:2183
 msgid "Website"
 msgstr "Site internet"
 
-#: public/javascript/bundle.js:2181
+#: public/javascript/bundle.js:2259
 msgid "Wikipedia"
 msgstr "Wikipédia"
 
-#: public/javascript/bundle.js:2181
-msgid "Via Wikipedia"
-msgstr "Avec Wikipedia"
+#: public/javascript/bundle.js:2259
+msgid "Via Wikipédia"
+msgstr "Voir sur Wikipédia"
 
-#: public/javascript/bundle.js:2181
+#: public/javascript/bundle.js:2259
 msgid "Via WikiData"
 msgstr "Voir sur Wikidata"
 
-#~ msgid "Favorites places"
-#~ msgstr "Lieux favoris"
+#: public/javascript/bundle.js:2341
+msgid "Results"
+msgstr "Résultats"
 
-#~ msgid "You have no favorite places. <br>You can add one by clicking on a place"
-#~ msgstr "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un lieu"
+#: public/javascript/bundle.js:2341
+msgid "Favoris"
+msgstr "Favoris"
 
-#~ msgid "Register masq"
-#~ msgstr "S'enregistrer sur Masq"
-
-#~ msgid "We use MASQ to keep your preference data safe"
-#~ msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
-
-#~ msgid "Register"
-#~ msgstr "S'enregistrer"
-
-#~ msgid "Via Wikipédia"
-#~ msgstr "Voir sur Wikipédia"
+#~ msgid "Via Wikipedia"
+#~ msgstr "Avec Wikipedia"
 
 #~ msgid "popup title"
 #~ msgstr "popup title"

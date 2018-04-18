@@ -74,8 +74,10 @@
 }
 
 .poi_panel__description {
+  position: relative;
   font-size: 12px;
   padding-left: 40px;
+  margin-top: 4px;
   color: $emphase_color;
 }
 
