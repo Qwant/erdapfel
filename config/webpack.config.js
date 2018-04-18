@@ -145,6 +145,13 @@ webpackChunks = webpackChunks.concat(languages.supportedLanguages.map((language)
           name : 'public/message/[name].js'
         }
       }, {
+        loader :'merge-i18n-source-loader',
+        options : {
+          sources : [
+            {path : `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`, name : 'i18nDate'}
+          ]
+        }
+      }, {
         test : /\.po$/,
         loader : 'po-js-loader',
       }],
@@ -152,7 +159,7 @@ webpackChunks = webpackChunks.concat(languages.supportedLanguages.map((language)
     output : {
       path : path.join(__dirname, '..'),
       filename : 'tmp/message.js'
-    }
+    },
   }
 }))
 

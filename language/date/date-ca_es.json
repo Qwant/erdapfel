@@ -1,0 +1,21 @@
+{
+"closeText": "Tancar",
+"prevText": "&#x3C;Ant",
+"nextText": "Seg&#x3E;",
+"currentText": "Avui",
+"monthNames": ["gener","febrer","març","abril","maig","juny",
+"juliol","agost","setembre","octubre","novembre","desembre"],
+"monthNamesShort": ["gen","feb","mar","abr","mai","jun",
+"jul","ago","set","oct","nov","des"],
+"dayNames": ["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],
+"dayNamesShort": ["diu","dil","dim","dim","dij","div","dis"],
+"dayNamesMin": ["D","D","D","D","D","D","D"],
+"weekHeader": "Sm",
+"dateFormat": "%d/%m/%Y",
+"longFormat ": "%d de %B de %Y",
+"timelineFormat": ["%a","%d","%h"],
+"firstDay": 1,
+"isRTL": false,
+"showMonthAfterYear": false,
+"yearSuffix": ""
+}

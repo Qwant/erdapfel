@@ -25,9 +25,9 @@ I18n.prototype.setLang = async function(baseLang = navigator.language) {
     this.language = languages.defaultLanguage
   }
   await AsyncFileLoader(`message/${this.language.locale}.js`)
+  await AsyncFileLoader(`date/${this.language.locale}.json`)
   this.message = i18nData.message
 }
-
 
 I18n.prototype.getLang = function() {
   return this.language

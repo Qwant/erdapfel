@@ -1,0 +1,73 @@
+{
+    "closeText": "Chjode",
+    "prevText": "Precedente",
+    "nextText": "Seguente",
+    "currentText": "Oghje",
+    "monthNames": [
+        "ghjennaghju",
+        "ferraghju",
+        "marzu",
+        "aprile",
+        "maghju",
+        "ghjugnu",
+        "lugliu",
+        "agostu",
+        "settembre",
+        "ottobre",
+        "nuvembre",
+        "dicembre"
+    ],
+    "monthNamesShort": [
+        "ghje.",
+        "ferr.",
+        "mar.",
+        "apr.",
+        "magh.",
+        "ghju.",
+        "lugl.",
+        "agos.",
+        "sett.",
+        "ott.",
+        "nuv.",
+        "dic."
+    ],
+    "dayNames": [
+        "dumenica",
+        "luni",
+        "marti",
+        "mercuri",
+        "ghjovi",
+        "venneri",
+        "sabbatu"
+    ],
+    "dayNamesShort": [
+        "dum.",
+        "lun.",
+        "mar.",
+        "mer.",
+        "ghjo.",
+        "ven.",
+        "sab."
+    ],
+    "dayNamesMin": [
+        "D",
+        "L",
+        "M",
+        "M",
+        "G",
+        "V",
+        "S"
+    ],
+    "weekHeader": "set.",
+    "dateFormat": "%d/%m/%Y",
+    "longFormat": "%d %B %Y",
+    "timelineFormat": [
+        "%a",
+        "%d",
+        "%h"
+    ],
+    "firstDay": 1,
+    "isRTL": false,
+    "showMonthAfterYear": false,
+    "yearSuffix": ""
+}
