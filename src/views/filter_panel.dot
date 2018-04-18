@@ -1,15 +1,19 @@
-<div class="filter_panel{{= this.displayed ? ' filter_panel--active' : '' }}">
-  <ul>
-    {{~ this.categories:category:i }}
-      <li>
+{{? this.active }}
+  <button class="favorite_panel__filter" {{= click(this.toggleFilter, this) }}>{{= _('filter', 'favorite panel') }}</button>
 
-        <input type="checkbox" id="{{= `_${this.panel.cid}${i}` }}" value="{{= category }}">
-        <label class="filter_panel__label" for="{{= `_${this.panel.cid}${i}` }}">{{= category }}</label>
+  <div class="filter_panel{{= this.displayed ? ' filter_panel--active' : '' }}">
+    <ul>
+      {{~ this.categories:category:i }}
+        <li>
 
-      </li>
+          <input type="checkbox" id="{{= `_${this.panel.cid}${i}` }}" value="{{= category }}">
+          <label class="filter_panel__label" for="{{= `_${this.panel.cid}${i}` }}">{{= category }}</label>
 
-    {{~}}
+        </li>
 
-  </ul>
+      {{~}}
 
-</div>
+    </ul>
+
+  </div>
+{{?}}

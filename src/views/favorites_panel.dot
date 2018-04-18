@@ -14,7 +14,6 @@
         {{= _n('%d favorites places', '%d favorite place', this.favoritePois.length, 'favorite panel') }}
       </h4>
 
-      <button class="favorite_panel__filter" {{= click(this.toggleFilter, this) }}>{{= _('filter', 'favorite panel') }}</button>
       {{= this.filterPanel.render() }}
 
       <ul>

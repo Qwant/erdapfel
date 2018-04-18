@@ -59,11 +59,6 @@ Favorite.prototype.connectStore = async function () {
   } else {
     fire('register_panel__show')
   }
-
-}
-
-Favorite.prototype.toggleFilter = function () {
-  fire('toggle_favorite_panel')
 }
 
 Favorite.prototype.getAll = async function () {
