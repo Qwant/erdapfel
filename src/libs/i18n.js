@@ -9,12 +9,16 @@ import AsyncFileLoader from './async_file_loader'
 function I18n() {
   window._ = this._.bind(this)
   window._n = this._n.bind(this)
+  window.getDay = this.getDay.bind(this)
   window.setLang = this.setLang.bind(this)
   window.getLang = this.getLang.bind(this)
 
-  this.message = i18nData.message
+  this.date = window.i18nDate
   this.getPlural = i18nData.getPlural
 }
+
+I18n.days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
+
 
 I18n.prototype.setLang = async function(baseLang = navigator.language) {
   this.language = languages.supportedLanguages.find((supportedLanguage) => {
@@ -25,12 +29,27 @@ I18n.prototype.setLang = async function(baseLang = navigator.language) {
     this.language = languages.defaultLanguage
   }
   await AsyncFileLoader(`message/${this.language.locale}.js`)
-  await AsyncFileLoader(`date/${this.language.locale}.json`)
   this.message = i18nData.message
+  this.date = i18nDate
 }
 
 I18n.prototype.getLang = function() {
   return this.language
+}
+
+/**
+ * translate short days
+ * @param day short name of the day ex. sa for saturday
+ * @param dayKey the dictionary key containing day name can be dayNamesMin, dayNamesShort, dayNames
+ * @returns {*}
+ */
+I18n.prototype.getDay = function(day, dayKey) {
+  let pos = I18n.days.indexOf(day)
+  /* default key is long day format */
+  if(!this.date[dayKey]) {
+    dayKey = 'dayNames'
+  }
+  return this.date[dayKey][pos]
 }
 
 /**

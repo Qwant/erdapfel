@@ -70,38 +70,6 @@ function parse(rawOpening) {
     }
   }
   return result;
-};
-
-let build_value = function(obj) {
-  var result = "";
-  if ('mo' in obj && obj.mo[0] && obj.mo[1]) {
-    result += 'Mo ' + obj.mo[0] + '-' + obj.mo[1];
-  }
-  if ('tu' in obj && obj.tu[0] && obj.tu[1]) {
-    if (result.length > 0) { result += '; '; }
-    result += 'Tu ' + obj.tu[0] + '-' + obj.tu[1];
-  }
-  if ('we' in obj && obj.we[0] && obj.we[1]) {
-    if (result.length > 0) { result += '; '; }
-    result += 'We ' + obj.we[0] + '-' + obj.we[1];
-  }
-  if ('th' in obj && obj.th[0] && obj.th[1]) {
-    if (result.length > 0) { result += '; '; }
-    result += 'Th ' + obj.th[0] + '-' + obj.th[1];
-  }
-  if ('fr' in obj && obj.fr[0] && obj.fr[1]) {
-    if (result.length > 0) { result += '; '; }
-    result += 'Fr ' + obj.fr[0] + '-' + obj.fr[1];
-  }
-  if ('sa' in obj && obj.sa[0] && obj.sa[1]) {
-    if (result.length > 0) { result += '; '; }
-    result += 'Sa ' + obj.sa[0] + '-' + obj.sa[1];
-  }
-  if ('su' in obj && obj.su[0] && obj.su[1]) {
-    if (result.length > 0) { result += '; '; }
-    result += 'Su ' + obj.su[0] + '-' + obj.su[1];
-  }
-  return result;
 }
 
 export default parse

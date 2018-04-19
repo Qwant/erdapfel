@@ -1,7 +1,6 @@
 /**
  * simple Poi helper
  */
-import openingHourParse from '../adapters/opening_hour'
 
 function Poi(latLon, id, title, description) {
   this.latLon = latLon
@@ -50,11 +49,7 @@ Poi.sceneLoad = function (event, zoom) {
     poi.tags = []
     Object.keys(tags).forEach((tagKey) => {
       if(tagKey.indexOf('name') === -1) {
-        if(tagKey.indexOf('_hours') !== -1) {
-          poi.tags.push({name : tagKey, value : openingHourParse(tags[tagKey])})
-        } else {
-          poi.tags.push({name : tagKey, value : tags[tagKey]})
-        }
+        poi.tags.push({name : tagKey, value : tags[tagKey]})
       }
     })
 

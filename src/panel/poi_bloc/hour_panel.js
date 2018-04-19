@@ -1,6 +1,9 @@
 import HourPanelView from '../../views/poi_bloc/hour.dot'
 import Panel from "../../libs/panel";
 import Ajax from "../../libs/ajax";
+import openingHourParse from '../../../src/adapters/opening_hour'
+import I18n from '../../libs/i18n'
+
 const services = require('../../../config/services.yml')
 
 function HourPanel(tag, poi, options) {
@@ -8,7 +11,7 @@ function HourPanel(tag, poi, options) {
   this.name = tag.name
   this.timeMessages = options.messages
   this.title = options.title
-  this.hours = tag.value
+  this.hours = translateHours(openingHourParse(tag.value))
   this.latLng = poi.latLon
   this.status = {msg : '', color : '#fff'}
   this.computeStatus()
@@ -17,7 +20,7 @@ function HourPanel(tag, poi, options) {
 HourPanel.prototype.computeRemainingTime = async function() {
   let rawDate
   if(this.hours && this.hours['24/7']) {
-    return 999
+    return 999 /* be sure it won't close soon */
   }
   try {
     if(services.tz.active) {
@@ -35,8 +38,7 @@ HourPanel.prototype.computeRemainingTime = async function() {
   if(!this.hours) return -1
   let dn = remoteDate.getDay()
 
-  const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
-  let schedules = this.hours[days[dn]]
+  let schedules = this.hours[I18n.days[dn]]
   if(!schedules) return -1
   let open = schedules[0]
   let close = schedules[1]
@@ -86,6 +88,14 @@ HourPanel.prototype.computeStatus = function() {
 
 HourPanel.prototype.extend = function() {
   this.panel.toggleClassName(.3, '.poi_panel__info__hours', 'poi_panel__info__hours--open')
+}
+
+/* privates */
+
+function translateHours(hours) {
+  return Object.keys(hours).map((hourKey) => {
+    return {dayName : getDay(hourKey), opening : hours[hourKey]}
+  })
 }
 
 export default HourPanel

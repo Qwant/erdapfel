@@ -13,10 +13,10 @@
   <div class="poi_panel__info__hours">
     {{? !this.hours['24/7'] }}
       <table>
-        {{~ Object.keys(this.hours):day }}
+        {{~ this.hours:day }}
           <tr>
-            <td class="day">{{= day }}</td>
-            <td class="hours"> {{? this.hours[day] }} {{= (this.hours[day] + '').replace(',', ' - ') }} {{??}} - no - {{?}}<td>
+            <td class="day">{{= day.dayName }}</td>
+            <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : ' -'}}<td>
           </tr>
         {{~}}
       </table>
