@@ -71,15 +71,16 @@
   font-size: 12px;
   width: 24px;
   height: 24px;
-  line-height: 20px;
+  line-height: 19px;
   background: #fcd566;
   border: 2px #fff solid;
   border-radius: 50%;
-  text-align: center;
+  text-align: left;
   color: #fff;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  text-shadow: 1px 1px 2px #aaa;
+  text-shadow: 1px 1px 1px #d5a313;
+  padding-left: 3px;
 }
 
 .side_bar__fav__add--active {
