@@ -16,6 +16,7 @@
 }
 
 .side_bar__item {
+  cursor: pointer;
   height: 65px;
   width: 96px;
   text-align: center;
@@ -60,21 +61,27 @@
 .side_bar__fav {
   margin: 20px 0;
 }
+
 .side_bar__fav__add {
   transition: opacity .2s;
   opacity: 0;
   position: absolute;
   right: 16px;
   top: -15px;
-  font-size: 13px;
+  font-size: 12px;
   width: 24px;
   height: 24px;
-  line-height: 22px;
+  line-height: 20px;
   background: #fcd566;
   border: 2px #fff solid;
   border-radius: 50%;
   text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 1px 1px 2px #aaa;
 }
+
 .side_bar__fav__add--active {
   opacity: 1;
 }

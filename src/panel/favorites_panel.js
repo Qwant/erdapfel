@@ -4,8 +4,6 @@ import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 
-
-
 function Favorite() {
   this.active = false
   this.favoritePois = []
@@ -74,10 +72,10 @@ Favorite.prototype.getAll = async function () {
 }
 
 Favorite.prototype.open = async function() {
-  this.active = true
   await this.getAll()
   await this.panel.update()
   await this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+  this.active = true
 
 }
 
@@ -104,8 +102,8 @@ Favorite.prototype.add = function(poi) {
   this.panel.update()
 }
 
-Favorite.prototype.del = function({poi, index}) {
-  this.panel.addClassName(0.4, `#favorite_item_${index}`, 'favorite_item--removed')
+Favorite.prototype.del = async function({poi, index}) {
+  await this.panel.addClassName(0.4, `#favorite_item_${index}`, 'favorite_item--removed')
 
   this.favoritePois = this.favoritePois.filter((favorite) => {
     if(favorite === poi) {
@@ -114,8 +112,8 @@ Favorite.prototype.del = function({poi, index}) {
     }
     return true
   })
-//  this.panel.update()
-  fire('close_favorite_panel')
+
+  this.panel.update()
 }
 
 export default Favorite
