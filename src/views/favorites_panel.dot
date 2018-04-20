@@ -11,7 +11,7 @@
       </div>
     {{??}}
       <h4 class="favorite_panel__container__title">
-        {{= _n('%d favorites places', '%d favorite place', this.favoritePois.length, 'favorite panel') }}
+        {{= _n('%d favorite place', '%d favorites places', this.favoritePois.length, 'favorite panel') }}
       </h4>
 
       {{= this.filterPanel.render() }}
@@ -41,7 +41,6 @@
 
                 </div>
               {{~}}
-
             </div>
           </div>
         </li>

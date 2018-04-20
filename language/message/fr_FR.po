@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-18 11:26+0200\n"
-"PO-Revision-Date: 2018-04-18 11:27+0200\n"
+"POT-Creation-Date: 2018-04-20 15:51+0200\n"
+"PO-Revision-Date: 2018-04-20 15:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -45,81 +45,86 @@ msgstr "happy hours!"
 msgid "Last pint"
 msgstr "Dernière pinte"
 
-#: public/javascript/bundle.js:278
+#: public/javascript/bundle.js:240
 msgid "string"
 msgstr ""
 
-#: public/javascript/bundle.js:294 public/javascript/bundle.js:295
+#: public/javascript/bundle.js:256 public/javascript/bundle.js:257
 #, python-format
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/javascript/bundle.js:962
+#: public/javascript/bundle.js:974
 msgid "Favorites places"
 msgstr "Lieux favoris"
 
-#: public/javascript/bundle.js:962
+#: public/javascript/bundle.js:974
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
 
-#: public/javascript/bundle.js:962
+#: public/javascript/bundle.js:974
 #, python-format
-msgid "%d favorites places"
-msgid_plural "%d favorite place"
+msgid "%d favorite place"
+msgid_plural "%d favorites places"
 msgstr[0] "Lieu favori"
 msgstr[1] "Mes %d lieux favoris"
 
-#: public/javascript/bundle.js:1751
+#: public/javascript/bundle.js:1649
 msgid "filter"
 msgstr "filtre"
 
-#: public/javascript/bundle.js:1801
+#: public/javascript/bundle.js:1699
 msgid "Register masq"
 msgstr "S'enregistrer sur Masq"
 
-#: public/javascript/bundle.js:1801
+#: public/javascript/bundle.js:1699
 msgid "We use MASQ to keep your preference data safe"
 msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
 
-#: public/javascript/bundle.js:1801
+#: public/javascript/bundle.js:1699
 msgid "Register"
 msgstr "S'enregistrer"
 
-#: public/javascript/bundle.js:2011
+#: public/javascript/bundle.js:1909
 msgid "Beers"
 msgstr "Bières"
 
-#: public/javascript/bundle.js:2152
+#: public/javascript/bundle.js:2151
 msgid "Phone"
 msgstr "Téléphone"
 
-#: public/javascript/bundle.js:2183
+#: public/javascript/bundle.js:2182
 msgid "Website"
 msgstr "Site internet"
 
-#: public/javascript/bundle.js:2259
+#: public/javascript/bundle.js:2258
 msgid "Wikipedia"
 msgstr "Wikipédia"
 
-#: public/javascript/bundle.js:2259
+#: public/javascript/bundle.js:2258
 msgid "Via Wikipédia"
 msgstr "Voir sur Wikipédia"
 
-#: public/javascript/bundle.js:2259
+#: public/javascript/bundle.js:2258
 msgid "Via WikiData"
 msgstr "Voir sur Wikidata"
 
-#: public/javascript/bundle.js:2341
+#: public/javascript/bundle.js:2340
 msgid "Results"
 msgstr "Résultats"
 
-#: public/javascript/bundle.js:2341
+#: public/javascript/bundle.js:2340
 msgid "Favoris"
 msgstr "Favoris"
+
+#~ msgid "%d favorites places"
+#~ msgid_plural "%d favorite place"
+#~ msgstr[0] "Lieu favori"
+#~ msgstr[1] "Mes %d lieux favoris"
 
 #~ msgid "Via Wikipedia"
 #~ msgstr "Avec Wikipedia"
