@@ -1,11 +1,9 @@
-import I18n from "./i18n";
-
 const globals = require('../../config/global.yml')
 
 function Ajax() {}
 
 Ajax.queryLang = async (url, data = {}, options) => {
-  data.lang = I18n.getLang()
+  data.lang = getLang()
   return Ajax.query(url, data, options)
 }
 
