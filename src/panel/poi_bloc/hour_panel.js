@@ -99,6 +99,7 @@ function translateHours(hours) {
       return {dayName : getDay(hourKey), opening : hours[hourKey]}
     })
   } else {
+    console.log('test ok')
     return []
   }
 
