@@ -11,7 +11,8 @@ function HourPanel(tag, poi, options) {
   this.name = tag.name
   this.timeMessages = options.messages
   this.title = options.title
-  this.hours = translateHours(openingHourParse(tag.value))
+  this.hours = openingHourParse(tag.value)
+  this.displayHours = translateHours(this.hours)
   this.latLng = poi.latLon
   this.status = {msg : '', color : '#fff'}
   this.computeStatus()
@@ -93,9 +94,14 @@ HourPanel.prototype.extend = function() {
 /* privates */
 
 function translateHours(hours) {
-  return Object.keys(hours).map((hourKey) => {
-    return {dayName : getDay(hourKey), opening : hours[hourKey]}
-  })
+  if(hours) {
+    return Object.keys(hours).map((hourKey) => {
+      return {dayName : getDay(hourKey), opening : hours[hourKey]}
+    })
+  } else {
+    return []
+  }
+
 }
 
 export default HourPanel
