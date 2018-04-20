@@ -46,7 +46,6 @@
           </div>
         </li>
       </ul>
-      <button class="favorite_panel__clear" onclick="fire('store_clear')">Clear</button>
     {{?}}
   </div>
 </div>
