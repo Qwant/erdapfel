@@ -1,0 +1,12 @@
+<div class="poi_panel__info">
+  {{~ this.tags:tag }}
+    {{? this.getBlock(tag.name) }}
+      <div class="poi_panel__info__section poi_panel__info__section--{{= tag.name }}">
+        <p class="poi_panel__info__section__description">
+          {{= this.setBock(tag).render() }}
+        </p>
+      </div>
+    {{?}}
+  {{~}}
+</div>
+

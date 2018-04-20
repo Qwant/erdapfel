@@ -1,0 +1,25 @@
+{{? this.hours }}
+  <h4 class="poi_panel__info__section__title">
+    <span class="icon-clock poi_panel__title__symbol"></span>{{= _(this.title) }}
+  </h4>
+  <div {{= click(this.extend, this) }}>
+    <span class="poi_panel__info__hours__status" style="color:{{= this.status.color }}">
+      {{= _(this.status.msg) }}
+      {{? this.hours['24/7'] }}
+        24 / 7
+      {{?}}
+    </span>
+  </div>
+  <div class="poi_panel__info__hours">
+    {{? !this.hours['24/7'] }}
+      <table>
+        {{~ this.displayHours:day }}
+          <tr>
+            <td class="day">{{= day.dayName }}</td>
+            <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : ' -'}}<td>
+          </tr>
+        {{~}}
+      </table>
+    {{?}}
+  </div>
+{{?}}

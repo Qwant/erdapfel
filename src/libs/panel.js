@@ -22,6 +22,14 @@ function Panel(panel, view, parentId = null) {
 
 Panel.prototype.render = function () {
   this.node.innerHTML = this.view.call(this.panel)
+  /* double raf assure browser display cost 32 ms */
+  if(this.onRender) {
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        this.onRender.call(this)
+      })
+    })
+  }
   if(this.root === false) {
     return this.node.outerHTML
   }

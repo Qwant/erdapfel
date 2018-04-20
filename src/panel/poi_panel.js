@@ -1,11 +1,7 @@
-import PoiPanelView from 'dot-loader!../views/poi_panel.dot'
-import HourPanel from "./hour_panel";
-import WikiPanel from "./wiki_panel";
+import PoiPanelView from '../views/poi_panel.dot'
 import Panel from "../libs/panel";
-import URI from "../libs/uri"
 import Store from "../adapters/store"
-
-const activePoiSections = require('../../config/active_poi_section.yml')
+import PoiBlocContainer from './poi_bloc/poi_bloc_container'
 
 const store = new Store()
 
@@ -13,31 +9,33 @@ function PoiPanel() {
   listen('mark_poi', (poi) => {
     this.showInfoBox(poi)
   })
-  listen('open_favorite', (poi) => {
+  listen('open_favorite', () => {
     this.close()
   })
-  this.URI = URI
-  this.hourPanel = HourPanel
-  this.wikiPanel = new WikiPanel()
   this.poi = null
   this.active = false
+  this.poiBlocContainer = new PoiBlocContainer()
   this.panel = new Panel(this, PoiPanelView)
-  this.activePoiSections = activePoiSections.pois
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {
   if(this.poi.stored) {
     fire('del_poi', this.poi)
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-full')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-empty')
     this.poi.stored = false
   } else {
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-empty')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-full')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
     fire('store_poi', this.poi)
     this.poi.stored = true
   }
-
-  this.panel.update()
 }
 
 PoiPanel.prototype.toggle = async function() {
+
   if(this.active) {
     this.close()
   } else {
@@ -75,12 +73,6 @@ PoiPanel.prototype.showInfoBox = async function (poi) {
   }
   this.active = true
   await this.panel.update()
-
-  this.poi.tags.find((tag) => {
-    if(tag.name === 'wikidata') {
-      this.wikiPanel.getData(tag)
-    }
-  })
 }
 
 export default PoiPanel

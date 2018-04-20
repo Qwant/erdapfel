@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-16 11:22+0200\n"
-"PO-Revision-Date: 2018-04-16 11:22+0200\n"
+"POT-Creation-Date: 2018-04-20 15:51+0200\n"
+"PO-Revision-Date: 2018-04-20 15:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -17,55 +17,79 @@ msgstr ""
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: public/javascript/bundle.js\n"
 
-#: public/javascript/bundle.js:270 src/libs/i18n.js:38
+#: public/javascript/bundle.js:240 src/libs/i18n.js:58
 msgid "string"
 msgstr ""
 
-#: public/javascript/bundle.js:286 public/javascript/bundle.js:287
-#: src/libs/i18n.js:54 src/libs/i18n.js:55
+#: public/javascript/bundle.js:256 public/javascript/bundle.js:257
+#: src/libs/i18n.js:74 src/libs/i18n.js:75
 #, python-format
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/javascript/bundle.js:946
+#: public/javascript/bundle.js:974
 msgid "Favorites places"
 msgstr ""
 
-#: public/javascript/bundle.js:946
+#: public/javascript/bundle.js:974
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 
-#: public/javascript/bundle.js:946
+#: public/javascript/bundle.js:974
 #, python-format
-msgid "%d favorites places"
-msgid_plural "%d favorite place"
+msgid "%d favorite place"
+msgid_plural "%d favorites places"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/javascript/bundle.js:946
+#: public/javascript/bundle.js:1649
 msgid "filter"
 msgstr ""
 
-#: public/javascript/bundle.js:1788
+#: public/javascript/bundle.js:1699
 msgid "Register masq"
 msgstr ""
 
-#: public/javascript/bundle.js:1788
+#: public/javascript/bundle.js:1699
 msgid "We use MASQ to keep your preference data safe"
 msgstr ""
 
-#: public/javascript/bundle.js:1788
+#: public/javascript/bundle.js:1699
 msgid "Register"
 msgstr ""
 
-#: public/javascript/bundle.js:2090
+#: public/javascript/bundle.js:1909
+msgid "Beers"
+msgstr ""
+
+#: public/javascript/bundle.js:2151
+msgid "Phone"
+msgstr ""
+
+#: public/javascript/bundle.js:2182
+msgid "Website"
+msgstr ""
+
+#: public/javascript/bundle.js:2258
+msgid "Wikipedia"
+msgstr ""
+
+#: public/javascript/bundle.js:2258
 msgid "Via Wikipédia"
 msgstr ""
 
-#: public/javascript/bundle.js:2090
+#: public/javascript/bundle.js:2258
 msgid "Via WikiData"
+msgstr ""
+
+#: public/javascript/bundle.js:2340
+msgid "Results"
+msgstr ""
+
+#: public/javascript/bundle.js:2340
+msgid "Favoris"
 msgstr ""
 
 #~ msgid "popup title"

@@ -5,6 +5,25 @@
   height: 100vh;
   width: $panel_width;
   position: absolute;
+  overflow-x:hidden;
+  overflow-y: auto;
+}
+
+.favorites_panel::-webkit-scrollbar {
+  width: 5px;
+}
+
+.favorites_panel:hover::-webkit-scrollbar {
+  width: 5px;
+}
+
+.favorites_panel:hover::-webkit-scrollbar-track {
+  background-color: rgba(229, 231, 233, 1);
+}
+
+.favorites_panel:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(98, 195, 255, 1);
+  border-radius: 2px;
 }
 
 .favorites_panel--hidden {
@@ -73,22 +92,12 @@
 .favorite_panel__item__actions {
   float: right;
   display: none;
-  margin: 20px 0 0 0;
-}
-
-.favorite_panel__clear {
-  margin-left: 150px;
-  padding: 9px 24px;
-  color: #7b000c;
-  border: 3px #bc555f solid;
-  cursor: pointer;
-  border-radius: 30px;
-  font-size: 18px;
+  margin: 20px 10px 0 0;
 }
 
 .favorite_panel__item__title {
   font-size: 16px;
-  max-width: 164px;
+  max-width: 230px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -119,9 +128,15 @@
 }
 
 .favorite_panel__swipe_element {
+  overflow: hidden;
   width: $panel_width;
   height: 70px;
   padding: 0 8px 0 4px;
+  transition: height .2s;
+}
+
+.favorite_item--removed {
+  height: 0;
 }
 
 .favorite_panel__swipe_element:not(:last-child):after {

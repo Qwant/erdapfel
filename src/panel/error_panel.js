@@ -1,4 +1,4 @@
-import ErrorPanelView from 'dot-loader!../views/error_panel.dot'
+import ErrorPanelView from '../views/error_panel.dot'
 import Panel from '../libs/panel'
 
 function Error() {

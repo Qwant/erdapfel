@@ -53,7 +53,7 @@
 .poi_panel__title {
   color: $text_color;
   padding-top: 10px;
-  margin:20px 0 -4px 20px;
+  margin:20px 0 -4px 10px;
   font-weight: normal;
   font-size: 22px;
 }
@@ -74,8 +74,10 @@
 }
 
 .poi_panel__description {
+  position: relative;
   font-size: 12px;
   padding-left: 40px;
+  margin-top: 4px;
   color: $emphase_color;
 }
 
@@ -96,7 +98,7 @@
 }
 
 .poi_panel__info__hours {
-  margin-left: 40px;
+  margin-left: 44px;
   height: 0;
   transition: height 0.3s;
   overflow: hidden;
@@ -132,8 +134,14 @@
   }
 }
 
+.hour_panel__no_data  {
+  padding-left: 44px;
+  color: #777;
+  font-size: 14px;
+}
+
 .poi_panel__info__beer {
-  margin-left: 20px;
+  margin-left: 40px;
   color: #90750b;
   font-size: 14px;
 }
@@ -152,6 +160,10 @@
   font-weight: bold;
 }
 
+.poi_panel__store_status__toggle:after {
+  content: '';
+}
+
 .poi_panel__store_status__toggle--stored {
   color: #fbca04;
 }
@@ -160,26 +172,25 @@
 
 /* title symbols */
 .poi_panel__title__symbol:before {
-  width: 20px;
+  width: 30px;
   height: 20px;
   display: inline-block;
 }
 
+.poi_panel__block__symbol {
+  width: 20px;
+  height: 20px;
+}
 
 .poi_panel__title__symbol--park:before {content:"🏢";color: #6b6f73}
 
 /* symbols */
-.poi_panel__section__symbol:before {
+.poi_panel__section__symbol {
   width: 20px;
   height: 20px;
   display: inline-block;
 }
 
-.poi_panel__section__symbol--brewery:before {content: "🍺";}
-.poi_panel__section__symbol--wiki:before {content: "W";}
-.poi_panel__section__symbol--phone:before {content: "☎";}
-.poi_panel__section__symbol--time:before {content: "⌚";}
-.poi_panel__section__symbol--www:before {content: "🌐";}
 
 @media (max-width: 640px) {
   .poi_panel {

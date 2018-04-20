@@ -1,4 +1,4 @@
-<div class="favorites_panel favorites_panel--hidden">
+<div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
   <div {{= click(this.close, this) }} class="favorite_panel__close">🞨</div>
   <div class="favorite_panel__container">
   <div class="favorite_panel__image_header"></div>
@@ -11,12 +11,10 @@
       </div>
     {{??}}
       <h4 class="favorite_panel__container__title">
-        {{= _n('%d favorites places', '%d favorite place', this.favoritePois.length, 'favorite panel') }}
+        {{= _n('%d favorite place', '%d favorites places', this.favoritePois.length, 'favorite panel') }}
       </h4>
 
-      <button class="favorite_panel__filter" {{= click(this.toggleFilter, this) }}>{{= _('filter', 'favorite panel') }}</button>
       {{= this.filterPanel.render() }}
-
 
       <ul>
         <li class="favorite_panel__item">
@@ -25,7 +23,7 @@
             <div class="favorite_panel__swipe_flow--{{= this.favoritePois.length }}">
 
               {{~ this.favoritePois:poi:i }}
-                <div class="favorite_panel__swipe_element">
+                <div class="favorite_panel__swipe_element" id="{{= `favorite_item_${i}` }}">
 
                   <div class="favorite_panel__item__info">
                     <p class="favorite_panel__item__title">
@@ -37,18 +35,16 @@
                   </div>
 
                   <div class="favorite_panel__item__actions">
-                    <button class="favorite_panel__remove favorite_panel__action" {{= click(this.del, this, poi) }}>×</button>
+                    <button class="favorite_panel__remove favorite_panel__action" {{= click(this.del, this, {poi : poi, index : i}) }}>×</button>
                     <button class="favorite_panel__go favorite_panel__action" {{= click(this.go, this, poi) }}>▶</button>
                   </div>
 
                 </div>
               {{~}}
-
             </div>
           </div>
         </li>
       </ul>
-      <button class="favorite_panel__clear" onclick="fire('store_clear')">Clear</button>
     {{?}}
   </div>
 </div>

@@ -9,46 +9,13 @@
         <p class="poi_panel__description">{{= this.poi.description.replace(/_/g, ' ') }}</p>
       {{?}}
       <div class="poi_panel__store_status">
-        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored' : ''}}" {{= click(this.toggleStorePoi, this) }}>{{? this.poi.stored }}★{{??}}☆{{?}}</button>
+        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-star-full' : 'icon-star-empty'}}" {{= click(this.toggleStorePoi, this) }}>
+        </button>
       </div>
 
     </div>
 
-    <div class="poi_panel__info">
-      {{~ this.poi.tags:tag }}
-        {{? this.activePoiSections.includes(tag.name) }}
-          <div class="poi_panel__info__section poi_panel__info__section--{{= tag.name }}">
-            <p class="poi_panel__info__section__description">
-
-              {{? tag.name === 'opening_hours' && tag.value }}
-                {{= new this.hourPanel(this.poi, tag.name, tag.value, {'open' : {msg : 'Open', c : '60ad51'}, 'soon' : {msg : 'Closing soon', time : 60, c : 'c45713'}, 'closed' : {msg : 'Closed', c : '8c0212'} }).render() }}
-                <br>
-              {{?? tag.name === 'happy_hours' && tag.value }}
-                {{= new this.hourPanel(this.poi, tag.name, tag.value, {'open' : {msg : 'happy hours!', c : 'fcc035'}, 'soon' : {msg : 'Last paint', time : 60, c : '3f76e2'}, 'closed' : {msg : 'Closed', c : '8c0212'} }).render() }}
-                <br>
-              {{?? tag.name === 'brewery' }}
-                <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--brewery">{{= tag.name }}</h4>
-                {{~ tag.value.split(';'):beer }}
-                  <p class="poi_panel__info__beer">{{= beer }}</p>
-                {{~}}
-                <br>
-              {{?? tag.name.indexOf('phone') !== -1 }}
-                <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--phone">{{= tag.name }}</h4>
-                <a class="poi_panel__info__section__phone" data-rel="external" href="tel:{{= tag.value }}">{{= tag.value }}</a>
-                <br>
-              {{?? tag.name === 'website' }}
-                <h4 class="poi_panel__info__section__title poi_panel__section__symbol poi_panel__section__symbol--www">{{= tag.name }}</h4>
-                <a class="poi_panel__info__link" href="{{= this.URI.externalise(tag.value) }}" no-follow>{{= this.URI.extractDomain(tag.value) }}</a>
-                <br>
-              {{?? tag.name === 'wikidata' }}
-                {{= this.wikiPanel.render() }}
-              {{?}}
-
-            </p>
-          </div>
-        {{?}}
-      {{~}}
-    </div>
+    {{= this.poiBlocContainer.set(this.poi).render() }}
 
   {{?}}
   </div>

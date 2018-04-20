@@ -1,10 +1,8 @@
-import FavoritePanelView from 'dot-loader!../views/favorites_panel.dot'
+import FavoritePanelView from '../views/favorites_panel.dot'
 import Panel from '../libs/panel'
 import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
-
-
 
 function Favorite() {
   this.active = false
@@ -27,8 +25,13 @@ function Favorite() {
 
   this.panel = new Panel(this, FavoritePanelView)
 
-  listen('open_favorite', () => {
-    this.open()
+  listen('toggle_favorite', () => {
+    if(this.active) {
+      this.close()
+    } else {
+      fire('open_favorite')
+      this.open()
+    }
   })
 }
 
@@ -50,37 +53,36 @@ Favorite.prototype.connectStore = async function () {
 
   if(registered) {
     this.getAll()
+    this.panel.update()
   } else {
     fire('register_panel__show')
   }
-
-}
-
-Favorite.prototype.toggleFilter = function () {
-  fire('toggle_favorite_panel')
 }
 
 Favorite.prototype.getAll = async function () {
   let storedData = {}
   try {
-    storedData = this.store.getAll()
+    storedData = await this.store.getAll()
   } catch(e) {
     console.error(e)
   }
   this.favoritePois = Object.keys(storedData).map((mapPoint) => {
-    return Poi.load(storeData[mapPoint])
+    return Poi.load(storedData[mapPoint])
   })
-  this.panel.update()
 }
 
-Favorite.prototype.open = function() {
-  this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+Favorite.prototype.open = async function() {
+  await this.getAll()
+  await this.panel.update()
+  await this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
+
 }
 
 Favorite.prototype.close = function() {
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   this.active = false
+  fire('close_favorite_panel')
 }
 
 Favorite.prototype.go = async function(poi) {
@@ -90,6 +92,7 @@ Favorite.prototype.go = async function(poi) {
   } else {
     fire('fly_to', poi)
   }
+  fire('close_favorite_panel')
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   this.active = false
 }
@@ -99,7 +102,9 @@ Favorite.prototype.add = function(poi) {
   this.panel.update()
 }
 
-Favorite.prototype.del = function(poi) {
+Favorite.prototype.del = async function({poi, index}) {
+  await this.panel.addClassName(0.4, `#favorite_item_${index}`, 'favorite_item--removed')
+
   this.favoritePois = this.favoritePois.filter((favorite) => {
     if(favorite === poi) {
       fire('del_poi', poi)
@@ -107,6 +112,7 @@ Favorite.prototype.del = function(poi) {
     }
     return true
   })
+
   this.panel.update()
 }
 
