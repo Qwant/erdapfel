@@ -3,7 +3,7 @@ const globals = require('../../config/global.yml')
 function Ajax() {}
 
 Ajax.queryLang = async (url, data = {}, options) => {
-  data.lang = getLang()
+  data.lang = getLang().code
   return Ajax.query(url, data, options)
 }
 
