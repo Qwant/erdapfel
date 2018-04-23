@@ -11,7 +11,7 @@ function Scene() {
     style: StyleLaundry(qwantStyle),
     zoom: 14,
     center: [2.2900, 48.8719],
-    hash: true
+    hash: false
   })
 
   window.map = {
