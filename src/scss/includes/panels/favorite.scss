@@ -220,7 +220,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
 
   .favorite_panel__image_header {
     width: calc(100vw - 40px);
-    background-size: 100vw;
+    background-size: 100vw 200px;
   }
 
   .favorite_panel__item__actions {

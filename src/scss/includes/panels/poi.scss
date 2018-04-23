@@ -195,12 +195,13 @@
 @media (max-width: 640px) {
   .poi_panel {
     left:0;
-    padding-top: 72px;
+    padding-top: 70px;
     width: 100%;
   }
 
   .poi_panel__content {
     width: 100%;
+    padding: 85px 0 0 0;
   }
 
   .poi_panel--hidden {
@@ -208,12 +209,13 @@
   }
 
   .poi_panel__header_image {
-    background-position: right;
-    width: 100%;
+    width: 100vw;
+    background-size: 100vw 200px;
   }
 
   .poi_panel__close {
     right: 0;
+    font-size: 36px;
     top: 72px;
   }
 
