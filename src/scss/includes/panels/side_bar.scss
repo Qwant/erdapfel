@@ -37,11 +37,11 @@
   margin-top: 8px;
 }
 
-.side_bar__item .side_bar__item__icon {
+.side_bar__item__icon {
   display: inline-block;
   height: 42px;
   width: 42px;
-  line-height: 42px;
+  line-height: 42px !important; /* override icon css */
   text-align: center;
   border-radius: 50%;
   background-color: #fff;
@@ -89,6 +89,24 @@
 
 @media (max-width: 640px) {
   .side_bar {
+    position: absolute;
+    transition: top .2s;
+    top: -50px;
+    width: 100%;
+    height: 100px;
+  }
+  .side_bar--open {
+    top: 70px;
+  }
+  .side_bar__logo {
     display: none;
   }
+  .side_bar__item {
+    float: left;
+    margin: 20px 0 20px 0;
+  }
+  .side_bar__item__icon {
+    border-radius: 0;
+  }
+
 }
