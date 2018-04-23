@@ -4,14 +4,15 @@
   left:96px;
   width: $panel_width;
   transition: left 0.2s;
+  background: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .poi_panel__content {
   position: relative;
   width: $panel_width;
-  height: calc(100vh);
   padding: 85px 0 10px 0;
-  overflow-y: auto;
   background: #fff;
 }
 
@@ -193,10 +194,14 @@
 
 
 @media (max-width: 640px) {
+
   .poi_panel {
-    left:0;
+    height: 100vh;
+    width: 100vw;
+    transition: top .2s;
     padding-top: 70px;
-    width: 100%;
+    top: 0;
+    left: 0;
   }
 
   .poi_panel__content {
@@ -205,7 +210,7 @@
   }
 
   .poi_panel--hidden {
-    left: - 100vw;
+    top: -100vh;
   }
 
   .poi_panel__header_image {
@@ -221,5 +226,9 @@
 
   .poi_panel__description_container {
     margin-top: 0;
+  }
+
+  .poi_panel__info__section:not(:last-of-type):after {
+    width: calc(100% - 40px);
   }
 }

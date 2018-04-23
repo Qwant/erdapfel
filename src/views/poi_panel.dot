@@ -18,6 +18,7 @@
     {{= this.poiBlocContainer.set(this.poi).render() }}
 
   {{?}}
+  <br>
   </div>
   {{? this.poi }}
     <div class="poi_panel__close" {{= click(this.toggle, this) }}>🞨</div>
