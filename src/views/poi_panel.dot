@@ -20,7 +20,7 @@
   {{?}}
   </div>
   {{? this.poi }}
-    <div class="poi_panel__close" {{= click(this.toggle, this) }} >{{= this.active ? '🞨' : this.poi.title }}</div>
+    <div class="poi_panel__close" {{= click(this.toggle, this) }}>🞨</div>
   {{?}}
 </div>
 
