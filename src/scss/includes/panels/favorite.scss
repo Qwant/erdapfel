@@ -219,7 +219,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
   }
 
   .favorite_panel__image_header {
-    width: calc(100vw - 40px);
+    width: 100vw;
     background-size: 100vw 200px;
   }
 
@@ -228,18 +228,16 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
   }
 
   .favorite_panel__container__title {
-    margin-left: 0;
+    margin-left: 20px;
   }
 
   .favorite_panel__close {
     font-size: 36px;
-    top: 72px;
+    top: 70px;
   }
 
   .favorite_panel__container {
-    margin-top: 20px;
     width: 100%;
-    margin-left: 20px;
   }
 
   @for $i from 1 through 20 {
@@ -252,12 +250,14 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     height: 100vh;
     width: 100vw;
     transition: top .2s;
+    padding-top: 70px;
     top:0;
     left: 0;
   }
 
   .favorite_panel__item {
-    width: 100vw;
+    width: calc(100vw - 20px);
+    margin-left: 20px;
   }
 
   .favorites_panel--hidden {
