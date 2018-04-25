@@ -50,7 +50,7 @@ Poi.sceneLoad = function (event, zoom) {
     tags = []
     Object.keys(rawTags).forEach((tagKey) => {
       if(tagKey.indexOf('name') === -1) {
-        poi.tags.push({name : tagKey, value : tags[tagKey]})
+        tags.push({name : tagKey, value : rawTags[tagKey]})
       }
     })
 
