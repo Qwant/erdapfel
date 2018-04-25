@@ -1,4 +1,17 @@
 function FileLoader(uri) {
+
+  if(window.environment === 'local') {
+    let sc = document.createElement('script')
+    sc.src = uri
+    document.body.appendChild(sc)
+    sc.onload = () => {
+      if(this.onLoad) {
+        this.onLoad()
+      }
+    }
+    return
+  }
+
   const x = new XMLHttpRequest()
   x.open('GET', uri);
 

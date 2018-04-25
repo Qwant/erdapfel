@@ -107,6 +107,12 @@ const mapJsChunkConfig = {
 
   module: {
     loaders: [{
+      test: /\.yml$/,
+      use: [
+        {loader : 'json-loader'},
+        {loader : 'yaml-loader'}
+      ]
+    }, {
       test : /style\.json$/,
       use : [
         {

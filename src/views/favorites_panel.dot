@@ -21,16 +21,17 @@
 
           <div class="favorite_panel__swipe_window">
             <div class="favorite_panel__swipe_flow--{{= this.favoritePois.length }}">
-
               {{~ this.favoritePois:poi:i }}
                 <div class="favorite_panel__swipe_element" id="{{= `favorite_item_${i}` }}">
-
                   <div class="favorite_panel__item__info">
+                    <div class="favorite_panel__item__image">
+                      {{= iconImage(poi) }}
+                    </div>
                     <p class="favorite_panel__item__title">
-                      {{= poi.title ? poi.title : 'default' }}
+                      {{= poi.name ? poi.name : 'default' }}
                     </p>
                     <p class="favorite_panel__item__desc">
-                        {{= poi.description ? poi.description.replace(/_/g, ' ') : '' }}
+                        {{= poi.subClassName ? poi.subClassName.replace(/_/g, ' ') : '' }}
                     </p>
                   </div>
 

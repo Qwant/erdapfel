@@ -4,9 +4,12 @@
     <div class="poi_panel__header_image"></div>
     <div class="poi_panel__logo_demo"></div>
     <div class="poi_panel__description_container">
-      <h4 class="poi_panel__title poi_panel__title__symbol poi_panel__title__symbol--park">{{= this.poi.title }}</h4>
-      {{? this.poi.description }}
-        <p class="poi_panel__description">{{= this.poi.description.replace(/_/g, ' ') }}</p>
+      <h4 class="poi_panel__title">
+        <div class="poi_panel__title__symbol">{{= iconImage(this.poi) }}</div>
+        {{= this.poi.name }}
+      </h4>
+      {{? this.poi.subClassName }}
+        <p class="poi_panel__description">{{= this.poi.subClassName.replace(/_/g, ' ') }}</p>
       {{?}}
       <div class="poi_panel__store_status">
         <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-star-full' : 'icon-star-empty'}}" {{= click(this.toggleStorePoi, this) }}>

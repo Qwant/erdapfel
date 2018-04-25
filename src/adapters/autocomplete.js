@@ -47,10 +47,15 @@ function SearchInput(tagSelector) {
         suggest(this.pois)
       })
     },
-    renderItem : ({id, title, fromHistory}, search) => {
+    renderItem : ({id, name, fromHistory, className, subClassName}, search) => {
       let re = new RegExp(`(${search})`, 'i')
-      let suggestDisplay = title.replace(re, '<span class="autocomplete_prefix">$1</span>')
-      return `<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${title}">${suggestDisplay}</div>`
+      let suggestDisplay = name.replace(re, '<span class="autocomplete_prefix">$1</span>')
+      return `
+        <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
+          ${iconImage({className : className, subClassName : subClassName})}
+          ${suggestDisplay}
+        </div>
+`
     },
     onSelect : (e, term, item) => {
       const itemId = item.getAttribute('data-id')
