@@ -119,6 +119,7 @@ const mapJsChunkConfig = {
             conf: `${__dirname}/map_${environment}.json`,
             outPath : __dirname + '/../public',
             i18n : true,
+            icons : true,
             pixelRatios : [1,2]
           }
         }
