@@ -242,7 +242,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
 
   @for $i from 1 through 20 {
     .favorite_panel__swipe_flow--#{$i} {
-      width: calc(#{$i * 100}vw + #{$i * 10}px);
+      width: calc(#{$i * 390}px + #{$i * 10}px);
     }
   }
 
@@ -270,7 +270,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
   }
 
   .favorite_panel__swipe_element {
-    width: calc(100vw - 90px);
+    width: 390px;
     margin-right: 10px;
     border : 2px solid #c4c5c6;
     float: left;

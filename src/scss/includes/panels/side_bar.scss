@@ -92,8 +92,9 @@
     position: absolute;
     transition: top .2s;
     top: -50px;
-    width: 100%;
+    width: 200px;
     height: 100px;
+    box-shadow: #373941 0 0 7px
   }
   .side_bar--open {
     top: 70px;
