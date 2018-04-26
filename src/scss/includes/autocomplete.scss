@@ -18,7 +18,7 @@
 .search_form__input {
   width: 400px;
   height: 50px;
-  padding: 10px 10px 10px 60px;
+  padding: 10px 10px 10px 20px;
   font-size: 16px;
   font-weight: 300;
   border: none;
@@ -26,15 +26,7 @@
 }
 
 .search_form__logo {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 20px;
-  top: 13px;
-  font-size: 14px;
-  background-image: url(../statics/images/qwant-logo.png);
-  background-size: 20px 20px;
-  color: #888;
+  display: none;
 }
 
 .search_form__action {
@@ -135,8 +127,16 @@
     background: #fff;
   }
   .search_form__logo {
+    display: block;
+    position: absolute;
     left: 50px;
     top: 24px;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    background-image: url(../statics/images/qwant-logo.png);
+    background-size: 20px 20px;
+    color: #888;
   }
   .search_form__action {
     right: 10px;
