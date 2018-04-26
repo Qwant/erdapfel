@@ -218,15 +218,31 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     height: 20px;
   }
 
+  .favorite_panel__image_header {
+    width: 100vw;
+    background-size: 100vw 200px;
+  }
+
+  .favorite_panel__item__actions {
+    display: block;
+  }
+
+  .favorite_panel__container__title {
+    margin-left: 20px;
+  }
+
+  .favorite_panel__close {
+    font-size: 36px;
+    top: 70px;
+  }
+
   .favorite_panel__container {
-    margin-top: 20px;
     width: 100%;
-    margin-left: $side_bar_width;
   }
 
   @for $i from 1 through 20 {
     .favorite_panel__swipe_flow--#{$i} {
-      width: calc(#{$i * 100}vw + #{$i * 10}px);
+      width: calc(#{$i * 390}px + #{$i * 10}px);
     }
   }
 
@@ -234,24 +250,27 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     height: 100vh;
     width: 100vw;
     transition: top .2s;
+    padding-top: 70px;
     top:0;
     left: 0;
   }
 
   .favorite_panel__item {
-    width: 100vw;
+    width: calc(100vw - 20px);
+    margin-left: 20px;
   }
 
   .favorites_panel--hidden {
     top: calc(-100vh + 70px);  }
 
   .favorite_panel__swipe_window {
+    margin: 20px 0 0 0;
     overflow-x: scroll;
-    width: 100vw;
+    width: calc(100vw - 40px);
   }
 
   .favorite_panel__swipe_element {
-    width: calc(100vw - 90px);
+    width: 390px;
     margin-right: 10px;
     border : 2px solid #c4c5c6;
     float: left;
