@@ -24,8 +24,10 @@
               {{~ this.favoritePois:poi:i }}
                 <div class="favorite_panel__swipe_element" id="{{= `favorite_item_${i}` }}">
                   <div class="favorite_panel__item__info">
-                    <div class="favorite_panel__item__image">
-                      {{= iconImage(poi) }}
+                    {{ let ico = IconManager.get(poi); }}
+                    {{? ico }}
+                      <div class="favorite_panel__item__image icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}">
+                    {{?}}
                     </div>
                     <p class="favorite_panel__item__title">
                       {{= poi.name ? poi.name : 'default' }}

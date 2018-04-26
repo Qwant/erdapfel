@@ -5,7 +5,10 @@
     <div class="poi_panel__logo_demo"></div>
     <div class="poi_panel__description_container">
       <h4 class="poi_panel__title">
-        <div class="poi_panel__title__symbol">{{= iconImage(this.poi) }}</div>
+      {{ let ico = IconManager.get(this.poi); }}
+      {{? ico }}
+        <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+      {{?}}
         {{= this.poi.name }}
       </h4>
       {{? this.poi.subClassName }}

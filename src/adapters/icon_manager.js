@@ -1,10 +1,8 @@
 const iconProperties = require('@qwant/qwant-basic-gl-style/icons.yml')
-const sprite = require('../../public/sprite.json')
-
 
 function IconManager() {}
 
-IconManager.get = (className, subClassName) => {
+IconManager.get = ({className, subClassName}) => {
   let icon = iconProperties.find((iconProperty) => {
     return iconProperty.subclass === subClassName && iconProperty.class === className
   })
@@ -22,20 +20,12 @@ IconManager.get = (className, subClassName) => {
   if(icon) {
     let iconName = icon.iconName
     let color = icon.color
-    let imageProperties = sprite[iconName]
-    return {iconName : iconName, color : color, imageProperties : imageProperties}
+    let iconClass = iconName.match(/^(.*?)-[0-9]{1,2}$/)[1]
+    return {iconClass : iconClass, color : color}
   }
 }
 
-IconManager.img = (poi) => {
-  let iconData = IconManager.get(poi.className, poi.subClassName)
-  if(iconData) {
-    return `<div style="background:url('/sprite.png') -${iconData.imageProperties.x}px -${iconData.imageProperties.y}px ;height:${iconData.imageProperties.height}px;width:${iconData.imageProperties.width}px;"></div>`
-  } else {
-    return ''
-  }
-}
 
-window.iconImage = IconManager.img
+window.IconManager = IconManager
 
 export default IconManager

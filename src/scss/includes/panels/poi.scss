@@ -174,9 +174,14 @@
 
 /* title symbols */
 .poi_panel__title__symbol {
+  font-size: 32px;
   width: 23px;
   height: 20px;
   display: inline-block;
+}
+
+.poi_panel__title__symbol:before {
+  line-height: 42px;
 }
 
 .poi_panel__block__symbol {
