@@ -1,4 +1,4 @@
-const iconProperties = require('@qwant/qwant-basic-gl-style/icons.yml')
+const iconProperties = require('@qwant/qwant-basic-gl-style/icons.yml').mappings
 
 function IconManager() {}
 
