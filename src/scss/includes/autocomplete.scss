@@ -40,6 +40,14 @@
   color: #888;
 }
 
+.search_form__clear {
+  right: 50px;
+  color: #444648;
+  top: 18px;
+  position: absolute;
+  cursor: pointer;
+}
+
 .autocomplete_suggestions {
   text-align: left;
   cursor: default;

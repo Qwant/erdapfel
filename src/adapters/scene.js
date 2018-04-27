@@ -33,8 +33,8 @@ function Scene() {
 
       this.mb.on('click', interactiveLayer, (e) => {
         let poi = Poi.sceneLoad(e, this.mb.getZoom())
-        IconManager.get(poi)
-        fire('mark_poi', poi)
+        fire('display_poi_data', poi)
+        this.addMarker(poi)
       })
     })
   })
@@ -47,7 +47,7 @@ function Scene() {
     this.fitBounds(poi, options)
   })
 
-  listen('mark_poi', (poi) => {
+  listen('map_mark_poi', (poi) => {
     this.addMarker(poi)
   })
 }

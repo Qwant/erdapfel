@@ -15,10 +15,11 @@ function SearchInput(tagSelector) {
       poi = this.poi
     }
     if(poi) {
+      fire('map_mark_poi', poi)
       if(poi.bbox) {
         fire('fit_bounds', poi);
       } else {
-        fire('mark_poi', poi)
+        fire('fly_to',poi)
       }
     }
   })
@@ -67,7 +68,6 @@ function SearchInput(tagSelector) {
             fire('fit_bounds', poi);
           } else {
             fire('fly_to',poi)
-            fire('mark_poi', poi)
           }
           return
         }

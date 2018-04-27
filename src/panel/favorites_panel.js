@@ -86,7 +86,7 @@ Favorite.prototype.close = function() {
 }
 
 Favorite.prototype.go = async function(poi) {
-  fire('mark_poi', poi)
+  fire('map_mark_poi', poi)
   if(poi.bbox) {
     fire('fit_bounds', poi)
   } else {

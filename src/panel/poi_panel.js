@@ -6,7 +6,7 @@ import PoiBlocContainer from './poi_bloc/poi_bloc_container'
 const store = new Store()
 
 function PoiPanel() {
-  listen('mark_poi', (poi) => {
+  listen('display_poi_data', (poi) => {
     this.showInfoBox(poi)
   })
   listen('open_favorite', () => {
