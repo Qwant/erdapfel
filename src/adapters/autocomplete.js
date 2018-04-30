@@ -34,7 +34,9 @@ function SearchInput(tagSelector) {
       this.poi = poi
     },
     source : (term, suggest) => {
-      const suggestPromise = ajax.query(geocoderConfig.url, {q: term})
+      let center = window.map.center().toArray()
+      let bbox = window.map.bbox().toArray()
+      const suggestPromise = ajax.query(geocoderConfig.url, {q: term, center : center, bbox : bbox})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
         this.pois = extractMapzenData(responses[0])

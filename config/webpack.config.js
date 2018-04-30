@@ -61,19 +61,6 @@ const mainJsChunkConfig = {
 
   module: {
     loaders: [{
-      test : /style\.json$/,
-      use : [
-        {
-          loader : 'map-style-loader',
-          options : {
-            output: 'debug', // 'production' | 'omt'
-            conf: `${__dirname}/map_${environment}.json`,
-            outPath : __dirname + '/../public',
-            pixelRatios : [1,2]
-          }
-        }
-      ],
-    }, {
       test: /\.dot/,
       use: [
         {loader : 'dot-loader'}

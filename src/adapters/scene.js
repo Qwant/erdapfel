@@ -15,6 +15,15 @@ function Scene() {
     hash: true
   })
 
+  window.map = {
+    center : () => {
+      return this.mb.getCenter()
+    },
+    bbox : () => {
+      return this.mb.getBounds()
+    }
+  }
+
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
