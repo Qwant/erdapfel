@@ -126,7 +126,6 @@ const mapJsChunkConfig = {
             outPath : __dirname + '/../public',
             i18n : true,
             icons : true,
-            webfont : true,
             pixelRatios : [1,2]
           }
         }

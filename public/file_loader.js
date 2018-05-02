@@ -1,5 +1,5 @@
 function FileLoader(uri) {
-    const x = new XMLHttpRequest()
+  const x = new XMLHttpRequest()
   x.open('GET', uri);
 
   x.onprogress = (event) => {
