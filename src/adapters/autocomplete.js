@@ -52,10 +52,10 @@ function SearchInput(tagSelector) {
       let suggestDisplay = name.replace(re, '<span class="autocomplete_prefix">$1</span>')
       let icon = IconManager.get({className : className, subClassName : subClassName})
       return `
-        <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
-          <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon icon icon-${icon ? icon.iconClass : ''}"></div>
-          ${suggestDisplay}
-        </div>
+<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
+  <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${icon ? `icon icon-${icon.iconClass}` : 'icon-location'}"></div>
+  ${suggestDisplay}
+</div>
 `
     },
     onSelect : (e, term, item) => {
