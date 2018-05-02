@@ -1,6 +1,7 @@
 const iconProperties = require('@qwant/qwant-basic-gl-style/icons.yml').mappings
 
 function IconManager() {}
+IconManager.mappings = iconProperties.map((mapping) => {return mapping})
 
 IconManager.get = ({className, subClassName}) => {
   let icon = iconProperties.find((iconProperty) => {
@@ -24,7 +25,6 @@ IconManager.get = ({className, subClassName}) => {
     return {iconClass : iconClass, color : color}
   }
 }
-
 
 window.IconManager = IconManager
 
