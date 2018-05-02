@@ -6,10 +6,14 @@
     <div class="poi_panel__description_container">
       <h4 class="poi_panel__title">
       {{ let ico = IconManager.get(this.poi); }}
+
       {{? ico }}
         <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+      {{??}}
+        <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
       {{?}}
-        {{= this.poi.name }}
+
+      {{= this.poi.name }}
       </h4>
       {{? this.poi.subClassName }}
         <p class="poi_panel__description">{{= this.poi.subClassName.replace(/_/g, ' ') }}</p>
