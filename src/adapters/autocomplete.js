@@ -27,7 +27,7 @@ function SearchInput(tagSelector) {
     selector : tagSelector,
     minChars : 1,
     cachePrefix : false,
-    delay : 0,
+    delay : 100,
     width:'650px',
     onUpdate : (e, poi) => {
       this.poi = poi
@@ -44,7 +44,7 @@ function SearchInput(tagSelector) {
           return poi
         })
         this.pois = this.pois.concat(historySuggestData)
-        suggest(this.pois)
+        suggest(this.pois, term)
       })
     },
     renderItem : ({id, name, fromHistory, className, subClassName}, search) => {

@@ -124,10 +124,14 @@ var autoComplete = (function(){
       };
       addEvent(that, 'blur', that.blurHandler);
 
-      var suggest = function(data){
+      var suggest = function(data, queryTerm){
         that.items = data
         var val = that.value;
-        that.cache[val] = data;
+        if (queryTerm) {
+          // 'data' is the 'source' response based on 'queryTerm'
+          // that may be differennt from 'val' (due to request latency).
+          that.cache[queryTerm] = data;
+        }
         if (data.length && val.length >= o.minChars) {
           var s = '';
           for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
@@ -144,12 +148,12 @@ var autoComplete = (function(){
         if ((key == 40 || key == 38) && that.sc.innerHTML) {
           var next, sel = that.sc.querySelector('.autocomplete_suggestion.selected');
           if (!sel) {
-            next = (key == 40) ? that.sc.querySelector('.autocomplete_suggestion') : that.sc.childNodes[that.sc.childNodes.length - 1]; // first : last
+            next = (key == 40) ? that.sc.querySelector('.autocomplete_suggestion') : that.sc.children[that.sc.children.length - 1]; // first : last
             next.className += ' selected';
             that.value = next.getAttribute('data-val');
             that.dataId = next.getAttribute('data-id');
           } else {
-            next = (key == 40) ? sel.nextSibling : sel.previousSibling;
+            next = (key == 40) ? sel.nextElementSibling : sel.previousElementSibling;
             if (next) {
               sel.className = sel.className.replace('selected', '');
               next.className += ' selected';
