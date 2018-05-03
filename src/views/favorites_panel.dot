@@ -23,6 +23,12 @@
             <div class="favorite_panel__swipe_flow--{{= this.favoritePois.length }}">
               {{~ this.favoritePois:poi:i }}
                 <div class="favorite_panel__swipe_element" id="{{= `favorite_item_${i}` }}">
+
+                  <div class="favorite_panel__item__actions">
+                    <button class="favorite_panel__remove favorite_panel__action" {{= click(this.del, this, {poi : poi, index : i}) }}>×</button>
+                    <button class="favorite_panel__go favorite_panel__action" {{= click(this.go, this, poi) }}>▶</button>
+                  </div>
+
                   <div class="favorite_panel__item__info">
                     {{ let ico = IconManager.get(poi); }}
                     {{? ico }}
@@ -35,11 +41,6 @@
                     <p class="favorite_panel__item__desc">
                         {{= poi.subClassName ? poi.subClassName.replace(/_/g, ' ') : '' }}
                     </p>
-                  </div>
-
-                  <div class="favorite_panel__item__actions">
-                    <button class="favorite_panel__remove favorite_panel__action" {{= click(this.del, this, {poi : poi, index : i}) }}>×</button>
-                    <button class="favorite_panel__go favorite_panel__action" {{= click(this.go, this, poi) }}>▶</button>
                   </div>
 
                 </div>
