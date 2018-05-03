@@ -27,7 +27,7 @@ function SearchInput(tagSelector) {
     selector : tagSelector,
     minChars : 1,
     cachePrefix : false,
-    delay : 0,
+    delay : 100,
     width:'650px',
     onUpdate : (e, poi) => {
       this.poi = poi
@@ -44,13 +44,19 @@ function SearchInput(tagSelector) {
           return poi
         })
         this.pois = this.pois.concat(historySuggestData)
-        suggest(this.pois)
+        suggest(this.pois, term)
       })
     },
-    renderItem : ({id, title, fromHistory}, search) => {
+    renderItem : ({id, name, fromHistory, className, subClassName}, search) => {
       let re = new RegExp(`(${search})`, 'i')
-      let suggestDisplay = title.replace(re, '<span class="autocomplete_prefix">$1</span>')
-      return `<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${title}">${suggestDisplay}</div>`
+      let suggestDisplay = name.replace(re, '<span class="autocomplete_prefix">$1</span>')
+      let icon = IconManager.get({className : className, subClassName : subClassName})
+      return `
+<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
+  <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${icon ? `icon icon-${icon.iconClass}` : 'icon-location'}"></div>
+  ${suggestDisplay}
+</div>
+`
     },
     onSelect : (e, term, item) => {
       const itemId = item.getAttribute('data-id')
@@ -109,7 +115,21 @@ function extractMapzenData(response) {
         emojiPicto = '〰'
         zoomLevel = 15
     }
-    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, feature.properties.geocoding.label)
+    let poiClassText = ''
+    let poiSubclassText = ''
+
+    if(feature.properties.geocoding.properties && feature.properties.geocoding.properties.length > 0) {
+      let poiClass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_class'})
+
+      if(poiClass) {
+        poiClassText = poiClass.value
+      }
+      let poiSubclass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_subclass'})
+      if(poiSubclass) {
+        poiSubclassText = poiSubclass.value
+      }
+    }
+    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, feature.properties.geocoding.label, poiClassText, poiSubclassText)
 
     poi.value = feature.properties.geocoding.label
     poi.picto = emojiPicto

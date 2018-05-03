@@ -75,8 +75,7 @@
 
 .favorite_panel__item__info {
   height: 70px;
-  float: left;
-  padding: 18px 0 10px 64px;
+  padding: 18px 0 10px 0;
 }
 
 .favorite_panel__action {
@@ -102,6 +101,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #454B57;
+}
+
+.favorite_panel__item__image {
+  width: 64px;
+  float: left;
+  font-size: 32px;
+  padding-left: 20px;
 }
 
 .favorite_panel__container__empty {

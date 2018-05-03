@@ -90,13 +90,13 @@
 .poi_panel__info__link {
   margin-left: 40px;
   font-size: 14px;
-  color: #0061b9;
+  color: #039BE5;
   border-bottom: 1px solid #c8d6e0;
 }
 
 .poi_panel__info__link:HOVER {
   text-decoration: none;
-  border-bottom: 1px solid #0061b9;
+  border-bottom: 1px solid #039BE5;
 }
 
 .poi_panel__info__hours {
@@ -173,13 +173,19 @@
 /* TODO export to external service */
 
 /* title symbols */
-.poi_panel__title__symbol:before {
-  width: 30px;
+.poi_panel__title__symbol {
+  font-size: 32px;
+  width: 23px;
   height: 20px;
   display: inline-block;
 }
 
+.poi_panel__title__symbol:before {
+  line-height: 42px;
+}
+
 .poi_panel__block__symbol {
+  display: inline-block;
   width: 20px;
   height: 20px;
 }

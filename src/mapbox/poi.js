@@ -2,11 +2,13 @@
  * simple Poi helper
  */
 
-function Poi(latLon, id, title, description) {
+function Poi(latLon, id, name, className, subClassName, tags) {
   this.latLon = latLon
-  this.title = title
+  this.name = name
+  this.tags = tags
+  this.className = className
+  this.subClassName = subClassName
   this.id = id ? id + '' : `${this.latLon.lat}_${this.latLon.lng}` // force string type or fallback to latlng key
-  this.description = description
 
 }
 
@@ -21,8 +23,9 @@ Poi.prototype.getKey = function () {
 Poi.prototype.store = function() {
   return {
     latLon : this.latLon,
-    title : this.title,
-    description : this.description,
+    name : this.name,
+    className : this.className,
+    subClassName : this.subClassName,
     zoom : this.zoom,
     bbox : this.bbox,
     tags : this.tags
@@ -30,10 +33,9 @@ Poi.prototype.store = function() {
 }
 
 Poi.load = function (rawPoi) {
-  let poi = new Poi(rawPoi.latLon, rawPoi.id, rawPoi.title, rawPoi.description)
+  let poi = new Poi(rawPoi.latLon, rawPoi.id, rawPoi.name, rawPoi.className, rawPoi.subClassName, rawPoi.tags)
   poi.bbox = rawPoi.bbox
   poi.zoom = rawPoi.zoom
-  poi.tags = rawPoi.tags
   return poi
 }
 
@@ -41,23 +43,23 @@ Poi.sceneLoad = function (event, zoom) {
   let feature = event.features[0]
   let name = feature.properties.name || ''
   let className = feature.properties.class || ''
-  let tags = feature.properties.tags || '{}'
-  let poi = new Poi({lat :feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]},feature.properties.id, name, className, tags)
-  poi.zoom = zoom
+  let subClassName = feature.properties.subclass || ''
+  let tags = []
   try {
-    let tags = JSON.parse(event.features[0].properties.tags)
-    poi.tags = []
-    Object.keys(tags).forEach((tagKey) => {
+    let rawTags = JSON.parse(feature.properties.tags)
+    tags = []
+    Object.keys(rawTags).forEach((tagKey) => {
       if(tagKey.indexOf('name') === -1) {
-        poi.tags.push({name : tagKey, value : tags[tagKey]})
+        tags.push({name : tagKey, value : rawTags[tagKey]})
       }
     })
 
   } catch (e) {
-    poi.tags = {}
+    tags = {}
     fire('alert', 'Tags parse error ' + e)
   }
-
+  let poi = new Poi({lat :feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]},feature.properties.id, name, className, subClassName, tags)
+  poi.zoom = zoom
 
   return poi
 }
