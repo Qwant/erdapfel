@@ -54,16 +54,17 @@
 
 .poi_panel__title {
   float: left;
-  width: 360px;
+  width: 350px;
   color: $text_color;
   padding-top: 10px;
-  margin:0 0 -4px 10px;
+  margin:0 0 -4px 5px;
   font-weight: normal;
   font-size: 22px;
 }
 
 .poi_panel__title__symbol {
   float: left;
+  margin-left: 12px;
   font-size: 32px;
   width: 23px;
   height: 20px;
@@ -87,7 +88,7 @@
 .poi_panel__description {
   position: relative;
   font-size: 12px;
-  padding-left: 36px;
+  padding-left: 40px;
   margin-top: 4px;
   color: $emphase_color;
 }
