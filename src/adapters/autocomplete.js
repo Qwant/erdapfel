@@ -13,7 +13,7 @@ function SearchInput(tagSelector) {
   listen('submit_autocomplete', () => {
     let poi = this.pois[0]
     if(this.poi) {
-      poi = this.poi
+      this.poi = poi
     }
     if(poi) {
       fire('map_mark_poi', poi)
