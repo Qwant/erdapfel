@@ -4,16 +4,14 @@
     <div class="poi_panel__header_image"></div>
     <div class="poi_panel__logo_demo"></div>
     <div class="poi_panel__description_container">
-      <h4 class="poi_panel__title">
-      {{ let ico = IconManager.get(this.poi); }}
-
-      {{? ico }}
+     {{ let ico = IconManager.get(this.poi); }}
+     {{? ico }}
         <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
       {{??}}
         <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
       {{?}}
-
-      {{= this.poi.name }}
+      <h4 class="poi_panel__title">
+        {{= this.poi.name }}
       </h4>
       {{? this.poi.subClassName }}
         <p class="poi_panel__description">{{= this.poi.subClassName.replace(/_/g, ' ') }}</p>
@@ -31,7 +29,13 @@
   <br>
   </div>
   {{? this.poi }}
-    <div class="poi_panel__close" {{= click(this.toggle, this) }}>🞨</div>
+    <div class="poi_panel__toggle_display" {{= click(this.toggle, this) }}>
+    {{? this.active }}
+      <i class="icon-cheveron-left"></i>
+    {{??}}
+      <i class="icon-cheveron-right"></i>
+    {{?}}
+    </div>
   {{?}}
 </div>
 

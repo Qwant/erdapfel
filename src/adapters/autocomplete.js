@@ -15,6 +15,7 @@ function SearchInput(tagSelector) {
     if(this.poi) {
       this.poi = poi
     }
+
     if(poi) {
       fire('map_mark_poi', poi)
       if(poi.bbox) {

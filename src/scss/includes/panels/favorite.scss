@@ -27,7 +27,7 @@
 }
 
 .favorites_panel--hidden {
-  left: - $panel_width - $side_bar_width;
+  left: - ($panel_width - $side_bar_width);
 }
 
 .favorite_panel__image_header {
