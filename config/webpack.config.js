@@ -67,6 +67,7 @@ const mainJsChunkConfig = {
       ]
     }, {
       test: /\.yml$/,
+      exclude: [path.resolve(__dirname, '../node_modules/@qwant/')],
       use: [
         {loader : 'webpack-config-loader', options : {environment : environment}},
         {loader : 'config-sanitizer-loader'},

@@ -1,6 +1,7 @@
-const iconProperties = require('@qwant/qwant-basic-gl-style/icons.yml').mappings
+const iconProperties = require('json-loader!yaml-loader!@qwant/qwant-basic-gl-style/icons.yml').mappings
 
 function IconManager() {}
+
 IconManager.mappings = iconProperties.map((mapping) => {return mapping})
 
 IconManager.get = ({className, subClassName}) => {

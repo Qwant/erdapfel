@@ -3,7 +3,6 @@ import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi";
 import StyleLaundry from '../mapbox/style_laundry'
-import IconManager from '../adapters/icon_manager'
 
 function Scene() {
   this.currentMarker = null

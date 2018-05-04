@@ -105,9 +105,15 @@
 
 .favorite_panel__item__image {
   width: 64px;
+  height: 60px;
   float: left;
   font-size: 32px;
   padding-left: 20px;
+}
+
+.favorite_panel__item__image--small {
+  font-size: 22px;
+  padding-left:24px;
 }
 
 .favorite_panel__container__empty {

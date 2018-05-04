@@ -2,6 +2,7 @@ import Autocomplete from '../vendors/autocomplete'
 let geocoderConfig = require("../../config/geocoder.yml")
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
+import IconManager from '../adapters/icon_manager'
 
 import Store from '../adapters/store'
 const store = new Store()
