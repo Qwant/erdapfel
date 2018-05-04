@@ -35,7 +35,6 @@ PoiPanel.prototype.toggleStorePoi = function() {
 }
 
 PoiPanel.prototype.toggle = async function() {
-
   if(this.active) {
     this.close()
   } else {
@@ -44,6 +43,7 @@ PoiPanel.prototype.toggle = async function() {
 }
 
 PoiPanel.prototype.open = async function() {
+  fire('poi_open')
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = true
   this.panel.update()
