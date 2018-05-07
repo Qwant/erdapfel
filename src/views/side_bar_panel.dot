@@ -1,10 +1,10 @@
 <div class="side_bar">
 
   <div class="side_bar__logo"></div>
-
+  <div class="side_bar__logo__limit"></div>
   <div class="side_bar__result side_bar__item  {{= this.current === 0 ? 'side_bar__item--active': ''}}">
     <div class="icon-list side_bar__item__icon"></div>
-    <div class="side_bar__item__text">{{= _('Results', 'side bar') }}</div>
+    <div class="side_bar__item__text">{{= _('RESULTS', 'side bar') }}</div>
   </div>
 
   <div {{= click(this.toggleFavorite, this) }} class="side_bar__fav side_bar__item {{= this.current === 1 ? 'side_bar__item--active' : ''}}">
@@ -12,7 +12,7 @@
       +1
     </div>
     <div class="icon-star-empty side_bar__item__icon"></div>
-    <div class="side_bar__item__text">{{= _('Favoris', 'side bar') }}</div>
+    <div class="side_bar__item__text">{{= _('FAVORIS', 'side bar') }}</div>
   </div>
 
 </div>
