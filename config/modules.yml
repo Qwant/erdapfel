@@ -1,6 +1,6 @@
 development: &development-mod
   store:
-    name: masq # local_store | none | masq | ..
+    name: local_store # local_store | none | masq | ..
     endpoint: https://sync-beta.qwantresearch.com/
     masq:
       title: Qwant Maps PoC
