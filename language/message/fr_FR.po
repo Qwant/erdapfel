@@ -91,7 +91,7 @@ msgstr "S'enregistrer"
 
 #: public/javascript/bundle.js:1802
 msgid "RESULTS"
-msgstr "RESULTATS"
+msgstr "RÉSULTATS"
 
 #: public/javascript/bundle.js:1802
 msgid "FAVORIS"
