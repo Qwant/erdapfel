@@ -56,7 +56,7 @@ class ExtendedControl {
   }
 
   _resetNorthAndTilt() {
-    this._map.easeTo({pitch: 16, bearing: 0})
+    this._map.easeTo({pitch: 0, bearing: 0})
   }
 
   _pitchAndRotateCompassArrow() {
