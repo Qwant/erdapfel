@@ -60,12 +60,6 @@
   font-size: 22px;
 }
 
-.poi_panel__info__section__title {
-  color: $text_alt_color;
-  font-weight: normal;
-  margin: 20px 0 0 20px;
-}
-
 .poi_panel__info__section:not(:last-of-type):after {
   content: '';
   display: block;
@@ -185,9 +179,13 @@
 }
 
 .poi_panel__block__symbol {
-  display: inline-block;
   width: 20px;
   height: 20px;
+  margin: 10px 0 0 18px;
+}
+
+.poi_panel__block__content {
+  margin-top: -20px;
 }
 
 .poi_panel__title__symbol--park:before {content:"🏢";color: #6b6f73}

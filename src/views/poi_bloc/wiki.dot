@@ -1,29 +1,29 @@
-<h4 class="poi_panel__info__section__title">
-  <span class="icon-wikipedia poi_panel__block__symbol"></span>{{= _('Wikipedia', 'poi') }}
-</h4>
-<div class="poi_panel__info__wiki">
-  {{? this.state === this.STATE.LOADING }}
-      <div class="loading rotating"></div>
-  {{?? this.data }}
-    <div class="poi_panel__description">
-      {{? this.data.description }}
-        {{? this.data.description.length > this.descriptionLength }}
-          <button class="wiki_panel__toggle_ellipsis wiki_panel__toggle_ellipsis--expand"{{= click(this.toggleEllipsis, this) }}>
-           {{= this.collapsed ? 'v' : '<' }}
-          </button>
+<div class="icon-wikipedia poi_panel__block__symbol"></div>
+<div class="poi_panel__block__content">
+  <div class="poi_panel__info__wiki">
+    {{? this.state === this.STATE.LOADING }}
+        <div class="loading rotating"></div>
+    {{?? this.data }}
+      <div class="poi_panel__description">
+        {{? this.data.description }}
+          {{? this.data.description.length > this.descriptionLength }}
+            <button class="wiki_panel__toggle_ellipsis wiki_panel__toggle_ellipsis--expand"{{= click(this.toggleEllipsis, this) }}>
+             {{= this.collapsed ? 'v' : '<' }}
+            </button>
+          {{?}}
+          <p class="poi_panel__description__ellipsis">
+            {{= this.collapsed ? this.ExtendedString.ellipsis(this.data.description, this.descriptionLength) : this.data.description }}
+          </p>
         {{?}}
-        <p class="poi_panel__description__ellipsis">
-          {{= this.collapsed ? this.ExtendedString.ellipsis(this.data.description, this.descriptionLength) : this.data.description }}
-        </p>
-      {{?}}
 
-      {{? this.data.wikiLink }}
-        <a target="_blank" href="{{= this.data.wikiLink.url }}">{{= _('Via Wikipédia') }}</a>
-      {{?}}
+        {{? this.data.wikiLink }}
+          <a target="_blank" href="{{= this.data.wikiLink.url }}">{{= _('Via Wikipédia') }}</a>
+        {{?}}
 
-      {{? !this.data.description && !this.data.wikiLink }}
-        <a target="_blank" href="https://www.wikidata.org/wiki/{{= this.tag }}">{{= _('Via WikiData') }}</a>
-      {{?}}
-    </p>
-  {{?}}
+        {{? !this.data.description && !this.data.wikiLink }}
+          <a target="_blank" href="https://www.wikidata.org/wiki/{{= this.tag }}">{{= _('Via WikiData') }}</a>
+        {{?}}
+      </p>
+    {{?}}
+  </div>
 </div>
