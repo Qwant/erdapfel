@@ -15,15 +15,7 @@ function SearchInput(tagSelector) {
     if(this.poi) {
       this.poi = poi
     }
-
-    if(poi) {
-      fire('map_mark_poi', poi)
-      if(poi.bbox) {
-        fire('fit_bounds', poi);
-      } else {
-        fire('fly_to',poi)
-      }
-    }
+    select(poi)
   })
 
   new Autocomplete({
@@ -67,20 +59,24 @@ function SearchInput(tagSelector) {
 `
     },
     onSelect : (e, term, item) => {
+      e.preventDefault()
       const itemId = item.getAttribute('data-id')
-      this.pois.forEach((poi) => {
-        if(poi.id === itemId) {
-          if(poi.bbox) {
-            poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
-            fire('fit_bounds', poi);
-          } else {
-            fire('fly_to',poi)
-          }
-          return
-        }
-      })
+      let poi = this.pois.find(poi => poi.id === itemId)
+      select(poi)
     }
   })
+}
+
+function select(poi) {
+  if(poi) {
+    if(poi.bbox) {
+      poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
+      fire('fit_bounds', poi);
+    } else {
+      fire('fly_to', poi)
+    }
+    fire('map_mark_poi', poi)
+  }
 }
 
 function extractMapzenData(response) {
