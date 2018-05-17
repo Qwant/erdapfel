@@ -32,17 +32,17 @@
                   <div class="favorite_panel__item__info">
                     {{ let ico = IconManager.get(poi); }}
                     {{? ico }}
-                      <div class="favorite_panel__item__image icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}">
+                      <div class="favorite_panel__item__image icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+                    {{??}}
+                      <div class="favorite_panel__item__image favorite_panel__item__image--small icon-location"></div>
                     {{?}}
-                    </div>
                     <p class="favorite_panel__item__title">
                       {{= poi.name ? poi.name : 'default' }}
                     </p>
                     <p class="favorite_panel__item__desc">
-                        {{= poi.subClassName ? poi.subClassName.replace(/_/g, ' ') : '' }}
+                      {{= poi.subClassName ? poi.subClassName.replace(/_/g, ' ') : '' }}
                     </p>
                   </div>
-
                 </div>
               {{~}}
             </div>

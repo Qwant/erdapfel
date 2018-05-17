@@ -18,7 +18,7 @@
 .search_form__input {
   width: 400px;
   height: 50px;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 54px 10px 20px;
   font-size: 16px;
   font-weight: 300;
   border: none;
@@ -38,6 +38,14 @@
   background-size: 20px 20px;
   font-size: 14px;
   color: #888;
+}
+
+.search_form__clear {
+  right: 50px;
+  color: #444648;
+  top: 18px;
+  position: absolute;
+  cursor: pointer;
 }
 
 .autocomplete_suggestions {
@@ -122,6 +130,11 @@
     display: block;
   }
 
+  .search_form__clear {
+    top: 22px;
+    font-size: 24px;
+  }
+
   .search_form {
     width: 100%;
     margin: 0;
@@ -130,14 +143,16 @@
     height: 70px;
     background-color: #f7fafb;
   }
+
   .search_form__input {
     width: calc(100% - 90px);
     right: 0;
     position: absolute;
     margin: 10px;
-    padding-left: 10px;
+    padding: 0 50px 0 10px;
     background: #fff;
   }
+
   .search_form__logo {
     display: block;
     position: absolute;

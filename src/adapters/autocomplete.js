@@ -2,6 +2,7 @@ import Autocomplete from '../vendors/autocomplete'
 let geocoderConfig = require("../../config/geocoder.yml")
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
+import IconManager from '../adapters/icon_manager'
 
 import Store from '../adapters/store'
 const store = new Store()
@@ -12,15 +13,9 @@ function SearchInput(tagSelector) {
   listen('submit_autocomplete', () => {
     let poi = this.pois[0]
     if(this.poi) {
-      poi = this.poi
+      this.poi = poi
     }
-    if(poi) {
-      if(poi.bbox) {
-        fire('fit_bounds', poi);
-      } else {
-        fire('mark_poi', poi)
-      }
-    }
+    select(poi)
   })
 
   new Autocomplete({
@@ -33,7 +28,15 @@ function SearchInput(tagSelector) {
       this.poi = poi
     },
     source : (term, suggest) => {
-      const suggestPromise = ajax.query(geocoderConfig.url, {q: term})
+      let center = window.map.center().toArray()
+      let bbox = window.map.bbox().toArray()
+
+      /* FIXME
+        'center' and 'bbox' are currently not used by the geocoder.
+         Still, they could be useful for telemetry purposes.
+         Should the exact position be made fuzzy ?
+      */
+      const suggestPromise = ajax.query(geocoderConfig.url, {q: term, center : center, bbox : bbox})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
         this.pois = extractMapzenData(responses[0])
@@ -49,7 +52,10 @@ function SearchInput(tagSelector) {
     },
     renderItem : ({id, name, fromHistory, className, subClassName}, search) => {
       let re = new RegExp(`(${search})`, 'i')
-      let suggestDisplay = name.replace(re, '<span class="autocomplete_prefix">$1</span>')
+      let suggestDisplay = ''
+      if(name) {
+        suggestDisplay = name.replace(re, '<span class="autocomplete_prefix">$1</span>')
+      }
       let icon = IconManager.get({className : className, subClassName : subClassName})
       return `
 <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
@@ -59,21 +65,24 @@ function SearchInput(tagSelector) {
 `
     },
     onSelect : (e, term, item) => {
+      e.preventDefault()
       const itemId = item.getAttribute('data-id')
-      this.pois.forEach((poi) => {
-        if(poi.id === itemId) {
-          if(poi.bbox) {
-            poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
-            fire('fit_bounds', poi);
-          } else {
-            fire('fly_to',poi)
-            fire('mark_poi', poi)
-          }
-          return
-        }
-      })
+      let poi = this.pois.find(poi => poi.id === itemId)
+      select(poi)
     }
   })
+}
+
+function select(poi) {
+  if(poi) {
+    if(poi.bbox) {
+      poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
+      fire('fit_bounds', poi);
+    } else {
+      fire('fly_to', poi)
+    }
+    fire('map_mark_poi', poi)
+  }
 }
 
 function extractMapzenData(response) {

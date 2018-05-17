@@ -6,8 +6,7 @@
   width: $panel_width;
   transition: left 0.2s;
   background: #fff;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: visible;
 }
 
 .poi_panel__content {
@@ -18,7 +17,7 @@
 }
 
 .poi_panel--hidden {
-  left: - $panel_width - $side_bar_width;
+  left: - ($panel_width - $side_bar_width);
 }
 
 
@@ -36,9 +35,9 @@
   font-size: 14px;
 }
 
-.poi_panel__close {
+.poi_panel__toggle_display {
   position: absolute;
-  right: 0;
+  right: -30px;
   top: 56px;
   padding: 5px 10px;
   background: white;
@@ -50,14 +49,31 @@
 
 .poi_panel__description_container {
   margin-top: 10px;
+  position: relative;
 }
 
 .poi_panel__title {
+  float: left;
+  width: 350px;
   color: $text_color;
   padding-top: 10px;
-  margin:20px 0 -4px 10px;
+  margin:0 0 -4px 5px;
   font-weight: normal;
   font-size: 22px;
+}
+
+.poi_panel__title__symbol {
+  float: left;
+  margin-left: 12px;
+  font-size: 32px;
+  width: 23px;
+  height: 20px;
+}
+
+.poi_panel__info__section__title {
+  color: $text_alt_color;
+  font-weight: normal;
+  margin: 20px 0 0 20px;
 }
 
 .poi_panel__info__section:not(:last-of-type):after {
@@ -143,9 +159,10 @@
 }
 
 .poi_panel__store_status {
-  float: right;
+  position: absolute;
+  top: 12px;
+  right: 0;
   width: 30px;
-  margin-top: -30px;
 }
 
 .poi_panel__store_status__toggle {
@@ -162,16 +179,6 @@
 
 .poi_panel__store_status__toggle--stored {
   color: #fbca04;
-}
-
-/* TODO export to external service */
-
-/* title symbols */
-.poi_panel__title__symbol {
-  font-size: 32px;
-  width: 23px;
-  height: 20px;
-  display: inline-block;
 }
 
 .poi_panel__title__symbol:before {

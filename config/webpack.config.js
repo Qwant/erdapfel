@@ -61,25 +61,13 @@ const mainJsChunkConfig = {
 
   module: {
     loaders: [{
-      test : /style\.json$/,
-      use : [
-        {
-          loader : 'map-style-loader',
-          options : {
-            output: 'debug', // 'production' | 'omt'
-            conf: `${__dirname}/map_${environment}.json`,
-            outPath : __dirname + '/../public',
-            pixelRatios : [1,2]
-          }
-        }
-      ],
-    }, {
       test: /\.dot/,
       use: [
         {loader : 'dot-loader'}
       ]
     }, {
       test: /\.yml$/,
+      exclude: [path.resolve(__dirname, '../node_modules/@qwant/')],
       use: [
         {loader : 'webpack-config-loader', options : {environment : environment}},
         {loader : 'config-sanitizer-loader'},

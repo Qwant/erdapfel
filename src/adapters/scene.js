@@ -3,7 +3,6 @@ import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi";
 import StyleLaundry from '../mapbox/style_laundry'
-import IconManager from '../adapters/icon_manager'
 
 function Scene() {
   this.currentMarker = null
@@ -14,6 +13,15 @@ function Scene() {
     center: [2.2900, 48.8719],
     hash: true
   })
+
+  window.map = {
+    center : () => {
+      return this.mb.getCenter()
+    },
+    bbox : () => {
+      return this.mb.getBounds()
+    }
+  }
 
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
@@ -33,8 +41,8 @@ function Scene() {
 
       this.mb.on('click', interactiveLayer, (e) => {
         let poi = Poi.sceneLoad(e, this.mb.getZoom())
-        IconManager.get(poi)
-        fire('mark_poi', poi)
+        fire('display_poi_data', poi)
+        this.addMarker(poi)
       })
     })
   })
@@ -47,7 +55,7 @@ function Scene() {
     this.fitBounds(poi, options)
   })
 
-  listen('mark_poi', (poi) => {
+  listen('map_mark_poi', (poi) => {
     this.addMarker(poi)
   })
 }
