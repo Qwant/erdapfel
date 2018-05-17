@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?qj4pau');
-  src:  url('../fonts/icomoon.eot?qj4pau#iefix') format('embedded-opentype'),
-  url('../fonts/icomoon.ttf?qj4pau') format('truetype'),
-  url('../fonts/icomoon.woff?qj4pau') format('woff'),
-  url('../fonts/icomoon.svg?qj4pau#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?vjm90s');
+  src:  url('../fonts/icomoon.eot?vjm90s#iefix') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?vjm90s') format('truetype'),
+  url('../fonts/icomoon.woff?vjm90s') format('woff'),
+  url('../fonts/icomoon.svg?vjm90s#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,17 +24,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-chevron-left2:before {
+.icon-chevron-left:before {
   content: "\e913";
 }
-.icon-chevron-right2:before {
-  content: "\e914";
-}
 .icon-chevron-right:before {
-  content: "\e910";
-}
-.icon-chevron-left:before {
-  content: "\e911";
+  content: "\e914";
 }
 .icon-icon_chevron-down:before {
   content: "\e900";
