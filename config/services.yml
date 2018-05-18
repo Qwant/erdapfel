@@ -1,10 +1,10 @@
 development: &development-services
   tz:
     url: 'http://***REMOVED***:4040/tz/'
-    active: false
+    active: true
   wiki:
     url: 'http://***REMOVED***:4040/wiki/'
-    active: false
+    active: true
 
 local:
   <<: *development-services
