@@ -12,7 +12,7 @@
       +1
     </div>
     <div class="icon-icon_star side_bar__item__icon"></div>
-    <div class="side_bar__item__text">{{= _('FAVORIS', 'side bar') }}</div>
+    <div class="side_bar__item__text">{{= _('FAVORITES', 'side bar') }}</div>
   </div>
 
 </div>

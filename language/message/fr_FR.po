@@ -57,7 +57,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: public/javascript/bundle.js:969
-msgid "Favorites places"
+msgid "Favorite places"
 msgstr "Lieux favoris"
 
 #: public/javascript/bundle.js:969
@@ -69,7 +69,7 @@ msgstr ""
 #: public/javascript/bundle.js:969
 #, python-format
 msgid "%d favorite place"
-msgid_plural "%d favorites places"
+msgid_plural "%d favorite places"
 msgstr[0] "Lieu favori"
 msgstr[1] "Mes %d lieux favoris"
 
@@ -94,7 +94,7 @@ msgid "RESULTS"
 msgstr "RÉSULTATS"
 
 #: public/javascript/bundle.js:1802
-msgid "FAVORIS"
+msgid "FAVORITES"
 msgstr "FAVORIS"
 
 #~ msgid "Beers"
