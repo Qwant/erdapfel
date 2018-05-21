@@ -9,10 +9,15 @@
 .side_bar__logo {
   width: 46px;
   height: 46px;
-  margin: 30px 22px;
+  margin: 24px 24px;
   background-image: url("../statics/images/tmp_fixtures/logo.png");
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.side_bar__logo__limit{
+  width: 100%;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .side_bar__item {
@@ -21,20 +26,21 @@
   width: 96px;
   text-align: center;
   position: relative;
-  color: #7f7f7f;
+  color: #707070;
   transition: color .2s;
 }
 
-.side_bar__item:hover {
-  color:#00a5fe;
-}
-
-.side_bar__item--active {
-  color: #00a5fe;
+.side_bar__item:hover, .side_bar__item--active {
+  color: #191919;
 }
 
 .side_bar__item__text {
   margin-top: 8px;
+  font-size: 11px;
+}
+
+.side_bar__item__icon.icon-star-empty {
+  font-size: 20px;
 }
 
 .side_bar__item__icon {
@@ -49,13 +55,16 @@
   transition: background-color .2s;
 }
 
-.side_bar__item:hover .side_bar__item__icon {
-  background: #00a5fe;
-  color: #fff;
+.side_bar__item:hover .side_bar__item__icon, .side_bar__item--active .side_bar__item__icon {
+  color: #fab900;
+}
+
+.side_bar__item:hover .side_bar__item__icon.icon-list, .side_bar__item--active .side_bar__item__icon.icon-list {
+  color: #0093ec;
 }
 
 .side_bar__result {
-  margin: 60px 0 10px;
+  margin: 24px 0 10px;
 }
 
 .side_bar__fav {

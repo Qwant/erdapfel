@@ -1,5 +1,5 @@
 {{? this.hours }}
-  <div class="icon-clock poi_panel__block__symbol"></div>
+  <div class="icon-icon_clock poi_panel__block__symbol"></div>
   <div class="poi_panel__block__content">
     <div {{= click(this.extend, this) }}>
       <span class="poi_panel__info__hours__status" style="color:{{= this.status.color }}">

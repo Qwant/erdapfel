@@ -1,4 +1,4 @@
-<div class="icon-earth poi_panel__block__symbol"></div>
+<div class="icon-icon_globe poi_panel__block__symbol"></div>
 <div class="poi_panel__block__content">
   <a class="poi_panel__info__link" href="{{= this.URI.externalise(this.tag.value) }}" no-follow target="_blank">
     {{= this.URI.extractDomain(this.tag.value) }}

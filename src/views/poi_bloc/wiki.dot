@@ -1,4 +1,4 @@
-<div class="icon-wikipedia poi_panel__block__symbol"></div>
+<div class="icon-icon_info poi_panel__block__symbol"></div>
 <div class="poi_panel__block__content">
   <div class="poi_panel__info__wiki">
     {{? this.state === this.STATE.LOADING }}

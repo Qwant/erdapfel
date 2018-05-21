@@ -25,6 +25,11 @@
   background: none;
 }
 
+/* Disable Chrome custom 'cancel' button */
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
 .search_form__logo {
   display: none;
 }
@@ -106,7 +111,7 @@
 }
 
 .autocomplete_prefix {
-  color : #7d0c4e;
+  color : #070912;
 }
 
 .search_form__burger {

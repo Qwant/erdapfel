@@ -17,7 +17,7 @@
         <p class="poi_panel__description">{{= this.poi.subClassName.replace(/_/g, ' ') }}</p>
       {{?}}
       <div class="poi_panel__store_status">
-        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-star-full' : 'icon-star-empty'}}" {{= click(this.toggleStorePoi, this) }}>
+        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-icon_star-filled' : 'icon-icon_star'}}" {{= click(this.toggleStorePoi, this) }}>
         </button>
       </div>
 
@@ -31,9 +31,9 @@
   {{? this.poi }}
     <div class="poi_panel__toggle_display" {{= click(this.toggle, this) }}>
     {{? this.active }}
-      <i class="icon-cheveron-left"></i>
+      <i class="icon-chevron-left"></i>
     {{??}}
-      <i class="icon-cheveron-right"></i>
+      <i class="icon-chevron-right"></i>
     {{?}}
     </div>
   {{?}}

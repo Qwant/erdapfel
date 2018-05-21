@@ -22,12 +22,12 @@ PoiPanel.prototype.toggleStorePoi = function() {
   if(this.poi.stored) {
     fire('del_poi', this.poi)
     this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
-    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-full')
-    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-empty')
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star-filled')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star')
     this.poi.stored = false
   } else {
-    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-empty')
-    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-star-full')
+    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star')
+    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
     fire('store_poi', this.poi)
     this.poi.stored = true
