@@ -11,13 +11,9 @@
         <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
       {{?}}
       <h4 class="poi_panel__title">
-        {{? this.poi.name }}
-          {{= this.poi.name }}
-        {{?? this.poi.subClassName }}
-          {{= this.poi.subClassName.replace(/_/g, ' ') }}
-        {{?}}
+        {{= this.poi.name }}
       </h4>
-      {{? this.poi.subClassName && this.poi.name !== '' }}
+      {{? this.poi.subClassName }}
         <p class="poi_panel__description">{{= this.poi.subClassName.replace(/_/g, ' ') }}</p>
       {{?}}
       <div class="poi_panel__store_status">

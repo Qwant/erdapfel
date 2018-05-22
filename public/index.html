@@ -18,9 +18,9 @@
         <div></div>
       </div>
       <div class="search_form__logo"></div>
-      <input id="search" type="search" class="search_form__input" required placeholder="Où voulez-vous aller ?">
-      <input type="submit" value="" class="search_form__action"  onclick="fire('submit_autocomplete')">
-      <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="e()"></button>
+      <input id="search" type="search" class="search_form__input" placeholder="Où voulez-vous aller ?">
+      <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
+      <button class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
     </form>
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
@@ -33,12 +33,6 @@
         if(!e.shiftKey && !e.ctrlKey)
           document.getElementById('search').focus()
       }
-
-      function e() {
-        search.value=''
-        clear_button.classList.add('search_form__clear--disabled')
-      }
-
       /* Progress */
       const progressBar = document.querySelector('#progress-bar')
       const loaderBar = document.querySelector('#loader-bar')
