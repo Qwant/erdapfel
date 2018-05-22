@@ -37,14 +37,17 @@
 
 .poi_panel__toggle_display {
   position: absolute;
-  right: -30px;
+  width: 40px;
+  height: 40px;
+  right: -40px;
   top: 56px;
-  padding: 5px 10px;
+  padding: 8px 10px 0 0;
   background: white;
-  color: #a81111;
-  font-size: 14px;
+  color: #7f8183;
+  font-size: 24px;
   text-align: right;
   cursor: pointer;
+  border-radius: 0 3px 3px 0;
 }
 
 .poi_panel__description_container {
@@ -161,14 +164,14 @@
 .poi_panel__store_status {
   position: absolute;
   top: 12px;
-  right: 0;
+  right: 20px;
   width: 30px;
-  margin-top: -10px;
+  margin-top: 1px;
 }
 
 .poi_panel__store_status__toggle {
   position: absolute;
-  color: $text_color;
+  color: #7f8183;
   padding: 3px 6px;
   font-size: 18px;
   font-weight: bold;
