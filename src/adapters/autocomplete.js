@@ -3,6 +3,7 @@ let geocoderConfig = require("../../config/geocoder.yml")
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 import IconManager from '../adapters/icon_manager'
+import State from '../main'
 
 import Store from '../adapters/store'
 const store = new Store()
@@ -51,16 +52,11 @@ function SearchInput(tagSelector) {
       })
     },
     renderItem : ({id, name, fromHistory, className, subClassName}, search) => {
-      let re = new RegExp(`(${search})`, 'i')
-      let suggestDisplay = ''
-      if(name) {
-        suggestDisplay = name.replace(re, '<span class="autocomplete_prefix">$1</span>')
-      }
       let icon = IconManager.get({className : className, subClassName : subClassName})
       return `
 <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
   <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${icon ? `icon icon-${icon.iconClass}` : 'icon-location'}"></div>
-  ${suggestDisplay}
+  ${name}
 </div>
 `
     },
@@ -82,6 +78,7 @@ function select(poi) {
       fire('fly_to', poi)
     }
     fire('map_mark_poi', poi)
+    State.app.poiPanel.close()
   }
 }
 
