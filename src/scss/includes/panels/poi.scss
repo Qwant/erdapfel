@@ -20,7 +20,6 @@
   left: - ($panel_width - $side_bar_width);
 }
 
-
 .poi_panel__header_image {
   background-image: url(../statics/images/tmp_fixtures/david-marcu-383024-unsplash.jpg);
   background-size: $panel_width;
@@ -31,7 +30,7 @@
 }
 
 .poi_panel__info__section__phone {
-  margin-left: 40px;
+  margin-left: 62px;
   font-size: 14px;
 }
 
@@ -51,26 +50,29 @@
 }
 
 .poi_panel__description_container {
-  margin-top: 10px;
+  margin-top: 20px;
   position: relative;
 }
 
+.poi_panel__description_container:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
 .poi_panel__title {
-  float: left;
-  width: 350px;
+  float: right;
+  width: 300px;
+  margin-right: 38px;
   color: $text_color;
-  padding-top: 10px;
-  margin:0 0 -4px 5px;
   font-weight: normal;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .poi_panel__title__symbol {
   float: left;
-  margin-left: 12px;
-  font-size: 32px;
-  width: 23px;
-  height: 20px;
+  margin-left: 26px;
+  font-size: 34px;
 }
 
 .poi_panel__info__section__title {
@@ -79,19 +81,19 @@
   margin: 20px 0 0 20px;
 }
 
-.poi_panel__info__section:not(:last-of-type):after {
+.poi_panel__info__section:before {
   content: '';
   display: block;
   width: 360px;
   height: 1px;
-  margin: 20px 0 0 20px;
+  margin: 17px 0 12px 20px;
   background: #e4e7ef;
 }
 
 .poi_panel__description {
   position: relative;
   font-size: 12px;
-  padding-left: 40px;
+  padding-left: 62px;
   margin-top: 4px;
   color: $emphase_color;
 }
@@ -101,7 +103,7 @@
 }
 
 .poi_panel__info__link {
-  margin-left: 40px;
+  margin-left: 62px;
   font-size: 14px;
   color: #039BE5;
   border-bottom: 1px solid #c8d6e0;
@@ -138,7 +140,7 @@
 }
 
 .poi_panel__info__hours__status {
-  padding-left: 40px;
+  padding-left: 62px;
   cursor: pointer;
 }
 
@@ -156,14 +158,14 @@
 }
 
 .poi_panel__info__beer {
-  margin-left: 40px;
+  margin-left: 62px;
   color: #90750b;
   font-size: 14px;
 }
 
 .poi_panel__store_status {
   position: absolute;
-  top: 12px;
+  top: 0;
   right: 20px;
   width: 30px;
   margin-top: 1px;
@@ -186,20 +188,24 @@
 }
 
 .poi_panel__title__symbol:before {
-  line-height: 42px;
+  line-height: 18px;
 }
 
-.poi_panel__block__symbol {
-  width: 20px;
-  height: 20px;
-  margin: 10px 0 0 18px;
+.poi_panel__title__symbol.icon-location {
+  font-size: 22px; /* particular case */
 }
 
 .poi_panel__block__content {
-  margin-top: -20px;
+  margin-top: -18px;
 }
 
-.poi_panel__title__symbol--park:before {content:"🏢";color: #6b6f73}
+.poi_panel__block__symbol {
+  font-size: 24px;
+  width: 20px;
+  height: 20px;
+  margin: 10px 0 0 32px;
+  color: #999;
+}
 
 /* symbols */
 .poi_panel__section__symbol {
@@ -207,7 +213,6 @@
   height: 20px;
   display: inline-block;
 }
-
 
 @media (max-width: 640px) {
 
