@@ -86,7 +86,7 @@
   display: block;
   width: 360px;
   height: 1px;
-  margin: 17px 0 12px 20px;
+  margin: 18px 0 12px 20px;
   background: #e4e7ef;
 }
 
@@ -168,14 +168,14 @@
   top: 0;
   right: 20px;
   width: 30px;
-  margin-top: 1px;
+  margin-top: -6px;
 }
 
 .poi_panel__store_status__toggle {
   position: absolute;
   color: #7f8183;
   padding: 3px 6px;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -199,6 +199,7 @@
   margin-top: -18px;
 }
 
+/* symbols */
 .poi_panel__block__symbol {
   font-size: 24px;
   width: 20px;
@@ -207,7 +208,6 @@
   color: #999;
 }
 
-/* symbols */
 .poi_panel__section__symbol {
   width: 20px;
   height: 20px;
@@ -223,6 +223,11 @@
     padding-top: 70px;
     top: 0;
     left: 0;
+  }
+
+  .poi_panel__title {
+    width: calc(100% - (62px + 38px));
+
   }
 
   .poi_panel__content {
@@ -246,7 +251,12 @@
   }
 
   .poi_panel__description_container {
-    margin-top: 0;
+   // margin-top: 0;
+  }
+
+  .poi_panel__info__section:before {
+    width: calc(100% - 40px);
+    margin: 18px 20px 12px;
   }
 
   .poi_panel__info__section:not(:last-of-type):after {
