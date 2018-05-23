@@ -18,21 +18,22 @@
         <div></div>
       </div>
       <div class="search_form__logo"></div>
-      <input id="search" type="search" class="search_form__input" placeholder="Où voulez-vous aller ?">
+      <input id="search" type="search" class="search_form__input" required placeholder="Où voulez-vous aller ?">
       <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
-      <button class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
+      <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
     </form>
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>
     <script src="./file_loader.js"></script>
-
+    <script src="./javascript/bundle.js"></script>
     <script>
       /* Autocomplete */
       document.onkeydown = (e) => {
         if(!e.shiftKey && !e.ctrlKey)
           document.getElementById('search').focus()
       }
+
       /* Progress */
       const progressBar = document.querySelector('#progress-bar')
       const loaderBar = document.querySelector('#loader-bar')
@@ -44,7 +45,5 @@
         progressBar.style.width = `${e.loaded / e.total * 100}%`
       }
     </script>
-    <script src="./message/en_GB.js"></script>
-    <script src="./javascript/bundle.js"></script>
   </body>
 </html>

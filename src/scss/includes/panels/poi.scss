@@ -20,7 +20,6 @@
   left: - ($panel_width - $side_bar_width);
 }
 
-
 .poi_panel__header_image {
   background-image: url(../statics/images/tmp_fixtures/david-marcu-383024-unsplash.jpg);
   background-size: $panel_width;
@@ -31,43 +30,49 @@
 }
 
 .poi_panel__info__section__phone {
-  margin-left: 40px;
+  margin-left: 62px;
   font-size: 14px;
 }
 
 .poi_panel__toggle_display {
   position: absolute;
-  right: -30px;
+  width: 40px;
+  height: 40px;
+  right: -40px;
   top: 56px;
-  padding: 5px 10px;
+  padding: 8px 10px 0 0;
   background: white;
-  color: #a81111;
-  font-size: 14px;
+  color: #7f8183;
+  font-size: 24px;
   text-align: right;
   cursor: pointer;
+  border-radius: 0 3px 3px 0;
 }
 
 .poi_panel__description_container {
-  margin-top: 10px;
+  margin-top: 20px;
   position: relative;
 }
 
+.poi_panel__description_container:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
 .poi_panel__title {
-  float: left;
-  width: 350px;
+  float: right;
+  width: 300px;
+  margin-right: 38px;
   color: $text_color;
-  padding-top: 10px;
-  margin:0 0 -4px 5px;
   font-weight: normal;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .poi_panel__title__symbol {
   float: left;
-  margin-left: 12px;
-  font-size: 32px;
-  width: 23px;
-  height: 20px;
+  margin-left: 26px;
+  font-size: 34px;
 }
 
 .poi_panel__info__section__title {
@@ -76,19 +81,19 @@
   margin: 20px 0 0 20px;
 }
 
-.poi_panel__info__section:not(:last-of-type):after {
+.poi_panel__info__section:before {
   content: '';
   display: block;
   width: 360px;
   height: 1px;
-  margin: 20px 0 0 20px;
+  margin: 18px 0 12px 20px;
   background: #e4e7ef;
 }
 
 .poi_panel__description {
   position: relative;
   font-size: 12px;
-  padding-left: 40px;
+  padding-left: 62px;
   margin-top: 4px;
   color: $emphase_color;
 }
@@ -98,7 +103,7 @@
 }
 
 .poi_panel__info__link {
-  margin-left: 40px;
+  margin-left: 62px;
   font-size: 14px;
   color: #039BE5;
   border-bottom: 1px solid #c8d6e0;
@@ -135,7 +140,7 @@
 }
 
 .poi_panel__info__hours__status {
-  padding-left: 40px;
+  padding-left: 62px;
   cursor: pointer;
 }
 
@@ -153,24 +158,24 @@
 }
 
 .poi_panel__info__beer {
-  margin-left: 40px;
+  margin-left: 62px;
   color: #90750b;
   font-size: 14px;
 }
 
 .poi_panel__store_status {
   position: absolute;
-  top: 12px;
-  right: 0;
+  top: 0;
+  right: 20px;
   width: 30px;
-  margin-top: -10px;
+  margin-top: -6px;
 }
 
 .poi_panel__store_status__toggle {
   position: absolute;
-  color: $text_color;
+  color: #7f8183;
   padding: 3px 6px;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -183,28 +188,31 @@
 }
 
 .poi_panel__title__symbol:before {
-  line-height: 42px;
+  line-height: 18px;
 }
 
-.poi_panel__block__symbol {
-  width: 20px;
-  height: 20px;
-  margin: 10px 0 0 18px;
+.poi_panel__title__symbol.icon-location {
+  font-size: 22px; /* particular case */
 }
 
 .poi_panel__block__content {
-  margin-top: -20px;
+  margin-top: -18px;
 }
 
-.poi_panel__title__symbol--park:before {content:"🏢";color: #6b6f73}
-
 /* symbols */
+.poi_panel__block__symbol {
+  font-size: 24px;
+  width: 20px;
+  height: 20px;
+  margin: 10px 0 0 32px;
+  color: #999;
+}
+
 .poi_panel__section__symbol {
   width: 20px;
   height: 20px;
   display: inline-block;
 }
-
 
 @media (max-width: 640px) {
 
@@ -215,6 +223,11 @@
     padding-top: 70px;
     top: 0;
     left: 0;
+  }
+
+  .poi_panel__title {
+    width: calc(100% - (62px + 38px));
+
   }
 
   .poi_panel__content {
@@ -238,7 +251,12 @@
   }
 
   .poi_panel__description_container {
-    margin-top: 0;
+   // margin-top: 0;
+  }
+
+  .poi_panel__info__section:before {
+    width: calc(100% - 40px);
+    margin: 18px 20px 12px;
   }
 
   .poi_panel__info__section:not(:last-of-type):after {

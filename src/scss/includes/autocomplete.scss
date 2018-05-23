@@ -23,6 +23,7 @@
   font-weight: 300;
   border: none;
   background: none;
+  box-shadow: none;
 }
 
 /* Disable Chrome custom 'cancel' button */
@@ -51,6 +52,14 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 18px;
   position: absolute;
   cursor: pointer;
+}
+
+.search_form__input:valid ~ .search_form__clear {
+  display: block;
+}
+
+.search_form__input:invalid ~ .search_form__clear {
+  display: none;
 }
 
 .autocomplete_suggestions {
