@@ -17,4 +17,4 @@ async function main() {
 
 main()
 
-export default State;
+export default State

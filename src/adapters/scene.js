@@ -44,6 +44,11 @@ function Scene() {
         fire('display_poi_data', poi)
         this.addMarker(poi)
       })
+
+      this.mb.on('moveend', () => {
+        console.log(this.mb.getZoom(),
+        this.mb.getCenter())
+      })
     })
   })
 
