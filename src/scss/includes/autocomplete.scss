@@ -80,6 +80,11 @@ input[type="search"]::-webkit-search-cancel-button {
   box-sizing: border-box;
 }
 
+.autocomplete_address {
+  padding-left: 6px;
+  color : #777981;
+}
+
 .autocomplete_suggestion.selected {
   border-left: #f95d00 solid 3px;
   padding-left: 17px;
