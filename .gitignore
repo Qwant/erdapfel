@@ -5,8 +5,7 @@ tmp/
 node_modules/
 
 public/css/
-public/javascript/
-public/images/
+public/build/
 
 #map style
 public/sprite*

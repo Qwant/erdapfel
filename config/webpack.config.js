@@ -56,7 +56,7 @@ const mainJsChunkConfig = {
   entry: ['./src/main.js'],
   output: {
     path: path.join(__dirname, '..', 'public'),
-    filename: 'javascript/bundle.js'
+    filename: 'build/javascript/bundle.js'
   },
 
   module: {
@@ -90,7 +90,7 @@ const mapJsChunkConfig = {
 
   output: {
     path: path.join(__dirname, '..', 'public'),
-    filename: 'javascript/map.js'
+    filename: 'build/javascript/map.js'
   },
 
   module: {
