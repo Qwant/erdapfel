@@ -84,7 +84,7 @@ function select(poi) {
 }
 
 function buildPoi(response) {
-    return response.features.map((feature) => {
+  return response.features.map((feature) => {
     let zoomLevel = 0
 
     const resultType = feature.properties.geocoding.type
@@ -103,14 +103,20 @@ function buildPoi(response) {
         poiSubclassText = poiSubclass.value
       }
     }
-
-    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, feature.properties.geocoding.name, poiClassText, poiSubclassText)
-
+    let addressLabel = ''
     if(feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
-      poi.addressLabel = feature.properties.geocoding.address.name
+      addressLabel = feature.properties.geocoding.address.name
     }
 
+    let name = ''
+    if(addressLabel) {
+      name = feature.properties.geocoding.name
+    } else {
+      name = feature.properties.geocoding.label
+    }
+    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, name, poiClassText, poiSubclassText)
     poi.value = feature.properties.geocoding.label
+    poi.addressLabel = addressLabel
     poi.poi_type = resultType
     poi.zoom = zoomLevel
     poi.bbox = feature['bbox']
