@@ -1,5 +1,6 @@
 import SideBarPanelView from '../views/side_bar_panel.dot'
 import Panel from '../libs/panel'
+import PanelManager from "../proxies/panel_manager";
 
 function SideBarPanel() {
   this.panel = new Panel(this, SideBarPanelView)
@@ -15,12 +16,11 @@ function SideBarPanel() {
   listen('toggle_burger', () => {
     this.panel.toggleClassName(.2,'.side_bar', 'side_bar--open')
   })
-
 }
 
 SideBarPanel.prototype.toggleFavorite = function () {
   this.panel.toggleClassName(.2, '.side_bar__fav', 'side_bar__item--active')
-  fire('toggle_favorite')
+  PanelManager.toggleFavorite()
 }
 
 export default SideBarPanel

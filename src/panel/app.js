@@ -5,8 +5,12 @@ import RegisterMasqPanel from "./register_masq";
 import PoiPanel from "./poi_panel";
 import ErrorHandlerPanel from "./error_panel";
 import SideBarPanel from './side_bar_panel';
+import PanelManager from "../proxies/panel_manager";
 
 function AppPanel(parent) {
+
+  PanelManager.init()
+
   this.sideBarPanel = new SideBarPanel()
   this.favoritePanel = new FavoritePanel()
   this.poiPanel = new PoiPanel()

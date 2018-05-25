@@ -3,6 +3,7 @@ import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi";
 import StyleLaundry from '../mapbox/style_laundry'
+import PanelManager from "../proxies/panel_manager";
 
 function Scene() {
   this.currentMarker = null
@@ -41,7 +42,7 @@ function Scene() {
 
       this.mb.on('click', interactiveLayer, (e) => {
         let poi = Poi.sceneLoad(e, this.mb.getZoom())
-        fire('display_poi_data', poi)
+        PanelManager.setPoi(poi)
         this.addMarker(poi)
       })
 

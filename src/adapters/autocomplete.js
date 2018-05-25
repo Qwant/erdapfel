@@ -6,6 +6,8 @@ import IconManager from '../adapters/icon_manager'
 import State from '../main'
 
 import Store from '../adapters/store'
+import Favorite from "../panel/favorites_panel";
+import PanelManager from "../proxies/panel_manager";
 const store = new Store()
 
 function SearchInput(tagSelector) {
@@ -73,7 +75,7 @@ function select(poi) {
       fire('fly_to', poi)
     }
     fire('map_mark_poi', poi)
-    State.app.poiPanel.close()
+    PanelManager.closeAll()
   }
 }
 

@@ -2,20 +2,17 @@ import PoiPanelView from '../views/poi_panel.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import PoiBlocContainer from './poi_bloc/poi_bloc_container'
+import PanelManager from './../proxies/panel_manager'
 
 const store = new Store()
 
 function PoiPanel() {
-  listen('display_poi_data', (poi) => {
-    this.showInfoBox(poi)
-  })
-  listen('open_favorite', () => {
-    this.close()
-  })
+  this.isPoiComplient = true
   this.poi = null
   this.active = false
   this.poiBlocContainer = new PoiBlocContainer()
   this.panel = new Panel(this, PoiPanelView)
+  PanelManager.register(this)
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {
@@ -38,6 +35,7 @@ PoiPanel.prototype.toggle = async function() {
   if(this.active) {
     this.close()
   } else {
+    PanelManager.closeAll()
     this.open()
   }
 }
@@ -55,7 +53,7 @@ PoiPanel.prototype.close = async function() {
   this.panel.update()
 }
 
-PoiPanel.prototype.showInfoBox = async function (poi) {
+PoiPanel.prototype.setPoi = async function (poi) {
   fire('poi_open')
   try {
     let storePoi = await store.has(poi)

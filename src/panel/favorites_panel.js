@@ -3,17 +3,13 @@ import Panel from '../libs/panel'
 import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
+import PanelManager from "../proxies/panel_manager";
 
 function Favorite() {
   this.active = false
   this.favoritePois = []
   this.filterPanel = new FilterPanel()
-
   this.connectStore()
-
-  listen('poi_open', () => {
-    this.close()
-  })
 
   listen('store_registered', () => {
     this.getAll()
@@ -24,15 +20,16 @@ function Favorite() {
   })
 
   this.panel = new Panel(this, FavoritePanelView)
+    this.isFavoritePanel = true
+  PanelManager.register(this)
+}
 
-  listen('toggle_favorite', () => {
-    if(this.active) {
-      this.close()
-    } else {
-      fire('open_favorite')
-      this.open()
-    }
-  })
+Favorite.prototype.toggle = function() {
+  if(this.active) {
+    this.close()
+  } else {
+    this.open()
+  }
 }
 
 Favorite.prototype.connectStore = async function () {
