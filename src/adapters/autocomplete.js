@@ -40,7 +40,7 @@ function SearchInput(tagSelector) {
       const suggestPromise = ajax.query(geocoderConfig.url, {q: term, center : center, bbox : bbox})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
-        this.pois = extractMapzenData(responses[0])
+        this.pois = buildPoi(responses[0])
         let historySuggestData = responses[1]
         historySuggestData = historySuggestData.map((historySuggest) => {
           let poi = Poi.load(historySuggest)
@@ -83,7 +83,7 @@ function select(poi) {
   }
 }
 
-function extractMapzenData(response) {
+function buildPoi(response) {
     return response.features.map((feature) => {
     let zoomLevel = 0
 
