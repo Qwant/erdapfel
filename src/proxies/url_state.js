@@ -1,26 +1,26 @@
 function UrlState() {}
-UrlState.data = {}
 
-UrlState.set = function(label, value) {
-  UrlState.data[label] = value
-  updateUrl()
-}
-
-UrlState.get = function(label) {
-  UrlState.data[label]
-}
-
-UrlState.init = function() {
+UrlState.init = function () {
+  window.__components = []
   window.location.hash
 }
+UrlState.register = function(component) {
+  if(!component.store || !component.restore) {
+    throw 'this componentn doesn\'t implement required methods'
+  }
+  __components.push(component)
+}
 
-
-function updateUrl() {
-  window.location.hash = Object.keys(UrlState.data).map((key) => {
-    return `${key[0]}${UrlState.data[key]}`
+UrlState.updateUrl = function() {
+  window.location.hash = '/' + __components.map((component) => {
+    return component.store()
   }).join('/')
 }
 
-
+UrlState.load = function() {
+  __components.forEach((component) => {
+    component.restore(window.location.hash)
+  })
+}
 
 export default UrlState

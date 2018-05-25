@@ -3,16 +3,19 @@ import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import PoiBlocContainer from './poi_bloc/poi_bloc_container'
 import PanelManager from './../proxies/panel_manager'
+import UrlState from "../proxies/url_state";
+import ExtendedString from "../libs/string";
 
 const store = new Store()
 
 function PoiPanel() {
-  this.isPoiComplient = true
+  this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
   this.active = false
   this.poiBlocContainer = new PoiBlocContainer()
   this.panel = new Panel(this, PoiPanelView)
   PanelManager.register(this)
+  UrlState.register(this)
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {
@@ -70,7 +73,27 @@ PoiPanel.prototype.setPoi = async function (poi) {
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   }
   this.active = true
+  UrlState.updateUrl()
   await this.panel.update()
+}
+
+
+/* urlState interface implementation */
+
+PoiPanel.prototype.store = function() {
+  return `place/${ExtendedString.slug(this.poi.name)}`
+}
+
+PoiPanel.prototype.restore = function(url) {
+  let urlParams = url.split('/')
+  urlParams.forEach((param, i) => {
+    if(param === 'place' && urlParams.length > i) {
+      let slug = urlParams[i + 1]
+      this.setPoi({
+        name : slug
+      })
+    }
+  })
 }
 
 export default PoiPanel

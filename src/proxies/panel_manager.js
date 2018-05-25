@@ -4,7 +4,6 @@ PanelManager.init = function () {
 }
 
 PanelManager.setPoi = function(poi) {
-  console.log(__panels.length, poi)
   __panels.forEach((panel) => {
     if(panel.isPoiComplient) {
       panel.setPoi(poi)
