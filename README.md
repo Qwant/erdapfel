@@ -8,8 +8,8 @@ Map webapp with Qwant map tiles and a search input
 
 ### prerequisites
 
-- npm > 5
-- node > 6
+- npm >= 6
+- node >= 8
 
 ### run test server
 ```
