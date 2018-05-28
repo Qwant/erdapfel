@@ -4,6 +4,7 @@ import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi";
 import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager";
+import UrlState from "../proxies/url_state";
 
 function Scene() {
   this.currentMarker = null
@@ -47,8 +48,7 @@ function Scene() {
       })
 
       this.mb.on('moveend', () => {
-        console.log(this.mb.getZoom(),
-        this.mb.getCenter())
+        UrlState.updateUrl()
       })
     })
   })
@@ -67,6 +67,7 @@ function Scene() {
 }
 
 Scene.prototype.flyTo = function (poi) {
+  console.log(this.mb.getBounds())
   if(poi.zoom) {
     this.mb.flyTo({
       center : poi.getLngLat(),

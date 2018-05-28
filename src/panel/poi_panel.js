@@ -77,7 +77,6 @@ PoiPanel.prototype.setPoi = async function (poi) {
   await this.panel.update()
 }
 
-
 /* urlState interface implementation */
 
 PoiPanel.prototype.store = function() {
