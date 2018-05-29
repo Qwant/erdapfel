@@ -14,14 +14,16 @@ UrlState.register = function(component) {
 }
 
 UrlState.updateUrl = function() {
-  let url = __components.map((componentWrap) => {
-     return componentWrap.component.store()
-  }).join('/')
+  let url = __components.map(
+    componentWrap => componentWrap.component.store()
+  ).filter(
+    urlFragment => urlFragment !== ''
+  ).join('/')
 
   if(history && typeof history.replaceState !== 'undefined') {
     history.replaceState(null, null, `#${url}`)
   } else {
-     //location.replace(url)
+    location.hash = url
   }
 }
 

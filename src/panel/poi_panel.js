@@ -80,22 +80,19 @@ PoiPanel.prototype.setPoi = async function (poi) {
 /* urlState interface implementation */
 
 PoiPanel.prototype.store = function() {
-  if(this.poi) {
+  if(this.poi && this.poi.name) {
     return `place/${ExtendedString.slug(this.poi.name)}`
   }
   return ''
 }
 
 PoiPanel.prototype.restore = function(url) {
-  let urlParams = url.split('/')
-  urlParams.forEach((param, i) => {
-    if(param === 'place' && urlParams.length > i) {
-      let slug = urlParams[i + 1]
-      this.setPoi({
-        name : slug
-      })
-    }
-  })
+  let place = url.match(/place\/(.*?)\//)
+  if(place) {
+    this.setPoi({
+      name : place[1]
+    })
+  }
 }
 
 export default PoiPanel

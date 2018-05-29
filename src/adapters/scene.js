@@ -52,19 +52,19 @@ Scene.prototype.initMapBox = function () {
         PanelManager.setPoi(poi)
         this.addMarker(poi)
       })
+    })
 
-      this.mb.on('moveend', () => {
-        UrlState.updateUrl()
-      })
+    this.mb.on('moveend', () => {
+      UrlState.updateUrl()
     })
   })
 
   listen('fly_to', (poi) => {
-   // this.flyTo(poi)
+    this.flyTo(poi)
   })
 
   listen('fit_bounds', (poi, options) => {
-    //this.fitBounds(poi, options)
+    this.fitBounds(poi, options)
   })
 
   listen('map_mark_poi', (poi) => {
