@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 })
 
 
-app.use(function (error, req, res) {
+app.use(function (error, req, res, next) {
   res.status(500).render('error', {error})
 })
 
