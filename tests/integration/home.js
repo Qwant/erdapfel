@@ -11,12 +11,10 @@ beforeAll(async () => {
     server = await httpServerPwa(__dirname + '/../../public/', {p: 8080});
     browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']})
     page = await browser.newPage();
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   }
-
 })
-
 
 test('is dom loaded',async () => {
   expect.assertions(1);
@@ -24,11 +22,9 @@ test('is dom loaded',async () => {
   try {
     let sceneContent = await page.waitForSelector("#scene_container");
     expect(sceneContent).not.toBeFalsy();
-  } catch (e) {
-    console.log(e)
-    expect(e).not.toBeFalsy();
+  } catch (error) {
+    console.log(error)
   }
-
 })
 
 test('is panels loaded',async () => {
@@ -37,9 +33,8 @@ test('is panels loaded',async () => {
   try {
     let sceneContent = await page.waitForSelector(".error_panel");
     expect(sceneContent).not.toBeFalsy();
-  } catch (e) {
-    console.log(e)
-    expect(e).not.toBeFalsy();
+  } catch (error) {
+    console.log(error)
   }
 })
 
