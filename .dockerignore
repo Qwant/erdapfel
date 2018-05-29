@@ -1,0 +1,9 @@
+**
+!public/
+!src/
+!bin/
+!local_modules/
+!config/
+!views/
+!language/
+!package*.json
