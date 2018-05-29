@@ -74,23 +74,24 @@ Scene.prototype.initMapBox = function () {
 
 Scene.prototype.flyTo = function (poi) {
   let flyOptions = {}
-  if(poi.zoom) {
-    flyOptions = {
-      center : poi.getLngLat(),
-      zoom : poi.zoom
-    }
-  } else {
-    flyOptions = {center : poi.getLngLat()}
-  }
+
   let windowBounds = this.mb.getBounds()
   const originalWindowBounds = windowBounds.toArray() /* simple way to clone value */
   let poiCenter = new mapboxgl.LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
   windowBounds.extend(poiCenter)
   /* flyTo location if it's in the window or else jumpTo */
   if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
+    let flyOptions = {center : poi.getLngLat()}
+    if(poi.zoom) {
+      flyOptions.zoom = poi.zoom
+    }
     this.mb.flyTo(flyOptions)
   } else {
+    if(poi.zoom) {
+      flyOptions.zoom = poi.zoom - 1
+    }
     this.mb.jumpTo(flyOptions)
+    this.mb.flyTo({zoom : poi.zoom})
   }
 }
 
