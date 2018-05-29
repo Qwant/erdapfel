@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <title>Qwant Maps - beta</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
-    <link href='css/app.css' rel='stylesheet'/>
+    <link href='./css/app.css' rel='stylesheet'/>
     <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css' rel='stylesheet'/>
   </head>
   <body>
@@ -25,8 +25,8 @@
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>
-    <script src="./file_loader.js"></script>
-    <script src="./javascript/bundle.js"></script>
+    <script src="./javascript/file_loader.js"></script>
+    <script src="./build/javascript/bundle.js"></script>
     <script>
       /* Autocomplete */
       document.onkeydown = (e) => {
@@ -37,7 +37,7 @@
       /* Progress */
       const progressBar = document.querySelector('#progress-bar')
       const loaderBar = document.querySelector('#loader-bar')
-      let mapLoader = new FileLoader('./javascript/map.js')
+      let mapLoader = new FileLoader('./build/javascript/map.js')
       mapLoader.onLoad = () => {
         loaderBar.classList.add('loader_bar--loaded')
       }
