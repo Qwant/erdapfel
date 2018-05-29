@@ -105,7 +105,7 @@ function buildPoi(response) {
     }
     let addressLabel = ''
     if(feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
-      addressLabel = feature.properties.geocoding.address.name
+      addressLabel = feature.properties.geocoding.address.label
     }
 
     let name = ''
