@@ -40,7 +40,7 @@ input[type="search"]::-webkit-search-cancel-button {
   width: 50px;
   height: 50px;
   right: 0;
-  background: #fff url(/images/not-active.svg) center no-repeat;
+  background: #fff url(../images/not-active.svg) center no-repeat;
   background-size: 20px 20px;
   font-size: 14px;
   color: #888;
@@ -175,7 +175,7 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 20px;
     height: 20px;
     font-size: 14px;
-    background-image: url(/images/qwant-logo.png);
+    background-image: url(../images/qwant-logo.png);
     background-size: 20px 20px;
     color: #888;
   }
