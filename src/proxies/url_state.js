@@ -1,25 +1,36 @@
 function UrlState() {}
 
 UrlState.init = function () {
-  window.__components = []
-  window.location.hash
+  if(!window.__components) {
+    window.__components = []
+  }
 }
+
 UrlState.register = function(component) {
   if(!component.store || !component.restore) {
     throw 'this componentn doesn\'t implement required methods'
   }
-  __components.push(component)
+  __components.push({component, consumable : true})
 }
 
 UrlState.updateUrl = function() {
-  window.location.hash = '/' + __components.map((component) => {
-    return component.store()
+  let url = __components.map((componentWrap) => {
+     return componentWrap.component.store()
   }).join('/')
+
+  if(history && typeof history.replaceState !== 'undefined') {
+    history.replaceState(null, null, `#${url}`)
+  } else {
+     //location.replace(url)
+  }
 }
 
 UrlState.load = function() {
-  __components.forEach((component) => {
-    component.restore(window.location.hash)
+  __components.forEach((componentWrap) => {
+    if(componentWrap.consumable) {
+      componentWrap.consumable = false
+      componentWrap.component.restore(window.location.hash)
+    }
   })
 }
 

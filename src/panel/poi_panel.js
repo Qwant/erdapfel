@@ -80,7 +80,10 @@ PoiPanel.prototype.setPoi = async function (poi) {
 /* urlState interface implementation */
 
 PoiPanel.prototype.store = function() {
-  return `place/${ExtendedString.slug(this.poi.name)}`
+  if(this.poi) {
+    return `place/${ExtendedString.slug(this.poi.name)}`
+  }
+  return ''
 }
 
 PoiPanel.prototype.restore = function(url) {

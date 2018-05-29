@@ -9,7 +9,6 @@ function Poi(latLon, id, name, className, subClassName, tags) {
   this.className = className
   this.subClassName = subClassName
   this.id = id ? id + '' : `${this.latLon.lat}_${this.latLon.lng}` // force string type or fallback to latlng key
-
 }
 
 Poi.prototype.getLngLat = function() {

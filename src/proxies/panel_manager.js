@@ -15,7 +15,6 @@ PanelManager.setPoi = function(poi) {
 
 PanelManager.toggleFavorite = function () {
   __panels.find((panel) => {
-    console.log(panel.isFavoritePanel)
     if(panel.isFavoritePanel) {
       panel.toggle()
     } else {
