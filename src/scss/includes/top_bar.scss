@@ -1,0 +1,9 @@
+.top_bar {
+  position: absolute;
+  width: calc(100vw - #{$side_bar_width});
+  height: 95px;
+  background: #fff;
+  border-bottom: 1px solid #f2f2f2;
+  top: 0;
+  right: 0;
+}
