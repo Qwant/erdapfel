@@ -7,3 +7,9 @@
   top: 0;
   right: 0;
 }
+
+@media (max-width: 640px) {
+  .top_bar {
+    position: inherit;
+  }
+}
