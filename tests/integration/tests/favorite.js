@@ -1,14 +1,12 @@
 import puppeteer from 'puppeteer'
-import httpServerPwa from'http-server-pwa'
+const APP_URL = 'http://localhost:3000'
 
-const APP_URL = 'http://localhost:8080'
+
 let browser
 let page
-let server
 
 beforeAll(async () => {
   try {
-    server = await httpServerPwa(__dirname + '/../../public/', {p: 8080});
     browser = await puppeteer.launch()
     page = await browser.newPage()
     page.on('console', msg => {
@@ -30,7 +28,7 @@ test('toggle favorite',async () => {
 
     let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
 
-    expect(favPanel).not.toBeFalsy();
+    expect(favPanel).not.toBeFalsy()
   } catch (error) {
     console.error(error)
   }
@@ -38,15 +36,4 @@ test('toggle favorite',async () => {
 
 afterAll(() => {
   browser.close()
-  server.close()
 })
-
-
-async function wait(ms = 1000) {
-  return new Promise((resolve, reject) => {
-    setTimeout(async()  => {
-      resolve()
-    }, ms)
-  })
-
-}

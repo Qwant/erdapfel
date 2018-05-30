@@ -1,6 +1,7 @@
 module.exports = {
 
-  testMatch : [__dirname+'/libs/*.js', __dirname+'/integration/*.js'],
+  testMatch : [__dirname+'/integration/tests/*.js'],
+  testEnvironment : __dirname +'/integration/remote_test_environment.js',
   testPathIgnorePatterns : ['/node_modules/'],
   'rootDir': __dirname + '/../',
   'verbose': true,
