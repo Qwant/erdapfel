@@ -1,24 +1,24 @@
 .search_form {
   position: absolute;
   display: flex;
-  top: 5px;
-  left: 101px;
-  width: $panel_width - 10px;
-  height: 50px;
+  top: 23px;
+  left: 23px;
+  width: 540px;
+  height: 46px;
   padding: 0;
   min-width: 25em;
   font: 12px/20px 'Helvetica', Arial, Helvetica, sans-serif;
   background-color: #fff;
   font-weight: 300;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
-  color: rgba(0, 0, 0, 0.3);
+  border:1px solid #cccccc;
+  border-radius: 3px;
+  color: #191919;
 }
 
 .search_form__input {
-  width: 400px;
-  height: 50px;
-  padding: 10px 54px 10px 20px;
+  width: 540px;
+  height: 44px;
+  padding: 8px 60px 10px 10px;
   font-size: 16px;
   font-weight: 300;
   border: none;
@@ -38,8 +38,8 @@ input[type="search"]::-webkit-search-cancel-button {
 .search_form__action {
   position: absolute;
   width: 50px;
-  height: 50px;
-  right: 0;
+  height: 44px;
+  right: 3px;
   background: #fff url(../images/not-active.svg) center no-repeat;
   background-size: 20px 20px;
   font-size: 14px;
@@ -49,7 +49,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .search_form__clear {
   right: 50px;
   color: #444648;
-  top: 18px;
+  top: 15px;
   position: absolute;
   cursor: pointer;
 }
@@ -78,6 +78,11 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   overflow-y: auto;
   box-sizing: border-box;
+}
+
+.autocomplete_address {
+  padding-left: 6px;
+  color : #777981;
 }
 
 .autocomplete_suggestion.selected {

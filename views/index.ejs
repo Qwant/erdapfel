@@ -11,17 +11,19 @@
     <div id="scene_container" class="map_container"></div>
 
     <div id="panels"></div>
-    <form onsubmit="return false" class="search_form">
-      <div class="search_form__burger" onclick="fire('toggle_burger')">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="search_form__logo"></div>
-      <input id="search" type="search" class="search_form__input" required placeholder="Où voulez-vous aller ?">
-      <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
-      <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
-    </form>
+    <div class="top_bar">
+      <form onsubmit="return false" class="search_form">
+        <div class="search_form__burger" onclick="fire('toggle_burger')">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="search_form__logo"></div>
+        <input id="search" type="search" class="search_form__input" required placeholder="Où voulez-vous aller ?">
+        <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
+        <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
+      </form>
+    </div>
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>

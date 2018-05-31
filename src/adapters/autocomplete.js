@@ -40,7 +40,7 @@ function SearchInput(tagSelector) {
       const suggestPromise = ajax.query(geocoderConfig.url, {q: term, center : center, bbox : bbox})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
-        this.pois = extractMapzenData(responses[0])
+        this.pois = buildPoi(responses[0])
         let historySuggestData = responses[1]
         historySuggestData = historySuggestData.map((historySuggest) => {
           let poi = Poi.load(historySuggest)
@@ -51,12 +51,13 @@ function SearchInput(tagSelector) {
         suggest(this.pois, term)
       })
     },
-    renderItem : ({id, name, fromHistory, className, subClassName}, search) => {
+    renderItem : ({id, name, fromHistory, className, subClassName, addressLabel}) => {
       let icon = IconManager.get({className : className, subClassName : subClassName})
       return `
 <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
   <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${icon ? `icon icon-${icon.iconClass}` : 'icon-location'}"></div>
   ${name}
+  ${addressLabel ? `<span class="autocomplete_address">${addressLabel}</span>` : ''}
 </div>
 `
     },
@@ -82,45 +83,12 @@ function select(poi) {
   }
 }
 
-function extractMapzenData(response) {
-  const listData = response.features.map((feature) => {
-    let emojiPicto = ''
+function buildPoi(response) {
+  return response.features.map((feature) => {
     let zoomLevel = 0
 
     const resultType = feature.properties.geocoding.type
-    switch (resultType) {
-      case 'venue':
-        emojiPicto = '🚘'
-        zoomLevel = 16
-        break
-      case 'street':
-        emojiPicto = '🚘'
-        zoomLevel = 15
-        break
-      case 'locality':
-        emojiPicto = '🌆'
-        zoomLevel = 12
-        break
-      case 'address':
-        emojiPicto = '🏠'
-        zoomLevel = 16
-        break
-      case 'localadmin':
-      case 'neighbourhood':
-      case 'macrocounty':
-      case 'region':
-      case 'macroregion':
-        emojiPicto = '🌎'
-        zoomLevel = 12
-        break
-      case 'country':
-        emojiPicto = '🌎'
-        zoomLevel = 6
-        break
-      default:
-        emojiPicto = '〰'
-        zoomLevel = 15
-    }
+
     let poiClassText = ''
     let poiSubclassText = ''
 
@@ -135,17 +103,25 @@ function extractMapzenData(response) {
         poiSubclassText = poiSubclass.value
       }
     }
-    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, feature.properties.geocoding.label, poiClassText, poiSubclassText)
+    let addressLabel = ''
+    if(feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
+      addressLabel = feature.properties.geocoding.address.label
+    }
 
+    let name = ''
+    if(addressLabel) {
+      name = feature.properties.geocoding.name
+    } else {
+      name = feature.properties.geocoding.label
+    }
+    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, name, poiClassText, poiSubclassText)
     poi.value = feature.properties.geocoding.label
-    poi.picto = emojiPicto
+    poi.addressLabel = addressLabel
     poi.poi_type = resultType
     poi.zoom = zoomLevel
     poi.bbox = feature['bbox']
     return poi
   })
-
-  return listData
 }
 
 export default SearchInput
