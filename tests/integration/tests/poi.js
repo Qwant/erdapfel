@@ -17,7 +17,7 @@ beforeAll(async () => {
   }
 })
 
-test('toggle favorite',async () => {
+test('toggle poi',async () => {
   expect.assertions(2);
   await page.goto(APP_URL)
   try {

@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer'
-
-const APP_URL = 'http://localhost:3000'
+const config = require('../config')
+const APP_URL = `http://localhost:${config.SERVER.PORT}`
 let browser
 let page
 

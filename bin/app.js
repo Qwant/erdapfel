@@ -12,7 +12,7 @@ function App() {
     res.render('index', {base : baseUrl})
   })
 
-  app.use((error, req, res) => {
+  app.use((error, req, res, next) => {
     res.status(500).render('error', {error})
   })
 }
@@ -33,7 +33,5 @@ App.prototype.close = function() {
     console.error('App handler does\'nt handle anything : can\'t stop')
   }
 }
-
-
 
 module.exports = App
