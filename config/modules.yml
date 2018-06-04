@@ -12,3 +12,7 @@ local:
 
 production:
   <<: *development-mod
+
+test:
+  store:
+    name: local_store

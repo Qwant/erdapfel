@@ -17,22 +17,21 @@ beforeAll(async () => {
   }
 })
 
-test('toggle poi',async () => {
+test('key press',async () => {
   expect.assertions(2);
   await page.goto(APP_URL)
-  try {
-    let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
-    expect(favPanelHidden).not.toBeFalsy()
-    await page.waitForNavigation()
-    await page.click('.side_bar__fav')
+  await page.waitForNavigation()
 
-    let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
+  await page.keyboard.type('Hello')
+  let cleanHandle = await page.waitForSelector('#clear_button')
+  expect(cleanHandle).not.toBeNull()
 
-    expect(favPanel).not.toBeFalsy()
-  } catch (error) {
-    console.error(error)
-  }
+  /* check input content */
+  let searchValueHandle = await page.evaluateHandle(() => { return document.querySelector('#search').value === 'Hello' })
+  expect(searchValueHandle._remoteObject.value).toBeTruthy()
 })
+
+
 
 afterAll(() => {
   browser.close()

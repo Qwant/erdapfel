@@ -44,3 +44,6 @@ local:
 
 production:
   <<: *development-active-poi
+
+test:
+  <<: *development-active-poi
