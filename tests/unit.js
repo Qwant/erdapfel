@@ -1,5 +1,4 @@
 module.exports = {
-
   testMatch : [__dirname+'/units/*.js'],
   testPathIgnorePatterns : ['/node_modules/'],
   'rootDir': __dirname + '/../',
