@@ -1,5 +1,5 @@
 module.exports = (function () {
-  const ENVIRONMENTS = ['local', 'development', 'production']
+  const ENVIRONMENTS = ['local', 'development', 'production', 'test']
   const env = process.env.ENV || 'local'
   let environment = ''
   if (ENVIRONMENTS.includes(env)) {
