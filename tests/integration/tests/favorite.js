@@ -70,4 +70,3 @@ test('add favorite', async () => {
 afterAll(() => {
   browser.close()
 })
-
