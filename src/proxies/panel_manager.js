@@ -1,10 +1,10 @@
 function PanelManager() {}
 PanelManager.init = function () {
-  window.__panels = []
+  window.__panel_manager = {panels : []}
 }
 
 PanelManager.setPoi = function(poi) {
-  __panels.forEach((panel) => {
+  __panel_manager.panels.forEach((panel) => {
     if(panel.isPoiComplient) {
       panel.setPoi(poi)
     } else {
@@ -14,7 +14,7 @@ PanelManager.setPoi = function(poi) {
 }
 
 PanelManager.toggleFavorite = function () {
-  __panels.find((panel) => {
+  __panel_manager.panels.find((panel) => {
     if(panel.isFavoritePanel) {
       panel.toggle()
     } else {
@@ -24,16 +24,16 @@ PanelManager.toggleFavorite = function () {
 }
 
 PanelManager.closeAll = function() {
-  __panels.forEach((panel) => {
+  __panel_manager.panels.forEach((panel) => {
     panel.close()
   })
 }
 
 PanelManager.register = function(panel) {
-  let existingPanel = __panels.find((panelIterator) => {
+  let existingPanel = __panel_manager.panels.find((panelIterator) => {
     return panelIterator.panel.cid === panel.panel.cid
   })
-  !existingPanel && __panels.push(panel)
+  !existingPanel && __panel_manager.panels.push(panel)
 }
 
 export default PanelManager
