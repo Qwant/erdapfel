@@ -111,7 +111,7 @@ Scene.prototype.addMarker = function(poi) {
 
 /* UrlState interface implementation */
 Scene.prototype.store = function () {
-  return `z${this.mb.getZoom()}/${this.mb.getCenter().lng}/${this.mb.getCenter().lat}`
+  return `z${this.mb.getZoom().toFixed(2)}/${this.mb.getCenter().lng.toFixed(7)}/${this.mb.getCenter().lat.toFixed(7)}`
 }
 
 Scene.prototype.restore = function (url) {
