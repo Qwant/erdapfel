@@ -71,12 +71,10 @@ test('simple_word', async () => {
     }
   })
   await page.goto(APP_URL)
-  //await page.keyboard.type('test')
-  await page.screenshot('./tmp/sipl.png')
-
-  //await wait(300)
-//  const autocompleteItems = await page.waitForSelector('.autocomplete_suggestion')
-  expect(1).not.toBeNull()
+  await page.keyboard.type('test')
+  await wait(100)
+  const autocompleteItems = await page.waitForSelector('.autocomplete_suggestion')
+  expect(autocompleteItems).not.toBeNull()
 })
 
 afterAll(() => {

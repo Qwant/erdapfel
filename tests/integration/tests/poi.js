@@ -23,13 +23,11 @@ test('click on a poi', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
 
-  page.screenshot({path : './tmp/test.png'})
-  const clickPoiHandle = page.evaluateHandle(() => {
-    return 'window.MAP_MOCK.selectPoi()'
-  })
+  let poi = await page.waitForSelector('#mock_poi')
+  await poi.click()
   await wait(300)
   await page.screenshot({path : './tmp/aa.png'})
-  expect(clickPoiHandle).not.toBeFalsy()
+  expect(1).not.toBeFalsy()
 })
 
 afterAll(() => {
