@@ -32,6 +32,9 @@ Scene.prototype.initMapBox = function () {
   }
 
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
+  this.mb.on('click', 'ra', () => {
+    console.log('haaa')
+  })
 
   this.mb.on('load', () => {
     const extendedControl = new ExtendedControl()
@@ -48,6 +51,7 @@ Scene.prototype.initMapBox = function () {
       })
 
       this.mb.on('click', interactiveLayer, (e) => {
+        console.log("Pweeeet : ", interactiveLayer)
         let poi = Poi.sceneLoad(e, this.mb.getZoom())
         PanelManager.setPoi(poi)
         this.addMarker(poi)
