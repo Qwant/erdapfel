@@ -33,6 +33,11 @@ function SearchInput(tagSelector) {
     source : (term, suggest) => {
       let center = window.map.center().toArray()
       let bbox = window.map.bbox().toArray()
+      /* FIXME
+        'center' and 'bbox' are currently not used by the geocoder.
+         Still, they could be useful for telemetry purposes.
+         Should the exact position be made fuzzy ?
+      */
       const suggestPromise = ajax.query(geocoderConfig.url, {q: term, center : center, bbox : bbox})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
