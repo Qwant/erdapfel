@@ -1,8 +1,8 @@
 function UrlState() {}
 
 UrlState.init = function () {
-  if(!window.__components) {
-    window.__components = []
+  if(!window.__url_state) {
+    window.__url_state = {components : []}
   }
 }
 
@@ -10,11 +10,11 @@ UrlState.register = function(component) {
   if(!component.store || !component.restore) {
     throw 'this componentn doesn\'t implement required methods'
   }
-  __components.push({component, consumable : true})
+  __url_state.components.push({component, consumable : true})
 }
 
 UrlState.updateUrl = function() {
-  let url = __components.map(
+  let url = __url_state.components.map(
     componentWrap => componentWrap.component.store()
   ).filter(
     urlFragment => urlFragment !== ''
@@ -28,7 +28,7 @@ UrlState.updateUrl = function() {
 }
 
 UrlState.load = function() {
-  __components.forEach((componentWrap) => {
+  __url_state.components.forEach((componentWrap) => {
     if(componentWrap.consumable) {
       componentWrap.consumable = false
       componentWrap.component.restore(window.location.hash)
