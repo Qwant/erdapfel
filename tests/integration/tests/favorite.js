@@ -25,7 +25,6 @@ test('toggle favorite', async () => {
   try {
     let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
     expect(favPanelHidden).not.toBeFalsy()
-    await page.waitForNavigation()
     await page.click('.side_bar__fav')
     let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
     expect(favPanel).not.toBeFalsy()
@@ -37,7 +36,6 @@ test('toggle favorite', async () => {
 test('add favorite', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await page.waitForNavigation()
   page.evaluate(() => {
     fire('store_poi', {name : 'Poi name', getKey : () => {return 1}, store: () => {return {id: 1}}}) /* minimal poi */
   })
@@ -50,8 +48,7 @@ test('add favorite', async () => {
 test('add favorite', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
-  await page.waitForNavigation()
-  page.evaluate(() => {
+  await page.evaluate(() => {
     fire('store_poi', {name : 'Poi name', getKey : () => {return 1}, store: () => {return {id: 1}}}) /* minimal poi */
   })
   await page.click('.side_bar__fav')

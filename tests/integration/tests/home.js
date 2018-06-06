@@ -27,7 +27,6 @@ test('is dom loaded',async () => {
 test('is panels loaded',async () => {
   expect.assertions(1);
   await page.goto(APP_URL)
-  await page.waitForNavigation()
   try {
     let sceneContent = await page.waitForSelector(".error_panel");
     expect(sceneContent).not.toBeFalsy()
@@ -39,7 +38,6 @@ test('is panels loaded',async () => {
 test('is map loaded',async () => {
   expect.assertions(1);
   await page.goto(APP_URL)
-  await page.waitForNavigation()
   let sceneContent = await page.waitForSelector(".mapboxgl-canvas");
   expect(sceneContent).not.toBeFalsy()
 })
