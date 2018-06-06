@@ -17,21 +17,4 @@ const URI = {
   }
 }
 
-Window.UriState = () => {
-  this.position = {}
-  this.zoom = 0
-  this.poi = null
-
-}
-
-window.UrlState = {
-  states : [],
-  getState : () => {
-
-  },
-  pushState : (state) => {
-
-  }
-}
-
 export default URI

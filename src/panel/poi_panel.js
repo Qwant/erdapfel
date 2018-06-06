@@ -54,6 +54,7 @@ PoiPanel.prototype.close = async function() {
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()
+  UrlState.updateUrl()
 }
 
 PoiPanel.prototype.setPoi = async function (poi) {
@@ -80,7 +81,8 @@ PoiPanel.prototype.setPoi = async function (poi) {
 /* urlState interface implementation */
 
 PoiPanel.prototype.store = function() {
-  if(this.poi && this.poi.name) {
+  // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
+  if(this.poi && this.poi.name && this.active) {
     return `place/${ExtendedString.slug(this.poi.name)}`
   }
   return ''
