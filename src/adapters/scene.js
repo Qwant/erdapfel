@@ -8,8 +8,8 @@ import UrlState from "../proxies/url_state"
 
 function Scene() {
   UrlState.register(this)
-  this.zoom = 6
-  this.center = [46,6]
+  this.zoom = 2
+  this.center = [20,20]
   this.currentMarker = null
 }
 
