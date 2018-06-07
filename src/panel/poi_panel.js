@@ -15,7 +15,7 @@ function PoiPanel() {
   this.poiBlocContainer = new PoiBlocContainer()
   this.panel = new Panel(this, PoiPanelView)
   PanelManager.register(this)
-  UrlState.register(this)
+  UrlState.registerResource(this, 'place')
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {
@@ -84,16 +84,15 @@ PoiPanel.prototype.setPoi = async function (poi) {
 PoiPanel.prototype.store = function() {
   // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
   if(this.poi && this.poi.name && this.active) {
-    return `place/${ExtendedString.slug(this.poi.name)}`
+    return ExtendedString.slug(this.poi.name)
   }
   return ''
 }
 
-PoiPanel.prototype.restore = function(url) {
-  let place = url.match(/place\/(.*?)\//)
-  if(place) {
+PoiPanel.prototype.restore = function(urlShard) {
+  if(urlShard) {
     this.setPoi({
-      name : place[1]
+      name : urlShard
     })
   }
 }

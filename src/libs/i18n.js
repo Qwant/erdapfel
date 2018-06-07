@@ -25,7 +25,7 @@ I18n.prototype.setLang = async function(baseLang = navigator.language) {
     this.language = languages.defaultLanguage
   }
   try {
-    await AsyncFileLoader(`message/${this.language.locale}.js`)
+    await AsyncFileLoader(`/message/${this.language.locale}.js`)
   } catch (e) {
     console.error(e)
   }

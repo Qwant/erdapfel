@@ -7,7 +7,7 @@ import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 
 function Scene() {
-  UrlState.register(this)
+  UrlState.registerHash(this, 'map')
   this.zoom = 2
   this.center = [20,20]
   this.currentMarker = null
@@ -113,11 +113,11 @@ Scene.prototype.addMarker = function(poi) {
 
 /* UrlState interface implementation */
 Scene.prototype.store = function () {
-  return `z${this.mb.getZoom().toFixed(2)}/${this.mb.getCenter().lng.toFixed(7)}/${this.mb.getCenter().lat.toFixed(7)}`
+  return `${this.mb.getZoom().toFixed(2)}/${this.mb.getCenter().lng.toFixed(7)}/${this.mb.getCenter().lat.toFixed(7)}`
 }
 
-Scene.prototype.restore = function (url) {
-  let geoCenter = url.match(/z(\d*[.]?\d+)\/(\d*[.]?\d+)\/(\d*[.]?\d+)/)
+Scene.prototype.restore = function (urlShard) {
+  let geoCenter = urlShard.match(/(\d*[.]?\d+)\/(\d*[.]?\d+)\/(\d*[.]?\d+)/)
   if(geoCenter) {
     this.zoom = parseFloat(geoCenter[1])
     this.center = [parseFloat(geoCenter[2]), parseFloat(geoCenter[3])]
