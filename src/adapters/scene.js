@@ -88,9 +88,11 @@ Scene.prototype.flyTo = function (poi) {
   } else {
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom - 1
+      this.mb.jumpTo(flyOptions)
+      this.mb.flyTo({zoom : poi.zoom})
+    } else {
+      this.mb.jumpTo(flyOptions)
     }
-    this.mb.jumpTo(flyOptions)
-    this.mb.flyTo({zoom : poi.zoom})
   }
 }
 
