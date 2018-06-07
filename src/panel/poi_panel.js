@@ -48,6 +48,7 @@ PoiPanel.prototype.open = async function() {
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = true
   this.panel.update()
+  UrlState.updateUrl()
 }
 
 PoiPanel.prototype.close = async function() {
