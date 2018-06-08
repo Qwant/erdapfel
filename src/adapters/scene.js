@@ -55,7 +55,7 @@ Scene.prototype.initMapBox = function () {
     })
 
     this.mb.on('moveend', () => {
-      UrlState.updateUrl()
+      UrlState.replaceUrl()
     })
   })
 
@@ -117,7 +117,7 @@ Scene.prototype.store = function () {
 }
 
 Scene.prototype.restore = function (urlShard) {
-  let geoCenter = urlShard.match(/(\d*[.]?\d+)\/(\d*[.]?\d+)\/(\d*[.]?\d+)/)
+  let geoCenter = urlShard.match(/(\d*[.]?\d+)\/(-?\d*[.]?\d+)\/(-?\d*[.]?\d+)/)
   if(geoCenter) {
     this.zoom = parseFloat(geoCenter[1])
     this.center = [parseFloat(geoCenter[2]), parseFloat(geoCenter[3])]

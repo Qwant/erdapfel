@@ -48,34 +48,33 @@ PoiPanel.prototype.open = async function() {
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = true
   this.panel.update()
-  UrlState.updateUrl()
+  UrlState.pushUrl()
 }
 
 PoiPanel.prototype.close = async function() {
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()
-  UrlState.updateUrl()
+  UrlState.pushUrl()
+}
+
+PoiPanel.prototype.restorePoi = async function (poi) {
+  this.poi = poi
+  this.poi.stored = await isPoiFavorite(poi)
+  this.active = true
+  await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
+  await this.panel.update()
 }
 
 PoiPanel.prototype.setPoi = async function (poi) {
   fire('poi_open')
-  try {
-    let storePoi = await store.has(poi)
-    this.poi = poi
-    if(storePoi) {
-      this.poi.stored = true
-    }
-  } catch(e) {
-    this.poi = poi
-    this.poi.stored = false
-  }
-
+  this.poi = poi
+  this.poi.stored = isPoiFavorite(poi)
   if(this.active === false) {
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   }
   this.active = true
-  UrlState.updateUrl()
+  UrlState.pushUrl()
   await this.panel.update()
 }
 
@@ -91,10 +90,24 @@ PoiPanel.prototype.store = function() {
 
 PoiPanel.prototype.restore = function(urlShard) {
   if(urlShard) {
-    this.setPoi({
+    this.restorePoi({
       name : urlShard
     })
   }
+}
+
+/* private */
+
+async function isPoiFavorite(poi) {
+  try {
+    let storePoi = await store.has(poi)
+    if(storePoi) {
+      return true
+    }
+  } catch(e) {
+    return false
+  }
+  return false
 }
 
 export default PoiPanel
