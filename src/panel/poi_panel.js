@@ -69,7 +69,7 @@ PoiPanel.prototype.restorePoi = async function (poi) {
 PoiPanel.prototype.setPoi = async function (poi) {
   fire('poi_open')
   this.poi = poi
-  this.poi.stored = isPoiFavorite(poi)
+  this.poi.stored = await isPoiFavorite(poi)
   if(this.active === false) {
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   }
