@@ -83,16 +83,23 @@ PoiPanel.prototype.setPoi = async function (poi) {
 PoiPanel.prototype.store = function() {
   // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
   if(this.poi && this.poi.name && this.active) {
-    return ExtendedString.slug(this.poi.name)
+    let id = 'osm:fake:42'
+    let slug = ExtendedString.slug(this.poi.name)
+    return `${id}@${slug}`
   }
   return ''
 }
 
 PoiPanel.prototype.restore = function(urlShard) {
   if(urlShard) {
-    this.restorePoi({
-      name : urlShard
-    })
+    let id_slug_match = urlShard.match(/^([^@]+)@?(.*)/)
+    if (id_slug_match) {
+      let id = id_slug_match[1]
+      let slug = id_slug_match[2]
+      this.restorePoi({
+        name : slug
+      })
+    }
   }
 }
 

@@ -11,7 +11,8 @@ ExtendedString.ellipsis = function (str, length) {
 }
 
 ExtendedString.slug = function (str) {
-    return str.toLowerCase().replace(/ /g, '_')
+    // Remove non-alphanumeric and non-latin characters
+    return str.replace(/[^0-9a-zA-Z\u00C0-\u017F\s-_]/g,'').replace(/\s+/g, '_')
 }
 
 export default ExtendedString
