@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
+const environment = require('environment')
 const baseUrl = process.env.MAPS_BASE_URL || '/'
+
 
 function App() {
   this.handler = null
@@ -9,7 +11,7 @@ function App() {
   app.use(express.static(`${__dirname}/../public`))
 
   app.get('/*', (req, res) => {
-    res.render('index', {base : baseUrl})
+    res.render('index', {base : baseUrl, environment : environment})
   })
 
   app.use((error, req, res, next) => {
