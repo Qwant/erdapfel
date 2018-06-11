@@ -1,14 +1,6 @@
 const path = require('path')
 const yaml = require('node-yaml')
-
-const ENVIRONMENTS = ['local', 'development', 'production']
-const env = process.env.ENV || 'local'
-let environment = ''
-if(ENVIRONMENTS.includes(env)) {
-  environment = env
-} else {
-  throw `Typo in your environment : ${env}. environment must be ${ENVIRONMENTS.join(', ')}`
-}
+const environment = require('environment')
 
 console.log('*--------------------*')
 console.log(`Building on ${environment} mode`)

@@ -1,0 +1,8 @@
+development: &development-services
+  base: /
+
+local:
+  base: /
+
+production:
+  base: /tileview
