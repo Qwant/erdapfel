@@ -6,6 +6,8 @@ import IconManager from '../adapters/icon_manager'
 import State from '../main'
 
 import Store from '../adapters/store'
+import Favorite from "../panel/favorites_panel";
+import PanelManager from "../proxies/panel_manager";
 const store = new Store()
 
 function SearchInput(tagSelector) {
@@ -31,7 +33,6 @@ function SearchInput(tagSelector) {
     source : (term, suggest) => {
       let center = window.map.center().toArray()
       let bbox = window.map.bbox().toArray()
-
       /* FIXME
         'center' and 'bbox' are currently not used by the geocoder.
          Still, they could be useful for telemetry purposes.
@@ -79,7 +80,7 @@ function select(poi) {
       fire('fly_to', poi)
     }
     fire('map_mark_poi', poi)
-    State.app.poiPanel.close()
+    PanelManager.closeAll()
   }
 }
 

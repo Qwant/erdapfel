@@ -2,20 +2,20 @@ import PoiPanelView from '../views/poi_panel.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import PoiBlocContainer from './poi_bloc/poi_bloc_container'
+import PanelManager from './../proxies/panel_manager'
+import UrlState from "../proxies/url_state";
+import ExtendedString from "../libs/string";
 
 const store = new Store()
 
 function PoiPanel() {
-  listen('display_poi_data', (poi) => {
-    this.showInfoBox(poi)
-  })
-  listen('open_favorite', () => {
-    this.close()
-  })
+  this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
   this.active = false
   this.poiBlocContainer = new PoiBlocContainer()
   this.panel = new Panel(this, PoiPanelView)
+  PanelManager.register(this)
+  UrlState.registerResource(this, 'place')
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {
@@ -38,6 +38,7 @@ PoiPanel.prototype.toggle = async function() {
   if(this.active) {
     this.close()
   } else {
+    PanelManager.closeAll()
     this.open()
   }
 }
@@ -47,32 +48,73 @@ PoiPanel.prototype.open = async function() {
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = true
   this.panel.update()
+  UrlState.pushUrl()
 }
 
 PoiPanel.prototype.close = async function() {
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()
+  UrlState.pushUrl()
 }
 
-PoiPanel.prototype.showInfoBox = async function (poi) {
-  fire('poi_open')
-  try {
-    let storePoi = await store.has(poi)
-    this.poi = poi
-    if(storePoi) {
-      this.poi.stored = true
-    }
-  } catch(e) {
-    this.poi = poi
-    this.poi.stored = false
-  }
+PoiPanel.prototype.restorePoi = async function (poi) {
+  this.poi = poi
+  this.poi.stored = await isPoiFavorite(poi)
+  this.active = true
+  await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
+  await this.panel.update()
+}
 
+PoiPanel.prototype.setPoi = async function (poi) {
+  fire('poi_open')
+  this.poi = poi
+  this.poi.stored = await isPoiFavorite(poi)
   if(this.active === false) {
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   }
   this.active = true
+  UrlState.pushUrl()
   await this.panel.update()
+}
+
+/* urlState interface implementation */
+
+PoiPanel.prototype.store = function() {
+  // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
+  if(this.poi && this.poi.name && this.active) {
+    let id = 'osm:fake:42'
+    let slug = ExtendedString.slug(this.poi.name)
+    return `${id}@${slug}`
+  }
+  return ''
+}
+
+PoiPanel.prototype.restore = function(urlShard) {
+  if(urlShard) {
+    let id_slug_match = urlShard.match(/^([^@]+)@?(.*)/)
+    if (id_slug_match) {
+      let id = id_slug_match[1]
+      let slug = id_slug_match[2]
+      this.restorePoi({
+        name : slug
+      })
+    }
+  }
+}
+
+/* private */
+
+async function isPoiFavorite(poi) {
+  try {
+    let storePoi = await store.has(poi)
+    if(storePoi) {
+      return true
+    }
+  } catch(e) {
+    return false
+  }
+  return false
 }
 
 export default PoiPanel

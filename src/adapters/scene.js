@@ -1,17 +1,25 @@
 import mapboxgl from 'mapbox-gl'
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
-import Poi from "../mapbox/poi";
+import Poi from "../mapbox/poi"
 import StyleLaundry from '../mapbox/style_laundry'
+import PanelManager from "../proxies/panel_manager"
+import UrlState from "../proxies/url_state"
 
 function Scene() {
+  UrlState.registerHash(this, 'map')
+  this.zoom = 2
+  this.center = [20,20]
   this.currentMarker = null
+}
+
+Scene.prototype.initMapBox = function () {
   this.mb = new mapboxgl.Map({
     container: 'scene_container',
     style: StyleLaundry(qwantStyle),
-    zoom: 14,
-    center: [2.2900, 48.8719],
-    hash: true
+    zoom: this.zoom,
+    center: this.center,
+    hash: false
   })
 
   window.map = {
@@ -41,9 +49,13 @@ function Scene() {
 
       this.mb.on('click', interactiveLayer, (e) => {
         let poi = Poi.sceneLoad(e, this.mb.getZoom())
-        fire('display_poi_data', poi)
+        PanelManager.setPoi(poi)
         this.addMarker(poi)
       })
+    })
+
+    this.mb.on('moveend', () => {
+      UrlState.replaceUrl()
     })
   })
 
@@ -61,15 +73,26 @@ function Scene() {
 }
 
 Scene.prototype.flyTo = function (poi) {
-  if(poi.zoom) {
-    this.mb.flyTo({
-      center : poi.getLngLat(),
-      zoom : poi.zoom
-    })
+
+  let windowBounds = this.mb.getBounds()
+  const originalWindowBounds = windowBounds.toArray() /* simple way to clone value */
+  let poiCenter = new mapboxgl.LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
+  windowBounds.extend(poiCenter)
+  /* flyTo location if it's in the window or else jumpTo */
+  let flyOptions = {center : poi.getLngLat()}
+  if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
+    if(poi.zoom) {
+      flyOptions.zoom = poi.zoom
+    }
+    this.mb.flyTo(flyOptions)
   } else {
-    this.mb.flyTo({
-      center : poi.getLngLat()
-    })
+    if(poi.zoom) {
+      flyOptions.zoom = poi.zoom - 1
+      this.mb.jumpTo(flyOptions)
+      this.mb.flyTo({zoom : poi.zoom})
+    } else {
+      this.mb.jumpTo(flyOptions)
+    }
   }
 }
 
@@ -86,6 +109,24 @@ Scene.prototype.addMarker = function(poi) {
     .addTo(this.mb)
   this.currentMarker = marker
   return marker
+}
+
+/* UrlState interface implementation */
+Scene.prototype.store = function () {
+  return `${this.mb.getZoom().toFixed(2)}/${this.mb.getCenter().lng.toFixed(7)}/${this.mb.getCenter().lat.toFixed(7)}`
+}
+
+Scene.prototype.restore = function (urlShard) {
+  let geoCenter = urlShard.match(/(\d*[.]?\d+)\/(-?\d*[.]?\d+)\/(-?\d*[.]?\d+)/)
+  if(geoCenter) {
+    this.zoom = parseFloat(geoCenter[1])
+    this.center = [parseFloat(geoCenter[2]), parseFloat(geoCenter[3])]
+  }
+}
+
+/* private */
+function compareBoundsArray(boundsA, boundsB) {
+  return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
 }
 
 export default Scene
