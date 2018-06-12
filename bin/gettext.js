@@ -2,13 +2,6 @@ const fs = require('fs')
 const poJs = require('po-js')
 const langMessages = {}
 
-function getPoData(path) {
-  let messageBuffer = fs.readFileSync(path)
-  let messageLines = messageBuffer.toString().split(/\n/g)
-  return poJs(messageLines)
-}
-
-
 /**
  * Translate message
  * Ex : _('string', 'home page') -> string
@@ -53,6 +46,22 @@ function replacePlaceholders(string, placeholders) {
   return string
 }
 
+/**
+ *
+ * @param path
+ * extract po data from file path given
+ */
+function getPoData(path) {
+  let messageBuffer = fs.readFileSync(path)
+  let messageLines = messageBuffer.toString().split(/\n/g)
+  return poJs(messageLines)
+}
+
+/**
+ * Midleware that setup _ et _n for the user lang settings
+ * @param app
+ * @param languages workaround avoiding parsing yaml on every request
+ */
 module.exports = function(app, languages) {
 
   languages.forEach((language) => {
