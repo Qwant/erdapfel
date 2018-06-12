@@ -2,6 +2,10 @@ const yml = require('yml')
 const environment = require('environment')
 const languages = yaml.readSync('./language.yml')[environment]
 const translate = require('i18n')
+const langMessages = {}
+languages.forEach((language) => {
+  langMessages[language.code] = {code : language.code, locale: language.locale, messages : getMessages(`${__dirname}/../language/${language.locale}a`)}
+})
 /*
 
   [on app load]
@@ -9,7 +13,7 @@ const translate = require('i18n')
   language_list <- language_config
 
   for each language_list as language
-    message_list <- create pair code + messages
+    message_list <- create pair code + messages accessible on O(1)
   fin pour for each
 
 
@@ -24,8 +28,6 @@ const translate = require('i18n')
 
   out : translated
 
-
-
  */
 
 
@@ -36,10 +38,17 @@ const messages = languages.map((language) => {
   }
 })
 
+function getMessages() {
+
+}
+
+
+
+
 
 
 module.exports = (function() {
-  app.locals._ = translate._.bind()
-  app.locals._n = translate._n.bind()
+  app.locals._ = _
+  app.locals._n = _n
 })()
 

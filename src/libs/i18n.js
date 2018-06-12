@@ -33,7 +33,7 @@ I18n.prototype.setLang = async function(baseLang = navigator.language) {
   } catch (e) {
     console.error(e)
   }
-  this.translate.setMessage(window.i18nData.message)
+  this.message = window.i18nData.message
 
   this.getPlural = window.i18nData.getPlural
   this.date = window.i18nDate
