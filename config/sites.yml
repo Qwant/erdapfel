@@ -1,8 +1,8 @@
 development: &development-services
-  base: /
+  base: /tileview/
 
 local:
   base: /
 
 production:
-  base: /tileview
+  base: /
