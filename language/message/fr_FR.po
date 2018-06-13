@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-05-09 10:35+0200\n"
-"PO-Revision-Date: 2018-05-09 10:35+0200\n"
+"POT-Creation-Date: 2018-06-13 11:44+0200\n"
+"PO-Revision-Date: 2018-06-13 11:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -14,8 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: public/javascript/bundle.js\n"
-"X-Poedit-SearchPath-1: config\n"
+"X-Poedit-SearchPath-0: config\n"
+"X-Poedit-SearchPath-1: views\n"
+"X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
+"X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 
 #: config/active_poi_section.yml:6
 msgid "Opening hours"
@@ -45,57 +47,74 @@ msgstr "happy hours!"
 msgid "Last pint"
 msgstr "Dernière pinte"
 
-#: public/javascript/bundle.js:295
+#: public/build/javascript/bundle.js:1016
 msgid "string"
 msgstr ""
 
-#: public/javascript/bundle.js:311 public/javascript/bundle.js:312
+#: public/build/javascript/bundle.js:1032
+#: public/build/javascript/bundle.js:1033
 #, python-format
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/javascript/bundle.js:969
+#: public/build/javascript/bundle.js:1121
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
-#: public/javascript/bundle.js:969
+#: public/build/javascript/bundle.js:1121
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
 
-#: public/javascript/bundle.js:969
+#: public/build/javascript/bundle.js:1121
 #, python-format
 msgid "%d favorite place"
 msgid_plural "%d favorite places"
 msgstr[0] "Lieu favori"
 msgstr[1] "Mes %d lieux favoris"
 
-#: public/javascript/bundle.js:1644
+#: public/build/javascript/bundle.js:1802
 msgid "filter"
 msgstr "filtre"
 
-#: public/javascript/bundle.js:1694
+#: public/build/javascript/bundle.js:1852
 msgid "Register masq"
 msgstr "S'enregistrer sur Masq"
 
-#: public/javascript/bundle.js:1694
+#: public/build/javascript/bundle.js:1852
 msgid "We use MASQ to keep your preference data safe"
 msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
 
-#: public/javascript/bundle.js:1694
+#: public/build/javascript/bundle.js:1852
 msgid "Register"
 msgstr "S'enregistrer"
 
-#: public/javascript/bundle.js:1802
+#: public/build/javascript/bundle.js:2455
+msgid "Via Wikipédia"
+msgstr "Voir sur Wikipédia"
+
+#: public/build/javascript/bundle.js:2455
+msgid "Via WikiData"
+msgstr "Voir sur Wikidata"
+
+#: public/build/javascript/bundle.js:2640
 msgid "RESULTS"
 msgstr "RÉSULTATS"
 
-#: public/javascript/bundle.js:1802
+#: public/build/javascript/bundle.js:2640
 msgid "FAVORITES"
 msgstr "FAVORIS"
+
+#: views/index.ejs:5
+msgid "Qwant Maps - beta"
+msgstr "Qwant Maps - beta"
+
+#: views/index.ejs:23
+msgid "Where do you want to go ?"
+msgstr "Où voulez-vous aller ?"
 
 #~ msgid "Beers"
 #~ msgstr "Bières"
@@ -108,12 +127,6 @@ msgstr "FAVORIS"
 
 #~ msgid "Wikipedia"
 #~ msgstr "Wikipédia"
-
-#~ msgid "Via Wikipédia"
-#~ msgstr "Voir sur Wikipédia"
-
-#~ msgid "Via WikiData"
-#~ msgstr "Voir sur Wikidata"
 
 #~ msgid "Results"
 #~ msgstr "Résultats"

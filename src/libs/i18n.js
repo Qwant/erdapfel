@@ -39,6 +39,21 @@ I18n.prototype.setLang = async function(baseLang = navigator.language) {
   this.date = window.i18nDate
 }
 
+/**
+ * translate short days
+ * @param day short name of the day ex. sa for saturday
+ * @param dayKey the dictionary key containing day name can be dayNamesMin, dayNamesShort, dayNames
+ * @returns {*}
+ */
+I18n.prototype.getDay = function(day, dayKey) {
+  let pos = I18n.days.indexOf(day)
+  /* default key is long day format */
+  if(!this.date[dayKey]) {
+    dayKey = 'dayNames'
+  }
+  return this.date[dayKey][pos]
+}
+
 I18n.prototype.getLang = function() {
   return this.language
 }
