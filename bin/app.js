@@ -3,7 +3,7 @@ const app = express()
 
 function App(config) {
   /* set in res the user lang config */
-  const lang = require('./middlewares/lang')(languagesConfig)
+  const lang = require('./middlewares/lang')(config.languages)
   app.use(lang)
 
   this.handler = null
@@ -39,3 +39,5 @@ App.prototype.close = function() {
     console.error('App handler does\'nt handle anything : can\'t stop')
   }
 }
+
+module.exports = App

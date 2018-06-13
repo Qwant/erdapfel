@@ -1,6 +1,7 @@
 import nconf from 'nconf-getter'
 import AsyncFileLoader from './async_file_loader'
 
+const Gettext = require('gettext')
 const languageConfigs = nconf.get().languages
 const supportedLanguages = languageConfigs.supportedLanguages
 const defaultLanguage = languageConfigs.defaultLanguage
@@ -10,10 +11,9 @@ const defaultLanguage = languageConfigs.defaultLanguage
  *
  */
 function I18n() {
-  this.translate = new Translate(window.i18nData.message)
-
-  window._ = this.translate._.bind(this)
-  window._n = this.translate._n.bind(this)
+  this.gettext = new Gettext()
+  window._ = this.gettext._.bind(this.gettext)
+  window._n = this.gettext._n.bind(this.gettext)
   window.getDay = this.getDay.bind(this)
   window.setLang = this.setLang.bind(this)
   window.getLang = this.getLang.bind(this)
@@ -33,7 +33,7 @@ I18n.prototype.setLang = async function(baseLang = navigator.language) {
   } catch (e) {
     console.error(e)
   }
-  this.message = window.i18nData.message
+  this.gettext.setMessage(window.i18nData.message)
 
   this.getPlural = window.i18nData.getPlural
   this.date = window.i18nDate

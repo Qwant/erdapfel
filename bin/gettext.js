@@ -63,7 +63,6 @@ function getPoData(path) {
  * @param languages workaround avoiding parsing yaml on every request
  */
 module.exports = function(app, languages) {
-
   languages.forEach((language) => {
     let poData = getPoData(`${__dirname}/../language/message/${language.locale}.po`)
     let plural =  Function('n', `return ${poData.options.plural}`)
@@ -83,7 +82,5 @@ module.exports = function(app, languages) {
 
     next()
   }
-
-
 }
 
