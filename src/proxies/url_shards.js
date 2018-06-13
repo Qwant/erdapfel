@@ -23,7 +23,7 @@ UrlShards.toUrl = function () {
     .map((shard) => shard.toString())
     .filter((shard) => shard !== null)
 
-  return `/${url.join('/')}#${urlHash.join('&')}`
+  return `${window.baseUrl}${url.join('/')}#${urlHash.join('&')}`
 }
 
 
