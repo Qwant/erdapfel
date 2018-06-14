@@ -6,7 +6,6 @@ module.exports = {
   'rootDir': __dirname + '/../',
   'verbose': true,
   'collectCoverage': false,
-  'moduleFileExtensions': ['js', 'yml'],
   'transform': {
     '\\.yml$': 'yaml-jest',
     '\\.js?$': 'babel-jest'
