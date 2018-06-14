@@ -42,5 +42,9 @@ const subClasses = {
 }
 
 module.exports = function (subClass) {
-  return subClasses[subClass]()
+  if(subClasses[subClass]) {
+    return subClasses[subClass]()
+  } else {
+    return ''
+  }
 }
