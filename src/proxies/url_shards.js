@@ -36,9 +36,15 @@ UrlShards.parseUrl = function () {
     })
 
     this.getShards().forEach((shard) => {
+      let skip = false
       resourceRawShards.forEach((resourceRawShard, i) => {
-        if(shard.prefix === resourceRawShard) {
+        if(skip) {
+          skip = false
+          return
+        }
+        if(shard.prefix === resourceRawShard && resourceRawShards.length > i+1) {
           shards.push({prefix : resourceRawShard, value : resourceRawShards[i+1]})
+          skip = true
         }
       })
     })
