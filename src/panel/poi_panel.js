@@ -3,8 +3,8 @@ import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import PoiBlocContainer from './poi_bloc/poi_bloc_container'
 import PanelManager from './../proxies/panel_manager'
-import UrlState from "../proxies/url_state";
-import ExtendedString from "../libs/string";
+import UrlState from '../proxies/url_state'
+import ExtendedString from '../libs/string'
 
 const store = new Store()
 
