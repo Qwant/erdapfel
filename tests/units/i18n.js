@@ -5,8 +5,8 @@ const date = require('../__data__/i18n').date
 describe('i18n', () => {
   let i18n = new I18n()
   /* avoid set lang */
-  i18n.message = i18nData.message
   i18n.getPlural = i18nData.getPlural
+  i18n.gettext.setMessage(i18nData.message)
   i18n.date = date
 
   test('_', () => {
