@@ -23,21 +23,31 @@ UrlShards.toUrl = function () {
     .map((shard) => shard.toString())
     .filter((shard) => shard !== null)
 
-  return `/${url.join('/')}#${urlHash.join('&')}`
+  return `${window.baseUrl}${url.join('/')}#${urlHash.join('&')}`
 }
-
-
 
 UrlShards.parseUrl = function () {
   let shards = []
+
   if(window.location.pathname) {
     let resourceRawShards = window.location.pathname.split('/')
     resourceRawShards = resourceRawShards.filter((resourceRawShard) => {
       return resourceRawShard !== ''
     })
-    for(let i = 0; i < resourceRawShards.length; i += 2) {
-      shards.push({prefix : resourceRawShards[i], value : resourceRawShards[i+1]})
-    }
+
+    this.getShards().forEach((shard) => {
+      let skip = false
+      resourceRawShards.forEach((resourceRawShard, i) => {
+        if(skip) {
+          skip = false
+          return
+        }
+        if(shard.prefix === resourceRawShard && resourceRawShards.length > i+1) {
+          shards.push({prefix : resourceRawShard, value : resourceRawShards[i+1]})
+          skip = true
+        }
+      })
+    })
   }
 
   if(window.location.hash) {
