@@ -40,7 +40,7 @@
                       {{= poi.name ? poi.name : 'default' }}
                     </p>
                     <p class="favorite_panel__item__desc">
-                      {{= poi.subClassName ? poi.subClassName.replace(/_/g, ' ') : '' }}
+                      {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}
                     </p>
                   </div>
                 </div>

@@ -3,11 +3,14 @@ import Panel from '../libs/panel'
 import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
-import PanelManager from "../proxies/panel_manager";
+import PanelManager from '../proxies/panel_manager'
+const poiSubClass = require('../mapbox/poi_subclass')
+
 
 function Favorite() {
   this.active = false
   this.favoritePois = []
+  this.poiSubClass = poiSubClass
   this.filterPanel = new FilterPanel()
   this.connectStore()
 

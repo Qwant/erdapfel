@@ -6,15 +6,15 @@ import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
 import ExtendedString from '../libs/string'
 
-const poiCategories = require('../mapbox/poi_categories')
+const poiSubClass = require('../mapbox/poi_subclass')
 
 const store = new Store()
 
 function PoiPanel() {
-  this.poiCategories = poiCategories()
   this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
   this.active = false
+  this.poiSubClass = poiSubClass
   this.poiBlocContainer = new PoiBlocContainer()
   this.panel = new Panel(this, PoiPanelView)
   PanelManager.register(this)
