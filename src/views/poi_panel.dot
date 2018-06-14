@@ -14,11 +14,11 @@
       {{? this.poi.name }}
         {{= this.poi.name }}
       {{?? this.poi.subClassName }}
-        {{= this.poi.subClassName }}
+        {{= this.poiCategories[this.poi.subClassName]() }}
       {{?}}
     </h4>
     {{? this.poi.subClassName && this.poi.name !== '' }}
-      <p class="poi_panel__description">{{= this.poi.subClassName.replace(/_/g, ' ') }}</p>
+      <p class="poi_panel__description">{{= this.poiCategories[this.poi.subClassName]() }}</p>
     {{?}}
     <div class="poi_panel__store_status">
       <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-icon_star-filled' : 'icon-icon_star'}}" {{= click(this.toggleStorePoi, this) }}>
