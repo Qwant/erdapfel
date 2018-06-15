@@ -45,25 +45,22 @@ test('add favorite', async () => {
   expect(items).not.toBeNull()
 })
 
-test('add favorite', async () => {
+test('remove favorite', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
   await page.evaluate(() => {
     fire('store_poi', {name : 'Poi name', getKey : () => {return 1}, store: () => {return {id: 1}}}) /* minimal poi */
   })
-  await page.click('.side_bar__fav')
-  await wait(100)
-  let items = await  page.waitForSelector('.favorite_panel__item')
+  page.click('.side_bar__fav')
+  await wait(200) /* wait for panel completely displayed  */
+  let items = await page.waitForSelector('.favorite_panel__item')
   expect(items).not.toBeNull()
-
   /* remove it */
-  let removeHandle = await  page.waitForSelector('.favorite_panel__remove')
+  await  page.waitForSelector('.favorite_panel__remove')
   /* this will do the trick (click on a hidden element) */
   await page.evaluate(() => { document.querySelector('.favorite_panel__item__actions').style.display = 'block' })
-
-  await removeHandle.click()
-  await wait(500)
-  await page.waitForSelector('.favorite_panel__container__empty')
+  page.click('.favorite_panel__remove')
+  items = await page.waitForSelector('.favorite_panel__container__empty')
   expect(items).not.toBeNull()
 })
 

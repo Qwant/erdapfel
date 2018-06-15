@@ -26,7 +26,6 @@ test('click on a poi', async () => {
   let poi = await page.waitForSelector('#mock_poi')
   await poi.click()
   await wait(300)
-  await page.screenshot({path : './tmp/aa.png'})
   expect(1).not.toBeFalsy()
 })
 

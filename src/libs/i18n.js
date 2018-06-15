@@ -16,7 +16,6 @@ function I18n() {
 
 I18n.days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
 
-
 I18n.prototype.setLang = async function(baseLang = navigator.language) {
   this.language = languages.supportedLanguages.find((supportedLanguage) => {
     return baseLang === supportedLanguage.code
