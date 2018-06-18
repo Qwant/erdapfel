@@ -11,3 +11,6 @@ local:
 
 production:
   <<: *development-filters
+
+test:
+  <<: *development-filters

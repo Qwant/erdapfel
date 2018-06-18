@@ -9,6 +9,9 @@ development: &development-services
 local:
   <<: *development-services
 
+test:
+  <<: *development-services
+
 production:
   tz:
     active: false

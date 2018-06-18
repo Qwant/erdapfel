@@ -6,3 +6,6 @@ local:
 
 production:
   <<: *development-global
+
+test:
+  <<: *development-global

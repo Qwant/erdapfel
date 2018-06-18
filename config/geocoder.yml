@@ -6,3 +6,6 @@ local:
 
 production:
   <<: *development-geo
+
+test:
+  <<: *development-geo

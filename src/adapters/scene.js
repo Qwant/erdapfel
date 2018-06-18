@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl'
+import {Map, Marker} from 'mapbox-gl--ENV'
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi"
@@ -14,7 +14,7 @@ function Scene() {
 }
 
 Scene.prototype.initMapBox = function () {
-  this.mb = new mapboxgl.Map({
+  this.mb = new Map({
     container: 'scene_container',
     style: StyleLaundry(qwantStyle),
     zoom: this.zoom,
@@ -104,7 +104,7 @@ Scene.prototype.addMarker = function(poi) {
   if(this.currentMarker !== null) {
     this.currentMarker.remove()
   }
-  let marker = new mapboxgl.Marker()
+  let marker = new Marker()
     .setLngLat(poi.getLngLat())
     .addTo(this.mb)
   this.currentMarker = marker

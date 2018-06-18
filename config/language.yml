@@ -14,3 +14,6 @@ local:
 
 production:
   <<: *development-lang
+
+test:
+  <<: *development-lang

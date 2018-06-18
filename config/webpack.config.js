@@ -1,5 +1,7 @@
 const path = require('path')
 const yaml = require('node-yaml')
+const webpack = require('webpack')
+
 const environment = require('environment')
 
 console.log('*--------------------*')
@@ -84,7 +86,15 @@ const mapJsChunkConfig = {
     path: path.join(__dirname, '..', 'public'),
     filename: 'build/javascript/map.js'
   },
-
+  plugins: [
+    new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
+      if(environment === 'test') {
+        resource.request = resource.request.replace('--ENV', '-js-mock')
+      } else {
+        resource.request = resource.request.replace('--ENV', '')
+      }
+    })
+  ],
   module: {
     loaders: [{
       test: /\.yml$/,

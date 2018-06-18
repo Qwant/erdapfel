@@ -31,7 +31,11 @@
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>
-    <script src="./javascript/file_loader.js"></script>
+    <% if(environment === 'local') { %>
+      <script src="./javascript/file_loader-debug.js"></script>
+    <% } else { %>
+      <script src="./javascript/file_loader.js"></script>
+    <% } %>
     <script src="./build/javascript/bundle.js"></script>
     <script>
       /* Autocomplete */
