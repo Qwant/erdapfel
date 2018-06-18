@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const environment = require('environment')
+const frontConfigWriter = require('./config')
+
 const baseUrl = process.env.MAPS_BASE_URL || '/'
 
 
