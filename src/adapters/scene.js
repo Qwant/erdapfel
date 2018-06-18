@@ -48,7 +48,6 @@ Scene.prototype.initMapBox = function () {
       })
 
       this.mb.on('click', interactiveLayer, (e) => {
-        console.log("Pweeeet : ", interactiveLayer)
         let poi = Poi.sceneLoad(e, this.mb.getZoom())
         PanelManager.setPoi(poi)
         this.addMarker(poi)

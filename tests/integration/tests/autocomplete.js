@@ -30,34 +30,6 @@ test('key press',async () => {
   expect(searchValueHandle._remoteObject.value).toBeTruthy()
 })
 
-
-test('key press',async () => {
-  expect.assertions(2)
-  await page.goto(APP_URL)
-
-  await page.keyboard.type('Hello')
-  let cleanHandle = await page.waitForSelector('#clear_button')
-  expect(cleanHandle).not.toBeNull()
-
-  /* check input content */
-  let searchValueHandle = await page.evaluateHandle(() => { return document.querySelector('#search').value === 'Hello' })
-  expect(searchValueHandle._remoteObject.value).toBeTruthy()
-})
-
-test('key press',async () => {
-  expect.assertions(2)
-  await page.goto(APP_URL)
-
-  await page.keyboard.type('Hello')
-  let cleanHandle = await page.waitForSelector('#clear_button')
-  expect(cleanHandle).not.toBeNull()
-
-  /* check input content */
-  let searchValueHandle = await page.evaluateHandle(() => { return document.querySelector('#search').value === 'Hello' })
-  expect(searchValueHandle._remoteObject.value).toBeTruthy()
-})
-
-
 test('simple_word', async () => {
   expect.assertions(1)
   await page.setRequestInterception(true)

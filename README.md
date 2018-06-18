@@ -4,6 +4,7 @@
 Map webapp with Qwant map tiles and a search input
 
 
+
 ## Install
 
 ### prerequisites
@@ -118,3 +119,20 @@ First, put your settings in `fab_settings.py` (see `fab_settings.py.example`).
 ```
 > fab dev deploy
 ```
+
+## Test
+
+### All test
+you can run all tests with 'npm run test'
+
+### Unit test
+unit test with npm run unit-test
+
+## integration test
+integration test with npm run integration-test
+
+integration test will run chrome headless test suite with a mapbox-gl minimalist mock
+
+### note on mapbox-gl mock
+We include out mapbox-gl mock fork to emulate mapbox-gl behaviour with the advanced support of mocked event & poi.
+ 
