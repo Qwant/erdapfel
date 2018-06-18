@@ -87,9 +87,12 @@ const mapJsChunkConfig = {
     filename: 'build/javascript/map.js'
   },
   plugins: [
-    new webpack.NormalModuleReplacementPlugin(/(.*)--ENV_TARGET(\.*)/, function(resource) {
-      let name = environment === 'test' ? '-js-mock' : ''
-      resource.request = resource.request.replace(/--ENV_TARGET/, name);
+    new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
+      if(environment === 'test') {
+        resource.request = resource.request.replace('--ENV', '-js-mock')
+      } else {
+        resource.request = resource.request.replace('--ENV', '')
+      }
     })
   ],
   module: {

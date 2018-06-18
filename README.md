@@ -122,6 +122,14 @@ First, put your settings in `fab_settings.py` (see `fab_settings.py.example`).
 
 ## Test
 
+### How to test ?
+run 
+>ENV=test npm run build
+
+then
+
+>npm run test
+
 ### All test
 you can run all tests with 'npm run test'
 

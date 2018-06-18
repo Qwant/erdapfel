@@ -1,4 +1,4 @@
-import {Map, Marker} from 'mapbox-gl--ENV_TARGET'
+import {Map, Marker} from 'mapbox-gl--ENV'
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi"
