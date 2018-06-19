@@ -1,10 +1,7 @@
 import HourPanelView from '../../views/poi_bloc/hour.dot'
 import Panel from "../../libs/panel";
-import Ajax from "../../libs/ajax";
 import openingHourParse from '../../../src/adapters/opening_hour'
 import I18n from '../../libs/i18n'
-
-const services = require('../../../config/services.yml')
 
 function HourPanel(tag, poi, options) {
   this.panel = new Panel(this, HourPanelView)

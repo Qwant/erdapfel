@@ -1,4 +1,6 @@
-let moduleConfig = require("../../config/modules.yml")
+import nconf from 'nconf-reader'
+let moduleConfig = nconf.get().store
+
 const AbStore = require(`../libs/${moduleConfig.store.name}`)
 const abstractStore = new AbStore(moduleConfig.store.endpoint)
 
@@ -15,7 +17,6 @@ function Store() {
     this.clear()
   })
 }
-
 
 Store.prototype.getAll = async function() {
   return new Promise((resolve, reject) => {
