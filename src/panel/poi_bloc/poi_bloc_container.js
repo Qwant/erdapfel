@@ -1,7 +1,7 @@
 import Panel from "../../libs/panel";
 import PoiBlocContainerView from '../../views/poi_bloc/poi_bloc_container.dot'
-
-const activePoiSections = require('../../../config/active_poi_section.yml').pois
+import nconf from 'nconf-reader'
+const activePoiSections = nconf.get().pois
 
 function PoiBlocContainer() {
   this.panel = new Panel(this, PoiBlocContainerView)

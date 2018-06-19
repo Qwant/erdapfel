@@ -23,16 +23,7 @@ HourPanel.prototype.computeRemainingTime = async function() {
   if(this.hours && this.hours['24/7']) {
     return 999 /* be sure it won't close soon */
   }
-  try {
-    if(services.tz.active) {
-      rawDate = await Ajax.query(services.tz.url, {latitude : this.latLng.lat, longitude : this.latLng.lng}, {method : 'get'})
-    } else {
-      rawDate = new Date()
-    }
-  } catch (e) {
-    fire('error_h', 'Unreachable time zone service - using local date 💳')
-    rawDate = new Date()
-  }
+  rawDate = new Date()
 
   let remoteDate = new Date(rawDate)
 
