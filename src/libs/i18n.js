@@ -1,6 +1,8 @@
-const languages = require('../../config/language.yml')
+import nconf from 'nconf-reader'
 import AsyncFileLoader from './async_file_loader'
 
+const supportedLanguages = nconf.get().supportedLanguages
+const defaultLanguage = nconf.get().defaultLanguage
 /**
  *
  * i18n lib
@@ -17,11 +19,11 @@ function I18n() {
 I18n.days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
 
 I18n.prototype.setLang = async function(baseLang = navigator.language) {
-  this.language = languages.supportedLanguages.find((supportedLanguage) => {
+  this.language = supportedLanguages.find((supportedLanguage) => {
     return baseLang === supportedLanguage.code
   })
   if(!this.language) {
-    this.language = languages.defaultLanguage
+    this.language = defaultLanguage
   }
   try {
     await AsyncFileLoader(`build/javascript/message/${this.language.locale}.js`)

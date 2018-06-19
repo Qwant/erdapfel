@@ -3,8 +3,6 @@ import Panel from "../../libs/panel"
 import Ajax from "../../libs/ajax"
 import ExtendedString from "../../libs/string"
 
-const services = require('../../../config/services.yml')
-
 function WikiPanel(tag) {
   this.tag = null
   this.STATE = {
@@ -31,11 +29,7 @@ WikiPanel.prototype.getData = async function(tag) {
     this.tag = tag.value
     this.state = this.STATE.LOADING
     await this.panel.update()
-    try {
-      this.data = await Ajax.queryLang(services.wiki.url, {id : tag.value})
-    } catch(e) {
-      this.data = {}
-    }
+    this.data = {} // will be integrated to poi api
     this.state = this.STATE.LOADED
     this.tag = tag.value
     this.panel.update()

@@ -51,6 +51,8 @@ supportedLanguages:
     locale: fr_FR
     code: fr
 
+defaultLanguage: *default
+
 store:
   name: masq # local_store | none | masq | ..
   endpoint: https://sync-beta.qwantresearch.com/

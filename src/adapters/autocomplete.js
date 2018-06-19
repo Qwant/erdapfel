@@ -1,13 +1,13 @@
 import Autocomplete from '../vendors/autocomplete'
-let geocoderConfig = require("../../config/geocoder.yml")
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 import IconManager from '../adapters/icon_manager'
-import State from '../main'
+import nconf from 'nconf-reader'
 
 import Store from '../adapters/store'
-import Favorite from "../panel/favorites_panel";
-import PanelManager from "../proxies/panel_manager";
+import PanelManager from "../proxies/panel_manager"
+
+const geocoderUrl = nconf.get().geocoder.url
 const store = new Store()
 
 function SearchInput(tagSelector) {
@@ -38,7 +38,7 @@ function SearchInput(tagSelector) {
          Still, they could be useful for telemetry purposes.
          Should the exact position be made fuzzy ?
       */
-      const suggestPromise = ajax.query(geocoderConfig.url, {q: term, center : center, bbox : bbox})
+      const suggestPromise = ajax.query(geocoderUrl, {q: term, center : center, bbox : bbox})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
         this.pois = buildPoi(responses[0])
