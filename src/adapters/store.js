@@ -1,8 +1,8 @@
 import nconf from 'nconf-reader'
 let moduleConfig = nconf.get().store
 
-const AbStore = require(`../libs/${moduleConfig.store.name}`)
-const abstractStore = new AbStore(moduleConfig.store.endpoint)
+const AbStore = require(`../libs/${moduleConfig.name}`)
+const abstractStore = new AbStore(moduleConfig.endpoint)
 
 function Store() {
   this.isRegisterd = false
@@ -47,11 +47,11 @@ Store.prototype.onConnect = async function () {
 
 Store.prototype.register = async function () {
   let regParams = {
-    endpoint: moduleConfig.store.endpoint,
+    endpoint: moduleConfig.endpoint,
     url: window.location.origin + window.location.pathname,
-    title: moduleConfig.store.masq.title,
-    desc: moduleConfig.store.masq.desc,
-    icon: moduleConfig.store.masq.icon
+    title: moduleConfig.masq.title,
+    desc: moduleConfig.masq.desc,
+    icon: moduleConfig.masq.icon
   }
   return abstractStore.registerApp(regParams)
 }

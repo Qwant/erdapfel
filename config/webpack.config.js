@@ -1,11 +1,10 @@
 const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
-
-const environment = require('environment')
+const testMode = process.env.ENV && process.env.ENV === 'test'
 
 console.log('*--------------------*')
-console.log(`Building on ${environment} mode`)
+console.log(`Building on ${testMode ? 'test' : 'normal'} mode`)
 console.log('*--------------------*')
 
 const sassChunkConfig = {
@@ -61,7 +60,6 @@ const mainJsChunkConfig = {
       test: /\.yml$/,
       exclude: [path.resolve(__dirname, '../node_modules/@qwant/')],
       use: [
-        {loader : 'webpack-config-loader', options : {environment : environment}},
         {loader : 'config-sanitizer-loader'},
         {loader : 'json-loader'},
         {loader : 'yaml-loader'}
@@ -86,7 +84,8 @@ const mapJsChunkConfig = {
   },
   plugins: [
     new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
-      if(environment === 'test') {
+      console.log(process.argv)
+      if(process.argv.test) {
         resource.request = resource.request.replace('--ENV', '-js-mock')
       } else {
         resource.request = resource.request.replace('--ENV', '')
@@ -110,7 +109,7 @@ const mapJsChunkConfig = {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
-            conf: `${__dirname}/map_${environment}.json`,
+            conf: `${__dirname}/map_local.json`, /* TODO find a way to serve corresponding map style */
             outPath : __dirname + '/../public',
             i18n : true,
             icons : true,

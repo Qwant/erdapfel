@@ -6,4 +6,4 @@ function get() {
   }
 }
 
-export default get
+export default {get : get}

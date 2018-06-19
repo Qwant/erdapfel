@@ -1,3 +1,4 @@
+#Pois
 pois:
 - osmName: opening_hours
   panel_name: hour
@@ -38,11 +39,12 @@ pois:
 - osmName: wikidata
   panel_name: wiki
 
+# Services
 geocoder:
   url: http://***REMOVED***:4000/autocomplete
 
-timeout: 3
 
+# Language
 supportedLanguages:
   - &default
     locale: en_GB
@@ -53,6 +55,12 @@ supportedLanguages:
 
 defaultLanguage: *default
 
+# Global
+baseUrl: /
+timeout: 3
+evalFiles: false
+
+# Store
 store:
   name: masq # local_store | none | masq | ..
   endpoint: https://sync-beta.qwantresearch.com/
