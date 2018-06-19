@@ -1,5 +1,5 @@
 const path = require('path')
-const yaml = require('node-yaml')
+const fs = require('fs')
 const webpack = require('webpack')
 
 const environment = require('environment')
@@ -7,8 +7,6 @@ const environment = require('environment')
 console.log('*--------------------*')
 console.log(`Building on ${environment} mode`)
 console.log('*--------------------*')
-
-const languages = yaml.readSync('./language.yml')[environment]
 
 const sassChunkConfig = {
     entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
@@ -49,8 +47,8 @@ const sassChunkConfig = {
 const mainJsChunkConfig = {
   entry: ['./src/main.js'],
   output: {
-    path: path.join(__dirname, '..', 'public'),
-    filename: 'build/javascript/bundle.js'
+    path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
+    filename: 'bundle.js'
   },
 
   module: {
@@ -83,8 +81,8 @@ const mapJsChunkConfig = {
   entry: ['./src/map.js'],
 
   output: {
-    path: path.join(__dirname, '..', 'public'),
-    filename: 'build/javascript/map.js'
+    path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
+    filename: 'map.js'
   },
   plugins: [
     new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
@@ -132,20 +130,28 @@ const mapJsChunkConfig = {
 
 webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
-webpackChunks = webpackChunks.concat(languages.supportedLanguages.map((language)=> {
+let poSources = fs.readdirSync(path.join(__dirname, '..', 'language', 'message'))
+  .filter((poSource) => {
+    return poSource.indexOf('.po') !== -1
+  })
+  .map((poSource) => {
+    return poSource.replace('.po', '')
+  })
+
+webpackChunks = webpackChunks.concat(poSources.map((poSource)=> {
   return {
-    entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
+    entry:  path.join(__dirname, '..', 'language', 'message', poSource + '.po'),
     module : {
       loaders : [{
         loader : 'file-loader',
         options : {
-          name : 'public/message/[name].js'
+          name : 'public/build/javascript/message/[name].js'
         }
       }, {
         loader :'merge-i18n-source-loader',
         options : {
           sources : [
-            {path : `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`, name : 'i18nDate'}
+            {path : `${__dirname}/../language/date/date-${poSource.toLocaleLowerCase()}.json`, name : 'i18nDate'}
           ]
         }
       }, {
