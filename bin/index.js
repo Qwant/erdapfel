@@ -1,6 +1,8 @@
+const config = require('./midleware/nconf')
 const App = require('./app')
-const PORT = 3000
-const appServer = new App()
+const PORT = config.get('PORT')
+
+const appServer = new App(config)
 appServer.start(PORT).then(() => {
   console.log(`Server listening on PORT : ${PORT}`)
 })

@@ -10,8 +10,8 @@
   </head>
   <body>
   <script>
-    window.baseUrl = "<% base %>"
-    <%= frontConfigWriter() %>
+    window.baseUrl = "<%= base %>"
+    <%- `window.__config = ${JSON.stringify(config.get())};` %>
   </script>
     <div id="scene_container" class="map_container"></div>
 
