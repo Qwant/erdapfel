@@ -109,7 +109,6 @@ const mapJsChunkConfig = {
           loader : 'map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
-            conf: `${__dirname}/map_local.json`, /* TODO find a way to serve corresponding map style */
             outPath : __dirname + '/../public',
             i18n : true,
             icons : true,
