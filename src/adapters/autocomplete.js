@@ -2,12 +2,12 @@ import Autocomplete from '../vendors/autocomplete'
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 import IconManager from '../adapters/icon_manager'
-import nconf from 'nconf-reader'
+import nconf from 'nconf-getter'
 
 import Store from '../adapters/store'
 import PanelManager from "../proxies/panel_manager"
-
-const geocoderUrl = nconf.get().geocoder.url
+const serviceConfigs = nconf.get().services
+const geocoderUrl = serviceConfigs.geocoder.url
 const store = new Store()
 
 function SearchInput(tagSelector) {

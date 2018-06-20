@@ -1,4 +1,4 @@
-const config = require('./midleware/conf_reader')
+const config = require('nconf-builder')
 const App = require('./app')
 const PORT = config.get('PORT')
 

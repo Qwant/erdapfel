@@ -1,5 +1,6 @@
-import nconf from 'nconf-reader'
-const timeout = nconf.get().timeout
+import nconf from 'nconf-getter'
+const systemConfigs = nconf.get().system
+const timeout = systemConfigs.timeout
 function Ajax() {}
 
 Ajax.queryLang = async (url, data = {}, options) => {

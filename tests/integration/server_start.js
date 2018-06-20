@@ -1,5 +1,5 @@
 const App = require( './../../bin/app')
-const config = require('../../bin/midleware/conf_reader')
+const config = require('nconf-builder')
 const PORT = 3001
 global.appServer = new App(config)
 

@@ -40,25 +40,28 @@ pois:
   panel_name: wiki
 
 # Services
-geocoder:
-  url: http://***REMOVED***:4000/autocomplete
+services:
+  geocoder:
+    url: http://***REMOVED***:4000/autocomplete
 
 
 # Language
-supportedLanguages:
-  - &default
-    locale: en_GB
-    code: en
-  -
-    locale: fr_FR
-    code: fr
+languages:
+  supportedLanguages:
+    - &default
+      locale: en_GB
+      code: en
+    -
+      locale: fr_FR
+      code: fr
 
-defaultLanguage: *default
+  defaultLanguage: *default
 
-# Global
-baseUrl: /
-timeout: 3
-evalFiles: false
+# System
+system:
+  baseUrl: /
+  timeout: 3
+  evalFiles: false
 
 # Store
 store:
@@ -70,18 +73,19 @@ store:
     icon: https://camo.githubusercontent.com/8b35d12bd9682a31446b08c1483145653aa5006f/68747470733a2f2f692e696d6775722e636f6d2f715a33647130512e706e67
 
 # Map style
-tileserver_base:
-  - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
-  - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
-  - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
+mapStyle:
+  tileserver_base:
+    - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
+    - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
+    - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
 
-tileserver_poi:
-  - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
-  - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
-  - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
+  tileserver_poi:
+    - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
+    - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
+    - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
 
-spriteserver:
-  https://qwantresearch.github.io/qwant-basic-gl-style/
+  spriteserver:
+    https://qwantresearch.github.io/qwant-basic-gl-style/
 
-fontserver:
-  https://qwantresearch.github.io/fonts/
+  fontserver:
+    https://qwantresearch.github.io/fonts/

@@ -1,6 +1,6 @@
 import Panel from "../../libs/panel";
 import PoiBlocContainerView from '../../views/poi_bloc/poi_bloc_container.dot'
-import nconf from 'nconf-reader'
+import nconf from 'nconf-getter'
 const activePoiSections = nconf.get().pois
 
 function PoiBlocContainer() {

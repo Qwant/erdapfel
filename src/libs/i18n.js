@@ -1,8 +1,9 @@
-import nconf from 'nconf-reader'
+import nconf from 'nconf-getter'
 import AsyncFileLoader from './async_file_loader'
 
-const supportedLanguages = nconf.get().supportedLanguages
-const defaultLanguage = nconf.get().defaultLanguage
+const languageConfigs = nconf.get().languages
+const supportedLanguages = languageConfigs.supportedLanguages
+const defaultLanguage = languageConfigs.defaultLanguage
 /**
  *
  * i18n lib

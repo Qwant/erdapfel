@@ -1,4 +1,4 @@
-import nconf from 'nconf-reader'
+import nconf from 'nconf-getter'
 let moduleConfig = nconf.get().store
 
 const AbStore = require(`../libs/${moduleConfig.name}`)
