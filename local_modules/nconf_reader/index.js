@@ -1,6 +1,6 @@
 function get() {
-  if(window.__config) {
-    return window.__config
+  if(__config) {
+    return __config
   } else {
     throw '__config is missing'
   }
