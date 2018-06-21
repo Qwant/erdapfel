@@ -42,7 +42,7 @@ pois:
 # Services
 services:
   geocoder:
-    url: http://***REMOVED***:4000/autocomplete
+    url: override by environment
 
 
 # Language
@@ -74,18 +74,9 @@ store:
 
 # Map style
 mapStyle:
-  tileserver_base:
-    - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
-    - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
-    - http:***REMOVED***:6533/ozbasemap/{z}/{x}/{y}.pbf
-
-  tileserver_poi:
-    - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
-    - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
-    - http:***REMOVED***:6533/ozpoi/{z}/{x}/{y}.pbf
-
+  tileserver_base: override by environment
+  tileserver_poi: override by environment
   spriteserver:
     https://qwantresearch.github.io/qwant-basic-gl-style/
-
   fontserver:
     https://qwantresearch.github.io/fonts/
