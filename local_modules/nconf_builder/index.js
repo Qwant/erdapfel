@@ -17,5 +17,5 @@ nconf
 
 
 module.exports = (function() {
-  return nconf
+  return nconf.get()
 })()
