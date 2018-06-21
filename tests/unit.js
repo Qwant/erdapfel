@@ -5,7 +5,7 @@ module.exports = {
   verbose: true,
   collectCoverage: false,
   globals:{
-      __config : {}
+      __config : require('nconf-builder').get()
   },
   transform: {
     '\\.yml$': 'yaml-jest',
