@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
-const testMode = process.env.ENV && process.env.ENV === 'test'
+const testMode = process.env.TEST === 'true'
 
 console.log('*--------------------*')
 console.log(`Building on ${testMode ? 'test' : 'normal'} mode`)
@@ -84,7 +84,7 @@ const mapJsChunkConfig = {
   },
   plugins: [
     new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
-      if(process.env.ENV === 'test') {
+      if(testMode) {
         resource.request = resource.request.replace('--ENV', '-js-mock')
       } else {
         resource.request = resource.request.replace('--ENV', '')
