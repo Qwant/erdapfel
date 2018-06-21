@@ -11,7 +11,8 @@ nconf
         configObject.key = configObject.key.replace(PREFIX, '')
         return configObject
       }
-    }
+    },
+    separator : '_'
   })
   .file({file : path.resolve(`${__dirname}/../../config/default_config.yml`), format : nconfYml})
 

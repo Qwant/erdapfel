@@ -74,9 +74,9 @@ store:
 
 # Map style
 mapStyle:
-  tileserver_base: override by environment
-  tileserver_poi: override by environment
-  spriteserver:
+  baseMapUrl: override by environment
+  poiMapUrl: override by environment
+  spritesUrl:
     https://qwantresearch.github.io/qwant-basic-gl-style/
-  fontserver:
+  fontUrl:
     https://qwantresearch.github.io/fonts/
