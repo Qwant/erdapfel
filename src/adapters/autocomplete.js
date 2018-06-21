@@ -31,14 +31,16 @@ function SearchInput(tagSelector) {
       this.poi = poi
     },
     source : (term, suggest) => {
-      let bbox = toAccuracy(window.map.bbox(), 1000) //https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
-      /* FIXME
-        'center' and 'bbox' are currently not used by the geocoder.
-         Still, they could be useful for telemetry purposes.
-         Should the exact position be made fuzzy ?
-      */
+      /*
+        https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
+        this post is about correlation between gps coordinates decimal count & real precision unit
+        110m = 3 decimals
+       */
+      const HUNDRED_METERS_PRECISION = 1000
+      let bbox = toAccuracy(window.map.bbox(), HUNDRED_METERS_PRECISION)
+      /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
       const suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
-      const suggestHistoryPromise = store.getPrefixes(term)
+      const suggestHistoryPromise = getHistory(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
         this.pois = buildPoi(responses[0])
         let historySuggestData = responses[1]
