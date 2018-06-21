@@ -31,14 +31,13 @@ function SearchInput(tagSelector) {
       this.poi = poi
     },
     source : (term, suggest) => {
-      let center = window.map.center().toArray()
-      let bbox = window.map.bbox().toArray()
+      let bbox = toAccuracy(window.map.bbox(), 1000) //https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
       /* FIXME
         'center' and 'bbox' are currently not used by the geocoder.
          Still, they could be useful for telemetry purposes.
          Should the exact position be made fuzzy ?
       */
-      const suggestPromise = ajax.query(geocoderUrl, {q: term, center : center, bbox : bbox})
+      const suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
       const suggestHistoryPromise = store.getPrefixes(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
         this.pois = buildPoi(responses[0])
@@ -122,6 +121,25 @@ function buildPoi(response) {
     poi.zoom = zoomLevel
     poi.bbox = feature['bbox']
     return poi
+  })
+}
+
+function toAccuracy(bbox, accuracy) {
+  const s = Math.floor(bbox.getSouth() * accuracy) / accuracy //v -> floor
+  const w = Math.floor(bbox.getWest() * accuracy) /accuracy //< -> floor
+  const n = Math.ceil(bbox.getNorth() * accuracy) / accuracy //^ -> ceil
+  const e = Math.ceil(bbox.getEast() * accuracy) / accuracy //> ->  ceil
+
+  return [[s,w],[n,e]]//sw / ne
+}
+
+async function getHistory(term) {
+  return new Promise((resolve) => {
+    store.getPrefixes(term).then((result) => {
+      resolve(result)
+    }).catch(() => {
+      resolve([])
+    })
   })
 }
 
