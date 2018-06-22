@@ -58,7 +58,7 @@ Store.prototype.register = async function () {
 
 
 Store.prototype.getPrefixes = async function (prefix) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const prefixes = []
     abstractStore.getAll().then((items) => {
         Object.keys(items).forEach((itemKey) => {
@@ -68,6 +68,8 @@ Store.prototype.getPrefixes = async function (prefix) {
           prefixes.push(item)
         })
         resolve(prefixes)
+    }).catch((e) => {
+      reject(e)
     })
   })
 }
