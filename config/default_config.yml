@@ -1,3 +1,5 @@
+PORT: 3000
+
 #Pois
 pois:
 - osmName: opening_hours
