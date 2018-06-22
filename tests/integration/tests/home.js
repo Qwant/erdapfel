@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer'
-const config = require('../config')
-const APP_URL = `http://localhost:${config.SERVER.PORT}`
+const configBuilder = require('nconf-builder')
+const config = configBuilder.get()
+const APP_URL = `http://localhost:${config.PORT}`
 let browser
 let page
 
