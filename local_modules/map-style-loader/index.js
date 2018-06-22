@@ -12,7 +12,7 @@ module.exports = function(source) {
   options = options || {}
   options.styleDir = this.context
   options.output = options.output || 'debug'
-  options.conf = require(options.conf)
+  options.conf = {tileserver_base : '{tileserver_base}', tileserver_poi : '{tileserver_poi}', spriteserver : '{spriteserver}', fontserver : '{fontserver}'}
 
   return styleBuilder(style, options)
 }

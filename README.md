@@ -124,7 +124,7 @@ First, put your settings in `fab_settings.py` (see `fab_settings.py.example`).
 
 ### How to test ?
 run 
->ENV=test npm run build
+>TEST=true npm run build
 
 then
 
@@ -144,3 +144,15 @@ integration test will run chrome headless test suite with a mapbox-gl minimalist
 ### note on mapbox-gl mock
 We include out mapbox-gl mock fork to emulate mapbox-gl behaviour with the advanced support of mocked event & poi.
  
+## Configuration
+A default config file is given, this configuration can be override by environment variable.
+The nesting is handle by the separator '_' and it must be prefixed by 'TILEVIEW_'
+
+
+By example 
+```
+system:
+  timeout: 3
+```  
+
+is override by ```TILEVIEW_system_timeout=3```

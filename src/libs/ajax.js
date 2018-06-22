@@ -1,5 +1,6 @@
-const globals = require('../../config/global.yml')
-
+import nconf from 'nconf-getter'
+const systemConfigs = nconf.get().system
+const timeout = systemConfigs.timeout
 function Ajax() {}
 
 Ajax.queryLang = async (url, data = {}, options) => {
@@ -14,8 +15,8 @@ Ajax.query = async (url, data, options = {method : 'GET'}) => {
 
     let timeOutHandler = setTimeout(() => {
       xhr.abort()
-      reject('timeout')
-    }, globals.timeout * 1000)
+      reject(`Timeout calling ${url}`)
+    }, timeout * 1000)
 
     xhr.onload = function(){
       try {

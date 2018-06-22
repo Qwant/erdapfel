@@ -3,14 +3,15 @@
   <head>
     <meta charset='utf-8'>
     <title>Qwant Maps - beta</title>
-    <base href="<%= base %>" target="_blank">
+    <base href="<%= config.system.baseUrl %>" target="_blank">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
     <link href='./css/app.css' rel='stylesheet'/>
     <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css' rel='stylesheet'/>
   </head>
   <body>
   <script>
-    window.baseUrl = "<% base %>"
+    window.baseUrl = "<%= config.system.baseUrl %>"
+    <%- `window.__config = ${JSON.stringify(config)};` %>
   </script>
     <div id="scene_container" class="map_container"></div>
 
@@ -31,10 +32,10 @@
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>
-    <% if(environment === 'local') { %>
-      <script src="./javascript/file_loader-debug.js"></script>
-    <% } else { %>
+    <% if(config.system.evalFiles) { %>
       <script src="./javascript/file_loader.js"></script>
+    <% } else { %>
+      <script src="./javascript/file_loader-debug.js"></script>
     <% } %>
     <script src="./build/javascript/bundle.js"></script>
     <script>

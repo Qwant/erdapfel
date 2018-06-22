@@ -1,4 +1,4 @@
-import {Map, Marker} from 'mapbox-gl--ENV'
+import {Map, Marker, LngLat} from 'mapbox-gl--ENV'
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi"
@@ -76,7 +76,7 @@ Scene.prototype.flyTo = function (poi) {
 
   let windowBounds = this.mb.getBounds()
   const originalWindowBounds = windowBounds.toArray() /* simple way to clone value */
-  let poiCenter = new mapboxgl.LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
+  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
   windowBounds.extend(poiCenter)
   /* flyTo location if it's in the window or else jumpTo */
   let flyOptions = {center : poi.getLngLat()}

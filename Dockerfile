@@ -13,6 +13,7 @@ ENV NODE_ENV=production
 
 RUN mkdir $PROJECT_DIR
 
+COPY config $PROJECT_DIR/config
 COPY local_modules $PROJECT_DIR/local_modules
 COPY views $PROJECT_DIR/views
 COPY bin $PROJECT_DIR/bin
