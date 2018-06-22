@@ -6,7 +6,6 @@ import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
 const poiSubClass = require('../mapbox/poi_subclass')
 
-
 function Favorite() {
   this.active = false
   this.favoritePois = []
