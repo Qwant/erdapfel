@@ -146,7 +146,7 @@ We include out mapbox-gl mock fork to emulate mapbox-gl behaviour with the advan
  
 ## Configuration
 A default config file is given, this configuration can be override by environment variable.
-The nesting is handle by the separator ':'.
+The nesting is handle by the separator '_' and it must be prefixed by 'TILEVIEW_'
 
 By example 
 ```
