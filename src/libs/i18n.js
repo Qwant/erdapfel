@@ -13,6 +13,7 @@ function I18n() {
   window.getDay = this.getDay.bind(this)
   window.setLang = this.setLang.bind(this)
   window.getLang = this.getLang.bind(this)
+  window.getBaseLang = this.getBaseLang.bind(this)
 }
 
 I18n.days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
@@ -50,8 +51,9 @@ I18n.prototype.getLang = function() {
   return this.language
 }
 
-I18n.prototype.getMapLang = function() {
-
+/* return a supported user language   */
+I18n.prototype.getBaseLang = function() {
+  return this.language
 }
 /**
  * translate short days
