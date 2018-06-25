@@ -21,13 +21,8 @@ function I18n() {
 
 I18n.days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
 
-I18n.prototype.setLang = async function(baseLang = navigator.language) {
-  this.language = supportedLanguages.find((supportedLanguage) => {
-    return baseLang === supportedLanguage.code
-  })
-  if(!this.language) {
-    this.language = defaultLanguage
-  }
+I18n.prototype.setLang = async function() {
+  this.language = window.preferedLanguage
   try {
     await AsyncFileLoader(`build/javascript/message/${this.language.locale}.js`)
   } catch (e) {

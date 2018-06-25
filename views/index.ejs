@@ -2,15 +2,16 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title><%= _('Qwant Maps - beta') %></title>
+    <title><%= res. _('Qwant Maps - beta') %></title>
     <base href="<%= config.system.baseUrl %>" target="_blank">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
-    <link href='./css/app.css?<%= new Date() %>' rel='stylesheet'/>
-    <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css?<%= new Date() %>' rel='stylesheet'/>
+    <link href='./css/app.css' rel='stylesheet'/>
+    <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css' rel='stylesheet'/>
   </head>
   <body>
   <script>
     window.baseUrl = "<%= config.system.baseUrl %>"
+    window.preferedLanguage = <%- JSON.stringify(res.language) %>
     <%- `window.__config = ${JSON.stringify(config)};` %>
   </script>
     <div id="scene_container" class="map_container"></div>
@@ -24,7 +25,7 @@
           <div></div>
         </div>
         <div class="search_form__logo"></div>
-        <input id="search" type="search" class="search_form__input" required placeholder="<%= _('Where do you want to go ?') %>">
+        <input id="search" type="search" class="search_form__input" required placeholder="<%= res. _('Where do you want to go ?') %>">
         <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
         <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
       </form>

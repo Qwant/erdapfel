@@ -31,11 +31,11 @@ module.exports = function(app, languages) {
     let poData = langMessages[res.language.code]
     let gettext = new Gettext()
     gettext.setMessage(poData.messages)
-    app.locals._ = function _(key = '', context, placeholders) {
+    res._ = function _(key = '', context, placeholders) {
       return gettext._(key, context, placeholders)
     }
 
-    app.locals._n = function(singularMessage = '', pluralMessage, arity, context, placeholders) {
+    res._n = function(singularMessage = '', pluralMessage, arity, context, placeholders) {
       return gettext._n(singularMessage, pluralMessage, arity, context, placeholders)
     }
     next()
