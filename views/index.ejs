@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title><%= res. _('Qwant Maps - beta') %></title>
+    <title><%= _('Qwant Maps - beta') %></title>
     <base href="<%= config.system.baseUrl %>" target="_blank">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
     <link href='./css/app.css' rel='stylesheet'/>
@@ -11,7 +11,7 @@
   <body>
   <script>
     window.baseUrl = "<%= config.system.baseUrl %>"
-    window.preferedLanguage = <%- JSON.stringify(res.language) %>
+    window.preferedLanguage = <%- JSON.stringify(language) %>
     <%- `window.__config = ${JSON.stringify(config)};` %>
   </script>
     <div id="scene_container" class="map_container"></div>
@@ -25,7 +25,7 @@
           <div></div>
         </div>
         <div class="search_form__logo"></div>
-        <input id="search" type="search" class="search_form__input" required placeholder="<%= res. _('Where do you want to go ?') %>">
+        <input id="search" type="search" class="search_form__input" required placeholder="<%=  _('Where do you want to go ?') %>">
         <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
         <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
       </form>

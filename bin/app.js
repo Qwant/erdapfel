@@ -15,7 +15,7 @@ function App(config) {
 
   app.use(express.static(`${__dirname}/../public`))
   app.get('/*', (req, res) => {
-    res.render('index', {config : config, res : res})
+    res.render('index', {config : config})
   })
 
   app.use((error, req, res, next) => {
