@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <style>
-
-
-
+  * {
+    margin: 0;padding: 0;
+  }
 </style>
 
 
 <div class="error__content">
-<h3>An error occurred</h3>
-<%= error %>
+  <h1>500</h1>
+  <h3>An error occurred (Ça ne tourne pas rond)</h3>
+  <% error.message.split('\n').forEach((message) => { %>
 
+    <p><%= message %></p>
+
+  <% }) %>
 </div>
