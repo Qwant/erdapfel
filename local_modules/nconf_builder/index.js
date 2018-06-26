@@ -15,6 +15,7 @@ nconf
     separator : '_'
   })
   .file({file : path.resolve(`${__dirname}/../../config/default_config.yml`), format : nconfYml})
+  .file({file : path.resolve(`${__dirname}/../../config/constants.yml`), format : nconfYml})
 
 
 module.exports = (function() {

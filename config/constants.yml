@@ -1,0 +1,15 @@
+# Language
+languages:
+  supportedLanguages:
+    - &default
+      locale: en_GB
+      code: en
+    -
+      locale: fr_FR
+      code: fr
+    -
+      locale: br_FR
+      code: br
+      fallback: fr_FR
+
+  defaultLanguage: *default
