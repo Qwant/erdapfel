@@ -10,6 +10,8 @@ languages:
     -
       locale: br_FR
       code: br
-      fallback: fr_FR
+      fallback:
+        - fr_FR
+        - en_GB
 
   defaultLanguage: *default
