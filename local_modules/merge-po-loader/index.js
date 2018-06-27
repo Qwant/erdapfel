@@ -1,28 +1,20 @@
-const childProcess = require('child_process')
-const path = require('path')
+const mergePo = require('merge-po')
 const utils = require('loader-utils')
-
 
 module.exports = async function(source) {
   if(this.cacheable) {
     this.cacheable()
   }
+
   let callback = this.async()
   let options = utils.getOptions(this)
 
   options = options || {}
 
-  const locale = options.locale
-  const fallback = options.fallback
-  const messagesPath = options.messagesPath
-
-  if(fallback) {
+  const fallbackPaths = options.fallbackPaths
+  if(fallbackPaths && fallbackPaths.length > 0) {
     try {
-      const fallbackList = fallback.reduce((fallbacks, fallback) => {
-        fallbacks.push(path.join(messagesPath, `${fallback}.po`))
-        return fallbacks
-      }, [path.resolve(path.join(messagesPath, `${locale}.po`))])
-      let mergedPo = await mergePo(source, fallbackList)
+      let mergedPo = await mergePo(source, fallbackPaths)
       callback(null, mergedPo)
     } catch (e) {
       callback(e)
@@ -32,15 +24,3 @@ module.exports = async function(source) {
     callback(null, source)
   }
 }
-
-async function mergePo(source, fallbackList) {
-  return new Promise((resolve, reject) => {
-    childProcess.exec( `msgcat ${fallbackList.join(' ')}  --use-first`, {input : source}, (err, stdout) => {
-      if(err) {
-        reject(err)
-      }
-      resolve(stdout)
-    })
-  })
-}
-
