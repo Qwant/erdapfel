@@ -40,7 +40,6 @@ UrlState.load = function() {
       return rawShard.prefix === shard.prefix
     })
     if(matchingRawShard) {
-      console.log(matchingRawShard.value)
       shard.restore(matchingRawShard.value)
     }
   })

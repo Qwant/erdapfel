@@ -5,3 +5,9 @@ export const wait = async function wait (t = 1000) {
     }, t)
   })
 }
+
+export const getText = async function (page, selector) {
+  return await page.evaluate(selector => {
+    return document.querySelector(selector).textContent
+  }, selector)
+}

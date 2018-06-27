@@ -1,10 +1,6 @@
-import nconf from 'nconf-getter'
 import AsyncFileLoader from './async_file_loader'
 
 const Gettext = require('gettext')
-const languageConfigs = nconf.get().languages
-const supportedLanguages = languageConfigs.supportedLanguages
-const defaultLanguage = languageConfigs.defaultLanguage
 /**
  *
  * i18n lib
@@ -30,7 +26,7 @@ I18n.prototype.setLang = async function() {
   }
   this.gettext.setMessage(window.i18nData.message)
 
-  this.getPlural = window.i18nData.getPlural
+  this.gettext.getPlural = window.i18nData.getPlural
   this.date = window.i18nDate
 }
 

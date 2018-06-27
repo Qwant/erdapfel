@@ -31,6 +31,7 @@ module.exports = function(app, languages) {
     let poData = langMessages[res.locals.language.code]
     let gettext = new Gettext()
     gettext.setMessage(poData.messages)
+    gettext.getPlural = poData.getPlural
     res.locals._ = function _(key = '', context, placeholders) {
       return gettext._(key, context, placeholders)
     }
