@@ -9,7 +9,7 @@ let page
 
 beforeAll(async () => {
   try {
-    browser = await puppeteer.launch({headless:false})
+    browser = await puppeteer.launch()
     page = await browser.newPage()
     page.on('console', msg => {
       console.log(`> ${msg.text()}`)
@@ -65,5 +65,5 @@ test('remove favorite', async () => {
 })
 
 afterAll(() => {
- // browser.close()
+  browser.close()
 })
