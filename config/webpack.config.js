@@ -137,7 +137,7 @@ let poSources = fs.readdirSync(path.join(__dirname, '..', 'language', 'message')
 
 webpackChunks = webpackChunks.concat(poSources.map((poSource)=> {
   return {
-    entry:  path.join(__dirname, '..', 'language', 'message', poSource + '.po'),
+    entry:  path.join(__dirname, '..', 'language', 'merged_messages', poSource + '.po'),
     module : {
       loaders : [{
         loader : 'file-loader',
