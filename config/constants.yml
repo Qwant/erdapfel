@@ -12,8 +12,6 @@ languages:
       code: br
       fallback:
         - fr_FR
-        - en_GB
-
   defaultLanguage: *default
 
 # Pois
@@ -57,43 +55,3 @@ pois:
 - osmName: wikidata
   panel_name: wiki
 
-# Pois
-pois:
-- osmName: opening_hours
-  panel_name: hour
-  options:
-    title: _('Opening hours')
-    messages:
-      open:
-        msg: _('Open')
-        color: '#60ad51'
-      soon:
-        msg: _('Closing soon')
-        time: 60
-        color: '#c45713'
-      closed:
-        msg: _('Closed')
-        color: '#8c0212'
-- osmName: happy_hours
-  panel_name: hour
-  options:
-    title: _('Happy hours')
-    messages:
-      open:
-        msg: _('happy hours!')
-        color: '#fcc035'
-      soon:
-        msg: _('Last pint')
-        time: 60
-        color: '#3f76e2'
-      closed:
-        msg: _('Closed')
-        color: '#8c0212'
-- osmName: brewery
-  panel_name: brewery
-- osmName: phone
-  panel_name: phone
-- osmName: website
-  panel_name: website
-- osmName: wikidata
-  panel_name: wiki

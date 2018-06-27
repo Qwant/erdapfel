@@ -1,5 +1,5 @@
 const path = require('path')
-const fs = require('fs')
+const yaml = require('node-yaml')
 const webpack = require('webpack')
 const testMode = process.env.TEST === 'true'
 
@@ -127,31 +127,31 @@ const mapJsChunkConfig = {
 
 webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
-let poSources = fs.readdirSync(path.join(__dirname, '..', 'language', 'message'))
-  .filter((poSource) => {
-    return poSource.indexOf('.po') !== -1
-  })
-  .map((poSource) => {
-    return poSource.replace('.po', '')
-  })
-
-webpackChunks = webpackChunks.concat(poSources.map((poSource)=> {
+const constants = yaml.readSync('./constants.yml')
+webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language)=> {
   return {
-    entry:  path.join(__dirname, '..', 'language', 'merged_messages', poSource + '.po'),
+    entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
     module : {
-      loaders : [{
-        loader : 'file-loader',
-        options : {
-          name : 'public/build/javascript/message/[name].js'
-        }
-      }, {
-        loader :'merge-i18n-source-loader',
-        options : {
-          sources : [
-            {path : `${__dirname}/../language/date/date-${poSource.toLocaleLowerCase()}.json`, name : 'i18nDate'}
-          ]
-        }
-      }, {
+      loaders : [
+        {
+          loader : 'file-loader',
+          options : {
+            name : 'public/build/javascript/message/[name].js'
+          }
+        }, {
+          loader: 'merge-po-loader',
+          options: {
+            fallback : language.fallback,
+            locale: language.locale
+          }
+        }, {
+          loader :'merge-i18n-source-loader',
+          options : {
+            sources : [
+              {path : `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`, name : 'i18nDate'}
+            ]
+          }
+        }, {
         test : /\.po$/,
         loader : 'po-js-loader',
       }],
