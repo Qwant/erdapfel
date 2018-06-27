@@ -17,85 +17,10 @@ msgstr ""
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: public/javascript/bundle.js\n"
 
-#: public/javascript/bundle.js:295 src/libs/i18n.js:58
-msgid "string"
+#: config/active_poi_section.yml:6
+msgid "Opening hours"
 msgstr ""
 
-#: public/javascript/bundle.js:311 public/javascript/bundle.js:312
-#: src/libs/i18n.js:74 src/libs/i18n.js:75
-#, python-format
-msgid "%d person"
-msgid_plural "%d people"
-msgstr[0] ""
-msgstr[1] ""
-
-#: public/javascript/bundle.js:973
-msgid "Favorite places"
-msgstr ""
-
-#: public/javascript/bundle.js:973
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-
-#: public/javascript/bundle.js:973
-#, python-format
-msgid "%d favorite place"
-msgid_plural "%d favorite places"
-msgstr[0] ""
-msgstr[1] ""
-
-#: public/javascript/bundle.js:1648
-msgid "filter"
-msgstr ""
-
-#: public/javascript/bundle.js:1698
-msgid "Register masq"
-msgstr ""
-
-#: public/javascript/bundle.js:1698
-msgid "We use MASQ to keep your preference data safe"
-msgstr ""
-
-#: public/javascript/bundle.js:1698
-msgid "Register"
-msgstr ""
-
-#: public/javascript/bundle.js:1908
-msgid "Beers"
-msgstr ""
-
-#: public/javascript/bundle.js:2149
-msgid "Phone"
-msgstr ""
-
-#: public/javascript/bundle.js:2180
-msgid "Website"
-msgstr ""
-
-#: public/javascript/bundle.js:2256
-msgid "Wikipedia"
-msgstr ""
-
-#: public/javascript/bundle.js:2256
-msgid "Via Wikipédia"
-msgstr ""
-
-#: public/javascript/bundle.js:2256
-msgid "Via WikiData"
-msgstr ""
-
-#: public/javascript/bundle.js:2341
-msgid "RESULTS"
-msgstr ""
-
-#: public/javascript/bundle.js:2341
-msgid "FAVORITES"
-msgstr ""
-
-#~ msgid "popup title"
-#~ msgstr "popup title"
-
-#~ msgid "images left"
-#~ msgid_plural "image left"
-#~ msgstr[0] "images left"
-#~ msgstr[1] "image left"
+#: config/active_poi_section.yml:9
+msgid "Open"
+msgstr "Ouvert en breton"

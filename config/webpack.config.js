@@ -134,14 +134,11 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
     module : {
       loaders : [
         {
-          loader : 'file-loader',
-          options : {
-            name : 'public/build/javascript/message/[name].js'
-          }
+          loader : 'raw-loader',
         }, {
           loader: 'merge-po-loader',
           options: {
-            fallback : language.fallback,
+            fallbackPaths : language.fallback,
             locale: language.locale
           }
         }, {
@@ -158,11 +155,9 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
     },
     output : {
       path : path.join(__dirname, '..'),
-      filename : 'tmp/message.js'
+      filename : './public/build/javascript/message/[name].js'
     },
   }
 }))
 
 module.exports = webpackChunks
-
-

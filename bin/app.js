@@ -1,16 +1,21 @@
 const express = require('express')
+const yaml = require('node-yaml')
 const app = express()
 
 function App(config) {
   /* set in res the user lang config */
-  const userLanguage = require('./middlewares/user_language')(config.languages)
+
+  const constants = yaml.readSync('../config/constants.yml')
+  const languages = constants.languages
+
+  const userLanguage = require('./middlewares/user_language')(languages)
   app.use(userLanguage)
 
   this.handler = null
   app.set('view engine', 'ejs')
 
   /* initialize gettext with correct dictionary */
-  const gettext = require('./gettext_wrapper')(app, config.languages.supportedLanguages) /* set _ et _n as locals app methods */
+  const gettext = require('./gettext_wrapper')(app, languages.supportedLanguages) /* set _ et _n as locals app methods */
   app.use(gettext)
 
   app.use(express.static(`${__dirname}/../public`))
@@ -18,7 +23,7 @@ function App(config) {
     res.render('index', {config : config})
   })
 
-  app.use((error, req, res, next) => {
+  app.use((error, req, res) => {
     res.status(500).render('error', {error})
   })
 }

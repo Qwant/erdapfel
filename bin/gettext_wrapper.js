@@ -21,7 +21,7 @@ function getPoData(path) {
  */
 module.exports = function(app, languages) {
   languages.forEach((language) => {
-    let poData = getPoData(`${__dirname}/../language/merged_messages/${language.locale}.po`)
+    let poData = getPoData(`${__dirname}/../language/messages/${language.locale}.po`)
     let plural =  Function('n', `return ${poData.options.plural}`)
 
     langMessages[language.code] = {code : language.code, locale: language.locale, messages : poData.entries, getPlural : plural}
