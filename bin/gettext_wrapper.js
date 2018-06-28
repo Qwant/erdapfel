@@ -1,5 +1,7 @@
 const fs = require('fs')
+const path = require('path')
 const poJs = require('po-js')
+const mergePo = require('merge-po')
 const Gettext = require('gettext')
 const langMessages = {}
 
@@ -8,8 +10,9 @@ const langMessages = {}
  * @param path
  * extract po data from file path given
  */
-function getPoData(path) {
+function getPoData(path, fallbackPaths) {
   let messageBuffer = fs.readFileSync(path)
+  messageBuffer = mergePo(messageBuffer, fallbackPaths)
   let messageLines = messageBuffer.toString().split(/\n/g)
   return poJs(messageLines)
 }
@@ -21,7 +24,14 @@ function getPoData(path) {
  */
 module.exports = function(app, languages) {
   languages.forEach((language) => {
-    let poData = getPoData(`${__dirname}/../language/messages/${language.locale}.po`)
+    let fallbackPaths = []
+    if(language.fallback) {
+      fallbackPaths = language.fallback.reduce((fallbackAcc, fallback) => {
+        fallbackAcc.push(path.resolve(path.join(__dirname, '..', 'language', 'message',`${fallback}.po`)))
+        return fallbackAcc
+      }, [])
+    }
+    let poData = getPoData(`${__dirname}/../language/message/${language.locale}.po`, fallbackPaths)
     let plural =  Function('n', `return ${poData.options.plural}`)
 
     langMessages[language.code] = {code : language.code, locale: language.locale, messages : poData.entries, getPlural : plural}

@@ -5,15 +5,12 @@ const path = require('path')
 const file = fs.readFileSync(__dirname + '/br_FR.po')
 
 const webpackMock = {
-  query :  {fallbackPaths: [path.resolve(path.join(__dirname, 'fr_FR.po'))]},
-  async : function () {
-    return function (error, data) {
-      console.log(data.toString())
-      if(data.indexOf('msgstr "Ouvert en breton"') !== -1) {
-        console.log( 'Translation missing')
-      }
-    }
-  }
+  query : {fallbackPaths: [path.resolve(path.join(__dirname, 'fr_FR.po'))]}
 }
 
-merge.call(webpackMock, file)
+
+let data = merge.call(webpackMock, file)
+
+if(data.indexOf('msgstr "Ouvert en breton"') === -1) {
+  console.log( 'Translation missing')
+}
