@@ -1,4 +1,4 @@
-# Qwant Map
+# Qwant Maps
 
 **/public/index.html**  
 Map webapp with Qwant map tiles and a search input
@@ -156,3 +156,9 @@ system:
 ```  
 
 is override by ```TILEVIEW_system_timeout=3```
+
+## License
+
+This project is licensed under the Apache License 2.0.
+
+Please not that it depends on many other opensource projects that have their own terms and conditions.
