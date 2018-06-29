@@ -2,10 +2,10 @@ const mergePo = require('merge-po')
 const utils = require('loader-utils')
 
 module.exports = function(source) {
+
   if(this.cacheable) {
     this.cacheable()
   }
-
   let options = utils.getOptions(this)
 
   options = options || {}
@@ -17,8 +17,7 @@ module.exports = function(source) {
     } catch (e) {
       throw(e)
     }
-  } else {
-    /* no fallback detected : return original po */
+  } else {/* no fallback detected : return original po */
    return source
   }
 }
