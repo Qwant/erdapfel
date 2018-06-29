@@ -1,4 +1,4 @@
-const mergePo = require('merge-po')
+const mergePo = require('@qwant/merge-po')
 const utils = require('loader-utils')
 
 module.exports = function(source) {

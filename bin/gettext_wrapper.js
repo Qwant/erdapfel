@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
-const poJs = require('po-js')
-const mergePo = require('merge-po')
-const Gettext = require('gettext')
+const poJs = require('@qwant/po-js')
+const mergePo = require('@qwant/merge-po')
+const Gettext = require('@qwant/gettext')
 const langMessages = {}
 
 /**

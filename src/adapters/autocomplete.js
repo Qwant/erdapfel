@@ -2,7 +2,7 @@ import Autocomplete from '../vendors/autocomplete'
 import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 import IconManager from '../adapters/icon_manager'
-import nconf from 'nconf-getter'
+import nconf from '@qwant/nconf-getter'
 
 import Store from '../adapters/store'
 import PanelManager from "../proxies/panel_manager"

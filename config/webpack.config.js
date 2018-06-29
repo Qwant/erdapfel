@@ -60,7 +60,7 @@ const mainJsChunkConfig = {
       test: /\.yml$/,
       exclude: [path.resolve(__dirname, '../node_modules/@qwant/')],
       use: [
-        {loader : 'config-sanitizer-loader'},
+        {loader : '@qwant/config-sanitizer-loader'},
         {loader : 'json-loader'},
         {loader : 'yaml-loader'}
       ]
@@ -105,7 +105,7 @@ const mapJsChunkConfig = {
           loader : 'json-loader'
         },
         {
-          loader : 'map-style-loader',
+          loader : '@qwant/map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
             outPath : __dirname + '/../public',
@@ -143,7 +143,7 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
           loader : '@qwant/global-loader'
         },
          {
-          loader :'merge-i18n-source-loader',
+          loader :'@qwant/merge-i18n-source-loader',
           options : {
             sources : [
               {path : `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`, name : 'i18nDate'}
@@ -151,11 +151,11 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
           }
         },
         {
-          loader : 'po-js-loader',
+          loader : '@qwant/po-js-loader',
         },
         {
           test : /\.po$/,
-          loader: 'merge-po-loader',
+          loader: '@qwant/merge-po-loader',
           options: {
             fallbackPaths : fallbackList,
             locale: language.locale

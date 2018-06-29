@@ -1,4 +1,4 @@
-const configBuilt = require('nconf-builder')
+const configBuilt = require('@qwant/nconf-builder')
 const App = require('./app')
 const config = configBuilt.get()
 const PORT = config.PORT

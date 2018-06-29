@@ -1,4 +1,4 @@
-import nconf from 'nconf-getter'
+import nconf from '@qwant/nconf-getter'
 const mapStyleConfig = nconf.get().mapStyle
 
 function StyleLaundry(style) {

@@ -1,6 +1,6 @@
 import AsyncFileLoader from './async_file_loader'
 
-const Gettext = require('gettext')
+const Gettext = require('@qwant/gettext')
 /**
  *
  * i18n lib
