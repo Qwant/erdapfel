@@ -7,12 +7,16 @@ const langMessages = {}
 
 /**
  *
- * @param path
+ * @param baseLangPath
+ * @param fallbackList list of language fallbpack
+ * @param messagePath message (po) location
  * extract po data from file path given
  */
-function getPoData(path, fallbackPaths) {
-  let messageBuffer = fs.readFileSync(path)
-  messageBuffer = mergePo(messageBuffer, fallbackPaths)
+function getPoData(baseLangPath, fallbackList, messagePath) {
+  let messageBuffer = fs.readFileSync(baseLangPath)
+  if(fallbackList && fallbackList.length > 0) {
+    messageBuffer = mergePo(messageBuffer, fallbackList, messagePath)
+  }
   let messageLines = messageBuffer.toString().split(/\n/g)
   return poJs(messageLines)
 }
@@ -23,17 +27,10 @@ function getPoData(path, fallbackPaths) {
  * @param languages workaround avoiding parsing yaml on every request
  */
 module.exports = function(app, languages) {
+  let messagePath =  path.resolve(path.join(__dirname, '..', 'language', 'message'))
   languages.forEach((language) => {
-    let fallbackPaths = []
-    if(language.fallback) {
-      fallbackPaths = language.fallback.reduce((fallbackAcc, fallback) => {
-        fallbackAcc.push(path.resolve(path.join(__dirname, '..', 'language', 'message',`${fallback}.po`)))
-        return fallbackAcc
-      }, [])
-    }
-    let poData = getPoData(`${__dirname}/../language/message/${language.locale}.po`, fallbackPaths)
+    let poData = getPoData(`${__dirname}/../language/message/${language.locale}.po`, language.fallback, messagePath)
     let plural =  Function('n', `return ${poData.options.plural}`)
-
     langMessages[language.code] = {code : language.code, locale: language.locale, messages : poData.entries, getPlural : plural}
   })
 

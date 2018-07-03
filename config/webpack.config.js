@@ -129,12 +129,6 @@ webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
 const constants = yaml.readSync('./constants.yml')
 webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language)=> {
-  let fallbackList = []
-  if(language.fallback) {
-    fallbackList = language.fallback.reduce((fallbackPaths, fallbackPath) => {
-      fallbackPaths.push(path.join(__dirname, '..', 'language', 'message',`${fallbackPath}.po`))
-    }, [])
-  }
   return {
     entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
     module : {
@@ -157,7 +151,8 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
           test : /\.po$/,
           loader: '@qwant/merge-po-loader',
           options: {
-            fallbackPaths : fallbackList,
+            fallbackList : language.fallback,
+            messagePath : path.join(__dirname, '..', 'language', 'message'),
             locale: language.locale
           }
         }],

@@ -10,10 +10,11 @@ module.exports = function(source) {
 
   options = options || {}
 
-  const fallbackPaths = options.fallbackPaths
-  if(fallbackPaths && fallbackPaths.length > 0) {
+  const fallbackList = options.fallbackList
+  const messagePath = options.messagePath
+  if(fallbackList && fallbackList.length > 0) {
     try {
-      return mergePo(source, fallbackPaths)
+      return mergePo(source, fallbackList, messagePath)
     } catch (e) {
       throw(e)
     }
