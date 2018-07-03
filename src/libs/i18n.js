@@ -1,6 +1,6 @@
 import AsyncFileLoader from './async_file_loader'
 
-const Gettext = require('gettext')
+const Gettext = require('@qwant/gettext')
 /**
  *
  * i18n lib
@@ -13,6 +13,7 @@ function I18n() {
   window.getDay = this.getDay.bind(this)
   window.setLang = this.setLang.bind(this)
   window.getLang = this.getLang.bind(this)
+  window.getBaseLang = this.getBaseLang.bind(this)
 }
 
 I18n.days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
@@ -45,10 +46,15 @@ I18n.prototype.getDay = function(day, dayKey) {
   return this.date[dayKey][pos]
 }
 
+/* return user language  */
 I18n.prototype.getLang = function() {
   return this.language
 }
 
+/* return a supported user language   */
+I18n.prototype.getBaseLang = function() {
+  return this.language
+}
 /**
  * translate short days
  * @param day short name of the day ex. sa for saturday

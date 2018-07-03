@@ -1,5 +1,5 @@
 const path = require('path')
-const fs = require('fs')
+const yaml = require('node-yaml')
 const webpack = require('webpack')
 const testMode = process.env.TEST === 'true'
 
@@ -60,7 +60,7 @@ const mainJsChunkConfig = {
       test: /\.yml$/,
       exclude: [path.resolve(__dirname, '../node_modules/@qwant/')],
       use: [
-        {loader : 'config-sanitizer-loader'},
+        {loader : '@qwant/config-sanitizer-loader'},
         {loader : 'json-loader'},
         {loader : 'yaml-loader'}
       ]
@@ -105,7 +105,7 @@ const mapJsChunkConfig = {
           loader : 'json-loader'
         },
         {
-          loader : 'map-style-loader',
+          loader : '@qwant/map-style-loader',
           options : {
             output: 'debug', // 'production' | 'omt'
             outPath : __dirname + '/../public',
@@ -127,42 +127,39 @@ const mapJsChunkConfig = {
 
 webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
-let poSources = fs.readdirSync(path.join(__dirname, '..', 'language', 'message'))
-  .filter((poSource) => {
-    return poSource.indexOf('.po') !== -1
-  })
-  .map((poSource) => {
-    return poSource.replace('.po', '')
-  })
-
-webpackChunks = webpackChunks.concat(poSources.map((poSource)=> {
+const constants = yaml.readSync('./constants.yml')
+webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language)=> {
   return {
-    entry:  path.join(__dirname, '..', 'language', 'message', poSource + '.po'),
+    entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
     module : {
-      loaders : [{
-        loader : 'file-loader',
-        options : {
-          name : 'public/build/javascript/message/[name].js'
-        }
-      }, {
-        loader :'merge-i18n-source-loader',
-        options : {
-          sources : [
-            {path : `${__dirname}/../language/date/date-${poSource.toLocaleLowerCase()}.json`, name : 'i18nDate'}
-          ]
-        }
-      }, {
-        test : /\.po$/,
-        loader : 'po-js-loader',
-      }],
+      loaders : [
+         {
+          loader :'@qwant/merge-i18n-source-loader',
+          options : {
+            sources : [
+              {path : `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`, name : 'i18nDate'}
+            ]
+          }
+        },
+        {
+          loader : '@qwant/po-js-loader',
+        },
+        {
+          test : /\.po$/,
+          loader: '@qwant/merge-po-loader',
+          options: {
+            fallbackList : language.fallback,
+            messagePath : path.join(__dirname, '..', 'language', 'message'),
+            locale: language.locale
+          }
+        }],
     },
+
     output : {
       path : path.join(__dirname, '..'),
-      filename : 'tmp/message.js'
+      filename : `./public/build/javascript/message/${language.locale}.js`
     },
   }
 }))
 
 module.exports = webpackChunks
-
-

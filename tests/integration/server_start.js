@@ -1,5 +1,5 @@
 const App = require( './../../bin/app')
-const configBuilder = require('nconf-builder')
+const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 global.appServer = new App(config)
 

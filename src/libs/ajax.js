@@ -1,4 +1,4 @@
-import nconf from 'nconf-getter'
+import nconf from '@qwant/nconf-getter'
 const systemConfigs = nconf.get().system
 const timeout = systemConfigs.timeout
 function Ajax() {}

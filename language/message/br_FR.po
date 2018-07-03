@@ -1,0 +1,282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-06-29 16:44+0200\n"
+"PO-Revision-Date: 2018-06-29 16:44+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: ;_;_n:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: config\n"
+"X-Poedit-SearchPath-1: views\n"
+"X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
+"X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
+
+#: config/constants.yml:22
+msgid "Opening hours"
+msgstr ""
+
+#: config/constants.yml:25
+msgid "Open"
+msgstr ""
+
+#: config/constants.yml:28
+msgid "Closing soon"
+msgstr ""
+
+#: config/constants.yml:32 config/constants.yml:47
+msgid "Closed"
+msgstr ""
+
+#: config/constants.yml:37
+msgid "Happy hours"
+msgstr ""
+
+#: config/constants.yml:40
+msgid "happy hours!"
+msgstr ""
+
+#: config/constants.yml:43
+msgid "Last pint"
+msgstr ""
+
+#: public/build/javascript/bundle.js:795
+msgid "station"
+msgstr ""
+
+#: public/build/javascript/bundle.js:796
+msgid "bank"
+msgstr ""
+
+#: public/build/javascript/bundle.js:797
+msgid "restaurant"
+msgstr ""
+
+#: public/build/javascript/bundle.js:798
+msgid "supermarket"
+msgstr ""
+
+#: public/build/javascript/bundle.js:799
+msgid "hotel"
+msgstr ""
+
+#: public/build/javascript/bundle.js:800
+msgid "community centre"
+msgstr ""
+
+#: public/build/javascript/bundle.js:801
+msgid "place of worship"
+msgstr ""
+
+#: public/build/javascript/bundle.js:802
+msgid "embassy"
+msgstr ""
+
+#: public/build/javascript/bundle.js:803
+msgid "fire station"
+msgstr ""
+
+#: public/build/javascript/bundle.js:804
+msgid "bakery"
+msgstr ""
+
+#: public/build/javascript/bundle.js:805
+msgid "mobile phone"
+msgstr ""
+
+#: public/build/javascript/bundle.js:806
+msgid "cafe"
+msgstr ""
+
+#: public/build/javascript/bundle.js:807
+msgid "hairdresser"
+msgstr ""
+
+#: public/build/javascript/bundle.js:808
+msgid "cosmetics"
+msgstr ""
+
+#: public/build/javascript/bundle.js:809
+msgid "pharmacy"
+msgstr ""
+
+#: public/build/javascript/bundle.js:810
+msgid "convenience"
+msgstr ""
+
+#: public/build/javascript/bundle.js:811
+msgid "greengrocer"
+msgstr ""
+
+#: public/build/javascript/bundle.js:812
+msgid "clothes"
+msgstr ""
+
+#: public/build/javascript/bundle.js:813
+msgid "shoes"
+msgstr ""
+
+#: public/build/javascript/bundle.js:814
+msgid "fast food"
+msgstr ""
+
+#: public/build/javascript/bundle.js:815
+msgid "dry cleaning"
+msgstr ""
+
+#: public/build/javascript/bundle.js:816
+msgid "video games"
+msgstr ""
+
+#: public/build/javascript/bundle.js:817
+msgid "bus stop"
+msgstr ""
+
+#: public/build/javascript/bundle.js:818
+msgid "subway"
+msgstr ""
+
+#: public/build/javascript/bundle.js:819
+msgid "park"
+msgstr ""
+
+#: public/build/javascript/bundle.js:820
+msgid "school"
+msgstr ""
+
+#: public/build/javascript/bundle.js:821
+msgid "cemetery"
+msgstr ""
+
+#: public/build/javascript/bundle.js:822
+msgid "hospital"
+msgstr ""
+
+#: public/build/javascript/bundle.js:823
+msgid "kindergarten"
+msgstr ""
+
+#: public/build/javascript/bundle.js:824
+msgid "museum"
+msgstr ""
+
+#: public/build/javascript/bundle.js:825
+msgid "post office"
+msgstr ""
+
+#: public/build/javascript/bundle.js:826
+msgid "public building"
+msgstr ""
+
+#: public/build/javascript/bundle.js:827
+msgid "attraction"
+msgstr ""
+
+#: public/build/javascript/bundle.js:828
+msgid "marina"
+msgstr ""
+
+#: public/build/javascript/bundle.js:829
+msgid "college"
+msgstr ""
+
+#: public/build/javascript/bundle.js:830
+msgid "books"
+msgstr ""
+
+#: public/build/javascript/bundle.js:831
+msgid "university"
+msgstr ""
+
+#: public/build/javascript/bundle.js:832
+msgid "beauty"
+msgstr ""
+
+#: public/build/javascript/bundle.js:833
+msgid "townhall"
+msgstr ""
+
+#: public/build/javascript/bundle.js:834
+msgid "doityourself"
+msgstr ""
+
+#: public/build/javascript/bundle.js:957
+msgid "string"
+msgstr ""
+
+#: public/build/javascript/bundle.js:973 public/build/javascript/bundle.js:974
+#, python-format
+msgid "%d person"
+msgid_plural "%d people"
+msgstr[0] ""
+msgstr[1] ""
+
+#: public/build/javascript/bundle.js:1194
+msgid "Favorite places"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1194
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1194
+#, python-format
+msgid "%d favorite place"
+msgid_plural "%d favorite places"
+msgstr[0] ""
+msgstr[1] ""
+
+#: public/build/javascript/bundle.js:1862
+msgid "filter"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1906
+msgid "Register masq"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1906
+msgid "We use MASQ to keep your preference data safe"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1906
+msgid "Register"
+msgstr ""
+
+#: public/build/javascript/bundle.js:2492
+msgid "Via Wikipédia"
+msgstr ""
+
+#: public/build/javascript/bundle.js:2492
+msgid "Via WikiData"
+msgstr ""
+
+#: public/build/javascript/bundle.js:2687
+msgid "RESULTS"
+msgstr "DISOC'HOÙ"
+
+#: public/build/javascript/bundle.js:2687
+msgid "FAVORITES"
+msgstr "SINEDOÙ"
+
+#: views/index.ejs:5
+msgid "Qwant Maps - beta"
+msgstr "Qwant - Al lusker enklask hag a zouj d'ho prevezded"
+
+#: views/index.ejs:28
+msgid "Where do you want to go ?"
+msgstr ""
+
+#~ msgid "popup title"
+#~ msgstr "popup title"
+
+#~ msgid "images left"
+#~ msgid_plural "image left"
+#~ msgstr[0] "images left"
+#~ msgstr[1] "image left"

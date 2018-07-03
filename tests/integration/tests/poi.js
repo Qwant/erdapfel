@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer'
 import {getText} from '../tools'
-const configBuilder = require('nconf-builder')
+const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 let browser

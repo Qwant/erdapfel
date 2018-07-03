@@ -11,6 +11,7 @@ module.exports = function(source) {
   options = options || {}
   mergeI18n(source, options.sources).then((i18nData) => {
     callback(null, i18nData)
+
   }).catch((error) => {
     callback(error)
   })

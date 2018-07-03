@@ -16,7 +16,6 @@ nconf
   })
   .file({file : path.resolve(`${__dirname}/../../config/default_config.yml`), format : nconfYml})
 
-
 module.exports = (function() {
   return nconf
 })()

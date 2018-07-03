@@ -1,4 +1,4 @@
-const poToJs = require('po-js')
+const poToJs = require('@qwant/po-js')
 
 module.exports = function(buffer, options) {
   return convertTask(buffer, options)
