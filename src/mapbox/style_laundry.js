@@ -4,7 +4,7 @@ const mapStyleConfig = nconf.get().mapStyle
 function StyleLaundry(style) {
   let rawStyle = JSON.stringify(style)
   return JSON.parse(rawStyle
-    .replace(/\{locale\}/g, window.getBaseLang())
+    .replace(/\{locale\}/g, window.getBaseLang().code)
     .replace('"{tileserver_base}"', mapStyleConfig.baseMapUrl)
     .replace('"{tileserver_poi}"', mapStyleConfig.poiMapUrl)
     .replace('{spriteserver}', mapStyleConfig.spritesUrl)

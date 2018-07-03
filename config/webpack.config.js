@@ -133,9 +133,6 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
     entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
     module : {
       loaders : [
-        {
-          loader : '@qwant/global-loader'
-        },
          {
           loader :'@qwant/merge-i18n-source-loader',
           options : {
