@@ -23,7 +23,7 @@ function App(config) {
     res.render('index', {config : config})
   })
 
-  app.use((error, req, res) => {
+  app.use((error, req, res, next) => {
     res.status(500).render('error', {error})
   })
 }
