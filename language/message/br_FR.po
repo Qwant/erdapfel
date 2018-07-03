@@ -259,19 +259,19 @@ msgstr ""
 
 #: public/build/javascript/bundle.js:2687
 msgid "RESULTS"
-msgstr ""
+msgstr "DISOC'HOÙ"
 
 #: public/build/javascript/bundle.js:2687
 msgid "FAVORITES"
-msgstr "Favorite en breton"
+msgstr "SINEDOÙ"
 
 #: views/index.ejs:5
 msgid "Qwant Maps - beta"
-msgstr ""
+msgstr "Qwant - Al lusker enklask hag a zouj d'ho prevezded"
 
 #: views/index.ejs:28
 msgid "Where do you want to go ?"
-msgstr "Where en breton"
+msgstr ""
 
 #~ msgid "popup title"
 #~ msgstr "popup title"
