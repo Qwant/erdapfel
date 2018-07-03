@@ -1,12 +1,17 @@
 FROM node:8-stretch as builder
 
+RUN apt-get update && apt-get -y install gettext
+
 ENV PROJECT_DIR=/srv/maps-tileview/
 COPY . $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 RUN npm install \
     && npm run-script build
 
+
 FROM node:8-stretch
+
+RUN apt-get update && apt-get -y install gettext
 
 ENV PROJECT_DIR=/srv/maps-tileview/
 ENV NODE_ENV=production
