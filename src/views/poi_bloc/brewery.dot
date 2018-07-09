@@ -1,6 +1,8 @@
-<div class="icon-pint poi_panel__block__symbol"></div>
-<div class="poi_panel__block__content">
-  {{~ this.beers:beer }}
-    <p class="poi_panel__info__beer">{{= beer }}</p>
-  {{~}}
-</div>
+<h6 class="poi_panel__sub__sub_block__title">
+  {{= _('Beers', 'poi') }}
+</h6>
+<ul>
+{{~ this.beers:beer }}
+  <li class="poi_panel__info__item poi_panel__info__item--beer">{{= beer.name }}</li>
+{{~}}
+</ul>

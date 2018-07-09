@@ -2,6 +2,7 @@ import PoiPanelView from '../views/poi_panel.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import PoiBlocContainer from './poi_bloc/poi_bloc_container'
+import Poi from "../mapbox/poi"
 import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
 import ExtendedString from '../libs/string'
@@ -15,7 +16,7 @@ function PoiPanel() {
   this.poi = null
   this.active = false
   this.poiSubClass = poiSubClass
-  this.poiBlocContainer = new PoiBlocContainer()
+  this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
@@ -61,21 +62,24 @@ PoiPanel.prototype.close = async function() {
   UrlState.pushUrl()
 }
 
-PoiPanel.prototype.restorePoi = async function (poi) {
-  this.poi = poi
-  this.poi.stored = await isPoiFavorite(poi)
+PoiPanel.prototype.restorePoi = async function (id) {
+  this.poi = await Poi.apiLoad(id)
+  fire('map_mark_poi', this.poi)
+  this.poi.stored = await isPoiFavorite(this.poi)
   this.active = true
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   await this.panel.update()
 }
 
 PoiPanel.prototype.setPoi = async function (poi) {
-  fire('poi_open')
   this.poi = poi
-  this.poi.stored = await isPoiFavorite(poi)
+  this.poi.stored = await isPoiFavorite(this.poi)
+  this.PoiBlocContainer.set(poi)
+
   if(this.active === false) {
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   }
+
   this.active = true
   UrlState.pushUrl()
   await this.panel.update()
@@ -86,9 +90,8 @@ PoiPanel.prototype.setPoi = async function (poi) {
 PoiPanel.prototype.store = function() {
   // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
   if(this.poi && this.poi.name && this.active) {
-    let id = 'osm:fake:42'
     let slug = ExtendedString.slug(this.poi.name)
-    return `${id}@${slug}`
+    return `${this.poi.id}@${slug}`
   }
   return ''
 }
@@ -98,10 +101,7 @@ PoiPanel.prototype.restore = function(urlShard) {
     let id_slug_match = urlShard.match(/^([^@]+)@?(.*)/)
     if (id_slug_match) {
       let id = id_slug_match[1]
-      let slug = id_slug_match[2]
-      this.restorePoi({
-        name : slug
-      })
+      this.restorePoi(id)
     }
   }
 }

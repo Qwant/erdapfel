@@ -4,6 +4,8 @@ PORT: 3000
 services:
   geocoder:
     url: override by environment
+  idunn:
+    url: override by environment
 
 # System
 system:

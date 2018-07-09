@@ -16,23 +16,23 @@ languages:
 
 # Pois
 pois:
-- osmName: opening_hours
-  panel_name: hour
+- apiName: opening_hours
+  panelName: hour
   options:
     title: _('Opening hours')
     messages:
       open:
         msg: _('Open')
         color: '#60ad51'
-      soon:
-        msg: _('Closing soon')
-        time: 60
-        color: '#c45713'
+      # soon:
+      #   msg: _('Closing soon')
+      #   time: 60
+      #   color: '#c45713'
       closed:
         msg: _('Closed')
         color: '#8c0212'
-- osmName: happy_hours
-  panel_name: hour
+- apiName: happy_hours
+  panelName: hour
   options:
     title: _('Happy hours')
     messages:
@@ -46,12 +46,42 @@ pois:
       closed:
         msg: _('Closed')
         color: '#8c0212'
-- osmName: brewery
-  panel_name: brewery
-- osmName: phone
-  panel_name: phone
-- osmName: website
-  panel_name: website
-- osmName: wikidata
-  panel_name: wiki
+- apiName: brewery
+  panelName: brewery
+- apiName: phone
+  panelName: phone
+- apiName: website
+  panelName: website
+- apiName: wikipedia
+  panelName: wiki
+- apiName: services_and_information
+  panelName: services_information
+- apiName: information
+  panelName: informations
+- apiName: accessibility
+  panelName: accessibility
+  options:
+    -
+      key: wheelchair
+      labels:
+        true: _('Wheelchair accessible')
+        limited: _('Limited wheelchair accessibility')
+        false: _('Limited wheelchair accessibility')
+    -
+      key: tactile_paving
+      labels:
+        true: _('Tactile paving')
+        limited: _('Limited tactile paving')
+        false: _('No tactile paving')
+    -
+      key: toilets_wheelchair
+      labels:
+        true: _('Toilets wheelchair accessible')
+        limited: _('Toilets wheelchair accessibility &colon; limited')
+        false: _('Toilets not accessible in wheelchair')
+- apiName: brewery
+  panelName: brewery
+- apiName: internet_access
+  panelName: internet_access
+
 

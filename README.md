@@ -141,6 +141,8 @@ integration test with npm run integration-test
 
 integration test will run chrome headless test suite with a mapbox-gl minimalist mock
 
+integration test config override is done in the server_start file 
+
 ### note on mapbox-gl mock
 We include out mapbox-gl mock fork to emulate mapbox-gl behaviour with the advanced support of mocked event & poi.
  

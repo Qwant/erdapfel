@@ -1,3 +1,5 @@
+$BLOCK_INDENT: 60px;
+
 .poi_panel {
   position: absolute;
   top: 0;
@@ -11,6 +13,8 @@
 
 .poi_panel__content {
   position: relative;
+  height: 100vh;
+  overflow-y: auto;
   width: $panel_width;
   padding: 95px 0 10px 0;
   background: #fff;
@@ -20,17 +24,14 @@
   left: - ($panel_width - $side_bar_width);
 }
 
-.poi_panel__header_image {
-  background-image: url(../images/tmp_fixtures/david-marcu-383024-unsplash.jpg);
-  background-size: $panel_width;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 400px;
-  height: 200px;
+.poi_panel__info__section {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .poi_panel__info__section__phone {
-  margin-left: 62px;
+  margin-left: $BLOCK_INDENT;
   font-size: 14px;
 }
 
@@ -49,6 +50,14 @@
   border-radius: 0 3px 3px 0;
 }
 
+.poi_panel__toggle_display--mobile {
+  display: none;
+}
+
+.poi_panel__toggle_display--desktop {
+  display: block;
+}
+
 .poi_panel__description_container {
   margin-top: 20px;
   position: relative;
@@ -61,18 +70,11 @@
 }
 
 .poi_panel__title {
-  float: right;
-  width: 300px;
-  margin-right: 38px;
+  width: 350px;
+  padding-left: $BLOCK_INDENT;
+  font-weight: bold;
   color: $text_color;
-  font-weight: normal;
-  font-size: 16px;
-}
-
-.poi_panel__title__symbol {
-  float: left;
-  margin-left: 26px;
-  font-size: 34px;
+  font-size: 15px;
 }
 
 .poi_panel__info__section__title {
@@ -84,18 +86,27 @@
 .poi_panel__info__section:before {
   content: '';
   display: block;
-  width: 360px;
+  width: 338px;
   height: 1px;
-  margin: 18px 0 12px 20px;
+  margin-top: 8px;
   background: #e4e7ef;
+  margin-left: 28px;
 }
 
 .poi_panel__description {
   position: relative;
   font-size: 12px;
-  padding-left: 62px;
-  margin-top: 4px;
+  padding-left: $BLOCK_INDENT;
+  margin-top: 2px;
   color: $emphase_color;
+}
+.poi_panel__description:first-letter {
+  text-transform: uppercase;
+}
+
+.poi_panel__address {
+  padding: 8px 0 0 $BLOCK_INDENT;
+  font-size: 13px;
 }
 
 .poi_panel__info__section__description  {
@@ -103,32 +114,36 @@
 }
 
 .poi_panel__info__link {
-  margin-left: 62px;
+  margin-left: $BLOCK_INDENT;
   font-size: 14px;
-  color: #039BE5;
-  border-bottom: 1px solid #c8d6e0;
+  color: #0c897b;
 }
 
 .poi_panel__info__link:HOVER {
   text-decoration: none;
-  border-bottom: 1px solid #039BE5;
+  border-bottom: 1px solid #0c897b;
+}
+
+.poi_panel__info__accessibilities {
+  font-size: 13px;
+  margin-left: $BLOCK_INDENT;
 }
 
 .poi_panel__info__hours {
-  margin-left: 44px;
-  height: 0;
-  transition: height 0.3s;
+  margin-left: $BLOCK_INDENT;
+  max-height: 0;
+  transition: max-height 0.3s;
   overflow: hidden;
 }
 
-.poi_panel__info__hours .hours {
-  color: #4d4d4c;
+.poi_panel__info__hours__table {
+  width: 330px;
   font-size: 13px;
-  padding: 4px 10px;
 }
 
-.poi_panel__info__hours TR:nth-child(2n) {
-  background-color: #f5f7f9;
+.poi_panel__info__hours .hours {
+  text-align: right;
+  padding: 1px 10px;
 }
 
 .poi_panel__info__hours_status {
@@ -136,39 +151,60 @@
 }
 
 .poi_panel__info__hours--open {
-  height: 170px;
+  max-height: 170px;
 }
 
 .poi_panel__info__hours__status {
-  padding-left: 62px;
+  padding-left: $BLOCK_INDENT;
   cursor: pointer;
 }
 
-.poi_panel__info__hours {
-  .day {
-    text-align: right;
-    padding: 3px 5px 3px 0;
-  }
+.poi_panel__info__hours .day {
+  padding: 3px 5px 3px 0;
+}
+
+.poi_panel__info__hours--current {
+  font-weight: bold;
 }
 
 .hour_panel__no_data  {
-  padding-left: 44px;
+  padding-left: 64px;
   color: #777;
   font-size: 14px;
 }
 
-.poi_panel__info__beer {
-  margin-left: 62px;
+.poi_panel__info__hour__circle {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  margin: 3px 1px;
+  border-radius: 50%;
+}
+
+.poi_panel__description__ellipsis {
+  margin-top: 20px;
+  line-height: 18px;
+  font-size: 15px;
+  width: 300px;
+}
+
+.poi_panel__info__item {
+  margin-left: $BLOCK_INDENT;
+  font-size: 13px;
+}
+
+.poi_panel__info__item--beer {
   color: #90750b;
-  font-size: 14px;
 }
 
 .poi_panel__store_status {
   position: absolute;
   top: 0;
-  right: 20px;
-  width: 30px;
-  margin-top: -6px;
+  right: 50px;
+}
+
+.poi_panel__description_container {
+  position: relative;
 }
 
 .poi_panel__store_status__toggle {
@@ -187,27 +223,81 @@
   color: #fbca04;
 }
 
-.poi_panel__title__symbol:before {
-  line-height: 18px;
-}
+/* TODO export to external service */
 
-.poi_panel__title__symbol.icon-location {
-  font-size: 22px; /* particular case */
-}
-
-.poi_panel__block__content {
-  margin-top: -18px;
+/* title symbols */
+.poi_panel__title__symbol {
+  float: left;
+  font-size: 42px;
+  margin-left: 16px;
+  line-height: 35px !important;
 }
 
 /* symbols */
 .poi_panel__block__symbol {
+  position: absolute;
+  top: 18px;
+  left: 25px;
   font-size: 24px;
+  color: #a7a7a7;
   width: 20px;
-  height: 20px;
-  margin: 10px 0 0 32px;
-  color: #999;
+  height: 18px;
 }
 
+.poi_panel__block__content {
+  margin-top: 18px;
+  margin-bottom: 20px;
+}
+
+.poi_panel__service_information__container {
+  position: relative;
+}
+
+.poi_panel__block__information {
+  width: 350px;
+  transition: max-height .2s;
+  position: relative;
+  max-height: 0px;
+  overflow: hidden;
+}
+
+.poi_panel__block__information--extended {
+  max-height: 300px;
+}
+
+.poi_panel__block__collapse {
+  position: absolute;
+  right: 34px;
+  top: -16px;
+  cursor: pointer;
+}
+
+.poi_panel__sub__sub_block__title {
+  font-size: 12px;
+  font-weight: normal;
+  margin: 10px 0 4px $BLOCK_INDENT;
+  color: #707070
+}
+
+.poi_panel__sub_block__title {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 20px 0 0 $BLOCK_INDENT;
+  color: #707070
+}
+
+.poi_panel__info__wiki {
+  margin: 10px 0 0 $BLOCK_INDENT;
+  font-size: 12px;
+  color: #222;
+}
+
+.poi_panel__info__wiki__link {
+  line-height: 18px;
+  font-size: 14px;
+}
+
+/* symbols */
 .poi_panel__section__symbol {
   width: 20px;
   height: 20px;
@@ -215,6 +305,19 @@
 }
 
 @media (max-width: 640px) {
+
+  .poi_panel__toggle_display--mobile {
+    display: block;
+  }
+
+  .poi_panel__toggle_display--desktop {
+    display: none;
+  }
+
+  .poi_panel__toggle_display {
+    top: 75px;
+    right: 10px
+  }
 
   .poi_panel {
     height: 100vh;
@@ -226,32 +329,16 @@
   }
 
   .poi_panel__title {
-    width: calc(100% - (62px + 38px));
-
+    width: calc(100% - ($BLOCK_INDENT + 38px));
   }
 
   .poi_panel__content {
     width: 100%;
-    padding: 85px 0 0 0;
+    padding: 30px 0 0 0;
   }
 
   .poi_panel--hidden {
     top: -100vh;
-  }
-
-  .poi_panel__header_image {
-    width: 100vw;
-    background-size: 100vw 200px;
-  }
-
-  .poi_panel__close {
-    right: 0;
-    font-size: 36px;
-    top: 72px;
-  }
-
-  .poi_panel__description_container {
-   // margin-top: 0;
   }
 
   .poi_panel__info__section:before {

@@ -1,6 +1,12 @@
 /**
  * simple Poi helper
  */
+import Ajax from "../libs/ajax"
+import nconf from '@qwant/nconf-getter'
+import PanelManager from "../proxies/panel_manager";
+const serviceConfig = nconf.get().services
+const LNG_INDEX = 0
+const LAT_INDEX = 1
 
 function Poi(latLon, id, name, className, subClassName, tags) {
   this.latLon = latLon
@@ -8,7 +14,7 @@ function Poi(latLon, id, name, className, subClassName, tags) {
   this.tags = tags
   this.className = className
   this.subClassName = subClassName
-  this.id = id ? id + '' : `${this.latLon.lat}_${this.latLon.lng}` // force string type or fallback to latlng key
+  this.id = id
 }
 
 Poi.prototype.getLngLat = function() {
@@ -22,12 +28,12 @@ Poi.prototype.getKey = function () {
 Poi.prototype.store = function() {
   return {
     latLon : this.latLon,
+    id : this.id,
     name : this.name,
     className : this.className,
     subClassName : this.subClassName,
     zoom : this.zoom,
     bbox : this.bbox,
-    tags : this.tags
   }
 }
 
@@ -38,30 +44,28 @@ Poi.load = function (rawPoi) {
   return poi
 }
 
-Poi.sceneLoad = function (event, zoom) {
-  let feature = event.features[0]
-  let name = feature.properties.name || ''
-  let className = feature.properties.class || ''
-  let subClassName = feature.properties.subclass || ''
-  let tags = []
+Poi.apiLoad = async function (id) {
+  let rawPoi = null
   try {
-    let rawTags = JSON.parse(feature.properties.tags)
-    tags = []
-    Object.keys(rawTags).forEach((tagKey) => {
-      if(tagKey.indexOf('name') === -1) {
-        tags.push({name : tagKey, value : rawTags[tagKey]})
-      }
-    })
-
-  } catch (e) {
-    tags = {}
-    fire('alert', 'Tags parse error ' + e)
+    rawPoi = await Ajax.queryLang(`${serviceConfig.idunn.url}/v1/pois/${id}`)
+  } catch (err) {
+    PanelManager.closeAll()
+    if(err === 404) {
+      return
+    }
+    else {
+      fire('error_h', err)
+      return
+    }
   }
-  let poi = new Poi({lat :feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]},feature.properties.id, name, className, subClassName, tags)
-  poi.zoom = zoom
-
+  let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
+  const poi = new Poi(latLng, id, rawPoi.name, rawPoi.class_name, rawPoi.subclass_name)
+  poi.blocks = rawPoi.blocks
+  poi.localName = rawPoi.local_name
+  poi.address = rawPoi.address
   return poi
 }
+
 
 
 export default Poi

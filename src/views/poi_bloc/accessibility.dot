@@ -1,0 +1,7 @@
+<h6 class="poi_panel__sub__sub_block__title">{{= _('Accessibility', 'poi') }}</h6>
+<ul class="poi_panel__info__accessibilities">
+  {{~ this.managedAccessibilityList:managedAccessibility }}
+    {{ let accessibility = this.accessibilityList[managedAccessibility.key]; }}
+    <li>{{= _(managedAccessibility.labels[accessibility]) }}</li>
+  {{~}}
+</ul>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-06-27 10:44+0200\n"
-"PO-Revision-Date: 2018-06-27 10:51+0200\n"
+"POT-Creation-Date: 2018-07-06 11:43+0200\n"
+"PO-Revision-Date: 2018-07-06 11:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -19,251 +19,309 @@ msgstr ""
 "X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 
-#: config/default_config.yml:8
+#: config/constants.yml:22
 msgid "Opening hours"
 msgstr "Horaires d'ouverture"
 
-#: config/default_config.yml:11
+#: config/constants.yml:25
 msgid "Open"
 msgstr "Ouvert"
 
-#: config/default_config.yml:14
+#: config/constants.yml:28
 msgid "Closing soon"
 msgstr "Ferme bientôt"
 
-#: config/default_config.yml:18 config/default_config.yml:33
+#: config/constants.yml:32 config/constants.yml:47
 msgid "Closed"
 msgstr "Fermé"
 
-#: config/default_config.yml:23
+#: config/constants.yml:37
 msgid "Happy hours"
 msgstr "Happy hours"
 
-#: config/default_config.yml:26
+#: config/constants.yml:40
 msgid "happy hours!"
 msgstr "happy hours!"
 
-#: config/default_config.yml:29
+#: config/constants.yml:43
 msgid "Last pint"
 msgstr "Dernière pinte"
 
-#: public/build/javascript/bundle.js:794
+#: config/constants.yml:67
+msgid "Wheelchair accessible"
+msgstr "Accessible en chaise roulante"
+
+#: config/constants.yml:68 config/constants.yml:69
+msgid "Limited wheelchair accessibility"
+msgstr "Accessibilité en chaise roulante incomplète"
+
+#: config/constants.yml:73
+msgid "Tactile paving"
+msgstr "Dalle podotactile"
+
+#: config/constants.yml:74
+msgid "Limited tactile paving"
+msgstr "Dallage podotactile incomplet"
+
+#: config/constants.yml:75
+msgid "No tactile paving"
+msgstr "Dalle podotactile absentes"
+
+#: config/constants.yml:79
+msgid "Toilets wheelchair accessible"
+msgstr "Toilettes accessible en chaise roulante"
+
+#: config/constants.yml:80
+msgid "Toilets wheelchair accessibility &colon; limited"
+msgstr "Accessibilité partielle des toilettes en fauteuil roulant"
+
+#: config/constants.yml:81
+msgid "Toilets not accessible in wheelchair"
+msgstr "Toilettes non accessible en chaise roulante"
+
+#: public/build/javascript/bundle.js:868
 msgid "station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:795
+#: public/build/javascript/bundle.js:869
 msgid "bank"
 msgstr "banque"
 
-#: public/build/javascript/bundle.js:796
+#: public/build/javascript/bundle.js:870
 msgid "restaurant"
 msgstr "restaurant"
 
-#: public/build/javascript/bundle.js:797
+#: public/build/javascript/bundle.js:871
 msgid "supermarket"
 msgstr "supermarché"
 
-#: public/build/javascript/bundle.js:798
+#: public/build/javascript/bundle.js:872
 msgid "hotel"
-msgstr "hotel"
+msgstr "hôtel"
 
-#: public/build/javascript/bundle.js:799
+#: public/build/javascript/bundle.js:873
 msgid "community centre"
-msgstr ""
+msgstr "centre social"
 
-#: public/build/javascript/bundle.js:800
+#: public/build/javascript/bundle.js:874
 msgid "place of worship"
 msgstr "lieu de culte"
 
-#: public/build/javascript/bundle.js:801
+#: public/build/javascript/bundle.js:875
 msgid "embassy"
-msgstr "embassade"
+msgstr "ambassade"
 
-#: public/build/javascript/bundle.js:802
+#: public/build/javascript/bundle.js:876
 msgid "fire station"
-msgstr "station de pompier"
+msgstr "caserne de pompier"
 
-#: public/build/javascript/bundle.js:803
+#: public/build/javascript/bundle.js:877
 msgid "bakery"
 msgstr "boulangerie"
 
-#: public/build/javascript/bundle.js:804
+#: public/build/javascript/bundle.js:878
 msgid "mobile phone"
-msgstr ""
+msgstr "magasin de téléphonie"
 
-#: public/build/javascript/bundle.js:805
+#: public/build/javascript/bundle.js:879
 msgid "cafe"
 msgstr "café"
 
-#: public/build/javascript/bundle.js:806
+#: public/build/javascript/bundle.js:880
 msgid "hairdresser"
 msgstr "coiffeur"
 
-#: public/build/javascript/bundle.js:807
+#: public/build/javascript/bundle.js:881
 msgid "cosmetics"
-msgstr "cosmétique"
+msgstr "magasin de cosmétique"
 
-#: public/build/javascript/bundle.js:808
+#: public/build/javascript/bundle.js:882
 msgid "pharmacy"
 msgstr "pharmacie"
 
-#: public/build/javascript/bundle.js:809
+#: public/build/javascript/bundle.js:883
 msgid "convenience"
-msgstr ""
+msgstr "supérette"
 
-#: public/build/javascript/bundle.js:810
+#: public/build/javascript/bundle.js:884
 msgid "greengrocer"
-msgstr ""
+msgstr "primeur"
 
-#: public/build/javascript/bundle.js:811
+#: public/build/javascript/bundle.js:885
 msgid "clothes"
-msgstr "vêtements"
+msgstr "magasin de vêtements"
 
-#: public/build/javascript/bundle.js:812
+#: public/build/javascript/bundle.js:886
 msgid "shoes"
-msgstr "chaussures"
+msgstr "magasin de chaussures"
 
-#: public/build/javascript/bundle.js:813
+#: public/build/javascript/bundle.js:887
 msgid "fast food"
-msgstr "fast food"
+msgstr "restauration rapide"
 
-#: public/build/javascript/bundle.js:814
+#: public/build/javascript/bundle.js:888
 msgid "dry cleaning"
-msgstr ""
+msgstr "pressing"
 
-#: public/build/javascript/bundle.js:815
+#: public/build/javascript/bundle.js:889
 msgid "video games"
-msgstr "arcade"
+msgstr "magasin de jeux vidéo"
 
-#: public/build/javascript/bundle.js:816
+#: public/build/javascript/bundle.js:890
 msgid "bus stop"
 msgstr "arrêt de bus"
 
-#: public/build/javascript/bundle.js:817
+#: public/build/javascript/bundle.js:891
 msgid "subway"
-msgstr "metro"
+msgstr "arrêt de métro"
 
-#: public/build/javascript/bundle.js:818
+#: public/build/javascript/bundle.js:892
 msgid "park"
 msgstr "parc"
 
-#: public/build/javascript/bundle.js:819
+#: public/build/javascript/bundle.js:893
 msgid "school"
 msgstr "école"
 
-#: public/build/javascript/bundle.js:820
+#: public/build/javascript/bundle.js:894
 msgid "cemetery"
 msgstr "cimetiére"
 
-#: public/build/javascript/bundle.js:821
+#: public/build/javascript/bundle.js:895
 msgid "hospital"
-msgstr "hopital"
+msgstr "hôpital"
 
-#: public/build/javascript/bundle.js:822
+#: public/build/javascript/bundle.js:896
 msgid "kindergarten"
-msgstr "garderie"
+msgstr "école maternelle"
 
-#: public/build/javascript/bundle.js:823
+#: public/build/javascript/bundle.js:897
 msgid "museum"
 msgstr "musée"
 
-#: public/build/javascript/bundle.js:824
+#: public/build/javascript/bundle.js:898
 msgid "post office"
 msgstr "bureau de poste"
 
-#: public/build/javascript/bundle.js:825
+#: public/build/javascript/bundle.js:899
 msgid "public building"
 msgstr "bâtiment public"
 
-#: public/build/javascript/bundle.js:826
+#: public/build/javascript/bundle.js:900
 msgid "attraction"
 msgstr ""
 
-#: public/build/javascript/bundle.js:827
+#: public/build/javascript/bundle.js:901
 msgid "marina"
 msgstr "marina"
 
-#: public/build/javascript/bundle.js:828
+#: public/build/javascript/bundle.js:902
 msgid "college"
-msgstr "lycée"
+msgstr "enseignement supérieur"
 
-#: public/build/javascript/bundle.js:829
+#: public/build/javascript/bundle.js:903
 msgid "books"
 msgstr "librairie"
 
-#: public/build/javascript/bundle.js:830
+#: public/build/javascript/bundle.js:904
 msgid "university"
 msgstr "université"
 
-#: public/build/javascript/bundle.js:831
+#: public/build/javascript/bundle.js:905
 msgid "beauty"
-msgstr "beauté"
+msgstr "salon de beauté"
 
-#: public/build/javascript/bundle.js:832
+#: public/build/javascript/bundle.js:906
 msgid "townhall"
 msgstr "mairie"
 
-#: public/build/javascript/bundle.js:833
+#: public/build/javascript/bundle.js:907
 msgid "doityourself"
-msgstr ""
+msgstr "magasin de bricolage"
 
-#: public/build/javascript/bundle.js:956
+#: public/build/javascript/bundle.js:1030
 msgid "string"
 msgstr ""
 
-#: public/build/javascript/bundle.js:972 public/build/javascript/bundle.js:973
+#: public/build/javascript/bundle.js:1046
+#: public/build/javascript/bundle.js:1047
 #, python-format
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/build/javascript/bundle.js:1193
+#: public/build/javascript/bundle.js:1269
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
-#: public/build/javascript/bundle.js:1193
+#: public/build/javascript/bundle.js:1269
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
 
-#: public/build/javascript/bundle.js:1193
+#: public/build/javascript/bundle.js:1269
 #, python-format
 msgid "%d favorite place"
 msgid_plural "%d favorite places"
 msgstr[0] "Lieu favori"
 msgstr[1] "Mes %d lieux favoris"
 
-#: public/build/javascript/bundle.js:1861
+#: public/build/javascript/bundle.js:1937
 msgid "filter"
 msgstr "filtre"
 
-#: public/build/javascript/bundle.js:1905
+#: public/build/javascript/bundle.js:1981
 msgid "Register masq"
 msgstr "S'enregistrer sur Masq"
 
-#: public/build/javascript/bundle.js:1905
+#: public/build/javascript/bundle.js:1981
 msgid "We use MASQ to keep your preference data safe"
 msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
 
-#: public/build/javascript/bundle.js:1905
+#: public/build/javascript/bundle.js:1981
 msgid "Register"
 msgstr "S'enregistrer"
 
-#: public/build/javascript/bundle.js:2487
+#: public/build/javascript/bundle.js:2205
+msgid "Accessibility"
+msgstr "Accessibilité"
+
+#: public/build/javascript/bundle.js:2234
+msgid "Beers"
+msgstr "Bières"
+
+#: public/build/javascript/bundle.js:2360
+#, python-brace-format
+msgid "until {nextTransitionTime}"
+msgstr "jusqu’à {nextTransitionTime}"
+
+#: public/build/javascript/bundle.js:2504
+msgid "Internet access"
+msgstr ""
+
+#: public/build/javascript/bundle.js:2504
+msgid "WiFi"
+msgstr ""
+
+#: public/build/javascript/bundle.js:2571
+msgid "Services & information"
+msgstr ""
+
+#: public/build/javascript/bundle.js:2632
 msgid "Via Wikipédia"
 msgstr "Voir sur Wikipédia"
 
-#: public/build/javascript/bundle.js:2487
+#: public/build/javascript/bundle.js:2632
 msgid "Via WikiData"
 msgstr "Voir sur Wikidata"
 
-#: public/build/javascript/bundle.js:2682
+#: public/build/javascript/bundle.js:2827
 msgid "RESULTS"
 msgstr "RÉSULTATS"
 
-#: public/build/javascript/bundle.js:2682
+#: public/build/javascript/bundle.js:2827
 msgid "FAVORITES"
 msgstr "FAVORIS"
 
@@ -275,8 +333,20 @@ msgstr "Qwant Maps - beta"
 msgid "Where do you want to go ?"
 msgstr "Où voulez-vous aller ?"
 
-#~ msgid "Beers"
-#~ msgstr "Bières"
+#~ msgid "Limited Tactile paving"
+#~ msgstr "Dalle podotactile partielle"
+
+#~ msgid "wheelchair"
+#~ msgstr "chaise roulante"
+
+#~ msgid "toilets_wheelchair"
+#~ msgstr "WC chaise roulante"
+
+#~ msgid "yes"
+#~ msgstr "oui"
+
+#~ msgid "limited"
+#~ msgstr "limité"
 
 #~ msgid "Phone"
 #~ msgstr "Téléphone"

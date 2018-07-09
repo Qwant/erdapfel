@@ -13,13 +13,6 @@ const store = new Store()
 function SearchInput(tagSelector) {
   this.pois = []
   this.poi = null
-  listen('submit_autocomplete', () => {
-    let poi = this.pois[0]
-    if(this.poi) {
-      this.poi = poi
-    }
-    select(poi)
-  })
 
   new Autocomplete({
     selector : tagSelector,
@@ -72,16 +65,25 @@ function SearchInput(tagSelector) {
   })
 }
 
-function select(poi) {
-  if(poi) {
-    if(poi.bbox) {
-      poi.padding = {top: 10,bottom: 25,left: 15,right: 5}
-      fire('fit_bounds', poi);
+async function select(autocompleteLine) {
+  if(autocompleteLine) {
+    if(autocompleteLine.bbox) {
+      autocompleteLine.padding = {top: 10,bottom: 25,left: 15,right: 5}
+      fire('fit_bounds', autocompleteLine);
     } else {
-      fire('fly_to', poi)
+      fire('fly_to', autocompleteLine)
     }
-    fire('map_mark_poi', poi)
-    PanelManager.closeAll()
+    fire('map_mark_poi', autocompleteLine)
+    if(autocompleteLine.poi_type === 'poi' && autocompleteLine.id) {
+      let poi = await Poi.apiLoad(autocompleteLine.id)
+      if(poi) {
+        PanelManager.setPoi(poi)
+      } else {
+        PanelManager.closeAll()
+      }
+    } else {
+      PanelManager.closeAll()
+    }
   }
 }
 

@@ -61,6 +61,7 @@
     "weekHeader": "Sem.",
     "dateFormat": "%d/%m/%Y",
     "longFormat": "%d %B %Y",
+    "timeFormat":"%Hh%M",
     "timelineFormat": [
         "%a",
         "%d",

@@ -1,0 +1,10 @@
+{{? this.ia['wifi'] }}
+  <h6 class="poi_panel__sub__sub_block__title">
+    {{= _('Internet access', 'poi') }}
+  </h6>
+  <ul>
+    <li class="poi_panel__info__item">
+      {{= _('WiFi', 'poi') }}
+    </li>
+  </ul>
+{{?}}

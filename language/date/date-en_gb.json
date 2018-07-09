@@ -59,6 +59,7 @@
         "Sa"
     ],
     "weekHeader": "Wk",
+    "timeFormat":"%I:%M %p",
     "dateFormat": "%m/%d/%Y",
     "longFormat": "%d %B %Y",
     "timelineFormat": [

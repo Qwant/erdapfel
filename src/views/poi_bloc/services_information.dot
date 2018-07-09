@@ -1,0 +1,11 @@
+<h5 class="poi_panel__sub_block__title">
+  {{= _('Services & information', 'poi') }}
+</h5>
+<div class="poi_panel__service_information__container">
+  <div class="poi_panel__block__collapse icon-icon_chevron-down" {{= click(this.toggle, this) }}></div>
+  <div class="poi_panel__block__information{{= this.extended ? ' poi_panel__block__information--extended' : ''}}">
+    {{~ this.blocks:block }}
+      {{= this.PoiBlocContainer.renderBlock(block) }}
+    {{~}}
+  </div>
+</div>

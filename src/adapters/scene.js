@@ -47,10 +47,24 @@ Scene.prototype.initMapBox = function () {
         this.mb.getCanvas().style.cursor = '';
       })
 
-      this.mb.on('click', interactiveLayer, (e) => {
-        let poi = Poi.sceneLoad(e, this.mb.getZoom())
-        PanelManager.setPoi(poi)
-        this.addMarker(poi)
+      this.mb.on('click', interactiveLayer, async (e) => {
+        if(e.features && e.features.length > 0) {
+          let globalId = e.features[0].properties.global_id
+          if(globalId) {
+            let poi = await Poi.apiLoad(globalId)
+            if(poi) {
+              /* should be globalised */
+              const DESKTOP_PANEL_WIDTH = 400
+              const MOBILE_BREAK_POINT = 640
+              if(e.originalEvent.clientX < DESKTOP_PANEL_WIDTH && window.innerWidth > MOBILE_BREAK_POINT) {
+                this.mb.flyTo({center : e.lngLat, offset : [DESKTOP_PANEL_WIDTH / 2, 0]})
+              }
+              poi.zoom = this.mb.getZoom()
+              PanelManager.setPoi(poi)
+              this.addMarker(poi)
+            }
+          }
+        }
       })
     })
 
