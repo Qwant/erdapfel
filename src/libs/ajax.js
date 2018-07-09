@@ -35,7 +35,7 @@ Ajax.query = async (url, data, options = {method : 'GET'}) => {
         reject(xhr.status)
       }
     }
-    xhr.open(options.method,url+'?'+dataToUrl(data))
+    xhr.open(options.method, url+'?'+dataToUrl(data))
     xhr.send()
   })
 }

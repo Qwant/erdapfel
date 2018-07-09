@@ -7,6 +7,7 @@ configBuilder.set('store:name', 'local_store')
 configBuilder.set('mapStyle:baseMapUrl', "[]")
 configBuilder.set('mapStyle:poiMapUrl', "[]")
 configBuilder.set('services:geocoder:url', `http://localhost:${config.PORT}/autocomplete`)
+configBuilder.set('services:poi:url', `http://localhost:${config.PORT}/poi`)
 
 module.exports = async function () {
   console.log(`Start test on PORT : ${config.PORT}`)

@@ -84,15 +84,17 @@ Favorite.prototype.close = function() {
   fire('close_favorite_panel')
 }
 
-Favorite.prototype.go = async function(poi) {
-  fire('map_mark_poi', poi)
-  if(poi.bbox) {
-    fire('fit_bounds', poi)
+Favorite.prototype.go = async function(storePoi) {
+  fire('map_mark_poi', storePoi)
+  if(storePoi.bbox) {
+    fire('fit_bounds', storePoi)
   } else {
-    fire('fly_to', poi)
+    fire('fly_to', storePoi)
   }
   fire('close_favorite_panel')
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+  let poi = await Poi.apiLoad(storePoi.id)
+  PanelManager.setPoi(poi)
   this.active = false
 }
 

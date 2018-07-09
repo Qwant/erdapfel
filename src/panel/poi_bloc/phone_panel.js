@@ -1,9 +1,9 @@
 import PhoneView from '../../views/poi_bloc/phone.dot'
 import Panel from "../../libs/panel";
 
-function Phone(tag) {
+function Phone(block) {
   this.panel = new Panel(this, PhoneView)
-  this.tag = tag
+  this.block = block
 }
 
 export default Phone

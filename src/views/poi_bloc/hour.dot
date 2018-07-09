@@ -1,25 +1,30 @@
 {{? this.hours }}
-  <div class="icon-icon_clock poi_panel__block__symbol"></div>
-  <div class="poi_panel__block__content">
-    <div {{= click(this.extend, this) }}>
-      <span class="poi_panel__info__hours__status" style="color:{{= this.status.color }}">
-        {{= _(this.status.msg) }}
-        {{? this.hours['24/7'] }}
-          24 / 7
-        {{?}}
-      </span>
-    </div>
-    <div class="poi_panel__info__hours">
-      {{? !this.hours['24/7'] }}
-        <table>
-          {{~ this.displayHours:day }}
-            <tr>
-              <td class="day">{{= day.dayName }}</td>
-              <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : ' -'}}<td>
-            </tr>
-          {{~}}
-        </table>
-      {{?}}
-    </div>
+  <div class="poi_panel__info__section poi_panel__info__section--hours">
+    <p class="poi_panel__info__section__description">
+      <div class="icon-icon_clock poi_panel__block__symbol"></div>
+      <div class="poi_panel__block__content">
+        <div {{= click(this.extend, this) }}>
+          <span class="poi_panel__info__hours__status">
+            {{= _(this.status.msg) }} {{? this.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.nextTransition})  }}{{?}}
+            {{? this.hours['24/7'] }}
+              24 / 7
+            {{?}}
+            <div class="poi_panel__info__hour__circle" style="background:{{= this.status.color }}"></div>
+          </span>
+        </div>
+        <div class="poi_panel__info__hours">
+          {{? !this.hours['24/7'] }}
+            <table class="poi_panel__info__hours__table">
+              {{~ this.displayHours:day:i }}
+                <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
+                  <td class="day">{{= day.dayName }}</td>
+                  <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : ' -'}}<td>
+                </tr>
+              {{~}}
+            </table>
+          {{?}}
+        </div>
+      </div>
+    </p>
   </div>
 {{?}}

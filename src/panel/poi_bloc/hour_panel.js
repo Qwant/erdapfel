@@ -2,20 +2,21 @@ import HourPanelView from '../../views/poi_bloc/hour.dot'
 import Panel from "../../libs/panel";
 import openingHourParse from '../../../src/adapters/opening_hour'
 import I18n from '../../libs/i18n'
+const strftime = require('strftime')
 
-function HourPanel(tag, poi, options) {
+function HourPanel(block, poi, options) {
   this.panel = new Panel(this, HourPanelView)
-  this.name = tag.name
+  this.name = block.name
   this.timeMessages = options.messages
   this.title = options.title
-  this.hours = openingHourParse(tag.value)
+  this.hours = openingHourParse(block.raw)
+  this.nextTransition = getSecondBeforeNextTransition(block)
   this.displayHours = translateHours(this.hours)
   this.latLng = poi.latLon
-  this.status = {msg : '', color : '#fff'}
-  this.computeStatus()
+  this.status = this.computeStatus()
 }
 
-HourPanel.prototype.computeRemainingTime = async function() {
+HourPanel.prototype.computeRemainingTime = function() {
   let rawDate
   if(this.hours && this.hours['24/7']) {
     return 999 /* be sure it won't close soon */
@@ -53,25 +54,19 @@ HourPanel.prototype.computeRemainingTime = async function() {
 
 HourPanel.prototype.computeStatus = function() {
   if(!this.hours) {
-    return
+    return {msg : '', color : '#fff'}
   }
-  this.computeRemainingTime().then((remaining) => {
-    if(remaining === -1) {
-      this.status = {msg : this.timeMessages.closed.msg, color : this.timeMessages.closed.color}
-      this.panel.update()
-      return
+  let remaining = this.computeRemainingTime()
+  if(remaining === -1) {
+    return {msg : this.timeMessages.closed.msg, color : this.timeMessages.closed.color}
+  }
+  for(let tmKey in this.timeMessages) {
+    let tm = this.timeMessages[tmKey]
+    if(tm.time && tm.time > remaining) {
+      return {msg : tm.msg, color : this.timeMessages.open.color}
     }
-    for(let tmKey in this.timeMessages) {
-      let tm = this.timeMessages[tmKey]
-      if(tm.time && tm.time > remaining) {
-        this.status = {msg : tm.msg, color : this.timeMessages.open.color}
-        this.panel.update()
-        return
-      }
-    }
-    this.status = {msg : this.timeMessages.open.msg, color : this.timeMessages.open.color}
-    this.panel.update()
-  })
+  }
+  return {msg : this.timeMessages.open.msg, color : this.timeMessages.open.color}
 }
 
 
@@ -89,7 +84,15 @@ function translateHours(hours) {
   } else {
     return []
   }
+}
 
+function getSecondBeforeNextTransition(block) {
+  let seconds = block.seconds_before_next_transition
+  if(seconds < 12 * 60 * 60) {
+    let nextTransition = new Date(block.next_transition_datetime)
+    return strftime(i18nDate.timeFormat, nextTransition)
+  }
+  return false
 }
 
 export default HourPanel

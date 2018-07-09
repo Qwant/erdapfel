@@ -1,43 +1,51 @@
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden' }}">
   <div class="poi_panel__content">
   {{? this.poi }}
-    <div class="poi_panel__header_image"></div>
-    <div class="poi_panel__logo_demo"></div>
     <div class="poi_panel__description_container">
-    {{ let ico = IconManager.get(this.poi); }}
-    {{? ico }}
-       <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-    {{??}}
-       <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
-    {{?}}
-    <h4 class="poi_panel__title">
-      {{? this.poi.name }}
-        {{= this.poi.name }}
-      {{?? this.poi.subClassName }}
-        {{= this.poiSubClass(this.poi.subClassName) }}
+      {{ let ico = IconManager.get(this.poi); }}
+      {{? ico }}
+        <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+      {{??}}
+        <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
       {{?}}
-    </h4>
-    {{? this.poi.subClassName && this.poi.name !== '' }}
-      <p class="poi_panel__description">{{= this.poiSubClass(this.poi.subClassName) }}</p>
-    {{?}}
-    <div class="poi_panel__store_status">
-      <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-icon_star-filled' : 'icon-icon_star'}}" {{= click(this.toggleStorePoi, this) }}>
-      </button>
+        <h4 class="poi_panel__title">
+          {{? this.poi.local_name }}
+            {{= this.poi.local_name }}
+          {{?? this.poi.name }}
+            {{= this.poi.name }}
+          {{??}}
+            {{= this.poiSubClass(this.poi.subClassName) }}
+          {{?}}
+        </h4>
+      {{? this.poi.subClassName }}
+        <p class="poi_panel__description">{{= this.poiSubClass(this.poi.subClassName) }}</p>
+      {{?}}
+      {{? this.poi.address && this.poi.address.label }}
+        <p class="poi_panel__address">
+          {{= this.poi.address.label }}
+        </p>
+      {{?}}
+      <div class="poi_panel__store_status">
+        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-icon_star-filled' : 'icon-icon_star'}}" {{= click(this.toggleStorePoi, this) }}>
+        </button>
+      </div>
     </div>
-  </div>
-
-  {{= this.poiBlocContainer.set(this.poi).render() }}
-
+    {{= this.PoiBlocContainer.render(this.poi) }}
   {{?}}
   <br>
   </div>
   {{? this.poi }}
     <div class="poi_panel__toggle_display" {{= click(this.toggle, this) }}>
-    {{? this.active }}
-      <i class="icon-chevron-left"></i>
-    {{??}}
-      <i class="icon-chevron-right"></i>
-    {{?}}
+      <div class="poi_panel__toggle_display--mobile">
+        <i class="icon-x"></i>
+      </div>
+      <div class="poi_panel__toggle_display--desktop">
+        {{? this.active }}
+          <i class="icon-chevron-left"></i>
+        {{??}}
+          <i class="icon-chevron-right"></i>
+        {{?}}
+      </div>
     </div>
   {{?}}
 </div>
