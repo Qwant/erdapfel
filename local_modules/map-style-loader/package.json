@@ -1,0 +1,10 @@
+{
+  "name": "@qwant/map-style-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "QWANT",
+  "license": "MIT"
+}
