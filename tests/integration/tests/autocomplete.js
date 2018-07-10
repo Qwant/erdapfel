@@ -9,7 +9,7 @@ let page
 
 beforeAll(async () => {
   try {
-    browser = await puppeteer.launch()
+    browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']})
     page = await browser.newPage()
     page.on('console', msg => {
       console.log(`> ${msg.text()}`)
@@ -53,4 +53,3 @@ test('simple_word', async () => {
 afterAll(() => {
   browser.close()
 })
-

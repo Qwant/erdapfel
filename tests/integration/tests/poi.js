@@ -8,7 +8,7 @@ let page
 
 beforeAll(async () => {
   try {
-    browser = await puppeteer.launch()
+    browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']})
     page = await browser.newPage()
     await page.setExtraHTTPHeaders({
       'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
@@ -51,4 +51,3 @@ test('click on a poi', async () => {
 afterAll(() => {
   browser.close()
 })
-
