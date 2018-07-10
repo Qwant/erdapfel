@@ -136,6 +136,8 @@ It will run chrome headless test suite with a mapbox-gl minimalist mock. The con
 
 *note on mapbox-gl mock*: We include out mapbox-gl mock fork to emulate mapbox-gl behaviour with the advanced support of mocked event & poi.
 
+** hint** : When you debug or add new tests, you may want to launch puppeteer in non headless mode and keep the browser open.
+
 ## Doc
 You can generate the doc with `npm run doc`
 
