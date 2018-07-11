@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-07-06 11:42+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-11 17:28+0200\n"
 "PO-Revision-Date: 2018-07-06 11:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,256 +20,293 @@ msgstr ""
 "X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 
-#: public/build/javascript/bundle.js:868 src/mapbox/poi_subclass.js:2
-msgid "station"
-msgstr ""
-
-#: public/build/javascript/bundle.js:869 src/mapbox/poi_subclass.js:3
-msgid "bank"
-msgstr ""
-
-#: public/build/javascript/bundle.js:870 src/mapbox/poi_subclass.js:4
-msgid "restaurant"
-msgstr ""
-
-#: public/build/javascript/bundle.js:871 src/mapbox/poi_subclass.js:5
-msgid "supermarket"
-msgstr ""
-
-#: public/build/javascript/bundle.js:872 src/mapbox/poi_subclass.js:6
-msgid "hotel"
-msgstr ""
-
-#: public/build/javascript/bundle.js:873 src/mapbox/poi_subclass.js:7
-msgid "community centre"
-msgstr ""
-
-#: public/build/javascript/bundle.js:874 src/mapbox/poi_subclass.js:8
-msgid "place of worship"
-msgstr ""
-
-#: public/build/javascript/bundle.js:875 src/mapbox/poi_subclass.js:9
-msgid "embassy"
-msgstr ""
-
-#: public/build/javascript/bundle.js:876 src/mapbox/poi_subclass.js:10
-msgid "fire station"
-msgstr ""
-
-#: public/build/javascript/bundle.js:877 src/mapbox/poi_subclass.js:11
-msgid "bakery"
-msgstr ""
-
-#: public/build/javascript/bundle.js:878 src/mapbox/poi_subclass.js:12
-msgid "mobile phone"
-msgstr ""
-
-#: public/build/javascript/bundle.js:879 src/mapbox/poi_subclass.js:13
-msgid "cafe"
-msgstr ""
-
-#: public/build/javascript/bundle.js:880 src/mapbox/poi_subclass.js:14
-msgid "hairdresser"
-msgstr ""
-
-#: public/build/javascript/bundle.js:881 src/mapbox/poi_subclass.js:15
-msgid "cosmetics"
-msgstr ""
-
-#: public/build/javascript/bundle.js:882 src/mapbox/poi_subclass.js:16
-msgid "pharmacy"
-msgstr ""
-
-#: public/build/javascript/bundle.js:883 src/mapbox/poi_subclass.js:17
-msgid "convenience"
-msgstr ""
-
-#: public/build/javascript/bundle.js:884 src/mapbox/poi_subclass.js:18
-msgid "greengrocer"
-msgstr ""
-
-#: public/build/javascript/bundle.js:885 src/mapbox/poi_subclass.js:19
-msgid "clothes"
-msgstr ""
-
-#: public/build/javascript/bundle.js:886 src/mapbox/poi_subclass.js:20
-msgid "shoes"
-msgstr ""
-
-#: public/build/javascript/bundle.js:887 src/mapbox/poi_subclass.js:21
-msgid "fast food"
-msgstr ""
-
-#: public/build/javascript/bundle.js:888 src/mapbox/poi_subclass.js:22
-msgid "dry cleaning"
-msgstr ""
-
-#: public/build/javascript/bundle.js:889 src/mapbox/poi_subclass.js:23
-msgid "video games"
-msgstr ""
-
-#: public/build/javascript/bundle.js:890 src/mapbox/poi_subclass.js:24
-msgid "bus stop"
-msgstr ""
-
-#: public/build/javascript/bundle.js:891 src/mapbox/poi_subclass.js:25
-msgid "subway"
-msgstr ""
-
-#: public/build/javascript/bundle.js:892 src/mapbox/poi_subclass.js:26
-msgid "park"
-msgstr ""
-
-#: public/build/javascript/bundle.js:893 src/mapbox/poi_subclass.js:27
-msgid "school"
-msgstr ""
-
-#: public/build/javascript/bundle.js:894 src/mapbox/poi_subclass.js:28
-msgid "cemetery"
-msgstr ""
-
-#: public/build/javascript/bundle.js:895 src/mapbox/poi_subclass.js:29
-msgid "hospital"
-msgstr ""
-
-#: public/build/javascript/bundle.js:896 src/mapbox/poi_subclass.js:30
-msgid "kindergarten"
-msgstr ""
-
-#: public/build/javascript/bundle.js:897 src/mapbox/poi_subclass.js:31
-msgid "museum"
-msgstr ""
-
-#: public/build/javascript/bundle.js:898 src/mapbox/poi_subclass.js:32
-msgid "post office"
-msgstr ""
-
-#: public/build/javascript/bundle.js:899 src/mapbox/poi_subclass.js:33
-msgid "public building"
-msgstr ""
-
-#: public/build/javascript/bundle.js:900 src/mapbox/poi_subclass.js:34
-msgid "attraction"
-msgstr ""
-
-#: public/build/javascript/bundle.js:901 src/mapbox/poi_subclass.js:35
-msgid "marina"
-msgstr ""
-
-#: public/build/javascript/bundle.js:902 src/mapbox/poi_subclass.js:36
-msgid "college"
-msgstr ""
-
-#: public/build/javascript/bundle.js:903 src/mapbox/poi_subclass.js:37
-msgid "books"
-msgstr ""
-
-#: public/build/javascript/bundle.js:904 src/mapbox/poi_subclass.js:38
-msgid "university"
-msgstr ""
-
-#: public/build/javascript/bundle.js:905 src/mapbox/poi_subclass.js:39
-msgid "beauty"
-msgstr ""
-
-#: public/build/javascript/bundle.js:906 src/mapbox/poi_subclass.js:40
-msgid "townhall"
-msgstr ""
-
-#: public/build/javascript/bundle.js:907 src/mapbox/poi_subclass.js:41
-msgid "doityourself"
-msgstr ""
-
-#: public/build/javascript/bundle.js:1030
-msgid "string"
-msgstr ""
-
-#: public/build/javascript/bundle.js:1046
-#: public/build/javascript/bundle.js:1047
-#, python-format
-msgid "%d person"
-msgid_plural "%d people"
-msgstr[0] ""
-msgstr[1] ""
-
-#: public/build/javascript/bundle.js:1269
-msgid "Favorite places"
-msgstr ""
-
-#: public/build/javascript/bundle.js:1269
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-
-#: public/build/javascript/bundle.js:1269
-#, python-format
-msgid "%d favorite place"
-msgid_plural "%d favorite places"
-msgstr[0] ""
-msgstr[1] ""
-
-#: public/build/javascript/bundle.js:1937
-msgid "filter"
-msgstr ""
-
-#: public/build/javascript/bundle.js:1981
-msgid "Register masq"
-msgstr ""
-
-#: public/build/javascript/bundle.js:1981
-msgid "We use MASQ to keep your preference data safe"
-msgstr ""
-
-#: public/build/javascript/bundle.js:1981
-msgid "Register"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2205
-msgid "Accessibility"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2234
-msgid "Beers"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2360
-#, python-brace-format
-msgid "until {next}"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2504
-msgid "Internet access"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2504
-msgid "WiFi"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2571
-msgid "Services & information"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2632
-msgid "Via Wikipédia"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2632
-msgid "Via WikiData"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2827
-msgid "RESULTS"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2827
-msgid "FAVORITES"
-msgstr ""
-
 #: views/index.ejs:5
 msgid "Qwant Maps - beta"
 msgstr ""
 
 #: views/index.ejs:28
 msgid "Where do you want to go ?"
+msgstr ""
+
+#: config/constants.yml:22
+msgid "Opening hours"
+msgstr ""
+
+#: config/constants.yml:25
+msgid "Open"
+msgstr ""
+
+#: config/constants.yml:32 config/constants.yml:47
+msgid "Closed"
+msgstr ""
+
+#: config/constants.yml:37
+msgid "Happy hours"
+msgstr ""
+
+#: config/constants.yml:40
+msgid "happy hours!"
+msgstr ""
+
+#: config/constants.yml:43
+msgid "Last pint"
+msgstr ""
+
+#: config/constants.yml:67
+msgid "Wheelchair accessible"
+msgstr ""
+
+#: config/constants.yml:68 config/constants.yml:69
+msgid "Limited wheelchair accessibility"
+msgstr ""
+
+#: config/constants.yml:73
+msgid "Tactile paving"
+msgstr ""
+
+#: config/constants.yml:74
+msgid "Limited tactile paving"
+msgstr ""
+
+#: config/constants.yml:75
+msgid "No tactile paving"
+msgstr ""
+
+#: config/constants.yml:79
+msgid "Toilets wheelchair accessible"
+msgstr ""
+
+#: config/constants.yml:80
+msgid "Toilets wheelchair accessibility &colon; limited"
+msgstr ""
+
+#: config/constants.yml:81
+msgid "Toilets not accessible in wheelchair"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "station"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "bank"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "restaurant"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "supermarket"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "hotel"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "community centre"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "place of worship"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "embassy"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "fire station"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "bakery"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "mobile phone"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "cafe"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "hairdresser"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "cosmetics"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "pharmacy"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "convenience"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "greengrocer"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "clothes"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "shoes"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "fast food"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "dry cleaning"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "video games"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "bus stop"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "subway"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "park"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "school"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "cemetery"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "hospital"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "kindergarten"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "museum"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "post office"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "public building"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "attraction"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "marina"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "college"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "books"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "university"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "beauty"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "townhall"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "doityourself"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "RESULTS"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "FAVORITES"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Via Wikipédia"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Via WikiData"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Services & information"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Internet access"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "WiFi"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+#, python-brace-format
+msgid "until {nextTransitionTime}"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Beers"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Accessibility"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Register masq"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "We use MASQ to keep your preference data safe"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Register"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "filter"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "Favorite places"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 
 #~ msgid "popup title"
