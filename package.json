@@ -10,6 +10,7 @@
     "test": "npm run unit-test; npm run integration-test",
     "start": "node bin/index.js",
     "build": "webpack  --config config/webpack.config.js",
+    "i18n": "./i18n.sh",
     "watch": "webpack  --config config/webpack.config.js -w",
     "msgmerge": "node local_modules/merge-po/index"
   },
