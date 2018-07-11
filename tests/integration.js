@@ -1,6 +1,6 @@
 module.exports = {
   testMatch : [`${__dirname}/integration/tests/*.js`],
-  globalSetup : `${__dirname}/integration/server_start.js`,
+  globalSetup : `${__dirname}/integration/init.js`,
   globalTeardown : `${__dirname}/integration/server_close.js`,
   testPathIgnorePatterns : ['/node_modules/'],
   'rootDir': __dirname + '/../',
