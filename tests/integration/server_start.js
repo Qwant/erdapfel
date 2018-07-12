@@ -10,8 +10,6 @@ configBuilder.set('mapStyle:poiMapUrl', "[]")
 configBuilder.set('services:geocoder:url', `http://localhost:${config.PORT}/autocomplete`)
 configBuilder.set('services:poi:url', `http://localhost:${config.PORT}/poi`)
 
-global.puppeteerArguments = ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-
 module.exports = async function() {
   console.log(`Start test on PORT : ${config.PORT}`)
   await global.appServer.start(config.PORT)

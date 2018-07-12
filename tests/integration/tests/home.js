@@ -7,7 +7,7 @@ let page
 
 beforeAll(async () => {
   try {
-    browser = await puppeteer.launch({args: global.puppeteerArguments})
+    browser = await puppeteer.launch({args: puppeteerArguments})
     page = await browser.newPage()
   } catch (error) {
     console.error(error)
