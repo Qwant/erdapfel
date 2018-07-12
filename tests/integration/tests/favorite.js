@@ -1,22 +1,15 @@
-import puppeteer from 'puppeteer'
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-import {wait} from '../tools'
+import {initBrowser, wait} from '../tools'
 
 let browser
 let page
 
 beforeAll(async () => {
-  try {
-    browser = await puppeteer.launch({args: puppeteerArguments})
-    page = await browser.newPage()
-    page.on('console', msg => {
-      console.log(`> ${msg.text()}`)
-    })
-  } catch (error) {
-    console.error(error)
-  }
+  let browserPage = await initBrowser()
+  page = browserPage.page
+  browser = browserPage.browser
 })
 
 test('toggle favorite', async () => {
