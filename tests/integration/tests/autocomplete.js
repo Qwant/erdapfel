@@ -65,14 +65,14 @@ test('move to on click', async () => {
     return window.MAP_MOCK.center
   })
   await page.keyboard.type('Hello')
-  const autocompleteItems = await page.waitForSelector('.autocomplete_suggestion')
+  await page.waitForSelector('.autocomplete_suggestion')
   await page.click('body > div.autocomplete_suggestions > div:nth-child(3)')
   let map_position_after = await page.evaluate(() => {
     return window.MAP_MOCK.center
   })
   expect(map_position_before).not.toEqual(map_position_after);
-  const [expectedLng, expectedLat] = mockAutocomplete['features'][2]['geometry']['coordinates']
-  expect(map_position_after).toEqual({"lat": expectedLat, "lng": expectedLng}
+  const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates
+  expect(map_position_after).toEqual({lat: expectedLat, lng: expectedLng}
 );
 })
 
