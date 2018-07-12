@@ -10,7 +10,6 @@ addons:
     - libstdc++6
       # This is required to run new chrome on old trusty
     - libnss3
-before_install:
-    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=3000 http://localhost &
+
 before_script:
     - TEST=true npm run build
