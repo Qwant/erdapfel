@@ -53,38 +53,21 @@ Then you can build and run Erdapfel with the following commands:
 
 Translations are managed by `.po` files.
 
-Poedit parses source code & maintains po files.
+To update the translations files from source code, you can run `npm run build` then `npm run i18n`.
 
-### Poedit settings :
+You can also use Poedit to parse source code & maintain po files.
 
-File > Preferences > Parsers > New
+#### Poedit settings
+File > Preferences > Parsers > New:
 
-Language:
+* Language: ```JS```
+* List of extension: ```*.js, *.yml```
+* Parser command:```xgettext --language=Python --force-po -o %o %C %K %F```
+* Item in Keyword List:```-k%k```
+* Item in input files list:```%f```
+* Source code charset:```--from-code=%c```
 
-```
-JS
-```
-List of extension:
-```
-*.js, *.yml
-```
-Parser command:
-```
-xgettext --language=Python --force-po -o %o %C %K %F
-```
-Item in Keyword List:
-```
--k%k
-```
-Item in input files list:
-```
-%f
-```
-Source code charset:
-```
---from-code=%c
-```
-
+and another one with language PHP, and extension `*.ejs`
 
 ## Development guide
 

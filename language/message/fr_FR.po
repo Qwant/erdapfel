@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-07-06 11:43+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-11 17:26+0200\n"
 "PO-Revision-Date: 2018-07-06 11:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,6 +20,14 @@ msgstr ""
 "X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 
+#: views/index.ejs:5
+msgid "Qwant Maps - beta"
+msgstr "Qwant Maps - beta"
+
+#: views/index.ejs:28
+msgid "Where do you want to go ?"
+msgstr "Où voulez-vous aller ?"
+
 #: config/constants.yml:22
 msgid "Opening hours"
 msgstr "Horaires d'ouverture"
@@ -26,10 +35,6 @@ msgstr "Horaires d'ouverture"
 #: config/constants.yml:25
 msgid "Open"
 msgstr "Ouvert"
-
-#: config/constants.yml:28
-msgid "Closing soon"
-msgstr "Ferme bientôt"
 
 #: config/constants.yml:32 config/constants.yml:47
 msgid "Closed"
@@ -79,259 +84,240 @@ msgstr "Accessibilité partielle des toilettes en fauteuil roulant"
 msgid "Toilets not accessible in wheelchair"
 msgstr "Toilettes non accessible en chaise roulante"
 
-#: public/build/javascript/bundle.js:868
+#: public/build/javascript/bundle.js:1
 msgid "station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:869
+#: public/build/javascript/bundle.js:1
 msgid "bank"
 msgstr "banque"
 
-#: public/build/javascript/bundle.js:870
+#: public/build/javascript/bundle.js:1
 msgid "restaurant"
 msgstr "restaurant"
 
-#: public/build/javascript/bundle.js:871
+#: public/build/javascript/bundle.js:1
 msgid "supermarket"
 msgstr "supermarché"
 
-#: public/build/javascript/bundle.js:872
+#: public/build/javascript/bundle.js:1
 msgid "hotel"
 msgstr "hôtel"
 
-#: public/build/javascript/bundle.js:873
+#: public/build/javascript/bundle.js:1
 msgid "community centre"
 msgstr "centre social"
 
-#: public/build/javascript/bundle.js:874
+#: public/build/javascript/bundle.js:1
 msgid "place of worship"
 msgstr "lieu de culte"
 
-#: public/build/javascript/bundle.js:875
+#: public/build/javascript/bundle.js:1
 msgid "embassy"
 msgstr "ambassade"
 
-#: public/build/javascript/bundle.js:876
+#: public/build/javascript/bundle.js:1
 msgid "fire station"
 msgstr "caserne de pompier"
 
-#: public/build/javascript/bundle.js:877
+#: public/build/javascript/bundle.js:1
 msgid "bakery"
 msgstr "boulangerie"
 
-#: public/build/javascript/bundle.js:878
+#: public/build/javascript/bundle.js:1
 msgid "mobile phone"
 msgstr "magasin de téléphonie"
 
-#: public/build/javascript/bundle.js:879
+#: public/build/javascript/bundle.js:1
 msgid "cafe"
 msgstr "café"
 
-#: public/build/javascript/bundle.js:880
+#: public/build/javascript/bundle.js:1
 msgid "hairdresser"
 msgstr "coiffeur"
 
-#: public/build/javascript/bundle.js:881
+#: public/build/javascript/bundle.js:1
 msgid "cosmetics"
 msgstr "magasin de cosmétique"
 
-#: public/build/javascript/bundle.js:882
+#: public/build/javascript/bundle.js:1
 msgid "pharmacy"
 msgstr "pharmacie"
 
-#: public/build/javascript/bundle.js:883
+#: public/build/javascript/bundle.js:1
 msgid "convenience"
 msgstr "supérette"
 
-#: public/build/javascript/bundle.js:884
+#: public/build/javascript/bundle.js:1
 msgid "greengrocer"
 msgstr "primeur"
 
-#: public/build/javascript/bundle.js:885
+#: public/build/javascript/bundle.js:1
 msgid "clothes"
 msgstr "magasin de vêtements"
 
-#: public/build/javascript/bundle.js:886
+#: public/build/javascript/bundle.js:1
 msgid "shoes"
 msgstr "magasin de chaussures"
 
-#: public/build/javascript/bundle.js:887
+#: public/build/javascript/bundle.js:1
 msgid "fast food"
 msgstr "restauration rapide"
 
-#: public/build/javascript/bundle.js:888
+#: public/build/javascript/bundle.js:1
 msgid "dry cleaning"
 msgstr "pressing"
 
-#: public/build/javascript/bundle.js:889
+#: public/build/javascript/bundle.js:1
 msgid "video games"
 msgstr "magasin de jeux vidéo"
 
-#: public/build/javascript/bundle.js:890
+#: public/build/javascript/bundle.js:1
 msgid "bus stop"
 msgstr "arrêt de bus"
 
-#: public/build/javascript/bundle.js:891
+#: public/build/javascript/bundle.js:1
 msgid "subway"
 msgstr "arrêt de métro"
 
-#: public/build/javascript/bundle.js:892
+#: public/build/javascript/bundle.js:1
 msgid "park"
 msgstr "parc"
 
-#: public/build/javascript/bundle.js:893
+#: public/build/javascript/bundle.js:1
 msgid "school"
 msgstr "école"
 
-#: public/build/javascript/bundle.js:894
+#: public/build/javascript/bundle.js:1
 msgid "cemetery"
 msgstr "cimetiére"
 
-#: public/build/javascript/bundle.js:895
+#: public/build/javascript/bundle.js:1
 msgid "hospital"
 msgstr "hôpital"
 
-#: public/build/javascript/bundle.js:896
+#: public/build/javascript/bundle.js:1
 msgid "kindergarten"
 msgstr "école maternelle"
 
-#: public/build/javascript/bundle.js:897
+#: public/build/javascript/bundle.js:1
 msgid "museum"
 msgstr "musée"
 
-#: public/build/javascript/bundle.js:898
+#: public/build/javascript/bundle.js:1
 msgid "post office"
 msgstr "bureau de poste"
 
-#: public/build/javascript/bundle.js:899
+#: public/build/javascript/bundle.js:1
 msgid "public building"
 msgstr "bâtiment public"
 
-#: public/build/javascript/bundle.js:900
+#: public/build/javascript/bundle.js:1
 msgid "attraction"
 msgstr ""
 
-#: public/build/javascript/bundle.js:901
+#: public/build/javascript/bundle.js:1
 msgid "marina"
 msgstr "marina"
 
-#: public/build/javascript/bundle.js:902
+#: public/build/javascript/bundle.js:1
 msgid "college"
 msgstr "enseignement supérieur"
 
-#: public/build/javascript/bundle.js:903
+#: public/build/javascript/bundle.js:1
 msgid "books"
 msgstr "librairie"
 
-#: public/build/javascript/bundle.js:904
+#: public/build/javascript/bundle.js:1
 msgid "university"
 msgstr "université"
 
-#: public/build/javascript/bundle.js:905
+#: public/build/javascript/bundle.js:1
 msgid "beauty"
 msgstr "salon de beauté"
 
-#: public/build/javascript/bundle.js:906
+#: public/build/javascript/bundle.js:1
 msgid "townhall"
 msgstr "mairie"
 
-#: public/build/javascript/bundle.js:907
+#: public/build/javascript/bundle.js:1
 msgid "doityourself"
 msgstr "magasin de bricolage"
 
-#: public/build/javascript/bundle.js:1030
-msgid "string"
+#: public/build/javascript/bundle.js:1
+msgid "RESULTS"
+msgstr "RÉSULTATS"
+
+#: public/build/javascript/bundle.js:1
+msgid "FAVORITES"
+msgstr "FAVORIS"
+
+#: public/build/javascript/bundle.js:1
+msgid "Via Wikipédia"
+msgstr "Voir sur Wikipédia"
+
+#: public/build/javascript/bundle.js:1
+msgid "Via WikiData"
+msgstr "Voir sur Wikidata"
+
+#: public/build/javascript/bundle.js:1
+msgid "Services & information"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1046
-#: public/build/javascript/bundle.js:1047
-#, python-format
-msgid "%d person"
-msgid_plural "%d people"
-msgstr[0] ""
-msgstr[1] ""
+#: public/build/javascript/bundle.js:1
+msgid "Internet access"
+msgstr ""
 
-#: public/build/javascript/bundle.js:1269
+#: public/build/javascript/bundle.js:1
+msgid "WiFi"
+msgstr ""
+
+#: public/build/javascript/bundle.js:1
+#, python-brace-format
+msgid "until {nextTransitionTime}"
+msgstr "jusqu’à {nextTransitionTime}"
+
+#: public/build/javascript/bundle.js:1
+msgid "Beers"
+msgstr "Bières"
+
+#: public/build/javascript/bundle.js:1
+msgid "Accessibility"
+msgstr "Accessibilité"
+
+#: public/build/javascript/bundle.js:1
+msgid "Register masq"
+msgstr "S'enregistrer sur Masq"
+
+#: public/build/javascript/bundle.js:1
+msgid "We use MASQ to keep your preference data safe"
+msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
+
+#: public/build/javascript/bundle.js:1
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: public/build/javascript/bundle.js:1
+msgid "filter"
+msgstr "filtre"
+
+#: public/build/javascript/bundle.js:1
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
-#: public/build/javascript/bundle.js:1269
+#: public/build/javascript/bundle.js:1
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
 
-#: public/build/javascript/bundle.js:1269
-#, python-format
-msgid "%d favorite place"
-msgid_plural "%d favorite places"
-msgstr[0] "Lieu favori"
-msgstr[1] "Mes %d lieux favoris"
+#~ msgid "Closing soon"
+#~ msgstr "Ferme bientôt"
 
-#: public/build/javascript/bundle.js:1937
-msgid "filter"
-msgstr "filtre"
-
-#: public/build/javascript/bundle.js:1981
-msgid "Register masq"
-msgstr "S'enregistrer sur Masq"
-
-#: public/build/javascript/bundle.js:1981
-msgid "We use MASQ to keep your preference data safe"
-msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
-
-#: public/build/javascript/bundle.js:1981
-msgid "Register"
-msgstr "S'enregistrer"
-
-#: public/build/javascript/bundle.js:2205
-msgid "Accessibility"
-msgstr "Accessibilité"
-
-#: public/build/javascript/bundle.js:2234
-msgid "Beers"
-msgstr "Bières"
-
-#: public/build/javascript/bundle.js:2360
-#, python-brace-format
-msgid "until {nextTransitionTime}"
-msgstr "jusqu’à {nextTransitionTime}"
-
-#: public/build/javascript/bundle.js:2504
-msgid "Internet access"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2504
-msgid "WiFi"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2571
-msgid "Services & information"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2632
-msgid "Via Wikipédia"
-msgstr "Voir sur Wikipédia"
-
-#: public/build/javascript/bundle.js:2632
-msgid "Via WikiData"
-msgstr "Voir sur Wikidata"
-
-#: public/build/javascript/bundle.js:2827
-msgid "RESULTS"
-msgstr "RÉSULTATS"
-
-#: public/build/javascript/bundle.js:2827
-msgid "FAVORITES"
-msgstr "FAVORIS"
-
-#: views/index.ejs:5
-msgid "Qwant Maps - beta"
-msgstr "Qwant Maps - beta"
-
-#: views/index.ejs:28
-msgid "Where do you want to go ?"
-msgstr "Où voulez-vous aller ?"
+#~ msgid "%d favorite place"
+#~ msgid_plural "%d favorite places"
+#~ msgstr[0] "Lieu favori"
+#~ msgstr[1] "Mes %d lieux favoris"
 
 #~ msgid "Limited Tactile paving"
 #~ msgstr "Dalle podotactile partielle"
