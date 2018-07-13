@@ -14,23 +14,15 @@ beforeAll(async () => {
 test('is dom loaded',async () => {
   expect.assertions(1);
   await page.goto(APP_URL)
-  try {
-    let sceneContent = await page.waitForSelector("#scene_container");
-    expect(sceneContent).not.toBeFalsy()
-  } catch (error) {
-    console.log(error)
-  }
+  let sceneContent = await page.waitForSelector("#scene_container");
+  expect(sceneContent).not.toBeFalsy()
 })
 
 test('is panels loaded',async () => {
   expect.assertions(1);
   await page.goto(APP_URL)
-  try {
-    let sceneContent = await page.waitForSelector(".error_panel");
-    expect(sceneContent).not.toBeFalsy()
-  } catch (error) {
-    console.log(error)
-  }
+  let sceneContent = await page.waitForSelector(".error_panel");
+  expect(sceneContent).not.toBeFalsy()
 })
 
 test('is map loaded',async () => {

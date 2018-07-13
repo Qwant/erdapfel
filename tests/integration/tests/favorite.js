@@ -20,7 +20,6 @@ test('toggle favorite', async () => {
   await page.click('.side_bar__fav')
   let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
   expect(favPanel).not.toBeFalsy()
-
 })
 
 test('add favorite', async () => {

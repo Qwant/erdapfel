@@ -17,12 +17,12 @@ beforeAll(async () => {
   page.on('request', interceptedRequest => {
     if(interceptedRequest.url().match(/autocomplete/)) {
       interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      const autocompletePoi = require('../../__data__/autocomplete')
-      interceptedRequest.respond({body : JSON.stringify(autocompletePoi), headers  : interceptedRequest.headers})
+      const autocompleteMock = require('../../__data__/autocomplete')
+      interceptedRequest.respond({body : JSON.stringify(autocompleteMock), headers  : interceptedRequest.headers})
     } else if(interceptedRequest.url().match(/poi/)) {
       interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      const moiPoi = require('../../__data__/poi')
-      interceptedRequest.respond({body : JSON.stringify(moiPoi), headers  : interceptedRequest.headers})
+      const poiMock = require('../../__data__/poi')
+      interceptedRequest.respond({body : JSON.stringify(poiMock), headers  : interceptedRequest.headers})
     } else {
       interceptedRequest.continue()
     }
@@ -40,7 +40,6 @@ test('click on a poi', async () => {
   const poiPanel = await page.waitForSelector('.poi_panel__title ')
   expect(poiPanel).not.toBeFalsy()
   const translatedSubClass = await getText(page, '.poi_panel__description')
-  console.log(translatedSubClass)
   expect(translatedSubClass).toEqual('musée')
 })
 
@@ -98,7 +97,7 @@ test('update url with correct poi', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   await page.keyboard.type('test')
-  await wait(200)
+  await page.waitForSelector('.autocomplete_suggestion')
   await page.click('.autocomplete_suggestion:nth-child(2)')
   await wait(300)
   let location = await page.evaluate(() => {
