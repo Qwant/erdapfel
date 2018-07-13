@@ -93,7 +93,7 @@ Scene.prototype.flyTo = function (poi) {
   let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
   windowBounds.extend(poiCenter)
   /* flyTo location if it's in the window or else jumpTo */
-  let flyOptions = {center : poi.getLngLat()}
+  let flyOptions = {center : poi.getLngLat(), zoom : this.mb.getZoom()}
   if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom

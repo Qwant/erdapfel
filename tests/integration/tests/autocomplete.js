@@ -10,6 +10,16 @@ const mockAutocomplete = require('../../__mocks__/autocomplete')
 beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
+  await page.setRequestInterception(true)
+  page.on('request', interceptedRequest => {
+    if(interceptedRequest.url().match(/autocomplete/)) {
+      interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
+      const mockAutocomplete = require('../../__data__/autocomplete')
+      interceptedRequest.respond({body : JSON.stringify(mockAutocomplete), headers  : interceptedRequest.headers})
+    } else {
+      interceptedRequest.continue()
+    }
+  })
   browser = browserPage.browser
   await page.setRequestInterception(true)
   page.on('request', interceptedRequest => {

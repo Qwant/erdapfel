@@ -1,7 +1,7 @@
-function UrlShards() {
-  if(!window.__url_state) {
-    window.__url_state = {shards : []}
-  }
+function UrlShards() {}
+
+if(!window.__url_state) {
+  window.__url_state = {shards : []}
 }
 
 UrlShards.add = function (shard) {

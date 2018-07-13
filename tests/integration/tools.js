@@ -14,7 +14,6 @@ export const getText = async function (page, selector) {
   }, selector)
 }
 
-
 export const initBrowser = async function () {
   const browser = await puppeteer.launch({args: puppeteerArguments})
   const page = await browser.newPage()
