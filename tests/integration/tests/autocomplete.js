@@ -66,7 +66,7 @@ test('move to on click', async () => {
   })
   await page.keyboard.type('Hello')
   await page.waitForSelector('.autocomplete_suggestion')
-  await page.click('body > div.autocomplete_suggestions > div:nth-child(3)')
+  await page.click('.autocomplete_suggestion:nth-child(3)')
   let map_position_after = await page.evaluate(() => {
     return window.MAP_MOCK.center
   })
