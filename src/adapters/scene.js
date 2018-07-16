@@ -85,17 +85,12 @@ Scene.prototype.initMapBox = function () {
 }
 
 Scene.prototype.flyTo = function (poi) {
-
-  let windowBounds = this.mb.getBounds()
-  const originalWindowBounds = windowBounds.toArray() /* simple way to clone value */
-  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
-  windowBounds.extend(poiCenter)
   /* flyTo location if it's in the window or else jumpTo */
   let flyOptions = {center : poi.getLngLat()}
   if(poi.offset) {
     flyOptions.offset = poi.offset
   }
-  if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
+  if(isWindowsePoi(poi)) {
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom
     }
@@ -112,11 +107,7 @@ Scene.prototype.flyTo = function (poi) {
 }
 
 Scene.prototype.fitBounds = function (poi) {
-  let windowBounds = this.mb.getBounds()
-  const originalWindowBounds = windowBounds.toArray() /* simple way to clone value */
-  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
-  windowBounds.extend(poiCenter)
-  if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
+  if(isWindowsePoi(poi)) {
     this.mb.fitBounds(poi.bbox)
   } else {
     this.mb.fitBounds(poi.bbox, {padding : poi.padding, animate : false})
@@ -153,6 +144,17 @@ Scene.prototype.restore = function (urlShard) {
 /* private */
 function compareBoundsArray(boundsA, boundsB) {
   return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
+}
+
+function isWindowsePoi(poi) {
+  let windowBounds = this.mb.getBounds()
+  /* simple way to clone value */
+  const originalWindowBounds = windowBounds.toArray()
+  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
+  windowBounds.extend(poiCenter)
+  return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+
+
 }
 
 export default Scene
