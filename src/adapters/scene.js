@@ -5,6 +5,7 @@ import Poi from "../mapbox/poi"
 import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
+import {layout} from '../../config/constants.yml'
 
 function Scene() {
   UrlState.registerHash(this, 'map')
@@ -53,11 +54,8 @@ Scene.prototype.initMapBox = function () {
           if(globalId) {
             let poi = await Poi.apiLoad(globalId)
             if(poi) {
-              /* should be globalised */
-              const DESKTOP_PANEL_WIDTH = 496
-              const MOBILE_BREAK_POINT = 640
-              if(e.originalEvent.clientX < DESKTOP_PANEL_WIDTH && window.innerWidth > MOBILE_BREAK_POINT) {
-                this.mb.flyTo({center : e.lngLat, offset : [DESKTOP_PANEL_WIDTH / 2, 0]})
+              if(e.originalEvent.clientX < DESKTOP_PANEL_WIDTH && window.innerWidth > layout.mobile.breakPoint) {
+                this.mb.flyTo({center : e.lngLat, offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
               }
               poi.zoom = this.mb.getZoom()
               PanelManager.setPoi(poi)
@@ -119,7 +117,7 @@ Scene.prototype.fitBounds = function (poi) {
   let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
   windowBounds.extend(poiCenter)
   if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
-    this.mb.fitBounds(poi.bbox, )
+    this.mb.fitBounds(poi.bbox)
   } else {
     this.mb.fitBounds(poi.bbox, {padding : poi.padding, animate : false})
   }

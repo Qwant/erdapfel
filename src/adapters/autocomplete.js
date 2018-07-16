@@ -3,9 +3,10 @@ import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 import IconManager from '../adapters/icon_manager'
 import nconf from '@qwant/nconf-getter'
-
 import Store from '../adapters/store'
-import PanelManager from "../proxies/panel_manager"
+import PanelManager from '../proxies/panel_manager'
+import {layout} from '../../config/constants.yml'
+
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
 const store = new Store()
@@ -69,7 +70,7 @@ function SearchInput(tagSelector) {
 async function select(autocompleteLine) {
   if(autocompleteLine) {
     if(autocompleteLine.bbox) {
-      autocompleteLine.padding = {top: 100, bottom: 10,left: 100,right: 10} /* UI offset */
+      autocompleteLine.padding = {top: layout.sizes.topBarHeight, bottom: 10,left: layout.sizes.sideBarWidth,right: 10} /* UI offset */
       fire('fit_bounds', autocompleteLine)
     } else {
       /* adapt zoom to corresponding poi type */
@@ -79,10 +80,8 @@ async function select(autocompleteLine) {
       if(zoomSetting) {
         autocompleteLine.zoom = zoomSetting.zoom
         /* set offset for poi witch will open panel on desktop */
-        const MOBILE_BREAK_POINT = 640
-        if(zoomSetting.panel && window.innerWidth > MOBILE_BREAK_POINT) {
-          const DESKTOP_PANEL_WIDTH = 496
-          autocompleteLine.offset = [DESKTOP_PANEL_WIDTH / 2, 0]
+        if(zoomSetting.panel && window.innerWidth > layout.mobile.breakPoint) {
+          autocompleteLine.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
         }
       }
       fire('fly_to', autocompleteLine)
