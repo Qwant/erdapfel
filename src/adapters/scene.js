@@ -54,7 +54,7 @@ Scene.prototype.initMapBox = function () {
           if(globalId) {
             let poi = await Poi.apiLoad(globalId)
             if(poi) {
-              if(e.originalEvent.clientX < DESKTOP_PANEL_WIDTH && window.innerWidth > layout.mobile.breakPoint) {
+              if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
                 this.mb.flyTo({center : e.lngLat, offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
               }
               poi.zoom = this.mb.getZoom()
@@ -90,7 +90,7 @@ Scene.prototype.flyTo = function (poi) {
   if(poi.offset) {
     flyOptions.offset = poi.offset
   }
-  if(isWindowsePoi(poi)) {
+  if(isWindowedPoi(poi)) {
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom
     }
@@ -107,7 +107,7 @@ Scene.prototype.flyTo = function (poi) {
 }
 
 Scene.prototype.fitBounds = function (poi) {
-  if(isWindowsePoi(poi)) {
+  if(isWindowedPoi(poi)) {
     this.mb.fitBounds(poi.bbox)
   } else {
     this.mb.fitBounds(poi.bbox, {padding : poi.padding, animate : false})
@@ -146,7 +146,7 @@ function compareBoundsArray(boundsA, boundsB) {
   return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
 }
 
-function isWindowsePoi(poi) {
+function isWindowedPoi(poi) {
   let windowBounds = this.mb.getBounds()
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray()
