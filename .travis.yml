@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "8"
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    - llvm-toolchain-precise-3.5
+    packages:
+    - libstdc++6
+      # This is required to run new chrome on old trusty
+    - libnss3
+
+before_script:
+    - TEST=true npm run build

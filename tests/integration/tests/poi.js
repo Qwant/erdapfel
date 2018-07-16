@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer'
 import {getText} from '../tools'
+
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
@@ -8,7 +9,7 @@ let page
 
 beforeAll(async () => {
   try {
-    browser = await puppeteer.launch()
+    browser = await puppeteer.launch({args: puppeteerArguments})
     page = await browser.newPage()
     await page.setExtraHTTPHeaders({
       'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
@@ -51,4 +52,3 @@ test('click on a poi', async () => {
 afterAll(() => {
   browser.close()
 })
-
