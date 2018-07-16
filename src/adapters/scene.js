@@ -54,7 +54,7 @@ Scene.prototype.initMapBox = function () {
             let poi = await Poi.apiLoad(globalId)
             if(poi) {
               /* should be globalised */
-              const DESKTOP_PANEL_WIDTH = 400
+              const DESKTOP_PANEL_WIDTH = 496
               const MOBILE_BREAK_POINT = 640
               if(e.originalEvent.clientX < DESKTOP_PANEL_WIDTH && window.innerWidth > MOBILE_BREAK_POINT) {
                 this.mb.flyTo({center : e.lngLat, offset : [DESKTOP_PANEL_WIDTH / 2, 0]})
@@ -93,17 +93,20 @@ Scene.prototype.flyTo = function (poi) {
   let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
   windowBounds.extend(poiCenter)
   /* flyTo location if it's in the window or else jumpTo */
-  let flyOptions = {center : poi.getLngLat(), zoom : this.mb.getZoom()}
+  let flyOptions = {center : poi.getLngLat()}
+  if(poi.offset) {
+    flyOptions.offset = poi.offset
+  }
   if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom
     }
     this.mb.flyTo(flyOptions)
   } else {
+    flyOptions.duration = 0
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom - 1
-      this.mb.jumpTo(flyOptions)
-      this.mb.flyTo({zoom : poi.zoom})
+      this.mb.flyTo(flyOptions)
     } else {
       this.mb.jumpTo(flyOptions)
     }
@@ -111,7 +114,15 @@ Scene.prototype.flyTo = function (poi) {
 }
 
 Scene.prototype.fitBounds = function (poi) {
-  this.mb.fitBounds(poi.bbox, poi.padding)
+  let windowBounds = this.mb.getBounds()
+  const originalWindowBounds = windowBounds.toArray() /* simple way to clone value */
+  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
+  windowBounds.extend(poiCenter)
+  if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
+    this.mb.fitBounds(poi.bbox, )
+  } else {
+    this.mb.fitBounds(poi.bbox, {padding : poi.padding, animate : false})
+  }
 }
 
 Scene.prototype.addMarker = function(poi) {

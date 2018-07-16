@@ -9,6 +9,7 @@ import PanelManager from "../proxies/panel_manager"
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
 const store = new Store()
+const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 19, panel: true}]
 
 function SearchInput(tagSelector) {
   this.pois = []
@@ -68,9 +69,22 @@ function SearchInput(tagSelector) {
 async function select(autocompleteLine) {
   if(autocompleteLine) {
     if(autocompleteLine.bbox) {
-      autocompleteLine.padding = {top: 10,bottom: 25,left: 15,right: 5}
-      fire('fit_bounds', autocompleteLine);
+      autocompleteLine.padding = {top: 100, bottom: 10,left: 100,right: 10} /* UI offset */
+      fire('fit_bounds', autocompleteLine)
     } else {
+      /* adapt zoom to corresponding poi type */
+      let zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
+        autocompleteLine.poi_type === zoomType.type
+      )
+      if(zoomSetting) {
+        autocompleteLine.zoom = zoomSetting.zoom
+        /* set offset for poi witch will open panel on desktop */
+        const MOBILE_BREAK_POINT = 640
+        if(zoomSetting.panel && window.innerWidth > MOBILE_BREAK_POINT) {
+          const DESKTOP_PANEL_WIDTH = 496
+          autocompleteLine.offset = [DESKTOP_PANEL_WIDTH / 2, 0]
+        }
+      }
       fire('fly_to', autocompleteLine)
     }
     fire('map_mark_poi', autocompleteLine)
@@ -123,7 +137,9 @@ function buildPoi(response) {
     poi.addressLabel = addressLabel
     poi.poi_type = resultType
     poi.zoom = zoomLevel
-    poi.bbox = feature['bbox']
+    if(feature.properties.geocoding.bbox) {
+      poi.bbox = feature.properties.geocoding.bbox
+    }
     return poi
   })
 }
