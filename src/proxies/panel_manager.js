@@ -1,3 +1,5 @@
+import Poi from "../mapbox/poi";
+
 function PanelManager() {}
 PanelManager.init = function () {
   window.__panel_manager = {panels : []}
@@ -11,6 +13,19 @@ PanelManager.setPoi = function(poi) {
       panel.close()
     }
   })
+}
+
+PanelManager.loadPoiById = async function (id) {
+  if(id) {
+    let poi = await Poi.apiLoad(id)
+    if(poi) {
+      PanelManager.setPoi(poi)
+    } else {
+      PanelManager.closeAll()
+    }
+  } else {
+    PanelManager.closeAll()
+  }
 }
 
 PanelManager.toggleFavorite = function () {

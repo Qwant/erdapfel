@@ -5,16 +5,20 @@ import Ajax from "../libs/ajax"
 import nconf from '@qwant/nconf-getter'
 import PanelManager from "../proxies/panel_manager";
 const serviceConfig = nconf.get().services
+const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 19, panel: true}]
+const DEFAULT_ZOOM = 16
 const LNG_INDEX = 0
 const LAT_INDEX = 1
 
-function Poi(latLon, id, name, className, subClassName, tags) {
-  this.latLon = latLon
+function Poi(id, name, type, latLon, className, subClassName, tags) {
+  this.id = id
   this.name = name
-  this.tags = tags
+  this.type = type
+  this.latLon = latLon
   this.className = className
   this.subClassName = subClassName
-  this.id = id
+  this.tags = tags
+  this.computeZoom()
 }
 
 Poi.prototype.getLngLat = function() {
@@ -23,6 +27,17 @@ Poi.prototype.getLngLat = function() {
 
 Poi.prototype.getKey = function () {
   return `${this.latLon.lat}_${this.latLon.lng}`
+}
+
+Poi.prototype.computeZoom = function() {
+  let zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
+    this.type === zoomType.type
+  )
+  if(zoomSetting) {
+    this.zoom = zoomSetting.zoom
+  } else {
+    this.zoom = DEFAULT_ZOOM
+  }
 }
 
 Poi.prototype.store = function() {
@@ -37,10 +52,9 @@ Poi.prototype.store = function() {
   }
 }
 
-Poi.load = function (rawPoi) {
-  let poi = new Poi(rawPoi.latLon, rawPoi.id, rawPoi.name, rawPoi.className, rawPoi.subClassName, rawPoi.tags)
+Poi.storeLoad = function (rawPoi) {
+  let poi = new Poi(rawPoi.id, rawPoi.name, rawPoi.poi_type, rawPoi.latLon, rawPoi.className, rawPoi.subClassName, rawPoi.tags)
   poi.bbox = rawPoi.bbox
-  poi.zoom = rawPoi.zoom
   return poi
 }
 
@@ -59,13 +73,56 @@ Poi.apiLoad = async function (id) {
     }
   }
   let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
-  const poi = new Poi(latLng, id, rawPoi.name, rawPoi.class_name, rawPoi.subclass_name)
+  const poi = new Poi(id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name)
   poi.blocks = rawPoi.blocks
   poi.localName = rawPoi.local_name
   poi.address = rawPoi.address
   return poi
 }
 
+Poi.mapLoad = function (feature) {
+  console.log(feature)
+  let id = feature.properties.global_id
+  let poi = new Poi(id,  feature.name,  feature.poi_type, feature.lngLat)
+  return poi
+}
+
+Poi.geocoderLoad = function (feature) {
+  const resultType = feature.properties.geocoding.type
+
+  let poiClassText = ''
+  let poiSubclassText = ''
+
+  if(feature.properties.geocoding.properties && feature.properties.geocoding.properties.length > 0) {
+    let poiClass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_class'})
+
+    if(poiClass) {
+      poiClassText = poiClass.value
+    }
+    let poiSubclass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_subclass'})
+    if(poiSubclass) {
+      poiSubclassText = poiSubclass.value
+    }
+  }
+  let addressLabel = ''
+  if(feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
+    addressLabel = feature.properties.geocoding.address.label
+  }
+
+  let name = ''
+  if(addressLabel) {
+    name = feature.properties.geocoding.name
+  } else {
+    name = feature.properties.geocoding.label
+  }
+  let poi = new Poi(feature.properties.geocoding.id, name, resultType, {lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, poiClassText, poiSubclassText)
+  poi.value = feature.properties.geocoding.label
+  poi.addressLabel = addressLabel
+  if(feature.properties.geocoding.bbox) {
+    poi.bbox = feature.properties.geocoding.bbox
+  }
+  return poi
+}
 
 
 export default Poi

@@ -48,19 +48,13 @@ Scene.prototype.initMapBox = function () {
         this.mb.getCanvas().style.cursor = '';
       })
 
-      this.mb.on('click', interactiveLayer, async (e) => {
+      this.mb.on('click', interactiveLayer, (e) => {
         if(e.features && e.features.length > 0) {
-          let globalId = e.features[0].properties.global_id
-          if(globalId) {
-            let poi = await Poi.apiLoad(globalId)
-            if(poi) {
-              if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
-                this.mb.flyTo({center : e.lngLat, offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
-              }
-              poi.zoom = this.mb.getZoom()
-              PanelManager.setPoi(poi)
-              this.addMarker(poi)
-            }
+          if(e.features && e.features.length > 0) {
+            let mapPoi = Poi.mapLoad(e.features[0])
+            this.fitMap(mapPoi)
+            this.addMarker(mapPoi)
+            PanelManager.loadPoiById(mapPoi.id)
           }
         }
       })
@@ -71,12 +65,8 @@ Scene.prototype.initMapBox = function () {
     })
   })
 
-  listen('fly_to', (poi) => {
-    this.flyTo(poi)
-  })
-
-  listen('fit_bounds', (poi, options) => {
-    this.fitBounds(poi, options)
+  listen('fitMap', (poi, options) => {
+    this.fitMap(poi, options)
   })
 
   listen('map_mark_poi', (poi) => {
@@ -84,33 +74,38 @@ Scene.prototype.initMapBox = function () {
   })
 }
 
-Scene.prototype.flyTo = function (poi) {
-  /* flyTo location if it's in the window or else jumpTo */
-  let flyOptions = {center : poi.getLngLat()}
-  if(poi.offset) {
-    flyOptions.offset = poi.offset
-  }
-  if(isWindowedPoi(poi)) {
-    if(poi.zoom) {
-      flyOptions.zoom = poi.zoom
+
+Scene.prototype.fitMap = function(poi, options = {}) {
+  if(poi.bbox) {
+    let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
+    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
+      padding.left += layout.sizes.panelWidth
     }
-    this.mb.flyTo(flyOptions)
+    if(this.isWindowedPoi(poi)) {
+      this.mb.fitBounds(poi.bbox, {padding : padding})
+    } else {
+      this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
+    }
   } else {
-    flyOptions.duration = 0
-    if(poi.zoom) {
-      flyOptions.zoom = poi.zoom - 1
+    let flyOptions = {center : poi.getLngLat()}
+    /* set offset for poi witch will open panel on desktop */
+    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
+      flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
+    }
+    if(this.isWindowedPoi(poi)) {
+      if(poi.zoom) {
+        flyOptions.zoom = poi.zoom
+      }
       this.mb.flyTo(flyOptions)
     } else {
-      this.mb.jumpTo(flyOptions)
+      flyOptions.duration = 0
+      if(poi.zoom) {
+        flyOptions.zoom = poi.zoom - 1
+        this.mb.flyTo(flyOptions)
+      } else {
+        this.mb.jumpTo(flyOptions)
+      }
     }
-  }
-}
-
-Scene.prototype.fitBounds = function (poi) {
-  if(isWindowedPoi(poi)) {
-    this.mb.fitBounds(poi.bbox)
-  } else {
-    this.mb.fitBounds(poi.bbox, {padding : poi.padding, animate : false})
   }
 }
 
@@ -141,12 +136,7 @@ Scene.prototype.restore = function (urlShard) {
   }
 }
 
-/* private */
-function compareBoundsArray(boundsA, boundsB) {
-  return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
-}
-
-function isWindowedPoi(poi) {
+Scene.prototype.isWindowedPoi = function(poi) {
   let windowBounds = this.mb.getBounds()
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray()
@@ -156,5 +146,12 @@ function isWindowedPoi(poi) {
 
 
 }
+
+/* private */
+function compareBoundsArray(boundsA, boundsB) {
+  return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
+}
+
+
 
 export default Scene

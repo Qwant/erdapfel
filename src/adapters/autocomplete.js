@@ -10,7 +10,6 @@ import {layout} from '../../config/constants.yml'
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
 const store = new Store()
-const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 19, panel: true}]
 
 function SearchInput(tagSelector) {
   this.pois = []
@@ -40,7 +39,7 @@ function SearchInput(tagSelector) {
         this.pois = buildPoi(responses[0])
         let historySuggestData = responses[1]
         historySuggestData = historySuggestData.map((historySuggest) => {
-          let poi = Poi.load(historySuggest)
+          let poi = Poi.storeLoad(historySuggest)
           poi.fromHistory = true
           return poi
         })
@@ -67,79 +66,20 @@ function SearchInput(tagSelector) {
   })
 }
 
-async function select(autocompleteLine) {
-  if(autocompleteLine) {
-    if(autocompleteLine.bbox) {
-      autocompleteLine.padding = {top: layout.sizes.topBarHeight, bottom: 10,left: layout.sizes.sideBarWidth,right: 10} /* UI offset */
-      fire('fit_bounds', autocompleteLine)
-    } else {
-      /* adapt zoom to corresponding poi type */
-      let zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
-        autocompleteLine.poi_type === zoomType.type
-      )
-      if(zoomSetting) {
-        autocompleteLine.zoom = zoomSetting.zoom
-        /* set offset for poi witch will open panel on desktop */
-        if(zoomSetting.panel && window.innerWidth > layout.mobile.breakPoint) {
-          autocompleteLine.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
-        }
-      }
-      fire('fly_to', autocompleteLine)
-    }
-    fire('map_mark_poi', autocompleteLine)
-    if(autocompleteLine.poi_type === 'poi' && autocompleteLine.id) {
-      let poi = await Poi.apiLoad(autocompleteLine.id)
-      if(poi) {
-        PanelManager.setPoi(poi)
-      } else {
-        PanelManager.closeAll()
-      }
-    } else {
-      PanelManager.closeAll()
+async function select(selectedPoi) {
+  if(selectedPoi) {
+    console.log(selectedPoi)
+    fire('fit_map', selectedPoi)
+    fire('map_mark_poi', selectedPoi)
+    if(selectedPoi.poi_type === 'poi') {
+      PanelManager.loadPoiById(selectedPoi.id)
     }
   }
 }
 
 function buildPoi(response) {
   return response.features.map((feature) => {
-    let zoomLevel = 0
-
-    const resultType = feature.properties.geocoding.type
-
-    let poiClassText = ''
-    let poiSubclassText = ''
-
-    if(feature.properties.geocoding.properties && feature.properties.geocoding.properties.length > 0) {
-      let poiClass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_class'})
-
-      if(poiClass) {
-        poiClassText = poiClass.value
-      }
-      let poiSubclass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_subclass'})
-      if(poiSubclass) {
-        poiSubclassText = poiSubclass.value
-      }
-    }
-    let addressLabel = ''
-    if(feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
-      addressLabel = feature.properties.geocoding.address.label
-    }
-
-    let name = ''
-    if(addressLabel) {
-      name = feature.properties.geocoding.name
-    } else {
-      name = feature.properties.geocoding.label
-    }
-    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, name, poiClassText, poiSubclassText)
-    poi.value = feature.properties.geocoding.label
-    poi.addressLabel = addressLabel
-    poi.poi_type = resultType
-    poi.zoom = zoomLevel
-    if(feature.properties.geocoding.bbox) {
-      poi.bbox = feature.properties.geocoding.bbox
-    }
-    return poi
+    return Poi.geocoderLoad(feature)
   })
 }
 
@@ -149,7 +89,7 @@ function toAccuracy(bbox, accuracy) {
   const n = Math.ceil(bbox.getNorth() * accuracy) / accuracy //^ -> ceil
   const e = Math.ceil(bbox.getEast() * accuracy) / accuracy //> ->  ceil
 
-  return [[s,w],[n,e]]//sw / ne
+  return [[s,w],[n,e]] //sw / ne
 }
 
 async function getHistory(term) {
