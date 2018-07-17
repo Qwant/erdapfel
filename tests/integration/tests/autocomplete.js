@@ -70,6 +70,28 @@ test('move to on click', async () => {
   const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates
   expect(map_position_after).toEqual({lat: expectedLat, lng: expectedLng}
 );
+
+test('bbox & center', async () => {
+  expect.assertions(3)
+  await page.goto(APP_URL)
+  await page.keyboard.type('test')
+  await wait(100)
+  await page.waitForSelector('.autocomplete_suggestion')
+  await page.click('.autocomplete_suggestion:nth-child(1)')
+  let {center, zoom} = await page.evaluate(() => {
+    return {center : window.MAP_MOCK.getCenter(), zoom : window.MAP_MOCK.getZoom()}
+  })
+  expect(center).toEqual({ lat: 5, lng: 30 })
+  expect(zoom).toEqual(19)
+
+  await page.keyboard.type('test')
+  await wait(100)
+  await page.waitForSelector('.autocomplete_suggestion')
+  await page.click('.autocomplete_suggestion:nth-child(2)')
+  center = await page.evaluate(() => {
+    return window.MAP_MOCK.getCenter()
+  })
+  expect(center).toEqual({ lat: 1, lng: 4 })
 })
 
 afterAll(() => {

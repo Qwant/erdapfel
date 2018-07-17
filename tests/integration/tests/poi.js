@@ -13,20 +13,6 @@ beforeAll(async () => {
     'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
   })
   browser = browserPage.browser
-  await page.setRequestInterception(true)
-  page.on('request', interceptedRequest => {
-    if(interceptedRequest.url().match(/autocomplete/)) {
-      interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      const autocompleteMock = require('../../__data__/autocomplete')
-      interceptedRequest.respond({body : JSON.stringify(autocompleteMock), headers  : interceptedRequest.headers})
-    } else if(interceptedRequest.url().match(/poi/)) {
-      interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      const poiMock = require('../../__data__/poi')
-      interceptedRequest.respond({body : JSON.stringify(poiMock), headers  : interceptedRequest.headers})
-    } else {
-      interceptedRequest.continue()
-    }
-  })
 })
 
 test('click on a poi', async () => {
