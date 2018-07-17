@@ -48,12 +48,14 @@ Scene.prototype.initMapBox = function () {
         this.mb.getCanvas().style.cursor = '';
       })
 
-      this.mb.on('click', interactiveLayer, (e) => {
+      this.mb.on('click', interactiveLayer, async (e) => {
         if(e.features && e.features.length > 0) {
           let mapPoi = Poi.mapLoad(e.features[0], e.lngLat)
-          this.fitMap(mapPoi)
-          this.addMarker(mapPoi)
-          PanelManager.loadPoiById(mapPoi.id)
+          if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
+            this.mb.flyTo({center : mapPoi.getLngLat(), offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
+          }
+          let poi = await PanelManager.loadPoiById(mapPoi.id)
+          this.addMarker(poi)
         }
       })
     })
@@ -63,7 +65,7 @@ Scene.prototype.initMapBox = function () {
     })
   })
 
-  listen('fitMap', (poi, options) => {
+  listen('fit_map', (poi, options) => {
     this.fitMap(poi, options)
   })
 
@@ -84,25 +86,19 @@ Scene.prototype.fitMap = function(poi, options = {}) {
       this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
     }
   } else {
-    let flyOptions = {center : poi.getLngLat()}
+    let flyOptions = {center : poi.getLngLat(), duration : 0}
+    if(poi.zoom) {
+      flyOptions.zoom = poi.zoom
+    }
     /* set offset for poi witch will open panel on desktop */
     if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
       flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
     }
+
     if(this.isWindowedPoi(poi)) {
-      if(poi.zoom) {
-        flyOptions.zoom = poi.zoom
-      }
-      this.mb.flyTo(flyOptions)
-    } else {
-      flyOptions.duration = 0
-      if(poi.zoom) {
-        flyOptions.zoom = poi.zoom - 1
-        this.mb.flyTo(flyOptions)
-      } else {
-        this.mb.jumpTo(flyOptions)
-      }
+      flyOptions.duration = 1500
     }
+    this.mb.flyTo(flyOptions)
   }
 }
 
@@ -140,8 +136,6 @@ Scene.prototype.isWindowedPoi = function(poi) {
   let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
   windowBounds.extend(poiCenter)
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
-
-
 }
 
 /* private */

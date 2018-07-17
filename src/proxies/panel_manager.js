@@ -23,6 +23,7 @@ PanelManager.loadPoiById = async function (id) {
     } else {
       PanelManager.closeAll()
     }
+    return poi
   } else {
     PanelManager.closeAll()
   }

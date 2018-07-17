@@ -68,7 +68,6 @@ function SearchInput(tagSelector) {
 
 async function select(selectedPoi) {
   if(selectedPoi) {
-    console.log(selectedPoi)
     fire('fit_map', selectedPoi)
     fire('map_mark_poi', selectedPoi)
     if(selectedPoi.poi_type === 'poi') {
