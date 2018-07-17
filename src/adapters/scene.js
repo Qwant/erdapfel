@@ -50,12 +50,10 @@ Scene.prototype.initMapBox = function () {
 
       this.mb.on('click', interactiveLayer, (e) => {
         if(e.features && e.features.length > 0) {
-          if(e.features && e.features.length > 0) {
-            let mapPoi = Poi.mapLoad(e.features[0])
-            this.fitMap(mapPoi)
-            this.addMarker(mapPoi)
-            PanelManager.loadPoiById(mapPoi.id)
-          }
+          let mapPoi = Poi.mapLoad(e.features[0], e.lngLat)
+          this.fitMap(mapPoi)
+          this.addMarker(mapPoi)
+          PanelManager.loadPoiById(mapPoi.id)
         }
       })
     })
@@ -73,7 +71,6 @@ Scene.prototype.initMapBox = function () {
     this.addMarker(poi)
   })
 }
-
 
 Scene.prototype.fitMap = function(poi, options = {}) {
   if(poi.bbox) {
@@ -151,7 +148,5 @@ Scene.prototype.isWindowedPoi = function(poi) {
 function compareBoundsArray(boundsA, boundsB) {
   return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
 }
-
-
 
 export default Scene

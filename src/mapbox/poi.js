@@ -80,14 +80,12 @@ Poi.apiLoad = async function (id) {
   return poi
 }
 
-Poi.mapLoad = function (feature) {
-  console.log(feature)
+Poi.mapLoad = function(feature, lngLat) {
   let id = feature.properties.global_id
-  let poi = new Poi(id,  feature.name,  feature.poi_type, feature.lngLat)
-  return poi
+  return new Poi(id,  feature.name, 'poi', lngLat)
 }
 
-Poi.geocoderLoad = function (feature) {
+Poi.geocoderLoad = function(feature) {
   const resultType = feature.properties.geocoding.type
 
   let poiClassText = ''
