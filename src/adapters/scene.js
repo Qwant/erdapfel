@@ -55,7 +55,9 @@ Scene.prototype.initMapBox = function () {
             this.mb.flyTo({center : mapPoi.getLngLat(), offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
           }
           let poi = await PanelManager.loadPoiById(mapPoi.id)
-          this.addMarker(poi)
+          if(poi) {
+            this.addMarker(poi)
+          }
         }
       })
     })

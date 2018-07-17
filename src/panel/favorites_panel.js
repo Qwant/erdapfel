@@ -22,7 +22,7 @@ function Favorite() {
   })
 
   this.panel = new Panel(this, FavoritePanelView)
-    this.isFavoritePanel = true
+  this.isFavoritePanel = true
   PanelManager.register(this)
 }
 
@@ -86,11 +86,9 @@ Favorite.prototype.close = function() {
 
 Favorite.prototype.go = async function(storePoi) {
   fire('map_mark_poi', storePoi)
-  fire('fit_poi', storePoi, {sidePanelOffset : true})
-  fire('close_favorite_panel')
+  fire('fit_map', storePoi, {sidePanelOffset : true})
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
-  let poi = await Poi.apiLoad(storePoi.id)
-  PanelManager.setPoi(poi)
+  PanelManager.loadPoiById(storePoi.id)
   this.active = false
 }
 

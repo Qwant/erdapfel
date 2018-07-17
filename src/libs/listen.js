@@ -3,13 +3,13 @@
  */
 
 (function Listen() {
-  window.fire = function(name, params) {
-    let event = new CustomEvent(name, {detail : params})
+  window.fire = function(name, params, ...additionalParams) {
+    let event = new CustomEvent(name, {detail : {params, additionalParams}})
     window.dispatchEvent(event)
   }
   window.listen = function(name, cb) {
     window.addEventListener(name, ({detail}) => {
-      cb(detail)
+      cb(detail.params, ...detail.additionalParams)
     })
   }
 })()

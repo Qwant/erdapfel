@@ -48,12 +48,13 @@ Poi.prototype.store = function() {
     className : this.className,
     subClassName : this.subClassName,
     zoom : this.zoom,
+    type : 'poi',
     bbox : this.bbox,
   }
 }
 
 Poi.storeLoad = function (rawPoi) {
-  let poi = new Poi(rawPoi.id, rawPoi.name, rawPoi.poi_type, rawPoi.latLon, rawPoi.className, rawPoi.subClassName, rawPoi.tags)
+  let poi = new Poi(rawPoi.id, rawPoi.name, rawPoi.type, rawPoi.latLon, rawPoi.className, rawPoi.subClassName, rawPoi.tags)
   poi.bbox = rawPoi.bbox
   return poi
 }
