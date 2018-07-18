@@ -12,7 +12,6 @@ const geocoderUrl = serviceConfigs.geocoder.url
 const store = new Store()
 
 function SearchInput(tagSelector) {
-  this.pois = []
   this.poi = null
 
   new Autocomplete({
@@ -21,9 +20,6 @@ function SearchInput(tagSelector) {
     cachePrefix : false,
     delay : 100,
     width:'650px',
-    onUpdate : (e, poi) => {
-      this.poi = poi
-    },
     source : (term, suggest) => {
       /*
         https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
@@ -36,15 +32,15 @@ function SearchInput(tagSelector) {
       const suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
       const suggestHistoryPromise = getHistory(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
-        this.pois = buildPoi(responses[0])
+        let pois = buildPoi(responses[0])
         let historySuggestData = responses[1]
         historySuggestData = historySuggestData.map((historySuggest) => {
           let poi = Poi.storeLoad(historySuggest)
           poi.fromHistory = true
           return poi
         })
-        this.pois = this.pois.concat(historySuggestData)
-        suggest(this.pois, term)
+        pois = pois.concat(historySuggestData)
+        suggest(pois, term)
       })
     },
     renderItem : ({id, name, fromHistory, className, subClassName, addressLabel}) => {
@@ -57,10 +53,10 @@ function SearchInput(tagSelector) {
 </div>
 `
     },
-    onSelect : (e, term, item) => {
+    onSelect : (e, term, item, items) => {
       e.preventDefault()
       const itemId = item.getAttribute('data-id')
-      let poi = this.pois.find(poi => poi.id === itemId)
+      let poi = items.find(poi => poi.id === itemId)
       select(poi)
     }
   })
