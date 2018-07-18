@@ -17,7 +17,6 @@ UrlState.registerResource = function(component, prefix) {
 
 UrlState.pushUrl = function() {
   let url = UrlShards.toUrl()
-  console.log('pu',JSON.stringify(url))
   if(history && typeof history.pushState !== 'undefined') {
     history.pushState(null, null, url)
   } else {

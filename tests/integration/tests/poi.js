@@ -44,13 +44,20 @@ test('click on a poi', async () => {
 })
 
 test('load a poi from url', async () => {
-  expect.assertions(1)
+  expect.assertions(2)
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
-  const poiPanel = await page.waitForSelector('.poi_panel__title ')
-  expect(poiPanel).not.toBeFalsy()
+  const poiPanel = await page.waitForSelector('.poi_panel__title')
+  let {title, address} = await page.evaluate(() => {
+    return {
+      title: document.querySelector('.poi_panel__title').innerText,
+      address: document.querySelector('.poi_panel__address').innerText
+    }
+  })
+  expect(title).toMatch(/Musée d\'Orsay/)
+  expect(address).toMatch(/62B Rue de Lille \(Paris\)/)
 })
 
-test('load a poi already in my favorite form url', async () => {
+test('load a poi already in my favorite from url', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   page.evaluate(() => {
@@ -93,7 +100,7 @@ test('update url after a favorite poi click', async () => {
 })
 
 
-test('update url with correct poi', async () => {
+test('update url with corresponding poi from autocomplete selection', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   await page.keyboard.type('test')
