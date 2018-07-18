@@ -1,0 +1,6 @@
+<div class="">
+  <h1>hi from {{= this.name }}</h1>
+  <span>
+    {{= this }}
+  </span>
+</div>

@@ -90,7 +90,13 @@ const mapJsChunkConfig = {
     })
   ],
   module: {
-    loaders: [{
+    loaders: [
+      {
+        test: /\.dot/,
+        use: [
+          {loader : 'dot-loader'}
+        ]
+      }, {
       test: /\.yml$/,
       use: [
         {loader : 'json-loader'},
