@@ -1,6 +1,13 @@
-<div class="">
-  <h1>hi from {{= this.name }}</h1>
+<div class="poi_popup" style="border-color:">
+  <h1>hi from {{= this.poi.name }}</h1>
   <span>
-    {{= this }}
+    {{= this.className }}
   </span>
+  <div>
+  {{? this.opening }}
+    🦍 {{ this.opening }}
+  {{??}}
+    🦊 {{= this.address }}
+  {{?}}
+  </div>
 </div>
