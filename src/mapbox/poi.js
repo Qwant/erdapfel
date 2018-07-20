@@ -65,7 +65,6 @@ Poi.poiApiLoad = async function (id) {
   try {
     rawPoi = await Ajax.queryLang(`${serviceConfig.idunn.url}/v1/pois/${id}`)
   } catch (err) {
-    PanelManager.closeAll()
     if(err === 404) {
       return
     }

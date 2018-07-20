@@ -99,6 +99,7 @@ const mapJsChunkConfig = {
       }, {
       test: /\.yml$/,
       use: [
+        {loader : '@qwant/config-sanitizer-loader'},
         {loader : 'json-loader'},
         {loader : 'yaml-loader'}
       ]

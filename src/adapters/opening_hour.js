@@ -1,5 +1,4 @@
-import I18n from '../libs/i18n'
-
+const strftime = require('strftime')
 const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
 function parse(rawOpening) {
   var result = null;
@@ -75,39 +74,31 @@ function parse(rawOpening) {
 }
 
 
-function openingStatus(openingData) {
-
-  if (openingData && openingData['24/7']) {
-    return 999
-    /* be sure it won't close soon */
+function openingStatus(hours, timeMessages) {
+  if(!hours) {
+    return {msg : '', color : '#fff'}
   }
-  let remoteDate = new Date()
-
-  if (!openingData) return -1
-  let dn = remoteDate.getDay()
-
-  let schedules = openingData[I18n.days[dn]]
-  if (!schedules) return -1
-  let open = schedules[0]
-  let close = schedules[1]
-
-  let currentTime = remoteDate.getHours() * 60 + remoteDate.getMinutes() //convert time to minutes
-
-  let [hours, minutes] = open.split(':') // time format is hh:mm
-  let openingTime = parseInt(hours) * 60 + parseInt(minutes);
-
-  [hours, minutes] = close.split(':')
-  let closingTime = parseInt(hours) * 60 + parseInt(minutes)
-  if (openingTime < closingTime) { // 10h00 14h30
-    if (currentTime > openingTime && currentTime < closingTime) {
-      return closingTime - currentTime
-    }
-  } else { // 17h00 2h00
-    if (currentTime < openingTime || currentTime > closingTime) {
-      return currentTime - closingTime
+  let remaining = hours.seconds_before_next_transition
+  if(remaining === -1) {
+    return {msg : timeMessages.closed.msg, color : timeMessages.closed.color}
+  }
+  for(let tmKey in timeMessages) {
+    let tm = timeMessages[tmKey]
+    if(tm.time && tm.time > remaining) {
+      return {msg : tm.msg, color : timeMessages.open.color}
     }
   }
-  return -1 // closed
+  return {msg : timeMessages.open.msg, color : timeMessages.open.color}
 }
 
-export {parse, openingStatus}
+function nextTransitionTime(seconds, nextTransitionDate) {
+  if(seconds < 12 * 60 * 60) {
+    let nextTransition = new Date(nextTransitionDate)
+    return strftime(i18nDate.timeFormat, nextTransition)
+  }
+  return false
+}
+
+
+
+export {parse, openingStatus, nextTransitionTime}

@@ -2,8 +2,10 @@ import {Popup} from 'mapbox-gl--ENV'
 import {parse, openingStatus} from '../../src/adapters/opening_hour'
 import Poi from '../mapbox/poi'
 import IconManager from "./icon_manager";
+import {nextTransitionTime} from "./opening_hour";
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
+const poiConfigs = require('../../config/constants.yml').pois
 
 const WAIT_BEFORE_DISPLAY = 800
 
@@ -37,13 +39,31 @@ PoiPopup.prototype.addListener = function(layer) {
 
 PoiPopup.prototype.create = async function (layerPoi) {
   let poi = await Poi.apiLoad(layerPoi.properties.global_id)
-  let className = poiSubClass(poi.subClassName)
-  let {color} = IconManager.get(poi.className, poi.subClassName)
-  let opening = openingStatus(parse(poi.opening))
-    this.popupHandle = new Popup({className: 'poi_popup'})
-    .setLngLat(poi.getLngLat())
-    .setHTML(popupTemplate.call({poi, className, color, opening}))
-    .addTo(this.map)
+  if(poi) {
+    let {color} = IconManager.get(poi)
+    let category = poiSubClass(poi.subClassName)
+    let hours = poi.blocks.find(block =>
+      block.type === 'opening_hours'
+    )
+    let timeMessages = poiConfigs.find((poiConfig) => {
+      return poiConfig.apiName === 'opening_hours'
+    })
+    let opening
+    let nextTransition
+    let address
+    if(hours) {
+      opening = openingStatus(hours.raw, timeMessages.options.messages)
+      nextTransition = nextTransitionTime(hours.seconds_before_next_transition, hours.next_transition_datetime,)
+    } else if(poi.address){
+      address = poi.address.label
+    }
+
+
+    this.popupHandle = new Popup({className: 'poi_popup__container', closeButton : false, closeOnClick : true, offset : {'bottom-left' : [12, -5]}, anchor : 'bottom-left'})
+      .setLngLat(poi.getLngLat())
+      .setHTML(popupTemplate.call({poi, color, opening, address, category, nextTransition}))
+      .addTo(this.map)
+  }
 }
 
 PoiPopup.prototype.close = function () {
@@ -51,3 +71,21 @@ PoiPopup.prototype.close = function () {
 }
 
 export default PoiPopup
+
+/*
+ays
+:
+[]
+is_24_7
+:
+false
+next_transition_datetime
+:
+"2018-07-19T18:00:00+02:00"
+raw
+:
+"Tu-Su 09:30-18:00; Th 09:30-21:45"
+seconds_before_next_transition
+:
+2392
+ */
