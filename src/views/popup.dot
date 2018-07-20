@@ -1,13 +1,18 @@
-<div class="poi_popup" style="border-color:">
-  <h1>hi from {{= this.poi.name }}</h1>
-  <span>
-    {{= this.className }}
-  </span>
+<div class="poi_popup" style="border-color:{{= this.color }}">
+  <h1 class="poi_popup__title">{{= this.poi.name }}</h1>
+  <h3 class="poi_popup__category">{{= this.category }}</h3>
   <div>
   {{? this.opening }}
-    🦍 {{ this.opening }}
-  {{??}}
-    🦊 {{= this.address }}
+    <span class="poi_popup__opening">
+    {{= _(this.opening.msg) }} {{? this.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.nextTransition})  }}{{?}}
+    {{? this.opening['24/7'] }}
+      24 / 7
+    {{?}}
+    </span>
+    <div class="poi_popup__title__hour__circle" style="background:{{= this.opening.color }}"></div>
+  {{?? this.address}}
+    <span class="poi_popup__address"{{= this.address }}</span>
   {{?}}
   </div>
 </div>
+
