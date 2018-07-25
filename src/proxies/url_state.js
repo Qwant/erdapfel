@@ -26,8 +26,6 @@ UrlState.pushUrl = function() {
 
 UrlState.replaceUrl = function() {
   let url = UrlShards.toUrl()
-  console.log('re',JSON.stringify(url))
-
   if(history && typeof history.replaceState !== 'undefined') {
     history.replaceState(null, null, url)
   } else {
