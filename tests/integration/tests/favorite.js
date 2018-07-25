@@ -1,36 +1,25 @@
-import puppeteer from 'puppeteer'
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-import {wait} from '../tools'
+import {initBrowser, wait} from '../tools'
 
 let browser
 let page
 
 beforeAll(async () => {
-  try {
-    browser = await puppeteer.launch({args: puppeteerArguments})
-    page = await browser.newPage()
-    page.on('console', msg => {
-      console.log(`> ${msg.text()}`)
-    })
-  } catch (error) {
-    console.error(error)
-  }
+  let browserPage = await initBrowser()
+  page = browserPage.page
+  browser = browserPage.browser
 })
 
 test('toggle favorite', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
-  try {
-    let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
-    expect(favPanelHidden).not.toBeFalsy()
-    await page.click('.side_bar__fav')
-    let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
-    expect(favPanel).not.toBeFalsy()
-  } catch (error) {
-    console.error(error)
-  }
+  let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
+  expect(favPanelHidden).not.toBeFalsy()
+  await page.click('.side_bar__fav')
+  let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
+  expect(favPanel).not.toBeFalsy()
 })
 
 test('add favorite', async () => {

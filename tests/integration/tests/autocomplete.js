@@ -1,32 +1,28 @@
-import puppeteer from 'puppeteer'
-import {wait} from '../tools'
+import {initBrowser, wait} from '../tools'
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 
 let browser
 let page
-const mockAutocomplete = require('../../__mocks__/autocomplete')
+const mockAutocomplete = require('../../__data__/autocomplete')
 
 beforeAll(async () => {
-  try {
-    browser = await puppeteer.launch({args: puppeteerArguments})
-    page = await browser.newPage()
-    await page.setRequestInterception(true)
-    page.on('request', interceptedRequest => {
-      if(interceptedRequest.url().match(/autocomplete/)) {
-        interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-        interceptedRequest.respond({body : JSON.stringify(mockAutocomplete), headers  : interceptedRequest.headers})
-      } else {
-        interceptedRequest.continue()
-      }
-    })
-    page.on('console', msg => {
-      console.log(`> ${msg.text()}`)
-    })
-  } catch (error) {
-    console.error(error)
-  }
+  let browserPage = await initBrowser()
+  page = browserPage.page
+  browser = browserPage.browser
+  await page.setRequestInterception(true)
+  page.on('request', interceptedRequest => {
+    if(interceptedRequest.url().match(/autocomplete/)) {
+      interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
+      interceptedRequest.respond({body : JSON.stringify(mockAutocomplete), headers  : interceptedRequest.headers})
+    } else {
+      interceptedRequest.continue()
+    }
+  })
+  page.on('console', msg => {
+    console.log(`> ${msg.text()}`)
+  })
 })
 
 test('clear button',async () => {
