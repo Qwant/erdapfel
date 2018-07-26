@@ -68,8 +68,8 @@ test('move to on click', async () => {
   })
   expect(map_position_before).not.toEqual(map_position_after);
   const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates
-  expect(map_position_after).toEqual({lat: expectedLat, lng: expectedLng}
-);
+  expect(map_position_after).toEqual({lat: expectedLat, lng: expectedLng})
+});
 
 test('bbox & center', async () => {
   expect.assertions(3)

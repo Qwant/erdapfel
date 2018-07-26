@@ -66,8 +66,11 @@ async function select(selectedPoi) {
   if(selectedPoi) {
     fire('fit_map', selectedPoi)
     fire('map_mark_poi', selectedPoi)
-    if(selectedPoi.poi_type === 'poi') {
+    if(selectedPoi.type === 'poi') {
       PanelManager.loadPoiById(selectedPoi.id)
+    }
+    else {
+      PanelManager.closeAll()
     }
   }
 }
