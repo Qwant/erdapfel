@@ -82,7 +82,7 @@ test('bbox & center', async () => {
     return {center : window.MAP_MOCK.getCenter(), zoom : window.MAP_MOCK.getZoom()}
   })
   expect(center).toEqual({ lat: 5, lng: 30 })
-  expect(zoom).toEqual(19)
+  expect(zoom).toEqual(18)
 
   await page.keyboard.type('test')
   await wait(100)

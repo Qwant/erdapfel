@@ -5,7 +5,7 @@ import Ajax from "../libs/ajax"
 import nconf from '@qwant/nconf-getter'
 import PanelManager from "../proxies/panel_manager";
 const serviceConfig = nconf.get().services
-const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 19, panel: true}]
+const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 18, panel: true}]
 const DEFAULT_ZOOM = 16
 const LNG_INDEX = 0
 const LAT_INDEX = 1
