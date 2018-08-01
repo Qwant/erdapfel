@@ -85,6 +85,18 @@ PoiPanel.prototype.setPoi = async function (poi) {
   await this.panel.update()
 }
 
+PoiPanel.prototype.copy = function () {
+  let copyUrl = document.getElementById('share-url')
+  copyUrl.select()
+  document.execCommand('copy')
+  copyUrl.blur()
+}
+
+/* TODO use QWANT-388 fit_map scene listener */
+PoiPanel.prototype.center = function() {
+  fire('fly_to', this.poi)
+}
+
 /* urlState interface implementation */
 
 PoiPanel.prototype.store = function() {
