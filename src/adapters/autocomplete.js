@@ -64,12 +64,11 @@ function SearchInput(tagSelector) {
 
 async function select(selectedPoi) {
   if(selectedPoi) {
-    fire('fit_map', selectedPoi)
+    fire('fit_map', selectedPoi, {sidePanelOffset : selectedPoi.type === 'poi'})
     fire('map_mark_poi', selectedPoi)
     if(selectedPoi.type === 'poi') {
       PanelManager.loadPoiById(selectedPoi.id)
-    }
-    else {
+    } else {
       PanelManager.closeAll()
     }
   }
