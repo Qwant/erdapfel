@@ -257,7 +257,7 @@ $BLOCK_INDENT: 60px;
   width: 350px;
   transition: max-height .2s;
   position: relative;
-  max-height: 0px;
+  max-height: 0;
   overflow: hidden;
 }
 
@@ -270,7 +270,13 @@ $BLOCK_INDENT: 60px;
   right: 34px;
   top: -16px;
   cursor: pointer;
+  transition: transform .2s;
 }
+
+.poi_panel__block__collapse--reversed {
+  transform: rotate(180deg);
+}
+
 
 .poi_panel__sub__sub_block__title {
   font-size: 12px;

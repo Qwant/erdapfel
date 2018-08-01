@@ -6,4 +6,10 @@ function Brewery(block) {
   this.beers = block.beers
 }
 
+Brewery.prototype.toString = function () {
+  return this.beers.map(beer =>
+    beer.name
+  ).join(' ')
+}
+
 export default Brewery

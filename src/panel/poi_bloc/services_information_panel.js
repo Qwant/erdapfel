@@ -11,7 +11,16 @@ function ServicesInformation(block) {
 ServicesInformation.prototype.toggle = async function () {
   this.extended = !this.extended
   this.panel.toggleClassName(.2, '.poi_panel__block__information', 'poi_panel__block__information--extended')
-  this.panel.toggleClassName(.2, '.poi_panel__block__collapse', 'icon-icon_chevron-up')
+  await this.panel.toggleClassName(.2, '.poi_panel__block__collapse', 'poi_panel__block__collapse--reversed')
+  this.panel.update()
+}
+
+ServicesInformation.prototype.title = function () {
+  let title = this.PoiBlocContainer.toString(this.blocks)
+  if(title.length > 180) {
+    return `${title.substr(0,180)}…`
+  }
+  return `${title}…`
 }
 
 export default ServicesInformation

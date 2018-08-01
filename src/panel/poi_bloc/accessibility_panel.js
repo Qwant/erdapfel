@@ -7,4 +7,12 @@ function Accessibility(accessibilityList, poi, managedAccessibilityList) {
   this.accessibilityList = accessibilityList
 }
 
+Accessibility.prototype.toString = function () {
+  return this.managedAccessibilityList.map((managedAccessibility) => {
+    let accessibility = this.accessibilityList[managedAccessibility.key]
+    return _(managedAccessibility.labels[accessibility])
+  }).join(' ')
+}
+
+
 export default Accessibility
