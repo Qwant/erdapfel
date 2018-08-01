@@ -1,6 +1,6 @@
 <div class="side_bar">
 
-  <div class="side_bar__logo"></div>
+  <button class="side_bar__logo" {{= click(this.home, this) }}></button>
   <div class="side_bar__logo__limit"></div>
   <div class="side_bar__result side_bar__item  {{= this.current === 0 ? 'side_bar__item--active': ''}}">
     <div class="icon-icon_list side_bar__item__icon"></div>

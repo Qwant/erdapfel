@@ -5,12 +5,12 @@ import Poi from "../mapbox/poi"
 import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
-import {layout} from '../../config/constants.yml'
+import {map, layout} from '../../config/constants.yml'
 
 function Scene() {
   UrlState.registerHash(this, 'map')
-  this.zoom = 2
-  this.center = [20,20]
+  this.zoom = map.zoom
+  this.center = [map.center.lng, map.center.lat]
   this.currentMarker = null
 }
 
@@ -69,6 +69,10 @@ Scene.prototype.initMapBox = function () {
 
   listen('fit_map', (poi, options) => {
     this.fitMap(poi, options)
+  })
+
+  listen('map_reset', () => {
+    this.mb.jumpTo({center : [constants.map.center.lng, constants.map.center.lat], zoom : constants.map.zoom})
   })
 
   listen('map_mark_poi', (poi) => {
