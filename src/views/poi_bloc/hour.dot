@@ -18,7 +18,7 @@
               {{~ this.displayHours:day:i }}
                 <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
                   <td class="day">{{= day.dayName }}</td>
-                  <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : ' -'}}<td>
+                  <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : _('Closed')}}<td>
                 </tr>
               {{~}}
             </table>
