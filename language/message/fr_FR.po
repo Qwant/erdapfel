@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-02 14:52+0200\n"
-"PO-Revision-Date: 2018-08-02 16:16+0200\n"
+"PO-Revision-Date: 2018-08-02 17:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -82,7 +82,7 @@ msgstr "Toilettes partiellement accessibles en fauteuil roulant"
 
 #: config/constants.yml:89
 msgid "Toilets not accessible in wheelchair"
-msgstr "Pas de toilettes accessibles en chaise roulante"
+msgstr "Pas de toilettes accessibles en fauteuil roulant"
 
 #: public/build/javascript/bundle.js:937
 msgid "accessories"
@@ -482,7 +482,7 @@ msgstr "magasin d'électroménager"
 
 #: public/build/javascript/bundle.js:1036
 msgid "horse racing"
-msgstr ""
+msgstr "hippodrome"
 
 #: public/build/javascript/bundle.js:1037
 msgid "hospital"
@@ -526,11 +526,11 @@ msgstr "kiosque"
 
 #: public/build/javascript/bundle.js:1047
 msgid "lamps"
-msgstr "magasin de lampes"
+msgstr "magasin de luminaire"
 
 #: public/build/javascript/bundle.js:1048
 msgid "laundry"
-msgstr "laverie automatique"
+msgstr "laverie blanchisserie"
 
 #: public/build/javascript/bundle.js:1049
 msgid "library"
@@ -538,7 +538,7 @@ msgstr "bibliothèque"
 
 #: public/build/javascript/bundle.js:1050
 msgid "long jump"
-msgstr ""
+msgstr "piste de saut en longueur"
 
 #: public/build/javascript/bundle.js:1051
 msgid "mall"
@@ -586,7 +586,7 @@ msgstr ""
 
 #: public/build/javascript/bundle.js:1062
 msgid "motorcycle"
-msgstr ""
+msgstr "magasin de moto"
 
 #: public/build/javascript/bundle.js:1063
 msgid "multi"
@@ -734,11 +734,11 @@ msgstr ""
 
 #: public/build/javascript/bundle.js:1099
 msgid "skating"
-msgstr ""
+msgstr "piste de ski de fond"
 
 #: public/build/javascript/bundle.js:1100
 msgid "skiing"
-msgstr ""
+msgstr "piste de ski"
 
 #: public/build/javascript/bundle.js:1101
 msgid "soccer"
@@ -774,19 +774,19 @@ msgstr "supermarché"
 
 #: public/build/javascript/bundle.js:1109
 msgid "swimming"
-msgstr "pisicine"
+msgstr "piscine"
 
 #: public/build/javascript/bundle.js:1110
 msgid "swimming area"
-msgstr "pisicine"
+msgstr "piscine"
 
 #: public/build/javascript/bundle.js:1111
 msgid "swimming pool"
-msgstr "pisicine"
+msgstr "piscine"
 
 #: public/build/javascript/bundle.js:1112
 msgid "table tennis"
-msgstr ""
+msgstr "table de ping pong"
 
 #: public/build/javascript/bundle.js:1113
 msgid "tailor"
@@ -818,7 +818,7 @@ msgstr "buraliste"
 
 #: public/build/javascript/bundle.js:1120
 msgid "toll booth"
-msgstr ""
+msgstr "péage"
 
 #: public/build/javascript/bundle.js:1121
 msgid "townhall"
@@ -842,7 +842,7 @@ msgstr "université"
 
 #: public/build/javascript/bundle.js:1126
 msgid "veterinary"
-msgstr "vétérinaire"
+msgstr "cabinet vétérinaire"
 
 #: public/build/javascript/bundle.js:1127
 msgid "video"
@@ -858,7 +858,7 @@ msgstr "belvédère"
 
 #: public/build/javascript/bundle.js:1130
 msgid "watches"
-msgstr "magasin de montre"
+msgstr "horlogerie"
 
 #: public/build/javascript/bundle.js:1131
 msgid "water park"
