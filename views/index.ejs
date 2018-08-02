@@ -29,6 +29,17 @@
         <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
         <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
       </form>
+      <div class="osm_contribute">
+        <img class="osm_contribute__logo" src="./images/Openstreetmap_logo.svg">
+        <div class="osm_contribute__text_container">
+          <p class="osm_contribute__title">
+            <%= _('Qwant Maps use OpenStreeMap') %>
+          </p>
+          <a class="osm_contribute__link" href="https://learnosm.org/" target="_blank">
+            <i class="icon-chevrons-right"></i><%= _('ABOUT THE PROJECT') %>
+          </a>
+        </div>
+      </div>
     </div>
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>

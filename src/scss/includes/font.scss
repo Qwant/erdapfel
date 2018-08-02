@@ -31,11 +31,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-chevron-left:before {
+.icon-chevron-left2:before {
   content: "\e913";
 }
-.icon-chevron-right:before {
+.icon-chevron-right2:before {
   content: "\e914";
+}
+.icon-chevrons-right:before {
+  content: "\e911";
 }
 .icon-x:before {
   content: "\e910";
