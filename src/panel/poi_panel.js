@@ -92,9 +92,8 @@ PoiPanel.prototype.copy = function () {
   copyUrl.blur()
 }
 
-/* TODO use QWANT-388 fit_map scene listener */
 PoiPanel.prototype.center = function() {
-  fire('fly_to', this.poi)
+  fire('fit_map', this.poi, {sidePanelOffset : true})
 }
 
 /* urlState interface implementation */
