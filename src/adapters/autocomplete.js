@@ -3,15 +3,15 @@ import ajax from '../libs/ajax'
 import Poi from '../mapbox/poi'
 import IconManager from '../adapters/icon_manager'
 import nconf from '@qwant/nconf-getter'
-
 import Store from '../adapters/store'
-import PanelManager from "../proxies/panel_manager"
+import PanelManager from '../proxies/panel_manager'
+import {layout} from '../../config/constants.yml'
+
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
 const store = new Store()
 
 function SearchInput(tagSelector) {
-  this.pois = []
   this.poi = null
 
   new Autocomplete({
@@ -20,9 +20,6 @@ function SearchInput(tagSelector) {
     cachePrefix : false,
     delay : 100,
     width:'650px',
-    onUpdate : (e, poi) => {
-      this.poi = poi
-    },
     source : (term, suggest) => {
       /*
         https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
@@ -35,15 +32,15 @@ function SearchInput(tagSelector) {
       const suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
       const suggestHistoryPromise = getHistory(term)
       Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
-        this.pois = buildPoi(responses[0])
+        let pois = buildPoi(responses[0])
         let historySuggestData = responses[1]
         historySuggestData = historySuggestData.map((historySuggest) => {
-          let poi = Poi.load(historySuggest)
+          let poi = Poi.storeLoad(historySuggest)
           poi.fromHistory = true
           return poi
         })
-        this.pois = this.pois.concat(historySuggestData)
-        suggest(this.pois, term)
+        pois = pois.concat(historySuggestData)
+        suggest(pois, term)
       })
     },
     renderItem : ({id, name, fromHistory, className, subClassName, addressLabel}) => {
@@ -56,31 +53,21 @@ function SearchInput(tagSelector) {
 </div>
 `
     },
-    onSelect : (e, term, item) => {
+    onSelect : (e, term, item, items) => {
       e.preventDefault()
       const itemId = item.getAttribute('data-id')
-      let poi = this.pois.find(poi => poi.id === itemId)
+      let poi = items.find(poi => poi.id === itemId)
       select(poi)
     }
   })
 }
 
-async function select(autocompleteLine) {
-  if(autocompleteLine) {
-    if(autocompleteLine.bbox) {
-      autocompleteLine.padding = {top: 10,bottom: 25,left: 15,right: 5}
-      fire('fit_bounds', autocompleteLine);
-    } else {
-      fire('fly_to', autocompleteLine)
-    }
-    fire('map_mark_poi', autocompleteLine)
-    if(autocompleteLine.poi_type === 'poi' && autocompleteLine.id) {
-      let poi = await Poi.apiLoad(autocompleteLine.id)
-      if(poi) {
-        PanelManager.setPoi(poi)
-      } else {
-        PanelManager.closeAll()
-      }
+async function select(selectedPoi) {
+  if(selectedPoi) {
+    fire('fit_map', selectedPoi, {sidePanelOffset : selectedPoi.type === 'poi'})
+    fire('map_mark_poi', selectedPoi)
+    if(selectedPoi.type === 'poi') {
+      PanelManager.loadPoiById(selectedPoi.id)
     } else {
       PanelManager.closeAll()
     }
@@ -89,42 +76,7 @@ async function select(autocompleteLine) {
 
 function buildPoi(response) {
   return response.features.map((feature) => {
-    let zoomLevel = 0
-
-    const resultType = feature.properties.geocoding.type
-
-    let poiClassText = ''
-    let poiSubclassText = ''
-
-    if(feature.properties.geocoding.properties && feature.properties.geocoding.properties.length > 0) {
-      let poiClass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_class'})
-
-      if(poiClass) {
-        poiClassText = poiClass.value
-      }
-      let poiSubclass = feature.properties.geocoding.properties.find((property) => {return property.key === 'poi_subclass'})
-      if(poiSubclass) {
-        poiSubclassText = poiSubclass.value
-      }
-    }
-    let addressLabel = ''
-    if(feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
-      addressLabel = feature.properties.geocoding.address.label
-    }
-
-    let name = ''
-    if(addressLabel) {
-      name = feature.properties.geocoding.name
-    } else {
-      name = feature.properties.geocoding.label
-    }
-    let poi = new Poi({lat : feature.geometry.coordinates[1], lng : feature.geometry.coordinates[0]}, feature.properties.geocoding.id, name, poiClassText, poiSubclassText)
-    poi.value = feature.properties.geocoding.label
-    poi.addressLabel = addressLabel
-    poi.poi_type = resultType
-    poi.zoom = zoomLevel
-    poi.bbox = feature['bbox']
-    return poi
+    return Poi.geocoderLoad(feature)
   })
 }
 
@@ -134,7 +86,7 @@ function toAccuracy(bbox, accuracy) {
   const n = Math.ceil(bbox.getNorth() * accuracy) / accuracy //^ -> ceil
   const e = Math.ceil(bbox.getEast() * accuracy) / accuracy //> ->  ceil
 
-  return [[s,w],[n,e]]//sw / ne
+  return [[s,w],[n,e]] //sw / ne
 }
 
 async function getHistory(term) {

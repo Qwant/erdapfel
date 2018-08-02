@@ -9,9 +9,6 @@ let page
 beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
-  await page.setExtraHTTPHeaders({
-    'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
-  })
   browser = browserPage.browser
   await page.setRequestInterception(true)
   page.on('request', interceptedRequest => {
@@ -31,7 +28,6 @@ beforeAll(async () => {
 
 test('click on a poi', async () => {
   expect.assertions(2)
-  await page.setRequestInterception(true)
   await page.goto(APP_URL)
   await page.evaluate(() => {
     window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
@@ -100,8 +96,8 @@ test('update url after a favorite poi click', async () => {
 })
 
 
-test('update url with corresponding poi from autocomplete selection', async () => {
-  expect.assertions(1)
+test('open poi from autocomplete selection', async () => {
+  expect.assertions(2)
   await page.goto(APP_URL)
   await page.keyboard.type('test')
   await page.waitForSelector('.autocomplete_suggestion')
@@ -110,7 +106,12 @@ test('update url with corresponding poi from autocomplete selection', async () =
   let location = await page.evaluate(() => {
     return document.location
   })
-  expect(location.href).toMatch(/osm:node:4872758213@Mus%C3%A9e_dOrsay/)
+
+  // url is updated
+  expect(location.href).toMatch(/osm:node:4811858213@Mus%C3%A9e_dOrsay/)
+
+  // poi panel is visible
+  expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy()
 })
 
 afterAll(() => {

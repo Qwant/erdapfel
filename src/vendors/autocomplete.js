@@ -39,7 +39,7 @@ var autoComplete = (function(){
       cache: 1,
       menuClass: '',
       renderItem: function (item, search){},
-      onSelect: function(e, term, item){},
+      onSelect: function(e, term, item, items){},
       onUpdate: function(e, term, items){}
     };
     for (var k in options) { if (options.hasOwnProperty(k)) o[k] = options[k]; }
@@ -105,7 +105,7 @@ var autoComplete = (function(){
         if (hasClass(this, 'autocomplete_suggestion')) { // else outside click
           var v = this.getAttribute('data-val');
           that.value = v;
-          o.onSelect(e, v, this);
+          o.onSelect(e, v, this, that.items);
           that.sc.style.display = 'none';
         }
       }, that.sc);
@@ -177,7 +177,7 @@ var autoComplete = (function(){
         // enter
         else if (key == 13 || key == 9) {
           var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
-          if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel); setTimeout(function(){ that.sc.style.display = 'none'; }, 20); }
+          if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel, that.items); setTimeout(function(){ that.sc.style.display = 'none'; }, 20); }
         }
       };
       addEvent(that, 'keydown', that.keydownHandler);

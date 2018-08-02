@@ -5,6 +5,7 @@ import Poi from "../mapbox/poi"
 import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
+import {layout} from '../../config/constants.yml'
 
 function Scene() {
   UrlState.registerHash(this, 'map')
@@ -49,20 +50,13 @@ Scene.prototype.initMapBox = function () {
 
       this.mb.on('click', interactiveLayer, async (e) => {
         if(e.features && e.features.length > 0) {
-          let globalId = e.features[0].properties.global_id
-          if(globalId) {
-            let poi = await Poi.apiLoad(globalId)
-            if(poi) {
-              /* should be globalised */
-              const DESKTOP_PANEL_WIDTH = 400
-              const MOBILE_BREAK_POINT = 640
-              if(e.originalEvent.clientX < DESKTOP_PANEL_WIDTH && window.innerWidth > MOBILE_BREAK_POINT) {
-                this.mb.flyTo({center : e.lngLat, offset : [DESKTOP_PANEL_WIDTH / 2, 0]})
-              }
-              poi.zoom = this.mb.getZoom()
-              PanelManager.setPoi(poi)
-              this.addMarker(poi)
-            }
+          let mapPoi = Poi.mapLoad(e.features[0], e.lngLat)
+          if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
+            this.mb.flyTo({center : mapPoi.getLngLat(), offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
+          }
+          let poi = await PanelManager.loadPoiById(mapPoi.id)
+          if(poi) {
+            this.addMarker(poi)
           }
         }
       })
@@ -73,12 +67,8 @@ Scene.prototype.initMapBox = function () {
     })
   })
 
-  listen('fly_to', (poi) => {
-    this.flyTo(poi)
-  })
-
-  listen('fit_bounds', (poi, options) => {
-    this.fitBounds(poi, options)
+  listen('fit_map', (poi, options) => {
+    this.fitMap(poi, options)
   })
 
   listen('map_mark_poi', (poi) => {
@@ -86,32 +76,32 @@ Scene.prototype.initMapBox = function () {
   })
 }
 
-Scene.prototype.flyTo = function (poi) {
-
-  let windowBounds = this.mb.getBounds()
-  const originalWindowBounds = windowBounds.toArray() /* simple way to clone value */
-  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
-  windowBounds.extend(poiCenter)
-  /* flyTo location if it's in the window or else jumpTo */
-  let flyOptions = {center : poi.getLngLat(), zoom : this.mb.getZoom()}
-  if(compareBoundsArray(windowBounds.toArray(), originalWindowBounds)) {
+Scene.prototype.fitMap = function(poi, options = {}) {
+  if(poi.bbox) {
+    let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
+    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
+      padding.left += layout.sizes.panelWidth
+    }
+    if(this.isWindowedPoi(poi)) {
+      this.mb.fitBounds(poi.bbox, {padding : padding})
+    } else {
+      this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
+    }
+  } else {
+    let flyOptions = {center : poi.getLngLat(), duration : 0}
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom
     }
-    this.mb.flyTo(flyOptions)
-  } else {
-    if(poi.zoom) {
-      flyOptions.zoom = poi.zoom - 1
-      this.mb.jumpTo(flyOptions)
-      this.mb.flyTo({zoom : poi.zoom})
-    } else {
-      this.mb.jumpTo(flyOptions)
+    /* set offset for poi witch will open panel on desktop */
+    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
+      flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
     }
-  }
-}
 
-Scene.prototype.fitBounds = function (poi) {
-  this.mb.fitBounds(poi.bbox, poi.padding)
+    if(this.isWindowedPoi(poi)) {
+      flyOptions.duration = 1500
+    }
+    this.mb.flyTo(flyOptions)
+  }
 }
 
 Scene.prototype.addMarker = function(poi) {
@@ -139,6 +129,15 @@ Scene.prototype.restore = function (urlShard) {
     this.zoom = parseFloat(geoCenter[ZOOM_INDEX])
     this.center = [parseFloat(geoCenter[LNG_INDEX]), parseFloat(geoCenter[LAT_INDEX])]
   }
+}
+
+Scene.prototype.isWindowedPoi = function(poi) {
+  let windowBounds = this.mb.getBounds()
+  /* simple way to clone value */
+  const originalWindowBounds = windowBounds.toArray()
+  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
+  windowBounds.extend(poiCenter)
+  return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
 }
 
 /* private */

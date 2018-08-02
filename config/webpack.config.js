@@ -58,7 +58,6 @@ const mainJsChunkConfig = {
       ]
     }, {
       test: /\.yml$/,
-      exclude: [path.resolve(__dirname, '../node_modules/@qwant/')],
       use: [
         {loader : '@qwant/config-sanitizer-loader'},
         {loader : 'json-loader'},
@@ -73,7 +72,6 @@ const mainJsChunkConfig = {
   },
   devtool: 'source-map'
 }
-
 
 const mapJsChunkConfig = {
   entry: ['./src/map.js'],

@@ -3,7 +3,7 @@ module.exports = {
   "geocoding": {"version": "0.1.0", "query": ""},
   "features": [{
     "type": "Feature",
-    "geometry": {"coordinates": [30.52304804628932, 50.44058393528821], "type": "Point"},
+    "geometry": {"coordinates": [30, 5], "type": "Point"},
     "properties": {
       "geocoding": {
         "id": "osm:node:4872758213",
@@ -103,10 +103,11 @@ module.exports = {
     }
   }, {
     "type": "Feature",
-    "geometry": {"coordinates": [30.52304804628932, 50.44058393528821], "type": "Point"},
+    "geometry": {"coordinates": [1, 11], "type": "Point"},
     "properties": {
       "geocoding": {
-        "id": "osm:node:4872758213",
+        "bbox" : [1,2,3,4],
+        "id": "osm:node:4811858213",
         "type": "poi",
         "label": "Dsquared2",
         "name": "Dsquared2",
