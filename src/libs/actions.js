@@ -18,10 +18,11 @@
       args : options
     }
     actions.set(action.id, action)
-    return ` onclick="call4Action(${action.id})" `
+    return ` onclick="call4Action(event, ${action.id})" `
   }
 
-  window.call4Action = function (id) {
+  window.call4Action = function (event, id) {
+    event.stopPropagation()
     const action = actions.get(id)
     action.method.call(action.ctx, action.args)
   }

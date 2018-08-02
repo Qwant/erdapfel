@@ -80,12 +80,13 @@
 
 .favorite_panel__action {
   cursor: pointer;
-  width: 30px;
-  height: 30px;
-  background: #fff;
-  border: 2px solid #d3d5d7;
-  border-radius: 50%;
+  color: #3d3d3d;
   vertical-align: center;
+  transition: color .2s;
+}
+
+.favorite_panel__action:hover {
+  color: #ab0613;
 }
 
 .favorite_panel__item__actions {
