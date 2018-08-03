@@ -16,11 +16,8 @@ ServicesInformation.prototype.toggle = async function () {
 }
 
 ServicesInformation.prototype.title = function () {
-  let title = this.PoiBlocContainer.toString(this.blocks)
-  if(title.length > 180) {
-    return `${title.substr(0,180)}…`
-  }
-  return `${title}…`
+  return this.PoiBlocContainer.toString(this.blocks)
+
 }
 
 export default ServicesInformation

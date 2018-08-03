@@ -291,10 +291,14 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__sub_block__title {
-  font-weight: bold;
-  font-size: 14px;
+  width: 285px;
   margin: 20px 0 0 $BLOCK_INDENT;
-  color: #707070
+  overflow: hidden;
+  font-size: 14px;
+  color: #707070;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .poi_panel__info__wiki {
