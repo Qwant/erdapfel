@@ -21,7 +21,7 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel--hidden {
-  left: - ($panel_width - $side_bar_width);
+  left: - ($panel_width - $side_bar_width + 50px);
 }
 
 .poi_panel__info__section {

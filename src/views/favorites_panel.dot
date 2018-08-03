@@ -1,7 +1,6 @@
 <div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
-  <div {{= click(this.close, this) }} class="favorite_panel__close">🞨</div>
-  <div class="favorite_panel__container">
-  <div class="favorite_panel__image_header"></div>
+  <div class="favorite_panel__content">
+    <div class="favorite_panel__image_header"></div>
     {{? this.favoritePois.length === 0 }}
       <h4 class="favorite_panel__container__title">
         {{= _('Favorite places', 'favorite panel') }}
@@ -13,9 +12,7 @@
       <h4 class="favorite_panel__container__title">
         {{= _n('%d favorite place', '%d favorite places', this.favoritePois.length, 'favorite panel') }}
       </h4>
-
       {{= this.filterPanel.render() }}
-
       <ul>
         <li class="favorite_panel__item">
 
@@ -51,5 +48,13 @@
         </li>
       </ul>
     {{?}}
+  </div>
+  <div class="poi_panel__toggle_display" {{= click(this.close, this) }}>
+    <div class="poi_panel__toggle_display--mobile">
+      <i class="icon-x"></i>
+    </div>
+    <div class="poi_panel__toggle_display--desktop">
+      <i class="icon-chevron-left"></i>
+    </div>
   </div>
 </div>

@@ -28,4 +28,9 @@ SideBarPanel.prototype.home = function () {
   fire('map_reset')
 }
 
+SideBarPanel.prototype.toggleResult = function () {
+  this.panel.toggleClassName(.2, '.side_bar__result', 'side_bar__item--active')
+  PanelManager.restorePoi()
+}
+
 export default SideBarPanel

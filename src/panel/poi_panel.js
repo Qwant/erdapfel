@@ -41,7 +41,7 @@ PoiPanel.prototype.toggleStorePoi = function() {
 PoiPanel.prototype.toggle = async function() {
   if(this.active) {
     this.close()
-  } else {
+  } else if(this.poi) {
     PanelManager.closeAll()
     this.open()
   }

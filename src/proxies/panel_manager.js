@@ -15,6 +15,16 @@ PanelManager.setPoi = function(poi) {
   })
 }
 
+PanelManager.restorePoi = function() {
+  __panel_manager.panels.forEach((panel) => {
+    if(panel.isPoiComplient) {
+      panel.toggle()
+    } else {
+      panel.close()
+    }
+  })
+}
+
 PanelManager.loadPoiById = async function (id) {
   if(id) {
     let poi = await Poi.poiApiLoad(id)
