@@ -7,9 +7,9 @@ function Brewery(block) {
 }
 
 Brewery.prototype.toString = function () {
-  return `${_('Beers')} ${this.beers.map(beer =>
+  return `${_('Beers')} : ${this.beers.map(beer =>
     beer.name
-  ).join(' ')}`
+  ).join(' - ')}`
 }
 
 export default Brewery

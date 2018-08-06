@@ -14,5 +14,4 @@ Accessibility.prototype.toString = function () {
   }).join(' ')
 }
 
-
 export default Accessibility

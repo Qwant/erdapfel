@@ -37,9 +37,8 @@ module.exports = {
         "type": "services_and_information",
         "blocks": [{
           "type": "accessibility",
-          "wheelchair": "true",
-          "tactile_paving": "false",
-          "toilets_wheelchair": "false"
+          "wheelchair": "yes",
+          "toilets_wheelchair": "no"
         }]
       }]
     }, {"type": "website", "url": "http://www.musee-orsay.fr"}]

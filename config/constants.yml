@@ -72,21 +72,14 @@ pois:
     -
       key: wheelchair
       labels:
-        true: _('Wheelchair accessible')
-        limited: _('Limited wheelchair accessibility')
-        false: _('Limited wheelchair accessibility')
-    -
-      key: tactile_paving
-      labels:
-        true: _('Tactile paving')
-        limited: _('Limited tactile paving')
-        false: _('No tactile paving')
+        yes: _('Wheelchair accessible')
+        partial: _('Limited wheelchair accessibility')
     -
       key: toilets_wheelchair
       labels:
-        true: _('Toilets wheelchair accessible')
-        limited: _('Toilets wheelchair accessibility &colon; limited')
-        false: _('Toilets not accessible in wheelchair')
+        yes: _('Toilets wheelchair accessible')
+        partial: _('Toilets wheelchair accessibility &colon; limited')
+        no: _('Toilets not accessible in wheelchair')
 - apiName: brewery
   panelName: brewery
 - apiName: internet_access
