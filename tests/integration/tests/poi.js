@@ -134,14 +134,14 @@ test('center the map to the poi on a poi click', async () => {
     return document.querySelector('.poi_panel__sub_block__title').innerText
   })
 
-  expect(infoTitle).toEqual('Accessible en chaise roulante Toilettes non accessible en chaise roulante')
+  expect(infoTitle).toEqual('Accessible en fauteuil roulant Pas de toilettes accessibles en fauteuil roulant')
   await page.click('.poi_panel__block__collapse')
 
   await wait(300)
   infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText
   })
-  expect(infoTitle).toEqual('Services & information')
+  expect(infoTitle).toEqual('Services & informations')
 })
 
 afterAll(() => {
