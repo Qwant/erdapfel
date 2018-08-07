@@ -1,14 +1,27 @@
 const strftime = require('strftime')
 const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
+
+
+function HourlyEvent(rawOpening, messages) {
+  this.hours = parse(rawOpening.raw)
+  this.displayHours = translateHours(this.hours )
+  this.nextTransition = nextTransitionTime(rawHourly.seconds_before_next_transition, rawHourly.next_transition_datetime)
+  this.status = openingStatus(this.hours, messages)
+}
+
+
+
+/* private */
+
 function parse(rawOpening) {
   var result = null;
   if (rawOpening === '' || rawOpening === null) {
     result = null;
   }
-  else if (rawOpening == '24/7') {
-    result = {'24/7': true};
+  else if (rawOpening === '24/7') {
+    result = {isTwentyForSeven: true};
   }
-  else if (rawOpening == 'seasonal') {
+  else if (rawOpening === 'seasonal') {
     result = {'seasonal': true};
   }
   else {
@@ -70,6 +83,7 @@ function parse(rawOpening) {
       }
     }
   }
+
   return result;
 }
 
@@ -99,6 +113,15 @@ function nextTransitionTime(seconds, nextTransitionDate) {
   return false
 }
 
+function translateHours(hours) {
+  if(hours) {
+    return Object.keys(hours).map((hourKey) => {
+      return {dayName : getDay(hourKey), opening : hours[hourKey]}
+    })
+  } else {
+    return []
+  }
+}
 
 
-export {parse, openingStatus, nextTransitionTime}
+export default HourlyEvent

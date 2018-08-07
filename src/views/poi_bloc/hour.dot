@@ -5,17 +5,17 @@
       <div class="poi_panel__block__content">
         <div {{= click(this.extend, this) }}>
           <span class="poi_panel__info__hours__status">
-            {{= _(this.status.msg) }} {{? this.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.nextTransition})  }}{{?}}
-            {{? this.hours['24/7'] }}
+            {{= _(this.status.msg) }} {{? this.hours.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.hours.nextTransition})  }}{{?}}
+            {{? this.hours.isTwentyForSeven }}
               24 / 7
             {{?}}
             <div class="poi_panel__info__hour__circle" style="background:{{= this.status.color }}"></div>
           </span>
         </div>
         <div class="poi_panel__info__hours">
-          {{? !this.hours['24/7'] }}
+          {{? !this.hours.isTwentyForSeven }}
             <table class="poi_panel__info__hours__table">
-              {{~ this.displayHours:day:i }}
+              {{~ this.hours.displayHours:day:i }}
                 <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
                   <td class="day">{{= day.dayName }}</td>
                   <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : _('Closed')}}<td>
