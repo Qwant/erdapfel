@@ -5,10 +5,10 @@ PanelManager.init = function () {
   window.__panel_manager = {panels : []}
 }
 
-PanelManager.setPoi = function(poi) {
+PanelManager.setPoi = function(poi, options) {
   __panel_manager.panels.forEach((panel) => {
     if(panel.isPoiComplient) {
-      panel.setPoi(poi)
+      panel.setPoi(poi, options)
     } else {
       panel.close()
     }
@@ -25,11 +25,11 @@ PanelManager.restorePoi = function() {
   })
 }
 
-PanelManager.loadPoiById = async function (id) {
+PanelManager.loadPoiById = async function(id, options) {
   if(id) {
     let poi = await Poi.poiApiLoad(id)
     if(poi) {
-      PanelManager.setPoi(poi)
+      PanelManager.setPoi(poi, options)
     } else {
       PanelManager.closeAll()
     }

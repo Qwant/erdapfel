@@ -71,7 +71,7 @@ PoiPanel.prototype.restorePoi = async function (id) {
   await this.panel.update()
 }
 
-PoiPanel.prototype.setPoi = async function (poi) {
+PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.poi = poi
   this.poi.stored = await isPoiFavorite(this.poi)
   this.PoiBlocContainer.set(poi)
@@ -80,6 +80,7 @@ PoiPanel.prototype.setPoi = async function (poi) {
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   }
 
+  this.fromFavorite = options.isFromFavorite
   this.active = true
   UrlState.pushUrl()
   await this.panel.update()
@@ -115,6 +116,10 @@ PoiPanel.prototype.restore = function(urlShard) {
       this.restorePoi(id)
     }
   }
+}
+
+PoiPanel.prototype.backToFavorite = function() {
+  PanelManager.toggleFavorite()
 }
 
 /* private */

@@ -88,7 +88,7 @@ Favorite.prototype.go = async function(storePoi) {
   fire('map_mark_poi', storePoi)
   fire('fit_map', storePoi, {sidePanelOffset : true})
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
-  PanelManager.loadPoiById(storePoi.id)
+  PanelManager.loadPoiById(storePoi.id, {isFromFavorite : true})
   this.active = false
 }
 

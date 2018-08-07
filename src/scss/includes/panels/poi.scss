@@ -58,6 +58,22 @@ $BLOCK_INDENT: 60px;
   display: block;
 }
 
+.poi_panel__back {
+  display: inline-block;
+  width: 20px;
+}
+
+.poi_panel__back_to_favorite {
+  font-size: 14px;
+  color: #777;
+  margin: 20px 0  0 $BLOCK_INDENT - 20px;
+  cursor: pointer;
+}
+
+.poi_panel__back_to_favorite:hover {
+  color: #333537;
+}
+
 .poi_panel__description_container {
   margin-top: 20px;
   position: relative;
