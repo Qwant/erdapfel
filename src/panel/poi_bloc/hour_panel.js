@@ -7,7 +7,7 @@ function HourPanel(block, poi, options) {
   this.name = block.name
   this.timeMessages =
   this.title = options.title
-  this.hours = new HourlyEvent(block, options.messages)
+  this.hourlyEvent = new HourlyEvent(block, options.messages)
   this.latLng = poi.latLon
 }
 

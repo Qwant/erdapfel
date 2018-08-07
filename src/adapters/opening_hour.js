@@ -5,7 +5,7 @@ const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
 function HourlyEvent(rawOpening, messages) {
   this.hours = parse(rawOpening.raw)
   this.displayHours = translateHours(this.hours )
-  this.nextTransition = nextTransitionTime(rawHourly.seconds_before_next_transition, rawHourly.next_transition_datetime)
+  this.nextTransition = nextTransitionTime(rawOpening.seconds_before_next_transition, rawOpening.next_transition_datetime)
   this.status = openingStatus(this.hours, messages)
 }
 
