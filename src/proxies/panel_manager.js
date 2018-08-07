@@ -17,7 +17,7 @@ PanelManager.setPoi = function(poi) {
 
 PanelManager.loadPoiById = async function (id) {
   if(id) {
-    let poi = await Poi.apiLoad(id)
+    let poi = await Poi.poiApiLoad(id)
     if(poi) {
       PanelManager.setPoi(poi)
     } else {

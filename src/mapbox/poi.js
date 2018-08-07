@@ -59,7 +59,7 @@ Poi.storeLoad = function (rawPoi) {
   return poi
 }
 
-Poi.apiLoad = async function (id) {
+Poi.poiApiLoad = async function (id) {
   let rawPoi = null
   try {
     rawPoi = await Ajax.queryLang(`${serviceConfig.idunn.url}/v1/pois/${id}`)
@@ -74,7 +74,7 @@ Poi.apiLoad = async function (id) {
     }
   }
   let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
-  const poi = new Poi(id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name)
+  const poi = new Poi(id, rawPoi.name, 'poi', latLng, rawPoi.class_name, rawPoi.subclass_name)
   poi.blocks = rawPoi.blocks
   poi.localName = rawPoi.local_name
   poi.address = rawPoi.address
