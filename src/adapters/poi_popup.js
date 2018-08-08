@@ -17,12 +17,11 @@ PoiPopup.prototype.init = function(map) {
 
   this.timeOutHandler = null
   this.isCounting = false
-
-
 }
 
 PoiPopup.prototype.addListener = function(layer) {
   this.map.on('mouseenter', layer, async (e) => {
+    console.log('mousenter on map poi', e)
     this.isCounting = true
     this.timeOutHandler = setTimeout(() => {
       let poi = e.features[0]
