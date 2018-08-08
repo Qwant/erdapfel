@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 13:56+0200\n"
-"PO-Revision-Date: 2018-08-08 13:56+0200\n"
+"POT-Creation-Date: 2018-08-08 16:33+0200\n"
+"PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -20,897 +20,1090 @@ msgstr ""
 "X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 
-#: public/build/javascript/bundle.js:957 src/mapbox/poi_subclass.js:2
+#: public/build/javascript/bundle.js:934 public/build/javascript/map.js:394
+#: src/mapbox/poi_subclass.js:2
 msgid "accessories"
 msgstr ""
 
-#: public/build/javascript/bundle.js:958 src/mapbox/poi_subclass.js:3
+#: public/build/javascript/bundle.js:935 public/build/javascript/map.js:395
+#: src/mapbox/poi_subclass.js:3
 msgid "alcohol"
 msgstr ""
 
-#: public/build/javascript/bundle.js:959 src/mapbox/poi_subclass.js:4
+#: public/build/javascript/bundle.js:936 public/build/javascript/map.js:396
+#: src/mapbox/poi_subclass.js:4
 msgid "alpine hut"
 msgstr ""
 
-#: public/build/javascript/bundle.js:960 src/mapbox/poi_subclass.js:5
+#: public/build/javascript/bundle.js:937 public/build/javascript/map.js:397
+#: src/mapbox/poi_subclass.js:5
 msgid "antiques"
 msgstr ""
 
-#: public/build/javascript/bundle.js:961 src/mapbox/poi_subclass.js:6
+#: public/build/javascript/bundle.js:938 public/build/javascript/map.js:398
+#: src/mapbox/poi_subclass.js:6
 msgid "archery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:962 src/mapbox/poi_subclass.js:7
+#: public/build/javascript/bundle.js:939 public/build/javascript/map.js:399
+#: src/mapbox/poi_subclass.js:7
 msgid "art"
 msgstr ""
 
-#: public/build/javascript/bundle.js:963 src/mapbox/poi_subclass.js:8
+#: public/build/javascript/bundle.js:940 public/build/javascript/map.js:400
+#: src/mapbox/poi_subclass.js:8
 msgid "arts centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:964 src/mapbox/poi_subclass.js:9
+#: public/build/javascript/bundle.js:941 public/build/javascript/map.js:401
+#: src/mapbox/poi_subclass.js:9
 msgid "athletics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:965 src/mapbox/poi_subclass.js:10
+#: public/build/javascript/bundle.js:942 public/build/javascript/map.js:402
+#: src/mapbox/poi_subclass.js:10
 msgid "attraction"
 msgstr ""
 
-#: public/build/javascript/bundle.js:966 src/mapbox/poi_subclass.js:11
+#: public/build/javascript/bundle.js:943 public/build/javascript/map.js:403
+#: src/mapbox/poi_subclass.js:11
 msgid "bag"
 msgstr ""
 
-#: public/build/javascript/bundle.js:967 src/mapbox/poi_subclass.js:12
+#: public/build/javascript/bundle.js:944 public/build/javascript/map.js:404
+#: src/mapbox/poi_subclass.js:12
 msgid "bakery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:968 src/mapbox/poi_subclass.js:13
+#: public/build/javascript/bundle.js:945 public/build/javascript/map.js:405
+#: src/mapbox/poi_subclass.js:13
 msgid "bank"
 msgstr ""
 
-#: public/build/javascript/bundle.js:969 src/mapbox/poi_subclass.js:14
+#: public/build/javascript/bundle.js:946 public/build/javascript/map.js:406
+#: src/mapbox/poi_subclass.js:14
 msgid "bar"
 msgstr ""
 
-#: public/build/javascript/bundle.js:970 src/mapbox/poi_subclass.js:15
+#: public/build/javascript/bundle.js:947 public/build/javascript/map.js:407
+#: src/mapbox/poi_subclass.js:15
 msgid "basin"
 msgstr ""
 
-#: public/build/javascript/bundle.js:971 src/mapbox/poi_subclass.js:16
+#: public/build/javascript/bundle.js:948 public/build/javascript/map.js:408
+#: src/mapbox/poi_subclass.js:16
 msgid "basketball"
 msgstr ""
 
-#: public/build/javascript/bundle.js:972 src/mapbox/poi_subclass.js:17
+#: public/build/javascript/bundle.js:949 public/build/javascript/map.js:409
+#: src/mapbox/poi_subclass.js:17
 msgid "bbq"
 msgstr ""
 
-#: public/build/javascript/bundle.js:973 src/mapbox/poi_subclass.js:18
+#: public/build/javascript/bundle.js:950 public/build/javascript/map.js:410
+#: src/mapbox/poi_subclass.js:18
 msgid "beauty"
 msgstr ""
 
-#: public/build/javascript/bundle.js:974 src/mapbox/poi_subclass.js:19
+#: public/build/javascript/bundle.js:951 public/build/javascript/map.js:411
+#: src/mapbox/poi_subclass.js:19
 msgid "bed"
 msgstr ""
 
-#: public/build/javascript/bundle.js:975 src/mapbox/poi_subclass.js:20
+#: public/build/javascript/bundle.js:952 public/build/javascript/map.js:412
+#: src/mapbox/poi_subclass.js:20
 msgid "bed and breakfast"
 msgstr ""
 
-#: public/build/javascript/bundle.js:976 src/mapbox/poi_subclass.js:21
+#: public/build/javascript/bundle.js:953 public/build/javascript/map.js:413
+#: src/mapbox/poi_subclass.js:21
 msgid "beverages"
 msgstr ""
 
-#: public/build/javascript/bundle.js:977 src/mapbox/poi_subclass.js:22
+#: public/build/javascript/bundle.js:954 public/build/javascript/map.js:414
+#: src/mapbox/poi_subclass.js:22
 msgid "bicycle"
 msgstr ""
 
-#: public/build/javascript/bundle.js:978 src/mapbox/poi_subclass.js:23
+#: public/build/javascript/bundle.js:955 public/build/javascript/map.js:415
+#: src/mapbox/poi_subclass.js:23
 msgid "biergarten"
 msgstr ""
 
-#: public/build/javascript/bundle.js:979 src/mapbox/poi_subclass.js:24
+#: public/build/javascript/bundle.js:956 public/build/javascript/map.js:416
+#: src/mapbox/poi_subclass.js:24
 msgid "billiards"
 msgstr ""
 
-#: public/build/javascript/bundle.js:980 src/mapbox/poi_subclass.js:25
+#: public/build/javascript/bundle.js:957 public/build/javascript/map.js:417
+#: src/mapbox/poi_subclass.js:25
 msgid "bmx"
 msgstr ""
 
-#: public/build/javascript/bundle.js:981 src/mapbox/poi_subclass.js:26
+#: public/build/javascript/bundle.js:958 public/build/javascript/map.js:418
+#: src/mapbox/poi_subclass.js:26
 msgid "books"
 msgstr ""
 
-#: public/build/javascript/bundle.js:982 src/mapbox/poi_subclass.js:27
+#: public/build/javascript/bundle.js:959 public/build/javascript/map.js:419
+#: src/mapbox/poi_subclass.js:27
 msgid "border control"
 msgstr ""
 
-#: public/build/javascript/bundle.js:983 src/mapbox/poi_subclass.js:28
+#: public/build/javascript/bundle.js:960 public/build/javascript/map.js:420
+#: src/mapbox/poi_subclass.js:28
 msgid "boules"
 msgstr ""
 
-#: public/build/javascript/bundle.js:984 src/mapbox/poi_subclass.js:29
+#: public/build/javascript/bundle.js:961 public/build/javascript/map.js:421
+#: src/mapbox/poi_subclass.js:29
 msgid "boutique"
 msgstr ""
 
-#: public/build/javascript/bundle.js:985 src/mapbox/poi_subclass.js:30
+#: public/build/javascript/bundle.js:962 public/build/javascript/map.js:422
+#: src/mapbox/poi_subclass.js:30
 msgid "bowls"
 msgstr ""
 
-#: public/build/javascript/bundle.js:986 src/mapbox/poi_subclass.js:31
+#: public/build/javascript/bundle.js:963 public/build/javascript/map.js:423
+#: src/mapbox/poi_subclass.js:31
 msgid "brownfield"
 msgstr ""
 
-#: public/build/javascript/bundle.js:987 src/mapbox/poi_subclass.js:32
+#: public/build/javascript/bundle.js:964 public/build/javascript/map.js:424
+#: src/mapbox/poi_subclass.js:32
 msgid "bus station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:988 src/mapbox/poi_subclass.js:33
+#: public/build/javascript/bundle.js:965 public/build/javascript/map.js:425
+#: src/mapbox/poi_subclass.js:33
 msgid "butcher"
 msgstr ""
 
-#: public/build/javascript/bundle.js:989 src/mapbox/poi_subclass.js:34
+#: public/build/javascript/bundle.js:966 public/build/javascript/map.js:426
+#: src/mapbox/poi_subclass.js:34
 msgid "cafe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:990 src/mapbox/poi_subclass.js:35
+#: public/build/javascript/bundle.js:967 public/build/javascript/map.js:427
+#: src/mapbox/poi_subclass.js:35
 msgid "camp site"
 msgstr ""
 
-#: public/build/javascript/bundle.js:991 src/mapbox/poi_subclass.js:36
+#: public/build/javascript/bundle.js:968 public/build/javascript/map.js:428
+#: src/mapbox/poi_subclass.js:36
 msgid "canoe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:992 src/mapbox/poi_subclass.js:37
+#: public/build/javascript/bundle.js:969 public/build/javascript/map.js:429
+#: src/mapbox/poi_subclass.js:37
 msgid "car"
 msgstr ""
 
-#: public/build/javascript/bundle.js:993 src/mapbox/poi_subclass.js:38
+#: public/build/javascript/bundle.js:970 public/build/javascript/map.js:430
+#: src/mapbox/poi_subclass.js:38
 msgid "car repair"
 msgstr ""
 
-#: public/build/javascript/bundle.js:994 src/mapbox/poi_subclass.js:39
+#: public/build/javascript/bundle.js:971 public/build/javascript/map.js:431
+#: src/mapbox/poi_subclass.js:39
 msgid "caravan site"
 msgstr ""
 
-#: public/build/javascript/bundle.js:995 src/mapbox/poi_subclass.js:40
+#: public/build/javascript/bundle.js:972 public/build/javascript/map.js:432
+#: src/mapbox/poi_subclass.js:40
 msgid "carpet"
 msgstr ""
 
-#: public/build/javascript/bundle.js:996 src/mapbox/poi_subclass.js:41
+#: public/build/javascript/bundle.js:973 public/build/javascript/map.js:433
+#: src/mapbox/poi_subclass.js:41
 msgid "castle"
 msgstr ""
 
-#: public/build/javascript/bundle.js:997 src/mapbox/poi_subclass.js:42
+#: public/build/javascript/bundle.js:974 public/build/javascript/map.js:434
+#: src/mapbox/poi_subclass.js:42
 msgid "cemetery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:998 src/mapbox/poi_subclass.js:43
+#: public/build/javascript/bundle.js:975 public/build/javascript/map.js:435
+#: src/mapbox/poi_subclass.js:43
 msgid "chalet"
 msgstr ""
 
-#: public/build/javascript/bundle.js:999 src/mapbox/poi_subclass.js:44
+#: public/build/javascript/bundle.js:976 public/build/javascript/map.js:436
+#: src/mapbox/poi_subclass.js:44
 msgid "charity"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1000 src/mapbox/poi_subclass.js:45
+#: public/build/javascript/bundle.js:977 public/build/javascript/map.js:437
+#: src/mapbox/poi_subclass.js:45
 msgid "chemist"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1001 src/mapbox/poi_subclass.js:46
+#: public/build/javascript/bundle.js:978 public/build/javascript/map.js:438
+#: src/mapbox/poi_subclass.js:46
 msgid "chess"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1002 src/mapbox/poi_subclass.js:47
+#: public/build/javascript/bundle.js:979 public/build/javascript/map.js:439
+#: src/mapbox/poi_subclass.js:47
 msgid "chocolate"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1003 src/mapbox/poi_subclass.js:48
+#: public/build/javascript/bundle.js:980 public/build/javascript/map.js:440
+#: src/mapbox/poi_subclass.js:48
 msgid "cinema"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1004 src/mapbox/poi_subclass.js:49
+#: public/build/javascript/bundle.js:981 public/build/javascript/map.js:441
+#: src/mapbox/poi_subclass.js:49
 msgid "climbing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1005 src/mapbox/poi_subclass.js:50
+#: public/build/javascript/bundle.js:982 public/build/javascript/map.js:442
+#: src/mapbox/poi_subclass.js:50
 msgid "climbing adventure"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1006 src/mapbox/poi_subclass.js:51
+#: public/build/javascript/bundle.js:983 public/build/javascript/map.js:443
+#: src/mapbox/poi_subclass.js:51
 msgid "clinic"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1007 src/mapbox/poi_subclass.js:52
+#: public/build/javascript/bundle.js:984 public/build/javascript/map.js:444
+#: src/mapbox/poi_subclass.js:52
 msgid "clothes"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1008 src/mapbox/poi_subclass.js:53
+#: public/build/javascript/bundle.js:985 public/build/javascript/map.js:445
+#: src/mapbox/poi_subclass.js:53
 msgid "coffee"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1009 src/mapbox/poi_subclass.js:54
+#: public/build/javascript/bundle.js:986 public/build/javascript/map.js:446
+#: src/mapbox/poi_subclass.js:54
 msgid "college"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1010 src/mapbox/poi_subclass.js:55
+#: public/build/javascript/bundle.js:987 public/build/javascript/map.js:447
+#: src/mapbox/poi_subclass.js:55
 msgid "community centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1011 src/mapbox/poi_subclass.js:56
+#: public/build/javascript/bundle.js:988 public/build/javascript/map.js:448
+#: src/mapbox/poi_subclass.js:56
 msgid "computer"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1012 src/mapbox/poi_subclass.js:57
+#: public/build/javascript/bundle.js:989 public/build/javascript/map.js:449
+#: src/mapbox/poi_subclass.js:57
 msgid "confectionery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1013 src/mapbox/poi_subclass.js:58
+#: public/build/javascript/bundle.js:990 public/build/javascript/map.js:450
+#: src/mapbox/poi_subclass.js:58
 msgid "convenience"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1014 src/mapbox/poi_subclass.js:59
+#: public/build/javascript/bundle.js:991 public/build/javascript/map.js:451
+#: src/mapbox/poi_subclass.js:59
 msgid "copyshop"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1015 src/mapbox/poi_subclass.js:60
+#: public/build/javascript/bundle.js:992 public/build/javascript/map.js:452
+#: src/mapbox/poi_subclass.js:60
 msgid "cosmetics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1016 src/mapbox/poi_subclass.js:61
+#: public/build/javascript/bundle.js:993 public/build/javascript/map.js:453
+#: src/mapbox/poi_subclass.js:61
 msgid "courthouse"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1017 src/mapbox/poi_subclass.js:62
+#: public/build/javascript/bundle.js:994 public/build/javascript/map.js:454
+#: src/mapbox/poi_subclass.js:62
 msgid "cricket"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1018 src/mapbox/poi_subclass.js:63
+#: public/build/javascript/bundle.js:995 public/build/javascript/map.js:455
+#: src/mapbox/poi_subclass.js:63
 msgid "cycling"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1019 src/mapbox/poi_subclass.js:64
+#: public/build/javascript/bundle.js:996 public/build/javascript/map.js:456
+#: src/mapbox/poi_subclass.js:64
 msgid "deli"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1020 src/mapbox/poi_subclass.js:65
+#: public/build/javascript/bundle.js:997 public/build/javascript/map.js:457
+#: src/mapbox/poi_subclass.js:65
 msgid "dentist"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1021 src/mapbox/poi_subclass.js:66
+#: public/build/javascript/bundle.js:998 public/build/javascript/map.js:458
+#: src/mapbox/poi_subclass.js:66
 msgid "department store"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1022 src/mapbox/poi_subclass.js:67
+#: public/build/javascript/bundle.js:999 public/build/javascript/map.js:459
+#: src/mapbox/poi_subclass.js:67
 msgid "dock"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1023 src/mapbox/poi_subclass.js:68
+#: public/build/javascript/bundle.js:1000 public/build/javascript/map.js:460
+#: src/mapbox/poi_subclass.js:68
 msgid "doctors"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1024 src/mapbox/poi_subclass.js:69
+#: public/build/javascript/bundle.js:1001 public/build/javascript/map.js:461
+#: src/mapbox/poi_subclass.js:69
 msgid "dog park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1025 src/mapbox/poi_subclass.js:70
+#: public/build/javascript/bundle.js:1002 public/build/javascript/map.js:462
+#: src/mapbox/poi_subclass.js:70
 msgid "dog racing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1026 src/mapbox/poi_subclass.js:71
+#: public/build/javascript/bundle.js:1003 public/build/javascript/map.js:463
+#: src/mapbox/poi_subclass.js:71
 msgid "doityourself"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1027 src/mapbox/poi_subclass.js:72
+#: public/build/javascript/bundle.js:1004 public/build/javascript/map.js:464
+#: src/mapbox/poi_subclass.js:72
 msgid "dry cleaning"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1028 src/mapbox/poi_subclass.js:73
+#: public/build/javascript/bundle.js:1005 public/build/javascript/map.js:465
+#: src/mapbox/poi_subclass.js:73
 msgid "electronics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1029 src/mapbox/poi_subclass.js:74
+#: public/build/javascript/bundle.js:1006 public/build/javascript/map.js:466
+#: src/mapbox/poi_subclass.js:74
 msgid "embassy"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1030 src/mapbox/poi_subclass.js:75
+#: public/build/javascript/bundle.js:1007 public/build/javascript/map.js:467
+#: src/mapbox/poi_subclass.js:75
 msgid "equestrian"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1031 src/mapbox/poi_subclass.js:76
+#: public/build/javascript/bundle.js:1008 public/build/javascript/map.js:468
+#: src/mapbox/poi_subclass.js:76
 msgid "erotic"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1032 src/mapbox/poi_subclass.js:77
+#: public/build/javascript/bundle.js:1009 public/build/javascript/map.js:469
+#: src/mapbox/poi_subclass.js:77
 msgid "fabric"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1033 src/mapbox/poi_subclass.js:78
+#: public/build/javascript/bundle.js:1010 public/build/javascript/map.js:470
+#: src/mapbox/poi_subclass.js:78
 msgid "fast food"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1034 src/mapbox/poi_subclass.js:79
+#: public/build/javascript/bundle.js:1011 public/build/javascript/map.js:471
+#: src/mapbox/poi_subclass.js:79
 msgid "fire station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1035 src/mapbox/poi_subclass.js:80
+#: public/build/javascript/bundle.js:1012 public/build/javascript/map.js:472
+#: src/mapbox/poi_subclass.js:80
 msgid "florist"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1036 src/mapbox/poi_subclass.js:81
+#: public/build/javascript/bundle.js:1013 public/build/javascript/map.js:473
+#: src/mapbox/poi_subclass.js:81
 msgid "food court"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1037 src/mapbox/poi_subclass.js:82
+#: public/build/javascript/bundle.js:1014 public/build/javascript/map.js:474
+#: src/mapbox/poi_subclass.js:82
 msgid "free flying"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1038 src/mapbox/poi_subclass.js:83
+#: public/build/javascript/bundle.js:1015 public/build/javascript/map.js:475
+#: src/mapbox/poi_subclass.js:83
 msgid "fuel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1039 src/mapbox/poi_subclass.js:84
+#: public/build/javascript/bundle.js:1016 public/build/javascript/map.js:476
+#: src/mapbox/poi_subclass.js:84
 msgid "furniture"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1040 src/mapbox/poi_subclass.js:85
+#: public/build/javascript/bundle.js:1017 public/build/javascript/map.js:477
+#: src/mapbox/poi_subclass.js:85
 msgid "gallery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1041 src/mapbox/poi_subclass.js:86
+#: public/build/javascript/bundle.js:1018 public/build/javascript/map.js:478
+#: src/mapbox/poi_subclass.js:86
 msgid "garden"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1042 src/mapbox/poi_subclass.js:87
+#: public/build/javascript/bundle.js:1019 public/build/javascript/map.js:479
+#: src/mapbox/poi_subclass.js:87
 msgid "garden centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1043 src/mapbox/poi_subclass.js:88
+#: public/build/javascript/bundle.js:1020 public/build/javascript/map.js:480
+#: src/mapbox/poi_subclass.js:88
 msgid "general"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1044 src/mapbox/poi_subclass.js:89
+#: public/build/javascript/bundle.js:1021 public/build/javascript/map.js:481
+#: src/mapbox/poi_subclass.js:89
 msgid "gift"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1045 src/mapbox/poi_subclass.js:90
+#: public/build/javascript/bundle.js:1022 public/build/javascript/map.js:482
+#: src/mapbox/poi_subclass.js:90
 msgid "golf"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1046 src/mapbox/poi_subclass.js:91
+#: public/build/javascript/bundle.js:1023 public/build/javascript/map.js:483
+#: src/mapbox/poi_subclass.js:91
 msgid "golf course"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1047 src/mapbox/poi_subclass.js:92
+#: public/build/javascript/bundle.js:1024 public/build/javascript/map.js:484
+#: src/mapbox/poi_subclass.js:92
 msgid "grave yard"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1048 src/mapbox/poi_subclass.js:93
+#: public/build/javascript/bundle.js:1025 public/build/javascript/map.js:485
+#: src/mapbox/poi_subclass.js:93
 msgid "greengrocer"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1049 src/mapbox/poi_subclass.js:94
+#: public/build/javascript/bundle.js:1026 public/build/javascript/map.js:486
+#: src/mapbox/poi_subclass.js:94
 msgid "guest house"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1050 src/mapbox/poi_subclass.js:95
+#: public/build/javascript/bundle.js:1027 public/build/javascript/map.js:487
+#: src/mapbox/poi_subclass.js:95
 msgid "gymnastics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1051 src/mapbox/poi_subclass.js:96
+#: public/build/javascript/bundle.js:1028 public/build/javascript/map.js:488
+#: src/mapbox/poi_subclass.js:96
 msgid "hairdresser"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1052 src/mapbox/poi_subclass.js:97
+#: public/build/javascript/bundle.js:1029 public/build/javascript/map.js:489
+#: src/mapbox/poi_subclass.js:97
 msgid "halt"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1053 src/mapbox/poi_subclass.js:98
+#: public/build/javascript/bundle.js:1030 public/build/javascript/map.js:490
+#: src/mapbox/poi_subclass.js:98
 msgid "hardware"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1054 src/mapbox/poi_subclass.js:99
+#: public/build/javascript/bundle.js:1031 public/build/javascript/map.js:491
+#: src/mapbox/poi_subclass.js:99
 msgid "hearing aids"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1055 src/mapbox/poi_subclass.js:100
+#: public/build/javascript/bundle.js:1032 public/build/javascript/map.js:492
+#: src/mapbox/poi_subclass.js:100
 msgid "hifi"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1056 src/mapbox/poi_subclass.js:101
+#: public/build/javascript/bundle.js:1033 public/build/javascript/map.js:493
+#: src/mapbox/poi_subclass.js:101
 msgid "horse racing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1057 src/mapbox/poi_subclass.js:102
+#: public/build/javascript/bundle.js:1034 public/build/javascript/map.js:494
+#: src/mapbox/poi_subclass.js:102
 msgid "hospital"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1058 src/mapbox/poi_subclass.js:103
+#: public/build/javascript/bundle.js:1035 public/build/javascript/map.js:495
+#: src/mapbox/poi_subclass.js:103
 msgid "hostel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1059 src/mapbox/poi_subclass.js:104
+#: public/build/javascript/bundle.js:1036 public/build/javascript/map.js:496
+#: src/mapbox/poi_subclass.js:104
 msgid "hotel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1060 src/mapbox/poi_subclass.js:105
+#: public/build/javascript/bundle.js:1037 public/build/javascript/map.js:497
+#: src/mapbox/poi_subclass.js:105
 msgid "ice cream"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1061 src/mapbox/poi_subclass.js:106
+#: public/build/javascript/bundle.js:1038 public/build/javascript/map.js:498
+#: src/mapbox/poi_subclass.js:106
 msgid "ice rink"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1062 src/mapbox/poi_subclass.js:107
+#: public/build/javascript/bundle.js:1039 public/build/javascript/map.js:499
+#: src/mapbox/poi_subclass.js:107
 msgid "interior decoration"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1063 src/mapbox/poi_subclass.js:108
+#: public/build/javascript/bundle.js:1040 public/build/javascript/map.js:500
+#: src/mapbox/poi_subclass.js:108
 msgid "jewelry"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1064 src/mapbox/poi_subclass.js:109
+#: public/build/javascript/bundle.js:1041 public/build/javascript/map.js:501
+#: src/mapbox/poi_subclass.js:109
 msgid "karting"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1065 src/mapbox/poi_subclass.js:110
+#: public/build/javascript/bundle.js:1042 public/build/javascript/map.js:502
+#: src/mapbox/poi_subclass.js:110
 msgid "kindergarten"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1066 src/mapbox/poi_subclass.js:111
+#: public/build/javascript/bundle.js:1043 public/build/javascript/map.js:503
+#: src/mapbox/poi_subclass.js:111
 msgid "kiosk"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1067 src/mapbox/poi_subclass.js:112
+#: public/build/javascript/bundle.js:1044 public/build/javascript/map.js:504
+#: src/mapbox/poi_subclass.js:112
 msgid "lamps"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1068 src/mapbox/poi_subclass.js:113
+#: public/build/javascript/bundle.js:1045 public/build/javascript/map.js:505
+#: src/mapbox/poi_subclass.js:113
 msgid "laundry"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1069 src/mapbox/poi_subclass.js:114
+#: public/build/javascript/bundle.js:1046 public/build/javascript/map.js:506
+#: src/mapbox/poi_subclass.js:114
 msgid "library"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1070 src/mapbox/poi_subclass.js:115
+#: public/build/javascript/bundle.js:1047 public/build/javascript/map.js:507
+#: src/mapbox/poi_subclass.js:115
 msgid "long jump"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1071 src/mapbox/poi_subclass.js:116
+#: public/build/javascript/bundle.js:1048 public/build/javascript/map.js:508
+#: src/mapbox/poi_subclass.js:116
 msgid "mall"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1072 src/mapbox/poi_subclass.js:117
+#: public/build/javascript/bundle.js:1049 public/build/javascript/map.js:509
+#: src/mapbox/poi_subclass.js:117
 msgid "marina"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1073 src/mapbox/poi_subclass.js:118
+#: public/build/javascript/bundle.js:1050 public/build/javascript/map.js:510
+#: src/mapbox/poi_subclass.js:118
 msgid "marketplace"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1074 src/mapbox/poi_subclass.js:119
+#: public/build/javascript/bundle.js:1051 public/build/javascript/map.js:511
+#: src/mapbox/poi_subclass.js:119
 msgid "massage"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1075 src/mapbox/poi_subclass.js:120
+#: public/build/javascript/bundle.js:1052 public/build/javascript/map.js:512
+#: src/mapbox/poi_subclass.js:120
 msgid "miniature golf"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1076 src/mapbox/poi_subclass.js:121
+#: public/build/javascript/bundle.js:1053 public/build/javascript/map.js:513
+#: src/mapbox/poi_subclass.js:121
 msgid "mobile phone"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1077 src/mapbox/poi_subclass.js:122
+#: public/build/javascript/bundle.js:1054 public/build/javascript/map.js:514
+#: src/mapbox/poi_subclass.js:122
 msgid "model aerodrome"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1078 src/mapbox/poi_subclass.js:123
+#: public/build/javascript/bundle.js:1055 public/build/javascript/map.js:515
+#: src/mapbox/poi_subclass.js:123
 msgid "monument"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1079 src/mapbox/poi_subclass.js:124
+#: public/build/javascript/bundle.js:1056 public/build/javascript/map.js:516
+#: src/mapbox/poi_subclass.js:124
 msgid "motel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1080 src/mapbox/poi_subclass.js:125
+#: public/build/javascript/bundle.js:1057 public/build/javascript/map.js:517
+#: src/mapbox/poi_subclass.js:125
 msgid "motocross"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1081 src/mapbox/poi_subclass.js:126
+#: public/build/javascript/bundle.js:1058 public/build/javascript/map.js:518
+#: src/mapbox/poi_subclass.js:126
 msgid "motor"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1082 src/mapbox/poi_subclass.js:127
+#: public/build/javascript/bundle.js:1059 public/build/javascript/map.js:519
+#: src/mapbox/poi_subclass.js:127
 msgid "motorcycle"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1083 src/mapbox/poi_subclass.js:128
+#: public/build/javascript/bundle.js:1060 public/build/javascript/map.js:520
+#: src/mapbox/poi_subclass.js:128
 msgid "multi"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1084 src/mapbox/poi_subclass.js:129
+#: public/build/javascript/bundle.js:1061 public/build/javascript/map.js:521
+#: src/mapbox/poi_subclass.js:129
 msgid "museum"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1085 src/mapbox/poi_subclass.js:130
+#: public/build/javascript/bundle.js:1062 public/build/javascript/map.js:522
+#: src/mapbox/poi_subclass.js:130
 msgid "music"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1086 src/mapbox/poi_subclass.js:131
+#: public/build/javascript/bundle.js:1063 public/build/javascript/map.js:523
+#: src/mapbox/poi_subclass.js:131
 msgid "musical instrument"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1087 src/mapbox/poi_subclass.js:132
+#: public/build/javascript/bundle.js:1064 public/build/javascript/map.js:524
+#: src/mapbox/poi_subclass.js:132
 msgid "newsagent"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1088 src/mapbox/poi_subclass.js:133
+#: public/build/javascript/bundle.js:1065 public/build/javascript/map.js:525
+#: src/mapbox/poi_subclass.js:133
 msgid "nightclub"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1089 src/mapbox/poi_subclass.js:134
+#: public/build/javascript/bundle.js:1066 public/build/javascript/map.js:526
+#: src/mapbox/poi_subclass.js:134
 msgid "nursing home"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1090 src/mapbox/poi_subclass.js:135
+#: public/build/javascript/bundle.js:1067 public/build/javascript/map.js:527
+#: src/mapbox/poi_subclass.js:135
 msgid "optician"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1091 src/mapbox/poi_subclass.js:136
+#: public/build/javascript/bundle.js:1068 public/build/javascript/map.js:528
+#: src/mapbox/poi_subclass.js:136
 msgid "orienteering"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1092 src/mapbox/poi_subclass.js:137
+#: public/build/javascript/bundle.js:1069 public/build/javascript/map.js:529
+#: src/mapbox/poi_subclass.js:137
 msgid "outdoor"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1093 src/mapbox/poi_subclass.js:138
+#: public/build/javascript/bundle.js:1070 public/build/javascript/map.js:530
+#: src/mapbox/poi_subclass.js:138
 msgid "paragliding"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1094 src/mapbox/poi_subclass.js:139
+#: public/build/javascript/bundle.js:1071 public/build/javascript/map.js:531
+#: src/mapbox/poi_subclass.js:139
 msgid "park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1095 src/mapbox/poi_subclass.js:140
+#: public/build/javascript/bundle.js:1072 public/build/javascript/map.js:532
+#: src/mapbox/poi_subclass.js:140
 msgid "perfumery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1096 src/mapbox/poi_subclass.js:141
+#: public/build/javascript/bundle.js:1073 public/build/javascript/map.js:533
+#: src/mapbox/poi_subclass.js:141
 msgid "pet"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1097 src/mapbox/poi_subclass.js:142
+#: public/build/javascript/bundle.js:1074 public/build/javascript/map.js:534
+#: src/mapbox/poi_subclass.js:142
 msgid "pharmacy"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1098 src/mapbox/poi_subclass.js:143
+#: public/build/javascript/bundle.js:1075 public/build/javascript/map.js:535
+#: src/mapbox/poi_subclass.js:143
 msgid "photo"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1099 src/mapbox/poi_subclass.js:144
+#: public/build/javascript/bundle.js:1076 public/build/javascript/map.js:536
+#: src/mapbox/poi_subclass.js:144
 msgid "picnic site"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1100 src/mapbox/poi_subclass.js:145
+#: public/build/javascript/bundle.js:1077 public/build/javascript/map.js:537
+#: src/mapbox/poi_subclass.js:145
 msgid "place of worship"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1101 src/mapbox/poi_subclass.js:146
+#: public/build/javascript/bundle.js:1078 public/build/javascript/map.js:538
+#: src/mapbox/poi_subclass.js:146
 msgid "police"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1102 src/mapbox/poi_subclass.js:147
+#: public/build/javascript/bundle.js:1079 public/build/javascript/map.js:539
+#: src/mapbox/poi_subclass.js:147
 msgid "post office"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1103 src/mapbox/poi_subclass.js:148
+#: public/build/javascript/bundle.js:1080 public/build/javascript/map.js:540
+#: src/mapbox/poi_subclass.js:148
 msgid "prison"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1104 src/mapbox/poi_subclass.js:149
+#: public/build/javascript/bundle.js:1081 public/build/javascript/map.js:541
+#: src/mapbox/poi_subclass.js:149
 msgid "pub"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1105 src/mapbox/poi_subclass.js:150
+#: public/build/javascript/bundle.js:1082 public/build/javascript/map.js:542
+#: src/mapbox/poi_subclass.js:150
 msgid "public building"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1106 src/mapbox/poi_subclass.js:151
+#: public/build/javascript/bundle.js:1083 public/build/javascript/map.js:543
+#: src/mapbox/poi_subclass.js:151
 msgid "rc car"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1107 src/mapbox/poi_subclass.js:152
+#: public/build/javascript/bundle.js:1084 public/build/javascript/map.js:544
+#: src/mapbox/poi_subclass.js:152
 msgid "reservoir"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1108 src/mapbox/poi_subclass.js:153
+#: public/build/javascript/bundle.js:1085 public/build/javascript/map.js:545
+#: src/mapbox/poi_subclass.js:153
 msgid "restaurant"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1109 src/mapbox/poi_subclass.js:154
+#: public/build/javascript/bundle.js:1086 public/build/javascript/map.js:546
+#: src/mapbox/poi_subclass.js:154
 msgid "rowing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1110 src/mapbox/poi_subclass.js:155
+#: public/build/javascript/bundle.js:1087 public/build/javascript/map.js:547
+#: src/mapbox/poi_subclass.js:155
 msgid "ruins"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1111 src/mapbox/poi_subclass.js:156
+#: public/build/javascript/bundle.js:1088 public/build/javascript/map.js:548
+#: src/mapbox/poi_subclass.js:156
 msgid "running"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1112 src/mapbox/poi_subclass.js:157
+#: public/build/javascript/bundle.js:1089 public/build/javascript/map.js:549
+#: src/mapbox/poi_subclass.js:157
 msgid "sailing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1113 src/mapbox/poi_subclass.js:158
+#: public/build/javascript/bundle.js:1090 public/build/javascript/map.js:550
+#: src/mapbox/poi_subclass.js:158
 msgid "school"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1114 src/mapbox/poi_subclass.js:159
+#: public/build/javascript/bundle.js:1091 public/build/javascript/map.js:551
+#: src/mapbox/poi_subclass.js:159
 msgid "scuba diving"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1115 src/mapbox/poi_subclass.js:160
+#: public/build/javascript/bundle.js:1092 public/build/javascript/map.js:552
+#: src/mapbox/poi_subclass.js:160
 msgid "second hand"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1116 src/mapbox/poi_subclass.js:161
+#: public/build/javascript/bundle.js:1093 public/build/javascript/map.js:553
+#: src/mapbox/poi_subclass.js:161
 msgid "shoes"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1117 src/mapbox/poi_subclass.js:162
+#: public/build/javascript/bundle.js:1094 public/build/javascript/map.js:554
+#: src/mapbox/poi_subclass.js:162
 msgid "shooting"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1118 src/mapbox/poi_subclass.js:163
+#: public/build/javascript/bundle.js:1095 public/build/javascript/map.js:555
+#: src/mapbox/poi_subclass.js:163
 msgid "skateboard"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1119 src/mapbox/poi_subclass.js:164
+#: public/build/javascript/bundle.js:1096 public/build/javascript/map.js:556
+#: src/mapbox/poi_subclass.js:164
 msgid "skating"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1120 src/mapbox/poi_subclass.js:165
+#: public/build/javascript/bundle.js:1097 public/build/javascript/map.js:557
+#: src/mapbox/poi_subclass.js:165
 msgid "skiing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1121 src/mapbox/poi_subclass.js:166
+#: public/build/javascript/bundle.js:1098 public/build/javascript/map.js:558
+#: src/mapbox/poi_subclass.js:166
 msgid "soccer"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1122 src/mapbox/poi_subclass.js:167
+#: public/build/javascript/bundle.js:1099 public/build/javascript/map.js:559
+#: src/mapbox/poi_subclass.js:167
 msgid "sports"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1123 src/mapbox/poi_subclass.js:168
+#: public/build/javascript/bundle.js:1100 public/build/javascript/map.js:560
+#: src/mapbox/poi_subclass.js:168
 msgid "sports centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1124 src/mapbox/poi_subclass.js:169
+#: public/build/javascript/bundle.js:1101 public/build/javascript/map.js:561
+#: src/mapbox/poi_subclass.js:169
 msgid "stadium"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1125 src/mapbox/poi_subclass.js:170
+#: public/build/javascript/bundle.js:1102 public/build/javascript/map.js:562
+#: src/mapbox/poi_subclass.js:170
 msgid "station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1126 src/mapbox/poi_subclass.js:171
+#: public/build/javascript/bundle.js:1103 public/build/javascript/map.js:563
+#: src/mapbox/poi_subclass.js:171
 msgid "stationery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1127 src/mapbox/poi_subclass.js:172
+#: public/build/javascript/bundle.js:1104 public/build/javascript/map.js:564
+#: src/mapbox/poi_subclass.js:172
 msgid "subway"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1128 src/mapbox/poi_subclass.js:173
+#: public/build/javascript/bundle.js:1105 public/build/javascript/map.js:565
+#: src/mapbox/poi_subclass.js:173
 msgid "supermarket"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1129 src/mapbox/poi_subclass.js:174
+#: public/build/javascript/bundle.js:1106 public/build/javascript/map.js:566
+#: src/mapbox/poi_subclass.js:174
 msgid "swimming"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1130 src/mapbox/poi_subclass.js:175
+#: public/build/javascript/bundle.js:1107 public/build/javascript/map.js:567
+#: src/mapbox/poi_subclass.js:175
 msgid "swimming area"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1131 src/mapbox/poi_subclass.js:176
+#: public/build/javascript/bundle.js:1108 public/build/javascript/map.js:568
+#: src/mapbox/poi_subclass.js:176
 msgid "swimming pool"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1132 src/mapbox/poi_subclass.js:177
+#: public/build/javascript/bundle.js:1109 public/build/javascript/map.js:569
+#: src/mapbox/poi_subclass.js:177
 msgid "table tennis"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1133 src/mapbox/poi_subclass.js:178
+#: public/build/javascript/bundle.js:1110 public/build/javascript/map.js:570
+#: src/mapbox/poi_subclass.js:178
 msgid "tailor"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1134 src/mapbox/poi_subclass.js:179
+#: public/build/javascript/bundle.js:1111 public/build/javascript/map.js:571
+#: src/mapbox/poi_subclass.js:179
 msgid "tattoo"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1135 src/mapbox/poi_subclass.js:180
+#: public/build/javascript/bundle.js:1112 public/build/javascript/map.js:572
+#: src/mapbox/poi_subclass.js:180
 msgid "tennis"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1136 src/mapbox/poi_subclass.js:181
+#: public/build/javascript/bundle.js:1113 public/build/javascript/map.js:573
+#: src/mapbox/poi_subclass.js:181
 msgid "theatre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1137 src/mapbox/poi_subclass.js:182
+#: public/build/javascript/bundle.js:1114 public/build/javascript/map.js:574
+#: src/mapbox/poi_subclass.js:182
 msgid "theme park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1138 src/mapbox/poi_subclass.js:183
+#: public/build/javascript/bundle.js:1115 public/build/javascript/map.js:575
+#: src/mapbox/poi_subclass.js:183
 msgid "ticket"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1139 src/mapbox/poi_subclass.js:184
+#: public/build/javascript/bundle.js:1116 public/build/javascript/map.js:576
+#: src/mapbox/poi_subclass.js:184
 msgid "tobacco"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1140 src/mapbox/poi_subclass.js:185
+#: public/build/javascript/bundle.js:1117 public/build/javascript/map.js:577
+#: src/mapbox/poi_subclass.js:185
 msgid "toll booth"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1141 src/mapbox/poi_subclass.js:186
+#: public/build/javascript/bundle.js:1118 public/build/javascript/map.js:578
+#: src/mapbox/poi_subclass.js:186
 msgid "townhall"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1142 src/mapbox/poi_subclass.js:187
+#: public/build/javascript/bundle.js:1119 public/build/javascript/map.js:579
+#: src/mapbox/poi_subclass.js:187
 msgid "toys"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1143 src/mapbox/poi_subclass.js:188
+#: public/build/javascript/bundle.js:1120 public/build/javascript/map.js:580
+#: src/mapbox/poi_subclass.js:188
 msgid "tram stop"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1144 src/mapbox/poi_subclass.js:189
+#: public/build/javascript/bundle.js:1121 public/build/javascript/map.js:581
+#: src/mapbox/poi_subclass.js:189
 msgid "travel agency"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1145 src/mapbox/poi_subclass.js:190
+#: public/build/javascript/bundle.js:1122 public/build/javascript/map.js:582
+#: src/mapbox/poi_subclass.js:190
 msgid "university"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1146 src/mapbox/poi_subclass.js:191
+#: public/build/javascript/bundle.js:1123 public/build/javascript/map.js:583
+#: src/mapbox/poi_subclass.js:191
 msgid "veterinary"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1147 src/mapbox/poi_subclass.js:192
+#: public/build/javascript/bundle.js:1124 public/build/javascript/map.js:584
+#: src/mapbox/poi_subclass.js:192
 msgid "video"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1148 src/mapbox/poi_subclass.js:193
+#: public/build/javascript/bundle.js:1125 public/build/javascript/map.js:585
+#: src/mapbox/poi_subclass.js:193
 msgid "video games"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1149 src/mapbox/poi_subclass.js:194
+#: public/build/javascript/bundle.js:1126 public/build/javascript/map.js:586
+#: src/mapbox/poi_subclass.js:194
 msgid "viewpoint"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1150 src/mapbox/poi_subclass.js:195
+#: public/build/javascript/bundle.js:1127 public/build/javascript/map.js:587
+#: src/mapbox/poi_subclass.js:195
 msgid "watches"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1151 src/mapbox/poi_subclass.js:196
+#: public/build/javascript/bundle.js:1128 public/build/javascript/map.js:588
+#: src/mapbox/poi_subclass.js:196
 msgid "water park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1152 src/mapbox/poi_subclass.js:197
+#: public/build/javascript/bundle.js:1129 public/build/javascript/map.js:589
+#: src/mapbox/poi_subclass.js:197
 msgid "weapons"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1153 src/mapbox/poi_subclass.js:198
+#: public/build/javascript/bundle.js:1130 public/build/javascript/map.js:590
+#: src/mapbox/poi_subclass.js:198
 msgid "wholesale"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1154 src/mapbox/poi_subclass.js:199
+#: public/build/javascript/bundle.js:1131 public/build/javascript/map.js:591
+#: src/mapbox/poi_subclass.js:199
 msgid "wine"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1155 src/mapbox/poi_subclass.js:200
+#: public/build/javascript/bundle.js:1132 public/build/javascript/map.js:592
+#: src/mapbox/poi_subclass.js:200
 msgid "yoga"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1156 src/mapbox/poi_subclass.js:201
+#: public/build/javascript/bundle.js:1133 public/build/javascript/map.js:593
+#: src/mapbox/poi_subclass.js:201
 msgid "zoo"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1285
+#: public/build/javascript/bundle.js:1262
 msgid "string"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1301
-#: public/build/javascript/bundle.js:1302
+#: public/build/javascript/bundle.js:1278
+#: public/build/javascript/bundle.js:1279
 #, python-format
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/build/javascript/bundle.js:1518
+#: public/build/javascript/bundle.js:1495
 msgid "Favorite places"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1518
+#: public/build/javascript/bundle.js:1495
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1518
+#: public/build/javascript/bundle.js:1495
 #, python-format
 msgid "%d favorite place"
 msgid_plural "%d favorite places"
 msgstr[0] ""
 msgstr[1] ""
 
-#: public/build/javascript/bundle.js:2186
+#: public/build/javascript/bundle.js:1580
 msgid "filter"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2230
+#: public/build/javascript/bundle.js:1624
 msgid "Register masq"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2230
+#: public/build/javascript/bundle.js:1624
 msgid "We use MASQ to keep your preference data safe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2230
+#: public/build/javascript/bundle.js:1624
 msgid "Register"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2466
+#: public/build/javascript/bundle.js:1842
 msgid "Accessibility"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2487
-#: public/build/javascript/bundle.js:2501
+#: public/build/javascript/bundle.js:1871
 #: src/panel/poi_bloc/brewery_panel.js:10
 msgid "Beers"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2621
+#: public/build/javascript/bundle.js:1910 public/build/javascript/map.js:612
 #, python-brace-format
 msgid "until {nextTransitionTime}"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2621
-msgid "Closed"
-msgstr ""
-
-#: public/build/javascript/bundle.js:2948
-#: public/build/javascript/bundle.js:2962
+#: public/build/javascript/bundle.js:2109
 #: src/panel/poi_bloc/internet_access_panel.js:11
 msgid "Internet access"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2948
-#: public/build/javascript/bundle.js:2962
+#: public/build/javascript/bundle.js:2109
 #: src/panel/poi_bloc/internet_access_panel.js:11
 msgid "WiFi"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3035
+#: public/build/javascript/bundle.js:2176
 msgid "Services & information"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3096
+#: public/build/javascript/bundle.js:2237
 msgid "Via Wikipédia"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3096
+#: public/build/javascript/bundle.js:2237
 msgid "Via WikiData"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3291
+#: public/build/javascript/bundle.js:2432
 msgid "RESULTS"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3291
+#: public/build/javascript/bundle.js:2432
 msgid "FAVORITES"
 msgstr ""
 
@@ -920,6 +1113,14 @@ msgstr ""
 
 #: views/index.ejs:28
 msgid "Where do you want to go ?"
+msgstr ""
+
+#: views/index.ejs:36
+msgid "Qwant Maps use OpenStreetMap"
+msgstr ""
+
+#: views/index.ejs:39
+msgid "ABOUT THE PROJECT"
 msgstr ""
 
 #~ msgid "popup title"
