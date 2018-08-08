@@ -2,26 +2,24 @@ const strftime = require('strftime')
 const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
 
 
-function HourlyEvent(rawOpening, messages) {
-  this.hours = parse(rawOpening.raw)
-  this.displayHours = translateHours(this.hours )
-  this.nextTransition = nextTransitionTime(rawOpening.seconds_before_next_transition, rawOpening.next_transition_datetime)
-  this.status = openingStatus(this.hours, messages)
+function OsmSchedule(scheduleResponse, messages) {
+  this.schedule = parse(scheduleResponse.raw)
+  this.displayHours = translateSchedule(this.schedule)
+  this.nextTransition = nextTransitionTime(scheduleResponse.seconds_before_next_transition, scheduleResponse.next_transition_datetime)
+  this.status = scheduleStatus(this.schedule, messages)
 }
-
-
 
 /* private */
 
-function parse(rawOpening) {
+function parse(rawSchedule) {
   var result = null;
-  if (rawOpening === '' || rawOpening === null) {
+  if (rawSchedule === '' || rawSchedule === null) {
     result = null;
   }
-  else if (rawOpening === '24/7') {
+  else if (rawSchedule === '24/7') {
     result = {isTwentyForSeven: true};
   }
-  else if (rawOpening === 'seasonal') {
+  else if (rawSchedule === 'seasonal') {
     result = {'seasonal': true};
   }
   else {
@@ -33,7 +31,7 @@ function parse(rawOpening) {
 
     var dayregex = /^(mo|tu|we|th|fr|sa|su)\-?(mo|tu|we|th|fr|sa|su)?$/,
       timeregex = /^\s*(\d\d:\d\d)\-(\d\d:\d\d)\s*$/,
-      dayranges = rawOpening.toLowerCase().split(/\s*;\s*/),
+      dayranges = rawSchedule.toLowerCase().split(/\s*;\s*/),
       dayrange;
     while((dayrange = dayranges.shift())) {
       var daytimes = dayrange.trim().split(/\s+/),
@@ -88,11 +86,11 @@ function parse(rawOpening) {
 }
 
 
-function openingStatus(hours, timeMessages) {
-  if(!hours) {
+function scheduleStatus(schedule, timeMessages) {
+  if(!schedule) {
     return {msg : '', color : '#fff'}
   }
-  let remaining = hours.seconds_before_next_transition
+  let remaining = schedule.seconds_before_next_transition
   if(remaining === -1) {
     return {msg : timeMessages.closed.msg, color : timeMessages.closed.color}
   }
@@ -113,15 +111,14 @@ function nextTransitionTime(seconds, nextTransitionDate) {
   return false
 }
 
-function translateHours(hours) {
-  if(hours) {
-    return Object.keys(hours).map((hourKey) => {
-      return {dayName : getDay(hourKey), opening : hours[hourKey]}
+function translateSchedule(schedule) {
+  if(schedule) {
+    return Object.keys(schedule).map((scheduleKey) => {
+      return {dayName : getDay(scheduleKey), opening : schedule[scheduleKey]}
     })
   } else {
     return []
   }
 }
 
-
-export default HourlyEvent
+export default OsmSchedule

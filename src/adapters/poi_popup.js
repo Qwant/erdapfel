@@ -1,8 +1,7 @@
 import {Popup} from 'mapbox-gl--ENV'
-import {openingStatus} from '../../src/adapters/opening_hour'
+import OsmSchedule from '../../src/adapters/osm_schedule'
 import Poi from '../mapbox/poi'
 import IconManager from "./icon_manager";
-import {nextTransitionTime} from "./opening_hour";
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
 const poiConfigs = require('../../config/constants.yml').pois
@@ -52,13 +51,10 @@ PoiPopup.prototype.create = async function (layerPoi) {
     let nextTransition
     let address
     if(hours) {
-      opening = openingStatus(hours.raw, timeMessages.options.messages)
-      nextTransition = nextTransitionTime(hours.seconds_before_next_transition, hours.next_transition_datetime,)
+      opening = new OsmSchedule(hours, timeMessages.options.messages)
     } else if(poi.address){
       address = poi.address.label
     }
-
-
     this.popupHandle = new Popup({className: 'poi_popup__container', closeButton : false, closeOnClick : true, offset : {'bottom-left' : [18, -8]}, anchor : 'bottom-left'})
       .setLngLat(poi.getLngLat())
       .setHTML(popupTemplate.call({poi, color, opening, address, category, nextTransition}))
