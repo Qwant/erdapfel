@@ -74,6 +74,7 @@ pois:
       labels:
         yes: _('Wheelchair accessible')
         partial: _('Limited wheelchair accessibility')
+        no: _('No wheelchair accessibility')
     -
       key: toilets_wheelchair
       labels:

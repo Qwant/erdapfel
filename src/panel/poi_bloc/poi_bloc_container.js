@@ -49,7 +49,7 @@ PoiBlocContainer.toString = function (blocks) {
     } else {
        return ''
     }
-  }).join(' ')
+  }).join(' - ')
 }
 
 /* private */
