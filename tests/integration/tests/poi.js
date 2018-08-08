@@ -116,12 +116,17 @@ test('open poi from autocomplete selection', async () => {
 })
 
 test('poi popup', async () => {
+  expect.assertions(1)
   await page.goto(APP_URL)
   await page.evaluate(() => {
     window.MAP_MOCK.evented.prepare('mouseenter', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
   })
   await page.hover('#mock_poi')
-  await wait(3000)
+  await wait(1000)
+  let popups = await page.evaluate(() => {
+    return window.MAP_MOCK.popups
+  })
+  expect(popups).toHaveLength(1)
 })
 
 test('center the map to the poi on a poi click', async () => {
