@@ -20,9 +20,6 @@ beforeAll(async () => {
       interceptedRequest.continue()
     }
   })
-  page.on('console', msg => {
-    console.log(`> ${msg.text()}`)
-  })
 })
 
 test('clear button',async () => {

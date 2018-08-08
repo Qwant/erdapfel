@@ -61,6 +61,7 @@ $BLOCK_INDENT: 60px;
 .poi_panel__description_container {
   margin-top: 20px;
   position: relative;
+  cursor: pointer;
 }
 
 .poi_panel__description_container:after {
@@ -106,7 +107,7 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__address {
   padding: 8px 0 0 $BLOCK_INDENT;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .poi_panel__info__section__description  {
@@ -115,7 +116,7 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__info__link {
   margin-left: $BLOCK_INDENT;
-  font-size: 14px;
+  font-size: 15px;
   color: #0c897b;
 }
 
@@ -125,7 +126,7 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__accessibilities {
-  font-size: 13px;
+  font-size: 15px;
   margin-left: $BLOCK_INDENT;
 }
 
@@ -138,7 +139,8 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__info__hours__table {
   width: 330px;
-  font-size: 13px;
+  margin-top: 8px;
+  font-size: 15px;
 }
 
 .poi_panel__info__hours .hours {
@@ -151,7 +153,7 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__hours--open {
-  max-height: 170px;
+  max-height: 190px;
 }
 
 .poi_panel__info__hours__status {
@@ -160,7 +162,11 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__hours .day {
-  padding: 3px 5px 3px 0;
+  padding: 4px 5px 4px 0;
+}
+
+.poi_panel__info__hours .day:first-letter {
+  text-transform: uppercase;
 }
 
 .poi_panel__info__hours--current {
@@ -183,7 +189,7 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__description__ellipsis {
   margin-top: 20px;
-  line-height: 18px;
+  line-height: 22px;
   font-size: 15px;
   width: 300px;
 }
@@ -257,7 +263,7 @@ $BLOCK_INDENT: 60px;
   width: 350px;
   transition: max-height .2s;
   position: relative;
-  max-height: 0px;
+  max-height: 0;
   overflow: hidden;
 }
 
@@ -270,20 +276,30 @@ $BLOCK_INDENT: 60px;
   right: 34px;
   top: -16px;
   cursor: pointer;
+  transition: transform .2s;
 }
 
+.poi_panel__block__collapse--reversed {
+  transform: rotate(180deg);
+}
+
+
 .poi_panel__sub__sub_block__title {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: normal;
   margin: 10px 0 4px $BLOCK_INDENT;
   color: #707070
 }
 
 .poi_panel__sub_block__title {
-  font-weight: bold;
-  font-size: 14px;
+  width: 285px;
   margin: 20px 0 0 $BLOCK_INDENT;
-  color: #707070
+  overflow: hidden;
+  font-size: 14px;
+  color: #707070;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .poi_panel__info__wiki {
@@ -294,7 +310,7 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__info__wiki__link {
   line-height: 18px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* symbols */

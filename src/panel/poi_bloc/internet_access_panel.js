@@ -6,4 +6,11 @@ function InternetAccess(block) {
   this.ia = block
 }
 
+InternetAccess.prototype.toString = function () {
+  if(this.ia['wifi']) {
+    return `${_('Internet access', 'poi')} : ${_('WiFi', 'poi')}`
+  }
+  return ''
+}
+
 export default InternetAccess

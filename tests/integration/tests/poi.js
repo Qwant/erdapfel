@@ -1,6 +1,7 @@
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
+const poiMock = require('../../__data__/poi')
 import {initBrowser, getText, wait} from '../tools'
 
 let browser
@@ -18,7 +19,7 @@ beforeAll(async () => {
       interceptedRequest.respond({body : JSON.stringify(autocompleteMock), headers  : interceptedRequest.headers})
     } else if(interceptedRequest.url().match(/poi/)) {
       interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      const poiMock = require('../../__data__/poi')
+
       interceptedRequest.respond({body : JSON.stringify(poiMock), headers  : interceptedRequest.headers})
     } else {
       interceptedRequest.continue()
@@ -112,6 +113,35 @@ test('open poi from autocomplete selection', async () => {
 
   // poi panel is visible
   expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy()
+})
+
+test('center the map to the poi on a poi click', async () => {
+  await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+  await page.waitForSelector('.poi_panel__title')
+  expect.assertions(3)
+  await page.evaluate(() => {
+    MAP_MOCK.flyTo({center : {lat : 0, lng : 0}, zoom : 10})
+  })
+
+  await page.click('.poi_panel__description_container')
+  let center = await page.evaluate(() => {
+    return MAP_MOCK.getCenter()
+  })
+  expect(center).toEqual({lng  : poiMock.geometry.coordinates[0], lat : poiMock.geometry.coordinates[1]})
+
+
+  let infoTitle = await page.evaluate(() => {
+    return document.querySelector('.poi_panel__sub_block__title').innerText
+  })
+
+  expect(infoTitle).toEqual('Accessible en fauteuil roulant Pas de toilettes accessibles en fauteuil roulant')
+  await page.click('.poi_panel__block__collapse')
+
+  await wait(300)
+  infoTitle = await page.evaluate(() => {
+    return document.querySelector('.poi_panel__sub_block__title').innerText
+  })
+  expect(infoTitle).toEqual('Services & informations')
 })
 
 afterAll(() => {

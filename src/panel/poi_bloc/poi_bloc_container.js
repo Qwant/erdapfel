@@ -33,12 +33,32 @@ PoiBlocContainer.setBock = function(block) {
 }
 
 PoiBlocContainer.renderBlock = function (block) {
-  let blockComponent = PoiBlocContainer.blockComponents[block.type]
+  let blockComponent = getBlockComonent(block)
   if(blockComponent) {
-    return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options).render()
+    return blockComponent.render()
   } else {
     console.log(`info : component missing (${block.type})`)
   }
+}
+
+PoiBlocContainer.toString = function (blocks) {
+  return blocks.map((block) => {
+    let blockComponent = getBlockComonent(block)
+    if(blockComponent) {
+      return blockComponent.toString()
+    } else {
+       return ''
+    }
+  }).join(' - ')
+}
+
+/* private */
+function getBlockComonent(block) {
+  let blockComponent = PoiBlocContainer.blockComponents[block.type]
+  if(blockComponent) {
+    return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options)
+  }
+  return null
 }
 
 export default PoiBlocContainer

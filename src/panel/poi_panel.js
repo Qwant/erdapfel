@@ -63,7 +63,7 @@ PoiPanel.prototype.close = async function() {
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
-  this.poi = await Poi.apiLoad(id)
+  this.poi = await Poi.poiApiLoad(id)
   fire('map_mark_poi', this.poi)
   this.poi.stored = await isPoiFavorite(this.poi)
   this.active = true
@@ -83,6 +83,17 @@ PoiPanel.prototype.setPoi = async function (poi) {
   this.active = true
   UrlState.pushUrl()
   await this.panel.update()
+}
+
+PoiPanel.prototype.copy = function () {
+  let copyUrl = document.getElementById('share-url')
+  copyUrl.select()
+  document.execCommand('copy')
+  copyUrl.blur()
+}
+
+PoiPanel.prototype.center = function() {
+  fire('fit_map', this.poi, {sidePanelOffset : true})
 }
 
 /* urlState interface implementation */
