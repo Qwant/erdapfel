@@ -72,7 +72,7 @@ Scene.prototype.initMapBox = function () {
   })
 
   listen('map_reset', () => {
-    this.mb.jumpTo({center : [constants.map.center.lng, constants.map.center.lat], zoom : constants.map.zoom})
+    this.mb.jumpTo({center : [map.center.lng, map.center.lat], zoom : map.zoom})
   })
 
   listen('map_mark_poi', (poi) => {
