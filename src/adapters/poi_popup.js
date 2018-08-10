@@ -35,7 +35,7 @@ PoiPopup.prototype.addListener = function(layer) {
 }
 
 PoiPopup.prototype.create = async function (layerPoi) {
-  let poi = await Poi.apiLoad(layerPoi.properties.global_id)
+  let poi = await Poi.poiApiLoad(layerPoi.properties.global_id)
   if(poi) {
     let {color} = IconManager.get(poi)
     let category = poiSubClass(poi.subClassName)
