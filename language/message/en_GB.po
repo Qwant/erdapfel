@@ -1116,7 +1116,7 @@ msgid "Where do you want to go ?"
 msgstr ""
 
 #: views/index.ejs:36
-msgid "Qwant Maps use OpenStreetMap"
+msgid "Qwant Maps uses OpenStreetMap"
 msgstr ""
 
 #: views/index.ejs:39
