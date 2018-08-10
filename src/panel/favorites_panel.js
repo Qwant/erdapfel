@@ -26,6 +26,10 @@ function Favorite() {
   PanelManager.register(this)
 }
 
+Favorite.prototype.isActive = function () {
+  return this.active
+}
+
 Favorite.prototype.toggle = function() {
   if(this.active) {
     this.close()

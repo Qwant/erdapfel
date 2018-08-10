@@ -15,6 +15,12 @@ PanelManager.setPoi = function(poi, options) {
   })
 }
 
+PanelManager.getActive = function() {
+  __panel_manager.panels.filter((panel) => {
+    return panel.isActive()
+  })
+}
+
 PanelManager.restorePoi = function() {
   __panel_manager.panels.forEach((panel) => {
     if(panel.isPoiComplient) {

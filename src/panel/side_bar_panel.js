@@ -4,7 +4,8 @@ import PanelManager from "../proxies/panel_manager"
 
 function SideBarPanel() {
   this.panel = new Panel(this, SideBarPanelView)
-  this.current = -1
+  this.isFaforiteActive = false
+  this.isResultActive = false
   listen('close_favorite_panel', () => {
     this.panel.removeClassName(.2, '.side_bar__fav', 'side_bar__item--active')
   })
