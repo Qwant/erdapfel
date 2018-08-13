@@ -8,6 +8,7 @@ const poiSubClass = require('../mapbox/poi_subclass')
 
 function Favorite() {
   this.active = false
+  this.displayed = false
   this.favoritePois = []
   this.poiSubClass = poiSubClass
   this.filterPanel = new FilterPanel()
@@ -26,8 +27,8 @@ function Favorite() {
   PanelManager.register(this)
 }
 
-Favorite.prototype.isActive = function () {
-  return this.active
+Favorite.prototype.isDisplayed = function () {
+  return this.displayed
 }
 
 Favorite.prototype.toggle = function() {
@@ -75,17 +76,20 @@ Favorite.prototype.getAll = async function () {
 }
 
 Favorite.prototype.open = async function() {
+  this.displayed = true
+  PanelManager.notify()
   await this.getAll()
   await this.panel.update()
   await this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
-
 }
 
 Favorite.prototype.close = function() {
-  this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   this.active = false
+  this.displayed = false
+  this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   fire('close_favorite_panel')
+  PanelManager.notify()
 }
 
 Favorite.prototype.go = async function(storePoi) {

@@ -2,7 +2,7 @@ import Poi from "../mapbox/poi";
 
 function PanelManager() {}
 PanelManager.init = function () {
-  window.__panel_manager = {panels : []}
+  window.__panel_manager = {panels : [], listeners : []}
 }
 
 PanelManager.setPoi = function(poi, options) {
@@ -10,22 +10,32 @@ PanelManager.setPoi = function(poi, options) {
     if(panel.isPoiComplient) {
       panel.setPoi(poi, options)
     } else {
-      panel.close()
+      if(panel.isDisplayed()) {
+        panel.close()
+      }
     }
   })
 }
 
-PanelManager.getActive = function() {
-  __panel_manager.panels.filter((panel) => {
-    return panel.isActive()
+PanelManager.registerListener = function (listener) {
+  window.__panel_manager.listeners.push(listener)
+}
+
+PanelManager.notify = function () {
+  window.__panel_manager.listeners.forEach((listener) => {
+    listener.notify()
   })
+}
+
+PanelManager.getPanels = function() {
+  return __panel_manager.panels
 }
 
 PanelManager.restorePoi = function() {
   __panel_manager.panels.forEach((panel) => {
     if(panel.isPoiComplient) {
       panel.toggle()
-    } else {
+    } else if(panel.isDisplayed()){
       panel.close()
     }
   })
@@ -49,7 +59,7 @@ PanelManager.toggleFavorite = function () {
   __panel_manager.panels.find((panel) => {
     if(panel.isFavoritePanel) {
       panel.toggle()
-    } else {
+    } else if(panel.active) {
       panel.close()
     }
   })

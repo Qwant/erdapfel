@@ -15,6 +15,7 @@ function PoiPanel() {
   this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
   this.active = false
+  this.displayed = false
   this.poiSubClass = poiSubClass
   this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
@@ -47,7 +48,7 @@ PoiPanel.prototype.toggle = async function() {
   }
 }
 
-PoiPanel.prototype.isActive = async function() {
+PoiPanel.prototype.isDisplayed = function() {
   return this.active
 }
 
@@ -57,6 +58,7 @@ PoiPanel.prototype.open = async function() {
   this.active = true
   this.panel.update()
   UrlState.pushUrl()
+  PanelManager.notify()
 }
 
 PoiPanel.prototype.close = async function() {
@@ -64,6 +66,7 @@ PoiPanel.prototype.close = async function() {
   this.active = false
   this.panel.update()
   UrlState.pushUrl()
+  PanelManager.notify()
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
@@ -73,6 +76,7 @@ PoiPanel.prototype.restorePoi = async function (id) {
   this.active = true
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   await this.panel.update()
+  PanelManager.notify()
 }
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {
@@ -88,6 +92,7 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.active = true
   UrlState.pushUrl()
   await this.panel.update()
+  PanelManager.notify()
 }
 
 PoiPanel.prototype.copy = function () {
