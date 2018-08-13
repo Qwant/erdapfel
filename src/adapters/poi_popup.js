@@ -47,7 +47,6 @@ PoiPopup.prototype.create = async function (layerPoi) {
       return poiConfig.apiName === 'opening_hours'
     })
     let opening
-    let nextTransition
     let address
     if(hours) {
       opening = new OsmSchedule(hours, timeMessages.options.messages)
@@ -56,7 +55,7 @@ PoiPopup.prototype.create = async function (layerPoi) {
     }
     this.popupHandle = new Popup({className: 'poi_popup__container', closeButton : false, closeOnClick : true, offset : {'bottom-left' : [18, -8]}, anchor : 'bottom-left'})
       .setLngLat(poi.getLngLat())
-      .setHTML(popupTemplate.call({poi, color, opening, address, category, nextTransition}))
+      .setHTML(popupTemplate.call({poi, color, opening, address, category}))
       .addTo(this.map)
   }
 }
