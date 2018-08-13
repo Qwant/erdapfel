@@ -37,6 +37,10 @@ PoiPopup.prototype.addListener = function(layer) {
 PoiPopup.prototype.create = async function (layerPoi) {
   let poi = await Poi.poiApiLoad(layerPoi.properties.global_id)
   if(poi) {
+    if(this.popupHandle) {
+      this.popupHandle.remove()
+      this.popupHandle = null
+    }
     let {color} = IconManager.get(poi)
     let category = poiSubClass(poi.subClassName)
     let hours = poi.blocks.find(block =>
