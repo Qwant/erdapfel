@@ -1,4 +1,4 @@
-{{? this.opening.schedule }}
+{{? this.opening.days }}
   <div class="poi_panel__info__section poi_panel__info__section--hours">
     <p class="poi_panel__info__section__description">
       <div class="icon-icon_clock poi_panel__block__symbol"></div>
@@ -18,7 +18,15 @@
               {{~ this.opening.displayHours:day:i }}
                 <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
                   <td class="day">{{= day.dayName }}</td>
-                  <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : _('Closed')}}<td>
+                  <td class="hours">
+                    {{? day.opening && day.opening.length > 0}}
+                      {{~ day.opening:openingFragment }}
+                        <p>{{= `${openingFragment.beginning} - ${openingFragment.end}` }}</p>
+                      {{~}}
+                    {{??}}
+                      {{= _('Closed')}}
+                    {{?}}
+                  <td>
                 </tr>
               {{~}}
             </table>
