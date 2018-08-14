@@ -19,6 +19,7 @@
                 <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
                   <td class="day">{{= day.dayName }}</td>
                   <td class="hours">
+                    {{ console.log(day) ; }}
                     {{? day.opening && day.opening.length > 0}}
                       {{~ day.opening:openingFragment }}
                         <p>{{= `${openingFragment.beginning} - ${openingFragment.end}` }}</p>
