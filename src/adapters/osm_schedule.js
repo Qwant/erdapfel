@@ -14,17 +14,13 @@ function scheduleStatus(scheduleResponse, timeMessages) {
   if(!scheduleResponse) {
     return {msg : '', color : '#fff'}
   }
-  let remaining = scheduleResponse.seconds_before_next_transition
-  if(remaining === -1) {
+  if(scheduleResponse.status === 'closed') {
     return {msg : timeMessages.closed.msg, color : timeMessages.closed.color}
+  } else if(scheduleResponse.status === 'open') {
+    return {msg : timeMessages.open.msg, color : timeMessages.open.color}
   }
-  for(let tmKey in timeMessages) {
-    let tm = timeMessages[tmKey]
-    if(tm.time && tm.time > remaining) {
-      return {msg : tm.msg, color : timeMessages.open.color}
-    }
-  }
-  return {msg : timeMessages.open.msg, color : timeMessages.open.color}
+
+  return {msg : '', color : '#fff'}
 }
 
 function nextTransitionTime(seconds, nextTransitionDate) {
@@ -38,7 +34,7 @@ function nextTransitionTime(seconds, nextTransitionDate) {
 function translateSchedule(days) {
   if(days) {
     return days.map((day) => {
-      return {dayName : getDay(day.dayofweek), opening : day.opening_hours}
+      return {dayName : getDay(day.dayofweek % 7), opening : day.opening_hours}
     })
   } else {
     return []
