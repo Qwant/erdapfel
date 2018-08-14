@@ -13,30 +13,10 @@
     display: none;
 }
 
-.mapboxgl-canvas-container.mapboxgl-interactive,
-.mapboxgl-ctrl-nav-compass {
-    cursor: -webkit-grab;
-    cursor: -moz-grab;
-    cursor: grab;
-}
-.mapboxgl-canvas-container.mapboxgl-interactive:active,
-.mapboxgl-ctrl-nav-compass:active {
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: grabbing;
+.mapboxgl-canary {
+    background-color: salmon;
 }
 
-.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate {
-    -ms-touch-action: pan-x pan-y;
-    touch-action: pan-x pan-y;
-}
-.mapboxgl-canvas-container.mapboxgl-touch-drag-pan {
-    -ms-touch-action: pinch-zoom;
-}
-.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan {
-    -ms-touch-action: none;
-    touch-action: none;
-}
 .mapboxgl-ctrl-top-left,
 .mapboxgl-ctrl-top-right,
 .mapboxgl-ctrl-bottom-left,
