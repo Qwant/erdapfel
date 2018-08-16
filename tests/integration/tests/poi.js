@@ -88,7 +88,7 @@ test('update url after a favorite poi click', async () => {
   await page.click('.side_bar__fav')
   await wait(300)
   await page.evaluate(() => { document.querySelector('.favorite_panel__item__actions').style.display = 'block' })
-  await page.click('.favorite_panel__go')
+  await page.click('.favorite_panel__swipe_element')
   await wait(400)
   let location = await page.evaluate(() => {
     return document.location.href

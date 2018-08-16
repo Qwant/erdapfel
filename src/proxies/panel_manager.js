@@ -2,24 +2,50 @@ import Poi from "../mapbox/poi";
 
 function PanelManager() {}
 PanelManager.init = function () {
-  window.__panel_manager = {panels : []}
+  window.__panel_manager = {panels : [], listeners : []}
 }
 
-PanelManager.setPoi = function(poi) {
+PanelManager.setPoi = function(poi, options) {
   __panel_manager.panels.forEach((panel) => {
     if(panel.isPoiComplient) {
-      panel.setPoi(poi)
+      panel.setPoi(poi, options)
     } else {
+      if(panel.isDisplayed()) {
+        panel.close()
+      }
+    }
+  })
+}
+
+PanelManager.registerListener = function (listener) {
+  window.__panel_manager.listeners.push(listener)
+}
+
+PanelManager.notify = function () {
+  window.__panel_manager.listeners.forEach((listener) => {
+    listener.notify()
+  })
+}
+
+PanelManager.getPanels = function() {
+  return __panel_manager.panels
+}
+
+PanelManager.restorePoi = function() {
+  __panel_manager.panels.forEach((panel) => {
+    if(panel.isPoiComplient) {
+      panel.toggle()
+    } else if(panel.isDisplayed()){
       panel.close()
     }
   })
 }
 
-PanelManager.loadPoiById = async function (id) {
+PanelManager.loadPoiById = async function(id, options) {
   if(id) {
     let poi = await Poi.poiApiLoad(id)
     if(poi) {
-      PanelManager.setPoi(poi)
+      PanelManager.setPoi(poi, options)
     } else {
       PanelManager.closeAll()
     }
@@ -33,7 +59,7 @@ PanelManager.toggleFavorite = function () {
   __panel_manager.panels.find((panel) => {
     if(panel.isFavoritePanel) {
       panel.toggle()
-    } else {
+    } else if(panel.active) {
       panel.close()
     }
   })

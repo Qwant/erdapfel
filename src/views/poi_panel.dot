@@ -1,6 +1,9 @@
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden' }}">
   <div class="poi_panel__content">
   {{? this.poi }}
+    {{? this.fromFavorite }}
+      <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}</div>
+    {{?}}
     <div class="poi_panel__description_container" {{= click(this.center, this) }}>
       {{ let ico = IconManager.get(this.poi); }}
       {{? ico }}
@@ -34,18 +37,12 @@
   {{?}}
   <br>
   </div>
-  {{? this.poi }}
-    <div class="poi_panel__toggle_display" {{= click(this.toggle, this) }}>
-      <div class="poi_panel__toggle_display--mobile">
-        <i class="icon-x"></i>
-      </div>
-      <div class="poi_panel__toggle_display--desktop">
-        {{? this.active }}
-          <i class="icon-chevron-left"></i>
-        {{??}}
-          <i class="icon-chevron-right"></i>
-        {{?}}
-      </div>
+  <div class="poi_panel__toggle_display" {{= click(this.toggle, this) }}>
+    <div class="poi_panel__toggle_display--mobile">
+      <i class="icon-x"></i>
     </div>
-  {{?}}
+    <div class="poi_panel__toggle_display--desktop">
+      <i class="icon-chevron-left"></i>
+    </div>
+  </div>
 </div>
