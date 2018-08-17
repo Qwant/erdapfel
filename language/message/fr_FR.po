@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-17 10:37+0200\n"
+"POT-Creation-Date: 2018-08-17 10:40+0200\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -86,11 +86,11 @@ msgid "Toilets not accessible in wheelchair"
 msgstr "Pas de toilettes accessibles en fauteuil roulant"
 
 #: public/build/javascript/bundle.js:1120
-msgid "accessories"
-msgstr ""
+msgid "accessories shop"
+msgstr "magasin d'accessoires"
 
 #: public/build/javascript/bundle.js:1121
-msgid "alcohol"
+msgid "alcohol shop"
 msgstr "magasin d'alcool"
 
 #: public/build/javascript/bundle.js:1122
@@ -98,7 +98,7 @@ msgid "alpine hut"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1123
-msgid "antiques"
+msgid "antiques shop"
 msgstr "antiquaire"
 
 #: public/build/javascript/bundle.js:1124
@@ -106,7 +106,7 @@ msgid "archery"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1125
-msgid "art"
+msgid "art shop"
 msgstr "magasin d'art"
 
 #: public/build/javascript/bundle.js:1126
@@ -122,7 +122,7 @@ msgid "attraction"
 msgstr "attraction"
 
 #: public/build/javascript/bundle.js:1129
-msgid "bag"
+msgid "bag shop"
 msgstr "magasin de sac et bagage"
 
 #: public/build/javascript/bundle.js:1130
@@ -150,11 +150,11 @@ msgid "bbq"
 msgstr "barbecue"
 
 #: public/build/javascript/bundle.js:1136
-msgid "beauty"
+msgid "beauty salon"
 msgstr "salon de beauté"
 
 #: public/build/javascript/bundle.js:1137
-msgid "bed"
+msgid "bed shop"
 msgstr "magasin de literie"
 
 #: public/build/javascript/bundle.js:1138
@@ -162,11 +162,11 @@ msgid "bed and breakfast"
 msgstr "chambre d'hôte"
 
 #: public/build/javascript/bundle.js:1139
-msgid "beverages"
+msgid "beverages shop"
 msgstr "magasin de boissons"
 
 #: public/build/javascript/bundle.js:1140
-msgid "bicycle"
+msgid "bicycle shop"
 msgstr "magasin de vélo"
 
 #: public/build/javascript/bundle.js:1141
@@ -182,7 +182,7 @@ msgid "bmx"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1144
-msgid "books"
+msgid "books shop"
 msgstr "librairie"
 
 #: public/build/javascript/bundle.js:1145
@@ -226,7 +226,7 @@ msgid "canoe"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1155
-msgid "car"
+msgid "car shop"
 msgstr "concessionnaire"
 
 #: public/build/javascript/bundle.js:1156
@@ -238,7 +238,7 @@ msgid "caravan site"
 msgstr "camping pour caravanes"
 
 #: public/build/javascript/bundle.js:1158
-msgid "carpet"
+msgid "carpet shop"
 msgstr "magasin de tapis"
 
 #: public/build/javascript/bundle.js:1159
@@ -254,7 +254,7 @@ msgid "chalet"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1162
-msgid "charity"
+msgid "charity store"
 msgstr "magasin caritatif"
 
 #: public/build/javascript/bundle.js:1163
@@ -266,7 +266,7 @@ msgid "chess"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1165
-msgid "chocolate"
+msgid "chocolate shop"
 msgstr "chocolaterie"
 
 #: public/build/javascript/bundle.js:1166
@@ -286,11 +286,11 @@ msgid "clinic"
 msgstr "clinique"
 
 #: public/build/javascript/bundle.js:1170
-msgid "clothes"
+msgid "clothes shop"
 msgstr "magasin de vêtements"
 
 #: public/build/javascript/bundle.js:1171
-msgid "coffee"
+msgid "coffee shop"
 msgstr "magasin de café"
 
 #: public/build/javascript/bundle.js:1172
@@ -302,15 +302,15 @@ msgid "community centre"
 msgstr "centre social"
 
 #: public/build/javascript/bundle.js:1174
-msgid "computer"
+msgid "computer shop"
 msgstr "magasin d'informatique"
 
 #: public/build/javascript/bundle.js:1175
-msgid "confectionery"
+msgid "confectionery shop"
 msgstr "confiserie"
 
 #: public/build/javascript/bundle.js:1176
-msgid "convenience"
+msgid "convenience store"
 msgstr "supérette"
 
 #: public/build/javascript/bundle.js:1177
@@ -318,7 +318,7 @@ msgid "copyshop"
 msgstr "service de photocopies"
 
 #: public/build/javascript/bundle.js:1178
-msgid "cosmetics"
+msgid "cosmetics shop"
 msgstr "magasin de cosmétique"
 
 #: public/build/javascript/bundle.js:1179
@@ -350,7 +350,7 @@ msgid "dock"
 msgstr "dock"
 
 #: public/build/javascript/bundle.js:1186
-msgid "doctors"
+msgid "doctors office"
 msgstr "cabinet médical"
 
 #: public/build/javascript/bundle.js:1187
@@ -362,7 +362,7 @@ msgid "dog racing"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1189
-msgid "doityourself"
+msgid "doityourself store"
 msgstr "magasin de bricolage"
 
 #: public/build/javascript/bundle.js:1190
@@ -370,7 +370,7 @@ msgid "dry cleaning"
 msgstr "pressing"
 
 #: public/build/javascript/bundle.js:1191
-msgid "electronics"
+msgid "electronics shop"
 msgstr "magasin de matériel électronique"
 
 #: public/build/javascript/bundle.js:1192
@@ -382,7 +382,7 @@ msgid "equestrian"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1194
-msgid "erotic"
+msgid "erotic shop"
 msgstr "sex shop"
 
 #: public/build/javascript/bundle.js:1195
@@ -410,11 +410,11 @@ msgid "free flying"
 msgstr "parapente"
 
 #: public/build/javascript/bundle.js:1201
-msgid "fuel"
+msgid "fuel station"
 msgstr "station essence"
 
 #: public/build/javascript/bundle.js:1202
-msgid "furniture"
+msgid "furniture shop"
 msgstr "magasin de meubles"
 
 #: public/build/javascript/bundle.js:1203
@@ -430,11 +430,11 @@ msgid "garden centre"
 msgstr "jardinerie"
 
 #: public/build/javascript/bundle.js:1206
-msgid "general"
+msgid "general store"
 msgstr "magasin"
 
 #: public/build/javascript/bundle.js:1207
-msgid "gift"
+msgid "gift shop"
 msgstr "magasin de souvenirs"
 
 #: public/build/javascript/bundle.js:1208
@@ -470,15 +470,15 @@ msgid "halt"
 msgstr "gare"
 
 #: public/build/javascript/bundle.js:1216
-msgid "hardware"
+msgid "hardware shop"
 msgstr "magasin de matériel informatique"
 
 #: public/build/javascript/bundle.js:1217
-msgid "hearing aids"
+msgid "hearing aids shop"
 msgstr "audiologue"
 
 #: public/build/javascript/bundle.js:1218
-msgid "hifi"
+msgid "hifi shop"
 msgstr "magasin d'électroménager"
 
 #: public/build/javascript/bundle.js:1219
@@ -506,11 +506,11 @@ msgid "ice rink"
 msgstr "patinoire"
 
 #: public/build/javascript/bundle.js:1225
-msgid "interior decoration"
+msgid "interior decoration shop"
 msgstr "magasin de décoration"
 
 #: public/build/javascript/bundle.js:1226
-msgid "jewelry"
+msgid "jewelry shop"
 msgstr "bijouterie"
 
 #: public/build/javascript/bundle.js:1227
@@ -526,7 +526,7 @@ msgid "kiosk"
 msgstr "kiosque"
 
 #: public/build/javascript/bundle.js:1230
-msgid "lamps"
+msgid "lamps shop"
 msgstr "magasin de luminaire"
 
 #: public/build/javascript/bundle.js:1231
@@ -554,15 +554,15 @@ msgid "marketplace"
 msgstr "marché"
 
 #: public/build/javascript/bundle.js:1237
-msgid "massage"
-msgstr ""
+msgid "massage shop"
+msgstr "salon de massage"
 
 #: public/build/javascript/bundle.js:1238
 msgid "miniature golf"
 msgstr "mini-golf"
 
 #: public/build/javascript/bundle.js:1239
-msgid "mobile phone"
+msgid "mobile phone shop"
 msgstr "magasin de téléphonie"
 
 #: public/build/javascript/bundle.js:1240
@@ -586,7 +586,7 @@ msgid "motor"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1245
-msgid "motorcycle"
+msgid "motorcycle shop"
 msgstr "magasin de moto"
 
 #: public/build/javascript/bundle.js:1246
@@ -598,16 +598,16 @@ msgid "museum"
 msgstr "musée"
 
 #: public/build/javascript/bundle.js:1248
-msgid "music"
+msgid "music shop"
 msgstr "magasin de musique"
 
 #: public/build/javascript/bundle.js:1249
-msgid "musical instrument"
+msgid "musical instrument shop"
 msgstr "magasin d'instrument de musique"
 
 #: public/build/javascript/bundle.js:1250
-msgid "newsagent"
-msgstr "magasin de journaux"
+msgid "newsagent shop"
+msgstr "marchand de journaux"
 
 #: public/build/javascript/bundle.js:1251
 msgid "nightclub"
@@ -642,7 +642,7 @@ msgid "perfumery"
 msgstr "parfumerie"
 
 #: public/build/javascript/bundle.js:1259
-msgid "pet"
+msgid "pet store"
 msgstr "animalerie"
 
 #: public/build/javascript/bundle.js:1260
@@ -650,7 +650,7 @@ msgid "pharmacy"
 msgstr "pharmacie"
 
 #: public/build/javascript/bundle.js:1261
-msgid "photo"
+msgid "photo shop"
 msgstr "magasin de photo"
 
 #: public/build/javascript/bundle.js:1262
@@ -718,7 +718,7 @@ msgid "scuba diving"
 msgstr "plongée sous-marine"
 
 #: public/build/javascript/bundle.js:1278
-msgid "second hand"
+msgid "resale shop"
 msgstr "vente d'occasion"
 
 #: public/build/javascript/bundle.js:1279
@@ -746,8 +746,8 @@ msgid "soccer"
 msgstr "football"
 
 #: public/build/javascript/bundle.js:1285
-msgid "sports"
-msgstr ""
+msgid "sports shop"
+msgstr "magasin de sport"
 
 #: public/build/javascript/bundle.js:1286
 msgid "sports centre"
@@ -762,7 +762,7 @@ msgid "station"
 msgstr "station"
 
 #: public/build/javascript/bundle.js:1289
-msgid "stationery"
+msgid "stationery shop"
 msgstr "papeterie"
 
 #: public/build/javascript/bundle.js:1290
@@ -794,7 +794,7 @@ msgid "tailor"
 msgstr "tailleur"
 
 #: public/build/javascript/bundle.js:1297
-msgid "tattoo"
+msgid "tattoo salon"
 msgstr "salon de tatouage"
 
 #: public/build/javascript/bundle.js:1298
@@ -810,11 +810,11 @@ msgid "theme park"
 msgstr "parc à thème"
 
 #: public/build/javascript/bundle.js:1301
-msgid "ticket"
+msgid "ticket shop"
 msgstr "billetterie"
 
 #: public/build/javascript/bundle.js:1302
-msgid "tobacco"
+msgid "tobacco shop"
 msgstr "buraliste"
 
 #: public/build/javascript/bundle.js:1303
@@ -826,8 +826,8 @@ msgid "townhall"
 msgstr "mairie"
 
 #: public/build/javascript/bundle.js:1305
-msgid "toys"
-msgstr "magasin de jouet"
+msgid "toys shop"
+msgstr "magasin de jouets"
 
 #: public/build/javascript/bundle.js:1306
 msgid "tram stop"
@@ -846,11 +846,11 @@ msgid "veterinary"
 msgstr "cabinet vétérinaire"
 
 #: public/build/javascript/bundle.js:1310
-msgid "video"
+msgid "videos shop"
 msgstr "magasin de vidéo"
 
 #: public/build/javascript/bundle.js:1311
-msgid "video games"
+msgid "video games shop"
 msgstr "magasin de jeux vidéo"
 
 #: public/build/javascript/bundle.js:1312
@@ -858,23 +858,23 @@ msgid "viewpoint"
 msgstr "belvédère"
 
 #: public/build/javascript/bundle.js:1313
-msgid "watches"
-msgstr "horlogerie"
+msgid "watches shop"
+msgstr "horloger"
 
 #: public/build/javascript/bundle.js:1314
 msgid "water park"
 msgstr "parc aquatique"
 
 #: public/build/javascript/bundle.js:1315
-msgid "weapons"
+msgid "weapons shop"
 msgstr "armurerie"
 
 #: public/build/javascript/bundle.js:1316
-msgid "wholesale"
+msgid "warehouse club"
 msgstr "grossiste"
 
 #: public/build/javascript/bundle.js:1317
-msgid "wine"
+msgid "wine shop"
 msgstr "magasin de vins"
 
 #: public/build/javascript/bundle.js:1318
@@ -962,72 +962,3 @@ msgstr "RÉSULTATS"
 #: public/build/javascript/bundle.js:3445
 msgid "FAVORITES"
 msgstr "FAVORIS"
-
-#, fuzzy
-#~| msgid "%d favorite place"
-#~| msgid_plural "%d favorite places"
-#~ msgid "%d favorite place"
-#~ msgid_plural "%d favorite places"
-#~ msgstr[0] "Lieu favori"
-#~ msgstr[1] "Mes %d lieux favoris"
-
-#~ msgid "Tactile paving"
-#~ msgstr "Dalle podotactile"
-
-#~ msgid "Limited tactile paving"
-#~ msgstr "Dallage podotactile incomplet"
-
-#~ msgid "No tactile paving"
-#~ msgstr "Dalle podotactile absentes"
-
-#~ msgid "bus stop"
-#~ msgstr "arrêt de bus"
-
-#~ msgid "Closing soon"
-#~ msgstr "Ferme bientôt"
-
-#~ msgid "Limited Tactile paving"
-#~ msgstr "Dalle podotactile partielle"
-
-#~ msgid "wheelchair"
-#~ msgstr "chaise roulante"
-
-#~ msgid "toilets_wheelchair"
-#~ msgstr "WC chaise roulante"
-
-#~ msgid "yes"
-#~ msgstr "oui"
-
-#~ msgid "limited"
-#~ msgstr "limité"
-
-#~ msgid "Phone"
-#~ msgstr "Téléphone"
-
-#~ msgid "Website"
-#~ msgstr "Site internet"
-
-#~ msgid "Wikipedia"
-#~ msgstr "Wikipédia"
-
-#~ msgid "Results"
-#~ msgstr "Résultats"
-
-#~ msgid "Favoris"
-#~ msgstr "Favoris"
-
-#~ msgid "%d favorites places"
-#~ msgid_plural "%d favorite place"
-#~ msgstr[0] "Lieu favori"
-#~ msgstr[1] "Mes %d lieux favoris"
-
-#~ msgid "Via Wikipedia"
-#~ msgstr "Avec Wikipedia"
-
-#~ msgid "popup title"
-#~ msgstr "popup title"
-
-#~ msgid "images left"
-#~ msgid_plural "image left"
-#~ msgstr[0] "images gauche"
-#~ msgstr[1] "image gauche"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-17 10:37+0200\n"
+"POT-Creation-Date: 2018-08-17 10:40+0200\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -86,11 +86,11 @@ msgid "Toilets not accessible in wheelchair"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1120
-msgid "accessories"
+msgid "accessories shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1121
-msgid "alcohol"
+msgid "alcohol shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1122
@@ -98,7 +98,7 @@ msgid "alpine hut"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1123
-msgid "antiques"
+msgid "antiques shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1124
@@ -106,7 +106,7 @@ msgid "archery"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1125
-msgid "art"
+msgid "art shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1126
@@ -122,7 +122,7 @@ msgid "attraction"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1129
-msgid "bag"
+msgid "bag shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1130
@@ -150,11 +150,11 @@ msgid "bbq"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1136
-msgid "beauty"
+msgid "beauty salon"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1137
-msgid "bed"
+msgid "bed shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1138
@@ -162,11 +162,11 @@ msgid "bed and breakfast"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1139
-msgid "beverages"
+msgid "beverages shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1140
-msgid "bicycle"
+msgid "bicycle shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1141
@@ -182,7 +182,7 @@ msgid "bmx"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1144
-msgid "books"
+msgid "books shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1145
@@ -226,7 +226,7 @@ msgid "canoe"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1155
-msgid "car"
+msgid "car shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1156
@@ -238,7 +238,7 @@ msgid "caravan site"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1158
-msgid "carpet"
+msgid "carpet shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1159
@@ -254,7 +254,7 @@ msgid "chalet"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1162
-msgid "charity"
+msgid "charity store"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1163
@@ -266,7 +266,7 @@ msgid "chess"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1165
-msgid "chocolate"
+msgid "chocolate shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1166
@@ -286,11 +286,11 @@ msgid "clinic"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1170
-msgid "clothes"
+msgid "clothes shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1171
-msgid "coffee"
+msgid "coffee shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1172
@@ -302,15 +302,15 @@ msgid "community centre"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1174
-msgid "computer"
+msgid "computer shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1175
-msgid "confectionery"
+msgid "confectionery shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1176
-msgid "convenience"
+msgid "convenience store"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1177
@@ -318,7 +318,7 @@ msgid "copyshop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1178
-msgid "cosmetics"
+msgid "cosmetics shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1179
@@ -350,7 +350,7 @@ msgid "dock"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1186
-msgid "doctors"
+msgid "doctors office"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1187
@@ -362,7 +362,7 @@ msgid "dog racing"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1189
-msgid "doityourself"
+msgid "doityourself store"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1190
@@ -370,7 +370,7 @@ msgid "dry cleaning"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1191
-msgid "electronics"
+msgid "electronics shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1192
@@ -382,7 +382,7 @@ msgid "equestrian"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1194
-msgid "erotic"
+msgid "erotic shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1195
@@ -410,11 +410,11 @@ msgid "free flying"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1201
-msgid "fuel"
+msgid "fuel station"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1202
-msgid "furniture"
+msgid "furniture shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1203
@@ -430,11 +430,11 @@ msgid "garden centre"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1206
-msgid "general"
+msgid "general store"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1207
-msgid "gift"
+msgid "gift shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1208
@@ -470,15 +470,15 @@ msgid "halt"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1216
-msgid "hardware"
+msgid "hardware shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1217
-msgid "hearing aids"
+msgid "hearing aids shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1218
-msgid "hifi"
+msgid "hifi shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1219
@@ -506,11 +506,11 @@ msgid "ice rink"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1225
-msgid "interior decoration"
+msgid "interior decoration shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1226
-msgid "jewelry"
+msgid "jewelry shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1227
@@ -526,7 +526,7 @@ msgid "kiosk"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1230
-msgid "lamps"
+msgid "lamps shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1231
@@ -554,7 +554,7 @@ msgid "marketplace"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1237
-msgid "massage"
+msgid "massage shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1238
@@ -562,7 +562,7 @@ msgid "miniature golf"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1239
-msgid "mobile phone"
+msgid "mobile phone shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1240
@@ -586,7 +586,7 @@ msgid "motor"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1245
-msgid "motorcycle"
+msgid "motorcycle shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1246
@@ -598,15 +598,15 @@ msgid "museum"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1248
-msgid "music"
+msgid "music shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1249
-msgid "musical instrument"
+msgid "musical instrument shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1250
-msgid "newsagent"
+msgid "newsagent shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1251
@@ -642,7 +642,7 @@ msgid "perfumery"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1259
-msgid "pet"
+msgid "pet store"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1260
@@ -650,7 +650,7 @@ msgid "pharmacy"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1261
-msgid "photo"
+msgid "photo shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1262
@@ -718,7 +718,7 @@ msgid "scuba diving"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1278
-msgid "second hand"
+msgid "resale shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1279
@@ -746,7 +746,7 @@ msgid "soccer"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1285
-msgid "sports"
+msgid "sports shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1286
@@ -762,7 +762,7 @@ msgid "station"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1289
-msgid "stationery"
+msgid "stationery shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1290
@@ -794,7 +794,7 @@ msgid "tailor"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1297
-msgid "tattoo"
+msgid "tattoo salon"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1298
@@ -810,11 +810,11 @@ msgid "theme park"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1301
-msgid "ticket"
+msgid "ticket shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1302
-msgid "tobacco"
+msgid "tobacco shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1303
@@ -826,7 +826,7 @@ msgid "townhall"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1305
-msgid "toys"
+msgid "toys shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1306
@@ -846,11 +846,11 @@ msgid "veterinary"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1310
-msgid "video"
+msgid "videos shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1311
-msgid "video games"
+msgid "video games shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1312
@@ -858,7 +858,7 @@ msgid "viewpoint"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1313
-msgid "watches"
+msgid "watches shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1314
@@ -866,15 +866,15 @@ msgid "water park"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1315
-msgid "weapons"
+msgid "weapons shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1316
-msgid "wholesale"
+msgid "warehouse club"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1317
-msgid "wine"
+msgid "wine shop"
 msgstr ""
 
 #: public/build/javascript/bundle.js:1318
