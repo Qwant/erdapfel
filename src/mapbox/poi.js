@@ -3,7 +3,8 @@
  */
 import Ajax from "../libs/ajax"
 import nconf from '@qwant/nconf-getter'
-import PanelManager from "../proxies/panel_manager";
+import PanelManager from "../proxies/panel_manager"
+import {version} from '../../config/constants.yml'
 const serviceConfig = nconf.get().services
 const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 18, panel: true}]
 const DEFAULT_ZOOM = 16
@@ -26,7 +27,7 @@ Poi.prototype.getLngLat = function() {
 }
 
 Poi.prototype.getKey = function () {
-  return `${this.latLon.lat}_${this.latLon.lng}`
+  return `qmaps_v${version}_favorite_place_${this.id}`
 }
 
 Poi.prototype.computeZoom = function() {
