@@ -22,7 +22,7 @@ PoiPopup.prototype.addListener = function(layer) {
   this.map.on('mouseenter', layer, (e) => {
     this.timeOutHandler = setTimeout(() => {
       let poi = e.features[0]
-      this.create(poi)
+      this.create(poi, e.originalEvent)
     }, WAIT_BEFORE_DISPLAY)
   })
 
@@ -31,7 +31,7 @@ PoiPopup.prototype.addListener = function(layer) {
   })
 }
 
-PoiPopup.prototype.create = async function (layerPoi) {
+PoiPopup.prototype.create = async function (layerPoi, event) {
   let poi = await Poi.poiApiLoad(layerPoi.properties.global_id)
   if(poi) {
     if(this.popupHandle) {
@@ -53,10 +53,45 @@ PoiPopup.prototype.create = async function (layerPoi) {
     } else if(poi.address){
       address = poi.address.label
     }
-    this.popupHandle = new Popup({className: 'poi_popup__container', closeButton : false, closeOnClick : true, offset : {'bottom-left' : [18, -8]}, anchor : 'bottom-left'})
+
+    let popupOptions = {className: 'poi_popup__container', closeButton : false, closeOnClick : true}
+
+    this.setPopupPosition(event, popupOptions)
+
+
+    this.popupHandle = new Popup(popupOptions)
       .setLngLat(poi.getLngLat())
       .setHTML(popupTemplate.call({poi, color, opening, address, category}))
       .addTo(this.map)
+  }
+}
+
+PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
+  const VERTICAL_OFFSET = 250
+  const HORIZONTAL_OFFSET = 300
+
+  let mapCanvas = this.map.getCanvas()
+  let positionFragments = []
+
+
+  if(event.clientY > VERTICAL_OFFSET) {
+    positionFragments.push('bottom')
+  } else {
+    positionFragments.push('top')
+  }
+
+  if(event.clientX < (mapCanvas.width - HORIZONTAL_OFFSET)) {
+    positionFragments.push('left')
+  } else {
+    positionFragments.push('right')
+  }
+  popupOptions.anchor = positionFragments.join('-')
+  popupOptions.offset = {
+    'bottom-left': [18, -8],
+    'bottom-right': [-18, -8],
+    'top-left': [18, 8],
+    'top-right': [-18, 8],
+
   }
 }
 

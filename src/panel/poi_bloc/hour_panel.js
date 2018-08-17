@@ -5,7 +5,6 @@ import OsmSchedule from '../../../src/adapters/osm_schedule'
 function HourPanel(block, poi, options) {
   this.panel = new Panel(this, HourPanelView)
   this.name = block.name
-  this.timeMessages =
   this.title = options.title
   this.opening = new OsmSchedule(block, options.messages)
   this.latLng = poi.latLon
