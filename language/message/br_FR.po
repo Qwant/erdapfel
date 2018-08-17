@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-02 14:52+0200\n"
+"POT-Creation-Date: 2018-08-17 10:37+0200\n"
 "PO-Revision-Date: 2018-06-29 16:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,6 +28,14 @@ msgstr "Qwant - Al lusker enklask hag a zouj d'ho prevezded"
 msgid "Where do you want to go ?"
 msgstr ""
 
+#: views/index.ejs:36
+msgid "Qwant Maps uses OpenStreetMap"
+msgstr ""
+
+#: views/index.ejs:39
+msgid "ABOUT THE PROJECT"
+msgstr ""
+
 #: config/constants.yml:30
 msgid "Opening hours"
 msgstr ""
@@ -37,6 +45,7 @@ msgid "Open"
 msgstr ""
 
 #: config/constants.yml:40 config/constants.yml:55
+#: public/build/javascript/bundle.js:2670
 msgid "Closed"
 msgstr ""
 
@@ -56,900 +65,899 @@ msgstr ""
 msgid "Wheelchair accessible"
 msgstr ""
 
-#: config/constants.yml:76 config/constants.yml:77
+#: config/constants.yml:76
 msgid "Limited wheelchair accessibility"
 msgstr ""
 
+#: config/constants.yml:77
+msgid "No wheelchair accessibility"
+msgstr ""
+
 #: config/constants.yml:81
-msgid "Tactile paving"
-msgstr ""
-
-#: config/constants.yml:82
-msgid "Limited tactile paving"
-msgstr ""
-
-#: config/constants.yml:83
-msgid "No tactile paving"
-msgstr ""
-
-#: config/constants.yml:87
 msgid "Toilets wheelchair accessible"
 msgstr ""
 
-#: config/constants.yml:88
+#: config/constants.yml:82
 msgid "Toilets wheelchair accessibility &colon; limited"
 msgstr ""
 
-#: config/constants.yml:89
+#: config/constants.yml:83
 msgid "Toilets not accessible in wheelchair"
 msgstr ""
 
-#: public/build/javascript/bundle.js:937
+#: public/build/javascript/bundle.js:1120
 msgid "accessories"
 msgstr ""
 
-#: public/build/javascript/bundle.js:938
+#: public/build/javascript/bundle.js:1121
 msgid "alcohol"
 msgstr ""
 
-#: public/build/javascript/bundle.js:939
+#: public/build/javascript/bundle.js:1122
 msgid "alpine hut"
 msgstr ""
 
-#: public/build/javascript/bundle.js:940
+#: public/build/javascript/bundle.js:1123
 msgid "antiques"
 msgstr ""
 
-#: public/build/javascript/bundle.js:941
+#: public/build/javascript/bundle.js:1124
 msgid "archery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:942
+#: public/build/javascript/bundle.js:1125
 msgid "art"
 msgstr ""
 
-#: public/build/javascript/bundle.js:943
+#: public/build/javascript/bundle.js:1126
 msgid "arts centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:944
+#: public/build/javascript/bundle.js:1127
 msgid "athletics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:945
+#: public/build/javascript/bundle.js:1128
 msgid "attraction"
 msgstr ""
 
-#: public/build/javascript/bundle.js:946
+#: public/build/javascript/bundle.js:1129
 msgid "bag"
 msgstr ""
 
-#: public/build/javascript/bundle.js:947
+#: public/build/javascript/bundle.js:1130
 msgid "bakery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:948
+#: public/build/javascript/bundle.js:1131
 msgid "bank"
 msgstr ""
 
-#: public/build/javascript/bundle.js:949
+#: public/build/javascript/bundle.js:1132
 msgid "bar"
 msgstr ""
 
-#: public/build/javascript/bundle.js:950
+#: public/build/javascript/bundle.js:1133
 msgid "basin"
 msgstr ""
 
-#: public/build/javascript/bundle.js:951
+#: public/build/javascript/bundle.js:1134
 msgid "basketball"
 msgstr ""
 
-#: public/build/javascript/bundle.js:952
+#: public/build/javascript/bundle.js:1135
 msgid "bbq"
 msgstr ""
 
-#: public/build/javascript/bundle.js:953
+#: public/build/javascript/bundle.js:1136
 msgid "beauty"
 msgstr ""
 
-#: public/build/javascript/bundle.js:954
+#: public/build/javascript/bundle.js:1137
 msgid "bed"
 msgstr ""
 
-#: public/build/javascript/bundle.js:955
+#: public/build/javascript/bundle.js:1138
 msgid "bed and breakfast"
 msgstr ""
 
-#: public/build/javascript/bundle.js:956
+#: public/build/javascript/bundle.js:1139
 msgid "beverages"
 msgstr ""
 
-#: public/build/javascript/bundle.js:957
+#: public/build/javascript/bundle.js:1140
 msgid "bicycle"
 msgstr ""
 
-#: public/build/javascript/bundle.js:958
+#: public/build/javascript/bundle.js:1141
 msgid "biergarten"
 msgstr ""
 
-#: public/build/javascript/bundle.js:959
+#: public/build/javascript/bundle.js:1142
 msgid "billiards"
 msgstr ""
 
-#: public/build/javascript/bundle.js:960
+#: public/build/javascript/bundle.js:1143
 msgid "bmx"
 msgstr ""
 
-#: public/build/javascript/bundle.js:961
+#: public/build/javascript/bundle.js:1144
 msgid "books"
 msgstr ""
 
-#: public/build/javascript/bundle.js:962
+#: public/build/javascript/bundle.js:1145
 msgid "border control"
 msgstr ""
 
-#: public/build/javascript/bundle.js:963
+#: public/build/javascript/bundle.js:1146
 msgid "boules"
 msgstr ""
 
-#: public/build/javascript/bundle.js:964
+#: public/build/javascript/bundle.js:1147
 msgid "boutique"
 msgstr ""
 
-#: public/build/javascript/bundle.js:965
+#: public/build/javascript/bundle.js:1148
 msgid "bowls"
 msgstr ""
 
-#: public/build/javascript/bundle.js:966
+#: public/build/javascript/bundle.js:1149
 msgid "brownfield"
 msgstr ""
 
-#: public/build/javascript/bundle.js:967
+#: public/build/javascript/bundle.js:1150
 msgid "bus station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:968
+#: public/build/javascript/bundle.js:1151
 msgid "butcher"
 msgstr ""
 
-#: public/build/javascript/bundle.js:969
+#: public/build/javascript/bundle.js:1152
 msgid "cafe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:970
+#: public/build/javascript/bundle.js:1153
 msgid "camp site"
 msgstr ""
 
-#: public/build/javascript/bundle.js:971
+#: public/build/javascript/bundle.js:1154
 msgid "canoe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:972
+#: public/build/javascript/bundle.js:1155
 msgid "car"
 msgstr ""
 
-#: public/build/javascript/bundle.js:973
+#: public/build/javascript/bundle.js:1156
 msgid "car repair"
 msgstr ""
 
-#: public/build/javascript/bundle.js:974
+#: public/build/javascript/bundle.js:1157
 msgid "caravan site"
 msgstr ""
 
-#: public/build/javascript/bundle.js:975
+#: public/build/javascript/bundle.js:1158
 msgid "carpet"
 msgstr ""
 
-#: public/build/javascript/bundle.js:976
+#: public/build/javascript/bundle.js:1159
 msgid "castle"
 msgstr ""
 
-#: public/build/javascript/bundle.js:977
+#: public/build/javascript/bundle.js:1160
 msgid "cemetery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:978
+#: public/build/javascript/bundle.js:1161
 msgid "chalet"
 msgstr ""
 
-#: public/build/javascript/bundle.js:979
+#: public/build/javascript/bundle.js:1162
 msgid "charity"
 msgstr ""
 
-#: public/build/javascript/bundle.js:980
+#: public/build/javascript/bundle.js:1163
 msgid "chemist"
 msgstr ""
 
-#: public/build/javascript/bundle.js:981
+#: public/build/javascript/bundle.js:1164
 msgid "chess"
 msgstr ""
 
-#: public/build/javascript/bundle.js:982
+#: public/build/javascript/bundle.js:1165
 msgid "chocolate"
 msgstr ""
 
-#: public/build/javascript/bundle.js:983
+#: public/build/javascript/bundle.js:1166
 msgid "cinema"
 msgstr ""
 
-#: public/build/javascript/bundle.js:984
+#: public/build/javascript/bundle.js:1167
 msgid "climbing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:985
+#: public/build/javascript/bundle.js:1168
 msgid "climbing adventure"
 msgstr ""
 
-#: public/build/javascript/bundle.js:986
+#: public/build/javascript/bundle.js:1169
 msgid "clinic"
 msgstr ""
 
-#: public/build/javascript/bundle.js:987
+#: public/build/javascript/bundle.js:1170
 msgid "clothes"
 msgstr ""
 
-#: public/build/javascript/bundle.js:988
+#: public/build/javascript/bundle.js:1171
 msgid "coffee"
 msgstr ""
 
-#: public/build/javascript/bundle.js:989
+#: public/build/javascript/bundle.js:1172
 msgid "college"
 msgstr ""
 
-#: public/build/javascript/bundle.js:990
+#: public/build/javascript/bundle.js:1173
 msgid "community centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:991
+#: public/build/javascript/bundle.js:1174
 msgid "computer"
 msgstr ""
 
-#: public/build/javascript/bundle.js:992
+#: public/build/javascript/bundle.js:1175
 msgid "confectionery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:993
+#: public/build/javascript/bundle.js:1176
 msgid "convenience"
 msgstr ""
 
-#: public/build/javascript/bundle.js:994
+#: public/build/javascript/bundle.js:1177
 msgid "copyshop"
 msgstr ""
 
-#: public/build/javascript/bundle.js:995
+#: public/build/javascript/bundle.js:1178
 msgid "cosmetics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:996
+#: public/build/javascript/bundle.js:1179
 msgid "courthouse"
 msgstr ""
 
-#: public/build/javascript/bundle.js:997
+#: public/build/javascript/bundle.js:1180
 msgid "cricket"
 msgstr ""
 
-#: public/build/javascript/bundle.js:998
+#: public/build/javascript/bundle.js:1181
 msgid "cycling"
 msgstr ""
 
-#: public/build/javascript/bundle.js:999
+#: public/build/javascript/bundle.js:1182
 msgid "deli"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1000
+#: public/build/javascript/bundle.js:1183
 msgid "dentist"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1001
+#: public/build/javascript/bundle.js:1184
 msgid "department store"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1002
+#: public/build/javascript/bundle.js:1185
 msgid "dock"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1003
+#: public/build/javascript/bundle.js:1186
 msgid "doctors"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1004
+#: public/build/javascript/bundle.js:1187
 msgid "dog park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1005
+#: public/build/javascript/bundle.js:1188
 msgid "dog racing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1006
+#: public/build/javascript/bundle.js:1189
 msgid "doityourself"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1007
+#: public/build/javascript/bundle.js:1190
 msgid "dry cleaning"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1008
+#: public/build/javascript/bundle.js:1191
 msgid "electronics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1009
+#: public/build/javascript/bundle.js:1192
 msgid "embassy"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1010
+#: public/build/javascript/bundle.js:1193
 msgid "equestrian"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1011
+#: public/build/javascript/bundle.js:1194
 msgid "erotic"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1012
+#: public/build/javascript/bundle.js:1195
 msgid "fabric"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1013
+#: public/build/javascript/bundle.js:1196
 msgid "fast food"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1014
+#: public/build/javascript/bundle.js:1197
 msgid "fire station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1015
+#: public/build/javascript/bundle.js:1198
 msgid "florist"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1016
+#: public/build/javascript/bundle.js:1199
 msgid "food court"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1017
+#: public/build/javascript/bundle.js:1200
 msgid "free flying"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1018
+#: public/build/javascript/bundle.js:1201
 msgid "fuel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1019
+#: public/build/javascript/bundle.js:1202
 msgid "furniture"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1020
+#: public/build/javascript/bundle.js:1203
 msgid "gallery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1021
+#: public/build/javascript/bundle.js:1204
 msgid "garden"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1022
+#: public/build/javascript/bundle.js:1205
 msgid "garden centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1023
+#: public/build/javascript/bundle.js:1206
 msgid "general"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1024
+#: public/build/javascript/bundle.js:1207
 msgid "gift"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1025
+#: public/build/javascript/bundle.js:1208
 msgid "golf"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1026
+#: public/build/javascript/bundle.js:1209
 msgid "golf course"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1027
+#: public/build/javascript/bundle.js:1210
 msgid "grave yard"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1028
+#: public/build/javascript/bundle.js:1211
 msgid "greengrocer"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1029
+#: public/build/javascript/bundle.js:1212
 msgid "guest house"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1030
+#: public/build/javascript/bundle.js:1213
 msgid "gymnastics"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1031
+#: public/build/javascript/bundle.js:1214
 msgid "hairdresser"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1032
+#: public/build/javascript/bundle.js:1215
 msgid "halt"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1033
+#: public/build/javascript/bundle.js:1216
 msgid "hardware"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1034
+#: public/build/javascript/bundle.js:1217
 msgid "hearing aids"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1035
+#: public/build/javascript/bundle.js:1218
 msgid "hifi"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1036
+#: public/build/javascript/bundle.js:1219
 msgid "horse racing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1037
+#: public/build/javascript/bundle.js:1220
 msgid "hospital"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1038
+#: public/build/javascript/bundle.js:1221
 msgid "hostel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1039
+#: public/build/javascript/bundle.js:1222
 msgid "hotel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1040
+#: public/build/javascript/bundle.js:1223
 msgid "ice cream"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1041
+#: public/build/javascript/bundle.js:1224
 msgid "ice rink"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1042
+#: public/build/javascript/bundle.js:1225
 msgid "interior decoration"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1043
+#: public/build/javascript/bundle.js:1226
 msgid "jewelry"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1044
+#: public/build/javascript/bundle.js:1227
 msgid "karting"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1045
+#: public/build/javascript/bundle.js:1228
 msgid "kindergarten"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1046
+#: public/build/javascript/bundle.js:1229
 msgid "kiosk"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1047
+#: public/build/javascript/bundle.js:1230
 msgid "lamps"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1048
+#: public/build/javascript/bundle.js:1231
 msgid "laundry"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1049
+#: public/build/javascript/bundle.js:1232
 msgid "library"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1050
+#: public/build/javascript/bundle.js:1233
 msgid "long jump"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1051
+#: public/build/javascript/bundle.js:1234
 msgid "mall"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1052
+#: public/build/javascript/bundle.js:1235
 msgid "marina"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1053
+#: public/build/javascript/bundle.js:1236
 msgid "marketplace"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1054
+#: public/build/javascript/bundle.js:1237
 msgid "massage"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1055
+#: public/build/javascript/bundle.js:1238
 msgid "miniature golf"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1056
+#: public/build/javascript/bundle.js:1239
 msgid "mobile phone"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1057
+#: public/build/javascript/bundle.js:1240
 msgid "model aerodrome"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1058
+#: public/build/javascript/bundle.js:1241
 msgid "monument"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1059
+#: public/build/javascript/bundle.js:1242
 msgid "motel"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1060
+#: public/build/javascript/bundle.js:1243
 msgid "motocross"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1061
+#: public/build/javascript/bundle.js:1244
 msgid "motor"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1062
+#: public/build/javascript/bundle.js:1245
 msgid "motorcycle"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1063
+#: public/build/javascript/bundle.js:1246
 msgid "multi"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1064
+#: public/build/javascript/bundle.js:1247
 msgid "museum"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1065
+#: public/build/javascript/bundle.js:1248
 msgid "music"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1066
+#: public/build/javascript/bundle.js:1249
 msgid "musical instrument"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1067
+#: public/build/javascript/bundle.js:1250
 msgid "newsagent"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1068
+#: public/build/javascript/bundle.js:1251
 msgid "nightclub"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1069
+#: public/build/javascript/bundle.js:1252
 msgid "nursing home"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1070
+#: public/build/javascript/bundle.js:1253
 msgid "optician"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1071
+#: public/build/javascript/bundle.js:1254
 msgid "orienteering"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1072
+#: public/build/javascript/bundle.js:1255
 msgid "outdoor"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1073
+#: public/build/javascript/bundle.js:1256
 msgid "paragliding"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1074
+#: public/build/javascript/bundle.js:1257
 msgid "park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1075
+#: public/build/javascript/bundle.js:1258
 msgid "perfumery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1076
+#: public/build/javascript/bundle.js:1259
 msgid "pet"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1077
+#: public/build/javascript/bundle.js:1260
 msgid "pharmacy"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1078
+#: public/build/javascript/bundle.js:1261
 msgid "photo"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1079
+#: public/build/javascript/bundle.js:1262
 msgid "picnic site"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1080
+#: public/build/javascript/bundle.js:1263
 msgid "place of worship"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1081
+#: public/build/javascript/bundle.js:1264
 msgid "police"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1082
+#: public/build/javascript/bundle.js:1265
 msgid "post office"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1083
+#: public/build/javascript/bundle.js:1266
 msgid "prison"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1084
+#: public/build/javascript/bundle.js:1267
 msgid "pub"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1085
+#: public/build/javascript/bundle.js:1268
 msgid "public building"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1086
+#: public/build/javascript/bundle.js:1269
 msgid "rc car"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1087
+#: public/build/javascript/bundle.js:1270
 msgid "reservoir"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1088
+#: public/build/javascript/bundle.js:1271
 msgid "restaurant"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1089
+#: public/build/javascript/bundle.js:1272
 msgid "rowing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1090
+#: public/build/javascript/bundle.js:1273
 msgid "ruins"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1091
+#: public/build/javascript/bundle.js:1274
 msgid "running"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1092
+#: public/build/javascript/bundle.js:1275
 msgid "sailing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1093
+#: public/build/javascript/bundle.js:1276
 msgid "school"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1094
+#: public/build/javascript/bundle.js:1277
 msgid "scuba diving"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1095
+#: public/build/javascript/bundle.js:1278
 msgid "second hand"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1096
+#: public/build/javascript/bundle.js:1279
 msgid "shoes"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1097
+#: public/build/javascript/bundle.js:1280
 msgid "shooting"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1098
+#: public/build/javascript/bundle.js:1281
 msgid "skateboard"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1099
+#: public/build/javascript/bundle.js:1282
 msgid "skating"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1100
+#: public/build/javascript/bundle.js:1283
 msgid "skiing"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1101
+#: public/build/javascript/bundle.js:1284
 msgid "soccer"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1102
+#: public/build/javascript/bundle.js:1285
 msgid "sports"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1103
+#: public/build/javascript/bundle.js:1286
 msgid "sports centre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1104
+#: public/build/javascript/bundle.js:1287
 msgid "stadium"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1105
+#: public/build/javascript/bundle.js:1288
 msgid "station"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1106
+#: public/build/javascript/bundle.js:1289
 msgid "stationery"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1107
+#: public/build/javascript/bundle.js:1290
 msgid "subway"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1108
+#: public/build/javascript/bundle.js:1291
 msgid "supermarket"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1109
+#: public/build/javascript/bundle.js:1292
 msgid "swimming"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1110
+#: public/build/javascript/bundle.js:1293
 msgid "swimming area"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1111
+#: public/build/javascript/bundle.js:1294
 msgid "swimming pool"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1112
+#: public/build/javascript/bundle.js:1295
 msgid "table tennis"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1113
+#: public/build/javascript/bundle.js:1296
 msgid "tailor"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1114
+#: public/build/javascript/bundle.js:1297
 msgid "tattoo"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1115
+#: public/build/javascript/bundle.js:1298
 msgid "tennis"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1116
+#: public/build/javascript/bundle.js:1299
 msgid "theatre"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1117
+#: public/build/javascript/bundle.js:1300
 msgid "theme park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1118
+#: public/build/javascript/bundle.js:1301
 msgid "ticket"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1119
+#: public/build/javascript/bundle.js:1302
 msgid "tobacco"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1120
+#: public/build/javascript/bundle.js:1303
 msgid "toll booth"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1121
+#: public/build/javascript/bundle.js:1304
 msgid "townhall"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1122
+#: public/build/javascript/bundle.js:1305
 msgid "toys"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1123
+#: public/build/javascript/bundle.js:1306
 msgid "tram stop"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1124
+#: public/build/javascript/bundle.js:1307
 msgid "travel agency"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1125
+#: public/build/javascript/bundle.js:1308
 msgid "university"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1126
+#: public/build/javascript/bundle.js:1309
 msgid "veterinary"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1127
+#: public/build/javascript/bundle.js:1310
 msgid "video"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1128
+#: public/build/javascript/bundle.js:1311
 msgid "video games"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1129
+#: public/build/javascript/bundle.js:1312
 msgid "viewpoint"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1130
+#: public/build/javascript/bundle.js:1313
 msgid "watches"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1131
+#: public/build/javascript/bundle.js:1314
 msgid "water park"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1132
+#: public/build/javascript/bundle.js:1315
 msgid "weapons"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1133
+#: public/build/javascript/bundle.js:1316
 msgid "wholesale"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1134
+#: public/build/javascript/bundle.js:1317
 msgid "wine"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1135
+#: public/build/javascript/bundle.js:1318
 msgid "yoga"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1136
+#: public/build/javascript/bundle.js:1319
 msgid "zoo"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1265
+#: public/build/javascript/bundle.js:1612
 msgid "string"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1498
+#: public/build/javascript/bundle.js:1717
 msgid "Favorite places"
 msgstr ""
 
-#: public/build/javascript/bundle.js:1498
+#: public/build/javascript/bundle.js:1717
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2166
+#: public/build/javascript/bundle.js:2385
 msgid "filter"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2210
+#: public/build/javascript/bundle.js:2429
 msgid "Register masq"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2210
+#: public/build/javascript/bundle.js:2429
 msgid "We use MASQ to keep your preference data safe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2210
+#: public/build/javascript/bundle.js:2429
 msgid "Register"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2428
+#: public/build/javascript/bundle.js:2438
+msgid "Back to favorite"
+msgstr ""
+
+#: public/build/javascript/bundle.js:2515
 msgid "Accessibility"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2457
+#: public/build/javascript/bundle.js:2536
+#: public/build/javascript/bundle.js:2550
 msgid "Beers"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2577
+#: public/build/javascript/bundle.js:2670
 #, python-brace-format
 msgid "until {nextTransitionTime}"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2992
+#: public/build/javascript/bundle.js:3078
+#: public/build/javascript/bundle.js:3092
 msgid "Internet access"
 msgstr ""
 
-#: public/build/javascript/bundle.js:2992
+#: public/build/javascript/bundle.js:3078
+#: public/build/javascript/bundle.js:3092
 msgid "WiFi"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3059
+#: public/build/javascript/bundle.js:3165
 msgid "Services & information"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3120
+#: public/build/javascript/bundle.js:3226
 msgid "Via Wikipédia"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3120
+#: public/build/javascript/bundle.js:3226
 msgid "Via WikiData"
 msgstr ""
 
-#: public/build/javascript/bundle.js:3315
+#: public/build/javascript/bundle.js:3445
 msgid "RESULTS"
 msgstr "DISOC'HOÙ"
 
-#: public/build/javascript/bundle.js:3315
+#: public/build/javascript/bundle.js:3445
 msgid "FAVORITES"
 msgstr "SINEDOÙ"
 
