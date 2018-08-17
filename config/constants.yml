@@ -73,14 +73,14 @@ pois:
       key: wheelchair
       labels:
         yes: _('Wheelchair accessible')
-        partial: _('Limited wheelchair accessibility')
-        no: _('No wheelchair accessibility')
+        partial: _('Partially wheelchair accessible')
+        no: _('Not wheelchair accessible')
     -
       key: toilets_wheelchair
       labels:
-        yes: _('Toilets wheelchair accessible')
-        partial: _('Toilets wheelchair accessibility &colon; limited')
-        no: _('Toilets not accessible in wheelchair')
+        yes: _('Wheelchair accessible toilets')
+        partial: _('Partial wheelchair accessible toilets')
+        no: _('No wheelchair accessible toilets')
 - apiName: brewery
   panelName: brewery
 - apiName: internet_access
