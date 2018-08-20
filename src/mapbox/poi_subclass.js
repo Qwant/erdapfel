@@ -1,6 +1,6 @@
 const subClasses = {
     accessories: () => _('accessories shop'),
-    alcohol: () => _('alcohol shop'),
+    alcohol: () => _('liquor store'),
     alpine_hut: () => _('alpine hut'),
     antiques: () => _('antiques shop'),
     archery: () => _('archery'),
