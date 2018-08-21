@@ -1,7 +1,7 @@
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-import {initBrowser, wait} from '../tools'
+import {initBrowser, wait, store} from '../tools'
 
 let browser
 let page
@@ -34,6 +34,21 @@ test('add favorite', async () => {
   expect(items).not.toBeNull()
 })
 
+
+test('restore favorite from localStorage', async () => {
+  expect.assertions(1)
+  await page.goto(APP_URL)
+  const testTitle = 'demo_fav'
+  store(page, 'demo_fav', {id : 0, name : testTitle})
+  await page.click('.side_bar__fav')
+  await  page.waitForSelector('.favorite_panel__item__title')
+  let title = await page.evaluate(() => {
+    return document.querySelector('.favorite_panel__item__title').innerText
+  })
+
+  expect(title).toEqual(testTitle)
+})
+
 test('remove favorite', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
@@ -56,3 +71,6 @@ test('remove favorite', async () => {
 afterAll(() => {
   browser.close()
 })
+
+
+
