@@ -21,13 +21,15 @@ const sassChunkConfig = {
         }
       }, {
         test : /\.scss$/,
-        loader : 'postcss-loader',
-        options : {
-          plugins: [
-            require('autoprefixer')({})
-          ]
-
-        }
+        use: [{
+          loader : 'postcss-loader',
+          options : {
+            plugins: [
+              require('autoprefixer')(),
+              require('postcss-import')()
+            ]
+          }
+        }],
       }, {
         test: /\.(jpe?g|png|gif|svg)$/,
         loader: 'file-loader',
@@ -90,9 +92,16 @@ const mapJsChunkConfig = {
     })
   ],
   module: {
-    loaders: [{
+    loaders: [
+      {
+        test: /\.dot/,
+        use: [
+          {loader : 'dot-loader'}
+        ]
+      }, {
       test: /\.yml$/,
       use: [
+        {loader : '@qwant/config-sanitizer-loader'},
         {loader : 'json-loader'},
         {loader : 'yaml-loader'}
       ]

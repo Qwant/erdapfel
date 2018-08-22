@@ -1,0 +1,18 @@
+<div class="poi_popup" style="border-color:{{= this.color }}">
+  <h1 class="poi_popup__title">{{= this.poi.name }}</h1>
+  <h3 class="poi_popup__category">{{= this.category }}</h3>
+  <div>
+  {{? this.opening && this.opening.days }}
+    <span class="poi_popup__opening">
+    {{= _(this.opening.status.msg) }} {{? this.opening.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.opening.nextTransition})  }}{{?}}
+    {{? this.opening.isTwentyForSeven }}
+      24 / 7
+    {{?}}
+    </span>
+    <div class="poi_popup__title__hour__circle" style="background:{{= this.opening.status.color }}"></div>
+  {{?? this.address}}
+    <span class="poi_popup__address">{{= this.address }}</span>
+  {{?}}
+  </div>
+</div>
+

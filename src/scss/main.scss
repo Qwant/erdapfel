@@ -1,6 +1,8 @@
 @import "includes/config";
 @import "includes/reset";
-@import "includes/mapbox-gl";
+@import "./../../node_modules/mapbox-gl/dist/mapbox-gl.css";
+@import "includes/mapbox-gl-override.scss";
+@import "includes/popup";
 
 @import "includes/app";
 @import "includes/error";

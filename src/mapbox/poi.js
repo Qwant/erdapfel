@@ -3,7 +3,6 @@
  */
 import Ajax from "../libs/ajax"
 import nconf from '@qwant/nconf-getter'
-import PanelManager from "../proxies/panel_manager";
 const serviceConfig = nconf.get().services
 const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 18, panel: true}]
 const DEFAULT_ZOOM = 16
@@ -64,7 +63,6 @@ Poi.poiApiLoad = async function (id) {
   try {
     rawPoi = await Ajax.queryLang(`${serviceConfig.idunn.url}/v1/pois/${id}`)
   } catch (err) {
-    PanelManager.closeAll()
     if(err === 404) {
       return
     }
