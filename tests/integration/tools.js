@@ -26,3 +26,15 @@ export const initBrowser = async function () {
   })
   return {browser, page}
 }
+
+export function store(page, soreKey,  data) {
+  page.evaluate((favorite, key) => {
+    localStorage.setItem(key, JSON.stringify(favorite))
+  }, data, soreKey)
+}
+
+export function clearStore(page) {
+  page.evaluate(() =>
+    localStorage.clear()
+  )
+}
