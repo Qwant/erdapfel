@@ -32,3 +32,9 @@ export function store(page, soreKey,  data) {
     localStorage.setItem(key, JSON.stringify(favorite))
   }, data, soreKey)
 }
+
+export function clearStore(page) {
+  page.evaluate(() =>
+    localStorage.clear()
+  )
+}

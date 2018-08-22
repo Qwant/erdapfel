@@ -58,7 +58,7 @@ test('load a poi already in my favorite from url', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   page.evaluate(() => {
-    fire('store_poi', {name : 'Poi name', getKey : () => {return '48.859917803575875_2.3265827716099623'}, store: () => {return {id: 1}}}) /* minimal poi */
+    fire('store_poi', {name : 'Poi name', getKey : () => {return 'qmaps_v1_favorite_place_osm:node:2379542204'}, store: () => {return {id: 1}}}) /* minimal poi */
   })
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   let plainStar = await page.waitForSelector('.poi_panel__store_status__toggle--stored')
@@ -128,7 +128,6 @@ test('center the map to the poi on a poi click', async () => {
     return MAP_MOCK.getCenter()
   })
   expect(center).toEqual({lng  : poiMock.geometry.coordinates[0], lat : poiMock.geometry.coordinates[1]})
-
 
   let infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText
