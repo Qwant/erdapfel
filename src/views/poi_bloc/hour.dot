@@ -1,24 +1,32 @@
-{{? this.hours }}
+{{? this.opening.days }}
   <div class="poi_panel__info__section poi_panel__info__section--hours">
     <p class="poi_panel__info__section__description">
       <div class="icon-icon_clock poi_panel__block__symbol"></div>
       <div class="poi_panel__block__content">
         <div {{= click(this.extend, this) }}>
           <span class="poi_panel__info__hours__status">
-            {{= _(this.status.msg) }} {{? this.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.nextTransition})  }}{{?}}
-            {{? this.hours['24/7'] }}
+            {{= _(this.opening.status.msg) }} {{? this.opening.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.opening.nextTransition})  }}{{?}}
+            {{? this.opening.isTwentyForSeven }}
               24 / 7
             {{?}}
-            <div class="poi_panel__info__hour__circle" style="background:{{= this.status.color }}"></div>
+            <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
           </span>
         </div>
         <div class="poi_panel__info__hours">
-          {{? !this.hours['24/7'] }}
+          {{? !this.opening.isTwentyForSeven }}
             <table class="poi_panel__info__hours__table">
-              {{~ this.displayHours:day:i }}
+              {{~ this.opening.displayHours:day:i }}
                 <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
                   <td class="day">{{= day.dayName }}</td>
-                  <td class="hours">{{= day.opening ?  (day.opening + '').replace(',', ' - ') : _('Closed')}}<td>
+                  <td class="hours">
+                    {{? day.opening && day.opening.length > 0}}
+                      {{~ day.opening:openingFragment }}
+                        <p>{{= `${openingFragment.beginning} - ${openingFragment.end}` }}</p>
+                      {{~}}
+                    {{??}}
+                      {{= _('Closed')}}
+                    {{?}}
+                  <td>
                 </tr>
               {{~}}
             </table>

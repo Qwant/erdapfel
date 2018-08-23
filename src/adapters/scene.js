@@ -1,4 +1,5 @@
 import {Map, Marker, LngLat} from 'mapbox-gl--ENV'
+import PoiPopup from './poi_popup'
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi"
@@ -12,6 +13,7 @@ function Scene() {
   this.zoom = map.zoom
   this.center = [map.center.lng, map.center.lat]
   this.currentMarker = null
+  this.popup = new PoiPopup()
 }
 
 Scene.prototype.initMapBox = function () {
@@ -22,6 +24,7 @@ Scene.prototype.initMapBox = function () {
     center: this.center,
     hash: false
   })
+  this.popup.init(this.mb)
 
   window.map = {
     center : () => {
@@ -60,6 +63,9 @@ Scene.prototype.initMapBox = function () {
           }
         }
       })
+
+      this.popup.addListener(interactiveLayer)
+
     })
 
     this.mb.on('moveend', () => {

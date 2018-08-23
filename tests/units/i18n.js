@@ -14,6 +14,6 @@ describe('i18n', () => {
   })
 
   test('getDay', () => {
-    expect(getDay('mo')).toEqual('Monday')
+    expect(getDay(1)).toEqual('Monday')
   })
 })

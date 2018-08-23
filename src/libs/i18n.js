@@ -16,8 +16,6 @@ function I18n() {
   window.getBaseLang = this.getBaseLang.bind(this)
 }
 
-I18n.days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
-
 I18n.prototype.setLang = async function() {
   this.language = window.preferedLanguage
   try {
@@ -37,13 +35,12 @@ I18n.prototype.setLang = async function() {
  * @param dayKey the dictionary key containing day name can be dayNamesMin, dayNamesShort, dayNames
  * @returns {*}
  */
-I18n.prototype.getDay = function(day, dayKey) {
-  let pos = I18n.days.indexOf(day)
+I18n.prototype.getDay = function(dayofweek, dayKey) {
   /* default key is long day format */
   if(!this.date[dayKey]) {
     dayKey = 'dayNames'
   }
-  return this.date[dayKey][pos]
+  return this.date[dayKey][dayofweek]
 }
 
 /* return user language  */
@@ -54,20 +51,6 @@ I18n.prototype.getLang = function() {
 /* return a supported user language   */
 I18n.prototype.getBaseLang = function() {
   return this.language
-}
-/**
- * translate short days
- * @param day short name of the day ex. sa for saturday
- * @param dayKey the dictionary key containing day name can be dayNamesMin, dayNamesShort, dayNames
- * @returns {*}
- */
-I18n.prototype.getDay = function(day, dayKey) {
-  let pos = I18n.days.indexOf(day)
-  /* default key is long day format */
-  if(!this.date[dayKey]) {
-    dayKey = 'dayNames'
-  }
-  return this.date[dayKey][pos]
 }
 
 export default I18n

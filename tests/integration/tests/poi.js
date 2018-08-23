@@ -115,6 +115,20 @@ test('open poi from autocomplete selection', async () => {
   expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy()
 })
 
+test('poi popup', async () => {
+  expect.assertions(1)
+  await page.goto(APP_URL)
+  await page.evaluate(() => {
+    window.MAP_MOCK.evented.prepare('mouseenter', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
+  })
+  await page.hover('#mock_poi')
+  await wait(1000)
+  let popups = await page.evaluate(() => {
+    return window.MAP_MOCK.popups
+  })
+  expect(popups).toHaveLength(1)
+})
+
 test('center the map to the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   await page.waitForSelector('.poi_panel__title')
