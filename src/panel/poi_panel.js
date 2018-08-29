@@ -6,6 +6,7 @@ import Poi from "../mapbox/poi"
 import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
 import ExtendedString from '../libs/string'
+import Share from './share'
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -19,6 +20,7 @@ function PoiPanel() {
   this.poiSubClass = poiSubClass
   this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
+  this.share = new Share()
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
 }
@@ -95,15 +97,12 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   PanelManager.notify()
 }
 
-PoiPanel.prototype.copy = function () {
-  let copyUrl = document.getElementById('share-url')
-  copyUrl.select()
-  document.execCommand('copy')
-  copyUrl.blur()
-}
-
 PoiPanel.prototype.center = function() {
   fire('fit_map', this.poi, {sidePanelOffset : true})
+}
+
+PoiPanel.prototype.openShare = function () {
+  this.share.open()
 }
 
 /* urlState interface implementation */

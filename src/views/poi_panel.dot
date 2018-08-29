@@ -33,6 +33,9 @@
         </button>
       </div>
     </div>
+    <button {{= click(this.openShare, this) }}>
+      {{= _('Share', 'poi') }}
+    </button>
     {{= this.PoiBlocContainer.render(this.poi) }}
   {{?}}
   <br>
@@ -46,3 +49,4 @@
     </div>
   </div>
 </div>
+{{= this.share.render() }}
