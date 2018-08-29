@@ -123,5 +123,5 @@ Poi.geocoderLoad = function(feature) {
   return poi
 }
 
-
+window.Poi = Poi
 export default Poi

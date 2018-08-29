@@ -12,7 +12,7 @@ beforeAll(async () => {
   browser = browserPage.browser
 })
 
-test('toggle favorite', async () => {
+test('toggle favorite panel', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
   let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
@@ -22,11 +22,11 @@ test('toggle favorite', async () => {
   expect(favPanel).not.toBeFalsy()
 })
 
-test('add favorite', async () => {
+test('favorite added is present in favorite panel', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   page.evaluate(() => {
-    fire('store_poi', {name : 'Poi name', getKey : () => {return 1}, store: () => {return {id: 1}}}) /* minimal poi */
+    fire('store_poi', new Poi(1, 'some poi', '', {lat : 43, lng : 2}, '', '', []))
   })
   await page.click('.side_bar__fav')
   await wait(100)
@@ -51,11 +51,11 @@ test('restore favorite from localStorage', async () => {
   expect(title).toEqual(testTitle)
 })
 
-test('remove favorite', async () => {
+test('remove favorite using favorite panel', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
   await page.evaluate(() => {
-    fire('store_poi', {name : 'Poi name', getKey : () => {return 1}, store: () => {return {id: 1}}}) /* minimal poi */
+    fire('store_poi', new Poi(1, 'some poi i will remove', '', {lat : 43, lng : 2}, '', '', []))
   })
   page.click('.side_bar__fav')
   await wait(200) /* wait for panel completely displayed  */
@@ -70,9 +70,29 @@ test('remove favorite', async () => {
   expect(items).not.toBeNull()
 })
 
-afterAll(() => {
-  browser.close()
+test('center map after a favorite poi click', async () => {
+  await page.goto(APP_URL)
+  await page.evaluate(() => {
+    MAP_MOCK.flyTo({center : {lat : 10, lng : 0}, zoom : 10})
+  })
+  const favorite_mock_coordinates = {lat: 43.5, lng: 7.18}
+  await page.evaluate((favorite_mock_coordinates_) => {
+    fire('store_poi', new Poi(1, 'some poi i will click', '', favorite_mock_coordinates_, '', '', []))
+  },favorite_mock_coordinates)
+
+  await page.waitForSelector('.icon-icon_star')
+  await page.click('.icon-icon_star')
+  await wait(300)
+  await page.waitForSelector('.favorite_panel__swipe_element')
+  await page.click('.favorite_panel__swipe_element')
+  let center = await page.evaluate(() => {
+    return MAP_MOCK.getCenter()
+  })
+  expect(center).toEqual({lng  : favorite_mock_coordinates.lng, lat : favorite_mock_coordinates.lat})
+  clearStore(page)
 })
 
 
-
+afterAll(() => {
+  browser.close()
+})
