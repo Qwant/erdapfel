@@ -17,7 +17,8 @@
   top: calc(50vh - 200px);
   padding: 30px 24px;
   background: url('/images/popup_top.svg') white no-repeat;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,.3);
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
+  border-radius: 3px;
 }
 
 .share_overlay--active, .share--active {

@@ -9,12 +9,12 @@
   <button class="share__copy_link" {{= click(this.copy, this) }}>COPIER LE LIEN</button>
   <hr class="share__hr">
   <i class="share__icons icon-twitter"></i>
-  <a href="#" class="share__link">
+  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{= window.location }}" class="share__link">
     PARTAGER AVEC FACEBOOK
   </a>
   <hr class="share__hr">
   <i class="share__icons icon-facebook"></i>
-  <a href="#" class="share__link">
+  <a target="_blank" href="https://twitter.com/home?status={{= window.location }}" class="share__link">
     PARTAGER AVEC TWITTER
   </a>
 </div>
