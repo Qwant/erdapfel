@@ -4,15 +4,18 @@ import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
+import PoiPanel from "./poi_panel";
 const poiSubClass = require('../mapbox/poi_subclass')
 
-function Favorite() {
+function Favorite(sharePanel) {
   this.active = false
   this.displayed = false
   this.favoritePois = []
   this.poiSubClass = poiSubClass
   this.filterPanel = new FilterPanel()
+  this.sharePanel = sharePanel
   this.connectStore()
+  this.isMoreOpen = false
 
   listen('store_registered', () => {
     this.getAll()
@@ -25,6 +28,17 @@ function Favorite() {
   this.panel = new Panel(this, FavoritePanelView)
   this.isFavoritePanel = true
   PanelManager.register(this)
+}
+
+Favorite.prototype.toggleMore = function (index) {
+  let menu = document.querySelector(`#favorite_more_${index}`)
+  menu.classList.add('favorite_panel__item__more--active')
+}
+
+Favorite.prototype.openShare = function (poi) {
+
+  let url = `${window.location}${poi.id}`
+  this.sharePanel.open(url)
 }
 
 Favorite.prototype.isDisplayed = function () {

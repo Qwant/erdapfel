@@ -6,13 +6,12 @@ import Poi from "../mapbox/poi"
 import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
 import ExtendedString from '../libs/string'
-import Share from './share'
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
 const store = new Store()
 
-function PoiPanel() {
+function PoiPanel(sharePanel) {
   this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
   this.active = false
@@ -20,7 +19,7 @@ function PoiPanel() {
   this.poiSubClass = poiSubClass
   this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
-  this.share = new Share()
+  this.sharePanel = sharePanel
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
 }
@@ -102,7 +101,8 @@ PoiPanel.prototype.center = function() {
 }
 
 PoiPanel.prototype.openShare = function () {
-  this.share.open()
+  let url = window.location
+  this.sharePanel.open(url)
 }
 
 /* urlState interface implementation */

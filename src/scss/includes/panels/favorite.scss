@@ -65,11 +65,6 @@
   font-size: 18px;
 }
 
-.favorite_panel__remove {
-  font-size: 18px;
-  vertical-align:bottom;
-}
-
 .favorite_panel__go {
   line-height: 16px;
 }
@@ -79,21 +74,50 @@
   padding: 18px 0 10px 0;
 }
 
-.favorite_panel__action {
-  cursor: pointer;
-  color: #3d3d3d;
-  vertical-align: center;
-  transition: color .2s;
-}
-
-.favorite_panel__action:hover {
-  color: #ab0613;
-}
-
-.favorite_panel__item__actions {
+.favorite_panel__item__more_button {
   float: right;
-  display: none;
   margin: 20px 10px 0 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  transition: color .3s, background-color .3s;
+}
+
+.favorite_panel__item__more_button:hover {
+  background: #039BE5;
+  color:#fff;
+}
+
+.favorite_panel__item__more {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 38px;
+  padding: 14px 16px 10px 16px;
+  background: #fff;
+  color:#353c52;
+  font-size: 13px;
+  border-radius: 3px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.favorite_panel__item__more--active {
+  display: block;
+}
+
+.favorite_panel__item__more__line {
+  height: 20px;
+}
+
+.favorite_panel__item__more__line:hover {
+  color : #a81111;
+  cursor: pointer;
+}
+
+.favorite_panel__item__more__icon {
+  padding-right: 9px;
 }
 
 .favorite_panel__item__title {
@@ -137,11 +161,15 @@
 }
 
 .favorite_panel__swipe_window {
-  overflow-x: hidden;
   clear: both;
 }
 
+.favorite_panel__item__more_container {
+  position: relative;
+}
+
 .favorite_panel__swipe_element {
+  position: relative;
   overflow: hidden;
   width: $panel_width;
   height: 70px;

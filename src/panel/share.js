@@ -3,12 +3,12 @@ import Panel from "../libs/panel"
 
 export default class Share {
   constructor() {
-    this.url = window.location
     this.panel = new Panel(this, SharePanelView)
     this.active = false
   }
 
-  open () {
+  open (url) {
+    this.url = url
     this.active = true
     this.panel.update()
   }
