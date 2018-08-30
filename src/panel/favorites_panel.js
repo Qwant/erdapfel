@@ -4,7 +4,6 @@ import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
-import PoiPanel from "./poi_panel";
 const poiSubClass = require('../mapbox/poi_subclass')
 
 function Favorite(sharePanel) {
@@ -15,7 +14,11 @@ function Favorite(sharePanel) {
   this.filterPanel = new FilterPanel()
   this.sharePanel = sharePanel
   this.connectStore()
-  this.isMoreOpen = false
+  this.openMoreMenuPosition = -1
+
+  document.addEventListener('click', () => {
+    this.closeMoreMenu()
+  })
 
   listen('store_registered', () => {
     this.getAll()
@@ -30,13 +33,29 @@ function Favorite(sharePanel) {
   PanelManager.register(this)
 }
 
-Favorite.prototype.toggleMore = function (index) {
-  let menu = document.querySelector(`#favorite_more_${index}`)
+Favorite.prototype.toggleMore = function (position) {
+  if(this.openMoreMenuPosition === -1) {
+    this.openMoreMenu(position)
+  } else {
+    this.closeMoreMenu()
+  }
+}
+
+Favorite.prototype.openMoreMenu = function (position) {
+  this.openMoreMenuPosition = position
+  let menu = document.querySelector(`#favorite_more_${position}`)
   menu.classList.add('favorite_panel__item__more--active')
 }
 
-Favorite.prototype.openShare = function (poi) {
+Favorite.prototype.closeMoreMenu = function () {
+  let menu = document.querySelector(`#favorite_more_${this.openMoreMenuPosition}`)
+  if(menu) {
+    menu.classList.remove('favorite_panel__item__more--active')
+    this.openMoreMenuPosition = -1
+  }
+}
 
+Favorite.prototype.openShare = function (poi) {
   let url = `${window.location}${poi.id}`
   this.sharePanel.open(url)
 }
@@ -48,6 +67,7 @@ Favorite.prototype.isDisplayed = function () {
 Favorite.prototype.toggle = function() {
   if(this.active) {
     this.close()
+    this.openMoreMenuPosition = -1
   } else {
     this.open()
   }
