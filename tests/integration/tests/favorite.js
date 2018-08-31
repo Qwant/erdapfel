@@ -12,12 +12,18 @@ beforeAll(async () => {
   browser = browserPage.browser
 })
 
+async function openFavoritePanel(page) {
+    await page.waitForSelector('.icon-icon_star')
+    await page.click('.icon-icon_star')
+    await wait(300)
+}
+
 test('toggle favorite panel', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
   let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
   expect(favPanelHidden).not.toBeFalsy()
-  await page.click('.side_bar__fav')
+  await openFavoritePanel(page)
   let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
   expect(favPanel).not.toBeFalsy()
 })
@@ -28,13 +34,11 @@ test('favorite added is present in favorite panel', async () => {
   page.evaluate(() => {
     fire('store_poi', new Poi(1, 'some poi', '', {lat : 43, lng : 2}, '', '', []))
   })
-  await page.click('.side_bar__fav')
-  await wait(100)
+  await openFavoritePanel(page)
   let items = await  page.waitForSelector('.favorite_panel__item')
   clearStore(page)
   expect(items).not.toBeNull()
 })
-
 
 test('restore favorite from localStorage', async () => {
   expect.assertions(1)
@@ -57,8 +61,7 @@ test('remove favorite using favorite panel', async () => {
   await page.evaluate(() => {
     fire('store_poi', new Poi(1, 'some poi i will remove', '', {lat : 43, lng : 2}, '', '', []))
   })
-  page.click('.side_bar__fav')
-  await wait(200) /* wait for panel completely displayed  */
+  await openFavoritePanel(page)
   let items = await page.waitForSelector('.favorite_panel__item')
   expect(items).not.toBeNull()
   /* remove it */
@@ -80,9 +83,7 @@ test('center map after a favorite poi click', async () => {
     fire('store_poi', new Poi(1, 'some poi i will click', '', favorite_mock_coordinates_, '', '', []))
   },favorite_mock_coordinates)
 
-  await page.waitForSelector('.icon-icon_star')
-  await page.click('.icon-icon_star')
-  await wait(300)
+  await openFavoritePanel(page)
   await page.waitForSelector('.favorite_panel__swipe_element')
   await page.click('.favorite_panel__swipe_element')
   let center = await page.evaluate(() => {
