@@ -2,7 +2,7 @@ const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 const poiMock = require('../../__data__/poi')
-import {initBrowser, getText, wait} from '../tools'
+import {initBrowser, getText, wait, clearStore} from '../tools'
 
 let browser
 let page
@@ -59,10 +59,11 @@ test('load a poi already in my favorite from url', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   page.evaluate(() => {
-    fire('store_poi', {name : 'Poi name', getKey : () => {return 'qmaps_v1_favorite_place_osm:node:2379542204'}, store: () => {return {id: 1}}}) /* minimal poi */
+    fire('store_poi', new Poi('osm:node:2379542204', 'some poi', '', {lat : 43, lng : 2}, '', '', []))
   })
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   let plainStar = await page.waitForSelector('.poi_panel__store_status__toggle--stored')
+  clearStore(page)
   expect(plainStar).not.toBeFalsy()
 })
 
@@ -84,7 +85,7 @@ test('update url after a favorite poi click', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   page.evaluate(() => {
-    fire('store_poi', {name : 'Poi name', getKey : () => {return 1}, store: () => {return {id: 1}}}) /* minimal poi */
+    fire('store_poi', new Poi(1, 'some poi i will click', '', {lat : 43, lng : 2}, '', '', []))
   })
   await page.click('.side_bar__fav')
   await wait(300)
@@ -94,9 +95,9 @@ test('update url after a favorite poi click', async () => {
   let location = await page.evaluate(() => {
     return document.location.href
   })
+  clearStore(page)
   expect(location).toMatch(/1@Mus%C3%A9e_dOrsay/)
 })
-
 
 test('open poi from autocomplete selection', async () => {
   expect.assertions(2)
@@ -143,9 +144,7 @@ test('center the map to the poi on a poi click', async () => {
     return MAP_MOCK.getCenter()
   })
   expect(center).toEqual({lng  : poiMock.geometry.coordinates[0], lat : poiMock.geometry.coordinates[1]})
-
 })
-
 
 test('display details about the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
