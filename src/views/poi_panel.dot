@@ -39,9 +39,9 @@
           </button>
           <div class="poi_panel__actions__text">{{= _('SHARE', 'poi') }}</div>
         </div>
-        {{= this.PoiBlocContainer.render(this.poi) }}
       </div>
     </div>
+  {{= this.PoiBlocContainer.render(this.poi) }}
   {{?}}
   <br>
   </div>
