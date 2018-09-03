@@ -62,7 +62,7 @@ test('load a poi already in my favorite from url', async () => {
     fire('store_poi', new Poi('osm:node:2379542204', 'some poi', '', {lat : 43, lng : 2}, '', '', []))
   })
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
-  let plainStar = await page.waitForSelector('.poi_panel__store_status__toggle--stored')
+  let plainStar = await page.waitForSelector('.icon-icon_star-filled')
   clearStore(page)
   expect(plainStar).not.toBeFalsy()
 })
@@ -89,7 +89,6 @@ test('update url after a favorite poi click', async () => {
   })
   await page.click('.side_bar__fav')
   await wait(300)
-  await page.evaluate(() => { document.querySelector('.favorite_panel__item__actions').style.display = 'block' })
   await page.click('.favorite_panel__swipe_element')
   await wait(400)
   let location = await page.evaluate(() => {

@@ -219,30 +219,47 @@ $BLOCK_INDENT: 60px;
   color: #90750b;
 }
 
-.poi_panel__store_status {
-  position: absolute;
-  top: 0;
-  right: 50px;
+.poi_panel__actions {
+  margin-left: $BLOCK_INDENT;
+  margin-top: 16px;
+}
+
+.poi_panel__actions:after {
+  clear: both;
+  content: '';
+}
+
+.poi_panel__actions__store_container {
+  float: left;
+}
+
+.poi_panel__actions__share_container {
+  float: left;
+  margin-left: 20px;
+}
+
+.poi_panel__actions__icon {
+  display: inline-block;
+  height: 25px;
+  font-size: 22px;
+  color: #5c6f84;
+  vertical-align: middle;
+}
+
+.poi_panel__actions__text {
+  display: inline-block;
+  padding-left: 2px;
+  height: 25px;
+  font-size: 12px;
+  color: #5c6f84;
 }
 
 .poi_panel__description_container {
   position: relative;
 }
 
-.poi_panel__store_status__toggle {
-  position: absolute;
-  color: #7f8183;
-  padding: 3px 6px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
 .poi_panel__store_status__toggle:after {
   content: '';
-}
-
-.poi_panel__store_status__toggle--stored {
-  color: #fbca04;
 }
 
 /* TODO export to external service */

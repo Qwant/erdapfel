@@ -28,15 +28,20 @@
           {{= this.poi.address.label }}
         </p>
       {{?}}
-      <div class="poi_panel__store_status">
-        <button class="poi_panel__store_status__toggle {{= this.poi.stored ? 'poi_panel__store_status__toggle--stored icon-icon_star-filled' : 'icon-icon_star'}}" {{= click(this.toggleStorePoi, this) }}>
-        </button>
+      <div class="poi_panel__actions">
+        <div class="poi_panel__actions__store_container" {{= click(this.toggleStorePoi, this) }}>
+          <button class="poi_panel__actions__icon__store poi_panel__actions__icon {{= this.poi.stored ? 'icon-icon_star-filled' : 'icon-icon_star'}}">
+          </button>
+          <div class="poi_panel__actions__text">{{= _('FAVORIS', 'poi') }}</div>
+        </div>
+        <div class="poi_panel__actions__share_container" {{= click(this.openShare, this) }}>
+          <button class="poi_panel__actions__icon icon-share-2">
+          </button>
+          <div class="poi_panel__actions__text">{{= _('SHARE', 'poi') }}</div>
+        </div>
+        {{= this.PoiBlocContainer.render(this.poi) }}
       </div>
     </div>
-    <button {{= click(this.openShare, this) }}>
-      {{= _('Share', 'poi') }}
-    </button>
-    {{= this.PoiBlocContainer.render(this.poi) }}
   {{?}}
   <br>
   </div>
