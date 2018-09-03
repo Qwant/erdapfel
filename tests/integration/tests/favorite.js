@@ -13,9 +13,9 @@ beforeAll(async () => {
 })
 
 async function openFavoritePanel(page) {
-    await page.waitForSelector('.icon-icon_star')
-    await page.click('.icon-icon_star')
-    await wait(300)
+  await page.waitForSelector('.icon-icon_star')
+  await page.click('.icon-icon_star')
+  await wait(300)
 }
 
 test('toggle favorite panel', async () => {
@@ -78,10 +78,10 @@ test('center map after a favorite poi click', async () => {
   await page.evaluate(() => {
     MAP_MOCK.flyTo({center : {lat : 10, lng : 0}, zoom : 10})
   })
-  const favorite_mock_coordinates = {lat: 43.5, lng: 7.18}
-  await page.evaluate((favorite_mock_coordinates_) => {
-    fire('store_poi', new Poi(1, 'some poi i will click', '', favorite_mock_coordinates_, '', '', []))
-  },favorite_mock_coordinates)
+  const favoriteMockCoordinates = {lat: 43.5, lng: 7.18}
+  await page.evaluate((storeCoordinate) => {
+    fire('store_poi', new Poi(1, 'some poi i will click', '', storeCoordinate, '', '', []))
+  },favoriteMockCoordinates)
 
   await openFavoritePanel(page)
   await page.waitForSelector('.favorite_panel__swipe_element')
@@ -90,7 +90,7 @@ test('center map after a favorite poi click', async () => {
     return MAP_MOCK.getCenter()
   })
   clearStore(page)
-  expect(center).toEqual({lng  : favorite_mock_coordinates.lng, lat : favorite_mock_coordinates.lat})
+  expect(center).toEqual({lng  : favoriteMockCoordinates.lng, lat : favoriteMockCoordinates.lat})
 })
 
 
