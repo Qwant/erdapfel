@@ -99,8 +99,7 @@ PoiPanel.prototype.center = function() {
 }
 
 PoiPanel.prototype.openShare = function () {
-  let url = window.location
-  this.sharePanel.open(url)
+  this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 
 /* urlState interface implementation */
@@ -108,8 +107,7 @@ PoiPanel.prototype.openShare = function () {
 PoiPanel.prototype.store = function() {
   // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
   if(this.poi && this.poi.name && this.active) {
-    let slug = ExtendedString.slug(this.poi.name)
-    return `${this.poi.id}@${slug}`
+    return this.poi.toUrl()
   }
   return ''
 }

@@ -1,14 +1,17 @@
 import SharePanelView from '../views/share_panel.dot'
 import Panel from "../libs/panel"
-
+import facebookTemplate from '../views/templates/facebook'
+import twitterTemplate from '../views/templates/twitter'
 export default class Share {
   constructor() {
     this.panel = new Panel(this, SharePanelView)
     this.active = false
+    this.facebookTemplate = facebookTemplate
+    this.twitterTemplate = twitterTemplate
   }
 
-  open (url) {
-    this.url = url
+  open (shareUrl) {
+    this.shareUrl = shareUrl
     this.active = true
     this.panel.update()
   }
@@ -23,5 +26,9 @@ export default class Share {
   close () {
     this.active = false
     this.panel.update()
+  }
+
+  openPopup () {
+    `onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"`
   }
 }

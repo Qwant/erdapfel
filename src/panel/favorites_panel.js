@@ -56,7 +56,7 @@ Favorite.prototype.closeMoreMenu = function () {
 }
 
 Favorite.prototype.openShare = function (poi) {
-  let url = `${window.location}${poi.id}`
+  let url = poi.toAbsoluteUrl()
   this.sharePanel.open(url)
 }
 
