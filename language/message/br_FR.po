@@ -960,11 +960,3 @@ msgstr "DISOC'HOÙ"
 #: public/build/javascript/bundle.js:3317
 msgid "FAVORITES"
 msgstr "SINEDOÙ"
-
-#~ msgid "popup title"
-#~ msgstr "popup title"
-
-#~ msgid "images left"
-#~ msgid_plural "image left"
-#~ msgstr[0] "images left"
-#~ msgstr[1] "image left"
