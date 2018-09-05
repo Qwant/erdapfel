@@ -1,5 +1,8 @@
 export default class Geometry {
-  static needLayer = true
+  constructor() {
+    Geometry.needLayer = true
+  }
+
   static addLayer(map) {
     if(Geometry.needLayer) {
       Geometry.needLayer = false
@@ -16,7 +19,7 @@ export default class Geometry {
     }
   }
 
-  static circle(rawCenter, radius, map, points = 64 , id) {
+  static circle(rawCenter, radius, map, points = 64) {
     let center = {
       latitude: rawCenter[1],
       longitude: rawCenter[0]
@@ -37,6 +40,8 @@ export default class Geometry {
     }
     polygon.push(polygon[0])
 
+    Geometry.addLayer()
+
     let circle = {
       "type": "geojson",
       "data": {
@@ -50,9 +55,6 @@ export default class Geometry {
         }]
       }
     }
-
     map.addSource("polygons", circle)
-
-
   }
 }
