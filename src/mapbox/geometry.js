@@ -40,7 +40,7 @@ export default class Geometry {
     }
     polygon.push(polygon[0])
 
-    Geometry.addLayer()
+    Geometry.addLayer(map)
 
     let circle = {
       "type": "geojson",
