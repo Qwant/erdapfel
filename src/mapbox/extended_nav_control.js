@@ -46,7 +46,7 @@ export default class ExtendedControl {
     navigator.geolocation.getCurrentPosition((position) => {
       let center = [position.coords.longitude, position.coords.latitude]
       this._map.flyTo({center: center})
-      Geometry.circle(center, 30, 32, this._map)
+      Geometry.circle(center, 30, this._map)
 
       new Marker({offset : [3,3]})
         .setLngLat(center)
