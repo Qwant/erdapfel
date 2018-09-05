@@ -34,11 +34,10 @@ function Favorite(sharePanel) {
 }
 
 Favorite.prototype.toggleMore = function (position) {
-  if(this.openMoreMenuPosition === -1) {
-    this.openMoreMenu(position)
-  } else {
+  if(this.openMoreMenuPosition !== position) {
     this.closeMoreMenu()
   }
+  this.openMoreMenu(position)
 }
 
 Favorite.prototype.openMoreMenu = function (position) {
@@ -67,7 +66,6 @@ Favorite.prototype.isDisplayed = function () {
 Favorite.prototype.toggle = function() {
   if(this.active) {
     this.close()
-    this.openMoreMenuPosition = -1
   } else {
     this.open()
   }
@@ -119,6 +117,7 @@ Favorite.prototype.open = async function() {
 }
 
 Favorite.prototype.close = function() {
+  this.closeMoreMenu()
   this.active = false
   this.displayed = false
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')

@@ -23,8 +23,8 @@
 
                   <div class="favorite_panel__swipe_element" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
 
-                    <div class="favorite_panel__item__more_button">
-                      <i class="icon-more-horizontal" {{= click(this.toggleMore, this, i) }}></i>
+                    <div class="favorite_panel__item__more_button" {{= click(this.toggleMore, this, i) }}>
+                      <i class="icon-more-horizontal"></i>
                     </div>
 
 
@@ -45,16 +45,16 @@
 
                   </div>
 
-                   <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
-                    <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
-                      <i class="icon-share-2 favorite_panel__item__more__icon"></i>
-                      <span>{{= _('Share') }}</span>
-                    </p>
-                    <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
-                      <i class="icon-trash favorite_panel__item__more__icon"></i>
-                      <span>{{= _('Delete') }}</span>
-                    </p>
-                  </div>
+                    <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
+                      <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
+                        <i class="icon-share-2 favorite_panel__item__more__icon"></i>
+                        <span>{{= _('Share') }}</span>
+                      </p>
+                      <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
+                        <i class="icon-trash favorite_panel__item__more__icon"></i>
+                        <span>{{= _('Delete') }}</span>
+                      </p>
+                    </div>
 
                 </div>
               {{~}}
