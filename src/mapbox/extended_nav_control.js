@@ -1,5 +1,7 @@
-class ExtendedControl {
+import Geometry from './geometry'
+import {Marker} from 'mapbox-gl'
 
+export default class ExtendedControl {
   constructor() {
     this._container = document.createElement('div')
     this._zoomInButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-in', 'Zoom In', () => this._map.zoomIn())
@@ -42,7 +44,13 @@ class ExtendedControl {
 
   _geolocate() {
     navigator.geolocation.getCurrentPosition((position) => {
-      this._map.flyTo({center: [position.coords.longitude, position.coords.latitude]})
+      let center = [position.coords.longitude, position.coords.latitude]
+      this._map.flyTo({center: center})
+      Geometry.circle(center, 30, 32, this._map)
+
+      new Marker({offset : [3,3]})
+        .setLngLat(center)
+        .addTo(this._map);
     })
   }
 
@@ -65,4 +73,3 @@ class ExtendedControl {
   }
 }
 
-module.exports = ExtendedControl
