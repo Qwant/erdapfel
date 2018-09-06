@@ -1,9 +1,39 @@
 export default class Geometry {
-  static addLayer(map) {
+  constructor(shapeId, map) {
+    this.map = map
+    this.shapeId = shapeId
+  }
+  /**
+   *
+   * @param rawCenter array lat, lon
+   * @param radius in km
+   * @param map mapbox map instance
+   * @param points polygon point count
+   */
+  static circle(rawCenter, radius, map, points) {
+    let circlePolygon = Geometry.circlePolygon(rawCenter, radius, points)
+    return Geometry.addShape(circlePolygon, map)
+  }
+
+  /**
+   *
+   * @param center array lat, lon
+   * @param radius in km
+   * @param points polygon point count
+   */
+  update(center, radius, points) {
+    let data = Geometry.circlePolygon(center, radius, points)
+    let ot = this.map.getSource(this.shapeId)._data
+    ot.features[0].geometry.coordinates = [data]
+    this.map.getSource(this.shapeId).setData(ot)
+  }
+
+  /* private */
+  private static addLayer(shapeId, map) {
     map.addLayer({
-      "id": "polygons",
+      "id": shapeId,
       "type": "fill",
-      "source": "polygons",
+      "source": shapeId,
       "layout": {},
       "paint": {
         "fill-color": "blue",
@@ -12,21 +42,34 @@ export default class Geometry {
     })
   }
 
-  /**
-   *
-   * @param rawCenter array lat, lon
-   * @param radius in km
-   * @param map mapbox map instance
-   * @param points polygon point count
-   */
-  static circle(rawCenter, radius, map, points = 64) {
+  private static addShape(shape, map) {
+    let shapeId = Geometry.getId()
+    let circle = {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [shape]
+          }
+        }]
+      }
+    }
+    map.addSource(shapeId, circle)
+    Geometry.addLayer(shapeId, map)
+    return new Geometry(shapeId, map)
+  }
+
+  private static circlePolygon(rawCenter, radius, points = 64) {
     let center = {
       latitude: rawCenter[1],
       longitude: rawCenter[0]
     }
 
 
-    const polygon = []
+    const circlePolygon = []
     let distanceX = radius / (111.320 * Math.cos(center.latitude * Math.PI / 180))
     let distanceY = radius / 110.574
 
@@ -36,24 +79,18 @@ export default class Geometry {
       x = distanceX * Math.cos(theta);
       y = distanceY * Math.sin(theta);
 
-      polygon.push([center.longitude + x, center.latitude + y]);
+      circlePolygon.push([center.longitude + x, center.latitude + y]);
     }
-    polygon.push(polygon[0])
-    let circle = {
-      "type": "geojson",
-      "data": {
-        "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "geometry": {
-            "type": "Polygon",
-            "coordinates": [polygon]
-          }
-        }]
-      }
+    circlePolygon.push(circlePolygon[0])
+    return circlePolygon
+  }
+
+  private static getId() {
+    if(window.__geometryCount) {
+      window.__geometryCount ++
+    } else {
+      window.__geometryCount = 0
     }
-    map.addSource("polygons", circle)
-    Geometry.addLayer(map)
-    return
+    return `_polygon_${window.__geometryCount}`
   }
 }
