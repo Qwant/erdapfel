@@ -29,20 +29,20 @@ export default class Geometry {
   }
 
   /* private */
-  private static addLayer(shapeId, map) {
+  static addLayer(shapeId, map) {
     map.addLayer({
       "id": shapeId,
       "type": "fill",
       "source": shapeId,
       "layout": {},
       "paint": {
-        "fill-color": "blue",
-        "fill-opacity": 0.6
+        "fill-color": "#51c5ff",
+        "fill-opacity": 0.5
       }
     })
   }
 
-  private static addShape(shape, map) {
+  static addShape(shape, map) {
     let shapeId = Geometry.getId()
     let circle = {
       "type": "geojson",
@@ -62,7 +62,7 @@ export default class Geometry {
     return new Geometry(shapeId, map)
   }
 
-  private static circlePolygon(rawCenter, radius, points = 64) {
+  static circlePolygon(rawCenter, radius, points = 64) {
     let center = {
       latitude: rawCenter[1],
       longitude: rawCenter[0]
@@ -84,7 +84,7 @@ export default class Geometry {
     return circlePolygon
   }
 
-  private static getId() {
+  static getId() {
     if(window.__geometryCount) {
       window.__geometryCount ++
     } else {

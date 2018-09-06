@@ -1,7 +1,7 @@
 import Geometry from './geometry'
-import {Marker, LngLat} from 'mapbox-gl--ENV'
-const POLYCIRCLE_POINT_COUNT = 64
+import {Marker, LngLat} from 'mapbox-gl'
 
+const POLYCIRCLE_POINT_COUNT = 64
 export default class PinPoint {
   constructor() {
     this.isSet = false
@@ -11,8 +11,9 @@ export default class PinPoint {
     if(this.isSet) {
       this.move(rawCenter, accuracy)
     } else {
+      let svCircle = document.getElementById('pinPointCircle')
       this.circle = Geometry.circle(rawCenter, accuracy, map, POLYCIRCLE_POINT_COUNT)
-      this.marker = new Marker({offset : [3,3]})
+      this.marker = new Marker({element: svCircle,offset : [0,0]})
         .setLngLat(rawCenter)
         .addTo(map)
       this.isSet = true
@@ -21,6 +22,6 @@ export default class PinPoint {
 
   move(rawCenter, accuracy) {
     this.marker.setLngLat(new LngLat(rawCenter[0], rawCenter[1]))
-    this.circle.update(rawCenter, accuracy, 64)
+    this.circle.update(rawCenter, accuracy, POLYCIRCLE_POINT_COUNT)
   }
 }

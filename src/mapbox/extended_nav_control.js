@@ -45,7 +45,7 @@ export default class ExtendedControl {
     navigator.geolocation.getCurrentPosition((position) => {
       let center = [position.coords.longitude, position.coords.latitude]
       let accuracy = position.coords.accuracy / 1000
-      this._map.flyTo({center: center, zoom : 10})
+      this._map.flyTo({center: center, zoom : 12})
       this.pinPoint.set(center, accuracy, this._map)
     })
   }
