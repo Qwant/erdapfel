@@ -67,19 +67,18 @@ export default class Geometry {
       latitude: rawCenter[1],
       longitude: rawCenter[0]
     }
-
-
+    /* black magic from stack overflow */
     const circlePolygon = []
     let distanceX = radius / (111.320 * Math.cos(center.latitude * Math.PI / 180))
     let distanceY = radius / 110.574
 
     let theta, x, y;
     for(let i = 0; i < points; i++) {
-      theta = (i / points) * (2 * Math.PI);
-      x = distanceX * Math.cos(theta);
-      y = distanceY * Math.sin(theta);
+      theta = (i / points) * (2 * Math.PI)
+      x = distanceX * Math.cos(theta)
+      y = distanceY * Math.sin(theta)
 
-      circlePolygon.push([center.longitude + x, center.latitude + y]);
+      circlePolygon.push([center.longitude + x, center.latitude + y])
     }
     circlePolygon.push(circlePolygon[0])
     return circlePolygon
