@@ -19,15 +19,14 @@ before_script:
 deploy: #update translation strings on transifex
     provider: script
     skip_cleanup: true
-    script:
-        - npm run build
-        - npm run i18n
-        - pip install virtualenv
-        - virtualenv ~/env
-        - source ~/env/bin/activate
-        - pip install transifex-client
-        - sudo echo $'[https://www.transifex.com]\nhostname = https://www.transifex.com\nusername = '"$TRANSIFEX_API_USER"$'\npassword = '"$TRANSIFEX_API_KEY"$'\n' > ~/.transifexrc
-        - tx push -st
-
+    script: >
+        npm run build
+        && npm run i18n
+        && pip install virtualenv
+        && virtualenv ~/env
+        && source ~/env/bin/activate
+        && pip install transifex-client
+        && sudo echo $'[https://www.transifex.com]\nhostname = https://www.transifex.com\nusername = '"$TRANSIFEX_API_USER"$'\npassword = '"$TRANSIFEX_API_KEY"$'\n' > ~/.transifexrc
+        && tx push -st
     on:
       branch: master
