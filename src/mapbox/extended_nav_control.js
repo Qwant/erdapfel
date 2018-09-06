@@ -1,6 +1,4 @@
-import Geometry from './geometry'
-import {Marker} from 'mapbox-gl'
-
+import PinPoint from './pin_point'
 export default class ExtendedControl {
   constructor() {
     this._container = document.createElement('div')
@@ -46,11 +44,7 @@ export default class ExtendedControl {
     navigator.geolocation.getCurrentPosition((position) => {
       let center = [position.coords.longitude, position.coords.latitude]
       this._map.flyTo({center: center})
-      Geometry.circle(center, 30, this._map)
-
-      new Marker({offset : [3,3]})
-        .setLngLat(center)
-        .addTo(this._map);
+      PinPoint(center, 10, this._map)
     })
   }
 

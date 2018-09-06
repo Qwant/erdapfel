@@ -1,24 +1,24 @@
 export default class Geometry {
-  constructor() {
-    Geometry.needLayer = true
-  }
-
   static addLayer(map) {
-    if(Geometry.needLayer) {
-      Geometry.needLayer = false
-      map.addLayer({
-        "id": "polygons",
-        "type": "fill",
-        "source": "polygons",
-        "layout": {},
-        "paint": {
-          "fill-color": "blue",
-          "fill-opacity": 0.6
-        }
-      })
-    }
+    map.addLayer({
+      "id": "polygons",
+      "type": "fill",
+      "source": "polygons",
+      "layout": {},
+      "paint": {
+        "fill-color": "blue",
+        "fill-opacity": 0.6
+      }
+    })
   }
 
+  /**
+   *
+   * @param rawCenter array lat, lon
+   * @param radius in km
+   * @param map mapbox map instance
+   * @param points polygon point count
+   */
   static circle(rawCenter, radius, map, points = 64) {
     let center = {
       latitude: rawCenter[1],
@@ -39,9 +39,6 @@ export default class Geometry {
       polygon.push([center.longitude + x, center.latitude + y]);
     }
     polygon.push(polygon[0])
-
-    Geometry.addLayer(map)
-
     let circle = {
       "type": "geojson",
       "data": {
@@ -56,5 +53,7 @@ export default class Geometry {
       }
     }
     map.addSource("polygons", circle)
+    Geometry.addLayer(map)
+    return
   }
 }
