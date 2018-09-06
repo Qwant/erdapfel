@@ -5,6 +5,7 @@ import Ajax from "../libs/ajax"
 import nconf from '@qwant/nconf-getter'
 import PanelManager from "../proxies/panel_manager"
 import {version} from '../../config/constants.yml'
+import ExtendedString from "../libs/string";
 const serviceConfig = nconf.get().services
 const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 18, panel: true}]
 const DEFAULT_ZOOM = 16
@@ -121,6 +122,16 @@ Poi.geocoderLoad = function(feature) {
     poi.bbox = feature.properties.geocoding.bbox
   }
   return poi
+}
+
+Poi.prototype.toUrl = function () {
+  let slug = ExtendedString.slug(this.name)
+  return `${this.id}@${slug}`
+}
+
+Poi.prototype.toAbsoluteUrl = function () {
+  let location = window.location
+  return `${location.protocol}//${location.host}${baseUrl}place/${this.toUrl()}/#map=${this.zoom}/${this.latLon.lat.toFixed(7)}/${this.latLon.lng.toFixed(7)}`
 }
 
 window.Poi = Poi

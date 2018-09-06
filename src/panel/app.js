@@ -7,15 +7,17 @@ import ErrorHandlerPanel from "./error_panel";
 import SideBarPanel from './side_bar_panel';
 import PanelManager from "../proxies/panel_manager";
 import UrlState from "../proxies/url_state";
+import Share from "./share"
 
 function AppPanel(parent) {
 
   PanelManager.init()
   UrlState.init()
 
+  this.sharePanel = new Share()
   this.sideBarPanel = new SideBarPanel()
-  this.favoritePanel = new FavoritePanel()
-  this.poiPanel = new PoiPanel()
+  this.favoritePanel = new FavoritePanel(this.sharePanel)
+  this.poiPanel = new PoiPanel(this.sharePanel)
   this.errorPanel = new ErrorHandlerPanel()
   this.masqPanel = new RegisterMasqPanel()
   this.panel = new Panel(this, PanelsView, parent)

@@ -3,3 +3,4 @@
 {{= this.sideBarPanel.render() }}
 {{= this.errorPanel.render() }}
 {{= this.masqPanel.render() }}
+{{= this.sharePanel.render() }}

@@ -11,7 +11,7 @@ const poiSubClass = require('../mapbox/poi_subclass')
 
 const store = new Store()
 
-function PoiPanel() {
+function PoiPanel(sharePanel) {
   this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
   this.active = false
@@ -19,6 +19,7 @@ function PoiPanel() {
   this.poiSubClass = poiSubClass
   this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
+  this.sharePanel = sharePanel
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
 }
@@ -26,14 +27,12 @@ function PoiPanel() {
 PoiPanel.prototype.toggleStorePoi = function() {
   if(this.poi.stored) {
     fire('del_poi', this.poi)
-    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
-    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star-filled')
-    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star')
+    this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
+    this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.poi.stored = false
   } else {
-    this.panel.removeClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star')
-    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'icon-icon_star-filled')
-    this.panel.addClassName(.2, '.poi_panel__store_status__toggle', 'poi_panel__store_status__toggle--stored')
+    this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
+    this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     fire('store_poi', this.poi)
     this.poi.stored = true
   }
@@ -95,15 +94,12 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   PanelManager.notify()
 }
 
-PoiPanel.prototype.copy = function () {
-  let copyUrl = document.getElementById('share-url')
-  copyUrl.select()
-  document.execCommand('copy')
-  copyUrl.blur()
-}
-
 PoiPanel.prototype.center = function() {
   fire('fit_map', this.poi, {sidePanelOffset : true})
+}
+
+PoiPanel.prototype.openShare = function () {
+  this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 
 /* urlState interface implementation */
@@ -111,8 +107,7 @@ PoiPanel.prototype.center = function() {
 PoiPanel.prototype.store = function() {
   // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
   if(this.poi && this.poi.name && this.active) {
-    let slug = ExtendedString.slug(this.poi.name)
-    return `${this.poi.id}@${slug}`
+    return this.poi.toUrl()
   }
   return ''
 }

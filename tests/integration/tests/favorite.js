@@ -65,10 +65,9 @@ test('remove favorite using favorite panel', async () => {
   let items = await page.waitForSelector('.favorite_panel__item')
   expect(items).not.toBeNull()
   /* remove it */
-  await  page.waitForSelector('.favorite_panel__remove')
-  /* this will do the trick (click on a hidden element) */
-  await page.evaluate(() => { document.querySelector('.favorite_panel__item__actions').style.display = 'block' })
-  page.click('.favorite_panel__remove')
+  await page.waitForSelector('.icon-more-horizontal')
+  await page.click('.icon-more-horizontal')
+  await page.click('.icon-trash')
   items = await page.waitForSelector('.favorite_panel__container__empty')
   expect(items).not.toBeNull()
 })

@@ -6,13 +6,19 @@ import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
 const poiSubClass = require('../mapbox/poi_subclass')
 
-function Favorite() {
+function Favorite(sharePanel) {
   this.active = false
   this.displayed = false
   this.favoritePois = []
   this.poiSubClass = poiSubClass
   this.filterPanel = new FilterPanel()
+  this.sharePanel = sharePanel
   this.connectStore()
+  this.openMoreMenuPosition = -1
+
+  document.addEventListener('click', () => {
+    this.closeMoreMenu()
+  })
 
   listen('store_registered', () => {
     this.getAll()
@@ -25,6 +31,32 @@ function Favorite() {
   this.panel = new Panel(this, FavoritePanelView)
   this.isFavoritePanel = true
   PanelManager.register(this)
+}
+
+Favorite.prototype.toggleMore = function (position) {
+  if(this.openMoreMenuPosition !== position) {
+    this.closeMoreMenu()
+  }
+  this.openMoreMenu(position)
+}
+
+Favorite.prototype.openMoreMenu = function (position) {
+  this.openMoreMenuPosition = position
+  let menu = document.querySelector(`#favorite_more_${position}`)
+  menu.classList.add('favorite_panel__item__more--active')
+}
+
+Favorite.prototype.closeMoreMenu = function () {
+  let menu = document.querySelector(`#favorite_more_${this.openMoreMenuPosition}`)
+  if(menu) {
+    menu.classList.remove('favorite_panel__item__more--active')
+    this.openMoreMenuPosition = -1
+  }
+}
+
+Favorite.prototype.openShare = function (poi) {
+  let url = poi.toAbsoluteUrl()
+  this.sharePanel.open(url)
 }
 
 Favorite.prototype.isDisplayed = function () {
@@ -85,6 +117,7 @@ Favorite.prototype.open = async function() {
 }
 
 Favorite.prototype.close = function() {
+  this.closeMoreMenu()
   this.active = false
   this.displayed = false
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')

@@ -1,0 +1,20 @@
+<div {{= click(this.close, this) }} class="share_overlay {{= this.active ? 'share_overlay--active' : '' }}"></div>
+
+<div class="share {{= this.active ? 'share--active' : '' }}">
+  <i class="icon-x share__close" {{= click(this.close, this) }}></i>
+  <h2 class="share__title">{{= _('Share favorite', 'share') }}</h2>
+
+  <span class="share__subtitle">{{= _('Share link', 'share') }}</span>
+  <input id="share_url_data" value="{{= this.shareUrl }}" type="text"></input>
+  <button class="share__copy_link" {{= click(this.copy, this) }}>{{= _('COPY LINK' , 'share') }}</button>
+  <hr class="share__hr">
+  <i class="share__icons icon-facebook"></i>
+  <a target="_blank" {{= this.openPopup() }} href="{{= this.facebookTemplate(this.shareUrl) }}" class="share__link">
+    {{= _('SHARE ON FACEBOOK', 'share') }}
+  </a>
+  <hr class="share__hr">
+  <i class="share__icons icon-twitter"></i>
+  <a target="_blank" {{= this.openPopup() }} href="{{= this.twitterTemplate(this.shareUrl) }}" class="share__link">
+    {{= _('SHARE ON TWITTER', 'share') }}
+  </a>
+</div>
