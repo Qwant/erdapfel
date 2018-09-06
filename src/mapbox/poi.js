@@ -131,7 +131,7 @@ Poi.prototype.toUrl = function () {
 
 Poi.prototype.toAbsoluteUrl = function () {
   let location = window.location
-  return `${location.protocol}//${location.host}/place/${this.toUrl()}/#map=${18}/${this.latLon.lat.toFixed(7)}/${this.latLon.lng.toFixed(7)}`
+  return `${location.protocol}//${location.host}${baseUrl}place/${this.toUrl()}/#map=${this.zoom}/${this.latLon.lat.toFixed(7)}/${this.latLon.lng.toFixed(7)}`
 }
 
 window.Poi = Poi
