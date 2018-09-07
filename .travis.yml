@@ -19,7 +19,7 @@ before_script:
 deploy: #update translation strings on transifex
     provider: script
     skip_cleanup: true
-    script: >
+    script:
         npm run build
         && npm run i18n
         && pip install virtualenv
