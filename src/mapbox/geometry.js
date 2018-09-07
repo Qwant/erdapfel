@@ -28,6 +28,10 @@ export default class Geometry {
     this.map.getSource(this.shapeId).setData(ot)
   }
 
+  remove() {
+    this.map.removeLayer(this.shapeId)
+  }
+
   /* private */
   static addLayer(shapeId, map) {
     map.addLayer({
@@ -39,7 +43,7 @@ export default class Geometry {
         "fill-color": "#51c5ff",
         "fill-opacity": 0.5
       }
-    })
+    }, 'poi-level-1')
   }
 
   static addShape(shape, map) {

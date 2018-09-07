@@ -2,8 +2,8 @@ import PinPoint from './pin_point'
 export default class ExtendedControl {
   constructor() {
     this._container = document.createElement('div')
-    this._zoomInButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-in', 'Zoom In', () => this._map.zoomIn())
-    this._zoomOutButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-out', 'Zoom Out', () => this._map.zoomOut())
+    this._zoomInButton = this._createButton('mapboxgl-ctrl-icon icon-icon_plus', 'Zoom In', () => this._map.zoomIn())
+    this._zoomOutButton = this._createButton('mapboxgl-ctrl-icon icon-icon_minus', 'Zoom Out', () => this._map.zoomOut())
     this._compass = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-compass', 'Reset North', () => {
       this._resetNorthAndTilt()
     })
@@ -45,7 +45,6 @@ export default class ExtendedControl {
     navigator.geolocation.getCurrentPosition((position) => {
       let center = [position.coords.longitude, position.coords.latitude]
       let accuracy = position.coords.accuracy / 1000
-      this._map.flyTo({center: center, zoom : 12})
       this.pinPoint.set(center, accuracy, this._map)
     })
   }
