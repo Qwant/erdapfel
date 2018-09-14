@@ -5,12 +5,15 @@ ENV PROJECT_DIR=/srv/maps-tileview/
 RUN apt-get update && apt-get -y install gettext
 RUN npm i npm@latest -g
 RUN mkdir -p $PROJECT_DIR
+RUN chown node $PROJECT_DIR
+
+USER node
 WORKDIR $PROJECT_DIR
 
 ###########################################################
 
 FROM base as builder
-COPY . $PROJECT_DIR
+COPY --chown=node . $PROJECT_DIR
 RUN npm install && npm run-script build
 
 ###########################################################
@@ -27,6 +30,6 @@ COPY bin $PROJECT_DIR/bin
 COPY package*.json $PROJECT_DIR
 COPY --from=builder $PROJECT_DIR/public $PROJECT_DIR/public
 
-RUN npm install -g --production
+RUN npm install --production
 
 CMD node $PROJECT_DIR/bin/index.js

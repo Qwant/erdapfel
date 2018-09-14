@@ -114,8 +114,8 @@ const mapJsChunkConfig = {
         {
           loader : '@qwant/map-style-loader',
           options : {
-            output: 'debug', // 'production' | 'omt'
-            outPath : __dirname + '/../public',
+            output: 'production', // 'debug' | 'production' | 'omt'
+            outPath : __dirname + '/../public/mapstyle',
             i18n : true,
             icons : true,
             pixelRatios : [1,2]

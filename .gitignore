@@ -7,7 +7,7 @@ public/css/
 public/build/
 
 #map style
-public/sprite*
+public/mapstyle/
 
 #doumentantion
 /docs/*

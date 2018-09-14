@@ -19,7 +19,7 @@ function I18n() {
 I18n.prototype.setLang = async function() {
   this.language = window.preferedLanguage
   try {
-    await AsyncFileLoader(`build/javascript/message/${this.language.locale}.js`)
+    await AsyncFileLoader(`statics/build/javascript/message/${this.language.locale}.js`)
   } catch (e) {
     console.error(e)
   }

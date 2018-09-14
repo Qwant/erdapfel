@@ -26,7 +26,5 @@ store:
 mapStyle:
   baseMapUrl: override_by_environment
   poiMapUrl: override_by_environment
-  spritesUrl:
-    https://qwantresearch.github.io/qwant-basic-gl-style/
-  fontUrl:
-    https://qwantresearch.github.io/fonts/
+  spritesUrl: /mapstyle/
+  fontsUrl: /mapstyle/font/
