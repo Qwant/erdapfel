@@ -2,7 +2,7 @@ const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 const poiMock = require('../../__data__/poi')
-import {initBrowser, getText, wait, clearStore} from '../tools'
+import {initBrowser, getText, wait, clearStore, openFavoritePanel} from '../tools'
 
 let browser
 let page
@@ -63,7 +63,6 @@ test('load a poi already in my favorite from url', async () => {
   })
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   let plainStar = await page.waitForSelector('.icon-icon_star-filled')
-  clearStore(page)
   expect(plainStar).not.toBeFalsy()
 })
 
@@ -94,7 +93,6 @@ test('update url after a favorite poi click', async () => {
   let location = await page.evaluate(() => {
     return document.location.href
   })
-  clearStore(page)
   expect(location).toMatch(/1@Mus%C3%A9e_dOrsay/)
 })
 
@@ -176,6 +174,37 @@ test('display details about the poi on a poi click', async () => {
 
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()
+})
+
+test('add a poi as favorite and find it back in the favorite menu', async () => {
+  expect.assertions(3)
+  await page.goto(APP_URL)
+
+  // at first there should be no favorite
+  await openFavoritePanel(page)
+  let items_before = await page.$$('.favorite_panel__item')
+  expect(items_before).toHaveLength(0)
+  await page.waitForSelector('.poi_panel__toggle_display')
+  await page.click('.poi_panel__toggle_display')
+  await wait(300)
+
+  await page.evaluate(() => {
+    window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
+  })
+  await page.click('#mock_poi')
+  const poiPanel = await page.waitForSelector('.poi_panel__title ')
+  expect(poiPanel).not.toBeFalsy()
+
+  await page.click('.poi_panel__actions__icon__store')
+  await page.click('.side_bar__fav')
+  await wait(300)
+  await openFavoritePanel(page)
+  let items = await  page.waitForSelector('.favorite_panel__item')
+  expect(items).not.toBeNull()
+})
+
+afterEach(() => {
+  clearStore(page)
 })
 
 afterAll(() => {

@@ -1,7 +1,7 @@
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-import {initBrowser, wait, store, clearStore} from '../tools'
+import {initBrowser, wait, store, clearStore, openFavoritePanel} from '../tools'
 
 let browser
 let page
@@ -11,12 +11,6 @@ beforeAll(async () => {
   page = browserPage.page
   browser = browserPage.browser
 })
-
-async function openFavoritePanel(page) {
-  await page.waitForSelector('.icon-icon_star')
-  await page.click('.icon-icon_star')
-  await wait(300)
-}
 
 test('toggle favorite panel', async () => {
   expect.assertions(2)
@@ -36,7 +30,6 @@ test('favorite added is present in favorite panel', async () => {
   })
   await openFavoritePanel(page)
   let items = await  page.waitForSelector('.favorite_panel__item')
-  clearStore(page)
   expect(items).not.toBeNull()
 })
 
@@ -51,7 +44,6 @@ test('restore favorite from localStorage', async () => {
   let title = await page.evaluate(() => {
     return document.querySelector('.favorite_panel__item__title').innerText
   })
-  clearStore(page)
   expect(title).toEqual(testTitle)
 })
 
@@ -88,10 +80,12 @@ test('center map after a favorite poi click', async () => {
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })
-  clearStore(page)
   expect(center).toEqual({lng  : favoriteMockCoordinates.lng, lat : favoriteMockCoordinates.lat})
 })
 
+afterEach(() => {
+  clearStore(page)
+})
 
 afterAll(() => {
   browser.close()

@@ -15,7 +15,7 @@ export const getText = async function (page, selector) {
 }
 
 export const initBrowser = async function () {
-  const browser = await puppeteer.launch({args: puppeteerArguments})
+  const browser = await puppeteer.launch({args: puppeteerArguments, headless: false})
   const page = await browser.newPage()
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
@@ -37,4 +37,11 @@ export function clearStore(page) {
   page.evaluate(() =>
     localStorage.clear()
   )
+}
+
+
+export async function openFavoritePanel(page) {
+  await page.waitForSelector('.icon-icon_star')
+  await page.click('.icon-icon_star')
+  await wait(300)
 }
