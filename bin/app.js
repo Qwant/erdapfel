@@ -11,6 +11,9 @@ function App(config) {
   const userLanguage = require('./middlewares/user_language')(languages)
   app.use(userLanguage)
 
+  const ogMeta = new require('./middlewares/og_meta')(config)
+  app.use(ogMeta)
+
   this.handler = null
   app.set('view engine', 'ejs')
 
