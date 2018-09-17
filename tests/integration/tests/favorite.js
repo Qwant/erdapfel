@@ -1,7 +1,7 @@
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-import {initBrowser, wait, store, clearStore, openFavoritePanel} from '../tools'
+import {initBrowser, wait, store, clearStore, toggleFavoritePanel} from '../tools'
 
 let browser
 let page
@@ -17,7 +17,7 @@ test('toggle favorite panel', async () => {
   await page.goto(APP_URL)
   let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
   expect(favPanelHidden).not.toBeFalsy()
-  await openFavoritePanel(page)
+  await toggleFavoritePanel(page)
   let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
   expect(favPanel).not.toBeFalsy()
 })
@@ -28,7 +28,7 @@ test('favorite added is present in favorite panel', async () => {
   page.evaluate(() => {
     fire('store_poi', new Poi(1, 'some poi', '', {lat : 43, lng : 2}, '', '', []))
   })
-  await openFavoritePanel(page)
+  await toggleFavoritePanel(page)
   let items = await  page.waitForSelector('.favorite_panel__item')
   expect(items).not.toBeNull()
 })
@@ -53,7 +53,7 @@ test('remove favorite using favorite panel', async () => {
   await page.evaluate(() => {
     fire('store_poi', new Poi(1, 'some poi i will remove', '', {lat : 43, lng : 2}, '', '', []))
   })
-  await openFavoritePanel(page)
+  await toggleFavoritePanel(page)
   let items = await page.waitForSelector('.favorite_panel__item')
   expect(items).not.toBeNull()
   /* remove it */
@@ -74,7 +74,7 @@ test('center map after a favorite poi click', async () => {
     fire('store_poi', new Poi(1, 'some poi i will click', '', storeCoordinate, '', '', []))
   },favoriteMockCoordinates)
 
-  await openFavoritePanel(page)
+  await toggleFavoritePanel(page)
   await page.waitForSelector('.favorite_panel__swipe_element')
   await page.click('.favorite_panel__swipe_element')
   let center = await page.evaluate(() => {

@@ -15,7 +15,7 @@ export const getText = async function (page, selector) {
 }
 
 export const initBrowser = async function () {
-  const browser = await puppeteer.launch({args: puppeteerArguments, headless: false})
+  const browser = await puppeteer.launch({args: puppeteerArguments})
   const page = await browser.newPage()
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
@@ -39,9 +39,22 @@ export function clearStore(page) {
   )
 }
 
-
-export async function openFavoritePanel(page) {
-  await page.waitForSelector('.icon-icon_star')
-  await page.click('.icon-icon_star')
+export async function toggleFavoritePanel(page) {
+  await page.waitForSelector('.icon-icon_star.side_bar__item__icon')
+  await page.click('.icon-icon_star.side_bar__item__icon')
   await wait(300)
+}
+
+// Returns all favorites as an array
+// It needs the favorite panel to be open
+export async function getFavorites(page) {
+  return await page.evaluate(() => {
+    return Array.from(document.querySelectorAll('.favorite_panel__swipe_element')).map((e) => {
+      return {
+        title: e.querySelector('.favorite_panel__item__title').innerText,
+        desc: e.querySelector('.favorite_panel__item__desc').innerText,
+        icons: Array.from(e.querySelector('.favorite_panel__item__image.icon').classList.values())
+      }
+    })
+  })
 }

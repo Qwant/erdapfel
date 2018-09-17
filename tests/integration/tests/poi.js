@@ -2,7 +2,7 @@ const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 const poiMock = require('../../__data__/poi')
-import {initBrowser, getText, wait, clearStore, openFavoritePanel} from '../tools'
+import {initBrowser, getText, wait, clearStore, toggleFavoritePanel, getFavorites} from '../tools'
 
 let browser
 let page
@@ -30,10 +30,7 @@ beforeAll(async () => {
 test('click on a poi', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
-  await page.evaluate(() => {
-    window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
-  })
-  await page.click('#mock_poi')
+  await select_poi_1(page)
   const poiPanel = await page.waitForSelector('.poi_panel__title ')
   expect(poiPanel).not.toBeFalsy()
   const translatedSubClass = await getText(page, '.poi_panel__description')
@@ -69,11 +66,7 @@ test('load a poi already in my favorite from url', async () => {
 test('update url after a poi click', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await page.evaluate(() => {
-    window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
-  })
-  await page.click('#mock_poi')
-  await wait(400)
+  await select_poi_1(page)
   let location = await page.evaluate(() => {
     return document.location.href
   })
@@ -117,11 +110,7 @@ test('open poi from autocomplete selection', async () => {
 test('display a popup on hovering a poi', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await page.evaluate(() => {
-    window.MAP_MOCK.evented.prepare('mouseenter', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
-  })
-  await page.hover('#mock_poi')
-  await wait(1000)
+  await select_poi_1(page)
   let popups = await page.evaluate(() => {
     return window.MAP_MOCK.popups
   })
@@ -176,31 +165,44 @@ test('display details about the poi on a poi click', async () => {
   expect(wiki_block).not.toBeFalsy()
 })
 
-test('add a poi as favorite and find it back in the favorite menu', async () => {
-  expect.assertions(3)
-  await page.goto(APP_URL)
-
-  // at first there should be no favorite
-  await openFavoritePanel(page)
-  let items_before = await page.$$('.favorite_panel__item')
-  expect(items_before).toHaveLength(0)
-  await page.waitForSelector('.poi_panel__toggle_display')
-  await page.click('.poi_panel__toggle_display')
-  await wait(300)
-
+async function select_poi_1(page) {
   await page.evaluate(() => {
     window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
   })
   await page.click('#mock_poi')
-  const poiPanel = await page.waitForSelector('.poi_panel__title ')
-  expect(poiPanel).not.toBeFalsy()
-
-  await page.click('.poi_panel__actions__icon__store')
-  await page.click('.side_bar__fav')
   await wait(300)
-  await openFavoritePanel(page)
-  let items = await  page.waitForSelector('.favorite_panel__item')
-  expect(items).not.toBeNull()
+}
+
+test('add a poi as favorite and find it back in the favorite menu', async () => {
+  expect.assertions(7)
+  await page.goto(APP_URL)
+
+  // we select a poi and 'star' it
+  await select_poi_1(page)
+  let poiPanel = await page.waitForSelector('.poi_panel__title')
+  expect(poiPanel).not.toBeFalsy()
+  await page.click('.poi_panel__actions__icon__store')
+
+  // we check that the first favorite item is our poi
+  await toggleFavoritePanel(page)
+  let fav = await getFavorites(page)
+  expect(fav).toHaveLength(1)
+  expect(fav[0].title).toEqual("Musée d'Orsay")
+  expect(fav[0].desc).toEqual("musée")
+  expect(fav[0].icons).toContainEqual("icon-museum")
+
+  // we then reopen the poi panel and 'unstar' the poi.
+  await wait(100)
+  await page.click('#favorite_item_0')
+  await wait(300)
+  poiPanel = await page.waitForSelector('.poi_panel__title')
+  expect(poiPanel).not.toBeFalsy()
+  await page.click('.icon-icon_star-filled')
+
+  // it should disapear from the favorites
+  await toggleFavoritePanel(page)
+  fav = await getFavorites(page)
+  expect(fav).toEqual([])
 })
 
 afterEach(() => {
