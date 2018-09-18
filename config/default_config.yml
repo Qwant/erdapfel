@@ -11,7 +11,7 @@ services:
 system:
   baseUrl: /
   timeout: 3
-  evalFiles: false
+  evalFiles: true
 
 # Store
 store:

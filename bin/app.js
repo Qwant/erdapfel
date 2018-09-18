@@ -1,6 +1,8 @@
 const express = require('express')
 const yaml = require('node-yaml')
 const path = require('path')
+const expressStaticGzip = require("express-static-gzip")
+
 const app = express()
 
 function App(config) {
@@ -24,24 +26,17 @@ function App(config) {
 
   const publicDir = path.join(__dirname, '..', 'public')
 
-  app.use('/mapstyle', express.static(path.join(publicDir, 'mapstyle'), {
+  app.use('/mapstyle', expressStaticGzip(path.join(publicDir, 'mapstyle'), {
     fallthrough: false,
     maxAge: '15m'
   }))
 
-  app.use('/statics', express.static(path.join(publicDir), {
+  app.use('/statics', expressStaticGzip(path.join(publicDir), {
     fallthrough: false,
   }))
 
   app.get('/*', (req, res) => {
     res.render('index', {config : config})
-  })
-
-  app.use((error, req, res, next) => {
-    if(error.statusCode == 404){
-      return res.sendStatus(404)
-    }
-    res.status(500).render('error', {error})
   })
 }
 

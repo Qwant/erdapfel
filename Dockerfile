@@ -14,7 +14,16 @@ WORKDIR $PROJECT_DIR
 
 FROM base as builder
 COPY --chown=node . $PROJECT_DIR
-RUN npm install && npm run-script build
+
+# Install with dev and build dependencies
+# 'npm prepare' is called after install
+RUN npm install
+
+RUN NODE_ENV=production npm run-script build
+
+# Pre-build gzipped versions of static files
+# They will be served directly by express-static-gzip
+RUN cd public && find . -type f ! -name '*.gz' ! -name '*.jpg' ! -name '*.png' ! -name '*.woff*' -exec gzip -k "{}" \;
 
 ###########################################################
 

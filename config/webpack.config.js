@@ -1,6 +1,7 @@
 const path = require('path')
 const yaml = require('node-yaml')
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const testMode = process.env.TEST === 'true'
 
 console.log('*--------------------*')
@@ -45,13 +46,32 @@ const sassChunkConfig = {
     },
   }
 
+let jsOptimizePlugins = []
+if (process.env.NODE_ENV === 'production'){
+  jsOptimizePlugins = [
+    // expose and write the allowed env vars on the compiled bundle
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        beautify: false,
+        ecma: 6,
+        compress: true,
+        comments: false
+      }
+    })
+  ]
+}
+
+
 const mainJsChunkConfig = {
   entry: ['./src/main.js'],
   output: {
     path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
     filename: 'bundle.js'
   },
-
+  plugins: jsOptimizePlugins,
   module: {
     loaders: [{
       test: /\.dot/,
@@ -90,7 +110,7 @@ const mapJsChunkConfig = {
         resource.request = resource.request.replace('--ENV', '')
       }
     })
-  ],
+  ].concat(jsOptimizePlugins),
   module: {
     loaders: [
       {
@@ -161,7 +181,6 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
           }
         }],
     },
-
     output : {
       path : path.join(__dirname, '..'),
       filename : `./public/build/javascript/message/${language.locale}.js`

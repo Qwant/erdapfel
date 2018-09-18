@@ -21,6 +21,7 @@ configBuilder.set('mapStyle:poiMapUrl', "[]")
 configBuilder.set('services:idunn:url', 'http://idunn_test.test')
 configBuilder.set('services:geocoder:url', `http://localhost:${config.PORT}/autocomplete`)
 configBuilder.set('services:poi:url', `http://localhost:${config.PORT}/poi`)
+configBuilder.set('system:evalFiles', false)
 
 module.exports = async function() {
   console.log(`Start test on PORT : ${config.PORT}`)
