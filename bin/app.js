@@ -11,15 +11,15 @@ function App(config) {
   const userLanguage = require('./middlewares/user_language')(languages)
   app.use(userLanguage)
 
-  const ogMeta = new require('./middlewares/og_meta')(config)
-  app.use(ogMeta)
-
   this.handler = null
   app.set('view engine', 'ejs')
 
   /* initialize gettext with correct dictionary */
   const gettext = require('./gettext_wrapper')(app, languages.supportedLanguages) /* set _ et _n as locals app methods */
   app.use(gettext)
+
+  const ogMeta = new require('./middlewares/og_meta')(config, constants)
+  app.use(ogMeta)
 
   app.use(express.static(`${__dirname}/../public`))
   app.get('/*', (req, res) => {

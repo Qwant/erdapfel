@@ -9,11 +9,13 @@
     <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css' rel='stylesheet'/>
 
     <% metas.forEach((meta) => { %>
-      <meta name="<%= meta.name %>" content="<%= meta.content %>">
+      <meta name="og:<%= meta.name %>" content="<%= meta.content %>">
     <%  }) %>
 
     <% if(poi) { %>
-      <script><%= JSON.stringify(poi) %></script>
+      <script>
+        window.hotLoadPoi = <%- JSON.stringify(poi) %>;
+      </script>
     <% } %>
 
   </head>

@@ -41,7 +41,7 @@ export default class Geometry {
       "layout": {},
       "paint": {
         "fill-color": "#51c5ff",
-        "fill-opacity": 0.5
+        "fill-opacity": 0.2
       }
     }, 'poi-level-1')
   }

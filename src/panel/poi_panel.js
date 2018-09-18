@@ -69,7 +69,7 @@ PoiPanel.prototype.close = async function() {
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
-  this.poi = await Poi.poiApiLoad(id)
+  this.poi = await Poi.hotLoad(id)
   fire('map_mark_poi', this.poi)
   this.poi.stored = await isPoiFavorite(this.poi)
   this.active = true

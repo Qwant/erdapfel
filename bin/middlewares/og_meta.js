@@ -1,62 +1,84 @@
 const request = require('request')
+const acceptLanguage = require('accept-language')
 
+const metas = [
+  {name : 'site_name', content : 'Qwant map'},
+  {name : 'image', content : '/images/maps_opengraph.png'},
+  {name : 'url', content : 'www.qwant.com/maps'},
+]
 
+module.exports = function(config, constants) {
+  async function getPoi(poiId, locale) {
+    let id = poiId
+    let atPos = poiId.indexOf('@')
+    if(atPos !== -1) {
+      id = poiId.slice(0, atPos)
+    }
 
-module.exports = function(config) {
-
-
-
-  const getLocale = function(req) {
-    let acceptLanguages = req.headers['accept-language']
-    this.config.language.supportedLanguages.find((supportedLanguage) => {
-
-    })
-  }
-
-
-
-  const getTitle = function() {
-    let isPoi = res.url.match('')
-    return `Qwant map${isPoi ? '' : ''}`
-  }
-
-  async function getPoi(poiId) {
     return new Promise((resolve, reject) => {
-      request(`${config.services.idunn.url}/${poiId}`, {json : true}, (error, response, body) => {
-        if(error) {
+      request(`${config.services.idunn.url}/v1/pois/${id}?lang=${locale.code}`, {json : true}, (error, response, body) => {
+        if(error) { /* add error granularity */
           reject(error)
+        } else if(body === 'not found') {
+          resolve(null)
         } else {
-          resolve(new Poi(response.name))
+          resolve(body)
         }
       })
     })
   }
 
+  function commonMeta(locale, req, res) {
+    res.locals.metas = metas.map(meta => meta)
+    res.locals.metas.push({name : 'locale', content : locale.locale})
+    res.locals.metas.push({name : 'locale', content : res.locals. _('Map multiple locations. Do more with Qwant Maps.')})
+  }
 
-  const metas = [
-    {property : 'title', content : getTitle},
-    {property : 'site_name', content : 'Qwant map'},
-    {property : 'description', content : 'Visualisez des multitudes de cartes, planifiez vos voyages, affichez des vues satellites, aériennes ou à l\'échelle de la rue. Faites-en toujours plus avec Bing Cartes.'},
-    {property : 'image', content : '/images/maps_opengraph.png'},
-    {property : 'url', content : 'www.qwant.com/maps'},
-    {property : 'locale', content : getLocale},
-  ]
-
-
-  return function(req, res, next) {
-    res.locals.metas = []
-    let placeUrlMatch = req.originalUrl.match(/place\/(.*)/)[1]
-    if(placeUrlMatch && placeUrlMatch.length > 0) {
-      let poiId = placeUrlMatch[1]
-      getPoi(poiId).then((poi) => {
-        res.locals.poi = poi
-        next()
-      }).catch((error) => {
-        next(error)
-      })
-    }
+  function poiMeta(poi, locale, req, res, next) {
+    commonMeta(locale, req, res)
+    res.locals.poi = poi
+    res.locals.metas.push({name : 'title', content : `${res.locals. _('Qwant map')} | ${poi.name}`})
+    next()
+  }
+  function homeMeta(locale, req, res, next) {
+    commonMeta(locale, req, res)
+    res.locals.metas.push({name : 'title', content : `${res.locals. _('Qwant map')}`})
     next()
   }
 
-}
+  function getLocale(req) {
+    let rawAcceptLanguages = req.headers['accept-language']
+    let supportedLanguages = constants.languages.supportedLanguages
 
+    acceptLanguage.languages(supportedLanguages.map(supportedLanguage =>
+      supportedLanguage.locale.replace('_', '-')
+    ))
+
+    let rawLocaleCode = acceptLanguage.get(rawAcceptLanguages)
+    let localeCode = rawLocaleCode.replace('-', '_')
+
+    let locale = constants.languages.defaultLanguage
+
+    supportedLanguages.forEach((languageConfig) => {
+      if(languageConfig.locale === localeCode) {
+        locale = languageConfig
+      }
+    })
+    return locale
+  }
+
+  return function(req, res, next) {
+    let placeUrlMatch = req.originalUrl.match(/place\/(.*)/)
+    let locale = getLocale(req)
+    if(placeUrlMatch && placeUrlMatch.length > 0) {
+      let poiId = placeUrlMatch[1]
+      getPoi(poiId, locale).then((poi) => {
+        poiMeta(poi, locale, req, res, next)
+      }).catch((error) => {
+        homeMeta(locale, req, res, next)
+      })
+    } else {
+      homeMeta(locale, req, res, next)
+    }
+  }
+}
