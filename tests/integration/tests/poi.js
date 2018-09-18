@@ -40,8 +40,8 @@ test('click on a poi', async () => {
 
 test('load a poi from url', async () => {
   expect.assertions(2)
-  await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
-  const poiPanel = await page.waitForSelector('.poi_panel__title')
+  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+  await page.waitForSelector('.poi_panel__title')
   let {title, address} = await page.evaluate(() => {
     return {
       title: document.querySelector('.poi_panel__title').innerText,
@@ -50,16 +50,15 @@ test('load a poi from url', async () => {
   })
   expect(title).toMatch(/Musée d\'Orsay/)
   expect(address).toMatch(/1 Rue de la Légion d\'Honneur \(Paris\)/)
-
 })
 
 test('load a poi already in my favorite from url', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  page.evaluate(() => {
-    fire('store_poi', new Poi('osm:node:2379542204', 'some poi', '', {lat : 43, lng : 2}, '', '', []))
+  await page.evaluate(() => {
+    fire('store_poi', new Poi('osm:way:63178753', 'some poi', '', {lat : 43, lng : 2}, '', '', []))
   })
-  await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   let plainStar = await page.waitForSelector('.icon-icon_star-filled')
   expect(plainStar).not.toBeFalsy()
 })
@@ -71,7 +70,7 @@ test('update url after a poi click', async () => {
   let location = await page.evaluate(() => {
     return document.location.href
   })
-  expect(location).toMatch(/1@Mus%C3%A9e_dOrsay/)
+  expect(location).toMatch(/@Mus%C3%A9e_dOrsay/)
 })
 
 test('update url after a favorite poi click', async () => {
@@ -87,7 +86,7 @@ test('update url after a favorite poi click', async () => {
   let location = await page.evaluate(() => {
     return document.location.href
   })
-  expect(location).toMatch(/1@Mus%C3%A9e_dOrsay/)
+  expect(location).toMatch(/@Mus%C3%A9e_dOrsay/)
 })
 
 test('open poi from autocomplete selection', async () => {
@@ -102,7 +101,7 @@ test('open poi from autocomplete selection', async () => {
   })
 
   // url is updated
-  expect(location.href).toMatch(/osm:node:4811858213@Mus%C3%A9e_dOrsay/)
+  expect(location.href).toMatch(/osm:way:63178753@Mus%C3%A9e_dOrsay/)
 
   // poi panel is visible
   expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy()
@@ -119,7 +118,7 @@ test('display a popup on hovering a poi', async () => {
 })
 
 test('center the map to the poi on a poi click', async () => {
-  await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   await page.waitForSelector('.poi_panel__title')
   expect.assertions(1)
   await page.evaluate(() => {
@@ -134,7 +133,7 @@ test('center the map to the poi on a poi click', async () => {
 })
 
 test('display details about the poi on a poi click', async () => {
-  await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   await page.waitForSelector('.poi_panel__title')
   //expect.assertions(3)
 

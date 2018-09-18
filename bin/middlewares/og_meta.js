@@ -17,7 +17,8 @@ module.exports = function(config, constants) {
     }
 
     return new Promise((resolve, reject) => {
-      request(`${config.services.idunn.url}/v1/pois/${id}?lang=${locale.code}`, {json : true}, (error, response, body) => {
+      let idunnUrl =`${config.services.idunn.url}/v1/pois/${id}?lang=${locale.code}`
+      request(idunnUrl, {json : true}, (error, response, body) => {
         if(error) {
           reject(error)
         } else if(response.statusCode === 404) {

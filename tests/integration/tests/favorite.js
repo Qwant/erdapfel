@@ -80,6 +80,7 @@ test('center map after a favorite poi click', async () => {
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })
+
   expect(center).toEqual({lng  : favoriteMockCoordinates.lng, lat : favoriteMockCoordinates.lat})
 })
 

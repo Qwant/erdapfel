@@ -3,9 +3,9 @@ PORT: 3000
 # Services
 services:
   geocoder:
-    url: override by environment
+    url: override_by_environment
   idunn:
-    url: override by environment
+    url: override_by_environment
 
 # System
 system:
@@ -24,8 +24,8 @@ store:
 
 # Map style
 mapStyle:
-  baseMapUrl: override by environment
-  poiMapUrl: override by environment
+  baseMapUrl: override_by_environment
+  poiMapUrl: override_by_environment
   spritesUrl:
     https://qwantresearch.github.io/qwant-basic-gl-style/
   fontUrl:
