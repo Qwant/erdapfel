@@ -30,7 +30,7 @@ beforeAll(async () => {
 test('click on a poi', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
-  await select_poi_1(page)
+  await selectPoiLevel(page, 1)
   const poiPanel = await page.waitForSelector('.poi_panel__title ')
   expect(poiPanel).not.toBeFalsy()
   const translatedSubClass = await getText(page, '.poi_panel__description')
@@ -66,7 +66,7 @@ test('load a poi already in my favorite from url', async () => {
 test('update url after a poi click', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await select_poi_1(page)
+  await selectPoiLevel(page, 1)
   let location = await page.evaluate(() => {
     return document.location.href
   })
@@ -110,7 +110,7 @@ test('open poi from autocomplete selection', async () => {
 test('display a popup on hovering a poi', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await select_poi_1(page)
+  await selectPoiLevel(page, level)
   let popups = await page.evaluate(() => {
     return window.MAP_MOCK.popups
   })
@@ -165,9 +165,9 @@ test('display details about the poi on a poi click', async () => {
   expect(wiki_block).not.toBeFalsy()
 })
 
-async function select_poi_1(page) {
+async function selectPoiLevel(page, level) {
   await page.evaluate(() => {
-    window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
+    window.MAP_MOCK.evented.prepare('click', `poi-level-${level}`,  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
   })
   await page.click('#mock_poi')
   await wait(300)
@@ -178,7 +178,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   await page.goto(APP_URL)
 
   // we select a poi and 'star' it
-  await select_poi_1(page)
+  await selectPoiLevel(page, 1)
   let poiPanel = await page.waitForSelector('.poi_panel__title')
   expect(poiPanel).not.toBeFalsy()
   await page.click('.poi_panel__actions__icon__store')
