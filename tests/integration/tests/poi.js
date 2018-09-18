@@ -135,7 +135,7 @@ test('center the map to the poi on a poi click', async () => {
 test('display details about the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   await page.waitForSelector('.poi_panel__title')
-  //expect.assertions(3)
+  expect.assertions(6)
 
   await page.click('.poi_panel__description_container')
   let infoTitle = await page.evaluate(() => {
@@ -163,6 +163,16 @@ test('display details about the poi on a poi click', async () => {
 
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()
+})
+
+test('check pre-loaded Poi error handling', async () => {
+  expect.assertions(1)
+
+  await page.goto(`${APP_URL}/place/osm:way:2403`)
+  let pathname = await page.evaluate(() => {
+    return location.pathname
+  })
+  expect(pathname).toEqual('/')
 })
 
 async function selectPoiLevel(page, level) {
@@ -210,5 +220,5 @@ afterEach(() => {
 })
 
 afterAll(() => {
- browser.close()
+  browser.close()
 })

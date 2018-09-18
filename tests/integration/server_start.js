@@ -7,8 +7,13 @@ const nock = require('nock')
 
 nock(/idunn_test\.test/)
   .persist(true)
-  .get(/pois/)
+  .get(/osm:way:63178753/)
   .reply(200, JSON.stringify(require('../__data__/poi')))
+
+nock(/idunn_test\.test/)
+  .persist(true)
+  .get(/osm:way:2403/)
+  .reply(404)
 
 configBuilder.set('store:name', 'local_store')
 configBuilder.set('mapStyle:baseMapUrl', "[]")
