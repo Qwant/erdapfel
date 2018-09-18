@@ -12,7 +12,7 @@
       <meta name="og:<%= meta.name %>" content="<%= meta.content %>">
     <%  }) %>
 
-    <% if(poi) { %>
+    <% if(typeof poi !== 'undefined') { %>
       <script>
         window.hotLoadPoi = <%- JSON.stringify(poi) %>;
       </script>

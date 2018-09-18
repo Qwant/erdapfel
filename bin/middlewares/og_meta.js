@@ -1,5 +1,6 @@
 const request = require('request')
 const acceptLanguage = require('accept-language')
+const QueryError = require('../query_error')
 
 const metas = [
   {name : 'site_name', content : 'Qwant map'},
@@ -17,9 +18,9 @@ module.exports = function(config, constants) {
 
     return new Promise((resolve, reject) => {
       request(`${config.services.idunn.url}/v1/pois/${id}?lang=${locale.code}`, {json : true}, (error, response, body) => {
-        if(error) { /* add error granularity */
+        if(error) {
           reject(error)
-        } else if(body === 'not found') {
+        } else if(response.statusCode === 404) {
           resolve(null)
         } else {
           resolve(body)
@@ -31,7 +32,7 @@ module.exports = function(config, constants) {
   function commonMeta(locale, req, res) {
     res.locals.metas = metas.map(meta => meta)
     res.locals.metas.push({name : 'locale', content : locale.locale})
-    res.locals.metas.push({name : 'locale', content : res.locals. _('Map multiple locations. Do more with Qwant Maps.')})
+    res.locals.metas.push({name : 'description', content : res.locals. _('Map multiple locations. Do more with Qwant Maps.')})
   }
 
   function poiMeta(poi, locale, req, res, next) {
@@ -73,8 +74,13 @@ module.exports = function(config, constants) {
     if(placeUrlMatch && placeUrlMatch.length > 0) {
       let poiId = placeUrlMatch[1]
       getPoi(poiId, locale).then((poi) => {
-        poiMeta(poi, locale, req, res, next)
+        if(poi) {
+          poiMeta(poi, locale, req, res, next)
+        } else {
+          res.redirect(307, '/')
+        }
       }).catch((error) => {
+        new QueryError(error)
         homeMeta(locale, req, res, next)
       })
     } else {
