@@ -7,7 +7,7 @@
     <div class="side_bar__item__text">{{= _('RESULTS', 'side bar') }}</div>
   </div>
 
-  <div {{= click(this.toggleFavorite, this) }} class="side_bar__fav side_bar__item {{= this.isFaforiteActive ? 'side_bar__item--active' : ''}}">
+  <div {{= click(this.toggleFavorite, this) }} class="side_bar__fav side_bar__item {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
     <div class="side_bar__fav__add">
       +1
     </div>

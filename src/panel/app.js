@@ -4,7 +4,7 @@ import FavoritePanel from "./favorites_panel";
 import RegisterMasqPanel from "./register_masq";
 import PoiPanel from "./poi_panel";
 import ErrorHandlerPanel from "./error_panel";
-import SideBarPanel from './side_bar_panel';
+import ServicePanel from './service_panel';
 import PanelManager from "../proxies/panel_manager";
 import UrlState from "../proxies/url_state";
 import Share from "./share"
@@ -15,7 +15,7 @@ function AppPanel(parent) {
   UrlState.init()
 
   this.sharePanel = new Share()
-  this.sideBarPanel = new SideBarPanel()
+  this.servicePanel = new ServicePanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
   this.errorPanel = new ErrorHandlerPanel()

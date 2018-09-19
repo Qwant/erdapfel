@@ -1,12 +1,12 @@
-import SideBarPanelView from '../views/side_bar_panel.dot'
+import ServicePanelView from '../views/service_panel.dot'
 import Panel from '../libs/panel'
 import PanelManager from "../proxies/panel_manager"
 import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
 
 function SideBarPanel() {
-  this.panel = new Panel(this, SideBarPanelView)
-  this.isFaforiteActive = false
+  this.panel = new Panel(this, ServicePanelView)
+  this.isFavoriteActive = false
   this.isResultActive = false
   listen('store_poi', async () => {
     await this.panel.addClassName(.2, '.side_bar__fav__add', 'side_bar__fav__add--active')
@@ -39,7 +39,7 @@ SideBarPanel.prototype.notify = function () {
       this.isResultActive = panel.isDisplayed()
     }
     if(panel instanceof Favorite) {
-      this.isFaforiteActive = panel.isDisplayed()
+      this.isFavoriteActive = panel.isDisplayed()
     }
   })
   this.panel.update()
