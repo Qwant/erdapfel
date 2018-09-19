@@ -18,7 +18,7 @@ function App(config) {
   const gettext = require('./gettext_wrapper')(app, languages.supportedLanguages) /* set _ et _n as locals app methods */
   app.use(gettext)
 
-  const ogMeta = new require('./middlewares/og_meta')(config, constants)
+  const ogMeta = new require('./middlewares/og_meta')(config)
   app.use(ogMeta)
 
   app.use(express.static(`${__dirname}/../public`))

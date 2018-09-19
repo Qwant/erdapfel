@@ -1,14 +1,13 @@
 const request = require('request')
-const acceptLanguage = require('accept-language')
 const QueryError = require('../query_error')
 
-const metas = [
-  {name : 'site_name', content : 'Qwant map'},
+const ogMetas = [
+  {name : 'site_name', content : 'Qwant Maps'},
   {name : 'image', content : '/images/maps_opengraph.png'},
-  {name : 'url', content : 'www.qwant.com/maps'},
+  {name : 'url', content : 'www.qwant.com/maps'}
 ]
 
-module.exports = function(config, constants) {
+module.exports = function(config) {
   async function getPoi(poiId, locale) {
     let id = poiId
     let atPos = poiId.indexOf('@')
@@ -31,47 +30,27 @@ module.exports = function(config, constants) {
   }
 
   function commonMeta(locale, req, res) {
-    res.locals.metas = metas.map(meta => meta)
-    res.locals.metas.push({name : 'locale', content : locale.locale})
-    res.locals.metas.push({name : 'description', content : res.locals. _('Map multiple locations. Do more with Qwant Maps.')})
+    res.locals.ogMetas = ogMetas.map(meta => meta)
+    res.locals.ogMetas.push({name : 'locale', content : locale.locale})
+    res.locals.ogMetas.push({name : 'description', content : res.locals. _('Map multiple locations. Do more with Qwant Maps.')})
   }
 
   function poiMeta(poi, locale, req, res, next) {
     commonMeta(locale, req, res)
     res.locals.poi = poi
-    res.locals.metas.push({name : 'title', content : `${res.locals. _('Qwant map')} | ${poi.name}`})
+    res.locals.ogMetas.push({name : 'title', content : poi.name})
     next()
   }
+
   function homeMeta(locale, req, res, next) {
     commonMeta(locale, req, res)
-    res.locals.metas.push({name : 'title', content : `${res.locals. _('Qwant map')}`})
+    res.locals.ogMetas.push({name : 'title', content : `${res.locals. _('Qwant map')}`})
     next()
-  }
-
-  function getLocale(req) {
-    let rawAcceptLanguages = req.headers['accept-language']
-    let supportedLanguages = constants.languages.supportedLanguages
-
-    acceptLanguage.languages(supportedLanguages.map(supportedLanguage =>
-      supportedLanguage.locale.replace('_', '-')
-    ))
-
-    let rawLocaleCode = acceptLanguage.get(rawAcceptLanguages)
-    let localeCode = rawLocaleCode.replace('-', '_')
-
-    let locale = constants.languages.defaultLanguage
-
-    supportedLanguages.forEach((languageConfig) => {
-      if(languageConfig.locale === localeCode) {
-        locale = languageConfig
-      }
-    })
-    return locale
   }
 
   return function(req, res, next) {
     let placeUrlMatch = req.originalUrl.match(/place\/(.*)/)
-    let locale = getLocale(req)
+    let locale = res.locals.language
     if(placeUrlMatch && placeUrlMatch.length > 0) {
       let poiId = placeUrlMatch[1]
       getPoi(poiId, locale).then((poi) => {

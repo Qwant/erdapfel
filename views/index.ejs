@@ -8,8 +8,8 @@
     <link href='./css/app.css' rel='stylesheet'/>
     <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css' rel='stylesheet'/>
 
-    <% metas.forEach((meta) => { %>
-      <meta name="og:<%= meta.name %>" content="<%= meta.content %>">
+    <% ogMetas.forEach((ogMeta) => { %>
+      <meta name="og:<%= ogMeta.name %>" content="<%= ogMeta.content %>">
     <%  }) %>
 
     <% if(typeof poi !== 'undefined') { %>
