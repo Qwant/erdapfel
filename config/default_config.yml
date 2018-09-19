@@ -28,3 +28,7 @@ mapStyle:
   poiMapUrl: override_by_environment
   spritesUrl: /mapstyle/
   fontsUrl: /mapstyle/font/
+  maxAge: '15m' # string accepted by the ms module, or milliseconds
+
+statics:
+  maxAge: 0  # string accepted by the ms module, or milliseconds

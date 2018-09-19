@@ -4,66 +4,74 @@ const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const testMode = process.env.TEST === 'true'
 
-console.log('*--------------------*')
-console.log(`Building on ${testMode ? 'test' : 'normal'} mode`)
-console.log('*--------------------*')
-
-const sassChunkConfig = {
-    entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
-    output: {
-      path: path.join(__dirname, '..'),
-      filename: 'tmp/css.js'
-    },
-    module : {
-      loaders : [{
-        loader : 'file-loader',
-        options: {
-          name : 'public/css/app.css'
-        }
-      }, {
-        test : /\.scss$/,
-        use: [{
-          loader : 'postcss-loader',
-          options : {
-            plugins: [
-              require('autoprefixer')(),
-              require('postcss-import')()
-            ]
-          }
-        }],
-      }, {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          publicPath: '/',
-          name: '[name].[ext]',
-          outputPath: 'images/'
-        }
-      }, {
-        test : /\.scss$/,
-        loader : 'sass-loader'
-      }],
-    },
+const getBuildMode = function(){
+  if (testMode){
+    return 'test'
   }
-
-let jsOptimizePlugins = []
-if (process.env.NODE_ENV === 'production'){
-  jsOptimizePlugins = [
-    // expose and write the allowed env vars on the compiled bundle
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        beautify: false,
-        ecma: 6,
-        compress: true,
-        comments: false
-      }
-    })
-  ]
+  if (process.env.NODE_ENV === 'production'){
+    return 'production'
+  }
+  return 'dev'
 }
 
+console.log('*--------------------*')
+console.log(`Building on ${getBuildMode()} mode`)
+console.log('*--------------------*')
+
+const addJsOptimizePlugins = function(plugins){
+  let optimizePlugins = []
+  if (process.env.NODE_ENV === 'production'){
+    optimizePlugins =  optimizePlugins.concat([
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          beautify: false,
+          ecma: 6,
+          compress: true,
+          comments: false
+        }
+      })
+    ])
+  }
+  return plugins.concat(optimizePlugins)
+}
+
+const sassChunkConfig = {
+  entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
+  output: {
+    path: path.join(__dirname, '..'),
+    filename: 'tmp/css.js'
+  },
+  module : {
+    loaders : [{
+      loader : 'file-loader',
+      options: {
+        name : 'public/css/app.css'
+      }
+    }, {
+      test : /\.scss$/,
+      use: [{
+        loader : 'postcss-loader',
+        options : {
+          plugins: [
+            require('autoprefixer')(),
+            require('postcss-import')()
+          ]
+        }
+      }],
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/,
+      loader: 'file-loader',
+      options: {
+        publicPath: '/',
+        name: '[name].[ext]',
+        outputPath: 'images/'
+      }
+    }, {
+      test : /\.scss$/,
+      loader : 'sass-loader'
+    }],
+  },
+}
 
 const mainJsChunkConfig = {
   entry: ['./src/main.js'],
@@ -71,7 +79,7 @@ const mainJsChunkConfig = {
     path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
     filename: 'bundle.js'
   },
-  plugins: jsOptimizePlugins,
+  plugins: addJsOptimizePlugins([]),
   module: {
     loaders: [{
       test: /\.dot/,
@@ -102,7 +110,7 @@ const mapJsChunkConfig = {
     path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
     filename: 'map.js'
   },
-  plugins: [
+  plugins: addJsOptimizePlugins([
     new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
       if(testMode) {
         resource.request = resource.request.replace('--ENV', '-js-mock')
@@ -110,7 +118,7 @@ const mapJsChunkConfig = {
         resource.request = resource.request.replace('--ENV', '')
       }
     })
-  ].concat(jsOptimizePlugins),
+  ]),
   module: {
     loaders: [
       {
@@ -154,7 +162,7 @@ const mapJsChunkConfig = {
 
 webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
 
-const constants = yaml.readSync('./constants.yml')
+const constants = yaml.readSync('../config/constants.yml')
 webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language)=> {
   return {
     entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),

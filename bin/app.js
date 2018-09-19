@@ -1,7 +1,7 @@
 const express = require('express')
 const yaml = require('node-yaml')
 const path = require('path')
-const expressStaticGzip = require("express-static-gzip")
+const expressStaticGzip = require('express-static-gzip')
 
 const app = express()
 
@@ -28,11 +28,12 @@ function App(config) {
 
   app.use('/mapstyle', expressStaticGzip(path.join(publicDir, 'mapstyle'), {
     fallthrough: false,
-    maxAge: '15m'
+    maxAge: config.mapStyle.maxAge
   }))
 
   app.use('/statics', expressStaticGzip(path.join(publicDir), {
     fallthrough: false,
+    maxAge: config.statics.maxAge
   }))
 
   app.get('/*', (req, res) => {

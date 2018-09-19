@@ -71,6 +71,9 @@ and another one with language PHP, and extension `*.ejs`
 
 ## Development guide
 
+To debug the application from a browser, it is preferable to disable the dynamic loading of javascript files.
+When starting the server, add `TILEVIEW_system_evalFiles=false`.
+
 Here are a few words about the project structure :
 
 ### Panel
