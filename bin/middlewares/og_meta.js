@@ -44,7 +44,7 @@ module.exports = function(config) {
 
   function homeMeta(locale, req, res, next) {
     commonMeta(locale, req, res)
-    res.locals.ogMetas.push({name : 'title', content : `${res.locals. _('Qwant map')}`})
+    res.locals.ogMetas.push({name : 'title', content : 'Qwant Maps'})
     next()
   }
 
