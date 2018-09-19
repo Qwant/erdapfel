@@ -1,69 +1,66 @@
 <div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
-  <div class="favorite_panel__content">
-    <div class="favorite_panel__image_header"></div>
-    {{? this.favoritePois.length === 0 }}
-      <h4 class="favorite_panel__container__title">
-        {{= _('Favorite places', 'favorite panel') }}
-      </h4>
-      <div class="favorite_panel__container__empty">
-        {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
-      </div>
-    {{??}}
-      <h4 class="favorite_panel__container__title">
-        {{= _n('%d favorite place', '%d favorite places', this.favoritePois.length, 'favorite panel') }}
-      </h4>
-      {{= this.filterPanel.render() }}
-      <ul>
-        <li class="favorite_panel__item">
+  {{? this.favoritePois.length === 0 }}
+    <h4 class="favorite_panel__container__title">
+      {{= _('Favorite places', 'favorite panel') }}
+    </h4>
+    <div class="favorite_panel__container__empty">
+      {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
+    </div>
+  {{??}}
+    <h4 class="favorite_panel__container__title">
+      {{= _n('%d favorite place', '%d favorite places', this.favoritePois.length, 'favorite panel') }}
+    </h4>
+    {{= this.filterPanel.render() }}
+    <ul>
+      <li class="favorite_panel__item">
 
-          <div class="favorite_panel__swipe_window">
-            <div class="favorite_panel__swipe_flow--{{= this.favoritePois.length }}">
-              {{~ this.favoritePois:poi:i }}
-                <div class="favorite_panel__item__more_container">
+        <div class="favorite_panel__swipe_window">
+          <div class="favorite_panel__swipe_flow--{{= this.favoritePois.length }}">
+            {{~ this.favoritePois:poi:i }}
+              <div class="favorite_panel__item__more_container">
 
-                  <div class="favorite_panel__swipe_element" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
+                <div class="favorite_panel__swipe_element" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
 
-                    <div class="favorite_panel__item__more_button" {{= click(this.toggleMore, this, i) }}>
-                      <i class="icon-more-horizontal"></i>
-                    </div>
-
-
-                    <div class="favorite_panel__item__info">
-                      {{ let ico = IconManager.get(poi); }}
-                      {{? ico }}
-                        <div class="favorite_panel__item__image icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-                      {{??}}
-                        <div class="favorite_panel__item__image favorite_panel__item__image--small icon-location"></div>
-                      {{?}}
-                      <p class="favorite_panel__item__title">
-                        {{= poi.name ? poi.name : 'default' }}
-                      </p>
-                      <p class="favorite_panel__item__desc">
-                        {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}
-                      </p>
-                    </div>
-
+                  <div class="favorite_panel__item__more_button" {{= click(this.toggleMore, this, i) }}>
+                    <i class="icon-more-horizontal"></i>
                   </div>
 
-                    <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
-                      <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
-                        <i class="icon-share-2 favorite_panel__item__more__icon"></i>
-                        <span>{{= _('Share') }}</span>
-                      </p>
-                      <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
-                        <i class="icon-trash favorite_panel__item__more__icon"></i>
-                        <span>{{= _('Delete') }}</span>
-                      </p>
-                    </div>
+
+                  <div class="favorite_panel__item__info">
+                    {{ let ico = IconManager.get(poi); }}
+                    {{? ico }}
+                      <div class="favorite_panel__item__image icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+                    {{??}}
+                      <div class="favorite_panel__item__image favorite_panel__item__image--small icon-location"></div>
+                    {{?}}
+                    <p class="favorite_panel__item__title">
+                      {{= poi.name ? poi.name : 'default' }}
+                    </p>
+                    <p class="favorite_panel__item__desc">
+                      {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}
+                    </p>
+                  </div>
 
                 </div>
-              {{~}}
-            </div>
+
+                  <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
+                    <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
+                      <i class="icon-share-2 favorite_panel__item__more__icon"></i>
+                      <span>{{= _('Share') }}</span>
+                    </p>
+                    <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
+                      <i class="icon-trash favorite_panel__item__more__icon"></i>
+                      <span>{{= _('Delete') }}</span>
+                    </p>
+                  </div>
+
+              </div>
+            {{~}}
           </div>
-        </li>
-      </ul>
-    {{?}}
-  </div>
+        </div>
+      </li>
+    </ul>
+  {{?}}
   <div class="poi_panel__toggle_display" {{= click(this.close, this) }}>
     <div class="poi_panel__toggle_display--mobile">
       <i class="icon-x"></i>

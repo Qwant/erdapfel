@@ -1,27 +1,17 @@
 $BLOCK_INDENT: 60px;
 
 .poi_panel {
-  position: absolute;
-  top: 0;
-  left:96px;
-  height: 100vh;
+  display: block;
+  position: relative;
   width: $panel_width;
   transition: left 0.2s;
-  background: #fff;
   overflow-x: visible;
-}
-
-.poi_panel__content {
-  position: relative;
-  height: 100vh;
-  overflow-y: auto;
-  width: $panel_width;
   padding: 95px 0 10px 0;
   background: #fff;
 }
 
 .poi_panel--hidden {
-  left: - ($panel_width - $side_bar_width + 50px);
+  display: none;
 }
 
 .poi_panel__info__section {

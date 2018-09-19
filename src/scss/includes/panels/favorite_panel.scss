@@ -1,11 +1,16 @@
 .favorites_panel {
+  display: block;
+  position: relative;
   transition: left .2s;
-  left: $side_bar_width;
-  background: #fff;
-  height: 100vh;
   width: $panel_width;
-  position: absolute;
   overflow-x:visible;
+  padding: 125px 0 0 0;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.favorites_panel--hidden {
+  display: none;
 }
 
 .favorite_panel__content::-webkit-scrollbar {
@@ -23,26 +28,6 @@
 .favorite_panel__content:hover::-webkit-scrollbar-thumb {
   background-color: rgba(98, 195, 255, 1);
   border-radius: 2px;
-}
-
-.favorites_panel--hidden {
-  left: - ($panel_width - $side_bar_width + 50px);
-}
-
-.favorite_panel__content {
-  float: left;
-  height: 100vh;
-  width: $panel_width;
-  padding: 125px 0 0 0;
-  overflow-y: auto;
-}
-
-.favorite_panel__image_header {
-  background-image: url("../images/tmp_fixtures/anthony-delanoix-8433-unsplash.jpg");
-  background-size: $panel_width;
-  background-position: center;
-  width: $panel_width;
-  height: 200px;
 }
 
 .favorite_panel__close {

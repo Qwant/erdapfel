@@ -1,8 +1,15 @@
 .service_panel {
+  position: relative;
   width: $panel_width;
   height: 200px;
   background: #fff;
   border-right: 1px solid #f3f5f7;
+}
+
+.service_panel__title {
+  color: #353c52;
+  font-size: 14px;
+  font-weight: normal;
 }
 
 

@@ -4,7 +4,7 @@ import PanelManager from "../proxies/panel_manager"
 import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
 
-function SideBarPanel() {
+function ServicePanel() {
   this.panel = new Panel(this, ServicePanelView)
   this.isFavoriteActive = false
   this.isResultActive = false
@@ -19,21 +19,16 @@ function SideBarPanel() {
   PanelManager.registerListener(this)
 }
 
-SideBarPanel.prototype.toggleFavorite = function () {
+ServicePanel.prototype.toggleFavorite = function () {
   PanelManager.toggleFavorite()
 }
 
-SideBarPanel.prototype.home = function () {
-  PanelManager.closeAll()
-  fire('map_reset')
-}
-
-SideBarPanel.prototype.toggleResult = function () {
+ServicePanel.prototype.toggleResult = function () {
   PanelManager.restorePoi()
 }
 
 /* PanelManager listener interface implementation */
-SideBarPanel.prototype.notify = function () {
+ServicePanel.prototype.notify = function () {
   PanelManager.getPanels().forEach((panel) => {
     if(panel instanceof PoiPanel) {
       this.isResultActive = panel.isDisplayed()
@@ -45,4 +40,4 @@ SideBarPanel.prototype.notify = function () {
   this.panel.update()
 }
 
-export default SideBarPanel
+export default ServicePanel
