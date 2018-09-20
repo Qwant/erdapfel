@@ -8,9 +8,20 @@ BODY {
   top: 100px;
 }
 
+
 .favorite_poi_panel__container {
   position: relative;
   overflow: hidden;
+}
+
+@keyframes appear {
+  0% {background-color: white;}
+  100% {background-color: white; }
+}
+
+@keyframes disappear {
+  0% {background-color: white;}
+  100% {background-color: transparent;}
 }
 
 .loading_panel {
@@ -19,8 +30,9 @@ BODY {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.51);
-  transition: background-color .3s;
+
+  animation-name: appear;
+  animation-duration: 1s;
 }
 
 .loading_panel--hidden {

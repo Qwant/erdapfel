@@ -87,19 +87,15 @@ PanelManager.register = function(panel) {
 }
 
 PanelManager.initLoad = function () {
-  document.getElementById('loading_panel').style.transition = ''
-  document.getElementById('loading_panel').classList.remove('loading_panel--hidden')
-
+  document.getElementById('loading_panel').style.display = 'block'
+  document.getElementById('loading_panel').style.animationName = 'appear'
 }
 
 PanelManager.endLoad = function () {
+  document.getElementById('loading_panel').style.animationName = 'disappear'
   setTimeout(() => {
-    document.getElementById('loading_panel').style.transition = 'background-color .2s'
-    document.getElementById('loading_panel').classList.add('loading_panel--hidden')
-    setTimeout(() => {
-      document.getElementById('loading_panel').style.display = 'none'
-    })
-  }, 300)
+    document.getElementById('loading_panel').style.display = 'none'
+  }, 1000)
 }
 
 export default PanelManager
