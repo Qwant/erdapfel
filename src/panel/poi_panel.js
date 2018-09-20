@@ -81,6 +81,7 @@ PoiPanel.prototype.restorePoi = async function (id) {
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   await this.panel.update()
   PanelManager.notify()
+  PanelManager.endLoad()
 }
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {

@@ -35,6 +35,7 @@ PanelManager.getPanels = function() {
 }
 
 PanelManager.restorePoi = function() {
+  PanelManager.initLoad()
   __panel_manager.panels.forEach((panel) => {
     if(panel.isPoiComplient) {
       panel.toggle()
@@ -42,6 +43,7 @@ PanelManager.restorePoi = function() {
       panel.close()
     }
   })
+  PanelManager.endLoad()
 }
 
 PanelManager.loadPoiById = async function(id, options) {
