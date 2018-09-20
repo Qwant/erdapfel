@@ -6,10 +6,10 @@
   {{?}}
   <br>
   {{? this.wiki.url }}
-    <a class="poi_panel__info__wiki__link" target="_blank" href="{{= this.wiki.url }}">{{= _('Via Wikipédia') }}</a>
+    <a class="poi_panel__info__wiki__link" target="_blank" href="{{= this.wiki.url }}">{{= _('Read more on Wikipedia') }}</a>
   {{?}}
 
   {{? !this.wiki.description && !this.wiki.url }}
-    <a class="poi_panel__info__wiki__link" target="_blank" href="https://www.wikidata.org/wiki/{{= this.tag }}">{{= _('Via WikiData') }}</a>
+    <a class="poi_panel__info__wiki__link" target="_blank" href="https://www.wikidata.org/wiki/{{= this.tag }}">{{= _('Read more on Wikidata') }}</a>
   {{?}}
 </div>

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-20 11:42+0200\n"
+"POT-Creation-Date: 2018-09-20 11:47+0200\n"
 "PO-Revision-Date: 2018-06-29 16:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -962,12 +962,12 @@ msgid "Services & information"
 msgstr ""
 
 #: public/build/javascript/bundle.js:3141
-msgid "Via Wikipédia"
-msgstr ""
+msgid "Read more on Wikipedia"
+msgstr "Lenn muioc'h war Wikipedia"
 
 #: public/build/javascript/bundle.js:3141
-msgid "Via WikiData"
-msgstr ""
+msgid "Read more on Wikidata"
+msgstr "Lenn muioc'h war Wikidata"
 
 #: public/build/javascript/bundle.js:3360
 msgid "RESULTS"
