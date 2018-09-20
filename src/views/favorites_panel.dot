@@ -3,6 +3,11 @@
     <h4 class="favorite_panel__container__title">
       {{= _('Favorite places', 'favorite panel') }}
     </h4>
+
+     <p class="poi_panel__toggle_display" {{= click(this.close, this) }}>
+     </p>
+
+
     <div class="favorite_panel__container__empty">
       {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
     </div>
@@ -61,12 +66,4 @@
       </li>
     </ul>
   {{?}}
-  <div class="poi_panel__toggle_display" {{= click(this.close, this) }}>
-    <div class="poi_panel__toggle_display--mobile">
-      <i class="icon-x"></i>
-    </div>
-    <div class="poi_panel__toggle_display--desktop">
-      <i class="icon-chevron-left"></i>
-    </div>
-  </div>
 </div>

@@ -2,6 +2,31 @@ BODY {
   background: url("../images/grid.png");
 }
 
+.side_panel__container {
+  max-height: calc(100vh - 100px);
+  position: absolute;
+  top: 100px;
+}
+
+.favorite_poi_panel__container {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading_panel {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.51);
+  transition: background-color .3s;
+}
+
+.loading_panel--hidden {
+  background: none;
+}
+
 .map_container {
   position: absolute;
   top: 0;

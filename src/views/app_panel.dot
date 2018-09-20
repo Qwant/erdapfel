@@ -1,6 +1,13 @@
-{{= this.favoritePanel.render() }}
-{{= this.poiPanel.render() }}
-{{= this.servicePanel.render() }}
+<div class="side_panel__container">
+  <div class="favorite_poi_panel__container">
+    {{= this.favoritePanel.render() }}
+    {{= this.poiPanel.render() }}
+    <div id="loading_panel" class="loading_panel"></div>
+  </div>
+  {{= this.servicePanel.render() }}
+</div>
+
+/* modals */
 {{= this.errorPanel.render() }}
 {{= this.masqPanel.render() }}
 {{= this.sharePanel.render() }}

@@ -1,11 +1,8 @@
 .favorites_panel {
   display: block;
   position: relative;
-  transition: left .2s;
   width: $panel_width;
-  overflow-x:visible;
-  padding: 125px 0 0 0;
-  overflow-y: auto;
+  padding: 25px 0 0 0;
   background: #fff;
 }
 

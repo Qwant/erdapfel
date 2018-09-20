@@ -1,19 +1,30 @@
 .service_panel {
   position: relative;
   width: $panel_width;
-  height: 200px;
-  background: #fff;
+  height: 100px;
   border-right: 1px solid #f3f5f7;
+  margin-top: 30px;
+  background: url('/images/popup_top.svg') white repeat-x;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
+  border-radius: 3px;
 }
 
 .service_panel__title {
   color: #353c52;
   font-size: 14px;
   font-weight: normal;
+  border-bottom: 1px solid #e0e1e6;
+  padding: 20px 0 10px;
+  margin: 10px;
 }
 
+.service_panel__item {
+  float: left;
+  margin-left: 15px;
+}
 
-@media (max-width: 640px) {
-
-
+.service_panel__item__text {
+  font-size: 13px;
+  font-weight: normal;
+  color: #5c6f84;
 }

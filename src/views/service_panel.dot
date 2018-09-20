@@ -1,15 +1,27 @@
 <div class="service_panel">
 
-  <h3>
+  <h3 class="service_panel__title">
     {{= _('Qwant Maps services', 'service panel') }}
   </h3>
 
-  <div {{= click(this.toggleFavorite, this) }} class="side_bar__fav side_bar__item {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
-    <div class="side_bar__fav__add">
+
+  <div class="service_panel__item">
+    <i class="icon-icon_star side_bar__item__icon"></i>
+    <span class="service_panel__item__text">{{= _('ITINERARY', 'service panel') }}</span>
+  </div>
+
+  <div {{= click(this.toggleFavorite, this) }} class="service_panel__item {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
+    <span class="side_bar__fav__add">
       +1
-    </div>
-    <div class="icon-icon_star side_bar__item__icon"></div>
-    <div class="side_bar__item__text">{{= _('YOUR FAVORITES', 'service panel') }}</div>
+    </span>
+    <i class="icon-icon_star side_bar__item__icon"></i>
+    <span class="service_panel__item__text">{{= _('YOUR FAVORITES', 'service panel') }}</span>
+  </div>
+
+
+  <div class="service_panel__item">
+    <i class="icon-icon_star side_bar__item__icon"></i>
+    <span class="service_panel__item__text">{{= _('OPEN DATA', 'service panel') }}</span>
   </div>
 
 </div>
