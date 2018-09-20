@@ -111,7 +111,7 @@ test('open poi from autocomplete selection', async () => {
 test('display a popup on hovering a poi', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await selectPoiLevel(page, level)
+  await selectPoiLevel(page, 1)
   let popups = await page.evaluate(() => {
     return window.MAP_MOCK.popups
   })
@@ -167,9 +167,9 @@ test('display details about the poi on a poi click', async () => {
 })
 
 async function selectPoiLevel(page, level) {
-  await page.evaluate(() => {
+  await page.evaluate((level) => {
     window.MAP_MOCK.evented.prepare('click', `poi-level-${level}`,  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
-  })
+  }, level)
   await page.click('#mock_poi')
   await wait(300)
 }
