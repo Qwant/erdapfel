@@ -207,7 +207,8 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   await wait(300)
   poiPanel = await page.waitForSelector('.poi_panel__title')
   expect(poiPanel).not.toBeFalsy()
-  await page.click('.icon-icon_star-filled')
+
+  await page.click('.poi_panel__actions__store_container')
 
   // it should disapear from the favorites
   await toggleFavoritePanel(page)
