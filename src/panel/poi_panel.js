@@ -69,8 +69,13 @@ PoiPanel.prototype.close = async function() {
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
-  this.poi = await Poi.hotLoad(id)
-  fire('map_mark_poi', this.poi)
+  this.poi = Poi.hotLoad(id)
+
+  window.execOnMapLoaded(() => {
+    fire('map_mark_poi', this.poi)
+    fire('fit_map', this.poi, {sidePanelOffset : this.poi.type === 'poi'})
+  })
+
   this.poi.stored = await isPoiFavorite(this.poi)
   this.active = true
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')

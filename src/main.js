@@ -11,5 +11,3 @@ async function main() {
   new App('panels')
 }
 main()
-
-

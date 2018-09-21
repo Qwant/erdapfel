@@ -31,14 +31,14 @@ module.exports = function(config) {
   function commonMeta(locale, req, res) {
     res.locals.ogMetas = ogMetas.map(meta => meta)
     res.locals.ogMetas.push({name : 'locale', content : locale.locale})
-    res.locals.ogMetas.push({name : 'description', content : res.locals. _('Map multiple locations. Do more with Qwant Maps.')})
+    res.locals.ogMetas.push({name : 'description', content : res.locals. _('The map that respects your privacy')})
   }
 
   function poiMeta(poi, locale, req, res, next) {
     commonMeta(locale, req, res)
     res.locals.poi = poi
     res.locals.ogMetas.push({name : 'title', content : poi.name})
-    res.locals.ogMetas.push({name : 'url', content : getUrl(poi)})
+    res.locals.ogMetas.push({name : 'url', content : getUrl(req, poi)})
 
     next()
   }
@@ -46,17 +46,17 @@ module.exports = function(config) {
   function homeMeta(locale, req, res, next) {
     commonMeta(locale, req, res)
     res.locals.ogMetas.push({name : 'title', content : 'Qwant Maps'})
-    res.locals.ogMetas.push({name : 'url', content : getUrl()})
+    res.locals.ogMetas.push({name : 'url', content : getUrl(req)})
 
     next()
   }
 
-  function getUrl(poi) {
+  function getUrl(req, poi) {
     let poiPath = ''
     if(poi) {
       poiPath = `place/${poi.id}`
     }
-    return `https://maps.qwant.com${config.system.baseUrl}${poiPath}`
+    return `https://${req.get('host')}${config.system.baseUrl}${poiPath}`
   }
 
   return function(req, res, next) {

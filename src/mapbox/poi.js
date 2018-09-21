@@ -61,11 +61,9 @@ Poi.storeLoad = function (rawPoi) {
   return poi
 }
 
-Poi.hotLoad = async function () {
+Poi.hotLoad = function () {
   if(window.hotLoadPoi) {
-    return new Promise((resolve) => {
-      resolve(Poi.parsePoi(window.hotLoadPoi))
-    })
+    return Poi.parsePoi(window.hotLoadPoi)
   }
 }
 

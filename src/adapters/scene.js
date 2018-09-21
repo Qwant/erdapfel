@@ -8,10 +8,18 @@ import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
 
+
 function Scene() {
   UrlState.registerHash(this, 'map')
-  this.zoom = map.zoom
-  this.center = [map.center.lng, map.center.lat]
+
+  let hotloadedPoi = Poi.hotLoad()
+  if (hotloadedPoi) {
+    this.zoom = hotloadedPoi.zoom
+    this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat]
+  } else {
+    this.center = [map.center.lng, map.center.lat]
+    this.zoom = map.zoom
+  }
   this.currentMarker = null
   this.popup = new PoiPopup()
 }
@@ -71,6 +79,9 @@ Scene.prototype.initMapBox = function () {
     this.mb.on('moveend', () => {
       UrlState.replaceUrl()
     })
+
+    window.execOnMapLoaded = (f) => f()
+    fire('map_loaded')
   })
 
   listen('fit_map', (poi, options) => {
@@ -87,18 +98,20 @@ Scene.prototype.initMapBox = function () {
 }
 
 Scene.prototype.fitMap = function(poi, options = {}) {
+  const MIN_ZOOM_FLYTO = 10
+
   if(poi.bbox) {
     let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
     if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
       padding.left += layout.sizes.panelWidth
     }
-    if(this.isWindowedPoi(poi)) {
+    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
       this.mb.fitBounds(poi.bbox, {padding : padding})
     } else {
       this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
     }
   } else {
-    let flyOptions = {center : poi.getLngLat(), duration : 0}
+    let flyOptions = {center : poi.getLngLat(), screenSpeed: 1.5, animate:false}
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom
     }
@@ -107,8 +120,8 @@ Scene.prototype.fitMap = function(poi, options = {}) {
       flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
     }
 
-    if(this.isWindowedPoi(poi)) {
-      flyOptions.duration = 1500
+    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
+      flyOptions.animate = true
     }
     this.mb.flyTo(flyOptions)
   }
