@@ -2,8 +2,8 @@ const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 const poiMock = require('../../__data__/poi')
-import {initBrowser, getText, wait, clearStore, toggleFavoritePanel} from '../tools'
-import {getFavorites} from '../favorites_tools'
+import {initBrowser, getText, wait, clearStore} from '../tools'
+import {getFavorites, toggleFavoritePanel} from '../favorites_tools'
 
 let browser
 let page

@@ -1,7 +1,8 @@
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-import {initBrowser, wait, store, clearStore, toggleFavoritePanel} from '../tools'
+import {initBrowser, wait, store, clearStore} from '../tools'
+import {toggleFavoritePanel} from '../favorites_tools'
 
 let browser
 let page
