@@ -3,8 +3,7 @@ const QueryError = require('../query_error')
 
 const ogMetas = [
   {name : 'site_name', content : 'Qwant Maps'},
-  {name : 'image', content : '/images/maps_opengraph.png'},
-  {name : 'url', content : 'www.qwant.com/maps'}
+  {name : 'image', content : '/images/qwant-logo.svg'}
 ]
 
 module.exports = function(config) {
@@ -39,13 +38,25 @@ module.exports = function(config) {
     commonMeta(locale, req, res)
     res.locals.poi = poi
     res.locals.ogMetas.push({name : 'title', content : poi.name})
+    res.locals.ogMetas.push({name : 'url', content : getUrl(poi)})
+
     next()
   }
 
   function homeMeta(locale, req, res, next) {
     commonMeta(locale, req, res)
     res.locals.ogMetas.push({name : 'title', content : 'Qwant Maps'})
+    res.locals.ogMetas.push({name : 'url', content : getUrl()})
+
     next()
+  }
+
+  function getUrl(poi) {
+    let poiPath = ''
+    if(poi) {
+      poiPath = `place/${poi.id}`
+    }
+    return `https://maps.qwant.com${config.system.baseUrl}${poiPath}`
   }
 
   return function(req, res, next) {
