@@ -38,3 +38,9 @@ export function clearStore(page) {
     localStorage.clear()
   )
 }
+
+export async function toggleFavoritePanel(page) {
+  await page.waitForSelector('.icon-icon_star.side_bar__item__icon')
+  await page.click('.icon-icon_star.side_bar__item__icon')
+  await wait(300)
+}

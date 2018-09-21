@@ -2,7 +2,8 @@ const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 const poiMock = require('../../__data__/poi')
-import {initBrowser, getText, wait, clearStore} from '../tools'
+import {initBrowser, getText, wait, clearStore, toggleFavoritePanel} from '../tools'
+import {getFavorites} from '../favorites_tools'
 
 let browser
 let page
@@ -30,10 +31,7 @@ beforeAll(async () => {
 test('click on a poi', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
-  await page.evaluate(() => {
-    window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
-  })
-  await page.click('#mock_poi')
+  await selectPoiLevel(page, 1)
   const poiPanel = await page.waitForSelector('.poi_panel__title ')
   expect(poiPanel).not.toBeFalsy()
   const translatedSubClass = await getText(page, '.poi_panel__description')
@@ -63,18 +61,13 @@ test('load a poi already in my favorite from url', async () => {
   })
   await page.goto(`${APP_URL}/place/osm:node:2379542204@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   let plainStar = await page.waitForSelector('.icon-icon_star-filled')
-  clearStore(page)
   expect(plainStar).not.toBeFalsy()
 })
 
 test('update url after a poi click', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await page.evaluate(() => {
-    window.MAP_MOCK.evented.prepare('click', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
-  })
-  await page.click('#mock_poi')
-  await wait(400)
+  await selectPoiLevel(page, 1)
   let location = await page.evaluate(() => {
     return document.location.href
   })
@@ -94,7 +87,6 @@ test('update url after a favorite poi click', async () => {
   let location = await page.evaluate(() => {
     return document.location.href
   })
-  clearStore(page)
   expect(location).toMatch(/1@Mus%C3%A9e_dOrsay/)
 })
 
@@ -119,11 +111,7 @@ test('open poi from autocomplete selection', async () => {
 test('display a popup on hovering a poi', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
-  await page.evaluate(() => {
-    window.MAP_MOCK.evented.prepare('mouseenter', 'poi-level-1',  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
-  })
-  await page.hover('#mock_poi')
-  await wait(1000)
+  await selectPoiLevel(page, 1)
   let popups = await page.evaluate(() => {
     return window.MAP_MOCK.popups
   })
@@ -176,6 +164,50 @@ test('display details about the poi on a poi click', async () => {
 
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()
+})
+
+async function selectPoiLevel(page, level) {
+  await page.evaluate((level) => {
+    window.MAP_MOCK.evented.prepare('click', `poi-level-${level}`,  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
+  }, level)
+  await page.click('#mock_poi')
+  await wait(300)
+}
+
+test('add a poi as favorite and find it back in the favorite menu', async () => {
+  expect.assertions(7)
+  await page.goto(APP_URL)
+
+  // we select a poi and 'star' it
+  await selectPoiLevel(page, 1)
+  let poiPanel = await page.waitForSelector('.poi_panel__title')
+  expect(poiPanel).not.toBeFalsy()
+  await page.click('.poi_panel__actions__icon__store')
+
+  // we check that the first favorite item is our poi
+  await toggleFavoritePanel(page)
+  let fav = await getFavorites(page)
+  expect(fav).toHaveLength(1)
+  expect(fav[0].title).toEqual("Musée d'Orsay")
+  expect(fav[0].desc).toEqual("musée")
+  expect(fav[0].icons).toContainEqual("icon-museum")
+
+  // we then reopen the poi panel and 'unstar' the poi.
+  await wait(100)
+  await page.click('#favorite_item_0')
+  await wait(300)
+  poiPanel = await page.waitForSelector('.poi_panel__title')
+  expect(poiPanel).not.toBeFalsy()
+  await page.click('.icon-icon_star-filled')
+
+  // it should disapear from the favorites
+  await toggleFavoritePanel(page)
+  fav = await getFavorites(page)
+  expect(fav).toEqual([])
+})
+
+afterEach(() => {
+  clearStore(page)
 })
 
 afterAll(() => {
