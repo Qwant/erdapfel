@@ -6,10 +6,6 @@
     </div>
     {{? this.fromFavorite }}
       <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}</div>
-    {{??}}
-      <div class="">
-        {{=
-      </div>
     {{?}}
     <div class="poi_panel__description_container" {{= click(this.center, this) }}>
       {{ let ico = IconManager.get(this.poi); }}

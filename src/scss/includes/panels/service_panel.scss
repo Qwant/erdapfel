@@ -3,11 +3,10 @@
   width: $panel_width;
   height: 100px;
   border-right: 1px solid #f3f5f7;
-  margin-top: 30px;
+  margin-top: 14px;
   background: url('/images/popup_top.svg') white repeat-x;
   box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
   border-radius: 3px;
-
 }
 
 .service_panel__title {
@@ -19,7 +18,9 @@
   margin: 10px;
 }
 
-
+.side_bar__item__icon {
+  color: #5c6f84;
+}
 
 .service_panel__item {
   float: left;

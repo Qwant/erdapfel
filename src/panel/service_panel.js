@@ -8,11 +8,6 @@ function ServicePanel() {
   this.panel = new Panel(this, ServicePanelView)
   this.isFavoriteActive = false
   this.isResultActive = false
-  listen('store_poi', async () => {
-    await this.panel.addClassName(.2, '.side_bar__fav__add', 'side_bar__fav__add--active')
-    await this.panel.wait(1)
-    this.panel.removeClassName(.2, '.side_bar__fav__add', 'side_bar__fav__add--active')
-  })
   listen('toggle_burger', () => {
     this.panel.toggleClassName(.2,'.side_bar', 'side_bar--open')
   })

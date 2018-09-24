@@ -6,21 +6,17 @@
 
 
   <div class="service_panel__item">
-    <i class="icon-icon_star side_bar__item__icon"></i>
+    <i class="icon-corner-up-right side_bar__item__icon"></i>
     <span class="service_panel__item__text">{{= _('ITINERARY', 'service panel') }}</span>
   </div>
 
   <div {{= click(this.toggleFavorite, this) }} class="service_panel__item {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
-    <span class="side_bar__fav__add">
-      +1
-    </span>
     <i class="icon-icon_star side_bar__item__icon"></i>
     <span class="service_panel__item__text">{{= _('YOUR FAVORITES', 'service panel') }}</span>
   </div>
 
-
   <div class="service_panel__item">
-    <i class="icon-icon_star side_bar__item__icon"></i>
+    <i class="icon-icon_globe side_bar__item__icon"></i>
     <span class="service_panel__item__text">{{= _('OPEN DATA', 'service panel') }}</span>
   </div>
 
