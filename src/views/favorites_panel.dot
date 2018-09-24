@@ -1,11 +1,13 @@
 <div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
+  <p class="favorites_panel__close" {{= click(this.close, this) }}>
+    <i class="icon-x"></i>
+  </p>
   {{? this.favoritePois.length === 0 }}
     <h4 class="favorite_panel__container__title">
       {{= _('Favorite places', 'favorite panel') }}
     </h4>
 
-     <p class="poi_panel__toggle_display" {{= click(this.close, this) }}>
-     </p>
+
 
 
     <div class="favorite_panel__container__empty">
@@ -13,7 +15,7 @@
     </div>
   {{??}}
     <h4 class="favorite_panel__container__title">
-      {{= _n('%d favorite place', '%d favorite places', this.favoritePois.length, 'favorite panel') }}
+      {{= _('MY FAVORITES', 'favorite panel') }}
     </h4>
     {{= this.filterPanel.render() }}
     <ul>

@@ -12,6 +12,12 @@ $BLOCK_INDENT: 60px;
   display: none;
 }
 
+.poi_panel__close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 .poi_panel__info__section {
   position: relative;
   margin-top: 20px;
@@ -21,29 +27,6 @@ $BLOCK_INDENT: 60px;
 .poi_panel__info__section__phone {
   margin-left: $BLOCK_INDENT;
   font-size: 14px;
-}
-
-.poi_panel__toggle_display {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  right: -40px;
-  top: 94px;
-  padding: 8px 10px 0 0;
-  background: white;
-  color: #7f8183;
-  font-size: 24px;
-  text-align: right;
-  cursor: pointer;
-  border-radius: 0 3px 3px 0;
-}
-
-.poi_panel__toggle_display--mobile {
-  display: none;
-}
-
-.poi_panel__toggle_display--desktop {
-  display: block;
 }
 
 .poi_panel__back {
