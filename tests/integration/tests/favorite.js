@@ -1,7 +1,8 @@
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-import {initBrowser, wait, store, clearStore, toggleFavoritePanel} from '../tools'
+import {initBrowser, wait, store, clearStore} from '../tools'
+import {toggleFavoritePanel} from '../favorites_tools'
 
 let browser
 let page
@@ -80,6 +81,7 @@ test('center map after a favorite poi click', async () => {
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })
+
   expect(center).toEqual({lng  : favoriteMockCoordinates.lng, lat : favoriteMockCoordinates.lat})
 })
 

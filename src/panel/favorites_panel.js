@@ -112,7 +112,7 @@ Favorite.prototype.open = async function() {
   PanelManager.notify()
   await this.getAll()
   await this.panel.update()
-  await this.panel.removeClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+  await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
 }
 
@@ -128,7 +128,7 @@ Favorite.prototype.close = function() {
 Favorite.prototype.go = async function(storePoi) {
   fire('map_mark_poi', storePoi)
   fire('fit_map', storePoi, {sidePanelOffset : true})
-  this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
+  this.panel.addClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   PanelManager.loadPoiById(storePoi.id, {isFromFavorite : true})
   this.active = false
 }
@@ -139,7 +139,7 @@ Favorite.prototype.add = function(poi) {
 }
 
 Favorite.prototype.del = async function({poi, index}) {
-  await this.panel.addClassName(0.4, `#favorite_item_${index}`, 'favorite_item--removed')
+  await this.panel.addClassName(0.3, `#favorite_item_${index}`, 'favorite_item--removed')
 
   this.favoritePois = this.favoritePois.filter((favorite) => {
     if(favorite === poi) {

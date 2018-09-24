@@ -61,6 +61,12 @@ Poi.storeLoad = function (rawPoi) {
   return poi
 }
 
+Poi.hotLoad = function () {
+  if(window.hotLoadPoi) {
+    return Poi.parsePoi(window.hotLoadPoi)
+  }
+}
+
 Poi.poiApiLoad = async function (id) {
   let rawPoi = null
   try {
@@ -74,8 +80,12 @@ Poi.poiApiLoad = async function (id) {
       return
     }
   }
+  return Poi.parsePoi(rawPoi)
+}
+
+Poi.parsePoi = function(rawPoi) {
   let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
-  const poi = new Poi(id, rawPoi.name, 'poi', latLng, rawPoi.class_name, rawPoi.subclass_name)
+  const poi = new Poi(rawPoi.id, rawPoi.name, 'poi', latLng, rawPoi.class_name, rawPoi.subclass_name)
   poi.blocks = rawPoi.blocks
   poi.localName = rawPoi.local_name
   poi.address = rawPoi.address

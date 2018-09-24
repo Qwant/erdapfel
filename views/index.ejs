@@ -7,6 +7,17 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
     <link href='./css/app.css' rel='stylesheet'/>
     <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css' rel='stylesheet'/>
+
+    <% ogMetas.forEach((ogMeta) => { %>
+      <meta property="og:<%= ogMeta.name %>" content="<%= ogMeta.content %>">
+    <%  }) %>
+
+    <% if(typeof poi !== 'undefined') { %>
+      <script>
+        window.hotLoadPoi = <%- JSON.stringify(poi) %>;
+      </script>
+    <% } %>
+
   </head>
   <body>
   <script>
@@ -44,6 +55,7 @@
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>
+    <script src="./javascript/sync_manager.js"></script>
     <% if(config.system.evalFiles) { %>
       <script src="./javascript/file_loader.js"></script>
     <% } else { %>
