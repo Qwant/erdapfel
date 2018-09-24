@@ -5,8 +5,9 @@
     <title><%= _('Qwant Maps - beta') %></title>
     <base href="<%= config.system.baseUrl %>" target="_blank">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
-    <link href='./css/app.css' rel='stylesheet'/>
-    <link href='https://qwantresearch.github.io/qwant-basic-gl-style/iconfont.css' rel='stylesheet'/>
+    <link rel="icon" type="image/png" href="./statics/images/favicon.png">
+    <link href='./statics/css/app.css' rel='stylesheet'/>
+    <link href='./mapstyle/iconfont/iconfont.css' rel='stylesheet'/>
 
     <% ogMetas.forEach((ogMeta) => { %>
       <meta property="og:<%= ogMeta.name %>" content="<%= ogMeta.content %>">
@@ -17,7 +18,6 @@
         window.hotLoadPoi = <%- JSON.stringify(poi) %>;
       </script>
     <% } %>
-
   </head>
   <body>
   <script>
@@ -41,7 +41,7 @@
         <button id="clear_button" class="search_form__clear icon icon-cross" type="button" onclick="search.value='';"></button>
       </form>
       <div class="osm_contribute">
-        <img class="osm_contribute__logo" src="./images/Openstreetmap_logo.svg">
+        <img class="osm_contribute__logo" src="./statics/images/Openstreetmap_logo.svg">
         <div class="osm_contribute__text_container">
           <p class="osm_contribute__title">
             <%= _('Qwant Maps uses OpenStreetMap') %>
@@ -55,13 +55,13 @@
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>
-    <script src="./javascript/sync_manager.js"></script>
+    <script src="./statics/javascript/sync_manager.js"></script>
     <% if(config.system.evalFiles) { %>
-      <script src="./javascript/file_loader.js"></script>
+      <script src="./statics/javascript/file_loader.js"></script>
     <% } else { %>
-      <script src="./javascript/file_loader-debug.js"></script>
+      <script src="./statics/javascript/file_loader-debug.js"></script>
     <% } %>
-    <script src="./build/javascript/bundle.js"></script>
+    <script src="./statics/build/javascript/bundle.js"></script>
     <script>
       /* Autocomplete */
       document.onkeydown = (e) => {
@@ -72,7 +72,7 @@
       /* Progress */
       const progressBar = document.querySelector('#progress-bar')
       const loaderBar = document.querySelector('#loader-bar')
-      let mapLoader = new FileLoader('./build/javascript/map.js')
+      let mapLoader = new FileLoader('./statics/build/javascript/map.js')
       mapLoader.onLoad = () => {
         loaderBar.classList.add('loader_bar--loaded')
       }

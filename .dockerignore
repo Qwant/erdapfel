@@ -1,5 +1,8 @@
 **
-!public/
+!build/
+!public/fonts
+!public/images
+!public/javascript
 !src/
 !bin/
 !local_modules/

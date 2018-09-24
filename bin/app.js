@@ -1,5 +1,8 @@
 const express = require('express')
 const yaml = require('node-yaml')
+const path = require('path')
+const expressStaticGzip = require('express-static-gzip')
+
 const app = express()
 
 function App(config) {
@@ -21,13 +24,20 @@ function App(config) {
   const ogMeta = new require('./middlewares/og_meta')(config)
   app.use(ogMeta)
 
-  app.use(express.static(`${__dirname}/../public`))
+  const publicDir = path.join(__dirname, '..', 'public')
+
+  app.use('/mapstyle', expressStaticGzip(path.join(publicDir, 'mapstyle'), {
+    fallthrough: false,
+    maxAge: config.mapStyle.maxAge
+  }))
+
+  app.use('/statics', expressStaticGzip(path.join(publicDir), {
+    fallthrough: false,
+    maxAge: config.statics.maxAge
+  }))
+
   app.get('/*', (req, res) => {
     res.render('index', {config : config})
-  })
-
-  app.use((error, req, res, next) => {
-    res.status(500).render('error', {error})
   })
 }
 

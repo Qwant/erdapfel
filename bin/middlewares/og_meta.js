@@ -3,7 +3,7 @@ const QueryError = require('../query_error')
 
 const ogMetas = [
   {name : 'site_name', content : 'Qwant Maps'},
-  {name : 'image', content : '/images/qwant-logo.svg'}
+  {name : 'image', content : './statics/images/qwant-logo.svg'}
 ]
 
 module.exports = function(config) {
