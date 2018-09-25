@@ -10,7 +10,7 @@
     <span class="service_panel__item__text">{{= _('ITINERARY', 'service panel') }}</span>
   </div>
 
-  <div {{= click(this.toggleFavorite, this) }} class="service_panel__item {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
+  <div {{= click(this.toggleFavorite, this) }} class="service_panel__item service_panel__item__fav {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
     <i class="icon-icon_star side_bar__item__icon"></i>
     <span class="service_panel__item__text">{{= _('YOUR FAVORITES', 'service panel') }}</span>
   </div>

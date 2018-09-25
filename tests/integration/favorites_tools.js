@@ -25,7 +25,6 @@ export async function getFavorites(page) {
  * promise is resolved after animation
  */
 export async function toggleFavoritePanel(page) {
-  await page.waitForSelector('.icon-icon_star.side_bar__item__icon')
-  await page.click('.icon-icon_star.side_bar__item__icon')
+  await page.click('.service_panel__item__fav')
   await wait(500)
 }

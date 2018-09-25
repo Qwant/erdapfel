@@ -95,7 +95,7 @@ PanelManager.endLoad = function () {
   document.getElementById('loading_panel').style.animationName = 'disappear'
   setTimeout(() => {
     document.getElementById('loading_panel').style.display = 'none'
-  }, 1000)
+  }, 200)
 }
 
 export default PanelManager

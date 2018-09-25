@@ -79,7 +79,7 @@ test('update url after a favorite poi click', async () => {
   page.evaluate(() => {
     fire('store_poi', new Poi(1, 'some poi i will click', '', {lat : 43, lng : 2}, '', '', []))
   })
-  await page.click('.side_bar__fav')
+  await page.click('.service_panel__item__fav')
   await wait(300)
   await page.click('.favorite_panel__swipe_element')
   await wait(400)
