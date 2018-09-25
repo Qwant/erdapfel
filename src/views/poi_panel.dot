@@ -1,9 +1,6 @@
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden' }}">
   <div class="poi_panel__content">
   {{? this.poi }}
-    <div class="poi_panel__close" {{= click(this.close, this) }}>
-      <i class="icon-x"></i>
-    </div>
     {{? this.fromFavorite }}
       <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}</div>
     {{?}}
@@ -43,6 +40,9 @@
           <div class="poi_panel__actions__text">{{= _('SHARE', 'poi') }}</div>
         </div>
       </div>
+    </div>
+    <div class="poi_panel__close" {{= click(this.close, this) }}>
+      <i class="icon-x"></i>
     </div>
   {{= this.PoiBlocContainer.render(this.poi) }}
   {{?}}
