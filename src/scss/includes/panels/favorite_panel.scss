@@ -226,7 +226,6 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     max-height: calc(100vh - 200px);
     width: 100vw;
     transition: top .2s;
-    padding-top: 70px;
   }
 
   .favorites_panel--hidden {
