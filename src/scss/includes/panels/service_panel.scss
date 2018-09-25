@@ -32,3 +32,8 @@
   font-weight: normal;
   color: #5c6f84;
 }
+@media (max-width: 640px) {
+  .service_panel {
+    left: 18px;
+  }
+}

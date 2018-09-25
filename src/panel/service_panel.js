@@ -9,7 +9,7 @@ function ServicePanel() {
   this.isFavoriteActive = false
   this.isResultActive = false
   listen('toggle_burger', () => {
-    this.panel.toggleClassName(.2,'.side_bar', 'side_bar--open')
+    this.panel.toggleClassName(.2,'.service_panel', 'service_panel--open')
   })
   PanelManager.registerListener(this)
 }

@@ -83,3 +83,10 @@ BODY {
   background: linear-gradient(to right, #a83485 0%,#e04c16 25%,#ff2b5c 35%,#f29d26 55%,#77005f 82%,#77005f 82%,#6d45a5 100%);
   background-size: 100vh;
 }
+
+@media (max-width: 640px) {
+  .side_panel__container {
+    top:75px;
+    left: 0;
+  }
+}

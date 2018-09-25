@@ -1,7 +1,7 @@
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden' }}">
   <div class="poi_panel__content">
   {{? this.poi }}
-    <div class="poi_panel__close">
+    <div class="poi_panel__close" {{= click(this.close, this) }}>
       <i class="icon-x"></i>
     </div>
     {{? this.fromFavorite }}

@@ -44,9 +44,7 @@
                   {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}
                 </p>
               </div>
-
             </div>
-
               <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
                 <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
                   <i class="icon-share-2 favorite_panel__item__more__icon"></i>

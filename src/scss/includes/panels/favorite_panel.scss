@@ -12,7 +12,8 @@
 .favorites_panel__close {
   position: absolute;
   right: 10px;
-  top: 10px
+  top: 10px;
+  cursor: pointer;
 }
 
 .favorite_panel__close {
@@ -220,17 +221,23 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
 }
 
 @media (max-width: 640px) {
+  .favorites_panel {
+    position: relative;
+    max-height: calc(100vh - 200px);
+    width: 100vw;
+    transition: top .2s;
+    padding-top: 70px;
+  }
+
+  .favorites_panel--hidden {
+    top: calc(-100vh + 70px);
+  }
 
   .favorite-panel--handler {
     bottom: 0;
     position: absolute;
     margin-top: 300px;
     height: 20px;
-  }
-
-  .favorite_panel__image_header {
-    width: 100vw;
-    background-size: 100vw 200px;
   }
 
   .favorite_panel__item__actions {
@@ -250,40 +257,9 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     width: 100%;
   }
 
-  @for $i from 1 through 20 {
-    .favorite_panel__swipe_flow--#{$i} {
-      width: calc(#{$i * 390}px + #{$i * 10}px);
-    }
-  }
-
-  .favorites_panel {
-    height: 100vh;
-    width: 100vw;
-    transition: top .2s;
-    padding-top: 70px;
-    top:0;
-    left: 0;
-  }
-
   .favorite_panel__item {
     width: calc(100vw - 20px);
     margin-left: 20px;
-  }
-
-  .favorites_panel--hidden {
-    top: calc(-100vh + 70px);  }
-
-  .favorite_panel__swipe_window {
-    margin: 20px 0 0 0;
-    overflow-x: scroll;
-    width: calc(100vw - 40px);
-  }
-
-  .favorite_panel__swipe_element {
-    width: 390px;
-    margin-right: 10px;
-    border : 2px solid #c4c5c6;
-    float: left;
   }
 }
 

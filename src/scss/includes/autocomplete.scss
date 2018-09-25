@@ -111,7 +111,6 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-left: -8px;
 }
 
-
 .autocomplete_suggestion--history {
   color : #039BE5;
 }
@@ -127,17 +126,20 @@ input[type="search"]::-webkit-search-cancel-button {
 .search_form__burger {
   display: none;
   position: absolute;
-  left: 10px;
-  top: 20px;
-  width: 30px;
-  height: 30px;
+  right: 10px;
+  top: 10px;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 16px 0 0 14px;
 }
 
 .search_form__burger div {
-  width: 30px;
-  height: 4px;
-  margin-bottom: 8px;
-  background-color: #424446;
+  width: 20px;
+  height: 2px;
+  margin-bottom: 4px;
+  background-color: #5c6f84;
 }
 
 @media (max-width: 640px) {
@@ -160,28 +162,32 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   .search_form__input {
-    width: calc(100% - 90px);
-    right: 0;
+    width: calc(100% - 110px);
+    height: 48px;
+    left: 8px;
     position: absolute;
     margin: 10px;
-    padding: 0 50px 0 10px;
+    padding: 0 50px 0 50px;
     background: #fff;
+    border-radius: 24px;
   }
 
   .search_form__logo {
     display: block;
     position: absolute;
-    left: 50px;
-    top: 24px;
-    width: 20px;
-    height: 20px;
+    left: 30px;
+    top: 19px;
+    width: 30px;
+    height: 30px;
     font-size: 14px;
     background-image: url(../images/qwant-logo.svg);
-    background-size: 20px 20px;
+    background-size: 30px 30px;
     color: #888;
   }
+
   .search_form__action {
-    right: 10px;
-    top: 10px;
+    right: 100px;
+    top: 20px;
+    height: 30px;
   }
 }
