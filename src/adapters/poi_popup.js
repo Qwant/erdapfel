@@ -14,12 +14,14 @@ function PoiPopup() {}
 PoiPopup.prototype.init = function(map) {
   this.map = map
   this.popupHandle = null
-
   this.timeOutHandler = null
 }
 
 PoiPopup.prototype.addListener = function(layer) {
   this.map.on('mouseenter', layer, (e) => {
+    if(isTouchEvent(e)) {
+      return
+    }
     this.timeOutHandler = setTimeout(() => {
       let poi = e.features[0]
       this.create(poi, e.originalEvent)
@@ -97,6 +99,14 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
 
 PoiPopup.prototype.close = function () {
   this.popupHandle.remove()
+}
+
+/* private */
+function isTouchEvent(event) {
+  if(event && event.originalEvent && event.originalEvent.sourceCapabilities) {
+    return event.originalEvent.sourceCapabilities.firesTouchEvents === true
+  }
+  return false
 }
 
 export default PoiPopup

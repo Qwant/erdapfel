@@ -5,15 +5,16 @@
 
 .search_form__input {
   background: #fff;
-  width: 382px;
+  width: 400px;
   height: 68px;
   padding: 8px 60px 10px 70px;
   border: none;
   box-shadow: none;
   font-size: 18px;
   font-weight: normal;
-  color: #5c6f84;
+  color: $primary_text;
   border-radius: 34px;
+  @include card_shadow();
 }
 
 /* Disable Chrome custom 'cancel' button */
@@ -28,9 +29,7 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 8px;
   width: 68px;
   height: 68px;
-  font-size: 14px;
   background: url(/statics/images/qwant-logo.svg) no-repeat;
-  color: #888;
 }
 
 .search_form__action {
@@ -39,20 +38,21 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 44px;
   right: 30px;
   top: 12px;
-  background: #fff url(/statics/images/not-active.svg) center no-repeat;
+  background: $background url(/statics/images/not-active.svg) center no-repeat;
   background-size: 20px 20px;
   font-size: 14px;
-  color: #888;
+  color: $primary_text;
 }
 
 .search_form__clear {
-  position: absolute;
   display: block;
-  right: 50px;
-  cursor: pointer;
-  top: 6px;
   height: 60px;
   width: 60px;
+  right: 50px;
+  top: 4px;
+  color: $secondary_text;
+  position: absolute;
+  cursor: pointer;
 }
 
 .search_form__input:valid ~ .search_form__clear {
@@ -67,7 +67,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: left;
   cursor: default;
   border-top: 0;
-  background: #fff;
+  background: $background;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
 
   /* core styles should not be changed */
@@ -80,13 +80,13 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .autocomplete_address {
   padding-left: 6px;
-  color : #777981;
+  color : $secondary_text;
 }
 
 .autocomplete_suggestion.selected {
   border-left: #f95d00 solid 3px;
   padding-left: 17px;
-  background-color: #f8fafc;
+  background-color: $background_active;
 }
 
 .autocomplete_suggestion {
@@ -98,9 +98,9 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1.02em;
-  color: #555;
-  background-color: #fff;
-  max-height: 50vh;
+  color: $secondary_text;
+  background-color: $background;
+  max-height: 100vh;
 }
 
 .autocomplete-icon {
@@ -115,23 +115,22 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestion--history {
-  color : #039BE5;
+  color : $secondary_text;
 }
 
 .autocomplete_suggestion--history .autocomplete_prefix {
-  color : #039BE5;
+  color : $primary_text;
 }
 
 .autocomplete_prefix {
-  color : #070912;
+  color : $primary_text;
 }
 
 @media (max-width: 640px) {
 
   .search_form__clear {
     font-size: 24px;
-    line-height: 48px;
-    color: $emphase_color;
+    color: $secondary_text;
   }
 
   .search_form {

@@ -8,6 +8,7 @@ import ServicePanel from './service_panel';
 import PanelManager from "../proxies/panel_manager";
 import UrlState from "../proxies/url_state";
 import Share from "./share"
+import OpenDataPanel from "./open_data";
 
 function AppPanel(parent) {
 
@@ -16,6 +17,7 @@ function AppPanel(parent) {
 
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
+  this.openDataPanel = new OpenDataPanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
   this.errorPanel = new ErrorHandlerPanel()

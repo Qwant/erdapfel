@@ -4,18 +4,18 @@
   margin: auto;
   padding: 30px;
   box-shadow: 0 0 20px 1px rgba(0,0,0,0.17);
-  background: #fff;
-  color: #797b7e
+  background: $background;
+  color: $primary_text
 }
 
 .register_masq_panel__title {
-  color : #696b6e
+  color : $secondary_text
 }
 
 .register_masq_panel__action {
   padding: 8px 16px;
   background: linear-gradient(to left, #5a3b6d 0%,#e5066b 100%);
   box-shadow: 0 0 3px 1px rgba(0,0,0,0.17);
-  color:#fff;
+  color: $background;
   font-size: 14px;
 }

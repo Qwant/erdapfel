@@ -1,33 +1,28 @@
 <div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
-  <p class="favorites_panel__close" {{= click(this.close, this) }}>
-    <i class="icon-x"></i>
-  </p>
-  {{? this.favoritePois.length === 0 }}
-    <h4 class="favorite_panel__container__title">
-      {{= _('Favorite places', 'favorite panel') }}
-    </h4>
-
-
-
-
-    <div class="favorite_panel__container__empty">
-      {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
-    </div>
-  {{??}}
-    <h4 class="favorite_panel__container__title">
-      {{= _('MY FAVORITES', 'favorite panel') }}
-    </h4>
-    {{= this.filterPanel.render() }}
-      <div class="favorite_panel__item">
-        {{~ this.favoritePois:poi:i }}
-          <div class="favorite_panel__item__more_container">
-
-            <div class="favorite_panel__swipe_element" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
+  <div id="favorite-panel-handle" class="favorite_panel__handle"></div>
+  <div class="favorites_panel__scroll">
+    <p class="favorites_panel__close" {{= click(this.close, this) }}>
+      <i class="icon-x"></i>
+    </p>
+    {{? this.favoritePois.length === 0 }}
+      <h4 class="favorite_panel__container__title">
+        {{= _('Favorite places', 'favorite panel') }}
+      </h4>
+      <div class="favorite_panel__container__empty">
+        {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
+      </div>
+    {{??}}
+      <h4 class="favorite_panel__container__title">
+        {{= _('MY FAVORITES', 'favorite panel') }}
+      </h4>
+      {{= this.filterPanel.render() }}
+        <div class="favorite_panel__item">
+          {{~ this.favoritePois:poi:i }}
+            <div class="favorite_panel__item__more_container" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
 
               <div class="favorite_panel__item__more_button" {{= click(this.toggleMore, this, i) }}>
                 <i class="icon-more-horizontal"></i>
               </div>
-
 
               <div class="favorite_panel__item__info">
                 {{ let ico = IconManager.get(poi); }}
@@ -43,19 +38,20 @@
                   {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}
                 </p>
               </div>
+                <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
+                  <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
+                    <i class="icon-share-2 favorite_panel__item__more__icon"></i>
+                    <span>{{= _('Share') }}</span>
+                  </p>
+                  <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
+                    <i class="icon-trash favorite_panel__item__more__icon"></i>
+                    <span>{{= _('Delete') }}</span>
+                  </p>
+                </div>
             </div>
-              <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
-                <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
-                  <i class="icon-share-2 favorite_panel__item__more__icon"></i>
-                  <span>{{= _('Share') }}</span>
-                </p>
-                <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
-                  <i class="icon-trash favorite_panel__item__more__icon"></i>
-                  <span>{{= _('Delete') }}</span>
-                </p>
-              </div>
-          </div>
-        {{~}}
-    </div>
-  {{?}}
+          {{~}}
+      </div>
+    {{?}}
+  </div>
+  <div class="loading_panel"></div>
 </div>

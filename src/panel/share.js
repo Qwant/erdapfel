@@ -16,11 +16,13 @@ export default class Share {
     this.panel.update()
   }
 
-  copy () {
+  async copy () {
     let url = document.getElementById('share_url_data')
     url.select()
     document.execCommand('copy')
     url.blur()
+    await this.panel.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
+    this.panel.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
   }
 
   close () {

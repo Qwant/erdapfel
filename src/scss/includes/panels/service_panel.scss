@@ -5,12 +5,12 @@
   margin-top: 14px;
   background: url('/statics/images/panel_top.svg') white repeat-x;
   background-size: 100% 6px;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
-  border-radius: 3px;
+  @include card_shadow();
+  @include card_radius();
 }
 
 .service_panel__title {
-  color: #353c52;
+  color: $primary_text;
   font-size: 14px;
   font-weight: normal;
   border-bottom: 1px solid #e0e1e6;
@@ -19,7 +19,7 @@
 }
 
 .side_bar__item__icon {
-  color: #5c6f84;
+  color: $secondary_text;
 }
 
 .service_panel__item {
@@ -31,12 +31,34 @@
   cursor: pointer;
   font-size: 13px;
   font-weight: normal;
-  color: #5c6f84;
+  color: $secondary_text;
+}
+
+.service_panel_mobile {
+  display: none;
 }
 
 @media (max-width: 640px) {
   .service_panel {
-    width: calc(100vw - 36px);
-    margin-left: 18px;
+    display: none;
+  }
+
+  .service_panel_mobile {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .service_panel_mobile__favorite {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    bottom: 12px;
+    left: 8px;
+    background: #fff;
+    border-radius: 50%;
+    @include card_shadow();
   }
 }
+

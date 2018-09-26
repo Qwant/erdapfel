@@ -2,13 +2,13 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel {
   display: block;
-  max-height: calc(100vh - 232px);
+  max-height: calc(100vh - 240px);
   position: relative;
   width: $panel_width;
   padding-bottom: 10px;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
-  background: #fff;
-  border-radius: 3px;
+  background: $background;
+  @include card_shadow();
+  @include card_radius();
   overflow-y: auto;
 }
 
@@ -41,15 +41,15 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__back_to_favorite {
   font-size: 14px;
-  color: #777;
+  color: $secondary_text;
   padding: 14px 0 14px 40px;
   cursor: pointer;
-  border-bottom: 1px solid #f4f6fa;
+  border-bottom: 1px solid $separator_color;
   margin-bottom: 14px;
 }
 
 .poi_panel__back_to_favorite:hover {
-  color: #333537;
+  color: $secondary_text;
 }
 
 .poi_panel__description_container {
@@ -67,12 +67,12 @@ $BLOCK_INDENT: 60px;
   width: 350px;
   padding: 18px 0 0 $BLOCK_INDENT;
   font-weight: bold;
-  color: $text_color;
+  color: $primary_text;
   font-size: 15px;
 }
 
 .poi_panel__info__section__title {
-  color: $text_alt_color;
+  color: $secondary_text;
   font-weight: normal;
   margin: 20px 0 0 20px;
 }
@@ -83,7 +83,7 @@ $BLOCK_INDENT: 60px;
   width: 338px;
   height: 1px;
   margin-top: 8px;
-  background: #e4e7ef;
+  background: $separator_color;
   margin-left: 28px;
 }
 
@@ -91,7 +91,7 @@ $BLOCK_INDENT: 60px;
   position: relative;
   padding-left: $BLOCK_INDENT;
   font-size: 14px;
-  color: #5c6f84;
+  color: $secondary_text;
 
 }
 .poi_panel__description:first-letter {
@@ -101,7 +101,7 @@ $BLOCK_INDENT: 60px;
 .poi_panel__address {
   padding: 8px 0 0 $BLOCK_INDENT;
   font-size: 16px;
-  color: #353c52;
+  color: $primary_text;
 }
 
 .poi_panel__info__section__description  {
@@ -111,17 +111,18 @@ $BLOCK_INDENT: 60px;
 .poi_panel__info__link {
   margin-left: $BLOCK_INDENT;
   font-size: 15px;
-  color: #0c897b;
+  color: $secondary_variant_text;
 }
 
 .poi_panel__info__link:HOVER {
   text-decoration: none;
-  border-bottom: 1px solid #0c897b;
+  border-bottom: 1px solid $secondary_variant_text;
 }
 
 .poi_panel__info__accessibilities {
   font-size: 15px;
   margin-left: $BLOCK_INDENT;
+  color: $primary_text;
 }
 
 .poi_panel__info__hours {
@@ -132,7 +133,7 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__hours__table {
-  width: 330px;
+  width: calc(100% - 20px);
   margin-top: 8px;
   font-size: 15px;
 }
@@ -151,8 +152,26 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__hours__status {
-  padding-left: $BLOCK_INDENT;
   cursor: pointer;
+  position: relative;
+  width: 368px;
+}
+
+.poi_panel__info__hours__status__text {
+  color: $primary_text;
+  padding-left: $BLOCK_INDENT;
+}
+
+.poi_panel__info__hours__status__toggle {
+  position: absolute;
+  right: 0;
+  font-size: 24px;
+  color: $secondary_text;
+  transition: transform .2s;
+}
+
+.poi_panel__info__hours__status__toggle--reversed {
+  transform: rotate(180deg);
 }
 
 .poi_panel__info__hours .day {
@@ -167,9 +186,14 @@ $BLOCK_INDENT: 60px;
   font-weight: bold;
 }
 
+.poi_panel__hour__extend {
+  position: absolute;
+  right: 20px;
+}
+
 .hour_panel__no_data  {
   padding-left: 64px;
-  color: #777;
+  color: $secondary_text;
   font-size: 14px;
 }
 
@@ -191,6 +215,7 @@ $BLOCK_INDENT: 60px;
 .poi_panel__info__item {
   margin-left: $BLOCK_INDENT;
   font-size: 13px;
+  color: $primary_text;
 }
 
 .poi_panel__info__item--beer {
@@ -220,7 +245,7 @@ $BLOCK_INDENT: 60px;
   display: inline-block;
   height: 25px;
   font-size: 22px;
-  color: #5c6f84;
+  color: $secondary_text;
   vertical-align: middle;
 }
 
@@ -229,7 +254,7 @@ $BLOCK_INDENT: 60px;
   padding-left: 2px;
   height: 25px;
   font-size: 12px;
-  color: #5c6f84;
+  color: $secondary_text;
 }
 
 .poi_panel__description_container {
@@ -256,7 +281,7 @@ $BLOCK_INDENT: 60px;
   top: 18px;
   left: 25px;
   font-size: 24px;
-  color: #a7a7a7;
+  color: $primary_clear;
   width: 20px;
   height: 18px;
 }
@@ -284,10 +309,12 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__block__collapse {
   position: absolute;
-  right: 34px;
-  top: -16px;
+  top: 0;
+  right: 0;
   cursor: pointer;
   transition: transform .2s;
+  font-size: 24px;
+  color: $secondary_text;
 }
 
 .poi_panel__block__collapse--reversed {
@@ -299,24 +326,31 @@ $BLOCK_INDENT: 60px;
   font-size: 13px;
   font-weight: normal;
   margin: 10px 0 4px $BLOCK_INDENT;
-  color: #707070
+  color: $secondary_text
 }
 
 .poi_panel__sub_block__title {
+  margin-top:20px;
+  cursor: pointer;
+  position: relative;
+  width: 366px;
+}
+
+.poi_panel__sub_block__title__text {
   width: 285px;
-  margin: 20px 0 0 $BLOCK_INDENT;
-  overflow: hidden;
   font-size: 14px;
-  color: #707070;
+  color: $secondary_text;
   font-weight: bold;
-  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: $BLOCK_INDENT;
 }
 
 .poi_panel__info__wiki {
   margin: 10px 0 0 $BLOCK_INDENT;
   font-size: 12px;
-  color: #222;
+  color: $secondary_text;
 }
 
 .poi_panel__info__wiki__link {
@@ -335,8 +369,13 @@ $BLOCK_INDENT: 60px;
   .poi_panel {
     max-height: calc(100vh - 200px);
     width: 100vw;
+    bottom: 0;
+    position: absolute;
   }
 
+  .poi_panel__info__hours__status {
+    width: calc(100% - 16px);
+  }
 
   .poi_panel__toggle_display--mobile {
     display: block;
@@ -349,6 +388,10 @@ $BLOCK_INDENT: 60px;
   .poi_panel__toggle_display {
     top: 75px;
     right: 10px
+  }
+
+  .poi_panel__sub_block__title {
+    width: calc(100% - 16px);
   }
 
   .poi_panel__title {

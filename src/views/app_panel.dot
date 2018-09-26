@@ -2,7 +2,6 @@
   <div class="favorite_poi_panel__container">
     {{= this.favoritePanel.render() }}
     {{= this.poiPanel.render() }}
-    <div id="loading_panel" class="loading_panel"></div>
   </div>
   {{= this.servicePanel.render() }}
 </div>
@@ -11,3 +10,4 @@
 {{= this.errorPanel.render() }}
 {{= this.masqPanel.render() }}
 {{= this.sharePanel.render() }}
+{{= this.openDataPanel.render() }}

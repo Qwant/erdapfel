@@ -7,6 +7,7 @@
   <span class="share__subtitle">{{= _('Share link', 'share') }}</span>
   <input id="share_url_data" value="{{= this.shareUrl }}" type="text"></input>
   <button class="share__copy_link" {{= click(this.copy, this) }}>{{= _('COPY LINK' , 'share') }}</button>
+  <span id="share-copy-status" class="share__copy_status share__copy_status--hidden">{{= _('Link copied', 'share') }}</span>
   <hr class="share__hr">
   <i class="share__icons icon-facebook"></i>
   <a target="_blank" {{= this.openPopup() }} href="{{= this.facebookTemplate(this.shareUrl) }}" class="share__link">

@@ -1,12 +1,14 @@
-<h5 class="poi_panel__sub_block__title">
-  {{? this.extended }}
-    {{= _('Services & information', 'poi') }}
-  {{??}}
-    {{= this.title() }}
-  {{?}}
-</h5>
+<div class="poi_panel__sub_block__title" {{= click(this.toggle, this) }}>
+   <h4 class="poi_panel__sub_block__title__text">
+      {{? this.extended }}
+        {{= _('Services & information', 'poi') }}
+      {{??}}
+        {{= this.title() }}
+      {{?}}
+    </h4>
+   <div class="poi_panel__block__collapse icon-icon_chevron-down {{= this.extended ? 'poi_panel__block__collapse--reversed' : ''}}"></div>
+</div>
 <div class="poi_panel__service_information__container">
-  <div class="poi_panel__block__collapse icon-icon_chevron-down {{= this.extended ? 'poi_panel__block__collapse--reversed' : ''}}" {{= click(this.toggle, this) }}></div>
   <div class="poi_panel__block__information{{= this.extended ? ' poi_panel__block__information--extended' : ''}}">
     {{~ this.blocks:block }}
       {{= this.PoiBlocContainer.renderBlock(block) }}

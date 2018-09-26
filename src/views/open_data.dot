@@ -1,0 +1,8 @@
+<div class="open_data">
+  {{= _('Qwant use OpenStreetMap') }}
+  <i class="icon-chevron-right open_data__chevron_fix"></i>
+  <i class="icon-chevron-right"></i>
+  <a class="open_data__link" href="https://learnosm.org/" target="_blank">
+    {{= _('KNOW MORE', 'open data') }}
+  </a>
+</div>
