@@ -1,0 +1,34 @@
+// dimensions
+
+$panel_width : 400px;
+
+/* text */
+$primary_text: #353c52;
+$primary_alternative_text: #ffffff;
+$primary_clear: #c8cbd3;
+$secondary_text : #5c6f84;
+$secondary_variant_text : #018475; /* link */
+
+/* background */
+$background : #ffffff;
+$background_hover : #fafafa;
+$background_active: #fafafa;
+$background_alternate: #039BE5;
+$surface : #f4f6fa;
+
+/* separator */
+$separator_color : #e0e1e6;
+
+/* error  */
+$error_background : #f8d7da;
+$error_border : #f5c6cb;
+$error_text : #721c24;
+
+/* card */
+@mixin card_radius() {
+  border-radius: 3px;
+}
+
+@mixin card_shadow() {
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
+}

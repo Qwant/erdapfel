@@ -1,4 +1,4 @@
-@import "includes/config";
+@import "includes/component";
 @import "includes/reset";
 @import "./../../node_modules/mapbox-gl/dist/mapbox-gl.css";
 @import "includes/mapbox-gl-override.scss";
@@ -16,6 +16,7 @@
 @import "includes/panels/poi_panel";
 @import "includes/panels/register";
 @import "includes/panels/share";
+@import "includes/panels/open_data";
 
 // z-index
 @import "includes/z_index";

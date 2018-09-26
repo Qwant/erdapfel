@@ -20,10 +20,18 @@
   </div>
 
   <div class="service_panel__item">
-    <a href="https://learnosm.org/" target="_blank" class="service_panel__item__text">
+    <button  class="service_panel__item__text">
       <i class="icon-icon_globe side_bar__item__icon"></i>
       {{= _('OPEN DATA', 'service panel') }}
-    </a>
+    </button>
   </div>
+
+</div>
+
+<div class="service_panel_mobile">
+
+  <button class="service_panel_mobile__favorite" {{= click(this.toggleFavorite, this) }}>
+    <i class="icon-icon_star"></i>
+  </button>
 
 </div>

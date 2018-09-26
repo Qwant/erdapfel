@@ -1,0 +1,25 @@
+.open_data {
+  position: absolute;
+  padding: 8px 15px;
+  right: 54px;
+  bottom: 30px;
+  display: block;
+  @include card_shadow();
+  @include card_radius();
+  background: $surface;
+  color: $secondary_text;
+}
+
+.open_data__chevron_fix {
+  margin-right: -15px;
+}
+
+.open_data__link {
+  color: $secondary_text;
+}
+
+@media (max-width: 850px) {
+  .open_data {
+    display: none;
+  }
+}
