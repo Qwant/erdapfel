@@ -18,8 +18,7 @@
       {{= _('MY FAVORITES', 'favorite panel') }}
     </h4>
     {{= this.filterPanel.render() }}
-    <ul>
-      <li class="favorite_panel__item">
+      <div class="favorite_panel__item">
         {{~ this.favoritePois:poi:i }}
           <div class="favorite_panel__item__more_container">
 
@@ -57,7 +56,6 @@
               </div>
           </div>
         {{~}}
-      </li>
-    </ul>
+    </div>
   {{?}}
 </div>

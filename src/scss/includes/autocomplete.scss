@@ -1,24 +1,19 @@
 .search_form {
+  position: relative;
   display: flex;
-  width: 300px;
-  height: 46px;
-  padding: 0;
-  background-color: #fff;
-  font-weight: 300;
-  color: #191919;
-  margin: 14px 80px;
 }
 
 .search_form__input {
-  width: 300px;
-  height: 44px;
-  padding: 8px 60px 10px 10px;
+  background: #fff url(../images/qwant-logo.svg) no-repeat 10px 8px;
+  width: 382px;
+  height: 68px;
+  padding: 8px 60px 10px 70px;
   border: none;
-  background: none;
   box-shadow: none;
   font-size: 18px;
   font-weight: normal;
   color: #5c6f84;
+  border-radius: 34px;
 }
 
 /* Disable Chrome custom 'cancel' button */
@@ -34,7 +29,8 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   width: 30px;
   height: 44px;
-  right: 14px;
+  right: 30px;
+  top: 12px;
   background: #fff url(../images/not-active.svg) center no-repeat;
   background-size: 20px 20px;
   font-size: 14px;
@@ -42,18 +38,17 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .search_form__clear {
-  right: 50px;
-  color: #444648;
-  top: 15px;
   position: absolute;
+  display: block;
+  right: 50px;
   cursor: pointer;
+  top: 6px;
+  height: 60px;
+  width: 60px;
 }
 
 .search_form__input:valid ~ .search_form__clear {
   display: block;
-  line-height: 1;
-  position: absolute;
-  left: 356px;
 }
 
 .search_form__input:invalid ~ .search_form__clear {
@@ -63,7 +58,6 @@ input[type="search"]::-webkit-search-cancel-button {
 .autocomplete_suggestions {
   text-align: left;
   cursor: default;
-  border: 1px solid #ccc;
   border-top: 0;
   background: #fff;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
@@ -72,10 +66,8 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   display: none;
   z-index: 9999;
-  max-height: 254px;
   overflow: hidden;
   overflow-y: auto;
-  box-sizing: border-box;
 }
 
 .autocomplete_address {
@@ -128,9 +120,9 @@ input[type="search"]::-webkit-search-cancel-button {
 @media (max-width: 640px) {
 
   .search_form__clear {
-    top: 22px;
     font-size: 24px;
-    right: 52px;
+    line-height: 48px;
+    color: $emphase_color;
   }
 
   .search_form {

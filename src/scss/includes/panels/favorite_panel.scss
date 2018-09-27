@@ -140,23 +140,14 @@
 
 .favorite_panel__item__more_container {
   position: relative;
-}
-
-.favorite_panel__swipe_element {
-  position: relative;
-  overflow: hidden;
-  width: $panel_width;
-  height: 70px;
-  padding: 0 8px 0 4px;
-  transition: height .2s;
-  cursor: pointer;
+  padding-left: 4px;
 }
 
 .favorite_item--removed {
   height: 0;
 }
 
-.favorite_panel__swipe_element:not(:last-child):after {
+.favorite_panel__item__more_container:not(:last-child):after {
   display: block;
   content: '';
   clear: both;
@@ -165,14 +156,10 @@
   background-color: #f3f3f3;
 }
 
-.favorite_panel__swipe_element:hover {
+.favorite_panel__item__more_container:hover {
   background: #f9fbfd;
   border-left: 4px solid #f95d00;
   padding-left: 0;
-}
-
-.favorite_panel__swipe_element:hover .favorite_panel__item__actions {
-  display: block;
 }
 
 .favorite_panel__filter {
@@ -263,7 +250,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
   }
 
   .favorite_panel__item {
-    width: calc(100vw - 20px);
+    width: calc(100vw - 40px);
     margin-left: 20px;
   }
 }
