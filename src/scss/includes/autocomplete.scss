@@ -4,7 +4,7 @@
 }
 
 .search_form__input {
-  background: #fff url(../images/qwant-logo.svg) no-repeat 10px 8px;
+  background: #fff;
   width: 382px;
   height: 68px;
   padding: 8px 60px 10px 70px;
@@ -22,7 +22,15 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .search_form__logo {
-  display: none;
+  display: block;
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  width: 68px;
+  height: 68px;
+  font-size: 14px;
+  background: url(/statics/images/qwant-logo.svg) no-repeat;
+  color: #888;
 }
 
 .search_form__action {
@@ -31,7 +39,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 44px;
   right: 30px;
   top: 12px;
-  background: #fff url(../images/not-active.svg) center no-repeat;
+  background: #fff url(/statics/images/not-active.svg) center no-repeat;
   background-size: 20px 20px;
   font-size: 14px;
   color: #888;
@@ -131,7 +139,6 @@ input[type="search"]::-webkit-search-cancel-button {
     top:0;
     left: 0;
     height: 70px;
-    background-color: #f7fafb;
   }
 
   .search_form__input {
@@ -141,21 +148,14 @@ input[type="search"]::-webkit-search-cancel-button {
     top:10px;
     position: absolute;
     padding: 0 50px 0 50px;
-    background: #fff;
     border-radius: 24px;
   }
 
   .search_form__logo {
-    display: block;
-    position: absolute;
-    left: 17px;
-    top: 19px;
     width: 30px;
     height: 30px;
-    font-size: 14px;
-    background-image: url(../images/qwant-logo.svg);
+    background-image: url(/statics/images/qwant-logo.svg);
     background-size: 30px 30px;
-    color: #888;
   }
 
   .search_form__action {
