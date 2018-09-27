@@ -2,9 +2,9 @@
   position: relative;
   width: $panel_width;
   height: 100px;
-  border-right: 1px solid #f3f5f7;
   margin-top: 14px;
-  background: url('/images/popup_top.svg') white repeat-x;
+  background: url('/statics/images/panel_top.png') white repeat-x;
+  background-size: 100% 6px;
   box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
   border-radius: 3px;
 }
@@ -28,12 +28,15 @@
 }
 
 .service_panel__item__text {
+  cursor: pointer;
   font-size: 13px;
   font-weight: normal;
   color: #5c6f84;
 }
+
 @media (max-width: 640px) {
   .service_panel {
-    left: 18px;
+    width: calc(100vw - 36px);
+    margin-left: 18px;
   }
 }

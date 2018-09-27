@@ -1,7 +1,7 @@
 .top_bar {
   background: #fff;
   background-image: url('../images/qwant-logo.svg');
-  background-position: 15px 10px;
+  background-position: 10px 8px;
   background-repeat: no-repeat;
   position: absolute;
   width: 400px;
@@ -14,5 +14,6 @@
 @media (max-width: 640px) {
   .top_bar {
     position: inherit;
+    width: 100%;
   }
 }

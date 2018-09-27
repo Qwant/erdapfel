@@ -2,10 +2,14 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel {
   display: block;
+  max-height: calc(100vh - 232px);
   position: relative;
   width: $panel_width;
   padding-bottom: 10px;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
   background: #fff;
+  border-radius: 3px;
+  overflow-y: auto;
 }
 
 .poi_panel--hidden {
@@ -328,6 +332,11 @@ $BLOCK_INDENT: 60px;
 }
 
 @media (max-width: 640px) {
+  .poi_panel {
+    max-height: calc(100vh - 200px);
+    width: 100vw;
+  }
+
 
   .poi_panel__toggle_display--mobile {
     display: block;
@@ -340,11 +349,6 @@ $BLOCK_INDENT: 60px;
   .poi_panel__toggle_display {
     top: 75px;
     right: 10px
-  }
-
-  .poi_panel {
-    height: 100vh;
-    width: 100vw;
   }
 
   .poi_panel__title {
@@ -366,5 +370,9 @@ $BLOCK_INDENT: 60px;
 
   .poi_panel__info__section:not(:last-of-type):after {
     width: calc(100% - 40px);
+  }
+
+  .poi_panel__description__ellipsis {
+    width: 100%;
   }
 }

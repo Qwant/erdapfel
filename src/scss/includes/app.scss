@@ -3,7 +3,6 @@ BODY {
 }
 
 .side_panel__container {
-  max-height: calc(100vh - 122px);
   position: absolute;
   top: 104px;
   left: 18px;
@@ -11,6 +10,7 @@ BODY {
 
 .favorite_poi_panel__container {
   position: relative;
+  max-height: calc(100vh - 232px);
 }
 
 @keyframes appear {
@@ -88,5 +88,10 @@ BODY {
   .side_panel__container {
     top:75px;
     left: 0;
+  }
+
+  .favorite_poi_panel__container {
+    position: relative;
+    max-height: calc(100vh - 200px);
   }
 }
