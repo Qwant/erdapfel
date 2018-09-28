@@ -1,0 +1,29 @@
+<div class="service_panel">
+
+  <h3 class="service_panel__title">
+    {{= _('Qwant Maps services', 'service panel') }}
+  </h3>
+
+
+  <div class="service_panel__item">
+    <button class="service_panel__item__text">
+      <i class="icon-corner-up-right side_bar__item__icon"></i>
+      {{= _('ITINERARY', 'service panel') }}
+    </button>
+  </div>
+
+  <div {{= click(this.toggleFavorite, this) }} class="service_panel__item service_panel__item__fav {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
+    <button class="service_panel__item__text">
+      <i class="icon-icon_star side_bar__item__icon"></i>
+      {{= _('YOUR FAVORITES', 'service panel') }}
+     </button>
+  </div>
+
+  <div class="service_panel__item">
+    <a href="https://learnosm.org/" target="_blank" class="service_panel__item__text">
+      <i class="icon-icon_globe side_bar__item__icon"></i>
+      {{= _('OPEN DATA', 'service panel') }}
+    </a>
+  </div>
+
+</div>

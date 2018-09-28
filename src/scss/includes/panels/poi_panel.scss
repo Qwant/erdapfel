@@ -1,27 +1,26 @@
 $BLOCK_INDENT: 60px;
 
 .poi_panel {
-  position: absolute;
-  top: 0;
-  left:96px;
-  height: 100vh;
-  width: $panel_width;
-  transition: left 0.2s;
-  background: #fff;
-  overflow-x: visible;
-}
-
-.poi_panel__content {
+  display: block;
+  max-height: calc(100vh - 232px);
   position: relative;
-  height: 100vh;
-  overflow-y: auto;
   width: $panel_width;
-  padding: 95px 0 10px 0;
+  padding-bottom: 10px;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
   background: #fff;
+  border-radius: 3px;
+  overflow-y: auto;
 }
 
 .poi_panel--hidden {
-  left: - ($panel_width - $side_bar_width + 50px);
+  display: none;
+}
+
+.poi_panel__close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  cursor: pointer;
 }
 
 .poi_panel__info__section {
@@ -35,29 +34,6 @@ $BLOCK_INDENT: 60px;
   font-size: 14px;
 }
 
-.poi_panel__toggle_display {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  right: -40px;
-  top: 94px;
-  padding: 8px 10px 0 0;
-  background: white;
-  color: #7f8183;
-  font-size: 24px;
-  text-align: right;
-  cursor: pointer;
-  border-radius: 0 3px 3px 0;
-}
-
-.poi_panel__toggle_display--mobile {
-  display: none;
-}
-
-.poi_panel__toggle_display--desktop {
-  display: block;
-}
-
 .poi_panel__back {
   display: inline-block;
   width: 20px;
@@ -66,8 +42,10 @@ $BLOCK_INDENT: 60px;
 .poi_panel__back_to_favorite {
   font-size: 14px;
   color: #777;
-  margin: 20px 0  0 $BLOCK_INDENT - 20px;
+  padding: 14px 0 14px 40px;
   cursor: pointer;
+  border-bottom: 1px solid #f4f6fa;
+  margin-bottom: 14px;
 }
 
 .poi_panel__back_to_favorite:hover {
@@ -75,7 +53,6 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__description_container {
-  margin-top: 20px;
   position: relative;
   cursor: pointer;
 }
@@ -88,7 +65,7 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__title {
   width: 350px;
-  padding-left: $BLOCK_INDENT;
+  padding: 18px 0 0 $BLOCK_INDENT;
   font-weight: bold;
   color: $text_color;
   font-size: 15px;
@@ -112,10 +89,10 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__description {
   position: relative;
-  font-size: 12px;
   padding-left: $BLOCK_INDENT;
-  margin-top: 2px;
-  color: $emphase_color;
+  font-size: 14px;
+  color: #5c6f84;
+
 }
 .poi_panel__description:first-letter {
   text-transform: uppercase;
@@ -123,7 +100,8 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__address {
   padding: 8px 0 0 $BLOCK_INDENT;
-  font-size: 14px;
+  font-size: 16px;
+  color: #353c52;
 }
 
 .poi_panel__info__section__description  {
@@ -268,7 +246,7 @@ $BLOCK_INDENT: 60px;
 .poi_panel__title__symbol {
   float: left;
   font-size: 42px;
-  margin-left: 16px;
+  margin: 18px 0 0 16px;
   line-height: 35px !important;
 }
 
@@ -354,6 +332,11 @@ $BLOCK_INDENT: 60px;
 }
 
 @media (max-width: 640px) {
+  .poi_panel {
+    max-height: calc(100vh - 200px);
+    width: 100vw;
+  }
+
 
   .poi_panel__toggle_display--mobile {
     display: block;
@@ -368,22 +351,12 @@ $BLOCK_INDENT: 60px;
     right: 10px
   }
 
-  .poi_panel {
-    height: 100vh;
-    width: 100vw;
-    transition: top .2s;
-    padding-top: 70px;
-    top: 0;
-    left: 0;
-  }
-
   .poi_panel__title {
     width: calc(100% - ($BLOCK_INDENT + 38px));
   }
 
   .poi_panel__content {
     width: 100%;
-    padding: 30px 0 0 0;
   }
 
   .poi_panel--hidden {
@@ -397,5 +370,9 @@ $BLOCK_INDENT: 60px;
 
   .poi_panel__info__section:not(:last-of-type):after {
     width: calc(100% - 40px);
+  }
+
+  .poi_panel__description__ellipsis {
+    width: 100%;
   }
 }

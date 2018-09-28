@@ -41,16 +41,10 @@
         </div>
       </div>
     </div>
-  {{= this.PoiBlocContainer.render(this.poi) }}
-  {{?}}
-  <br>
-  </div>
-  <div class="poi_panel__toggle_display" {{= click(this.toggle, this) }}>
-    <div class="poi_panel__toggle_display--mobile">
+    <div class="poi_panel__close" {{= click(this.close, this) }}>
       <i class="icon-x"></i>
     </div>
-    <div class="poi_panel__toggle_display--desktop">
-      <i class="icon-chevron-left"></i>
-    </div>
+  {{= this.PoiBlocContainer.render(this.poi) }}
+  {{?}}
   </div>
 </div>

@@ -40,12 +40,12 @@ test('restore favorite from localStorage', async () => {
   const testTitle = 'demo_fav'
   store(page, 'demo_fav', {id : 0, name : testTitle})
   await wait(100)
-  await page.click('.side_bar__fav')
+  await page.click('.service_panel__item__fav')
   await page.waitForSelector('.favorite_panel__item__title')
   let title = await page.evaluate(() => {
     return document.querySelector('.favorite_panel__item__title').innerText
   })
-  expect(title).toEqual(testTitle)
+  expect(title.trim()).toEqual(testTitle)
 })
 
 test('remove favorite using favorite panel', async () => {
@@ -56,11 +56,15 @@ test('remove favorite using favorite panel', async () => {
   })
   await toggleFavoritePanel(page)
   let items = await page.waitForSelector('.favorite_panel__item')
+
   expect(items).not.toBeNull()
+
   /* remove it */
+
   await page.waitForSelector('.icon-more-horizontal')
   await page.click('.icon-more-horizontal')
   await page.click('.icon-trash')
+
   items = await page.waitForSelector('.favorite_panel__container__empty')
   expect(items).not.toBeNull()
 })
