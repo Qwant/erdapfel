@@ -1,5 +1,4 @@
 const request = require('request')
-const QueryError = require('../query_error')
 
 const ogMetas = [
   {name : 'site_name', content : 'Qwant Maps'},
@@ -71,7 +70,7 @@ module.exports = function(config) {
           res.redirect(307, '/')
         }
       }).catch((error) => {
-        new QueryError(error)
+        req.logger.error({err:error})
         homeMeta(locale, req, res, next)
       })
     } else {
