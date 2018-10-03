@@ -34,8 +34,7 @@ Store.prototype.getAll = async function() {
 
 Store.prototype.onConnect = async function () {
   let regParams = {
-    endpoint: moduleConfig.endpoint,
-    url: window.location.origin + window.location.pathname,
+    url: window.location.origin,
     name: moduleConfig.masq.name,
     description: moduleConfig.masq.description,
     icon: moduleConfig.masq.icon
