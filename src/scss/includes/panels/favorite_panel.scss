@@ -5,7 +5,6 @@
   background: $background;
   @include card_shadow();
   @include card_radius();
-  overflow: hidden;
 }
 
 .favorite_panel__handle {
@@ -46,7 +45,6 @@
 .favorite_panel__items {
   font-size: 18px;
   width: 385px;
-  overflow: hidden;
 }
 
 .favorite_panel__go {
