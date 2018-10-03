@@ -9,5 +9,4 @@
 
 /* modals */
 {{= this.errorPanel.render() }}
-{{= this.masqPanel.render() }}
 {{= this.sharePanel.render() }}

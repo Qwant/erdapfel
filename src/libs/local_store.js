@@ -14,11 +14,6 @@ LocalStore.prototype.getAll = async function () {
   })
 }
 
-LocalStore.prototype.register = async function() {
-  console.log('local storage doesn\'t support register method')
-  return new Promise((resolve)=>{resolve()})
-}
-
 LocalStore.prototype.onConnect = async function () {
   return new Promise((resolve) => {
     resolve()

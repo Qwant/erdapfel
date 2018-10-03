@@ -100,7 +100,12 @@ const mainJsChunkConfig = {
       ]
     }]
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  node: {
+    net: 'empty',
+    fs: 'empty',
+    tls: 'empty'
+  }
 }
 
 const mapJsChunkConfig = {
@@ -192,7 +197,7 @@ webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(
     output : {
       path : path.join(__dirname, '..'),
       filename : `./public/build/javascript/message/${language.locale}.js`
-    },
+    }
   }
 }))
 

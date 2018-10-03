@@ -1,8 +1,11 @@
 import nconf from '@qwant/nconf-getter'
+
 let moduleConfig = nconf.get().store
 
 const AbStore = require(`../libs/${moduleConfig.name}`)
-const abstractStore = new AbStore(moduleConfig.endpoint)
+const abstractStore = new AbStore()
+
+
 
 function Store() {
   this.isRegisterd = false
@@ -29,33 +32,16 @@ Store.prototype.getAll = async function() {
   })
 }
 
-Store.prototype.isRegistered = async function () {
-  return new Promise((resolve) => {
-    abstractStore.getAll()
-      .then(() => resolve(true))
-      .catch((e) => {
-      if(e.message === 'UNREGISTERED') {
-        resolve(false)
-      }
-    })
-  })
-}
-
 Store.prototype.onConnect = async function () {
-  return abstractStore.onConnect()
-}
-
-Store.prototype.register = async function () {
   let regParams = {
     endpoint: moduleConfig.endpoint,
     url: window.location.origin + window.location.pathname,
-    title: moduleConfig.masq.title,
-    desc: moduleConfig.masq.desc,
+    name: moduleConfig.masq.name,
+    description: moduleConfig.masq.description,
     icon: moduleConfig.masq.icon
   }
-  return abstractStore.registerApp(regParams)
+  return abstractStore.onConnect(regParams)
 }
-
 
 Store.prototype.getPrefixes = async function (prefix) {
   return new Promise((resolve, reject) => {

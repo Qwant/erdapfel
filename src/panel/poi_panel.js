@@ -5,7 +5,6 @@ import PoiBlocContainer from './poi_bloc/poi_bloc_container'
 import Poi from "../mapbox/poi"
 import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
-import ExtendedString from '../libs/string'
 
 const poiSubClass = require('../mapbox/poi_subclass')
 

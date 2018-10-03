@@ -76,21 +76,6 @@ Favorite.prototype.connectStore = async function () {
   try {
     await this.store.onConnect()
   } catch(e) {
-    console.error(e)
-    fire('register_panel__show')
-  }
-  let registered = false
-  try {
-    registered = await this.store.isRegistered()
-  } catch(e) {
-    console.error(e)
-    fire('register_panel__show')
-  }
-
-  if(registered) {
-    this.getAll()
-    this.panel.update()
-  } else {
     fire('register_panel__show')
   }
 }
