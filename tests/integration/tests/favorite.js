@@ -30,7 +30,7 @@ test('favorite added is present in favorite panel', async () => {
     fire('store_poi', new Poi(1, 'some poi', '', {lat : 43, lng : 2}, '', '', []))
   })
   await toggleFavoritePanel(page)
-  let items = await  page.waitForSelector('.favorite_panel__item')
+  let items = await  page.waitForSelector('.favorite_panel__items')
   expect(items).not.toBeNull()
 })
 
@@ -55,7 +55,7 @@ test('remove favorite using favorite panel', async () => {
     fire('store_poi', new Poi(1, 'some poi i will remove', '', {lat : 43, lng : 2}, '', '', []))
   })
   await toggleFavoritePanel(page)
-  let items = await page.waitForSelector('.favorite_panel__item')
+  let items = await page.waitForSelector('.favorite_panel__items')
 
   expect(items).not.toBeNull()
 
@@ -80,8 +80,8 @@ test('center map after a favorite poi click', async () => {
   },favoriteMockCoordinates)
 
   await toggleFavoritePanel(page)
-  await page.waitForSelector('.favorite_panel__swipe_element')
-  await page.click('.favorite_panel__swipe_element')
+  await page.waitForSelector('.favorite_panel__item__more_container')
+  await page.click('.favorite_panel__item__more_container')
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })

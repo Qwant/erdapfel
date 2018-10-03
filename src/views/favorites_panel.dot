@@ -16,7 +16,7 @@
         {{= _('MY FAVORITES', 'favorite panel') }}
       </h4>
       {{= this.filterPanel.render() }}
-        <div class="favorite_panel__item">
+        <div class="favorite_panel__items">
           {{~ this.favoritePois:poi:i }}
             <div class="favorite_panel__item__more_container" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
 
@@ -53,5 +53,4 @@
       </div>
     {{?}}
   </div>
-  <div class="loading_panel"></div>
 </div>

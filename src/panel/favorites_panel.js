@@ -111,7 +111,6 @@ Favorite.prototype.getAll = async function () {
 
 Favorite.prototype.open = async function() {
   this.displayed = true
-  PanelManager.notify()
   await this.getAll()
   await this.panel.update()
   await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
@@ -125,7 +124,6 @@ Favorite.prototype.close = function() {
   this.displayed = false
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   fire('close_favorite_panel')
-  PanelManager.notify()
 }
 
 Favorite.prototype.go = async function(storePoi) {

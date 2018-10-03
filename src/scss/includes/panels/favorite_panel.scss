@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.favorite_panel__item {
+.favorite_panel__items {
   font-size: 18px;
   width: 385px;
   overflow: hidden;
@@ -273,7 +273,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     width: 100%;
   }
 
-  .favorite_panel__item {
+  .favorite_panel__items {
     width: calc(100% - 40px);
     margin:0 20px;
   }

@@ -13,28 +13,6 @@ BODY {
   max-height: calc(100vh - 75px);
 }
 
-@keyframes appear {
-  0% {background-color: $background;}
-  100% {background-color: $background; }
-}
-
-@keyframes disappear {
-  0% {background-color: $background;}
-  100% {background-color: transparent;}
-}
-
-.loading_panel {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.loading_panel--hidden {
-  background: none;
-}
-
 .map_container {
   position: absolute;
   top: 0;
