@@ -58,6 +58,7 @@ var autoComplete = (function(){
       that.items = []
       that.cache = {};
       that.last_val = '';
+      that.sourcePending = null
 
       that.updateSC = function(resize, next){
         var rect = that.getBoundingClientRect();
@@ -199,9 +200,20 @@ var autoComplete = (function(){
                     if (part in that.cache && !that.cache[part].length) { suggest([]); return; }
                   }
                 }
-
               }
-              that.timer = setTimeout(function(){ o.source(val, suggest) }, o.delay);
+              that.timer = setTimeout(function(){
+                if(that.sourcePending) {
+                  that.sourcePending.abort()
+                  that.sourcePending = null
+                }
+                that.sourcePending = o.source(val)
+                that.sourcePending.then((source) => {
+                  suggest(source, val)
+                  that.sourcePending = null
+                }).catch((e) => {
+                  console.log(e)
+                })
+              }, o.delay);
             }
           } else {
             that.last_val = val;
