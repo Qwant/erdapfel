@@ -20,4 +20,10 @@ ExtendedString.slug = function (str) {
     return str.replace(/[^0-9a-zA-Z\u00C0-\u017F\s-_]/g,'').replace(/\s+/g, '_')
 }
 
+ExtendedString.htmlEncode = function (str) {
+  return str.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+    return '&#'+i.charCodeAt(0)+';'
+  })
+}
+
 export default ExtendedString

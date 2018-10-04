@@ -6,6 +6,7 @@ import nconf from '@qwant/nconf-getter'
 import Store from '../adapters/store'
 import PanelManager from '../proxies/panel_manager'
 import {layout} from '../../config/constants.yml'
+import ExtendedString from "../libs/string";
 
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
@@ -14,6 +15,7 @@ const store = new Store()
 function SearchInput(tagSelector) {
   this.searchInputDomHandler = document.querySelector(tagSelector)
   this.poi = null
+  this.suggestPromise = null
   new Autocomplete({
     selector : tagSelector,
     minChars : 1,
@@ -26,30 +28,47 @@ function SearchInput(tagSelector) {
         this post is about correlation between gps coordinates decimal count & real precision unit
         110m = 3 decimals
        */
-      const HUNDRED_METERS_PRECISION = 1000
-      let bbox = toAccuracy(window.map.bbox(), HUNDRED_METERS_PRECISION)
-      /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-      const suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
-      const suggestHistoryPromise = getHistory(term)
-      Promise.all([suggestPromise, suggestHistoryPromise]).then((responses) => {
-        let pois = buildPoi(responses[0])
-        let historySuggestData = responses[1]
-        historySuggestData = historySuggestData.map((historySuggest) => {
-          let poi = Poi.storeLoad(historySuggest)
-          poi.fromHistory = true
-          return poi
+      let isAbort = false
+      let promise = new Promise((resolve, reject) => {
+        const HUNDRED_METERS_PRECISION = 1000
+        let bbox = toAccuracy(window.map.bbox(), HUNDRED_METERS_PRECISION)
+        /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
+        this.suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
+        const suggestHistoryPromise = getHistory(term)
+        Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
+
+          this.suggestPromise = null
+          let pois = buildPoi(responses[0])
+          let historySuggestData = responses[1]
+          historySuggestData = historySuggestData.map((historySuggest) => {
+            let poi = Poi.storeLoad(historySuggest)
+            poi.fromHistory = true
+            return poi
+          })
+          pois = pois.concat(historySuggestData)
+          resolve(pois)
+        }).catch((e) => {
+          if(isAbort) {
+            resolve([])
+          } else {
+            reject(e)
+          }
         })
-        pois = pois.concat(historySuggestData)
-        suggest(pois, term)
       })
+      promise.abort = () => {
+        this.suggestPromise.abort()
+        isAbort = true
+      }
+      return promise
+
     },
     renderItem : ({id, name, fromHistory, className, subClassName, addressLabel}) => {
       let icon = IconManager.get({className : className, subClassName : subClassName})
       return `
 <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
   <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${icon ? `icon icon-${icon.iconClass}` : 'icon-location'}"></div>
-  ${name}
-  ${addressLabel ? `<span class="autocomplete_address">${addressLabel}</span>` : ''}
+  ${ExtendedString.htmlEncode(name)}
+  ${addressLabel ? `<span class="autocomplete_address">${ExtendedString.htmlEncode(addressLabel)}</span>` : ''}
 </div>
 `
     },
