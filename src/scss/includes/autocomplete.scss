@@ -133,6 +133,7 @@ input[type="search"]::-webkit-search-cancel-button {
   .search_form__clear {
     font-size: 24px;
     color: $secondary_text;
+    width: 40px;
   }
 
   .search_form {
@@ -149,7 +150,7 @@ input[type="search"]::-webkit-search-cancel-button {
     left: 8px;
     top:10px;
     position: absolute;
-    padding: 0 50px 0 50px;
+    padding: 0 80px 0 50px;
     border-radius: 24px;
   }
 

@@ -5,16 +5,12 @@ import RegisterMasqPanel from "./register_masq";
 import PoiPanel from "./poi_panel";
 import ErrorHandlerPanel from "./error_panel";
 import ServicePanel from './service_panel';
-import PanelManager from "../proxies/panel_manager";
-import UrlState from "../proxies/url_state";
 import Share from "./share"
 import OpenDataPanel from "./open_data";
+import Autocomplete from "../adapters/autocomplete";
 
 function AppPanel(parent) {
-
-  PanelManager.init()
-  UrlState.init()
-
+  this.autocomplete = new Autocomplete('#search')
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
   this.openDataPanel = new OpenDataPanel()
@@ -24,7 +20,6 @@ function AppPanel(parent) {
   this.masqPanel = new RegisterMasqPanel()
   this.panel = new Panel(this, PanelsView, parent)
   this.panel.render()
-  UrlState.load()
 }
 
 export default AppPanel
