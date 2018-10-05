@@ -211,7 +211,7 @@ var autoComplete = (function(){
                   suggest(source, val)
                   that.sourcePending = null
                 }).catch((e) => {
-                  console.log(e)
+                  console.log(e) /* should be handled by a telemetry logger */
                 })
               }, o.delay);
             }
