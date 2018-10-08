@@ -18,9 +18,20 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__close {
   position: absolute;
-  right: 14px;
-  top: 14px;
+  right: 0;
+  top: 0;
   cursor: pointer;
+  height: 42px;
+  width: 40px;
+  text-align: center;
+  line-height: 42px;
+  transition: background-color .1s;
+  background: $background;
+  border-radius: 50%;
+}
+
+.poi_panel__close:hover {
+  background: $background_hover;
 }
 
 .poi_panel__info__section {
@@ -389,16 +400,6 @@ $BLOCK_INDENT: 60px;
     width: 100vw;
     bottom: 0;
     position: absolute;
-  }
-
-  .poi_panel__close {
-    top: 0;
-    right: 0;
-    height: 42px;
-    width: 40px;
-    text-align: center;
-    line-height: 42px;
-    cursor: pointer;
   }
 
   .poi_panel__info__hours__status {

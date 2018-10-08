@@ -26,20 +26,20 @@
 
 .favorites_panel__close {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 0;
+  top: 0;
   cursor: pointer;
+  height: 42px;
+  width: 40px;
+  text-align: center;
+  line-height: 42px;
+  transition: background-color .1s;
+  background: $background;
+  border-radius: 50%;
 }
 
-.favorite_panel__close {
-  position: absolute;
-  right: 0;
-  top: 95px;
-  padding: 5px 10px;
-  background: $background;
-  font-size: 14px;
-  text-align: right;
-  cursor: pointer;
+.favorites_panel__close:hover {
+  background: $background_hover;
 }
 
 .favorite_panel__items {
@@ -247,13 +247,11 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
   }
 
   .favorites_panel__close {
-    top: 0;
-    right: 0;
-    height: 42px;
-    width: 40px;
-    text-align: center;
-    line-height: 42px;
-    cursor: pointer;
+    background: $surface;
+  }
+
+  .favorites_panel__close:hover {
+    background: $background;
   }
 
   .favorite_panel__item__more_container:not(:last-child):after {
