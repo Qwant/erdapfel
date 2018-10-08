@@ -246,6 +246,16 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     @include card_shadow();
   }
 
+  .favorites_panel__close {
+    top: 0;
+    right: 0;
+    height: 42px;
+    width: 40px;
+    text-align: center;
+    line-height: 42px;
+    cursor: pointer;
+  }
+
   .favorite_panel__item__more_container:not(:last-child):after {
     display: none;
   }
