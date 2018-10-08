@@ -12,8 +12,8 @@ const geocoderUrl = serviceConfigs.geocoder.url
 const store = new Store()
 
 function SearchInput(tagSelector) {
+  this.searchInputDomHandler = document.querySelector(tagSelector)
   this.poi = null
-
   new Autocomplete({
     selector : tagSelector,
     minChars : 1,
@@ -57,12 +57,13 @@ function SearchInput(tagSelector) {
       e.preventDefault()
       const itemId = item.getAttribute('data-id')
       let poi = items.find(poi => poi.id === itemId)
-      select(poi)
+      this.select(poi)
     }
   })
 }
 
-async function select(selectedPoi) {
+SearchInput.prototype.select = async function(selectedPoi) {
+  this.searchInputDomHandler.blur()
   if(selectedPoi) {
     fire('fit_map', selectedPoi, {sidePanelOffset : selectedPoi.type === 'poi'})
     fire('map_mark_poi', selectedPoi)

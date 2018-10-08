@@ -81,7 +81,7 @@ test('update url after a favorite poi click', async () => {
   })
   await page.click('.service_panel__item__fav')
   await wait(300)
-  await page.click('.favorite_panel__swipe_element')
+  await page.click('.favorite_panel__item__more_container')
   await wait(400)
   let location = await page.evaluate(() => {
     return document.location.href
@@ -124,7 +124,7 @@ test('center the map to the poi on a poi click', async () => {
   await page.evaluate(() => {
     MAP_MOCK.flyTo({center : {lat : 0, lng : 0}, zoom : 10})
   })
-
+  await wait(300)
   await page.click('.poi_panel__description_container')
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
@@ -141,14 +141,14 @@ test('display details about the poi on a poi click', async () => {
   let infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText
   })
-  expect(infoTitle).toEqual('Accessible en fauteuil roulant')
+  expect(infoTitle.trim()).toEqual('Accessible en fauteuil roulant')
   await page.click('.poi_panel__block__collapse')
 
   await wait(300)
   infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText
   })
-  expect(infoTitle).toEqual('Services & informations')
+  expect(infoTitle.trim()).toEqual('Services & informations')
 
   let {hours, phone, website} = await page.evaluate(() => {
     return {
@@ -157,9 +157,9 @@ test('display details about the poi on a poi click', async () => {
       website: document.querySelector('.poi_panel__info__link').innerText
     }
   })
-  expect(hours).toMatch("Fermé ")
-  expect(phone).toMatch("+33140494814")
-  expect(website).toMatch("www.musee-orsay.fr")
+  expect(hours.trim()).toMatch('Fermé')
+  expect(phone).toMatch('+33140494814')
+  expect(website).toMatch('www.musee-orsay.fr')
 
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()
@@ -191,7 +191,8 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   await selectPoiLevel(page, 1)
   let poiPanel = await page.waitForSelector('.poi_panel__title')
   expect(poiPanel).not.toBeFalsy()
-  await page.click('.poi_panel__actions__icon__store')
+  await wait(300)
+  await page.click('.poi_panel__actions__store_container')
 
   // we check that the first favorite item is our poi
   await toggleFavoritePanel(page)

@@ -7,7 +7,7 @@ import {wait} from "./tools";
  */
 export async function getFavorites(page) {
   return await page.evaluate(() => {
-    return Array.from(document.querySelectorAll('.favorite_panel__swipe_element')).map((e) => {
+    return Array.from(document.querySelectorAll('.favorite_panel__item__more_container')).map((e) => {
       return {
         title: e.querySelector('.favorite_panel__item__title').innerText,
         desc: e.querySelector('.favorite_panel__item__desc').innerText,

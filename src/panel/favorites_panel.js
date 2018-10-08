@@ -4,6 +4,7 @@ import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
+import Slide from '../libs/slide'
 const poiSubClass = require('../mapbox/poi_subclass')
 
 function Favorite(sharePanel) {
@@ -31,6 +32,7 @@ function Favorite(sharePanel) {
   this.panel = new Panel(this, FavoritePanelView)
   this.isFavoritePanel = true
   PanelManager.register(this)
+  this.slide = new Slide(this, '#favorite-panel-handle', '.favorites_panel', {bounds : {top : 0, bottom : 30}})
 }
 
 Favorite.prototype.toggleMore = function (position) {
@@ -109,11 +111,11 @@ Favorite.prototype.getAll = async function () {
 
 Favorite.prototype.open = async function() {
   this.displayed = true
-  PanelManager.notify()
   await this.getAll()
   await this.panel.update()
   await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
+  this.slide.initListeners()
 }
 
 Favorite.prototype.close = function() {
@@ -122,7 +124,6 @@ Favorite.prototype.close = function() {
   this.displayed = false
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
   fire('close_favorite_panel')
-  PanelManager.notify()
 }
 
 Favorite.prototype.go = async function(storePoi) {

@@ -57,7 +57,6 @@ PoiPanel.prototype.open = async function() {
   this.active = true
   this.panel.update()
   UrlState.pushUrl()
-  PanelManager.notify()
 }
 
 PoiPanel.prototype.close = async function() {
@@ -65,7 +64,6 @@ PoiPanel.prototype.close = async function() {
   this.active = false
   this.panel.update()
   UrlState.pushUrl()
-  PanelManager.notify()
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
@@ -80,24 +78,17 @@ PoiPanel.prototype.restorePoi = async function (id) {
   this.active = true
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   await this.panel.update()
-  PanelManager.notify()
-  PanelManager.endLoad()
 }
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.poi = poi
   this.poi.stored = await isPoiFavorite(this.poi)
   this.PoiBlocContainer.set(poi)
-
-  if(this.active === false) {
-    await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
-  }
-
   this.fromFavorite = options.isFromFavorite
   this.active = true
   UrlState.pushUrl()
   await this.panel.update()
-  PanelManager.notify()
+  endLoad()
 }
 
 PoiPanel.prototype.center = function() {
@@ -118,12 +109,13 @@ PoiPanel.prototype.store = function() {
   return ''
 }
 
-PoiPanel.prototype.restore = function(urlShard) {
+PoiPanel.prototype.restore = async function(urlShard) {
   if(urlShard) {
     let id_slug_match = urlShard.match(/^([^@]+)@?(.*)/)
     if (id_slug_match) {
       let id = id_slug_match[1]
-      this.restorePoi(id)
+      await this.restorePoi(id)
+      endLoad()
     }
   }
 }
@@ -144,6 +136,19 @@ async function isPoiFavorite(poi) {
     return false
   }
   return false
+}
+
+/* loadable */
+
+
+function endLoad() {
+  let loadingPanel = document.querySelector('#poi-loading-panel')
+  loadingPanel.style.animation = 'disappear 1s forwards'
+
+  setTimeout(() => {
+    let loadingPanel = document.querySelector('#poi-loading-panel')
+     loadingPanel.style.display = 'none'
+  }, 200)
 }
 
 export default PoiPanel

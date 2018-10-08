@@ -47,4 +47,5 @@
   {{= this.PoiBlocContainer.render(this.poi) }}
   {{?}}
   </div>
+  <div id="poi-loading-panel"></div>
 </div>

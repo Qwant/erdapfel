@@ -3,14 +3,15 @@
     <p class="poi_panel__info__section__description">
       <div class="icon-icon_clock poi_panel__block__symbol"></div>
       <div class="poi_panel__block__content">
-        <div {{= click(this.extend, this) }}>
-          <span class="poi_panel__info__hours__status">
+        <div class="poi_panel__info__hours__status" {{= click(this.extend, this) }}>
+          <span class="poi_panel__info__hours__status__text">
             {{= _(this.opening.status.msg) }} {{? this.opening.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.opening.nextTransition})  }}{{?}}
             {{? this.opening.isTwentyForSeven }}
               24 / 7
             {{?}}
             <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
           </span>
+          <i class="icon-icon_chevron-down poi_panel__info__hours__status__toggle"></i>
         </div>
         <div class="poi_panel__info__hours">
           {{? !this.opening.isTwentyForSeven }}
