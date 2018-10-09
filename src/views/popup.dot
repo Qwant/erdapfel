@@ -1,4 +1,4 @@
-<div class="poi_popup" style="border-color:{{= this.color }}">
+<div class="poi_popup">
   <h1 class="poi_popup__title">{{= this.poi.name }}</h1>
   <h3 class="poi_popup__category">{{= this.category }}</h3>
   <div>

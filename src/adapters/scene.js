@@ -7,7 +7,7 @@ import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
-
+import loadImage from '../libs/image_loader'
 
 function Scene() {
   UrlState.registerHash(this, 'map')
@@ -127,11 +127,12 @@ Scene.prototype.fitMap = function(poi, options = {}) {
   }
 }
 
-Scene.prototype.addMarker = function(poi) {
+Scene.prototype.addMarker = async function(poi) {
   if(this.currentMarker !== null) {
     this.currentMarker.remove()
   }
-  let marker = new Marker()
+  let image = await loadImage('/statics/images/pin_map.svg')
+  let marker = new Marker({element : image, anchor : 'bottom'})
     .setLngLat(poi.getLngLat())
     .addTo(this.mb)
   this.currentMarker = marker
