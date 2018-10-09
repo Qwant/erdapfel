@@ -7,7 +7,7 @@ const SEARCH_INPUT_SELECTOR = '#search'
 export default class AutocompleteCucumberise {
   constructor(page) {
     this.page = page
-    this.isRequestSet = false
+    this.preparedResponses = []
   }
 
   async typeAndWait(word) {
@@ -26,7 +26,6 @@ export default class AutocompleteCucumberise {
   async clickResult(position) {
     await this.page.click(`.autocomplete_suggestion:nth-child(${position})`)
   }
-
 
   async getSelectedElementPos() {
     let suggestList = await this.getSuggestList()
@@ -64,22 +63,31 @@ export default class AutocompleteCucumberise {
     }, SEARCH_INPUT_SELECTOR)
   }
 
-  async prepareResponse(response, query, delay = false) {
-    this.page.on('request', async interceptedRequest => {
-      if(interceptedRequest.url().match(query)) {
-        interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-        if(delay) {
-          await wait(delay)
-        }
-        interceptedRequest.respond({body : JSON.stringify(response), headers  : interceptedRequest.headers})
-      } else {
-        interceptedRequest.continue()
-      }
+  addPreparedResponse(response, query) {
+    let alreadySetResponse = this.preparedResponses.find((preparedResponse) => {
+      return preparedResponse.query === query
     })
-
-    if(this.isRequestSet === false) {
-      await this.page.setRequestInterception(true)
-      this.isRequestSet = true
+    if(!alreadySetResponse) {
+      this.preparedResponses.push({response, query})
     }
+  }
+
+  async prepareResponse() {
+    await this.page.setRequestInterception(true)
+    this.page.on('request', async (interceptedRequest) => {
+      let isResponseHandled = false
+      this.preparedResponses.forEach((preparedResponse) => {
+        if(isResponseHandled === false) {
+          if(interceptedRequest.url().match(preparedResponse.query)) {
+            interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
+            interceptedRequest.respond({body : JSON.stringify(preparedResponse.response), headers  : interceptedRequest.headers})
+            isResponseHandled = true
+          } else {
+            isResponseHandled = true
+            interceptedRequest.continue()
+          }
+        }
+      })
+    })
   }
 }

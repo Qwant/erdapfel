@@ -14,12 +14,13 @@ beforeAll(async () => {
   page = browserPage.page
   browser = browserPage.browser
   autocompleteHelper = new AutocompleteCucumberise(page)
+  await autocompleteHelper.prepareResponse()
 })
 
 test('search and clear', async () => {
   expect.assertions(4)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   await page.goto(APP_URL)
-  autocompleteHelper.prepareResponse(mockAutocomplete, /autocomplete/)
   await autocompleteHelper.typeAndWait('Hello')
   let cleanHandle = await autocompleteHelper.getClearFieldButton()
   expect(cleanHandle).not.toBeNull()
@@ -39,7 +40,7 @@ test('search and clear', async () => {
 
 test('keyboard navigation', async () => {
   const TypedSearch = 'Hello'
-  autocompleteHelper.prepareResponse(mockAutocomplete, /autocomplete/)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   await page.goto(APP_URL)
   await autocompleteHelper.typeAndWait(TypedSearch)
   await wait(100)
@@ -81,13 +82,14 @@ test('keyboard navigation', async () => {
 
   /* type another char */
   await autocompleteHelper.typeAndWait('a')
+  await wait(300)
   selectElemPosition = await autocompleteHelper.getSelectedElementPos()
   expect(selectElemPosition).toEqual(-1)
 })
 
 test('mouse navigation', async() => {
   const TypedSearch = 'Hello'
-  autocompleteHelper.prepareResponse(mockAutocomplete, /autocomplete/)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   await page.goto(APP_URL)
   await autocompleteHelper.typeAndWait(TypedSearch)
   await wait(100)
@@ -108,6 +110,7 @@ test('mouse navigation', async() => {
 test('move to on click', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   let map_position_before = await page.evaluate(() => {
     return window.MAP_MOCK.center
   })
@@ -124,6 +127,7 @@ test('move to on click', async () => {
 
 test('bbox & center', async () => {
   expect.assertions(3)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   await page.goto(APP_URL)
   await page.keyboard.type('test')
   await wait(100)
