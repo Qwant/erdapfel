@@ -57,6 +57,20 @@ function App(config) {
       res.render('index', {config : config})
   })
 
+  if(config.system.acceptPostedEvents){
+    app.post('/events',
+      express.json({strict: true, limit: '10KB'}),
+      (req, res) => {
+        if(Object.keys(req.body).length === 0){
+          res.sendStatus(400)
+        }
+        else{
+          res.sendStatus(204)
+          req.logger.info({body: req.body}, 'Received client event')
+        }
+    })
+  }
+
   app.use((err, req, res, next) => {
     finalhandler(req, res, {
       onerror: req.logger.error({err: err})

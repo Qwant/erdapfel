@@ -7,6 +7,12 @@ const PREFIX = 'TILEVIEW_'
 nconf
   .env({
     transform : (configObject) => {
+      if(configObject.value === 'false') {
+        configObject.value = false
+      }
+      if(configObject.value === 'true') {
+        configObject.value = true
+      }
       if(configObject.key.indexOf(PREFIX) === 0) {
         configObject.key = configObject.key.replace(PREFIX, '')
         return configObject
