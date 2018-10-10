@@ -65,7 +65,7 @@ function SearchInput(tagSelector) {
     renderItem : ({id, name, fromHistory, className, subClassName, addressLabel}) => {
       let icon = IconManager.get({className : className, subClassName : subClassName})
       return `
-<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${name}">
+<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
   <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${icon ? `icon icon-${icon.iconClass}` : 'icon-location'}"></div>
   ${ExtendedString.htmlEncode(name)}
   ${addressLabel ? `<span class="autocomplete_address">${ExtendedString.htmlEncode(addressLabel)}</span>` : ''}
