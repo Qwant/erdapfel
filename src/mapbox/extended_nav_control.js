@@ -2,8 +2,8 @@ class ExtendedControl {
 
   constructor() {
     this._container = document.createElement('div')
-    this._zoomInButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-in', 'Zoom In', () => this._map.zoomIn())
-    this._zoomOutButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-out', 'Zoom Out', () => this._map.zoomOut())
+    this._zoomInButton = this._createButton('icon-plus mapboxgl-ctrl-zoom-in', 'Zoom In', () => this._map.zoomIn())
+    this._zoomOutButton = this._createButton('icon-minus mapboxgl-ctrl-zoom-out', 'Zoom Out', () => this._map.zoomOut())
     this._compass = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-compass', 'Reset North', () => {
       this._resetNorthAndTilt()
     })
@@ -11,7 +11,7 @@ class ExtendedControl {
     this._compassArrow.setAttribute('class', 'mapboxgl-ctrl-compass-arrow')
     this._compass.appendChild(this._compassArrow)
 
-    this._center = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-geolocate', 'Geolocate', () => {
+    this._center = this._createButton('icon-Geoloc mapboxgl-ctrl-geolocate', 'Geolocate', () => {
       this._geolocate()
     })
 
@@ -60,8 +60,7 @@ class ExtendedControl {
   }
 
   _pitchAndRotateCompassArrow() {
-    const pitchAndRotate = `scale(1, ${(1 - this._map.getPitch() / 110)}) rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`
-    this._compassArrow.style.transform = pitchAndRotate
+    this._compassArrow.style.transform = `scale(1, ${(1 - this._map.getPitch() / 110)}) rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`
   }
 }
 

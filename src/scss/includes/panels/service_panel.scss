@@ -4,7 +4,7 @@
   height: 100px;
   margin-top: 14px;
   background: url('../images/panel_top.svg') white repeat-x;
-  background-size: 100% 6px;
+  background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
 }
