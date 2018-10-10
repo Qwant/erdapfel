@@ -16,6 +16,14 @@
   font-size: 20px;
 }
 
+.map_control__compass:after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  display: block;
+  background: url("../images/compass.svg") no-repeat center;
+}
+
 .mapboxgl-ctrl-group {
   @include card_shadow();
   @include card_radius();

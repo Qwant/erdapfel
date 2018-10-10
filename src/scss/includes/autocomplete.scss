@@ -131,9 +131,9 @@ input[type="search"]::-webkit-search-cancel-button {
 @media (max-width: 640px) {
 
   .search_form__clear {
-    font-size: 24px;
-    color: $secondary_text;
-    width: 40px;
+    font-size: 14px;
+    color: #5c6f84;
+    width: 28px;
   }
 
   .search_form {
