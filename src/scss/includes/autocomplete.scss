@@ -154,6 +154,24 @@ input[type="search"]::-webkit-search-cancel-button {
     border-radius: 24px;
   }
 
+  .top_bar--search_focus {
+    .search_form__input {
+      border-radius: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .search_form__logo {
+      top: 9px;
+      left: 8px;
+    }
+
+    .search_form__action {
+
+    }
+  }
+
   .search_form__logo {
     width: 30px;
     height: 30px;

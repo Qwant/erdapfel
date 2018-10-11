@@ -6,7 +6,10 @@
 
 @media (max-width: 640px) {
   .top_bar {
-    position: inherit;
+    top: 0;
+    left: 0;
     width: 100%;
-  }
+    background: url('../images/top_bg.svg') no-repeat;
+    background-position-y: -30px;
+    background-size: 100%;  }
 }

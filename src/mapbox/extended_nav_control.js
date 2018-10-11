@@ -8,7 +8,7 @@ class ExtendedControl {
       this._resetNorthAndTilt()
     })
 
-    this._center = this._createButton('icon-Geoloc mapboxgl-ctrl-geolocate', 'Geolocate', () => {
+    this._center = this._createButton('icon-pin_geoloc mapboxgl-ctrl-geolocate', 'Geolocate', () => {
       this._geolocate()
     })
   }

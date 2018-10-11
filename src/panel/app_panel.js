@@ -8,8 +8,11 @@ import ServicePanel from './service_panel';
 import Share from "./share"
 import OpenDataPanel from "./open_data";
 import Autocomplete from "../adapters/autocomplete";
+import TopBar from "./top_bar";
+
 
 function AppPanel(parent) {
+  new TopBar()
   this.autocomplete = new Autocomplete('#search')
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
