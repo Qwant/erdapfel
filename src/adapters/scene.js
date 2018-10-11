@@ -1,5 +1,6 @@
 import {Map, Marker, LngLat} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
+import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi"
@@ -47,8 +48,10 @@ Scene.prototype.initMapBox = function () {
 
   this.mb.on('load', () => {
     const extendedControl = new ExtendedControl()
+    const mobileCompassControl = new MobileCompassControl()
 
     this.mb.addControl(extendedControl, 'bottom-right')
+    this.mb.addControl(mobileCompassControl, 'top-right')
 
     interactiveLayers.forEach((interactiveLayer) => {
       this.mb.on('mouseenter', interactiveLayer, () => {

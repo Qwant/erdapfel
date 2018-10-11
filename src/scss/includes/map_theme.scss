@@ -1,20 +1,6 @@
-
-.mapboxgl-ctrl .mapboxgl-ctrl-icon--active {
-  background-color: #97c0a1;
-  color: #fff;
-}
-
-.mapboxgl-ctrl .mapboxgl-ctrl-icon--active:hover {
-  background-color: #54c07c;
-  color: #fff;
-}
-
 .map_control_group {
-  position: absolute;
   margin: 0 10px 10px 0;
-  right: 0;
-  bottom: 0;
-  clear: both;
+  float: right;
   pointer-events: auto;
   overflow: hidden;
   background: #fff;
@@ -36,7 +22,19 @@
   font-size: 20px;
 }
 
-.map_control__compass:after {
+.map_control_group__button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.map_control_group__button + .map_control_group__button {
+  border-top: 1px solid #ddd;
+}
+
+.map_control__compass__icon {
+  display: block;
+}
+
+.map_control__compass__icon:after {
   content: '';
   width: 30px;
   height: 30px;
@@ -44,9 +42,55 @@
   background: url("../images/compass.svg") no-repeat center;
 }
 
+.map_control__compass__icon--mobile:after {
+  background: url("../images/compass_red.svg") no-repeat center;
+}
+
+.map_control_group__button__compass--mobile {
+  display: none;
+}
+
+.map_control_group__button__compass {
+  display: block;
+}
+
+.mapboxgl-ctrl-top-right {
+  top: 176px;
+}
 
 @media(max-width: 640px) {
-  .mapboxgl-ctrl-zoom-in {
+  .map_control_group {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    @include long_shadow();
+  }
+
+  .map_control_group__button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .map_control_group__button__zoom{
     display: none;
   }
+
+  .map_control_group__button__compass {
+    display: none;
+  }
+
+  .map_control_group__button__compass--mobile {
+    display: block;
+  }
+
+  .map_control__compass__icon--mobile:after {
+    width: 48px;
+    height: 48px;
+    background-size: 12px;
+  }
+
 }

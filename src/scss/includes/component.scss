@@ -32,3 +32,7 @@ $error_text : #721c24;
 @mixin card_shadow() {
   box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
 }
+
+@mixin long_shadow() {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 12px 0;
+}

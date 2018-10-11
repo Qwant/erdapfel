@@ -1,19 +1,13 @@
-export default class ExtendedControl {
+export default class MobileCompassControl {
 
   constructor() {
     this._container = document.createElement('div')
-    this._zoomInButton = this._createButton('icon-plus map_control_group__button map_control_group__button__zoom', 'Zoom In', () => this._map.zoomIn())
-    this._zoomOutButton = this._createButton('icon-minus map_control_group__button map_control_group__button__zoom', 'Zoom Out', () => this._map.zoomOut())
-    this._compass = this._createButton('map_control_group__button map_control_group__button__compass', 'Reset North', () => {
+    this._compass = this._createButton('map_control_group__button map_control_group__button__compass--mobile', 'Reset North', () => {
       this._resetNorthAndTilt()
     })
 
-    this._compassIndicator = this._createIcon('map_control__compass__icon')
+    this._compassIndicator = this._createIcon('map_control__compass__icon map_control__compass__icon--mobile')
     this._compass.appendChild(this._compassIndicator)
-
-    this._center = this._createButton('icon-pin_geoloc map_control_group__button', 'Geolocate', () => {
-      this._geolocate()
-    })
   }
 
   onAdd(map) {
@@ -21,9 +15,6 @@ export default class ExtendedControl {
     this._container.className = 'map_control_group'
     this._container.textContent = ''
     this._container.appendChild(this._compass)
-    this._container.appendChild(this._center)
-    this._container.appendChild(this._zoomInButton)
-    this._container.appendChild(this._zoomOutButton)
     const _pitchAndRotateCompassArrow = this._pitchAndRotateCompassArrow.bind(this)
 
     _pitchAndRotateCompassArrow()
