@@ -1,13 +1,17 @@
 .search_form {
   position: relative;
   display: flex;
+  background: #fff;
+  @include long_shadow();
+  border-radius: 34px;
 }
 
 .search_form__input {
-  background: #fff;
-  width: 400px;
+  width: 330px;
   height: 68px;
-  padding: 8px 85px 10px 70px;
+  padding: 8px 50px 10px 40px;
+  margin-left: 30px;
+  margin-right: 40px;
   border: none;
   box-shadow: none;
   font-size: 18px;
@@ -44,12 +48,13 @@ input[type="search"]::-webkit-search-cancel-button {
   background-size: 20px 20px;
   font-size: 14px;
   color: $primary_text;
+  cursor: pointer;
 }
 
 .search_form__clear {
   display: block;
   height: 60px;
-  width: 60px;
+  width: 50px;
   right: 50px;
   top: 4px;
   color: $secondary_text;
@@ -92,8 +97,8 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestion {
-  transition: background-color .2s;
   position: relative;
+  max-height: 100vh;
   padding: 7px 0 7px 20px;
   line-height: 23px;
   white-space: nowrap;
@@ -102,7 +107,7 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: 1.02em;
   color: $secondary_text;
   background-color: $background;
-  max-height: 100vh;
+  transition: background-color .2s;
 }
 
 .autocomplete-icon {
@@ -131,51 +136,45 @@ input[type="search"]::-webkit-search-cancel-button {
 @media (max-width: 640px) {
 
   .search_form__clear {
+    height: 50px;
+    width: 28px;
+    top:0;
     font-size: 14px;
     color: #5c6f84;
-    width: 28px;
   }
 
   .search_form {
-    width: 100%;
+    height: 48px;
+    width: calc(100vw - 16px);
+    left: 8px;
+    top:16px;
     margin: 0;
-    top:0;
-    left: 0;
-    height: 70px;
   }
 
   .search_form__input {
-    width: calc(100vw - 16px);
-    height: 48px;
-    left: 8px;
-    top:10px;
     position: absolute;
-    padding: 0 80px 0 50px;
+    width: 100%;
+    height: 48px;
+    padding: 0 80px 0 12px;
     border-radius: 24px;
   }
 
   .top_bar--search_focus {
-    .search_form__input {
-      border-radius: 0;
+    .search_form {
+      width: 100%;
       top: 0;
       left: 0;
-      width: 100%;
-      padding-right: 60px;
+      border-radius: 0;
     }
 
-    .search_form__logo {
-      top: 9px;
-      left: 8px;
-    }
-
-    .search_form__action {
-      right: 12px;
-      top: 10px;
+    .search_form__input {
+      padding: 0 44px;
+      margin: 0;
     }
 
     .search_form__clear {
-      right: 40px;
       height: 50px;
+      right: 40px;
       top: 0;
     }
   }
@@ -183,14 +182,14 @@ input[type="search"]::-webkit-search-cancel-button {
   .search_form__logo {
     width: 30px;
     height: 30px;
+    top: 9px;
+    left: 8px;
     background-size: 30px 30px;
-    top: 20px;
-    left: 18px;
   }
 
   .search_form__action {
-    right: 18px;
-    top: 20px;
     height: 30px;
+    right: 12px;
+    top: 10px;
   }
 }
