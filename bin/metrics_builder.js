@@ -9,7 +9,7 @@ module.exports = (app, config, registry) => {
   const counters = {}
   eventTypes.forEach(eventType => {
     counters[eventType] = new promClient.Counter({
-      name: `erdapfel_${eventType}`,
+      name: `erdapfel_${eventType}_count`,
       help: eventType,
       registers: [registry]
     })

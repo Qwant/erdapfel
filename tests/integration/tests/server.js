@@ -35,7 +35,7 @@ test('responds to events and update metrics', done => {
       server
         .get('/metrics')
         .expect(200)
-        .expect(/erdapfel_favorite_saved 1/, done)
+        .expect(/erdapfel_favorite_saved_count 1/, done)
     })
 });
 
