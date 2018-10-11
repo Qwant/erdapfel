@@ -160,6 +160,7 @@ input[type="search"]::-webkit-search-cancel-button {
       top: 0;
       left: 0;
       width: 100%;
+      padding-right: 60px;
     }
 
     .search_form__logo {
@@ -168,7 +169,14 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .search_form__action {
+      right: 12px;
+      top: 10px;
+    }
 
+    .search_form__clear {
+      right: 40px;
+      height: 50px;
+      top: 0;
     }
   }
 

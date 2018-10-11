@@ -9,7 +9,27 @@
   color: #fff;
 }
 
-.mapboxgl-ctrl-group > button {
+.map_control_group {
+  position: absolute;
+  margin: 0 10px 10px 0;
+  right: 0;
+  bottom: 0;
+  clear: both;
+  pointer-events: auto;
+  overflow: hidden;
+  background: #fff;
+  @include card_shadow();
+  @include card_radius();
+}
+
+.map_control_group__button {
+  display: block;
+  padding: 0;
+  outline: none;
+  border: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer;
   width: 32px;
   height: 32px;
   color: $primary_text;
@@ -24,7 +44,9 @@
   background: url("../images/compass.svg") no-repeat center;
 }
 
-.mapboxgl-ctrl-group {
-  @include card_shadow();
-  @include card_radius();
+
+@media(max-width: 640px) {
+  .mapboxgl-ctrl-zoom-in {
+    display: none;
+  }
 }
