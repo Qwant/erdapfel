@@ -57,9 +57,9 @@ export default class MobileCompassControl {
 
   _pitchAndRotateCompassArrow() {
     if(this._map.getPitch() === 0 && this._map.transform.angle === 0) {
-      this._compass.style.display = 'none'
+      this._compass.classList.add('compass-origin')
     } else {
-      this._compass.style.display = 'block'
+      this._compass.classList.remove('compass-origin')
     }
     this._compassIndicator.style.transform = `scale(1, ${(1 - this._map.getPitch() / 110)}) rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`
   }

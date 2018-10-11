@@ -23,7 +23,7 @@
 }
 
 .map_control_group__button:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgb(243, 243, 243);
 }
 
 .map_control_group__button + .map_control_group__button {
@@ -60,11 +60,9 @@
 
 @media(max-width: 640px) {
   .map_control_group {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #fff;
-    @include long_shadow();
+    background: none;
+    box-shadow: none;
+    overflow: visible;
   }
 
   .map_control_group__button {
@@ -73,6 +71,8 @@
     border-radius: 50%;
     text-align: center;
     font-size: 24px;
+    background: #fff;
+    @include long_shadow();
   }
 
   .map_control_group__button__zoom{
@@ -93,4 +93,8 @@
     background-size: 12px;
   }
 
+}
+
+.compass-origin {
+  display: none;
 }
