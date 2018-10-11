@@ -25,7 +25,7 @@ const addJsOptimizePlugins = function(plugins){
       new UglifyJsPlugin({
         uglifyOptions: {
           beautify: false,
-          ecma: 6,
+          ecma: 5,
           compress: true,
           comments: false
         }
