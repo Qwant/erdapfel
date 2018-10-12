@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="41px" viewBox="0 0 33 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52 (66869) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/Other sizes/Pin-map</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M28.1661667,4.86289206 C21.723118,-1.62096402 11.276882,-1.62096402 4.83383332,4.86289206 C-1.61127777,11.3446733 -1.61127777,21.8537073 4.83383332,28.3354885 L16.4989688,40.0728241 L28.1661667,28.3354885 C34.6112778,21.8537073 34.6112778,11.3446733 28.1661667,4.86289206" id="path-1"></path>
+    </defs>
+    <g id="Icons/Other-sizes/Pin-map" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#FF3B4A" xlink:href="#path-1"></use>
+            <circle id="Oval" fill="#FFFFFF" mask="url(#mask-2)" cx="16.5" cy="16.5" r="8.5"></circle>
+        </g>
+    </g>
+</svg>

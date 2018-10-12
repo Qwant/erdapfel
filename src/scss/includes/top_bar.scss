@@ -1,7 +1,7 @@
 .top_bar {
+  width: 100%;
   position: absolute;
-  top: 18px;
-  left: 18px;
+  background: url('../images/backgrounds/top_desktop.svg') no-repeat;
 }
 
 @media (max-width: 640px) {
@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: url('../images/top_bg.svg') no-repeat;
+    background: url('../images/backgrounds/top_mobile.svg') no-repeat;
     background-position-y: -30px;
     background-size: 100%;  }
 }

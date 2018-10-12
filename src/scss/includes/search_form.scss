@@ -1,9 +1,11 @@
 .search_form {
   position: relative;
   display: flex;
+  margin: 18px 0 0 18px;
   background: #fff;
   @include long_shadow();
   border-radius: 34px;
+  width: 400px;
 }
 
 .search_form__input {
