@@ -49,7 +49,7 @@ function SearchInput(tagSelector) {
           resolve(pois)
         }).catch((e) => {
           if(isAbort) {
-            resolve([])
+            resolve(null)
           } else {
             reject(e)
           }

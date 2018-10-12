@@ -1,5 +1,3 @@
-import {wait} from '../tools'
-
 const SUGGEST_SELECTOR = '.autocomplete_suggestion'
 const CLEAR_BUTTON_SELECTOR = '#clear_button'
 const SEARCH_INPUT_SELECTOR = '#search'
@@ -29,15 +27,11 @@ export default class AutocompleteCucumberise {
 
   async getSelectedElementPos() {
     let suggestList = await this.getSuggestList()
-    let selectedPosition = -1
-    suggestList.forEach((suggest, i) => {
-      if(suggest.classes.find((cssClass) => {
+    return suggestList.findIndex((suggest) => {
+      return suggest.classes.find((cssClass) => {
         return cssClass.trim() === 'selected'
-      }) === 'selected') {
-        selectedPosition = i
-      }
+      }) === 'selected'
     })
-    return selectedPosition
   }
 
   async getClearFieldButton() {

@@ -104,7 +104,8 @@ test('mouse navigation', async() => {
 
   await autocompleteHelper.clickResult(1)
   const selectedSearchValue = await autocompleteHelper.getSearchInputValue()
-  console.log(selectedSearchValue)
+  let expectedLabelName = mockAutocomplete.features[0].properties.geocoding.name
+  expect(selectedSearchValue).toEqual(expectedLabelName)
 })
 
 test('move to on click', async () => {

@@ -128,7 +128,7 @@ var autoComplete = (function(){
       var suggest = function(data, queryTerm){
         that.items = data
         var val = that.value;
-        if (queryTerm) {
+        if (queryTerm && data !== null) {
           // 'data' is the 'source' response based on 'queryTerm'
           // that may be differennt from 'val' (due to request latency).
           that.cache[queryTerm] = data;
