@@ -161,8 +161,20 @@ var autoComplete = (function(){
               that.value = next.getAttribute('data-val');
               that.dataId = next.getAttribute('data-id');
             }
-            else { sel.className = sel.className.replace('selected', '');that.dataId = that.last_id; that.value = that.last_val; next = 0; }
+            else {
+              /* back to field */
+              sel.className = sel.className.replace('selected', '');
+              that.dataId = that.last_id;
+              that.value = that.last_val;
+              next = 0;
+            }
           }
+
+          setTimeout(() => {
+            that.setSelectionRange(that.value.length, that.value.length);
+          })
+
+
           var item = that.items[0]
           that.items.forEach((i) => {
             if(i.id === that.dataId) {
@@ -227,8 +239,16 @@ var autoComplete = (function(){
       that.focusHandler = function(e){
         that.last_val = '\n';
         that.keyupHandler(e)
+        that.updateSC()
       };
       if (!o.minChars) addEvent(that, 'focus', that.focusHandler);
+
+      that.listenReopen = function() {
+        that.sc.style.display = 'block';
+      };
+
+      addEvent(that, 'focus', that.listenReopen);
+
     }
 
     // public destroy method
@@ -238,6 +258,7 @@ var autoComplete = (function(){
         removeEvent(window, 'resize', that.updateSC);
         removeEvent(that, 'blur', that.blurHandler);
         removeEvent(that, 'focus', that.focusHandler);
+        removeEvent(that, 'focus', that.listenReopen);
         removeEvent(that, 'keydown', that.keydownHandler);
         removeEvent(that, 'keyup', that.keyupHandler);
         if (that.autocompleteAttr)
