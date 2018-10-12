@@ -28,9 +28,9 @@ export default class AutocompleteCucumberise {
   async getSelectedElementPos() {
     let suggestList = await this.getSuggestList()
     return suggestList.findIndex((suggest) => {
-      return suggest.classes.find((cssClass) => {
+      return suggest.classes.some((cssClass) => {
         return cssClass.trim() === 'selected'
-      }) === 'selected'
+      })
     })
   }
 
