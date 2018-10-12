@@ -32,6 +32,6 @@ test('is map loaded',async () => {
   expect(sceneContent).not.toBeFalsy()
 })
 
-afterAll(() => {
-  browser.close()
+afterAll(async () => {
+  await browser.close()
 })

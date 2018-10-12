@@ -89,10 +89,10 @@ test('center map after a favorite poi click', async () => {
   expect(center).toEqual({lng  : favoriteMockCoordinates.lng, lat : favoriteMockCoordinates.lat})
 })
 
-afterEach(() => {
-  clearStore(page)
+afterEach(async () => {
+  await clearStore(page)
 })
 
-afterAll(() => {
-  browser.close()
+afterAll(async () => {
+  await browser.close()
 })

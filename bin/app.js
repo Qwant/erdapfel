@@ -4,6 +4,7 @@ const path = require('path')
 const expressStaticGzip = require('express-static-gzip')
 const bunyan = require('bunyan')
 const finalhandler = require('finalhandler');
+const promClient = require('prom-client');
 
 const app = express()
 const logger = bunyan.createLogger({
@@ -15,6 +16,7 @@ const logger = bunyan.createLogger({
       err: bunyan.stdSerializers.err,
     }
 });
+const promRegistry = new promClient.Registry();
 
 function App(config) {
   const constants = yaml.readSync('../config/constants.yml')
@@ -52,10 +54,41 @@ function App(config) {
     maxAge: config.statics.maxAge
   }))
 
+  if(config.server.enablePrometheus){
+    app.get('/metrics', (req, res) => {
+      res.set('Content-Type', promRegistry.contentType);
+      res.end(promRegistry.metrics());
+    });
+  }
+  else{
+    app.get('/metrics', (req, res) => {
+      res.sendStatus(404)
+    })
+  }
+
   const ogMeta = new require('./middlewares/og_meta')(config)
   app.get('/*', ogMeta, (req, res) => {
       res.render('index', {config : config})
   })
+
+  if(config.server.acceptPostedLogs){
+    app.post('/logs',
+      express.json({strict: true, limit: config.server.maxBodySize}),
+      (req, res) => {
+        if(Object.keys(req.body).length === 0){
+          res.sendStatus(400)
+        }
+        else{
+          res.sendStatus(204)
+          req.logger.info({body: req.body}, 'Received client log')
+        }
+    })
+
+    if(config.server.acceptPostedEvents){
+      const metricsBuilder = require('./metrics_builder')
+      metricsBuilder(app, config, promRegistry)
+    }
+  }
 
   app.use((err, req, res, next) => {
     finalhandler(req, res, {

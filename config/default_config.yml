@@ -1,5 +1,13 @@
 PORT: 3000
 
+# Server
+server:
+  maxBodySize: '5KB' # max request body size on POST
+  acceptPostedLogs: true
+  acceptPostedEvents: true
+  enablePrometheus: true
+
+
 # Services
 services:
   geocoder:

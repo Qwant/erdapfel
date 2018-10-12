@@ -33,8 +33,8 @@ export function store(page, soreKey,  data) {
   }, data, soreKey)
 }
 
-export function clearStore(page) {
-  page.evaluate(() =>
+export const clearStore = async function(page) {
+  await page.evaluate(() =>
     localStorage.clear()
   )
 }

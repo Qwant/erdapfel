@@ -23,7 +23,8 @@
   <script>
     window.baseUrl = "<%= config.system.baseUrl %>"
     window.preferedLanguage = <%- JSON.stringify(language) %>
-    <%- `window.__config = ${JSON.stringify(config)};` %>
+    <%- `window.__config = ${JSON.stringify(config,
+      (k,v) => k==='server' ? undefined : v)};` %>
   </script>
     <div id="scene_container" class="map_container"></div>
 
