@@ -217,10 +217,10 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(fav).toEqual([])
 })
 
-afterEach(() => {
-  clearStore(page)
+afterEach(async () => {
+  await clearStore(page)
 })
 
-afterAll(() => {
-  browser.close()
+afterAll(async () => {
+  await browser.close()
 })

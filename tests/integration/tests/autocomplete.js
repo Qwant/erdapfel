@@ -91,6 +91,6 @@ test('bbox & center', async () => {
   expect(center).toEqual({ lat: 1, lng: 4 })
 })
 
-afterAll(() => {
-  browser.close()
+afterAll(async () => {
+  await browser.close()
 })

@@ -14,7 +14,8 @@ test('responds to /', done => {
 
 test('responds to /statics', done => {
   server
-    .get('/')
+    .get('/statics/images/qwant-logo.svg')
+    .expect('Content-Type', 'image/svg+xml')
     .expect(200, done)
 });
 
