@@ -58,19 +58,10 @@ Store.prototype.register = async function () {
 
 
 Store.prototype.getPrefixes = async function (prefix) {
-  return new Promise((resolve, reject) => {
-    const prefixes = []
-    abstractStore.getAll().then((items) => {
-        Object.keys(items).forEach((itemKey) => {
-          let item = items[itemKey]
-          const rePrefix = new RegExp(`${prefix}`, 'i')
-          if(rePrefix.exec(item.title))
-          prefixes.push(item)
-        })
-        resolve(prefixes)
-    }).catch((e) => {
-      reject(e)
-    })
+  const storedItems = await abstractStore.getAll()
+  return storedItems.filter((storedItem) => {
+    const rePrefix = new RegExp(`^${prefix}`, 'i')
+    return rePrefix.exec(storedItem.name)
   })
 }
 
