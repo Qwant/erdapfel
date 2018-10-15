@@ -1,3 +1,36 @@
+<div class="poi_panel__mobile" {{= this.active ? '' : 'poi_panel--hidden' }}">
+
+<div class="poi_panel__description_container" {{= click(this.center, this) }}>
+      {{ let ico = IconManager.get(this.poi); }}
+      {{? ico }}
+        <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+      {{??}}
+        <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
+      {{?}}
+      <h4 class="poi_panel__title">
+        {{? this.poi.local_name }}
+          {{= this.poi.local_name }}
+        {{?? this.poi.name }}
+          {{= this.poi.name }}
+        {{??}}
+          {{= this.poiSubClass(this.poi.subClassName) }}
+        {{?}}
+      </h4>
+      {{? this.poi.subClassName }}
+        <p class="poi_panel__description">{{= this.poiSubClass(this.poi.subClassName) }}</p>
+      {{?}}
+      {{? this.poi.address && this.poi.address.label }}
+        <p class="poi_panel__address">
+          {{= this.poi.address.label }}
+        </p>
+      {{?}}
+
+  <button>
+    {{= _('Details', 'poi') }}
+  </button>
+</div>
+
+
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden' }}">
   <div class="poi_panel__content">
   {{? this.poi }}

@@ -134,7 +134,7 @@ Scene.prototype.addMarker = async function(poi) {
   if(this.currentMarker !== null) {
     this.currentMarker.remove()
   }
-  let image = await loadImage('/statics/images/backgrounds/pin_map.svg')
+  let image = await loadImage('/statics/images/map/pin_map.svg')
   let marker = new Marker({element : image, anchor : 'bottom'})
     .setLngLat(poi.getLngLat())
     .addTo(this.mb)
