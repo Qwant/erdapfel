@@ -203,15 +203,16 @@ var autoComplete = (function(){
               }
               that.timer = setTimeout(function(){
                 if(that.sourcePending) {
-                  that.sourcePending.abort()
+                  that.sourcePending.abort();
                   that.sourcePending = null
                 }
-                that.sourcePending = o.source(val)
+                that.sourcePending = o.source(val);
                 that.sourcePending.then((source) => {
-                  suggest(source, val)
+                  suggest(source, val);
                   that.sourcePending = null
                 }).catch((e) => {
                   console.log(e) /* should be handled by a telemetry logger */
+                  that.sourcePending = null
                 })
               }, o.delay);
             }

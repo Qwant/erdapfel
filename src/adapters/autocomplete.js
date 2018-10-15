@@ -16,13 +16,14 @@ function SearchInput(tagSelector) {
   this.searchInputDomHandler = document.querySelector(tagSelector)
   this.poi = null
   this.suggestPromise = null
+  this.suggestList = []
   new Autocomplete({
     selector : tagSelector,
     minChars : 1,
     cachePrefix : false,
     delay : 100,
     width:'650px',
-    source : (term, suggest) => {
+    source : (term) => {
       /*
         https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
         this post is about correlation between gps coordinates decimal count & real precision unit
@@ -36,17 +37,16 @@ function SearchInput(tagSelector) {
         this.suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
         const suggestHistoryPromise = getHistory(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
-
           this.suggestPromise = null
-          let pois = buildPoi(responses[0])
+          this.suggestList = buildPoi(responses[0])
           let historySuggestData = responses[1]
           historySuggestData = historySuggestData.map((historySuggest) => {
             let poi = Poi.storeLoad(historySuggest)
             poi.fromHistory = true
             return poi
           })
-          pois = pois.concat(historySuggestData)
-          resolve(pois)
+          this.suggestList = this.suggestList.concat(historySuggestData)
+          resolve(this.suggestList)
         }).catch((e) => {
           if(isAbort) {
             resolve(null)
@@ -62,11 +62,11 @@ function SearchInput(tagSelector) {
       return promise
 
     },
-    renderItem : ({id, name, fromHistory, className, subClassName, addressLabel}) => {
-      let icon = IconManager.get({className : className, subClassName : subClassName})
+    renderItem : ({id, name, fromHistory, className, subClassName, addressLabel, type}) => {
+      let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
       return `
 <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
-  <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${icon ? `icon icon-${icon.iconClass}` : 'icon-location'}"></div>
+  <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>
   ${ExtendedString.htmlEncode(name)}
   ${addressLabel ? `<span class="autocomplete_address">${ExtendedString.htmlEncode(addressLabel)}</span>` : ''}
 </div>
@@ -77,6 +77,14 @@ function SearchInput(tagSelector) {
       const itemId = item.getAttribute('data-id')
       let poi = items.find(poi => poi.id === itemId)
       this.select(poi)
+    },
+  })
+
+
+  listen('submit_autocomplete', () => {
+    if(this.suggestList && this.suggestList.length > 0
+    && this.searchInputDomHandler.value && this.searchInputDomHandler.value.length > 0) {
+      this.select(this.suggestList[0])
     }
   })
 }
