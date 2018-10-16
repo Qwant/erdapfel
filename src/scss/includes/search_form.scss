@@ -1,12 +1,15 @@
 .search_form {
   position: relative;
   display: flex;
-  margin: 18px 0 0 18px;
+}
+
+.search_form__input {
+  -webkit-appearance: none;
   background: #fff;
-  @include long_shadow();
   border-radius: 34px;
   width: 400px;
   pointer-events: auto;
+  @include long_shadow();
 }
 
 .search_form__input {
@@ -222,6 +225,4 @@ input[type="search"]::-webkit-search-cancel-button {
       left: 16px;
     }
   }
-
-
 }

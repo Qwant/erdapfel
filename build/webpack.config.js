@@ -2,26 +2,24 @@ const path = require('path')
 const yaml = require('node-yaml')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const testMode = process.env.TEST === 'true'
 
-const getBuildMode = function(){
-  if (testMode){
+const getBuildMode = function(argv){
+  const isTestMode = process.env.TEST === 'true'
+
+  let argvMode = argv.mode
+  if(isTestMode) {
     return 'test'
   }
-  if (process.env.NODE_ENV === 'production'){
+  if(argvMode === 'production') {
     return 'production'
   }
-  return 'dev'
+  return 'development'
 }
 
-console.log('*--------------------*')
-console.log(`Building on ${getBuildMode()} mode`)
-console.log('*--------------------*')
 
-const addJsOptimizePlugins = function(plugins){
-  let optimizePlugins = []
-  if (process.env.NODE_ENV === 'production'){
-    optimizePlugins =  optimizePlugins.concat([
+const addJsOptimizePlugins = function(buildMode, plugins){
+  if (buildMode === 'production'){
+    plugins = plugins.concat([
       new UglifyJsPlugin({
         uglifyOptions: {
           beautify: false,
@@ -32,168 +30,223 @@ const addJsOptimizePlugins = function(plugins){
       })
     ])
   }
-  return plugins.concat(optimizePlugins)
+  return plugins
 }
 
-const sassChunkConfig = {
-  entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
-  output: {
-    path: path.join(__dirname, '..'),
-    filename: 'tmp/css.js'
-  },
-  module : {
-    loaders : [{
-      loader : 'file-loader',
-      options: {
-        name : 'public/css/app.css'
-      }
-    }, {
-      test : /\.scss$/,
-      use: [{
-        loader : 'postcss-loader',
-        options : {
-          plugins: [
-            require('autoprefixer')(),
-            require('postcss-import')()
-          ]
+const sassChunkConfig = () => {
+  return {
+    entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
+    output: {
+      path: path.join(__dirname, '..'),
+      filename: 'tmp/css.js'
+    },
+    module : {
+      rules : [{
+        use : {
+          loader : 'file-loader',
+          options: {
+            name : 'public/css/app.css'
+          }
         }
+      }, {
+        test : /\.scss$/,
+        use: [{
+          loader : 'postcss-loader',
+          options : {
+            plugins: [
+              require('autoprefixer')(),
+              require('postcss-import')()
+            ]
+          }
+        }],
+      }, {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          publicPath: '/',
+          name: '[name].[ext]',
+          outputPath: 'images/'
+        }
+      }, {
+        test : /\.scss$/,
+        loader : 'sass-loader'
       }],
-    }, {
-      test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'file-loader',
-      options: {
-        publicPath: '/',
-        name: '[name].[ext]',
-        outputPath: 'images/'
-      }
-    }, {
-      test : /\.scss$/,
-      loader : 'sass-loader'
-    }],
-  },
+    },
+  }
 }
 
-const mainJsChunkConfig = {
-  entry: ['./src/main.js'],
-  output: {
-    path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
-    filename: 'bundle.js'
-  },
-  plugins: addJsOptimizePlugins([]),
-  module: {
-    loaders: [{
-      test: /\.dot/,
-      use: [
-        {loader : 'dot-loader'}
-      ]
-    }, {
-      test: /\.yml$/,
-      use: [
-        {loader : '@qwant/config-sanitizer-loader'},
-        {loader : 'json-loader'},
-        {loader : 'yaml-loader'}
-      ]
-    }, {
-      test: /\.js$/,
-      exclude: [
-        /\/node_modules/
-      ]
-    }]
-  },
-  devtool: 'source-map'
+
+const mainJsChunkConfig  = (buildMode) => {
+  return {
+    entry: ['./src/main.js'],
+    output: {
+      path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
+      filename: 'bundle.js'
+    },
+    plugins: addJsOptimizePlugins(buildMode, []),
+    module: {
+      rules: [{
+        test: /\.dot/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          },
+          {loader: 'dot-loader'}
+        ]
+      }, {
+        test: /\.yml$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          },
+          {loader: '@qwant/config-sanitizer-loader'},
+          {loader: 'json-loader'},
+          {loader: 'yaml-loader'}
+        ]
+      }, {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+          ],
+        exclude: [
+          /\/node_modules/
+        ]
+      }]
+    },
+    devtool: 'source-map'
+  }
 }
 
-const mapJsChunkConfig = {
-  entry: ['./src/map.js'],
+const mapJsChunkConfig = (buildMode) => {
+  return {
+    entry: ['./src/map.js'],
 
-  output: {
+      output: {
     path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
-    filename: 'map.js'
+      filename: 'map.js'
   },
-  plugins: addJsOptimizePlugins([
-    new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
-      if(testMode) {
-        resource.request = resource.request.replace('--ENV', '-js-mock')
-      } else {
-        resource.request = resource.request.replace('--ENV', '')
-      }
-    })
-  ]),
-  module: {
-    loaders: [
+    plugins: addJsOptimizePlugins(buildMode, [
+      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
+        if(buildMode === 'test') {
+          resource.request = resource.request.replace('--ENV', '-js-mock')
+        } else {
+          resource.request = resource.request.replace('--ENV', '')
+        }
+      })
+    ]),
+      module: {
+    rules: [
       {
         test: /\.dot/,
         use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          },
           {loader : 'dot-loader'}
         ]
       }, {
-      test: /\.yml$/,
-      use: [
-        {loader : '@qwant/config-sanitizer-loader'},
-        {loader : 'json-loader'},
-        {loader : 'yaml-loader'}
-      ]
-    }, {
-      test : /style\.json$/,
-      use : [
-        {
-          loader : 'json-loader'
-        },
-        {
-          loader : '@qwant/map-style-loader',
-          options : {
-            output: 'production', // 'debug' | 'production' | 'omt'
-            outPath : __dirname + '/../public/mapstyle',
-            i18n : true,
-            icons : true,
-            pixelRatios : [1,2]
+        test: /\.yml$/,
+        use: [
+          {loader : '@qwant/config-sanitizer-loader'},
+          {loader : 'json-loader'},
+          {loader : 'yaml-loader'}
+        ]
+      }, {
+        test : /style\.json$/,
+        use : [
+          {
+            loader : '@qwant/map-style-loader',
+            options : {
+              output: 'production', // 'debug' | 'production' | 'omt'
+              outPath : __dirname + '/../public/mapstyle',
+              i18n : true,
+              icons : true,
+              pixelRatios : [1,2]
+            }
           }
-        }
-      ],
-    }, {
-      test: /\.js$/,
-      exclude: [
-        /\/node_modules/
-      ]
-    }]
+        ],
+      }, {
+        test: /\.js$/,
+        use : [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+
+        ],
+        exclude: [
+          /\/node_modules/
+        ]
+      }]
   },
-  devtool: 'source-map'
+    devtool: 'source-map'
+  }
 }
 
-webpackChunks = [sassChunkConfig, mainJsChunkConfig, mapJsChunkConfig]
+webpackChunks = (buildMode) => {
+  let webpackChunks = [sassChunkConfig(buildMode), mainJsChunkConfig(buildMode), mapJsChunkConfig(buildMode)]
+  const constants = yaml.readSync('../config/constants.yml')
 
-const constants = yaml.readSync('../config/constants.yml')
-webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language)=> {
-  return {
-    entry:  path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
-    module : {
-      loaders : [
-         {
-          loader :'@qwant/merge-i18n-source-loader',
-          options : {
-            sources : [
-              {path : `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`, name : 'i18nDate'}
-            ]
-          }
-        },
-        {
-          loader : '@qwant/po-js-loader',
-        },
-        {
-          test : /\.po$/,
-          loader: '@qwant/merge-po-loader',
-          options: {
-            fallbackList : language.fallback,
-            messagePath : path.join(__dirname, '..', 'language', 'message'),
-            locale: language.locale
-          }
-        }],
-    },
-    output : {
-      path : path.join(__dirname, '..'),
-      filename : `./public/build/javascript/message/${language.locale}.js`
-    },
-  }
-}))
+  webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language) => {
+    return {
+      entry: path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
+      module: {
+        rules: [
+          {
+            loader: '@qwant/merge-i18n-source-loader',
+            options: {
+              sources: [
+                {
+                  path: `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`,
+                  name: 'i18nDate'
+                }
+              ]
+            }
+          },
+          {
+            loader: '@qwant/po-js-loader',
+          },
+          {
+            test: /\.po$/,
+            loader: '@qwant/merge-po-loader',
+            options: {
+              fallbackList: language.fallback,
+              messagePath: path.join(__dirname, '..', 'language', 'message'),
+              locale: language.locale
+            }
+          }],
+      },
+      output: {
+        path: path.join(__dirname, '..'),
+        filename: `./public/build/javascript/message/${language.locale}.js`
+      },
+    }
+  }))
+  return webpackChunks
+}
 
-module.exports = webpackChunks
+module.exports = (env, argv) => {
+  let buildMode = getBuildMode(argv)
+
+  console.log('*--------------------*')
+  console.log(`Building on ${buildMode} mode`)
+  console.log('*--------------------*')
+
+  return webpackChunks(buildMode)
+}
