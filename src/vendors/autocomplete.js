@@ -133,7 +133,7 @@ var autoComplete = (function(){
           // that may be differennt from 'val' (due to request latency).
           that.cache[queryTerm] = data;
         }
-        if (data.length && val.length >= o.minChars) {
+        if (data && data.length && val.length >= o.minChars) {
           var s = '';
           for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
           that.sc.innerHTML = s;

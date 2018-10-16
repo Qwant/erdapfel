@@ -80,7 +80,6 @@ function SearchInput(tagSelector) {
     },
   })
 
-
   listen('submit_autocomplete', () => {
     if(this.suggestList && this.suggestList.length > 0
     && this.searchInputDomHandler.value && this.searchInputDomHandler.value.length > 0) {
