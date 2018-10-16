@@ -1,31 +1,37 @@
+# Translators:
+# Noémie Lehuby <n.lehuby@qwant.com>, 2018
+# Noémie <nlehuby@zaclys.net>, 2018
+# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2018
 #: bin/gettext_wrapper.js:42
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-08 12:13+0200\n"
+"POT-Creation-Date: 2018-10-16 12:39+0200\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_GB\n"
+"Last-Translator: PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, "
+"2018\n"
+"Language-Team: French (France) (https://www.transifex.com/qwant-1/"
+"teams/89416/fr_FR/)\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: config\n"
+"X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: views\n"
 "X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: views/index.ejs:5
 msgid "Qwant Maps - beta"
 msgstr "Qwant Maps - bêta"
 
-#: views/index.ejs:33
+#: views/index.ejs:34
 msgid "Where do you want to go ?"
 msgstr "Où voulez-vous aller ?"
 
@@ -92,7 +98,7 @@ msgstr "magasin d'alcool"
 
 #: public/build/javascript/bundle.js:1234 public/build/javascript/map.js:1241
 msgid "alpine hut"
-msgstr ""
+msgstr "refuge alpin"
 
 #: public/build/javascript/bundle.js:1235 public/build/javascript/map.js:1242
 msgid "antiques shop"
@@ -100,7 +106,7 @@ msgstr "antiquaire"
 
 #: public/build/javascript/bundle.js:1236 public/build/javascript/map.js:1243
 msgid "archery"
-msgstr ""
+msgstr "tir à l'arc"
 
 #: public/build/javascript/bundle.js:1237 public/build/javascript/map.js:1244
 msgid "art shop"
@@ -112,7 +118,7 @@ msgstr "centre culturel"
 
 #: public/build/javascript/bundle.js:1239 public/build/javascript/map.js:1246
 msgid "athletics"
-msgstr ""
+msgstr "athlétisme"
 
 #: public/build/javascript/bundle.js:1240 public/build/javascript/map.js:1247
 msgid "attraction"
@@ -140,7 +146,7 @@ msgstr "bassin de rétention d'eau"
 
 #: public/build/javascript/bundle.js:1246 public/build/javascript/map.js:1253
 msgid "basketball"
-msgstr ""
+msgstr "basket-ball"
 
 #: public/build/javascript/bundle.js:1247 public/build/javascript/map.js:1254
 msgid "bbq"
@@ -172,11 +178,11 @@ msgstr "vente de bières en plein air"
 
 #: public/build/javascript/bundle.js:1254 public/build/javascript/map.js:1261
 msgid "billiards"
-msgstr ""
+msgstr "billiards"
 
 #: public/build/javascript/bundle.js:1255 public/build/javascript/map.js:1262
 msgid "bmx"
-msgstr ""
+msgstr "vtt"
 
 #: public/build/javascript/bundle.js:1256 public/build/javascript/map.js:1263
 msgid "books shop"
@@ -188,7 +194,7 @@ msgstr "contrôle frontalier"
 
 #: public/build/javascript/bundle.js:1258 public/build/javascript/map.js:1265
 msgid "boules"
-msgstr ""
+msgstr "pétanque"
 
 #: public/build/javascript/bundle.js:1259 public/build/javascript/map.js:1266
 msgid "boutique"
@@ -196,7 +202,7 @@ msgstr "magasin de haute couture"
 
 #: public/build/javascript/bundle.js:1260 public/build/javascript/map.js:1267
 msgid "bowls"
-msgstr ""
+msgstr "boulingrin"
 
 #: public/build/javascript/bundle.js:1261 public/build/javascript/map.js:1268
 msgid "brownfield"
@@ -220,7 +226,7 @@ msgstr "camping"
 
 #: public/build/javascript/bundle.js:1266 public/build/javascript/map.js:1273
 msgid "canoe"
-msgstr ""
+msgstr "canoë"
 
 #: public/build/javascript/bundle.js:1267 public/build/javascript/map.js:1274
 msgid "car shop"
@@ -248,7 +254,7 @@ msgstr "cimetiére"
 
 #: public/build/javascript/bundle.js:1273 public/build/javascript/map.js:1280
 msgid "chalet"
-msgstr ""
+msgstr "chalet"
 
 #: public/build/javascript/bundle.js:1274 public/build/javascript/map.js:1281
 msgid "charity store"
@@ -260,7 +266,7 @@ msgstr "parapharmacie"
 
 #: public/build/javascript/bundle.js:1276 public/build/javascript/map.js:1283
 msgid "chess"
-msgstr ""
+msgstr "échecs"
 
 #: public/build/javascript/bundle.js:1277 public/build/javascript/map.js:1284
 msgid "chocolate shop"
@@ -272,11 +278,11 @@ msgstr "cinéma"
 
 #: public/build/javascript/bundle.js:1279 public/build/javascript/map.js:1286
 msgid "climbing"
-msgstr ""
+msgstr "escalade"
 
 #: public/build/javascript/bundle.js:1280 public/build/javascript/map.js:1287
 msgid "climbing adventure"
-msgstr ""
+msgstr "accrobranche"
 
 #: public/build/javascript/bundle.js:1281 public/build/javascript/map.js:1288
 msgid "clinic"
@@ -324,11 +330,11 @@ msgstr "palais de justice"
 
 #: public/build/javascript/bundle.js:1292 public/build/javascript/map.js:1299
 msgid "cricket"
-msgstr ""
+msgstr "cricket"
 
 #: public/build/javascript/bundle.js:1293 public/build/javascript/map.js:1300
 msgid "cycling"
-msgstr ""
+msgstr "cyclisme"
 
 #: public/build/javascript/bundle.js:1294 public/build/javascript/map.js:1301
 msgid "deli"
@@ -352,11 +358,11 @@ msgstr "cabinet médical"
 
 #: public/build/javascript/bundle.js:1299 public/build/javascript/map.js:1306
 msgid "dog park"
-msgstr ""
+msgstr "parc canin"
 
 #: public/build/javascript/bundle.js:1300 public/build/javascript/map.js:1307
 msgid "dog racing"
-msgstr ""
+msgstr "courses de chiens"
 
 #: public/build/javascript/bundle.js:1301 public/build/javascript/map.js:1308
 msgid "doityourself store"
@@ -376,7 +382,7 @@ msgstr "ambassade"
 
 #: public/build/javascript/bundle.js:1305 public/build/javascript/map.js:1312
 msgid "equestrian"
-msgstr ""
+msgstr "équestre"
 
 #: public/build/javascript/bundle.js:1306 public/build/javascript/map.js:1313
 msgid "erotic shop"
@@ -436,11 +442,11 @@ msgstr "magasin de souvenirs"
 
 #: public/build/javascript/bundle.js:1320 public/build/javascript/map.js:1327
 msgid "golf"
-msgstr ""
+msgstr "golf"
 
 #: public/build/javascript/bundle.js:1321 public/build/javascript/map.js:1328
 msgid "golf course"
-msgstr ""
+msgstr "parcours de golf"
 
 #: public/build/javascript/bundle.js:1322 public/build/javascript/map.js:1329
 msgid "grave yard"
@@ -456,7 +462,7 @@ msgstr "chambre d'hôte"
 
 #: public/build/javascript/bundle.js:1325 public/build/javascript/map.js:1332
 msgid "gymnastics"
-msgstr ""
+msgstr "gymnastique"
 
 #: public/build/javascript/bundle.js:1326 public/build/javascript/map.js:1333
 msgid "hairdresser"
@@ -512,7 +518,7 @@ msgstr "bijouterie"
 
 #: public/build/javascript/bundle.js:1339 public/build/javascript/map.js:1346
 msgid "karting"
-msgstr ""
+msgstr "karting"
 
 #: public/build/javascript/bundle.js:1340 public/build/javascript/map.js:1347
 msgid "kindergarten"
@@ -564,11 +570,11 @@ msgstr "magasin de téléphonie"
 
 #: public/build/javascript/bundle.js:1352 public/build/javascript/map.js:1359
 msgid "model aerodrome"
-msgstr ""
+msgstr "aérodrome pour modèles réduits d'avions"
 
 #: public/build/javascript/bundle.js:1353 public/build/javascript/map.js:1360
 msgid "monument"
-msgstr ""
+msgstr "monument"
 
 #: public/build/javascript/bundle.js:1354 public/build/javascript/map.js:1361
 msgid "motel"
@@ -576,11 +582,11 @@ msgstr "motel"
 
 #: public/build/javascript/bundle.js:1355 public/build/javascript/map.js:1362
 msgid "motocross"
-msgstr ""
+msgstr "motocross"
 
 #: public/build/javascript/bundle.js:1356 public/build/javascript/map.js:1363
 msgid "motor"
-msgstr ""
+msgstr "moteur"
 
 #: public/build/javascript/bundle.js:1357 public/build/javascript/map.js:1364
 msgid "motorcycle shop"
@@ -588,7 +594,7 @@ msgstr "magasin de moto"
 
 #: public/build/javascript/bundle.js:1358 public/build/javascript/map.js:1365
 msgid "multi"
-msgstr ""
+msgstr "multi"
 
 #: public/build/javascript/bundle.js:1359 public/build/javascript/map.js:1366
 msgid "museum"
@@ -680,7 +686,7 @@ msgstr "bâtiment public"
 
 #: public/build/javascript/bundle.js:1381 public/build/javascript/map.js:1388
 msgid "rc car"
-msgstr ""
+msgstr "voiture radio commandée"
 
 #: public/build/javascript/bundle.js:1382 public/build/javascript/map.js:1389
 msgid "reservoir"
@@ -692,7 +698,7 @@ msgstr "restaurant"
 
 #: public/build/javascript/bundle.js:1384 public/build/javascript/map.js:1391
 msgid "rowing"
-msgstr ""
+msgstr "aviron"
 
 #: public/build/javascript/bundle.js:1385 public/build/javascript/map.js:1392
 msgid "ruins"
@@ -700,11 +706,11 @@ msgstr "ruines"
 
 #: public/build/javascript/bundle.js:1386 public/build/javascript/map.js:1393
 msgid "running"
-msgstr ""
+msgstr "course à pied"
 
 #: public/build/javascript/bundle.js:1387 public/build/javascript/map.js:1394
 msgid "sailing"
-msgstr ""
+msgstr "voile"
 
 #: public/build/javascript/bundle.js:1388 public/build/javascript/map.js:1395
 msgid "school"
@@ -724,11 +730,11 @@ msgstr "magasin de chaussures"
 
 #: public/build/javascript/bundle.js:1392 public/build/javascript/map.js:1399
 msgid "shooting"
-msgstr ""
+msgstr "tir"
 
 #: public/build/javascript/bundle.js:1393 public/build/javascript/map.js:1400
 msgid "skateboard"
-msgstr ""
+msgstr "skateboard"
 
 #: public/build/javascript/bundle.js:1394 public/build/javascript/map.js:1401
 msgid "skating"
@@ -796,7 +802,7 @@ msgstr "salon de tatouage"
 
 #: public/build/javascript/bundle.js:1410 public/build/javascript/map.js:1417
 msgid "tennis"
-msgstr ""
+msgstr "tennis"
 
 #: public/build/javascript/bundle.js:1411 public/build/javascript/map.js:1418
 msgid "theatre"
@@ -876,7 +882,7 @@ msgstr "magasin de vins"
 
 #: public/build/javascript/bundle.js:1430 public/build/javascript/map.js:1437
 msgid "yoga"
-msgstr ""
+msgstr "yoga"
 
 #: public/build/javascript/bundle.js:1431 public/build/javascript/map.js:1438
 msgid "zoo"
@@ -898,7 +904,7 @@ msgstr ""
 
 #: public/build/javascript/bundle.js:1833
 msgid "MY FAVORITES"
-msgstr ""
+msgstr "MES FAVORIS"
 
 #: public/build/javascript/bundle.js:1833
 msgid "Share"
@@ -929,12 +935,12 @@ msgid "Back to favorite"
 msgstr "Retour aux favoris"
 
 #: public/build/javascript/bundle.js:2556
-msgid "FAVORIS"
-msgstr ""
+msgid "FAVORITES"
+msgstr "FAVORIS"
 
 #: public/build/javascript/bundle.js:2556
 msgid "SHARE"
-msgstr ""
+msgstr "PARTAGER"
 
 #: public/build/javascript/bundle.js:2633
 msgid "Accessibility"
@@ -974,23 +980,23 @@ msgstr "Lire la suite sur Wikidata"
 
 #: public/build/javascript/bundle.js:3448
 msgid "Qwant Maps services"
-msgstr ""
+msgstr "Les services Qwant Maps"
 
 #: public/build/javascript/bundle.js:3448
 msgid "ITINERARY"
-msgstr ""
+msgstr "ITINÉRAIRE"
 
 #: public/build/javascript/bundle.js:3448
 msgid "YOUR FAVORITES"
-msgstr ""
+msgstr "MES FAVORIS"
 
 #: public/build/javascript/bundle.js:3448
 msgid "OPEN DATA"
-msgstr ""
+msgstr "DONNÉES LIBRES "
 
 #: public/build/javascript/bundle.js:3506
 msgid "Share favorite"
-msgstr ""
+msgstr "Partager le favori"
 
 #: public/build/javascript/bundle.js:3506
 msgid "Share link"
@@ -1020,11 +1026,3 @@ msgstr "Qwant Maps utilise OpenStreetMap"
 msgid "LEARN MORE"
 msgstr "EN SAVOIR PLUS"
 
-#~ msgid "ABOUT THE PROJECT"
-#~ msgstr "À PROPOS DU PROJET"
-
-#~ msgid "RESULTS"
-#~ msgstr "RÉSULTATS"
-
-#~ msgid "FAVORITES"
-#~ msgstr "FAVORIS"
