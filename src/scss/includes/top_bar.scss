@@ -1,7 +1,8 @@
 .top_bar {
-  width: 100%;
+  width: 678px;
   position: absolute;
   background: url('../images/backgrounds/top_desktop.svg') no-repeat;
+  pointer-events: none;
 }
 
 @media (max-width: 640px) {

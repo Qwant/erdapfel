@@ -6,6 +6,7 @@
   @include long_shadow();
   border-radius: 34px;
   width: 400px;
+  pointer-events: auto;
 }
 
 .search_form__input {
