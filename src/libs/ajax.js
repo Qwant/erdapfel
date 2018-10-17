@@ -23,8 +23,7 @@ Ajax.query = (url, data, options = {method : 'GET'}) => {
       try {
         jsonResponse = JSON.parse(this.response)
       } catch (e) {
-        console.log("json",this.response)
-
+        console.error('json', this.response)
         clearTimeout(timeOutHandler)
         reject(e)
         return
