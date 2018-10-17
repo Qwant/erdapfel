@@ -8,9 +8,10 @@ Ajax.queryLang = async (url, data = {}, options) => {
   return Ajax.query(url, data, options)
 }
 
-Ajax.query = async (url, data, options = {method : 'GET'}) => {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest()
+Ajax.query = (url, data, options = {method : 'GET'}) => {
+  const xhr = new XMLHttpRequest()
+
+  let ajaxPromise = new Promise((resolve, reject) => {
     let jsonResponse
 
     let timeOutHandler = setTimeout(() => {
@@ -18,10 +19,11 @@ Ajax.query = async (url, data, options = {method : 'GET'}) => {
       reject(`Timeout calling ${url}`)
     }, timeout * 1000)
 
-    xhr.onload = function(){
+    xhr.onload = function () {
       try {
         jsonResponse = JSON.parse(this.response)
       } catch (e) {
+        console.error('json', this.response)
         clearTimeout(timeOutHandler)
         reject(e)
         return
@@ -35,9 +37,14 @@ Ajax.query = async (url, data, options = {method : 'GET'}) => {
         reject(xhr.status)
       }
     }
-    xhr.open(options.method, url+'?'+dataToUrl(data))
+    xhr.open(options.method, url + '?' + dataToUrl(data))
     xhr.send()
   })
+  ajaxPromise.abort = () => {
+    xhr.abort()
+  }
+
+  return ajaxPromise
 }
 
 const dataToUrl = (data) =>

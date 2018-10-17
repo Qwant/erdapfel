@@ -1,59 +1,117 @@
 import {initBrowser, wait} from '../tools'
+import AutocompleteCucumberise from "../cucumberise/autocomplete";
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 
 let browser
 let page
+let autocompleteHelper
 const mockAutocomplete = require('../../__data__/autocomplete')
 
 beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
   browser = browserPage.browser
-  await page.setRequestInterception(true)
-  page.on('request', interceptedRequest => {
-    if(interceptedRequest.url().match(/autocomplete/)) {
-      interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      interceptedRequest.respond({body : JSON.stringify(mockAutocomplete), headers  : interceptedRequest.headers})
-    } else {
-      interceptedRequest.continue()
-    }
-  })
+  autocompleteHelper = new AutocompleteCucumberise(page)
+  await autocompleteHelper.prepareResponse()
 })
 
-test('clear button',async () => {
-  expect.assertions(3)
+test('search and clear', async () => {
+  expect.assertions(4)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   await page.goto(APP_URL)
-  await page.keyboard.type('Hello')
-  let cleanHandle = await page.waitForSelector('#clear_button')
+  await autocompleteHelper.typeAndWait('Hello')
+  let cleanHandle = await autocompleteHelper.getClearFieldButton()
   expect(cleanHandle).not.toBeNull()
 
-  let search_value = await page.evaluate(() => {
-      return document.querySelector('#search').value
-    })
-  expect(search_value).toEqual('Hello');
 
-  await page.click('#clear_button')
-  let search_value_after_clear = await page.evaluate(() => {
-      return document.querySelector('#search').value
-    })
-  expect(search_value_after_clear).toEqual('');
+  const autocompleteItems = await autocompleteHelper.getSuggestList()
+  expect(autocompleteItems.length).toEqual(10)
 
+
+  let searchValue = await autocompleteHelper.getSearchInputValue()
+  expect(searchValue).toEqual('Hello')
+
+  await autocompleteHelper.clearField()
+  let searchValueAfterClear = await autocompleteHelper.getSearchInputValue()
+  expect(searchValueAfterClear).toEqual('')
 })
 
-test('simple search', async () => {
-  expect.assertions(1)
+test('keyboard navigation', async () => {
+  const TypedSearch = 'Hello'
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   await page.goto(APP_URL)
-  await page.keyboard.type('test')
+  await autocompleteHelper.typeAndWait(TypedSearch)
   await wait(100)
-  const autocompleteItems = await page.waitForSelector('.autocomplete_suggestion')
-  expect(autocompleteItems).not.toBeNull()
+
+  await autocompleteHelper.pressDown()
+  await autocompleteHelper.pressDown()
+
+  let selectElemPosition = await autocompleteHelper.getSelectedElementPos()
+
+  /* second item is selected */
+  expect(selectElemPosition).toEqual(1)
+
+  /* search value is the second item label */
+  const searchValue = await autocompleteHelper.getSearchInputValue()
+  let expectedLabelName = mockAutocomplete.features[1].properties.geocoding.name
+
+  expect(searchValue.trim()).toEqual(expectedLabelName)
+
+  /* got to last item */
+  for(let i = 0; i < mockAutocomplete.features.length - 2; i++) {
+    await autocompleteHelper.pressDown()
+  }
+ /* one step more */
+  await autocompleteHelper.pressDown()
+
+  selectElemPosition = await autocompleteHelper.getSelectedElementPos()
+
+  /* nothing is selected */
+  expect(selectElemPosition).toEqual(-1)
+
+  /* search value is reset to typed word */
+  const originalSearchValue = await autocompleteHelper.getSearchInputValue()
+  expect(originalSearchValue.trim()).toEqual(TypedSearch)
+
+  await autocompleteHelper.pressDown()
+  /* fist element is selected */
+  selectElemPosition = await autocompleteHelper.getSelectedElementPos()
+  expect(selectElemPosition).toEqual(0)
+
+  /* type another char */
+  await autocompleteHelper.typeAndWait('a')
+  await wait(300)
+  selectElemPosition = await autocompleteHelper.getSelectedElementPos()
+  expect(selectElemPosition).toEqual(-1)
+})
+
+test('mouse navigation', async() => {
+  const TypedSearch = 'Hello'
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
+  await page.goto(APP_URL)
+  await autocompleteHelper.typeAndWait(TypedSearch)
+  await wait(100)
+
+  await autocompleteHelper.hoverResult(1)
+
+  let selectElemPosition = await autocompleteHelper.getSelectedElementPos()
+  expect(selectElemPosition).toEqual(0)
+
+  const searchValue = await autocompleteHelper.getSearchInputValue()
+  expect(searchValue.trim()).toEqual(TypedSearch)
+
+  await autocompleteHelper.clickResult(1)
+  const selectedSearchValue = await autocompleteHelper.getSearchInputValue()
+  let expectedLabelName = mockAutocomplete.features[0].properties.geocoding.name
+  expect(selectedSearchValue).toEqual(expectedLabelName)
 })
 
 test('move to on click', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   let map_position_before = await page.evaluate(() => {
     return window.MAP_MOCK.center
   })
@@ -70,6 +128,7 @@ test('move to on click', async () => {
 
 test('bbox & center', async () => {
   expect.assertions(3)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete/)
   await page.goto(APP_URL)
   await page.keyboard.type('test')
   await wait(100)

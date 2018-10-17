@@ -58,6 +58,7 @@ var autoComplete = (function(){
       that.items = []
       that.cache = {};
       that.last_val = '';
+      that.sourcePending = null
 
       that.updateSC = function(resize, next){
         var rect = that.getBoundingClientRect();
@@ -127,12 +128,12 @@ var autoComplete = (function(){
       var suggest = function(data, queryTerm){
         that.items = data
         var val = that.value;
-        if (queryTerm) {
+        if (queryTerm && data !== null) {
           // 'data' is the 'source' response based on 'queryTerm'
           // that may be differennt from 'val' (due to request latency).
           that.cache[queryTerm] = data;
         }
-        if (data.length && val.length >= o.minChars) {
+        if (data && data.length && val.length >= o.minChars) {
           var s = '';
           for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
           that.sc.innerHTML = s;
@@ -199,9 +200,21 @@ var autoComplete = (function(){
                     if (part in that.cache && !that.cache[part].length) { suggest([]); return; }
                   }
                 }
-
               }
-              that.timer = setTimeout(function(){ o.source(val, suggest) }, o.delay);
+              that.timer = setTimeout(function(){
+                if(that.sourcePending) {
+                  that.sourcePending.abort();
+                  that.sourcePending = null
+                }
+                that.sourcePending = o.source(val);
+                that.sourcePending.then((source) => {
+                  suggest(source, val);
+                  that.sourcePending = null
+                }).catch((e) => {
+                  console.log(e) /* should be handled by a telemetry logger */
+                  that.sourcePending = null
+                })
+              }, o.delay);
             }
           } else {
             that.last_val = val;
