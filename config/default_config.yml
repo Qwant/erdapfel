@@ -6,6 +6,9 @@ server:
   acceptPostedLogs: true
   acceptPostedEvents: true
   enablePrometheus: true
+  services:
+    idunn:
+      url: # client url will be used by default
 
 
 # Services

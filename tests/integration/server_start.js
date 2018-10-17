@@ -1,8 +1,5 @@
 const App = require( './../../bin/app')
-
 const configBuilder = require('@qwant/nconf-builder')
-const config = configBuilder.get()
-global.appServer = new App(config)
 const nock = require('nock')
 
 nock(/idunn_test\.test/)
@@ -15,13 +12,16 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404)
 
+
 configBuilder.set('store:name', 'local_store')
 configBuilder.set('mapStyle:baseMapUrl', "[]")
 configBuilder.set('mapStyle:poiMapUrl', "[]")
 configBuilder.set('services:idunn:url', 'http://idunn_test.test')
-configBuilder.set('services:geocoder:url', `http://localhost:${config.PORT}/autocomplete`)
-configBuilder.set('services:poi:url', `http://localhost:${config.PORT}/poi`)
+configBuilder.set('services:geocoder:url', `http://geocoder.test/autocomplete`)
 configBuilder.set('system:evalFiles', false)
+
+const config = configBuilder.get()
+global.appServer = new App(config)
 
 module.exports = async function() {
   console.log(`Start test on PORT : ${config.PORT}`)
