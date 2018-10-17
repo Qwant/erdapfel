@@ -9,6 +9,9 @@ import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
 import loadImage from '../libs/image_loader'
+import nconf from "../../local_modules/nconf_getter"
+
+const baseUrl = nconf.get().system.baseUrl
 
 function Scene() {
   UrlState.registerHash(this, 'map')
@@ -134,7 +137,7 @@ Scene.prototype.addMarker = async function(poi) {
   if(this.currentMarker !== null) {
     this.currentMarker.remove()
   }
-  let image = await loadImage('/statics/images/map/pin_map.svg')
+  let image = await loadImage(`${baseUrl}statics/images/map/pin_map.svg`)
   let marker = new Marker({element : image, anchor : 'bottom'})
     .setLngLat(poi.getLngLat())
     .addTo(this.mb)

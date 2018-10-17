@@ -1,0 +1,28 @@
+.osm_contribute {
+  border-radius: 3px;
+  box-shadow: 0 0 2px rgba(0,0,0,.35);
+}
+
+.osm_contribute__logo {
+  display: block;
+  float: left;
+  margin: 15px 5px 15px 15px;
+  width: 32px;
+  height: 32px;
+}
+
+.osm_contribute__text_container {
+  float: left;
+  margin: 14px 15px 0 0;
+}
+
+.osm_contribute__title {
+  font-size: 14px;
+  color: #303234;
+}
+
+.osm_contribute__link {
+  display: block;
+  font-size: 14px;
+  color: #777;
+}

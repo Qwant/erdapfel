@@ -1,18 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="382" height="4" viewBox="0 0 382 4">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400px" height="4px" viewBox="0 0 400 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>BANDEAU</title>
+    <desc>Created with Sketch.</desc>
     <defs>
-        <path id="a" d="M3 0h376a3 3 0 0 1 3 3v1H0V3a3 3 0 0 1 3-3z"/>
+        <rect id="path-1" x="0" y="0" width="400" height="4"></rect>
     </defs>
-    <g fill="none" fill-rule="evenodd">
-        <mask id="b" fill="#fff">
-            <use xlink:href="#a"/>
-        </mask>
-        <use fill="#D8D8D8" xlink:href="#a"/>
-        <path fill="#73B852" fill-rule="nonzero" d="M-1.019-86.897h382V7.724h-382z" mask="url(#b)"/>
-        <path fill="#428BCA" fill-rule="nonzero" d="M99.83-86.897C93.426-51.617 85.7-19.716 76.942 7.724H44.821c4.93-29.332 8.905-61.098 11.775-94.62h43.233z" mask="url(#b)"/>
-        <path fill="#1BB7CF" fill-rule="nonzero" d="M57.045-86.897c-2.813 33.523-6.76 65.289-11.693 94.621h-46.37v-94.62h58.063z" mask="url(#b)"/>
-        <path fill="#82C363" fill-rule="nonzero" d="M228.181 7.724h-72.11c-11.279-25.547-21.307-57.448-29.756-94.62h84.858c4.592 34.198 10.323 65.964 17.008 94.62z" mask="url(#b)"/>
-        <path fill="#87C966" fill-rule="nonzero" d="M379.963-86.897V7.724h-96.774c11.318-25.547 21.383-57.448 29.862-94.62h66.912z" mask="url(#b)"/>
-        <path fill="#9DDC7D" fill-rule="nonzero" d="M314.768-86.897c-8.529 37.173-18.69 69.074-30.036 94.621H228.07c-6.749-28.656-12.57-60.422-17.206-94.62h103.904z" mask="url(#b)"/>
-        <path fill="#76BC54" fill-rule="nonzero" d="M382-86.897V7.724h-48.896c.572-32.576 2.098-64.207 4.539-94.62H382z" mask="url(#b)"/>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="@1438px---itineraire---dropdown-Partir-à" transform="translate(-18.000000, -104.000000)">
+            <g id="Group-2" transform="translate(18.000000, 104.000000)">
+                <g id="BANDEAU">
+                    <g>
+                        <g id="Rectangle-path-+-Shape-+-Shape-+-Shape-+-Shape-+-Shape-+-Shape-Mask">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Mask" fill="#D8D8D8" xlink:href="#path-1"></use>
+                            <rect id="Rectangle-path" fill="#73B852" fill-rule="nonzero" mask="url(#mask-2)" x="-1.06666667" y="-86.8965517" width="400" height="94.6206897"></rect>
+                            <path d="M104.533333,-86.8965517 C97.8293868,-51.6165517 89.7384169,-19.7158621 80.5686511,7.72413793 L46.9333333,7.72413793 C52.0961427,-21.6082759 56.2572129,-53.3737931 59.2624303,-86.8965517 L104.533333,-86.8965517 Z" id="Shape" fill="#428BCA" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                            <path d="M59.7333333,-86.8965517 C56.7870778,-53.3737931 52.6546675,-21.6082759 47.4891546,7.72413793 L-1.06666667,7.72413793 L-1.06666667,-86.8965517 L59.7333333,-86.8965517 Z" id="Shape" fill="#1BB7CF" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                            <path d="M238.933333,7.72413793 L163.424258,7.72413793 C151.615146,-17.8234483 141.113884,-49.7241379 132.266667,-86.8965517 L221.1235,-86.8965517 C225.931771,-52.697931 231.932492,-20.9324138 238.933333,7.72413793 Z" id="Shape" fill="#82C363" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                            <path d="M397.866667,-86.8965517 L397.866667,7.72413793 L296.533333,7.72413793 C308.384508,-17.8234483 318.923175,-49.7241379 327.801905,-86.8965517 L397.866667,-86.8965517 Z" id="Shape" fill="#87C966" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                            <path d="M329.6,-86.8965517 C320.669236,-49.7241379 310.029979,-17.8234483 298.14818,7.72413793 L238.816845,7.72413793 C231.749893,-20.9324138 225.653676,-52.697931 220.8,-86.8965517 L329.6,-86.8965517 Z" id="Shape" fill="#9DDC7D" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                            <path d="M400,-86.8965517 L400,7.72413793 L348.8,7.72413793 C349.399064,-24.8524138 350.996568,-56.4827586 353.552574,-86.8965517 L400,-86.8965517 Z" id="Shape" fill="#76BC54" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
     </g>
 </svg>

@@ -12,13 +12,13 @@
 .search_form__input {
   width: 330px;
   height: 68px;
-  padding: 8px 50px 10px 40px;
-  margin-left: 30px;
+  padding: 10px 16px 10px 82px;
+  margin-left: 0;
   margin-right: 40px;
   border: none;
   font-size: 18px;
   font-weight: normal;
-  color: $primary_text;
+  color: #353c52;
   box-shadow: none;
 }
 
@@ -45,8 +45,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 44px;
   right: 30px;
   top: 12px;
-  background: $background url(../images/not-active.svg) center no-repeat;
-  background-size: 20px 20px;
+  background: $background url(../images/magnifier.svg) center no-repeat;
   font-size: 14px;
   color: $primary_text;
   cursor: pointer;
@@ -157,27 +156,46 @@ input[type="search"]::-webkit-search-cancel-button {
     position: absolute;
     width: 100%;
     height: 48px;
-    padding: 0 80px 0 12px;
+    padding: 0 80px 0 50px;
     border-radius: 24px;
   }
 
+  .autocomplete_suggestions {
+    margin-top: 0;
+  }
+
   .top_bar--search_focus {
+    background: url("../images/panel_top.svg");
     .search_form {
       width: 100%;
-      top: 0;
+      top: 2px;
       left: 0;
       border-radius: 0;
+      height: 60px;
     }
 
     .search_form__input {
-      padding: 0 44px;
+      height: 60px;
+      padding: 3px 60px 0 58px;
       margin: 0;
+    }
+
+    .search_form__action {
+      top: 15px;
     }
 
     .search_form__clear {
       height: 50px;
       right: 40px;
-      top: 0;
+      top: 6px;
+    }
+
+    .search_form__logo {
+      width: 26px;
+      height: 26px;
+      background-size: 26px;
+      top: 15px;
+      left: 16px;
     }
   }
 

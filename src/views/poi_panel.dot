@@ -45,6 +45,19 @@
       <i class="icon-x"></i>
     </div>
   {{= this.PoiBlocContainer.render(this.poi) }}
+
+      <div class="osm_contribute">
+        <img class="osm_contribute__logo" src="./images/Openstreetmap_logo.svg">
+        <div class="osm_contribute__text_container">
+          <p class="osm_contribute__title">
+            {{= _('Qwant Maps uses OpenStreetMap') }}
+          </p>
+          <a class="osm_contribute__link" href="https://learnosm.org/" target="_blank">
+            <i class="icon-chevrons-right"></i>{{= _('ABOUT THE PROJECT') }}
+          </a>
+        </div>
+      </div>
+
   {{?}}
   </div>
   <div id="poi-loading-panel"></div>
