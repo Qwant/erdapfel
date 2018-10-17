@@ -15,12 +15,10 @@
   margin-left: 30px;
   margin-right: 40px;
   border: none;
-  box-shadow: none;
   font-size: 18px;
   font-weight: normal;
   color: $primary_text;
-  border-radius: 34px;
-  @include card_shadow();
+  box-shadow: none;
 }
 
 /* Disable Chrome custom 'cancel' button */
@@ -74,17 +72,18 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .autocomplete_suggestions {
   text-align: left;
-  cursor: default;
   border-top: 0;
   background: $background;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
-
+  margin-top: 8px;
   /* core styles should not be changed */
   position: absolute;
   display: none;
   z-index: 9999;
   overflow: hidden;
   overflow-y: auto;
+  cursor: default;
+  @include long_shadow();
 }
 
 .autocomplete_address {
