@@ -7,13 +7,6 @@
   @include card_radius();
 }
 
-.favorite_panel__handle {
-  background: #7c95ba;
-  height:30px;
-  width:100%;
-  display: none;
-}
-
 .favorites_panel__scroll {
   position: relative;
   overflow-y: auto;
@@ -53,7 +46,7 @@
 
 .favorite_panel__item__info {
   height: 70px;
-  padding: 18px 0 10px 0;
+  padding: 16px 0 10px 0;
 }
 
 .favorite_panel__item__more_button {
@@ -109,6 +102,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: $primary_text;
+  font-weight: bold;
 }
 
 .favorite_panel__item__image {
@@ -116,7 +110,7 @@
   height: 60px;
   float: left;
   font-size: 32px;
-  padding-left: 20px;
+  padding-left: 14px;
 }
 
 .favorite_panel__item__image--small {
@@ -130,12 +124,10 @@
 }
 
 .favorite_panel__container__title {
-  margin-bottom: 10px;
   padding: 14px 20px;
   font-size: 12px;
   font-weight: normal;
-  color: $primary_text;
-  border-bottom: solid 1px $separator_color;
+  color: $secondary_text_clear;
 }
 
 .favorite_panel__item__desc {
@@ -244,6 +236,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     background: $background;
     margin:8px 0;
     @include card_shadow();
+    @include card_radius();
   }
 
   .favorites_panel__close {
@@ -267,7 +260,8 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
   }
 
   .favorite_panel__container__title {
-    margin-left: 20px;
+    margin-left: 0;
+    padding-bottom: 2px;
   }
 
   .favorite_panel__close {

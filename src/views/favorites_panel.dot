@@ -1,5 +1,4 @@
 <div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
-  <div id="favorite-panel-handle" class="favorite_panel__handle"></div>
   <div class="favorites_panel__scroll">
     <p class="favorites_panel__close" {{= click(this.close, this) }}>
       <i class="icon-x"></i>

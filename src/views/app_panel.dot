@@ -10,4 +10,3 @@
 {{= this.errorPanel.render() }}
 {{= this.masqPanel.render() }}
 {{= this.sharePanel.render() }}
-{{= this.openDataPanel.render() }}

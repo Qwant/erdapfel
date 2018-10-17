@@ -6,7 +6,6 @@ import PoiPanel from "./poi_panel";
 import ErrorHandlerPanel from "./error_panel";
 import ServicePanel from './service_panel';
 import Share from "./share"
-import OpenDataPanel from "./open_data";
 import Autocomplete from "../adapters/autocomplete";
 import TopBar from "./top_bar";
 
@@ -16,7 +15,6 @@ function AppPanel(parent) {
   this.autocomplete = new Autocomplete('#search')
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
-  this.openDataPanel = new OpenDataPanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
   this.errorPanel = new ErrorHandlerPanel()

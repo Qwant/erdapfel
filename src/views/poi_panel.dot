@@ -47,7 +47,7 @@
   {{= this.PoiBlocContainer.render(this.poi) }}
 
       <div class="osm_contribute">
-        <img class="osm_contribute__logo" src="./images/Openstreetmap_logo.svg">
+        <div class="osm_contribute__logo"></div>
         <div class="osm_contribute__text_container">
           <p class="osm_contribute__title">
             {{= _('Qwant Maps uses OpenStreetMap') }}
