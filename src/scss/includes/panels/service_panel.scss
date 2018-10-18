@@ -29,8 +29,9 @@
 
 .service_panel__item__text {
   cursor: pointer;
+  font-weight: 500;
+  font-family: Asap;
   font-size: 13px;
-  font-weight: normal;
   color: $secondary_text;
 }
 
@@ -65,4 +66,3 @@
     @include card_shadow();
   }
 }
-

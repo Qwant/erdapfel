@@ -1,0 +1,33 @@
+$font_global: 'Asap', sans-serif;
+@font-face {
+    font-family: Asap;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: local("Asap Regular "),
+        local("Asap-Regular"),
+        url('../fonts/asap/asap-latin-400.woff2') format('woff2'),
+        url('../fonts/asap/asap-latin-400.woff') format('woff');
+}
+
+@font-face {
+    font-family: Asap;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: local("Asap Medium "),
+        local("Asap-Medium"),
+        url('../fonts/asap/asap-latin-500.woff2') format('woff2'),
+        url('../fonts/asap/asap-latin-500.woff') format('woff');
+}
+
+@font-face {
+    font-family: Asap;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: local("Asap Bold "),
+        local("Asap-Bold"),
+        url('../fonts/asap/asap-latin-700.woff2') format('woff2'),
+        url('../fonts/asap/asap-latin-700.woff') format('woff');
+}

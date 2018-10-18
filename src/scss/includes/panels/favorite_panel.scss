@@ -61,7 +61,7 @@
 }
 
 .favorite_panel__item__more_button:hover {
-  background: $background_alternate;
+  background: $separator_color;
   color: $primary_alternative_text;
 }
 
@@ -102,7 +102,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: $primary_text;
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
 }
 
 .favorite_panel__item__image {
@@ -155,7 +156,7 @@
 }
 
 .favorite_panel__item__more_container:hover {
-  background: $background_active;
+  background: $surface;
   border-left: 4px solid #f95d00;
   padding-left: 0;
 }
@@ -210,7 +211,8 @@
 }
 
 INPUT[type=checkbox]:checked + .filter_panel__label {
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
   background-color: $background_active;
 }
 

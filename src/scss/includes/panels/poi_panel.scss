@@ -77,7 +77,8 @@ $BLOCK_INDENT: 60px;
 .poi_panel__title {
   width: 350px;
   padding: 18px 0 0 $BLOCK_INDENT;
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
   color: $primary_text;
   font-size: 15px;
 }
@@ -194,7 +195,8 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__hours--current {
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
 }
 
 .poi_panel__hour__extend {
@@ -351,7 +353,8 @@ $BLOCK_INDENT: 60px;
   width: 285px;
   font-size: 14px;
   color: $secondary_text;
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
