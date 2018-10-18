@@ -1,11 +1,9 @@
 const { GeolocateControl } = require('mapbox-gl--ENV')
 
-let supportsGeolocation;
-
 function checkGeolocationSupport(callback) {
-  if (supportsGeolocation !== undefined) {
-    callback(supportsGeolocation)
-  } else if (window.navigator.permissions !== undefined) {
+  let supportsGeolocation
+
+  if (window.navigator.permissions !== undefined) {
     window.navigator.permissions.query({ name: 'geolocation' }).then((p) => {
       supportsGeolocation = p.state !== 'denied'
       callback(supportsGeolocation)
