@@ -2,6 +2,7 @@ const path = require('path')
 const yaml = require('node-yaml')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const babelConf = require('./babel.config')
 
 const getBuildMode = function(argv){
   const isTestMode = process.env.TEST === 'true'
@@ -90,9 +91,7 @@ const mainJsChunkConfig  = (buildMode) => {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            options : babelConf(buildMode)
           },
           {loader: 'dot-loader'}
         ]
@@ -101,9 +100,7 @@ const mainJsChunkConfig  = (buildMode) => {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            options : babelConf(buildMode)
           },
           {loader: '@qwant/config-sanitizer-loader'},
           {loader: 'json-loader'},
@@ -114,9 +111,7 @@ const mainJsChunkConfig  = (buildMode) => {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            options : babelConf(buildMode)
           }
           ],
         exclude: [
@@ -152,9 +147,7 @@ const mapJsChunkConfig = (buildMode) => {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            options : babelConf(buildMode)
           },
           {loader : 'dot-loader'}
         ]
@@ -184,9 +177,7 @@ const mapJsChunkConfig = (buildMode) => {
         use : [
           {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            options : babelConf(buildMode)
           }
 
         ],
