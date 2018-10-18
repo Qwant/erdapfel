@@ -12,7 +12,8 @@
 .service_panel__title {
   color: $primary_text;
   font-size: 14px;
-  font-weight: normal;
+  font-family: Asap;
+  font-weight: 500;
   border-bottom: 1px solid #e0e1e6;
   padding: 20px 0 10px;
   margin: 10px;
@@ -29,8 +30,6 @@
 
 .service_panel__item__text {
   cursor: pointer;
-  font-weight: 500;
-  font-family: Asap;
   font-size: 13px;
   color: $secondary_text;
 }
