@@ -9,6 +9,7 @@ server:
   services:
     idunn:
       url: # client url will be used by default
+      timeout: 2000 # ms
 
 
 # Services

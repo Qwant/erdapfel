@@ -5,11 +5,13 @@ const ogMetas = [
   {name : 'image', content : './statics/images/qwant-logo.svg'}
 ]
 
-const idunnTimeout = 2000 // ms
-
 module.exports = function(config) {
   // Use url from server config if defined
   const idunnBaseUrl = config.server.services.idunn.url || config.services.idunn.url
+  const idunnTimeout = Number(config.server.services.idunn.timeout)
+  if(isNaN(idunnTimeout)) {
+    throw new Error(`Invalid config: idunn timeout is set to "${config.server.services.idunn.timeout}"`)
+  }
 
   async function getPoi(poiId, locale) {
     let id = poiId
