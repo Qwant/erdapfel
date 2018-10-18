@@ -6,6 +6,10 @@ server:
   acceptPostedLogs: true
   acceptPostedEvents: true
   enablePrometheus: true
+  services:
+    idunn:
+      url: # client url will be used by default
+      timeout: 2000 # ms
 
 
 # Services

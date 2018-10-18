@@ -6,6 +6,13 @@ const ogMetas = [
 ]
 
 module.exports = function(config) {
+  // Use url from server config if defined
+  const idunnBaseUrl = config.server.services.idunn.url || config.services.idunn.url
+  const idunnTimeout = Number(config.server.services.idunn.timeout)
+  if(isNaN(idunnTimeout)) {
+    throw new Error(`Invalid config: idunn timeout is set to "${config.server.services.idunn.timeout}"`)
+  }
+
   async function getPoi(poiId, locale) {
     let id = poiId
     let atPos = poiId.indexOf('@')
@@ -14,8 +21,12 @@ module.exports = function(config) {
     }
 
     return new Promise((resolve, reject) => {
-      let idunnUrl =`${config.services.idunn.url}/v1/pois/${id}?lang=${locale.code}`
-      request(idunnUrl, {json : true}, (error, response, body) => {
+      let idunnUrl =`${idunnBaseUrl}/v1/pois/${id}?lang=${locale.code}`
+      request({
+        url: idunnUrl,
+        timeout: idunnTimeout,
+        json : true,
+      }, (error, response, body) => {
         if(error) {
           reject(error)
         } else if(response.statusCode === 404) {
