@@ -61,9 +61,9 @@ test('remove favorite using favorite panel', async () => {
 
   /* remove it */
 
-  await page.waitForSelector('.icon-more-horizontal')
-  await page.click('.icon-more-horizontal')
-  await page.click('.icon-trash')
+  await page.waitForSelector('.favorite_panel__item__more_button')
+  await page.click('.favorite_panel__item__more_button')
+  await page.click('.favorite_panel__item__more__line:nth-child(2)')
 
   items = await page.waitForSelector('.favorite_panel__container__empty')
   expect(items).not.toBeNull()

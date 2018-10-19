@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-npm run build
+npm run build -- --mode=production
 npm run i18n
 pip3 install --user pipenv
 pipenv install transifex-client
