@@ -37,7 +37,6 @@
 
 .favorite_panel__items {
   font-size: 18px;
-  width: 385px;
 }
 
 .favorite_panel__go {
@@ -45,8 +44,7 @@
 }
 
 .favorite_panel__item__info {
-  height: 70px;
-  padding: 16px 0 10px 0;
+  padding: 16px 0 17px 0;
 }
 
 .favorite_panel__item__more_button {
@@ -88,7 +86,6 @@
 
 .favorite_panel__item__more__line:hover {
   color : $secondary_text;
-  cursor: pointer;
 }
 
 .favorite_panel__item__more__icon {
@@ -108,10 +105,13 @@
 
 .favorite_panel__item__image {
   width: 64px;
-  height: 60px;
   float: left;
-  font-size: 32px;
+  font-size: 38px;
   padding-left: 14px;
+}
+
+.favorite_panel__item__image.icon:before{
+  line-height: 28px;
 }
 
 .favorite_panel__item__image--small {

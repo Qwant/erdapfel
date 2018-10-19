@@ -92,7 +92,7 @@ $BLOCK_INDENT: 60px;
 .poi_panel__info__section:before {
   content: '';
   display: block;
-  width: 338px;
+  width: calc(100% - 2 * 28px);
   height: 1px;
   margin-top: 8px;
   background: $separator_color;
@@ -111,7 +111,7 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__address {
-  padding: 8px 0 0 $BLOCK_INDENT;
+  padding: 8px 28px 0 $BLOCK_INDENT;
   font-size: 16px;
   color: $primary_text;
 }
