@@ -1,4 +1,4 @@
-import {Map, Marker, LngLat} from 'mapbox-gl--ENV'
+import {Map, Marker, LngLat, ScaleControl} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
@@ -46,6 +46,12 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
+    const scaleMetric = new ScaleControl({
+      maxWidth: 72,
+      unit: 'metric'
+    })
+    this.mb.addControl(scaleMetric, 'bottom-right')
+
     const extendedControl = new ExtendedControl()
 
     this.mb.addControl(extendedControl, 'bottom-right')

@@ -8,3 +8,29 @@
   background-color: #54c07c;
   color: #fff;
 }
+
+.mapboxgl-ctrl {
+  &.mapboxgl-ctrl-scale {
+    background: none;
+    border: solid 1px #353c52;
+    border-top: none;
+    color: #353c52;
+    height: 15px;
+    line-height: 15px;
+  }
+}
+
+@media (min-width: 640px) {
+  .mapboxgl-ctrl {
+    &.mapboxgl-ctrl-attrib {
+      padding: 0 5px 0 82px;
+    }
+
+    &.mapboxgl-ctrl-scale {      
+      bottom: -8px;
+      position: absolute;
+      right: 328px;
+    }
+  }
+}
+
