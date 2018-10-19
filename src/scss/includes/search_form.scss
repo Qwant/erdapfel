@@ -162,6 +162,10 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-left: 0;
   }
 
+  .search_form__input:invalid {
+    padding-right: 8px;
+  }
+
   .autocomplete_suggestions {
     margin-top: -1px;
   }
@@ -194,6 +198,10 @@ input[type="search"]::-webkit-search-cancel-button {
       height: 60px;
       padding: 3px 60px 0 58px;
       margin: 0;
+    }
+
+    .search_form__input:invalid {
+      padding-right: 8px;
     }
 
     .search_form__action {
