@@ -3,6 +3,7 @@ const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 import {initBrowser, wait, store, clearStore} from '../tools'
 import {toggleFavoritePanel} from '../favorites_tools'
+import {version} from '../../../config/constants.yml'
 
 let browser
 let page
@@ -38,7 +39,9 @@ test('restore favorite from localStorage', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   const testTitle = 'demo_fav'
-  store(page, 'demo_fav', {id : 0, name : testTitle})
+  page.evaluate((testTitle) => {
+    fire('store_poi', new Poi(1, testTitle, '', {lat : 43, lng : 2}, '', '', []))
+  }, testTitle)
   await wait(100)
   await page.click('.service_panel__item__fav')
   await page.waitForSelector('.favorite_panel__item__title')

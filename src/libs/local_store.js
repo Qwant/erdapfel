@@ -1,11 +1,14 @@
 function LocalStore() {}
 
-LocalStore.prototype.getAll = async function () {
+LocalStore.prototype.getAllPois = async function () {
   return new Promise((resolve) => {
     try {
-      const items = Object.keys(localStorage).map((k) => {
-        return JSON.parse(localStorage.getItem(k))
-      })
+      const items = Object.keys(localStorage).reduce((filtered, k) => {
+        if (Poi.isPoiCompliantKey(k)) {
+          filtered.push(JSON.parse(localStorage.getItem(k)))
+        }
+        return filtered
+      }, [])
       resolve(items)
     } catch (err) {
       console.error(`localStorage ${err}`)

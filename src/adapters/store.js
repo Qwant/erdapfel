@@ -18,9 +18,9 @@ function Store() {
   })
 }
 
-Store.prototype.getAll = async function() {
+Store.prototype.getAllPois = async function() {
   return new Promise((resolve, reject) => {
-    abstractStore.getAll().then((masqData) => {
+    abstractStore.getAllPois().then((masqData) => {
       resolve(masqData)
     }).catch(function (error) {
       fire('error_h' , 'store ' + error)
@@ -31,7 +31,7 @@ Store.prototype.getAll = async function() {
 
 Store.prototype.isRegistered = async function () {
   return new Promise((resolve) => {
-    abstractStore.getAll()
+    abstractStore.getAllPois()
       .then(() => resolve(true))
       .catch((e) => {
       if(e.message === 'UNREGISTERED') {

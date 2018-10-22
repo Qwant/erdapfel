@@ -30,6 +30,11 @@ Poi.prototype.getKey = function () {
   return `qmaps_v${version}_favorite_place_${this.id}`
 }
 
+Poi.isPoiCompliantKey = function (k) {
+  const keyPattern = new RegExp('qmaps_v' + version + '_favorite_place_*')
+  return k.match(keyPattern) != null
+}
+
 Poi.prototype.computeZoom = function() {
   let zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
     this.type === zoomType.type
