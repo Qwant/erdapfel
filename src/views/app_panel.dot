@@ -10,3 +10,5 @@
 {{= this.errorPanel.render() }}
 {{= this.masqPanel.render() }}
 {{= this.sharePanel.render() }}
+{{= this.geolocationModal.render() }}
+{{= this.geolocationDeniedModal.render() }}

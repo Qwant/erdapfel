@@ -1,0 +1,43 @@
+#share_url_data {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 10px 12px;
+  border-radius: 3px;
+  background-color: $background;
+  border: solid 1px $separator_color;
+  font-size: 14px;
+  font-style: italic;
+  color: $primary_text;
+}
+
+.share__link {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  color: $secondary_text;
+  height: 22px;
+  vertical-align: middle;
+}
+
+.share__icons {
+  display: inline-block;
+  font-size: 22px;
+  padding-right: 6px;
+}
+
+.share__copy_link {
+  font-size: 12px;
+  font-weight: bold;
+  color: $secondary_text;
+  cursor: pointer;
+}
+
+.share__copy_status {
+  color: $secondary_text;
+  transition: color .2s;
+}
+
+.share__copy_status--hidden {
+  color: transparent;
+}

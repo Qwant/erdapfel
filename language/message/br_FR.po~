@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-22 15:09+0200\n"
+"POT-Creation-Date: 2018-10-22 14:59+0200\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/"
@@ -1035,16 +1035,4 @@ msgstr ""
 
 #: public/build/javascript/bundle.js:4078
 msgid "GEOLOCATION ACCEPT BUTTON"
-msgstr ""
-
-#: public/build/javascript/bundle.js:4126
-msgid "GEOLOCATION DENIED TITLE"
-msgstr ""
-
-#: public/build/javascript/bundle.js:4126
-msgid "GEOLOCATION DENIED SUBTITLE"
-msgstr ""
-
-#: public/build/javascript/bundle.js:4126
-msgid "GEOLOCATION DENIED BUTTON"
 msgstr ""
