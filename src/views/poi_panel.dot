@@ -52,7 +52,7 @@
           <p class="osm_contribute__title">
             {{= _('Qwant Maps uses OpenStreetMap') }}
           </p>
-          <a class="osm_contribute__link" href="https://learnosm.org/" target="_blank">
+          <a class="osm_contribute__link" href="https://learnosm.org/" rel="noopener noreferrer" target="_blank">
             <i class="icon-chevrons-right osm_contribute__icon"></i>
             <span class="osm_contribute__about">{{= _('ABOUT THE PROJECT') }}</span>
           </a>
