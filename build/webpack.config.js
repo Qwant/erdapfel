@@ -11,10 +11,10 @@ const getBuildMode = function(argv){
   if(isTestMode) {
     return 'test'
   }
-  if(argvMode === 'production') {
-    return 'production'
+  if(argvMode === 'development') {
+    return 'development'
   }
-  return 'development'
+  return 'production'
 }
 
 
