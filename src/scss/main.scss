@@ -7,7 +7,7 @@
 @import "includes/app";
 @import "includes/error";
 @import "includes/top_bar";
-@import "includes/autocomplete";
+@import "includes/search_form";
 @import "includes/map_theme";
 
 // panels
@@ -16,7 +16,6 @@
 @import "includes/panels/poi_panel";
 @import "includes/panels/register";
 @import "includes/panels/share";
-@import "includes/panels/open_data";
 
 // z-index
 @import "includes/z_index";

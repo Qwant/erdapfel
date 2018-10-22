@@ -3,7 +3,7 @@
 }
 
 .search_form {
-  z-index: 1;
+  z-index: 3;
 }
 
 .share_overlay {
@@ -12,6 +12,10 @@
 
 .share {
   z-index: 3;
+}
+
+.service_panel_mobile {
+  z-index: 2;
 }
 
 .favorite_panel__item__more {
@@ -23,5 +27,9 @@
 }
 
 .poi_panel, .favorites_panel {
+  z-index: 2;
+}
+
+.map_control_group {
   z-index: 2;
 }

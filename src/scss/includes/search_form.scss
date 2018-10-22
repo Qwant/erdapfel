@@ -1,20 +1,25 @@
 .search_form {
   position: relative;
   display: flex;
+  margin: 18px 0 0 18px;
+  background: #fff;
+  @include long_shadow();
+  border-radius: 34px;
+  width: 400px;
+  pointer-events: auto;
 }
 
 .search_form__input {
-  background: #fff;
-  width: 400px;
+  width: 330px;
   height: 68px;
-  padding: 8px 85px 10px 70px;
+  padding: 10px 38px 10px 54px;
+  margin-left: 28px;
+  margin-right: 40px;
   border: none;
-  box-shadow: none;
   font-size: 18px;
   font-weight: normal;
-  color: $primary_text;
-  border-radius: 34px;
-  @include card_shadow();
+  color: #353c52;
+  box-shadow: none;
 }
 
 /* Disable Chrome custom 'cancel' button */
@@ -40,16 +45,16 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 44px;
   right: 30px;
   top: 12px;
-  background: $background url(../images/not-active.svg) center no-repeat;
-  background-size: 20px 20px;
+  background: $background url(../images/magnifier.svg) center no-repeat;
   font-size: 14px;
   color: $primary_text;
+  cursor: pointer;
 }
 
 .search_form__clear {
   display: block;
   height: 60px;
-  width: 60px;
+  width: 50px;
   right: 50px;
   top: 4px;
   color: $secondary_text;
@@ -67,17 +72,19 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .autocomplete_suggestions {
   text-align: left;
-  cursor: default;
   border-top: 0;
   background: $background;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
-
+  margin-top: 8px;
   /* core styles should not be changed */
   position: absolute;
   display: none;
   z-index: 9999;
   overflow: hidden;
   overflow-y: auto;
+  cursor: default;
+  @include long_shadow();
+  @include card_radius();
 }
 
 .autocomplete_address {
@@ -92,8 +99,8 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestion {
-  transition: background-color .2s;
   position: relative;
+  max-height: 100vh;
   padding: 7px 0 7px 20px;
   line-height: 23px;
   white-space: nowrap;
@@ -102,7 +109,7 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: 1.02em;
   color: $secondary_text;
   background-color: $background;
-  max-height: 100vh;
+  transition: background-color .2s;
 }
 
 .autocomplete-icon {
@@ -131,40 +138,90 @@ input[type="search"]::-webkit-search-cancel-button {
 @media (max-width: 640px) {
 
   .search_form__clear {
-    font-size: 24px;
-    color: $secondary_text;
-    width: 40px;
+    height: 50px;
+    width: 28px;
+    top:0;
+    font-size: 14px;
+    color: #5c6f84;
   }
 
   .search_form {
-    width: 100%;
+    height: 48px;
+    width: calc(100vw - 72px);
+    left: 8px;
+    top:16px;
     margin: 0;
-    top:0;
-    left: 0;
-    height: 70px;
   }
 
   .search_form__input {
-    width: calc(100vw - 16px);
-    height: 48px;
-    left: 8px;
-    top:10px;
     position: absolute;
-    padding: 0 80px 0 50px;
+    width: 100%;
+    height: 48px;
+    padding: 0 68px 0 50px;
     border-radius: 24px;
+    margin-left: 0;
+  }
+
+  .search_form__input:invalid {
+    padding-right: 8px;
+  }
+
+  .autocomplete_suggestions {
+    margin-top: -1px;
   }
 
   .search_form__logo {
-    width: 30px;
-    height: 30px;
-    background-size: 30px 30px;
-    top: 20px;
-    left: 18px;
+    width: 34px;
+    height: 34px;
+    top: 7px;
+    left: 8px;
+    background-size: 34px 34px;
   }
 
   .search_form__action {
-    right: 18px;
-    top: 20px;
     height: 30px;
+    right: 12px;
+    top: 10px;
   }
+
+  .top_bar--search_focus {
+    background: url("../images/panel_top.svg");
+    .search_form {
+      width: 100%;
+      top: 4px;
+      left: 0;
+      border-radius: 0;
+      height: 60px;
+    }
+
+    .search_form__input {
+      height: 60px;
+      padding: 3px 60px 0 58px;
+      margin: 0;
+    }
+
+    .search_form__input:invalid {
+      padding-right: 8px;
+    }
+
+    .search_form__action {
+      top: 15px;
+    }
+
+    .search_form__clear {
+      height: 50px;
+      right: 40px;
+      top: 6px;
+    }
+
+    .search_form__logo {
+      width: 26px;
+      height: 26px;
+      background-size: 26px;
+      top: 15px;
+      left: 16px;
+    }
+  }
+
+
 }

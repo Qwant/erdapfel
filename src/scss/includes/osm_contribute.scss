@@ -1,0 +1,62 @@
+.osm_contribute {
+  width: calc(100% - 2 * 28px);
+  height: 55px;
+  margin: 16px 0 0 25px;
+  border: solid 1px $separator_color;
+  @include card_radius();
+}
+
+.osm_contribute__logo {
+  display: block;
+  float: left;
+  margin: 7px;
+  width: 45px;
+  height: 45px;
+  background: url("../images/openstreetmap.svg");
+  background-size: 45px;
+}
+
+.osm_contribute__text_container {
+  float: left;
+  margin: 10px 15px 0 0;
+}
+
+.osm_contribute__title {
+  font-size: 12px;
+  color: $secondary_text;
+}
+
+.osm_contribute__link {
+  display: inline-block;
+  font-size: 12px;
+  color: $secondary_text;
+  .icon-chevrons-right {
+    font-size: 18px;
+  }
+}
+
+.osm_contribute__link:hover {
+  text-decoration: none;
+  border-bottom: 1px solid $secondary_text_clear;
+}
+
+.osm_contribute__icon {
+  display: inline-block;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.osm_contribute__about {
+  display: inline-block;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+@media (max-width: 350px) {
+  .osm_contribute__logo {
+    display: none;
+  }
+  .osm_contribute__text_container {
+    margin-left: 8px;
+  }
+}

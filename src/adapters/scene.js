@@ -1,5 +1,6 @@
 import {Map, Marker, LngLat} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
+import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
 import Poi from "../mapbox/poi"
@@ -7,7 +8,10 @@ import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
+import loadImage from '../libs/image_loader'
+import nconf from "../../local_modules/nconf_getter"
 
+const baseUrl = nconf.get().system.baseUrl
 
 function Scene() {
   UrlState.registerHash(this, 'map')
@@ -47,8 +51,10 @@ Scene.prototype.initMapBox = function () {
 
   this.mb.on('load', () => {
     const extendedControl = new ExtendedControl()
+    const mobileCompassControl = new MobileCompassControl()
 
     this.mb.addControl(extendedControl, 'bottom-right')
+    this.mb.addControl(mobileCompassControl, 'top-right')
 
     interactiveLayers.forEach((interactiveLayer) => {
       this.mb.on('mouseenter', interactiveLayer, () => {
@@ -127,11 +133,12 @@ Scene.prototype.fitMap = function(poi, options = {}) {
   }
 }
 
-Scene.prototype.addMarker = function(poi) {
+Scene.prototype.addMarker = async function(poi) {
   if(this.currentMarker !== null) {
     this.currentMarker.remove()
   }
-  let marker = new Marker()
+  let image = await loadImage(`${baseUrl}statics/images/map/pin_map.svg`)
+  let marker = new Marker({element : image, anchor : 'bottom'})
     .setLngLat(poi.getLngLat())
     .addTo(this.mb)
   this.currentMarker = marker

@@ -3,7 +3,6 @@
  */
 import Ajax from "../libs/ajax"
 import nconf from '@qwant/nconf-getter'
-import PanelManager from "../proxies/panel_manager"
 import {version} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
 const serviceConfig = nconf.get().services

@@ -77,9 +77,10 @@ $BLOCK_INDENT: 60px;
 .poi_panel__title {
   width: 350px;
   padding: 18px 0 0 $BLOCK_INDENT;
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
   color: $primary_text;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .poi_panel__info__section__title {
@@ -91,7 +92,7 @@ $BLOCK_INDENT: 60px;
 .poi_panel__info__section:before {
   content: '';
   display: block;
-  width: 338px;
+  width: calc(100% - 2 * 28px);
   height: 1px;
   margin-top: 8px;
   background: $separator_color;
@@ -110,7 +111,7 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__address {
-  padding: 8px 0 0 $BLOCK_INDENT;
+  padding: 8px 28px 0 $BLOCK_INDENT;
   font-size: 16px;
   color: $primary_text;
 }
@@ -147,6 +148,7 @@ $BLOCK_INDENT: 60px;
   width: calc(100% - 20px);
   margin-top: 8px;
   font-size: 15px;
+  color: $primary_text;
 }
 
 .poi_panel__info__hours .hours {
@@ -194,7 +196,8 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__hours--current {
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
 }
 
 .poi_panel__hour__extend {
@@ -351,7 +354,8 @@ $BLOCK_INDENT: 60px;
   width: 285px;
   font-size: 14px;
   color: $secondary_text;
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -448,3 +452,5 @@ $BLOCK_INDENT: 60px;
     width: 100%;
   }
 }
+
+@import "../osm_contribute";

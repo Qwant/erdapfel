@@ -7,13 +7,6 @@
   @include card_radius();
 }
 
-.favorite_panel__handle {
-  background: #7c95ba;
-  height:30px;
-  width:100%;
-  display: none;
-}
-
 .favorites_panel__scroll {
   position: relative;
   overflow-y: auto;
@@ -44,7 +37,6 @@
 
 .favorite_panel__items {
   font-size: 18px;
-  width: 385px;
 }
 
 .favorite_panel__go {
@@ -52,8 +44,7 @@
 }
 
 .favorite_panel__item__info {
-  height: 70px;
-  padding: 18px 0 10px 0;
+  padding: 16px 0 17px 0;
 }
 
 .favorite_panel__item__more_button {
@@ -68,7 +59,7 @@
 }
 
 .favorite_panel__item__more_button:hover {
-  background: $background_alternate;
+  background: $separator_color;
   color: $primary_alternative_text;
 }
 
@@ -95,7 +86,6 @@
 
 .favorite_panel__item__more__line:hover {
   color : $secondary_text;
-  cursor: pointer;
 }
 
 .favorite_panel__item__more__icon {
@@ -109,14 +99,19 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: $primary_text;
+  font-family: Asap;
+  font-weight: 700;
 }
 
 .favorite_panel__item__image {
   width: 64px;
-  height: 60px;
   float: left;
-  font-size: 32px;
-  padding-left: 20px;
+  font-size: 38px;
+  padding-left: 14px;
+}
+
+.favorite_panel__item__image.icon:before{
+  line-height: 28px;
 }
 
 .favorite_panel__item__image--small {
@@ -130,12 +125,10 @@
 }
 
 .favorite_panel__container__title {
-  margin-bottom: 10px;
   padding: 14px 20px;
   font-size: 12px;
   font-weight: normal;
-  color: $primary_text;
-  border-bottom: solid 1px $separator_color;
+  color: $secondary_text_clear;
 }
 
 .favorite_panel__item__desc {
@@ -163,7 +156,7 @@
 }
 
 .favorite_panel__item__more_container:hover {
-  background: $background_active;
+  background: $surface;
   border-left: 4px solid #f95d00;
   padding-left: 0;
 }
@@ -218,7 +211,8 @@
 }
 
 INPUT[type=checkbox]:checked + .filter_panel__label {
-  font-weight: bold;
+  font-family: Asap;
+  font-weight: 700;
   background-color: $background_active;
 }
 
@@ -244,6 +238,7 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
     background: $background;
     margin:8px 0;
     @include card_shadow();
+    @include card_radius();
   }
 
   .favorites_panel__close {
@@ -267,7 +262,8 @@ INPUT[type=checkbox]:checked + .filter_panel__label {
   }
 
   .favorite_panel__container__title {
-    margin-left: 20px;
+    margin-left: 0;
+    padding-bottom: 2px;
   }
 
   .favorite_panel__close {

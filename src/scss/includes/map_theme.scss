@@ -1,10 +1,99 @@
-
-.mapboxgl-ctrl .mapboxgl-ctrl-icon--active {
-  background-color: #97c0a1;
-  color: #fff;
+.map_control_group {
+  margin: 0 10px 10px 0;
+  float: right;
+  pointer-events: auto;
+  overflow: hidden;
+  background: #fff;
+  @include card_shadow();
+  @include card_radius();
 }
 
-.mapboxgl-ctrl .mapboxgl-ctrl-icon--active:hover {
-  background-color: #54c07c;
-  color: #fff;
+.map_control_group__button {
+  display: block;
+  padding: 0;
+  outline: none;
+  border: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  color: $primary_text;
+  font-size: 20px;
+}
+
+.map_control_group__button:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.map_control_group__button + .map_control_group__button {
+  border-top: 1px solid #ddd;
+}
+
+.map_control__compass__icon {
+  display: block;
+}
+
+.map_control__compass__icon:after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  display: block;
+  background: url("../images/map/compass.svg") no-repeat center;
+}
+
+.map_control__compass__icon--mobile:after {
+  background: url("../images/map/compass_red.svg") no-repeat center;
+}
+
+.map_control_group__button__compass--mobile {
+  display: none;
+}
+
+.map_control_group__button__compass {
+  display: block;
+}
+
+.mapboxgl-ctrl-top-right {
+  top: 176px;
+}
+
+@media(max-width: 640px) {
+  .map_control_group {
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .map_control_group__button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24px;
+    background: #fff;
+    @include long_shadow();
+  }
+
+  .map_control_group__button__zoom{
+    display: none;
+  }
+
+  .map_control_group__button__compass {
+    display: none;
+  }
+
+  .map_control_group__button__compass--mobile {
+    display: block;
+  }
+
+  .map_control__compass__icon--mobile:after {
+    width: 48px;
+    height: 48px;
+    background-size: 12px;
+  }
+}
+
+.compass-origin {
+  display: none;
 }

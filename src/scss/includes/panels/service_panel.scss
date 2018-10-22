@@ -4,7 +4,7 @@
   height: 100px;
   margin-top: 14px;
   background: url('../images/panel_top.svg') white repeat-x;
-  background-size: 100% 6px;
+  background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
 }
@@ -12,7 +12,8 @@
 .service_panel__title {
   color: $primary_text;
   font-size: 14px;
-  font-weight: normal;
+  font-family: Asap;
+  font-weight: 500;
   border-bottom: 1px solid #e0e1e6;
   padding: 20px 0 10px;
   margin: 10px;
@@ -30,7 +31,6 @@
 .service_panel__item__text {
   cursor: pointer;
   font-size: 13px;
-  font-weight: normal;
   color: $secondary_text;
 }
 
@@ -46,19 +46,22 @@
   .service_panel_mobile {
     display: block;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 0;
+    right: 0;
   }
 
   .service_panel_mobile__favorite {
     position: absolute;
-    height: 50px;
-    width: 50px;
-    bottom: 12px;
-    left: 8px;
+    height: 48px;
+    width: 48px;
+    top: 16px;
+    right: 8px;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 52px;
     background: #fff;
     border-radius: 50%;
+    color: $secondary_text;
     @include card_shadow();
   }
 }
-
