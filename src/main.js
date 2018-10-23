@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import I18n from './libs/i18n'
 import './libs/listen'
 import './libs/actions'

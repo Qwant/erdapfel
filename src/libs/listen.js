@@ -4,7 +4,8 @@
 
 (function Listen() {
   window.fire = function(name, params, ...additionalParams) {
-    let event = new CustomEvent(name, {detail : {params, additionalParams}})
+    let event = document.createEvent('CustomEvent')//new CustomEvent(name, {detail : {params, additionalParams}})
+    event.initCustomEvent(name, false, false, {params, additionalParams})
     window.dispatchEvent(event)
   }
   window.listen = function(name, cb) {

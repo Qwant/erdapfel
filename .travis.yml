@@ -16,7 +16,7 @@ addons:
     - python3-pip
 
 before_script:
-    - TEST=true npm run build
+    - TEST=true npm run build -- --mode=production
 
 
 deploy: #update translation strings on transifex
