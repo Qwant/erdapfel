@@ -7,9 +7,7 @@ export default class modal {
     this.panel = new Panel(this, ModalView)
     this.child = new Panel(child, v)
 
-    child.renderModal = () => {
-      return this.panel.render()
-    }
+    child.renderModal = () => this.panel.render()
   }
 
   open () {
