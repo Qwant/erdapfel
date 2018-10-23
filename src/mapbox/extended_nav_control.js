@@ -20,7 +20,7 @@ export default class ExtendedControl {
     this._map = map
     this._firstButtonsGroup.className = 'map_control_group'
     this._firstButtonsGroup.textContent = ''
-    this._secondButtonsGroup.className = 'map_control_group'
+    this._secondButtonsGroup.className = 'map_control_group mapboxgl-ctrl-group'
     this._secondButtonsGroup.textContent = ''
 
     const geolocControl = new GeolocControl({
