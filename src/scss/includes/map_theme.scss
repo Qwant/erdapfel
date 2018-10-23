@@ -1,6 +1,7 @@
 .map_control_group {
   margin: 0 10px 10px 0;
   float: right;
+  clear: both;
   pointer-events: auto;
   overflow: hidden;
   background: #fff;
@@ -65,18 +66,20 @@
     overflow: visible;
   }
 
-  .map_control_group__button {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 24px;
-    background: #fff;
-    @include long_shadow();
-  }
+  .mapboxgl-ctrl-group {
+    .map_control_group__button__zoom {
+      display: none;
+    }
 
-  .map_control_group__button__zoom{
-    display: none;
+    >button {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 24px;
+      background: #fff;
+      @include long_shadow();
+    }
   }
 
   .map_control_group__button__compass {
@@ -96,4 +99,36 @@
 
 .compass-origin {
   display: none;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
+  @extend [class^="icon-"];
+  @extend .icon-pin_geoloc;
+  background-image: none !important;
+  color: $primary_text;
+  font-size: 20px;
+
+  @media(max-width: 640px) {
+    font-size: 24px;
+  }
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate:disabled {
+  color: #aaa;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate.mapboxgl-ctrl-geolocate-active {
+  color: #33b5e5;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate.mapboxgl-ctrl-geolocate-active-error {
+  color: #e58978;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate.mapboxgl-ctrl-geolocate-background {
+  color: #33b5e5;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate.mapboxgl-ctrl-geolocate-background-error {
+  color: #e54e33;
 }
