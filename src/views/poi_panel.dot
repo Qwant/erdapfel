@@ -25,7 +25,7 @@
       {{?}}
       {{? this.poi.address && this.poi.address.label }}
         <p class="poi_panel__address">
-          {{! this.htmlEncode(this.poi.address.label) }}
+          {{= this.htmlEncode(this.poi.address.label) }}
         </p>
       {{?}}
       <div class="poi_panel__actions">

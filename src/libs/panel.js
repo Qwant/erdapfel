@@ -1,3 +1,5 @@
+import ExtendedString from "./string";
+
 const panels = new Map()
 
 /**
@@ -17,11 +19,16 @@ function Panel(panel, view, parentId = null) {
     }
     panel.render = this.render.bind(this)
     panel.animate = this.animate.bind(this)
+
+    /* Extend panel */
+    panel.htmlEncode = ExtendedString.htmlEncode
+
     panels.set(this.cid, this.node)
 }
 
 Panel.prototype.render = function () {
   this.node.innerHTML = this.view.call(this.panel)
+
   /* double raf assure browser display cost 32 ms */
   if(this.onRender) {
     requestAnimationFrame(()=>{

@@ -1,15 +1,15 @@
 <div class="poi_panel__info__wiki">
   {{? this.wiki.description }}
     <p class="poi_panel__description__ellipsis">
-    {{= this.wiki.description }}
+    {{= this.htmlEncode(this.wiki.description) }}
     </p>
   {{?}}
   <br>
   {{? this.wiki.url }}
-    <a class="poi_panel__info__wiki__link" rel="noopener noreferrer" target="_blank" href="{{= this.wiki.url }}">{{= _('Read more on Wikipedia') }}</a>
+    <a class="poi_panel__info__wiki__link" rel="noopener noreferrer" target="_blank" href="{{= this.htmlEncode(this.wiki.url) }}">{{= _('Read more on Wikipedia') }}</a>
   {{?}}
 
   {{? !this.wiki.description && !this.wiki.url }}
-    <a class="poi_panel__info__wiki__link" rel="noopener noreferrer" target="_blank" href="https://www.wikidata.org/wiki/{{= this.tag }}">{{= _('Read more on Wikidata') }}</a>
+    <a class="poi_panel__info__wiki__link" rel="noopener noreferrer" target="_blank" href="https://www.wikidata.org/wiki/{{= this.htmlEncode(this.tag) }}">{{= _('Read more on Wikidata') }}</a>
   {{?}}
 </div>
