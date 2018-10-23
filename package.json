@@ -79,8 +79,6 @@
     "@qwant/merge-po": "file:local_modules/merge-po",
     "@qwant/nconf-builder": "file:local_modules/nconf_builder",
     "@qwant/po-js": "file:local_modules/po-js",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
     "bunyan": "^1.8.12",
     "ejs": "^2.6.1",
     "express": "^4.16.3",

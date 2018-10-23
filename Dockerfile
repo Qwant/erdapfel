@@ -19,7 +19,7 @@ COPY --chown=node . $PROJECT_DIR
 # 'npm prepare' is called after install
 RUN npm install
 
-RUN NODE_ENV=production npm run-script build
+RUN NODE_ENV=production npm run-script build -- --mode=production
 
 # Pre-build gzipped versions of static files
 # They will be served directly by express-static-gzip

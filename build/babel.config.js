@@ -14,7 +14,6 @@ module.exports = function (mode) {
         },
         "useBuiltIns": "entry"
       }]],
-    plugins:["@babel/plugin-transform-parameters", "@babel/plugin-transform-template-literals"]
   }
 
   const development = {
