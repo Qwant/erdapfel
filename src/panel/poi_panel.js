@@ -20,6 +20,7 @@ function PoiPanel(sharePanel) {
   this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
   this.sharePanel = sharePanel
+  this.htmlEncode = ExtendedString.htmlEncode
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
 }

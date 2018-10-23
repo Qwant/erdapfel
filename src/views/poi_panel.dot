@@ -13,9 +13,9 @@
       {{?}}
         <h4 class="poi_panel__title">
           {{? this.poi.local_name }}
-            {{= this.poi.local_name }}
+            {{= this.htmlEncode(this.poi.local_name) }}
           {{?? this.poi.name }}
-            {{= this.poi.name }}
+            {{= this.htmlEncode(this.poi.name) }}
           {{??}}
             {{= this.poiSubClass(this.poi.subClassName) }}
           {{?}}
@@ -25,7 +25,7 @@
       {{?}}
       {{? this.poi.address && this.poi.address.label }}
         <p class="poi_panel__address">
-          {{= this.poi.address.label }}
+          {{! this.htmlEncode(this.poi.address.label) }}
         </p>
       {{?}}
       <div class="poi_panel__actions">
