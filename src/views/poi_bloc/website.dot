@@ -2,7 +2,7 @@
  <p class="poi_panel__info__section__description">
     <div class="icon-icon_globe poi_panel__block__symbol"></div>
     <div class="poi_panel__block__content">
-      <a class="poi_panel__info__link" href="{{= this.URI.externalise(this.block.url) }}" no-follow target="_blank">
+      <a class="poi_panel__info__link" href="{{= this.URI.externalise(this.block.url) }}" no-follow rel="noopener noreferrer" target="_blank">
         {{= this.URI.extractDomain(this.block.url) }}
       </a>
     </div>
