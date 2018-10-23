@@ -1,9 +1,5 @@
-<div {{= click(this.close, this) }} class="modal_overlay {{= this.active ? 'modal_overlay--active' : '' }}"></div>
-
-<div class="modal {{= this.active ? 'modal--active' : '' }}">
-  <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
-  <h2 class="modal__title">{{= _('GEOLOCATION INFO TITLE', 'geolocation') }}</h2>
-  <span class="modal__subtitle">{{= _('GEOLOCATION INFO SUBTITLE', 'geolocation') }}</span>
-  <a class="modal_mailto" href="mailto:privacy@qwant.com">privacy@qwant.com</a>
-  <button class="modal__button" {{= click(this.close, this) }}>{{= _('GEOLOCATION ACCEPT BUTTON', 'geolocation') }}</button>
-</div>
+<i class="icon-x modal__close" {{= click(this.close, this) }}></i>
+<h2 class="modal__title">{{= _('GEOLOCATION INFO TITLE', 'geolocation') }}</h2>
+<span class="modal__subtitle">{{= _('GEOLOCATION INFO SUBTITLE', 'geolocation') }}</span>
+<a class="modal_mailto" href="mailto:privacy@qwant.com">privacy@qwant.com</a>
+<button class="modal__button" {{= click(this.close, this) }}>{{= _('GEOLOCATION ACCEPT BUTTON', 'geolocation') }}</button>

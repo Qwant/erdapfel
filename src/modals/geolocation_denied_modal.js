@@ -1,27 +1,20 @@
 import GeolocModalDeniedView from '../views/geolocation_denied_modal.dot'
-import Panel from "../libs/panel"
+import Modal from "./modal"
 
 export default class GeolocationDeniedModal {
   constructor() {
-    this.panel = new Panel(this, GeolocModalDeniedView)
-    this.active = false
+    this.modal = new Modal(this, GeolocModalDeniedView)
 
     listen('open_geolocation_denied_modal', () => {
-      this.open()
+      this.modal.open()
     })
 
     listen('open_geolocation_modal', () => {
-      this.close()
+      this.modal.close()
     })
   }
 
-  open () {
-    this.active = true
-    this.panel.update()
-  }
-
   close () {
-    this.active = false
-    this.panel.update()
+    this.modal.close()
   }
 }

@@ -1,8 +1,4 @@
-<div {{= click(this.close, this) }} class="modal_overlay {{= this.active ? 'modal_overlay--active' : '' }}"></div>
-
-<div class="modal {{= this.active ? 'modal--active' : '' }}">
-  <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
-  <h2 class="modal__title">{{= _('GEOLOCATION DENIED TITLE', 'geolocation') }}</h2>
-  <span class="modal__subtitle">{{= _('GEOLOCATION DENIED SUBTITLE', 'geolocation') }}</span>
-  <button class="modal__button" {{= click(this.close, this) }}>{{= _('GEOLOCATION DENIED BUTTON', 'geolocation') }}</button>
-</div>
+<i class="icon-x modal__close" {{= click(this.close, this) }}></i>
+<h2 class="modal__title">{{= _('GEOLOCATION DENIED TITLE', 'geolocation') }}</h2>
+<span class="modal__subtitle">{{= _('GEOLOCATION DENIED SUBTITLE', 'geolocation') }}</span>
+<button class="modal__button" {{= click(this.close, this) }}>{{= _('GEOLOCATION DENIED BUTTON', 'geolocation') }}</button>
