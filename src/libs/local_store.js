@@ -1,34 +1,32 @@
 function LocalStore() {}
 
-LocalStore.prototype.getAllPois = async function () {
+LocalStore.prototype.getAllPois = function() {
   return new Promise((resolve) => {
-    try {
-      const items = Object.keys(localStorage).reduce((filtered, k) => {
-        if (Poi.isPoiCompliantKey(k)) {
-          filtered.push(JSON.parse(localStorage.getItem(k)))
+    const items = Object.keys(localStorage).reduce((filtered, k) => {
+      if (Poi.isPoiCompliantKey(k)) {
+        try {
+          let poi = JSON.parse(localStorage.getItem(k))
+          filtered.push(poi)
+        } catch (error) {
+          console.error(`JSON Parsing error ${error}`)
         }
-        return filtered
-      }, [])
-      resolve(items)
-    } catch (err) {
-      console.error(`localStorage ${err}`)
-      resolve([])
-    }
+      }
+      return filtered
+    }, [])
+    resolve(items)
   })
 }
 
-LocalStore.prototype.register = async function() {
+LocalStore.prototype.register = function() {
   console.log('local storage doesn\'t support register method')
-  return new Promise((resolve)=>{resolve()})
+  return Promise.resolve()
 }
 
-LocalStore.prototype.onConnect = async function () {
-  return new Promise((resolve) => {
-    resolve()
-  })
+LocalStore.prototype.onConnect = function () {
+  return Promise.resolve()
 }
 
-LocalStore.prototype.get = async function(k) {
+LocalStore.prototype.get = function(k) {
   return new Promise((resolve) => {
     try {
       resolve(JSON.parse(localStorage.getItem(k)))
@@ -39,7 +37,7 @@ LocalStore.prototype.get = async function(k) {
   })
 }
 
-LocalStore.prototype.set = async function(k, v) {
+LocalStore.prototype.set = function(k, v) {
  try {
    localStorage.setItem(k,JSON.stringify(v))
  } catch (err) {

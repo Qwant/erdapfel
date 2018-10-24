@@ -31,8 +31,8 @@ Poi.prototype.getKey = function () {
 }
 
 Poi.isPoiCompliantKey = function (k) {
-  const keyPattern = new RegExp('qmaps_v' + version + '_favorite_place_*')
-  return k.match(keyPattern) != null
+  const keyPattern = new RegExp(`^qmaps_v${version}_favorite_place_.*`)
+  return k.match(keyPattern) !== null
 }
 
 Poi.prototype.computeZoom = function() {
