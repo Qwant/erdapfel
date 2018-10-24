@@ -3,7 +3,7 @@ const { GeolocateControl } = require('mapbox-gl--ENV')
 /**
 * Override default GeolocateControl
 */
-class GeolocationControl extends GeolocateControl {
+class ExtendedGeolocateControl extends GeolocateControl {
   constructor(options, container) {
     super(options)
     this._container = container
@@ -22,7 +22,7 @@ class GeolocationControl extends GeolocateControl {
   trigger() {
     window.navigator.permissions.query({ name: 'geolocation' }).then(p => {
       if (p.state === 'prompt') {
-        fire('open_geolocation_modal')
+        fire('open_geolocate_modal')
       }
     })
     super.trigger()
@@ -36,10 +36,10 @@ class GeolocationControl extends GeolocateControl {
   _onError(error) {
     if (error.code === 1) {
       // PERMISSION_DENIED
-      fire('open_geolocation_denied_modal')
+      fire('open_geolocate_denied_modal')
     }
     super._onError(error)
   }
 }
 
-module.exports = GeolocationControl
+module.exports = ExtendedGeolocateControl

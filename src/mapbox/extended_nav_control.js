@@ -1,4 +1,4 @@
-const GeolocControl = require('./geolocation_control')
+const GeolocControl = require('./extended_geolocate_control')
 
 export default class ExtendedControl {
   constructor() {

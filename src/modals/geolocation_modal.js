@@ -5,11 +5,11 @@ export default class GeolocationModal {
   constructor() {
     this.modal = new Modal(this, GeolocModalView)
 
-    listen('open_geolocation_modal', () => {
+    listen('open_geolocate_modal', () => {
       this.modal.open()
     })
 
-    listen('open_geolocation_denied_modal', () => {
+    listen('open_geolocate_denied_modal', () => {
       this.modal.close()
     })
   }
