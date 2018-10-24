@@ -1,5 +1,8 @@
 <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
-<h2 class="modal__title">{{= _('GEOLOCATION INFO TITLE', 'geolocation') }}</h2>
-<span class="modal__subtitle">{{= _('GEOLOCATION INFO SUBTITLE', 'geolocation') }}</span>
+<h2 class="modal__title">{{= _('Geolocation with privacy!', 'geolocation') }}</h2>
+<span class="modal__subtitle">{{= _(`You need to know where you are? Please allow your application to access your
+  location so that it can tell you. As stated in our [privacy policy], Qwant
+  will not store your geolocation information. We don't want to know your
+  whereabouts.`, 'geolocation') }}</span>
 <a class="modal_mailto" href="mailto:privacy@qwant.com">privacy@qwant.com</a>
-<button class="modal__button" {{= click(this.close, this) }}>{{= _('GEOLOCATION ACCEPT BUTTON', 'geolocation') }}</button>
+<button class="modal__button" {{= click(this.close, this) }}>{{= _('I surf in complete tranquility.', 'geolocation') }}</button>
