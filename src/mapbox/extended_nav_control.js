@@ -1,3 +1,5 @@
+const ExtendedScaleControl = require('./extended_scale_control')
+
 const GeolocControl = require('./extended_geolocate_control')
 
 export default class ExtendedControl {
@@ -45,6 +47,12 @@ export default class ExtendedControl {
 
     this._map.on('rotate', _pitchAndRotateCompassArrow)
     this._map.on('pitch', _pitchAndRotateCompassArrow)
+
+
+    new ExtendedScaleControl({
+      maxWidth: 72,
+      unit: 'metric'
+    }, this.bottomButtonGroup)
 
     this._container.appendChild(this.topButtonGroup)
     this._container.appendChild(this.bottomButtonGroup)
