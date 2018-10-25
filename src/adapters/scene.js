@@ -1,4 +1,5 @@
-import {Map, Marker, LngLat, ScaleControl} from 'mapbox-gl--ENV'
+
+import {Map, Marker, LngLat, setRTLTextPlugin} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
@@ -38,6 +39,8 @@ Scene.prototype.initMapBox = function () {
     hash: false
   })
   this.popup.init(this.mb)
+
+  setRTLTextPlugin(`${baseUrl}statics/build/javascript/mapbox-gl-rtl-text.js`);
 
   window.map = {
     center : () => {
