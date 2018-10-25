@@ -1,9 +1,9 @@
 #share_url_data {
+  @include card_radius();
   display: block;
   width: 100%;
   margin-bottom: 5px;
   padding: 10px 12px;
-  border-radius: 3px;
   background-color: $background;
   border: solid 1px $separator_color;
   font-size: 14px;
