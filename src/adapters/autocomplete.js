@@ -31,10 +31,8 @@ function SearchInput(tagSelector) {
        */
       let isAbort = false
       let promise = new Promise((resolve, reject) => {
-        const HUNDRED_METERS_PRECISION = 1000
-        let bbox = toAccuracy(window.map.bbox(), HUNDRED_METERS_PRECISION)
         /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-        this.suggestPromise = ajax.query(geocoderUrl, {q: term, bbox : bbox})
+        this.suggestPromise = ajax.query(geocoderUrl, {q: term})
         const suggestHistoryPromise = getHistory(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
           this.suggestPromise = null
@@ -105,15 +103,6 @@ function buildPoi(response) {
   return response.features.map((feature) => {
     return Poi.geocoderLoad(feature)
   })
-}
-
-function toAccuracy(bbox, accuracy) {
-  const s = Math.floor(bbox.getSouth() * accuracy) / accuracy //v -> floor
-  const w = Math.floor(bbox.getWest() * accuracy) /accuracy //< -> floor
-  const n = Math.ceil(bbox.getNorth() * accuracy) / accuracy //^ -> ceil
-  const e = Math.ceil(bbox.getEast() * accuracy) / accuracy //> ->  ceil
-
-  return [[s,w],[n,e]] //sw / ne
 }
 
 async function getHistory(term) {
