@@ -2,11 +2,12 @@
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
 # Noémie <nlehuby@zaclys.net>, 2018
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2018
+#: bin/gettext_wrapper.js:42
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-24 17:41+0200\n"
+"POT-Creation-Date: 2018-10-25 11:45+0200\n"
 "PO-Revision-Date: 2018-10-24 17:43+0200\n"
 "Last-Translator: PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, "
 "2018\n"
@@ -43,7 +44,7 @@ msgid "Open"
 msgstr "Ouvert"
 
 #: config/constants.yml:42 config/constants.yml:57
-#: public/build/javascript/bundle.js:15513
+#: public/build/javascript/bundle.js:15516
 msgid "Closed"
 msgstr "Fermé"
 
@@ -887,7 +888,7 @@ msgstr "yoga"
 msgid "zoo"
 msgstr "parc zoologique"
 
-#: public/build/javascript/map.js:12028 public/build/javascript/bundle.js:15470
+#: public/build/javascript/map.js:12028 public/build/javascript/bundle.js:15473
 #, python-brace-format
 msgid "until {nextTransitionTime}"
 msgstr "jusqu’à {nextTransitionTime}"
@@ -897,17 +898,17 @@ msgid "string"
 msgstr ""
 
 #: public/build/javascript/bundle.js:13672
-#: public/build/javascript/bundle.js:15434
+#: public/build/javascript/bundle.js:15437
 msgid "Beers"
 msgstr "Bières pression"
 
 #: public/build/javascript/bundle.js:13773
-#: public/build/javascript/bundle.js:15574
+#: public/build/javascript/bundle.js:15577
 msgid "Internet access"
 msgstr "Accès internet"
 
 #: public/build/javascript/bundle.js:13773
-#: public/build/javascript/bundle.js:15574
+#: public/build/javascript/bundle.js:15577
 msgid "WiFi"
 msgstr "WiFi"
 
@@ -954,130 +955,118 @@ msgid "Geolocation with privacy!"
 msgstr "La géolocalisation respectueuse de votre vie privée !"
 
 #: public/build/javascript/bundle.js:15370
+#, python-brace-format
 msgid ""
 "You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our [privacy policy], Qwant "
-"will not store your geolocation information. We don't want to know your "
-"whereabouts."
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
 msgstr ""
-"Besoin de savoir où vous êtes ? Veuillez svp autoriser votre application à "
-"accéder à votre localisation pour qu’elle puisse vous l’indiquer. Comme "
-"indiqué dans [notre politique de protection des données], Qwant ne stockera "
-"pas vos informations de géolocalisation. Nous ne voulons pas connaître vos "
-"allers et venues."
+"Besoin de savoir où vous êtes ? Veuillez svp autoriser votre application "
+"à accéder à votre localisation pour qu’elle puisse vous l’indiquer.\n"
+"Comme indiqué dans {privacyPolicyLink} notre politique de protection des données {closeTag}, Qwant ne "
+"stockera pas vos informations de géolocalisation. Nous ne voulons pas "
+"connaître vos allers et venues."
 
-#: public/build/javascript/bundle.js:15370
+#: public/build/javascript/bundle.js:15373
 msgid "I surf in complete tranquility."
 msgstr "Je navigue en toute tranquilité"
 
-#: public/build/javascript/bundle.js:15402
+#: public/build/javascript/bundle.js:15405
 msgid "Accessibility"
 msgstr "Accessibilité"
 
-#: public/build/javascript/bundle.js:15647
+#: public/build/javascript/bundle.js:15650
 msgid "Services & information"
 msgstr "Services & informations"
 
-#: public/build/javascript/bundle.js:15707
+#: public/build/javascript/bundle.js:15710
 msgid "Read more on Wikipedia"
 msgstr "Lire la suite sur Wikipédia"
 
-#: public/build/javascript/bundle.js:15713
+#: public/build/javascript/bundle.js:15716
 msgid "Read more on Wikidata"
 msgstr "Lire la suite sur Wikidata"
 
-#: public/build/javascript/bundle.js:15738
+#: public/build/javascript/bundle.js:15741
 msgid "Back to favorite"
 msgstr "Retour aux favoris"
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "FAVORITES"
 msgstr "FAVORIS"
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "SHARE"
 msgstr "PARTAGER"
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "Qwant Maps uses OpenStreetMap"
 msgstr "Qwant Maps utilise OpenStreetMap"
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "ABOUT THE PROJECT"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15792
+#: public/build/javascript/bundle.js:15795
 msgid "Register masq"
 msgstr "S'enregistrer sur Masq"
 
-#: public/build/javascript/bundle.js:15792
+#: public/build/javascript/bundle.js:15795
 msgid "We use MASQ to keep your preference data safe"
 msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
 
-#: public/build/javascript/bundle.js:15792
+#: public/build/javascript/bundle.js:15795
 msgid "Register"
 msgstr "S'enregistrer"
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "Qwant Maps services"
 msgstr "Les services Qwant Maps"
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "ITINERARY"
 msgstr "ITINÉRAIRE"
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "YOUR FAVORITES"
 msgstr "MES FAVORIS"
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "OPEN DATA"
 msgstr "DONNÉES LIBRES "
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "Share favorite"
 msgstr "Partager le favori"
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "Share link"
 msgstr "Lien de partage"
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "COPY LINK"
 msgstr "COPIER LE LIEN"
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "Link copied"
 msgstr "Lien copié"
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "SHARE ON FACEBOOK"
 msgstr "PARTAGER SUR FACEBOOK"
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "SHARE ON TWITTER"
 msgstr "PARTAGER SUR TWITTER"
 
 #~ msgid ""
 #~ "You need to know where you are? Please allow your application to access "
-#~ "your location so that it can tell you. As stated in our [privacy policy], "
-#~ "Qwant will not store your geolocation information. We don\\u2019t want to "
-#~ "know your whereabouts."
-#~ msgstr ""
-#~ "Besoin de savoir où vous êtes ? Veuillez svp autoriser votre application "
-#~ "à accéder à votre localisation pour qu’elle puisse vous l’indiquer.Comme "
-#~ "indiqué dans [notre politique de protection des données], Qwant ne "
-#~ "stockera pas vos informations de géolocalisation. Nous ne voulons pas "
-#~ "connaître vos allers et venues."
-
-#~ msgid ""
-#~ " You need to know where you are? Please allow your application to access "
-#~ "your location so that it can tell you. As stated in our [privacy policy], "
-#~ "Qwant will not store your geolocation information. We don\\u2019t want to "
-#~ "know your whereabouts."
+#~ "your location so that it can tell you. As stated in our {link}, Qwant "
+#~ "will not store your geolocation information. We don't want to know your "
+#~ "whereabouts."
 #~ msgstr ""
 #~ "Besoin de savoir où vous êtes ? Veuillez svp autoriser votre application "
 #~ "à accéder à votre localisation pour qu’elle puisse vous l’indiquer.\n"
-#~ "Comme indiqué dans [notre politique de protection des données], Qwant ne "
-#~ "stockera pas vos informations de géolocalisation. Nous ne voulons pas "
-#~ "connaître vos allers et venues."
+#~ "Comme indiqué dans {link}, Qwant ne stockera pas vos informations de "
+#~ "géolocalisation. Nous ne voulons pas connaître vos allers et venues."

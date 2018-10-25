@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-24 17:41+0200\n"
+"POT-Creation-Date: 2018-10-25 11:44+0200\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/"
@@ -45,7 +45,7 @@ msgid "Open"
 msgstr ""
 
 #: config/constants.yml:42 config/constants.yml:57
-#: public/build/javascript/bundle.js:15513
+#: public/build/javascript/bundle.js:15516
 msgid "Closed"
 msgstr ""
 
@@ -889,7 +889,7 @@ msgstr ""
 msgid "zoo"
 msgstr ""
 
-#: public/build/javascript/map.js:12028 public/build/javascript/bundle.js:15470
+#: public/build/javascript/map.js:12028 public/build/javascript/bundle.js:15473
 #, python-brace-format
 msgid "until {nextTransitionTime}"
 msgstr ""
@@ -899,17 +899,17 @@ msgid "string"
 msgstr ""
 
 #: public/build/javascript/bundle.js:13672
-#: public/build/javascript/bundle.js:15434
+#: public/build/javascript/bundle.js:15437
 msgid "Beers"
 msgstr ""
 
 #: public/build/javascript/bundle.js:13773
-#: public/build/javascript/bundle.js:15574
+#: public/build/javascript/bundle.js:15577
 msgid "Internet access"
 msgstr ""
 
 #: public/build/javascript/bundle.js:13773
-#: public/build/javascript/bundle.js:15574
+#: public/build/javascript/bundle.js:15577
 msgid "WiFi"
 msgstr ""
 
@@ -954,101 +954,102 @@ msgid "Geolocation with privacy!"
 msgstr ""
 
 #: public/build/javascript/bundle.js:15370
+#, python-brace-format
 msgid ""
 "You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our [privacy policy], Qwant "
-"will not store your geolocation information. We don't want to know your "
-"whereabouts."
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
 msgstr ""
 
-#: public/build/javascript/bundle.js:15370
+#: public/build/javascript/bundle.js:15373
 msgid "I surf in complete tranquility."
 msgstr ""
 
-#: public/build/javascript/bundle.js:15402
+#: public/build/javascript/bundle.js:15405
 msgid "Accessibility"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15647
+#: public/build/javascript/bundle.js:15650
 msgid "Services & information"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15707
+#: public/build/javascript/bundle.js:15710
 msgid "Read more on Wikipedia"
 msgstr "Lenn muioc'h war Wikipedia"
 
-#: public/build/javascript/bundle.js:15713
+#: public/build/javascript/bundle.js:15716
 msgid "Read more on Wikidata"
 msgstr "Lenn muioc'h war Wikidata"
 
-#: public/build/javascript/bundle.js:15738
+#: public/build/javascript/bundle.js:15741
 msgid "Back to favorite"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "FAVORITES"
 msgstr "SINEDOÙ"
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "SHARE"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "Qwant Maps uses OpenStreetMap"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15773
+#: public/build/javascript/bundle.js:15776
 msgid "ABOUT THE PROJECT"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15792
+#: public/build/javascript/bundle.js:15795
 msgid "Register masq"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15792
+#: public/build/javascript/bundle.js:15795
 msgid "We use MASQ to keep your preference data safe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15792
+#: public/build/javascript/bundle.js:15795
 msgid "Register"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "Qwant Maps services"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "ITINERARY"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "YOUR FAVORITES"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15808
+#: public/build/javascript/bundle.js:15811
 msgid "OPEN DATA"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "Share favorite"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "Share link"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "COPY LINK"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "Link copied"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "SHARE ON FACEBOOK"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15824
+#: public/build/javascript/bundle.js:15827
 msgid "SHARE ON TWITTER"
 msgstr ""
