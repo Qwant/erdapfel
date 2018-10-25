@@ -3,8 +3,8 @@ const GeolocControl = require('./extended_geolocate_control')
 export default class ExtendedControl {
   constructor() {
     this._container = document.createElement('div')
-    this._firstButtonsGroup = document.createElement('div')
-    this._secondButtonsGroup = document.createElement('div')
+    this.topButtonGroup = document.createElement('div')
+    this.bottomButtonGroup = document.createElement('div')
 
     this._zoomInButton = this._createButton('icon-plus map_control_group__button map_control_group__button__zoom', 'Zoom In', () => this._map.zoomIn())
     this._zoomOutButton = this._createButton('icon-minus map_control_group__button map_control_group__button__zoom', 'Zoom Out', () => this._map.zoomOut())
@@ -18,23 +18,23 @@ export default class ExtendedControl {
 
   onAdd(map) {
     this._map = map
-    this._firstButtonsGroup.className = 'map_control_group'
-    this._firstButtonsGroup.textContent = ''
-    this._secondButtonsGroup.className = 'map_control_group mapboxgl-ctrl-group'
-    this._secondButtonsGroup.textContent = ''
+    this.topButtonGroup.className = 'map_control_group'
+    this.topButtonGroup.textContent = ''
+    this.bottomButtonGroup.className = 'map_control_group mapboxgl-ctrl-group'
+    this.bottomButtonGroup.textContent = ''
 
     const geolocControl = new GeolocControl({
       positionOptions: {
         enableHighAccuracy: true
       },
       trackUserLocation: true
-    }, this._secondButtonsGroup)
+    }, this.bottomButtonGroup)
 
-    this._firstButtonsGroup.appendChild(this._compass)
+    this.topButtonGroup.appendChild(this._compass)
 
     geolocControl.onReady(() => {
-      this._secondButtonsGroup.appendChild(this._zoomInButton)
-      this._secondButtonsGroup.appendChild(this._zoomOutButton)
+      this.bottomButtonGroup.appendChild(this._zoomInButton)
+      this.bottomButtonGroup.appendChild(this._zoomOutButton)
     })
 
     this._map.addControl(geolocControl)
@@ -46,8 +46,8 @@ export default class ExtendedControl {
     this._map.on('rotate', _pitchAndRotateCompassArrow)
     this._map.on('pitch', _pitchAndRotateCompassArrow)
 
-    this._container.appendChild(this._firstButtonsGroup)
-    this._container.appendChild(this._secondButtonsGroup)
+    this._container.appendChild(this.topButtonGroup)
+    this._container.appendChild(this.bottomButtonGroup)
 
     return this._container
   }
