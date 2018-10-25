@@ -98,7 +98,7 @@ Favorite.prototype.connectStore = async function () {
 Favorite.prototype.getAll = async function () {
   let storedData = {}
   try {
-    storedData = await this.store.getAll()
+    storedData = await this.store.getAllPois()
   } catch(e) {
     console.error(e)
   }

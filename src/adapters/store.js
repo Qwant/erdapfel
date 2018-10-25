@@ -18,31 +18,25 @@ function Store() {
   })
 }
 
-Store.prototype.getAll = async function() {
-  return new Promise((resolve, reject) => {
-    abstractStore.getAll().then((masqData) => {
-      resolve(masqData)
-    }).catch(function (error) {
-      fire('error_h' , 'store ' + error)
-      reject(error)
-    })
-  })
+Store.prototype.getAllPois = async function() {
+  try {
+    return await abstractStore.getAllPois()
+  } catch (error) {
+    fire('error_h' , 'store ' + error)
+    throw error
+  }
 }
 
 Store.prototype.isRegistered = async function () {
-  return new Promise((resolve) => {
-    abstractStore.getAll()
-      .then(() => resolve(true))
-      .catch((e) => {
-      if(e.message === 'UNREGISTERED') {
-        resolve(false)
-      }
-    })
-  })
+  try {
+    return await abstractStore.getAllPois() !== null
+  } catch (error) {
+    return false
+  }
 }
 
 Store.prototype.onConnect = async function () {
-  return abstractStore.onConnect()
+  return await abstractStore.onConnect()
 }
 
 Store.prototype.register = async function () {
@@ -56,7 +50,6 @@ Store.prototype.register = async function () {
   return abstractStore.registerApp(regParams)
 }
 
-
 Store.prototype.getPrefixes = async function (prefix) {
   const storedItems = await abstractStore.getAll()
   return storedItems.filter((storedItem) => {
@@ -66,14 +59,12 @@ Store.prototype.getPrefixes = async function (prefix) {
 }
 
 Store.prototype.has = async function(poi) {
-  return new Promise((resolve) => {
-    abstractStore.get(poi.getKey()).then((foundPoi) => {
-      resolve(foundPoi)
-    }).catch((err) => {
-      fire('error_h', 'store ' + err )
-      resolve()
-    })
-  })
+  try {
+    return await abstractStore.get(poi.getKey())
+  } catch (error) {
+    fire('error_h', 'store ' + err )
+    throw err
+  }
 }
 
 Store.prototype.add = function(poi) {
