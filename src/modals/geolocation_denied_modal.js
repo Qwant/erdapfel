@@ -8,10 +8,6 @@ export default class GeolocationDeniedModal {
     listen('open_geolocate_denied_modal', () => {
       this.modal.open()
     })
-
-    listen('open_geolocate_modal', () => {
-      this.modal.close()
-    })
   }
 
   close () {

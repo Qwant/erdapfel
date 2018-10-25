@@ -9,4 +9,4 @@
   }}
 </span>
 <a class="modal_mailto" href="mailto:privacy@qwant.com">privacy@qwant.com</a>
-<button class="modal__button" {{= click(this.close, this) }}>{{= _('I surf in complete tranquility.', 'geolocation') }}</button>
+<button class="modal__button" {{= click(this.close, this) }}>{{= _('OK', 'geolocation') }}</button>
