@@ -1,4 +1,5 @@
 const ExtendedScaleControl = require('./extended_scale_control')
+const ExtendedAttributionControl = require('./extended_attribution_control')
 
 const GeolocControl = require('./extended_geolocate_control')
 
@@ -48,15 +49,23 @@ export default class ExtendedControl {
     this._map.on('rotate', _pitchAndRotateCompassArrow)
     this._map.on('pitch', _pitchAndRotateCompassArrow)
 
+    this.scaleAttibutionContainer =  document.createElement('div')
+    this.scaleAttibutionContainer.className = 'map_control__scale_attribute_container'
+    this._container.appendChild(this.scaleAttibutionContainer)
 
-    new ExtendedScaleControl({
+    const extendedScaleControl = new ExtendedScaleControl({
       maxWidth: 72,
       unit: 'metric'
-    }, this.bottomButtonGroup)
+    }, this.scaleAttibutionContainer)
 
     this._container.appendChild(this.topButtonGroup)
     this._container.appendChild(this.bottomButtonGroup)
 
+    const extendedAttributionControl = new ExtendedAttributionControl({}, this.scaleAttibutionContainer)
+
+    this._container.appendChild(this.scaleAttibutionContainer)
+    this._map.addControl(extendedScaleControl, 'bottom-right')
+    this._map.addControl(extendedAttributionControl, 'bottom-right')
     return this._container
   }
 

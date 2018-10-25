@@ -14,16 +14,15 @@ class ExtendedScaleControl extends ScaleControl {
   onAdd(map) {
     this._map = map;
     this._container = document.createElement('div')
-    this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-scale'
+    this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-scale map_control__scale'
 
     this.parentCcontainer.appendChild(this._container);
 
-    this._map.on('move', super._onMove);
-    this._onMove();
+    this._map.on('move', this._onMove)
+    super._onMove();
 
-    return this._container;
+    return this.parentCcontainer
   }
-
 }
 
 module.exports = ExtendedScaleControl

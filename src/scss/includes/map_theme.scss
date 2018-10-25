@@ -76,18 +76,16 @@
   line-height: 15px;
 }
 
-@media (min-width: 640px) {
-  .mapboxgl-ctrl {
-    &.mapboxgl-ctrl-attrib {
-      padding: 0 5px 0 82px;
-    }
+.map_control__scale_attribute_container {
+  width: 100%;
+  float: right;
+  text-align: right;
+}
 
-    &.mapboxgl-ctrl-scale {
-      bottom: -8px;
-      position: absolute;
-      right: 328px;
-    }
-  }
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  display: inline-block;
+  float: none;
+  margin: 0;
 }
 
 @media(max-width: 640px) {

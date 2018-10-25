@@ -30,6 +30,7 @@ function Scene() {
 
 Scene.prototype.initMapBox = function () {
   this.mb = new Map({
+    attributionControl: false,
     container: 'scene_container',
     style: StyleLaundry(qwantStyle),
     zoom: this.zoom,
@@ -50,12 +51,6 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
-    const scaleMetric = new ScaleControl({
-      maxWidth: 72,
-      unit: 'metric'
-    })
-    this.mb.addControl(scaleMetric, 'bottom-right')
-
     const extendedControl = new ExtendedControl()
     const mobileCompassControl = new MobileCompassControl()
 
