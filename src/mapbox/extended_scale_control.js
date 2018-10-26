@@ -8,7 +8,7 @@ const { ScaleControl } = require('mapbox-gl--ENV')
 class ExtendedScaleControl extends ScaleControl {
   constructor(options, container) {
     super(options)
-    this.parentCcontainer = container
+    this.parentContainer = container
   }
 
   onAdd(map) {
@@ -16,12 +16,12 @@ class ExtendedScaleControl extends ScaleControl {
     this._container = document.createElement('div')
     this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-scale map_control__scale'
 
-    this.parentCcontainer.appendChild(this._container);
+    this.parentContainer.appendChild(this._container)
 
     this._map.on('move', this._onMove)
-    super._onMove();
+    super._onMove()
 
-    return this.parentCcontainer
+    return this.parentContainer
   }
 }
 
