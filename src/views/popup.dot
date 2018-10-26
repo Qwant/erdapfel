@@ -1,5 +1,5 @@
 <div class="poi_popup">
-  <h1 class="poi_popup__title">{{= this.poi.name }}</h1>
+  <h1 class="poi_popup__title">{{= this.htmlEncode(this.poi.name) }}</h1>
   <h3 class="poi_popup__category">{{= this.category }}</h3>
   <div>
   {{? this.opening && this.opening.days }}
@@ -11,7 +11,7 @@
     </span>
     <div class="poi_popup__title__hour__circle" style="background:{{= this.opening.status.color }}"></div>
   {{?? this.address}}
-    <span class="poi_popup__address">{{= this.address }}</span>
+    <span class="poi_popup__address">{{= this.htmlEncode(this.address) }}</span>
   {{?}}
   </div>
 </div>

@@ -2,6 +2,8 @@ import {Popup} from 'mapbox-gl--ENV'
 import OsmSchedule from '../../src/adapters/osm_schedule'
 import Poi from '../mapbox/poi'
 import IconManager from "./icon_manager";
+import ExtendedString from '../libs/string'
+
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
 const poiConfigs = require('../../config/constants.yml').pois
@@ -59,11 +61,11 @@ PoiPopup.prototype.create = async function (layerPoi, event) {
     let popupOptions = {className: 'poi_popup__container', closeButton : false, closeOnClick : true}
 
     this.setPopupPosition(event, popupOptions)
-
+    let htmlEncode = ExtendedString.htmlEncode
 
     this.popupHandle = new Popup(popupOptions)
       .setLngLat(poi.getLngLat())
-      .setHTML(popupTemplate.call({poi, color, opening, address, category}))
+      .setHTML(popupTemplate.call({poi, color, opening, address, category, htmlEncode}))
       .addTo(this.map)
   }
 }

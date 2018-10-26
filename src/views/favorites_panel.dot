@@ -31,7 +31,7 @@
                   <div class="favorite_panel__item__image favorite_panel__item__image--small icon-location"></div>
                 {{?}}
                 <p class="favorite_panel__item__title">
-                  {{= poi.name ? poi.name : 'default' }}
+                  {{= poi.name ? this.htmlEncode(poi.name) : 'default' }}
                 </p>
                 <p class="favorite_panel__item__desc">
                   {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}

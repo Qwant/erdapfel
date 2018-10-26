@@ -3,7 +3,7 @@
     <div class="icon-icon_phone poi_panel__block__symbol"></div>
     <div class="poi_panel__block__content">
       <a class="poi_panel__info__section__phone" data-rel="external" rel="noopener noreferrer" href="{{= this.block.url }}">
-        {{= this.block.local_format }}
+        {{= this.htmlEncode(this.block.local_format) }}
       </a>
     </div>
   </p>
