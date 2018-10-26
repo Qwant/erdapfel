@@ -7,7 +7,7 @@ const { AttributionControl } = require('mapbox-gl--ENV')
 class ExtendedAttributionControl extends AttributionControl {
   constructor(options, container) {
     super(options)
-    this.parentCcontainer = container
+    this.parentContainer = container
   }
 
   onAdd(map) {
@@ -17,7 +17,7 @@ class ExtendedAttributionControl extends AttributionControl {
     this._container = document.createElement('div')
     this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-attrib'
 
-    this.parentCcontainer.appendChild(this._container)
+    this.parentContainer.appendChild(this._container)
 
     if (compact) {
       this._container.classList.add('mapboxgl-compact')
@@ -34,7 +34,7 @@ class ExtendedAttributionControl extends AttributionControl {
       this._updateCompact()
     }
 
-    return this.parentCcontainer
+    return this.parentContainer
   }
 }
 
