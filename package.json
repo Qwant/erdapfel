@@ -27,6 +27,7 @@
     "@babel/plugin-transform-parameters": "^7.1.0",
     "@babel/plugin-transform-template-literals": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@mapbox/mapbox-gl-rtl-text": "^0.2.1",
     "@qwant/config-sanitizer-loader": "file:local_modules/config-sanitizer-loader",
     "@qwant/map-style-builder": "git+https://github.com/QwantResearch/map-style-builder.git#0b4167a",
     "@qwant/map-style-loader": "file:local_modules/map-style-loader",
