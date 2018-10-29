@@ -1046,6 +1046,3 @@ msgstr ""
 #: public/build/javascript/bundle.js:15829
 msgid "SHARE ON TWITTER"
 msgstr ""
-
-#~ msgid "GEOLOCATION INFO TITLE"
-#~ msgstr "Geolocation with privacy!"
