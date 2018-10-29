@@ -5,10 +5,11 @@ import RegisterMasqPanel from "./register_masq";
 import PoiPanel from "./poi_panel";
 import ErrorHandlerPanel from "./error_panel";
 import ServicePanel from './service_panel';
-import Share from "./share"
+import Share from "../modals/share"
 import Autocomplete from "../adapters/autocomplete";
 import TopBar from "./top_bar";
-
+import GeolocationModal from "../modals/geolocation_modal";
+import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
 
 function AppPanel(parent) {
   new TopBar()
@@ -20,6 +21,8 @@ function AppPanel(parent) {
   this.errorPanel = new ErrorHandlerPanel()
   this.masqPanel = new RegisterMasqPanel()
   this.panel = new Panel(this, PanelsView, parent)
+  this.geolocationModal = new GeolocationModal()
+  this.geolocationDeniedModal = new GeolocationDeniedModal()
   this.panel.render()
 }
 

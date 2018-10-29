@@ -9,4 +9,6 @@
 /* modals */
 {{= this.errorPanel.render() }}
 {{= this.masqPanel.render() }}
-{{= this.sharePanel.render() }}
+{{= this.sharePanel.renderModal() }}
+{{= this.geolocationModal.renderModal() }}
+{{= this.geolocationDeniedModal.renderModal() }}

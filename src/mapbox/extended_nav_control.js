@@ -1,7 +1,11 @@
-export default class ExtendedControl {
+const GeolocControl = require('./extended_geolocate_control')
 
+export default class ExtendedControl {
   constructor() {
     this._container = document.createElement('div')
+    this.topButtonGroup = document.createElement('div')
+    this.bottomButtonGroup = document.createElement('div')
+
     this._zoomInButton = this._createButton('icon-plus map_control_group__button map_control_group__button__zoom', 'Zoom In', () => this._map.zoomIn())
     this._zoomOutButton = this._createButton('icon-minus map_control_group__button map_control_group__button__zoom', 'Zoom Out', () => this._map.zoomOut())
     this._compass = this._createButton('map_control_group__button map_control_group__button__compass', 'Reset North', () => {
@@ -10,26 +14,40 @@ export default class ExtendedControl {
 
     this._compassIndicator = this._createIcon('map_control__compass__icon')
     this._compass.appendChild(this._compassIndicator)
-
-    this._center = this._createButton('icon-pin_geoloc map_control_group__button', 'Geolocate', () => {
-      this._geolocate()
-    })
   }
 
   onAdd(map) {
     this._map = map
-    this._container.className = 'map_control_group'
-    this._container.textContent = ''
-    this._container.appendChild(this._compass)
-    this._container.appendChild(this._center)
-    this._container.appendChild(this._zoomInButton)
-    this._container.appendChild(this._zoomOutButton)
+    this.topButtonGroup.className = 'map_control_group'
+    this.topButtonGroup.textContent = ''
+    this.bottomButtonGroup.className = 'map_control_group mapboxgl-ctrl-group'
+    this.bottomButtonGroup.textContent = ''
+
+    const geolocControl = new GeolocControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    }, this.bottomButtonGroup)
+
+    this.topButtonGroup.appendChild(this._compass)
+
+    geolocControl.onReady(() => {
+      this.bottomButtonGroup.appendChild(this._zoomInButton)
+      this.bottomButtonGroup.appendChild(this._zoomOutButton)
+    })
+
+    this._map.addControl(geolocControl)
+
     const _pitchAndRotateCompassArrow = this._pitchAndRotateCompassArrow.bind(this)
 
     _pitchAndRotateCompassArrow()
 
     this._map.on('rotate', _pitchAndRotateCompassArrow)
     this._map.on('pitch', _pitchAndRotateCompassArrow)
+
+    this._container.appendChild(this.topButtonGroup)
+    this._container.appendChild(this.bottomButtonGroup)
 
     return this._container
   }
@@ -39,18 +57,11 @@ export default class ExtendedControl {
     this._map = undefined
   }
 
-  _geolocate() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this._map.flyTo({center: [position.coords.longitude, position.coords.latitude]})
-    })
-  }
-
   _createButton(className, ariaLabel, fn) {
     const a = document.createElement('button')
     a.setAttribute('class', className)
     a.setAttribute('aria-label', ariaLabel)
     a.addEventListener('click', fn)
-    this._container.appendChild(a)
     return a
   }
 

@@ -1,10 +1,11 @@
-import SharePanelView from '../views/share_panel.dot'
-import Panel from "../libs/panel"
+import SharePanelView from '../views/share_modal.dot'
 import facebookTemplate from '../views/templates/facebook'
 import twitterTemplate from '../views/templates/twitter'
+import Modal from "./modal"
+
 export default class Share {
   constructor() {
-    this.panel = new Panel(this, SharePanelView)
+    this.modal = new Modal(this, SharePanelView)
     this.active = false
     this.facebookTemplate = facebookTemplate
     this.twitterTemplate = twitterTemplate
@@ -13,7 +14,7 @@ export default class Share {
   open (shareUrl) {
     this.shareUrl = shareUrl
     this.active = true
-    this.panel.update()
+    this.modal.open()
   }
 
   async copy () {
@@ -21,13 +22,13 @@ export default class Share {
     url.select()
     document.execCommand('copy')
     url.blur()
-    await this.panel.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
-    this.panel.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
+    await this.modal.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
+    this.modal.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
   }
 
   close () {
     this.active = false
-    this.panel.update()
+    this.modal.close()
   }
 
   openPopup () {

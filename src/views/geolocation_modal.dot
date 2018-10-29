@@ -1,0 +1,10 @@
+<i class="icon-x modal__close" {{= click(this.close, this) }}></i>
+<h2 class="modal__title">{{= _('Geolocation with privacy!', 'geolocation') }}</h2>
+<span class="modal__subtitle">{{= _(`You need to know where you are? Please allow your application to access your location so that it can tell you. As stated in our {privacyPolicyLink} privacy policy {closeTag}, Qwant will not store your geolocation information. We don't want to know your whereabouts.`,
+  'geolocation', {
+    privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
+    closeTag: '</a>'})
+  }}
+</span>
+<a class="modal_mailto" href="mailto:privacy@qwant.com">privacy@qwant.com</a>
+<button class="modal__button" {{= click(this.close, this) }}>{{= _('Ok, I\'ve got it.', 'geolocation') }}</button>

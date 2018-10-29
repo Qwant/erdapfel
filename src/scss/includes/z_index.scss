@@ -6,11 +6,11 @@
   z-index: 3;
 }
 
-.share_overlay {
-  z-index: 2;
+.modal_overlay {
+  z-index: 3;
 }
 
-.share {
+.modal {
   z-index: 3;
 }
 
@@ -32,4 +32,20 @@
 
 .map_control_group {
   z-index: 2;
+}
+
+.autocomplete_suggestions {
+  z-index: 4;
+}
+
+.top_bar {
+  z-index: 2;
+}
+
+.top_bar--search_focus {
+  z-index: 3;
+}
+
+.service_panel_mobile {
+  z-index: 3;
 }
