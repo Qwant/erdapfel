@@ -44,6 +44,7 @@
 }
 
 .favorite_panel__item__info {
+  cursor: pointer;
   padding: 16px 0 17px 0;
 }
 
@@ -61,6 +62,7 @@
 .favorite_panel__item__more_button:hover {
   background: $separator_color;
   color: $primary_alternative_text;
+  cursor: pointer;
 }
 
 .favorite_panel__item__more {
@@ -81,6 +83,7 @@
 }
 
 .favorite_panel__item__more__line {
+  cursor: pointer;
   height: 20px;
   cursor: pointer;
 }
