@@ -127,6 +127,10 @@
   .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
     font-size: 24px;
   }
+
+  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    float: inherit;
+  }
 }
 
 .compass-origin {
