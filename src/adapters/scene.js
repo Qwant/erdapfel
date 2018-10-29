@@ -1,4 +1,4 @@
-import {Map, Marker, LngLat} from 'mapbox-gl--ENV'
+import {Map, Marker, LngLat, ScaleControl} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
@@ -30,6 +30,7 @@ function Scene() {
 
 Scene.prototype.initMapBox = function () {
   this.mb = new Map({
+    attributionControl: false,
     container: 'scene_container',
     style: StyleLaundry(qwantStyle),
     zoom: this.zoom,

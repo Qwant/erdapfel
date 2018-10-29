@@ -67,6 +67,27 @@
   font-size: 20px;
 }
 
+.mapboxgl-ctrl-scale {
+  background: none;
+  border: solid 1px #353c52;
+  border-top: none;
+  color: #353c52;
+  height: 15px;
+  line-height: 15px;
+}
+
+.map_control__scale_attribute_container {
+  width: 100%;
+  float: right;
+  text-align: right;
+}
+
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  display: inline-block;
+  float: none;
+  margin: 0;
+}
+
 @media(max-width: 640px) {
   .map_control_group {
     background: none;
@@ -106,11 +127,16 @@
   .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
     font-size: 24px;
   }
+
+  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    float: inherit;
+  }
 }
 
 .compass-origin {
   display: none;
 }
+
 
 .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate:disabled {
   color: #aaa;
