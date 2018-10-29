@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-25 16:17+0200\n"
+"POT-Creation-Date: 2018-10-29 11:35+0100\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -38,7 +38,7 @@ msgid "Open"
 msgstr ""
 
 #: config/constants.yml:42 config/constants.yml:57
-#: public/build/javascript/bundle.js:15516
+#: public/build/javascript/bundle.js:15518
 msgid "Closed"
 msgstr ""
 
@@ -882,7 +882,7 @@ msgstr ""
 msgid "zoo"
 msgstr ""
 
-#: public/build/javascript/map.js:12026 public/build/javascript/bundle.js:15473
+#: public/build/javascript/map.js:12026 public/build/javascript/bundle.js:15475
 #, python-brace-format
 msgid "until {nextTransitionTime}"
 msgstr ""
@@ -891,62 +891,62 @@ msgstr ""
 msgid "string"
 msgstr ""
 
-#: public/build/javascript/bundle.js:13672
-#: public/build/javascript/bundle.js:15437
+#: public/build/javascript/bundle.js:13674
+#: public/build/javascript/bundle.js:15439
 msgid "Beers"
 msgstr ""
 
-#: public/build/javascript/bundle.js:13773
-#: public/build/javascript/bundle.js:15577
+#: public/build/javascript/bundle.js:13775
+#: public/build/javascript/bundle.js:15579
 msgid "Internet access"
 msgstr ""
 
-#: public/build/javascript/bundle.js:13773
-#: public/build/javascript/bundle.js:15577
+#: public/build/javascript/bundle.js:13775
+#: public/build/javascript/bundle.js:15579
 msgid "WiFi"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15271
+#: public/build/javascript/bundle.js:15273
 msgid "Favorite places"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15271
+#: public/build/javascript/bundle.js:15273
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15273
+#: public/build/javascript/bundle.js:15275
 msgid "MY FAVORITES"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15293
+#: public/build/javascript/bundle.js:15295
 msgid "Share"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15296
+#: public/build/javascript/bundle.js:15298
 msgid "Delete"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15322
+#: public/build/javascript/bundle.js:15324
 msgid "filter"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15354
+#: public/build/javascript/bundle.js:15356
 msgid "Géolocation not available."
 msgstr ""
 
-#: public/build/javascript/bundle.js:15354
+#: public/build/javascript/bundle.js:15356
 msgid "You did not allow Qwant Maps to access your position."
 msgstr ""
 
-#: public/build/javascript/bundle.js:15354
-msgid "ok"
+#: public/build/javascript/bundle.js:15356
+msgid "OK"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15370
+#: public/build/javascript/bundle.js:15372
 msgid "Geolocation with privacy!"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15370
+#: public/build/javascript/bundle.js:15372
 #, python-brace-format
 msgid ""
 "You need to know where you are? Please allow your application to access your "
@@ -955,95 +955,95 @@ msgid ""
 "information. We don't want to know your whereabouts."
 msgstr ""
 
-#: public/build/javascript/bundle.js:15373
+#: public/build/javascript/bundle.js:15375
 msgid "Ok, I've got it."
 msgstr ""
 
-#: public/build/javascript/bundle.js:15405
+#: public/build/javascript/bundle.js:15407
 msgid "Accessibility"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15650
+#: public/build/javascript/bundle.js:15652
 msgid "Services & information"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15710
+#: public/build/javascript/bundle.js:15712
 msgid "Read more on Wikipedia"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15716
+#: public/build/javascript/bundle.js:15718
 msgid "Read more on Wikidata"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15741
+#: public/build/javascript/bundle.js:15743
 msgid "Back to favorite"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15776
+#: public/build/javascript/bundle.js:15778
 msgid "FAVORITES"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15776
+#: public/build/javascript/bundle.js:15778
 msgid "SHARE"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15776
+#: public/build/javascript/bundle.js:15778
 msgid "Qwant Maps uses OpenStreetMap"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15776
+#: public/build/javascript/bundle.js:15778
 msgid "ABOUT THE PROJECT"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15795
+#: public/build/javascript/bundle.js:15797
 msgid "Register masq"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15795
+#: public/build/javascript/bundle.js:15797
 msgid "We use MASQ to keep your preference data safe"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15795
+#: public/build/javascript/bundle.js:15797
 msgid "Register"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15811
+#: public/build/javascript/bundle.js:15813
 msgid "Qwant Maps services"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15811
+#: public/build/javascript/bundle.js:15813
 msgid "ITINERARY"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15811
+#: public/build/javascript/bundle.js:15813
 msgid "YOUR FAVORITES"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15811
+#: public/build/javascript/bundle.js:15813
 msgid "OPEN DATA"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15827
+#: public/build/javascript/bundle.js:15829
 msgid "Share favorite"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15827
+#: public/build/javascript/bundle.js:15829
 msgid "Share link"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15827
+#: public/build/javascript/bundle.js:15829
 msgid "COPY LINK"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15827
+#: public/build/javascript/bundle.js:15829
 msgid "Link copied"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15827
+#: public/build/javascript/bundle.js:15829
 msgid "SHARE ON FACEBOOK"
 msgstr ""
 
-#: public/build/javascript/bundle.js:15827
+#: public/build/javascript/bundle.js:15829
 msgid "SHARE ON TWITTER"
 msgstr ""
 
