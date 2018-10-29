@@ -12,7 +12,7 @@ class ExtendedScaleControl extends ScaleControl {
   }
 
   onAdd(map) {
-    this._map = map;
+    this._map = map
     this._container = document.createElement('div')
     this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-scale map_control__scale'
 
