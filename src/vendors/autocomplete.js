@@ -206,12 +206,12 @@ var autoComplete = (function(){
               that.last_val = val;
               clearTimeout(that.timer);
               if (o.cache) {
-                if (val in that.cache) { suggest(that.cache[val]); return; }
+                if (val in that.cache) { suggest(that.cache[val], val); return; }
                 // no requests if previous suggestions were empty
                 if(o.cachePrefix) {
                   for (var i=1; i<val.length-o.minChars; i++) {
                     var part = val.slice(0, val.length-i);
-                    if (part in that.cache && !that.cache[part].length) { suggest([]); return; }
+                    if (part in that.cache && !that.cache[part].length) { suggest([], val); return; }
                   }
                 }
               }
