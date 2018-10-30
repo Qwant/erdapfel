@@ -40,7 +40,7 @@ Scene.prototype.initMapBox = function () {
   })
   this.popup.init(this.mb)
 
-  setRTLTextPlugin(`${baseUrl}statics/build/javascript/mapbox-gl-rtl-text.js`);
+  setRTLTextPlugin(`${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`);
 
   window.map = {
     center : () => {

@@ -204,7 +204,7 @@ const copyPluginConfig = () => {
         use : {
           loader : 'file-loader',
           options: {
-            name: './public/build/javascript/mapbox-gl-rtl-text.js'
+            name: './public/build/javascript/map_plugins/mapbox-gl-rtl-text.js'
           }
         }
       }]
