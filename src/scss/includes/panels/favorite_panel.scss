@@ -141,13 +141,16 @@
 }
 
 .favorite_panel__item__more_container {
+  background: $background;
+  max-height: 100px;
   position: relative;
   padding-left: 4px;
 }
 
 .favorite_item--removed {
-  display: none;
-  height: 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .2s;
 }
 
 .favorite_panel__item__more_container:not(:last-child):after {
@@ -160,7 +163,7 @@
   background-color: $separator_color;
 }
 
-.favorite_panel__item__more_container:hover {
+.favorite_panel__item__more_container:hover:not(.favorite_item--removed) {
   background: $surface;
   border-left: 4px solid #f95d00;
   padding-left: 0;
