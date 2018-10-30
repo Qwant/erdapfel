@@ -141,7 +141,7 @@ test('display details about the poi on a poi click', async () => {
   let infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText
   })
-  expect(infoTitle.trim()).toEqual('Accessible en fauteuil roulant')
+  expect(infoTitle.trim()).toEqual('Accessible en fauteuil roulant.')
   await page.click('.poi_panel__block__collapse')
 
   await wait(300)
