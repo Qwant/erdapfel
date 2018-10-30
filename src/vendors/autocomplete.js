@@ -40,7 +40,8 @@ var autoComplete = (function(){
       menuClass: '',
       renderItem: function (item, search){},
       onSelect: function(e, term, item, items){},
-      onUpdate: function(e, term, items){}
+      onUpdate: function(e, term, items){},
+      updateData: function (items) {}
     };
     for (var k in options) { if (options.hasOwnProperty(k)) o[k] = options[k]; }
 
@@ -134,6 +135,7 @@ var autoComplete = (function(){
           that.cache[queryTerm] = data;
         }
         if (data && data.length && val.length >= o.minChars) {
+          o.updateData(data)
           var s = '';
           for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
           that.sc.innerHTML = s;
