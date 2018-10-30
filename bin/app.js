@@ -44,6 +44,11 @@ function App(config) {
 
   const publicDir = path.join(__dirname, '..', 'public')
 
+  app.use('/statics/build/javascript/map_plugins', expressStaticGzip(path.join(publicDir, 'build', 'javascript', 'map_plugins'), {
+    fallthrough: false,
+    maxAge: config.mapPlugins.maxAge
+  }))
+
   app.use('/mapstyle', expressStaticGzip(path.join(publicDir, 'mapstyle'), {
     fallthrough: false,
     maxAge: config.mapStyle.maxAge

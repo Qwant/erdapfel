@@ -42,5 +42,8 @@ mapStyle:
   fontsUrl: /mapstyle/font/
   maxAge: '15m' # string accepted by the ms module, or milliseconds
 
+mapPlugins:
+  maxAge: '60s' # string accepted by the ms module, or milliseconds
+
 statics:
   maxAge: 0  # string accepted by the ms module, or milliseconds

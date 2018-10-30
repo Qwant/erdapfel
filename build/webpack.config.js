@@ -190,8 +190,30 @@ const mapJsChunkConfig = (buildMode) => {
   }
 }
 
+const copyPluginConfig = () => {
+  return {
+    entry: [
+      path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.js.min')
+    ],
+    output: {
+      path: path.join(__dirname, '..'),
+      filename: 'tmp/mapbox-gl-rtl-text.js.min'
+    },
+    module : {
+      rules : [{
+        use : {
+          loader : 'file-loader',
+          options: {
+            name: './public/build/javascript/map_plugins/mapbox-gl-rtl-text.js'
+          }
+        }
+      }]
+    }
+  }
+}
+
 webpackChunks = (buildMode) => {
-  let webpackChunks = [sassChunkConfig(buildMode), mainJsChunkConfig(buildMode), mapJsChunkConfig(buildMode)]
+  let webpackChunks = [copyPluginConfig(), sassChunkConfig(buildMode), mainJsChunkConfig(buildMode), mapJsChunkConfig(buildMode)]
   const constants = yaml.readSync('../config/constants.yml')
 
   webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language) => {
