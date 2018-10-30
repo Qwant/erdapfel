@@ -23,6 +23,9 @@ function SearchInput(tagSelector) {
     cachePrefix : false,
     delay : 100,
     width:'650px',
+    updateData : (items) => {
+      this.suggestList = items
+    },
     source : (term) => {
       /*
         https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
@@ -36,15 +39,15 @@ function SearchInput(tagSelector) {
         const suggestHistoryPromise = getHistory(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
           this.suggestPromise = null
-          this.suggestList = buildPoi(responses[0])
+          let suggestList = buildPoi(responses[0])
           let historySuggestData = responses[1]
           historySuggestData = historySuggestData.map((historySuggest) => {
             let poi = Poi.storeLoad(historySuggest)
             poi.fromHistory = true
             return poi
           })
-          this.suggestList = this.suggestList.concat(historySuggestData)
-          resolve(this.suggestList)
+          suggestList = suggestList.concat(historySuggestData)
+          resolve(suggestList)
         }).catch((e) => {
           if(isAbort) {
             resolve(null)

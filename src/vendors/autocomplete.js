@@ -40,7 +40,8 @@ var autoComplete = (function(){
       menuClass: '',
       renderItem: function (item, search){},
       onSelect: function(e, term, item, items){},
-      onUpdate: function(e, term, items){}
+      onUpdate: function(e, term, items){},
+      updateData: function (items) {}
     };
     for (var k in options) { if (options.hasOwnProperty(k)) o[k] = options[k]; }
 
@@ -134,6 +135,7 @@ var autoComplete = (function(){
           that.cache[queryTerm] = data;
         }
         if (data && data.length && val.length >= o.minChars) {
+          o.updateData(data)
           var s = '';
           for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
           that.sc.innerHTML = s;
@@ -204,12 +206,12 @@ var autoComplete = (function(){
               that.last_val = val;
               clearTimeout(that.timer);
               if (o.cache) {
-                if (val in that.cache) { suggest(that.cache[val]); return; }
+                if (val in that.cache) { suggest(that.cache[val], val); return; }
                 // no requests if previous suggestions were empty
                 if(o.cachePrefix) {
                   for (var i=1; i<val.length-o.minChars; i++) {
                     var part = val.slice(0, val.length-i);
-                    if (part in that.cache && !that.cache[part].length) { suggest([]); return; }
+                    if (part in that.cache && !that.cache[part].length) { suggest([], val); return; }
                   }
                 }
               }
