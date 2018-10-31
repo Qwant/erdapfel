@@ -127,6 +127,10 @@ var autoComplete = (function(){
       addEvent(that, 'blur', that.blurHandler);
 
       var suggest = function(data, queryTerm){
+        if(that.sourcePending) {
+          that.sourcePending.abort();
+          that.sourcePending = null
+        }
         that.items = data
         var val = that.value;
         if (queryTerm && data !== null) {
@@ -216,14 +220,10 @@ var autoComplete = (function(){
                 }
               }
               that.timer = setTimeout(function(){
-                if(that.sourcePending) {
-                  that.sourcePending.abort();
-                  that.sourcePending = null
-                }
                 that.sourcePending = o.source(val);
                 that.sourcePending.then((source) => {
-                  suggest(source, val);
                   that.sourcePending = null
+                  suggest(source, val);
                 }).catch((e) => {
                   console.log(e) /* should be handled by a telemetry logger */
                   that.sourcePending = null
