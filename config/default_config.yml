@@ -47,3 +47,7 @@ mapPlugins:
 
 statics:
   maxAge: 0  # string accepted by the ms module, or milliseconds
+
+telemetry:
+  logsEndpoint: '/logs'
+  eventEndpoint: '/events'

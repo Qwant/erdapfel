@@ -1,13 +1,9 @@
 const express = require('express')
 const promClient = require('prom-client')
-
-const eventTypes = [
-  'favorite_saved'
-]
-
+const events = require('telemetry').events
 module.exports = (app, config, registry) => {
   const counters = {}
-  eventTypes.forEach(eventType => {
+  events.forEach(eventType => {
     counters[eventType] = new promClient.Counter({
       name: `erdapfel_${eventType}_count`,
       help: eventType,

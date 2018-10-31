@@ -3,6 +3,7 @@ import Panel from '../libs/panel'
 import PanelManager from "../proxies/panel_manager"
 import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
+import Telemetry from "../libs/telemetry";
 
 function ServicePanel() {
   this.panel = new Panel(this, ServicePanelView)
@@ -15,6 +16,7 @@ function ServicePanel() {
 }
 
 ServicePanel.prototype.toggleFavorite = function () {
+  new Telemetry(Telemetry.FAVORITE_SAVED).send()
   PanelManager.toggleFavorite()
 }
 
