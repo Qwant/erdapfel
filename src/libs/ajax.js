@@ -37,8 +37,14 @@ Ajax.query = (url, data, options = {method : 'GET'}) => {
         reject(xhr.status)
       }
     }
-    xhr.open(options.method, url + '?' + dataToUrl(data))
-    xhr.send()
+    if(options.method === 'GET') {
+      xhr.open(options.method, url + '?' + dataToUrl(data))
+      xhr.send()
+    } else {
+      xhr.open(options.method, url)
+      xhr.send(dataToUrl(data))
+    }
+
   })
   ajaxPromise.abort = () => {
     xhr.abort()
