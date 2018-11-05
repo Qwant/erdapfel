@@ -126,7 +126,16 @@ var autoComplete = (function(){
       };
       addEvent(that, 'blur', that.blurHandler);
 
+      var cancelObsolete = function () {
+        clearTimeout(that.timer)
+        if(that.sourcePending) {
+          that.sourcePending.abort();
+          that.sourcePending = null
+        }
+      }
+
       var suggest = function(data, queryTerm){
+        cancelObsolete()
         that.items = data
         var val = that.value;
         if (queryTerm && data !== null) {
@@ -203,8 +212,8 @@ var autoComplete = (function(){
           var val = that.value;
           if (val.length >= o.minChars) {
             if (val != that.last_val) {
+              cancelObsolete()
               that.last_val = val;
-              clearTimeout(that.timer);
               if (o.cache) {
                 if (val in that.cache) { suggest(that.cache[val], val); return; }
                 // no requests if previous suggestions were empty
@@ -216,14 +225,12 @@ var autoComplete = (function(){
                 }
               }
               that.timer = setTimeout(function(){
-                if(that.sourcePending) {
-                  that.sourcePending.abort();
-                  that.sourcePending = null
-                }
                 that.sourcePending = o.source(val);
                 that.sourcePending.then((source) => {
-                  suggest(source, val);
                   that.sourcePending = null
+                  if(source !== null){
+                    suggest(source, val);
+                  }
                 }).catch((e) => {
                   console.log(e) /* should be handled by a telemetry logger */
                   that.sourcePending = null
@@ -283,3 +290,5 @@ var autoComplete = (function(){
   else
     window.autoComplete = autoComplete;
 })();
+
+
