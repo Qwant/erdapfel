@@ -2,6 +2,7 @@ import SharePanelView from '../views/share_modal.dot'
 import facebookTemplate from '../views/templates/facebook'
 import twitterTemplate from '../views/templates/twitter'
 import Modal from "./modal"
+import Telemetry from "../libs/telemetry";
 
 export default class Share {
   constructor() {
@@ -31,7 +32,12 @@ export default class Share {
     this.modal.close()
   }
 
-  openPopup () {
+  openPopup (targetName) {
+    if(targetName === 'facebook') {
+      Telemetry.add(Telemetry.SHARE_FACEBOOK)
+    } else {
+      Telemetry.add(Telemetry.SHARE_TWITTER)
+    }
     return `onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"`
   }
 }

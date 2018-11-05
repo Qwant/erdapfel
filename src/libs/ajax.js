@@ -3,46 +3,62 @@ const systemConfigs = nconf.get().system
 const timeout = systemConfigs.timeout
 function Ajax() {}
 
-Ajax.queryLang = async (url, data = {}, options) => {
-  data.lang = getLang().code
-  return Ajax.query(url, data, options)
+Ajax.get = (url, data, options) => {
+  return query(url, data, 'GET', options)
 }
 
-Ajax.query = (url, data, options = {method : 'GET'}) => {
+Ajax.post = (url, data, options) => {
+  return query(url, data, 'POST', options)
+}
+
+Ajax.getLang = async (url, data = {}, options) => {
+  data.lang = getLang().code
+  return Ajax.get(url, data, options)
+}
+
+/* private */
+const query = (url, data, method = 'GET', options = {}) => {
   const xhr = new XMLHttpRequest()
 
   let ajaxPromise = new Promise((resolve, reject) => {
     let jsonResponse
-
+    let xhrStatus = -1
     let timeOutHandler = setTimeout(() => {
       xhr.abort()
       reject(`Timeout calling ${url}`)
     }, timeout * 1000)
 
     xhr.onload = function () {
-      try {
-        jsonResponse = JSON.parse(this.response)
-      } catch (e) {
-        console.error('json', this.response)
-        clearTimeout(timeOutHandler)
-        reject(e)
-        return
+      if(xhrStatus !== 204) {
+        try {
+          jsonResponse = JSON.parse(this.response)
+        } catch (e) {
+          console.error('json', this.response)
+          clearTimeout(timeOutHandler)
+          reject(e)
+          return
+        }
+        resolve(jsonResponse)
+      } else {
+        resolve()
       }
-      resolve(jsonResponse)
     }
 
     xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4 && xhr.status !== 200) {
+      if (xhr.readyState === 4 && (xhr.status < 200 || xhr.status >= 300)) {
         clearTimeout(timeOutHandler)
         reject(xhr.status)
+      } else {
+        xhrStatus = xhr.status
       }
     }
-    if(options.method === 'GET') {
-      xhr.open(options.method, url + '?' + dataToUrl(data))
+    if(method === 'GET') {
+      xhr.open(options.method, `${url}?${dataToUrl(data)}`)
       xhr.send()
     } else {
-      xhr.open(options.method, url)
-      xhr.send(dataToUrl(data))
+      xhr.open(method, url)
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+      xhr.send(JSON.stringify(data))
     }
 
   })

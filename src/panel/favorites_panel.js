@@ -4,6 +4,7 @@ import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
+import Telemetry from "../libs/telemetry";
 const poiSubClass = require('../mapbox/poi_subclass')
 
 function Favorite(sharePanel) {
@@ -41,12 +42,14 @@ Favorite.prototype.toggleMore = function (position) {
 }
 
 Favorite.prototype.openMoreMenu = function (position) {
+  Telemetry.add(Telemetry.FAVORITE_OPEN_MORE)
   this.openMoreMenuPosition = position
   let menu = document.querySelector(`#favorite_more_${position}`)
   menu.classList.add('favorite_panel__item__more--active')
 }
 
 Favorite.prototype.closeMoreMenu = function () {
+  Telemetry.add(Telemetry.FAVORITE_CLOSE_MORE)
   let menu = document.querySelector(`#favorite_more_${this.openMoreMenuPosition}`)
   if(menu) {
     menu.classList.remove('favorite_panel__item__more--active')
@@ -55,6 +58,7 @@ Favorite.prototype.closeMoreMenu = function () {
 }
 
 Favorite.prototype.openShare = function (poi) {
+  Telemetry.add(Telemetry.FAVORITE_SHARE)
   let url = poi.toAbsoluteUrl()
   this.sharePanel.open(url)
 }
@@ -100,6 +104,7 @@ Favorite.prototype.getAll = async function () {
   try {
     storedData = await this.store.getAllPois()
   } catch(e) {
+    Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
     console.error(e)
   }
   this.favoritePois = Object.keys(storedData).map((mapPoint) => {
@@ -108,6 +113,7 @@ Favorite.prototype.getAll = async function () {
 }
 
 Favorite.prototype.open = async function() {
+  Telemetry.add(Telemetry.FAVORITE_OPEN)
   this.displayed = true
   await this.getAll()
   await this.panel.update()
@@ -116,6 +122,7 @@ Favorite.prototype.open = async function() {
 }
 
 Favorite.prototype.close = function() {
+  Telemetry.add(Telemetry.FAVORITE_CLOSE)
   this.closeMoreMenu()
   this.active = false
   this.displayed = false
@@ -124,6 +131,7 @@ Favorite.prototype.close = function() {
 }
 
 Favorite.prototype.go = async function(storePoi) {
+  Telemetry.add(Telemetry.FAVORITE_GO)
   fire('map_mark_poi', storePoi)
   fire('fit_map', storePoi, {sidePanelOffset : true})
   this.panel.addClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
@@ -132,11 +140,14 @@ Favorite.prototype.go = async function(storePoi) {
 }
 
 Favorite.prototype.add = function(poi) {
+  Telemetry.add(Telemetry.FAVORITE_SAVE)
   this.favoritePois.push(poi)
   this.panel.update()
 }
 
 Favorite.prototype.del = async function({poi, index}) {
+  Telemetry.add(Telemetry.FAVORITE_DELETE)
+
   await this.panel.addClassName(0.3, `#favorite_item_${index}`, 'favorite_item--removed')
 
   this.favoritePois = this.favoritePois.filter((favorite) => {

@@ -7,11 +7,11 @@
 <span id="share-copy-status" class="share__copy_status share__copy_status--hidden">{{= _('Link copied', 'share') }}</span>
 <hr class="modal__hr">
 <i class="share__icons icon-facebook"></i>
-<a rel="noopener noreferrer" target="_blank" {{= this.openPopup() }} href="{{= this.facebookTemplate(this.shareUrl) }}" class="share__link">
+<a rel="noopener noreferrer" target="_blank" {{= this.openPopup('facebook') }} href="{{= this.facebookTemplate(this.shareUrl) }}" class="share__link">
   {{= _('SHARE ON FACEBOOK', 'share') }}
 </a>
 <hr class="modal__hr">
 <i class="share__icons icon-twitter"></i>
-<a rel="noopener noreferrer" target="_blank" {{= this.openPopup() }} href="{{= this.twitterTemplate(this.shareUrl) }}" class="share__link">
+<a rel="noopener noreferrer" target="_blank" {{= this.openPopup('twitter') }} href="{{= this.twitterTemplate(this.shareUrl) }}" class="share__link">
   {{= _('SHARE ON TWITTER', 'share') }}
 </a>
