@@ -5,7 +5,7 @@ import PoiBlocContainer from './poi_bloc/poi_bloc_container'
 import Poi from "../mapbox/poi"
 import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
-import ExtendedString from '../libs/string'
+import Telemetry from "../libs/telemetry";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -52,6 +52,7 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.open = async function() {
+  Telemetry.add(Telemetry.POI_OPEN)
   fire('poi_open')
   await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = true
@@ -60,6 +61,7 @@ PoiPanel.prototype.open = async function() {
 }
 
 PoiPanel.prototype.close = async function() {
+  Telemetry.add(Telemetry.POI_CLOSE)
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()
@@ -67,6 +69,7 @@ PoiPanel.prototype.close = async function() {
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
+  Telemetry.add(Telemetry.POI_RESTORE)
   this.poi = Poi.hotLoad(id)
 
   window.execOnMapLoaded(() => {
@@ -92,10 +95,12 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
+  Telemetry.add(Telemetry.POI_GO)
   fire('fit_map', this.poi, {sidePanelOffset : true})
 }
 
 PoiPanel.prototype.openShare = function () {
+  Telemetry.add(Telemetry.POI_SHARE)
   this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 
@@ -139,7 +144,6 @@ async function isPoiFavorite(poi) {
 }
 
 /* loadable */
-
 
 function endLoad() {
   let loadingPanel = document.querySelector('#poi-loading-panel')

@@ -35,7 +35,7 @@ function SearchInput(tagSelector) {
       let isAbort = false
       let promise = new Promise((resolve, reject) => {
         /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-        this.suggestPromise = ajax.query(geocoderUrl, {q: term})
+        this.suggestPromise = ajax.get(geocoderUrl, {q: term})
         const suggestHistoryPromise = getHistory(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
           this.suggestPromise = null

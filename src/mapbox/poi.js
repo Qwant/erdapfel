@@ -74,7 +74,7 @@ Poi.hotLoad = function () {
 Poi.poiApiLoad = async function (id) {
   let rawPoi = null
   try {
-    rawPoi = await Ajax.queryLang(`${serviceConfig.idunn.url}/v1/pois/${id}`)
+    rawPoi = await Ajax.getLang(`${serviceConfig.idunn.url}/v1/pois/${id}`)
   } catch (err) {
     if(err === 404) {
       return

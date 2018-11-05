@@ -31,12 +31,12 @@ test('responds to events and update metrics', done => {
   server
     .post('/events')
     .set('Content-Type', 'application/json')
-    .send('{"type":"favorite_saved"}')
+    .send('{"type":"favorite_save"}')
     .expect(204, () => {
       server
         .get('/metrics')
         .expect(200)
-        .expect(/erdapfel_favorite_saved_count 1/, done)
+        .expect(/erdapfel_favorite_save_count 1/, done)
     })
 });
 

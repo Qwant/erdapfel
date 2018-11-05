@@ -5,18 +5,16 @@ import telemetryModule from 'telemetry'
 const telemetry = nconf.get().telemetry
 
 export default class Telemetry {
-  constructor(event) {
-    this.event = event
+  constructor() {}
+
+  static add(event) {
+    return Telemetry.send(event)
   }
 
-  add() {
-    this.send()
-  }
-
-  async send() {
-    let data = {type : this.event}
+  static async send(event) {
+    let data = {type : event}
     let telemetryUrl = `${telemetry.eventEndpoint}`
-    Ajax.query(telemetryUrl, data, {method : 'POST'})
+    return Ajax.post(telemetryUrl, data, {method : 'POST'})
   }
 }
 
