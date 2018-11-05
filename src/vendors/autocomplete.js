@@ -228,7 +228,9 @@ var autoComplete = (function(){
                 that.sourcePending = o.source(val);
                 that.sourcePending.then((source) => {
                   that.sourcePending = null
-                  suggest(source, val);
+                  if(source !== null){
+                    suggest(source, val);
+                  }
                 }).catch((e) => {
                   console.log(e) /* should be handled by a telemetry logger */
                   that.sourcePending = null
