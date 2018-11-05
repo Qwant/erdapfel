@@ -6,5 +6,4 @@
     closeTag: '</a>'})
   }}
 </span>
-<a class="modal_mailto" href="mailto:privacy@qwant.com">privacy@qwant.com</a>
 <button class="modal__button" {{= click(this.close, this) }}>{{= _('Ok, I\'ve got it.', 'geolocation') }}</button>
