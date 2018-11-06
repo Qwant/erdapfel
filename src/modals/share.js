@@ -22,8 +22,8 @@ export default class Share {
     url.select()
     document.execCommand('copy')
     url.blur()
-    await this.modal.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
-    this.modal.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
+    await this.modal.panel.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
+    this.modal.panel.toggleClassName(.5, '#share-copy-status', 'share__copy_status--hidden')
   }
 
   close () {

@@ -54,7 +54,6 @@ export default class ExtendedControl {
     this._container.appendChild(this.scaleAttributionContainer)
 
     const extendedScaleControl = new ExtendedScaleControl({
-      maxWidth: 72,
       unit: 'metric'
     }, this.scaleAttributionContainer)
 

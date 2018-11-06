@@ -68,27 +68,39 @@
 }
 
 .mapboxgl-ctrl-scale {
-  background: none;
+  height: 15px;
+  margin-left: 2px;
   border: solid 1px #353c52;
   border-top: none;
   color: #353c52;
-  height: 15px;
-  line-height: 15px;
+  line-height: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .map_control__scale_attribute_container {
+  background: rgba(255, 255, 255, 0.5);
   width: 100%;
   float: right;
   text-align: right;
 }
 
 .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  background: none;
   display: inline-block;
   float: none;
   margin: 0;
 }
 
+.mapboxgl-ctrl.map_control__scale {
+  margin-left: 2px;
+}
+
 @media(max-width: 640px) {
+  .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl.map_control__scale {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+
   .map_control_group {
     background: none;
     box-shadow: none;
@@ -102,6 +114,10 @@
       background: #fff;
       @include long_shadow();
     }
+  }
+
+  .map_control__scale_attribute_container {
+    background: none;
   }
 
   .mapboxgl-ctrl-group {
