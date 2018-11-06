@@ -28,7 +28,7 @@
   -webkit-appearance: none;
   width: 330px;
   height: 68px;
-  padding: 10px 38px 10px 54px;
+  padding: 10px 38px 10px 50px;
   margin-left: 28px;
   margin-right: 40px;
   border: none;
@@ -36,6 +36,10 @@
   font-weight: normal;
   color: #353c52;
   box-shadow: none;
+}
+
+.search_form__input::placeholder {
+  color: $secondary_text;
 }
 
 /* Disable Chrome custom 'cancel' button */
