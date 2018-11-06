@@ -10,6 +10,7 @@ import Autocomplete from "../adapters/autocomplete";
 import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
+import Telemetry from "../libs/telemetry";
 
 function AppPanel(parent) {
   new TopBar()
@@ -24,6 +25,7 @@ function AppPanel(parent) {
   this.geolocationModal = new GeolocationModal()
   this.geolocationDeniedModal = new GeolocationDeniedModal()
   this.panel.render()
+  Telemetry.add(Telemetry.APP_START)
 }
 
 export default AppPanel

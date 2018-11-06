@@ -62,7 +62,6 @@ PoiPanel.prototype.open = async function() {
 }
 
 PoiPanel.prototype.close = async function() {
-  Telemetry.add(Telemetry.POI_CLOSE)
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()

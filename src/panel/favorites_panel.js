@@ -51,7 +51,6 @@ Favorite.prototype.openMoreMenu = function (position) {
 Favorite.prototype.closeMoreMenu = function () {
   let menu = document.querySelector(`#favorite_more_${this.openMoreMenuPosition}`)
   if(menu) {
-    Telemetry.add(Telemetry.FAVORITE_CLOSE_MORE)
     menu.classList.remove('favorite_panel__item__more--active')
     this.openMoreMenuPosition = -1
   }
@@ -122,7 +121,6 @@ Favorite.prototype.open = async function() {
 }
 
 Favorite.prototype.close = function() {
-  Telemetry.add(Telemetry.FAVORITE_CLOSE)
   this.closeMoreMenu()
   this.active = false
   this.displayed = false
