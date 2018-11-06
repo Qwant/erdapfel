@@ -53,7 +53,7 @@ const query = (url, data, method = 'GET', options = {}) => {
       }
     }
     if(method === 'GET') {
-      xhr.open(options.method, `${url}?${dataToUrl(data)}`)
+      xhr.open(method, `${url}?${dataToUrl(data)}`)
       xhr.send()
     } else {
       xhr.open(method, url)
