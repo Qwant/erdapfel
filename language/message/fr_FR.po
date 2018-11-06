@@ -31,8 +31,8 @@ msgid "Qwant Maps - alpha"
 msgstr ""
 
 #: views/index.ejs:34
-msgid "Where do you want to go ?"
-msgstr "Où voulez-vous aller ?"
+msgid "Search on Qwant Maps ?"
+msgstr "Rechercher dans Qwant Maps"
 
 #: config/constants.yml:32
 msgid "Opening hours"
