@@ -43,10 +43,10 @@ input[type="search"]::-webkit-search-cancel-button {
 .search_form__action {
   position: absolute;
   width: 30px;
-  height: 44px;
-  right: 30px;
-  top: 12px;
-  background: $background url(../images/magnifier.svg) center no-repeat;
+  height: 60px;
+  right: 25px;
+  top: 4px;
+  background: url(../images/magnifier.svg) center no-repeat;
   font-size: 14px;
   color: $primary_text;
   cursor: pointer;
@@ -55,8 +55,8 @@ input[type="search"]::-webkit-search-cancel-button {
 .search_form__clear {
   display: block;
   height: 60px;
-  width: 50px;
-  right: 50px;
+  width: 30px;
+  right: 52px;
   top: 4px;
   color: $secondary_text;
   position: absolute;
@@ -137,14 +137,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 @media (max-width: 640px) {
 
-  .search_form__clear {
-    height: 50px;
-    width: 28px;
-    top:0;
-    font-size: 14px;
-    color: #5c6f84;
-  }
-
   .search_form {
     height: 48px;
     width: calc(100vw - 72px);
@@ -160,6 +152,19 @@ input[type="search"]::-webkit-search-cancel-button {
     padding: 0 68px 0 50px;
     border-radius: 24px;
     margin-left: 0;
+  }
+
+  .search_form__action {
+    height: 48px;
+    right: 12px;
+    top: 0;
+  }
+
+  .search_form__clear {
+    right: 45px;
+    height: 48px;
+    top: 0;
+    font-size: 14px;
   }
 
   .search_form__input:invalid {
@@ -178,11 +183,7 @@ input[type="search"]::-webkit-search-cancel-button {
     background-size: 34px 34px;
   }
 
-  .search_form__action {
-    height: 30px;
-    right: 12px;
-    top: 10px;
-  }
+
 
   .top_bar--search_focus {
     background: url("../images/panel_top.svg");
@@ -205,13 +206,14 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .search_form__action {
-      top: 15px;
+      height: 60px;
+      top: 0;
     }
 
     .search_form__clear {
-      height: 50px;
+      height: 60px;
       right: 40px;
-      top: 6px;
+      top: 0;
     }
 
     .search_form__logo {
