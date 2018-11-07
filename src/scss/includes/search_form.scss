@@ -9,11 +9,26 @@
   @include long_shadow();
 }
 
+.search_form:before {
+  font-weight: 600;
+  content: 'ALPHA';
+  background: $secondary_text;
+  color: $surface;
+  display: inline;
+  position: absolute;
+  right: 30px;
+  top: -10px;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+}
+
 .search_form__input {
   -webkit-appearance: none;
   width: 330px;
   height: 68px;
-  padding: 10px 38px 10px 54px;
+  padding: 10px 38px 10px 50px;
   margin-left: 28px;
   margin-right: 40px;
   border: none;
@@ -21,6 +36,10 @@
   font-weight: normal;
   color: #353c52;
   box-shadow: none;
+}
+
+.search_form__input::placeholder {
+  color: $secondary_text;
 }
 
 /* Disable Chrome custom 'cancel' button */
@@ -137,6 +156,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
 @media (max-width: 640px) {
 
+  .search_form:before {
+    right: 5px;
+  }
+
   .search_form {
     height: 48px;
     width: calc(100vw - 72px);
@@ -146,6 +169,7 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   .search_form__input {
+    font-size: 16px;
     position: absolute;
     width: 100%;
     height: 48px;
@@ -186,6 +210,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
   .top_bar--search_focus {
+
+    .search_form:before {
+      display: none;
+    }
+
     background: url("../images/panel_top.svg");
     .search_form {
       width: 100%;
@@ -223,5 +252,12 @@ input[type="search"]::-webkit-search-cancel-button {
       top: 15px;
       left: 16px;
     }
+  }
+}
+
+@media (max-width: 370px) {
+  .search_form__input {
+    padding-left: 45px;
+    letter-spacing: -.5px;
   }
 }
