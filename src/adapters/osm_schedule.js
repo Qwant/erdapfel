@@ -31,10 +31,28 @@ function nextTransitionTime(seconds, nextTransitionDate) {
   return false
 }
 
+function hourToDate(hour) {
+  return new Date(`${new Date().toDateString()} ${hour}`)
+}
+
+function toLocaleOpeningHours(hours) {
+  if(hours) {
+    return hours.map((hour) => {
+      let beginningHour = hourToDate(hour.beginning)
+      let endHour = hourToDate(hour.end)
+      return {
+        beginning: strftime(i18nDate.timeFormat, beginningHour),
+        end: strftime(i18nDate.timeFormat, endHour)
+      }
+    })
+  }
+  return []
+}
+
 function translateSchedule(days) {
   if(days) {
     return days.map((day) => {
-      return {dayName : getDay(day.dayofweek % 7), opening : day.opening_hours}
+      return {dayName : getDay(day.dayofweek % 7), opening : toLocaleOpeningHours(day.opening_hours)}
     })
   } else {
     return []
