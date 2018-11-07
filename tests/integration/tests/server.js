@@ -27,16 +27,22 @@ test('responds to logs', done => {
     .expect(204, done)
 });
 
-test('responds to events and update metrics', done => {
+test('responds to events and update metrics', (done) => {
+  let currentFavSaveCount = 0
   server
-    .post('/events')
-    .set('Content-Type', 'application/json')
-    .send('{"type":"favorite_save"}')
-    .expect(204, () => {
+    .get('/metrics')
+    .expect(200)
+    .then(response => {
+      currentFavSaveCount = parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1])
       server
-        .get('/metrics')
-        .expect(200)
-        .expect(/erdapfel_favorite_save_count 1/, done)
+        .post('/events')
+        .set('Content-Type', 'application/json')
+        .send('{"type":"favorite_save"}')
+        .expect(204, () => {
+          server.get('/metrics')
+            .expect(200)
+            .expect(new RegExp(`\nerdapfel_favorite_save_count ${currentFavSaveCount + 1}`), done)
+        })
     })
 });
 
