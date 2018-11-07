@@ -17,7 +17,7 @@ Ajax.getLang = async (url, data = {}, options) => {
 }
 
 /* private */
-const query = (url, data, method = 'GET', options = {}) => {
+const query = (url, data, method = 'GET') => {
   const xhr = new XMLHttpRequest()
 
   let ajaxPromise = new Promise((resolve, reject) => {
