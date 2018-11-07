@@ -20,7 +20,7 @@ class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   trigger() {
-    window.navigator.permissions.query({ name: 'geolocation' }).then(p => {
+    window.navigator.permissions && window.navigator.permissions.query({ name: 'geolocation' }).then(p => {
       if (p.state === 'prompt') {
         fire('open_geolocate_modal')
       }
