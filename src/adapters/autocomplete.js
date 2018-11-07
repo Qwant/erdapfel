@@ -81,10 +81,22 @@ function SearchInput(tagSelector) {
     },
   })
 
-  listen('submit_autocomplete', () => {
-    if(this.suggestList && this.suggestList.length > 0
-    && this.searchInputDomHandler.value && this.searchInputDomHandler.value.length > 0) {
-      this.select(this.suggestList[0])
+  listen('submit_autocomplete', async () => {
+    this.searchInputDomHandler.blur()
+    let term = this.searchInputDomHandler.value
+
+    let rawQueryResonse = await ajax.query(geocoderUrl, {q: term})
+    let suggestList = buildPoi(rawQueryResonse)
+
+    if(suggestList.length > 0) {
+      let firstPoi = suggestList[0]
+      if(firstPoi.type === 'poi') {
+        PanelManager.loadPoiById(firstPoi.id)
+      } else {
+        PanelManager.closeAll()
+      }
+      fire('fit_map', firstPoi, {sidePanelOffset : firstPoi.type === 'poi'})
+      fire('map_mark_poi', firstPoi)
     }
   })
 }
