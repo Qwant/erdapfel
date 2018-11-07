@@ -38,6 +38,10 @@
   box-shadow: none;
 }
 
+.search_form__input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
 .search_form__input::placeholder {
   color: $secondary_text;
 }
