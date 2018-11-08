@@ -74,8 +74,8 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
   const VERTICAL_OFFSET = 250
   const HORIZONTAL_OFFSET = 300
 
-  let mapCanvas = this.map.getCanvas()
-  let positionFragments = []
+  const canvasWidh = window.innerWidth
+  const positionFragments = []
 
 
   if(event.clientY > VERTICAL_OFFSET) {
@@ -84,7 +84,8 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
     positionFragments.push('top')
   }
 
-  if(event.clientX < (mapCanvas.width - HORIZONTAL_OFFSET)) {
+
+  if(event.clientX < (canvasWidh - HORIZONTAL_OFFSET)) {
     positionFragments.push('left')
   } else {
     positionFragments.push('right')
