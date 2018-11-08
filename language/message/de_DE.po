@@ -29,7 +29,7 @@ msgstr "Qwant Maps - alpha"
 
 #: views/index.ejs:34
 msgid "Search on Qwant Maps"
-msgstr ""
+msgstr "Auf Qwant Maps suchen"
 
 #: config/constants.yml:32
 msgid "Opening hours"
