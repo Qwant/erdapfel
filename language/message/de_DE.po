@@ -1,5 +1,5 @@
 # Translators:
-# Noémie Lehuby <n.lehuby@qwant.com>, 2018
+# Pierre, 2018
 # 
 msgid ""
 msgstr ""
@@ -7,13 +7,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-07 10:21+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
-"Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
+"Last-Translator: Pierre, 2018\n"
+"Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr_FR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
@@ -29,564 +29,564 @@ msgstr "Qwant Maps - alpha"
 
 #: views/index.ejs:34
 msgid "Search on Qwant Maps"
-msgstr "Rechercher dans Qwant Maps"
+msgstr "Auf Qwant Maps suchen"
 
 #: config/constants.yml:32
 msgid "Opening hours"
-msgstr "Horaires d'ouverture"
+msgstr "Öffnungszeiten"
 
 #: config/constants.yml:35
 msgid "Open"
-msgstr "Ouvert"
+msgstr "Offen"
 
 #: config/constants.yml:42 config/constants.yml:57
 #: public/build/javascript/bundle.js:1
 msgid "Closed"
-msgstr "Fermé"
+msgstr "Geschlossen"
 
 #: config/constants.yml:47
 msgid "Happy hours"
-msgstr "Happy hours"
+msgstr "Happy Hour"
 
 #: config/constants.yml:50
 msgid "happy hours!"
-msgstr "happy hours !"
+msgstr "eine vergnügliche Zeit!"
 
 #: config/constants.yml:53
 msgid "Last pint"
-msgstr "Dernière pinte"
+msgstr "zuletzt gepinnt"
 
 #: config/constants.yml:75
 msgid "Wheelchair accessible"
-msgstr "Accessible en fauteuil roulant"
+msgstr "Rollstuhlgerecht"
 
 #: config/constants.yml:76
 msgid "Partially wheelchair accessible"
-msgstr "Partiellement accessible en fauteuil roulant"
+msgstr " Teilweise rollstuhlgerecht"
 
 #: config/constants.yml:77
 msgid "Not wheelchair accessible"
-msgstr "Pas accessible en fauteuil roulant"
+msgstr "Nicht rollstuhlgerecht"
 
 #: config/constants.yml:81
 msgid "Wheelchair accessible toilets"
-msgstr "Toilettes accessibles en fauteuil roulant"
+msgstr "Rollstuhlgerechte Toiletten"
 
 #: config/constants.yml:82
 msgid "Partial wheelchair accessible toilets"
-msgstr "Toilettes partiellement accessibles en fauteuil roulant"
+msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
 
 #: config/constants.yml:83
 msgid "No wheelchair accessible toilets"
-msgstr "Pas de toilettes accessibles en fauteuil roulant"
+msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
 
 #: bin/middlewares/og_meta.js:44
 msgid "The map that respects your privacy"
-msgstr "La carte qui respecte votre vie privée"
+msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "accessories shop"
-msgstr "magasin d'accessoires"
+msgstr "Zubehörshop "
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "liquor store"
-msgstr "magasin d'alcool"
+msgstr "Spirituosengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "alpine hut"
-msgstr "refuge alpin"
+msgstr "Berghütte"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "antiques shop"
-msgstr "antiquaire"
+msgstr "Antiquitätengeschäft "
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "archery"
-msgstr "tir à l'arc"
+msgstr "Bogenschießen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "art shop"
-msgstr "magasin d'art"
+msgstr "Kunstgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "arts centre"
-msgstr "centre culturel"
+msgstr "Kunstzentrum"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "athletics"
-msgstr "athlétisme"
+msgstr "Leichtathletik "
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "attraction"
-msgstr "attraction"
+msgstr "Attraktion"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bag shop"
-msgstr "magasin de sac et bagage"
+msgstr "Taschengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bakery"
-msgstr "boulangerie"
+msgstr "Bäckerei"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bank"
-msgstr "banque"
+msgstr "Bank"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bar"
-msgstr "bar"
+msgstr "Bar"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "basin"
-msgstr "bassin de rétention d'eau"
+msgstr "Becken"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "basketball"
-msgstr "basket-ball"
+msgstr "Basketball"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bbq"
-msgstr "barbecue"
+msgstr "BBQ"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "beauty salon"
-msgstr "salon de beauté"
+msgstr "Schönheitssalon"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bed shop"
-msgstr "magasin de literie"
+msgstr "Bettengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bed and breakfast"
-msgstr "chambre d'hôte"
+msgstr "Übernachtung mit Frühstück"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "beverages shop"
-msgstr "magasin de boissons"
+msgstr "Getränkeladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bicycle shop"
-msgstr "magasin de vélo"
+msgstr "Fahrradladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "biergarten"
-msgstr "vente de bières en plein air"
+msgstr "Biergarten"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "billiards"
-msgstr "billiards"
+msgstr "Billard"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bmx"
-msgstr "vtt"
+msgstr "BMX"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "books shop"
-msgstr "librairie"
+msgstr "Buchladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "border control"
-msgstr "contrôle frontalier"
+msgstr "Grenzkontrolle"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "boules"
-msgstr "pétanque"
+msgstr "Boule"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "boutique"
-msgstr "magasin de haute couture"
+msgstr "Boutique"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bowls"
-msgstr "boulingrin"
+msgstr "Bowlen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "brownfield"
-msgstr "friche industrielle"
+msgstr "Brachfläche"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "bus station"
-msgstr "gare routière"
+msgstr "Busbahnhof"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "butcher"
-msgstr "boucherie"
+msgstr "Metzger"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "cafe"
-msgstr "café"
+msgstr "Café"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "camp site"
-msgstr "camping"
+msgstr "Campingplatz"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "canoe"
-msgstr "canoë"
+msgstr "Kanu"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "car shop"
-msgstr "concessionnaire"
+msgstr "Autowerkstatt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "car repair"
-msgstr "garage automobile"
+msgstr "Autoreparatur"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "caravan site"
-msgstr "camping pour caravanes"
+msgstr "Campingplatz"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "carpet shop"
-msgstr "magasin de tapis"
+msgstr "Teppichhandel"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "castle"
-msgstr "chateau"
+msgstr "Burg"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "cemetery"
-msgstr "cimetiére"
+msgstr "Friedhof"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "chalet"
-msgstr "chalet"
+msgstr "Chalet"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "charity store"
-msgstr "magasin caritatif"
+msgstr "Wohltätigkeitsladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "chemist"
-msgstr "parapharmacie"
+msgstr "Drogerie"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "chess"
-msgstr "échecs"
+msgstr "Schach"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "chocolate shop"
-msgstr "chocolaterie"
+msgstr "Schokoladengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "cinema"
-msgstr "cinéma"
+msgstr "Kino"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "climbing"
-msgstr "escalade"
+msgstr "klettern"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "climbing adventure"
-msgstr "accrobranche"
+msgstr "Kletterabenteuer"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "clinic"
-msgstr "clinique"
+msgstr "Klinik"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "clothes shop"
-msgstr "magasin de vêtements"
+msgstr "Kleidergeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "coffee shop"
-msgstr "magasin de café"
+msgstr "Café"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "college"
-msgstr "enseignement supérieur"
+msgstr "College"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "community centre"
-msgstr "centre social"
+msgstr "Gemeindezentrum"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "computer shop"
-msgstr "magasin d'informatique"
+msgstr "Computergeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "confectionery shop"
-msgstr "confiserie"
+msgstr "Süßwarenladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "convenience store"
-msgstr "supérette"
+msgstr "Kleiner Lebensmittelladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "copyshop"
-msgstr "service de photocopies"
+msgstr "Copyshop"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "cosmetics shop"
-msgstr "magasin de cosmétique"
+msgstr "Kosmetikgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "courthouse"
-msgstr "palais de justice"
+msgstr "Gerichtsgebäude"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "cricket"
-msgstr "cricket"
+msgstr "Kricket"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "cycling"
-msgstr "cyclisme"
+msgstr "Rad fahren "
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "deli"
-msgstr "épicerie"
+msgstr "Feinkostladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "dentist"
-msgstr "cabinet dentaire"
+msgstr "Zahnarzt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "department store"
-msgstr "grand magasin"
+msgstr "Kaufhaus"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "dock"
-msgstr "dock"
+msgstr "Kai"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "doctors office"
-msgstr "cabinet médical"
+msgstr "Arztpraxis"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "dog park"
-msgstr "parc canin"
+msgstr "Hundepark"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "dog racing"
-msgstr "courses de chiens"
+msgstr "Hunderennen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "doityourself store"
-msgstr "magasin de bricolage"
+msgstr "Heimwerkermarkt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "dry cleaning"
-msgstr "pressing"
+msgstr "Reinigung"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "electronics shop"
-msgstr "magasin de matériel électronique"
+msgstr "Elektronikgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "embassy"
-msgstr "ambassade"
+msgstr "Botschaft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "equestrian"
-msgstr "équestre"
+msgstr "Reitsport"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "erotic shop"
-msgstr "sex shop"
+msgstr "Erotikshop"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "fabric"
-msgstr "magasin de tissus"
+msgstr "Bau"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "fast food"
-msgstr "restauration rapide"
+msgstr "Fast Food"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "fire station"
-msgstr "caserne de pompier"
+msgstr "Feuerwache"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "florist"
-msgstr "fleuriste"
+msgstr "Blumenhändler"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "food court"
-msgstr "aire de restauration"
+msgstr "Gastronomiebereich"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "free flying"
-msgstr "parapente"
+msgstr "Gratis Flug"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "fuel station"
-msgstr "station essence"
+msgstr "Tankstelle"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "furniture shop"
-msgstr "magasin de meubles"
+msgstr "Möbelgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "gallery"
-msgstr "galerie d'art"
+msgstr "Galerie"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "garden"
-msgstr "jardin"
+msgstr "Garten"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "garden centre"
-msgstr "jardinerie"
+msgstr "Gartenmarkt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "general store"
-msgstr "magasin"
+msgstr "Gemischtwarenladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "gift shop"
-msgstr "magasin de souvenirs"
+msgstr "Geschenkartikelladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "golf"
-msgstr "golf"
+msgstr "Golf"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "golf course"
-msgstr "parcours de golf"
+msgstr "Golfplatz"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "grave yard"
-msgstr "cimetière"
+msgstr "Friedhof"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "greengrocer"
-msgstr "primeur"
+msgstr "Gemüsehändler"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "guest house"
-msgstr "chambre d'hôte"
+msgstr "Gästehaus"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "gymnastics"
-msgstr "gymnastique"
+msgstr "turnen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "hairdresser"
-msgstr "coiffeur"
+msgstr "Friseur"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "halt"
-msgstr "gare"
+msgstr "Halt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "hardware shop"
-msgstr "magasin de matériel informatique"
+msgstr "Eisenwarenhandlung"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "hearing aids shop"
-msgstr "audiologue"
+msgstr "Geschäft für Hörgeräte"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "hifi shop"
-msgstr "magasin d'électroménager"
+msgstr "HiFi-Fachgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "horse racing"
-msgstr "hippodrome"
+msgstr "Pferderennen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "hospital"
-msgstr "hôpital"
+msgstr "Krankenhaus"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "hostel"
-msgstr "hôtel"
+msgstr "Jugendherberge"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "hotel"
-msgstr "hôtel"
+msgstr "Hotel"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "ice cream"
-msgstr "glacier"
+msgstr "Eiscreme"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "ice rink"
-msgstr "patinoire"
+msgstr "Eisring"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "interior decoration shop"
-msgstr "magasin de décoration"
+msgstr "Geschäft für Innenausstattung"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "jewelry shop"
-msgstr "bijouterie"
+msgstr "Juweliergeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "karting"
-msgstr "karting"
+msgstr "Kartsport"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "kindergarten"
-msgstr "école maternelle"
+msgstr "Kindergarten"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "kiosk"
-msgstr "kiosque"
+msgstr "Kiosk"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "lamps shop"
-msgstr "magasin de luminaire"
+msgstr "Lampengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "laundry"
-msgstr "laverie blanchisserie"
+msgstr "Wäscherei"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "library"
-msgstr "bibliothèque"
+msgstr "Bücherei"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "long jump"
-msgstr "piste de saut en longueur"
+msgstr "Weitsprung"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "mall"
-msgstr "centre commercial"
+msgstr "Einkaufszentrum"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "marina"
-msgstr "marina"
+msgstr "Yachthafen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "marketplace"
-msgstr "marché"
+msgstr "Marktplatz"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "massage shop"
-msgstr "salon de massage"
+msgstr "Massagesalon"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "miniature golf"
-msgstr "mini-golf"
+msgstr "Minigolf"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "mobile phone shop"
-msgstr "magasin de téléphonie"
+msgstr "Handyshop"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "model aerodrome"
-msgstr "aérodrome pour modèles réduits d'avions"
+msgstr "Modellflugplatz"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "monument"
-msgstr "monument"
+msgstr "Denkmal"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "motel"
-msgstr "motel"
+msgstr "Motel"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "motocross"
-msgstr "motocross"
+msgstr "Motocross"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "motor"
-msgstr "moteur"
+msgstr "Motor"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "motorcycle shop"
-msgstr "magasin de moto"
+msgstr "Motorradhändler"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "multi"
@@ -594,426 +594,426 @@ msgstr "multi"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "museum"
-msgstr "musée"
+msgstr "Museum"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "music shop"
-msgstr "magasin de musique"
+msgstr "Musikgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "musical instrument shop"
-msgstr "magasin d'instrument de musique"
+msgstr "Geschäft für Musikinstrumente"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "newsagent shop"
-msgstr "marchand de journaux"
+msgstr "Zeitungshändler"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "nightclub"
-msgstr "boite de nuit"
+msgstr "Nachtclub"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "nursing home"
-msgstr "maison médicalisée"
+msgstr "Pflegeheim"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "optician"
-msgstr "opticien"
+msgstr "Optiker"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "orienteering"
-msgstr "course d'orientation"
+msgstr "Orientierungslauf"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "outdoor"
-msgstr "magasin de sports de plein air"
+msgstr "im Freien"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "paragliding"
-msgstr "parapente"
+msgstr "Paragleiten"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "park"
-msgstr "parc"
+msgstr "Park"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "perfumery"
-msgstr "parfumerie"
+msgstr "Parfümerie"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "pet store"
-msgstr "animalerie"
+msgstr " Tierhandlung"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "pharmacy"
-msgstr "pharmacie"
+msgstr "Apotheke"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "photo shop"
-msgstr "magasin de photo"
+msgstr "Fotoladen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "picnic site"
-msgstr "aire de pique-nique"
+msgstr "Picknickplatz"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "place of worship"
-msgstr "lieu de culte"
+msgstr "Gotteshaus"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "police"
-msgstr "commissariat"
+msgstr "Polizei"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "post office"
-msgstr "bureau de poste"
+msgstr "Postamt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "prison"
-msgstr "prison"
+msgstr "Gefängnis"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "pub"
-msgstr "pub"
+msgstr "Pub"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "public building"
-msgstr "bâtiment public"
+msgstr "Öffentliches Gebäude"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "rc car"
-msgstr "voiture radio commandée"
+msgstr "RC-Car"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "reservoir"
-msgstr "réservoir"
+msgstr "Reservoir"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "restaurant"
-msgstr "restaurant"
+msgstr "Restaurant"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "rowing"
-msgstr "aviron"
+msgstr "Rudern"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "ruins"
-msgstr "ruines"
+msgstr "Ruinen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "running"
-msgstr "course à pied"
+msgstr "Rennen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "sailing"
-msgstr "voile"
+msgstr "segeln"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "school"
-msgstr "école"
+msgstr "Schule"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "scuba diving"
-msgstr "plongée sous-marine"
+msgstr "Sporttauchen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "resale shop"
-msgstr "vente d'occasion"
+msgstr "Wiederverkäufer"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "shoes"
-msgstr "magasin de chaussures"
+msgstr "Schuhe"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "shooting"
-msgstr "tir"
+msgstr "Schießen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "skateboard"
-msgstr "skateboard"
+msgstr "Skateboard"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "skating"
-msgstr "piste de ski de fond"
+msgstr "Skaten"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "skiing"
-msgstr "piste de ski"
+msgstr "Skifahren"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "soccer"
-msgstr "football"
+msgstr "Fußball"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "sports shop"
-msgstr "magasin de sport"
+msgstr "Sportgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "sports centre"
-msgstr "complexe sportif"
+msgstr "Sportzentrum"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "stadium"
-msgstr "stade"
+msgstr "Stadion"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "station"
-msgstr "station"
+msgstr "Bahnhof"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "stationery shop"
-msgstr "papeterie"
+msgstr "Schreibwarengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "subway"
-msgstr "arrêt de métro"
+msgstr "Untergrundbahn"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "supermarket"
-msgstr "supermarché"
+msgstr "Supermarkt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "swimming"
-msgstr "piscine"
+msgstr "Schwimmen"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "swimming area"
-msgstr "piscine"
+msgstr "Badebereich"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "swimming pool"
-msgstr "piscine"
+msgstr "Schwimmbad"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "table tennis"
-msgstr "table de ping pong"
+msgstr "Tischtennis"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "tailor"
-msgstr "tailleur"
+msgstr "Schneider"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "tattoo salon"
-msgstr "salon de tatouage"
+msgstr "Tätowierstudio "
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "tennis"
-msgstr "tennis"
+msgstr "Tennis"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "theatre"
-msgstr "théâtre"
+msgstr "Theater"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "theme park"
-msgstr "parc à thème"
+msgstr "Freizeitpark"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "ticket shop"
-msgstr "billetterie"
+msgstr "Ticketshop"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "tobacco shop"
-msgstr "buraliste"
+msgstr "Tabakgeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "toll booth"
-msgstr "péage"
+msgstr "Mautstation"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "townhall"
-msgstr "mairie"
+msgstr "Rathaus"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "toys shop"
-msgstr "magasin de jouets"
+msgstr "Spielzeuggeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "tram stop"
-msgstr "arrêt de tramway"
+msgstr "Straßenbahnhaltestelle"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "travel agency"
-msgstr "agence de voyages"
+msgstr "Reiseagentur"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "university"
-msgstr "université"
+msgstr "Universität"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "veterinary"
-msgstr "cabinet vétérinaire"
+msgstr "Tierarzt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "videos shop"
-msgstr "magasin de vidéo"
+msgstr "Videothek"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "video games shop"
-msgstr "magasin de jeux vidéo"
+msgstr "Geschäft für Computerspiele"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "viewpoint"
-msgstr "belvédère"
+msgstr "Aussichtspunkt"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "watches shop"
-msgstr "horloger"
+msgstr "Uhrengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "water park"
-msgstr "parc aquatique"
+msgstr "Erlebnisbad"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "weapons shop"
-msgstr "armurerie"
+msgstr "Waffengeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "warehouse club"
-msgstr "grossiste"
+msgstr "Warehouse Club"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "wine shop"
-msgstr "magasin de vins"
+msgstr "Weingeschäft"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "yoga"
-msgstr "yoga"
+msgstr "Yoga"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "zoo"
-msgstr "parc zoologique"
+msgstr "Zoo"
 
 #: public/build/javascript/bundle.js:1
 msgid "Favorite places"
-msgstr "Lieux favoris"
+msgstr "Lieblingsorte"
 
 #: public/build/javascript/bundle.js:1
 msgid ""
 "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
-"Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
-"lieu"
+"Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
+"auf einen Ort klicken"
 
 #: public/build/javascript/bundle.js:1
 msgid "MY FAVORITES"
-msgstr "MES FAVORIS"
+msgstr "MEINE FAVORITEN"
 
 #: public/build/javascript/bundle.js:1
 msgid "Share"
-msgstr "Partager"
+msgstr "Teilen"
 
 #: public/build/javascript/bundle.js:1
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Löschen"
 
 #: public/build/javascript/bundle.js:1
 msgid "filter"
-msgstr "filtre"
+msgstr "Filter"
 
 #: public/build/javascript/bundle.js:1
 msgid "Register masq"
-msgstr "S'enregistrer sur Masq"
+msgstr "Verzeichnis maskieren"
 
 #: public/build/javascript/bundle.js:1
 msgid "We use MASQ to keep your preference data safe"
-msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
+msgstr "Zum Schutz Ihrer Präferenzdaten nutzen wir MASQ"
 
 #: public/build/javascript/bundle.js:1
 msgid "Register"
-msgstr "S'enregistrer"
+msgstr "Verzeichnis"
 
 #: public/build/javascript/bundle.js:1
 msgid "Back to favorite"
-msgstr "Retour aux favoris"
+msgstr "Zurück zu Favoriten"
 
 #: public/build/javascript/bundle.js:1
 msgid "FAVORITES"
-msgstr "FAVORIS"
+msgstr "FAVORITEN"
 
 #: public/build/javascript/bundle.js:1
 msgid "SHARE"
-msgstr "PARTAGER"
+msgstr "TEILEN"
 
 #: public/build/javascript/bundle.js:1
 msgid "Qwant Maps uses OpenStreetMap"
-msgstr "Qwant Maps utilise OpenStreetMap"
+msgstr "Qwant Maps nutzt OpenStreetMap"
 
 #: public/build/javascript/bundle.js:1
 msgid "ABOUT THE PROJECT"
-msgstr "EN SAVOIR PLUS SUR LE PROJET"
+msgstr "ÜBER DAS PROJEKT"
 
 #: public/build/javascript/bundle.js:1
 msgid "Accessibility"
-msgstr "Accessibilité"
+msgstr "Barrierefreiheit"
 
 #: public/build/javascript/bundle.js:1
 msgid "Beers"
-msgstr "Bières pression"
+msgstr "Bier"
 
 #: public/build/javascript/bundle.js:1 public/build/javascript/map.js:1
 msgid "until {nextTransitionTime}"
-msgstr "jusqu’à {nextTransitionTime}"
+msgstr "bis {nextTransitionTime}"
 
 #: public/build/javascript/bundle.js:1
 msgid "Internet access"
-msgstr "Accès internet"
+msgstr "Internetzugang"
 
 #: public/build/javascript/bundle.js:1
 msgid "WiFi"
-msgstr "WiFi"
+msgstr "Wi-Fi"
 
 #: public/build/javascript/bundle.js:1
 msgid "Services & information"
-msgstr "Services & informations"
+msgstr "Dienstleistungen und Information"
 
 #: public/build/javascript/bundle.js:1
 msgid "Read more on Wikipedia"
-msgstr "Lire la suite sur Wikipédia"
+msgstr "Auf Wikipedia weiterlesen"
 
 #: public/build/javascript/bundle.js:1
 msgid "Read more on Wikidata"
-msgstr "Lire la suite sur Wikidata"
+msgstr "Erfahren Sie mehr bei Wikidata"
 
 #: public/build/javascript/bundle.js:1
 msgid "Qwant Maps services"
-msgstr "Les services Qwant Maps"
+msgstr "Qwant Maps-Dienste"
 
 #: public/build/javascript/bundle.js:1
 msgid "YOUR FAVORITES"
-msgstr "MES FAVORIS"
+msgstr "DEINE FAVORITEN"
 
 #: public/build/javascript/bundle.js:1
 msgid "ITINERARY"
-msgstr "ITINÉRAIRE"
+msgstr "ROUTE"
 
 #: public/build/javascript/bundle.js:1
 msgid "Share favorite"
-msgstr "Partager le favori"
+msgstr "Favoriten teilen"
 
 #: public/build/javascript/bundle.js:1
 msgid "Share link"
-msgstr "Lien de partage"
+msgstr "Link teilen"
 
 #: public/build/javascript/bundle.js:1
 msgid "COPY LINK"
-msgstr "COPIER LE LIEN"
+msgstr "LINK KOPIEREN"
 
 #: public/build/javascript/bundle.js:1
 msgid "Link copied"
-msgstr "Lien copié"
+msgstr "Link kopiert"
 
 #: public/build/javascript/bundle.js:1
 msgid "SHARE ON FACEBOOK"
-msgstr "PARTAGER SUR FACEBOOK"
+msgstr "AUF  FACEBOOK TEILEN"
 
 #: public/build/javascript/bundle.js:1
 msgid "SHARE ON TWITTER"
-msgstr "PARTAGER SUR TWITTER"
+msgstr "AUF TWITTER TEILEN"
 
 #: public/build/javascript/bundle.js:1
 msgid "Geolocation with privacy!"
-msgstr "La géolocalisation respectueuse de votre vie privée !"
+msgstr "Geolokalisierung mit Privatsphäre!"
 
 #: public/build/javascript/bundle.js:1
 msgid ""
@@ -1022,24 +1022,21 @@ msgid ""
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"Besoin de savoir où vous êtes&#x202F;? Veuillez svp autoriser votre "
-"application à accéder à votre localisation pour qu’elle puisse vous "
-"l’indiquer. Comme indiqué dans {privacyPolicyLink} notre politique de "
-"protection des données{closeTag}, Qwant ne stockera pas vos informations de "
-"géolocalisation. Nous ne voulons pas connaître vos allers et venues."
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir wollen keine Ihrer Aufenthaltsorte wissen."
 
 #: public/build/javascript/bundle.js:1
 msgid "Ok, I've got it."
-msgstr "Ok, j'ai compris."
+msgstr "Okay, ich habe es verstanden."
 
 #: public/build/javascript/bundle.js:1
 msgid "Géolocation not available."
-msgstr "Géolocalisation impossible"
+msgstr "Geolokalisierung nicht verfügbar."
 
 #: public/build/javascript/bundle.js:1
 msgid "You did not allow Qwant Maps to access your position."
-msgstr "Vous n'avez pas autorisé Qwant Maps à accéder à votre position."
+msgstr "Sie haben Qwant Maps keinen Zugriff auf Ihren Standort erlaubt. "
 
 #: public/build/javascript/bundle.js:1
 msgid "OK"
-msgstr "OK"
+msgstr "O.k."
