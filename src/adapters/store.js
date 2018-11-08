@@ -68,7 +68,7 @@ Store.prototype.has = async function(poi) {
 }
 
 Store.prototype.add = function(poi) {
-  abstractStore.set(poi.getKey(), poi.store()).then(function () {
+  abstractStore.set(poi.getKey(), poi.poiStoreLiteral()).then(function () {
   }).catch(function (err) {
     fire('error_h', 'store ' + err)
   })

@@ -164,9 +164,9 @@
 }
 
 .favorite_panel__item__more_container:hover:not(.favorite_item--removed) {
-  background: $surface;
-  border-left: 4px solid #f95d00;
   padding-left: 0;
+  background: $surface;
+  border-left: 4px solid #FF3B4A;
 }
 
 .favorite_panel__item__more_container:hover .favorite_panel__item__more_button {

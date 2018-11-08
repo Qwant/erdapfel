@@ -1,12 +1,13 @@
 import Autocomplete from '../vendors/autocomplete'
 import ajax from '../libs/ajax'
-import Poi from '../mapbox/poi'
 import IconManager from '../adapters/icon_manager'
 import nconf from '@qwant/nconf-getter'
 import Store from '../adapters/store'
 import PanelManager from '../proxies/panel_manager'
 import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
+import IdunnPoi from "./poi/geocoder_poi";
+import StorePoi from "./poi/poi_store_loadable";
 
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
@@ -44,7 +45,7 @@ function SearchInput(tagSelector) {
           let suggestList = buildPoi(responses[0])
           let historySuggestData = responses[1]
           historySuggestData = historySuggestData.map((historySuggest) => {
-            let poi = Poi.storeLoad(historySuggest)
+            let poi = new StorePoi(historySuggest)
             poi.fromHistory = true
             return poi
           })
@@ -63,18 +64,12 @@ function SearchInput(tagSelector) {
         isAbort = true
       }
       return promise
+    },
 
+    renderItem : (poi) => {
+      return AutocompleteTemplate(poi)
     },
-    renderItem : ({id, name, fromHistory, className, subClassName, addressLabel, type}) => {
-      let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
-      return `
-<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
-  <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>
-  ${ExtendedString.htmlEncode(name)}
-  ${addressLabel ? `<span class="autocomplete_address">${ExtendedString.htmlEncode(addressLabel)}</span>` : ''}
-</div>
-`
-    },
+
     onSelect : (e, term, item, items) => {
       e.preventDefault()
       const itemId = item.getAttribute('data-id')
@@ -124,7 +119,7 @@ SearchInput.prototype.select = async function(selectedPoi) {
 
 function buildPoi(response) {
   return response.features.map((feature) => {
-    return Poi.geocoderLoad(feature)
+    return new IdunnPoi(feature)
   })
 }
 
@@ -138,4 +133,64 @@ async function getHistory(term) {
   })
 }
 
+/* select sub template */
+function AutocompleteTemplate(poi) {
+  let content = ''
+  switch(poi.type) {
+    case 'poi':
+      content = PoiTemplate(poi)
+      break
+    case 'house':
+      content = HouseTemplate(poi)
+      break
+    case 'street':
+      content = StreetTemplate(poi)
+      break
+    default:
+      content = AdminTemplate(poi)
+  }
+  let {id, name, fromHistory, className, subClassName, type} = poi
+  let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
+   return `
+<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
+  <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>
+  ${content}
+</div>
+`
+}
+
+
+function PoiTemplate(poi) {
+  let {name, addressLabel} = poi
+  return `
+  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
+  ${addressLabel ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(addressLabel)}</p>` : ''}`
+}
+
+function HouseTemplate(poi) {
+  let {name, postcode, city, countryName} = poi
+  let address = [postcode, city, countryName].filter((zone) => zone).join(', ')
+  return `
+  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
+  ${address ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</p>` : ''}
+`
+}
+
+
+function StreetTemplate(poi) {
+  let {name, postcode, city, countryName} = poi
+  let address = [postcode, city, countryName].filter((zone) => zone).join(', ')
+  return `
+  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
+  ${address ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</p>` : ''}
+`
+}
+
+function AdminTemplate(poi) {
+  let {name, adminLabel} = poi
+  return `
+  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
+  ${adminLabel ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(adminLabel)}</p>` : ''}
+`
+}
 export default SearchInput

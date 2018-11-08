@@ -40,6 +40,11 @@
   box-shadow: none;
 }
 
+.search_form__input::placeholder {
+  color: $secondary_text;
+  opacity: .7;
+}
+
 .search_form__input::-webkit-search-decoration {
   -webkit-appearance: none;
 }
@@ -118,7 +123,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestion.selected {
-  border-left: #f95d00 solid 3px;
+  border-left: #FF3B4A solid 3px;
   padding-left: 17px;
   background-color: $background_active;
 }
@@ -135,6 +140,19 @@ input[type="search"]::-webkit-search-cancel-button {
   color: $secondary_text;
   background-color: $background;
   transition: background-color .2s;
+  cursor: pointer;
+}
+
+.autocomplete_suggestion__first_line {
+  display: inline-block;
+}
+
+.autocomplete_suggestion__second_line {
+  font-size: 14px;
+  margin-left: 24px;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .autocomplete-icon {

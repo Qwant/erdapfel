@@ -1,8 +1,8 @@
 import {Popup} from 'mapbox-gl--ENV'
 import OsmSchedule from '../../src/adapters/osm_schedule'
-import Poi from '../mapbox/poi'
 import IconManager from "./icon_manager";
 import ExtendedString from '../libs/string'
+import ApiPoi from "./poi/api_poi";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
@@ -36,7 +36,7 @@ PoiPopup.prototype.addListener = function(layer) {
 }
 
 PoiPopup.prototype.create = async function (layerPoi, event) {
-  let poi = await Poi.poiApiLoad(layerPoi.properties.global_id)
+  let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id)
   if(poi) {
     if(this.popupHandle) {
       this.popupHandle.remove()
