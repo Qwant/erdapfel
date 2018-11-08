@@ -17,6 +17,7 @@ function SearchInput(tagSelector) {
   this.poi = null
   this.suggestPromise = null
   this.suggestList = []
+  this.pending = false
   new Autocomplete({
     selector : tagSelector,
     minChars : 1,
@@ -27,6 +28,7 @@ function SearchInput(tagSelector) {
       this.suggestList = items
     },
     source : (term) => {
+      this.pending = true
       /*
         https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
         this post is about correlation between gps coordinates decimal count & real precision unit
@@ -38,6 +40,7 @@ function SearchInput(tagSelector) {
         this.suggestPromise = ajax.query(geocoderUrl, {q: term})
         const suggestHistoryPromise = getHistory(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
+          this.pending = false
           this.suggestPromise = null
           let suggestList = buildPoi(responses[0])
           let historySuggestData = responses[1]
@@ -81,11 +84,25 @@ function SearchInput(tagSelector) {
     },
   })
 
-  listen('submit_autocomplete', () => {
-    if(this.suggestList && this.suggestList.length > 0
-    && this.searchInputDomHandler.value && this.searchInputDomHandler.value.length > 0) {
-      this.select(this.suggestList[0])
+  listen('submit_autocomplete', async () => {
+    if(this.pending) {
+      this.searchInputDomHandler.blur()
+      let term = this.searchInputDomHandler.value
+
+      let rawQueryResonse = await ajax.query(geocoderUrl, {q: term})
+      let suggestList = buildPoi(rawQueryResonse)
+
+      if(suggestList.length > 0) {
+        let firstPoi = suggestList[0]
+        this.select(firstPoi)
+      }
+    } else {
+      if(this.suggestList && this.suggestList.length > 0
+        && this.searchInputDomHandler.value && this.searchInputDomHandler.value.length > 0) {
+        this.select(this.suggestList[0])
+      }
     }
+
   })
 }
 
