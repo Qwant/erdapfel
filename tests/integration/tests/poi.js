@@ -4,6 +4,7 @@ const APP_URL = `http://localhost:${config.PORT}`
 const poiMock = require('../../__data__/poi')
 import {initBrowser, getText, wait, clearStore} from '../tools'
 import {getFavorites, toggleFavoritePanel} from '../favorites_tools'
+import {languages} from '../../../config/constants.yml'
 
 let browser
 let page
@@ -217,10 +218,49 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(fav).toEqual([])
 })
 
+
+test('Poi hour i18n', async () => {
+  expect.assertions(languages.supportedLanguages.length)
+  await languages.supportedLanguages.reduce(async (acc, language) => {
+    let langPage = await browser.newPage()
+    await langPage.setExtraHTTPHeaders({
+      'accept-language': `${language.locale},${language.code},en;q=0.8`
+    })
+    await langPage.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+    await wait(200)
+    let hourData = await getHours(langPage)
+    if(language.code === 'fr') {
+      expect(hourData[1][1]).toEqual('09h30 - 18h00')
+    } else if(language.code === 'en') {
+      expect(hourData[1][1]).toEqual('09:30 AM - 06:00 PM')
+    } else {
+      expect(hourData[1][1]).toEqual('09:30 - 18:00')
+    }
+    return acc
+  }, [])
+})
+
+
+
 afterEach(async () => {
-  await clearStore(page)
+  try {
+    await clearStore(page) /* if only the above test is run page is not used */
+  } catch (e) {
+    console.error(e)
+  }
 })
 
 afterAll(async () => {
   await browser.close()
 })
+
+
+async function getHours(page) {
+  return await page.evaluate(() => {
+    return Array.from(document.querySelector('.poi_panel__info__hours__table').querySelectorAll('tr')).map((line) => {
+      return Array.from(line.querySelectorAll('td')).map((cell) => {
+        return cell.innerText.trim()
+      })
+    })
+  })
+}

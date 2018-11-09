@@ -28,7 +28,6 @@ function SearchInput(tagSelector) {
       this.suggestList = items
     },
     source : (term) => {
-      this.pending = true
       /*
         https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
         this post is about correlation between gps coordinates decimal count & real precision unit
@@ -83,6 +82,10 @@ function SearchInput(tagSelector) {
       this.select(poi)
     },
   })
+
+  this.searchInputDomHandler.onkeydown = () => {
+    this.pending = true
+  }
 
   listen('submit_autocomplete', async () => {
     if(this.pending) {
