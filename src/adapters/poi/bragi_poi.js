@@ -68,8 +68,9 @@ export default class BragiPoi extends Poi {
     this.value = feature.properties.geocoding.label
     this.addressLabel = addressLabel
     this.adminLabel = adminLabel
-
-    this.postcode = feature.properties.geocoding.postcode
+    if(feature.properties.geocoding.postcode) {
+      this.postcode = feature.properties.geocoding.postcode.split(';')[0]
+    }
     this.city = feature.properties.geocoding.city
     /* extract country */
     let country = feature.properties.geocoding.administrative_regions.find((administrativeRegion) =>
@@ -78,7 +79,6 @@ export default class BragiPoi extends Poi {
     if (country) {
       this.countryName = country.name
     }
-
     /* extract bbox */
     if (feature.properties.geocoding.bbox) {
       this.bbox = feature.properties.geocoding.bbox
@@ -86,14 +86,23 @@ export default class BragiPoi extends Poi {
   }
 
   static get(term) {
-    let suggests
-    let queryPromise = new Promise(async (resolve) => {
-      suggests = await ajax.query(geocoderUrl, {q: term})
-      resolve(suggests.features.map((feature) => {
-        return new BragiPoi(feature)
-      }))
+    let suggestsPromise
+    let queryPromise = new Promise(async (resolve, reject) => {
+      suggestsPromise = ajax.query(geocoderUrl, {q: term})
+      suggestsPromise.then((suggests) => {
+        resolve(suggests.features.map((feature) => {
+          return new BragiPoi(feature)
+        }))
+      }).catch((error) => {
+        if(error === 0) { /* abort */
+          resolve(null)
+        } else {
+          reject(error)
+        }
+      })
     })
-    queryPromise.abort = () => {suggests.abort()}
+    queryPromise.abort = () => {suggestsPromise.abort()}
+
     return queryPromise
   }
 }

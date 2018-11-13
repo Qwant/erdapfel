@@ -20,6 +20,7 @@ function SearchInput(tagSelector) {
     width:'650px',
     updateData : (items) => {
       this.suggestList = items
+      this.pending = false
     },
     source : (term) => {
       /*
@@ -27,27 +28,24 @@ function SearchInput(tagSelector) {
         this post is about correlation between gps coordinates decimal count & real precision unit
         110m = 3 decimals
        */
-      let isAbort = false
       let promise = new Promise((resolve, reject) => {
         /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
         let suggestHistoryPromise = StorePoi.get(term)
         this.suggestPromise = BragiPoi.get(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
-          this.pending = false
-          this.suggestPromise = null
-          this.suggestList = responses[0].concat(responses[1])
-          resolve(this.suggestList)
-        }).catch((e) => {
-          if(isAbort) {
-            resolve(null)
+          if(responses[0]) {
+            this.suggestPromise = null
+            this.suggestList = responses[0].concat(responses[1])
+            resolve(this.suggestList)
           } else {
-            reject(e)
+            resolve(null)
           }
+        }).catch((e) => {
+          reject(e)
         })
       })
       promise.abort = () => {
         this.suggestPromise.abort()
-        isAbort = true
       }
       return promise
     },
@@ -64,8 +62,10 @@ function SearchInput(tagSelector) {
     },
   })
 
-  this.searchInputDomHandler.onkeydown = () => {
-    this.pending = true
+  this.searchInputDomHandler.onkeydown = (event) => {
+    if(event.keyCode !== 13) { /* prevent enter key */
+      this.pending = true
+    }
   }
 
   listen('submit_autocomplete', async () => {
@@ -102,61 +102,73 @@ SearchInput.prototype.select = async function(selectedPoi) {
 /* select sub template */
 function AutocompleteTemplate(poi) {
   let content = ''
-  switch(poi.type) {
-    case 'poi':
-      content = PoiTemplate(poi)
-      break
-    case 'house':
-      content = HouseTemplate(poi)
-      break
-    case 'street':
-      content = StreetTemplate(poi)
-      break
-    default:
-      content = AdminTemplate(poi)
-  }
   let {id, name, fromHistory, className, subClassName, type} = poi
   let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
+  let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
+
+  switch(poi.type) {
+    case 'poi':
+      content = PoiTemplate(poi, iconDom)
+      break
+    case 'house':
+      content = HouseTemplate(poi, iconDom)
+      break
+    case 'street':
+      content = StreetTemplate(poi, iconDom)
+      break
+    default: /* admin */
+      content = AdminTemplate(poi, iconDom)
+  }
+
    return `
 <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
-  <div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>
   ${content}
 </div>
 `
 }
 
-
-function PoiTemplate(poi) {
+function PoiTemplate(poi, iconDom) {
   let {name, addressLabel} = poi
   return `
-  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
-  ${addressLabel ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(addressLabel)}</p>` : ''}`
+<div class="autocomplete_suggestion__first_line__container">
+  ${iconDom}
+  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
+</div>
+${addressLabel ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(addressLabel)}</div>` : ''}`
 }
 
-function HouseTemplate(poi) {
+function HouseTemplate(poi, iconDom) {
   let {name, postcode, city, countryName} = poi
   let address = [postcode, city, countryName].filter((zone) => zone).join(', ')
   return `
-  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
-  ${address ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</p>` : ''}
+<div class="autocomplete_suggestion__first_line__container">
+  ${iconDom}
+  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
+</div>
+${address ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</div>` : ''}
 `
 }
 
-
-function StreetTemplate(poi) {
+function StreetTemplate(poi, iconDom) {
   let {name, postcode, city, countryName} = poi
   let address = [postcode, city, countryName].filter((zone) => zone).join(', ')
   return `
-  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
-  ${address ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</p>` : ''}
+<div class="autocomplete_suggestion__first_line__container">
+  ${iconDom}
+  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
+</div>
+${address ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</div>` : ''}
 `
 }
 
-function AdminTemplate(poi) {
+function AdminTemplate(poi, iconDom) {
   let {name, adminLabel} = poi
   return `
-  <p class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</p>
-  ${adminLabel ? `<p class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(adminLabel)}</p>` : ''}
+<div class="autocomplete_suggestion__first_line__container">
+  ${iconDom}
+  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
+</div>
+${adminLabel ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(adminLabel)}</div>` : ''}
 `
 }
 export default SearchInput

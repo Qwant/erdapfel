@@ -129,13 +129,9 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestion {
-  position: relative;
   max-height: 100vh;
   padding: 7px 0 7px 20px;
   line-height: 23px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: 1.02em;
   color: $secondary_text;
   background-color: $background;
@@ -143,8 +139,26 @@ input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
+.autocomplete_suggestion__first_line__container {
+  width: 100%;
+  height: 20px;
+}
+
+.autocomplete-icon {
+  display: inline-block;
+  width: 20px;
+}
+
+.autocomplete-icon.icon {
+  line-height: 26px;
+}
+
 .autocomplete_suggestion__first_line {
   display: inline-block;
+  width: calc(100% - 50px);
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .autocomplete_suggestion__second_line {
@@ -153,11 +167,6 @@ input[type="search"]::-webkit-search-cancel-button {
   text-overflow:ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.autocomplete-icon {
-  display: inline-block;
-  width: 20px;
 }
 
 .autocomplete-icon.icon:before {
