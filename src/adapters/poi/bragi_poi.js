@@ -1,6 +1,11 @@
 import Poi from "./poi";
+import ajax from "../../libs/ajax";
+import nconf from '@qwant/nconf-getter'
 
-export default class GeocoderPoi extends Poi {
+const serviceConfigs = nconf.get().services
+const geocoderUrl = serviceConfigs.geocoder.url
+
+export default class BragiPoi extends Poi {
   constructor(feature) {
     let poiClassText = ''
     let poiSubclassText = ''
@@ -78,5 +83,17 @@ export default class GeocoderPoi extends Poi {
     if (feature.properties.geocoding.bbox) {
       this.bbox = feature.properties.geocoding.bbox
     }
+  }
+
+  static get(term) {
+    let suggests
+    let queryPromise = new Promise(async (resolve) => {
+      suggests = await ajax.query(geocoderUrl, {q: term})
+      resolve(suggests.features.map((feature) => {
+        return new BragiPoi(feature)
+      }))
+    })
+    queryPromise.abort = () => {suggests.abort()}
+    return queryPromise
   }
 }

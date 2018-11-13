@@ -1,4 +1,4 @@
-import ApiPoi from "./api_poi";
+import ApiPoi from "./idunn_poi";
 
 export default class HotLoadPoi extends ApiPoi {
   constructor() {

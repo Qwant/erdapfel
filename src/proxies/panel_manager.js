@@ -1,4 +1,4 @@
-import ApiPoi from "../adapters/poi/api_poi";
+import ApiPoi from "../adapters/poi/idunn_poi";
 
 function PanelManager() {}
 

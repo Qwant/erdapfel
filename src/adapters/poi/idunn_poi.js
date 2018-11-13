@@ -5,7 +5,7 @@ const serviceConfig = nconf.get().services
 const LNG_INDEX = 0
 const LAT_INDEX = 1
 
-export default class ApiPoi extends Poi {
+export default class IdunnPoi extends Poi {
   constructor(rawPoi) {
     let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
     super(rawPoi.id, rawPoi.name, 'poi', latLng, rawPoi.class_name, rawPoi.subclass_name, '')
@@ -27,6 +27,6 @@ export default class ApiPoi extends Poi {
         return
       }
     }
-    return new ApiPoi(rawPoi)
+    return new IdunnPoi(rawPoi)
   }
 }

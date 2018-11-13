@@ -2,7 +2,7 @@ import {Popup} from 'mapbox-gl--ENV'
 import OsmSchedule from '../../src/adapters/osm_schedule'
 import IconManager from "./icon_manager";
 import ExtendedString from '../libs/string'
-import ApiPoi from "./poi/api_poi";
+import ApiPoi from "./poi/idunn_poi";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')

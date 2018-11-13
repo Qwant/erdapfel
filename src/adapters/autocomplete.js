@@ -1,17 +1,10 @@
 import Autocomplete from '../vendors/autocomplete'
-import ajax from '../libs/ajax'
 import IconManager from '../adapters/icon_manager'
-import nconf from '@qwant/nconf-getter'
-import Store from '../adapters/store'
 import PanelManager from '../proxies/panel_manager'
 import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
-import IdunnPoi from "./poi/geocoder_poi";
-import StorePoi from "./poi/poi_store_loadable";
-
-const serviceConfigs = nconf.get().services
-const geocoderUrl = serviceConfigs.geocoder.url
-const store = new Store()
+import BragiPoi from "./poi/bragi_poi";
+import StorePoi from "./poi/poi_store";
 
 function SearchInput(tagSelector) {
   this.searchInputDomHandler = document.querySelector(tagSelector)
@@ -37,20 +30,13 @@ function SearchInput(tagSelector) {
       let isAbort = false
       let promise = new Promise((resolve, reject) => {
         /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-        this.suggestPromise = ajax.get(geocoderUrl, {q: term})
-        const suggestHistoryPromise = getHistory(term)
+        let suggestHistoryPromise = StorePoi.get(term)
+        this.suggestPromise = BragiPoi.get(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
           this.pending = false
           this.suggestPromise = null
-          let suggestList = buildPoi(responses[0])
-          let historySuggestData = responses[1]
-          historySuggestData = historySuggestData.map((historySuggest) => {
-            let poi = new StorePoi(historySuggest)
-            poi.fromHistory = true
-            return poi
-          })
-          suggestList = suggestList.concat(historySuggestData)
-          resolve(suggestList)
+          this.suggestList = responses[0].concat(responses[1])
+          resolve(this.suggestList)
         }).catch((e) => {
           if(isAbort) {
             resolve(null)
@@ -86,10 +72,7 @@ function SearchInput(tagSelector) {
     if(this.pending) {
       this.searchInputDomHandler.blur()
       let term = this.searchInputDomHandler.value
-
-      let rawQueryResonse = await ajax.get(geocoderUrl, {q: term})
-      let suggestList = buildPoi(rawQueryResonse)
-
+      let suggestList = BragiPoi.get(term)
       if(suggestList.length > 0) {
         let firstPoi = suggestList[0]
         this.select(firstPoi)
@@ -100,7 +83,6 @@ function SearchInput(tagSelector) {
         this.select(this.suggestList[0])
       }
     }
-
   })
 }
 
@@ -115,22 +97,6 @@ SearchInput.prototype.select = async function(selectedPoi) {
       PanelManager.closeAll()
     }
   }
-}
-
-function buildPoi(response) {
-  return response.features.map((feature) => {
-    return new IdunnPoi(feature)
-  })
-}
-
-async function getHistory(term) {
-  return new Promise((resolve) => {
-    store.getPrefixes(term).then((result) => {
-      resolve(result)
-    }).catch(() => {
-      resolve([])
-    })
-  })
 }
 
 /* select sub template */
