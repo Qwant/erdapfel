@@ -32,12 +32,7 @@ export default class Share {
     this.modal.close()
   }
 
-  openPopup (targetName) {
-    if(targetName === 'facebook') {
-      Telemetry.add(Telemetry.SHARE_FACEBOOK)
-    } else {
-      Telemetry.add(Telemetry.SHARE_TWITTER)
-    }
+  openPopup () {
     return `onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"`
   }
 }

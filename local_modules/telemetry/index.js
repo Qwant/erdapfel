@@ -19,10 +19,7 @@ module.exports = {
     'poi_go',
     'poi_share',
     'poi_error_load', // error
-    /* Share */
-    'share_facebook', // out link
-    'share_twitter', // out link
     /* Map */
-    'localise_start'
+    'localise_trigger'
   ]
 }

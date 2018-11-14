@@ -16,6 +16,9 @@ class ExtendedGeolocateControl extends GeolocateControl {
   constructor(options, container) {
     super(options)
     this._container = container
+    this.on('trackuserlocationstart', () => {
+      Telemetry.add(Telemetry.LOCALISE_TRIGGER)
+    })
   }
 
   onAdd(map) {
@@ -30,14 +33,12 @@ class ExtendedGeolocateControl extends GeolocateControl {
 
   trigger() {
     window.navigator.permissions && window.navigator.permissions.query({ name: 'geolocation' }).then(p => {
-      if(p.state === geolocationPermissions.GRANTED) {
-        Telemetry.add(Telemetry.LOCALISE_START)
-      }
       if (p.state === geolocationPermissions.PROMPT) {
         fire('open_geolocate_modal')
       }
     })
     super.trigger()
+
   }
 
   _setupUI(supported) {
