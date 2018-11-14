@@ -100,5 +100,5 @@ pois:
 map:
   zoom: 2
   center:
-    lng: 20
-    lat: 20
+    lng: 2.52
+    lat: 52.41
