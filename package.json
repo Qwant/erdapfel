@@ -35,7 +35,7 @@
     "@qwant/merge-po-loader": "file:local_modules/merge-po-loader",
     "@qwant/nconf-getter": "file:local_modules/nconf_getter",
     "@qwant/po-js-loader": "file:local_modules/po-js-loader",
-    "@qwant/qwant-basic-gl-style": "git+https://github.com/QwantResearch/qwant-basic-gl-style.git#f35bd5a2ff733c7e631efc597471a5adb866c790",
+    "@qwant/qwant-basic-gl-style": "git+https://github.com/QwantResearch/qwant-basic-gl-style.git#3e106f0d0279748623d22866dffc3b27459805b2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
