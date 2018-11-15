@@ -1,33 +1,26 @@
-<div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden' }}">
+<div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden ' }}{{= this.card ? 'poi_panel--card ' : '' }}">
+  {{? this.poi }}
+    <div class="poi_panel__content__card">
+      <div class="poi_panel__close" {{= click(this.close, this) }}>
+        <i class="icon-x"></i>
+      </div>
+      <div class="poi_panel__content__card__content">
+       {{= this.panel.renderPartial(this.headerPartial) }}
+       {{= this.minimalHourPanel.render() }}
+      </div>
+        <button class="poi_panel__content__card__action" {{= click(this.showDetail, this) }}>
+          <span class="icon-chevrons-right"></span>
+          {{= _('SEE MORE', 'poi panel') }}
+        </button>
+      </div>
+    {{?}}
   <div class="poi_panel__content">
   {{? this.poi }}
     {{? this.fromFavorite }}
       <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}</div>
     {{?}}
     <div class="poi_panel__description_container" {{= click(this.center, this) }}>
-      {{ let ico = IconManager.get(this.poi); }}
-      {{? ico }}
-        <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-      {{??}}
-        <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
-      {{?}}
-        <h4 class="poi_panel__title">
-          {{? this.poi.local_name }}
-            {{= this.htmlEncode(this.poi.local_name) }}
-          {{?? this.poi.name }}
-            {{= this.htmlEncode(this.poi.name) }}
-          {{??}}
-            {{= this.poiSubClass(this.poi.subClassName) }}
-          {{?}}
-        </h4>
-      {{? this.poi.subClassName }}
-        <p class="poi_panel__description">{{= this.poiSubClass(this.poi.subClassName) }}</p>
-      {{?}}
-      {{? this.poi.address && this.poi.address.label }}
-        <p class="poi_panel__address">
-          {{= this.htmlEncode(this.poi.address.label) }}
-        </p>
-      {{?}}
+       {{= this.panel.renderPartial(this.headerPartial) }}
       <div class="poi_panel__actions">
         <div class="poi_panel__actions__store_container" {{= click(this.toggleStorePoi, this) }}>
           <button class="poi_panel__actions__icon__store poi_panel__actions__icon {{= this.poi.stored ? 'icon-icon_star-filled' : 'icon-icon_star'}}">
@@ -58,7 +51,6 @@
           </a>
         </div>
       </div>
-
   {{?}}
   </div>
   <div id="poi-loading-panel"></div>

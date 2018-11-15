@@ -111,9 +111,10 @@
     background: rgba(255, 255, 255, 0.5);
   }
 
-  .map_control_group {
+  .mapboxgl-ctrl-group.map_control_group {
     background: none;
     box-shadow: none;
+    -webkit-box-shadow: none;
     overflow: visible;
     button {
       width: 48px;

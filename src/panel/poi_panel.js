@@ -6,6 +6,8 @@ import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
 import HotLoadPoi from "../adapters/poi/hotload_poi";
 import Telemetry from "../libs/telemetry";
+import headerPartial from '../views/poi_partial/header.dot'
+import MinimalHourPanel from './poi_bloc/opening_minimal'
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -21,6 +23,9 @@ function PoiPanel(sharePanel) {
   this.panel = new Panel(this, PoiPanelView)
   this.sharePanel = sharePanel
   this.lang = window.getBaseLang().code
+  this.card = true
+  this.headerPartial = headerPartial
+  this.minimalHourPanel = new MinimalHourPanel()
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
 }
@@ -82,17 +87,21 @@ PoiPanel.prototype.restorePoi = async function (id) {
     this.active = true
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
     await this.panel.update()
+
+    this.minimalHourPanel.set(this.poi)
   }
 }
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.poi = poi
+  this.card = true
   this.poi.stored = await isPoiFavorite(this.poi)
-  this.PoiBlocContainer.set(poi)
+  this.PoiBlocContainer.set(this.poi)
   this.fromFavorite = options.isFromFavorite
   this.active = true
   UrlState.pushUrl()
   await this.panel.update()
+  await this.minimalHourPanel.set(this.poi)
   endLoad()
 }
 
@@ -125,6 +134,12 @@ PoiPanel.prototype.restore = async function(urlShard) {
       endLoad()
     }
   }
+}
+
+PoiPanel.prototype.showDetail = function() {
+  this.card = false
+  this.panel.update()
+  endLoad()
 }
 
 PoiPanel.prototype.backToFavorite = function() {

@@ -1,9 +1,11 @@
 import HourPanelView from '../../views/poi_bloc/hour.dot'
+import nextTransitionPartial from '../../views/poi_bloc/hour_next_transition_partial.dot'
 import Panel from "../../libs/panel";
 import OsmSchedule from '../../../src/adapters/osm_schedule'
 import Telemetry from "../../libs/telemetry";
 
 function HourPanel(block, poi, options) {
+  this.nextTransitionPartial = nextTransitionPartial
   this.panel = new Panel(this, HourPanelView)
   this.name = block.name
   this.title = options.title

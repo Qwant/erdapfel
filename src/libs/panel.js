@@ -57,6 +57,10 @@ Panel.prototype.update = async function () {
   })
 }
 
+Panel.prototype.renderPartial = function(partial) {
+  return partial.call(this.panel)
+}
+
 Panel.prototype.wait = async function (t) {
   return new Promise((resolve) => {
     setTimeout(()=> {
