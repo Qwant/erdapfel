@@ -84,22 +84,32 @@
   text-align: right;
 }
 
-.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
   background: none;
   display: inline-block;
   float: none;
   margin: 0;
+  height: 24px;
+}
+
+.mapboxgl-ctrl-attrib.mapboxgl-compact::after {
+  bottom: 0;
+  right: 0;
 }
 
 .mapboxgl-ctrl.map_control__scale {
   margin-left: 2px;
+  float: left;
+}
+
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+  margin: 5px 10px 0 0;
 }
 
 @media(max-width: 640px) {
   .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl.map_control__scale {
     background: rgba(255, 255, 255, 0.5);
   }
-
 
   .map_control_group {
     background: none;
