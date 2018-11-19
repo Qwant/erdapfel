@@ -29,8 +29,12 @@
 .share_copy__link {
   font-size: 12px;
   font-weight: bold;
-  color: $secondary_text;
+  color: $secondary_text_clear;
   cursor: pointer;
+}
+
+.share_copy__input__container:hover .share_copy__link {
+  color : $primary_text
 }
 
 .share_copy__status {
@@ -53,7 +57,7 @@
   top: 1px;
   right: 2px;
 
-  .share__copy_link {
+  .share_copy_link {
     display: block;
   }
 
