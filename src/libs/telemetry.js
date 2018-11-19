@@ -5,19 +5,30 @@ import telemetryModule from 'telemetry'
 const telemetryEnabled = nconf.get().telemetryEnabled
 const system = nconf.get().system
 const telemtryEventUrl = 'events'
+const uniqEventList = []
 
 export default class Telemetry {
   constructor() {}
 
   static add(event) {
-    return Telemetry.send(event)
+    if(event) {
+      return Telemetry.send(event)
+    } else {
+      console.error('Telemetry event is missing')
+    }
+  }
+
+  static addOnce(event) {
+    if(uniqEventList.indexOf(event) === -1) {
+      uniqEventList.push(event)
+      Telemetry.add(event)
+    }
   }
 
   static async send(event) {
     if(telemetryEnabled) {
       let data = {type : event}
       let telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`
-      console.log(telemetryUrl)
       return Ajax.post(telemetryUrl, data, {method : 'POST'})
     }
   }

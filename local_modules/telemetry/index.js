@@ -15,6 +15,7 @@ module.exports = {
     'itinerary_open',
     /* Poi */
     'poi_open',
+    'poi_restore',
     'poi_hour_extend',
     'poi_go',
     'poi_share',

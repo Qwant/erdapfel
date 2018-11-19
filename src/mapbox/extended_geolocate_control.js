@@ -17,7 +17,7 @@ class ExtendedGeolocateControl extends GeolocateControl {
     super(options)
     this._container = container
     this.on('trackuserlocationstart', () => {
-      Telemetry.add(Telemetry.LOCALISE_TRIGGER)
+      Telemetry.addOnce(Telemetry.LOCALISE_TRIGGER)
     })
   }
 
