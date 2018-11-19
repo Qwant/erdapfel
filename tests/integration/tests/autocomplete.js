@@ -153,6 +153,36 @@ test('bbox & center', async () => {
   expect(center).toEqual({ lat: 1, lng: 4 })
 })
 
+test('submit key', async () => {
+  expect.assertions(2)
+  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
+  await page.goto(APP_URL)
+  /* submit with data already loaded */
+  await page.keyboard.type('Hello')
+  await wait(150)
+  await page.keyboard.press('Enter')
+
+  let center = await page.evaluate(() => {
+    return MAP_MOCK.getCenter()
+  })
+  let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates
+  expect(center).toEqual({lat : firstFeatureCenter[1], lng : firstFeatureCenter[0]})
+
+  await page.click('#clear_button')
+
+  /* force specific query */
+  autocompleteHelper.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=paris/)
+  await page.keyboard.type('paris')
+  await page.keyboard.press('Enter')
+
+  center = await page.evaluate(() =>
+    MAP_MOCK.getCenter()
+  )
+
+  firstFeatureCenter = mockAutocompleteAllTypes.features[0].geometry.coordinates
+  expect(center).toEqual({lat : firstFeatureCenter[1], lng : firstFeatureCenter[0]})
+})
+
 test('check template', async () => {
   expect.assertions(8)
   autocompleteHelper.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/)

@@ -72,7 +72,7 @@ function SearchInput(tagSelector) {
     if(this.pending) {
       this.searchInputDomHandler.blur()
       let term = this.searchInputDomHandler.value
-      let suggestList = BragiPoi.get(term)
+      let suggestList = await BragiPoi.get(term)
       if(suggestList.length > 0) {
         let firstPoi = suggestList[0]
         this.select(firstPoi)

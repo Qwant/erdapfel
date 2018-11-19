@@ -88,7 +88,7 @@ export default class BragiPoi extends Poi {
   static get(term) {
     let suggestsPromise
     let queryPromise = new Promise(async (resolve, reject) => {
-      suggestsPromise = ajax.query(geocoderUrl, {q: term})
+      suggestsPromise = ajax.get(geocoderUrl, {q: term})
       suggestsPromise.then((suggests) => {
         resolve(suggests.features.map((feature) => {
           return new BragiPoi(feature)

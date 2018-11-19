@@ -3,7 +3,7 @@ import Panel from '../libs/panel'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
-import StorePoi from "../adapters/poi/poi_store_loadable";
+import StorePoi from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 const poiSubClass = require('../mapbox/poi_subclass')
 
