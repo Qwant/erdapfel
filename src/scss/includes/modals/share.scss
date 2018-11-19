@@ -3,7 +3,7 @@
   display: block;
   width: 100%;
   margin-bottom: 5px;
-  padding: 10px 12px;
+  padding: 20px 12px;
   background-color: $background;
   border: solid 1px $separator_color;
   font-size: 14px;
@@ -26,20 +26,49 @@
   padding-right: 6px;
 }
 
-.share__copy_link {
+.share_copy__link {
   font-size: 12px;
   font-weight: bold;
   color: $secondary_text;
   cursor: pointer;
 }
 
-.share__copy_status {
+.share_copy__status {
   margin-left: 15px;
   font-size: 13px;
-  color: $secondary_text;
+  color: $secondary_variant_text;
   transition: color .2s;
 }
 
-.share__copy_status--hidden {
-  color: transparent;
+.share_copy__status__icon {
+  font-size: 14px;
 }
+
+.share_copy__input__container {
+  position: relative;
+}
+
+.share_copy__container { /* show link */
+  position: absolute;
+  top: 1px;
+  right: 2px;
+
+  .share__copy_link {
+    display: block;
+  }
+
+  .share_copy__status {
+    display: none;
+  }
+}
+
+.share_copy__container--status {
+  .share_copy__link {
+    display: none;
+  }
+
+  .share_copy__status {
+    display: block;
+  }
+}
+
