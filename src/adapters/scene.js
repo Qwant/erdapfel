@@ -11,21 +11,36 @@ import loadImage from '../libs/image_loader'
 import nconf from "../../local_modules/nconf_getter"
 import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
+import Store from '../adapters/store'
 
 const baseUrl = nconf.get().system.baseUrl
+const store = new Store()
 
 function Scene() {
+  this.currentMarker = null
+  this.popup = new PoiPopup()
+}
+
+Scene.prototype.initScene = async function () { 
   UrlState.registerHash(this, 'map')
-  if(window.hotLoadPoi) {
+  await this.setupInitialPosition()
+  this.initMapBox()
+}
+
+Scene.prototype.setupInitialPosition = async function () {
+  this.center = [map.center.lng, map.center.lat]
+  this.zoom = map.zoom
+  if (window.hotLoadPoi) {
     let hotloadedPoi = new HotLoadPoi()
     this.zoom = hotloadedPoi.zoom
     this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat]
   } else {
-    this.center = [map.center.lng, map.center.lat]
-    this.zoom = map.zoom
+    let lastLocation = await store.getLastLocation()
+    if (lastLocation) {
+      this.center = [lastLocation.lng, lastLocation.lat]
+      this.zoom = lastLocation.zoom
+    }
   }
-  this.currentMarker = null
-  this.popup = new PoiPopup()
 }
 
 Scene.prototype.initMapBox = function () {
@@ -87,6 +102,10 @@ Scene.prototype.initMapBox = function () {
 
     this.mb.on('moveend', () => {
       UrlState.replaceUrl()
+      let lng = this.mb.getCenter().lng
+      let lat = this.mb.getCenter().lat
+      let zoom = this.mb.getZoom()
+      fire('store_center', { lng, lat, zoom })
     })
 
     window.execOnMapLoaded = (f) => f()

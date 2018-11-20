@@ -119,7 +119,7 @@ PoiPanel.prototype.store = function() {
 PoiPanel.prototype.restore = async function(urlShard) {
   if(urlShard) {
     let idSlugMatch = urlShard.match(/^([^@]+)@?(.*)/)
-    if (idSlugMatch) {
+    if (idSlugMatch && window.hotLoadPoi) {
       let id = idSlugMatch[1]
       await this.restorePoi(id)
       endLoad()
