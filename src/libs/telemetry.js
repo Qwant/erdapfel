@@ -2,7 +2,7 @@ import Ajax from './ajax'
 import nconf from '@qwant/nconf-getter'
 import telemetryModule from 'telemetry'
 
-const telemetryEnabled = nconf.get().telemetryEnabled
+const telemetry = nconf.get().telemetry
 const system = nconf.get().system
 const telemtryEventUrl = 'events'
 const uniqEventList = []
@@ -26,7 +26,7 @@ export default class Telemetry {
   }
 
   static async send(event) {
-    if(telemetryEnabled) {
+    if(telemetry.enabled) {
       let data = {type : event}
       let telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`
       return Ajax.post(telemetryUrl, data, {method : 'POST'})

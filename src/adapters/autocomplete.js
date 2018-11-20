@@ -92,7 +92,7 @@ function SearchInput(tagSelector) {
       this.searchInputDomHandler.blur()
       let term = this.searchInputDomHandler.value
 
-      let rawQueryResonse = await ajax.query(geocoderUrl, {q: term})
+      let rawQueryResonse = await ajax.get(geocoderUrl, {q: term})
       let suggestList = buildPoi(rawQueryResonse)
 
       if(suggestList.length > 0) {
