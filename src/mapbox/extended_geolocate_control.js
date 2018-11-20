@@ -1,12 +1,24 @@
+const Telemetry = require('../libs/telemetry').default
+
 const { GeolocateControl } = require('mapbox-gl--ENV')
 
 /**
 * Override default GeolocateControl
 */
+
+const geolocationPermissions = {
+  PROMPT : 'prompt',
+  GRANTED : 'granted',
+  DENIED : 'denied'
+}
+
 class ExtendedGeolocateControl extends GeolocateControl {
   constructor(options, container) {
     super(options)
     this._container = container
+    this.on('trackuserlocationstart', () => {
+      Telemetry.addOnce(Telemetry.LOCALISE_TRIGGER)
+    })
   }
 
   onAdd(map) {
@@ -21,11 +33,12 @@ class ExtendedGeolocateControl extends GeolocateControl {
 
   trigger() {
     window.navigator.permissions && window.navigator.permissions.query({ name: 'geolocation' }).then(p => {
-      if (p.state === 'prompt') {
+      if (p.state === geolocationPermissions.PROMPT) {
         fire('open_geolocate_modal')
       }
     })
     super.trigger()
+
   }
 
   _setupUI(supported) {

@@ -7,7 +7,7 @@
     "doc": "./node_modules/.bin/esdoc -c ./docs/esdoc.json",
     "unit-test": "jest --config=./tests/unit.js",
     "integration-test": "jest --config=./tests/integration.js",
-    "test": "npm run unit-test; npm run integration-test",
+    "test": "npm run unit-test && npm run integration-test",
     "start": "node bin/index.js",
     "build": "webpack --config build/webpack.config.js",
     "i18n": "./i18n.sh",
@@ -54,7 +54,7 @@
     "json-loader": "0.5.7",
     "klokantech-noto-sans": "git+https://github.com/QwantResearch/fonts.git#f25a802",
     "mapbox-gl": "0.51.0",
-    "mapbox-gl-js-mock": "https://github.com/QwantResearch/mapbox-gl-js-mock.git#efacd02",
+    "mapbox-gl-js-mock": "https://github.com/QwantResearch/mapbox-gl-js-mock.git#a350bce",
     "masq-client": "https://github.com/QwantResearch/masq-client.git#v1.1.0",
     "node-sass": "^4.9.2",
     "npm": "^6.4.1",
@@ -89,6 +89,7 @@
     "nock": "^10.0.0",
     "node-yaml": "3.1.1",
     "prom-client": "^11.1.3",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "telemetry": "file:local_modules/telemetry"
   }
 }

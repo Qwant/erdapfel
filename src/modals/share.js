@@ -2,6 +2,7 @@ import SharePanelView from '../views/share_modal.dot'
 import facebookTemplate from '../views/templates/facebook'
 import twitterTemplate from '../views/templates/twitter'
 import Modal from "./modal"
+import Telemetry from "../libs/telemetry";
 
 export default class Share {
   constructor() {

@@ -95,7 +95,6 @@ pois:
 - apiName: internet_access
   panelName: internet_access
 
-
 # Map
 map:
   zoom: 2
