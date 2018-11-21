@@ -2,9 +2,9 @@ import PoiPanelView from '../views/poi_panel.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import PoiBlocContainer from './poi_bloc/poi_bloc_container'
-import Poi from "../mapbox/poi"
 import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
+import HotLoadPoi from "../adapters/poi/hotload_poi";
 import Telemetry from "../libs/telemetry";
 
 const poiSubClass = require('../mapbox/poi_subclass')
@@ -70,17 +70,19 @@ PoiPanel.prototype.close = async function() {
 
 PoiPanel.prototype.restorePoi = async function (id) {
   Telemetry.add(Telemetry.POI_RESTORE)
-  this.poi = Poi.hotLoad(id)
+  let hotLoadedPoi = new HotLoadPoi()
+  if(hotLoadedPoi.id === id) {
+    this.poi = hotLoadedPoi
+    window.execOnMapLoaded(() => {
+      fire('map_mark_poi', this.poi)
+      fire('fit_map', this.poi, {sidePanelOffset : this.poi.type === 'poi'})
+    })
 
-  window.execOnMapLoaded(() => {
-    fire('map_mark_poi', this.poi)
-    fire('fit_map', this.poi, {sidePanelOffset : this.poi.type === 'poi'})
-  })
-
-  this.poi.stored = await isPoiFavorite(this.poi)
-  this.active = true
-  await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
-  await this.panel.update()
+    this.poi.stored = await isPoiFavorite(this.poi)
+    this.active = true
+    await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
+    await this.panel.update()
+  }
 }
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {
@@ -116,9 +118,9 @@ PoiPanel.prototype.store = function() {
 
 PoiPanel.prototype.restore = async function(urlShard) {
   if(urlShard) {
-    let id_slug_match = urlShard.match(/^([^@]+)@?(.*)/)
-    if (id_slug_match) {
-      let id = id_slug_match[1]
+    let idSlugMatch = urlShard.match(/^([^@]+)@?(.*)/)
+    if (idSlugMatch) {
+      let id = idSlugMatch[1]
       await this.restorePoi(id)
       endLoad()
     }

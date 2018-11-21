@@ -21,7 +21,6 @@ beforeAll(async () => {
       interceptedRequest.respond({body : JSON.stringify(autocompleteMock), headers  : interceptedRequest.headers})
     } else if(interceptedRequest.url().match(/poi/)) {
       interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-
       interceptedRequest.respond({body : JSON.stringify(poiMock), headers  : interceptedRequest.headers})
     } else {
       interceptedRequest.continue()

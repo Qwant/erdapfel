@@ -1,4 +1,4 @@
-import Poi from "../mapbox/poi";
+import ApiPoi from "../adapters/poi/idunn_poi";
 
 function PanelManager() {}
 
@@ -36,7 +36,7 @@ PanelManager.restorePoi = function() {
 
 PanelManager.loadPoiById = async function(id, options) {
   if(id) {
-    let poi = await Poi.poiApiLoad(id)
+    let poi = await ApiPoi.poiApiLoad(id)
     if(poi) {
       PanelManager.setPoi(poi, options)
     } else {

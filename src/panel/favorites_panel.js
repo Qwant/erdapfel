@@ -1,9 +1,9 @@
 import FavoritePanelView from '../views/favorites_panel.dot'
 import Panel from '../libs/panel'
-import Poi from '../mapbox/poi'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
+import StorePoi from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -107,7 +107,7 @@ Favorite.prototype.getAll = async function () {
     console.error(e)
   }
   this.favoritePois = Object.keys(storedData).map((mapPoint) => {
-    return Poi.storeLoad(storedData[mapPoint])
+    return new StorePoi(storedData[mapPoint])
   })
 }
 

@@ -51,7 +51,7 @@ Store.prototype.register = async function () {
 }
 
 Store.prototype.getPrefixes = async function (prefix) {
-  const storedItems = await abstractStore.getAll()
+  const storedItems = await abstractStore.getAllPois()
   return storedItems.filter((storedItem) => {
     const rePrefix = new RegExp(`^${prefix}`, 'i')
     return rePrefix.exec(storedItem.name)
@@ -68,7 +68,7 @@ Store.prototype.has = async function(poi) {
 }
 
 Store.prototype.add = function(poi) {
-  abstractStore.set(poi.getKey(), poi.store()).then(function () {
+  abstractStore.set(poi.getKey(), poi.poiStoreLiteral()).then(function () {
   }).catch(function (err) {
     fire('error_h', 'store ' + err)
   })

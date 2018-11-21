@@ -1,24 +1,23 @@
-
 import {Map, Marker, LngLat, setRTLTextPlugin} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
-import Poi from "../mapbox/poi"
 import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
 import loadImage from '../libs/image_loader'
 import nconf from "../../local_modules/nconf_getter"
+import MapPoi from "./poi/map_poi";
+import HotLoadPoi from "./poi/hotload_poi";
 
 const baseUrl = nconf.get().system.baseUrl
 
 function Scene() {
   UrlState.registerHash(this, 'map')
-
-  let hotloadedPoi = Poi.hotLoad()
-  if (hotloadedPoi) {
+  if(window.hotLoadPoi) {
+    let hotloadedPoi = new HotLoadPoi()
     this.zoom = hotloadedPoi.zoom
     this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat]
   } else {
@@ -71,7 +70,7 @@ Scene.prototype.initMapBox = function () {
 
       this.mb.on('click', interactiveLayer, async (e) => {
         if(e.features && e.features.length > 0) {
-          let mapPoi = Poi.mapLoad(e.features[0], e.lngLat)
+          let mapPoi = new MapPoi(e.features[0], e.lngLat)
           if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({center : mapPoi.getLngLat(), offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
           }

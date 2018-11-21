@@ -58,9 +58,7 @@ export default class AutocompleteCucumberise {
   }
 
   addPreparedResponse(response, query) {
-    let alreadySetResponse = this.preparedResponses.find((preparedResponse) => {
-      return preparedResponse.query === query
-    })
+    let alreadySetResponse = this.preparedResponses.find((preparedResponse) => preparedResponse.query === query)
     if(!alreadySetResponse) {
       this.preparedResponses.push({response, query})
     }
@@ -72,16 +70,17 @@ export default class AutocompleteCucumberise {
       let isResponseHandled = false
       this.preparedResponses.forEach((preparedResponse) => {
         if(isResponseHandled === false) {
+
           if(interceptedRequest.url().match(preparedResponse.query)) {
             interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
             interceptedRequest.respond({body : JSON.stringify(preparedResponse.response), headers  : interceptedRequest.headers})
             isResponseHandled = true
-          } else {
-            isResponseHandled = true
-            interceptedRequest.continue()
           }
         }
       })
+      if(isResponseHandled === false) {
+        interceptedRequest.continue()
+      }
     })
   }
 }
