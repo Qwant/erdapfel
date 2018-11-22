@@ -1,6 +1,9 @@
 @import "../osm_contribute";
 
 $BLOCK_INDENT: 60px;
+$CARD_ACTION_WIDTH: 130px;
+$CARD_ACTION_RIGHT_MARGIN: 8px;
+$CARD_PADDING: 8px;
 
 .poi_panel {
   display: block;
@@ -24,11 +27,11 @@ $BLOCK_INDENT: 60px;
 
 .poi_panel__content__card__content {
   float: left;
-  width: calc(100vw - (16px + 130px + 8px));
+  width: calc(100vw - (2 * $CARD_PADDING + $CARD_ACTION_WIDTH + $CARD_ACTION_RIGHT_MARGIN));
 }
 
 .poi_panel__content__card__action {
-  width: 130px;
+  width: $CARD_ACTION_WIDTH;
   height: 35px;
   float: right;
   line-height: 35px;
@@ -38,7 +41,7 @@ $BLOCK_INDENT: 60px;
   font-weight: 600;
   color: $primary_text;
   border-radius: 18px;
-  margin: 42px 8px 0 0;
+  margin: 42px $CARD_ACTION_RIGHT_MARGIN 0 0;
   cursor: pointer;
 }
 
