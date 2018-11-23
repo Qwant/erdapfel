@@ -5,6 +5,7 @@ const expressStaticGzip = require('express-static-gzip')
 const bunyan = require('bunyan')
 const finalhandler = require('finalhandler');
 const promClient = require('prom-client');
+const mapStyle = require('./middlewares/map_style');
 
 const app = express()
 const logger = bunyan.createLogger({
@@ -58,6 +59,8 @@ function App(config) {
     fallthrough: false,
     maxAge: config.statics.maxAge
   }))
+
+  app.use('/style.json', mapStyle)
 
   if(config.server.enablePrometheus){
     app.get('/metrics', (req, res) => {
