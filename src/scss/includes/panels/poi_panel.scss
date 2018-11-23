@@ -457,6 +457,21 @@ $CARD_PADDING: 8px;
     display: block;
   }
 
+  .poi_panel--card {
+    .poi_panel__title {
+      width: auto;
+    }
+    .poi_panel__address {
+      font-size: 14px;
+    }
+    .poi_panel__info__hours__status__text {
+      font-size: 14px;
+    }
+    .poi_panel__description {
+      font-size: 12px;
+    }
+  }
+
   .poi_panel__info__hours__status {
     width: calc(100% - 16px);
   }
