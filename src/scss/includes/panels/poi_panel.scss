@@ -201,8 +201,9 @@ $CARD_PADDING: 8px;
 }
 
 .poi_panel__info__hours__status__text {
+  display: inline-block;
+  margin-left: $BLOCK_INDENT;
   color: $primary_text;
-  padding-left: $BLOCK_INDENT;
 }
 
 .poi_panel__info__hours__status__toggle {
