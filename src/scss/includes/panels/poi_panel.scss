@@ -27,7 +27,7 @@ $CARD_PADDING: 8px;
 
 .poi_panel__content__card__content {
   float: left;
-  width: calc(100vw - (2 * $CARD_PADDING + $CARD_ACTION_WIDTH + $CARD_ACTION_RIGHT_MARGIN));
+  width: calc(100vw - (2 * #{$CARD_PADDING} + #{$CARD_ACTION_WIDTH} + #{$CARD_ACTION_RIGHT_MARGIN}));
 }
 
 .poi_panel__content__card__action {
@@ -457,7 +457,7 @@ $CARD_PADDING: 8px;
   }
 
   .poi_panel__info__hours__status {
-    width: 100%;
+    width: calc(100% - 16px);
   }
 
   .poi_panel__toggle_display--mobile {
