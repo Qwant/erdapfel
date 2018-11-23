@@ -60,7 +60,7 @@ function App(config) {
     maxAge: config.statics.maxAge
   }))
 
-  app.use('/style.json', mapStyle)
+  app.use('/style.json', mapStyle, config)
 
   if(config.server.enablePrometheus){
     app.get('/metrics', (req, res) => {

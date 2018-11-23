@@ -3,7 +3,7 @@ import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
 import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
-import StyleLaundry from '../mapbox/style_laundry'
+import configure from 'mapbox_style_configure'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
@@ -11,6 +11,7 @@ import loadImage from '../libs/image_loader'
 import nconf from "../../local_modules/nconf_getter"
 import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
+const mapStyleConfig = nconf.get().mapStyle
 import Store from '../adapters/store'
 
 const baseUrl = nconf.get().system.baseUrl
@@ -21,7 +22,7 @@ function Scene() {
   this.popup = new PoiPopup()
 }
 
-Scene.prototype.initScene = async function () { 
+Scene.prototype.initScene = async function () {
   UrlState.registerHash(this, 'map')
   await this.setupInitialPosition()
   this.initMapBox()
@@ -47,7 +48,7 @@ Scene.prototype.initMapBox = function () {
   this.mb = new Map({
     attributionControl: false,
     container: 'scene_container',
-    style: StyleLaundry(qwantStyle),
+    style: configure(qwantStyle, mapStyleConfig, window.getBaseLang().code),
     zoom: this.zoom,
     center: this.center,
     hash: false

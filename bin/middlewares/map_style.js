@@ -1,7 +1,15 @@
 const styleBuilder = require('@qwant/map-style-builder')
+const styleConfigure = require('mapbox_style_configure')
+
+module.exports = function (config) {
 
 
-module.exports = function (req, res) {
-  let lang = req.params.lang
-  styleBuilder.
+  const style = ""
+
+
+  return function (res, req) {
+    let lang = req.params.lang
+    styleConfigure(style, config.mapStyle, lang)
+  }
+
 }

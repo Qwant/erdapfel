@@ -1,12 +1,9 @@
-import nconf from '@qwant/nconf-getter'
-const mapStyleConfig = nconf.get().mapStyle
-
-function StyleLaundry(style) {
+export default function configure(style, mapStyleConfig, lang) {
   const rawStyle = JSON.stringify(style)
 
   const toAbsoluteUrl = (url) => {
     if(!url.startsWith('http')){
-      // Remove trailing / from baseUrl
+      /* Remove trailing / from baseUrl */
       const cleanedBaseUrl = baseUrl.replace(/(\/+)$/g, '')
       return `${location.origin}${cleanedBaseUrl}${url}`
     }
@@ -14,12 +11,10 @@ function StyleLaundry(style) {
   }
 
   return JSON.parse(rawStyle
-    .replace(/\{locale\}/g, window.getBaseLang().code)
+    .replace(/\{locale\}/g, lang)
     .replace('"{tileserver_base}"', mapStyleConfig.baseMapUrl)
     .replace('"{tileserver_poi}"', mapStyleConfig.poiMapUrl)
     .replace('{spriteserver}', toAbsoluteUrl(mapStyleConfig.spritesUrl))
     .replace('{fontserver}', toAbsoluteUrl(mapStyleConfig.fontsUrl))
   )
 }
-
-export default StyleLaundry

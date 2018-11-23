@@ -84,6 +84,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-static-gzip": "^1.1.3",
+    "mapbox_style_configure": "file:local_modules/mapbox_style_configure",
     "nconf": "^0.10.0",
     "nconf-yaml": "^1.0.2",
     "nock": "^10.0.0",
