@@ -1,6 +1,8 @@
 const express = require('express')
 const promClient = require('prom-client')
 const events = require('telemetry').events
+
+
 module.exports = (app, config, registry) => {
   const counters = {}
   events.forEach(eventType => {
@@ -16,8 +18,9 @@ module.exports = (app, config, registry) => {
     (req, res) => {
       const eventType = req.body.type
       if(eventType && counters[eventType]){
-        counters[eventType].inc()
         res.sendStatus(204)
+        counters[eventType].inc()
+        req.logger.info({telemetry: req.body}, 'Received telemetry event')
       }
       else{
         res.sendStatus(400)
