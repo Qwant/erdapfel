@@ -1,0 +1,27 @@
+<script>
+
+
+
+    function fire(eventName) {
+
+        const a = new Event(eventName)
+        document.addEventListener(eventName)
+        document.dispatchEvent(a)
+
+    }
+
+    function listen(eventName) {
+        document.addEventListener(eventName, () => {
+            console.log(eventName)
+        })
+    }
+        /* ---- */
+    listen('init')
+    listen('3s')
+        /* ---- */
+    fire('init')
+    setTimeout(() => {
+        fire('3s')
+    }, 3000)
+
+</script>

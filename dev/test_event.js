@@ -7,11 +7,12 @@ const getScriptDuration = async () => {
     const page = await browser.newPage()
 
     /* connect to homepage for performance test */
-    await page.goto('http://10.100.31.92/tileview/')
+    await page.goto('localhost:8080')
 
-    const metrics = await page.metrics()
 
-    console.log(metrics.ScriptDuration)
+    await page.evaluate(() => {
+        listen('init')
+    })
 
 
 
