@@ -6,20 +6,49 @@ const getScriptDuration = async () => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
 
+    /* debug */
+    page.on('console', msg => {
+        for (let i = 0; i < msg.args().length; ++i)
+            console.log(`${i}: ${msg.args()[i]}`);
+    });
+
     /* connect to homepage for performance test */
-    await page.goto('localhost:8080')
 
 
-    await page.evaluate(() => {
-        listen('init')
+
+    let initPromise = page.evaluate(() => {
+        return new Promise((resolve, reject) => {
+            listen('init', () => {
+                console.log("event init ok")
+                resolve('init ok')
+            })
+        })
+    })
+
+
+    let s3Promise = page.evaluate(() => {
+        return new Promise((resolve, reject) => {
+            listen('3s', () => {
+                resolve('3s ok')
+            })
+        })
+
+    })
+
+    await page.goto('http://localhost:8080/test_event.html')
+
+
+
+    Promise.all([s3Promise],  async (resolves) => {
+        console.log(resolves)
+        await browser.close()
+
     })
 
 
 
 
 
-
-    await browser.close()
 }
 
 getScriptDuration()

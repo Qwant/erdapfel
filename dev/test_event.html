@@ -2,22 +2,22 @@
 
 
 
-    function fire(eventName) {
+    function fire(eventName, params = {}) {
 
-        const a = new Event(eventName)
-        document.addEventListener(eventName)
-        document.dispatchEvent(a)
+        let event = document.createEvent('CustomEvent')//new CustomEvent(name, {detail : {params, additionalParams}})
+        event.initCustomEvent(eventName, false, false, {params})
+        window.dispatchEvent(event)
+        console.log(eventName)
 
     }
 
-    function listen(eventName) {
+    function listen(eventName, fn) {
         document.addEventListener(eventName, () => {
-            console.log(eventName)
-        })
+            fn()
+        }, false)
     }
-        /* ---- */
-    listen('init')
-    listen('3s')
+
+    console.log("init")
         /* ---- */
     fire('init')
     setTimeout(() => {
