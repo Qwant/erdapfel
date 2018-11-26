@@ -28,6 +28,10 @@
 
 .icon-pin_geoloc:before {
   content: "\e90d";
+  color: #5c6f84;
+}
+.icon-check:before {
+  content: "\e91c";
 }
 .icon-chevron-left:before {
   content: "\e913";
@@ -37,6 +41,9 @@
 }
 .icon-chevrons-right:before {
   content: "\e911";
+}
+.icon-copy:before {
+  content: "\e91b";
 }
 .icon-corner-up-right:before {
   content: "\e90f";
