@@ -37,5 +37,4 @@ module.exports = function (config, languages) {
     res.setHeader('Content-Type', 'application/json');
     res.send(styleConfigure(builtStyle, config.mapStyle, matchedLanguage.code))
   }
-
 }
