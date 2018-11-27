@@ -1,0 +1,9 @@
+{{? this.opening }}
+  <span class="poi_panel__info__hours__status__text">
+    {{= _(this.opening.status.msg) }} {{? this.opening.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.opening.nextTransition})  }}{{?}}
+    {{? this.opening.isTwentyForSeven }}
+      24 / 7
+    {{?}}
+    <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
+  </span>
+{{?}}

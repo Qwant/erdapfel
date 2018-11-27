@@ -1,4 +1,9 @@
+@import "../osm_contribute";
+
 $BLOCK_INDENT: 60px;
+$CARD_ACTION_WIDTH: 130px;
+$CARD_ACTION_RIGHT_MARGIN: 8px;
+$CARD_PADDING: 8px;
 
 .poi_panel {
   display: block;
@@ -15,6 +20,31 @@ $BLOCK_INDENT: 60px;
 .poi_panel--hidden {
   display: none;
 }
+
+.poi_panel__content__card {
+  display: none;
+}
+
+.poi_panel__content__card__content {
+  float: left;
+  width: calc(100vw - (2 * #{$CARD_PADDING} + #{$CARD_ACTION_WIDTH} + #{$CARD_ACTION_RIGHT_MARGIN}));
+}
+
+.poi_panel__content__card__action {
+  width: $CARD_ACTION_WIDTH;
+  height: 35px;
+  float: right;
+  line-height: 35px;
+  padding: 0 24px;
+  border: 1px solid $primary_clear;
+  font-size: 12px;
+  font-weight: 600;
+  color: $primary_text;
+  border-radius: 18px;
+  margin: 42px $CARD_ACTION_RIGHT_MARGIN 0 0;
+  cursor: pointer;
+}
+
 
 .poi_panel__close {
   position: absolute;
@@ -171,8 +201,9 @@ $BLOCK_INDENT: 60px;
 }
 
 .poi_panel__info__hours__status__text {
+  display: inline-block;
+  margin-left: $BLOCK_INDENT;
   color: $primary_text;
-  padding-left: $BLOCK_INDENT;
 }
 
 .poi_panel__info__hours__status__toggle {
@@ -406,6 +437,42 @@ $BLOCK_INDENT: 60px;
     position: absolute;
   }
 
+  .poi_panel.poi_panel--card {
+    @include card_shadow();
+    width: calc(100vw - 16px);
+    left: 8px;
+    bottom: 8px;
+    clear: both;
+  }
+
+  .poi_panel__content__card {
+    display: none;
+  }
+
+  .poi_panel--card .poi_panel__content {
+    display: none;
+  }
+
+  .poi_panel--card .poi_panel__content__card {
+    display: block;
+  }
+
+  .poi_panel--card {
+    .poi_panel__title {
+      width: auto;
+    }
+    .poi_panel__address {
+      font-size: 14px;
+    }
+    .poi_panel__info__hours__status__text {
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .poi_panel__description {
+      font-size: 12px;
+    }
+  }
+
   .poi_panel__info__hours__status {
     width: calc(100% - 16px);
   }
@@ -427,12 +494,9 @@ $BLOCK_INDENT: 60px;
     width: calc(100% - 16px);
   }
 
-  .poi_panel__title {
-    width: calc(100% - ($BLOCK_INDENT + 38px));
-  }
-
   .poi_panel__content {
     width: 100%;
+    display: block;
   }
 
   .poi_panel--hidden {
@@ -453,4 +517,3 @@ $BLOCK_INDENT: 60px;
   }
 }
 
-@import "../osm_contribute";

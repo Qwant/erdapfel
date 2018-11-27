@@ -111,10 +111,14 @@
     background: rgba(255, 255, 255, 0.5);
   }
 
+
+
   .map_control_group {
     background: none;
     box-shadow: none;
+    -webkit-box-shadow: none;
     overflow: visible;
+
     button {
       width: 48px;
       height: 48px;
@@ -130,7 +134,7 @@
     background: none;
   }
 
-  .mapboxgl-ctrl-group {
+  .map_control_group {
     .map_control_group__button__zoom {
       display: none;
     }
