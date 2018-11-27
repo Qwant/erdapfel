@@ -20,7 +20,11 @@ module.exports = function (config) {
 
   return function (req, res) {
     let lang = req.query.lang
-    res.json(styleConfigure(builtStyle, config.mapStyle, lang))
+
+
+
+    res.setHeader('Content-Type', 'application/json');
+    res.send(styleConfigure(builtStyle, config.mapStyle, lang))
   }
 
 }
