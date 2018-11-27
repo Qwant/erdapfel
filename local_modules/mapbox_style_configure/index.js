@@ -1,11 +1,11 @@
-export default function configure(style, mapStyleConfig, lang) {
+module.exports = function configure(style, mapStyleConfig, styleUrl, lang) {
   const rawStyle = JSON.stringify(style)
 
   const toAbsoluteUrl = (url) => {
     if(!url.startsWith('http')){
       /* Remove trailing / from baseUrl */
-      const cleanedBaseUrl = baseUrl.replace(/(\/+)$/g, '')
-      return `${location.origin}${cleanedBaseUrl}${url}`
+      const cleanedBaseUrl = styleUrl.replace(/(\/+)$/g, '')
+      return `${cleanedBaseUrl}${url}`
     }
     return url
   }
