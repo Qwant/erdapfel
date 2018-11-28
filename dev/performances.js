@@ -3,29 +3,27 @@ const fs = require('fs')
 const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
 
-const getScriptDuration = async () => {
+
+(async () => {
+  const HOST_URI = 'http://10.100.31.92/tileview/'
 
   /* production build */
-  buildProd()
+  const buildTime = buildProd()
 
   /* start host */
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
   /* connect to homepage for performance test */
-  await page.goto('http://10.100.31.92/tileview/')
+  await page.goto(HOST_URI)
 
   const metrics = await page.metrics()
   const mapStats = fs.statSync('../public/build/javascript/map.js')
   const appStats = fs.statSync('../public/build/javascript/bundle.js')
 
-
-  console.log(mapStats)
-  console.log(appStats)
-
-
   let reportData = {
     scriptDuration : metrics.ScriptDuration,
+    buildTime : buildTime,
     size: {
       app : appStats.size,
       map: mapStats.size
@@ -34,15 +32,10 @@ const getScriptDuration = async () => {
 
   writeReport(reportData)
 
+  await browser.close()
+})()
 
 
-
-
-
-    await browser.close()
-}
-
-getScriptDuration()
 
 
 
@@ -51,11 +44,15 @@ function writeReport(reportData) {
 }
 
 function buildProd() {
-
-  webpack(webpackConfig, function(error, stats) {
-    if(error)
+  const prodConfig = webpackConfig('production', {mode : 'production'})
+  webpack(prodConfig, function(error, chunkStats) {
+    if(error) {
       console.error(error)
-    console.log(stats)
-  });
+    }
+    /* compute total build time (ms) */
+    return chunkStats.stats.reduce((totalTime, chunkStat) => {
+      return totalTime + (chunkStat.endTime - chunkStat.startTime)
+    }, 0)
+  })
 }
 
