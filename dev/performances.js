@@ -2,15 +2,20 @@ const puppeteer = require('puppeteer')
 const fs = require('fs')
 const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
+const PORT = 3010
+const HOST_URI = `http://localhost:${PORT}`
 
 
-(async () => {
-  const HOST_URI = 'http://10.100.31.92/tileview/'
+;(async () => {
+
 
   /* production build */
-  const buildTime = buildProd()
+  const buildTime = await buildProd()
 
   /* start host */
+  const appServer = await serverStart()
+
+  /* start puppeteer */
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
@@ -31,28 +36,54 @@ const webpackConfig = require('../build/webpack.config')
   }
 
   writeReport(reportData)
-
+  serverClose(appServer)
   await browser.close()
 })()
-
-
-
-
 
 function writeReport(reportData) {
   fs.writeFileSync('./report.json', JSON.stringify(reportData, null, '\t'))
 }
 
-function buildProd() {
-  const prodConfig = webpackConfig('production', {mode : 'production'})
-  webpack(prodConfig, function(error, chunkStats) {
-    if(error) {
-      console.error(error)
-    }
-    /* compute total build time (ms) */
-    return chunkStats.stats.reduce((totalTime, chunkStat) => {
-      return totalTime + (chunkStat.endTime - chunkStat.startTime)
-    }, 0)
+async function buildProd() {
+  const partialProdConfig = webpackConfig('production', {mode : 'production'})
+  const prodConfig = partialProdConfig.map((prodConfigChunk) => {
+    prodConfigChunk.mode = 'production'
+    return prodConfigChunk
   })
+  return new Promise((resolve) => {
+    webpack(prodConfig, function(error, chunkStats) {
+      if(error) {
+        resolve(-1)
+        console.error(error)
+      }
+      /* compute total build time (ms) */
+      resolve(chunkStats.stats.reduce((totalTime, chunkStat) => {
+        return totalTime + (chunkStat.endTime - chunkStat.startTime)
+      }, 0))
+    })
+  })
+}
+
+async function serverStart() {
+  const App = require( './../bin/app')
+  const configBuilder = require('@qwant/nconf-builder')
+
+  configBuilder.set('store:name', 'local_store')
+  configBuilder.set('mapStyle:baseMapUrl', "[]")
+  configBuilder.set('mapStyle:poiMapUrl', "[]")
+  configBuilder.set('services:idunn:url', 'http://idunn_test.test')
+  configBuilder.set('services:geocoder:url', `http://geocoder.test/autocomplete`)
+  configBuilder.set('system:evalFiles', false)
+
+  const config = configBuilder.get()
+  const appServer = new App(config)
+
+  console.log(`Start test on PORT : ${PORT}`)
+  await appServer.start(PORT)
+  return appServer
+}
+
+function serverClose(appServer) {
+  appServer.close()
 }
 
