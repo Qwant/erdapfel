@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.1.0",
     "@mapbox/mapbox-gl-rtl-text": "^0.2.1",
     "@qwant/config-sanitizer-loader": "file:local_modules/config-sanitizer-loader",
-    "@qwant/map-style-builder": "git+https://github.com/QwantResearch/map-style-builder.git#QMAPS-584_style_hosting",
+    "@qwant/map-style-builder": "git+https://github.com/QwantResearch/map-style-builder.git#089975d",
     "@qwant/map-style-loader": "file:local_modules/map-style-loader",
     "@qwant/merge-i18n-source-loader": "file:local_modules/merge-i18n-source-loader",
     "@qwant/merge-po-loader": "file:local_modules/merge-po-loader",
