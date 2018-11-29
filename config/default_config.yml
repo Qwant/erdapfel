@@ -50,3 +50,6 @@ statics:
 
 telemetry:
   enabled: true
+
+performence:
+  active: false

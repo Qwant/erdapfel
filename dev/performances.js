@@ -69,9 +69,10 @@ async function serverStart() {
   const configBuilder = require('@qwant/nconf-builder')
 
   configBuilder.set('store:name', 'local_store')
-  configBuilder.set('mapStyle:baseMapUrl', "[]")
-  configBuilder.set('mapStyle:poiMapUrl', "[]")
-  configBuilder.set('system:evalFiles', false)
+
+  configBuilder.set('mapStyle:poiMapUrl', [`http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf`])
+  configBuilder.set('mapStyle:baseMapUrl', [`http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf`])
+  configBuilder.set('system:evalFiles', true)
 
   const config = configBuilder.get()
   const appServer = new App(config)
