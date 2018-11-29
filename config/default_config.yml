@@ -48,8 +48,8 @@ mapPlugins:
 statics:
   maxAge: 0  # string accepted by the ms module, or milliseconds
 
+performance:
+  enable: false
+
 telemetry:
   enabled: true
-
-performence:
-  active: false

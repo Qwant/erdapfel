@@ -13,6 +13,7 @@ import Store from '../adapters/store'
 import getStyle from "./scene_config";
 
 const baseUrl = nconf.get().system.baseUrl
+const performanceEnabled = nconf.get().performance.enabled
 const store = new Store()
 
 function Scene() {
@@ -112,6 +113,11 @@ Scene.prototype.initMapBox = function () {
 
     window.execOnMapLoaded = (f) => f()
     fire('map_loaded')
+
+    if(performanceEnabled) {
+      window.times.mapLoaded = performance.now()
+    }
+
   })
 
   listen('fit_map', (poi, options) => {

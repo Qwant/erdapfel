@@ -5,6 +5,7 @@ const expressStaticGzip = require('express-static-gzip')
 const bunyan = require('bunyan')
 const finalhandler = require('finalhandler');
 const promClient = require('prom-client');
+const fakePbf = require('./middlewares/fake_pbf/index')
 const compression = require('compression')
 
 const mapStyle = require('./middlewares/map_style');
@@ -58,6 +59,10 @@ function App(config) {
     fallthrough: false,
     maxAge: config.mapStyle.maxAge
   }))
+
+  if(config.performance.enable) {
+    app.get('/fake_pbf/:z/:x/:y.pbf', fakePbf)
+  }
 
   app.use('/statics', expressStaticGzip(path.join(publicDir), {
     fallthrough: false,

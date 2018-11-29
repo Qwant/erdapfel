@@ -26,9 +26,19 @@ const HOST_URI = `http://localhost:${PORT}`
   const mapStats = fs.statSync('../public/build/javascript/map.js')
   const appStats = fs.statSync('../public/build/javascript/bundle.js')
 
+  let times = await page.evaluate(() => {
+    return window.times
+  })
+
+
+
   let reportData = {
-    scriptDuration : metrics.ScriptDuration,
-    buildTime : buildTime,
+    times : {
+      script : metrics.ScriptDuration,
+      build : buildTime,
+      appRender : times.appRendered - times.init,
+      load : times.mapLoaded - times.init
+    },
     size: {
       app : appStats.size,
       map: mapStats.size
@@ -70,9 +80,9 @@ async function serverStart() {
 
   configBuilder.set('store:name', 'local_store')
 
-  configBuilder.set('mapStyle:poiMapUrl', [`http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf`])
-  configBuilder.set('mapStyle:baseMapUrl', [`http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf`])
-  configBuilder.set('system:evalFiles', true)
+  configBuilder.set('mapStyle:poiMapUrl', [`"http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"`])
+  configBuilder.set('mapStyle:baseMapUrl', [`"http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"`])
+  configBuilder.set('system:evalFiles', false)
 
   const config = configBuilder.get()
   const appServer = new App(config)
