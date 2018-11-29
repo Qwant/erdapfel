@@ -27,14 +27,25 @@ module.exports = function (config, languages) {
     if(langParameter) {
       matchedLanguage = languages.supportedLanguages.find((supportedLanguage) => supportedLanguage.code === langParameter)
       if(!matchedLanguage) {
-        res.send(400)
+        res.status(400)
+        res.send({error : `Unsupported language code : ${langParameter}`})
+        return
       }
     } else {
       matchedLanguage = languages.defaultLanguage
     }
 
+    /* config rewriting */
+    let host = req.get('host')
+    let protocol = req.protocol
+    let urls = {
+      spritesUrl : `${protocol}://${host}${config.mapStyle.spritesUrl}` ,
+      fontsUrl : `${protocol}://${host}${config.mapStyle.fontsUrl}`
+    }
+    let mapStyle = Object.assign({}, config.mapStyle, urls)
+
     /* json render */
-    res.setHeader('Content-Type', 'application/json');
-    res.send(styleConfigure(builtStyle, config.mapStyle, matchedLanguage.code))
+    res.setHeader('Content-Type', 'application/json')
+    res.send(styleConfigure(builtStyle, mapStyle, matchedLanguage.code))
   }
 }

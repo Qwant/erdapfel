@@ -5,6 +5,8 @@ const expressStaticGzip = require('express-static-gzip')
 const bunyan = require('bunyan')
 const finalhandler = require('finalhandler');
 const promClient = require('prom-client');
+const compression = require('compression')
+
 const mapStyle = require('./middlewares/map_style');
 
 const app = express()
@@ -59,6 +61,8 @@ function App(config) {
     fallthrough: false,
     maxAge: config.statics.maxAge
   }))
+
+  app.use(compression())
 
   app.use('/style.json', new mapStyle(config, languages))
 

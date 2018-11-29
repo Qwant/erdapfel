@@ -71,6 +71,24 @@ and another one with language PHP, and extension `*.ejs`
 
 ## Development guide
 
+
+### EntryPoint
+
+#### Style 
+  ``` /style.json ```
+  
+##### Parameters
+  
+  |method |name |value       |optional |
+  |-------|-----|------------|---------|
+  |get    |lang |en, gb ...  |true     |
+   
+  >access to prebuilt style with (optional) language
+  
+  
+
+### Debug
+
 To debug the application from a browser, it is preferable to disable the dynamic loading of javascript files.
 When starting the server, add `TILEVIEW_system_evalFiles=false`.
 
