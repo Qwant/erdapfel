@@ -71,8 +71,6 @@ async function serverStart() {
   configBuilder.set('store:name', 'local_store')
   configBuilder.set('mapStyle:baseMapUrl', "[]")
   configBuilder.set('mapStyle:poiMapUrl', "[]")
-  configBuilder.set('services:idunn:url', 'http://idunn_test.test')
-  configBuilder.set('services:geocoder:url', `http://geocoder.test/autocomplete`)
   configBuilder.set('system:evalFiles', false)
 
   const config = configBuilder.get()
@@ -84,6 +82,6 @@ async function serverStart() {
 }
 
 function serverClose(appServer) {
-  appServer.close()
+  //appServer.close()
 }
 
