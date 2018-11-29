@@ -79,9 +79,9 @@ and another one with language PHP, and extension `*.ejs`
   
 ##### Parameters
   
-  |method |name |value       |optional |
-  |-------|-----|------------|---------|
-  |get    |lang |en, gb ...  |true     |
+  |method |name |value       |optional |default |
+  |-------|-----|------------|---------|--------|
+  |get    |lang |en, gb ...  |true     |en      |
    
   >access to prebuilt style with (optional) language
   
