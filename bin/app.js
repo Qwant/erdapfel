@@ -27,6 +27,8 @@ function App(config) {
 
   this.handler = null
   app.set('view engine', 'ejs')
+  app.set('views', path.join(__dirname, '..', 'views'));
+
 
   /* Define child logger in req */
   app.use((req,res,next) => {
