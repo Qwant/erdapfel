@@ -1,4 +1,5 @@
 import nconf from '@qwant/nconf-getter'
+import {version} from '../../config/constants.yml'
 let moduleConfig = nconf.get().store
 
 const AbStore = require(`../libs/${moduleConfig.name}`)
@@ -13,6 +14,9 @@ function Store() {
   listen('del_poi', (poi) => {
     this.del(poi)
   })
+  listen('store_center', (loc) => {
+    this.setLastLocation(loc)
+  })
   listen('store_clear', () => {
     this.clear()
   })
@@ -24,6 +28,23 @@ Store.prototype.getAllPois = async function() {
   } catch (error) {
     fire('error_h' , 'store ' + error)
     throw error
+  }
+}
+
+Store.prototype.getLastLocation = async function() {
+  try {
+    return await abstractStore.get(`qmaps_v${version}_last_location`)
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
+
+Store.prototype.setLastLocation = async function(loc) {
+  try {
+    return await abstractStore.set(`qmaps_v${version}_last_location`, loc)
+  } catch (error) {
+    console.error(error)
   }
 }
 
