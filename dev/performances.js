@@ -10,13 +10,13 @@ const HOST_URI = `http://localhost:${PORT}`
 
 
   /* production build */
-  const buildTime = -1//await buil&dProd()
+  const buildTime = await buildProd()
 
   /* start host */
   const appServer = await serverStart()
 
   /* start puppeteer */
-  const browser = await puppeteer.launch({headless:false})
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
   /* connect to homepage for performance test */
@@ -80,8 +80,8 @@ async function serverStart() {
 
   configBuilder.set('store:name', 'local_store')
 
-  configBuilder.set('mapStyle:poiMapUrl', [`"http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"`])
-  configBuilder.set('mapStyle:baseMapUrl', [`"http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"`])
+  configBuilder.set('mapStyle:poiMapUrl', `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`)
+  configBuilder.set('mapStyle:baseMapUrl', `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`)
   configBuilder.set('system:evalFiles', false)
 
   const config = configBuilder.get()
@@ -93,6 +93,6 @@ async function serverStart() {
 }
 
 function serverClose(appServer) {
-  //appServer.close()
+  appServer.close()
 }
 

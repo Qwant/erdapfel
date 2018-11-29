@@ -12,8 +12,9 @@ import HotLoadPoi from "./poi/hotload_poi";
 import Store from '../adapters/store'
 import getStyle from "./scene_config";
 
+const performanceEnabled = nconf.get().performance.enable
 const baseUrl = nconf.get().system.baseUrl
-const performanceEnabled = nconf.get().performance.enabled
+
 const store = new Store()
 
 function Scene() {
