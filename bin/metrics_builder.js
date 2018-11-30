@@ -1,6 +1,6 @@
 const express = require('express')
 const promClient = require('prom-client')
-const events = require('telemetry').events
+const events = require('@qwant/telemetry').events
 module.exports = (app, config, registry) => {
   const counters = {}
   events.forEach(eventType => {
