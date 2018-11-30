@@ -72,6 +72,10 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
+    if(performanceEnabled) {
+      window.times.mapLoaded = Date.now()
+    }
+
     const extendedControl = new ExtendedControl()
     const mobileCompassControl = new MobileCompassControl()
 
@@ -101,7 +105,6 @@ Scene.prototype.initMapBox = function () {
       })
 
       this.popup.addListener(interactiveLayer)
-
     })
 
     this.mb.on('moveend', () => {
@@ -114,11 +117,6 @@ Scene.prototype.initMapBox = function () {
 
     window.execOnMapLoaded = (f) => f()
     fire('map_loaded')
-
-    if(performanceEnabled) {
-      window.times.mapLoaded = performance.now()
-    }
-
   })
 
   listen('fit_map', (poi, options) => {

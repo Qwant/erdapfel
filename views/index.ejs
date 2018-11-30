@@ -41,7 +41,7 @@
       <div id="progress-bar" class="loader_bar__progress"></div>
     </div>
     <% if(config.performance.enable) { %>
-      <script>window.times = {init : performance.now()}</script>
+      <script>window.times = {init : Date.now()}</script>
     <% } %>
     <script src="./statics/javascript/sync_manager.js"></script>
     <% if(config.system.evalFiles) { %>

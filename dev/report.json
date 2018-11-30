@@ -1,0 +1,12 @@
+{
+	"times": {
+		"script": 0.28099,
+		"build": 64704,
+		"appRender": 142,
+		"mapLoad": 1243
+	},
+	"size": {
+		"app": 174767,
+		"map": 920244
+	}
+}

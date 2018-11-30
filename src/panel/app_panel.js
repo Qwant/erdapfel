@@ -10,7 +10,7 @@ import Autocomplete from "../adapters/autocomplete";
 import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
-import nconf from "nconf"
+import nconf from "@qwant/nconf-getter"
 
 const performanceEnabled = nconf.get().performance.enable
 import Telemetry from "../libs/telemetry";
@@ -30,7 +30,7 @@ function AppPanel(parent) {
 
   if(performanceEnabled) {
     this.panel.onRender = () => {
-      window.times.appRendered = performance.now()
+      window.times.appRendered = Date.now()
     }
   }
 

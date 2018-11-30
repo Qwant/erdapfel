@@ -7,10 +7,8 @@ const HOST_URI = `http://localhost:${PORT}`
 
 
 ;(async () => {
-
-
   /* production build */
-  const buildTime = 0// await buildProd()
+  const buildTime = await buildProd()
 
   /* start host */
   const appServer = await serverStart()
@@ -25,12 +23,10 @@ const HOST_URI = `http://localhost:${PORT}`
   const metrics = await page.metrics()
   const mapStats = fs.statSync('../public/build/javascript/map.js')
   const appStats = fs.statSync('../public/build/javascript/bundle.js')
-
+  await wait(3000)
   let times = await page.evaluate(() => {
     return window.times
   })
-
-
 
   let reportData = {
     times : {
@@ -47,7 +43,7 @@ const HOST_URI = `http://localhost:${PORT}`
 
   writeReport(reportData)
   serverClose(appServer)
-  //await browser.close()
+  await browser.close()
 })()
 
 function writeReport(reportData) {
@@ -74,6 +70,14 @@ async function buildProd() {
   })
 }
 
+async function wait(time) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}
+
 async function serverStart() {
   const App = require( './../bin/app')
   const configBuilder = require('@qwant/nconf-builder')
@@ -93,5 +97,5 @@ async function serverStart() {
 }
 
 function serverClose(appServer) {
- // appServer.close()
+ appServer.close()
 }
