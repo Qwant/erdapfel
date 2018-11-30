@@ -37,10 +37,9 @@ module.exports = function (config, languages) {
 
     /* config rewriting */
     let host = req.get('host')
-    let protocol = req.protocol
     let urls = {
-      spritesUrl : `${protocol}://${host}${config.mapStyle.spritesUrl}` ,
-      fontsUrl : `${protocol}://${host}${config.mapStyle.fontsUrl}`
+      spritesUrl : `https://${host}${config.mapStyle.spritesUrl}` ,
+      fontsUrl : `https://${host}${config.mapStyle.fontsUrl}`
     }
     let mapStyle = Object.assign({}, config.mapStyle, urls)
 
