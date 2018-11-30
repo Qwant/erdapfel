@@ -1,7 +1,8 @@
 const styleBuilder = require('@qwant/map-style-builder')
-const styleConfigure = require('mapbox_style_configure')
+const styleConfigure = require('@qwant/mapbox_style_configure')
 const qwantStyle = require('@qwant/qwant-basic-gl-style/style.json')
 const path = require('path')
+const Uri = require('@qwant/uri')
 
 
 module.exports = function (config, languages) {
@@ -37,9 +38,11 @@ module.exports = function (config, languages) {
 
     /* config rewriting */
     let host = req.get('host')
+    let spritesUrl = Uri.toAbsoluteUrl(`http://${host}`, config.system.baseUrl, config.mapStyle.spritesUrl)
+    let fontsUrl = Uri.toAbsoluteUrl(`http://${host}`, config.system.baseUrl, config.mapStyle.fontsUrl)
     let urls = {
-      spritesUrl : `https://${host}${config.mapStyle.spritesUrl}` ,
-      fontsUrl : `https://${host}${config.mapStyle.fontsUrl}`
+      spritesUrl : spritesUrl,
+      fontsUrl : fontsUrl
     }
     let mapStyle = Object.assign({}, config.mapStyle, urls)
 

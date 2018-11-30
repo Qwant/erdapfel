@@ -1,6 +1,6 @@
 import WebsiteView from '../../views/poi_bloc/website.dot'
 import Panel from "../../libs/panel"
-import URI from "../../libs/uri"
+import URI from "../../../local_modules/uri/index"
 
 function Website(block) {
   this.URI = URI

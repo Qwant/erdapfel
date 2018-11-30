@@ -1,6 +1,6 @@
 import Ajax from './ajax'
 import nconf from '@qwant/nconf-getter'
-import telemetryModule from 'telemetry'
+import telemetryModule from '@qwant/telemetry'
 
 const telemetry = nconf.get().telemetry
 const system = nconf.get().system
