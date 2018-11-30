@@ -1,12 +1,12 @@
 {
 	"times": {
-		"script": 0.28099,
-		"build": 64704,
-		"appRender": 142,
-		"mapLoad": 1243
+		"script": 0.088518,
+		"build": 62314,
+		"appRender": 153,
+		"mapLoad": 1140
 	},
 	"size": {
-		"app": 174767,
-		"map": 920244
+		"app": 189240,
+		"map": 932221
 	}
 }

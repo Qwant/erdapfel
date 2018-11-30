@@ -36,7 +36,6 @@ function AppPanel(parent) {
 
   this.panel.render()
   Telemetry.add(Telemetry.APP_START)
-  return this.panel
 }
 
 export default AppPanel

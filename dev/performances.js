@@ -14,7 +14,7 @@ const HOST_URI = `http://localhost:${PORT}`
   const appServer = await serverStart()
 
   /* start puppeteer */
-  const browser = await puppeteer.launch({headless : false})
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
   /* connect to homepage for performance test */
