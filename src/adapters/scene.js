@@ -2,8 +2,6 @@ import {Map, Marker, LngLat, setRTLTextPlugin} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
-import qwantStyle from '@qwant/qwant-basic-gl-style/style.json'
-import StyleLaundry from '../mapbox/style_laundry'
 import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
@@ -12,6 +10,7 @@ import nconf from "../../local_modules/nconf_getter"
 import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
 import Store from '../adapters/store'
+import getStyle from "./scene_config";
 
 const baseUrl = nconf.get().system.baseUrl
 const store = new Store()
@@ -21,7 +20,7 @@ function Scene() {
   this.popup = new PoiPopup()
 }
 
-Scene.prototype.initScene = async function () { 
+Scene.prototype.initScene = async function () {
   UrlState.registerHash(this, 'map')
   await this.setupInitialPosition()
   this.initMapBox()
@@ -47,7 +46,7 @@ Scene.prototype.initMapBox = function () {
   this.mb = new Map({
     attributionControl: false,
     container: 'scene_container',
-    style: StyleLaundry(qwantStyle),
+    style:  getStyle(),
     zoom: this.zoom,
     center: this.center,
     hash: false
