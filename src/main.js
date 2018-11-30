@@ -9,7 +9,7 @@ import nconf from "../local_modules/nconf_getter"
 
 const performanceEnabled = nconf.get().performance.enable
 console.log(performanceEnabled)
-async function main() {
+(async function main() {
   new I18n()
   await setLang()
 
@@ -22,5 +22,5 @@ async function main() {
     }
   }
   UrlState.load()
-}
-main()
+})()
+
