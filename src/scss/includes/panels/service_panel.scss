@@ -19,6 +19,8 @@
   margin: 10px;
 }
 
+
+
 .side_bar__item__icon {
   color: $secondary_text;
 }
@@ -29,16 +31,21 @@
 }
 
 .service_panel__item--disabled {
-  .service_panel__item__text, .side_bar__item__icon {
+  .service_panel__item__action, .side_bar__item__icon {
     cursor: default;
     color: rgba(92, 111, 132, .4);
   }
 }
 
-.service_panel__item__text {
+.service_panel__item__action {
   cursor: pointer;
   font-size: 13px;
   color: $secondary_text;
+}
+
+.service_panel__item:not(.service_panel__item--disabled) .service_panel__item__action:hover .service_panel__item__text {
+  color: $primary_text;
+  text-decoration: underline;
 }
 
 .service_panel_mobile {

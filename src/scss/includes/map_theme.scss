@@ -23,12 +23,21 @@
   font-size: 20px;
 }
 
-.map_control_group__button:hover {
-  background-color: rgb(243, 243, 243);
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
+  @extend [class^="icon-"];
+  @extend .icon-pin_geoloc;
+  background-image: none !important;
+  color: $primary_text;
+  font-size: 20px;
 }
 
 .map_control_group__button + .map_control_group__button {
   border-top: 1px solid #ddd;
+}
+
+.map_control_group__button:hover, .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate:hover:before, .mapboxgl-ctrl-geolocate:hover {
+  background: $primary_text;
+  color: white;
 }
 
 .map_control__compass__icon {
@@ -57,14 +66,6 @@
 
 .mapboxgl-ctrl-top-right {
   top: 176px;
-}
-
-.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
-  @extend [class^="icon-"];
-  @extend .icon-pin_geoloc;
-  background-image: none !important;
-  color: $primary_text;
-  font-size: 20px;
 }
 
 .mapboxgl-ctrl-scale {
