@@ -10,13 +10,13 @@ const HOST_URI = `http://localhost:${PORT}`
 
 
   /* production build */
-  const buildTime = await buildProd()
+  const buildTime = 0// await buildProd()
 
   /* start host */
   const appServer = await serverStart()
 
   /* start puppeteer */
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({headless : false})
   const page = await browser.newPage()
 
   /* connect to homepage for performance test */
@@ -37,7 +37,7 @@ const HOST_URI = `http://localhost:${PORT}`
       script : metrics.ScriptDuration,
       build : buildTime,
       appRender : times.appRendered - times.init,
-      load : times.mapLoaded - times.init
+      mapLoad : times.mapLoaded - times.init
     },
     size: {
       app : appStats.size,
@@ -47,7 +47,7 @@ const HOST_URI = `http://localhost:${PORT}`
 
   writeReport(reportData)
   serverClose(appServer)
- // await browser.close()
+  //await browser.close()
 })()
 
 function writeReport(reportData) {
@@ -93,6 +93,5 @@ async function serverStart() {
 }
 
 function serverClose(appServer) {
-  appServer.close()
+ // appServer.close()
 }
-
