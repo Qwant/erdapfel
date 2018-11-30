@@ -63,7 +63,6 @@
     "postcss-loader": "2.0.9",
     "promise-loader": "1.0.0",
     "puppeteer": "^1.0.0",
-    "raw-loader": "^0.5.1",
     "regenerator-runtime": "^0.11.1",
     "sass-loader": "6.0.6",
     "strftime": "https://github.com/QwantResearch/strftime.git#bac5145",
