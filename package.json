@@ -5,6 +5,7 @@
   "main": "public/index.html",
   "scripts": {
     "doc": "./node_modules/.bin/esdoc -c ./docs/esdoc.json",
+    "bench": "node ./dev/performances.js",
     "unit-test": "jest --config=./tests/unit.js",
     "integration-test": "jest --config=./tests/integration.js",
     "test": "npm run unit-test && npm run integration-test",

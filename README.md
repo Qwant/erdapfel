@@ -85,7 +85,11 @@ and another one with language PHP, and extension `*.ejs`
    
   >access to prebuilt style with (optional) language
   
-  
+### Benchmark
+
+> npm run bench 
+
+build a production bundle and return size and js execution time metrics to compare evolution of application performance along the project life time.
 
 ### Debug
 
