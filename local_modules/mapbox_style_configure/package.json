@@ -1,5 +1,5 @@
 {
-  "name": "mapbox_style_configure",
+  "name": "@qwant/mapbox_style_configure",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

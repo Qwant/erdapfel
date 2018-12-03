@@ -1,20 +1,13 @@
 import nconf from '@qwant/nconf-getter'
-import configure from 'mapbox_style_configure'
+import configure from '@qwant/mapbox_style_configure'
+import URI from '@qwant/uri'
 
 const qwantStyle = require('@qwant/qwant-basic-gl-style/style.json')
 const mapStyleConfig = nconf.get().mapStyle
-
-function toAbsoluteUrl(url) {
-  if(!url.startsWith('http')){
-    // Remove trailing / from baseUrl
-    const cleanedBaseUrl = baseUrl.replace(/(\/+)$/g, '')
-    return `${location.origin}${cleanedBaseUrl}${url}`
-  }
-  return url
-}
+const baseUrl = nconf.get().system.baseUrl
 
 function sceneConfig() {
-  return Object.assign(mapStyleConfig, {spritesUrl : toAbsoluteUrl(mapStyleConfig.spritesUrl), fontsUrl : toAbsoluteUrl(mapStyleConfig.fontsUrl)})
+  return Object.assign(mapStyleConfig, {spritesUrl : URI.toAbsoluteUrl(location.origin, baseUrl, mapStyleConfig.spritesUrl), fontsUrl : URI.toAbsoluteUrl(location.origin, baseUrl, mapStyleConfig.fontsUrl)})
 }
 
 export default function getStyle() {

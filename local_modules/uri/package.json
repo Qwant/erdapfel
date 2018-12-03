@@ -1,5 +1,5 @@
 {
-  "name": "@qwant/telemetry",
+  "name": "@qwant/uri",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
