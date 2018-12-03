@@ -38,8 +38,8 @@ module.exports = function (config, languages) {
 
     /* config rewriting */
     let host = req.get('host')
-    let spritesUrl = Uri.toAbsoluteUrl(`http://${host}`, config.system.baseUrl, config.mapStyle.spritesUrl)
-    let fontsUrl = Uri.toAbsoluteUrl(`http://${host}`, config.system.baseUrl, config.mapStyle.fontsUrl)
+    let spritesUrl = Uri.toAbsoluteUrl(`https://${host}`, config.system.baseUrl, config.mapStyle.spritesUrl)
+    let fontsUrl = Uri.toAbsoluteUrl(`https://${host}`, config.system.baseUrl, config.mapStyle.fontsUrl)
     let urls = {
       spritesUrl : spritesUrl,
       fontsUrl : fontsUrl
