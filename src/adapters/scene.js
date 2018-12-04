@@ -16,23 +16,26 @@ const baseUrl = nconf.get().system.baseUrl
 const store = new Store()
 
 function Scene() {
+  UrlState.registerHash(this, 'map')
   this.currentMarker = null
   this.popup = new PoiPopup()
+  this.zoom = map.zoom
+  this.center = [map.center.lng, map.center.lat]
 }
 
 Scene.prototype.initScene = async function () {
-  UrlState.registerHash(this, 'map')
   await this.setupInitialPosition()
   this.initMapBox()
 }
 
 Scene.prototype.setupInitialPosition = async function () {
-  this.center = [map.center.lng, map.center.lat]
-  this.zoom = map.zoom
   if (window.hotLoadPoi) {
     let hotloadedPoi = new HotLoadPoi()
     this.zoom = hotloadedPoi.zoom
     this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat]
+  } else if(this.urlCenter && this.urlZoom) {
+    this.zoom = this.urlZoom
+    this.center = this.urlCenter
   } else {
     let lastLocation = await store.getLastLocation()
     if (lastLocation) {
@@ -177,8 +180,8 @@ Scene.prototype.restore = function (urlShard) {
     const ZOOM_INDEX = 1
     const LAT_INDEX = 2
     const LNG_INDEX = 3
-    this.zoom = parseFloat(geoCenter[ZOOM_INDEX])
-    this.center = [parseFloat(geoCenter[LNG_INDEX]), parseFloat(geoCenter[LAT_INDEX])]
+    this.urlZoom = parseFloat(geoCenter[ZOOM_INDEX])
+    this.urlCenter = [parseFloat(geoCenter[LNG_INDEX]), parseFloat(geoCenter[LAT_INDEX])]
   }
 }
 
