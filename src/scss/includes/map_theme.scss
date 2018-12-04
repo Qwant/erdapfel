@@ -32,6 +32,10 @@
   cursor: pointer;
 }
 
+.mapboxgl-ctrl-geolocate::-moz-focus-inner { /* ff rotating outline fix */
+  border: 0;
+}
+
 .map_control_group__button + .map_control_group__button {
   border-top: 1px solid #ddd;
 }
