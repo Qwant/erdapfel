@@ -14,7 +14,7 @@ export default class Telemetry {
     if(event) {
       return Telemetry.send(event)
     } else {
-      console.error('Telemetry event is missing')
+      fire('error_h', 'Telemetry event missing')
     }
   }
 

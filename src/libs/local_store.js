@@ -8,7 +8,7 @@ LocalStore.prototype.getAllPois = function() {
           let poi = JSON.parse(localStorage.getItem(k))
           filtered.push(poi)
         } catch (error) {
-          console.error(`JSON Parsing error ${error}`)
+          fire('error_h', `local store getAllPoi error ${error}`)
         }
       }
       return filtered
@@ -30,8 +30,8 @@ LocalStore.prototype.get = function(k) {
   return new Promise((resolve) => {
     try {
       resolve(JSON.parse(localStorage.getItem(k)))
-    } catch (err) {
-      console.error(`localStorage ${err}`)
+    } catch (error) {
+      fire('error_h', `local store get error ${error}`)
       resolve(null)
     }
   })
@@ -40,8 +40,8 @@ LocalStore.prototype.get = function(k) {
 LocalStore.prototype.set = function(k, v) {
  try {
    localStorage.setItem(k,JSON.stringify(v))
- } catch (err) {
-   console.error(`localStorage ${err}`)
+ } catch (error) {
+   fire('error_h', `local store set error ${error}`)
  }
  return new Promise((resolve)=>{resolve()})
 }
@@ -49,8 +49,8 @@ LocalStore.prototype.set = function(k, v) {
 LocalStore.prototype.clear = function() {
  try {
    localStorage.clear()
- } catch (err) {
-   console.error(`localStorage ${err}`)
+ } catch (error) {
+   fire('error_h', `local store clear error ${error}`)
  }
  return new Promise((resolve)=>{resolve()})
 }
@@ -58,8 +58,8 @@ LocalStore.prototype.clear = function() {
 LocalStore.prototype.del = function(k) {
   try {
     localStorage.removeItem(k)
-  } catch (err) {
-    console.error(`localStorage ${err}`)
+  } catch (error) {
+    fire('error_h', `local store delete error ${error}`)
   }
   return new Promise((resolve)=>{resolve()})
 }

@@ -21,7 +21,7 @@ I18n.prototype.setLang = async function() {
   try {
     await AsyncFileLoader(`statics/build/javascript/message/${this.language.locale}.js`)
   } catch (e) {
-    console.error(e)
+    fire('error_h', `error loading language ${e}`)
   }
   this.gettext.setMessage(window.i18nData.message)
 

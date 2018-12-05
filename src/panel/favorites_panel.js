@@ -79,14 +79,14 @@ Favorite.prototype.connectStore = async function () {
   try {
     await this.store.onConnect()
   } catch(e) {
-    console.error(e)
+    fire('error_h', `store connect error ${e}`)
     fire('register_panel__show')
   }
   let registered = false
   try {
     registered = await this.store.isRegistered()
   } catch(e) {
-    console.error(e)
+    fire('error_h', `store registration error ${e}`)
     fire('register_panel__show')
   }
 
@@ -104,7 +104,7 @@ Favorite.prototype.getAll = async function () {
     storedData = await this.store.getAllPois()
   } catch(e) {
     Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
-    console.error(e)
+    fire('error_h', `store getAll error ${e}`)
   }
   this.favoritePois = Object.keys(storedData).map((mapPoint) => {
     return new StorePoi(storedData[mapPoint])

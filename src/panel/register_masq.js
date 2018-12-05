@@ -18,7 +18,7 @@ RegisterMasqPanel.prototype.register = function () {
     this.panel.animate(.25, '.register_masq_panel', {top : '-300px'})
   })
   .catch((e) => {
-    console.error(e)
+    fire('error_h', `register mask error ${e}`)
   })
 }
 

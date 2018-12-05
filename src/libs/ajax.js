@@ -33,7 +33,7 @@ const query = (url, data, method = 'GET') => {
         try {
           jsonResponse = JSON.parse(this.response)
         } catch (e) {
-          console.error('json', this.response)
+          fire('error_h', `ajax parse error json ${e}`)
           clearTimeout(timeOutHandler)
           reject(e)
           return

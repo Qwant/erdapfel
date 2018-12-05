@@ -35,7 +35,7 @@ Store.prototype.getLastLocation = async function() {
   try {
     return await abstractStore.get(`qmaps_v${version}_last_location`)
   } catch (error) {
-    console.error(error)
+    fire('error_h', `store getLastLocation error ${error}`)
     return null
   }
 }
@@ -44,7 +44,7 @@ Store.prototype.setLastLocation = async function(loc) {
   try {
     return await abstractStore.set(`qmaps_v${version}_last_location`, loc)
   } catch (error) {
-    console.error(error)
+    fire('error_h', `store setLastLocation error ${error}`)
   }
 }
 
