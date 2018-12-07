@@ -299,7 +299,12 @@ $CARD_PADDING: 8px;
   padding-left: 2px;
   height: 25px;
   font-size: 12px;
-  color: $secondary_text;
+  color: $primary_text;
+}
+
+.poi_panel__actions__share_container:hover .poi_panel__actions__text, .poi_panel__actions__store_container:hover .poi_panel__actions__text {
+  color: $primary_text;
+  text-decoration: underline;
 }
 
 .poi_panel__description_container {

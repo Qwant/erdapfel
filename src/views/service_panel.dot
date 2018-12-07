@@ -5,16 +5,16 @@
   </h3>
 
   <div {{= click(this.toggleFavorite, this) }} class="service_panel__item service_panel__item__fav {{= this.isFavoriteActive ? 'side_bar__item--active' : ''}}">
-    <button class="service_panel__item__text">
+    <button class="service_panel__item__action">
       <i class="icon-icon_star side_bar__item__icon"></i>
-      {{= _('YOUR FAVORITES', 'service panel') }}
+      <span class="service_panel__item__text">{{= _('YOUR FAVORITES', 'service panel') }}</span>
      </button>
   </div>
 
   <div class="service_panel__item service_panel__item--disabled" >
-    <button class="service_panel__item__text">
+    <button class="service_panel__item__action">
       <i class="icon-corner-up-right side_bar__item__icon"></i>
-      {{= _('ITINERARY', 'service panel') }}
+      <span class="service_panel__item__text">{{= _('ITINERARY', 'service panel') }}</span>
     </button>
   </div>
 </div>
