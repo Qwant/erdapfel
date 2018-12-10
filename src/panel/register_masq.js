@@ -1,6 +1,7 @@
 import RegisterMasqPanelView from '../views/register_masq.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
+import Error from '../adapters/error'
 
 
 function RegisterMasqPanel() {
@@ -18,7 +19,7 @@ RegisterMasqPanel.prototype.register = function () {
     this.panel.animate(.25, '.register_masq_panel', {top : '-300px'})
   })
   .catch((e) => {
-    fire('error_h', `register mask error ${e}`)
+    Error.displayOnce('register_masq', 'register', 'error registering masq', e)
   })
 }
 

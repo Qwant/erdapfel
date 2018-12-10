@@ -1,4 +1,5 @@
 import nconf from '@qwant/nconf-getter'
+import Error from '../adapters/error'
 import {version} from '../../config/constants.yml'
 let moduleConfig = nconf.get().store
 
@@ -25,17 +26,17 @@ function Store() {
 Store.prototype.getAllPois = async function() {
   try {
     return await abstractStore.getAllPois()
-  } catch (error) {
-    fire('error_h' , 'store ' + error)
-    throw error
+  } catch (e) {
+    Error.displayOnce('store', 'getAllPois', 'error getting pois', e)
+    throw e
   }
 }
 
 Store.prototype.getLastLocation = async function() {
   try {
     return await abstractStore.get(`qmaps_v${version}_last_location`)
-  } catch (error) {
-    fire('error_h', `store getLastLocation error ${error}`)
+  } catch (e) {
+    Error.displayOnce('store', 'getLastLocation', 'error getting location', e)
     return null
   }
 }
@@ -44,7 +45,7 @@ Store.prototype.setLastLocation = async function(loc) {
   try {
     return await abstractStore.set(`qmaps_v${version}_last_location`, loc)
   } catch (error) {
-    fire('error_h', `store setLastLocation error ${error}`)
+    Error.displayOnce('store', 'setLastLocation', 'error setting location', e)
   }
 }
 
@@ -82,30 +83,28 @@ Store.prototype.getPrefixes = async function (prefix) {
 Store.prototype.has = async function(poi) {
   try {
     return await abstractStore.get(poi.getKey())
-  } catch (error) {
-    fire('error_h', 'store ' + err )
-    throw err
+  } catch (e) {
+    Error.displayOnce('store', 'has', 'error checking existing key', e)
   }
 }
 
 Store.prototype.add = function(poi) {
   abstractStore.set(poi.getKey(), poi.poiStoreLiteral()).then(function () {
-  }).catch(function (err) {
-    fire('error_h', 'store ' + err)
+  }).catch(function (e) {
+    Error.displayOnce('store', 'add', 'error adding poi', e)
   })
 }
 
 Store.prototype.del = function(poi) {
-  abstractStore.del(poi.getKey()).catch((err) => {
-    fire('error_h', 'store ' + err)
+  abstractStore.del(poi.getKey()).catch((e) => {
+    Error.displayOnce('store', 'del', 'error deleting key', e)
   })
 }
 
 Store.prototype.clear = function () {
-  abstractStore.clear().catch((err) => {
-    fire('error_h', 'store ' + err)
+  abstractStore.clear().catch((e) => {
+    Error.displayOnce('store', 'clear', 'error clearing store', e)
   })
 }
-
 
 export default Store

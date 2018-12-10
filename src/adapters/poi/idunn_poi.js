@@ -1,6 +1,8 @@
 import Poi from "./poi";
 import Ajax from "../../libs/ajax";
 import nconf from '../../../local_modules/nconf_getter/index'
+import Error from '../../adapters/error'
+
 const serviceConfig = nconf.get().services
 const LNG_INDEX = 0
 const LAT_INDEX = 1
@@ -23,7 +25,7 @@ export default class IdunnPoi extends Poi {
         return
       }
       else {
-        fire('error_h', err)
+        Error.displayOnce('idunn_poi', 'poiApiLoad', 'unknown error getting idunn poi', err)
         return
       }
     }

@@ -5,7 +5,6 @@ import './libs/actions'
 import App from './panel/app_panel'
 import PanelManager from "./proxies/panel_manager";
 import UrlState from "./proxies/url_state";
-import Error from './adapters/error_log'
 
 
 (async function main() {

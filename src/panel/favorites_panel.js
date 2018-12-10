@@ -5,6 +5,7 @@ import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
 import StorePoi from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
+import Error from '../adapters/error'
 const poiSubClass = require('../mapbox/poi_subclass')
 
 function Favorite(sharePanel) {
@@ -79,14 +80,14 @@ Favorite.prototype.connectStore = async function () {
   try {
     await this.store.onConnect()
   } catch(e) {
-    fire('error_h', `store connect error ${e}`)
+    Error.displayOnce('favorite_panel', 'connectStore', 'error connecting store', e)
     fire('register_panel__show')
   }
   let registered = false
   try {
     registered = await this.store.isRegistered()
   } catch(e) {
-    fire('error_h', `store registration error ${e}`)
+    Error.displayOnce('favorite_panel', 'connectStore', 'error getting register status', e)
     fire('register_panel__show')
   }
 
@@ -104,7 +105,7 @@ Favorite.prototype.getAll = async function () {
     storedData = await this.store.getAllPois()
   } catch(e) {
     Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
-    fire('error_h', `store getAll error ${e}`)
+    Error.displayOnce('favorite_panel', 'getAll', 'error getting pois', e)
   }
   this.favoritePois = Object.keys(storedData).map((mapPoint) => {
     return new StorePoi(storedData[mapPoint])

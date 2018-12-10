@@ -1,3 +1,5 @@
+const Error = require('../adapters/error').default
+
 function LocalStore() {}
 
 LocalStore.prototype.getAllPois = function() {
@@ -7,8 +9,8 @@ LocalStore.prototype.getAllPois = function() {
         try {
           let poi = JSON.parse(localStorage.getItem(k))
           filtered.push(poi)
-        } catch (error) {
-          fire('error_h', `local store getAllPoi error ${error}`)
+        } catch (e) {
+          Error.displayOnce('local_store', 'getAllPois', 'error getting pois', e)
         }
       }
       return filtered
@@ -30,8 +32,8 @@ LocalStore.prototype.get = function(k) {
   return new Promise((resolve) => {
     try {
       resolve(JSON.parse(localStorage.getItem(k)))
-    } catch (error) {
-      fire('error_h', `local store get error ${error}`)
+    } catch (e) {
+      Error.displayOnce('local_store', 'get', `error parsing item with key ${k}`, e)
       resolve(null)
     }
   })
@@ -40,8 +42,8 @@ LocalStore.prototype.get = function(k) {
 LocalStore.prototype.set = function(k, v) {
  try {
    localStorage.setItem(k,JSON.stringify(v))
- } catch (error) {
-   fire('error_h', `local store set error ${error}`)
+ } catch (e) {
+   Error.displayOnce('local_store', 'set', 'error setting item', e)
  }
  return new Promise((resolve)=>{resolve()})
 }
@@ -49,8 +51,8 @@ LocalStore.prototype.set = function(k, v) {
 LocalStore.prototype.clear = function() {
  try {
    localStorage.clear()
- } catch (error) {
-   fire('error_h', `local store clear error ${error}`)
+ } catch (e) {
+   Error.displayOnce('local_store', 'clear', 'error clearing store', e)
  }
  return new Promise((resolve)=>{resolve()})
 }
@@ -58,8 +60,8 @@ LocalStore.prototype.clear = function() {
 LocalStore.prototype.del = function(k) {
   try {
     localStorage.removeItem(k)
-  } catch (error) {
-    fire('error_h', `local store delete error ${error}`)
+  } catch (e) {
+    Error.displayOnce('local_store', 'del', 'error removing item', e)
   }
   return new Promise((resolve)=>{resolve()})
 }
