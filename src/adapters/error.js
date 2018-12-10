@@ -5,8 +5,8 @@ const errorEventUrl = 'logs'
 const system = nconf.get().system
 const errorUrl = `${system.baseUrl}${errorEventUrl}`
 
-if(!window._errors) {
-  window._errors = []
+if(!window.__registredErrors) {
+  window.__registredErrors = []
 }
 
 export default class Error {
@@ -27,11 +27,11 @@ export default class Error {
 
   static displayOnce(file, method, message, exception) {
     let error = new Error(file, method, message, exception)
-    let existingError = _errors.find((error) => {
+    let existingError = __registredErrors.find((error) => {
       return error.equal(error)
     })
     if(!existingError) {
-      _errors.push(error)
+      __registredErrors.push(error)
       error.log()
     }
     console.error(error)

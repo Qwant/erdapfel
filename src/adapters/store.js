@@ -8,19 +8,21 @@ const abstractStore = new AbStore(moduleConfig.endpoint)
 
 function Store() {
   this.isRegisterd = false
-
-  listen('store_poi', (poi) => {
-    this.add(poi)
-  })
-  listen('del_poi', (poi) => {
-    this.del(poi)
-  })
-  listen('store_center', (loc) => {
-    this.setLastLocation(loc)
-  })
-  listen('store_clear', () => {
-    this.clear()
-  })
+  if(!window.__existingStore) {
+    window.__existingStore = true
+    listen('store_poi', (poi) => {
+      this.add(poi)
+    })
+    listen('del_poi', (poi) => {
+      this.del(poi)
+    })
+    listen('store_center', (loc) => {
+      this.setLastLocation(loc)
+    })
+    listen('store_clear', () => {
+      this.clear()
+    })
+  }
 }
 
 Store.prototype.getAllPois = async function() {
