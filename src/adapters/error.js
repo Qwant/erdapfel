@@ -22,7 +22,11 @@ export default class Error {
   }
 
   log() {
-    Ajax.post(errorUrl, this)
+    Ajax.post(errorUrl, this.serialise())
+  }
+
+  serialise() {
+    return {...this, exception : this.exception.toString()}
   }
 
   static displayOnce(file, method, message, exception) {
