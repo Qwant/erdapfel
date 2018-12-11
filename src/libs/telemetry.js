@@ -15,7 +15,7 @@ export default class Telemetry {
     if(event) {
       return Telemetry.send(event)
     } else {
-      Error.display('local_store', 'getAllPois', 'error getting pois', e)
+      Error.display('local_store', 'getAllPois', 'error getting pois', {})
     }
   }
 
