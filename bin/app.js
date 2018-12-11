@@ -60,7 +60,7 @@ function App(config) {
     maxAge: config.mapStyle.maxAge
   }))
 
-  if(config.performance.enable) {
+  if(config.performance.enabled) {
     app.get('/fake_pbf/:z/:x/:y.pbf', fakePbf)
   }
 

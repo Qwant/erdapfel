@@ -1,12 +1,18 @@
 {
-	"times": {
-		"script": 0.088518,
-		"build": 62314,
-		"appRender": 153,
-		"mapLoad": 1140
-	},
-	"size": {
-		"app": 189240,
-		"map": 932221
-	}
+	"reports": [
+		{
+			"date": "2018-12-11T16:36:00.500Z",
+			"git": "5add401dcf795856ecbcac60c27234cffb90cc78",
+			"times": {
+				"script": 0.083906,
+				"build": -1,
+				"appRender": 166,
+				"mapLoad": 1627
+			},
+			"size": {
+				"app": 189241,
+				"map": 932222
+			}
+		}
+	]
 }

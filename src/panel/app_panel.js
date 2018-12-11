@@ -12,7 +12,7 @@ import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
 import nconf from "@qwant/nconf-getter"
 
-const performanceEnabled = nconf.get().performance.enable
+const performanceEnabled = nconf.get().performance.enabled
 import Telemetry from "../libs/telemetry";
 
 function AppPanel(parent) {
