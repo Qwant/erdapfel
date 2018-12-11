@@ -28,6 +28,7 @@
 
 .icon-pin_geoloc:before {
   content: "\e90d";
+  color: #5c6f84;
 }
 .icon-check:before {
   content: "\e91c";
@@ -35,7 +36,7 @@
 .icon-chevron-left:before {
   content: "\e913";
 }
-.icon-chevron-right:before {
+.icon-chevron-right2:before {
   content: "\e914";
 }
 .icon-chevrons-right:before {
@@ -49,6 +50,9 @@
 }
 .icon-facebook:before {
   content: "\e912";
+}
+.icon-mail:before {
+  content: "\e91d";
 }
 .icon-minus:before {
   content: "\e919";
