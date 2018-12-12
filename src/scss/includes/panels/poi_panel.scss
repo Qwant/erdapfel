@@ -150,13 +150,13 @@ $CARD_PADDING: 8px;
   margin: 0;
 }
 
-.poi_panel__info__link {
+.poi_panel__info__link, .poi_panel__info__contact {
   margin-left: $BLOCK_INDENT;
   font-size: 15px;
   color: $secondary_variant_text;
 }
 
-.poi_panel__info__link:HOVER {
+.poi_panel__info__link:HOVER, .poi_panel__info__contact:HOVER {
   text-decoration: none;
   border-bottom: 1px solid $secondary_variant_text;
 }
