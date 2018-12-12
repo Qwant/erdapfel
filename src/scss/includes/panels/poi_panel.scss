@@ -35,7 +35,6 @@ $CARD_PADDING: 8px;
   height: 35px;
   float: right;
   line-height: 35px;
-  padding: 0 24px;
   border: 1px solid $primary_clear;
   font-size: 12px;
   font-weight: 600;
@@ -43,6 +42,10 @@ $CARD_PADDING: 8px;
   border-radius: 18px;
   margin: 42px $CARD_ACTION_RIGHT_MARGIN 0 0;
   cursor: pointer;
+  text-align: center;
+  /* secure  long translation */
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 
