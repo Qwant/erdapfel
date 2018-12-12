@@ -135,7 +135,7 @@ test('center the map to the poi on a poi click', async () => {
 test('display details about the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   await page.waitForSelector('.poi_panel__title')
-  expect.assertions(6)
+  expect.assertions(8)
 
   await page.click('.poi_panel__description_container')
   let infoTitle = await page.evaluate(() => {
@@ -150,8 +150,10 @@ test('display details about the poi on a poi click', async () => {
   })
   expect(infoTitle.trim()).toEqual('Services & informations')
 
-  let {hours, phone, website} = await page.evaluate(() => {
+  let {contact, contactUrl, hours, phone, website} = await page.evaluate(() => {
     return {
+      contact: document.querySelector('.poi_panel__info__contact').innerText,
+      contactUrl: document.querySelector('.poi_panel__info__contact').href,
       hours: document.querySelector('.poi_panel__info__hours__status').innerText,
       phone: document.querySelector('.poi_panel__info__section__phone').innerText,
       website: document.querySelector('.poi_panel__info__link').innerText
@@ -160,6 +162,8 @@ test('display details about the poi on a poi click', async () => {
   expect(hours.trim()).toMatch('Fermé')
   expect(phone).toMatch('+33140494814')
   expect(website).toMatch('www.musee-orsay.fr')
+  expect(contactUrl).toMatch('mailto:admin@orsay.fr')
+  expect(contact).toMatch('admin@orsay.fr')
 
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()

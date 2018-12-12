@@ -1,0 +1,10 @@
+<div class="poi_panel__info__section poi_panel__info__section--contact">
+ <p class="poi_panel__info__section__description">
+    <div class="icon-mail poi_panel__block__symbol"></div>
+    <div class="poi_panel__block__content">
+      <a class="poi_panel__info__contact" href="{{= this.htmlEncode(this.url) }}">
+        {{= this.htmlEncode(this.url).replace('mailto:', '') }}
+      </a>
+    </div>
+  </p>
+</div>

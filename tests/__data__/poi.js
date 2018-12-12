@@ -95,5 +95,8 @@ module.exports = {
     }, {
         "type": "website",
         "url": "http://www.musee-orsay.fr"
+    }, {
+      "type": "contact",
+      "url": "mailto:admin@orsay.fr"
     }]
 }
