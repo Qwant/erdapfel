@@ -107,6 +107,24 @@ test('open poi from autocomplete selection', async () => {
   expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy()
 })
 
+test('check name & local name behaviour', async () => {
+  expect.assertions(2)
+  await page.goto(APP_URL)
+  await page.keyboard.type('test')
+  await page.waitForSelector('.autocomplete_suggestion')
+  await page.click('.autocomplete_suggestion:nth-child(2)')
+  await wait(300)
+  let location = await page.evaluate(() => {
+    return document.location
+  })
+
+  // url is updated
+  expect(location.href).toMatch(/osm:way:63178753@Mus%C3%A9e_dOrsay/)
+
+  // poi panel is visible
+  expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy()
+})
+
 test('display a popup on hovering a poi', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
