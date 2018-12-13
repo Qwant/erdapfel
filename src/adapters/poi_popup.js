@@ -3,7 +3,7 @@ import OsmSchedule from '../../src/adapters/osm_schedule'
 import IconManager from "./icon_manager";
 import ExtendedString from '../libs/string'
 import ApiPoi from "./poi/idunn_poi";
-
+import Device from '../libs/device'
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
 const poiConfigs = require('../../config/constants.yml').pois
@@ -21,7 +21,7 @@ PoiPopup.prototype.init = function(map) {
 
 PoiPopup.prototype.addListener = function(layer) {
   this.map.on('mouseenter', layer, (e) => {
-    if(isTouchEvent(e)) {
+    if(Device.isMobile(e) || isTouchEvent(e)) {
       return
     }
     this.timeOutHandler = setTimeout(() => {
@@ -36,7 +36,7 @@ PoiPopup.prototype.addListener = function(layer) {
 }
 
 PoiPopup.prototype.create = async function (layerPoi, event) {
-  let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id)
+  let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id, {simple : true})
   if(poi) {
     if(this.popupHandle) {
       this.popupHandle.remove()
@@ -73,7 +73,6 @@ PoiPopup.prototype.create = async function (layerPoi, event) {
 PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
   const VERTICAL_OFFSET = 250
   const HORIZONTAL_OFFSET = 300
-
   const canvasWidh = window.innerWidth
   const positionFragments = []
 
@@ -96,7 +95,6 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
     'bottom-right': [-18, -8],
     'top-left': [18, 8],
     'top-right': [-18, 8],
-
   }
 }
 
