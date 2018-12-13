@@ -1,31 +1,28 @@
+import ResponseHandler from "../helpers/response_handler";
+const poiMock = require('../../__data__/poi')
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-const poiMock = require('../../__data__/poi')
+const nock = require('nock')
+
 import {initBrowser, getText, wait, clearStore} from '../tools'
 import {getFavorites, toggleFavoritePanel} from '../favorites_tools'
 import {languages} from '../../../config/constants.yml'
 
 let browser
 let page
+let responseHandler
 
 beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
   browser = browserPage.browser
-  await page.setRequestInterception(true)
-  page.on('request', interceptedRequest => {
-    if(interceptedRequest.url().match(/autocomplete/)) {
-      interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      const autocompleteMock = require('../../__data__/autocomplete')
-      interceptedRequest.respond({body : JSON.stringify(autocompleteMock), headers  : interceptedRequest.headers})
-    } else if(interceptedRequest.url().match(/poi/)) {
-      interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-      interceptedRequest.respond({body : JSON.stringify(poiMock), headers  : interceptedRequest.headers})
-    } else {
-      interceptedRequest.continue()
-    }
-  })
+  responseHandler = new ResponseHandler(page)
+  await responseHandler.prepareResponse()
+
+  const autocompleteMock = require('../../__data__/autocomplete')
+  responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/)
+  responseHandler.addPreparedResponse(poiMock, /pois\/1/)
 })
 
 test('click on a poi', async () => {
@@ -90,24 +87,8 @@ test('update url after a favorite poi click', async () => {
 })
 
 test('open poi from autocomplete selection', async () => {
-  expect.assertions(2)
-  await page.goto(APP_URL)
-  await page.keyboard.type('test')
-  await page.waitForSelector('.autocomplete_suggestion')
-  await page.click('.autocomplete_suggestion:nth-child(2)')
-  await wait(300)
-  let location = await page.evaluate(() => {
-    return document.location
-  })
+  responseHandler.addPreparedResponse(poiMock, /pois\/osm:node:4811858213/)
 
-  // url is updated
-  expect(location.href).toMatch(/osm:way:63178753@Mus%C3%A9e_dOrsay/)
-
-  // poi panel is visible
-  expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy()
-})
-
-test('check name & local name behaviour', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
   await page.keyboard.type('test')
@@ -185,6 +166,47 @@ test('display details about the poi on a poi click', async () => {
 
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()
+})
+
+
+
+test('check poi name behaviour', async () => {
+  expect.assertions(2)
+  let {...poiNoName} = poiMock
+  /* default test with matching name & local_name */
+  poiNoName.id = 'osm:way:453202'
+  nock(/idunn_test\.test/)
+    .persist(false)
+    .get(/osm:way:453202/)
+    .reply(200, JSON.stringify(poiNoName))
+
+  await page.goto(`${APP_URL}/place/osm:way:453202@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+
+  await page.waitForSelector('.poi_panel__title')
+  expect.assertions(1)
+  let poiName = await page.evaluate(() => {
+    return  document.querySelector('.poi_panel__title').innerText.trim()
+  })
+
+  expect(poiName).toMatch('Musée d\'Orsay')
+
+  /* set mismatching local_name */
+  poiNoName.local_name = 'Orsay museum'
+  poiNoName.id = 'osm:way:453203'
+  nock(/idunn_test\.test/)
+    .persist(false)
+    .get(/osm:way:453203/)
+    .reply(200, JSON.stringify(poiNoName))
+
+  await page.goto(`${APP_URL}/place/osm:way:453203@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+
+  await page.waitForSelector('.poi_panel__title')
+  expect.assertions(1)
+  poiName = await page.evaluate(() => {
+    return  document.querySelector('.poi_panel__title').innerText.trim()
+  })
+
+  expect(poiName).toMatch('Musée d\'Orsay  Orsay museum')
 })
 
 test('check pre-loaded Poi error handling', async () => {

@@ -2,10 +2,9 @@ const SUGGEST_SELECTOR = '.autocomplete_suggestion'
 const CLEAR_BUTTON_SELECTOR = '#clear_button'
 const SEARCH_INPUT_SELECTOR = '#search'
 
-export default class AutocompleteCucumberise {
+export default class AutocompleteHelper {
   constructor(page) {
     this.page = page
-    this.preparedResponses = []
   }
 
   async typeAndWait(word) {
@@ -57,30 +56,5 @@ export default class AutocompleteCucumberise {
     }, SEARCH_INPUT_SELECTOR)
   }
 
-  addPreparedResponse(response, query) {
-    let alreadySetResponse = this.preparedResponses.find((preparedResponse) => preparedResponse.query === query)
-    if(!alreadySetResponse) {
-      this.preparedResponses.push({response, query})
-    }
-  }
 
-  async prepareResponse() {
-    await this.page.setRequestInterception(true)
-    this.page.on('request', async (interceptedRequest) => {
-      let isResponseHandled = false
-      this.preparedResponses.forEach((preparedResponse) => {
-        if(isResponseHandled === false) {
-
-          if(interceptedRequest.url().match(preparedResponse.query)) {
-            interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-            interceptedRequest.respond({body : JSON.stringify(preparedResponse.response), headers  : interceptedRequest.headers})
-            isResponseHandled = true
-          }
-        }
-      })
-      if(isResponseHandled === false) {
-        interceptedRequest.continue()
-      }
-    })
-  }
 }

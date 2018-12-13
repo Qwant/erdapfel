@@ -15,7 +15,7 @@
   {{?? this.poi.localName }}
     {{= this.htmlEncode(this.poi.localName) }}
   {{??}}
-    {{= this.poiSubClass(this.poi.name) }}
+    {{= this.poiSubClass(this.poi.subClassName) }}
   {{?}}
 </h4>
 {{? this.poi.subClassName }}
