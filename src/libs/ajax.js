@@ -35,6 +35,7 @@ const query = (url, data, method = 'GET') => {
           jsonResponse = JSON.parse(this.response)
         } catch (e) {
           clearTimeout(timeOutHandler)
+          Error.sendOnce('ajax', 'query', `response parse error. url ${url}. response ${this.response.substr(0,100)}...`, e)
           reject(e)
           return
         }

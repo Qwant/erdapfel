@@ -10,7 +10,7 @@ LocalStore.prototype.getAllPois = function() {
           let poi = JSON.parse(localStorage.getItem(k))
           filtered.push(poi)
         } catch (e) {
-          Error.displayOnce('local_store', 'getAllPois', 'error getting pois', e)
+          Error.sendOnce('local_store', 'getAllPois', 'error getting pois', e)
         }
       }
       return filtered
@@ -33,7 +33,7 @@ LocalStore.prototype.get = function(k) {
     try {
       resolve(JSON.parse(localStorage.getItem(k)))
     } catch (e) {
-      Error.displayOnce('local_store', 'get', `error parsing item with key ${k}`, e)
+      Error.sendOnce('local_store', 'get', `error parsing item with key ${k}`, e)
       resolve(null)
     }
   })
@@ -43,7 +43,7 @@ LocalStore.prototype.set = function(k, v) {
  try {
    localStorage.setItem(k,JSON.stringify(v))
  } catch (e) {
-   Error.displayOnce('local_store', 'set', 'error setting item', e)
+   Error.sendOnce('local_store', 'set', 'error setting item', e)
  }
  return new Promise((resolve)=>{resolve()})
 }
@@ -52,7 +52,7 @@ LocalStore.prototype.clear = function() {
  try {
    localStorage.clear()
  } catch (e) {
-   Error.displayOnce('local_store', 'clear', 'error clearing store', e)
+   Error.sendOnce('local_store', 'clear', 'error clearing store', e)
  }
  return new Promise((resolve)=>{resolve()})
 }
@@ -61,7 +61,7 @@ LocalStore.prototype.del = function(k) {
   try {
     localStorage.removeItem(k)
   } catch (e) {
-    Error.displayOnce('local_store', 'del', 'error removing item', e)
+    Error.sendOnce('local_store', 'del', 'error removing item', e)
   }
   return new Promise((resolve)=>{resolve()})
 }

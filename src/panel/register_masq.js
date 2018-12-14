@@ -19,7 +19,7 @@ RegisterMasqPanel.prototype.register = function () {
     this.panel.animate(.25, '.register_masq_panel', {top : '-300px'})
   })
   .catch((e) => {
-    Error.displayOnce('register_masq', 'register', 'error registering masq', e)
+    Error.sendOnce('register_masq', 'register', 'error registering masq', e)
   })
 }
 

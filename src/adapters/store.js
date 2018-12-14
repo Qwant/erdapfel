@@ -29,7 +29,7 @@ Store.prototype.getAllPois = async function() {
   try {
     return await abstractStore.getAllPois()
   } catch (e) {
-    Error.displayOnce('store', 'getAllPois', 'error getting pois', e)
+    Error.sendOnce('store', 'getAllPois', 'error getting pois', e)
     throw e
   }
 }
@@ -38,7 +38,7 @@ Store.prototype.getLastLocation = async function() {
   try {
     return await abstractStore.get(`qmaps_v${version}_last_location`)
   } catch (e) {
-    Error.displayOnce('store', 'getLastLocation', 'error getting location', e)
+    Error.sendOnce('store', 'getLastLocation', 'error getting location', e)
     return null
   }
 }
@@ -47,7 +47,7 @@ Store.prototype.setLastLocation = async function(loc) {
   try {
     return await abstractStore.set(`qmaps_v${version}_last_location`, loc)
   } catch (error) {
-    Error.displayOnce('store', 'setLastLocation', 'error setting location', e)
+    Error.sendOnce('store', 'setLastLocation', 'error setting location', e)
   }
 }
 
@@ -86,26 +86,26 @@ Store.prototype.has = async function(poi) {
   try {
     return await abstractStore.get(poi.getKey())
   } catch (e) {
-    Error.displayOnce('store', 'has', 'error checking existing key', e)
+    Error.sendOnce('store', 'has', 'error checking existing key', e)
   }
 }
 
 Store.prototype.add = function(poi) {
   abstractStore.set(poi.getKey(), poi.poiStoreLiteral()).then(function () {
   }).catch(function (e) {
-    Error.displayOnce('store', 'add', 'error adding poi', e)
+    Error.sendOnce('store', 'add', 'error adding poi', e)
   })
 }
 
 Store.prototype.del = function(poi) {
   abstractStore.del(poi.getKey()).catch((e) => {
-    Error.displayOnce('store', 'del', 'error deleting key', e)
+    Error.sendOnce('store', 'del', 'error deleting key', e)
   })
 }
 
 Store.prototype.clear = function () {
   abstractStore.clear().catch((e) => {
-    Error.displayOnce('store', 'clear', 'error clearing store', e)
+    Error.sendOnce('store', 'clear', 'error clearing store', e)
   })
 }
 

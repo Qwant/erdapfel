@@ -25,7 +25,7 @@ export default class IdunnPoi extends Poi {
         return
       }
       else {
-        Error.displayOnce('idunn_poi', 'poiApiLoad', 'unknown error getting idunn poi', err)
+        Error.sendOnce('idunn_poi', 'poiApiLoad', 'unknown error getting idunn poi', err)
         return
       }
     }

@@ -29,7 +29,7 @@ export default class Error {
     return {...this, exception : this.exception.toString()}
   }
 
-  static displayOnce(file, method, message, exception) {
+  static sendOnce(file, method, message, exception) {
     let error = new Error(file, method, message, exception)
     let existingError = __registredErrors.find((error) => {
       return error.equal(error)
@@ -41,7 +41,7 @@ export default class Error {
     console.error(error)
   }
 
-  static display(file, method, message, exception) {
+  static send(file, method, message, exception) {
     let error = new Error(file, method, message, exception)
     error.log()
     console.error(error)

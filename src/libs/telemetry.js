@@ -15,7 +15,7 @@ export default class Telemetry {
     if(event) {
       return Telemetry.send(event)
     } else {
-      Error.display('telemetry', 'add', 'telemetry event mismatch configuration', {})
+      Error.send('telemetry', 'add', 'telemetry event mismatch configuration', {})
     }
   }
 
