@@ -4,12 +4,12 @@ import IconManager from "./icon_manager";
 import ExtendedString from '../libs/string'
 import ApiPoi from "./poi/idunn_poi";
 import Device from '../libs/device'
+import SceneState from "./scene_state";
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
 const poiConfigs = require('../../config/constants.yml').pois
 
 const WAIT_BEFORE_DISPLAY = 800
-
 
 function PoiPopup() {}
 
@@ -17,6 +17,7 @@ PoiPopup.prototype.init = function(map) {
   this.map = map
   this.popupHandle = null
   this.timeOutHandler = null
+  this.sceneState = SceneState.getSceneState()
 }
 
 PoiPopup.prototype.addListener = function(layer) {
@@ -24,8 +25,11 @@ PoiPopup.prototype.addListener = function(layer) {
     if(Device.isMobile(e) || isTouchEvent(e)) {
       return
     }
+    let poi = e.features[0]
+    if(this.sceneState.poi === poi.properties.global_id) {
+      return
+    }
     this.timeOutHandler = setTimeout(() => {
-      let poi = e.features[0]
       this.create(poi, e.originalEvent)
     }, WAIT_BEFORE_DISPLAY)
   })

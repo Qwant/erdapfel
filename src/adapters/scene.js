@@ -11,6 +11,7 @@ import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
 import Store from '../adapters/store'
 import getStyle from "./scene_config";
+import SceneState from "./scene_state";
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -23,6 +24,7 @@ function Scene() {
   this.popup = new PoiPopup()
   this.zoom = map.zoom
   this.center = [map.center.lng, map.center.lat]
+  this.sceneState = SceneState.getSceneState()
 }
 
 Scene.prototype.initScene = async function () {
@@ -94,6 +96,7 @@ Scene.prototype.initMapBox = function () {
       this.mb.on('click', interactiveLayer, async (e) => {
         if(e.features && e.features.length > 0) {
           let mapPoi = new MapPoi(e.features[0], e.lngLat)
+          this.sceneState.setPoi(mapPoi.id)
           if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({center : mapPoi.getLngLat(), offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
           }
