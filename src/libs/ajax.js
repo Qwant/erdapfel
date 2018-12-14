@@ -34,7 +34,6 @@ const query = (url, data, method = 'GET') => {
         try {
           jsonResponse = JSON.parse(this.response)
         } catch (e) {
-          Error.displayOnce('ajax', 'query', 'error parsing json', e)
           clearTimeout(timeOutHandler)
           reject(e)
           return
