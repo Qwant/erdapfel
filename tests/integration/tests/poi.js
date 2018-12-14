@@ -183,7 +183,6 @@ test('check poi name behaviour', async () => {
   await page.goto(`${APP_URL}/place/osm:way:453202@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
 
   await page.waitForSelector('.poi_panel__title')
-  expect.assertions(1)
   let poiName = await page.evaluate(() => {
     return  document.querySelector('.poi_panel__title').innerText.trim()
   })
@@ -201,7 +200,6 @@ test('check poi name behaviour', async () => {
   await page.goto(`${APP_URL}/place/osm:way:453203@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
 
   await page.waitForSelector('.poi_panel__title')
-  expect.assertions(1)
   poiName = await page.evaluate(() => {
     return  document.querySelector('.poi_panel__title').innerText.trim()
   })
