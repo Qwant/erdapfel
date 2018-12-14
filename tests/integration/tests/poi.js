@@ -22,6 +22,7 @@ beforeAll(async () => {
 
   const autocompleteMock = require('../../__data__/autocomplete')
   responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/)
+  responseHandler.addPreparedResponse(poiMock, /pois\/osm:way:63178753/)
   responseHandler.addPreparedResponse(poiMock, /pois\/1/)
 })
 
@@ -210,6 +211,11 @@ test('check poi name behaviour', async () => {
 test('check pre-loaded Poi error handling', async () => {
   expect.assertions(1)
 
+  nock(/idunn_test\.test/)
+    .persist(false)
+    .get(/osm:way:2403/)
+    .reply(404, JSON.stringify({ satus : 'not found'}))
+
   await page.goto(`${APP_URL}/place/osm:way:2403`)
   let pathname = await page.evaluate(() => {
     return location.pathname
@@ -262,6 +268,12 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 
 test('Poi hour i18n', async () => {
   expect.assertions(languages.supportedLanguages.length)
+
+  nock(/idunn_test\.test/)
+    .persist(true)
+    .get(/osm:way:63178753/)
+    .reply(200, JSON.stringify(poiMock))
+
   await languages.supportedLanguages.reduce(async (acc, language) => {
     let langPage = await browser.newPage()
     await langPage.setExtraHTTPHeaders({
