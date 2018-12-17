@@ -6,7 +6,7 @@
 {{?}}
 <h4 class="poi_panel__title">
   {{? this.poi.localName && this.poi.name }}
-    {{= this.htmlEncode(this.poi.name) }}
+    <span class="poi_panel__title__main">{{= this.htmlEncode(this.poi.name) }}</span>
     {{? this.poi.localName !== this.poi.name }}
       <p class="poi_panel__title__alternative">{{= this.htmlEncode(this.poi.localName) }}</p>
     {{?}}

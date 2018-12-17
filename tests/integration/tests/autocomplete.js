@@ -30,7 +30,6 @@ test('search and clear', async () => {
   let cleanHandle = await autocompleteHelper.getClearFieldButton()
   expect(cleanHandle).not.toBeNull()
 
-
   const autocompleteItems = await autocompleteHelper.getSuggestList()
   expect(autocompleteItems.length).toEqual(10)
 
@@ -156,7 +155,9 @@ test('bbox & center', async () => {
   expect(center).toEqual({ lat: 1, lng: 4 })
 })
 
-test('submit key', async () => {
+
+// http://idunn_test.test/v1/pois/osm:node:4872758213?lang=fr
+test('submit key', async () =>  {
   expect.assertions(2)
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
   await page.goto(APP_URL)
@@ -164,19 +165,22 @@ test('submit key', async () => {
   await page.keyboard.type('Hello')
   await wait(150)
   await page.keyboard.press('Enter')
+  await wait(30)
 
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })
+
   let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates
   expect(center).toEqual({lat : firstFeatureCenter[1], lng : firstFeatureCenter[0]})
-
   await page.click('#clear_button')
 
   /* force specific query */
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=paris/)
   await page.keyboard.type('paris')
   await page.keyboard.press('Enter')
+
+  await wait(150)
 
   center = await page.evaluate(() =>
     MAP_MOCK.getCenter()
@@ -220,5 +224,5 @@ test('check template', async () => {
 })
 
 afterAll(async () => {
-  await browser.close()
+ // await browser.close()
 })
