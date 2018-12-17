@@ -8,7 +8,7 @@
           <i class="icon-icon_chevron-down poi_panel__info__hours__status__toggle"></i>
         </div>
         <div class="poi_panel__info__hours">
-          {{? !this.opening.isTwentyForSeven }}
+          {{? this.isTwentyForSeven }}
             <table class="poi_panel__info__hours__table">
               {{~ this.opening.displayHours:day:i }}
                 <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
@@ -19,12 +19,14 @@
                         <p>{{= `${openingFragment.beginning} - ${openingFragment.end}` }}</p>
                       {{~}}
                     {{??}}
-                      {{= _('Closed')}}
+                      {{= _('Closed', 'hour block')}}
                     {{?}}
                   </td>
                 </tr>
               {{~}}
             </table>
+          {{??}}
+            {{= _('Open 24h/24', 'hour block') }}
           {{?}}
         </div>
       </div>
