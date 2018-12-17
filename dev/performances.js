@@ -10,7 +10,7 @@ const HOST_URI = `http://localhost:${PORT}`
 
 ;(async () => {
   /* production build */
-  const buildTime = -1;//await buildProd()
+  const buildTime = await buildProd()
 
   /* start host */
   const appServer = await serverStart()
