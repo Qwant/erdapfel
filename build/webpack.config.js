@@ -79,7 +79,7 @@ const sassChunkConfig = () => {
 
 const mainJsChunkConfig  = (buildMode) => {
   return {
-    entry: ['./src/main.js'],
+    entry: [path.join(__dirname, '..', 'src', 'main.js')],
     output: {
       path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
       filename: 'bundle.js'
@@ -125,9 +125,8 @@ const mainJsChunkConfig  = (buildMode) => {
 
 const mapJsChunkConfig = (buildMode) => {
   return {
-    entry: ['./src/map.js'],
-
-      output: {
+    entry: [path.join(__dirname, '..', 'src', 'map.js')],
+    output: {
     path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
       filename: 'map.js'
   },

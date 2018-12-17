@@ -12,7 +12,9 @@ import HotLoadPoi from "./poi/hotload_poi";
 import Store from '../adapters/store'
 import getStyle from "./scene_config";
 
+const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
+
 const store = new Store()
 
 function Scene() {
@@ -70,6 +72,10 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
+    if(performanceEnabled) {
+      window.times.mapLoaded = Date.now()
+    }
+
     const extendedControl = new ExtendedControl()
     const mobileCompassControl = new MobileCompassControl()
 
@@ -99,7 +105,6 @@ Scene.prototype.initMapBox = function () {
       })
 
       this.popup.addListener(interactiveLayer)
-
     })
 
     this.mb.on('moveend', () => {

@@ -1,0 +1,18 @@
+{
+	"reports": [
+		{
+			"date": "2018-12-17T09:16:44.019Z",
+			"git": "3e536f1abc91bc28d66ef80d5b8d3a71d5139bab",
+			"times": {
+				"script": 0.086866,
+				"build": 58350,
+				"appRender": 180,
+				"mapLoad": 1634
+			},
+			"size": {
+				"app": 190461,
+				"map": 932830
+			}
+		}
+	]
+}

@@ -5,6 +5,7 @@ const expressStaticGzip = require('express-static-gzip')
 const bunyan = require('bunyan')
 const finalhandler = require('finalhandler');
 const promClient = require('prom-client');
+const fakePbf = require('./middlewares/fake_pbf/index')
 const compression = require('compression')
 
 const mapStyle = require('./middlewares/map_style');
@@ -27,6 +28,8 @@ function App(config) {
 
   this.handler = null
   app.set('view engine', 'ejs')
+  app.set('views', path.join(__dirname, '..', 'views'));
+
 
   /* Define child logger in req */
   app.use((req,res,next) => {
@@ -56,6 +59,10 @@ function App(config) {
     fallthrough: false,
     maxAge: config.mapStyle.maxAge
   }))
+
+  if(config.performance.enabled) {
+    app.get('/fake_pbf/:z/:x/:y.pbf', fakePbf)
+  }
 
   app.use('/statics', expressStaticGzip(path.join(publicDir), {
     fallthrough: false,
