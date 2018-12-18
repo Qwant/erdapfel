@@ -7,7 +7,6 @@
 </div>
 
 /* modals */
-{{= this.errorPanel.render() }}
 {{= this.masqPanel.render() }}
 {{= this.sharePanel.renderModal() }}
 {{= this.geolocationModal.renderModal() }}

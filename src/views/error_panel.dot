@@ -1,3 +1,0 @@
-<div class="error_panel">
-  {{= this.message }}
-</div>

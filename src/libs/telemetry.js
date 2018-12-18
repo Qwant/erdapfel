@@ -1,6 +1,7 @@
 import Ajax from './ajax'
 import nconf from '@qwant/nconf-getter'
 import telemetryModule from '@qwant/telemetry'
+import Error from '../adapters/error'
 
 const telemetry = nconf.get().telemetry
 const system = nconf.get().system
@@ -14,7 +15,7 @@ export default class Telemetry {
     if(event) {
       return Telemetry.send(event)
     } else {
-      console.error('Telemetry event is missing')
+      Error.send('telemetry', 'add', 'telemetry event mismatch configuration', {})
     }
   }
 

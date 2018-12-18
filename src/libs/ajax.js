@@ -1,4 +1,5 @@
 import nconf from '@qwant/nconf-getter'
+import Error from './../adapters/error'
 const systemConfigs = nconf.get().system
 const timeout = systemConfigs.timeout
 function Ajax() {}
@@ -33,8 +34,8 @@ const query = (url, data, method = 'GET') => {
         try {
           jsonResponse = JSON.parse(this.response)
         } catch (e) {
-          console.error('json', this.response)
           clearTimeout(timeOutHandler)
+          Error.sendOnce('ajax', 'query', `response parse error. url ${url}. response ${this.response.substr(0,100)}...`, e)
           reject(e)
           return
         }

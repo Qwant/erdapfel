@@ -21,7 +21,7 @@ test('is dom loaded',async () => {
 test('is panels loaded',async () => {
   expect.assertions(1);
   await page.goto(APP_URL)
-  let sceneContent = await page.waitForSelector(".error_panel");
+  let sceneContent = await page.waitForSelector(".service_panel");
   expect(sceneContent).not.toBeFalsy()
 })
 

@@ -1,4 +1,5 @@
 import AsyncFileLoader from './async_file_loader'
+import Error from '../adapters/error'
 
 const Gettext = require('@qwant/gettext')
 /**
@@ -21,7 +22,7 @@ I18n.prototype.setLang = async function() {
   try {
     await AsyncFileLoader(`statics/build/javascript/message/${this.language.locale}.js`)
   } catch (e) {
-    console.error(e)
+    Error.send('i18n', 'setLang', `error getting downloading language file : ${this.language.locale}`, e)
   }
   this.gettext.setMessage(window.i18nData.message)
 
