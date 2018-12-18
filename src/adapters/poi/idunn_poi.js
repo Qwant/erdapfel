@@ -18,14 +18,15 @@ export default class IdunnPoi extends Poi {
 
   static async poiApiLoad(id) {
     let rawPoi = null
+    let url = `${serviceConfig.idunn.url}/v1/pois/${id}`
     try {
-      rawPoi = await Ajax.getLang(`${serviceConfig.idunn.url}/v1/pois/${id}`)
+      rawPoi = await Ajax.getLang(url)
     } catch (err) {
       if(err === 404) {
         return
       }
       else {
-        Error.sendOnce('idunn_poi', 'poiApiLoad', 'unknown error getting idunn poi', err)
+        Error.sendOnce('idunn_poi', 'poiApiLoad', `unknown error getting idunn poi reaching ${url}`, err)
         return
       }
     }
