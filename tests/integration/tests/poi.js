@@ -1,10 +1,10 @@
-import ResponseHandler from "../helpers/response_handler";
 const poiMock = require('../../__data__/poi')
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 const nock = require('nock')
 
+import ResponseHandler from "../helpers/response_handler";
 import {initBrowser, getText, wait, clearStore} from '../tools'
 import {getFavorites, toggleFavoritePanel} from '../favorites_tools'
 import {languages} from '../../../config/constants.yml'
@@ -181,11 +181,33 @@ test('Poi name i18n', async () => {
   expect(title.alternative).toMatch('Orsay museum')
 })
 
+
+test('Test 24/7', async () => {
+  expect.assertions(1)
+
+  let {...poi} = require('../../__data__/poi')
+  poi.blocks.forEach((block => {
+    if(block.type === 'opening_hours') {
+      block.is_24_7 = true
+    }
+  }))
+  poi.id = 'osm:way:24_7'
+
+  responseHandler.addPreparedResponse(poi, /pois\/24_7/)
+
+  await page.goto(APP_URL)
+  await selectPoiLevel(page, 1)
+  await page.waitForSelector('.poi_panel__title')
+
+  let hours = await page.evaluate(() => {
+    return document.querySelector('.poi_panel__info__hours__24_7').innerText.trim()
+  })
+
+  expect(hours).toEqual('Ouvert 24h/24')
+})
+
 test('check pre-loaded Poi error handling', async () => {
-  nock(/idunn_test\.test/)
-    .persist(true)
-    .get(/osm:way:2403/)
-    .reply(404, {status : 'not found'})
+
   expect.assertions(1)
 
   await page.goto(`${APP_URL}/place/osm:way:2403`)
@@ -239,35 +261,33 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 
 
 test('Poi hour i18n', async () => {
-  expect.assertions(languages.supportedLanguages.length)
-
-  nock(/idunn_test\.test/)
-    .persist(true)
-    .get(/osm:way:63178753/)
-    .reply(200, JSON.stringify(poiMock))
-
-  await languages.supportedLanguages.reduce(async (acc, language) => {
-    let langPage = await browser.newPage()
-    await langPage.setExtraHTTPHeaders({
-      'accept-language': `${language.locale},${language.code},en;q=0.8`
+  await Promise.all(languages.supportedLanguages.map(async (language) =>  {
+    return new Promise(async (resolve) => {
+      let langPage = await browser.newPage()
+      await langPage.setExtraHTTPHeaders({
+        'accept-language': `${language.locale},${language.code},en;q=0.8`
+      })
+      await langPage.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+      await langPage.waitForSelector('.poi_panel__info__hours__table')
+      let hourData = await getHours(langPage)
+      if (language.code === 'fr') {
+        expect(hourData[1][1]).toEqual('09h30 - 18h00')
+      } else if (language.code === 'en') {
+        expect(hourData[1][1]).toEqual('09:30 AM - 06:00 PM')
+      } else {
+        expect(hourData[1][1]).toEqual('09:30 - 18:00')
+      }
+      resolve()
     })
-    await langPage.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
-    await wait(200)
-    let hourData = await getHours(langPage)
-    if(language.code === 'fr') {
-      expect(hourData[1][1]).toEqual('09h30 - 18h00')
-    } else if(language.code === 'en') {
-      expect(hourData[1][1]).toEqual('09:30 AM - 06:00 PM')
-    } else {
-      expect(hourData[1][1]).toEqual('09:30 - 18:00')
-    }
-    return acc
-  }, [])
+  }))
 })
 
 
 
 afterEach(async () => {
+  if(page.url() === 'about:blank') {
+    return
+  }
   try {
     await clearStore(page) /* if only the above test is run page is not used */
   } catch (e) {

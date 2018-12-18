@@ -10,6 +10,7 @@ function HourPanel(block, poi, options) {
   this.name = block.name
   this.title = options.title
   this.opening = new OsmSchedule(block, options.messages)
+  this.messages = options.messages
   this.isTwentyFourSeven = block.is_24_7
   this.latLng = poi.latLon
   this.isCollapsed = true

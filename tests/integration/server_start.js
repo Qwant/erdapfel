@@ -21,7 +21,7 @@ let {...poiFullName} = require('../__data__/poi')
 
 nock(/idunn_test\.test/)
   .persist(true)
-  .get(/osm:way:63178753/)
+  .get(/osm:way:63178753.*/)
   .reply(200, JSON.stringify(require('../__data__/poi')))
 
 nock(/idunn_test\.test/)
@@ -29,6 +29,10 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404)
 
+nock(/idunn_test\.test/)
+  .persist(true)
+  .get(/osm:way:2403/)
+  .reply(404, {status : 'not found'})
 
 configBuilder.set('store:name', 'local_store')
 configBuilder.set('mapStyle:baseMapUrl', "[]")

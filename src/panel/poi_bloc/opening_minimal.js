@@ -13,6 +13,7 @@ export default class MinimalHourPanel {
   async set(poi) {
     let openingBlock = poi.blocks.find((block) => block.type === 'opening_hours')
     this.opening = null
+    this.isTwentyFourSeven = openingBlock.is_24_7
     if(openingBlock) {
       this.opening = new OsmSchedule(openingBlock, this.messages)
     }
