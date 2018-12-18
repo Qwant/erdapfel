@@ -169,17 +169,17 @@ test('display details about the poi on a poi click', async () => {
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()
 })
-
-test('Poi name i18n', async () => {
-  expect.assertions(2)
-
-  await page.goto(`${APP_URL}/place/osm:way:453203@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
-  await page.waitForSelector('.poi_panel__title')
-
- // let title = await getTitle(page)
-  expect("Musée d'Orsay").toMatch("Musée d'Orsay")
-  expect("Orsay museum").toMatch("Orsay museum")
-})
+//
+// test('Poi name i18n', async () => {
+//   expect.assertions(2)
+//
+//   await page.goto(`${APP_URL}/place/osm:way:453203@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+//   await page.waitForSelector('.poi_panel__title')
+//
+//  // let title = await getTitle(page)
+//   expect("Musée d'Orsay").toMatch("Musée d'Orsay")
+//   expect("Orsay museum").toMatch("Orsay museum")
+// })
 
 test('check pre-loaded Poi error handling', async () => {
   nock(/idunn_test\.test/)
