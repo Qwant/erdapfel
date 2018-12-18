@@ -7,7 +7,7 @@
     "doc": "./node_modules/.bin/esdoc -c ./docs/esdoc.json",
     "bench": "node ./dev/performances.js",
     "unit-test": "jest --config=./tests/unit.js",
-    "integration-test": "jest --config=./tests/integration.js --detectOpenHandles",
+    "integration-test": "jest --config=./tests/integration.js",
     "test": "npm run unit-test && npm run integration-test",
     "start": "node bin/index.js",
     "build": "webpack --config build/webpack.config.js",

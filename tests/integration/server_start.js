@@ -29,7 +29,7 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404)
 
-global.nock = nock
+
 configBuilder.set('store:name', 'local_store')
 configBuilder.set('mapStyle:baseMapUrl', "[]")
 configBuilder.set('mapStyle:poiMapUrl', "[]")
