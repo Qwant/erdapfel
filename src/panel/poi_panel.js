@@ -8,6 +8,7 @@ import HotLoadPoi from "../adapters/poi/hotload_poi";
 import Telemetry from "../libs/telemetry";
 import headerPartial from '../views/poi_partial/header.dot'
 import MinimalHourPanel from './poi_bloc/opening_minimal'
+import SceneState from "../adapters/scene_state";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -26,6 +27,7 @@ function PoiPanel(sharePanel) {
   this.card = true
   this.headerPartial = headerPartial
   this.minimalHourPanel = new MinimalHourPanel()
+  this.sceneState = SceneState.getSceneState()
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
 }
@@ -70,6 +72,7 @@ PoiPanel.prototype.close = async function() {
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()
+  this.sceneState.unsetPoiID()
   UrlState.pushUrl()
 }
 
@@ -78,6 +81,7 @@ PoiPanel.prototype.restorePoi = async function (id) {
   let hotLoadedPoi = new HotLoadPoi()
   if(hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi
+    this.sceneState.setPoiId(hotLoadedPoi.id)
     window.execOnMapLoaded(() => {
       fire('map_mark_poi', this.poi)
       fire('fit_map', this.poi, {sidePanelOffset : this.poi.type === 'poi'})

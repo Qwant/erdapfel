@@ -26,7 +26,10 @@ PoiPopup.prototype.addListener = function(layer) {
       return
     }
     let poi = e.features[0]
+
     if(this.sceneState.poi === poi.properties.global_id) {
+
+
       return
     }
     this.timeOutHandler = setTimeout(() => {
@@ -66,7 +69,7 @@ PoiPopup.prototype.create = async function (layerPoi, event) {
 
     this.setPopupPosition(event, popupOptions)
     let htmlEncode = ExtendedString.htmlEncode
-
+    
     this.popupHandle = new Popup(popupOptions)
       .setLngLat(poi.getLngLat())
       .setHTML(popupTemplate.call({poi, color, opening, address, category, htmlEncode}))
@@ -77,9 +80,8 @@ PoiPopup.prototype.create = async function (layerPoi, event) {
 PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
   const VERTICAL_OFFSET = 250
   const HORIZONTAL_OFFSET = 300
-  const canvasWidh = window.innerWidth
+  const canvasWidth = window.innerWidth
   const positionFragments = []
-
 
   if(event.clientY > VERTICAL_OFFSET) {
     positionFragments.push('bottom')
@@ -87,8 +89,7 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
     positionFragments.push('top')
   }
 
-
-  if(event.clientX < (canvasWidh - HORIZONTAL_OFFSET)) {
+  if(event.clientX < (canvasWidth - HORIZONTAL_OFFSET)) {
     positionFragments.push('left')
   } else {
     positionFragments.push('right')

@@ -10,11 +10,11 @@ export default class SceneState {
     return window.__sceneState
   }
 
-  setPoi(poi) {
+  setPoiId(poi) {
     this.poi = poi
   }
 
-  unsetPoi() {
+  unsetPoiID() {
     this.poi = null
   }
 }
