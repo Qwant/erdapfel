@@ -62,7 +62,7 @@ function SearchInput(tagSelector) {
       })
       let suggestDom = remotesRender(remotes)
       if(favorites.length > 0) {
-        suggestDom += (favoritesRender(favorites))
+        suggestDom += favoritesRender(favorites)
       }
       return suggestDom
     },
