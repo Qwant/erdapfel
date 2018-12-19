@@ -28,21 +28,24 @@ function SearchInput(tagSelector) {
         this post is about correlation between gps coordinates decimal count & real precision unit
         110m = 3 decimals
        */
-      let promise = new Promise((resolve, reject) => {
+      let promise = new Promise(async (resolve, reject) => {
         /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
         let suggestHistoryPromise = PoiStore.get(term)
         this.suggestPromise = BragiPoi.get(term)
-        Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
-          if(responses[0]) {
+        try {
+        let [bragiResponse, storeResponse] = await Promise.all([this.suggestPromise, suggestHistoryPromise])
+          if(bragiResponse) {
             this.suggestPromise = null
-            this.suggestList = responses[0].concat(responses[1])
+            this.suggestList = bragiResponse.concat(storeResponse)
             resolve(this.suggestList)
+          } else if(storeResponse) {
+            resolve(storeResponse)
           } else {
             resolve(null)
           }
-        }).catch((e) => {
+        } catch(e) {
           reject(e)
-        })
+        }
       })
       promise.abort = () => {
         this.suggestPromise.abort()
@@ -113,12 +116,11 @@ SearchInput.prototype.select = async function(selectedPoi) {
 }
 
 function remotesRender(pois) {
-  return `${pois.map(poi => renderItem(poi)).join('')}`
-
+  return pois.map(poi => renderItem(poi)).join('')
 }
 
 function favoritesRender(pois) {
-  return `<h3 class="autocomplete_suggestion__category_title">${_('Favoris')}</h3> ${pois.map(poi => renderItem(poi)).join('')}`
+  return `<h3 class="autocomplete_suggestion__category_title">${_('FAVORIS', 'autocomplete')}</h3> ${pois.map(poi => renderItem(poi)).join('')}`
 }
 
 /* select sub template */

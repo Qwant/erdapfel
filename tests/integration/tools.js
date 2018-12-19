@@ -15,7 +15,9 @@ export const getText = async function (page, selector) {
 }
 
 export const initBrowser = async function () {
-  const browser = await puppeteer.launch({args: puppeteerArguments})
+  const headless = process.env.headless || true
+
+  const browser = await puppeteer.launch({args: puppeteerArguments, headless : headless})
   const page = await browser.newPage()
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
