@@ -11,7 +11,7 @@
       <p class="poi_panel__title__alternative">{{= this.htmlEncode(this.poi.localName) }}</p>
     {{?}}
   {{?? this.poi.name }}
-    {{= this.poiSubClass(this.poi.name) }}
+    {{= this.htmlEncode(this.poi.name) }}
   {{?? this.poi.localName }}
     {{= this.htmlEncode(this.poi.localName) }}
   {{??}}
