@@ -1,5 +1,6 @@
 import {initBrowser, wait} from '../tools'
-import AutocompleteCucumberise from "../cucumberise/autocomplete";
+import AutocompleteHelper from "../helpers/autocomplete";
+import ResponseHandler from "../helpers/response_handler";
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
@@ -7,6 +8,7 @@ const APP_URL = `http://localhost:${config.PORT}`
 let browser
 let page
 let autocompleteHelper
+let responseHandler
 const mockAutocomplete = require('../../__data__/autocomplete')
 const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type')
 
@@ -14,19 +16,19 @@ beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
   browser = browserPage.browser
-  autocompleteHelper = new AutocompleteCucumberise(page)
-  await autocompleteHelper.prepareResponse()
+  responseHandler = new ResponseHandler(page)
+  autocompleteHelper = new AutocompleteHelper(page)
+  await responseHandler.prepareResponse()
 })
 
 test('search and clear', async () => {
   expect.assertions(4)
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/)
   await page.goto(APP_URL)
   await autocompleteHelper.typeAndWait('Hello')
   let cleanHandle = await autocompleteHelper.getClearFieldButton()
   expect(cleanHandle).not.toBeNull()
-
 
   const autocompleteItems = await autocompleteHelper.getSuggestList()
   expect(autocompleteItems.length).toEqual(10)
@@ -42,8 +44,8 @@ test('search and clear', async () => {
 
 test('keyboard navigation', async () => {
   const TypedSearch = 'Hello'
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /Hello/)
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /square/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /Hello/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /square/)
   await page.goto(APP_URL)
   await autocompleteHelper.typeAndWait(TypedSearch)
   await wait(100)
@@ -92,7 +94,7 @@ test('keyboard navigation', async () => {
 
 test('mouse navigation', async() => {
   const TypedSearch = 'Hello'
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
   await page.goto(APP_URL)
   await autocompleteHelper.typeAndWait(TypedSearch)
   await wait(100)
@@ -114,7 +116,7 @@ test('mouse navigation', async() => {
 test('move to on click', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
   let map_position_before = await page.evaluate(() => {
     return window.MAP_MOCK.center
   })
@@ -131,7 +133,7 @@ test('move to on click', async () => {
 
 test('bbox & center', async () => {
   expect.assertions(3)
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
   await page.goto(APP_URL)
   await page.keyboard.type('Hello')
   await wait(100)
@@ -153,27 +155,32 @@ test('bbox & center', async () => {
   expect(center).toEqual({ lat: 1, lng: 4 })
 })
 
-test('submit key', async () => {
+
+// http://idunn_test.test/v1/pois/osm:node:4872758213?lang=fr
+test('submit key', async () =>  {
   expect.assertions(2)
-  autocompleteHelper.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
   await page.goto(APP_URL)
   /* submit with data already loaded */
   await page.keyboard.type('Hello')
   await wait(150)
   await page.keyboard.press('Enter')
+  await wait(30)
 
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })
+
   let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates
   expect(center).toEqual({lat : firstFeatureCenter[1], lng : firstFeatureCenter[0]})
-
   await page.click('#clear_button')
 
   /* force specific query */
-  autocompleteHelper.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=paris/)
+  responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=paris/)
   await page.keyboard.type('paris')
   await page.keyboard.press('Enter')
+
+  await wait(150)
 
   center = await page.evaluate(() =>
     MAP_MOCK.getCenter()
@@ -185,7 +192,7 @@ test('submit key', async () => {
 
 test('check template', async () => {
   expect.assertions(8)
-  autocompleteHelper.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/)
+  responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/)
   await page.goto(APP_URL)
   await page.keyboard.type('type')
   await wait(100)

@@ -5,10 +5,15 @@
   <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
 {{?}}
 <h4 class="poi_panel__title">
-  {{? this.poi.local_name }}
-    {{= this.htmlEncode(this.poi.local_name) }}
+  {{? this.poi.localName && this.poi.name }}
+    <span class="poi_panel__title__main">{{= this.htmlEncode(this.poi.name) }}</span>
+    {{? this.poi.localName !== this.poi.name }}
+      <p class="poi_panel__title__alternative">{{= this.htmlEncode(this.poi.localName) }}</p>
+    {{?}}
   {{?? this.poi.name }}
     {{= this.htmlEncode(this.poi.name) }}
+  {{?? this.poi.localName }}
+    {{= this.htmlEncode(this.poi.localName) }}
   {{??}}
     {{= this.poiSubClass(this.poi.subClassName) }}
   {{?}}
