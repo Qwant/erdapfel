@@ -117,6 +117,12 @@ input[type="search"]::-webkit-search-cancel-button {
   @include card_radius();
 }
 
+.autocomplete_suggestion__category_title {
+  color : $primary_clear;
+  font-size: 12px;
+  padding: 10px 20px;
+}
+
 .autocomplete_address {
   padding-left: 6px;
   color : $secondary_text;

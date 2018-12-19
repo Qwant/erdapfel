@@ -4,7 +4,7 @@ import PanelManager from '../proxies/panel_manager'
 import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
 import BragiPoi from "./poi/bragi_poi";
-import StorePoi from "./poi/poi_store";
+import PoiStore from "./poi/poi_store";
 
 function SearchInput(tagSelector) {
   this.searchInputDomHandler = document.querySelector(tagSelector)
@@ -30,7 +30,7 @@ function SearchInput(tagSelector) {
        */
       let promise = new Promise((resolve, reject) => {
         /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-        let suggestHistoryPromise = StorePoi.get(term)
+        let suggestHistoryPromise = PoiStore.get(term)
         this.suggestPromise = BragiPoi.get(term)
         Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
           if(responses[0]) {
@@ -50,8 +50,21 @@ function SearchInput(tagSelector) {
       return promise
     },
 
-    renderItem : (poi) => {
-      return AutocompleteTemplate(poi)
+    renderItems : (pois) => {
+      let favorites = []
+      let remotes = []
+        pois.forEach((poi) => {
+        if(poi instanceof PoiStore) {
+          favorites.push(poi)
+        } else {
+          remotes.push(poi)
+        }
+      })
+      let suggestDom = remotesRender(remotes)
+      if(favorites.length > 0) {
+        suggestDom += (favoritesRender(favorites))
+      }
+      return suggestDom
     },
 
     onSelect : (e, term, item, items) => {
@@ -99,8 +112,17 @@ SearchInput.prototype.select = async function(selectedPoi) {
   }
 }
 
+function remotesRender(pois) {
+  return `${pois.map(poi => renderItem(poi)).join('')}`
+
+}
+
+function favoritesRender(pois) {
+  return `<h3 class="autocomplete_suggestion__category_title">${_('Favoris')}</h3> ${pois.map(poi => renderItem(poi)).join('')}`
+}
+
 /* select sub template */
-function AutocompleteTemplate(poi) {
+function renderItem(poi) {
   let content = ''
   let {id, name, fromHistory, className, subClassName, type} = poi
   let icon = IconManager.get({className : className, subClassName : subClassName , type : type})

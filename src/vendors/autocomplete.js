@@ -38,7 +38,7 @@ var autoComplete = (function(){
       offsetTop: 1,
       cache: 1,
       menuClass: '',
-      renderItem: function (item, search){},
+      renderItems: function (item, search){},
       onSelect: function(e, term, item, items){},
       onUpdate: function(e, term, items){},
       updateData: function (items) {}
@@ -145,9 +145,7 @@ var autoComplete = (function(){
         }
         if (data && data.length && val.length >= o.minChars) {
           o.updateData(data)
-          var s = '';
-          for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
-          that.sc.innerHTML = s;
+          that.sc.innerHTML = o.renderItems(data, val);
           that.updateSC(0);
         }
         else
