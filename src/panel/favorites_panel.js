@@ -3,7 +3,7 @@ import Panel from '../libs/panel'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
-import StorePoi from "../adapters/poi/poi_store";
+import PoiStore from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 import Error from '../adapters/error'
 const poiSubClass = require('../mapbox/poi_subclass')
@@ -100,16 +100,7 @@ Favorite.prototype.connectStore = async function () {
 }
 
 Favorite.prototype.getAll = async function () {
-  let storedData = {}
-  try {
-    storedData = await this.store.getAllPois()
-  } catch(e) {
-    Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
-    Error.sendOnce('favorite_panel', 'getAll', 'error getting pois', e)
-  }
-  this.favoritePois = Object.keys(storedData).map((mapPoint) => {
-    return new StorePoi(storedData[mapPoint])
-  })
+  this.favoritePois = await PoiStore.getAll()
 }
 
 Favorite.prototype.open = async function() {
@@ -129,12 +120,12 @@ Favorite.prototype.close = function() {
   fire('close_favorite_panel')
 }
 
-Favorite.prototype.go = async function(storePoi) {
+Favorite.prototype.go = async function(poiStore) {
   Telemetry.add(Telemetry.FAVORITE_GO)
-  fire('map_mark_poi', storePoi)
-  fire('fit_map', storePoi, {sidePanelOffset : true})
+  fire('map_mark_poi', poiStore)
+  fire('fit_map', poiStore, {sidePanelOffset : true})
   this.panel.addClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
-  PanelManager.loadPoiById(storePoi.id, {isFromFavorite : true})
+  PanelManager.loadPoiById(poiStore.id, {isFromFavorite : true})
   this.active = false
 }
 

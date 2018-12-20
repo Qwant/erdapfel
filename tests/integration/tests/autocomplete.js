@@ -157,8 +157,6 @@ test('bbox & center', async () => {
 
 test('favorite search', async () => {
   expect.assertions(1)
-
-
   await page.goto(APP_URL)
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
 

@@ -110,8 +110,6 @@ input[type="search"]::-webkit-search-cancel-button {
   /* core styles should not be changed */
   position: absolute;
   display: none;
-  overflow: hidden;
-  overflow-y: auto;
   cursor: default;
   @include long_shadow();
   @include card_radius();

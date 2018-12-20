@@ -125,74 +125,19 @@ function favoritesRender(pois) {
 
 /* select sub template */
 function renderItem(poi) {
-  let content = ''
-  let {id, name, fromHistory, className, subClassName, type} = poi
+  let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
   let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
   let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
 
-  switch(poi.type) {
-    case 'poi':
-      content = PoiTemplate(poi, iconDom)
-      break
-    case 'house':
-      content = HouseTemplate(poi, iconDom)
-      break
-    case 'street':
-      content = StreetTemplate(poi, iconDom)
-      break
-    default: /* admin */
-      content = AdminTemplate(poi, iconDom)
-  }
-
    return `
 <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
-  ${content}
+  <div class="autocomplete_suggestion__first_line__container">
+  ${iconDom}
+  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
+</div>
+${alternativeName ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(alternativeName)}</div>` : ''}
 </div>
 `
 }
 
-function PoiTemplate(poi, iconDom) {
-  let {name, addressLabel} = poi
-  return `
-<div class="autocomplete_suggestion__first_line__container">
-  ${iconDom}
-  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
-</div>
-${addressLabel ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(addressLabel)}</div>` : ''}`
-}
-
-function HouseTemplate(poi, iconDom) {
-  let {name, postcode, city, countryName} = poi
-  let address = [postcode, city, countryName].filter((zone) => zone).join(', ')
-  return `
-<div class="autocomplete_suggestion__first_line__container">
-  ${iconDom}
-  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
-</div>
-${address ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</div>` : ''}
-`
-}
-
-function StreetTemplate(poi, iconDom) {
-  let {name, postcode, city, countryName} = poi
-  let address = [postcode, city, countryName].filter((zone) => zone).join(', ')
-  return `
-<div class="autocomplete_suggestion__first_line__container">
-  ${iconDom}
-  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
-</div>
-${address ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(address)}</div>` : ''}
-`
-}
-
-function AdminTemplate(poi, iconDom) {
-  let {name, adminLabel} = poi
-  return `
-<div class="autocomplete_suggestion__first_line__container">
-  ${iconDom}
-  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
-</div>
-${adminLabel ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(adminLabel)}</div>` : ''}
-`
-}
 export default SearchInput
