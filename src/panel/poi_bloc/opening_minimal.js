@@ -8,12 +8,14 @@ export default class MinimalHourPanel {
     this.messages = constants.pois.find((poiConfig) => poiConfig.apiName === 'opening_hours').options.messages
     this.panel = new Panel(this, HourPanelView)
     this.opening = null
+    this.isTwentyFourSeven = false
   }
 
   async set(poi) {
     let openingBlock = poi.blocks.find((block) => block.type === 'opening_hours')
     this.opening = null
     if(openingBlock) {
+      this.isTwentyFourSeven = openingBlock.is_24_7
       this.opening = new OsmSchedule(openingBlock, this.messages)
     }
     return this.panel.update()

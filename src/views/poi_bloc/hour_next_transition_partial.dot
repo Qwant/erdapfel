@@ -1,9 +1,13 @@
 {{? this.opening }}
-  <span class="poi_panel__info__hours__status__text">
-    {{= _(this.opening.status.msg) }} {{? this.opening.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.opening.nextTransition})  }}{{?}}
-    {{? this.opening.isTwentyForSeven }}
-      24 / 7
-    {{?}}
-    <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
-  </span>
+  {{? this.isTwentyFourSeven }}
+    <div class="poi_panel__info__hours__status__text poi_panel__info__hours__24_7">{{= _('Open 24/7', 'hour block') }}
+      <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
+    </div>
+  {{??}}
+    <span class="poi_panel__info__hours__status__text">
+      {{= _(this.opening.status.msg) }} {{? this.opening.nextTransition }} - {{= _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime : this.opening.nextTransition})  }}{{?}}
+      <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
+    </span>
+  {{?}}
+
 {{?}}

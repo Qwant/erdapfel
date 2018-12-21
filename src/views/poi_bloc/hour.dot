@@ -3,12 +3,16 @@
     <p class="poi_panel__info__section__description">
       <div class="icon-icon_clock poi_panel__block__symbol"></div>
       <div class="poi_panel__block__content">
-        <div class="poi_panel__info__hours__status" {{= click(this.extend, this) }}>
-          {{= this.panel.renderPartial(this.nextTransitionPartial) }}
-          <i class="icon-icon_chevron-down poi_panel__info__hours__status__toggle"></i>
-        </div>
-        <div class="poi_panel__info__hours">
-          {{? !this.opening.isTwentyForSeven }}
+        {{? this.isTwentyFourSeven }}
+          <div class="poi_panel__info__hours__status__text poi_panel__info__hours__24_7">{{= _('Open 24/7', 'hour block') }}
+            <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
+          </div>
+        {{??}}
+          <div class="poi_panel__info__hours__status" {{= click(this.extend, this) }}>
+            {{= this.panel.renderPartial(this.nextTransitionPartial) }}
+            <i class="icon-icon_chevron-down poi_panel__info__hours__status__toggle"></i>
+          </div>
+          <div class="poi_panel__info__hours">
             <table class="poi_panel__info__hours__table">
               {{~ this.opening.displayHours:day:i }}
                 <tr {{= i + 1 === new Date().getDay() ? 'class="poi_panel__info__hours--current"' : '' }}>
@@ -19,14 +23,14 @@
                         <p>{{= `${openingFragment.beginning} - ${openingFragment.end}` }}</p>
                       {{~}}
                     {{??}}
-                      {{= _('Closed')}}
+                      {{= _('Closed', 'hour block')}}
                     {{?}}
                   </td>
                 </tr>
               {{~}}
             </table>
+          </div>
           {{?}}
-        </div>
       </div>
     </p>
   </div>
