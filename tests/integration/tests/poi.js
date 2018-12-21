@@ -2,7 +2,6 @@ const poiMock = require('../../__data__/poi')
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
-const nock = require('nock')
 
 import ResponseHandler from "../helpers/response_handler";
 import {initBrowser, getText, wait, clearStore} from '../tools'
