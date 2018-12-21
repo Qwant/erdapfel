@@ -3,13 +3,13 @@ import OsmSchedule from '../../src/adapters/osm_schedule'
 import IconManager from "./icon_manager";
 import ExtendedString from '../libs/string'
 import ApiPoi from "./poi/idunn_poi";
-
+import Device from '../libs/device'
+import SceneState from "./scene_state";
 const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
 const poiConfigs = require('../../config/constants.yml').pois
 
 const WAIT_BEFORE_DISPLAY = 800
-
 
 function PoiPopup() {}
 
@@ -17,15 +17,19 @@ PoiPopup.prototype.init = function(map) {
   this.map = map
   this.popupHandle = null
   this.timeOutHandler = null
+  this.sceneState = SceneState.getSceneState()
 }
 
 PoiPopup.prototype.addListener = function(layer) {
   this.map.on('mouseenter', layer, (e) => {
-    if(isTouchEvent(e)) {
+    if(Device.isMobile(e) || isTouchEvent(e)) {
       return
     }
     this.timeOutHandler = setTimeout(() => {
       let poi = e.features[0]
+      if(this.sceneState.isDisplayed(poi.properties.global_id)) {
+        return
+      }
       this.create(poi, e.originalEvent)
     }, WAIT_BEFORE_DISPLAY)
   })
@@ -36,7 +40,7 @@ PoiPopup.prototype.addListener = function(layer) {
 }
 
 PoiPopup.prototype.create = async function (layerPoi, event) {
-  let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id)
+  let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id, {simple : true})
   if(poi) {
     if(this.popupHandle) {
       this.popupHandle.remove()
@@ -62,7 +66,7 @@ PoiPopup.prototype.create = async function (layerPoi, event) {
 
     this.setPopupPosition(event, popupOptions)
     let htmlEncode = ExtendedString.htmlEncode
-
+    
     this.popupHandle = new Popup(popupOptions)
       .setLngLat(poi.getLngLat())
       .setHTML(popupTemplate.call({poi, color, opening, address, category, htmlEncode}))
@@ -73,10 +77,8 @@ PoiPopup.prototype.create = async function (layerPoi, event) {
 PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
   const VERTICAL_OFFSET = 250
   const HORIZONTAL_OFFSET = 300
-
-  const canvasWidh = window.innerWidth
+  const canvasWidth = window.innerWidth
   const positionFragments = []
-
 
   if(event.clientY > VERTICAL_OFFSET) {
     positionFragments.push('bottom')
@@ -84,8 +86,7 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
     positionFragments.push('top')
   }
 
-
-  if(event.clientX < (canvasWidh - HORIZONTAL_OFFSET)) {
+  if(event.clientX < (canvasWidth - HORIZONTAL_OFFSET)) {
     positionFragments.push('left')
   } else {
     positionFragments.push('right')
@@ -96,7 +97,6 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
     'bottom-right': [-18, -8],
     'top-left': [18, 8],
     'top-right': [-18, 8],
-
   }
 }
 

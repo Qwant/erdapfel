@@ -8,6 +8,7 @@ import HotLoadPoi from "../adapters/poi/hotload_poi";
 import Telemetry from "../libs/telemetry";
 import headerPartial from '../views/poi_partial/header.dot'
 import MinimalHourPanel from './poi_bloc/opening_minimal'
+import SceneState from "../adapters/scene_state";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -26,6 +27,7 @@ function PoiPanel(sharePanel) {
   this.card = true
   this.headerPartial = headerPartial
   this.minimalHourPanel = new MinimalHourPanel()
+  this.sceneState = SceneState.getSceneState()
   PanelManager.register(this)
   UrlState.registerResource(this, 'place')
 }
@@ -44,32 +46,16 @@ PoiPanel.prototype.toggleStorePoi = function() {
   }
 }
 
-PoiPanel.prototype.toggle = async function() {
-  if(this.active) {
-    this.close()
-  } else if(this.poi) {
-    PanelManager.closeAll()
-    this.open()
-  }
-}
-
 PoiPanel.prototype.isDisplayed = function() {
   return this.active
 }
 
-PoiPanel.prototype.open = async function() {
-  Telemetry.add(Telemetry.POI_OPEN)
-  fire('poi_open')
-  await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
-  this.active = true
-  this.panel.update()
-  UrlState.pushUrl()
-}
 
 PoiPanel.prototype.close = async function() {
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()
+  this.sceneState.unsetPoiID()
   UrlState.pushUrl()
 }
 
@@ -85,9 +71,9 @@ PoiPanel.prototype.restorePoi = async function (id) {
 
     this.poi.stored = await isPoiFavorite(this.poi)
     this.active = true
+    this.sceneState.setPoiId(this.poi.id)
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
     await this.panel.update()
-
     this.minimalHourPanel.set(this.poi)
   }
 }
@@ -100,10 +86,13 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.fromFavorite = options.isFromFavorite
   this.active = true
   UrlState.pushUrl()
+  this.sceneState.setPoiId(this.poi.id)
   await this.panel.update()
   await this.minimalHourPanel.set(this.poi)
   endLoad()
 }
+
+
 
 PoiPanel.prototype.center = function() {
   Telemetry.add(Telemetry.POI_GO)

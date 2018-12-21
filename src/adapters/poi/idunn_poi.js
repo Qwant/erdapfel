@@ -16,17 +16,21 @@ export default class IdunnPoi extends Poi {
     this.address = rawPoi.address
   }
 
-  static async poiApiLoad(id) {
+  static async poiApiLoad(id, options = {}) {
     let rawPoi = null
-    let url = `${serviceConfig.idunn.url}/v1/pois/${id}`
+    let url = `${serviceConfig.idunn.url}/v1/places/${id}`
+    let requestParams = {}
+    if(options.simple) {
+      requestParams = {verbosity : 'short'}
+    }
     try {
-      rawPoi = await Ajax.getLang(url)
+      rawPoi = await Ajax.getLang(url, requestParams)
     } catch (err) {
       if(err === 404) {
         return
       }
       else {
-        Error.sendOnce('idunn_poi', 'poiApiLoad', `unknown error getting idunn poi reaching ${url}`, err)
+        Error.sendOnce('idunn_poi', 'poiApiLoad', `unknown error getting idunn poi reaching ${url} with options ${requestParams}`, err)
         return
       }
     }
