@@ -46,27 +46,10 @@ PoiPanel.prototype.toggleStorePoi = function() {
   }
 }
 
-PoiPanel.prototype.toggle = async function() {
-  if(this.active) {
-    this.close()
-  } else if(this.poi) {
-    PanelManager.closeAll()
-    this.open()
-  }
-}
-
 PoiPanel.prototype.isDisplayed = function() {
   return this.active
 }
 
-PoiPanel.prototype.open = async function() {
-  Telemetry.add(Telemetry.POI_OPEN)
-  fire('poi_open')
-  await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
-  this.active = true
-  this.panel.update()
-  UrlState.pushUrl()
-}
 
 PoiPanel.prototype.close = async function() {
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
@@ -81,7 +64,6 @@ PoiPanel.prototype.restorePoi = async function (id) {
   let hotLoadedPoi = new HotLoadPoi()
   if(hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi
-    this.sceneState.setPoiId(hotLoadedPoi.id)
     window.execOnMapLoaded(() => {
       fire('map_mark_poi', this.poi)
       fire('fit_map', this.poi, {sidePanelOffset : this.poi.type === 'poi'})
@@ -89,9 +71,9 @@ PoiPanel.prototype.restorePoi = async function (id) {
 
     this.poi.stored = await isPoiFavorite(this.poi)
     this.active = true
+    this.sceneState.setPoiId(this.poi.id)
     await this.panel.removeClassName(.2,'.poi_panel', 'poi_panel--hidden')
     await this.panel.update()
-
     this.minimalHourPanel.set(this.poi)
   }
 }
@@ -104,10 +86,13 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.fromFavorite = options.isFromFavorite
   this.active = true
   UrlState.pushUrl()
+  this.sceneState.setPoiId(this.poi.id)
   await this.panel.update()
   await this.minimalHourPanel.set(this.poi)
   endLoad()
 }
+
+
 
 PoiPanel.prototype.center = function() {
   Telemetry.add(Telemetry.POI_GO)

@@ -1,6 +1,6 @@
 export default class SceneState {
   constructor() {
-    this.poi = null
+    this.poiId = null
   }
 
   static getSceneState() {
@@ -10,11 +10,16 @@ export default class SceneState {
     return window.__sceneState
   }
 
-  setPoiId(poi) {
-    this.poi = poi
+  setPoiId(poiId) {
+    console.log('set ' + poiId)
+    this.poiId = poiId
   }
 
   unsetPoiID() {
-    this.poi = null
+    this.poiId = null
+  }
+
+  isDisplayed(id) {
+    return this.poiId === id
   }
 }

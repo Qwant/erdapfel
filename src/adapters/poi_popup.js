@@ -27,7 +27,7 @@ PoiPopup.prototype.addListener = function(layer) {
     }
     this.timeOutHandler = setTimeout(() => {
       let poi = e.features[0]
-      if(this.sceneState.poi === poi.properties.global_id) {
+      if(this.sceneState.isDisplayed(poi.properties.global_id)) {
         return
       }
       this.create(poi, e.originalEvent)
