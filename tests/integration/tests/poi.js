@@ -22,8 +22,8 @@ beforeAll(async () => {
 
   const autocompleteMock = require('../../__data__/autocomplete')
   responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/)
-  responseHandler.addPreparedResponse(poiMock, /pois\/osm:way:63178753/)
-  responseHandler.addPreparedResponse(poiMock, /pois\/1/)
+  responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753/)
+  responseHandler.addPreparedResponse(poiMock, /places\/1/)
 })
 
 test('click on a poi', async () => {
@@ -88,7 +88,7 @@ test('update url after a favorite poi click', async () => {
 })
 
 test('open poi from autocomplete selection', async () => {
-  responseHandler.addPreparedResponse(poiMock, /pois\/osm:node:4811858213/)
+  responseHandler.addPreparedResponse(poiMock, /places\/osm:node:4811858213/)
 
   expect.assertions(2)
   await page.goto(APP_URL)
