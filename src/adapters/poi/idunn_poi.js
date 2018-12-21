@@ -18,7 +18,7 @@ export default class IdunnPoi extends Poi {
 
   static async poiApiLoad(id, options = {}) {
     let rawPoi = null
-    let url = `${serviceConfig.idunn.url}/v1/pois/${id}`
+    let url = `${serviceConfig.idunn.url}/v1/places/${id}`
     let requestParams = {}
     if(options.simple) {
       requestParams = {verbosity : 'short'}

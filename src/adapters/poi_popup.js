@@ -25,14 +25,11 @@ PoiPopup.prototype.addListener = function(layer) {
     if(Device.isMobile(e) || isTouchEvent(e)) {
       return
     }
-    let poi = e.features[0]
-
-    if(this.sceneState.poi === poi.properties.global_id) {
-
-
-      return
-    }
     this.timeOutHandler = setTimeout(() => {
+      let poi = e.features[0]
+      if(this.sceneState.poi === poi.properties.global_id) {
+        return
+      }
       this.create(poi, e.originalEvent)
     }, WAIT_BEFORE_DISPLAY)
   })
