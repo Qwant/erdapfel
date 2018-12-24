@@ -15,7 +15,8 @@ export const getText = async function (page, selector) {
 }
 
 export const initBrowser = async function () {
-  const headless = process.env.headless || true
+  const headless = process.env.headless !== 'false'
+
 
   const browser = await puppeteer.launch({args: puppeteerArguments, headless : headless})
   const page = await browser.newPage()

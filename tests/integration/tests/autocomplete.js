@@ -161,7 +161,7 @@ test('favorite search', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
 
   await page.evaluate(() => {
-    fire('store_poi', new Poi(1, 'hello', '', {lat : 43, lng : 2}, '', '', []));
+    fire('store_poi', new Poi(1, 'hello', 'second line', 'poi', {lat : 43, lng : 2}, '', '', []));
   })
 
   await page.keyboard.type('Hello')
