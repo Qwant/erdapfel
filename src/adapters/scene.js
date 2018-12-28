@@ -12,6 +12,7 @@ import HotLoadPoi from "./poi/hotload_poi";
 import Store from '../adapters/store'
 import getStyle from "./scene_config";
 import SceneState from "./scene_state";
+import MapDirection from './map_direction'
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -74,6 +75,8 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
+    new MapDirection(this)
+
     if(performanceEnabled) {
       window.times.mapLoaded = Date.now()
     }

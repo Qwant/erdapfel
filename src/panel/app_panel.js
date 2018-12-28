@@ -10,9 +10,12 @@ import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
 import nconf from "@qwant/nconf-getter"
+import DirectionPanel from './direction_panel'
 
 const performanceEnabled = nconf.get().performance.enabled
 import Telemetry from "../libs/telemetry";
+
+
 
 function AppPanel(parent) {
   new TopBar()
@@ -21,6 +24,7 @@ function AppPanel(parent) {
   this.servicePanel = new ServicePanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
+  this.directionPanel = new DirectionPanel()
   this.masqPanel = new RegisterMasqPanel()
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()
