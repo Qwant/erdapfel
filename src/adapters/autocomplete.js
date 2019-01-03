@@ -120,7 +120,7 @@ function remotesRender(pois) {
 }
 
 function favoritesRender(pois) {
-  return `<h3 class="autocomplete_suggestion__category_title">${_('FAVORIS', 'autocomplete')}</h3> ${pois.map(poi => renderItem(poi)).join('')}`
+  return `<h3 class="autocomplete_suggestion__category_title">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => renderItem(poi)).join('')}`
 }
 
 /* select sub template */
@@ -135,7 +135,7 @@ function renderItem(poi) {
   ${iconDom}
   <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
 </div>
-${alternativeName ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(alternativeName)}</div>` : ''}
+<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(alternativeName ? alternativeName : '')}</div>
 </div>
 `
 }

@@ -18,7 +18,6 @@ export default class Poi {
     this.className = className
     this.subClassName = subClassName
     this.zoom = this.computeZoom()
-    this.isFavorite = true
   }
 
   getLngLat() {
@@ -41,7 +40,13 @@ export default class Poi {
   }
 
   poiStoreLiteral() {
-    return this
+    const serializeKeys = ['id', 'name', 'alternativeName', 'type', 'latLon', 'className', 'subClassName']
+    return Object.keys(this).reduce((poiLiteral, key) => {
+      if(serializeKeys.includes(key)) {
+        poiLiteral[key] = this[key]
+      }
+      return poiLiteral
+    }, {})
   }
 
   toUrl() {

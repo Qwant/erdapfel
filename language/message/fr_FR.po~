@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-04 10:31+0100\n"
+"POT-Creation-Date: 2018-12-28 16:25+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, "
 "2018\n"
@@ -71,8 +71,17 @@ msgstr "Pas de toilettes accessibles en fauteuil roulant"
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
 
+msgid "Open 24/7"
+msgstr "Ouvert 24h/24"
+
+msgid "until {nextTransitionTime}"
+msgstr "jusqu’à {nextTransitionTime}"
+
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
+
+msgid "airport"
+msgstr ""
 
 msgid "liquor store"
 msgstr "magasin d'alcool"
@@ -82,6 +91,9 @@ msgstr "refuge alpin"
 
 msgid "antiques shop"
 msgstr "antiquaire"
+
+msgid "aquarium"
+msgstr ""
 
 msgid "archery"
 msgstr "tir à l'arc"
@@ -296,6 +308,9 @@ msgstr "équestre"
 msgid "erotic shop"
 msgstr "sex shop"
 
+msgid "escape game"
+msgstr ""
+
 msgid "fabric"
 msgstr "magasin de tissus"
 
@@ -352,6 +367,9 @@ msgstr "chambre d'hôte"
 
 msgid "gymnastics"
 msgstr "gymnastique"
+
+msgid "hackerspace"
+msgstr ""
 
 msgid "hairdresser"
 msgstr "coiffeur"
@@ -671,21 +689,6 @@ msgstr "yoga"
 msgid "zoo"
 msgstr "parc zoologique"
 
-msgid "until {nextTransitionTime}"
-msgstr "jusqu’à {nextTransitionTime}"
-
-msgid "FAVORITES"
-msgstr "FAVORIS"
-
-msgid "Beers"
-msgstr "Bières pression"
-
-msgid "Internet access"
-msgstr "Accès internet"
-
-msgid "WiFi"
-msgstr "WiFi"
-
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
@@ -706,53 +709,23 @@ msgstr "Supprimer"
 msgid "filter"
 msgstr "filtre"
 
-msgid "Géolocation not available."
-msgstr "Géolocalisation impossible"
+msgid "Register masq"
+msgstr "S'enregistrer sur Masq"
 
-msgid "You did not allow Qwant Maps to access your position."
-msgstr "Vous n'avez pas autorisé Qwant Maps à accéder à votre position."
+msgid "We use MASQ to keep your preference data safe"
+msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
 
-msgid "OK"
-msgstr "OK"
-
-msgid "Geolocation with privacy!"
-msgstr "La géolocalisation respectueuse de votre vie privée !"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"Besoin de savoir où vous êtes&#x202F;? Veuillez svp autoriser votre "
-"application à accéder à votre localisation pour qu’elle puisse vous "
-"l’indiquer. Comme indiqué dans {privacyPolicyLink} notre politique de "
-"protection des données{closeTag}, Qwant ne stockera pas vos informations de "
-"géolocalisation. Nous ne voulons pas connaître vos allées et venues."
-
-msgid "Ok, I've got it."
-msgstr "Ok, j'ai compris."
-
-msgid "Accessibility"
-msgstr "Accessibilité"
-
-msgid "Open 24/7"
-msgstr "Ouvert 24h/24"
-
-msgid "Services & information"
-msgstr "Services & informations"
-
-msgid "Read more on Wikipedia"
-msgstr "Lire la suite sur Wikipédia"
-
-msgid "Read more on Wikidata"
-msgstr "Lire la suite sur Wikidata"
+msgid "Register"
+msgstr "S'enregistrer"
 
 msgid "SEE MORE"
 msgstr "EN VOIR PLUS"
 
 msgid "Back to favorite"
 msgstr "Retour aux favoris"
+
+msgid "FAVORITES"
+msgstr "FAVORIS"
 
 msgid "SHARE"
 msgstr "PARTAGER"
@@ -763,14 +736,26 @@ msgstr "Qwant Maps utilise OpenStreetMap"
 msgid "ABOUT THE PROJECT"
 msgstr "EN SAVOIR PLUS SUR LE PROJET"
 
-msgid "Register masq"
-msgstr "S'enregistrer sur Masq"
+msgid "Accessibility"
+msgstr "Accessibilité"
 
-msgid "We use MASQ to keep your preference data safe"
-msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
+msgid "Beers"
+msgstr "Bières pression"
 
-msgid "Register"
-msgstr "S'enregistrer"
+msgid "Internet access"
+msgstr "Accès internet"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Services & information"
+msgstr "Services & informations"
+
+msgid "Read more on Wikipedia"
+msgstr "Lire la suite sur Wikipédia"
+
+msgid "Read more on Wikidata"
+msgstr "Lire la suite sur Wikidata"
 
 msgid "Qwant Maps services"
 msgstr "Les services Qwant Maps"
@@ -795,6 +780,33 @@ msgstr "PARTAGER SUR FACEBOOK"
 
 msgid "SHARE ON TWITTER"
 msgstr "PARTAGER SUR TWITTER"
+
+msgid "Geolocation with privacy!"
+msgstr "La géolocalisation respectueuse de votre vie privée !"
+
+msgid ""
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"Besoin de savoir où vous êtes&#x202F;? Veuillez svp autoriser votre "
+"application à accéder à votre localisation pour qu’elle puisse vous "
+"l’indiquer. Comme indiqué dans {privacyPolicyLink} notre politique de "
+"protection des données{closeTag}, Qwant ne stockera pas vos informations de "
+"géolocalisation. Nous ne voulons pas connaître vos allées et venues."
+
+msgid "Ok, I've got it."
+msgstr "Ok, j'ai compris."
+
+msgid "Géolocation not available."
+msgstr "Géolocalisation impossible"
+
+msgid "You did not allow Qwant Maps to access your position."
+msgstr "Vous n'avez pas autorisé Qwant Maps à accéder à votre position."
+
+msgid "OK"
+msgstr "OK"
 
 #~ msgid "Open 24h/24"
 #~ msgstr "Ouvert 24h/24"
