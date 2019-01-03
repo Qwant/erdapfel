@@ -4,9 +4,12 @@ import nconf from '@qwant/nconf-getter'
 
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
-
+if(!window.__bragiCache) {
+  window.__bragiCache = {}
+}
 export default class BragiPoi extends Poi {
   constructor(feature) {
+
     let poiClassText = ''
     let poiSubclassText = ''
 
@@ -100,13 +103,21 @@ export default class BragiPoi extends Poi {
   }
 
   static get(term) {
+
     let suggestsPromise
     let queryPromise = new Promise(async (resolve, reject) => {
+
+      if(term in window.__bragiCache) {
+        suggestsPromise = Promise.resolve(window.__bragiCache[term])
+        suggestsPromise.abort = () => {}
+      }
       suggestsPromise = ajax.get(geocoderUrl, {q: term})
       suggestsPromise.then((suggests) => {
-        resolve(suggests.features.map((feature) => {
+        let bragiResponse = suggests.features.map((feature) => {
           return new BragiPoi(feature)
-        }))
+        })
+        window.__bragiCache[term] = bragiResponse
+        resolve(bragiResponse)
       }).catch((error) => {
         if(error === 0) { /* abort */
           resolve(null)

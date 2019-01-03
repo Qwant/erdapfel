@@ -9,7 +9,8 @@ import PoiStore from "./poi/poi_store";
 function SearchInput(tagSelector) {
   this.searchInputDomHandler = document.querySelector(tagSelector)
   this.poi = null
-  this.suggestPromise = null
+  this.bragiPromise = null
+  this.historyPromise = null
   this.suggestList = []
   this.pending = false
   new Autocomplete({
@@ -30,25 +31,24 @@ function SearchInput(tagSelector) {
        */
       let promise = new Promise(async (resolve, reject) => {
         /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-        let suggestHistoryPromise = PoiStore.get(term)
-        this.suggestPromise = BragiPoi.get(term)
+        this.historyPromise = PoiStore.get(term)
+
+        this.bragiPromise = BragiPoi.get(term)
         try {
-        let [bragiResponse, storeResponse] = await Promise.all([this.suggestPromise, suggestHistoryPromise])
-          if(bragiResponse) {
-            this.suggestPromise = null
+        let [bragiResponse, storeResponse] = await Promise.all([this.bragiPromise, this.historyPromise])
+          if(bragiResponse !== null) {
+            this.bragiPromise = null
             this.suggestList = bragiResponse.concat(storeResponse)
             resolve(this.suggestList)
-          } else if(storeResponse) {
-            resolve(storeResponse)
           } else {
-            resolve(null)
+            resolve(storeResponse)
           }
         } catch(e) {
           reject(e)
         }
       })
       promise.abort = () => {
-        this.suggestPromise.abort()
+        this.bragiPromise.abort()
       }
       return promise
     },
