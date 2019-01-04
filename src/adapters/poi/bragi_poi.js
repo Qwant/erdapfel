@@ -102,15 +102,21 @@ export default class BragiPoi extends Poi {
     }
   }
 
-  static get(term) {
 
+
+  static get(term) {
+    /* cache */
+    if(term in window.__bragiCache) {
+      let cachePromise = new Promise((resolve) => {
+         resolve(window.__bragiCache[term])
+      })
+      cachePromise.abort = () => {}
+      return cachePromise
+    }
+
+    /* ajax */
     let suggestsPromise
     let queryPromise = new Promise(async (resolve, reject) => {
-
-      if(term in window.__bragiCache) {
-        suggestsPromise = Promise.resolve(window.__bragiCache[term])
-        suggestsPromise.abort = () => {}
-      }
       suggestsPromise = ajax.get(geocoderUrl, {q: term})
       suggestsPromise.then((suggests) => {
         let bragiResponse = suggests.features.map((feature) => {

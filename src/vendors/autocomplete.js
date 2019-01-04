@@ -124,7 +124,7 @@ var autoComplete = (function(){
       addEvent(that, 'blur', that.blurHandler);
 
       var cancelObsolete = function () {
-        clearTimeout(that.timer)
+        clearTimeout(that.timer);
         if(that.sourcePending) {
           that.sourcePending.abort();
           that.sourcePending = null

@@ -41,7 +41,7 @@ function SearchInput(tagSelector) {
             this.suggestList = bragiResponse.concat(storeResponse)
             resolve(this.suggestList)
           } else {
-            resolve(storeResponse)
+            resolve(null)
           }
         } catch(e) {
           reject(e)
