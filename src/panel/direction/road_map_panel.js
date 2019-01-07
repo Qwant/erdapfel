@@ -21,6 +21,12 @@ export default class RoadMapPanel {
     this.panel.toggleClassName(0, `#itinerary_leg_detail_${i}`, 'itinerary_leg_detail--hidden')
   }
 
+  preview(route, step) {
+    this.step = this.routes[0].legs[route].steps[step];
+    this.routes = []
+    this.panel.update()
+  }
+
   duration (sec, isDisplaySeconds) {
     let min = Math.floor(sec / 60)
     let hour = Math.floor(min / 60)
