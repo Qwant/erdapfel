@@ -1,15 +1,13 @@
 // Qwant Direction plugin
 // ======================
 
+
 window.QwantDirection = {
 
   // Config
   // ------
 
   map: null,
-  language: "fr",
-  geocoder_url: "https://www.qwant.com/maps/geocoder/autocomplete?q={q}&lang={language}",
-  directions_url: "https://api.mapbox.com/directions/v5/mapbox/{vehicle}/{start_lnglat}%3B{end_lnglat}.json?geometries=polyline&steps=true&overview=full&access_token={token}&language={language}&alternatives=true{exclude}",
   marker: null,
   focus: null,
 
@@ -73,80 +71,7 @@ window.QwantDirection = {
   },
 
   // Draw UI
-  ui: function(container, map, language, your_position){
 
-    // Save map, language
-    QwantDirection.map = map;
-    QwantDirection.language = language;
-
-    // Draw UI
-    container.innerHTML = `
-    
-    <div class=itinerary_form>
-    
-      <div class=itinerary_close onclick="QwantDirection.close_ui()"></div>
-      <div class=itinerary_close_mobile onclick="QwantDirection.close_ui()"><span class="itinerary_close_mobile_icon"></span>${ _('return') }</div>
-      
-      <h3 class=itinerary_title>${ _('itinerary') }</h3>
-      
-      <div class=itinerary_fields>
-      
-        <form method=GET action="." onsubmit="QwantDirection.press_enter();return false;">
-        
-          <div class=itinerary_field_start>
-          
-            <div class="itinerary_icon itinerary_icon_start"></div>
-            
-            <input id=itinerary_input_start autocomplete=off spellcheck=false oninput='QwantDirection.autocompletion("itinerary_input_start","itinerary_autocomplete_start","itinerary_gps_start")' onfocus='QwantDirection.autocompletion("itinerary_input_start","itinerary_autocomplete_start","itinerary_gps_start")' onblur='QwantDirection.closeAutocomplete("itinerary_autocomplete_start")' placeholder="${ _('Start point') }">
-            
-            <input type=hidden id=itinerary_gps_start disabled>
-            <div class=itinerary_autocomplete id=itinerary_autocomplete_start></div>
-          
-          </div>
-          
-          <div class=itinerary_field_end>
-          
-            <div class="itinerary_icon itinerary_icon_end"></div>
-            <input id=itinerary_input_end autocomplete=off spellcheck=false oninput='QwantDirection.autocompletion("itinerary_input_end", "itinerary_autocomplete_end", "itinerary_gps_end")' onfocus='QwantDirection.autocompletion("itinerary_input_end", "itinerary_autocomplete_end", "itinerary_gps_end")' onblur='QwantDirection.closeAutocomplete("itinerary_autocomplete_end")' placeholder="${ _('End point') }"> 
-            
-            <input type=hidden id=itinerary_gps_end disabled>
-            <div class=itinerary_autocomplete id=itinerary_autocomplete_end></div>
-            
-          </div>
-          
-          <input type=submit hidden>
-        
-        </form>
-        
-        <div class=itinerary_invert_start_end onclick='QwantDirection.invert_start_end()' title="${ _('Invert start and end') }"></div>
-        
-      </div>
-      
-    </div>
-    
-    <div class=itinerary_vehicles>
-      
-      <input type=radio name=itinerary_vehicle value=itinerary_car id=itinerary_car checked hidden>
-      <label for="itinerary_car" class="itinerary_button_label itinerary_button_label_car" onclick="QwantDirection.search('driving')"></label>
-      
-      <input type=radio name=itinerary_vehicle value=itinerary_foot id=itinerary_foot hidden>
-      <label for="itinerary_foot" class="itinerary_button_label itinerary_button_label_foot" onclick="QwantDirection.search('walking')"></label>
-      
-      <input type=radio name=itinerary_vehicle value=itinerary_bike id=itinerary_bike hidden>
-      <label for="itinerary_bike" class="itinerary_button_label itinerary_button_label_bike" onclick="QwantDirection.search('cycling')"></label>
-
-    </div>
-    
-    <div id=itinerary_roadmap></div>
-    
-    `;
-
-    // Reset plugin fields
-    QwantDirection.$i("itinerary_input_start").value = "";
-    QwantDirection.$i("itinerary_gps_start").value = "";
-    QwantDirection.$i("itinerary_input_end").value = "";
-    QwantDirection.$i("itinerary_gps_end").value = "";
-  },
 
   // Draw a polygon (array of lng,lat) on the map with a given color and optionally zoom on it
   show_polygon: function(polygon, color, zoom, resetzoom){
@@ -250,7 +175,7 @@ window.QwantDirection = {
       $i(input).value = "";
     }
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", QwantDirection.geocoder_url.replace("{q}", encodeURIComponent(QwantDirection.$i(input).value.replace(_('Your position'),""))).replace("{language}", QwantDirection.language));
+    xhr.open("GET", geocoder_url.replace("{q}", encodeURIComponent(QwantDirection.$i(input).value.replace(_('Your position'),""))).replace("{language}", QwantDirection.language));
     xhr.send();
     xhr.onload = function(){
       var json = JSON.parse(xhr.response);
@@ -258,7 +183,7 @@ window.QwantDirection = {
         QwantDirection.current_suggest_list = json;
         var html = "";
         if(navigator.geolocation){
-          html += "<div class=itinerary_suggest_your_position onclick=\"QwantDirection.chooseCurrentPosition('" + input + "','" + gps + "','" + divHandler + "')\"><div class=itinerary_suggest_your_position_icon></div>" + _('Your position') + "</div>";
+          html += "";
         }
         for(var i in json.features){
           var regions = json.features[i].properties.geocoding.administrative_regions;
@@ -295,27 +220,7 @@ window.QwantDirection = {
   },
 
   // Duration formatter
-  duration: function(sec, showseconds){
-    var min = Math.floor(sec / 60);
-    var hour = Math.floor(min / 60);
-    ret = "";
-    if(sec < 5){
-      ret = "-";
-    }
-    else {
-      if(hour){
-        ret += hour + "h ";
-        min = min - 60 * hour;
-      }
-      if((hour > 0 || min > 0) && hour < 10){
-        ret += min + "min ";
-      }
-      if(!hour && showseconds){
-        ret += Math.floor(sec - hour * 3600 - min * 60) + "s";
-      }
-    }
-    return ret;
-  },
+
 
   // Distance formatter (km)
   distance: function(m){
@@ -376,13 +281,8 @@ window.QwantDirection = {
   // Search
   search: function(vehicle){
 
-    // Hide autocompletes
-    QwantDirection.$i("itinerary_autocomplete_start").innerHTML = "";
-    QwantDirection.$i("itinerary_autocomplete_end").innerHTML = "";
 
-    // Blur fields
-    QwantDirection.$i("itinerary_input_start").blur();
-    QwantDirection.$i("itinerary_input_end").blur();
+
 
     // Remove previous markers
     if(QwantDirection.marker1){
@@ -428,7 +328,7 @@ window.QwantDirection = {
         "";
 
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", QwantDirection.directions_url.replace("{vehicle}", vehicle).replace("{start_lnglat}", start).replace("{end_lnglat}", end).replace("{token}", mapboxgl.accessToken).replace("{language}", QwantDirection.language).replace("{exclude}", exclude));
+      xhr.open("GET", directions_url.replace("{vehicle}", vehicle).replace("{start_lnglat}", start).replace("{end_lnglat}", end).replace("{token}", accessToken).replace("{language}", QwantDirection.language).replace("{exclude}", exclude));
       xhr.send();
       xhr.onload = function(){
         var json = JSON.parse(xhr.response);

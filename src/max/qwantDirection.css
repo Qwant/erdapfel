@@ -1,10 +1,6 @@
 #itinerary_container {
   max-height: 100vh;
   overflow: visible;
-  position: fixed;
-  top: 104px;
-  left: 18px;
-  z-index: 1000;
   font-size: 12px;
   width: 400px;
   background: url("../images/direction_../images/direction_icons/panel_top.svg") #f4f6fa repeat-x;
@@ -13,8 +9,6 @@
   border-radius: 3px;
 }
 
-.itinerary_form {
-}
 
 .itinerary_close {
   width: 20px;

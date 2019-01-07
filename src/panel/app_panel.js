@@ -10,7 +10,7 @@ import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
 import nconf from "@qwant/nconf-getter"
-import DirectionPanel from './direction_panel'
+import DirectionPanel from './direction/direction_panel'
 
 const performanceEnabled = nconf.get().performance.enabled
 import Telemetry from "../libs/telemetry";
