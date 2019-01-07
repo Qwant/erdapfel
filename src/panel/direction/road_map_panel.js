@@ -7,6 +7,14 @@ export default class RoadMapPanel {
     this.routes = []
   }
 
+  setRoad(road) {
+    this.routes = road.routes.map((roadStep) => {
+      return roadStep
+    })
+
+    this.panel.update()
+  }
+
   toggleRoute(i) {
 
   }

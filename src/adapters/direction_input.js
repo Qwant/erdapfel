@@ -76,26 +76,12 @@ export default class DirectionInput {
         this.pending = true
       }
     }
-/*
-    listen('submit_autocomplete', async () => {
-      if (this.pending) {
-        this.searchInputDomHandler.blur()
-        let term = this.searchInputDomHandler.value
-        let suggestList = await BragiPoi.get(term)
-        if (suggestList.length > 0) {
-          let firstPoi = suggestList[0]
-          this.select(firstPoi)
-        }
-      } else {
-        if (this.suggestList && this.suggestList.length > 0
-          && this.searchInputDomHandler.value && this.searchInputDomHandler.value.length > 0) {
-          this.select(this.suggestList[0])
-        }
-      }
-    })*/
+
   }
 
-
+  setPoi(poi) {
+    this.searchInputDomHandler.value = poi.first_line
+  }
 
   /* select sub template */
   autocompleteTemplate(poi) {

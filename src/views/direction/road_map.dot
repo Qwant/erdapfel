@@ -3,8 +3,8 @@
     <div class=itinerary_leg_inner>
       <div class='itinerary_leg_icon itinerary_leg_icon_" + vehicle + "'></div>
       <div class='itinerary_leg_via'>
-        <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= json.routes[i].legs[0].summary.replace(/^(.*), (.*)$/, "$1")) }}</div>
-        <div class='itinerary_leg_via_details' {{= click(this, this.toggleRoute(i) }}>
+        <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[i].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
+        <div class='itinerary_leg_via_details' {{= click(this.toggleRoute,this, i) }}>
           <span class='itinerary_leg_via_details_icon' id='itinerary_leg_via_details_icon_{{= i }}'>
           </span>
           {{= _('DETAILS', 'direction') }}
@@ -12,10 +12,10 @@
       </div>
       <div class='itinerary_leg_info'>
         <div class='itinerary_leg_duration'>
-          {{= this.duration(json.routes[i].legs[0].duration, false) }}
+          {{= this.duration(this.routes[i].legs[0].duration, false) }}
         </div>
         <div class='itinerary_leg_distance'>
-          {{= this.distance(json.routes[i].legs[0].distance) }}
+          {{= this.distance(this.routes[i].legs[0].distance) }}
         </div>
       </div>
       <div class=itinerary_leg_detail id='itinerary_leg_detail_{{= i }}'></div>
@@ -24,13 +24,13 @@
 
   <div class='itinerary_leg' id='itinerary_leg'>
     <div class=itinerary_leg_inner>
-      <div class='itinerary_leg_close' {{= click(this, this.close_leg()}}></div>
-      <div class='itinerary_leg_duration'>{{= this.duration(json.routes[0].legs[0].duration, false) }}</div>
-      <div class='itinerary_leg_distance'>{{= this.distance(json.routes[0].legs[0].distance) }}</div>
+      <div class='itinerary_leg_close' {{= click(this.close_leg, this) }}></div>
+      <div class='itinerary_leg_duration'>{{= this.duration(this.routes[0].legs[0].duration, false) }}</div>
+      <div class='itinerary_leg_distance'>{{= this.distance(this.routes[0].legs[0].distance) }}</div>
       <div class='itinerary_leg_via'>
-        <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= json.routes[0].legs[0].summary.replace(/^(.*), (.*)$/, "$1")) }}</div>
+        <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[0].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
       </div>
-      <div class='itinerary_leg_preview' {{= click(this, this.preview(0,0) }}>
+      <div class='itinerary_leg_preview' {{= click(this.preview, this, 0, 0) }}>
         <span class='itinerary_leg_preview_icon'></span>
           {{= _('PREVIEW', 'direction') }}
         </div>

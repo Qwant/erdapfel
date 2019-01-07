@@ -5,17 +5,22 @@ import PanelManager from '../../proxies/panel_manager'
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
 
-const CAR = 'car'
+
 
 export default class DirectionPanel {
   constructor() {
     this.panel = new Panel(this, directionTemplate)
+
+    this.DRIVING = 'driving'
+    this.WALKING = 'walking'
+    this.CYCLING = 'cycling'
+
     execOnMapLoaded(() => {
       this.initDirection()
     })
     this.start = null
     this.end = null
-    this.vehicle = CAR
+    this.vehicle = this.DRIVING
     this.roadMapPanel = new RoadMapPanel()
   }
 
@@ -23,8 +28,20 @@ export default class DirectionPanel {
     let startHandler = '#itinerary_input_start'
     let destinationHandler = '#itinerary_input_end'
 
-    new DirectionInput(startHandler, (poi) => this.selectStart(poi))
-    new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi))
+    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi))
+    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi))
+  }
+
+  setVehicle(vehicle) {
+    this.vehicle = vehicle
+  }
+
+  invertStartEnd() {
+    let tmp = this.end
+    this.end = this.start
+    this.start = tmp
+    this.startInput.setPoi(this.start)
+    this.endInput.setPoi(this.end)
   }
 
   selectStart(poi) {
@@ -42,7 +59,7 @@ export default class DirectionPanel {
 
     if (this.start && this.end) {
       let directionResponse = await DirectionApi.search(this.start, this.end, this.vehicle)
-      this.roadMapPanel.update()
+      this.roadMapPanel.setRoad(directionResponse)
     }
   }
 }
