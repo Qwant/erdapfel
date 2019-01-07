@@ -1,22 +1,24 @@
 import Panel from "../../libs/panel";
 import roadMapTemplate from '../../views/direction/road_map.dot'
+import Device from '../../libs/device'
 
 export default class RoadMapPanel {
   constructor() {
     this.panel = new Panel(this, roadMapTemplate)
     this.routes = []
+    this.isMobile = Device.isMobile
   }
 
-  setRoad(road) {
+  setRoad(road, vehicle) {
     this.routes = road.routes.map((roadStep) => {
       return roadStep
     })
-
+    this.vehicle = vehicle
     this.panel.update()
   }
 
   toggleRoute(i) {
-
+    this.panel.toggleClassName(0, `#itinerary_leg_detail_${i}`, 'itinerary_leg_detail--hidden')
   }
 
   duration (sec, isDisplaySeconds) {

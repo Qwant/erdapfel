@@ -266,6 +266,11 @@ input:checked + .itinerary_button_label_foot {
 
 .itinerary_leg_detail {
   margin: 70px 0 0;
+  display: block;
+}
+
+.itinerary_leg_detail--hidden {
+  display: none;
 }
 
 .itinerary_marker_start {
