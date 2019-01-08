@@ -3,7 +3,7 @@ import nconf from "../../local_modules/nconf_getter";
 
 const token = nconf.get().direction.service.token
 
-const geometries = 'geojson'
+const geometries = 'polyline'
 
 export default class DirectionApi {
   static async search(start, end, vehicle, exclude = '') {

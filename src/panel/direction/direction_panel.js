@@ -60,6 +60,8 @@ export default class DirectionPanel {
     if (this.start && this.end) {
       let directionResponse = await DirectionApi.search(this.start, this.end, this.vehicle)
       this.roadMapPanel.setRoad(directionResponse, this.vehicle)
+
+      fire('add_route', {routes : directionResponse.routes, vehicle : this.vehicle, start : this.start, end : this.end})
     }
   }
 }

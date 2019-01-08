@@ -13,6 +13,7 @@ import Store from '../adapters/store'
 import getStyle from "./scene_config";
 import SceneState from "./scene_state";
 import MapDirection from './map_direction'
+import SceneDirection from './scene_direction'
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -59,6 +60,7 @@ Scene.prototype.initMapBox = function () {
     center: this.center,
     hash: false
   })
+  new SceneDirection(this.mb)
   this.popup.init(this.mb)
 
   setRTLTextPlugin(`${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`);

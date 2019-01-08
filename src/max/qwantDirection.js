@@ -76,27 +76,32 @@ window.QwantDirection = {
   // Draw a polygon (array of lng,lat) on the map with a given color and optionally zoom on it
   show_polygon: function(polygon, color, zoom, resetzoom){
 
-    fire('direction_add_layer', polygon, {color})
-
-    // Zoom
-    // cf. https://www.mapbox.com/mapbox-gl-js/example/zoomto-linestring/
-   /* if(zoom){
-      var coordinates = geojson.source.data.geometry.coordinates;
-      var bounds = coordinates.reduce(function(bounds, coord) {
-        return bounds.extend(coord);
-      }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
-      QwantDirection.map.fitBounds(
-        bounds,
-        {
-          padding: {
-            top: window.innerWidth > 650 ? 50 : 150,
-            right: 50,
-            bottom: 50,
-            left: window.innerWidth > 650 ? 450 : 50
+    var geojson = {
+      "id": "route" + QwantDirection.routeset + "-" + (QwantDirection.routes++),
+      "type": "line",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": polygon
           }
         }
-      )
-    }*/
+      },
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": color,
+        "line-width": 5
+      }
+    };
+
+    QwantDirection.map.addLayer(geojson);
 
   },
 
