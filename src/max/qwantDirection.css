@@ -9,6 +9,13 @@
   border-radius: 3px;
 }
 
+.itinerary_container {
+  display: none;
+}
+
+.itinerary_container--active {
+  display: block;
+}
 
 .itinerary_close {
   width: 20px;
@@ -18,6 +25,7 @@
   background: url("../images/direction_icons/x.svg") no-repeat center center;
   color: #5c6f84;
   background-size: 16px;
+  cursor: pointer;
 }
 
 .itinerary_title {

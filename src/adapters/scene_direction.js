@@ -41,11 +41,6 @@ export default class SceneDirection {
 
   showPolygon(polygon, color) {
 
-
-    console.log(polygon)
-
-
-
     const geojson = {
       "id": `route_${this.routeSetCounter}_${this.routeCounter++}`,
       "type": "line",

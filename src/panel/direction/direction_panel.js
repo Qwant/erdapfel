@@ -10,18 +10,18 @@ import DirectionApi from '../../adapters/direction_api'
 export default class DirectionPanel {
   constructor() {
     this.panel = new Panel(this, directionTemplate)
-
+    this.active = false
+    this.isDirectionPanel = true
     this.DRIVING = 'driving'
     this.WALKING = 'walking'
     this.CYCLING = 'cycling'
 
-    execOnMapLoaded(() => {
-      this.initDirection()
-    })
+
     this.start = null
     this.end = null
     this.vehicle = this.DRIVING
     this.roadMapPanel = new RoadMapPanel()
+    PanelManager.register(this)
   }
 
   initDirection() {
@@ -47,12 +47,33 @@ export default class DirectionPanel {
   selectStart(poi) {
     this.start = poi
     this.select()
-
   }
 
   selectEnd(poi) {
     this.end = poi
     this.select()
+  }
+
+  /* panel manager implementation */
+  toggle() {
+    if(this.active) {
+      this.close()
+    } else {
+      this.open()
+    }
+  }
+
+  close() {
+    this.active = false
+    document.querySelector('.top_bar').classList.remove('top_bar--small')
+    this.panel.update()
+  }
+
+  async open() {
+    this.active = true
+    document.querySelector('.top_bar').classList.add('top_bar--small')
+    await this.panel.update()
+    this.initDirection()
   }
 
   async select() {

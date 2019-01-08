@@ -3,36 +3,46 @@ import Panel from '../libs/panel'
 import PanelManager from "../proxies/panel_manager"
 import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
+import nconf from "../../local_modules/nconf_getter";
 
-function ServicePanel() {
-  this.panel = new Panel(this, ServicePanelView)
-  this.isFavoriteActive = false
-  this.isResultActive = false
-  listen('toggle_burger', () => {
-    this.panel.toggleClassName(.2,'.service_panel', 'service_panel--open')
-  })
-  PanelManager.registerListener(this)
+
+export default class ServicePanel{
+  constructor() {
+    this.panel = new Panel(this, ServicePanelView)
+    this.isFavoriteActive = false
+    this.isResultActive = false
+    this.directionEnabled = nconf.get().direction.enabled
+    listen('toggle_burger', () => {
+      this.panel.toggleClassName(.2,'.service_panel', 'service_panel--open')
+    })
+    PanelManager.registerListener(this)
+  }
+
+
+  toggleFavorite() {
+    PanelManager.toggleFavorite()
+  }
+
+  toggleResult() {
+    PanelManager.restorePoi()
+  }
+
+  toggleDirection() {
+    PanelManager.toggleDirection()
+  }
+  /* PanelManager listener interface implementation */
+  notify () {
+    PanelManager.getPanels().forEach((panel) => {
+      if(panel instanceof PoiPanel) {
+        this.isResultActive = panel.isDisplayed()
+      }
+      if(panel instanceof Favorite) {
+        this.isFavoriteActive = panel.isDisplayed()
+      }
+    })
+    this.panel.update()
+  }
+
+
+
 }
-
-ServicePanel.prototype.toggleFavorite = function () {
-  PanelManager.toggleFavorite()
-}
-
-ServicePanel.prototype.toggleResult = function () {
-  PanelManager.restorePoi()
-}
-
-/* PanelManager listener interface implementation */
-ServicePanel.prototype.notify = function () {
-  PanelManager.getPanels().forEach((panel) => {
-    if(panel instanceof PoiPanel) {
-      this.isResultActive = panel.isDisplayed()
-    }
-    if(panel instanceof Favorite) {
-      this.isFavoriteActive = panel.isDisplayed()
-    }
-  })
-  this.panel.update()
-}
-
-export default ServicePanel
