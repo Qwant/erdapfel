@@ -11,7 +11,7 @@ export default class ServicePanel{
     this.panel = new Panel(this, ServicePanelView)
     this.isFavoriteActive = false
     this.isResultActive = false
-    this.directionEnabled = nconf.get().direction.enabled
+    this.isDirectionActive = nconf.get().direction.enabled
     listen('toggle_burger', () => {
       this.panel.toggleClassName(.2,'.service_panel', 'service_panel--open')
     })

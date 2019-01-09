@@ -4,6 +4,9 @@ import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
 import BragiPoi from "./poi/bragi_poi";
 import StorePoi from "./poi/poi_store";
+import Poi from "./poi/poi";
+
+const GEOLOCALISATION_SELECTOR = 'geolocalisation'
 
 export default class DirectionInput {
   constructor(tagSelector, select) {
@@ -27,9 +30,6 @@ export default class DirectionInput {
       },
 
       source: (term) => {
-
-
-
         /*
           https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
           this post is about correlation between gps coordinates decimal count & real precision unit
@@ -42,8 +42,9 @@ export default class DirectionInput {
           Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
             if (responses[0]) {
               this.suggestPromise = null
-              this.suggestList = responses[0].concat(responses[1])
-              this.suggestList.push({geolocalisation : true})
+              this.suggestList = [({geolocalisation : true})]
+              this.suggestList = this.suggestList.concat(responses[0])
+              this.suggestList = this.suggestList.concat(responses[1])
               resolve(this.suggestList)
             } else {
               resolve(null)
@@ -64,7 +65,16 @@ export default class DirectionInput {
 
       onSelect: (e, term, item, items) => {
         e.preventDefault()
+
         const itemId = item.getAttribute('data-id')
+        if(itemId === GEOLOCALISATION_SELECTOR) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            let lat = position.coords.latitude
+            let lng = position.coords.longitude
+            this.select(new Poi(GEOLOCALISATION_SELECTOR, 'geolocalisation', 'poi', {lat, lng}))
+          });
+          return
+        }
         let poi = items.find(poi => poi.id === itemId)
         this.searchInputDomHandler.blur()
         this.select(poi)
@@ -90,20 +100,16 @@ export default class DirectionInput {
   /* select sub template */
   autocompleteTemplate(poi) {
     if(poi.geolocalisation) {
-
-      const input = ''
-      const gps = ''
-      const divHandler = ''
-      return "<div class=itinerary_suggest_your_position onclick=\"QwantDirection.chooseCurrentPosition('" + input + "','" + gps + "','" + divHandler + "')\"><div class=itinerary_suggest_your_position_icon></div>" + _('Your position') + "</div>"
+      return `
+      <div data-id="${GEOLOCALISATION_SELECTOR}" data-val="${_('Your position', 'direction')}" class="autocomplete_suggestion itinerary_suggest_your_position">
+        <div class=itinerary_suggest_your_position_icon></div>
+        ${_('Your position', 'direction')}
+      </div>`
     }
-
-
 
     let {id, name, fromHistory, className, subClassName, type, adminLabel} = poi
     let icon = IconManager.get({className: className, subClassName: subClassName, type: type})
     let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
-
-
 
     return `
   <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
