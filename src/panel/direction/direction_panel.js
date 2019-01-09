@@ -63,10 +63,16 @@ export default class DirectionPanel {
     }
   }
 
+  cleanDirection() {
+    this.startInput.destroy()
+    this.endInput.destroy()
+  }
+
   close() {
     this.active = false
     document.querySelector('.top_bar').classList.remove('top_bar--small')
     this.panel.update()
+    this.cleanDirection()
   }
 
   async open() {

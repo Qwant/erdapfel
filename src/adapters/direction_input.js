@@ -15,7 +15,7 @@ export default class DirectionInput {
     this.suggestPromise = null
     this.suggestList = []
     this.pending = false
-    new Autocomplete({
+    this.autocomplete = new Autocomplete({
       selector: tagSelector,
       minChars: 1,
       cachePrefix: false,
@@ -77,6 +77,10 @@ export default class DirectionInput {
       }
     }
 
+  }
+
+  destroy() {
+    this.autocomplete.destroy()
   }
 
   setPoi(poi) {
