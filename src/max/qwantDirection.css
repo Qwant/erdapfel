@@ -108,29 +108,29 @@
   cursor: pointer;
 }
 
-.itinerary_button_label_car {
+.itinerary_button_label_driving {
   background: url("../images/direction_icons/car-grey.svg") no-repeat center center;
   color: #5c6f84;
 }
-input:checked + .itinerary_button_label_car {
+.itinerary_button_label_driving.label_active {
   background: url("../images/direction_icons/car-white.svg") no-repeat center center #5c6f84;
   color: #fff;
 }
 
-.itinerary_button_label_bike {
+.itinerary_button_label_cycling {
   background: url("../images/direction_icons/bike-grey.svg") no-repeat center center;
   color: #5c6f84;
 }
-input:checked + .itinerary_button_label_bike {
+.itinerary_button_label_cycling.label_active {
   background: url("../images/direction_icons/bike-white.svg") no-repeat center center #5c6f84;
   color: #fff;
 }
 
-.itinerary_button_label_foot {
+.itinerary_button_label_walking {
   background: url("../images/direction_icons/foot-grey.svg") no-repeat center center;
   color: #5c6f84;
 }
-input:checked + .itinerary_button_label_foot {
+.itinerary_button_label_walking.label_active {
   background: url("../images/direction_icons/foot-white.svg") no-repeat center center #5c6f84;
   color: #fff;
 }

@@ -24,9 +24,9 @@
     </div>
 
     <div class=itinerary_vehicles>
-    <span class="itinerary_button_label itinerary_button_label_car{{= this.vehicle === this.DRIVING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.DRIVING) }}></span>
-    <span class="itinerary_button_label itinerary_button_label_foot{{= this.vehicle === this.WALKING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.WALKING) }}></span>
-    <span class="itinerary_button_label itinerary_button_label_bike{{= this.vehicle === this.CYCLING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.CYCLING) }}></span>
+    <span class="itinerary_button_label itinerary_button_label_driving{{= this.vehicle === this.DRIVING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.DRIVING) }}></span>
+    <span class="itinerary_button_label itinerary_button_label_walking{{= this.vehicle === this.WALKING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.WALKING) }}></span>
+    <span class="itinerary_button_label itinerary_button_label_cycling{{= this.vehicle === this.CYCLING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.CYCLING) }}></span>
   </div>
   {{= this.roadMapPanel.render() }}
 </div>
