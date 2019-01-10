@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-04 10:31+0100\n"
+"POT-Creation-Date: 2019-01-10 09:54+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Jannik Vieten <me@exploide.net>, 2018\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/"
@@ -73,6 +73,9 @@ msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 msgid "accessories shop"
 msgstr "Zubehörshop "
 
+msgid "airport"
+msgstr ""
+
 msgid "liquor store"
 msgstr "Spirituosengeschäft"
 
@@ -81,6 +84,9 @@ msgstr "Berghütte"
 
 msgid "antiques shop"
 msgstr "Antiquitätengeschäft "
+
+msgid "aquarium"
+msgstr ""
 
 msgid "archery"
 msgstr "Bogenschießen"
@@ -295,6 +301,9 @@ msgstr "Reitsport"
 msgid "erotic shop"
 msgstr "Erotikshop"
 
+msgid "escape game"
+msgstr ""
+
 msgid "fabric"
 msgstr "Bau"
 
@@ -351,6 +360,9 @@ msgstr "Gästehaus"
 
 msgid "gymnastics"
 msgstr "turnen"
+
+msgid "hackerspace"
+msgstr ""
 
 msgid "hairdresser"
 msgstr "Friseur"

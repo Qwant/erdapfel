@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-04 10:31+0100\n"
+"POT-Creation-Date: 2019-01-10 09:54+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/"
@@ -72,6 +72,9 @@ msgstr "El mapa respeta tu privacidad"
 msgid "accessories shop"
 msgstr "tienda de accesorios"
 
+msgid "airport"
+msgstr ""
+
 msgid "liquor store"
 msgstr "tienda de licores"
 
@@ -80,6 +83,9 @@ msgstr "cabaña alpina"
 
 msgid "antiques shop"
 msgstr "tienda de antigüedades"
+
+msgid "aquarium"
+msgstr ""
 
 msgid "archery"
 msgstr "tiro con arco"
@@ -294,6 +300,9 @@ msgstr "ecuestre"
 msgid "erotic shop"
 msgstr "tienda erótica"
 
+msgid "escape game"
+msgstr ""
+
 msgid "fabric"
 msgstr "telas"
 
@@ -350,6 +359,9 @@ msgstr "casa de invitados"
 
 msgid "gymnastics"
 msgstr "gimnasia"
+
+msgid "hackerspace"
+msgstr ""
 
 msgid "hairdresser"
 msgstr "peluquería"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-04 10:31+0100\n"
+"POT-Creation-Date: 2019-01-10 09:54+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, "
 "2018\n"
@@ -74,6 +74,9 @@ msgstr "La carte qui respecte votre vie privée"
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
 
+msgid "airport"
+msgstr ""
+
 msgid "liquor store"
 msgstr "magasin d'alcool"
 
@@ -82,6 +85,9 @@ msgstr "refuge alpin"
 
 msgid "antiques shop"
 msgstr "antiquaire"
+
+msgid "aquarium"
+msgstr ""
 
 msgid "archery"
 msgstr "tir à l'arc"
@@ -296,6 +302,9 @@ msgstr "équestre"
 msgid "erotic shop"
 msgstr "sex shop"
 
+msgid "escape game"
+msgstr ""
+
 msgid "fabric"
 msgstr "magasin de tissus"
 
@@ -352,6 +361,9 @@ msgstr "chambre d'hôte"
 
 msgid "gymnastics"
 msgstr "gymnastique"
+
+msgid "hackerspace"
+msgstr ""
 
 msgid "hairdresser"
 msgstr "coiffeur"

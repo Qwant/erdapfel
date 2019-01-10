@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-04 10:31+0100\n"
+"POT-Creation-Date: 2019-01-10 09:54+0100\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -68,6 +68,9 @@ msgstr ""
 msgid "accessories shop"
 msgstr ""
 
+msgid "airport"
+msgstr ""
+
 msgid "liquor store"
 msgstr ""
 
@@ -75,6 +78,9 @@ msgid "alpine hut"
 msgstr ""
 
 msgid "antiques shop"
+msgstr ""
+
+msgid "aquarium"
 msgstr ""
 
 msgid "archery"
@@ -290,6 +296,9 @@ msgstr ""
 msgid "erotic shop"
 msgstr ""
 
+msgid "escape game"
+msgstr ""
+
 msgid "fabric"
 msgstr ""
 
@@ -345,6 +354,9 @@ msgid "guest house"
 msgstr ""
 
 msgid "gymnastics"
+msgstr ""
+
+msgid "hackerspace"
 msgstr ""
 
 msgid "hairdresser"
