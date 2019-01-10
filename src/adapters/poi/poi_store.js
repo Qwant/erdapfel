@@ -25,9 +25,8 @@ export default class PoiStore extends Poi {
       Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
       Error.sendOnce('favorite_panel', 'getAll', 'error getting pois', e)
     }
-    return Object.keys(storedData).map((mapPoint) => {
-      let historySuggest = storedData[mapPoint]
-      return Object.assign(new PoiStore(), historySuggest)
+    return storedData.map((poi) => {
+      return Object.assign(new PoiStore(), poi)
     })
   }
 }

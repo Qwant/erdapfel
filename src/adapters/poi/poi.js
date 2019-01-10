@@ -40,7 +40,7 @@ export default class Poi {
   }
 
   poiStoreLiteral() {
-    const serializeKeys = ['id', 'name', 'alternativeName', 'type', 'latLon', 'className', 'subClassName']
+    const serializeKeys = ['id', 'name', 'alternativeName', 'type', 'latLon', 'className', 'subClassName', 'zoom']
     return Object.keys(this).reduce((poiLiteral, key) => {
       if(serializeKeys.includes(key)) {
         poiLiteral[key] = this[key]
