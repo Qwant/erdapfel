@@ -172,7 +172,7 @@
   border-left: 4px solid #fff;
 }
 
-.itinerary_leg_selected {
+.itinerary_leg--active {
   border-left: 4px solid #ff3b4a;
 }
 

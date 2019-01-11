@@ -60,7 +60,6 @@ Scene.prototype.initMapBox = function () {
     center: this.center,
     hash: false
   })
-  new SceneDirection(this.mb)
   this.popup.init(this.mb)
 
   setRTLTextPlugin(`${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`);
@@ -77,6 +76,7 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
+    new SceneDirection(this.mb)
     new MapDirection(this)
 
     if(performanceEnabled) {

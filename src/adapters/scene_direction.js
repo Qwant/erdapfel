@@ -1,6 +1,6 @@
-import {Map, Marker, LngLat, setRTLTextPlugin} from 'mapbox-gl--ENV'
-const MAIN_ROUTE_COLOR = '#c8cbd3'
-const ALTERNATE_ROUTE_COLOR = '#4ba2ea'
+import {Map, Marker, LngLat, LngLatBounds, setRTLTextPlugin} from 'mapbox-gl--ENV'
+const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
+const MAIN_ROUTE_COLOR = '#4ba2ea'
 
 
 export default class SceneDirection {
@@ -8,99 +8,114 @@ export default class SceneDirection {
     this.map = map
     this.routeSetCounter = 0
     this.routeCounter = 0
+    this.routes = []
 
-    listen('add_route', ({routes, vehicle, start, end}) => {
+    listen('set_route', ({routes, vehicle, start, end}) => {
+      this.reset()
+      this.routes = routes
+      this.vehicle = vehicle
+      this.start = start
+      this.end = end
+      this.displayRoute()
 
+    })
 
-      if(routes && routes.length > 0){
-
-        routes.forEach((route) => {
-          this.showPolygon(polyline_decode(route.geometry), MAIN_ROUTE_COLOR, false)
-        })
-
-        this.showPolygon(polyline_decode(routes[0].geometry), ALTERNATE_ROUTE_COLOR, true)
-
-        // Custom markers
-        const markerStart = document.createElement('div')
-        markerStart.className = vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
-
-        this.markerStart = new Marker(markerStart)
-          .setLngLat([start.latLon.lng, start.latLon.lat])
-          .addTo(this.map)
-
-        const markerEnd = document.createElement('div')
-        markerEnd.className = 'itinerary_marker_end'
-
-
-        this.markerEnd = new Marker(markerEnd)
-          .setLngLat([end.latLon.lng, end.latLon.lat])
-          .addTo(this.map)
-      }
+    listen('toggle_route', (mainRouteId) => {
+      this.routes.forEach((route) => {
+        this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === mainRouteId})
+      })
+      this.map.moveLayer(`route_${mainRouteId}`)
     })
   }
 
-  showPolygon(polygon, color) {
+  displayRoute() {
+
+
+
+    if(this.routes && this.routes.length > 0){
+      let mainRoute = this.routes.find((route) => route.isActive)
+      let otherRoutes = this.routes.filter((route) => !route.isActive)
+
+      otherRoutes.forEach((route) => {
+        this.showPolygon(route)
+      })
+      this.showPolygon(mainRoute)
+
+
+      // Custom markers
+      const markerStart = document.createElement('div')
+      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
+
+      this.markerStart = new Marker(markerStart)
+        .setLngLat([this.start.latLon.lng, this.start.latLon.lat])
+        .addTo(this.map)
+
+      const markerEnd = document.createElement('div')
+      markerEnd.className = 'itinerary_marker_end'
+
+
+      this.markerEnd = new Marker(markerEnd)
+        .setLngLat([this.end.latLon.lng, this.end.latLon.lat])
+        .addTo(this.map)
+
+      fire('fit_map', {bbox : this.computeBBox(mainRoute)}, {sidePanelOffset : true})
+
+    }
+  }
+
+
+  reset() {
+    this.routes.forEach((route) => {
+      this.map.removeLayer(`route_${route.id}`)
+    })
+  }
+
+  showPolygon(route) {
 
     const geojson = {
-      "id": `route_${this.routeSetCounter}_${this.routeCounter++}`,
+      "id": `route_${route.id}`,
       "type": "line",
-      "source": {
-        "type": "geojson",
-        "data": {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "LineString",
-            "coordinates": polygon
-          }
-        }
-      },
+      "source": `source_${route.id}`,
       "layout": {
         "line-join": "round",
         "line-cap": "round",
         "visibility": "visible"
       },
       "paint": {
-        "line-color": color,
+        "line-color": ["case",
+          ["boolean", ["feature-state", "isActive"], route.isActive],
+          MAIN_ROUTE_COLOR,
+          ALTERNATE_ROUTE_COLOR
+        ],
         "line-width": 5
       }
-    };
+    }
 
+    const sourceJSON = {
+      "type": "geojson",
+      "data": {
+        "id" : 1,
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "LineString",
+          "coordinates": route.geometry.coordinates,
+        }
+      }
+    }
+
+
+    this.map.addSource(`source_${route.id}`, sourceJSON, this.routeCounter)
     this.map.addLayer(geojson);
-  }
-}
 
-const polyline_decode = function(str, precision){
-  var index = 0,
-    lat = 0,
-    lng = 0,
-    coordinates = [],
-    shift = 0,
-    result = 0,
-    byte = null,
-    latitude_change,
-    longitude_change,
-    factor = Math.pow(10, precision || 5);
-  while (index < str.length) {
-    byte = null;
-    shift = 0;
-    result = 0;
-    do {
-      byte = str.charCodeAt(index++) - 63;
-      result |= (byte & 0x1f) << shift;
-      shift += 5;
-    } while (byte >= 0x20);
-    latitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-    shift = result = 0;
-    do {
-      byte = str.charCodeAt(index++) - 63;
-      result |= (byte & 0x1f) << shift;
-      shift += 5;
-    } while (byte >= 0x20);
-    longitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-    lat += latitude_change;
-    lng += longitude_change;
-    coordinates.push([lat / factor, lng / factor]);
   }
-  return coordinates;
+
+  computeBBox(route) {
+    let bounds = new LngLatBounds()
+    route.geometry.coordinates.forEach((coordinate) => {
+      bounds.extend(new LngLat(coordinate[0], coordinate[1]))
+    })
+
+    return bounds
+  }
 }

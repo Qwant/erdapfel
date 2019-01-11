@@ -1,7 +1,7 @@
 {{? this.routes }}
   {{~ this.routes:route:i }}
     {{? this.isMobile() }}
-      <div class='itinerary_leg' id='itinerary_leg'>
+      <div class='itinerary_leg{{= route.isActive ? ' itinerary_leg--active' : '' }}' id='itinerary_leg'>
         <div class=itinerary_leg_inner>
           <div class='itinerary_leg_close' {{= click(this.close_leg, this) }}></div>
           <div class='itinerary_leg_duration'>{{= this.duration(this.routes[0].legs[0].duration, false) }}</div>
@@ -16,12 +16,12 @@
         </div>
       </div>
     {{??}}
-      <div class="itinerary_leg {{= i === 0 ? ' itinerary_leg_selected' : '' }}" id="itinerary_leg_{{= i }}">
+      <div class="itinerary_leg {{= route.isActive ? ' itinerary_leg--active' : '' }}" id="itinerary_leg_{{= i }}" {{= click(this.toggleRoute, this, i) }}>
         <div class=itinerary_leg_inner>
           <div class='itinerary_leg_icon itinerary_leg_icon_{{= this.vehicle }}'></div>
           <div class='itinerary_leg_via'>
             <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[i].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
-            <div class='itinerary_leg_via_details' {{= click(this.toggleRoute, this, i) }}>
+            <div class='itinerary_leg_via_details' {{= click(this.toggleDetail, this, i) }}>
               <span class='itinerary_leg_via_details_icon' id='itinerary_leg_via_details_icon_{{= i }}'>
               </span>
               {{= _('DETAILS', 'direction') }}

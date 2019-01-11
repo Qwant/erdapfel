@@ -9,8 +9,8 @@ export default class RoadMapPanel {
     this.isMobile = Device.isMobile
   }
 
-  setRoad(road, vehicle) {
-    this.routes = road.routes.map((roadStep) => {
+  setRoad(routes, vehicle) {
+    this.routes = routes.map((roadStep) => {
       return roadStep
     })
     this.vehicle = vehicle
@@ -18,6 +18,10 @@ export default class RoadMapPanel {
   }
 
   toggleRoute(i) {
+    fire('toggle_route', i)
+  }
+
+  toggleDetail(i) {
     this.panel.toggleClassName(0, `#itinerary_leg_detail_${i}`, 'itinerary_leg_detail--hidden')
   }
 
