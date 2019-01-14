@@ -10,15 +10,6 @@
   pointer-events: auto;
   @include long_shadow();
 }
-.top_bar--small {
-  background: none;
-  .search_form {
-    max-width: 74px;
-  }
-  .search_form__action {
-    display: none;
-  }
-}
 
 
 .search_form:before {
@@ -203,6 +194,19 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .autocomplete_prefix {
   color : $primary_text;
+}
+
+.top_bar--small {
+  background: none;
+  .search_form {
+    max-width: 74px;
+    .search_form__action {
+      display: none;
+    }
+    .search_form__clear {
+      display: none;
+    }
+  }
 }
 
 @media (max-width: 640px) {
