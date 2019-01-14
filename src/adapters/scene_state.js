@@ -11,7 +11,6 @@ export default class SceneState {
   }
 
   setPoiId(poiId) {
-    console.log('set ' + poiId)
     this.poiId = poiId
   }
 

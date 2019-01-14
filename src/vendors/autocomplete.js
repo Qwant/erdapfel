@@ -29,16 +29,14 @@ var autoComplete = (function(){
     }
 
     var o = {
-      cachePrefix: true,
       selector: 0,
       source: 0,
       minChars: 3,
       delay: 150,
       offsetLeft: 0,
       offsetTop: 1,
-      cache: 1,
       menuClass: '',
-      renderItem: function (item, search){},
+      renderItems: function (item, search){},
       onSelect: function(e, term, item, items){},
       onUpdate: function(e, term, items){},
       updateData: function (items) {}
@@ -57,7 +55,6 @@ var autoComplete = (function(){
       that.autocompleteAttr = that.getAttribute('autocomplete');
       that.setAttribute('autocomplete', 'off');
       that.items = []
-      that.cache = {};
       that.last_val = '';
       that.sourcePending = null
 
@@ -127,27 +124,20 @@ var autoComplete = (function(){
       addEvent(that, 'blur', that.blurHandler);
 
       var cancelObsolete = function () {
-        clearTimeout(that.timer)
+        clearTimeout(that.timer);
         if(that.sourcePending) {
           that.sourcePending.abort();
           that.sourcePending = null
         }
       }
 
-      var suggest = function(data, queryTerm){
+      var suggest = function(data){
         cancelObsolete()
         that.items = data
         var val = that.value;
-        if (queryTerm && data !== null) {
-          // 'data' is the 'source' response based on 'queryTerm'
-          // that may be differennt from 'val' (due to request latency).
-          that.cache[queryTerm] = data;
-        }
         if (data && data.length && val.length >= o.minChars) {
           o.updateData(data)
-          var s = '';
-          for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
-          that.sc.innerHTML = s;
+          that.sc.innerHTML = o.renderItems(data, val);
           that.updateSC(0);
         }
         else
@@ -214,22 +204,12 @@ var autoComplete = (function(){
             if (val != that.last_val) {
               cancelObsolete()
               that.last_val = val;
-              if (o.cache) {
-                if (val in that.cache) { suggest(that.cache[val], val); return; }
-                // no requests if previous suggestions were empty
-                if(o.cachePrefix) {
-                  for (var i=1; i<val.length-o.minChars; i++) {
-                    var part = val.slice(0, val.length-i);
-                    if (part in that.cache && !that.cache[part].length) { suggest([], val); return; }
-                  }
-                }
-              }
               that.timer = setTimeout(function(){
                 that.sourcePending = o.source(val);
                 that.sourcePending.then((source) => {
                   that.sourcePending = null
                   if(source !== null){
-                    suggest(source, val);
+                    suggest(source);
                   }
                 }).catch((e) => {
                   console.log(e) /* should be handled by a telemetry logger */

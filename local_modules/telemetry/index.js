@@ -19,6 +19,7 @@ module.exports = {
     'poi_hour_extend',
     'poi_go',
     'poi_share',
+    'poi_information_extend',
     'poi_error_load', // error
     /* Map */
     'localise_trigger'

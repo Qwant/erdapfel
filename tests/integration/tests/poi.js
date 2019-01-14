@@ -75,7 +75,7 @@ test('update url after a favorite poi click', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   page.evaluate(() => {
-    fire('store_poi', new Poi(1, 'some poi i will click', '', {lat : 43, lng : 2}, '', '', []))
+    fire('store_poi', new Poi(1, 'some poi i will click', 'one line', 'poi', {lat : 43, lng : 2}, '', '', []))
   })
   await page.click('.service_panel__item__fav')
   await wait(300)

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 16:25+0100\n"
+"POT-Creation-Date: 2019-01-10 09:54+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/"
@@ -71,12 +71,6 @@ msgid "No wheelchair accessible toilets"
 msgstr ""
 
 msgid "The map that respects your privacy"
-msgstr ""
-
-msgid "Open 24/7"
-msgstr ""
-
-msgid "until {nextTransitionTime}"
 msgstr ""
 
 msgid "accessories shop"
@@ -691,6 +685,21 @@ msgstr ""
 msgid "zoo"
 msgstr ""
 
+msgid "until {nextTransitionTime}"
+msgstr ""
+
+msgid "FAVORITES"
+msgstr "SINEDOÙ"
+
+msgid "Beers"
+msgstr ""
+
+msgid "Internet access"
+msgstr ""
+
+msgid "WiFi"
+msgstr ""
+
 msgid "Favorite places"
 msgstr ""
 
@@ -709,43 +718,32 @@ msgstr ""
 msgid "filter"
 msgstr ""
 
-msgid "Register masq"
+msgid "Géolocation not available."
 msgstr ""
 
-msgid "We use MASQ to keep your preference data safe"
+msgid "You did not allow Qwant Maps to access your position."
 msgstr ""
 
-msgid "Register"
+msgid "OK"
 msgstr ""
 
-msgid "SEE MORE"
+msgid "Geolocation with privacy!"
 msgstr ""
 
-msgid "Back to favorite"
+msgid ""
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
 msgstr ""
 
-msgid "FAVORITES"
-msgstr "SINEDOÙ"
-
-msgid "SHARE"
-msgstr ""
-
-msgid "Qwant Maps uses OpenStreetMap"
-msgstr ""
-
-msgid "ABOUT THE PROJECT"
+msgid "Ok, I've got it."
 msgstr ""
 
 msgid "Accessibility"
 msgstr ""
 
-msgid "Beers"
-msgstr ""
-
-msgid "Internet access"
-msgstr ""
-
-msgid "WiFi"
+msgid "Open 24/7"
 msgstr ""
 
 msgid "Services & information"
@@ -756,6 +754,30 @@ msgstr "Lenn muioc'h war Wikipedia"
 
 msgid "Read more on Wikidata"
 msgstr "Lenn muioc'h war Wikidata"
+
+msgid "SEE MORE"
+msgstr ""
+
+msgid "Back to favorite"
+msgstr ""
+
+msgid "SHARE"
+msgstr ""
+
+msgid "Qwant Maps uses OpenStreetMap"
+msgstr ""
+
+msgid "ABOUT THE PROJECT"
+msgstr ""
+
+msgid "Register masq"
+msgstr ""
+
+msgid "We use MASQ to keep your preference data safe"
+msgstr ""
+
+msgid "Register"
+msgstr ""
 
 msgid "Qwant Maps services"
 msgstr ""
@@ -779,26 +801,4 @@ msgid "SHARE ON FACEBOOK"
 msgstr ""
 
 msgid "SHARE ON TWITTER"
-msgstr ""
-
-msgid "Geolocation with privacy!"
-msgstr ""
-
-msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-
-msgid "Ok, I've got it."
-msgstr ""
-
-msgid "Géolocation not available."
-msgstr ""
-
-msgid "You did not allow Qwant Maps to access your position."
-msgstr ""
-
-msgid "OK"
 msgstr ""

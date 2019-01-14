@@ -102,19 +102,25 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestions {
+  position: absolute;
+  max-height: calc(100vh - 100px);
   text-align: left;
   border-top: 0;
   background: $background;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
   margin-top: 8px;
   /* core styles should not be changed */
-  position: absolute;
   display: none;
-  overflow: hidden;
-  overflow-y: auto;
   cursor: default;
   @include long_shadow();
   @include card_radius();
+  overflow-y: auto;
+}
+
+.autocomplete_suggestion__category_title {
+  color : $primary_clear;
+  font-size: 14px;
+  padding: 10px 20px;
 }
 
 .autocomplete_address {
@@ -162,6 +168,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestion__second_line {
+  height: 23px;
   font-size: 14px;
   margin-left: 24px;
   text-overflow:ellipsis;
@@ -229,6 +236,7 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   .autocomplete_suggestions {
+    max-height: calc(100vh - 64px);
     margin-top: -1px;
   }
 
