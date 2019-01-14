@@ -25,4 +25,8 @@
     <i class="icon-icon_star"></i>
   </button>
 
+  <button class="service_panel_mobile__direction" {{= click(this.toggleDirection, this) }}>
+     <i class="icon-corner-up-right side_bar__item__icon"></i>
+  </button>
+
 </div>
