@@ -148,7 +148,7 @@ Scene.prototype.fitMap = function(poi, options = {}) {
     if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
       padding.left += layout.sizes.panelWidth
     }
-    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
+    if(poi.getLngLat && this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
       this.mb.fitBounds(poi.bbox, {padding : padding})
     } else {
       this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
