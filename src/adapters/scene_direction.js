@@ -1,6 +1,7 @@
-import {Map, Marker, LngLat, LngLatBounds, setRTLTextPlugin} from 'mapbox-gl--ENV'
+import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
+
 
 
 export default class SceneDirection {
@@ -9,6 +10,8 @@ export default class SceneDirection {
     this.routeSetCounter = 0
     this.routeCounter = 0
     this.routes = []
+    this.markerStart = null
+    this.markerEnd = null
 
     listen('set_route', ({routes, vehicle, start, end}) => {
       this.reset()
@@ -29,9 +32,6 @@ export default class SceneDirection {
   }
 
   displayRoute() {
-
-
-
     if(this.routes && this.routes.length > 0){
       let mainRoute = this.routes.find((route) => route.isActive)
       let otherRoutes = this.routes.filter((route) => !route.isActive)
@@ -67,7 +67,18 @@ export default class SceneDirection {
   reset() {
     this.routes.forEach((route) => {
       this.map.removeLayer(`route_${route.id}`)
+      this.map.getSource(`source_${route.id}`).setData(this.buildRouteData([]))
     })
+
+    if(this.markerStart) {
+      this.markerStart.remove()
+    }
+    if(this.markerEnd) {
+      this.markerEnd.remove()
+    }
+    this.markerStart = null
+    this.markerEnd = null
+    this.routes = []
   }
 
   showPolygon(route) {
@@ -91,23 +102,31 @@ export default class SceneDirection {
       }
     }
 
-    const sourceJSON = {
-      "type": "geojson",
-      "data": {
-        "id" : 1,
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-          "type": "LineString",
-          "coordinates": route.geometry.coordinates,
-        }
+    let sourceId = `source_${route.id}`
+    let existingSource = this.map.getSource(sourceId)
+    if(existingSource) {
+      existingSource.setData(this.buildRouteData(route.geometry.coordinates))
+    } else {
+      const sourceJSON = {
+        "type": "geojson",
+        "data": this.buildRouteData(route.geometry.coordinates,)
       }
+      this.map.addSource(sourceId, sourceJSON, this.routeCounter)
     }
-
-
-    this.map.addSource(`source_${route.id}`, sourceJSON, this.routeCounter)
     this.map.addLayer(geojson);
 
+  }
+
+  buildRouteData(data) {
+    return {
+      "id" : 1,
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": data
+      }
+    }
   }
 
   computeBBox(route) {

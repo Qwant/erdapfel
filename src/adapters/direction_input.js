@@ -86,7 +86,6 @@ export default class DirectionInput {
         this.pending = true
       }
     }
-
   }
 
   destroy() {
