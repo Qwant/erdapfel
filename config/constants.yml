@@ -23,6 +23,11 @@ languages:
       code: br
       fallback:
         - fr_FR
+    -
+      locale: ca_ES
+      code: ca
+      fallback:
+        - es_ES
   defaultLanguage: *default
 
 layout:

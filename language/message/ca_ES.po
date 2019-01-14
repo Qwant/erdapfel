@@ -1,0 +1,804 @@
+# Translators:
+# jmontane, 2018
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-14 10:55+0100\n"
+"PO-Revision-Date: 2018-08-27 07:45+0000\n"
+"Last-Translator: jmontane, 2018\n"
+"Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: ;_;_n:1,2\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: views\n"
+"X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
+"X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Qwant Maps - alpha"
+msgstr "Qwant Maps - alfa"
+
+msgid "Search on Qwant Maps"
+msgstr "Cerca a Qwant Maps"
+
+msgid "Opening hours"
+msgstr "Horari d'obertura"
+
+msgid "Open"
+msgstr "Obert"
+
+msgid "Closed"
+msgstr "Tancat"
+
+msgid "Happy hours"
+msgstr ""
+
+msgid "happy hours!"
+msgstr ""
+
+msgid "Last pint"
+msgstr "Última pinta"
+
+msgid "Wheelchair accessible"
+msgstr "Accessible amb cadira de rodes"
+
+msgid "Partially wheelchair accessible"
+msgstr "Accessible amb cadira de rodes parcialment"
+
+msgid "Not wheelchair accessible"
+msgstr "No és accessible amb cadira de rodes"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Serveis accessibles amb cadira de rodes"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Serveis accessibles amb cadira de rodes parcialment"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Serveis no accessibles amb cadira de rodes"
+
+msgid "The map that respects your privacy"
+msgstr "El mapa que respecta la vostra privadesa"
+
+msgid "Open 24/7"
+msgstr ""
+
+msgid "until {nextTransitionTime}"
+msgstr "fins {nextTransitionTime}"
+
+msgid "accessories shop"
+msgstr "botia d'accessoris"
+
+msgid "airport"
+msgstr ""
+
+msgid "liquor store"
+msgstr "licoreria"
+
+msgid "alpine hut"
+msgstr ""
+
+msgid "antiques shop"
+msgstr ""
+
+msgid "aquarium"
+msgstr ""
+
+msgid "archery"
+msgstr ""
+
+msgid "art shop"
+msgstr ""
+
+msgid "arts centre"
+msgstr ""
+
+msgid "athletics"
+msgstr ""
+
+msgid "attraction"
+msgstr ""
+
+msgid "bag shop"
+msgstr ""
+
+msgid "bakery"
+msgstr ""
+
+msgid "bank"
+msgstr "banc"
+
+msgid "bar"
+msgstr "bar de copes"
+
+msgid "basin"
+msgstr ""
+
+msgid "basketball"
+msgstr "basquetbol"
+
+msgid "bbq"
+msgstr "barbacoa"
+
+msgid "beauty salon"
+msgstr "saló de bellesa"
+
+msgid "bed shop"
+msgstr ""
+
+msgid "bed and breakfast"
+msgstr "llit i esmorzar"
+
+msgid "beverages shop"
+msgstr ""
+
+msgid "bicycle shop"
+msgstr "botiga de bicicletes"
+
+msgid "biergarten"
+msgstr ""
+
+msgid "billiards"
+msgstr "billars"
+
+msgid "bmx"
+msgstr ""
+
+msgid "books shop"
+msgstr ""
+
+msgid "border control"
+msgstr ""
+
+msgid "boules"
+msgstr ""
+
+msgid "boutique"
+msgstr ""
+
+msgid "bowls"
+msgstr ""
+
+msgid "brownfield"
+msgstr ""
+
+msgid "bus station"
+msgstr ""
+
+msgid "butcher"
+msgstr "carnisseria"
+
+msgid "cafe"
+msgstr "cafè"
+
+msgid "camp site"
+msgstr "lloc d'acampada"
+
+msgid "canoe"
+msgstr ""
+
+msgid "car shop"
+msgstr "botiga de cotxes"
+
+msgid "car repair"
+msgstr "reparació de cotxes"
+
+msgid "caravan site"
+msgstr "lloc de caravanes"
+
+msgid "carpet shop"
+msgstr "botiga de catifes"
+
+msgid "castle"
+msgstr "castell"
+
+msgid "cemetery"
+msgstr "cementiri"
+
+msgid "chalet"
+msgstr ""
+
+msgid "charity store"
+msgstr ""
+
+msgid "chemist"
+msgstr ""
+
+msgid "chess"
+msgstr "escacs"
+
+msgid "chocolate shop"
+msgstr ""
+
+msgid "cinema"
+msgstr "cinema"
+
+msgid "climbing"
+msgstr ""
+
+msgid "climbing adventure"
+msgstr ""
+
+msgid "clinic"
+msgstr "clínica"
+
+msgid "clothes shop"
+msgstr "botiga de roba"
+
+msgid "coffee shop"
+msgstr ""
+
+msgid "college"
+msgstr ""
+
+msgid "community centre"
+msgstr "centre comunitari"
+
+msgid "computer shop"
+msgstr "botiga d'informàtica"
+
+msgid "confectionery shop"
+msgstr ""
+
+msgid "convenience store"
+msgstr ""
+
+msgid "copyshop"
+msgstr ""
+
+msgid "cosmetics shop"
+msgstr ""
+
+msgid "courthouse"
+msgstr "jutjat"
+
+msgid "cricket"
+msgstr "criquet"
+
+msgid "cycling"
+msgstr ""
+
+msgid "deli"
+msgstr ""
+
+msgid "dentist"
+msgstr "dentista"
+
+msgid "department store"
+msgstr ""
+
+msgid "dock"
+msgstr ""
+
+msgid "doctors office"
+msgstr ""
+
+msgid "dog park"
+msgstr ""
+
+msgid "dog racing"
+msgstr ""
+
+msgid "doityourself store"
+msgstr ""
+
+msgid "dry cleaning"
+msgstr ""
+
+msgid "electronics shop"
+msgstr "botiga d'electrònica"
+
+msgid "embassy"
+msgstr "ambaixada"
+
+msgid "equestrian"
+msgstr ""
+
+msgid "erotic shop"
+msgstr "botiga eròtica"
+
+msgid "escape game"
+msgstr ""
+
+msgid "fabric"
+msgstr "fàbrica"
+
+msgid "fast food"
+msgstr "menjar ràpid"
+
+msgid "fire station"
+msgstr "parc de bombers"
+
+msgid "florist"
+msgstr "floristeria"
+
+msgid "food court"
+msgstr ""
+
+msgid "free flying"
+msgstr ""
+
+msgid "fuel station"
+msgstr "benzinera"
+
+msgid "furniture shop"
+msgstr "botiga de mobles"
+
+msgid "gallery"
+msgstr "galeria d'art"
+
+msgid "garden"
+msgstr ""
+
+msgid "garden centre"
+msgstr ""
+
+msgid "general store"
+msgstr ""
+
+msgid "gift shop"
+msgstr "botiga de regals"
+
+msgid "golf"
+msgstr "golf"
+
+msgid "golf course"
+msgstr ""
+
+msgid "grave yard"
+msgstr ""
+
+msgid "greengrocer"
+msgstr ""
+
+msgid "guest house"
+msgstr ""
+
+msgid "gymnastics"
+msgstr ""
+
+msgid "hackerspace"
+msgstr ""
+
+msgid "hairdresser"
+msgstr ""
+
+msgid "halt"
+msgstr ""
+
+msgid "hardware shop"
+msgstr "ferreteria"
+
+msgid "hearing aids shop"
+msgstr ""
+
+msgid "hifi shop"
+msgstr ""
+
+msgid "horse racing"
+msgstr ""
+
+msgid "hospital"
+msgstr "hospital"
+
+msgid "hostel"
+msgstr "alberg"
+
+msgid "hotel"
+msgstr "hotel"
+
+msgid "ice cream"
+msgstr "gelat"
+
+msgid "ice rink"
+msgstr ""
+
+msgid "interior decoration shop"
+msgstr ""
+
+msgid "jewelry shop"
+msgstr ""
+
+msgid "karting"
+msgstr "kàrting"
+
+msgid "kindergarten"
+msgstr "llar d'infants"
+
+msgid "kiosk"
+msgstr "quiosc"
+
+msgid "lamps shop"
+msgstr "botiga de llums"
+
+msgid "laundry"
+msgstr ""
+
+msgid "library"
+msgstr "biblioteca"
+
+msgid "long jump"
+msgstr ""
+
+msgid "mall"
+msgstr ""
+
+msgid "marina"
+msgstr "port esportiu"
+
+msgid "marketplace"
+msgstr ""
+
+msgid "massage shop"
+msgstr ""
+
+msgid "miniature golf"
+msgstr "mingolf"
+
+msgid "mobile phone shop"
+msgstr "botiga de mòbils"
+
+msgid "model aerodrome"
+msgstr ""
+
+msgid "monument"
+msgstr "monument"
+
+msgid "motel"
+msgstr "motel"
+
+msgid "motocross"
+msgstr "motocròs"
+
+msgid "motor"
+msgstr "motor"
+
+msgid "motorcycle shop"
+msgstr "botiga de motocicletes"
+
+msgid "multi"
+msgstr ""
+
+msgid "museum"
+msgstr "museu"
+
+msgid "music shop"
+msgstr ""
+
+msgid "musical instrument shop"
+msgstr ""
+
+msgid "newsagent shop"
+msgstr ""
+
+msgid "nightclub"
+msgstr "club nocturn"
+
+msgid "nursing home"
+msgstr ""
+
+msgid "optician"
+msgstr ""
+
+msgid "orienteering"
+msgstr ""
+
+msgid "outdoor"
+msgstr ""
+
+msgid "paragliding"
+msgstr ""
+
+msgid "park"
+msgstr "parc"
+
+msgid "perfumery"
+msgstr "perfumeria"
+
+msgid "pet store"
+msgstr "botiga d'animals"
+
+msgid "pharmacy"
+msgstr "farmàcia"
+
+msgid "photo shop"
+msgstr ""
+
+msgid "picnic site"
+msgstr "lloc de pícnic"
+
+msgid "place of worship"
+msgstr "lloc de pregària"
+
+msgid "police"
+msgstr "policia"
+
+msgid "post office"
+msgstr "oficina postal"
+
+msgid "prison"
+msgstr "presó"
+
+msgid "pub"
+msgstr "pub o bar"
+
+msgid "public building"
+msgstr "edifici públic"
+
+msgid "rc car"
+msgstr ""
+
+msgid "reservoir"
+msgstr ""
+
+msgid "restaurant"
+msgstr "restaurant"
+
+msgid "rowing"
+msgstr ""
+
+msgid "ruins"
+msgstr "runes"
+
+msgid "running"
+msgstr ""
+
+msgid "sailing"
+msgstr ""
+
+msgid "school"
+msgstr "escola"
+
+msgid "scuba diving"
+msgstr ""
+
+msgid "resale shop"
+msgstr ""
+
+msgid "shoes"
+msgstr "sabates"
+
+msgid "shooting"
+msgstr ""
+
+msgid "skateboard"
+msgstr ""
+
+msgid "skating"
+msgstr ""
+
+msgid "skiing"
+msgstr ""
+
+msgid "soccer"
+msgstr "futbol"
+
+msgid "sports shop"
+msgstr "botiga d'esports"
+
+msgid "sports centre"
+msgstr "centre esportiu"
+
+msgid "stadium"
+msgstr "estadi"
+
+msgid "station"
+msgstr "estació"
+
+msgid "stationery shop"
+msgstr ""
+
+msgid "subway"
+msgstr "metro"
+
+msgid "supermarket"
+msgstr "supermercat"
+
+msgid "swimming"
+msgstr "natació"
+
+msgid "swimming area"
+msgstr "àrea de natació"
+
+msgid "swimming pool"
+msgstr "piscina"
+
+msgid "table tennis"
+msgstr "tennis taula"
+
+msgid "tailor"
+msgstr "sastre"
+
+msgid "tattoo salon"
+msgstr "saló de tatuatge"
+
+msgid "tennis"
+msgstr "tennis"
+
+msgid "theatre"
+msgstr ""
+
+msgid "theme park"
+msgstr ""
+
+msgid "ticket shop"
+msgstr ""
+
+msgid "tobacco shop"
+msgstr "estanc"
+
+msgid "toll booth"
+msgstr ""
+
+msgid "townhall"
+msgstr "ajuntament"
+
+msgid "toys shop"
+msgstr "botiga de joguines"
+
+msgid "tram stop"
+msgstr "parada de tramvia"
+
+msgid "travel agency"
+msgstr "agència de viatges"
+
+msgid "university"
+msgstr "univeristat"
+
+msgid "veterinary"
+msgstr "veterinari"
+
+msgid "videos shop"
+msgstr "videoclub"
+
+msgid "video games shop"
+msgstr "botiga de videojocs"
+
+msgid "viewpoint"
+msgstr "punt de vista"
+
+msgid "watches shop"
+msgstr "botiga d'ulleres"
+
+msgid "water park"
+msgstr "parc aquàtic"
+
+msgid "weapons shop"
+msgstr "armeria"
+
+msgid "warehouse club"
+msgstr ""
+
+msgid "wine shop"
+msgstr "celler"
+
+msgid "yoga"
+msgstr "ioga"
+
+msgid "zoo"
+msgstr "zoo"
+
+msgid "Favorite places"
+msgstr "Llocs preferits"
+
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+"No teniu cap lloc preferit. <br>Podeu afegir-ne un fent clic en algun lloc"
+
+msgid "MY FAVORITES"
+msgstr "PREFERITS"
+
+msgid "Share"
+msgstr "Comparteix"
+
+msgid "Delete"
+msgstr "Suprimeix"
+
+msgid "filter"
+msgstr "filtre"
+
+msgid "Register masq"
+msgstr "Registra masq"
+
+msgid "We use MASQ to keep your preference data safe"
+msgstr "Usem MASQ per a mantenir segures les dades de les preferències"
+
+msgid "Register"
+msgstr "Registre"
+
+msgid "SEE MORE"
+msgstr "MÉS INFORMACIÓ"
+
+msgid "Back to favorite"
+msgstr "Torna als preferits"
+
+msgid "FAVORITES"
+msgstr "PREFERITS"
+
+msgid "SHARE"
+msgstr "COMPARTEIX"
+
+msgid "Qwant Maps uses OpenStreetMap"
+msgstr "Qwant Maps usa l'OpenStreetMap"
+
+msgid "ABOUT THE PROJECT"
+msgstr "QUANT AL PROJECTE"
+
+msgid "Accessibility"
+msgstr "Acessibilitat"
+
+msgid "Beers"
+msgstr "Cerveses"
+
+msgid "Internet access"
+msgstr "Accés a internet"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Services & information"
+msgstr "Serveis i informació"
+
+msgid "Read more on Wikipedia"
+msgstr "Més informació a la Viquipèdia"
+
+msgid "Read more on Wikidata"
+msgstr "Més informació a Wikidata"
+
+msgid "Qwant Maps services"
+msgstr "Serveis Qwant Maps"
+
+msgid "YOUR FAVORITES"
+msgstr "PREFERITS"
+
+msgid "ITINERARY"
+msgstr "ITINERARY"
+
+msgid "Share favorite"
+msgstr "Comparteix el preferit"
+
+msgid "Share link"
+msgstr "Comparteix l'enllaç"
+
+msgid "Copied !"
+msgstr "Copiat!"
+
+msgid "SHARE ON FACEBOOK"
+msgstr "COMPARTEIX AL FACEBOOK"
+
+msgid "SHARE ON TWITTER"
+msgstr "COMPARTEIX AL TWITTER"
+
+msgid "Geolocation with privacy!"
+msgstr "Geolocalització amb privadesa!"
+
+msgid ""
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"Us cal saber on sou? Autoritzeu l'aplicació a accedir la vostra ubicació "
+"perquè us la puguem dir. Com s'explica a la nostra {privacyPolicyLink} "
+"política de privadesa {closeTag}, Qwant no emmagatzemarà la vostra "
+"informació de geolocalització. No volem saber on pareu."
+
+msgid "Ok, I've got it."
+msgstr "D'acord, ho he entès."
+
+msgid "Géolocation not available."
+msgstr "No hi ha disponible la geolocalització."
+
+msgid "You did not allow Qwant Maps to access your position."
+msgstr "No heu autoritzat Qwant Maps a accedir la vostra ubicació."
+
+msgid "OK"
+msgstr "D'acord"
