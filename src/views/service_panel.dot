@@ -11,7 +11,7 @@
      </button>
   </div>
 
-  <div {{= click(this.toggleDirection, this) }} class="service_panel__item{{= !this.isDirectionActive && ' side_bar__item--active' }}" >
+  <div {{= click(this.toggleDirection, this) }} class="service_panel__item{{= this.isDirectionActive ? '' : ' service_panel__item--disabled'}}" >
     <button class="service_panel__item__action">
       <i class="icon-corner-up-right side_bar__item__icon"></i>
       <span class="service_panel__item__text">{{= _('ITINERARY', 'service panel') }}</span>

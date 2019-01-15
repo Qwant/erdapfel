@@ -12,6 +12,7 @@ export default class ServicePanel{
     this.isFavoriteActive = false
     this.isResultActive = false
     this.isDirectionActive = nconf.get().direction.enabled
+
     listen('toggle_burger', () => {
       this.panel.toggleClassName(.2,'.service_panel', 'service_panel--open')
     })
@@ -28,7 +29,9 @@ export default class ServicePanel{
   }
 
   toggleDirection() {
-    PanelManager.toggleDirection()
+    if(this.isDirectionActive) {
+      PanelManager.toggleDirection()
+    }
   }
   /* PanelManager listener interface implementation */
   notify () {
