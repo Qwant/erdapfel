@@ -33,7 +33,7 @@ export default class DirectionPanel {
   }
 
   setVehicle(vehicle) {
-    this.panel.removeClassName(`.itinerary_button_label_${vehicle}`, '.label_active')
+    this.panel.removeClassName(`.itinerary_button_label_${this.vehicle}`, '.label_active')
     this.vehicle = vehicle
     this.panel.addClassName(`.itinerary_button_label${vehicle}`, 'label_active')
   }
@@ -88,9 +88,6 @@ export default class DirectionPanel {
 
     if (this.start && this.end) {
       let directionResponse = await DirectionApi.search(this.start, this.end, this.vehicle)
-
-      console.log(directionResponse)
-
       let routes = directionResponse.routes
       routes.forEach((route, i) => {
         route.isActive = i === 0

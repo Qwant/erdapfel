@@ -7,7 +7,6 @@ const MAIN_ROUTE_COLOR = '#4ba2ea'
 export default class SceneDirection {
   constructor(map) {
     this.map = map
-    this.routeSetCounter = 0
     this.routeCounter = 0
     this.routes = []
     this.markerStart = null
@@ -40,6 +39,7 @@ export default class SceneDirection {
         this.showPolygon(route)
       })
       this.showPolygon(mainRoute)
+
 
 
       // Custom markers
@@ -82,6 +82,7 @@ export default class SceneDirection {
   }
 
   showPolygon(route) {
+    console.log(this.routeCounter++, route.isActive, route.id)
 
     const geojson = {
       "id": `route_${route.id}`,
@@ -111,7 +112,7 @@ export default class SceneDirection {
         "type": "geojson",
         "data": this.buildRouteData(route.geometry.coordinates,)
       }
-      this.map.addSource(sourceId, sourceJSON, this.routeCounter)
+      this.map.addSource(sourceId, sourceJSON)
     }
     this.map.addLayer(geojson);
 
