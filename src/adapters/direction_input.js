@@ -4,6 +4,7 @@ import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
 import BragiPoi from "./poi/bragi_poi";
 import StorePoi from "./poi/poi_store";
+
 import Poi from "./poi/poi";
 
 const GEOLOCALISATION_SELECTOR = 'geolocalisation'
@@ -59,8 +60,21 @@ export default class DirectionInput {
         return promise
       },
 
-      renderItem: (poi) => {
-        return this.autocompleteTemplate(poi)
+      renderItems : (pois) => {
+        let favorites = []
+        let remotes = []
+        pois.forEach((poi) => {
+          if(poi instanceof StorePoi) {
+            favorites.push(poi)
+          } else {
+            remotes.push(poi)
+          }
+        })
+        let suggestDom = this.remotesRender(remotes)
+        if(favorites.length > 0) {
+          suggestDom += this.favoritesRender(favorites)
+        }
+        return suggestDom
       },
 
       onSelect: (e, term, item, items) => {
@@ -71,7 +85,7 @@ export default class DirectionInput {
           navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude
             let lng = position.coords.longitude
-            this.select(new Poi(GEOLOCALISATION_SELECTOR, 'geolocalisation', 'poi', {lat, lng}))
+            this.select(new Poi(GEOLOCALISATION_SELECTOR, 'geolocalisation', null, 'poi', {lat, lng}))
           });
           return
         }
@@ -96,8 +110,18 @@ export default class DirectionInput {
     this.searchInputDomHandler.value = poi.first_line
   }
 
+
+  remotesRender(pois) {
+    return pois.map(poi => this.renderItem(poi)).join('')
+  }
+
+  favoritesRender(pois) {
+    return `<h3 class="autocomplete_suggestion__category_title">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`
+  }
+
   /* select sub template */
-  autocompleteTemplate(poi) {
+  renderItem(poi) {
+
     if(poi.geolocalisation) {
       return `
       <div data-id="${GEOLOCALISATION_SELECTOR}" data-val="${_('Your position', 'direction')}" class="autocomplete_suggestion itinerary_suggest_your_position">
@@ -106,19 +130,19 @@ export default class DirectionInput {
       </div>`
     }
 
-    let {id, name, fromHistory, className, subClassName, type, adminLabel} = poi
-    let icon = IconManager.get({className: className, subClassName: subClassName, type: type})
+    let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
+    let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
     let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
 
     return `
-  <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
-    <div class="autocomplete_suggestion__first_line__container">
+<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
+  <div class="autocomplete_suggestion__first_line__container">
   ${iconDom}
   <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
 </div>
-${adminLabel ? `<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(adminLabel)}</div>` : ''}
-  </div>
-  `
+<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(alternativeName ? alternativeName : '')}</div>
+</div>
+`
 
   }
 }
