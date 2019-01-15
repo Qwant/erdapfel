@@ -1,9 +1,12 @@
 import Panel from "../../libs/panel";
 import roadMapTemplate from '../../views/direction/road_map.dot'
 import Device from '../../libs/device'
+import RoadMapPreviewPanel from "./road_map_preview";
 
 export default class RoadMapPanel {
   constructor() {
+    this.previewRoadMap = new RoadMapPreviewPanel(this.hideForm, this.distance)
+    this.showRoute = true
     this.panel = new Panel(this, roadMapTemplate)
     this.routes = []
     this.isMobile = Device.isMobile
@@ -17,23 +20,23 @@ export default class RoadMapPanel {
     this.panel.update()
   }
 
+  preview() {
+    this.showRoute = false
+    this.previewRoadMap.setRoad(this.routes)
+    this.panel.update()
+  }
+
+  hideForm() {
+    document.querySelectorAll(".itinerary_fields")[0].style.display = "none";
+    document.querySelectorAll(".itinerary_vehicles")[0].style.display = "none";
+  }
+
   toggleRoute(i) {
     fire('toggle_route', i)
   }
 
   toggleDetail(i) {
     this.panel.toggleClassName(0, `#itinerary_leg_detail_${i}`, 'itinerary_leg_detail--hidden')
-  }
-
-  preview(options) {
-    this.route_number = options.route;
-    this.step_number = options.step;
-    this.step = this.routes[0].legs[this.route_number].steps[this.step_number];
-    //this.routes = []
-    this.showPreview = true;
-    this.panel.update()
-    document.querySelectorAll(".itinerary_fields")[0].style.display = "none";
-    document.querySelectorAll(".itinerary_vehicles")[0].style.display = "none";
   }
 
   duration (sec, isDisplaySeconds) {

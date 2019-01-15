@@ -1,5 +1,4 @@
-{{console.log(this);}}
-{{? !this.showPreview }}
+{{? this.showRoute }}
   {{~ this.routes:route:i }}
     {{? this.isMobile() }}
       <div class='itinerary_leg{{= route.isActive ? ' itinerary_leg--active' : '' }}' id='itinerary_leg'>
@@ -10,7 +9,7 @@
           <div class='itinerary_leg_via'>
             <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[0].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
           </div>
-          <div class='itinerary_leg_preview' {{= click(this.preview, this, {route: 0, step: 0}) }}>
+          <div class='itinerary_leg_preview' {{= click(this.preview, this) }}>
             <span class='itinerary_leg_preview_icon'></span>
               {{= _('PREVIEW', 'direction') }}
             </div>
@@ -54,29 +53,5 @@
     {{?}}
   {{~}}
 {{??}}
-  <div class="itinerary_mobile_step">
-    <div class='itinerary_roadmap_icon itinerary_roadmap_icon_{{= (this.step.maneuver.modifier || this.step.maneuver.type).replace(/\s/g,"-") }}'></div>
-
-    <div class=itinerary_roadmap_instruction_and_distance>
-      <div class=itinerary_roadmap_distance>{{= this.distance(this.step.distance) }}</div>
-      <div class=itinerary_roadmap_instruction>{{= this.step.maneuver.instruction }}</div>
-    </div>
-  </div>
-
-  <div class=itinerary_mobile_step_buttons>
-
-
-    {{? this.step_number > 0 }}
-        <div class=itinerary_mobile_step_button_left {{= click(this.preview, this, {route: this.route_number, step: this.step_number - 1}) }}></div>
-    {{??}}
-        <div class="itinerary_mobile_step_button_left itinerary_mobile_step_button_disabled"></div>
-    {{?}}
-
-    {{? this.step_number < this.routes[0].legs[this.route_number].steps.length - 1 }}
-        <div class=itinerary_mobile_step_button_right {{= click(this.preview, this, {route: this.route_number, step: this.step_number + 1}) }}></div>
-    {{??}}
-        <div class="itinerary_mobile_step_button_right itinerary_mobile_step_button_disabled"></div>
-    {{?}}
-
-  </div>
+  {{= this.previewRoadMap.render() }}
 {{?}}
