@@ -3,22 +3,19 @@ import IconManager from '../adapters/icon_manager'
 import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
 import BragiPoi from "./poi/bragi_poi";
-import StorePoi from "./poi/poi_store";
+import PoiStore from "./poi/poi_store";
 
-import Poi from "./poi/poi";
-
-const GEOLOCALISATION_SELECTOR = 'geolocalisation'
-
-export default class DirectionInput {
-  constructor(tagSelector, select) {
-
-    this.select = select
-
+export default class Suggest {
+  constructor(tagSelector, onSelect, prefixes = []) {
     this.searchInputDomHandler = document.querySelector(tagSelector)
     this.poi = null
-    this.suggestPromise = null
+    this.bragiPromise = null
+    this.historyPromise = null
     this.suggestList = []
     this.pending = false
+
+    this.prefixes = prefixes
+
     this.autocomplete = new Autocomplete({
       selector: tagSelector,
       minChars: 1,
@@ -29,49 +26,49 @@ export default class DirectionInput {
         this.suggestList = items
         this.pending = false
       },
-
       source: (term) => {
         /*
           https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
           this post is about correlation between gps coordinates decimal count & real precision unit
           110m = 3 decimals
          */
-        let promise = new Promise((resolve, reject) => {
+        let promise = new Promise(async (resolve, reject) => {
           /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-          let suggestHistoryPromise = StorePoi.get(term)
-          this.suggestPromise = BragiPoi.get(term)
-          Promise.all([this.suggestPromise, suggestHistoryPromise]).then((responses) => {
-            if (responses[0]) {
-              this.suggestPromise = null
-              this.suggestList = [({geolocalisation : true})]
-              this.suggestList = this.suggestList.concat(responses[0])
-              this.suggestList = this.suggestList.concat(responses[1])
+          this.historyPromise = PoiStore.get(term)
+
+          this.bragiPromise = BragiPoi.get(term)
+          try {
+            let [bragiResponse, storeResponse] = await Promise.all([this.bragiPromise, this.historyPromise])
+            if (bragiResponse !== null) {
+              this.bragiPromise = null
+              this.suggestList = bragiResponse.concat(storeResponse)
               resolve(this.suggestList)
             } else {
               resolve(null)
             }
-          }).catch((e) => {
+          } catch (e) {
             reject(e)
-          })
+          }
         })
         promise.abort = () => {
-          this.suggestPromise.abort()
+          this.bragiPromise.abort()
         }
         return promise
       },
 
-      renderItems : (pois) => {
+      renderItems: (pois) => {
         let favorites = []
         let remotes = []
         pois.forEach((poi) => {
-          if(poi instanceof StorePoi) {
+          if (poi instanceof PoiStore) {
             favorites.push(poi)
           } else {
             remotes.push(poi)
           }
         })
-        let suggestDom = this.remotesRender(remotes)
-        if(favorites.length > 0) {
+        let suggestDom = this.prefixesRender()
+        suggestDom += this.remotesRender(remotes)
+        if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
         return suggestDom
@@ -79,20 +76,17 @@ export default class DirectionInput {
 
       onSelect: (e, term, item, items) => {
         e.preventDefault()
-
         const itemId = item.getAttribute('data-id')
-        if(itemId === GEOLOCALISATION_SELECTOR) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            let lat = position.coords.latitude
-            let lng = position.coords.longitude
-            this.select(new Poi(GEOLOCALISATION_SELECTOR, 'geolocalisation', null, 'poi', {lat, lng}))
-          });
-          return
+        let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
+        if(prefixPoint) {
+          onSelect(prefixPoint)
+        } else {
+          let poi = items.find(poi => poi.id === itemId)
+          onSelect(poi)
         }
-        let poi = items.find(poi => poi.id === itemId)
         this.searchInputDomHandler.blur()
-        this.select(poi)
-      }
+
+      },
     })
 
     this.searchInputDomHandler.onkeydown = (event) => {
@@ -100,16 +94,17 @@ export default class DirectionInput {
         this.pending = true
       }
     }
+
+
   }
 
   destroy() {
     this.autocomplete.destroy()
   }
 
-  setPoi(poi) {
-    this.searchInputDomHandler.value = poi.first_line
+  prefixesRender() {
+    return this.prefixes.map(prefix => prefix.render())
   }
-
 
   remotesRender(pois) {
     return pois.map(poi => this.renderItem(poi)).join('')
@@ -121,15 +116,6 @@ export default class DirectionInput {
 
   /* select sub template */
   renderItem(poi) {
-
-    if(poi.geolocalisation) {
-      return `
-      <div data-id="${GEOLOCALISATION_SELECTOR}" data-val="${_('Your position', 'direction')}" class="autocomplete_suggestion itinerary_suggest_your_position">
-        <div class=itinerary_suggest_your_position_icon></div>
-        ${_('Your position', 'direction')}
-      </div>`
-    }
-
     let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
     let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
     let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
@@ -143,7 +129,6 @@ export default class DirectionInput {
 <div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(alternativeName ? alternativeName : '')}</div>
 </div>
 `
-
   }
 }
 

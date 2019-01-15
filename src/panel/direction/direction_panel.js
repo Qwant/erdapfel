@@ -1,6 +1,6 @@
 import Panel from "../../libs/panel"
 import directionTemplate from '../../views/direction/direction.dot'
-import DirectionInput from "../../adapters/direction_input"
+import DirectionInput from "../../ui_components/direction_input"
 import PanelManager from '../../proxies/panel_manager'
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
@@ -15,7 +15,6 @@ export default class DirectionPanel {
     this.DRIVING = 'driving'
     this.WALKING = 'walking'
     this.CYCLING = 'cycling'
-
 
     this.start = null
     this.end = null
