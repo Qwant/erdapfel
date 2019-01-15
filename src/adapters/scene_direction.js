@@ -110,7 +110,7 @@ export default class SceneDirection {
     } else {
       const sourceJSON = {
         "type": "geojson",
-        "data": this.buildRouteData(route.geometry.coordinates,)
+        "data": this.buildRouteData(route.geometry.coordinates)
       }
       this.map.addSource(sourceId, sourceJSON)
     }

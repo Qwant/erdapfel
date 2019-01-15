@@ -25,10 +25,15 @@ export default class RoadMapPanel {
     this.panel.toggleClassName(0, `#itinerary_leg_detail_${i}`, 'itinerary_leg_detail--hidden')
   }
 
-  preview(route, step) {
-    this.step = this.routes[0].legs[route].steps[step];
-    this.routes = []
+  preview(options) {
+    this.route_number = options.route;
+    this.step_number = options.step;
+    this.step = this.routes[0].legs[this.route_number].steps[this.step_number];
+    //this.routes = []
+    this.showPreview = true;
     this.panel.update()
+    document.querySelectorAll(".itinerary_fields")[0].style.display = "none";
+    document.querySelectorAll(".itinerary_vehicles")[0].style.display = "none";
   }
 
   duration (sec, isDisplaySeconds) {

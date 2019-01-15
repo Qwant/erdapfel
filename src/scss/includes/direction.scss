@@ -650,6 +650,7 @@
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     min-height: 86px;
     padding: 0 10px 10px;
+    width: calc(100% - 30px);
   }
   
   .itinerary_roadmap_icon {
@@ -698,6 +699,10 @@
     border-right: 1px solid #f4f6fa;
     background: url("../images/direction_icons/chevron-right.svg") no-repeat center center;
     background-size: 24px 24px;
+  }
+
+  .itinerary_mobile_step_button_disabled {
+    background-color: #ddd;
   }
 
   .service_panel_mobile__direction {
