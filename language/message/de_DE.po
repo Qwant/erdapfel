@@ -1,20 +1,19 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
-# Jannik Vieten <me@exploide.net>, 2018
-#
+# Jannik Vieten <me@exploide.net>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-10 09:54+0100\n"
+"POT-Creation-Date: 2019-01-14 12:36+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Jannik Vieten <me@exploide.net>, 2018\n"
-"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/"
-"teams/89416/de_DE/)\n"
-"Language: de_DE\n"
+"Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
+"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -70,11 +69,17 @@ msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
 msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
+msgid "Open 24/7"
+msgstr "24/7 geöffnet"
+
+msgid "until {nextTransitionTime}"
+msgstr "bis {nextTransitionTime}"
+
 msgid "accessories shop"
 msgstr "Zubehörshop "
 
 msgid "airport"
-msgstr ""
+msgstr "Flughafen"
 
 msgid "liquor store"
 msgstr "Spirituosengeschäft"
@@ -86,7 +91,7 @@ msgid "antiques shop"
 msgstr "Antiquitätengeschäft "
 
 msgid "aquarium"
-msgstr ""
+msgstr "Aquarium"
 
 msgid "archery"
 msgstr "Bogenschießen"
@@ -302,7 +307,7 @@ msgid "erotic shop"
 msgstr "Erotikshop"
 
 msgid "escape game"
-msgstr ""
+msgstr "Escape Game"
 
 msgid "fabric"
 msgstr "Bau"
@@ -362,7 +367,7 @@ msgid "gymnastics"
 msgstr "turnen"
 
 msgid "hackerspace"
-msgstr ""
+msgstr "Hackerspace"
 
 msgid "hairdresser"
 msgstr "Friseur"
@@ -682,25 +687,11 @@ msgstr "Yoga"
 msgid "zoo"
 msgstr "Zoo"
 
-msgid "until {nextTransitionTime}"
-msgstr "bis {nextTransitionTime}"
-
-msgid "FAVORITES"
-msgstr "FAVORITEN"
-
-msgid "Beers"
-msgstr "Bier"
-
-msgid "Internet access"
-msgstr "Internetzugang"
-
-msgid "WiFi"
-msgstr "Wi-Fi"
-
 msgid "Favorite places"
 msgstr "Lieblingsorte"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
 "auf einen Ort klicken"
@@ -717,53 +708,23 @@ msgstr "Löschen"
 msgid "filter"
 msgstr "Filter"
 
-msgid "Géolocation not available."
-msgstr "Geolokalisierung nicht verfügbar."
+msgid "Register masq"
+msgstr "Verzeichnis maskieren"
 
-msgid "You did not allow Qwant Maps to access your position."
-msgstr "Sie haben Qwant Maps keinen Zugriff auf Ihren Standort erlaubt. "
+msgid "We use MASQ to keep your preference data safe"
+msgstr "Zum Schutz Ihrer Präferenzdaten nutzen wir MASQ"
 
-msgid "OK"
-msgstr "O.k."
-
-msgid "Geolocation with privacy!"
-msgstr "Geolokalisierung mit Privatsphäre!"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den "
-"Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
-"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}"
-"angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir "
-"wollen keine Ihrer Aufenthaltsorte wissen."
-
-msgid "Ok, I've got it."
-msgstr "Okay, ich habe es verstanden."
-
-msgid "Accessibility"
-msgstr "Barrierefreiheit"
-
-msgid "Open 24/7"
-msgstr ""
-
-msgid "Services & information"
-msgstr "Dienstleistungen und Information"
-
-msgid "Read more on Wikipedia"
-msgstr "Auf Wikipedia weiterlesen"
-
-msgid "Read more on Wikidata"
-msgstr "Erfahren Sie mehr bei Wikidata"
+msgid "Register"
+msgstr "Verzeichnis"
 
 msgid "SEE MORE"
 msgstr "ZEIGE MEHR"
 
 msgid "Back to favorite"
 msgstr "Zurück zu Favoriten"
+
+msgid "FAVORITES"
+msgstr "FAVORITEN"
 
 msgid "SHARE"
 msgstr "TEILEN"
@@ -774,14 +735,26 @@ msgstr "Qwant Maps nutzt OpenStreetMap"
 msgid "ABOUT THE PROJECT"
 msgstr "ÜBER DAS PROJEKT"
 
-msgid "Register masq"
-msgstr "Verzeichnis maskieren"
+msgid "Accessibility"
+msgstr "Barrierefreiheit"
 
-msgid "We use MASQ to keep your preference data safe"
-msgstr "Zum Schutz Ihrer Präferenzdaten nutzen wir MASQ"
+msgid "Beers"
+msgstr "Bier"
 
-msgid "Register"
-msgstr "Verzeichnis"
+msgid "Internet access"
+msgstr "Internetzugang"
+
+msgid "WiFi"
+msgstr "Wi-Fi"
+
+msgid "Services & information"
+msgstr "Dienstleistungen und Information"
+
+msgid "Read more on Wikipedia"
+msgstr "Auf Wikipedia weiterlesen"
+
+msgid "Read more on Wikidata"
+msgstr "Erfahren Sie mehr bei Wikidata"
 
 msgid "Qwant Maps services"
 msgstr "Qwant Maps-Dienste"
@@ -806,3 +779,27 @@ msgstr "AUF  FACEBOOK TEILEN"
 
 msgid "SHARE ON TWITTER"
 msgstr "AUF TWITTER TEILEN"
+
+msgid "Geolocation with privacy!"
+msgstr "Geolokalisierung mit Privatsphäre!"
+
+msgid ""
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir wollen keine Ihrer Aufenthaltsorte wissen."
+
+msgid "Ok, I've got it."
+msgstr "Okay, ich habe es verstanden."
+
+msgid "Géolocation not available."
+msgstr "Geolokalisierung nicht verfügbar."
+
+msgid "You did not allow Qwant Maps to access your position."
+msgstr "Sie haben Qwant Maps keinen Zugriff auf Ihren Standort erlaubt. "
+
+msgid "OK"
+msgstr "O.k."
