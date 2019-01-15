@@ -479,6 +479,8 @@
     width: 100%;
     background: url("../images/direction_icons/top_mobile.svg") #f4f6fa no-repeat center top;
     background-size: 100% auto;
+    position: fixed;
+    z-index: 5;
   }
   
   .itinerary_title {
@@ -709,5 +711,9 @@
     background: #fff;
     box-shadow: rgba(0, 0, 0, .16) 1px 1px 6px;
     font-size: 24px;
+  }
+
+  .autocomplete_suggestions {
+    z-index: 10 !important;
   }
 }
