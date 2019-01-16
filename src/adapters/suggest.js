@@ -13,6 +13,7 @@ export default class Suggest {
     this.historyPromise = null
     this.suggestList = []
     this.pending = false
+    this.onSelect = onSelect
 
     this.prefixes = prefixes
 
@@ -79,19 +80,37 @@ export default class Suggest {
         const itemId = item.getAttribute('data-id')
         let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
         if(prefixPoint) {
-          onSelect(prefixPoint)
+          this.onSelect(prefixPoint)
         } else {
           let poi = items.find(poi => poi.id === itemId)
-          onSelect(poi)
+          this.onSelect(poi)
         }
         this.searchInputDomHandler.blur()
 
-      },
+      }
     })
 
     this.searchInputDomHandler.onkeydown = (event) => {
       if (event.keyCode !== 13) { /* prevent enter key */
         this.pending = true
+      }
+    }
+  }
+
+  async onSubmit() {
+    this.searchInputDomHandler.blur()
+    if(this.pending) {
+      let term = this.searchInputDomHandler.value
+      let suggestList = await BragiPoi.get(term)
+      if (suggestList.length > 0) {
+        let firstPoi = suggestList[0]
+        this.onSelect(firstPoi)
+      }
+    } else {
+      if (this.suggestList && this.suggestList.length > 0
+        && this.searchInputDomHandler.value
+        && this.searchInputDomHandler.value.length > 0) {
+        this.onSelect(this.suggestList[0])
       }
     }
   }

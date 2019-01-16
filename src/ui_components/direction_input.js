@@ -4,13 +4,18 @@ import Suggest from "../adapters/suggest";
 const GEOLOCALISATION_SELECTOR = 'geolocalisation'
 
 export default class DirectionInput {
-  constructor(tagSelector, select) {
+  constructor(tagSelector, select, submitHandler) {
     this.select = select
     let prefixes = [
       {id : GEOLOCALISATION_SELECTOR, render : this.renderGeolocailsation}
     ]
 
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes)
+
+    listen(submitHandler, () => {
+      this.suggest.onSubmit()
+    })
+
   }
 
   selectItem(selectedPoi) {
