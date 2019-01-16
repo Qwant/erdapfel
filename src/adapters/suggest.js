@@ -94,8 +94,6 @@ export default class Suggest {
         this.pending = true
       }
     }
-
-
   }
 
   destroy() {

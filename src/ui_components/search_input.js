@@ -13,7 +13,7 @@ export default class SearchInput {
         let suggestList = await BragiPoi.get(term)
         if (suggestList.length > 0) {
           let firstPoi = suggestList[0]
-          this.suggest.select(firstPoi)
+          this.selectItem(firstPoi)
         }
       } else {
         if (this.suggest.suggestList && this.suggest.suggestList.length > 0

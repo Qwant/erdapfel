@@ -65,8 +65,10 @@ export default class DirectionPanel {
   }
 
   cleanDirection() {
-    this.startInput.destroy()
-    this.endInput.destroy()
+    if(this.startInput && this.endInput) {
+      this.startInput.destroy()
+      this.endInput.destroy()
+    }
   }
 
   close() {
