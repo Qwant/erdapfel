@@ -5,8 +5,6 @@ import PanelManager from '../../proxies/panel_manager'
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
 
-
-
 export default class DirectionPanel {
   constructor() {
     this.panel = new Panel(this, directionTemplate)
@@ -27,8 +25,8 @@ export default class DirectionPanel {
     let startHandler = '#itinerary_input_start'
     let destinationHandler = '#itinerary_input_end'
 
-    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi))
-    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi))
+    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi), 'submit_direction_start')
+    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi), 'submit_direction_end')
   }
 
   setVehicle(vehicle) {
