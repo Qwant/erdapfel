@@ -1,4 +1,5 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
+import Direction from "./poi/direction_poi";
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
 
@@ -58,7 +59,8 @@ export default class SceneDirection {
         .setLngLat([this.end.latLon.lng, this.end.latLon.lat])
         .addTo(this.map)
 
-      fire('fit_map', {bbox : this.computeBBox(mainRoute)}, {sidePanelOffset : true})
+      let directionPoi = new Direction(this.computeBBox(mainRoute))
+      fire('fit_map', directionPoi, {sidePanelOffset : true})
 
     }
   }
@@ -82,8 +84,6 @@ export default class SceneDirection {
   }
 
   showPolygon(route) {
-    console.log(this.routeCounter++, route.isActive, route.id)
-
     const geojson = {
       "id": `route_${route.id}`,
       "type": "line",

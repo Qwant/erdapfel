@@ -7,13 +7,6 @@ export default class MapDirection {
       console.log(options)
       this.scene.mb.addLayer(this.getGeoJSONPolygon(polygon, color))
     })
-
-    listen('direction_fit_bounds', (bounds) => {
-
-    })
-
-
-
   }
 
   getGeoJSONPolygon(polygon, color) {
@@ -40,7 +33,7 @@ export default class MapDirection {
         "line-color": color,
         "line-width": 5
       }
-    };
+    }
   }
 
 }

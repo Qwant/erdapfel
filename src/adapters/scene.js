@@ -14,6 +14,7 @@ import getStyle from "./scene_config";
 import SceneState from "./scene_state";
 import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
+import DirectionPoi from "./poi/direction_poi";
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -148,7 +149,7 @@ Scene.prototype.fitMap = function(poi, options = {}) {
     if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
       padding.left += layout.sizes.panelWidth
     }
-    if(poi.getLngLat && this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
+    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
       this.mb.fitBounds(poi.bbox, {padding : padding})
     } else {
       this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
@@ -202,9 +203,14 @@ Scene.prototype.isWindowedPoi = function(poi) {
   let windowBounds = this.mb.getBounds()
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray()
-  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
-  windowBounds.extend(poiCenter)
-  return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+  if(poi instanceof DirectionPoi) {
+    windowBounds.extend(poi.bbox.getCenter())
+    return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+  } else {
+    let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
+    windowBounds.extend(poiCenter)
+    return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+  }
 }
 
 /* private */

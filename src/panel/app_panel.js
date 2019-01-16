@@ -13,12 +13,14 @@ import nconf from "@qwant/nconf-getter"
 import DirectionPanel from './direction/direction_panel'
 
 const performanceEnabled = nconf.get().performance.enabled
+const directionEnabled = nconf.get().direction.enabled
 import Telemetry from "../libs/telemetry";
 
 
 
 function AppPanel(parent) {
   new TopBar()
+  this.directionEnabled = directionEnabled
   this.searchInput = new SearchInput('#search')
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
