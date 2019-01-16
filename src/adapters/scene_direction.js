@@ -28,6 +28,10 @@ export default class SceneDirection {
       })
       this.map.moveLayer(`route_${mainRouteId}`)
     })
+
+    listen('zoom_step', (step) => {
+      fire('fit_map', {bbox : this.computeBBox(step)}, {sidePanelOffset : true})
+    })
   }
 
   displayRoute() {
@@ -130,9 +134,9 @@ export default class SceneDirection {
     }
   }
 
-  computeBBox(route) {
+  computeBBox(routeOrStep) {
     let bounds = new LngLatBounds()
-    route.geometry.coordinates.forEach((coordinate) => {
+    routeOrStep.geometry.coordinates.forEach((coordinate) => {
       bounds.extend(new LngLat(coordinate[0], coordinate[1]))
     })
 
