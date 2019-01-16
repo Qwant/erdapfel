@@ -12,6 +12,9 @@ import HotLoadPoi from "./poi/hotload_poi";
 import Store from '../adapters/store'
 import getStyle from "./scene_config";
 import SceneState from "./scene_state";
+import MapDirection from './map_direction'
+import SceneDirection from './scene_direction'
+import DirectionPoi from "./poi/direction_poi";
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -74,6 +77,9 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
+    new SceneDirection(this.mb)
+    new MapDirection(this)
+
     if(performanceEnabled) {
       window.times.mapLoaded = Date.now()
     }
@@ -197,9 +203,14 @@ Scene.prototype.isWindowedPoi = function(poi) {
   let windowBounds = this.mb.getBounds()
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray()
-  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
-  windowBounds.extend(poiCenter)
-  return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+  if(poi instanceof DirectionPoi) {
+    windowBounds.extend(poi.bbox.getCenter())
+    return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+  } else {
+    let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
+    windowBounds.extend(poiCenter)
+    return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+  }
 }
 
 /* private */

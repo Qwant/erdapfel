@@ -22,7 +22,7 @@ PoiPopup.prototype.init = function(map) {
 
 PoiPopup.prototype.addListener = function(layer) {
   this.map.on('mouseenter', layer, (e) => {
-    if(Device.isMobile(e) || isTouchEvent(e)) {
+    if(Device.isMobile() || isTouchEvent(e)) {
       return
     }
     this.timeOutHandler = setTimeout(() => {

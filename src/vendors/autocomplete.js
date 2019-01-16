@@ -118,7 +118,7 @@ var autoComplete = (function(){
         if (!over_sb) {
           that.last_val = that.value;
           that.sc.style.display = 'none';
-          setTimeout(function(){ that.sc.style.display = 'none'; }, 350); // hide suggestions on fast input
+          setTimeout(function(){ that.sc.style.display = 'none'; }, 350); // hide suggestions on fast select
         }
       };
       addEvent(that, 'blur', that.blurHandler);

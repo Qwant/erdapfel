@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/24x24/sharp-left</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M17,8.4 L8.4,17 L12.753418,17 C13.3057027,17 13.753418,17.4477153 13.753418,18 C13.7534179,18.5522847 13.3057027,19 12.753418,19 L5.99999967,19.0000004 C5.44771492,19.0000004 4.99999966,18.5522851 4.99999964,18.0000004 L4.99999996,11.057251 C4.99999998,10.5049662 5.44771524,10.057251 6,10.057251 C6.55228475,10.057251 7,10.5049662 7,11.057251 L7,15.6 L17.3,5.3 C17.7,4.9 18.3,4.9 18.7,5.3 C18.9,5.5 19,5.75 19,6 L19,17.6835938 C19,18.2835938 18.6,18.6835937 18,18.6835937 C17.4,18.6835937 17,18.2835938 17,17.6835938 L17,8.4 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons/24x24/sharp-left" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <g id="Mixins/Colors/UI/1-Darkblue" mask="url(#mask-2)" fill="#353C52">
+            <rect id="Mixins/Colors/Darkblue" x="0" y="0" width="24" height="24"></rect>
+        </g>
+    </g>
+</svg>

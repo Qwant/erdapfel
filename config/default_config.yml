@@ -53,3 +53,8 @@ performance:
 
 telemetry:
   enabled: true
+
+direction:
+  enabled: false
+  service:
+    token: override_by_environment

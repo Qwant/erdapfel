@@ -53,8 +53,11 @@
     <script>
       /* Autocomplete */
       document.onkeydown = function(e) {
-        if(!e.shiftKey && !e.ctrlKey)
-          document.getElementById('search').focus()
+        if(!e.shiftKey && !e.ctrlKey) {
+          if(document.activeElement && document.activeElement.tagName !== 'INPUT') {
+            document.getElementById('search').focus()
+          }
+        }
       }
 
       /* Progress */
