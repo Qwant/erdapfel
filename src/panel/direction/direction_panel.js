@@ -36,21 +36,21 @@ export default class DirectionPanel {
   }
 
   invertStartEnd() {
-    let tmp = this.end
-    this.end = this.start
-    this.start = tmp
-    this.startInput.setPoi(this.start)
-    this.endInput.setPoi(this.end)
+    let startValue = this.startInput.getValue()
+    let endValue = this.endInput.getValue()
+    this.startInput.setValue(endValue)
+    this.endInput.setValue(startValue)
+    this.startSearch()
   }
 
   selectStart(poi) {
     this.start = poi
-    this.select()
+    this.startSearch()
   }
 
   selectEnd(poi) {
     this.end = poi
-    this.select()
+    this.startSearch()
   }
 
   /* panel manager implementation */
@@ -83,7 +83,7 @@ export default class DirectionPanel {
     this.initDirection()
   }
 
-  async select() {
+  async startSearch() {
 
     if (this.start && this.end) {
       let directionResponse = await DirectionApi.search(this.start, this.end, this.vehicle)

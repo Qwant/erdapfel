@@ -18,7 +18,7 @@
             <div class="itinerary_autocomplete" id="itinerary_autocomplete_end"></div>
           </div>
         </form>
-        <div class="itinerary_invert_start_end {{= click(this.invertStartEnd, this) }}" title="{{= _('Invert start and end', 'direction') }}"></div>
+        <div class="itinerary_invert_start_end" {{= click(this.invertStartEnd, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
       </div>
     </div>
     <div class="itinerary_vehicles">

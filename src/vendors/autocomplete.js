@@ -258,6 +258,14 @@ var autoComplete = (function(){
         that = null;
       }
     };
+
+    this.getValue = function () {
+      return that.value
+    };
+    
+    this.setValue = function (value) {
+      that.value = value
+    }
   }
   return autoComplete;
 })();

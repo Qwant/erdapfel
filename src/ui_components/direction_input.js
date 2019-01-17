@@ -37,6 +37,14 @@ export default class DirectionInput {
     }
   }
 
+  getValue() {
+    return this.suggest.getValue()
+  }
+
+  setValue(value) {
+    this.suggest.setValue(value)
+  }
+
   renderGeolocailsation() {
     return `
       <div data-id="${GEOLOCALISATION_SELECTOR}" data-val="${_('Your position', 'direction')}" class="autocomplete_suggestion itinerary_suggest_your_position">
