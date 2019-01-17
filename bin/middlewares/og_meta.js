@@ -1,9 +1,6 @@
 const request = require('request')
 
-const ogMetas = [
-  {name : 'site_name', content : 'Qwant Maps'},
-  {name : 'image', content : './statics/images/qwant-logo.svg'}
-]
+
 
 module.exports = function(config) {
   // Use url from server config if defined
@@ -39,7 +36,9 @@ module.exports = function(config) {
   }
 
   function commonMeta(locale, req, res) {
-    res.locals.ogMetas = ogMetas.map(meta => meta)
+    res.locals.ogMetas = []
+    res.locals.ogMetas.push({name : 'site_name', content : 'Qwant Maps'})
+    res.locals.ogMetas.push({name : 'image', content : `${config.server.hostName}${config.system.baseUrl}statics/images/qwant-logo.svg`})
     res.locals.ogMetas.push({name : 'locale', content : locale.locale})
     res.locals.ogMetas.push({name : 'description', content : res.locals. _('The map that respects your privacy')})
   }
