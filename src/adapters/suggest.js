@@ -131,6 +131,14 @@ export default class Suggest {
     return `<h3 class="autocomplete_suggestion__category_title">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`
   }
 
+  getValue() {
+    return this.autocomplete.getValue()
+  }
+
+  setValue(value) {
+    this.autocomplete.setValue(value)
+  }
+
   /* select sub template */
   renderItem(poi) {
     let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
