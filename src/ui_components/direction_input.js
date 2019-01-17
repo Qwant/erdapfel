@@ -6,6 +6,7 @@ const GEOLOCALISATION_SELECTOR = 'geolocalisation'
 export default class DirectionInput {
   constructor(tagSelector, select, submitHandler) {
     this.select = select
+    this.submitHandler = submitHandler
     let prefixes = [
       {id : GEOLOCALISATION_SELECTOR, render : this.renderGeolocailsation}
     ]
@@ -13,10 +14,11 @@ export default class DirectionInput {
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes)
     this.suggest.preRender()
 
-    listen(submitHandler, () => {
-      this.suggest.onSubmit()
-    })
+    this.listenHandler = listen(submitHandler, () => this.onSubmit())
+  }
 
+  onSubmit() {
+    this.suggest.onSubmit()
   }
 
   selectItem(selectedPoi) {
@@ -25,7 +27,7 @@ export default class DirectionInput {
         let lat = position.coords.latitude
         let lng = position.coords.longitude
         this.select(new Poi(GEOLOCALISATION_SELECTOR, 'geolocalisation', null, null, {lat, lng}))
-      });
+      })
       return
     }
     this.select(selectedPoi)
@@ -33,6 +35,7 @@ export default class DirectionInput {
 
   destroy() {
     if(this.suggest) {
+      unListen(this.listenHandler)
       this.suggest.destroy()
       this.suggest = null
     }
