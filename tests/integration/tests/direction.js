@@ -9,6 +9,7 @@ const mockMapBox = require('../../__data__/mapbox')
 let browser
 let page
 let responseHandler
+
 beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
@@ -47,13 +48,13 @@ test('switch start end', async () => {
 
 test('simple search', async () => {
   expect.assertions(1)
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=test/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/)
   responseHandler.addPreparedResponse(mockMapBox, /api.mapbox.com/)
   await showDirection(page)
 
-  await page.type('#itinerary_input_start', 'test')
+  await page.type('#itinerary_input_start', 'direction')
   await page.keyboard.press('Enter')
-  await page.type('#itinerary_input_end', 'test')
+  await page.type('#itinerary_input_end', 'direction')
 
   await page.keyboard.press('Enter')
 
@@ -62,16 +63,9 @@ test('simple search', async () => {
   expect(leg0).not.toBeNull()
 })
 
-
-
-afterEach(async () => {
-  await clearStore(page)
-})
-
 afterAll(async () => {
-  //await browser.close()
+  await browser.close()
 })
-
 
 const showDirection = async (page) => {
   await page.goto(APP_URL)
