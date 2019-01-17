@@ -86,7 +86,6 @@ export default class Suggest {
           this.onSelect(poi)
         }
         this.searchInputDomHandler.blur()
-
       }
     })
 
@@ -117,6 +116,10 @@ export default class Suggest {
 
   destroy() {
     this.autocomplete.destroy()
+  }
+
+  preRender() {
+    this.autocomplete.preRender(this.prefixes)
   }
 
   prefixesRender() {

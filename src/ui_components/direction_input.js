@@ -11,6 +11,7 @@ export default class DirectionInput {
     ]
 
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes)
+    this.suggest.preRender()
 
     listen(submitHandler, () => {
       this.suggest.onSubmit()

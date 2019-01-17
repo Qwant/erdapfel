@@ -259,6 +259,11 @@ var autoComplete = (function(){
       }
     };
 
+    this.preRender = function () {
+      that.sc.innerHTML = o.renderItems([])
+      that.updateSC(true)
+    }
+
     this.getValue = function () {
       return that.value
     };
