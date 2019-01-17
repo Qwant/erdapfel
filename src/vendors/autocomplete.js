@@ -259,6 +259,10 @@ var autoComplete = (function(){
       }
     };
 
+    this.cancel = function () {
+      cancelObsolete()
+    }
+
     this.preRender = function () {
       that.sc.innerHTML = o.renderItems([])
       that.updateSC(true)

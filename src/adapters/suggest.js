@@ -97,19 +97,21 @@ export default class Suggest {
   }
 
   async onSubmit() {
-    this.searchInputDomHandler.blur()
     if(this.pending) {
+      this.autocomplete.cancel()
       let term = this.searchInputDomHandler.value
       let suggestList = await BragiPoi.get(term)
       if (suggestList.length > 0) {
         let firstPoi = suggestList[0]
         this.onSelect(firstPoi)
+        this.searchInputDomHandler.blur()
       }
     } else {
       if (this.suggestList && this.suggestList.length > 0
         && this.searchInputDomHandler.value
         && this.searchInputDomHandler.value.length > 0) {
         this.onSelect(this.suggestList[0])
+        this.searchInputDomHandler.blur()
       }
     }
   }
