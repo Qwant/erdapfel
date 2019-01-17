@@ -1,5 +1,5 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
-import Direction from "./poi/direction_poi";
+import Direction from "./poi/specials/direction_poi";
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
 
