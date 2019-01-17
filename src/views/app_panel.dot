@@ -2,6 +2,9 @@
   <div class="favorite_poi_panel__container">
     {{= this.favoritePanel.render() }}
     {{= this.poiPanel.render() }}
+    {{? this.directionEnabled }}
+      {{= this.directionPanel.render() }}
+    {{?}}
   </div>
   {{= this.servicePanel.render() }}
 </div>

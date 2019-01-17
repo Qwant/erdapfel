@@ -4,9 +4,12 @@ import nconf from '@qwant/nconf-getter'
 
 const serviceConfigs = nconf.get().services
 const geocoderUrl = serviceConfigs.geocoder.url
-
+if(!window.__bragiCache) {
+  window.__bragiCache = {}
+}
 export default class BragiPoi extends Poi {
   constructor(feature) {
+
     let poiClassText = ''
     let poiSubclassText = ''
 
@@ -32,17 +35,38 @@ export default class BragiPoi extends Poi {
 
     /* generate name corresponding to poi type */
     let name = ''
+    let alternativeName = ''
     let adminLabel = ''
     const resultType = feature.properties.geocoding.type
+
+    let postcode
+    if(feature.properties.geocoding.postcode) {
+      postcode = feature.properties.geocoding.postcode.split(';')[0]
+    }
+    let city = feature.properties.geocoding.city
+    let country = feature.properties.geocoding.administrative_regions.find((administrativeRegion) =>
+      administrativeRegion.zone_type === 'country'
+    )
+    let countryName
+    if (country) {
+      countryName = country.name
+    }
+
     switch (resultType) {
       case 'poi':
         name = feature.properties.geocoding.name
+        alternativeName = addressLabel
         break
       case 'house':
         name = feature.properties.geocoding.name
+
+        alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ')
+
         break
       case 'street':
         name = feature.properties.geocoding.name
+        alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ')
+
         break
       default: /* admin */
         let splitPosition = feature.properties.geocoding.label.indexOf(',')
@@ -54,45 +78,52 @@ export default class BragiPoi extends Poi {
         }
         if (nameFragments.length > 1) {
           name = nameFragments[0]
-          adminLabel = nameFragments[1]
+          alternativeName = nameFragments[1]
         } else {
           name = feature.properties.geocoding.label
+          alternativeName = ''
         }
     }
 
-    super(feature.properties.geocoding.id, name, resultType, {
+    super(feature.properties.geocoding.id, name, alternativeName,resultType, {
       lat: feature.geometry.coordinates[1],
       lng: feature.geometry.coordinates[0]
     }, poiClassText, poiSubclassText)
     /* extract custom data for autocomplete */
     this.value = feature.properties.geocoding.label
-    this.addressLabel = addressLabel
     this.adminLabel = adminLabel
-    if(feature.properties.geocoding.postcode) {
-      this.postcode = feature.properties.geocoding.postcode.split(';')[0]
-    }
+
     this.city = feature.properties.geocoding.city
     /* extract country */
-    let country = feature.properties.geocoding.administrative_regions.find((administrativeRegion) =>
-      administrativeRegion.zone_type === 'country'
-    )
-    if (country) {
-      this.countryName = country.name
-    }
+
     /* extract bbox */
     if (feature.properties.geocoding.bbox) {
       this.bbox = feature.properties.geocoding.bbox
     }
   }
 
+
+
   static get(term) {
+    /* cache */
+    if(term in window.__bragiCache) {
+      let cachePromise = new Promise((resolve) => {
+         resolve(window.__bragiCache[term])
+      })
+      cachePromise.abort = () => {}
+      return cachePromise
+    }
+
+    /* ajax */
     let suggestsPromise
     let queryPromise = new Promise(async (resolve, reject) => {
       suggestsPromise = ajax.get(geocoderUrl, {q: term})
       suggestsPromise.then((suggests) => {
-        resolve(suggests.features.map((feature) => {
+        let bragiResponse = suggests.features.map((feature) => {
           return new BragiPoi(feature)
-        }))
+        })
+        window.__bragiCache[term] = bragiResponse
+        resolve(bragiResponse)
       }).catch((error) => {
         if(error === 0) { /* abort */
           resolve(null)

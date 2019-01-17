@@ -48,6 +48,16 @@ PanelManager.loadPoiById = async function(id, options) {
   }
 }
 
+PanelManager.toggleDirection = async function () {
+  __panel_manager.panels.find((panel) => {
+    if(panel.isDirectionPanel) {
+      panel.toggle()
+    } else if(panel.active) {
+      panel.close()
+    }
+  })
+}
+
 PanelManager.toggleFavorite = async function () {
   __panel_manager.panels.find((panel) => {
     if(panel.isFavoritePanel) {

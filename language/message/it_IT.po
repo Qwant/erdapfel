@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 16:25+0100\n"
+"POT-Creation-Date: 2019-01-10 09:54+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/"
@@ -68,12 +68,6 @@ msgstr "Non sono presenti bagni accessibili alle sedie a rotelle"
 
 msgid "The map that respects your privacy"
 msgstr "La mappa che rispetta la tua privacy"
-
-msgid "Open 24/7"
-msgstr ""
-
-msgid "until {nextTransitionTime}"
-msgstr "fino a {nextTransitionTime}"
 
 msgid "accessories shop"
 msgstr "negozio di accessori"
@@ -687,6 +681,21 @@ msgstr "yoga"
 msgid "zoo"
 msgstr "zoo"
 
+msgid "until {nextTransitionTime}"
+msgstr "fino a {nextTransitionTime}"
+
+msgid "FAVORITES"
+msgstr "PREFERITI"
+
+msgid "Beers"
+msgstr "Birre"
+
+msgid "Internet access"
+msgstr "Accesso internet"
+
+msgid "WiFi"
+msgstr "WiFi"
+
 msgid "Favorite places"
 msgstr "Luoghi preferiti"
 
@@ -707,23 +716,53 @@ msgstr "Cancella"
 msgid "filter"
 msgstr "filtra"
 
-msgid "Register masq"
-msgstr "Registra masq"
+msgid "Géolocation not available."
+msgstr "Geolocalizzazione non disponibile."
 
-msgid "We use MASQ to keep your preference data safe"
-msgstr "Useremo MASQ per tenere al sicuro i dati sulle tue preferenze"
+msgid "You did not allow Qwant Maps to access your position."
+msgstr "Non hai permesso a Qwant Maps di accedere alla tua posizione"
 
-msgid "Register"
-msgstr "Registrati"
+msgid "OK"
+msgstr "OK"
+
+msgid "Geolocation with privacy!"
+msgstr "Geolocalizzazione con privacy!"
+
+msgid ""
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"Vuoi sapere dove ti trovi? Dai il permesso alla tua applicazione di accedere "
+"alla tua posizione in modo che te lo possa dire. Come specificato nella "
+"nostra {privacyPolicyLink} informativa sulla privacy {closeTag}, Qwant non "
+"tratterrà le informazioni sulla tua geolocalizzazione. Non vogliamo sapere "
+"la tua posizione. "
+
+msgid "Ok, I've got it."
+msgstr "Ok, ho capito."
+
+msgid "Accessibility"
+msgstr "Accessibilità"
+
+msgid "Open 24/7"
+msgstr ""
+
+msgid "Services & information"
+msgstr "Servizi e informazioni"
+
+msgid "Read more on Wikipedia"
+msgstr "Leggi altro su Wikipedia"
+
+msgid "Read more on Wikidata"
+msgstr "Leggi altro su Wikidata"
 
 msgid "SEE MORE"
 msgstr ""
 
 msgid "Back to favorite"
 msgstr "Torna ai preferiti"
-
-msgid "FAVORITES"
-msgstr "PREFERITI"
 
 msgid "SHARE"
 msgstr "CONDIVIDI"
@@ -734,26 +773,14 @@ msgstr "Qwant Maps utilizza OpenStreetMap"
 msgid "ABOUT THE PROJECT"
 msgstr "INFORMAZIONI SUL PROGETTO"
 
-msgid "Accessibility"
-msgstr "Accessibilità"
+msgid "Register masq"
+msgstr "Registra masq"
 
-msgid "Beers"
-msgstr "Birre"
+msgid "We use MASQ to keep your preference data safe"
+msgstr "Useremo MASQ per tenere al sicuro i dati sulle tue preferenze"
 
-msgid "Internet access"
-msgstr "Accesso internet"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "Services & information"
-msgstr "Servizi e informazioni"
-
-msgid "Read more on Wikipedia"
-msgstr "Leggi altro su Wikipedia"
-
-msgid "Read more on Wikidata"
-msgstr "Leggi altro su Wikidata"
+msgid "Register"
+msgstr "Registrati"
 
 msgid "Qwant Maps services"
 msgstr "Servizi Qwant Maps"
@@ -778,30 +805,3 @@ msgstr "CONDIVIDI SU FACEBOOK"
 
 msgid "SHARE ON TWITTER"
 msgstr "CONDIVIDI SU TWITTER"
-
-msgid "Geolocation with privacy!"
-msgstr "Geolocalizzazione con privacy!"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"Vuoi sapere dove ti trovi? Dai il permesso alla tua applicazione di accedere "
-"alla tua posizione in modo che te lo possa dire. Come specificato nella "
-"nostra {privacyPolicyLink} informativa sulla privacy {closeTag}, Qwant non "
-"tratterrà le informazioni sulla tua geolocalizzazione. Non vogliamo sapere "
-"la tua posizione. "
-
-msgid "Ok, I've got it."
-msgstr "Ok, ho capito."
-
-msgid "Géolocation not available."
-msgstr "Geolocalizzazione non disponibile."
-
-msgid "You did not allow Qwant Maps to access your position."
-msgstr "Non hai permesso a Qwant Maps di accedere alla tua posizione"
-
-msgid "OK"
-msgstr "OK"

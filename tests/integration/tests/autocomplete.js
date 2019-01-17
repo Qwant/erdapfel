@@ -1,4 +1,4 @@
-import {initBrowser, wait} from '../tools'
+import {clearStore, initBrowser, wait} from '../tools'
 import AutocompleteHelper from "../helpers/autocomplete";
 import ResponseHandler from "../helpers/response_handler";
 const configBuilder = require('@qwant/nconf-builder')
@@ -155,6 +155,20 @@ test('bbox & center', async () => {
   expect(center).toEqual({ lat: 1, lng: 4 })
 })
 
+test('favorite search', async () => {
+  expect.assertions(1)
+  await page.goto(APP_URL)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
+
+  await page.evaluate(() => {
+    fire('store_poi', new Poi(1, 'hello', 'second line', 'poi', {lat : 43, lng : 2}, '', '', []));
+  })
+
+  await page.keyboard.type('Hello')
+  let favTitle = await page.waitForSelector('.autocomplete_suggestion__category_title')
+  expect(favTitle).not.toBeNull()
+})
+
 
 // http://idunn_test.test/v1/pois/osm:node:4872758213?lang=fr
 test('submit key', async () =>  {
@@ -221,6 +235,10 @@ test('check template', async () => {
    let labelFragments = mockAutocompleteAllTypes.features[3].properties.geocoding.label.split(',')
    expect(lines[3][0]).toEqual(labelFragments[0])
    expect(lines[3][1]).toEqual(labelFragments.slice(1).join(',').trim())
+})
+
+afterEach(async () => {
+  await clearStore(page)
 })
 
 afterAll(async () => {

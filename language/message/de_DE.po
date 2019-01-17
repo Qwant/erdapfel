@@ -1,20 +1,19 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
-# Jannik Vieten <me@exploide.net>, 2018
-#
+# Jannik Vieten <me@exploide.net>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 16:25+0100\n"
+"POT-Creation-Date: 2019-01-14 12:36+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Jannik Vieten <me@exploide.net>, 2018\n"
-"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/"
-"teams/89416/de_DE/)\n"
-"Language: de_DE\n"
+"Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
+"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -71,7 +70,7 @@ msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
 msgid "Open 24/7"
-msgstr ""
+msgstr "24/7 geöffnet"
 
 msgid "until {nextTransitionTime}"
 msgstr "bis {nextTransitionTime}"
@@ -80,7 +79,7 @@ msgid "accessories shop"
 msgstr "Zubehörshop "
 
 msgid "airport"
-msgstr ""
+msgstr "Flughafen"
 
 msgid "liquor store"
 msgstr "Spirituosengeschäft"
@@ -92,7 +91,7 @@ msgid "antiques shop"
 msgstr "Antiquitätengeschäft "
 
 msgid "aquarium"
-msgstr ""
+msgstr "Aquarium"
 
 msgid "archery"
 msgstr "Bogenschießen"
@@ -308,7 +307,7 @@ msgid "erotic shop"
 msgstr "Erotikshop"
 
 msgid "escape game"
-msgstr ""
+msgstr "Escape Game"
 
 msgid "fabric"
 msgstr "Bau"
@@ -368,7 +367,7 @@ msgid "gymnastics"
 msgstr "turnen"
 
 msgid "hackerspace"
-msgstr ""
+msgstr "Hackerspace"
 
 msgid "hairdresser"
 msgstr "Friseur"
@@ -691,7 +690,8 @@ msgstr "Zoo"
 msgid "Favorite places"
 msgstr "Lieblingsorte"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
 "auf einen Ort klicken"
@@ -784,16 +784,13 @@ msgid "Geolocation with privacy!"
 msgstr "Geolokalisierung mit Privatsphäre!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den "
-"Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
-"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}"
-"angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir "
-"wollen keine Ihrer Aufenthaltsorte wissen."
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir wollen keine Ihrer Aufenthaltsorte wissen."
 
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."

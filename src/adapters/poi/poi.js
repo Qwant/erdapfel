@@ -6,17 +6,18 @@ import ExtendedString from "../../libs/string";
 const ZOOM_BY_POI_TYPES = [{type : 'street', zoom : 17}, {type : 'house', zoom : 19}, {type : 'poi', zoom : 18, panel: true}]
 const DEFAULT_ZOOM = 16
 
+export const POI_TYPE = 'poi'
 
 export default class Poi {
-  constructor(id, name, type, latLon, className, subClassName, tags) {
+  constructor(id, name, alternativeName, type, latLon, className, subClassName) {
     this.id = id
     this.name = name
+    this.alternativeName = alternativeName
     this.type = type
     this.latLon = latLon
     this.className = className
     this.subClassName = subClassName
-    this.tags = tags
-    this.computeZoom()
+    this.zoom = this.computeZoom()
   }
 
   getLngLat() {
@@ -32,23 +33,20 @@ export default class Poi {
       this.type === zoomType.type
     )
     if (zoomSetting) {
-      this.zoom = zoomSetting.zoom
+      return zoomSetting.zoom
     } else {
-      this.zoom = DEFAULT_ZOOM
+      return DEFAULT_ZOOM
     }
   }
 
   poiStoreLiteral() {
-    return {
-      latLon: this.latLon,
-      id: this.id,
-      name: this.name,
-      className: this.className,
-      subClassName: this.subClassName,
-      zoom: this.zoom,
-      type: 'poi',
-      bbox: this.bbox,
-    }
+    const serializeKeys = ['id', 'name', 'alternativeName', 'type', 'latLon', 'className', 'subClassName', 'zoom']
+    return Object.keys(this).reduce((poiLiteral, key) => {
+      if(serializeKeys.includes(key)) {
+        poiLiteral[key] = this[key]
+      }
+      return poiLiteral
+    }, {})
   }
 
   toUrl() {

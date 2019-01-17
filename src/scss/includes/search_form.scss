@@ -1,4 +1,5 @@
 .search_form {
+  transition: max-width .3s;
   width: calc(100% - 36px);
   max-width: 690px;
   position: relative;
@@ -9,6 +10,7 @@
   pointer-events: auto;
   @include long_shadow();
 }
+
 
 .search_form:before {
   font-weight: 600;
@@ -91,6 +93,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: $secondary_text;
   position: absolute;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .search_form__input:valid ~ .search_form__clear {
@@ -102,19 +105,25 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestions {
+  position: absolute;
+  max-height: calc(100vh - 100px);
   text-align: left;
   border-top: 0;
   background: $background;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
   margin-top: 8px;
   /* core styles should not be changed */
-  position: absolute;
   display: none;
-  overflow: hidden;
-  overflow-y: auto;
   cursor: default;
   @include long_shadow();
   @include card_radius();
+  overflow-y: auto;
+}
+
+.autocomplete_suggestion__category_title {
+  color : $primary_clear;
+  font-size: 14px;
+  padding: 10px 20px;
 }
 
 .autocomplete_address {
@@ -162,6 +171,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .autocomplete_suggestion__second_line {
+  height: 23px;
   font-size: 14px;
   margin-left: 24px;
   text-overflow:ellipsis;
@@ -185,6 +195,19 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .autocomplete_prefix {
   color : $primary_text;
+}
+
+.top_bar--small {
+  background: none;
+  .search_form {
+    max-width: 74px;
+    .search_form__action {
+      display: none;
+    }
+    .search_form__clear {
+      display: none;
+    }
+  }
 }
 
 @media (max-width: 640px) {
@@ -229,6 +252,7 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   .autocomplete_suggestions {
+    max-height: calc(100vh - 64px);
     margin-top: -1px;
   }
 

@@ -1,0 +1,57 @@
+{{? this.showRoute }}
+  {{~ this.routes:route:i }}
+    {{? this.isMobile() }}
+      <div class='itinerary_leg{{= route.isActive ? ' itinerary_leg--active' : '' }}' id='itinerary_leg'>
+        <div class=itinerary_leg_inner>
+          <div class='itinerary_leg_close' {{= click(this.close_leg, this) }}></div>
+          <div class='itinerary_leg_duration'>{{= this.duration(this.routes[0].legs[0].duration, false) }}</div>
+          <div class='itinerary_leg_distance'>{{= this.distance(this.routes[0].legs[0].distance) }}</div>
+          <div class='itinerary_leg_via'>
+            <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[0].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
+          </div>
+          <div class='itinerary_leg_preview' {{= click(this.preview, this) }}>
+            <span class='itinerary_leg_preview_icon'></span>
+              {{= _('PREVIEW', 'direction') }}
+            </div>
+        </div>
+      </div>
+    {{??}}
+      <div class="itinerary_leg {{= route.isActive ? ' itinerary_leg--active' : '' }}" id="itinerary_leg_{{= i }}" {{= click(this.toggleRoute, this, i) }}>
+        <div class=itinerary_leg_inner>
+          <div class='itinerary_leg_icon itinerary_leg_icon_{{= this.vehicle }}'></div>
+          <div class='itinerary_leg_via'>
+            <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[i].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
+            <div class='itinerary_leg_via_details' {{= click(this.toggleDetail, this, i) }}>
+              <span class='itinerary_leg_via_details_icon' id='itinerary_leg_via_details_icon_{{= i }}'>
+              </span>
+              {{= _('DETAILS', 'direction') }}
+            </div>
+          </div>
+          <div class='itinerary_leg_info'>
+            <div class='itinerary_leg_duration'>
+              {{= this.duration(this.routes[i].legs[0].duration, false) }}
+            </div>
+            <div class='itinerary_leg_distance'>
+              {{= this.distance(this.routes[i].legs[0].distance) }}
+            </div>
+          </div>
+          <div class="itinerary_leg_detail itinerary_leg_detail--hidden" id="itinerary_leg_detail_{{= i }}">
+
+            {{~ this.routes[i].legs[0].steps:step }}
+              <div class='itinerary_roadmap_step'>
+                <div class='itinerary_roadmap_icon itinerary_roadmap_icon_{{= (step.maneuver.modifier || step.maneuver.type).replace(/\s/g,"-") }}'></div>
+                  <div class=itinerary_roadmap_instruction_and_distance>
+                    <div class=itinerary_roadmap_instruction>{{= step.maneuver.instruction }}</div>
+                    <div class=itinerary_roadmap_distance>{{= this.distance(step.distance) }}</div>
+                 </div>
+              </div>
+            {{~}}
+
+          </div>
+        </div>
+      </div>
+    {{?}}
+  {{~}}
+{{??}}
+  {{= this.previewRoadMap.render() }}
+{{?}}

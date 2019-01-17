@@ -1,19 +1,32 @@
 import Poi from "./poi";
 import Store from '../../adapters/store'
+import Error from "../error";
+import Telemetry from "../../libs/telemetry";
 
 const store = new Store()
 export default class PoiStore extends Poi {
-  constructor(rawPoi) {
-    super(rawPoi.id, rawPoi.name, rawPoi.type, rawPoi.latLon, rawPoi.className, rawPoi.subClassName, rawPoi.tags)
-    this.bbox = rawPoi.bbox
+  constructor() {
+    super()
   }
 
   static async get(term) {
     let prefixes = await store.getPrefixes(term)
     return prefixes.map((historySuggest) => {
-      let poi = new PoiStore(historySuggest)
-      poi.fromHistory = true
-      return poi
+      return Object.assign(new PoiStore(), historySuggest)
+    })
+  }
+
+  static async getAll() {
+    let store = new Store()
+    let storedData
+    try {
+      storedData = await store.getAllPois()
+    } catch(e) {
+      Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
+      Error.sendOnce('favorite_panel', 'getAll', 'error getting pois', e)
+    }
+    return storedData.map((poi) => {
+      return Object.assign(new PoiStore(), poi)
     })
   }
 }
