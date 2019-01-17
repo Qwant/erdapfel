@@ -1,20 +1,25 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2019
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-14 12:36+0000\n"
+"POT-Creation-Date: 2019-01-17 12:03+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2019\n"
-"Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
+"Language-Team: Breton (France) (https://www.transifex.com/qwant-1/"
+"teams/89416/br_FR/)\n"
+"Language: br_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: br_FR\n"
-"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !"
+"=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n"
+"%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > "
+"19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 "
+"&& n % 1000000 == 0) ? 3 : 4);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
@@ -52,7 +57,7 @@ msgid "Wheelchair accessible"
 msgstr "Aezet evit ar c'hadorioù-ruilh"
 
 msgid "Partially wheelchair accessible"
-msgstr "Aezet mui pe vui evit ar c'hadorioù-ruilh"
+msgstr "Hanter-aezet evit ar c'hadorioù-ruilh"
 
 msgid "Not wheelchair accessible"
 msgstr "Diaezet evit ar c'hadorioù-ruilh"
@@ -61,7 +66,7 @@ msgid "Wheelchair accessible toilets"
 msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
 
 msgid "Partial wheelchair accessible toilets"
-msgstr "Privezioù aezet mui pe vui d'ar c'hadorioù-ruilh"
+msgstr "Privezioù hanter-aezet d'ar c'hadorioù-ruilh"
 
 msgid "No wheelchair accessible toilets"
 msgstr "Kêr-soulaj ebet aezet d'ar c'hadorioù-ruilh"
@@ -181,7 +186,7 @@ msgid "cafe"
 msgstr "kafedi"
 
 msgid "camp site"
-msgstr "tachenn kampiñ"
+msgstr "tachenn gampiñ"
 
 msgid "canoe"
 msgstr "kanoe"
@@ -193,7 +198,7 @@ msgid "car repair"
 msgstr "stal kempenn kirri"
 
 msgid "caravan site"
-msgstr "tachenn karavan"
+msgstr "tachenn garavan"
 
 msgid "carpet shop"
 msgstr "stal tapisoù"
@@ -241,7 +246,7 @@ msgid "college"
 msgstr "skolaj"
 
 msgid "community centre"
-msgstr "kreizenn kumuniezh"
+msgstr "kreizenn gumuniezh"
 
 msgid "computer shop"
 msgstr "stal urzhiataerezh"
@@ -265,7 +270,7 @@ msgid "cricket"
 msgstr "kriket"
 
 msgid "cycling"
-msgstr "sikleterezh"
+msgstr "kezeg-houarn"
 
 msgid "deli"
 msgstr "deli"
@@ -292,7 +297,7 @@ msgid "doityourself store"
 msgstr "stal grit-c'hwi-oc'h-unan"
 
 msgid "dry cleaning"
-msgstr "stal kannañ an dilhad"
+msgstr "naetaerezh"
 
 msgid "electronics shop"
 msgstr "stal traoù elektronik"
@@ -301,7 +306,7 @@ msgid "embassy"
 msgstr "kannati"
 
 msgid "equestrian"
-msgstr "kreizenn marc'hegezh"
+msgstr "kreizenn varc'hegezh"
 
 msgid "erotic shop"
 msgstr "stal traoù erotek"
@@ -367,7 +372,7 @@ msgid "gymnastics"
 msgstr " ti-jiminas"
 
 msgid "hackerspace"
-msgstr "stal hakañ"
+msgstr "hackerspace"
 
 msgid "hairdresser"
 msgstr "ficher-blev"
@@ -388,7 +393,7 @@ msgid "horse racing"
 msgstr "redadegoù kezeg"
 
 msgid "hospital"
-msgstr "hospital"
+msgstr "ospital"
 
 msgid "hostel"
 msgstr "ti ar re yaouank"
@@ -409,7 +414,7 @@ msgid "jewelry shop"
 msgstr "bravigerezh"
 
 msgid "karting"
-msgstr "kirri-tanig"
+msgstr "karrigoù-tan"
 
 msgid "kindergarten"
 msgstr "liorzh bugale"
@@ -448,7 +453,7 @@ msgid "mobile phone shop"
 msgstr "stal hezougelloù"
 
 msgid "model aerodrome"
-msgstr "nijva"
+msgstr "nijva evit gobarioù"
 
 msgid "monument"
 msgstr "monumant"
@@ -457,13 +462,13 @@ msgid "motel"
 msgstr "motel"
 
 msgid "motocross"
-msgstr "kezeg-tan kros"
+msgstr "marc'hoù-tan kros"
 
 msgid "motor"
 msgstr "keflusker"
 
 msgid "motorcycle shop"
-msgstr "stal kezeg-tan"
+msgstr "stal marc'hoù-tan"
 
 msgid "multi"
 msgstr "multi"
@@ -493,7 +498,7 @@ msgid "orienteering"
 msgstr "redadegoù-reteriñ"
 
 msgid "outdoor"
-msgstr "war ar maez"
+msgstr "stal sportoù war ar maez"
 
 msgid "paragliding"
 msgstr "bolc'haskell"
@@ -514,13 +519,13 @@ msgid "photo shop"
 msgstr "stal fotoioù"
 
 msgid "picnic site"
-msgstr "tachenn piknik"
+msgstr "tachenn biknik"
 
 msgid "place of worship"
 msgstr "lec'h azeulerezh"
 
 msgid "police"
-msgstr "polis"
+msgstr "komiserdi"
 
 msgid "post office"
 msgstr "ti-post"
@@ -535,7 +540,7 @@ msgid "public building"
 msgstr "savadur foran"
 
 msgid "rc car"
-msgstr "rc kar"
+msgstr "karr pellurzhiet"
 
 msgid "reservoir"
 msgstr "beol"
@@ -550,7 +555,7 @@ msgid "ruins"
 msgstr "dismantroù"
 
 msgid "running"
-msgstr "running"
+msgstr "redadeg war-droad"
 
 msgid "sailing"
 msgstr "bageal"
@@ -562,13 +567,13 @@ msgid "scuba diving"
 msgstr "splujerezh danvor"
 
 msgid "resale shop"
-msgstr "stal adwerzehañ"
+msgstr "stal adwerzhañ"
 
 msgid "shoes"
 msgstr "botoù"
 
 msgid "shooting"
-msgstr "shooting"
+msgstr "tennañ"
 
 msgid "skateboard"
 msgstr "skateboard"
@@ -592,7 +597,7 @@ msgid "stadium"
 msgstr "stad"
 
 msgid "station"
-msgstr "kreizenn"
+msgstr "savlec'h"
 
 msgid "stationery shop"
 msgstr "stal paperaerezh"
@@ -604,7 +609,7 @@ msgid "supermarket"
 msgstr "gourmarc'had"
 
 msgid "swimming"
-msgstr "neuial"
+msgstr "poull-neuial"
 
 msgid "swimming area"
 msgstr "zonenn neuial"
@@ -613,13 +618,13 @@ msgid "swimming pool"
 msgstr "poull-neuial"
 
 msgid "table tennis"
-msgstr "taol tennis"
+msgstr "taol dennis"
 
 msgid "tailor"
 msgstr "tailher"
 
 msgid "tattoo salon"
-msgstr "saloñs an tatooioù"
+msgstr "saloñs tatou"
 
 msgid "tennis"
 msgstr "tennis"
@@ -646,7 +651,7 @@ msgid "toys shop"
 msgstr "stal c'hoarioù"
 
 msgid "tram stop"
-msgstr "harz tram"
+msgstr "arsav tram"
 
 msgid "travel agency"
 msgstr "ajañs-veaj"
@@ -676,7 +681,7 @@ msgid "weapons shop"
 msgstr "stal armoù"
 
 msgid "warehouse club"
-msgstr "klub etrepaouez"
+msgstr "braswerzher"
 
 msgid "wine shop"
 msgstr "stal gwin"
@@ -690,10 +695,9 @@ msgstr "zoo"
 msgid "Favorite places"
 msgstr "Lec'hioù karetañ"
 
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
-"N'ho peus lec'h ebet karetañ. <br> Gellout a rit ouzhpennañ unan en ur "
+"N'ho peus lec'h karetañ ebet. <br> Gellout a rit ouzhpennañ unan en ur "
 "glikañ war ur blasenn"
 
 msgid "MY FAVORITES"
@@ -706,7 +710,7 @@ msgid "Delete"
 msgstr "Dilemel"
 
 msgid "filter"
-msgstr "Silañ"
+msgstr "silañ"
 
 msgid "Register masq"
 msgstr "Lakaat e anv e masq"
@@ -781,29 +785,55 @@ msgid "SHARE ON TWITTER"
 msgstr "RANNAÑ WAR TWITTER"
 
 msgid "Geolocation with privacy!"
-msgstr "Jeolec'hiadur ha prevezded!"
+msgstr "Douarlec'hiañ ha prevezded!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"C'hoant ho peus da c'houzout e pelec'h emaoc'h? Roit an aotre d'hoc'h arload"
-" da dizhout al lec'h m'emaoc'h evit ma c'hallfe lavaret deoc'h. Evel ma vez "
+"C'hoant ho peus da c'houzout e pelec'h emaoc'h? Roit an aotre d'hoc'h arload "
+"da dizhout al lec'h m'emaoc'h evit ma c'hallfe lavaret deoc'h. Evel ma vez "
 "lavaret en hon {privacyPolicyLink} folitikerezh prevezded {closeTag}, Qwant "
-"na stoko ket ho titouroù jeolec'hiadur. N'hallimp ket gouzout e pelec'h "
+"na stoko ket ho titouroù douarlec'hiañ. N'hallimp ket gouzout e pelec'h "
 "emaoc'h."
 
 msgid "Ok, I've got it."
 msgstr "Mat eo, deuet eo ganin."
 
 msgid "Géolocation not available."
-msgstr "Jeolec'hiadur dihegerz."
+msgstr "Douarlec'hiañ dihegerz."
 
 msgid "You did not allow Qwant Maps to access your position."
-msgstr ""
-"N'ho peus ket roet an aotre da Qwant Maps da dizhout ho jeolec'hiadur."
+msgstr "N'ho peus ket roet an aotre da Qwant Maps da dizhout ho touarlec'hiañ."
 
 msgid "OK"
 msgstr "Mat eo"
+
+msgid "return"
+msgstr "distreiñ"
+
+msgid "itinerary"
+msgstr "hent"
+
+msgid "Start point"
+msgstr "poent loc'hañ"
+
+msgid "End point"
+msgstr "poent fin"
+
+msgid "Invert start and end"
+msgstr "eilpennañ fin ha loc'hañ"
+
+msgid "Via"
+msgstr "Dre"
+
+msgid "PREVIEW"
+msgstr "RAKWEL"
+
+msgid "DETAILS"
+msgstr "MUNUDOÙ"
+
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
