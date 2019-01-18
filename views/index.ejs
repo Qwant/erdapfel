@@ -54,7 +54,9 @@
       /* Autocomplete */
       document.onkeydown = function(e) {
         if(!e.shiftKey && !e.ctrlKey) {
-          if(document.activeElement && document.activeElement.tagName !== 'INPUT') {
+          if(document.activeElement
+            && document.activeElement.tagName !== 'INPUT'
+            && !document.querySelector('.top_bar').classList.contains('top_bar--small')) {
             document.getElementById('search').focus()
           }
         }
