@@ -29,7 +29,7 @@ function PoiPanel(sharePanel) {
   this.minimalHourPanel = new MinimalHourPanel()
   this.sceneState = SceneState.getSceneState()
   PanelManager.register(this)
-  UrlState.registerResource(this, 'place')
+  UrlState.registerHash(this, 'place')
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {
