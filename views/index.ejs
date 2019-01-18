@@ -51,17 +51,6 @@
     <% } %>
     <script src="./statics/build/javascript/bundle.js"></script>
     <script>
-      /* Autocomplete */
-      document.onkeydown = function(e) {
-        if(!e.shiftKey && !e.ctrlKey) {
-          if(document.activeElement
-            && document.activeElement.tagName !== 'INPUT'
-            && !document.querySelector('.top_bar').classList.contains('top_bar--small')) {
-            document.getElementById('search').focus()
-          }
-        }
-      }
-
       /* Progress */
       const progressBar = document.querySelector('#progress-bar')
       const loaderBar = document.querySelector('#loader-bar')

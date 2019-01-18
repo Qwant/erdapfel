@@ -4,6 +4,7 @@ import DirectionInput from "../../ui_components/direction_input"
 import PanelManager from '../../proxies/panel_manager'
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
+import SearchInput from '../../ui_components/search_input'
 
 export default class DirectionPanel {
   constructor() {
@@ -70,15 +71,15 @@ export default class DirectionPanel {
   }
 
   close() {
+    SearchInput.unMinify()
     this.active = false
-    document.querySelector('.top_bar').classList.remove('top_bar--small')
     this.panel.update()
     this.cleanDirection()
   }
 
   async open() {
+    SearchInput.minify()
     this.active = true
-    document.querySelector('.top_bar').classList.add('top_bar--small')
     await this.panel.update()
     this.initDirection()
   }

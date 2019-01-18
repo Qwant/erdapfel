@@ -20,8 +20,8 @@ import Telemetry from "../libs/telemetry";
 
 function AppPanel(parent) {
   new TopBar()
+  SearchInput.initSearchInput('#search')
   this.directionEnabled = directionEnabled
-  this.searchInput = new SearchInput('#search')
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
