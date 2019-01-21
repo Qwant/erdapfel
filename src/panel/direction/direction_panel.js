@@ -4,6 +4,9 @@ import DirectionInput from "../../ui_components/direction_input"
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
 import SearchInput from '../../ui_components/search_input'
+import UrlPoi from "../../adapters/poi/url_poi";
+import PanelManager from "../../proxies/panel_manager";
+import ExtendedString from "../../libs/string"
 
 export default class DirectionPanel {
   constructor() {
@@ -18,7 +21,11 @@ export default class DirectionPanel {
     this.end = null
     this.vehicle = this.DRIVING
     this.roadMapPanel = new RoadMapPanel()
-    this.restore()
+    PanelManager.register(this)
+    this.restoreUrl()
+
+    console.log(this.start)
+    console.log(this.end)
   }
 
   initDirection() {
@@ -104,8 +111,36 @@ export default class DirectionPanel {
 
   /* urlState interface implementation */
 
-  restore() {
-    let rawGetParams = window.location.search.split('&')
-    let getParams = rawGetParams.map((rawParam) => rawParam.split('='))
+  restoreUrl() {
+    let rawGetParams = window.location.search
+    let originData = rawGetParams.match(this.buildExtractUrlRegex('origin'))
+    let destinationData = rawGetParams.match(this.buildExtractUrlRegex('destination'))
+
+    if(originData) {
+      this.start = this.parseRoute(originData)
+    }
+    if(destinationData) {
+      this.end = this.parseRoute(destinationData)
+    }
+    this.active = this.start || this.end
+  }
+
+  // private
+  parseRoute(pointData) {
+    if(pointData[1] && pointData[2]) {
+      let lat = pointData[1]
+      let lng = pointData[2]
+      let latLng = {lat : parseFloat(lat), lng : parseFloat(lng)}
+      if(pointData[4]) {
+        return new UrlPoi(latLng, ExtendedString.htmlEncode(pointData[4]))
+      } else {
+        return new UrlPoi(latLng)
+      }
+    }
+    return null
+  }
+
+  buildExtractUrlRegex(source) {
+    return new RegExp(`${source}=(-?\\d*\\.\\d*):(-?\\d*\\.\\d*)(@(.*))?`)
   }
 }
