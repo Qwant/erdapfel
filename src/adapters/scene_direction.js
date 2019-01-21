@@ -134,9 +134,9 @@ export default class SceneDirection {
     }
   }
 
-  computeBBox(routeOrStep) {
+  computeBBox(polygon) {
     let bounds = new LngLatBounds()
-    routeOrStep.geometry.coordinates.forEach((coordinate) => {
+    polygon.geometry.coordinates.forEach((coordinate) => {
       bounds.extend(new LngLat(coordinate[0], coordinate[1]))
     })
 
