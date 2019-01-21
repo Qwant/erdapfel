@@ -2,7 +2,6 @@ PORT: 3000
 
 # Server
 server:
-  hostName: https://qwant.com
   maxBodySize: '5KB' # max request body size on POST
   acceptPostedLogs: true
   acceptPostedEvents: true
