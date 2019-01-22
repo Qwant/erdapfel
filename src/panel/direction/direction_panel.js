@@ -6,32 +6,32 @@ import DirectionApi from '../../adapters/direction_api'
 import SearchInput from '../../ui_components/search_input'
 import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
-import ExtendedString from "../../libs/string"
+
+
+const startHandler = '#itinerary_input_start'
+const destinationHandler = '#itinerary_input_end'
 
 export default class DirectionPanel {
   constructor() {
     this.panel = new Panel(this, directionTemplate)
-    this.active = false
     this.isDirectionPanel = true
-    this.DRIVING = 'driving'
-    this.WALKING = 'walking'
-    this.CYCLING = 'cycling'
-
+    this.vehicles = {DRIVING : 'driving', WALKING : 'walking', CYCLING : 'cycling'}
+    this.active = false
     this.start = null
     this.end = null
-    this.vehicle = this.DRIVING
+    this.vehicle = this.vehicles.DRIVING
     this.roadMapPanel = new RoadMapPanel()
     PanelManager.register(this)
-    this.restoreUrl()
 
-    console.log(this.start)
-    console.log(this.end)
+    let getParams = new URLSearchParams(window.location.search)
+    if(getParams.get('origin') || getParams.get('destination')) {
+      this.restoreUrl(getParams).then(() => {
+        this.open()
+      })
+    }
   }
 
   initDirection() {
-    let startHandler = '#itinerary_input_start'
-    let destinationHandler = '#itinerary_input_end'
-
     this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi), 'submit_direction_start')
     this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi), 'submit_direction_end')
   }
@@ -50,17 +50,17 @@ export default class DirectionPanel {
     let tmp = this.start
     this.start = this.end
     this.end = tmp
-    this.startSearch()
+    this.searchDirection()
   }
 
   selectStart(poi) {
     this.start = poi
-    this.startSearch()
+    this.searchDirection()
   }
 
   selectEnd(poi) {
     this.end = poi
-    this.startSearch()
+    this.searchDirection()
   }
 
   /* panel manager implementation */
@@ -93,10 +93,11 @@ export default class DirectionPanel {
     this.initDirection()
   }
 
-  async startSearch() {
+  async searchDirection() {
+    if(this.start && this.end) {
 
-    if (this.start && this.end) {
       let directionResponse = await DirectionApi.search(this.start, this.end, this.vehicle)
+
       let routes = directionResponse.routes
       routes.forEach((route, i) => {
         route.isActive = i === 0
@@ -111,36 +112,29 @@ export default class DirectionPanel {
 
   /* urlState interface implementation */
 
-  restoreUrl() {
-    let rawGetParams = window.location.search
-    let originData = rawGetParams.match(this.buildExtractUrlRegex('origin'))
-    let destinationData = rawGetParams.match(this.buildExtractUrlRegex('destination'))
+  async restoreUrl(getParams) {
 
-    if(originData) {
-      this.start = this.parseRoute(originData)
+    if(getParams.get('mode')) {
+      let vehicleParam = getParams.get('mode')
+      Object.keys(this.vehicles).forEach((vehicleKey) => {
+        if(this.vehicles[vehicleKey] === vehicleParam) {
+          this.vehicle = this.vehicles[vehicleKey]
+        }
+      })
     }
-    if(destinationData) {
-      this.end = this.parseRoute(destinationData)
-    }
-    this.active = this.start || this.end
-  }
 
-  // private
-  parseRoute(pointData) {
-    if(pointData[1] && pointData[2]) {
-      let lat = pointData[1]
-      let lng = pointData[2]
-      let latLng = {lat : parseFloat(lat), lng : parseFloat(lng)}
-      if(pointData[4]) {
-        return new UrlPoi(latLng, ExtendedString.htmlEncode(pointData[4]))
-      } else {
-        return new UrlPoi(latLng)
-      }
+    if(getParams.get('origin')) {
+      this.start = await  UrlPoi.fromUrl(getParams.get('origin'))
+      document.querySelector(startHandler).value = this.start.name
     }
-    return null
-  }
+    if(getParams.get('destination')) {
+      this.end = await UrlPoi.fromUrl(getParams.get('destination'))
+      document.querySelector(destinationHandler).value = this.end.name
+    }
 
-  buildExtractUrlRegex(source) {
-    return new RegExp(`${source}=(-?\\d*\\.\\d*):(-?\\d*\\.\\d*)(@(.*))?`)
+
+    execOnMapLoaded(() => {
+      this.searchDirection()
+    })
   }
 }
