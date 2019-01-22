@@ -308,6 +308,15 @@
   margin: -10px 0 0 4px;
 }
 
+.itinerary_marker_step {
+  background: #fff;
+  width: 3px;
+  height: 3px;
+  margin: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0,0,0,.5);
+}
+
 .itinerary_roadmap_icon {
   width: 24px;
   height: 24px;

@@ -143,6 +143,91 @@ Scene.prototype.initMapBox = function () {
   })
 }
 
+Scene.prototype.isPointinBounds = function(point, bounds) {
+  var lng = (point.lng - bounds._ne.lng) * (point.lng - bounds._sw.lng) < 0;
+  var lat = (point.lat - bounds._ne.lat) * (point.lat - bounds._sw.lat) < 0;
+  return lng && lat;
+}
+
+Scene.prototype.isBBoxInExtendedviewport = function(bbox){
+
+  // Get viewport bounds
+  var viewport = this.mb.getBounds();
+
+  // Compute "width", "height"
+  var width = viewport._ne.lng - viewport._sw.lng;
+  var height = viewport._ne.lat - viewport._sw.lat;
+
+  // Compute extended viewport
+  viewport._ne.lng += width;
+  viewport._ne.lat += height;
+
+  viewport._sw.lng -= width;
+  viewport._sw.lat -= height;
+
+  // Check bounds:
+
+  // Lng between -180 and 180 (wraps: 180 + 1 = -179)
+  if(viewport._ne.lng < 180) viewport._ne.lng += 360;
+  if(viewport._ne.lng > 180) viewport._ne.lng -= 360;
+
+  if(viewport._sw.lng < 180) viewport._sw.lng += 360;
+  if(viewport._sw.lng > 180) viewport._sw.lng -= 360;
+
+  // Lat between -85 and 85 (does not wrap)
+  if(viewport._ne.lat < -85) viewport._ne.lat = -85;
+  if(viewport._ne.lat > 85) viewport._ne.lat = 85;
+
+  if(viewport._sw.lat < -85) viewport._sw.lat = -85;
+  if(viewport._sw.lat > 85) viewport._sw.lat = 85;
+
+
+  // Check if one corner of the BBox is in the extended viewport:
+
+  var bboxIsNear = false;
+
+  // ne
+  if(isPointinBounds(bbox._ne, viewport)){
+    bboxIsNear = true;
+  }
+
+  // nw
+  if(isPointinBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport)){
+    bboxIsNear = true;
+  }
+
+  // se
+  if(isPointinBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport)){
+    bboxIsNear = true;
+  }
+
+  // sw
+  if(isPointinBounds(bbox._sw, viewport)){
+    bboxIsNear = true;
+  }
+
+  return bboxIsNear
+
+}
+
+Scene.prototype.fitBBox = function(bbox){
+
+  // Compute padding
+  let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
+  if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
+    padding.left += layout.sizes.panelWidth
+  }
+
+  // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
+  var animate = false;
+  if(this.mb.getzoom > 10 && this.isBBoxInExtendedviewport(bbox)){
+    animate = true;
+  }
+  this.mb.fitBounds(poi.bbox, {padding : padding, animate: animate})
+}
+
+
+
 Scene.prototype.fitMap = function(poi, options = {}) {
   const MIN_ZOOM_FLYTO = 10
 
@@ -161,7 +246,7 @@ Scene.prototype.fitMap = function(poi, options = {}) {
     if(poi.zoom) {
       flyOptions.zoom = poi.zoom
     }
-    /* set offset for poi witch will open panel on desktop */
+    // set offset for poi witch will open panel on desktop
     if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
       flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
     }

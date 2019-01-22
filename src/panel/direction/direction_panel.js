@@ -34,6 +34,7 @@ export default class DirectionPanel {
     this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active')
     this.vehicle = vehicle
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
+    this.select()
   }
 
   invertStartEnd() {
