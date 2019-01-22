@@ -142,6 +142,7 @@ export default class Suggest {
 
   setValue(value) {
     this.autocomplete.setValue(value)
+    this.preRender(this.prefixes)
   }
 
   /* select sub template */
