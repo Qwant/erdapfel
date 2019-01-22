@@ -1,9 +1,9 @@
 #itinerary_container {
-  max-height: 100vh;
+  max-height: calc(100vh - 110px);
   overflow: visible;
   font-size: 12px;
   width: 400px;
-  background: url("../images/direction_../images/direction_icons/panel_top.svg") #f4f6fa repeat-x;
+  background: url("../images/direction_icons/panel_top.svg") #f4f6fa repeat-x;
   background-size: 100% 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
   border-radius: 3px;
@@ -93,9 +93,9 @@
 }
 
 .itinerary_vehicles {
-  height: 28px;
+  height: 55px;
   text-align: center;
-  margin: 15px;
+  padding: 15px;
 }
 
 .itinerary_button_label {
@@ -159,10 +159,10 @@
   border-left: 4px solid #ff3b4a;
 }
 
-#itinerary_roadmap {
+.itinerary_roadmap {
   background: #fff;
   overflow: auto;
-  max-height: calc(100vh - 300px);
+  max-height: calc(100vh - 290px);
 }
 
 .itinerary_leg {
@@ -170,6 +170,7 @@
   position: relative;
   cursor: pointer;
   border-left: 4px solid #fff;
+  background: #fff;
 }
 
 .itinerary_leg--active {
