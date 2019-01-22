@@ -41,6 +41,9 @@ export default class DirectionPanel {
     let endValue = this.endInput.getValue()
     this.startInput.setValue(endValue)
     this.endInput.setValue(startValue)
+    let tmp = this.start
+    this.start = this.end
+    this.end = tmp
     this.startSearch()
   }
 
