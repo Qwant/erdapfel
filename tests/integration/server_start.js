@@ -40,6 +40,7 @@ configBuilder.set('mapStyle:poiMapUrl', "[]")
 configBuilder.set('services:idunn:url', 'http://idunn_test.test')
 configBuilder.set('services:geocoder:url', `http://geocoder.test/autocomplete`)
 configBuilder.set('system:evalFiles', false)
+configBuilder.set('direction:enabled', true)
 
 const config = configBuilder.get()
 global.appServer = new App(config)

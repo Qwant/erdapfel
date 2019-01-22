@@ -14,7 +14,7 @@ import getStyle from "./scene_config";
 import SceneState from "./scene_state";
 import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
-import DirectionPoi from "./poi/direction_poi";
+import DirectionPoi from "./poi/specials/direction_poi";
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl

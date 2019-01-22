@@ -4,8 +4,7 @@ import DirectionInput from "../../ui_components/direction_input"
 import PanelManager from '../../proxies/panel_manager'
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
-
-
+import SearchInput from '../../ui_components/search_input'
 
 export default class DirectionPanel {
   constructor() {
@@ -27,8 +26,8 @@ export default class DirectionPanel {
     let startHandler = '#itinerary_input_start'
     let destinationHandler = '#itinerary_input_end'
 
-    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi))
-    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi))
+    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi), 'submit_direction_start')
+    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi), 'submit_direction_end')
   }
 
   setVehicle(vehicle) {
@@ -38,21 +37,24 @@ export default class DirectionPanel {
   }
 
   invertStartEnd() {
-    let tmp = this.end
-    this.end = this.start
-    this.start = tmp
-    this.startInput.setPoi(this.start)
-    this.endInput.setPoi(this.end)
+    let startValue = this.startInput.getValue()
+    let endValue = this.endInput.getValue()
+    this.startInput.setValue(endValue)
+    this.endInput.setValue(startValue)
+    let tmp = this.start
+    this.start = this.end
+    this.end = tmp
+    this.startSearch()
   }
 
   selectStart(poi) {
     this.start = poi
-    this.select()
+    this.startSearch()
   }
 
   selectEnd(poi) {
     this.end = poi
-    this.select()
+    this.startSearch()
   }
 
   /* panel manager implementation */
@@ -72,20 +74,20 @@ export default class DirectionPanel {
   }
 
   close() {
+    SearchInput.unMinify()
     this.active = false
-    document.querySelector('.top_bar').classList.remove('top_bar--small')
     this.panel.update()
     this.cleanDirection()
   }
 
   async open() {
+    SearchInput.minify()
     this.active = true
-    document.querySelector('.top_bar').classList.add('top_bar--small')
     await this.panel.update()
     this.initDirection()
   }
 
-  async select() {
+  async startSearch() {
 
     if (this.start && this.end) {
       let directionResponse = await DirectionApi.search(this.start, this.end, this.vehicle)

@@ -258,6 +258,23 @@ var autoComplete = (function(){
         that = null;
       }
     };
+
+    this.cancel = function () {
+      cancelObsolete()
+    }
+
+    this.preRender = function () {
+      that.sc.innerHTML = o.renderItems([])
+      that.updateSC(true)
+    }
+
+    this.getValue = function () {
+      return that.value
+    };
+    
+    this.setValue = function (value) {
+      that.value = value
+    }
   }
   return autoComplete;
 })();

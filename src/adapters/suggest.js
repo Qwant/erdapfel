@@ -13,6 +13,7 @@ export default class Suggest {
     this.historyPromise = null
     this.suggestList = []
     this.pending = false
+    this.onSelect = onSelect
 
     this.prefixes = prefixes
 
@@ -79,14 +80,13 @@ export default class Suggest {
         const itemId = item.getAttribute('data-id')
         let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
         if(prefixPoint) {
-          onSelect(prefixPoint)
+          this.onSelect(prefixPoint)
         } else {
           let poi = items.find(poi => poi.id === itemId)
-          onSelect(poi)
+          this.onSelect(poi)
         }
         this.searchInputDomHandler.blur()
-
-      },
+      }
     })
 
     this.searchInputDomHandler.onkeydown = (event) => {
@@ -96,8 +96,32 @@ export default class Suggest {
     }
   }
 
+  async onSubmit() {
+    if(this.pending) {
+      this.autocomplete.cancel()
+      let term = this.searchInputDomHandler.value
+      let suggestList = await BragiPoi.get(term)
+      if (suggestList.length > 0) {
+        let firstPoi = suggestList[0]
+        this.onSelect(firstPoi)
+        this.searchInputDomHandler.blur()
+      }
+    } else {
+      if (this.suggestList && this.suggestList.length > 0
+        && this.searchInputDomHandler.value
+        && this.searchInputDomHandler.value.length > 0) {
+        this.onSelect(this.suggestList[0])
+        this.searchInputDomHandler.blur()
+      }
+    }
+  }
+
   destroy() {
     this.autocomplete.destroy()
+  }
+
+  preRender() {
+    this.autocomplete.preRender(this.prefixes)
   }
 
   prefixesRender() {
@@ -110,6 +134,15 @@ export default class Suggest {
 
   favoritesRender(pois) {
     return `<h3 class="autocomplete_suggestion__category_title">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`
+  }
+
+  getValue() {
+    return this.autocomplete.getValue()
+  }
+
+  setValue(value) {
+    this.autocomplete.setValue(value)
+    this.preRender(this.prefixes)
   }
 
   /* select sub template */
