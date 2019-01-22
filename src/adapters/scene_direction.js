@@ -9,8 +9,9 @@ export default class SceneDirection {
     this.map = map
     this.routeCounter = 0
     this.routes = []
-    this.markerOrigin = null
-    this.markerDestination = null
+    this.markerStart = null
+    this.markerEnd = null
+    this.markersSteps = []
 
     listen('set_route', ({routes, vehicle, origin, destination, move}) => {
       this.reset()
@@ -47,6 +48,14 @@ export default class SceneDirection {
       })
       this.showPolygon(mainRoute)
 
+      // Hide previously drawn steps markers
+      if(this.markersSteps.length > 0){
+        for(var markerStep in this.markersSteps){
+          this.markersSteps[markerStep].remove()
+        }
+      }
+      this.markersSteps = []
+
       // Custom markers
       const markerOriginDom = document.createElement('div')
       markerOriginDom.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
@@ -62,6 +71,19 @@ export default class SceneDirection {
       this.markerDestination = new Marker(markerDestinationDom)
         .setLngLat([this.destination.latLon.lng, this.destination.latLon.lat])
         .addTo(this.map)
+
+      var steps = mainRoute.legs[0].steps;
+      if (this.vehicle !== "walking") {
+        for (var step in steps) {
+          const markerStep = document.createElement('div')
+          markerStep.className = 'itinerary_marker_step'
+          this.markersSteps.push(
+            new Marker(markerStep)
+                .setLngLat(steps[step].maneuver.location)
+                .addTo(this.map)
+          )
+        }
+      }
 
       let directionPoi = new Direction(this.computeBBox(mainRoute))
       if(move !== false) {
