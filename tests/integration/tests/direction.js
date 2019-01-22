@@ -63,6 +63,41 @@ test('simple search', async () => {
   expect(leg0).not.toBeNull()
 })
 
+test('route flag', async () => {
+  expect.assertions(3)
+  await page.goto(`${APP_URL}/?route=enabled`)
+
+  await page.waitForSelector('#itinerary_input_start')
+  let smallToolBar = await page.waitForSelector('.top_bar--small')
+  expect(smallToolBar).not.toBeNull()
+  let directionStartInput = await page.evaluate(() =>
+     document.getElementById('itinerary_input_start').value
+  )
+  expect(directionStartInput).toEqual('')
+  let directionEndInput = await page.evaluate(() =>
+    document.getElementById('itinerary_input_end').value
+  )
+  expect(directionEndInput).toEqual('')
+})
+
+
+test('destination', async () => {
+  expect.assertions(3)
+  await page.goto(`${APP_URL}/?destination=latlon:47.4:7.5@Monoprix Nice`)
+
+  await page.waitForSelector('#itinerary_input_start')
+  let smallToolBar = await page.waitForSelector('.top_bar--small')
+  expect(smallToolBar).not.toBeNull()
+  let directionStartInput = await page.evaluate(() =>
+    document.getElementById('itinerary_input_start').value
+  )
+  expect(directionStartInput).toEqual('')
+  let directionEndInput = await page.evaluate(() =>
+    document.getElementById('itinerary_input_end').value
+  )
+  expect(directionEndInput).toEqual('')
+})
+
 afterAll(async () => {
   await browser.close()
 })

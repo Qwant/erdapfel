@@ -24,7 +24,8 @@ export default class DirectionPanel {
     PanelManager.register(this)
 
     let getParams = new URLSearchParams(window.location.search)
-    if(getParams.get('origin') || getParams.get('destination')) {
+
+    if(getParams.get('origin') || getParams.get('destination') || getParams.get('route') === 'enabled') {
       this.restoreUrl(getParams).then(() => {
         this.open()
       })
