@@ -324,6 +324,13 @@
   box-shadow: 0 0 2px rgba(0,0,0,.5);
 }
 
+.itinerary_marker_step:hover,
+.itinerary_marker_step--highlighted{
+  width: 9px;
+  height: 9px;
+  border: 2px solid rgba(75,162,234,.5);
+}
+
 .itinerary_roadmap_icon {
   width: 24px;
   height: 24px;
@@ -335,7 +342,15 @@
 }
 
 .itinerary_roadmap_step {
-  padding: 0;
+  padding: 0 0 0 37px;
+  position: relative;
+  left: -37px;
+  border-left: 4px solid #5c6f84;
+}
+
+.itinerary_roadmap_step:hover,
+.itinerary_roadmap_step--selected {
+  border-left: 4px solid #ff3b4a;
 }
 
 .itinerary_roadmap_instruction_and_distance {
