@@ -8,8 +8,8 @@ import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
 
 
-const startHandler = '#itinerary_input_start'
-const destinationHandler = '#itinerary_input_end'
+const originHandler = '#itinerary_input_origin'
+const destinationHandler = '#itinerary_input_destination'
 
 export default class DirectionPanel {
   constructor() {
@@ -17,8 +17,8 @@ export default class DirectionPanel {
     this.isDirectionPanel = true
     this.vehicles = {DRIVING : 'driving', WALKING : 'walking', CYCLING : 'cycling'}
     this.active = false
-    this.start = null
-    this.end = null
+    this.origin = null
+    this.destination = null
     this.vehicle = this.vehicles.DRIVING
     this.roadMapPanel = new RoadMapPanel()
     PanelManager.register(this)
@@ -33,8 +33,8 @@ export default class DirectionPanel {
   }
 
   initDirection() {
-    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi), 'submit_direction_start')
-    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi), 'submit_direction_end')
+    this.originInput = new DirectionInput(originHandler, (poi) => this.selectOrigin(poi), 'submit_direction_origin')
+    this.destinationInput = new DirectionInput(destinationHandler, (poi) => this.selectDestination(poi), 'submit_direction_destination')
   }
 
   setVehicle(vehicle) {
@@ -43,24 +43,24 @@ export default class DirectionPanel {
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
   }
 
-  invertStartEnd() {
-    let startValue = this.startInput.getValue()
-    let endValue = this.endInput.getValue()
-    this.startInput.setValue(endValue)
-    this.endInput.setValue(startValue)
-    let tmp = this.start
-    this.start = this.end
-    this.end = tmp
+  invertOriginDestination() {
+    let originValue = this.originInput.getValue()
+    let destinationValue = this.destinationInput.getValue()
+    this.originInput.setValue(destinationValue)
+    this.destinationInput.setValue(originValue)
+    let tmp = this.origin
+    this.origin = this.destination
+    this.destination = tmp
     this.searchDirection()
   }
 
-  selectStart(poi) {
-    this.start = poi
+  selectOrigin(poi) {
+    this.origin = poi
     this.searchDirection()
   }
 
-  selectEnd(poi) {
-    this.end = poi
+  selectDestination(poi) {
+    this.destination = poi
     this.searchDirection()
   }
 
@@ -74,9 +74,9 @@ export default class DirectionPanel {
   }
 
   cleanDirection() {
-    if(this.startInput && this.endInput) {
-      this.startInput.destroy()
-      this.endInput.destroy()
+    if(this.originInput && this.destinationInput) {
+      this.originInput.destroy()
+      this.destinationInput.destroy()
     }
   }
 
@@ -95,9 +95,9 @@ export default class DirectionPanel {
   }
 
   async searchDirection() {
-    if(this.start && this.end) {
+    if(this.origin && this.destination) {
 
-      let directionResponse = await DirectionApi.search(this.start, this.end, this.vehicle)
+      let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
 
       let routes = directionResponse.routes
       routes.forEach((route, i) => {
@@ -106,7 +106,7 @@ export default class DirectionPanel {
       })
       if(routes) {
         this.roadMapPanel.setRoad(routes, this.vehicle)
-        fire('set_route', {routes : routes, vehicle : this.vehicle, start : this.start, end : this.end})
+        fire('set_route', {routes : routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
       }
     }
   }
@@ -125,12 +125,12 @@ export default class DirectionPanel {
     }
 
     if(getParams.get('origin')) {
-      this.start = await  UrlPoi.fromUrl(getParams.get('origin'))
-      document.querySelector(startHandler).value = this.start.name
+      this.origin = await UrlPoi.fromUrl(getParams.get('origin'))
+      document.querySelector(originHandler).value = this.origin.name
     }
     if(getParams.get('destination')) {
-      this.end = await UrlPoi.fromUrl(getParams.get('destination'))
-      document.querySelector(destinationHandler).value = this.end.name
+      this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
+      document.querySelector(destinationHandler).value = this.destination.name
     }
 
 

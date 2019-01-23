@@ -10,17 +10,16 @@ export default class SceneDirection {
     this.map = map
     this.routeCounter = 0
     this.routes = []
-    this.markerStart = null
-    this.markerEnd = null
+    this.markerOrigin = null
+    this.markerDestination = null
 
-    listen('set_route', ({routes, vehicle, start, end}) => {
+    listen('set_route', ({routes, vehicle, origin, destination}) => {
       this.reset()
       this.routes = routes
       this.vehicle = vehicle
-      this.start = start
-      this.end = end
+      this.origin = origin
+      this.destination = destination
       this.displayRoute()
-
     })
 
     listen('toggle_route', (mainRouteId) => {
@@ -45,27 +44,24 @@ export default class SceneDirection {
       })
       this.showPolygon(mainRoute)
 
-
-
       // Custom markers
-      const markerStart = document.createElement('div')
-      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
+      const markerOriginDom = document.createElement('div')
+      markerOriginDom.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
 
-      this.markerStart = new Marker(markerStart)
-        .setLngLat([this.start.latLon.lng, this.start.latLon.lat])
+      this.markerOrigin = new Marker(markerOriginDom)
+        .setLngLat([this.origin.latLon.lng, this.origin.latLon.lat])
         .addTo(this.map)
 
-      const markerEnd = document.createElement('div')
-      markerEnd.className = 'itinerary_marker_end'
+      const markerDestinationDom = document.createElement('div')
+      markerDestinationDom.className = 'itinerary_marker_destination'
 
 
-      this.markerEnd = new Marker(markerEnd)
-        .setLngLat([this.end.latLon.lng, this.end.latLon.lat])
+      this.markerDestination = new Marker(markerDestinationDom)
+        .setLngLat([this.destination.latLon.lng, this.destination.latLon.lat])
         .addTo(this.map)
 
       let directionPoi = new Direction(this.computeBBox(mainRoute))
       fire('fit_map', directionPoi, {sidePanelOffset : true})
-
     }
   }
 
@@ -76,14 +72,14 @@ export default class SceneDirection {
       this.map.getSource(`source_${route.id}`).setData(this.buildRouteData([]))
     })
 
-    if(this.markerStart) {
-      this.markerStart.remove()
+    if(this.markerOrigin) {
+      this.markerOrigin.remove()
     }
-    if(this.markerEnd) {
-      this.markerEnd.remove()
+    if(this.markerDestination) {
+      this.markerDestination.remove()
     }
-    this.markerStart = null
-    this.markerEnd = null
+    this.markerOrigin = null
+    this.markerDestination = null
     this.routes = []
   }
 

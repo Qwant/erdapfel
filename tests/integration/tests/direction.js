@@ -91,7 +91,7 @@ test('destination', async () => {
   let directionStartInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_start').value
   )
-  expect(directionStartInput).toEqual('')
+  expect(directionStartInput).toEqual('Monoprix Nice')
   let directionEndInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_end').value
   )
@@ -99,7 +99,7 @@ test('destination', async () => {
 })
 
 afterAll(async () => {
-  await browser.close()
+ /// await browser.close()
 })
 
 const showDirection = async (page) => {

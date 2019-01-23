@@ -4,21 +4,19 @@
     <div class=itinerary_close_mobile onclick="QwantDirection.close_ui()"><span class="itinerary_close_mobile_icon"></span>{{= _('return', 'direction') }}</div>
     <h3 class="itinerary_title">{{= _('itinerary', 'direction') }}</h3>
     <div class="itinerary_fields">
-      <form onsubmit="fire('submit_direction_start');return false">
-        <div class="itinerary_field_start">
-          <div class="itinerary_icon itinerary_icon_start"></div>
-          <input id="itinerary_input_start" autocomplete="off" spellcheck="false"  placeholder="{{= _('Start point', 'direction') }}">
-          <div class="itinerary_autocomplete" id="itinerary_autocomplete_start"></div>
+      <form onsubmit="fire('submit_direction_origin');return false">
+        <div class="itinerary_field_origin">
+          <div class="itinerary_icon itinerary_icon_origin"></div>
+          <input id="itinerary_input_origin" autocomplete="off" spellcheck="false" value="{{= this.origin ? this.origin.name : '' }}" placeholder="{{= _('Start point', 'direction') }}">
         </div>
       </form>
-      <form onsubmit="fire('submit_direction_end');return false">
-        <div class="itinerary_field_end">
-          <div class="itinerary_icon itinerary_icon_end"></div>
-          <input id="itinerary_input_end" autocomplete="off" spellcheck="false" placeholder="{{= _('End point', 'direction') }}">
-          <div class="itinerary_autocomplete" id="itinerary_autocomplete_end"></div>
+      <form onsubmit="fire('submit_direction_destination');return false">
+        <div class="itinerary_field_destination">
+          <div class="itinerary_icon itinerary_icon_destination"></div>
+          <input id="itinerary_input_destination" autocomplete="off" spellcheck="false" value="{{= this.destination ? this.destination.name : '' }}" placeholder="{{= _('End point', 'direction') }}">
         </div>
       </form>
-      <div class="itinerary_invert_start_end" {{= click(this.invertStartEnd, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
+      <div class="itinerary_invert_origin_destination" {{= click(this.invertOriginDestination, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
     </div>
   </div>
 
