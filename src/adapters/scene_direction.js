@@ -1,6 +1,6 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Direction from "./poi/specials/direction_poi";
-
+import Device from '../libs/device'
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
 
@@ -97,6 +97,16 @@ export default class SceneDirection {
       this.markerEnd = new Marker(markerEnd)
           .setLngLat(steps[steps.length - 1].maneuver.location)
           .addTo(this.map)
+
+      let bbox = this.computeBBox(mainRoute);
+      let padding = {};
+      if(Device.isMobile()){
+        padding = {top: 130, right: 20, bottom: 80, left: 20 };
+      }
+      else {
+        padding = {top: 20, right: 20, bottom: 40, left: 450 }
+      }
+      fire('fit_bbox', bbox, padding)
 
       let directionPoi = new Direction(this.computeBBox(mainRoute))
       if(move !== false) {
