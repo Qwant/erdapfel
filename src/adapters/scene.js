@@ -134,8 +134,8 @@ Scene.prototype.initMapBox = function () {
     this.fitMap(poi, options)
   })
 
-  listen('fit_bbox', (bbox, options) => {
-    this.fitBbox(bbox, options)
+  listen('fit_bbox', (bbox, padding) => {
+    this.fitBbox(bbox, padding)
   })
 
   listen('map_reset', () => {
@@ -214,22 +214,21 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
 
 }
 
-Scene.prototype.fitBbox = function(bbox, options){
+Scene.prototype.fitBbox = function(bbox, padding){
 
-  // Compute padding
-  let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
+  padding = padding || {left: 0, top: 0, right: 0, bottom: 0};
 
-  if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
-    padding.left += layout.sizes.panelWidth
-  }
+  console.log(padding);
+
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
   var animate = false;
 
-  if(this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox.bbox)){
+  if(this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox)){
     animate = true;
   }
 
-  this.mb.fitBounds(bbox.bbox, {padding : padding, animate: animate})
+  this.mb.fitBounds(bbox, {padding : padding, animate: animate})
+
 }
 
 

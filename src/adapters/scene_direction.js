@@ -1,5 +1,6 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Direction from "./poi/specials/direction_poi";
+import Device from '../libs/device'
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
 
@@ -21,7 +22,6 @@ export default class SceneDirection {
       this.start = start
       this.end = end
       this.displayRoute()
-
     })
 
     listen('toggle_route', (mainRouteId) => {
@@ -31,8 +31,8 @@ export default class SceneDirection {
       this.map.moveLayer(`route_${mainRouteId}`)
     })
 
-    listen('zoom_step', (step) => {
-      fire('fit_bbox', {bbox : this.computeBBox(step)}, {sidePanelOffset : true})
+    listen('zoom_step', (step, padding) => {
+      fire('fit_bbox', this.computeBBox(step), padding)
     })
   }
 
@@ -55,8 +55,6 @@ export default class SceneDirection {
       this.markersSteps = []
 
       // Custom markers
-
-
       var steps = mainRoute.legs[0].steps;
 
       if (this.vehicle !== "walking" && window.innerWidth > 640) {
@@ -88,8 +86,15 @@ export default class SceneDirection {
           .setLngLat(steps[steps.length - 1].maneuver.location)
           .addTo(this.map)
 
-      let directionPoi = new Direction(this.computeBBox(mainRoute))
-      fire('fit_map', directionPoi, {sidePanelOffset : true})
+      let bbox = this.computeBBox(mainRoute);
+      let padding = {};
+      if(Device.isMobile()){
+        padding = {top: 130, right: 20, bottom: 80, left: 20 };
+      }
+      else {
+        padding = {top: 20, right: 20, bottom: 40, left: 450 }
+      }
+      fire('fit_bbox', bbox, padding)
 
     }
   }

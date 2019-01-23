@@ -16,7 +16,7 @@ export default class RoadMapPreviewPanel {
     this.routeId = 0
     this.stepId = 0
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step)
+    fire('zoom_step', this.step, {top: 130, right: 20, bottom: 80, left: 20 })
     this.hideForm()
   }
 
@@ -28,14 +28,14 @@ export default class RoadMapPreviewPanel {
   next() {
     this.stepId += 1
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step)
+    fire('zoom_step', this.step, {top: 130, right: 20, bottom: 80, left: 20 })
     this.panel.update()
   }
 
   previous() {
     this.stepId -= 1
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step)
+    fire('zoom_step', this.step, {top: 130, right: 20, bottom: 80, left: 20 })
     this.panel.update()
   }
 }
