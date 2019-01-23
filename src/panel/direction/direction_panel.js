@@ -6,6 +6,7 @@ import DirectionApi from '../../adapters/direction_api'
 import SearchInput from '../../ui_components/search_input'
 import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
+import UrlState from "../../proxies/url_state";
 
 
 const originHandler = '#itinerary_input_origin'
@@ -22,14 +23,7 @@ export default class DirectionPanel {
     this.vehicle = this.vehicles.DRIVING
     this.roadMapPanel = new RoadMapPanel()
     PanelManager.register(this)
-
-    let getParams = new URLSearchParams(window.location.search)
-
-    if(getParams.get('origin') || getParams.get('destination') || getParams.get('route') === 'enabled') {
-      this.restoreUrl(getParams).then(() => {
-        this.open()
-      })
-    }
+    UrlState.registerResource(this, 'routes')
   }
 
   initDirection() {
@@ -82,6 +76,7 @@ export default class DirectionPanel {
 
   close() {
     SearchInput.unMinify()
+    fire('clean_route')
     this.active = false
     this.panel.update()
     this.cleanDirection()
@@ -113,6 +108,15 @@ export default class DirectionPanel {
 
   /* urlState interface implementation */
 
+  restore() {
+    let getParams = new URLSearchParams(window.location.search)
+    this.restoreUrl(getParams).then(() => {
+      this.open()
+    })
+  }
+
+  store() {}
+
   async restoreUrl(getParams) {
 
     if(getParams.get('mode')) {
@@ -132,7 +136,6 @@ export default class DirectionPanel {
       this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
       document.querySelector(destinationHandler).value = this.destination.name
     }
-
 
     execOnMapLoaded(() => {
       this.searchDirection()

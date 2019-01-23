@@ -3,6 +3,7 @@ import ResponseHandler from "../helpers/response_handler";
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
+const ROUTES_PATH = `routes`
 const mockAutocomplete = require('../../__data__/autocomplete')
 const mockMapBox = require('../../__data__/mapbox')
 
@@ -25,7 +26,7 @@ test('check "My position" label',async () => {
   // wait for autocomplete library starting-up
   await page.waitForSelector('.itinerary_suggest_your_position')
 
-  await page.focus('#itinerary_input_start')
+  await page.focus('#itinerary_input_origin')
 
   let yourPositionItem = await page.waitForSelector('.itinerary_suggest_your_position', {visible : true})
   expect(yourPositionItem).not.toBeNull()
@@ -35,12 +36,12 @@ test('switch start end', async () => {
   expect.assertions(1)
   await showDirection(page)
 
-  await page.type('#itinerary_input_start', 'start')
-  await page.type('#itinerary_input_end', 'end')
+  await page.type('#itinerary_input_origin', 'start')
+  await page.type('#itinerary_input_destination', 'end')
 
-  await page.click('.itinerary_invert_start_end')
+  await page.click('.itinerary_invert_origin_destination')
   let inputValue = await page.evaluate(() => {
-    return {startInput : document.querySelector('#itinerary_input_start').value, endInput : document.querySelector('#itinerary_input_end').value}
+    return {startInput : document.querySelector('#itinerary_input_origin').value, endInput : document.querySelector('#itinerary_input_destination').value}
   })
 
   expect(inputValue).toEqual({startInput : 'end', endInput : 'start'})
@@ -52,9 +53,9 @@ test('simple search', async () => {
   responseHandler.addPreparedResponse(mockMapBox, /api.mapbox.com/)
   await showDirection(page)
 
-  await page.type('#itinerary_input_start', 'direction')
+  await page.type('#itinerary_input_origin', 'direction')
   await page.keyboard.press('Enter')
-  await page.type('#itinerary_input_end', 'direction')
+  await page.type('#itinerary_input_destination', 'direction')
 
   await page.keyboard.press('Enter')
 
@@ -65,7 +66,7 @@ test('simple search', async () => {
 
 test('route flag', async () => {
   expect.assertions(3)
-  await page.goto(`${APP_URL}/?route=enabled`)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}`)
 
   await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
@@ -83,7 +84,7 @@ test('route flag', async () => {
 
 test('destination', async () => {
   expect.assertions(3)
-  await page.goto(`${APP_URL}/?destination=latlon:47.4:7.5@Monoprix Nice`)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?destination=latlon:47.4:7.5@Monoprix Nice`)
 
   await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
@@ -101,7 +102,7 @@ test('destination', async () => {
 
 test('origin & destination', async () => {
   expect.assertions(3)
-  await page.goto(`${APP_URL}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5@Franprix Cannes`)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5@Franprix Cannes`)
 
   await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
@@ -119,7 +120,7 @@ test('origin & destination', async () => {
 
 test('origin & destination & mode', async () => {
   expect.assertions(4)
-  await page.goto(`${APP_URL}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5974116.5&mode=walking`)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5974116.5&mode=walking`)
 
   await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')

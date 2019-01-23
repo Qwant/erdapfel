@@ -7,10 +7,6 @@ UrlState.init = function () {
   new UrlShards()
 }
 
-UrlState.registerHash = function(component, prefix) {
-  register(component, prefix, true)
-}
-
 UrlState.registerResource = function(component, prefix) {
   register(component, prefix, false)
 }

@@ -23,7 +23,7 @@ const baseUrl = nconf.get().system.baseUrl
 const store = new Store()
 
 function Scene() {
-  UrlState.registerHash(this, 'map')
+  UrlState.registerResource(this, 'map')
   this.currentMarker = null
   this.popup = new PoiPopup()
   this.zoom = map.zoom
@@ -228,6 +228,7 @@ Scene.prototype.onHashChange = function () {
 }
 
 /* private */
+
 function compareBoundsArray(boundsA, boundsB) {
   return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
 }

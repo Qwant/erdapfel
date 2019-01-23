@@ -1,9 +1,8 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Direction from "./poi/specials/direction_poi";
+
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
-
-
 
 export default class SceneDirection {
   constructor(map) {
@@ -27,6 +26,10 @@ export default class SceneDirection {
         this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === mainRouteId})
       })
       this.map.moveLayer(`route_${mainRouteId}`)
+    })
+
+    listen('clean_route', (step) => {
+      this.reset()
     })
 
     listen('zoom_step', (step) => {
