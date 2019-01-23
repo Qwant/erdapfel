@@ -74,6 +74,8 @@ export default class SceneDirection {
 
       var steps = mainRoute.legs[0].steps;
       if (this.vehicle !== "walking") {
+
+      if (this.vehicle !== "walking" && window.innerWidth > 640) {
         for (var step in steps) {
           const markerStep = document.createElement('div')
           markerStep.className = 'itinerary_marker_step'
@@ -84,6 +86,17 @@ export default class SceneDirection {
           )
         }
       }
+
+      const markerStart = document.createElement('div')
+      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
+      this.markerStart = new Marker(markerStart)
+          .setLngLat(steps[0].maneuver.location)
+          .addTo(this.map)
+      const markerEnd = document.createElement('div')
+      markerEnd.className = 'itinerary_marker_end'
+      this.markerEnd = new Marker(markerEnd)
+          .setLngLat(steps[steps.length - 1].maneuver.location)
+          .addTo(this.map)
 
       let directionPoi = new Direction(this.computeBBox(mainRoute))
       if(move !== false) {
@@ -126,7 +139,7 @@ export default class SceneDirection {
           MAIN_ROUTE_COLOR,
           ALTERNATE_ROUTE_COLOR
         ],
-        "line-width": 5
+        "line-width": 7
       }
     }
 

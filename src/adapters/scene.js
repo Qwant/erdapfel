@@ -134,6 +134,10 @@ Scene.prototype.initMapBox = function () {
     this.fitMap(poi, options)
   })
 
+  listen('fit_bbox', (bbox, options) => {
+    this.fitBbox(bbox, options)
+  })
+
   listen('map_reset', () => {
     this.mb.jumpTo({center : [map.center.lng, map.center.lat], zoom : map.zoom})
   })
@@ -143,13 +147,13 @@ Scene.prototype.initMapBox = function () {
   })
 }
 
-Scene.prototype.isPointinBounds = function(point, bounds) {
+Scene.prototype.isPointInBounds = function(point, bounds) {
   var lng = (point.lng - bounds._ne.lng) * (point.lng - bounds._sw.lng) < 0;
   var lat = (point.lat - bounds._ne.lat) * (point.lat - bounds._sw.lat) < 0;
   return lng && lat;
 }
 
-Scene.prototype.isBBoxInExtendedviewport = function(bbox){
+Scene.prototype.isBBoxInExtendedViewport = function(bbox){
 
   // Get viewport bounds
   var viewport = this.mb.getBounds();
@@ -210,7 +214,7 @@ Scene.prototype.isBBoxInExtendedviewport = function(bbox){
 
 }
 
-Scene.prototype.fitBBox = function(bbox){
+Scene.prototype.fitBbox = function(bbox, options){
 
   // Compute padding
   let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
@@ -220,7 +224,7 @@ Scene.prototype.fitBBox = function(bbox){
 
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
   var animate = false;
-  if(this.mb.getzoom > 10 && this.isBBoxInExtendedviewport(bbox)){
+  if(this.mb.getZoom() > 10 && this.isBBoxInExtendedviewport(bbox)){
     animate = true;
   }
   this.mb.fitBounds(poi.bbox, {padding : padding, animate: animate})

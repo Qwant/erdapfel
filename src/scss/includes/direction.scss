@@ -155,12 +155,19 @@
 
 .itinerary_suggest_your_position,
 .itinerary_autocomplete_item {
-  border-left: 4px solid #fff;
+  border-left: 3px solid #fff;
 }
 .itinerary_suggest_your_position:hover,
 .itinerary_autocomplete_item:hover {
-  background: #eee;
-  border-left: 4px solid #ff3b4a;
+  background: #f4f6fa;
+  border-left: 3px solid #ff3b4a;
+}
+
+.itinerary_suggest_your_position,
+.itinerary_suggest_your_position.selected,
+.itinerary_suggest_your_position:hover,
+.itinerary_suggest_your_position.selected:hover {
+  padding-left: 15px !important;
 }
 
 .itinerary_roadmap {
@@ -296,12 +303,12 @@
 }
 
 .itinerary_marker_origin_walking {
-  width: 14px;
-  height: 14px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
   background: #fff;
-  border: 3px solid #4ba2ea;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
+  border: 2px solid #4ba2ea;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .itinerary_marker_destination {
@@ -314,8 +321,8 @@
 
 .itinerary_marker_step {
   background: #fff;
-  width: 3px;
-  height: 3px;
+  width: 5px;
+  height: 5px;
   margin: 0;
   border-radius: 50%;
   box-shadow: 0 0 2px rgba(0,0,0,.5);
@@ -520,6 +527,8 @@
   
   .itinerary_vehicles {
     margin: 8px 5px 5px;
+    padding: 0;
+    height: auto;
   }
   
   .itinerary_close {
@@ -587,7 +596,16 @@
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
   }
-  
+
+  .itinerary_leg--active,
+  .itinerary_leg:hover {
+    border: none;
+  }
+
+  .itinerary_leg_close {
+    display: none;
+  }
+
   .itinerary_leg .itinerary_leg_inner {
     margin: 0 17px;
     padding: 15px 0 0;
@@ -595,7 +613,7 @@
   
   .itinerary_leg .itinerary_leg_distance {
     margin: 0;
-}
+  }
   
   .itinerary_leg .itinerary_leg_duration {
     float: left;
@@ -663,10 +681,18 @@
     margin: 0 15px;
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
-    min-height: 86px;
-    padding: 0 10px 10px;
+    min-height: 75px;
+    padding: 0 10px 5px;
     width: calc(100% - 30px);
     user-select: none;
+
+    .itinerary_roadmap_icon_arrive {
+      width: 37px;
+
+      & + div {
+        padding: 24px 0;
+      }
+    }
   }
   
   .itinerary_roadmap_icon {
@@ -717,8 +743,12 @@
     background-size: 24px 24px;
   }
 
-  .itinerary_mobile_step_button--disabled {
-    background-color: #ddd;
+  .itinerary_mobile_step_button_left.itinerary_mobile_step_button--disabled {
+    background-image: url("../images/direction_icons/chevron-left-grey.svg");
+  }
+
+  .itinerary_mobile_step_button_right.itinerary_mobile_step_button--disabled {
+    background-image: url("../images/direction_icons/chevron-right-grey.svg");
   }
 
   .autocomplete_suggestions {
