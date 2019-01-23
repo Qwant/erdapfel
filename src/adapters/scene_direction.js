@@ -34,7 +34,7 @@ export default class SceneDirection {
     })
 
     listen('zoom_step', (step) => {
-      fire('fit_map', {bbox : this.computeBBox(step)}, {sidePanelOffset : true})
+      fire('fit_bbox', {bbox : this.computeBBox(step)}, {sidePanelOffset : true})
     })
   }
 

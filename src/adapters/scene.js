@@ -191,22 +191,22 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
   var bboxIsNear = false;
 
   // ne
-  if(isPointinBounds(bbox._ne, viewport)){
+  if(this.isPointInBounds(bbox._ne, viewport)){
     bboxIsNear = true;
   }
 
   // nw
-  if(isPointinBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport)){
+  if(this.isPointInBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport)){
     bboxIsNear = true;
   }
 
   // se
-  if(isPointinBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport)){
+  if(this.isPointInBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport)){
     bboxIsNear = true;
   }
 
   // sw
-  if(isPointinBounds(bbox._sw, viewport)){
+  if(this.isPointInBounds(bbox._sw, viewport)){
     bboxIsNear = true;
   }
 
@@ -218,16 +218,18 @@ Scene.prototype.fitBbox = function(bbox, options){
 
   // Compute padding
   let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
+
   if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
     padding.left += layout.sizes.panelWidth
   }
-
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
   var animate = false;
-  if(this.mb.getZoom() > 10 && this.isBBoxInExtendedviewport(bbox)){
+
+  if(this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox.bbox)){
     animate = true;
   }
-  this.mb.fitBounds(poi.bbox, {padding : padding, animate: animate})
+
+  this.mb.fitBounds(bbox.bbox, {padding : padding, animate: animate})
 }
 
 
