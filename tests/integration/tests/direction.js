@@ -67,15 +67,15 @@ test('route flag', async () => {
   expect.assertions(3)
   await page.goto(`${APP_URL}/?route=enabled`)
 
-  await page.waitForSelector('#itinerary_input_start')
+  await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
   expect(smallToolBar).not.toBeNull()
   let directionStartInput = await page.evaluate(() =>
-     document.getElementById('itinerary_input_start').value
+     document.getElementById('itinerary_input_origin').value
   )
   expect(directionStartInput).toEqual('')
   let directionEndInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_end').value
+    document.getElementById('itinerary_input_destination').value
   )
   expect(directionEndInput).toEqual('')
 })
@@ -85,21 +85,64 @@ test('destination', async () => {
   expect.assertions(3)
   await page.goto(`${APP_URL}/?destination=latlon:47.4:7.5@Monoprix Nice`)
 
-  await page.waitForSelector('#itinerary_input_start')
+  await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
   expect(smallToolBar).not.toBeNull()
   let directionStartInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_start').value
+    document.getElementById('itinerary_input_origin').value
+  )
+  expect(directionStartInput).toEqual('')
+
+  let directionEndInput = await page.evaluate(() =>
+    document.getElementById('itinerary_input_destination').value
+  )
+  expect(directionEndInput).toEqual('Monoprix Nice')
+})
+
+test('origin & destination', async () => {
+  expect.assertions(3)
+  await page.goto(`${APP_URL}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5@Franprix Cannes`)
+
+  await page.waitForSelector('#itinerary_input_origin')
+  let smallToolBar = await page.waitForSelector('.top_bar--small')
+  expect(smallToolBar).not.toBeNull()
+  let directionStartInput = await page.evaluate(() =>
+    document.getElementById('itinerary_input_origin').value
   )
   expect(directionStartInput).toEqual('Monoprix Nice')
+
   let directionEndInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_end').value
+    document.getElementById('itinerary_input_destination').value
   )
-  expect(directionEndInput).toEqual('')
+  expect(directionEndInput).toEqual('Franprix Cannes')
+})
+
+test('origin & destination & mode', async () => {
+  expect.assertions(4)
+  await page.goto(`${APP_URL}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5974116.5&mode=walking`)
+
+  await page.waitForSelector('#itinerary_input_origin')
+  let smallToolBar = await page.waitForSelector('.top_bar--small')
+  expect(smallToolBar).not.toBeNull()
+  let directionStartInput = await page.evaluate(() =>
+    document.getElementById('itinerary_input_origin').value
+  )
+  expect(directionStartInput).toEqual('Monoprix Nice')
+
+  let directionEndInput = await page.evaluate(() =>
+    document.getElementById('itinerary_input_destination').value
+  )
+  expect(directionEndInput).toEqual('47.40000 : 7.59741')
+
+  let activeLabel = await page.evaluate(() => {
+    return Array.from(document.querySelector('.label_active').classList).join(',')
+  })
+  expect(activeLabel).toContain('itinerary_button_label_walking')
+
 })
 
 afterAll(async () => {
- /// await browser.close()
+  await browser.close()
 })
 
 const showDirection = async (page) => {
