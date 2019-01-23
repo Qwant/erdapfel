@@ -31,7 +31,7 @@ export default class MapDirection {
       },
       "paint": {
         "line-color": color,
-        "line-width": 5
+        "line-width": 7
       }
     }
   }

@@ -30,13 +30,14 @@
   color: $primary_text;
   font-size: 20px;
   cursor: pointer;
+  width: 100%
 }
 
 .mapboxgl-ctrl-geolocate::-moz-focus-inner { /* ff rotating outline fix */
   border: 0;
 }
 
-.map_control_group__button + .map_control_group__button {
+.map_control_group__button {
   border-top: 1px solid #ddd;
 }
 
@@ -104,7 +105,7 @@
 }
 
 .mapboxgl-ctrl.map_control__scale {
-  margin-left: 2px;
+  margin: 7px 5px 0 5px !important;
   float: left;
 }
 

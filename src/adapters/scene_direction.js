@@ -55,24 +55,11 @@ export default class SceneDirection {
       this.markersSteps = []
 
       // Custom markers
-      const markerStart = document.createElement('div')
-      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
 
-      this.markerStart = new Marker(markerStart)
-          .setLngLat([this.start.latLon.lng, this.start.latLon.lat])
-          .addTo(this.map)
-
-
-      const markerEnd = document.createElement('div')
-      markerEnd.className = 'itinerary_marker_end'
-
-      this.markerEnd = new Marker(markerEnd)
-          .setLngLat([this.end.latLon.lng, this.end.latLon.lat])
-          .addTo(this.map)
 
       var steps = mainRoute.legs[0].steps;
 
-      if (this.vehicle !== "walking") {
+      if (this.vehicle !== "walking" && window.innerWidth > 640) {
         for (var step in steps) {
 
           const markerStep = document.createElement('div')
@@ -80,11 +67,26 @@ export default class SceneDirection {
 
           this.markersSteps.push(
               new Marker(markerStep)
-                .setLngLat(steps[step].maneuver.location)
-                .addTo(this.map)
+                  .setLngLat(steps[step].maneuver.location)
+                  .addTo(this.map)
           )
         }
       }
+
+      const markerStart = document.createElement('div')
+      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
+
+      this.markerStart = new Marker(markerStart)
+          .setLngLat(steps[0].maneuver.location)
+          .addTo(this.map)
+
+
+      const markerEnd = document.createElement('div')
+      markerEnd.className = 'itinerary_marker_end'
+
+      this.markerEnd = new Marker(markerEnd)
+          .setLngLat(steps[steps.length - 1].maneuver.location)
+          .addTo(this.map)
 
       let directionPoi = new Direction(this.computeBBox(mainRoute))
       fire('fit_map', directionPoi, {sidePanelOffset : true})
@@ -126,7 +128,7 @@ export default class SceneDirection {
           MAIN_ROUTE_COLOR,
           ALTERNATE_ROUTE_COLOR
         ],
-        "line-width": 5
+        "line-width": 7
       }
     }
 
