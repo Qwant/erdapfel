@@ -54,11 +54,7 @@ Store.prototype.setLastLocation = async function(loc) {
 }
 
 Store.prototype.isRegistered = async function () {
-  try {
-    return await abstractStore.getAllPois() !== null
-  } catch (error) {
-    return false
-  }
+  return await abstractStore.isRegistered()
 }
 
 Store.prototype.onConnect = async function () {

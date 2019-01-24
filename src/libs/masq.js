@@ -37,6 +37,10 @@ MasqStore.prototype.getAllPois = async function() {
   return values
 }
 
+MasqStore.prototype.isRegistered = function() {
+  return Promise.resolve(this.masq && this.masq.isLoggedIn())
+}
+
 MasqStore.prototype.registerApp = async function(apps) {
   // connect to Masq
   window.open(this.loginLink)
