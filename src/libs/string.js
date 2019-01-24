@@ -14,6 +14,15 @@ ExtendedString.ellipsis = function (str, length, options = {}) {
     }
     return str && str.length > length && (str = str.slice(0, length).replace(/ ([^ ]*) [^ ]* ?$/, ellipsis)), str && -1 == str.indexOf(' ') && str.length > length && (str += ellipsis), str
 }
+/**
+ * Find the position of the first occurrence of a substring in a string ignoring case
+ * @param haystack The string to search in.
+ * @param needle
+ * @returns {number}
+ */
+ExtendedString.compareIgnoreCase = function (haystack , needle) {
+  return haystack.toUpperCase().indexOf(needle.toUpperCase())
+}
 
 ExtendedString.slug = function (str) {
     // Remove non-alphanumeric and non-latin characters
