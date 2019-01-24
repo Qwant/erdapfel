@@ -1,6 +1,14 @@
 import Suggest from "../adapters/suggest";
 import PanelManager from "../proxies/panel_manager";
-import BragiPoi from "../adapters/poi/bragi_poi";
+
+const MAPBOX_RESERVED_KEYS = [
+    37 // ←
+  , 38 // ↑
+  , 39 // →
+  , 40 // ↓
+  , 107 // -
+  , 109 // +
+]
 
 export default class SearchInput {
 
@@ -35,6 +43,7 @@ export default class SearchInput {
 
   handleKeyboard() {
     document.onkeydown = function(e) {
+      if(MAPBOX_RESERVED_KEYS.find((key) => key === e.keyCode)) {console.log( e.keyCode); return}
       if(!e.shiftKey && !e.ctrlKey) {
         if(document.activeElement
           && document.activeElement.tagName !== 'INPUT'
@@ -44,8 +53,6 @@ export default class SearchInput {
       }
     }
   }
-
-
 
   async selectItem (selectedPoi) {
     if(selectedPoi) {
