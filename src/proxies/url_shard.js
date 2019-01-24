@@ -5,7 +5,6 @@ function UrlShard(component, prefix, isHash) {
   this.consumable = true
 }
 
-
 UrlShard.prototype.toString = function () {
   let value = this.component.store()
   if(value) {
