@@ -5,9 +5,10 @@ const handleError = (fct, msg, e) => {
   Error.sendOnce('masq_store', fct, msg, e)
 }
 
-function MasqStore() {
+function MasqStore(config) {
   this.masq = null
   this.loginLink = null
+  this.config = config
 }
 
 MasqStore.prototype.getAllPois = async function() {
@@ -49,7 +50,7 @@ MasqStore.prototype.registerApp = async function(apps) {
 
 MasqStore.prototype.onConnect = async function () {
   // executed when maps is opened
-  this.masq = new Masq('Qwant Maps PoC', 'A generic app that uses Masq for storage', 'https://camo.githubusercontent.com/8b35d12bd9682a31446b08c1483145653aa5006f/68747470733a2f2f692e696d6775722e636f6d2f715a33647130512e706e67')
+  this.masq = new Masq(this.config.title, this.config.desc, this.config.icon)
   if (this.masq.isLoggedIn()) {
     await this.masq.connectToMasq()
   } else {

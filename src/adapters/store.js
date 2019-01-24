@@ -6,7 +6,7 @@ import ExtendedString from "../libs/string";
 let moduleConfig = nconf.get().store
 
 const AbStore = require(`../libs/${moduleConfig.name}`)
-const abstractStore = new AbStore(moduleConfig.endpoint)
+const abstractStore = new AbStore(moduleConfig[moduleConfig.name])
 
 function Store() {
   this.isRegisterd = false
