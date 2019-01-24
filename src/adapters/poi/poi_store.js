@@ -18,7 +18,7 @@ export default class PoiStore extends Poi {
 
   static async getAll() {
     let store = new Store()
-    let storedData
+    let storedData = []
     try {
       storedData = await store.getAllPois()
     } catch(e) {
