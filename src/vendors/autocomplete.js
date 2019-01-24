@@ -274,6 +274,7 @@ var autoComplete = (function(){
     
     this.setValue = function (value) {
       that.value = value
+      that.last_val = ''
     }
   }
   return autoComplete;
