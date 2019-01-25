@@ -8,6 +8,12 @@ let moduleConfig = nconf.get().store
 const AbStore = require(`../libs/${moduleConfig.name}`)
 const abstractStore = new AbStore(moduleConfig[moduleConfig.name])
 
+const checkRegistered = async () => {
+  if (!(await abstractStore.isRegistered())) {
+    throw new Error('Not registered')
+  }
+}
+
 function Store() {
   this.isRegisterd = false
   if(!window.__existingStore) {
@@ -29,6 +35,7 @@ function Store() {
 
 Store.prototype.getAllPois = async function() {
   try {
+    await checkRegistered()
     return await abstractStore.getAllPois()
   } catch (e) {
     Error.sendOnce('store', 'getAllPois', 'error getting pois', e)
@@ -38,6 +45,7 @@ Store.prototype.getAllPois = async function() {
 
 Store.prototype.getLastLocation = async function() {
   try {
+    await checkRegistered()
     return await abstractStore.get(`qmaps_v${version}_last_location`)
   } catch (e) {
     Error.sendOnce('store', 'getLastLocation', 'error getting location', e)
@@ -47,8 +55,9 @@ Store.prototype.getLastLocation = async function() {
 
 Store.prototype.setLastLocation = async function(loc) {
   try {
+    await checkRegistered()
     return await abstractStore.set(`qmaps_v${version}_last_location`, loc)
-  } catch (error) {
+  } catch (e) {
     Error.sendOnce('store', 'setLastLocation', 'error setting location', e)
   }
 }
@@ -81,29 +90,38 @@ Store.prototype.getPrefixes = async function (prefix) {
 
 Store.prototype.has = async function(poi) {
   try {
+    await checkRegistered()
     return await abstractStore.get(poi.getKey())
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e)
   }
 }
 
-Store.prototype.add = function(poi) {
-  abstractStore.set(poi.getKey(), poi.poiStoreLiteral()).then(function () {
-  }).catch(function (e) {
+Store.prototype.add = async function(poi) {
+  try {
+    await checkRegistered()
+    await abstractStore.set(poi.getKey(), poi.poiStoreLiteral())
+  } catch(e) {
     Error.sendOnce('store', 'add', 'error adding poi', e)
-  })
+  }
 }
 
-Store.prototype.del = function(poi) {
-  abstractStore.del(poi.getKey()).catch((e) => {
+Store.prototype.del = async function(poi) {
+  try {
+    await checkRegistered()
+    await abstractStore.del(poi.getKey())
+  } catch(e) {
     Error.sendOnce('store', 'del', 'error deleting key', e)
-  })
+  }
 }
 
-Store.prototype.clear = function () {
-  abstractStore.clear().catch((e) => {
+Store.prototype.clear = async function () {
+  try {
+    await checkRegistered()
+    await abstractStore.clear()
+  } catch(e) {
     Error.sendOnce('store', 'clear', 'error clearing store', e)
-  })
+  }
 }
 
 export default Store
