@@ -1,6 +1,12 @@
-function UrlShard(component, prefix, isHash) {
+export const paramTypes = {
+  HASH : 'hash',
+  GET : 'get',
+  RESOURCE : 'resource'
+}
+
+function UrlShard(component, prefix, paramType) {
   this.component = component
-  this.isHash = isHash
+  this.paramType = paramType
   this.prefix = prefix
   this.consumable = true
 }
@@ -8,10 +14,12 @@ function UrlShard(component, prefix, isHash) {
 UrlShard.prototype.toString = function () {
   let value = this.component.store()
   if(value) {
-    if(this.isHash) {
+    if(this.paramType === paramTypes.HASH) {
       return `${this.prefix}=${value}`
-    } else {
+    } else if(this.paramType === paramTypes.RESOURCE) {
       return `${this.prefix}/${value}`
+    } else if(this.paramType === paramTypes.GET) {
+      return `${this.prefix}=${value}`
     }
   } else {
     return null

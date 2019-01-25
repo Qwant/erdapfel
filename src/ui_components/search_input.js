@@ -1,5 +1,7 @@
 import Suggest from "../adapters/suggest";
 import PanelManager from "../proxies/panel_manager";
+import UrlState from "../proxies/url_state";
+import {paramTypes} from '../proxies/url_shard'
 
 const MAPBOX_RESERVED_KEYS = [
     'ArrowLeft' // ←
@@ -10,6 +12,7 @@ const MAPBOX_RESERVED_KEYS = [
   , '+' // +
   , '=' // =
 ]
+
 
 export default class SearchInput {
 
@@ -38,7 +41,7 @@ export default class SearchInput {
     this.handleKeyboard()
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi))
     this.isEnabled = true
-
+    UrlState.registerUrlShard(this, 'q', paramTypes.GET)
     listen('submit_autocomplete', async () => {
       this.suggest.onSubmit()
     })

@@ -9,6 +9,7 @@ import Telemetry from "../libs/telemetry";
 import headerPartial from '../views/poi_partial/header.dot'
 import MinimalHourPanel from './poi_bloc/opening_minimal'
 import SceneState from "../adapters/scene_state";
+import {paramTypes} from '../proxies/url_shard'
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -29,7 +30,7 @@ function PoiPanel(sharePanel) {
   this.minimalHourPanel = new MinimalHourPanel()
   this.sceneState = SceneState.getSceneState()
   PanelManager.register(this)
-  UrlState.registerResource(this, 'place')
+  UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
 }
 
 PoiPanel.prototype.toggleStorePoi = function() {

@@ -7,13 +7,13 @@ UrlState.init = function () {
   new UrlShards()
 }
 
-UrlState.registerHash = function(component, prefix) {
-  register(component, prefix, true)
+UrlState.registerUrlShard = function(component, prefix, paramType) {
+  if(!component.store || !component.restore) {
+    throw 'this componentn doesn\'t implement required methods'
+  }
+  UrlShards.add(new UrlShard(component, prefix, paramType))
 }
 
-UrlState.registerResource = function(component, prefix) {
-  register(component, prefix, false)
-}
 
 UrlState.pushUrl = function() {
   let url = UrlShards.toUrl()
@@ -43,15 +43,6 @@ UrlState.load = function() {
       shard.restore(matchingRawShard.value)
     }
   })
-}
-
-/* private */
-
-function register(component, prefix, isHash) {
-  if(!component.store || !component.restore) {
-    throw 'this componentn doesn\'t implement required methods'
-  }
-  UrlShards.add(new UrlShard(component, prefix, isHash))
 }
 
 export default UrlState

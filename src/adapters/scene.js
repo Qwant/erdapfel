@@ -16,6 +16,7 @@ import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
+import {paramTypes} from '../proxies/url_shard'
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -23,7 +24,7 @@ const baseUrl = nconf.get().system.baseUrl
 const store = new Store()
 
 function Scene() {
-  UrlState.registerHash(this, 'map')
+  UrlState.registerUrlShard(this, 'map', paramTypes.HASH)
   this.currentMarker = null
   this.popup = new PoiPopup()
   this.zoom = map.zoom
