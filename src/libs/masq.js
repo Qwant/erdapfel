@@ -60,6 +60,10 @@ MasqStore.prototype.onConnect = async function () {
   return
 }
 
+MasqStore.prototype.has = async function(k) {
+  return !!(await this.get(k))
+}
+
 MasqStore.prototype.get = async function(k) {
   const value = await this.masq.get(k).catch(
     (e) => {

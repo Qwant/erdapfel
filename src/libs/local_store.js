@@ -40,6 +40,10 @@ LocalStore.prototype.onConnect = function () {
   return Promise.resolve()
 }
 
+LocalStore.prototype.has = async function(k) {
+  return !!(await this.get(k))
+}
+
 LocalStore.prototype.get = function(k) {
   return new Promise((resolve) => {
     try {
