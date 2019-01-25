@@ -24,6 +24,7 @@ export default class PoiStore extends Poi {
     } catch(e) {
       Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
       Error.sendOnce('poi_store', 'getAll', 'error getting pois', e)
+      return []
     }
     return storedData.map((poi) => {
       return Object.assign(new PoiStore(), poi)
