@@ -91,7 +91,7 @@ Store.prototype.getPrefixes = async function (prefix) {
 Store.prototype.has = async function(poi) {
   try {
     await checkRegistered()
-    return await abstractStore.get(poi.getKey())
+    return !!(await abstractStore.get(poi.getKey()))
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e)
   }
