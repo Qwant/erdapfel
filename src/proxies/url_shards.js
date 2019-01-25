@@ -50,6 +50,14 @@ UrlShards.parseUrl = function () {
     })
   }
 
+  let getParams = new URLSearchParams(location.search)
+  this.getShards().forEach((shard) => {
+    let matchingShard = getParams.get(shard.prefix)
+    if(matchingShard) {
+      shards.push({prefix : shard.prefix, value : matchingShard})
+    }
+  })
+
   if(window.location.hash) {
     let rawHash = window.location.hash
     if(rawHash.indexOf('#') === 0) {

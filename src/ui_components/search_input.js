@@ -62,6 +62,12 @@ export default class SearchInput {
     }
   }
 
+  store() {}
+
+  async restore(fragment) {
+    this.suggest.setValue(fragment)
+  }
+
   async selectItem (selectedPoi) {
     if(selectedPoi) {
       fire('fit_map', selectedPoi, {sidePanelOffset : selectedPoi.type === 'poi'})
