@@ -5,11 +5,15 @@ import './libs/actions'
 import App from './panel/app_panel'
 import PanelManager from "./proxies/panel_manager";
 import UrlState from "./proxies/url_state";
+import Store from "./adapters/store";
 
 
 (async function main() {
   new I18n()
   await setLang()
+
+  const store = new Store()
+  await store.onConnect()
 
   PanelManager.init()
   UrlState.init()

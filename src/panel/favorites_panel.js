@@ -79,12 +79,6 @@ Favorite.prototype.toggle = function() {
 
 Favorite.prototype.connectStore = async function () {
   this.store = new Store()
-  try {
-    await this.store.onConnect()
-  } catch(e) {
-    Error.sendOnce('favorite_panel', 'connectStore', 'error connecting store', e)
-    fire('register_panel__show')
-  }
   let registered = false
   try {
     registered = await this.store.isRegistered()
