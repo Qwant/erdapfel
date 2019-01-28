@@ -24,6 +24,7 @@ export default class RoadMapPanel {
     this.showRoute = false
     this.previewRoadMap.setRoad(this.routes)
     this.panel.update()
+    fire("show_marker_steps")
   }
 
   hideForm() {
