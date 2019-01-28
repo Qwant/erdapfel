@@ -66,6 +66,8 @@ export default class SearchInput {
 
   async restore(fragment) {
     this.suggest.setValue(fragment)
+    let braggiResponse = await BragiPoi.get(fragment)
+    this.suggest.autocomplete.forceRender(braggiResponse)
   }
 
   async selectItem (selectedPoi) {
