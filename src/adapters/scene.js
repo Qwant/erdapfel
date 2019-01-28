@@ -15,6 +15,7 @@ import SceneState from "./scene_state";
 import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
 import DirectionPoi from "./poi/specials/direction_poi";
+import UrlShards from "../proxies/url_shards";
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -77,6 +78,7 @@ Scene.prototype.initMapBox = function () {
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
   this.mb.on('load', () => {
+    this.onHashChange()
     new SceneDirection(this.mb)
     new MapDirection(this)
 
@@ -210,6 +212,18 @@ Scene.prototype.isWindowedPoi = function(poi) {
     let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat)
     windowBounds.extend(poiCenter)
     return compareBoundsArray(windowBounds.toArray(), originalWindowBounds)
+  }
+}
+
+Scene.prototype.onHashChange = function () {
+  window.onhashchange = () => {
+    let shards = UrlShards.parseUrl()
+    shards.forEach((shard) => {
+      if(shard.prefix === 'map') {
+        this.restore(shard.value)
+        this.mb.jumpTo({center : this.urlCenter, zoom : this.urlZoom})
+      }
+    })
   }
 }
 
