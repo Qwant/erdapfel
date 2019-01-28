@@ -90,6 +90,10 @@ Store.prototype.register = async function () {
   return abstractStore.registerApp(regParams)
 }
 
+Store.prototype.unregister = async function () {
+  return abstractStore.unregisterApp()
+}
+
 Store.prototype.getPrefixes = async function (prefix) {
   const storedItems = await abstractStore.getAllPois()
   return storedItems.filter((storedItem) => {

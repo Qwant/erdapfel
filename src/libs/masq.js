@@ -48,6 +48,10 @@ MasqStore.prototype.registerApp = async function(apps) {
   await this.masq.logIntoMasq(false)
 }
 
+MasqStore.prototype.unregisterApp = async function() {
+  await this.masq.signout()
+}
+
 MasqStore.prototype.onConnect = async function () {
   // executed when maps is opened
   this.masq = new Masq(this.config.title, this.config.desc, this.config.icon)

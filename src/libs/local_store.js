@@ -32,6 +32,10 @@ LocalStore.prototype.register = function() {
   return Promise.resolve()
 }
 
+LocalStore.prototype.unregisterApp = function() {
+  return Promise.resolve()
+}
+
 LocalStore.prototype.isRegistered = function() {
   return Promise.resolve(true)
 }
