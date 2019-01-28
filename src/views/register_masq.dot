@@ -1,10 +1,10 @@
 <div class="register_masq_panel">
   {{? (!this.isRegistered)}}
     <h1 class="register_masq_panel__title">
-      {{= _('Register masq', 'masq') }}
+      {{= _('Register with masq', 'masq') }}
     </h1>
     <p>
-      {{= _('We use MASQ to keep your preference data safe', 'masq') }}
+      {{= _('We use MASQ to keep your personal data safe', 'masq') }}
     </p>
     <br>
     <button class="register_masq_panel__action" {{= click(this.register, this) }}>
@@ -12,9 +12,9 @@
     </button>
   {{?}}
   {{? this.isRegistered}}
-    <h1 class="register_masq_panel__title">
-      {{= _('LoggedIn', 'masq') }}
-    </h1>
+    <p class="loggedin_masq_panel__title">
+      {{= this.username }}
+    </p>
     <button class="register_masq_panel__action" {{= click(this.unregister, this) }}>
       {{= _('Logout', 'masq') }}
     </button>

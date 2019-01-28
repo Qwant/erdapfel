@@ -13,6 +13,7 @@ export default class RegisterMasqPanel {
       this.store = new Store()
       this.isActive = false
       this.registering = false
+      this.username = null
       listen('register_panel__show', () => {
         this.panel.animate(.25, '.register_masq_panel', {top : '100px'})
       })
