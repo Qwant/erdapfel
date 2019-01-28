@@ -2,12 +2,13 @@ import Suggest from "../adapters/suggest";
 import PanelManager from "../proxies/panel_manager";
 
 const MAPBOX_RESERVED_KEYS = [
-    37 // ←
-  , 38 // ↑
-  , 39 // →
-  , 40 // ↓
-  , 107 // -
-  , 109 // +
+    'ArrowLeft' // ←
+  , 'ArrowUp' // ↑
+  , 'ArrowRight' // →
+  , 'ArrowDown' // ↓
+  , '-' // -
+  , '+' // +
+  , '=' // =
 ]
 
 export default class SearchInput {
@@ -43,7 +44,9 @@ export default class SearchInput {
 
   handleKeyboard() {
     document.onkeydown = function(e) {
-      if(MAPBOX_RESERVED_KEYS.find((key) => key === e.keyCode)) {console.log( e.keyCode); return}
+      if(MAPBOX_RESERVED_KEYS.find((key) => key === e.key)) {
+        return
+      }
       if(!e.shiftKey && !e.ctrlKey) {
         if(document.activeElement
           && document.activeElement.tagName !== 'INPUT'
