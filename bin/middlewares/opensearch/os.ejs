@@ -1,0 +1,11 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+    <ShortName><%= shortName %></ShortName>
+    <Description><%= description %></Description>
+    <InputEncoding>[UTF-8]</InputEncoding>
+    <Image width="16" height="16" type="image/x-icon"><%= faviconUrl %></Image>
+    <Url type="text/html" template="<%= url %>">
+        <Param name="q" value="{searchTerms}"/>
+    </Url>
+    <moz:SearchForm>[https://example.com/search]</moz:SearchForm>
+</OpenSearchDescription>
