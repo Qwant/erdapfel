@@ -21,6 +21,16 @@
   margin-bottom: 10px;
 }
 
+.loggedin_masq_panel__profile_image {
+  width: 45px;
+  height: 45px;
+}
+
+.loggedin_masq_panel__profile_info {
+  display: flex;
+  flex-direction: row;
+}
+
 .register_masq_panel__action {
   padding: 8px 16px;
   background: linear-gradient(to left, #5a3b6d 0%,#e5066b 100%);

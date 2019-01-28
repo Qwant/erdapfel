@@ -35,6 +35,18 @@ function Store() {
   }
 }
 
+Store.prototype.getUserInfo = async function() {
+  try {
+    if (! (await checkRegistered())) {
+      throw new Error('Not registered')
+    }
+    return await abstractStore.getUserInfo()
+  } catch (e) {
+    Error.sendOnce('store', 'getAllPois', 'error getting pois', e)
+    throw e
+  }
+}
+
 Store.prototype.getAllPois = async function() {
   try {
     if (! (await checkRegistered())) {

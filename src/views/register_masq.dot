@@ -6,15 +6,17 @@
     <p>
       {{= _('We use MASQ to keep your personal data safe', 'masq') }}
     </p>
-    <br>
     <button class="register_masq_panel__action" {{= click(this.register, this) }}>
       {{= _('Register', 'masq') }}
     </button>
   {{?}}
   {{? this.isRegistered}}
-    <p class="loggedin_masq_panel__title">
-      {{= this.username }}
-    </p>
+    <div class="loggedin_masq_panel__profile_info">
+      <img src={{= this.profileImage }} class="loggedin_masq_panel__profile_image">
+      <p class="loggedin_masq_panel__title">
+        {{= this.username }}
+      </p>
+    </div>
     <button class="register_masq_panel__action" {{= click(this.unregister, this) }}>
       {{= _('Logout', 'masq') }}
     </button>

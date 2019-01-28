@@ -38,8 +38,17 @@ MasqStore.prototype.getAllPois = async function() {
   return values
 }
 
-MasqStore.prototype.isRegistered = function() {
-  return Promise.resolve(this.masq && this.masq.isLoggedIn())
+MasqStore.prototype.getUserInfo = async function() {
+  const username = await this.masq.getUsername()
+  const profileImage = await this.masq.getProfileImage()
+  return {
+    username,
+    profileImage
+  }
+}
+
+MasqStore.prototype.isRegistered = async function() {
+  return await Promise.resolve(this.masq && this.masq.isLoggedIn())
 }
 
 MasqStore.prototype.registerApp = async function(apps) {

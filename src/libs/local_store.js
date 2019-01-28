@@ -27,6 +27,10 @@ LocalStore.prototype.getAllPois = function() {
   })
 }
 
+LocalStore.prototype.getUserInfo = function() {
+  return Promise.resolve(null)
+}
+
 LocalStore.prototype.registerApp = function() {
   console.log('local storage doesn\'t support register method')
   return Promise.resolve()
