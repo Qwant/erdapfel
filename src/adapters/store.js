@@ -1,6 +1,8 @@
 import nconf from '@qwant/nconf-getter'
 import Error from '../adapters/error'
 import {version} from '../../config/constants.yml'
+import ExtendedString from "../libs/string";
+
 let moduleConfig = nconf.get().store
 
 const AbStore = require(`../libs/${moduleConfig.name}`)
@@ -77,8 +79,7 @@ Store.prototype.register = async function () {
 Store.prototype.getPrefixes = async function (prefix) {
   const storedItems = await abstractStore.getAllPois()
   return storedItems.filter((storedItem) => {
-    const rePrefix = new RegExp(`^${prefix}`, 'i')
-    return rePrefix.exec(storedItem.name)
+    return ExtendedString.compareIgnoreCase(storedItem.name, prefix) === 0 /* start with */
   })
 }
 
