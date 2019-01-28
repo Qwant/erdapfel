@@ -7,10 +7,10 @@
     {{?}}
   </div>
   {{= this.servicePanel.render() }}
+  {{= this.masqPanel.render() }}
 </div>
 
 /* modals */
-{{= this.masqPanel.render() }}
 {{= this.sharePanel.renderModal() }}
 {{= this.geolocationModal.renderModal() }}
 {{= this.geolocationDeniedModal.renderModal() }}

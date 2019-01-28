@@ -1,4 +1,4 @@
-<div class="register_masq_panel" style="top:{{= this.isActive ? '0' : '-300px' }}">
+<div class="register_masq_panel">
   <h1 class="register_masq_panel__title">
     {{= _('Register masq', 'mask') }}
   </h1>
