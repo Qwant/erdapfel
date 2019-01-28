@@ -22,6 +22,10 @@ export default class SceneDirection {
       this.displayRoute(move)
     })
 
+    listen('show_marker_steps', () => {
+      this.showMarkerSteps();
+    })
+
     listen('toggle_route', (mainRouteId) => {
       this.routes.forEach((route) => {
         this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === mainRouteId})
@@ -48,13 +52,14 @@ export default class SceneDirection {
       })
       this.showPolygon(mainRoute)
 
-      // Hide previously drawn steps markers
-      if(this.markersSteps.length > 0){
-        for(var markerStep in this.markersSteps){
-          this.markersSteps[markerStep].remove()
-        }
+    // Hide previously drawn steps markers
+    if(this.markersSteps.length > 0){
+      for(var markerStep in this.markersSteps){
+        this.markersSteps[markerStep].remove()
       }
-      this.markersSteps = []
+    }
+
+    this.markersSteps = []
 
       // Custom markers
       const markerOriginDom = document.createElement('div')
@@ -87,19 +92,36 @@ export default class SceneDirection {
         }
       }
 
+  displayRoute() {
+    if(this.routes && this.routes.length > 0) {
+      this.mainRoute = this.routes.find((route) => route.isActive)
+      let otherRoutes = this.routes.filter((route) => !route.isActive)
+      this.steps = this.mainRoute.legs[0].steps;
+
+      otherRoutes.forEach((route) => {
+        this.showPolygon(route)
+      })
+      this.showPolygon(this.mainRoute)
+
+      // Custom markers
+      if (this.vehicle !== "walking" && window.innerWidth > 640) {
+        this.showMarkerSteps()
+      }
+
+
       const markerStart = document.createElement('div')
       markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
       this.markerStart = new Marker(markerStart)
-          .setLngLat(steps[0].maneuver.location)
+          .setLngLat(this.steps[0].maneuver.location)
           .addTo(this.map)
 
       const markerEnd = document.createElement('div')
       markerEnd.className = 'itinerary_marker_end'
       this.markerEnd = new Marker(markerEnd)
-          .setLngLat(steps[steps.length - 1].maneuver.location)
+          .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
           .addTo(this.map)
 
-      let bbox = this.computeBBox(mainRoute);
+      let bbox = this.computeBBox(this.mainRoute);
       let padding = {};
       if(Device.isMobile()){
         padding = {top: 180, right: 20, bottom: 110, left: 20 };
