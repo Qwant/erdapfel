@@ -8,10 +8,12 @@ let moduleConfig = nconf.get().store
 const AbStore = require(`../libs/${moduleConfig.name}`)
 const abstractStore = new AbStore(moduleConfig[moduleConfig.name])
 
+// When not registered fallback to another store that does not need registration
+const FallbackStore = require(`../libs/${moduleConfig.fallback}`)
+const fallbackStore = new FallbackStore(moduleConfig[moduleConfig.fallback])
+
 const checkRegistered = async () => {
-  if (!(await abstractStore.isRegistered())) {
-    throw new Error('Not registered')
-  }
+  return (await abstractStore.isRegistered())
 }
 
 function Store() {
@@ -35,7 +37,9 @@ function Store() {
 
 Store.prototype.getAllPois = async function() {
   try {
-    await checkRegistered()
+    if (! (await checkRegistered())) {
+      return await fallbackStore.getAllPois()
+    }
     return await abstractStore.getAllPois()
   } catch (e) {
     Error.sendOnce('store', 'getAllPois', 'error getting pois', e)
@@ -45,7 +49,10 @@ Store.prototype.getAllPois = async function() {
 
 Store.prototype.getLastLocation = async function() {
   try {
-    await checkRegistered()
+    if (! (await checkRegistered())) {
+      return await fallbackStore.get(`qmaps_v${version}_last_location`)
+    }
+    console.log('registered')
     return await abstractStore.get(`qmaps_v${version}_last_location`)
   } catch (e) {
     Error.sendOnce('store', 'getLastLocation', 'error getting location', e)
@@ -55,7 +62,9 @@ Store.prototype.getLastLocation = async function() {
 
 Store.prototype.setLastLocation = async function(loc) {
   try {
-    await checkRegistered()
+    if (! (await checkRegistered())) {
+      return await fallbackStore.set(`qmaps_v${version}_last_location`, loc)
+    }
     return await abstractStore.set(`qmaps_v${version}_last_location`, loc)
   } catch (e) {
     Error.sendOnce('store', 'setLastLocation', 'error setting location', e)
@@ -90,7 +99,9 @@ Store.prototype.getPrefixes = async function (prefix) {
 
 Store.prototype.has = async function(poi) {
   try {
-    await checkRegistered()
+    if (! (await checkRegistered())) {
+      return await fallbackStore.has(poi.getKey())
+    }
     return await abstractStore.has(poi.getKey())
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e)
@@ -99,7 +110,9 @@ Store.prototype.has = async function(poi) {
 
 Store.prototype.add = async function(poi) {
   try {
-    await checkRegistered()
+    if (! (await checkRegistered())) {
+      return await fallbackStore.set(poi.getKey(), poi.poiStoreLiteral())
+    }
     await abstractStore.set(poi.getKey(), poi.poiStoreLiteral())
   } catch(e) {
     Error.sendOnce('store', 'add', 'error adding poi', e)
@@ -108,7 +121,9 @@ Store.prototype.add = async function(poi) {
 
 Store.prototype.del = async function(poi) {
   try {
-    await checkRegistered()
+    if (! (await checkRegistered())) {
+      return await fallbackStore.del(poi.getKey())
+    }
     await abstractStore.del(poi.getKey())
   } catch(e) {
     Error.sendOnce('store', 'del', 'error deleting key', e)
@@ -117,7 +132,9 @@ Store.prototype.del = async function(poi) {
 
 Store.prototype.clear = async function () {
   try {
-    await checkRegistered()
+    if (! (await checkRegistered())) {
+      return await fallbackStore.clear()
+    }
     await abstractStore.clear()
   } catch(e) {
     Error.sendOnce('store', 'clear', 'error clearing store', e)
