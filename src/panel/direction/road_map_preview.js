@@ -16,26 +16,21 @@ export default class RoadMapPreviewPanel {
     this.routeId = 0
     this.stepId = 0
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step, {top: 130, right: 20, bottom: 80, left: 20 })
+    fire('zoom_step', this.step, {top: 180, right: 20, bottom: 110, left: 20 })
     this.hideForm()
-  }
-
-  exitPreview() {
-    document.querySelectorAll(".itinerary_fields")[0].style.display = "block"
-    document.querySelectorAll(".itinerary_vehicles")[0].style.display = "block"
   }
 
   next() {
     this.stepId += 1
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step, {top: 130, right: 20, bottom: 80, left: 20 })
+    fire('zoom_step', this.step, {top: 180, right: 20, bottom: 110, left: 20 })
     this.panel.update()
   }
 
   previous() {
     this.stepId -= 1
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step, {top: 130, right: 20, bottom: 80, left: 20 })
+    fire('zoom_step', this.step, {top: 180, right: 20, bottom: 110, left: 20 })
     this.panel.update()
   }
 }

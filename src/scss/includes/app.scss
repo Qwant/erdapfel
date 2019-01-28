@@ -72,3 +72,9 @@ BODY {
     max-height: calc(100vh - 100px);
   }
 }
+
+@media (max-width: 350px) {
+  .search_form__input::placeholder {
+    font-size: 12px;
+  }
+}

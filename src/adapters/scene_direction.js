@@ -78,7 +78,6 @@ export default class SceneDirection {
           .setLngLat(steps[0].maneuver.location)
           .addTo(this.map)
 
-
       const markerEnd = document.createElement('div')
       markerEnd.className = 'itinerary_marker_end'
 
@@ -89,7 +88,7 @@ export default class SceneDirection {
       let bbox = this.computeBBox(mainRoute);
       let padding = {};
       if(Device.isMobile()){
-        padding = {top: 130, right: 20, bottom: 80, left: 20 };
+        padding = {top: 180, right: 20, bottom: 110, left: 20 };
       }
       else {
         padding = {top: 20, right: 20, bottom: 40, left: 450 }
@@ -98,7 +97,6 @@ export default class SceneDirection {
 
     }
   }
-
 
   reset() {
     this.routes.forEach((route) => {
