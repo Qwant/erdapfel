@@ -188,37 +188,21 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
 
   // Check if one corner of the BBox is in the extended viewport:
 
-  var bboxIsNear = false;
-
-  // ne
-  if(this.isPointInBounds(bbox._ne, viewport)){
-    bboxIsNear = true;
+  if(
+      this.isPointInBounds(bbox._ne, viewport) // ne
+      || this.isPointInBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport) // nw
+      || this.isPointInBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport) // se
+      || this.isPointInBounds(bbox._sw, viewport) // sw
+  ){
+    return true
   }
 
-  // nw
-  if(this.isPointInBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport)){
-    bboxIsNear = true;
-  }
-
-  // se
-  if(this.isPointInBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport)){
-    bboxIsNear = true;
-  }
-
-  // sw
-  if(this.isPointInBounds(bbox._sw, viewport)){
-    bboxIsNear = true;
-  }
-
-  return bboxIsNear
-
+  return false
 }
 
 Scene.prototype.fitBbox = function(bbox, padding){
 
   padding = padding || {left: 0, top: 0, right: 0, bottom: 0};
-
-  console.log(padding);
 
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
   var animate = false;

@@ -41,11 +41,11 @@
           <div class="itinerary_leg_detail itinerary_leg_detail--hidden" id="itinerary_leg_detail_{{= i }}">
 
             {{~ this.routes[i].legs[0].steps:step:i }}
-              <div class='itinerary_roadmap_step' {{= mouseover(this.mouseOverStep, this, i) }} {{= mouseout(this.mouseOutStep, this, i) }}  {{= click(this.clickStep, this, step) }}>
-                <div class='itinerary_roadmap_icon itinerary_roadmap_icon_{{= (step.maneuver.modifier || step.maneuver.type).replace(/\s/g,"-") }}'></div>
+              <div class='itinerary_roadmap_step' {{= mouseover(this.highlightStepMarker, this, i) }} {{= mouseout(this.unhighlightStepMarker, this, i) }}  {{= click(this.zoomStep, this, step) }}>
+                  <div class='itinerary_roadmap_icon itinerary_roadmap_icon_{{= (step.maneuver.modifier || step.maneuver.type).replace(/\s/g,"-") }}'></div>
                   <div class=itinerary_roadmap_instruction_and_distance>
-                    <div class=itinerary_roadmap_instruction>{{= step.maneuver.instruction }}</div>
-                    <div class=itinerary_roadmap_distance>{{= this.distance(step.distance) }}</div>
+                      <div class=itinerary_roadmap_instruction>{{= step.maneuver.instruction }}</div>
+                      <div class=itinerary_roadmap_distance>{{= this.distance(step.distance) }}</div>
                  </div>
               </div>
             {{~}}

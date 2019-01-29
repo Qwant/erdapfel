@@ -1,5 +1,4 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
-import Direction from "./poi/specials/direction_poi";
 import Device from '../libs/device'
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
@@ -61,10 +60,8 @@ export default class SceneDirection {
       this.showPolygon(mainRoute)
 
     // Hide previously drawn steps markers
-    if(this.markersSteps.length > 0){
-      for(var markerStep in this.markersSteps){
-        this.markersSteps[markerStep].remove()
-      }
+    for(var markerStep in this.markersSteps){
+      this.markersSteps[markerStep].remove()
     }
 
     this.markersSteps = []
@@ -112,7 +109,7 @@ export default class SceneDirection {
       this.showPolygon(this.mainRoute)
 
       // Custom markers
-      if (this.vehicle !== "walking" && window.innerWidth > 640) {
+      if (this.vehicle !== "walking" && !Device.isMobile()) {
         this.showMarkerSteps()
       }
 
