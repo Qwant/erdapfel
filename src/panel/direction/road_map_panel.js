@@ -93,6 +93,6 @@ export default class RoadMapPanel {
   }
 
   zoomStep(step){
-    fire('zoom_step', step, {top: 20, right: 20, bottom: 40, left: 450 });
+    fire('zoom_step', step, {itinerary:  true});
   }
 }
