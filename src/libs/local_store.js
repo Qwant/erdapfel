@@ -4,7 +4,15 @@ function LocalStore() {}
 
 LocalStore.prototype.getAllPois = function() {
   return new Promise((resolve) => {
-    const items = Object.keys(localStorage).reduce((filtered, k) => {
+    let localStorageKeys = []
+    try {
+      localStorageKeys = Object.keys(localStorage)
+    } catch (e) {
+      Error.sendOnce('local_store', 'getAllPois', 'error getting pois keys', e)
+      resolve([])
+      return
+    }
+    const items = localStorageKeys.reduce((filtered, k) => {
       if (Poi.isPoiCompliantKey(k)) {
         try {
           let poi = JSON.parse(localStorage.getItem(k))
