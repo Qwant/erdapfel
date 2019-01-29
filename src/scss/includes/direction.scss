@@ -3,7 +3,7 @@
   overflow: visible;
   font-size: 12px;
   width: 400px;
-  background: url("../images/direction_icons/panel_top.svg") #f4f6fa repeat-x;
+  background: url('../images/direction_icons/panel_top.svg') #f4f6fa repeat-x;
   background-size: 100% 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
   border-radius: 3px;
@@ -22,7 +22,7 @@
   height: 20px;
   float: right;
   margin: 9px;
-  background: url("../images/direction_icons/x.svg") no-repeat center center;
+  background: url('../images/direction_icons/x.svg') no-repeat center center;
   color: #5c6f84;
   background-size: 16px;
   cursor: pointer;
@@ -51,13 +51,13 @@
 }
 
 .itinerary_icon_start {
-  background: url("../images/direction_icons/crosshair.svg") no-repeat center center;
+  background: url('../images/direction_icons/crosshair.svg') no-repeat center center;
   color: #5c6f84;
   background-size: 16px;
 }
 
 .itinerary_icon_end {
-  background: url("../images/direction_icons/map-pin.svg") no-repeat center center;
+  background: url('../images/direction_icons/map-pin.svg') no-repeat center center;
   color: #5c6f84;
   background-size: 16px;
 }
@@ -81,7 +81,7 @@
 }
 
 .itinerary_invert_start_end {
-  background: url("../images/direction_icons/shuffle.svg") no-repeat center center;
+  background: url('../images/direction_icons/shuffle.svg') no-repeat center center;
   color: #5c6f84;
   background-size: 15px;
   position: absolute;
@@ -109,29 +109,29 @@
 }
 
 .itinerary_button_label_driving {
-  background: url("../images/direction_icons/car-grey.svg") no-repeat center center;
+  background: url('../images/direction_icons/car-grey.svg') no-repeat center center;
   color: #5c6f84;
 }
 .itinerary_button_label_driving.label_active {
-  background: url("../images/direction_icons/car-white.svg") no-repeat center center #5c6f84;
+  background: url('../images/direction_icons/car-white.svg') no-repeat center center #5c6f84;
   color: #fff;
 }
 
 .itinerary_button_label_cycling {
-  background: url("../images/direction_icons/bike-grey.svg") no-repeat center center;
+  background: url('../images/direction_icons/bike-grey.svg') no-repeat center center;
   color: #5c6f84;
 }
 .itinerary_button_label_cycling.label_active {
-  background: url("../images/direction_icons/bike-white.svg") no-repeat center center #5c6f84;
+  background: url('../images/direction_icons/bike-white.svg') no-repeat center center #5c6f84;
   color: #fff;
 }
 
 .itinerary_button_label_walking {
-  background: url("../images/direction_icons/foot-grey.svg") no-repeat center center;
+  background: url('../images/direction_icons/foot-grey.svg') no-repeat center center;
   color: #5c6f84;
 }
 .itinerary_button_label_walking.label_active {
-  background: url("../images/direction_icons/foot-white.svg") no-repeat center center #5c6f84;
+  background: url('../images/direction_icons/foot-white.svg') no-repeat center center #5c6f84;
   color: #fff;
 }
 
@@ -208,17 +208,17 @@
 }
 
 .itinerary_leg_icon_driving {
-  background: url("../images/direction_icons/car.svg") no-repeat center center;
+  background: url('../images/direction_icons/car.svg') no-repeat center center;
   color: #353c52;
 }
 
 .itinerary_leg_icon_walking {
-  background: url("../images/direction_icons/foot.svg") no-repeat center center;
+  background: url('../images/direction_icons/foot.svg') no-repeat center center;
   color: #353c52;
 }
 
 .itinerary_leg_icon_cycling {
-  background: url("../images/direction_icons/bike.svg") no-repeat center center;
+  background: url('../images/direction_icons/bike.svg') no-repeat center center;
   color: #353c52;
 }
 
@@ -247,7 +247,7 @@
 
 .itinerary_leg_via_details_icon {
   display: inline-block;
-  background: url("../images/direction_icons/arrow-right.svg") no-repeat center center;
+  background: url('../images/direction_icons/arrow-right.svg') no-repeat center center;
   color: #353c52;
   width: 15px;
   height: 15px;
@@ -509,7 +509,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: url("../images/direction_icons/top_mobile.svg") #f4f6fa no-repeat center top;
+    background: url('../images/direction_icons/top_mobile.svg') #f4f6fa no-repeat center top;
     background-size: 100% auto;
     position: fixed;
     z-index: 5;
@@ -667,13 +667,13 @@
     right: 5px;
     width: 20px;
     height: 20px;
-    background: url("../images/direction_icons/x.svg") no-repeat center center;
+    background: url('../images/direction_icons/x.svg') no-repeat center center;
     color: #5c6f84;
     background-size: 16px;
   }
   
   #itinerary_container.mobile_step_by_step {
-    background: url("../images/direction_icons/top_mobile.svg") transparent no-repeat center top;
+    background: url('../images/direction_icons/top_mobile.svg') transparent no-repeat center top;
     background-size: 100% auto;
     height: 50px;
     box-shadow: none;
@@ -698,10 +698,10 @@
 
     .itinerary_roadmap_icon_arrive {
       width: 37px;
+    }
 
-      & + div {
-        padding: 24px 0;
-      }
+    .itinerary_roadmap_icon_arrive + .itinerary_roadmap_instruction_and_distance {
+      padding: 24px 0;
     }
   }
   
@@ -743,22 +743,22 @@
   
   .itinerary_mobile_step_button_left {
     border-right: 1px solid #f4f6fa;
-    background: url("../images/direction_icons/chevron-left.svg") no-repeat center center;
+    background: url('../images/direction_icons/chevron-left.svg') no-repeat center center;
     background-size: 24px 24px;
   }
   
   .itinerary_mobile_step_button_right {
     border-right: 1px solid #f4f6fa;
-    background: url("../images/direction_icons/chevron-right.svg") no-repeat center center;
+    background: url('../images/direction_icons/chevron-right.svg') no-repeat center center;
     background-size: 24px 24px;
   }
 
   .itinerary_mobile_step_button_left.itinerary_mobile_step_button--disabled {
-    background-image: url("../images/direction_icons/chevron-left-grey.svg");
+    background-image: url('../images/direction_icons/chevron-left-grey.svg');
   }
 
   .itinerary_mobile_step_button_right.itinerary_mobile_step_button--disabled {
-    background-image: url("../images/direction_icons/chevron-right-grey.svg");
+    background-image: url('../images/direction_icons/chevron-right-grey.svg');
   }
 
   .service_panel_mobile__direction {

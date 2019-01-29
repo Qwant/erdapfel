@@ -1,5 +1,4 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
-import Direction from "./poi/specials/direction_poi";
 import Device from '../libs/device'
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
@@ -51,26 +50,24 @@ export default class SceneDirection {
   showMarkerSteps(){
 
     // Hide previously drawn steps markers
-    if(this.markersSteps.length > 0){
-      for(var markerStep in this.markersSteps){
-        this.markersSteps[markerStep].remove()
-      }
+    for(var markerStep in this.markersSteps){
+      this.markersSteps[markerStep].remove()
     }
 
     this.markersSteps = []
 
     for (var step = 1; step < this.steps.length - 1; step++) {
 
-      const markerStep = document.createElement('div')
-      markerStep.className = 'itinerary_marker_step'
-      markerStep.onclick = (function(step){
-          return function() {
-              fire("zoom_step", step)
-          }
+      const markerStepDom = document.createElement('div')
+      markerStepDom.className = 'itinerary_marker_step'
+      markerStepDom.onclick = (function(step){
+        return function() {
+          fire("zoom_step", step)
+        }
       })(this.steps[step]);
 
       this.markersSteps.push(
-          new Marker(markerStep)
+          new Marker(markerStepDom)
               .setLngLat(this.steps[step].maneuver.location)
               .addTo(this.map)
       )
@@ -89,7 +86,7 @@ export default class SceneDirection {
       this.showPolygon(this.mainRoute)
 
       // Custom markers
-      if (this.vehicle !== "walking" && window.innerWidth > 640) {
+      if (this.vehicle !== "walking" && !Device.isMobile()) {
         this.showMarkerSteps()
       }
 
