@@ -33,10 +33,10 @@ export default class RegisterMasqPanel {
   }
 
   async register() {
-    this.regsitering = true
+    this.registering = true
+    this.panel.update()
     try {
       await this.store.register()
-      this.regsitering = false
       this.isRegistered = await this.store.isRegistered()
       if (this.isRegistered) {
         const { username, profileImage } = await this.store.getUserInfo()
@@ -45,9 +45,9 @@ export default class RegisterMasqPanel {
       }
     } catch(e) {
       Error.sendOnce('register_masq', 'register', 'error registering masq', e)
-      this.regsitering = false
       this.isRegistered = await this.store.isRegistered()
     }
+    this.registering = false
     this.panel.animate(.25, '.register_masq_panel', {top : '-300px'})
     this.panel.update()
   }
@@ -61,7 +61,6 @@ export default class RegisterMasqPanel {
       this.profileImage = profileImage
     }
     window.location.reload()
-    this.panel.update()
     return
   }
 }
