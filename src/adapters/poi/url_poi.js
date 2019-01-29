@@ -6,6 +6,7 @@ const LAT_POSITION = 1
 const LON_POSITION = 2
 const LABEL_POSITION  = 4
 const POI_ID_POSITION  = 1
+const DIRECTION_URL_REGEX = /^latlon:(-?\d*\.\d*):(-?\d*\.\d*)(@(.*))?/
 
 export default class UrlPoi extends Poi {
   constructor(latLon, label) {
@@ -21,7 +22,7 @@ export default class UrlPoi extends Poi {
       return Promise.reject()
     }
     if(urlParam.match(/^latlon:/)) {
-      let urlData = urlParam.match(/^latlon:(-?\d*\.\d*):(-?\d*\.\d*)(@(.*))?/)
+      let urlData = urlParam.match(DIRECTION_URL_REGEX)
       let lat = urlData[LAT_POSITION]
       let lng = urlData[LON_POSITION]
 
@@ -34,8 +35,8 @@ export default class UrlPoi extends Poi {
           return Promise.resolve(new UrlPoi(latLng))
         }
       }
-    } else if(urlParam.match(/^id:/)) {
-      let urlData = urlParam.match(/^latlon:(.*?)(@(.*))?$/)
+    } else {
+      let urlData = urlParam.match(/^(.*?)(@(.*))?$/)
       let idunnId = urlData[POI_ID_POSITION]
       return IdunnPoi.poiApiLoad(idunnId)
     }

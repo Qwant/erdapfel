@@ -23,7 +23,7 @@ const baseUrl = nconf.get().system.baseUrl
 const store = new Store()
 
 function Scene() {
-  UrlState.registerResource(this, 'map')
+  UrlState.registerHash(this, 'map')
   this.currentMarker = null
   this.popup = new PoiPopup()
   this.zoom = map.zoom

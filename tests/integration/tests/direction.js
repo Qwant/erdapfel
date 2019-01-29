@@ -120,7 +120,7 @@ test('origin & destination', async () => {
 
 test('origin & destination & mode', async () => {
   expect.assertions(4)
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5974116.5&mode=walking`)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5974115&mode=walking`)
 
   await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
