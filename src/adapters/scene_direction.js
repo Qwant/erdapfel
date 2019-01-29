@@ -40,6 +40,14 @@ export default class SceneDirection {
     listen('zoom_step', (step) => {
       fire('fit_bbox', {bbox : this.computeBBox(step)}, {sidePanelOffset : true})
     })
+
+    listen('highlight_step', (step) => {
+      this.highlight_step(step);
+    })
+
+    listen('unhighlight_step', (step) => {
+      this.unhighlight_step(step);
+    })
   }
 
   displayRoute(move) {
@@ -107,7 +115,6 @@ export default class SceneDirection {
       if (this.vehicle !== "walking" && window.innerWidth > 640) {
         this.showMarkerSteps()
       }
-
 
       const markerStart = document.createElement('div')
       markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
@@ -209,5 +216,13 @@ export default class SceneDirection {
     })
 
     return bounds
+  }
+
+  highlight_step(step){
+    this.markersSteps[step]._element.classList.add("itinerary_marker_step--highlighted")
+  }
+
+  unhighlight_step(step){
+    this.markersSteps[step]._element.classList.remove("itinerary_marker_step--highlighted")
   }
 }
