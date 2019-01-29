@@ -63,6 +63,11 @@ export default class SceneDirection {
 
       const markerStep = document.createElement('div')
       markerStep.className = 'itinerary_marker_step'
+      markerStep.onclick = (function(step){
+          return function() {
+              fire("zoom_step", step)
+          }
+      })(this.steps[step]);
 
       this.markersSteps.push(
           new Marker(markerStep)
