@@ -38,6 +38,14 @@ export default class SceneDirection {
     listen('zoom_step', (step, padding) => {
       fire('fit_bbox', this.computeBBox(step), padding)
     })
+
+    listen('highlight_step', (step) => {
+      this.highlight_step(step);
+    })
+
+    listen('unhighlight_step', (step) => {
+      this.unhighlight_step(step);
+    })
   }
 
   showMarkerSteps(){
@@ -51,7 +59,7 @@ export default class SceneDirection {
 
     this.markersSteps = []
 
-    for (var step in this.steps) {
+    for (var step = 1; step < this.steps.length - 1; step++) {
 
       const markerStep = document.createElement('div')
       markerStep.className = 'itinerary_marker_step'
@@ -79,7 +87,6 @@ export default class SceneDirection {
       if (this.vehicle !== "walking" && window.innerWidth > 640) {
         this.showMarkerSteps()
       }
-
 
       const markerStart = document.createElement('div')
       markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
@@ -179,5 +186,13 @@ export default class SceneDirection {
     })
 
     return bounds
+  }
+
+  highlight_step(step){
+    this.markersSteps[step]._element.classList.add("itinerary_marker_step--highlighted")
+  }
+
+  unhighlight_step(step){
+    this.markersSteps[step]._element.classList.remove("itinerary_marker_step--highlighted")
   }
 }

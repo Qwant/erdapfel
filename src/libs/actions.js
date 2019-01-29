@@ -22,6 +22,50 @@ class Click{
   }
 }
 
+class MouseOver{
+  constructor(id, action) {
+    this.action = action
+    this.id = id
+  }
+  toString() {
+    return ` onmouseover="call4Action(event, ${this.id})" `
+  }
+
+  exec() {
+    if(this.telemetry) {
+      this.telemetry.add()
+    }
+    this.action.method.call(this.action.ctx, this.action.args)
+  }
+
+  addTelemetry(message) {
+    this.telemetry = new Telemetry(message)
+    return this
+  }
+}
+
+class MouseOut{
+  constructor(id, action) {
+    this.action = action
+    this.id = id
+  }
+  toString() {
+    return ` onmouseout="call4Action(event, ${this.id})" `
+  }
+
+  exec() {
+    if(this.telemetry) {
+      this.telemetry.add()
+    }
+    this.action.method.call(this.action.ctx, this.action.args)
+  }
+
+  addTelemetry(message) {
+    this.telemetry = new Telemetry(message)
+    return this
+  }
+}
+
 
 /**
  * bind html native listener to panel action
@@ -45,6 +89,30 @@ class Click{
     let clickAction = new Click(action.id, action)
     actions.set(action.id, clickAction)
     return clickAction
+  }
+
+  window.mouseover = function (method, ctx, options = {}) {
+    const action = {
+      id : actions.size,
+      method : method,
+      ctx : ctx,
+      args : options
+    }
+    let hoverAction = new MouseOver(action.id, action)
+    actions.set(action.id, hoverAction)
+    return hoverAction
+  }
+
+  window.mouseout = function (method, ctx, options = {}) {
+    const action = {
+      id : actions.size,
+      method : method,
+      ctx : ctx,
+      args : options
+    }
+    let hoverAction = new MouseOut(action.id, action)
+    actions.set(action.id, hoverAction)
+    return hoverAction
   }
 
   window.call4Action = function (event, id) {

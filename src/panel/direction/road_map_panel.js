@@ -83,4 +83,16 @@ export default class RoadMapPanel {
     this.routes = []
     this.panel.update()
   }
+
+  mouseOverStep(i){
+    fire("highlight_step", i);
+  }
+
+  mouseOutStep(i){
+    fire("unhighlight_step", i);
+  }
+
+  clickStep(step){
+    fire("zoom_step", step, {top: 20, right: 20, bottom: 40, left: 450 });
+  }
 }
