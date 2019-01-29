@@ -40,11 +40,11 @@ export default class SceneDirection {
     })
 
     listen('highlight_step', (step) => {
-      this.highlight_step(step);
+      this.highlightStep(step);
     })
 
     listen('unhighlight_step', (step) => {
-      this.unhighlight_step(step);
+      this.unhighlightStep(step);
     })
   }
 
@@ -193,11 +193,11 @@ export default class SceneDirection {
     return bounds
   }
 
-  highlight_step(step){
+  highlightStep(step){
     this.markersSteps[step]._element.classList.add("itinerary_marker_step--highlighted")
   }
 
-  unhighlight_step(step){
+  unhighlightStep(step){
     this.markersSteps[step]._element.classList.remove("itinerary_marker_step--highlighted")
   }
 }
