@@ -2,6 +2,8 @@ import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
+const PADDING_DIRECTION_DESKTOP = {top: 20, right: 20, bottom: 40, left: 450 };
+const PADDING_DIRECTION_MOBILE = {top: 180, right: 20, bottom: 110, left: 20 };
 
 
 
@@ -34,7 +36,16 @@ export default class SceneDirection {
       this.map.moveLayer(`route_${mainRouteId}`)
     })
 
-    listen('zoom_step', (step, padding) => {
+    listen('zoom_step', (step, options) => {
+      let padding;
+      if(options && options.itinerary){
+        if(Device.isMobile()){
+          padding = PADDING_DIRECTION_MOBILE;
+        }
+        else {
+          padding = PADDING_DIRECTION_DESKTOP;
+        }
+      }
       fire('fit_bbox', this.computeBBox(step), padding)
     })
 
@@ -62,7 +73,7 @@ export default class SceneDirection {
       markerStepDom.className = 'itinerary_marker_step'
       markerStepDom.onclick = (function(step){
         return function() {
-          fire("zoom_step", step)
+          fire("zoom_step", step, {itinerary:  true})
         }
       })(this.steps[step]);
 
@@ -107,10 +118,10 @@ export default class SceneDirection {
       let bbox = this.computeBBox(this.mainRoute);
       let padding = {};
       if(Device.isMobile()){
-        padding = {top: 180, right: 20, bottom: 110, left: 20 };
+        padding = PADDING_DIRECTION_MOBILE;
       }
       else {
-        padding = {top: 20, right: 20, bottom: 40, left: 450 }
+        padding = PADDING_DIRECTION_DESKTOP;
       }
       fire('fit_bbox', bbox, padding)
 
