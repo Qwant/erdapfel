@@ -35,6 +35,7 @@ export default class DirectionPanel {
     this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active')
     this.vehicle = vehicle
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
+    UrlState.pushUrl()
   }
 
   invertOriginDestination() {
@@ -51,11 +52,13 @@ export default class DirectionPanel {
   selectOrigin(poi) {
     this.origin = poi
     this.searchDirection()
+    UrlState.pushUrl()
   }
 
   selectDestination(poi) {
     this.destination = poi
     this.searchDirection()
+    UrlState.pushUrl()
   }
 
   /* panel manager implementation */
@@ -65,6 +68,7 @@ export default class DirectionPanel {
     } else {
       this.open()
     }
+    UrlState.pushUrl()
   }
 
   cleanDirection() {
@@ -89,7 +93,7 @@ export default class DirectionPanel {
     this.initDirection()
   }
 
-  async searchDirection() {
+  async searchDirection(options) {
     if(this.origin && this.destination) {
 
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
@@ -101,24 +105,40 @@ export default class DirectionPanel {
       })
       if(routes) {
         this.roadMapPanel.setRoad(routes, this.vehicle)
-        fire('set_route', {routes : routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
+        fire('set_route', {...options, routes : routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
       }
     }
   }
 
   /* urlState interface implementation */
 
-  restore() {
-    let getParams = new URLSearchParams(window.location.search)
-    this.restoreUrl(getParams).then(() => {
-      this.open()
-    })
+  async restore() {
+    await this.restoreUrl()
+    this.open()
   }
 
-  store() {}
+  store() {
+    if(this.active) {
+      let routeParams = []
+      if(this.origin) {
+        routeParams.push(this.poiToUrl('origin', this.origin))
+      }
+      if(this.destination) {
+        routeParams.push(this.poiToUrl('destination', this.destination))
+      }
+      if(routeParams.length > 0) {
+        return `?${routeParams.join('&')}&vehicle=${this.vehicle}`
+      } else {
+        return '?'
+      }
+    } else {
+      return ''
+    }
 
-  async restoreUrl(getParams) {
+  }
 
+  async restoreUrl() {
+    let getParams = new URLSearchParams(window.location.search)
     if(getParams.get('mode')) {
       let vehicleParam = getParams.get('mode')
       Object.keys(this.vehicles).forEach((vehicleKey) => {
@@ -138,7 +158,13 @@ export default class DirectionPanel {
     }
 
     execOnMapLoaded(() => {
-      this.searchDirection()
+      this.searchDirection({move : false})
     })
+  }
+
+  /* Private */
+
+  poiToUrl(prefix, poi) {
+    return `${prefix}=${poi.id}@${poi.name}`
   }
 }

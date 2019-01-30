@@ -12,13 +12,13 @@ export default class SceneDirection {
     this.markerOrigin = null
     this.markerDestination = null
 
-    listen('set_route', ({routes, vehicle, origin, destination}) => {
+    listen('set_route', ({routes, vehicle, origin, destination, move}) => {
       this.reset()
       this.routes = routes
       this.vehicle = vehicle
       this.origin = origin
       this.destination = destination
-      this.displayRoute()
+      this.displayRoute(move)
     })
 
     listen('toggle_route', (mainRouteId) => {
@@ -28,7 +28,7 @@ export default class SceneDirection {
       this.map.moveLayer(`route_${mainRouteId}`)
     })
 
-    listen('clean_route', (step) => {
+    listen('clean_route', () => {
       this.reset()
     })
 
@@ -37,7 +37,7 @@ export default class SceneDirection {
     })
   }
 
-  displayRoute() {
+  displayRoute(move) {
     if(this.routes && this.routes.length > 0){
       let mainRoute = this.routes.find((route) => route.isActive)
       let otherRoutes = this.routes.filter((route) => !route.isActive)
@@ -64,7 +64,9 @@ export default class SceneDirection {
         .addTo(this.map)
 
       let directionPoi = new Direction(this.computeBBox(mainRoute))
-      fire('fit_map', directionPoi, {sidePanelOffset : true})
+      if(move !== false) {
+        fire('fit_map', directionPoi, {sidePanelOffset : true})
+      }
     }
   }
 
