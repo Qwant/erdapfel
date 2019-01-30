@@ -5,6 +5,7 @@ import PanelManager from '../../proxies/panel_manager'
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
 import SearchInput from '../../ui_components/search_input'
+import Device from '../../libs/device'
 
 export default class DirectionPanel {
   constructor() {
@@ -75,6 +76,12 @@ export default class DirectionPanel {
   }
 
   close() {
+    if(Device.isMobile()){
+      document.querySelectorAll(".service_panel_mobile__direction")[0].style.display = "block";
+    }
+    else{
+      document.querySelectorAll(".service_panel")[0].style.display = "block";
+    }
     SearchInput.unMinify()
     this.active = false
     this.panel.update()
@@ -82,6 +89,12 @@ export default class DirectionPanel {
   }
 
   async open() {
+    if(Device.isMobile()){
+      document.querySelectorAll(".service_panel_mobile__direction")[0].style.display = "none";
+    }
+    else{
+      document.querySelectorAll(".service_panel")[0].style.display = "none";
+    }
     SearchInput.minify()
     this.active = true
     await this.panel.update()
