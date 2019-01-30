@@ -81,6 +81,12 @@ export default class DirectionPanel {
   }
 
   close() {
+    if(Device.isMobile()){
+      document.querySelectorAll(".service_panel_mobile__direction")[0].style.display = "block";
+    }
+    else{
+      document.querySelectorAll(".service_panel")[0].style.display = "block";
+    }
     SearchInput.unMinify()
     fire('clean_route')
     this.active = false
@@ -90,6 +96,12 @@ export default class DirectionPanel {
   }
 
   async open() {
+    if(Device.isMobile()){
+      document.querySelectorAll(".service_panel_mobile__direction")[0].style.display = "none";
+    }
+    else{
+      document.querySelectorAll(".service_panel")[0].style.display = "none";
+    }
     SearchInput.minify()
     this.active = true
     await this.panel.update()
