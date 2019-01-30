@@ -5,10 +5,9 @@ module.exports =function(config) {
     res.set('Content-Type', 'text/xml')
 
     res.render(path.join(__dirname, 'os.ejs'), {
-      shortName: res.locals._('QM'),
-      description: res.locals._('Search with Qwant Map'),
-      url: `${req.get('host')}${config.system.baseUrl}`,
-      faviconUrl: `${req.get('host')}${config.system.baseUrl}statics/images/favicon.png`
+      shortName: res.locals._('Qwant Maps'),
+      description: res.locals._('Search with Qwant Maps'),
+      baseUrl: `${req.get('host')}${config.system.baseUrl}`,
     })
   }
 }

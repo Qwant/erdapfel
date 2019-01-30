@@ -61,7 +61,7 @@ function App(config) {
     maxAge: config.mapStyle.maxAge
   }))
 
-  app.use('/search/xml', openSearch)
+  app.use('/opensearch.xml', openSearch)
 
   if(config.performance.enabled) {
     app.get('/fake_pbf/:z/:x/:y.pbf', fakePbf)
