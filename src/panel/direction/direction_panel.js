@@ -30,6 +30,32 @@ export default class DirectionPanel {
   initDirection() {
     this.originInput = new DirectionInput(originHandler, (poi) => this.selectOrigin(poi), 'submit_direction_origin')
     this.destinationInput = new DirectionInput(destinationHandler, (poi) => this.selectDestination(poi), 'submit_direction_destination')
+    let startHandler = '#itinerary_input_start'
+    let destinationHandler = '#itinerary_input_end'
+
+    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi), 'submit_direction_start')
+    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi), 'submit_direction_end')
+
+
+    this.searchInputStart = document.querySelector(startHandler)
+    this.searchInputEnd = document.querySelector(destinationHandler)
+    this.itineraryContainer = document.querySelector('#itinerary_container')
+
+    this.searchInputStart.onfocus = () => {
+      this.itineraryContainer.classList.add('itinerary_container--start-focused')
+    }
+
+    this.searchInputStart.onblur = () => {
+      this.itineraryContainer.classList.remove('itinerary_container--start-focused')
+    }
+
+    this.searchInputEnd.onfocus = () => {
+      this.itineraryContainer.classList.add('itinerary_container--end-focused')
+    }
+
+    this.searchInputEnd.onblur = () => {
+      this.itineraryContainer.classList.remove('itinerary_container--end-focused')
+    }
   }
 
   setVehicle(vehicle) {
