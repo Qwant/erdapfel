@@ -25,6 +25,9 @@ export default class RoadMapPanel {
     this.previewRoadMap.setRoad(this.routes)
     this.panel.update()
     fire('show_marker_steps')
+    if(Device.isMobile()){
+        document.querySelectorAll('.mapboxgl-ctrl-geolocate')[0].style.marginBottom = '38px';
+    }
   }
 
   hideForm() {
