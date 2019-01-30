@@ -78,6 +78,7 @@ export default class DirectionPanel {
   close() {
     if(Device.isMobile()){
       document.querySelectorAll(".service_panel_mobile__direction")[0].style.display = "block";
+      document.querySelectorAll('.mapboxgl-ctrl-geolocate')[0].style.marginBottom = '0';
     }
     else{
       document.querySelectorAll(".service_panel")[0].style.display = "block";
