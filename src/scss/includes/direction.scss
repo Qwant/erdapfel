@@ -777,4 +777,37 @@
   .autocomplete_suggestions {
     z-index: 10 !important;
   }
+
+  .itinerary_container--start-focused,
+  .itinerary_container--end-focused {
+    height: 5px;
+    overflow: hidden;
+
+    .itinerary_vehicles {
+      display: none;
+    }
+  }
+
+  #itinerary_input_start:focus,
+  #itinerary_input_end:focus {
+    position: fixed;
+    top: 5px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 20px 50px 20px 20px;
+    height: 60px;
+    line-height: 45px;
+  }
+
+  .itinerary_container--start-focused #itinerary_input_end,
+  .itinerary_container--end-focused #itinerary_input_start {
+    display: none;
+  }
+
+  .autocomplete_suggestions {
+    width: 100% !important;
+    top: 55px !important;
+    left: 0 !important;
+  }
 }

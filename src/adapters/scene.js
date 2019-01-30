@@ -216,31 +216,30 @@ Scene.prototype.fitBbox = function(bbox, padding){
 }
 
 
-
-Scene.prototype.fitMap = function(poi, options = {}) {
+Scene.prototype.fitMap = function(item, options = {}) {
   const MIN_ZOOM_FLYTO = 10
 
-  if(poi.bbox) {
+  if(item.bbox) {
     let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
     if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
       padding.left += layout.sizes.panelWidth
     }
-    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
-      this.mb.fitBounds(poi.bbox, {padding : padding})
+    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(item)) {
+      this.mb.fitBounds(item.bbox, {padding : padding})
     } else {
-      this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
+      this.mb.fitBounds(item.bbox, {padding : padding, animate : false})
     }
   } else {
-    let flyOptions = {center : poi.getLngLat(), screenSpeed: 1.5, animate:false}
-    if(poi.zoom) {
-      flyOptions.zoom = poi.zoom
+    let flyOptions = {center : item.getLngLat(), screenSpeed: 1.5, animate:false}
+    if(item.zoom) {
+      flyOptions.zoom = item.zoom
     }
     // set offset for poi witch will open panel on desktop
     if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
       flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
     }
 
-    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
+    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(item)) {
       flyOptions.animate = true
     }
     this.mb.flyTo(flyOptions)
