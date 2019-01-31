@@ -58,14 +58,11 @@ var autoComplete = (function(){
       that.last_val = '';
       that.sourcePending = null
 
-      that.updateSC = function(resize, next, forceDisplay){
+      that.updateSC = function(resize, next){
         var rect = that.getBoundingClientRect();
         that.sc.style.left = Math.round(rect.left + (window.pageXOffset || document.documentElement.scrollLeft) + o.offsetLeft) + 'px';
         that.sc.style.top = Math.round(rect.bottom + (window.pageYOffset || document.documentElement.scrollTop) + o.offsetTop) + 'px';
         that.sc.style.width = Math.round(rect.right - rect.left) + 'px'; // outerWidth
-        if(forceDisplay === true) {
-          that.sc.style.display = 'block';
-        }
         if (!resize) {
           that.sc.style.display = 'block';
           if (!that.sc.maxHeight) { that.sc.maxHeight = parseInt((window.getComputedStyle ? getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight); }
@@ -266,10 +263,11 @@ var autoComplete = (function(){
       cancelObsolete()
     };
 
-    this.forceRender = function(items) {
-      that.sc.innerHTML = o.renderItems(items)
-      that.updateSC(true, null, true)
-    };
+    this.search = async function (val) {
+      that.value = val;
+      let source = await o.source(val);
+      suggest(source);
+    }
 
     this.preRender = function () {
       that.sc.innerHTML = o.renderItems([])

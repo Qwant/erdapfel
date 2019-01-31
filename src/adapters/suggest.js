@@ -96,6 +96,10 @@ export default class Suggest {
     }
   }
 
+  async search(val) {
+    return this.autocomplete.search(val)
+  }
+
   async onSubmit() {
     if(this.pending) {
       this.autocomplete.cancel()
