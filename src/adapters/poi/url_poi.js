@@ -5,7 +5,6 @@ import IdunnPoi from "./idunn_poi";
 const LAT_POSITION = 1
 const LON_POSITION = 2
 const LABEL_POSITION  = 4
-const POI_ID_POSITION  = 1
 const DIRECTION_URL_REGEX = /^latlon:(-?\d*\.\d*):(-?\d*\.\d*)(@(.*))?/
 
 export default class UrlPoi extends Poi {
@@ -37,7 +36,7 @@ export default class UrlPoi extends Poi {
       }
     } else {
       let urlData = urlParam.match(/^(.*?)(@(.*))?$/)
-      let idunnId = urlData[POI_ID_POSITION]
+      let idunnId = urlData[1]
       return IdunnPoi.poiApiLoad(idunnId)
     }
   }
