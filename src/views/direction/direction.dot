@@ -1,30 +1,29 @@
 <div id="itinerary_container" class="itinerary_container{{= this.active ? ' itinerary_container--active' : '' }}">
   <div class=itinerary_form>
     <div class=itinerary_close {{= click(this.close, this) }}></div>
-      <div class=itinerary_close_mobile onclick="QwantDirection.close_ui()"><span class="itinerary_close_mobile_icon"></span>{{= _('return', 'direction') }}</div>
-      <h3 class="itinerary_title">{{= _('itinerary', 'direction') }}</h3>
-      <div class="itinerary_fields">
-        <form onsubmit="fire('submit_direction_start');return false">
-          <div class="itinerary_field_start">
-            <div class="itinerary_icon itinerary_icon_start"></div>
-            <input id="itinerary_input_start" autocomplete="off" spellcheck="false"  placeholder="{{= _('Start point', 'direction') }}">
-            <div class="itinerary_autocomplete" id="itinerary_autocomplete_start"></div>
-          </div>
-        </form>
-        <form onsubmit="fire('submit_direction_end');return false">
-          <div class="itinerary_field_end">
-            <div class="itinerary_icon itinerary_icon_end"></div>
-            <input id="itinerary_input_end" autocomplete="off" spellcheck="false" placeholder="{{= _('End point', 'direction') }}">
-            <div class="itinerary_autocomplete" id="itinerary_autocomplete_end"></div>
-          </div>
-        </form>
-        <div class="itinerary_invert_start_end" {{= click(this.invertStartEnd, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
-      </div>
+    <div class=itinerary_close_mobile onclick="QwantDirection.close_ui()"><span class="itinerary_close_mobile_icon"></span>{{= _('return', 'direction') }}</div>
+    <h3 class="itinerary_title">{{= _('itinerary', 'direction') }}</h3>
+    <div class="itinerary_fields">
+      <form onsubmit="fire('submit_direction_origin');return false">
+        <div class="itinerary_field_origin">
+          <div class="itinerary_icon itinerary_icon_origin"></div>
+          <input id="itinerary_input_origin" autocomplete="off" spellcheck="false" value="{{= this.origin ? this.origin.name : '' }}" placeholder="{{= _('Start point', 'direction') }}">
+        </div>
+      </form>
+      <form onsubmit="fire('submit_direction_destination');return false">
+        <div class="itinerary_field_destination">
+          <div class="itinerary_icon itinerary_icon_destination"></div>
+          <input id="itinerary_input_destination" autocomplete="off" spellcheck="false" value="{{= this.destination ? this.destination.name : '' }}" placeholder="{{= _('End point', 'direction') }}">
+        </div>
+      </form>
+      <div class="itinerary_invert_origin_destination" {{= click(this.invertOriginDestination, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
     </div>
-    <div class="itinerary_vehicles">
-      <span class="itinerary_button_label itinerary_button_label_driving{{= this.vehicle === this.DRIVING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.DRIVING) }}></span>
-      <span class="itinerary_button_label itinerary_button_label_walking{{= this.vehicle === this.WALKING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.WALKING) }}></span>
-      <span class="itinerary_button_label itinerary_button_label_cycling{{= this.vehicle === this.CYCLING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.CYCLING) }}></span>
+  </div>
+
+  <div class="itinerary_vehicles">
+    <span class="itinerary_button_label itinerary_button_label_driving{{= this.vehicle === this.vehicles.DRIVING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.vehicles.DRIVING) }}></span>
+    <span class="itinerary_button_label itinerary_button_label_walking{{= this.vehicle === this.vehicles.WALKING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.vehicles.WALKING) }}></span>
+    <span class="itinerary_button_label itinerary_button_label_cycling{{= this.vehicle === this.vehicles.CYCLING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.vehicles.CYCLING) }}></span>
   </div>
   {{= this.roadMapPanel.render() }}
 </div>

@@ -42,8 +42,8 @@ UrlShards.parseUrl = function () {
           skip = false
           return
         }
-        if(shard.prefix === resourceRawShard && resourceRawShards.length > i+1) {
-          shards.push({prefix : resourceRawShard, value : resourceRawShards[i+1]})
+        if(shard.prefix === resourceRawShard) {
+          shards.push({prefix : resourceRawShard, value : resourceRawShards.length > i+1 ? resourceRawShards[i+1] : null})
           skip = true
         }
       })

@@ -25,6 +25,7 @@ export default class SearchInput {
   static minify() {
     document.querySelector('.top_bar').classList.add('top_bar--small')
     window.__searchInput.isEnabled = false
+    window.__searchInput.searchInputHandle.blur()
   }
 
   static unMinify() {
@@ -33,6 +34,7 @@ export default class SearchInput {
   }
 
   constructor(tagSelector) {
+    this.searchInputHandle = document.querySelector(tagSelector)
     this.handleKeyboard()
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi))
     this.isEnabled = true

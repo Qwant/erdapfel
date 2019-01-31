@@ -228,6 +228,7 @@ Scene.prototype.onHashChange = function () {
 }
 
 /* private */
+
 function compareBoundsArray(boundsA, boundsB) {
   return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1]
 }
