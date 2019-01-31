@@ -131,6 +131,13 @@ var autoComplete = (function(){
         }
       }
 
+      var sourceDom = function (data, val) {
+        that.items = data
+        o.updateData(data)
+        that.sc.innerHTML = o.renderItems(data, val);
+        that.updateSC(true);
+      }
+
       var suggest = function(data){
         cancelObsolete()
         that.items = data
@@ -263,10 +270,11 @@ var autoComplete = (function(){
       cancelObsolete()
     };
 
-    this.search = async function (val) {
+    this.prefetch = async function (val) {
       that.value = val;
       let source = await o.source(val);
-      suggest(source);
+      sourceDom(source, val);
+      return source
     }
 
     this.preRender = function () {
