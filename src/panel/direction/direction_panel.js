@@ -69,7 +69,6 @@ export default class DirectionPanel {
     } else {
       this.open()
     }
-    UrlState.pushUrl()
   }
 
   cleanDirection() {
@@ -85,6 +84,7 @@ export default class DirectionPanel {
     this.active = false
     this.panel.update()
     this.cleanDirection()
+    UrlState.pushUrl()
   }
 
   async open() {
@@ -92,6 +92,7 @@ export default class DirectionPanel {
     this.active = true
     await this.panel.update()
     this.initDirection()
+    UrlState.pushUrl()
   }
 
   async searchDirection(options) {
