@@ -7,6 +7,7 @@ import SearchInput from '../../ui_components/search_input'
 import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
 import UrlState from "../../proxies/url_state";
+import Error from '../../adapters/error'
 
 
 const originHandler = '#itinerary_input_origin'
@@ -149,12 +150,20 @@ export default class DirectionPanel {
     }
 
     if(getParams.get('origin')) {
-      this.origin = await UrlPoi.fromUrl(getParams.get('origin'))
-      document.querySelector(originHandler).value = this.origin.name
+      try {
+        this.origin = await UrlPoi.fromUrl(getParams.get('origin'))
+        document.querySelector(originHandler).value = this.origin.name
+      } catch (err) {
+        Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('origin')}`, err)
+      }
     }
     if(getParams.get('destination')) {
-      this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
-      document.querySelector(destinationHandler).value = this.destination.name
+      try {
+        this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
+        document.querySelector(destinationHandler).value = this.destination.name
+      } catch (err) {
+        Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('destination')}`, err)
+      }
     }
 
     execOnMapLoaded(() => {
