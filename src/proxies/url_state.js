@@ -7,6 +7,14 @@ UrlState.init = function () {
   new UrlShards()
 }
 
+UrlState.registerHash = function(component, prefix) {
+  UrlState.registerUrlShard(component, prefix, true)
+}
+
+UrlState.registerResource = function(component, prefix) {
+  UrlState.registerUrlShard(component, prefix, false)
+}
+
 UrlState.registerUrlShard = function(component, prefix, paramType) {
   if(!component.store || !component.restore) {
     throw 'this componentn doesn\'t implement required methods'
