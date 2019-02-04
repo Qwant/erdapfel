@@ -1,20 +1,20 @@
 # Translators:
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2018
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-#
+# Boo Teille <booteille@tutanota.com>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-17 12:03+0100\n"
+"POT-Creation-Date: 2019-01-31 15:59+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
-"Language-Team: French (France) (https://www.transifex.com/qwant-1/"
-"teams/89416/fr_FR/)\n"
-"Language: fr_FR\n"
+"Last-Translator: Boo Teille <booteille@tutanota.com>, 2019\n"
+"Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -92,7 +92,7 @@ msgid "antiques shop"
 msgstr "antiquaire"
 
 msgid "aquarium"
-msgstr ""
+msgstr "aquarium"
 
 msgid "archery"
 msgstr "tir à l'arc"
@@ -308,7 +308,7 @@ msgid "erotic shop"
 msgstr "sex shop"
 
 msgid "escape game"
-msgstr ""
+msgstr "jeu d'évasion"
 
 msgid "fabric"
 msgstr "magasin de tissus"
@@ -368,7 +368,7 @@ msgid "gymnastics"
 msgstr "gymnastique"
 
 msgid "hackerspace"
-msgstr ""
+msgstr "espace de bidouille"
 
 msgid "hairdresser"
 msgstr "coiffeur"
@@ -412,8 +412,8 @@ msgstr "bijouterie"
 msgid "karting"
 msgstr "karting"
 
-msgid "kindergarten"
-msgstr "école maternelle"
+msgid "kindergarten or preschool"
+msgstr "crèche ou école maternelle"
 
 msgid "kiosk"
 msgstr "kiosque"
@@ -691,7 +691,8 @@ msgstr "parc zoologique"
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
@@ -784,8 +785,8 @@ msgid "Geolocation with privacy!"
 msgstr "La géolocalisation respectueuse de votre vie privée !"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -808,28 +809,28 @@ msgid "OK"
 msgstr "OK"
 
 msgid "return"
-msgstr ""
+msgstr "retour"
 
 msgid "itinerary"
-msgstr ""
+msgstr "itinéraire"
 
 msgid "Start point"
-msgstr ""
+msgstr "Départ"
 
 msgid "End point"
-msgstr ""
+msgstr "Arrivée"
 
 msgid "Invert start and end"
-msgstr ""
+msgstr "Inverser Départ et Arrivée"
 
 msgid "Via"
-msgstr ""
+msgstr "Via"
 
 msgid "PREVIEW"
-msgstr ""
+msgstr "APERÇU"
 
 msgid "DETAILS"
-msgstr ""
+msgstr "DÉTAILS"
 
 msgid "Your position"
-msgstr ""
+msgstr "Votre position"
