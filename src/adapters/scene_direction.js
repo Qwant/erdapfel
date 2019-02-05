@@ -61,7 +61,7 @@ export default class SceneDirection {
   }
 
   displayRoute(move) {
-    if(this.routes && this.routes.length > 0){
+    if (this.routes && this.routes.length > 0) {
       let mainRoute = this.routes.find((route) => route.isActive)
       let otherRoutes = this.routes.filter((route) => !route.isActive)
 
@@ -70,43 +70,47 @@ export default class SceneDirection {
       })
       this.showPolygon(mainRoute)
 
-    // Hide previously drawn steps markers
-    for(var markerStep in this.markersSteps){
-      this.markersSteps[markerStep].remove()
-    }
+      // Hide previously drawn steps markers
+      for (var markerStep in this.markersSteps) {
+        this.markersSteps[markerStep].remove()
+      }
 
-    this.markersSteps = []
+      this.markersSteps = []
 
       // Custom markers
       const markerOriginDom = document.createElement('div')
       markerOriginDom.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
 
       this.markerOrigin = new Marker(markerOriginDom)
-        .setLngLat([this.origin.latLon.lng, this.origin.latLon.lat])
-        .addTo(this.map)
+          .setLngLat([this.origin.latLon.lng, this.origin.latLon.lat])
+          .addTo(this.map)
 
       const markerDestinationDom = document.createElement('div')
       markerDestinationDom.className = 'itinerary_marker_destination'
 
 
       this.markerDestination = new Marker(markerDestinationDom)
-        .setLngLat([this.destination.latLon.lng, this.destination.latLon.lat])
-        .addTo(this.map)
+          .setLngLat([this.destination.latLon.lng, this.destination.latLon.lat])
+          .addTo(this.map)
 
-      var steps = mainRoute.legs[0].steps;
-      if (this.vehicle !== "walking") {
+      this.steps = mainRoute.legs[0].steps;
+      this.showmarkerSteps();
+    }
+  }
 
-      if (this.vehicle !== "walking" && window.innerWidth > 640) {
-        for (var step in steps) {
-          const markerStep = document.createElement('div')
-          markerStep.className = 'itinerary_marker_step'
-          this.markersSteps.push(
+  showMarkerSteps() {
+    if (this.vehicle !== "walking" && window.innerWidth > 640) {
+      for (var step in this.steps) {
+        const markerStep = document.createElement('div')
+        markerStep.className = 'itinerary_marker_step'
+        this.markersSteps.push(
             new Marker(markerStep)
-                .setLngLat(steps[step].maneuver.location)
+                .setLngLat(this.steps[step].maneuver.location)
                 .addTo(this.map)
-          )
-        }
+        )
       }
+    }
+  }
 
   displayRoute() {
     if(this.routes && this.routes.length > 0) {
@@ -146,7 +150,7 @@ export default class SceneDirection {
       }
       fire('fit_bbox', bbox, padding)
 
-      let directionPoi = new Direction(this.computeBBox(mainRoute))
+      let directionPoi = new Direction(this.computeBBox(this.mainRoute))
       if(move !== false) {
         fire('fit_map', directionPoi, {sidePanelOffset : true})
       }

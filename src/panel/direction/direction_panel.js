@@ -8,6 +8,7 @@ import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
+import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 
 const originHandler = '#itinerary_input_origin'
@@ -28,16 +29,12 @@ export default class DirectionPanel {
   }
 
   initDirection() {
+    let originHandler = '#itinerary_input_origin'
+    let destinationHandler = '#itinerary_input_destination'
     this.originInput = new DirectionInput(originHandler, (poi) => this.selectOrigin(poi), 'submit_direction_origin')
     this.destinationInput = new DirectionInput(destinationHandler, (poi) => this.selectDestination(poi), 'submit_direction_destination')
-    let startHandler = '#itinerary_input_start'
-    let destinationHandler = '#itinerary_input_end'
 
-    this.startInput = new DirectionInput(startHandler, (poi) => this.selectStart(poi), 'submit_direction_start')
-    this.endInput = new DirectionInput(destinationHandler, (poi) => this.selectEnd(poi), 'submit_direction_end')
-
-
-    this.searchInputStart = document.querySelector(startHandler)
+    this.searchInputStart = document.querySelector(originHandler)
     this.searchInputEnd = document.querySelector(destinationHandler)
     this.itineraryContainer = document.querySelector('#itinerary_container')
 
@@ -62,7 +59,6 @@ export default class DirectionPanel {
     this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active')
     this.vehicle = vehicle
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
-    this.select()
     UrlState.pushUrl()
   }
 
