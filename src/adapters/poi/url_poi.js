@@ -1,6 +1,7 @@
 import Poi from "./poi";
 import ExtendedString from "../../libs/string";
 import IdunnPoi from "./idunn_poi";
+import NavigatorGeolocalisationPoi from "./specials/navigator_geolocalisation_poi";
 
 const LAT_POSITION = 1
 const LON_POSITION = 2
@@ -20,7 +21,9 @@ export default class UrlPoi extends Poi {
     if(!urlParam) {
       return Promise.reject()
     }
-    if(urlParam.match(/^latlon:/)) {
+    if(urlParam.match(/^geolocalisation@geolocalisation/)) {
+      await NavigatorGeolocalisationPoi.getPoi()
+    } else if(urlParam.match(/^latlon:/)) {
       let urlData = urlParam.match(DIRECTION_URL_REGEX)
       let lat = urlData[LAT_POSITION]
       let lng = urlData[LON_POSITION]

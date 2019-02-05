@@ -1,4 +1,4 @@
-import UrlShard from './url_shard'
+import UrlShard, {paramTypes} from './url_shard'
 import UrlShards from './url_shards'
 
 function UrlState() {}
@@ -8,11 +8,15 @@ UrlState.init = function () {
 }
 
 UrlState.registerHash = function(component, prefix) {
-  UrlState.registerUrlShard(component, prefix, true)
+  UrlState.registerUrlShard(component, prefix, paramTypes.HASH)
+}
+
+UrlState.registerGet = function(component, prefix) {
+  UrlState.registerUrlShard(component, prefix, paramTypes.GET)
 }
 
 UrlState.registerResource = function(component, prefix) {
-  UrlState.registerUrlShard(component, prefix, false)
+  UrlState.registerUrlShard(component, prefix, paramTypes.RESOURCE)
 }
 
 UrlState.registerUrlShard = function(component, prefix, paramType) {

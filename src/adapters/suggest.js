@@ -106,6 +106,12 @@ export default class Suggest {
     return suggestList
   }
 
+  setIdle(idle) {
+    this.searchInputDomHandler.disabled = idle
+  }
+
+
+
   async onSubmit() {
     if(this.pending) {
       let term = this.searchInputDomHandler.value
