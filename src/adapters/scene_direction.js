@@ -1,5 +1,7 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
+import Direction from "./poi/specials/direction_poi";
+
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
 const PADDING_DIRECTION_DESKTOP = {top: 20, right: 20, bottom: 40, left: 450 };
