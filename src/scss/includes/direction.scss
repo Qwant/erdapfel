@@ -612,6 +612,10 @@
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
   }
 
+  .itinerary_leg + .itinerary_leg {
+    display: none;
+  }
+
   .itinerary_leg--active,
   .itinerary_leg:hover {
     border: 4px solid #fff;
@@ -643,7 +647,11 @@
     clear: both;
     margin: 10px 0 0;
   }
-  
+
+  .itinerary_leg_inner {
+    border-bottom: none;
+  }
+
   .itinerary_leg_preview {
     position: absolute;
     right: 17px;

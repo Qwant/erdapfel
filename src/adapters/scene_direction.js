@@ -114,7 +114,7 @@ export default class SceneDirection {
     }
   }
 
-  displayRoute() {
+  displayRoute(move) {
     if(this.routes && this.routes.length > 0) {
       this.mainRoute = this.routes.find((route) => route.isActive)
       let otherRoutes = this.routes.filter((route) => !route.isActive)
@@ -131,13 +131,13 @@ export default class SceneDirection {
       }
 
       const markerStart = document.createElement('div')
-      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_start_walking' : 'itinerary_marker_start'
+      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
       this.markerStart = new Marker(markerStart)
           .setLngLat(this.steps[0].maneuver.location)
           .addTo(this.map)
 
       const markerEnd = document.createElement('div')
-      markerEnd.className = 'itinerary_marker_end'
+      markerEnd.className = 'itinerary_marker_destination'
       this.markerEnd = new Marker(markerEnd)
           .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
           .addTo(this.map)
