@@ -37,14 +37,14 @@ function PoiPanel(sharePanel) {
 
 PoiPanel.prototype.toggleStorePoi = function() {
   if(this.poi.stored) {
-    fire('del_poi', this.poi)
+    store.del(this.poi)
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.poi.stored = false
   } else {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
-    fire('store_poi', this.poi)
+    store.add(this.poi)
     this.poi.stored = true
   }
 }

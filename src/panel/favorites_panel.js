@@ -24,7 +24,7 @@ function Favorite(sharePanel) {
     this.closeMoreMenu()
   })
 
-  listen('store_registered', () => {
+  listen('store_loggedIn', () => {
     this.getAll()
   })
 
@@ -79,19 +79,19 @@ Favorite.prototype.toggle = function() {
 
 Favorite.prototype.connectStore = async function () {
   this.store = new Store()
-  let registered = false
+  let loggedIn = false
   try {
-    registered = await this.store.isRegistered()
+    loggedIn = await this.store.isLoggedIn()
   } catch(e) {
-    Error.sendOnce('favorite_panel', 'connectStore', 'error getting register status', e)
-    fire('register_panel__show')
+    Error.sendOnce('favorite_panel', 'connectStore', 'error getting login status', e)
+    fire('login')
   }
 
-  if(registered) {
+  if(loggedIn) {
     this.getAll()
     this.panel.update()
   } else {
-    fire('register_panel__show')
+    fire('login_panel__show')
   }
 }
 
@@ -138,7 +138,7 @@ Favorite.prototype.del = async function({poi, index}) {
 
   this.favoritePois = this.favoritePois.filter((favorite) => {
     if(favorite === poi) {
-      fire('del_poi', poi)
+      this.store.del(poi)
       return false
     }
     return true

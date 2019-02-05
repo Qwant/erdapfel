@@ -13,7 +13,6 @@ import Store from "./adapters/store";
   await setLang()
 
   const store = new Store()
-  await store.onConnect()
 
   PanelManager.init()
   UrlState.init()

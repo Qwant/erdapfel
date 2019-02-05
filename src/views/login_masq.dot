@@ -1,30 +1,30 @@
-<div class="register_masq_panel">
-  {{? (!this.isRegistered)}}
-    <h1 class="register_masq_panel__title">
+<div class="login_masq_panel">
+  {{? (!this.isLoggedIn)}}
+    <h1 class="login_masq_panel__title">
       {{= _('Register with masq', 'masq') }}
     </h1>
     <p>
       {{= _('We use MASQ to keep your personal data safe', 'masq') }}
     </p>
-    {{? (!this.registering)}}
-      <button class="register_masq_panel__action" {{= click(this.register, this) }}>
+    {{? (!this.loggingIn)}}
+      <button class="login_masq_panel__action" {{= click(this.login, this) }}>
         {{= _('Register', 'masq') }}
       </button>
     {{?}}
-    {{? this.registering}}
-      <button class="register_masq_panel__action">
+    {{? this.loggingIn}}
+      <button class="login_masq_panel__action">
         {{= _('Register in progress', 'masq') }}
       </button>
     {{?}}
   {{?}}
-  {{? this.isRegistered}}
+  {{? this.isLoggedIn}}
     <div class="loggedin_masq_panel__profile_info">
       <img src={{= this.profileImage }} class="loggedin_masq_panel__profile_image">
       <p class="loggedin_masq_panel__title">
         {{= this.username }}
       </p>
     </div>
-    <button class="register_masq_panel__action" {{= click(this.unregister, this) }}>
+    <button class="login_masq_panel__action" {{= click(this.logout, this) }}>
       {{= _('Logout', 'masq') }}
     </button>
   {{?}}

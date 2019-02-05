@@ -123,7 +123,7 @@ Scene.prototype.initMapBox = function () {
       let lng = this.mb.getCenter().lng
       let lat = this.mb.getCenter().lat
       let zoom = this.mb.getZoom()
-      fire('store_center', { lng, lat, zoom })
+      store.setLastLocation({ lng, lat, zoom })
     })
 
     window.execOnMapLoaded = (f) => f()

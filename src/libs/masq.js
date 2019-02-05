@@ -47,17 +47,17 @@ MasqStore.prototype.getUserInfo = async function() {
   }
 }
 
-MasqStore.prototype.isRegistered = async function() {
+MasqStore.prototype.isLoggedIn = async function() {
   return await Promise.resolve(this.masq && this.masq.isLoggedIn())
 }
 
-MasqStore.prototype.registerApp = async function(apps) {
+MasqStore.prototype.login = async function(apps) {
   // connect to Masq
   window.open(this.loginLink)
   await this.masq.logIntoMasq(false)
 }
 
-MasqStore.prototype.unregisterApp = async function() {
+MasqStore.prototype.logout = async function() {
   await this.masq.signout()
 }
 

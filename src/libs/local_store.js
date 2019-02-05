@@ -31,17 +31,17 @@ LocalStore.prototype.getUserInfo = function() {
   return Promise.resolve(null)
 }
 
-LocalStore.prototype.registerApp = function() {
-  console.log('local storage doesn\'t support register method')
+LocalStore.prototype.login = function() {
+  console.log('local storage doesn\'t support login method')
   return Promise.resolve()
 }
 
-LocalStore.prototype.unregisterApp = function() {
+LocalStore.prototype.logout = function() {
   return Promise.resolve()
 }
 
-LocalStore.prototype.isRegistered = function() {
-  return Promise.resolve(true)
+LocalStore.prototype.isLoggedIn = function() {
+  return Promise.resolve(false)
 }
 
 LocalStore.prototype.onConnect = function () {
