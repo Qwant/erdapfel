@@ -21,13 +21,11 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     GeolocationCheck.checkPrompt()
     return new Promise((resolve) => {
       this.status = navigatorGeolcationStatus.PENDING
-      setTimeout(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-          this.status = navigatorGeolcationStatus.FOUND
-          this.latLon = {lat : position.coords.latitude, lng : position.coords.longitude}
-          resolve()
-        })
-      }, 5000)
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.status = navigatorGeolcationStatus.FOUND
+        this.latLon = {lat : position.coords.latitude, lng : position.coords.longitude}
+        resolve()
+      })
     })
   }
 
