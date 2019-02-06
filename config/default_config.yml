@@ -27,6 +27,7 @@ system:
 
 # Store
 masq:
+  enabled: true
   title: Qwant Maps
   desc: A generic app that uses Masq for storage
   icon: https://camo.githubusercontent.com/8b35d12bd9682a31446b08c1483145653aa5006f/68747470733a2f2f692e696d6775722e636f6d2f715a33647130512e706e67

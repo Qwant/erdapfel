@@ -7,7 +7,9 @@
     {{?}}
   </div>
   {{= this.servicePanel.render() }}
-  {{= this.masqPanel.render() }}
+  {{? this.masqEnabled }}
+    {{= this.masqPanel.render() }}
+  {{?}}
 </div>
 
 /* modals */
