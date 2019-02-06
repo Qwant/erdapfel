@@ -131,9 +131,9 @@ export default class DirectionPanel {
         routeParams.push(this.poiToUrl('destination', this.destination))
       }
       if(routeParams.length > 0) {
-        return `?${routeParams.join('&')}&vehicle=${this.vehicle}`
+        return `${routeParams.join('&')}&vehicle=${this.vehicle}`
       } else {
-        return '?'
+        return true
       }
     } else {
       return ''

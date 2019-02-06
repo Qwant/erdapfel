@@ -17,7 +17,7 @@ UrlShard.prototype.toString = function () {
     if(this.paramType === paramTypes.HASH) {
       return `${this.prefix}=${value}`
     } else if(this.paramType === paramTypes.RESOURCE) {
-      return `${this.prefix}/${value}`
+      return `${this.prefix}/${value === true ? '' : value}`
     } else if(this.paramType === paramTypes.GET) {
       return `${this.prefix}=${value}`
     }
