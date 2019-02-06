@@ -2,6 +2,8 @@ import nconf from '@qwant/nconf-getter'
 import Error from '../adapters/error'
 import {version} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
+import LocalStore from "../libs/local_store"
+import MasqStore from "../libs/masq"
 
 export default class Store {
 
@@ -14,11 +16,9 @@ export default class Store {
     window.__store = this
 
     // init stores
-    const LocalStore = require(`../libs/local_store`)
     this.localStore = new LocalStore()
     this.loggedIn = false
     this.abstractStore = this.localStore
-    const MasqStore = require(`../libs/masq`)
     this.masqConfig = nconf.get().masq
     this.masqStore = new MasqStore(this.masqConfig)
     this.masqInitPromise = this.masqStore.onConnect()
