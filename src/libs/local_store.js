@@ -49,7 +49,7 @@ LocalStore.prototype.onConnect = function () {
 }
 
 LocalStore.prototype.has = async function(k) {
-  return !!(await this.get(k))
+  return Boolean(await this.get(k))
 }
 
 LocalStore.prototype.get = function(k) {

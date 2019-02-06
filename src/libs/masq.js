@@ -75,7 +75,7 @@ export default class MasqStore {
   }
 
   async has(k) {
-    return !!(await this.get(k))
+    return Boolean(await this.get(k))
   }
 
   async get(k) {
