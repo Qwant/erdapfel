@@ -22,11 +22,19 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     return new Promise((resolve) => {
       this.status = navigatorGeolcationStatus.PENDING
       navigator.geolocation.getCurrentPosition((position) => {
-        this.status = navigatorGeolcationStatus.FOUND
-        this.latLon = {lat : position.coords.latitude, lng : position.coords.longitude}
+        this.setPosition({lat : position.coords.latitude, lng : position.coords.longitude})
         resolve()
       })
     })
+  }
+
+  setPosition(latLng) {
+    this.status = navigatorGeolcationStatus.FOUND
+    this.latLon = latLng
+  }
+
+  toUrl() {
+    return `latlon:${this.latLon.lat.toFixed(6)}:${this.latLon.lng.toFixed(6)}@geolocation`
   }
 
   render() {

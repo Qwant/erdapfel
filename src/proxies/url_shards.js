@@ -40,8 +40,6 @@ UrlShards.toUrl = function () {
   if(urlHash.length > 0) {
     url += `#${urlHash.join('&')}`
   }
-  console.log(UrlShards.getShards())
-
   return url
 }
 

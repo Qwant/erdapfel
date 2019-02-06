@@ -21,16 +21,19 @@ export default class UrlPoi extends Poi {
     if(!urlParam) {
       return Promise.reject()
     }
-    if(urlParam.match(/^geolocalisation@geolocalisation/)) {
-      await NavigatorGeolocalisationPoi.getPoi()
-    } else if(urlParam.match(/^latlon:/)) {
+
+    if(urlParam.match(/^latlon:/)) {
       let urlData = urlParam.match(DIRECTION_URL_REGEX)
       let lat = urlData[LAT_POSITION]
       let lng = urlData[LON_POSITION]
 
       if(lat && lng) {
         let latLng = {lat : parseFloat(lat), lng : parseFloat(lng)}
-
+        if(urlParam.match(/@geolocation/)) {
+          let poi = NavigatorGeolocalisationPoi.getInstance()
+          poi.setPosition(latLng)
+          return Promise.resolve(poi)
+        }
         if(urlData[LABEL_POSITION]) {
           return Promise.resolve(new UrlPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION])))
         } else {

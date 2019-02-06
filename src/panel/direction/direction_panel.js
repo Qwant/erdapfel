@@ -10,7 +10,6 @@ import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
 import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 
-
 const originHandler = '#itinerary_input_origin'
 const destinationHandler = '#itinerary_input_destination'
 
@@ -131,7 +130,7 @@ export default class DirectionPanel {
         routeParams.push(this.poiToUrl('destination', this.destination))
       }
       if(routeParams.length > 0) {
-        return `${routeParams.join('&')}&vehicle=${this.vehicle}`
+        return `?${routeParams.join('&')}&vehicle=${this.vehicle}`
       } else {
         return true
       }
@@ -177,6 +176,9 @@ export default class DirectionPanel {
   /* Private */
 
   poiToUrl(prefix, poi) {
+    if(poi instanceof NavigatorGeolocalisationPoi) {
+      return `${prefix}=${poi.toUrl()}`
+    }
     return `${prefix}=${poi.id}@${poi.name}`
   }
 }
