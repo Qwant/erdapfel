@@ -31,8 +31,7 @@ export default class MasqStore {
     })
 
     try {
-      const values = await Promise.all(valuePromises)
-      return values
+      return await Promise.all(valuePromises)
     } catch (e) {
       handleError('getAllPois', 'error getting pois', e)
       throw e
@@ -70,8 +69,6 @@ export default class MasqStore {
     } else {
       this.loginLink = await this.masq.getLoginLink()
     }
-
-    return
   }
 
   async has(k) {
@@ -80,8 +77,7 @@ export default class MasqStore {
 
   async get(k) {
     try {
-      const value = await this.masq.get(k)
-      return value
+      return await this.masq.get(k)
     } catch (e) {
       handleError('get', `error parsing item with key ${k}`, e)
       throw e
@@ -95,12 +91,10 @@ export default class MasqStore {
       handleError('set', 'error setting item', e)
       throw e
     }
-    return
   }
 
   async clear() {
     handleError('clear', 'masq storage doesn\'t support clear method', e)
-    return Promise.resolve()
   }
 
   async del(k) {
@@ -110,6 +104,5 @@ export default class MasqStore {
       handleError('del', 'error removing item', e)
       throw e
     }
-    return
   }
 }
