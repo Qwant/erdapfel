@@ -17,17 +17,19 @@ export default class LoginMasqPanel {
     listen('login_panel__show', () => {
       this.panel.animate(.25, '.login_masq_panel', {top : '100px'})
     })
-
     this.isLoggedIn = false
-    this.store.isLoggedIn().then(async (b) => {
-      this.isLoggedIn = b
-      if (this.isLoggedIn) {
-        const { username, profileImage } = await this.store.getUserInfo()
-        this.username = username
-        this.profileImage = profileImage
-      }
-      this.panel.update()
-    })
+
+    this.init()
+  }
+
+  async init() {
+    this.isLoggedIn = await this.store.isLoggedIn()
+    if (this.isLoggedIn) {
+      const { username, profileImage } = await this.store.getUserInfo()
+      this.username = username
+      this.profileImage = profileImage
+    }
+    this.panel.update()
   }
 
   async login() {
