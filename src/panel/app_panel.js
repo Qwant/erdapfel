@@ -21,12 +21,14 @@ import Telemetry from "../libs/telemetry";
 function AppPanel(parent) {
   new TopBar()
   SearchInput.initSearchInput('#search')
-  this.directionEnabled = directionEnabled
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
-  this.directionPanel = new DirectionPanel()
+  this.directionEnabled = directionEnabled
+  if (this.directionEnabled) {
+    this.directionPanel = new DirectionPanel()
+  }
   this.masqPanel = new RegisterMasqPanel()
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()
