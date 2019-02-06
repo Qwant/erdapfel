@@ -16,6 +16,7 @@ export default class Store {
     // init stores
     const LocalStore = require(`../libs/local_store`)
     this.localStore = new LocalStore()
+    this.loggedIn = false
     this.abstractStore = this.localStore
     const MasqStore = require(`../libs/masq`)
     this.masqConfig = nconf.get().masq
@@ -30,7 +31,7 @@ export default class Store {
   }
 
   async checkInit(target, name, descriptor) {
-    if (!this.masqInitialized) {
+    if (this.loggedIn && !this.masqInitialized) {
       const alreadyLoggedIntoMasq = await this.masqStore.isLoggedIn()
       if (alreadyLoggedIntoMasq) {
         this.abstractStore = this.masqStore
@@ -58,6 +59,7 @@ export default class Store {
     }
 
     // login was successful, use masqStore as abstractStore until logout
+    this.loggedIn = true
     this.abstractStore = this.masqStore
   }
 
@@ -69,6 +71,7 @@ export default class Store {
       Error.sendOnce('store', 'logout', 'error logging out', e)
       throw e
     }
+    this.loggedIn = false
     this.abstractStore = this.localStore
   }
 
