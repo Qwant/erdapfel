@@ -21,8 +21,8 @@ export default class Store {
     const MasqStore = require(`../libs/masq`)
     this.masqConfig = nconf.get().masq
     this.masqStore = new MasqStore(this.masqConfig)
-    const masqInitPromise = this.masqStore.onConnect()
-    const masqInitialized = false
+    this.masqInitPromise = this.masqStore.onConnect()
+    this.masqInitialized = false
 
     // use abstract store for each operation that
     // should use masqStore when logged in and localStore when not logged in
