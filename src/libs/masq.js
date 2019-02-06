@@ -22,7 +22,7 @@ MasqStore.prototype.getAllPois = async function() {
   }, [])
 
   if (filteredKeys.length === 0) {
-    return Promise.resolve([])
+    return []
   }
 
   const valuePromises = filteredKeys.map(k => {
