@@ -29,13 +29,13 @@ MasqStore.prototype.getAllPois = async function() {
     return this.masq.get(k)
   })
 
-  const values = await Promise.all(valuePromises).catch(
-    (e) => {
-      handleError('getAllPois', 'error getting pois', e)
-      throw e
-    })
-
-  return values
+  try {
+    const values = await Promise.all(valuePromises)
+    return values
+  } catch (e) {
+    handleError('getAllPois', 'error getting pois', e)
+    throw e
+  }
 }
 
 MasqStore.prototype.getUserInfo = async function() {
@@ -78,20 +78,23 @@ MasqStore.prototype.has = async function(k) {
 }
 
 MasqStore.prototype.get = async function(k) {
-  const value = await this.masq.get(k).catch(
-    (e) => {
-      handleError('get', `error parsing item with key ${k}`, e)
-      throw e
-    })
-  return value
+  console.log('[MasqStore.get]')
+  try {
+    const value = await this.masq.get(k)
+    return value
+  } catch (e) {
+    handleError('get', `error parsing item with key ${k}`, e)
+    throw e
+  }
 }
 
 MasqStore.prototype.set = async function(k, v) {
-  await this.masq.put(k, v).catch(
-    (e) => {
-      handleError('set', 'error setting item', e)
-      throw e
-    })
+  try {
+    await this.masq.put(k, v)
+  } catch (e) {
+    handleError('set', 'error setting item', e)
+    throw e
+  }
   return
 }
 
@@ -101,11 +104,12 @@ MasqStore.prototype.clear = function() {
 }
 
 MasqStore.prototype.del = async function(k) {
-  await this.masq.del(k).catch(
-    (e) => {
-      handleError('del', 'error removing item', e)
-      throw e
-    })
+  try {
+    await this.masq.del(k)
+  } catch (e) {
+    handleError('del', 'error removing item', e)
+    throw e
+  }
   return
 }
 
