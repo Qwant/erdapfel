@@ -108,3 +108,10 @@ map:
   center:
     lng: 2.52
     lat: 52.41
+
+links:
+  - name : _('Qwant.com')
+  uri : www.qwant.com
+  - name: _('Qwant boards')
+  uri : 
+

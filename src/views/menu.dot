@@ -1,0 +1,19 @@
+<div class="menu">
+
+  <div class="menu__overlay"></div>
+
+
+
+  <div class="menu__panel">
+    <h2 class="menu__panel__section_title">Qwant Maps</h2>
+    <button class="menu__panel__action">Itinerary</button>
+    <button class="menu__panel__action">Favorites</button>
+
+    <h2 class="menu__panel__section_title">Qwant Maps</h2>
+    <button class="menu__panel__action">Itinerary</button>
+    <button class="menu__panel__action">Favorites</button>
+  </div>
+
+
+
+</div>
