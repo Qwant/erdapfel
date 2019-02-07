@@ -10,11 +10,16 @@ const DIRECTION_URL_REGEX = /^latlon:(-?\d*\.\d*):(-?\d*\.\d*)(@(.*))?/
 
 export default class UrlPoi extends Poi {
   constructor(latLon, label) {
+    let id = `latlon:${latLon.lat.toFixed(5)}:${latLon.lng.toFixed(5)}`
+
     if(!label) {
       label = `${latLon.lat.toFixed(5)} : ${latLon.lng.toFixed(5)}`
-
     }
-    super(null, label, null, null, latLon)
+    super(id, label, null, null, latLon)
+  }
+
+  toUrl() {
+    return this.id
   }
 
   static async fromUrl(urlParam) {
@@ -29,11 +34,6 @@ export default class UrlPoi extends Poi {
 
       if(lat && lng) {
         let latLng = {lat : parseFloat(lat), lng : parseFloat(lng)}
-        if(urlParam.match(/@geolocation/)) {
-          let poi = NavigatorGeolocalisationPoi.getInstance()
-          poi.setPosition(latLng)
-          return Promise.resolve(poi)
-        }
         if(urlData[LABEL_POSITION]) {
           return Promise.resolve(new UrlPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION])))
         } else {

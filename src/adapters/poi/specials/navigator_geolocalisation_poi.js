@@ -34,7 +34,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   }
 
   toUrl() {
-    return `latlon:${this.latLon.lat.toFixed(6)}:${this.latLon.lng.toFixed(6)}@geolocation`
+    return `latlon:${this.latLon.lat.toFixed(6)}:${this.latLon.lng.toFixed(6)}`
   }
 
   render() {

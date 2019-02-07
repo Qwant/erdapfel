@@ -135,7 +135,7 @@ export default class DirectionPanel {
         return true
       }
     } else {
-      return ''
+      return false
     }
 
   }
@@ -176,7 +176,7 @@ export default class DirectionPanel {
   /* Private */
 
   poiToUrl(prefix, poi) {
-    if(poi instanceof NavigatorGeolocalisationPoi) {
+    if(poi instanceof NavigatorGeolocalisationPoi || poi instanceof UrlPoi) {
       return `${prefix}=${poi.toUrl()}`
     }
     return `${prefix}=${poi.id}@${poi.name}`
