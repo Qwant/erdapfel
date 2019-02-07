@@ -17,7 +17,6 @@ function Favorite(sharePanel) {
   this.poiSubClass = poiSubClass
   this.filterPanel = new FilterPanel()
   this.sharePanel = sharePanel
-  this.connectStore()
   this.openMoreMenuPosition = -1
 
   document.addEventListener('click', () => {
@@ -80,24 +79,6 @@ Favorite.prototype.toggle = function() {
     this.close()
   } else {
     this.open()
-  }
-}
-
-Favorite.prototype.connectStore = async function () {
-  this.store = new Store()
-  let loggedIn = false
-  try {
-    loggedIn = await this.store.isLoggedIn()
-  } catch(e) {
-    Error.sendOnce('favorite_panel', 'connectStore', 'error getting login status', e)
-    fire('login')
-  }
-
-  if(loggedIn) {
-    this.getAll()
-    this.panel.update()
-  } else {
-    fire('login_panel__show')
   }
 }
 

@@ -14,9 +14,6 @@ export default class LoginMasqPanel {
     this.loggingIn = false
     this.username = null
     this.profileImage = null
-    listen('login_panel__show', () => {
-      this.panel.animate(.25, '.login_masq_panel', {top : '100px'})
-    })
     this.isLoggedIn = false
 
     this.init()
