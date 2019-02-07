@@ -31,13 +31,14 @@ export default class Store {
   }
 
   async checkInit(target, name, descriptor) {
-    if (this.loggedIn && !this.masqInitialized) {
+    if (!this.masqInitialized) {
+      await this.masqInitPromise
+      this.masqInitialized = true
+
       const alreadyLoggedIntoMasq = await this.masqStore.isLoggedIn()
       if (alreadyLoggedIntoMasq) {
         this.abstractStore = this.masqStore
       }
-      await this.masqInitPromise
-      this.masqInitialized = true
     }
   }
 
