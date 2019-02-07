@@ -130,12 +130,8 @@ Scene.prototype.initMapBox = function () {
     fire('map_loaded')
   })
 
-  listen('fit_map', (poi, options) => {
-    this.fitMap(poi, options)
-  })
-
-  listen('fit_bbox', (bbox, padding) => {
-    this.fitBbox(bbox, padding)
+  listen('fit_map', (poi, padding) => {
+    this.fitMap(poi, padding)
   })
 
   listen('map_reset', () => {
@@ -216,21 +212,13 @@ Scene.prototype.fitBbox = function(bbox, padding){
 }
 
 
-Scene.prototype.fitMap = function(item, options = {}) {
+Scene.prototype.fitMap = function(item, padding) {
   const MIN_ZOOM_FLYTO = 10
 
   if(item.bbox) {
-    let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
-    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
-      padding.left += layout.sizes.panelWidth
-    }
-    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(item)) {
-      this.mb.fitBounds(item.bbox, {padding : padding})
-    } else {
-      this.mb.fitBounds(item.bbox, {padding : padding, animate : false})
-    }
+    this.fitBbox(item, padding);
   } else {
-    let flyOptions = {center : item.getLngLat(), screenSpeed: 1.5, animate:false}
+    let flyOptions = {center : item.getLngLat(), screenSpeed: 1.5, animate: false}
     if(item.zoom) {
       flyOptions.zoom = item.zoom
     }

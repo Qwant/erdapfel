@@ -9,13 +9,12 @@ export const layouts = {
 
 const paddings = {
   mobileNoPadding : {top: 80, right: 70, bottom: 45, left: 20 },
-  mobileTopCard :  {top: 184, right: 70, bottom: 45, left: 20 },
-  mobileBottomCard :  {top: 80, right: 70, bottom: 130, left: 20 },
-  mobilePanel :  {top: 184, right: 70, bottom: 130, left: 20 },
+  mobileTopCard : {top: 184, right: 70, bottom: 45, left: 20 },
+  mobileBottomCard : {top: 80, right: 70, bottom: 130, left: 20 },
+  mobilePanel : {top: 184, right: 70, bottom: 130, left: 20 },
   desktopNoPadding : {top: 100, left: 20, right: 60, bottom: 45},
   desktopSidePanel : {top: 100, left: 450, right: 60, bottom: 45}
 }
-
 
 export default class PanelLayout {
   static getLayout(layout) {
