@@ -24,17 +24,23 @@ function Favorite(sharePanel) {
     this.closeMoreMenu()
   })
 
-  listen('store_loggedIn', () => {
-    this.getAll()
+  this.panel = new Panel(this, FavoritePanelView)
+  this.isFavoritePanel = true
+  PanelManager.register(this)
+
+  listen('store_loggedIn', async () => {
+    await this.getAll()
+    this.panel.update()
+  })
+
+  listen('store_loggedOut', async () => {
+    await this.getAll()
+    this.panel.update()
   })
 
   listen('store_poi', (poi) => {
     this.add(poi)
   })
-
-  this.panel = new Panel(this, FavoritePanelView)
-  this.isFavoritePanel = true
-  PanelManager.register(this)
 }
 
 Favorite.prototype.toggleMore = function (position) {

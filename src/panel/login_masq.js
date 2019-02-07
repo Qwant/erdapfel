@@ -60,7 +60,7 @@ export default class LoginMasqPanel {
       this.username = username
       this.profileImage = profileImage
     }
-    window.location.reload()
+    this.panel.update()
     return
   }
 }

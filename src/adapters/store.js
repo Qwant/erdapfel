@@ -61,6 +61,7 @@ export default class Store {
     // login was successful, use masqStore as abstractStore until logout
     this.loggedIn = true
     this.abstractStore = this.masqStore
+    fire('store_loggedIn')
   }
 
   async logout() {
@@ -73,6 +74,7 @@ export default class Store {
     }
     this.loggedIn = false
     this.abstractStore = this.localStore
+    fire('store_loggedOut')
   }
 
   async isLoggedIn() {
