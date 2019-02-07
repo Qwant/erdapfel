@@ -52,17 +52,17 @@ export default class MasqStore {
   }
 
   async login(apps) {
-    // connect to Masq
+    // open Masq app window to connect to Masq
     window.open(this.loginLink)
-    await this.masq.logIntoMasq(false)
+    await this.masq.logIntoMasq(true)
   }
 
   async logout() {
+    this.loginLink = await this.masq.getLoginLink()
     await this.masq.signout()
   }
 
   async onConnect () {
-    // executed when maps is opened
     this.masq = new Masq(this.config.title, this.config.desc, this.config.icon)
     if (this.masq.isLoggedIn()) {
       await this.masq.connectToMasq()
