@@ -26,6 +26,7 @@ export default class LoginMasqPanel {
       this.username = username
       this.profileImage = profileImage
     }
+    this.isActive = true
     this.panel.update()
   }
 

@@ -1,31 +1,33 @@
-<div class="login_masq_panel">
-  {{? !this.isLoggedIn}}
-    <h1 class="login_masq_panel__title">
-      {{= _('Log in with Masq', 'masq') }}
-    </h1>
-    <p>
-      {{= _('Use MASQ to sync your personal data across your devices', 'masq') }}
-    </p>
-    {{? !this.loggingIn}}
-      <button class="login_masq_panel__action" {{= click(this.login, this) }}>
-        {{= _('Log in', 'masq') }}
-      </button>
-    {{?}}
-    {{? this.loggingIn}}
-      <button class="login_masq_panel__action">
-        {{= _('Logging in', 'masq') }}
-      </button>
-    {{?}}
-  {{?}}
-  {{? this.isLoggedIn}}
-    <div class="loggedin_masq_panel__profile_info">
-      <img src={{= this.profileImage }} class="loggedin_masq_panel__profile_image">
-      <p class="loggedin_masq_panel__title">
-        {{= this.username }}
+{{? this.isActive}}
+  <div class="login_masq_panel">
+    {{? !this.isLoggedIn}}
+      <h1 class="login_masq_panel__title">
+        {{= _('Log in with Masq', 'masq') }}
+      </h1>
+      <p>
+        {{= _('Use MASQ to sync your personal data across your devices', 'masq') }}
       </p>
-    </div>
-    <button class="login_masq_panel__action" {{= click(this.logout, this) }}>
-      {{= _('Logout', 'masq') }}
-    </button>
-  {{?}}
-</div>
+      {{? !this.loggingIn}}
+        <button class="login_masq_panel__action" {{= click(this.login, this) }}>
+          {{= _('Log in', 'masq') }}
+        </button>
+      {{?}}
+      {{? this.loggingIn}}
+        <button class="login_masq_panel__action">
+          {{= _('Logging in', 'masq') }}
+        </button>
+      {{?}}
+    {{?}}
+    {{? this.isLoggedIn}}
+      <div class="loggedin_masq_panel__profile_info">
+        <img src={{= this.profileImage }} class="loggedin_masq_panel__profile_image">
+        <p class="loggedin_masq_panel__title">
+          {{= this.username }}
+        </p>
+      </div>
+      <button class="login_masq_panel__action" {{= click(this.logout, this) }}>
+        {{= _('Logout', 'masq') }}
+      </button>
+    {{?}}
+  </div>
+{{?}}
