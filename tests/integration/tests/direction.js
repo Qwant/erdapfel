@@ -151,3 +151,4 @@ const showDirection = async (page) => {
   await page.waitForSelector('.service_panel__item__direction')
   await page.click('.service_panel__item__direction')
 }
+
