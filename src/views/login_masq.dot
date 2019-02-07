@@ -1,19 +1,19 @@
 <div class="login_masq_panel">
-  {{? (!this.isLoggedIn)}}
+  {{? !this.isLoggedIn}}
     <h1 class="login_masq_panel__title">
-      {{= _('Register with masq', 'masq') }}
+      {{= _('Log in with Masq', 'masq') }}
     </h1>
     <p>
-      {{= _('We use MASQ to keep your personal data safe', 'masq') }}
+      {{= _('Use MASQ to sync your personal data across your devices', 'masq') }}
     </p>
-    {{? (!this.loggingIn)}}
+    {{? !this.loggingIn}}
       <button class="login_masq_panel__action" {{= click(this.login, this) }}>
-        {{= _('Register', 'masq') }}
+        {{= _('Log in', 'masq') }}
       </button>
     {{?}}
     {{? this.loggingIn}}
       <button class="login_masq_panel__action">
-        {{= _('Register in progress', 'masq') }}
+        {{= _('Logging in', 'masq') }}
       </button>
     {{?}}
   {{?}}
