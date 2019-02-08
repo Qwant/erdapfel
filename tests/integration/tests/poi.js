@@ -281,12 +281,7 @@ test('Poi hour i18n', async () => {
   }))
 })
 
-
-
 afterEach(async () => {
-  if(page.url() === 'about:blank') {
-    return
-  }
   try {
     await clearStore(page) /* if only the above test is run page is not used */
   } catch (e) {

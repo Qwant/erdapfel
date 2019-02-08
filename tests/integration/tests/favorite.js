@@ -17,11 +17,11 @@ beforeAll(async () => {
 test('toggle favorite panel', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
-  let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden")
-  expect(favPanelHidden).not.toBeFalsy()
+  let favPanelHidden = await page.waitForSelector(".favorites_panel--hidden", {hidden : true})
+  expect(favPanelHidden).toBeTruthy()
   await toggleFavoritePanel(page)
-  let favPanel = await page.waitForSelector('.favorites_panel--hidden', {hidden : true})
-  expect(favPanel).not.toBeFalsy()
+  let favPanel = await page.waitForSelector('.favorites_panel', {visible : true})
+  expect(favPanel).toBeTruthy()
 })
 
 test('favorite added is present in favorite panel', async () => {

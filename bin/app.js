@@ -13,7 +13,7 @@ const app = express()
 const logger = bunyan.createLogger({
     name: 'erdapfel',
     stream: process.stdout,
-    level: 'info',
+    level: process.env.NODE_ENV === 'test' ? 'warn' : 'info',
     serializers: {
       req: bunyan.stdSerializers.req,
       err: bunyan.stdSerializers.err,
