@@ -35,17 +35,17 @@ function PoiPanel(sharePanel) {
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
 }
 
-PoiPanel.prototype.toggleStorePoi = function() {
+PoiPanel.prototype.toggleStorePoi = async function() {
   if(this.poi.stored) {
-    store.del(this.poi)
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.poi.stored = false
+    await store.del(this.poi)
   } else {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
-    store.add(this.poi)
     this.poi.stored = true
+    await store.add(this.poi)
   }
 }
 

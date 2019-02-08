@@ -37,8 +37,8 @@ function Favorite(sharePanel) {
     this.panel.update()
   })
 
-  listen('store_poi', (poi) => {
-    this.add(poi)
+  listen('store_poi', async (poi) => {
+    await this.add(poi)
   })
 }
 
@@ -112,10 +112,12 @@ Favorite.prototype.go = async function(poiStore) {
   this.active = false
 }
 
-Favorite.prototype.add = function(poi) {
+Favorite.prototype.add = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_SAVE)
   this.favoritePois.push(poi)
   this.panel.update()
+  const store = new Store()
+  await store.add(poi)
 }
 
 Favorite.prototype.del = async function({poi, index}) {
@@ -123,15 +125,19 @@ Favorite.prototype.del = async function({poi, index}) {
 
   await this.panel.addClassName(0.3, `#favorite_item_${index}`, 'favorite_item--removed')
 
+  const toDelete = []
   this.favoritePois = this.favoritePois.filter((favorite) => {
     if(favorite === poi) {
-      this.store.del(poi)
+      toDelete.push(poi)
       return false
     }
     return true
   })
 
   this.panel.update()
+
+  const store = new Store()
+  await Promise.all(toDelete.map(p => store.del(p)))
 }
 
 export default Favorite
