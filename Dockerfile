@@ -1,8 +1,10 @@
-FROM node:8-stretch as base
+FROM node:8-stretch-slim as base
 
 ENV PROJECT_DIR=/srv/maps-tileview/
 
-RUN apt-get update && apt-get -y install gettext
+RUN apt-get update && apt-get -y install \
+  gettext git python build-essential
+
 RUN npm i npm@latest -g
 RUN mkdir -p $PROJECT_DIR
 RUN chown node $PROJECT_DIR
