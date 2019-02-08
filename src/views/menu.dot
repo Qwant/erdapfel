@@ -6,8 +6,10 @@
 
   <div class="menu__panel">
     <h2 class="menu__panel__section_title">Qwant Maps</h2>
-    <button class="menu__panel__action">Itinerary</button>
-    <button class="menu__panel__action">Favorites</button>
+    <div class="menu__panel__section">
+      <button class="menu__panel__action">Itinerary</button>
+      <button class="menu__panel__action">Favorites</button>
+    </div>
 
     <h2 class="menu__panel__section_title">Qwant Maps</h2>
     <button class="menu__panel__action">Itinerary</button>

@@ -14,3 +14,4 @@
 {{= this.sharePanel.renderModal() }}
 {{= this.geolocationModal.renderModal() }}
 {{= this.geolocationDeniedModal.renderModal() }}
+{{= this.menu.render() }}
