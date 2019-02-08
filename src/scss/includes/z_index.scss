@@ -14,10 +14,6 @@
   z-index: 3;
 }
 
-.service_panel_mobile {
-  z-index: 2;
-}
-
 .favorite_panel__item__more {
   z-index: 1;
 }
@@ -46,12 +42,12 @@
   z-index: 3;
 }
 
-.service_panel_mobile {
-  z-index: 3;
-}
-
 .menu__overlay {
   z-index: 5;
+}
+
+.menu__button {
+  z-index: 3;
 }
 
 .menu__panel {

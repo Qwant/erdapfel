@@ -48,34 +48,8 @@
   text-decoration: underline;
 }
 
-.service_panel_mobile {
-  display: none;
-}
-
 @media (max-width: 640px) {
   .service_panel {
     display: none;
-  }
-
-  .service_panel_mobile {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-
-  .service_panel_mobile__favorite {
-    position: absolute;
-    height: 48px;
-    width: 48px;
-    top: 16px;
-    right: 8px;
-    cursor: pointer;
-    font-size: 24px;
-    line-height: 52px;
-    background: #fff;
-    border-radius: 50%;
-    color: $secondary_text;
-    @include card_shadow();
   }
 }
