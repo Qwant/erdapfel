@@ -1,6 +1,7 @@
 import Suggest from "../adapters/suggest";
 import PanelManager from "../proxies/panel_manager";
 import UrlState from "../proxies/url_state";
+import UrlShards from "../proxies/url_shards";
 
 const MAPBOX_RESERVED_KEYS = [
     'ArrowLeft' // ←
@@ -65,7 +66,10 @@ export default class SearchInput {
   store() {}
 
   async restore(fragment) {
-    return await this.suggest.preselect(fragment)
+    let shards = UrlShards.parseUrl()
+    if(shards.length === 1) {
+      return await this.suggest.preselect(fragment)
+    }
   }
 
   async selectItem (selectedPoi) {
