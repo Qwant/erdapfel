@@ -28,6 +28,10 @@
 
 .icon-pin_geoloc:before {
   content: "\e90d";
+  color: #5c6f84;
+}
+.icon-at-sign:before {
+  content: "\e91e";
 }
 .icon-check:before {
   content: "\e91c";
@@ -50,8 +54,14 @@
 .icon-facebook:before {
   content: "\e912";
 }
+.icon-hash:before {
+  content: "\e91f";
+}
 .icon-mail:before {
   content: "\e91d";
+}
+.icon-map:before {
+  content: "\e920";
 }
 .icon-minus:before {
   content: "\e919";
@@ -70,6 +80,9 @@
 }
 .icon-twitter:before {
   content: "\e915";
+}
+.icon-user:before {
+  content: "\e921";
 }
 .icon-x:before {
   content: "\e910";

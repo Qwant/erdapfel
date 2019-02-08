@@ -1,21 +1,41 @@
+<div class="menu__overlay" {{= click(this.close, this) }}></div>
+
+<div class="menu__button" {{= click(this.open, this) }}>
+  <div class="menu__button__line"></div>
+  <div class="menu__button__line"></div>
+  <div class="menu__button__line"></div>
+</div>
+
 <div class="menu">
-
-  <div class="menu__overlay"></div>
-
-
-
   <div class="menu__panel">
-    <h2 class="menu__panel__section_title">Qwant Maps</h2>
+  <div class="menu__panel__top">
+    <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
+  </div>
+    <h2 class="menu__panel__section_title">
+      <i class="menu__panel__section__icon icon-map"></i>
+      Qwant Maps
+    </h2>
     <div class="menu__panel__section">
-      <button class="menu__panel__action">Itinerary</button>
-      <button class="menu__panel__action">Favorites</button>
+      <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>Itinerary</button>
+      <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>Favorites</button>
     </div>
 
-    <h2 class="menu__panel__section_title">Qwant Maps</h2>
-    <button class="menu__panel__action">Itinerary</button>
-    <button class="menu__panel__action">Favorites</button>
+    {{~ this.menuItems:menuItem }}
+      <h2 class="menu__panel__section_title">
+        <i class="menu__panel__section__icon icon-{{= menuItem.icon }}"></i>
+        {{= _(menuItem.sectionName) }}
+      </h2>
+      <div class="menu__panel__section">
+        {{~ menuItem.links:link }}
+          <a class="menu__panel__link" rel="" href="{{= link.uri }}" rel="noopener" target="_blank">
+            {{= link.name }}
+          </a>
+        {{~}}
+      </div>
+    {{~}}
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
-
-
-
 </div>
