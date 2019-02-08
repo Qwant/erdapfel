@@ -1,4 +1,4 @@
-import UrlShard from './url_shard'
+import UrlShard, {paramTypes} from './url_shard'
 import UrlShards from './url_shards'
 
 function UrlState() {}
@@ -8,12 +8,24 @@ UrlState.init = function () {
 }
 
 UrlState.registerHash = function(component, prefix) {
-  register(component, prefix, true)
+  UrlState.registerUrlShard(component, prefix, paramTypes.HASH)
+}
+
+UrlState.registerGet = function(component, prefix) {
+  UrlState.registerUrlShard(component, prefix, paramTypes.GET)
 }
 
 UrlState.registerResource = function(component, prefix) {
-  register(component, prefix, false)
+  UrlState.registerUrlShard(component, prefix, paramTypes.RESOURCE)
 }
+
+UrlState.registerUrlShard = function(component, prefix, paramType) {
+  if(!component.store || !component.restore) {
+    throw 'this componentn doesn\'t implement required methods'
+  }
+  UrlShards.add(new UrlShard(component, prefix, paramType))
+}
+
 
 UrlState.pushUrl = function() {
   let url = UrlShards.toUrl()
@@ -43,15 +55,6 @@ UrlState.load = function() {
       shard.restore(matchingRawShard.value)
     }
   })
-}
-
-/* private */
-
-function register(component, prefix, isHash) {
-  if(!component.store || !component.restore) {
-    throw 'this componentn doesn\'t implement required methods'
-  }
-  UrlShards.add(new UrlShard(component, prefix, isHash))
 }
 
 export default UrlState

@@ -8,7 +8,7 @@ import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
-
+import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 
 const originHandler = '#itinerary_input_origin'
 const destinationHandler = '#itinerary_input_destination'
@@ -50,17 +50,18 @@ export default class DirectionPanel {
     this.searchDirection()
   }
 
-  selectOrigin(poi) {
+  async selectOrigin(poi) {
     this.origin = poi
     this.searchDirection()
     UrlState.pushUrl()
   }
 
-  selectDestination(poi) {
+  async selectDestination(poi) {
     this.destination = poi
     this.searchDirection()
     UrlState.pushUrl()
   }
+
 
   /* panel manager implementation */
   toggle() {
@@ -131,10 +132,10 @@ export default class DirectionPanel {
       if(routeParams.length > 0) {
         return `?${routeParams.join('&')}&vehicle=${this.vehicle}`
       } else {
-        return '?'
+        return true
       }
     } else {
-      return ''
+      return false
     }
 
   }
@@ -175,6 +176,9 @@ export default class DirectionPanel {
   /* Private */
 
   poiToUrl(prefix, poi) {
+    if(poi instanceof NavigatorGeolocalisationPoi || poi instanceof UrlPoi) {
+      return `${prefix}=${poi.toUrl()}`
+    }
     return `${prefix}=${poi.id}@${poi.name}`
   }
 }

@@ -1,14 +1,13 @@
-import Poi from "../adapters/poi/poi";
 import Suggest from "../adapters/suggest";
-
-const GEOLOCALISATION_SELECTOR = 'geolocalisation'
+import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../adapters/poi/specials/navigator_geolocalisation_poi";
 
 export default class DirectionInput {
   constructor(tagSelector, select, submitHandler) {
     this.select = select
     this.submitHandler = submitHandler
+    this.geolocalisationPoi = NavigatorGeolocalisationPoi.getInstance()
     let prefixes = [
-      {id : GEOLOCALISATION_SELECTOR, render : this.renderGeolocailsation}
+      this.geolocalisationPoi
     ]
 
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes)
@@ -21,16 +20,21 @@ export default class DirectionInput {
     this.suggest.onSubmit()
   }
 
-  selectItem(selectedPoi) {
-    if(selectedPoi.id === GEOLOCALISATION_SELECTOR) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude
-        let lng = position.coords.longitude
-        this.select(new Poi(GEOLOCALISATION_SELECTOR, 'geolocalisation', null, null, {lat, lng}))
-      })
-      return
+  async selectItem(selectedPoi) {
+    if(selectedPoi instanceof NavigatorGeolocalisationPoi) {
+      if(selectedPoi.status === navigatorGeolcationStatus.FOUND) {
+        return selectedPoi
+      } else if(selectedPoi.status === navigatorGeolcationStatus.PENDING) {
+        this.select(selectedPoi)
+      } else {
+        this.suggest.setIdle(true)
+        await selectedPoi.getPosition()
+        this.suggest.setIdle(false)
+        this.select(selectedPoi)
+      }
+    } else {
+      this.select(selectedPoi)
     }
-    this.select(selectedPoi)
   }
 
   destroy() {
@@ -49,11 +53,4 @@ export default class DirectionInput {
     this.suggest.setValue(value)
   }
 
-  renderGeolocailsation() {
-    return `
-      <div data-id="${GEOLOCALISATION_SELECTOR}" data-val="${_('Your position', 'direction')}" class="autocomplete_suggestion itinerary_suggest_your_position">
-        <div class=itinerary_suggest_your_position_icon></div>
-        ${_('Your position', 'direction')}
-      </div>`
-  }
 }

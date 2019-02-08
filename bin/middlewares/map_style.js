@@ -47,7 +47,7 @@ module.exports = function (config, languages) {
     let mapStyle = Object.assign({}, config.mapStyle, urls)
 
     /* json render */
-    res.setHeader('Content-Type', 'application/json')
+    res.set('Content-Type', 'application/json')
     res.send(styleConfigure(builtStyle, mapStyle, matchedLanguage.code))
   }
 }

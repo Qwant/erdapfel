@@ -70,6 +70,10 @@
   color: #353c52;
 }
 
+#itinerary_input_origin:disabled, #itinerary_input_destination:disabled {
+  color: #dddddd;
+}
+
 #itinerary_input_origin::placeholder, #itinerary_input_destination::placeholder {
   font-style: italic;
   color: #c8cbd3;

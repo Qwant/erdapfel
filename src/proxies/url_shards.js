@@ -1,3 +1,5 @@
+import {paramTypes} from './url_shard'
+
 function UrlShards() {}
 
 if(!window.__url_state) {
@@ -13,17 +15,32 @@ UrlShards.getShards = function () {
 }
 
 UrlShards.toUrl = function () {
-  let url = UrlShards.getShards()
-    .filter((shard) => !shard.isHash)
+  let urlResources = UrlShards.getShards()
+    .filter((shard) => shard.paramType === paramTypes.RESOURCE)
     .map((shard) => shard.toString())
     .filter((shard) => shard !== null)
 
   let urlHash = UrlShards.getShards()
-    .filter((shard) => shard.isHash)
+    .filter((shard) => shard.paramType === paramTypes.HASH)
     .map((shard) => shard.toString())
     .filter((shard) => shard !== null)
 
-  return `${window.baseUrl}${url.join('/')}#${urlHash.join('&')}`
+  let urlGet = UrlShards.getShards()
+    .filter((shard) => shard.paramType === paramTypes.GET)
+    .map((shard) => shard.toString())
+    .filter((shard) => shard !== null)
+
+  let url = window.baseUrl
+  if(urlResources.length > 0) {
+    url += `${urlResources.join('/')}`
+  }
+  if(urlGet.length > 0) {
+    url += `?${urlGet.join('&')}`
+  }
+  if(urlHash.length > 0) {
+    url += `#${urlHash.join('&')}`
+  }
+  return url
 }
 
 UrlShards.parseUrl = function () {
@@ -49,6 +66,14 @@ UrlShards.parseUrl = function () {
       })
     })
   }
+
+  let getParams = new URLSearchParams(location.search)
+  this.getShards().forEach((shard) => {
+    let matchingShard = getParams.get(shard.prefix)
+    if(matchingShard) {
+      shards.push({prefix : shard.prefix, value : matchingShard})
+    }
+  })
 
   if(window.location.hash) {
     let rawHash = window.location.hash

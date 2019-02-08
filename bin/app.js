@@ -3,12 +3,11 @@ const yaml = require('node-yaml')
 const path = require('path')
 const expressStaticGzip = require('express-static-gzip')
 const bunyan = require('bunyan')
-const finalhandler = require('finalhandler');
-const promClient = require('prom-client');
+const finalhandler = require('finalhandler')
+const promClient = require('prom-client')
 const fakePbf = require('./middlewares/fake_pbf/index')
 const compression = require('compression')
-
-const mapStyle = require('./middlewares/map_style');
+const mapStyle = require('./middlewares/map_style')
 
 const app = express()
 const logger = bunyan.createLogger({
@@ -19,21 +18,23 @@ const logger = bunyan.createLogger({
       req: bunyan.stdSerializers.req,
       err: bunyan.stdSerializers.err,
     }
-});
-const promRegistry = new promClient.Registry();
+})
+
+const promRegistry = new promClient.Registry()
 
 function App(config) {
+  const openSearch = require('./middlewares/opensearch/index')(config)
   const constants = yaml.readSync('../config/constants.yml')
   const languages = constants.languages
 
   this.handler = null
   app.set('view engine', 'ejs')
-  app.set('views', path.join(__dirname, '..', 'views'));
+  app.set('views', path.join(__dirname, '..', 'views'))
 
 
   /* Define child logger in req */
   app.use((req,res,next) => {
-    req.logger = logger.child({req: req});
+    req.logger = logger.child({req: req})
     next()
   })
 
@@ -60,6 +61,8 @@ function App(config) {
     maxAge: config.mapStyle.maxAge
   }))
 
+  app.use('/opensearch.xml', openSearch)
+
   if(config.performance.enabled) {
     app.get('/fake_pbf/:z/:x/:y.pbf', fakePbf)
   }
@@ -75,9 +78,9 @@ function App(config) {
 
   if(config.server.enablePrometheus){
     app.get('/metrics', (req, res) => {
-      res.set('Content-Type', promRegistry.contentType);
-      res.end(promRegistry.metrics());
-    });
+      res.set('Content-Type', promRegistry.contentType)
+      res.end(promRegistry.metrics())
+    })
   }
   else{
     app.get('/metrics', (req, res) => {

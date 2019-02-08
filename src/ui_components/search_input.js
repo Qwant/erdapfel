@@ -1,5 +1,7 @@
 import Suggest from "../adapters/suggest";
 import PanelManager from "../proxies/panel_manager";
+import UrlState from "../proxies/url_state";
+import UrlShards from "../proxies/url_shards";
 
 const MAPBOX_RESERVED_KEYS = [
     'ArrowLeft' // ←
@@ -10,6 +12,7 @@ const MAPBOX_RESERVED_KEYS = [
   , '+' // +
   , '=' // =
 ]
+
 
 export default class SearchInput {
 
@@ -39,6 +42,7 @@ export default class SearchInput {
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi))
     this.isEnabled = true
 
+    UrlState.registerGet(this, 'q')
     listen('submit_autocomplete', async () => {
       this.suggest.onSubmit()
     })
@@ -56,6 +60,15 @@ export default class SearchInput {
           document.getElementById('search').focus()
         }
       }
+    }
+  }
+
+  store() {}
+
+  async restore(fragment) {
+    let shards = UrlShards.parseUrl()
+    if(shards.length === 1) {
+      return await this.suggest.preselect(fragment)
     }
   }
 

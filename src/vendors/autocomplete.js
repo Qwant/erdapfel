@@ -36,7 +36,7 @@ var autoComplete = (function(){
       offsetLeft: 0,
       offsetTop: 1,
       menuClass: '',
-      renderItems: function (item, search){},
+      renderItems: function (items, search){},
       onSelect: function(e, term, item, items){},
       onUpdate: function(e, term, items){},
       updateData: function (items) {}
@@ -129,6 +129,13 @@ var autoComplete = (function(){
           that.sourcePending.abort();
           that.sourcePending = null
         }
+      }
+
+      var sourceDom = function (data, val) {
+        that.items = data
+        o.updateData(data)
+        that.sc.innerHTML = o.renderItems(data, val);
+        that.updateSC(true);
       }
 
       var suggest = function(data){
@@ -261,12 +268,19 @@ var autoComplete = (function(){
 
     this.cancel = function () {
       cancelObsolete()
+    };
+
+    this.prefetch = async function (val) {
+      that.value = val;
+      let source = await o.source(val);
+      sourceDom(source, val);
+      return source
     }
 
     this.preRender = function () {
       that.sc.innerHTML = o.renderItems([])
       that.updateSC(true)
-    }
+    };
 
     this.getValue = function () {
       return that.value

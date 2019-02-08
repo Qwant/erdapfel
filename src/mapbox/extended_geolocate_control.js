@@ -1,3 +1,4 @@
+const GeolocationCheck = require("../libs/geolocation").default
 const Telemetry = require('../libs/telemetry').default
 
 const { GeolocateControl } = require('mapbox-gl--ENV')
@@ -5,12 +6,6 @@ const { GeolocateControl } = require('mapbox-gl--ENV')
 /**
 * Override default GeolocateControl
 */
-
-const geolocationPermissions = {
-  PROMPT : 'prompt',
-  GRANTED : 'granted',
-  DENIED : 'denied'
-}
 
 class ExtendedGeolocateControl extends GeolocateControl {
   constructor(options, container) {
@@ -32,13 +27,8 @@ class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   trigger() {
-    window.navigator.permissions && window.navigator.permissions.query({ name: 'geolocation' }).then(p => {
-      if (p.state === geolocationPermissions.PROMPT) {
-        fire('open_geolocate_modal')
-      }
-    })
+    GeolocationCheck.checkPrompt()
     super.trigger()
-
   }
 
   _setupUI(supported) {

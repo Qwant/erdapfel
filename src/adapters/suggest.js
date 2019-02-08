@@ -96,16 +96,26 @@ export default class Suggest {
     }
   }
 
+  async preselect(term) {
+    let suggestList = await this.autocomplete.prefetch(term)
+    if (suggestList.length > 0) {
+      let firstPoi = suggestList[0]
+      this.onSelect(firstPoi)
+      this.searchInputDomHandler.blur()
+    }
+    return suggestList
+  }
+
+  setIdle(idle) {
+    this.searchInputDomHandler.disabled = idle
+  }
+
+
+
   async onSubmit() {
     if(this.pending) {
-      this.autocomplete.cancel()
       let term = this.searchInputDomHandler.value
-      let suggestList = await BragiPoi.get(term)
-      if (suggestList.length > 0) {
-        let firstPoi = suggestList[0]
-        this.onSelect(firstPoi)
-        this.searchInputDomHandler.blur()
-      }
+      this.preselect(term)
     } else {
       if (this.suggestList && this.suggestList.length > 0
         && this.searchInputDomHandler.value
