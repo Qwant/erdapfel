@@ -5,6 +5,12 @@ export default class ResponseHandler {
     this.page = page
   }
 
+  static async init(page) {
+    const responseHandler = new ResponseHandler(page)
+    await responseHandler.prepareResponse()
+    return responseHandler
+  }
+
   addPreparedResponse(response, query) {
     let alreadySetResponse = this.preparedResponses.find((preparedResponse) => preparedResponse.query === query)
     if(!alreadySetResponse) {

@@ -37,6 +37,9 @@ export function store(page, soreKey,  data) {
 }
 
 export const clearStore = async function(page) {
+  if(page.url() === 'about:blank') {
+    return
+  }
   await page.evaluate(() =>
     localStorage.clear()
   )

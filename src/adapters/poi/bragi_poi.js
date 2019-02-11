@@ -3,10 +3,12 @@ import ajax from "../../libs/ajax";
 import nconf from '@qwant/nconf-getter'
 
 const serviceConfigs = nconf.get().services
-const geocoderUrl = serviceConfigs.geocoder.url
+const geocoderConfig = serviceConfigs.geocoder
+
 if(!window.__bragiCache) {
   window.__bragiCache = {}
 }
+
 export default class BragiPoi extends Poi {
   constructor(feature) {
 
@@ -117,7 +119,11 @@ export default class BragiPoi extends Poi {
     /* ajax */
     let suggestsPromise
     let queryPromise = new Promise(async (resolve, reject) => {
-      suggestsPromise = ajax.get(geocoderUrl, {q: term})
+      let query = {q: term}
+      if(geocoderConfig.useLang){
+        query.lang = getLang().code
+      }
+      suggestsPromise = ajax.get(geocoderConfig.url, query)
       suggestsPromise.then((suggests) => {
         let bragiResponse = suggests.features.map((feature) => {
           return new BragiPoi(feature)

@@ -16,9 +16,8 @@ beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
   browser = browserPage.browser
-  responseHandler = new ResponseHandler(page)
+  responseHandler = await ResponseHandler.init(page)
   autocompleteHelper = new AutocompleteHelper(page)
-  await responseHandler.prepareResponse()
 })
 
 test('search and clear', async () => {
@@ -40,6 +39,24 @@ test('search and clear', async () => {
   await autocompleteHelper.clearField()
   let searchValueAfterClear = await autocompleteHelper.getSearchInputValue()
   expect(searchValueAfterClear).toEqual('')
+})
+
+test('search has lang in query', async () => {
+  const langPage = await browser.newPage()
+  await langPage.setDefaultTimeout(2000) // to raise Puppeteer timeout early on fail
+  await langPage.setExtraHTTPHeaders({
+    'accept-language': 'de,en;q=0.8'
+  })
+  const responseHandler = await ResponseHandler.init(langPage)
+  const autocompleteHelper = new AutocompleteHelper(langPage)
+
+  const query = 'Frankreich'
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Frankreich&lang=de/)
+
+  await langPage.goto(APP_URL)
+  await autocompleteHelper.typeAndWait(query)
+  const autocompleteItems = await autocompleteHelper.getSuggestList()
+  expect(autocompleteItems).toHaveLength(10)
 })
 
 test('keyboard navigation', async () => {
