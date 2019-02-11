@@ -32,6 +32,11 @@
           </button>
           <div class="poi_panel__actions__text">{{= _('SHARE', 'poi') }}</div>
         </div>
+        <div class="poi_panel__actions__direction_container" {{= click(this.openDirection, this) }}>
+          <button class="poi_panel__actions__icon icon-corner-up-right">
+          </button>
+          <div class="poi_panel__actions__text">{{= _('DIRECTION', 'poi') }}</div>
+        </div>
       </div>
     </div>
     <div class="poi_panel__close" {{= click(this.close, this) }}>

@@ -138,6 +138,10 @@ PoiPanel.prototype.backToFavorite = function() {
   PanelManager.toggleFavorite()
 }
 
+PoiPanel.prototype.openDirection = function () {
+  PanelManager.toggleDirection({poi : this.poi})
+}
+
 /* private */
 
 async function isPoiFavorite(poi) {
