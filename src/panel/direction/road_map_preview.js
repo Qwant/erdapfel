@@ -16,21 +16,21 @@ export default class RoadMapPreviewPanel {
     this.routeId = 0
     this.stepId = 0
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step, {itinerary: true})
+    fire('zoom_step', this.step)
     this.hideForm()
   }
 
   next() {
     this.stepId += 1
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step, {itinerary: true})
+    fire('zoom_step', this.step)
     this.panel.update()
   }
 
   previous() {
     this.stepId -= 1
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]
-    fire('zoom_step', this.step, {itinerary: true})
+    fire('zoom_step', this.step)
     this.panel.update()
   }
 }

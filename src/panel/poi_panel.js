@@ -70,7 +70,6 @@ PoiPanel.prototype.restorePoi = async function (id) {
     window.execOnMapLoaded(() => {
       fire('map_mark_poi', this.poi)
       fire('fit_map', this.poi, this.poi.type === 'poi' ? layouts.POI : layouts.FULL)
-      console.log(layout);
     })
 
     this.poi.stored = await isPoiFavorite(this.poi)

@@ -5,8 +5,6 @@ import layouts from "../panel/layouts.js";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
-const PADDING_DIRECTION_DESKTOP = {top: 20, right: 20, bottom: 40, left: 450 };
-const PADDING_DIRECTION_MOBILE = {top: 180, right: 20, bottom: 110, left: 20 };
 
 export default class SceneDirection {
   constructor(map) {
@@ -41,18 +39,9 @@ export default class SceneDirection {
       this.reset()
     })
 
-      listen('zoom_step', (step, options) => {
-          let padding;
-          if(options && options.itinerary){
-              if(Device.isMobile()){
-                  padding = PADDING_DIRECTION_MOBILE;
-              }
-              else {
-                  padding = PADDING_DIRECTION_DESKTOP;
-              }
-          }
-          fire('fit_bbox', this.computeBBox(step), padding)
-      })
+    listen('zoom_step', (step) => {
+      fire('fit_map', this.computeBBox(step), layouts.ITINERARY)
+    })
 
     listen('highlight_step', (step) => {
       this.highlightStep(step);
@@ -106,14 +95,7 @@ export default class SceneDirection {
           .addTo(this.map)
 
       let bbox = this.computeBBox(this.mainRoute);
-      let padding = {};
-      if(Device.isMobile()){
-        padding = PADDING_DIRECTION_MOBILE;
-      }
-      else {
-        padding = PADDING_DIRECTION_DESKTOP;
-      }
-      fire('fit_bbox', bbox, padding)
+      fire('fit_map', bbox, layouts.ITINERARY)
 
       let directionPoi = new Direction(this.computeBBox(this.mainRoute))
       if(move !== false) {

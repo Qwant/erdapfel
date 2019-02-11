@@ -216,7 +216,7 @@ Scene.prototype.fitBbox = function(bbox, padding){
 Scene.prototype.fitMap = function(item, padding) {
 
   // BBox
-  if(item.bbox) {
+  if(item._ne && item._sw) {
     this.fitBbox(item, padding);
   }
 
@@ -227,10 +227,8 @@ Scene.prototype.fitMap = function(item, padding) {
     if(item.zoom) {
       flyOptions.zoom = item.zoom
     }
-    // set offset for poi witch will open panel on desktop
-    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
-      flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
-    }
+
+    flyOptions.padding = padding;
 
     if(this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
       flyOptions.animate = true
