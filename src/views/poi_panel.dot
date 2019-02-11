@@ -12,6 +12,10 @@
           <span class="icon-chevrons-right"></span>
           {{= _('SEE MORE', 'poi panel') }}
         </button>
+        <button class="poi_panel__content__card__action" {{= click(this.showDetail, this) }}>
+          <span class="icon-chevrons-right"></span>
+          {{= _('SEE MORE', 'poi panel') }}
+        </button>
       </div>
     {{?}}
   <div class="poi_panel__content">
