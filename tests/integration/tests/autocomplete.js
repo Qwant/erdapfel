@@ -43,7 +43,7 @@ test('search and clear', async () => {
 
 test('search has lang in query', async () => {
   const langPage = await browser.newPage()
-  await langPage.setDefaultTimeout(2000)
+  await langPage.setDefaultTimeout(2000) // to raise Puppeteer timeout early on fail
   await langPage.setExtraHTTPHeaders({
     'accept-language': 'de,en;q=0.8'
   })
