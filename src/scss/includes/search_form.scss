@@ -315,3 +315,17 @@ input[type="search"]::-webkit-search-cancel-button {
     letter-spacing: -.5px;
   }
 }
+
+@media (max-width: 370px) {
+  .search_form__input {
+    &::-webkit-input-placeholder {
+      color:transparent;
+    }
+    &::-moz-placeholder {
+      color:transparent;
+    }
+    &:-ms-input-placeholder {
+      color:transparent;
+    }
+  }
+}
