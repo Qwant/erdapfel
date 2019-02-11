@@ -10,7 +10,7 @@ import headerPartial from '../views/poi_partial/header.dot'
 import MinimalHourPanel from './poi_bloc/opening_minimal'
 import SceneState from "../adapters/scene_state";
 import {paramTypes} from '../proxies/url_shard'
-import PanelLayout, {layouts} from './layouts.js';
+import layouts from "./layouts.js";
 
 
 const poiSubClass = require('../mapbox/poi_subclass')
@@ -69,7 +69,8 @@ PoiPanel.prototype.restorePoi = async function (id) {
     this.poi = hotLoadedPoi
     window.execOnMapLoaded(() => {
       fire('map_mark_poi', this.poi)
-      fire('fit_map', this.poi, {sidePanelOffset : this.poi.type === 'poi'})
+      fire('fit_map', this.poi, this.poi.type === 'poi' ? layouts.POI : layouts.FULL)
+      console.log(layout);
     })
 
     this.poi.stored = await isPoiFavorite(this.poi)
@@ -99,7 +100,7 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 
 PoiPanel.prototype.center = function() {
   Telemetry.add(Telemetry.POI_GO)
-  fire('fit_map', this.poi, {sidePanelOffset : true})
+  fire('fit_map', this.poi, layouts.POI)
 }
 
 PoiPanel.prototype.openShare = function () {

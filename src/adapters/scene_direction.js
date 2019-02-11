@@ -1,7 +1,7 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
 import Direction from "./poi/specials/direction_poi";
-import PanelLayout, {layouts} from '../panel/layouts.js';
+import layouts from "../panel/layouts.js";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
@@ -117,7 +117,7 @@ export default class SceneDirection {
 
       let directionPoi = new Direction(this.computeBBox(this.mainRoute))
       if(move !== false) {
-        fire('fit_map', directionPoi, {sidePanelOffset : true})
+        fire('fit_map', directionPoi, layouts.ITINERARY)
       }
     }
   }

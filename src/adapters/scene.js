@@ -16,7 +16,7 @@ import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
-import PanelLayout, {layouts} from '../panel/layouts.js';
+import layouts from "../panel/layouts.js";
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
