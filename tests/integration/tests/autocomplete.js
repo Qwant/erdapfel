@@ -237,6 +237,19 @@ test('check template', async () => {
    expect(lines[3][1]).toEqual(labelFragments.slice(1).join(',').trim())
 })
 
+
+test('Search Query', async () => {
+  expect.assertions(1)
+  const searchQuery = 'test'
+  await page.goto(`${APP_URL}/?q=${searchQuery}`)
+
+  let searchValue = await page.evaluate(() => {
+    return document.querySelector('#search').value
+  })
+
+  expect(searchValue).toEqual(searchQuery)
+})
+
 afterEach(async () => {
   await clearStore(page)
 })
