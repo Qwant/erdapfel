@@ -16,6 +16,7 @@ import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
+import PanelLayout, {layouts} from '../panel/layouts.js';
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -130,8 +131,8 @@ Scene.prototype.initMapBox = function () {
     fire('map_loaded')
   })
 
-  listen('fit_map', (poi, padding) => {
-    this.fitMap(poi, padding)
+  listen('fit_map', (item, padding) => {
+    this.fitMap(item, padding)
   })
 
   listen('map_reset', () => {
@@ -213,11 +214,15 @@ Scene.prototype.fitBbox = function(bbox, padding){
 
 
 Scene.prototype.fitMap = function(item, padding) {
-  const MIN_ZOOM_FLYTO = 10
 
+  // BBox
   if(item.bbox) {
     this.fitBbox(item, padding);
-  } else {
+  }
+
+  // PoI
+  else {
+
     let flyOptions = {center : item.getLngLat(), screenSpeed: 1.5, animate: false}
     if(item.zoom) {
       flyOptions.zoom = item.zoom
@@ -227,7 +232,7 @@ Scene.prototype.fitMap = function(item, padding) {
       flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
     }
 
-    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(item)) {
+    if(this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
       flyOptions.animate = true
     }
     this.mb.flyTo(flyOptions)

@@ -6,6 +6,8 @@ import PanelManager from '../proxies/panel_manager'
 import PoiStore from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 import Error from '../adapters/error'
+import PanelLayout, {layouts} from './layouts.js';
+
 const poiSubClass = require('../mapbox/poi_subclass')
 
 function Favorite(sharePanel) {

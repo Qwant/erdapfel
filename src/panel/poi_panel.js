@@ -10,6 +10,8 @@ import headerPartial from '../views/poi_partial/header.dot'
 import MinimalHourPanel from './poi_bloc/opening_minimal'
 import SceneState from "../adapters/scene_state";
 import {paramTypes} from '../proxies/url_shard'
+import PanelLayout, {layouts} from './layouts.js';
+
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
