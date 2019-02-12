@@ -60,6 +60,7 @@ export default class DirectionPanel {
     this.vehicle = vehicle
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
     UrlState.pushUrl()
+    this.searchDirection()
   }
 
   invertOriginDestination() {
