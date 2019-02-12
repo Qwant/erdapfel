@@ -96,11 +96,6 @@ export default class SceneDirection {
 
       let bbox = this.computeBBox(this.mainRoute);
       fire('fit_map', bbox, layouts.ITINERARY)
-
-      let directionPoi = new Direction(this.computeBBox(this.mainRoute))
-      if(move !== false) {
-        fire('fit_map', directionPoi, layouts.ITINERARY)
-      }
     }
   }
 

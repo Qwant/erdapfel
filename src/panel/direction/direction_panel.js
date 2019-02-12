@@ -132,7 +132,7 @@ export default class DirectionPanel {
     UrlState.pushUrl()
   }
 
-  async searchDirection(options) {
+  async setVehicle(options) {
     if(this.origin && this.destination) {
 
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
