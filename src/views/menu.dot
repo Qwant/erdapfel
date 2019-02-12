@@ -16,8 +16,10 @@
       Qwant Maps
     </h2>
     <div class="menu__panel__section">
-      <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>Itinerary</button>
-      <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>Favorites</button>
+      <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>{{= _('Itinerary' , 'menu') }}</button>
+      {{? this.isDirectionActive }}
+        <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>{{= _('Favorites', 'menu') }}</button>
+      {{?}}
     </div>
 
     {{~ this.menuItems:menuItem }}

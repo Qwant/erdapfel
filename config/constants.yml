@@ -136,10 +136,10 @@ menu:
       uri : https://about.qwant.com/jobs/
     - name: _('F.A.Q.')
       uri : https://help.qwant.com/
-    - name: _('Legal notices')
-      uri : https://about.qwant.com/legal/legal-notices/
+    - name: _('Maps legal notices')
+      uri : https://about.qwant.com/fr/legal/cgu/qwant-maps/
     - name: _('Terms of Service')
-      uri : https://about.qwant.com/legal/terms-of-service/qwant-search/ #TODO update to maps
+      uri : https://about.qwant.com/legal/terms-of-service/qwant-search/
     - name: _('About us')
       uri : https://about.qwant.com/
     - name: _('Privacy')
