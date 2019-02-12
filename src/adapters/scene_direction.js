@@ -1,6 +1,5 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
-import Direction from "./poi/specials/direction_poi";
 import layouts from "../panel/layouts.js";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
@@ -53,6 +52,14 @@ export default class SceneDirection {
   }
 
   showMarkerSteps() {
+
+    /*console.log(this.markersSteps)
+
+    for(var step in this.markersSteps){
+      this.markersSteps[step].remove();
+    }
+    this.markersSteps = [];
+
     if (this.vehicle !== "walking" && window.innerWidth > 640) {
       for (var step in this.steps) {
         const markerStep = document.createElement('div')
@@ -64,6 +71,8 @@ export default class SceneDirection {
         )
       }
     }
+
+    console.log(this.markersSteps)*/
   }
 
   displayRoute(move) {
