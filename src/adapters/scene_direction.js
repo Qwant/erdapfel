@@ -104,7 +104,9 @@ export default class SceneDirection {
           .addTo(this.map)
 
       let bbox = this.computeBBox(this.mainRoute);
-      fire('fit_map', bbox, layouts.ITINERARY)
+      if(move !== false){
+          fire('fit_map', bbox, layouts.ITINERARY)
+      }
     }
   }
 
