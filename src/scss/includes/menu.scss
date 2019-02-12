@@ -1,6 +1,6 @@
 .menu__overlay {
   display: none;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   position: absolute;
   top:0;
@@ -31,7 +31,7 @@
 .menu__panel__top {
   width: 100%;
   height: 100px;
-  background: #353c52;
+  background: $primary_text;
   margin-bottom: 40px;
 }
 
@@ -40,7 +40,7 @@
   top: 35px;
   right: 30px;
   cursor: pointer;
-  color: #c8cbd3;
+  color: $primary_clear;
   font-size: 22px;
 }
 
@@ -56,11 +56,15 @@
   font-size: 22px;
   margin: 40px 0 0 3px;
   font-weight: bold;
-  color: #353c52;
+  color: $primary_text;
+}
+
+.menu__panel__section_title__link {
+  color: $primary_text;
 }
 
 .menu__panel__section {
-  border-left: 1px solid #5c6f84;
+  border-left: 1px solid $secondary_text;
   margin: 10px 0 0 42px;
   padding: 5px 0;
 }
@@ -68,7 +72,7 @@
 .menu__panel__link, .menu__panel__action {
   display: block;
   font-size: 16px;
-  color: #5c6f84;
+  color: $secondary_text;
   margin: 8px 0 8px 40px;
 }
 
@@ -87,8 +91,8 @@
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+  background: $background;
+  @include long_shadow();
   padding: 26px 0 0 24px;
   cursor: pointer;
 }

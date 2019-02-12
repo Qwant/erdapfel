@@ -23,17 +23,25 @@
     </div>
 
     {{~ this.menuItems:menuItem }}
+
       <h2 class="menu__panel__section_title">
         <i class="menu__panel__section__icon icon-{{= menuItem.icon }}"></i>
-        {{= _(menuItem.sectionName) }}
+        {{? menuItem.uri }}
+          <a href="{{= menuItem.uri }}" class="menu__panel__section_title__link" rel="noopener" target="_blank">{{= _(menuItem.sectionName) }}</a>
+        {{??}}
+         {{= _(menuItem.sectionName) }}
+        {{?}}
+
       </h2>
-      <div class="menu__panel__section">
-        {{~ menuItem.links:link }}
-          <a class="menu__panel__link" rel="" href="{{= link.uri }}" rel="noopener" target="_blank">
-            {{= link.name }}
-          </a>
-        {{~}}
-      </div>
+      {{? menuItem.links }}
+        <div class="menu__panel__section">
+          {{~ menuItem.links:link }}
+            <a class="menu__panel__link"href="{{= link.uri }}" rel="noopener" target="_blank">
+              {{= link.name }}
+            </a>
+          {{~}}
+        </div>
+      {{?}}
     {{~}}
     <br>
     <br>
