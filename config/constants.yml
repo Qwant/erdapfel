@@ -113,6 +113,8 @@ menu:
   - sectionName : _('Qwant is also')
     icon: hash
     links:
+    - name : _('Qwant.com')
+      uri : https://www.qwant.com/
     - name : _('Qwant Music')
       uri : https://www.qwant.com/music/
     - name: _('Qwant boards')
@@ -125,7 +127,7 @@ menu:
       uri : https://www.qwantjunior.com/
     - name: _('Qwant Lite')
       uri : https://lite.qwant.com/
-  - sectionName : _('About us')
+  - sectionName : _('About Qwant')
     icon: user
     links:
     - name: _('Blog')
@@ -150,6 +152,7 @@ menu:
     icon: at-sign
     uri : https://about.qwant.com/contact/
   - sectionName : _('Share Qwant')
+
     icon: share-2
     links:
     - name: _('on Twitter')
