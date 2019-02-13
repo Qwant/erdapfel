@@ -8,44 +8,44 @@
 
 <div class="menu">
   <div class="menu__panel">
-  <div class="menu__panel__top">
-    <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
-  </div>
-    <h2 class="menu__panel__section_title">
-      <i class="menu__panel__section__icon icon-map"></i>
-      Qwant Maps
-    </h2>
-    <div class="menu__panel__section">
-      <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>{{= _('Itinerary' , 'menu') }}</button>
-      {{? this.isDirectionActive }}
-        <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>{{= _('Favorites', 'menu') }}</button>
-      {{?}}
+    <div class="menu__panel__top">
+      <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
     </div>
-
-    {{~ this.menuItems:menuItem }}
-
+    <div class="menu__panel__items_container">
       <h2 class="menu__panel__section_title">
-        <i class="menu__panel__section__icon icon-{{= menuItem.icon }}"></i>
-        {{? menuItem.uri }}
-          <a href="{{= menuItem.uri }}" class="menu__panel__section_title__link" rel="noopener" target="_blank">{{= _(menuItem.sectionName) }}</a>
-        {{??}}
-         {{= _(menuItem.sectionName) }}
-        {{?}}
-
+        <i class="menu__panel__section__icon icon-map"></i>
+        Qwant Maps
       </h2>
-      {{? menuItem.links }}
-        <div class="menu__panel__section">
-          {{~ menuItem.links:link }}
-            <a class="menu__panel__link"href="{{= link.uri }}" rel="noopener" target="_blank">
-              {{= link.name }}
-            </a>
-          {{~}}
-        </div>
-      {{?}}
-    {{~}}
-    <br>
-    <br>
-    <br>
-    <br>
+      <div class="menu__panel__section">
+        {{? this.isDirectionActive }}
+          <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>{{= _('Itinerary' , 'menu') }}</button>
+        {{?}}
+        <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>{{= _('Favorites', 'menu') }}</button>
+      </div>
+
+      {{~ this.menuItems:menuItem }}
+
+        <h2 class="menu__panel__section_title">
+          <i class="menu__panel__section__icon icon-{{= menuItem.icon }}"></i>
+          {{? menuItem.uri }}
+            <a href="{{= menuItem.uri }}" class="menu__panel__section_title__link" rel="noopener" target="_blank">{{= _(menuItem.sectionName) }}</a>
+          {{??}}
+           {{= _(menuItem.sectionName) }}
+          {{?}}
+
+        </h2>
+        {{? menuItem.links }}
+          <div class="menu__panel__section">
+            {{~ menuItem.links:link }}
+              <a class="menu__panel__link"href="{{= link.uri }}" rel="noopener" target="_blank">
+                {{= link.name }}
+              </a>
+            {{~}}
+          </div>
+        {{?}}
+      {{~}}
+      <br>
+      <br>
+    </div>
   </div>
 </div>
