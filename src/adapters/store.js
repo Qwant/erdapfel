@@ -38,7 +38,11 @@ export default class Store {
 
       const alreadyLoggedIntoMasq = await this.masqStore.isLoggedIn()
       if (alreadyLoggedIntoMasq) {
-        this.abstractStore = this.masqStore
+        if (this.masqConfig.enabled) {
+          this.abstractStore = this.masqStore
+        } else {
+          await this.masqStore.logout()
+        }
       }
     }
   }
