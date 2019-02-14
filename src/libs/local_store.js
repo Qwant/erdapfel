@@ -1,4 +1,5 @@
 const Error = require('../adapters/error').default
+const version = require('../../config/constants.yml').version
 
 function LocalStore() {}
 
@@ -25,6 +26,25 @@ LocalStore.prototype.getAllPois = function() {
     }, [])
     resolve(items)
   })
+}
+
+LocalStore.prototype.getLastLocation = function() {
+  try {
+    const lastLocation = JSON.parse(localStorage.getItem(`qmaps_v${version}_last_location`))
+    return Promise.resolve(lastLocation)
+  } catch (e) {
+    Error.sendOnce('local_store', 'getLastLocation', `error parsing lastLocation`, e)
+    return Promise.resolve(null)
+  }
+}
+
+LocalStore.prototype.setLastLocation = function(loc) {
+ try {
+   localStorage.setItem(`qmaps_v${version}_last_location`, loc)
+ } catch (e) {
+   Error.sendOnce('local_store', 'setLastLocation', 'error setting last location', e)
+ }
+ return new Promise.resolve()
 }
 
 LocalStore.prototype.getUserInfo = function() {

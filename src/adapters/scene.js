@@ -9,7 +9,7 @@ import loadImage from '../libs/image_loader'
 import nconf from "../../local_modules/nconf_getter"
 import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
-import Store from '../adapters/store'
+import LocalStore from '../libs/local_store'
 import getStyle from "./scene_config";
 import SceneState from "./scene_state";
 import MapDirection from './map_direction'
@@ -20,7 +20,7 @@ import UrlShards from "../proxies/url_shards";
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
 
-const store = new Store()
+const store = new LocalStore()
 
 function Scene() {
   UrlState.registerHash(this, 'map')
