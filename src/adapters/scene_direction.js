@@ -52,13 +52,6 @@ export default class SceneDirection {
   }
 
   showMarkerSteps() {
-
-    for(let step in this.markersSteps){
-      this.markersSteps[step].remove()
-    }
-
-    this.markersSteps = []
-
     if(this.vehicle !== "walking" && window.innerWidth > 640) {
       for (let step in this.steps) {
         const markerStep = document.createElement('div')
@@ -78,6 +71,21 @@ export default class SceneDirection {
       let otherRoutes = this.routes.filter((route) => !route.isActive)
       this.steps = this.mainRoute.legs[0].steps;
 
+
+      // Clean previous markers (if any)
+      for(var step in this.markersSteps){
+        this.markersSteps[step].remove();
+      }
+      this.markersSteps = [];
+
+      if(this.markerStart){
+        this.markerStart.remove();
+      }
+
+      if(this.markerEnd){
+        this.markerEnd.remove();
+      }
+
       otherRoutes.forEach((route) => {
         this.showPolygon(route)
       })
@@ -86,15 +94,6 @@ export default class SceneDirection {
       // Custom markers
       if (this.vehicle !== "walking" && !Device.isMobile()) {
         this.showMarkerSteps()
-      }
-
-      // Clean previous markers (if any)
-      if(this.markerStart){
-        this.markerStart.remove();
-      }
-
-      if(this.markerEnd){
-        this.markerEnd.remove();
       }
 
       const markerStart = document.createElement('div')
