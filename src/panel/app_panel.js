@@ -11,10 +11,12 @@ import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
 import nconf from "@qwant/nconf-getter"
 import DirectionPanel from './direction/direction_panel'
+import Menu from "./menu";
 
 const performanceEnabled = nconf.get().performance.enabled
 const directionEnabled = nconf.get().direction.enabled
 import Telemetry from "../libs/telemetry";
+
 
 
 
@@ -33,6 +35,7 @@ function AppPanel(parent) {
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()
   this.geolocationDeniedModal = new GeolocationDeniedModal()
+  this.menu = new Menu()
 
   if(performanceEnabled) {
     this.panel.onRender = () => {

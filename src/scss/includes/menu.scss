@@ -1,0 +1,124 @@
+.menu__overlay {
+  display: none;
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  top:0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(108,118,148,0.98),rgba(53,60,82,0.98));
+}
+
+.menu__overlay--active {
+  display: block;
+  opacity: 0;
+  transition: opacity .6s;
+}
+
+.menu__overlay--fade_active {
+  opacity: 1;
+}
+
+.menu__panel {
+  position: absolute;
+  width: 400px;
+  height: 100%;
+  right: -400px;
+  transition: right .3s;
+  background: #fff;
+}
+
+.menu__panel__items_container {
+  overflow-y: auto;
+  height: calc(100% - 100px);
+  padding-top: 40px;
+}
+
+.menu__panel__top {
+  width: 100%;
+  height: 100px;
+  background: $primary_text;
+}
+
+.menu__panel__top__close {
+  position: absolute;
+  top: 35px;
+  right: 30px;
+  cursor: pointer;
+  color: $primary_clear;
+  font-size: 22px;
+}
+
+.menu__panel--active {
+  right: 0;
+}
+
+.menu__panel__section__icon {
+  margin:0 23px 0 30px;
+}
+
+.menu__panel__section_title {
+  font-size: 22px;
+  margin: 40px 0 0 3px;
+  font-weight: bold;
+  color: $primary_text;
+}
+
+.menu__panel__section_title__link {
+  color: $primary_text;
+}
+
+.menu__panel__section {
+  border-left: 1px solid $secondary_text;
+  margin: 10px 0 0 42px;
+  padding: 5px 0;
+}
+
+.menu__panel__link, .menu__panel__action {
+  display: block;
+  font-size: 16px;
+  color: $secondary_text;
+  margin: 8px 0 8px 40px;
+}
+
+.menu__panel__action:hover {
+  text-decoration: underline;
+}
+
+.menu__panel__action {
+  cursor: pointer;
+}
+
+.menu__button {
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: $background;
+  @include long_shadow();
+  padding: 26px 0 0 24px;
+  cursor: pointer;
+}
+
+.menu__button__line {
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: #4d4d4c;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 640px) {
+  .menu__button {
+    width: 48px;
+    height: 48px;
+    right: 8px;
+    top: 16px;
+    padding: 16px 0 0 14px;
+  }
+
+  .menu__panel--active {
+    width: 100%;
+  }
+}

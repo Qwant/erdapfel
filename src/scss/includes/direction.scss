@@ -519,6 +519,7 @@
   
   .itinerary_close_mobile {
     display: block;
+    cursor: pointer;
     text-transform: uppercase;
     color: #fff;
     line-height: 17px;
@@ -709,19 +710,6 @@
 
   .itinerary_mobile_step_button--disabled {
     background-color: #ddd;
-  }
-
-  .service_panel_mobile__direction {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    color: #5c6f84;
-    position: absolute;
-    right: 8px;
-    top: 75px;
-    background: #fff;
-    box-shadow: rgba(0, 0, 0, .16) 1px 1px 6px;
-    font-size: 24px;
   }
 
   .autocomplete_suggestions {

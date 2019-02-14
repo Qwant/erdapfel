@@ -48,6 +48,30 @@ PanelManager.loadPoiById = async function(id, options) {
   }
 }
 
+PanelManager.openDirection = async function () {
+  __panel_manager.panels.find((panel) => {
+    if(panel.isDirectionPanel) {
+      if(!panel.active) {
+        panel.open()
+      }
+    } else if(panel.active && !panel.isDirectionPanel) {
+      panel.close()
+    }
+  })
+}
+
+PanelManager.openFavorite = async function () {
+  __panel_manager.panels.find((panel) => {
+    if(panel.isFavoritePanel) {
+      if(!panel.active) {
+        panel.open()
+      }
+    } else if(panel.active && !panel.isFavoritePanel) {
+      panel.close()
+    }
+  })
+}
+
 PanelManager.toggleDirection = async function () {
   __panel_manager.panels.find((panel) => {
     if(panel.isDirectionPanel) {

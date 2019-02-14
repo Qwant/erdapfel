@@ -1,6 +1,6 @@
 .search_form {
   transition: max-width .3s;
-  width: calc(100% - 36px);
+  width: calc(100% - 116px);
   max-width: 690px;
   position: relative;
   display: flex;
@@ -10,7 +10,6 @@
   pointer-events: auto;
   @include long_shadow();
 }
-
 
 .search_form:before {
   font-weight: 600;
@@ -314,5 +313,19 @@ input[type="search"]::-webkit-search-cancel-button {
   .search_form__input {
     padding-left: 45px;
     letter-spacing: -.5px;
+  }
+}
+
+@media (max-width: 370px) {
+  .search_form__input {
+    &::-webkit-input-placeholder {
+      color:transparent;
+    }
+    &::-moz-placeholder {
+      color:transparent;
+    }
+    &:-ms-input-placeholder {
+      color:transparent;
+    }
   }
 }

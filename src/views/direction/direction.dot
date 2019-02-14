@@ -1,7 +1,7 @@
 <div id="itinerary_container" class="itinerary_container{{= this.active ? ' itinerary_container--active' : '' }}">
   <div class=itinerary_form>
     <div class=itinerary_close {{= click(this.close, this) }}></div>
-    <div class=itinerary_close_mobile onclick="QwantDirection.close_ui()"><span class="itinerary_close_mobile_icon"></span>{{= _('return', 'direction') }}</div>
+    <div class=itinerary_close_mobile {{= click(this.close, this) }}><span class="itinerary_close_mobile_icon"></span>{{= _('return', 'direction') }}</div>
     <h3 class="itinerary_title">{{= _('itinerary', 'direction') }}</h3>
     <div class="itinerary_fields">
       <form onsubmit="fire('submit_direction_origin');return false">

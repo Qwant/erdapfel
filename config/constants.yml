@@ -108,3 +108,54 @@ map:
   center:
     lng: 2.52
     lat: 52.41
+
+menu:
+  - sectionName : _('Qwant is also')
+    icon: hash
+    links:
+    - name : _('Qwant.com')
+      uri : https://www.qwant.com/
+    - name : _('Qwant Music')
+      uri : https://www.qwant.com/music/
+    - name: _('Qwant boards')
+      uri : https://boards.qwant.com/
+    - name: _('Qwant on Android')
+      uri : https://play.google.com/store/apps/details?id=com.qwant.liberty
+    - name: _('Qwant on iOS')
+      uri : https://itunes.apple.com/app/qwant/id924470452
+    - name: _('Qwant Junior')
+      uri : https://www.qwantjunior.com/
+    - name: _('Qwant Lite')
+      uri : https://lite.qwant.com/
+  - sectionName : _('About Qwant')
+    icon: user
+    links:
+    - name: _('Blog')
+      uri : https://blog.qwant.com/fr/
+    - name: _('Press')
+      uri : https://about.qwant.com/press/
+    - name: _('Jobs')
+      uri : https://about.qwant.com/jobs/
+    - name: _('F.A.Q.')
+      uri : https://help.qwant.com/
+    - name: _('Maps legal notices')
+      uri : https://about.qwant.com/fr/legal/cgu/qwant-maps/
+    - name: _('Terms of Service')
+      uri : https://about.qwant.com/legal/terms-of-service/qwant-search/
+    - name: _('About us')
+      uri : https://about.qwant.com/
+    - name: _('Privacy')
+      uri : https://about.qwant.com/legal/privacy/
+    - name: _('Results ranking')
+      uri : https://about.qwant.com/fr/legal/modalites-de-referencement-dereferencement-et-de-classement/
+  - sectionName : _('Contact us')
+    icon: at-sign
+    uri : https://about.qwant.com/contact/
+  - sectionName : _('Share Qwant')
+
+    icon: share-2
+    links:
+    - name: _('on Twitter')
+      uri : https://twitter.com/share?url=https://www.qwant.com/&text=Why%20allowing%20from%20a%20search%20engine%20something%20you%20won%27t%20in%20real%20life?&hashtags=switchToQwant&via=Qwant_FR #TODO update to maps
+    - name: _('on Facebook')
+      uri : http://www.facebook.com/sharer.php?u=https://www.qwant.com/
