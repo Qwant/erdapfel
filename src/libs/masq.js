@@ -31,6 +31,43 @@ export default class MasqStore {
     }
   }
 
+  async login(apps) {
+    await this.checkInit()
+    // open Masq app window to connect to Masq
+    window.open(this.loginLink)
+    await this.masq.logIntoMasq(true)
+  }
+
+  async logout() {
+    await this.checkInit()
+    this.loginLink = await this.masq.getLoginLink()
+    await this.masq.signout()
+  }
+
+  async isLoggedIn() {
+    return Boolean(this.masq && this.masq.isLoggedIn())
+  }
+
+  async getUserInfo() {
+    await this.checkInit()
+    const username = await this.masq.getUsername()
+    const profileImage = await this.masq.getProfileImage()
+    return {
+      username,
+      profileImage
+    }
+  }
+
+  async get(k) {
+    await this.checkInit()
+    try {
+      return await this.masq.get(k)
+    } catch (e) {
+      handleError('get', `error parsing item with key ${k}`, e)
+      throw e
+    }
+  }
+
   async getAllPois() {
     await this.checkInit()
     const list = await this.masq.list()
@@ -58,46 +95,9 @@ export default class MasqStore {
     }
   }
 
-  async getUserInfo() {
-    await this.checkInit()
-    const username = await this.masq.getUsername()
-    const profileImage = await this.masq.getProfileImage()
-    return {
-      username,
-      profileImage
-    }
-  }
-
-  async isLoggedIn() {
-    return Boolean(this.masq && this.masq.isLoggedIn())
-  }
-
-  async login(apps) {
-    await this.checkInit()
-    // open Masq app window to connect to Masq
-    window.open(this.loginLink)
-    await this.masq.logIntoMasq(true)
-  }
-
-  async logout() {
-    await this.checkInit()
-    this.loginLink = await this.masq.getLoginLink()
-    await this.masq.signout()
-  }
-
   async has(k) {
     await this.checkInit()
     return Boolean(await this.get(k))
-  }
-
-  async get(k) {
-    await this.checkInit()
-    try {
-      return await this.masq.get(k)
-    } catch (e) {
-      handleError('get', `error parsing item with key ${k}`, e)
-      throw e
-    }
   }
 
   async set(k, v) {
