@@ -40,7 +40,6 @@ export default class LoginMasqPanel {
         this.profileImage = profileImage
       }
     } catch(e) {
-      Error.sendOnce('login_masq', 'login', 'error loggingIn masq', e)
       this.isLoggedIn = await this.store.isLoggedIn()
     }
     this.loggingIn = false
