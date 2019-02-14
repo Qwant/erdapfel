@@ -2,8 +2,6 @@ import LoginMasqPanelView from '../views/login_masq.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import Error from '../adapters/error'
-import nconf from "../../local_modules/nconf_getter";
-let moduleConfig = nconf.get().store
 
 
 export default class LoginMasqPanel {
