@@ -1,123 +1,53 @@
-import Telemetry from "./telemetry";
-
-class Click{
-  constructor(id, action) {
-    this.action = action
-    this.id = id
-  }
-  toString() {
-    return ` onclick="call4Action(event, ${this.id})" `
-  }
-
-  exec() {
-    if(this.telemetry) {
-      this.telemetry.add()
+class Action {
+    constructor(id, action, eventName) {
+        this.action = action
+        this.id = id
+        this.eventName = eventName
     }
-    this.action.method.call(this.action.ctx, this.action.args)
-  }
 
-  addTelemetry(message) {
-    this.telemetry = new Telemetry(message)
-    return this
-  }
-}
-
-class MouseOver{
-  constructor(id, action) {
-    this.action = action
-    this.id = id
-  }
-  toString() {
-    return ` onmouseover="call4Action(event, ${this.id})" `
-  }
-
-  exec() {
-    if(this.telemetry) {
-      this.telemetry.add()
+    toString() {
+        return ` on${this.eventName}="call4Action(event, ${this.id})" `
     }
-    this.action.method.call(this.action.ctx, this.action.args)
-  }
 
-  addTelemetry(message) {
-    this.telemetry = new Telemetry(message)
-    return this
-  }
-}
-
-class MouseOut{
-  constructor(id, action) {
-    this.action = action
-    this.id = id
-  }
-  toString() {
-    return ` onmouseout="call4Action(event, ${this.id})" `
-  }
-
-  exec() {
-    if(this.telemetry) {
-      this.telemetry.add()
+    exec() {
+        if(this.telemetry) {
+            this.telemetry.add()
+        }
+        this.action.method.call(this.action.ctx, this.action.args)
     }
-    this.action.method.call(this.action.ctx, this.action.args)
-  }
-
-  addTelemetry(message) {
-    this.telemetry = new Telemetry(message)
-    return this
-  }
 }
-
 
 /**
  * bind html native listener to panel action
  */
 
-(function actions() {
-  const actions = new Map()
-  /**
-   *
-   * @param method call back function
-   * @param ctx "this"
-   * @returns {string}
-   */
-  window.click = function (method, ctx, options = {}) {
-    const action = {
-      id : actions.size,
-      method : method,
-      ctx : ctx,
-      args : options
-    }
-    let clickAction = new Click(action.id, action)
-    actions.set(action.id, clickAction)
-    return clickAction
-  }
+(() => {
+    const actions = new Map()
+    const supportedActions = ['mouseover', 'click', 'mouseout']
+    /**
+     *
+     * @param method call back function
+     * @param ctx "this"
+     * @returns {string}
+     */
 
-  window.mouseover = function (method, ctx, options = {}) {
-    const action = {
-      id : actions.size,
-      method : method,
-      ctx : ctx,
-      args : options
-    }
-    let hoverAction = new MouseOver(action.id, action)
-    actions.set(action.id, hoverAction)
-    return hoverAction
-  }
+    supportedActions.forEach((actionName) => {
+        window[actionName] = function (method, ctx, options = {}) {
+            const actionPayload = {
+                id : actions.size,
+                method : method,
+                ctx : ctx,
+                args : options
+            }
+            let action = new Action(actionPayload.id, actionPayload, actionName)
+            actions.set(action.id, action)
+            return action
+        }
+    })
 
-  window.mouseout = function (method, ctx, options = {}) {
-    const action = {
-      id : actions.size,
-      method : method,
-      ctx : ctx,
-      args : options
+    window.call4Action = function (event, id) {
+        event.stopPropagation()
+        const action = actions.get(id)
+        action.exec()
     }
-    let hoverAction = new MouseOut(action.id, action)
-    actions.set(action.id, hoverAction)
-    return hoverAction
-  }
-
-  window.call4Action = function (event, id) {
-    event.stopPropagation()
-    const action = actions.get(id)
-    action.exec()
-  }
 })()
