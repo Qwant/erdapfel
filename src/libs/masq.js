@@ -10,9 +10,29 @@ export default class MasqStore {
     this.masq = null
     this.loginLink = null
     this.config = config
+
+    this.initPromise = this.init()
+    this.initialized = false
+  }
+
+  async init() {
+    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon)
+    if (this.masq.isLoggedIn()) {
+      await this.masq.connectToMasq()
+    } else {
+      this.loginLink = await this.masq.getLoginLink()
+    }
+    this.initialized = true
+  }
+
+  async checkInit(target, name, descriptor) {
+    if (!this.initialized) {
+      await this.initPromise
+    }
   }
 
   async getAllPois() {
+    await this.checkInit()
     const list = await this.masq.list()
 
     const filteredKeys = Object.keys(list).reduce((filtered, k) => {
@@ -39,6 +59,7 @@ export default class MasqStore {
   }
 
   async getUserInfo() {
+    await this.checkInit()
     const username = await this.masq.getUsername()
     const profileImage = await this.masq.getProfileImage()
     return {
@@ -48,34 +69,29 @@ export default class MasqStore {
   }
 
   async isLoggedIn() {
-    return await Promise.resolve(this.masq && this.masq.isLoggedIn())
+    return Boolean(this.masq && this.masq.isLoggedIn())
   }
 
   async login(apps) {
+    await this.checkInit()
     // open Masq app window to connect to Masq
     window.open(this.loginLink)
     await this.masq.logIntoMasq(true)
   }
 
   async logout() {
+    await this.checkInit()
     this.loginLink = await this.masq.getLoginLink()
     await this.masq.signout()
   }
 
-  async onConnect () {
-    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon)
-    if (this.masq.isLoggedIn()) {
-      await this.masq.connectToMasq()
-    } else {
-      this.loginLink = await this.masq.getLoginLink()
-    }
-  }
-
   async has(k) {
+    await this.checkInit()
     return Boolean(await this.get(k))
   }
 
   async get(k) {
+    await this.checkInit()
     try {
       return await this.masq.get(k)
     } catch (e) {
@@ -85,6 +101,7 @@ export default class MasqStore {
   }
 
   async set(k, v) {
+    await this.checkInit()
     try {
       await this.masq.put(k, v)
     } catch (e) {
@@ -98,6 +115,7 @@ export default class MasqStore {
   }
 
   async del(k) {
+    await this.checkInit()
     try {
       await this.masq.del(k)
     } catch (e) {
