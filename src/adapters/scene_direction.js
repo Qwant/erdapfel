@@ -53,20 +53,20 @@ export default class SceneDirection {
 
   showMarkerSteps() {
 
-    for(var step in this.markersSteps){
-      this.markersSteps[step].remove();
+    for(let step in this.markersSteps){
+      this.markersSteps[step].remove()
     }
 
-    this.markersSteps = [];
+    this.markersSteps = []
 
     if(this.vehicle !== "walking" && window.innerWidth > 640) {
-      for (var step in this.steps) {
+      for (let step in this.steps) {
         const markerStep = document.createElement('div')
         markerStep.className = 'itinerary_marker_step'
         this.markersSteps.push(
-            new Marker(markerStep)
-                .setLngLat(this.steps[step].maneuver.location)
-                .addTo(this.map)
+          new Marker(markerStep)
+            .setLngLat(this.steps[step].maneuver.location)
+            .addTo(this.map)
         )
       }
     }
@@ -201,4 +201,3 @@ export default class SceneDirection {
     }
   }
 }
-
