@@ -787,8 +787,9 @@
     font-size: 24px;
   }
 
-  .autocomplete_suggestions {
-    z-index: 10 !important;
+  // Force autocomplete to appear on top of docked field
+  body .autocomplete_suggestions {
+    z-index: 5;
   }
 
   .itinerary_container--origin-focused,
