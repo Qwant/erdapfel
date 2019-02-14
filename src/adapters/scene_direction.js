@@ -28,10 +28,7 @@ export default class SceneDirection {
     })
 
     listen('toggle_route', (mainRouteId) => {
-      this.routes.forEach((route) => {
-        this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === mainRouteId})
-      })
-      this.map.moveLayer(`route_${mainRouteId}`)
+      this.setMainRoute(mainRouteId)
     })
 
     listen('clean_route', () => {
@@ -65,11 +62,21 @@ export default class SceneDirection {
     }
   }
 
+  setMainRoute(routeId) {
+    this.routes.forEach((route) => {
+      this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === routeId})
+    })
+    this.map.moveLayer(`route_${routeId}`)
+  }
+
   displayRoute(move) {
     if(this.routes && this.routes.length > 0) {
-      this.mainRoute = this.routes.find((route) => route.isActive)
-      let otherRoutes = this.routes.filter((route) => !route.isActive)
-      this.steps = this.mainRoute.legs[0].steps;
+      this.routes.forEach((route) => {
+        this.showPolygon(route)
+      })
+      let mainRoute = this.routes.find((route) => route.isActive)
+      this.setMainRoute(mainRoute.id)
+      this.steps = mainRoute.legs[0].steps;
 
 
       // Clean previous markers (if any)
@@ -85,11 +92,6 @@ export default class SceneDirection {
       if(this.markerEnd){
         this.markerEnd.remove();
       }
-
-      otherRoutes.forEach((route) => {
-        this.showPolygon(route)
-      })
-      this.showPolygon(this.mainRoute)
 
       // Custom markers
       if (this.vehicle !== "walking" && !Device.isMobile()) {
