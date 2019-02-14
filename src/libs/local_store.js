@@ -29,22 +29,11 @@ LocalStore.prototype.getAllPois = function() {
 }
 
 LocalStore.prototype.getLastLocation = function() {
-  try {
-    const lastLocation = JSON.parse(localStorage.getItem(`qmaps_v${version}_last_location`))
-    return Promise.resolve(lastLocation)
-  } catch (e) {
-    Error.sendOnce('local_store', 'getLastLocation', `error parsing lastLocation`, e)
-    return Promise.resolve(null)
-  }
+  return this.get(`qmaps_v${version}_last_location`)
 }
 
 LocalStore.prototype.setLastLocation = function(loc) {
- try {
-   localStorage.setItem(`qmaps_v${version}_last_location`, loc)
- } catch (e) {
-   Error.sendOnce('local_store', 'setLastLocation', 'error setting last location', e)
- }
- return new Promise.resolve()
+ return this.set(`qmaps_v${version}_last_location`, loc)
 }
 
 LocalStore.prototype.getUserInfo = function() {
