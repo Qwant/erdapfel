@@ -18,7 +18,7 @@ export default class MasqStore {
   }
 
   async init() {
-    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon)
+    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, this.config.signalhubUrl, this.config.baseMasqAppUrl)
     if (this.masq.isLoggedIn()) {
       await this.masq.connectToMasq()
     } else {
