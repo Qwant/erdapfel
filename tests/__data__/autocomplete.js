@@ -106,7 +106,7 @@ module.exports = {
     "geometry": {"coordinates": [1, 11], "type": "Point"},
     "properties": {
       "geocoding": {
-        "bbox" : [1,2,3,4],
+        "bbox" : {_ne : {lat : 1, lng : 4},_sw : {lat : 4, lng : 1}},
         "id": "osm:node:4811858213",
         "type": "poi",
         "label": "Dsquared2",

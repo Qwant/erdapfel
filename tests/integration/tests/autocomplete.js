@@ -272,5 +272,5 @@ afterEach(async () => {
 })
 
 afterAll(async () => {
-  await browser.close()
+ // await browser.close()
 })

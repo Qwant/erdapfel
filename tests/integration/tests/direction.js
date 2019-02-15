@@ -1,4 +1,4 @@
-import {initBrowser, clearStore} from "../tools";
+import {initBrowser, wait} from "../tools";
 import ResponseHandler from "../helpers/response_handler";
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
@@ -139,11 +139,6 @@ test('origin & destination & mode', async () => {
     return Array.from(document.querySelector('.label_active').classList).join(',')
   })
   expect(activeLabel).toContain('itinerary_button_label_walking')
-
-})
-
-afterAll(async () => {
-  await browser.close()
 })
 
 const showDirection = async (page) => {
@@ -177,13 +172,16 @@ test('select itinerary step', async () => {
 
   await page.waitForSelector('#itinerary_leg_0')
 
-  page.click('.itinerary_leg_via_details')
-  page.click('.itinerary_roadmap_step:nth-of-type(2)')
+  await page.click('.itinerary_leg_via_details')
+  await page.click('.itinerary_roadmap_step:nth-of-type(2)')
 
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })
 
   expect(center).toEqual({"lat": 48.823566, "lng": 2.290454})
+})
 
+afterAll(async () => {
+  await browser.close()
 })

@@ -197,43 +197,38 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
   return false
 }
 
-Scene.prototype.fitBbox = function(bbox, padding){
-
-  padding = padding || {left: 0, top: 0, right: 0, bottom: 0};
-
+Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}){
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
-  var animate = false;
+  console.log(bbox)
 
-  if(this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox)){
-    animate = true;
-  }
+  let animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox)
 
   this.mb.fitBounds(bbox, {padding : padding, animate: animate})
-
 }
 
 
 Scene.prototype.fitMap = function(item, padding) {
-
   // BBox
   if(item._ne && item._sw) {
     this.fitBbox(item, padding);
   }
-
   // PoI
   else {
+    if(item.bbox) { // poi Bbox
+      this.fitBbox(item.bbox, padding);
+    } else { // poi center
+      let flyOptions = {center : item.getLngLat(), screenSpeed: 1.5, animate: false}
+      if(item.zoom) {
+        flyOptions.zoom = item.zoom
+      }
 
-    let flyOptions = {center : item.getLngLat(), screenSpeed: 1.5, animate: false}
-    if(item.zoom) {
-      flyOptions.zoom = item.zoom
+      flyOptions.padding = padding;
+
+      if(this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
+        flyOptions.animate = true
+      }
+      this.mb.flyTo(flyOptions)
     }
-
-    flyOptions.padding = padding;
-
-    if(this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
-      flyOptions.animate = true
-    }
-    this.mb.flyTo(flyOptions)
   }
 }
 
