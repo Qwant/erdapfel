@@ -145,19 +145,19 @@ Scene.prototype.initMapBox = function () {
 }
 
 Scene.prototype.isPointInBounds = function(point, bounds) {
-  var lng = (point.lng - bounds._ne.lng) * (point.lng - bounds._sw.lng) < 0;
-  var lat = (point.lat - bounds._ne.lat) * (point.lat - bounds._sw.lat) < 0;
+  const lng = (point.lng - bounds._ne.lng) * (point.lng - bounds._sw.lng) < 0;
+  const lat = (point.lat - bounds._ne.lat) * (point.lat - bounds._sw.lat) < 0;
   return lng && lat;
 }
 
 Scene.prototype.isBBoxInExtendedViewport = function(bbox){
 
   // Get viewport bounds
-  var viewport = this.mb.getBounds();
+  const viewport = this.mb.getBounds();
 
   // Compute "width", "height"
-  var width = viewport._ne.lng - viewport._sw.lng;
-  var height = viewport._ne.lat - viewport._sw.lat;
+  const width = viewport._ne.lng - viewport._sw.lng;
+  const height = viewport._ne.lat - viewport._sw.lat;
 
   // Compute extended viewport
   viewport._ne.lng += width;
