@@ -44,7 +44,7 @@ export default class MasqStore {
     await this.masq.signout()
   }
 
-  async isLoggedIn() {
+  isLoggedIn() {
     return Boolean(this.masq && this.masq.isLoggedIn())
   }
 
