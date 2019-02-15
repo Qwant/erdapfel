@@ -1,4 +1,4 @@
-import {Map, Marker, LngLat, setRTLTextPlugin} from 'mapbox-gl--ENV'
+import {Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
@@ -16,7 +16,6 @@ import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
-import layouts from "../panel/layouts.js";
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -198,11 +197,13 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
 }
 
 Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}){
+  // normalise bbox
+  if(bbox instanceof Array) {
+    bbox = new LngLatBounds(bbox)
+  }
+
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
-  console.log(bbox)
-
   let animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox)
-
   this.mb.fitBounds(bbox, {padding : padding, animate: animate})
 }
 

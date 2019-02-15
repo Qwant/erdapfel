@@ -169,7 +169,7 @@ test('bbox & center', async () => {
   center = await page.evaluate(() => {
     return window.MAP_MOCK.getCenter()
   })
-  expect(center).toEqual({ lat: 1, lng: 4 })
+  expect(center).toEqual({ lat: 4, lng: 3 })
 })
 
 test('favorite search', async () => {
