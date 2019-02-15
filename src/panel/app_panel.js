@@ -1,7 +1,7 @@
 import PanelsView from '../views/app_panel.dot'
 import Panel from '../libs/panel'
 import FavoritePanel from "./favorites_panel";
-import RegisterMasqPanel from "./register_masq";
+import LoginMasqPanel from "./login_masq";
 import PoiPanel from "./poi_panel";
 import ServicePanel from './service_panel';
 import Share from "../modals/share"
@@ -15,6 +15,7 @@ import Menu from "./menu";
 
 const performanceEnabled = nconf.get().performance.enabled
 const directionEnabled = nconf.get().direction.enabled
+const masqEnabled = nconf.get().masq.enabled
 import Telemetry from "../libs/telemetry";
 
 
@@ -27,11 +28,16 @@ function AppPanel(parent) {
   this.servicePanel = new ServicePanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
+
   this.directionEnabled = directionEnabled
   if (this.directionEnabled) {
     this.directionPanel = new DirectionPanel()
   }
-  this.masqPanel = new RegisterMasqPanel()
+
+  this.masqEnabled = masqEnabled
+  if (this.masqEnabled) {
+    this.masqPanel = new LoginMasqPanel()
+  }
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()
   this.geolocationDeniedModal = new GeolocationDeniedModal()

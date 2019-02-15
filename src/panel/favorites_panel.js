@@ -17,24 +17,29 @@ function Favorite(sharePanel) {
   this.poiSubClass = poiSubClass
   this.filterPanel = new FilterPanel()
   this.sharePanel = sharePanel
-  this.connectStore()
   this.openMoreMenuPosition = -1
 
   document.addEventListener('click', () => {
     this.closeMoreMenu()
   })
 
-  listen('store_registered', () => {
-    this.getAll()
-  })
-
-  listen('store_poi', (poi) => {
-    this.add(poi)
-  })
-
   this.panel = new Panel(this, FavoritePanelView)
   this.isFavoritePanel = true
   PanelManager.register(this)
+
+  listen('store_loggedIn', async () => {
+    await this.getAll()
+    this.panel.update()
+  })
+
+  listen('store_loggedOut', async () => {
+    await this.getAll()
+    this.panel.update()
+  })
+
+  listen('store_poi', async (poi) => {
+    await this.add(poi)
+  })
 }
 
 Favorite.prototype.toggleMore = function (position) {
@@ -77,30 +82,6 @@ Favorite.prototype.toggle = function() {
   }
 }
 
-Favorite.prototype.connectStore = async function () {
-  this.store = new Store()
-  try {
-    await this.store.onConnect()
-  } catch(e) {
-    Error.sendOnce('favorite_panel', 'connectStore', 'error connecting store', e)
-    fire('register_panel__show')
-  }
-  let registered = false
-  try {
-    registered = await this.store.isRegistered()
-  } catch(e) {
-    Error.sendOnce('favorite_panel', 'connectStore', 'error getting register status', e)
-    fire('register_panel__show')
-  }
-
-  if(registered) {
-    this.getAll()
-    this.panel.update()
-  } else {
-    fire('register_panel__show')
-  }
-}
-
 Favorite.prototype.getAll = async function () {
   this.favoritePois = await PoiStore.getAll()
 }
@@ -131,10 +112,12 @@ Favorite.prototype.go = async function(poiStore) {
   this.active = false
 }
 
-Favorite.prototype.add = function(poi) {
+Favorite.prototype.add = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_SAVE)
   this.favoritePois.push(poi)
   this.panel.update()
+  const store = new Store()
+  await store.add(poi)
 }
 
 Favorite.prototype.del = async function({poi, index}) {
@@ -142,15 +125,19 @@ Favorite.prototype.del = async function({poi, index}) {
 
   await this.panel.addClassName(0.3, `#favorite_item_${index}`, 'favorite_item--removed')
 
+  const toDelete = []
   this.favoritePois = this.favoritePois.filter((favorite) => {
     if(favorite === poi) {
-      fire('del_poi', poi)
+      toDelete.push(poi)
       return false
     }
     return true
   })
 
   this.panel.update()
+
+  const store = new Store()
+  await Promise.all(toDelete.map(p => store.del(p)))
 }
 
 export default Favorite

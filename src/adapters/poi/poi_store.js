@@ -23,7 +23,8 @@ export default class PoiStore extends Poi {
       storedData = await store.getAllPois()
     } catch(e) {
       Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL)
-      Error.sendOnce('favorite_panel', 'getAll', 'error getting pois', e)
+      Error.sendOnce('poi_store', 'getAll', 'error getting pois', e)
+      return []
     }
     return storedData.map((poi) => {
       return Object.assign(new PoiStore(), poi)

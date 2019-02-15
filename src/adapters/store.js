@@ -2,112 +2,170 @@ import nconf from '@qwant/nconf-getter'
 import Error from '../adapters/error'
 import {version} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
+import LocalStore from "../libs/local_store"
+import MasqStore from "../libs/masq"
 
-let moduleConfig = nconf.get().store
+export default class Store {
 
-const AbStore = require(`../libs/${moduleConfig.name}`)
-const abstractStore = new AbStore(moduleConfig.endpoint)
+  constructor() {
+    // get store from window if already initialized
+    if (window.__store) {
+      return window.__store
+    }
+    // if store not initialized, use this
+    window.__store = this
 
-function Store() {
-  this.isRegisterd = false
-  if(!window.__existingStore) {
-    window.__existingStore = true
-    listen('store_poi', (poi) => {
-      this.add(poi)
+    // init stores
+    this.localStore = new LocalStore()
+    this.loggedIn = false
+    this.abstractStoreStr = 'local_store'
+    this.abstractStore = this.localStore
+    this.masqConfig = nconf.get().masq
+    if (this.masqConfig.enabled) {
+      this.masqStore = new MasqStore(this.masqConfig)
+      if (this.masqStore.isLoggedIn()) {
+        this.abstractStore = this.masqStore
+      }
+    }
+
+    // use abstract store for each operation that
+    // should use masqStore when logged in and localStore when not logged in
+
+    return this
+  }
+
+  async login() {
+    if (!this.masqConfig.enabled) {
+      Error.sendOnce('store', 'login', 'error trying to login with disabled Masq', e)
+      return
+    }
+
+    try {
+      const loginParams = {
+        endpoint: this.masqConfig.endpoint,
+        url: window.location.origin + window.location.pathname,
+        title: this.masqConfig.title,
+        desc: this.masqConfig.desc,
+        icon: this.masqConfig.icon
+      }
+
+      await this.masqStore.login(loginParams)
+    } catch (e) {
+      Error.sendOnce('store', 'login', 'error logging in', e)
+      throw e
+    }
+
+    // login was successful, use masqStore as abstractStore until logout
+    this.loggedIn = true
+    this.abstractStoreStr = 'masq'
+    this.abstractStore = this.masqStore
+    fire('store_loggedIn')
+  }
+
+  async logout() {
+    if (!this.masqConfig.enabled) {
+      Error.sendOnce('store', 'logout', 'error trying to logout with disabled Masq', e)
+      return
+    }
+
+    try {
+      await this.masqStore.logout()
+    } catch (e) {
+      Error.sendOnce('store', 'logout', 'error logging out', e)
+      throw e
+    }
+    this.loggedIn = false
+    this.abstractStoreStr = 'local_store'
+    this.abstractStore = this.localStore
+    fire('store_loggedOut')
+  }
+
+  isLoggedIn() {
+    if (!this.masqConfig.enabled) {
+      Error.sendOnce('store', 'isLoggedIn', 'error trying to check if logged into Masq with disabled Masq', e)
+      return
+    }
+
+    try {
+      return this.masqStore.isLoggedIn()
+    } catch (e) {
+      Error.sendOnce('store', 'isLoggedIn', 'error checking if logged in with masq', e)
+      throw e
+    }
+  }
+
+  async getUserInfo() {
+    try {
+      return await this.masqStore.getUserInfo()
+    } catch (e) {
+      Error.sendOnce('store', 'getUserInfo', 'error getting user info from masq', e)
+      throw e
+    }
+  }
+
+  async getAllPois() {
+    try {
+      return await this.abstractStore.getAllPois()
+    } catch (e) {
+      Error.sendOnce('store', 'getAllPois', 'error getting pois from ' + this.abstractStoreStr, e)
+      return []
+    }
+  }
+
+  async getLastLocation() {
+    try {
+      return await this.abstractStore.get(`qmaps_v${version}_last_location`)
+    } catch (e) {
+      Error.sendOnce('store', 'getLastLocation', 'error getting last location from ' + this.abstractStoreStr, e)
+      return null
+    }
+  }
+
+  async setLastLocation(loc) {
+    try {
+      return await this.abstractStore.set(`qmaps_v${version}_last_location`, loc)
+    } catch (e) {
+      Error.sendOnce('store', 'setLastLocation', 'error setting location in ' + this.abstractStoreStr, e)
+      throw e
+    }
+  }
+
+  async getPrefixes(prefix) {
+    const storedItems = await this.abstractStore.getAllPois()
+    return storedItems.filter((storedItem) => {
+      return ExtendedString.compareIgnoreCase(storedItem.name, prefix) === 0 /* start with */
     })
-    listen('del_poi', (poi) => {
-      this.del(poi)
-    })
-    listen('store_center', (loc) => {
-      this.setLastLocation(loc)
-    })
-    listen('store_clear', () => {
-      this.clear()
-    })
+  }
+
+  async has(poi) {
+    try {
+      return await this.abstractStore.has(poi.getKey())
+    } catch (e) {
+      Error.sendOnce('store', 'has', 'error checking existing key in ' + this.abstractStoreStr, e)
+    }
+  }
+
+  async add(poi) {
+    try {
+      await this.abstractStore.set(poi.getKey(), poi.poiStoreLiteral())
+    } catch(e) {
+      Error.sendOnce('store', 'add', 'error adding poi in ' + this.abstractStoreStr, e)
+    }
+  }
+
+  async del(poi) {
+    try {
+      await this.abstractStore.del(poi.getKey())
+    } catch(e) {
+      Error.sendOnce('store', 'del', 'error deleting key from ' + this.abstractStoreStr, e)
+    }
+  }
+
+  async clear() {
+    try {
+      await this.abstractStore.clear()
+    } catch(e) {
+      Error.sendOnce('store', 'clear', 'error clearing ' + this.abstractStoreStr, e)
+    }
   }
 }
-
-Store.prototype.getAllPois = async function() {
-  try {
-    return await abstractStore.getAllPois()
-  } catch (e) {
-    Error.sendOnce('store', 'getAllPois', 'error getting pois', e)
-    throw e
-  }
-}
-
-Store.prototype.getLastLocation = async function() {
-  try {
-    return await abstractStore.get(`qmaps_v${version}_last_location`)
-  } catch (e) {
-    Error.sendOnce('store', 'getLastLocation', 'error getting location', e)
-    return null
-  }
-}
-
-Store.prototype.setLastLocation = async function(loc) {
-  try {
-    return await abstractStore.set(`qmaps_v${version}_last_location`, loc)
-  } catch (error) {
-    Error.sendOnce('store', 'setLastLocation', 'error setting location', e)
-  }
-}
-
-Store.prototype.isRegistered = async function () {
-  try {
-    return await abstractStore.getAllPois() !== null
-  } catch (error) {
-    return false
-  }
-}
-
-Store.prototype.onConnect = async function () {
-  return await abstractStore.onConnect()
-}
-
-Store.prototype.register = async function () {
-  let regParams = {
-    endpoint: moduleConfig.endpoint,
-    url: window.location.origin + window.location.pathname,
-    title: moduleConfig.masq.title,
-    desc: moduleConfig.masq.desc,
-    icon: moduleConfig.masq.icon
-  }
-  return abstractStore.registerApp(regParams)
-}
-
-Store.prototype.getPrefixes = async function (prefix) {
-  const storedItems = await abstractStore.getAllPois()
-  return storedItems.filter((storedItem) => {
-    return ExtendedString.compareIgnoreCase(storedItem.name, prefix) === 0 /* start with */
-  })
-}
-
-Store.prototype.has = async function(poi) {
-  try {
-    return await abstractStore.get(poi.getKey())
-  } catch (e) {
-    Error.sendOnce('store', 'has', 'error checking existing key', e)
-  }
-}
-
-Store.prototype.add = function(poi) {
-  abstractStore.set(poi.getKey(), poi.poiStoreLiteral()).then(function () {
-  }).catch(function (e) {
-    Error.sendOnce('store', 'add', 'error adding poi', e)
-  })
-}
-
-Store.prototype.del = function(poi) {
-  abstractStore.del(poi.getKey()).catch((e) => {
-    Error.sendOnce('store', 'del', 'error deleting key', e)
-  })
-}
-
-Store.prototype.clear = function () {
-  abstractStore.clear().catch((e) => {
-    Error.sendOnce('store', 'clear', 'error clearing store', e)
-  })
-}
-
-export default Store

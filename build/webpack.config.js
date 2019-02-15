@@ -119,7 +119,10 @@ const mainJsChunkConfig  = (buildMode) => {
         ]
       }]
     },
-    devtool: 'source-map'
+    devtool: 'source-map',
+    node: {
+      fs: 'empty'
+    }
   }
 }
 
@@ -185,7 +188,10 @@ const mapJsChunkConfig = (buildMode) => {
         ]
       }]
   },
-    devtool: 'source-map'
+    devtool: 'source-map',
+    node: {
+      fs: 'empty'
+    }
   }
 }
 

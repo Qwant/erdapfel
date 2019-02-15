@@ -1,4 +1,5 @@
 const Error = require('../adapters/error').default
+const version = require('../../config/constants.yml').version
 
 function LocalStore() {}
 
@@ -27,13 +28,37 @@ LocalStore.prototype.getAllPois = function() {
   })
 }
 
-LocalStore.prototype.register = function() {
-  console.log('local storage doesn\'t support register method')
+LocalStore.prototype.getLastLocation = function() {
+  return this.get(`qmaps_v${version}_last_location`)
+}
+
+LocalStore.prototype.setLastLocation = function(loc) {
+ return this.set(`qmaps_v${version}_last_location`, loc)
+}
+
+LocalStore.prototype.getUserInfo = function() {
+  return Promise.resolve(null)
+}
+
+LocalStore.prototype.login = function() {
+  console.log('local storage doesn\'t support login method')
   return Promise.resolve()
+}
+
+LocalStore.prototype.logout = function() {
+  return Promise.resolve()
+}
+
+LocalStore.prototype.isLoggedIn = function() {
+  return Promise.resolve(false)
 }
 
 LocalStore.prototype.onConnect = function () {
   return Promise.resolve()
+}
+
+LocalStore.prototype.has = async function(k) {
+  return Boolean(await this.get(k))
 }
 
 LocalStore.prototype.get = function(k) {
