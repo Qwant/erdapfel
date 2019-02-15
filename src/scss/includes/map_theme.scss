@@ -36,7 +36,7 @@
   border: 0;
 }
 
-.map_control_group__button + .map_control_group__button {
+.map_control_group__button {
   border-top: 1px solid #ddd;
 }
 
@@ -103,8 +103,8 @@
   right: 0;
 }
 
-.mapboxgl-ctrl.map_control__scale {
-  margin-left: 2px;
+.map_control__scale_attribute_container .mapboxgl-ctrl.map_control__scale {
+  margin: 7px 5px 0 5px;
   float: left;
 }
 

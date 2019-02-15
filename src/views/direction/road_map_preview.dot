@@ -1,6 +1,5 @@
 <div class="itinerary_mobile_step">
   <div class='itinerary_roadmap_icon itinerary_roadmap_icon_{{= (this.step.maneuver.modifier || this.step.maneuver.type).replace(/\s/g,"-") }}'></div>
-
   <div class=itinerary_roadmap_instruction_and_distance>
     <div class=itinerary_roadmap_distance>{{= this.distance(this.step.distance) }}</div>
     <div class=itinerary_roadmap_instruction>{{= this.step.maneuver.instruction }}</div>

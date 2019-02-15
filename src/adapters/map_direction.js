@@ -4,7 +4,6 @@ export default class MapDirection {
   constructor(scene) {
     this.scene = scene
     listen('direction_add_layer', (options) => {
-      console.log(options)
       this.scene.mb.addLayer(this.getGeoJSONPolygon(polygon, color))
     })
   }
@@ -31,7 +30,7 @@ export default class MapDirection {
       },
       "paint": {
         "line-color": color,
-        "line-width": 5
+        "line-width": 7
       }
     }
   }

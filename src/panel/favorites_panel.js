@@ -6,6 +6,8 @@ import PanelManager from '../proxies/panel_manager'
 import PoiStore from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 import Error from '../adapters/error'
+import layouts from "./layouts.js";
+
 const poiSubClass = require('../mapbox/poi_subclass')
 
 function Favorite(sharePanel) {
@@ -123,7 +125,7 @@ Favorite.prototype.close = function() {
 Favorite.prototype.go = async function(poiStore) {
   Telemetry.add(Telemetry.FAVORITE_GO)
   fire('map_mark_poi', poiStore)
-  fire('fit_map', poiStore, {sidePanelOffset : true})
+  fire('fit_map', poiStore, layouts.FAVORITE)
   this.panel.addClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   PanelManager.loadPoiById(poiStore.id, {isFromFavorite : true})
   this.active = false

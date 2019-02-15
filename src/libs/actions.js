@@ -1,51 +1,49 @@
-import Telemetry from "./telemetry";
-
-class Click{
-  constructor(id, action) {
+class Action {
+  constructor(id, action, eventName) {
     this.action = action
     this.id = id
+    this.eventName = eventName
   }
+
   toString() {
-    return ` onclick="call4Action(event, ${this.id})" `
+    return ` on${this.eventName}="call4Action(event, ${this.id})" `
   }
 
   exec() {
-    if(this.telemetry) {
+    if (this.telemetry) {
       this.telemetry.add()
     }
     this.action.method.call(this.action.ctx, this.action.args)
   }
-
-  addTelemetry(message) {
-    this.telemetry = new Telemetry(message)
-    return this
-  }
 }
-
 
 /**
  * bind html native listener to panel action
  */
 
-(function actions() {
+(() => {
   const actions = new Map()
+  const supportedActions = ['mouseover', 'click', 'mouseout']
   /**
    *
    * @param method call back function
    * @param ctx "this"
    * @returns {string}
    */
-  window.click = function (method, ctx, options = {}) {
-    const action = {
-      id : actions.size,
-      method : method,
-      ctx : ctx,
-      args : options
+
+  supportedActions.forEach((actionName) => {
+    window[actionName] = function (method, ctx, options = {}) {
+      const actionPayload = {
+        id: actions.size,
+        method: method,
+        ctx: ctx,
+        args: options
+      }
+      let action = new Action(actionPayload.id, actionPayload, actionName)
+      actions.set(action.id, action)
+      return action
     }
-    let clickAction = new Click(action.id, action)
-    actions.set(action.id, clickAction)
-    return clickAction
-  }
+  })
 
   window.call4Action = function (event, id) {
     event.stopPropagation()

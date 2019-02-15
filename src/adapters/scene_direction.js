@@ -1,5 +1,6 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
-import Direction from "./poi/specials/direction_poi";
+import Device from '../libs/device'
+import layouts from "../panel/layouts.js";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
@@ -9,8 +10,9 @@ export default class SceneDirection {
     this.map = map
     this.routeCounter = 0
     this.routes = []
-    this.markerOrigin = null
-    this.markerDestination = null
+    this.markerStart = null
+    this.markerEnd = null
+    this.markersSteps = []
 
     listen('set_route', ({routes, vehicle, origin, destination, move}) => {
       this.reset()
@@ -19,6 +21,10 @@ export default class SceneDirection {
       this.origin = origin
       this.destination = destination
       this.displayRoute(move)
+    })
+
+    listen('show_marker_steps', () => {
+      this.showMarkerSteps();
     })
 
     listen('toggle_route', (mainRouteId) => {
@@ -33,43 +39,81 @@ export default class SceneDirection {
     })
 
     listen('zoom_step', (step) => {
-      fire('fit_map', {bbox : this.computeBBox(step)}, {sidePanelOffset : true})
+      fire('fit_map', this.computeBBox(step), layouts.ITINERARY)
+    })
+
+    listen('highlight_step', (step) => {
+      this.highlightStep(step);
+    })
+
+    listen('unhighlight_step', (step) => {
+      this.unhighlightStep(step);
     })
   }
 
-  displayRoute(move) {
-    if(this.routes && this.routes.length > 0){
-      let mainRoute = this.routes.find((route) => route.isActive)
-      let otherRoutes = this.routes.filter((route) => !route.isActive)
-
-      otherRoutes.forEach((route) => {
-        this.showPolygon(route)
-      })
-      this.showPolygon(mainRoute)
-
-      // Custom markers
-      const markerOriginDom = document.createElement('div')
-      markerOriginDom.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
-
-      this.markerOrigin = new Marker(markerOriginDom)
-        .setLngLat([this.origin.latLon.lng, this.origin.latLon.lat])
-        .addTo(this.map)
-
-      const markerDestinationDom = document.createElement('div')
-      markerDestinationDom.className = 'itinerary_marker_destination'
-
-
-      this.markerDestination = new Marker(markerDestinationDom)
-        .setLngLat([this.destination.latLon.lng, this.destination.latLon.lat])
-        .addTo(this.map)
-
-      let directionPoi = new Direction(this.computeBBox(mainRoute))
-      if(move !== false) {
-        fire('fit_map', directionPoi, {sidePanelOffset : true})
+  showMarkerSteps() {
+    if(this.vehicle !== "walking" && window.innerWidth > 640) {
+      for (let step in this.steps) {
+        const markerStep = document.createElement('div')
+        markerStep.className = 'itinerary_marker_step'
+        this.markersSteps.push(
+          new Marker(markerStep)
+            .setLngLat(this.steps[step].maneuver.location)
+            .addTo(this.map)
+        )
       }
     }
   }
 
+  displayRoute(move) {
+    if(this.routes && this.routes.length > 0) {
+      this.mainRoute = this.routes.find((route) => route.isActive)
+      let otherRoutes = this.routes.filter((route) => !route.isActive)
+      this.steps = this.mainRoute.legs[0].steps;
+
+
+      // Clean previous markers (if any)
+      for(let step in this.markersSteps){
+        this.markersSteps[step].remove();
+      }
+      this.markersSteps = [];
+
+      if(this.markerStart){
+        this.markerStart.remove();
+      }
+
+      if(this.markerEnd){
+        this.markerEnd.remove();
+      }
+
+      otherRoutes.forEach((route) => {
+        this.showPolygon(route)
+      })
+      this.showPolygon(this.mainRoute)
+
+      // Custom markers
+      if (this.vehicle !== "walking" && !Device.isMobile()) {
+        this.showMarkerSteps()
+      }
+
+      const markerStart = document.createElement('div')
+      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
+      this.markerStart = new Marker(markerStart)
+          .setLngLat(this.steps[0].maneuver.location)
+          .addTo(this.map)
+
+      const markerEnd = document.createElement('div')
+      markerEnd.className = 'itinerary_marker_destination'
+      this.markerEnd = new Marker(markerEnd)
+          .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
+          .addTo(this.map)
+
+      let bbox = this.computeBBox(this.mainRoute);
+      if(move !== false){
+          fire('fit_map', bbox, layouts.ITINERARY)
+      }
+    }
+  }
 
   reset() {
     this.routes.forEach((route) => {
@@ -104,7 +148,7 @@ export default class SceneDirection {
           MAIN_ROUTE_COLOR,
           ALTERNATE_ROUTE_COLOR
         ],
-        "line-width": 5
+        "line-width": 7
       }
     }
 
@@ -142,5 +186,17 @@ export default class SceneDirection {
     })
 
     return bounds
+  }
+
+  highlightStep(step){
+    if(this.markersSteps[step]){
+      this.markersSteps[step]._element.classList.add("itinerary_marker_step--highlighted")
+    }
+  }
+
+  unhighlightStep(step){
+    if(this.markersSteps[step]){
+      this.markersSteps[step]._element.classList.remove("itinerary_marker_step--highlighted")
+    }
   }
 }

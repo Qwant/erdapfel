@@ -1,4 +1,4 @@
-import {initBrowser, clearStore} from "../tools";
+import {initBrowser, wait} from "../tools";
 import ResponseHandler from "../helpers/response_handler";
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
@@ -139,11 +139,6 @@ test('origin & destination & mode', async () => {
     return Array.from(document.querySelector('.label_active').classList).join(',')
   })
   expect(activeLabel).toContain('itinerary_button_label_walking')
-
-})
-
-afterAll(async () => {
-  await browser.close()
 })
 
 const showDirection = async (page) => {
@@ -151,3 +146,42 @@ const showDirection = async (page) => {
   await page.waitForSelector('.service_panel__item__direction')
   await page.click('.service_panel__item__direction')
 }
+
+test('select itinerary leg', async () => {
+  expect.assertions(1)
+  responseHandler.addPreparedResponse(mockMapBox, /api.mapbox.com/)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:7.5`)
+
+  await page.waitForSelector('#itinerary_leg_0')
+
+  page.click('#itinerary_leg_0')
+
+  await wait(300)
+
+  let featureState = await page.evaluate(() => {
+    return MAP_MOCK.featureState
+  })
+
+  expect(featureState).toEqual({source: "source_0", id: 1})
+})
+
+test('select itinerary step', async () => {
+  expect.assertions(1)
+  responseHandler.addPreparedResponse(mockMapBox, /api.mapbox.com/)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:7.5`)
+
+  await page.waitForSelector('#itinerary_leg_0')
+
+  await page.click('.itinerary_leg_via_details')
+  await page.click('.itinerary_roadmap_step:nth-of-type(2)')
+
+  let center = await page.evaluate(() => {
+    return MAP_MOCK.getCenter()
+  })
+
+  expect(center).toEqual({"lat": 48.823566, "lng": 2.290454})
+})
+
+afterAll(async () => {
+  await browser.close()
+})

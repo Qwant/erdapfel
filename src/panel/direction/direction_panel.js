@@ -8,6 +8,7 @@ import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
+import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 
 const originHandler = '#itinerary_input_origin'
@@ -28,8 +29,30 @@ export default class DirectionPanel {
   }
 
   initDirection() {
+    let originHandler = '#itinerary_input_origin'
+    let destinationHandler = '#itinerary_input_destination'
     this.originInput = new DirectionInput(originHandler, (poi) => this.selectOrigin(poi), 'submit_direction_origin')
     this.destinationInput = new DirectionInput(destinationHandler, (poi) => this.selectDestination(poi), 'submit_direction_destination')
+
+    this.searchInputStart = document.querySelector(originHandler)
+    this.searchInputEnd = document.querySelector(destinationHandler)
+    this.itineraryContainer = document.querySelector('#itinerary_container')
+
+    this.searchInputStart.onfocus = () => {
+      this.itineraryContainer.classList.add('itinerary_container--start-focused')
+    }
+
+    this.searchInputStart.onblur = () => {
+      this.itineraryContainer.classList.remove('itinerary_container--start-focused')
+    }
+
+    this.searchInputEnd.onfocus = () => {
+      this.itineraryContainer.classList.add('itinerary_container--end-focused')
+    }
+
+    this.searchInputEnd.onblur = () => {
+      this.itineraryContainer.classList.remove('itinerary_container--end-focused')
+    }
   }
 
   setVehicle(vehicle) {
@@ -37,6 +60,7 @@ export default class DirectionPanel {
     this.vehicle = vehicle
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
     UrlState.pushUrl()
+    this.searchDirection()
   }
 
   invertOriginDestination() {

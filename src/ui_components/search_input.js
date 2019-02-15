@@ -1,5 +1,6 @@
 import Suggest from "../adapters/suggest";
 import PanelManager from "../proxies/panel_manager";
+import layouts from "../panel/layouts.js";
 import UrlState from "../proxies/url_state";
 import UrlShards from "../proxies/url_shards";
 
@@ -74,7 +75,7 @@ export default class SearchInput {
 
   async selectItem (selectedPoi) {
     if(selectedPoi) {
-      fire('fit_map', selectedPoi, {sidePanelOffset : selectedPoi.type === 'poi'})
+      fire('fit_map', selectedPoi, selectedPoi.type === 'poi' ? layouts.POI : layouts.FULL)
       fire('map_mark_poi', selectedPoi)
       if(selectedPoi.type === 'poi') {
         PanelManager.loadPoiById(selectedPoi.id)

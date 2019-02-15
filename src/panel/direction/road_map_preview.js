@@ -20,11 +20,6 @@ export default class RoadMapPreviewPanel {
     this.hideForm()
   }
 
-  exitPreview() {
-    document.querySelectorAll(".itinerary_fields")[0].style.display = "block"
-    document.querySelectorAll(".itinerary_vehicles")[0].style.display = "block"
-  }
-
   next() {
     this.stepId += 1
     this.step = this.routes[0].legs[this.routeId].steps[this.stepId]

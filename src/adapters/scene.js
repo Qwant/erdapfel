@@ -1,4 +1,4 @@
-import {Map, Marker, LngLat, setRTLTextPlugin} from 'mapbox-gl--ENV'
+import {Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds} from 'mapbox-gl--ENV'
 import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
@@ -130,8 +130,8 @@ Scene.prototype.initMapBox = function () {
     fire('map_loaded')
   })
 
-  listen('fit_map', (poi, options) => {
-    this.fitMap(poi, options)
+  listen('fit_map', (item, padding) => {
+    this.fitMap(item, padding)
   })
 
   listen('map_reset', () => {
@@ -143,33 +143,93 @@ Scene.prototype.initMapBox = function () {
   })
 }
 
-Scene.prototype.fitMap = function(poi, options = {}) {
-  const MIN_ZOOM_FLYTO = 10
+Scene.prototype.isPointInBounds = function(point, bounds) {
+  const lng = (point.lng - bounds._ne.lng) * (point.lng - bounds._sw.lng) < 0;
+  const lat = (point.lat - bounds._ne.lat) * (point.lat - bounds._sw.lat) < 0;
+  return lng && lat;
+}
 
-  if(poi.bbox) {
-    let padding =  {top: layout.sizes.topBarHeight + 10, bottom: 10,left: layout.sizes.sideBarWidth + 10, right: 10}
-    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
-      padding.left += layout.sizes.panelWidth
-    }
-    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
-      this.mb.fitBounds(poi.bbox, {padding : padding})
-    } else {
-      this.mb.fitBounds(poi.bbox, {padding : padding, animate : false})
-    }
-  } else {
-    let flyOptions = {center : poi.getLngLat(), screenSpeed: 1.5, animate:false}
-    if(poi.zoom) {
-      flyOptions.zoom = poi.zoom
-    }
-    /* set offset for poi witch will open panel on desktop */
-    if(options.sidePanelOffset && window.innerWidth > layout.mobile.breakPoint) {
-      flyOptions.offset = [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]
-    }
+Scene.prototype.isBBoxInExtendedViewport = function(bbox){
 
-    if(this.mb.getZoom() > MIN_ZOOM_FLYTO && this.isWindowedPoi(poi)) {
-      flyOptions.animate = true
+  // Get viewport bounds
+  const viewport = this.mb.getBounds();
+
+  // Compute "width", "height"
+  const width = viewport._ne.lng - viewport._sw.lng;
+  const height = viewport._ne.lat - viewport._sw.lat;
+
+  // Compute extended viewport
+  viewport._ne.lng += width;
+  viewport._ne.lat += height;
+
+  viewport._sw.lng -= width;
+  viewport._sw.lat -= height;
+
+  // Check bounds:
+
+  // Lng between -180 and 180 (wraps: 180 + 1 = -179)
+  if(viewport._ne.lng < 180) viewport._ne.lng += 360;
+  if(viewport._ne.lng > 180) viewport._ne.lng -= 360;
+
+  if(viewport._sw.lng < 180) viewport._sw.lng += 360;
+  if(viewport._sw.lng > 180) viewport._sw.lng -= 360;
+
+  // Lat between -85 and 85 (does not wrap)
+  if(viewport._ne.lat < -85) viewport._ne.lat = -85;
+  if(viewport._ne.lat > 85) viewport._ne.lat = 85;
+
+  if(viewport._sw.lat < -85) viewport._sw.lat = -85;
+  if(viewport._sw.lat > 85) viewport._sw.lat = 85;
+
+
+  // Check if one corner of the BBox is in the extended viewport:
+
+  if(
+      this.isPointInBounds(bbox._ne, viewport) // ne
+      || this.isPointInBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport) // nw
+      || this.isPointInBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport) // se
+      || this.isPointInBounds(bbox._sw, viewport) // sw
+  ){
+    return true
+  }
+
+  return false
+}
+
+Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}){
+  // normalise bbox
+  if(bbox instanceof Array) {
+    bbox = new LngLatBounds(bbox)
+  }
+
+  // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
+  let animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox)
+  this.mb.fitBounds(bbox, {padding : padding, animate: animate})
+}
+
+
+Scene.prototype.fitMap = function(item, padding) {
+  // BBox
+  if(item._ne && item._sw) {
+    this.fitBbox(item, padding);
+  }
+  // PoI
+  else {
+    if(item.bbox) { // poi Bbox
+      this.fitBbox(item.bbox, padding);
+    } else { // poi center
+      let flyOptions = {center : item.getLngLat(), screenSpeed: 1.5, animate: false}
+      if(item.zoom) {
+        flyOptions.zoom = item.zoom
+      }
+
+      flyOptions.padding = padding;
+
+      if(this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
+        flyOptions.animate = true
+      }
+      this.mb.flyTo(flyOptions)
     }
-    this.mb.flyTo(flyOptions)
   }
 }
 

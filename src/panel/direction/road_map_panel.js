@@ -1,7 +1,7 @@
-import Panel from "../../libs/panel";
+import Panel from '../../libs/panel';
 import roadMapTemplate from '../../views/direction/road_map.dot'
 import Device from '../../libs/device'
-import RoadMapPreviewPanel from "./road_map_preview";
+import RoadMapPreviewPanel from './road_map_preview';
 
 export default class RoadMapPanel {
   constructor() {
@@ -24,11 +24,15 @@ export default class RoadMapPanel {
     this.showRoute = false
     this.previewRoadMap.setRoad(this.routes)
     this.panel.update()
+    fire('show_marker_steps')
+    if(Device.isMobile()){
+        document.querySelectorAll('.mapboxgl-ctrl-geolocate')[0].style.marginBottom = '38px';
+    }
   }
 
   hideForm() {
-    document.querySelectorAll(".itinerary_fields")[0].style.display = "none";
-    document.querySelectorAll(".itinerary_vehicles")[0].style.display = "none";
+    document.querySelectorAll('.itinerary_fields')[0].style.display = 'none';
+    document.querySelectorAll('.itinerary_vehicles')[0].style.display = 'none';
   }
 
   toggleRoute(i) {
@@ -48,14 +52,14 @@ export default class RoadMapPanel {
     }
     else {
       if(hour){
-        ret += hour + "h "
+        ret += hour + 'h '
         min = min - 60 * hour
       }
       if((hour > 0 || min > 0) && hour < 10) {
-        ret += min + "min "
+        ret += min + 'min '
       }
       if(!hour && isDisplaySeconds) {
-        ret += Math.floor(sec - hour * 3600 - min * 60) + "s"
+        ret += Math.floor(sec - hour * 3600 - min * 60) + 's'
       }
     }
     return ret
@@ -68,7 +72,7 @@ export default class RoadMapPanel {
         if(m > 99000){
           ret = `${Math.round(m / 1000)}km`
         } else {
-          ret = `${(m / 1000).toFixed(1).replace(".",",")}km`
+          ret = `${(m / 1000).toFixed(1).replace('.',',')}km`
         }
       }
       else {
@@ -81,5 +85,17 @@ export default class RoadMapPanel {
   close_leg() {
     this.routes = []
     this.panel.update()
+  }
+
+  highlightStepMarker(i){
+    fire('highlight_step', i);
+  }
+
+  unhighlightStepMarker(i){
+    fire('unhighlight_step', i);
+  }
+
+  zoomStep(step){
+    fire('zoom_step', step);
   }
 }
