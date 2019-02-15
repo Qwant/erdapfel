@@ -73,7 +73,7 @@ export default class SceneDirection {
 
 
       // Clean previous markers (if any)
-      for(var step in this.markersSteps){
+      for(let step in this.markersSteps){
         this.markersSteps[step].remove();
       }
       this.markersSteps = [];
