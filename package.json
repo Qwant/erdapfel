@@ -53,7 +53,7 @@
     "json-loader": "0.5.7",
     "klokantech-noto-sans": "git+https://github.com/QwantResearch/fonts.git#f25a802",
     "mapbox-gl": "0.51.0",
-    "mapbox-gl-js-mock": "https://github.com/QwantResearch/mapbox-gl-js-mock.git#QMAPS-667_itinerary",
+    "mapbox-gl-js-mock": "https://github.com/QwantResearch/mapbox-gl-js-mock.git#1da05703",
     "masq-client": "https://github.com/QwantResearch/masq-client.git#v1.1.0",
     "node-sass": "^4.9.2",
     "npm": "^6.4.1",
