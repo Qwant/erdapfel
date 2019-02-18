@@ -8,7 +8,6 @@ import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
-import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 
 const originHandler = '#itinerary_input_origin'
@@ -78,12 +77,18 @@ export default class DirectionPanel {
     this.origin = poi
     this.searchDirection()
     UrlState.pushUrl()
+    if(!this.destination){
+      fire("fit_map", poi);
+    }
   }
 
   async selectDestination(poi) {
     this.destination = poi
     this.searchDirection()
     UrlState.pushUrl()
+    if(!this.origin){
+      fire("fit_map", poi);
+    }
   }
 
 
