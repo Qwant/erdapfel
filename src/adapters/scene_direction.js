@@ -75,22 +75,21 @@ export default class SceneDirection {
         this.showPolygon(route)
       })
       let mainRoute = this.routes.find((route) => route.isActive)
-      this.setMainRoute(mainRoute.id)
-      this.steps = mainRoute.legs[0].steps;
-
+      this.map.moveLayer(`route_${mainRoute.id}`)
+      this.steps = mainRoute.legs[0].steps
 
       // Clean previous markers (if any)
       for(let step in this.markersSteps){
-        this.markersSteps[step].remove();
+        this.markersSteps[step].remove()
       }
-      this.markersSteps = [];
+      this.markersSteps = []
 
       if(this.markerStart){
-        this.markerStart.remove();
+        this.markerStart.remove()
       }
 
       if(this.markerEnd){
-        this.markerEnd.remove();
+        this.markerEnd.remove()
       }
 
       // Custom markers
@@ -158,6 +157,7 @@ export default class SceneDirection {
     let existingSource = this.map.getSource(sourceId)
     if(existingSource) {
       existingSource.setData(this.buildRouteData(route.geometry.coordinates))
+      this.map.setFeatureState({source: sourceId, id: 1}, {isActive: route.isActive})
     } else {
       const sourceJSON = {
         "type": "geojson",
