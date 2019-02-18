@@ -41,6 +41,7 @@ export default class RoadMapPanel {
 
   toggleDetail(i) {
     this.panel.toggleClassName(0, `#itinerary_leg_detail_${i}`, 'itinerary_leg_detail--hidden')
+    this.toggleRoute(i);
   }
 
   duration (sec, isDisplaySeconds) {
