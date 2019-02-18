@@ -87,7 +87,7 @@ export default class BragiPoi extends Poi {
         }
     }
 
-    super(feature.properties.geocoding.id, name, alternativeName,resultType, {
+    super(feature.properties.geocoding.id, name, alternativeName, resultType, {
       lat: feature.geometry.coordinates[1],
       lng: feature.geometry.coordinates[0]
     }, poiClassText, poiSubclassText)
@@ -104,6 +104,15 @@ export default class BragiPoi extends Poi {
     }
   }
 
+  getInputValue() {
+    switch (this.type) {
+      case 'house':
+      case 'street':
+        return this.value
+      default:
+        return this.name
+    }
+  }
 
 
   static get(term) {

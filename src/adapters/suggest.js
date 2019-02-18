@@ -162,7 +162,7 @@ export default class Suggest {
     let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
 
     return `
-<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(name)}">
+<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
   <div class="autocomplete_suggestion__first_line__container">
   ${iconDom}
   <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
