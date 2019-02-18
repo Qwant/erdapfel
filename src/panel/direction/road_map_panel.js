@@ -37,6 +37,22 @@ export default class RoadMapPanel {
 
   toggleRoute(i) {
     fire('toggle_route', i)
+    var leg;
+
+    for(var j in this.routes){
+      this.routes[j].isActive = false;
+      leg = document.querySelectorAll("#itinerary_leg_"+j);
+      if(leg && leg[0]){
+        leg[0].classList.remove("itinerary_leg--active")
+      }
+    }
+
+    this.routes[i].isActive = true;
+    leg = document.querySelectorAll("#itinerary_leg_"+i);
+    if(leg && leg[0]){
+      leg[0].classList.add("itinerary_leg--active")
+    }
+
   }
 
   toggleDetail(i) {

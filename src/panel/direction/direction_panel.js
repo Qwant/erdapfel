@@ -91,7 +91,6 @@ export default class DirectionPanel {
     }
   }
 
-
   /* panel manager implementation */
   toggle() {
     if(this.active) {
@@ -166,7 +165,6 @@ export default class DirectionPanel {
     } else {
       return false
     }
-
   }
 
   async restoreUrl() {
