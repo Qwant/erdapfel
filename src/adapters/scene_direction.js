@@ -101,18 +101,18 @@ export default class SceneDirection {
       const markerStart = document.createElement('div')
       markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
       this.markerStart = new Marker(markerStart)
-          .setLngLat(this.steps[0].maneuver.location)
-          .addTo(this.map)
+        .setLngLat(this.steps[0].maneuver.location)
+        .addTo(this.map)
 
       const markerEnd = document.createElement('div')
       markerEnd.className = 'itinerary_marker_destination'
       this.markerEnd = new Marker(markerEnd)
-          .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
-          .addTo(this.map)
+        .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
+        .addTo(this.map)
 
-      let bbox = this.computeBBox(this.mainRoute);
+      let bbox = this.computeBBox(mainRoute);
       if(move !== false){
-          fire('fit_map', bbox, layouts.ITINERARY)
+        fire('fit_map', bbox, layouts.ITINERARY)
       }
     }
   }
