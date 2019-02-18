@@ -17,7 +17,14 @@ export default class IdunnPoi extends Poi {
     super(rawPoi.id, rawPoi.name, alternativeName, POI_TYPE, latLng, rawPoi.class_name, rawPoi.subclass_name)
     this.blocks = rawPoi.blocks
     this.localName = rawPoi.local_name
-    this.address = rawPoi.address
+
+    switch (rawPoi.type) {
+      case 'admin':
+        this.address = {label : rawPoi.address.admin.label}
+        break
+      default:
+        this.address = rawPoi.address
+    }
   }
 
   static async poiApiLoad(id, options = {}) {

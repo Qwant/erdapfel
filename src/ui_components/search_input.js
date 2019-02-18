@@ -76,11 +76,7 @@ export default class SearchInput {
     if(selectedPoi) {
       fire('fit_map', selectedPoi, selectedPoi.type === 'poi' ? layouts.POI : layouts.FULL)
       fire('map_mark_poi', selectedPoi)
-      if(selectedPoi.type === 'poi') {
-        PanelManager.loadPoiById(selectedPoi.id)
-      } else {
-        PanelManager.closeAll()
-      }
+      PanelManager.loadPoiById(selectedPoi.id)
     }
   }
 }
