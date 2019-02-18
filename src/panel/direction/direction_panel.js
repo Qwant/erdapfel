@@ -47,6 +47,11 @@ export default class DirectionPanel {
 
     this.searchInputStart.onblur = () => {
       this.itineraryContainer.classList.remove('itinerary_container--start-focused')
+      if(this.originInput.getValue() === '') {
+        this.origin = null
+        fire('clean_route')
+        this.roadMapPanel.setRoad([], this.vehicle)
+      }
     }
 
     this.searchInputEnd.onfocus = () => {
@@ -55,6 +60,11 @@ export default class DirectionPanel {
 
     this.searchInputEnd.onblur = () => {
       this.itineraryContainer.classList.remove('itinerary_container--end-focused')
+      if(this.destinationInput.getValue() === '') {
+        this.destination = null
+        fire('clean_route')
+        this.roadMapPanel.setRoad([], this.vehicle)
+      }
     }
   }
 
