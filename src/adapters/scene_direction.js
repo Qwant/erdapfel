@@ -28,10 +28,7 @@ export default class SceneDirection {
     })
 
     listen('toggle_route', (mainRouteId) => {
-      this.routes.forEach((route) => {
-        this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === mainRouteId})
-      })
-      this.map.moveLayer(`route_${mainRouteId}`)
+      this.setMainRoute(mainRouteId)
     })
 
     listen('clean_route', () => {
@@ -65,31 +62,35 @@ export default class SceneDirection {
     }
   }
 
+  setMainRoute(routeId) {
+    this.routes.forEach((route) => {
+      this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === routeId})
+    })
+    this.map.moveLayer(`route_${routeId}`)
+  }
+
   displayRoute(move) {
     if(this.routes && this.routes.length > 0) {
-      this.mainRoute = this.routes.find((route) => route.isActive)
-      let otherRoutes = this.routes.filter((route) => !route.isActive)
-      this.steps = this.mainRoute.legs[0].steps;
-
+      this.routes.forEach((route) => {
+        this.showPolygon(route)
+      })
+      let mainRoute = this.routes.find((route) => route.isActive)
+      this.map.moveLayer(`route_${mainRoute.id}`)
+      this.steps = mainRoute.legs[0].steps
 
       // Clean previous markers (if any)
       for(let step in this.markersSteps){
-        this.markersSteps[step].remove();
+        this.markersSteps[step].remove()
       }
-      this.markersSteps = [];
+      this.markersSteps = []
 
       if(this.markerStart){
-        this.markerStart.remove();
+        this.markerStart.remove()
       }
 
       if(this.markerEnd){
-        this.markerEnd.remove();
+        this.markerEnd.remove()
       }
-
-      otherRoutes.forEach((route) => {
-        this.showPolygon(route)
-      })
-      this.showPolygon(this.mainRoute)
 
       // Custom markers
       if (this.vehicle !== "walking" && !Device.isMobile()) {
@@ -99,18 +100,18 @@ export default class SceneDirection {
       const markerStart = document.createElement('div')
       markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
       this.markerStart = new Marker(markerStart)
-          .setLngLat(this.steps[0].maneuver.location)
-          .addTo(this.map)
+        .setLngLat(this.steps[0].maneuver.location)
+        .addTo(this.map)
 
       const markerEnd = document.createElement('div')
       markerEnd.className = 'itinerary_marker_destination'
       this.markerEnd = new Marker(markerEnd)
-          .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
-          .addTo(this.map)
+        .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
+        .addTo(this.map)
 
-      let bbox = this.computeBBox(this.mainRoute);
+      let bbox = this.computeBBox(mainRoute);
       if(move !== false){
-          fire('fit_map', bbox, layouts.ITINERARY)
+        fire('fit_map', bbox, layouts.ITINERARY)
       }
     }
   }
@@ -156,6 +157,7 @@ export default class SceneDirection {
     let existingSource = this.map.getSource(sourceId)
     if(existingSource) {
       existingSource.setData(this.buildRouteData(route.geometry.coordinates))
+      this.map.setFeatureState({source: sourceId, id: 1}, {isActive: route.isActive})
     } else {
       const sourceJSON = {
         "type": "geojson",
