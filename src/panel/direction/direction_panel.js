@@ -8,7 +8,8 @@ import UrlPoi from "../../adapters/poi/url_poi";
 import PanelManager from "../../proxies/panel_manager";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
-import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../../adapters/poi/specials/navigator_geolocalisation_poi";
+import Device from '../../libs/device'
+import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 
 const originHandler = '#itinerary_input_origin'
 const destinationHandler = '#itinerary_input_destination'
@@ -36,6 +37,9 @@ export default class DirectionPanel {
     this.searchInputStart = document.querySelector(originHandler)
     this.searchInputEnd = document.querySelector(destinationHandler)
     this.itineraryContainer = document.querySelector('#itinerary_container')
+    if(!this.origin && !Device.isMobile()) {
+      this.searchInputStart.focus()
+    }
 
     this.searchInputStart.onfocus = () => {
       this.itineraryContainer.classList.add('itinerary_container--start-focused')
@@ -80,6 +84,9 @@ export default class DirectionPanel {
     if(!this.destination){
       fire('fit_map', poi)
     }
+    if(!this.destination && !Device.isMobile()) {
+      this.searchInputEnd.focus()
+    }
   }
 
   async selectDestination(poi) {
@@ -88,6 +95,9 @@ export default class DirectionPanel {
     UrlState.pushUrl()
     if(!this.origin){
       fire('fit_map', poi)
+    }
+    if(!this.origin && !Device.isMobile()) {
+      this.searchInputStart.focus()
     }
   }
 
