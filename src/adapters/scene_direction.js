@@ -31,12 +31,6 @@ export default class SceneDirection {
       this.setMainRoute(mainRouteId)
     })
 
-    listen('highlight_route', (mainRouteId) => {
-    })
-
-    listen('unhighlight_route', (mainRouteId) => {
-    })
-
     listen('clean_route', () => {
       this.reset()
     })
@@ -99,7 +93,7 @@ export default class SceneDirection {
       }
 
       // Custom markers
-      if (this.vehicle !== "walking" && !Device.isMobile()) {
+      if (!Device.isMobile()) {
         this.showMarkerSteps()
       }
 

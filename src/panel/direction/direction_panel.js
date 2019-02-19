@@ -78,7 +78,7 @@ export default class DirectionPanel {
     this.searchDirection()
     UrlState.pushUrl()
     if(!this.destination){
-      fire("fit_map", poi);
+      fire('fit_map', poi)
     }
   }
 
@@ -87,7 +87,7 @@ export default class DirectionPanel {
     this.searchDirection()
     UrlState.pushUrl()
     if(!this.origin){
-      fire("fit_map", poi);
+      fire('fit_map', poi)
     }
   }
 

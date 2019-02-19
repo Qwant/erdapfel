@@ -37,20 +37,17 @@ export default class RoadMapPanel {
 
   toggleRoute(i) {
     fire('toggle_route', i)
-    var leg;
 
-    for(var j in this.routes){
-      this.routes[j].isActive = false;
-      leg = document.querySelectorAll("#itinerary_leg_"+j);
-      if(leg && leg[0]){
-        leg[0].classList.remove("itinerary_leg--active")
+    this.routes.forEach((route, index) => {
+      route.isActive = false
+      if(!Device.isMobile()){
+        this.panel.removeClassName(0, `#itinerary_leg_${index}`, 'itinerary_leg--active')
       }
-    }
+    });
 
-    this.routes[i].isActive = true;
-    leg = document.querySelectorAll("#itinerary_leg_"+i);
-    if(leg && leg[0]){
-      leg[0].classList.add("itinerary_leg--active")
+    this.routes[i].isActive = true
+    if(!Device.isMobile()){
+      this.panel.addClassName(0, `#itinerary_leg_${i}`, 'itinerary_leg--active')
     }
 
   }
@@ -110,14 +107,6 @@ export default class RoadMapPanel {
 
   unhighlightStepMarker(i){
     fire('unhighlight_step', i);
-  }
-
-  highlightRoute(i){
-    fire('highlight_route', i);
-  }
-
-  unhighlightRoute(i){
-    fire('unhighlight_route', i);
   }
 
   zoomStep(step){
