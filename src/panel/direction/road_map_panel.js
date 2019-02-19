@@ -112,6 +112,14 @@ export default class RoadMapPanel {
     fire('unhighlight_step', i);
   }
 
+  highlightRoute(i){
+    fire('highlight_route', i);
+  }
+
+  unhighlightRoute(i){
+    fire('unhighlight_route', i);
+  }
+
   zoomStep(step){
     fire('zoom_step', step);
   }

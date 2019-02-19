@@ -31,6 +31,12 @@ export default class SceneDirection {
       this.setMainRoute(mainRouteId)
     })
 
+    listen('highlight_route', (mainRouteId) => {
+    })
+
+    listen('unhighlight_route', (mainRouteId) => {
+    })
+
     listen('clean_route', () => {
       this.reset()
     })
