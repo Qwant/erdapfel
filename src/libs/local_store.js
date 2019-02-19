@@ -3,6 +3,10 @@ import {version} from '../../config/constants.yml'
 
 export default class LocalStore {
 
+  constructor() {
+    this.storeName = 'local_store'
+  }
+
   async getAllPois() {
     let localStorageKeys = []
     try {

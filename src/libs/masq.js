@@ -7,6 +7,8 @@ const handleError = (fct, msg, e) => {
 
 export default class MasqStore {
   constructor(config) {
+    this.storeName = 'masq'
+
     this.masq = null
     this.loginLink = null
     this.config = config
