@@ -17,8 +17,6 @@ export default class Store {
 
     // init stores
     this.localStore = new LocalStore()
-    this.loggedIn = false
-    this.abstractStoreStr = 'local_store'
     this.abstractStore = this.localStore
     this.masqConfig = nconf.get().masq
     if (this.masqConfig.enabled) {
@@ -56,8 +54,6 @@ export default class Store {
     }
 
     // login was successful, use masqStore as abstractStore until logout
-    this.loggedIn = true
-    this.abstractStoreStr = 'masq'
     this.abstractStore = this.masqStore
     fire('store_loggedIn')
   }
@@ -74,8 +70,6 @@ export default class Store {
       Error.sendOnce('store', 'logout', 'error logging out', e)
       throw e
     }
-    this.loggedIn = false
-    this.abstractStoreStr = 'local_store'
     this.abstractStore = this.localStore
     fire('store_loggedOut')
   }
@@ -107,7 +101,7 @@ export default class Store {
     try {
       return await this.abstractStore.getAllPois()
     } catch (e) {
-      Error.sendOnce('store', 'getAllPois', 'error getting pois from ' + this.abstractStoreStr, e)
+      Error.sendOnce('store', 'getAllPois', 'error getting pois from ' + this.abstractStore.storeName, e)
       return []
     }
   }
@@ -116,7 +110,7 @@ export default class Store {
     try {
       return await this.abstractStore.get(`qmaps_v${version}_last_location`)
     } catch (e) {
-      Error.sendOnce('store', 'getLastLocation', 'error getting last location from ' + this.abstractStoreStr, e)
+      Error.sendOnce('store', 'getLastLocation', 'error getting last location from ' + this.abstractStore.storeName, e)
       return null
     }
   }
@@ -125,7 +119,7 @@ export default class Store {
     try {
       return await this.abstractStore.set(`qmaps_v${version}_last_location`, loc)
     } catch (e) {
-      Error.sendOnce('store', 'setLastLocation', 'error setting location in ' + this.abstractStoreStr, e)
+      Error.sendOnce('store', 'setLastLocation', 'error setting location in ' + this.abstractStore.storeName, e)
       throw e
     }
   }
@@ -141,7 +135,7 @@ export default class Store {
     try {
       return await this.abstractStore.has(poi.getKey())
     } catch (e) {
-      Error.sendOnce('store', 'has', 'error checking existing key in ' + this.abstractStoreStr, e)
+      Error.sendOnce('store', 'has', 'error checking existing key in ' + this.abstractStore.storeName, e)
     }
   }
 
@@ -149,7 +143,7 @@ export default class Store {
     try {
       await this.abstractStore.set(poi.getKey(), poi.poiStoreLiteral())
     } catch(e) {
-      Error.sendOnce('store', 'add', 'error adding poi in ' + this.abstractStoreStr, e)
+      Error.sendOnce('store', 'add', 'error adding poi in ' + this.abstractStore.storeName, e)
     }
   }
 
@@ -157,7 +151,7 @@ export default class Store {
     try {
       await this.abstractStore.del(poi.getKey())
     } catch(e) {
-      Error.sendOnce('store', 'del', 'error deleting key from ' + this.abstractStoreStr, e)
+      Error.sendOnce('store', 'del', 'error deleting key from ' + this.abstractStore.storeName, e)
     }
   }
 
@@ -165,7 +159,7 @@ export default class Store {
     try {
       await this.abstractStore.clear()
     } catch(e) {
-      Error.sendOnce('store', 'clear', 'error clearing ' + this.abstractStoreStr, e)
+      Error.sendOnce('store', 'clear', 'error clearing ' + this.abstractStore.storeName, e)
     }
   }
 }
