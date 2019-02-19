@@ -33,7 +33,22 @@ function PoiPanel(sharePanel) {
   this.sceneState = SceneState.getSceneState()
   PanelManager.register(this)
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
+
+  listen('store_loggedIn', async () => {
+    if (this.poi) {
+      this.poi.stored = await isPoiFavorite(this.poi)
+      this.panel.update()
+    }
+  })
+
+  listen('store_loggedOut', async () => {
+    if (this.poi) {
+      this.poi.stored = await isPoiFavorite(this.poi)
+      this.panel.update()
+    }
+  })
 }
+
 
 PoiPanel.prototype.toggleStorePoi = async function() {
   if(this.poi.stored) {
