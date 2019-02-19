@@ -1,17 +1,15 @@
-const Error = require('../adapters/error').default
-const version = require('../../config/constants.yml').version
+import Error from '../adapters/error'
+import {version} from '../../config/constants.yml'
 
-function LocalStore() {}
+export default class LocalStore {
 
-LocalStore.prototype.getAllPois = function() {
-  return new Promise((resolve) => {
+  async getAllPois() {
     let localStorageKeys = []
     try {
       localStorageKeys = Object.keys(localStorage)
     } catch (e) {
       Error.sendOnce('local_store', 'getAllPois', 'error getting pois keys', e)
-      resolve([])
-      return
+      return []
     }
     const items = localStorageKeys.reduce((filtered, k) => {
       if (Poi.isPoiCompliantKey(k)) {
@@ -24,79 +22,72 @@ LocalStore.prototype.getAllPois = function() {
       }
       return filtered
     }, [])
-    resolve(items)
-  })
-}
+    return items
+  }
 
-LocalStore.prototype.getLastLocation = function() {
-  return this.get(`qmaps_v${version}_last_location`)
-}
+  getLastLocation() {
+    return this.get(`qmaps_v${version}_last_location`)
+  }
 
-LocalStore.prototype.setLastLocation = function(loc) {
- return this.set(`qmaps_v${version}_last_location`, loc)
-}
+  setLastLocation(loc) {
+   return this.set(`qmaps_v${version}_last_location`, loc)
+  }
 
-LocalStore.prototype.getUserInfo = function() {
-  return Promise.resolve(null)
-}
+  async getUserInfo() {
+    return null
+  }
 
-LocalStore.prototype.login = function() {
-  console.log('local storage doesn\'t support login method')
-  return Promise.resolve()
-}
+  async login() {
+    console.log('local storage doesn\'t support login method')
+    return
+  }
 
-LocalStore.prototype.logout = function() {
-  return Promise.resolve()
-}
+  async logout() {
+    return
+  }
 
-LocalStore.prototype.isLoggedIn = function() {
-  return Promise.resolve(false)
-}
+  async isLoggedIn() {
+    return false
+  }
 
-LocalStore.prototype.onConnect = function () {
-  return Promise.resolve()
-}
+  async onConnect() {
+    return
+  }
 
-LocalStore.prototype.has = async function(k) {
-  return Boolean(await this.get(k))
-}
+  async has(k) {
+    return Boolean(await this.get(k))
+  }
 
-LocalStore.prototype.get = function(k) {
-  return new Promise((resolve) => {
+  async get(k) {
     try {
-      resolve(JSON.parse(localStorage.getItem(k)))
+      return JSON.parse(localStorage.getItem(k))
     } catch (e) {
       Error.sendOnce('local_store', 'get', `error parsing item with key ${k}`, e)
-      resolve(null)
+      return null
     }
-  })
-}
-
-LocalStore.prototype.set = function(k, v) {
- try {
-   localStorage.setItem(k,JSON.stringify(v))
- } catch (e) {
-   Error.sendOnce('local_store', 'set', 'error setting item', e)
- }
- return new Promise((resolve)=>{resolve()})
-}
-
-LocalStore.prototype.clear = function() {
- try {
-   localStorage.clear()
- } catch (e) {
-   Error.sendOnce('local_store', 'clear', 'error clearing store', e)
- }
- return new Promise((resolve)=>{resolve()})
-}
-
-LocalStore.prototype.del = function(k) {
-  try {
-    localStorage.removeItem(k)
-  } catch (e) {
-    Error.sendOnce('local_store', 'del', 'error removing item', e)
   }
-  return new Promise((resolve)=>{resolve()})
-}
 
-module.exports = LocalStore
+  async set(k, v) {
+   try {
+     localStorage.setItem(k,JSON.stringify(v))
+   } catch (e) {
+     Error.sendOnce('local_store', 'set', 'error setting item', e)
+   }
+  }
+
+  async clear() {
+   try {
+     localStorage.clear()
+   } catch (e) {
+     Error.sendOnce('local_store', 'clear', 'error clearing store', e)
+   }
+  }
+
+  async del(k) {
+    try {
+      localStorage.removeItem(k)
+    } catch (e) {
+      Error.sendOnce('local_store', 'del', 'error removing item', e)
+    }
+  }
+}
