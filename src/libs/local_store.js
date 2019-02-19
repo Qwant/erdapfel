@@ -33,27 +33,6 @@ export default class LocalStore {
    return this.set(`qmaps_v${version}_last_location`, loc)
   }
 
-  async getUserInfo() {
-    return null
-  }
-
-  async login() {
-    console.log('local storage doesn\'t support login method')
-    return
-  }
-
-  async logout() {
-    return
-  }
-
-  async isLoggedIn() {
-    return false
-  }
-
-  async onConnect() {
-    return
-  }
-
   async has(k) {
     return Boolean(await this.get(k))
   }
