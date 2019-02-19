@@ -10,8 +10,8 @@ export default class SceneDirection {
     this.map = map
     this.routeCounter = 0
     this.routes = []
-    this.markerStart = null
-    this.markerEnd = null
+    this.markerOrigin = null
+    this.markerDestination = null
     this.markersSteps = []
 
     listen('set_route', ({routes, vehicle, origin, destination, move}) => {
@@ -50,7 +50,7 @@ export default class SceneDirection {
 
   showMarkerSteps() {
     if(this.vehicle !== "walking" && window.innerWidth > 640) {
-      for (let step in this.steps) {
+      this.steps.forEach((step) => {
         const markerStep = document.createElement('div')
         markerStep.className = 'itinerary_marker_step'
         this.markersSteps.push(
@@ -58,7 +58,7 @@ export default class SceneDirection {
             .setLngLat(this.steps[step].maneuver.location)
             .addTo(this.map)
         )
-      }
+      })
     }
   }
 
@@ -79,17 +79,17 @@ export default class SceneDirection {
       this.steps = mainRoute.legs[0].steps
 
       // Clean previous markers (if any)
-      for(let step in this.markersSteps){
-        this.markersSteps[step].remove()
-      }
+      this.markersSteps.forEach((step) => {
+        step.remove()
+      })
       this.markersSteps = []
 
-      if(this.markerStart){
-        this.markerStart.remove()
+      if(this.markerOrigin){
+        this.markerOrigin.remove()
       }
 
-      if(this.markerEnd){
-        this.markerEnd.remove()
+      if(this.markerDestination){
+        this.markerDestination.remove()
       }
 
       // Custom markers
@@ -97,15 +97,15 @@ export default class SceneDirection {
         this.showMarkerSteps()
       }
 
-      const markerStart = document.createElement('div')
-      markerStart.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
-      this.markerStart = new Marker(markerStart)
+      const markerOrigin = document.createElement('div')
+      markerOrigin.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
+      this.markerOrigin = new Marker(markerOrigin)
         .setLngLat(this.steps[0].maneuver.location)
         .addTo(this.map)
 
-      const markerEnd = document.createElement('div')
-      markerEnd.className = 'itinerary_marker_destination'
-      this.markerEnd = new Marker(markerEnd)
+      const markerDestination = document.createElement('div')
+      markerDestination.className = 'itinerary_marker_destination'
+      this.markerDestination = new Marker(markerDestination)
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
         .addTo(this.map)
 
@@ -121,6 +121,11 @@ export default class SceneDirection {
       this.map.removeLayer(`route_${route.id}`)
       this.map.getSource(`source_${route.id}`).setData(this.buildRouteData([]))
     })
+
+    this.markersSteps.forEach((step) => {
+      step.remove()
+    })
+    this.markersSteps = []
 
     if(this.markerOrigin) {
       this.markerOrigin.remove()

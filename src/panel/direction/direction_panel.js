@@ -116,11 +116,13 @@ export default class DirectionPanel {
     if(options.poi) {
       this.destination = options.poi
     }
+    fire('clean_marker')
     SearchInput.minify()
     this.active = true
     await this.panel.update()
     this.initDirection()
     UrlState.pushUrl()
+    this.searchDirection()
   }
 
   async searchDirection(options) {

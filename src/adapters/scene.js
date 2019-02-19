@@ -141,6 +141,10 @@ Scene.prototype.initMapBox = function () {
   listen('map_mark_poi', (poi) => {
     this.addMarker(poi)
   })
+
+  listen('clean_marker', () => {
+    this.cleanMarker()
+  })
 }
 
 Scene.prototype.isPointInBounds = function(point, bounds) {
@@ -243,6 +247,12 @@ Scene.prototype.addMarker = async function(poi) {
     .addTo(this.mb)
   this.currentMarker = marker
   return marker
+}
+
+Scene.prototype.cleanMarker = async function() {
+  if(this.currentMarker !== null) {
+    this.currentMarker.remove()
+  }
 }
 
 /* UrlState interface implementation */

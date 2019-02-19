@@ -11,7 +11,7 @@ import MinimalHourPanel from './poi_bloc/opening_minimal'
 import SceneState from "../adapters/scene_state";
 import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
-
+import nconf from "../../local_modules/nconf_getter";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -31,6 +31,7 @@ function PoiPanel(sharePanel) {
   this.headerPartial = headerPartial
   this.minimalHourPanel = new MinimalHourPanel()
   this.sceneState = SceneState.getSceneState()
+  this.isDirectionActive = nconf.get().direction.enabled
   PanelManager.register(this)
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
 }
