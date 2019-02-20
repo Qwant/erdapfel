@@ -17,6 +17,7 @@ export default class RoadMapPanel {
     this.routes = routes.map((roadStep) => {
       return roadStep
     })
+    this.activeRoute = this.routes[0]
     this.vehicle = vehicle
     this.panel.update()
   }
@@ -40,15 +41,15 @@ export default class RoadMapPanel {
     fire('toggle_route', i)
 
     if(this.activeRoute !== null){
-      this.routes[this.activeRoute].isActive = false
+      this.activeRoute.isActive = false
       if(!Device.isMobile()){
-        this.panel.removeClassName(0, `#itinerary_leg_${this.activeRoute}`, 'itinerary_leg--active')
-        this.panel.addClassName(0, `#itinerary_leg_detail_${this.activeRoute}`, 'itinerary_leg_detail--hidden')
+        this.panel.removeClassName(0, `#itinerary_leg_${this.activeRoute.id}`, 'itinerary_leg--active')
+        this.panel.addClassName(0, `#itinerary_leg_detail_${this.activeRoute.id}`, 'itinerary_leg_detail--hidden')
       }
     }
 
     this.routes[i].isActive = true;
-    this.activeRoute = i;
+    this.activeRoute = this.routes[i];
     if(!Device.isMobile()){
       this.panel.addClassName(0, `#itinerary_leg_${i}`, 'itinerary_leg--active')
     }
