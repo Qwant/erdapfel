@@ -2,9 +2,11 @@ const {mappings, defaultIcon, defaultColor, defaultAdministrativeIcon, defaultAd
 
 const iconsGroups = []
 iconsGroups['poi'] = mappings
+const adminGroups = ['house', 'address', 'country', ]
 
 export default class IconManager {
   static get({className, subClassName, type}) {
+
     let icons = iconsGroups[type]
     if(type === 'poi') {
       let icon = icons.find((iconProperty) => {
