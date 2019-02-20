@@ -2,7 +2,7 @@ const {mappings, defaultIcon, defaultColor, defaultAdministrativeIcon, defaultAd
 
 const iconsGroups = []
 iconsGroups['poi'] = mappings
-const adminGroups = ['house', 'address', 'country', ]
+const adminGroups = ['house', 'address', 'suburb', 'city_district', 'city', 'state_district', 'state', 'country_region', 'country']
 
 export default class IconManager {
   static get({className, subClassName, type}) {
@@ -31,8 +31,8 @@ export default class IconManager {
       } else {
         return {iconClass: defaultIcon.match(/^(.*?)-[0-9]{1,2}$/)[1], color: defaultColor}
       }
-    } else if(icons) {
-      return {}
+    } else if(adminGroups.find((admin) => type === admin)) {
+      return {iconClass : 'building', color : defaultAdministrativeColor}
     } else {
       return {iconClass : defaultAdministrativeIcon.match(/^(.*?)-[0-9]{1,2}$/)[1], color : defaultAdministrativeColor}
     }
