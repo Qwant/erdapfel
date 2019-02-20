@@ -168,7 +168,6 @@ export default class SceneDirection {
 
     let it = this;
     this.map.on('click', `route_${route.id}`, function(){
-      it.setMainRoute(route.id);
       fire('select_road_map', route.id)
     });
 
