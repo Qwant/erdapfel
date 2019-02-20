@@ -55,7 +55,7 @@ export default class SceneDirection {
         markerStep.className = 'itinerary_marker_step'
         this.markersSteps.push(
           new Marker(markerStep)
-            .setLngLat(this.steps[step].maneuver.location)
+            .setLngLat(step.maneuver.location)
             .addTo(this.map)
         )
       })
@@ -119,7 +119,7 @@ export default class SceneDirection {
   reset() {
     this.routes.forEach((route) => {
       this.map.removeLayer(`route_${route.id}`)
-      this.map.getSource(`source_${route.id}`).setData(this.buildRouteData([]))
+      this.map.removeSource(`source_${route.id}`)
     })
 
     this.markersSteps.forEach((step) => {
@@ -159,19 +159,12 @@ export default class SceneDirection {
     }
 
     let sourceId = `source_${route.id}`
-    let existingSource = this.map.getSource(sourceId)
-    if(existingSource) {
-      existingSource.setData(this.buildRouteData(route.geometry.coordinates))
-      this.map.setFeatureState({source: sourceId, id: 1}, {isActive: route.isActive})
-    } else {
-      const sourceJSON = {
-        "type": "geojson",
-        "data": this.buildRouteData(route.geometry.coordinates)
-      }
-      this.map.addSource(sourceId, sourceJSON)
+    const sourceJSON = {
+      "type": "geojson",
+      "data": this.buildRouteData(route.geometry.coordinates)
     }
-    this.map.addLayer(geojson);
-
+    this.map.addSource(sourceId, sourceJSON)
+    this.map.addLayer(geojson)
   }
 
   buildRouteData(data) {

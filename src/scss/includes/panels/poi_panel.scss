@@ -44,7 +44,7 @@ $CARD_PADDING: 8px;
   font-weight: 600;
   color: $primary_text;
   border-radius: 18px;
-  margin: 42px $CARD_ACTION_RIGHT_MARGIN 0 0;
+  margin: 8px $CARD_ACTION_RIGHT_MARGIN 0 0;
   cursor: pointer;
   text-align: center;
   /* secure  long translation */
@@ -53,7 +53,7 @@ $CARD_PADDING: 8px;
 }
 
 .poi_panel__content__card__action__direction {
-  margin: 12px $CARD_ACTION_RIGHT_MARGIN 0 0;
+  margin: 42px $CARD_ACTION_RIGHT_MARGIN 0 0;
 }
 
 .poi_panel__close {
@@ -489,6 +489,7 @@ $CARD_PADDING: 8px;
     }
     .poi_panel__address {
       font-size: 14px;
+      padding: 8px 14px 0 $BLOCK_INDENT;
     }
     .poi_panel__info__hours__status__text {
       font-size: 14px;
@@ -527,6 +528,10 @@ $CARD_PADDING: 8px;
 
   .poi_panel--hidden {
     top: -100vh;
+  }
+
+  .poi_panel__title__symbol {
+    margin: 18px 0 0 12px;
   }
 
   .poi_panel__info__section:before {
