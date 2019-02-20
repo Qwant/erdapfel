@@ -6,7 +6,6 @@ const adminGroups = ['house', 'address', 'suburb', 'city_district', 'city', 'sta
 
 export default class IconManager {
   static get({className, subClassName, type}) {
-
     let icons = iconsGroups[type]
     if(type === 'poi') {
       let icon = icons.find((iconProperty) => {
