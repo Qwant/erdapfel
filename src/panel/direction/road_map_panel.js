@@ -11,6 +11,10 @@ export default class RoadMapPanel {
     this.routes = []
     this.isMobile = Device.isMobile
     this.activeRoute = null;
+
+    listen('select_road_map', (i) => {
+      this.toggleRoute(i);
+    })
   }
 
   setRoad(routes, vehicle) {

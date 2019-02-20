@@ -165,6 +165,21 @@ export default class SceneDirection {
     }
     this.map.addSource(sourceId, sourceJSON)
     this.map.addLayer(geojson)
+
+    let it = this;
+    this.map.on('click', `route_${route.id}`, function(){
+      it.setMainRoute(route.id);
+      fire('select_road_map', route.id)
+    });
+
+    this.map.on('mouseenter', `route_${route.id}`, () => {
+      this.map.getCanvas().style.cursor = 'pointer';
+    })
+
+    this.map.on('mouseleave', `route_${route.id}`, () =>{
+      this.map.getCanvas().style.cursor = '';
+    })
+
   }
 
   buildRouteData(data) {
