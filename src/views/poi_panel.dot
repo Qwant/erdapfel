@@ -8,12 +8,20 @@
        {{= this.panel.renderPartial(this.headerPartial) }}
        {{= this.minimalHourPanel.render() }}
       </div>
+      <div class="poi_panel__content__card__action__container">
+        {{? this.isDirectionActive }}
+          <button class="poi_panel__content__card__action poi_panel__content__card__action__direction" {{= click(this.openDirection, this) }}>
+            <span class="icon-corner-up-right"></span>
+            {{= _('DIRECTIONS', 'poi panel') }}
+          </button>
+        {{?}}
         <button class="poi_panel__content__card__action" {{= click(this.showDetail, this) }}>
           <span class="icon-chevrons-right"></span>
           {{= _('SEE MORE', 'poi panel') }}
         </button>
       </div>
-    {{?}}
+    </div>
+  {{?}}
   <div class="poi_panel__content">
   {{? this.poi }}
     {{? this.fromFavorite }}
@@ -32,6 +40,13 @@
           </button>
           <div class="poi_panel__actions__text">{{= _('SHARE', 'poi') }}</div>
         </div>
+        {{? this.isDirectionActive }}
+          <div class="poi_panel__actions__direction_container" {{= click(this.openDirection, this) }}>
+            <button class="poi_panel__actions__icon icon-corner-up-right">
+            </button>
+            <div class="poi_panel__actions__text">{{= _('DIRECTIONS', 'poi') }}</div>
+          </div>
+        {{?}}
       </div>
     </div>
     <div class="poi_panel__close" {{= click(this.close, this) }}>

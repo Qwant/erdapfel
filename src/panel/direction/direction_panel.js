@@ -92,11 +92,11 @@ export default class DirectionPanel {
   }
 
   /* panel manager implementation */
-  toggle() {
+  toggle(options) {
     if(this.active) {
       this.close()
     } else {
-      this.open()
+      this.open(options)
     }
   }
 
@@ -116,12 +116,17 @@ export default class DirectionPanel {
     UrlState.pushUrl()
   }
 
-  async open() {
+  async open(options = {}) {
+    if(options.poi) {
+      this.destination = options.poi
+    }
+    fire('clean_marker')
     SearchInput.minify()
     this.active = true
     await this.panel.update()
     this.initDirection()
     UrlState.pushUrl()
+    this.searchDirection()
   }
 
   async searchDirection(options) {

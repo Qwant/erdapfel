@@ -30,17 +30,22 @@ $CARD_PADDING: 8px;
   width: calc(100vw - (2 * #{$CARD_PADDING} + #{$CARD_ACTION_WIDTH} + #{$CARD_ACTION_RIGHT_MARGIN}));
 }
 
+.poi_panel__content__card__action__container {
+  margin-top: 42px;
+  float: right;
+}
+
 .poi_panel__content__card__action {
+  display: block;
   width: $CARD_ACTION_WIDTH;
   height: 35px;
-  float: right;
   line-height: 35px;
   border: 1px solid $primary_clear;
   font-size: 12px;
   font-weight: 600;
   color: $primary_text;
   border-radius: 18px;
-  margin: 42px $CARD_ACTION_RIGHT_MARGIN 0 0;
+  margin: 0 $CARD_ACTION_RIGHT_MARGIN 8px 0;
   cursor: pointer;
   text-align: center;
   /* secure  long translation */
@@ -48,6 +53,9 @@ $CARD_PADDING: 8px;
   overflow: hidden;
 }
 
+.poi_panel__content__card__action__direction {
+  margin: 0 $CARD_ACTION_RIGHT_MARGIN 8px 0;
+}
 
 .poi_panel__close {
   position: absolute;
@@ -290,6 +298,11 @@ $CARD_PADDING: 8px;
   float: left;
 }
 
+.poi_panel__actions__direction_container {
+  float: left;
+  margin-left: 20px;
+}
+
 .poi_panel__actions__share_container {
   float: left;
   margin-left: 20px;
@@ -477,6 +490,7 @@ $CARD_PADDING: 8px;
     }
     .poi_panel__address {
       font-size: 14px;
+      padding: 8px 14px 0 $BLOCK_INDENT;
     }
     .poi_panel__info__hours__status__text {
       font-size: 14px;
@@ -515,6 +529,10 @@ $CARD_PADDING: 8px;
 
   .poi_panel--hidden {
     top: -100vh;
+  }
+
+  .poi_panel__title__symbol {
+    margin: 18px 0 0 12px;
   }
 
   .poi_panel__info__section:before {

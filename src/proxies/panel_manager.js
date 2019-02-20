@@ -72,10 +72,10 @@ PanelManager.openFavorite = async function () {
   })
 }
 
-PanelManager.toggleDirection = async function () {
+PanelManager.toggleDirection = async function (options) {
   __panel_manager.panels.find((panel) => {
     if(panel.isDirectionPanel) {
-      panel.toggle()
+      panel.toggle(options)
     } else if(panel.active) {
       panel.close()
     }
