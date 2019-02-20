@@ -14,7 +14,7 @@ export default class IdunnPoi extends Poi {
       alternativeName = rawPoi.address.label
     }
     let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
-    super(rawPoi.id, rawPoi.name, alternativeName, POI_TYPE, latLng, rawPoi.class_name, rawPoi.subclass_name)
+    super(rawPoi.id, rawPoi.name, alternativeName, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name)
     this.blocks = rawPoi.blocks
     this.localName = rawPoi.local_name
 
