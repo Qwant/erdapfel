@@ -93,7 +93,7 @@ export default class SceneDirection {
       }
 
       // Custom markers
-      if (this.vehicle !== "walking" && !Device.isMobile()) {
+      if (!Device.isMobile()) {
         this.showMarkerSteps()
       }
 
