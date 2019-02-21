@@ -47,7 +47,7 @@ export default class RoadMapPanel {
     if(this.activeRoute !== null){
       this.activeRoute.isActive = false
       this.panel.removeClassName(0, `#itinerary_leg_${this.activeRoute.id}`, 'itinerary_leg--active')
-      if(i !== this.activeRoute.id && !Device.isMobile()){
+      if(this.activeRoute.id !== i && !Device.isMobile()){
         this.panel.addClassName(0, `#itinerary_leg_detail_${this.activeRoute.id}`, 'itinerary_leg_detail--hidden')
       }
     }
