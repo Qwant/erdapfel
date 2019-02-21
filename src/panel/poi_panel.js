@@ -34,19 +34,14 @@ function PoiPanel(sharePanel) {
   PanelManager.register(this)
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
 
-  listen('store_loggedIn', async () => {
+  const refreshIsPoi = async () => {
     if (this.poi) {
       this.poi.stored = await isPoiFavorite(this.poi)
       this.panel.update()
     }
-  })
-
-  listen('store_loggedOut', async () => {
-    if (this.poi) {
-      this.poi.stored = await isPoiFavorite(this.poi)
-      this.panel.update()
-    }
-  })
+  }
+  store.addEventListener('store_loggedIn', refreshIsPoi)
+  store.addEventListener('store_loggedOut', refreshIsPoi)
 }
 
 

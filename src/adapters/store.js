@@ -5,9 +5,11 @@ import ExtendedString from "../libs/string";
 import LocalStore from "../libs/local_store"
 import MasqStore from "../libs/masq"
 
-export default class Store {
+export default class Store extends EventTarget {
 
   constructor() {
+    super()
+
     // get store from window if already initialized
     if (window.__store) {
       return window.__store
@@ -59,7 +61,7 @@ export default class Store {
     this.loggedIn = true
     this.abstractStoreStr = 'masq'
     this.abstractStore = this.masqStore
-    fire('store_loggedIn')
+    this.dispatchEvent(new Event('store_loggedIn'))
   }
 
   async logout() {
@@ -77,7 +79,7 @@ export default class Store {
     this.loggedIn = false
     this.abstractStoreStr = 'local_store'
     this.abstractStore = this.localStore
-    fire('store_loggedOut')
+    this.dispatchEvent(new Event('store_loggedOut'))
   }
 
   isLoggedIn() {
