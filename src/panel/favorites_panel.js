@@ -29,12 +29,12 @@ function Favorite(sharePanel) {
   this.isFavoritePanel = true
   PanelManager.register(this)
 
-  const refreshFavList = async () => {
+  const refreshFavoritesList = async () => {
     await this.getAll()
     this.panel.update()
   }
-  store.addEventListener('store_loggedIn', refreshFavList)
-  store.addEventListener('store_loggedOut', refreshFavList)
+  store.addEventListener('store_logged_in', refreshFavoritesList)
+  store.addEventListener('store_logged_out', refreshFavoritesList)
 
   listen('store_poi', async (poi) => {
     await this.add(poi)

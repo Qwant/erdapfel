@@ -40,8 +40,8 @@ function PoiPanel(sharePanel) {
       this.panel.update()
     }
   }
-  store.addEventListener('store_loggedIn', refreshIsPoi)
-  store.addEventListener('store_loggedOut', refreshIsPoi)
+  store.addEventListener('store_logged_in', refreshIsPoi)
+  store.addEventListener('store_logged_out', refreshIsPoi)
 }
 
 
