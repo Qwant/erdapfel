@@ -61,7 +61,7 @@ export default class Store extends EventTarget {
     this.loggedIn = true
     this.abstractStoreStr = 'masq'
     this.abstractStore = this.masqStore
-    this.dispatchEvent(new Event('store_loggedIn'))
+    this.dispatchEvent(new Event('store_logged_in'))
   }
 
   async logout() {
@@ -79,7 +79,7 @@ export default class Store extends EventTarget {
     this.loggedIn = false
     this.abstractStoreStr = 'local_store'
     this.abstractStore = this.localStore
-    this.dispatchEvent(new Event('store_loggedOut'))
+    this.dispatchEvent(new Event('store_logged_out'))
   }
 
   isLoggedIn() {
