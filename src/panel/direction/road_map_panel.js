@@ -28,7 +28,7 @@ export default class RoadMapPanel {
 
   preview() {
     this.showRoute = false
-    this.previewRoadMap.setRoad(this.routes)
+    this.previewRoadMap.setRoad(this.routes, this.activeRoute)
     this.panel.update()
     fire('show_marker_steps')
     if(Device.isMobile()){
@@ -46,19 +46,15 @@ export default class RoadMapPanel {
 
     if(this.activeRoute !== null){
       this.activeRoute.isActive = false
-      if(!Device.isMobile()){
-        this.panel.removeClassName(0, `#itinerary_leg_${this.activeRoute.id}`, 'itinerary_leg--active')
-        if(i !== this.activeRoute.id){
-          this.panel.addClassName(0, `#itinerary_leg_detail_${this.activeRoute.id}`, 'itinerary_leg_detail--hidden')
-        }
+      this.panel.removeClassName(0, `#itinerary_leg_${this.activeRoute.id}`, 'itinerary_leg--active')
+      if(i !== this.activeRoute.id && !Device.isMobile()){
+        this.panel.addClassName(0, `#itinerary_leg_detail_${this.activeRoute.id}`, 'itinerary_leg_detail--hidden')
       }
     }
 
     this.routes[i].isActive = true;
     this.activeRoute = this.routes[i];
-    if(!Device.isMobile()){
-      this.panel.addClassName(0, `#itinerary_leg_${i}`, 'itinerary_leg--active')
-    }
+    this.panel.addClassName(0, `#itinerary_leg_${i}`, 'itinerary_leg--active')
   }
 
   toggleDetail(i) {
