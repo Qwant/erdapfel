@@ -18,7 +18,13 @@ export default class MasqStore {
   }
 
   async init() {
-    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, this.config.signalhubUrl, this.config.baseMasqAppUrl)
+    const masqOptions = {
+      hubUrls: this.config.signalhubUrl,
+      masqAppBaseUrl: this.config.baseMasqAppUrl
+    }
+
+    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, masqOptions)
+
     if (this.masq.isLoggedIn()) {
       await this.masq.connectToMasq()
     } else {
