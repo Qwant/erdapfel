@@ -90,12 +90,9 @@ export default class MasqStore {
     try {
       const list = await this.masq.list()
 
-      const filteredValues = Object.entries(list).reduce((filtered, kv) => {
-        if (Poi.isPoiCompliantKey(kv[0])) {
-          filtered.push(kv[1])
-        }
-        return filtered
-      }, [])
+      const filteredValues = Object.entries(list)
+        .filter(kv => Poi.isPoiCompliantKey(kv[0]))
+        .map(kv => kv[1])
 
       return filteredValues
     } catch (e) {
