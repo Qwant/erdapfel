@@ -28,7 +28,7 @@ export default class RoadMapPanel {
 
   preview() {
     this.showRoute = false
-    this.previewRoadMap.setRoad(this.routes, this.activeRoute)
+    this.previewRoadMap.setRoad(this.activeRoute)
     this.panel.update()
     fire('show_marker_steps')
     if(Device.isMobile()){

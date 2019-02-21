@@ -11,8 +11,7 @@ export default class RoadMapPreviewPanel {
     this.distance = distance
   }
 
-  setRoad(routes, activeRoute) {
-    this.routes = routes
+  setRoad(activeRoute) {
     this.activeRoute = activeRoute
     this.stepId = 0
     this.step = this.activeRoute.legs[0].steps[this.stepId]
