@@ -15,8 +15,6 @@ export default class MasqStore {
 
     this.initPromise = this.init()
     this.initialized = false
-
-    this.masqPopupWindow = null
   }
 
   async init() {
@@ -36,14 +34,8 @@ export default class MasqStore {
   }
 
   openLoginPopupWindow(link) {
-    if (this.masqPopupWindow) {
-      // close previous popup if any
-      this.masqPopupWindow.close()
-    } else {
-      const previouslyOpenedPopup = window.open('', 'masq')
-      previouslyOpenedPopup.close()
-    }
     this.masqPopupWindow = window.open(link, 'masq', 'height=700,width=500')
+    this.masqPopupWindow.focus()
   }
 
   async login(apps) {
