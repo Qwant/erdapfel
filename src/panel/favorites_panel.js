@@ -33,8 +33,8 @@ function Favorite(sharePanel) {
     await this.getAll()
     this.panel.update()
   }
-  store.addEventListener('store_logged_in', refreshFavoritesList)
-  store.addEventListener('store_logged_out', refreshFavoritesList)
+  store.eventTarget.addEventListener('store_logged_in', refreshFavoritesList)
+  store.eventTarget.addEventListener('store_logged_out', refreshFavoritesList)
 
   listen('store_poi', async (poi) => {
     await this.add(poi)
