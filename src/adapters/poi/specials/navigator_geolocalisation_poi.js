@@ -40,7 +40,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   render() {
     return `
       <div data-id="${GEOLOCALISATION_NAME}" data-val="${_('Your position', 'direction')}" class="autocomplete_suggestion itinerary_suggest_your_position">
-        <div class=itinerary_suggest_your_position_icon></div>
+        <div class="itinerary_suggest_your_position_icon icon-pin_geoloc"></div>
         ${_('Your position', 'direction')}
       </div>`
   }

@@ -3,7 +3,7 @@
   overflow: visible;
   font-size: 12px;
   width: 400px;
-  background: url('../images/direction_icons/panel_top.svg') #f4f6fa repeat-x;
+  background: url("../images/panel_top.svg") #f4f6fa repeat-x;
   background-size: 100% 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
   border-radius: 3px;
@@ -22,10 +22,10 @@
   height: 20px;
   float: right;
   margin: 9px;
-  background: url('../images/direction_icons/x.svg') no-repeat center center;
   color: #5c6f84;
   background-size: 16px;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .itinerary_title {
@@ -401,7 +401,7 @@
   height: 18px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../images/direction_icons/geoloc.svg');
+  font-size: 18px;
   background-size: 100%;
   margin: 0 10px 0 0;
 }
@@ -513,7 +513,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: url('../images/direction_icons/top_mobile.svg') #f4f6fa no-repeat center top;
+    background: url("../images/panel_top.svg") #f4f6fa no-repeat center top;
     background-size: 100% auto;
     position: fixed;
     z-index: 5;
