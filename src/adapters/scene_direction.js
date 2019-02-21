@@ -166,7 +166,6 @@ export default class SceneDirection {
     this.map.addSource(sourceId, sourceJSON)
     this.map.addLayer(geojson)
 
-    let it = this;
     this.map.on('click', `route_${route.id}`, function(){
       fire('select_road_map', route.id)
     });
