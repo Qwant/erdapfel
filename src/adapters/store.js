@@ -8,14 +8,14 @@ import MasqStore from "../libs/masq"
 export default class Store {
 
   constructor() {
-    this.eventTarget = new EventTarget()
-
     // get store from window if already initialized
     if (window.__store) {
       return window.__store
     }
     // if store not initialized, use this
     window.__store = this
+
+    this.eventTarget = document.createElement('store')
 
     // init stores
     this.localStore = new LocalStore()
