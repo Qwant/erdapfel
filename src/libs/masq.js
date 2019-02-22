@@ -86,25 +86,15 @@ export default class MasqStore {
 
   async getAllPois() {
     await this.checkInit()
-    const list = await this.masq.list()
-
-    const filteredKeys = Object.keys(list).reduce((filtered, k) => {
-      if (Poi.isPoiCompliantKey(k)) {
-        filtered.push(k)
-      }
-      return filtered
-    }, [])
-
-    if (filteredKeys.length === 0) {
-      return []
-    }
-
-    const valuePromises = filteredKeys.map(k => {
-      return this.masq.get(k)
-    })
 
     try {
-      return await Promise.all(valuePromises)
+      const list = await this.masq.list()
+
+      const filteredValues = Object.entries(list)
+        .filter(kv => Poi.isPoiCompliantKey(kv[0]))
+        .map(kv => kv[1])
+
+      return filteredValues
     } catch (e) {
       handleError('getAllPois', 'error getting pois', e)
       throw e
