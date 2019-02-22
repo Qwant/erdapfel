@@ -612,8 +612,12 @@
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
   }
 
-  .itinerary_leg + .itinerary_leg {
+  .itinerary_leg {
     display: none;
+  }
+
+  .itinerary_leg.itinerary_leg--active {
+    display: block;
   }
 
   .itinerary_leg--active,
