@@ -20,6 +20,8 @@ export default class Store {
     this.abstractStore = this.localStore
     this.masqConfig = nconf.get().masq
     if (this.masqConfig.enabled) {
+      this.masqEventTarget = document.createElement('store')
+
       this.masqStore = new MasqStore(this.masqConfig)
       if (this.masqStore.isLoggedIn()) {
         this.abstractStore = this.masqStore
@@ -30,6 +32,13 @@ export default class Store {
     // should use masqStore when logged in and localStore when not logged in
 
     return this
+  }
+
+  onToggleStore(cb) {
+    if (this.masqConfig.enabled) {
+      this.masqEventTarget.addEventListener('store_logged_in', cb)
+      this.masqEventTarget.addEventListener('store_logged_out', cb)
+    }
   }
 
   async login() {
@@ -55,7 +64,7 @@ export default class Store {
 
     // login was successful, use masqStore as abstractStore until logout
     this.abstractStore = this.masqStore
-    fire('store_loggedIn')
+    this.masqEventTarget.dispatchEvent(new Event('store_logged_in'))
   }
 
   async logout() {
@@ -71,7 +80,7 @@ export default class Store {
       throw e
     }
     this.abstractStore = this.localStore
-    fire('store_loggedOut')
+    this.masqEventTarget.dispatchEvent(new Event('store_logged_out'))
   }
 
   isLoggedIn() {

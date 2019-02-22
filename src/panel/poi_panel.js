@@ -34,7 +34,16 @@ function PoiPanel(sharePanel) {
   this.isDirectionActive = nconf.get().direction.enabled
   PanelManager.register(this)
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
+
+  store.onToggleStore(async () => {
+    if (this.poi) {
+      this.poi.stored = await isPoiFavorite(this.poi)
+      this.panel.update()
+      endLoad()
+    }
+  })
 }
+
 
 PoiPanel.prototype.toggleStorePoi = async function() {
   if(this.poi.stored) {
