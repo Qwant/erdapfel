@@ -5,15 +5,15 @@ import Telemetry from "../../libs/telemetry";
 
 const store = new Store()
 export default class PoiStore extends Poi {
-  constructor() {
-    super()
-  }
-
   static async get(term) {
     let prefixes = await store.getPrefixes(term)
     return prefixes.map((historySuggest) => {
       return Object.assign(new PoiStore(), historySuggest)
     })
+  }
+
+  getInputValue() {
+    return this.name
   }
 
   static async getAll() {
