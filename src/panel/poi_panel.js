@@ -38,6 +38,7 @@ function PoiPanel(sharePanel) {
     if (this.poi) {
       this.poi.stored = await isPoiFavorite(this.poi)
       this.panel.update()
+      endLoad()
     }
   }
   store.eventTarget.addEventListener('store_logged_in', refreshIsPoi)
