@@ -12,7 +12,7 @@
       </form>
       <form onsubmit="fire('submit_direction_destination');return false">
         <div class="itinerary_field_destination">
-          <div class="itinerary_icon itinerary_icon_destination"></div>
+          <div class="itinerary_icon itinerary_icon_destination icon-map-pin"></div>
           <input id="itinerary_input_destination" autocomplete="off" spellcheck="false" value="{{= this.destination ? this.destination.name : '' }}" placeholder="{{= _('End point', 'direction') }}">
         </div>
       </form>

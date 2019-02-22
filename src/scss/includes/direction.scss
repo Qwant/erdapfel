@@ -54,13 +54,12 @@
   font-size: 16px;
   padding: 10px;
   color: $secondary_text;
-  background-size: 16px;
 }
 
 .itinerary_icon_destination {
-  background: url("../images/direction_icons/map-pin.svg") no-repeat center center;
   color: $secondary_text;
-  background-size: 16px;
+  font-size: 16px;
+  padding: 10px;
 }
 
 #itinerary_input_origin, #itinerary_input_destination {
@@ -639,9 +638,9 @@
     height: 16px;
     display: inline-block;
     vertical-align: middle;
-    background: url('../images/direction_icons/navigation.svg');
     background-size: 100% auto;
     margin: 0 10px 0 10px;
+    font-size: 16px;
   }
   
   .itinerary_leg_close {

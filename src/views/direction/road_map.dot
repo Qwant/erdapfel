@@ -13,7 +13,7 @@
             <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[route.id].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
           </div>
           <div class='itinerary_leg_preview' {{= click(this.preview, this) }}>
-            <span class='itinerary_leg_preview_icon'></span>
+            <span class='itinerary_leg_preview_icon icon-navigation'></span>
               {{= _('PREVIEW', 'direction') }}
             </div>
         </div>
