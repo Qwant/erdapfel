@@ -6,7 +6,7 @@ export const navigatorGeolcationStatus = {PENDING : 'pending', FOUND : 'found', 
 
 export default class NavigatorGeolocalisationPoi extends Poi {
   constructor() {
-    super(GEOLOCALISATION_NAME, GEOLOCALISATION_NAME)
+    super(GEOLOCALISATION_NAME, _('Your position', 'direction'))
     this.status = navigatorGeolcationStatus.UNKNOWN
   }
 
