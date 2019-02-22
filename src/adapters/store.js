@@ -15,8 +15,6 @@ export default class Store {
     // if store not initialized, use this
     window.__store = this
 
-    this.eventTarget = document.createElement('store')
-
     // init stores
     this.localStore = new LocalStore()
     this.loggedIn = false
@@ -24,6 +22,8 @@ export default class Store {
     this.abstractStore = this.localStore
     this.masqConfig = nconf.get().masq
     if (this.masqConfig.enabled) {
+      this.masqEventTarget = document.createElement('store')
+
       this.masqStore = new MasqStore(this.masqConfig)
       if (this.masqStore.isLoggedIn()) {
         this.abstractStore = this.masqStore
@@ -34,6 +34,13 @@ export default class Store {
     // should use masqStore when logged in and localStore when not logged in
 
     return this
+  }
+
+  onToggleStore(cb) {
+    if (this.masqConfig.enabled) {
+      this.masqEventTarget.addEventListener('store_logged_in', cb)
+      this.masqEventTarget.addEventListener('store_logged_out', cb)
+    }
   }
 
   async login() {
@@ -61,7 +68,7 @@ export default class Store {
     this.loggedIn = true
     this.abstractStoreStr = 'masq'
     this.abstractStore = this.masqStore
-    this.eventTarget.dispatchEvent(new Event('store_logged_in'))
+    this.masqEventTarget.dispatchEvent(new Event('store_logged_in'))
   }
 
   async logout() {
@@ -79,7 +86,7 @@ export default class Store {
     this.loggedIn = false
     this.abstractStoreStr = 'local_store'
     this.abstractStore = this.localStore
-    this.eventTarget.dispatchEvent(new Event('store_logged_out'))
+    this.masqEventTarget.dispatchEvent(new Event('store_logged_out'))
   }
 
   isLoggedIn() {
