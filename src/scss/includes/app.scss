@@ -69,7 +69,22 @@ BODY {
   .favorite_poi_panel__container {
     position: absolute;
     bottom: 0;
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 150px);
+  }
+
+  .map_container .map_control__scale_attribute_container {
+
+    margin: 0 0 5px;
+
+    .mapboxgl-ctrl.map_control__scale {
+      position: fixed;
+      left: 0;
+      margin: 12px 5px 0;
+    }
+  }
+
+  .mapboxgl-ctrl-attrib.mapboxgl-compact:hover {
+    max-width: calc(100vw - 115px);
   }
 }
 
