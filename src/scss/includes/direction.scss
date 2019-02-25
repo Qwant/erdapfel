@@ -791,12 +791,12 @@
     position: fixed;
     bottom: 100px;
     right: 9px;
-    background: url('../images/direction_icons/corner-up-left-grey.svg') no-repeat center center #fff;
+    background: url('../images/direction_icons/corner-up-left-grey.svg') no-repeat 9px 12px #fff;
     background-size: 25px;
   }
 
   .direction_shortcut:hover {
-    background: url('../images/direction_icons/corner-up-left-white.svg') no-repeat center center #353c52;
+    background: url('../images/direction_icons/corner-up-left-white.svg') no-repeat 9px 12px #353c52;
     background-size: 25px;
   }
 }
