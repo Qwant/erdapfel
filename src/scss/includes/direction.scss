@@ -472,6 +472,10 @@
   display: none;
 }
 
+.direction_shortcut {
+  display: none;
+}
+
 
 /* Mobile */
 
@@ -775,5 +779,24 @@
     width: 100% !important;
     top: 55px !important;
     left: 0 !important;
+  }
+
+  .direction_shortcut {
+    display: block;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: rgba(0,0,0,.2) 0 2px 12px 0;
+    position: fixed;
+    bottom: 100px;
+    right: 9px;
+    background: url('../images/direction_icons/corner-up-left-grey.svg') no-repeat center center #fff;
+    background-size: 25px;
+  }
+
+  .direction_shortcut:hover {
+    background: url('../images/direction_icons/corner-up-left-white.svg') no-repeat center center #353c52;
+    background-size: 25px;
   }
 }
