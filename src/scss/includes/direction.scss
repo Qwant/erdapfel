@@ -481,7 +481,7 @@
     left: 0;
     width: 100%;
     background: url("../images/backgrounds/top_mobile.svg") #f4f6fa no-repeat center top;
-    background-size: 100% auto;
+    background-size: 640px auto;
     position: fixed;
     z-index: 5;
   }
@@ -701,7 +701,7 @@
     height: 48px;
     background: $background;
     position: fixed;
-    bottom: 38px;
+    bottom: 30px;
     right: 8px;
     border-radius: 3px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);

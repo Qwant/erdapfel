@@ -134,6 +134,8 @@ export default class DirectionPanel {
     this.panel.update()
     this.cleanDirection()
     UrlState.pushUrl()
+    document.querySelectorAll('.menu__button')[0].style.opacity = 1
+    document.querySelectorAll('.search_form')[0].style.opacity = 1
   }
 
   async open(options = {}) {
@@ -147,6 +149,8 @@ export default class DirectionPanel {
     this.initDirection()
     UrlState.pushUrl()
     this.searchDirection()
+    document.querySelectorAll('.menu__button')[0].style.opacity = 0
+    document.querySelectorAll('.search_form')[0].style.opacity = 0
   }
 
   async searchDirection(options) {
