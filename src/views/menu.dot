@@ -18,7 +18,7 @@
       </h2>
       <div class="menu__panel__section">
         {{? this.isDirectionActive }}
-          <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>{{= _('Itinerary' , 'menu') }}</button>
+          <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>{{= _('Directions' , 'menu') }}</button>
         {{?}}
         <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>{{= _('Favorites', 'menu') }}</button>
         <a class="menu__panel__action menu__panel__section_title__link" href="https://github.com/QwantResearch/qwantmaps/blob/master/contributing.md" rel="noopener" target="_blank">{{= _('How to contribute', 'menu') }}</a>

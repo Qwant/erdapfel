@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-26 16:19+0100\n"
+"POT-Creation-Date: 2019-02-26 16:44+0100\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -836,9 +836,6 @@ msgstr ""
 msgid "YOUR FAVORITES"
 msgstr ""
 
-msgid "ITINERARY"
-msgstr ""
-
 msgid "Share favorite"
 msgstr ""
 
@@ -879,7 +876,7 @@ msgstr ""
 msgid "return"
 msgstr ""
 
-msgid "itinerary"
+msgid "directions"
 msgstr ""
 
 msgid "Start point"
@@ -900,7 +897,7 @@ msgstr ""
 msgid "DETAILS"
 msgstr ""
 
-msgid "Itinerary"
+msgid "Directions"
 msgstr ""
 
 msgid "Favorites"
