@@ -1,19 +1,20 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
 # Jannik Vieten <me@exploide.net>, 2019
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-31 15:59+0000\n"
+"POT-Creation-Date: 2019-02-26 16:19+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
-"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
+"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/"
+"teams/89416/de_DE/)\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -65,6 +66,78 @@ msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
 
 msgid "No wheelchair accessible toilets"
 msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
+
+msgid "Qwant is also"
+msgstr ""
+
+msgid "Qwant.com"
+msgstr ""
+
+msgid "Qwant Music"
+msgstr ""
+
+msgid "Qwant boards"
+msgstr ""
+
+msgid "Qwant on Android"
+msgstr ""
+
+msgid "Qwant on iOS"
+msgstr ""
+
+msgid "Qwant Junior"
+msgstr ""
+
+msgid "Qwant Lite"
+msgstr ""
+
+msgid "About Qwant"
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
+msgid "Press"
+msgstr ""
+
+msgid "Jobs"
+msgstr ""
+
+msgid "F.A.Q."
+msgstr ""
+
+msgid "Maps legal notices"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "About us"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Results ranking"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Share Qwant"
+msgstr ""
+
+msgid "on Twitter"
+msgstr ""
+
+msgid "on Facebook"
+msgstr ""
+
+msgid "Qwant Maps"
+msgstr ""
+
+msgid "Search with Qwant Maps"
+msgstr ""
 
 msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
@@ -690,8 +763,7 @@ msgstr "Zoo"
 msgid "Favorite places"
 msgstr "Lieblingsorte"
 
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
 "auf einen Ort klicken"
@@ -708,14 +780,23 @@ msgstr "Löschen"
 msgid "filter"
 msgstr "Filter"
 
-msgid "Register masq"
-msgstr "Verzeichnis maskieren"
+msgid "Log in with Masq"
+msgstr ""
 
-msgid "We use MASQ to keep your preference data safe"
-msgstr "Zum Schutz Ihrer Präferenzdaten nutzen wir MASQ"
+msgid "Use MASQ to sync your personal data across your devices"
+msgstr ""
 
-msgid "Register"
-msgstr "Verzeichnis"
+msgid "Log in"
+msgstr ""
+
+msgid "Logging in"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "DIRECTIONS"
+msgstr ""
 
 msgid "SEE MORE"
 msgstr "ZEIGE MEHR"
@@ -784,13 +865,16 @@ msgid "Geolocation with privacy!"
 msgstr "Geolokalisierung mit Privatsphäre!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
-"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir wollen keine Ihrer Aufenthaltsorte wissen."
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den "
+"Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}"
+"angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir "
+"wollen keine Ihrer Aufenthaltsorte wissen."
 
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."
@@ -828,5 +912,23 @@ msgstr "VORSCHAU"
 msgid "DETAILS"
 msgstr "DETAILS"
 
+msgid "Itinerary"
+msgstr ""
+
+msgid "Favorites"
+msgstr ""
+
+msgid "How to contribute"
+msgstr ""
+
 msgid "Your position"
 msgstr "Deine Position"
+
+#~ msgid "Register masq"
+#~ msgstr "Verzeichnis maskieren"
+
+#~ msgid "We use MASQ to keep your preference data safe"
+#~ msgstr "Zum Schutz Ihrer Präferenzdaten nutzen wir MASQ"
+
+#~ msgid "Register"
+#~ msgstr "Verzeichnis"
