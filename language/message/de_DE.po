@@ -1,20 +1,19 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
 # Jannik Vieten <me@exploide.net>, 2019
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-26 16:19+0100\n"
+"POT-Creation-Date: 2019-02-22 15:33+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
-"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/"
-"teams/89416/de_DE/)\n"
-"Language: de_DE\n"
+"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -68,76 +67,76 @@ msgid "No wheelchair accessible toilets"
 msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
 
 msgid "Qwant is also"
-msgstr ""
+msgstr "Qwant ist außerdem"
 
 msgid "Qwant.com"
-msgstr ""
+msgstr "Qwant.com"
 
 msgid "Qwant Music"
-msgstr ""
+msgstr "Qwant Music"
 
 msgid "Qwant boards"
-msgstr ""
+msgstr "Qwant Notizhefte"
 
 msgid "Qwant on Android"
-msgstr ""
+msgstr "Qwant für Android"
 
 msgid "Qwant on iOS"
-msgstr ""
+msgstr "Qwant für iOS"
 
 msgid "Qwant Junior"
-msgstr ""
+msgstr "Qwant Junior"
 
 msgid "Qwant Lite"
-msgstr ""
+msgstr "Qwant Lite"
 
 msgid "About Qwant"
-msgstr ""
+msgstr "Über Qwant"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 msgid "Press"
-msgstr ""
+msgstr "Presse"
 
 msgid "Jobs"
-msgstr ""
+msgstr "Jobs"
 
 msgid "F.A.Q."
-msgstr ""
+msgstr "F.A.Q."
 
 msgid "Maps legal notices"
-msgstr ""
+msgstr "Maps Impressum"
 
 msgid "Terms of Service"
-msgstr ""
+msgstr "Nutzungsbedingungen"
 
 msgid "About us"
-msgstr ""
+msgstr "Über uns"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privatsphäre"
 
 msgid "Results ranking"
-msgstr ""
+msgstr "Ergebnissortierung"
 
 msgid "Contact us"
-msgstr ""
+msgstr "Kontaktiere uns"
 
 msgid "Share Qwant"
-msgstr ""
+msgstr "Teile Qwant"
 
 msgid "on Twitter"
-msgstr ""
+msgstr "auf Twitter"
 
 msgid "on Facebook"
-msgstr ""
+msgstr "auf Facebook"
 
 msgid "Qwant Maps"
-msgstr ""
+msgstr "Qwant Maps"
 
 msgid "Search with Qwant Maps"
-msgstr ""
+msgstr "Suche mit Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
@@ -763,7 +762,8 @@ msgstr "Zoo"
 msgid "Favorite places"
 msgstr "Lieblingsorte"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
 "auf einen Ort klicken"
@@ -781,22 +781,23 @@ msgid "filter"
 msgstr "Filter"
 
 msgid "Log in with Masq"
-msgstr ""
+msgstr "Login via Masq"
 
 msgid "Use MASQ to sync your personal data across your devices"
 msgstr ""
+"Benutze MASQ um persönliche Daten zwischen deinen Geräten zu synchronisieren"
 
 msgid "Log in"
-msgstr ""
+msgstr "Login"
 
 msgid "Logging in"
-msgstr ""
+msgstr "Logge ein"
 
 msgid "Logout"
-msgstr ""
+msgstr "Logout"
 
 msgid "DIRECTIONS"
-msgstr ""
+msgstr "WEGBESCHREIBUNG"
 
 msgid "SEE MORE"
 msgstr "ZEIGE MEHR"
@@ -865,16 +866,13 @@ msgid "Geolocation with privacy!"
 msgstr "Geolokalisierung mit Privatsphäre!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den "
-"Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
-"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}"
-"angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir "
-"wollen keine Ihrer Aufenthaltsorte wissen."
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standpunkt, damit wir Sie lokalisieren können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant keine Ihrer Daten zur Geolokalisierung. Wir wollen keine Ihrer Aufenthaltsorte wissen."
 
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."
@@ -913,22 +911,13 @@ msgid "DETAILS"
 msgstr "DETAILS"
 
 msgid "Itinerary"
-msgstr ""
+msgstr "Route"
 
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriten"
 
 msgid "How to contribute"
-msgstr ""
+msgstr "Wie man mitmacht"
 
 msgid "Your position"
 msgstr "Deine Position"
-
-#~ msgid "Register masq"
-#~ msgstr "Verzeichnis maskieren"
-
-#~ msgid "We use MASQ to keep your preference data safe"
-#~ msgstr "Zum Schutz Ihrer Präferenzdaten nutzen wir MASQ"
-
-#~ msgid "Register"
-#~ msgstr "Verzeichnis"

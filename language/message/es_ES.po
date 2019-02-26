@@ -1,19 +1,18 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-26 16:19+0100\n"
+"POT-Creation-Date: 2019-02-22 15:33+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
-"Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/"
-"teams/89416/es_ES/)\n"
-"Language: es_ES\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -762,7 +761,8 @@ msgstr "zoo"
 msgid "Favorite places"
 msgstr "Lugares preferidos"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "No tiene lugares preferidos. <br>Puede añadir uno mediante un clic en un "
 "lugar"
@@ -864,8 +864,8 @@ msgid "Geolocation with privacy!"
 msgstr "¡Geolocalización con privacidad!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -921,12 +921,3 @@ msgstr ""
 
 msgid "Your position"
 msgstr ""
-
-#~ msgid "Register masq"
-#~ msgstr "Registrar masq"
-
-#~ msgid "We use MASQ to keep your preference data safe"
-#~ msgstr "Utilizamos MASQ para mantener seguros tus datos de preferencias "
-
-#~ msgid "Register"
-#~ msgstr "Registrarse"
