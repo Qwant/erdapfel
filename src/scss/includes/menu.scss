@@ -25,6 +25,7 @@
   right: -400px;
   transition: right .3s;
   background: #fff;
+  visibility: hidden;
 }
 
 .menu__panel__items_container {
@@ -49,6 +50,7 @@
 }
 
 .menu__panel--active {
+  visibility: visible;
   right: 0;
 }
 
