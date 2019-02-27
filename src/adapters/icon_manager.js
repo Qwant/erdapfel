@@ -1,13 +1,11 @@
-const {mappings, defaultIcon, defaultColor, defaultAdministrativeIcon, defaultAdministrativeColor} = require('@qwant/qwant-basic-gl-style/icons.yml')
-
-const iconsGroups = []
-iconsGroups['poi'] = mappings
-const adminGroups = ['house', 'address', 'suburb', 'city_district', 'city', 'state_district', 'state', 'country_region', 'country']
+import styleIcons from '@qwant/qwant-basic-gl-style/icons.yml'
 
 export default class IconManager {
   static get({className, subClassName, type}) {
-    let icons = iconsGroups[type]
+    const nameToClass = (iconName) => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1]
+
     if(type === 'poi') {
+      const icons = styleIcons.mappings
       let icon = icons.find((iconProperty) => {
         return iconProperty.subclass === subClassName && iconProperty.class === className
       })
@@ -25,15 +23,30 @@ export default class IconManager {
       if (icon) {
         let iconName = icon.iconName
         let color = icon.color
-        let iconClass = iconName.match(/^(.*?)-[0-9]{1,2}$/)[1]
+        let iconClass = nameToClass(iconName)
         return {iconClass: iconClass, color: color}
-      } else {
-        return {iconClass: defaultIcon.match(/^(.*?)-[0-9]{1,2}$/)[1], color: defaultColor}
       }
-    } else if(adminGroups.find((admin) => type === admin)) {
-      return {iconClass : 'building', color : defaultAdministrativeColor}
-    } else {
-      return {iconClass : defaultAdministrativeIcon.match(/^(.*?)-[0-9]{1,2}$/)[1], color : defaultAdministrativeColor}
+
+      return {
+        iconClass: nameToClass(styleIcons.defaultIcon),
+        color: styleIcons.defaultColor
+      }
+    } else if(type === 'house' || type === 'address'){
+      return {
+        iconClass: nameToClass(styleIcons.defaultAddressIcon),
+        color: styleIcons.defaultAddressColor
+      }
+    }
+    else if(type === 'street'){
+      return {
+        iconClass: nameToClass(styleIcons.defaultStreetIcon),
+        color: styleIcons.defaultStreetColor
+      }
+    } else { // administrative zones
+      return {
+        iconClass : nameToClass(styleIcons.defaultAdministrativeIcon),
+        color : styleIcons.defaultAdministrativeColor
+      }
     }
   }
 }

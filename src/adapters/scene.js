@@ -225,7 +225,9 @@ Scene.prototype.fitMap = function(item, padding) {
         flyOptions.zoom = item.zoom
       }
 
-      flyOptions.padding = padding;
+      if(padding){
+        flyOptions.offset = [(padding.left-padding.right)/2, (padding.top-padding.bottom)/2]
+      }
 
       if(this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
         flyOptions.animate = true
