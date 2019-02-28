@@ -1,38 +1,54 @@
-const {mappings, defaultIcon, defaultColor, defaultAdministrativeIcon, defaultAdministrativeColor} = require('@qwant/qwant-basic-gl-style/icons.yml')
+import styleIcons from '@qwant/qwant-basic-gl-style/icons.yml'
 
-function IconManager() {}
+export default class IconManager {
+  static get({className, subClassName, type}) {
+    const nameToClass = (iconName) => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1]
 
-IconManager.mappings = mappings.map((mapping) => {return mapping})
-
-IconManager.get = ({className, subClassName, type}) => {
-  if(type === 'poi') {
-    let icon = mappings.find((iconProperty) => {
-      return iconProperty.subclass === subClassName && iconProperty.class === className
-    })
-    if(!icon) {
-      icon = mappings.find((iconProperty) => {
-        return iconProperty.subclass === subClassName && !iconProperty.class
+    if(type === 'poi') {
+      const icons = styleIcons.mappings
+      let icon = icons.find((iconProperty) => {
+        return iconProperty.subclass === subClassName && iconProperty.class === className
       })
-    }
-    if(!icon) {
-      icon = mappings.find((iconProperty) => {
-        return iconProperty.class === className && !iconProperty.subclass
-      })
-    }
+      if (!icon) {
+        icon = icons.find((iconProperty) => {
+          return iconProperty.subclass === subClassName && !iconProperty.class
+        })
+      }
+      if (!icon) {
+        icon = icons.find((iconProperty) => {
+          return iconProperty.class === className && !iconProperty.subclass
+        })
+      }
 
-    if(icon) {
-      let iconName = icon.iconName
-      let color = icon.color
-      let iconClass = iconName.match(/^(.*?)-[0-9]{1,2}$/)[1]
-      return {iconClass : iconClass, color : color}
-    } else {
-      return {iconClass : defaultIcon.match(/^(.*?)-[0-9]{1,2}$/)[1], color : defaultColor}
+      if (icon) {
+        let iconName = icon.iconName
+        let color = icon.color
+        let iconClass = nameToClass(iconName)
+        return {iconClass: iconClass, color: color}
+      }
+
+      return {
+        iconClass: nameToClass(styleIcons.defaultIcon),
+        color: styleIcons.defaultColor
+      }
+    } else if(type === 'house' || type === 'address'){
+      return {
+        iconClass: nameToClass(styleIcons.defaultAddressIcon),
+        color: styleIcons.defaultAddressColor
+      }
     }
-  } else {
-    return {iconClass : defaultAdministrativeIcon.match(/^(.*?)-[0-9]{1,2}$/)[1], color : defaultAdministrativeColor}
+    else if(type === 'street'){
+      return {
+        iconClass: nameToClass(styleIcons.defaultStreetIcon),
+        color: styleIcons.defaultStreetColor
+      }
+    } else { // administrative zones
+      return {
+        iconClass : nameToClass(styleIcons.defaultAdministrativeIcon),
+        color : styleIcons.defaultAdministrativeColor
+      }
+    }
   }
 }
 
 window.IconManager = IconManager
-
-export default IconManager

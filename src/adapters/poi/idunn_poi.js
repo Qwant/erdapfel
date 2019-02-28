@@ -7,6 +7,7 @@ const serviceConfig = nconf.get().services
 const LNG_INDEX = 0
 const LAT_INDEX = 1
 
+
 export default class IdunnPoi extends Poi {
   constructor(rawPoi) {
     let alternativeName = ''
@@ -14,10 +15,11 @@ export default class IdunnPoi extends Poi {
       alternativeName = rawPoi.address.label
     }
     let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
-    super(rawPoi.id, rawPoi.name, alternativeName, POI_TYPE, latLng, rawPoi.class_name, rawPoi.subclass_name)
+    super(rawPoi.id, rawPoi.name, alternativeName, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name)
     this.blocks = rawPoi.blocks
     this.localName = rawPoi.local_name
-    this.address = rawPoi.address
+    this.address = IdunnPoi.getAddress(rawPoi)
+    this.bbox = rawPoi.geometry.bbox
   }
 
   static async poiApiLoad(id, options = {}) {
@@ -29,15 +31,36 @@ export default class IdunnPoi extends Poi {
     }
     try {
       rawPoi = await Ajax.getLang(url, requestParams)
+      return new IdunnPoi(rawPoi)
     } catch (err) {
       if(err === 404) {
         return
       }
       else {
-        Error.sendOnce('idunn_poi', 'poiApiLoad', `unknown error getting idunn poi reaching ${url} with options ${requestParams}`, err)
+        Error.sendOnce(
+          'idunn_poi', 'poiApiLoad',
+          `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,
+          err
+        )
         return
       }
     }
-    return new IdunnPoi(rawPoi)
+  }
+
+  static getAddress(rawPoi) {
+    switch (rawPoi.type) {
+      case 'admin':
+        return {label: rawPoi.address.admin.label}
+      case 'address':
+      case 'street':
+        let postcode = (rawPoi.address.postcode || '').split(';', 1)[0]
+        let city = rawPoi.address.admins.find((a) => a.class_name === 'city') || {}
+        let country = rawPoi.address.admins.find((a) => a.class_name === 'country') || {}
+        let label = [postcode, city.name, country.name]
+          .filter((x)=>x).join(', ')
+        return {label}
+      default:
+        return rawPoi.address
+    }
   }
 }

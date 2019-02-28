@@ -4,6 +4,7 @@ module.exports = {
     "local_name": "Musée d'Orsay",
     "class_name": "museum",
     "subclass_name": "museum",
+    "type" : "poi",
     "geometry": {
         "coordinates": [2.3265827716099623, 48.859917803575875],
         "type": "Point"

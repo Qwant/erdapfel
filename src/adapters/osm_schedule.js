@@ -3,6 +3,7 @@ const days = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
 
 
 function OsmSchedule(scheduleResponse, messages) {
+  this.isTwentyFourSeven = scheduleResponse.is_24_7
   this.days = scheduleResponse.days
   this.displayHours = translateSchedule(this.days)
   this.nextTransition = nextTransitionTime(scheduleResponse.seconds_before_next_transition, scheduleResponse.next_transition_datetime)

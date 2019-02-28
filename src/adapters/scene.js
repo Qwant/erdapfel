@@ -12,7 +12,6 @@ import HotLoadPoi from "./poi/hotload_poi";
 import LocalStore from '../libs/local_store'
 import getStyle from "./scene_config";
 import SceneState from "./scene_state";
-import MapDirection from './map_direction'
 import SceneDirection from './scene_direction'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
@@ -80,7 +79,6 @@ Scene.prototype.initMapBox = function () {
   this.mb.on('load', () => {
     this.onHashChange()
     new SceneDirection(this.mb)
-    new MapDirection(this)
 
     if(performanceEnabled) {
       window.times.mapLoaded = Date.now()
@@ -227,7 +225,9 @@ Scene.prototype.fitMap = function(item, padding) {
         flyOptions.zoom = item.zoom
       }
 
-      flyOptions.padding = padding;
+      if(padding){
+        flyOptions.offset = [(padding.left-padding.right)/2, (padding.top-padding.bottom)/2]
+      }
 
       if(this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
         flyOptions.animate = true
