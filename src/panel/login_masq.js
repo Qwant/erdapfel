@@ -14,6 +14,10 @@ export default class LoginMasqPanel {
     this.profileImage = null
     this.isLoggedIn = false
 
+    this.store.onToggleStore(async () => {
+      await this.init()
+    })
+
     this.init()
   }
 

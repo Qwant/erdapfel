@@ -26,6 +26,18 @@ export default class Store {
       if (this.masqStore.isLoggedIn()) {
         this.abstractStore = this.masqStore
       }
+
+      this.masqStore.masq.eventTarget.addEventListener('logged_in', async () => {
+        // login was successful, use masqStore as abstractStore until signout
+        this.abstractStore = this.masqStore
+        this.masqEventTarget.dispatchEvent(new Event('store_logged_in'))
+      })
+
+      this.masqStore.masq.eventTarget.addEventListener('signed_out', async () => {
+        // signout was successful, use localStore as abstractStore until login
+        this.abstractStore = this.localStore
+        this.masqEventTarget.dispatchEvent(new Event('store_logged_out'))
+      })
     }
 
     // use abstract store for each operation that
@@ -61,10 +73,6 @@ export default class Store {
       Error.sendOnce('store', 'login', 'error logging in', e)
       throw e
     }
-
-    // login was successful, use masqStore as abstractStore until logout
-    this.abstractStore = this.masqStore
-    this.masqEventTarget.dispatchEvent(new Event('store_logged_in'))
   }
 
   async logout() {
@@ -79,8 +87,6 @@ export default class Store {
       Error.sendOnce('store', 'logout', 'error logging out', e)
       throw e
     }
-    this.abstractStore = this.localStore
-    this.masqEventTarget.dispatchEvent(new Event('store_logged_out'))
   }
 
   isLoggedIn() {
