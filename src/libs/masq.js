@@ -15,12 +15,16 @@ export default class MasqStore {
 
     this.initPromise = this.init()
     this.initialized = false
-
-    this.masqPopupWindow = null
   }
 
   async init() {
-    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, this.config.signalhubUrl, this.config.baseMasqAppUrl)
+    const masqOptions = {
+      hubUrls: this.config.signalhubUrl,
+      masqAppBaseUrl: this.config.baseMasqAppUrl
+    }
+
+    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, masqOptions)
+
     if (this.masq.isLoggedIn()) {
       await this.masq.connectToMasq()
     } else {
@@ -36,14 +40,8 @@ export default class MasqStore {
   }
 
   openLoginPopupWindow(link) {
-    if (this.masqPopupWindow) {
-      // close previous popup if any
-      this.masqPopupWindow.close()
-    } else {
-      const previouslyOpenedPopup = window.open('', 'masq')
-      previouslyOpenedPopup.close()
-    }
     this.masqPopupWindow = window.open(link, 'masq', 'height=700,width=500')
+    this.masqPopupWindow.focus()
   }
 
   async login(apps) {
