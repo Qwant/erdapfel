@@ -204,13 +204,9 @@ const subClasses = {
   yoga: () => _('yoga'),
   zoo: () => _('zoo'),
   city: () => _('city'),
-  suburb: () => _('suburb'),
-  city_district: () => _('city district'),
-  state_district: () => _('state district'),
-  state: () => _('state'),
-  country_region: () => _('country region'),
   country: () => _('country'),
-  address: () => _('address')
+  address: () => _('address'),
+  street: () => _('street'),
 }
 
 module.exports = function (subClass) {
