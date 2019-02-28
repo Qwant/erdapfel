@@ -1,20 +1,22 @@
 # Translators:
-# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2018
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Boo Teille <booteille@tutanota.com>, 2019
-# 
+# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-31 15:59+0000\n"
+"POT-Creation-Date: 2019-02-26 16:44+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Boo Teille <booteille@tutanota.com>, 2019\n"
-"Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
+"Last-Translator: PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, "
+"2019\n"
+"Language-Team: French (France) (https://www.transifex.com/qwant-1/"
+"teams/89416/fr_FR/)\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -67,11 +69,83 @@ msgstr "Toilettes partiellement accessibles en fauteuil roulant"
 msgid "No wheelchair accessible toilets"
 msgstr "Pas de toilettes accessibles en fauteuil roulant"
 
+msgid "Qwant is also"
+msgstr "Qwant est aussi"
+
+msgid "Qwant.com"
+msgstr "Qwant.com"
+
+msgid "Qwant Music"
+msgstr "Qwant Music"
+
+msgid "Qwant boards"
+msgstr "Qwant boards"
+
+msgid "Qwant on Android"
+msgstr "Qwant sur Android"
+
+msgid "Qwant on iOS"
+msgstr "Qwant sur iOS"
+
+msgid "Qwant Junior"
+msgstr "Qwant Junior"
+
+msgid "Qwant Lite"
+msgstr "Qwant Lite"
+
+msgid "About Qwant"
+msgstr "À propos de Qwant"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Press"
+msgstr "Presse"
+
+msgid "Jobs"
+msgstr "Jobs"
+
+msgid "F.A.Q."
+msgstr "F.A.Q."
+
+msgid "Maps legal notices"
+msgstr "Carte Mentions légales"
+
+msgid "Terms of Service"
+msgstr "Conditions d'utilisation"
+
+msgid "About us"
+msgstr "À propos de nous"
+
+msgid "Privacy"
+msgstr "Confidentialité"
+
+msgid "Results ranking"
+msgstr "Classements de résultats"
+
+msgid "Contact us"
+msgstr "Nous contacter"
+
+msgid "Share Qwant"
+msgstr "Partager sur Qwant"
+
+msgid "on Twitter"
+msgstr "sur Twitter"
+
+msgid "on Facebook"
+msgstr "sur Facebook"
+
+msgid "Qwant Maps"
+msgstr "Qwant Maps"
+
+msgid "Search with Qwant Maps"
+msgstr "Chercher avec Qwant Maps"
+
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
 
 msgid "Open 24/7"
-msgstr "Ouvert 24h/24"
+msgstr "Ouvert 24h/24 et 7j/7"
 
 msgid "until {nextTransitionTime}"
 msgstr "jusqu’à {nextTransitionTime}"
@@ -691,8 +765,7 @@ msgstr "parc zoologique"
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
@@ -709,14 +782,25 @@ msgstr "Supprimer"
 msgid "filter"
 msgstr "filtre"
 
-msgid "Register masq"
-msgstr "S'enregistrer sur Masq"
+msgid "Log in with Masq"
+msgstr "Se connecter avec Masq"
 
-msgid "We use MASQ to keep your preference data safe"
-msgstr "Nous utilisons MASQ pour conserver vos préférences en sécurité"
+msgid "Use MASQ to sync your personal data across your devices"
+msgstr ""
+"Utilisez MASQ pour synchroniser vos données personnelles entre tout vos "
+"périphériques"
 
-msgid "Register"
-msgstr "S'enregistrer"
+msgid "Log in"
+msgstr "Se connecter"
+
+msgid "Logging in"
+msgstr "Connection en cours"
+
+msgid "Logout"
+msgstr "Se déconnecter"
+
+msgid "DIRECTIONS"
+msgstr "ITINÉRAIRE"
 
 msgid "SEE MORE"
 msgstr "EN VOIR PLUS"
@@ -763,9 +847,6 @@ msgstr "Les services Qwant Maps"
 msgid "YOUR FAVORITES"
 msgstr "MES FAVORIS"
 
-msgid "ITINERARY"
-msgstr "ITINÉRAIRE"
-
 msgid "Share favorite"
 msgstr "Partager le favori"
 
@@ -785,8 +866,8 @@ msgid "Geolocation with privacy!"
 msgstr "La géolocalisation respectueuse de votre vie privée !"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -811,7 +892,7 @@ msgstr "OK"
 msgid "return"
 msgstr "retour"
 
-msgid "itinerary"
+msgid "directions"
 msgstr "itinéraire"
 
 msgid "Start point"
@@ -831,6 +912,15 @@ msgstr "APERÇU"
 
 msgid "DETAILS"
 msgstr "DÉTAILS"
+
+msgid "Directions"
+msgstr "Itinéraire"
+
+msgid "Favorites"
+msgstr "Favoris"
+
+msgid "How to contribute"
+msgstr "Comment contribuer"
 
 msgid "Your position"
 msgstr "Votre position"

@@ -202,7 +202,7 @@ test('Test 24/7', async () => {
     return document.querySelector('.poi_panel__info__hours__24_7').innerText.trim()
   })
 
-  expect(hours).toEqual('Ouvert 24h/24')
+  expect(hours).toEqual('Ouvert 24h/24 et 7j/7')
 })
 
 test('check pre-loaded Poi error handling', async () => {

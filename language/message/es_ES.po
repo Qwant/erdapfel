@@ -1,18 +1,19 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2018
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-31 15:59+0000\n"
+"POT-Creation-Date: 2019-02-26 16:44+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2018\n"
-"Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/"
+"teams/89416/es_ES/)\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -64,6 +65,78 @@ msgstr "Aseos parcialmente accesibles para sillas de ruedas "
 
 msgid "No wheelchair accessible toilets"
 msgstr "No hay baños accesibles para sillas de ruedas"
+
+msgid "Qwant is also"
+msgstr ""
+
+msgid "Qwant.com"
+msgstr ""
+
+msgid "Qwant Music"
+msgstr ""
+
+msgid "Qwant boards"
+msgstr ""
+
+msgid "Qwant on Android"
+msgstr ""
+
+msgid "Qwant on iOS"
+msgstr ""
+
+msgid "Qwant Junior"
+msgstr ""
+
+msgid "Qwant Lite"
+msgstr ""
+
+msgid "About Qwant"
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
+msgid "Press"
+msgstr ""
+
+msgid "Jobs"
+msgstr ""
+
+msgid "F.A.Q."
+msgstr ""
+
+msgid "Maps legal notices"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "About us"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Results ranking"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Share Qwant"
+msgstr ""
+
+msgid "on Twitter"
+msgstr ""
+
+msgid "on Facebook"
+msgstr ""
+
+msgid "Qwant Maps"
+msgstr ""
+
+msgid "Search with Qwant Maps"
+msgstr ""
 
 msgid "The map that respects your privacy"
 msgstr "El mapa respeta tu privacidad"
@@ -689,8 +762,7 @@ msgstr "zoo"
 msgid "Favorite places"
 msgstr "Lugares preferidos"
 
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "No tiene lugares preferidos. <br>Puede añadir uno mediante un clic en un "
 "lugar"
@@ -707,14 +779,23 @@ msgstr "Borrar"
 msgid "filter"
 msgstr "filtro"
 
-msgid "Register masq"
-msgstr "Registrar masq"
+msgid "Log in with Masq"
+msgstr ""
 
-msgid "We use MASQ to keep your preference data safe"
-msgstr "Utilizamos MASQ para mantener seguros tus datos de preferencias "
+msgid "Use MASQ to sync your personal data across your devices"
+msgstr ""
 
-msgid "Register"
-msgstr "Registrarse"
+msgid "Log in"
+msgstr ""
+
+msgid "Logging in"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "DIRECTIONS"
+msgstr ""
 
 msgid "SEE MORE"
 msgstr ""
@@ -761,9 +842,6 @@ msgstr "Servicios de Qwant Maps"
 msgid "YOUR FAVORITES"
 msgstr "TUS FAVORITOS"
 
-msgid "ITINERARY"
-msgstr "ITINERARIO"
-
 msgid "Share favorite"
 msgstr "Compartir el favorito"
 
@@ -783,8 +861,8 @@ msgid "Geolocation with privacy!"
 msgstr "¡Geolocalización con privacidad!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -808,7 +886,7 @@ msgstr "VALE"
 msgid "return"
 msgstr ""
 
-msgid "itinerary"
+msgid "directions"
 msgstr ""
 
 msgid "Start point"
@@ -827,6 +905,15 @@ msgid "PREVIEW"
 msgstr ""
 
 msgid "DETAILS"
+msgstr ""
+
+msgid "Directions"
+msgstr "Itinerario"
+
+msgid "Favorites"
+msgstr ""
+
+msgid "How to contribute"
 msgstr ""
 
 msgid "Your position"

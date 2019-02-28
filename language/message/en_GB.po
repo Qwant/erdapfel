@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 09:48+0100\n"
+"POT-Creation-Date: 2019-02-26 16:44+0100\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -60,6 +60,78 @@ msgid "Partial wheelchair accessible toilets"
 msgstr ""
 
 msgid "No wheelchair accessible toilets"
+msgstr ""
+
+msgid "Qwant is also"
+msgstr ""
+
+msgid "Qwant.com"
+msgstr ""
+
+msgid "Qwant Music"
+msgstr ""
+
+msgid "Qwant boards"
+msgstr ""
+
+msgid "Qwant on Android"
+msgstr ""
+
+msgid "Qwant on iOS"
+msgstr ""
+
+msgid "Qwant Junior"
+msgstr ""
+
+msgid "Qwant Lite"
+msgstr ""
+
+msgid "About Qwant"
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
+msgid "Press"
+msgstr ""
+
+msgid "Jobs"
+msgstr ""
+
+msgid "F.A.Q."
+msgstr ""
+
+msgid "Maps legal notices"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "About us"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Results ranking"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Share Qwant"
+msgstr ""
+
+msgid "on Twitter"
+msgstr ""
+
+msgid "on Facebook"
+msgstr ""
+
+msgid "Qwant Maps"
+msgstr ""
+
+msgid "Search with Qwant Maps"
 msgstr ""
 
 msgid "The map that respects your privacy"
@@ -701,13 +773,22 @@ msgstr ""
 msgid "filter"
 msgstr ""
 
-msgid "Register masq"
+msgid "Log in with Masq"
 msgstr ""
 
-msgid "We use MASQ to keep your preference data safe"
+msgid "Use MASQ to sync your personal data across your devices"
 msgstr ""
 
-msgid "Register"
+msgid "Log in"
+msgstr ""
+
+msgid "Logging in"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "DIRECTIONS"
 msgstr ""
 
 msgid "SEE MORE"
@@ -755,9 +836,6 @@ msgstr ""
 msgid "YOUR FAVORITES"
 msgstr ""
 
-msgid "ITINERARY"
-msgstr ""
-
 msgid "Share favorite"
 msgstr ""
 
@@ -798,7 +876,7 @@ msgstr ""
 msgid "return"
 msgstr ""
 
-msgid "itinerary"
+msgid "directions"
 msgstr ""
 
 msgid "Start point"
@@ -817,6 +895,15 @@ msgid "PREVIEW"
 msgstr ""
 
 msgid "DETAILS"
+msgstr ""
+
+msgid "Directions"
+msgstr ""
+
+msgid "Favorites"
+msgstr ""
+
+msgid "How to contribute"
 msgstr ""
 
 msgid "Your position"
