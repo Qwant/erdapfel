@@ -8,14 +8,14 @@
 
 <div class=itinerary_mobile_step_buttons>
   {{? this.stepId > 0 }}
-    <div class=itinerary_mobile_step_button_left {{= click(this.previous, this) }}></div>
+    <div class="itinerary_mobile_step_button icon-chevron-left" {{= click(this.previous, this) }}></div>
   {{??}}
-    <div class="itinerary_mobile_step_button_left itinerary_mobile_step_button--disabled"></div>
+    <div class="itinerary_mobile_step_button icon-chevron-left itinerary_mobile_step_button--disabled"></div>
   {{?}}
 
   {{? this.stepId < this.activeRoute.legs[0].steps.length - 1 }}
-    <div class=itinerary_mobile_step_button_right {{= click(this.next, this) }}></div>
+    <div class="itinerary_mobile_step_button icon-chevron-right" {{= click(this.next, this) }}></div>
   {{??}}
-    <div class="itinerary_mobile_step_button_right itinerary_mobile_step_button--disabled"></div>
+    <div class="itinerary_mobile_step_button icon-chevron-right itinerary_mobile_step_button--disabled"></div>
   {{?}}
 </div>

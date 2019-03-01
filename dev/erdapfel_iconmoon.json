@@ -2,7 +2,7 @@
   "metadata": {
     "name": "maps-tile",
     "lastOpened": 0,
-    "created": 1525702343908
+    "created": 1551453878096
   },
   "iconSets": [
     {
@@ -138,7 +138,7 @@
         },
         {
           "id": 19,
-          "order": 59,
+          "order": 0,
           "prevSize": 24,
           "code": 59686,
           "name": "arrow-right",
@@ -182,7 +182,7 @@
           "prevSize": 24,
           "code": 59678,
           "name": "at-sign",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 26,
@@ -262,7 +262,7 @@
           "prevSize": 24,
           "code": 59676,
           "name": "check",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 45,
@@ -285,16 +285,16 @@
           "order": 30,
           "prevSize": 24,
           "code": 59667,
-          "name": "chevron-left2",
-          "tempChar": ""
+          "name": "chevron-left",
+          "tempChar": ""
         },
         {
           "id": 49,
           "order": 26,
           "prevSize": 24,
           "code": 59668,
-          "name": "chevron-right2",
-          "tempChar": ""
+          "name": "chevron-right",
+          "tempChar": ""
         },
         {
           "id": 50,
@@ -318,7 +318,7 @@
           "prevSize": 24,
           "code": 59665,
           "name": "chevrons-right",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 54,
@@ -390,7 +390,7 @@
           "prevSize": 24,
           "code": 59675,
           "name": "copy",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 70,
@@ -454,7 +454,7 @@
           "prevSize": 24,
           "code": 59663,
           "name": "corner-up-right",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 78,
@@ -474,7 +474,7 @@
           "prevSize": 24,
           "code": 59697,
           "name": "crosshair",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 82,
@@ -538,7 +538,7 @@
           "prevSize": 24,
           "code": 59666,
           "name": "facebook",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 96,
@@ -638,7 +638,7 @@
           "prevSize": 24,
           "code": 59679,
           "name": "hash",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 119,
@@ -726,7 +726,7 @@
           "prevSize": 24,
           "code": 59677,
           "name": "mail",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 140,
@@ -734,11 +734,15 @@
           "prevSize": 24,
           "code": 59680,
           "name": "map",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 141,
-          "order": 0
+          "order": 79,
+          "prevSize": 24,
+          "code": 59686,
+          "name": "map-pin",
+          "tempChar": ""
         },
         {
           "id": 142,
@@ -17481,7 +17485,7 @@
         {
           "order": 72,
           "id": 25,
-          "name": "car",
+          "name": "drive",
           "prevSize": 32,
           "code": 59684,
           "tempChar": ""
@@ -18391,7 +18395,6 @@
       "colorThemeIdx": 0
     }
   ],
-  "uid": -1,
   "preferences": {
     "showGlyphs": true,
     "showCodes": true,
@@ -18401,22 +18404,30 @@
     "fontPref": {
       "prefix": "icon-",
       "metadata": {
-        "fontFamily": "icomoon"
+        "fontFamily": "icomoon",
+        "majorVersion": 1,
+        "minorVersion": 0
       },
       "metrics": {
         "emSize": 1024,
         "baseline": 6.25,
         "whitespace": 50
       },
-      "embed": false
+      "embed": false,
+      "noie8": true,
+      "ie7": false,
+      "showMetadata": false
     },
     "imagePref": {
       "prefix": "icon-",
       "png": true,
       "useClassSelector": true,
       "color": 0,
-      "bgColor": 16777215
+      "bgColor": 16777215,
+      "name": "icomoon",
+      "classSelector": ".icon"
     },
     "historySize": 50
-  }
+  },
+  "uid": -1
 }

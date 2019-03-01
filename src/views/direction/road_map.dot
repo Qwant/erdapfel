@@ -6,7 +6,7 @@
     {{? this.isMobile() }}
       <div class='itinerary_leg{{= route.isActive ? ' itinerary_leg--active' : '' }}' id='itinerary_leg_{{= route.id }}''>
         <div class=itinerary_leg_inner>
-          <div class='itinerary_leg_close' {{= click(this.close_leg, this) }}></div>
+          <div class='itinerary_leg_close icon-x' {{= click(this.close_leg, this) }}></div>
           <div class='itinerary_leg_duration'>{{= this.duration(this.routes[route.id].legs[0].duration, false) }}</div>
           <div class='itinerary_leg_distance'>{{= this.distance(this.routes[route.id].legs[0].distance) }}</div>
           <div class='itinerary_leg_via'>
@@ -21,7 +21,7 @@
     {{??}}
       <div class="itinerary_leg {{= route.isActive ? ' itinerary_leg--active' : '' }}" id="itinerary_leg_{{= route.id }}" {{= click(this.toggleRoute, this, route.id) }}>
         <div class=itinerary_leg_inner>
-          <div class='itinerary_leg_icon itinerary_leg_icon_{{= this.vehicle }}'></div>
+          <div class='itinerary_leg_icon {{= this.getVehicleIcon() }}'></div>
           <div class='itinerary_leg_via'>
             <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[route.id].legs[0].summary.replace(/^(.*), (.*)$/, "$1") }}</div>
             <div class='itinerary_leg_via_details' {{= click(this.toggleDetail, this, route.id) }}>

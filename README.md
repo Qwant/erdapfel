@@ -63,7 +63,7 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 When starting the server, add `TILEVIEW_system_evalFiles=false` to your config.
 
 ### A note about webfont
-IconFont come from icomoon, the icomoon project is kept in dev/erdapfel_iconmoon.json file. You can open it by drag drop this file in the icomoon web page.
+The icon font comes from icomoon, the icomoon project is kept in `dev/erdapfel_iconmoon.json` file. You can open it by drag and drop this file on the icomoon web page.
 
 ### Test
 
