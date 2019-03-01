@@ -1,10 +1,9 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?z78a26');
-  src:  url('../fonts/icomoon.eot?z78a26#iefix') format('embedded-opentype'),
-  url('../fonts/icomoon.ttf?z78a26') format('truetype'),
-  url('../fonts/icomoon.woff?z78a26') format('woff'),
-  url('../fonts/icomoon.svg?z78a26#icomoon') format('svg');
+  src:
+    url('../fonts/icomoon.ttf?7iiu1n') format('truetype'),
+    url('../fonts/icomoon.woff?7iiu1n') format('woff'),
+    url('../fonts/icomoon.svg?7iiu1n#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -51,6 +50,9 @@
 .icon-corner-up-right:before {
   content: "\e90f";
 }
+.icon-crosshair:before {
+  content: "\e931";
+}
 .icon-facebook:before {
   content: "\e912";
 }
@@ -63,17 +65,26 @@
 .icon-map:before {
   content: "\e920";
 }
+.icon-map-pin:before {
+  content: "\e926";
+}
 .icon-minus:before {
   content: "\e919";
 }
 .icon-more-horizontal:before {
   content: "\e916";
 }
+.icon-navigation:before {
+  content: "\e922";
+}
 .icon-plus:before {
   content: "\e91a";
 }
 .icon-share-2:before {
   content: "\e917";
+}
+.icon-shuffle:before {
+  content: "\e927";
 }
 .icon-trash:before {
   content: "\e918";
@@ -86,6 +97,15 @@
 }
 .icon-x:before {
   content: "\e910";
+}
+.icon-bike:before {
+  content: "\e923";
+}
+.icon-drive:before {
+  content: "\e924";
+}
+.icon-foot:before {
+  content: "\e925";
 }
 .icon-icon_chevron-down:before {
   content: "\e900";

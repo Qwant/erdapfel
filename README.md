@@ -62,6 +62,9 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 **hint**: to debug the application from a browser, it is preferable to disable the dynamic loading of javascript files.
 When starting the server, add `TILEVIEW_system_evalFiles=false` to your config.
 
+### A note about webfont
+The icon font comes from icomoon, the icomoon project is kept in `dev/erdapfel_iconmoon.json` file. You can open it by drag and drop this file on the icomoon web page.
+
 ### Test
 
 run `TEST=true npm run build` then `npm run test` to launch all tests.

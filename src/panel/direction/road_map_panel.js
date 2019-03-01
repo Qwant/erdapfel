@@ -115,4 +115,17 @@ export default class RoadMapPanel {
   zoomStep(step){
     fire('zoom_step', step);
   }
+
+  getVehicleIcon(){
+    switch(this.vehicle){
+      case 'driving':
+        return 'icon-drive'
+      case 'walking':
+        return 'icon-foot'
+      case 'cycling':
+        return 'icon-bike'
+      default:
+        return ''
+    }
+  }
 }

@@ -3,9 +3,9 @@
   overflow: visible;
   font-size: 12px;
   width: 400px;
-  background: url('../images/direction_icons/panel_top.svg') #f4f6fa repeat-x;
+  background: url("../images/panel_top.svg") #f4f6fa repeat-x;
   background-size: 100% 5px;
-  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
+  @include card_shadow();
   border-radius: 3px;
 }
 
@@ -22,10 +22,10 @@
   height: 20px;
   float: right;
   margin: 9px;
-  background: url('../images/direction_icons/x.svg') no-repeat center center;
-  color: #5c6f84;
+  color: $secondary_text;
   background-size: 16px;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .itinerary_title {
@@ -37,8 +37,8 @@
 }
 
 .itinerary_fields {
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
+  background: $background;
+  @include card_shadow();
   width: 364px;
   margin: 0 18px;
   position: relative;
@@ -51,15 +51,15 @@
 }
 
 .itinerary_icon_origin {
-  background: url("../images/direction_icons/crosshair.svg") no-repeat center center;
-  color: #5c6f84;
-  background-size: 16px;
+  font-size: 16px;
+  padding: 10px;
+  color: $secondary_text;
 }
 
 .itinerary_icon_destination {
-  background: url("../images/direction_icons/map-pin.svg") no-repeat center center;
-  color: #5c6f84;
-  background-size: 16px;
+  color: $secondary_text;
+  font-size: 16px;
+  padding: 10px;
 }
 
 #itinerary_input_origin, #itinerary_input_destination {
@@ -67,7 +67,7 @@
   height: 40px;
   border: none;
   font-size: 17px;
-  color: #353c52;
+  color: $primary_text;
 }
 
 #itinerary_input_origin:disabled, #itinerary_input_destination:disabled {
@@ -85,8 +85,7 @@
 }
 
 .itinerary_invert_origin_destination {
-  background: url("../images/direction_icons/shuffle.svg") no-repeat center center;
-  color: #5c6f84;
+  color: $secondary_text;
   background-size: 15px;
   position: absolute;
   width: 17px;
@@ -94,6 +93,7 @@
   right: 10px;
   top: 33px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .itinerary_vehicles {
@@ -107,45 +107,25 @@
   min-width: 50px;
   height: 28px;
   margin: 0 18px;
+  padding-top: 5px;
   border-radius: 14px;
-  background: #5c6f84;
+  color: $secondary_text;
   cursor: pointer;
+  font-size: 18px;
 }
 
-.itinerary_button_label_driving {
-  background: url('../images/direction_icons/car-grey.svg') no-repeat center center;
-  color: #5c6f84;
-}
-.itinerary_button_label_driving.label_active {
-  background: url('../images/direction_icons/car-white.svg') no-repeat center center #5c6f84;
-  color: #fff;
-}
-
-.itinerary_button_label_cycling {
-  background: url('../images/direction_icons/bike-grey.svg') no-repeat center center;
-  color: #5c6f84;
-}
-.itinerary_button_label_cycling.label_active {
-  background: url('../images/direction_icons/bike-white.svg') no-repeat center center #5c6f84;
-  color: #fff;
-}
-
-.itinerary_button_label_walking {
-  background: url('../images/direction_icons/foot-grey.svg') no-repeat center center;
-  color: #5c6f84;
-}
-.itinerary_button_label_walking.label_active {
-  background: url('../images/direction_icons/foot-white.svg') no-repeat center center #5c6f84;
-  color: #fff;
+.label_active {
+  background: $secondary_text;
+  color: $background;
 }
 
 .itinerary_autocomplete {
   position: fixed;
   width: 364px;
-  background: #fff;
+  background: $background;
   z-index: 2;
   font-size: 16px;
-  color: #353c52;
+  color: $primary_text;
 }
 
 .itinerary_autocomplete_item {
@@ -155,7 +135,7 @@
 
 .itinerary_suggest_your_position,
 .itinerary_autocomplete_item {
-  border-left: 3px solid #fff;
+  border-left: 3px solid $background;
 }
 .itinerary_suggest_your_position:hover,
 .itinerary_autocomplete_item:hover {
@@ -171,7 +151,7 @@
 }
 
 .itinerary_roadmap {
-  background: #fff;
+  background: $background;
   overflow: auto;
   max-height: calc(100vh - 290px);
 }
@@ -180,8 +160,8 @@
   min-height: 95px;
   position: relative;
   cursor: pointer;
-  border-left: 4px solid #fff;
-  background: #fff;
+  border-left: 4px solid $background;
+  background: $background;
 }
 
 .itinerary_leg--active {
@@ -209,21 +189,8 @@
   position: absolute;
   left: 34px;
   top: 35px;
-}
-
-.itinerary_leg_icon_driving {
-  background: url('../images/direction_icons/car.svg') no-repeat center center;
-  color: #353c52;
-}
-
-.itinerary_leg_icon_walking {
-  background: url('../images/direction_icons/foot.svg') no-repeat center center;
-  color: #353c52;
-}
-
-.itinerary_leg_icon_cycling {
-  background: url('../images/direction_icons/bike.svg') no-repeat center center;
-  color: #353c52;
+  font-size: 18px;
+  color: $primary_text;
 }
 
 .itinerary_leg_via {
@@ -235,13 +202,13 @@
 
 .itinerary_leg_via_title {
   font-size: 16px;
-  color: #353c52;
+  color: $primary_text;
 }
 
 .itinerary_leg_via_details {
   font-size: 12px;
   font-weight: 500;
-  color: #353c52;
+  color: $primary_text;
   margin: 10px 0 0;
 }
 
@@ -252,7 +219,7 @@
 .itinerary_leg_via_details_icon {
   display: inline-block;
   background: url('../images/direction_icons/arrow-right.svg') no-repeat center center;
-  color: #353c52;
+  color: $primary_text;
   width: 15px;
   height: 15px;
   margin: 0 5px 0 0;
@@ -280,7 +247,7 @@
 
 .itinerary_leg_distance {
   font-size: 16px;
-  color: #353c52;
+  color: $primary_text;
   margin: 5px 0 0;
 }
 
@@ -298,7 +265,7 @@
   height: 14px;
   border-radius: 50%;
   background: #4ba2ea;
-  border: 1px solid #fff;
+  border: 1px solid $background;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
 }
 
@@ -306,7 +273,7 @@
   width: 19px;
   height: 19px;
   border-radius: 50%;
-  background: #fff;
+  background: $background;
   border: 2px solid #4ba2ea;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
 }
@@ -320,7 +287,7 @@
 }
 
 .itinerary_marker_step {
-  background: #fff;
+  background: $background;
   width: 5px;
   height: 5px;
   margin: 0;
@@ -349,7 +316,7 @@
   padding-left: 37px;
   position: relative;
   left: -37px;
-  border-left: 4px solid #5c6f84;
+  border-left: 4px solid $secondary_text;
 }
 
 .itinerary_roadmap_step:hover,
@@ -376,7 +343,7 @@
 
 .itinerary_roadmap_instruction {
   font-size: 14px;
-  color: #353c52;
+  color: $primary_text;
 }
 
 .itinerary_roadmap_distance {
@@ -386,14 +353,14 @@
   right: -50px;
   bottom: -7px;
   font-size: 12px;
-  color: #5c6f84;
+  color: $secondary_text;
 }
 
 .itinerary_suggest_your_position {
   border-bottom: 1px solid #e0e1e6;
   padding: 15px 10px;
   font-size: 16px;
-  color: #353c52;
+  color: $primary_text;
 }
 
 .itinerary_suggest_your_position_icon {
@@ -401,7 +368,7 @@
   height: 18px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../images/direction_icons/geoloc.svg');
+  font-size: 18px;
   background-size: 100%;
   margin: 0 10px 0 0;
 }
@@ -422,14 +389,14 @@
 
 .itinerary_suggest_line1 {
   font-size: 16px;
-  color: #353c52;
+  color: $primary_text;
   padding: 5px 5px 5px 20px;
 }
 
 .itinerary_suggest_line2 {
   margin: 0;
   font-size: 14px;
-  color: #5c6f84;
+  color: $secondary_text;
   padding: 0px 5px 5px 29px;
 }
 
@@ -440,7 +407,7 @@
 }
 
 .itinerary_autocomplete .autocomplete-icon.icon {
-  color: #5c6f84;
+  color: $secondary_text;
 }
 
 /* ../images/direction_icons */
@@ -513,14 +480,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: url('../images/direction_icons/top_mobile.svg') #f4f6fa no-repeat center top;
+    background: url("../images/backgrounds/top_mobile.svg") #f4f6fa no-repeat center top;
     background-size: 100% auto;
     position: fixed;
     z-index: 5;
   }
   
   .itinerary_title {
-    color: #fff;
+    color: $background;
   }
   
   .itinerary_fields {
@@ -554,7 +521,7 @@
     display: block;
     cursor: pointer;
     text-transform: uppercase;
-    color: #fff;
+    color: $background;
     line-height: 17px;
     position: absolute;
     left: 5px;
@@ -567,10 +534,10 @@
     vertical-align: middle;
     width: 18px;
     height: 18px;
-    background-image: url('../images/direction_icons/chevron-left-white.svg');
     position: relative;
     top: -4px;
     margin: 0 5px 0 0;
+    font-size: 22px;
   }
   
   .itinerary_container_focused {
@@ -590,7 +557,7 @@
     width: 100% !important;
     height: 60px !important;
     line-height: 60px;
-    background: #fff;
+    background: $background;
     padding: 0 10px 0;
     font-size: 16px;
   }
@@ -607,7 +574,7 @@
     bottom: 10px;
     left: 10px;
     width: calc(100vw - 20px);
-    background: #fff;
+    background: $background;
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
   }
@@ -622,7 +589,7 @@
 
   .itinerary_leg--active,
   .itinerary_leg:hover {
-    border: 4px solid #fff;
+    border: 4px solid $background;
   }
 
   .itinerary_leg_close {
@@ -673,38 +640,26 @@
     height: 16px;
     display: inline-block;
     vertical-align: middle;
-    background: url('../images/direction_icons/navigation.svg');
     background-size: 100% auto;
     margin: 0 10px 0 10px;
+    font-size: 16px;
   }
   
   .itinerary_leg_close {
     position: absolute;
-    top: 5px;
+    top: 7px;
     right: 5px;
     width: 20px;
     height: 20px;
-    background: url('../images/direction_icons/x.svg') no-repeat center center;
-    color: #5c6f84;
-    background-size: 16px;
-  }
-  
-  #itinerary_container.mobile_step_by_step {
-    background: url('../images/direction_icons/top_mobile.svg') transparent no-repeat center top;
-    background-size: 100% auto;
-    height: 50px;
-    box-shadow: none;
-  }
-  
-  #itinerary_container.mobile_step_by_step .itinerary_fields,
-  #itinerary_container.mobile_step_by_step .itinerary_vehicles {
-    display: none;
+    text-align: center;
+    font-size: 16px;
+    color: $secondary_text;
   }
   
   .itinerary_mobile_step {
     position: fixed;
     top: 36px;
-    background: #fff;
+    background: $background;
     margin: 0 15px;
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
@@ -744,7 +699,7 @@
   .itinerary_mobile_step_buttons {
     width: 96px;
     height: 48px;
-    background: #fff;
+    background: $background;
     position: fixed;
     bottom: 38px;
     right: 8px;
@@ -758,36 +713,29 @@
     float: left;
   }
   
-  .itinerary_mobile_step_button_left {
+  .itinerary_mobile_step_button {
     border-right: 1px solid #f4f6fa;
-    background: url('../images/direction_icons/chevron-left.svg') no-repeat center center;
-    background-size: 24px 24px;
-  }
-  
-  .itinerary_mobile_step_button_right {
-    border-right: 1px solid #f4f6fa;
-    background: url('../images/direction_icons/chevron-right.svg') no-repeat center center;
-    background-size: 24px 24px;
-  }
+    font-size: 24px;
+    padding-bottom: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  .itinerary_mobile_step_button_left.itinerary_mobile_step_button--disabled {
-    background-image: url('../images/direction_icons/chevron-left-grey.svg');
-  }
-
-  .itinerary_mobile_step_button_right.itinerary_mobile_step_button--disabled {
-    background-image: url('../images/direction_icons/chevron-right-grey.svg');
+    &.itinerary_mobile_step_button--disabled {
+      color: $primary_clear
+    }
   }
 
   .service_panel_mobile__direction {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    color: #5c6f84;
+    color: $secondary_text;
     position: fixed;
     right: 9px;
     bottom: 115px;
-    background: #fff;
-    box-shadow: rgba(0, 0, 0, .16) 1px 1px 6px;
+    background: $background;
+    @include card_shadow();
     font-size: 24px;
   }
 
@@ -812,7 +760,7 @@
     top: 5px;
     left: 0;
     width: 100%;
-    background: #fff;
+    background: $background;
     padding: 20px 50px 20px 20px;
     height: 60px;
     line-height: 45px;
