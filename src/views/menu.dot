@@ -12,16 +12,12 @@
       <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
     </div>
     <div class="menu__panel__items_container">
-      <h2 class="menu__panel__section_title">
-        <i class="menu__panel__section__icon icon-map"></i>
-        Qwant Maps
-      </h2>
-      <div class="menu__panel__section">
+      <div class="menu__panel__section menu__panel__section--internal">
         {{? this.isDirectionActive }}
-          <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>{{= _('Directions' , 'menu') }}</button>
+          <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}><i class="menu__panel__action__icon icon-corner-up-right"></i> {{= _('Directions' , 'menu') }}</button>
         {{?}}
-        <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>{{= _('Favorites', 'menu') }}</button>
-        <a class="menu__panel__action menu__panel__section_title__link" href="https://github.com/QwantResearch/qwantmaps/blob/master/contributing.md" rel="noopener" target="_blank">{{= _('How to contribute', 'menu') }}</a>
+        <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}><i class="menu__panel__action__icon icon-icon_star"></i>{{= _('Favorites', 'menu') }}</button>
+        <a class="menu__panel__action menu__panel__section_title__link" href="https://github.com/QwantResearch/qwantmaps/blob/master/contributing.md" rel="noopener" target="_blank"><i class="menu__panel__action__icon icon-zap"></i>{{= _('How to contribute', 'menu') }}</a>
       </div>
 
       {{~ this.menuItems:menuItem }}

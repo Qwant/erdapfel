@@ -75,6 +75,10 @@
   padding: 5px 0;
 }
 
+.menu__panel__section--internal {
+  border-left: none;
+}
+
 .menu__panel__link, .menu__panel__action {
   display: block;
   font-size: 16px;
@@ -88,6 +92,27 @@
 
 .menu__panel__action {
   cursor: pointer;
+}
+
+.menu__panel__section--internal {
+  .menu__panel__action {
+    margin: 12px 0 24px 0;
+  }
+
+  .menu__panel__action__icon {
+    margin: -5px 20px 0 0;
+    font-size: 22px;
+    vertical-align: middle;
+  }
+
+  .icon-zap {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url('../images/direction_icons/zap.svg') no-repeat center center;
+    background-size: 100%;
+  }
+
 }
 
 .menu__button {

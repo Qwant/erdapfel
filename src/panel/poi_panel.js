@@ -65,6 +65,7 @@ PoiPanel.prototype.isDisplayed = function() {
 
 
 PoiPanel.prototype.close = async function() {
+  document.querySelector('#panels').classList.remove('panels--hide-services')
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
   this.active = false
   this.panel.update()
@@ -73,6 +74,9 @@ PoiPanel.prototype.close = async function() {
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
+  setTimeout(() => {
+    document.querySelector('#panels').classList.add('panels--hide-services')
+  }, 200)
   Telemetry.add(Telemetry.POI_RESTORE)
   let hotLoadedPoi = new HotLoadPoi()
   if(hotLoadedPoi.id === id) {
@@ -81,7 +85,6 @@ PoiPanel.prototype.restorePoi = async function (id) {
       fire('map_mark_poi', this.poi)
       fire('fit_map', this.poi, layouts.POI)
     })
-
     this.poi.stored = await isPoiFavorite(this.poi)
     this.active = true
     this.sceneState.setPoiId(this.poi.id)
@@ -92,6 +95,9 @@ PoiPanel.prototype.restorePoi = async function (id) {
 }
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {
+  setTimeout(() => {
+    document.querySelector('#panels').classList.add('panels--hide-services')
+  }, 200)
   this.poi = poi
   this.card = true
   this.poi.stored = await isPoiFavorite(this.poi)

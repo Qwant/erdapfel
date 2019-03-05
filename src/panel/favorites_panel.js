@@ -84,6 +84,7 @@ Favorite.prototype.getAll = async function () {
 }
 
 Favorite.prototype.open = async function() {
+  document.querySelector('#panels').classList.add('panels--hide-services')
   Telemetry.add(Telemetry.FAVORITE_OPEN)
   this.displayed = true
   await this.getAll()
@@ -93,6 +94,7 @@ Favorite.prototype.open = async function() {
 }
 
 Favorite.prototype.close = function() {
+  document.querySelector('#panels').classList.remove('panels--hide-services')
   this.closeMoreMenu()
   this.active = false
   this.displayed = false
