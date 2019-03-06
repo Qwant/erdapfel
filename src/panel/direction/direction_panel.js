@@ -129,17 +129,18 @@ export default class DirectionPanel {
 
   close() {
     SearchInput.unMinify()
+    document.querySelector('#panels').classList.remove('panels--direction-open')
+    document.querySelector('.top_bar').classList.remove('top_bar--direction-open')
     fire('clean_route')
     this.active = false
     this.panel.update()
     this.cleanDirection()
     UrlState.pushUrl()
-    document.querySelectorAll('.menu__button')[0].style.opacity = 1
-    document.querySelectorAll('.search_form')[0].style.opacity = 1
-    document.querySelectorAll('.direction_shortcut')[0].style.opacity = 1
   }
 
   async open(options = {}) {
+    document.querySelector('#panels').classList.add('panels--direction-open')
+    document.querySelector('.top_bar').classList.add('top_bar--direction-open')
     if(options.poi) {
       this.destination = options.poi
     }
@@ -150,9 +151,6 @@ export default class DirectionPanel {
     this.initDirection()
     UrlState.pushUrl()
     this.searchDirection()
-    document.querySelectorAll('.menu__button')[0].style.opacity = 0
-    document.querySelectorAll('.search_form')[0].style.opacity = 0
-    document.querySelectorAll('.direction_shortcut')[0].style.opacity = 0
   }
 
   async searchDirection(options) {

@@ -20,6 +20,19 @@ BODY {
   width: 100%;
 }
 
+.panels--direction-open {
+  .menu__button,
+  .direction_shortcut {
+    visibility: hidden;
+  }
+}
+
+.top_bar--direction-open {
+  .search_form {
+    visibility: hidden;
+  }
+}
+
 #info {
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   background-color: $background;
