@@ -27,3 +27,5 @@
   </div>
   {{= this.roadMapPanel.render() }}
 </div>
+
+<button class="direction_shortcut icon-corner-up-right" {{= click(this.open, this) }}></div>

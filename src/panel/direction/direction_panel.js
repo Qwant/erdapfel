@@ -129,6 +129,9 @@ export default class DirectionPanel {
 
   close() {
     SearchInput.unMinify()
+    document.querySelector('#panels').classList.remove('panels--direction-open')
+    document.querySelector('.top_bar').classList.remove('top_bar--direction-open')
+    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active')
     fire('clean_route')
     this.active = false
     this.panel.update()
@@ -137,6 +140,8 @@ export default class DirectionPanel {
   }
 
   async open(options = {}) {
+    document.querySelector('#panels').classList.add('panels--direction-open')
+    document.querySelector('.top_bar').classList.add('top_bar--direction-open')
     if(options.poi) {
       this.destination = options.poi
     }

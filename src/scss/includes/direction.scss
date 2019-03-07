@@ -472,6 +472,11 @@
   display: none;
 }
 
+.direction_shortcut {
+  display: none;
+  cursor: pointer;
+}
+
 
 /* Mobile */
 
@@ -481,7 +486,7 @@
     left: 0;
     width: 100%;
     background: url("../images/backgrounds/top_mobile.svg") #f4f6fa no-repeat center top;
-    background-size: 100% auto;
+    background-size: 640px auto;
     position: fixed;
     z-index: 5;
   }
@@ -701,7 +706,7 @@
     height: 48px;
     background: $background;
     position: fixed;
-    bottom: 38px;
+    bottom: 30px;
     right: 8px;
     border-radius: 3px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -773,7 +778,27 @@
 
   .autocomplete_suggestions {
     width: 100% !important;
-    top: 55px !important;
+    top: 65px !important;
     left: 0 !important;
+  }
+
+  .direction_shortcut {
+    display: block;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: rgba(0,0,0,.2) 0 2px 12px 0;
+    position: fixed;
+    bottom: 100px;
+    right: 9px;
+    color: #5c6f84;
+    font-size: 25px;
+  }
+
+  .direction_shortcut:hover {
+    background: #353c52;
+    color: #fff;
+    background-size: 25px;
   }
 }

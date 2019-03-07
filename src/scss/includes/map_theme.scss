@@ -117,8 +117,6 @@
     background: rgba(255, 255, 255, 0.5);
   }
 
-
-
   .map_control_group {
     background: none;
     box-shadow: none;
@@ -133,6 +131,10 @@
       font-size: 24px;
       background: #fff;
       @include long_shadow();
+    }
+
+    &.itinerary_preview--active button {
+      margin-bottom: 38px;
     }
   }
 
