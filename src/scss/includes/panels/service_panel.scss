@@ -1,9 +1,5 @@
-.panels--hide-services {
-  .service_panel {
-    display: none;
-  }
-}
 .service_panel {
+  display: none;
   position: relative;
   height: 90px;
   width: $panel_width;
@@ -12,6 +8,10 @@
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
+}
+
+.service_panel--active {
+  display: block;
 }
 
 .service_panel__title {

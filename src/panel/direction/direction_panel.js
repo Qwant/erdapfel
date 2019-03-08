@@ -17,7 +17,6 @@ const destinationHandler = '#itinerary_input_destination'
 export default class DirectionPanel {
   constructor() {
     this.panel = new Panel(this, directionTemplate)
-    this.isDirectionPanel = true
     this.vehicles = {DRIVING : 'driving', WALKING : 'walking', CYCLING : 'cycling'}
     this.active = false
     this.origin = null
@@ -127,8 +126,11 @@ export default class DirectionPanel {
     }
   }
 
+  closeAction() {
+    PanelManager.resetLayout()
+  }
+
   close() {
-    document.querySelector('#panels').classList.remove('panels--hide-services')
     SearchInput.unMinify()
     document.querySelector('#panels').classList.remove('panels--direction-open')
     document.querySelector('.top_bar').classList.remove('top_bar--direction-open')
@@ -138,6 +140,7 @@ export default class DirectionPanel {
     this.panel.update()
     this.cleanDirection()
     UrlState.pushUrl()
+    PanelManager.openService()
   }
 
   async open(options = {}) {

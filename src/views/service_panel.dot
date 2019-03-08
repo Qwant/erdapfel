@@ -1,4 +1,4 @@
-<div class="service_panel">
+<div class="service_panel{{= this.active ? ' service_panel--active' : ''}}">
 
   <h3 class="service_panel__title">
     {{= _('Qwant Maps services', 'service panel') }}

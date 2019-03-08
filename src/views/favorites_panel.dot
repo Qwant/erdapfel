@@ -1,6 +1,6 @@
 <div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
   <div class="favorites_panel__scroll">
-    <p class="favorites_panel__close" {{= click(this.close, this) }}>
+    <p class="favorites_panel__close" {{= click(this.closeAction) }}>
       <i class="icon-x"></i>
     </p>
     {{? this.favoritePois.length === 0 }}

@@ -1,9 +1,12 @@
 import ApiPoi from "../adapters/poi/idunn_poi";
+import ServicePanel from "../panel/service_panel";
+import DirectionPanel from "../panel/direction/direction_panel";
+import PoiPanel from "../panel/poi_panel";
 
 function PanelManager() {}
 
 PanelManager.init = function () {
-  window.__panel_manager = {panels : [], listeners : []}
+  window.__panel_manager = {panels : []}
 }
 
 PanelManager.setPoi = async function(poi, options) {
@@ -14,10 +17,6 @@ PanelManager.setPoi = async function(poi, options) {
       panel.close()
     }
   })
-}
-
-PanelManager.registerListener = function (listener) {
-  window.__panel_manager.listeners.push(listener)
 }
 
 PanelManager.getPanels = function() {
@@ -40,11 +39,11 @@ PanelManager.loadPoiById = async function(id, options) {
     if(poi) {
       PanelManager.setPoi(poi, options)
     } else {
-      PanelManager.closeAll()
+      PanelManager.resetLayout()
     }
     return poi
   } else {
-    PanelManager.closeAll()
+    PanelManager.resetLayout()
   }
 }
 
@@ -61,7 +60,7 @@ PanelManager.openDirection = async function () {
 }
 
 PanelManager.openFavorite = async function () {
-  __panel_manager.panels.find((panel) => {
+  __panel_manager.panels.forEach((panel) => {
     if(panel.isFavoritePanel) {
       if(!panel.active) {
         panel.open()
@@ -72,9 +71,19 @@ PanelManager.openFavorite = async function () {
   })
 }
 
+PanelManager.togglePoi = async function (options) {
+  __panel_manager.panels.forEach((panel) => {
+    if(panel instanceof PoiPanel) {
+      panel.toggle(options)
+    } else if(panel.active) {
+      panel.close()
+    }
+  })
+}
+
 PanelManager.toggleDirection = async function (options) {
-  __panel_manager.panels.find((panel) => {
-    if(panel.isDirectionPanel) {
+  __panel_manager.panels.forEach((panel) => {
+    if(panel instanceof DirectionPanel) {
       panel.toggle(options)
     } else if(panel.active) {
       panel.close()
@@ -83,7 +92,7 @@ PanelManager.toggleDirection = async function (options) {
 }
 
 PanelManager.toggleFavorite = async function () {
-  __panel_manager.panels.find((panel) => {
+  __panel_manager.panels.forEach((panel) => {
     if(panel.isFavoritePanel) {
       panel.toggle()
     } else if(panel.active) {
@@ -92,9 +101,21 @@ PanelManager.toggleFavorite = async function () {
   })
 }
 
-PanelManager.closeAll = function() {
+PanelManager.openService = function() {
   __panel_manager.panels.forEach((panel) => {
-    panel.close()
+    if(panel instanceof ServicePanel) {
+      panel.open()
+    }
+  })
+}
+
+PanelManager.resetLayout = function() {
+  __panel_manager.panels.forEach((panel) => {
+    if(panel instanceof ServicePanel) {
+      panel.open()
+    } else {
+      panel.close()
+    }
   })
 }
 
