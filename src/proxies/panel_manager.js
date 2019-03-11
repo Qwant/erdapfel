@@ -49,11 +49,11 @@ PanelManager.loadPoiById = async function(id, options) {
 
 PanelManager.openDirection = async function () {
   __panel_manager.panels.find((panel) => {
-    if(panel.isDirectionPanel) {
+    if(panel instanceof DirectionPanel) {
       if(!panel.active) {
         panel.open()
       }
-    } else if(panel.active && !panel.isDirectionPanel) {
+    } else if(panel.active && !panel instanceof DirectionPanel) {
       panel.close()
     }
   })
@@ -61,11 +61,11 @@ PanelManager.openDirection = async function () {
 
 PanelManager.openFavorite = async function () {
   __panel_manager.panels.forEach((panel) => {
-    if(panel.isFavoritePanel) {
+    if(panel instanceof Favorite) {
       if(!panel.active) {
         panel.open()
       }
-    } else if(panel.active && !panel.isFavoritePanel) {
+    } else if(panel.active && !panel instanceof Favorite) {
       panel.close()
     }
   })
@@ -93,7 +93,7 @@ PanelManager.toggleDirection = async function (options) {
 
 PanelManager.toggleFavorite = async function () {
   __panel_manager.panels.forEach((panel) => {
-    if(panel.isFavoritePanel) {
+    if(panel instanceof Favorite) {
       panel.toggle()
     } else if(panel.active) {
       panel.close()
