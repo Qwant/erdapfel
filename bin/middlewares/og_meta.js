@@ -18,7 +18,7 @@ module.exports = function(config) {
     }
 
     return new Promise((resolve, reject) => {
-      let idunnUrl =`${idunnBaseUrl}/v1/pois/${id}?lang=${locale.code}`
+      let idunnUrl =`${idunnBaseUrl}/v1/places/${id}?lang=${locale.code}`
       request({
         url: idunnUrl,
         timeout: idunnTimeout,
@@ -78,7 +78,7 @@ module.exports = function(config) {
         if(poi) {
           poiMeta(poi, locale, req, res, next)
         } else {
-          res.redirect(307, '/')
+          res.redirect(307, config.system.baseUrl)
         }
       }).catch((error) => {
         req.logger.error({err:error})
