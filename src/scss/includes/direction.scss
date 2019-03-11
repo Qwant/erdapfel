@@ -5,7 +5,7 @@
   width: 400px;
   background: url("../images/panel_top.svg") #f4f6fa repeat-x;
   background-size: 100% 5px;
-  @include card_shadow();
+  @include long_shadow();
   border-radius: 3px;
 }
 
@@ -36,12 +36,27 @@
   color: #495063;
 }
 
+.itinerary__field__clear {
+  margin-left: -28px;
+  padding: 8px;
+  color: $secondary_text;
+  cursor: text;
+  font-size: 15px;
+  opacity: 0;
+}
+
+#itinerary_input_origin:valid:focus ~ .itinerary__field__clear, #itinerary_input_destination:valid:focus ~ .itinerary__field__clear {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .itinerary_fields {
   background: $background;
   @include card_shadow();
   width: 364px;
   margin: 0 18px;
   position: relative;
+  border-radius: 3px;
 }
 
 .itinerary_icon {
@@ -65,6 +80,7 @@
 #itinerary_input_origin, #itinerary_input_destination {
   width: 290px;
   height: 40px;
+  padding-right: 22px;
   border: none;
   font-size: 17px;
   color: $primary_text;
