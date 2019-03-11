@@ -171,6 +171,16 @@ export default class DirectionPanel {
     }
   }
 
+  clearOrigin() {
+    this.originInput.setValue('')
+    this.origin = null
+  }
+
+  clearDestination() {
+    this.destinationInput.setValue('')
+    this.destination = null
+  }
+
   /* urlState interface implementation */
 
   async restore() {
