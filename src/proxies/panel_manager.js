@@ -1,6 +1,7 @@
 import ApiPoi from "../adapters/poi/idunn_poi";
 import ServicePanel from "../panel/service_panel";
 import DirectionPanel from "../panel/direction/direction_panel";
+import FavoritePanel from "../panel/favorites_panel";
 import PoiPanel from "../panel/poi_panel";
 
 function PanelManager() {}
@@ -61,11 +62,11 @@ PanelManager.openDirection = async function () {
 
 PanelManager.openFavorite = async function () {
   __panel_manager.panels.forEach((panel) => {
-    if(panel instanceof Favorite) {
+    if(panel instanceof FavoritePanel) {
       if(!panel.active) {
         panel.open()
       }
-    } else if(panel.active && !panel instanceof Favorite) {
+    } else if(panel.active && !panel instanceof FavoritePanel) {
       panel.close()
     }
   })
@@ -93,7 +94,7 @@ PanelManager.toggleDirection = async function (options) {
 
 PanelManager.toggleFavorite = async function () {
   __panel_manager.panels.forEach((panel) => {
-    if(panel instanceof Favorite) {
+    if(panel instanceof FavoritePanel) {
       panel.toggle()
     } else if(panel.active) {
       panel.close()
