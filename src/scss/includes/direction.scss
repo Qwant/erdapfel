@@ -5,7 +5,7 @@
   width: 400px;
   background: url("../images/panel_top.svg") #f4f6fa repeat-x;
   background-size: 100% 5px;
-  @include long_shadow();
+  @include card_shadow();
   border-radius: 3px;
 }
 
