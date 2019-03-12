@@ -24,6 +24,10 @@ export default class Poi {
     return this.latLon
   }
 
+  getInputValue() {
+    return this.name
+  }
+
   getKey() {
     return `qmaps_v${version}_favorite_place_${this.id}`
   }

@@ -22,6 +22,10 @@ export default class IdunnPoi extends Poi {
     this.bbox = rawPoi.geometry.bbox
   }
 
+  getInputValue() {
+    return this.alternativeName
+  }
+
   static async poiApiLoad(id, options = {}) {
     let rawPoi = null
     let url = `${serviceConfig.idunn.url}/v1/places/${id}`
