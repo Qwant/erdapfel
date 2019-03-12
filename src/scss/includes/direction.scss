@@ -45,7 +45,8 @@
   opacity: 0;
 }
 
-#itinerary_input_origin:valid:focus ~ .itinerary__field__clear, #itinerary_input_destination:valid:focus ~ .itinerary__field__clear {
+#itinerary_input_origin:valid:focus ~ .itinerary__field__clear,
+#itinerary_input_destination:valid:focus ~ .itinerary__field__clear {
   opacity: 1;
   cursor: pointer;
 }
