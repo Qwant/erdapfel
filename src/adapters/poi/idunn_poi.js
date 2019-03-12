@@ -1,4 +1,4 @@
-import Poi, {POI_TYPE} from "./poi";
+import Poi from "./poi";
 import Ajax from "../../libs/ajax";
 import nconf from '../../../local_modules/nconf_getter/index'
 import Error from '../../adapters/error'
@@ -23,7 +23,12 @@ export default class IdunnPoi extends Poi {
   }
 
   getInputValue() {
-    return this.alternativeName
+    switch (this.type) {
+      case 'address':
+        return this.alternativeName
+      default :
+        return this.name
+    }
   }
 
   static async poiApiLoad(id, options = {}) {
