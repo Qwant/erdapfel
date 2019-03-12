@@ -1,4 +1,6 @@
 import {paramTypes} from './url_shard'
+import 'url-search-params-polyfill'
+
 function UrlShards() {}
 
 if(!window.__url_state) {
