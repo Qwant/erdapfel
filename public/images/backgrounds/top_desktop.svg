@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 838 63" style="enable-background:new 0 0 838 63;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#76BC54;}
-	.st1{fill:#4BA2EA;}
-	.st2{fill:#65CEE7;}
-	.st3{fill:#87C966;}
-	.st4{fill:#9DDC7D;}
-</style>
-<g>
-	
-		<image style="overflow:visible;opacity:0.15;" width="899" height="123" xlink:href="430406ECD9B838A9.png"  transform="matrix(1 0 0 1 -30.999 -28)">
-	</image>
-	<g>
-		<g>
-			<path class="st0" d="M197.7,63c-0.5-4.4-0.7-8.9-0.7-13.5c0-17.6,3.6-34.3,10.1-49.5h230.7c6.5,15.2,10.1,31.9,10.1,49.5
-				c0,4.6-0.2,9.1-0.7,13.5H197.7z"/>
-			<path class="st1" d="M288.6,0c-3.9,22-11.2,43.2-21.7,63H71C46.5,56.7,23,49.4,0,42V0H288.6z"/>
-			<path class="st2" d="M183.7,0c-5.1,22.6-14.5,44-27.8,63H71C46.5,56.7,23,49.4,0,42V0H183.7L183.7,0z"/>
-			<path class="st3" d="M519,0h319c-34.4,24.9-79.2,46.4-130,63c-83.8,0-146.8,0-189,0V0z"/>
-			<path class="st3" d="M386.5,63C374.3,44.5,366,23.1,363.1,0h292.7c-0.8,6-1.9,12-3.4,17.9c-4.1,16.1-10.8,31.3-20,45.1H386.5z"/>
-			<path class="st4" d="M472,63c-13.8-17.8-22.9-39.4-25.3-63h246.7c-0.6,5.9-1.7,11.8-3.1,17.6C686,34.3,678.3,49.7,668,63H472
-				L472,63z"/>
-			<g>
-				<path id="a_12_" class="st0" d="M746.3,49.1C747.4,32,752.1,15.2,760,0h78C812.5,18.4,781.4,35,746.3,49.1z"/>
-			</g>
-		</g>
-	</g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="840px" height="63px" viewBox="0 0 840 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Elements/Background-search/Desktop/Maps</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-2.7%" y="-36.5%" width="105.5%" height="173.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M746.279657,49.1054378 C747.453039,31.4813556 752.2939,14.8607401 760.04583,6.57252031e-14 L838.001118,1.50576946e-05 C812.543666,18.4242705 781.374434,35.0011886 746.279655,49.1054609 Z" id="path-2"></path>
+    </defs>
+    <g id="Elements/Background-search/Desktop/Maps" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" filter="url(#filter-1)" transform="translate(0.998882, 0.000000)">
+            <path d="M8.52651283e-13,1.50576944e-05 L838.001118,1.50576944e-05 C803.619357,24.8830374 758.819274,46.3965045 708.001118,63.0000151 L71.0011182,63.0000151 C46.4952153,56.7148956 23.0292089,49.4407947 8.52651283e-13,42.0000151 L8.52651283e-13,1.50576944e-05 Z" id="container" fill="#00FFC1" fill-rule="nonzero" opacity="0"></path>
+            <path d="M197.718738,63.0000151 C197.244415,58.5650203 197.001118,54.0609301 197.001118,49.5000151 C197.001118,31.9217733 200.615075,15.1876164 207.140517,1.50576946e-05 L437.861737,1.50576946e-05 C444.387161,15.1876141 448.001118,31.9217721 448.001118,49.5000151 C448.001118,54.0609301 447.757822,58.5650203 447.283499,63.0000151 L197.718738,63.0000151 Z" id="Combined-Shape" fill="#76BC54" fill-rule="nonzero"></path>
+            <path d="M288.604201,1.50576963e-05 C287.693479,5.0986775 286.60509,10.1357907 285.345666,15.1047221 C281.07903,31.9383043 274.849434,47.9893651 266.914767,63.0000157 L71.0011182,63.0000151 C46.4952153,56.7148956 23.0292089,49.4407947 -3.69482223e-13,42.0000151 L-3.69482223e-13,1.50576946e-05 L288.604201,1.50576946e-05 Z" id="Combined-Shape" fill="#4BA2EA" fill-rule="nonzero"></path>
+            <path d="M183.715471,1.70929621e-05 C183.350723,1.63178535 182.963572,3.25509768 182.554357,4.86961436 C177.196534,26.0083664 168.056408,45.6393274 155.896442,63.0000338 L71.0011182,63.0000151 C46.4952153,56.7148956 23.0292089,49.4407947 -4.26325641e-14,42.0000151 L-4.26325641e-14,1.50576945e-05 L183.715477,1.50576945e-05 Z" id="Combined-Shape" fill="#65CEE7" fill-rule="nonzero"></path>
+            <path d="M519.001118,1.50576944e-05 C589.830244,1.50576944e-05 696.163578,1.50576944e-05 838.001118,1.50576944e-05 C803.619357,24.8830374 758.819274,46.3965045 708.001118,63.0000151 C624.160352,62.9857664 561.160352,62.9857664 519.001118,63.0000151 L519.001118,1.50576944e-05 Z" id="Oval-8" fill="#87C966" fill-rule="nonzero"></path>
+            <path d="M386.542943,63.0000151 C374.260189,44.506244 366.038382,23.0820546 363.150091,1.50576945e-05 L655.852145,1.50576946e-05 C655.092174,6.07339251 653.962948,12.0319923 652.48765,17.8526325 C648.356037,34.1534968 641.510192,49.3723501 632.459293,63.0000151 L386.542943,63.0000151 Z" id="Combined-Shape" fill="#87C966" fill-rule="nonzero"></path>
+            <path d="M472.014205,63.0000151 C458.208951,45.2266196 449.132801,23.5970668 446.674411,1.50576946e-05 L693.327825,1.50576946e-05 C692.703699,5.99074268 691.653037,11.8546589 690.206745,17.5608595 C685.956191,34.3309957 678.288446,49.7388909 667.988001,63.0000549 L472.014205,63.0000151 Z" id="Combined-Shape" fill="#9DDC7D" fill-rule="nonzero"></path>
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#76BC54" fill-rule="nonzero" xlink:href="#path-2"></use>
+        </g>
+    </g>
 </svg>
