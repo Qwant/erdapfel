@@ -9,15 +9,17 @@
     <div class="itinerary_fields">
       <form onsubmit="fire('submit_direction_origin');return false" novalidate>
         <div class="itinerary_field_origin">
-          <div class="itinerary_icon itinerary_icon_origin icon-crosshair"></div>
-          <input id="itinerary_input_origin" autocomplete="off" spellcheck="false" value="{{= this.origin ? this.origin.getInputValue() : '' }}" required placeholder="{{= _('Start point', 'direction') }}">
+          <div class="itinerary_icon itinerary_icon_origin">
+            <div class="itinerary_icon_origin_inner"></div>
+          </div>
+          <input id="itinerary_input_origin" autocomplete="off" spellcheck="false" value="{{= this.origin ? this.origin.name : '' }}" placeholder="{{= _('Start point', 'direction') }}">
           <button class="icon-x itinerary__field__clear" type="button" {{= mousedown(this.clearOrigin, this) }}></button>
         </div>
       </form>
       <form onsubmit="fire('submit_direction_destination');return false" novalidate>
         <div class="itinerary_field_destination">
-          <div class="itinerary_icon itinerary_icon_destination icon-map-pin"></div>
-          <input id="itinerary_input_destination" autocomplete="off" spellcheck="false" value="{{= this.destination ? this.destination.getInputValue() : '' }}" required placeholder="{{= _('End point', 'direction') }}">
+          <div class="itinerary_icon itinerary_icon_destination"></div>
+          <input id="itinerary_input_destination" autocomplete="off" spellcheck="false" value="{{= this.destination ? this.destination.name : '' }}" placeholder="{{= _('End point', 'direction') }}">
           <button class="icon-x itinerary__field__clear" type="button" {{= mousedown(this.clearDestination, this) }}></button>
         </div>
       </form>

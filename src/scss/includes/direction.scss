@@ -68,14 +68,23 @@
 
 .itinerary_icon_origin {
   font-size: 16px;
-  padding: 10px;
-  color: $secondary_text;
+  padding: 15px 12px;
+}
+
+.itinerary_icon_origin_inner {
+  width: 14px;
+  height: 14px;
+  background: #4ba2ea;
+  border: 1px solid #fff;
+  border-radius: 50%;
 }
 
 .itinerary_icon_destination {
-  color: $secondary_text;
-  font-size: 16px;
-  padding: 10px;
+  background-image: url('../images/direction_icons/pin.png');
+  background-size: cover;
+  width: 14px;
+  height: 17px;
+  margin: 10px 12px 0 12px;
 }
 
 #itinerary_input_origin, #itinerary_input_destination {
@@ -329,6 +338,10 @@
   margin: 11px 18px 0 0;
 }
 
+.itinerary_roadmap_icon_origin {
+  padding: 5px;
+}
+
 .itinerary_roadmap_step {
   padding-left: 37px;
   position: relative;
@@ -355,12 +368,20 @@
 }
 
 .itinerary_roadmap_step:last-of-type .itinerary_roadmap_icon {
-    background-image: url(../images/direction_icons/map-pin-red.svg);
+  background-image: url(../images/direction_icons/pin.png);
+  background-size: cover;
+  width: 14px;
+  height: 17px;
+  margin: 20px 23px 0 3px;
 }
 
 .itinerary_roadmap_instruction {
   font-size: 14px;
   color: $primary_text;
+}
+
+.itinerary_roadmap_instruction_light {
+  color: #5c6f84;
 }
 
 .itinerary_roadmap_distance {

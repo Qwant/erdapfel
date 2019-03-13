@@ -16,12 +16,15 @@ export default class RoadMapPanel {
     })
   }
 
-  setRoad(routes, vehicle) {
+  setRoad(routes, vehicle, origin) {
     this.routes = routes.map((roadStep) => {
       return roadStep
     })
     this.vehicle = vehicle
     this.panel.update()
+    if(origin && origin.value){
+      this.origin = origin.value;
+    }
   }
 
   preview() {
