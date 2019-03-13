@@ -31,16 +31,19 @@ test('test menu template', async () => {
 
   expect(panelPosition).toEqual(0)
 
-  page.click('.menu__button')
+  await page.click('.menu__button')
   await wait(600)
 
   panelPosition = await page.evaluate(() => {
     return window.innerWidth - document.querySelector('.menu__panel').offsetLeft
   })
+
+  await page.click('.menu__panel__top__close')
   expect(panelPosition).toEqual(400)
 })
 
 test('menu open favorite', async () => {
+  await page.goto(APP_URL)
   expect.assertions(2)
   await page.goto(APP_URL)
   page.waitForSelector('.menu__button')
