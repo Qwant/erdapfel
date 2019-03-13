@@ -67,9 +67,15 @@ test('favorite panel close service panel', async() => {
   expect(servicePanelOpen).not.toBeNull()
 
   await page.click('.service_panel__item__direction')
-  let servicePanelClose = await page.waitForSelector('.service_panel', {visibility : 'hidden'})
+  let servicePanelClose = await page.waitForSelector('.service_panel', {visible : false})
   expect(servicePanelClose).not.toBeNull()
+})
 
+test('service panel open on load', async() => {
+  expect.assertions(1)
+  await page.goto(`${APP_URL}/routes`)
+  let servicePanelOpen = await page.waitForSelector('.service_panel')
+  expect(servicePanelOpen).not.toBeNull()
 })
 
 afterEach(async () => {
