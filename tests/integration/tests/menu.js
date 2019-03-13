@@ -60,7 +60,7 @@ test('menu open favorite', async () => {
   expect(favorites).not.toBeNull()
 })
 
-test('favorite panel close service panel', async() => {
+test('one panel open at a time', async () => {
   expect.assertions(2)
   await page.goto(APP_URL)
   let servicePanelOpen = await page.waitForSelector('.service_panel--active')
