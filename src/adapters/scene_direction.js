@@ -139,10 +139,11 @@ export default class SceneDirection {
   }
 
   showPolygon(route, vehicle) {
+    console.log(route, vehicle);
+
     let geojson;
 
     // Use walking bullet for walking paths
-
     /*if(vehicle == "walking"){
       geojson = {
         "id": `route_${route.id}`,
@@ -154,9 +155,10 @@ export default class SceneDirection {
           'symbol-spacing': 1
         }
       }
-    }
-    else {*/
+    }*/
 
+    // Use lines for driving/biking paths
+    //else {
       geojson = {
         "id": `route_${route.id}`,
         "type": "line",
@@ -175,7 +177,6 @@ export default class SceneDirection {
           "line-width": 7
         }
       }
-
     //}
 
     let sourceId = `source_${route.id}`
@@ -184,6 +185,7 @@ export default class SceneDirection {
       "data": this.buildRouteData(route.geometry.coordinates)
     }
     this.map.addSource(sourceId, sourceJSON)
+
     this.map.addLayer(geojson)
 
     this.map.on('click', `route_${route.id}`, function(){
