@@ -39,6 +39,7 @@ test('test menu template', async () => {
   })
 
   await page.click('.menu__panel__top__close')
+  await wait(600)
   expect(panelPosition).toEqual(400)
 })
 
@@ -58,6 +59,7 @@ test('menu open favorite', async () => {
   page.click('.menu__button')
   await wait(600)
   page.click('.menu__panel__action:nth-child(2)')
+  await wait(600)
   let favorites = await page.waitForSelector('.favorite_poi_panel__container')
   expect(favorites).not.toBeNull()
 })
