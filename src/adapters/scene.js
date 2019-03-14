@@ -95,7 +95,7 @@ Scene.prototype.initMapBox = function () {
         this.mb.getCanvas().style.cursor = 'pointer';
       })
 
-      this.mb.on('mouseleave', interactiveLayer, () =>{
+      this.mb.on('mouseleave', interactiveLayer, () => {
         this.mb.getCanvas().style.cursor = '';
       })
 

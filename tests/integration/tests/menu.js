@@ -31,16 +31,20 @@ test('test menu template', async () => {
 
   expect(panelPosition).toEqual(0)
 
-  page.click('.menu__button')
+  await page.click('.menu__button')
   await wait(600)
 
   panelPosition = await page.evaluate(() => {
     return window.innerWidth - document.querySelector('.menu__panel').offsetLeft
   })
+
+  await page.click('.menu__panel__top__close')
+  await wait(600)
   expect(panelPosition).toEqual(400)
 })
 
 test('menu open favorite', async () => {
+  await page.goto(APP_URL)
   expect.assertions(2)
   await page.goto(APP_URL)
   page.waitForSelector('.menu__button')
@@ -51,13 +55,31 @@ test('menu open favorite', async () => {
   page.click('.menu__panel__action:nth-child(1)')
   let itinerary = await page.waitForSelector('.itinerary_container--active')
   expect(itinerary).not.toBeNull()
-
+  await wait(600)
   page.click('.menu__button')
   await wait(600)
-
   page.click('.menu__panel__action:nth-child(2)')
+  await wait(600)
   let favorites = await page.waitForSelector('.favorite_poi_panel__container')
   expect(favorites).not.toBeNull()
+})
+
+test('one panel open at a time', async () => {
+  expect.assertions(2)
+  await page.goto(APP_URL)
+  let servicePanelOpen = await page.waitForSelector('.service_panel--active')
+  expect(servicePanelOpen).not.toBeFalsy()
+
+  await page.click('.service_panel__item__direction')
+  let servicePanelClose = await page.waitForSelector('.service_panel', {visible : false})
+  expect(servicePanelClose).not.toBeFalsy()
+})
+
+test('service panel open on load', async () => {
+  expect.assertions(1)
+  await page.goto(`${APP_URL}/routes`)
+  let servicePanelOpen = await page.waitForSelector('.service_panel')
+  expect(servicePanelOpen).not.toBeFalsy()
 })
 
 afterEach(async () => {

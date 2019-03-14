@@ -1,7 +1,10 @@
 <div id="itinerary_container" class="itinerary_container{{= this.active ? ' itinerary_container--active' : '' }}">
   <div class="itinerary_form">
-    <div class="itinerary_close icon-x" {{= click(this.close, this) }}></div>
-    <div class="itinerary_close_mobile" {{= click(this.close, this) }}><span class="itinerary_close_mobile_icon icon-chevron-left"></span>{{= _('return', 'direction') }}</div>
+    <div class="itinerary_close icon-x" {{= click(this.closeAction) }}></div>
+    <div class="itinerary_close_mobile" {{= click(this.closeAction) }}>
+      <span class="itinerary_close_mobile_icon icon-chevron-left"></span>
+      {{= _('return', 'direction') }}
+    </div>
     <h3 class="itinerary_title">{{= _('directions', 'direction') }}</h3>
     <div class="itinerary_fields">
       <form onsubmit="fire('submit_direction_origin');return false" novalidate>

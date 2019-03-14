@@ -5,7 +5,6 @@ import FilterPanel from './filter_panel'
 import PanelManager from '../proxies/panel_manager'
 import PoiStore from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
-import Error from '../adapters/error'
 import layouts from "./layouts.js";
 
 const poiSubClass = require('../mapbox/poi_subclass')
@@ -26,7 +25,6 @@ function Favorite(sharePanel) {
   })
 
   this.panel = new Panel(this, FavoritePanelView)
-  this.isFavoritePanel = true
   PanelManager.register(this)
 
   store.onToggleStore(async () => {
@@ -92,12 +90,15 @@ Favorite.prototype.open = async function() {
   this.active = true
 }
 
+Favorite.prototype.closeAction = function() {
+  PanelManager.resetLayout()
+}
+
 Favorite.prototype.close = function() {
   this.closeMoreMenu()
   this.active = false
   this.displayed = false
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
-  fire('close_favorite_panel')
 }
 
 Favorite.prototype.go = async function(poiStore) {

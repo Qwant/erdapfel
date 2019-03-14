@@ -44,7 +44,6 @@ function PoiPanel(sharePanel) {
   })
 }
 
-
 PoiPanel.prototype.toggleStorePoi = async function() {
   if(this.poi.stored) {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
@@ -63,6 +62,9 @@ PoiPanel.prototype.isDisplayed = function() {
   return this.active
 }
 
+PoiPanel.prototype.closeAction = function() {
+  PanelManager.resetLayout()
+}
 
 PoiPanel.prototype.close = async function() {
   await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
@@ -70,6 +72,7 @@ PoiPanel.prototype.close = async function() {
   this.panel.update()
   this.sceneState.unsetPoiID()
   UrlState.pushUrl()
+  PanelManager.openService()
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
@@ -81,7 +84,6 @@ PoiPanel.prototype.restorePoi = async function (id) {
       fire('map_mark_poi', this.poi)
       fire('fit_map', this.poi, layouts.POI)
     })
-
     this.poi.stored = await isPoiFavorite(this.poi)
     this.active = true
     this.sceneState.setPoiId(this.poi.id)
@@ -104,8 +106,6 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   await this.minimalHourPanel.set(this.poi)
   endLoad()
 }
-
-
 
 PoiPanel.prototype.center = function() {
   Telemetry.add(Telemetry.POI_GO)
