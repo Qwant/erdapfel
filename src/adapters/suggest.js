@@ -98,7 +98,7 @@ export default class Suggest {
 
   async preselect(term) {
     let suggestList = await this.autocomplete.prefetch(term)
-    if (suggestList.length > 0) {
+    if (suggestList && suggestList.length > 0) {
       let firstPoi = suggestList[0]
       this.onSelect(firstPoi)
       this.searchInputDomHandler.blur()
@@ -112,6 +112,9 @@ export default class Suggest {
 
   async onSubmit() {
     if(this.pending) {
+      if(this.bragiPromise) {
+        this.bragiPromise.abort()
+      }
       let term = this.searchInputDomHandler.value
       this.preselect(term)
     } else {
