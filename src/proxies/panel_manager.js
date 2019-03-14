@@ -83,23 +83,37 @@ PanelManager.togglePoi = async function (options) {
 }
 
 PanelManager.toggleDirection = async function (options) {
+  let openService = false
   __panel_manager.panels.forEach((panel) => {
     if(panel instanceof DirectionPanel) {
+      if(panel.active) {
+        openService = true
+      }
       panel.toggle(options)
     } else if(panel.active) {
       panel.close()
     }
   })
+  if(openService) {
+    PanelManager.openService()
+  }
 }
 
 PanelManager.toggleFavorite = async function () {
+  let openService = false
   __panel_manager.panels.forEach((panel) => {
     if(panel instanceof FavoritePanel) {
+      if(panel.active) {
+        openService = true
+      }
       panel.toggle()
     } else if(panel.active) {
       panel.close()
     }
   })
+  if(openService) {
+    PanelManager.openService()
+  }
 }
 
 PanelManager.openService = function() {

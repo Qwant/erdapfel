@@ -140,7 +140,6 @@ export default class DirectionPanel {
     this.panel.update()
     this.cleanDirection()
     UrlState.pushUrl()
-    PanelManager.openService()
   }
 
   async open(options = {}) {

@@ -99,7 +99,6 @@ Favorite.prototype.close = function() {
   this.active = false
   this.displayed = false
   this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden')
-  PanelManager.openService()
 }
 
 Favorite.prototype.go = async function(poiStore) {

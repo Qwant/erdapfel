@@ -14,13 +14,13 @@ export default class Menu {
 
   toggleFavorite() {
     this.close()
-    PanelManager.openFavorite()
+    PanelManager.toggleFavorite()
   }
 
   toggleDirection() {
     this.close()
     if(this.isDirectionActive) {
-      PanelManager.openDirection()
+      PanelManager.toggleDirection()
     }
   }
 
