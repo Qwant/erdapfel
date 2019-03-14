@@ -25,6 +25,7 @@ export default class IdunnPoi extends Poi {
   getInputValue() {
     switch (this.type) {
       case 'address':
+      case 'street':
         return this.alternativeName
       default :
         return this.name
