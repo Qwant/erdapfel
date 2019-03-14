@@ -171,6 +171,16 @@ export default class DirectionPanel {
     }
   }
 
+  clearOrigin() {
+    this.originInput.setValue('')
+    this.origin = null
+  }
+
+  clearDestination() {
+    this.destinationInput.setValue('')
+    this.destination = null
+  }
+
   /* urlState interface implementation */
 
   async restore() {
@@ -211,7 +221,6 @@ export default class DirectionPanel {
     if(getParams.get('origin')) {
       try {
         this.origin = await UrlPoi.fromUrl(getParams.get('origin'))
-        document.querySelector(originHandler).value = this.origin.name
       } catch (err) {
         Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('origin')}`, err)
       }
@@ -219,7 +228,6 @@ export default class DirectionPanel {
     if(getParams.get('destination')) {
       try {
         this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
-        document.querySelector(destinationHandler).value = this.destination.name
       } catch (err) {
         Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('destination')}`, err)
       }

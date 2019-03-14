@@ -56,7 +56,6 @@ test('simple search', async () => {
   await page.type('#itinerary_input_origin', 'direction')
   await page.keyboard.press('Enter')
   await page.type('#itinerary_input_destination', 'direction')
-
   await page.keyboard.press('Enter')
 
   let leg0 = await page.waitForSelector('#itinerary_leg_0')

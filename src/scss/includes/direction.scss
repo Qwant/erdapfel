@@ -36,12 +36,28 @@
   color: #495063;
 }
 
+.itinerary__field__clear {
+  margin-left: -28px;
+  padding: 8px;
+  color: $secondary_text;
+  cursor: text;
+  font-size: 15px;
+  display: none;
+}
+
+.itinerary_container--start-focused #itinerary_input_origin:valid:focus ~ .itinerary__field__clear,
+.itinerary_container--end-focused #itinerary_input_destination:valid:focus ~ .itinerary__field__clear {
+  display: inline-block;
+  cursor: pointer;
+}
+
 .itinerary_fields {
   background: $background;
   @include card_shadow();
   width: 364px;
   margin: 0 18px;
   position: relative;
+  border-radius: 3px;
 }
 
 .itinerary_icon {
@@ -65,6 +81,7 @@
 #itinerary_input_origin, #itinerary_input_destination {
   width: 290px;
   height: 40px;
+  padding-right: 22px;
   border: none;
   font-size: 17px;
   color: $primary_text;
@@ -494,15 +511,14 @@
   .itinerary_title {
     color: $background;
   }
+
+
   
   .itinerary_fields {
-    border-radius: 3px
-  }
-  
-  .itinerary_fields {
+    border-radius: 3px;
     width: auto;
   }
-  
+
   #itinerary_input_origin, #itinerary_input_destination {
     width: calc(100% - 80px);
     font-size: 14px;
@@ -544,17 +560,7 @@
     margin: 0 5px 0 0;
     font-size: 22px;
   }
-  
-  .itinerary_container_focused {
-    height: 5px;
-    overflow: hidden !important;
-  }
-  
-  .itinerary_container_focused .itinerary_fields {
-    position: absolute;
-    top: -100px;
-  }
-  
+
   .itinerary_input_focused {
     position: fixed;
     top: 5px;
@@ -573,7 +579,16 @@
     left: 0;
     width: 100% !important;
   }
-  
+
+  .itinerary__field__clear {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: -24px;
+    font-size: 16px;
+    padding: 10px;
+  }
+
   .itinerary_leg {
     position: fixed;
     bottom: 10px;
@@ -749,8 +764,8 @@
     z-index: 5;
   }
 
-  .itinerary_container--origin-focused,
-  .itinerary_container--destination-focused {
+  .itinerary_container--start-focused,
+  .itinerary_container--end-focused {
     height: 5px;
     overflow: hidden;
 
@@ -771,8 +786,8 @@
     line-height: 45px;
   }
 
-  .itinerary_container--origin-focused #itinerary_input_destination,
-  .itinerary_container--destination-focused #itinerary_input_origin {
+  .itinerary_container--start-focused #itinerary_input_destination,
+  .itinerary_container--end-focused #itinerary_input_origin {
     display: none;
   }
 
