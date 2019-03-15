@@ -15,7 +15,7 @@ export default class TopBar {
 
     let logoHandler = document.querySelector('.search_form__logo')
     logoHandler.onclick = () => {
-      PanelManager.closeAll()
+      PanelManager.resetLayout()
     }
   }
 }
