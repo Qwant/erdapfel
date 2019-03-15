@@ -273,7 +273,9 @@ var autoComplete = (function(){
     this.prefetch = async function (val) {
       that.value = val;
       let source = await o.source(val);
-      sourceDom(source, val);
+      if(source !== null) {
+        sourceDom(source, val);
+      }
       return source
     }
 
