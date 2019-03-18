@@ -287,6 +287,11 @@ var autoComplete = (function(){
     this.getValue = function () {
       return that.value
     };
+
+    this.clear = function () {
+      that.value = ''
+      that.last_val = '\n';
+    };
     
     this.setValue = function (value) {
       that.value = value

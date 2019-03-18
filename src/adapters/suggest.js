@@ -156,6 +156,10 @@ export default class Suggest {
     this.preRender(this.prefixes)
   }
 
+  clear() {
+    this.autocomplete.clear()
+  }
+
   /* select sub template */
   renderItem(poi) {
     let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
