@@ -8,6 +8,7 @@ import SearchInput from "../ui_components/search_input";
 import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
+import MasqFavoriteModal from "../modals/masq_favorite_modal";
 import nconf from "@qwant/nconf-getter"
 import DirectionPanel from './direction/direction_panel'
 import Menu from "./menu";
@@ -35,6 +36,9 @@ function AppPanel(parent) {
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()
   this.geolocationDeniedModal = new GeolocationDeniedModal()
+
+  this.masqFavoriteModal = new MasqFavoriteModal()
+
   this.menu = new Menu()
 
   if(performanceEnabled) {
