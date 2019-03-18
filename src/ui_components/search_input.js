@@ -2,6 +2,7 @@ import Suggest from "../adapters/suggest";
 import layouts from "../panel/layouts.js";
 import UrlState from "../proxies/url_state";
 import UrlShards from "../proxies/url_shards";
+import PoiStore from "../adapters/poi/poi_store";
 
 const MAPBOX_RESERVED_KEYS = [
     'ArrowLeft' // ←
@@ -43,6 +44,9 @@ export default class SearchInput {
     this.searchInputHandle = document.querySelector(tagSelector)
     this.handleKeyboard()
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi))
+    PoiStore.getAll().then((storeItems) => {
+      this.suggest.preRender(storeItems)
+    })
     this.isEnabled = true
 
     UrlState.registerGet(this, 'q')

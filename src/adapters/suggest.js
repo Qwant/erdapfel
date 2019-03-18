@@ -128,8 +128,8 @@ export default class Suggest {
     this.autocomplete.destroy()
   }
 
-  preRender() {
-    this.autocomplete.preRender(this.prefixes)
+  preRender(items) {
+    this.autocomplete.preRender(items)
   }
 
   prefixesRender() {
