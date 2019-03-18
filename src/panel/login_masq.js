@@ -11,6 +11,11 @@ export default class LoginMasqPanel {
     this.isLoggedIn = this.store.isLoggedIn()
 
     this.isMasqEnabled = nconf.get().masq.enabled
+
+    this.store.onToggleStore(() => {
+      this.isLoggedIn = this.store.isLoggedIn()
+      this.panel.update()
+    })
   }
 
   async login() {
@@ -18,14 +23,9 @@ export default class LoginMasqPanel {
       await this.store.login()
     } catch(e) {
     }
-    this.isLoggedIn = this.store.isLoggedIn()
-    this.panel.update()
   }
 
   async logout() {
     await this.store.logout()
-    this.isLoggedIn = await this.store.isLoggedIn()
-    this.panel.update()
-    return
   }
 }

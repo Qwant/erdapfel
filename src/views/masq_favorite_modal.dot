@@ -1,0 +1,31 @@
+<div class="modal__masq_favorite">
+  <div class="modal__masq_favorite__header">
+    <div class="icon-masq modal__masq_favorite__logo"></div>
+    <i class="icon-x modal__masq_favorite__close" {{= click(this.close, this) }}></i>
+  </div>
+
+  <div class="modal__masq_favorite__body">
+    <h2 class="modal__title">{{= _('Use Masq to secure your favorites on all your devices') }}</h2>
+
+    <div class="modal__subtitle">
+      <span>{{= _('Masq allows you to save all your preferences while guarantying your privacy')}}</span>
+      <br/>
+      <div class="modal__masq_favorite__details">
+        <i class="modal__masq_favorite__arrow"></i>
+        <a href="https://github.com/QwantResearch/masq-app" rel="noopener" target="_blank">{{= _('More Details') }}</a>
+      </div>
+    </div>
+
+    <div class="modal__masq_favorite__question">{{= _('Do you want to synchronize your favorites with Masq ?') }}</div>
+
+    <div class="modal__masq_favorite__buttons">
+      <button class="modal__masq_favorite__button modal__masq_favorite__secondary_button" {{= click(this.close, this) }}>{{= _('No thanks') }}</button>
+      <button class="modal__masq_favorite__button" {{= click(this.openMasq, this) }}>{{= _('Activate Masq') }}</button>
+    </div>
+
+    <div>
+      <input type="checkbox" class="modal__masq_favorite__again" name="doNotAsk" id="doNotAsk"></input>
+      <label for="doNotAsk">{{= _('Do not ask again') }}</label>
+    </div>
+  </div>
+</div>
