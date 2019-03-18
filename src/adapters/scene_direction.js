@@ -139,45 +139,25 @@ export default class SceneDirection {
   }
 
   showPolygon(route, vehicle) {
-    console.log(route, vehicle);
 
-    let geojson;
-
-    // Use walking bullet for walking paths
-    /*if(vehicle == "walking"){
-      geojson = {
-        "id": `route_${route.id}`,
-        "type": "line",
-        "source": `source_${route.id}`,
-        "layout": {
-          'icon-image': 'walking_bullet',
-          'symbol-placement': 'line',
-          'symbol-spacing': 1
-        }
+    let geojson = {
+      "id": `route_${route.id}`,
+      "type": "line",
+      "source": `source_${route.id}`,
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": ["case",
+          ["boolean", ["feature-state", "isActive"], route.isActive],
+          MAIN_ROUTE_COLOR,
+          ALTERNATE_ROUTE_COLOR
+        ],
+        "line-width": 7
       }
-    }*/
-
-    // Use lines for driving/biking paths
-    //else {
-      geojson = {
-        "id": `route_${route.id}`,
-        "type": "line",
-        "source": `source_${route.id}`,
-        "layout": {
-          "line-join": "round",
-          "line-cap": "round",
-          "visibility": "visible"
-        },
-        "paint": {
-          "line-color": ["case",
-            ["boolean", ["feature-state", "isActive"], route.isActive],
-            MAIN_ROUTE_COLOR,
-            ALTERNATE_ROUTE_COLOR
-          ],
-          "line-width": 7
-        }
-      }
-    //}
+    }
 
     let sourceId = `source_${route.id}`
     const sourceJSON = {
