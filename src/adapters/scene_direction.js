@@ -139,8 +139,7 @@ export default class SceneDirection {
   }
 
   showPolygon(route, vehicle) {
-
-    let geojson = {
+    const geojson = {
       "id": `route_${route.id}`,
       "type": "line",
       "source": `source_${route.id}`,
@@ -165,7 +164,6 @@ export default class SceneDirection {
       "data": this.buildRouteData(route.geometry.coordinates)
     }
     this.map.addSource(sourceId, sourceJSON)
-
     this.map.addLayer(geojson)
 
     this.map.on('click', `route_${route.id}`, function(){
