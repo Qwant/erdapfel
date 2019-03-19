@@ -11,8 +11,6 @@ import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 import {vehiculeMatching} from '../../adapters/direction_api'
 
-const originHandler = '#itinerary_input_origin'
-const destinationHandler = '#itinerary_input_destination'
 
 export default class DirectionPanel {
   constructor() {
@@ -22,10 +20,19 @@ export default class DirectionPanel {
     this.origin = null
     this.destination = null
     this.vehicle = this.vehicles.DRIVING
-    this.roadMapPanel = new RoadMapPanel()
+    this.roadMapPanel = new RoadMapPanel(this)
     this.routes = null
     PanelManager.register(this)
     UrlState.registerResource(this, 'routes')
+    this.activePanel = this
+  }
+
+  hideForm() {
+    this.panel.addClassName(0, '#itinerary_container', 'itinerary_container--preview')
+  }
+
+  displayForm() {
+    this.panel.removeClassName(0, '#itinerary_container', 'itinerary_container--preview')
   }
 
   initDirection() {
@@ -131,6 +138,10 @@ export default class DirectionPanel {
     PanelManager.resetLayout()
   }
 
+  back() {
+    this.activePanel.closeAction()
+  }
+
   close() {
     SearchInput.unMinify()
     document.querySelector('#panels').classList.remove('panels--direction-open')
@@ -186,10 +197,6 @@ export default class DirectionPanel {
   clearDestination() {
     this.destinationInput.setValue('')
     this.destination = null
-  }
-
-  back() {
-
   }
 
   /* urlState interface implementation */
