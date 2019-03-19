@@ -188,6 +188,10 @@ export default class DirectionPanel {
     this.destination = null
   }
 
+  back() {
+
+  }
+
   /* urlState interface implementation */
 
   async restore() {
