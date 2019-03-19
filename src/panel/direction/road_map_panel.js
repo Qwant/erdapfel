@@ -12,6 +12,8 @@ export default class RoadMapPanel {
     this.panel = new Panel(this, roadMapTemplate)
     this.routes = []
     this.isMobile = Device.isMobile
+    this.placeholder = false
+    this.error = false
     this.origin = null
 
     listen('select_road_map', (i) => {
@@ -27,6 +29,22 @@ export default class RoadMapPanel {
       return roadStep
     })
     this.vehicle = vehicle
+    this.error = false
+    this.panel.update()
+  }
+
+  showPlaceholder() {
+    this.placeholder = true
+    this.panel.update()
+  }
+
+  hidePlaceholder() {
+    this.placeholder = false
+    this.panel.update()
+  }
+
+  showError(){
+    this.error = true
     this.panel.update()
   }
 

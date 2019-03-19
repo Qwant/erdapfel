@@ -182,15 +182,25 @@ export default class DirectionPanel {
 
   async searchDirection(options) {
     if(this.origin && this.destination) {
+
+      this.roadMapPanel.showPlaceholder()
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
-      this.routes = directionResponse.routes || []
-      this.routes.forEach((route, i) => {
-        route.isActive = i === 0
-        route.id = i
-      })
-      if(this.routes){
-        this.roadMapPanel.setRoad(this.routes, this.vehicle, this.origin)
-        this.setRoutesOnMap(options)
+      this.routes = directionResponse.routes
+      if(this.routes) {
+        this.routes.forEach((route, i) => {
+          route.isActive = i === 0
+          route.id = i
+        })
+        if (this.routes) {
+          this.roadMapPanel.hidePlaceholder()
+          this.roadMapPanel.setRoad(this.routes, this.vehicle, this.origin)
+          this.setRoutesOnMap(options)
+        }
+      }
+
+      else {
+        this.roadMapPanel.hidePlaceholder()
+        this.roadMapPanel.showError()
       }
     }
   }

@@ -1,4 +1,14 @@
-{{? this.showRoute }}
+{{console.log(this.placeholder);}}
+
+{{? this.placeholder }}
+
+PLACEHOLDER
+
+{{?? this.error }}
+
+ERROR
+
+{{?? this.showRoute }}
 
   <div class="itinerary_roadmap">
 
