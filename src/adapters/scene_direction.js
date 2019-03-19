@@ -72,7 +72,7 @@ export default class SceneDirection {
   displayRoute(move) {
     if(this.routes && this.routes.length > 0) {
       this.routes.forEach((route) => {
-        this.showPolygon(route)
+        this.showPolygon(route, this.vehicle)
       })
       let mainRoute = this.routes.find((route) => route.isActive)
       this.map.moveLayer(`route_${mainRoute.id}`)
@@ -138,7 +138,7 @@ export default class SceneDirection {
     this.routes = []
   }
 
-  showPolygon(route) {
+  showPolygon(route, vehicle) {
     const geojson = {
       "id": `route_${route.id}`,
       "type": "line",

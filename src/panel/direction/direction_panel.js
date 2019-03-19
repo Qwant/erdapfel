@@ -49,7 +49,7 @@ export default class DirectionPanel {
       if(this.originInput.getValue() === '') {
         this.origin = null
         fire('clean_route')
-        this.roadMapPanel.setRoad([], this.vehicle)
+        this.roadMapPanel.setRoad([], this.vehicle, this.origin)
       }
     }
 
@@ -62,7 +62,7 @@ export default class DirectionPanel {
       if(this.destinationInput.getValue() === '') {
         this.destination = null
         fire('clean_route')
-        this.roadMapPanel.setRoad([], this.vehicle)
+        this.roadMapPanel.setRoad([], this.vehicle, this.origin)
       }
     }
   }
@@ -169,7 +169,7 @@ export default class DirectionPanel {
         route.id = i
       })
       if(routes) {
-        this.roadMapPanel.setRoad(routes, this.vehicle)
+        this.roadMapPanel.setRoad(routes, this.vehicle, this.origin)
         fire('set_route', {...options, routes : routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
       }
     }

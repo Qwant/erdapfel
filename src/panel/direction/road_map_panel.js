@@ -10,13 +10,17 @@ export default class RoadMapPanel {
     this.panel = new Panel(this, roadMapTemplate)
     this.routes = []
     this.isMobile = Device.isMobile
+    this.origin = null
 
     listen('select_road_map', (i) => {
       this.toggleRoute(i);
     })
   }
 
-  setRoad(routes, vehicle) {
+  setRoad(routes, vehicle, origin) {
+    if(origin){
+      this.origin = origin
+    }
     this.routes = routes.map((roadStep) => {
       return roadStep
     })
