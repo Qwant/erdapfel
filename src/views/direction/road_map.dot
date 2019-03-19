@@ -45,7 +45,7 @@
                 <div class="itinerary_icon_origin_inner"></div>
               </div>
               <div class=itinerary_roadmap_instruction_and_distance>
-                <div class=itinerary_roadmap_instruction>{{= _("Start") }}: <span class="itinerary_roadmap_instruction_light">{{= this.originValue }}</span></div>
+                <div class=itinerary_roadmap_instruction>{{= _("Start") }}: <span class="itinerary_roadmap_instruction_light">{{= this.origin.getInputValue() }}</span></div>
               </div>
             </div>
 
