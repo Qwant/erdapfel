@@ -1,7 +1,6 @@
 import Poi from "./poi";
 import ExtendedString from "../../libs/string";
 import IdunnPoi from "./idunn_poi";
-import NavigatorGeolocalisationPoi from "./specials/navigator_geolocalisation_poi";
 
 const LAT_POSITION = 1
 const LON_POSITION = 2

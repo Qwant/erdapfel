@@ -10,6 +10,7 @@ import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
 import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
+import {vehiculeMatching} from '../../adapters/direction_api'
 
 const originHandler = '#itinerary_input_origin'
 const destinationHandler = '#itinerary_input_destination'
@@ -234,6 +235,13 @@ export default class DirectionPanel {
         this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
       } catch (err) {
         Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('destination')}`, err)
+      }
+    }
+    if(getParams.get('vehicle')) {
+      let urlVehicle = getParams.get('vehicle')
+      let matchedVehicle = Object.keys(vehiculeMatching).find((vehiculeMatchingItem) => vehiculeMatchingItem === urlVehicle)
+      if(matchedVehicle) {
+        this.vehicle = matchedVehicle
       }
     }
 

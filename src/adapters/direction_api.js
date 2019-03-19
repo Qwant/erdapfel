@@ -5,7 +5,7 @@ const token = nconf.get().direction.service.token
 const OVERVIEW_SETING = 'full'
 
 const geometries = 'geojson'
-const vehiculeMatching = {driving : 'driving-traffic', walking : 'walking', cycling : 'cycling'}
+export const vehiculeMatching = {driving : 'driving-traffic', walking : 'walking', cycling : 'cycling'}
 
 export default class DirectionApi {
   static async search(start, end, vehicle, exclude = '') {
