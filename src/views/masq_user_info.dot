@@ -1,0 +1,9 @@
+<div class="menu__panel__title">
+  {{? this.isLoggedIn && this.username}}
+    <img src={{= this.profileImage }} class="menu__panel__top__icon menu__panel__top__profile_image">
+    <span>{{= this.username }}</span>
+  {{??}}
+    <i class="menu__panel__top__icon icon-map"></i>
+    <span>Qwant Maps</span>
+  {{?}}
+</div>
