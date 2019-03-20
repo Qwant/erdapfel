@@ -22,27 +22,21 @@ export default class DirectionInput {
 
   async selectItem(selectedPoi) {
     if(selectedPoi instanceof NavigatorGeolocalisationPoi) {
-      if(selectedPoi.status === navigatorGeolcationStatus.FOUND) {
-        return selectedPoi
-      } else if(selectedPoi.status === navigatorGeolcationStatus.PENDING) {
-        this.select(selectedPoi)
-      } else {
-        this.suggest.setIdle(true)
-        try {
-          await selectedPoi.geolocate()
-        } catch(error) {
-          if(selectedPoi.status === navigatorGeolcationStatus.FORBIDDEN) {
-            fire('open_geolocate_denied_modal')
-          } else {
-            Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error)
-          }
-          this.suggest.clear()
+      this.suggest.setIdle(true)
+      try {
+        await selectedPoi.geolocate()
+      } catch(error) {
+        if(selectedPoi.status === navigatorGeolcationStatus.FORBIDDEN) {
+          fire('open_geolocate_denied_modal')
+        } else {
+          Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error)
         }
-        if(selectedPoi.status === navigatorGeolcationStatus.FOUND) {
-          this.select(selectedPoi)
-        }
-        this.suggest.setIdle(false)
+        this.suggest.clear()
       }
+      if(selectedPoi.status === navigatorGeolcationStatus.FOUND) {
+        this.select(selectedPoi)
+      }
+      this.suggest.setIdle(false)
     } else {
       this.select(selectedPoi)
     }
