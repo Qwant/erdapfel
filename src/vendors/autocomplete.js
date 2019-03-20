@@ -287,10 +287,15 @@ var autoComplete = (function(){
     this.getValue = function () {
       return that.value
     };
+
+    this.clear = function () {
+      that.value = '';
+      that.last_val = '';
+    };
     
     this.setValue = function (value) {
-      that.value = value
-      that.last_val = ''
+      that.value = value;
+      that.last_val = '';
     }
   }
   return autoComplete;
