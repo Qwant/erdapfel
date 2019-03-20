@@ -10,6 +10,7 @@ import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
 import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
+import {vehiculeMatching} from '../../adapters/direction_api'
 
 const originHandler = '#itinerary_input_origin'
 const destinationHandler = '#itinerary_input_destination'
@@ -202,7 +203,7 @@ export default class DirectionPanel {
         routeParams.push(this.poiToUrl('destination', this.destination))
       }
       if(routeParams.length > 0) {
-        return `?${routeParams.join('&')}&vehicle=${this.vehicle}`
+        return `?${routeParams.join('&')}&mode=${this.vehicle}`
       } else {
         return true
       }
@@ -214,12 +215,11 @@ export default class DirectionPanel {
   async restoreUrl() {
     let getParams = new URLSearchParams(window.location.search)
     if(getParams.get('mode')) {
-      let vehicleParam = getParams.get('mode')
-      Object.keys(this.vehicles).forEach((vehicleKey) => {
-        if(this.vehicles[vehicleKey] === vehicleParam) {
-          this.vehicle = this.vehicles[vehicleKey]
-        }
-      })
+      let urlVehicle = getParams.get('mode')
+      let matchedVehicle = Object.keys(vehiculeMatching).find((vehiculeMatchingItem) => vehiculeMatchingItem === urlVehicle)
+      if(matchedVehicle) {
+        this.vehicle = matchedVehicle
+      }
     }
 
     if(getParams.get('origin')) {
