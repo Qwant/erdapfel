@@ -203,7 +203,7 @@ export default class DirectionPanel {
         routeParams.push(this.poiToUrl('destination', this.destination))
       }
       if(routeParams.length > 0) {
-        return `?${routeParams.join('&')}&vehicle=${this.vehicle}`
+        return `?${routeParams.join('&')}&mode=${this.vehicle}`
       } else {
         return true
       }
@@ -215,12 +215,11 @@ export default class DirectionPanel {
   async restoreUrl() {
     let getParams = new URLSearchParams(window.location.search)
     if(getParams.get('mode')) {
-      let vehicleParam = getParams.get('mode')
-      Object.keys(this.vehicles).forEach((vehicleKey) => {
-        if(this.vehicles[vehicleKey] === vehicleParam) {
-          this.vehicle = this.vehicles[vehicleKey]
-        }
-      })
+      let urlVehicle = getParams.get('mode')
+      let matchedVehicle = Object.keys(vehiculeMatching).find((vehiculeMatchingItem) => vehiculeMatchingItem === urlVehicle)
+      if(matchedVehicle) {
+        this.vehicle = matchedVehicle
+      }
     }
 
     if(getParams.get('origin')) {
@@ -235,13 +234,6 @@ export default class DirectionPanel {
         this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
       } catch (err) {
         Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('destination')}`, err)
-      }
-    }
-    if(getParams.get('vehicle')) {
-      let urlVehicle = getParams.get('vehicle')
-      let matchedVehicle = Object.keys(vehiculeMatching).find((vehiculeMatchingItem) => vehiculeMatchingItem === urlVehicle)
-      if(matchedVehicle) {
-        this.vehicle = matchedVehicle
       }
     }
 
