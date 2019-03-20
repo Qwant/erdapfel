@@ -183,7 +183,8 @@ export default class DirectionPanel {
   async searchDirection(options) {
     if(this.origin && this.destination) {
 
-      this.roadMapPanel.showPlaceholder()
+      this.roadMapPanel.showPlaceholder(this.vehicle)
+
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
       this.routes = directionResponse.routes
       if(this.routes) {

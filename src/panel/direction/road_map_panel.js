@@ -33,8 +33,9 @@ export default class RoadMapPanel {
     this.panel.update()
   }
 
-  showPlaceholder() {
+  showPlaceholder(vehicle) {
     this.placeholder = true
+    this.vehicle = vehicle
     this.panel.update()
   }
 
