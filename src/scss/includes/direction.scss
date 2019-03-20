@@ -186,6 +186,21 @@
   padding-left: 15px !important;
 }
 
+.itinerary_no-result {
+  text-align: center;
+  padding: 25px 75px;
+  color: #5c6f84;
+  font-size: 16px;
+  background: #fff
+}
+
+.itinerary_no-result .icon-alert-triangle{
+  color: #c8cbd3;
+  font-size: 22px;
+  margin: 0 0 11px;
+  display: inline-block;
+}
+
 .itinerary_roadmap {
   background: $background;
   overflow: auto;

@@ -6,7 +6,11 @@ PLACEHOLDER
 
 {{?? this.error }}
 
-ERROR
+  <div class='itinerary_no-result'>
+    <span class="icon-alert-triangle"></span>
+    <br>
+    {{= _("Qwant Maps found no results for this itinerary, please try again") }}
+  </div>
 
 {{?? this.showRoute }}
 
