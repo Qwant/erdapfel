@@ -1,33 +1,24 @@
-{{? this.isActive}}
-  <div class="login_masq_panel">
-    {{? !this.isLoggedIn}}
-      <h1 class="login_masq_panel__title">
-        {{= _('Log in with Masq', 'masq') }}
-      </h1>
-      <p>
-        {{= _('Use MASQ to sync your personal data across your devices', 'masq') }}
-      </p>
-      {{? !this.loggingIn}}
-        <button class="login_masq_panel__action" {{= click(this.login, this) }}>
-          {{= _('Log in', 'masq') }}
-        </button>
-      {{?}}
-      {{? this.loggingIn}}
-        <button class="login_masq_panel__action">
-          {{= _('Logging in', 'masq') }}
-        </button>
-      {{?}}
-    {{?}}
+{{? this.isMasqEnabled}}
+  <div class="menu__panel__top__masq">
+    <div class="icon-masq menu__panel__masq_icon"></div>
     {{? this.isLoggedIn}}
-      <div class="loggedin_masq_panel__profile_info">
-        <img src={{= this.profileImage }} class="loggedin_masq_panel__profile_image">
-        <p class="loggedin_masq_panel__title">
-          {{= this.username }}
-        </p>
+      <input
+        type="button"
+        class="menu__panel__top__masq__login__button menu__panel__top__masq__login__button_logged"
+        value="{{= _('Sign Out') }}"
+        {{= click(this.logout, this) }}
+      >
+    {{??}}
+      <input
+        type="button"
+        class="menu__panel__top__masq__login__button"
+        value="{{= _('Sign In') }}"
+        {{= click(this.login, this) }}
+      >
+      <div class="menu__panel__top__masq__second__button_container">
+          <div class="icon-discover"></div>
+          <a class="menu__panel__top__masq__second__button" href="https://github.com/QwantResearch/masq-app" rel="noopener" target="_blank">{{= _('How does it work ?') }}</a>
       </div>
-      <button class="login_masq_panel__action" {{= click(this.logout, this) }}>
-        {{= _('Logout', 'masq') }}
-      </button>
     {{?}}
   </div>
 {{?}}
