@@ -2,59 +2,29 @@ import LoginMasqPanelView from '../views/login_masq.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import Error from '../adapters/error'
-
+import nconf from "../../local_modules/nconf_getter";
 
 export default class LoginMasqPanel {
   constructor() {
     this.panel = new Panel(this, LoginMasqPanelView)
     this.store = new Store()
-    this.isActive = false
-    this.loggingIn = false
-    this.username = null
-    this.profileImage = null
-    this.isLoggedIn = false
+    this.isLoggedIn = this.store.isLoggedIn()
 
-    this.init()
-  }
-
-  async init() {
-    this.isLoggedIn = await this.store.isLoggedIn()
-    if (this.isLoggedIn) {
-      const { username, profileImage } = await this.store.getUserInfo()
-      this.username = username
-      this.profileImage = profileImage
-    }
-    this.isActive = true
-    this.panel.update()
+    this.isMasqEnabled = nconf.get().masq.enabled
   }
 
   async login() {
-    this.loggingIn = true
-    this.panel.update()
     try {
       await this.store.login()
-      this.isLoggedIn = await this.store.isLoggedIn()
-      if (this.isLoggedIn) {
-        const { username, profileImage } = await this.store.getUserInfo()
-        this.username = username
-        this.profileImage = profileImage
-      }
     } catch(e) {
-      this.isLoggedIn = await this.store.isLoggedIn()
     }
-    this.loggingIn = false
-    this.panel.animate(.25, '.login_masq_panel', {top : '-300px'})
+    this.isLoggedIn = this.store.isLoggedIn()
     this.panel.update()
   }
 
   async logout() {
     await this.store.logout()
     this.isLoggedIn = await this.store.isLoggedIn()
-    if (this.isLoggedIn) {
-      const { username, profileImage } = await this.store.getUserInfo()
-      this.username = username
-      this.profileImage = profileImage
-    }
     this.panel.update()
     return
   }
