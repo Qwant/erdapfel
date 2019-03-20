@@ -31,7 +31,7 @@ export default class DirectionInput {
         try {
           await selectedPoi.geolocate()
         } catch(error) {
-          if(error.code === 1) {
+          if(selectedPoi.status === navigatorGeolcationStatus.FORBIDDEN) {
             fire('open_geolocate_denied_modal')
           } else {
             Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error)

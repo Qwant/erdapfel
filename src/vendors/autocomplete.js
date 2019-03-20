@@ -289,13 +289,13 @@ var autoComplete = (function(){
     };
 
     this.clear = function () {
-      that.value = ''
-      that.last_val = '\n';
+      that.value = '';
+      that.last_val = '';
     };
     
     this.setValue = function (value) {
-      that.value = value
-      that.last_val = ''
+      that.value = value;
+      that.last_val = '';
     }
   }
   return autoComplete;
