@@ -26,19 +26,18 @@
   transition: right .3s;
   background: #fff;
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu__panel__items_container {
   overflow-y: auto;
-  height: calc(100% - 100px);
   padding-top: 40px;
 }
 
 .menu__panel__top {
   width: 100%;
   background: $primary_text;
-  display: flex;
-  flex-direction: column;
 }
 
 .menu__panel__top__title {
