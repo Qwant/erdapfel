@@ -36,17 +36,26 @@
 
 .menu__panel__top {
   width: 100%;
-  height: 100px;
   background: $primary_text;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__panel__top__title {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 20px 23px 20px 3px;
+  width: 100%;
+  color: #ffffff;
+  font-size: 22px;
 }
 
 .menu__panel__top__close {
-  position: absolute;
-  top: 35px;
-  right: 30px;
   cursor: pointer;
+  position: absolute;
+  right: 34px;
   color: $primary_clear;
-  font-size: 22px;
 }
 
 .menu__panel--active {
