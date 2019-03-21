@@ -17,5 +17,11 @@ export default class TopBar {
     logoHandler.onclick = () => {
       PanelManager.resetLayout()
     }
+
+    /* build clear field method */
+    window.clearSearch = () => {
+      search.value='';
+      setTimeout(() => {search.focus()}, 0)
+    }
   }
 }
