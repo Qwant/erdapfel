@@ -1,6 +1,10 @@
 import Ajax from "../libs/ajax";
 import nconf from "../../local_modules/nconf_getter";
 
+const token = nconf.get().direction.service.token
+const OVERVIEW_SETING = 'full'
+const DIRECTION_QUERY_ERROR_CODE = 422
+export const queryError = 1
 const directionConfig = nconf.get().direction.service
 const OVERVIEW_SETTING = 'full'
 const ACCEPTED_LANGUAGES = [
@@ -36,13 +40,18 @@ export default class DirectionApi {
     if(directionConfig.api === 'mapbox'){
       directionsUrl = `${directionsUrl}${apiVehicle}/`
       directionsParams.access_token = directionConfig.token
-    }
-    else if (directionConfig.api === 'qwant'){
+    } else if (directionConfig.api === 'qwant'){
       directionsParams.type = apiVehicle
     }
     directionsUrl = `${directionsUrl}${poiToMapBoxCoordinates(start)};${poiToMapBoxCoordinates(end)}`
-
-    let response = await Ajax.get(directionsUrl, directionsParams)
+    let response = null
+    try {
+      response = await Ajax.get(directionsUrl, directionsParams)
+    } catch (e) {
+      if(e.status === DIRECTION_QUERY_ERROR_CODE) {
+        return queryError
+      }
+    }
     if (directionConfig.api === 'qwant'){
       response = response.data
     }

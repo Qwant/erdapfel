@@ -46,7 +46,7 @@ const query = (url, data, method = 'GET') => {
     }
 
     xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4 && ((xhr.status < 200 || xhr.status >= 300) && xhr.status !== 422)) {
+      if (xhr.readyState === 4 && (xhr.status < 200 || xhr.status >= 300)) {
         clearTimeout(timeOutHandler)
         reject(xhr.status)
       } else {
