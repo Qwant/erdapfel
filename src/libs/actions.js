@@ -23,7 +23,7 @@ class Action {
 
 (() => {
   const actions = new Map()
-  const supportedActions = ['mouseover', 'click', 'mouseout', 'mousedown']
+  const supportedActions = ['mouseover', 'click', 'mouseout', 'mousedown', 'touchestart']
   /**
    *
    * @param method call back function
