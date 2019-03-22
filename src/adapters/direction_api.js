@@ -1,10 +1,6 @@
 import Ajax from "../libs/ajax";
 import nconf from "../../local_modules/nconf_getter";
 
-const token = nconf.get().direction.service.token
-const OVERVIEW_SETING = 'full'
-const DIRECTION_QUERY_ERROR_CODE = 422
-export const queryError = 1
 const directionConfig = nconf.get().direction.service
 const OVERVIEW_SETTING = 'full'
 const ACCEPTED_LANGUAGES = [
@@ -48,9 +44,7 @@ export default class DirectionApi {
     try {
       response = await Ajax.get(directionsUrl, directionsParams)
     } catch (e) {
-      if(e.status === DIRECTION_QUERY_ERROR_CODE) {
-        return queryError
-      }
+      return
     }
     if (directionConfig.api === 'qwant'){
       response = response.data
