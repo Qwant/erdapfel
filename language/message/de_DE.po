@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 17:52+0000\n"
+"POT-Creation-Date: 2019-03-20 14:17+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -792,21 +792,11 @@ msgstr "Löschen"
 msgid "filter"
 msgstr "Filter"
 
-msgid "Log in with Masq"
-msgstr "Login via Masq"
+msgid "Qwant Maps services"
+msgstr "Qwant Maps-Dienste"
 
-msgid "Use MASQ to sync your personal data across your devices"
-msgstr ""
-"Benutze MASQ um persönliche Daten zwischen deinen Geräten zu synchronisieren"
-
-msgid "Log in"
-msgstr "Login"
-
-msgid "Logging in"
-msgstr "Logge ein"
-
-msgid "Logout"
-msgstr "Logout"
+msgid "YOUR FAVORITES"
+msgstr "DEINE FAVORITEN"
 
 msgid "DIRECTIONS"
 msgstr "WEGBESCHREIBUNG"
@@ -850,11 +840,48 @@ msgstr "Auf Wikipedia weiterlesen"
 msgid "Read more on Wikidata"
 msgstr "Erfahren Sie mehr bei Wikidata"
 
-msgid "Qwant Maps services"
-msgstr "Qwant Maps-Dienste"
+msgid "return"
+msgstr "zurück"
 
-msgid "YOUR FAVORITES"
-msgstr "DEINE FAVORITEN"
+msgid "directions"
+msgstr "Wegbeschreibung"
+
+msgid "Start point"
+msgstr "Startpunkt"
+
+msgid "End point"
+msgstr "Zielpunkt"
+
+msgid "Invert start and end"
+msgstr "Start und Ziel tauschen"
+
+msgid "Via"
+msgstr "Über"
+
+msgid "PREVIEW"
+msgstr "VORSCHAU"
+
+msgid "DETAILS"
+msgstr "DETAILS"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Log in with Masq"
+msgstr "Login via Masq"
+
+msgid "Use MASQ to sync your personal data across your devices"
+msgstr ""
+"Benutze MASQ um persönliche Daten zwischen deinen Geräten zu synchronisieren"
+
+msgid "Log in"
+msgstr "Login"
+
+msgid "Logging in"
+msgstr "Logge ein"
+
+msgid "Logout"
+msgstr "Logout"
 
 msgid "Share favorite"
 msgstr "Favoriten teilen"
@@ -894,30 +921,6 @@ msgstr "Sie haben Qwant Maps keinen Zugriff auf Ihren Standort erlaubt. "
 
 msgid "OK"
 msgstr "O.k."
-
-msgid "return"
-msgstr "zurück"
-
-msgid "directions"
-msgstr "Wegbeschreibung"
-
-msgid "Start point"
-msgstr "Startpunkt"
-
-msgid "End point"
-msgstr "Zielpunkt"
-
-msgid "Invert start and end"
-msgstr "Start und Ziel tauschen"
-
-msgid "Via"
-msgstr "Über"
-
-msgid "PREVIEW"
-msgstr "VORSCHAU"
-
-msgid "DETAILS"
-msgstr "DETAILS"
 
 msgid "Directions"
 msgstr "Wegbeschreibung"

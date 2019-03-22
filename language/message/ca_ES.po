@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 17:52+0000\n"
+"POT-Creation-Date: 2019-03-20 14:17+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: jmontane, 2019\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -791,20 +791,11 @@ msgstr "Suprimeix"
 msgid "filter"
 msgstr "filtre"
 
-msgid "Log in with Masq"
-msgstr ""
+msgid "Qwant Maps services"
+msgstr "Serveis Qwant Maps"
 
-msgid "Use MASQ to sync your personal data across your devices"
-msgstr ""
-
-msgid "Log in"
-msgstr ""
-
-msgid "Logging in"
-msgstr ""
-
-msgid "Logout"
-msgstr ""
+msgid "YOUR FAVORITES"
+msgstr "PREFERITS"
 
 msgid "DIRECTIONS"
 msgstr ""
@@ -848,11 +839,47 @@ msgstr "Més informació a la Viquipèdia"
 msgid "Read more on Wikidata"
 msgstr "Més informació a Wikidata"
 
-msgid "Qwant Maps services"
-msgstr "Serveis Qwant Maps"
+msgid "return"
+msgstr ""
 
-msgid "YOUR FAVORITES"
-msgstr "PREFERITS"
+msgid "directions"
+msgstr ""
+
+msgid "Start point"
+msgstr ""
+
+msgid "End point"
+msgstr ""
+
+msgid "Invert start and end"
+msgstr ""
+
+msgid "Via"
+msgstr ""
+
+msgid "PREVIEW"
+msgstr ""
+
+msgid "DETAILS"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Log in with Masq"
+msgstr ""
+
+msgid "Use MASQ to sync your personal data across your devices"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Logging in"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
 
 msgid "Share favorite"
 msgstr "Comparteix el preferit"
@@ -894,30 +921,6 @@ msgstr "No heu autoritzat Qwant Maps a accedir la vostra ubicació."
 
 msgid "OK"
 msgstr "D'acord"
-
-msgid "return"
-msgstr ""
-
-msgid "directions"
-msgstr ""
-
-msgid "Start point"
-msgstr ""
-
-msgid "End point"
-msgstr ""
-
-msgid "Invert start and end"
-msgstr ""
-
-msgid "Via"
-msgstr ""
-
-msgid "PREVIEW"
-msgstr ""
-
-msgid "DETAILS"
-msgstr ""
 
 msgid "Directions"
 msgstr ""
