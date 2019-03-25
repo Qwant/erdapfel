@@ -6,16 +6,16 @@
     <div class=itinerary_leg_inner>
       <div class='itinerary_leg_icon {{= this.getVehicleIcon() }}'></div>
       <div class='itinerary_leg_via'>
-        <div class='itinerary_placeholder-box itinerary_placeholder-box-1'></div>
-        <div class='itinerary_placeholder-box itinerary_placeholder-box-2'></div>
-        <div class='itinerary_placeholder-box itinerary_placeholder-box-3'></div>
+        <div class='itinerary_placeholder-box' style='width: 133px'></div>
+        <div class='itinerary_placeholder-box' style='width: 165px'></div>
+        <div class='itinerary_placeholder-box' style='width: 70px'></div>
       </div>
       <div class='itinerary_leg_info'>
         <div class='itinerary_leg_duration'>
-          <div class='itinerary_placeholder-box itinerary_placeholder-box-4'></div>
+          <div class='itinerary_placeholder-box' style='width: 47px'></div>
         </div>
         <div class='itinerary_leg_distance'>
-          <div class='itinerary_placeholder-box itinerary_placeholder-box-5'></div>
+          <div class='itinerary_placeholder-box' style='width: 59px'></div>
         </div>
       </div>
     </div>
