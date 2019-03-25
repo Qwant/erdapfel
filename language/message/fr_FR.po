@@ -1,15 +1,15 @@
 # Translators:
 # Boo Teille <booteille@tutanota.com>, 2019
-# Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
+# Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 17:52+0000\n"
+"POT-Creation-Date: 2019-03-20 14:17+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019\n"
+"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -793,22 +793,11 @@ msgstr "Supprimer"
 msgid "filter"
 msgstr "filtre"
 
-msgid "Log in with Masq"
-msgstr "Se connecter avec Masq"
+msgid "Qwant Maps services"
+msgstr "Les services Qwant Maps"
 
-msgid "Use MASQ to sync your personal data across your devices"
-msgstr ""
-"Utilisez MASQ pour synchroniser vos données personnelles entre tout vos "
-"périphériques"
-
-msgid "Log in"
-msgstr "Se connecter"
-
-msgid "Logging in"
-msgstr "Connection en cours"
-
-msgid "Logout"
-msgstr "Se déconnecter"
+msgid "YOUR FAVORITES"
+msgstr "MES FAVORIS"
 
 msgid "DIRECTIONS"
 msgstr "ITINÉRAIRE"
@@ -852,11 +841,49 @@ msgstr "Lire la suite sur Wikipédia"
 msgid "Read more on Wikidata"
 msgstr "Lire la suite sur Wikidata"
 
-msgid "Qwant Maps services"
-msgstr "Les services Qwant Maps"
+msgid "return"
+msgstr "retour"
 
-msgid "YOUR FAVORITES"
-msgstr "MES FAVORIS"
+msgid "directions"
+msgstr "itinéraire"
+
+msgid "Start point"
+msgstr "Départ"
+
+msgid "End point"
+msgstr "Arrivée"
+
+msgid "Invert start and end"
+msgstr "Inverser Départ et Arrivée"
+
+msgid "Via"
+msgstr "Via"
+
+msgid "PREVIEW"
+msgstr "APERÇU"
+
+msgid "DETAILS"
+msgstr "DÉTAILS"
+
+msgid "Start"
+msgstr "Départ"
+
+msgid "Log in with Masq"
+msgstr "Se connecter avec Masq"
+
+msgid "Use MASQ to sync your personal data across your devices"
+msgstr ""
+"Utilisez MASQ pour synchroniser vos données personnelles entre tout vos "
+"périphériques"
+
+msgid "Log in"
+msgstr "Se connecter"
+
+msgid "Logging in"
+msgstr "Connection en cours"
+
+msgid "Logout"
+msgstr "Se déconnecter"
 
 msgid "Share favorite"
 msgstr "Partager le favori"
@@ -899,30 +926,6 @@ msgstr "Vous n'avez pas autorisé Qwant Maps à accéder à votre position."
 
 msgid "OK"
 msgstr "OK"
-
-msgid "return"
-msgstr "retour"
-
-msgid "directions"
-msgstr "itinéraire"
-
-msgid "Start point"
-msgstr "Départ"
-
-msgid "End point"
-msgstr "Arrivée"
-
-msgid "Invert start and end"
-msgstr "Inverser Départ et Arrivée"
-
-msgid "Via"
-msgstr "Via"
-
-msgid "PREVIEW"
-msgstr "APERÇU"
-
-msgid "DETAILS"
-msgstr "DÉTAILS"
 
 msgid "Directions"
 msgstr "Itinéraire"

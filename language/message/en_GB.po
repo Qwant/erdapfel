@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-26 16:44+0100\n"
+"POT-Creation-Date: 2019-03-22 14:14+0100\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -755,6 +755,18 @@ msgstr ""
 msgid "zoo"
 msgstr ""
 
+msgid "city"
+msgstr ""
+
+msgid "country"
+msgstr ""
+
+msgid "address"
+msgstr ""
+
+msgid "street"
+msgstr ""
+
 msgid "Favorite places"
 msgstr ""
 
@@ -773,19 +785,10 @@ msgstr ""
 msgid "filter"
 msgstr ""
 
-msgid "Log in with Masq"
+msgid "Qwant Maps services"
 msgstr ""
 
-msgid "Use MASQ to sync your personal data across your devices"
-msgstr ""
-
-msgid "Log in"
-msgstr ""
-
-msgid "Logging in"
-msgstr ""
-
-msgid "Logout"
+msgid "YOUR FAVORITES"
 msgstr ""
 
 msgid "DIRECTIONS"
@@ -830,10 +833,46 @@ msgstr ""
 msgid "Read more on Wikidata"
 msgstr ""
 
-msgid "Qwant Maps services"
+msgid "return"
 msgstr ""
 
-msgid "YOUR FAVORITES"
+msgid "directions"
+msgstr ""
+
+msgid "Start point"
+msgstr ""
+
+msgid "End point"
+msgstr ""
+
+msgid "Invert start and end"
+msgstr ""
+
+msgid "Via"
+msgstr ""
+
+msgid "PREVIEW"
+msgstr ""
+
+msgid "DETAILS"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Log in with Masq"
+msgstr ""
+
+msgid "Use MASQ to sync your personal data across your devices"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Logging in"
+msgstr ""
+
+msgid "Logout"
 msgstr ""
 
 msgid "Share favorite"
@@ -871,30 +910,6 @@ msgid "You did not allow Qwant Maps to access your position."
 msgstr ""
 
 msgid "OK"
-msgstr ""
-
-msgid "return"
-msgstr ""
-
-msgid "directions"
-msgstr ""
-
-msgid "Start point"
-msgstr ""
-
-msgid "End point"
-msgstr ""
-
-msgid "Invert start and end"
-msgstr ""
-
-msgid "Via"
-msgstr ""
-
-msgid "PREVIEW"
-msgstr ""
-
-msgid "DETAILS"
 msgstr ""
 
 msgid "Directions"
