@@ -57,4 +57,6 @@ telemetry:
 direction:
   enabled: false
   service:
-    token: override_by_environment
+    api: 'mapbox' # 'mapbox' or 'qwant'
+    apiBaseUrl: https://api.mapbox.com/directions/v5/mapbox/
+    token: '' # for 'mapbox' only
