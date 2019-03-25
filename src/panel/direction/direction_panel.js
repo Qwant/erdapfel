@@ -24,6 +24,7 @@ export default class DirectionPanel {
     this.destination = null
     this.vehicle = this.vehicles.DRIVING
     this.roadMapPanel = new RoadMapPanel()
+    this.routes = null
     PanelManager.register(this)
     UrlState.registerResource(this, 'routes')
   }
@@ -161,19 +162,21 @@ export default class DirectionPanel {
 
   async searchDirection(options) {
     if(this.origin && this.destination) {
-
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
-
-      let routes = directionResponse.routes
-      routes.forEach((route, i) => {
+      this.routes = directionResponse.routes || []
+      this.routes.forEach((route, i) => {
         route.isActive = i === 0
         route.id = i
       })
-      if(routes) {
-        this.roadMapPanel.setRoad(routes, this.vehicle, this.origin)
-        fire('set_route', {...options, routes : routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
+      if(this.routes){
+        this.roadMapPanel.setRoad(this.routes, this.vehicle, this.origin)
+        this.setRoutesOnMap(options)
       }
     }
+  }
+
+  setRoutesOnMap(options){
+    fire('set_route', {...options, routes : this.routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
   }
 
   clearOrigin() {
@@ -238,7 +241,7 @@ export default class DirectionPanel {
     }
 
     execOnMapLoaded(() => {
-      this.searchDirection({move : false})
+      this.setRoutesOnMap({move : false})
     })
   }
 
