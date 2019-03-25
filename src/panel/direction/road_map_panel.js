@@ -45,6 +45,7 @@ export default class RoadMapPanel {
     this.previewRoadMap.close()
     this.panel.update()
     this.directionPanel.displayForm()
+    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active')
   }
 
   toggleRoute(i) {
