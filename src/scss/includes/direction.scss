@@ -40,6 +40,10 @@
   color: #495063;
 }
 
+.direction_suggestions {
+  margin-top: 0;
+}
+
 .itinerary__field__clear {
   display: none;
   position: absolute;
@@ -658,8 +662,7 @@
 
   .itinerary_container--start-focused .itinerary_icon,
   .itinerary_container--end-focused .itinerary_icon{
-    position: fixed;
-    top: 14px;
+    display: none;
   }
 
   .itinerary__field__clear {
@@ -839,11 +842,6 @@
     background: $background;
     @include card_shadow();
     font-size: 24px;
-  }
-
-  // Force autocomplete to appear on top of docked field
-  body .autocomplete_suggestions {
-    z-index: 5;
   }
 
   .itinerary_container--start-focused,

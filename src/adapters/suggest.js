@@ -6,7 +6,8 @@ import BragiPoi from "./poi/bragi_poi";
 import PoiStore from "./poi/poi_store";
 
 export default class Suggest {
-  constructor(tagSelector, onSelect, prefixes = []) {
+  constructor(tagSelector, onSelect, prefixes = [], menuClass = '') {
+
     this.searchInputDomHandler = document.querySelector(tagSelector)
     this.poi = null
     this.bragiPromise = null
@@ -22,6 +23,7 @@ export default class Suggest {
       minChars: 1,
       cachePrefix: false,
       delay: 100,
+      menuClass : menuClass,
       width: '650px',
       updateData: (items) => {
         this.suggestList = items
