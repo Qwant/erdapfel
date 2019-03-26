@@ -28,11 +28,6 @@ export default class Suggest {
         this.pending = false
       },
       source: (term) => {
-        /*
-          https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude/8674#8674
-          this post is about correlation between gps coordinates decimal count & real precision unit
-          110m = 3 decimals
-         */
         let promise = new Promise(async (resolve, reject) => {
           /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
           this.historyPromise = PoiStore.get(term)
@@ -107,7 +102,7 @@ export default class Suggest {
   }
 
   setIdle(idle) {
-    this.searchInputDomHandler.disabled = idle
+    this.searchInputDomHandler.readOnly = idle
   }
 
   async onSubmit() {
