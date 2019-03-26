@@ -2,7 +2,6 @@ import {Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds} from 'mapbox-gl--EN
 import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
-import PanelManager from "../proxies/panel_manager"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
 import loadImage from '../libs/image_loader'

@@ -1,6 +1,5 @@
 import ServicePanelView from '../views/service_panel.dot'
 import Panel from '../libs/panel'
-import PanelManager from "../proxies/panel_manager"
 import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
 import nconf from "../../local_modules/nconf_getter";

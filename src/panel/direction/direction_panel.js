@@ -5,7 +5,6 @@ import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
 import SearchInput from '../../ui_components/search_input'
 import UrlPoi from "../../adapters/poi/url_poi";
-import PanelManager from "../../proxies/panel_manager";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
 import Device from '../../libs/device'
