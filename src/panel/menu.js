@@ -1,7 +1,6 @@
 import Panel from '../libs/panel'
 import menuView from '../views/menu.dot'
 import constants from '../../config/constants.yml'
-import PanelManager from "../proxies/panel_manager";
 import nconf from "../../local_modules/nconf_getter";
 
 export default class Menu {

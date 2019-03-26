@@ -2,7 +2,6 @@ import FavoritePanelView from '../views/favorites_panel.dot'
 import Panel from '../libs/panel'
 import Store from '../adapters/store'
 import FilterPanel from './filter_panel'
-import PanelManager from '../proxies/panel_manager'
 import PoiStore from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 import layouts from "./layouts.js";

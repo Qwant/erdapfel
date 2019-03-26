@@ -1,5 +1,4 @@
 import Suggest from "../adapters/suggest";
-import PanelManager from "../proxies/panel_manager";
 import layouts from "../panel/layouts.js";
 import UrlState from "../proxies/url_state";
 import UrlShards from "../proxies/url_shards";

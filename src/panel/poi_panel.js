@@ -2,7 +2,6 @@ import PoiPanelView from '../views/poi_panel.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import PoiBlocContainer from './poi_bloc/poi_bloc_container'
-import PanelManager from './../proxies/panel_manager'
 import UrlState from '../proxies/url_state'
 import HotLoadPoi from "../adapters/poi/hotload_poi";
 import Telemetry from "../libs/telemetry";

@@ -141,4 +141,4 @@ PanelManager.register = function(panel) {
   !existingPanel && __panel_manager.panels.push(panel)
 }
 
-export default PanelManager
+window.PanelManager = PanelManager

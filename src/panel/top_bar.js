@@ -1,5 +1,3 @@
-import PanelManager from "../proxies/panel_manager";
-
 export default class TopBar {
   constructor() {
     this.searchInput = document.querySelector('#search')
