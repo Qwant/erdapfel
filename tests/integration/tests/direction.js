@@ -36,21 +36,20 @@ test('switch start end', async () => {
   expect.assertions(1)
   await showDirection(page)
 
-  await page.type('#itinerary_input_origin', 'start')
-  await page.type('#itinerary_input_destination', 'end')
-
+  await page.type('#itinerary_input_origin', 'a')
+  await page.type('#itinerary_input_destination', 'b')
   await page.click('.itinerary_invert_origin_destination')
   let inputValue = await page.evaluate(() => {
     return {startInput : document.querySelector('#itinerary_input_origin').value, endInput : document.querySelector('#itinerary_input_destination').value}
   })
 
-  expect(inputValue).toEqual({startInput : 'end', endInput : 'start'})
+  expect(inputValue).toEqual({startInput : 'b', endInput : 'a'})
 })
 
 test('simple search', async () => {
   expect.assertions(1)
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/)
-  responseHandler.addPreparedResponse(mockMapBox, /api.mapbox.com/)
+  responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/)
   await showDirection(page)
 
   await page.type('#itinerary_input_origin', 'direction')
@@ -148,8 +147,8 @@ const showDirection = async (page) => {
 
 test('select itinerary leg', async () => {
   expect.assertions(1)
-  responseHandler.addPreparedResponse(mockMapBox, /api.mapbox.com/)
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:7.5`)
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.0000000,6\.6000000/)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`)
 
   await page.waitForSelector('#itinerary_leg_0')
 
@@ -166,8 +165,8 @@ test('select itinerary leg', async () => {
 
 test('select itinerary step', async () => {
   expect.assertions(1)
-  responseHandler.addPreparedResponse(mockMapBox, /api.mapbox.com/)
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:7.5`)
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`)
 
   await page.waitForSelector('#itinerary_leg_0')
 
@@ -179,6 +178,27 @@ test('select itinerary step', async () => {
   })
 
   expect(center).toEqual({"lat": 48.823566, "lng": 2.290454})
+})
+
+
+test('api error handling', async () => {
+  expect.assertions(1)
+  /* prepare "error" response */
+  responseHandler.addPreparedResponse({}, /\/7\.5,47\.4%3B6\.6,6\.6/, {status : 422})
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`)
+  let errorMessageHandler = await page.waitForSelector('.itinerary_no-result')
+  expect(errorMessageHandler).not.toBeNull()
+})
+
+
+test('api wait effect', async () => {
+  expect.assertions(2)
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/)
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`)
+  let errorMessageHandler = await page.waitForSelector('.itinerary_placeholder-box')
+  expect(errorMessageHandler).not.toBeNull() // test wait panel
+  let firstLeg = await page.waitForSelector('#itinerary_leg_0')
+  expect(firstLeg).not.toBeNull() // test result
 })
 
 afterAll(async () => {

@@ -1,7 +1,6 @@
 import nconf from '@qwant/nconf-getter'
 import Error from './../adapters/error'
 const systemConfigs = nconf.get().system
-const timeout = systemConfigs.timeout
 function Ajax() {}
 
 Ajax.get = (url, data, options) => {
@@ -18,9 +17,9 @@ Ajax.getLang = async (url, data = {}, options) => {
 }
 
 /* private */
-const query = (url, data, method = 'GET') => {
+const query = (url, data, method = 'GET', options = {}) => {
   const xhr = new XMLHttpRequest()
-
+  let timeout = options.timeout * 1000 || systemConfigs.timeout * 1000
   let ajaxPromise = new Promise((resolve, reject) => {
     let jsonResponse
     let xhrStatus = -1

@@ -30,7 +30,7 @@ export default class Telemetry {
     if(telemetry.enabled) {
       let data = {type : event}
       let telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`
-      return Ajax.post(telemetryUrl, data, {method : 'POST'})
+      return Ajax.post(telemetryUrl, data)
     }
   }
 }

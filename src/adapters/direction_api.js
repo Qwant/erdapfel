@@ -2,6 +2,7 @@ import Ajax from "../libs/ajax";
 import nconf from "../../local_modules/nconf_getter";
 
 const directionConfig = nconf.get().direction.service
+const timeout = nconf.get().direction.timeout
 const OVERVIEW_SETTING = 'full'
 const ACCEPTED_LANGUAGES = [
   "da","de","en","eo","es","fi","fr","he","id","it",
@@ -13,6 +14,7 @@ const geometries = 'geojson'
 export const vehiculeMatching = {driving : 'driving-traffic', walking : 'walking', cycling : 'cycling'}
 
 export default class DirectionApi {
+
   static async search(start, end, vehicle, exclude = '') {
     const apiVehicle = vehiculeMatching[vehicle]
     let directionsUrl = directionConfig.apiBaseUrl
@@ -36,13 +38,16 @@ export default class DirectionApi {
     if(directionConfig.api === 'mapbox'){
       directionsUrl = `${directionsUrl}${apiVehicle}/`
       directionsParams.access_token = directionConfig.token
-    }
-    else if (directionConfig.api === 'qwant'){
+    } else if (directionConfig.api === 'qwant'){
       directionsParams.type = apiVehicle
     }
     directionsUrl = `${directionsUrl}${poiToMapBoxCoordinates(start)};${poiToMapBoxCoordinates(end)}`
-
-    let response = await Ajax.get(directionsUrl, directionsParams)
+    let response = null
+    try {
+      response = await Ajax.get(directionsUrl, directionsParams, {timeout})
+    } catch (e) {
+      return
+    }
     if (directionConfig.api === 'qwant'){
       response = response.data
     }

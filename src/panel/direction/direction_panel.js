@@ -11,7 +11,6 @@ import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 import {vehiculeMatching} from '../../adapters/direction_api'
 
-
 export default class DirectionPanel {
   constructor() {
     this.panel = new Panel(this, directionTemplate)
@@ -21,7 +20,6 @@ export default class DirectionPanel {
     this.destination = null
     this.vehicle = this.vehicles.DRIVING
     this.roadMapPanel = new RoadMapPanel(() => this.handleOpen(), () => this.handleClose())
-    this.routes = []
     PanelManager.register(this)
     UrlState.registerResource(this, 'routes')
     this.activePanel = this
@@ -182,21 +180,30 @@ export default class DirectionPanel {
 
   async searchDirection(options) {
     if(this.origin && this.destination) {
+
+      this.roadMapPanel.showPlaceholder(this.vehicle)
+
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
-      this.routes = directionResponse.routes || []
-      this.routes.forEach((route, i) => {
-        route.isActive = i === 0
-        route.id = i
-      })
-      if(this.routes){
-        this.roadMapPanel.setRoad(this.routes, this.vehicle, this.origin)
-        this.setRoutesOnMap(options)
+      if(directionResponse && directionResponse.routes) {
+        let routes = directionResponse.routes
+        routes.forEach((route, i) => {
+          route.isActive = i === 0
+          route.id = i
+        })
+
+        this.roadMapPanel.hidePlaceholder()
+        this.roadMapPanel.setRoad(routes, this.vehicle, this.origin)
+        this.setRoutesOnMap(routes, options)
+
+      } else {
+        this.roadMapPanel.hidePlaceholder()
+        this.roadMapPanel.showError()
       }
     }
   }
 
-  setRoutesOnMap(options){
-    fire('set_route', {...options, routes : this.routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
+  setRoutesOnMap(routes, options){
+    fire('set_route', {...options, routes : routes, vehicle : this.vehicle, origin : this.origin, destination : this.destination})
   }
 
   clearOrigin() {
@@ -219,7 +226,6 @@ export default class DirectionPanel {
 
   async restore() {
     await this.restoreUrl()
-    this.open()
   }
 
   store() {
@@ -267,7 +273,7 @@ export default class DirectionPanel {
     }
 
     execOnMapLoaded(() => {
-      this.setRoutesOnMap({move : false})
+      this.open()
     })
   }
 

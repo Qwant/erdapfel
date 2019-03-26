@@ -11,10 +11,10 @@ export default class ResponseHandler {
     return responseHandler
   }
 
-  addPreparedResponse(response, query) {
+  addPreparedResponse(response, query, options) {
     let alreadySetResponse = this.preparedResponses.find((preparedResponse) => preparedResponse.query === query)
     if(!alreadySetResponse) {
-      this.preparedResponses.push({response, query})
+      this.preparedResponses.push({response, query, options})
     }
   }
 
@@ -26,7 +26,13 @@ export default class ResponseHandler {
         if(isResponseHandled === false) {
           if(interceptedRequest.url().match(preparedResponse.query)) {
             interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-            interceptedRequest.respond({body : JSON.stringify(preparedResponse.response), headers  : interceptedRequest.headers})
+            let status = 200
+            if(preparedResponse.options) {
+              if(preparedResponse.options.status) {
+                status = preparedResponse.options.status
+              }
+            }
+            interceptedRequest.respond({status : status, body : JSON.stringify(preparedResponse.response), headers  : interceptedRequest.headers})
             isResponseHandled = true
           }
         }
