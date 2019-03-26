@@ -7,6 +7,10 @@
   background-size: 100% 5px;
   @include card_shadow();
   border-radius: 3px;
+
+  input[readonly] {
+    opacity: 0.5
+  }
 }
 
 .itinerary_container {
