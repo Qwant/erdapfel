@@ -1,7 +1,7 @@
 <div id="itinerary_container" class="itinerary_container{{= this.active ? ' itinerary_container--active' : '' }}">
   <div class="itinerary_form">
     <div class="itinerary_close icon-x" {{= click(this.closeAction) }}></div>
-    <div class="itinerary_close_mobile" {{= click(this.closeAction) }}>
+    <div class="itinerary_close_mobile" {{= click(this.back, this) }}>
       <span class="itinerary_close_mobile_icon icon-chevron-left"></span>
       {{= _('return', 'direction') }}
     </div>

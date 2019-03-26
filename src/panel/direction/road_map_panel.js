@@ -4,8 +4,10 @@ import Device from '../../libs/device'
 import RoadMapPreviewPanel from './road_map_preview';
 
 export default class RoadMapPanel {
-  constructor() {
-    this.previewRoadMap = new RoadMapPreviewPanel(this.hideForm, this.distance)
+  constructor(onOpen, onClose) {
+    this.onOpen = onOpen
+    this.onClose = onClose
+    this.previewRoadMap = new RoadMapPreviewPanel(this.distance)
     this.showRoute = true
     this.panel = new Panel(this, roadMapTemplate)
     this.routes = []
@@ -31,14 +33,18 @@ export default class RoadMapPanel {
   preview() {
     this.showRoute = false
     this.previewRoadMap.setRoad(this.routes.find((route) => route.isActive))
+    this.onOpen()
     this.panel.update()
     fire('show_marker_steps')
     document.querySelector('.map_bottom_button_group').classList.add('itinerary_preview--active')
   }
 
-  hideForm() {
-    document.querySelectorAll('.itinerary_fields')[0].style.display = 'none';
-    document.querySelectorAll('.itinerary_vehicles')[0].style.display = 'none';
+  closeAction() {
+    this.showRoute = true
+    this.previewRoadMap.close()
+    this.panel.update()
+    this.onClose()
+    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active')
   }
 
   toggleRoute(i) {

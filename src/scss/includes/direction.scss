@@ -60,6 +60,16 @@
   border-radius: 3px;
 }
 
+.itinerary_fields,
+.itinerary_vehicles {
+  display: block;
+}
+
+.itinerary_container--preview .itinerary_fields,
+.itinerary_container--preview .itinerary_vehicles {
+  display: none;
+}
+
 .itinerary_icon {
   width: 36px;
   height: 38px;
