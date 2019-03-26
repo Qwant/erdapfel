@@ -49,7 +49,7 @@ test('switch start end', async () => {
 test('simple search', async () => {
   expect.assertions(1)
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/)
-  responseHandler.addPreparedResponse(mockMapBox, /\/30,5%3B30,5/)
+  responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/)
   await showDirection(page)
 
   await page.type('#itinerary_input_origin', 'direction')
@@ -147,7 +147,7 @@ const showDirection = async (page) => {
 
 test('select itinerary leg', async () => {
   expect.assertions(1)
-  responseHandler.addPreparedResponse(mockMapBox, /\/7.5,47.4%3B6,6.6/)
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.0000000,6\.6000000/)
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`)
 
   await page.waitForSelector('#itinerary_leg_0')
@@ -165,7 +165,7 @@ test('select itinerary leg', async () => {
 
 test('select itinerary step', async () => {
   expect.assertions(1)
-  responseHandler.addPreparedResponse(mockMapBox, /\/7.5,47.4%3B6.1,47.4/)
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/)
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`)
 
   await page.waitForSelector('#itinerary_leg_0')
@@ -193,7 +193,7 @@ test('api error handling', async () => {
 
 test('api wait effect', async () => {
   expect.assertions(2)
-  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5,47\.4%3B6\.7,6\.6/)
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/)
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`)
   let errorMessageHandler = await page.waitForSelector('.itinerary_placeholder-box')
   expect(errorMessageHandler).not.toBeNull() // test wait panel
@@ -202,5 +202,5 @@ test('api wait effect', async () => {
 })
 
 afterAll(async () => {
-  await browser.close()
+  //await browser.close()
 })

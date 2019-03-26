@@ -20,7 +20,6 @@ export default class DirectionPanel {
     this.origin = null
     this.destination = null
     this.vehicle = this.vehicles.DRIVING
-    this.roadMapPanel = new RoadMapPanel()
     this.roadMapPanel = new RoadMapPanel(() => this.handleOpen(), () => this.handleClose())
     PanelManager.register(this)
     UrlState.registerResource(this, 'routes')
@@ -228,7 +227,6 @@ export default class DirectionPanel {
 
   async restore() {
     await this.restoreUrl()
-    this.open()
   }
 
   store() {
@@ -276,7 +274,7 @@ export default class DirectionPanel {
     }
 
     execOnMapLoaded(() => {
-      this.setRoutesOnMap({move : false})
+      this.open()
     })
   }
 
