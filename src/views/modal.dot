@@ -1,5 +1,5 @@
-<div {{= click(this.close, this) }} class="modal_overlay {{= this.active ? 'modal_overlay--active' : '' }}"></div>
-
-<div class="modal {{= this.active ? 'modal--active' : '' }}">
-  {{= this.child.render() }}
+<div {{= click(this.close, this) }} class="modal_overlay {{= this.active ? 'modal--active' : '' }}">
+  <div {{= click(undefined, this) }} class="modal">
+    {{= this.child.render() }}
+  </div>
 </div>

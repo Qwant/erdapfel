@@ -8,15 +8,13 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.8;
-  background-image: linear-gradient(to bottom, #6c7694, #353c52);
+  background-image: linear-gradient(to bottom, rgba(10,11,14, 0.8), rgba(53,50,82,0.8));
+  justify-content: center;
+  align-items: center;
 }
 
 .modal {
-  display: none;
   position: absolute;
-  left: calc(50vw - 160px);
-  top: calc(50vh - 200px);
   border-radius: 3px;
 }
 
@@ -27,8 +25,8 @@
   box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
 }
 
-.modal_overlay--active, .modal--active {
-  display: block;
+.modal--active {
+  display: flex;
 }
 
 .modal__close {
