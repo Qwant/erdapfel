@@ -20,6 +20,10 @@ export default class SearchInput {
   static initSearchInput(tagSelector) {
     if(! window.__searchInput) {
       window.__searchInput = new SearchInput(tagSelector)
+      window.clearSearch = () => {
+        window.__searchInput.suggest.setValue('')
+        setTimeout(() => {search.focus()}, 0)
+      }
     }
     return window.__searchInput
   }

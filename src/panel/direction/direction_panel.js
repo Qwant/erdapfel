@@ -179,11 +179,17 @@ export default class DirectionPanel {
   }
 
   clearOrigin() {
+    setTimeout(() => {
+      this.searchInputStart.focus()
+    },0)
     this.originInput.setValue('')
     this.origin = null
   }
 
   clearDestination() {
+    setTimeout(() => {
+      this.searchInputEnd.focus()
+    },0)
     this.destinationInput.setValue('')
     this.destination = null
   }
