@@ -59,6 +59,7 @@ PoiPanel.prototype.toggleStorePoi = async function() {
 
     if (this.isMasqEnabled && !store.isLoggedIn()) {
       masqFavoriteModal.open()
+      await masqFavoriteModal.waitForClose()
     }
 
     this.poi.stored = true
