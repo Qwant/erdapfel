@@ -20,10 +20,20 @@ export default class DirectionPanel {
     this.origin = null
     this.destination = null
     this.vehicle = this.vehicles.DRIVING
-    this.roadMapPanel = new RoadMapPanel(this)
+    this.roadMapPanel = new RoadMapPanel(() => this.handleOpen(), () => this.handleClose())
     this.routes = null
     PanelManager.register(this)
     UrlState.registerResource(this, 'routes')
+    this.activePanel = this
+  }
+
+  handleOpen () {
+    this.hideForm()
+    this.activePanel = this.roadMapPanel
+  }
+
+  handleClose () {
+    this.displayForm()
     this.activePanel = this
   }
 
