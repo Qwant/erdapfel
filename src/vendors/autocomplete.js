@@ -118,7 +118,12 @@ var autoComplete = (function(){
         if (!over_sb) {
           that.last_val = that.value;
           that.sc.style.display = 'none';
-          setTimeout(function(){ that.sc.style.display = 'none'; }, 350); // hide suggestions on fast select
+          setTimeout(function(){
+            // hide suggestions on fast select
+            if (that !== document.activeElement){
+              that.sc.style.display = 'none';
+            }
+          }, 350);
         }
       };
       addEvent(that, 'blur', that.blurHandler);
