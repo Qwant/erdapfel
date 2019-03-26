@@ -11,7 +11,6 @@ import Device from '../../libs/device'
 import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 import {vehiculeMatching} from '../../adapters/direction_api'
 
-
 export default class DirectionPanel {
   constructor() {
     this.panel = new Panel(this, directionTemplate)

@@ -202,5 +202,5 @@ test('api wait effect', async () => {
 })
 
 afterAll(async () => {
-  //await browser.close()
+  await browser.close()
 })

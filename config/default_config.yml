@@ -56,6 +56,7 @@ telemetry:
 
 direction:
   enabled: false
+  timeout: 10 #s
   service:
     api: 'mapbox' # 'mapbox' or 'qwant'
     apiBaseUrl: https://api.mapbox.com/directions/v5/mapbox/
