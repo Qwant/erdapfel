@@ -15,12 +15,15 @@ export default class Store {
     // if store not initialized, use this
     window.__store = this
 
+    // define an eventTarget
+    this.eventTarget = document.createElement('store')
+
     // init stores
     this.localStore = new LocalStore()
     this.abstractStore = this.localStore
     this.masqConfig = nconf.get().masq
     if (this.masqConfig.enabled) {
-      this.masqEventTarget = document.createElement('store')
+      this.masqEventTarget = document.createElement('masqStore')
 
       this.masqStore = new MasqStore(this.masqConfig)
       if (this.masqStore.isLoggedIn()) {
@@ -151,6 +154,7 @@ export default class Store {
   async add(poi) {
     try {
       await this.abstractStore.set(poi.getKey(), poi.poiStoreLiteral())
+      this.eventTarget.dispatchEvent(new Event('poi_added'))
     } catch(e) {
       Error.sendOnce('store', 'add', 'error adding poi in ' + this.abstractStore.storeName, e)
     }

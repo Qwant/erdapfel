@@ -44,6 +44,14 @@ function PoiPanel(sharePanel) {
       endLoad()
     }
   })
+
+  store.eventTarget.addEventListener('poi_added', async () => {
+    if (this.poi && !this.poi.stored) {
+      this.poi.stored = await isPoiFavorite(this.poi)
+      this.panel.update()
+      endLoad()
+    }
+  })
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
