@@ -2,6 +2,7 @@ import Panel from '../../libs/panel';
 import roadMapTemplate from '../../views/direction/road_map.dot'
 import Device from '../../libs/device'
 import RoadMapPreviewPanel from './road_map_preview';
+import Telemetry from "../../libs/telemetry";
 
 export default class RoadMapPanel {
   constructor(onOpen, onClose) {
@@ -15,6 +16,7 @@ export default class RoadMapPanel {
     this.placeholder = false
     this.error = false
     this.origin = null
+    this.openMoreMenuPosition = -1
 
     listen('select_road_map', (i) => {
       this.toggleRoute(i);
@@ -154,5 +156,33 @@ export default class RoadMapPanel {
       default:
         return ''
     }
+  }
+
+  toggleMore(position) {
+    if(this.openMoreMenuPosition !== position) {
+      this.closeMoreMenu()
+    }
+    this.openMoreMenu(position)
+  }
+
+  openMoreMenu(position) {
+    //Telemetry.add(Telemetry.FAVORITE_OPEN_MORE)
+    this.openMoreMenuPosition = position
+    let menu = document.querySelector(`#itinerary_more_${position}`)
+    menu.classList.add('itinerary_panel__item__more--active')
+  }
+
+  closeMoreMenu(){
+    let menu = document.querySelector(`#itinerary_more_${this.openMoreMenuPosition}`)
+    if(menu) {
+      menu.classList.remove('itinerary_panel__item__more--active')
+      this.openMoreMenuPosition = -1
+    }
+  }
+
+  openShare(route) {
+    //Telemetry.add(Telemetry.FAVORITE_SHARE)
+    //let url = poi.toAbsoluteUrl()
+    //this.sharePanel.open(url)
   }
 }

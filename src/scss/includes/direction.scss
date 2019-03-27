@@ -282,7 +282,7 @@
 }
 
 .itinerary_leg_via {
-  width: calc(100% - 190px);
+  width: calc(100% - 225px);
   position: absolute;
   left: 80px;
   text-align: left;
@@ -323,7 +323,7 @@
 .itinerary_leg_info {
   width: 90px;
   position: absolute;
-  right: 35px;
+  right: 60px;
   text-align: right;
 }
 
@@ -575,6 +575,55 @@
 .direction_shortcut {
   display: none;
   cursor: pointer;
+}
+
+.itinerary_panel__item__more_button {
+  float: right;
+  margin: 13px -10px 0 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: $primary_clear;
+}
+
+.itinerary_panel__item__more_button:hover {
+  background: $separator_color;
+  color: $primary_alternative_text;
+  cursor: pointer;
+}
+
+.itinerary_panel__item__more {
+  display: none;
+  position: absolute;
+  right: 3px;
+  top: 47px;
+  padding: 14px 16px 10px 16px;
+  background: $background;
+  color: $primary_text;
+  font-size: 13px;
+  border-radius: 3px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.itinerary_panel__item__more--active {
+  display: block;
+}
+
+.itinerary_panel__item__more__line {
+  cursor: pointer;
+  height: 20px;
+  cursor: pointer;
+}
+
+.itinerary_panel__item__more__line:hover {
+  color : $secondary_text;
+}
+
+.itinerary_panel__item__more__icon {
+  padding-right: 9px;
 }
 
 
