@@ -86,3 +86,37 @@
 .modal__masq_favorite__again {
   margin-right: 10px;
 }
+
+@media (max-width: 370px) {
+  .modal__masq_favorite {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .modal__masq_favorite__buttons {
+    flex-direction: column;
+    margin-bottom: 55px;
+  }
+
+  .modal__masq_favorite__buttons .modal__masq_favorite__secondary_button {
+    margin-bottom: 10px;
+  }
+
+  .modal__title {
+    text-align: center;
+  }
+
+  .modal__subtitle {
+    text-align: center;
+  }
+
+  .modal__masq_favorite__details {
+    justify-content: center;
+    margin-bottom: 45px;
+  }
+
+  .modal__masq_favorite__question {
+    text-align: center;
+    margin-bottom: 65px;
+  }
+}
