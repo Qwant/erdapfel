@@ -4,16 +4,23 @@
       <i class="icon-x"></i>
     </p>
     {{? this.favoritePois.length === 0 }}
-      <h4 class="favorite_panel__container__title">
-        {{= _('Favorite places', 'favorite panel') }}
+      <h4 class="favorite_panel__container">
+        <div class="favorite_panel__container__title">{{= _('Favorite places', 'favorite panel') }}</div>
+        {{? this.store.isLoggedIn() }}
+          <div class="icon-masq_dark favorite_panel__masq_icon"></div>
+        {{?}}
       </h4>
       <div class="favorite_panel__container__empty">
         {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
       </div>
     {{??}}
-      <h4 class="favorite_panel__container__title">
-        {{= _('MY FAVORITES', 'favorite panel') }}
+      <h4 class="favorite_panel__container">
+        <div class="favorite_panel__container__title">{{= _('MY FAVORITES', 'favorite panel') }}</div>
+        {{? this.store.isLoggedIn() }}
+          <div class="icon-masq_dark favorite_panel__masq_icon"></div>
+        {{?}}
       </h4>
+
       {{= this.filterPanel.render() }}
         <div class="favorite_panel__items">
           {{~ this.favoritePois:poi:i }}
