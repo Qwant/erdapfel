@@ -8,8 +8,6 @@ import layouts from "./layouts.js";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
-const store = new Store()
-
 function Favorite(sharePanel) {
   this.active = false
   this.displayed = false
@@ -26,7 +24,9 @@ function Favorite(sharePanel) {
   this.panel = new Panel(this, FavoritePanelView)
   PanelManager.register(this)
 
-  store.onToggleStore(async () => {
+  this.store = new Store()
+
+  this.store.onToggleStore(async () => {
     await this.getAll()
     this.panel.update()
   })
@@ -113,7 +113,7 @@ Favorite.prototype.add = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_SAVE)
   this.favoritePois.push(poi)
   this.panel.update()
-  await store.add(poi)
+  await this.store.add(poi)
 }
 
 Favorite.prototype.del = async function({poi, index}) {
@@ -132,7 +132,7 @@ Favorite.prototype.del = async function({poi, index}) {
 
   this.panel.update()
 
-  await Promise.all(toDelete.map(p => store.del(p)))
+  await Promise.all(toDelete.map(p => this.store.del(p)))
 }
 
 export default Favorite

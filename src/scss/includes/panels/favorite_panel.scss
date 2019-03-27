@@ -129,11 +129,21 @@
   padding: 20px;
 }
 
+.favorite_panel__container {
+  display: flex;
+  align-items: center;
+}
+
 .favorite_panel__container__title {
-  padding: 14px 20px;
+  padding: 14px 10px 14px 20px;
   font-size: 12px;
   font-weight: normal;
   color: $secondary_text_clear;
+}
+
+.favorite_panel__masq_icon {
+  height: 27px;
+  width: 57px;
 }
 
 .favorite_panel__item__desc {
