@@ -88,8 +88,7 @@ export default class Store {
 
   isLoggedIn() {
     if (!this.masqConfig.enabled) {
-      Error.sendOnce('store', 'isLoggedIn', 'error trying to check if logged into Masq with disabled Masq', e)
-      return
+      return false
     }
 
     try {
