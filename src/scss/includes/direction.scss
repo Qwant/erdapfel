@@ -258,9 +258,14 @@
 .itinerary_leg_inner {
   min-height: 95px;
   margin: 0 33px;
-  border-bottom: 1px solid #e0e1e6;
   padding: 20px 0 0;
 }
+
+.itinerary__roadmap__separator {
+  border-bottom: 1px solid #e0e1e6;
+  margin: 0 33px;
+}
+
 
 .itinerary_leg:last-of-type .itinerary_leg_inner {
   border-bottom: none;
@@ -335,7 +340,6 @@
 }
 
 .itinerary_leg_detail {
-  margin: 70px 0 0;
   display: block;
 }
 
@@ -400,9 +404,9 @@
 }
 
 .itinerary_roadmap_step {
-  padding-left: 37px;
+  margin-top: 1px;
+  padding: 0 33px;
   position: relative;
-  left: -37px;
   border-left: 4px solid $secondary_text;
 }
 
