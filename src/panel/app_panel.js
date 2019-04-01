@@ -15,6 +15,7 @@ import Menu from "./menu";
 
 const performanceEnabled = nconf.get().performance.enabled
 const directionEnabled = nconf.get().direction.enabled
+const masqEnabled = nconf.get().masq.enabled
 import Telemetry from "../libs/telemetry";
 
 
@@ -37,7 +38,10 @@ function AppPanel(parent) {
   this.geolocationModal = new GeolocationModal()
   this.geolocationDeniedModal = new GeolocationDeniedModal()
 
-  this.masqFavoriteModal = new MasqFavoriteModal()
+  this.masqEnabled = masqEnabled
+  if (this.masqEnabled) {
+    this.masqFavoriteModal = new MasqFavoriteModal()
+  }
 
   this.menu = new Menu()
 

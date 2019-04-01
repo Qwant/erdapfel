@@ -1,6 +1,5 @@
 import MasqFavoriteModalView from '../views/masq_favorite_modal.dot'
 import Modal from "./modal"
-import nconf from "@qwant/nconf-getter"
 import Store from "../adapters/store"
 import {version} from '../../config/constants.yml'
 
