@@ -12,12 +12,7 @@ export default class PoiStore extends Poi {
     })
   }
 
-  getInputValue() {
-    return this.name
-  }
-
   static async getAll() {
-    let store = new Store()
     let storedData = []
     try {
       storedData = await store.getAllPois()
