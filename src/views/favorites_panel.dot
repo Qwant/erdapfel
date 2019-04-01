@@ -60,7 +60,7 @@
       </div>
     {{?}}
   </div>
-  {{? this.masqEnabled}}
+  {{? this.displayMasqFooter}}
     <div class="favorite_panel__masq_footer--hidden">
       <div class="favorite_panel__masq_footer_text">
         <span>{{= _('Use')}}</span>
