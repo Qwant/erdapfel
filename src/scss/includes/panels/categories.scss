@@ -1,0 +1,21 @@
+.categories__panel {
+  display: block;
+  position: relative;
+  width: $panel_width;
+  background: $background;
+  @include card_shadow();
+  @include card_radius();
+  height: 100px;
+}
+
+.category__panel__head {
+  font-size: 12px;
+  color: #5c6f84;
+  border-bottom: 1px solid #f4f6fa;
+  padding: 14px 0 12px 25px;
+  text-transform: uppercase;
+}
+
+.categories__panel__card {
+
+}

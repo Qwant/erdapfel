@@ -1,0 +1,25 @@
+<div class="categories__panel{{= this.isOpen ? ' categories__panel--active' : '' }}">
+  <div class="category__panel__head">
+      {{= _('Resultados propuestos por los mapas de Qwant.', 'categories') }}
+  </div>
+
+  {{~ this.categories:category }}
+
+    <div class="category__card">
+      <h3 class="category__card__title">
+        {{= category.getInputValue }}
+      </h3>
+      {{= category.poiSubClass(this.poi.subClassName) }}
+
+      {{? this.poi.address && this.poi.address.label }}
+        <p class="category__card__address">
+          {{= this.htmlEncode(this.poi.address.label) }}
+        </p>
+      {{?}}
+
+      {{= this.minimalHourPanel.set(category).render() }}
+
+    </div>
+  {{~}}
+</div>
+
