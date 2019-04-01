@@ -11,8 +11,13 @@ const LAT_INDEX = 1
 export default class IdunnPoi extends Poi {
   constructor(rawPoi) {
     let alternativeName = ''
-    if(rawPoi.address && rawPoi.address.label) {
-      alternativeName = rawPoi.address.label
+    if(rawPoi.address){
+      if(rawPoi.address.label) {
+        alternativeName = rawPoi.address.label
+      }
+      else if(rawPoi.address.street && rawPoi.address.street.label){
+        alternativeName = rawPoi.address.street.label
+      }
     }
     let latLng = {lat : rawPoi.geometry.coordinates[LAT_INDEX], lng : rawPoi.geometry.coordinates[LNG_INDEX]}
     super(rawPoi.id, rawPoi.name, alternativeName, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name)
