@@ -5,8 +5,12 @@ import FilterPanel from './filter_panel'
 import PoiStore from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 import layouts from "./layouts.js";
+import {version} from '../../config/constants.yml'
+import nconf from "@qwant/nconf-getter"
 
 const poiSubClass = require('../mapbox/poi_subclass')
+
+const masqEnabled = nconf.get().masq.enabled
 
 function Favorite(sharePanel) {
   this.active = false
@@ -16,6 +20,8 @@ function Favorite(sharePanel) {
   this.filterPanel = new FilterPanel()
   this.sharePanel = sharePanel
   this.openMoreMenuPosition = -1
+
+  this.masqEnabled = masqEnabled
 
   document.addEventListener('click', () => {
     this.closeMoreMenu()
@@ -85,6 +91,18 @@ Favorite.prototype.open = async function() {
   this.displayed = true
   await this.getAll()
   await this.panel.update()
+
+  // check if the footer has to be displayed
+  if (this.masqEnabled) {
+    let favoriteMasqFooter = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`)
+    if (favoriteMasqFooter !== "false") {
+      let footer = document.querySelector('.favorite_panel__masq_footer--hidden')
+      let pr1 = footer.classList.remove('favorite_panel__masq_footer--hidden')
+      let pr2 = footer.classList.add('favorite_panel__masq_footer')
+      await Promise.all([pr1, pr2])
+    }
+  }
+
   await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
 }
@@ -133,6 +151,14 @@ Favorite.prototype.del = async function({poi, index}) {
   this.panel.update()
 
   await Promise.all(toDelete.map(p => this.store.del(p)))
+}
+
+Favorite.prototype.closeMasqFooter = function() {
+  console.log('close footer')
+  localStorage.setItem(`qmaps_v${version}_favorite_masq_footer`, false)
+  let footer = document.querySelector('.favorite_panel__masq_footer')
+  footer.classList.add('favorite_panel__masq_footer--hidden')
+  footer.classList.remove('favorite_panel__masq_footer')
 }
 
 export default Favorite

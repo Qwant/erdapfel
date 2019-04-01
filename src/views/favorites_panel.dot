@@ -60,4 +60,17 @@
       </div>
     {{?}}
   </div>
+  {{? this.masqEnabled}}
+    <div class="favorite_panel__masq_footer--hidden">
+      <div class="favorite_panel__masq_footer_text">
+        <span>{{= _('Use')}}</span>
+        <div class="icon-masq favorite_panel__masq_footer_icon"></div>
+        <span>{{= _('to secure your favorites on all your devices')}}</span>
+      </div>
+      <div class="favorite_panel__masq_footer_image"></div>
+      <p class="favorites_panel__masq_footer_close" {{= click(this.closeMasqFooter, this) }}>
+        <i class="icon-x"></i>
+      </p>
+    </div>
+  {{?}}
 </div>
