@@ -32,9 +32,15 @@ function Favorite(sharePanel) {
 
   this.store = new Store()
 
+  this.displayMasqFooter = this.masqEnabled && !this.store.isLoggedIn()
+
   this.store.onToggleStore(async () => {
     await this.getAll()
+    this.displayMasqFooter = this.masqEnabled && !this.store.isLoggedIn()
     this.panel.update()
+
+    // check if the footer has to be displayed
+    this.checkDisplayMasqFooter()
   })
 
   listen('store_poi', async (poi) => {
@@ -93,15 +99,7 @@ Favorite.prototype.open = async function() {
   await this.panel.update()
 
   // check if the footer has to be displayed
-  if (this.masqEnabled) {
-    let favoriteMasqFooter = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`)
-    if (favoriteMasqFooter !== "false") {
-      let footer = document.querySelector('.favorite_panel__masq_footer--hidden')
-      let pr1 = footer.classList.remove('favorite_panel__masq_footer--hidden')
-      let pr2 = footer.classList.add('favorite_panel__masq_footer')
-      await Promise.all([pr1, pr2])
-    }
-  }
+  await this.checkDisplayMasqFooter()
 
   await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
@@ -153,8 +151,18 @@ Favorite.prototype.del = async function({poi, index}) {
   await Promise.all(toDelete.map(p => this.store.del(p)))
 }
 
+Favorite.prototype.checkDisplayMasqFooter = async function () {
+  if (this.displayMasqFooter) {
+    let favoriteMasqFooter = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`)
+    if (favoriteMasqFooter !== "false") {
+      let footer = document.querySelector('.favorite_panel__masq_footer--hidden')
+      footer.classList.remove('favorite_panel__masq_footer--hidden')
+      footer.classList.add('favorite_panel__masq_footer')
+    }
+  }
+}
+
 Favorite.prototype.closeMasqFooter = function() {
-  console.log('close footer')
   localStorage.setItem(`qmaps_v${version}_favorite_masq_footer`, false)
   let footer = document.querySelector('.favorite_panel__masq_footer')
   footer.classList.add('favorite_panel__masq_footer--hidden')
