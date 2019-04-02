@@ -3,7 +3,9 @@
       {{= _('Resultados propuestos por los mapas de Qwant.', 'categories') }}
   </div>
 
-  {{~ this.categories:category }}
+  <button {{= click(this.fullFill, this) }}>Full</button>
+
+  {{~ this.pois:poi}}
 
     <div class="category__card">
       <h3 class="category__card__title">
