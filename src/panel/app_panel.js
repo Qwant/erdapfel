@@ -9,6 +9,7 @@ import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
 import MasqFavoriteModal from "../modals/masq_favorite_modal";
+import MasqOnboardingModal from "../modals/masq_onboarding_modal";
 import nconf from "@qwant/nconf-getter"
 import DirectionPanel from './direction/direction_panel'
 import Menu from "./menu";
@@ -41,6 +42,7 @@ function AppPanel(parent) {
   this.masqEnabled = masqEnabled
   if (this.masqEnabled) {
     this.masqFavoriteModal = new MasqFavoriteModal()
+    this.masqOnboardingModal = new MasqOnboardingModal()
   }
 
   this.menu = new Menu()

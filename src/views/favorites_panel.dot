@@ -61,7 +61,7 @@
     {{?}}
   </div>
   {{? this.displayMasqFooter}}
-    <div class="favorite_panel__masq_footer--hidden">
+    <div class="favorite_panel__masq_footer--hidden" {{= click(this.openMasqOnboarding, this)}}>
       <div class="favorite_panel__masq_footer_text">
         <span>{{= _('Use')}}</span>
         <div class="icon-masq favorite_panel__masq_footer_icon"></div>
