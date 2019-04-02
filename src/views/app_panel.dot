@@ -15,5 +15,6 @@
 {{= this.geolocationDeniedModal.renderModal() }}
 {{? this.masqEnabled }}
   {{= this.masqFavoriteModal.renderModal() }}
+  {{= this.masqOnboardingModal.renderModal() }}
 {{?}}
 {{= this.menu.render() }}

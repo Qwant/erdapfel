@@ -7,10 +7,12 @@ import Telemetry from "../libs/telemetry";
 import layouts from "./layouts.js";
 import {version} from '../../config/constants.yml'
 import nconf from "@qwant/nconf-getter"
+import MasqOnboardingModal from "../modals/masq_onboarding_modal";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
 const masqEnabled = nconf.get().masq.enabled
+const masqOnboardingModal = new MasqOnboardingModal()
 
 function Favorite(sharePanel) {
   this.active = false
@@ -167,6 +169,10 @@ Favorite.prototype.closeMasqFooter = function() {
   let footer = document.querySelector('.favorite_panel__masq_footer')
   footer.classList.add('favorite_panel__masq_footer--hidden')
   footer.classList.remove('favorite_panel__masq_footer')
+}
+
+Favorite.prototype.openMasqOnboarding = function() {
+  masqOnboardingModal.open()
 }
 
 export default Favorite
