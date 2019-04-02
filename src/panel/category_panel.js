@@ -1,19 +1,32 @@
 import Panel from "../libs/panel";
-import panelView from "../views/categories_panel.dot"
+import panelView from "../views/category_panel.dot"
 import MinimalHourPanel from "./poi_bloc/opening_minimal";
 import Ajax from "../libs/ajax";
+import UrlState from "../proxies/url_state";
+import {paramTypes} from "../proxies/url_shard";
 
-export class CategoriesPanel {
+export class CategoryPanel {
   constructor() {
     this.minimalHourPanel = new MinimalHourPanel()
     this.panel = new Panel(this, panelView)
 
     this.pois = []
+    this.type = ''
     this.isOpen = false
 
+    UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
   }
 
-  async fullFill() {
+  store () {
+    return `type=${this.type}`
+  }
+
+  restore(urlShard) {
+    this.type = urlShard.match(/type=(.*)/)
+    this.search()
+  }
+
+  async search() {
     let bbox = window.mapGetBounds()
     console.log(bbox)
 

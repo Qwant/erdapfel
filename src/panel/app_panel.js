@@ -17,7 +17,7 @@ const performanceEnabled = nconf.get().performance.enabled
 const directionEnabled = nconf.get().direction.enabled
 const masqEnabled = nconf.get().masq.enabled
 import Telemetry from "../libs/telemetry";
-import {CategoriesPanel} from "./categories_panel";
+import {CategoryPanel} from "./category_panel";
 
 function AppPanel(parent) {
   new TopBar()
@@ -26,7 +26,7 @@ function AppPanel(parent) {
   this.servicePanel = new ServicePanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
-  this.category = new CategoriesPanel()
+  this.category = new CategoryPanel()
 
   this.directionEnabled = directionEnabled
   if (this.directionEnabled) {
