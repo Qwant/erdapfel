@@ -12,14 +12,14 @@ import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_g
 import {vehiculeMatching} from '../../adapters/direction_api'
 
 export default class DirectionPanel {
-  constructor() {
+  constructor(roadPanel) {
     this.panel = new Panel(this, directionTemplate)
     this.vehicles = {DRIVING : 'driving', WALKING : 'walking', CYCLING : 'cycling'}
     this.active = false
     this.origin = null
     this.destination = null
     this.vehicle = this.vehicles.DRIVING
-    this.roadMapPanel = new RoadMapPanel(() => this.handleOpen(), () => this.handleClose())
+    this.roadMapPanel = new RoadMapPanel(() => this.handleOpen(), () => this.handleClose(), roadPanel)
     PanelManager.register(this)
     UrlState.registerResource(this, 'routes')
     this.activePanel = this

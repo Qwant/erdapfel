@@ -5,7 +5,7 @@ import RoadMapPreviewPanel from './road_map_preview';
 import Telemetry from "../../libs/telemetry";
 
 export default class RoadMapPanel {
-  constructor(onOpen, onClose) {
+  constructor(onOpen, onClose, sharePanel) {
     this.onOpen = onOpen
     this.onClose = onClose
     this.previewRoadMap = new RoadMapPreviewPanel(this.distance)
@@ -17,6 +17,7 @@ export default class RoadMapPanel {
     this.error = false
     this.origin = null
     this.openMoreMenuPosition = -1
+    this.sharePanel = sharePanel
 
     listen('select_road_map', (i) => {
       this.toggleRoute(i);
@@ -180,9 +181,8 @@ export default class RoadMapPanel {
     }
   }
 
-  openShare(route) {
+  openShare() {
     //Telemetry.add(Telemetry.FAVORITE_SHARE)
-    //let url = poi.toAbsoluteUrl()
-    //this.sharePanel.open(url)
+    this.sharePanel.open(window.location)
   }
 }

@@ -930,7 +930,11 @@
         },
         {
           "id": 187,
-          "order": 0
+          "order": 81,
+          "prevSize": 24,
+          "code": 59691,
+          "name": "printer",
+          "tempChar": ""
         },
         {
           "id": 188,
@@ -1023,7 +1027,7 @@
           "code": 59687,
           "name": "shuffle",
           "tempChar": ""
-        },
+        }
         {
           "id": 209,
           "order": 0

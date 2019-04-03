@@ -64,6 +64,10 @@
                 <i class="icon-share-2 itinerary_panel__item__more__icon"></i>
                 <span>{{= _('Share') }}</span>
               </p>
+              <p class="itinerary_panel__item__more__line" {{= click(this.openPrint, this, route) }}>
+                <i class="icon-printer itinerary_panel__item__more__icon"></i>
+                <span>{{= _('print') }}</span>
+              </p>
             </div>
 
           <div class='itinerary_leg_icon {{= this.getVehicleIcon() }}'></div>

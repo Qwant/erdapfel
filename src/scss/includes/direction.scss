@@ -597,8 +597,6 @@
 .itinerary_panel__item__more {
   display: none;
   position: absolute;
-  right: 3px;
-  top: 47px;
   padding: 14px 16px 10px 16px;
   background: $background;
   color: $primary_text;
@@ -606,6 +604,7 @@
   border-radius: 3px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
   z-index: 2;
+  margin: 40px 0 0 270px;
 }
 
 .itinerary_panel__item__more--active {
