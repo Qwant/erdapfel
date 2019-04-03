@@ -31,6 +31,28 @@ export default class IdunnPoi extends Poi {
         return this.name
     }
   }
+/* ?bbox={bbox}&category=<category-name>&size={size}/ */
+  static async poiCategoryLoad(bbox, size, category) {
+    let url = 'https://www.qwant.com/maps/detail/v1/places'
+    let requestParams = {bbox, size, category}
+
+    try {
+      let rawPois = await Ajax.getLang(url, requestParams)
+      return rawPois.places.map((rawPoi) => new IdunnPoi(rawPoi))
+    } catch (err) {
+      if(err === 404) {
+        return
+      }
+      else {
+        Error.sendOnce(
+          'idunn_poi', 'poiApiLoad',
+          `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,
+          err
+        )
+        return
+      }
+    }
+  }
 
   static async poiApiLoad(id, options = {}) {
     let rawPoi = null

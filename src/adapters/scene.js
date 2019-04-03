@@ -60,7 +60,7 @@ Scene.prototype.initMapBox = function () {
     center: this.center,
     hash: false
   })
-  window.mapGetBounds = this.mb.getBounds
+  window.mapGetBounds = () => this.mb.getBounds()
 
   this.popup.init(this.mb)
 
