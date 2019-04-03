@@ -3,6 +3,9 @@ import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import Error from '../adapters/error'
 import nconf from "../../local_modules/nconf_getter";
+import MasqOnboardingModal from "../modals/masq_onboarding_modal";
+
+const masqOnboardingModal = new MasqOnboardingModal()
 
 export default class LoginMasqPanel {
   constructor() {
@@ -27,5 +30,9 @@ export default class LoginMasqPanel {
 
   async logout() {
     await this.store.logout()
+  }
+
+  openMasqOnboarding() {
+    masqOnboardingModal.open()
   }
 }
