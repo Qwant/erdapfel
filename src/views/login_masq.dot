@@ -17,7 +17,7 @@
       >
       <div class="menu__panel__top__masq__second__button_container">
           <div class="icon-discover"></div>
-          <a class="menu__panel__top__masq__second__button" href="https://github.com/QwantResearch/masq-app" rel="noopener" target="_blank">{{= _('How does it work ?') }}</a>
+          <div class="menu__panel__top__masq__second__button" {{= click(this.openMasqOnboarding, this)}}>{{= _('How does it work ?') }}</a>
       </div>
     {{?}}
   </div>
