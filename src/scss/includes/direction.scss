@@ -40,18 +40,24 @@
   color: #495063;
 }
 
+.direction_suggestions {
+  margin-top: 0;
+}
+
 .itinerary__field__clear {
-  margin-left: -28px;
+  display: none;
+  position: absolute;
+  right: 30px;
+  top: 4px;
   padding: 8px;
   color: $secondary_text;
   cursor: text;
   font-size: 15px;
-  display: none;
 }
 
 .itinerary_container--start-focused #itinerary_input_origin:valid:focus ~ .itinerary__field__clear,
 .itinerary_container--end-focused #itinerary_input_destination:valid:focus ~ .itinerary__field__clear {
-  display: inline-block;
+  display: block;
   cursor: pointer;
 }
 
@@ -62,6 +68,11 @@
   margin: 0 18px;
   position: relative;
   border-radius: 3px;
+}
+
+.itinerary_field_origin,
+.itinerary_field_destination {
+  position: relative;
 }
 
 .itinerary_fields,
@@ -75,9 +86,11 @@
 }
 
 .itinerary_icon {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 36px;
   height: 38px;
-  float: left;
 }
 
 .itinerary_icon_origin {
@@ -102,9 +115,10 @@
 }
 
 #itinerary_input_origin, #itinerary_input_destination {
-  width: 290px;
+  position: relative;
+  width: 364px;
   height: 40px;
-  padding-right: 22px;
+  padding: 0 22px 0 44px;
   border: none;
   font-size: 17px;
   color: $primary_text;
@@ -120,8 +134,10 @@
   font-size: 16px;
 }
 
-#itinerary_input_destination {
+.itinerary__form__separator {
   border-top: 1px solid #c8cbd3;
+  width: 290px;
+  margin-left: 37px;
 }
 
 .itinerary_invert_origin_destination {
@@ -242,9 +258,14 @@
 .itinerary_leg_inner {
   min-height: 95px;
   margin: 0 33px;
-  border-bottom: 1px solid #e0e1e6;
   padding: 20px 0 0;
 }
+
+.itinerary__roadmap__separator {
+  border-bottom: 1px solid #e0e1e6;
+  margin: 0 33px;
+}
+
 
 .itinerary_leg:last-of-type .itinerary_leg_inner {
   border-bottom: none;
@@ -319,8 +340,8 @@
 }
 
 .itinerary_leg_detail {
-  margin: 70px 0 0;
   display: block;
+  cursor: pointer;
 }
 
 .itinerary_leg_detail--hidden {
@@ -384,9 +405,9 @@
 }
 
 .itinerary_roadmap_step {
-  padding-left: 37px;
+  margin-top: 1px;
+  padding: 0 33px;
   position: relative;
-  left: -37px;
   border-left: 4px solid $secondary_text;
 }
 
@@ -574,7 +595,9 @@
     color: $background;
   }
 
-
+  .itinerary__form__separator {
+    width: calc(100% - 80px);
+  }
   
   .itinerary_fields {
     border-radius: 3px;
@@ -582,7 +605,7 @@
   }
 
   #itinerary_input_origin, #itinerary_input_destination {
-    width: calc(100% - 80px);
+    width: calc(100% - 36px);
     font-size: 14px;
   }
   
@@ -640,6 +663,11 @@
     top: 65px;
     left: 0;
     width: 100% !important;
+  }
+
+  .itinerary_container--start-focused .itinerary_icon,
+  .itinerary_container--end-focused .itinerary_icon{
+    display: none;
   }
 
   .itinerary__field__clear {
@@ -819,11 +847,6 @@
     background: $background;
     @include card_shadow();
     font-size: 24px;
-  }
-
-  // Force autocomplete to appear on top of docked field
-  body .autocomplete_suggestions {
-    z-index: 5;
   }
 
   .itinerary_container--start-focused,

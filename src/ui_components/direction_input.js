@@ -10,7 +10,7 @@ export default class DirectionInput {
       this.geolocalisationPoi
     ]
 
-    this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes)
+    this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes, 'direction_suggestions')
     this.suggest.preRender()
 
     this.listenHandler = listen(submitHandler, () => this.onSubmit())

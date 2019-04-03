@@ -36,14 +36,14 @@ test('switch start end', async () => {
   expect.assertions(1)
   await showDirection(page)
 
-  await page.type('#itinerary_input_origin', 'a')
-  await page.type('#itinerary_input_destination', 'b')
+  await page.type('#itinerary_input_origin', 'start')
+  await page.type('#itinerary_input_destination', 'end')
   await page.click('.itinerary_invert_origin_destination')
-  let inputValue = await page.evaluate(() => {
+  let inputValues = await page.evaluate(() => {
     return {startInput : document.querySelector('#itinerary_input_origin').value, endInput : document.querySelector('#itinerary_input_destination').value}
   })
 
-  expect(inputValue).toEqual({startInput : 'b', endInput : 'a'})
+  expect(inputValues).toEqual({startInput : 'end', endInput : 'start'})
 })
 
 test('simple search', async () => {
@@ -184,12 +184,11 @@ test('select itinerary step', async () => {
 test('api error handling', async () => {
   expect.assertions(1)
   /* prepare "error" response */
-  responseHandler.addPreparedResponse({}, /\/7\.5,47\.4%3B6\.6,6\.6/, {status : 422})
+  responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, {status : 422})
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`)
   let errorMessageHandler = await page.waitForSelector('.itinerary_no-result')
   expect(errorMessageHandler).not.toBeNull()
 })
-
 
 test('api wait effect', async () => {
   expect.assertions(2)
