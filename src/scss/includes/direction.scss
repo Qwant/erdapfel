@@ -341,6 +341,7 @@
 
 .itinerary_leg_detail {
   display: block;
+  cursor: pointer;
 }
 
 .itinerary_leg_detail--hidden {
@@ -604,7 +605,7 @@
   }
 
   #itinerary_input_origin, #itinerary_input_destination {
-    width: calc(100% - 80px);
+    width: calc(100% - 36px);
     font-size: 14px;
   }
   
