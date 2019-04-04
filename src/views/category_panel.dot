@@ -1,24 +1,24 @@
-<div class="categories__panel{{= this.isOpen ? ' categories__panel--active' : '' }}">
+<div class="category__panel{{= this.isOpen ? ' category__panel--active' : '' }}">
   <div class="category__panel__head">
       {{= _('Resultados propuestos por los mapas de Qwant.', 'categories') }}
   </div>
+  <div class="category__panel__scroll">
+    {{~ this.pois:poi }}
 
-  {{~ this.pois:poi }}
+      <div class="category__card" {{= click(this.selectPoi, this, poi) }}>
+        <h3 class="category__card__title">
+          {{= poi.getInputValue() }}
+        </h3>
+        {{= this.poiSubClass(poi.subClassName) }}
 
-    <div class="category__card">
-      <h3 class="category__card__title">
-        {{= poi.getInputValue }}
-      </h3>
-      {{= this.poiSubClass(poi.subClassName) }}
+        {{? poi.address && poi.address.label }}
+          <p class="category__card__address">
+            {{= this.htmlEncode(poi.address.label) }}
+          </p>
+        {{?}}
 
-      {{? poi.address && poi.address.label }}
-        <p class="category__card__address">
-          {{= this.htmlEncode(poi.address.label) }}
-        </p>
-      {{?}}
-
-      {{= this.minimalHourPanel.set(poi) }}
-
-    </div>
-  {{~}}
+        {{= this.minimalHourPanel.set(poi).render() }}
+      </div>
+    {{~}}
+  </div>
 </div>
