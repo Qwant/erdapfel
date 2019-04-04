@@ -15,6 +15,7 @@ public/mapstyle/
 !/docs/images
 !/docs/src/
 !/docs/esdoc.json
+!/docs/DEV.md
 
 #generated i18n messages
 public/message
