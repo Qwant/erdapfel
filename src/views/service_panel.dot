@@ -19,66 +19,13 @@
   </div>
 
   <div class="service_panel__categories">
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #495063">
-        <span class="icon icon-lodging"></span>
+    {{~ this.categories:category }}
+      <div class="service_panel__category">
+        <div class="service_panel__category__icon" style="background: {{= category.color }}">
+          <span class="icon icon-{{= category.icon }}"></span>
+        </div>
+        <div class="service_panel__category__title">{{= _(category.label) }}</div>
       </div>
-      <div class="service_panel__category__title">{{= _("Hotel") }}</div>
-    </div>
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #ef8000">
-        <span class="icon icon-restaurant"></span>
-      </div>
-      <div class="service_panel__category__title">{{= _("Restaurant") }}</div>
-    </div>
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #e93865">
-        <span class="icon icon-cinema"></span>
-      </div>
-      <div class="service_panel__category__title">{{= _("Cinema") }}</div>
-    </div>
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #ef8000">
-        <span class="icon icon-bar"></span>
-      </div>
-      <div class="service_panel__category__title">{{= _("Bar") }}</div>
-    </div>
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #f3c600">
-        <span class="icon icon-grocery"></span>
-      </div>
-      <div class="service_panel__category__title">{{= _("Supermarket") }}</div>
-    </div>
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #495063">
-        <span class="icon icon-bank"></span>
-      </div>
-      <div class="service_panel__category__title">{{= _("Bank") }}</div>
-    </div>
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #4aa0e7">
-        <span class="icon icon-pharmacy"></span>
-      </div>
-      <div class="service_panel__category__title">{{= _("Pharmacy") }}</div>
-    </div>
-
-    <div class="service_panel__category">
-      <div class="service_panel__category__icon" style="background: #495063">
-        <span class="icon icon-school"></span>
-      </div>
-      <div class="service_panel__category__title">{{= _("Education") }}</div>
-    </div>
-
-
-
-
-
+    {{~}}
   </div>
 </div>
