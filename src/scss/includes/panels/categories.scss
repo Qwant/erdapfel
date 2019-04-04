@@ -1,11 +1,16 @@
-.categories__panel {
+.category__panel {
   display: block;
   position: relative;
   width: $panel_width;
   background: $background;
   @include card_shadow();
   @include card_radius();
-  height: 100px;
+}
+
+.category__panel__scroll {
+  position: relative;
+  overflow-y: auto;
+  max-height: calc(100vh - 240px);
 }
 
 .category__panel__head {
@@ -16,6 +21,6 @@
   text-transform: uppercase;
 }
 
-.categories__panel__card {
+.category__panel__card {
 
 }
