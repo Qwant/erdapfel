@@ -1,6 +1,5 @@
-import Masq from 'masq-lib'
+import Error from '../adapters/error'
 
-const Error = require('../adapters/error').default
 const handleError = (fct, msg, e) => {
   Error.sendOnce('masq_store', fct, msg, e)
 }
@@ -23,6 +22,7 @@ export default class MasqStore {
       masqAppBaseUrl: this.config.baseMasqAppUrl
     }
 
+    const { default: Masq } = await import(/* webpackChunkName: "masq-lib" */ 'masq-lib')
     this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, masqOptions)
 
     if (this.masq.isLoggedIn()) {

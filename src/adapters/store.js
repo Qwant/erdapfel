@@ -3,6 +3,7 @@ import Error from '../adapters/error'
 import {version} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
 import LocalStore from "../libs/local_store"
+import MasqStore from "../libs/masq"
 
 export default class Store {
 
@@ -18,20 +19,16 @@ export default class Store {
     this.localStore = new LocalStore()
     this.abstractStore = this.localStore
     this.masqConfig = nconf.get().masq
-
     if (this.masqConfig.enabled) {
       this.masqEventTarget = document.createElement('store')
-      this.initMasqStore = import(/* webpackChunkName: "masq-store" */ "../libs/masq")
-        .then(({default: MasqStore}) => {
-          this.masqStore = new MasqStore(this.masqConfig)
-          if (this.masqStore.isLoggedIn()) {
-            this.abstractStore = this.masqStore
-          }
-          return this.masqStore
-        })
+      this.masqStore = new MasqStore(this.masqConfig)
+      if (this.masqStore.isLoggedIn()) {
+        this.abstractStore = this.masqStore
+      }
     }
     // use abstract store for each operation that
     // should use masqStore when logged in and localStore when not logged in
+
     return this
   }
 
@@ -57,7 +54,7 @@ export default class Store {
         icon: this.masqConfig.icon
       }
 
-      await this.initMasqStore.then(masqStore => masqStore.login(loginParams))
+      await this.masqStore.login(loginParams)
     } catch (e) {
       Error.sendOnce('store', 'login', 'error logging in', e)
       throw e
@@ -75,7 +72,7 @@ export default class Store {
     }
 
     try {
-      await this.initMasqStore.then(masqStore => masqStore.logout())
+      await this.masqStore.logout()
     } catch (e) {
       Error.sendOnce('store', 'logout', 'error logging out', e)
       throw e
@@ -91,7 +88,7 @@ export default class Store {
     }
 
     try {
-      return this.masqStore && this.masqStore.isLoggedIn()
+      return this.masqStore.isLoggedIn()
     } catch (e) {
       Error.sendOnce('store', 'isLoggedIn', 'error checking if logged in with masq', e)
       throw e
@@ -100,7 +97,7 @@ export default class Store {
 
   async getUserInfo() {
     try {
-      return await this.initMasqStore.then(masqStore => masqStore.getUserInfo())
+      return await this.masqStore.getUserInfo()
     } catch (e) {
       Error.sendOnce('store', 'getUserInfo', 'error getting user info from masq', e)
       throw e
