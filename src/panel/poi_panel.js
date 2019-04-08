@@ -65,9 +65,12 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
 
-    if (this.isMasqEnabled && !store.isLoggedIn()) {
-      masqFavoriteModal.open()
-      await masqFavoriteModal.waitForClose()
+    if (this.isMasqEnabled) {
+      const isLoggedIn = await store.isLoggedIn()
+      if (!isLoggedIn) {
+        masqFavoriteModal.open()
+        await masqFavoriteModal.waitForClose()
+      }
     }
 
     this.poi.stored = true

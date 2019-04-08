@@ -34,20 +34,22 @@ function Favorite(sharePanel) {
 
   this.store = new Store()
 
-  this.displayMasqFooter = this.masqEnabled && !this.store.isLoggedIn()
-
   this.store.onToggleStore(async () => {
-    await this.getAll()
-    this.displayMasqFooter = this.masqEnabled && !this.store.isLoggedIn()
-    this.panel.update()
-
-    // check if the footer has to be displayed
-    this.checkDisplayMasqFooter()
+    await this.updateList()
   })
 
   listen('store_poi', async (poi) => {
     await this.add(poi)
   })
+}
+
+Favorite.prototype.updateList = async function() {
+  this.isLoggedIn = await this.store.isLoggedIn()
+  await this.getAll()
+  await this.panel.update()
+
+  // check if the footer has to be displayed
+  await this.checkDisplayMasqFooter()
 }
 
 Favorite.prototype.toggleMore = function (position) {
@@ -96,13 +98,10 @@ Favorite.prototype.getAll = async function () {
 
 Favorite.prototype.open = async function() {
   Telemetry.add(Telemetry.FAVORITE_OPEN)
+
+  await this.updateList()
+
   this.displayed = true
-  await this.getAll()
-  await this.panel.update()
-
-  // check if the footer has to be displayed
-  await this.checkDisplayMasqFooter()
-
   await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
 }
@@ -154,7 +153,7 @@ Favorite.prototype.del = async function({poi, index}) {
 }
 
 Favorite.prototype.checkDisplayMasqFooter = async function () {
-  if (this.displayMasqFooter) {
+  if (this.masqEnabled && !(this.isLoggedIn)) {
     let favoriteMasqFooter = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`)
     if (favoriteMasqFooter !== "false") {
       let footer = document.querySelector('.favorite_panel__masq_footer--hidden')
