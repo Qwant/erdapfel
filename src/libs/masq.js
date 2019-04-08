@@ -33,7 +33,7 @@ export default class MasqStore {
     this.initialized = true
   }
 
-  async checkInit(target, name, descriptor) {
+  async checkInit() {
     if (!this.initialized) {
       await this.initPromise
     }
@@ -58,7 +58,8 @@ export default class MasqStore {
     await this.masq.signout()
   }
 
-  isLoggedIn() {
+  async isLoggedIn() {
+    await this.checkInit()
     return Boolean(this.masq && this.masq.isLoggedIn())
   }
 

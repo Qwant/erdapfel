@@ -22,18 +22,33 @@ export default class Store {
     this.localStore = new LocalStore()
     this.abstractStore = this.localStore
     this.masqConfig = nconf.get().masq
+    this.initialized = true
     if (this.masqConfig.enabled) {
       this.masqEventTarget = document.createElement('masqStore')
 
       this.masqStore = new MasqStore(this.masqConfig)
-      if (this.masqStore.isLoggedIn()) {
-        this.abstractStore = this.masqStore
-      }
+
+      this.initPromise = this.init()
+      this.initialized = false
     }
     // use abstract store for each operation that
     // should use masqStore when logged in and localStore when not logged in
 
     return this
+  }
+
+  async init() {
+    const isLoggedIn = await this.masqStore.isLoggedIn()
+    if (isLoggedIn) {
+      this.abstractStore = this.masqStore
+    }
+    this.initialized = true
+  }
+
+  async checkInit() {
+    if (!this.initialized) {
+      await this.initPromise
+    }
   }
 
   onToggleStore(cb) {
@@ -44,6 +59,7 @@ export default class Store {
   }
 
   async login() {
+    await this.checkInit()
     if (!this.masqConfig.enabled) {
       Error.sendOnce('store', 'login', 'error trying to login with disabled Masq', e)
       return
@@ -70,6 +86,7 @@ export default class Store {
   }
 
   async logout() {
+    await this.checkInit()
     if (!this.masqConfig.enabled) {
       Error.sendOnce('store', 'logout', 'error trying to logout with disabled Masq', e)
       return
@@ -85,13 +102,14 @@ export default class Store {
     this.masqEventTarget.dispatchEvent(new Event('store_logged_out'))
   }
 
-  isLoggedIn() {
+  async isLoggedIn() {
+    await this.checkInit()
     if (!this.masqConfig.enabled) {
       return false
     }
 
     try {
-      return this.masqStore.isLoggedIn()
+      return await this.masqStore.isLoggedIn()
     } catch (e) {
       Error.sendOnce('store', 'isLoggedIn', 'error checking if logged in with masq', e)
       throw e
@@ -99,6 +117,7 @@ export default class Store {
   }
 
   async getUserInfo() {
+    await this.checkInit()
     try {
       return await this.masqStore.getUserInfo()
     } catch (e) {
@@ -108,6 +127,7 @@ export default class Store {
   }
 
   async getAllPois() {
+    await this.checkInit()
     try {
       return await this.abstractStore.getAllPois()
     } catch (e) {
@@ -117,6 +137,7 @@ export default class Store {
   }
 
   async getLastLocation() {
+    await this.checkInit()
     try {
       return await this.abstractStore.get(`qmaps_v${version}_last_location`)
     } catch (e) {
@@ -126,6 +147,7 @@ export default class Store {
   }
 
   async setLastLocation(loc) {
+    await this.checkInit()
     try {
       return await this.abstractStore.set(`qmaps_v${version}_last_location`, loc)
     } catch (e) {
@@ -135,6 +157,7 @@ export default class Store {
   }
 
   async getPrefixes(prefix) {
+    await this.checkInit()
     const storedItems = await this.abstractStore.getAllPois()
     return storedItems.filter((storedItem) => {
       return ExtendedString.compareIgnoreCase(storedItem.name, prefix) === 0 /* start with */
@@ -142,6 +165,7 @@ export default class Store {
   }
 
   async has(poi) {
+    await this.checkInit()
     try {
       return await this.abstractStore.has(poi.getKey())
     } catch (e) {
@@ -150,6 +174,7 @@ export default class Store {
   }
 
   async add(poi) {
+    await this.checkInit()
     try {
       await this.abstractStore.set(poi.getKey(), poi.poiStoreLiteral())
       this.eventTarget.dispatchEvent(new Event('poi_added'))
@@ -159,6 +184,7 @@ export default class Store {
   }
 
   async del(poi) {
+    await this.checkInit()
     try {
       await this.abstractStore.del(poi.getKey())
     } catch(e) {
@@ -167,6 +193,7 @@ export default class Store {
   }
 
   async clear() {
+    await this.checkInit()
     try {
       await this.abstractStore.clear()
     } catch(e) {

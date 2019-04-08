@@ -11,14 +11,23 @@ export default class LoginMasqPanel {
   constructor() {
     this.panel = new Panel(this, LoginMasqPanelView)
     this.store = new Store()
-    this.isLoggedIn = this.store.isLoggedIn()
 
     this.isMasqEnabled = nconf.get().masq.enabled
 
-    this.store.onToggleStore(() => {
-      this.isLoggedIn = this.store.isLoggedIn()
+    this.initPromise = this.store.isLoggedIn().then((b) => {
+      this.isLoggedIn = b
+    })
+
+    this.store.onToggleStore(async () => {
+      this.isLoggedIn = await this.store.isLoggedIn()
       this.panel.update()
     })
+  }
+
+  async init() {
+    if (this.initPromise) {
+      await this.initPromise
+    }
   }
 
   async login() {

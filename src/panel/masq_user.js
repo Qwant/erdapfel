@@ -7,29 +7,39 @@ export default class MasqUserPanel {
   constructor() {
     this.panel = new Panel(this, UserInfoPanelView)
     this.store = new Store()
-    this.isLoggedIn = this.store.isLoggedIn()
     this.username = null
     this.profileImage = null
+    this.isLoggedIn = false
 
-    if (this.isLoggedIn) {
-      this.store.getUserInfo().then((userInfo) => {
-        this.username = userInfo.username
-        this.profileImage = userInfo.profileImage
-        this.panel.update()
-      })
-    }
+    this.initPromise = this.store.isLoggedIn().then((b) => {
+      this.isLoggedIn = b
+
+      if (this.isLoggedIn) {
+        this.store.getUserInfo().then((userInfo) => {
+          this.username = userInfo.username
+          this.profileImage = userInfo.profileImage
+          this.panel.update()
+        })
+      }
+    })
 
     this.store.masqEventTarget.addEventListener('store_logged_in', async () => {
-      this.isLoggedIn = this.store.isLoggedIn()
+      this.isLoggedIn = await this.store.isLoggedIn()
       const { username, profileImage } = await this.store.getUserInfo()
       this.username = username
       this.profileImage = profileImage
       this.panel.update()
     })
 
-    this.store.masqEventTarget.addEventListener('store_logged_out', () => {
-      this.isLoggedIn = this.store.isLoggedIn()
+    this.store.masqEventTarget.addEventListener('store_logged_out', async () => {
+      this.isLoggedIn = await this.store.isLoggedIn()
       this.panel.update()
     })
+  }
+
+  async init() {
+    if (this.initPromise) {
+      await this.initPromise
+    }
   }
 }

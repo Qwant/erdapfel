@@ -16,6 +16,10 @@ export default class Menu {
     if (this.isMasqEnabled) {
       this.masqPanel = new LoginMasqPanel()
       this.masqUserPanel = new MasqUserPanel()
+
+      this.initPromise = Promise.all([this.masqPanel.init(), this.masqUserPanel.init()]).then(() => {
+        this.panel.update()
+      })
     }
   }
 
@@ -32,6 +36,9 @@ export default class Menu {
   }
 
   async open() {
+    if (this.initPromise) {
+      await this.initPromise
+    }
     this.isOpen = true
 
     await Promise.all([
