@@ -21,13 +21,11 @@ export default class Store {
     this.masqConfig = nconf.get().masq
     if (this.masqConfig.enabled) {
       this.masqEventTarget = document.createElement('store')
-
       this.masqStore = new MasqStore(this.masqConfig)
       if (this.masqStore.isLoggedIn()) {
         this.abstractStore = this.masqStore
       }
     }
-
     // use abstract store for each operation that
     // should use masqStore when logged in and localStore when not logged in
 

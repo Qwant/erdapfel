@@ -25,6 +25,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-parameters": "^7.1.0",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/plugin-transform-template-literals": "^7.0.0",
@@ -37,6 +38,7 @@
     "@qwant/merge-po-loader": "file:local_modules/merge-po-loader",
     "@qwant/nconf-getter": "file:local_modules/nconf_getter",
     "@qwant/po-js-loader": "file:local_modules/po-js-loader",
+    "acorn": "^6.1.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.4",
@@ -95,7 +97,7 @@
     "nconf": "^0.10.0",
     "nconf-yaml": "^1.0.2",
     "nock": "^10.0.0",
-    "node-yaml": "3.1.1",
+    "node-yaml": "^3.2.0",
     "prom-client": "^11.1.3",
     "request": "^2.88.0"
   }
