@@ -29,7 +29,8 @@
     {{?}}
     <div class="poi_panel__description_container" {{= click(this.center, this) }}>
        {{= this.panel.renderPartial(this.headerPartial) }}
-      <div class="poi_panel__actions">
+    </div>
+    <div class="poi_panel__actions">
         <div class="poi_panel__actions__store_container" {{= click(this.toggleStorePoi, this) }}>
           <button class="poi_panel__actions__icon__store poi_panel__actions__icon {{= this.poi.stored ? 'icon-icon_star-filled' : 'icon-icon_star'}}">
           </button>
@@ -48,7 +49,6 @@
           </div>
         {{?}}
       </div>
-    </div>
     <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
       <i class="icon-x"></i>
     </div>

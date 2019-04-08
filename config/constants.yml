@@ -101,6 +101,8 @@ pois:
   panelName: internet_access
 - apiName: contact
   panelName: contact
+- apiName: images
+  panelName: images
 
 # Map
 map:
