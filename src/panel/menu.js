@@ -25,17 +25,21 @@ export default class Menu {
 
   async open() {
     this.isOpen = true
-    this.panel.addClassName(.3, '.menu__panel', 'menu__panel--active')
 
-    await this.panel.addClassName(0, '.menu__overlay', 'menu__overlay--active')
-    this.panel.addClassName(.6, '.menu__overlay', 'menu__overlay--fade_active')
+    await Promise.all([
+      this.panel.addClassName(.3, '.menu__panel', 'menu__panel--active'),
+      this.panel.addClassName(0, '.menu__overlay', 'menu__overlay--active'),
+      this.panel.addClassName(.6, '.menu__overlay', 'menu__overlay--fade_active')
+    ])
   }
 
   async close() {
     this.isOpen = false
-    this.panel.removeClassName(.3, '.menu__panel', 'menu__panel--active')
+    await Promise.all([
+      this.panel.removeClassName(.3, '.menu__panel', 'menu__panel--active'),
 
-    await this.panel.removeClassName(.6, '.menu__overlay', 'menu__overlay--fade_active')
-    this.panel.removeClassName(0, '.menu__overlay', 'menu__overlay--active')
+      this.panel.removeClassName(.6, '.menu__overlay', 'menu__overlay--fade_active'),
+      this.panel.removeClassName(0, '.menu__overlay', 'menu__overlay--active')
+    ])
   }
 }
