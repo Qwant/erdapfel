@@ -2,7 +2,6 @@ import Panel from '../../libs/panel';
 import roadMapTemplate from '../../views/direction/road_map.dot'
 import Device from '../../libs/device'
 import RoadMapPreviewPanel from './road_map_preview';
-import Telemetry from "../../libs/telemetry";
 
 export default class RoadMapPanel {
   constructor(onOpen, onClose, sharePanel) {
@@ -167,7 +166,6 @@ export default class RoadMapPanel {
   }
 
   openMoreMenu(position) {
-    //Telemetry.add(Telemetry.FAVORITE_OPEN_MORE)
     this.openMoreMenuPosition = position
     let menu = document.querySelector(`#itinerary_more_${position}`)
     menu.classList.add('itinerary_panel__item__more--active')
@@ -182,7 +180,6 @@ export default class RoadMapPanel {
   }
 
   openShare() {
-    //Telemetry.add(Telemetry.FAVORITE_SHARE)
     this.sharePanel.open(window.location)
   }
 }

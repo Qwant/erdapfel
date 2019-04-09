@@ -1,7 +1,6 @@
 <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
-<h2 class="modal__title">{{= _('Share favorite', 'share') }}</h2>
+<h2 class="modal__title">{{= _('Share link', 'share') }}</h2>
 
-<span class="modal__subtitle">{{= _('Share link', 'share') }}</span>
 <div class="share_copy__input__container" {{= click(this.copy, this) }}>
   <input id="share_url_data" value="{{= this.shareUrl }}" type="text"></input>
   <div class="share_copy__container" id="share-copy-container">

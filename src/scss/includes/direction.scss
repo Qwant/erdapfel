@@ -588,6 +588,14 @@
   color: $primary_clear;
 }
 
+.itinerary_panel__item__share {
+  position: absolute;
+  right: 25px;
+  top: 35px;
+  font-size: 16px;
+  color: #5c6f84;
+}
+
 .itinerary_panel__item__more_button:hover {
   background: $separator_color;
   color: $primary_alternative_text;

@@ -146,7 +146,7 @@ export default class Suggest {
   }
 
   favoritesRender(pois) {
-    return `<h3 class="autocomplete_suggestion__category_title">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`
+    return `<h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`
   }
 
   getValue() {
