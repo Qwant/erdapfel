@@ -22,14 +22,14 @@ export default class Store {
     this.localStore = new LocalStore()
     this.abstractStore = this.localStore
     this.masqConfig = nconf.get().masq
-    this.initialized = true
+    this.masqInitialized = true
     if (this.masqConfig.enabled) {
       this.masqEventTarget = document.createElement('masqStore')
 
       this.masqStore = new MasqStore(this.masqConfig)
 
-      this.initPromise = this.init()
-      this.initialized = false
+      this.masqInitPromise = this.masqInit()
+      this.masqInitialized = false
     }
 
     // use abstract store for each operation that
@@ -38,7 +38,7 @@ export default class Store {
     return this
   }
 
-  async init() {
+  async masqInit() {
     const isLoggedIn = await this.masqStore.isLoggedIn()
     if (isLoggedIn) {
       this.abstractStore = this.masqStore
@@ -56,12 +56,12 @@ export default class Store {
       this.masqEventTarget.dispatchEvent(new Event('store_logged_out'))
     })
 
-    this.initialized = true
+    this.masqInitialized = true
   }
 
   async checkInit() {
-    if (!this.initialized) {
-      await this.initPromise
+    if (this.masqInitPromise && !this.masqInitialized) {
+      await this.masqInitPromise
     }
   }
 
