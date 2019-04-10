@@ -2,7 +2,7 @@ import LoginMasqPanelView from '../views/login_masq.dot'
 import Panel from "../libs/panel";
 import Store from "../adapters/store"
 import Error from '../adapters/error'
-import nconf from "../../local_modules/nconf_getter";
+import nconf from "../../local_modules/nconf_getter"
 import MasqOnboardingModal from "../modals/masq_onboarding_modal";
 
 const masqOnboardingModal = new MasqOnboardingModal()
@@ -14,10 +14,6 @@ export default class LoginMasqPanel {
 
     this.isMasqEnabled = nconf.get().masq.enabled
 
-    this.initPromise = this.store.isLoggedIn().then((b) => {
-      this.isLoggedIn = b
-    })
-
     this.store.onToggleStore(async () => {
       this.isLoggedIn = await this.store.isLoggedIn()
       this.panel.update()
@@ -25,9 +21,7 @@ export default class LoginMasqPanel {
   }
 
   async init() {
-    if (this.initPromise) {
-      await this.initPromise
-    }
+    this.isLoggedIn = await this.store.isLoggedIn()
   }
 
   async login() {
