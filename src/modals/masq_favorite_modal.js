@@ -14,7 +14,7 @@ export default class MasqFavoriteModal {
     // if masqFavoriteModal not initialized, use this
     window.__masqFavoriteModal = this
 
-    this.modal = new Modal(this, MasqFavoriteModalView)
+    this.modal = new Modal(this, MasqFavoriteModalView, false)
 
     this.eventTarget = document.createElement('masqFavoriteModal')
 
