@@ -55,7 +55,7 @@
         {{?? this.step === 2}}
           <div class="modal__masq_onboarding__steps_text">{{= _('Masq stores all your data on your device instead of the cloud and syncs it across all your devices.')}}</div>
         {{?? this.step === 3}}
-          <div class="modal__masq_onboarding__steps_text">{{= _('Find your favorite places on Qwant Maps on all your devices.')}}</div>
+          <div class="modal__masq_onboarding__steps_text">{{= _('Find your favorite places on Qwant Maps on all your devices (available soon).')}}</div>
         {{?}}
 
         <div class="modal__masq_onboarding__steps_slider">
