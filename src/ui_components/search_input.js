@@ -44,9 +44,6 @@ export default class SearchInput {
     this.searchInputHandle = document.querySelector(tagSelector)
     this.handleKeyboard()
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi))
-    PoiStore.getAll().then((storeItems) => {
-      this.suggest.preRender(storeItems)
-    })
     this.isEnabled = true
 
     UrlState.registerGet(this, 'q')

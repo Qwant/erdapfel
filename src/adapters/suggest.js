@@ -20,7 +20,7 @@ export default class Suggest {
 
     this.autocomplete = new Autocomplete({
       selector: tagSelector,
-      minChars: 1,
+      minChars: 0,
       cachePrefix: false,
       delay: 100,
       menuClass : menuClass,
@@ -30,24 +30,29 @@ export default class Suggest {
         this.pending = false
       },
       source: (term) => {
-        let promise = new Promise(async (resolve, reject) => {
-          /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
-          this.historyPromise = PoiStore.get(term)
-
-          this.bragiPromise = BragiPoi.get(term)
-          try {
-            let [bragiResponse, storeResponse] = await Promise.all([this.bragiPromise, this.historyPromise])
-            if (bragiResponse !== null) {
-              this.bragiPromise = null
-              this.suggestList = bragiResponse.concat(storeResponse)
-              resolve(this.suggestList)
-            } else {
-              resolve(null)
+        let promise
+        if (term === '') {
+          // Prerender Favorites on focus in empty field
+          promise = PoiStore.getAll()
+        }
+        else {
+          promise = new Promise(async (resolve, reject) => {
+            this.historyPromise = PoiStore.get(term)
+            this.bragiPromise = BragiPoi.get(term)
+            try {
+              let [bragiResponse, storeResponse] = await Promise.all([this.bragiPromise, this.historyPromise])
+              if (bragiResponse !== null) {
+                this.bragiPromise = null
+                this.suggestList = bragiResponse.concat(storeResponse)
+                resolve(this.suggestList)
+              } else {
+                resolve(null)
+              }
+            } catch (e) {
+              reject(e)
             }
-          } catch (e) {
-            reject(e)
-          }
-        })
+          })
+        }
         promise.abort = () => {
           this.bragiPromise.abort()
         }

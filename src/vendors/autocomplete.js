@@ -66,7 +66,12 @@ var autoComplete = (function(){
         if (!resize) {
           that.sc.style.display = 'block';
           if (!that.sc.maxHeight) { that.sc.maxHeight = parseInt((window.getComputedStyle ? getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight); }
-          if (!that.sc.suggestionHeight) that.sc.suggestionHeight = that.sc.querySelector('.autocomplete_suggestion').offsetHeight;
+          if (!that.sc.suggestionHeight) {
+            let suggestion = that.sc.querySelector('.autocomplete_suggestion')
+            if (suggestion) {
+              that.sc.suggestionHeight = suggestion.offsetHeight;
+            }
+          }
           if (that.sc.suggestionHeight)
             if (!next) that.sc.scrollTop = 0;
             else {
@@ -146,14 +151,18 @@ var autoComplete = (function(){
       var suggest = function(data){
         cancelObsolete()
         that.items = data
-        var val = that.value;
-        if (data && data.length && val.length >= o.minChars) {
-          o.updateData(data)
-          that.sc.innerHTML = o.renderItems(data, val);
-          that.updateSC(0);
+        let val = that.value;
+        let innerHTML
+        if (data && val.length >= o.minChars){
+          innerHTML = o.renderItems(data, val);
         }
-        else
+        if (innerHTML) {
+          that.sc.innerHTML = innerHTML
+          that.updateSC(0)
+        }
+        else {
           that.sc.style.display = 'none';
+        }
       }
 
       that.keydownHandler = function(e){
@@ -240,15 +249,8 @@ var autoComplete = (function(){
       that.focusHandler = function(e){
         that.last_val = '\n';
         that.keyupHandler(e)
-        that.updateSC()
       };
       if (!o.minChars) addEvent(that, 'focus', that.focusHandler);
-
-      that.listenReopen = function() {
-        that.sc.style.display = 'block';
-      };
-
-      addEvent(that, 'focus', that.listenReopen);
     }
 
     // public destroy method
@@ -258,7 +260,6 @@ var autoComplete = (function(){
         removeEvent(window, 'resize', that.updateSC);
         removeEvent(that, 'blur', that.blurHandler);
         removeEvent(that, 'focus', that.focusHandler);
-        removeEvent(that, 'focus', that.listenReopen);
         removeEvent(that, 'keydown', that.keydownHandler);
         removeEvent(that, 'keyup', that.keyupHandler);
         if (that.autocompleteAttr)
@@ -314,5 +315,3 @@ var autoComplete = (function(){
   else
     window.autoComplete = autoComplete;
 })();
-
-

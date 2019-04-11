@@ -11,11 +11,7 @@ export default class DirectionInput {
     let prefixes = [
       this.geolocalisationPoi
     ]
-
     this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes, 'direction_suggestions')
-    PoiStore.getAll().then((storeItems) => {
-      this.suggest.preRender(storeItems)
-    })
     this.listenHandler = listen(submitHandler, () => this.onSubmit())
   }
 
