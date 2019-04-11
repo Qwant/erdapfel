@@ -12,7 +12,7 @@
         <div class="modal__masq_onboarding__image"></div>
 
         <div class="modal__masq_onboarding__buttons">
-          <button class="modal__masq_onboarding__button modal__masq_onboarding__secondary_button" {{= click(this.openSteps, this) }}>{{= _('How does it work ?') }}</button>
+          <button class="modal__masq_onboarding__button modal__masq_onboarding__secondary_button" {{= click(this.openSteps, this) }}>{{= _('More details') }}</button>
           <button class="modal__masq_onboarding__button" {{= click(this.openMasq, this) }}>{{= _('Activate Masq') }}</button>
         </div>
       </div>
@@ -25,11 +25,11 @@
       <div class="modal__masq_onboarding__steps_header">
 
         {{? this.step === 1}}
-          <div>{{= _('What is it ?')}}</div>
+          <div>{{= _('What is Masq?')}}</div>
         {{?? this.step === 2}}
-          <div>{{= _('How does it work ?')}}</div>
+          <div>{{= _('How does Masq work?')}}</div>
         {{?? this.step === 3}}
-          <div>{{= _('What can I do with it ?')}}</div>
+          <div>{{= _('Why use Masq?')}}</div>
         {{?}}
 
         <i class="icon-x modal__masq_onboarding__close" {{= click(this.close, this) }}></i>

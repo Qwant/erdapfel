@@ -5,14 +5,14 @@
       <input
         type="button"
         class="menu__panel__top__masq__login__button menu__panel__top__masq__login__button_logged"
-        value="{{= _('Sign Out') }}"
+        value="{{= _('Deactivate') }}"
         {{= click(this.logout, this) }}
       >
     {{??}}
       <input
         type="button"
         class="menu__panel__top__masq__login__button"
-        value="{{= _('Sign In') }}"
+        value="{{= _('Activate') }}"
         {{= click(this.login, this) }}
       >
       <div class="menu__panel__top__masq__second__button_container">
