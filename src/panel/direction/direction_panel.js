@@ -52,9 +52,6 @@ export default class DirectionPanel {
     this.searchInputStart = document.querySelector(originHandler)
     this.searchInputEnd = document.querySelector(destinationHandler)
     this.itineraryContainer = document.querySelector('#itinerary_container')
-    if(!this.origin && !Device.isMobile()) {
-      this.searchInputStart.focus()
-    }
 
     this.searchInputStart.onfocus = () => {
       this.itineraryContainer.classList.add('itinerary_container--start-focused')
@@ -80,6 +77,10 @@ export default class DirectionPanel {
         fire('clean_route')
         this.roadMapPanel.setRoad([], this.vehicle, this.origin)
       }
+    }
+
+    if(!this.origin && !Device.isMobile()) {
+      this.searchInputStart.focus()
     }
   }
 

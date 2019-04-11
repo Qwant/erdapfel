@@ -2,6 +2,7 @@ import Suggest from "../adapters/suggest";
 import layouts from "../panel/layouts.js";
 import UrlState from "../proxies/url_state";
 import UrlShards from "../proxies/url_shards";
+import PoiStore from "../adapters/poi/poi_store";
 
 const MAPBOX_RESERVED_KEYS = [
     'ArrowLeft' // ←
