@@ -4,6 +4,7 @@
   background: url('../images/backgrounds/top_desktop.svg') no-repeat;
   background-size: 820px;
   pointer-events: none;
+  transition: background-size .3s;
 }
 
 @media (max-width: 640px) {
@@ -13,5 +14,6 @@
     width: 100%;
     background: url('../images/backgrounds/top_mobile.svg') no-repeat;
     background-size: 100%;
+    transition: background-size 0s;
   }
 }
