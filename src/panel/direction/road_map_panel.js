@@ -4,7 +4,7 @@ import Device from '../../libs/device'
 import RoadMapPreviewPanel from './road_map_preview';
 
 export default class RoadMapPanel {
-  constructor(onOpen, onClose) {
+  constructor(onOpen, onClose, sharePanel) {
     this.onOpen = onOpen
     this.onClose = onClose
     this.previewRoadMap = new RoadMapPreviewPanel(this.distance)
@@ -15,6 +15,8 @@ export default class RoadMapPanel {
     this.placeholder = false
     this.error = false
     this.origin = null
+    this.openMoreMenuPosition = -1
+    this.sharePanel = sharePanel
 
     listen('select_road_map', (i) => {
       this.toggleRoute(i);
@@ -154,5 +156,30 @@ export default class RoadMapPanel {
       default:
         return ''
     }
+  }
+
+  toggleMore(position) {
+    if(this.openMoreMenuPosition !== position) {
+      this.closeMoreMenu()
+    }
+    this.openMoreMenu(position)
+  }
+
+  openMoreMenu(position) {
+    this.openMoreMenuPosition = position
+    let menu = document.querySelector(`#itinerary_more_${position}`)
+    menu.classList.add('itinerary_panel__item__more--active')
+  }
+
+  closeMoreMenu(){
+    let menu = document.querySelector(`#itinerary_more_${this.openMoreMenuPosition}`)
+    if(menu) {
+      menu.classList.remove('itinerary_panel__item__more--active')
+      this.openMoreMenuPosition = -1
+    }
+  }
+
+  openShare() {
+    this.sharePanel.open(window.location)
   }
 }

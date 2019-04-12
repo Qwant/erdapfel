@@ -31,7 +31,7 @@ function AppPanel(parent) {
 
   this.directionEnabled = directionEnabled
   if (this.directionEnabled) {
-    this.directionPanel = new DirectionPanel()
+    this.directionPanel = new DirectionPanel(this.sharePanel)
   }
 
   this.masqEnabled = masqEnabled
