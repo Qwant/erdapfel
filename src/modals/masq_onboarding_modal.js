@@ -37,10 +37,11 @@ export default class MasqOnboardingModal {
   }
 
   async openMasq () {
-    await store.login()
-    if (await store.isLoggedIn()) {
-      this.close()
+    try {
+      await store.login()
+    } catch(e) {
     }
+    this.close()
   }
 
   waitForClose() {
