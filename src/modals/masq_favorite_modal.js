@@ -1,5 +1,6 @@
 import MasqFavoriteModalView from '../views/masq_favorite_modal.dot'
 import Modal from "./modal"
+import MasqOnboardingModal from "./masq_onboarding_modal"
 import Store from "../adapters/store"
 import {version} from '../../config/constants.yml'
 
@@ -41,6 +42,19 @@ export default class MasqFavoriteModal {
   async openMasq () {
     await store.login()
     if (await store.isLoggedIn()) {
+      this.close()
+    }
+  }
+
+  async openOnboarding () {
+    const onboardingModal = new MasqOnboardingModal()
+    onboardingModal.open()
+
+    await onboardingModal.waitForClose()
+
+    if (!await store.isLoggedIn()) {
+      this.open()
+    } else {
       this.close()
     }
   }
