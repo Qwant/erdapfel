@@ -42,6 +42,8 @@ Then you can build and run Erdapfel with the following commands:
 ```
 > npm install
 > npm run build
+# to build in development mode:
+> npm run build -- --mode=development
 > npm start
 ```
 
