@@ -1,13 +1,14 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
+# Federico Montemaro <montemarostore@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-20 14:17+0000\n"
+"POT-Creation-Date: 2019-04-15 14:27+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
+"Last-Translator: Federico Montemaro <montemarostore@gmail.com>, 2019\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgid "Search on Qwant Maps"
 msgstr "Cerca su Qwant Maps"
 
 msgid "Opening hours"
-msgstr "Orario di apertura"
+msgstr "Orari di apertura"
 
 msgid "Open"
 msgstr "Aperto"
@@ -48,13 +49,13 @@ msgid "Last pint"
 msgstr "Ultima pinta"
 
 msgid "Wheelchair accessible"
-msgstr "Accessibile per sedie a rotelle"
+msgstr "Accessibile con sedia a rotelle"
 
 msgid "Partially wheelchair accessible"
-msgstr "Accessibile parzialmente alle sedie a rotelle"
+msgstr "Parzialmente accessibile con sedia a rotelle"
 
 msgid "Not wheelchair accessible"
-msgstr "Non accessibile per le sedie a rotelle"
+msgstr "Non accessibile con sedia a rotelle"
 
 msgid "Wheelchair accessible toilets"
 msgstr "Servizi igienici accessibili con sedia a rotelle"
@@ -63,85 +64,85 @@ msgid "Partial wheelchair accessible toilets"
 msgstr "Servizi igienici parzialmente accessibili con sedia a rotelle"
 
 msgid "No wheelchair accessible toilets"
-msgstr "Non sono presenti bagni accessibili alle sedie a rotelle"
+msgstr "Non sono presenti bagni accessibili con sedia a rotelle"
 
 msgid "Qwant is also"
-msgstr ""
+msgstr "Qwant è anche"
 
 msgid "Qwant.com"
-msgstr ""
+msgstr "Qwant.com"
 
 msgid "Qwant Music"
-msgstr ""
+msgstr "Qwant Music"
 
 msgid "Qwant boards"
-msgstr ""
+msgstr "Qwant Boards"
 
 msgid "Qwant on Android"
-msgstr ""
+msgstr "Qwant per Android"
 
 msgid "Qwant on iOS"
-msgstr ""
+msgstr "Qwant per iOS"
 
 msgid "Qwant Junior"
-msgstr ""
+msgstr "Qwant Junior"
 
 msgid "Qwant Lite"
-msgstr ""
+msgstr "Qwant Lite"
 
 msgid "About Qwant"
-msgstr ""
+msgstr "A proposito di Qwant"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 msgid "Press"
-msgstr ""
+msgstr "Stampa"
 
 msgid "Jobs"
-msgstr ""
+msgstr "Lavora con noi"
 
 msgid "F.A.Q."
-msgstr ""
+msgstr "Domande frequenti"
 
 msgid "Maps legal notices"
-msgstr ""
+msgstr "Avvisi legali di Maps"
 
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termini di servizio"
 
 msgid "About us"
-msgstr ""
+msgstr "Su di noi"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 msgid "Results ranking"
-msgstr ""
+msgstr "Classificazione dei risultati"
 
 msgid "Contact us"
-msgstr ""
+msgstr "Contattaci"
 
 msgid "Share Qwant"
-msgstr ""
+msgstr "Condividi Qwant"
 
 msgid "on Twitter"
-msgstr ""
+msgstr "su Twitter"
 
 msgid "on Facebook"
-msgstr ""
+msgstr "su Facebook"
 
 msgid "Qwant Maps"
-msgstr ""
+msgstr "Qwant Maps"
 
 msgid "Search with Qwant Maps"
-msgstr ""
+msgstr "Cerca con Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "La mappa che rispetta la tua privacy"
 
 msgid "Open 24/7"
-msgstr ""
+msgstr "Aperto 24/7"
 
 msgid "until {nextTransitionTime}"
 msgstr "fino a {nextTransitionTime}"
@@ -150,7 +151,7 @@ msgid "accessories shop"
 msgstr "negozio di accessori"
 
 msgid "airport"
-msgstr ""
+msgstr "aeroporto"
 
 msgid "liquor store"
 msgstr "negozio di liquori"
@@ -162,7 +163,7 @@ msgid "antiques shop"
 msgstr "Negozio di antichità"
 
 msgid "aquarium"
-msgstr ""
+msgstr "acquario"
 
 msgid "archery"
 msgstr "tiro con l'arco"
@@ -219,7 +220,7 @@ msgid "biergarten"
 msgstr "birreria all'aperto"
 
 msgid "billiards"
-msgstr "biliardo"
+msgstr "biliardi"
 
 msgid "bmx"
 msgstr "bmx"
@@ -378,7 +379,7 @@ msgid "erotic shop"
 msgstr "negozio di articoli erotici"
 
 msgid "escape game"
-msgstr ""
+msgstr "gioco di evasione"
 
 msgid "fabric"
 msgstr "tessuto"
@@ -438,7 +439,7 @@ msgid "gymnastics"
 msgstr "ginnastica"
 
 msgid "hackerspace"
-msgstr ""
+msgstr "hackerspace"
 
 msgid "hairdresser"
 msgstr "parrucchiere"
@@ -483,7 +484,7 @@ msgid "karting"
 msgstr "kart"
 
 msgid "kindergarten or preschool"
-msgstr ""
+msgstr "asilo nido o scuola materna"
 
 msgid "kiosk"
 msgstr "edicola"
@@ -759,16 +760,16 @@ msgid "zoo"
 msgstr "zoo"
 
 msgid "city"
-msgstr ""
+msgstr "città"
 
 msgid "country"
-msgstr ""
+msgstr "provincia"
 
 msgid "address"
-msgstr ""
+msgstr "Indirizzo"
 
 msgid "street"
-msgstr ""
+msgstr "Strada"
 
 msgid "Favorite places"
 msgstr "Luoghi preferiti"
@@ -788,20 +789,54 @@ msgstr "Condividi"
 msgid "Delete"
 msgstr "Cancella"
 
+msgid "Use"
+msgstr ""
+
+msgid "to secure your favorites on all your devices"
+msgstr ""
+
 msgid "filter"
 msgstr "filtra"
 
-msgid "Qwant Maps services"
-msgstr "Servizi Qwant Maps"
+msgid "What is Masq?"
+msgstr ""
 
-msgid "YOUR FAVORITES"
-msgstr "I TUOI PREFERITI"
+msgid "How does Masq work?"
+msgstr ""
+
+msgid "Why use Masq?"
+msgstr ""
+
+msgid ""
+"Masq allows you to store all your preferences while guarantying your privacy"
+msgstr ""
+
+msgid ""
+"Masq stores all your data on your device instead of the cloud and syncs it "
+"across all your devices."
+msgstr ""
+
+msgid ""
+"Find your favorite places on Qwant Maps on all your devices (available "
+"soon)."
+msgstr ""
+
+msgid "Activate Masq"
+msgstr ""
+
+msgid ""
+"Masq is an app that offers free and secure synchronized data storing on your"
+" devices."
+msgstr ""
+
+msgid "More details"
+msgstr ""
 
 msgid "DIRECTIONS"
 msgstr "ITINERARIO"
 
 msgid "SEE MORE"
-msgstr ""
+msgstr "Altre info"
 
 msgid "Back to favorite"
 msgstr "Torna ai preferiti"
@@ -839,56 +874,36 @@ msgstr "Leggi altro su Wikipedia"
 msgid "Read more on Wikidata"
 msgstr "Leggi altro su Wikidata"
 
-msgid "return"
+msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
 
-msgid "directions"
-msgstr "itinerario"
-
-msgid "Start point"
+msgid ""
+"Masq allows you to save all your preferences while guarantying your privacy"
 msgstr ""
 
-msgid "End point"
+msgid "More Details"
 msgstr ""
 
-msgid "Invert start and end"
+msgid "Do you want to synchronize your favorites with Masq ?"
 msgstr ""
 
-msgid "Via"
+msgid "No thanks"
 msgstr ""
 
-msgid "PREVIEW"
+msgid "Do not ask again"
 msgstr ""
 
-msgid "DETAILS"
-msgstr ""
+msgid "Qwant Maps services"
+msgstr "Servizi Qwant Maps"
 
-msgid "Start"
-msgstr ""
-
-msgid "Log in with Masq"
-msgstr ""
-
-msgid "Use MASQ to sync your personal data across your devices"
-msgstr ""
-
-msgid "Log in"
-msgstr ""
-
-msgid "Logging in"
-msgstr ""
-
-msgid "Logout"
-msgstr ""
-
-msgid "Share favorite"
-msgstr "Condividi preferito"
+msgid "YOUR FAVORITES"
+msgstr "I TUOI PREFERITI"
 
 msgid "Share link"
 msgstr "Condividi il link"
 
 msgid "Copied !"
-msgstr ""
+msgstr "Copiato!"
 
 msgid "SHARE ON FACEBOOK"
 msgstr "CONDIVIDI SU FACEBOOK"
@@ -914,8 +929,8 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "Ok, ho capito."
 
-msgid "Géolocation not available."
-msgstr "Geolocalizzazione non disponibile."
+msgid "Geolocation not available."
+msgstr ""
 
 msgid "You did not allow Qwant Maps to access your position."
 msgstr "Non hai permesso a Qwant Maps di accedere alla tua posizione"
@@ -923,14 +938,58 @@ msgstr "Non hai permesso a Qwant Maps di accedere alla tua posizione"
 msgid "OK"
 msgstr "OK"
 
-msgid "Directions"
-msgstr "Itinerario"
+msgid "return"
+msgstr "ritorna"
 
-msgid "Favorites"
+msgid "directions"
+msgstr "indicazioni"
+
+msgid "Start point"
+msgstr "Punto di partenza"
+
+msgid "End point"
+msgstr "Punto di arrivo"
+
+msgid "Invert start and end"
+msgstr "Inverti partenza e destinazione"
+
+msgid "Qwant Maps found no results for this itinerary, please try again"
+msgstr ""
+"Qwant Maps non ha trovato nessun risultato per questo percorso, per favore "
+"prova di nuovo"
+
+msgid "Via"
+msgstr "via"
+
+msgid "PREVIEW"
+msgstr "PREVIEW"
+
+msgid "print"
 msgstr ""
 
+msgid "DETAILS"
+msgstr "DETTAGLI"
+
+msgid "Start"
+msgstr "Inizia"
+
+msgid "Directions"
+msgstr "Indicazioni"
+
+msgid "Favorites"
+msgstr "Preferiti"
+
 msgid "How to contribute"
+msgstr "Come contribuire"
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "How does it work ?"
 msgstr ""
 
 msgid "Your position"
-msgstr ""
+msgstr "La tua posizione"
