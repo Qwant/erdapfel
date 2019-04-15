@@ -23,7 +23,7 @@ export default class MasqStore {
     }
 
     const { default: Masq } = await import(/* webpackChunkName: "masq-lib" */ 'masq-lib')
-    const masqIconUrl = window.location.origin + this.config.icon
+    const masqIconUrl = document.baseURI.replace(/(\/+)$/g, '') + this.config.icon
     this.masq = new Masq(this.config.title, this.config.desc, masqIconUrl, masqOptions)
 
     if (this.masq.isLoggedIn()) {
