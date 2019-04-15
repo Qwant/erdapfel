@@ -1,6 +1,8 @@
 import Panel from '../libs/panel'
 import menuView from '../views/menu.dot'
 import constants from '../../config/constants.yml'
+import LoginMasqPanel from "./login_masq";
+import MasqUserPanel from "./masq_user";
 import nconf from "../../local_modules/nconf_getter";
 
 export default class Menu {
@@ -9,6 +11,16 @@ export default class Menu {
     this.isOpen = false
     this.menuItems = constants.menu
     this.isDirectionActive = nconf.get().direction.enabled
+
+    this.isMasqEnabled = nconf.get().masq.enabled
+    if (this.isMasqEnabled) {
+      this.masqPanel = new LoginMasqPanel()
+      this.masqUserPanel = new MasqUserPanel()
+
+      this.initPromise = Promise.all([this.masqPanel.init(), this.masqUserPanel.init()]).then(() => {
+        this.panel.update()
+      })
+    }
   }
 
   toggleFavorite() {
@@ -24,6 +36,9 @@ export default class Menu {
   }
 
   async open() {
+    if (this.initPromise) {
+      await this.initPromise
+    }
     this.isOpen = true
 
     await Promise.all([

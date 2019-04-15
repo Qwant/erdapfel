@@ -9,7 +9,19 @@
 <div class="menu">
   <div class="menu__panel">
     <div class="menu__panel__top">
-      <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
+      <h2 class="menu__panel__top__title">
+        {{? this.isMasqEnabled}}
+          {{= this.masqUserPanel.render() }}
+        {{??}}
+          <i class="menu__panel__top__icon icon-map"></i>
+          <span>Qwant Maps</span>
+        {{?}}
+        <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
+      </h2>
+
+      {{? this.isMasqEnabled}}
+        {{= this.masqPanel.render() }}
+      {{?}}
     </div>
     <div class="menu__panel__items_container">
       <div class="menu__panel__section menu__panel__section-internal">

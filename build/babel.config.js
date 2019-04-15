@@ -15,7 +15,8 @@ module.exports = function (mode) {
             "Edge >= 17"
           ]
         },
-        "useBuiltIns": "entry"
+        "useBuiltIns": "entry",
+        "corejs": 2
       }]],
   }
 
@@ -24,7 +25,8 @@ module.exports = function (mode) {
       [
         "@babel/preset-env",
         {
-          "useBuiltIns": "entry"
+          "useBuiltIns": "entry",
+          "corejs": 2
         }
       ]
     ]

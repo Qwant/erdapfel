@@ -2,11 +2,13 @@ import ModalView from '../views/modal.dot'
 import Panel from '../libs/panel'
 
 export default class Modal {
-  constructor(child, v) {
+  constructor(child, v, closeOnOverlay = true) {
     this.active = false
     this.panel = new Panel(this, ModalView)
     this.childPanel = new Panel(child, v)
     this.child = child
+
+    this.closeOnOverlay = Boolean(closeOnOverlay)
 
     child.renderModal = () => this.panel.render()
   }
@@ -18,6 +20,12 @@ export default class Modal {
     Modal.currentOpenened = this.child
     this.active = true
     this.panel.update()
+  }
+
+  overlayClickHandler () {
+    if (this.closeOnOverlay) {
+      this.child.close()
+    }
   }
 
   close () {

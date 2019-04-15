@@ -54,7 +54,7 @@ test('load a poi already in my favorite from url', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
   await page.evaluate(() => {
-    fire('store_poi', new Poi('osm:way:63178753', 'some poi', '', {lat : 43, lng : 2}, '', '', []))
+    fire('store_poi', new Poi('osm:way:63178753', 'some poi', '', 'poi', {lat : 43, lng : 2}, '', '', []))
   })
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
   let plainStar = await page.waitForSelector('.icon-icon_star-filled')

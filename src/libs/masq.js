@@ -23,7 +23,8 @@ export default class MasqStore {
     }
 
     const { default: Masq } = await import(/* webpackChunkName: "masq-lib" */ 'masq-lib')
-    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, masqOptions)
+    const masqIconUrl = document.baseURI.replace(/(\/+)$/g, '') + this.config.icon
+    this.masq = new Masq(this.config.title, this.config.desc, masqIconUrl, masqOptions)
 
     if (this.masq.isLoggedIn()) {
       await this.masq.connectToMasq()
@@ -33,7 +34,7 @@ export default class MasqStore {
     this.initialized = true
   }
 
-  async checkInit(target, name, descriptor) {
+  async checkInit() {
     if (!this.initialized) {
       await this.initPromise
     }
@@ -58,7 +59,8 @@ export default class MasqStore {
     await this.masq.signout()
   }
 
-  isLoggedIn() {
+  async isLoggedIn() {
+    await this.checkInit()
     return Boolean(this.masq && this.masq.isLoggedIn())
   }
 
