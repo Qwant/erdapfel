@@ -95,7 +95,10 @@ const mainJsChunkConfig  = (buildMode) => {
             loader: 'babel-loader',
             options : babelConf(buildMode)
           },
-          {loader: 'dot-loader'}
+          {
+            loader: 'dot-loader',
+            options: {}
+          }
         ]
       }, {
         test: /\.yml$/,
@@ -153,7 +156,10 @@ const mapJsChunkConfig = (buildMode) => {
             loader: 'babel-loader',
             options : babelConf(buildMode)
           },
-          {loader : 'dot-loader'}
+          {
+            loader : 'dot-loader',
+            options: {}
+          }
         ]
       }, {
         test: /\.yml$/,
