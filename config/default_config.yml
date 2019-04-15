@@ -30,7 +30,7 @@ masq:
   enabled: false
   title: Qwant Maps
   desc: Maps application developed by Qwant
-  icon: https://raw.githubusercontent.com/QwantResearch/erdapfel/masq-new-image/public/images/masq/maps-app.png
+  icon: /statics/images/masq/maps-app.png
   signalhubUrl: override_by_environment
   baseMasqAppUrl: override_by_environment
 
