@@ -102,6 +102,11 @@ test('keyboard navigation', async () => {
   selectElemPosition = await autocompleteHelper.getSelectedElementPos()
   expect(selectElemPosition).toEqual(0)
 
+  /* select suggestion via Enter, should close the container */
+  await page.keyboard.press('Enter')
+  await wait(300)
+  await page.waitForSelector('div.autocomplete_suggestions', {hidden: true, timeout: 1000})
+
   /* type another char */
   await autocompleteHelper.typeAndWait('a')
   await wait(300)
@@ -189,7 +194,6 @@ test('favorite search', async () => {
 
 // http://idunn_test.test/v1/pois/osm:node:4872758213?lang=fr
 test('submit key', async () =>  {
-  expect.assertions(2)
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/)
   await page.goto(APP_URL)
   /* submit with data already loaded */

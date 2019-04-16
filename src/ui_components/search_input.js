@@ -57,7 +57,7 @@ export default class SearchInput {
       if(MAPBOX_RESERVED_KEYS.find((key) => key === e.key)) {
         return
       }
-      if(!e.shiftKey && !e.ctrlKey) {
+      if(!e.shiftKey && !e.ctrlKey && e.key !== 'Enter') {
         if(document.activeElement
           && document.activeElement.tagName !== 'INPUT'
           && window.__searchInput.isEnabled) {
