@@ -32,7 +32,7 @@ export default class IdunnPoi extends Poi {
       case 'address':
       case 'street':
         return this.alternativeName
-      default :
+      default:
         return this.name
     }
   }
@@ -50,8 +50,7 @@ export default class IdunnPoi extends Poi {
     } catch (err) {
       if(err === 404) {
         return
-      }
-      else {
+      } else {
         Error.sendOnce(
           'idunn_poi', 'poiApiLoad',
           `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,

@@ -33,6 +33,8 @@ function PoiPanel(sharePanel) {
   this.minimalHourPanel = new MinimalHourPanel()
   this.sceneState = SceneState.getSceneState()
   this.isDirectionActive = nconf.get().direction.enabled
+  this.topImageUrl = null
+  this.phoneNumber = null
   PanelManager.register(this)
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
   this.isMasqEnabled = nconf.get().masq.enabled
@@ -95,11 +97,28 @@ PoiPanel.prototype.close = async function() {
   PanelManager.openService()
 }
 
+PoiPanel.prototype.lookForElements = function() {
+  this.topImageUrl = null
+  this.phoneNumber = null
+  if(this.poi && this.poi.blocks) {
+    for (let i = 0; i < this.poi.blocks.length; ++i) {
+      let block = this.poi.blocks[i]
+      console.log(block)
+      if (block.images && block.images[0]) {
+        this.topImageUrl = block.images[0].url
+      } else if (block.type === 'phone' && block.url !== undefined) {
+        this.phoneNumber = block
+      }
+    }
+  }
+}
+
 PoiPanel.prototype.restorePoi = async function (id) {
   Telemetry.add(Telemetry.POI_RESTORE)
   let hotLoadedPoi = new HotLoadPoi()
   if(hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi
+    this.lookForElements()
     window.execOnMapLoaded(() => {
       fire('map_mark_poi', this.poi)
       fire('fit_map', this.poi, layouts.POI)
@@ -115,6 +134,7 @@ PoiPanel.prototype.restorePoi = async function (id) {
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.poi = poi
+  this.lookForElements()
   this.card = true
   this.poi.stored = await isPoiFavorite(this.poi)
   this.PoiBlocContainer.set(this.poi)

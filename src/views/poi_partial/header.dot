@@ -1,9 +1,5 @@
 {{ let ico = IconManager.get(this.poi); }}
-{{? ico }}
-  <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-{{??}}
-  <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
-{{?}}
+
 <h4 class="poi_panel__title">
   {{? this.poi.localName && this.poi.name }}
     <span class="poi_panel__title__main">{{= this.htmlEncode(this.poi.name) }}</span>
@@ -25,4 +21,13 @@
   <p class="poi_panel__address">
     {{= this.htmlEncode(this.poi.address.label) }}
   </p>
+{{?}}
+{{? this.topImageUrl }}
+    <div class="poi_panel__image" style="background-image: url('{{= this.topImageUrl }}')"></div>
+{{??}}
+  {{? ico }}
+    <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+  {{??}}
+    <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
+  {{?}}
 {{?}}

@@ -1,7 +1,7 @@
 .osm_contribute {
   width: calc(100% - 2 * 28px);
   height: 55px;
-  margin: 16px 0 0 25px;
+  margin: 16px 0 0 31px;
   border: solid 1px $separator_color;
   @include card_radius();
 }

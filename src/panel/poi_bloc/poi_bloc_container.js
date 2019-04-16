@@ -27,14 +27,14 @@ PoiBlocContainer.getBlock = function(name) {
   return PoiBlocContainer.blockComponents[name]
 }
 
-PoiBlocContainer.setBock = function(block) {
+PoiBlocContainer.setBlock = function(block) {
   let blockComponent = PoiBlocContainer.blockComponents[block.type]
   return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options)
 }
 
 PoiBlocContainer.renderBlock = function (block) {
   let blockComponent = getBlockComponent(block)
-  if(blockComponent) {
+  if (blockComponent) {
     return blockComponent.render()
   } else {
     console.log(`info : component missing (${block.type})`)
@@ -46,9 +46,8 @@ PoiBlocContainer.toString = function (blocks) {
     let blockComponent = getBlockComponent(block)
     if(blockComponent) {
       return blockComponent.toString()
-    } else {
-       return ''
     }
+    return ''
   }).join(' - ')
 }
 

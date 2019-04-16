@@ -7,8 +7,8 @@ export default class ImagesPanel {
       this.panel = new Panel(this, ImagesPanelView)
       this.name = block.name
       this.block = block
-      if(this.block && this.block.images && this.block.images[0]){
+      /*if(this.block && this.block.images && this.block.images[0]){
         this.topImageUrl = this.block.images[0].url
-      }
+      }*/
     }
 }

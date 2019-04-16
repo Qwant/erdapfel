@@ -1,3 +1,0 @@
-{{? this.topImageUrl }}
-    <div class="poi_panel__image" style="background-image: url('{{= this.topImageUrl }}')"></div>
-{{?}}
