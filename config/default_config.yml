@@ -33,6 +33,8 @@ masq:
   icon: /statics/images/masq/maps-app.png
   signalhubUrl: override_by_environment
   baseMasqAppUrl: override_by_environment
+  stun:
+  turn:
 
 # Map style
 mapStyle:
