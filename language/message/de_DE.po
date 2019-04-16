@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-20 14:17+0000\n"
+"POT-Creation-Date: 2019-04-15 14:27+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -789,14 +789,48 @@ msgstr "Teilen"
 msgid "Delete"
 msgstr "Löschen"
 
+msgid "Use"
+msgstr ""
+
+msgid "to secure your favorites on all your devices"
+msgstr ""
+
 msgid "filter"
 msgstr "Filter"
 
-msgid "Qwant Maps services"
-msgstr "Qwant Maps-Dienste"
+msgid "What is Masq?"
+msgstr ""
 
-msgid "YOUR FAVORITES"
-msgstr "DEINE FAVORITEN"
+msgid "How does Masq work?"
+msgstr ""
+
+msgid "Why use Masq?"
+msgstr ""
+
+msgid ""
+"Masq allows you to store all your preferences while guarantying your privacy"
+msgstr ""
+
+msgid ""
+"Masq stores all your data on your device instead of the cloud and syncs it "
+"across all your devices."
+msgstr ""
+
+msgid ""
+"Find your favorite places on Qwant Maps on all your devices (available "
+"soon)."
+msgstr ""
+
+msgid "Activate Masq"
+msgstr ""
+
+msgid ""
+"Masq is an app that offers free and secure synchronized data storing on your"
+" devices."
+msgstr ""
+
+msgid "More details"
+msgstr ""
 
 msgid "DIRECTIONS"
 msgstr "WEGBESCHREIBUNG"
@@ -840,51 +874,30 @@ msgstr "Auf Wikipedia weiterlesen"
 msgid "Read more on Wikidata"
 msgstr "Erfahren Sie mehr bei Wikidata"
 
-msgid "return"
-msgstr "zurück"
-
-msgid "directions"
-msgstr "Wegbeschreibung"
-
-msgid "Start point"
-msgstr "Startpunkt"
-
-msgid "End point"
-msgstr "Zielpunkt"
-
-msgid "Invert start and end"
-msgstr "Start und Ziel tauschen"
-
-msgid "Via"
-msgstr "Über"
-
-msgid "PREVIEW"
-msgstr "VORSCHAU"
-
-msgid "DETAILS"
-msgstr "DETAILS"
-
-msgid "Start"
-msgstr "Start"
-
-msgid "Log in with Masq"
-msgstr "Login via Masq"
-
-msgid "Use MASQ to sync your personal data across your devices"
+msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
-"Benutze MASQ um persönliche Daten zwischen deinen Geräten zu synchronisieren"
 
-msgid "Log in"
-msgstr "Login"
+msgid ""
+"Masq allows you to save all your preferences while guarantying your privacy"
+msgstr ""
 
-msgid "Logging in"
-msgstr "Logge ein"
+msgid "More Details"
+msgstr ""
 
-msgid "Logout"
-msgstr "Logout"
+msgid "Do you want to synchronize your favorites with Masq ?"
+msgstr ""
 
-msgid "Share favorite"
-msgstr "Favoriten teilen"
+msgid "No thanks"
+msgstr ""
+
+msgid "Do not ask again"
+msgstr ""
+
+msgid "Qwant Maps services"
+msgstr "Qwant Maps-Dienste"
+
+msgid "YOUR FAVORITES"
+msgstr "DEINE FAVORITEN"
 
 msgid "Share link"
 msgstr "Link teilen"
@@ -913,14 +926,47 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."
 
-msgid "Géolocation not available."
-msgstr "Geolokalisierung nicht verfügbar."
+msgid "Geolocation not available."
+msgstr ""
 
 msgid "You did not allow Qwant Maps to access your position."
 msgstr "Sie haben Qwant Maps keinen Zugriff auf Ihren Standort erlaubt. "
 
 msgid "OK"
 msgstr "O.k."
+
+msgid "return"
+msgstr "zurück"
+
+msgid "directions"
+msgstr "Wegbeschreibung"
+
+msgid "Start point"
+msgstr "Startpunkt"
+
+msgid "End point"
+msgstr "Zielpunkt"
+
+msgid "Invert start and end"
+msgstr "Start und Ziel tauschen"
+
+msgid "Qwant Maps found no results for this itinerary, please try again"
+msgstr ""
+
+msgid "Via"
+msgstr "Über"
+
+msgid "PREVIEW"
+msgstr "VORSCHAU"
+
+msgid "print"
+msgstr ""
+
+msgid "DETAILS"
+msgstr "DETAILS"
+
+msgid "Start"
+msgstr "Start"
 
 msgid "Directions"
 msgstr "Wegbeschreibung"
@@ -930,6 +976,15 @@ msgstr "Favoriten"
 
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "How does it work ?"
+msgstr ""
 
 msgid "Your position"
 msgstr "Deine Position"
