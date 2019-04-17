@@ -68,7 +68,7 @@ export default class MasqStore {
   }
 
   openLoginPopupWindow(link) {
-    this.masqPopupWindow = window.open(link, 'masq', 'height=700,width=500')
+    this.masqPopupWindow = window.open(link, 'masq', 'height=800,width=1150')
     this.masqPopupWindow.focus()
   }
 
