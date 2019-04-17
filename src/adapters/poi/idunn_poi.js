@@ -36,10 +36,10 @@ export default class IdunnPoi extends Poi {
         return this.name
     }
   }
-/* ?bbox={bbox}&category=<category-name>&size={size}/ */
+/* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
   static async poiCategoryLoad(bbox, size, category) {
-    let url = 'https://www.qwant.com/maps/detail/v1/places'
-    let requestParams = {bbox, size, category}
+    let url = `${serviceConfig.idunn.url}/v1/places`
+    let requestParams = {bbox, size, category, verbosity: 'long'}
 
     try {
       let rawPois = await Ajax.getLang(url, requestParams)

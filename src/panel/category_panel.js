@@ -4,6 +4,7 @@ import MinimalHourPanel from "./poi_bloc/opening_minimal";
 import UrlState from "../proxies/url_state";
 import {paramTypes} from "../proxies/url_shard";
 import IdunnPoi from "../adapters/poi/idunn_poi";
+import OsmSchedule from "../adapters/osm_schedule";
 const poiSubClass = require('../mapbox/poi_subclass')
 
 export class CategoryPanel {
@@ -43,5 +44,12 @@ export class CategoryPanel {
 
     //this.pois = await Ajax.get('https://maps.dev.qwant.ninja/maps/geocoder/places_list/', {bbox : bbox,size : '', category : 'leisure'})
     this.panel.update()
+  }
+
+  showPhoneNumber(options){
+    var poi = options.poi
+    var i = options.i
+    document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
+    document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }
 }
