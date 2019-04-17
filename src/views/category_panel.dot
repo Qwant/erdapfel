@@ -1,24 +1,79 @@
+{{? this.pois && this.pois.length }}
+
 <div class="category__panel{{= this.isOpen ? ' category__panel--active' : '' }}">
   <div class="category__panel__head">
-      {{= _('Resultados propuestos por los mapas de Qwant.', 'categories') }}
+      <span class="category__panel__logo_pj"></span>
+      <span class="category__panel__title">{{= _('PAGES JAUNES', 'categories') }}</span>
+      <span class="category__panel__partnership_icon">i</span>
+      <span class="category__panel__partnership">{{= _('Partnership', 'categories') }}</span>
   </div>
   <div class="category__panel__scroll">
-    {{~ this.pois:poi }}
+    {{~ this.pois:poi:i }}
 
-      <div class="category__card" {{= click(this.selectPoi, this, poi) }}>
-        <h3 class="category__card__title">
-          {{= poi.getInputValue() }}
-        </h3>
-        {{= this.poiSubClass(poi.subClassName) }}
+      {{ console.log(poi); }}
 
-        {{? poi.address && poi.address.label }}
-          <p class="category__card__address">
-            {{= this.htmlEncode(poi.address.label) }}
-          </p>
-        {{?}}
+      {{
+        let phoneBlock = poi.blocks.find((block) => block.type === 'phone');
+        let phoneNumber = null;
+        if(phoneBlock) {
+          phoneNumber = phoneBlock.international_format;
+        }
 
-        {{= this.minimalHourPanel.set(poi).render() }}
+        let imagesBlock = poi.blocks.find((block) => block.type === 'images');
+        let image = null;
+        if(imagesBlock) {
+          image = imagesBlock.images[0].url;
+        }
+      }}
+
+      <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }}>
+        <div class="category__panel__item_inner">
+
+          <div class="category__panel__image"></div>
+
+          <h3 class="category__panel__name">
+            {{= poi.getInputValue() }}
+          </h3>
+
+          {{? poi.subClassName }}
+            <p class="category__panel__type">
+              {{= this.poiSubClass(poi.subClassName) }}
+            </p>
+          {{?}}
+
+          {{? poi.address && poi.address.label }}
+            <p class="category__panel__address">
+              {{= this.htmlEncode(poi.address.label) }}
+            </p>
+          {{?}}
+
+          <div class="category__panel__note">
+            <!--span class="icon-icon_star-filled"></span-->
+            <span class="icon-icon_star"></span>
+            <span class="icon-icon_star"></span>
+            <span class="icon-icon_star"></span>
+            <span class="icon-icon_star"></span>
+            <span class="icon-icon_star"></span>
+            ???
+            {{= _('reviews', 'categories') }}
+          </div>
+
+          {{= this.minimalHourPanel.set(poi).render() }}
+
+          {{? phoneNumber }}
+
+            <div class="category__panel__phone" {{= click(this.showPhoneNumber, this, {poi, i}) }}>
+              <span class="icon-icon_phone"></span>
+              <span id="category__panel__phone_hidden_{{= i}}">{{= _('See the phone number', 'categories') }}</span>
+              <span id="category__panel__phone_revealed_{{= i}}" style="display: none">{{= phoneNumber }}</span>
+            </div>
+
+          {{?}}
+
+        </div>
       </div>
     {{~}}
   </div>
 </div>
+
+{{?}}
