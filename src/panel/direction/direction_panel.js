@@ -43,6 +43,10 @@ export default class DirectionPanel {
     this.panel.removeClassName(0, '#itinerary_container', 'itinerary_container--preview')
   }
 
+  setInputValue(type = 'origin', value) {
+    type == 'origin' ? this.searchInputStart.value = value : this.searchInputEnd.value = value
+  }
+
   initDirection() {
     let originHandler = '#itinerary_input_origin'
     let destinationHandler = '#itinerary_input_destination'
@@ -179,11 +183,18 @@ export default class DirectionPanel {
     this.searchDirection()
   }
 
+  async searchDirectionByCoordinates(origin, destination) {
+    this.origin = new UrlPoi({lat : parseFloat(origin.lat), lng : parseFloat(origin.lng)})
+    this.destination = new UrlPoi({lat : parseFloat(destination.lat), lng : parseFloat(destination.lng)})
+    this.searchDirection()
+  }
+
   async searchDirection(options) {
     if(this.origin && this.destination) {
 
       this.roadMapPanel.showPlaceholder(this.vehicle)
-
+      console.log(this.origin)
+      console.log(this.destination)
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
       if(directionResponse && directionResponse.routes) {
         let routes = directionResponse.routes

@@ -48,6 +48,10 @@ PanelManager.loadPoiById = async function(id, options) {
   }
 }
 
+PanelManager.getDirectionPanel = function () {
+  return __panel_manager.panels.find(panel => panel instanceof DirectionPanel)
+}
+
 PanelManager.openDirection = async function () {
   __panel_manager.panels.find((panel) => {
     if(panel instanceof DirectionPanel) {

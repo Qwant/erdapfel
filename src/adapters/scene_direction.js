@@ -1,4 +1,4 @@
-import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
+import {Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
 import layouts from "../panel/layouts.js";
 
@@ -13,6 +13,7 @@ export default class SceneDirection {
     this.markerOrigin = null
     this.markerDestination = null
     this.markersSteps = []
+    this.directionPanel = PanelManager.getDirectionPanel()
 
     listen('set_route', ({routes, vehicle, origin, destination, move}) => {
       this.reset()
@@ -99,21 +100,40 @@ export default class SceneDirection {
 
       const markerOrigin = document.createElement('div')
       markerOrigin.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
-      this.markerOrigin = new Marker(markerOrigin)
+      this.markerOrigin = new Marker({
+        element: markerOrigin,
+        draggable: true
+      })
         .setLngLat(this.steps[0].maneuver.location)
         .addTo(this.map)
 
+      this.markerOrigin.on('dragend', (event) => this.refreshDirection(event, this, 'origin'))
+
       const markerDestination = document.createElement('div')
       markerDestination.className = 'itinerary_marker_destination'
-      this.markerDestination = new Marker(markerDestination)
+      this.markerDestination = new Marker({
+        element: markerDestination,
+        draggable: true
+      })
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
         .addTo(this.map)
+
+      this.markerDestination.on('dragend', (event) => this.refreshDirection(event, this, 'destination'))
 
       let bbox = this.computeBBox(mainRoute);
       if(move !== false){
         fire('fit_map', bbox, layouts.ITINERARY)
       }
     }
+  }
+
+  refreshDirection(event, _self, type) {
+    var originlngLat = this.markerOrigin.getLngLat();
+    var destinationlngLat = this.markerDestination.getLngLat();
+    _self.directionPanel.setInputValue(type, type === 'origin' ?
+      `${parseFloat(originlngLat.lat).toFixed(5)} : ${parseFloat(originlngLat.lng).toFixed(5)}` :
+      `${parseFloat(destinationlngLat.lat).toFixed(5)} : ${parseFloat(destinationlngLat.lng).toFixed(5)}`)
+    _self.directionPanel.searchDirectionByCoordinates(originlngLat, destinationlngLat)
   }
 
   reset() {
