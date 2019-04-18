@@ -33,6 +33,9 @@ export default class MasqStore {
     const { Masq, MasqError } = await import(/* webpackChunkName: "masq-lib" */ 'masq-lib')
     const masqIconUrl = document.baseURI.replace(/(\/+)$/g, '') + this.config.icon
     this.masq = new Masq(this.config.title, this.config.desc, masqIconUrl, masqOptions)
+    this.masq.eventTarget.addEventListener('replicationError', (e) => {
+      handleError('replicationError', e.detail.message, e.detail)
+    })
     this.MasqError = MasqError
 
     if (this.masq.isLoggedIn()) {
