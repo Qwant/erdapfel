@@ -22,6 +22,13 @@ export default class MasqStore {
       masqAppBaseUrl: this.config.baseMasqAppUrl
     }
 
+    const stunTurn = this._getStunTurnFromConf()
+    if (stunTurn.length > 0) {
+      masqOptions.swarmConfig = {
+        iceServers: stunTurn
+      }
+    }
+
     const { default: Masq } = await import(/* webpackChunkName: "masq-lib" */ 'masq-lib')
     const masqIconUrl = document.baseURI.replace(/(\/+)$/g, '') + this.config.icon
     this.masq = new Masq(this.config.title, this.config.desc, masqIconUrl, masqOptions)
@@ -38,6 +45,24 @@ export default class MasqStore {
     if (!this.initialized) {
       await this.initPromise
     }
+  }
+
+  _getStunTurnFromConf() {
+    let stunTurn = []
+    if (this.config.stun) {
+      stunTurn.push({
+        urls: this.config.stun
+      })
+    }
+    if (this.config.turn) {
+      const splitTurn = this.config.turn.split('|')
+      stunTurn.push({
+        urls: splitTurn[0],
+        username: splitTurn[1],
+        credential: splitTurn[2]
+      })
+    }
+    return stunTurn
   }
 
   openLoginPopupWindow(link) {
