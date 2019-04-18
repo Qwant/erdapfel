@@ -63,10 +63,40 @@ export default class SceneDirection {
   }
 
   setMainRoute(routeId) {
+    let mainRoute = null;
     this.routes.forEach((route) => {
+      if (route.id === routeId) {
+        mainRoute = route
+      }
       this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === routeId})
     })
+    this.updateMarkers(mainRoute)
     this.map.moveLayer(`route_${routeId}`)
+  }
+
+  updateMarkers(mainRoute) {
+    if (!mainRoute) {
+      return
+    }
+    this.steps = mainRoute.legs[0].steps
+    // Clean previous markers (if any)
+    this.markersSteps.forEach((step) => {
+      step.remove()
+    })
+    this.markersSteps = []
+
+    if(this.markerOrigin){
+      this.markerOrigin.remove()
+    }
+
+    if(this.markerDestination){
+      this.markerDestination.remove()
+    }
+
+    // Custom markers
+    if (!Device.isMobile()) {
+      this.showMarkerSteps()
+    }
   }
 
   displayRoute(move) {
@@ -76,26 +106,8 @@ export default class SceneDirection {
       })
       let mainRoute = this.routes.find((route) => route.isActive)
       this.map.moveLayer(`route_${mainRoute.id}`)
-      this.steps = mainRoute.legs[0].steps
 
-      // Clean previous markers (if any)
-      this.markersSteps.forEach((step) => {
-        step.remove()
-      })
-      this.markersSteps = []
-
-      if(this.markerOrigin){
-        this.markerOrigin.remove()
-      }
-
-      if(this.markerDestination){
-        this.markerDestination.remove()
-      }
-
-      // Custom markers
-      if (!Device.isMobile()) {
-        this.showMarkerSteps()
-      }
+      this.updateMarkers(mainRoute)
 
       const markerOrigin = document.createElement('div')
       markerOrigin.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
