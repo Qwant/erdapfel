@@ -193,8 +193,6 @@ export default class DirectionPanel {
     if(this.origin && this.destination) {
 
       this.roadMapPanel.showPlaceholder(this.vehicle)
-      console.log(this.origin)
-      console.log(this.destination)
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
       if(directionResponse && directionResponse.routes) {
         let routes = directionResponse.routes
