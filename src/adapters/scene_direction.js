@@ -151,24 +151,36 @@ export default class SceneDirection {
   }
 
   showPolygon(route, vehicle) {
-    const geojson = {
-      "id": `route_${route.id}`,
-      "type": "line",
-      "source": `source_${route.id}`,
-      "layout": {
-        "line-join": "round",
-        "line-cap": "round",
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": ["case",
-          ["boolean", ["feature-state", "isActive"], route.isActive],
-          MAIN_ROUTE_COLOR,
-          ALTERNATE_ROUTE_COLOR
-        ],
-        "line-width": 7
+    const geojson = (vehicle === "walking") ? {
+        "id": `route_${route.id}`,
+        "type": "symbol",
+        "source": `source_${route.id}`,
+        "layout": {
+          'icon-image': 'walking_bullet',
+          'symbol-placement': 'line',
+          'symbol-spacing': 12,
+          'icon-ignore-placement': true,
+          'icon-allow-overlap': true,
+          'symbol-avoid-edges': true
+        }
+      } : {
+        "id": `route_${route.id}`,
+        "type": "line",
+        "source": `source_${route.id}`,
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round",
+          "visibility": "visible"
+        },
+        "paint": {
+          "line-color": ["case",
+            ["boolean", ["feature-state", "isActive"], route.isActive],
+            MAIN_ROUTE_COLOR,
+            ALTERNATE_ROUTE_COLOR
+          ],
+          "line-width": 7
+        }
       }
-    }
 
     let sourceId = `source_${route.id}`
     const sourceJSON = {
