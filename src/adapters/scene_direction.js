@@ -112,8 +112,7 @@ export default class SceneDirection {
         this.showPolygon(route, this.vehicle)
       })
       let mainRoute = this.routes.find((route) => route.isActive)
-      this.map.moveLayer(`route_${mainRoute.id}`)
-
+      this.map.moveLayer(`route_${mainRoute.id}`, "poi-level-street-furniture")
       this.updateMarkers(mainRoute)
 
       const markerOrigin = document.createElement('div')
