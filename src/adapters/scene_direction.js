@@ -128,8 +128,8 @@ export default class SceneDirection {
   }
 
   refreshDirection(event, type) {
-    var originlngLat = this.markerOrigin.getLngLat();
-    var destinationlngLat = this.markerDestination.getLngLat();
+    const originlngLat = this.markerOrigin.getLngLat();
+    const destinationlngLat = this.markerDestination.getLngLat();
     this.directionPanel.setInputValue(type, type === 'origin' ?
       `${parseFloat(originlngLat.lat).toFixed(5)} : ${parseFloat(originlngLat.lng).toFixed(5)}` :
       `${parseFloat(destinationlngLat.lat).toFixed(5)} : ${parseFloat(destinationlngLat.lng).toFixed(5)}`)
