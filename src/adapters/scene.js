@@ -123,8 +123,12 @@ Scene.prototype.initMapBox = function () {
       store.setLastLocation({ lng, lat, zoom })
     })
 
-    this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullets.png`, (error, image) => {
-      this.mb.addImage("walking_bullet", image)
+    this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_active.png`, (error, image) => {
+      this.mb.addImage("walking_bullet_active", image)
+    })
+
+    this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`, (error, image) => {
+      this.mb.addImage("walking_bullet_inactive", image)
     })
 
     window.execOnMapLoaded = (f) => f()
