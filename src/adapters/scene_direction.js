@@ -107,7 +107,7 @@ export default class SceneDirection {
         .setLngLat(this.steps[0].maneuver.location)
         .addTo(this.map)
 
-      this.markerOrigin.on('dragend', (event) => this.refreshDirection(event, this, 'origin'))
+      this.markerOrigin.on('dragend', (event) => this.refreshDirection(event, 'origin'))
 
       const markerDestination = document.createElement('div')
       markerDestination.className = 'itinerary_marker_destination'
@@ -118,7 +118,7 @@ export default class SceneDirection {
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
         .addTo(this.map)
 
-      this.markerDestination.on('dragend', (event) => this.refreshDirection(event, this, 'destination'))
+      this.markerDestination.on('dragend', (event) => this.refreshDirection(event, 'destination'))
 
       let bbox = this.computeBBox(mainRoute);
       if(move !== false){
@@ -127,13 +127,13 @@ export default class SceneDirection {
     }
   }
 
-  refreshDirection(event, _self, type) {
+  refreshDirection(event, type) {
     var originlngLat = this.markerOrigin.getLngLat();
     var destinationlngLat = this.markerDestination.getLngLat();
-    _self.directionPanel.setInputValue(type, type === 'origin' ?
+    this.directionPanel.setInputValue(type, type === 'origin' ?
       `${parseFloat(originlngLat.lat).toFixed(5)} : ${parseFloat(originlngLat.lng).toFixed(5)}` :
       `${parseFloat(destinationlngLat.lat).toFixed(5)} : ${parseFloat(destinationlngLat.lng).toFixed(5)}`)
-    _self.directionPanel.searchDirectionByCoordinates(originlngLat, destinationlngLat)
+    this.directionPanel.searchDirectionByCoordinates(originlngLat, destinationlngLat)
   }
 
   reset() {
