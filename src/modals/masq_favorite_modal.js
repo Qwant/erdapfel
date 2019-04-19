@@ -3,6 +3,7 @@ import Modal from "./modal"
 import MasqOnboardingModal from "./masq_onboarding_modal"
 import Store from "../adapters/store"
 import {version} from '../../config/constants.yml'
+import Error from '../adapters/error'
 
 const store = new Store()
 
@@ -40,10 +41,12 @@ export default class MasqFavoriteModal {
   }
 
   async openMasq () {
-    await store.login()
-    if (await store.isLoggedIn()) {
-      this.close()
+    try {
+      await store.login()
+    } catch(e) {
+      Error.sendOnce('masq_favorite_modal', 'openMasq', 'Failed to login', e)
     }
+    this.close()
   }
 
   async openOnboarding () {

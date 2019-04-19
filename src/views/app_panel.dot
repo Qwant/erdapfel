@@ -16,5 +16,6 @@
 {{? this.masqEnabled }}
   {{= this.masqFavoriteModal.renderModal() }}
   {{= this.masqOnboardingModal.renderModal() }}
+  {{= this.masqErrorModal.renderModal() }}
 {{?}}
 {{= this.menu.render() }}
