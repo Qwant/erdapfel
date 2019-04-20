@@ -15,7 +15,7 @@
     "watch": "webpack --config build/webpack.config.js -w --mode=development",
     "msgmerge": "node local_modules/merge-po/index",
     "prepare": "npm run build-map-fonts && node build/before_build.js",
-    "build-map-fonts": "cd node_modules/klokantech-noto-sans && node generate.js"
+    "build-map-fonts": "node build/build_map_fonts.js"
   },
   "repository": {
     "type": "git",
