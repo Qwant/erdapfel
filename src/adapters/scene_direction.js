@@ -1,10 +1,12 @@
-import {Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
+import { Marker, LngLat, LngLatBounds } from 'mapbox-gl--ENV'
+import { map } from '../../config/constants.yml'
 import Device from '../libs/device'
 import layouts from "../panel/layouts.js";
 import LatLonPoi from "../adapters/poi/latlon_poi";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
+
 
 export default class SceneDirection {
   constructor(map) {
@@ -78,7 +80,7 @@ export default class SceneDirection {
       }
     })
     this.updateMarkers(mainRoute)
-    this.map.moveLayer(`route_${routeId}`)
+    this.map.moveLayer(`route_${routeId}`, map.routes_layer)
   }
 
   updateMarkers(mainRoute) {
@@ -92,14 +94,6 @@ export default class SceneDirection {
     })
     this.markersSteps = []
 
-    if(this.markerOrigin){
-      this.markerOrigin.remove()
-    }
-
-    if(this.markerDestination){
-      this.markerDestination.remove()
-    }
-
     // Custom markers
     if (!Device.isMobile()) {
       this.showMarkerSteps()
@@ -112,7 +106,7 @@ export default class SceneDirection {
         this.showPolygon(route, this.vehicle)
       })
       let mainRoute = this.routes.find((route) => route.isActive)
-      this.map.moveLayer(`route_${mainRoute.id}`)
+      this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer)
 
       this.updateMarkers(mainRoute)
 
@@ -219,7 +213,7 @@ export default class SceneDirection {
       "data": this.buildRouteData(route.geometry.coordinates)
     }
     this.map.addSource(sourceId, sourceJSON)
-    this.map.addLayer(geojson)
+    this.map.addLayer(geojson, map.routes_layer)
 
     this.map.on('click', `route_${route.id}`, function(){
       fire('select_road_map', route.id)
