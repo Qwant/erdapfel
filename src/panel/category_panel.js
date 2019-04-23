@@ -25,7 +25,7 @@ export class CategoryPanel {
 
   restore(urlShard) {
     listen('map_loaded', () => {
-      this.categoryName = urlShard.match(/type=(.*)/)
+      this.categoryName = urlShard.match(/type=(.*)/)[1]
       this.search()
       let bbox = window.mapGetBounds()
       console.log(bbox)
@@ -38,13 +38,13 @@ export class CategoryPanel {
       .map((cardinal) => cardinal.toFixed(7))
       .join(',')
 
-    /* to remove */ this.categoryName = 'leisure'
-
     this.pois = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName)
 
-    //this.pois = await Ajax.get('https://maps.dev.qwant.ninja/maps/geocoder/places_list/', {bbox : bbox,size : '', category : 'leisure'})
     this.panel.update()
-    document.querySelector(".category__panel__scroll").scrollTop = 0;
+    let container = document.querySelector(".category__panel__scroll");
+    if(container){
+        container.scrollTop = 0;
+    }
   }
 
   showPhoneNumber(options){
