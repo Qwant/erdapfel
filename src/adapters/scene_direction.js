@@ -67,6 +67,7 @@ export default class SceneDirection {
   }
 
   setMainRoute(routeId) {
+    let mainRoute = null;
     this.routes.forEach((route) => {
       const isActive = route.id === routeId
       if (isActive) {
@@ -78,6 +79,7 @@ export default class SceneDirection {
         this.map.setLayoutProperty(`route_${route.id}`, 'icon-image', isActive ? 'walking_bullet_active' : 'walking_bullet_inactive')
       }
     })
+    this.updateMarkers(mainRoute)
     this.map.moveLayer(`route_${routeId}`, map.routes_layer)
   }
 
