@@ -12,6 +12,7 @@ import LocalStore from '../libs/local_store'
 import getStyle from "./scene_config";
 import SceneState from "./scene_state";
 import SceneDirection from './scene_direction'
+import SceneCategory from './scene_category'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
 import Error from '../adapters/error'
@@ -73,7 +74,8 @@ Scene.prototype.initMapBox = function () {
     },
     bbox : () => {
       return this.mb.getBounds()
-    }
+    },
+    mb: this.mb
   }
 
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
@@ -81,6 +83,7 @@ Scene.prototype.initMapBox = function () {
   this.mb.on('load', () => {
     this.onHashChange()
     new SceneDirection(this.mb)
+    new SceneCategory(this.mb)
 
     if(performanceEnabled) {
       window.times.mapLoaded = Date.now()
