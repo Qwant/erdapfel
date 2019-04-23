@@ -108,6 +108,7 @@ map:
   center:
     lng: 2.52
     lat: 52.41
+  routes_layer: "poi-level-street-furniture"
 
 menu:
   - sectionName : _('Qwant is also')

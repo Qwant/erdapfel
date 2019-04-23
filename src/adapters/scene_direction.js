@@ -1,10 +1,12 @@
-import {Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
+import { Marker, LngLat, LngLatBounds } from 'mapbox-gl--ENV'
+import { map } from '../../config/constants.yml'
 import Device from '../libs/device'
 import layouts from "../panel/layouts.js";
 import LatLonPoi from "../adapters/poi/latlon_poi";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
+
 
 export default class SceneDirection {
   constructor(map) {
@@ -78,7 +80,7 @@ export default class SceneDirection {
       }
     })
     this.updateMarkers(mainRoute)
-    this.map.moveLayer(`route_${routeId}`)
+    this.map.moveLayer(`route_${routeId}`, map.routes_layer)
   }
 
   updateMarkers(mainRoute) {
@@ -112,8 +114,32 @@ export default class SceneDirection {
         this.showPolygon(route, this.vehicle)
       })
       let mainRoute = this.routes.find((route) => route.isActive)
+<<<<<<< 02590f2a6e7e12fe0aa35e7c389b1884d162006b
       this.map.moveLayer(`route_${mainRoute.id}`, "poi-level-street-furniture")
       this.updateMarkers(mainRoute)
+=======
+      this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer)
+      this.steps = mainRoute.legs[0].steps
+
+      // Clean previous markers (if any)
+      this.markersSteps.forEach((step) => {
+        step.remove()
+      })
+      this.markersSteps = []
+
+      if(this.markerOrigin){
+        this.markerOrigin.remove()
+      }
+
+      if(this.markerDestination){
+        this.markerDestination.remove()
+      }
+
+      // Custom markers
+      if (!Device.isMobile()) {
+        this.showMarkerSteps()
+      }
+>>>>>>> Code review updates
 
       const markerOrigin = document.createElement('div')
       markerOrigin.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
