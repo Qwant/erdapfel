@@ -71,11 +71,12 @@
 .category__panel__item_inner {
   border-bottom: 1px solid #e0e1e6;
   padding: 14px 0;
+  min-height: 100px;
 }
 
 .category__panel__image {
   float: right;
-  margin: 5px 0 0 10px;
+  margin: 5px 0 10px 10px;
   width: 65px;
   height: 65px;
   border: 1px solid #ddd;
@@ -157,4 +158,11 @@
     font-size: 16px;
     margin: 0 5px 0 0;
   }
+}
+
+.category_marker {
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
 }

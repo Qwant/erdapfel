@@ -4,7 +4,6 @@ import MinimalHourPanel from "./poi_bloc/opening_minimal";
 import UrlState from "../proxies/url_state";
 import {paramTypes} from "../proxies/url_shard";
 import IdunnPoi from "../adapters/poi/idunn_poi";
-import OsmSchedule from "../adapters/osm_schedule";
 const poiSubClass = require('../mapbox/poi_subclass')
 
 export class CategoryPanel {
@@ -16,6 +15,7 @@ export class CategoryPanel {
     this.categoryName = ''
     this.isOpen = false
     this.poiSubClass = poiSubClass
+    this.PoiMarkers = []
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
   }
 
@@ -45,6 +45,9 @@ export class CategoryPanel {
     if(container){
         container.scrollTop = 0;
     }
+
+    this.addCategoryMarkers();
+
   }
 
   showPhoneNumber(options){
@@ -52,5 +55,13 @@ export class CategoryPanel {
     var i = options.i
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
+  }
+
+  addCategoryMarkers(){
+    fire("add_category_markers", this.pois);
+  }
+
+  removeCategoryMarkers(){
+
   }
 }
