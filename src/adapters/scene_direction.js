@@ -1,6 +1,7 @@
 import {Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
 import layouts from "../panel/layouts.js";
+import LatLonPoi from "../adapters/poi/latlon_poi";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
@@ -128,12 +129,16 @@ export default class SceneDirection {
   }
 
   refreshDirection(event, type) {
-    const originlngLat = this.markerOrigin.getLngLat();
-    const destinationlngLat = this.markerDestination.getLngLat();
-    this.directionPanel.setInputValue(type, type === 'origin' ?
-      `${parseFloat(originlngLat.lat).toFixed(5)} : ${parseFloat(originlngLat.lng).toFixed(5)}` :
-      `${parseFloat(destinationlngLat.lat).toFixed(5)} : ${parseFloat(destinationlngLat.lng).toFixed(5)}`)
-    this.directionPanel.searchDirectionByCoordinates(originlngLat, destinationlngLat)
+    if (type === 'origin') {
+      const originLnglat = this.markerOrigin.getLngLat();
+      this.directionPanel.selectOrigin(new LatLonPoi({lat : parseFloat(originLnglat.lat), lng : parseFloat(originLnglat.lng)}))
+      this.directionPanel.setInputValue(type, `${parseFloat(originLnglat.lat).toFixed(5)} : ${parseFloat(originLnglat.lng).toFixed(5)}`)
+    } else if (type === 'destination') {
+      const destinationLngLat = this.markerDestination.getLngLat();
+      this.directionPanel.selectDestination(new LatLonPoi({lat : parseFloat(destinationLngLat.lat), lng : parseFloat(destinationLngLat.lng)}))
+      this.directionPanel.setInputValue(type, `${parseFloat(destinationLngLat.lat).toFixed(5)} : ${parseFloat(destinationLngLat.lng).toFixed(5)}`)
+    }
+    this.directionPanel.searchDirection()
   }
 
   reset() {
