@@ -4,10 +4,10 @@ import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string";
 import BragiPoi from "./poi/bragi_poi";
 import PoiStore from "./poi/poi_store";
+import CategoryService from "./category_service";
 
 export default class Suggest {
-  constructor(tagSelector, onSelect, prefixes = [], menuClass = '') {
-
+  constructor({tagSelector, onSelect, prefixes = [], menuClass = '', withCategories = false}) {
     this.searchInputDomHandler = document.querySelector(tagSelector)
     this.poi = null
     this.bragiPromise = null
@@ -37,17 +37,29 @@ export default class Suggest {
         }
         else {
           promise = new Promise(async (resolve, reject) => {
+            this.suggestList = []
+
+            /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
             this.historyPromise = PoiStore.get(term)
             this.bragiPromise = BragiPoi.get(term)
+            this.categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : null
+
             try {
-              let [bragiResponse, storeResponse] = await Promise.all([this.bragiPromise, this.historyPromise])
-              if (bragiResponse !== null) {
+              let [bragiResponse, storeResponse, categoryResponse] = await Promise.all([
+                this.bragiPromise, this.historyPromise, this.categoryPromise
+              ])
+
+              if (categoryResponse)
+                this.suggestList = this.suggestList.concat(categoryResponse)
+
+              if (bragiResponse) {
                 this.bragiPromise = null
-                this.suggestList = bragiResponse.concat(storeResponse)
-                resolve(this.suggestList)
-              } else {
-                resolve(null)
+                this.suggestList = this.suggestList.concat(bragiResponse)
               }
+
+              this.suggestList = this.suggestList.concat(storeResponse)
+
+              resolve(this.suggestList)
             } catch (e) {
               reject(e)
             }
