@@ -67,7 +67,6 @@ export default class SceneDirection {
   }
 
   setMainRoute(routeId) {
-    let mainRoute = null;
     this.routes.forEach((route) => {
       const isActive = route.id === routeId
       if (isActive) {
@@ -79,7 +78,6 @@ export default class SceneDirection {
         this.map.setLayoutProperty(`route_${route.id}`, 'icon-image', isActive ? 'walking_bullet_active' : 'walking_bullet_inactive')
       }
     })
-    this.updateMarkers(mainRoute)
     this.map.moveLayer(`route_${routeId}`, map.routes_layer)
   }
 
@@ -114,32 +112,9 @@ export default class SceneDirection {
         this.showPolygon(route, this.vehicle)
       })
       let mainRoute = this.routes.find((route) => route.isActive)
-<<<<<<< 02590f2a6e7e12fe0aa35e7c389b1884d162006b
-      this.map.moveLayer(`route_${mainRoute.id}`, "poi-level-street-furniture")
-      this.updateMarkers(mainRoute)
-=======
       this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer)
-      this.steps = mainRoute.legs[0].steps
 
-      // Clean previous markers (if any)
-      this.markersSteps.forEach((step) => {
-        step.remove()
-      })
-      this.markersSteps = []
-
-      if(this.markerOrigin){
-        this.markerOrigin.remove()
-      }
-
-      if(this.markerDestination){
-        this.markerDestination.remove()
-      }
-
-      // Custom markers
-      if (!Device.isMobile()) {
-        this.showMarkerSteps()
-      }
->>>>>>> Code review updates
+      this.updateMarkers(mainRoute)
 
       const markerOrigin = document.createElement('div')
       markerOrigin.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
@@ -244,7 +219,7 @@ export default class SceneDirection {
       "data": this.buildRouteData(route.geometry.coordinates)
     }
     this.map.addSource(sourceId, sourceJSON)
-    this.map.addLayer(geojson)
+    this.map.addLayer(geojson, map.routes_layer)
 
     this.map.on('click', `route_${route.id}`, function(){
       fire('select_road_map', route.id)
