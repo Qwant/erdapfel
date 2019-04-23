@@ -94,14 +94,6 @@ export default class SceneDirection {
     })
     this.markersSteps = []
 
-    if(this.markerOrigin){
-      this.markerOrigin.remove()
-    }
-
-    if(this.markerDestination){
-      this.markerDestination.remove()
-    }
-
     // Custom markers
     if (!Device.isMobile()) {
       this.showMarkerSteps()

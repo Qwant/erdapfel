@@ -356,6 +356,7 @@
   border: 1px solid $background;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
   cursor: pointer;
+  z-index: 2;
 }
 
 .itinerary_marker_origin_walking {
@@ -366,6 +367,7 @@
   border: 2px solid #4ba2ea;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  z-index: 2;
 }
 
 .itinerary_marker_destination {
@@ -375,6 +377,7 @@
   height: 37px;
   margin: -10px 0 0 4px;
   cursor: pointer;
+  z-index: 2;
 }
 
 .itinerary_marker_step {
