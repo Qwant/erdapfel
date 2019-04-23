@@ -67,10 +67,15 @@ export default class SceneDirection {
   setMainRoute(routeId) {
     let mainRoute = null;
     this.routes.forEach((route) => {
-      if (route.id === routeId) {
+      const isActive = route.id === routeId
+      if (isActive) {
         mainRoute = route
       }
-      this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive: route.id === routeId})
+      this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive})
+
+      if (this.vehicle === 'walking') {
+        this.map.setLayoutProperty(`route_${route.id}`, 'icon-image', isActive ? 'walking_bullet_active' : 'walking_bullet_inactive')
+      }
     })
     this.updateMarkers(mainRoute)
     this.map.moveLayer(`route_${routeId}`)
@@ -177,24 +182,36 @@ export default class SceneDirection {
   }
 
   showPolygon(route, vehicle) {
-    const geojson = {
-      "id": `route_${route.id}`,
-      "type": "line",
-      "source": `source_${route.id}`,
-      "layout": {
-        "line-join": "round",
-        "line-cap": "round",
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": ["case",
-          ["boolean", ["feature-state", "isActive"], route.isActive],
-          MAIN_ROUTE_COLOR,
-          ALTERNATE_ROUTE_COLOR
-        ],
-        "line-width": 7
+    const geojson = (vehicle === "walking") ? {
+        "id": `route_${route.id}`,
+        "type": "symbol",
+        "source": `source_${route.id}`,
+        "layout": {
+          'icon-image': route.isActive ? 'walking_bullet_active' : 'walking_bullet_inactive',
+          'symbol-placement': 'line',
+          'symbol-spacing': 12,
+          'icon-ignore-placement': true,
+          'icon-allow-overlap': true,
+          'symbol-avoid-edges': true
+        }
+      } : {
+        "id": `route_${route.id}`,
+        "type": "line",
+        "source": `source_${route.id}`,
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round",
+          "visibility": "visible"
+        },
+        "paint": {
+          "line-color": ["case",
+            ["boolean", ["feature-state", "isActive"], route.isActive],
+            MAIN_ROUTE_COLOR,
+            ALTERNATE_ROUTE_COLOR
+          ],
+          "line-width": 7
+        }
       }
-    }
 
     let sourceId = `source_${route.id}`
     const sourceJSON = {
