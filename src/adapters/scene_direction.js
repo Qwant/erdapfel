@@ -70,7 +70,10 @@ export default class SceneDirection {
         mainRoute = route
       }
       this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive})
-      this.map.setLayoutProperty(`route_${route.id}`, 'icon-image', isActive ? 'walking_bullet_active' : 'walking_bullet_inactive')
+
+      if (this.vehicle === 'walking') {
+        this.map.setLayoutProperty(`route_${route.id}`, 'icon-image', isActive ? 'walking_bullet_active' : 'walking_bullet_inactive')
+      }
     })
     this.updateMarkers(mainRoute)
     this.map.moveLayer(`route_${routeId}`)
@@ -158,12 +161,7 @@ export default class SceneDirection {
         "type": "symbol",
         "source": `source_${route.id}`,
         "layout": {
-          'icon-image': [
-            "case",
-            route.isActive,
-            'walking_bullet_active',
-            'walking_bullet_inactive',
-          ],
+          'icon-image': route.isActive ? 'walking_bullet_active' : 'walking_bullet_inactive',
           'symbol-placement': 'line',
           'symbol-spacing': 12,
           'icon-ignore-placement': true,

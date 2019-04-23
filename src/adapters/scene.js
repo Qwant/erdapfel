@@ -14,6 +14,7 @@ import SceneState from "./scene_state";
 import SceneDirection from './scene_direction'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
+import Error from '../adapters/error'
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -124,10 +125,18 @@ Scene.prototype.initMapBox = function () {
     })
 
     this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_active.png`, (error, image) => {
+      if (error) {
+        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${baseUrl}statics/images/direction_icons/walking_bullet_active.png`, error)
+        return
+      }
       this.mb.addImage("walking_bullet_active", image)
     })
 
     this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`, (error, image) => {
+      if (error) {
+        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`, error)
+        return
+      }
       this.mb.addImage("walking_bullet_inactive", image)
     })
 
