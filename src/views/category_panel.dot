@@ -29,7 +29,7 @@
       <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }}>
         <div class="category__panel__item_inner">
 
-          <div class="category__panel__image"></div>
+          <div class="category__panel__image" {{? image}}style="background-image:url('{{= image}}')"{{?}}>{{? !image }}TODO: icon{{?}}</div>
 
           <h3 class="category__panel__name">
             {{= poi.getInputValue() }}
@@ -47,16 +47,15 @@
             </p>
           {{?}}
 
-          <div class="category__panel__note">
-            <!--span class="icon-icon_star-filled"></span-->
-            <span class="icon-icon_star"></span>
+         <!-- <div class="category__panel__note">
+            <span class="icon-icon_star-filled"></span>
             <span class="icon-icon_star"></span>
             <span class="icon-icon_star"></span>
             <span class="icon-icon_star"></span>
             <span class="icon-icon_star"></span>
             ???
             {{= _('reviews', 'categories') }}
-          </div>
+          </div-->
 
           {{= this.minimalHourPanel.set(poi).render() }}
 
