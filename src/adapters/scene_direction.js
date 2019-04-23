@@ -131,14 +131,15 @@ export default class SceneDirection {
   refreshDirection(event, type) {
     if (type === 'origin') {
       const originLnglat = this.markerOrigin.getLngLat();
-      this.directionPanel.selectOrigin(new LatLonPoi({lat : parseFloat(originLnglat.lat), lng : parseFloat(originLnglat.lng)}))
-      this.directionPanel.setInputValue(type, `${parseFloat(originLnglat.lat).toFixed(5)} : ${parseFloat(originLnglat.lng).toFixed(5)}`)
+      const newOrigin = new LatLonPoi({lat : parseFloat(originLnglat.lat), lng : parseFloat(originLnglat.lng)})
+      this.directionPanel.selectOrigin(newOrigin)
+      this.directionPanel.setInputValue(type, newOrigin.getInputValue())
     } else if (type === 'destination') {
       const destinationLngLat = this.markerDestination.getLngLat();
-      this.directionPanel.selectDestination(new LatLonPoi({lat : parseFloat(destinationLngLat.lat), lng : parseFloat(destinationLngLat.lng)}))
-      this.directionPanel.setInputValue(type, `${parseFloat(destinationLngLat.lat).toFixed(5)} : ${parseFloat(destinationLngLat.lng).toFixed(5)}`)
+      const newDestination = new LatLonPoi({lat : parseFloat(destinationLngLat.lat), lng : parseFloat(destinationLngLat.lng)})
+      this.directionPanel.selectDestination(newDestination)
+      this.directionPanel.setInputValue(type, newDestination.getInputValue())
     }
-    this.directionPanel.searchDirection()
   }
 
   reset() {
