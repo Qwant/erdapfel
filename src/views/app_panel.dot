@@ -20,5 +20,6 @@
   {{= this.masqFavoriteModal.renderModal() }}
   {{= this.masqOnboardingModal.renderModal() }}
   {{= this.masqErrorModal.renderModal() }}
+  {{= this.masqActivatingModal.renderModal() }}
 {{?}}
 {{= this.menu.render() }}
