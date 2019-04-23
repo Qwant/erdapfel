@@ -1,6 +1,7 @@
-import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
+import {Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
 import layouts from "../panel/layouts.js";
+import LatLonPoi from "../adapters/poi/latlon_poi";
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3'
 const MAIN_ROUTE_COLOR = '#4ba2ea'
@@ -13,6 +14,7 @@ export default class SceneDirection {
     this.markerOrigin = null
     this.markerDestination = null
     this.markersSteps = []
+    this.directionPanel = PanelManager.getDirectionPanel()
 
     listen('set_route', ({routes, vehicle, origin, destination, move}) => {
       this.reset()
@@ -111,20 +113,44 @@ export default class SceneDirection {
 
       const markerOrigin = document.createElement('div')
       markerOrigin.className = this.vehicle === "walking" ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin'
-      this.markerOrigin = new Marker(markerOrigin)
+      this.markerOrigin = new Marker({
+        element: markerOrigin,
+        draggable: true
+      })
         .setLngLat(this.steps[0].maneuver.location)
         .addTo(this.map)
 
+      this.markerOrigin.on('dragend', (event) => this.refreshDirection(event, 'origin'))
+
       const markerDestination = document.createElement('div')
       markerDestination.className = 'itinerary_marker_destination'
-      this.markerDestination = new Marker(markerDestination)
+      this.markerDestination = new Marker({
+        element: markerDestination,
+        draggable: true
+      })
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
         .addTo(this.map)
+
+      this.markerDestination.on('dragend', (event) => this.refreshDirection(event, 'destination'))
 
       let bbox = this.computeBBox(mainRoute);
       if(move !== false){
         fire('fit_map', bbox, layouts.ITINERARY)
       }
+    }
+  }
+
+  refreshDirection(event, type) {
+    if (type === 'origin') {
+      const originLnglat = this.markerOrigin.getLngLat();
+      const newOrigin = new LatLonPoi({lat : parseFloat(originLnglat.lat), lng : parseFloat(originLnglat.lng)})
+      this.directionPanel.selectOrigin(newOrigin)
+      this.directionPanel.setInputValue(type, newOrigin.getInputValue())
+    } else if (type === 'destination') {
+      const destinationLngLat = this.markerDestination.getLngLat();
+      const newDestination = new LatLonPoi({lat : parseFloat(destinationLngLat.lat), lng : parseFloat(destinationLngLat.lng)})
+      this.directionPanel.selectDestination(newDestination)
+      this.directionPanel.setInputValue(type, newDestination.getInputValue())
     }
   }
 

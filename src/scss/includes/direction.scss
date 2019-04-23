@@ -355,6 +355,7 @@
   background: #4ba2ea;
   border: 1px solid $background;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
+  cursor: pointer;
 }
 
 .itinerary_marker_origin_walking {
@@ -364,6 +365,7 @@
   background: $background;
   border: 2px solid #4ba2ea;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .itinerary_marker_destination {
@@ -372,6 +374,7 @@
   width: 30px;
   height: 37px;
   margin: -10px 0 0 4px;
+  cursor: pointer;
 }
 
 .itinerary_marker_step {
@@ -644,7 +647,7 @@
     background: url("../images/backgrounds/top_mobile.svg") #f4f6fa no-repeat center top;
     background-size: 640px auto;
     position: fixed;
-    z-index: 5;
+    z-index: 3;
   }
   
   .itinerary_title {

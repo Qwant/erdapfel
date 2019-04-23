@@ -4,7 +4,7 @@ import DirectionInput from "../../ui_components/direction_input"
 import RoadMapPanel from './road_map_panel'
 import DirectionApi from '../../adapters/direction_api'
 import SearchInput from '../../ui_components/search_input'
-import UrlPoi from "../../adapters/poi/url_poi";
+import LatLonPoi from "../../adapters/poi/latlon_poi";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
 import Device from '../../libs/device'
@@ -41,6 +41,10 @@ export default class DirectionPanel {
 
   displayForm() {
     this.panel.removeClassName(0, '#itinerary_container', 'itinerary_container--preview')
+  }
+
+  setInputValue(type = 'origin', value) {
+    type == 'origin' ? this.searchInputStart.value = value : this.searchInputEnd.value = value
   }
 
   initDirection() {
@@ -183,7 +187,6 @@ export default class DirectionPanel {
     if(this.origin && this.destination) {
 
       this.roadMapPanel.showPlaceholder(this.vehicle)
-
       let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle)
       if(directionResponse && directionResponse.routes) {
         let routes = directionResponse.routes
@@ -260,14 +263,14 @@ export default class DirectionPanel {
 
     if(getParams.get('origin')) {
       try {
-        this.origin = await UrlPoi.fromUrl(getParams.get('origin'))
+        this.origin = await LatLonPoi.fromUrl(getParams.get('origin'))
       } catch (err) {
         Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('origin')}`, err)
       }
     }
     if(getParams.get('destination')) {
       try {
-        this.destination = await UrlPoi.fromUrl(getParams.get('destination'))
+        this.destination = await LatLonPoi.fromUrl(getParams.get('destination'))
       } catch (err) {
         Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('destination')}`, err)
       }
@@ -281,7 +284,7 @@ export default class DirectionPanel {
   /* Private */
 
   poiToUrl(prefix, poi) {
-    if(poi instanceof NavigatorGeolocalisationPoi || poi instanceof UrlPoi) {
+    if(poi instanceof NavigatorGeolocalisationPoi || poi instanceof LatLonPoi) {
       return `${prefix}=${poi.toUrl()}`
     }
     return `${prefix}=${poi.id}@${poi.name}`

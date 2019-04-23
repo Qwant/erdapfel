@@ -7,7 +7,7 @@ const LON_POSITION = 2
 const LABEL_POSITION  = 4
 const DIRECTION_URL_REGEX = /^latlon:(-?\d*\.\d*):(-?\d*\.\d*)(@(.*))?/
 
-export default class UrlPoi extends Poi {
+export default class LatLonPoi extends Poi {
   constructor(latLon, label) {
     let id = `latlon:${latLon.lat.toFixed(5)}:${latLon.lng.toFixed(5)}`
 
@@ -34,9 +34,9 @@ export default class UrlPoi extends Poi {
       if(lat && lng) {
         let latLng = {lat : parseFloat(lat), lng : parseFloat(lng)}
         if(urlData[LABEL_POSITION]) {
-          return Promise.resolve(new UrlPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION])))
+          return Promise.resolve(new LatLonPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION])))
         } else {
-          return Promise.resolve(new UrlPoi(latLng))
+          return Promise.resolve(new LatLonPoi(latLng))
         }
       }
     } else {
