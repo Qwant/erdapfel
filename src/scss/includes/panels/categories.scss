@@ -75,10 +75,11 @@
 
 .category__panel__image {
   float: right;
-  margin: 15px 0 0 10px;
+  margin: 5px 0 0 10px;
   width: 65px;
   height: 65px;
-  background: tan;
+  border: 1px solid #ddd;
+  background-size: cover;
 }
 
 .category__panel__name {
@@ -109,15 +110,13 @@
   }
 }
 
-.category__panel__note + div {
-  display: inline-block;
-
+.category__panel__item {
   .poi_panel__info__hours__status__text {
+    display: inline-block;
     margin: 0;
     font-size: 14px;
     color: #353c52;
   }
-
 }
 
 .category__panel__status {

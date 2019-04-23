@@ -44,6 +44,7 @@ export class CategoryPanel {
 
     //this.pois = await Ajax.get('https://maps.dev.qwant.ninja/maps/geocoder/places_list/', {bbox : bbox,size : '', category : 'leisure'})
     this.panel.update()
+    document.querySelector(".category__panel__scroll").scrollTop = 0;
   }
 
   showPhoneNumber(options){
