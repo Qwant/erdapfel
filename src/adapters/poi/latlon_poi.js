@@ -34,9 +34,9 @@ export default class LatLonPoi extends Poi {
       if(lat && lng) {
         let latLng = {lat : parseFloat(lat), lng : parseFloat(lng)}
         if(urlData[LABEL_POSITION]) {
-          return Promise.resolve(new UrlPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION])))
+          return Promise.resolve(new LatLonPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION])))
         }
-        return Promise.resolve(new UrlPoi(latLng))
+        return Promise.resolve(new LatLon(latLng))
       }
     } else {
       let urlData = urlParam.match(/^(.*?)(@(.*))?$/)

@@ -1,15 +1,16 @@
 @import "../osm_contribute";
 
-$BLOCK_INDENT: 25px;
+$BLOCK_INDENT: 28px;
 $CARD_ACTION_WIDTH: 130px;
 $CARD_ACTION_RIGHT_MARGIN: 8px;
 $CARD_PADDING: 8px;
-$BLOCK_PADDING: 16px;
+$BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
+$HEADER_SIZE: 30px;
 
 .poi_panel {
   display: block;
-  max-height: calc(100vh - 240px);
+  max-height: calc(100vh - 120px);
   position: relative;
   width: $panel_width;
   padding-bottom: 10px;
@@ -26,7 +27,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   background-position: center center;
   position: absolute;
   top: 13px;
-  right: 26px;
+  right: 0;
 }
 .poi_panel--hidden {
   display: none;
@@ -34,6 +35,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__content__card {
   display: none;
+}
+
+.poi_panel__container {
+  padding: 0 $BLOCK_INDENT;
+  width: 100%;
+  position: relative;
 }
 
 .poi_panel__content__card__content {
@@ -71,20 +78,21 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 .poi_panel__close {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 2px;
   cursor: pointer;
-  height: 42px;
-  width: 40px;
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
   text-align: center;
-  line-height: 42px;
   transition: background-color .1s;
   background: $background;
   border-radius: 50%;
-  font-size: 19px;
+  font-size: 20px;
 }
 
 .poi_panel__close:hover {
   background: $background_hover;
+  color: $primary_text;
 }
 
 .poi_panel__info__section {
@@ -94,7 +102,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__info__section__phone {
-  margin-left: $BLOCK_INDENT;
   font-size: $BLOCK_ICON_FONT_SIZE;
 }
 
@@ -109,10 +116,29 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   color: $secondary_text;
   padding: 14px 0 14px 10px;
   text-transform: uppercase;
-  position: relative;
+  position: absolute;
+  left: 0;
+  height: $HEADER_SIZE;
+  top: -$HEADER_SIZE;
+  right: 0;
+  background: $background;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.poi_panel__header + .poi_panel--card {
+  margin-top: $HEADER_SIZE;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
+  max-height: calc(100vh - 120px - #{$HEADER_SIZE});
 }
 
 .poi_panel__back_to_favorite {
+  position: absolute;
+  top: 8px;
   cursor: pointer;
 }
 
@@ -124,6 +150,8 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   position: relative;
   padding: 0 125px 0 0;
   min-height: 100px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .poi_panel__description_container:after {
@@ -132,9 +160,10 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   content: '';
 }
 
+/* wrap it into an element and then put padding on this new element instead */
 .poi_panel__title {
   width: 350px;
-  padding: 10px 0 0 $BLOCK_INDENT;
+  padding-top: 10px;
   font-family: Asap;
   font-weight: 700;
   color: $primary_text;
@@ -156,31 +185,28 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 .poi_panel__info__section:before {
   content: '';
   display: block;
-  width: calc(100% - 2 * 28px);
+  width: 100%;
   height: 1px;
   margin-top: 8px;
   background: $separator_color;
-  margin-left: 28px;
 }
 
 .poi_panel__info {
   clear: both;
-  margin: 60px 0 0 0;
 }
 
 .poi_panel__description {
   position: relative;
-  padding-left: $BLOCK_INDENT;
   font-size: 14px;
   color: $secondary_text;
-
 }
+
 .poi_panel__description:first-letter {
   text-transform: uppercase;
 }
 
 .poi_panel__address {
-  padding: 8px 28px 0 $BLOCK_INDENT;
+  padding: 8px 0 0 0;
   font-size: 16px;
   color: $primary_text;
 }
@@ -190,24 +216,22 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__info__link, .poi_panel__info__contact {
-  margin-left: $BLOCK_INDENT;
-  font-size: 15px;
-  color: $secondary_variant_text;
+  font-size: 13px;
+  color: $secondary_text;
+  text-transform: uppercase;
 }
 
 .poi_panel__info__link:HOVER, .poi_panel__info__contact:HOVER {
   text-decoration: none;
-  border-bottom: 1px solid $secondary_variant_text;
+  color: $primary_text;
 }
 
 .poi_panel__info__accessibilities {
   font-size: 15px;
-  margin-left: $BLOCK_INDENT;
   color: $primary_text;
 }
 
 .poi_panel__info__hours {
-  margin-left: $BLOCK_INDENT;
   max-height: 0;
   transition: max-height 0.3s;
   overflow: hidden;
@@ -236,12 +260,10 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 .poi_panel__info__hours__status {
   cursor: pointer;
   position: relative;
-  width: 368px;
 }
 
 .poi_panel__info__hours__status__text {
   display: inline-block;
-  margin-left: $BLOCK_INDENT;
   color: $primary_text;
 }
 
@@ -297,7 +319,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__info__item {
-  margin-left: $BLOCK_INDENT;
   font-size: 13px;
   color: $primary_text;
 }
@@ -307,14 +328,9 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__actions {
-  margin-left: $BLOCK_INDENT;
-  width: calc(100% - #{$BLOCK_INDENT} - #{$BLOCK_INDENT});
+  width: 100%;
   position: relative;
-}
-
-.poi_panel__actions:after {
-  clear: both;
-  content: '';
+  height: 34px;
 }
 
 a.button_container {
@@ -330,6 +346,12 @@ a.button_container {
     width: 100%;
     display: block;
     cursor: pointer;
+  }
+}
+
+.button_container:hover {
+  button, div {
+    color: $primary_text;
   }
 }
 
@@ -353,10 +375,6 @@ a.button_container {
   color: $primary_text;
 }
 
-.poi_panel__description_container {
-  position: relative;
-}
-
 .poi_panel__store_status__toggle:after {
   content: '';
 }
@@ -375,8 +393,7 @@ a.button_container {
 /* symbols */
 .poi_panel__block__symbol {
   position: absolute;
-  top: 18px;
-  left: 25px;
+  top: 20px;
   font-size: $BLOCK_ICON_FONT_SIZE;
   color: $primary_clear;
   width: 20px;
@@ -427,7 +444,7 @@ a.button_container {
 .poi_panel__sub__sub_block__title {
   font-size: 13px;
   font-weight: normal;
-  margin: 10px 0 4px $BLOCK_INDENT;
+  margin: 10px 0 4px 0;
   color: $secondary_text
 }
 
@@ -435,7 +452,6 @@ a.button_container {
   margin-top:20px;
   cursor: pointer;
   position: relative;
-  width: 366px;
 }
 
 .poi_panel__sub_block__title__text {
@@ -447,19 +463,32 @@ a.button_container {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-left: $BLOCK_INDENT;
 }
 
 .poi_panel__info__wiki {
-  margin: 10px 0 0 $BLOCK_INDENT;
+  margin-top: 15px;
   font-size: 12px;
-  color: $secondary_text;
+  color: $primary_text;
   padding-left: $BLOCK_PADDING;
 }
 
 .poi_panel__info__wiki__link {
-  line-height: 18px;
-  font-size: 16px;
+  font-size: 13px;
+  color: $secondary_text;
+  position: relative;
+
+  .icon-chevrons-right {
+    position: absolute;
+    top: 1px;
+  }
+  span {
+    margin-left: 15px;
+  }
+}
+
+.poi_panel__info__wiki__link:hover {
+  color: $primary_text;
+  text-decoration: none;
 }
 
 /* symbols */
@@ -521,7 +550,7 @@ a.button_container {
     }
     .poi_panel__address {
       font-size: 14px;
-      padding: 8px 14px 0 $BLOCK_INDENT;
+      padding: 8px 14px 0 0;
     }
     .poi_panel__info__hours__status__text {
       font-size: 14px;
@@ -556,6 +585,7 @@ a.button_container {
   .poi_panel__content {
     width: 100%;
     display: block;
+    position: relative;
   }
 
   .poi_panel--hidden {

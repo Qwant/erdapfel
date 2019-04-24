@@ -1,3 +1,15 @@
+{{? this.poi && this.active }}
+  <div class="poi_panel__header">
+    {{? this.fromFavorite }}
+      <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}>
+        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}
+      </div>
+    {{?}}
+    <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
+      <i class="icon-x"></i>
+    </div>
+  </div>
+{{?}}
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden ' }}{{= this.card ? 'poi_panel--card ' : '' }}">
   {{? this.poi }}
     <div class="poi_panel__content__card">
@@ -24,20 +36,11 @@
   {{?}}
   <div class="poi_panel__content">
   {{? this.poi }}
-    <div class="poi_panel__header">
-      {{? this.fromFavorite }}
-        <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}>
-          <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}
-        </div>
-      {{?}}
-      <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
-        <i class="icon-x"></i>
+    <div class="poi_panel__container">
+      <div class="poi_panel__description_container" {{= click(this.center, this) }}>
+         {{= this.panel.renderPartial(this.headerPartial) }}
       </div>
-    </div>
-    <div class="poi_panel__description_container" {{= click(this.center, this) }}>
-       {{= this.panel.renderPartial(this.headerPartial) }}
-    </div>
-    <div class="poi_panel__actions">
+      <div class="poi_panel__actions">
         <div class="poi_panel__actions__store_container button_container" {{= click(this.toggleStorePoi, this) }}>
           <button class="poi_panel__actions__icon__store poi_panel__actions__icon {{= this.poi.stored ? 'icon-icon_star-filled' : 'icon-icon_star'}}">
           </button>
@@ -63,7 +66,7 @@
           </a>
         {{?}}
       </div>
-  {{= this.PoiBlocContainer.render(this.poi) }}
+      {{= this.PoiBlocContainer.render(this.poi) }}
 
       <div class="osm_contribute">
         <div class="osm_contribute__logo"></div>
@@ -77,6 +80,7 @@
           </a>
         </div>
       </div>
+    </div>
   {{?}}
   </div>
   <div id="poi-loading-panel"></div>
