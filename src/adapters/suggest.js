@@ -179,9 +179,10 @@ export default class Suggest {
     let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
     let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
     let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
+    let dataIdAttribute = id ? `data-id="${id}"` : ''
 
     return `
-<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
+<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" ${dataIdAttribute} data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
   <div class="autocomplete_suggestion__first_line__container">
   ${iconDom}
   <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
