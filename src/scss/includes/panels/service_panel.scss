@@ -1,7 +1,6 @@
 .service_panel {
   display: none;
   position: relative;
-  height: 90px;
   width: $panel_width;
   margin-top: 14px;
   background: url('../images/panel_top.svg') white repeat-x;
@@ -49,6 +48,38 @@
 .service_panel__item:not(.service_panel__item--disabled) .service_panel__item__action:hover .service_panel__item__text {
   color: $primary_text;
   text-decoration: underline;
+}
+
+.service_panel__categories {
+  margin: 60px 0 0 0;
+  padding: 0 0 10px 12px;
+}
+
+.service_panel__category {
+  width: 90px;
+  display: inline-block;
+  text-align: center;
+  margin: 0 0 23px 0;
+}
+
+.service_panel__category__icon {
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  border-radius: 50%;
+
+  span {
+    color: #fff;
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+.service_panel__category__title {
+  margin: 9px 0 0 0;
+  color: #5c6f84;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 
 @media (max-width: 640px) {

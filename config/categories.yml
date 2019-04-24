@@ -1,0 +1,25 @@
+---
+- label : _('Hotel')
+  color: "#495063"
+  icon: lodging
+- label : _('Restaurant')
+  color: "#ef8000"
+  icon: restaurant
+- label : _('Cinema')
+  color: "#e93865"
+  icon: cinema
+- label : _('Bar')
+  color: "#ef8000"
+  icon: bar
+- label : _('Supermarket')
+  color: "#f3c600"
+  icon: grocery
+- label : _('Bank')
+  color: "#495063"
+  icon: bank
+- label : _('Pharmacy')
+  color: "#4aa0e7"
+  icon: pharmacy
+- label : _('Education')
+  color: "#495063"
+  icon: school
