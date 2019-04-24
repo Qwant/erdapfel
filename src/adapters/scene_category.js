@@ -1,6 +1,7 @@
 import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
 import Device from '../libs/device'
 import layouts from "../panel/layouts.js";
+import constants from '../../config/constants.yml'
 
 
 export default class SceneCategory {
@@ -15,6 +16,7 @@ export default class SceneCategory {
   }
 
   addCategoryMarkers(pois) {
+    this.removeOsmPois() // first remove the existing OSM Pois
     pois.forEach((poi) => {
           const marker = document.createElement('div')
 
@@ -26,5 +28,9 @@ export default class SceneCategory {
           )
         }
     )
+  }
+
+  removeOsmPois() {
+    constants.map.pois.map(poi => this.map.removeLayer(poi))
   }
 }

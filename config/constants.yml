@@ -108,6 +108,7 @@ map:
   center:
     lng: 2.52
     lat: 52.41
+  pois: ['poi-level-3', 'poi-level-2', 'poi-level-1']
 
 menu:
   - sectionName : _('Qwant is also')
