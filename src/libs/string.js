@@ -35,4 +35,10 @@ ExtendedString.htmlEncode = function (str) {
   })
 }
 
+ExtendedString.firstUppercase = function (str) {
+  if (!str || str === '') return str
+
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export default ExtendedString

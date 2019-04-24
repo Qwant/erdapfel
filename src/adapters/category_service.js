@@ -1,0 +1,30 @@
+import Category from "./category";
+
+export default class CategoryService {
+
+  static async getMatchingCategories (term) {
+    const matchedCategories = []
+    const cleanedTerm = term.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // replace accent by non accentued chars
+
+    const matching = {
+      restaurant: /restaurants?|restos?|restaus?|ma?c\s?do(?:nald(?:'s)?)?|burger\s+king|quick|subway|flunch|hard\s+rock\s+cafe|kfc|pizza|brioche\s+doree|five\s+guys|mezzo\s+di\s+pasta|pomme\s+de\s+pain|pret\s+a\s+manger|vapiano|starbucks|big\s+fernand|sushi|memphis\s+coffee|buffalo\s+grill|la\s+boucherie|hippopotamus|leon|pataterie|pizzeria|brasserie|fast\s+food|restauration\s+rapide|snack|creperie|kebab|sandwicherie|il\s+ristorante|le kiosque a pizzas|buffalo grill|campanile|courtepaille|burger king|la pataterie|pizza hut|au bureau|poivre rouge|la croissanterie|tutti pizza|la boite a pizza|la brioche doree|leon de bruxelles|bagelstein|columbus cafe|memphis coffee|del arte|class'croute|o'tacos|sushi shop|mezzo di pasta|pomme de pain|big fernand|pizza sprint|bistro regent|l'epicurien|tablapizza|speed burger|pat a pain|pizza bonici|firmin|l'atelier gourmand|pizza time|a la bonne heure|francesca|planet sushi|speed rabbit pizza|pegast|pizza pai|best western|crep'eat|baila pizza|novotel|waffle factory|casino cafeteria|la pizza de nico|crocodile|fresh burritos|231 east street|bagel corner|coeur de ble|dubble|eat sushi|fuxia|il ristorante|les fils a maman|nooi|pitaya|jour|les burgers de papa|bchef|chez papa|cojean|le fournil de pierre|oceane|terre et mer|bistro romain|el rancho|l'alambic|le patacrepe|pizza city|cote sushi|la maison bleue|le club sandwich cafe|les 3 brasseurs|bellota-bellota|bistrot du boucher|la tagliatella|nostrum|pizza pino|point chaud|tacos avenue|exki|garden ice cafe|green is better|le paradis du fruit|les relais d'alsace|ma campagne|mamie bigoude|pasta pizza|pizza cosy|planetalis|salad&co|tommy's diner|yogurt factory|cafe leffe|dominos pizza|indiana cafe|le comptoir du malt|lina's|mythic burger|nikki sushi|alto cafe|ankka|burger bar by quick|carre bleu|esprit sushi|feel juice|five guys|green sur mesure|heureux comme alexandre|joosbayoo|la boucherie restaurant|la criee|la mangoune|le special|matsuri|pita pit|pizza plazza|pop sushi|presto|steak'n shake|stratto|toquenelle|wazawok|amarine|autogrill|basilic & co|best bagels|boco|buffalo burger|ch'ti charivari|chez clement|frites city|ker soazig|king marcel|mamma roma|miss cookies coffee|pizza'mania|station pizza|thai in box|assiette au boeuf|babyland|bonne journee|bretzel love|chez arnold's|chez jean|corso|inter-hotel|irish corner|jack's express|la casa pizza grill|la taverne de maitre kanter|lucien & la cocotte|maitre corbeau|mary's coffee shop|meuh !|nabab kebab|nachos mexican grill|pizza fissa|pizza martine|roadside|suandshi|takos king|yogurtlandia|adagio|agra|akena hotel|american way|bert's|bioburger|boum burger|brochettes & cie|bruegger's|chantal thomass|chicago slice pizza|daf|fauchon|flam's|gust|kebab avenue|la cantine des grands|la city|la cote et l'arete|lavinia|le croque bedaine|les comptoirs casino|les moulins bleus|lotus|marcel a table|marks & spencer|o'kebap|o'sushi|oncle scott's the country restaurant|papa john's|pivano|pullman|pur etc\.|record|urbun|vatel gourmet|vinomania/i,
+      hotel: /hotels?|campanile|premi[eè]re classe|b&b hotels|ibis budget|ibis|kyriad|mercure|fasthotel|ace hotel|best western|novotel|balladins|brit hotel|hotel f1|p'tit dej hotel|qualys hotel|holiday inn|ibis style|inter-hotel|akena hotel|citotel|comfort|logis|pullman/i,
+      leisure: /leisures?|loisirs?|travaux\s+manu[éèe]l(?:le)?s?|zodio|dalbe|lezard creatif|arteis|rougier (&|and|et|n) ple|cooleurs?|cin[ée](?:ma)?s?|ugc|path[ée]|th[ée]atres?|parcs?\s+(?:(?:d')?attractions?|(de\s+)?loisirs?)|royal kids|laser game|escape game|goolfy|laserquest|max aventure|prizoners|get out !|recreakid|kartings?/i,
+      pharmacy: /pharmacy|parapharmacies?|parashop|tanguy parapharmacie|pharmacies?|pharmacien(?:nes?)?/i,
+      supermarket: /supermarket|superettes?|epiciers?|epiceries?|8 [aà] huit|leader price express|coccimarket|naturalia|viveco|utile|proxi service|kusmi tea|votre marche|epi service|satoriz|proxi marche|spar supermarche|day by day|palais des thes|le monde du macaron|point coop|le marche d'a cote|corsaire|cali|g 20|paris store|hyper casino|les halles? de l'aveyron|rnpc|ecofrais|europrix|easy marche|ferrari|intermarche express|kelly services?|partisans? du gout|(?:super|hyper|inter)marches?|auchan|carrefour|(?:e\.)?leclerc|casino|(?:super|hyper)\s+u|monoprix|simply|u\s+express|proxi|spar|vival|lidl|leader\s+price|grand\s+frais|petit casino|leader price|picard|franprix|super u|simply market|casino shop|grand frais|netto|8 a huit|coop|monop'|proxi super|panier sympa|supermarche match|chronodrive|atac|colruyt|casino supermarche|coccinelle express|cora|sherpa|aldi|maximarche|bi1|marche u|shopi|ecomax|relais des mousquetaires|sitis|champion|intermarche contact|marche plus|score|a2pas|geant casino|norma|systeme u|jumbo score|o'tera|coccinelle supermarche|ecomarche|espace multimedia|express|intermarche super|casino drive|costco wholesale|franprix nano|galeries gourmandes|hyper champion|partisans du gout|simply city|u drive|unik market|carrefour market|intermarche/i,
+      bank: /bank|atm|banques?|credits?\s+(?:mutuel|agricole|lyonnais|du\s+nord|cooperatif|foncier)|cic|bnp|hsbc|lcl|caisse\s+(?:d')?epargne|barclays|societe\s+generale|axa|square habitat|societe marseillaise de credit|bancassurances|la banque postale/i,
+      education: /education|[eé]coles?\s*(maternelle|primaire|elementaire)?|college|universite|fac|faculte|iut|[ée]coles?\s+(?:de\s+|d')(?:commerce|ingenieurs?)|pigier|miage/i,
+      bar: /cafes?|bars?|coffea|alto cafe|bert's|illy caffe|pub|tapas|cabarets/i
+    }
+
+    for (const category in matching) {
+      const matcher = matching[category]
+
+      if (matcher.test(cleanedTerm))
+        matchedCategories.push(new Category(category))
+    }
+
+    return matchedCategories
+  }
+
+}
