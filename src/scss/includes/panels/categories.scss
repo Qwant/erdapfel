@@ -161,8 +161,15 @@
 }
 
 .category_marker {
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
+  background-image: url('../images/direction_icons/pin.png');
+  background-size: cover;
+  width: 24px;
+  height: 29px;
+  margin: -7px 0 0 4px;
+}
+
+.category_marker:hover {
+  width: 30px;
+  height: 37px;
+  margin: -10px 0 0 4px;
 }
