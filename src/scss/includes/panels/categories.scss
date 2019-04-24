@@ -168,7 +168,8 @@
   margin: -7px 0 0 4px;
 }
 
-.category_marker:hover {
+.category_marker:hover,
+.category_marker.active {
   width: 30px;
   height: 37px;
   margin: -10px 0 0 4px;

@@ -26,7 +26,7 @@
         }
       }}
 
-      <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }}>
+      <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }} {{= mouseover(this.highlightPoiMarker, this, poi) }} {{= mouseout(this.unhighlightPoiMarker, this, poi) }}>
         <div class="category__panel__item_inner">
 
           <div class="category__panel__image" {{? image}}style="background-image:url('{{= image}}')"{{?}}>{{? !image }}TODO: icon{{?}}</div>
