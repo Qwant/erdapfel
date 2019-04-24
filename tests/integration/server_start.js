@@ -34,15 +34,16 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404, {status : 'not found'})
 
-configBuilder.set('store:name', 'local_store')
-configBuilder.set('mapStyle:baseMapUrl', "[]")
-configBuilder.set('mapStyle:poiMapUrl', "[]")
-configBuilder.set('services:idunn:url', 'http://idunn_test.test')
-configBuilder.set('services:geocoder:url', `http://geocoder.test/autocomplete`)
-configBuilder.set('system:evalFiles', false)
-configBuilder.set('direction:enabled', true)
-
 const config = configBuilder.get()
+
+// Specific config values for tests
+config.mapStyle.baseMapUrl = "[]"
+config.mapStyle.poiMapUrl = "[]"
+config.services.idunn.url = 'http://idunn_test.test'
+config.services.geocoder.url = 'http://geocoder.test/autocomplete'
+config.system.evalFiles = false
+config.direction.enabled = true
+
 global.appServer = new App(config)
 
 module.exports = async function() {
