@@ -13,10 +13,13 @@ export default class SceneCategory {
       console.log(pois)
       this.addCategoryMarkers(pois);
     })
+    listen('remove_category_markers', () => {
+      this.removeCategoryMarkers()
+    })
   }
 
   addCategoryMarkers(pois) {
-    this.removeOsmPois() // first remove the existing OSM Pois
+    this.setOsmPoisVisibility('none')
     pois.forEach((poi) => {
           const marker = document.createElement('div')
 
@@ -30,7 +33,12 @@ export default class SceneCategory {
     )
   }
 
-  removeOsmPois() {
-    constants.map.pois.map(poi => this.map.removeLayer(poi))
+  removeCategoryMarkers() {
+    this.markers.map(mark => mark.remove())
+    this.setOsmPoisVisibility('visible')
+  }
+
+  setOsmPoisVisibility(visibility) {
+    constants.map.pois.map(poi => this.map.setLayoutProperty(poi, 'visibility', visibility))
   }
 }

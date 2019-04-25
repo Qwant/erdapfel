@@ -13,9 +13,11 @@ export class CategoryPanel {
 
     this.pois = []
     this.categoryName = ''
-    this.isOpen = false
+    this.active = false
     this.poiSubClass = poiSubClass
     this.PoiMarkers = []
+    PanelManager.register(this)
+
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
   }
 
@@ -28,7 +30,7 @@ export class CategoryPanel {
       this.categoryName = urlShard.match(/type=(.*)/)[1]
       this.search()
       let bbox = window.mapGetBounds()
-      console.log(bbox)
+      this.open()
     })
   }
 
@@ -50,6 +52,18 @@ export class CategoryPanel {
 
   }
 
+  open () {
+    this.active = true
+    this.panel.update()
+  }
+
+  close () {
+    this.active = false
+    this.panel.update()
+    UrlState.pushUrl()
+    this.removeCategoryMarkers()
+  }
+
   showPhoneNumber(options){
     var poi = options.poi
     var i = options.i
@@ -57,11 +71,15 @@ export class CategoryPanel {
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }
 
+  closeAction() {
+    PanelManager.resetLayout()
+  }
+
   addCategoryMarkers(){
     fire("add_category_markers", this.pois);
   }
 
   removeCategoryMarkers(){
-
+    fire("remove_category_markers", this.pois);
   }
 }
