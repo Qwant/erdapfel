@@ -39,6 +39,6 @@ export default class SceneCategory {
   }
 
   setOsmPoisVisibility(visibility) {
-    constants.map.pois.map(poi => this.map.setLayoutProperty(poi, 'visibility', visibility))
+    constants.map.pois_layers.map(poi => this.map.setLayoutProperty(poi, 'visibility', visibility))
   }
 }
