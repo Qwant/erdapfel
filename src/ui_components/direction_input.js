@@ -1,5 +1,7 @@
 import Suggest from "../adapters/suggest";
 import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../adapters/poi/specials/navigator_geolocalisation_poi";
+import PoiStore from "../adapters/poi/poi_store";
+
 import Error from '../adapters/error'
 export default class DirectionInput {
   constructor(tagSelector, select, submitHandler) {
@@ -9,10 +11,7 @@ export default class DirectionInput {
     let prefixes = [
       this.geolocalisationPoi
     ]
-
-    this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes)
-    this.suggest.preRender()
-
+    this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi), prefixes, 'direction_suggestions')
     this.listenHandler = listen(submitHandler, () => this.onSubmit())
   }
 

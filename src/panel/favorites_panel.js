@@ -5,10 +5,14 @@ import FilterPanel from './filter_panel'
 import PoiStore from "../adapters/poi/poi_store";
 import Telemetry from "../libs/telemetry";
 import layouts from "./layouts.js";
+import {version} from '../../config/constants.yml'
+import nconf from "@qwant/nconf-getter"
+import MasqOnboardingModal from "../modals/masq_onboarding_modal";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
-const store = new Store()
+const masqEnabled = nconf.get().masq.enabled
+const masqOnboardingModal = new MasqOnboardingModal()
 
 function Favorite(sharePanel) {
   this.active = false
@@ -19,6 +23,8 @@ function Favorite(sharePanel) {
   this.sharePanel = sharePanel
   this.openMoreMenuPosition = -1
 
+  this.masqEnabled = masqEnabled
+
   document.addEventListener('click', () => {
     this.closeMoreMenu()
   })
@@ -26,14 +32,24 @@ function Favorite(sharePanel) {
   this.panel = new Panel(this, FavoritePanelView)
   PanelManager.register(this)
 
-  store.onToggleStore(async () => {
-    await this.getAll()
-    this.panel.update()
+  this.store = new Store()
+
+  this.store.onToggleStore(async () => {
+    await this.updateList()
   })
 
   listen('store_poi', async (poi) => {
     await this.add(poi)
   })
+}
+
+Favorite.prototype.updateList = async function() {
+  this.isLoggedIn = await this.store.isLoggedIn()
+  await this.getAll()
+  await this.panel.update()
+
+  // check if the footer has to be displayed
+  await this.checkDisplayMasqFooter()
 }
 
 Favorite.prototype.toggleMore = function (position) {
@@ -82,9 +98,10 @@ Favorite.prototype.getAll = async function () {
 
 Favorite.prototype.open = async function() {
   Telemetry.add(Telemetry.FAVORITE_OPEN)
+
+  await this.updateList()
+
   this.displayed = true
-  await this.getAll()
-  await this.panel.update()
   await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden')
   this.active = true
 }
@@ -113,7 +130,7 @@ Favorite.prototype.add = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_SAVE)
   this.favoritePois.push(poi)
   this.panel.update()
-  await store.add(poi)
+  await this.store.add(poi)
 }
 
 Favorite.prototype.del = async function({poi, index}) {
@@ -132,7 +149,29 @@ Favorite.prototype.del = async function({poi, index}) {
 
   this.panel.update()
 
-  await Promise.all(toDelete.map(p => store.del(p)))
+  await Promise.all(toDelete.map(p => this.store.del(p)))
+}
+
+Favorite.prototype.checkDisplayMasqFooter = async function () {
+  if (this.masqEnabled && !(this.isLoggedIn)) {
+    let favoriteMasqFooter = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`)
+    if (favoriteMasqFooter !== "false") {
+      let footer = document.querySelector('.favorite_panel__masq_footer--hidden')
+      footer.classList.remove('favorite_panel__masq_footer--hidden')
+      footer.classList.add('favorite_panel__masq_footer')
+    }
+  }
+}
+
+Favorite.prototype.closeMasqFooter = function() {
+  localStorage.setItem(`qmaps_v${version}_favorite_masq_footer`, false)
+  let footer = document.querySelector('.favorite_panel__masq_footer')
+  footer.classList.add('favorite_panel__masq_footer--hidden')
+  footer.classList.remove('favorite_panel__masq_footer')
+}
+
+Favorite.prototype.openMasqOnboarding = function() {
+  masqOnboardingModal.open()
 }
 
 export default Favorite

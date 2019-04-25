@@ -1,5 +1,5 @@
 # Translators:
-# Gwenn M <tornoz@laposte.net>, 2018
+# Gwenn M <tornoz@laposte.net>, 2019
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # 
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-20 14:17+0000\n"
+"POT-Creation-Date: 2019-04-15 14:27+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -790,14 +790,48 @@ msgstr "Rannañ"
 msgid "Delete"
 msgstr "Dilemel"
 
+msgid "Use"
+msgstr ""
+
+msgid "to secure your favorites on all your devices"
+msgstr ""
+
 msgid "filter"
 msgstr "silañ"
 
-msgid "Qwant Maps services"
-msgstr "Servijoù Qwant Maps"
+msgid "What is Masq?"
+msgstr ""
 
-msgid "YOUR FAVORITES"
-msgstr "HO SINEDOÙ"
+msgid "How does Masq work?"
+msgstr ""
+
+msgid "Why use Masq?"
+msgstr ""
+
+msgid ""
+"Masq allows you to store all your preferences while guarantying your privacy"
+msgstr ""
+
+msgid ""
+"Masq stores all your data on your device instead of the cloud and syncs it "
+"across all your devices."
+msgstr ""
+
+msgid ""
+"Find your favorite places on Qwant Maps on all your devices (available "
+"soon)."
+msgstr ""
+
+msgid "Activate Masq"
+msgstr ""
+
+msgid ""
+"Masq is an app that offers free and secure synchronized data storing on your"
+" devices."
+msgstr ""
+
+msgid "More details"
+msgstr ""
 
 msgid "DIRECTIONS"
 msgstr "TUADURIOÙ"
@@ -841,51 +875,30 @@ msgstr "Lenn muioc'h war Wikipedia"
 msgid "Read more on Wikidata"
 msgstr "Lenn muioc'h war Wikidata"
 
-msgid "return"
-msgstr "distreiñ"
-
-msgid "directions"
-msgstr "hent"
-
-msgid "Start point"
-msgstr "poent loc'hañ"
-
-msgid "End point"
-msgstr "poent fin"
-
-msgid "Invert start and end"
-msgstr "eilpennañ fin ha loc'hañ"
-
-msgid "Via"
-msgstr "Dre"
-
-msgid "PREVIEW"
-msgstr "RAKWEL"
-
-msgid "DETAILS"
-msgstr "MUNUDOÙ"
-
-msgid "Start"
+msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
 
-msgid "Log in with Masq"
-msgstr "Kevreañ gant Masq"
-
-msgid "Use MASQ to sync your personal data across your devices"
+msgid ""
+"Masq allows you to save all your preferences while guarantying your privacy"
 msgstr ""
-"Implijout MASQ evit sinkronelaat ho roadennoù personel a-dreuz ho peñvegoù"
 
-msgid "Log in"
-msgstr "Kevreañ"
+msgid "More Details"
+msgstr ""
 
-msgid "Logging in"
-msgstr "O kevreañ"
+msgid "Do you want to synchronize your favorites with Masq ?"
+msgstr ""
 
-msgid "Logout"
-msgstr "Digevreañ"
+msgid "No thanks"
+msgstr ""
 
-msgid "Share favorite"
-msgstr "Rannañ ar c'haretañ"
+msgid "Do not ask again"
+msgstr ""
+
+msgid "Qwant Maps services"
+msgstr "Servijoù Qwant Maps"
+
+msgid "YOUR FAVORITES"
+msgstr "HO SINEDOÙ"
 
 msgid "Share link"
 msgstr "Rannañ al liamm"
@@ -917,8 +930,8 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "Mat eo, deuet eo ganin."
 
-msgid "Géolocation not available."
-msgstr "Douarlec'hiañ dihegerz."
+msgid "Geolocation not available."
+msgstr ""
 
 msgid "You did not allow Qwant Maps to access your position."
 msgstr ""
@@ -926,6 +939,39 @@ msgstr ""
 
 msgid "OK"
 msgstr "Mat eo"
+
+msgid "return"
+msgstr "distreiñ"
+
+msgid "directions"
+msgstr "hent"
+
+msgid "Start point"
+msgstr "poent loc'hañ"
+
+msgid "End point"
+msgstr "poent fin"
+
+msgid "Invert start and end"
+msgstr "eilpennañ fin ha loc'hañ"
+
+msgid "Qwant Maps found no results for this itinerary, please try again"
+msgstr ""
+
+msgid "Via"
+msgstr "Dre"
+
+msgid "PREVIEW"
+msgstr "RAKWEL"
+
+msgid "print"
+msgstr ""
+
+msgid "DETAILS"
+msgstr "MUNUDOÙ"
+
+msgid "Start"
+msgstr ""
 
 msgid "Directions"
 msgstr "Hent"
@@ -935,6 +981,15 @@ msgstr "Reoù karetañ"
 
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "How does it work ?"
+msgstr ""
 
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"

@@ -1,7 +1,6 @@
 import PanelsView from '../views/app_panel.dot'
 import Panel from '../libs/panel'
 import FavoritePanel from "./favorites_panel";
-import LoginMasqPanel from "./login_masq";
 import PoiPanel from "./poi_panel";
 import ServicePanel from './service_panel';
 import Share from "../modals/share"
@@ -9,6 +8,9 @@ import SearchInput from "../ui_components/search_input";
 import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
+import MasqFavoriteModal from "../modals/masq_favorite_modal";
+import MasqOnboardingModal from "../modals/masq_onboarding_modal";
+import MasqErrorModal from "../modals/masq_error_modal";
 import nconf from "@qwant/nconf-getter"
 import DirectionPanel from './direction/direction_panel'
 import Menu from "./menu";
@@ -30,16 +32,20 @@ function AppPanel(parent) {
 
   this.directionEnabled = directionEnabled
   if (this.directionEnabled) {
-    this.directionPanel = new DirectionPanel()
+    this.directionPanel = new DirectionPanel(this.sharePanel)
   }
 
-  this.masqEnabled = masqEnabled
-  if (this.masqEnabled) {
-    this.masqPanel = new LoginMasqPanel()
-  }
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()
   this.geolocationDeniedModal = new GeolocationDeniedModal()
+
+  this.masqEnabled = masqEnabled
+  if (this.masqEnabled) {
+    this.masqFavoriteModal = new MasqFavoriteModal()
+    this.masqOnboardingModal = new MasqOnboardingModal()
+    this.masqErrorModal = new MasqErrorModal()
+  }
+
   this.menu = new Menu()
 
   if(performanceEnabled) {

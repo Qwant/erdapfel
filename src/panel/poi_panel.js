@@ -11,10 +11,12 @@ import SceneState from "../adapters/scene_state";
 import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
 import nconf from "../../local_modules/nconf_getter";
+import MasqFavoriteModal from "../modals/masq_favorite_modal";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
 const store = new Store()
+const masqFavoriteModal = new MasqFavoriteModal()
 
 function PoiPanel(sharePanel) {
   this.isPoiComplient = true /* Poi Compliant */
@@ -33,9 +35,18 @@ function PoiPanel(sharePanel) {
   this.isDirectionActive = nconf.get().direction.enabled
   PanelManager.register(this)
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
+  this.isMasqEnabled = nconf.get().masq.enabled
 
   store.onToggleStore(async () => {
     if (this.poi) {
+      this.poi.stored = await isPoiFavorite(this.poi)
+      this.panel.update()
+      endLoad()
+    }
+  })
+
+  store.eventTarget.addEventListener('poi_added', async () => {
+    if (this.poi && !this.poi.stored) {
       this.poi.stored = await isPoiFavorite(this.poi)
       this.panel.update()
       endLoad()
@@ -50,8 +61,18 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.poi.stored = false
     await store.del(this.poi)
   } else {
+
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
+
+    if (this.isMasqEnabled) {
+      const isLoggedIn = await store.isLoggedIn()
+      if (!isLoggedIn) {
+        masqFavoriteModal.open()
+        await masqFavoriteModal.waitForClose()
+      }
+    }
+
     this.poi.stored = true
     await store.add(this.poi)
   }

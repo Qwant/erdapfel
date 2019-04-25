@@ -1,0 +1,116 @@
+.modal__masq_favorite {
+  background-color: white;
+  max-width: 450px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.modal__masq_favorite__header {
+  background-color: #252a39;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0 20px 0;
+}
+
+.modal__masq_favorite__close {
+  position: absolute;
+  padding: 16px 10px;
+  right: 0;
+  top: 0;
+  color: #c8cbd3;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal__masq_favorite__logo {
+  height: 66px;
+}
+
+.modal__masq_favorite__body {
+  padding: 40px 40px;
+  color: #5c6f84;
+}
+
+.modal__masq_favorite__buttons {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.modal__masq_favorite__button {
+  height: 35px;
+  width: 100%;
+  border-radius: 50px;
+  background-color: $primary_text;
+  text-transform: uppercase;
+  color: $surface;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal__masq_favorite__details {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  color: #5c6f84;
+  cursor: pointer;
+}
+
+.modal__masq_favorite__arrow {
+  background: url('../images/masq/arrow-right-2.svg') no-repeat center center;
+  width: 16px;
+  height: 12px;
+  margin-right: 5px;
+}
+
+.modal__masq_favorite__question {
+  margin-bottom: 20px;
+  color: #353c52;
+}
+
+.modal__masq_favorite__buttons .modal__masq_favorite__secondary_button {
+  background-color: unset;
+  color: #5c6f84;
+  border: solid 1px #c8cbd3;
+  margin-right: 20px;
+}
+
+.modal__masq_favorite__again {
+  margin-right: 10px;
+}
+
+@media (max-width: 370px) {
+  .modal__masq_favorite {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .modal__masq_favorite__buttons {
+    flex-direction: column;
+    margin-bottom: 55px;
+  }
+
+  .modal__masq_favorite__buttons .modal__masq_favorite__secondary_button {
+    margin-bottom: 10px;
+  }
+
+  .modal__title {
+    text-align: center;
+  }
+
+  .modal__subtitle {
+    text-align: center;
+  }
+
+  .modal__masq_favorite__details {
+    justify-content: center;
+    margin-bottom: 45px;
+  }
+
+  .modal__masq_favorite__question {
+    text-align: center;
+    margin-bottom: 65px;
+  }
+}

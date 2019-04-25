@@ -8,13 +8,15 @@
     {{= this.category.render() }}
   </div>
   {{= this.servicePanel.render() }}
-  {{? this.masqEnabled }}
-    {{= this.masqPanel.render() }}
-  {{?}}
 </div>
 
 /* modals */
 {{= this.sharePanel.renderModal() }}
 {{= this.geolocationModal.renderModal() }}
 {{= this.geolocationDeniedModal.renderModal() }}
+{{? this.masqEnabled }}
+  {{= this.masqFavoriteModal.renderModal() }}
+  {{= this.masqOnboardingModal.renderModal() }}
+  {{= this.masqErrorModal.renderModal() }}
+{{?}}
 {{= this.menu.render() }}

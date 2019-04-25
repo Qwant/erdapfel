@@ -2,6 +2,7 @@ import Suggest from "../adapters/suggest";
 import layouts from "../panel/layouts.js";
 import UrlState from "../proxies/url_state";
 import UrlShards from "../proxies/url_shards";
+import PoiStore from "../adapters/poi/poi_store";
 
 const MAPBOX_RESERVED_KEYS = [
     'ArrowLeft' // ←
@@ -56,7 +57,7 @@ export default class SearchInput {
       if(MAPBOX_RESERVED_KEYS.find((key) => key === e.key)) {
         return
       }
-      if(!e.shiftKey && !e.ctrlKey) {
+      if(!e.shiftKey && !e.ctrlKey && e.key !== 'Enter') {
         if(document.activeElement
           && document.activeElement.tagName !== 'INPUT'
           && window.__searchInput.isEnabled) {

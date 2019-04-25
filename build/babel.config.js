@@ -1,4 +1,8 @@
 module.exports = function (mode) {
+  const plugins = [
+    "@babel/plugin-syntax-dynamic-import"
+  ]
+
   const production = {
     presets :
       [["@babel/preset-env", {
@@ -11,7 +15,8 @@ module.exports = function (mode) {
             "Edge >= 17"
           ]
         },
-        "useBuiltIns": "entry"
+        "useBuiltIns": "entry",
+        "corejs": 2
       }]],
   }
 
@@ -20,11 +25,11 @@ module.exports = function (mode) {
       [
         "@babel/preset-env",
         {
-          "useBuiltIns": "entry"
+          "useBuiltIns": "entry",
+          "corejs": 2
         }
       ]
-    ],
-    plugins : []
+    ]
   }
 
   const conf = mode === 'production' ? production : development
@@ -34,6 +39,6 @@ module.exports = function (mode) {
     "ignore": [
       "node_modules"
     ],
-    "plugins": conf.plugins
+    "plugins": plugins
   }
 }

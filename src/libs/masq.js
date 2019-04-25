@@ -1,6 +1,6 @@
-import Masq from 'masq-lib'
+import Error from '../adapters/error'
+import MasqErrorModal from '../modals/masq_error_modal'
 
-const Error = require('../adapters/error').default
 const handleError = (fct, msg, e) => {
   Error.sendOnce('masq_store', fct, msg, e)
 }
@@ -23,7 +23,20 @@ export default class MasqStore {
       masqAppBaseUrl: this.config.baseMasqAppUrl
     }
 
-    this.masq = new Masq(this.config.title, this.config.desc, this.config.icon, masqOptions)
+    const stunTurn = this._getStunTurnFromConf()
+    if (stunTurn.length > 0) {
+      masqOptions.swarmConfig = {
+        iceServers: stunTurn
+      }
+    }
+
+    const { Masq, MasqError } = await import(/* webpackChunkName: "masq-lib" */ 'masq-lib')
+    const masqIconUrl = document.baseURI.replace(/(\/+)$/g, '') + this.config.icon
+    this.masq = new Masq(this.config.title, this.config.desc, masqIconUrl, masqOptions)
+    this.masq.eventTarget.addEventListener('replicationError', (e) => {
+      handleError('replicationError', e.detail.message, e.detail)
+    })
+    this.MasqError = MasqError
 
     if (this.masq.isLoggedIn()) {
       await this.masq.connectToMasq()
@@ -33,14 +46,32 @@ export default class MasqStore {
     this.initialized = true
   }
 
-  async checkInit(target, name, descriptor) {
+  async checkInit() {
     if (!this.initialized) {
       await this.initPromise
     }
   }
 
+  _getStunTurnFromConf() {
+    let stunTurn = []
+    if (this.config.stun) {
+      stunTurn.push({
+        urls: this.config.stun
+      })
+    }
+    if (this.config.turn) {
+      const splitTurn = this.config.turn.split('|')
+      stunTurn.push({
+        urls: splitTurn[0],
+        username: splitTurn[1],
+        credential: splitTurn[2]
+      })
+    }
+    return stunTurn
+  }
+
   openLoginPopupWindow(link) {
-    this.masqPopupWindow = window.open(link, 'masq', 'height=700,width=500')
+    this.masqPopupWindow = window.open(link, 'masq', 'height=800,width=1150')
     this.masqPopupWindow.focus()
   }
 
@@ -49,7 +80,22 @@ export default class MasqStore {
     // open Masq app window to connect to Masq
     this.openLoginPopupWindow(this.loginLink)
 
-    await this.masq.logIntoMasq(true)
+    try {
+      await this.masq.logIntoMasq(true)
+    } catch (e)  {
+      this.masqErrorModal = new MasqErrorModal()
+      switch(e.code) {
+        case this.MasqError.SIGNALLING_SERVER_ERROR:
+          this.masqErrorModal.open(
+            _('Could not activate Masq'),
+            _('The connection failed between Qwant Maps and the Masq application (Signalling error)'))
+          break
+        default:
+          this.masqErrorModal.open(_('Could not connect to Masq'))
+          break
+      }
+      throw e
+    }
   }
 
   async logout() {
@@ -58,7 +104,8 @@ export default class MasqStore {
     await this.masq.signout()
   }
 
-  isLoggedIn() {
+  async isLoggedIn() {
+    await this.checkInit()
     return Boolean(this.masq && this.masq.isLoggedIn())
   }
 

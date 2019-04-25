@@ -40,7 +40,7 @@ test('test menu template', async () => {
 
   await page.click('.menu__panel__top__close')
   await wait(600)
-  expect(panelPosition).toEqual(400)
+  expect(panelPosition).toEqual(460)
 })
 
 test('menu open favorite', async () => {

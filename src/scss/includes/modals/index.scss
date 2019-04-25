@@ -1,4 +1,7 @@
 @import "./share.scss";
+@import "./masq_favorite.scss";
+@import "./masq_onboarding.scss";
+@import "./masq_error.scss";
 
 .modal_overlay {
   display: none;
@@ -7,24 +10,25 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.8;
-  background-image: linear-gradient(to bottom, #6c7694, #353c52);
+  background-image: linear-gradient(to bottom, rgba(10,11,14, 0.8), rgba(53,50,82,0.8));
+  justify-content: center;
+  align-items: center;
 }
 
 .modal {
-  display: none;
   position: absolute;
-  width: 320px;
-  left: calc(50vw - 160px);
-  top: calc(50vh - 200px);
-  padding: 30px 24px;
-  background: url('../images/popup_top.svg') white no-repeat;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
   border-radius: 3px;
 }
 
-.modal_overlay--active, .modal--active {
-  display: block;
+.modal__geolocation {
+  width: 320px;
+  padding: 30px 24px;
+  background: url('../images/popup_top.svg') white no-repeat;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
+}
+
+.modal--active {
+  display: flex;
 }
 
 .modal__close {
@@ -46,7 +50,7 @@
 
 .modal__subtitle {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
   color: $secondary_text;
   margin-bottom: 16px;
 }

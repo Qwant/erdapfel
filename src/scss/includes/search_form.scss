@@ -54,9 +54,16 @@
   color: $secondary_text;
 }
 
-/* Disable Chrome custom 'cancel' button */
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
+input[type="search"] {
+  /* Disable Chrome custom 'cancel' button */
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  /* Disable IE11 clear button */
+  &::-ms-clear {
+    display: none;
+  }
 }
 
 .search_form__logo {
@@ -198,7 +205,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .top_bar--small {
 
-  background: none;
+  background-size: 0;
 
   .search_form {
 

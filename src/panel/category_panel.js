@@ -22,7 +22,10 @@ export class CategoryPanel {
   }
 
   store () {
-    return `type=${this.categoryName}`
+    if(this.active && this.pois.length > 0) {
+      return `type=${this.categoryName}`
+    }
+    return ''
   }
 
   restore(urlShard) {
