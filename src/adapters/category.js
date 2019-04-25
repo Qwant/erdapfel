@@ -1,36 +1,44 @@
 /**
  * Simple Category helper
  */
-import ExtentedString from '../libs/string'
+import IconManager from '../adapters/icon_manager'
 
-const ICON_MAPPING = {
-  hotel: 'lodging',
-  restaurant: 'restaurant',
-  leisure: 'cinema',
-  pharmacy: 'pharmacy',
-  supermarket: 'grocery',
-  bank: 'bank',
-  education: 'college',
-  bar: 'bar'
-}
-
-export const CATEGORY_TYPE = 'category'
+const DEFAULT_ICON_COLOR = "#ffffff"
+const CATEGORY_TYPE = 'category'
 
 export default class Category {
-  constructor(name) {
-    this.name = ExtentedString.firstUppercase(_(name))
-    this.alternativeName = 'Catégorie' // TODO: replace with trad
-    this.originalName = name
-    this.type = CATEGORY_TYPE
-    this.className = this.getClassName()
-    this.subClassName = this.getClassName()
-  }
+  constructor(name, label, iconName, backgroundColor, matcher) {
+    this.name = name
+    this.label = _(label)
+    this.iconName = iconName
+    this.backgroundColor = backgroundColor
+    this.matcher = matcher
 
-  getClassName() {
-    return ICON_MAPPING[this.originalName]
+    this.color = DEFAULT_ICON_COLOR
+    this.alternativeName = _(CATEGORY_TYPE)
+    this.type = CATEGORY_TYPE
   }
 
   getInputValue() {
-    return this.name
+    return this.label
+  }
+
+  isMatching(term) {
+    if (this.matcher && this.matcher.regex)
+      return new RegExp(this.matcher.regex, 'i').test(term)
+    else
+      return false
+  }
+
+  getIcon() {
+    return IconManager.get({
+      className: this.iconName,
+      subClassName: this.iconName,
+      type: 'category'
+    })
+  }
+
+  static of ({ name, label, icon, color, matcher }) {
+    return new Category(name, label, icon, color, matcher)
   }
 }
