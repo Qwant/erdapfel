@@ -21,15 +21,15 @@ export default class SceneCategory {
   addCategoryMarkers(pois) {
     this.setOsmPoisVisibility('none')
     pois.forEach((poi) => {
-          const marker = document.createElement('div')
-
-          marker.className = 'category_marker'
-          this.markers.push(
-              new Marker(marker)
-                  .setLngLat(poi.latLon)
-                  .addTo(this.map)
-          )
-        }
+      const marker = document.createElement('div')
+      poi.marker_id = poi.id.replace("pj:", "marker_")
+      marker.className = 'category_marker'
+      marker.id = poi.marker_id
+      this.markers.push(
+        new Marker(marker)
+         .setLngLat(poi.latLon)
+           .addTo(this.map)
+      )}
     )
   }
 

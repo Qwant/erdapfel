@@ -81,5 +81,19 @@ export class CategoryPanel {
 
   removeCategoryMarkers(){
     fire("remove_category_markers", this.pois);
+    //todo
+  }
+
+  selectPoi(poi){
+    // todo
+    console.log(poi);
+  }
+
+  highlightPoiMarker(poi){
+    document.querySelector("#" + poi.marker_id).classList.add("active")
+  }
+
+  unhighlightPoiMarker(poi){
+    document.querySelector("#" + poi.marker_id).classList.remove("active")
   }
 }
