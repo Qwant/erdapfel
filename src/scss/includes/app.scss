@@ -106,3 +106,23 @@ BODY {
     font-size: 12px;
   }
 }
+
+.map_container .poi-marker {
+  position: absolute;
+  left: 50%;
+  top: -13px;
+  transform: translatex(-50%);
+}
+
+.map_container .poi-marker i, .map_container .poi-marker img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.map_container .poi-marker i {
+  font-size: 30px;
+  color: white;
+  top: -2px;
+}
