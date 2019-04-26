@@ -68,6 +68,7 @@ test('route flag', async () => {
 
   await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
+
   expect(smallToolBar).not.toBeNull()
   let directionStartInput = await page.evaluate(() =>
      document.getElementById('itinerary_input_origin').value
@@ -101,9 +102,9 @@ test('destination', async () => {
 test('origin & destination', async () => {
   expect.assertions(3)
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5@Franprix Cannes`)
-
   await page.waitForSelector('#itinerary_input_origin')
   let smallToolBar = await page.waitForSelector('.top_bar--small')
+
   expect(smallToolBar).not.toBeNull()
   let directionStartInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_origin').value

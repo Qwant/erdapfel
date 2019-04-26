@@ -7,6 +7,10 @@
   @include card_radius();
 }
 
+.category__panel--hidden {
+  display: none;
+}
+
 .category__panel__scroll {
   position: relative;
   overflow-y: auto;
@@ -45,8 +49,8 @@
   vertical-align: middle;
   margin: 2px 0 0 10px;
   float: right;
-  border: 2px solid #5c6f84;
-  color: #5c6f84;
+  border: 2px solid #c8cbd3;
+  color: #c8cbd3;
   border-radius: 50%;
   text-align: center;
 }
@@ -55,7 +59,17 @@
   font-size: 11px;
   color: #c8cbd3;
   float: right;
-  margin: 5px 0 0;
+  margin: 5px 0 0 4px;
+}
+
+.category__panel__close {
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin: 2px 0px 0 6px;
+  background-size: 16px;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 .category__panel__item {

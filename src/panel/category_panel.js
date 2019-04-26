@@ -1,26 +1,32 @@
 import Panel from "../libs/panel";
-import panelView from "../views/category_panel.dot"
+import CategoryPanelView from "../views/category_panel.dot"
 import MinimalHourPanel from "./poi_bloc/opening_minimal";
 import UrlState from "../proxies/url_state";
 import {paramTypes} from "../proxies/url_shard";
 import IdunnPoi from "../adapters/poi/idunn_poi";
+import SearchInput from '../ui_components/search_input';
 const poiSubClass = require('../mapbox/poi_subclass')
 
-export class CategoryPanel {
+export default class CategoryPanel {
   constructor() {
     this.minimalHourPanel = new MinimalHourPanel()
-    this.panel = new Panel(this, panelView)
+    this.panel = new Panel(this, CategoryPanelView)
 
     this.pois = []
     this.categoryName = ''
-    this.isOpen = false
+    this.active = false
     this.poiSubClass = poiSubClass
     this.PoiMarkers = []
+
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
+    PanelManager.register(this)
   }
 
   store () {
-    return `type=${this.categoryName}`
+    if(this.active && this.pois.length > 0) {
+      return `type=${this.categoryName}`
+    }
+    return ''
   }
 
   restore(urlShard) {
@@ -28,7 +34,7 @@ export class CategoryPanel {
       this.categoryName = urlShard.match(/type=(.*)/)[1]
       this.search()
       let bbox = window.mapGetBounds()
-      console.log(bbox)
+      this.open()
     })
   }
 
@@ -50,6 +56,31 @@ export class CategoryPanel {
 
   }
 
+  async open (options = {}) {
+    SearchInput.minify()
+    document.querySelector('#panels').classList.add('panels--hide-services')
+    document.querySelector('#panels').classList.add('panels--category-open')
+    document.querySelector('.top_bar').classList.add('top_bar--category-open')
+    if(options.category) {
+      this.categoryName = options.category.name
+    }
+    this.active = true
+    this.search()
+    await this.panel.update()
+    UrlState.pushUrl()
+  }
+
+  close () {
+    SearchInput.unMinify()
+    document.querySelector('#panels').classList.remove('panels--hide-services')
+    document.querySelector('#panels').classList.remove('panels--category-open')
+    document.querySelector('.top_bar').classList.remove('top_bar--category-open')
+    this.active = false
+    this.panel.update()
+    UrlState.pushUrl()
+    this.removeCategoryMarkers()
+  }
+
   showPhoneNumber(options){
     var poi = options.poi
     var i = options.i
@@ -57,17 +88,20 @@ export class CategoryPanel {
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }
 
+  closeAction() {
+    PanelManager.resetLayout()
+  }
+
   addCategoryMarkers(){
     fire("add_category_markers", this.pois);
   }
 
   removeCategoryMarkers(){
-    //todo
+    fire("remove_category_markers", this.pois);
   }
 
   selectPoi(poi){
     // todo
-    console.log(poi);
   }
 
   highlightPoiMarker(poi){

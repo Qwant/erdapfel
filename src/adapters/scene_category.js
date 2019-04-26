@@ -1,6 +1,5 @@
-import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
-import Device from '../libs/device'
-import layouts from "../panel/layouts.js";
+import { Marker } from 'mapbox-gl--ENV'
+import constants from '../../config/constants.yml'
 
 
 export default class SceneCategory {
@@ -12,9 +11,13 @@ export default class SceneCategory {
       console.log(pois)
       this.addCategoryMarkers(pois);
     })
+    listen('remove_category_markers', () => {
+      this.removeCategoryMarkers()
+    })
   }
 
   addCategoryMarkers(pois) {
+    this.setOsmPoisVisibility(false)
     pois.forEach((poi) => {
       const marker = document.createElement('div')
       poi.marker_id = poi.id.replace("pj:", "marker_")
@@ -26,5 +29,14 @@ export default class SceneCategory {
            .addTo(this.map)
       )}
     )
+  }
+
+  removeCategoryMarkers() {
+    this.markers.map(mark => mark.remove())
+    this.setOsmPoisVisibility(true)
+  }
+
+  setOsmPoisVisibility(displayed) {
+    constants.map.pois_layers.map(poi => this.map.setLayoutProperty(poi, 'visibility', displayed ? 'visible' : 'none'))
   }
 }

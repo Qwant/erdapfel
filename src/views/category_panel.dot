@@ -1,11 +1,12 @@
 {{? this.pois && this.pois.length }}
 
-<div class="category__panel{{= this.isOpen ? ' category__panel--active' : '' }}">
+<div class="category__panel{{= this.active ? '' : ' category__panel--hidden' }}">
   <div class="category__panel__head">
       <span class="category__panel__logo_pj"></span>
       <span class="category__panel__title">{{= _('PAGES JAUNES', 'categories') }}</span>
-      <span class="category__panel__partnership_icon">i</span>
+      <span class="category__panel__close icon-x" {{= click(this.closeAction) }}></span>
       <span class="category__panel__partnership">{{= _('Partnership', 'categories') }}</span>
+      <span class="category__panel__partnership_icon">i</span>
   </div>
   <div class="category__panel__scroll">
     {{~ this.pois:poi:i }}

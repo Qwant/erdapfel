@@ -67,7 +67,8 @@ BODY {
     }
   }
 
-  .top_bar--direction-open {
+  .top_bar--direction-open,
+  .top_bar--category-open {
     .search_form {
       visibility: hidden;
     }

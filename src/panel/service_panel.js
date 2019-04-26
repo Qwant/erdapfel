@@ -61,4 +61,8 @@ export default class ServicePanel{
     })
     this.panel.update()
   }
+
+  openCategory(category) {
+    PanelManager.openCategory({ category })
+  }
 }

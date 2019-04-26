@@ -19,7 +19,7 @@ const performanceEnabled = nconf.get().performance.enabled
 const directionEnabled = nconf.get().direction.enabled
 const masqEnabled = nconf.get().masq.enabled
 import Telemetry from "../libs/telemetry";
-import {CategoryPanel} from "./category_panel";
+import CategoryPanel from "./category_panel";
 
 function AppPanel(parent) {
   new TopBar()
