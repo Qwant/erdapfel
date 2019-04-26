@@ -12,6 +12,8 @@ let responseHandler
 const mockAutocomplete = require('../../__data__/autocomplete')
 const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type')
 
+const CATEGORY_LABEL = 'Catégorie'
+
 beforeAll(async () => {
   let browserPage = await initBrowser()
   page = browserPage.page
@@ -269,6 +271,25 @@ test('Search Query', async () => {
   })
 
   expect(searchValue).toEqual(searchQuery)
+})
+
+test('Retrieve restaurant category when we search "restau"', async () => {
+  const searchQuery = 'restau'
+  const expected = 'Restaurant'
+
+  await page.goto(APP_URL)
+  await page.keyboard.type(searchQuery)
+  await page.waitForSelector('.autocomplete_suggestion')
+
+  let [firstLine, secondLine] = await page.evaluate(() => {
+    return [
+      document.querySelector('.autocomplete_suggestion:first-child .autocomplete_suggestion__first_line').innerText,
+      document.querySelector('.autocomplete_suggestion:first-child .autocomplete_suggestion__second_line').innerText
+    ]
+  })
+
+  expect(firstLine).toEqual(expected)
+  expect(secondLine).toEqual(CATEGORY_LABEL)
 })
 
 afterEach(async () => {
