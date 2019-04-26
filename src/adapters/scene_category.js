@@ -1,6 +1,4 @@
-import {Map, Marker, LngLat, LngLatBounds} from 'mapbox-gl--ENV'
-import Device from '../libs/device'
-import layouts from "../panel/layouts.js";
+import { Marker } from 'mapbox-gl--ENV'
 import constants from '../../config/constants.yml'
 
 
