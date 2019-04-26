@@ -17,7 +17,7 @@ export default class SceneCategory {
   }
 
   addCategoryMarkers(pois) {
-    this.setOsmPoisVisibility('none')
+    this.setOsmPoisVisibility(false)
     pois.forEach((poi) => {
       const marker = document.createElement('div')
       poi.marker_id = poi.id.replace("pj:", "marker_")
@@ -33,10 +33,10 @@ export default class SceneCategory {
 
   removeCategoryMarkers() {
     this.markers.map(mark => mark.remove())
-    this.setOsmPoisVisibility('visible')
+    this.setOsmPoisVisibility(true)
   }
 
-  setOsmPoisVisibility(visibility) {
-    constants.map.pois_layers.map(poi => this.map.setLayoutProperty(poi, 'visibility', visibility))
+  setOsmPoisVisibility(displayed) {
+    constants.map.pois_layers.map(poi => this.map.setLayoutProperty(poi, 'visibility', displayed ? 'visible' : 'none'))
   }
 }

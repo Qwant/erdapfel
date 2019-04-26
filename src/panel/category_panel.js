@@ -72,9 +72,9 @@ export default class CategoryPanel {
 
   close () {
     SearchInput.unMinify()
+    document.querySelector('#panels').classList.remove('panels--hide-services')
     document.querySelector('#panels').classList.remove('panels--category-open')
     document.querySelector('.top_bar').classList.remove('top_bar--category-open')
-    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active')
     this.active = false
     this.panel.update()
     UrlState.pushUrl()
@@ -98,7 +98,6 @@ export default class CategoryPanel {
 
   removeCategoryMarkers(){
     fire("remove_category_markers", this.pois);
-    //todo
   }
 
   selectPoi(poi){
