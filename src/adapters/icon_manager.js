@@ -4,7 +4,7 @@ export default class IconManager {
   static get({className, subClassName, type}) {
     const nameToClass = (iconName) => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1]
 
-    if(type === 'poi') {
+    if(type === 'poi' || type === 'category') {
       const icons = styleIcons.mappings
       let icon = icons.find((iconProperty) => {
         return iconProperty.subclass === subClassName && iconProperty.class === className
