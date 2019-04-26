@@ -1,24 +1,25 @@
 import Panel from "../libs/panel";
-import panelView from "../views/category_panel.dot"
+import CategoryPanelView from "../views/category_panel.dot"
 import MinimalHourPanel from "./poi_bloc/opening_minimal";
 import UrlState from "../proxies/url_state";
 import {paramTypes} from "../proxies/url_shard";
 import IdunnPoi from "../adapters/poi/idunn_poi";
+import SearchInput from '../ui_components/search_input';
 const poiSubClass = require('../mapbox/poi_subclass')
 
-export class CategoryPanel {
+export default class CategoryPanel {
   constructor() {
     this.minimalHourPanel = new MinimalHourPanel()
-    this.panel = new Panel(this, panelView)
+    this.panel = new Panel(this, CategoryPanelView)
 
     this.pois = []
     this.categoryName = ''
     this.active = false
     this.poiSubClass = poiSubClass
     this.PoiMarkers = []
-    PanelManager.register(this)
 
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
+    PanelManager.register(this)
   }
 
   store () {
@@ -55,12 +56,25 @@ export class CategoryPanel {
 
   }
 
-  open () {
+  async open (options = {}) {
+    SearchInput.minify()
+    document.querySelector('#panels').classList.add('panels--hide-services')
+    document.querySelector('#panels').classList.add('panels--category-open')
+    document.querySelector('.top_bar').classList.add('top_bar--category-open')
+    if(options.category) {
+      this.categoryName = options.category.name
+    }
     this.active = true
-    this.panel.update()
+    this.search()
+    await this.panel.update()
+    UrlState.pushUrl()
   }
 
   close () {
+    SearchInput.unMinify()
+    document.querySelector('#panels').classList.remove('panels--category-open')
+    document.querySelector('.top_bar').classList.remove('top_bar--category-open')
+    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active')
     this.active = false
     this.panel.update()
     UrlState.pushUrl()
@@ -89,7 +103,6 @@ export class CategoryPanel {
 
   selectPoi(poi){
     // todo
-    console.log(poi);
   }
 
   highlightPoiMarker(poi){
