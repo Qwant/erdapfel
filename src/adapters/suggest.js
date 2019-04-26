@@ -43,7 +43,7 @@ export default class Suggest {
             /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
             this.historyPromise = PoiStore.get(term)
             this.bragiPromise = BragiPoi.get(term)
-            this.categoryPromise = withCategories ? CategoryService.getMatchingCategoriesYaml(term) : null
+            this.categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : null
 
             try {
               let [bragiResponse, storeResponse, categoryResponse] = await Promise.all([

@@ -10,7 +10,7 @@ export default class CategoryService {
     return window.__categoriesCache
   }
 
-  static async getMatchingCategoriesYaml (term) {
+  static async getMatchingCategories (term) {
     const matchedCategories = []
     const loadedCategories = CategoryService.getCategories()
     const cleanedTerm = term.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // replace accent by non accentued chars
