@@ -12,7 +12,7 @@ let responseHandler
 const mockAutocomplete = require('../../__data__/autocomplete')
 const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type')
 
-const CATEGORY_LABEL = 'Catégorie'
+const CATEGORY_LABEL = 'Category'
 
 beforeAll(async () => {
   let browserPage = await initBrowser()
