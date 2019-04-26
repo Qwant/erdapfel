@@ -46,7 +46,7 @@ export default class Suggest {
             this.categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : null
 
             try {
-              let [bragiResponse, storeResponse, categoryResponse] = await Promise.all([
+              const [bragiResponse, storeResponse, categoryResponse] = await Promise.all([
                 this.bragiPromise, this.historyPromise, this.categoryPromise
               ])
 
@@ -187,9 +187,9 @@ export default class Suggest {
 
   /* select sub template */
   renderItem(poi) {
-    let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
-    let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
-    let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
+    const {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
+    const icon = IconManager.get({className : className, subClassName : subClassName , type : type})
+    const iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
 
     return `
       <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
@@ -199,9 +199,9 @@ export default class Suggest {
   }
 
   renderCategory(category) {
-    let { label, alternativeName, color, backgroundColor } = category
-    let icon = category.getIcon()
-    let iconDom = `<div style="color: ${color}; background: ${backgroundColor}" class="autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}"></div>`
+    const { label, alternativeName, color, backgroundColor } = category
+    const icon = category.getIcon()
+    const iconDom = `<div style="color: ${color}; background: ${backgroundColor}" class="autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}"></div>`
 
     return `
       <div class="autocomplete_suggestion" data-type="category" data-val="${ExtendedString.htmlEncode(category.getInputValue())}">
