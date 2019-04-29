@@ -119,6 +119,7 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.poi.stored = await isPoiFavorite(this.poi)
   this.PoiBlocContainer.set(this.poi)
   this.fromFavorite = options.isFromFavorite
+  this.fromList = options.isFromList
   this.active = true
   UrlState.pushUrl()
   this.sceneState.setPoiId(this.poi.id)
