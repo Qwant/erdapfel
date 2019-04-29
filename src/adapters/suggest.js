@@ -96,7 +96,16 @@ export default class Suggest {
 
       onSelect: (e, term, item, items) => {
         e.preventDefault()
+        const type = item.getAttribute('data-type')
+        const val = item.getAttribute('data-val')
         const itemId = item.getAttribute('data-id')
+
+        if ('category' === type) {
+          return PanelManager.openCategory({
+            category: CategoryService.getCategoryByName(val)
+          })
+        }
+
         let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
         if(prefixPoint) {
           this.onSelect(prefixPoint)
@@ -204,7 +213,7 @@ export default class Suggest {
     const iconDom = `<div style="color: ${color}; background: ${backgroundColor}" class="autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}"></div>`
 
     return `
-      <div class="autocomplete_suggestion" data-type="category" data-val="${ExtendedString.htmlEncode(category.getInputValue())}">
+      <div class="autocomplete_suggestion" data-type="category" data-val="${category.name}">
         ${this.renderLines(iconDom, label, alternativeName)}
       </div>
     `

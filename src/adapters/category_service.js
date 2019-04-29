@@ -10,6 +10,10 @@ export default class CategoryService {
     return window.__categoriesCache
   }
 
+  static getCategoryByName (name) {
+    return CategoryService.getCategories().find(categ => categ.name === name) || null
+  }
+
   static async getMatchingCategories (term) {
     const matchedCategories = []
     const loadedCategories = CategoryService.getCategories()
