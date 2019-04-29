@@ -128,6 +128,7 @@ Scene.prototype.initMapBox = function () {
       let lat = this.mb.getCenter().lat
       let zoom = this.mb.getZoom()
       store.setLastLocation({ lng, lat, zoom })
+      PanelManager.refreshCategoryPois()
     })
 
     this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_active.png`, (error, image) => {
