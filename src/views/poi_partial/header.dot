@@ -23,7 +23,7 @@
   </p>
 {{?}}
 {{? this.topImageUrl }}
-    <div class="poi_panel__image" style="background-image: url('{{= this.topImageUrl }}')"></div>
+    <div class="poi_panel__image" style="background-image: url(&quot;{{= this.topImageUrl }}&quot;)"></div>
 {{??}}
   {{? ico }}
     <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>

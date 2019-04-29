@@ -103,7 +103,6 @@ PoiPanel.prototype.lookForElements = function() {
   if(this.poi && this.poi.blocks) {
     for (let i = 0; i < this.poi.blocks.length; ++i) {
       let block = this.poi.blocks[i]
-      console.log(block)
       if (block.images && block.images[0]) {
         this.topImageUrl = block.images[0].url
       } else if (block.type === 'phone' && block.url !== undefined) {
