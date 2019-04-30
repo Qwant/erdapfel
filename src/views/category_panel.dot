@@ -25,12 +25,21 @@
         if(imagesBlock) {
           image = imagesBlock.images[0].url;
         }
+
+        let ico = IconManager.get(poi);
+
       }}
 
       <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }} {{= mouseover(this.highlightPoiMarker, this, poi) }} {{= mouseout(this.unhighlightPoiMarker, this, poi) }}>
         <div class="category__panel__item_inner">
 
-          <div class="category__panel__image" {{? image}}style="background-image:url('{{= image}}')"{{?}}>{{? !image }}TODO: icon{{?}}</div>
+          <div class="category__panel__image" {{? image}}style="background-image:url('{{= image}}')"{{?}}>
+
+          {{? !image && ico }}
+            <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+          {{?}}
+
+          </div>
 
           <h3 class="category__panel__name">
             {{= poi.getInputValue() }}
