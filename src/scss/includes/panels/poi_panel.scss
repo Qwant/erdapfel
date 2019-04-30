@@ -91,7 +91,7 @@ $CARD_PADDING: 8px;
   width: 20px;
 }
 
-.poi_panel__back_to_favorite {
+.poi_panel__back_to_favorite, .poi_panel__back_to_list {
   font-size: 14px;
   color: $secondary_text;
   padding: 14px 0 14px 40px;
@@ -100,7 +100,7 @@ $CARD_PADDING: 8px;
   margin-bottom: 14px;
 }
 
-.poi_panel__back_to_favorite:hover {
+.poi_panel__back_to_favorite:hover, .poi_panel__back_to_list:hover {
   color: $secondary_text;
 }
 

@@ -27,6 +27,9 @@
     {{? this.fromFavorite }}
       <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}</div>
     {{?}}
+    {{? this.fromList }}
+      <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to list') }}</div>
+    {{?}}
     <div class="poi_panel__description_container" {{= click(this.center, this) }}>
        {{= this.panel.renderPartial(this.headerPartial) }}
       <div class="poi_panel__actions">
