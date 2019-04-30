@@ -21,6 +21,8 @@ export default class CategoryPanel {
 
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
     PanelManager.register(this)
+
+    listen('map_moveend', () => this.search())
   }
 
   store () {

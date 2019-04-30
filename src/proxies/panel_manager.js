@@ -89,14 +89,6 @@ PanelManager.openCategory = async function (options) {
   })
 }
 
-PanelManager.refreshCategoryPois = async function () {
-  __panel_manager.panels.forEach((panel) => {
-    if(panel instanceof CategoryPanel && panel.active) {
-      panel.search()
-    }
-  })
-}
-
 PanelManager.togglePoi = async function (options) {
   __panel_manager.panels.forEach((panel) => {
     if(panel instanceof PoiPanel) {
