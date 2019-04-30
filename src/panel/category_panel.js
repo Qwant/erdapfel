@@ -112,7 +112,7 @@ export default class CategoryPanel {
     // TODO telemetry
     fire('fit_map', poi, layouts.LIST)
     this.close(false)
-    PanelManager.loadPoiById(poi.id, {isFromList : true})
+    PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
   }
 
   highlightPoiMarker(poi){
