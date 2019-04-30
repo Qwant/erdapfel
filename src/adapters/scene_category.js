@@ -9,7 +9,6 @@ export default class SceneCategory {
     this.markers = []
 
     listen('add_category_markers', (pois) => {
-      console.log(pois)
       this.addCategoryMarkers(pois);
     })
     listen('remove_category_markers', () => {

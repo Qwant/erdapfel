@@ -83,7 +83,6 @@ export default class CategoryPanel {
     this.active = false
     this.panel.update()
     UrlState.pushUrl()
-    console.log(toggleMarkers);
     if(toggleMarkers){
       this.removeCategoryMarkers()
     }

@@ -11,8 +11,6 @@
   <div class="category__panel__scroll">
     {{~ this.pois:poi:i }}
 
-      {{ console.log(poi); }}
-
       {{
         let phoneBlock = poi.blocks.find((block) => block.type === 'phone');
         let phoneNumber = null;
