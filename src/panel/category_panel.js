@@ -5,6 +5,7 @@ import UrlState from "../proxies/url_state";
 import {paramTypes} from "../proxies/url_shard";
 import IdunnPoi from "../adapters/poi/idunn_poi";
 import SearchInput from '../ui_components/search_input';
+import layouts from "./layouts.js";
 const poiSubClass = require('../mapbox/poi_subclass')
 
 export default class CategoryPanel {
@@ -70,7 +71,7 @@ export default class CategoryPanel {
     UrlState.pushUrl()
   }
 
-  close () {
+  close (toggleMarkers = true) {
     SearchInput.unMinify()
     document.querySelector('#panels').classList.remove('panels--hide-services')
     document.querySelector('#panels').classList.remove('panels--category-open')
@@ -78,7 +79,10 @@ export default class CategoryPanel {
     this.active = false
     this.panel.update()
     UrlState.pushUrl()
-    this.removeCategoryMarkers()
+    console.log(toggleMarkers);
+    if(toggleMarkers){
+      this.removeCategoryMarkers()
+    }
   }
 
   showPhoneNumber(options){
@@ -101,14 +105,23 @@ export default class CategoryPanel {
   }
 
   selectPoi(poi){
-    // todo
+    // TODO telemetry
+    fire('fit_map', poi, layouts.FAVORITE)
+    this.close(false)
+    PanelManager.loadPoiById(poi.id, {isFromList : true})
   }
 
   highlightPoiMarker(poi){
-    document.querySelector("#" + poi.marker_id).classList.add("active")
+    let marker = document.querySelector("#" + poi.marker_id);
+    if(marker) {
+      marker.classList.add("active")
+    }
   }
 
   unhighlightPoiMarker(poi){
-    document.querySelector("#" + poi.marker_id).classList.remove("active")
+    let marker = document.querySelector("#" + poi.marker_id);
+    if(marker) {
+      marker.classList.remove("active")
+    }
   }
 }

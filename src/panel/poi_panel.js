@@ -118,7 +118,14 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.card = true
   this.poi.stored = await isPoiFavorite(this.poi)
   this.PoiBlocContainer.set(this.poi)
-  this.fromFavorite = options.isFromFavorite
+  this.fromFavorite = false
+  this.fromList = false
+  if(options && options.isFromFavorite){
+    this.fromFavorite = options.isFromFavorite
+  }
+  if(options && options.isFromList){
+    this.fromList = options.isFromList
+  }
   this.active = true
   UrlState.pushUrl()
   this.sceneState.setPoiId(this.poi.id)
@@ -166,6 +173,9 @@ PoiPanel.prototype.showDetail = function() {
 
 PoiPanel.prototype.backToFavorite = function() {
   PanelManager.toggleFavorite()
+}
+
+PoiPanel.prototype.backToList = function() {
 }
 
 PoiPanel.prototype.openDirection = function () {
