@@ -16,7 +16,7 @@ PanelManager.setPoi = async function(poi, options) {
     if(panel.isPoiComplient) {
       panel.setPoi(poi, options)
     } else {
-      if(!options.isFromList){
+      if(options && !options.isFromList){
         panel.close()
       }
     }
