@@ -21,6 +21,10 @@ export default class CategoryPanel {
 
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
     PanelManager.register(this)
+
+    listen('click_category_poi', (poi)=> {
+      this.selectPoi(poi);
+    });
   }
 
   store () {
