@@ -24,7 +24,7 @@ export default class CategoryPanel {
   }
 
   store () {
-    if(this.active && this.pois.length > 0) {
+    if(this.active && this.categoryName && this.categoryName !== '') {
       return `type=${this.categoryName}`
     }
     return ''
