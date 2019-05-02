@@ -79,6 +79,10 @@ PanelManager.openFavorite = async function () {
   })
 }
 
+PanelManager.getCategoryPanel = function () {
+  return __panel_manager.panels.find(panel => panel instanceof CategoryPanel)
+}
+
 PanelManager.openCategory = async function (options) {
   __panel_manager.panels.forEach((panel) => {
     if(panel instanceof CategoryPanel) {
