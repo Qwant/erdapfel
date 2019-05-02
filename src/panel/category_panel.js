@@ -5,6 +5,7 @@ import UrlState from "../proxies/url_state";
 import {paramTypes} from "../proxies/url_shard";
 import IdunnPoi from "../adapters/poi/idunn_poi";
 import SearchInput from '../ui_components/search_input';
+import Telemetry from '../libs/telemetry';
 import layouts from "./layouts.js";
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -111,7 +112,7 @@ export default class CategoryPanel {
   }
 
   selectPoi(poi){
-    // TODO telemetry
+    Telemetry.add(Telemetry.POI_PJ_OPEN)
     fire('fit_map', poi, layouts.LIST)
     this.close(false)
     PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})

@@ -21,6 +21,12 @@ module.exports = {
     'poi_share',
     'poi_information_extend',
     'poi_error_load', // error
+    /* Pages Jaunes Poi */
+    'poi_pj_category_open',
+    'poi_pj_open',
+    'poi_pj_go',
+    'poi_pj_share',
+    'poi_pj_information_extend',
     /* Map */
     'localise_trigger'
   ]

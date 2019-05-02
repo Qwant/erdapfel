@@ -4,6 +4,7 @@ import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
 import nconf from "../../local_modules/nconf_getter";
 import categories from '../../config/categories.yml'
+import Telemetry from '../libs/telemetry';
 
 export default class ServicePanel{
   constructor() {
@@ -63,6 +64,7 @@ export default class ServicePanel{
   }
 
   openCategory(category) {
+    Telemetry.add(Telemetry.POI_PJ_CATEGORY_OPEN)
     PanelManager.openCategory({ category })
   }
 }
