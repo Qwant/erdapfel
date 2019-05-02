@@ -22,6 +22,9 @@ export default class CategoryPanel {
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
     PanelManager.register(this)
 
+    listen('map_moveend', () => {
+      if(this.active) this.search()
+    })
     listen('click_category_poi', (poi)=> {
       this.selectPoi(poi);
     });
