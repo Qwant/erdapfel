@@ -24,6 +24,7 @@ function PoiPanel(sharePanel) {
   this.active = false
   this.displayed = false
   this.poiSubClass = poiSubClass
+  this.list = null
   this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
   this.sharePanel = sharePanel
@@ -126,6 +127,9 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   if(options && options.isFromList){
     this.fromList = options.isFromList
   }
+  if(options && options.list){
+    this.list = options.list
+  }
   this.active = true
   UrlState.pushUrl()
   this.sceneState.setPoiId(this.poi.id)
@@ -176,6 +180,8 @@ PoiPanel.prototype.backToFavorite = function() {
 }
 
 PoiPanel.prototype.backToList = function() {
+  this.close();
+  this.list.open();
 }
 
 PoiPanel.prototype.openDirection = function () {

@@ -10,6 +10,7 @@ const MOBILE_FULL_SCREEN_PANEL = {top: 184, right: 70, bottom: 130, left: 20 }
 export default {
   FULL: Device.isMobile() ? MOBILE_FULL : DESKTOP_FULL,
   FAVORITE: Device.isMobile() ?   MOBILE_CARD : DESKTOP_SIDE_PANEL,
+  LIST: Device.isMobile() ?   MOBILE_CARD : DESKTOP_SIDE_PANEL,
   POI: Device.isMobile() ? MOBILE_CARD : DESKTOP_SIDE_PANEL,
   ITINERARY: Device.isMobile() ? MOBILE_FULL_SCREEN_PANEL : DESKTOP_SIDE_PANEL
 }

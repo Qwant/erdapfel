@@ -74,6 +74,7 @@
 
 .category__panel__item {
   padding: 0px 30px;
+  cursor: pointer;
 }
 
 .category__panel__item:hover {
@@ -93,8 +94,11 @@
   margin: 5px 0 10px 10px;
   width: 65px;
   height: 65px;
-  border: 1px solid #ddd;
   background-size: cover;
+
+  .poi_panel__title__symbol {
+    margin: 13px 0 0 11px;
+  }
 }
 
 .category__panel__name {

@@ -23,10 +23,13 @@ export default class CategoryPanel {
     PanelManager.register(this)
 
     listen('map_moveend', () => this.search())
+    listen('click_category_poi', (poi)=> {
+      this.selectPoi(poi);
+    });
   }
 
   store () {
-    if(this.active && this.pois.length > 0) {
+    if(this.active && this.categoryName && this.categoryName !== '') {
       return `type=${this.categoryName}`
     }
     return ''
@@ -81,7 +84,6 @@ export default class CategoryPanel {
     this.active = false
     this.panel.update()
     UrlState.pushUrl()
-    console.log(toggleMarkers);
     if(toggleMarkers){
       this.removeCategoryMarkers()
     }
@@ -108,9 +110,9 @@ export default class CategoryPanel {
 
   selectPoi(poi){
     // TODO telemetry
-    fire('fit_map', poi, layouts.FAVORITE)
+    fire('fit_map', poi, layouts.LIST)
     this.close(false)
-    PanelManager.loadPoiById(poi.id, {isFromList : true})
+    PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
   }
 
   highlightPoiMarker(poi){
