@@ -3,12 +3,12 @@ import Panel from '../libs/panel'
 import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
 import nconf from "../../local_modules/nconf_getter";
-import categories from '../../config/categories.yml'
+import CategoryService from '../adapters/category_service'
 
 export default class ServicePanel{
   constructor() {
     this.panel = new Panel(this, ServicePanelView)
-    this.categories = categories
+    this.categories = CategoryService.getCategories()
     this.isFavoriteActive = false
     this.isResultActive = false
     this.isDirectionActive = nconf.get().direction.enabled

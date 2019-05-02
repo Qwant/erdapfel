@@ -5,7 +5,9 @@
     {{? this.directionEnabled }}
       {{= this.directionPanel.render() }}
     {{?}}
-    {{= this.category.render() }}
+    {{? this.categoryEnabled }}
+      {{= this.categoryPanel.render() }}
+    {{?}}
   </div>
   {{= this.servicePanel.render() }}
 </div>

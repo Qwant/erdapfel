@@ -86,7 +86,7 @@ Scene.prototype.initMapBox = function () {
     new SceneDirection(this.mb)
     new SceneCategory(this.mb)
     
-    const CategoryPanel = PanelManager.getCategoryPanel()
+    const CategoryPanel = PanelManager.getCategoryPanel() || {}
     // trigger the POIs if a category has already been selected before map being loaded.    
     if (CategoryPanel.active) {
       CategoryPanel.addCategoryMarkers()
