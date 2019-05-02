@@ -18,6 +18,7 @@
 .modal {
   position: absolute;
   border-radius: 3px;
+  overflow: auto;
 }
 
 .modal__maps {
@@ -50,7 +51,7 @@
 
 .modal__subtitle {
   display: block;
-  font-size: 16px;
+  font-size: 13px;
   color: $secondary_text;
   margin-bottom: 16px;
 }
