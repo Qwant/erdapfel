@@ -109,21 +109,94 @@ BODY {
 }
 
 .map_container .poi-marker {
-  position: absolute;
-  left: 50%;
-  top: -13px;
-  transform: translatex(-50%);
+  width: 36px;
+  height: 42px;
+  background: transparent;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateY(4px);
+  cursor: pointer;
 }
 
-.map_container .poi-marker i, .map_container .poi-marker img {
+.map_container .poi-hoverable:hover,
+.map_container .poi-hoverable.active {
+  z-index: 1;
+}
+
+.map_container .poi-hoverable .poi-marker {
+  width: 24px;
+  height: 29px;
+}
+
+.map_container .poi-hoverable:hover .poi-marker,
+.map_container .poi-hoverable.active .poi-marker {
+  width: 30px;
+  height: 35px;
+}
+
+.map_container .poi-marker .circle {
+  width: 36px;
+  height: 36px;
+  background: red;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+}
+
+.map_container .poi-hoverable .poi-marker .circle {
+  width: 24px;
+  height: 24px;
+}
+
+.map_container .poi-hoverable:hover .circle,
+.map_container .poi-hoverable.active .circle {
+  width: 30px;
+  height: 30px;
+}
+
+.map_container .poi-marker .triangle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+  background: red;
+  bottom: 2.2px;
+  transform: rotate(45deg);
+  cursor: pointer;
+  background-clip: content-box;
+}
+
+.map_container .poi-hoverable .poi-marker .triangle {
+  width: 12px;
+  height: 12px;
+}
+
+.map_container .poi-hoverable:hover .triangle,
+.map_container .poi-hoverable.active .triangle {
+  width: 15px;
+  height: 15px;
 }
 
 .map_container .poi-marker i {
+  position: absolute;
   font-size: 30px;
   color: white;
-  top: -2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 1px));
+}
+
+.map_container .poi-hoverable .poi-marker i {
+  font-size: 20px;
+}
+
+.map_container .poi-hoverable:hover .poi-marker i,
+.map_container .poi-hoverable.active .poi-marker i {
+  font-size: 25px;
 }
