@@ -177,18 +177,3 @@
     margin: 0 5px 0 0;
   }
 }
-
-.category_marker {
-  background-image: url('../images/direction_icons/pin.png');
-  background-size: cover;
-  width: 24px;
-  height: 29px;
-  margin: -7px 0 0 4px;
-}
-
-.category_marker:hover,
-.category_marker.active {
-  width: 30px;
-  height: 37px;
-  margin: -10px 0 0 4px;
-}

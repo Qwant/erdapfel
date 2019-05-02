@@ -51,4 +51,20 @@ export default class IconManager {
   }
 }
 
+export function createIcon(iconOptions, hoverEffect = false) {
+  const icon = IconManager.get(iconOptions)
+
+  const element = document.createElement('div')
+  element.innerHTML = `
+    <div class="${hoverEffect ? 'poi-hoverable' : ''}">
+      <div class="poi-marker">
+        <span class="circle"></span>
+        <span class="triangle"></span>
+        <i class="icon icon-${icon.iconClass}"></i>
+      </div>
+    </div>
+  `
+  return element.firstElementChild
+};
+
 window.IconManager = IconManager

@@ -4,7 +4,6 @@ import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
-import loadImage from '../libs/image_loader'
 import nconf from "../../local_modules/nconf_getter"
 import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
@@ -16,7 +15,7 @@ import SceneCategory from './scene_category'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
 import Error from '../adapters/error'
-import IconManager from '../adapters/icon_manager'
+import { createIcon } from '../adapters/icon_manager'
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -266,22 +265,10 @@ Scene.prototype.fitMap = function(item, padding) {
   }
 }
 
-Scene.prototype.addMarker = async function(poi) {
+Scene.prototype.addMarker = function(poi) {
   const { className, subClassName, type } = poi
-  const icon = IconManager.get({ className, subClassName, type })
 
-  const element = document.createElement('div')
-
-  const markerWrapper = document.createElement('div')
-  markerWrapper.className = 'poi-marker'
-  element.appendChild(markerWrapper)
-
-  const image = await loadImage(`${baseUrl}statics/images/map/pin_map.svg`)
-  markerWrapper.appendChild(image)
-
-  const iconElement = document.createElement('i')
-  iconElement.className = `icon icon-${icon.iconClass}`
-  markerWrapper.appendChild(iconElement)
+  const element = createIcon({ className, subClassName, type })
 
   if(this.currentMarker !== null) {
     this.currentMarker.remove()

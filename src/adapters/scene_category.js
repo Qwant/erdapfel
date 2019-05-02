@@ -1,7 +1,6 @@
 import { Marker } from 'mapbox-gl--ENV'
 import constants from '../../config/constants.yml'
-import layouts from "../panel/layouts";
-
+import { createIcon } from '../adapters/icon_manager'
 
 export default class SceneCategory {
   constructor(map) {
@@ -18,17 +17,17 @@ export default class SceneCategory {
 
   addCategoryMarkers(pois) {
     this.setOsmPoisVisibility(false)
-    pois.forEach((poi) => {
-      const marker = document.createElement('div')
-      poi.marker_id = poi.id.replace("pj:", "marker_")
-      marker.className = 'category_marker'
+    pois.forEach(poi => {
+      const { id, className, subClassName, type, latLon } = poi
+      const marker = createIcon({ className, subClassName, type }, true)
+      poi.marker_id = id.replace("pj:", "marker_")
       marker.onclick = function(){
         fire('click_category_poi', poi)
       }
       marker.id = poi.marker_id
       this.markers.push(
-        new Marker(marker)
-         .setLngLat(poi.latLon)
+        new Marker({ element: marker })
+         .setLngLat(latLon)
            .addTo(this.map)
       )}
     )
