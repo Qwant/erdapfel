@@ -2,6 +2,7 @@
  * Simple Category helper
  */
 import IconManager from '../adapters/icon_manager'
+import ExtentedString from '../libs/string'
 
 const DEFAULT_ICON_COLOR = "#ffffff"
 const CATEGORY_TYPE = 'category'
@@ -24,10 +25,15 @@ export default class Category {
   }
 
   isMatching(term) {
+    let matched = false
+
     if (this.matcher && this.matcher.regex)
-      return new RegExp(this.matcher.regex, 'i').test(term)
-    else
-      return false
+      matched = new RegExp(this.matcher.regex, 'i').test(term)
+
+    if (!matched)
+      matched = ExtentedString.compareIgnoreCase(term, this.label) >= 0
+
+    return matched
   }
 
   getIcon() {
