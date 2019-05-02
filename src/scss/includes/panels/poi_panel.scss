@@ -10,7 +10,6 @@ $HEADER_SIZE: 30px;
 
 .poi_panel {
   display: block;
-  max-height: calc(100vh - 120px);
   position: relative;
   width: $panel_width;
   padding-bottom: 10px;
@@ -109,23 +108,6 @@ $HEADER_SIZE: 30px;
   display: inline-block;
   width: 20px;
   color: $primary_text;
-}
-
-.poi_panel__header {
-  font-size: 13px;
-  color: $secondary_text;
-  padding: 14px 0 14px 10px;
-  text-transform: uppercase;
-  position: absolute;
-  left: 0;
-  height: $HEADER_SIZE;
-  top: -$HEADER_SIZE;
-  right: 0;
-  background: $background;
-  z-index: 1;
-  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
 }
 
 .poi_panel__header + .poi_panel--card {
@@ -378,6 +360,10 @@ a.button_container {
   content: '';
 }
 
+.poi_panel__image + .poi_panel__title__symbol {
+    display: none;
+}
+
 /* TODO export to external service */
 
 /* title symbols */
@@ -515,12 +501,73 @@ a.button_container {
   height: 100%;
 }
 
+.poi_panel__back_mobile {
+  color: $primary_text;
+  cursor: pointer;
+
+  i {
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 641px) {
+  .poi_panel {
+    max-height: calc(100vh - 120px);
+  }
+  .poi_panel__back_mobile {
+    display: none;
+  }
+
+  .poi_panel__header {
+    font-size: 13px;
+    color: $secondary_text;
+    padding: 14px 0 14px 10px;
+    text-transform: uppercase;
+    position: absolute;
+    left: 0;
+    height: $HEADER_SIZE;
+    top: -$HEADER_SIZE;
+    right: 0;
+    background: $background;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+  }
+}
+
 @media (max-width: 640px) {
   .poi_panel {
-    max-height: calc(100vh - 200px);
     width: 100vw;
     bottom: 0;
     position: absolute;
+    border-radius: 0;
+  }
+
+  .poi_panel:not(.poi_panel--card) {
+    height: calc(100vh - 106px);
+  }
+
+  .poi_panel__header {
+    position: absolute;
+    height: 100px;
+    bottom: calc(100vh - 104px);
+    z-index: 2;
+    display: block;
+    background-color: #fff;
+    width: 100vw;
+    padding-top: 76px;
+    padding-left: 12px;
+    background-color: #F0F0F0;
+    display: block;
+  }
+
+  .poi_header_card {
+    display: none;
+  }
+
+  .poi_panel__close {
+    display: none;
   }
 
   .poi_panel.poi_panel--card {
@@ -529,6 +576,7 @@ a.button_container {
     left: 8px;
     bottom: 8px;
     clear: both;
+    max-height: calc(100vh - 200px);
   }
 
   .poi_panel__content__card {
@@ -546,10 +594,11 @@ a.button_container {
   .poi_panel--card {
     .poi_panel__title {
       width: auto;
+      padding-top: 20px;
     }
     .poi_panel__address {
       font-size: 14px;
-      padding: 8px 14px 0 0;
+      padding: 8px 10px 0 0;
     }
     .poi_panel__info__hours__status__text {
       font-size: 14px;
@@ -591,13 +640,15 @@ a.button_container {
     top: -100vh;
   }
 
-  .poi_panel__title__symbol {
-    margin: 18px 0 0 12px;
+  .poi_panel__content__card__content .poi_panel__title__symbol.icon {
+    margin: 6px 0 0 7px;
+    right: initial;
+    padding-left: 0;
   }
 
   .poi_panel__info__section:before {
-    width: calc(100% - 40px);
-    margin: 18px 20px 12px;
+    width: 100%;
+    margin: 18px 0 12px;
   }
 
   .poi_panel__info__section:not(:last-of-type):after {
@@ -606,5 +657,30 @@ a.button_container {
 
   .poi_panel__description__ellipsis {
     width: 100%;
+  }
+
+  .poi_panel__content__card__content > .poi_panel__address, .poi_panel__content__card__content > * {
+    padding-left: 55px;
+  }
+
+  .poi_panel__image {
+    display: none;
+  }
+  .poi_panel__image + .poi_panel__title__symbol {
+    display: block;
+  }
+
+  .poi_panel__content__card__action__container {
+    margin-top: 20px;
+  }
+
+  .map_container .map_control__scale_attribute_container {
+    display: none;
+  }
+
+  .poi_panel__content__card__action__direction {
+    background-color: $primary_text;
+    border-color: $primary_text;
+    color: #fff;
   }
 }

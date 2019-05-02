@@ -183,6 +183,12 @@ PoiPanel.prototype.showDetail = function() {
   endLoad()
 }
 
+PoiPanel.prototype.backToSmall = function() {
+  this.card = true
+  this.panel.update()
+  endLoad()
+}
+
 PoiPanel.prototype.backToFavorite = function() {
   PanelManager.toggleFavorite()
 }

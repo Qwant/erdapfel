@@ -1,5 +1,5 @@
 {{? this.poi && this.active }}
-  <div class="poi_panel__header">
+  <div class="poi_panel__header {{= this.card ? 'poi_header_card' : '' }}">
     {{? this.fromFavorite }}
       <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}>
         <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}
@@ -8,6 +8,12 @@
     <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
       <i class="icon-x"></i>
     </div>
+    {{? this.card }}
+    {{??}}
+      <div class="poi_panel__back_mobile" {{= click(this.backToSmall, this) }}>
+        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back') }}
+      </div>
+    {{?}}
   </div>
 {{?}}
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden ' }}{{= this.card ? 'poi_panel--card ' : '' }}">
