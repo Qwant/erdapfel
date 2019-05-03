@@ -21,6 +21,7 @@ const masqFavoriteModal = new MasqFavoriteModal()
 function PoiPanel(sharePanel) {
   this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
+  this.poiSource = null
   this.active = false
   this.displayed = false
   this.poiSubClass = poiSubClass
@@ -56,6 +57,11 @@ function PoiPanel(sharePanel) {
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
+  if (this.poiSource && this.poiSource == 'pagesjaunes') {
+    Telemetry.add(Telemetry.POI_PJ_FAVORITE)
+  } else {
+    Telemetry.add(Telemetry.POI_FAVORITE)
+  }
   if(this.poi.stored) {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
@@ -77,6 +83,7 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.poi.stored = true
     await store.add(this.poi)
   }
+
 }
 
 PoiPanel.prototype.isDisplayed = function() {
@@ -130,6 +137,9 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   if(options && options.list){
     this.list = options.list
   }
+  if(options && options.source) {
+    this.poiSource = options.source
+  }
   this.active = true
   UrlState.pushUrl()
   this.sceneState.setPoiId(this.poi.id)
@@ -139,12 +149,20 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
-  Telemetry.add(Telemetry.POI_GO)
+  if (this.poiSource && this.poiSource == 'pagesjaunes') {
+    Telemetry.add(Telemetry.POI_PJ_GO)
+  } else {
+    Telemetry.add(Telemetry.POI_GO)
+  }
   fire('fit_map', this.poi, layouts.POI)
 }
 
 PoiPanel.prototype.openShare = function () {
-  Telemetry.add(Telemetry.POI_SHARE)
+  if (this.poiSource && this.poiSource == 'pagesjaunes') {
+    Telemetry.add(Telemetry.POI_PJ_SHARE)
+  } else {
+    Telemetry.add(Telemetry.POI_SHARE)
+  }
   this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 

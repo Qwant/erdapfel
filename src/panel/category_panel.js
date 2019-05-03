@@ -27,6 +27,7 @@ export default class CategoryPanel {
       if(this.active) this.search()
     })
     listen('click_category_poi', (poi)=> {
+      Telemetry.add(Telemetry.POI_PJ_OPEN)
       this.selectPoi(poi);
     });
   }
@@ -112,10 +113,9 @@ export default class CategoryPanel {
   }
 
   selectPoi(poi){
-    Telemetry.add(Telemetry.POI_PJ_OPEN)
     fire('fit_map', poi, layouts.LIST)
     this.close(false)
-    PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
+    PanelManager.loadPoiById(poi.id, {isFromList : true, list: this, source: 'pagesjaunes'})
   }
 
   highlightPoiMarker(poi){

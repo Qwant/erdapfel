@@ -117,7 +117,7 @@ Scene.prototype.initMapBox = function () {
           if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({center : mapPoi.getLngLat(), offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
           }
-          let poi = await PanelManager.loadPoiById(mapPoi.id)
+          let poi = await PanelManager.loadPoiById(mapPoi.id, { source: 'osm' })
           if(poi) {
             this.addMarker(poi)
           }
