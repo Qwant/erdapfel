@@ -1,6 +1,7 @@
 .service_panel {
   display: none;
   position: relative;
+  min-height: 90px;
   width: $panel_width;
   margin-top: 14px;
   background: url('../images/panel_top.svg') white repeat-x;

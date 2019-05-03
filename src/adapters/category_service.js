@@ -1,9 +1,13 @@
 import Category from "./category"
+import nconf from "../../local_modules/nconf_getter"
 import categories from "../../config/categories.yml"
 
 export default class CategoryService {
 
   static getCategories () {
+    if (!nconf.get().category.enabled)
+      return []
+
     if (!window.__categoriesCache)
       window.__categoriesCache = categories.map(categ => Category.of(categ))
 
