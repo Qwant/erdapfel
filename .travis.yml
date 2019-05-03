@@ -2,18 +2,17 @@ language: node_js
 sudo: required
 node_js:
   - "8"
+dist: xenial
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-3.5
     packages:
     - libstdc++6
-      # This is required to run new chrome on old trusty
-    - libnss3
       # Add python3 dependencies to run transifex-client
     - python3.5
     - python3-pip
+    - python3-setuptools
 
 before_script:
     - TEST=true npm run build -- --mode=production
