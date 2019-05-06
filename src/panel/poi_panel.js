@@ -22,7 +22,6 @@ const masqFavoriteModal = new MasqFavoriteModal()
 function PoiPanel(sharePanel) {
   this.isPoiComplient = true /* Poi Compliant */
   this.poi = null
-  this.poiSource = null
   this.active = false
   this.displayed = false
   this.poiSubClass = poiSubClass
