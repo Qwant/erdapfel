@@ -80,7 +80,7 @@ Scene.prototype.initMapBox = function () {
 
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
 
-  this.mb.on('load', () => {
+  this.mb.on('load', async () => {
     this.onHashChange()
     new SceneDirection(this.mb)
     new SceneCategory(this.mb)
@@ -154,6 +154,15 @@ Scene.prototype.initMapBox = function () {
 
     window.execOnMapLoaded = (f) => f()
     fire('map_loaded')
+
+    const place = UrlShards.parseUrl().filter(shard => shard.prefix === 'place')
+    if (place.length) {
+      const { value } = place[0]
+      const poi = await PanelManager.loadPoiById(value.split('@')[0])
+      if (poi) {
+        this.addMarker(poi)
+      }
+    }
   })
 
   listen('fit_map', (item, padding) => {
