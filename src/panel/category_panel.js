@@ -28,7 +28,7 @@ export default class CategoryPanel {
       if(this.active) this.search()
     })
     listen('click_category_poi', (poi)=> {
-      if (poi.meta.source === constants.telemetry.source.PJ) {
+      if (poi.meta && poi.meta.source === constants.telemetry.source.PJ) {
         Telemetry.add(Telemetry.POI_PJ_OPEN)
       }
       this.selectPoi(poi);

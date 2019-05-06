@@ -57,7 +57,7 @@ function PoiPanel(sharePanel) {
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
-  if (this.poi && this.poi.meta.source === constants.telemetry.source.PJ) {
+  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
     Telemetry.add(Telemetry.POI_PJ_FAVORITE)
   } else {
     Telemetry.add(Telemetry.POI_FAVORITE)
@@ -146,7 +146,7 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
-  if (this.poi && this.poi.meta.source === constants.telemetry.source.PJ) {
+  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
     Telemetry.add(Telemetry.POI_PJ_GO)
   } else {
     Telemetry.add(Telemetry.POI_GO)
@@ -155,7 +155,7 @@ PoiPanel.prototype.center = function() {
 }
 
 PoiPanel.prototype.openShare = function () {
-  if (this.poi && this.poi.meta.source === constants.telemetry.source.PJ) {
+  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
     Telemetry.add(Telemetry.POI_PJ_SHARE)
   } else {
     Telemetry.add(Telemetry.POI_SHARE)
