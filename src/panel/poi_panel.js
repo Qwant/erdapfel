@@ -191,10 +191,12 @@ PoiPanel.prototype.showDetail = function() {
 }
 
 PoiPanel.prototype.backToFavorite = function() {
+  Telemetry.add(Telemetry.POI_BACKTOFAVORITE)
   PanelManager.toggleFavorite()
 }
 
 PoiPanel.prototype.backToList = function() {
+  Telemetry.add(Telemetry.POI_BACKTOLIST)
   this.close();
   this.list.open();
 }

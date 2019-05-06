@@ -99,11 +99,17 @@ export default class CategoryPanel {
   showPhoneNumber(options){
     var poi = options.poi
     var i = options.i
+    if (poi.meta && poi.meta.source === constants.telemetry.source.PJ) {
+      Telemetry.add(Telemetry.POI_PJ_PHONE)
+    } else {
+      Telemetry.add(Telemetry.POI_PHONE)
+    }
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }
 
   closeAction() {
+    Telemetry.add(Telemetry.POI_CLOSE)
     PanelManager.resetLayout()
   }
 

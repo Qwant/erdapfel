@@ -14,12 +14,16 @@ module.exports = {
     /* Itinerary */
     'itinerary_open',
     /* Poi */
+    'poi_close',
+    'poi_backtofavorite',
+    'poi_backtolist',
     'poi_open',
     'poi_restore',
     'poi_hour_extend',
     'poi_go',
     'poi_favorite',
     'poi_share',
+    'poi_phone',
     'poi_information_extend',
     'poi_error_load', // error
     /* Pages Jaunes Poi */
@@ -28,6 +32,7 @@ module.exports = {
     'poi_pj_go',
     'poi_pj_favorite',
     'poi_pj_share',
+    'poi_pj_phone',
     /* Map */
     'localise_trigger'
   ]
