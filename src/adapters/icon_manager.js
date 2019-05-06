@@ -56,14 +56,11 @@ export function createIcon(iconOptions, hoverEffect = false) {
 
   const element = document.createElement('div')
   element.innerHTML = `
-    <div class="${hoverEffect ? 'poi-hoverable' : ''}">
-      <div class="poi-marker">
-        <span class="circle"></span>
-        <span class="triangle"></span>
-        <i class="icon icon-${icon.iconClass}"></i>
-      </div>
+    <div class="marker-container${hoverEffect ? ' poi-hoverable' : ''}">
+      <i class="icon icon-${icon.iconClass}"></i>
     </div>
   `
+
   return element.firstElementChild
 };
 

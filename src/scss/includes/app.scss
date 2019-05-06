@@ -108,95 +108,52 @@ BODY {
   }
 }
 
-.map_container .poi-marker {
-  width: 36px;
-  height: 42px;
-  background: transparent;
-  position: relative;
+.map_container .marker-container {
   display: flex;
+  align-items: center;
   justify-content: center;
-  pointer-events: none;
-  transform: translateY(4px);
-  cursor: pointer;
+  width: 35px;
+  height: 42px;
+  background-image: url('../images/map/pin_map.svg');
+  background-size: cover;
 }
 
-.map_container .poi-hoverable:hover,
-.map_container .poi-hoverable.active {
-  z-index: 1;
-}
-
-.map_container .poi-hoverable .poi-marker {
+.map_container .marker-container.poi-hoverable {
   width: 24px;
   height: 29px;
 }
 
-.map_container .poi-hoverable:hover .poi-marker,
-.map_container .poi-hoverable.active .poi-marker {
+.map_container .marker-container.poi-hoverable.active,
+.map_container .marker-container.poi-hoverable:hover {
   width: 30px;
   height: 35px;
 }
 
-.map_container .poi-marker .circle {
-  width: 36px;
-  height: 36px;
-  background: red;
-  position: absolute;
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-}
 
-.map_container .poi-hoverable .poi-marker .circle {
-  width: 24px;
-  height: 24px;
-}
-
-.map_container .poi-hoverable:hover .circle,
-.map_container .poi-hoverable.active .circle {
-  width: 30px;
-  height: 30px;
-}
-
-.map_container .poi-marker .triangle {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-bottom: 2px solid white;
-  border-right: 2px solid white;
-  background: red;
-  bottom: 2.2px;
-  transform: rotate(45deg);
-  cursor: pointer;
-  background-clip: content-box;
-}
-
-.map_container .poi-hoverable .poi-marker .triangle {
-  width: 12px;
-  height: 12px;
-}
-
-.map_container .poi-hoverable:hover .triangle,
-.map_container .poi-hoverable.active .triangle {
-  width: 15px;
-  height: 15px;
-}
-
-.map_container .poi-marker i {
-  position: absolute;
+.map_container .marker-container i {
   font-size: 30px;
   color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, calc(-50% - 1px));
 }
 
-.map_container .poi-hoverable .poi-marker i {
+.map_container .marker-container.poi-hoverable:hover,
+.map_container .marker-container.poi-hoverable.active {
+  z-index: 1;
+}
+
+.map_container .marker-container.poi-hoverable i {
   font-size: 20px;
 }
 
-.map_container .poi-hoverable:hover .poi-marker i,
-.map_container .poi-hoverable.active .poi-marker i {
+.map_container .marker-container.poi-hoverable.active i,
+.map_container .marker-container.poi-hoverable:hover i {
   font-size: 25px;
+}
+
+.map_container .marker-container.poi-hoverable img {
+  width: 24px;
+}
+
+.map_container .marker-container.poi-hoverable.active img,
+.map_container .marker-container.poi-hoverable:hover img {
+  width: 30px;
 }
