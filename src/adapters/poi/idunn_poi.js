@@ -25,6 +25,7 @@ export default class IdunnPoi extends Poi {
     this.localName = rawPoi.local_name
     this.address = IdunnPoi.getAddress(rawPoi)
     this.bbox = rawPoi.geometry.bbox
+    this.meta = rawPoi.meta
   }
 
   getInputValue() {

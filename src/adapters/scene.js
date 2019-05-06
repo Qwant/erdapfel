@@ -3,7 +3,7 @@ import PoiPopup from './poi_popup'
 import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
 import UrlState from "../proxies/url_state"
-import {map, layout, telemetry} from '../../config/constants.yml'
+import {map, layout} from '../../config/constants.yml'
 import nconf from "../../local_modules/nconf_getter"
 import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
@@ -117,7 +117,7 @@ Scene.prototype.initMapBox = function () {
           if(e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({center : mapPoi.getLngLat(), offset : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]})
           }
-          let poi = await PanelManager.loadPoiById(mapPoi.id, { source: telemetry.source.OSM })
+          let poi = await PanelManager.loadPoiById(mapPoi.id)
           if(poi) {
             this.addMarker(poi)
           }

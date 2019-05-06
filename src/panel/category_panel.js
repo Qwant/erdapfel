@@ -28,7 +28,9 @@ export default class CategoryPanel {
       if(this.active) this.search()
     })
     listen('click_category_poi', (poi)=> {
-      Telemetry.add(Telemetry.POI_PJ_OPEN)
+      if (poi.meta.source === constants.telemetry.source.PJ) {
+        Telemetry.add(Telemetry.POI_PJ_OPEN)
+      }
       this.selectPoi(poi);
     });
   }
@@ -116,7 +118,7 @@ export default class CategoryPanel {
   selectPoi(poi){
     fire('fit_map', poi, layouts.LIST)
     this.close(false)
-    PanelManager.loadPoiById(poi.id, {isFromList : true, list: this, source: constants.telemetry.source.PJ})
+    PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
   }
 
   highlightPoiMarker(poi){
