@@ -107,7 +107,8 @@ Favorite.prototype.open = async function() {
 }
 
 Favorite.prototype.closeAction = function() {
-  PanelManager.resetLayout()
+    Telemetry.add(Telemetry.FAVORITE_CLOSE)
+    PanelManager.resetLayout()
 }
 
 Favorite.prototype.close = function() {

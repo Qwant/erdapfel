@@ -4,6 +4,7 @@ module.exports = {
     'app_start',
     /* Favorite */
     'favorite_open',
+    'favorite_close',
     'favorite_url_restore',
     'favorite_go',
     'favorite_share',
@@ -14,10 +15,11 @@ module.exports = {
     /* Itinerary */
     'itinerary_open',
     /* Poi */
-    'poi_close',
+    'poi_category_open',
     'poi_backtofavorite',
     'poi_backtolist',
     'poi_open',
+    'poi_close',
     'poi_restore',
     'poi_hour_extend',
     'poi_go',
@@ -27,8 +29,8 @@ module.exports = {
     'poi_information_extend',
     'poi_error_load', // error
     /* Pages Jaunes Poi */
-    'poi_pj_category_open',
     'poi_pj_open',
+    'poi_pj_close',
     'poi_pj_go',
     'poi_pj_favorite',
     'poi_pj_share',

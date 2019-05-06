@@ -91,6 +91,11 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.closeAction = function() {
+  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
+    Telemetry.add(Telemetry.POI_PJ_CLOSE)
+  } else {
+    Telemetry.add(Telemetry.POI_CLOSE)
+  }
   PanelManager.resetLayout()
 }
 

@@ -109,7 +109,6 @@ export default class CategoryPanel {
   }
 
   closeAction() {
-    Telemetry.add(Telemetry.POI_CLOSE)
     PanelManager.resetLayout()
   }
 
