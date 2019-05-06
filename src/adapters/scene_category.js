@@ -18,8 +18,8 @@ export default class SceneCategory {
   addCategoryMarkers(pois) {
     this.setOsmPoisVisibility(false)
     pois.forEach(poi => {
-      const { id, className, subClassName, type, latLon } = poi
-      const marker = createIcon({ className, subClassName, type }, true)
+      const { id, name, className, subClassName, type, latLon } = poi
+      const marker = createIcon({ className, subClassName, type }, name, true)
       poi.marker_id = id.replace("pj:", "marker_")
       marker.onclick = function(){
         fire('click_category_poi', poi)

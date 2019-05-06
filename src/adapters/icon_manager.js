@@ -51,13 +51,17 @@ export default class IconManager {
   }
 }
 
-export function createIcon(iconOptions, hoverEffect = false) {
+export function createIcon(iconOptions, name, hoverEffect = false) {
   const icon = IconManager.get(iconOptions)
 
+  const markerLabel = name ? `<div class="marker-label">${name}</div>` : ''
   const element = document.createElement('div')
   element.innerHTML = `
-    <div class="marker-container${hoverEffect ? ' poi-hoverable' : ''}">
-      <i class="icon icon-${icon.iconClass}"></i>
+    <div class="marker">
+      <div class="marker-container${hoverEffect ? ' poi-hoverable' : ''}">
+        <i class="icon icon-${icon.iconClass}"></i>
+      </div>
+      ${markerLabel}
     </div>
   `
 
