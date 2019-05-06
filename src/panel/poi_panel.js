@@ -12,6 +12,8 @@ import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
 import nconf from "../../local_modules/nconf_getter";
 import MasqFavoriteModal from "../modals/masq_favorite_modal";
+import constantsConfig from '../../config/constants.yml'
+import constants from 'jest-haste-map/build/constants';
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -57,7 +59,7 @@ function PoiPanel(sharePanel) {
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
-  if (this.poiSource && this.poiSource == 'pagesjaunes') {
+  if (this.poiSource && this.poiSource === constantsConfig.telemetry.source.PJ) {
     Telemetry.add(Telemetry.POI_PJ_FAVORITE)
   } else {
     Telemetry.add(Telemetry.POI_FAVORITE)
@@ -149,7 +151,7 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
-  if (this.poiSource && this.poiSource == 'pagesjaunes') {
+  if (this.poiSource && this.poiSource === constantsConfig.telemetry.source.PJ) {
     Telemetry.add(Telemetry.POI_PJ_GO)
   } else {
     Telemetry.add(Telemetry.POI_GO)
@@ -158,7 +160,7 @@ PoiPanel.prototype.center = function() {
 }
 
 PoiPanel.prototype.openShare = function () {
-  if (this.poiSource && this.poiSource == 'pagesjaunes') {
+  if (this.poiSource && this.poiSource === constantsConfig.telemetry.source.PJ) {
     Telemetry.add(Telemetry.POI_PJ_SHARE)
   } else {
     Telemetry.add(Telemetry.POI_SHARE)
