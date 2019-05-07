@@ -125,9 +125,18 @@ BODY {
   display: none;
 }
 
+.map_container .marker:hover{
+  z-index: 10;
+}
+
 .map_container .marker:hover .marker-label {
   display: initial;
   font-weight: bold;
+  pointer-events: none;
+  width: 500px;
+  position: absolute;
+  transform: translateX(-50%) translateX(15px);
+  text-align: center;
 }
 
 
