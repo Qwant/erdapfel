@@ -121,7 +121,6 @@ BODY {
 
 .map_container .marker-label {
   line-height: 20px;
-  margin-bottom: -20px;
   display: none;
 }
 
@@ -139,7 +138,6 @@ BODY {
   text-align: center;
 }
 
-
 .map_container .marker-container.poi-hoverable {
   width: 24px;
   height: 29px;
@@ -149,8 +147,8 @@ BODY {
 .map_container .marker:hover .marker-container.poi-hoverable {
   width: 30px;
   height: 35px;
+  margin: -5px 0 0;
 }
-
 
 .map_container .marker-container i {
   font-size: 30px;
