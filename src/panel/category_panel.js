@@ -28,6 +28,7 @@ export default class CategoryPanel {
     listen('click_category_poi', (poi)=> {
       this.selectPoi(poi);
     });
+
   }
 
   store () {
@@ -62,6 +63,7 @@ export default class CategoryPanel {
 
     this.addCategoryMarkers();
 
+    document.querySelector(".service_panel").classList.remove("service_panel--active")
   }
 
   async open (options = {}) {
