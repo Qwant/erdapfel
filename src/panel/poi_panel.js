@@ -84,6 +84,7 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.closeAction = function() {
+  fire('clean_marker')
   PanelManager.resetLayout()
 }
 
