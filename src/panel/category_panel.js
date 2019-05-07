@@ -28,9 +28,7 @@ export default class CategoryPanel {
       if(this.active) this.search()
     })
     listen('click_category_poi', (poi)=> {
-      if (poi.meta && poi.meta.source === constants.telemetry.source.PJ) {
-        Telemetry.add(Telemetry.POI_PJ_OPEN)
-      }
+      if (poi.meta && poi.meta.source) Telemetry.add("open", "poi", poi.meta.source)
       this.selectPoi(poi);
     });
   }
@@ -99,11 +97,7 @@ export default class CategoryPanel {
   showPhoneNumber(options){
     var poi = options.poi
     var i = options.i
-    if (poi.meta && poi.meta.source === constants.telemetry.source.PJ) {
-      Telemetry.add(Telemetry.POI_PJ_PHONE)
-    } else {
-      Telemetry.add(Telemetry.POI_PHONE)
-    }
+    if (poi.meta && poi.meta.source) Telemetry.add("phone", "poi", poi.meta.source)
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }

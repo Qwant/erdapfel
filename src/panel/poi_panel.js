@@ -57,11 +57,7 @@ function PoiPanel(sharePanel) {
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
-  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
-    Telemetry.add(Telemetry.POI_PJ_FAVORITE)
-  } else {
-    Telemetry.add(Telemetry.POI_FAVORITE)
-  }
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("favorite", "poi", this.poi.meta.source)
   if(this.poi.stored) {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
@@ -91,11 +87,7 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.closeAction = function() {
-  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
-    Telemetry.add(Telemetry.POI_PJ_CLOSE)
-  } else {
-    Telemetry.add(Telemetry.POI_CLOSE)
-  }
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("close", "poi", this.poi.meta.source)
   PanelManager.resetLayout()
 }
 
@@ -151,20 +143,12 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
-  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
-    Telemetry.add(Telemetry.POI_PJ_GO)
-  } else {
-    Telemetry.add(Telemetry.POI_GO)
-  }
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("go", "poi", this.poi.meta.source)
   fire('fit_map', this.poi, layouts.POI)
 }
 
 PoiPanel.prototype.openShare = function () {
-  if (this.poi.meta && this.poi.meta.source === constants.telemetry.source.PJ) {
-    Telemetry.add(Telemetry.POI_PJ_SHARE)
-  } else {
-    Telemetry.add(Telemetry.POI_SHARE)
-  }
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("share", "poi", this.poi.meta.source)
   this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 
