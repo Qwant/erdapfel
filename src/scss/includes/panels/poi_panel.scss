@@ -19,13 +19,18 @@ $HEADER_SIZE: 30px;
   overflow-y: auto;
 }
 
+.poi_panel__content {
+  animation: appear 600ms forwards;
+}
+
 .poi_panel__image {
   width: 100px;
   height: 80px;
   background-size: cover;
   background-position: center center;
+  background-color: white;
   position: absolute;
-  top: 13px;
+  top: 10px;
   right: 0;
 }
 .poi_panel--hidden {
@@ -76,7 +81,7 @@ $HEADER_SIZE: 30px;
 
 .poi_panel__close {
   position: absolute;
-  right: 0;
+  right: 2px;
   top: 2px;
   cursor: pointer;
   height: 30px;
@@ -130,8 +135,8 @@ $HEADER_SIZE: 30px;
 
 .poi_panel__description_container {
   position: relative;
-  padding: 0 125px 0 0;
-  margin-bottom: 20px;
+  padding: 0 120px 0 0;
+  margin-bottom: 25px;
   cursor: pointer;
 }
 
@@ -143,7 +148,6 @@ $HEADER_SIZE: 30px;
 
 /* wrap it into an element and then put padding on this new element instead */
 .poi_panel__title {
-  width: 350px;
   padding-top: 10px;
   font-family: Asap;
   font-weight: 700;
@@ -188,7 +192,7 @@ $HEADER_SIZE: 30px;
 
 .poi_panel__address {
   padding: 8px 0 0 0;
-  font-size: 16px;
+  font-size: 15px;
   color: $primary_text;
 }
 
@@ -311,17 +315,26 @@ $HEADER_SIZE: 30px;
 .poi_panel__actions {
   width: 100%;
   position: relative;
-  height: 34px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-a.button_container {
-  text-decoration: none;
-}
 .button_container {
   float: left;
   text-decoration: none;
-  width: 25%;
   text-align: center;
+
+  &:not(:last-child){
+    margin-right: 20px;
+  }
+
+  &:not(:first-child){
+    min-width: 20%
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
 
   button {
     width: 100%;
@@ -350,7 +363,6 @@ a.button_container {
 
 .poi_panel__actions__text {
   display: inline-block;
-  padding-left: 2px;
   height: 25px;
   font-size: 12px;
   color: $primary_text;
@@ -371,7 +383,7 @@ a.button_container {
   font-size: 42px;
   color: #E93865;
   position: absolute;
-  right: 20px;
+  right: 0px;
   top: 8px;
 }
 
@@ -397,6 +409,7 @@ a.button_container {
 
 .poi_panel__service_information__container {
   position: relative;
+  padding-left: $BLOCK_PADDING;
 }
 
 .poi_panel__block__information {
@@ -430,7 +443,7 @@ a.button_container {
   font-size: 13px;
   font-weight: normal;
   margin: 10px 0 4px 0;
-  color: $secondary_text
+  color: $secondary_text;
 }
 
 .poi_panel__sub_block__title {
@@ -448,6 +461,7 @@ a.button_container {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding-left: $BLOCK_PADDING;
 }
 
 .poi_panel__info__wiki {
@@ -484,21 +498,8 @@ a.button_container {
 }
 
 @keyframes appear {
-  0% {background-color: $background;}
-  100% {background-color: $background; }
-}
-
-@keyframes disappear {
-  0% {background-color: $background;}
-  100% {background-color: transparent;}
-}
-
-#poi-loading-panel {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  0% {opacity: 0;}
+  100% {opacity: 1; }
 }
 
 .poi_panel__back_mobile {
@@ -539,19 +540,19 @@ a.button_container {
 @media (max-width: 640px) {
   .poi_panel {
     width: 100vw;
-    bottom: 0;
     position: absolute;
     border-radius: 0;
   }
 
   .poi_panel:not(.poi_panel--card) {
-    height: calc(100vh - 106px);
+    height: calc(100% - 30px);
+    top: 30px;
   }
 
   .poi_panel__header {
     position: absolute;
     height: 100px;
-    bottom: calc(100vh - 104px);
+    bottom: calc(100% - 30px);
     z-index: 2;
     display: block;
     background-color: #fff;
@@ -634,6 +635,7 @@ a.button_container {
     width: 100%;
     display: block;
     position: relative;
+    margin-top: 10px;
   }
 
   .poi_panel--hidden {

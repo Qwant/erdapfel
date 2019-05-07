@@ -22,15 +22,12 @@
     {{= this.htmlEncode(this.poi.address.label) }}
   </p>
 {{?}}
-{{? this.topImageUrl }}
-    <div class="poi_panel__image" style="background-image: url(&quot;{{= this.topImageUrl }}&quot;)"></div>
-    {{? ico }}
-      <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-    {{?}}
+{{? ico }}
+  <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
 {{??}}
-  {{? ico }}
-    <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-  {{??}}
-    <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
-  {{?}}
+  <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
 {{?}}
+{{? this.poi.topImageUrl }}
+  <div class="poi_panel__image" style="background-image: url(&quot;{{= this.poi.topImageUrl }}&quot;)"></div>
+{{?}}
+

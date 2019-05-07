@@ -33,8 +33,6 @@ function PoiPanel(sharePanel) {
   this.minimalHourPanel = new MinimalHourPanel()
   this.sceneState = SceneState.getSceneState()
   this.isDirectionActive = nconf.get().direction.enabled
-  this.topImageUrl = null
-  this.phoneNumber = null
   PanelManager.register(this)
   UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE)
   this.isMasqEnabled = nconf.get().masq.enabled
@@ -43,7 +41,6 @@ function PoiPanel(sharePanel) {
     if (this.poi) {
       this.poi.stored = await isPoiFavorite(this.poi)
       this.panel.update()
-      endLoad()
     }
   })
 
@@ -51,7 +48,6 @@ function PoiPanel(sharePanel) {
     if (this.poi && !this.poi.stored) {
       this.poi.stored = await isPoiFavorite(this.poi)
       this.panel.update()
-      endLoad()
     }
   })
 }
@@ -97,27 +93,11 @@ PoiPanel.prototype.close = async function() {
   PanelManager.openService()
 }
 
-PoiPanel.prototype.lookForElements = function() {
-  this.topImageUrl = null
-  this.phoneNumber = null
-  if(this.poi && this.poi.blocks) {
-    for (let i = 0; i < this.poi.blocks.length; ++i) {
-      let block = this.poi.blocks[i]
-      if (block.images && block.images[0]) {
-        this.topImageUrl = block.images[0].url
-      } else if (block.type === 'phone' && block.url !== undefined) {
-        this.phoneNumber = block
-      }
-    }
-  }
-}
-
 PoiPanel.prototype.restorePoi = async function (id) {
   Telemetry.add(Telemetry.POI_RESTORE)
   let hotLoadedPoi = new HotLoadPoi()
   if(hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi
-    this.lookForElements()
     window.execOnMapLoaded(() => {
       fire('map_mark_poi', this.poi)
       fire('fit_map', this.poi, layouts.POI)
@@ -133,7 +113,6 @@ PoiPanel.prototype.restorePoi = async function (id) {
 
 PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.poi = poi
-  this.lookForElements()
   this.card = true
   this.poi.stored = await isPoiFavorite(this.poi)
   this.PoiBlocContainer.set(this.poi)
@@ -143,7 +122,6 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.sceneState.setPoiId(this.poi.id)
   await this.panel.update()
   await this.minimalHourPanel.set(this.poi)
-  endLoad()
 }
 
 PoiPanel.prototype.center = function() {
@@ -172,7 +150,6 @@ PoiPanel.prototype.restore = async function(urlShard) {
     if (idSlugMatch && window.hotLoadPoi) {
       let id = idSlugMatch[1]
       await this.restorePoi(id)
-      endLoad()
     }
   }
 }
@@ -180,13 +157,11 @@ PoiPanel.prototype.restore = async function(urlShard) {
 PoiPanel.prototype.showDetail = function() {
   this.card = false
   this.panel.update()
-  endLoad()
 }
 
 PoiPanel.prototype.backToSmall = function() {
   this.card = true
   this.panel.update()
-  endLoad()
 }
 
 PoiPanel.prototype.backToFavorite = function() {
@@ -209,18 +184,6 @@ async function isPoiFavorite(poi) {
     return false
   }
   return false
-}
-
-/* loadable */
-
-function endLoad() {
-  let loadingPanel = document.querySelector('#poi-loading-panel')
-  loadingPanel.style.animation = 'disappear 1s forwards'
-
-  setTimeout(() => {
-    let loadingPanel = document.querySelector('#poi-loading-panel')
-     loadingPanel.style.display = 'none'
-  }, 200)
 }
 
 export default PoiPanel
