@@ -25,6 +25,14 @@ export default class IdunnPoi extends Poi {
     this.localName = rawPoi.local_name
     this.address = IdunnPoi.getAddress(rawPoi)
     this.bbox = rawPoi.geometry.bbox
+
+    if(this.blocks) {
+      let imagesBlock = this.blocks.find((b) => b.type === 'images')
+      if (imagesBlock && imagesBlock.images.length > 0){
+        this.topImageUrl = imagesBlock.images[0].url
+      }
+      this.phoneBlock = this.blocks.find((b) => b.type === 'phone')
+    }
   }
 
   getInputValue() {
@@ -32,7 +40,7 @@ export default class IdunnPoi extends Poi {
       case 'address':
       case 'street':
         return this.alternativeName
-      default :
+      default:
         return this.name
     }
   }
@@ -50,8 +58,7 @@ export default class IdunnPoi extends Poi {
     } catch (err) {
       if(err === 404) {
         return
-      }
-      else {
+      } else {
         Error.sendOnce(
           'idunn_poi', 'poiApiLoad',
           `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,

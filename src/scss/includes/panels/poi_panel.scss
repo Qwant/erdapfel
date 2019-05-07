@@ -1,13 +1,15 @@
 @import "../osm_contribute";
 
-$BLOCK_INDENT: 60px;
+$BLOCK_INDENT: 28px;
 $CARD_ACTION_WIDTH: 130px;
 $CARD_ACTION_RIGHT_MARGIN: 8px;
 $CARD_PADDING: 8px;
+$BLOCK_PADDING: 24px;
+$BLOCK_ICON_FONT_SIZE: 16px;
+$HEADER_SIZE: 30px;
 
 .poi_panel {
   display: block;
-  max-height: calc(100vh - 240px);
   position: relative;
   width: $panel_width;
   padding-bottom: 10px;
@@ -17,12 +19,32 @@ $CARD_PADDING: 8px;
   overflow-y: auto;
 }
 
+.poi_panel__content {
+  animation: appear 600ms forwards;
+}
+
+.poi_panel__image {
+  width: 100px;
+  height: 80px;
+  background-size: cover;
+  background-position: center center;
+  background-color: white;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
 .poi_panel--hidden {
   display: none;
 }
 
 .poi_panel__content__card {
   display: none;
+}
+
+.poi_panel__container {
+  padding: 0 $BLOCK_INDENT;
+  width: 100%;
+  position: relative;
 }
 
 .poi_panel__content__card__content {
@@ -59,20 +81,22 @@ $CARD_PADDING: 8px;
 
 .poi_panel__close {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 2px;
+  top: 2px;
   cursor: pointer;
-  height: 42px;
-  width: 40px;
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
   text-align: center;
-  line-height: 42px;
   transition: background-color .1s;
   background: $background;
   border-radius: 50%;
+  font-size: 20px;
 }
 
 .poi_panel__close:hover {
   background: $background_hover;
+  color: $primary_text;
 }
 
 .poi_panel__info__section {
@@ -82,30 +106,37 @@ $CARD_PADDING: 8px;
 }
 
 .poi_panel__info__section__phone {
-  margin-left: $BLOCK_INDENT;
-  font-size: 14px;
+  font-size: $BLOCK_ICON_FONT_SIZE;
 }
 
 .poi_panel__back {
   display: inline-block;
   width: 20px;
+  color: $primary_text;
+}
+
+.poi_panel__header + .poi_panel--card {
+  margin-top: $HEADER_SIZE;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
+  max-height: calc(100vh - 120px - #{$HEADER_SIZE});
 }
 
 .poi_panel__back_to_favorite {
-  font-size: 14px;
-  color: $secondary_text;
-  padding: 14px 0 14px 40px;
+  position: absolute;
+  top: 8px;
   cursor: pointer;
-  border-bottom: 1px solid $separator_color;
-  margin-bottom: 14px;
 }
 
 .poi_panel__back_to_favorite:hover {
-  color: $secondary_text;
+  color: #000;
 }
 
 .poi_panel__description_container {
   position: relative;
+  padding: 0 120px 0 0;
+  margin-bottom: 25px;
   cursor: pointer;
 }
 
@@ -115,9 +146,9 @@ $CARD_PADDING: 8px;
   content: '';
 }
 
+/* wrap it into an element and then put padding on this new element instead */
 .poi_panel__title {
-  width: 350px;
-  padding: 18px 0 0 $BLOCK_INDENT;
+  padding-top: 10px;
   font-family: Asap;
   font-weight: 700;
   color: $primary_text;
@@ -139,27 +170,29 @@ $CARD_PADDING: 8px;
 .poi_panel__info__section:before {
   content: '';
   display: block;
-  width: calc(100% - 2 * 28px);
+  width: 100%;
   height: 1px;
   margin-top: 8px;
   background: $separator_color;
-  margin-left: 28px;
+}
+
+.poi_panel__info {
+  clear: both;
 }
 
 .poi_panel__description {
   position: relative;
-  padding-left: $BLOCK_INDENT;
   font-size: 14px;
   color: $secondary_text;
-
 }
+
 .poi_panel__description:first-letter {
   text-transform: uppercase;
 }
 
 .poi_panel__address {
-  padding: 8px 28px 0 $BLOCK_INDENT;
-  font-size: 16px;
+  padding: 8px 0 0 0;
+  font-size: 15px;
   color: $primary_text;
 }
 
@@ -168,24 +201,22 @@ $CARD_PADDING: 8px;
 }
 
 .poi_panel__info__link, .poi_panel__info__contact {
-  margin-left: $BLOCK_INDENT;
-  font-size: 15px;
-  color: $secondary_variant_text;
+  font-size: 13px;
+  color: $secondary_text;
+  text-transform: uppercase;
 }
 
 .poi_panel__info__link:HOVER, .poi_panel__info__contact:HOVER {
   text-decoration: none;
-  border-bottom: 1px solid $secondary_variant_text;
+  color: $primary_text;
 }
 
 .poi_panel__info__accessibilities {
   font-size: 15px;
-  margin-left: $BLOCK_INDENT;
   color: $primary_text;
 }
 
 .poi_panel__info__hours {
-  margin-left: $BLOCK_INDENT;
   max-height: 0;
   transition: max-height 0.3s;
   overflow: hidden;
@@ -214,12 +245,10 @@ $CARD_PADDING: 8px;
 .poi_panel__info__hours__status {
   cursor: pointer;
   position: relative;
-  width: 368px;
 }
 
 .poi_panel__info__hours__status__text {
   display: inline-block;
-  margin-left: $BLOCK_INDENT;
   color: $primary_text;
 }
 
@@ -268,14 +297,13 @@ $CARD_PADDING: 8px;
 }
 
 .poi_panel__description__ellipsis {
-  margin-top: 20px;
+  margin-top: 13px;
   line-height: 22px;
   font-size: 15px;
-  padding-right: 60px;
+  padding-right: 45px;
 }
 
 .poi_panel__info__item {
-  margin-left: $BLOCK_INDENT;
   font-size: 13px;
   color: $primary_text;
 }
@@ -285,27 +313,44 @@ $CARD_PADDING: 8px;
 }
 
 .poi_panel__actions {
-  margin-left: $BLOCK_INDENT;
-  margin-top: 16px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-.poi_panel__actions:after {
-  clear: both;
-  content: '';
-}
-
-.poi_panel__actions__store_container {
+.button_container {
   float: left;
+  text-decoration: none;
+  text-align: center;
+
+  &:not(:last-child){
+    margin-right: 20px;
+  }
+
+  &:not(:first-child){
+    min-width: 20%
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  button {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+  }
 }
 
-.poi_panel__actions__direction_container {
-  float: left;
-  margin-left: 20px;
+.button_container:hover {
+  button, div {
+    color: $primary_text;
+  }
 }
 
-.poi_panel__actions__share_container {
-  float: left;
-  margin-left: 20px;
+.button_container:hover {
+  cursor: pointer;
 }
 
 .poi_panel__actions__icon {
@@ -318,53 +363,53 @@ $CARD_PADDING: 8px;
 
 .poi_panel__actions__text {
   display: inline-block;
-  padding-left: 2px;
   height: 25px;
   font-size: 12px;
   color: $primary_text;
-}
-
-.poi_panel__actions__share_container:hover .poi_panel__actions__text, .poi_panel__actions__store_container:hover .poi_panel__actions__text {
-  color: $primary_text;
-  text-decoration: underline;
-}
-
-.poi_panel__description_container {
-  position: relative;
 }
 
 .poi_panel__store_status__toggle:after {
   content: '';
 }
 
+.poi_panel__image + .poi_panel__title__symbol {
+    display: none;
+}
+
 /* TODO export to external service */
 
 /* title symbols */
 .poi_panel__title__symbol {
-  float: left;
   font-size: 42px;
-  margin: 18px 0 0 16px;
-  line-height: 35px !important;
+  color: #E93865;
+  position: absolute;
+  right: 0px;
+  top: 8px;
 }
 
 /* symbols */
 .poi_panel__block__symbol {
   position: absolute;
-  top: 18px;
-  left: 25px;
-  font-size: 24px;
+  top: 20px;
+  font-size: $BLOCK_ICON_FONT_SIZE;
   color: $primary_clear;
   width: 20px;
   height: 18px;
 }
 
+.poi_panel__block__symbol.icon-icon_phone, .poi_panel__block__symbol.icon-icon_clock {
+  top: 20px;
+}
+
 .poi_panel__block__content {
   margin-top: 18px;
   margin-bottom: 20px;
+  padding-left: $BLOCK_PADDING;
 }
 
 .poi_panel__service_information__container {
   position: relative;
+  padding-left: $BLOCK_PADDING;
 }
 
 .poi_panel__block__information {
@@ -397,15 +442,14 @@ $CARD_PADDING: 8px;
 .poi_panel__sub__sub_block__title {
   font-size: 13px;
   font-weight: normal;
-  margin: 10px 0 4px $BLOCK_INDENT;
-  color: $secondary_text
+  margin: 10px 0 4px 0;
+  color: $secondary_text;
 }
 
 .poi_panel__sub_block__title {
   margin-top:20px;
   cursor: pointer;
   position: relative;
-  width: 366px;
 }
 
 .poi_panel__sub_block__title__text {
@@ -417,18 +461,33 @@ $CARD_PADDING: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-left: $BLOCK_INDENT;
+  padding-left: $BLOCK_PADDING;
 }
 
 .poi_panel__info__wiki {
-  margin: 10px 0 0 $BLOCK_INDENT;
+  margin-top: 15px;
   font-size: 12px;
-  color: $secondary_text;
+  color: $primary_text;
+  padding-left: $BLOCK_PADDING;
 }
 
 .poi_panel__info__wiki__link {
-  line-height: 18px;
-  font-size: 16px;
+  font-size: 13px;
+  color: $secondary_text;
+  position: relative;
+
+  .icon-chevrons-right {
+    position: absolute;
+    top: 1px;
+  }
+  span {
+    margin-left: 15px;
+  }
+}
+
+.poi_panel__info__wiki__link:hover {
+  color: $primary_text;
+  text-decoration: none;
 }
 
 /* symbols */
@@ -439,29 +498,77 @@ $CARD_PADDING: 8px;
 }
 
 @keyframes appear {
-  0% {background-color: $background;}
-  100% {background-color: $background; }
+  0% {opacity: 0;}
+  100% {opacity: 1; }
 }
 
-@keyframes disappear {
-  0% {background-color: $background;}
-  100% {background-color: transparent;}
+.poi_panel__back_mobile {
+  color: $primary_text;
+  cursor: pointer;
+
+  i {
+    font-weight: bold;
+  }
 }
 
-#poi-loading-panel {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+@media (min-width: 641px) {
+  .poi_panel {
+    max-height: calc(100vh - 120px);
+  }
+  .poi_panel__back_mobile {
+    display: none;
+  }
+
+  .poi_panel__header {
+    font-size: 13px;
+    color: $secondary_text;
+    padding: 14px 0 14px 10px;
+    text-transform: uppercase;
+    position: absolute;
+    left: 0;
+    height: $HEADER_SIZE;
+    top: -$HEADER_SIZE;
+    right: 0;
+    background: $background;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+  }
 }
 
 @media (max-width: 640px) {
   .poi_panel {
-    max-height: calc(100vh - 200px);
     width: 100vw;
-    bottom: 0;
     position: absolute;
+    border-radius: 0;
+  }
+
+  .poi_panel:not(.poi_panel--card) {
+    height: calc(100% - 30px);
+    top: 30px;
+  }
+
+  .poi_panel__header {
+    position: absolute;
+    height: 100px;
+    bottom: calc(100% - 30px);
+    z-index: 2;
+    display: block;
+    background-color: #fff;
+    width: 100vw;
+    padding-top: 76px;
+    padding-left: 12px;
+    background-color: #F0F0F0;
+    display: block;
+  }
+
+  .poi_header_card {
+    display: none;
+  }
+
+  .poi_panel__close {
+    display: none;
   }
 
   .poi_panel.poi_panel--card {
@@ -470,6 +577,7 @@ $CARD_PADDING: 8px;
     left: 8px;
     bottom: 8px;
     clear: both;
+    max-height: calc(100vh - 200px);
   }
 
   .poi_panel__content__card {
@@ -487,10 +595,11 @@ $CARD_PADDING: 8px;
   .poi_panel--card {
     .poi_panel__title {
       width: auto;
+      padding-top: 20px;
     }
     .poi_panel__address {
       font-size: 14px;
-      padding: 8px 14px 0 $BLOCK_INDENT;
+      padding: 8px 10px 0 0;
     }
     .poi_panel__info__hours__status__text {
       font-size: 14px;
@@ -525,19 +634,23 @@ $CARD_PADDING: 8px;
   .poi_panel__content {
     width: 100%;
     display: block;
+    position: relative;
+    margin-top: 10px;
   }
 
   .poi_panel--hidden {
     top: -100vh;
   }
 
-  .poi_panel__title__symbol {
-    margin: 18px 0 0 12px;
+  .poi_panel__content__card__content .poi_panel__title__symbol.icon {
+    margin: 6px 0 0 7px;
+    right: initial;
+    padding-left: 0;
   }
 
   .poi_panel__info__section:before {
-    width: calc(100% - 40px);
-    margin: 18px 20px 12px;
+    width: 100%;
+    margin: 18px 0 12px;
   }
 
   .poi_panel__info__section:not(:last-of-type):after {
@@ -547,5 +660,29 @@ $CARD_PADDING: 8px;
   .poi_panel__description__ellipsis {
     width: 100%;
   }
-}
 
+  .poi_panel__content__card__content > .poi_panel__address, .poi_panel__content__card__content > * {
+    padding-left: 55px;
+  }
+
+  .poi_panel__image {
+    display: none;
+  }
+  .poi_panel__image + .poi_panel__title__symbol {
+    display: block;
+  }
+
+  .poi_panel__content__card__action__container {
+    margin-top: 20px;
+  }
+
+  .map_container .map_control__scale_attribute_container {
+    display: none;
+  }
+
+  .poi_panel__content__card__action__direction {
+    background-color: $primary_text;
+    border-color: $primary_text;
+    color: #fff;
+  }
+}

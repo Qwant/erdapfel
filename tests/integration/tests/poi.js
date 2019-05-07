@@ -129,11 +129,11 @@ test('center the map to the poi on a poi click', async () => {
   let center = await page.evaluate(() => {
     return MAP_MOCK.getCenter()
   })
-  expect(center).toEqual({lng  : poiMock.geometry.coordinates[0], lat : poiMock.geometry.coordinates[1]})
+  expect(center).toEqual({lng: poiMock.geometry.coordinates[0], lat: poiMock.geometry.coordinates[1]})
 })
 
 test('display details about the poi on a poi click', async () => {
-  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/48.8605833/2.3261037`)
   await page.waitForSelector('.poi_panel__title')
   expect.assertions(8)
 
@@ -155,15 +155,15 @@ test('display details about the poi on a poi click', async () => {
       contact: document.querySelector('.poi_panel__info__contact').innerText,
       contactUrl: document.querySelector('.poi_panel__info__contact').href,
       hours: document.querySelector('.poi_panel__info__hours__status').innerText,
-      phone: document.querySelector('.poi_panel__info__section__phone').innerText,
+      phone: document.querySelector('.poi_panel__actions__phone_container').innerText,
       website: document.querySelector('.poi_panel__info__link').innerText
     }
   })
   expect(hours.trim()).toMatch('Fermé')
   expect(phone).toMatch('+33140494814')
-  expect(website).toMatch('www.musee-orsay.fr')
+  expect(website).toMatch('WWW.MUSEE-ORSAY.FR')
   expect(contactUrl).toMatch('mailto:admin@orsay.fr')
-  expect(contact).toMatch('admin@orsay.fr')
+  expect(contact).toMatch('ADMIN@ORSAY.FR')
 
   let wiki_block = await page.waitForSelector('.poi_panel__info__wiki')
   expect(wiki_block).not.toBeFalsy()
@@ -234,7 +234,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(poiPanel).not.toBeFalsy()
   await wait(300)
   await page.click('.poi_panel__actions__store_container')
-  await page.click('.poi_panel__content .poi_panel__close')
+  await page.click('.poi_panel__header .poi_panel__close')
   // we check that the first favorite item is our poi
   await toggleFavoritePanel(page)
   let fav = await getFavorites(page)
@@ -251,7 +251,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(poiPanel).not.toBeFalsy()
 
   await page.click('.poi_panel__actions__store_container')
-  await page.click('.poi_panel__content .poi_panel__close')
+  await page.click('.poi_panel__header .poi_panel__close')
   // it should disapear from the favorites
   await toggleFavoritePanel(page)
   fav = await getFavorites(page)
