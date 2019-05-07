@@ -38,20 +38,20 @@ export default class Suggest {
         }
         else {
           promise = new Promise(async (resolve, reject) => {
-            this.suggestList = []
-
             /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
             this.historyPromise = PoiStore.get(term)
             this.bragiPromise = BragiPoi.get(term)
-            this.categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : null
+            this.categoriesMatched = withCategories ? CategoryService.getMatchingCategories(term) : null
 
             try {
-              const [bragiResponse, storeResponse, categoryResponse] = await Promise.all([
-                this.bragiPromise, this.historyPromise, this.categoryPromise
+              const [bragiResponse, storeResponse] = await Promise.all([
+                this.bragiPromise, this.historyPromise
               ])
 
-              if (categoryResponse)
-                this.suggestList = this.suggestList.concat(categoryResponse)
+              this.suggestList = []
+
+              if (this.categoriesMatched)
+                this.suggestList = this.suggestList.concat(this.categoriesMatched)
 
               if (bragiResponse) {
                 this.bragiPromise = null
@@ -60,7 +60,10 @@ export default class Suggest {
 
               this.suggestList = this.suggestList.concat(storeResponse)
 
-              resolve(this.suggestList)
+              if (this.suggestList.length > 0)
+                resolve(this.suggestList)
+              else
+                resolve(null)
             } catch (e) {
               reject(e)
             }
