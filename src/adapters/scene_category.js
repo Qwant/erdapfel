@@ -8,7 +8,8 @@ export default class SceneCategory {
     this.markers = []
 
     listen('add_category_markers', (pois) => {
-      this.addCategoryMarkers(pois);
+      this.resetMarkers()
+      this.addCategoryMarkers(pois)
     })
     listen('remove_category_markers', () => {
       this.removeCategoryMarkers()
@@ -33,8 +34,13 @@ export default class SceneCategory {
     )
   }
 
-  removeCategoryMarkers() {
+  resetMarkers() {
     this.markers.map(mark => mark.remove())
+    this.markers = []
+  }
+
+  removeCategoryMarkers() {
+    this.resetMarkers()
     this.setOsmPoisVisibility(true)
   }
 
