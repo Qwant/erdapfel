@@ -25,12 +25,12 @@ $HEADER_SIZE: 30px;
 
 .poi_panel__image {
   width: 100px;
-  height: 80px;
+  height: 100px;
   background-size: cover;
   background-position: center center;
   background-color: white;
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 0;
 }
 .poi_panel--hidden {
@@ -101,7 +101,6 @@ $HEADER_SIZE: 30px;
 
 .poi_panel__info__section {
   position: relative;
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -116,7 +115,6 @@ $HEADER_SIZE: 30px;
 }
 
 .poi_panel__header + .poi_panel--card {
-  margin-top: $HEADER_SIZE;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
@@ -138,6 +136,7 @@ $HEADER_SIZE: 30px;
   padding: 0 120px 0 0;
   margin-bottom: 25px;
   cursor: pointer;
+  min-height: 85px;
 }
 
 .poi_panel__description_container:after {
@@ -330,7 +329,7 @@ $HEADER_SIZE: 30px;
   }
 
   &.poi_panel__actions__phone_container {
-    max-width: calc(24% + 10px);
+    max-width: 28%;
   }
 
   &:not(:first-child){
@@ -541,11 +540,7 @@ $HEADER_SIZE: 30px;
     color: $secondary_text;
     padding: 14px 0 14px 10px;
     text-transform: uppercase;
-    position: absolute;
-    left: 0;
     height: $HEADER_SIZE;
-    top: -$HEADER_SIZE;
-    right: 0;
     background: $background;
     z-index: 1;
     box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
@@ -651,21 +646,13 @@ $HEADER_SIZE: 30px;
   }
 
   .poi_panel__content {
-    width: 100%;
-    display: block;
-    position: relative;
-    margin-top: 10px;
+    margin-top: 15px;
   }
 
   .poi_panel__content__card__content .poi_panel__title__symbol.icon {
     margin: 6px 0 0 7px;
     right: initial;
     padding-left: 0;
-  }
-
-  .poi_panel__info__section:before {
-    width: 100%;
-    margin: 18px 0 12px;
   }
 
   .poi_panel__info__section:not(:last-of-type):after {
@@ -680,7 +667,7 @@ $HEADER_SIZE: 30px;
     padding-left: 55px;
   }
 
-  .poi_panel__image {
+  .poi_panel__content__card__content .poi_panel__image {
     display: none;
   }
   .poi_panel__image + .poi_panel__title__symbol {
