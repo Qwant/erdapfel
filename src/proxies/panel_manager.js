@@ -48,6 +48,14 @@ PanelManager.loadPoiById = async function(id, options) {
   }
 }
 
+PanelManager.emptyClickOnMap = function() {
+  let poiPanel = __panel_manager.panels.forEach((p) => {
+    if(p.emptyClickOnMap) {
+      p.emptyClickOnMap()
+    }
+  })
+}
+
 PanelManager.getDirectionPanel = function () {
   return __panel_manager.panels.find(panel => panel instanceof DirectionPanel)
 }

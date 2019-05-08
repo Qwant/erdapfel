@@ -12,6 +12,7 @@ import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
 import nconf from "../../local_modules/nconf_getter";
 import MasqFavoriteModal from "../modals/masq_favorite_modal";
+import Device from "../libs/device";
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -85,7 +86,9 @@ PoiPanel.prototype.closeAction = function() {
 }
 
 PoiPanel.prototype.close = async function() {
-  await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
+  if(!this.active){
+    return
+  }
   this.active = false
   this.panel.update()
   this.sceneState.unsetPoiID()
@@ -170,6 +173,13 @@ PoiPanel.prototype.backToFavorite = function() {
 
 PoiPanel.prototype.openDirection = function () {
   PanelManager.toggleDirection({poi : this.poi})
+}
+
+PoiPanel.prototype.emptyClickOnMap = function() {
+  // On mobile, close poi card when clicking outside (on the map)
+  if (Device.isMobile() && this.active) {
+    this.closeAction()
+  }
 }
 
 /* private */

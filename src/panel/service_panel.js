@@ -44,6 +44,9 @@ export default class ServicePanel{
   }
 
   close() {
+    if(!this.active) {
+      return
+    }
     this.active = false
     this.panel.update()
   }

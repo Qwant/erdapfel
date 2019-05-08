@@ -325,7 +325,12 @@ $HEADER_SIZE: 30px;
   text-align: center;
 
   &:not(:last-child){
-    margin-right: 20px;
+    margin-right: 15px;
+    max-width: calc(23% - 20px);
+  }
+
+  &.poi_panel__actions__phone_container {
+    max-width: calc(24% + 10px);
   }
 
   &:not(:first-child){
@@ -578,6 +583,8 @@ $HEADER_SIZE: 30px;
     bottom: 8px;
     clear: both;
     max-height: calc(100vh - 200px);
+    position: fixed;
+    min-height: 125px;
   }
 
   .poi_panel__content__card {
@@ -636,10 +643,6 @@ $HEADER_SIZE: 30px;
     display: block;
     position: relative;
     margin-top: 10px;
-  }
-
-  .poi_panel--hidden {
-    top: -100vh;
   }
 
   .poi_panel__content__card__content .poi_panel__title__symbol.icon {
