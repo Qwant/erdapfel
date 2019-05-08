@@ -110,6 +110,7 @@ Scene.prototype.initMapBox = function () {
       })
 
       this.mb.on('click', interactiveLayer, async (e) => {
+        e._interactiveClick = true
         if(e.features && e.features.length > 0) {
           let mapPoi = new MapPoi(e.features[0], e.lngLat)
           this.sceneState.setPoiId(mapPoi.id)
@@ -149,6 +150,12 @@ Scene.prototype.initMapBox = function () {
         return
       }
       this.mb.addImage("walking_bullet_inactive", image)
+    })
+
+    this.mb.on('click', (e) => {
+      if(!e._interactiveClick){
+        PanelManager.emptyClickOnMap()
+      }
     })
 
     window.execOnMapLoaded = (f) => f()
