@@ -8,6 +8,7 @@ import LatLonPoi from "../../adapters/poi/latlon_poi";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
 import Device from '../../libs/device'
+import Telemetry from '../../libs/telemetry'
 import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 import {vehiculeMatching} from '../../adapters/direction_api'
 
@@ -91,6 +92,8 @@ export default class DirectionPanel {
   setVehicle(vehicle) {
     this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active')
     this.vehicle = vehicle
+    console.log(vehicle)
+    Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`])
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
     UrlState.pushUrl()
     this.searchDirection()

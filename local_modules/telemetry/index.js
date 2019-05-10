@@ -14,6 +14,10 @@ module.exports = {
     'favorite_error_load_all', //error
     /* Itinerary */
     'itinerary_open',
+    'itinerary_share',
+    'itinerary_mode_driving',
+    'itinerary_mode_walking',
+    'itinerary_mode_cycling',
     /* Poi */
     'poi_category_open',
     'poi_backtofavorite',
