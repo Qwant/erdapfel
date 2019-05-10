@@ -14,7 +14,9 @@ module.exports = {
     'favorite_error_load_all', //error
     /* Itinerary */
     'itinerary_open',
+    'itinerary_close',
     'itinerary_share',
+    'itinerary_invert',
     'itinerary_mode_driving',
     'itinerary_mode_walking',
     'itinerary_mode_cycling',

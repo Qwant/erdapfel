@@ -90,16 +90,16 @@ export default class DirectionPanel {
   }
 
   setVehicle(vehicle) {
+    Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`])
     this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active')
     this.vehicle = vehicle
-    console.log(vehicle)
-    Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`])
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
     UrlState.pushUrl()
     this.searchDirection()
   }
 
   invertOriginDestination() {
+    Telemetry.add(Telemetry.ITINERARY_INVERT)
     let originValue = this.originInput.getValue()
     let destinationValue = this.destinationInput.getValue()
     this.originInput.setValue(destinationValue)
@@ -151,6 +151,7 @@ export default class DirectionPanel {
   }
 
   closeAction() {
+    Telemetry.add(Telemetry.ITINERARY_CLOSE)
     PanelManager.resetLayout()
   }
 
