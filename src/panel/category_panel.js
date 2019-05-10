@@ -31,6 +31,7 @@ export default class CategoryPanel {
       if (poi.meta && poi.meta.source) Telemetry.add("open", "poi", poi.meta.source)
       this.selectPoi(poi);
     });
+
   }
 
   store () {
@@ -65,6 +66,7 @@ export default class CategoryPanel {
 
     this.addCategoryMarkers();
 
+    document.querySelector(".service_panel").classList.remove("service_panel--active")
   }
 
   async open (options = {}) {

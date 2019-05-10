@@ -88,6 +88,7 @@ PoiPanel.prototype.isDisplayed = function() {
 
 PoiPanel.prototype.closeAction = function() {
   if (this.poi.meta && this.poi.meta.source) Telemetry.add("close", "poi", this.poi.meta.source)
+  fire('clean_marker')
   PanelManager.resetLayout()
 }
 
