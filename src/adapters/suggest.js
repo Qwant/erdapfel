@@ -79,7 +79,7 @@ export default class Suggest {
         pois.forEach((poi) => {
           if (poi instanceof PoiStore) {
             favorites.push(poi)
-          } if (poi instanceof  Category) {
+          } else if (poi instanceof  Category) {
             categories.push(poi)
           } else {
             remotes.push(poi)
