@@ -38,8 +38,6 @@ export default class Suggest {
         }
         else {
           promise = new Promise(async (resolve, reject) => {
-            this.suggestList = []
-
             /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
             this.historyPromise = PoiStore.get(term)
             this.bragiPromise = BragiPoi.get(term)
@@ -50,14 +48,16 @@ export default class Suggest {
                 this.bragiPromise, this.historyPromise, this.categoryPromise
               ])
 
+              if (!bragiResponse)
+                return resolve(null)
+
+              this.suggestList = []
+
               if (categoryResponse)
                 this.suggestList = this.suggestList.concat(categoryResponse)
 
-              if (bragiResponse) {
-                this.bragiPromise = null
-                this.suggestList = this.suggestList.concat(bragiResponse)
-              }
-
+              this.bragiPromise = null
+              this.suggestList = this.suggestList.concat(bragiResponse)
               this.suggestList = this.suggestList.concat(storeResponse)
 
               resolve(this.suggestList)
@@ -79,7 +79,7 @@ export default class Suggest {
         pois.forEach((poi) => {
           if (poi instanceof PoiStore) {
             favorites.push(poi)
-          } if (poi instanceof  Category) {
+          } else if (poi instanceof  Category) {
             categories.push(poi)
           } else {
             remotes.push(poi)
