@@ -48,7 +48,7 @@ export default class IdunnPoi extends Poi {
 /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
   static async poiCategoryLoad(bbox, size, category) {
     let url = `${serviceConfig.idunn.url}/v1/places`
-    let requestParams = {bbox, size, category, verbosity: 'long'}
+    let requestParams = {bbox, size, category}
 
     try {
       let rawPois = await Ajax.getLang(url, requestParams)

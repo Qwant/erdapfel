@@ -391,9 +391,12 @@ $HEADER_SIZE: 30px;
 .poi_panel__title__symbol {
   font-size: 42px;
   color: #E93865;
-  position: absolute;
-  right: 0px;
-  top: 8px;
+
+  .poi_panel & {
+    position: absolute;
+    right: 0px;
+    top: 8px;
+  }
 }
 
 /* symbols */

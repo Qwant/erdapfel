@@ -38,7 +38,6 @@ export default class Suggest {
         }
         else {
           promise = new Promise(async (resolve, reject) => {
-            /* 'bbox' is currently not used by the geocoder, it' will be used for the telemetry. */
             this.historyPromise = PoiStore.get(term)
             this.bragiPromise = BragiPoi.get(term)
             this.categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : null
