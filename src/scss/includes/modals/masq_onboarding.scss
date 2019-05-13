@@ -40,6 +40,8 @@
 .modal__masq_onboarding__title {
   color: #d8d8d8;
   font-size: 18px;
+  text-align: center;
+  font-weight: 500;
 }
 
 .modal__masq_onboarding__image {
@@ -97,9 +99,9 @@
 .modal__masq_onboarding__steps_image {
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 366px 210px;
-  width: 140px;
-  height: 210px;
+  background-size: 225px 129px;
+  width: 225px;
+  height: 129px;
   margin: 25px auto;
 }
 
@@ -130,6 +132,7 @@
 .modal__masq_onboarding__steps_text {
   color: #c8cbd3;
   min-height: 60px;
+  text-align: center;
 }
 
 .modal__masq_onboarding__steps_slider {
@@ -165,16 +168,8 @@
     padding: 0 10px 10px 10px;
   }
 
-  .modal__masq_onboarding__title {
-    text-align: center;
-  }
-
   .modal__masq_onboarding__steps_header {
-    padding: 20px 10px;
-  }
-
-  .modal__masq_onboarding__steps_text {
-    text-align: center;
+    padding: 36px 10px 20px 10px;
   }
 
   .modal__masq_onboarding__buttons {
