@@ -1,3 +1,5 @@
+
+
 .menu__overlay {
   display: none;
   height: 100%;
@@ -12,6 +14,14 @@
   display: block;
   opacity: 0;
   transition: opacity .6s;
+
+  .menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .menu__overlay--fade_active {
@@ -32,7 +42,6 @@
 
 .menu__panel__items_container {
   overflow-y: auto;
-  padding-top: 40px;
 }
 
 .menu__panel__top {
@@ -73,7 +82,7 @@
 
 .menu__panel__section_title {
   font-size: 22px;
-  margin: 40px 0 0 3px;
+  margin: 10px 0 0 3px;
   font-weight: bold;
   color: $primary_text;
 }
@@ -84,12 +93,16 @@
 
 .menu__panel__section {
   border-left: 1px solid $secondary_text;
-  margin: 10px 0 0 42px;
+  margin: 10px 0 30px 42px;
   padding: 5px 0;
 }
 
 .menu__panel__section-internal {
   border-left: none;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e0e1e6;
+  margin-left: 0;
+  padding-left: 34px;
 }
 
 .menu__panel__link, .menu__panel__action {
