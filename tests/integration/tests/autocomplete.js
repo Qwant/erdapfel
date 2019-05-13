@@ -274,6 +274,8 @@ test('Search Query', async () => {
 test('Retrieve restaurant category when we search "restau"', async () => {
   const searchQuery = 'restau'
 
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=restau/)
+
   await page.goto(APP_URL)
   await page.keyboard.type(searchQuery)
   await page.waitForSelector('.autocomplete_suggestion')
