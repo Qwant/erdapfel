@@ -26,7 +26,11 @@ function scheduleStatus(scheduleResponse, timeMessages) {
 
 function nextTransitionTime(seconds, nextTransitionDate) {
   if(seconds < 12 * 60 * 60) {
-    let nextTransition = new Date(nextTransitionDate)
+    /*
+       extract local time from nextTransitionDate
+       "2019-05-12T18:00:00+02:00" => "18:00:00"
+    */
+    let nextTransition = hourToDate(nextTransitionDate.slice(11,19))
     return strftime(i18nDate.timeFormat, nextTransition)
   }
   return false
