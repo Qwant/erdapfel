@@ -151,7 +151,6 @@ export default class DirectionPanel {
   }
 
   closeAction() {
-    Telemetry.add(Telemetry.ITINERARY_CLOSE)
     PanelManager.resetLayout()
   }
 
@@ -160,6 +159,7 @@ export default class DirectionPanel {
   }
 
   close() {
+    Telemetry.add(Telemetry.ITINERARY_CLOSE)
     SearchInput.unMinify()
     document.querySelector('#panels').classList.remove('panels--direction-open')
     document.querySelector('.top_bar').classList.remove('top_bar--direction-open')
@@ -172,6 +172,7 @@ export default class DirectionPanel {
   }
 
   async open(options = {}) {
+    Telemetry.add(Telemetry.ITINERARY_OPEN)
     document.querySelector('#panels').classList.add('panels--hide-services')
     document.querySelector('#panels').classList.add('panels--direction-open')
     document.querySelector('.top_bar').classList.add('top_bar--direction-open')
