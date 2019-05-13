@@ -1,4 +1,4 @@
-<div class="modal__geolocation">
+<div class="modal__maps">
   <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
   <h2 class="modal__title">{{= _('Geolocation not available.', 'geolocation') }}</h2>
   <span class="modal__subtitle">{{= _('You did not allow Qwant Maps to access your position.', 'geolocation') }}</span>

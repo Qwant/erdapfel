@@ -43,7 +43,6 @@ function PoiPanel(sharePanel) {
     if (this.poi) {
       this.poi.stored = await isPoiFavorite(this.poi)
       this.panel.update()
-      endLoad()
     }
   })
 
@@ -51,7 +50,6 @@ function PoiPanel(sharePanel) {
     if (this.poi && !this.poi.stored) {
       this.poi.stored = await isPoiFavorite(this.poi)
       this.panel.update()
-      endLoad()
     }
   })
 }
@@ -140,7 +138,6 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.sceneState.setPoiId(this.poi.id)
   await this.panel.update()
   await this.minimalHourPanel.set(this.poi)
-  endLoad()
 }
 
 PoiPanel.prototype.center = function() {
@@ -169,7 +166,6 @@ PoiPanel.prototype.restore = async function(urlShard) {
     if (idSlugMatch && window.hotLoadPoi) {
       let id = idSlugMatch[1]
       await this.restorePoi(id)
-      endLoad()
     }
   }
 }
@@ -177,7 +173,11 @@ PoiPanel.prototype.restore = async function(urlShard) {
 PoiPanel.prototype.showDetail = function() {
   this.card = false
   this.panel.update()
-  endLoad()
+}
+
+PoiPanel.prototype.backToSmall = function() {
+  this.card = true
+  this.panel.update()
 }
 
 PoiPanel.prototype.backToFavorite = function() {
@@ -207,18 +207,6 @@ async function isPoiFavorite(poi) {
     return false
   }
   return false
-}
-
-/* loadable */
-
-function endLoad() {
-  let loadingPanel = document.querySelector('#poi-loading-panel')
-  loadingPanel.style.animation = 'disappear 1s forwards'
-
-  setTimeout(() => {
-    let loadingPanel = document.querySelector('#poi-loading-panel')
-     loadingPanel.style.display = 'none'
-  }, 200)
 }
 
 export default PoiPanel

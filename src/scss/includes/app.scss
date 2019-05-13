@@ -82,8 +82,8 @@ BODY {
 
   .favorite_poi_panel__container {
     position: absolute;
-    bottom: 0;
-    max-height: calc(100vh - 150px);
+    height: 100%;
+    top: 75px;
   }
 
   .map_container .map_control__scale_attribute_container {

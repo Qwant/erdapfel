@@ -1,7 +1,6 @@
 .osm_contribute {
-  width: calc(100% - 2 * 28px);
+  width: 100%;
   height: 55px;
-  margin: 16px 0 0 25px;
   border: solid 1px $separator_color;
   @include card_radius();
 }
@@ -37,7 +36,7 @@
 
 .osm_contribute__link:hover {
   text-decoration: none;
-  border-bottom: 1px solid $secondary_text_clear;
+  color: $primary_text;
 }
 
 .osm_contribute__icon {

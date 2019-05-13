@@ -1,3 +1,26 @@
+{{? this.poi && this.active }}
+  <div class="poi_panel__header {{= this.card ? 'poi_header_card' : '' }}">
+    {{? this.fromFavorite }}
+      <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}>
+        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}
+      </div>
+    {{?}}
+    {{? this.fromList }}
+      <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}>
+        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to list') }}
+      </div>
+    {{?}}
+    <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
+      <i class="icon-x"></i>
+    </div>
+    {{? this.card }}
+    {{??}}
+      <div class="poi_panel__back_mobile" {{= click(this.backToSmall, this) }}>
+        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back') }}
+      </div>
+    {{?}}
+  </div>
+{{?}}
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden ' }}{{= this.card ? 'poi_panel--card ' : '' }}">
   {{? this.poi }}
     <div class="poi_panel__content__card">
@@ -24,38 +47,38 @@
   {{?}}
   <div class="poi_panel__content">
   {{? this.poi }}
-    {{? this.fromFavorite }}
-      <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}</div>
-    {{?}}
-    {{? this.fromList }}
-      <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}><i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to list') }}</div>
-    {{?}}
-    <div class="poi_panel__description_container" {{= click(this.center, this) }}>
-       {{= this.panel.renderPartial(this.headerPartial) }}
+    <div class="poi_panel__container">
+      <div class="poi_panel__description_container" {{= click(this.center, this) }}>
+         {{= this.panel.renderPartial(this.headerPartial) }}
+      </div>
       <div class="poi_panel__actions">
-        <div class="poi_panel__actions__store_container" {{= click(this.toggleStorePoi, this) }}>
+        <div class="poi_panel__actions__store_container button_container" {{= click(this.toggleStorePoi, this) }}>
           <button class="poi_panel__actions__icon__store poi_panel__actions__icon {{= this.poi.stored ? 'icon-icon_star-filled' : 'icon-icon_star'}}">
           </button>
           <div class="poi_panel__actions__text">{{= _('FAVORITES', 'poi') }}</div>
         </div>
-        <div class="poi_panel__actions__share_container" {{= click(this.openShare, this) }}>
+        <div class="poi_panel__actions__share_container button_container" {{= click(this.openShare, this) }}>
           <button class="poi_panel__actions__icon icon-share-2">
           </button>
           <div class="poi_panel__actions__text">{{= _('SHARE', 'poi') }}</div>
         </div>
         {{? this.isDirectionActive }}
-          <div class="poi_panel__actions__direction_container" {{= click(this.openDirection, this) }}>
+          <div class="poi_panel__actions__direction_container button_container" {{= click(this.openDirection, this) }}>
             <button class="poi_panel__actions__icon icon-corner-up-right">
             </button>
             <div class="poi_panel__actions__text">{{= _('DIRECTIONS', 'poi') }}</div>
           </div>
         {{?}}
+        {{? this.poi.phoneBlock}}
+          <a class="poi_panel__actions__phone_container button_container" data-rel="external" rel="noopener noreferrer" href="{{= this.poi.phoneBlock.url }}">
+            <button class="poi_panel__actions__icon icon-icon_phone">
+            </button>
+            <div class="poi_panel__actions__text">{{= this.htmlEncode(this.poi.phoneBlock.local_format) }}</div>
+          </a>
+        {{?}}
       </div>
-    </div>
-    <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
-      <i class="icon-x"></i>
-    </div>
-  {{= this.PoiBlocContainer.render(this.poi) }}
+
+      {{= this.PoiBlocContainer.render(this.poi) }}
 
       <div class="osm_contribute">
         <div class="osm_contribute__logo"></div>
@@ -69,7 +92,7 @@
           </a>
         </div>
       </div>
+    </div>
   {{?}}
   </div>
-  <div id="poi-loading-panel"></div>
 </div>

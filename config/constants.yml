@@ -70,8 +70,6 @@ pois:
       closed:
         msg: _('Closed')
         color: '#8c0212'
-- apiName: phone
-  panelName: phone
 - apiName: website
   panelName: website
 - apiName: wikipedia
@@ -101,6 +99,8 @@ pois:
   panelName: internet_access
 - apiName: contact
   panelName: contact
+- apiName: images
+  panelName: images
 
 # Map
 map:
