@@ -5,7 +5,9 @@ import UrlState from "../proxies/url_state";
 import {paramTypes} from "../proxies/url_shard";
 import IdunnPoi from "../adapters/poi/idunn_poi";
 import SearchInput from '../ui_components/search_input';
+import Telemetry from '../libs/telemetry';
 import layouts from "./layouts.js";
+import constants from '../../config/constants.yml'
 const poiSubClass = require('../mapbox/poi_subclass')
 
 export default class CategoryPanel {
@@ -26,6 +28,7 @@ export default class CategoryPanel {
       if(this.active) this.search()
     })
     listen('click_category_poi', (poi)=> {
+      if (poi.meta && poi.meta.source) Telemetry.add("open", "poi", poi.meta.source)
       this.selectPoi(poi);
     });
 
@@ -96,6 +99,7 @@ export default class CategoryPanel {
   showPhoneNumber(options){
     var poi = options.poi
     var i = options.i
+    if (poi.meta && poi.meta.source) Telemetry.add("phone", "poi", poi.meta.source)
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }
@@ -113,7 +117,6 @@ export default class CategoryPanel {
   }
 
   selectPoi(poi){
-    // TODO telemetry
     fire('fit_map', poi, layouts.LIST)
     this.close(false)
     PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})

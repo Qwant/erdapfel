@@ -12,6 +12,7 @@ import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
 import nconf from "../../local_modules/nconf_getter";
 import MasqFavoriteModal from "../modals/masq_favorite_modal";
+import constants from '../../config/constants.yml'
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -56,6 +57,7 @@ function PoiPanel(sharePanel) {
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("favorite", "poi", this.poi.meta.source)
   if(this.poi.stored) {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
@@ -77,6 +79,7 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.poi.stored = true
     await store.add(this.poi)
   }
+
 }
 
 PoiPanel.prototype.isDisplayed = function() {
@@ -84,6 +87,7 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.closeAction = function() {
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("close", "poi", this.poi.meta.source)
   fire('clean_marker')
   PanelManager.resetLayout()
 }
@@ -140,12 +144,12 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
-  Telemetry.add(Telemetry.POI_GO)
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("go", "poi", this.poi.meta.source)
   fire('fit_map', this.poi, layouts.POI)
 }
 
 PoiPanel.prototype.openShare = function () {
-  Telemetry.add(Telemetry.POI_SHARE)
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("share", "poi", this.poi.meta.source)
   this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 
@@ -177,10 +181,12 @@ PoiPanel.prototype.showDetail = function() {
 }
 
 PoiPanel.prototype.backToFavorite = function() {
+  Telemetry.add(Telemetry.POI_BACKTOFAVORITE)
   PanelManager.toggleFavorite()
 }
 
 PoiPanel.prototype.backToList = function() {
+  Telemetry.add(Telemetry.POI_BACKTOLIST)
   this.close();
   this.list.open();
 }

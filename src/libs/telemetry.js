@@ -11,8 +11,9 @@ const uniqEventList = []
 export default class Telemetry {
   constructor() {}
 
-  static add(event) {
+  static add(event, type, source) {
     if(event) {
+      if(type && source) event = Telemetry[`${(type + '_' + source + '_' + event).toUpperCase()}`]
       return Telemetry.send(event)
     } else {
       Error.send('telemetry', 'add', 'telemetry event mismatch configuration', {})
