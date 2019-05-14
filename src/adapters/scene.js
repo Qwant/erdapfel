@@ -4,7 +4,6 @@ import MobileCompassControl from "../mapbox/mobile_compass_control"
 import ExtendedControl from "../mapbox/extended_nav_control"
 import UrlState from "../proxies/url_state"
 import {map, layout} from '../../config/constants.yml'
-import loadImage from '../libs/image_loader'
 import nconf from "../../local_modules/nconf_getter"
 import MapPoi from "./poi/map_poi";
 import HotLoadPoi from "./poi/hotload_poi";
@@ -12,9 +11,11 @@ import LocalStore from '../libs/local_store'
 import getStyle from "./scene_config";
 import SceneState from "./scene_state";
 import SceneDirection from './scene_direction'
+import SceneCategory from './scene_category'
 import DirectionPoi from "./poi/specials/direction_poi";
 import UrlShards from "../proxies/url_shards";
 import Error from '../adapters/error'
+import { createIcon } from '../adapters/icon_manager'
 
 const performanceEnabled = nconf.get().performance.enabled
 const baseUrl = nconf.get().system.baseUrl
@@ -61,6 +62,7 @@ Scene.prototype.initMapBox = function () {
     center: this.center,
     hash: false
   })
+
   this.popup.init(this.mb)
 
   setRTLTextPlugin(`${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`);
@@ -71,7 +73,8 @@ Scene.prototype.initMapBox = function () {
     },
     bbox : () => {
       return this.mb.getBounds()
-    }
+    },
+    mb: this.mb
   }
 
   const interactiveLayers =  ['poi-level-1', 'poi-level-2', 'poi-level-3']
@@ -79,6 +82,14 @@ Scene.prototype.initMapBox = function () {
   this.mb.on('load', () => {
     this.onHashChange()
     new SceneDirection(this.mb)
+    new SceneCategory(this.mb)
+    
+    const CategoryPanel = PanelManager.getCategoryPanel() || {}
+    // trigger the POIs if a category has already been selected before map being loaded.    
+    if (CategoryPanel.active) {
+      // TODO: Ensure this in CategoryPanel class, using execOnMapLoaded
+      CategoryPanel.addCategoryMarkers()
+    }
 
     if(performanceEnabled) {
       window.times.mapLoaded = Date.now()
@@ -100,6 +111,7 @@ Scene.prototype.initMapBox = function () {
       })
 
       this.mb.on('click', interactiveLayer, async (e) => {
+        e._interactiveClick = true
         if(e.features && e.features.length > 0) {
           let mapPoi = new MapPoi(e.features[0], e.lngLat)
           this.sceneState.setPoiId(mapPoi.id)
@@ -122,6 +134,7 @@ Scene.prototype.initMapBox = function () {
       let lat = this.mb.getCenter().lat
       let zoom = this.mb.getZoom()
       store.setLastLocation({ lng, lat, zoom })
+      fire('map_moveend')
     })
 
     this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_active.png`, (error, image) => {
@@ -138,6 +151,12 @@ Scene.prototype.initMapBox = function () {
         return
       }
       this.mb.addImage("walking_bullet_inactive", image)
+    })
+
+    this.mb.on('click', (e) => {
+      if(!e._interactiveClick){
+        PanelManager.emptyClickOnMap()
+      }
     })
 
     window.execOnMapLoaded = (f) => f()
@@ -253,12 +272,16 @@ Scene.prototype.fitMap = function(item, padding) {
   }
 }
 
-Scene.prototype.addMarker = async function(poi) {
+Scene.prototype.addMarker = function(poi) {
+  const { className, subClassName, type } = poi
+
+  const element = createIcon({ className, subClassName, type })
+
   if(this.currentMarker !== null) {
     this.currentMarker.remove()
   }
-  let image = await loadImage(`${baseUrl}statics/images/map/pin_map.svg`)
-  let marker = new Marker({element : image, anchor : 'bottom'})
+  
+  const marker = new Marker({ element, anchor: 'bottom', offset: [0, -5] })
     .setLngLat(poi.getLngLat())
     .addTo(this.mb)
   this.currentMarker = marker

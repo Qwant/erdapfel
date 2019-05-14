@@ -1,4 +1,5 @@
 module.exports = {
+  setupFilesAfterEnv: ["jest-extended"],
   testMatch : [`${__dirname}/integration/tests/*.js`],
   globalSetup : `${__dirname}/integration/server_start.js`,
   globalTeardown : `${__dirname}/integration/server_close.js`,

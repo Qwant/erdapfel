@@ -220,7 +220,9 @@ async function selectPoiLevel(page, level) {
   await page.evaluate((level) => {
     window.MAP_MOCK.evented.prepare('click', `poi-level-${level}`,  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
   }, level)
-  await page.click('#mock_poi')
+  let mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox())
+  // Click on the top-left corner
+  await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y)
   await wait(300)
 }
 

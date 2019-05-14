@@ -14,27 +14,26 @@ import MasqErrorModal from "../modals/masq_error_modal";
 import nconf from "@qwant/nconf-getter"
 import DirectionPanel from './direction/direction_panel'
 import Menu from "./menu";
+import Telemetry from "../libs/telemetry";
+import CategoryPanel from "./category_panel";
 
 const performanceEnabled = nconf.get().performance.enabled
 const directionEnabled = nconf.get().direction.enabled
 const masqEnabled = nconf.get().masq.enabled
-import Telemetry from "../libs/telemetry";
-
-
-
+const categoryEnabled = nconf.get().category.enabled
 
 function AppPanel(parent) {
   new TopBar()
   SearchInput.initSearchInput('#search')
+  this.categoryEnabled = categoryEnabled
+  this.directionEnabled = directionEnabled
+
   this.sharePanel = new Share()
   this.servicePanel = new ServicePanel()
   this.favoritePanel = new FavoritePanel(this.sharePanel)
   this.poiPanel = new PoiPanel(this.sharePanel)
-
-  this.directionEnabled = directionEnabled
-  if (this.directionEnabled) {
-    this.directionPanel = new DirectionPanel(this.sharePanel)
-  }
+  this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null
+  this.directionPanel = this.directionEnabled ? new DirectionPanel(this.sharePanel) : null
 
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()

@@ -1,5 +1,8 @@
 module.exports = {
     "id": "osm:way:63178753",
+    "meta": {
+        "source": "osm"
+    },
     "name": "Musée d'Orsay",
     "local_name": "Musée d'Orsay",
     "class_name": "museum",

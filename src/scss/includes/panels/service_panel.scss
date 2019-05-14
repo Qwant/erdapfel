@@ -1,7 +1,7 @@
 .service_panel {
   display: none;
   position: relative;
-  height: 90px;
+  min-height: 90px;
   width: $panel_width;
   margin-top: 14px;
   background: url('../images/panel_top.svg') white repeat-x;
@@ -21,7 +21,7 @@
   font-weight: 500;
   border-bottom: 1px solid #e0e1e6;
   padding: 20px 0 10px;
-  margin: 10px;
+  margin: 20px 20px 8px;
 }
 
 .side_bar__item__icon {
@@ -30,7 +30,7 @@
 
 .service_panel__item {
   float: left;
-  margin: 0 25px 0 15px;
+  margin: 0 25px 0 20px;
 }
 
 .service_panel__item--disabled {
@@ -51,8 +51,64 @@
   text-decoration: underline;
 }
 
+.service_panel__categories {
+  margin: 60px 0 0 0;
+  padding: 0 0 10px 12px;
+}
+
+.service_panel__category {
+  width: 90px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  margin: 0 0 23px 0;
+}
+
+.service_panel__category__icon {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  border-radius: 50%;
+
+  span {
+    color: #fff;
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+.service_panel__category__title {
+  margin: 9px 0 0 0;
+  color: #5c6f84;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
 @media (max-width: 640px) {
   .service_panel {
-    display: none;
+    margin: 72px auto 0;
+    width: calc(100% - 16px);
+  }
+
+  .service_panel__category {
+    width: 75px;
+  }
+
+  // Overrides with grid layout if supported else fallbacks to flex wrap
+  @supports (display: grid) {
+    .service_panel__categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+        grid-gap: 20px;
+        padding: 0 10px 10px;
+        min-height: 0;
+        min-width: 0;
+    }
+
+    .service_panel__category {
+      width: auto;
+      min-width: 0;
+    }
   }
 }

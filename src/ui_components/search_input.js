@@ -43,7 +43,7 @@ export default class SearchInput {
   constructor(tagSelector) {
     this.searchInputHandle = document.querySelector(tagSelector)
     this.handleKeyboard()
-    this.suggest = new Suggest(tagSelector, (selectedPoi) => this.selectItem(selectedPoi))
+    this.suggest = new Suggest({tagSelector, withCategories: true, onSelect: (selectedPoi) => this.selectItem(selectedPoi)})
     this.isEnabled = true
 
     UrlState.registerGet(this, 'q')

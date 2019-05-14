@@ -12,6 +12,7 @@ import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
 import nconf from "../../local_modules/nconf_getter";
 import MasqFavoriteModal from "../modals/masq_favorite_modal";
+import Device from "../libs/device"
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
@@ -24,6 +25,7 @@ function PoiPanel(sharePanel) {
   this.active = false
   this.displayed = false
   this.poiSubClass = poiSubClass
+  this.list = null
   this.PoiBlocContainer = PoiBlocContainer
   this.panel = new Panel(this, PoiPanelView)
   this.sharePanel = sharePanel
@@ -53,6 +55,7 @@ function PoiPanel(sharePanel) {
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("favorite", "poi", this.poi.meta.source)
   if(this.poi.stored) {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
@@ -74,6 +77,7 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.poi.stored = true
     await store.add(this.poi)
   }
+
 }
 
 PoiPanel.prototype.isDisplayed = function() {
@@ -81,11 +85,15 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.closeAction = function() {
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("close", "poi", this.poi.meta.source)
+  fire('clean_marker')
   PanelManager.resetLayout()
 }
 
 PoiPanel.prototype.close = async function() {
-  await this.panel.addClassName(.2,'.poi_panel', 'poi_panel--hidden')
+  if(!this.active){
+    return
+  }
   this.active = false
   this.panel.update()
   this.sceneState.unsetPoiID()
@@ -116,7 +124,17 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.card = true
   this.poi.stored = await isPoiFavorite(this.poi)
   this.PoiBlocContainer.set(this.poi)
-  this.fromFavorite = options.isFromFavorite
+  this.fromFavorite = false
+  this.fromList = false
+  if(options && options.isFromFavorite){
+    this.fromFavorite = options.isFromFavorite
+  }
+  if(options && options.isFromList){
+    this.fromList = options.isFromList
+  }
+  if(options && options.list){
+    this.list = options.list
+  }
   this.active = true
   UrlState.pushUrl()
   this.sceneState.setPoiId(this.poi.id)
@@ -125,12 +143,12 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
-  Telemetry.add(Telemetry.POI_GO)
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("go", "poi", this.poi.meta.source)
   fire('fit_map', this.poi, layouts.POI)
 }
 
 PoiPanel.prototype.openShare = function () {
-  Telemetry.add(Telemetry.POI_SHARE)
+  if (this.poi.meta && this.poi.meta.source) Telemetry.add("share", "poi", this.poi.meta.source)
   this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 
@@ -165,11 +183,25 @@ PoiPanel.prototype.backToSmall = function() {
 }
 
 PoiPanel.prototype.backToFavorite = function() {
+  Telemetry.add(Telemetry.POI_BACKTOFAVORITE)
   PanelManager.toggleFavorite()
+}
+
+PoiPanel.prototype.backToList = function() {
+  Telemetry.add(Telemetry.POI_BACKTOLIST)
+  this.close();
+  this.list.open();
 }
 
 PoiPanel.prototype.openDirection = function () {
   PanelManager.toggleDirection({poi : this.poi})
+}
+
+PoiPanel.prototype.emptyClickOnMap = function() {
+  // On mobile, close poi card when clicking outside (on the map)
+  if (Device.isMobile() && this.active) {
+    this.closeAction()
+  }
 }
 
 /* private */

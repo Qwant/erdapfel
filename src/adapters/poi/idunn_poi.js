@@ -25,6 +25,7 @@ export default class IdunnPoi extends Poi {
     this.localName = rawPoi.local_name
     this.address = IdunnPoi.getAddress(rawPoi)
     this.bbox = rawPoi.geometry.bbox
+    this.meta = rawPoi.meta
 
     if(this.blocks) {
       let imagesBlock = this.blocks.find((b) => b.type === 'images')
@@ -42,6 +43,28 @@ export default class IdunnPoi extends Poi {
         return this.alternativeName
       default:
         return this.name
+    }
+  }
+/* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
+  static async poiCategoryLoad(bbox, size, category) {
+    let url = `${serviceConfig.idunn.url}/v1/places`
+    let requestParams = {bbox, size, category}
+
+    try {
+      let rawPois = await Ajax.getLang(url, requestParams)
+      return rawPois.places.map((rawPoi) => new IdunnPoi(rawPoi))
+    } catch (err) {
+      if(err === 404) {
+        return
+      }
+      else {
+        Error.sendOnce(
+          'idunn_poi', 'poiApiLoad',
+          `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,
+          err
+        )
+        return
+      }
     }
   }
 

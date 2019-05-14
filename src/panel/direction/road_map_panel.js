@@ -2,6 +2,7 @@ import Panel from '../../libs/panel';
 import roadMapTemplate from '../../views/direction/road_map.dot'
 import Device from '../../libs/device'
 import RoadMapPreviewPanel from './road_map_preview';
+import Telemetry from '../../libs/telemetry'
 
 export default class RoadMapPanel {
   constructor(onOpen, onClose, sharePanel) {
@@ -180,6 +181,7 @@ export default class RoadMapPanel {
   }
 
   openShare() {
+    Telemetry.add(Telemetry.ITINERARY_SHARE)
     this.sharePanel.open(window.location)
   }
 }

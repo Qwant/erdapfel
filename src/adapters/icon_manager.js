@@ -4,7 +4,7 @@ export default class IconManager {
   static get({className, subClassName, type}) {
     const nameToClass = (iconName) => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1]
 
-    if(type === 'poi') {
+    if(type === 'poi' || type === 'category') {
       const icons = styleIcons.mappings
       let icon = icons.find((iconProperty) => {
         return iconProperty.subclass === subClassName && iconProperty.class === className
@@ -50,5 +50,22 @@ export default class IconManager {
     }
   }
 }
+
+export function createIcon(iconOptions, name, hoverEffect = false) {
+  const icon = IconManager.get(iconOptions)
+
+  const markerLabel = name ? `<div class="marker-label">${name}</div>` : ''
+  const element = document.createElement('div')
+  element.innerHTML = `
+    <div class="marker">
+      <div class="marker-container${hoverEffect ? ' poi-hoverable' : ''}">
+        <i class="icon icon-${icon.iconClass}"></i>
+      </div>
+      ${markerLabel}
+    </div>
+  `
+
+  return element.firstElementChild
+};
 
 window.IconManager = IconManager

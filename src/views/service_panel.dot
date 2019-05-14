@@ -17,4 +17,18 @@
       <span class="service_panel__item__text">{{= _('DIRECTIONS', 'service panel') }}</span>
     </button>
   </div>
+
+  {{? this.categories.length > 0 }}
+  <div class="service_panel__categories">
+    {{~ this.categories:category }}
+      <button class="service_panel__category" type="button" {{= click(this.openCategory, this, category) }}>
+        <div class="service_panel__category__icon" style="background: {{= category.backgroundColor }}">
+          <span class="icon icon-{{= category.iconName }}"></span>
+        </div>
+        <div class="service_panel__category__title">{{= category.label }}</div>
+      </button>
+    {{~}}
+  </div>
+  {{?}}
+
 </div>

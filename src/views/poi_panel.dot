@@ -5,6 +5,11 @@
         <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}
       </div>
     {{?}}
+    {{? this.fromList }}
+      <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}>
+        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to list') }}
+      </div>
+    {{?}}
     <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
       <i class="icon-x"></i>
     </div>
@@ -72,6 +77,7 @@
           </a>
         {{?}}
       </div>
+
       {{= this.PoiBlocContainer.render(this.poi) }}
 
       <div class="osm_contribute">

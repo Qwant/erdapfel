@@ -240,22 +240,22 @@ test('check template', async () => {
   })
   /* street */
   let stretAddress = ['0000', 'Ferriere', 'Italia'].filter((zone) => zone).join(', ')
-  expect(lines[0][0]).toEqual(mockAutocompleteAllTypes.features[0].properties.geocoding.name)
-  expect(lines[0][1]).toEqual(stretAddress)
+  expect(lines[0][0]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[0].properties.geocoding.name)
+  expect(lines[0][1]).toEqualCaseInsensitive(stretAddress)
 
   /* house */
   let houseAddress = ['30000', 'Nîmes', 'France'].filter((zone) => zone).join(', ')
-  expect(lines[1][0]).toEqual(mockAutocompleteAllTypes.features[1].properties.geocoding.name)
-  expect(lines[1][1]).toEqual(houseAddress)
+  expect(lines[1][0]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[1].properties.geocoding.name)
+  expect(lines[1][1]).toEqualCaseInsensitive(houseAddress)
 
    /* poi */
-   expect(lines[2][0]).toEqual(mockAutocompleteAllTypes.features[2].properties.geocoding.name)
-   expect(lines[2][1]).toEqual(mockAutocompleteAllTypes.features[2].properties.geocoding.address.label)
+   expect(lines[2][0]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[2].properties.geocoding.name)
+   expect(lines[2][1]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[2].properties.geocoding.address.label)
 
    /* admin */
    let labelFragments = mockAutocompleteAllTypes.features[3].properties.geocoding.label.split(',')
-   expect(lines[3][0]).toEqual(labelFragments[0])
-   expect(lines[3][1]).toEqual(labelFragments.slice(1).join(',').trim())
+   expect(lines[3][0]).toEqualCaseInsensitive(labelFragments[0])
+   expect(lines[3][1]).toEqualCaseInsensitive(labelFragments.slice(1).join(',').trim())
 })
 
 
@@ -269,6 +269,26 @@ test('Search Query', async () => {
   })
 
   expect(searchValue).toEqual(searchQuery)
+})
+
+test('Retrieve restaurant category when we search "restau"', async () => {
+  const searchQuery = 'restau'
+
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=restau/)
+
+  await page.goto(APP_URL)
+  await page.keyboard.type(searchQuery)
+  await page.waitForSelector('.autocomplete_suggestion')
+
+  let [firstLine, dataType] = await page.evaluate(() => {
+    return [
+      document.querySelector('.autocomplete_suggestion:first-child .autocomplete_suggestion__first_line').innerText,
+      document.querySelector('.autocomplete_suggestion:first-child').getAttribute('data-type')
+    ]
+  })
+
+  expect(firstLine).toEqual('Restaurant')
+  expect(dataType).toEqual('category')
 })
 
 afterEach(async () => {

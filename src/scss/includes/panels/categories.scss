@@ -1,0 +1,179 @@
+.category__panel {
+  display: block;
+  position: relative;
+  width: $panel_width;
+  background: $background;
+  @include card_shadow();
+  @include card_radius();
+}
+
+.category__panel--hidden {
+  display: none;
+}
+
+.category__panel__scroll {
+  position: relative;
+  overflow-y: auto;
+  max-height: calc(100vh - 240px);
+}
+
+.category__panel__head {
+  font-size: 12px;
+  color: #5c6f84;
+  border-bottom: 1px solid #f4f6fa;
+  padding: 9px 12px 9px 12px;
+}
+
+.category__panel__logo_pj {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px 10px 0 0;
+  background: url("../images/pagesjaunes.png")
+}
+
+.category__panel__title {
+  font-weight: 500;
+  color: #353c52;
+  font-size: 12px;
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
+
+.category__panel__partnership_icon {
+  width: 20px;
+  height: 20px;
+  line-height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 2px 0 0 10px;
+  float: right;
+  border: 2px solid #c8cbd3;
+  color: #c8cbd3;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.category__panel__partnership {
+  font-size: 11px;
+  color: #c8cbd3;
+  float: right;
+  margin: 5px 0 0 4px;
+}
+
+.category__panel__close {
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin: 2px 0px 0 6px;
+  background-size: 16px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.category__panel__item {
+  padding: 0px 30px;
+  cursor: pointer;
+}
+
+.category__panel__item:hover {
+  border-left: 4px solid #ff3b4a;
+  background: #f4f6fa;
+  padding: 0px 30px 0 26px;
+}
+
+.category__panel__item_inner {
+  border-bottom: 1px solid #e0e1e6;
+  padding: 14px 0;
+  min-height: 100px;
+}
+
+.category__panel__image {
+  float: right;
+  margin: 5px 0 10px 10px;
+  width: 65px;
+  height: 65px;
+  background-size: cover;
+
+  .poi_panel__title__symbol {
+    margin: 13px 0 0 11px;
+  }
+}
+
+.category__panel__name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #353c52;
+}
+
+.category__panel__type {
+  font-size: 12px;
+  color: #5c6f84;
+}
+
+.category__panel__address {
+  font-size: 14px;
+  color: #353c52;
+  margin-top: 5px;
+}
+
+.category__panel__note {
+  font-size: 14px;
+  display: inline-block;
+  color: #5c6f84;
+  margin: 2px 10px 0 0;
+
+  .icon-icon_star-filled {
+    color: #f3b100
+  }
+}
+
+.category__panel__item {
+  .poi_panel__info__hours__status__text {
+    display: inline-block;
+    margin: 0;
+    font-size: 14px;
+    color: #353c52;
+  }
+}
+
+.category__panel__status {
+  color: #353c52;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.category__panel__status__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 0 0 5px;
+}
+
+.category__panel__status__dot--open {
+  background: #40ac6b;
+}
+
+.category__panel__status__dot--closed {
+  background: #ff3b4a;
+}
+
+.category__panel__phone {
+  color: #5c6f84;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 5px;
+  cursor: pointer;
+
+  span {
+    vertical-align: middle;
+  }
+
+  .icon-icon_phone {
+    font-size: 16px;
+    margin: 0 5px 0 0;
+  }
+}

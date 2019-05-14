@@ -63,3 +63,6 @@ direction:
     api: 'mapbox' # 'mapbox' or 'qwant'
     apiBaseUrl: https://api.mapbox.com/directions/v5/mapbox/
     token: '' # for 'mapbox' only
+
+category:
+  enabled: false

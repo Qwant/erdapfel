@@ -3,11 +3,13 @@ import Panel from '../libs/panel'
 import PoiPanel from "./poi_panel"
 import Favorite from "./favorites_panel"
 import nconf from "../../local_modules/nconf_getter";
-
+import Telemetry from '../libs/telemetry';
+import CategoryService from '../adapters/category_service'
 
 export default class ServicePanel{
   constructor() {
     this.panel = new Panel(this, ServicePanelView)
+    this.categories = CategoryService.getCategories()
     this.isFavoriteActive = false
     this.isResultActive = false
     this.isDirectionActive = nconf.get().direction.enabled
@@ -44,6 +46,9 @@ export default class ServicePanel{
   }
 
   close() {
+    if(!this.active) {
+      return
+    }
     this.active = false
     this.panel.update()
   }
@@ -59,5 +64,10 @@ export default class ServicePanel{
       }
     })
     this.panel.update()
+  }
+
+  openCategory(category) {
+    Telemetry.add(Telemetry.POI_CATEGORY_OPEN)
+    PanelManager.openCategory({ category })
   }
 }

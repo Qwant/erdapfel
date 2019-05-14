@@ -1,13 +1,14 @@
 import Autocomplete from '../vendors/autocomplete'
 import IconManager from '../adapters/icon_manager'
 import {layout} from '../../config/constants.yml'
-import ExtendedString from "../libs/string";
-import BragiPoi from "./poi/bragi_poi";
-import PoiStore from "./poi/poi_store";
+import ExtendedString from "../libs/string"
+import BragiPoi from "./poi/bragi_poi"
+import PoiStore from "./poi/poi_store"
+import Category from "./category"
+import CategoryService from "./category_service"
 
 export default class Suggest {
-  constructor(tagSelector, onSelect, prefixes = [], menuClass = '') {
-
+  constructor({tagSelector, onSelect, prefixes = [], withCategories = false, menuClass = ''}) {
     this.searchInputDomHandler = document.querySelector(tagSelector)
     this.poi = null
     this.bragiPromise = null
@@ -39,15 +40,26 @@ export default class Suggest {
           promise = new Promise(async (resolve, reject) => {
             this.historyPromise = PoiStore.get(term)
             this.bragiPromise = BragiPoi.get(term)
+            this.categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : null
+
             try {
-              let [bragiResponse, storeResponse] = await Promise.all([this.bragiPromise, this.historyPromise])
-              if (bragiResponse !== null) {
-                this.bragiPromise = null
-                this.suggestList = bragiResponse.concat(storeResponse)
-                resolve(this.suggestList)
-              } else {
-                resolve(null)
-              }
+              const [bragiResponse, storeResponse, categoryResponse] = await Promise.all([
+                this.bragiPromise, this.historyPromise, this.categoryPromise
+              ])
+
+              if (!bragiResponse)
+                return resolve(null)
+
+              this.suggestList = []
+
+              if (categoryResponse)
+                this.suggestList = this.suggestList.concat(categoryResponse)
+
+              this.bragiPromise = null
+              this.suggestList = this.suggestList.concat(bragiResponse)
+              this.suggestList = this.suggestList.concat(storeResponse)
+
+              resolve(this.suggestList)
             } catch (e) {
               reject(e)
             }
@@ -62,14 +74,18 @@ export default class Suggest {
       renderItems: (pois) => {
         let favorites = []
         let remotes = []
+        let categories = []
         pois.forEach((poi) => {
           if (poi instanceof PoiStore) {
             favorites.push(poi)
+          } else if (poi instanceof  Category) {
+            categories.push(poi)
           } else {
             remotes.push(poi)
           }
         })
         let suggestDom = this.prefixesRender()
+        suggestDom += this.categoriesRender(categories)
         suggestDom += this.remotesRender(remotes)
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
@@ -79,7 +95,16 @@ export default class Suggest {
 
       onSelect: (e, term, item, items) => {
         e.preventDefault()
+        const type = item.getAttribute('data-type')
+        const val = item.getAttribute('data-val')
         const itemId = item.getAttribute('data-id')
+
+        if ('category' === type) {
+          return PanelManager.openCategory({
+            category: CategoryService.getCategoryByName(val)
+          })
+        }
+
         let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
         if(prefixPoint) {
           this.onSelect(prefixPoint)
@@ -145,6 +170,12 @@ export default class Suggest {
     return pois.map(poi => this.renderItem(poi)).join('')
   }
 
+  categoriesRender(categories) {
+    if (!categories) return ''
+
+    return categories.map(category => this.renderCategory(category)).join('')
+  }
+
   favoritesRender(pois) {
     return `<h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`
   }
@@ -164,19 +195,37 @@ export default class Suggest {
 
   /* select sub template */
   renderItem(poi) {
-    let {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
-    let icon = IconManager.get({className : className, subClassName : subClassName , type : type})
-    let iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
+    const {id, name, fromHistory, className, subClassName, type, alternativeName} = poi
+    const icon = IconManager.get({className : className, subClassName : subClassName , type : type})
+    const iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`
 
     return `
-<div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
-  <div class="autocomplete_suggestion__first_line__container">
-  ${iconDom}
-  <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(name)}</div>
-</div>
-<div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(alternativeName ? alternativeName : '')}</div>
-</div>
-`
+      <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
+        ${this.renderLines(iconDom, name, alternativeName)}
+      </div>
+    `
+  }
+
+  renderCategory(category) {
+    const { label, alternativeName, color, backgroundColor } = category
+    const icon = category.getIcon()
+    const iconDom = `<div style="color: ${color}; background: ${backgroundColor}" class="autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}"></div>`
+
+    return `
+      <div class="autocomplete_suggestion" data-type="category" data-val="${category.name}">
+        ${this.renderLines(iconDom, label, alternativeName)}
+      </div>
+    `
+  }
+
+  renderLines(iconDom, firstLabel, secondLabel) {
+    return `
+      <div class="autocomplete_suggestion__first_line__container">
+        ${iconDom}
+        <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(firstLabel)}</div>
+      </div>
+      <div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(secondLabel ? secondLabel : '')}</div>
+    `
   }
 }
 

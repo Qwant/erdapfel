@@ -2,6 +2,7 @@ import ApiPoi from "../adapters/poi/idunn_poi";
 import ServicePanel from "../panel/service_panel";
 import DirectionPanel from "../panel/direction/direction_panel";
 import FavoritePanel from "../panel/favorites_panel";
+import CategoryPanel from "../panel/category_panel";
 import PoiPanel from "../panel/poi_panel";
 
 function PanelManager() {}
@@ -48,6 +49,14 @@ PanelManager.loadPoiById = async function(id, options) {
   }
 }
 
+PanelManager.emptyClickOnMap = function() {
+  let poiPanel = __panel_manager.panels.forEach((p) => {
+    if(p.emptyClickOnMap) {
+      p.emptyClickOnMap()
+    }
+  })
+}
+
 PanelManager.getDirectionPanel = function () {
   return __panel_manager.panels.find(panel => panel instanceof DirectionPanel)
 }
@@ -71,6 +80,20 @@ PanelManager.openFavorite = async function () {
         panel.open()
       }
     } else if(panel.active && !panel instanceof FavoritePanel) {
+      panel.close()
+    }
+  })
+}
+
+PanelManager.getCategoryPanel = function () {
+  return __panel_manager.panels.find(panel => panel instanceof CategoryPanel)
+}
+
+PanelManager.openCategory = async function (options) {
+  __panel_manager.panels.forEach((panel) => {
+    if(panel instanceof CategoryPanel) {
+      panel.open(options)
+    } else if(panel.active && !(panel instanceof CategoryPanel)) {
       panel.close()
     }
   })

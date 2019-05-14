@@ -8,6 +8,7 @@ import LatLonPoi from "../../adapters/poi/latlon_poi";
 import UrlState from "../../proxies/url_state";
 import Error from '../../adapters/error'
 import Device from '../../libs/device'
+import Telemetry from '../../libs/telemetry'
 import NavigatorGeolocalisationPoi from "../../adapters/poi/specials/navigator_geolocalisation_poi";
 import {vehiculeMatching} from '../../adapters/direction_api'
 
@@ -89,6 +90,7 @@ export default class DirectionPanel {
   }
 
   setVehicle(vehicle) {
+    Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`])
     this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active')
     this.vehicle = vehicle
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active')
@@ -97,6 +99,7 @@ export default class DirectionPanel {
   }
 
   invertOriginDestination() {
+    Telemetry.add(Telemetry.ITINERARY_INVERT)
     let originValue = this.originInput.getValue()
     let destinationValue = this.destinationInput.getValue()
     this.originInput.setValue(destinationValue)
@@ -156,6 +159,7 @@ export default class DirectionPanel {
   }
 
   close() {
+    Telemetry.add(Telemetry.ITINERARY_CLOSE)
     SearchInput.unMinify()
     document.querySelector('#panels').classList.remove('panels--direction-open')
     document.querySelector('.top_bar').classList.remove('top_bar--direction-open')
@@ -168,7 +172,7 @@ export default class DirectionPanel {
   }
 
   async open(options = {}) {
-    document.querySelector('#panels').classList.add('panels--hide-services')
+    Telemetry.add(Telemetry.ITINERARY_OPEN)
     document.querySelector('#panels').classList.add('panels--direction-open')
     document.querySelector('.top_bar').classList.add('top_bar--direction-open')
     if(options.poi) {

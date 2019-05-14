@@ -108,6 +108,7 @@ map:
   center:
     lng: 2.52
     lat: 52.41
+  pois_layers: ['poi-level-3', 'poi-level-2', 'poi-level-1']
   routes_layer: "poi-level-street-furniture"
 
 menu:
