@@ -372,15 +372,6 @@ $HEADER_SIZE: 30px;
   color: $primary_text;
 }
 
-.poi_panel__actions__share_container:hover .poi_panel__actions__text, .poi_panel__actions__store_container:hover .poi_panel__actions__text {
-  color: $primary_text;
-  text-decoration: underline;
-}
-
-.poi_panel__description_container {
-  position: relative;
-}
-
 .poi_panel__store_status__toggle:after {
   content: '';
 }
