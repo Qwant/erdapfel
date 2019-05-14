@@ -12,7 +12,7 @@ import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
 import nconf from "../../local_modules/nconf_getter";
 import MasqFavoriteModal from "../modals/masq_favorite_modal";
-import Device from "../libs/device";
+import Device from "../libs/device"
 
 const poiSubClass = require('../mapbox/poi_subclass')
 
