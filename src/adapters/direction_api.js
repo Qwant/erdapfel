@@ -28,11 +28,14 @@ export default class DirectionApi {
     }
     const directionsParams = {
       language : language,
-      exclude : exclude,
       geometries : geometries,
       steps : true,
       alternatives : true,
       overview : OVERVIEW_SETTING,
+    }
+
+    if(exclude){
+      directionsParams['exclude'] = exclude
     }
 
     if(directionConfig.api === 'mapbox'){
