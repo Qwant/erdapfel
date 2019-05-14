@@ -71,8 +71,6 @@ export default class CategoryPanel {
 
   async open (options = {}) {
     SearchInput.minify()
-    document.querySelector('#panels').classList.add('panels--hide-services')
-    document.querySelector('#panels').classList.add('panels--category-open')
     document.querySelector('.top_bar').classList.add('top_bar--category-open')
     if(options.category) {
       this.categoryName = options.category.name
@@ -85,8 +83,6 @@ export default class CategoryPanel {
 
   close (toggleMarkers = true) {
     SearchInput.unMinify()
-    document.querySelector('#panels').classList.remove('panels--hide-services')
-    document.querySelector('#panels').classList.remove('panels--category-open')
     document.querySelector('.top_bar').classList.remove('top_bar--category-open')
     this.active = false
     this.panel.update()

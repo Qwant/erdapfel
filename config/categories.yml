@@ -1,5 +1,5 @@
 ---
-- label : hotel
+- label : _('hotel')
   name: hotel
   color: "#495063"
   matcher:
@@ -35,7 +35,7 @@
   matcher:
     regex: bank|atm|banques?|credits?\s+(?:mutuel|agricole|lyonnais|du\s+nord|cooperatif|foncier)|cic|bnp|hsbc|lcl|caisse\s+(?:d')?epargne|barclays|societe\s+generale|axa|square habitat|societe marseillaise de credit|bancassurances|la banque postale
   icon: bank
-- label : pharmacy
+- label : _('pharmacy')
   name: pharmacy
   color: "#4aa0e7"
   matcher:

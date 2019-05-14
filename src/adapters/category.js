@@ -16,7 +16,7 @@ export default class Category {
     this.matcher = matcher
 
     this.color = DEFAULT_ICON_COLOR
-    this.alternativeName = _(CATEGORY_TYPE)
+    this.alternativeName = _('category')
     this.type = CATEGORY_TYPE
   }
 

@@ -173,7 +173,6 @@ export default class DirectionPanel {
 
   async open(options = {}) {
     Telemetry.add(Telemetry.ITINERARY_OPEN)
-    document.querySelector('#panels').classList.add('panels--hide-services')
     document.querySelector('#panels').classList.add('panels--direction-open')
     document.querySelector('.top_bar').classList.add('top_bar--direction-open')
     if(options.poi) {
