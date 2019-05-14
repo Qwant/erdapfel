@@ -45,13 +45,13 @@ export default class CategoryPanel {
     listen('map_loaded', () => {
       this.categoryName = urlShard.match(/type=(.*)/)[1]
       this.search()
-      let bbox = window.mapGetBounds()
+      let bbox = window.map.bbox()
       this.open()
     })
   }
 
   async search() {
-    let bbox = window.mapGetBounds()
+    let bbox = window.map.bbox()
     let urlBBox = [bbox.getWest(),bbox.getSouth(),bbox.getEast(),bbox.getNorth()]
       .map((cardinal) => cardinal.toFixed(7))
       .join(',')
