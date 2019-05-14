@@ -21,7 +21,7 @@ export default class SceneCategory {
     pois.forEach(poi => {
       const { id, name, className, subClassName, type, latLon } = poi
       const marker = createIcon({ className, subClassName, type }, name, true)
-      poi.marker_id = id.replace("pj:", "marker_")
+      poi.marker_id = `marker_${id}`
       marker.onclick = function(){
         fire('click_category_poi', poi)
       }

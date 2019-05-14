@@ -118,14 +118,14 @@ export default class CategoryPanel {
   }
 
   highlightPoiMarker(poi){
-    let marker = document.querySelector("#" + poi.marker_id);
+    let marker = document.getElementById(poi.marker_id);
     if(marker) {
       marker.classList.add("active")
     }
   }
 
   unhighlightPoiMarker(poi){
-    let marker = document.querySelector("#" + poi.marker_id);
+    let marker = document.getElementById(poi.marker_id);
     if(marker) {
       marker.classList.remove("active")
     }
