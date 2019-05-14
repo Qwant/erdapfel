@@ -42,10 +42,9 @@ export default class CategoryPanel {
   }
 
   restore(urlShard) {
-    listen('map_loaded', () => {
+    window.execOnMapLoaded(() => {
       this.categoryName = urlShard.match(/type=(.*)/)[1]
       this.search()
-      let bbox = window.mapGetBounds()
       this.open()
     })
   }

@@ -137,37 +137,47 @@ input[type="search"] {
   color : $secondary_text;
 }
 
-.autocomplete_suggestion.selected {
-  border-left: #FF3B4A solid 3px;
-  padding-left: 17px;
-  background-color: $background_active;
-}
-
 .autocomplete_suggestion {
   max-height: 100vh;
-  padding: 7px 0 7px 20px;
+  padding: 7px 0 7px 12px;
   line-height: 23px;
   font-size: 1.02em;
   color: $secondary_text;
   background-color: $background;
   transition: background-color .2s;
   cursor: pointer;
+
+  &.selected {
+    border-left: #FF3B4A solid 3px;
+    padding-left: 9px;
+    background-color: $background_active;
+  }
 }
 
 .autocomplete_suggestion__first_line__container {
   width: 100%;
-  height: 22px;
+  height: 20px;
 }
 
 .autocomplete-icon {
   display: inline-block;
   width: 22px;
-  height: 22px;
-  margin-right: 3px;
+  margin-right: 5px;
+  line-height: 26px;
+
+  &.icon:before {
+    font-size: 28px;
+    line-height: 18px;
+  }
 }
 
 .autocomplete-icon-rounded {
   border-radius: 50%;
+
+  &.icon:before {
+    line-height: 22px;
+    font-size: 22px;
+  }
 }
 
 .autocomplete_suggestion__first_line {
@@ -182,16 +192,11 @@ input[type="search"] {
 .autocomplete_suggestion__second_line {
   height: 23px;
   font-size: 14px;
-  margin-left: 30px;
+  margin-left: 32px;
   text-overflow:ellipsis;
   text-transform: capitalize;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.autocomplete-icon.icon:before {
-  line-height: 22px;
-  font-size: 22px;
 }
 
 .autocomplete_suggestion--history {
