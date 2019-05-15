@@ -1,5 +1,5 @@
 import Error from '../adapters/error'
-import MasqErrorModal from '../modals/masq_error_modal'
+import MasqActivatingModal from '../modals/masq_activating_modal'
 
 const handleError = (fct, msg, e) => {
   Error.sendOnce('masq_store', fct, msg, e)
@@ -81,17 +81,17 @@ export default class MasqStore {
     this.openLoginPopupWindow(this.loginLink)
 
     try {
+      this.masqActivatingModal = new MasqActivatingModal()
+      this.masqActivatingModal.open()
       await this.masq.logIntoMasq(true)
+      this.masqActivatingModal.succeeded()
     } catch (e)  {
-      this.masqErrorModal = new MasqErrorModal()
       switch(e.code) {
         case this.MasqError.SIGNALLING_SERVER_ERROR:
-          this.masqErrorModal.open(
-            _('Could not activate Masq'),
-            _('The connection failed between Qwant Maps and the Masq application (Signalling error)'))
+          this.masqActivatingModal.failed(_('The connection failed between Qwant Maps and the Masq application (Signalling error)'))
           break
         default:
-          this.masqErrorModal.open(_('Could not connect to Masq'))
+          this.masqActivatingModal.failed(_('Could not connect to Masq'))
           break
       }
       throw e

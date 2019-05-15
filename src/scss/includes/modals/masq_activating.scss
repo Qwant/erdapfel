@@ -1,0 +1,128 @@
+.modal__masq_activating {
+  max-width: 450px;
+  border-radius: 3px;
+  position: relative;
+  background-color: #252a39;
+  overflow: auto;
+}
+
+.modal__masq_activating__header {
+  background-color: #252a39;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0 20px 0;
+}
+
+.modal__masq_activating__close {
+  position: absolute;
+  padding: 16px 10px;
+  right: 0;
+  top: 0;
+  color: #5c6f84;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal__masq_activating__logo {
+  height: 66px;
+}
+
+.modal__masq_activating__body {
+  padding: 0px 40px 40px 40px;
+  color: #5c6f84;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__masq_activating__animation {
+  height: 212px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.modal__masq_activating__animation video {
+  overflow: hidden;
+}
+
+.modal__masq_activating__message {
+  color: #c8cbd3;
+  font-size: 16px;
+  font-weight: normal;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.modal__masq_activating__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.modal__masq_activating__button {
+  height: 35px;
+  min-width: 150px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #f4f6fa;
+  border: solid 1px #f4f6fa;
+}
+
+.modal__masq_activating__button_filled {
+  background-color: #f4f6fa;
+  color: #353c52;
+}
+
+.icon-check-circle {
+  background-image: url('../images/masq/check-circle.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 115px;
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+
+.modal__masq_activating__title {
+  font-size: 22px;
+  color: #f4f6fa;
+  font-weight: bold;
+  margin-bottom: 25px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modal__masq_activating__subtitle {
+  display: block;
+  font-size: 16px;
+  color: #f4f6fa;
+  margin-bottom: 40px;
+}
+
+
+@media (max-width: 370px) {
+  .modal__masq_activating {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .icon-check-circle {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .modal__masq_activating__message {
+    margin-bottom: 35px;
+  }
+
+  .modal__masq_activating__buttons {
+    flex-direction: column;
+    margin-bottom: 55px;
+  }
+}
