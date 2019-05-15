@@ -11,8 +11,6 @@ export default class MasqErrorModal {
     window.__masqErrorModal = this
 
     this.modal = new Modal(this, MasqErrorModalView)
-
-    this.opened = false
   }
 
 
@@ -20,12 +18,10 @@ export default class MasqErrorModal {
     this.title = title
     this.subtitle = subtitle || ''
     this.modal.panel.update()
-    this.opened = true
     this.modal.open()
   }
 
   close () {
-    this.opened = false
     this.modal.close()
   }
 }
