@@ -211,3 +211,43 @@
   position: relative;
   font-size: 16px;
 }
+
+@media (max-width: 640px) {
+  .category__panel {
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    height: 50vh;
+    min-height: 300px;
+    background: #f4f6fa;
+  }
+
+  .category__panel__item {
+    padding: 0 16px;
+  }
+
+  .category__panel__item:hover {
+    border-left: none;
+    padding: 0 16px;
+  }
+
+  .category__panel__item_inner {
+    border: none;
+    background: #fff;
+    margin: 4px 0 8px;
+    padding: 14px 10px 14px 16px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,.16);
+  }
+
+  .category__panel__head {
+    overflow: auto;
+  }
+
+  .category__panel__pj {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+  }
+}
+

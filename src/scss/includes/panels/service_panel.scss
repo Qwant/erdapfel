@@ -87,8 +87,7 @@
 
 @media (max-width: 640px) {
   .service_panel {
-    margin: 72px auto 0;
-    width: calc(100% - 16px);
+    display: none !important;
   }
 
   .service_panel__category {
