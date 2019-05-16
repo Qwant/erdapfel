@@ -7,7 +7,7 @@ import IdunnPoi from "../adapters/poi/idunn_poi";
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import layouts from "./layouts.js";
-import constants from '../../config/constants.yml'
+import debounce from '../libs/debounce'
 const poiSubClass = require('../mapbox/poi_subclass')
 
 export default class CategoryPanel {
@@ -24,9 +24,10 @@ export default class CategoryPanel {
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
     PanelManager.register(this)
 
-    listen('map_moveend', () => {
+    listen('map_moveend', debounce( function() {
       if(this.active) this.search()
-    })
+    }, 300, this))
+
     listen('click_category_poi', (poi)=> {
       if (poi.meta && poi.meta.source) Telemetry.add("open", "poi", poi.meta.source)
       this.selectPoi(poi);
