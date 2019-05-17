@@ -13,6 +13,17 @@ BODY {
   max-height: calc(100vh - 75px);
 }
 
+.favorite_poi_panel__container .panel__note {
+  font-size: 14px;
+  display: inline-block;
+  color: #5c6f84;
+  margin: 2px 10px 0 0;
+
+  .icon-icon_star-filled {
+    color: #f3b100
+  }
+}
+
 .map_container {
   position: absolute;
   top: 0;
