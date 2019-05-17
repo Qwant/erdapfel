@@ -27,6 +27,7 @@
 
             let ico = IconManager.get(poi);
 
+            const grades = poi.blocks.find((block) => block.type === 'grades');
           }}
 
           <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }} {{= mouseover(this.highlightPoiMarker, this, poi) }} {{= mouseout(this.unhighlightPoiMarker, this, poi) }}>
@@ -56,15 +57,17 @@
                 </p>
               {{?}}
 
-            <!-- <div class="category__panel__note">
-                <span class="icon-icon_star-filled"></span>
-                <span class="icon-icon_star"></span>
-                <span class="icon-icon_star"></span>
-                <span class="icon-icon_star"></span>
-                <span class="icon-icon_star"></span>
-                ???
-                {{= _('reviews', 'categories') }}
-              </div-->
+              {{? grades }}
+                <div class="panel__note">
+                  {{~ [...Array(grades.global_grade)]:gr:k }}      
+                    <span class="icon-icon_star{{= k+1 <= grades.total_grades_count ? '-filled' : ''}}"></span>
+                  {{~}}
+
+                  <!-- TODO: Implement reviews count
+                    ??? {{= _('reviews', 'categories') }}
+                  -->
+                </div>
+              {{?}}
 
               {{= this.minimalHourPanel.set(poi).render() }}
 
