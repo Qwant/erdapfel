@@ -70,10 +70,10 @@ export default class CategoryPanel {
   }
 
   async open (options = {}) {
-    SearchInput.minify()
-    document.querySelector('.top_bar').classList.add('top_bar--category-open')
     if(options.category) {
-      this.categoryName = options.category.name
+      const { name, label } = options.category
+      this.categoryName = name
+      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1))
     }
     this.active = true
     this.search()
@@ -101,6 +101,7 @@ export default class CategoryPanel {
   }
 
   closeAction() {
+    SearchInput.setInputValue('')
     PanelManager.resetLayout()
   }
 

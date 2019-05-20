@@ -35,6 +35,10 @@ export default class SearchInput {
     window.__searchInput.searchInputHandle.blur()
   }
 
+  static setInputValue(value) {
+    window.__searchInput.suggest.setValue(value)
+  }
+
   static unMinify() {
     document.querySelector('.top_bar').classList.remove('top_bar--small')
     window.__searchInput.isEnabled = true
