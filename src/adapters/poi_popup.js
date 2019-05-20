@@ -9,7 +9,7 @@ const poiSubClass = require('../mapbox/poi_subclass')
 let popupTemplate = require('../views/popup.dot')
 const poiConfigs = require('../../config/constants.yml').pois
 
-const WAIT_BEFORE_DISPLAY = 800
+const WAIT_BEFORE_DISPLAY = 350
 
 function PoiPopup() {}
 
@@ -35,6 +35,7 @@ PoiPopup.prototype.addListener = function(layer) {
   })
 
   this.map.on('mouseleave', layer, async () => {
+    this.popupHandle.remove()
     clearTimeout(this.timeOutHandler)
   })
 }
