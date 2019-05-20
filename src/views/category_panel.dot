@@ -59,13 +59,13 @@
 
               {{? grades }}
                 <div class="panel__note">
-                  {{~ [...Array(grades.global_grade)]:gr:k }}      
-                    <span class="icon-icon_star{{= k+1 <= grades.total_grades_count ? '-filled' : ''}}"></span>
+                  {{~ [...Array(5)]:star:k }}      
+                    <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
                   {{~}}
 
-                  <!-- TODO: Implement reviews count
-                    ??? {{= _('reviews', 'categories') }}
-                  -->
+                  <span class="panel__note__review_count">
+                    {{= grades.total_grades_count }} {{= _('reviews', 'categories') }}
+                  </span>
                 </div>
               {{?}}
 
