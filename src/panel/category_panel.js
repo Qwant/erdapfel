@@ -70,8 +70,9 @@ export default class CategoryPanel {
 
   async open (options = {}) {
     if(options.category) {
-      this.categoryName = options.category.name
-      SearchInput.setInputValue(options.category.name)
+      const { name, label } = options.category
+      this.categoryName = name
+      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1))
     }
     this.active = true
     this.search()

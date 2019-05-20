@@ -36,7 +36,7 @@ export default class SearchInput {
   }
 
   static setInputValue(value) {
-    document.getElementById('search').value = value
+    window.__searchInput.suggest.setValue(value)
   }
 
   static unMinify() {
