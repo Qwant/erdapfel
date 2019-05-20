@@ -1,6 +1,5 @@
 import Autocomplete from '../vendors/autocomplete'
 import IconManager from '../adapters/icon_manager'
-import {layout} from '../../config/constants.yml'
 import ExtendedString from "../libs/string"
 import BragiPoi from "./poi/bragi_poi"
 import PoiStore from "./poi/poi_store"
