@@ -132,6 +132,31 @@ input[type="search"] {
   padding: 10px 20px;
 }
 
+.autocomplete_suggestion_feedback {
+  .autocomplete_suggestion__feedback_icon,
+  .autocomplete_suggestion__feedback_title {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .autocomplete_suggestion__feedback_icon {
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
+    margin-left: 15px;
+    border: 1px solid #c8cbd3;
+    color: #c8cbd3;
+    border-radius: 50%;
+    text-align: center;
+  }
+  .autocomplete_suggestion__feedback_title {
+    color: $primary_clear;
+    font-size: 14px;
+    font-weight: lighter;
+    padding: 10px 0 10px 5px;
+  }
+}
+
 .autocomplete_address {
   padding-left: 6px;
   color : $secondary_text;

@@ -124,6 +124,10 @@ var autoComplete = (function(){
         return item[0]
       }
 
+      live('autocomplete_suggestion_feedback', 'mousedown', function(e){
+        // trigger feedback form modal
+      }, that.sc);
+
       that.blurHandler = function(){
         try { var over_sb = document.querySelector('.autocomplete_suggestions:hover'); } catch(e){ var over_sb = 0; }
         if (!over_sb) {

@@ -89,6 +89,7 @@ export default class Suggest {
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
+        suggestDom += this.feedbackRender()
         return suggestDom
       },
 
@@ -177,6 +178,13 @@ export default class Suggest {
 
   favoritesRender(pois) {
     return `<h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`
+  }
+
+  feedbackRender() {
+    return `<div class="autocomplete_suggestion_feedback">
+      <span class="autocomplete_suggestion__feedback_icon">i</span>
+      <h3 class="autocomplete_suggestion__feedback_title">${_('Aidez-nous à améliorer nos résultats.', 'autocomplete')}</h3>
+      </div>`
   }
 
   getValue() {
