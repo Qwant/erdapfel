@@ -88,13 +88,13 @@
     <div class="category__panel__notfound">
       <button class="category__panel__close icon-x" {{= click(this.closeAction) }}>
       </button>
-      <span class="category__panel__warning icon-alert-triangle"></span>
-      <span class="category__panel__close_text">
+      <div class="category__panel__warning icon-alert-triangle"></div>
+      <div class="category__panel__close_text">
         {{= _('Qwant Maps found no results, please rephrase your query or zoom out of the map.', 'categories') }}
-      </span>
+      </div>
       <div class="category__panel__back" {{= click(this.closeAction) }}>
         <span class="category__panel__back_icon icon-chevron-left"></span>
-        {{= _('return', 'direction') }}
+        {{= _('return') }}
       </div>
     </div>
   {{?}}

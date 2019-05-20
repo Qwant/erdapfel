@@ -177,15 +177,11 @@
 .category__panel__notfound {
   position: relative;
   width: 400px;
-  height: 182px;
   border-radius: 3px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 70px;
+  padding: 35px 70px;
+  text-align: center;
 }
 
 .category__panel__notfound .category__panel__close {
@@ -199,7 +195,6 @@
   width: 24px;
   height: 24px;
   display: inline-block;
-  vertical-align: middle;
   font-size: 26px;
   color: rgba(0, 0, 0, 0.16);
   margin-bottom: 8px;
@@ -208,7 +203,7 @@
 .category__panel__close_text {
   text-align: center;
   color: #48718b;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .category__panel__back {
@@ -220,7 +215,7 @@
 
 .category__panel__back_icon {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
   width: 16px;
   height: 16px;
   position: relative;
