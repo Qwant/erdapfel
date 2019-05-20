@@ -18,10 +18,14 @@ BODY {
   display: inline-block;
   color: #5c6f84;
   margin: 2px 10px 0 0;
+}
 
-  .icon-icon_star-filled {
-    color: #f3b100
-  }
+.favorite_poi_panel__container .panel__note .icon-icon_star-filled {
+  color: #f3b100
+}
+
+.favorite_poi_panel__container .panel__note .panel__note__review_count {
+  margin-left: 3px;
 }
 
 .map_container {
