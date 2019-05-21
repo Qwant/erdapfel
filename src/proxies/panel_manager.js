@@ -11,11 +11,11 @@ PanelManager.init = function () {
   window.__panel_manager = {panels : []}
 }
 
-PanelManager.setPoi = async function(poi, options) {
+PanelManager.setPoi = async function(poi, options = {}) {
   __panel_manager.panels.forEach((panel) => {
     if(panel.isPoiComplient) {
       panel.setPoi(poi, options)
-    } else if(options && !options.isFromList && !options.isFromFavorite){
+    } else if(!options.isFromList && !options.isFromFavorite){
       panel.close()
     }
   })

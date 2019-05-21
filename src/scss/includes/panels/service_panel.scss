@@ -3,7 +3,6 @@
   position: relative;
   min-height: 90px;
   width: $panel_width;
-  margin-top: 14px;
   background: url('../images/panel_top.svg') white repeat-x;
   background-size: 100% 5px;
   @include card_shadow();
@@ -21,7 +20,7 @@
   font-weight: 500;
   border-bottom: 1px solid #e0e1e6;
   padding: 20px 0 10px;
-  margin: 20px 20px 8px;
+  margin: 0px 20px 8px;
 }
 
 .side_bar__item__icon {

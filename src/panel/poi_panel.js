@@ -98,7 +98,6 @@ PoiPanel.prototype.close = async function() {
   this.panel.update()
   this.sceneState.unsetPoiID()
   UrlState.pushUrl()
-  PanelManager.openService()
 }
 
 PoiPanel.prototype.restorePoi = async function (id) {
