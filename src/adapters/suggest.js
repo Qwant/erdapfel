@@ -89,7 +89,7 @@ export default class Suggest {
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
-        suggestDom += this.feedbackRender()
+        if (pois.length > 0) suggestDom += this.feedbackRender()
         return suggestDom
       },
 
@@ -183,7 +183,7 @@ export default class Suggest {
   feedbackRender() {
     return `<div class="autocomplete_suggestion_feedback">
       <span class="autocomplete_suggestion__feedback_icon">i</span>
-      <h3 class="autocomplete_suggestion__feedback_title">${_('Aidez-nous à améliorer nos résultats.', 'autocomplete')}</h3>
+      <h3 class="autocomplete_suggestion__feedback_title">${_('Aidez-nous à améliorer nos résultats de recherche.', 'autocomplete')}</h3>
       </div>`
   }
 

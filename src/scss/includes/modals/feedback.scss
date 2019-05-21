@@ -1,0 +1,19 @@
+.modal__maps_feedback{
+  width: 640px;
+  padding: 30px 24px;
+  background: url('../images/popup_top.svg') white repeat-x;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
+
+  hr {
+    border-top: 1px solid #EEE;
+    margin: 10px auto;
+  }
+
+  .modal__input_control {
+    margin: 5px auto;
+  }
+
+  .modal__button {
+    max-width: 100px;
+  }  
+}

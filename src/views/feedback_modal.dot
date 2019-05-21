@@ -1,0 +1,26 @@
+<div class="modal__maps_feedback">
+  <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
+  <h2 class="modal__title">{{= _('Aidez-nous à améliorer nos résultats de recherche.', 'share') }}</h2>
+
+  <div class="modal__input_container">
+    <p>Votre requête était :</p>
+    <p>Sélectionnez le ou les résultats qui correspondent à ce que vous recherchiez.</p>
+    <hr />
+    <p>Cochez les résultats qui vous semblent problématiques</p>
+    <div class="modal__input_control">
+      <input type="checkbox" name="doublons" value="doublons"> <label for="doublons">Présence de doublons</label>
+    </div>
+    <div class="modal__input_control">
+      <input type="checkbox" name="ranking" value="ranking"> <label for="ranking">Mauvais classement</label>
+    </div>
+    <div class="modal__input_control">
+      <input type="checkbox" name="geolocation" value="geolocation"> <label for="geolocation">Localisation erronée</label>
+    </div>
+    <div class="modal__input_control">
+      <input type="checkbox" name="other" value="other"> <label for="other">Autre :</label>
+    </div>
+  </div>
+
+  <button class="modal__button" {{= click(this.close, this) }}>{{= _('Cancel', 'feedback') }}</button>
+  <button class="modal__button" {{= click(this.close, this) }}>{{= _('Send', 'feedback') }}</button>
+</div>
