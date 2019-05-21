@@ -4,13 +4,34 @@
   background: url('../images/popup_top.svg') white repeat-x;
   box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
 
+  p {
+    color: $secondary_text;
+    margin-top: 15px;
+  }
+
   hr {
-    border-top: 1px solid #EEE;
+    border-top: 1px solid #DDD;
     margin: 10px auto;
   }
 
   .modal__input_control {
-    margin: 5px auto;
+    color: $secondary_text;
+    margin: 10px auto;
+
+    label {
+      font-size: 14px;
+    }
+
+    input {
+      cursor: pointer;
+    }
+
+    textarea {
+      border: 1px solid $secondary_text;
+      margin: 10px auto;
+      height: 80px;
+      width: 100%;
+    }
   }
 
   .modal__button {

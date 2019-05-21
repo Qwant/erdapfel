@@ -89,7 +89,7 @@ export default class Suggest {
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
-        if (pois.length > 0) suggestDom += this.feedbackRender()
+        if (pois.length > 0) suggestDom += this.feedbackRender(pois)
         return suggestDom
       },
 
