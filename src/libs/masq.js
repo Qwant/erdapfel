@@ -7,6 +7,7 @@ const handleError = (fct, msg, e) => {
 
 export default class MasqStore {
   constructor(config) {
+    console.log('masq store')
     this.storeName = 'masq'
 
     this.masq = null
@@ -53,6 +54,7 @@ export default class MasqStore {
   }
 
   _getStunTurnFromConf() {
+    console.log('_getStunTurnFromConf')
     let stunTurn = []
     if (this.config.stun) {
       stunTurn.push({
@@ -60,13 +62,21 @@ export default class MasqStore {
       })
     }
     if (this.config.turn) {
-      const splitTurn = this.config.turn.split('|')
+      const [creds, host] = this.config.turn.split('@')
+      const [scheme, username, credential] = creds.split(':')
+      console.log({
+        urls: scheme + ':' + host,
+        username: username,
+        credential: credential
+      })
+
       stunTurn.push({
-        urls: splitTurn[0],
-        username: splitTurn[1],
-        credential: splitTurn[2]
+        urls: scheme + ':' + host,
+        username: username,
+        credential: credential
       })
     }
+    console.log('stunTurn', stunTurn)
     return stunTurn
   }
 
