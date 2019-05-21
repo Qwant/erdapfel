@@ -1,6 +1,6 @@
 {{
   const ico = IconManager.get(this.poi);
-  const grades = this.poi.blocks.find((block) => block.type === 'grades');
+  const grades = this.poi.blocksByType.grades;
 }}
 
 <h4 class="poi_panel__title">
@@ -32,7 +32,7 @@
     {{~}}
 
     <span class="panel__note__review_count">
-      {{= grades.total_grades_count }} {{= _('reviews', 'categories') }}
+      {{= grades.total_grades_count }} {{= _n('review', 'reviews', grades.total_grades_count) }}
     </span>
   </div>
 {{?}}
