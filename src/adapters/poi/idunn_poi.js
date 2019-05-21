@@ -47,7 +47,7 @@ export default class IdunnPoi extends Poi {
     }
   }
 /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
-  static async poiCategoryLoad(bbox, size, category) {
+  static async poiCategoryLoad(bbox, size, category, panel) {
     let url = `${serviceConfig.idunn.url}/v1/places`
     let requestParams = {bbox, size, category}
 
@@ -57,6 +57,11 @@ export default class IdunnPoi extends Poi {
     } catch (err) {
       if(err === 404) {
         return
+      }
+      else if(err === 400){
+        console.log(err);
+        panel.zoomOnMarkers();
+        return;
       }
       else {
         Error.sendOnce(

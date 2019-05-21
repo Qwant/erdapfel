@@ -58,8 +58,8 @@ export default class CategoryPanel {
       .map((cardinal) => cardinal.toFixed(7))
       .join(',')
 
-    this.pois = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName)
-    
+    this.pois = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName, this)
+
     this.loading = false
     this.panel.update()
     let container = document.querySelector(".category__panel__scroll");
@@ -134,6 +134,15 @@ export default class CategoryPanel {
     let marker = document.getElementById(poi.marker_id);
     if(marker) {
       marker.classList.remove("active")
+    }
+  }
+
+  zoomOnMarkers(){
+    if(window.map.mb.getZoom() < 12) {
+      // TODO (to discuss)
+      // request geolocation
+      // if ok => zoom 12 on current position
+      // if ko => zoom 12 on Paris
     }
   }
 }
