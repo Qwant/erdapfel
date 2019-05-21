@@ -20,6 +20,7 @@ export default class CategoryPanel {
     this.active = false
     this.poiSubClass = poiSubClass
     this.PoiMarkers = []
+    this.loading = false
 
     UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
     PanelManager.register(this)
@@ -51,13 +52,15 @@ export default class CategoryPanel {
   }
 
   async search() {
+    this.loading = true
     let bbox = window.map.bbox()
     let urlBBox = [bbox.getWest(),bbox.getSouth(),bbox.getEast(),bbox.getNorth()]
       .map((cardinal) => cardinal.toFixed(7))
       .join(',')
 
     this.pois = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName)
-
+    
+    this.loading = false
     this.panel.update()
     let container = document.querySelector(".category__panel__scroll");
     if(container){
@@ -70,10 +73,10 @@ export default class CategoryPanel {
   }
 
   async open (options = {}) {
-    SearchInput.minify()
-    document.querySelector('.top_bar').classList.add('top_bar--category-open')
     if(options.category) {
-      this.categoryName = options.category.name
+      const { name, label } = options.category
+      this.categoryName = name
+      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1))
     }
     this.active = true
     this.search()
@@ -101,6 +104,7 @@ export default class CategoryPanel {
   }
 
   closeAction() {
+    SearchInput.setInputValue('')
     PanelManager.resetLayout()
   }
 

@@ -7,10 +7,6 @@
   @include card_radius();
 }
 
-.category__panel--hidden {
-  display: none;
-}
-
 .category__panel__scroll {
   position: relative;
   overflow-y: auto;
@@ -110,6 +106,7 @@
 .category__panel__type {
   font-size: 12px;
   color: #5c6f84;
+  text-transform: capitalize;
 }
 
 .category__panel__address {
@@ -165,4 +162,52 @@
     font-size: 16px;
     margin: 0 5px 0 0;
   }
+}
+
+.category__panel__notfound {
+  position: relative;
+  width: 400px;
+  border-radius: 3px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  padding: 35px 70px;
+  text-align: center;
+}
+
+.category__panel__notfound .category__panel__close {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  color: $secondary_text;
+}
+
+.category__panel__warning {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  font-size: 26px;
+  color: rgba(0, 0, 0, 0.16);
+  margin-bottom: 8px;
+}
+
+.category__panel__close_text {
+  text-align: center;
+  color: #48718b;
+  margin-bottom: 15px;
+}
+
+.category__panel__back {
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $secondary_text;
+  font-size: 12px;
+}
+
+.category__panel__back_icon {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  font-size: 16px;
 }
