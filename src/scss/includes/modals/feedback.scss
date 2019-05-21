@@ -4,6 +4,30 @@
   background: url('../images/popup_top.svg') white repeat-x;
   box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
 
+  .autocomplete_feedback_suggestions {
+    .autocomplete_suggestion {
+      margin: 6px auto;
+      padding: 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:nth-child(odd) {
+        background: #f6f7f8;
+      }
+
+      .autocomplete_suggestion__first_line,
+      .autocomplete_suggestion__second_line {
+        font-size: 14px;
+      }
+    }
+  }
+
   p {
     color: $secondary_text;
     margin-top: 15px;

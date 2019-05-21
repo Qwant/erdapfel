@@ -126,7 +126,7 @@ var autoComplete = (function(){
 
       live('autocomplete_suggestion_feedback', 'mousedown', function(e){
         // trigger feedback form modal
-        fire('open_feedback_modal')
+        fire('open_feedback_modal', that.items)
       }, that.sc);
 
       that.blurHandler = function(){

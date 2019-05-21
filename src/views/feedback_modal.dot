@@ -16,25 +16,23 @@
           <small>Que recherchiez-vous ? Veuillez nous communiquer le plus d'informations possible :</small>
           <textarea name="more" col="10" row="5"></textarea>
         </div>
-      {{?}}      
-      <hr />
-      <p>Cochez les résultats qui vous semblent inappropriés :</p>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_duplicate" value="result_duplicate"> <label for="result_duplicate">Présence de doublons</label>
-      </div>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_ranking" value="result_ranking"> <label for="result_ranking">Mauvais classement</label>
-      </div>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_geolocation" value="result_geolocation"> <label for="result_geolocation">Localisation erronée</label>
-      </div>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_other" value="result_other"> <label for="result_other">Autre</label>
-      </div>
-      <div class="modal__input_control">
-        <p>Donnez-nous plus d'informations :</p>
-        <textarea name="more" col="10" row="10"></textarea>
-      </div>
+      {{?}}
+      {{? this.results.length > 0 }}
+        <div class="autocomplete_feedback_suggestions">
+          {{~ this.results:result }}
+            <div class="autocomplete_suggestion{{? result.fromHistory }} autocomplete_suggestion--history{{?}}" {{= click(this.selectResult, this, result) }}>
+              <div class="autocomplete_suggestion__first_line__container">
+                <div style="color:{{? result.icon }}{{= result.icon.color }}{{?}}" class="autocomplete-icon icon {{? result.icon }}icon-{{= result.icon.iconClass}}{{?}}"></div>
+                <div class="autocomplete_suggestion__first_line">{{= this.ExtendedString.htmlEncode(result.name) }}</div>
+              </div>
+              <div class="autocomplete_suggestion__second_line">{{= this.ExtendedString.htmlEncode(result.alternativeName) }}</div>
+            </div>
+            {{? this.selected_result === result }}
+              {{= this.renderFormDetails() }}
+            {{?}}
+          {{~}}
+        </div>
+      {{?}}
     </div>
      <hr />
     <button class="modal__button" {{= click(this.close, this) }}>{{= _('Cancel', 'feedback') }}</button>
