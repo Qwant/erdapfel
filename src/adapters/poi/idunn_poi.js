@@ -27,12 +27,13 @@ export default class IdunnPoi extends Poi {
     this.bbox = rawPoi.geometry.bbox
     this.meta = rawPoi.meta
 
+    this.blocksByType = {}
     if(this.blocks) {
-      let imagesBlock = this.blocks.find((b) => b.type === 'images')
+      this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({[b.type]: b})))
+      const imagesBlock = this.blocksByType.images
       if (imagesBlock && imagesBlock.images.length > 0){
         this.topImageUrl = imagesBlock.images[0].url
       }
-      this.phoneBlock = this.blocks.find((b) => b.type === 'phone')
     }
   }
 

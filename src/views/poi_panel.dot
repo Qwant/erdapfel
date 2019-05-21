@@ -69,11 +69,13 @@
             <div class="poi_panel__actions__text">{{= _('DIRECTIONS', 'poi') }}</div>
           </div>
         {{?}}
-        {{? this.poi.phoneBlock}}
-          <a class="poi_panel__actions__phone_container button_container" data-rel="external" rel="noopener noreferrer" href="{{= this.poi.phoneBlock.url }}">
+        {{? this.poi.blocksByType.phone}}
+          <a class="poi_panel__actions__phone_container button_container"
+            data-rel="external" rel="noopener noreferrer"
+            href="{{= this.poi.blocksByType.phone.url }}">
             <button class="poi_panel__actions__icon icon-icon_phone">
             </button>
-            <div class="poi_panel__actions__text">{{= this.htmlEncode(this.poi.phoneBlock.local_format) }}</div>
+            <div class="poi_panel__actions__text">{{= this.htmlEncode(this.poi.blocksByType.phone.local_format) }}</div>
           </a>
         {{?}}
       </div>
