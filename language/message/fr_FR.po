@@ -1,15 +1,17 @@
 # Translators:
 # Boo Teille <booteille@tutanota.com>, 2019
-# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Griesner <jb.griesner@qwant.com>, 2019
+# Florent Thouvenin <github@eldar.fr>, 2019
+# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
+# Etienne Bacher <etienne.bacher@orange.fr>, 2019
 # Adrien Matissart, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 14:27+0000\n"
+"POT-Creation-Date: 2019-05-21 16:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2019\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -32,6 +34,30 @@ msgstr "Qwant Maps - alpha"
 
 msgid "Search on Qwant Maps"
 msgstr "Rechercher dans Qwant Maps"
+
+msgid "hotel"
+msgstr "hôtel"
+
+msgid "restaurant"
+msgstr "restaurant"
+
+msgid "cinema"
+msgstr "cinéma"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermarché"
+
+msgid "bank"
+msgstr "banque"
+
+msgid "pharmacy"
+msgstr "pharmacie"
+
+msgid "education"
+msgstr "éducation"
 
 msgid "Opening hours"
 msgstr "Horaires d'ouverture"
@@ -144,12 +170,6 @@ msgstr "Chercher avec Qwant Maps"
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
 
-msgid "Open 24/7"
-msgstr "Ouvert 24h/24 et 7j/7"
-
-msgid "until {nextTransitionTime}"
-msgstr "jusqu’à {nextTransitionTime}"
-
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
 
@@ -188,12 +208,6 @@ msgstr "magasin de sac et bagage"
 
 msgid "bakery"
 msgstr "boulangerie"
-
-msgid "bank"
-msgstr "banque"
-
-msgid "bar"
-msgstr "bar"
 
 msgid "basin"
 msgstr "bassin de rétention d'eau"
@@ -293,9 +307,6 @@ msgstr "échecs"
 
 msgid "chocolate shop"
 msgstr "chocolaterie"
-
-msgid "cinema"
-msgstr "cinéma"
 
 msgid "climbing"
 msgstr "escalade"
@@ -468,9 +479,6 @@ msgstr "hôpital"
 msgid "hostel"
 msgstr "auberge de jeunesse"
 
-msgid "hotel"
-msgstr "hôtel"
-
 msgid "ice cream"
 msgstr "glacier"
 
@@ -582,9 +590,6 @@ msgstr "parfumerie"
 msgid "pet store"
 msgstr "animalerie"
 
-msgid "pharmacy"
-msgstr "pharmacie"
-
 msgid "photo shop"
 msgstr "magasin de photo"
 
@@ -614,9 +619,6 @@ msgstr "voiture radio commandée"
 
 msgid "reservoir"
 msgstr "réservoir"
-
-msgid "restaurant"
-msgstr "restaurant"
 
 msgid "rowing"
 msgstr "aviron"
@@ -674,9 +676,6 @@ msgstr "papeterie"
 
 msgid "subway"
 msgstr "arrêt de métro"
-
-msgid "supermarket"
-msgstr "supermarché"
 
 msgid "swimming"
 msgstr "piscine"
@@ -774,6 +773,12 @@ msgstr "adresse"
 msgid "street"
 msgstr "rue"
 
+msgid "Open 24/7"
+msgstr "Ouvert 24h/24 et 7j/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "jusqu’à {nextTransitionTime}"
+
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
@@ -797,6 +802,21 @@ msgstr "Utilisez"
 
 msgid "to secure your favorites on all your devices"
 msgstr "pour stocker vos préférences sur tous vos appareils"
+
+msgid "Patience, Masq is activating..."
+msgstr "Patientez, Masq est en cours d'activation..."
+
+msgid "Cancel"
+msgstr "Annulez"
+
+msgid "Masq is activated, your data is now secured !"
+msgstr "Masq est activé, vos données sont maintenant sécurisées !"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Masq activation failed"
+msgstr "Activation de Masq échouée"
 
 msgid "filter"
 msgstr "filtre"
@@ -843,14 +863,20 @@ msgstr ""
 msgid "More details"
 msgstr "Plus de détails"
 
+msgid "Back to favorite"
+msgstr "Retour aux favoris"
+
+msgid "Back to list"
+msgstr "Retour à la liste"
+
+msgid "Back"
+msgstr "Retour"
+
 msgid "DIRECTIONS"
 msgstr "ITINÉRAIRE"
 
 msgid "SEE MORE"
 msgstr "EN VOIR PLUS"
-
-msgid "Back to favorite"
-msgstr "Retour aux favoris"
 
 msgid "FAVORITES"
 msgstr "FAVORIS"
@@ -879,11 +905,13 @@ msgstr "WiFi"
 msgid "Services & information"
 msgstr "Services & informations"
 
-msgid "Read more on Wikipedia"
-msgstr "Lire la suite sur Wikipédia"
+msgid "WIKIPEDIA"
+msgstr "WIKIPÉDIA"
 
-msgid "Read more on Wikidata"
-msgstr "Lire la suite sur Wikidata"
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "avis"
+msgstr[1] "avis"
 
 msgid "Use Masq to secure your favorites on all your devices"
 msgstr "Utilisez Masq pour sauvegarder vos favoris sur tous vos appareils"
@@ -1003,6 +1031,35 @@ msgstr "Activer"
 
 msgid "How does it work ?"
 msgstr "Comment ça marche ?"
+
+msgid "PAGES JAUNES"
+msgstr "Pages Jaunes"
+
+msgid "Partnership"
+msgstr "Partenariat"
+
+msgid "See the phone number"
+msgstr "Voir le numéro de téléphone"
+
+msgid ""
+"Qwant Maps found no results, please rephrase your query or zoom out of the "
+"map."
+msgstr ""
+"Qwant Maps n'a pas trouvé de résultats, veuillez reformuler votre recherche "
+"ou dézoomer."
+
+msgid ""
+"The connection failed between Qwant Maps and the Masq application "
+"(Signalling error)"
+msgstr ""
+"La connexion entre Qwant Maps et l'application Masq a échouée. (Erreur de "
+"signalement)"
+
+msgid "Could not connect to Masq"
+msgstr "Impossible de se connecter à Masq"
+
+msgid "category"
+msgstr "catégorie"
 
 msgid "Your position"
 msgstr "Votre position"

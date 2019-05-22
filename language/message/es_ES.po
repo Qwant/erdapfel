@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 14:27+0000\n"
+"POT-Creation-Date: 2019-05-21 16:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
@@ -28,6 +28,30 @@ msgstr "Qwant Maps - alfa"
 
 msgid "Search on Qwant Maps"
 msgstr "Buscar en Qwant Maps"
+
+msgid "hotel"
+msgstr "hotel"
+
+msgid "restaurant"
+msgstr "restaurante"
+
+msgid "cinema"
+msgstr "cine"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermercado"
+
+msgid "bank"
+msgstr "banco"
+
+msgid "pharmacy"
+msgstr "farmacia"
+
+msgid "education"
+msgstr ""
 
 msgid "Opening hours"
 msgstr "Horario de apertura"
@@ -140,12 +164,6 @@ msgstr ""
 msgid "The map that respects your privacy"
 msgstr "El mapa respeta tu privacidad"
 
-msgid "Open 24/7"
-msgstr ""
-
-msgid "until {nextTransitionTime}"
-msgstr "hasta {nextTransitionTime}"
-
 msgid "accessories shop"
 msgstr "tienda de accesorios"
 
@@ -184,12 +202,6 @@ msgstr "tienda de bolsos"
 
 msgid "bakery"
 msgstr "panadería"
-
-msgid "bank"
-msgstr "banco"
-
-msgid "bar"
-msgstr "bar"
 
 msgid "basin"
 msgstr "fregadero"
@@ -289,9 +301,6 @@ msgstr "ajedrez"
 
 msgid "chocolate shop"
 msgstr "chocolatería"
-
-msgid "cinema"
-msgstr "cine"
 
 msgid "climbing"
 msgstr "escalada"
@@ -464,9 +473,6 @@ msgstr "hospital"
 msgid "hostel"
 msgstr "albergue"
 
-msgid "hotel"
-msgstr "hotel"
-
 msgid "ice cream"
 msgstr "helado"
 
@@ -578,9 +584,6 @@ msgstr "perfumería"
 msgid "pet store"
 msgstr "tienda de mascotas"
 
-msgid "pharmacy"
-msgstr "farmacia"
-
 msgid "photo shop"
 msgstr "tienda de fotografía"
 
@@ -610,9 +613,6 @@ msgstr "coche de radio control"
 
 msgid "reservoir"
 msgstr "embalse"
-
-msgid "restaurant"
-msgstr "restaurante"
 
 msgid "rowing"
 msgstr "remo"
@@ -670,9 +670,6 @@ msgstr "papelería"
 
 msgid "subway"
 msgstr "metro"
-
-msgid "supermarket"
-msgstr "supermercado"
 
 msgid "swimming"
 msgstr "natación"
@@ -770,6 +767,12 @@ msgstr ""
 msgid "street"
 msgstr ""
 
+msgid "Open 24/7"
+msgstr ""
+
+msgid "until {nextTransitionTime}"
+msgstr "hasta {nextTransitionTime}"
+
 msgid "Favorite places"
 msgstr "Lugares preferidos"
 
@@ -792,6 +795,21 @@ msgid "Use"
 msgstr ""
 
 msgid "to secure your favorites on all your devices"
+msgstr ""
+
+msgid "Patience, Masq is activating..."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Masq is activated, your data is now secured !"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Masq activation failed"
 msgstr ""
 
 msgid "filter"
@@ -831,14 +849,20 @@ msgstr ""
 msgid "More details"
 msgstr ""
 
+msgid "Back to favorite"
+msgstr "Volver al preferido"
+
+msgid "Back to list"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
 msgid "DIRECTIONS"
 msgstr "ITINERARIO"
 
 msgid "SEE MORE"
 msgstr ""
-
-msgid "Back to favorite"
-msgstr "Volver al preferido"
 
 msgid "FAVORITES"
 msgstr "FAVORITOS"
@@ -867,11 +891,13 @@ msgstr "Wifi"
 msgid "Services & information"
 msgstr "Servicios e información"
 
-msgid "Read more on Wikipedia"
-msgstr "Lee más en Wikipedia"
+msgid "WIKIPEDIA"
+msgstr ""
 
-msgid "Read more on Wikidata"
-msgstr "Lee más en Wikidata"
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
@@ -985,6 +1011,31 @@ msgid "Activate"
 msgstr ""
 
 msgid "How does it work ?"
+msgstr ""
+
+msgid "PAGES JAUNES"
+msgstr ""
+
+msgid "Partnership"
+msgstr ""
+
+msgid "See the phone number"
+msgstr ""
+
+msgid ""
+"Qwant Maps found no results, please rephrase your query or zoom out of the "
+"map."
+msgstr ""
+
+msgid ""
+"The connection failed between Qwant Maps and the Masq application "
+"(Signalling error)"
+msgstr ""
+
+msgid "Could not connect to Masq"
+msgstr ""
+
+msgid "category"
 msgstr ""
 
 msgid "Your position"
