@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 14:27+0000\n"
+"POT-Creation-Date: 2019-05-21 16:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -29,6 +29,30 @@ msgstr "Qwant Maps - alpha"
 
 msgid "Search on Qwant Maps"
 msgstr "Auf Qwant Maps suchen"
+
+msgid "hotel"
+msgstr "Hotel"
+
+msgid "restaurant"
+msgstr "Restaurant"
+
+msgid "cinema"
+msgstr "Kino"
+
+msgid "bar"
+msgstr "Bar"
+
+msgid "supermarket"
+msgstr "Supermarkt"
+
+msgid "bank"
+msgstr "Bank"
+
+msgid "pharmacy"
+msgstr "Apotheke"
+
+msgid "education"
+msgstr ""
 
 msgid "Opening hours"
 msgstr "Öffnungszeiten"
@@ -141,12 +165,6 @@ msgstr "Suche mit Qwant Maps"
 msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
-msgid "Open 24/7"
-msgstr "24/7 geöffnet"
-
-msgid "until {nextTransitionTime}"
-msgstr "bis {nextTransitionTime}"
-
 msgid "accessories shop"
 msgstr "Zubehörshop "
 
@@ -185,12 +203,6 @@ msgstr "Taschengeschäft"
 
 msgid "bakery"
 msgstr "Bäckerei"
-
-msgid "bank"
-msgstr "Bank"
-
-msgid "bar"
-msgstr "Bar"
 
 msgid "basin"
 msgstr "Becken"
@@ -290,9 +302,6 @@ msgstr "Schach"
 
 msgid "chocolate shop"
 msgstr "Schokoladengeschäft"
-
-msgid "cinema"
-msgstr "Kino"
 
 msgid "climbing"
 msgstr "klettern"
@@ -465,9 +474,6 @@ msgstr "Krankenhaus"
 msgid "hostel"
 msgstr "Jugendherberge"
 
-msgid "hotel"
-msgstr "Hotel"
-
 msgid "ice cream"
 msgstr "Eiscreme"
 
@@ -579,9 +585,6 @@ msgstr "Parfümerie"
 msgid "pet store"
 msgstr " Tierhandlung"
 
-msgid "pharmacy"
-msgstr "Apotheke"
-
 msgid "photo shop"
 msgstr "Fotoladen"
 
@@ -611,9 +614,6 @@ msgstr "RC-Car"
 
 msgid "reservoir"
 msgstr "Reservoir"
-
-msgid "restaurant"
-msgstr "Restaurant"
 
 msgid "rowing"
 msgstr "Rudern"
@@ -671,9 +671,6 @@ msgstr "Schreibwarengeschäft"
 
 msgid "subway"
 msgstr "Untergrundbahn"
-
-msgid "supermarket"
-msgstr "Supermarkt"
 
 msgid "swimming"
 msgstr "Schwimmen"
@@ -771,6 +768,12 @@ msgstr "Adresse"
 msgid "street"
 msgstr "Straße"
 
+msgid "Open 24/7"
+msgstr "24/7 geöffnet"
+
+msgid "until {nextTransitionTime}"
+msgstr "bis {nextTransitionTime}"
+
 msgid "Favorite places"
 msgstr "Lieblingsorte"
 
@@ -793,6 +796,21 @@ msgid "Use"
 msgstr ""
 
 msgid "to secure your favorites on all your devices"
+msgstr ""
+
+msgid "Patience, Masq is activating..."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Masq is activated, your data is now secured !"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Masq activation failed"
 msgstr ""
 
 msgid "filter"
@@ -832,14 +850,20 @@ msgstr ""
 msgid "More details"
 msgstr ""
 
+msgid "Back to favorite"
+msgstr "Zurück zu Favoriten"
+
+msgid "Back to list"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
 msgid "DIRECTIONS"
 msgstr "WEGBESCHREIBUNG"
 
 msgid "SEE MORE"
 msgstr "ZEIGE MEHR"
-
-msgid "Back to favorite"
-msgstr "Zurück zu Favoriten"
 
 msgid "FAVORITES"
 msgstr "FAVORITEN"
@@ -868,11 +892,13 @@ msgstr "Wi-Fi"
 msgid "Services & information"
 msgstr "Dienstleistungen und Information"
 
-msgid "Read more on Wikipedia"
-msgstr "Auf Wikipedia weiterlesen"
+msgid "WIKIPEDIA"
+msgstr ""
 
-msgid "Read more on Wikidata"
-msgstr "Erfahren Sie mehr bei Wikidata"
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
@@ -975,7 +1001,7 @@ msgid "Favorites"
 msgstr "Favoriten"
 
 msgid "How to contribute"
-msgstr "Wie man mitmacht"
+msgstr "Mitmachen"
 
 msgid "Deactivate"
 msgstr ""
@@ -984,6 +1010,31 @@ msgid "Activate"
 msgstr ""
 
 msgid "How does it work ?"
+msgstr ""
+
+msgid "PAGES JAUNES"
+msgstr ""
+
+msgid "Partnership"
+msgstr ""
+
+msgid "See the phone number"
+msgstr ""
+
+msgid ""
+"Qwant Maps found no results, please rephrase your query or zoom out of the "
+"map."
+msgstr ""
+
+msgid ""
+"The connection failed between Qwant Maps and the Masq application "
+"(Signalling error)"
+msgstr ""
+
+msgid "Could not connect to Masq"
+msgstr ""
+
+msgid "category"
 msgstr ""
 
 msgid "Your position"

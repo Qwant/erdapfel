@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 14:27+0000\n"
+"POT-Creation-Date: 2019-05-21 16:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -30,6 +30,30 @@ msgstr "Qwant Maps - stumm alpha"
 
 msgid "Search on Qwant Maps"
 msgstr "Klask war Qwant Maps"
+
+msgid "hotel"
+msgstr "leti"
+
+msgid "restaurant"
+msgstr "predti"
+
+msgid "cinema"
+msgstr "sinema"
+
+msgid "bar"
+msgstr "tavarn"
+
+msgid "supermarket"
+msgstr "gourmarc'had"
+
+msgid "bank"
+msgstr "ti-bank"
+
+msgid "pharmacy"
+msgstr "apotikerezh"
+
+msgid "education"
+msgstr ""
 
 msgid "Opening hours"
 msgstr "Eurioù digeriñ"
@@ -142,12 +166,6 @@ msgstr "Klask gant Qwant Maps"
 msgid "The map that respects your privacy"
 msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
-msgid "Open 24/7"
-msgstr "Digor 24/7"
-
-msgid "until {nextTransitionTime}"
-msgstr "betek {nextTransitionTime}"
-
 msgid "accessories shop"
 msgstr "stal rikoù"
 
@@ -186,12 +204,6 @@ msgstr "stal seier"
 
 msgid "bakery"
 msgstr "bouloñjerezh"
-
-msgid "bank"
-msgstr "ti-bank"
-
-msgid "bar"
-msgstr "tavarn"
 
 msgid "basin"
 msgstr "poull"
@@ -291,9 +303,6 @@ msgstr "c'hoari echedoù"
 
 msgid "chocolate shop"
 msgstr "stal chokolad"
-
-msgid "cinema"
-msgstr "sinema"
 
 msgid "climbing"
 msgstr "krimpadenn"
@@ -466,9 +475,6 @@ msgstr "ospital"
 msgid "hostel"
 msgstr "ti ar re yaouank"
 
-msgid "hotel"
-msgstr "leti"
-
 msgid "ice cream"
 msgstr "stal diennoù-skorn"
 
@@ -580,9 +586,6 @@ msgstr "porfumerezh"
 msgid "pet store"
 msgstr "stal-loened"
 
-msgid "pharmacy"
-msgstr "apotikerezh"
-
 msgid "photo shop"
 msgstr "stal fotoioù"
 
@@ -612,9 +615,6 @@ msgstr "karr pellurzhiet"
 
 msgid "reservoir"
 msgstr "beol"
-
-msgid "restaurant"
-msgstr "predti"
 
 msgid "rowing"
 msgstr "roeñverezh"
@@ -672,9 +672,6 @@ msgstr "stal paperaerezh"
 
 msgid "subway"
 msgstr "tren-buzhug"
-
-msgid "supermarket"
-msgstr "gourmarc'had"
 
 msgid "swimming"
 msgstr "poull-neuial"
@@ -772,6 +769,12 @@ msgstr ""
 msgid "street"
 msgstr ""
 
+msgid "Open 24/7"
+msgstr "Digor 24/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "betek {nextTransitionTime}"
+
 msgid "Favorite places"
 msgstr "Lec'hioù karetañ"
 
@@ -794,6 +797,21 @@ msgid "Use"
 msgstr ""
 
 msgid "to secure your favorites on all your devices"
+msgstr ""
+
+msgid "Patience, Masq is activating..."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Masq is activated, your data is now secured !"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Masq activation failed"
 msgstr ""
 
 msgid "filter"
@@ -833,14 +851,20 @@ msgstr ""
 msgid "More details"
 msgstr ""
 
+msgid "Back to favorite"
+msgstr "Distreiñ d'ar sinedoù"
+
+msgid "Back to list"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
 msgid "DIRECTIONS"
 msgstr "TUADURIOÙ"
 
 msgid "SEE MORE"
 msgstr "GWELET MUIOC'H"
-
-msgid "Back to favorite"
-msgstr "Distreiñ d'ar sinedoù"
 
 msgid "FAVORITES"
 msgstr "SINEDOÙ"
@@ -869,11 +893,16 @@ msgstr "WiFi"
 msgid "Services & information"
 msgstr "Servijoù & Titouroù"
 
-msgid "Read more on Wikipedia"
-msgstr "Lenn muioc'h war Wikipedia"
+msgid "WIKIPEDIA"
+msgstr ""
 
-msgid "Read more on Wikidata"
-msgstr "Lenn muioc'h war Wikidata"
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
 
 msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
@@ -989,6 +1018,31 @@ msgid "Activate"
 msgstr ""
 
 msgid "How does it work ?"
+msgstr ""
+
+msgid "PAGES JAUNES"
+msgstr ""
+
+msgid "Partnership"
+msgstr ""
+
+msgid "See the phone number"
+msgstr ""
+
+msgid ""
+"Qwant Maps found no results, please rephrase your query or zoom out of the "
+"map."
+msgstr ""
+
+msgid ""
+"The connection failed between Qwant Maps and the Masq application "
+"(Signalling error)"
+msgstr ""
+
+msgid "Could not connect to Masq"
+msgstr ""
+
+msgid "category"
 msgstr ""
 
 msgid "Your position"

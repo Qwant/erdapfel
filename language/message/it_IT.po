@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 14:27+0000\n"
+"POT-Creation-Date: 2019-05-21 16:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Federico Montemaro <montemarostore@gmail.com>, 2019\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
@@ -29,6 +29,30 @@ msgstr "Qwant Maps - alfa"
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca su Qwant Maps"
+
+msgid "hotel"
+msgstr "hotel"
+
+msgid "restaurant"
+msgstr "ristorante"
+
+msgid "cinema"
+msgstr "cinema"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermercato"
+
+msgid "bank"
+msgstr "banca"
+
+msgid "pharmacy"
+msgstr "farmacia"
+
+msgid "education"
+msgstr ""
 
 msgid "Opening hours"
 msgstr "Orari di apertura"
@@ -141,12 +165,6 @@ msgstr "Cerca con Qwant Maps"
 msgid "The map that respects your privacy"
 msgstr "La mappa che rispetta la tua privacy"
 
-msgid "Open 24/7"
-msgstr "Aperto 24/7"
-
-msgid "until {nextTransitionTime}"
-msgstr "fino a {nextTransitionTime}"
-
 msgid "accessories shop"
 msgstr "negozio di accessori"
 
@@ -185,12 +203,6 @@ msgstr "negozio di borse"
 
 msgid "bakery"
 msgstr "panificio"
-
-msgid "bank"
-msgstr "banca"
-
-msgid "bar"
-msgstr "bar"
 
 msgid "basin"
 msgstr "lavandino"
@@ -290,9 +302,6 @@ msgstr "scacchi"
 
 msgid "chocolate shop"
 msgstr "negozio di cioccolato"
-
-msgid "cinema"
-msgstr "cinema"
 
 msgid "climbing"
 msgstr "arrampicata"
@@ -465,9 +474,6 @@ msgstr "ospedale"
 msgid "hostel"
 msgstr "ostello"
 
-msgid "hotel"
-msgstr "hotel"
-
 msgid "ice cream"
 msgstr "gelato"
 
@@ -579,9 +585,6 @@ msgstr "profumeria"
 msgid "pet store"
 msgstr "negozio di animali"
 
-msgid "pharmacy"
-msgstr "farmacia"
-
 msgid "photo shop"
 msgstr "negozio di fotografie"
 
@@ -611,9 +614,6 @@ msgstr "macchina radiocomandata"
 
 msgid "reservoir"
 msgstr "serbatoio"
-
-msgid "restaurant"
-msgstr "ristorante"
 
 msgid "rowing"
 msgstr "canottaggio"
@@ -671,9 +671,6 @@ msgstr "negozio di cancelleria"
 
 msgid "subway"
 msgstr "metropolitana"
-
-msgid "supermarket"
-msgstr "supermercato"
 
 msgid "swimming"
 msgstr "nuoto"
@@ -771,6 +768,12 @@ msgstr "Indirizzo"
 msgid "street"
 msgstr "Strada"
 
+msgid "Open 24/7"
+msgstr "Aperto 24/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "fino a {nextTransitionTime}"
+
 msgid "Favorite places"
 msgstr "Luoghi preferiti"
 
@@ -793,6 +796,21 @@ msgid "Use"
 msgstr ""
 
 msgid "to secure your favorites on all your devices"
+msgstr ""
+
+msgid "Patience, Masq is activating..."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Masq is activated, your data is now secured !"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Masq activation failed"
 msgstr ""
 
 msgid "filter"
@@ -832,14 +850,20 @@ msgstr ""
 msgid "More details"
 msgstr ""
 
+msgid "Back to favorite"
+msgstr "Torna ai preferiti"
+
+msgid "Back to list"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
 msgid "DIRECTIONS"
 msgstr "ITINERARIO"
 
 msgid "SEE MORE"
 msgstr "Altre info"
-
-msgid "Back to favorite"
-msgstr "Torna ai preferiti"
 
 msgid "FAVORITES"
 msgstr "PREFERITI"
@@ -868,11 +892,13 @@ msgstr "WiFi"
 msgid "Services & information"
 msgstr "Servizi e informazioni"
 
-msgid "Read more on Wikipedia"
-msgstr "Leggi altro su Wikipedia"
+msgid "WIKIPEDIA"
+msgstr ""
 
-msgid "Read more on Wikidata"
-msgstr "Leggi altro su Wikidata"
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
@@ -989,6 +1015,31 @@ msgid "Activate"
 msgstr ""
 
 msgid "How does it work ?"
+msgstr ""
+
+msgid "PAGES JAUNES"
+msgstr ""
+
+msgid "Partnership"
+msgstr ""
+
+msgid "See the phone number"
+msgstr ""
+
+msgid ""
+"Qwant Maps found no results, please rephrase your query or zoom out of the "
+"map."
+msgstr ""
+
+msgid ""
+"The connection failed between Qwant Maps and the Masq application "
+"(Signalling error)"
+msgstr ""
+
+msgid "Could not connect to Masq"
+msgstr ""
+
+msgid "category"
 msgstr ""
 
 msgid "Your position"
