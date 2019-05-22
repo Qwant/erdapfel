@@ -245,8 +245,9 @@
   }
 
   .category__panel__pj {
-    position: absolute;
-    width: 100%;
+    margin: auto;
+    display: block;
+    max-width: 180px;
     text-align: center;
   }
   

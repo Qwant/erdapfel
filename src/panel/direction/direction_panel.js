@@ -159,6 +159,9 @@ export default class DirectionPanel {
   }
 
   close() {
+    if(!this.active){
+      return
+    }
     Telemetry.add(Telemetry.ITINERARY_CLOSE)
     SearchInput.unMinify()
     document.querySelector('#panels').classList.remove('panels--direction-open')

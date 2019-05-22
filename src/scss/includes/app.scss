@@ -142,7 +142,7 @@ BODY {
 
 .map_container .marker.active ,
 .map_container .marker:hover {
-  z-index: 10;
+  z-index: 2;
 }
 
 .map_container .marker.active .marker-label,
@@ -171,7 +171,7 @@ BODY {
 .map_container .marker-container i {
   font-size: 30px;
   color: white;
-  margin-top: -3px;
+  margin-top: calc(-25% + 3px);
 }
 
 .map_container .marker-container.poi-hoverable:hover,
