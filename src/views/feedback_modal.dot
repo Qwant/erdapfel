@@ -17,9 +17,13 @@
           <textarea name="more" col="10" row="5"></textarea>
         </div>
       {{?}}
+      <hr />
       {{? this.results.length > 0 }}
         <div class="autocomplete_feedback_suggestions">
           {{~ this.results:result }}
+            {{? this.selected_result === result }}
+              <p>Résultat sélectionné :</p>
+            {{?}}
             <div class="autocomplete_suggestion{{? result.fromHistory }} autocomplete_suggestion--history{{?}}" {{= click(this.selectResult, this, result) }}>
               <div class="autocomplete_suggestion__first_line__container">
                 <div style="color:{{? result.icon }}{{= result.icon.color }}{{?}}" class="autocomplete-icon icon {{? result.icon }}icon-{{= result.icon.iconClass}}{{?}}"></div>
