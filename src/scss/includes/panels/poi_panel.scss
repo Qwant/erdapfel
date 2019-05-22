@@ -380,6 +380,66 @@ $HEADER_SIZE: 30px;
     display: none;
 }
 
+.poi_panel__pictures {
+  margin-bottom: 20px;
+}
+
+.poi_panel__pictures_title {
+  border-top: 1px solid #e0e1e6;
+  padding: 15px 0;
+  font-family: Asap;
+  font-size: 16px;
+  color: #495063;
+  font-weight: normal;
+  position: relative;
+  padding-left: 24px;
+}
+
+.poi_panel__pictures_title .icon-icon_camera {
+  color: #c8cbd3;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.poi_panel__pictures_block {
+  width: calc(50% - 7px);
+  padding-bottom: calc(50% - 7px);
+  display: inline-block;
+}
+
+.poi_panel__pictures_block:first-of-type {
+  margin-right: 10px;
+}
+
+.poi_panel__pictures_block_short {
+  height: calc(50% - 5px);
+  padding-bottom: calc(50% - 5px);
+}
+
+.poi_panel__pictures_block_short:first-of-type {
+  margin-bottom: 10px;
+}
+
+.poi_panel__pictures_block_full {
+  padding-bottom: 100%;
+}
+
+.poi_panel__pictures_block,
+.poi_panel__pictures_block_short,
+.poi_panel__pictures_block_full {
+  background-position: center;
+  background-size: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.poi_panel__pictures_block-multiple {
+  box-shadow: none;
+  padding-bottom: 0;
+}
+
 /* TODO export to external service */
 
 /* title symbols */

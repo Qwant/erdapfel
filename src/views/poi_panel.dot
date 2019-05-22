@@ -80,6 +80,48 @@
 
       {{= this.PoiBlocContainer.render(this.poi) }}
 
+      {{
+        let pictures;
+        const id = this.poi.id.replace('pj:', '');
+        const imagesBlock = this.poi.blocks.find((block) => block.type === 'images');
+        if (imagesBlock) {
+          pictures = imagesBlock.images.filter(img => img.url !== this.poi.topImageUrl);
+        }
+      }}
+
+      {{? pictures && pictures.length }}
+        <div class="poi_panel__pictures">
+            <h5 class="poi_panel__pictures_title">
+              <i class="icon-icon_camera"></i>
+              {{= _('Photos')}}
+            </h5>
+            <a href="https://www.pagesjaunes.fr/pros/{{= id}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none">
+              <div class="poi_panel__pictures_block" style="background-image: url('{{= pictures[0].url}}')">
+              </div>
+              <div class="poi_panel__pictures_block poi_panel__pictures_block-multiple">
+                {{? pictures.length === 2}}
+                  <div
+                    class="poi_panel__pictures_block_full" 
+                    style="background-image: url('{{= pictures[1].url}}')"
+                  >
+                  </div>
+                {{?? pictures.length > 2}}
+                  <div
+                    class="poi_panel__pictures_block_short"
+                    style="background-image: url('{{= pictures[1].url}}')"
+                  >
+                  </div>
+                  <div 
+                    class="poi_panel__pictures_block_short"
+                    style="background-image: url('{{= pictures[2].url}}')"
+                  >
+                  </div>
+                {{?}}
+              </div>
+            </a>
+        </div>
+      {{?}}
+
       <div class="osm_contribute">
         <div class="osm_contribute__logo"></div>
         <div class="osm_contribute__text_container">
