@@ -100,17 +100,18 @@ export default class Suggest {
         const itemId = item.getAttribute('data-id')
 
         if ('category' === type) {
-          return PanelManager.openCategory({
+          PanelManager.openCategory({
             category: CategoryService.getCategoryByName(val)
           })
         }
-
-        let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
-        if(prefixPoint) {
-          this.onSelect(prefixPoint)
-        } else {
-          let poi = items.find(poi => poi.id === itemId)
-          this.onSelect(poi)
+        else {
+          let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
+          if(prefixPoint) {
+            this.onSelect(prefixPoint)
+          } else {
+            let poi = items.find(poi => poi.id === itemId)
+            this.onSelect(poi)
+          }
         }
         this.searchInputDomHandler.blur()
       }
