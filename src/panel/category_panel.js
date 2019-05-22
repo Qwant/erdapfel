@@ -120,6 +120,7 @@ export default class CategoryPanel {
     fire('fit_map', poi, layouts.LIST)
     this.close(false)
     PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
+    this.highlightPoiMarker(poi)
   }
 
   highlightPoiMarker(poi){

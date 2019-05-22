@@ -140,10 +140,12 @@ BODY {
   display: none;
 }
 
-.map_container .marker:hover{
+.map_container .marker.active ,
+.map_container .marker:hover {
   z-index: 10;
 }
 
+.map_container .marker.active .marker-label,
 .map_container .marker:hover .marker-label {
   display: initial;
   font-weight: bold;
@@ -159,7 +161,7 @@ BODY {
   height: 29px;
 }
 
-.map_container .marker-container.poi-hoverable.active,
+.map_container .marker.active .marker-container.poi-hoverable,
 .map_container .marker:hover .marker-container.poi-hoverable {
   width: 30px;
   height: 35px;
@@ -173,7 +175,7 @@ BODY {
 }
 
 .map_container .marker-container.poi-hoverable:hover,
-.map_container .marker-container.poi-hoverable.active {
+.map_container .marker.active .marker-container.poi-hoverable {
   z-index: 1;
 }
 
@@ -181,7 +183,7 @@ BODY {
   font-size: 20px;
 }
 
-.map_container .marker-container.poi-hoverable.active i,
+.map_container .marker.active .marker-container.poi-hoverable i,
 .map_container .marker:hover .marker-container.poi-hoverable i {
   font-size: 25px;
 }
@@ -190,7 +192,7 @@ BODY {
   width: 24px;
 }
 
-.map_container .marker-container.poi-hoverable.active img,
+.map_container .marker.active .marker-container.poi-hoverable img,
 .map_container .marker-container.poi-hoverable:hover img {
   width: 30px;
 }
