@@ -7,7 +7,8 @@
   .autocomplete_feedback_suggestions {
     .autocomplete_suggestion {
       margin: 6px auto;
-      padding: 0;
+      padding-top: 5px;
+      padding-bottom: 5px;
 
       &:first-child {
         margin-top: 0;

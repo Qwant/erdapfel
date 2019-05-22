@@ -8,19 +8,19 @@
       <hr />
       <p>Sélectionnez le ou les résultats qui correspondent à ce que vous recherchiez.</p>
       <div class="modal__input_control">
-        <input type="checkbox" name="result_not_found" value="result_not_found" {{= click(this.toggleResultNotFound, this) }} {{? this.result_not_found }}checked{{?}}>
+        <input type="checkbox" name="result_not_found" value="result_not_found" {{= click(this.toggleInputField, this, 'result_not_found') }} {{? this.fields.result_not_found }}checked{{?}}>
         <label for="result_not_found">Je n'ai pas trouvé ce que je recherchais</label>
       </div>
-      {{? this.result_not_found }}
+      {{? this.fields.result_not_found }}
         <div class="modal__input_control">
           <small>Que recherchiez-vous ? Veuillez nous communiquer le plus d'informations possible :</small>
-          <textarea name="more" col="10" row="5"></textarea>
+          <textarea name="result_not_found_details" col="10" row="5"></textarea>
         </div>
       {{?}}
       <hr />
-      {{? this.results.length > 0 }}
+      {{? this.displayed_results.length > 0 }}
         <div class="autocomplete_feedback_suggestions">
-          {{~ this.results:result }}
+          {{~ this.displayed_results:result }}
             {{? this.selected_result === result }}
               <p>Résultat sélectionné :</p>
             {{?}}
@@ -32,7 +32,28 @@
               <div class="autocomplete_suggestion__second_line">{{= this.ExtendedString.htmlEncode(result.alternativeName) }}</div>
             </div>
             {{? this.selected_result === result }}
-              {{= this.renderFormDetails() }}
+              <hr />
+              <p>Cochez les résultats qui vous semblent inappropriés :</p>
+              <div class="modal__input_control">
+                <input type="checkbox" name="result_duplicate" value="result_duplicate" {{= click(this.toggleInputField, this, 'result_duplicate') }} {{? this.fields.result_duplicate }}checked{{?}}>
+                <label for="result_duplicate">Présence de doublons</label>
+              </div>
+              <div class="modal__input_control">
+                <input type="checkbox" name="result_bad_ranking" value="result_bad_ranking" {{= click(this.toggleInputField, this, 'result_bad_ranking') }} {{? this.fields.result_bad_ranking }}checked{{?}}>
+                <label for="result_bad_ranking">Mauvais classement</label>
+              </div>
+              <div class="modal__input_control">
+                <input type="checkbox" name="result_wrong_geolocation" value="result_wrong_geolocation" {{= click(this.toggleInputField, this, 'result_wrong_geolocation') }} {{? this.fields.result_wrong_geolocation }}checked{{?}}>
+                <label for="result_wrong_geolocation">Localisation erronée</label>
+              </div>
+              <div class="modal__input_control">
+                <input type="checkbox" name="result_other" value="result_other" {{= click(this.toggleInputField, this, 'result_other') }} {{? this.fields.result_other }}checked{{?}}>
+                <label for="result_other">Autre</label>
+              </div>
+              <div class="modal__input_control">
+                <p>Donnez-nous plus d'informations :</p>
+                <textarea name="result_other_details" col="10" row="10"></textarea>
+              </div>
             {{?}}
           {{~}}
         </div>
@@ -40,6 +61,6 @@
     </div>
      <hr />
     <button class="modal__button" {{= click(this.close, this) }}>{{= _('Cancel', 'feedback') }}</button>
-    <button type="submit" class="modal__button" {{= click(this.close, this) }}>{{= _('Send', 'feedback') }}</button>
+    <button class="modal__button" {{= click(this.send, this) }}>{{= _('Send', 'feedback') }}</button>
   </form>
 </div>

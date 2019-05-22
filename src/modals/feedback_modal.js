@@ -6,26 +6,37 @@ export default class FeedbackModal {
   constructor(results) {
     this.modal = new Modal(this, FeedbackModalView)
 
-    this.original_results = []
-    this.results = []
-    this.current_query = ''
-    this.result_not_found = false
-    this.selected_result = {}
     this.ExtendedString = ExtendedString
+
+    this.original_results = []
+    this.displayed_results = []
+    this.current_query = ''
+
+    this.fields = {
+      result_not_found: false,
+      result_not_found_details: '',
+      result_duplicate: false,
+      result_bad_ranking: false,
+      result_wrong_geolocation: false,
+      result_other: false,
+      result_other_details: '',
+    }
+
+    this.selected_result = {}
 
     listen('open_feedback_modal', (results) => {
       this.current_query = window.__searchInput.searchInputHandle.value
-      this.original_results = this.results = results || []
-      this.results.forEach((res, idx) => {
+      this.original_results = this.displayed_results = results || []
+      this.displayed_results.forEach((res, idx) => {
         res.icon = IconManager.get({className : res.className, subClassName : res.subClassName , type : res.type})
       })
       this.modal.open()
     })
   }
 
-  toggleResultNotFound () {
-    this.result_not_found = !this.result_not_found
-    this.modal.panel.update()
+  toggleInputField (key) {
+    this.fields[key] = !this.fields[key]
+    this.update()
   }
 
   selectResult(result) {
@@ -33,38 +44,23 @@ export default class FeedbackModal {
     // let's load the origin results again
     if (result === this.selected_result) {
       this.selected_result = {}
-      this.results = this.original_results
+      this.displayed_results = this.original_results
     } else {
       this.selected_result = result
-      this.results = this.results.filter(res => res.id === result.id)
+      this.displayed_results = this.displayed_results.filter(res => res.id === result.id)
     }
-    this.modal.panel.update()
+    this.update()
   }
 
-  renderFormDetails() {
-    return `
-      <hr />
-      <p>Cochez les résultats qui vous semblent inappropriés :</p>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_duplicate" value="result_duplicate"> <label for="result_duplicate">Présence de doublons</label>
-      </div>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_ranking" value="result_ranking"> <label for="result_ranking">Mauvais classement</label>
-      </div>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_geolocation" value="result_geolocation"> <label for="result_geolocation">Localisation erronée</label>
-      </div>
-      <div class="modal__input_control">
-        <input type="checkbox" name="result_other" value="result_other"> <label for="result_other">Autre</label>
-      </div>
-      <div class="modal__input_control">
-        <p>Donnez-nous plus d'informations :</p>
-        <textarea name="more" col="10" row="10"></textarea>
-      </div>
-    `
+  update () {
+    this.modal.panel.update()
   }
 
   close () {
     this.modal.close()
+  }
+
+  send() {
+    this.close()
   }
 }
