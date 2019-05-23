@@ -7,6 +7,7 @@ import HotLoadPoi from "../adapters/poi/hotload_poi";
 import Telemetry from "../libs/telemetry";
 import headerPartial from '../views/poi_partial/header.dot'
 import MinimalHourPanel from './poi_bloc/opening_minimal'
+import ImagesPanel from './poi_bloc/images_panel'
 import SceneState from "../adapters/scene_state";
 import {paramTypes} from '../proxies/url_shard'
 import layouts from "./layouts.js";
@@ -33,6 +34,7 @@ function PoiPanel(sharePanel) {
   this.card = true
   this.headerPartial = headerPartial
   this.minimalHourPanel = new MinimalHourPanel()
+  this.imagesPanel = new ImagesPanel()
   this.sceneState = SceneState.getSceneState()
   this.isDirectionActive = nconf.get().direction.enabled
   PanelManager.register(this)
