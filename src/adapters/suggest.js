@@ -93,25 +93,16 @@ export default class Suggest {
         return suggestDom
       },
 
-      onSelect: (e, term, item, items) => {
+      onSelect: (e, term, item, items = []) => {
         e.preventDefault()
-        const type = item.getAttribute('data-type')
-        const val = item.getAttribute('data-val')
         const itemId = item.getAttribute('data-id')
 
-        if ('category' === type) {
-          PanelManager.openCategory({
-            category: CategoryService.getCategoryByName(val)
-          })
-        }
-        else {
-          let prefixPoint = this.prefixes.find((prefix) => prefix.id === itemId)
-          if(prefixPoint) {
-            this.onSelect(prefixPoint)
-          } else {
-            let poi = items.find(poi => poi.id === itemId)
-            this.onSelect(poi)
-          }
+        let prefixPoint = this.prefixes.find(prefix => prefix.id === itemId)
+        if (prefixPoint !== undefined) {
+          this.onSelect(prefixPoint)
+        } else {
+          let selectedItem = items.find(item => item.id === itemId)
+          this.onSelect(selectedItem)
         }
         this.searchInputDomHandler.blur()
       }
@@ -213,7 +204,7 @@ export default class Suggest {
     const iconDom = `<div style="color: ${color}; background: ${backgroundColor}" class="autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}"></div>`
 
     return `
-      <div class="autocomplete_suggestion" data-type="category" data-val="${category.name}">
+      <div class="autocomplete_suggestion" data-id="${category.id}" data-val="${ExtendedString.htmlEncode(category.label)}">
         ${this.renderLines(iconDom, label, alternativeName)}
       </div>
     `

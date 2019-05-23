@@ -18,6 +18,7 @@ export default class Category {
     this.color = DEFAULT_ICON_COLOR
     this.alternativeName = _('category')
     this.type = CATEGORY_TYPE
+    this.id = `category:${name}`
   }
 
   getInputValue() {

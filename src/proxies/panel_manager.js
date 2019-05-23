@@ -91,9 +91,9 @@ PanelManager.getCategoryPanel = function () {
 
 PanelManager.openCategory = async function (options) {
   __panel_manager.panels.forEach((panel) => {
-    if(panel instanceof CategoryPanel) {
+    if (panel instanceof CategoryPanel) {
       panel.open(options)
-    } else if(panel.active && !(panel instanceof CategoryPanel)) {
+    } else if (panel.active) {
       panel.close()
     }
   })

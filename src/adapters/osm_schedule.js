@@ -24,6 +24,12 @@ function scheduleStatus(scheduleResponse, timeMessages) {
   return {msg : '', color : '#fff'}
 }
 
+/**
+ * Format next transition time
+ * @param seconds The nb of seconds before next transition
+ * @param nextTransitionDate Datetime of next transition
+ * Both params may be null (eg for 24/7 places)
+ */
 function nextTransitionTime(seconds, nextTransitionDate) {
   if(seconds < 12 * 60 * 60) {
     /*

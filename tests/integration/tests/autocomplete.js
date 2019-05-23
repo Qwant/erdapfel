@@ -280,15 +280,15 @@ test('Retrieve restaurant category when we search "restau"', async () => {
   await page.keyboard.type(searchQuery)
   await page.waitForSelector('.autocomplete_suggestion')
 
-  let [firstLine, dataType] = await page.evaluate(() => {
+  let [firstLine, suggestionId] = await page.evaluate(() => {
     return [
       document.querySelector('.autocomplete_suggestion:first-child .autocomplete_suggestion__first_line').innerText,
-      document.querySelector('.autocomplete_suggestion:first-child').getAttribute('data-type')
+      document.querySelector('.autocomplete_suggestion:first-child').getAttribute('data-id')
     ]
   })
 
   expect(firstLine).toEqual('Restaurant')
-  expect(dataType).toEqual('category')
+  expect(suggestionId).toEqual('category:restaurant')
 })
 
 afterEach(async () => {
