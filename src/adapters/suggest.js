@@ -1,6 +1,7 @@
 import Autocomplete from '../vendors/autocomplete'
 import IconManager from '../adapters/icon_manager'
 import ExtendedString from "../libs/string"
+import nconf from "@qwant/nconf-getter"
 import BragiPoi from "./poi/bragi_poi"
 import PoiStore from "./poi/poi_store"
 import Category from "./category"
@@ -14,6 +15,7 @@ export default class Suggest {
     this.historyPromise = null
     this.suggestList = []
     this.pending = false
+    this.config = nconf.get()
     this.onSelect = onSelect
 
     this.prefixes = prefixes
@@ -89,7 +91,7 @@ export default class Suggest {
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
-        if (pois.length > 0) suggestDom += this.feedbackRender()
+        if (this.config.feedback.enabled && pois.length > 0) suggestDom += this.feedbackRender()
         return suggestDom
       },
 

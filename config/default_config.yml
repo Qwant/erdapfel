@@ -57,7 +57,7 @@ telemetry:
   enabled: true
 
 direction:
-  enabled: false
+  enabled: true
   timeout: 10 #s
   service:
     api: 'mapbox' # 'mapbox' or 'qwant'
@@ -66,3 +66,6 @@ direction:
 
 category:
   enabled: false
+
+feedback:
+  enabled: true
