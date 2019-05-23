@@ -139,7 +139,7 @@ input[type="search"] {
 
 .autocomplete_suggestion {
   max-height: 100vh;
-  padding: 7px 0 7px 12px;
+  padding: 7px 0 7px 13px;
   line-height: 23px;
   font-size: 1.02em;
   color: $secondary_text;
@@ -148,7 +148,7 @@ input[type="search"] {
   cursor: pointer;
 
   &.selected {
-    border-left: #FF3B4A solid 3px;
+    border-left: #FF3B4A solid 4px;
     padding-left: 9px;
     background-color: $background_active;
   }
