@@ -114,6 +114,17 @@ $HEADER_SIZE: 30px;
   color: $primary_text;
 }
 
+.poi_panel__back_text {
+  padding-left: 30px;
+}
+
+.poi_panel__back.icon-arrow-left {
+  font-size: 22px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .poi_panel__header + .poi_panel--card {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
