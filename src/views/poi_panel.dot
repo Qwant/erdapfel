@@ -75,9 +75,7 @@
             href="{{= this.poi.blocksByType.phone.url }}">
             <button class="poi_panel__actions__icon icon-icon_phone">
             </button>
-            <div class="poi_panel__actions__text">
-              <a href="tel:{{= this.htmlEncode(this.poi.blocksByType.phone.local_format) }}">{{= this.htmlEncode(this.poi.blocksByType.phone.local_format) }}</a>
-            </div>
+            <div class="poi_panel__actions__text">{{= this.htmlEncode(this.poi.blocksByType.phone.local_format) }}</div>
           </a>
         {{?}}
       </div>
