@@ -26,7 +26,6 @@
   display: inline-block;
   vertical-align: middle;
   margin: 5px 10px 0 0;
-  background: url("../images/pagesjaunes.png")
 }
 
 .category__panel__title {
@@ -34,7 +33,7 @@
   color: #353c52;
   font-size: 12px;
   text-transform: uppercase;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .category__panel__partnership_icon {
@@ -246,7 +245,6 @@
 
   .category__panel__pj {
     margin: auto;
-    display: block;
     max-width: 180px;
     text-align: center;
   }
