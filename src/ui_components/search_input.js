@@ -35,6 +35,10 @@ export default class SearchInput {
     window.__searchInput.searchInputHandle.blur()
   }
 
+  static select() {
+    window.__searchInput.searchInputHandle.select()
+  }
+
   static setInputValue(value) {
     window.__searchInput.suggest.setValue(value)
   }
