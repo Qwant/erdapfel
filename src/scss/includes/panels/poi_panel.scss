@@ -529,7 +529,7 @@ $HEADER_SIZE: 30px;
   .poi_panel__header {
     font-size: 13px;
     color: $secondary_text;
-    padding: 14px 0 14px 10px;
+    padding: 14px 0 28px 10px;
     text-transform: uppercase;
     height: $HEADER_SIZE;
     background: $background;
@@ -537,6 +537,18 @@ $HEADER_SIZE: 30px;
     box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
+    position: relative;
+  }
+
+  .poi_panel__header::after {
+    content: " ";
+    border-bottom: solid 1px #f4f6fa;
+    margin-bottom: 15px;
+    width: 100%;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
