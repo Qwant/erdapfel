@@ -194,7 +194,7 @@ input[type="search"] {
   color: $secondary_text;
   height: 23px;
   font-size: 14px;
-  margin-left: 32px;
+  margin-left: 37px;
   text-overflow:ellipsis;
   text-transform: capitalize;
   overflow: hidden;
@@ -247,6 +247,10 @@ input[type="search"] {
 }
 
 @media (max-width: 640px) {
+
+  .autocomplete_suggestion__second_line {
+    margin-left: 32px;
+  }
 
   .search_form:before {
     right: 5px;
