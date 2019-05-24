@@ -84,6 +84,10 @@
   min-height: 100px;
 }
 
+.category__panel__item:last-of-type .category__panel__item_inner {
+  border-bottom: none;
+}
+
 .category__panel__image {
   float: right;
   margin: 5px 0 10px 10px;
