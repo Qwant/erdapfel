@@ -138,6 +138,11 @@ $HEADER_SIZE: 30px;
   cursor: pointer;
 }
 
+.poi_panel__back_to_list .poi_panel__back_to_list_logo {
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
 .poi_panel__back_to_favorite:hover, .poi_panel__back_to_list:hover {
   color: $secondary_text;
 }
