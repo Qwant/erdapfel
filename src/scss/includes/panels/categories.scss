@@ -147,7 +147,7 @@
 }
 
 .category__panel__phone {
-  color: #5c6f84;
+  color: $secondary_text;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -156,6 +156,10 @@
 
   span {
     vertical-align: middle;
+  }
+
+  a {
+    color: $secondary_text;
   }
 
   .icon-icon_phone {
