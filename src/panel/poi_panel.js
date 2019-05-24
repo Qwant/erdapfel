@@ -77,6 +77,7 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.poi.stored = true
     await store.add(this.poi)
   }
+  this.panel.update()
 
 }
 
