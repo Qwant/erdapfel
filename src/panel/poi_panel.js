@@ -204,6 +204,14 @@ PoiPanel.prototype.emptyClickOnMap = function() {
   }
 }
 
+PoiPanel.prototype.goToFeedbackUrl = function() {
+  let pj_id;
+  if(this.poi.id.indexOf('pj:') !== -1) { // keep at fist slash
+    pj_id = this.poi.id.split('pj:')[1]
+    window.open(`https://www.pagesjaunes.fr/pros/${pj_id}?xtor=AD-350-[QWANT]-[CONTRIBUTIF]-[VOIR_TOUS_AVIS]#ancreBlocAvis`)
+  }
+}
+
 /* private */
 
 async function isPoiFavorite(poi) {
