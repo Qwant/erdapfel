@@ -385,8 +385,13 @@ $HEADER_SIZE: 30px;
   display: inline-block;
   height: 25px;
   font-size: 12px;
+  color: $secondary_text;
+}
+
+.poi_panel__actions__text:hover {
   color: $primary_text;
 }
+
 
 .poi_panel__store_status__toggle:after {
   content: '';
