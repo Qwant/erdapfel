@@ -113,6 +113,10 @@
   font-size: 14px;
   color: #353c52;
   margin-top: 5px;
+  text-overflow: ellipsis;
+  max-width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .category__panel__item {
