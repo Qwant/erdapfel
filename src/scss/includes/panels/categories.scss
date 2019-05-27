@@ -176,6 +176,11 @@
   }
 }
 
+.category__panel__error {
+  padding: 50px 40px;
+  color: #353c52;
+}
+
 .category__panel__notfound {
   position: relative;
   width: 400px;
@@ -261,7 +266,7 @@
     max-width: 180px;
     text-align: center;
   }
-  
+
   .category__panel__phone {
     display: none;
   }

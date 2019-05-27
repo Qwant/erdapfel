@@ -138,11 +138,5 @@ export default class CategoryPanel {
   }
 
   zoomOnMarkers(){
-    if(window.map.mb.getZoom() < 12) {
-      // TODO (to discuss)
-      // request geolocation
-      // if ok => zoom 12 on current position
-      // if ko => zoom 12 on Paris
-    }
   }
 }
