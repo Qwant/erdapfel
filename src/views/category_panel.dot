@@ -83,13 +83,13 @@
       <div class="category__panel__error">
         {{= _('Please zoom on a city to see the results for this category.', 'categories') }}
         <br>
-        <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()">{{= _('Search around my position', 'categories') }}</button>
+        <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()"><span class="icon-pin_geoloc"></span> {{= _('Search around my position', 'categories') }}</button>
       </div>
     {{?? this.pois && this.pois.length == 0 }}
       <div class="category__panel__error">
         {{= _('No results found. Please move or dezoom the map to see results for this category.', 'categories') }}
         <br>
-        <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()">{{= _('Search around my position', 'categories') }}</button>
+        <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()"><span class="icon-pin_geoloc"></span> {{= _('Search around my position', 'categories') }}</button>
       </div>
 
   {{?? !this.loading }}

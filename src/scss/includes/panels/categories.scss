@@ -179,6 +179,14 @@
 .category__panel__error {
   padding: 50px 40px;
   color: #353c52;
+
+  button {
+    font-size: 14px;
+    color: #5c6f84;
+    margin: 10px 0 0;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
 }
 
 .category__panel__notfound {
