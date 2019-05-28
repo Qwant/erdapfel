@@ -7,6 +7,10 @@
   @include card_radius();
 }
 
+.category__panel--hidden {
+  display: none;
+ }
+
 .category__panel__scroll {
   position: relative;
   overflow-y: auto;
