@@ -1,15 +1,18 @@
 {{? this.loading == 0 }}
 
 <div class="category__panel{{= this.active ? '' : ' category__panel--hidden' }}">
-  <div class="category__panel__head">
-      <span class="category__panel__close icon-x" {{= click(this.closeAction) }}></span>
-      <span class="category__panel__partnership">{{= _('Partnership', 'categories') }}</span>
-      <span class="category__panel__partnership_icon">i</span>
-      <span class="category__panel__pj">
-        <span class="category__panel__logo_pj"></span>
-        <span class="category__panel__title">{{= _('PAGES JAUNES', 'categories') }}</span>
-      </span>
-  </div>
+  <span class="category__panel__close icon-x" {{= click(this.closeAction) }}></span>
+
+   {{? this.pois && this.pois.length }}
+     <div class="category__panel__head">
+        <span class="category__panel__partnership">{{= _('Partnership', 'categories') }}</span>
+        <span class="category__panel__partnership_icon">i</span>
+        <span class="category__panel__pj">
+          <span class="category__panel__logo_pj"></span>
+          <span class="category__panel__title">{{= _('PAGES JAUNES', 'categories') }}</span>
+        </span>
+     </div>
+  {{?}}
   <div class="category__panel__scroll">
 
       {{? this.pois && this.pois.length }}
