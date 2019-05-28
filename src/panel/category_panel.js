@@ -82,6 +82,14 @@ export default class CategoryPanel {
     this.search()
     await this.panel.update()
     UrlState.pushUrl()
+
+    // Apply minimal zoom
+    if(window.map.mb.getZoom() < 5){
+      window.map.mb.flyTo({center: [2.35, 48.85], zoom: 12});
+    }
+    else if(window.map.mb.getZoom() < 12){
+      window.map.mb.flyTo({zoom: 12});
+    }
   }
 
   close (toggleMarkers = true) {
