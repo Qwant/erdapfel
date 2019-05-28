@@ -49,7 +49,7 @@
               {{?}}
 
               {{? grades }}
-                <div class="panel__note">
+                <div class="panel__note" {{= click(this.goToFeedbackUrl, this, poi) }}>
                   {{~ [...Array(5)]:star:k }}      
                     <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
                   {{~}}
@@ -67,7 +67,7 @@
                 <div class="category__panel__phone" {{= click(this.showPhoneNumber, this, {poi, i}) }}>
                   <span class="icon-icon_phone"></span>
                   <span id="category__panel__phone_hidden_{{= i}}">{{= _('See the phone number', 'categories') }}</span>
-                  <span id="category__panel__phone_revealed_{{= i}}" style="display: none">{{= phoneBlock.local_format }}</span>
+                  <a href="tel:{{= phoneBlock.local_format }}" id="category__panel__phone_revealed_{{= i}}" style="display: none">{{= phoneBlock.local_format }}</a>
                 </div>
 
               {{?}}

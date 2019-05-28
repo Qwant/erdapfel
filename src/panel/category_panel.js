@@ -136,4 +136,12 @@ export default class CategoryPanel {
       marker.classList.remove("active")
     }
   }
+
+  goToFeedbackUrl(poi) {
+    let pj_id;
+    if(poi.id.indexOf('pj:') !== -1) {
+      pj_id = poi.id.split('pj:')[1]
+      window.open(`https://www.pagesjaunes.fr/pros/${pj_id}#ancreBlocAvis`)
+    }
+  }
 }

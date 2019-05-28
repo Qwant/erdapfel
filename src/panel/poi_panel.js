@@ -77,6 +77,7 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.poi.stored = true
     await store.add(this.poi)
   }
+  this.panel.update()
 
 }
 
@@ -200,6 +201,14 @@ PoiPanel.prototype.emptyClickOnMap = function() {
   // On mobile, close poi card when clicking outside (on the map)
   if (Device.isMobile() && this.active) {
     this.closeAction()
+  }
+}
+
+PoiPanel.prototype.goToFeedbackUrl = function() {
+  let pj_id;
+  if(this.poi.id.indexOf('pj:') !== -1) {
+    pj_id = this.poi.id.split('pj:')[1]
+    window.open(`https://www.pagesjaunes.fr/pros/${pj_id}#ancreBlocAvis`)
   }
 }
 
