@@ -139,9 +139,9 @@ export default class CategoryPanel {
 
   goToFeedbackUrl(poi) {
     let pj_id;
-    if(poi.id.indexOf('pj:') !== -1) { // keep at fist slash
+    if(poi.id.indexOf('pj:') !== -1) {
       pj_id = poi.id.split('pj:')[1]
-      window.open(`https://www.pagesjaunes.fr/pros/${pj_id}?xtor=AD-350-[QWANT]-[CONTRIBUTIF]-[VOIR_TOUS_AVIS]#ancreBlocAvis`)
+      window.open(`https://www.pagesjaunes.fr/pros/${pj_id}#ancreBlocAvis`)
     }
   }
 }
