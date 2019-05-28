@@ -2,12 +2,15 @@
   <div class="poi_panel__header {{= this.card ? 'poi_header_card' : '' }}">
     {{? this.fromFavorite }}
       <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}>
-        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to favorite') }}
+        <i class="poi_panel__back icon-arrow-left"></i>
+        <span class="poi_panel__back_text">{{= _('Back to favorite') }}</span>
       </div>
     {{?}}
     {{? this.fromList }}
       <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}>
-        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back to list') }}
+        <i class="poi_panel__back icon-arrow-left"></i>
+        <span class="poi_panel__back_text">{{= _('Back to list') }}</span>
+        <img class="poi_panel__back_to_list_logo" src="/statics/images/pagesjaunes.svg" alt="Pages Jaunes" />
       </div>
     {{?}}
     <div class="poi_panel__close" {{= click(this.closeAction, this) }}>

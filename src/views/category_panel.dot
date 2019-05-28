@@ -6,10 +6,10 @@
           <span class="category__panel__close icon-x" {{= click(this.closeAction) }}></span>
           <span class="category__panel__partnership">{{= _('Partnership', 'categories') }}</span>
           <span class="category__panel__partnership_icon">i</span>
-          <span class="category__panel__pj">
-            <span class="category__panel__logo_pj"></span>
+          <div class="category__panel__pj">
+            <img class="category__panel__logo_pj" src="/statics/images/pagesjaunes.svg" alt="Pages Jaunes" />
             <span class="category__panel__title">{{= _('PAGES JAUNES', 'categories') }}</span>
-          </span>
+          </div>
       </div>
       <div class="category__panel__scroll">
         {{~ this.pois:poi:i }}

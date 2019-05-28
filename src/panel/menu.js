@@ -3,6 +3,7 @@ import menuView from '../views/menu.dot'
 import constants from '../../config/constants.yml'
 import LoginMasqPanel from "./login_masq";
 import MasqUserPanel from "./masq_user";
+import SearchInput from '../ui_components/search_input'
 import nconf from "../../local_modules/nconf_getter";
 
 export default class Menu {
@@ -56,5 +57,10 @@ export default class Menu {
       this.panel.removeClassName(.6, '.menu__overlay', 'menu__overlay--fade_active'),
       this.panel.removeClassName(0, '.menu__overlay', 'menu__overlay--active')
     ])
+  }
+
+  search() {
+    this.close()
+    SearchInput.select()
   }
 }
