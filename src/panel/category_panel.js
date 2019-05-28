@@ -83,12 +83,21 @@ export default class CategoryPanel {
     await this.panel.update()
     UrlState.pushUrl()
 
-    // Apply minimal zoom
+    // Apply minimal zoom when opening a category
+
+    // Zoom < 5: focus on Paris
     if(window.map.mb.getZoom() < 5){
       window.map.mb.flyTo({center: [2.35, 48.85], zoom: 12});
     }
+
+    // Zoom < 12: zoom up to zoom 12
     else if(window.map.mb.getZoom() < 12){
       window.map.mb.flyTo({zoom: 12});
+    }
+
+    // Zoom > 16: dezoom to zoom 16
+    else if(window.map.mb.getZoom() > 16){
+      window.map.mb.flyTo({zoom: 16});
     }
   }
 
@@ -143,8 +152,5 @@ export default class CategoryPanel {
     if(marker) {
       marker.classList.remove("active")
     }
-  }
-
-  zoomOnMarkers(){
   }
 }

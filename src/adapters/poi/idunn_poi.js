@@ -59,8 +59,6 @@ export default class IdunnPoi extends Poi {
         return
       }
       else if(err === 400){
-        console.log(err);
-        panel.zoomOnMarkers();
         return;
       }
       else {
