@@ -55,7 +55,7 @@
         <div class="poi_panel__actions__store_container button_container" {{= click(this.toggleStorePoi, this) }}>
           <button class="poi_panel__actions__icon__store poi_panel__actions__icon {{= this.poi.stored ? 'icon-icon_star-filled' : 'icon-icon_star'}}">
           </button>
-          <div class="poi_panel__actions__text">{{? this.poi.stored }} {{= _('ENREGISTRÉ', 'poi') }} {{??}} {{= _('FAVORITES', 'poi') }} {{?}}</div>
+          <div class="poi_panel__actions__text">{{= this.poi.stored ? _('ENREGISTRÉ', 'poi') : _('FAVORITES', 'poi') }}</div>
         </div>
         <div class="poi_panel__actions__share_container button_container" {{= click(this.openShare, this) }}>
           <button class="poi_panel__actions__icon icon-share-2">
