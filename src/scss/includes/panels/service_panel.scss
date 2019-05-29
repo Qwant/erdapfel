@@ -69,11 +69,19 @@
   height: 40px;
   margin: auto;
   border-radius: 50%;
+  position: relative;
 
   span {
     color: #fff;
     font-size: 40px;
     line-height: 40px;
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
