@@ -1,6 +1,6 @@
 import Autocomplete from '../vendors/autocomplete'
 import IconManager from '../adapters/icon_manager'
-import {layout} from '../../config/constants.yml'
+import { autocomplete } from '../../config/constants.yml'
 import ExtendedString from "../libs/string"
 import BragiPoi from "./poi/bragi_poi"
 import PoiStore from "./poi/poi_store"
@@ -75,7 +75,7 @@ export default class Suggest {
         let favorites = []
         let remotes = []
         let categories = []
-        pois.forEach((poi) => {
+        pois.slice(0, autocomplete.suggest.max_items).forEach((poi) => {
           if (poi instanceof PoiStore) {
             favorites.push(poi)
           } else if (poi instanceof  Category) {
