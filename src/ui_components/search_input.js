@@ -23,6 +23,8 @@ export default class SearchInput {
       window.__searchInput = new SearchInput(tagSelector)
       window.clearSearch = () => {
         window.__searchInput.suggest.setValue('')
+        fire('clean_marker')
+        PanelManager.resetLayout()
         setTimeout(() => {search.focus()}, 0)
       }
     }
