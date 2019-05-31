@@ -3,9 +3,9 @@
  */
 import IconManager from '../adapters/icon_manager'
 import ExtentedString from '../libs/string'
+import { CATEGORY_TYPE } from '../../config/constants.yml'
 
 const DEFAULT_ICON_COLOR = "#ffffff"
-const CATEGORY_TYPE = 'category'
 
 export default class Category {
   constructor(name, label, iconName, backgroundColor, matcher) {
