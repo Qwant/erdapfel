@@ -10,6 +10,8 @@ export default class ServicePanel{
   constructor() {
     this.panel = new Panel(this, ServicePanelView)
     this.categories = CategoryService.getCategories()
+    this.mustDeployCategories = this.categories.length > 8
+    this.isDeployed = false
     this.isFavoriteActive = false
     this.isResultActive = false
     this.isDirectionActive = nconf.get().direction.enabled
@@ -19,6 +21,11 @@ export default class ServicePanel{
       this.panel.toggleClassName(.2,'.service_panel', 'service_panel--open')
     })
     PanelManager.register(this)
+  }
+
+  toggleCategories() {
+    this.isDeployed = !this.isDeployed
+    this.panel.update()
   }
 
   toggleFavorite() {
