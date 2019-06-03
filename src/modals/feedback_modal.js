@@ -27,14 +27,14 @@ export default class FeedbackModal {
     listen('open_feedback_modal', (results) => {
       this.current_query = window.__searchInput.searchInputHandle.value
       this.original_results = this.displayed_results = results || []
-      this.displayed_results.forEach((res, idx) => {
-        res.icon = IconManager.get({className : res.className, subClassName : res.subClassName , type : res.type})
+      this.displayed_results.forEach(res => {
+        res.icon = IconManager.get({className: res.className, subClassName: res.subClassName, type: res.type})
       })
       this.modal.open()
     })
   }
 
-  toggleInputField (key) {
+  toggleInputField(key) {
     this.fields[key] = !this.fields[key]
     this.update()
   }
@@ -52,11 +52,11 @@ export default class FeedbackModal {
     this.update()
   }
 
-  update () {
+  update() {
     this.modal.panel.update()
   }
 
-  close () {
+  close() {
     this.modal.close()
   }
 

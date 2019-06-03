@@ -91,7 +91,9 @@ export default class Suggest {
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
-        if (this.config.feedback.enabled && pois.length > 0) suggestDom += this.feedbackRender()
+        if (this.config.feedback.enabled && pois.length > 0) {
+          suggestDom += this.feedbackRender()
+        }
         return suggestDom
       },
 
