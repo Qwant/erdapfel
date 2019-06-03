@@ -24,8 +24,14 @@ function scheduleStatus(scheduleResponse, timeMessages) {
   return {msg : '', color : '#fff'}
 }
 
+/**
+ * Format next transition time
+ * @param seconds The nb of seconds before next transition
+ * @param nextTransitionDate Datetime of next transition
+ * Both params may be null (eg for 24/7 places)
+ */
 function nextTransitionTime(seconds, nextTransitionDate) {
-  if(seconds < 12 * 60 * 60) {
+  if (nextTransitionDate && seconds < 12 * 60 * 60) {
     /*
        extract local time from nextTransitionDate
        "2019-05-12T18:00:00+02:00" => "18:00:00"

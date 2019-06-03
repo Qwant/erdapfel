@@ -2,7 +2,8 @@ import Suggest from "../adapters/suggest";
 import layouts from "../panel/layouts.js";
 import UrlState from "../proxies/url_state";
 import UrlShards from "../proxies/url_shards";
-import { CATEGORY_TYPE } from '../../config/constants.yml';
+import Poi from "../adapters/poi/poi";
+import Category from "../adapters/category";
 
 const MAPBOX_RESERVED_KEYS = [
     'ArrowLeft' // ←
@@ -82,15 +83,13 @@ export default class SearchInput {
     }
   }
 
-  async selectItem (selectedPoi) {
-    if(selectedPoi) {
-      if (selectedPoi.type === CATEGORY_TYPE) {
-        PanelManager.openCategory({ category: selectedPoi })
-      } else {
-        fire('fit_map', selectedPoi, selectedPoi.type === 'poi' ? layouts.POI : layouts.FULL)
-        fire('map_mark_poi', selectedPoi)
-        PanelManager.loadPoiById(selectedPoi.id)
-      }
+  async selectItem (selectedItem) {
+    if (selectedItem instanceof Poi) {
+      fire('fit_map', selectedItem, selectedItem.type === 'poi' ? layouts.POI : layouts.FULL)
+      fire('map_mark_poi', selectedItem)
+      PanelManager.loadPoiById(selectedItem.id)
+    } else if (selectedItem instanceof Category) {
+      PanelManager.openCategory({category: selectedItem})
     }
   }
 }

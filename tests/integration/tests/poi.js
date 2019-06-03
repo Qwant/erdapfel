@@ -188,6 +188,8 @@ test('Test 24/7', async () => {
   poi.blocks.forEach((block => {
     if(block.type === 'opening_hours') {
       block.is_24_7 = true
+      block.seconds_before_next_transition = null
+      block.next_transition_datetime = null
     }
   }))
   poi.id = 'osm:way:24_7'
