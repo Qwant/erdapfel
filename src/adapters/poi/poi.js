@@ -63,6 +63,15 @@ export default class Poi {
     return `${location.protocol}//${location.host}${baseUrl}place/${this.toUrl()}/#map=${this.zoom}/${this.latLon.lat.toFixed(7)}/${this.latLon.lng.toFixed(7)}`
   }
 
+  goToFeedbackUrl(poi) {
+    let pj_id;
+    if(poi.id.indexOf('pj:') === -1) {
+      return
+    }
+    pj_id = poi.id.split('pj:')[1]
+    window.open(`https://www.pagesjaunes.fr/pros/${pj_id}#ancreBlocAvis`, '_blank', 'noopener noreferrer')
+  }
+
   static isPoiCompliantKey(k) {
     const keyPattern = new RegExp(`^qmaps_v${version}_favorite_place_.*`)
     return k.match(keyPattern) !== null
