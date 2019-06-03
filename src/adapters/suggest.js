@@ -79,7 +79,7 @@ export default class Suggest {
           if (poi instanceof PoiStore && favorites.length < 2) {
             // 2 favorites pois max
             favorites.push(poi)
-          } else if (poi instanceof  Category && categories.length === 0) {
+          } else if (poi instanceof Category && categories.length === 0) {
             // 1 category pois max
             categories.push(poi)
           } else {

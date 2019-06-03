@@ -30,7 +30,7 @@ test('search and clear', async () => {
   expect(cleanHandle).not.toBeNull()
 
   const autocompleteItems = await autocompleteHelper.getSuggestList()
-  expect(autocompleteItems.length).toEqual(10)
+  expect(autocompleteItems.length).toEqual(8)
 
 
   let searchValue = await autocompleteHelper.getSearchInputValue()
@@ -56,7 +56,7 @@ test('search has lang in query', async () => {
   await langPage.goto(APP_URL)
   await autocompleteHelper.typeAndWait(query)
   const autocompleteItems = await autocompleteHelper.getSuggestList()
-  expect(autocompleteItems).toHaveLength(10)
+  expect(autocompleteItems).toHaveLength(8)
 })
 
 test('keyboard navigation', async () => {
