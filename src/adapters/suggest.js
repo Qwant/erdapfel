@@ -75,10 +75,12 @@ export default class Suggest {
         let favorites = []
         let remotes = []
         let categories = []
-        pois.slice(0, autocomplete.suggest.max_items).forEach((poi) => {
-          if (poi instanceof PoiStore) {
+        pois.forEach((poi) => {
+          if (poi instanceof PoiStore && favorites.length < 2) {
+            // 2 favorites pois max
             favorites.push(poi)
-          } else if (poi instanceof  Category) {
+          } else if (poi instanceof  Category && categories.length === 0) {
+            // 1 category pois max
             categories.push(poi)
           } else {
             remotes.push(poi)
@@ -86,10 +88,11 @@ export default class Suggest {
         })
         let suggestDom = this.prefixesRender()
         suggestDom += this.categoriesRender(categories)
-        suggestDom += this.remotesRender(remotes)
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
+        // fill the suggest with the remotes poi according to the remaining places
+        suggestDom += this.remotesRender(remotes.slice(0, autocomplete.suggest.max_items - favorites.length - categories.length))
         return suggestDom
       },
 
