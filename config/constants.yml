@@ -165,3 +165,6 @@ menu:
       uri : https://twitter.com/share?url=https://www.qwant.com/&text=Why%20allowing%20from%20a%20search%20engine%20something%20you%20won%27t%20in%20real%20life?&hashtags=switchToQwant&via=Qwant_FR #TODO update to maps
     - name: _('on Facebook')
       uri : http://www.facebook.com/sharer.php?u=https://www.qwant.com/
+
+# Types
+CATEGORY_TYPE: 'category'
