@@ -20,14 +20,26 @@
 
   {{? this.categories.length > 0 }}
   <div class="service_panel__categories">
-    {{~ this.categories:category }}
-      <button class="service_panel__category" type="button" {{= click(this.openCategory, this, category) }}>
-        <div class="service_panel__category__icon" style="background: {{= category.backgroundColor }}">
-          <span class="icon icon-{{= category.iconName }}"></span>
-        </div>
-        <div class="service_panel__category__title">{{= category.label }}</div>
-      </button>
+    {{~ this.categories:category:index }}
+      {{?
+        !this.mustDeployCategories ||
+        (this.mustDeployCategories && !this.isDeployed && index + 1 < 8) ||
+        (this.mustDeployCategories && this.isDeployed)
+      }}
+        <button class="service_panel__category" type="button" {{= click(this.openCategory, this, category) }}>
+          <div class="service_panel__category__icon" style="background: {{= category.backgroundColor }}">
+            <span class="icon icon-{{= category.iconName }}"></span>
+          </div>
+          <div class="service_panel__category__title">{{= category.label }}</div>
+        </button>
+      {{?}}
     {{~}}
+    {{? this.mustDeployCategories && !this.isDeployed }}
+      <button class="service_panel__category" type="button" {{= click(this.toggleCategories, this) }}>
+        <div class="service_panel__category__icon"><img src="/statics/images/plus.svg" alt="" /></div>
+        <div class="service_panel__category__title">{{= _('MORE', 'service panel') }}</div>
+      </button>
+    {{?}}
   </div>
   {{?}}
 
