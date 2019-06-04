@@ -88,11 +88,11 @@ export default class Suggest {
         })
         let suggestDom = this.prefixesRender()
         suggestDom += this.categoriesRender(categories)
+        // fill the suggest with the remotes poi according to the remaining places
+        suggestDom += this.remotesRender(remotes.slice(0, autocomplete.suggest.max_items - favorites.length - categories.length))
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites)
         }
-        // fill the suggest with the remotes poi according to the remaining places
-        suggestDom += this.remotesRender(remotes.slice(0, autocomplete.suggest.max_items - favorites.length - categories.length))
         return suggestDom
       },
 
