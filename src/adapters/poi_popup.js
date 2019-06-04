@@ -13,11 +13,17 @@ const WAIT_BEFORE_DISPLAY = 350
 
 function PoiPopup() {}
 
+
+
 PoiPopup.prototype.init = function(map) {
   this.map = map
   this.popupHandle = null
   this.timeOutHandler = null
   this.sceneState = SceneState.getSceneState()
+
+  listen("open_popup", (poi)=>this.createPJPopup(poi));
+  listen("close_popup", ()=>this.close());
+
 }
 
 PoiPopup.prototype.addListener = function(layer) {
@@ -30,7 +36,7 @@ PoiPopup.prototype.addListener = function(layer) {
       if(this.sceneState.isDisplayed(poi.properties.global_id)) {
         return
       }
-      this.create(poi, e.originalEvent)
+      this.createOSMPopup(poi, e.originalEvent)
     }, WAIT_BEFORE_DISPLAY)
   })
 
@@ -42,39 +48,49 @@ PoiPopup.prototype.addListener = function(layer) {
   })
 }
 
-PoiPopup.prototype.create = async function (layerPoi, event) {
+PoiPopup.prototype.createOSMPopup = async function (layerPoi, event) {
   let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id, {simple : true})
   if(poi) {
-    if(this.popupHandle) {
-      this.popupHandle.remove()
-      this.popupHandle = null
-    }
-    let {color} = IconManager.get(poi)
-    let category = poiSubClass(poi.subClassName)
-    let hours = poi.blocks.find(block =>
+    this.showPopup(poi, event);
+  }
+}
+
+PoiPopup.prototype.createPJPopup =  function (poi, event) {
+  if(poi) {
+    this.showPopup(poi, event);
+  }
+}
+
+PoiPopup.prototype.showPopup = function(poi, event){
+  if(this.popupHandle) {
+    this.popupHandle.remove()
+    this.popupHandle = null
+  }
+  let {color} = IconManager.get(poi)
+  let category = poiSubClass(poi.subClassName)
+  let hours = poi.blocks.find(block =>
       block.type === 'opening_hours'
-    )
-    let timeMessages = poiConfigs.find((poiConfig) => {
-      return poiConfig.apiName === 'opening_hours'
-    })
-    let opening
-    let address
-    if(hours) {
-      opening = new OsmSchedule(hours, timeMessages.options.messages)
-    } else if(poi.address){
-      address = poi.address.label
-    }
+  )
+  let timeMessages = poiConfigs.find((poiConfig) => {
+    return poiConfig.apiName === 'opening_hours'
+  })
+  let opening
+  let address
+  if(hours) {
+    opening = new OsmSchedule(hours, timeMessages.options.messages)
+  } else if(poi.address){
+    address = poi.address.label
+  }
 
-    let popupOptions = {className: 'poi_popup__container', closeButton : false, closeOnClick : true}
+  let popupOptions = {className: 'poi_popup__container', closeButton : false, closeOnClick : true}
 
-    this.setPopupPosition(event, popupOptions)
-    let htmlEncode = ExtendedString.htmlEncode
-    
-    this.popupHandle = new Popup(popupOptions)
+  this.setPopupPosition(event, popupOptions)
+  let htmlEncode = ExtendedString.htmlEncode
+
+  this.popupHandle = new Popup(popupOptions)
       .setLngLat(poi.getLngLat())
       .setHTML(popupTemplate.call({poi, color, opening, address, category, htmlEncode}))
       .addTo(this.map)
-  }
 }
 
 PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
@@ -83,17 +99,24 @@ PoiPopup.prototype.setPopupPosition = function (event, popupOptions) {
   const canvasWidth = window.innerWidth
   const positionFragments = []
 
-  if(event.clientY > VERTICAL_OFFSET) {
+  if(event) {
+    if (event.clientY > VERTICAL_OFFSET) {
+      positionFragments.push('bottom')
+    } else {
+      positionFragments.push('top')
+    }
+
+    if (event.clientX < (canvasWidth - HORIZONTAL_OFFSET)) {
+      positionFragments.push('left')
+    } else {
+      positionFragments.push('right')
+    }
+  }
+  else {
     positionFragments.push('bottom')
-  } else {
-    positionFragments.push('top')
+    positionFragments.push('left')
   }
 
-  if(event.clientX < (canvasWidth - HORIZONTAL_OFFSET)) {
-    positionFragments.push('left')
-  } else {
-    positionFragments.push('right')
-  }
   popupOptions.anchor = positionFragments.join('-')
   popupOptions.offset = {
     'bottom-left': [18, -8],

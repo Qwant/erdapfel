@@ -1,6 +1,9 @@
 import { Marker } from 'mapbox-gl--ENV'
 import constants from '../../config/constants.yml'
 import { createIcon } from '../adapters/icon_manager'
+import PoiPopup from './poi_popup'
+
+
 
 export default class SceneCategory {
   constructor(map) {
@@ -25,6 +28,12 @@ export default class SceneCategory {
         poi.marker_id = `marker_${id}`
         marker.onclick = function () {
           fire('click_category_poi', poi)
+        }
+        marker.onmouseover = function(){
+          fire("open_popup", poi);
+        }
+        marker.onmouseout = function(){
+          fire("close_popup")
         }
         marker.id = poi.marker_id
         this.markers.push(
