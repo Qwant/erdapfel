@@ -139,7 +139,7 @@ input[type="search"] {
 
 .autocomplete_suggestion {
   max-height: 100vh;
-  padding: 7px 0 7px 12px;
+  padding: 7px 0 7px 20px;
   line-height: 23px;
   font-size: 1.02em;
   color: $secondary_text;
@@ -148,8 +148,8 @@ input[type="search"] {
   cursor: pointer;
 
   &.selected {
-    border-left: #FF3B4A solid 3px;
-    padding-left: 9px;
+    border-left: #FF3B4A solid 4px;
+    padding-left: 16px;
     background-color: $background_active;
   }
 }
@@ -162,7 +162,7 @@ input[type="search"] {
 .autocomplete-icon {
   display: inline-block;
   width: 22px;
-  margin-right: 5px;
+  margin-right: 10px;
   line-height: 26px;
 
   &.icon:before {
@@ -181,6 +181,7 @@ input[type="search"] {
 }
 
 .autocomplete_suggestion__first_line {
+  color: $primary_text;
   display: inline-block;
   width: calc(100% - 50px);
   text-overflow:ellipsis;
@@ -190,9 +191,10 @@ input[type="search"] {
 }
 
 .autocomplete_suggestion__second_line {
+  color: $secondary_text;
   height: 23px;
   font-size: 14px;
-  margin-left: 32px;
+  margin-left: 37px;
   text-overflow:ellipsis;
   text-transform: capitalize;
   overflow: hidden;
@@ -245,7 +247,6 @@ input[type="search"] {
 }
 
 @media (max-width: 640px) {
-
   .search_form:before {
     right: 5px;
   }

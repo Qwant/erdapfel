@@ -61,6 +61,15 @@
   display: inline-block;
   text-align: center;
   margin: 0 0 23px 0;
+
+  &:hover {
+    .service_panel__category__icon {
+      transform: scale3d(1.1, 1.1, 1.1); // scale3d is used with GPU
+    }
+    .service_panel__category__title {
+      color: $primary_text;
+    }
+  }
 }
 
 .service_panel__category__icon {
@@ -69,6 +78,7 @@
   height: 40px;
   margin: auto;
   border-radius: 50%;
+  transition: transform .1s ease-in;
   position: relative;
 
   span {

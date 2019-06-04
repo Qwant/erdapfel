@@ -26,7 +26,6 @@
   display: inline-block;
   vertical-align: middle;
   margin: 5px 10px 0 0;
-  background: url("../images/pagesjaunes.png")
 }
 
 .category__panel__title {
@@ -34,7 +33,7 @@
   color: #353c52;
   font-size: 12px;
   text-transform: uppercase;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .category__panel__partnership_icon {
@@ -85,6 +84,10 @@
   min-height: 100px;
 }
 
+.category__panel__item:last-of-type .category__panel__item_inner {
+  border-bottom: none;
+}
+
 .category__panel__image {
   float: right;
   margin: 5px 0 10px 10px;
@@ -113,6 +116,10 @@
   font-size: 14px;
   color: #353c52;
   margin-top: 5px;
+  text-overflow: ellipsis;
+  max-width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .category__panel__item {
@@ -147,7 +154,7 @@
 }
 
 .category__panel__phone {
-  color: #5c6f84;
+  color: $secondary_text;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -156,6 +163,10 @@
 
   span {
     vertical-align: middle;
+  }
+
+  a {
+    color: $secondary_text;
   }
 
   .icon-icon_phone {
@@ -246,7 +257,6 @@
 
   .category__panel__pj {
     margin: auto;
-    display: block;
     max-width: 180px;
     text-align: center;
   }

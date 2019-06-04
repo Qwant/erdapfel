@@ -42,7 +42,7 @@ $HEADER_SIZE: 30px;
 }
 
 .poi_panel__container {
-  padding: 0 $BLOCK_INDENT;
+  padding: 5px $BLOCK_INDENT 0px $BLOCK_INDENT;
   width: 100%;
   position: relative;
 }
@@ -89,7 +89,6 @@ $HEADER_SIZE: 30px;
   width: 30px;
   text-align: center;
   transition: background-color .1s;
-  background: $background;
   border-radius: 50%;
   font-size: 20px;
 }
@@ -114,6 +113,17 @@ $HEADER_SIZE: 30px;
   color: $primary_text;
 }
 
+.poi_panel__back_text {
+  padding-left: 30px;
+}
+
+.poi_panel__back.icon-arrow-left {
+  font-size: 22px;
+  position: absolute;
+  bottom: 1px;
+  left: 4px;
+}
+
 .poi_panel__header + .poi_panel--card {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -125,6 +135,11 @@ $HEADER_SIZE: 30px;
   position: absolute;
   top: 8px;
   cursor: pointer;
+}
+
+.poi_panel__back_to_list .poi_panel__back_to_list_logo {
+  margin-left: 8px;
+  vertical-align: middle;
 }
 
 .poi_panel__back_to_favorite:hover, .poi_panel__back_to_list:hover {
@@ -369,8 +384,13 @@ $HEADER_SIZE: 30px;
   display: inline-block;
   height: 25px;
   font-size: 12px;
+  color: $secondary_text;
+}
+
+.poi_panel__actions__text:hover {
   color: $primary_text;
 }
+
 
 .poi_panel__store_status__toggle:after {
   content: '';
@@ -596,7 +616,6 @@ $HEADER_SIZE: 30px;
   .poi_panel__header {
     font-size: 13px;
     color: $secondary_text;
-    padding: 14px 0 14px 10px;
     text-transform: uppercase;
     height: $HEADER_SIZE;
     background: $background;
@@ -604,6 +623,8 @@ $HEADER_SIZE: 30px;
     box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
+    position: relative;
+    border-bottom: solid 1px #f4f6fa;
   }
 }
 
