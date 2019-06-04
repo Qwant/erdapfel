@@ -67,7 +67,7 @@
                 <div class="category__panel__phone" {{= click(this.showPhoneNumber, this, {poi, i}) }}>
                   <span class="icon-icon_phone"></span>
                   <span id="category__panel__phone_hidden_{{= i}}">{{= _('See the phone number', 'categories') }}</span>
-                  <a href="tel:{{= phoneBlock.local_format }}" id="category__panel__phone_revealed_{{= i}}" style="display: none">{{= phoneBlock.local_format }}</a>
+                  <a href="{{= phoneBlock.url }}" id="category__panel__phone_revealed_{{= i}}" style="display: none">{{= phoneBlock.local_format }}</a>
                 </div>
 
               {{?}}

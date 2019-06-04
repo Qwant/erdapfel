@@ -42,7 +42,7 @@ $HEADER_SIZE: 30px;
 }
 
 .poi_panel__container {
-  padding: 0 $BLOCK_INDENT;
+  padding: 5px $BLOCK_INDENT 0px $BLOCK_INDENT;
   width: 100%;
   position: relative;
 }
@@ -89,7 +89,6 @@ $HEADER_SIZE: 30px;
   width: 30px;
   text-align: center;
   transition: background-color .1s;
-  background: $background;
   border-radius: 50%;
   font-size: 20px;
 }
@@ -121,8 +120,8 @@ $HEADER_SIZE: 30px;
 .poi_panel__back.icon-arrow-left {
   font-size: 22px;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 1px;
+  left: 4px;
 }
 
 .poi_panel__header + .poi_panel--card {
@@ -550,7 +549,6 @@ $HEADER_SIZE: 30px;
   .poi_panel__header {
     font-size: 13px;
     color: $secondary_text;
-    padding: 14px 0 28px 10px;
     text-transform: uppercase;
     height: $HEADER_SIZE;
     background: $background;
@@ -559,17 +557,7 @@ $HEADER_SIZE: 30px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     position: relative;
-  }
-
-  .poi_panel__header::after {
-    content: " ";
     border-bottom: solid 1px #f4f6fa;
-    margin-bottom: 15px;
-    width: 100%;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 
