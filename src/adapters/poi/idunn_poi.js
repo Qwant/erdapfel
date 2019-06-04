@@ -109,4 +109,11 @@ export default class IdunnPoi extends Poi {
         return rawPoi.address
     }
   }
+
+  goToFeedbackUrl() {
+    const grades = this.blocksByType.grades
+    if (grades && grades.url) {
+      window.open(grades.url, '_blank', 'noopener noreferrer')
+    }
+  }
 }
