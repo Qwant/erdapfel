@@ -380,6 +380,73 @@ $HEADER_SIZE: 30px;
     display: none;
 }
 
+.poi_panel__pictures {
+  margin-bottom: 20px;
+}
+
+.poi_panel__pictures_title {
+  border-top: 1px solid #e0e1e6;
+  padding: 15px 0;
+  font-family: Asap;
+  font-size: 16px;
+  color: #495063;
+  font-weight: normal;
+  position: relative;
+  padding-left: 24px;
+}
+
+.poi_panel__pictures_title .icon-icon_camera {
+  color: #c8cbd3;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.poi_panel__pictures_block {
+  width: calc(50% - 7px);
+  padding-bottom: calc(50% - 7px);
+  display: inline-block;
+}
+
+.poi_panel__pictures_first_block {
+  margin-right: 10px;
+}
+
+.poi_panel__pictures_block_short {
+  height: calc(50% - 5px);
+  padding-bottom: calc(50% - 5px);
+  display: block;
+}
+
+.poi_panel__pictures_block_short:first-of-type {
+  margin-bottom: 10px;
+}
+
+.poi_panel__pictures_block_full {
+  padding-bottom: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.poi_panel__pictures_block,
+.poi_panel__pictures_block_short,
+.poi_panel__pictures_block_full {
+  background-position: center;
+  background-size: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.poi_panel__pictures_second_block {
+  box-shadow: none;
+  position: relative;
+}
+
+.poi_panel__pictures_block-multiple {
+  padding-bottom: 0;
+}
+
 /* TODO export to external service */
 
 /* title symbols */
