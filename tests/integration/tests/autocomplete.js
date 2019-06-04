@@ -1,6 +1,7 @@
 import {clearStore, initBrowser, wait} from '../tools'
 import AutocompleteHelper from "../helpers/autocomplete";
 import ResponseHandler from "../helpers/response_handler";
+import {autocomplete} from '../../../config/constants.yml';
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
@@ -82,7 +83,7 @@ test('keyboard navigation', async () => {
   expect(searchValue.trim()).toEqual(expectedLabelName)
 
   /* got to last item */
-  for(let i = 0; i < mockAutocomplete.features.length - 2; i++) {
+  for(let i = 0; i < autocomplete.suggest.max_items - 2; i++) {
     await autocompleteHelper.pressDown()
   }
  /* one step more */
