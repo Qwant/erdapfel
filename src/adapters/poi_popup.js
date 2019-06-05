@@ -19,8 +19,8 @@ PoiPopup.prototype.init = function(map) {
   this.timeOutHandler = null
   this.sceneState = SceneState.getSceneState()
 
-  listen("open_popup", (poi, e) => this.createPJPopup(poi, e));
-  listen("close_popup", () => this.close());
+  listen("open_popup", (poi, e) => this.createPJPopup(poi, e))
+  listen("close_popup", () => this.close())
 
 }
 
@@ -49,13 +49,13 @@ PoiPopup.prototype.addListener = function(layer) {
 PoiPopup.prototype.createOSMPopup = async function (layerPoi, event) {
   let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id, {simple : true})
   if(poi) {
-    this.showPopup(poi, event);
+    this.showPopup(poi, event)
   }
 }
 
 PoiPopup.prototype.createPJPopup =  function (poi, event) {
   if(poi) {
-    this.showPopup(poi, event);
+    this.showPopup(poi, event)
   }
 }
 
