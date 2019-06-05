@@ -2,12 +2,12 @@ import Poi from "../poi";
 import GeolocationCheck from "../../../libs/geolocation";
 export const GEOLOCALISATION_NAME = 'geolocalisation'
 
-export const navigatorGeolcationStatus = {PENDING : 'pending', FOUND : 'found', UNKNOWN : 'unknown', FORBIDDEN : 'forbidden'}
+export const navigatorGeolocationStatus = {PENDING : 'pending', FOUND : 'found', UNKNOWN : 'unknown', FORBIDDEN : 'forbidden'}
 
 export default class NavigatorGeolocalisationPoi extends Poi {
   constructor() {
     super(GEOLOCALISATION_NAME, _('Your position', 'direction'))
-    this.status = navigatorGeolcationStatus.UNKNOWN
+    this.status = navigatorGeolocationStatus.UNKNOWN
   }
 
   static getInstance() {
@@ -20,13 +20,13 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   geolocate() {
     GeolocationCheck.checkPrompt()
     return new Promise((resolve, reject) => {
-      this.status = navigatorGeolcationStatus.PENDING
+      this.status = navigatorGeolocationStatus.PENDING
       navigator.geolocation.getCurrentPosition((position) => {
         this.setPosition({lat : position.coords.latitude, lng : position.coords.longitude})
         resolve()
       }, (error) => {
         if(error.code === 1) {
-          this.status = navigatorGeolcationStatus.FORBIDDEN
+          this.status = navigatorGeolocationStatus.FORBIDDEN
         }
         reject(error)
       })
@@ -34,7 +34,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   }
 
   setPosition(latLng) {
-    this.status = navigatorGeolcationStatus.FOUND
+    this.status = navigatorGeolocationStatus.FOUND
     this.latLon = latLng
   }
 

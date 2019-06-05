@@ -27,8 +27,7 @@ class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   trigger() {
-    GeolocationCheck.checkPrompt()
-    super.trigger()
+    GeolocationCheck.checkPrompt(() => super.trigger(), error => this._onError(error))
   }
 
   _setupUI(supported) {
