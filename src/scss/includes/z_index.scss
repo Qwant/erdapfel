@@ -7,7 +7,7 @@
 }
 
 .modal_overlay {
-  z-index: 12;
+  z-index: 6;
 }
 
 .modal {
@@ -19,7 +19,7 @@
 }
 
 .side_panel__container {
-  z-index: 10;
+  z-index: 2;
 }
 
 .poi_panel, .favorites_panel {
@@ -35,7 +35,7 @@
 }
 
 .autocomplete_suggestions {
-  z-index: 11;
+  z-index: 4;
 }
 
 .top_bar {
