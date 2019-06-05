@@ -66,4 +66,4 @@ direction:
     token: '' # for 'mapbox' only
 
 category:
-  enabled: true
+  enabled: false
