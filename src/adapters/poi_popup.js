@@ -13,16 +13,14 @@ const WAIT_BEFORE_DISPLAY = 350
 
 function PoiPopup() {}
 
-
-
 PoiPopup.prototype.init = function(map) {
   this.map = map
   this.popupHandle = null
   this.timeOutHandler = null
   this.sceneState = SceneState.getSceneState()
 
-  listen("open_popup", (poi, e)=>this.createPJPopup(poi, e));
-  listen("close_popup", ()=>this.close());
+  listen("open_popup", (poi, e) => this.createPJPopup(poi, e));
+  listen("close_popup", () => this.close());
 
 }
 

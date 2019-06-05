@@ -1,9 +1,6 @@
 import { Marker } from 'mapbox-gl--ENV'
 import constants from '../../config/constants.yml'
 import { createIcon } from '../adapters/icon_manager'
-import PoiPopup from './poi_popup'
-
-
 
 export default class SceneCategory {
   constructor(map) {
