@@ -29,8 +29,8 @@ export default class SceneCategory {
         marker.onclick = function () {
           fire('click_category_poi', poi)
         }
-        marker.onmouseover = function(){
-          fire("open_popup", poi);
+        marker.onmouseover = function(e){
+          fire("open_popup", poi, e);
         }
         marker.onmouseout = function(){
           fire("close_popup")
