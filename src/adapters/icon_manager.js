@@ -59,7 +59,6 @@ export function createIcon(iconOptions, name, hoverEffect = false) {
       <div class="marker-container${hoverEffect ? ' poi-hoverable' : ''}">
         <i class="icon icon-${icon.iconClass}"></i>
       </div>
-      ${markerLabel}
     </div>
   `
   return element.firstElementChild
