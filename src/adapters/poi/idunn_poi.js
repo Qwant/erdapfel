@@ -55,11 +55,8 @@ export default class IdunnPoi extends Poi {
       let rawPois = await Ajax.getLang(url, requestParams)
       return rawPois.places.map((rawPoi) => new IdunnPoi(rawPoi))
     } catch (err) {
-      if(err === 404) {
+      if(err === 400 || err === 404) {
         return
-      }
-      else if(err === 400){
-        return;
       }
       else {
         Error.sendOnce(
