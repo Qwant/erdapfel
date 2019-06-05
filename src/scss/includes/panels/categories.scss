@@ -7,6 +7,10 @@
   @include card_radius();
 }
 
+.category__panel--hidden {
+  display: none;
+ }
+
 .category__panel__scroll {
   position: relative;
   overflow-y: auto;
@@ -61,10 +65,10 @@
   width: 20px;
   height: 20px;
   float: right;
-  margin: 2px 0px 0 6px;
+  margin: 9px 9px 0 9px;
   background-size: 16px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 18px
 }
 
 .category__panel__item {
@@ -94,6 +98,7 @@
   width: 65px;
   height: 65px;
   background-size: cover;
+  background-position: center center;
 
   .poi_panel__title__symbol {
     margin: 13px 0 0 11px;
@@ -172,6 +177,19 @@
   .icon-icon_phone {
     font-size: 16px;
     margin: 0 5px 0 0;
+  }
+}
+
+.category__panel__error {
+  padding: 50px 40px;
+  color: #353c52;
+
+  button {
+    font-size: 14px;
+    color: #5c6f84;
+    margin: 10px 0 0;
+    text-transform: uppercase;
+    cursor: pointer;
   }
 }
 
@@ -260,7 +278,7 @@
     max-width: 180px;
     text-align: center;
   }
-  
+
   .category__panel__phone {
     display: none;
   }

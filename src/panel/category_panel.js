@@ -58,9 +58,9 @@ export default class CategoryPanel {
       .map((cardinal) => cardinal.toFixed(7))
       .join(',')
 
-    this.pois = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName)
-    
+    this.pois = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName, this)
     this.loading = false
+
     this.panel.update()
     let container = document.querySelector(".category__panel__scroll");
     if(container){
@@ -82,6 +82,24 @@ export default class CategoryPanel {
     this.search()
     await this.panel.update()
     UrlState.pushUrl()
+
+    // Apply correct zoom when opening a category
+    let currentZoom = window.map.mb.getZoom()
+
+    // Zoom < 5: focus on Paris
+    if(currentZoom < 5){
+      window.map.mb.flyTo({center: [2.35, 48.85], zoom: 12});
+    }
+
+    // Zoom < 12: zoom up to zoom 12
+    else if(currentZoom < 12){
+      window.map.mb.flyTo({zoom: 12});
+    }
+
+    // Zoom > 16: dezoom to zoom 16
+    else if(currentZoom > 16){
+      window.map.mb.flyTo({zoom: 16});
+    }
   }
 
   close (toggleMarkers = true) {
