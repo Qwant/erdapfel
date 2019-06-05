@@ -90,7 +90,7 @@ export default class Suggest {
         suggestDom += this.remotesRender(remotes.slice(0, autocomplete.suggest.max_items - nbFavorites - categories.length))
 
         if (favorites.length > 0) {
-          suggestDom += this.favoritesRender(favorites = query === '' ? favorites : favorites.slice(0, nbFavorites))
+          suggestDom += this.favoritesRender(favorites.slice(0, nbFavorites = query === '' ? 5 : nbFavorites))
         }
 
         return suggestDom

@@ -83,7 +83,7 @@ test('keyboard navigation', async () => {
   expect(searchValue.trim()).toEqual(expectedLabelName)
 
   /* got to last item */
-  for(let i = 0; i < autocomplete.suggest.max_items - 3; i++) {
+  for(let i = 0; i < autocomplete.suggest.max_items; i++) {
     await autocompleteHelper.pressDown()
   }
  /* one step more */
