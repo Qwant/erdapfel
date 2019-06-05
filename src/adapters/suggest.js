@@ -71,28 +71,28 @@ export default class Suggest {
         return promise
       },
 
-      renderItems: (pois) => {
-        let favorites = []
-        let remotes = []
-        let categories = []
-        pois.forEach((poi) => {
-          if (poi instanceof PoiStore && favorites.length < 2) {
-            // 2 favorites pois max
-            favorites.push(poi)
-          } else if (poi instanceof Category && categories.length === 0) {
-            // 1 category pois max
-            categories.push(poi)
-          } else {
-            remotes.push(poi)
-          }
-        })
+      renderItems: (pois, query) => {
+        let favorites = pois.filter(poi => poi instanceof PoiStore)
+        let categories = pois.filter(poi => poi instanceof Category).slice(0, 1)
+        let remotes = pois.filter(poi => !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi)) 
         let suggestDom = this.prefixesRender()
-        suggestDom += this.categoriesRender(categories)
-        // fill the suggest with the remotes poi according to the remaining places
-        suggestDom += this.remotesRender(remotes.slice(0, autocomplete.suggest.max_items - favorites.length - categories.length))
-        if (favorites.length > 0) {
-          suggestDom += this.favoritesRender(favorites)
+
+        var nbFavorites = 0
+        if (favorites.length > 0 && favorites.length <= 2) {
+            nbFavorites = favorites.length
+        } else if (favorites.length > 2) {
+            nbFavorites = 2
         }
+
+        suggestDom += this.categoriesRender(categories)
+
+        // fill the suggest with the remotes poi according to the remaining places
+        suggestDom += this.remotesRender(remotes.slice(0, autocomplete.suggest.max_items - nbFavorites - categories.length))
+
+        if (favorites.length > 0) {
+          suggestDom += this.favoritesRender(favorites = query === '' ? favorites : favorites.slice(0, nbFavorites))
+        }
+
         return suggestDom
       },
 
