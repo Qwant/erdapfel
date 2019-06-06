@@ -6,6 +6,8 @@ const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 
+const SUGGEST_MAX_ITEMS = config.services.geocoder.max_items
+
 let browser
 let page
 let autocompleteHelper
@@ -31,7 +33,7 @@ test('search and clear', async () => {
   expect(cleanHandle).not.toBeNull()
 
   const autocompleteItems = await autocompleteHelper.getSuggestList()
-  expect(autocompleteItems.length).toEqual(autocomplete.suggest.max_items)
+  expect(autocompleteItems.length).toEqual(SUGGEST_MAX_ITEMS)
 
 
   let searchValue = await autocompleteHelper.getSearchInputValue()
@@ -52,12 +54,12 @@ test('search has lang in query', async () => {
   const autocompleteHelper = new AutocompleteHelper(langPage)
 
   const query = 'Frankreich'
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Frankreich&lang=de/)
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Frankreich(.*)&lang=de/)
 
   await langPage.goto(APP_URL)
   await autocompleteHelper.typeAndWait(query)
   const autocompleteItems = await autocompleteHelper.getSuggestList()
-  expect(autocompleteItems).toHaveLength(autocomplete.suggest.max_items)
+  expect(autocompleteItems).toHaveLength(SUGGEST_MAX_ITEMS)
 })
 
 test('keyboard navigation', async () => {
@@ -83,7 +85,7 @@ test('keyboard navigation', async () => {
   expect(searchValue.trim()).toEqual(expectedLabelName)
 
   /* got to last item */
-  for(let i = 0; i < autocomplete.suggest.max_items - 2; i++) {
+  for(let i = 0; i < SUGGEST_MAX_ITEMS - 2; i++) {
     await autocompleteHelper.pressDown()
   }
  /* one step more */

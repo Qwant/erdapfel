@@ -1,11 +1,13 @@
 import Autocomplete from '../vendors/autocomplete'
 import IconManager from '../adapters/icon_manager'
-import { autocomplete } from '../../config/constants.yml'
 import ExtendedString from "../libs/string"
 import BragiPoi from "./poi/bragi_poi"
 import PoiStore from "./poi/poi_store"
 import Category from "./category"
 import CategoryService from "./category_service"
+import nconf from '@qwant/nconf-getter'
+
+const SUGGEST_MAX_ITEMS = nconf.get().services.geocoder.max_items
 
 export default class Suggest {
   constructor({tagSelector, onSelect, prefixes = [], withCategories = false, menuClass = ''}) {
@@ -87,7 +89,7 @@ export default class Suggest {
         suggestDom += this.categoriesRender(categories)
 
         // fill the suggest with the remotes poi according to the remaining places
-        suggestDom += this.remotesRender(remotes.slice(0, autocomplete.suggest.max_items - nbFavorites - categories.length))
+        suggestDom += this.remotesRender(remotes.slice(0, SUGGEST_MAX_ITEMS - nbFavorites - categories.length))
 
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites.slice(0, nbFavorites = query === '' ? 5 : nbFavorites))

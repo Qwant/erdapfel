@@ -30,10 +30,6 @@ languages:
         - es_ES
   defaultLanguage: *default
 
-autocomplete:
-  suggest:
-    max_items: 7
-
 layout:
   sizes:
     panelWidth : 400
