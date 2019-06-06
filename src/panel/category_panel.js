@@ -151,15 +151,17 @@ export default class CategoryPanel {
     this.query = ''
     this.panel.update()
     UrlState.pushUrl()
-    if(toggleMarkers){
+    if(toggleMarkers) {
       this.removeCategoryMarkers()
     }
   }
 
-  showPhoneNumber(options){
+  showPhoneNumber(options) {
     var poi = options.poi
     var i = options.i
-    if (poi.meta && poi.meta.source) Telemetry.add("phone", "poi", poi.meta.source)
+    if (poi.meta && poi.meta.source) {
+      Telemetry.add("phone", "poi", poi.meta.source)
+    }
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }
