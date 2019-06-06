@@ -28,6 +28,7 @@ function Scene() {
   this.popup = new PoiPopup()
   this.zoom = map.zoom
   this.center = [map.center.lng, map.center.lat]
+  this.savedLocation = null
   this.sceneState = SceneState.getSceneState()
 }
 
@@ -178,6 +179,27 @@ Scene.prototype.initMapBox = function () {
   listen('clean_marker', () => {
     this.cleanMarker()
   })
+
+  listen('save_location', () => {
+    this.saveLocation()
+  })
+
+  listen('restore_location', () => {
+    this.restoreLocation()
+  })
+}
+
+Scene.prototype.saveLocation = function() {
+  let locationShard = UrlShards.parseUrl().find(shard => shard.prefix === 'map')
+  this.savedLocation = locationShard.value
+}
+
+Scene.prototype.restoreLocation = function() {
+  if (this.savedLocation) {
+    this.restore(this.savedLocation)
+    let flyOptions = {center : this.urlCenter, zoom : this.urlZoom, animate: true, screenSpeed: 2}
+    this.mb.flyTo(flyOptions)
+  }
 }
 
 Scene.prototype.isPointInBounds = function(point, bounds) {

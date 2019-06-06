@@ -190,6 +190,7 @@ PoiPanel.prototype.backToFavorite = function() {
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST)
   this.close();
+  fire("restore_location")
   this.list.open();
 }
 
