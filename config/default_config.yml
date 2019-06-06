@@ -16,6 +16,7 @@ services:
   geocoder:
     url: override_by_environment
     useLang: true
+    max_items: 7
   idunn:
     url: override_by_environment
 

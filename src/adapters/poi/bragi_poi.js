@@ -128,7 +128,10 @@ export default class BragiPoi extends Poi {
     /* ajax */
     let suggestsPromise
     let queryPromise = new Promise(async (resolve, reject) => {
-      let query = {q: term}
+      let query = {
+        "q": term,
+        "limit": geocoderConfig.max_items
+      }
       if(geocoderConfig.useLang){
         query.lang = getLang().code
       }
