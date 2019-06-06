@@ -79,10 +79,19 @@ export default class CategoryPanel {
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1))
     }
     this.active = true
-    this.search()
-    await this.panel.update()
     UrlState.pushUrl()
 
+    if (window.map.mb.isMoving()){
+      /*
+        Do not trigger API search and zoom change when the map
+        is already moving, to avoid flickering.
+        The search will be triggered on moveend.
+      */
+      return
+    }
+
+    this.search()
+    await this.panel.update()
     // Apply correct zoom when opening a category
     let currentZoom = window.map.mb.getZoom()
 

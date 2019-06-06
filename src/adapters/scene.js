@@ -197,7 +197,7 @@ Scene.prototype.saveLocation = function() {
 Scene.prototype.restoreLocation = function() {
   if (this.savedLocation) {
     this.restore(this.savedLocation)
-    let flyOptions = {center : this.urlCenter, zoom : this.urlZoom, animate: true, screenSpeed: 1.5}
+    let flyOptions = {center : this.urlCenter, zoom : this.urlZoom, animate: true, screenSpeed: 2}
     this.mb.flyTo(flyOptions)
   }
 }
