@@ -68,6 +68,7 @@ export default class CategoryPanel {
     }
 
     this.addCategoryMarkers();
+    fire("save_location");
 
     document.querySelector(".service_panel").classList.remove("service_panel--active")
   }
@@ -144,7 +145,6 @@ export default class CategoryPanel {
   }
 
   selectPoi(poi){
-    fire("save_location")
     fire('fit_map', poi, layouts.LIST)
     this.close(false)
     PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
