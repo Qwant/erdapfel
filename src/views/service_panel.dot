@@ -36,7 +36,7 @@
     {{~}}
     {{? this.mustDeployCategories && !this.isDeployed }}
       <button class="service_panel__category" type="button" {{= click(this.toggleCategories, this) }}>
-        <div class="service_panel__category__icon"><img src="/statics/images/plus.svg" alt="" /></div>
+        <div class="service_panel__category__icon"><img src="./statics/images/plus.svg" alt="" /></div>
         <div class="service_panel__category__title">{{= _('MORE', 'service panel') }}</div>
       </button>
     {{?}}

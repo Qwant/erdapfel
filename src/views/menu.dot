@@ -26,7 +26,7 @@
     <div class="menu__panel__items_container">
       <div class="menu__panel__section menu__panel__section-internal">
         <button class="menu__panel__action" {{= click(this.search, this) }}>
-            <img class="menu__panel__action__icon" src="/statics/images/magnifier.svg" alt="" />
+            <img class="menu__panel__action__icon" src="./statics/images/magnifier.svg" alt="" />
             <span>{{= _('Search', 'menu') }}</span>
         </button>
         {{? this.isDirectionActive }}
