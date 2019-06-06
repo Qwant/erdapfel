@@ -19,7 +19,12 @@ PoiPopup.prototype.init = function(map) {
   this.timeOutHandler = null
   this.sceneState = SceneState.getSceneState()
 
-  listen("open_popup", (poi, e) => this.createPJPopup(poi, e))
+  listen("open_popup", (poi, e) => {
+    if(Device.isMobile() || isTouchEvent(e)) {
+      return
+    }
+    this.createPJPopup(poi, e)
+  })
   listen("close_popup", () => this.close())
 
 }
