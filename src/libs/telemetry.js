@@ -11,12 +11,13 @@ const uniqEventList = []
 export default class Telemetry {
   constructor() {}
 
-  static add(event, type, source) {
+  static add(event, type, source, data) {
     if (event) {
       if (type && source) {
-        event = Telemetry[`${(type + '_' + source + '_' + event).toUpperCase()}`]
+        let event_const_name = `${(type + '_' + source + '_' + event).toUpperCase()}`
+        event = Telemetry[event_const_name]
       }
-      return Telemetry.send(event)
+      return Telemetry.send(event, data)
     }
     Error.send('telemetry', 'add', 'telemetry event mismatch configuration', {})
   }
@@ -28,15 +29,28 @@ export default class Telemetry {
     }
   }
 
-  static async send(event) {
-    if (telemetry.enabled) {
-      let data = {type: event}
-      let telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`
-      return Ajax.post(telemetryUrl, data)
+  static async send(event, extra_data) {
+    if (!telemetry.enabled) {
+      return
+    } else if (typeof event === 'undefined') {
+      Error.send('telemetry', 'send', 'unknown event received', {})
+      return
     }
+    let data = {type: event}
+    if (typeof extra_data === 'object') {
+      Object.keys(extra_data).forEach(key => {
+        data[key] = extra_data[key]
+      })
+    }
+    let telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`
+    return Ajax.post(telemetryUrl, data)
   }
 }
 
+// This converts "/src/libs/telemetry.js" events into a map where you can use an event as follow:
+//
+// 'app_start' event will be accessible like this "Telemetry.APP_START" and its value will be the
+// original (so 'app_start').
 telemetryModule.events.forEach(event => {
   Telemetry[event.toUpperCase()] = event
 })

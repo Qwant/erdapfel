@@ -160,7 +160,15 @@ export default class CategoryPanel {
     var poi = options.poi
     var i = options.i
     if (poi.meta && poi.meta.source) {
-      Telemetry.add("phone", "poi", poi.meta.source)
+      Telemetry.add("phone", "poi", poi.meta.source,
+                    {"api_ia_click_link_data": {
+                      "ia_name": "maps",
+                      "type": poi.meta.source,
+                      "template": "multiple",
+                      "link": "phone",
+                      "item": poi.id.startsWith("pj:") ? poi.id.slice(3) : poi.id,
+                      "category": "unknown",
+                    }})
     }
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
