@@ -1,6 +1,7 @@
 import Category from "./category"
 import nconf from "../../local_modules/nconf_getter"
 import categories from "../../config/categories.yml"
+import ExtendedString from "../libs/string"
 
 export default class CategoryService {
 
@@ -20,8 +21,9 @@ export default class CategoryService {
 
   static async getMatchingCategories (term) {
     const matchedCategories = []
+
     const loadedCategories = CategoryService.getCategories()
-    const cleanedTerm = term.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // replace accent by non accentued chars
+    const cleanedTerm = ExtendedString.normalize(term)
 
     for (const category of loadedCategories) {
         if (category.isMatching(cleanedTerm))

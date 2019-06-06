@@ -3,19 +3,19 @@
   name: hotel
   color: "#495063"
   matcher:
-    regex: hote|campanile|premi[eè]re classe|b&b hotels|ibis budget|ibis|kyriad|mercure|fasthotel|ace hotel|best western|novotel|balladins|brit hotel|hotel f1|p'tit dej hotel|qualys hotel|holiday inn|ibis style|inter-hotel|akena hotel|citotel|comfort|logis|pullman
+    regex: hote|campanile|premi[eè]re classe|b&b hotels|ibis budget|ibis|kyriad|mercure|fasthotel|ace hotel|best western|novotel|balladins
   icon: lodging
 - label : _('restaurant')
   name: restaurant
   color: "#ef8000"
   matcher:
-    regex: rest|restos?|restaus?|ma?c\s?do(?:nald(?:'s)?)?|burger\s+king|quick|subway|flunch|hard\s+rock\s+cafe|kfc|pizza|brioche\s+doree|five\s+guys|mezzo\s+di\s+pasta|pomme\s+de\s+pain|pret\s+a\s+manger|vapiano|starbucks|big\s+fernand|sushi|memphis\s+coffee|buffalo\s+grill|la\s+boucherie|hippopotamus|leon|pataterie|pizzeria|brasserie|fast\s+food|restauration\s+rapide|snack|creperie|kebab|sandwicherie|il\s+ristorante|le kiosque a pizzas|buffalo grill|campanile|courtepaille|burger king|la pataterie|pizza hut|au bureau|poivre rouge|la croissanterie|tutti pizza|la boite a pizza|la brioche doree|leon de bruxelles|bagelstein|columbus cafe|memphis coffee|del arte|class'croute|o'tacos|sushi shop|mezzo di pasta|pomme de pain|big fernand|pizza sprint|bistro regent|l'epicurien|tablapizza|speed burger|pat a pain|pizza bonici|firmin|l'atelier gourmand|pizza time|a la bonne heure|francesca|planet sushi|speed rabbit pizza|pegast|pizza pai|best western|crep'eat|baila pizza|novotel|waffle factory|casino cafeteria|la pizza de nico|crocodile|fresh burritos|231 east street|bagel corner|coeur de ble|dubble|eat sushi|fuxia|il ristorante|les fils a maman|nooi|pitaya|jour|les burgers de papa|bchef|chez papa|cojean|le fournil de pierre|oceane|terre et mer|bistro romain|el rancho|l'alambic|le patacrepe|pizza city|cote sushi|la maison bleue|le club sandwich cafe|les 3 brasseurs|bellota-bellota|bistrot du boucher|la tagliatella|nostrum|pizza pino|point chaud|tacos avenue|exki|garden ice cafe|green is better|le paradis du fruit|les relais d'alsace|ma campagne|mamie bigoude|pasta pizza|pizza cosy|planetalis|salad&co|tommy's diner|yogurt factory|cafe leffe|dominos pizza|indiana cafe|le comptoir du malt|lina's|mythic burger|nikki sushi|alto cafe|ankka|burger bar by quick|carre bleu|esprit sushi|feel juice|five guys|green sur mesure|heureux comme alexandre|joosbayoo|la boucherie restaurant|la criee|la mangoune|le special|matsuri|pita pit|pizza plazza|pop sushi|presto|steak'n shake|stratto|toquenelle|wazawok|amarine|autogrill|basilic & co|best bagels|boco|buffalo burger|ch'ti charivari|chez clement|frites city|ker soazig|king marcel|mamma roma|miss cookies coffee|pizza'mania|station pizza|thai in box|assiette au boeuf|babyland|bonne journee|bretzel love|chez arnold's|chez jean|corso|inter-hotel|irish corner|jack's express|la casa pizza grill|la taverne de maitre kanter|lucien & la cocotte|maitre corbeau|mary's coffee shop|meuh !|nabab kebab|nachos mexican grill|pizza fissa|pizza martine|roadside|suandshi|takos king|yogurtlandia|adagio|agra|akena hotel|american way|bert's|bioburger|boum burger|brochettes & cie|bruegger's|chantal thomass|chicago slice pizza|daf|fauchon|flam's|gust|kebab avenue|la cantine des grands|la city|la cote et l'arete|lavinia|le croque bedaine|les comptoirs casino|les moulins bleus|lotus|marcel a table|marks & spencer|o'kebap|o'sushi|oncle scott's the country restaurant|papa john's|pivano|pullman|pur etc\.|record|urbun|vatel gourmet|vinomania
+    regex: rest|restos?|restaus?|ma?c\s?do(?:nald(?:'s)?)?|burger\s+king|quick|subway|flunch|hard\s+rock\s+cafe|kfc|pizza|brioche\s+doree|five\s+guys|mezzo\s+di\s+pasta|pomme\s+de\s+pain|pret\s+a\s+manger|vapiano|starbucks|big\s+fernand|sushi|memphis\s+coffee|buffalo\s+grill|la\s+boucherie|hippopotamus|leon|pataterie|pizzeria|brasserie|fast\s+food|restauration\s+rapide|snack|creperie|kebab|sandwicherie|il\s+ristorante|le kiosque a pizzas|buffalo grill|campanile|courtepaille|burger king|la pataterie|pizza hut|au bureau|poivre rouge|la croissanterie|tutti pizza|la boite a pizza|la brioche doree|leon de bruxelles|bagelstein|columbus cafe|memphis coffee|del arte|class'croute|o'tacos|sushi shop|mezzo di pasta|pomme de pain|big fernand|pizza sprint|bistro regent|l'epicurien|tablapizza|speed burger|pat a pain|pizza bonici|firmin|l'atelier gourmand|pizza time|a la bonne heure|francesca|planet sushi|speed rabbit pizza|pegast|pizza pai|best western|crep'eat|baila pizza|waffle factory|casino cafeteria|la pizza de nico|crocodile|fresh burritos|231 east street|bagel corner|coeur de ble|dubble|eat sushi|fuxia|il ristorante|les fils a maman|nooi|pitaya|jour|les burgers de papa|bchef|chez papa|cojean|le fournil de pierre|oceane|terre et mer|bistro romain|el rancho|l'alambic|le patacrepe|pizza city|cote sushi|la maison bleue|le club sandwich cafe|les 3 brasseurs|bellota-bellota|bistrot du boucher|la tagliatella|nostrum|pizza pino|point chaud|tacos avenue|exki|garden ice cafe|green is better|le paradis du fruit|les relais d'alsace|ma campagne|mamie bigoude|pasta pizza|pizza cosy|planetalis|salad&co|tommy's diner|yogurt factory|cafe leffe|dominos pizza|indiana cafe|le comptoir du malt|lina's|mythic burger|nikki sushi|alto cafe|ankka|burger bar by quick|carre bleu|esprit sushi|feel juice|five guys
   icon: restaurant
-- label : _('cinema')
+- label : _('leisure')
   name: leisure
   color: "#e93865"
   matcher:
-    regex: cine|leisures?|loisirs?|travaux\s+manu[éèe]l(?:le)?s?|zodio|dalbe|lezard creatif|arteis|rougier (&|and|et|n) ple|cooleurs?|cin[ée](?:ma)?s?|ugc|path[ée]|th[ée]atres?|parcs?\s+(?:(?:d')?attractions?|(de\s+)?loisirs?)|royal kids|laser game|escape game|goolfy|laserquest|max aventure|prizoners|get out !|recreakid|kartings?
+    regex: cine|leisures?|loisirs?|cin[ée](?:ma)?s?|ugc|path[ée]|th[ée]atres?|parcs?\s+(?:(?:d')?attractions?|(de\s+)?loisirs?)|royal kids|laser game|escape game|goolfy|laserquest|max aventure|prizoners|get out !|recreakid|kartings?
   icon: cinema
 - label : _('bar')
   name: bar
@@ -39,11 +39,11 @@
   name: pharmacy
   color: "#4aa0e7"
   matcher:
-    regex: phar|parapharmacies?|parashop|tanguy parapharmacie|pharmacies?|pharmacien(?:nes?)?
+    regex: phar|parapharmacies?|parashop|pharmacies?|pharmacien(?:nes?)?
   icon: pharmacy
 - label : _('education')
   name: education
   color: "#495063"
   matcher:
-    regex: educ|[eé]coles?\s*(maternelle|primaire|elementaire)?|college|universite|fac|faculte|iut|[ée]coles?\s+(?:de\s+|d')(?:commerce|ingenieurs?)|pigier|miage
+    regex: educ|[eé]coles?\s*(maternelle|primaire|elementaire)?|college|universite|fac|faculte|iut|[ée]coles?\s+(?:de\s+|d')(?:commerce|ingenieurs?)
   icon: school

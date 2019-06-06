@@ -21,7 +21,18 @@ ExtendedString.ellipsis = function (str, length, options = {}) {
  * @returns {number}
  */
 ExtendedString.compareIgnoreCase = function (haystack , needle) {
+  haystack = ExtendedString.normalize(haystack)
+  needle = ExtendedString.normalize(needle)
   return haystack.toUpperCase().indexOf(needle.toUpperCase())
+}
+
+ExtendedString.normalize = function (str) {
+  if (!str.normalize) {
+    // normalize is not available on IE11
+    return str
+  }
+  // replace accent by non accentued chars
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 
 ExtendedString.slug = function (str) {

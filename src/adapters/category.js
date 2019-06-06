@@ -28,10 +28,12 @@ export default class Category {
     let matched = false
 
     if (this.matcher && this.matcher.regex)
-      matched = new RegExp(this.matcher.regex, 'i').test(term)
+      matched = new RegExp(`^(${this.matcher.regex})$`, 'i').test(term)
 
-    if (!matched)
-      matched = ExtentedString.compareIgnoreCase(term, this.label) >= 0
+    const prefixLength = Math.min(4, this.label.length)
+    // Match label prefix (eg: "supe" for "Supermarché", but not "supel")
+    if (!matched && term.length >= prefixLength)
+      matched = ExtentedString.compareIgnoreCase(term, this.label.slice(0, term.length)) >= 0
 
     return matched
   }
