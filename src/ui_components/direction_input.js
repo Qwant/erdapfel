@@ -1,5 +1,5 @@
 import Suggest from "../adapters/suggest";
-import NavigatorGeolocalisationPoi, {navigatorGeolcationStatus} from "../adapters/poi/specials/navigator_geolocalisation_poi";
+import NavigatorGeolocalisationPoi, {navigatorGeolocationStatus} from "../adapters/poi/specials/navigator_geolocalisation_poi";
 import Error from '../adapters/error'
 export default class DirectionInput {
   constructor(tagSelector, select, submitHandler) {
@@ -24,14 +24,14 @@ export default class DirectionInput {
       try {
         await selectedPoi.geolocate()
       } catch(error) {
-        if(selectedPoi.status === navigatorGeolcationStatus.FORBIDDEN) {
+        if(selectedPoi.status === navigatorGeolocationStatus.FORBIDDEN) {
           fire('open_geolocate_denied_modal')
         } else {
           Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error)
         }
         this.suggest.clear()
       }
-      if(selectedPoi.status === navigatorGeolcationStatus.FOUND) {
+      if(selectedPoi.status === navigatorGeolocationStatus.FOUND) {
         this.select(selectedPoi)
       }
       this.suggest.setIdle(false)

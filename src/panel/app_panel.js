@@ -8,6 +8,7 @@ import SearchInput from "../ui_components/search_input";
 import TopBar from "./top_bar";
 import GeolocationModal from "../modals/geolocation_modal";
 import GeolocationDeniedModal from "../modals/geolocation_denied_modal";
+import GeolocationNotActivatedModal from "../modals/geolocation_not_activated_modal";
 import MasqFavoriteModal from "../modals/masq_favorite_modal";
 import MasqOnboardingModal from "../modals/masq_onboarding_modal";
 import MasqErrorModal from "../modals/masq_error_modal";
@@ -39,6 +40,7 @@ function AppPanel(parent) {
   this.panel = new Panel(this, PanelsView, parent)
   this.geolocationModal = new GeolocationModal()
   this.geolocationDeniedModal = new GeolocationDeniedModal()
+  this.geolocationNotActivatedModal = new GeolocationNotActivatedModal()
 
   this.masqEnabled = masqEnabled
   if (this.masqEnabled) {
