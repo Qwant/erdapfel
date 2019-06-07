@@ -1,6 +1,12 @@
 <div class="menu__panel__title">
   {{? this.isLoggedIn && this.username}}
-    <img src={{= this.profileImage }} class="menu__panel__top__icon menu__panel__top__profile_image">
+    {{? this.profileImage }}
+      <img src={{= this.profileImage }} class="menu__panel__top__icon menu__panel__top__profile_image">
+    {{??}}
+      <div class="menu__panel__top__icon menu__panel__top__default_profile_image">
+        <div class="icon-user"></div>
+      </div>
+    {{?}}
     <span>{{= this.username }}</span>
   {{??}}
     <i class="menu__panel__top__icon icon-map"></i>
