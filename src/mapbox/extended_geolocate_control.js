@@ -27,7 +27,7 @@ class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   trigger() {
-    GeolocationCheck.checkPrompt(() => super.trigger(), error => this._onError(error))
+    GeolocationCheck.checkPrompt(() => super.trigger())
   }
 
   _setupUI(supported) {
@@ -36,10 +36,7 @@ class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   _onError(error) {
-    if (error.code === 1) {
-      // PERMISSION_DENIED
-      fire('open_geolocate_denied_modal')
-    }
+    GeolocationCheck.handleError(error)
     super._onError(error)
   }
 }

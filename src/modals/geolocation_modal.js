@@ -5,9 +5,11 @@ export default class GeolocationModal {
   constructor() {
     this.modal = new Modal(this, GeolocModalView)
     this.onClose = null
+  }
 
-    listen('open_geolocate_modal', callback => {
-      this.onClose = callback
+  async openAndWaitForClose () {
+    return new Promise(resolve => {
+      this.onClose = resolve
       this.modal.open()
     })
   }

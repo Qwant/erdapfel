@@ -16,7 +16,7 @@ import Store from "./adapters/store";
 
   PanelManager.init()
   UrlState.init()
-  new App('panels')
+  window.app = new App('panels')
 
   UrlState.load()
 })()
