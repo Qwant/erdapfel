@@ -34,13 +34,14 @@ module.exports = {
     'poi_osm_phone',
     'poi_information_extend',
     'poi_error_load', // error
+    'poi_see_more',
     /* Pages Jaunes Poi */
-    'poi_pagesjaunes_open',
-    'poi_pagesjaunes_close',
-    'poi_pagesjaunes_go',
-    'poi_pagesjaunes_favorite',
-    'poi_pagesjaunes_share',
-    'poi_pagesjaunes_phone',
+    'poi_pages_jaunes_open',
+    'poi_pages_jaunes_close',
+    'poi_pages_jaunes_go',
+    'poi_pages_jaunes_favorite',
+    'poi_pages_jaunes_share',
+    'poi_pages_jaunes_phone',
     /* Map */
     'localise_trigger'
   ]

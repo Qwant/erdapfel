@@ -32,8 +32,20 @@ export default class CategoryPanel {
       if(this.active) this.search()
     }, 300, this))
 
-    listen('click_category_poi', (poi)=> {
-      if (poi.meta && poi.meta.source) Telemetry.add("open", "poi", poi.meta.source)
+    listen('click_category_poi', poi => {
+      if (poi.meta && poi.meta.source) {
+        Telemetry.add("open", "poi", poi.meta.source,
+                      {"front_search_user_interaction_data": {
+                        "event": "click",
+                        "component": "local",
+                        "type": poi.meta.source,
+                        "template": "multiple",
+                        "zone": "list",
+                        "element": "item",
+                        "item": poi.id.startsWith("pj:") ? poi.id.slice(3) : poi.id,
+                        "category": "unknown",
+                      }})
+      }
       this.selectPoi(poi);
     });
 
