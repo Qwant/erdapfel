@@ -323,7 +323,7 @@ Scene.prototype.store = function () {
 
 Scene.prototype.restore = function (urlShard) {
   let geoCenter = urlShard.match(/(\d*[.]?\d+)\/(-?\d*[.]?\d+)\/(-?\d*[.]?\d+)/)
-  if(geoCenter) {
+  if (geoCenter) {
     const ZOOM_INDEX = 1
     const LAT_INDEX = 2
     const LNG_INDEX = 3

@@ -116,6 +116,7 @@ const subClasses = {
   lamps: () => _('lamps shop'),
   laundry: () => _('laundry'),
   library: () => _('library'),
+  lodging: () => _('hotel'),
   long_jump: () => _('long jump'),
   mall: () => _('mall'),
   marina: () => _('marina'),
