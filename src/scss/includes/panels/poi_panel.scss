@@ -599,6 +599,7 @@ $HEADER_SIZE: 30px;
 .poi_panel__back_mobile {
   color: $primary_text;
   cursor: pointer;
+  padding: 10px 5px;
 
   i {
     font-weight: bold;
@@ -646,10 +647,8 @@ $HEADER_SIZE: 30px;
     bottom: calc(100% - 30px);
     z-index: 2;
     display: block;
-    background-color: #fff;
     width: 100vw;
-    padding-top: 76px;
-    padding-left: 12px;
+    padding-top: 62px;
     background-color: #F0F0F0;
     display: block;
   }
@@ -755,10 +754,6 @@ $HEADER_SIZE: 30px;
 
   .poi_panel__content__card__action__container {
     margin-top: 20px;
-  }
-
-  .map_container .map_control__scale_attribute_container {
-    display: none;
   }
 
   .poi_panel__content__card__action__direction {

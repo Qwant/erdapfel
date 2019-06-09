@@ -692,9 +692,10 @@
     color: $background;
     line-height: 17px;
     position: absolute;
-    left: 5px;
-    top: 10px;
+    left: 0px;
+    top: 0px;
     font-weight: bold;
+    padding: 10px 5px;
   }
   
   .itinerary_close_mobile_icon {
@@ -952,7 +953,7 @@
     border-radius: 50%;
     box-shadow: rgba(0,0,0,.2) 0 2px 12px 0;
     position: fixed;
-    bottom: 70px;
+    bottom: 80px;
     right: 9px;
     color: #5c6f84;
     font-size: 25px;
