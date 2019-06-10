@@ -11,6 +11,9 @@ server:
       url: # client url will be used by default
       timeout: 2000 # ms
 
+app:
+  versionFlag: Beta
+
 # Services
 services:
   geocoder:

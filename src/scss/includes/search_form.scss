@@ -9,21 +9,22 @@
   border-radius: 34px;
   pointer-events: auto;
   @include long_shadow();
-}
 
-.search_form:before {
-  font-weight: 600;
-  content: 'ALPHA';
-  background: $secondary_text;
-  color: $surface;
-  display: inline;
-  position: absolute;
-  right: 30px;
-  top: -10px;
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  border-top-left-radius: 0;
+  &[data-flag-text]:before {
+    font-weight: 600;
+    content: attr(data-flag-text);
+    background: $secondary_text;
+    color: $surface;
+    display: inline;
+    position: absolute;
+    right: 30px;
+    top: -10px;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    text-transform: uppercase;
+  }
 }
 
 .search_form__input {
