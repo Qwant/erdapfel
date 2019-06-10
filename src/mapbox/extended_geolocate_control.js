@@ -12,7 +12,7 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
     super(options);
     this._container = container;
     this.on('trackuserlocationstart', () => {
-      Telemetry.default.addOnce(Telemetry.LOCALISE_TRIGGER);
+      Telemetry.addOnce(Telemetry.LOCALISE_TRIGGER);
     });
   }
 
@@ -27,7 +27,7 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   trigger() {
-    GeolocationCheck.default.checkPrompt(() => super.trigger());
+    GeolocationCheck.checkPrompt(() => super.trigger());
   }
 
   _setupUI(supported) {
@@ -36,7 +36,7 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   _onError(error) {
-    GeolocationCheck.default.handleError(error);
+    GeolocationCheck.handleError(error);
     super._onError(error);
   }
 }

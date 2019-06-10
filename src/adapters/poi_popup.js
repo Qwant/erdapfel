@@ -129,7 +129,9 @@ PoiPopup.prototype.setPopupPosition = function(event, popupOptions) {
 };
 
 PoiPopup.prototype.close = function() {
-  this.popupHandle.remove();
+  if (this.popupHandle) {
+    this.popupHandle.remove();
+  }
 };
 
 /* private */
