@@ -109,7 +109,7 @@
 @media(max-width: 640px) {
   .map_control__scale_attribute_container{
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl.map_control__scale {
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.9);
     }
   }
 
@@ -184,7 +184,6 @@
     }
 
     &:hover {
-      max-width: calc(100vw - 115px);
       padding: 0 0 0 5px;
 
       .mapboxgl-ctrl-attrib-inner {
