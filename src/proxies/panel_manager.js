@@ -1,171 +1,171 @@
-import ApiPoi from "../adapters/poi/idunn_poi";
-import ServicePanel from "../panel/service_panel";
-import DirectionPanel from "../panel/direction/direction_panel";
-import FavoritePanel from "../panel/favorites_panel";
-import CategoryPanel from "../panel/category_panel";
-import PoiPanel from "../panel/poi_panel";
+import ApiPoi from '../adapters/poi/idunn_poi';
+import ServicePanel from '../panel/service_panel';
+import DirectionPanel from '../panel/direction/direction_panel';
+import FavoritePanel from '../panel/favorites_panel';
+import CategoryPanel from '../panel/category_panel';
+import PoiPanel from '../panel/poi_panel';
 
 function PanelManager() {}
 
-PanelManager.init = function () {
-  window.__panel_manager = {panels : []}
-}
+PanelManager.init = function() {
+  window.__panel_manager = {panels: []};
+};
 
 PanelManager.setPoi = async function(poi, options = {}) {
-  __panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel.isPoiComplient) {
-      panel.setPoi(poi, options)
-    } else if (!options.isFromList && !options.isFromFavorite) {
-      panel.close()
+      panel.setPoi(poi, options);
+    } else if (!options.isFromList && !options.isFromFavorite){
+      panel.close();
     }
-  })
-}
+  });
+};
 
 PanelManager.getPanels = function() {
-  return __panel_manager.panels
-}
+  return window.__panel_manager.panels;
+};
 
 PanelManager.restorePoi = function() {
-  __panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel.isPoiComplient) {
-      panel.toggle()
-    } else if (panel.isDisplayed()) {
-      panel.close()
+      panel.toggle();
+    } else if (panel.isDisplayed()){
+      panel.close();
     }
-  })
-}
+  });
+};
 
 PanelManager.loadPoiById = async function(id, options) {
   if (id) {
-    let poi = await ApiPoi.poiApiLoad(id)
+    let poi = await ApiPoi.poiApiLoad(id);
     if (poi) {
-      PanelManager.setPoi(poi, options)
+      PanelManager.setPoi(poi, options);
     } else {
-      PanelManager.resetLayout()
+      PanelManager.resetLayout();
     }
-    return poi
+    return poi;
   } else {
-    PanelManager.resetLayout()
+    PanelManager.resetLayout();
   }
-}
+};
 
 PanelManager.emptyClickOnMap = function() {
-  let poiPanel = __panel_manager.panels.forEach((p) => {
+  window.__panel_manager.panels.forEach((p) => {
     if (p.emptyClickOnMap) {
-      p.emptyClickOnMap()
+      p.emptyClickOnMap();
     }
-  })
-}
+  });
+};
 
-PanelManager.getDirectionPanel = function () {
-  return __panel_manager.panels.find(panel => panel instanceof DirectionPanel)
-}
+PanelManager.getDirectionPanel = function() {
+  return window.__panel_manager.panels.find(panel => panel instanceof DirectionPanel);
+};
 
-PanelManager.openDirection = async function () {
-  __panel_manager.panels.find((panel) => {
+PanelManager.openDirection = async function() {
+  window.__panel_manager.panels.find((panel) => {
     if (panel instanceof DirectionPanel) {
       if (!panel.active) {
-        panel.open()
+        panel.open();
       }
-    } else if (panel.active && !panel instanceof DirectionPanel) {
-      panel.close()
+    } else if (panel.active && !(panel instanceof DirectionPanel)) {
+      panel.close();
     }
-  })
-}
+  });
+};
 
-PanelManager.openFavorite = async function () {
-  __panel_manager.panels.forEach((panel) => {
+PanelManager.openFavorite = async function() {
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel instanceof FavoritePanel) {
       if (!panel.active) {
-        panel.open()
+        panel.open();
       }
-    } else if (panel.active && !panel instanceof FavoritePanel) {
-      panel.close()
+    } else if (panel.active && !(panel instanceof FavoritePanel)) {
+      panel.close();
     }
-  })
-}
+  });
+};
 
-PanelManager.getCategoryPanel = function () {
-  return __panel_manager.panels.find(panel => panel instanceof CategoryPanel)
-}
+PanelManager.getCategoryPanel = function() {
+  return window.__panel_manager.panels.find(panel => panel instanceof CategoryPanel);
+};
 
-PanelManager.openCategory = async function (options) {
-  __panel_manager.panels.forEach((panel) => {
+PanelManager.openCategory = async function(options) {
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel instanceof CategoryPanel) {
-      panel.open(options)
+      panel.open(options);
     } else if (panel.active) {
-      panel.close()
+      panel.close();
     }
-  })
-}
+  });
+};
 
-PanelManager.togglePoi = async function (options) {
-  __panel_manager.panels.forEach((panel) => {
-    if(panel instanceof PoiPanel) {
-      panel.toggle(options)
-    } else if(panel.active) {
-      panel.close()
+PanelManager.togglePoi = async function(options) {
+  window.__panel_manager.panels.forEach((panel) => {
+    if (panel instanceof PoiPanel) {
+      panel.toggle(options);
+    } else if (panel.active) {
+      panel.close();
     }
-  })
-}
+  });
+};
 
-PanelManager.toggleDirection = async function (options) {
-  let openService = false
-  __panel_manager.panels.forEach((panel) => {
+PanelManager.toggleDirection = async function(options) {
+  let openService = false;
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel instanceof DirectionPanel) {
       if (panel.active) {
-        openService = true
+        openService = true;
       }
-      panel.toggle(options)
-    } else if(panel.active) {
-      panel.close()
+      panel.toggle(options);
+    } else if (panel.active) {
+      panel.close();
     }
-  })
+  });
   if (openService) {
-    PanelManager.openService()
+    PanelManager.openService();
   }
-}
+};
 
-PanelManager.toggleFavorite = async function () {
-  let openService = false
-  __panel_manager.panels.forEach((panel) => {
+PanelManager.toggleFavorite = async function() {
+  let openService = false;
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel instanceof FavoritePanel) {
       if (panel.active) {
-        openService = true
+        openService = true;
       }
-      panel.toggle()
+      panel.toggle();
     } else if (panel.active) {
-      panel.close()
+      panel.close();
     }
-  })
+  });
   if (openService) {
-    PanelManager.openService()
+    PanelManager.openService();
   }
-}
+};
 
 PanelManager.openService = function() {
-  __panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel instanceof ServicePanel) {
-      panel.open()
+      panel.open();
     }
-  })
-}
+  });
+};
 
 PanelManager.resetLayout = function() {
-  __panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach((panel) => {
     if (panel instanceof ServicePanel) {
-      panel.open()
+      panel.open();
     } else {
-      panel.close()
+      panel.close();
     }
-  })
-}
+  });
+};
 
 PanelManager.register = function(panel) {
-  let existingPanel = __panel_manager.panels.find((panelIterator) => {
-    return panelIterator.panel.cid === panel.panel.cid
-  })
-  !existingPanel && __panel_manager.panels.push(panel)
-}
+  let existingPanel = window.__panel_manager.panels.find((panelIterator) => {
+    return panelIterator.panel.cid === panel.panel.cid;
+  });
+  !existingPanel && window.__panel_manager.panels.push(panel);
+};
 
-window.PanelManager = PanelManager
+window.PanelManager = PanelManager;

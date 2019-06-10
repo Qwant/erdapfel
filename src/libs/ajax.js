@@ -1,77 +1,79 @@
-import nconf from '@qwant/nconf-getter'
-import Error from './../adapters/error'
-const systemConfigs = nconf.get().system
+import nconf from '@qwant/nconf-getter';
+import Error from './../adapters/error';
+
+const systemConfigs = nconf.get().system;
+
 function Ajax() {}
 
 Ajax.get = (url, data, options) => {
-  return query(url, data, 'GET', options)
-}
+  return query(url, data, 'GET', options);
+};
 
 Ajax.post = (url, data, options) => {
-  return query(url, data, 'POST', options)
-}
+  return query(url, data, 'POST', options);
+};
 
-Ajax.getLang = async (url, data = {}, options) => {
-  data.lang = getLang().code
-  return Ajax.get(url, data, options)
-}
+Ajax.getLang = async(url, data = {}, options) => {
+  data.lang = window.getLang().code;
+  return Ajax.get(url, data, options);
+};
 
 /* private */
 const query = (url, data, method = 'GET', options = {}) => {
-  const xhr = new XMLHttpRequest()
-  let timeout = options.timeout * 1000 || systemConfigs.timeout * 1000
+  const xhr = new XMLHttpRequest();
+  let timeout = options.timeout * 1000 || systemConfigs.timeout * 1000;
   let ajaxPromise = new Promise((resolve, reject) => {
-    let jsonResponse
-    let xhrStatus = -1
+    let jsonResponse;
+    let xhrStatus = -1;
     let timeOutHandler = setTimeout(() => {
-      xhr.abort()
-      reject(`Timeout calling ${url}`)
-    }, timeout * 1000)
+      xhr.abort();
+      reject(`Timeout calling ${url}`);
+    }, timeout * 1000);
 
-    xhr.onload = function () {
-      if(xhrStatus !== 204) {
+    xhr.onload = function() {
+      if (xhrStatus !== 204) {
         try {
-          jsonResponse = JSON.parse(this.response)
+          jsonResponse = JSON.parse(this.response);
         } catch (e) {
-          clearTimeout(timeOutHandler)
-          Error.sendOnce('ajax', 'query', `response parse error. url ${url}. response ${this.response.substr(0,100)}...`, e)
-          reject(e)
-          return
+          clearTimeout(timeOutHandler);
+          Error.sendOnce('ajax', 'query', `response parse error. url ${url}. response ${this.response.substr(0, 100)}...`, e);
+          reject(e);
+          return;
         }
-        resolve(jsonResponse)
+        resolve(jsonResponse);
       } else {
-        resolve()
+        resolve();
       }
-    }
+    };
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4 && (xhr.status < 200 || xhr.status >= 300)) {
-        clearTimeout(timeOutHandler)
-        reject(xhr.status)
+        clearTimeout(timeOutHandler);
+        reject(xhr.status);
       } else {
-        xhrStatus = xhr.status
+        xhrStatus = xhr.status;
       }
-    }
-    if(method === 'GET') {
-      xhr.open(method, `${url}?${dataToUrl(data)}`)
-      xhr.send()
+    };
+    if (method === 'GET') {
+      xhr.open(method, `${url}?${dataToUrl(data)}`);
+      xhr.send();
     } else {
-      xhr.open(method, url)
-      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-      xhr.send(JSON.stringify(data))
+      xhr.open(method, url);
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhr.send(JSON.stringify(data));
     }
 
-  })
+  });
   ajaxPromise.abort = () => {
-    xhr.abort()
-  }
+    xhr.abort();
+  };
 
-  return ajaxPromise
-}
+  return ajaxPromise;
+};
 
 const dataToUrl = (data) =>
   Object.keys(data)
     .map(itemKey => `${encodeURIComponent(itemKey)}=${encodeURIComponent(data[itemKey])}`)
-    .join('&')
+    .join('&');
 
-export default Ajax
+export default Ajax;

@@ -1,3 +1,4 @@
+/* global _, module */
 const subClasses = {
   accessories: () => _('accessories shop'),
   airport: () => _('airport'),
@@ -208,12 +209,11 @@ const subClasses = {
   country: () => _('country'),
   address: () => _('address'),
   street: () => _('street'),
-}
+};
 
-module.exports = function (subClass) {
+module.exports = function(subClass) {
   if (subClasses[subClass]) {
-    return subClasses[subClass]()
-  } else {
-    return ''
+    return subClasses[subClass]();
   }
-}
+  return '';
+};

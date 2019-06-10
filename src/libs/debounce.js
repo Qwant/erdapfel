@@ -1,4 +1,4 @@
-export default function debounce (func, wait, scope) {
+export default function debounce(func, wait, scope) {
   let timeout;
   return function() {
     const context = scope || this, args = arguments;

@@ -1,63 +1,64 @@
-import Panel from '../../libs/panel'
-import PoiBlocContainerView from '../../views/poi_bloc/poi_bloc_container.dot'
-import constants from '../../../config/constants.yml'
+import Panel from '../../libs/panel';
+import PoiBlocContainerView from '../../views/poi_bloc/poi_bloc_container.dot';
+import constants from '../../../config/constants.yml';
 
 function PoiBlocContainer() {}
 
-PoiBlocContainer.initBlockComponents = function () {
+PoiBlocContainer.initBlockComponents = function() {
   PoiBlocContainer.blockComponents = constants.pois.reduce((accBlocks, poiBlock) => {
-    accBlocks[poiBlock.apiName] = { poiBlockConstructor : require(`./${poiBlock.panelName}_panel`), options : poiBlock.options}
-    return accBlocks
-  }, {})
-}
-PoiBlocContainer.initBlockComponents()
+    /* eslint-disable-next-line */
+    accBlocks[poiBlock.apiName] = { poiBlockConstructor: require(`./${poiBlock.panelName}_panel`), options: poiBlock.options};
+    return accBlocks;
+  }, {});
+};
+PoiBlocContainer.initBlockComponents();
 
-PoiBlocContainer.set = function (poi) {
-  PoiBlocContainer.poi = poi
-  return PoiBlocContainer.render(poi)
-}
+PoiBlocContainer.set = function(poi) {
+  PoiBlocContainer.poi = poi;
+  return PoiBlocContainer.render(poi);
+};
 
 PoiBlocContainer.render = function(poi) {
-  this.poi = poi
-  PoiBlocContainer.panel = new Panel(PoiBlocContainer, PoiBlocContainerView)
-  return PoiBlocContainer.panel.render()
-}
+  this.poi = poi;
+  PoiBlocContainer.panel = new Panel(PoiBlocContainer, PoiBlocContainerView);
+  return PoiBlocContainer.panel.render();
+};
 
 PoiBlocContainer.getBlock = function(name) {
-  return PoiBlocContainer.blockComponents[name]
-}
+  return PoiBlocContainer.blockComponents[name];
+};
 
 PoiBlocContainer.setBlock = function(block) {
-  let blockComponent = PoiBlocContainer.blockComponents[block.type]
-  return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options)
-}
+  let blockComponent = PoiBlocContainer.blockComponents[block.type];
+  return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options);
+};
 
-PoiBlocContainer.renderBlock = function (block) {
-  let blockComponent = getBlockComponent(block)
+PoiBlocContainer.renderBlock = function(block) {
+  let blockComponent = getBlockComponent(block);
   if (blockComponent) {
-    return blockComponent.render()
+    return blockComponent.render();
   } else {
-    console.log(`info : component missing (${block.type})`)
+    console.warn(`info : component missing (${block.type})`);
   }
-}
+};
 
-PoiBlocContainer.toString = function (blocks) {
+PoiBlocContainer.toString = function(blocks) {
   return blocks.map((block) => {
-    let blockComponent = getBlockComponent(block)
-    if(blockComponent) {
-      return blockComponent.toString()
+    let blockComponent = getBlockComponent(block);
+    if (blockComponent) {
+      return blockComponent.toString();
     }
-    return ''
-  }).join(' - ')
-}
+    return '';
+  }).join(' - ');
+};
 
 /* private */
 function getBlockComponent(block) {
-  let blockComponent = PoiBlocContainer.blockComponents[block.type]
-  if(blockComponent) {
-    return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options)
+  let blockComponent = PoiBlocContainer.blockComponents[block.type];
+  if (blockComponent) {
+    return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options);
   }
-  return null
+  return null;
 }
 
-export default PoiBlocContainer
+export default PoiBlocContainer;
