@@ -15,8 +15,12 @@ addons:
     - python3-setuptools
 
 before_script:
+    - npm install eslint --save-dev
     - TEST=true npm run build -- --mode=production
 
+script:
+    - ./node_modules/.bin/eslint `find src -type f -name "*.js" | grep -v '/libs/import_masq.js'`
+    - npm run test
 
 deploy: #update translation strings on transifex
     provider: script
