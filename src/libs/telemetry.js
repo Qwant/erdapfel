@@ -45,6 +45,22 @@ export default class Telemetry {
     let telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`
     return Ajax.post(telemetryUrl, data)
   }
+
+  static buildInteractionData({source, template, id, zone, element, category}) {
+    const data = {
+      'event': 'click',
+      'component': 'local',
+      'category': category || 'unknown',
+      'type': source,
+      'template': template,
+      'zone': zone,
+      'element': element,
+      'item': id.startsWith("pj:") ? id.slice(3) : id,
+    }
+    return {
+      'front_search_user_interaction_data': data
+    }
+  }
 }
 
 // This converts "/src/libs/telemetry.js" events into a map where you can use an event as follow:

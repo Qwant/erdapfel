@@ -12,16 +12,16 @@ function Website(block, poi) {
 
 Website.prototype.clickWebsite = function () {
   Telemetry.add("website", "poi", this.poi.meta.source,
-                {
-                  "api_ia_click_link_data": {
-                    "ia_name": "local",
-                    "type": this.poi.meta.source,
-                    "template": "single",
-                    "link": "website",
-                    "item": this.poi.id.startsWith("pj:") ? this.poi.id.slice(3) : this.poi.id,
-                    "category": "unknown",
-                  }
-                })
+    Telemetry.buildInteractionData(
+      {
+        'id': this.poi.id,
+        'source': this.poi.meta.source,
+        'template': 'single',
+        'zone': 'detail',
+        'element': 'website'
+      }
+    )
+  )
 }
 
 export default Website

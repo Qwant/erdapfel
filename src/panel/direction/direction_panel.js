@@ -176,16 +176,16 @@ export default class DirectionPanel {
 
   async open(options = {}) {
     Telemetry.add(Telemetry.ITINERARY_OPEN, null, null,
-                  {
-                    "api_ia_click_link_data": {
-                      "ia_name": "local",
-                      "type": "map",
-                      "template": "single",
-                      "link": "itinerary",
-                      "item": 1,
-                      "category": "unknown",
-                    },
-                  })
+      options.poi ? Telemetry.buildInteractionData(
+          {
+            'id': options.poi.id,
+            'source': options.poi.meta.source,
+            'template': 'simple',
+            'zone': 'detail',
+            'element': 'itinerary'
+          }
+        ) : null
+    )
     document.querySelector('#panels').classList.add('panels--direction-open')
     document.querySelector('.top_bar').classList.add('top_bar--direction-open')
     if (options.poi) {

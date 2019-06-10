@@ -86,9 +86,6 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.closeAction = function() {
-  if (this.poi.meta && this.poi.meta.source) {
-    Telemetry.add("close", "poi", this.poi.meta.source)
-  }
   fire('clean_marker')
   PanelManager.resetLayout()
 }
@@ -180,16 +177,14 @@ PoiPanel.prototype.restore = async function(urlShard) {
 
 PoiPanel.prototype.showDetail = function() {
   Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
-                {
-                  "api_ia_click_link_data": {
-                    "ia_name": "local",
-                    "type": this.poi.meta.source,
-                    "template": "single",
-                    "link": "more",
-                    "item": this.poi.id.startsWith("pj:") ? this.poi.id.slice(3) : this.poi.id,
-                    "category": "unknown",
-                  },
-                })
+    Telemetry.buildInteractionData({
+      id: this.poi.id,
+      source: this.poi.meta.source,
+      template: 'single',
+      zone: 'detail',
+      element: 'more',
+    })
+  )
   this.card = false
   this.panel.update()
 }

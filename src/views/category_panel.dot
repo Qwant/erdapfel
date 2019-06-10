@@ -56,7 +56,7 @@
                 {{?}}
 
                 {{? grades }}
-                  <div class="panel__note" {{= click(poi.goToFeedbackUrl, poi) }}>
+                  <div class="panel__note" {{= click(poi.goToFeedbackUrl, poi, 'multiple') }}>
                     {{~ [...Array(5)]:star:k }}      
                       <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
                     {{~}}

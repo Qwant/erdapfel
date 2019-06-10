@@ -33,19 +33,6 @@ export default class CategoryPanel {
     }, 300, this))
 
     listen('click_category_poi', poi => {
-      if (poi.meta && poi.meta.source) {
-        Telemetry.add("open", "poi", poi.meta.source,
-                      {"front_search_user_interaction_data": {
-                        "event": "click",
-                        "component": "local",
-                        "type": poi.meta.source,
-                        "template": "multiple",
-                        "zone": "list",
-                        "element": "item",
-                        "item": poi.id.startsWith("pj:") ? poi.id.slice(3) : poi.id,
-                        "category": "unknown",
-                      }})
-      }
       this.selectPoi(poi);
     });
 
@@ -116,6 +103,7 @@ export default class CategoryPanel {
   async open (options = {}) {
     if(options.category) {
       const { name, label } = options.category
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, {category: name})
       this.categoryName = name
       this.query = ''
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1))
@@ -173,14 +161,15 @@ export default class CategoryPanel {
     var i = options.i
     if (poi.meta && poi.meta.source) {
       Telemetry.add("phone", "poi", poi.meta.source,
-                    {"api_ia_click_link_data": {
-                      "ia_name": "maps",
-                      "type": poi.meta.source,
-                      "template": "multiple",
-                      "link": "phone",
-                      "item": poi.id.startsWith("pj:") ? poi.id.slice(3) : poi.id,
-                      "category": "unknown",
-                    }})
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source: poi.meta.source,
+          template: 'multiple',
+          zone: 'list',
+          element: 'phone',
+          category: this.categoryName
+        })
+      )
     }
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
@@ -201,6 +190,18 @@ export default class CategoryPanel {
 
   selectPoi(poi){
     fire('fit_map', poi, layouts.LIST)
+    if (poi.meta && poi.meta.source) {
+      Telemetry.add("open", "poi", poi.meta.source,
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source: poi.meta.source,
+          template: 'multiple',
+          zone: 'list',
+          element: 'item',
+          category: this.categoryName
+        })
+      )
+    }
     this.close(false)
     PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
     this.highlightPoiMarker(poi)
