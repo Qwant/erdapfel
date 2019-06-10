@@ -55,14 +55,15 @@ function PoiPanel(sharePanel) {
 }
 
 PoiPanel.prototype.toggleStorePoi = async function() {
-  if (this.poi.meta && this.poi.meta.source) Telemetry.add("favorite", "poi", this.poi.meta.source)
+  if (this.poi.meta && this.poi.meta.source) {
+    Telemetry.add("favorite", "poi", this.poi.meta.source)
+  }
   if(this.poi.stored) {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.poi.stored = false
     await store.del(this.poi)
   } else {
-
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star')
     this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled')
 
@@ -78,7 +79,6 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     await store.add(this.poi)
   }
   this.panel.update()
-
 }
 
 PoiPanel.prototype.isDisplayed = function() {
@@ -86,13 +86,12 @@ PoiPanel.prototype.isDisplayed = function() {
 }
 
 PoiPanel.prototype.closeAction = function() {
-  if (this.poi.meta && this.poi.meta.source) Telemetry.add("close", "poi", this.poi.meta.source)
   fire('clean_marker')
   PanelManager.resetLayout()
 }
 
 PoiPanel.prototype.close = async function() {
-  if(!this.active){
+  if (!this.active) {
     return
   }
   this.active = false
@@ -104,7 +103,7 @@ PoiPanel.prototype.close = async function() {
 PoiPanel.prototype.restorePoi = async function (id) {
   Telemetry.add(Telemetry.POI_RESTORE)
   let hotLoadedPoi = new HotLoadPoi()
-  if(hotLoadedPoi.id === id) {
+  if (hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi
     window.execOnMapLoaded(() => {
       fire('map_mark_poi', this.poi)
@@ -126,13 +125,13 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
   this.PoiBlocContainer.set(this.poi)
   this.fromFavorite = false
   this.fromList = false
-  if(options && options.isFromFavorite){
+  if (options && options.isFromFavorite) {
     this.fromFavorite = options.isFromFavorite
   }
-  if(options && options.isFromList){
+  if (options && options.isFromList) {
     this.fromList = options.isFromList
   }
-  if(options && options.list){
+  if (options && options.list) {
     this.list = options.list
   }
   this.active = true
@@ -143,12 +142,16 @@ PoiPanel.prototype.setPoi = async function (poi, options = {}) {
 }
 
 PoiPanel.prototype.center = function() {
-  if (this.poi.meta && this.poi.meta.source) Telemetry.add("go", "poi", this.poi.meta.source)
+  if (this.poi.meta && this.poi.meta.source) {
+    Telemetry.add("go", "poi", this.poi.meta.source)
+  }
   fire('fit_map', this.poi, layouts.POI)
 }
 
 PoiPanel.prototype.openShare = function () {
-  if (this.poi.meta && this.poi.meta.source) Telemetry.add("share", "poi", this.poi.meta.source)
+  if (this.poi.meta && this.poi.meta.source) {
+    Telemetry.add("share", "poi", this.poi.meta.source)
+  }
   this.sharePanel.open(this.poi.toAbsoluteUrl())
 }
 
@@ -156,14 +159,14 @@ PoiPanel.prototype.openShare = function () {
 
 PoiPanel.prototype.store = function() {
   // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
-  if(this.poi && this.poi.name && this.active) {
+  if (this.poi && this.poi.name && this.active) {
     return this.poi.toUrl()
   }
   return ''
 }
 
 PoiPanel.prototype.restore = async function(urlShard) {
-  if(urlShard) {
+  if (urlShard) {
     let idSlugMatch = urlShard.match(/^([^@]+)@?(.*)/)
     if (idSlugMatch && window.hotLoadPoi) {
       let id = idSlugMatch[1]
@@ -173,6 +176,15 @@ PoiPanel.prototype.restore = async function(urlShard) {
 }
 
 PoiPanel.prototype.showDetail = function() {
+  Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
+    Telemetry.buildInteractionData({
+      id: this.poi.id,
+      source: this.poi.meta.source,
+      template: 'single',
+      zone: 'detail',
+      element: 'more',
+    })
+  )
   this.card = false
   this.panel.update()
 }
@@ -189,7 +201,7 @@ PoiPanel.prototype.backToFavorite = function() {
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST)
-  this.close();
+  this.close()
   fire("restore_location")
   this.list.open();
 }
@@ -210,7 +222,7 @@ PoiPanel.prototype.emptyClickOnMap = function() {
 async function isPoiFavorite(poi) {
   try {
     let storePoi = await store.has(poi)
-    if(storePoi) {
+    if (storePoi) {
       return true
     }
   } catch(e) {

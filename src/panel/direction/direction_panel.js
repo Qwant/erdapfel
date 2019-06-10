@@ -114,10 +114,10 @@ export default class DirectionPanel {
     this.origin = poi
     this.searchDirection()
     UrlState.pushUrl()
-    if(!this.destination){
+    if (!this.destination) {
       fire('fit_map', poi)
     }
-    if(!this.destination && !Device.isMobile()) {
+    if (!this.destination && !Device.isMobile()) {
       this.searchInputEnd.focus()
     }
   }
@@ -126,10 +126,10 @@ export default class DirectionPanel {
     this.destination = poi
     this.searchDirection()
     UrlState.pushUrl()
-    if(!this.origin){
+    if (!this.origin) {
       fire('fit_map', poi)
     }
-    if(!this.origin && !Device.isMobile()) {
+    if (!this.origin && !Device.isMobile()) {
       this.searchInputStart.focus()
     }
   }
@@ -175,10 +175,20 @@ export default class DirectionPanel {
   }
 
   async open(options = {}) {
-    Telemetry.add(Telemetry.ITINERARY_OPEN)
+    Telemetry.add(Telemetry.ITINERARY_OPEN, null, null,
+      options.poi ? Telemetry.buildInteractionData(
+          {
+            'id': options.poi.id,
+            'source': options.poi.meta.source,
+            'template': 'simple',
+            'zone': 'detail',
+            'element': 'itinerary'
+          }
+        ) : null
+    )
     document.querySelector('#panels').classList.add('panels--direction-open')
     document.querySelector('.top_bar').classList.add('top_bar--direction-open')
-    if(options.poi) {
+    if (options.poi) {
       this.destination = options.poi
     }
     fire('clean_marker')

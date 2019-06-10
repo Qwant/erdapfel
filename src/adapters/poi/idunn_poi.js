@@ -3,6 +3,7 @@ import Ajax from '../../libs/ajax';
 import nconf from '../../../local_modules/nconf_getter/index';
 import Error from '../../adapters/error';
 import {sources} from '../../../config/constants.yml';
+import Telemetry from '../../libs/telemetry';
 
 const serviceConfig = nconf.get().services
 const LNG_INDEX = 0
@@ -26,7 +27,7 @@ export default class IdunnPoi extends Poi {
     this.localName = rawPoi.local_name
     this.address = IdunnPoi.getAddress(rawPoi)
     this.bbox = rawPoi.geometry.bbox
-    this.meta = rawPoi.meta
+    this.meta = rawPoi.meta || {}
 
     this.blocksByType = {}
     if(this.blocks) {
@@ -118,9 +119,18 @@ export default class IdunnPoi extends Poi {
     }
   }
 
-  goToFeedbackUrl() {
+  goToFeedbackUrl(template) {
     const grades = this.blocksByType.grades
     if (grades && grades.url) {
+      Telemetry.add('reviews', 'poi', this.meta.source,
+        Telemetry.buildInteractionData({
+          id: this.id,
+          source: this.meta.source,
+          template: template,
+          zone: template === 'multiple' ? 'list' : 'detail',
+          element: 'reviews'
+        })
+      )
       window.open(grades.url, '_blank', 'noopener noreferrer')
     }
   }

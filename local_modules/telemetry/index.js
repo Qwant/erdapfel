@@ -26,22 +26,25 @@ module.exports = {
     'poi_backtolist',
     'poi_restore',
     'poi_hour_extend',
+    'poi_information_extend',
+    'poi_error_load', // error
+    'poi_see_more',
+    /* OSM */
     'poi_osm_open',
-    'poi_osm_close',
     'poi_osm_go',
     'poi_osm_favorite',
     'poi_osm_share',
     'poi_osm_phone',
-    'poi_information_extend',
-    'poi_error_load', // error
+    'poi_osm_website',
     /* Pages Jaunes Poi */
-    'poi_pagesjaunes_open',
-    'poi_pagesjaunes_close',
-    'poi_pagesjaunes_go',
-    'poi_pagesjaunes_favorite',
-    'poi_pagesjaunes_share',
-    'poi_pagesjaunes_phone',
+    'poi_pages_jaunes_open',
+    'poi_pages_jaunes_go',
+    'poi_pages_jaunes_favorite',
+    'poi_pages_jaunes_share',
+    'poi_pages_jaunes_phone',
+    'poi_pages_jaunes_website',
+    'poi_pages_jaunes_reviews',
     /* Map */
-    'localise_trigger'
+    'localise_trigger',
   ]
 }

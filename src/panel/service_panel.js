@@ -74,7 +74,6 @@ export default class ServicePanel{
   }
 
   openCategory(category) {
-    Telemetry.add(Telemetry.POI_CATEGORY_OPEN)
     PanelManager.openCategory({ category })
   }
 }

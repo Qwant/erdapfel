@@ -32,8 +32,7 @@ export default class CategoryPanel {
       if(this.active) this.search()
     }, 300, this))
 
-    listen('click_category_poi', (poi)=> {
-      if (poi.meta && poi.meta.source) Telemetry.add("open", "poi", poi.meta.source)
+    listen('click_category_poi', poi => {
       this.selectPoi(poi);
     });
 
@@ -104,6 +103,7 @@ export default class CategoryPanel {
   async open (options = {}) {
     if(options.category) {
       const { name, label } = options.category
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, {category: name})
       this.categoryName = name
       this.query = ''
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1))
@@ -151,15 +151,26 @@ export default class CategoryPanel {
     this.query = ''
     this.panel.update()
     UrlState.pushUrl()
-    if(toggleMarkers){
+    if(toggleMarkers) {
       this.removeCategoryMarkers()
     }
   }
 
-  showPhoneNumber(options){
+  showPhoneNumber(options) {
     var poi = options.poi
     var i = options.i
-    if (poi.meta && poi.meta.source) Telemetry.add("phone", "poi", poi.meta.source)
+    if (poi.meta && poi.meta.source) {
+      Telemetry.add("phone", "poi", poi.meta.source,
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source: poi.meta.source,
+          template: 'multiple',
+          zone: 'list',
+          element: 'phone',
+          category: this.categoryName
+        })
+      )
+    }
     document.querySelector("#category__panel__phone_hidden_" + i).style.display = "none";
     document.querySelector("#category__panel__phone_revealed_" + i).style.display = "inline";
   }
@@ -179,6 +190,18 @@ export default class CategoryPanel {
 
   selectPoi(poi){
     fire('fit_map', poi, layouts.LIST)
+    if (poi.meta && poi.meta.source) {
+      Telemetry.add("open", "poi", poi.meta.source,
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source: poi.meta.source,
+          template: 'multiple',
+          zone: 'list',
+          element: 'item',
+          category: this.categoryName
+        })
+      )
+    }
     this.close(false)
     PanelManager.loadPoiById(poi.id, {isFromList : true, list: this})
     this.highlightPoiMarker(poi)
