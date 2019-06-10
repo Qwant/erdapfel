@@ -1,157 +1,161 @@
-import Poi from "./poi";
-import ajax from "../../libs/ajax";
-import nconf from '@qwant/nconf-getter'
+import Poi from './poi';
+import ajax from '../../libs/ajax';
+import nconf from '@qwant/nconf-getter';
 
-const serviceConfigs = nconf.get().services
-const geocoderConfig = serviceConfigs.geocoder
+const serviceConfigs = nconf.get().services;
+const geocoderConfig = serviceConfigs.geocoder;
 
-if(!window.__bragiCache) {
-  window.__bragiCache = {}
+if (!window.__bragiCache) {
+  window.__bragiCache = {};
 }
 
 export default class BragiPoi extends Poi {
   constructor(feature) {
 
-    let poiClassText = ''
-    let poiSubclassText = ''
+    let poiClassText = '';
+    let poiSubclassText = '';
 
     if (feature.properties.geocoding.properties && feature.properties.geocoding.properties.length > 0) {
       let poiClass = feature.properties.geocoding.properties.find((property) => {
-        return property.key === 'poi_class'
-      })
+        return property.key === 'poi_class';
+      });
 
       if (poiClass) {
-        poiClassText = poiClass.value
+        poiClassText = poiClass.value;
       }
       let poiSubclass = feature.properties.geocoding.properties.find((property) => {
-        return property.key === 'poi_subclass'
-      })
+        return property.key === 'poi_subclass';
+      });
       if (poiSubclass) {
-        poiSubclassText = poiSubclass.value
+        poiSubclassText = poiSubclass.value;
       }
     }
-    let addressLabel = ''
+    let addressLabel = '';
     if (feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
-      addressLabel = feature.properties.geocoding.address.label
+      addressLabel = feature.properties.geocoding.address.label;
     }
 
     /* generate name corresponding to poi type */
-    let name = ''
-    let alternativeName = ''
-    let adminLabel = ''
-    const resultType = feature.properties.geocoding.type
+    let name = '';
+    let alternativeName = '';
+    let adminLabel = '';
+    const resultType = feature.properties.geocoding.type;
 
-    let postcode
-    if(feature.properties.geocoding.postcode) {
-      postcode = feature.properties.geocoding.postcode.split(';')[0]
+    let postcode;
+    if (feature.properties.geocoding.postcode) {
+      postcode = feature.properties.geocoding.postcode.split(';')[0];
     }
-    let city = feature.properties.geocoding.city
+    let city = feature.properties.geocoding.city;
     let country = feature.properties.geocoding.administrative_regions.find((administrativeRegion) =>
       administrativeRegion.zone_type === 'country'
-    )
-    let countryName
+    );
+    let countryName;
     if (country) {
-      countryName = country.name
+      countryName = country.name;
     }
 
     switch (resultType) {
-      case 'poi':
-        name = feature.properties.geocoding.name
-        alternativeName = addressLabel
-        break
-      case 'house':
-        name = feature.properties.geocoding.name
+    case 'poi':
+      name = feature.properties.geocoding.name;
+      alternativeName = addressLabel;
+      break;
+    case 'house':
+      name = feature.properties.geocoding.name;
 
-        alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ')
+      alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ');
 
-        break
-      case 'street':
-        name = feature.properties.geocoding.name
-        alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ')
+      break;
+    case 'street':
+      name = feature.properties.geocoding.name;
+      alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ');
 
-        break
-      default: /* admin */
-        let splitPosition = feature.properties.geocoding.label.indexOf(',')
-        let nameFragments
-        if (splitPosition === -1) {
-          nameFragments = [feature.properties.geocoding.label]
-        } else {
-          nameFragments = [feature.properties.geocoding.label.slice(0, splitPosition), feature.properties.geocoding.label.slice(splitPosition + 1)]
-        }
-        if (nameFragments.length > 1) {
-          name = nameFragments[0]
-          alternativeName = nameFragments[1]
-        } else {
-          name = feature.properties.geocoding.label
-          alternativeName = ''
-        }
+      break;
+    default: {
+      /* admin */
+      let splitPosition = feature.properties.geocoding.label.indexOf(',');
+      let nameFragments;
+      if (splitPosition === -1) {
+        nameFragments = [feature.properties.geocoding.label];
+      } else {
+        nameFragments = [feature.properties.geocoding.label.slice(0, splitPosition), feature.properties.geocoding.label.slice(splitPosition + 1)];
+      }
+      if (nameFragments.length > 1) {
+        name = nameFragments[0];
+        alternativeName = nameFragments[1];
+      } else {
+        name = feature.properties.geocoding.label;
+        alternativeName = '';
+      }
+    }
     }
 
     super(feature.properties.geocoding.id, name, alternativeName, resultType, {
       lat: feature.geometry.coordinates[1],
       lng: feature.geometry.coordinates[0]
-    }, poiClassText, poiSubclassText)
+    }, poiClassText, poiSubclassText);
     /* extract custom data for autocomplete */
-    this.value = feature.properties.geocoding.label
-    this.adminLabel = adminLabel
+    this.value = feature.properties.geocoding.label;
+    this.adminLabel = adminLabel;
 
-    this.city = feature.properties.geocoding.city
+    this.city = feature.properties.geocoding.city;
     /* extract country */
 
     /* extract bbox */
     if (feature.properties.geocoding.bbox) {
-      this.bbox = feature.properties.geocoding.bbox
+      this.bbox = feature.properties.geocoding.bbox;
     }
   }
 
   getInputValue() {
     switch (this.type) {
-      case 'house':
-      case 'street':
-        return this.value
-      default:
-        return this.name
+    case 'house':
+    case 'street':
+      return this.value;
+    default:
+      return this.name;
     }
   }
 
 
   static get(term) {
     /* cache */
-    if(term in window.__bragiCache) {
+    if (term in window.__bragiCache) {
       let cachePromise = new Promise((resolve) => {
-         resolve(window.__bragiCache[term])
-      })
-      cachePromise.abort = () => {}
-      return cachePromise
+        resolve(window.__bragiCache[term]);
+      });
+      cachePromise.abort = () => {};
+      return cachePromise;
     }
 
     /* ajax */
-    let suggestsPromise
-    let queryPromise = new Promise(async (resolve, reject) => {
+    let suggestsPromise;
+    let queryPromise = new Promise(async(resolve, reject) => {
       let query = {
-        "q": term,
-        "limit": geocoderConfig.max_items
+        'q': term,
+        'limit': geocoderConfig.max_items
+      };
+      if (geocoderConfig.useLang){
+        query.lang = window.getLang().code;
       }
-      if(geocoderConfig.useLang){
-        query.lang = getLang().code
-      }
-      suggestsPromise = ajax.get(geocoderConfig.url, query)
+      suggestsPromise = ajax.get(geocoderConfig.url, query);
       suggestsPromise.then((suggests) => {
         let bragiResponse = suggests.features.map((feature) => {
-          return new BragiPoi(feature)
-        })
-        window.__bragiCache[term] = bragiResponse
-        resolve(bragiResponse)
+          return new BragiPoi(feature);
+        });
+        window.__bragiCache[term] = bragiResponse;
+        resolve(bragiResponse);
       }).catch((error) => {
-        if(error === 0) { /* abort */
-          resolve(null)
+        if (error === 0) { /* abort */
+          resolve(null);
         } else {
-          reject(error)
+          reject(error);
         }
-      })
-    })
-    queryPromise.abort = () => {suggestsPromise.abort()}
+      });
+    });
+    queryPromise.abort = () => {
+      suggestsPromise.abort();
+    };
 
-    return queryPromise
+    return queryPromise;
   }
 }

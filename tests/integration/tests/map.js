@@ -21,7 +21,7 @@ test('priority order with url & local-storage',async () => {
   await page.reload() // force reload
 
   let pageCenter = await page.evaluate(() => {
-    return MAP_MOCK.center
+    return window.MAP_MOCK.center
   })
   expect(pageCenter).toEqual(center)
 })
@@ -36,7 +36,7 @@ test('test local storage map center',async () => {
   await page.reload() // force reload
 
   let pageCenter = await page.evaluate(() => {
-    return MAP_MOCK.center
+    return window.MAP_MOCK.center
   })
   expect(pageCenter).toEqual(center)
 })

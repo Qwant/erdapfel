@@ -75,7 +75,7 @@ test('remove favorite using favorite panel', async () => {
 test('center map after a favorite poi click', async () => {
   await page.goto(APP_URL)
   await page.evaluate(() => {
-    MAP_MOCK.flyTo({center : {lat : 10, lng : 0}, zoom : 10})
+    window.MAP_MOCK.flyTo({center : {lat : 10, lng : 0}, zoom : 10})
   })
   const favoriteMockCoordinates = {lat: 43.5, lng: 7.18}
   await page.evaluate((storeCoordinate) => {
@@ -86,7 +86,7 @@ test('center map after a favorite poi click', async () => {
   await page.waitForSelector('.favorite_panel__item__more_container')
   await page.click('.favorite_panel__item__more_container')
   let center = await page.evaluate(() => {
-    return MAP_MOCK.getCenter()
+    return window.MAP_MOCK.getCenter()
   })
 
   expect(center).toEqual({lng  : favoriteMockCoordinates.lng, lat : favoriteMockCoordinates.lat})

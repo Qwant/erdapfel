@@ -17,6 +17,9 @@ addons:
 before_script:
     - TEST=true npm run build -- --mode=production
 
+script:
+    - npm run lint
+    - npm run test
 
 deploy: #update translation strings on transifex
     provider: script

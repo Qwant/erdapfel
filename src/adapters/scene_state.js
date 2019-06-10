@@ -1,24 +1,24 @@
 export default class SceneState {
   constructor() {
-    this.poiId = null
+    this.poiId = null;
   }
 
   static getSceneState() {
-    if(!window.__sceneState) {
-      window.__sceneState = new SceneState()
+    if (!window.__sceneState) {
+      window.__sceneState = new SceneState();
     }
-    return window.__sceneState
+    return window.__sceneState;
   }
 
   setPoiId(poiId) {
-    this.poiId = poiId
+    this.poiId = poiId;
   }
 
   unsetPoiID() {
-    this.poiId = null
+    this.poiId = null;
   }
 
   isDisplayed(id) {
-    return this.poiId === id
+    return this.poiId === id;
   }
 }

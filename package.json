@@ -15,7 +15,8 @@
     "watch": "webpack --config build/webpack.config.js -w --mode=development",
     "msgmerge": "node local_modules/merge-po/index",
     "prepare": "npm run build-map-fonts && node build/before_build.js",
-    "build-map-fonts": "node build/build_map_fonts.js"
+    "build-map-fonts": "node build/build_map_fonts.js",
+    "lint": "./node_modules/.bin/eslint src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "dot-loader": "^0.1.2",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "1.0.0",
+    "eslint": "^5.16.0",
     "file-loader": "2.0.0",
     "fs-extra": "^7.0.0",
     "jest": "^24.1.0",

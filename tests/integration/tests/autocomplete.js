@@ -206,7 +206,7 @@ test('submit key', async () =>  {
   await wait(30)
 
   let center = await page.evaluate(() => {
-    return MAP_MOCK.getCenter()
+    return window.MAP_MOCK.getCenter()
   })
 
   let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates
@@ -221,7 +221,7 @@ test('submit key', async () =>  {
   await wait(150)
 
   center = await page.evaluate(() =>
-    MAP_MOCK.getCenter()
+    window.MAP_MOCK.getCenter()
   )
 
   firstFeatureCenter = mockAutocompleteAllTypes.features[0].geometry.coordinates

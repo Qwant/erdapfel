@@ -1,7 +1,7 @@
-import ApiPoi from "./idunn_poi";
+import ApiPoi from './idunn_poi';
 
 export default class HotLoadPoi extends ApiPoi {
   constructor() {
-    super(window.hotLoadPoi)
+    super(window.hotLoadPoi);
   }
 }
