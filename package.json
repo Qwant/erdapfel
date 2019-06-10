@@ -15,7 +15,8 @@
     "watch": "webpack --config build/webpack.config.js -w --mode=development",
     "msgmerge": "node local_modules/merge-po/index",
     "prepare": "npm run build-map-fonts && node build/before_build.js",
-    "build-map-fonts": "node build/build_map_fonts.js"
+    "build-map-fonts": "node build/build_map_fonts.js",
+    "lint": "./node_modules/.bin/eslint src/**/*.js"
   },
   "repository": {
     "type": "git",
