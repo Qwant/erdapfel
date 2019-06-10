@@ -73,3 +73,6 @@ export default class Poi {
     return k.match(keyPattern) !== null;
   }
 }
+
+// Helper used by tests.
+window.Poi = Poi;

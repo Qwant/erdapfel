@@ -158,7 +158,7 @@ test('select itinerary leg', async () => {
   await wait(300)
 
   let featureState = await page.evaluate(() => {
-    return MAP_MOCK.featureState
+    return window.MAP_MOCK.featureState
   })
 
   expect(featureState).toEqual({source: "source_0", id: 1})
@@ -175,7 +175,7 @@ test('select itinerary step', async () => {
   await page.click('.itinerary_roadmap_step:nth-of-type(2)')
 
   let center = await page.evaluate(() => {
-    return MAP_MOCK.getCenter()
+    return window.MAP_MOCK.getCenter()
   })
 
   expect(center).toEqual({"lat": 48.823566, "lng": 2.290454})

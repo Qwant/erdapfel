@@ -122,12 +122,12 @@ test('center the map to the poi on a poi click', async () => {
   await page.waitForSelector('.poi_panel__title')
   expect.assertions(1)
   await page.evaluate(() => {
-    MAP_MOCK.flyTo({center : {lat : 0, lng : 0}, zoom : 10})
+    window.MAP_MOCK.flyTo({center : {lat : 0, lng : 0}, zoom : 10})
   })
   await wait(300)
   await page.click('.poi_panel__description_container')
   let center = await page.evaluate(() => {
-    return MAP_MOCK.getCenter()
+    return window.MAP_MOCK.getCenter()
   })
   expect(center).toEqual({lng: poiMock.geometry.coordinates[0], lat: poiMock.geometry.coordinates[1]})
 })
