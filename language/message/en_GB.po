@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-22 14:14+0100\n"
+"POT-Creation-Date: 2019-06-11 14:19+0200\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 
-msgid "Qwant Maps - alpha"
+msgid "Qwant Maps"
 msgstr ""
 
 msgid "Search on Qwant Maps"
@@ -128,19 +128,34 @@ msgstr ""
 msgid "on Facebook"
 msgstr ""
 
-msgid "Qwant Maps"
+msgid "hotel"
 msgstr ""
 
-msgid "Search with Qwant Maps"
+msgid "restaurant"
+msgstr ""
+
+msgid "leisure"
+msgstr ""
+
+msgid "bar"
+msgstr ""
+
+msgid "supermarket"
+msgstr ""
+
+msgid "bank"
+msgstr ""
+
+msgid "pharmacy"
+msgstr ""
+
+msgid "education"
 msgstr ""
 
 msgid "The map that respects your privacy"
 msgstr ""
 
-msgid "Open 24/7"
-msgstr ""
-
-msgid "until {nextTransitionTime}"
+msgid "Search with Qwant Maps"
 msgstr ""
 
 msgid "accessories shop"
@@ -180,12 +195,6 @@ msgid "bag shop"
 msgstr ""
 
 msgid "bakery"
-msgstr ""
-
-msgid "bank"
-msgstr ""
-
-msgid "bar"
 msgstr ""
 
 msgid "basin"
@@ -461,9 +470,6 @@ msgstr ""
 msgid "hostel"
 msgstr ""
 
-msgid "hotel"
-msgstr ""
-
 msgid "ice cream"
 msgstr ""
 
@@ -575,9 +581,6 @@ msgstr ""
 msgid "pet store"
 msgstr ""
 
-msgid "pharmacy"
-msgstr ""
-
 msgid "photo shop"
 msgstr ""
 
@@ -606,9 +609,6 @@ msgid "rc car"
 msgstr ""
 
 msgid "reservoir"
-msgstr ""
-
-msgid "restaurant"
 msgstr ""
 
 msgid "rowing"
@@ -666,9 +666,6 @@ msgid "stationery shop"
 msgstr ""
 
 msgid "subway"
-msgstr ""
-
-msgid "supermarket"
 msgstr ""
 
 msgid "swimming"
@@ -767,6 +764,12 @@ msgstr ""
 msgid "street"
 msgstr ""
 
+msgid "Open 24/7"
+msgstr ""
+
+msgid "until {nextTransitionTime}"
+msgstr ""
+
 msgid "Favorite places"
 msgstr ""
 
@@ -782,13 +785,70 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+msgid "Use"
+msgstr ""
+
+msgid "to secure your favorites on all your devices"
+msgstr ""
+
+msgid "Patience, Masq is activating..."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Masq is activated, your data is now secured !"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Masq activation failed"
+msgstr ""
+
 msgid "filter"
 msgstr ""
 
-msgid "Qwant Maps services"
+msgid "What is Masq?"
 msgstr ""
 
-msgid "YOUR FAVORITES"
+msgid "How does Masq work?"
+msgstr ""
+
+msgid "Why use Masq?"
+msgstr ""
+
+msgid ""
+"Masq allows you to store all your preferences while guarantying your privacy"
+msgstr ""
+
+msgid ""
+"Masq stores all your data on your device instead of the cloud and syncs it "
+"across all your devices."
+msgstr ""
+
+msgid ""
+"Find your favorite places on Qwant Maps on all your devices (available soon)."
+msgstr ""
+
+msgid "Activate Masq"
+msgstr ""
+
+msgid ""
+"Masq is an app that offers free and secure synchronized data storing on your "
+"devices."
+msgstr ""
+
+msgid "More details"
+msgstr ""
+
+msgid "Back to favorite"
+msgstr ""
+
+msgid "Back to list"
+msgstr ""
+
+msgid "Back"
 msgstr ""
 
 msgid "DIRECTIONS"
@@ -797,7 +857,7 @@ msgstr ""
 msgid "SEE MORE"
 msgstr ""
 
-msgid "Back to favorite"
+msgid "SAVED"
 msgstr ""
 
 msgid "FAVORITES"
@@ -818,6 +878,9 @@ msgstr ""
 msgid "Beers"
 msgstr ""
 
+msgid "Photos"
+msgstr ""
+
 msgid "Internet access"
 msgstr ""
 
@@ -827,55 +890,40 @@ msgstr ""
 msgid "Services & information"
 msgstr ""
 
-msgid "Read more on Wikipedia"
+msgid "WIKIPEDIA"
 msgstr ""
 
-msgid "Read more on Wikidata"
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Use Masq to secure your favorites on all your devices"
 msgstr ""
 
-msgid "return"
+msgid ""
+"Masq allows you to save all your preferences while guarantying your privacy"
 msgstr ""
 
-msgid "directions"
+msgid "More Details"
 msgstr ""
 
-msgid "Start point"
+msgid "Do you want to synchronize your favorites with Masq ?"
 msgstr ""
 
-msgid "End point"
+msgid "No thanks"
 msgstr ""
 
-msgid "Invert start and end"
+msgid "Do not ask again"
 msgstr ""
 
-msgid "Via"
+msgid "Qwant Maps services"
 msgstr ""
 
-msgid "PREVIEW"
+msgid "YOUR FAVORITES"
 msgstr ""
 
-msgid "DETAILS"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "Log in with Masq"
-msgstr ""
-
-msgid "Use MASQ to sync your personal data across your devices"
-msgstr ""
-
-msgid "Log in"
-msgstr ""
-
-msgid "Logging in"
-msgstr ""
-
-msgid "Logout"
-msgstr ""
-
-msgid "Share favorite"
+msgid "MORE"
 msgstr ""
 
 msgid "Share link"
@@ -903,13 +951,54 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr ""
 
-msgid "Géolocation not available."
+msgid "Geolocation not available."
 msgstr ""
 
 msgid "You did not allow Qwant Maps to access your position."
 msgstr ""
 
 msgid "OK"
+msgstr ""
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "directions"
+msgstr ""
+
+msgid "Start point"
+msgstr ""
+
+msgid "End point"
+msgstr ""
+
+msgid "Invert start and end"
+msgstr ""
+
+msgid "Qwant Maps found no results for this itinerary, please try again"
+msgstr ""
+
+msgid "Via"
+msgstr ""
+
+msgid "PREVIEW"
+msgstr ""
+
+msgid "print"
+msgstr ""
+
+msgid "DETAILS"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Search"
 msgstr ""
 
 msgid "Directions"
@@ -919,6 +1008,44 @@ msgid "Favorites"
 msgstr ""
 
 msgid "How to contribute"
+msgstr ""
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "How does it work ?"
+msgstr ""
+
+msgid "Partnership"
+msgstr ""
+
+msgid "PAGES JAUNES"
+msgstr ""
+
+msgid "See the phone number"
+msgstr ""
+
+msgid "No results found. Please zoom out of the map."
+msgstr ""
+
+msgid "Search around my position"
+msgstr ""
+
+msgid "Please zoom in the map to see the results for this category."
+msgstr ""
+
+msgid ""
+"The connection failed between Qwant Maps and the Masq application "
+"(Signalling error)"
+msgstr ""
+
+msgid "Could not connect to Masq"
+msgstr ""
+
+msgid "category"
 msgstr ""
 
 msgid "Your position"

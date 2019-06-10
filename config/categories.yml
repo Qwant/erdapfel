@@ -15,13 +15,13 @@
   name: leisure
   color: "#e93865"
   matcher:
-    regex: cine|leisures?|loisirs?|cin[ée](?:ma)?s?|ugc|path[ée]|th[ée]atres?|parcs?\s+(?:(?:d')?attractions?|(de\s+)?loisirs?)|royal kids|laser game|escape game|goolfy|laserquest|max aventure|prizoners|get out !|recreakid|kartings?
+    regex: "cine|leisures?|loisirs?|cin[ée](?:ma)?s?|ugc|path[ée]|th[ée]atres?|parcs?\\s+(?:(?:d')?attractions?|(de\\s+)?loisirs?)|royal kids|laser game|escape game|goolfy|laserquest|max aventure|prizoners|get out !|recreakid|kartings?"
   icon: cinema
 - label : _('bar')
   name: bar
   color: "#ef8000"
   matcher:
-    regex: cafes?|bars?|coffea|alto cafe|bert's|illy caffe|pub|tapas|cabarets
+    regex: "cafes?|bars?|coffea|alto cafe|bert's|illy caffe|pub|tapas|cabarets"
   icon: bar
 - label : _('supermarket')
   name: supermarket
@@ -33,7 +33,7 @@
   name: bank
   color: "#495063"
   matcher:
-    regex: bank|atm|banques?|credits?\s+(?:mutuel|agricole|lyonnais|du\s+nord|cooperatif|foncier)|cic|bnp|hsbc|lcl|caisse\s+(?:d')?epargne|barclays|societe\s+generale|axa|square habitat|societe marseillaise de credit|bancassurances|la banque postale
+    regex: "bank|atm|banques?|credits?\\s+(?:mutuel|agricole|lyonnais|du\\s+nord|cooperatif|foncier)|cic|bnp|hsbc|lcl|caisse\\s+(?:d')?epargne|barclays|societe\\s+generale|axa|square habitat|societe marseillaise de credit|bancassurances|la banque postale"
   icon: bank
 - label : _('pharmacy')
   name: pharmacy
@@ -45,5 +45,5 @@
   name: education
   color: "#495063"
   matcher:
-    regex: educ|[eé]coles?\s*(maternelle|primaire|elementaire)?|college|universite|fac|faculte|iut|[ée]coles?\s+(?:de\s+|d')(?:commerce|ingenieurs?)
+    regex: "educ|[eé]coles?\\s*(maternelle|primaire|elementaire)?|college|universite|fac|faculte|iut|[ée]coles?\\s+(?:de\\s+|d')(?:commerce|ingenieurs?)"
   icon: school
