@@ -186,6 +186,10 @@
     &:hover {
       max-width: calc(100vw - 115px);
       padding: 0 0 0 5px;
+
+      .mapboxgl-ctrl-attrib-inner {
+        display: inline-block;
+      }
     }
   }
 
