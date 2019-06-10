@@ -61,7 +61,7 @@ Scene.prototype.initMapBox = function() {
     style: getStyle(),
     zoom: this.zoom,
     center: this.center,
-    hash: false
+    hash: false,
   });
 
   this.popup.init(this.mb);
@@ -75,7 +75,7 @@ Scene.prototype.initMapBox = function() {
     bbox: () => {
       return this.mb.getBounds();
     },
-    mb: this.mb
+    mb: this.mb,
   };
 
   const interactiveLayers = ['poi-level-1', 'poi-level-2', 'poi-level-3'];

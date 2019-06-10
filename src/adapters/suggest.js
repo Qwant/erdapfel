@@ -47,7 +47,7 @@ export default class Suggest {
 
             try {
               const [bragiResponse, storeResponse, categoryResponse] = await Promise.all([
-                this.bragiPromise, this.historyPromise, this.categoryPromise
+                this.bragiPromise, this.historyPromise, this.categoryPromise,
               ]);
 
               if (!bragiResponse) {
@@ -113,7 +113,7 @@ export default class Suggest {
           this.onSelect(selectedItem);
         }
         this.searchInputDomHandler.blur();
-      }
+      },
     });
 
     this.searchInputDomHandler.onkeydown = (event) => {

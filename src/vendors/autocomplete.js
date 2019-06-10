@@ -64,7 +64,7 @@ export default function autoComplete(options) {
     // Takes as arguments: e, term, items
     onUpdate: function() {},
     // Takes as argument: items
-    updateData: function() {}
+    updateData: function() {},
   };
   for (var k in options) {
     if (options.hasOwnProperty(k)) {

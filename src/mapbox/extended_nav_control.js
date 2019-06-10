@@ -28,9 +28,9 @@ export default class ExtendedControl {
 
     const geolocControl = new GeolocControl({
       positionOptions: {
-        enableHighAccuracy: true
+        enableHighAccuracy: true,
       },
-      trackUserLocation: true
+      trackUserLocation: true,
     }, this.bottomButtonGroup);
 
     this.topButtonGroup.appendChild(this._compass);
@@ -54,7 +54,7 @@ export default class ExtendedControl {
     this._container.appendChild(this.scaleAttributionContainer);
 
     const extendedScaleControl = new ExtendedScaleControl({
-      unit: 'metric'
+      unit: 'metric',
     }, this.scaleAttributionContainer);
 
     const extendedAttributionControl = new ExtendedAttributionControl({}, this.scaleAttributionContainer);

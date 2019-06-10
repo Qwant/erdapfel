@@ -85,7 +85,7 @@ export default class Store {
         url: window.location.origin + window.location.pathname,
         title: this.masqConfig.title,
         desc: this.masqConfig.desc,
-        icon: this.masqConfig.icon
+        icon: this.masqConfig.icon,
       };
 
       await this.masqStore.login(loginParams);

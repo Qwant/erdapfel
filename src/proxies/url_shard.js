@@ -1,7 +1,7 @@
 export const paramTypes = {
   HASH: 'hash',
   GET: 'get',
-  RESOURCE: 'resource'
+  RESOURCE: 'resource',
 };
 
 function UrlShard(component, prefix, paramType) {

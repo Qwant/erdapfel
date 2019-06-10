@@ -29,22 +29,22 @@ export default class IconManager {
 
       return {
         iconClass: nameToClass(styleIcons.defaultIcon),
-        color: styleIcons.defaultColor
+        color: styleIcons.defaultColor,
       };
     } else if (type === 'house' || type === 'address'){
       return {
         iconClass: nameToClass(styleIcons.defaultAddressIcon),
-        color: styleIcons.defaultAddressColor
+        color: styleIcons.defaultAddressColor,
       };
     } else if (type === 'street'){
       return {
         iconClass: nameToClass(styleIcons.defaultStreetIcon),
-        color: styleIcons.defaultStreetColor
+        color: styleIcons.defaultStreetColor,
       };
     } else { // administrative zones
       return {
         iconClass: nameToClass(styleIcons.defaultAdministrativeIcon),
-        color: styleIcons.defaultAdministrativeColor
+        color: styleIcons.defaultAdministrativeColor,
       };
     }
   }

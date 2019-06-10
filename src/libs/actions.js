@@ -37,7 +37,7 @@ class Action {
         id: actions.size,
         method: method,
         ctx: ctx,
-        args: options
+        args: options,
       };
       let action = new Action(actionPayload.id, actionPayload, actionName);
       actions.set(action.id, action);

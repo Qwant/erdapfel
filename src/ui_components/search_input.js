@@ -6,13 +6,13 @@ import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
 
 const MAPBOX_RESERVED_KEYS = [
-  'ArrowLeft' // ←
-  , 'ArrowUp' // ↑
-  , 'ArrowRight' // →
-  , 'ArrowDown' // ↓
-  , '-' // -
-  , '+' // +
-  , '=' // =
+  'ArrowLeft', // ←
+  'ArrowUp', // ↑
+  'ArrowRight', // →
+  'ArrowDown', // ↓
+  '-', // -
+  '+', // +
+  '=', // =
 ];
 
 

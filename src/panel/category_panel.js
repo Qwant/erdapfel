@@ -160,7 +160,7 @@ export default class CategoryPanel {
           template: 'multiple',
           zone: 'list',
           element: 'phone',
-          category: this.categoryName
+          category: this.categoryName,
         })
       );
     }
@@ -191,7 +191,7 @@ export default class CategoryPanel {
           template: 'multiple',
           zone: 'list',
           element: 'item',
-          category: this.categoryName
+          category: this.categoryName,
         })
       );
     }
