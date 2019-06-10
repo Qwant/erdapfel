@@ -47,7 +47,7 @@ export default class Category {
     return IconManager.get({
       className: this.iconName,
       subClassName: this.iconName,
-      type: 'category'
+      type: 'category',
     });
   }
 

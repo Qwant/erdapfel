@@ -58,7 +58,7 @@ export default class Telemetry {
       'item': id.startsWith('pj:') ? id.slice(3) : id,
     };
     return {
-      'front_search_user_interaction_data': data
+      'front_search_user_interaction_data': data,
     };
   }
 }

@@ -62,6 +62,8 @@
         "no-console": [
             "error",
             { "allow": ["warn", "error"] }
-        ]
+        ],
+        "comma-dangle": ["error", "always-multiline"],
+        "comma-style": ["error", "last"]
     }
 }

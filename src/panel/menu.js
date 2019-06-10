@@ -45,7 +45,7 @@ export default class Menu {
     await Promise.all([
       this.panel.addClassName(.3, '.menu__panel', 'menu__panel--active'),
       this.panel.addClassName(0, '.menu__overlay', 'menu__overlay--active'),
-      this.panel.addClassName(.6, '.menu__overlay', 'menu__overlay--fade_active')
+      this.panel.addClassName(.6, '.menu__overlay', 'menu__overlay--fade_active'),
     ]);
   }
 
@@ -55,7 +55,7 @@ export default class Menu {
       this.panel.removeClassName(.3, '.menu__panel', 'menu__panel--active'),
 
       this.panel.removeClassName(.6, '.menu__overlay', 'menu__overlay--fade_active'),
-      this.panel.removeClassName(0, '.menu__overlay', 'menu__overlay--active')
+      this.panel.removeClassName(0, '.menu__overlay', 'menu__overlay--active'),
     ]);
   }
 

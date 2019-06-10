@@ -1,7 +1,7 @@
 const geolocationPermissions = {
   PROMPT: 'prompt',
   GRANTED: 'granted',
-  DENIED: 'denied'
+  DENIED: 'denied',
 };
 
 export default class GeolocationCheck {

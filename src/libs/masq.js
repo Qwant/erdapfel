@@ -24,13 +24,13 @@ export default class MasqStore {
   async init() {
     const masqOptions = {
       hubUrls: this.config.signalhubUrl,
-      masqAppBaseUrl: this.config.baseMasqAppUrl
+      masqAppBaseUrl: this.config.baseMasqAppUrl,
     };
 
     const stunTurn = this._getStunTurnFromConf();
     if (stunTurn.length > 0) {
       masqOptions.swarmConfig = {
-        iceServers: stunTurn
+        iceServers: stunTurn,
       };
     }
 
@@ -60,7 +60,7 @@ export default class MasqStore {
     let stunTurn = [];
     if (this.config.stun) {
       stunTurn.push({
-        urls: this.config.stun
+        urls: this.config.stun,
       });
     }
     if (this.config.turn) {
@@ -68,7 +68,7 @@ export default class MasqStore {
       stunTurn.push({
         urls: splitTurn[0],
         username: splitTurn[1],
-        credential: splitTurn[2]
+        credential: splitTurn[2],
       });
     }
     return stunTurn;
@@ -120,7 +120,7 @@ export default class MasqStore {
     const profileImage = await this.masq.getProfileImage();
     return {
       username,
-      profileImage
+      profileImage,
     };
   }
 

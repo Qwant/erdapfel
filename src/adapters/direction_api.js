@@ -7,7 +7,7 @@ const OVERVIEW_SETTING = 'full';
 const ACCEPTED_LANGUAGES = [
   'da', 'de', 'en', 'eo', 'es', 'fi', 'fr', 'he', 'id', 'it',
   'ko', 'my', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sv', 'tr',
-  'uk', 'vi', 'zh'
+  'uk', 'vi', 'zh',
 ];
 
 const geometries = 'geojson';

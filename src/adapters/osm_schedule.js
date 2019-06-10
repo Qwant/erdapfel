@@ -51,7 +51,7 @@ function toLocaleOpeningHours(hours) {
       let endHour = hourToDate(hour.end);
       return {
         beginning: strftime(window.i18nDate.timeFormat, beginningHour),
-        end: strftime(window.i18nDate.timeFormat, endHour)
+        end: strftime(window.i18nDate.timeFormat, endHour),
       };
     });
   }

@@ -7,7 +7,7 @@ export default class DirectionInput {
     this.submitHandler = submitHandler;
     this.geolocalisationPoi = NavigatorGeolocalisationPoi.getInstance();
     let prefixes = [
-      this.geolocalisationPoi
+      this.geolocalisationPoi,
     ];
 
     this.suggest = new Suggest({tagSelector, onSelect: (selectedPoi) => this.selectItem(selectedPoi), prefixes, menuClass: 'direction_suggestions'});

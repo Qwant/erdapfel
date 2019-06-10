@@ -114,7 +114,7 @@ export default class SceneDirection {
       markerOrigin.className = this.vehicle === 'walking' ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin';
       this.markerOrigin = new Marker({
         element: markerOrigin,
-        draggable: true
+        draggable: true,
       })
         .setLngLat(this.steps[0].maneuver.location)
         .addTo(this.map);
@@ -125,7 +125,7 @@ export default class SceneDirection {
       markerDestination.className = 'itinerary_marker_destination';
       this.markerDestination = new Marker({
         element: markerDestination,
-        draggable: true
+        draggable: true,
       })
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
         .addTo(this.map);
@@ -186,8 +186,8 @@ export default class SceneDirection {
         'symbol-spacing': 12,
         'icon-ignore-placement': true,
         'icon-allow-overlap': true,
-        'symbol-avoid-edges': true
-      }
+        'symbol-avoid-edges': true,
+      },
     } : {
       'id': `route_${route.id}`,
       'type': 'line',
@@ -195,22 +195,22 @@ export default class SceneDirection {
       'layout': {
         'line-join': 'round',
         'line-cap': 'round',
-        'visibility': 'visible'
+        'visibility': 'visible',
       },
       'paint': {
         'line-color': ['case',
           ['boolean', ['feature-state', 'isActive'], route.isActive],
           MAIN_ROUTE_COLOR,
-          ALTERNATE_ROUTE_COLOR
+          ALTERNATE_ROUTE_COLOR,
         ],
-        'line-width': 7
-      }
+        'line-width': 7,
+      },
     };
 
     let sourceId = `source_${route.id}`;
     const sourceJSON = {
       'type': 'geojson',
-      'data': this.buildRouteData(route.geometry.coordinates)
+      'data': this.buildRouteData(route.geometry.coordinates),
     };
     this.map.addSource(sourceId, sourceJSON);
     this.map.addLayer(geojson, map.routes_layer);
@@ -236,8 +236,8 @@ export default class SceneDirection {
       'properties': {},
       'geometry': {
         'type': 'LineString',
-        'coordinates': data
-      }
+        'coordinates': data,
+      },
     };
   }
 
