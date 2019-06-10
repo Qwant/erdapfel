@@ -7,8 +7,9 @@ import IdunnPoi from "../adapters/poi/idunn_poi";
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import layouts from "./layouts.js";
-import debounce from '../libs/debounce'
-const poiSubClass = require('../mapbox/poi_subclass')
+import debounce from '../libs/debounce';
+import poiSubClass from '../mapbox/poi_subclass';
+import {sources} from '../../config/constants.yml';
 
 export default class CategoryPanel {
   constructor() {
@@ -21,8 +22,10 @@ export default class CategoryPanel {
     this.poiSubClass = poiSubClass
     this.PoiMarkers = []
     this.loading = false
+    this.query = ''
+    this.dataSource = ''
 
-    UrlState.registerUrlShard(this, 'places', paramTypes.RESOURCE)
+    UrlState.registerResource(this, 'places')
     PanelManager.register(this)
 
     listen('map_moveend', debounce( function() {
@@ -36,19 +39,42 @@ export default class CategoryPanel {
 
   }
 
-  store () {
-    if(this.active && this.categoryName && this.categoryName !== '') {
-      return `type=${this.categoryName}`
+  store() {
+    if(this.active) {
+      let params = []
+      if (this.categoryName) {
+        params.push(`type=${this.categoryName}`)
+      }
+      if (this.query) {
+        params.push(`q=${this.query}`)
+      }
+      if (params.length > 0) {
+        return `?${params.join('&')}`
+      }
     }
     return ''
   }
 
-  restore(urlShard) {
-    window.execOnMapLoaded(() => {
-      this.categoryName = urlShard.match(/type=(.*)/)[1]
-      this.search()
-      this.open()
-    })
+  restore() {
+    let getParams = new URLSearchParams(window.location.search)
+    let category = getParams.get('type') || ''
+    let query = getParams.get('q') || ''
+    let rawBbox = (getParams.get('bbox') || '').split(',')
+    let bbox
+    if (rawBbox.length === 4) {
+      bbox = [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]]
+    }
+
+    if (category || query) {
+      this.categoryName = category
+      this.query = query
+      window.execOnMapLoaded(() => {
+        if (bbox) {
+          window.map.mb.fitBounds(bbox, {animate: false})
+        }
+        this.open()
+      })
+    }
   }
 
   async search() {
@@ -58,13 +84,15 @@ export default class CategoryPanel {
       .map((cardinal) => cardinal.toFixed(7))
       .join(',')
 
-    this.pois = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName, this)
+    let {places, source} = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName, this.query)
+    this.pois = places
+    this.dataSource = source
     this.loading = false
 
     this.panel.update()
     let container = document.querySelector(".category__panel__scroll");
     if(container){
-        container.scrollTop = 0;
+      container.scrollTop = 0;
     }
 
     this.addCategoryMarkers();
@@ -77,6 +105,7 @@ export default class CategoryPanel {
     if(options.category) {
       const { name, label } = options.category
       this.categoryName = name
+      this.query = ''
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1))
     }
     this.active = true
@@ -91,8 +120,6 @@ export default class CategoryPanel {
       return
     }
 
-    this.search()
-    await this.panel.update()
     // Apply correct zoom when opening a category
     let currentZoom = window.map.mb.getZoom()
 
@@ -110,12 +137,18 @@ export default class CategoryPanel {
     else if(currentZoom > 16){
       window.map.mb.flyTo({zoom: 16});
     }
+
+    else {
+      this.search()
+      await this.panel.update()
+    }
   }
 
   close (toggleMarkers = true) {
     SearchInput.unMinify()
     document.querySelector('.top_bar').classList.remove('top_bar--category-open')
     this.active = false
+    this.query = ''
     this.panel.update()
     UrlState.pushUrl()
     if(toggleMarkers){
@@ -163,5 +196,9 @@ export default class CategoryPanel {
     if(marker) {
       marker.classList.remove("active")
     }
+  }
+
+  isSourcePagesjaunes(){
+    return this.dataSource === sources.pagesjaunes
   }
 }

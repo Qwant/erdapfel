@@ -1,7 +1,8 @@
-import Poi from "./poi";
-import Ajax from "../../libs/ajax";
-import nconf from '../../../local_modules/nconf_getter/index'
-import Error from '../../adapters/error'
+import Poi from './poi';
+import Ajax from '../../libs/ajax';
+import nconf from '../../../local_modules/nconf_getter/index';
+import Error from '../../adapters/error';
+import {sources} from '../../../config/constants.yml';
 
 const serviceConfig = nconf.get().services
 const LNG_INDEX = 0
@@ -47,16 +48,23 @@ export default class IdunnPoi extends Poi {
     }
   }
 /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
-  static async poiCategoryLoad(bbox, size, category, panel) {
+  static async poiCategoryLoad(bbox, size, category, query) {
     let url = `${serviceConfig.idunn.url}/v1/places`
-    let requestParams = {bbox, size, category}
+    let requestParams = {bbox, size}
+    if (category) {
+      requestParams['category'] = category
+    }
+    if (query) {
+      requestParams['q'] = query
+    }
 
     try {
-      let rawPois = await Ajax.getLang(url, requestParams)
-      return rawPois.places.map((rawPoi) => new IdunnPoi(rawPoi))
+      let response = await Ajax.getLang(url, requestParams)
+      response.places = response.places.map((rawPoi) => new IdunnPoi(rawPoi))
+      return response
     } catch (err) {
       if(err === 400 || err === 404) {
-        return
+        return {}
       }
       else {
         Error.sendOnce(
@@ -64,7 +72,7 @@ export default class IdunnPoi extends Poi {
           `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,
           err
         )
-        return
+        return {}
       }
     }
   }
@@ -115,5 +123,13 @@ export default class IdunnPoi extends Poi {
     if (grades && grades.url) {
       window.open(grades.url, '_blank', 'noopener noreferrer')
     }
+  }
+
+  isFromOSM() {
+    return this.meta && this.meta.source === sources.osm
+  }
+
+  isFromPagesjaunes() {
+    return this.meta && this.meta.source == sources.pagesjaunes
   }
 }

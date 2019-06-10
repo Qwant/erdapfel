@@ -10,7 +10,9 @@
       <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}>
         <i class="poi_panel__back icon-arrow-left"></i>
         <span class="poi_panel__back_text">{{= _('Back to list') }}</span>
-        <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="Pages Jaunes" />
+        {{? this.poi.isFromPagesjaunes() }}
+        <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
+        {{?}}
       </div>
     {{?}}
     <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
@@ -85,6 +87,7 @@
 
       {{= this.PoiBlocContainer.render(this.poi) }}
 
+      {{? this.poi.isFromOSM() }}
       <div class="osm_contribute">
         <div class="osm_contribute__logo"></div>
         <div class="osm_contribute__text_container">
@@ -97,6 +100,8 @@
           </a>
         </div>
       </div>
+      {{?}}
+
     </div>
   {{?}}
   </div>
