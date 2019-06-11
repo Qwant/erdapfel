@@ -70,3 +70,4 @@ direction:
 
 category:
   enabled: false
+  maxPlaces: 40

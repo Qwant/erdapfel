@@ -198,7 +198,7 @@ export default class DirectionPanel {
     this.initDirection();
     UrlState.pushUrl();
     window.execOnMapLoaded(() => {
-      this.searchDirection()
+      this.searchDirection();
     });
   }
 
