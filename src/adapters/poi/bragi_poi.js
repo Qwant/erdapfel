@@ -91,7 +91,7 @@ export default class BragiPoi extends Poi {
 
     super(feature.properties.geocoding.id, name, alternativeName, resultType, {
       lat: feature.geometry.coordinates[1],
-      lng: feature.geometry.coordinates[0]
+      lng: feature.geometry.coordinates[0],
     }, poiClassText, poiSubclassText);
     /* extract custom data for autocomplete */
     this.value = feature.properties.geocoding.label;
@@ -132,7 +132,7 @@ export default class BragiPoi extends Poi {
     let queryPromise = new Promise(async(resolve, reject) => {
       let query = {
         'q': term,
-        'limit': geocoderConfig.max_items
+        'limit': geocoderConfig.max_items,
       };
       if (geocoderConfig.useLang){
         query.lang = window.getLang().code;

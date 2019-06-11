@@ -18,7 +18,7 @@ Website.prototype.clickWebsite = function() {
         'source': this.poi.meta.source,
         'template': 'single',
         'zone': 'detail',
-        'element': 'website'
+        'element': 'website',
       }
     )
   );

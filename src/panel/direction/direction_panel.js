@@ -182,7 +182,7 @@ export default class DirectionPanel {
           'source': options.poi.meta.source,
           'template': 'simple',
           'zone': 'detail',
-          'element': 'itinerary'
+          'element': 'itinerary',
         }
       ) : null
     );
