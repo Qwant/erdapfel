@@ -66,7 +66,9 @@ export default class RoadMapPanel {
     this.previewRoadMap.close();
     this.panel.update();
     this.onClose();
-    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active');
+    document.querySelector('.map_bottom_button_group')
+      .classList
+      .remove('itinerary_preview--active');
   }
 
   toggleRoute(i) {
@@ -77,7 +79,11 @@ export default class RoadMapPanel {
       activeRoute.isActive = false;
       this.panel.removeClassName(0, `#itinerary_leg_${activeRoute.id}`, 'itinerary_leg--active');
       if (activeRoute.id !== i && !Device.isMobile()){
-        this.panel.addClassName(0, `#itinerary_leg_detail_${activeRoute.id}`, 'itinerary_leg_detail--hidden');
+        this.panel.addClassName(
+          0,
+          `#itinerary_leg_detail_${activeRoute.id}`,
+          'itinerary_leg_detail--hidden',
+        );
       }
     }
 

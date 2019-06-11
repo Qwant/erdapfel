@@ -15,7 +15,8 @@ export default class BragiPoi extends Poi {
     let poiClassText = '';
     let poiSubclassText = '';
 
-    if (feature.properties.geocoding.properties && feature.properties.geocoding.properties.length > 0) {
+    if (feature.properties.geocoding.properties &&
+        feature.properties.geocoding.properties.length > 0) {
       let poiClass = feature.properties.geocoding.properties.find((property) => {
         return property.key === 'poi_class';
       });
@@ -31,7 +32,9 @@ export default class BragiPoi extends Poi {
       }
     }
     let addressLabel = '';
-    if (feature.properties && feature.properties.geocoding && feature.properties.geocoding.address) {
+    if (feature.properties &&
+        feature.properties.geocoding &&
+        feature.properties.geocoding.address) {
       addressLabel = feature.properties.geocoding.address.label;
     }
 
@@ -77,7 +80,10 @@ export default class BragiPoi extends Poi {
       if (splitPosition === -1) {
         nameFragments = [feature.properties.geocoding.label];
       } else {
-        nameFragments = [feature.properties.geocoding.label.slice(0, splitPosition), feature.properties.geocoding.label.slice(splitPosition + 1)];
+        nameFragments = [
+          feature.properties.geocoding.label.slice(0, splitPosition),
+          feature.properties.geocoding.label.slice(splitPosition + 1),
+        ];
       }
       if (nameFragments.length > 1) {
         name = nameFragments[0];

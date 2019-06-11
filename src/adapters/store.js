@@ -144,7 +144,8 @@ export default class Store {
     try {
       return await this.abstractStore.getAllPois();
     } catch (e) {
-      Error.sendOnce('store', 'getAllPois', 'error getting pois from ' + this.abstractStore.storeName, e);
+      Error.sendOnce('store', 'getAllPois',
+        `error getting pois from ${this.abstractStore.storeName}`, e);
       return [];
     }
   }
@@ -154,7 +155,8 @@ export default class Store {
     try {
       return await this.abstractStore.get(`qmaps_v${version}_last_location`);
     } catch (e) {
-      Error.sendOnce('store', 'getLastLocation', 'error getting last location from ' + this.abstractStore.storeName, e);
+      Error.sendOnce('store', 'getLastLocation',
+        `error getting last location from ${this.abstractStore.storeName}`, e);
       return null;
     }
   }
@@ -164,7 +166,8 @@ export default class Store {
     try {
       return await this.abstractStore.set(`qmaps_v${version}_last_location`, loc);
     } catch (e) {
-      Error.sendOnce('store', 'setLastLocation', 'error setting location in ' + this.abstractStore.storeName, e);
+      Error.sendOnce('store', 'setLastLocation',
+        `error setting location in ${this.abstractStore.storeName}`, e);
       throw e;
     }
   }
@@ -182,7 +185,8 @@ export default class Store {
     try {
       return await this.abstractStore.has(poi.getKey());
     } catch (e) {
-      Error.sendOnce('store', 'has', 'error checking existing key in ' + this.abstractStore.storeName, e);
+      Error.sendOnce('store', 'has',
+        `error checking existing key in ${this.abstractStore.storeName}`, e);
     }
   }
 
@@ -192,7 +196,7 @@ export default class Store {
       await this.abstractStore.set(poi.getKey(), poi.poiStoreLiteral());
       this.eventTarget.dispatchEvent(new Event('poi_added'));
     } catch (e) {
-      Error.sendOnce('store', 'add', 'error adding poi in ' + this.abstractStore.storeName, e);
+      Error.sendOnce('store', 'add', `error adding poi in ${this.abstractStore.storeName}`, e);
     }
   }
 
@@ -201,7 +205,7 @@ export default class Store {
     try {
       await this.abstractStore.del(poi.getKey());
     } catch (e) {
-      Error.sendOnce('store', 'del', 'error deleting key from ' + this.abstractStore.storeName, e);
+      Error.sendOnce('store', 'del', `error deleting key from ${this.abstractStore.storeName}`, e);
     }
   }
 
@@ -210,7 +214,7 @@ export default class Store {
     try {
       await this.abstractStore.clear();
     } catch (e) {
-      Error.sendOnce('store', 'clear', 'error clearing ' + this.abstractStore.storeName, e);
+      Error.sendOnce('store', 'clear', `error clearing ${this.abstractStore.storeName}`, e);
     }
   }
 }

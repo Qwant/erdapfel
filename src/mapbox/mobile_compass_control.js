@@ -2,11 +2,13 @@ export default class MobileCompassControl {
 
   constructor() {
     this._container = document.createElement('div');
-    this._compass = this._createButton('map_control_group__button map_control_group__button__compass--mobile', 'Reset North', () => {
+    const compassClass = 'map_control_group__button map_control_group__button__compass--mobile';
+    this._compass = this._createButton(compassClass, 'Reset North', () => {
       this._resetNorthAndTilt();
     });
 
-    this._compassIndicator = this._createIcon('map_control__compass__icon map_control__compass__icon--mobile');
+    const compassIndicatorClass = 'map_control__compass__icon map_control__compass__icon--mobile';
+    this._compassIndicator = this._createIcon(compassIndicatorClass);
     this._compass.appendChild(this._compassIndicator);
   }
 
@@ -61,6 +63,8 @@ export default class MobileCompassControl {
     } else {
       this._compass.classList.remove('compass-origin');
     }
-    this._compassIndicator.style.transform = `scale(1, ${(1 - this._map.getPitch() / 110)}) rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`;
+    const scale = 1 - this._map.getPitch() / 110;
+    const rotation = this._map.transform.angle * (180 / Math.PI);
+    this._compassIndicator.style.transform = `scale(1, ${scale}) rotate(${rotation}deg)`;
   }
 }

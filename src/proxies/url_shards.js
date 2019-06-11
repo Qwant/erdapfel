@@ -60,7 +60,10 @@ UrlShards.parseUrl = function() {
           return;
         }
         if (shard.prefix === resourceRawShard) {
-          shards.push({prefix: resourceRawShard, value: resourceRawShards.length > i + 1 ? resourceRawShards[i + 1] : null});
+          shards.push({
+            prefix: resourceRawShard,
+            value: resourceRawShards.length > i + 1 ? resourceRawShards[i + 1] : null,
+          });
           skip = true;
         }
       });

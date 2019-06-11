@@ -11,7 +11,11 @@ const ACCEPTED_LANGUAGES = [
 ];
 
 const geometries = 'geojson';
-export const vehiculeMatching = {driving: 'driving-traffic', walking: 'walking', cycling: 'cycling'};
+export const vehiculeMatching = {
+  driving: 'driving-traffic',
+  walking: 'walking',
+  cycling: 'cycling',
+};
 
 export default class DirectionApi {
 
@@ -43,7 +47,9 @@ export default class DirectionApi {
     } else if (directionConfig.api === 'qwant'){
       directionsParams.type = apiVehicle;
     }
-    directionsUrl = `${directionsUrl}${poiToMapBoxCoordinates(start)};${poiToMapBoxCoordinates(end)}`;
+    let s_start = poiToMapBoxCoordinates(start);
+    let s_end = poiToMapBoxCoordinates(end);
+    directionsUrl = `${directionsUrl}${s_start};${s_end}`;
     let response = null;
     try {
       response = await Ajax.get(directionsUrl, directionsParams, {timeout});

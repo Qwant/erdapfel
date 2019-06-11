@@ -20,8 +20,12 @@ export default class IdunnPoi extends Poi {
         alternativeName = rawPoi.address.street.label;
       }
     }
-    let latLng = {lat: rawPoi.geometry.coordinates[LAT_INDEX], lng: rawPoi.geometry.coordinates[LNG_INDEX]};
-    super(rawPoi.id, rawPoi.name, alternativeName, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name);
+    let latLng = {
+      lat: rawPoi.geometry.coordinates[LAT_INDEX],
+      lng: rawPoi.geometry.coordinates[LNG_INDEX],
+    };
+    super(rawPoi.id, rawPoi.name, alternativeName, rawPoi.type, latLng, rawPoi.class_name,
+      rawPoi.subclass_name);
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
     this.address = IdunnPoi.getAddress(rawPoi);
@@ -66,9 +70,10 @@ export default class IdunnPoi extends Poi {
       if (err === 400 || err === 404) {
         return {};
       } else {
+        let s_requestParams = JSON.stringify(requestParams);
         Error.sendOnce(
           'idunn_poi', 'poiApiLoad',
-          `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,
+          `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
           err
         );
         return {};
@@ -90,9 +95,10 @@ export default class IdunnPoi extends Poi {
       if (err === 404) {
         return;
       } else {
+        let s_requestParams = JSON.stringify(requestParams);
         Error.sendOnce(
           'idunn_poi', 'poiApiLoad',
-          `unknown error getting idunn poi reaching ${url} with options ${JSON.stringify(requestParams)}`,
+          `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
           err
         );
         return;

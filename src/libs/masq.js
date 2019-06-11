@@ -95,7 +95,8 @@ export default class MasqStore {
     } catch (e) {
       switch (e.code) {
       case this.MasqError.SIGNALLING_SERVER_ERROR:
-        this.masqActivatingModal.failed(_('The connection failed between Qwant Maps and the Masq application (Signalling error)'));
+        this.masqActivatingModal.failed(_('The connection failed between Qwant Maps and the Masq \
+                                           application (Signalling error)'));
         break;
       default:
         this.masqActivatingModal.failed(_('Could not connect to Masq'));

@@ -4,7 +4,12 @@ import Poi from '../poi';
 import GeolocationCheck from '../../../libs/geolocation';
 export const GEOLOCALISATION_NAME = 'geolocalisation';
 
-export const navigatorGeolocationStatus = {PENDING: 'pending', FOUND: 'found', UNKNOWN: 'unknown', FORBIDDEN: 'forbidden'};
+export const navigatorGeolocationStatus = {
+  PENDING: 'pending',
+  FOUND: 'found',
+  UNKNOWN: 'unknown',
+  FORBIDDEN: 'forbidden',
+};
 
 export default class NavigatorGeolocalisationPoi extends Poi {
   constructor() {
@@ -47,7 +52,8 @@ export default class NavigatorGeolocalisationPoi extends Poi {
 
   render() {
     return `
-      <div data-id="${GEOLOCALISATION_NAME}" data-val="${_('Your position', 'direction')}" class="autocomplete_suggestion itinerary_suggest_your_position">
+      <div data-id="${GEOLOCALISATION_NAME}" data-val="${_('Your position', 'direction')}"
+       class="autocomplete_suggestion itinerary_suggest_your_position">
         <div class="itinerary_suggest_your_position_icon icon-pin_geoloc"></div>
         ${_('Your position', 'direction')}
       </div>`;

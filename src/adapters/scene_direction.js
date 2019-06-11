@@ -76,7 +76,8 @@ export default class SceneDirection {
       this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive});
 
       if (this.vehicle === 'walking') {
-        this.map.setLayoutProperty(`route_${route.id}`, 'icon-image', isActive ? 'walking_bullet_active' : 'walking_bullet_inactive');
+        this.map.setLayoutProperty(`route_${route.id}`, 'icon-image',
+          isActive ? 'walking_bullet_active' : 'walking_bullet_inactive');
       }
     });
     this.updateMarkers(mainRoute);
@@ -111,7 +112,8 @@ export default class SceneDirection {
       this.updateMarkers(mainRoute);
 
       const markerOrigin = document.createElement('div');
-      markerOrigin.className = this.vehicle === 'walking' ? 'itinerary_marker_origin_walking' : 'itinerary_marker_origin';
+      markerOrigin.className = this.vehicle === 'walking' ?
+        'itinerary_marker_origin_walking' : 'itinerary_marker_origin';
       this.markerOrigin = new Marker({
         element: markerOrigin,
         draggable: true,
@@ -142,12 +144,14 @@ export default class SceneDirection {
   refreshDirection(event, type) {
     if (type === 'origin') {
       const originLnglat = this.markerOrigin.getLngLat();
-      const newOrigin = new LatLonPoi({lat: parseFloat(originLnglat.lat), lng: parseFloat(originLnglat.lng)});
+      const newOrigin = new LatLonPoi({lat: parseFloat(originLnglat.lat),
+        lng: parseFloat(originLnglat.lng)});
       this.directionPanel.selectOrigin(newOrigin);
       this.directionPanel.setInputValue(type, newOrigin.getInputValue());
     } else if (type === 'destination') {
       const destinationLngLat = this.markerDestination.getLngLat();
-      const newDestination = new LatLonPoi({lat: parseFloat(destinationLngLat.lat), lng: parseFloat(destinationLngLat.lng)});
+      const newDestination = new LatLonPoi({lat: parseFloat(destinationLngLat.lat),
+        lng: parseFloat(destinationLngLat.lng)});
       this.directionPanel.selectDestination(newDestination);
       this.directionPanel.setInputValue(type, newDestination.getInputValue());
     }

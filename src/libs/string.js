@@ -12,7 +12,10 @@ ExtendedString.ellipsis = function(str, length, options = {}) {
   if (options.ignoreEllipsis) {
     ellipsis = ' $1';
   }
-  return str && str.length > length && (str = str.slice(0, length).replace(/ ([^ ]*) [^ ]* ?$/, ellipsis)), str && -1 == str.indexOf(' ') && str.length > length && (str += ellipsis), str;
+  return str && str.length > length &&
+    (str = str.slice(0, length).replace(/ ([^ ]*) [^ ]* ?$/, ellipsis)),
+  str && -1 == str.indexOf(' ') && str.length > length && (str += ellipsis),
+  str;
 };
 /**
  * Find the position of the first occurrence of a substring in a string ignoring case

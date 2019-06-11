@@ -9,9 +9,16 @@ export default class ExtendedControl {
     this.topButtonGroup = document.createElement('div');
     this.bottomButtonGroup = document.createElement('div');
 
-    this._zoomInButton = this._createButton('icon-plus map_control_group__button map_control_group__button__zoom', 'Zoom In', () => this._map.zoomIn());
-    this._zoomOutButton = this._createButton('icon-minus map_control_group__button map_control_group__button__zoom', 'Zoom Out', () => this._map.zoomOut());
-    this._compass = this._createButton('map_control_group__button map_control_group__button__compass', 'Reset North', () => {
+    const buttonClass = 'icon-plus map_control_group__button map_control_group__button__zoom';
+    this._zoomInButton = this._createButton(buttonClass, 'Zoom In', () => this._map.zoomIn());
+    this._zoomOutButton = this._createButton(
+      'icon-minus map_control_group__button map_control_group__button__zoom',
+      'Zoom Out',
+      () => this._map.zoomOut(),
+    );
+
+    const compassClass = 'map_control_group__button map_control_group__button__compass';
+    this._compass = this._createButton(compassClass, 'Reset North', () => {
       this._resetNorthAndTilt();
     });
 
@@ -57,7 +64,10 @@ export default class ExtendedControl {
       unit: 'metric',
     }, this.scaleAttributionContainer);
 
-    const extendedAttributionControl = new ExtendedAttributionControl({}, this.scaleAttributionContainer);
+    const extendedAttributionControl = new ExtendedAttributionControl(
+      {},
+      this.scaleAttributionContainer,
+    );
     this._container.appendChild(this.topButtonGroup);
     this._container.appendChild(this.bottomButtonGroup);
 
@@ -97,6 +107,8 @@ export default class ExtendedControl {
     } else {
       this._compass.classList.remove('compass-origin');
     }
-    this._compassIndicator.style.transform = `scale(1, ${(1 - this._map.getPitch() / 110)}) rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`;
+    const scale = 1 - this._map.getPitch() / 110;
+    const rotation = this._map.transform.angle * (180 / Math.PI);
+    this._compassIndicator.style.transform = `scale(1, ${scale}) rotate(${rotation}deg)`;
   }
 }

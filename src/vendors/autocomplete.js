@@ -17,7 +17,8 @@ export default function autoComplete(options) {
 
   // helpers
   function hasClass(el, className) {
-    return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
+    return el.classList ?
+      el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
   }
 
   function addEvent(el, type, handler){
@@ -95,7 +96,8 @@ export default function autoComplete(options) {
       if (!resize) {
         that.sc.style.display = 'block';
         if (!that.sc.maxHeight) {
-          that.sc.maxHeight = parseInt((window.getComputedStyle ? getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight);
+          that.sc.maxHeight = parseInt((window.getComputedStyle ?
+            getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight);
         }
         if (!that.sc.suggestionHeight) {
           let suggestion = that.sc.querySelector('.autocomplete_suggestion');
@@ -107,7 +109,8 @@ export default function autoComplete(options) {
           if (!next) {
             that.sc.scrollTop = 0;
           } else {
-            var scrTop = that.sc.scrollTop, selTop = next.getBoundingClientRect().top - that.sc.getBoundingClientRect().top;
+            var scrTop = that.sc.scrollTop;
+            var selTop = next.getBoundingClientRect().top - that.sc.getBoundingClientRect().top;
             if (selTop + that.sc.suggestionHeight - that.sc.maxHeight > 0) {
               that.sc.scrollTop = selTop + that.sc.suggestionHeight + scrTop - that.sc.maxHeight;
             } else if (selTop < 0) {

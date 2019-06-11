@@ -22,7 +22,11 @@ export default class Share {
     url.select();
     document.execCommand('copy');
     url.blur();
-    await this.modal.panel.addClassName(10, '#share-copy-container', 'share_copy__container--status');
+    await this.modal.panel.addClassName(
+      10,
+      '#share-copy-container',
+      'share_copy__container--status',
+    );
     this.modal.panel.removeClassName(0, '#share-copy-container', 'share_copy__container--status');
   }
 
@@ -32,7 +36,7 @@ export default class Share {
   }
 
   openPopup() {
-    /* eslint-disable-next-line */
-    return `onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"`;
+    const style = 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600';
+    return `onclick="javascript:window.open(this.href, '', '${style}');return false;"`;
   }
 }

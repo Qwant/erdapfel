@@ -88,7 +88,12 @@ export default class CategoryPanel {
       .map((cardinal) => cardinal.toFixed(7))
       .join(',');
 
-    let {places, source} = await IdunnPoi.poiCategoryLoad(urlBBox, MAX_PLACES, this.categoryName, this.query);
+    let {places, source} = await IdunnPoi.poiCategoryLoad(
+      urlBBox,
+      MAX_PLACES,
+      this.categoryName,
+      this.query
+    );
     this.pois = places;
     this.dataSource = source;
     this.loading = false;
