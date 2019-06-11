@@ -4,6 +4,7 @@ import Error from '../adapters/error';
 import MasqActivatingModal from '../modals/masq_activating_modal';
 import importMasq from './import_masq';
 import Poi from '../adapters/poi/poi';
+import { detect } from 'detect-browser';
 
 const handleError = (fct, msg, e) => {
   Error.sendOnce('masq_store', fct, msg, e);
@@ -174,5 +175,20 @@ export default class MasqStore {
       handleError('del', 'error removing item', e);
       throw e;
     }
+  }
+
+  static isMasqSupported() {
+    const SUPPORTED_BROWSERS = ['chrome', 'firefox', 'safari'];
+    const browser = detect();
+    if (!browser) {
+      return false;
+    }
+    const isSupportedPlatform = browser.os && (
+      browser.os.startsWith('Windows')
+      || browser.os === 'Linux'
+      || browser.os === 'Mac OS'
+    );
+    const isSupportedBrowser = SUPPORTED_BROWSERS.indexOf(browser.name) !== -1;
+    return isSupportedPlatform && isSupportedBrowser;
   }
 }

@@ -6,6 +6,13 @@ import App from './panel/app_panel';
 import './proxies/panel_manager';
 import UrlState from './proxies/url_state';
 import Store from './adapters/store';
+import MasqStore from './libs/masq';
+import nconf from '@qwant/nconf-getter';
+
+const masqConfig = nconf.get().masq;
+if (!MasqStore.isMasqSupported()) {
+  masqConfig.enabled = false;
+}
 
 /* global PanelManager */
 (async function main() {

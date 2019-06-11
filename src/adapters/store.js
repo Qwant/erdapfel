@@ -6,7 +6,6 @@ import LocalStore from '../libs/local_store';
 import MasqStore from '../libs/masq';
 
 export default class Store {
-
   constructor() {
     // get store from window if already initialized
     if (window.__store) {
