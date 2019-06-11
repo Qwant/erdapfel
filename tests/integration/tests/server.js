@@ -1,4 +1,5 @@
-const request = require('supertest');
+import request from 'supertest';
+import wait from '../tools';
 
 let server
 
@@ -27,7 +28,7 @@ test('responds to logs', done => {
     .expect(204, done)
 });
 
-test('responds to events and update metrics', (done) => {
+test('responds to events and update metrics', done => {
   let currentFavSaveCount = 0
   server
     .get('/metrics')
