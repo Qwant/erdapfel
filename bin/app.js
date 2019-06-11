@@ -69,7 +69,13 @@ function App(config) {
 
   app.use('/statics', expressStaticGzip(path.join(publicDir), {
     fallthrough: false,
-    maxAge: config.statics.maxAge
+    maxAge: config.statics.maxAge,
+    setHeaders: (res, path, stat) => {
+      if (path.endsWith('/favicon.png')) {
+        /* Chrome Mobile reloads favicon on each map move */
+        res.set('Cache-Control', 'public, max-age=300')
+      }
+    }
   }))
 
   app.use('/style.json',
