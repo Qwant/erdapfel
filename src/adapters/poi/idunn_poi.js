@@ -127,7 +127,7 @@ export default class IdunnPoi extends Poi {
           source: this.meta.source,
           template: template,
           zone: template === 'multiple' ? 'list' : 'detail',
-          element: 'reviews'
+          element: 'reviews',
         })
       );
       window.open(grades.url, '_blank', 'noopener noreferrer');
