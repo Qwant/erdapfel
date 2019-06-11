@@ -28,10 +28,10 @@ export default class SceneCategory {
           e.stopPropagation();
           fire('click_category_poi', poi);
         };
-        marker.onmouseover = function(e){
+        marker.onmouseover = function(e) {
           fire('open_popup', poi, e);
         };
-        marker.onmouseout = function(){
+        marker.onmouseout = function() {
           fire('close_popup');
         };
         marker.id = poi.marker_id;

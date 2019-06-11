@@ -24,7 +24,7 @@ export default class DirectionApi {
     let directionsUrl = directionConfig.apiBaseUrl;
     let userLang = window.getLang();
     let language;
-    if (ACCEPTED_LANGUAGES.indexOf(userLang.code) !== -1){
+    if (ACCEPTED_LANGUAGES.indexOf(userLang.code) !== -1) {
       language = userLang.locale;
     } else {
       language = userLang.fallback[0];
@@ -37,14 +37,14 @@ export default class DirectionApi {
       overview: OVERVIEW_SETTING,
     };
 
-    if (exclude){
+    if (exclude) {
       directionsParams['exclude'] = exclude;
     }
 
-    if (directionConfig.api === 'mapbox'){
+    if (directionConfig.api === 'mapbox') {
       directionsUrl = `${directionsUrl}${apiVehicle}/`;
       directionsParams.access_token = directionConfig.token;
-    } else if (directionConfig.api === 'qwant'){
+    } else if (directionConfig.api === 'qwant') {
       directionsParams.type = apiVehicle;
     }
     let s_start = poiToMapBoxCoordinates(start);
@@ -56,7 +56,7 @@ export default class DirectionApi {
     } catch (e) {
       return;
     }
-    if (directionConfig.api === 'qwant'){
+    if (directionConfig.api === 'qwant') {
       response = response.data;
     }
     return response;

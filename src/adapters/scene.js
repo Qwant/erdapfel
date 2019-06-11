@@ -155,7 +155,7 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('click', (e) => {
-      if (!e._interactiveClick){
+      if (!e._interactiveClick) {
         PanelManager.emptyClickOnMap();
       }
     });
@@ -213,7 +213,7 @@ Scene.prototype.isPointInBounds = function(point, bounds) {
   return lng && lat;
 };
 
-Scene.prototype.isBBoxInExtendedViewport = function(bbox){
+Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
 
   // Get viewport bounds
   const viewport = this.mb.getBounds();
@@ -265,14 +265,14 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
       || this.isPointInBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport) // nw
       || this.isPointInBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport) // se
       || this.isPointInBounds(bbox._sw, viewport) // sw
-  ){
+  ) {
     return true;
   }
 
   return false;
 };
 
-Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}){
+Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}) {
   // normalise bbox
   if (bbox instanceof Array) {
     bbox = new LngLatBounds(bbox);
@@ -298,7 +298,7 @@ Scene.prototype.fitMap = function(item, padding) {
         flyOptions.zoom = item.zoom;
       }
 
-      if (padding){
+      if (padding) {
         flyOptions.offset = [
           (padding.left - padding.right) / 2,
           (padding.top - padding.bottom) / 2,

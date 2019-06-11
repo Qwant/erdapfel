@@ -31,12 +31,12 @@ export default class IconManager {
         iconClass: nameToClass(styleIcons.defaultIcon),
         color: styleIcons.defaultColor,
       };
-    } else if (type === 'house' || type === 'address'){
+    } else if (type === 'house' || type === 'address') {
       return {
         iconClass: nameToClass(styleIcons.defaultAddressIcon),
         color: styleIcons.defaultAddressColor,
       };
-    } else if (type === 'street'){
+    } else if (type === 'street') {
       return {
         iconClass: nameToClass(styleIcons.defaultStreetIcon),
         color: styleIcons.defaultStreetColor,

@@ -135,7 +135,7 @@ export default class SceneDirection {
       this.markerDestination.on('dragend', (event) => this.refreshDirection(event, 'destination'));
 
       let bbox = this.computeBBox(mainRoute);
-      if (move !== false){
+      if (move !== false) {
         fire('fit_map', bbox, layouts.ITINERARY);
       }
     }
@@ -219,7 +219,7 @@ export default class SceneDirection {
     this.map.addSource(sourceId, sourceJSON);
     this.map.addLayer(geojson, map.routes_layer);
 
-    this.map.on('click', `route_${route.id}`, function(){
+    this.map.on('click', `route_${route.id}`, function() {
       fire('select_road_map', route.id);
     });
 
@@ -254,14 +254,14 @@ export default class SceneDirection {
     return bounds;
   }
 
-  highlightStep(step){
-    if (this.markersSteps[step]){
+  highlightStep(step) {
+    if (this.markersSteps[step]) {
       this.markersSteps[step]._element.classList.add('itinerary_marker_step--highlighted');
     }
   }
 
-  unhighlightStep(step){
-    if (this.markersSteps[step]){
+  unhighlightStep(step) {
+    if (this.markersSteps[step]) {
       this.markersSteps[step]._element.classList.remove('itinerary_marker_step--highlighted');
     }
   }

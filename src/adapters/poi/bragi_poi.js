@@ -140,7 +140,7 @@ export default class BragiPoi extends Poi {
         'q': term,
         'limit': geocoderConfig.max_items,
       };
-      if (geocoderConfig.useLang){
+      if (geocoderConfig.useLang) {
         query.lang = window.getLang().code;
       }
       suggestsPromise = ajax.get(geocoderConfig.url, query);

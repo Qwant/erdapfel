@@ -44,7 +44,7 @@ PoiPopup.prototype.addListener = function(layer) {
   });
 
   this.map.on('mouseleave', layer, async() => {
-    if (this.popupHandle){
+    if (this.popupHandle) {
       this.popupHandle.remove();
     }
     clearTimeout(this.timeOutHandler);
@@ -64,7 +64,7 @@ PoiPopup.prototype.createPJPopup = function(poi, event) {
   }
 };
 
-PoiPopup.prototype.showPopup = function(poi, event){
+PoiPopup.prototype.showPopup = function(poi, event) {
   if (this.popupHandle) {
     this.popupHandle.remove();
     this.popupHandle = null;
@@ -81,7 +81,7 @@ PoiPopup.prototype.showPopup = function(poi, event){
   let address;
   if (hours) {
     opening = new OsmSchedule(hours, timeMessages.options.messages);
-  } else if (poi.address){
+  } else if (poi.address) {
     address = poi.address.label;
   }
 

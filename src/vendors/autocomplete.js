@@ -21,7 +21,7 @@ export default function autoComplete(options) {
       el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
   }
 
-  function addEvent(el, type, handler){
+  function addEvent(el, type, handler) {
     if (el.attachEvent) {
       el.attachEvent('on' + type, handler);
     } else {
@@ -29,7 +29,7 @@ export default function autoComplete(options) {
     }
   }
 
-  function removeEvent(el, type, handler){
+  function removeEvent(el, type, handler) {
     // if (el.removeEventListener) not working in IE11
     if (el.detachEvent) {
       el.detachEvent('on' + type, handler);
@@ -38,8 +38,8 @@ export default function autoComplete(options) {
     }
   }
 
-  function live(elClass, event, cb, context){
-    addEvent(context || document, event, function(e){
+  function live(elClass, event, cb, context) {
+    addEvent(context || document, event, function(e) {
       var found, el = e.target || e.srcElement;
       while (el && !(found = hasClass(el, elClass))) {
         el = el.parentElement;
@@ -88,7 +88,7 @@ export default function autoComplete(options) {
     that.last_val = '';
     that.sourcePending = null;
 
-    that.updateSC = function(resize, next){
+    that.updateSC = function(resize, next) {
       var rect = that.getBoundingClientRect();
       that.sc.style.left = Math.round(that.offsetLeft + o.offsetLeft) + 'px';
       that.sc.style.top = Math.round(that.offsetTop + rect.bottom - rect.top + o.offsetTop) + 'px';
@@ -123,16 +123,16 @@ export default function autoComplete(options) {
     addEvent(window, 'resize', that.updateSC);
     that.offsetParent.appendChild(that.sc);
 
-    live('autocomplete_suggestion', 'mouseleave', function(){
+    live('autocomplete_suggestion', 'mouseleave', function() {
       var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
       if (sel) {
-        setTimeout(function(){
+        setTimeout(function() {
           sel.className = sel.className.replace('selected', '');
         }, 20);
       }
     }, that.sc);
 
-    live('autocomplete_suggestion', 'mouseover', function(e){
+    live('autocomplete_suggestion', 'mouseover', function(e) {
       var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
       if (sel) {
         sel.className = sel.className.replace('selected', '');
@@ -149,7 +149,7 @@ export default function autoComplete(options) {
       o.onUpdate(e, item, that.items);
     }, that.sc);
 
-    live('autocomplete_suggestion', 'mousedown', function(e){
+    live('autocomplete_suggestion', 'mousedown', function(e) {
       if (hasClass(this, 'autocomplete_suggestion')) { // else outside click
         var v = this.getAttribute('data-val');
         that.value = v;
@@ -158,19 +158,19 @@ export default function autoComplete(options) {
       }
     }, that.sc);
 
-    that.blurHandler = function(){
+    that.blurHandler = function() {
       var over_sb = null;
       try {
         over_sb = document.querySelector('.autocomplete_suggestions:hover');
-      } catch (e){
+      } catch (e) {
         over_sb = 0;
       }
       if (!over_sb) {
         that.last_val = that.value;
         that.sc.style.display = 'none';
-        setTimeout(function(){
+        setTimeout(function() {
           // hide suggestions on fast select
-          if (that !== document.activeElement){
+          if (that !== document.activeElement) {
             that.sc.style.display = 'none';
           }
         }, 350);
@@ -193,12 +193,12 @@ export default function autoComplete(options) {
       }
     };
 
-    let suggest = function(data){
+    let suggest = function(data) {
       cancelObsolete();
       that.items = data;
       let val = that.value;
       let innerHTML = null;
-      if (data && val.length >= o.minChars){
+      if (data && val.length >= o.minChars) {
         innerHTML = o.renderItems(data, val);
       }
       if (innerHTML) {
@@ -209,27 +209,27 @@ export default function autoComplete(options) {
       }
     };
 
-    let getNextSuggestion = function(el){
+    let getNextSuggestion = function(el) {
       el = el.nextElementSibling;
       while (el) {
-        if (el.matches('.autocomplete_suggestion')){
+        if (el.matches('.autocomplete_suggestion')) {
           return el;
         }
         el = el.nextElementSibling;
       }
     };
 
-    let getPreviousSuggestion = function(el){
+    let getPreviousSuggestion = function(el) {
       el = el.previousElementSibling;
       while (el) {
-        if (el.matches('.autocomplete_suggestion')){
+        if (el.matches('.autocomplete_suggestion')) {
           return el;
         }
         el = el.previousElementSibling;
       }
     };
 
-    that.keydownHandler = function(e){
+    that.keydownHandler = function(e) {
       var key = window.event ? e.keyCode : e.which;
       // down (40), up (38)
       if ((key == 40 || key == 38) && that.sc.innerHTML) {
@@ -278,7 +278,7 @@ export default function autoComplete(options) {
         var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
         if (sel && that.sc.style.display != 'none') {
           o.onSelect(e, sel.getAttribute('data-val'), sel, that.items);
-          setTimeout(function(){
+          setTimeout(function() {
             that.sc.style.display = 'none';
           }, 20);
         }
@@ -286,7 +286,7 @@ export default function autoComplete(options) {
     };
     addEvent(that, 'keydown', that.keydownHandler);
 
-    that.keyupHandler = function(e){
+    that.keyupHandler = function(e) {
       var key = window.event ? e.keyCode : e.which;
       if (!key || (key < 35 || key > 40) && key != 13 && key != 27) {
         var val = that.value;
@@ -294,11 +294,11 @@ export default function autoComplete(options) {
           if (val != that.last_val) {
             cancelObsolete();
             that.last_val = val;
-            that.timer = setTimeout(function(){
+            that.timer = setTimeout(function() {
               that.sourcePending = o.source(val);
               that.sourcePending.then((source) => {
                 that.sourcePending = null;
-                if (source !== null){
+                if (source !== null) {
                   suggest(source);
                 }
               }).catch((e) => {
@@ -315,7 +315,7 @@ export default function autoComplete(options) {
     };
     addEvent(that, 'keyup', that.keyupHandler);
 
-    that.focusHandler = function(e){
+    that.focusHandler = function(e) {
       that.last_val = '\n';
       that.keyupHandler(e);
     };
@@ -325,7 +325,7 @@ export default function autoComplete(options) {
   }
 
   // public destroy method
-  this.destroy = function(){
+  this.destroy = function() {
     for (var i = 0; i < elems.length; i++) {
       var that = elems[i];
       removeEvent(window, 'resize', that.updateSC);

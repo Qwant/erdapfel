@@ -13,10 +13,10 @@ const LAT_INDEX = 1;
 export default class IdunnPoi extends Poi {
   constructor(rawPoi) {
     let alternativeName = '';
-    if (rawPoi.address){
+    if (rawPoi.address) {
       if (rawPoi.address.label) {
         alternativeName = rawPoi.address.label;
-      } else if (rawPoi.address.street && rawPoi.address.street.label){
+      } else if (rawPoi.address.street && rawPoi.address.street.label) {
         alternativeName = rawPoi.address.street.label;
       }
     }
@@ -36,7 +36,7 @@ export default class IdunnPoi extends Poi {
     if (this.blocks) {
       this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({[b.type]: b})));
       const imagesBlock = this.blocksByType.images;
-      if (imagesBlock && imagesBlock.images.length > 0){
+      if (imagesBlock && imagesBlock.images.length > 0) {
         this.topImageUrl = imagesBlock.images[0].url;
       }
     }

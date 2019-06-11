@@ -25,7 +25,7 @@ export default class RoadMapPanel {
   }
 
   setRoad(routes, vehicle, origin) {
-    if (origin){
+    if (origin) {
       this.origin = origin;
     }
     this.routes = routes.map((roadStep) => {
@@ -47,7 +47,7 @@ export default class RoadMapPanel {
     this.panel.update();
   }
 
-  showError(){
+  showError() {
     this.error = true;
     this.panel.update();
   }
@@ -75,10 +75,10 @@ export default class RoadMapPanel {
     fire('toggle_route', i);
 
     let activeRoute = this.routes.find((route) => route.isActive);
-    if (activeRoute !== null){
+    if (activeRoute !== null) {
       activeRoute.isActive = false;
       this.panel.removeClassName(0, `#itinerary_leg_${activeRoute.id}`, 'itinerary_leg--active');
-      if (activeRoute.id !== i && !Device.isMobile()){
+      if (activeRoute.id !== i && !Device.isMobile()) {
         this.panel.addClassName(
           0,
           `#itinerary_leg_detail_${activeRoute.id}`,
@@ -111,11 +111,11 @@ export default class RoadMapPanel {
     return ret;
   }
 
-  distance(m){
+  distance(m) {
     let ret = '';
-    if (m > 5){
-      if (m > 1000){
-        if (m > 99000){
+    if (m > 5) {
+      if (m > 1000) {
+        if (m > 99000) {
           ret = `${Math.round(m / 1000)}km`;
         } else {
           ret = `${(m / 1000).toFixed(1).replace('.', ',')}km`;
@@ -132,20 +132,20 @@ export default class RoadMapPanel {
     this.panel.update();
   }
 
-  highlightStepMarker(i){
+  highlightStepMarker(i) {
     fire('highlight_step', i);
   }
 
-  unhighlightStepMarker(i){
+  unhighlightStepMarker(i) {
     fire('unhighlight_step', i);
   }
 
-  zoomStep(step){
+  zoomStep(step) {
     fire('zoom_step', step);
   }
 
-  getVehicleIcon(){
-    switch (this.vehicle){
+  getVehicleIcon() {
+    switch (this.vehicle) {
     case 'driving':
       return 'icon-drive';
     case 'walking':
@@ -170,7 +170,7 @@ export default class RoadMapPanel {
     menu.classList.add('itinerary_panel__item__more--active');
   }
 
-  closeMoreMenu(){
+  closeMoreMenu() {
     let menu = document.querySelector(`#itinerary_more_${this.openMoreMenuPosition}`);
     if (menu) {
       menu.classList.remove('itinerary_panel__item__more--active');

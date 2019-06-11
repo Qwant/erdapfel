@@ -243,7 +243,7 @@ export default class DirectionPanel {
     }
   }
 
-  setRoutesOnMap(routes, options){
+  setRoutesOnMap(routes, options) {
     fire('set_route', {
       ...options,
       routes: routes,
