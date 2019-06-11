@@ -12,9 +12,11 @@ let page
 let responseHandler
 
 beforeAll(async () => {
-  let browserPage = await initBrowser()
-  page = browserPage.page
-  browser = browserPage.browser
+  browser = (await initBrowser()).browser
+})
+
+beforeEach(async() => {
+  page = await browser.newPage()
   responseHandler = new ResponseHandler(page)
   await responseHandler.prepareResponse()
 })
