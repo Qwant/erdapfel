@@ -37,7 +37,7 @@ export default class Telemetry {
       return;
     }
     let data = {type: event};
-    if (typeof extra_data === 'object') {
+    if (typeof extra_data === 'object' && extra_data !== null) {
       Object.keys(extra_data).forEach(key => {
         data[key] = extra_data[key];
       });

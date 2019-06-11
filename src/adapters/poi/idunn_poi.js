@@ -1,6 +1,6 @@
 import Poi from './poi';
 import Ajax from '../../libs/ajax';
-import nconf from '../../../local_modules/nconf_getter/index';
+import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import {sources} from '../../../config/constants.yml';
 import Telemetry from '../../libs/telemetry';

@@ -1,5 +1,5 @@
 .map_control_group {
-  margin: 0 10px 10px 0;
+  margin: 0 10px 5px 0;
   float: right;
   clear: both;
   pointer-events: auto;
@@ -88,23 +88,17 @@
   width: 100%;
   float: right;
   text-align: right;
-}
 
-.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
-  background: none;
-  display: inline-block;
-  float: none;
-  margin: 0;
-  height: 24px;
-}
-
-.mapboxgl-ctrl-attrib.mapboxgl-compact::after {
-  bottom: 0;
-  right: 0;
+  .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    background: none;
+    display: inline-block;
+    float: none;
+    margin: 2px;
+  }
 }
 
 .map_control__scale_attribute_container .mapboxgl-ctrl.map_control__scale {
-  margin: 7px 5px 0 5px;
+  margin: 4px 5px;
   float: left;
 }
 
@@ -113,8 +107,10 @@
 }
 
 @media(max-width: 640px) {
-  .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl.map_control__scale {
-    background: rgba(255, 255, 255, 0.5);
+  .map_control__scale_attribute_container{
+    .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl.map_control__scale {
+      background: rgba(255, 255, 255, 0.9);
+    }
   }
 
   .map_control_group {
@@ -134,7 +130,11 @@
     }
 
     &.itinerary_preview--active button {
-      margin-bottom: 38px;
+      margin-bottom: 52px;
+    }
+
+    &.map_bottom_button_group {
+      margin-bottom: 0px;
     }
   }
 
@@ -169,6 +169,29 @@
   .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
     float: inherit;
   }
+
+  .mapboxgl-ctrl-attrib.mapboxgl-compact{
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+
+    &::after {
+      position: relative;
+      bottom: 0;
+      right: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      padding: 0 0 0 5px;
+
+      .mapboxgl-ctrl-attrib-inner {
+        display: inline-block;
+      }
+    }
+  }
+
 }
 
 .compass-origin {

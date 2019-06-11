@@ -197,7 +197,9 @@ export default class DirectionPanel {
     await this.panel.update();
     this.initDirection();
     UrlState.pushUrl();
-    this.searchDirection();
+    window.execOnMapLoaded(() => {
+      this.searchDirection();
+    });
   }
 
   async searchDirection(options) {
@@ -293,9 +295,7 @@ export default class DirectionPanel {
       }
     }
 
-    window.execOnMapLoaded(() => {
-      this.open();
-    });
+    PanelManager.openDirection();
   }
 
   /* Private */

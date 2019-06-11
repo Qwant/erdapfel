@@ -9,6 +9,10 @@ import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import {sources} from '../../config/constants.yml';
+import nconf from '@qwant/nconf-getter';
+
+const categoryConfig = nconf.get().category;
+const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
 export default class CategoryPanel {
   constructor() {
@@ -84,7 +88,7 @@ export default class CategoryPanel {
       .map((cardinal) => cardinal.toFixed(7))
       .join(',');
 
-    let {places, source} = await IdunnPoi.poiCategoryLoad(urlBBox, 50, this.categoryName, this.query);
+    let {places, source} = await IdunnPoi.poiCategoryLoad(urlBBox, MAX_PLACES, this.categoryName, this.query);
     this.pois = places;
     this.dataSource = source;
     this.loading = false;
