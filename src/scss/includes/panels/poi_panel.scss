@@ -17,6 +17,7 @@ $HEADER_SIZE: 30px;
   @include card_shadow();
   @include card_radius();
   overflow-y: auto;
+  scrollbar-width: thin; /* Works on Firefox only */
 }
 
 .poi_panel__content {
@@ -507,7 +508,6 @@ $HEADER_SIZE: 30px;
 }
 
 .poi_panel__block__information {
-  width: 350px;
   transition: max-height .2s;
   position: relative;
   max-height: 0;

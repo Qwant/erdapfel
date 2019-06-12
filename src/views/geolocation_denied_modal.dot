@@ -1,6 +1,6 @@
 <div class="modal__maps">
   <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
   <h2 class="modal__title">{{= _('Geolocation not available.', 'geolocation') }}</h2>
-  <span class="modal__subtitle">{{= _('You did not allow Qwant Maps to access your position.', 'geolocation') }}</span>
+  <span class="modal__subtitle">{{= _('You have not allowed Qwant Maps (or your device) to access your location.', 'geolocation') }}</span>
   <button class="modal__button" {{= click(this.close, this) }}>{{= _('OK', 'geolocation') }}</button>
 </div>
