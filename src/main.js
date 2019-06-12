@@ -1,11 +1,12 @@
 import '@babel/polyfill';
+import 'url-search-params-polyfill';
 import I18n from './libs/i18n';
 import './libs/listen';
 import './libs/actions';
 import App from './panel/app_panel';
 import './proxies/panel_manager';
-import UrlState from './proxies/url_state';
 import Store from './adapters/store';
+import UrlState from './proxies/url_state';
 
 /* global PanelManager */
 (async function main() {
