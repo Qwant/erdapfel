@@ -115,7 +115,7 @@ PoiPopup.prototype.setPopupPosition = function(event, popupOptions) {
       positionFragments.push('top');
     }
 
-    if (event.clientX < (canvasWidth - HORIZONTAL_OFFSET)) {
+    if (event.clientX < canvasWidth - HORIZONTAL_OFFSET) {
       positionFragments.push('left');
     } else {
       positionFragments.push('right');

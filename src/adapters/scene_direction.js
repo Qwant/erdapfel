@@ -180,7 +180,7 @@ export default class SceneDirection {
   }
 
   showPolygon(route, vehicle) {
-    const geojson = (vehicle === 'walking') ? {
+    const geojson = vehicle === 'walking' ? {
       'id': `route_${route.id}`,
       'type': 'symbol',
       'source': `source_${route.id}`,

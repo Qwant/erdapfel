@@ -110,7 +110,7 @@ Scene.prototype.initMapBox = function() {
         if (e.features && e.features.length > 0) {
           let mapPoi = new MapPoi(e.features[0], e.lngLat);
           this.sceneState.setPoiId(mapPoi.id);
-          if (e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) &&
+          if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
               window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({
               center: mapPoi.getLngLat(),

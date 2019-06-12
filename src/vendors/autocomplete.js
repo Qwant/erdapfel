@@ -239,12 +239,12 @@ export default function autoComplete(options) {
           return false;
         }
         if (!sel) {
-          next = (key == 40) ? allSuggestions[0] : allSuggestions[allSuggestions.length - 1];
+          next = key == 40 ? allSuggestions[0] : allSuggestions[allSuggestions.length - 1];
           next.className += ' selected';
           that.value = next.getAttribute('data-val');
           that.dataId = next.getAttribute('data-id');
         } else {
-          next = (key == 40) ? getNextSuggestion(sel) : getPreviousSuggestion(sel);
+          next = key == 40 ? getNextSuggestion(sel) : getPreviousSuggestion(sel);
           if (next) {
             sel.className = sel.className.replace('selected', '');
             next.className += ' selected';
