@@ -27,6 +27,7 @@ function Scene() {
   this.zoom = map.zoom;
   this.center = [map.center.lng, map.center.lat];
   this.savedLocation = null;
+  this.poiShown = false;
 }
 
 Scene.prototype.initScene = async function(locationHash) {
@@ -54,7 +55,7 @@ Scene.prototype.initMapBox = function() {
     style: getStyle(),
     zoom: this.zoom,
     center: this.center,
-    hash: false,
+    hash: false
   });
 
   this.popup.init(this.mb);
@@ -96,7 +97,9 @@ Scene.prototype.initMapBox = function() {
         this.mb.getCanvas().style.cursor = '';
       });
 
-      this.mb.on('click', interactiveLayer, async e => {
+      this.mb.on('click', interactiveLayer, async(e) => {
+
+        e.originalEvent.stopPropagation();
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
@@ -105,6 +108,26 @@ Scene.prototype.initMapBox = function() {
       });
 
       this.popup.addListener(interactiveLayer);
+    });
+
+    this.mb.on('click', (e) => {
+      setTimeout(()=>{
+        //console.log(this.poiShown);
+        if(!this.poiShown){
+          console.log("show marker", e.lngLat);
+          PanelManager.toggleAnywhere();
+
+
+          const marker = document.createElement('div');
+          marker.className = 'itinerary_marker_destination';
+          new Marker({element: marker})
+              .setLngLat(e.lngLat)
+              .addTo(this.mb);
+
+
+        }
+        e.originalEvent.stopPropagation();
+      }, 500);
     });
 
     this.mb.on('moveend', () => {

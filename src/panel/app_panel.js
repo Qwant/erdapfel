@@ -2,6 +2,7 @@ import PanelsView from '../views/app_panel.dot';
 import Panel from '../libs/panel';
 import FavoritePanel from './favorites_panel';
 import PoiPanel from './poi_panel';
+import AnywherePanel from './anywhere_panel';
 import ServicePanel from './service_panel';
 import Share from '../modals/share';
 import SearchInput from '../ui_components/search_input';
@@ -39,6 +40,7 @@ export default class AppPanel {
     this.servicePanel = new ServicePanel();
     this.favoritePanel = new FavoritePanel(this.sharePanel);
     this.poiPanel = new PoiPanel(this.sharePanel);
+  this.anywherePanel = new AnywherePanel(this.sharePanel);
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel(this.sharePanel) : null;
 

@@ -1,0 +1,7 @@
+{{? this.active }}
+  SHOW COORDS HERE
+  <br>
+  add to favs link
+  <br>
+  itinerary link
+{{?}}
