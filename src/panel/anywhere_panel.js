@@ -56,7 +56,7 @@ function AnywherePanel(sharePanel) {
 
 AnywherePanel.prototype.toggleStorePoi = async function() {
   if (this.poi.meta && this.poi.meta.source) {
-    Telemetry.add('favorite', 'poi', this.poi.meta.source);
+    //Telemetry.add('favorite', 'poi', this.poi.meta.source);
   }
   if (this.poi.stored) {
     this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled');
@@ -70,8 +70,8 @@ AnywherePanel.prototype.toggleStorePoi = async function() {
     if (this.isMasqEnabled) {
       const isLoggedIn = await store.isLoggedIn();
       if (!isLoggedIn) {
-        masqFavoriteModal.open();
-        await masqFavoriteModal.waitForClose();
+        //masqFavoriteModal.open();
+        //await masqFavoriteModal.waitForClose();
       }
     }
 
@@ -196,7 +196,7 @@ AnywherePanel.prototype.backToSmall = function() {
 
 AnywherePanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-  PanelManager.toggleFavorite();
+  //PanelManager.toggleFavorite();
 };
 
 AnywherePanel.prototype.backToList = function() {

@@ -115,7 +115,7 @@ Scene.prototype.initMapBox = function() {
         //console.log(this.poiShown);
         if(!this.poiShown){
           console.log("show marker", e.lngLat);
-          PanelManager.toggleAnywhere();
+          PanelManager.openAnywhere();
 
 
           const marker = document.createElement('div');
