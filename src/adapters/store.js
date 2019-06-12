@@ -5,6 +5,11 @@ import ExtendedString from '../libs/string';
 import LocalStore from '../libs/local_store';
 import MasqStore from '../libs/masq';
 
+const masqConfig = nconf.get().masq;
+if (!MasqStore.isMasqSupported() && !MasqStore.isMasqForced()) {
+  masqConfig.enabled = false;
+}
+
 export default class Store {
   constructor() {
     // get store from window if already initialized
@@ -20,9 +25,10 @@ export default class Store {
     // init stores
     this.localStore = new LocalStore();
     this.abstractStore = this.localStore;
-    this.masqConfig = nconf.get().masq;
+    this.masqConfig = masqConfig;
     this.masqInitialized = true;
     if (this.masqConfig.enabled) {
+
       this.masqEventTarget = document.createElement('masqStore');
 
       this.masqStore = new MasqStore(this.masqConfig);

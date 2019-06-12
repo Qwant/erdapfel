@@ -177,6 +177,11 @@ export default class MasqStore {
     }
   }
 
+  static isMasqForced() {
+    let urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('masq') === '1';
+  }
+
   static isMasqSupported() {
     const SUPPORTED_BROWSERS = ['chrome', 'firefox', 'safari'];
     const browser = detect();
