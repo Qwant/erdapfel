@@ -19,7 +19,7 @@ export default class RoadMapPanel {
     this.openMoreMenuPosition = -1;
     this.sharePanel = sharePanel;
 
-    listen('select_road_map', (i) => {
+    listen('select_road_map', i => {
       this.toggleRoute(i);
     });
   }
@@ -28,7 +28,7 @@ export default class RoadMapPanel {
     if (origin) {
       this.origin = origin;
     }
-    this.routes = routes.map((roadStep) => {
+    this.routes = routes.map(roadStep => {
       return roadStep;
     });
     this.vehicle = vehicle;
@@ -54,7 +54,7 @@ export default class RoadMapPanel {
 
   preview() {
     this.showRoute = false;
-    this.previewRoadMap.setRoad(this.routes.find((route) => route.isActive));
+    this.previewRoadMap.setRoad(this.routes.find(route => route.isActive));
     this.onOpen();
     this.panel.update();
     fire('show_marker_steps');
@@ -74,7 +74,7 @@ export default class RoadMapPanel {
   toggleRoute(i) {
     fire('toggle_route', i);
 
-    let activeRoute = this.routes.find((route) => route.isActive);
+    let activeRoute = this.routes.find(route => route.isActive);
     if (activeRoute !== null) {
       activeRoute.isActive = false;
       this.panel.removeClassName(0, `#itinerary_leg_${activeRoute.id}`, 'itinerary_leg--active');
@@ -101,7 +101,7 @@ export default class RoadMapPanel {
     let min = Math.round(sec / 60);
     let hour = Math.floor(min / 60);
     let ret = '';
-    if (hour){
+    if (hour) {
       ret += hour + 'h ';
       min = min - 60 * hour;
     }

@@ -7,7 +7,7 @@ export default class SceneCategory {
     this.map = map;
     this.markers = [];
 
-    listen('add_category_markers', (pois) => {
+    listen('add_category_markers', pois => {
       this.resetMarkers();
       this.addCategoryMarkers(pois);
     });

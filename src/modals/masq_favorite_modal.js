@@ -69,7 +69,7 @@ export default class MasqFavoriteModal {
     if (!this.opened) {
       return Promise.resolve();
     }
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       this.eventTarget.addEventListener('closed', resolve, {once: true});
     });
   }

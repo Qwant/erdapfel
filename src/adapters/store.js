@@ -175,7 +175,7 @@ export default class Store {
   async getPrefixes(prefix) {
     await this.checkInit();
     const storedItems = await this.abstractStore.getAllPois();
-    return storedItems.filter((storedItem) => {
+    return storedItems.filter(storedItem => {
       return ExtendedString.compareIgnoreCase(storedItem.name, prefix) === 0; /* start with */
     });
   }

@@ -32,7 +32,7 @@ export default class Error {
 
   static sendOnce(file, method, message, exception) {
     let error = new Error(file, method, message, exception);
-    let existingError = window.__registredErrors.find((error) => {
+    let existingError = window.__registredErrors.find(error => {
       return error.equal(error);
     });
     if (!existingError) {

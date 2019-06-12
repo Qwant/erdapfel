@@ -49,7 +49,7 @@ function hourToDate(hour) {
 
 function toLocaleOpeningHours(hours) {
   if (hours) {
-    return hours.map((hour) => {
+    return hours.map(hour => {
       let beginningHour = hourToDate(hour.beginning);
       let endHour = hourToDate(hour.end);
       return {
@@ -63,7 +63,7 @@ function toLocaleOpeningHours(hours) {
 
 function translateSchedule(days) {
   if (days) {
-    return days.map((day) => {
+    return days.map(day => {
       return {
         dayName: window.getDay(day.dayofweek % 7),
         opening: toLocaleOpeningHours(day.opening_hours),

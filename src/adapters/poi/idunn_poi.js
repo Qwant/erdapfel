@@ -64,7 +64,7 @@ export default class IdunnPoi extends Poi {
 
     try {
       let response = await Ajax.getLang(url, requestParams);
-      response.places = response.places.map((rawPoi) => new IdunnPoi(rawPoi));
+      response.places = response.places.map(rawPoi => new IdunnPoi(rawPoi));
       return response;
     } catch (err) {
       if (err === 400 || err === 404) {
@@ -113,10 +113,10 @@ export default class IdunnPoi extends Poi {
     case 'address':
     case 'street': {
       let postcode = (rawPoi.address.postcode || '').split(';', 1)[0];
-      let city = rawPoi.address.admins.find((a) => a.class_name === 'city') || {};
-      let country = rawPoi.address.admins.find((a) => a.class_name === 'country') || {};
+      let city = rawPoi.address.admins.find(a => a.class_name === 'city') || {};
+      let country = rawPoi.address.admins.find(a => a.class_name === 'country') || {};
       let label = [postcode, city.name, country.name]
-        .filter((x) => x).join(', ');
+        .filter(x => x).join(', ');
       return {label};
     }
     default:

@@ -69,7 +69,9 @@ export default class AppPanel {
   }
 
   unminify() {
-    document.querySelector('.side_panel__container').classList.remove('side_panel__container--hidden');
+    document.querySelector('.side_panel__container')
+      .classList
+      .remove('side_panel__container--hidden');
     SearchInput.unminify();
   }
 

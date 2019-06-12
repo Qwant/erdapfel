@@ -14,7 +14,7 @@ export default class DirectionInput {
 
     this.suggest = new Suggest({
       tagSelector,
-      onSelect: (selectedPoi) => this.selectItem(selectedPoi),
+      onSelect: selectedPoi => this.selectItem(selectedPoi),
       prefixes,
       menuClass: 'direction_suggestions',
     });

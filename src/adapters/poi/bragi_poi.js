@@ -17,14 +17,14 @@ export default class BragiPoi extends Poi {
 
     if (feature.properties.geocoding.properties &&
         feature.properties.geocoding.properties.length > 0) {
-      let poiClass = feature.properties.geocoding.properties.find((property) => {
+      let poiClass = feature.properties.geocoding.properties.find(property => {
         return property.key === 'poi_class';
       });
 
       if (poiClass) {
         poiClassText = poiClass.value;
       }
-      let poiSubclass = feature.properties.geocoding.properties.find((property) => {
+      let poiSubclass = feature.properties.geocoding.properties.find(property => {
         return property.key === 'poi_subclass';
       });
       if (poiSubclass) {
@@ -49,7 +49,7 @@ export default class BragiPoi extends Poi {
       postcode = feature.properties.geocoding.postcode.split(';')[0];
     }
     let city = feature.properties.geocoding.city;
-    let country = feature.properties.geocoding.administrative_regions.find((administrativeRegion) =>
+    let country = feature.properties.geocoding.administrative_regions.find(administrativeRegion =>
       administrativeRegion.zone_type === 'country'
     );
     let countryName;
@@ -65,12 +65,12 @@ export default class BragiPoi extends Poi {
     case 'house':
       name = feature.properties.geocoding.name;
 
-      alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ');
+      alternativeName = [postcode, city, countryName].filter(zone => zone).join(', ');
 
       break;
     case 'street':
       name = feature.properties.geocoding.name;
-      alternativeName = [postcode, city, countryName].filter((zone) => zone).join(', ');
+      alternativeName = [postcode, city, countryName].filter(zone => zone).join(', ');
 
       break;
     default: {
@@ -126,7 +126,7 @@ export default class BragiPoi extends Poi {
   static get(term) {
     /* cache */
     if (term in window.__bragiCache) {
-      let cachePromise = new Promise((resolve) => {
+      let cachePromise = new Promise(resolve => {
         resolve(window.__bragiCache[term]);
       });
       cachePromise.abort = () => {};
@@ -144,13 +144,13 @@ export default class BragiPoi extends Poi {
         query.lang = window.getLang().code;
       }
       suggestsPromise = ajax.get(geocoderConfig.url, query);
-      suggestsPromise.then((suggests) => {
-        let bragiResponse = suggests.features.map((feature) => {
+      suggestsPromise.then(suggests => {
+        let bragiResponse = suggests.features.map(feature => {
           return new BragiPoi(feature);
         });
         window.__bragiCache[term] = bragiResponse;
         resolve(bragiResponse);
-      }).catch((error) => {
+      }).catch(error => {
         if (error === 0) { /* abort */
           resolve(null);
         } else {

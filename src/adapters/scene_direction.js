@@ -31,7 +31,7 @@ export default class SceneDirection {
       this.showMarkerSteps();
     });
 
-    listen('toggle_route', (mainRouteId) => {
+    listen('toggle_route', mainRouteId => {
       this.setMainRoute(mainRouteId);
     });
 
@@ -39,22 +39,22 @@ export default class SceneDirection {
       this.reset();
     });
 
-    listen('zoom_step', (step) => {
+    listen('zoom_step', step => {
       fire('fit_map', this.computeBBox(step), layouts.ITINERARY);
     });
 
-    listen('highlight_step', (step) => {
+    listen('highlight_step', step => {
       this.highlightStep(step);
     });
 
-    listen('unhighlight_step', (step) => {
+    listen('unhighlight_step', step => {
       this.unhighlightStep(step);
     });
   }
 
   showMarkerSteps() {
     if (this.vehicle !== 'walking' && window.innerWidth > 640) {
-      this.steps.forEach((step) => {
+      this.steps.forEach(step => {
         const markerStep = document.createElement('div');
         markerStep.className = 'itinerary_marker_step';
         this.markersSteps.push(
@@ -68,7 +68,7 @@ export default class SceneDirection {
 
   setMainRoute(routeId) {
     let mainRoute = null;
-    this.routes.forEach((route) => {
+    this.routes.forEach(route => {
       const isActive = route.id === routeId;
       if (isActive) {
         mainRoute = route;
@@ -90,7 +90,7 @@ export default class SceneDirection {
     }
     this.steps = mainRoute.legs[0].steps;
     // Clean previous markers (if any)
-    this.markersSteps.forEach((step) => {
+    this.markersSteps.forEach(step => {
       step.remove();
     });
     this.markersSteps = [];
@@ -103,10 +103,10 @@ export default class SceneDirection {
 
   displayRoute(move) {
     if (this.routes && this.routes.length > 0) {
-      this.routes.forEach((route) => {
+      this.routes.forEach(route => {
         this.showPolygon(route, this.vehicle);
       });
-      let mainRoute = this.routes.find((route) => route.isActive);
+      let mainRoute = this.routes.find(route => route.isActive);
       this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer);
 
       this.updateMarkers(mainRoute);
@@ -121,7 +121,7 @@ export default class SceneDirection {
         .setLngLat(this.steps[0].maneuver.location)
         .addTo(this.map);
 
-      this.markerOrigin.on('dragend', (event) => this.refreshDirection(event, 'origin'));
+      this.markerOrigin.on('dragend', event => this.refreshDirection(event, 'origin'));
 
       const markerDestination = document.createElement('div');
       markerDestination.className = 'itinerary_marker_destination';
@@ -132,7 +132,7 @@ export default class SceneDirection {
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
         .addTo(this.map);
 
-      this.markerDestination.on('dragend', (event) => this.refreshDirection(event, 'destination'));
+      this.markerDestination.on('dragend', event => this.refreshDirection(event, 'destination'));
 
       let bbox = this.computeBBox(mainRoute);
       if (move !== false) {
@@ -158,12 +158,12 @@ export default class SceneDirection {
   }
 
   reset() {
-    this.routes.forEach((route) => {
+    this.routes.forEach(route => {
       this.map.removeLayer(`route_${route.id}`);
       this.map.removeSource(`source_${route.id}`);
     });
 
-    this.markersSteps.forEach((step) => {
+    this.markersSteps.forEach(step => {
       step.remove();
     });
     this.markersSteps = [];
@@ -247,7 +247,7 @@ export default class SceneDirection {
 
   computeBBox(polygon) {
     let bounds = new LngLatBounds();
-    polygon.geometry.coordinates.forEach((coordinate) => {
+    polygon.geometry.coordinates.forEach(coordinate => {
       bounds.extend(new LngLat(coordinate[0], coordinate[1]));
     });
 

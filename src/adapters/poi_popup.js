@@ -30,7 +30,7 @@ PoiPopup.prototype.init = function(map) {
 };
 
 PoiPopup.prototype.addListener = function(layer) {
-  this.map.on('mouseenter', layer, (e) => {
+  this.map.on('mouseenter', layer, e => {
     if (Device.isMobile() || isTouchEvent(e)) {
       return;
     }
@@ -74,7 +74,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
   let hours = poi.blocks.find(block =>
     block.type === 'opening_hours'
   );
-  let timeMessages = poiConfigs.pois.find((poiConfig) => {
+  let timeMessages = poiConfigs.pois.find(poiConfig => {
     return poiConfig.apiName === 'opening_hours';
   });
   let opening;

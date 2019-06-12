@@ -30,11 +30,11 @@ export default class Suggest {
       delay: 100,
       menuClass: menuClass,
       width: '650px',
-      updateData: (items) => {
+      updateData: items => {
         this.suggestList = items;
         this.pending = false;
       },
-      source: (term) => {
+      source: term => {
         let promise;
         if (term === '') {
           // Prerender Favorites on focus in empty field
@@ -120,7 +120,7 @@ export default class Suggest {
       },
     });
 
-    this.searchInputDomHandler.onkeydown = (event) => {
+    this.searchInputDomHandler.onkeydown = event => {
       if (event.keyCode !== 13) { /* prevent enter key */
         this.pending = true;
       }

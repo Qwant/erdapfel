@@ -16,19 +16,19 @@ UrlShards.getShards = function() {
 
 UrlShards.toUrl = function() {
   let urlResources = UrlShards.getShards()
-    .filter((shard) => shard.paramType === paramTypes.RESOURCE)
-    .map((shard) => shard.toString())
-    .filter((shard) => shard !== null);
+    .filter(shard => shard.paramType === paramTypes.RESOURCE)
+    .map(shard => shard.toString())
+    .filter(shard => shard !== null);
 
   let urlHash = UrlShards.getShards()
-    .filter((shard) => shard.paramType === paramTypes.HASH)
-    .map((shard) => shard.toString())
-    .filter((shard) => shard !== null);
+    .filter(shard => shard.paramType === paramTypes.HASH)
+    .map(shard => shard.toString())
+    .filter(shard => shard !== null);
 
   let urlGet = UrlShards.getShards()
-    .filter((shard) => shard.paramType === paramTypes.GET)
-    .map((shard) => shard.toString())
-    .filter((shard) => shard !== null);
+    .filter(shard => shard.paramType === paramTypes.GET)
+    .map(shard => shard.toString())
+    .filter(shard => shard !== null);
 
   let url = window.baseUrl;
   if (urlResources.length > 0) {
@@ -48,11 +48,11 @@ UrlShards.parseUrl = function() {
 
   if (window.location.pathname) {
     let resourceRawShards = window.location.pathname.split('/');
-    resourceRawShards = resourceRawShards.filter((resourceRawShard) => {
+    resourceRawShards = resourceRawShards.filter(resourceRawShard => {
       return resourceRawShard !== '';
     });
 
-    this.getShards().forEach((shard) => {
+    this.getShards().forEach(shard => {
       let skip = false;
       resourceRawShards.forEach((resourceRawShard, i) => {
         if (skip) {
@@ -71,7 +71,7 @@ UrlShards.parseUrl = function() {
   }
 
   let getParams = new URLSearchParams(location.search);
-  this.getShards().forEach((shard) => {
+  this.getShards().forEach(shard => {
     let matchingShard = getParams.get(shard.prefix);
     if (matchingShard) {
       shards.push({prefix: shard.prefix, value: matchingShard});

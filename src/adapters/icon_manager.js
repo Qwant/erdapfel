@@ -2,20 +2,20 @@ import styleIcons from '@qwant/qwant-basic-gl-style/icons.yml';
 
 export default class IconManager {
   static get({className, subClassName, type}) {
-    const nameToClass = (iconName) => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
+    const nameToClass = iconName => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
 
     if (type === 'poi' || type === 'category') {
       const icons = styleIcons.mappings;
-      let icon = icons.find((iconProperty) => {
+      let icon = icons.find(iconProperty => {
         return iconProperty.subclass === subClassName && iconProperty.class === className;
       });
       if (!icon) {
-        icon = icons.find((iconProperty) => {
+        icon = icons.find(iconProperty => {
           return iconProperty.subclass === subClassName && !iconProperty.class;
         });
       }
       if (!icon) {
-        icon = icons.find((iconProperty) => {
+        icon = icons.find(iconProperty => {
           return iconProperty.class === className && !iconProperty.subclass;
         });
       }

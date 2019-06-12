@@ -68,6 +68,7 @@
         "comma-style": ["error", "last"],
         "max-len": ["error", { "code": 100, "tabWidth": 2 }],
         "eol-last": ["error", "always"],
-        "no-extra-parens": "error"
+        "no-extra-parens": "error",
+        "arrow-parens": ["error", "as-needed"]
     }
 }

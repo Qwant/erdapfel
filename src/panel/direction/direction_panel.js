@@ -57,12 +57,12 @@ export default class DirectionPanel {
     let destinationHandler = '#itinerary_input_destination';
     this.originInput = new DirectionInput(
       originHandler,
-      (poi) => this.selectOrigin(poi),
+      poi => this.selectOrigin(poi),
       'submit_direction_origin',
     );
     this.destinationInput = new DirectionInput(
       destinationHandler,
-      (poi) => this.selectDestination(poi),
+      poi => this.selectDestination(poi),
       'submit_direction_destination',
     );
 
@@ -299,7 +299,7 @@ export default class DirectionPanel {
     if (getParams.get('mode')) {
       let urlVehicle = getParams.get('mode');
       let matchedVehicle = Object.keys(vehiculeMatching)
-        .find((vehiculeMatchingItem) => vehiculeMatchingItem === urlVehicle);
+        .find(vehiculeMatchingItem => vehiculeMatchingItem === urlVehicle);
       if (matchedVehicle) {
         this.vehicle = matchedVehicle;
       }

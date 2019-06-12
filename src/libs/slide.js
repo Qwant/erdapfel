@@ -15,17 +15,17 @@ export default class Slide {
     this.touchHandle = document.querySelector(this.touchHandleSelector);
     this.panelHandle = document.querySelector(this.panelHandleSelector);
     this.move = false;
-    this.touchHandle.ontouchstart = (e) => {
+    this.touchHandle.ontouchstart = e => {
       this.slideStart(e);
       this.move = true;
     };
 
-    document.ontouchend = (e) => {
+    document.ontouchend = e => {
       this.slideEnd(e);
       this.move = false;
     };
 
-    document.ontouchmove = (e) => {
+    document.ontouchmove = e => {
       this.slideMove(e);
     };
   }

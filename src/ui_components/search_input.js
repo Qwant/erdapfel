@@ -62,7 +62,7 @@ export default class SearchInput {
     this.suggest = new Suggest({
       tagSelector,
       withCategories: true,
-      onSelect: (selectedPoi) => this.selectItem(selectedPoi),
+      onSelect: selectedPoi => this.selectItem(selectedPoi),
     });
     this.isEnabled = true;
 
@@ -74,7 +74,7 @@ export default class SearchInput {
 
   handleKeyboard() {
     document.onkeydown = function(e) {
-      if (MAPBOX_RESERVED_KEYS.find((key) => key === e.key)) {
+      if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
         return;
       }
       if (!e.shiftKey && !e.ctrlKey && e.key !== 'Enter' && !e.altKey) {

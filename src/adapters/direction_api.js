@@ -63,6 +63,6 @@ export default class DirectionApi {
   }
 }
 
-const poiToMapBoxCoordinates = (poi) => {
+const poiToMapBoxCoordinates = poi => {
   return `${poi.latLon.lng.toFixed(7)},${poi.latLon.lat.toFixed(7)}`;
 };

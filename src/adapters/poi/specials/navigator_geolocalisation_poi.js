@@ -28,10 +28,10 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     await GeolocationCheck.checkPrompt();
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(position => {
         this.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
         resolve();
-      }, (error) => {
+      }, error => {
         if (error.code === 1) {
           this.status = navigatorGeolocationStatus.FORBIDDEN;
         }

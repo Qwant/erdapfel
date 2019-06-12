@@ -85,7 +85,7 @@ export default class CategoryPanel {
     this.loading = true;
     let bbox = window.map.bbox();
     let urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
-      .map((cardinal) => cardinal.toFixed(7))
+      .map(cardinal => cardinal.toFixed(7))
       .join(',');
 
     let {places, source} = await IdunnPoi.poiCategoryLoad(

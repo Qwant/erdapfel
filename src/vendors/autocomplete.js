@@ -141,7 +141,7 @@ export default function autoComplete(options) {
       var id = this.getAttribute('data-id');
       var item = that.items[0];
 
-      that.items.forEach((i) => {
+      that.items.forEach(i => {
         if (i.id === id) {
           item = i;
         }
@@ -264,7 +264,7 @@ export default function autoComplete(options) {
         });
 
         var item = that.items[0];
-        that.items.forEach((i) => {
+        that.items.forEach(i => {
           if (i.id === that.dataId) {
             item = i;
           }
@@ -296,12 +296,12 @@ export default function autoComplete(options) {
             that.last_val = val;
             that.timer = setTimeout(function() {
               that.sourcePending = o.source(val);
-              that.sourcePending.then((source) => {
+              that.sourcePending.then(source => {
                 that.sourcePending = null;
                 if (source !== null) {
                   suggest(source);
                 }
-              }).catch((e) => {
+              }).catch(e => {
                 console.warn(e); /* should be handled by a telemetry logger */
                 that.sourcePending = null;
               });

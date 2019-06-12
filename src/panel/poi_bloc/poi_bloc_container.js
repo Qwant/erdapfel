@@ -49,7 +49,7 @@ PoiBlocContainer.renderBlock = function(block) {
 };
 
 PoiBlocContainer.toString = function(blocks) {
-  return blocks.map((block) => {
+  return blocks.map(block => {
     let blockComponent = getBlockComponent(block);
     if (blockComponent) {
       return blockComponent.toString();

@@ -12,7 +12,7 @@ PanelManager.init = function() {
 };
 
 PanelManager.setPoi = async function(poi, options = {}) {
-  window.__panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach(panel => {
     if (panel.isPoiComplient) {
       panel.setPoi(poi, options);
     } else if (!options.isFromList && !options.isFromFavorite) {
@@ -37,7 +37,7 @@ PanelManager.loadPoiById = async function(id, options) {
 };
 
 PanelManager.emptyClickOnMap = function() {
-  window.__panel_manager.panels.forEach((p) => {
+  window.__panel_manager.panels.forEach(p => {
     if (p.emptyClickOnMap) {
       p.emptyClickOnMap();
     }
@@ -54,7 +54,7 @@ PanelManager.openDirection = async function(options) {
     DirectionPanel will minify the main search input (unused for Directions)
   */
   window.app.unminify();
-  window.__panel_manager.panels.find((panel) => {
+  window.__panel_manager.panels.find(panel => {
     if (panel instanceof DirectionPanel) {
       if (!panel.active) {
         panel.open(options);
@@ -66,7 +66,7 @@ PanelManager.openDirection = async function(options) {
 };
 
 PanelManager.openFavorite = async function() {
-  window.__panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach(panel => {
     if (panel instanceof FavoritePanel) {
       if (!panel.active) {
         panel.open();
@@ -79,7 +79,7 @@ PanelManager.openFavorite = async function() {
 };
 
 PanelManager.openCategory = async function(options) {
-  window.__panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach(panel => {
     if (panel instanceof CategoryPanel) {
       panel.open(options);
     } else if (panel.active) {
@@ -90,7 +90,7 @@ PanelManager.openCategory = async function(options) {
 };
 
 PanelManager.keepOnlyPoi = async function() {
-  window.__panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach(panel => {
     if (!(panel instanceof PoiPanel) && panel.active) {
       panel.close();
     }
@@ -98,7 +98,7 @@ PanelManager.keepOnlyPoi = async function() {
 };
 
 PanelManager.resetLayout = function() {
-  window.__panel_manager.panels.forEach((panel) => {
+  window.__panel_manager.panels.forEach(panel => {
     if (panel instanceof ServicePanel) {
       panel.open();
     } else {
@@ -109,7 +109,7 @@ PanelManager.resetLayout = function() {
 };
 
 PanelManager.register = function(panel) {
-  let existingPanel = window.__panel_manager.panels.find((panelIterator) => {
+  let existingPanel = window.__panel_manager.panels.find(panelIterator => {
     return panelIterator.panel.cid === panel.panel.cid;
   });
   !existingPanel && window.__panel_manager.panels.push(panel);

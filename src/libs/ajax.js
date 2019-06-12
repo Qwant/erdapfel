@@ -73,7 +73,7 @@ const query = (url, data, method = 'GET', options = {}) => {
   return ajaxPromise;
 };
 
-const dataToUrl = (data) =>
+const dataToUrl = data =>
   Object.keys(data)
     .map(itemKey => `${encodeURIComponent(itemKey)}=${encodeURIComponent(data[itemKey])}`)
     .join('&');

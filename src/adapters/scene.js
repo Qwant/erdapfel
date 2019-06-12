@@ -96,7 +96,7 @@ Scene.prototype.initMapBox = function() {
     this.mb.addControl(extendedControl, 'bottom-right');
     this.mb.addControl(mobileCompassControl, 'top-right');
 
-    interactiveLayers.forEach((interactiveLayer) => {
+    interactiveLayers.forEach(interactiveLayer => {
       this.mb.on('mouseenter', interactiveLayer, () => {
         this.mb.getCanvas().style.cursor = 'pointer';
       });
@@ -105,7 +105,7 @@ Scene.prototype.initMapBox = function() {
         this.mb.getCanvas().style.cursor = '';
       });
 
-      this.mb.on('click', interactiveLayer, async(e) => {
+      this.mb.on('click', interactiveLayer, async e => {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           let mapPoi = new MapPoi(e.features[0], e.lngLat);
@@ -154,7 +154,7 @@ Scene.prototype.initMapBox = function() {
       this.mb.addImage('walking_bullet_inactive', image);
     });
 
-    this.mb.on('click', (e) => {
+    this.mb.on('click', e => {
       if (!e._interactiveClick) {
         PanelManager.emptyClickOnMap();
       }
@@ -165,7 +165,7 @@ Scene.prototype.initMapBox = function() {
       SceneEasterEgg.enableEggs(this.mb);
     }
 
-    window.execOnMapLoaded = (f) => f();
+    window.execOnMapLoaded = f => f();
     fire('map_loaded');
   });
 
@@ -177,7 +177,7 @@ Scene.prototype.initMapBox = function() {
     this.mb.jumpTo({center: [map.center.lng, map.center.lat], zoom: map.zoom});
   });
 
-  listen('map_mark_poi', (poi) => {
+  listen('map_mark_poi', poi => {
     this.addMarker(poi);
   });
 
@@ -373,7 +373,7 @@ Scene.prototype.isWindowedPoi = function(poi) {
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
     let shards = UrlShards.parseUrl();
-    shards.forEach((shard) => {
+    shards.forEach(shard => {
       if (shard.prefix === 'map') {
         this.restore(shard.value);
         this.mb.jumpTo({center: this.urlCenter, zoom: this.urlZoom});
