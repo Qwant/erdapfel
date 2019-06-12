@@ -14,9 +14,14 @@ let responseHandler
 
 
 beforeAll(async () => {
-  let browserPage = await initBrowser()
-  page = browserPage.page
-  browser = browserPage.browser
+  browser = (await initBrowser()).browser
+})
+
+beforeEach(async () => {
+  page = await browser.newPage()
+  await page.setExtraHTTPHeaders({
+    'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */
+  })
   responseHandler = new ResponseHandler(page)
   await responseHandler.prepareResponse()
 
