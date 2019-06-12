@@ -7,7 +7,7 @@
   <div class="modal__masq_activating__body">
     {{? this.activating}}
       <div class="modal__masq_activating__animation">
-        <video autoplay loop src="./statics/images/masq/gifs/masq_loading.gif"></video>
+        <img src="./statics/images/masq/gifs/masq_loading.gif" title="Masq loading"></img>
       </div>
       <h2 class="modal__masq_activating__message">{{= _('Patience, Masq is activating...') }}</h2>
 
