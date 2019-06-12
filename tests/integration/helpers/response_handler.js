@@ -12,7 +12,7 @@ export default class ResponseHandler {
   }
 
   addPreparedResponse(response, query, options) {
-    let alreadySetResponse = this.preparedResponses.find((preparedResponse) => preparedResponse.query === query)
+    let alreadySetResponse = this.preparedResponses.find((preparedResponse) => preparedResponse.query.toString() === query.toString())
     if(!alreadySetResponse) {
       this.preparedResponses.push({response, query, options})
     }
@@ -21,25 +21,22 @@ export default class ResponseHandler {
   async prepareResponse() {
     await this.page.setRequestInterception(true)
     this.page.on('request', async (interceptedRequest) => {
-      let isResponseHandled = false
-      this.preparedResponses.forEach((preparedResponse) => {
-        if(isResponseHandled === false) {
-          if(interceptedRequest.url().match(preparedResponse.query)) {
-            interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
-            let status = 200
-            if(preparedResponse.options) {
-              if(preparedResponse.options.status) {
-                status = preparedResponse.options.status
-              }
-            }
-            interceptedRequest.respond({status : status, body : JSON.stringify(preparedResponse.response), headers  : interceptedRequest.headers})
-            isResponseHandled = true
+      let preparedResponse = this.preparedResponses.find(preparedResponse => {
+        return interceptedRequest.url().match(preparedResponse.query)
+      })
+
+      if(preparedResponse){
+        interceptedRequest.headers['Access-Control-Allow-Origin'] = '*'
+        let status = 200
+        if(preparedResponse.options) {
+          if(preparedResponse.options.status) {
+            status = preparedResponse.options.status
           }
         }
-      })
-      if(isResponseHandled === false) {
-        interceptedRequest.continue()
+        await interceptedRequest.respond({status : status, body : JSON.stringify(preparedResponse.response), headers  : interceptedRequest.headers})
+        return
       }
+      interceptedRequest.continue()
     })
   }
 }
