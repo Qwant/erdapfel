@@ -59,7 +59,7 @@
     "klokantech-noto-sans": "git+https://github.com/QwantResearch/fonts.git#f25a802",
     "mapbox-gl": "^1.0.0",
     "mapbox-gl-js-mock": "https://github.com/QwantResearch/mapbox-gl-js-mock.git#7eaee7b",
-    "masq-lib": "git+https://github.com/QwantResearch/masq-lib.git#v0.14.0",
+    "masq-lib": "git+https://github.com/QwantResearch/masq-lib.git#v0.14.1",
     "node-sass": "^4.9.2",
     "po2json": "0.4.5",
     "postcss-import": "12.0.0",
