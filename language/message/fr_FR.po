@@ -1011,8 +1011,7 @@ msgstr "Inverser Départ et Arrivée"
 
 msgid "Qwant Maps found no results for this itinerary, please try again"
 msgstr ""
-"Qwant Maps ne trouve pas de résultat pour cet itinéraire,\n"
-"Réessayez plus tard"
+"Qwant Maps ne trouve pas de résultat pour cet itinéraire."
 
 msgid "Via"
 msgstr "Via"
