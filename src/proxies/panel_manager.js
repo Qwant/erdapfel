@@ -21,20 +21,6 @@ PanelManager.setPoi = async function(poi, options = {}) {
   });
 };
 
-PanelManager.getPanels = function() {
-  return window.__panel_manager.panels;
-};
-
-PanelManager.restorePoi = function() {
-  window.__panel_manager.panels.forEach((panel) => {
-    if (panel.isPoiComplient) {
-      panel.toggle();
-    } else if (panel.isDisplayed()){
-      panel.close();
-    }
-  });
-};
-
 PanelManager.loadPoiById = async function(id, options) {
   if (id) {
     let poi = await ApiPoi.poiApiLoad(id);
@@ -85,10 +71,6 @@ PanelManager.openFavorite = async function() {
   });
 };
 
-PanelManager.getCategoryPanel = function() {
-  return window.__panel_manager.panels.find(panel => panel instanceof CategoryPanel);
-};
-
 PanelManager.openCategory = async function(options) {
   window.__panel_manager.panels.forEach((panel) => {
     if (panel instanceof CategoryPanel) {
@@ -99,11 +81,9 @@ PanelManager.openCategory = async function(options) {
   });
 };
 
-PanelManager.togglePoi = async function(options) {
+PanelManager.keepOnlyPoi = async function() {
   window.__panel_manager.panels.forEach((panel) => {
-    if (panel instanceof PoiPanel) {
-      panel.toggle(options);
-    } else if (panel.active) {
+    if (!(panel instanceof PoiPanel) && panel.active) {
       panel.close();
     }
   });

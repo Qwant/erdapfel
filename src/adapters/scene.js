@@ -84,14 +84,6 @@ Scene.prototype.initMapBox = function() {
     this.onHashChange();
     new SceneDirection(this.mb);
     new SceneCategory(this.mb);
-
-    const CategoryPanel = PanelManager.getCategoryPanel() || {};
-    // trigger the POIs if a category has already been selected before map being loaded.
-    if (CategoryPanel.active) {
-      // TODO: Ensure this in CategoryPanel class, using execOnMapLoaded
-      CategoryPanel.addCategoryMarkers();
-    }
-
     if (performanceEnabled) {
       window.times.mapLoaded = Date.now();
     }

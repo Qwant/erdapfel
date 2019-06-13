@@ -112,9 +112,9 @@ PoiPanel.prototype.restorePoi = async function(id) {
     this.poi.stored = await isPoiFavorite(this.poi);
     this.active = true;
     this.sceneState.setPoiId(this.poi.id);
-    await this.panel.removeClassName(.2, '.poi_panel', 'poi_panel--hidden');
+    PanelManager.keepOnlyPoi();
     await this.panel.update();
-    this.minimalHourPanel.set(this.poi);
+    await this.minimalHourPanel.set(this.poi);
   }
 };
 
