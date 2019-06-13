@@ -1,7 +1,7 @@
 @import "../osm_contribute";
 
 $BLOCK_INDENT: 28px;
-$CARD_ACTION_WIDTH: 130px;
+$CARD_ACTION_WIDTH: 112px;
 $CARD_ACTION_RIGHT_MARGIN: 8px;
 $CARD_PADDING: 8px;
 $BLOCK_PADDING: 24px;
@@ -659,7 +659,10 @@ $HEADER_SIZE: 30px;
   }
 
   .poi_panel__close {
-    display: none;
+    font-size: 15px;
+    line-height: 25px;
+    widht: 25px;
+    height: 25px;
   }
 
   .poi_panel.poi_panel--card {
@@ -754,7 +757,7 @@ $HEADER_SIZE: 30px;
   }
 
   .poi_panel__content__card__action__container {
-    margin-top: 20px;
+    margin-top: 26px;
   }
 
   .poi_panel__content__card__action__direction {

@@ -29,7 +29,7 @@
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden ' }}{{= this.card ? 'poi_panel--card ' : '' }}">
   {{? this.poi }}
     <div class="poi_panel__content__card">
-      <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
+      <div class="poi_panel__close" {{= this.card && this.poi.isFromPagesjaunes() ? click(this.backToList, this) : click(this.closeAction, this) }}>
         <i class="icon-x"></i>
       </div>
       <div class="poi_panel__content__card__content">
