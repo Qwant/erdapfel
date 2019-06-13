@@ -24,10 +24,6 @@ export default class ServicePanel{
     PanelManager.toggleFavorite();
   }
 
-  toggleResult() {
-    PanelManager.restorePoi();
-  }
-
   toggleDirection() {
     if (this.isDirectionActive) {
       PanelManager.toggleDirection();
