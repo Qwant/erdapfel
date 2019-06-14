@@ -14,7 +14,6 @@ export default class MasqStore {
     this.storeName = 'masq';
 
     this.masq = null;
-    this.loginLink = null;
     this.config = config;
 
     this.initPromise = this.init();
@@ -42,7 +41,6 @@ export default class MasqStore {
       handleError('replicationError', e.detail.message, e.detail);
     });
     this.MasqError = MasqError;
-    this.loginLink = await this.masq.getLoginLink();
     this.initialized = true;
   }
 
@@ -79,7 +77,7 @@ export default class MasqStore {
   async login(apps) {
     await this.checkInit();
     // open Masq app window to connect to Masq
-    this.openLoginPopupWindow(this.loginLink);
+    this.openLoginPopupWindow(this.masq.loginLink);
 
     try {
       this.masqActivatingModal = new MasqActivatingModal();
@@ -102,7 +100,6 @@ export default class MasqStore {
   async logout() {
     await this.checkInit();
     await this.masq.signout();
-    this.loginLink = await this.masq.getLoginLink();
   }
 
   async isLoggedIn() {
