@@ -113,8 +113,8 @@ PoiPanel.prototype.restorePoi = async function(id) {
     this.active = true;
     this.sceneState.setPoiId(this.poi.id);
     PanelManager.keepOnlyPoi();
-    await this.panel.update();
     await this.minimalHourPanel.set(this.poi);
+    await this.panel.update();
   }
 };
 
@@ -137,8 +137,8 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.active = true;
   UrlState.pushUrl();
   this.sceneState.setPoiId(this.poi.id);
-  await this.panel.update();
   await this.minimalHourPanel.set(this.poi);
+  await this.panel.update();
 };
 
 PoiPanel.prototype.center = function() {
