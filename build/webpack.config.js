@@ -135,9 +135,9 @@ const mapJsChunkConfig = (buildMode) => {
   return {
     entry: [path.join(__dirname, '..', 'src', 'map.js')],
     output: {
-    path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
-      filename: 'map.js'
-  },
+      path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
+        filename: 'map.js'
+    },
     plugins: addJsOptimizePlugins(buildMode, [
       new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
         if(buildMode === 'test') {
@@ -147,55 +147,55 @@ const mapJsChunkConfig = (buildMode) => {
         }
       })
     ]),
-      module: {
-    rules: [
-      {
-        test: /\.dot/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options : babelConf(buildMode)
-          },
-          {
-            loader : 'dot-loader',
-            options: {}
-          }
-        ]
-      }, {
-        test: /\.yml$/,
-        use: [
-          {loader : '@qwant/config-sanitizer-loader'},
-          {loader : 'json-loader'},
-          {loader : 'yaml-loader'}
-        ]
-      }, {
-        test : /style\.json$/,
-        use : [
-          {
-            loader : '@qwant/map-style-loader',
-            options : {
-              output: 'production', // 'debug' | 'production' | 'omt'
-              outPath : __dirname + '/../public/mapstyle',
-              i18n : true,
-              icons : true,
-              pixelRatios : [1,2]
+    module: {
+      rules: [
+        {
+          test: /\.dot/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options : babelConf(buildMode)
+            },
+            {
+              loader : 'dot-loader',
+              options: {}
             }
-          }
-        ],
-      }, {
-        test: /\.js$/,
-        use : [
-          {
-            loader: 'babel-loader',
-            options : babelConf(buildMode)
-          }
+          ]
+        }, {
+          test: /\.yml$/,
+          use: [
+            {loader : '@qwant/config-sanitizer-loader'},
+            {loader : 'json-loader'},
+            {loader : 'yaml-loader'}
+          ]
+        }, {
+          test : /style\.json$/,
+          use : [
+            {
+              loader : '@qwant/map-style-loader',
+              options : {
+                output: 'production', // 'debug' | 'production' | 'omt'
+                outPath : __dirname + '/../public/mapstyle',
+                i18n : true,
+                icons : true,
+                pixelRatios : [1,2]
+              }
+            }
+          ],
+        }, {
+          test: /\.js$/,
+          use : [
+            {
+              loader: 'babel-loader',
+              options : babelConf(buildMode)
+            }
 
-        ],
-        exclude: [
-          /\/node_modules/
-        ]
-      }]
-  },
+          ],
+          exclude: [
+            /\/node_modules/
+          ]
+        }]
+    },
     devtool: 'source-map',
     node: {
       fs: 'empty'
