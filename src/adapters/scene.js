@@ -98,7 +98,6 @@ Scene.prototype.initMapBox = function() {
       });
 
       this.mb.on('click', interactiveLayer, async(e) => {
-
         e.originalEvent.stopPropagation();
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
@@ -112,10 +111,9 @@ Scene.prototype.initMapBox = function() {
 
     this.mb.on('click', (e) => {
       setTimeout(()=>{
-        //console.log(this.poiShown);
         if(!this.poiShown){
           console.log("show marker", e.lngLat);
-          PanelManager.openAnywhere();
+          //PanelManager.openAnywhere();
 
 
           const marker = document.createElement('div');
@@ -123,8 +121,6 @@ Scene.prototype.initMapBox = function() {
           new Marker({element: marker})
               .setLngLat(e.lngLat)
               .addTo(this.mb);
-
-
         }
         e.originalEvent.stopPropagation();
       }, 500);
