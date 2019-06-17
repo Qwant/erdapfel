@@ -1,6 +1,8 @@
 {{? this.isMasqEnabled}}
   <div class="menu__panel__top__masq">
-    <div class="icon-masq menu__panel__masq_icon"></div>
+    <div class="menu__panel__masq_icon_container">
+      <div class="icon-masq menu__panel__masq_icon" {{= click(this.openMasq, this)}}></div>
+    </div>
     {{? this.isLoggedIn}}
       <input
         type="button"

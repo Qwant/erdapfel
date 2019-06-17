@@ -12,6 +12,7 @@ export default class LoginMasqPanel {
     this.store = new Store();
 
     this.isMasqEnabled = nconf.get().masq.enabled;
+    this.baseMasqAppUrl = nconf.get().masq.baseMasqAppUrl;
 
     this.store.onToggleStore(async() => {
       this.isLoggedIn = await this.store.isLoggedIn();
@@ -37,5 +38,9 @@ export default class LoginMasqPanel {
 
   openMasqOnboarding() {
     masqOnboardingModal.open();
+  }
+
+  openMasq() {
+    window.open(this.baseMasqAppUrl, '_blank');
   }
 }

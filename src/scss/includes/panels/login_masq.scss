@@ -6,10 +6,17 @@
   flex-direction: column;
 }
 
-.menu__panel__masq_icon {
+.menu__panel__masq_icon_container {
   margin-top: 14px;
   margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu__panel__masq_icon {
   height: 50px;
+  width: 110px;
+  cursor: pointer;
 }
 
 .menu__panel__top__masq__login__button {
