@@ -55,6 +55,25 @@ test('load a poi from url', async () => {
   expect(address).toMatch(/1 Rue de la Légion d\'Honneur \(Paris\)/)
 })
 
+test('load a poi from url on mobile', async () => {
+  await page.setViewport({
+    width: 400,
+    height: 800
+  })
+  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`)
+  await page.waitForSelector('.poi_panel__title')
+  let {title, address, hours} = await page.evaluate(() => {
+    return {
+      title: document.querySelector('.poi_panel__content__card .poi_panel__title').innerText,
+      address: document.querySelector('.poi_panel__content__card .poi_panel__address').innerText,
+      hours: document.querySelector('.poi_panel__content__card .poi_panel__info__hours__status__text').innerText,
+    }
+  })
+  expect(title).toMatch(/Musée d\'Orsay/)
+  expect(address).toMatch(/1 Rue de la Légion d\'Honneur \(Paris\)/)
+  expect(hours).toMatch(/Fermé/)
+})
+
 test('load a poi already in my favorite from url', async () => {
   expect.assertions(1)
   await page.goto(APP_URL)
