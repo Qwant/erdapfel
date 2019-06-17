@@ -23,6 +23,10 @@
   font-size: 20px;
 }
 
+.mapboxgl-ctrl-icon {
+  padding: 6px;
+}
+
 .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
   @extend [class^="icon-"];
   @extend .icon-pin_geoloc;
