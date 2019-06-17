@@ -117,6 +117,7 @@ Scene.prototype.initMapBox = function() {
           //PanelManager.openAnywhere();
           const point = new LatLonPoi({lat: e.lngLat.lat, lng: e.lngLat.lng});
           console.log(point);
+          PanelManager.setPoi(point);
 
           const marker = document.createElement('div');
           marker.className = 'itinerary_marker_destination';

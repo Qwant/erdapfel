@@ -71,7 +71,6 @@ PoiPopup.prototype.showPopup = function(poi, event) {
   const category = poiSubClass(poi.subClassName);
   const reviews = poi.blocksByType.grades;
   const hours = poi.blocksByType.opening_hours;
-
   const timeMessages = poiConfigs.pois.find(poiConfig => {
     return poiConfig.apiName === 'opening_hours';
   });

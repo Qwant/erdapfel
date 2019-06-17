@@ -1,7 +1,9 @@
 <div class="poi_panel__info">
-  {{~ this.poi.blocks:block }}
-    {{? this.getBlock(block.type) }}
-      {{= this.renderBlock(block) }}
-    {{?}}
-  {{~}}
+  {{? this.poi.locks }}
+    {{~ this.poi.blocks:block }}
+        {{? this.getBlock(block.type) }}
+            {{= this.renderBlock(block) }}
+        {{?}}
+    {{~}}
+  {{?}}
 </div>

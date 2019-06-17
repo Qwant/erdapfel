@@ -112,7 +112,7 @@
 
       {{= this.PoiBlocContainer.render(this.poi) }}
 
-      {{? this.poi.isFromOSM() }}
+      {{? this.poi.isFromOSM && this.poi.isFromOSM() }}
       <div class="osm_contribute">
         <div class="osm_contribute__logo"></div>
         <div class="osm_contribute__text_container">

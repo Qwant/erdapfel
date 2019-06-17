@@ -24,6 +24,8 @@ export default class Poi {
     this.subClassName = subClassName;
     this.zoom = this.computeZoom();
     this.bbox = bbox;
+    this.blocks = [];
+    this.blocksByType = {};
   }
 
   getLngLat() {
