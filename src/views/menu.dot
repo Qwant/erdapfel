@@ -1,10 +1,22 @@
 <div class="menu__overlay" {{= click(this.close, this) }}></div>
 
-<div class="menu__button" {{= click(this.open, this) }}>
-  <div class="menu__button__line"></div>
-  <div class="menu__button__line"></div>
-  <div class="menu__button__line"></div>
-</div>
+{{? this.menuInitialized}}
+  {{? !(this.isMasqEnabled && this.isLoggedIn)}}
+  <div class="menu__button menu__button_not_logged" {{= click(this.open, this) }}>
+    <div class="menu__button__line"></div>
+    <div class="menu__button__line"></div>
+    <div class="menu__button__line"></div>
+  </div>
+  {{??}}
+  <div class="menu__button" {{= click(this.open, this) }}>
+    {{? this.profileImage}}
+      <img src={{= this.profileImage }} class="menu__button_profile_image">
+    {{??}}
+      <div class="icon-user menu__button_default_profile_image"></div>
+    {{?}}
+  </div>
+  {{?}}
+{{?}}
 
 <div class="menu">
   <div class="menu__panel">

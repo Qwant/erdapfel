@@ -41,6 +41,13 @@
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
 }
 
+.menu__panel__top__profile_image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+
 .menu__panel__top__masq__login__button_logged {
   border: solid 2px #e9eaeb;
   background-color: #e9eaeb;
