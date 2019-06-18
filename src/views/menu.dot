@@ -10,12 +10,8 @@
   <div class="menu__panel">
     <div class="menu__panel__top">
       <h2 class="menu__panel__top__title">
-        {{? this.isMasqEnabled}}
-          {{= this.masqUserPanel.render() }}
-        {{??}}
-          <i class="menu__panel__top__icon icon-map"></i>
-          <span>Qwant Maps</span>
-        {{?}}
+        <i class="menu__panel__top__icon icon-map"></i>
+        <span>Qwant Maps</span>
         <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
       </h2>
 

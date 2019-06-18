@@ -2,7 +2,6 @@ import Panel from '../libs/panel';
 import menuView from '../views/menu.dot';
 import constants from '../../config/constants.yml';
 import LoginMasqPanel from './login_masq';
-import MasqUserPanel from './masq_user';
 import SearchInput from '../ui_components/search_input';
 import nconf from '../../local_modules/nconf_getter';
 
@@ -16,9 +15,8 @@ export default class Menu {
     this.isMasqEnabled = nconf.get().masq.enabled;
     if (this.isMasqEnabled) {
       this.masqPanel = new LoginMasqPanel();
-      this.masqUserPanel = new MasqUserPanel();
 
-      this.initPromise = Promise.all([this.masqPanel.init(), this.masqUserPanel.init()]).then(() => {
+      this.initPromise = this.masqPanel.init().then(() => {
         this.panel.update();
       });
     }
