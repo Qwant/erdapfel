@@ -118,7 +118,7 @@ export default class IdunnPoi extends Poi {
     }
   }
 
-  goToFeedbackUrl(template) {
+  logGradesClick(template) {
     const grades = this.blocksByType.grades;
     if (grades && grades.url) {
       Telemetry.add('reviews', 'poi', this.meta.source,
@@ -130,7 +130,6 @@ export default class IdunnPoi extends Poi {
           element: 'reviews',
         })
       );
-      window.open(grades.url, '_blank', 'noopener noreferrer');
     }
   }
 
