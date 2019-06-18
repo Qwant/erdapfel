@@ -26,15 +26,15 @@
   </p>
 {{?}}
 {{? grades }}
-  <div class="panel__note"  {{= click(this.poi.goToFeedbackUrl, this.poi, 'single') }}>
+  <a class="panel__note" rel="noopener noreferrer" href="{{= grades.url }}" {{= click(this.poi.logGradesClick, this.poi, 'single') }}>
     {{~ [...Array(5)]:star:k }}      
       <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
     {{~}}
 
-    <a class="panel__note__review_count">
+    <span class="panel__note__review_count">
       {{= grades.total_grades_count }} {{= _n('review', 'reviews', grades.total_grades_count) }}
-    </a>
-  </div>
+    </span>
+  </a>
 {{?}}
 {{? ico }}
   <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
