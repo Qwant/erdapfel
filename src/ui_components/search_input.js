@@ -84,7 +84,7 @@ export default class SearchInput {
 
   async restore(fragment) {
     let shards = UrlShards.parseUrl();
-    if (shards.length > 0) {
+    if (shards.length === 1) {
       return await this.suggest.preselect(fragment);
     }
   }
