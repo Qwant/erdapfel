@@ -874,7 +874,7 @@ msgid "DIRECTIONS"
 msgstr "ITINÉRAIRE"
 
 msgid "SEE MORE"
-msgstr "EN VOIR PLUS"
+msgstr "VOIR PLUS"
 
 msgid "SAVED"
 msgstr "ENREGISTRÉ"
