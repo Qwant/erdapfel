@@ -59,14 +59,9 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     Telemetry.add('favorite', 'poi', this.poi.meta.source);
   }
   if (this.poi.stored) {
-    this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled');
-    this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star');
     this.poi.stored = false;
     await store.del(this.poi);
   } else {
-    this.panel.removeClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star');
-    this.panel.addClassName(.2, '.poi_panel__actions__icon__store', 'icon-icon_star-filled');
-
     if (this.isMasqEnabled) {
       const isLoggedIn = await store.isLoggedIn();
       if (!isLoggedIn) {
