@@ -18,9 +18,9 @@
     {{??}}
       {{? this.successful}}
 
-        <div class="icon-check-circle"></div>
+        <div class="icon-thumbs-up"></div>
 
-        <h2 class="modal__masq_activating__message">{{= _('Masq is activated, your data is now secured !') }}</h2>
+        <h2 class="modal__masq_activating__message">{{= _('Well done, Masq is activated !') }}<br />{{= _('Your data is now secured, enjoy !') }}</h2>
 
         <div class="modal__masq_activating__buttons">
           <button class="modal__masq_activating__button modal__masq_activating__button_filled" {{= click(this.close, this) }}>{{= _('Close') }}</button>
