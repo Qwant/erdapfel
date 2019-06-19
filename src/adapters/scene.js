@@ -114,7 +114,6 @@ Scene.prototype.initMapBox = function() {
       setTimeout(()=>{
         if(!this.poiShown){
           console.log("show marker", e.lngLat);
-          //PanelManager.openAnywhere();
           const point = new LatLonPoi({lat: e.lngLat.lat, lng: e.lngLat.lng});
           console.log(point);
           PanelManager.setPoi(point);

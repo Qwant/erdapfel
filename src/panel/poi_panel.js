@@ -2,6 +2,7 @@ import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
+import LatLonPoi from '../adapters/poi/latlon_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
