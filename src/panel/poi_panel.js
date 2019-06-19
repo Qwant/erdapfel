@@ -84,36 +84,6 @@ PoiPanel.prototype.close = async function() {
   SearchInput.setInputValue('');
   this.active = false;
   this.panel.update();
-<<<<<<< HEAD
-=======
-  UrlState.pushUrl();
-};
-
-PoiPanel.prototype.restorePoi = async function(id) {
-  Telemetry.add(Telemetry.POI_RESTORE);
-
-  // LatLng poi
-  if(!window.hotLoadPoi){
-    this.poi = await LatLonPoi.fromUrl(id);
-    window.execOnMapLoaded(() => {
-      fire('map_mark_poi', this.poi);
-      fire('fit_map', this.poi, layouts.POI);
-    });
-
-    this.active = true;
-    this.sceneState.setPoiId(this.poi.id);
-    await this.panel.removeClassName(.2, '.poi_panel', 'poi_panel--hidden');
-    await this.panel.update();
-  }
-
-  // Normal PoI
-  else if (hotLoadedPoi.id === id) {
-    let hotLoadedPoi = new HotLoadPoi();
-    this.poi = hotLoadedPoi;
-    this.poi.stored = await isPoiFavorite(this.poi);
-    window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored, layout: layouts.POI });
-  }
->>>>>>> QMAPS-844 / 845 restore latlonpoi on page refresh (fix url / panel)
 };
 
 PoiPanel.prototype.setPoi = async function(poi, options = {}) {

@@ -11,7 +11,7 @@ import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
-import LatLonPoi from "./poi/latlon_poi";
+import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
@@ -113,16 +113,16 @@ Scene.prototype.initMapBox = function() {
     this.mb.on('click', (e) => {
       setTimeout(()=>{
         if(!this.poiShown){
-          console.log("show marker", e.lngLat);
+          this.cleanMarker();
           const point = new LatLonPoi({lat: e.lngLat.lat, lng: e.lngLat.lng});
-          console.log(point);
           PanelManager.setPoi(point);
-
           const marker = document.createElement('div');
-          marker.className = 'itinerary_marker_destination';
+          marker.className = 'marker-container';
           new Marker({element: marker})
               .setLngLat(e.lngLat)
               .addTo(this.mb);
+
+          this.currentMarker = marker;
         }
         e.originalEvent.stopPropagation();
       }, 500);

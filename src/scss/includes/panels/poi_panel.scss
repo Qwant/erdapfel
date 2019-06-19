@@ -576,6 +576,10 @@ $HEADER_SIZE: 40px;
   text-decoration: none;
 }
 
+.marker .icon-marker::before {
+  content: '';
+}
+
 /* symbols */
 .poi_panel__section__symbol {
   width: 20px;
