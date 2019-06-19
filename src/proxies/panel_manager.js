@@ -79,6 +79,10 @@ PanelManager.openFavorite = async function() {
 };
 
 PanelManager.openCategory = async function(options) {
+  let activeMarker = document.querySelector(".marker")
+  if(activeMarker){
+    activeMarker.remove();
+  }
   window.__panel_manager.panels.forEach(panel => {
     if (panel instanceof CategoryPanel) {
       panel.open(options);
