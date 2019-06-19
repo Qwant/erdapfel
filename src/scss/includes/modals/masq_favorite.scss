@@ -36,24 +36,6 @@
   }
 }
 
-.modal__masq_favorite__buttons {
-  display: flex;
-  margin-bottom: 20px;
-  justify-content: space-between;
-}
-
-.modal__masq_favorite__button {
-  height: 35px;
-  width: 100%;
-  border-radius: 50px;
-  background-color: $primary_text;
-  text-transform: uppercase;
-  color: $surface;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
 .modal__masq_favorite__details {
   display: flex;
   align-items: center;
@@ -74,14 +56,39 @@
   color: #353c52;
 }
 
-.modal__masq_favorite__buttons .modal__masq_favorite__secondary_button {
+.modal__masq_favorite__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal__masq_favorite__button {
+  height: 35px;
+  width: 280px;
+  border-radius: 50px;
+  background-color: $primary_text;
+  text-transform: uppercase;
+  color: $surface;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal__masq_favorite__secondary_button {
   background-color: unset;
   color: #5c6f84;
-  border: solid 1px #c8cbd3;
-  margin-right: 20px;
+  margin-top: 15px;
+  width: 120px;
 }
 
 .modal__masq_favorite__again {
+  display: flex;
+  justify-content: center;
+}
+
+.modal__masq_favorite__again_checkbox {
   margin-right: 10px;
 }
 
@@ -89,15 +96,6 @@
   .modal__masq_favorite {
     width: 100vw;
     height: 100vh;
-  }
-
-  .modal__masq_favorite__buttons {
-    flex-direction: column;
-    margin-bottom: 55px;
-  }
-
-  .modal__masq_favorite__buttons .modal__masq_favorite__secondary_button {
-    margin-bottom: 10px;
   }
 
   .modal__title {
@@ -116,5 +114,9 @@
   .modal__masq_favorite__question {
     text-align: center;
     margin-bottom: 65px;
+  }
+
+  .modal__masq_favorite__button {
+    width: 100%;
   }
 }
