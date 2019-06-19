@@ -1,0 +1,19 @@
+.deployable__list_resizer {
+  display: none;
+  margin: 10px auto 0;
+  width: 40px;
+  height: 5px;
+  background-color: #e0e1e6;
+  cursor: grab;
+  border-radius: 2.5px;
+}
+
+.deployable__list_resizer:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 640px) {
+  .deployable__list_resizer {
+    display: block;
+  }
+}

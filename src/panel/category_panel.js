@@ -1,5 +1,8 @@
 import Panel from '../libs/panel';
 import CategoryPanelView from '../views/category_panel.dot';
+import DeployableListView from '../views/deployable_list.dot';
+import DeployableList from './deployable_list'
+
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import UrlState from '../proxies/url_state';
 import IdunnPoi from '../adapters/poi/idunn_poi';
@@ -17,7 +20,10 @@ const MAX_PLACES = Number(categoryConfig.maxPlaces);
 export default class CategoryPanel {
   constructor() {
     this.minimalHourPanel = new MinimalHourPanel();
+    // this.deployableList = new DeployableList();
     this.panel = new Panel(this, CategoryPanelView);
+    // this.view = CategoryPanelView;
+    // this.panel = new Panel(this, DeployableListView);
 
     this.pois = [];
     this.categoryName = '';

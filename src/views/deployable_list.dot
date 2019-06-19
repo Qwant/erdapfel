@@ -1,0 +1,11 @@
+<div>
+  <button
+    class="category_panel_resizer"
+    onclick="return false;deployedListClick(event)"
+    onmousedown="deployedListHold(event)"
+    onmousemove="deployedListMove(event)"
+    onmouseup="deployedListStop(event)"
+  >
+  </button>
+  {{= this.panel.renderPartial(this.view) }}
+</div>
