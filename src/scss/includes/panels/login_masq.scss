@@ -39,12 +39,19 @@
   margin-left: 11px;
   margin-right: 8px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
-}
-
-.menu__panel__top__profile_image {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+}
+
+.menu__panel__top__masq_profile_icon_default {
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

@@ -7,10 +7,10 @@
       <div class="menu__panel__top__masq__login__button menu__panel__top__masq__login__button_logged">
 
         {{? this.profileImage }}
-          <img src={{= this.profileImage }} class="menu__panel__top__masq_profile_icon menu__panel__top__profile_image">
+          <img src={{= this.profileImage }} class="menu__panel__top__masq_profile_icon">
         {{??}}
-          <div class="menu__panel__top__icon menu__panel__top__default_profile_image">
-            <div class="icon-user"></div>
+          <div class="menu__panel__top__masq_profile_icon menu__panel__top__masq_profile_icon_default {{= this.defaultProfileImage.backgroundColor}}">
+            <div>{{= this.defaultProfileImage.letter}}</div>
           </div>
         {{?}}
         <span>{{= this.username }}</span>

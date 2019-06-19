@@ -19,25 +19,24 @@ export default class LoginMasqPanel {
 
     this.store.onToggleStore(async() => {
       this.isLoggedIn = await this.store.isLoggedIn();
-      if (this.isLoggedIn) {
-        const { username, profileImage } = await this.store.getUserInfo();
-        this.username = username;
-        this.profileImage = profileImage;
-      }
+      await this.getUserInfo();
       this.panel.update();
     });
 
     this.isLoggedIn = false;
     this.initPromise = this.store.isLoggedIn().then(async(b) => {
       this.isLoggedIn = b;
-
-      if (this.isLoggedIn) {
-        const userInfo = await this.store.getUserInfo();
-        this.username = userInfo.username;
-        this.profileImage = userInfo.profileImage;
-        this.panel.update();
-      }
+      await this.getUserInfo();
     });
+  }
+
+  async getUserInfo() {
+    if (this.isLoggedIn) {
+      const userInfo = await this.store.getUserInfo();
+      this.username = userInfo.username;
+      this.profileImage = userInfo.profileImage;
+      this.defaultProfileImage = userInfo.defaultProfileImage;
+    }
   }
 
   async init() {

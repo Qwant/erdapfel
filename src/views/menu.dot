@@ -12,7 +12,9 @@
     {{? this.profileImage}}
       <img src={{= this.profileImage }} class="menu__button_profile_image">
     {{??}}
-      <div class="icon-user menu__button_default_profile_image"></div>
+      <div class="menu__button_default_profile_image {{= this.defaultProfileImage.backgroundColor}}">
+        <div>{{= this.defaultProfileImage.letter}}</div>
+      </div>
     {{?}}
   </div>
   {{?}}

@@ -27,11 +27,7 @@ export default class Menu {
 
       this.store.onToggleStore(async() => {
         this.isLoggedIn = await this.store.isLoggedIn();
-        if (this.isLoggedIn) {
-          const userInfo = await this.store.getUserInfo();
-          this.username = userInfo.username;
-          this.profileImage = userInfo.profileImage;
-        }
+        await this.getUserInfo();
         await this.updateAndKeepState();
       });
 
@@ -39,12 +35,7 @@ export default class Menu {
 
       this.initPromise = this.store.isLoggedIn().then(async(b) => {
         this.isLoggedIn = b;
-
-        if (this.isLoggedIn) {
-          const userInfo = await this.store.getUserInfo();
-          this.username = userInfo.username;
-          this.profileImage = userInfo.profileImage;
-        }
+        await this.getUserInfo();
       });
 
       Promise.all([this.initPromise, this.masqPanel.init()]).then(async() => {
@@ -53,6 +44,16 @@ export default class Menu {
       });
     }
   }
+
+  async getUserInfo() {
+    if (this.isLoggedIn) {
+      const userInfo = await this.store.getUserInfo();
+      this.username = userInfo.username;
+      this.profileImage = userInfo.profileImage;
+      this.defaultProfileImage = userInfo.defaultProfileImage;
+    }
+  }
+
 
   async updateAndKeepState() {
     this.panel.update();
