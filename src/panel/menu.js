@@ -60,6 +60,7 @@ export default class Menu {
   }
 
   search() {
+    PanelManager.resetLayout();
     this.close();
     SearchInput.select();
   }
