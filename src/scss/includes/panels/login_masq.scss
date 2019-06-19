@@ -31,8 +31,6 @@
   font-size: 14px;
   font-weight: 600;
   letter-spacing: normal;
-  display: flex;
-  align-items: center;
 }
 
 .menu__panel__top__masq_profile_icon {
@@ -63,6 +61,8 @@
   line-height: 1.5;
   color: #353c52;
   text-transform: none;
+  display: flex;
+  align-items: center;
 }
 
 .icon-log-out {
