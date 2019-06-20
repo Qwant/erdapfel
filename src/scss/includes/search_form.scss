@@ -346,15 +346,22 @@ input[type="search"] {
   }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 380px) {
   .search_form__input {
-    padding-left: 45px;
     letter-spacing: -.5px;
+  }
+
+  &::placeholder {
+    font-size: 14px;
   }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 340px) {
   .search_form__input {
+    &::placeholder {
+      color: transparent;
+    }
+
     &::-webkit-input-placeholder {
       color:transparent;
     }
