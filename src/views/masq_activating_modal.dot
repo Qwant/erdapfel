@@ -1,6 +1,6 @@
 <div class="modal__masq_activating">
   <div class="modal__masq_activating__header">
-    <div class="icon-masq-by-qwant modal__masq_activating__logo"></div>
+    <div class="icon-masq modal__masq_activating__logo"></div>
     <i class="icon-x modal__masq_activating__close" {{= click(this.close, this) }}></i>
   </div>
 
