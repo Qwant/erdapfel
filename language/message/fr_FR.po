@@ -1,25 +1,23 @@
 # Translators:
 # Boo Teille <booteille@tutanota.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-# Griesner <jb.griesner@qwant.com>, 2019
 # Florent Thouvenin <github@eldar.fr>, 2019
-# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
 # Etienne Bacher <etienne.bacher@orange.fr>, 2019
+# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
 # Adrien Matissart, 2019
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-12 14:50+0200\n"
+"POT-Creation-Date: 2019-06-20 15:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2019\n"
-"Language-Team: French (France) (https://www.transifex.com/qwant-1/"
-"teams/89416/fr_FR/)\n"
-"Language: fr_FR\n"
+"Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -35,6 +33,30 @@ msgstr "Qwant Maps"
 
 msgid "Search on Qwant Maps"
 msgstr "Rechercher dans Qwant Maps"
+
+msgid "hotel"
+msgstr "hôtel"
+
+msgid "restaurant"
+msgstr "restaurant"
+
+msgid "leisure"
+msgstr "loisirs"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermarché"
+
+msgid "bank"
+msgstr "banque"
+
+msgid "pharmacy"
+msgstr "pharmacie"
+
+msgid "education"
+msgstr "éducation"
 
 msgid "Opening hours"
 msgstr "Horaires d'ouverture"
@@ -138,35 +160,11 @@ msgstr "sur Twitter"
 msgid "on Facebook"
 msgstr "sur Facebook"
 
-msgid "hotel"
-msgstr "hôtel"
-
-msgid "restaurant"
-msgstr "restaurant"
-
-msgid "leisure"
-msgstr "loisirs"
-
-msgid "bar"
-msgstr "bar"
-
-msgid "supermarket"
-msgstr "supermarché"
-
-msgid "bank"
-msgstr "banque"
-
-msgid "pharmacy"
-msgstr "pharmacie"
-
-msgid "education"
-msgstr "éducation"
+msgid "Search with Qwant Maps"
+msgstr "Chercher avec Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
-
-msgid "Search with Qwant Maps"
-msgstr "Chercher avec Qwant Maps"
 
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -783,7 +781,8 @@ msgstr "jusqu’à {nextTransitionTime}"
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
@@ -804,7 +803,7 @@ msgid "to secure your favorites on all your devices"
 msgstr "pour stocker vos préférences sur tous vos appareils"
 
 msgid "Patience, Masq is activating..."
-msgstr "Patientez, Masq est en cours d'activation..."
+msgstr "Patientez, Masq est en cours d'activation…"
 
 msgid "Cancel"
 msgstr "Annulez"
@@ -833,30 +832,34 @@ msgstr "Pourquoi choisir Masq ?"
 msgid ""
 "Masq allows you to store all your preferences while guarantying your privacy"
 msgstr ""
-"Masq vous permet de stocker les données personnelles utilisées par  Maps  tout "
-"en garantissant le respect de votre vie privée."
+"Masq vous permet de stocker les données personnelles utilisées par Maps tout"
+" en garantissant le respect de votre vie privée."
 
 msgid ""
 "Masq stores all your data on your device instead of the cloud and syncs it "
 "across all your devices."
 msgstr ""
-"En stockant vos données personnelles directement sur les disques durs de vos "
-"appareils. Vous les gardez chez vous, vous êtes propriétaire de vos données."
+"En stockant vos données personnelles directement sur les disques durs de vos"
+" appareils. Vous les gardez chez vous, vous êtes propriétaire de vos "
+"données."
 
 msgid ""
-"Find your favorite places on Qwant Maps on all your devices (available soon)."
+"Find your favorite places on Qwant Maps on all your devices (available "
+"soon)."
 msgstr ""
-"Retrouvez vos lieux et itinéraires préférés sur Qwant Maps et bientôt avec une "
-"synchronisation entre tous vos appareils (ordinateur, tablette, smartphone)."
+"Retrouvez vos lieux et itinéraires préférés sur Qwant Maps et bientôt avec "
+"une synchronisation entre tous vos appareils (ordinateur, tablette, "
+"smartphone)."
 
 msgid "Activate Masq"
 msgstr "Activer Masq"
 
 msgid ""
-"Masq is an app that offers free and secure synchronized data storing on your "
-"devices."
+"Masq is an app that offers free and secure synchronized data storing on your"
+" devices."
 msgstr ""
-"Masq est une application sécurisée et Open Source de gestion des données utilisateurs préservant la vie privée"
+"Masq est une application sécurisée et Open Source de gestion des données "
+"utilisateurs préservant la vie privée."
 
 msgid "More details"
 msgstr "Plus de détails"
@@ -963,8 +966,8 @@ msgid "Geolocation with privacy!"
 msgstr "La géolocalisation respectueuse de votre vie privée !"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -982,7 +985,9 @@ msgstr "Géolocalisation impossible"
 
 msgid ""
 "You have not allowed Qwant Maps (or your device) to access your location."
-msgstr "Vous n'avez pas autorisé Qwant Maps (ou votre appareil) à accéder à votre position."
+msgstr ""
+"Vous n'avez pas autorisé Qwant Maps (ou votre appareil) à accéder à votre "
+"position."
 
 msgid "OK"
 msgstr "OK"
@@ -1010,8 +1015,7 @@ msgid "Invert start and end"
 msgstr "Inverser Départ et Arrivée"
 
 msgid "Qwant Maps found no results for this itinerary, please try again"
-msgstr ""
-"Qwant Maps ne trouve pas de résultat pour cet itinéraire."
+msgstr "Qwant Maps ne trouve pas de résultat pour cet itinéraire."
 
 msgid "Via"
 msgstr "Via"
@@ -1066,6 +1070,9 @@ msgstr "Rechercher autour de moi"
 
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Veuillez restreindre la zone pour voir des résultats."
+
+msgid "^(?:"
+msgstr " "
 
 msgid ""
 "The connection failed between Qwant Maps and the Masq application "
