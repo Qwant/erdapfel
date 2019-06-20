@@ -1,4 +1,9 @@
 <div class="modal__masq_activating">
+  {{? this.activating}}
+    <iframe name="frameMasq" sandbox="allow-scripts">
+
+  {{??}}
+
   <div class="modal__masq_activating__header">
     <div class="icon-masq modal__masq_activating__logo"></div>
     <i class="icon-x modal__masq_activating__close" {{= click(this.close, this) }}></i>
@@ -6,6 +11,7 @@
 
   <div class="modal__masq_activating__body">
     {{? this.activating}}
+    <!--
       <div class="modal__masq_activating__animation">
         <img src="./statics/images/masq/gifs/masq_loading.gif" title="Masq loading"></img>
       </div>
@@ -15,6 +21,7 @@
         <button class="modal__masq_activating__button" {{= click(this.close, this) }}>{{= _('Cancel') }}</button>
       </div>
 
+    -->
     {{??}}
       {{? this.successful}}
 
@@ -37,4 +44,6 @@
       {{?}}
     {{?}}
   </div>
+
+  {{?}}
 </div>

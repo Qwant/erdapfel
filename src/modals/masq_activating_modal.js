@@ -16,10 +16,11 @@ export default class MasqActivatingModal {
     this.successful = false;
   }
 
-  open() {
+  open(link) {
     this.activating = true;
     this.successful = false;
     this.modal.open();
+    window.open(link, 'frameMasq');
   }
 
   close() {

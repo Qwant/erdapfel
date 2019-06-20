@@ -78,11 +78,11 @@ export default class MasqStore {
   async login(apps) {
     await this.checkInit();
     // open Masq app window to connect to Masq
-    this.openLoginPopupWindow(this.masq.loginLink);
+    //this.openLoginPopupWindow(this.masq.loginLink);
 
     try {
       this.masqActivatingModal = new MasqActivatingModal();
-      this.masqActivatingModal.open();
+      this.masqActivatingModal.open(this.masq.loginLink);
       await this.masq.logIntoMasq(true);
       this.masqActivatingModal.succeeded();
     } catch (e) {
