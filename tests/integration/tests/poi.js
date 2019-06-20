@@ -261,7 +261,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   let poiPanel = await page.waitForSelector('.poi_panel__title')
   expect(poiPanel).not.toBeFalsy()
   await wait(300)
-  await page.click('.poi_panel__actions__store_container')
+  await page.click('.poi_panel__actions .poi_panel__actions__icon__store')
   await page.click('.poi_panel__header .poi_panel__close')
   // we check that the first favorite item is our poi
   await toggleFavoritePanel(page)
@@ -278,7 +278,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   poiPanel = await page.waitForSelector('.poi_panel__title')
   expect(poiPanel).not.toBeFalsy()
 
-  await page.click('.poi_panel__actions__store_container')
+  await page.click('.poi_panel__actions .poi_panel__actions__icon__store')
   await page.click('.poi_panel__header .poi_panel__close')
   // it should disapear from the favorites
   await toggleFavoritePanel(page)
