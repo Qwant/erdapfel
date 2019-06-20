@@ -28,7 +28,6 @@
 }
 
 .search_form__input {
-  -webkit-appearance: none;
   width: 100%;
   max-width: 690px;
   height: 68px;
@@ -56,6 +55,9 @@
 }
 
 input[type="search"] {
+  /* Disable default Safari style */
+  -webkit-appearance: none;
+
   /* Disable Chrome custom 'cancel' button */
   &::-webkit-search-cancel-button {
     -webkit-appearance: none;
