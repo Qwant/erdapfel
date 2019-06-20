@@ -3,7 +3,7 @@
 
       {{? this.step === 1}}
         <div class="modal__masq_onboarding__first_header">
-          <div class="icon-masq-by-qwant modal__masq_onboarding__logo"></div>
+          <div class="icon-masq modal__masq_onboarding__logo"></div>
           <i class="icon-x modal__masq_onboarding__close" {{= click(this.close, this) }}></i>
         </div>
       {{??}}
