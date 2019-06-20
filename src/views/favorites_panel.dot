@@ -1,74 +1,73 @@
-<div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
-  <div class="favorites_panel__scroll">
-    <p class="favorites_panel__close" {{= click(this.closeAction) }}>
-      <i class="icon-x"></i>
-    </p>
-    {{? this.favoritePois.length === 0 }}
-      <h4 class="favorite_panel__container">
-        <div class="favorite_panel__container__title">{{= _('Favorite places', 'favorite panel') }}</div>
-        {{? this.isLoggedIn }}
-          <div class="icon-masq_dark favorite_panel__masq_icon"></div>
-        {{?}}
-      </h4>
-      <div class="favorite_panel__container__empty">
-        {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
-      </div>
-    {{??}}
-      <h4 class="favorite_panel__container">
-        <div class="favorite_panel__container__title">{{= _('MY FAVORITES', 'favorite panel') }}</div>
-        {{? this.isLoggedIn }}
-          <div class="icon-masq_dark favorite_panel__masq_icon"></div>
-        {{?}}
-      </h4>
-
-      {{= this.filterPanel.render() }}
-      <div class="favorite_panel__items">
-        {{~ this.favoritePois:poi:i }}
-          <div class="favorite_panel__item__more_container" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
-
-            <div class="favorite_panel__item__more_button" {{= click(this.toggleMore, this, i) }}>
-              <i class="icon-more-horizontal"></i>
-            </div>
-
-            <div class="favorite_panel__item__info">
-              {{ let ico = IconManager.get(poi); }}
-              {{? ico }}
-                <div class="favorite_panel__item__image icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-              {{??}}
-                <div class="favorite_panel__item__image favorite_panel__item__image--small icon-location"></div>
-              {{?}}
-              <p class="favorite_panel__item__title">
-                {{= poi.name ? this.htmlEncode(poi.name) : 'default' }}
-              </p>
-              <p class="favorite_panel__item__desc">
-                {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}
-              </p>
-            </div>
-
-            <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
-              <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
-                <i class="icon-share-2 favorite_panel__item__more__icon"></i>
-                <span>{{= _('Share') }}</span>
-              </p>
-              <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
-                <i class="icon-trash favorite_panel__item__more__icon"></i>
-                <span>{{= _('Delete') }}</span>
-              </p>
-            </div>
-          </div>
-        {{~}}
-      </div>
-    {{?}}
-  </div>
-  <div class="favorite_panel__masq_footer--hidden" {{= click(this.openMasqOnboarding, this)}}>
-    <div class="favorite_panel__masq_footer_text">
-      <span>{{= _('Use')}}</span>
-      <div class="icon-masq favorite_panel__masq_footer_icon"></div>
-      <span>{{= _('to secure your favorites on all your devices')}}</span>
-    </div>
-    <div class="favorite_panel__masq_footer_image"></div>
-    <p class="favorites_panel__masq_footer_close" {{= click(this.closeMasqFooter, this) }}>
-      <i class="icon-x"></i>
-    </p>
+{{? this.active }}
+<div class="poi_panel__header">
+  {{? this.favoritePois.length === 0 }}
+    <div class="poi_panel__header_title">{{= _('Favorite places', 'favorite panel') }}</div>
+  {{??}}
+    <div class="poi_panel__header_title">{{= _('MY FAVORITES', 'favorite panel') }}</div>
+  {{?}}
+  {{? this.isLoggedIn }}
+    <div class="icon-masq_dark favorite_panel__masq_icon"></div>
+  {{?}}
+  <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
+    <i class="icon-x"></i>
   </div>
 </div>
+<div class="poi_panel poi_panel--card{{= this.showMasq ? ' show_masq': ''}}">
+  <div class="favorites_container">
+  {{? this.favoritePois.length === 0 }}
+    <div class="favorite_panel__container__empty">
+      {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
+    </div>
+  {{??}}
+    {{= this.filterPanel.render() }}
+    <div class="favorite_panel__items">
+      {{~ this.favoritePois:poi:i }}
+        <div class="favorite_panel__item__more_container" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">
+
+          <div class="favorite_panel__item__more_button" {{= click(this.toggleMore, this, i) }}>
+            <i class="icon-more-horizontal"></i>
+          </div>
+
+          <div class="favorite_panel__item__info">
+            {{ let ico = IconManager.get(poi); }}
+            {{? ico }}
+              <div class="favorite_panel__item__image icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+            {{??}}
+              <div class="favorite_panel__item__image favorite_panel__item__image--small icon-location"></div>
+            {{?}}
+            <p class="favorite_panel__item__title">
+              {{= poi.name ? this.htmlEncode(poi.name) : 'default' }}
+            </p>
+            <p class="favorite_panel__item__desc">
+              {{= poi.subClassName ? this.poiSubClass(poi.subClassName) : '' }}
+            </p>
+          </div>
+
+          <div class="favorite_panel__item__more" id="favorite_more_{{= i }}">
+            <p class="favorite_panel__item__more__line" {{= click(this.openShare, this, poi) }}>
+              <i class="icon-share-2 favorite_panel__item__more__icon"></i>
+              <span>{{= _('Share') }}</span>
+            </p>
+            <p class="favorite_panel__item__more__line" {{= click(this.del, this, {poi : poi, index : i}) }}>
+              <i class="icon-trash favorite_panel__item__more__icon"></i>
+              <span>{{= _('Delete') }}</span>
+            </p>
+          </div>
+        </div>
+      {{~}}
+    </div>
+  {{?}}
+  </div>
+</div>
+<div class="favorite_panel__masq_footer{{= this.showMasq ? '' : '--hidden'}}" {{= click(this.openMasqOnboarding, this)}}>
+  <div class="favorite_panel__masq_footer_text">
+    <span>{{= _('Use')}}</span>
+    <div class="icon-masq favorite_panel__masq_footer_icon"></div>
+    <span>{{= _('to secure your favorites on all your devices')}}</span>
+  </div>
+  <div class="favorite_panel__masq_footer_image"></div>
+  <p class="favorites_panel__masq_footer_close" {{= click(this.closeMasqFooter, this) }}>
+    <i class="icon-x"></i>
+  </p>
+</div>
+{{?}}

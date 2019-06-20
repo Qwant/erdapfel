@@ -121,7 +121,7 @@ $HEADER_SIZE: 30px;
 .poi_panel__back.icon-arrow-left {
   font-size: 22px;
   position: absolute;
-  bottom: 1px;
+  bottom: -2px;
   left: 4px;
 }
 
@@ -605,6 +605,12 @@ $HEADER_SIZE: 30px;
   i {
     font-weight: bold;
   }
+}
+
+.poi_panel__header_title {
+  font-size: 13px;
+  color: #5c6f84;
+  padding: 7px 0 0 10px;
 }
 
 @media (min-width: 641px) {

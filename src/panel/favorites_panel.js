@@ -24,6 +24,7 @@ function Favorite(sharePanel) {
   this.openMoreMenuPosition = -1;
 
   this.masqEnabled = masqEnabled;
+  this.showMasq = false;
 
   document.addEventListener('click', () => {
     this.closeMoreMenu();
@@ -102,8 +103,8 @@ Favorite.prototype.open = async function() {
   await this.updateList();
 
   this.displayed = true;
-  await this.panel.removeClassName(0.3, '.favorites_panel', 'favorites_panel--hidden');
   this.active = true;
+  this.panel.update();
 };
 
 Favorite.prototype.closeAction = function() {
@@ -115,16 +116,16 @@ Favorite.prototype.close = function() {
   this.closeMoreMenu();
   this.active = false;
   this.displayed = false;
-  this.panel.addClassName(0.4, '.favorites_panel', 'favorites_panel--hidden');
+  this.panel.update();
 };
 
 Favorite.prototype.go = async function(poiStore) {
   Telemetry.add(Telemetry.FAVORITE_GO);
+  this.active = false;
+  this.panel.update();
   fire('map_mark_poi', poiStore);
   fire('fit_map', poiStore, layouts.FAVORITE);
-  this.panel.addClassName(0.3, '.favorites_panel', 'favorites_panel--hidden');
   PanelManager.loadPoiById(poiStore.id, {isFromFavorite: true});
-  this.active = false;
 };
 
 Favorite.prototype.add = async function(poi) {
@@ -155,20 +156,19 @@ Favorite.prototype.del = async function({poi, index}) {
 
 Favorite.prototype.checkDisplayMasqFooter = async function() {
   if (this.masqEnabled && !(this.isLoggedIn)) {
-    let favoriteMasqFooter = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`);
-    if (favoriteMasqFooter !== 'false') {
-      let footer = document.querySelector('.favorite_panel__masq_footer--hidden');
-      footer.classList.remove('favorite_panel__masq_footer--hidden');
-      footer.classList.add('favorite_panel__masq_footer');
+    this.showMasq = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`) !== 'false';
+
+    if (this.active === true) {
+      this.panel.update();
     }
   }
 };
 
 Favorite.prototype.closeMasqFooter = function() {
   localStorage.setItem(`qmaps_v${version}_favorite_masq_footer`, false);
-  let footer = document.querySelector('.favorite_panel__masq_footer');
-  footer.classList.add('favorite_panel__masq_footer--hidden');
-  footer.classList.remove('favorite_panel__masq_footer');
+  this.showMasq = false;
+
+  this.panel.update();
   Telemetry.add(Telemetry.MASQ_BANNER_CLOSE);
 };
 
