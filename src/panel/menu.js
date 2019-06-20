@@ -59,9 +59,9 @@ export default class Menu {
     ]);
   }
 
-  search() {
+  async search() {
     PanelManager.resetLayout();
-    this.close();
+    await this.close();
     SearchInput.select();
   }
 }
