@@ -23,7 +23,9 @@ export default class SceneCategory {
         const {id, name, className, subClassName, type, latLon} = poi;
         const marker = createIcon({className, subClassName, type}, name, true);
         poi.marker_id = `marker_${id}`;
-        marker.onclick = function() {
+        marker.onclick = function(e) {
+          // The event should not be propagated to the map itself
+          e.stopPropagation();
           fire('click_category_poi', poi);
         };
         marker.onmouseover = function(e){

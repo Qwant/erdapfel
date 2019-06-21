@@ -4,6 +4,7 @@ import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
 import UrlState from '../proxies/url_state';
 import HotLoadPoi from '../adapters/poi/hotload_poi';
+import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
@@ -81,6 +82,7 @@ PoiPanel.prototype.isDisplayed = function() {
 };
 
 PoiPanel.prototype.closeAction = function() {
+  SearchInput.setInputValue('');
   fire('clean_marker');
   PanelManager.resetLayout();
 };

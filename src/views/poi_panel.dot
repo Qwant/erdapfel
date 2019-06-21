@@ -29,9 +29,11 @@
 <div class="poi_panel {{= this.active ? '' : 'poi_panel--hidden ' }}{{= this.card ? 'poi_panel--card ' : '' }}">
   {{? this.poi }}
     <div class="poi_panel__content__card">
-      <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
+      {{? this.fromList }}
+      <div class="poi_panel__close" {{= this.fromList ? click(this.backToList, this) : click(this.closeAction, this) }}>
         <i class="icon-x"></i>
       </div>
+      {{?}}
       <div class="poi_panel__content__card__content">
        {{= this.panel.renderPartial(this.headerPartial) }}
        {{= this.minimalHourPanel.render() }}
