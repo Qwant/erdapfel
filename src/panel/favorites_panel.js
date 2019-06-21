@@ -169,10 +169,12 @@ Favorite.prototype.closeMasqFooter = function() {
   let footer = document.querySelector('.favorite_panel__masq_footer');
   footer.classList.add('favorite_panel__masq_footer--hidden');
   footer.classList.remove('favorite_panel__masq_footer');
+  Telemetry.add(Telemetry.MASQ_BANNER_CLOSE);
 };
 
 Favorite.prototype.openMasqOnboarding = function() {
   masqOnboardingModal.open();
+  Telemetry.add(Telemetry.MASQ_BANNER_CLICK);
 };
 
 export default Favorite;

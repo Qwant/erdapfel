@@ -4,6 +4,7 @@ import MasqOnboardingModal from './masq_onboarding_modal';
 import Store from '../adapters/store';
 import {version} from '../../config/constants.yml';
 import Error from '../adapters/error';
+import Telemetry from '../libs/telemetry';
 
 const store = new Store();
 
@@ -43,6 +44,7 @@ export default class MasqFavoriteModal {
   async openMasq() {
     try {
       await store.login();
+      Telemetry.add(Telemetry.MASQ_ADD_POI_MODAL_ACTIVATE);
     } catch (e) {
       Error.sendOnce('masq_favorite_modal', 'openMasq', 'Failed to login', e);
     }
@@ -52,6 +54,7 @@ export default class MasqFavoriteModal {
   async openOnboarding() {
     const onboardingModal = new MasqOnboardingModal();
     onboardingModal.open();
+    Telemetry.add(Telemetry.MASQ_ADD_POI_MODAL_ONBOARDING);
 
     await onboardingModal.waitForClose();
 
