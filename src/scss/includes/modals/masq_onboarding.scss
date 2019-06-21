@@ -1,6 +1,6 @@
 .modal__masq_onboarding {
   background-color: #252A39;
-  max-width: 450px;
+  width: 450px;
   border-radius: 3px;
   position: relative;
 }
@@ -148,29 +148,23 @@
     height: 100vh;
     max-width: unset;
   }
-
   .modal__masq_onboarding__text {
     padding-left: 60px;
     padding-right: 60px;
   }
-
   .modal__masq_onboarding__first_header {
     padding: 8px 10px;
   }
-
   .modal__masq_onboarding__body {
     padding: 0 25px 20px 25px;
   }
-
   .modal__masq_onboarding__header {
     padding: 36px 10px 20px 10px;
   }
-
   .modal__masq_onboarding__buttons {
     margin-bottom: 55px;
     align-items: center;
   }
-
   .modal__title {
     text-align: center;
   }
@@ -180,11 +174,9 @@
   .modal__masq_onboarding__button {
     max-width: 100vw;
   }
-
   .modal__masq_onboarding__body {
     padding: 0 10px 10px 10px;
   }
-
   .modal__masq_onboarding__text {
     padding-left: unset;
     padding-right: unset;
