@@ -1,67 +1,59 @@
 <div class="modal__masq_onboarding">
-  {{? !this.explain}}
-    <div class="modal__masq_onboarding__first">
-      <div class="modal__masq_onboarding__header">
-        <div class="icon-masq-by-qwant modal__masq_onboarding__logo"></div>
-        <i class="icon-x modal__masq_onboarding__close" {{= click(this.close, this) }}></i>
-      </div>
+    <div class="modal__masq_onboarding__steps">
 
-      <div class="modal__masq_onboarding__body">
-        <h2 class="modal__masq_onboarding__title">{{= _('Masq is an app that offers free and secure synchronized data storing on your devices.') }}</h2>
-
-        <div class="modal__masq_onboarding__image"></div>
-
-        <div class="modal__masq_onboarding__buttons">
-          <button class="modal__masq_onboarding__button modal__masq_onboarding__secondary_button" {{= click(this.openSteps, this) }}>{{= _('More details') }}</button>
-          <button class="modal__masq_onboarding__button" {{= click(this.openMasq, this) }}>{{= _('Activate Masq') }}</button>
+      {{? this.step === 1}}
+        <div class="modal__masq_onboarding__first_header">
+          <div class="icon-masq modal__masq_onboarding__logo"></div>
+          <i class="icon-x modal__masq_onboarding__close" {{= click(this.close, this) }}></i>
         </div>
-      </div>
-    </div>
+      {{??}}
 
+        <div class="modal__masq_onboarding__header">
 
-  {{??}}
-
-    <div class="modal__masq_onboarding__steps modal__masq_onboarding">
-      <div class="modal__masq_onboarding__steps_header">
-
-        {{? this.step === 1}}
-          <div>{{= _('What is Masq?')}}</div>
-        {{?? this.step === 2}}
-          <div>{{= _('How does Masq work?')}}</div>
-        {{?? this.step === 3}}
-          <div>{{= _('Why use Masq?')}}</div>
-        {{?}}
-
-        <i class="icon-x modal__masq_onboarding__close" {{= click(this.close, this) }}></i>
-      </div>
-
-      <div class="modal__masq_onboarding__body">
-        <div class="modal__masq_onboarding__steps_middle">
-          <div class="modal__masq_onboarding__steps_chevron icon-chevron-left" {{= click(this.previousStep, this)}}></div>
-
-          {{? this.step === 1}}
-            <div class="modal__masq_onboarding__steps_image modal__masq_onboarding__steps_image_1"></div>
-          {{?? this.step === 2}}
-            <div class="modal__masq_onboarding__steps_image modal__masq_onboarding__steps_image_2"></div>
+          {{? this.step === 2}}
+            <div>{{= _('What is Masq?')}}</div>
           {{?? this.step === 3}}
-            <div class="modal__masq_onboarding__steps_image modal__masq_onboarding__steps_image_3"></div>
+            <div>{{= _('How does Masq work?')}}</div>
+          {{?? this.step === 4}}
+            <div>{{= _('Why use Masq?')}}</div>
           {{?}}
 
-          <div class="modal__masq_onboarding__steps_chevron icon-chevron-right" {{= click(this.nextStep, this)}}></div>
+          <i class="icon-x modal__masq_onboarding__close" {{= click(this.close, this) }}></i>
+        </div>
+      {{?}}
+
+      <div class="modal__masq_onboarding__body">
+        <div class="modal__masq_onboarding__middle">
+          <div class="modal__masq_onboarding__chevron icon-chevron-left" {{= click(this.previousStep, this)}}></div>
+
+          {{? this.step === 1}}
+            <div class="modal__masq_onboarding__image modal__masq_onboarding__image_1"></div>
+          {{?? this.step === 2}}
+            <div class="modal__masq_onboarding__image modal__masq_onboarding__image_2"></div>
+          {{?? this.step === 3}}
+            <div class="modal__masq_onboarding__image modal__masq_onboarding__image_3"></div>
+          {{?? this.step === 4}}
+            <div class="modal__masq_onboarding__image modal__masq_onboarding__image_4"></div>
+          {{?}}
+
+          <div class="modal__masq_onboarding__chevron icon-chevron-right" {{= click(this.nextStep, this)}}></div>
         </div>
 
         {{? this.step === 1}}
-          <div class="modal__masq_onboarding__steps_text">{{= _('Masq allows you to store all your preferences while guarantying your privacy')}}</div>
+          <div class="modal__masq_onboarding__text">{{= _('Masq is an app that offers free and secure synchronized data storing on your devices.') }}</div>
         {{?? this.step === 2}}
-          <div class="modal__masq_onboarding__steps_text">{{= _('Masq stores all your data on your device instead of the cloud and syncs it across all your devices.')}}</div>
+          <div class="modal__masq_onboarding__text">{{= _('Masq allows you to store all your preferences while guarantying your privacy')}}</div>
         {{?? this.step === 3}}
-          <div class="modal__masq_onboarding__steps_text">{{= _('Find your favorite places on Qwant Maps on all your devices (available soon).')}}</div>
+          <div class="modal__masq_onboarding__text">{{= _('Masq stores all your data on your device instead of the cloud and syncs it across all your devices.')}}</div>
+        {{?? this.step === 4}}
+          <div class="modal__masq_onboarding__text">{{= _('Find your favorite places on Qwant Maps on all your devices (available soon).')}}</div>
         {{?}}
 
-        <div class="modal__masq_onboarding__steps_slider">
-          <div class="modal__masq_onboarding__steps_dot {{= this.step === 1 && 'modal__masq_onboarding__steps_dot--active'}}"></div>
-          <div class="modal__masq_onboarding__steps_dot {{= this.step === 2 && 'modal__masq_onboarding__steps_dot--active'}}"></div>
-          <div class="modal__masq_onboarding__steps_dot {{= this.step === 3 && 'modal__masq_onboarding__steps_dot--active'}}"></div>
+        <div class="modal__masq_onboarding__slider">
+          <div class="modal__masq_onboarding__dot {{= this.step === 1 && 'modal__masq_onboarding__dot--active'}}"></div>
+          <div class="modal__masq_onboarding__dot {{= this.step === 2 && 'modal__masq_onboarding__dot--active'}}"></div>
+          <div class="modal__masq_onboarding__dot {{= this.step === 3 && 'modal__masq_onboarding__dot--active'}}"></div>
+          <div class="modal__masq_onboarding__dot {{= this.step === 4 && 'modal__masq_onboarding__dot--active'}}"></div>
         </div>
 
         <div class="modal__masq_onboarding__buttons">
@@ -69,6 +61,5 @@
         </div>
       </div>
     </div>
-  {{?}}
 </div>
 

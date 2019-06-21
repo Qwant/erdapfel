@@ -1,13 +1,25 @@
 {{? this.isMasqEnabled}}
   <div class="menu__panel__top__masq">
-    <div class="icon-masq menu__panel__masq_icon"></div>
+    <div class="menu__panel__masq_icon_container">
+      <div class="icon-masq menu__panel__masq_icon" {{= click(this.openMasq, this)}}></div>
+    </div>
     {{? this.isLoggedIn}}
-      <input
-        type="button"
-        class="menu__panel__top__masq__login__button menu__panel__top__masq__login__button_logged"
-        value="{{= _('Deactivate') }}"
-        {{= click(this.logout, this) }}
-      >
+      <div class="menu__panel__top__masq__login__button menu__panel__top__masq__login__button_logged">
+
+        {{? this.profileImage }}
+          <img src={{= this.profileImage }} class="menu__panel__top__masq_profile_icon">
+        {{??}}
+          <div class="menu__panel__top__masq_profile_icon menu__panel__top__masq_profile_icon_default {{= this.defaultProfileImage.backgroundColor}}">
+            <div>{{= this.defaultProfileImage.letter}}</div>
+          </div>
+        {{?}}
+        <span>{{= this.username }}</span>
+
+      </div>
+      <div class="menu__panel__top__masq__second__button_container">
+          <div class="icon-log-out"></div>
+          <div class="menu__panel__top__masq__second__button" {{= click(this.logout, this)}}>{{= _('Deactivate') }}</a>
+      </div>
     {{??}}
       <input
         type="button"

@@ -110,12 +110,27 @@ export default class MasqStore {
 
   async getUserInfo() {
     await this.checkInit();
-    const username = await this.masq.getUsername();
-    const profileImage = await this.masq.getProfileImage();
-    return {
-      username,
-      profileImage,
-    };
+    const userInfo = {};
+    userInfo.username = await this.masq.getUsername();
+    userInfo.profileImage = await this.masq.getProfileImage();
+
+    if (!userInfo.profileImage) {
+      userInfo.defaultProfileImage = {};
+      userInfo.defaultProfileImage.letter = userInfo.username[0].toUpperCase();
+
+      const COLORS = [
+        'masq-color-cyan',
+        'masq-color-blue',
+        'masq-color-green',
+        'masq-color-red',
+        'masq-color-bluegrey',
+        'masq-color-yellow',
+      ];
+      const index = userInfo.username.charCodeAt(0) % COLORS.length;
+      userInfo.defaultProfileImage.backgroundColor = COLORS[index];
+    }
+
+    return userInfo;
   }
 
   async get(k) {

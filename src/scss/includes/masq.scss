@@ -1,5 +1,5 @@
 .icon-masq {
-  background-image: url('../images/masq/masq.svg');
+  background-image: url('../images/masq/masq-alpha.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -14,4 +14,23 @@
   background-image: url('../images/masq/masq-by-qwant.svg');
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.masq-color-cyan {
+  background-color: #00cafc;
+}
+.masq-color-blue {
+  background-color: #03a0f9;
+}
+.masq-color-green {
+  background-color: #40ae6c;
+}
+.masq-color-red {
+  background-color: #e53b5b;
+}
+.masq-color-bluegrey {
+  background-color: #5c6f84;
+}
+.masq-color-yellow {
+  background-color: #f3b100;
 }

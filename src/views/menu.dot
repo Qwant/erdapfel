@@ -1,21 +1,31 @@
 <div class="menu__overlay" {{= click(this.close, this) }}></div>
 
-<div class="menu__button" {{= click(this.open, this) }}>
-  <div class="menu__button__line"></div>
-  <div class="menu__button__line"></div>
-  <div class="menu__button__line"></div>
-</div>
+{{? this.menuInitialized}}
+  {{? !(this.isMasqEnabled && this.isLoggedIn)}}
+  <div class="menu__button menu__button_not_logged" {{= click(this.open, this) }}>
+    <div class="menu__button__line"></div>
+    <div class="menu__button__line"></div>
+    <div class="menu__button__line"></div>
+  </div>
+  {{??}}
+  <div class="menu__button" {{= click(this.open, this) }}>
+    {{? this.profileImage}}
+      <img src={{= this.profileImage }} class="menu__button_profile_image">
+    {{??}}
+      <div class="menu__button_default_profile_image {{= this.defaultProfileImage.backgroundColor}}">
+        <div>{{= this.defaultProfileImage.letter}}</div>
+      </div>
+    {{?}}
+  </div>
+  {{?}}
+{{?}}
 
 <div class="menu">
   <div class="menu__panel">
     <div class="menu__panel__top">
       <h2 class="menu__panel__top__title">
-        {{? this.isMasqEnabled}}
-          {{= this.masqUserPanel.render() }}
-        {{??}}
-          <i class="menu__panel__top__icon icon-map"></i>
-          <span>Qwant Maps</span>
-        {{?}}
+        <i class="menu__panel__top__icon icon-map"></i>
+        <span>Qwant Maps</span>
         <i class="icon-x menu__panel__top__close" {{= click(this.close, this) }}></i>
       </h2>
 

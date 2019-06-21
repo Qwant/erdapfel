@@ -19,12 +19,12 @@
     <div class="modal__masq_favorite__question">{{= _('Do you want to synchronize your favorites with Masq ?') }}</div>
 
     <div class="modal__masq_favorite__buttons">
-      <button class="modal__masq_favorite__button modal__masq_favorite__secondary_button" {{= click(this.close, this) }}>{{= _('No thanks') }}</button>
       <button class="modal__masq_favorite__button" {{= click(this.openMasq, this) }}>{{= _('Activate Masq') }}</button>
+      <button class="modal__masq_favorite__button modal__masq_favorite__secondary_button" {{= click(this.close, this) }}>{{= _('No thanks') }}</button>
     </div>
 
-    <div>
-      <input type="checkbox" class="modal__masq_favorite__again" name="doNotAsk" id="doNotAsk"></input>
+    <div class="modal__masq_favorite__again">
+      <input type="checkbox" class="modal__masq_favorite__again_checkbox" name="doNotAsk" id="doNotAsk"></input>
       <label for="doNotAsk">{{= _('Do not ask again') }}</label>
     </div>
   </div>

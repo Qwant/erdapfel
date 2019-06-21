@@ -1,5 +1,6 @@
 .modal__masq_activating {
-  max-width: 450px;
+  width: 450px;
+  max-width: 100vw;
   border-radius: 3px;
   position: relative;
   background-color: #252a39;
@@ -43,7 +44,7 @@
   overflow: hidden;
 }
 
-.modal__masq_activating__animation video {
+.modal__masq_activating__animation img {
   overflow: hidden;
 }
 
@@ -78,8 +79,8 @@
   color: #353c52;
 }
 
-.icon-check-circle {
-  background-image: url('../images/masq/check-circle.svg');
+.icon-thumbs-up {
+  background-image: url('../images/masq/thumbs-up.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -112,7 +113,7 @@
     height: 100vh;
   }
 
-  .icon-check-circle {
+  .icon-thumbs-up {
     margin-top: 20px;
     margin-bottom: 30px;
   }

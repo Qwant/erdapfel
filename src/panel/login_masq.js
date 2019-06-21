@@ -12,15 +12,35 @@ export default class LoginMasqPanel {
     this.store = new Store();
 
     this.isMasqEnabled = nconf.get().masq.enabled;
+    this.baseMasqAppUrl = nconf.get().masq.baseMasqAppUrl;
+
+    this.username = null;
+    this.profileImage = null;
 
     this.store.onToggleStore(async() => {
       this.isLoggedIn = await this.store.isLoggedIn();
+      await this.getUserInfo();
       this.panel.update();
+    });
+
+    this.isLoggedIn = false;
+    this.initPromise = this.store.isLoggedIn().then(async(b) => {
+      this.isLoggedIn = b;
+      await this.getUserInfo();
     });
   }
 
+  async getUserInfo() {
+    if (this.isLoggedIn) {
+      const userInfo = await this.store.getUserInfo();
+      this.username = userInfo.username;
+      this.profileImage = userInfo.profileImage;
+      this.defaultProfileImage = userInfo.defaultProfileImage;
+    }
+  }
+
   async init() {
-    this.isLoggedIn = await this.store.isLoggedIn();
+    await this.initPromise;
   }
 
   async login() {
@@ -37,5 +57,9 @@ export default class LoginMasqPanel {
 
   openMasqOnboarding() {
     masqOnboardingModal.open();
+  }
+
+  openMasq() {
+    window.open(this.baseMasqAppUrl, '_blank');
   }
 }
