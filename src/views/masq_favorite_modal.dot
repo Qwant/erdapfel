@@ -5,7 +5,7 @@
   </div>
 
   <div class="modal__masq_favorite__body">
-    <h2 class="modal__title">{{= _('Qwant Maps + Masq is the solution for a web mapping service  respecting your privacy!') }}</h2>
+    <h2 class="modal__title">{{= _('Qwant Maps + Masq is the solution for a web mapping service respecting your privacy!') }}</h2>
 
     <div class="modal__subtitle">
       <div class="modal__masq_favorite__details">
