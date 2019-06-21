@@ -1,184 +1,184 @@
 .modal__masq_onboarding {
-    background-color: #252A39;
-    width: 450px;
-    border-radius: 3px;
-    position: relative;
+  background-color: #252A39;
+  width: 450px;
+  border-radius: 3px;
+  position: relative;
 }
 
 .modal__masq_onboarding--hidden {
-    display: none
+  display: none
 }
 
 .modal__masq_onboarding__first_header {
-    display: flex;
-    justify-content: center;
-    padding: 20px 10px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 10px;
 }
 
 .modal__masq_onboarding__close {
-    position: absolute;
-    padding: 16px 10px;
-    right: 0;
-    top: 0;
-    color: #c8cbd3;
-    font-size: 22px;
-    cursor: pointer;
+  position: absolute;
+  padding: 16px 10px;
+  right: 0;
+  top: 0;
+  color: #c8cbd3;
+  font-size: 22px;
+  cursor: pointer;
 }
 
 .modal__masq_onboarding__logo {
-    height: 73px;
-    width: 124px;
+  height: 73px;
+  width: 124px;
 }
 
 .modal__masq_onboarding__body {
-    padding: 0 40px 20px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 0 40px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal__masq_onboarding__title {
-    color: #d8d8d8;
-    font-size: 18px;
-    text-align: center;
-    font-weight: 500;
+  color: #d8d8d8;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
 }
 
 .modal__masq_onboarding__buttons {
-    display: flex;
-    margin-bottom: 20px;
-    justify-content: center;
-    width: 100%
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+  width: 100%
 }
 
 .modal__masq_onboarding__button {
-    height: 35px;
-    width: 100%;
-    max-width: 200px;
-    border-radius: 50px;
-    background-color: #ffffff;
-    text-transform: uppercase;
-    color: #353c52;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
+  height: 35px;
+  width: 100%;
+  max-width: 200px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  text-transform: uppercase;
+  color: #353c52;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .modal__masq_onboarding__middle {
-    display: flex;
-    align-items: center;
-    width: 100%
+  display: flex;
+  align-items: center;
+  width: 100%
 }
 
 .modal__masq_onboarding__header {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 10px;
-    font-size: 28px;
-    color: #ffffff;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 10px;
+  font-size: 28px;
+  color: #ffffff;
 }
 
 .modal__masq_onboarding__image {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 225px 129px;
-    width: 225px;
-    height: 129px;
-    margin: 25px auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 225px 129px;
+  width: 225px;
+  height: 129px;
+  margin: 25px auto;
 }
 
 .modal__masq_onboarding__image_1 {
-    background-image: url('../images/masq/gifs/OnBoarding01_732x420.gif');
+  background-image: url('../images/masq/gifs/OnBoarding01_732x420.gif');
 }
 
 .modal__masq_onboarding__image_2 {
-    background-image: url('../images/masq/gifs/OnBoarding02_450x258.gif');
+  background-image: url('../images/masq/gifs/OnBoarding02_450x258.gif');
 }
 
 .modal__masq_onboarding__image_3 {
-    background-image: url('../images/masq/gifs/OnBoarding03_450x258.gif');
+  background-image: url('../images/masq/gifs/OnBoarding03_450x258.gif');
 }
 
 .modal__masq_onboarding__image_4 {
-    background-image: url('../images/masq/gifs/OnBoarding04_450x258.gif');
+  background-image: url('../images/masq/gifs/OnBoarding04_450x258.gif');
 }
 
 .modal__masq_onboarding__chevron {
-    border-radius: 50%;
-    border: solid 1px #f4f6fa;
-    height: 35px;
-    width: 35px;
-    color: #c8cbd3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
+  border-radius: 50%;
+  border: solid 1px #f4f6fa;
+  height: 35px;
+  width: 35px;
+  color: #c8cbd3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .modal__masq_onboarding__text {
-    color: #c8cbd3;
-    min-height: 60px;
-    text-align: center;
+  color: #c8cbd3;
+  min-height: 60px;
+  text-align: center;
 }
 
 .modal__masq_onboarding__slider {
-    display: flex;
-    justify-content: space-between;
-    height: 5px;
-    width: 30px;
-    margin: 25px 0;
+  display: flex;
+  justify-content: space-between;
+  height: 5px;
+  width: 30px;
+  margin: 25px 0;
 }
 
 .modal__masq_onboarding__dot {
-    border-radius: 50%;
-    height: 6px;
-    width: 6px;
-    background-color: #5c6f84;
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+  background-color: #5c6f84;
 }
 
 .modal__masq_onboarding__dot--active {
-    background-color: #e0e1e6;
+  background-color: #e0e1e6;
 }
 
 @media (max-width: 640px) {
-    .modal__masq_onboarding {
-        width: 100vw;
-        height: 100vh;
-        max-width: unset;
-    }
-    .modal__masq_onboarding__text {
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-    .modal__masq_onboarding__first_header {
-        padding: 8px 10px;
-    }
-    .modal__masq_onboarding__body {
-        padding: 0 25px 20px 25px;
-    }
-    .modal__masq_onboarding__header {
-        padding: 36px 10px 20px 10px;
-    }
-    .modal__masq_onboarding__buttons {
-        margin-bottom: 55px;
-        align-items: center;
-    }
-    .modal__title {
-        text-align: center;
-    }
+  .modal__masq_onboarding {
+    width: 100vw;
+    height: 100vh;
+    max-width: unset;
+  }
+  .modal__masq_onboarding__text {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .modal__masq_onboarding__first_header {
+    padding: 8px 10px;
+  }
+  .modal__masq_onboarding__body {
+    padding: 0 25px 20px 25px;
+  }
+  .modal__masq_onboarding__header {
+    padding: 36px 10px 20px 10px;
+  }
+  .modal__masq_onboarding__buttons {
+    margin-bottom: 55px;
+    align-items: center;
+  }
+  .modal__title {
+    text-align: center;
+  }
 }
 
 @media (max-width: 370px) {
-    .modal__masq_onboarding__button {
-        max-width: 100vw;
-    }
-    .modal__masq_onboarding__body {
-        padding: 0 10px 10px 10px;
-    }
-    .modal__masq_onboarding__text {
-        padding-left: unset;
-        padding-right: unset;
-    }
+  .modal__masq_onboarding__button {
+    max-width: 100vw;
+  }
+  .modal__masq_onboarding__body {
+    padding: 0 10px 10px 10px;
+  }
+  .modal__masq_onboarding__text {
+    padding-left: unset;
+    padding-right: unset;
+  }
 }
