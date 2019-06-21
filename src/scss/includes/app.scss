@@ -115,12 +115,6 @@ BODY {
   }
 }
 
-@media (max-width: 350px) {
-  .search_form__input::placeholder {
-    font-size: 12px;
-  }
-}
-
 .map_container .marker-container {
   cursor: pointer;
   display: flex;
