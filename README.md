@@ -64,7 +64,24 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 **hint**: to debug the application from a browser, it is preferable to disable the dynamic loading of javascript files.
 When starting the server, add `TILEVIEW_system_evalFiles=false` to your config.
 
+#### Local node TLS errors (only for development and debug, **NOT** production!!!)
+
+For certain request to node server, you might see on node server logs:
+
+```text
+"msg":"unable to get local issuer certificate"
+```
+
+You can overpass this error by setting `NODE_TLS_REJECT_UNAUTHORIZED=0` on the server environment such as:
+
+```bash
+> NODE_TLS_REJECT_UNAUTHORIZED=0 npm run start
+```
+
+Again, **NEVER** use this option for something else than development!!!
+
 ### A note about webfont
+
 The icon font comes from icomoon, the icomoon project is kept in `dev/erdapfel_iconmoon.json` file. You can open it by drag and drop this file on the icomoon web page.
 
 ### Test
@@ -72,8 +89,8 @@ The icon font comes from icomoon, the icomoon project is kept in `dev/erdapfel_i
 run `TEST=true npm run build` then `npm run test` to launch all tests.
 
 #### Unit tests
-Run unit tests only with `npm run unit-test`
 
+Run unit tests only with `npm run unit-test`
 
 #### Integration tests
 Run integration tests only with `npm run integration-test`
