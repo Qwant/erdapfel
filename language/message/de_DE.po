@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-21 16:47+0000\n"
+"POT-Creation-Date: 2019-06-20 15:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Jannik Vieten <me@exploide.net>, 2019\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -24,8 +24,8 @@ msgstr ""
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "Qwant Maps - alpha"
-msgstr "Qwant Maps - alpha"
+msgid "Qwant Maps"
+msgstr "Qwant Maps"
 
 msgid "Search on Qwant Maps"
 msgstr "Auf Qwant Maps suchen"
@@ -36,8 +36,8 @@ msgstr "Hotel"
 msgid "restaurant"
 msgstr "Restaurant"
 
-msgid "cinema"
-msgstr "Kino"
+msgid "leisure"
+msgstr ""
 
 msgid "bar"
 msgstr "Bar"
@@ -155,9 +155,6 @@ msgstr "auf Twitter"
 
 msgid "on Facebook"
 msgstr "auf Facebook"
-
-msgid "Qwant Maps"
-msgstr "Qwant Maps"
 
 msgid "Search with Qwant Maps"
 msgstr "Suche mit Qwant Maps"
@@ -302,6 +299,9 @@ msgstr "Schach"
 
 msgid "chocolate shop"
 msgstr "Schokoladengeschäft"
+
+msgid "cinema"
+msgstr "Kino"
 
 msgid "climbing"
 msgstr "klettern"
@@ -865,6 +865,9 @@ msgstr "WEGBESCHREIBUNG"
 msgid "SEE MORE"
 msgstr "ZEIGE MEHR"
 
+msgid "SAVED"
+msgstr ""
+
 msgid "FAVORITES"
 msgstr "FAVORITEN"
 
@@ -882,6 +885,9 @@ msgstr "Barrierefreiheit"
 
 msgid "Beers"
 msgstr "Bier"
+
+msgid "Photos"
+msgstr ""
 
 msgid "Internet access"
 msgstr "Internetzugang"
@@ -925,6 +931,9 @@ msgstr "Qwant Maps-Dienste"
 msgid "YOUR FAVORITES"
 msgstr "DEINE FAVORITEN"
 
+msgid "MORE"
+msgstr ""
+
 msgid "Share link"
 msgstr "Link teilen"
 
@@ -955,11 +964,17 @@ msgstr "Okay, ich habe es verstanden."
 msgid "Geolocation not available."
 msgstr ""
 
-msgid "You did not allow Qwant Maps to access your position."
-msgstr "Sie haben Qwant Maps keinen Zugriff auf Ihren Standort erlaubt. "
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
 
 msgid "OK"
 msgstr "O.k."
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
 
 msgid "return"
 msgstr "zurück"
@@ -994,6 +1009,9 @@ msgstr "DETAILS"
 msgid "Start"
 msgstr "Start"
 
+msgid "Search"
+msgstr ""
+
 msgid "Directions"
 msgstr "Wegbeschreibung"
 
@@ -1012,18 +1030,25 @@ msgstr ""
 msgid "How does it work ?"
 msgstr ""
 
-msgid "PAGES JAUNES"
+msgid "Partnership"
 msgstr ""
 
-msgid "Partnership"
+msgid "PAGES JAUNES"
 msgstr ""
 
 msgid "See the phone number"
 msgstr ""
 
-msgid ""
-"Qwant Maps found no results, please rephrase your query or zoom out of the "
-"map."
+msgid "No results found. Please zoom out of the map."
+msgstr ""
+
+msgid "Search around my position"
+msgstr ""
+
+msgid "Please zoom in the map to see the results for this category."
+msgstr ""
+
+msgid "^(?:"
 msgstr ""
 
 msgid ""
