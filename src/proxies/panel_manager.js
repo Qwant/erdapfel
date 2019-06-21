@@ -97,7 +97,7 @@ PanelManager.toggleDirection = async function(options) {
         openService = true;
       }
       panel.toggle(options);
-    } else if (panel.active) {
+    } else {
       panel.close();
     }
   });
