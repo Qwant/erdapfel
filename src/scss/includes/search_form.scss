@@ -1,9 +1,9 @@
 .search_form {
   transition: max-width .3s;
-  width: calc(100% - 116px);
+  width: calc(100% - 150px);
   max-width: 690px;
   position: relative;
-  display: flex;
+  display: inline-block;
   margin: 18px 0 0 18px;
   background: #fff;
   border-radius: 34px;
@@ -28,12 +28,13 @@
 }
 
 .search_form__input {
-  width: 100%;
+  $MARGIN_LEFT: 28px;
+
+  width: calc(100% - 2 * #{$MARGIN_LEFT});
   max-width: 690px;
   height: 68px;
   padding: 10px 38px 10px 50px;
-  margin-left: 28px;
-  margin-right: 40px;
+  margin-left: $MARGIN_LEFT;
   border: none;
   font-size: 18px;
   font-weight: normal;
@@ -119,8 +120,8 @@ input[type="search"] {
   text-align: left;
   border-top: 0;
   background: $background;
-  box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
   margin-top: 8px;
+  font-size: 16px;
   /* core styles should not be changed */
   display: none;
   cursor: default;
@@ -224,6 +225,10 @@ input[type="search"] {
 
     max-width: 68px;
 
+    .search_form__input {
+      visibility: hidden;
+    }
+
     .search_form__action {
       display: none;
     }
@@ -292,6 +297,8 @@ input[type="search"] {
   .autocomplete_suggestions {
     max-height: calc(100vh - 64px);
     margin-top: -1px;
+    width: 100% !important;
+    left: 0 !important;
   }
 
   .search_form__logo {

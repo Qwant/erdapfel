@@ -29,6 +29,7 @@ function App(config) {
 
   this.handler = null
   app.set('view engine', 'ejs')
+  app.locals.rmWhitespace = true
   app.set('views', path.join(__dirname, '..', 'views'))
 
 

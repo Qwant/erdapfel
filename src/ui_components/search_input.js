@@ -24,7 +24,6 @@ export default class SearchInput {
       window.__searchInput = new SearchInput(tagSelector);
       window.clearSearch = () => {
         window.__searchInput.suggest.setValue('');
-        fire('clean_marker');
         PanelManager.resetLayout();
         setTimeout(() => {
           document.getElementById('search').focus();
@@ -48,9 +47,13 @@ export default class SearchInput {
     window.__searchInput.suggest.setValue(value);
   }
 
-  static unMinify() {
+  static unminify() {
     document.querySelector('.top_bar').classList.remove('top_bar--small');
     window.__searchInput.isEnabled = true;
+  }
+
+  static isMinified() {
+    return !window.__searchInput.isEnabled;
   }
 
   constructor(tagSelector) {

@@ -26,8 +26,8 @@
   </head>
   <body>
   <script>
-    window.baseUrl = "<%= config.system.baseUrl %>"
-    window.preferedLanguage = <%- JSON.stringify(language) %>
+    window.baseUrl = "<%= config.system.baseUrl %>";
+    window.preferedLanguage = <%- JSON.stringify(language) %>;
     <%- `window.__config = ${JSON.stringify(config,
       (k,v) => k==='server' ? undefined : v)};` %>
   </script>
@@ -43,7 +43,10 @@
         <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
         <button id="clear_button" class="search_form__clear icon-x" type="button" onmousedown="clearSearch()"></button>
         <div class="search_form__logo"></div>
-      </form>
+      </form><!-- no whitespace
+  ---><div class="minifier">
+        <span>&lt;</span>
+      </div>
     </div>
     <div class="loader_bar" id="loader-bar">
       <div id="progress-bar" class="loader_bar__progress"></div>

@@ -142,7 +142,6 @@ export default class CategoryPanel {
   }
 
   close(toggleMarkers = true) {
-    SearchInput.unMinify();
     document.querySelector('.top_bar').classList.remove('top_bar--category-open');
     this.active = false;
     this.panel.update();

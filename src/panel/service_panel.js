@@ -20,13 +20,13 @@ export default class ServicePanel{
     this.panel.update();
   }
 
-  toggleFavorite() {
-    PanelManager.toggleFavorite();
+  openFavorite() {
+    PanelManager.openFavorite();
   }
 
-  toggleDirection() {
+  openDirection() {
     if (this.isDirectionActive) {
-      PanelManager.toggleDirection();
+      PanelManager.openDirection();
     }
   }
 

@@ -24,42 +24,60 @@ const directionEnabled = nconf.get().direction.enabled;
 const masqEnabled = nconf.get().masq.enabled;
 const categoryEnabled = nconf.get().category.enabled;
 
-function AppPanel(parent) {
-  new TopBar();
-  SearchInput.initSearchInput('#search');
-  this.categoryEnabled = categoryEnabled;
-  this.directionEnabled = directionEnabled;
+export default class AppPanel {
+  constructor(parent) {
+    this.topBar = new TopBar();
+    SearchInput.initSearchInput('#search');
+    this.categoryEnabled = categoryEnabled;
+    this.directionEnabled = directionEnabled;
 
-  this.sharePanel = new Share();
-  this.servicePanel = new ServicePanel();
-  this.favoritePanel = new FavoritePanel(this.sharePanel);
-  this.poiPanel = new PoiPanel(this.sharePanel);
-  this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
-  this.directionPanel = this.directionEnabled ? new DirectionPanel(this.sharePanel) : null;
+    this.sharePanel = new Share();
+    this.servicePanel = new ServicePanel();
+    this.favoritePanel = new FavoritePanel(this.sharePanel);
+    this.poiPanel = new PoiPanel(this.sharePanel);
+    this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
+    this.directionPanel = this.directionEnabled ? new DirectionPanel(this.sharePanel) : null;
 
-  this.panel = new Panel(this, PanelsView, parent);
-  this.geolocationModal = new GeolocationModal();
-  this.geolocationDeniedModal = new GeolocationDeniedModal();
-  this.geolocationNotActivatedModal = new GeolocationNotActivatedModal();
+    this.panel = new Panel(this, PanelsView, parent);
+    this.geolocationModal = new GeolocationModal();
+    this.geolocationDeniedModal = new GeolocationDeniedModal();
+    this.geolocationNotActivatedModal = new GeolocationNotActivatedModal();
 
-  this.masqEnabled = masqEnabled;
-  if (this.masqEnabled) {
-    this.masqFavoriteModal = new MasqFavoriteModal();
-    this.masqOnboardingModal = new MasqOnboardingModal();
-    this.masqErrorModal = new MasqErrorModal();
-    this.masqActivatingModal = new MasqActivatingModal();
+    this.masqEnabled = masqEnabled;
+    if (this.masqEnabled) {
+      this.masqFavoriteModal = new MasqFavoriteModal();
+      this.masqOnboardingModal = new MasqOnboardingModal();
+      this.masqErrorModal = new MasqErrorModal();
+      this.masqActivatingModal = new MasqActivatingModal();
+    }
+
+    this.menu = new Menu();
+
+    if (performanceEnabled) {
+      this.panel.onRender = () => {
+        window.times.appRendered = Date.now();
+      };
+    }
+
+    this.panel.render();
+    Telemetry.add(Telemetry.APP_START);
   }
 
-  this.menu = new Menu();
-
-  if (performanceEnabled) {
-    this.panel.onRender = () => {
-      window.times.appRendered = Date.now();
-    };
+  minify() {
+    SearchInput.minify();
+    document.querySelector('.side_panel__container').classList.add('side_panel__container--hidden');
   }
 
-  this.panel.render();
-  Telemetry.add(Telemetry.APP_START);
+  unminify() {
+    document.querySelector('.side_panel__container').classList.remove('side_panel__container--hidden');
+    SearchInput.unminify();
+  }
+
+  toggleMinify() {
+    if (SearchInput.isMinified()) {
+      this.unminify();
+    } else {
+      this.minify();
+    }
+  }
 }
-
-export default AppPanel;

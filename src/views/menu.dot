@@ -40,12 +40,12 @@
             <span>{{= _('Search', 'menu') }}</span>
         </button>
         {{? this.isDirectionActive }}
-          <button class="menu__panel__action" {{= click(this.toggleDirection, this) }}>
+          <button class="menu__panel__action" {{= click(this.openDirection, this) }}>
             <i class="menu__panel__action__icon icon-corner-up-right"></i>
             <span>{{= _('Directions' , 'menu') }}</span>
           </button>
         {{?}}
-        <button class="menu__panel__action" {{= click(this.toggleFavorite, this) }}>
+        <button class="menu__panel__action" {{= click(this.openFavorite, this) }}>
             <i class="menu__panel__action__icon icon-icon_star"></i>
             <span>{{= _('Favorites', 'menu') }}</span>
         </button>
