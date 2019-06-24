@@ -15,11 +15,15 @@ WORKDIR $PROJECT_DIR
 ###########################################################
 
 FROM base as builder
-COPY --chown=node . $PROJECT_DIR
+COPY --chown=node package*.json $PROJECT_DIR
+COPY --chown=node build $PROJECT_DIR/build
+COPY --chown=node local_modules $PROJECT_DIR/local_modules
 
 # Install with dev and build dependencies
 # 'npm prepare' is called after install
 RUN npm install
+
+COPY --chown=node . $PROJECT_DIR
 
 RUN NODE_ENV=production npm run-script build -- --mode=production
 
@@ -33,14 +37,15 @@ FROM base
 
 ENV NODE_ENV=production
 
-COPY config $PROJECT_DIR/config
-COPY language $PROJECT_DIR/language
 COPY local_modules $PROJECT_DIR/local_modules
-COPY views $PROJECT_DIR/views
-COPY bin $PROJECT_DIR/bin
 COPY package*.json $PROJECT_DIR
-COPY --from=builder $PROJECT_DIR/public $PROJECT_DIR/public
 
 RUN npm install --production
+
+COPY config $PROJECT_DIR/config
+COPY language $PROJECT_DIR/language
+COPY views $PROJECT_DIR/views
+COPY bin $PROJECT_DIR/bin
+COPY --from=builder $PROJECT_DIR/public $PROJECT_DIR/public
 
 CMD node $PROJECT_DIR/bin/index.js
