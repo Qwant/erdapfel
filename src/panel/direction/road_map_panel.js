@@ -90,23 +90,17 @@ export default class RoadMapPanel {
     this.toggleRoute(i);
   }
 
-  duration(sec, isDisplaySeconds) {
-    let min = Math.floor(sec / 60);
+  duration(sec) {
+    sec = Math.max(60, sec); // For duration < 60s, return '1min'
+    let min = Math.round(sec / 60);
     let hour = Math.floor(min / 60);
     let ret = '';
-    if (sec < 5){
-      ret = '-';
-    } else {
-      if (hour){
-        ret += hour + 'h ';
-        min = min - 60 * hour;
-      }
-      if ((hour > 0 || min > 0) && hour < 10) {
-        ret += min + 'min ';
-      }
-      if (!hour && isDisplaySeconds) {
-        ret += Math.floor(sec - hour * 3600 - min * 60) + 's';
-      }
+    if (hour){
+      ret += hour + 'h ';
+      min = min - 60 * hour;
+    }
+    if ((hour > 0 || min > 0) && hour < 10) {
+      ret += min + 'min ';
     }
     return ret;
   }
