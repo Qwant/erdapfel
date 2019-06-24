@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 15:13+0000\n"
+"POT-Creation-Date: 2019-06-24 10:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -805,7 +805,10 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-msgid "Masq is activated, your data is now secured !"
+msgid "Well done, Masq is activated !"
+msgstr ""
+
+msgid "Your data is now secured, enjoy !"
 msgstr ""
 
 msgid "Close"
@@ -826,29 +829,25 @@ msgstr ""
 msgid "Why use Masq?"
 msgstr ""
 
+msgid "Welcome to Masq!"
+msgstr ""
+
 msgid ""
 "Masq allows you to store all your preferences while guarantying your privacy"
 msgstr ""
 
 msgid ""
-"Masq stores all your data on your device instead of the cloud and syncs it "
-"across all your devices."
+"No more need for the Cloud! Your preferences and personnal data are stored "
+"directly on your devices, they are encrypted to gurantee their security. You"
+" are the owner of your data."
 msgstr ""
 
 msgid ""
-"Find your favorite places on Qwant Maps on all your devices (available "
-"soon)."
+"In the final release you will be able to synchronize your Masq profile "
+"between all your devices in real time without any Cloud!"
 msgstr ""
 
 msgid "Activate Masq"
-msgstr ""
-
-msgid ""
-"Masq is an app that offers free and secure synchronized data storing on your"
-" devices."
-msgstr ""
-
-msgid "More details"
 msgstr ""
 
 msgid "Back to favorite"
@@ -910,11 +909,9 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-msgid "Use Masq to secure your favorites on all your devices"
-msgstr ""
-
 msgid ""
-"Masq allows you to save all your preferences while guarantying your privacy"
+"Qwant Maps + Masq is the solution for a web mapping service respecting your "
+"privacy!"
 msgstr ""
 
 msgid "More Details"

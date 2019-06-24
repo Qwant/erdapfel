@@ -3,6 +3,7 @@
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Florent Thouvenin <github@eldar.fr>, 2019
 # Etienne Bacher <etienne.bacher@orange.fr>, 2019
+# K T <kzn.tengwar@email.com>, 2019
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
 # Adrien Matissart, 2019
 # 
@@ -10,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 15:13+0000\n"
+"POT-Creation-Date: 2019-06-24 10:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2019\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -83,7 +84,7 @@ msgid "Partially wheelchair accessible"
 msgstr "Partiellement accessible en fauteuil roulant"
 
 msgid "Not wheelchair accessible"
-msgstr "Pas accessible en fauteuil roulant"
+msgstr "Non accessible en fauteuil roulant"
 
 msgid "Wheelchair accessible toilets"
 msgstr "Toilettes accessibles en fauteuil roulant"
@@ -808,8 +809,11 @@ msgstr "Patientez, Masq est en cours d'activation…"
 msgid "Cancel"
 msgstr "Annulez"
 
-msgid "Masq is activated, your data is now secured !"
-msgstr "Masq est activé, vos données sont maintenant sécurisées !"
+msgid "Well done, Masq is activated !"
+msgstr "Bien, Masq est activé !"
+
+msgid "Your data is now secured, enjoy !"
+msgstr "Vos données sont maintenant sécurisées, profitez !"
 
 msgid "Close"
 msgstr "Fermer"
@@ -829,6 +833,9 @@ msgstr "Comment ça marche ?"
 msgid "Why use Masq?"
 msgstr "Pourquoi choisir Masq ?"
 
+msgid "Welcome to Masq!"
+msgstr "Bienvenue dans Masq !"
+
 msgid ""
 "Masq allows you to store all your preferences while guarantying your privacy"
 msgstr ""
@@ -836,33 +843,23 @@ msgstr ""
 " en garantissant le respect de votre vie privée."
 
 msgid ""
-"Masq stores all your data on your device instead of the cloud and syncs it "
-"across all your devices."
+"No more need for the Cloud! Your preferences and personnal data are stored "
+"directly on your devices, they are encrypted to gurantee their security. You"
+" are the owner of your data."
 msgstr ""
-"En stockant vos données personnelles directement sur les disques durs de vos"
-" appareils. Vous les gardez chez vous, vous êtes propriétaire de vos "
-"données."
+"Plus besoin de Cloud ! Vos préférences et vos données personnelles sont "
+"stockées directement sur vos appareils, elles sont chiffrées pour garantir "
+"leur sécurité. Vous êtes le propriétaire de vos données."
 
 msgid ""
-"Find your favorite places on Qwant Maps on all your devices (available "
-"soon)."
+"In the final release you will be able to synchronize your Masq profile "
+"between all your devices in real time without any Cloud!"
 msgstr ""
-"Retrouvez vos lieux et itinéraires préférés sur Qwant Maps et bientôt avec "
-"une synchronisation entre tous vos appareils (ordinateur, tablette, "
-"smartphone)."
+"Dans la version finale vous pourrez synchroniser votre profil Masq entre "
+"tous vos appareils en temps réel sans Cloud !"
 
 msgid "Activate Masq"
 msgstr "Activer Masq"
-
-msgid ""
-"Masq is an app that offers free and secure synchronized data storing on your"
-" devices."
-msgstr ""
-"Masq est une application sécurisée et Open Source de gestion des données "
-"utilisateurs préservant la vie privée."
-
-msgid "More details"
-msgstr "Plus de détails"
 
 msgid "Back to favorite"
 msgstr "Retour aux favoris"
@@ -920,14 +917,12 @@ msgid_plural "reviews"
 msgstr[0] "avis"
 msgstr[1] "avis"
 
-msgid "Use Masq to secure your favorites on all your devices"
-msgstr "Utilisez Masq pour sauvegarder vos favoris sur tous vos appareils"
-
 msgid ""
-"Masq allows you to save all your preferences while guarantying your privacy"
+"Qwant Maps + Masq is the solution for a web mapping service respecting your "
+"privacy!"
 msgstr ""
-"Masq permet de sauvegarder vos préférences tout en garantissant la "
-"protection de votre vie privée"
+"Qwant Maps + Masq est la solution idéale pour un service de cartographie qui"
+" respecte votre vie privée !"
 
 msgid "More Details"
 msgstr "Plus de détails"
@@ -996,7 +991,7 @@ msgid ""
 "Qwant Maps cannot determine your position. Check that location services are "
 "enabled on your system."
 msgstr ""
-"Qwant Maps ne peut pas determiner votre position. Veuillez vérifier que les "
+"Qwant Maps ne peut pas déterminer votre position. Veuillez vérifier que les "
 "services de localisation sont activés sur votre système."
 
 msgid "return"
