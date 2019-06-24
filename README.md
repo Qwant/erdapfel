@@ -66,7 +66,7 @@ When starting the server, add `TILEVIEW_system_evalFiles=false` to your config.
 
 #### Local node TLS errors (only for development and debug, **NOT** production!!!)
 
-For certain request to node server, you might see on node server logs:
+Some requests to node server could trigger this message on node server logs:
 
 ```text
 "msg":"unable to get local issuer certificate"
