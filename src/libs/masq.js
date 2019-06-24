@@ -198,7 +198,7 @@ export default class MasqStore {
   }
 
   static isMasqSupported() {
-    const SUPPORTED_BROWSERS = ['chrome', 'firefox', 'safari'];
+    const SUPPORTED_BROWSERS = ['chrome', 'firefox', 'safari', 'ios', 'android', 'crios', 'fxios', 'samsung'];
     const browser = detect();
     if (!browser) {
       return false;
@@ -207,6 +207,9 @@ export default class MasqStore {
       browser.os.startsWith('Windows')
       || browser.os === 'Linux'
       || browser.os === 'Mac OS'
+      || browser.os === 'iOS'
+      || browser.os === 'Android OS'
+      || browser.os === 'Chrome OS'
     );
     const isSupportedBrowser = SUPPORTED_BROWSERS.indexOf(browser.name) !== -1;
     return isSupportedPlatform && isSupportedBrowser;
