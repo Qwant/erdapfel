@@ -1,6 +1,7 @@
 import MasqOnboardingModalView from '../views/masq_onboarding_modal.dot';
 import Modal from './modal';
 import Store from '../adapters/store';
+import Telemetry from '../libs/telemetry';
 
 const store = new Store();
 
@@ -36,6 +37,7 @@ export default class MasqOnboardingModal {
   async openMasq() {
     try {
       await store.login();
+      Telemetry.add(Telemetry.MASQ_ONBOARDING_ACTIVATE);
     } catch (e) {
       console.warn(`openMask: store.login failed: ${e}`);
     }

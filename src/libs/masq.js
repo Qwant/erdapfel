@@ -5,6 +5,7 @@ import MasqActivatingModal from '../modals/masq_activating_modal';
 import importMasq from './import_masq';
 import Poi from '../adapters/poi/poi';
 import { detect } from 'detect-browser';
+import Telemetry from '../libs/telemetry';
 
 const handleError = (fct, msg, e) => {
   Error.sendOnce('masq_store', fct, msg, e);
@@ -169,6 +170,7 @@ export default class MasqStore {
     await this.checkInit();
     try {
       await this.masq.put(k, v);
+      Telemetry.add(Telemetry.MASQ_PUT);
     } catch (e) {
       handleError('set', 'error setting item', e);
       throw e;
@@ -183,6 +185,7 @@ export default class MasqStore {
     await this.checkInit();
     try {
       await this.masq.del(k);
+      Telemetry.add(Telemetry.MASQ_DEL);
     } catch (e) {
       handleError('del', 'error removing item', e);
       throw e;

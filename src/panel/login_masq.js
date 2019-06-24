@@ -3,6 +3,7 @@ import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import nconf from '../../local_modules/nconf_getter';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
+import Telemetry from '../libs/telemetry';
 
 const masqOnboardingModal = new MasqOnboardingModal();
 
@@ -45,6 +46,7 @@ export default class LoginMasqPanel {
 
   async login() {
     try {
+      Telemetry.add(Telemetry.MASQ_MENU_ACTIVATE);
       await this.store.login();
     } catch (e) {
       console.warn(`An exception occurred in LoginMasqPanel::login: ${e}`);
@@ -52,14 +54,17 @@ export default class LoginMasqPanel {
   }
 
   async logout() {
+    Telemetry.add(Telemetry.MASQ_MENU_DESACTIVATE);
     await this.store.logout();
   }
 
   openMasqOnboarding() {
+    Telemetry.add(Telemetry.MASQ_MENU_ONBOARDING);
     masqOnboardingModal.open();
   }
 
   openMasq() {
+    Telemetry.add(Telemetry.MASQ_MENU_OPEN);
     window.open(this.baseMasqAppUrl, '_blank');
   }
 }
