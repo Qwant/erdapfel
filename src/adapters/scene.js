@@ -86,6 +86,8 @@ Scene.prototype.initMapBox = function() {
     this.onHashChange();
     new SceneDirection(this.mb);
     new SceneCategory(this.mb);
+    new ResizablePanel();
+
     if (performanceEnabled) {
       window.times.mapLoaded = Date.now();
     }

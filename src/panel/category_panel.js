@@ -1,5 +1,6 @@
 import Panel from '../libs/panel';
 import CategoryPanelView from '../views/category_panel.dot';
+import PanelResizerView from '../views/panel_resizer.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import UrlState from '../proxies/url_state';
 import IdunnPoi from '../adapters/poi/idunn_poi';
@@ -18,6 +19,7 @@ const MAX_PLACES = Number(categoryConfig.maxPlaces);
 export default class CategoryPanel {
   constructor() {
     this.minimalHourPanel = new MinimalHourPanel();
+    this.panelResizer = PanelResizerView;
     this.panel = new Panel(this, CategoryPanelView);
 
     this.pois = [];

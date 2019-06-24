@@ -1,4 +1,5 @@
 import FavoritePanelView from '../views/favorites_panel.dot';
+import PanelResizerView from '../views/panel_resizer.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import FilterPanel from './filter_panel';
@@ -20,6 +21,7 @@ function Favorite(sharePanel) {
   this.favoritePois = [];
   this.poiSubClass = poiSubClass;
   this.filterPanel = new FilterPanel();
+  this.panelResizer = PanelResizerView;
   this.sharePanel = sharePanel;
   this.openMoreMenuPosition = -1;
 
