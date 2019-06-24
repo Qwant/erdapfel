@@ -11,11 +11,6 @@ export default class TopBar {
       this.topBarHandle.classList.remove('top_bar--search_focus');
     };
 
-    let logoHandler = document.querySelector('.search_form__logo');
-    logoHandler.onclick = () => {
-      PanelManager.resetLayout();
-    };
-
     let minifierButton = document.querySelector('.top_bar .minifier');
     if (minifierButton) {
       minifierButton.onclick = () => {
