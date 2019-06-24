@@ -78,7 +78,7 @@ You can overpass this error by setting `NODE_TLS_REJECT_UNAUTHORIZED=0` on the s
 > NODE_TLS_REJECT_UNAUTHORIZED=0 npm run start
 ```
 
-Again, **NEVER** use this option for something else than development!!!
+Note that you are **NEVER** supposed to use this option for anything else than development.
 
 ### A note about webfont
 
