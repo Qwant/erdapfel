@@ -85,7 +85,13 @@ PoiPopup.prototype.showPopup = function(poi, event){
     address = poi.address.label;
   }
 
-  let popupOptions = {className: 'poi_popup__container', closeButton: false, closeOnClick: true};
+  let popupOptions = {
+    className: 'poi_popup__container',
+    closeButton: false,
+    closeOnClick: true,
+    maxWidth: 'none',
+    offset: 18, //px
+  };
 
   this.setPopupPosition(event, popupOptions);
   let htmlEncode = ExtendedString.htmlEncode;
@@ -120,12 +126,6 @@ PoiPopup.prototype.setPopupPosition = function(event, popupOptions) {
   }
 
   popupOptions.anchor = positionFragments.join('-');
-  popupOptions.offset = {
-    'bottom-left': [18, -8],
-    'bottom-right': [-18, -8],
-    'top-left': [18, 8],
-    'top-right': [-18, 8],
-  };
 };
 
 PoiPopup.prototype.close = function() {
