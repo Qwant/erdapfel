@@ -66,15 +66,15 @@ export default class Menu {
     }
   }
 
-  toggleFavorite() {
+  openFavorite() {
     this.close();
-    PanelManager.toggleFavorite();
+    PanelManager.openFavorite();
   }
 
-  toggleDirection() {
+  openDirection() {
     this.close();
     if (this.isDirectionActive) {
-      PanelManager.toggleDirection();
+      PanelManager.openDirection();
     }
   }
 

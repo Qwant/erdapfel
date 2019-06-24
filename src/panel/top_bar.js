@@ -15,5 +15,12 @@ export default class TopBar {
     logoHandler.onclick = () => {
       PanelManager.resetLayout();
     };
+
+    let minifierButton = document.querySelector('.top_bar .minifier');
+    if (minifierButton) {
+      minifierButton.onclick = () => {
+        window.app.toggleMinify();
+      };
+    }
   }
 }

@@ -19,6 +19,7 @@ PanelManager.setPoi = async function(poi, options = {}) {
       panel.close();
     }
   });
+  window.app.unminify();
 };
 
 PanelManager.loadPoiById = async function(id, options) {
@@ -47,13 +48,18 @@ PanelManager.getDirectionPanel = function() {
   return window.__panel_manager.panels.find(panel => panel instanceof DirectionPanel);
 };
 
-PanelManager.openDirection = async function() {
+PanelManager.openDirection = async function(options) {
+  /*
+    "unminify" needs to be called before panel.open :
+    DirectionPanel will minify the main search input (unused for Directions)
+  */
+  window.app.unminify();
   window.__panel_manager.panels.find((panel) => {
     if (panel instanceof DirectionPanel) {
       if (!panel.active) {
-        panel.open();
+        panel.open(options);
       }
-    } else if (panel.active && !(panel instanceof DirectionPanel)) {
+    } else if (panel.active) {
       panel.close();
     }
   });
@@ -65,10 +71,11 @@ PanelManager.openFavorite = async function() {
       if (!panel.active) {
         panel.open();
       }
-    } else if (panel.active && !(panel instanceof FavoritePanel)) {
+    } else if (panel.active) {
       panel.close();
     }
   });
+  window.app.unminify();
 };
 
 PanelManager.openCategory = async function(options) {
@@ -79,54 +86,13 @@ PanelManager.openCategory = async function(options) {
       panel.close();
     }
   });
+  window.app.unminify();
 };
 
 PanelManager.keepOnlyPoi = async function() {
   window.__panel_manager.panels.forEach((panel) => {
     if (!(panel instanceof PoiPanel) && panel.active) {
       panel.close();
-    }
-  });
-};
-
-PanelManager.toggleDirection = async function(options) {
-  let openService = false;
-  window.__panel_manager.panels.forEach((panel) => {
-    if (panel instanceof DirectionPanel) {
-      if (panel.active) {
-        openService = true;
-      }
-      panel.toggle(options);
-    } else {
-      panel.close();
-    }
-  });
-  if (openService) {
-    PanelManager.openService();
-  }
-};
-
-PanelManager.toggleFavorite = async function() {
-  let openService = false;
-  window.__panel_manager.panels.forEach((panel) => {
-    if (panel instanceof FavoritePanel) {
-      if (panel.active) {
-        openService = true;
-      }
-      panel.toggle();
-    } else if (panel.active) {
-      panel.close();
-    }
-  });
-  if (openService) {
-    PanelManager.openService();
-  }
-};
-
-PanelManager.openService = function() {
-  window.__panel_manager.panels.forEach((panel) => {
-    if (panel instanceof ServicePanel) {
-      panel.open();
     }
   });
 };
@@ -139,6 +105,7 @@ PanelManager.resetLayout = function() {
       panel.close();
     }
   });
+  window.app.unminify();
 };
 
 PanelManager.register = function(panel) {

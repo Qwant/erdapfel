@@ -163,14 +163,17 @@ export default class DirectionPanel {
       return;
     }
     Telemetry.add(Telemetry.ITINERARY_CLOSE);
-    SearchInput.unMinify();
     document.querySelector('#panels').classList.remove('panels--direction-open');
     document.querySelector('.top_bar').classList.remove('top_bar--direction-open');
-    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active');
+    const bottomButtonGroup = document.querySelector('.map_bottom_button_group');
+    if (bottomButtonGroup) {
+      // buttons may be absent during map loading
+      bottomButtonGroup.classList.remove('itinerary_preview--active');
+    }
     fire('clean_route');
+    this.cleanDirection();
     this.active = false;
     this.panel.update();
-    this.cleanDirection();
     UrlState.pushUrl();
   }
 
@@ -191,7 +194,6 @@ export default class DirectionPanel {
     if (options.poi) {
       this.destination = options.poi;
     }
-    fire('clean_marker');
     SearchInput.minify();
     this.active = true;
     await this.panel.update();

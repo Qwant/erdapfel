@@ -83,13 +83,15 @@ PoiPanel.prototype.isDisplayed = function() {
 
 PoiPanel.prototype.closeAction = function() {
   SearchInput.setInputValue('');
-  fire('clean_marker');
   PanelManager.resetLayout();
 };
 
-PoiPanel.prototype.close = async function() {
+PoiPanel.prototype.close = async function({cleanMarker = true} = {}) {
   if (!this.active) {
     return;
+  }
+  if (cleanMarker) {
+    fire('clean_marker');
   }
   this.active = false;
   this.panel.update();
@@ -193,18 +195,18 @@ PoiPanel.prototype.backToSmall = function() {
 
 PoiPanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-  PanelManager.toggleFavorite();
+  PanelManager.openFavorite();
 };
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST);
-  this.close();
+  this.close({cleanMarker: false});
   fire('restore_location');
   this.list.open();
 };
 
 PoiPanel.prototype.openDirection = function() {
-  PanelManager.toggleDirection({poi: this.poi});
+  PanelManager.openDirection({poi: this.poi});
 };
 
 PoiPanel.prototype.emptyClickOnMap = function() {

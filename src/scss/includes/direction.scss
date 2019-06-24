@@ -1,4 +1,5 @@
 #itinerary_container {
+  display: none;
   max-height: calc(100vh - 110px);
   overflow: visible;
   font-size: 12px;
@@ -11,14 +12,10 @@
   input[readonly] {
     opacity: 0.5
   }
-}
 
-.itinerary_container {
-  display: none;
-}
-
-.itinerary_container--active {
-  display: block;
+  &.itinerary_container--active {
+    display: block;
+  }
 }
 
 .itinerary_close {
@@ -33,15 +30,12 @@
 }
 
 .itinerary_title {
+  font-size: 14px;
   margin: 0;
   padding: 12px;
   text-align: center;
   text-transform: uppercase;
   color: #495063;
-}
-
-.direction_suggestions {
-  margin-top: 0;
 }
 
 .itinerary__field__clear {
@@ -120,7 +114,7 @@
   height: 40px;
   padding: 0 22px 0 44px;
   border: none;
-  font-size: 17px;
+  font-size: 16px;
   color: $primary_text;
 }
 
@@ -175,26 +169,10 @@
   color: $background;
 }
 
-.itinerary_autocomplete {
-  position: fixed;
-  width: 364px;
-  background: $background;
-  z-index: 2;
-  font-size: 16px;
-  color: $primary_text;
-}
-
-.itinerary_autocomplete_item {
-  padding: 5px 10px 0;
-  cursor: pointer;
-}
-
-.itinerary_suggest_your_position,
-.itinerary_autocomplete_item {
+.itinerary_suggest_your_position {
   border-left: 3px solid $background;
 }
-.itinerary_suggest_your_position:hover,
-.itinerary_autocomplete_item:hover {
+.itinerary_suggest_your_position:hover {
   background: #f4f6fa;
   border-left: 4px solid #ff3b4a;
 }
@@ -479,20 +457,6 @@
   margin: 0 10px 0 0;
 }
 
-.itinerary_autocomplete .autocomplete-icon {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  vertical-align: middle;
-  background-size: 100%;
-  margin: 11px 10px 0 0;
-  float: left;
-}
-
-.itinerary_autocomplete:not(:empty){
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
-}
-
 .itinerary_suggest_line1 {
   font-size: 16px;
   color: $primary_text;
@@ -504,16 +468,6 @@
   font-size: 14px;
   color: $secondary_text;
   padding: 0px 5px 5px 29px;
-}
-
-.itinerary_autocomplete .autocomplete-icon.icon::before {
-  font-size: 30px;
-  line-height: 10px;
-  margin-left: -8px;
-}
-
-.itinerary_autocomplete .autocomplete-icon.icon {
-  color: $secondary_text;
 }
 
 /* ../images/direction_icons */
@@ -671,8 +625,8 @@
     font-size: 14px;
   }
   
-  .itinerary_autocomplete {
-    width: calc(100vw - 36px);
+  .direction_suggestions {
+    position: fixed;
   }
   
   .itinerary_vehicles {
@@ -719,13 +673,6 @@
     background: $background;
     padding: 0 10px 0;
     font-size: 16px;
-  }
-  
-  .itinerary_input_focused ~ .itinerary_autocomplete {
-    position: fixed;
-    top: 65px;
-    left: 0;
-    width: 100% !important;
   }
 
   .itinerary_container--start-focused .itinerary_icon,
@@ -937,12 +884,6 @@
   .itinerary_container--start-focused #itinerary_input_destination,
   .itinerary_container--end-focused #itinerary_input_origin {
     display: none;
-  }
-
-  .autocomplete_suggestions {
-    width: 100% !important;
-    top: 65px !important;
-    left: 0 !important;
   }
 
   .direction_shortcut {

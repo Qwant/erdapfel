@@ -6,6 +6,11 @@ BODY {
   position: absolute;
   top: 104px;
   left: 18px;
+  transition: transform 0.3s;
+
+  &.side_panel__container--hidden {
+    transform: translateX(-450px);
+  }
 }
 
 .favorite_poi_panel__container {

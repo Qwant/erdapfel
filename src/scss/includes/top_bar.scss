@@ -5,6 +5,42 @@
   background-size: 820px;
   pointer-events: none;
   transition: background-size .3s;
+
+  .minifier {
+    background: $background;
+    width: 22px;
+    height: 36px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 12px;
+    text-align: center;
+    margin-left: 10px;
+    pointer-events: auto;
+    cursor: pointer;
+    @include long_shadow();
+
+    span {
+      font-size: 18px;
+      padding: 8px 0;
+      display: inline-block;
+      color: $secondary_text;
+      z-index: 2;
+      height: 100%;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  }
+}
+
+.top_bar--small {
+  .minifier {
+    span {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 @media (max-width: 640px) {
@@ -15,5 +51,9 @@
     background: url('../images/backgrounds/top_mobile.svg') no-repeat;
     background-size: 100%;
     transition: background-size 0s;
+
+    .minifier {
+      display: none;
+    }
   }
 }

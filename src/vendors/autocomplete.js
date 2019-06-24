@@ -89,8 +89,8 @@ export default function autoComplete(options) {
 
     that.updateSC = function(resize, next){
       var rect = that.getBoundingClientRect();
-      that.sc.style.left = Math.round(rect.left + (window.pageXOffset || document.documentElement.scrollLeft) + o.offsetLeft) + 'px';
-      that.sc.style.top = Math.round(rect.bottom + (window.pageYOffset || document.documentElement.scrollTop) + o.offsetTop) + 'px';
+      that.sc.style.left = Math.round(that.offsetLeft + o.offsetLeft) + 'px';
+      that.sc.style.top = Math.round(that.offsetTop + rect.bottom - rect.top + o.offsetTop) + 'px';
       that.sc.style.width = Math.round(rect.right - rect.left) + 'px'; // outerWidth
       if (!resize) {
         that.sc.style.display = 'block';
@@ -118,7 +118,7 @@ export default function autoComplete(options) {
       }
     };
     addEvent(window, 'resize', that.updateSC);
-    document.body.appendChild(that.sc);
+    that.offsetParent.appendChild(that.sc);
 
     live('autocomplete_suggestion', 'mouseleave', function(){
       var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
@@ -335,7 +335,7 @@ export default function autoComplete(options) {
       } else {
         that.removeAttribute('autocomplete');
       }
-      document.body.removeChild(that.sc);
+      that.offsetParent.removeChild(that.sc);
       that = null;
     }
   };
