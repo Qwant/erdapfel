@@ -91,7 +91,7 @@ export default class SearchInput {
 
   async selectItem(selectedItem) {
     if (selectedItem instanceof Poi) {
-      fire('fit_map', selectedItem, selectedItem.type === 'poi' ? layouts.POI : layouts.FULL);
+      fire('fit_map', selectedItem, layouts.POI);
       fire('map_mark_poi', selectedItem);
       PanelManager.loadPoiById(selectedItem.id);
     } else if (selectedItem instanceof Category) {
