@@ -244,7 +244,14 @@ test('check pre-loaded Poi error handling', async () => {
 
 async function selectPoiLevel(page, level) {
   await page.evaluate((level) => {
-    window.MAP_MOCK.evented.prepare('click', `poi-level-${level}`,  {originalEvent : {clientX : 1000},features : [{properties :{global_id : 1}}]})
+    window.MAP_MOCK.evented.prepare(
+      'click',
+      `poi-level-${level}`,
+      {
+        originalEvent: {clientX : 1000},
+        features: [{properties :{global_id : 1}}],
+      },
+    )
   }, level)
   let mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox())
   // Click on the top-left corner
@@ -253,7 +260,6 @@ async function selectPoiLevel(page, level) {
 }
 
 test('add a poi as favorite and find it back in the favorite menu', async () => {
-  expect.assertions(7)
   await page.goto(APP_URL)
 
   // we select a poi and 'star' it
@@ -280,7 +286,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 
   await page.click('.poi_panel__actions .poi_panel__actions__icon__store')
   await page.click('.poi_panel__header .poi_panel__close')
-  // it should disapear from the favorites
+  // it should disappear from the favorites
   await toggleFavoritePanel(page)
   fav = await getFavorites(page)
   expect(fav).toEqual([])

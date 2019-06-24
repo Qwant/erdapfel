@@ -1,26 +1,25 @@
-<div class="favorites_panel{{= this.active ? '' : ' favorites_panel--hidden'}}">
-  <div class="favorites_panel__scroll">
-    <p class="favorites_panel__close" {{= click(this.closeAction) }}>
-      <i class="icon-x"></i>
-    </p>
+{{? this.active }}
+<div class="favorite_panel__container">
+  <div class="poi_panel__header favorites_header{{= this.favoritePois.length === 0 ? ' empty' : '' }}">
     {{? this.favoritePois.length === 0 }}
-      <h4 class="favorite_panel__container">
-        <div class="favorite_panel__container__title">{{= _('Favorite places', 'favorite panel') }}</div>
-        {{? this.isLoggedIn }}
-          <div class="icon-masq_dark favorite_panel__masq_icon"></div>
-        {{?}}
-      </h4>
+      <div class="poi_panel__header_title">{{= _('Favorite places', 'favorite panel') }}</div>
+    {{??}}
+      <div class="poi_panel__header_title">{{= _('MY FAVORITES', 'favorite panel') }}</div>
+    {{?}}
+    {{? this.isLoggedIn }}
+      <div class="icon-masq_dark favorite_panel__masq_icon"></div>
+    {{?}}
+    <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
+      <i class="icon-x"></i>
+    </div>
+  </div>
+  <div class="poi_panel poi_panel--card{{= this.showMasq ? ' show_masq': ''}}">
+    <div class="favorites_container">
+    {{? this.favoritePois.length === 0 }}
       <div class="favorite_panel__container__empty">
         {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
       </div>
     {{??}}
-      <h4 class="favorite_panel__container">
-        <div class="favorite_panel__container__title">{{= _('MY FAVORITES', 'favorite panel') }}</div>
-        {{? this.isLoggedIn }}
-          <div class="icon-masq_dark favorite_panel__masq_icon"></div>
-        {{?}}
-      </h4>
-
       {{= this.filterPanel.render() }}
       <div class="favorite_panel__items">
         {{~ this.favoritePois:poi:i }}
@@ -59,8 +58,9 @@
         {{~}}
       </div>
     {{?}}
+    </div>
   </div>
-  <div class="favorite_panel__masq_footer--hidden" {{= click(this.openMasqOnboarding, this)}}>
+  <div class="favorite_panel__masq_footer{{= this.showMasq ? '' : '--hidden'}}" {{= click(this.openMasqOnboarding, this)}}>
     <div class="favorite_panel__masq_footer_text">
       <span>{{= _('Use')}}</span>
       <div class="icon-masq favorite_panel__masq_footer_icon"></div>
@@ -72,3 +72,4 @@
     </p>
   </div>
 </div>
+{{?}}
