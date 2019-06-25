@@ -32,6 +32,7 @@ system:
 # Store
 masq:
   enabled: false
+  enabledOnMobile: true
   title: Qwant Maps
   desc: Maps application developed by Qwant
   icon: /statics/images/masq/maps-app.png

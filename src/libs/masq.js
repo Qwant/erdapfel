@@ -38,7 +38,13 @@ export default class MasqStore {
     const { Masq, MasqError } = await importMasq();
     const masqIconUrl = document.baseURI.replace(/(\/+)$/g, '') + this.config.icon;
     this.masq = new Masq(this.config.title, this.config.desc, masqIconUrl, masqOptions);
-    await this.masq.init();
+
+    try {
+      await this.masq.init();
+    } catch (e) {
+      handleError('init', 'Failed to init masq', e);
+      return;
+    }
     this.masq.eventTarget.addEventListener('replicationError', (e) => {
       handleError('replicationError', e.detail.message, e.detail);
     });
@@ -197,16 +203,23 @@ export default class MasqStore {
     return urlParams.get('masq') === '1';
   }
 
-  static isMasqSupported() {
-    const SUPPORTED_BROWSERS = ['chrome', 'firefox', 'safari'];
+  static isMasqSupported(masqConfig) {
+    const SUPPORTED_BROWSERS = ['chrome', 'firefox', 'safari', 'ios', 'android', 'crios', 'fxios', 'samsung'];
     const browser = detect();
     if (!browser) {
       return false;
     }
+    const isMobilePlatform = browser.os && (
+      browser.os === 'iOS'
+      || browser.os === 'Android OS'
+    );
+
     const isSupportedPlatform = browser.os && (
       browser.os.startsWith('Windows')
       || browser.os === 'Linux'
       || browser.os === 'Mac OS'
+      || browser.os === 'Chrome OS'
+      || (masqConfig.enabledOnMobile && isMobilePlatform)
     );
     const isSupportedBrowser = SUPPORTED_BROWSERS.indexOf(browser.name) !== -1;
     return isSupportedPlatform && isSupportedBrowser;

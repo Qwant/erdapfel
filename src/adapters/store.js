@@ -6,7 +6,7 @@ import LocalStore from '../libs/local_store';
 import MasqStore from '../libs/masq';
 
 const masqConfig = nconf.get().masq;
-if (!MasqStore.isMasqSupported() && !MasqStore.isMasqForced()) {
+if (!MasqStore.isMasqSupported(masqConfig) && !MasqStore.isMasqForced()) {
   masqConfig.enabled = false;
 }
 
