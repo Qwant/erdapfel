@@ -155,7 +155,7 @@ Favorite.prototype.del = async function({poi, index}) {
 };
 
 Favorite.prototype.checkDisplayMasqFooter = async function() {
-  this.showMasq = false
+  this.showMasq = false;
   if (this.masqEnabled && !(this.isLoggedIn)) {
     this.showMasq = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`) !== 'false';
 
