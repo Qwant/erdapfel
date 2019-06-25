@@ -106,7 +106,7 @@ BODY {
 
   .favorite_poi_panel__container {
     position: fixed;
-    height: 100%;
+    height: calc(100% - 75px);
     top: 75px;
     z-index: 3;
   }
