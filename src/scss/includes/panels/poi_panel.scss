@@ -130,7 +130,6 @@ $HEADER_SIZE: 30px;
   border-top-left-radius: 0;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
   max-height: calc(100vh - 120px - #{$HEADER_SIZE});
-  display: flex;
 }
 
 .poi_panel__back_to_favorite, .poi_panel__back_to_list {
@@ -612,6 +611,7 @@ $HEADER_SIZE: 30px;
   font-size: 13px;
   color: #5c6f84;
   padding: 7px 0 0 10px;
+  display: inline-block;
 }
 
 @media (min-width: 641px) {
