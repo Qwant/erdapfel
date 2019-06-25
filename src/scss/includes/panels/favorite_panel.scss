@@ -102,6 +102,10 @@ $MASQ_BANNER_HEIGHT: 93px;
 .favorite_panel__masq_icon {
   height: 27px;
   width: 57px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+
 }
 
 .favorite_panel__item__desc {
@@ -221,7 +225,7 @@ $MASQ_BANNER_HEIGHT: 93px;
 
   .favorite_panel__masq_footer {
     position: relative;
-    bottom: unset;
+    bottom: initial;
   }
 
   .favorite_poi_panel__container > div > .favorite_panel__container {
@@ -231,11 +235,12 @@ $MASQ_BANNER_HEIGHT: 93px;
     width: 100vw;
     transition: top 1s;
     background: #f4f6fa;
+    z-index: 3;
   }
 
   .favorite_panel__container > .favorites_header {
-    height: unset;
-    bottom: unset;
+    height: initial;
+    bottom: initial;
     position: relative;
     background: #f4f6fa;
     padding-bottom: 4px;
@@ -243,12 +248,12 @@ $MASQ_BANNER_HEIGHT: 93px;
   }
 
   .favorite_panel__container > .poi_panel.poi_panel--card {
-    box-shadow: unset;
+    box-shadow: initial;
     width: 100vw;
-    left: unset;
-    bottom: unset;
+    left: initial;
+    bottom: initial;
     max-height: calc(100vh - 200px);
-    min-height: unset;
+    min-height: initial;
     position: relative;
     background: #f4f6fa;
   }

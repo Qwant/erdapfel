@@ -304,6 +304,10 @@ Scene.prototype.addMarker = function(poi) {
   const { className, subClassName, type } = poi;
 
   const element = createIcon({ className, subClassName, type });
+  element.onclick = function(e) {
+    // click event should not be propagated to the map itself;
+    e.stopPropagation();
+  };
 
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
