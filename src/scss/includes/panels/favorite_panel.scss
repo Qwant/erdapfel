@@ -152,6 +152,7 @@ $MASQ_BANNER_HEIGHT: 93px;
 
 .favorite_panel__masq_footer {
   position: absolute;
+  height: $MASQ_BANNER_HEIGHT;
   bottom: -$MASQ_BANNER_HEIGHT;
   border-radius: 0 0 3px 3px;
   background-color: #252a39;
