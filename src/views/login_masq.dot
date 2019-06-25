@@ -4,7 +4,7 @@
       <div class="icon-masq menu__panel__masq_icon" {{= click(this.openMasq, this)}}></div>
     </div>
     {{? this.isLoggedIn}}
-      <div class="menu__panel__top__masq__login__button menu__panel__top__masq__login__button_logged">
+      <div class="menu__panel__top__masq__login__button menu__panel__top__masq__login__button_logged" {{= click(this.openMasq, this)}}>
 
         {{? this.profileImage }}
           <img src={{= this.profileImage }} class="menu__panel__top__masq_profile_icon">
