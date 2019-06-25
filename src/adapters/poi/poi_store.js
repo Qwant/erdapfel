@@ -6,10 +6,15 @@ import Telemetry from '../../libs/telemetry';
 const store = new Store();
 export default class PoiStore extends Poi {
   static async get(term) {
-    let prefixes = await store.getPrefixes(term);
-    return prefixes.map((historySuggest) => {
-      return Object.assign(new PoiStore(), historySuggest);
-    });
+    try {
+      let prefixes = await store.getPrefixes(term);
+      return prefixes.map((historySuggest) => {
+        return Object.assign(new PoiStore(), historySuggest);
+      });
+    } catch (e) {
+      Error.sendOnce('poi_store', 'get', 'error getting matching favorites', e);
+      return [];
+    }
   }
 
   static async getAll() {
