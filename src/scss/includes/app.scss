@@ -105,9 +105,10 @@ BODY {
   }
 
   .favorite_poi_panel__container {
-    position: absolute;
-    height: 100%;
+    position: fixed;
+    height: calc(100% - 75px);
     top: 75px;
+    z-index: 3;
   }
 
   .map_container .map_control__scale_attribute_container {
