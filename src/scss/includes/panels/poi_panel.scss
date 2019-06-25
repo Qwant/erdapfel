@@ -778,4 +778,8 @@ $HEADER_SIZE: 30px;
     border-color: $primary_text;
     color: #fff;
   }
+
+  .poi_panel__back_to_favorite, .poi_panel__back_to_list {
+    top: 70px;
+  }
 }

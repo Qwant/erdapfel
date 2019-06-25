@@ -16,6 +16,13 @@
         <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
         {{?}}
       </div>
+    {{?? !this.card }}
+      <div class="poi_panel__back_mobile" {{= click(this.backToSmall, this) }}>
+        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back') }}
+        {{? this.poi.isFromPagesjaunes() }}
+          <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
+        {{?}}
+      </div>
     {{??}}
       {{? this.poi.isFromPagesjaunes() }}
         <div class="poi_panel__pj_logo_container">
@@ -23,15 +30,11 @@
         </div>
       {{?}}
     {{?}}
+
     <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
       <i class="icon-x"></i>
     </div>
-    {{? this.card }}
-    {{??}}
-      <div class="poi_panel__back_mobile" {{= click(this.backToSmall, this) }}>
-        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back') }}
-      </div>
-    {{?}}
+
   </div>
 {{?}}
 <div class="poi_panel{{= this.active ? '' : ' poi_panel--hidden' }}{{= this.card ? ' poi_panel--card ' : '' }}">
