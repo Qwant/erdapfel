@@ -16,9 +16,11 @@ import DirectionPoi from './poi/specials/direction_poi';
 import UrlShards from '../proxies/url_shards';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
+import SceneEasterEgg from './scene_easter_egg';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
+const easterEggsEnabled = nconf.get().app.easterEggs;
 
 const store = new LocalStore();
 
@@ -151,6 +153,11 @@ Scene.prototype.initMapBox = function() {
         PanelManager.emptyClickOnMap();
       }
     });
+
+    /* Easter egg for beta */
+    if (easterEggsEnabled) {
+      SceneEasterEgg.enableEggs(this.mb);
+    }
 
     window.execOnMapLoaded = (f) => f();
     fire('map_loaded');
