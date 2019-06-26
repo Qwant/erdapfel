@@ -206,7 +206,11 @@ PoiPanel.prototype.backToList = function() {
 };
 
 PoiPanel.prototype.openDirection = function() {
-  PanelManager.openDirection({poi: this.poi});
+  PanelManager.openDirection({
+    poi: this.poi,
+    isFromList: this.fromList,
+    isFromFavorite: this.fromFavorite,
+  });
 };
 
 PoiPanel.prototype.emptyClickOnMap = function() {

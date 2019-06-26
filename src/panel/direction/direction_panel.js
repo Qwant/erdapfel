@@ -17,6 +17,7 @@ export default class DirectionPanel {
     this.panel = new Panel(this, directionTemplate);
     this.vehicles = {DRIVING: 'driving', WALKING: 'walking', CYCLING: 'cycling'};
     this.active = false;
+    this.poiBeforeOpening = null;
     this.origin = null;
     this.destination = null;
     this.vehicle = this.vehicles.DRIVING;
@@ -151,7 +152,11 @@ export default class DirectionPanel {
   }
 
   closeAction() {
-    PanelManager.resetLayout();
+    if (this.poiBeforeOpening) {
+      const { poi, isFromList, isFromFavorite } = this.poiBeforeOpening;
+      return PanelManager.setPoi(poi, { isFromList, isFromFavorite });
+    }
+    return PanelManager.resetLayout();
   }
 
   back() {
@@ -193,6 +198,7 @@ export default class DirectionPanel {
     document.querySelector('.top_bar').classList.add('top_bar--direction-open');
     if (options.poi) {
       this.destination = options.poi;
+      this.poiBeforeOpening = options;
     }
     SearchInput.minify();
     this.active = true;

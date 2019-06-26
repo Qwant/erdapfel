@@ -15,7 +15,7 @@ PanelManager.setPoi = async function(poi, options = {}) {
   window.__panel_manager.panels.forEach((panel) => {
     if (panel.isPoiComplient) {
       panel.setPoi(poi, options);
-    } else if (!options.isFromList && !options.isFromFavorite){
+    } else if (!options.isFromList || !options.isFromFavorite){
       panel.close();
     }
   });
