@@ -27,20 +27,24 @@ $category_panel_head_height : 40px;
   height: $category_panel_head_height;
 }
 
+.category__panel__pj {
+  height: 40px;
+  line-height: 20px;
+}
+
 .category__panel__logo_pj {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   display: inline-block;
   vertical-align: middle;
-  margin: 5px 10px 0 0;
+  margin-right: 11px;
 }
 
 .category__panel__title {
-  font-weight: 500;
+  font-weight: 400;
   color: #353c52;
   font-size: 12px;
   text-transform: uppercase;
-  vertical-align: middle;
 }
 
 .category__panel__partnership_icon {
@@ -66,11 +70,21 @@ $category_panel_head_height : 40px;
 
 .category__panel__close {
   float: right;
-  margin: 4px 9px 0 9px;
-  padding: 5px;
-  background-size: 16px;
+  position: relative;
+  margin: 0 11px 0 8px;
+  width: 20px;
+  height: 40px;
   cursor: pointer;
-  font-size: 18px
+  font-size: 15px
+  
+}
+
+.category__panel__close::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $secondary_text;
 }
 
 .category__panel__item {
