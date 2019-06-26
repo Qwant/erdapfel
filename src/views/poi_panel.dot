@@ -18,7 +18,8 @@
       </div>
     {{?? !this.card }}
       <div class="poi_panel__back_mobile" {{= click(this.backToSmall, this) }}>
-        <i class="poi_panel__back icon-chevron-left"></i>{{= _('Back') }}
+        <i class="poi_panel__back icon-arrow-left"></i>
+        <span class="poi_panel__back_text">{{= _('Back') }}</span>
         {{? this.poi.isFromPagesjaunes() }}
           <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
         {{?}}
