@@ -96,11 +96,12 @@
           </div>
         {{?}}
         {{? this.poi.blocksByType.phone}}
-          <a class="poi_panel__actions__phone_container button_container"
-            data-rel="external" rel="noopener noreferrer"
-            href="{{= this.poi.blocksByType.phone.url }}">
-            <button class="poi_panel__actions__icon icon-icon_phone">
-            </button>
+          <a class="poi_panel__actions__phone_container button_container poi_phone_container_hidden" {{= click(this.showPhone, this) }}>
+            <button class="poi_panel__actions__icon icon-icon_phone"></button>
+            <div class="poi_panel__actions__text">{{= _('SEE NUMBER', 'poi') }}</div>
+          </a>
+          <a style="display:none" class="poi_panel__actions__phone_container button_container poi_phone_container_revealed" data-rel="external" rel="noopener noreferrer" href="{{= this.poi.blocksByType.phone.url }}">
+            <button class="poi_panel__actions__icon icon-icon_phone"></button>
             <div class="poi_panel__actions__text">{{= this.htmlEncode(this.poi.blocksByType.phone.local_format) }}</div>
           </a>
         {{?}}
