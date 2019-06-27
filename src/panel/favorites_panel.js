@@ -39,7 +39,7 @@ function Favorite(sharePanel) {
     await this.updateList();
   });
 
-  listen('store_poi', async(poi) => {
+  listen('store_poi', async poi => {
     await this.add(poi);
   });
 }
@@ -141,7 +141,7 @@ Favorite.prototype.del = async function({poi, index}) {
   await this.panel.addClassName(0.3, `#favorite_item_${index}`, 'favorite_item--removed');
 
   const toDelete = [];
-  this.favoritePois = this.favoritePois.filter((favorite) => {
+  this.favoritePois = this.favoritePois.filter(favorite => {
     if (favorite === poi) {
       toDelete.push(poi);
       return false;
@@ -156,9 +156,8 @@ Favorite.prototype.del = async function({poi, index}) {
 
 Favorite.prototype.checkDisplayMasqFooter = async function() {
   this.showMasq = false;
-  if (this.masqEnabled && !(this.isLoggedIn)) {
+  if (this.masqEnabled && !this.isLoggedIn) {
     this.showMasq = localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`) !== 'false';
-
   }
   if (this.active === true) {
     this.panel.update();

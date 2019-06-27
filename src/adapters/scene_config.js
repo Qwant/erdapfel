@@ -7,7 +7,10 @@ const mapStyleConfig = nconf.get().mapStyle;
 const baseUrl = nconf.get().system.baseUrl;
 
 function sceneConfig() {
-  return Object.assign(mapStyleConfig, {spritesUrl: URI.toAbsoluteUrl(location.origin, baseUrl, mapStyleConfig.spritesUrl), fontsUrl: URI.toAbsoluteUrl(location.origin, baseUrl, mapStyleConfig.fontsUrl)});
+  return Object.assign(mapStyleConfig, {
+    spritesUrl: URI.toAbsoluteUrl(location.origin, baseUrl, mapStyleConfig.spritesUrl),
+    fontsUrl: URI.toAbsoluteUrl(location.origin, baseUrl, mapStyleConfig.fontsUrl),
+  });
 }
 
 export default function getStyle() {

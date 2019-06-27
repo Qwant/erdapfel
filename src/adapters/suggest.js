@@ -30,11 +30,11 @@ export default class Suggest {
       delay: 100,
       menuClass: menuClass,
       width: '650px',
-      updateData: (items) => {
+      updateData: items => {
         this.suggestList = items;
         this.pending = false;
       },
-      source: (term) => {
+      source: term => {
         let promise;
         if (term === '') {
           // Prerender Favorites on focus in empty field
@@ -43,7 +43,8 @@ export default class Suggest {
           promise = new Promise(async(resolve, reject) => {
             this.historyPromise = PoiStore.get(term);
             this.bragiPromise = BragiPoi.get(term);
-            this.categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : null;
+            this.categoryPromise = withCategories ?
+              CategoryService.getMatchingCategories(term) : null;
 
             try {
               const [bragiResponse, storeResponse, categoryResponse] = await Promise.all([
@@ -79,7 +80,9 @@ export default class Suggest {
       renderItems: (pois, query) => {
         let favorites = pois.filter(poi => poi instanceof PoiStore);
         let categories = pois.filter(poi => poi instanceof Category).slice(0, 1);
-        let remotes = pois.filter(poi => !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi));
+        let remotes = pois.filter(poi => {
+          return !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi);
+        });
         let suggestDom = this.prefixesRender();
 
         var nbFavorites = 0;
@@ -92,10 +95,11 @@ export default class Suggest {
         suggestDom += this.categoriesRender(categories);
 
         // fill the suggest with the remotes poi according to the remaining places
-        suggestDom += this.remotesRender(remotes.slice(0, SUGGEST_MAX_ITEMS - nbFavorites - categories.length));
+        const remotesLen = SUGGEST_MAX_ITEMS - nbFavorites - categories.length;
+        suggestDom += this.remotesRender(remotes.slice(0, remotesLen));
 
         if (favorites.length > 0) {
-          suggestDom += this.favoritesRender(favorites.slice(0, nbFavorites = query === '' ? 5 : nbFavorites));
+          suggestDom += this.favoritesRender(favorites.slice(0, query === '' ? 5 : nbFavorites));
         }
 
         return suggestDom;
@@ -116,7 +120,7 @@ export default class Suggest {
       },
     });
 
-    this.searchInputDomHandler.onkeydown = (event) => {
+    this.searchInputDomHandler.onkeydown = event => {
       if (event.keyCode !== 13) { /* prevent enter key */
         this.pending = true;
       }
@@ -145,9 +149,9 @@ export default class Suggest {
       let term = this.searchInputDomHandler.value;
       this.preselect(term);
     } else {
-      if (this.suggestList && this.suggestList.length > 0
-        && this.searchInputDomHandler.value
-        && this.searchInputDomHandler.value.length > 0) {
+      if (this.suggestList && this.suggestList.length > 0 &&
+          this.searchInputDomHandler.value &&
+          this.searchInputDomHandler.value.length > 0) {
         this.onSelect(this.suggestList[0]);
         this.searchInputDomHandler.blur();
       }
@@ -179,7 +183,11 @@ export default class Suggest {
   }
 
   favoritesRender(pois) {
-    return `<h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">${_('FAVORITES', 'autocomplete')}</h3> ${pois.map(poi => this.renderItem(poi)).join('')}`;
+    return `
+      <h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">
+        ${_('FAVORITES', 'autocomplete')}
+      </h3>
+      ${pois.map(poi => this.renderItem(poi)).join('')}`;
   }
 
   getValue() {
@@ -199,35 +207,39 @@ export default class Suggest {
   renderItem(poi) {
     const {id, name, fromHistory, className, subClassName, type, alternativeName} = poi;
     const icon = IconManager.get({className: className, subClassName: subClassName, type: type});
-    const iconDom = `<div style="color:${icon ? icon.color : ''}" class="autocomplete-icon ${`icon icon-${icon.iconClass}`}"></div>`;
+    const klass = `autocomplete-icon ${`icon icon-${icon.iconClass}`}`;
+    const iconDom = `<div style="color:${icon ? icon.color : ''}" class="${klass}"></div>`;
 
     return `
-      <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}" data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
+      <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}"
+           data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
         ${this.renderLines(iconDom, name, alternativeName)}
-      </div>
-    `;
+      </div>`;
   }
 
   renderCategory(category) {
     const { label, alternativeName, color, backgroundColor } = category;
     const icon = category.getIcon();
-    const iconDom = `<div style="color: ${color}; background: ${backgroundColor}" class="autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}"></div>`;
+    const style = `color: ${color}; background: ${backgroundColor}`;
+    const klass = `autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}`;
+    const iconDom = `<div style="${style}" class="${klass}"></div>`;
+    const categoryLabel = ExtendedString.htmlEncode(category.label);
 
     return `
-      <div class="autocomplete_suggestion" data-id="${category.id}" data-val="${ExtendedString.htmlEncode(category.label)}">
+      <div class="autocomplete_suggestion" data-id="${category.id}" data-val="${categoryLabel}">
         ${this.renderLines(iconDom, label, alternativeName)}
-      </div>
-    `;
+      </div>`;
   }
 
   renderLines(iconDom, firstLabel, secondLabel) {
+    const s_firstLabel = ExtendedString.htmlEncode(firstLabel);
+    const s_secondLabel = ExtendedString.htmlEncode(secondLabel ? secondLabel : '');
     return `
       <div class="autocomplete_suggestion__first_line__container">
         ${iconDom}
-        <div class="autocomplete_suggestion__first_line">${ExtendedString.htmlEncode(firstLabel)}</div>
+        <div class="autocomplete_suggestion__first_line">${s_firstLabel}</div>
       </div>
-      <div class="autocomplete_suggestion__second_line">${ExtendedString.htmlEncode(secondLabel ? secondLabel : '')}</div>
-    `;
+      <div class="autocomplete_suggestion__second_line">${s_secondLabel}</div>`;
   }
 }
 

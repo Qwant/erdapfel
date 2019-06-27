@@ -11,7 +11,11 @@ const ACCEPTED_LANGUAGES = [
 ];
 
 const geometries = 'geojson';
-export const vehiculeMatching = {driving: 'driving-traffic', walking: 'walking', cycling: 'cycling'};
+export const vehiculeMatching = {
+  driving: 'driving-traffic',
+  walking: 'walking',
+  cycling: 'cycling',
+};
 
 export default class DirectionApi {
 
@@ -20,7 +24,7 @@ export default class DirectionApi {
     let directionsUrl = directionConfig.apiBaseUrl;
     let userLang = window.getLang();
     let language;
-    if (ACCEPTED_LANGUAGES.indexOf(userLang.code) !== -1){
+    if (ACCEPTED_LANGUAGES.indexOf(userLang.code) !== -1) {
       language = userLang.locale;
     } else {
       language = userLang.fallback[0];
@@ -33,30 +37,32 @@ export default class DirectionApi {
       overview: OVERVIEW_SETTING,
     };
 
-    if (exclude){
+    if (exclude) {
       directionsParams['exclude'] = exclude;
     }
 
-    if (directionConfig.api === 'mapbox'){
+    if (directionConfig.api === 'mapbox') {
       directionsUrl = `${directionsUrl}${apiVehicle}/`;
       directionsParams.access_token = directionConfig.token;
-    } else if (directionConfig.api === 'qwant'){
+    } else if (directionConfig.api === 'qwant') {
       directionsParams.type = apiVehicle;
     }
-    directionsUrl = `${directionsUrl}${poiToMapBoxCoordinates(start)};${poiToMapBoxCoordinates(end)}`;
+    let s_start = poiToMapBoxCoordinates(start);
+    let s_end = poiToMapBoxCoordinates(end);
+    directionsUrl = `${directionsUrl}${s_start};${s_end}`;
     let response = null;
     try {
       response = await Ajax.get(directionsUrl, directionsParams, {timeout});
     } catch (e) {
       return;
     }
-    if (directionConfig.api === 'qwant'){
+    if (directionConfig.api === 'qwant') {
       response = response.data;
     }
     return response;
   }
 }
 
-const poiToMapBoxCoordinates = (poi) => {
+const poiToMapBoxCoordinates = poi => {
   return `${poi.latLon.lng.toFixed(7)},${poi.latLon.lat.toFixed(7)}`;
 };

@@ -85,17 +85,22 @@ export default class CategoryPanel {
     this.loading = true;
     let bbox = window.map.bbox();
     let urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
-      .map((cardinal) => cardinal.toFixed(7))
+      .map(cardinal => cardinal.toFixed(7))
       .join(',');
 
-    let {places, source} = await IdunnPoi.poiCategoryLoad(urlBBox, MAX_PLACES, this.categoryName, this.query);
+    let {places, source} = await IdunnPoi.poiCategoryLoad(
+      urlBBox,
+      MAX_PLACES,
+      this.categoryName,
+      this.query
+    );
     this.pois = places;
     this.dataSource = source;
     this.loading = false;
 
     this.panel.update();
     let container = document.querySelector('.category__panel__scroll');
-    if (container){
+    if (container) {
       container.scrollTop = 0;
     }
 
@@ -116,7 +121,7 @@ export default class CategoryPanel {
     this.active = true;
     UrlState.pushUrl();
 
-    if (window.map.mb.isMoving()){
+    if (window.map.mb.isMoving()) {
       /*
         Do not trigger API search and zoom change when the map
         is already moving, to avoid flickering.
@@ -129,11 +134,11 @@ export default class CategoryPanel {
     let currentZoom = window.map.mb.getZoom();
 
     // Zoom < 5: focus on Paris
-    if (currentZoom < 5){
+    if (currentZoom < 5) {
       window.map.mb.flyTo({center: [2.35, 48.85], zoom: 12});
-    } else if (currentZoom < 12){ // Zoom < 12: zoom up to zoom 12
+    } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
       window.map.mb.flyTo({zoom: 12});
-    } else if (currentZoom > 16){ // Zoom > 16: dezoom to zoom 16
+    } else if (currentZoom > 16) { // Zoom > 16: dezoom to zoom 16
       window.map.mb.flyTo({zoom: 16});
     } else {
       this.search();
@@ -175,15 +180,15 @@ export default class CategoryPanel {
     PanelManager.resetLayout();
   }
 
-  addCategoryMarkers(){
+  addCategoryMarkers() {
     fire('add_category_markers', this.pois);
   }
 
-  removeCategoryMarkers(){
+  removeCategoryMarkers() {
     fire('remove_category_markers', this.pois);
   }
 
-  selectPoi(poi){
+  selectPoi(poi) {
     fire('fit_map', poi, layouts.LIST);
     if (poi.meta && poi.meta.source) {
       Telemetry.add('open', 'poi', poi.meta.source,
@@ -202,21 +207,21 @@ export default class CategoryPanel {
     this.highlightPoiMarker(poi);
   }
 
-  highlightPoiMarker(poi){
+  highlightPoiMarker(poi) {
     let marker = document.getElementById(poi.marker_id);
     if (marker) {
       marker.classList.add('active');
     }
   }
 
-  unhighlightPoiMarker(poi){
+  unhighlightPoiMarker(poi) {
     let marker = document.getElementById(poi.marker_id);
     if (marker) {
       marker.classList.remove('active');
     }
   }
 
-  isSourcePagesjaunes(){
+  isSourcePagesjaunes() {
     return this.dataSource === sources.pagesjaunes;
   }
 }

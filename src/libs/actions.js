@@ -31,7 +31,7 @@ class Action {
    * @returns {string}
    */
 
-  supportedActions.forEach((actionName) => {
+  supportedActions.forEach(actionName => {
     window[actionName] = function(method, ctx, options = {}) {
       const actionPayload = {
         id: actions.size,

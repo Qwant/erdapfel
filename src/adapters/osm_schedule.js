@@ -4,7 +4,10 @@ function OsmSchedule(scheduleResponse, messages) {
   this.isTwentyFourSeven = scheduleResponse.is_24_7;
   this.days = scheduleResponse.days;
   this.displayHours = translateSchedule(this.days);
-  this.nextTransition = nextTransitionTime(scheduleResponse.seconds_before_next_transition, scheduleResponse.next_transition_datetime);
+  this.nextTransition = nextTransitionTime(
+    scheduleResponse.seconds_before_next_transition,
+    scheduleResponse.next_transition_datetime,
+  );
   this.status = scheduleStatus(scheduleResponse, messages);
 }
 
@@ -46,7 +49,7 @@ function hourToDate(hour) {
 
 function toLocaleOpeningHours(hours) {
   if (hours) {
-    return hours.map((hour) => {
+    return hours.map(hour => {
       let beginningHour = hourToDate(hour.beginning);
       let endHour = hourToDate(hour.end);
       return {
@@ -60,7 +63,7 @@ function toLocaleOpeningHours(hours) {
 
 function translateSchedule(days) {
   if (days) {
-    return days.map((day) => {
+    return days.map(day => {
       return {
         dayName: window.getDay(day.dayofweek % 7),
         opening: toLocaleOpeningHours(day.opening_hours),

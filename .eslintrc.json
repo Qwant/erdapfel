@@ -59,11 +59,16 @@
         "func-call-spacing": ["error", "never"],
         "space-infix-ops": "error",
         "space-before-function-paren": ["error", "never"],
+        "space-before-blocks": "error",
         "no-console": [
             "error",
             { "allow": ["warn", "error"] }
         ],
         "comma-dangle": ["error", "always-multiline"],
-        "comma-style": ["error", "last"]
+        "comma-style": ["error", "last"],
+        "max-len": ["error", { "code": 100, "tabWidth": 2 }],
+        "eol-last": ["error", "always"],
+        "no-extra-parens": "error",
+        "arrow-parens": ["error", "as-needed"]
     }
 }

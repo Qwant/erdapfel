@@ -45,7 +45,7 @@ export default class MasqStore {
       handleError('init', 'Failed to init masq', e);
       return;
     }
-    this.masq.eventTarget.addEventListener('replicationError', (e) => {
+    this.masq.eventTarget.addEventListener('replicationError', e => {
       handleError('replicationError', e.detail.message, e.detail);
     });
     this.MasqError = MasqError;
@@ -95,7 +95,8 @@ export default class MasqStore {
     } catch (e) {
       switch (e.code) {
       case this.MasqError.SIGNALLING_SERVER_ERROR:
-        this.masqActivatingModal.failed(_('The connection failed between Qwant Maps and the Masq application (Signalling error)'));
+        this.masqActivatingModal.failed(_('The connection failed between Qwant Maps and the Masq \
+                                           application (Signalling error)'));
         break;
       default:
         this.masqActivatingModal.failed(_('Could not connect to Masq'));
@@ -204,7 +205,8 @@ export default class MasqStore {
   }
 
   static isMasqSupported(masqConfig) {
-    const SUPPORTED_BROWSERS = ['chrome', 'firefox', 'safari', 'ios', 'android', 'crios', 'fxios', 'samsung'];
+    const SUPPORTED_BROWSERS =
+      ['chrome', 'firefox', 'safari', 'ios', 'android', 'crios', 'fxios', 'samsung'];
     const browser = detect();
     if (!browser) {
       return false;
@@ -219,6 +221,7 @@ export default class MasqStore {
       || browser.os === 'Linux'
       || browser.os === 'Mac OS'
       || browser.os === 'Chrome OS'
+      // eslint-disable-next-line
       || (masqConfig.enabledOnMobile && isMobilePlatform)
     );
     const isSupportedBrowser = SUPPORTED_BROWSERS.indexOf(browser.name) !== -1;

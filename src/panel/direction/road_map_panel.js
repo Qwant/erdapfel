@@ -19,16 +19,16 @@ export default class RoadMapPanel {
     this.openMoreMenuPosition = -1;
     this.sharePanel = sharePanel;
 
-    listen('select_road_map', (i) => {
+    listen('select_road_map', i => {
       this.toggleRoute(i);
     });
   }
 
   setRoad(routes, vehicle, origin) {
-    if (origin){
+    if (origin) {
       this.origin = origin;
     }
-    this.routes = routes.map((roadStep) => {
+    this.routes = routes.map(roadStep => {
       return roadStep;
     });
     this.vehicle = vehicle;
@@ -47,14 +47,14 @@ export default class RoadMapPanel {
     this.panel.update();
   }
 
-  showError(){
+  showError() {
     this.error = true;
     this.panel.update();
   }
 
   preview() {
     this.showRoute = false;
-    this.previewRoadMap.setRoad(this.routes.find((route) => route.isActive));
+    this.previewRoadMap.setRoad(this.routes.find(route => route.isActive));
     this.onOpen();
     this.panel.update();
     fire('show_marker_steps');
@@ -66,18 +66,24 @@ export default class RoadMapPanel {
     this.previewRoadMap.close();
     this.panel.update();
     this.onClose();
-    document.querySelector('.map_bottom_button_group').classList.remove('itinerary_preview--active');
+    document.querySelector('.map_bottom_button_group')
+      .classList
+      .remove('itinerary_preview--active');
   }
 
   toggleRoute(i) {
     fire('toggle_route', i);
 
-    let activeRoute = this.routes.find((route) => route.isActive);
-    if (activeRoute !== null){
+    let activeRoute = this.routes.find(route => route.isActive);
+    if (activeRoute !== null) {
       activeRoute.isActive = false;
       this.panel.removeClassName(0, `#itinerary_leg_${activeRoute.id}`, 'itinerary_leg--active');
-      if (activeRoute.id !== i && !Device.isMobile()){
-        this.panel.addClassName(0, `#itinerary_leg_detail_${activeRoute.id}`, 'itinerary_leg_detail--hidden');
+      if (activeRoute.id !== i && !Device.isMobile()) {
+        this.panel.addClassName(
+          0,
+          `#itinerary_leg_detail_${activeRoute.id}`,
+          'itinerary_leg_detail--hidden',
+        );
       }
     }
 
@@ -95,7 +101,7 @@ export default class RoadMapPanel {
     let min = Math.round(sec / 60);
     let hour = Math.floor(min / 60);
     let ret = '';
-    if (hour){
+    if (hour) {
       ret += hour + 'h ';
       min = min - 60 * hour;
     }
@@ -105,11 +111,11 @@ export default class RoadMapPanel {
     return ret;
   }
 
-  distance(m){
+  distance(m) {
     let ret = '';
-    if (m > 5){
-      if (m > 1000){
-        if (m > 99000){
+    if (m > 5) {
+      if (m > 1000) {
+        if (m > 99000) {
           ret = `${Math.round(m / 1000)}km`;
         } else {
           ret = `${(m / 1000).toFixed(1).replace('.', ',')}km`;
@@ -126,20 +132,20 @@ export default class RoadMapPanel {
     this.panel.update();
   }
 
-  highlightStepMarker(i){
+  highlightStepMarker(i) {
     fire('highlight_step', i);
   }
 
-  unhighlightStepMarker(i){
+  unhighlightStepMarker(i) {
     fire('unhighlight_step', i);
   }
 
-  zoomStep(step){
+  zoomStep(step) {
     fire('zoom_step', step);
   }
 
-  getVehicleIcon(){
-    switch (this.vehicle){
+  getVehicleIcon() {
+    switch (this.vehicle) {
     case 'driving':
       return 'icon-drive';
     case 'walking':
@@ -164,7 +170,7 @@ export default class RoadMapPanel {
     menu.classList.add('itinerary_panel__item__more--active');
   }
 
-  closeMoreMenu(){
+  closeMoreMenu() {
     let menu = document.querySelector(`#itinerary_more_${this.openMoreMenuPosition}`);
     if (menu) {
       menu.classList.remove('itinerary_panel__item__more--active');

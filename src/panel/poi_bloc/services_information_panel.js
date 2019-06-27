@@ -15,14 +15,21 @@ ServicesInformation.prototype.toggle = async function() {
   }
 
   this.extended = !this.extended;
-  this.panel.toggleClassName(.2, '.poi_panel__block__information', 'poi_panel__block__information--extended');
-  await this.panel.toggleClassName(.2, '.poi_panel__block__collapse', 'poi_panel__block__collapse--reversed');
+  this.panel.toggleClassName(
+    .2,
+    '.poi_panel__block__information',
+    'poi_panel__block__information--extended',
+  );
+  await this.panel.toggleClassName(
+    .2,
+    '.poi_panel__block__collapse',
+    'poi_panel__block__collapse--reversed',
+  );
   this.panel.update();
 };
 
 ServicesInformation.prototype.title = function() {
   return this.PoiBlocContainer.toString(this.blocks);
-
 };
 
 export default ServicesInformation;

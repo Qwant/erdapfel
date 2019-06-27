@@ -19,7 +19,7 @@
 })();
 
 function eventHandler(cb) {
-  return (opt) => {
+  return opt => {
     let {detail} = opt;
     cb(detail.params, ...detail.additionalParams);
   };

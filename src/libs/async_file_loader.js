@@ -1,7 +1,7 @@
 /* global FileLoader */
 
 async function AsyncFileLoader(uri, options = {}) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     let fileLoader = new FileLoader(uri);
     fileLoader.onLoad = () => {
       resolve();
