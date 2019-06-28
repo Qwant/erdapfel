@@ -36,7 +36,9 @@ const query = (url, data, method = 'GET', options = {}) => {
           jsonResponse = JSON.parse(this.response);
         } catch (e) {
           clearTimeout(timeOutHandler);
-          Error.sendOnce('ajax', 'query', `response parse error. url ${url}. response ${this.response.substr(0, 100)}...`, e);
+          const resp = this.response.substr(0, 100);
+          Error.sendOnce('ajax', 'query',
+            `response parse error. url ${url}. response ${resp}...`, e);
           reject(e);
           return;
         }
@@ -71,7 +73,7 @@ const query = (url, data, method = 'GET', options = {}) => {
   return ajaxPromise;
 };
 
-const dataToUrl = (data) =>
+const dataToUrl = data =>
   Object.keys(data)
     .map(itemKey => `${encodeURIComponent(itemKey)}=${encodeURIComponent(data[itemKey])}`)
     .join('&');

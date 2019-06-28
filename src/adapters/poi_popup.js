@@ -30,7 +30,7 @@ PoiPopup.prototype.init = function(map) {
 };
 
 PoiPopup.prototype.addListener = function(layer) {
-  this.map.on('mouseenter', layer, (e) => {
+  this.map.on('mouseenter', layer, e => {
     if (Device.isMobile() || isTouchEvent(e)) {
       return;
     }
@@ -44,7 +44,7 @@ PoiPopup.prototype.addListener = function(layer) {
   });
 
   this.map.on('mouseleave', layer, async() => {
-    if (this.popupHandle){
+    if (this.popupHandle) {
       this.popupHandle.remove();
     }
     clearTimeout(this.timeOutHandler);
@@ -64,7 +64,7 @@ PoiPopup.prototype.createPJPopup = function(poi, event) {
   }
 };
 
-PoiPopup.prototype.showPopup = function(poi, event){
+PoiPopup.prototype.showPopup = function(poi, event) {
   if (this.popupHandle) {
     this.popupHandle.remove();
     this.popupHandle = null;
@@ -74,14 +74,14 @@ PoiPopup.prototype.showPopup = function(poi, event){
   let hours = poi.blocks.find(block =>
     block.type === 'opening_hours'
   );
-  let timeMessages = poiConfigs.pois.find((poiConfig) => {
+  let timeMessages = poiConfigs.pois.find(poiConfig => {
     return poiConfig.apiName === 'opening_hours';
   });
   let opening;
   let address;
   if (hours) {
     opening = new OsmSchedule(hours, timeMessages.options.messages);
-  } else if (poi.address){
+  } else if (poi.address) {
     address = poi.address.label;
   }
 
@@ -115,7 +115,7 @@ PoiPopup.prototype.setPopupPosition = function(event, popupOptions) {
       positionFragments.push('top');
     }
 
-    if (event.clientX < (canvasWidth - HORIZONTAL_OFFSET)) {
+    if (event.clientX < canvasWidth - HORIZONTAL_OFFSET) {
       positionFragments.push('left');
     } else {
       positionFragments.push('right');

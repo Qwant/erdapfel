@@ -21,7 +21,11 @@ export default class DirectionPanel {
     this.origin = null;
     this.destination = null;
     this.vehicle = this.vehicles.DRIVING;
-    this.roadMapPanel = new RoadMapPanel(() => this.handleOpen(), () => this.handleClose(), roadPanel);
+    this.roadMapPanel = new RoadMapPanel(
+      () => this.handleOpen(),
+      () => this.handleClose(),
+      roadPanel,
+    );
     PanelManager.register(this);
     UrlState.registerResource(this, 'routes');
     this.activePanel = this;
@@ -52,8 +56,16 @@ export default class DirectionPanel {
   initDirection() {
     let originHandler = '#itinerary_input_origin';
     let destinationHandler = '#itinerary_input_destination';
-    this.originInput = new DirectionInput(originHandler, (poi) => this.selectOrigin(poi), 'submit_direction_origin');
-    this.destinationInput = new DirectionInput(destinationHandler, (poi) => this.selectDestination(poi), 'submit_direction_destination');
+    this.originInput = new DirectionInput(
+      originHandler,
+      poi => this.selectOrigin(poi),
+      'submit_direction_origin',
+    );
+    this.destinationInput = new DirectionInput(
+      destinationHandler,
+      poi => this.selectDestination(poi),
+      'submit_direction_destination',
+    );
 
     this.searchInputStart = document.querySelector(originHandler);
     this.searchInputEnd = document.querySelector(destinationHandler);
@@ -164,7 +176,7 @@ export default class DirectionPanel {
   }
 
   close() {
-    if (!this.active){
+    if (!this.active) {
       return;
     }
     Telemetry.add(Telemetry.ITINERARY_CLOSE);
@@ -214,7 +226,11 @@ export default class DirectionPanel {
     if (this.origin && this.destination) {
 
       this.roadMapPanel.showPlaceholder(this.vehicle);
-      let directionResponse = await DirectionApi.search(this.origin, this.destination, this.vehicle);
+      let directionResponse = await DirectionApi.search(
+        this.origin,
+        this.destination,
+        this.vehicle,
+      );
       if (directionResponse && directionResponse.routes) {
         let routes = directionResponse.routes;
         routes.forEach((route, i) => {
@@ -233,8 +249,14 @@ export default class DirectionPanel {
     }
   }
 
-  setRoutesOnMap(routes, options){
-    fire('set_route', {...options, routes: routes, vehicle: this.vehicle, origin: this.origin, destination: this.destination});
+  setRoutesOnMap(routes, options) {
+    fire('set_route', {
+      ...options,
+      routes: routes,
+      vehicle: this.vehicle,
+      origin: this.origin,
+      destination: this.destination,
+    });
   }
 
   clearOrigin() {
@@ -282,7 +304,8 @@ export default class DirectionPanel {
     let getParams = new URLSearchParams(window.location.search);
     if (getParams.get('mode')) {
       let urlVehicle = getParams.get('mode');
-      let matchedVehicle = Object.keys(vehiculeMatching).find((vehiculeMatchingItem) => vehiculeMatchingItem === urlVehicle);
+      let matchedVehicle = Object.keys(vehiculeMatching)
+        .find(vehiculeMatchingItem => vehiculeMatchingItem === urlVehicle);
       if (matchedVehicle) {
         this.vehicle = matchedVehicle;
       }
@@ -292,14 +315,24 @@ export default class DirectionPanel {
       try {
         this.origin = await LatLonPoi.fromUrl(getParams.get('origin'));
       } catch (err) {
-        Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('origin')}`, err);
+        Error.sendOnce(
+          'direction_panel',
+          'restoreUrl',
+          `Error restoring Poi from Url ${getParams.get('origin')}`,
+          err,
+        );
       }
     }
     if (getParams.get('destination')) {
       try {
         this.destination = await LatLonPoi.fromUrl(getParams.get('destination'));
       } catch (err) {
-        Error.sendOnce('direction_panel', 'restoreUrl', `Error restoring Poi from Url ${getParams.get('destination')}`, err);
+        Error.sendOnce(
+          'direction_panel',
+          'restoreUrl',
+          `Error restoring Poi from Url ${getParams.get('destination')}`,
+          err,
+        );
       }
     }
 

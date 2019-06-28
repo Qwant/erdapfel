@@ -22,7 +22,8 @@ I18n.prototype.setLang = async function() {
   try {
     await AsyncFileLoader(`statics/build/javascript/message/${this.language.locale}.js`);
   } catch (e) {
-    Error.send('i18n', 'setLang', `error getting downloading language file : ${this.language.locale}`, e);
+    Error.send('i18n', 'setLang',
+      `error getting downloading language file : ${this.language.locale}`, e);
   }
   this.gettext.setMessage(window.i18nData.message);
 

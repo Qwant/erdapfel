@@ -16,9 +16,11 @@ import DirectionPoi from './poi/specials/direction_poi';
 import UrlShards from '../proxies/url_shards';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
+import SceneEasterEgg from './scene_easter_egg';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
+const easterEggsEnabled = nconf.get().app.easterEggs;
 
 const store = new LocalStore();
 
@@ -94,7 +96,7 @@ Scene.prototype.initMapBox = function() {
     this.mb.addControl(extendedControl, 'bottom-right');
     this.mb.addControl(mobileCompassControl, 'top-right');
 
-    interactiveLayers.forEach((interactiveLayer) => {
+    interactiveLayers.forEach(interactiveLayer => {
       this.mb.on('mouseenter', interactiveLayer, () => {
         this.mb.getCanvas().style.cursor = 'pointer';
       });
@@ -103,13 +105,17 @@ Scene.prototype.initMapBox = function() {
         this.mb.getCanvas().style.cursor = '';
       });
 
-      this.mb.on('click', interactiveLayer, async(e) => {
+      this.mb.on('click', interactiveLayer, async e => {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           let mapPoi = new MapPoi(e.features[0], e.lngLat);
           this.sceneState.setPoiId(mapPoi.id);
-          if (e.originalEvent.clientX < (layout.sizes.sideBarWidth + layout.sizes.panelWidth) && window.innerWidth > layout.mobile.breakPoint) {
-            this.mb.flyTo({center: mapPoi.getLngLat(), offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0]});
+          if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
+              window.innerWidth > layout.mobile.breakPoint) {
+            this.mb.flyTo({
+              center: mapPoi.getLngLat(),
+              offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
+            });
           }
           let poi = await PanelManager.loadPoiById(mapPoi.id);
           if (poi) {
@@ -130,29 +136,36 @@ Scene.prototype.initMapBox = function() {
       fire('map_moveend');
     });
 
-    this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_active.png`, (error, image) => {
+    const url_active = `${baseUrl}statics/images/direction_icons/walking_bullet_active.png`;
+    this.mb.loadImage(url_active, (error, image) => {
       if (error) {
-        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${baseUrl}statics/images/direction_icons/walking_bullet_active.png`, error);
+        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url_active}`, error);
         return;
       }
       this.mb.addImage('walking_bullet_active', image);
     });
 
-    this.mb.loadImage(`${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`, (error, image) => {
+    const url_inactive = `${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`;
+    this.mb.loadImage(url_inactive, (error, image) => {
       if (error) {
-        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`, error);
+        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url_inactive}`, error);
         return;
       }
       this.mb.addImage('walking_bullet_inactive', image);
     });
 
-    this.mb.on('click', (e) => {
-      if (!e._interactiveClick){
+    this.mb.on('click', e => {
+      if (!e._interactiveClick) {
         PanelManager.emptyClickOnMap();
       }
     });
 
-    window.execOnMapLoaded = (f) => f();
+    /* Easter egg for beta */
+    if (easterEggsEnabled) {
+      SceneEasterEgg.enableEggs(this.mb);
+    }
+
+    window.execOnMapLoaded = f => f();
     fire('map_loaded');
   });
 
@@ -164,7 +177,7 @@ Scene.prototype.initMapBox = function() {
     this.mb.jumpTo({center: [map.center.lng, map.center.lat], zoom: map.zoom});
   });
 
-  listen('map_mark_poi', (poi) => {
+  listen('map_mark_poi', poi => {
     this.addMarker(poi);
   });
 
@@ -200,7 +213,7 @@ Scene.prototype.isPointInBounds = function(point, bounds) {
   return lng && lat;
 };
 
-Scene.prototype.isBBoxInExtendedViewport = function(bbox){
+Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
 
   // Get viewport bounds
   const viewport = this.mb.getBounds();
@@ -221,30 +234,26 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
   // Lng between -180 and 180 (wraps: 180 + 1 = -179)
   if (viewport._ne.lng < 180) {
     viewport._ne.lng += 360;
-  }
-  if (viewport._ne.lng > 180) {
+  } else if (viewport._ne.lng > 180) {
     viewport._ne.lng -= 360;
   }
 
   if (viewport._sw.lng < 180) {
     viewport._sw.lng += 360;
-  }
-  if (viewport._sw.lng > 180) {
+  } else if (viewport._sw.lng > 180) {
     viewport._sw.lng -= 360;
   }
 
   // Lat between -85 and 85 (does not wrap)
   if (viewport._ne.lat < -85) {
     viewport._ne.lat = -85;
-  }
-  if (viewport._ne.lat > 85) {
+  } else if (viewport._ne.lat > 85) {
     viewport._ne.lat = 85;
   }
 
   if (viewport._sw.lat < -85) {
     viewport._sw.lat = -85;
-  }
-  if (viewport._sw.lat > 85) {
+  } else if (viewport._sw.lat > 85) {
     viewport._sw.lat = 85;
   }
 
@@ -256,20 +265,21 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox){
       || this.isPointInBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport) // nw
       || this.isPointInBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport) // se
       || this.isPointInBounds(bbox._sw, viewport) // sw
-  ){
+  ) {
     return true;
   }
 
   return false;
 };
 
-Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}){
+Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}) {
   // normalise bbox
   if (bbox instanceof Array) {
     bbox = new LngLatBounds(bbox);
   }
 
-  // Animate if the zoom is big enough and if the BBox is (partially or fully) in the extended viewport
+  // Animate if the zoom is big enough and if the BBox is (partially or fully) in
+  // the extended viewport.
   let animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox);
   this.mb.fitBounds(bbox, {padding: padding, animate: animate});
 };
@@ -288,8 +298,11 @@ Scene.prototype.fitMap = function(item, padding) {
         flyOptions.zoom = item.zoom;
       }
 
-      if (padding){
-        flyOptions.offset = [(padding.left - padding.right) / 2, (padding.top - padding.bottom) / 2];
+      if (padding) {
+        flyOptions.offset = [
+          (padding.left - padding.right) / 2,
+          (padding.top - padding.bottom) / 2,
+        ];
       }
 
       if (this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
@@ -328,7 +341,9 @@ Scene.prototype.cleanMarker = async function() {
 
 /* UrlState interface implementation */
 Scene.prototype.store = function() {
-  return `${this.mb.getZoom().toFixed(2)}/${this.mb.getCenter().lat.toFixed(7)}/${this.mb.getCenter().lng.toFixed(7)}`;
+  let lat = this.mb.getCenter().lat.toFixed(7);
+  let lon = this.mb.getCenter().lng.toFixed(7);
+  return `${this.mb.getZoom().toFixed(2)}/${lat}/${lon}`;
 };
 
 Scene.prototype.restore = function(urlShard) {
@@ -349,17 +364,16 @@ Scene.prototype.isWindowedPoi = function(poi) {
   if (poi instanceof DirectionPoi) {
     windowBounds.extend(poi.bbox.getCenter());
     return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
-  } else {
-    let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat);
-    windowBounds.extend(poiCenter);
-    return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
   }
+  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat);
+  windowBounds.extend(poiCenter);
+  return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
 };
 
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
     let shards = UrlShards.parseUrl();
-    shards.forEach((shard) => {
+    shards.forEach(shard => {
       if (shard.prefix === 'map') {
         this.restore(shard.value);
         this.mb.jumpTo({center: this.urlCenter, zoom: this.urlZoom});
@@ -371,7 +385,8 @@ Scene.prototype.onHashChange = function() {
 /* private */
 
 function compareBoundsArray(boundsA, boundsB) {
-  return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] && boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1];
+  return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] &&
+         boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1];
 }
 
 export default Scene;

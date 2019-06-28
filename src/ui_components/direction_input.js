@@ -1,6 +1,8 @@
 import Suggest from '../adapters/suggest';
-import NavigatorGeolocalisationPoi, {navigatorGeolocationStatus} from '../adapters/poi/specials/navigator_geolocalisation_poi';
+import NavigatorGeolocalisationPoi, {navigatorGeolocationStatus} from
+  '../adapters/poi/specials/navigator_geolocalisation_poi';
 import Error from '../adapters/error';
+
 export default class DirectionInput {
   constructor(tagSelector, select, submitHandler) {
     this.select = select;
@@ -10,7 +12,12 @@ export default class DirectionInput {
       this.geolocalisationPoi,
     ];
 
-    this.suggest = new Suggest({tagSelector, onSelect: (selectedPoi) => this.selectItem(selectedPoi), prefixes, menuClass: 'direction_suggestions'});
+    this.suggest = new Suggest({
+      tagSelector,
+      onSelect: selectedPoi => this.selectItem(selectedPoi),
+      prefixes,
+      menuClass: 'direction_suggestions',
+    });
     this.listenHandler = listen(submitHandler, () => this.onSubmit());
   }
 
@@ -55,5 +62,4 @@ export default class DirectionInput {
   setValue(value) {
     this.suggest.setValue(value);
   }
-
 }

@@ -19,10 +19,18 @@ HourPanel.prototype.extend = function() {
   this.panel.toggleClassName(.3, '.poi_panel__info__hours', 'poi_panel__info__hours--open');
   if (this.isCollapsed) {
     Telemetry.add(Telemetry.POI_HOUR_EXTEND);
-    this.panel.addClassName(.3, '.poi_panel__info__hours__status__toggle', 'poi_panel__info__hours__status__toggle--reversed');
+    this.panel.addClassName(
+      .3,
+      '.poi_panel__info__hours__status__toggle',
+      'poi_panel__info__hours__status__toggle--reversed',
+    );
     this.isCollapsed = false;
   } else {
-    this.panel.removeClassName(.3, '.poi_panel__info__hours__status__toggle', 'poi_panel__info__hours__status__toggle--reversed');
+    this.panel.removeClassName(
+      .3,
+      '.poi_panel__info__hours__status__toggle',
+      'poi_panel__info__hours__status__toggle--reversed',
+    );
     this.isCollapsed = true;
   }
 };

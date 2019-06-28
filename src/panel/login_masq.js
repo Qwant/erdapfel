@@ -25,7 +25,7 @@ export default class LoginMasqPanel {
     });
 
     this.isLoggedIn = false;
-    this.initPromise = this.store.isLoggedIn().then(async(b) => {
+    this.initPromise = this.store.isLoggedIn().then(async b => {
       this.isLoggedIn = b;
       await this.getUserInfo();
     });

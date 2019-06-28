@@ -47,7 +47,7 @@ Panel.prototype.render = function() {
  */
 Panel.prototype.update = async function() {
   let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`);
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     transitionNode.innerHTML = this.view.call(this.panel);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -62,7 +62,7 @@ Panel.prototype.renderPartial = function(partial) {
 };
 
 Panel.prototype.wait = async function(t) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve(this);
     }, t * 1000);
@@ -88,7 +88,7 @@ async function operateClassName(t, selector, className, operation) {
     transitionNode = transitionNode.querySelector(selector);
   }
   transitionNode.classList[operation](className);
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve(this);
     }, t * 1000);
@@ -100,11 +100,11 @@ Panel.prototype.animate = async function(t, selector, style = {}) {
   if (selector) {
     transitionNode = transitionNode.querySelector(selector);
   }
-  Object.keys(style).forEach((styleKey) => {
+  Object.keys(style).forEach(styleKey => {
     transitionNode.style[styleKey] = style[styleKey];
   });
   transitionNode.style.transition = t + 's';
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve(this);
     }, t * 1000);

@@ -8,7 +8,7 @@ export default class PoiStore extends Poi {
   static async get(term) {
     try {
       let prefixes = await store.getPrefixes(term);
-      return prefixes.map((historySuggest) => {
+      return prefixes.map(historySuggest => {
         return Object.assign(new PoiStore(), historySuggest);
       });
     } catch (e) {
@@ -26,7 +26,7 @@ export default class PoiStore extends Poi {
       Error.sendOnce('poi_store', 'getAll', 'error getting pois', e);
       return [];
     }
-    return storedData.map((poi) => {
+    return storedData.map(poi => {
       return Object.assign(new PoiStore(), poi);
     });
   }

@@ -47,8 +47,8 @@ UrlState.replaceUrl = function() {
 
 UrlState.load = function() {
   let rawShards = UrlShards.parseUrl();
-  UrlShards.getShards().forEach((shard) => {
-    let matchingRawShard = rawShards.find((rawShard) => {
+  UrlShards.getShards().forEach(shard => {
+    let matchingRawShard = rawShards.find(rawShard => {
       return rawShard.prefix === shard.prefix;
     });
     if (matchingRawShard) {

@@ -115,14 +115,13 @@ $HEADER_SIZE: 30px;
 }
 
 .poi_panel__back_text {
-  padding-left: 30px;
+  padding-left: 5px;
+  text-transform: uppercase;
 }
 
 .poi_panel__back.icon-arrow-left {
   font-size: 22px;
-  position: absolute;
-  bottom: -2px;
-  left: 4px;
+  vertical-align: -5px;
 }
 
 .poi_panel__header + .poi_panel--card {
@@ -130,12 +129,6 @@ $HEADER_SIZE: 30px;
   border-top-left-radius: 0;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
   max-height: calc(100vh - 120px - #{$HEADER_SIZE});
-}
-
-.poi_panel__back_to_favorite, .poi_panel__back_to_list {
-  position: absolute;
-  top: 8px;
-  cursor: pointer;
 }
 
 .poi_panel__back_to_list .poi_panel__back_to_list_logo {
@@ -469,6 +462,13 @@ $HEADER_SIZE: 30px;
   padding-bottom: 0;
 }
 
+.poi_panel__pj_logo_container {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  left: 5px;
+}
+
 /* TODO export to external service */
 
 /* title symbols */
@@ -598,13 +598,7 @@ $HEADER_SIZE: 30px;
 }
 
 .poi_panel__back_mobile {
-  color: $primary_text;
-  cursor: pointer;
-  padding: 10px 5px;
-
-  i {
-    font-weight: bold;
-  }
+  display: none;
 }
 
 .poi_panel__header_title {
@@ -614,12 +608,13 @@ $HEADER_SIZE: 30px;
   display: inline-block;
 }
 
+.poi_panel__back_to_favorite, .poi_panel__back_to_list {
+  cursor: pointer;
+}
+
 @media (min-width: 641px) {
   .poi_panel {
     max-height: calc(100vh - 120px);
-  }
-  .poi_panel__back_mobile {
-    display: none;
   }
 
   .poi_panel__header {
@@ -634,6 +629,7 @@ $HEADER_SIZE: 30px;
     border-top-left-radius: 3px;
     position: relative;
     border-bottom: solid 1px #f4f6fa;
+    padding-top: 2px;
   }
 }
 
@@ -649,6 +645,13 @@ $HEADER_SIZE: 30px;
     top: 30px;
   }
 
+  .poi_panel__back_mobile, .poi_panel__back_to_favorite, .poi_panel__back_to_list {
+    display: block;
+    color: $primary_text;
+    cursor: pointer;
+    padding: 8px 5px;
+  }
+
   .poi_panel__header {
     position: absolute;
     height: 100px;
@@ -659,6 +662,7 @@ $HEADER_SIZE: 30px;
     padding-top: 62px;
     background-color: #F0F0F0;
     display: block;
+    font-size: 12px;
   }
 
   .poi_header_card {

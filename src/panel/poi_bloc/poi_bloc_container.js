@@ -6,8 +6,11 @@ function PoiBlocContainer() {}
 
 PoiBlocContainer.initBlockComponents = function() {
   PoiBlocContainer.blockComponents = constants.pois.reduce((accBlocks, poiBlock) => {
-    /* eslint-disable-next-line */
-    accBlocks[poiBlock.apiName] = { poiBlockConstructor: require(`./${poiBlock.panelName}_panel`), options: poiBlock.options};
+    accBlocks[poiBlock.apiName] = {
+      /* eslint-disable-next-line */
+      poiBlockConstructor: require(`./${poiBlock.panelName}_panel`),
+      options: poiBlock.options,
+    };
     return accBlocks;
   }, {});
 };
@@ -30,20 +33,23 @@ PoiBlocContainer.getBlock = function(name) {
 
 PoiBlocContainer.setBlock = function(block) {
   let blockComponent = PoiBlocContainer.blockComponents[block.type];
-  return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options);
+  return new blockComponent.poiBlockConstructor.default(
+    block,
+    PoiBlocContainer.poi,
+    blockComponent.options,
+  );
 };
 
 PoiBlocContainer.renderBlock = function(block) {
   let blockComponent = getBlockComponent(block);
   if (blockComponent) {
     return blockComponent.render();
-  } else {
-    console.warn(`info : component missing (${block.type})`);
   }
+  console.warn(`info : component missing (${block.type})`);
 };
 
 PoiBlocContainer.toString = function(blocks) {
-  return blocks.map((block) => {
+  return blocks.map(block => {
     let blockComponent = getBlockComponent(block);
     if (blockComponent) {
       return blockComponent.toString();
@@ -56,7 +62,11 @@ PoiBlocContainer.toString = function(blocks) {
 function getBlockComponent(block) {
   let blockComponent = PoiBlocContainer.blockComponents[block.type];
   if (blockComponent) {
-    return new blockComponent.poiBlockConstructor.default(block, PoiBlocContainer.poi, blockComponent.options);
+    return new blockComponent.poiBlockConstructor.default(
+      block,
+      PoiBlocContainer.poi,
+      blockComponent.options,
+    );
   }
   return null;
 }

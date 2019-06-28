@@ -1,7 +1,7 @@
 const images = [];
 
 export default async function loadImage(imagePath) {
-  let storedImage = images.find((image) => {
+  let storedImage = images.find(image => {
     return image.imagePath === imagePath;
   });
   if (storedImage) {
@@ -14,7 +14,7 @@ export default async function loadImage(imagePath) {
         resolve(imgElement);
         images.push({imagePath: imagePath, imgElement: imgElement});
       };
-      imgElement.onerror = (e) => {
+      imgElement.onerror = e => {
         reject(e);
       };
       document.body.appendChild(imgElement);

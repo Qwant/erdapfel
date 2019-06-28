@@ -49,7 +49,8 @@ export default class Poi {
   }
 
   poiStoreLiteral() {
-    const serializeKeys = ['id', 'name', 'alternativeName', 'type', 'latLon', 'className', 'subClassName', 'zoom', 'bbox'];
+    const serializeKeys = ['id', 'name', 'alternativeName', 'type', 'latLon', 'className',
+      'subClassName', 'zoom', 'bbox'];
     return Object.keys(this).reduce((poiLiteral, key) => {
       if (serializeKeys.includes(key)) {
         poiLiteral[key] = this[key];
@@ -65,7 +66,12 @@ export default class Poi {
 
   toAbsoluteUrl() {
     let location = window.location;
-    return `${location.protocol}//${location.host}${window.baseUrl}place/${this.toUrl()}/#map=${this.zoom}/${this.latLon.lat.toFixed(7)}/${this.latLon.lng.toFixed(7)}`;
+    let protocol = location.protocol;
+    let host = location.host;
+    let baseUrl = window.baseUrl;
+    let lat = this.latLon.lat.toFixed(7);
+    let lon = this.latLon.lng.toFixed(7);
+    return `${protocol}//${host}${baseUrl}place/${this.toUrl()}/#map=${this.zoom}/${lat}/${lon}`;
   }
 
   static isPoiCompliantKey(k) {

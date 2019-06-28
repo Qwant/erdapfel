@@ -5,13 +5,15 @@ import constants from '../../../config/constants.yml';
 
 export default class MinimalHourPanel {
   constructor() {
-    this.messages = constants.pois.find((poiConfig) => poiConfig.apiName === 'opening_hours').options.messages;
+    this.messages = constants.pois.find(poiConfig => poiConfig.apiName === 'opening_hours')
+      .options
+      .messages;
     this.panel = new Panel(this, HourPanelView);
     this.opening = null;
   }
 
   set(poi) {
-    let openingBlock = poi.blocks.find((block) => block.type === 'opening_hours');
+    let openingBlock = poi.blocks.find(block => block.type === 'opening_hours');
     this.opening = null;
     if (openingBlock) {
       this.opening = new OsmSchedule(openingBlock, this.messages);
