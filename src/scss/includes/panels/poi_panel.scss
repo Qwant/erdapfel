@@ -6,7 +6,7 @@ $CARD_ACTION_RIGHT_MARGIN: 8px;
 $CARD_PADDING: 8px;
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
-$HEADER_SIZE: 30px;
+$HEADER_SIZE: 40px;
 
 .poi_panel {
   display: block;
@@ -43,7 +43,7 @@ $HEADER_SIZE: 30px;
 }
 
 .poi_panel__container {
-  padding: 5px $BLOCK_INDENT 0px $BLOCK_INDENT;
+  padding: 0 $BLOCK_INDENT;
   width: 100%;
   position: relative;
 }
@@ -82,13 +82,10 @@ $HEADER_SIZE: 30px;
 
 .poi_panel__close {
   position: absolute;
-  right: 2px;
-  top: 2px;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  height: 30px;
-  line-height: 30px;
-  width: 30px;
-  text-align: center;
   transition: background-color .1s;
   border-radius: 50%;
   font-size: 20px;
@@ -136,7 +133,7 @@ $HEADER_SIZE: 30px;
   vertical-align: middle;
 }
 
-.poi_panel__back_to_favorite:hover, .poi_panel__back_to_list:hover {
+.poi_panel__back_to_list:hover {
   color: $secondary_text;
 }
 
@@ -156,7 +153,6 @@ $HEADER_SIZE: 30px;
 
 /* wrap it into an element and then put padding on this new element instead */
 .poi_panel__title {
-  padding-top: 10px;
   font-family: Asap;
   font-weight: 700;
   color: $primary_text;
@@ -469,17 +465,15 @@ $HEADER_SIZE: 30px;
   left: 5px;
 }
 
-/* TODO export to external service */
-
 /* title symbols */
 .poi_panel__title__symbol {
-  font-size: 42px;
+  font-size: 45px;
   color: #E93865;
 
   .poi_panel & {
     position: absolute;
     right: 0px;
-    top: 8px;
+    top: 5px;
   }
 }
 
@@ -608,7 +602,10 @@ $HEADER_SIZE: 30px;
   display: inline-block;
 }
 
-.poi_panel__back_to_favorite, .poi_panel__back_to_list {
+.poi_panel__back_to_list, .poi_panel__back_mobile {
+  height: $HEADER_SIZE;
+  line-height: $HEADER_SIZE;
+  padding-left: 8px;
   cursor: pointer;
 }
 
@@ -628,8 +625,18 @@ $HEADER_SIZE: 30px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     position: relative;
+
+    &.favorites_header {
+      padding-top: 3px;
+    }
+  }
+
+  .poi_panel__back_to_list, .favorites_header {
     border-bottom: solid 1px #f4f6fa;
-    padding-top: 2px;
+  }
+
+  .poi_header_back_to_list + .poi_panel--card {
+    padding-top: 10px;
   }
 }
 
@@ -645,11 +652,9 @@ $HEADER_SIZE: 30px;
     top: 30px;
   }
 
-  .poi_panel__back_mobile, .poi_panel__back_to_favorite, .poi_panel__back_to_list {
+  .poi_panel__back_mobile, .poi_panel__back_to_list {
     display: block;
     color: $primary_text;
-    cursor: pointer;
-    padding: 8px 5px;
   }
 
   .poi_panel__header {
@@ -671,9 +676,13 @@ $HEADER_SIZE: 30px;
 
   .poi_panel__close {
     font-size: 15px;
-    line-height: 25px;
+    top: 0px;
+    right: 0px;
+    transform: none;
     width: 25px;
     height: 25px;
+    line-height: 25px;
+    text-align: center;
   }
 
   .poi_panel.poi_panel--card {
@@ -739,7 +748,7 @@ $HEADER_SIZE: 30px;
   }
 
   .poi_panel__content {
-    margin-top: 15px;
+    margin-top: 17px;
   }
 
   .poi_panel__content__card__content .poi_panel__title__symbol.icon {

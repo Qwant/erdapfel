@@ -1,7 +1,10 @@
 {{? this.poi && this.active }}
-  <div class="poi_panel__header{{= this.card ? ' poi_header_card' : '' }}">
+  <div class="poi_panel__header
+    {{= this.card ? ' poi_header_card' : '' }}
+    {{= this.fromFavorite || this.fromList ? ' poi_header_back_to_list' : '' }}
+  ">
     {{? this.fromFavorite }}
-      <div class="poi_panel__back_to_favorite" {{= click(this.backToFavorite, this) }}>
+      <div class="poi_panel__back_to_list" {{= click(this.backToFavorite, this) }}>
         <i class="poi_panel__back icon-arrow-left"></i>
         <span class="poi_panel__back_text">{{= _('Back to favorite') }}</span>
         {{? this.poi.isFromPagesjaunes() }}
