@@ -221,8 +221,8 @@ PoiPanel.prototype.emptyClickOnMap = function() {
 };
 
 PoiPanel.prototype.showPhone = function() {
-  document.querySelector(".poi_phone_container_hidden").style.display = "none"
-  document.querySelector(".poi_phone_container_revealed").style.display = "block"
+  document.querySelector('.poi_phone_container_hidden').style.display = 'none';
+  document.querySelector('.poi_phone_container_revealed').style.display = 'block';
 };
 
 /* private */
