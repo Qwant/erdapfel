@@ -184,7 +184,7 @@ test('display details about the poi on a poi click', async () => {
     }
   })
   expect(hours.trim()).toMatch('Fermé')
-  expect(phone).toMatch('+33140494814')
+  expect(phone).toMatch('SEE NUMBER')
   expect(website).toMatch('WWW.MUSEE-ORSAY.FR')
   expect(contactUrl).toMatch('mailto:admin@orsay.fr')
   expect(contact).toMatch('ADMIN@ORSAY.FR')
