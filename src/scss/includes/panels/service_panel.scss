@@ -104,7 +104,45 @@
 
 @media (max-width: 640px) {
   .service_panel {
-    display: none !important;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    background: #fff;
+
+    .service_panel__title {
+      border: 0;
+      text-align: center;
+      font-size: inherit;
+      color: #5c6f84;
+    }
+
+    .service_panel__item {
+      display: none;
+    }
+
+    .service_panel__categories {
+      padding: 0 25px 10px;
+      margin: 0;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+
+      .service_panel__category {
+        width: 70px;
+        height: 60px;
+
+        .service_panel__category__icon {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .service_panel__category__icon > span {
+        font-size: 60px;
+        line-height: 60px;
+      }
+    }
   }
 
   .service_panel__category {
