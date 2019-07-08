@@ -2,7 +2,9 @@
   <h1 class="poi_popup__title">{{= this.htmlEncode(this.poi.name) }}</h1>
   <h3 class="poi_popup__category">{{= this.category }}</h3>
   <div>
-  {{? this.opening && this.opening.days }}
+  {{? this.reviews }}
+    {{ console.log(this.reviews); }}
+  {{?? this.opening && this.opening.days }}
     <span class="poi_popup__opening">
     {{? this.opening.isTwentyFourSeven }}
       {{= _('Open 24/7', 'hour block popup') }}

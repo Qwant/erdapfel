@@ -71,19 +71,31 @@ PoiPopup.prototype.showPopup = function(poi, event) {
   }
   let {color} = IconManager.get(poi);
   let category = poiSubClass(poi.subClassName);
+
+  let grades = poi.blocks.find(block =>
+      block.type === 'grades'
+  );
+
   let hours = poi.blocks.find(block =>
     block.type === 'opening_hours'
   );
+
   let timeMessages = poiConfigs.pois.find(poiConfig => {
     return poiConfig.apiName === 'opening_hours';
   });
+  let reviews;
   let opening;
   let address;
-  if (hours) {
+  if(grades) {
+    reviews = grades;
+  }
+  else if (hours) {
     opening = new OsmSchedule(hours, timeMessages.options.messages);
   } else if (poi.address) {
     address = poi.address.label;
   }
+
+  console.log(reviews);
 
   let popupOptions = {
     className: 'poi_popup__container',
@@ -98,7 +110,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
 
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.getLngLat())
-    .setHTML(popupTemplate.call({poi, color, opening, address, category, htmlEncode}))
+    .setHTML(popupTemplate.call({poi, color, opening, address, reviews, category, htmlEncode}))
     .addTo(this.map);
 };
 
