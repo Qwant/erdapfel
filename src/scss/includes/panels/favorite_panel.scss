@@ -9,6 +9,10 @@ $MASQ_BANNER_HEIGHT: 93px;
   max-height: calc(100vh - 120px - #{$HEADER_SIZE} - #{$MASQ_BANNER_HEIGHT});
 }
 
+.favorite_panel__show_list {
+  display: none;
+}
+
 .favorite_panel__items {
   font-size: 18px;
 }
@@ -207,6 +211,14 @@ $MASQ_BANNER_HEIGHT: 93px;
 }
 
 @media (max-width: 640px) {
+  .resizable_panel.reduced .favorite_panel__show_list {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: $secondary_text;
+    text-transform: uppercase;
+  }
+
   .favorite_panel__item__more_container {
     background: $background;
     margin: 8px 0;
@@ -231,9 +243,7 @@ $MASQ_BANNER_HEIGHT: 93px;
   .favorite_poi_panel__container > div > .favorite_panel__container {
     bottom: 0;
     position: absolute;
-    max-height: calc(100vh - 75px);
     width: 100vw;
-    transition: top 1s;
     background: #f4f6fa;
     z-index: 3;
   }

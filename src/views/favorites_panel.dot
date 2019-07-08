@@ -1,5 +1,14 @@
 {{? this.active }}
-<div class="favorite_panel__container">
+<div
+  class="
+    favorite_panel__container
+    {{= this.resizableClassName }}
+    {{= this.reduced ? ' reduced' : ''}}
+    {{= this.maximized ? ' full' : ''}}
+  "
+>
+  {{= this.panelResizer() }}
+  <span class="favorite_panel__show_list">{{= _('Show favorites',  'favorite panel') }}</span>
   <div class="poi_panel__header favorites_header{{= this.favoritePois.length === 0 ? ' empty' : '' }}">
     {{? this.favoritePois.length === 0 }}
       <div class="poi_panel__header_title">{{= _('Favorite places', 'favorite panel') }}</div>

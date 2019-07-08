@@ -6,6 +6,7 @@ import UrlState from '../proxies/url_state';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
+import { resizableClassName } from '../libs/resizable_panel';
 import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
@@ -21,6 +22,7 @@ export default class CategoryPanel {
     this.minimalHourPanel = new MinimalHourPanel();
     this.panelResizer = PanelResizerView;
     this.panel = new Panel(this, CategoryPanelView);
+    this.resizableClassName = resizableClassName;
 
     this.pois = [];
     this.categoryName = '';
@@ -30,6 +32,8 @@ export default class CategoryPanel {
     this.loading = false;
     this.query = '';
     this.dataSource = '';
+    this.reduced = false;
+    this.maximized = false;
 
     UrlState.registerResource(this, 'places');
 
@@ -43,6 +47,10 @@ export default class CategoryPanel {
       this.selectPoi(poi);
     });
 
+    listen('panel_view_state', ({ reduced = false, maximized = false } = {}) => {
+      this.reduced = reduced;
+      this.maximized = maximized;
+    });
   }
 
   store() {
@@ -98,6 +106,8 @@ export default class CategoryPanel {
     );
     this.pois = places;
     this.dataSource = source;
+    this.reduced = false;
+    this.maximized = false;
     this.loading = false;
 
     this.panel.update();

@@ -23,7 +23,7 @@ $category_panel_head_height : 40px;
   font-size: 12px;
   color: #5c6f84;
   border-bottom: 1px solid $surface;
-  padding: 9px 12px 9px 12px;
+  padding: 12px 16px;
   height: $category_panel_head_height;
 }
 
@@ -66,6 +66,10 @@ $category_panel_head_height : 40px;
   color: #c8cbd3;
   float: right;
   margin: 5px 0 0 4px;
+}
+
+.category__panel__show_results {
+  display: none;
 }
 
 .category__panel__close {
@@ -263,12 +267,19 @@ $category_panel_head_height : 40px;
     width: 100vw;
     bottom: 0;
     height: 50vh;
-    min-height: 300px;
     background: $surface;
 
     .category__panel__scroll {
        max-height: calc(100% - #{$category_panel_head_height});
     }
+  }
+
+  .resizable_panel.reduced .category__panel__show_results {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: $secondary_text;
+    text-transform: uppercase;
   }
 
   .category__panel__list {
@@ -293,6 +304,10 @@ $category_panel_head_height : 40px;
     padding: 0 16px;
   }
 
+  .category__panel__close {
+    display: none;
+  }
+
   .category__panel__item_inner {
     border: none;
     background: #fff;
@@ -303,7 +318,8 @@ $category_panel_head_height : 40px;
   }
 
   .category__panel__pj {
-    margin: auto;
+    margin: 0 auto;
+    display: block;
     max-width: 180px;
     text-align: center;
   }
