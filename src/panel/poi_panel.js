@@ -185,6 +185,10 @@ PoiPanel.prototype.showPhone = function() {
   }
 };
 
+PoiPanel.prototype.openCategory = function(category) {
+  PanelManager.openCategory({ category });
+};
+
 /* private */
 
 async function isPoiFavorite(poi) {

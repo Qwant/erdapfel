@@ -137,7 +137,7 @@ $HEADER_SIZE: 40px;
   padding: 0 120px 0 0;
   margin-bottom: 25px;
   cursor: pointer;
-  min-height: 85px;
+  min-height: 45px;
 }
 
 .poi_panel__description_container:after {
@@ -578,6 +578,22 @@ $HEADER_SIZE: 40px;
 
 .marker .icon-marker::before {
   content: '';
+}
+
+.service_panel__categories--poi {
+  margin: 15px 0;
+  border-top: 1px solid rgba(0,0,0,.16);
+
+  h3 {
+    font-weight: normal;
+    font-size: 16px;
+    color: #495063;
+    margin: 20px 0 15px 12px;
+  }
+
+  .service_panel__category {
+    width: 80px;
+  }
 }
 
 /* symbols */
