@@ -13,7 +13,7 @@
       <div class="poi_panel__back_to_list" {{= click(this.backToFavorite, this) }}>
         <i class="poi_panel__back icon-arrow-left"></i>
         <span class="poi_panel__back_text">{{= _('Back to favorite') }}</span>
-        {{? this.poi.isFromPagesjaunes() }}
+        {{? this.poi.isFromPagesjaunes && this.poi.isFromPagesjaunes() }}
         <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
         {{?}}
       </div>
@@ -21,7 +21,7 @@
       <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}>
         <i class="poi_panel__back icon-arrow-left"></i>
         <span class="poi_panel__back_text">{{= _('Back to list') }}</span>
-        {{? this.poi.isFromPagesjaunes() }}
+        {{? this.poi.isFromPagesjaunes && this.poi.isFromPagesjaunes() }}
         <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
         {{?}}
       </div>
@@ -29,12 +29,12 @@
       <div class="poi_panel__back_mobile" {{= click(this.backToSmall, this) }}>
         <i class="poi_panel__back icon-arrow-left"></i>
         <span class="poi_panel__back_text">{{= _('Back') }}</span>
-        {{? this.poi.isFromPagesjaunes() }}
+        {{? this.poi.isFromPagesjaunes && this.poi.isFromPagesjaunes() }}
           <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
         {{?}}
       </div>
     {{??}}
-      {{? this.poi.isFromPagesjaunes() }}
+      {{? this.poi.isFromPagesjaunes && this.poi.isFromPagesjaunes() }}
         <div class="poi_panel__pj_logo_container">
           <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
         </div>
