@@ -128,11 +128,6 @@ $HEADER_SIZE: 40px;
   max-height: calc(100vh - 120px - #{$HEADER_SIZE});
 }
 
-.poi_panel__back_to_list .poi_panel__back_to_list_logo {
-  margin-left: 8px;
-  vertical-align: text-bottom;
-}
-
 .poi_panel__back_to_list:hover {
   color: $secondary_text;
 }
@@ -326,14 +321,26 @@ $HEADER_SIZE: 40px;
   float: left;
   text-decoration: none;
   text-align: center;
-  min-width: 24%;
-  max-width: 24%;
-  width: 24%;
+  min-width: 45px;
+
+  &:not(:last-child){
+    margin-right: 15px;
+    max-width: calc(23% - 20px);
+  }
+
+  &.poi_panel__actions__phone_container {
+    max-width: 28%;
+  }
+
+  &:not(:first-child){
+    min-width: 20%
+  }
+
 
   &:hover {
     text-decoration: none;
   }
-l
+
   button {
     width: 100%;
     display: block;
@@ -597,6 +604,11 @@ l
   line-height: $HEADER_SIZE;
   padding-left: 8px;
   cursor: pointer;
+
+  .poi_panel__back_to_list_logo {
+    margin-left: 8px;
+    vertical-align: text-bottom;
+  }
 }
 
 @media (min-width: 641px) {
@@ -608,7 +620,7 @@ l
     font-size: 12px;
     color: $secondary_text;
     text-transform: uppercase;
-    height: 40px;
+    height: $HEADER_SIZE;
     background: $background;
     z-index: 1;
     box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
@@ -627,17 +639,6 @@ l
 
   .poi_header_back_to_list + .poi_panel--card {
     padding-top: 10px;
-  }
-}
-
-@media (max-width: 490px) {
-  .poi_panel__container {
-    padding: 5px 15px 0;
-  }
-
-  .poi_panel__actions {
-    width: 110%;
-    margin-left: -5%;
   }
 }
 
@@ -785,5 +786,9 @@ l
     background-color: $primary_text;
     border-color: $primary_text;
     color: #fff;
+  }
+
+  .poi_panel__container {
+    padding: 0 15px;
   }
 }
