@@ -128,11 +128,6 @@ $HEADER_SIZE: 40px;
   max-height: calc(100vh - 120px - #{$HEADER_SIZE});
 }
 
-.poi_panel__back_to_list .poi_panel__back_to_list_logo {
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
 .poi_panel__back_to_list:hover {
   color: $secondary_text;
 }
@@ -341,6 +336,7 @@ $HEADER_SIZE: 40px;
     min-width: 20%
   }
 
+
   &:hover {
     text-decoration: none;
   }
@@ -376,6 +372,7 @@ $HEADER_SIZE: 40px;
   height: 25px;
   font-size: 12px;
   color: $secondary_text;
+  margin-top: 7px;
 }
 
 .poi_panel__actions__text:hover {
@@ -607,6 +604,11 @@ $HEADER_SIZE: 40px;
   line-height: $HEADER_SIZE;
   padding-left: 8px;
   cursor: pointer;
+
+  .poi_panel__back_to_list_logo {
+    margin-left: 8px;
+    vertical-align: text-bottom;
+  }
 }
 
 @media (min-width: 641px) {
@@ -615,7 +617,7 @@ $HEADER_SIZE: 40px;
   }
 
   .poi_panel__header {
-    font-size: 13px;
+    font-size: 12px;
     color: $secondary_text;
     text-transform: uppercase;
     height: $HEADER_SIZE;
@@ -784,5 +786,9 @@ $HEADER_SIZE: 40px;
     background-color: $primary_text;
     border-color: $primary_text;
     color: #fff;
+  }
+
+  .poi_panel__container {
+    padding: 0 15px;
   }
 }
