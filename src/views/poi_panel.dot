@@ -119,7 +119,7 @@
       {{? isAnywherePoi && this.categories }}
           <div class="service_panel__categories--poi">
             <hr>
-            <h3><span class="icon icon-icon_compass"></span>{{= _("Search around this place", "poi") }}</h3>
+            <h3><span class="icon icon-compass"></span> {{= _("Search around this place", "poi") }}</h3>
             {{~ this.categories:category:index }}
               {{?
                 !this.mustDeployCategories ||
