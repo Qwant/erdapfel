@@ -117,7 +117,7 @@ Scene.prototype.initMapBox = function() {
           const point = new LatLonPoi({lat: e.lngLat.lat, lng: e.lngLat.lng});
           PanelManager.setPoi(point);
           const marker = document.createElement('div');
-          marker.className = 'marker-container';
+          marker.className = 'marker-container marker-anywhere';
           new Marker({element: marker})
               .setLngLat(e.lngLat)
               .addTo(this.mb);
@@ -190,6 +190,10 @@ Scene.prototype.initMapBox = function() {
 
   listen('restore_location', () => {
     this.restoreLocation();
+  });
+
+  listen('mark_poi_as_shown', () => {
+    this.markPoiAsShown();
   });
 };
 
@@ -394,6 +398,14 @@ Scene.prototype.onHashChange = function() {
     this.restoreFromHash(window.location.hash, { animate: false });
   };
 };
+
+Scene.prototype.markPoiAsShown = function() {
+  this.poiShown = true;
+  setTimeout(() => {
+    this.poiShown = false;
+  }, 1000);
+};
+
 
 /* private */
 
