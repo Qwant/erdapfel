@@ -3,7 +3,17 @@
   <h3 class="poi_popup__category">{{= this.category }}</h3>
   <div>
   {{? this.reviews }}
-    {{ console.log(this.reviews); }}
+    <div class="poi_popup__review">
+
+      {{~ [...Array(5)]:star:k }}
+        <span class="icon-icon_star{{= k+1 <= this.reviews.global_grade ? '-filled' : ''}}"></span>
+      {{~}}
+
+      <span class="panel__note__review_count">
+        {{= this.reviews.total_grades_count }} {{= _n('review', 'reviews', this.reviews.total_grades_count) }}
+      </span>
+    </div>
+
   {{?? this.opening && this.opening.days }}
     <span class="poi_popup__opening">
     {{? this.opening.isTwentyFourSeven }}
