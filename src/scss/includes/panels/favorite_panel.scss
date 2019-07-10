@@ -211,7 +211,7 @@ $MASQ_BANNER_HEIGHT: 93px;
 }
 
 @media (max-width: 640px) {
-  .resizable_panel.reduced .favorite_panel__show_list {
+  #resizable_panel.reduced .favorite_panel__show_list {
     display: block;
     text-align: center;
     font-size: 12px;

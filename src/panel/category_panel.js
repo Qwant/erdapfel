@@ -6,7 +6,7 @@ import UrlState from '../proxies/url_state';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
-import { resizableClassName } from '../libs/resizable_panel';
+import { resizableId } from '../libs/resizable_panel';
 import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
@@ -22,7 +22,7 @@ export default class CategoryPanel {
     this.minimalHourPanel = new MinimalHourPanel();
     this.panelResizer = PanelResizerView;
     this.panel = new Panel(this, CategoryPanelView);
-    this.resizableClassName = resizableClassName;
+    this.resizableId = resizableId;
 
     this.pois = [];
     this.categoryName = '';

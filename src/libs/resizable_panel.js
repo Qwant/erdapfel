@@ -1,4 +1,4 @@
-const sizes = {
+const SIZES = {
   0: window.innerHeight,
   [window.innerHeight / 2]: window.innerHeight / 2,
   [window.innerHeight]: 50,
@@ -6,8 +6,8 @@ const sizes = {
 
 const REDUCED = 'reduced';
 const FULL = 'full';
-const resizerClassName = 'deployable__list_resizer';
-export const resizableClassName = 'resizable_panel';
+const resizerId = 'deployable__list_resizer';
+export const resizableId = 'resizable_panel';
 
 function getClosest(arr, goal) {
   return arr.reduce((prev, curr) =>
@@ -37,9 +37,8 @@ export default class ResizablePanel {
    */
   checkPanel() {
     if (!this.panel) {
-      const element = document.querySelector(`.${resizableClassName}`);
-      if (element) {
-        this.panel = element;
+      if (window[resizableId]) {
+        this.panel = window[resizableId];
         return true;
       }
       return false;
@@ -79,16 +78,14 @@ export default class ResizablePanel {
   move(e, force = false) {
     e.preventDefault();
 
-    const resizer = document.querySelector(`.${resizerClassName}`);
-
-    if (!resizer) {
+    if (!window[resizerId]) {
       return;
     }
 
     if ((this.holding || force) && this.checkPanel() && !this.isTransitioning) {
       const clientY = e.changedTouches ? e.touches[0].clientY : e.clientY;
       this.panel.style.height = `${Math.abs(
-        window.innerHeight - clientY + resizer.offsetHeight
+        window.innerHeight - clientY + window[resizerId].offsetHeight
       )}px`;
     }
   }
@@ -134,27 +131,22 @@ export default class ResizablePanel {
     }
 
     const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
-    const index = getClosest(Object.keys(sizes), clientY);
-    const adequateHeight = sizes[index];
+    const index = getClosest(Object.keys(SIZES), clientY);
+    const adequateHeight = SIZES[index];
     let height = adequateHeight;
 
     if (adequateHeight === 50) {
-
       if (this.holding) {
         this.panel.classList.add(REDUCED);
         fire('panel_view_state', { reduced: true });
       } else {
         height = window.innerHeight / 2;
       }
-
     } else if (!this.holding && adequateHeight === window.innerHeight / 2) {
-
       this.panel.classList.add(REDUCED);
       fire('panel_view_state', { reduced: true });
       height = 50;
-
     } else if (adequateHeight === window.innerHeight) {
-
       if (!this.holding) {
         this.panel.style.height = null;
       }

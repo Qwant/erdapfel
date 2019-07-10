@@ -5,7 +5,7 @@ import Store from '../adapters/store';
 import FilterPanel from './filter_panel';
 import PoiStore from '../adapters/poi/poi_store';
 import Telemetry from '../libs/telemetry';
-import { resizableClassName } from '../libs/resizable_panel';
+import { resizableId } from '../libs/resizable_panel';
 import layouts from './layouts.js';
 import {version} from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
@@ -23,7 +23,7 @@ function Favorite(sharePanel) {
   this.poiSubClass = poiSubClass;
   this.filterPanel = new FilterPanel();
   this.panelResizer = PanelResizerView;
-  this.resizableClassName = resizableClassName;
+  this.resizableId = resizableId;
   this.sharePanel = sharePanel;
   this.openMoreMenuPosition = -1;
   this.reduced = false;

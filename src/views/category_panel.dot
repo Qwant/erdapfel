@@ -1,9 +1,10 @@
 {{? this.loading == 0 }}
 
 <div
+  {{= this.active ? "id='" + this.resizableId + "'" : '' }}
   class="
     category__panel
-    {{= this.active ? ' ' + this.resizableClassName : ' category__panel--hidden' }}
+    {{= this.active ? '' : ' category__panel--hidden' }}
     {{= this.reduced ? ' reduced' : ''}}
     {{= this.maximized ? ' full' : ''}}
   "

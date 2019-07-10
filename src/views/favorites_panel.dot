@@ -1,8 +1,8 @@
 {{? this.active }}
 <div
+  id="{{= this.resizableId }}"
   class="
     favorite_panel__container
-    {{= this.resizableClassName }}
     {{= this.reduced ? ' reduced' : ''}}
     {{= this.maximized ? ' full' : ''}}
   "
