@@ -190,9 +190,9 @@ export default class CategoryPanel {
 
   selectPoi(poi) {
     fire('fit_map', poi, layouts.LIST);
-    let previousMarker = document.querySelector(".mapboxgl-marker.active");
-    if(previousMarker){
-      previousMarker.classList.remove("active");
+    let previousMarker = document.querySelector('.mapboxgl-marker.active');
+    if (previousMarker) {
+      previousMarker.classList.remove('active');
     }
     if (poi.meta && poi.meta.source) {
       Telemetry.add('open', 'poi', poi.meta.source,
