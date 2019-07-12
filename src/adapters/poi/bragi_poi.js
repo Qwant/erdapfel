@@ -125,7 +125,7 @@ export default class BragiPoi extends Poi {
   }
 
 
-  static get(term) {
+  static get(term, focus) {
     /* cache */
     if (term in window.__bragiCache) {
       const cachePromise = new Promise(resolve => {
@@ -142,6 +142,10 @@ export default class BragiPoi extends Poi {
         'q': term,
         'limit': geocoderConfig.max_items,
       };
+      if (focus && focus.lat !== undefined && focus.lon !== undefined) {
+        query['lat'] = focus.lat;
+        query['lon'] = focus.lon;
+      }
       if (geocoderConfig.useLang) {
         query.lang = window.getLang().code;
       }

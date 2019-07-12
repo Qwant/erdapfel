@@ -41,8 +41,14 @@ export default class Suggest {
           promise = PoiStore.getAll();
         } else {
           promise = new Promise(async (resolve, reject) => {
+            let focus = {};
+            if (window.map && window.map.mb && window.map.mb.getZoom() >= 11.) {
+              let center = window.map.center();
+              focus.lat = center.lat;
+              focus.lon = center.lng;
+            }
             this.historyPromise = PoiStore.get(term);
-            this.bragiPromise = BragiPoi.get(term);
+            this.bragiPromise = BragiPoi.get(term, focus);
             this.categoryPromise = withCategories ?
               CategoryService.getMatchingCategories(term) : null;
 
