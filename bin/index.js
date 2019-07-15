@@ -1,7 +1,9 @@
-const configBuilt = require('@qwant/nconf-builder')
-const App = require('./app')
-const config = configBuilt.get()
-const PORT = config.PORT
+/* globals require */
 
-const appServer = new App(config)
-appServer.start(PORT)
+const configBuilt = require('@qwant/nconf-builder');
+const App = require('./app');
+const config = configBuilt.get();
+const PORT = config.PORT;
+
+const appServer = new App(config);
+appServer.start(PORT);
