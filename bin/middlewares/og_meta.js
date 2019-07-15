@@ -1,5 +1,4 @@
 /* globals require, module */
-
 const request = require('request');
 
 module.exports = function(config) {
@@ -57,7 +56,6 @@ module.exports = function(config) {
     res.locals.poi = poi;
     res.locals.ogMetas.push({ name: 'title', content: poi.name });
     res.locals.ogMetas.push({ name: 'url', content: getUrl(req, poi) });
-
     next();
   }
 
@@ -65,7 +63,6 @@ module.exports = function(config) {
     commonMeta(locale, req, res);
     res.locals.ogMetas.push({ name: 'title', content: 'Qwant Maps' });
     res.locals.ogMetas.push({ name: 'url', content: getUrl(req) });
-
     next();
   }
 
@@ -82,12 +79,12 @@ module.exports = function(config) {
     const locale = res.locals.language;
     let poiId
     if (placeUrlMatch && placeUrlMatch.length > 0) {
-      poiId = placeUrlMatch[1]
+      poiId = placeUrlMatch[1];
     }
     if (poiId && !poiId.startsWith('latlon:')) {
       getPoi(poiId, locale).then((poi) => {
         if(poi) {
-          poiMeta(poi, locale, req, res, next)
+          poiMeta(poi, locale, req, res, next);
         } else {
           res.redirect(307, config.system.baseUrl);
         }
