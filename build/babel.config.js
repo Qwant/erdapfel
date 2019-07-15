@@ -1,44 +1,46 @@
-module.exports = function (mode) {
+/* globals module */
+
+module.exports = function(mode) {
   const plugins = [
-    "@babel/plugin-syntax-dynamic-import"
-  ]
+    '@babel/plugin-syntax-dynamic-import',
+  ];
 
   const production = {
-    presets :
-      [["@babel/preset-env", {
-        "targets": {
-          "browsers": [
-            "Chrome >= 60",
-            "Firefox >= 44",
-            "Safari >= 7",
-            "Explorer 11",
-            "Edge >= 17"
-          ]
+    presets:
+      [['@babel/preset-env', {
+        'targets': {
+          'browsers': [
+            'Chrome >= 60',
+            'Firefox >= 44',
+            'Safari >= 7',
+            'Explorer 11',
+            'Edge >= 17',
+          ],
         },
-        "useBuiltIns": "entry",
-        "corejs": 2
+        'useBuiltIns': 'entry',
+        'corejs': 2,
       }]],
-  }
+  };
 
   const development = {
-    presets : [
+    presets: [
       [
-        "@babel/preset-env",
+        '@babel/preset-env',
         {
-          "useBuiltIns": "entry",
-          "corejs": 2
-        }
-      ]
-    ]
-  }
+          'useBuiltIns': 'entry',
+          'corejs': 2,
+        },
+      ],
+    ],
+  };
 
-  const conf = mode === 'production' ? production : development
+  const conf = mode === 'production' ? production : development;
 
   return {
-    "presets": conf.presets,
-    "ignore": [
-      "node_modules"
+    'presets': conf.presets,
+    'ignore': [
+      'node_modules',
     ],
-    "plugins": plugins
-  }
-}
+    'plugins': plugins,
+  };
+};

@@ -1,64 +1,65 @@
-const path = require('path')
-const yaml = require('node-yaml')
-const webpack = require('webpack')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const babelConf = require('./babel.config')
+/* globals require, process, __dirname, module */
 
-const getBuildMode = function(argv){
-  const isTestMode = process.env.TEST === 'true'
+const path = require('path');
+const yaml = require('node-yaml');
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const babelConf = require('./babel.config');
 
-  let argvMode = argv.mode
-  if(isTestMode) {
-    return 'test'
+const getBuildMode = function(argv) {
+  const isTestMode = process.env.TEST === 'true';
+
+  let argvMode = argv.mode;
+  if (isTestMode) {
+    return 'test';
+  } else if (argvMode === 'development') {
+    return 'development';
   }
-  if(argvMode === 'development') {
-    return 'development'
-  }
-  return 'production'
-}
+  return 'production';
+};
 
 
-const addJsOptimizePlugins = function(buildMode, plugins){
-  if (buildMode === 'production'){
+const addJsOptimizePlugins = function(buildMode, plugins) {
+  if (buildMode === 'production') {
     plugins = plugins.concat([
       new UglifyJsPlugin({
         uglifyOptions: {
           beautify: false,
           ecma: 5,
           compress: true,
-          comments: false
-        }
-      })
-    ])
+          comments: false,
+        },
+      }),
+    ]);
   }
-  return plugins
-}
+  return plugins;
+};
 
 const sassChunkConfig = () => {
   return {
-    entry : path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
+    entry: path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
     output: {
       path: path.join(__dirname, '..'),
-      filename: 'tmp/css.js'
+      filename: 'tmp/css.js',
     },
-    module : {
-      rules : [{
-        use : {
-          loader : 'file-loader',
+    module: {
+      rules: [{
+        use: {
+          loader: 'file-loader',
           options: {
-            name : 'public/css/app.css'
-          }
-        }
+            name: 'public/css/app.css',
+          },
+        },
       }, {
-        test : /\.scss$/,
+        test: /\.scss$/,
         use: [{
-          loader : 'postcss-loader',
-          options : {
+          loader: 'postcss-loader',
+          options: {
             plugins: [
               require('autoprefixer')(),
-              require('postcss-import')()
-            ]
-          }
+              require('postcss-import')(),
+            ],
+          },
         }],
       }, {
         test: /\.(jpe?g|png|gif|svg)$/,
@@ -66,25 +67,25 @@ const sassChunkConfig = () => {
         options: {
           publicPath: '/',
           name: '[name].[ext]',
-          outputPath: 'images/'
-        }
+          outputPath: 'images/',
+        },
       }, {
-        test : /\.scss$/,
-        loader : 'sass-loader'
+        test: /\.scss$/,
+        loader: 'sass-loader',
       }],
     },
-  }
-}
+  };
+};
 
 
-const mainJsChunkConfig  = (buildMode) => {
+const mainJsChunkConfig = buildMode => {
   return {
     entry: [path.join(__dirname, '..', 'src', 'main.js')],
     output: {
       path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
       filename: 'bundle.js',
       chunkFilename: '[name].bundle.js',
-      publicPath: './statics/build/javascript/'
+      publicPath: './statics/build/javascript/',
     },
     plugins: addJsOptimizePlugins(buildMode, []),
     module: {
@@ -93,59 +94,59 @@ const mainJsChunkConfig  = (buildMode) => {
         use: [
           {
             loader: 'babel-loader',
-            options : babelConf(buildMode)
+            options: babelConf(buildMode),
           },
           {
             loader: 'dot-loader',
-            options: {}
-          }
-        ]
+            options: {},
+          },
+        ],
       }, {
         test: /\.yml$/,
         use: [
           {
             loader: 'babel-loader',
-            options : babelConf(buildMode)
+            options: babelConf(buildMode),
           },
           {loader: '@qwant/config-sanitizer-loader'},
           {loader: 'json-loader'},
-          {loader: 'yaml-loader'}
-        ]
+          {loader: 'yaml-loader'},
+        ],
       }, {
         test: /\.js$/,
         use: [
           {
             loader: 'babel-loader',
-            options : babelConf(buildMode)
-          }
-          ],
+            options: babelConf(buildMode),
+          },
+        ],
         exclude: [
-          /\/node_modules/
-        ]
-      }]
+          /\/node_modules/,
+        ],
+      }],
     },
     devtool: 'source-map',
     node: {
-      fs: 'empty'
-    }
-  }
-}
+      fs: 'empty',
+    },
+  };
+};
 
-const mapJsChunkConfig = (buildMode) => {
+const mapJsChunkConfig = buildMode => {
   return {
     entry: [path.join(__dirname, '..', 'src', 'map.js')],
     output: {
       path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
-        filename: 'map.js'
+      filename: 'map.js',
     },
     plugins: addJsOptimizePlugins(buildMode, [
       new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
-        if(buildMode === 'test') {
-          resource.request = resource.request.replace('--ENV', '-js-mock')
+        if (buildMode === 'test') {
+          resource.request = resource.request.replace('--ENV', '-js-mock');
         } else {
-          resource.request = resource.request.replace('--ENV', '')
+          resource.request = resource.request.replace('--ENV', '');
         }
-      })
+      }),
     ]),
     module: {
       rules: [
@@ -154,82 +155,88 @@ const mapJsChunkConfig = (buildMode) => {
           use: [
             {
               loader: 'babel-loader',
-              options : babelConf(buildMode)
+              options: babelConf(buildMode),
             },
             {
-              loader : 'dot-loader',
-              options: {}
-            }
-          ]
+              loader: 'dot-loader',
+              options: {},
+            },
+          ],
         }, {
           test: /\.yml$/,
           use: [
-            {loader : '@qwant/config-sanitizer-loader'},
-            {loader : 'json-loader'},
-            {loader : 'yaml-loader'}
-          ]
+            {loader: '@qwant/config-sanitizer-loader'},
+            {loader: 'json-loader'},
+            {loader: 'yaml-loader'},
+          ],
         }, {
-          test : /style\.json$/,
-          use : [
+          test: /style\.json$/,
+          use: [
             {
-              loader : '@qwant/map-style-loader',
-              options : {
+              loader: '@qwant/map-style-loader',
+              options: {
                 output: 'production', // 'debug' | 'production' | 'omt'
-                outPath : __dirname + '/../public/mapstyle',
-                i18n : true,
-                icons : true,
-                pixelRatios : [1,2]
-              }
-            }
+                outPath: __dirname + '/../public/mapstyle',
+                i18n: true,
+                icons: true,
+                pixelRatios: [1, 2],
+              },
+            },
           ],
         }, {
           test: /\.js$/,
-          use : [
+          use: [
             {
               loader: 'babel-loader',
-              options : babelConf(buildMode)
-            }
+              options: babelConf(buildMode),
+            },
 
           ],
           exclude: [
-            /\/node_modules/
-          ]
-        }]
+            /\/node_modules/,
+          ],
+        }],
     },
     devtool: 'source-map',
     node: {
-      fs: 'empty'
-    }
-  }
-}
+      fs: 'empty',
+    },
+  };
+};
 
 const copyPluginConfig = () => {
   return {
     entry: [
-      path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.js.min')
+      path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.js.min'),
     ],
     output: {
       path: path.join(__dirname, '..'),
-      filename: 'tmp/mapbox-gl-rtl-text.js.min'
+      filename: 'tmp/mapbox-gl-rtl-text.js.min',
     },
-    module : {
-      rules : [{
-        use : {
-          loader : 'file-loader',
+    module: {
+      rules: [{
+        use: {
+          loader: 'file-loader',
           options: {
-            name: './public/build/javascript/map_plugins/mapbox-gl-rtl-text.js'
-          }
-        }
-      }]
-    }
-  }
-}
+            name: './public/build/javascript/map_plugins/mapbox-gl-rtl-text.js',
+          },
+        },
+      }],
+    },
+  };
+};
 
-webpackChunks = (buildMode) => {
-  let webpackChunks = [copyPluginConfig(), sassChunkConfig(buildMode), mainJsChunkConfig(buildMode), mapJsChunkConfig(buildMode)]
-  const constants = yaml.readSync('../config/constants.yml')
+const webpackChunks = buildMode => {
+  let webpackChunks = [
+    copyPluginConfig(),
+    sassChunkConfig(buildMode),
+    mainJsChunkConfig(buildMode),
+    mapJsChunkConfig(buildMode),
+  ];
+  const constants = yaml.readSync('../config/constants.yml');
 
-  webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map((language) => {
+  webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(language => {
+    const s_path = `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`;
     return {
       entry: path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
       module: {
@@ -239,11 +246,11 @@ webpackChunks = (buildMode) => {
             options: {
               sources: [
                 {
-                  path: `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`,
-                  name: 'i18nDate'
-                }
-              ]
-            }
+                  path: s_path,
+                  name: 'i18nDate',
+                },
+              ],
+            },
           },
           {
             loader: '@qwant/po-js-loader',
@@ -254,25 +261,26 @@ webpackChunks = (buildMode) => {
             options: {
               fallbackList: language.fallback,
               messagePath: path.join(__dirname, '..', 'language', 'message'),
-              locale: language.locale
-            }
+              locale: language.locale,
+            },
           }],
       },
       output: {
         path: path.join(__dirname, '..'),
-        filename: `./public/build/javascript/message/${language.locale}.js`
+        filename: `./public/build/javascript/message/${language.locale}.js`,
       },
-    }
-  }))
-  return webpackChunks
-}
+    };
+  }));
+  return webpackChunks;
+};
 
 module.exports = (env, argv) => {
-  let buildMode = getBuildMode(argv)
+  /* eslint no-console: 0 */
+  let buildMode = getBuildMode(argv);
 
-  console.log('*--------------------*')
-  console.log(`Building on ${buildMode} mode`)
-  console.log('*--------------------*')
+  console.log('*--------------------*');
+  console.log(`Building on ${buildMode} mode`);
+  console.log('*--------------------*');
 
-  return webpackChunks(buildMode)
-}
+  return webpackChunks(buildMode);
+};
