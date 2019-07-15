@@ -186,7 +186,7 @@ PoiPanel.prototype.showPhone = function() {
 };
 
 PoiPanel.prototype.openCategory = function(category) {
-  fire("clean_marker");
+  fire('clean_marker');
   PanelManager.openCategory({ category });
 };
 

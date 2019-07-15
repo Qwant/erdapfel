@@ -16,7 +16,7 @@ export default class MinimalHourPanel {
     const openingBlock = poi.blocksByType.opening_hours;
     this.opening = null;
     if (openingBlock) {
-        this.opening = new OsmSchedule(openingBlock, this.messages);
+      this.opening = new OsmSchedule(openingBlock, this.messages);
     }
     return this;
   }

@@ -56,7 +56,7 @@ Scene.prototype.initMapBox = function() {
     style: getStyle(),
     zoom: this.zoom,
     center: this.center,
-    hash: false
+    hash: false,
   });
 
   this.popup.init(this.mb);
@@ -98,7 +98,7 @@ Scene.prototype.initMapBox = function() {
         this.mb.getCanvas().style.cursor = '';
       });
 
-      this.mb.on('click', interactiveLayer, async(e) => {
+      this.mb.on('click', interactiveLayer, async e => {
         e.originalEvent.stopPropagation();
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
@@ -110,17 +110,17 @@ Scene.prototype.initMapBox = function() {
       this.popup.addListener(interactiveLayer);
     });
 
-    this.mb.on('click', (e) => {
-      setTimeout(()=>{
-        if(!this.poiShown){
+    this.mb.on('click', e => {
+      setTimeout(() => {
+        if (!this.poiShown) {
           this.cleanMarker();
           const point = new LatLonPoi({lat: e.lngLat.lat, lng: e.lngLat.lng});
           PanelManager.setPoi(point);
           const marker = document.createElement('div');
           marker.className = 'marker-container marker-anywhere';
           new Marker({element: marker})
-              .setLngLat(e.lngLat)
-              .addTo(this.mb);
+            .setLngLat(e.lngLat)
+            .addTo(this.mb);
 
           this.currentMarker = marker;
         }
