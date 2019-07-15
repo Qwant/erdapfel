@@ -126,10 +126,14 @@ export default class BragiPoi extends Poi {
 
 
   static get(term, focus) {
+    let req = term;
+    if (focus && focus.lat !== undefined && focus.lon !== undefined) {
+      req += `&${focus.lat}:${focus.lon}`;
+    }
     /* cache */
-    if (term in window.__bragiCache) {
+    if (req in window.__bragiCache) {
       const cachePromise = new Promise(resolve => {
-        resolve(window.__bragiCache[term]);
+        resolve(window.__bragiCache[req]);
       });
       cachePromise.abort = () => {};
       return cachePromise;
@@ -157,7 +161,7 @@ export default class BragiPoi extends Poi {
           // FIXME: add position when https://github.com/QwantResearch/erdapfel/pull/291 is merged.
           return new BragiPoi(feature, new QueryContext(term, ranking, query.lang));
         });
-        window.__bragiCache[term] = bragiResponse;
+        window.__bragiCache[req] = bragiResponse;
         resolve(bragiResponse);
       }).catch(error => {
         if (error === 0) { /* abort */
