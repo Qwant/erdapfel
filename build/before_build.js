@@ -1,25 +1,26 @@
-const webfont = require('@qwant/map-style-builder/task/webfont/index')
-const fs = require('fs-extra')
-const path = require('path')
+/* globals require, __dirname */
 
-const styleDir = path.join(__dirname, '../node_modules/\@qwant/qwant-basic-gl-style')
+const webfont = require('@qwant/map-style-builder/task/webfont/index');
+const fs = require('fs-extra');
+const path = require('path');
+
+const styleDir = path.join(__dirname, '../node_modules/@qwant/qwant-basic-gl-style');
 
 // Build mapstyle webfont
 webfont({
-    styleDir: styleDir,
-    webfont: true
-  }
-).then(() => {
+  styleDir: styleDir,
+  webfont: true,
+}).then(() => {
   fs.copy(
-    path.join(styleDir,'build/font'),
+    path.join(styleDir, 'build/font'),
     path.join(__dirname, '../public/mapstyle/iconfont')
-  )
+  );
 })
-.catch(err => {
-  console.error(err)
-})
+  .catch(err => {
+    console.error(err);
+  });
 
 fs.copySync(
-  path.join(__dirname,'../node_modules/klokantech-noto-sans/_output'),
+  path.join(__dirname, '../node_modules/klokantech-noto-sans/_output'),
   path.join(__dirname, '../public/mapstyle/font')
-)
+);
