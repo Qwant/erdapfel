@@ -57,3 +57,11 @@ test('refuses unknown events', done => {
     .send('{"type":"unknown"}')
     .expect(400, done)
 });
+
+test('refuses array in telemetry type', done => {
+  server
+    .post('/events')
+    .set('Content-Type', 'application/json')
+    .send('{"type":["localise_trigger"]}')
+    .expect(400, done)
+})
