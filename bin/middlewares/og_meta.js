@@ -14,13 +14,13 @@ module.exports = function(config) {
 
   async function getPoi(poiId, locale) {
     let id = poiId;
-    let atPos = poiId.indexOf('@');
+    const atPos = poiId.indexOf('@');
     if (atPos !== -1) {
       id = poiId.slice(0, atPos);
     }
 
     return new Promise((resolve, reject) => {
-      let idunnUrl = `${idunnBaseUrl}/v1/places/${id}?lang=${locale.code}`;
+      const idunnUrl = `${idunnBaseUrl}/v1/places/${id}?lang=${locale.code}`;
       request({
         url: idunnUrl,
         timeout: idunnTimeout,
@@ -78,10 +78,10 @@ module.exports = function(config) {
   }
 
   return function(req, res, next) {
-    let placeUrlMatch = req.originalUrl.match(/place\/(.*)/);
-    let locale = res.locals.language;
+    const placeUrlMatch = req.originalUrl.match(/place\/(.*)/);
+    const locale = res.locals.language;
     if (placeUrlMatch && placeUrlMatch.length > 0) {
-      let poiId = placeUrlMatch[1];
+      const poiId = placeUrlMatch[1];
       getPoi(poiId, locale).then(poi => {
         if (poi) {
           poiMeta(poi, locale, req, res, next);

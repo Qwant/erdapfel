@@ -45,7 +45,7 @@ export default class CategoryPanel {
 
   store() {
     if (this.active) {
-      let params = [];
+      const params = [];
       if (this.categoryName) {
         params.push(`type=${this.categoryName}`);
       }
@@ -60,10 +60,10 @@ export default class CategoryPanel {
   }
 
   restore() {
-    let getParams = new URLSearchParams(window.location.search);
-    let category = getParams.get('type') || '';
-    let query = getParams.get('q') || '';
-    let rawBbox = (getParams.get('bbox') || '').split(',');
+    const getParams = new URLSearchParams(window.location.search);
+    const category = getParams.get('type') || '';
+    const query = getParams.get('q') || '';
+    const rawBbox = (getParams.get('bbox') || '').split(',');
     let bbox;
     if (rawBbox.length === 4) {
       bbox = [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
@@ -83,12 +83,12 @@ export default class CategoryPanel {
 
   async search() {
     this.loading = true;
-    let bbox = window.map.bbox();
-    let urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
+    const bbox = window.map.bbox();
+    const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
       .join(',');
 
-    let {places, source} = await IdunnPoi.poiCategoryLoad(
+    const {places, source} = await IdunnPoi.poiCategoryLoad(
       urlBBox,
       MAX_PLACES,
       this.categoryName,
@@ -99,7 +99,7 @@ export default class CategoryPanel {
     this.loading = false;
 
     this.panel.update();
-    let container = document.querySelector('.category__panel__scroll');
+    const container = document.querySelector('.category__panel__scroll');
     if (container) {
       container.scrollTop = 0;
     }
@@ -131,7 +131,7 @@ export default class CategoryPanel {
     }
 
     // Apply correct zoom when opening a category
-    let currentZoom = window.map.mb.getZoom();
+    const currentZoom = window.map.mb.getZoom();
 
     // Zoom < 5: focus on Paris
     if (currentZoom < 5) {
@@ -190,7 +190,7 @@ export default class CategoryPanel {
 
   selectPoi(poi) {
     fire('fit_map', poi, layouts.LIST);
-    let previousMarker = document.querySelector('.mapboxgl-marker.active');
+    const previousMarker = document.querySelector('.mapboxgl-marker.active');
     if (previousMarker) {
       previousMarker.classList.remove('active');
     }
@@ -212,14 +212,14 @@ export default class CategoryPanel {
   }
 
   highlightPoiMarker(poi) {
-    let marker = document.getElementById(poi.marker_id);
+    const marker = document.getElementById(poi.marker_id);
     if (marker) {
       marker.classList.add('active');
     }
   }
 
   unhighlightPoiMarker(poi) {
-    let marker = document.getElementById(poi.marker_id);
+    const marker = document.getElementById(poi.marker_id);
     if (marker) {
       marker.classList.remove('active');
     }

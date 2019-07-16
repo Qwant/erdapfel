@@ -54,8 +54,8 @@ export default class DirectionPanel {
   }
 
   initDirection() {
-    let originHandler = '#itinerary_input_origin';
-    let destinationHandler = '#itinerary_input_destination';
+    const originHandler = '#itinerary_input_origin';
+    const destinationHandler = '#itinerary_input_destination';
     this.originInput = new DirectionInput(
       originHandler,
       poi => this.selectOrigin(poi),
@@ -113,11 +113,11 @@ export default class DirectionPanel {
 
   invertOriginDestination() {
     Telemetry.add(Telemetry.ITINERARY_INVERT);
-    let originValue = this.originInput.getValue();
-    let destinationValue = this.destinationInput.getValue();
+    const originValue = this.originInput.getValue();
+    const destinationValue = this.destinationInput.getValue();
     this.originInput.setValue(destinationValue);
     this.destinationInput.setValue(originValue);
-    let tmp = this.origin;
+    const tmp = this.origin;
     this.origin = this.destination;
     this.destination = tmp;
     this.searchDirection();
@@ -228,13 +228,13 @@ export default class DirectionPanel {
     if (this.origin && this.destination) {
 
       this.roadMapPanel.showPlaceholder(this.vehicle);
-      let directionResponse = await DirectionApi.search(
+      const directionResponse = await DirectionApi.search(
         this.origin,
         this.destination,
         this.vehicle,
       );
       if (directionResponse && directionResponse.routes) {
-        let routes = directionResponse.routes;
+        const routes = directionResponse.routes;
         routes.forEach((route, i) => {
           route.isActive = i === 0;
           route.id = i;
@@ -285,7 +285,7 @@ export default class DirectionPanel {
 
   store() {
     if (this.active) {
-      let routeParams = [];
+      const routeParams = [];
       if (this.origin) {
         routeParams.push(this.poiToUrl('origin', this.origin));
       }
@@ -303,10 +303,10 @@ export default class DirectionPanel {
   }
 
   async restoreUrl() {
-    let getParams = new URLSearchParams(window.location.search);
+    const getParams = new URLSearchParams(window.location.search);
     if (getParams.get('mode')) {
-      let urlVehicle = getParams.get('mode');
-      let matchedVehicle = Object.keys(vehiculeMatching)
+      const urlVehicle = getParams.get('mode');
+      const matchedVehicle = Object.keys(vehiculeMatching)
         .find(vehiculeMatchingItem => vehiculeMatchingItem === urlVehicle);
       if (matchedVehicle) {
         this.vehicle = matchedVehicle;

@@ -90,7 +90,7 @@ export default class SearchInput {
   store() {}
 
   async restore(fragment) {
-    let shards = UrlShards.parseUrl();
+    const shards = UrlShards.parseUrl();
     if (shards.length === 1) {
       return await this.suggest.preselect(fragment);
     }

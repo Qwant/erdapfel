@@ -100,7 +100,7 @@ export default function autoComplete(options) {
             getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight);
         }
         if (!that.sc.suggestionHeight) {
-          let suggestion = that.sc.querySelector('.autocomplete_suggestion');
+          const suggestion = that.sc.querySelector('.autocomplete_suggestion');
           if (suggestion) {
             that.sc.suggestionHeight = suggestion.offsetHeight;
           }
@@ -185,7 +185,7 @@ export default function autoComplete(options) {
       that.updateSC(true);
     };
 
-    let cancelObsolete = function() {
+    const cancelObsolete = function() {
       clearTimeout(that.timer);
       if (that.sourcePending) {
         that.sourcePending.abort();
@@ -193,10 +193,10 @@ export default function autoComplete(options) {
       }
     };
 
-    let suggest = function(data) {
+    const suggest = function(data) {
       cancelObsolete();
       that.items = data;
-      let val = that.value;
+      const val = that.value;
       let innerHTML = null;
       if (data && val.length >= o.minChars) {
         innerHTML = o.renderItems(data, val);
@@ -209,7 +209,7 @@ export default function autoComplete(options) {
       }
     };
 
-    let getNextSuggestion = function(el) {
+    const getNextSuggestion = function(el) {
       el = el.nextElementSibling;
       while (el) {
         if (el.matches('.autocomplete_suggestion')) {
@@ -219,7 +219,7 @@ export default function autoComplete(options) {
       }
     };
 
-    let getPreviousSuggestion = function(el) {
+    const getPreviousSuggestion = function(el) {
       el = el.previousElementSibling;
       while (el) {
         if (el.matches('.autocomplete_suggestion')) {
@@ -233,8 +233,9 @@ export default function autoComplete(options) {
       var key = window.event ? e.keyCode : e.which;
       // down (40), up (38)
       if ((key == 40 || key == 38) && that.sc.innerHTML) {
-        let next, sel = that.sc.querySelector('.autocomplete_suggestion.selected');
-        let allSuggestions = that.sc.querySelectorAll('.autocomplete_suggestion');
+        let next;
+        const sel = that.sc.querySelector('.autocomplete_suggestion.selected');
+        const allSuggestions = that.sc.querySelectorAll('.autocomplete_suggestion');
         if (allSuggestions === null) {
           return false;
         }
@@ -345,7 +346,7 @@ export default function autoComplete(options) {
 
   this.prefetch = async function(val) {
     that.value = val;
-    let source = await o.source(val);
+    const source = await o.source(val);
     if (source !== null) {
       that.sourceDom(source, val);
     }

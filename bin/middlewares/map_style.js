@@ -10,7 +10,7 @@ const Uri = require('@qwant/uri');
 module.exports = function(config, languages) {
 
   /* pre-build style on server start */
-  let options = {
+  const options = {
     output: 'production', // 'debug' | 'production' | 'omt'
     outPath: __dirname + '/../public/mapstyle',
     i18n: true,
@@ -28,11 +28,11 @@ module.exports = function(config, languages) {
     ignoreSprite: true,
   };
 
-  let builtStyle = styleBuilder(qwantStyle, options);
+  const builtStyle = styleBuilder(qwantStyle, options);
 
   return function(req, res) {
     /* get lang routine */
-    let langParameter = req.query.lang;
+    const langParameter = req.query.lang;
     let matchedLanguage = languages.defaultLanguage;
     if (langParameter) {
       matchedLanguage = languages.supportedLanguages.find(supportedLanguage => {
@@ -48,22 +48,22 @@ module.exports = function(config, languages) {
     }
 
     /* config rewriting */
-    let host = req.get('host');
-    let spritesUrl = Uri.toAbsoluteUrl(
+    const host = req.get('host');
+    const spritesUrl = Uri.toAbsoluteUrl(
       `https://${host}`,
       config.system.baseUrl,
       config.mapStyle.spritesUrl,
     );
-    let fontsUrl = Uri.toAbsoluteUrl(
+    const fontsUrl = Uri.toAbsoluteUrl(
       `https://${host}`,
       config.system.baseUrl,
       config.mapStyle.fontsUrl,
     );
-    let urls = {
+    const urls = {
       spritesUrl: spritesUrl,
       fontsUrl: fontsUrl,
     };
-    let mapStyle = Object.assign({}, config.mapStyle, urls);
+    const mapStyle = Object.assign({}, config.mapStyle, urls);
 
     /* json render */
     res.set('Content-Type', 'application/json');

@@ -19,7 +19,7 @@ export default class LocalStore {
     const items = localStorageKeys.reduce((filtered, k) => {
       if (Poi.isPoiCompliantKey(k)) {
         try {
-          let poi = JSON.parse(localStorage.getItem(k));
+          const poi = JSON.parse(localStorage.getItem(k));
           filtered.push(poi);
         } catch (e) {
           Error.sendOnce('local_store', 'getAllPois', 'error getting pois', e);

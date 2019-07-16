@@ -11,7 +11,7 @@ export default class TopBar {
       this.topBarHandle.classList.remove('top_bar--search_focus');
     };
 
-    let minifierButton = document.querySelector('.top_bar .minifier');
+    const minifierButton = document.querySelector('.top_bar .minifier');
     if (minifierButton) {
       minifierButton.onclick = () => {
         window.app.toggleMinify();

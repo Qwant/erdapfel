@@ -9,7 +9,7 @@ const babelConf = require('./babel.config');
 const getBuildMode = function(argv) {
   const isTestMode = process.env.TEST === 'true';
 
-  let argvMode = argv.mode;
+  const argvMode = argv.mode;
   if (isTestMode) {
     return 'test';
   } else if (argvMode === 'development') {
@@ -276,7 +276,7 @@ const webpackChunks = buildMode => {
 
 module.exports = (env, argv) => {
   /* eslint no-console: 0 */
-  let buildMode = getBuildMode(argv);
+  const buildMode = getBuildMode(argv);
 
   console.log('*--------------------*');
   console.log(`Building on ${buildMode} mode`);

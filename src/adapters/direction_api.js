@@ -22,7 +22,7 @@ export default class DirectionApi {
   static async search(start, end, vehicle, exclude = '') {
     const apiVehicle = vehiculeMatching[vehicle];
     let directionsUrl = directionConfig.apiBaseUrl;
-    let userLang = window.getLang();
+    const userLang = window.getLang();
     let language;
     if (ACCEPTED_LANGUAGES.indexOf(userLang.code) !== -1) {
       language = userLang.locale;
@@ -47,8 +47,8 @@ export default class DirectionApi {
     } else if (directionConfig.api === 'qwant') {
       directionsParams.type = apiVehicle;
     }
-    let s_start = poiToMapBoxCoordinates(start);
-    let s_end = poiToMapBoxCoordinates(end);
+    const s_start = poiToMapBoxCoordinates(start);
+    const s_end = poiToMapBoxCoordinates(end);
     directionsUrl = `${directionsUrl}${s_start};${s_end}`;
     let response = null;
     try {

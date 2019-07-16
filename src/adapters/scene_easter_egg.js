@@ -9,7 +9,7 @@ export default class MapEasterEgg {
     if (!URLSearchParams) {
       return;
     }
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('fraicheur') === null) {
       return;
     }

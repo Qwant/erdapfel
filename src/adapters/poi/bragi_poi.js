@@ -17,14 +17,14 @@ export default class BragiPoi extends Poi {
 
     if (feature.properties.geocoding.properties &&
         feature.properties.geocoding.properties.length > 0) {
-      let poiClass = feature.properties.geocoding.properties.find(property => {
+      const poiClass = feature.properties.geocoding.properties.find(property => {
         return property.key === 'poi_class';
       });
 
       if (poiClass) {
         poiClassText = poiClass.value;
       }
-      let poiSubclass = feature.properties.geocoding.properties.find(property => {
+      const poiSubclass = feature.properties.geocoding.properties.find(property => {
         return property.key === 'poi_subclass';
       });
       if (poiSubclass) {
@@ -41,15 +41,15 @@ export default class BragiPoi extends Poi {
     /* generate name corresponding to poi type */
     let name = '';
     let alternativeName = '';
-    let adminLabel = '';
+    const adminLabel = '';
     const resultType = feature.properties.geocoding.type;
 
     let postcode;
     if (feature.properties.geocoding.postcode) {
       postcode = feature.properties.geocoding.postcode.split(';')[0];
     }
-    let city = feature.properties.geocoding.city;
-    let country = feature.properties.geocoding.administrative_regions.find(administrativeRegion =>
+    const city = feature.properties.geocoding.city;
+    const country = feature.properties.geocoding.administrative_regions.find(administrativeRegion =>
       administrativeRegion.zone_type === 'country'
     );
     let countryName;
@@ -75,7 +75,7 @@ export default class BragiPoi extends Poi {
       break;
     default: {
       /* admin */
-      let splitPosition = feature.properties.geocoding.label.indexOf(',');
+      const splitPosition = feature.properties.geocoding.label.indexOf(',');
       let nameFragments;
       if (splitPosition === -1) {
         nameFragments = [feature.properties.geocoding.label];
@@ -126,7 +126,7 @@ export default class BragiPoi extends Poi {
   static get(term) {
     /* cache */
     if (term in window.__bragiCache) {
-      let cachePromise = new Promise(resolve => {
+      const cachePromise = new Promise(resolve => {
         resolve(window.__bragiCache[term]);
       });
       cachePromise.abort = () => {};
@@ -135,8 +135,8 @@ export default class BragiPoi extends Poi {
 
     /* ajax */
     let suggestsPromise;
-    let queryPromise = new Promise(async(resolve, reject) => {
-      let query = {
+    const queryPromise = new Promise(async(resolve, reject) => {
+      const query = {
         'q': term,
         'limit': geocoderConfig.max_items,
       };
@@ -145,7 +145,7 @@ export default class BragiPoi extends Poi {
       }
       suggestsPromise = ajax.get(geocoderConfig.url, query);
       suggestsPromise.then(suggests => {
-        let bragiResponse = suggests.features.map(feature => {
+        const bragiResponse = suggests.features.map(feature => {
           return new BragiPoi(feature);
         });
         window.__bragiCache[term] = bragiResponse;

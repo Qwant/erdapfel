@@ -1,6 +1,6 @@
 /* eslint-disable-next-line */
 function FileLoader(uri) {
-  let sc = document.createElement('script');
+  const sc = document.createElement('script');
   sc.src = uri;
   document.body.appendChild(sc);
   var it = this;

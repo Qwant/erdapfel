@@ -101,7 +101,7 @@ PoiPanel.prototype.close = async function({cleanMarker = true} = {}) {
 
 PoiPanel.prototype.restorePoi = async function(id) {
   Telemetry.add(Telemetry.POI_RESTORE);
-  let hotLoadedPoi = new HotLoadPoi();
+  const hotLoadedPoi = new HotLoadPoi();
   if (hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi;
     window.execOnMapLoaded(() => {
@@ -166,9 +166,9 @@ PoiPanel.prototype.store = function() {
 
 PoiPanel.prototype.restore = async function(urlShard) {
   if (urlShard) {
-    let idSlugMatch = urlShard.match(/^([^@]+)@?(.*)/);
+    const idSlugMatch = urlShard.match(/^([^@]+)@?(.*)/);
     if (idSlugMatch && window.hotLoadPoi) {
-      let id = idSlugMatch[1];
+      const id = idSlugMatch[1];
       await this.restorePoi(id);
     }
   }
@@ -245,7 +245,7 @@ PoiPanel.prototype.showPhone = function() {
 
 async function isPoiFavorite(poi) {
   try {
-    let storePoi = await store.has(poi);
+    const storePoi = await store.has(poi);
     if (storePoi) {
       return true;
     }

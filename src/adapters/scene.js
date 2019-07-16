@@ -41,14 +41,14 @@ Scene.prototype.initScene = async function() {
 
 Scene.prototype.setupInitialPosition = async function() {
   if (window.hotLoadPoi) {
-    let hotloadedPoi = new HotLoadPoi();
+    const hotloadedPoi = new HotLoadPoi();
     this.zoom = hotloadedPoi.zoom;
     this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat];
   } else if (this.urlCenter && this.urlZoom) {
     this.zoom = this.urlZoom;
     this.center = this.urlCenter;
   } else {
-    let lastLocation = await store.getLastLocation();
+    const lastLocation = await store.getLastLocation();
     if (lastLocation) {
       this.center = [lastLocation.lng, lastLocation.lat];
       this.zoom = lastLocation.zoom;
@@ -108,7 +108,7 @@ Scene.prototype.initMapBox = function() {
       this.mb.on('click', interactiveLayer, async e => {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
-          let mapPoi = new MapPoi(e.features[0], e.lngLat);
+          const mapPoi = new MapPoi(e.features[0], e.lngLat);
           this.sceneState.setPoiId(mapPoi.id);
           if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
               window.innerWidth > layout.mobile.breakPoint) {
@@ -117,7 +117,7 @@ Scene.prototype.initMapBox = function() {
               offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
             });
           }
-          let poi = await PanelManager.loadPoiById(mapPoi.id);
+          const poi = await PanelManager.loadPoiById(mapPoi.id);
           if (poi) {
             this.addMarker(poi);
           }
@@ -129,9 +129,9 @@ Scene.prototype.initMapBox = function() {
 
     this.mb.on('moveend', () => {
       UrlState.replaceUrl();
-      let lng = this.mb.getCenter().lng;
-      let lat = this.mb.getCenter().lat;
-      let zoom = this.mb.getZoom();
+      const lng = this.mb.getCenter().lng;
+      const lat = this.mb.getCenter().lat;
+      const zoom = this.mb.getZoom();
       store.setLastLocation({ lng, lat, zoom });
       fire('map_moveend');
     });
@@ -195,14 +195,14 @@ Scene.prototype.initMapBox = function() {
 };
 
 Scene.prototype.saveLocation = function() {
-  let locationShard = UrlShards.parseUrl().find(shard => shard.prefix === 'map');
+  const locationShard = UrlShards.parseUrl().find(shard => shard.prefix === 'map');
   this.savedLocation = locationShard.value;
 };
 
 Scene.prototype.restoreLocation = function() {
   if (this.savedLocation) {
     this.restore(this.savedLocation);
-    let flyOptions = {center: this.urlCenter, zoom: this.urlZoom, animate: true, screenSpeed: 2};
+    const flyOptions = {center: this.urlCenter, zoom: this.urlZoom, animate: true, screenSpeed: 2};
     this.mb.flyTo(flyOptions);
   }
 };
@@ -280,7 +280,7 @@ Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, b
 
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in
   // the extended viewport.
-  let animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox);
+  const animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox);
   this.mb.fitBounds(bbox, {padding: padding, animate: animate});
 };
 
@@ -293,7 +293,7 @@ Scene.prototype.fitMap = function(item, padding) {
     if (item.bbox) { // poi Bbox
       this.fitBbox(item.bbox, padding);
     } else { // poi center
-      let flyOptions = {center: item.getLngLat(), screenSpeed: 1.5, animate: false};
+      const flyOptions = {center: item.getLngLat(), screenSpeed: 1.5, animate: false};
       if (item.zoom) {
         flyOptions.zoom = item.zoom;
       }
@@ -341,13 +341,13 @@ Scene.prototype.cleanMarker = async function() {
 
 /* UrlState interface implementation */
 Scene.prototype.store = function() {
-  let lat = this.mb.getCenter().lat.toFixed(7);
-  let lon = this.mb.getCenter().lng.toFixed(7);
+  const lat = this.mb.getCenter().lat.toFixed(7);
+  const lon = this.mb.getCenter().lng.toFixed(7);
   return `${this.mb.getZoom().toFixed(2)}/${lat}/${lon}`;
 };
 
 Scene.prototype.restore = function(urlShard) {
-  let geoCenter = urlShard.match(/(\d*[.]?\d+)\/(-?\d*[.]?\d+)\/(-?\d*[.]?\d+)/);
+  const geoCenter = urlShard.match(/(\d*[.]?\d+)\/(-?\d*[.]?\d+)\/(-?\d*[.]?\d+)/);
   if (geoCenter) {
     const ZOOM_INDEX = 1;
     const LAT_INDEX = 2;
@@ -358,21 +358,21 @@ Scene.prototype.restore = function(urlShard) {
 };
 
 Scene.prototype.isWindowedPoi = function(poi) {
-  let windowBounds = this.mb.getBounds();
+  const windowBounds = this.mb.getBounds();
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray();
   if (poi instanceof DirectionPoi) {
     windowBounds.extend(poi.bbox.getCenter());
     return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
   }
-  let poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat);
+  const poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat);
   windowBounds.extend(poiCenter);
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
 };
 
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
-    let shards = UrlShards.parseUrl();
+    const shards = UrlShards.parseUrl();
     shards.forEach(shard => {
       if (shard.prefix === 'map') {
         this.restore(shard.value);

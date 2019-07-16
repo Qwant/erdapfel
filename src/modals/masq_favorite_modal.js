@@ -26,7 +26,7 @@ export default class MasqFavoriteModal {
 
 
   open() {
-    let doNotAskAgain = localStorage.getItem(`qmaps_v${version}_add_favorite_ask_masq`);
+    const doNotAskAgain = localStorage.getItem(`qmaps_v${version}_add_favorite_ask_masq`);
     if (doNotAskAgain === 'false' || doNotAskAgain === null) {
       this.opened = true;
       this.modal.open();

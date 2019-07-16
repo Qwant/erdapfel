@@ -78,9 +78,9 @@ export default class Suggest {
       },
 
       renderItems: (pois, query) => {
-        let favorites = pois.filter(poi => poi instanceof PoiStore);
-        let categories = pois.filter(poi => poi instanceof Category).slice(0, 1);
-        let remotes = pois.filter(poi => {
+        const favorites = pois.filter(poi => poi instanceof PoiStore);
+        const categories = pois.filter(poi => poi instanceof Category).slice(0, 1);
+        const remotes = pois.filter(poi => {
           return !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi);
         });
         let suggestDom = this.prefixesRender();
@@ -109,11 +109,11 @@ export default class Suggest {
         e.preventDefault();
         const itemId = item.getAttribute('data-id');
 
-        let prefixPoint = this.prefixes.find(prefix => prefix.id === itemId);
+        const prefixPoint = this.prefixes.find(prefix => prefix.id === itemId);
         if (prefixPoint !== undefined) {
           this.onSelect(prefixPoint);
         } else {
-          let selectedItem = items.find(item => item.id === itemId);
+          const selectedItem = items.find(item => item.id === itemId);
           this.onSelect(selectedItem);
         }
         this.searchInputDomHandler.blur();
@@ -128,9 +128,9 @@ export default class Suggest {
   }
 
   async preselect(term) {
-    let suggestList = await this.autocomplete.prefetch(term);
+    const suggestList = await this.autocomplete.prefetch(term);
     if (suggestList && suggestList.length > 0) {
-      let firstPoi = suggestList[0];
+      const firstPoi = suggestList[0];
       this.onSelect(firstPoi);
       this.searchInputDomHandler.blur();
     }
@@ -146,7 +146,7 @@ export default class Suggest {
       if (this.bragiPromise) {
         this.bragiPromise.abort();
       }
-      let term = this.searchInputDomHandler.value;
+      const term = this.searchInputDomHandler.value;
       this.preselect(term);
     } else {
       if (this.suggestList && this.suggestList.length > 0 &&

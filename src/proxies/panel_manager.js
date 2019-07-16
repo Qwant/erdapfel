@@ -24,7 +24,7 @@ PanelManager.setPoi = async function(poi, options = {}) {
 
 PanelManager.loadPoiById = async function(id, options) {
   if (id) {
-    let poi = await ApiPoi.poiApiLoad(id);
+    const poi = await ApiPoi.poiApiLoad(id);
     if (poi) {
       PanelManager.setPoi(poi, options);
     } else {
@@ -109,7 +109,7 @@ PanelManager.resetLayout = function() {
 };
 
 PanelManager.register = function(panel) {
-  let existingPanel = window.__panel_manager.panels.find(panelIterator => {
+  const existingPanel = window.__panel_manager.panels.find(panelIterator => {
     return panelIterator.panel.cid === panel.panel.cid;
   });
   !existingPanel && window.__panel_manager.panels.push(panel);

@@ -21,11 +21,11 @@ Ajax.getLang = async(url, data = {}, options) => {
 /* private */
 const query = (url, data, method = 'GET', options = {}) => {
   const xhr = new XMLHttpRequest();
-  let timeout = options.timeout * 1000 || systemConfigs.timeout * 1000;
-  let ajaxPromise = new Promise((resolve, reject) => {
+  const timeout = options.timeout * 1000 || systemConfigs.timeout * 1000;
+  const ajaxPromise = new Promise((resolve, reject) => {
     let jsonResponse;
     let xhrStatus = -1;
-    let timeOutHandler = setTimeout(() => {
+    const timeOutHandler = setTimeout(() => {
       xhr.abort();
       reject(`Timeout calling ${url}`);
     }, timeout * 1000);

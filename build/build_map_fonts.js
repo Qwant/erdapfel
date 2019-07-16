@@ -31,7 +31,7 @@ const needsGeneration = function() {
     console.log('Could not find map fonts version');
   }
   if (fontsVersion && fs.existsSync(generatedVersionFile)) {
-    let generatedVersion = JSON.parse(fs.readFileSync(generatedVersionFile)).version;
+    const generatedVersion = JSON.parse(fs.readFileSync(generatedVersionFile)).version;
     if (generatedVersion === fontsVersion) {
       console.log('Map fonts are up to date. Version:', fontsVersion);
       return false;

@@ -46,7 +46,7 @@ Panel.prototype.render = function() {
  * Cost 32 ms
  */
 Panel.prototype.update = async function() {
-  let transitionNode = document.querySelector(`[data-cid="${this.cid}"]`);
+  const transitionNode = document.querySelector(`[data-cid="${this.cid}"]`);
   return new Promise(resolve => {
     transitionNode.innerHTML = this.view.call(this.panel);
     requestAnimationFrame(() => {

@@ -15,17 +15,17 @@ UrlShards.getShards = function() {
 };
 
 UrlShards.toUrl = function() {
-  let urlResources = UrlShards.getShards()
+  const urlResources = UrlShards.getShards()
     .filter(shard => shard.paramType === paramTypes.RESOURCE)
     .map(shard => shard.toString())
     .filter(shard => shard !== null);
 
-  let urlHash = UrlShards.getShards()
+  const urlHash = UrlShards.getShards()
     .filter(shard => shard.paramType === paramTypes.HASH)
     .map(shard => shard.toString())
     .filter(shard => shard !== null);
 
-  let urlGet = UrlShards.getShards()
+  const urlGet = UrlShards.getShards()
     .filter(shard => shard.paramType === paramTypes.GET)
     .map(shard => shard.toString())
     .filter(shard => shard !== null);
@@ -44,7 +44,7 @@ UrlShards.toUrl = function() {
 };
 
 UrlShards.parseUrl = function() {
-  let shards = [];
+  const shards = [];
 
   if (window.location.pathname) {
     let resourceRawShards = window.location.pathname.split('/');
@@ -70,9 +70,9 @@ UrlShards.parseUrl = function() {
     });
   }
 
-  let getParams = new URLSearchParams(location.search);
+  const getParams = new URLSearchParams(location.search);
   this.getShards().forEach(shard => {
-    let matchingShard = getParams.get(shard.prefix);
+    const matchingShard = getParams.get(shard.prefix);
     if (matchingShard) {
       shards.push({prefix: shard.prefix, value: matchingShard});
     }
@@ -83,9 +83,9 @@ UrlShards.parseUrl = function() {
     if (rawHash.indexOf('#') === 0) {
       rawHash = rawHash.replace(/^#/, '');
     }
-    let hashRawShards = rawHash.split('&');
+    const hashRawShards = rawHash.split('&');
     for (let i = 0; i < hashRawShards.length; i += 1) {
-      let hashShardsKV = hashRawShards[i].split('=');
+      const hashShardsKV = hashRawShards[i].split('=');
       shards.push({prefix: hashShardsKV[0], value: hashShardsKV[1]});
     }
   }

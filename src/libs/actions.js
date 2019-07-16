@@ -39,7 +39,7 @@ class Action {
         ctx: ctx,
         args: options,
       };
-      let action = new Action(actionPayload.id, actionPayload, actionName);
+      const action = new Action(actionPayload.id, actionPayload, actionName);
       actions.set(action.id, action);
       return action;
     };

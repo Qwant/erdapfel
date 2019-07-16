@@ -8,7 +8,7 @@ export default class DirectionInput {
     this.select = select;
     this.submitHandler = submitHandler;
     this.geolocalisationPoi = NavigatorGeolocalisationPoi.getInstance();
-    let prefixes = [
+    const prefixes = [
       this.geolocalisationPoi,
     ];
 

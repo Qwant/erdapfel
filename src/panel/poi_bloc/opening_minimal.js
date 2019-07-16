@@ -13,7 +13,7 @@ export default class MinimalHourPanel {
   }
 
   set(poi) {
-    let openingBlock = poi.blocks.find(block => block.type === 'opening_hours');
+    const openingBlock = poi.blocks.find(block => block.type === 'opening_hours');
     this.opening = null;
     if (openingBlock) {
       this.opening = new OsmSchedule(openingBlock, this.messages);

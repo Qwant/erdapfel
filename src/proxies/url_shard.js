@@ -12,7 +12,7 @@ function UrlShard(component, prefix, paramType) {
 }
 
 UrlShard.prototype.toString = function() {
-  let value = this.component.store();
+  const value = this.component.store();
   if (value) {
     if (this.paramType === paramTypes.HASH) {
       return `${this.prefix}=${value}`;

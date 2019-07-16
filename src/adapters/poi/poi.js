@@ -38,7 +38,7 @@ export default class Poi {
   }
 
   computeZoom() {
-    let zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
+    const zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
       this.type === zoomType.type
     );
     if (zoomSetting) {
@@ -60,17 +60,17 @@ export default class Poi {
   }
 
   toUrl() {
-    let slug = ExtendedString.slug(this.name);
+    const slug = ExtendedString.slug(this.name);
     return `${this.id}@${slug}`;
   }
 
   toAbsoluteUrl() {
-    let location = window.location;
-    let protocol = location.protocol;
-    let host = location.host;
-    let baseUrl = window.baseUrl;
-    let lat = this.latLon.lat.toFixed(7);
-    let lon = this.latLon.lng.toFixed(7);
+    const location = window.location;
+    const protocol = location.protocol;
+    const host = location.host;
+    const baseUrl = window.baseUrl;
+    const lat = this.latLon.lat.toFixed(7);
+    const lon = this.latLon.lng.toFixed(7);
     return `${protocol}//${host}${baseUrl}place/${this.toUrl()}/#map=${this.zoom}/${lat}/${lon}`;
   }
 
