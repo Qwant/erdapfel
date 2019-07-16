@@ -2,3 +2,12 @@
 .mapboxgl-ctrl-top-right,
 .mapboxgl-ctrl-bottom-left,
 .mapboxgl-ctrl-bottom-right  { position:absolute; pointer-events:none; }
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate.mapboxgl-ctrl-geolocate-waiting {
+    animation: none;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate.mapboxgl-ctrl-geolocate-waiting::before {
+    animation: mapboxgl-spin 2s infinite linear;
+    display: flex;
+}
