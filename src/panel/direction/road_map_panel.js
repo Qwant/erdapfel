@@ -74,7 +74,7 @@ export default class RoadMapPanel {
   toggleRoute(i) {
     fire('toggle_route', i);
 
-    let activeRoute = this.routes.find(route => route.isActive);
+    const activeRoute = this.routes.find(route => route.isActive);
     if (activeRoute !== null) {
       activeRoute.isActive = false;
       this.panel.removeClassName(0, `#itinerary_leg_${activeRoute.id}`, 'itinerary_leg--active');
@@ -99,7 +99,7 @@ export default class RoadMapPanel {
   duration(sec) {
     sec = Math.max(60, sec); // For duration < 60s, return '1min'
     let min = Math.round(sec / 60);
-    let hour = Math.floor(min / 60);
+    const hour = Math.floor(min / 60);
     let ret = '';
     if (hour) {
       ret += hour + 'h ';
@@ -166,12 +166,12 @@ export default class RoadMapPanel {
 
   openMoreMenu(position) {
     this.openMoreMenuPosition = position;
-    let menu = document.querySelector(`#itinerary_more_${position}`);
+    const menu = document.querySelector(`#itinerary_more_${position}`);
     menu.classList.add('itinerary_panel__item__more--active');
   }
 
   closeMoreMenu() {
-    let menu = document.querySelector(`#itinerary_more_${this.openMoreMenuPosition}`);
+    const menu = document.querySelector(`#itinerary_more_${this.openMoreMenuPosition}`);
     if (menu) {
       menu.classList.remove('itinerary_panel__item__more--active');
       this.openMoreMenuPosition = -1;

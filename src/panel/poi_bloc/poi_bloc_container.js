@@ -32,7 +32,7 @@ PoiBlocContainer.getBlock = function(name) {
 };
 
 PoiBlocContainer.setBlock = function(block) {
-  let blockComponent = PoiBlocContainer.blockComponents[block.type];
+  const blockComponent = PoiBlocContainer.blockComponents[block.type];
   return new blockComponent.poiBlockConstructor.default(
     block,
     PoiBlocContainer.poi,
@@ -41,7 +41,7 @@ PoiBlocContainer.setBlock = function(block) {
 };
 
 PoiBlocContainer.renderBlock = function(block) {
-  let blockComponent = getBlockComponent(block);
+  const blockComponent = getBlockComponent(block);
   if (blockComponent) {
     return blockComponent.render();
   }
@@ -50,7 +50,7 @@ PoiBlocContainer.renderBlock = function(block) {
 
 PoiBlocContainer.toString = function(blocks) {
   return blocks.map(block => {
-    let blockComponent = getBlockComponent(block);
+    const blockComponent = getBlockComponent(block);
     if (blockComponent) {
       return blockComponent.toString();
     }
@@ -60,7 +60,7 @@ PoiBlocContainer.toString = function(blocks) {
 
 /* private */
 function getBlockComponent(block) {
-  let blockComponent = PoiBlocContainer.blockComponents[block.type];
+  const blockComponent = PoiBlocContainer.blockComponents[block.type];
   if (blockComponent) {
     return new blockComponent.poiBlockConstructor.default(
       block,

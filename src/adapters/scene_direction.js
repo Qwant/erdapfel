@@ -106,7 +106,7 @@ export default class SceneDirection {
       this.routes.forEach(route => {
         this.showPolygon(route, this.vehicle);
       });
-      let mainRoute = this.routes.find(route => route.isActive);
+      const mainRoute = this.routes.find(route => route.isActive);
       this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer);
 
       this.updateMarkers(mainRoute);
@@ -134,7 +134,7 @@ export default class SceneDirection {
 
       this.markerDestination.on('dragend', event => this.refreshDirection(event, 'destination'));
 
-      let bbox = this.computeBBox(mainRoute);
+      const bbox = this.computeBBox(mainRoute);
       if (move !== false) {
         fire('fit_map', bbox, layouts.ITINERARY);
       }
@@ -211,7 +211,7 @@ export default class SceneDirection {
       },
     };
 
-    let sourceId = `source_${route.id}`;
+    const sourceId = `source_${route.id}`;
     const sourceJSON = {
       'type': 'geojson',
       'data': this.buildRouteData(route.geometry.coordinates),
@@ -246,7 +246,7 @@ export default class SceneDirection {
   }
 
   computeBBox(polygon) {
-    let bounds = new LngLatBounds();
+    const bounds = new LngLatBounds();
     polygon.geometry.coordinates.forEach(coordinate => {
       bounds.extend(new LngLat(coordinate[0], coordinate[1]));
     });

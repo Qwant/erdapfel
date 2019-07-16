@@ -63,12 +63,12 @@ Favorite.prototype.toggleMore = function(position) {
 Favorite.prototype.openMoreMenu = function(position) {
   Telemetry.add(Telemetry.FAVORITE_OPEN_MORE);
   this.openMoreMenuPosition = position;
-  let menu = document.querySelector(`#favorite_more_${position}`);
+  const menu = document.querySelector(`#favorite_more_${position}`);
   menu.classList.add('favorite_panel__item__more--active');
 };
 
 Favorite.prototype.closeMoreMenu = function() {
-  let menu = document.querySelector(`#favorite_more_${this.openMoreMenuPosition}`);
+  const menu = document.querySelector(`#favorite_more_${this.openMoreMenuPosition}`);
   if (menu) {
     menu.classList.remove('favorite_panel__item__more--active');
     this.openMoreMenuPosition = -1;
@@ -77,7 +77,7 @@ Favorite.prototype.closeMoreMenu = function() {
 
 Favorite.prototype.openShare = function(poi) {
   Telemetry.add(Telemetry.FAVORITE_SHARE);
-  let url = poi.toAbsoluteUrl();
+  const url = poi.toAbsoluteUrl();
   this.sharePanel.open(url);
 };
 

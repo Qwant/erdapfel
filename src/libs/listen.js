@@ -4,12 +4,12 @@
 
 (function Listen() {
   window.fire = function(name, params, ...additionalParams) {
-    let event = document.createEvent('CustomEvent');
+    const event = document.createEvent('CustomEvent');
     event.initCustomEvent(name, false, false, {params, additionalParams});
     window.dispatchEvent(event);
   };
   window.listen = function(name, cb) {
-    let presetEvent = eventHandler(cb);
+    const presetEvent = eventHandler(cb);
     window.addEventListener(name, presetEvent);
     return {name, presetEvent};
   };
@@ -20,7 +20,7 @@
 
 function eventHandler(cb) {
   return opt => {
-    let {detail} = opt;
+    const {detail} = opt;
     cb(detail.params, ...detail.additionalParams);
   };
 }

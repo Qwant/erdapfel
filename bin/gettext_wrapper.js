@@ -19,7 +19,7 @@ function getPoData(baseLangPath, fallbackList, messagePath) {
   if (fallbackList && fallbackList.length > 0) {
     messageBuffer = mergePo(messageBuffer, fallbackList, messagePath);
   }
-  let messageLines = messageBuffer.toString().split(/\n/g);
+  const messageLines = messageBuffer.toString().split(/\n/g);
   return poJs(messageLines);
 }
 
@@ -29,13 +29,13 @@ function getPoData(baseLangPath, fallbackList, messagePath) {
  * @param languages workaround avoiding parsing yaml on every request
  */
 module.exports = function(app, languages) {
-  let messagePath = path.resolve(path.join(__dirname, '..', 'language', 'message'));
+  const messagePath = path.resolve(path.join(__dirname, '..', 'language', 'message'));
   languages.forEach(language => {
-    let poData = getPoData(
+    const poData = getPoData(
       `${__dirname}/../language/message/${language.locale}.po`,
       language.fallback, messagePath,
     );
-    let plural = Function('n', `return ${poData.options.plural}`);
+    const plural = Function('n', `return ${poData.options.plural}`);
     langMessages[language.code] = {
       code: language.code,
       locale: language.locale,
@@ -45,8 +45,8 @@ module.exports = function(app, languages) {
   });
 
   return function(req, res, next) {
-    let poData = langMessages[res.locals.language.code];
-    let gettext = new Gettext();
+    const poData = langMessages[res.locals.language.code];
+    const gettext = new Gettext();
     gettext.setMessage(poData.messages);
     gettext.getPlural = poData.getPlural;
     res.locals._ = function _(key, context, placeholders) {

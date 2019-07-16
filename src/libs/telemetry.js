@@ -14,7 +14,7 @@ export default class Telemetry {
   static add(event, type, source, data) {
     if (event) {
       if (type && source) {
-        let event_const_name = `${(type + '_' + source + '_' + event).toUpperCase()}`;
+        const event_const_name = `${(type + '_' + source + '_' + event).toUpperCase()}`;
         event = Telemetry[event_const_name];
       }
       return Telemetry.send(event, data);
@@ -36,13 +36,13 @@ export default class Telemetry {
       Error.send('telemetry', 'send', 'unknown event received', {});
       return;
     }
-    let data = {type: event};
+    const data = {type: event};
     if (typeof extra_data === 'object' && extra_data !== null) {
       Object.keys(extra_data).forEach(key => {
         data[key] = extra_data[key];
       });
     }
-    let telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`;
+    const telemetryUrl = `${system.baseUrl}${telemtryEventUrl}`;
     return Ajax.post(telemetryUrl, data);
   }
 

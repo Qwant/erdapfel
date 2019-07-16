@@ -37,7 +37,7 @@ function nextTransitionTime(seconds, nextTransitionDate) {
        extract local time from nextTransitionDate
        "2019-05-12T18:00:00+02:00" => "18:00:00"
     */
-    let nextTransition = hourToDate(nextTransitionDate.slice(11, 19));
+    const nextTransition = hourToDate(nextTransitionDate.slice(11, 19));
     return strftime(window.i18nDate.timeFormat, nextTransition);
   }
   return false;
@@ -50,8 +50,8 @@ function hourToDate(hour) {
 function toLocaleOpeningHours(hours) {
   if (hours) {
     return hours.map(hour => {
-      let beginningHour = hourToDate(hour.beginning);
-      let endHour = hourToDate(hour.end);
+      const beginningHour = hourToDate(hour.beginning);
+      const endHour = hourToDate(hour.end);
       return {
         beginning: strftime(window.i18nDate.timeFormat, beginningHour),
         end: strftime(window.i18nDate.timeFormat, endHour),

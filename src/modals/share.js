@@ -18,7 +18,7 @@ export default class Share {
   }
 
   async copy() {
-    let url = document.getElementById('share_url_data');
+    const url = document.getElementById('share_url_data');
     url.select();
     document.execCommand('copy');
     url.blur();

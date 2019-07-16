@@ -31,8 +31,8 @@ export default class Error {
   }
 
   static sendOnce(file, method, message, exception) {
-    let error = new Error(file, method, message, exception);
-    let existingError = window.__registredErrors.find(error => {
+    const error = new Error(file, method, message, exception);
+    const existingError = window.__registredErrors.find(error => {
       return error.equal(error);
     });
     if (!existingError) {
@@ -43,7 +43,7 @@ export default class Error {
   }
 
   static send(file, method, message, exception) {
-    let error = new Error(file, method, message, exception);
+    const error = new Error(file, method, message, exception);
     error.log();
     console.error(error);
   }

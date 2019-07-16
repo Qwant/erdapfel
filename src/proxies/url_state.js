@@ -28,7 +28,7 @@ UrlState.registerUrlShard = function(component, prefix, paramType) {
 
 
 UrlState.pushUrl = function() {
-  let url = UrlShards.toUrl();
+  const url = UrlShards.toUrl();
   if (history && typeof history.pushState !== 'undefined') {
     history.pushState(null, null, url);
   } else {
@@ -37,7 +37,7 @@ UrlState.pushUrl = function() {
 };
 
 UrlState.replaceUrl = function() {
-  let url = UrlShards.toUrl();
+  const url = UrlShards.toUrl();
   if (history && typeof history.replaceState !== 'undefined') {
     history.replaceState(null, null, url);
   } else {
@@ -46,9 +46,9 @@ UrlState.replaceUrl = function() {
 };
 
 UrlState.load = function() {
-  let rawShards = UrlShards.parseUrl();
+  const rawShards = UrlShards.parseUrl();
   UrlShards.getShards().forEach(shard => {
-    let matchingRawShard = rawShards.find(rawShard => {
+    const matchingRawShard = rawShards.find(rawShard => {
       return rawShard.prefix === shard.prefix;
     });
     if (matchingRawShard) {

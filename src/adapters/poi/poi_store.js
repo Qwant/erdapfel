@@ -7,7 +7,7 @@ const store = new Store();
 export default class PoiStore extends Poi {
   static async get(term) {
     try {
-      let prefixes = await store.getPrefixes(term);
+      const prefixes = await store.getPrefixes(term);
       return prefixes.map(historySuggest => {
         return Object.assign(new PoiStore(), historySuggest);
       });

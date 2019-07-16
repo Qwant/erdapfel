@@ -9,7 +9,7 @@ const DIRECTION_URL_REGEX = /^latlon:(-?\d*\.\d*):(-?\d*\.\d*)(@(.*))?/;
 
 export default class LatLonPoi extends Poi {
   constructor(latLon, label) {
-    let id = `latlon:${latLon.lat.toFixed(5)}:${latLon.lng.toFixed(5)}`;
+    const id = `latlon:${latLon.lat.toFixed(5)}:${latLon.lng.toFixed(5)}`;
 
     if (!label) {
       label = `${latLon.lat.toFixed(5)} : ${latLon.lng.toFixed(5)}`;
@@ -27,12 +27,12 @@ export default class LatLonPoi extends Poi {
     }
 
     if (urlParam.match(/^latlon:/)) {
-      let urlData = urlParam.match(DIRECTION_URL_REGEX);
-      let lat = urlData[LAT_POSITION];
-      let lng = urlData[LON_POSITION];
+      const urlData = urlParam.match(DIRECTION_URL_REGEX);
+      const lat = urlData[LAT_POSITION];
+      const lng = urlData[LON_POSITION];
 
       if (lat && lng) {
-        let latLng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+        const latLng = {lat: parseFloat(lat), lng: parseFloat(lng)};
         if (urlData[LABEL_POSITION]) {
           return Promise.resolve(
             new LatLonPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION]))
@@ -41,8 +41,8 @@ export default class LatLonPoi extends Poi {
         return Promise.resolve(new LatLonPoi(latLng));
       }
     } else {
-      let urlData = urlParam.match(/^(.*?)(@(.*))?$/);
-      let idunnId = urlData[1];
+      const urlData = urlParam.match(/^(.*?)(@(.*))?$/);
+      const idunnId = urlData[1];
       return IdunnPoi.poiApiLoad(idunnId);
     }
   }

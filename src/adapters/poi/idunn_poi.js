@@ -20,7 +20,7 @@ export default class IdunnPoi extends Poi {
         alternativeName = rawPoi.address.street.label;
       }
     }
-    let latLng = {
+    const latLng = {
       lat: rawPoi.geometry.coordinates[LAT_INDEX],
       lng: rawPoi.geometry.coordinates[LNG_INDEX],
     };
@@ -53,8 +53,8 @@ export default class IdunnPoi extends Poi {
   }
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
   static async poiCategoryLoad(bbox, size, category, query) {
-    let url = `${serviceConfig.idunn.url}/v1/places`;
-    let requestParams = {bbox, size};
+    const url = `${serviceConfig.idunn.url}/v1/places`;
+    const requestParams = {bbox, size};
     if (category) {
       requestParams['category'] = category;
     }
@@ -63,14 +63,14 @@ export default class IdunnPoi extends Poi {
     }
 
     try {
-      let response = await Ajax.getLang(url, requestParams);
+      const response = await Ajax.getLang(url, requestParams);
       response.places = response.places.map(rawPoi => new IdunnPoi(rawPoi));
       return response;
     } catch (err) {
       if (err === 400 || err === 404) {
         return {};
       } else {
-        let s_requestParams = JSON.stringify(requestParams);
+        const s_requestParams = JSON.stringify(requestParams);
         Error.sendOnce(
           'idunn_poi', 'poiApiLoad',
           `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
@@ -83,7 +83,7 @@ export default class IdunnPoi extends Poi {
 
   static async poiApiLoad(id, options = {}) {
     let rawPoi = null;
-    let url = `${serviceConfig.idunn.url}/v1/places/${id}`;
+    const url = `${serviceConfig.idunn.url}/v1/places/${id}`;
     let requestParams = {};
     if (options.simple) {
       requestParams = {verbosity: 'short'};
@@ -95,7 +95,7 @@ export default class IdunnPoi extends Poi {
       if (err === 404) {
         return;
       } else {
-        let s_requestParams = JSON.stringify(requestParams);
+        const s_requestParams = JSON.stringify(requestParams);
         Error.sendOnce(
           'idunn_poi', 'poiApiLoad',
           `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
@@ -112,10 +112,10 @@ export default class IdunnPoi extends Poi {
       return {label: rawPoi.address.admin.label};
     case 'address':
     case 'street': {
-      let postcode = (rawPoi.address.postcode || '').split(';', 1)[0];
-      let city = rawPoi.address.admins.find(a => a.class_name === 'city') || {};
-      let country = rawPoi.address.admins.find(a => a.class_name === 'country') || {};
-      let label = [postcode, city.name, country.name]
+      const postcode = (rawPoi.address.postcode || '').split(';', 1)[0];
+      const city = rawPoi.address.admins.find(a => a.class_name === 'city') || {};
+      const country = rawPoi.address.admins.find(a => a.class_name === 'country') || {};
+      const label = [postcode, city.name, country.name]
         .filter(x => x).join(', ');
       return {label};
     }

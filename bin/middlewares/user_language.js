@@ -7,12 +7,12 @@
  */
 module.exports = function(languageConfig) {
   return function(req, res, next) {
-    let langHeaders = req.acceptsLanguages();
+    const langHeaders = req.acceptsLanguages();
     if (langHeaders) {
       langHeaders.some(rawLangHeader => {
         /* clean language code */
-        let langCode = rawLangHeader.slice(0, 2).toLowerCase();
-        let language = languageConfig.supportedLanguages.find(supportedLanguage => {
+        const langCode = rawLangHeader.slice(0, 2).toLowerCase();
+        const language = languageConfig.supportedLanguages.find(supportedLanguage => {
           return supportedLanguage.code === langCode;
         });
         if (language) {

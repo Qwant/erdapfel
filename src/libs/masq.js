@@ -59,7 +59,7 @@ export default class MasqStore {
   }
 
   _getStunTurnFromConf() {
-    let stunTurn = [];
+    const stunTurn = [];
     if (this.config.stun) {
       stunTurn.push({
         urls: this.config.stun,
@@ -200,7 +200,7 @@ export default class MasqStore {
   }
 
   static isMasqForced() {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('masq') === '1';
   }
 

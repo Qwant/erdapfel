@@ -21,9 +21,9 @@ export default class IconManager {
       }
 
       if (icon) {
-        let iconName = icon.iconName;
-        let color = icon.color;
-        let iconClass = nameToClass(iconName);
+        const iconName = icon.iconName;
+        const color = icon.color;
+        const iconClass = nameToClass(iconName);
         return {iconClass: iconClass, color: color};
       }
 

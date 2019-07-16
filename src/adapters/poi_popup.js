@@ -35,7 +35,7 @@ PoiPopup.prototype.addListener = function(layer) {
       return;
     }
     this.timeOutHandler = setTimeout(() => {
-      let poi = e.features[0];
+      const poi = e.features[0];
       if (this.sceneState.isDisplayed(poi.properties.global_id)) {
         return;
       }
@@ -52,7 +52,7 @@ PoiPopup.prototype.addListener = function(layer) {
 };
 
 PoiPopup.prototype.createOSMPopup = async function(layerPoi, event) {
-  let poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id, {simple: true});
+  const poi = await ApiPoi.poiApiLoad(layerPoi.properties.global_id, {simple: true});
   if (poi) {
     this.showPopup(poi, event);
   }
@@ -69,12 +69,12 @@ PoiPopup.prototype.showPopup = function(poi, event) {
     this.popupHandle.remove();
     this.popupHandle = null;
   }
-  let {color} = IconManager.get(poi);
-  let category = poiSubClass(poi.subClassName);
+  const {color} = IconManager.get(poi);
+  const category = poiSubClass(poi.subClassName);
   const reviews = poi.blocksByType.grades;
   const hours = poi.blocksByType.opening_hours;
 
-  let timeMessages = poiConfigs.pois.find(poiConfig => {
+  const timeMessages = poiConfigs.pois.find(poiConfig => {
     return poiConfig.apiName === 'opening_hours';
   });
   let opening;
@@ -86,7 +86,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
     address = poi.address.label;
   }
 
-  let popupOptions = {
+  const popupOptions = {
     className: 'poi_popup__container',
     closeButton: false,
     closeOnClick: true,
@@ -95,7 +95,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
   };
 
   this.setPopupPosition(event, popupOptions);
-  let htmlEncode = ExtendedString.htmlEncode;
+  const htmlEncode = ExtendedString.htmlEncode;
 
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.getLngLat())
