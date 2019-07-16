@@ -119,7 +119,7 @@ menu:
       uri : https://www.qwant.com/
     - name : _('Qwant Music')
       uri : https://www.qwant.com/music/
-    - name: _('Qwant boards')
+    - name: _('Qwant Boards')
       uri : https://boards.qwant.com/
     - name: _('Qwant on Android')
       uri : https://play.google.com/store/apps/details?id=com.qwant.liberty
