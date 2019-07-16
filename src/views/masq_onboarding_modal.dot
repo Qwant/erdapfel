@@ -24,7 +24,11 @@
 
       <div class="modal__masq_onboarding__body">
         <div class="modal__masq_onboarding__middle">
-          <div class="modal__masq_onboarding__chevron icon-chevron-left" {{= click(this.previousStep, this)}}></div>
+          <div class="modal__masq_onboarding__chevron_container">
+            {{? this.step !== 1}}
+              <div class="modal__masq_onboarding__chevron icon-chevron-left" {{= click(this.previousStep, this)}}></div>
+            {{?}}
+          </div>
 
           {{? this.step === 1}}
             <div class="modal__masq_onboarding__image modal__masq_onboarding__image_1"></div>
@@ -36,7 +40,11 @@
             <div class="modal__masq_onboarding__image modal__masq_onboarding__image_4"></div>
           {{?}}
 
-          <div class="modal__masq_onboarding__chevron icon-chevron-right" {{= click(this.nextStep, this)}}></div>
+          <div class="modal__masq_onboarding__chevron_container">
+            {{? this.step !== 4}}
+              <div class="modal__masq_onboarding__chevron icon-chevron-right" {{= click(this.nextStep, this)}}></div>
+            {{?}}
+          </div>
         </div>
 
         {{? this.step === 1}}
