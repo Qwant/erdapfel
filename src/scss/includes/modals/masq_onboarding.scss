@@ -104,22 +104,27 @@
   background-image: url('../images/masq/gifs/OnBoarding04_450x258.gif');
 }
 
+.modal__masq_onboarding__chevron_container {
+  height: 35px;
+  width: 35px;
+}
+
 .modal__masq_onboarding__chevron {
   border-radius: 50%;
   border: solid 1px #f4f6fa;
-  height: 35px;
-  width: 35px;
   color: #c8cbd3;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   cursor: pointer;
+  height: 100%;
+  width: 100%;
 }
 
 .modal__masq_onboarding__text {
   color: #c8cbd3;
-  min-height: 60px;
+  min-height: 75px;
   text-align: center;
 }
 

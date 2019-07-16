@@ -25,6 +25,7 @@ export default class MasqOnboardingModal {
 
   open() {
     this.opened = true;
+    this.step = 1;
     this.modal.open();
   }
 
