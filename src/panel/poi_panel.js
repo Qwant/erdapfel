@@ -220,9 +220,25 @@ PoiPanel.prototype.emptyClickOnMap = function() {
   }
 };
 
+PoiPanel.prototype.shouldPhoneBeHidden = function() {
+  return this.poi && this.poi.isFromPagesjaunes && this.poi.isFromPagesjaunes();
+};
+
 PoiPanel.prototype.showPhone = function() {
   document.querySelector('.poi_phone_container_hidden').style.display = 'none';
   document.querySelector('.poi_phone_container_revealed').style.display = 'block';
+  const poi = this.poi;
+  if (poi && poi.meta && poi.meta.source) {
+    Telemetry.add('phone', 'poi', poi.meta.source,
+      Telemetry.buildInteractionData({
+        id: poi.id,
+        source: poi.meta.source,
+        template: 'single',
+        zone: 'detail',
+        element: 'phone',
+      })
+    );
+  }
 };
 
 /* private */
