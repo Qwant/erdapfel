@@ -10,6 +10,7 @@ const promClient = require('prom-client');
 const fakePbf = require('./middlewares/fake_pbf/index');
 const compression = require('compression');
 const mapStyle = require('./middlewares/map_style');
+const reqSerializer = require('./serializers/request');
 
 const app = express();
 const logger = bunyan.createLogger({
@@ -17,7 +18,7 @@ const logger = bunyan.createLogger({
   stream: process.stdout,
   level: process.env.NODE_ENV === 'test' ? 'warn' : 'info',
   serializers: {
-    req: bunyan.stdSerializers.req,
+    req: reqSerializer,
     err: bunyan.stdSerializers.err,
   },
 });
