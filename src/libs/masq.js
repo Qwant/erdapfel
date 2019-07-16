@@ -92,6 +92,7 @@ export default class MasqStore {
       this.masqActivatingModal.open();
       await this.masq.logIntoMasq(true);
       this.masqActivatingModal.succeeded();
+      Telemetry.add(Telemetry.MASQ_ACTIVATED);
     } catch (e) {
       switch (e.code) {
       case this.MasqError.SIGNALLING_SERVER_ERROR:

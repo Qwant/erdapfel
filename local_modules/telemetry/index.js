@@ -47,6 +47,7 @@ module.exports = {
     /* Map */
     'localise_trigger',
     /* Masq */
+    'masq_activated',
     'masq_banner_click',
     'masq_banner_close',
     'masq_menu_activate',
