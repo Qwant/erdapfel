@@ -15,18 +15,12 @@ function getClosest(arr, goal) {
   );
 }
 
-export default class ResizablePanel {
-  constructor() {
+export default class PanelResizer {
+  constructor(panel) {
+    this.panel = panel;
     this.timer = null;
-    this.panel = null;
     this.holding = false;
     this.isTransitioning = false;
-
-    this.checkPanel = this.checkPanel.bind(this);
-    this.holdResizer = this.holdResizer.bind(this);
-    this.move = this.move.bind(this);
-    this.stopResize = this.stopResize.bind(this);
-    this.playTransition = this.playTransition.bind(this);
 
     window.deployedListHold = this.holdResizer;
     window.deployedListStop = this.stopResize;
@@ -36,14 +30,7 @@ export default class ResizablePanel {
    * Looks for a resizable element
    */
   checkPanel() {
-    if (!this.panel) {
-      if (window[resizableId]) {
-        this.panel = window[resizableId];
-        return true;
-      }
-      return false;
-    }
-    return true;
+    return this.panel.active;
   }
 
   /**
@@ -78,7 +65,7 @@ export default class ResizablePanel {
   move(e, force = false) {
     e.preventDefault();
 
-    if (!window[resizerId]) {
+    if (this.checkPanel()) {
       return;
     }
 
@@ -95,7 +82,7 @@ export default class ResizablePanel {
    * @param {number} size the panel's height
    * @param {boolean} [onMouseMove=false] After a body mousemove (true) or after a click (false)
    */
-  playTransition(size, onMouseMove = false) {
+  async playTransition(size, onMouseMove = false) {
     if (!this.checkPanel()) {
       return;
     }
