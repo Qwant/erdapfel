@@ -92,6 +92,7 @@ Favorite.prototype.open = async function() {
   this.active = true;
   this.panelResizer.reset();
   this.panel.update();
+  fire("move_mobile_bottom_ui", 130);
 };
 
 Favorite.prototype.closeAction = function() {
@@ -103,6 +104,7 @@ Favorite.prototype.close = function() {
   this.closeMoreMenu();
   this.active = false;
   this.panel.update();
+  fire("move_mobile_bottom_ui", 0);
 };
 
 Favorite.prototype.go = async function(poi) {

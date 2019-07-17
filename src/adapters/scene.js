@@ -12,6 +12,7 @@ import SceneCategory from './scene_category';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
+import Device from '../libs/device';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
@@ -185,6 +186,10 @@ Scene.prototype.initMapBox = function() {
 
   listen('restore_location', () => {
     this.restoreLocation();
+  });
+
+  listen('move_mobile_bottom_ui', bottom => {
+    this.moveMobileBottomUI(bottom);
   });
 };
 
@@ -388,6 +393,30 @@ Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
     this.restoreFromHash(window.location.hash, { animate: false });
   };
+};
+
+Scene.prototype.moveMobileBottomUI = function(bottom = 0){
+  if(Device.isMobile()){
+    let attrib = document.querySelector(".mapboxgl-ctrl-attrib"); // default bottom: 2px
+    let scale = document.querySelector(".map_control__scale"); // default bottom: 8px
+    let geoloc = document.querySelector(".mapboxgl-ctrl-geolocate"); // default bottom: 10px
+    if(attrib){
+      attrib.style.bottom = bottom + 2 + "px";
+    }
+    if(scale){
+      scale.style.bottom = bottom + 8 + "px";
+    }
+    if(geoloc){
+      geoloc.style.bottom = bottom + 10 + "px";
+    }
+
+    // Retry in 500ms if the map hasn't finished loading
+    if(!attrib || !scale || !geoloc){
+      setTimeout(()=> {
+        fire("move_mobile_bottom_ui", bottom);
+      },500);
+    }
+  }
 };
 
 /* private */

@@ -83,8 +83,35 @@ PoiPanel.prototype.close = async function() {
   }
   fire('clean_marker');
   SearchInput.setInputValue('');
+
   this.active = false;
   this.panel.update();
+  this.sceneState.unsetPoiID();
+  UrlState.pushUrl();
+  fire("move_mobile_bottom_ui", 0);
+};
+
+PoiPanel.prototype.restorePoi = async function(id) {
+  Telemetry.add(Telemetry.POI_RESTORE);
+  let hotLoadedPoi = new HotLoadPoi();
+  if (hotLoadedPoi.id === id) {
+    this.poi = hotLoadedPoi;
+    window.execOnMapLoaded(() => {
+      fire('map_mark_poi', this.poi);
+      fire('fit_map', this.poi, layouts.POI);
+    });
+    this.poi.stored = await isPoiFavorite(this.poi);
+    this.active = true;
+    this.sceneState.setPoiId(this.poi.id);
+    PanelManager.keepOnlyPoi();
+    await this.minimalHourPanel.set(this.poi);
+    await this.panel.update();
+
+    // Move mobile UI in 500ms because scene's listener is not loaded yet
+    setTimeout(() => {
+      fire("move_mobile_bottom_ui", 130);
+    }, 500);
+  }
 };
 
 PoiPanel.prototype.setPoi = async function(poi, options = {}) {
@@ -104,6 +131,7 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.active = true;
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
+  fire("move_mobile_bottom_ui", 130);
 };
 
 PoiPanel.prototype.center = function() {
@@ -144,12 +172,14 @@ PoiPanel.prototype.backToSmall = function() {
 PoiPanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
   window.app.navigateTo('/favs');
+  fire("move_mobile_bottom_ui", 0);
 };
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST);
   fire('restore_location');
   window.app.navigateTo(`/places/?type=${this.sourceCategory}`);
+  fire("move_mobile_bottom_ui", 0);
 };
 
 PoiPanel.prototype.openDirection = function() {
