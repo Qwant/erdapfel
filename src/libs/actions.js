@@ -9,10 +9,11 @@ class Action {
     return ` on${this.eventName}="call4Action(event, ${this.id})" `;
   }
 
-  exec() {
+  exec(event) {
     if (this.telemetry) {
       this.telemetry.add();
     }
+    this.action.args.event = event;
     this.action.method.call(this.action.ctx, this.action.args);
   }
 }
@@ -23,7 +24,15 @@ class Action {
 
 (() => {
   const actions = new Map();
-  const supportedActions = ['mouseover', 'click', 'mouseout', 'mousedown'];
+  const supportedActions = [
+    'mouseover',
+    'click',
+    'mouseout',
+    'mouseup',
+    'mousedown',
+    'touchstart',
+    'touchend',
+  ];
   /**
    *
    * @param method call back function
@@ -48,6 +57,6 @@ class Action {
   window.call4Action = function(event, id) {
     event.stopPropagation();
     const action = actions.get(id);
-    action.exec();
+    action.exec(event);
   };
 })();

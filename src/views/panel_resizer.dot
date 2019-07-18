@@ -1,8 +1,0 @@
-<button
-  id="deployable__list_resizer"
-  onmousedown="deployedListHold(event)"
-  ontouchstart="deployedListHold(event)"
-  onmouseup="deployedListStop(event)"
-  ontouchend="deployedListStop(event)"
->
-</button>

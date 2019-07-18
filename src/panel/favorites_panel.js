@@ -1,11 +1,10 @@
 import FavoritePanelView from '../views/favorites_panel.dot';
-import PanelResizerView from '../views/panel_resizer.dot';
 import Panel from '../libs/panel';
+import PanelResizer from '../libs/panel_resizer';
 import Store from '../adapters/store';
 import FilterPanel from './filter_panel';
 import PoiStore from '../adapters/poi/poi_store';
 import Telemetry from '../libs/telemetry';
-import { resizableId } from '../libs/resizable_panel';
 import layouts from './layouts.js';
 import {version} from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
@@ -22,8 +21,6 @@ function Favorite(sharePanel) {
   this.favoritePois = [];
   this.poiSubClass = poiSubClass;
   this.filterPanel = new FilterPanel();
-  this.panelResizer = PanelResizerView;
-  this.resizableId = resizableId;
   this.sharePanel = sharePanel;
   this.openMoreMenuPosition = -1;
   this.reduced = false;
@@ -37,6 +34,7 @@ function Favorite(sharePanel) {
   });
 
   this.panel = new Panel(this, FavoritePanelView);
+  this.panelResizer = new PanelResizer(this.panel);
 
   this.store = new Store();
 
@@ -46,11 +44,6 @@ function Favorite(sharePanel) {
 
   listen('store_poi', async poi => {
     await this.add(poi);
-  });
-
-  listen('panel_view_state', ({ reduced = false, maximized = false } = {}) => {
-    this.reduced = reduced;
-    this.maximized = maximized;
   });
 }
 
@@ -114,6 +107,7 @@ Favorite.prototype.open = async function() {
 
   this.displayed = true;
   this.active = true;
+  this.panelResizer.reset();
   this.panel.update();
 };
 

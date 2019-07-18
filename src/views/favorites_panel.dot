@@ -1,24 +1,24 @@
 {{? this.active }}
 <div
   class="
-    resizable_panel
     favorite_panel__container
-    {{= this.reduced ? ' reduced' : ''}}
-    {{= this.maximized ? ' full' : ''}}
+    {{= this.panelResizer.getResizableClasses() }}
   "
 >
-  {{= this.panelResizer() }}
-  <span class="favorite_panel__show_list">{{= _('Show favorites',  'favorite panel') }}</span>
-  <div class="poi_panel__header favorites_header{{= this.favoritePois.length === 0 ? ' empty' : '' }}">
+  <div class="poi_panel__header {{= this.panelResizer.HANDLE_CLASS }}
+    favorites_header{{= this.favoritePois.length === 0 ? ' empty' : '' }}"
+    {{= this.panelResizer.renderResizerActions() }}
+  >
+    <span class="favorite_panel__show_list">{{= _('Show favorites',  'favorite panel') }}</span>
     {{? this.favoritePois.length === 0 }}
-      <div class="poi_panel__header_title">{{= _('Favorite places', 'favorite panel') }}</div>
+      <div class="favorite_header_title">{{= _('Favorite places', 'favorite panel') }}</div>
     {{??}}
-      <div class="poi_panel__header_title">{{= _('MY FAVORITES', 'favorite panel') }}</div>
+      <div class="favorite_header_title">{{= _('MY FAVORITES', 'favorite panel') }}</div>
     {{?}}
     {{? this.isLoggedIn }}
       <div class="icon-masq_dark favorite_panel__masq_icon"></div>
     {{?}}
-    <div class="poi_panel__close" {{= click(this.closeAction, this) }}>
+    <div class="poi_panel__close" {{= click(this.closeAction, this) }} {{= touchstart(this.closeAction, this) }}>
       <i class="icon-x"></i>
     </div>
   </div>
