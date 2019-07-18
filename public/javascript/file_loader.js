@@ -9,7 +9,7 @@ function FileLoader(uri) {
     }
   };
 
-  var it = this;
+  const it = this;
   x.onreadystatechange = function() {
     if (x.readyState === 4) {
       if (x.status === 200) {

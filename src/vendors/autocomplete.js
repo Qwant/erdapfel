@@ -40,7 +40,7 @@ export default function autoComplete(options) {
 
   function live(elClass, event, cb, context) {
     addEvent(context || document, event, function(e) {
-      var found, el = e.target || e.srcElement;
+      let found, el = e.target || e.srcElement;
       while (el && !(found = hasClass(el, elClass))) {
         el = el.parentElement;
       }
@@ -50,7 +50,7 @@ export default function autoComplete(options) {
     });
   }
 
-  var o = {
+  const o = {
     selector: 0,
     source: 0,
     minChars: 3,
@@ -67,16 +67,19 @@ export default function autoComplete(options) {
     // Takes as argument: items
     updateData: function() {},
   };
-  for (var k in options) {
+  for (const k in options) {
     if (options.hasOwnProperty(k)) {
       o[k] = options[k];
     }
   }
 
   // init
-  var elems = typeof o.selector == 'object' ? [o.selector] : document.querySelectorAll(o.selector);
-  for (var i = 0; i < elems.length; i++) {
-    var that = elems[i];
+  const elems = typeof o.selector == 'object'
+    ? [o.selector]
+    : document.querySelectorAll(o.selector);
+  let that;
+  for (let i = 0; i < elems.length; i++) {
+    that = elems[i];
 
     // create suggestions container "sc"
     that.sc = document.createElement('div');
@@ -89,7 +92,7 @@ export default function autoComplete(options) {
     that.sourcePending = null;
 
     that.updateSC = function(resize, next) {
-      var rect = that.getBoundingClientRect();
+      const rect = that.getBoundingClientRect();
       that.sc.style.left = Math.round(that.offsetLeft + o.offsetLeft) + 'px';
       that.sc.style.top = Math.round(that.offsetTop + rect.bottom - rect.top + o.offsetTop) + 'px';
       that.sc.style.width = Math.round(rect.right - rect.left) + 'px'; // outerWidth
@@ -109,8 +112,8 @@ export default function autoComplete(options) {
           if (!next) {
             that.sc.scrollTop = 0;
           } else {
-            var scrTop = that.sc.scrollTop;
-            var selTop = next.getBoundingClientRect().top - that.sc.getBoundingClientRect().top;
+            const scrTop = that.sc.scrollTop;
+            const selTop = next.getBoundingClientRect().top - that.sc.getBoundingClientRect().top;
             if (selTop + that.sc.suggestionHeight - that.sc.maxHeight > 0) {
               that.sc.scrollTop = selTop + that.sc.suggestionHeight + scrTop - that.sc.maxHeight;
             } else if (selTop < 0) {
@@ -124,7 +127,7 @@ export default function autoComplete(options) {
     that.offsetParent.appendChild(that.sc);
 
     live('autocomplete_suggestion', 'mouseleave', function() {
-      var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
+      const sel = that.sc.querySelector('.autocomplete_suggestion.selected');
       if (sel) {
         setTimeout(function() {
           sel.className = sel.className.replace('selected', '');
@@ -133,13 +136,13 @@ export default function autoComplete(options) {
     }, that.sc);
 
     live('autocomplete_suggestion', 'mouseover', function(e) {
-      var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
+      const sel = that.sc.querySelector('.autocomplete_suggestion.selected');
       if (sel) {
         sel.className = sel.className.replace('selected', '');
       }
       this.className += ' selected';
-      var id = this.getAttribute('data-id');
-      var item = that.items[0];
+      const id = this.getAttribute('data-id');
+      let item = that.items[0];
 
       that.items.forEach(i => {
         if (i.id === id) {
@@ -151,7 +154,7 @@ export default function autoComplete(options) {
 
     live('autocomplete_suggestion', 'mousedown', function(e) {
       if (hasClass(this, 'autocomplete_suggestion')) { // else outside click
-        var v = this.getAttribute('data-val');
+        const v = this.getAttribute('data-val');
         that.value = v;
         o.onSelect(e, v, this, that.items);
         that.sc.style.display = 'none';
@@ -159,7 +162,7 @@ export default function autoComplete(options) {
     }, that.sc);
 
     that.blurHandler = function() {
-      var over_sb = null;
+      let over_sb = null;
       try {
         over_sb = document.querySelector('.autocomplete_suggestions:hover');
       } catch (e) {
@@ -230,7 +233,7 @@ export default function autoComplete(options) {
     };
 
     that.keydownHandler = function(e) {
-      var key = window.event ? e.keyCode : e.which;
+      const key = window.event ? e.keyCode : e.which;
       // down (40), up (38)
       if ((key == 40 || key == 38) && that.sc.innerHTML) {
         let next;
@@ -264,7 +267,7 @@ export default function autoComplete(options) {
           that.setSelectionRange(that.value.length, that.value.length);
         });
 
-        var item = that.items[0];
+        let item = that.items[0];
         that.items.forEach(i => {
           if (i.id === that.dataId) {
             item = i;
@@ -276,7 +279,7 @@ export default function autoComplete(options) {
       } else if (key == 27) { // esc
         that.value = that.last_val; that.sc.style.display = 'none';
       } else if (key == 13 || key == 9) { // enter
-        var sel = that.sc.querySelector('.autocomplete_suggestion.selected');
+        const sel = that.sc.querySelector('.autocomplete_suggestion.selected');
         if (sel && that.sc.style.display != 'none') {
           o.onSelect(e, sel.getAttribute('data-val'), sel, that.items);
           setTimeout(function() {
@@ -288,9 +291,9 @@ export default function autoComplete(options) {
     addEvent(that, 'keydown', that.keydownHandler);
 
     that.keyupHandler = function(e) {
-      var key = window.event ? e.keyCode : e.which;
+      const key = window.event ? e.keyCode : e.which;
       if (!key || (key < 35 || key > 40) && key != 13 && key != 27) {
-        var val = that.value;
+        const val = that.value;
         if (val.length >= o.minChars) {
           if (val != that.last_val) {
             cancelObsolete();
@@ -327,8 +330,8 @@ export default function autoComplete(options) {
 
   // public destroy method
   this.destroy = function() {
-    for (var i = 0; i < elems.length; i++) {
-      var that = elems[i];
+    for (let i = 0; i < elems.length; i++) {
+      let that = elems[i];
       removeEvent(window, 'resize', that.updateSC);
       removeEvent(that, 'blur', that.blurHandler);
       removeEvent(that, 'focus', that.focusHandler);

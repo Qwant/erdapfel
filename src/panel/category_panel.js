@@ -157,8 +157,8 @@ export default class CategoryPanel {
   }
 
   showPhoneNumber(options) {
-    var poi = options.poi;
-    var i = options.i;
+    const poi = options.poi;
+    const i = options.i;
     if (poi.meta && poi.meta.source) {
       Telemetry.add('phone', 'poi', poi.meta.source,
         Telemetry.buildInteractionData({

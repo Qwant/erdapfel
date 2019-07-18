@@ -74,6 +74,7 @@
             "error",
             { "argsIgnorePattern": "^_" }
         ],
-        "prefer-const": ["error"]
+        "prefer-const": ["error"],
+        "no-var": "error"
     }
 }
