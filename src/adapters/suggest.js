@@ -85,7 +85,7 @@ export default class Suggest {
         });
         let suggestDom = this.prefixesRender();
 
-        var nbFavorites = 0;
+        let nbFavorites = 0;
         if (favorites.length > 0 && favorites.length <= 2) {
           nbFavorites = favorites.length;
         } else if (favorites.length > 2) {
