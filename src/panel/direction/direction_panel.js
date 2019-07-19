@@ -50,7 +50,11 @@ export default class DirectionPanel {
   }
 
   setInputValue(type = 'origin', value) {
-    type === 'origin' ? this.searchInputStart.value = value : this.searchInputEnd.value = value;
+    if (type === 'origin') {
+      this.searchInputStart.value = value;
+    } else {
+      this.searchInputEnd.value = value;
+    }
   }
 
   initDirection() {
