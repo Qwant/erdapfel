@@ -14,7 +14,7 @@ ExtendedString.ellipsis = function(str, length, options = {}) {
   }
   return str && str.length > length &&
     (str = str.slice(0, length).replace(/ ([^ ]*) [^ ]* ?$/, ellipsis)),
-  str && -1 == str.indexOf(' ') && str.length > length && (str += ellipsis),
+  str && -1 === str.indexOf(' ') && str.length > length && (str += ellipsis),
   str;
 };
 /**
