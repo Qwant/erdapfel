@@ -12,8 +12,8 @@ let browser
 let page
 let autocompleteHelper
 let responseHandler
-const mockAutocomplete = require('../../__data__/autocomplete')
-const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type')
+const mockAutocomplete = require('../../__data__/autocomplete.json')
+const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type.json')
 
 beforeAll(async () => {
   let browserPage = await initBrowser()

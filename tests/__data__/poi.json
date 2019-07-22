@@ -1,4 +1,4 @@
-module.exports = {
+{
     "id": "osm:way:63178753",
     "meta": {
         "source": "osm"
