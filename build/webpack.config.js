@@ -84,6 +84,7 @@ const mainJsChunkConfig = buildMode => {
     output: {
       path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
       filename: 'bundle.js',
+      chunkFilename: '[name].bundle.js',
       publicPath: './statics/build/javascript/',
     },
     plugins: addJsOptimizePlugins(buildMode, [
