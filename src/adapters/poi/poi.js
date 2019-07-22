@@ -1,7 +1,7 @@
 /**
  * simple Poi helper
  */
-import {version} from '../../../config/constants.yml';
+import {version} from 'config/constants.yml';
 import ExtendedString from '../../libs/string';
 
 const ZOOM_BY_POI_TYPES = [

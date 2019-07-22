@@ -1,6 +1,6 @@
 import Panel from '../../libs/panel';
 import PoiBlocContainerView from '../../views/poi_bloc/poi_bloc_container.dot';
-import constants from '../../../config/constants.yml';
+import constants from 'config/constants.yml';
 
 function PoiBlocContainer() {}
 
