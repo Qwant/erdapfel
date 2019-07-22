@@ -32,7 +32,8 @@ test('responds to events and update metrics', done => {
     .get('/metrics')
     .expect(200)
     .then(response => {
-      const currentFavSaveCount = parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
+      const currentFavSaveCount =
+        parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
       server
         .post('/events')
         .set('Content-Type', 'application/json')
@@ -41,7 +42,8 @@ test('responds to events and update metrics', done => {
           server.get('/metrics')
             .expect(200)
             .then(response => {
-              const newSaveCount = parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
+              const newSaveCount =
+                parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
               expect(newSaveCount).toBeGreaterThan(currentFavSaveCount);
             })
             .then(done);

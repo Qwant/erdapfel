@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {initBrowser, wait} from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');

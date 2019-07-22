@@ -81,7 +81,10 @@ test('center map after a favorite poi click', async() => {
   });
   const favoriteMockCoordinates = {lat: 43.5, lng: 7.18};
   await page.evaluate(storeCoordinate => {
-    fire('store_poi', new Poi(1, 'some poi i will click', 'second line', 'poi', storeCoordinate, '', '', []));
+    fire(
+      'store_poi',
+      new Poi(1, 'some poi i will click', 'second line', 'poi', storeCoordinate, '', '', [])
+    );
   }, favoriteMockCoordinates);
 
   await toggleFavoritePanel(page);

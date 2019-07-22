@@ -12,7 +12,9 @@ export default class ResponseHandler {
   }
 
   addPreparedResponse(response, query, options) {
-    const alreadySetResponse = this.preparedResponses.find(preparedResponse => preparedResponse.query.toString() === query.toString());
+    const alreadySetResponse = this.preparedResponses.find(
+      preparedResponse => preparedResponse.query.toString() === query.toString()
+    );
     if (!alreadySetResponse) {
       this.preparedResponses.push({response, query, options});
     }
@@ -33,7 +35,11 @@ export default class ResponseHandler {
             status = preparedResponse.options.status;
           }
         }
-        await interceptedRequest.respond({status: status, body: JSON.stringify(preparedResponse.response), headers: interceptedRequest.headers});
+        await interceptedRequest.respond({
+          status: status,
+          body: JSON.stringify(preparedResponse.response),
+          headers: interceptedRequest.headers}
+        );
         return;
       }
       interceptedRequest.continue();

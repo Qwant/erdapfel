@@ -246,17 +246,24 @@ test('check template', async() => {
   });
   /* street */
   const stretAddress = ['0000', 'Ferriere', 'Italia'].filter(zone => zone).join(', ');
-  expect(lines[0][0]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[0].properties.geocoding.name);
+  expect(lines[0][0]).toEqualCaseInsensitive(
+    mockAutocompleteAllTypes.features[0].properties.geocoding.name
+  );
   expect(lines[0][1]).toEqualCaseInsensitive(stretAddress);
 
   /* house */
   const houseAddress = ['30000', 'Nîmes', 'France'].filter(zone => zone).join(', ');
-  expect(lines[1][0]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[1].properties.geocoding.name);
+  expect(lines[1][0]).toEqualCaseInsensitive(
+    mockAutocompleteAllTypes.features[1].properties.geocoding.name
+  );
   expect(lines[1][1]).toEqualCaseInsensitive(houseAddress);
 
   /* poi */
-  expect(lines[2][0]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[2].properties.geocoding.name);
-  expect(lines[2][1]).toEqualCaseInsensitive(mockAutocompleteAllTypes.features[2].properties.geocoding.address.label);
+  expect(lines[2][0]).toEqualCaseInsensitive(
+    mockAutocompleteAllTypes.features[2].properties.geocoding.name);
+  expect(lines[2][1]).toEqualCaseInsensitive(
+    mockAutocompleteAllTypes.features[2].properties.geocoding.address.label
+  );
 
   /* admin */
   const labelFragments = mockAutocompleteAllTypes.features[3].properties.geocoding.label.split(',');
@@ -288,7 +295,9 @@ test('Retrieve restaurant category when we search "restau"', async() => {
 
   const [firstLine, suggestionId] = await page.evaluate(() => {
     return [
-      document.querySelector('.autocomplete_suggestion:first-child .autocomplete_suggestion__first_line').innerText,
+      document.querySelector(
+        '.autocomplete_suggestion:first-child .autocomplete_suggestion__first_line'
+      ).innerText,
       document.querySelector('.autocomplete_suggestion:first-child').getAttribute('data-id'),
     ];
   });

@@ -66,7 +66,8 @@ test('load a poi from url on mobile', async() => {
     return {
       title: document.querySelector('.poi_panel__content__card .poi_panel__title').innerText,
       address: document.querySelector('.poi_panel__content__card .poi_panel__address').innerText,
-      hours: document.querySelector('.poi_panel__content__card .poi_panel__info__hours__status__text').innerText,
+      hours: document
+        .querySelector('.poi_panel__content__card .poi_panel__info__hours__status__text').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
@@ -78,7 +79,10 @@ test('load a poi already in my favorite from url', async() => {
   expect.assertions(1);
   await page.goto(APP_URL);
   await page.evaluate(() => {
-    fire('store_poi', new Poi('osm:way:63178753', 'some poi', '', 'poi', {lat: 43, lng: 2}, '', '', []));
+    fire(
+      'store_poi',
+      new Poi('osm:way:63178753', 'some poi', '', 'poi', {lat: 43, lng: 2}, '', '', [])
+    );
   });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   const plainStar = await page.waitForSelector('.icon-icon_star-filled');
@@ -99,7 +103,10 @@ test('update url after a favorite poi click', async() => {
   expect.assertions(1);
   await page.goto(APP_URL);
   page.evaluate(() => {
-    fire('store_poi', new Poi(1, 'some poi i will click', 'one line', 'poi', {lat: 43, lng: 2}, '', '', []));
+    fire(
+      'store_poi',
+      new Poi(1, 'some poi i will click', 'one line', 'poi', {lat: 43, lng: 2}, '', '', [])
+    );
   });
   await page.click('.service_panel__item__fav');
   await wait(300);
@@ -153,7 +160,10 @@ test('center the map to the poi on a poi click', async() => {
   const center = await page.evaluate(() => {
     return window.MAP_MOCK.getCenter();
   });
-  expect(center).toEqual({lng: poiMock.geometry.coordinates[0], lat: poiMock.geometry.coordinates[1]});
+  expect(center).toEqual({
+    lng: poiMock.geometry.coordinates[0],
+    lat: poiMock.geometry.coordinates[1],
+  });
 });
 
 test('display details about the poi on a poi click', async() => {
@@ -300,7 +310,9 @@ test('Poi hour i18n', async() => {
       await langPage.setExtraHTTPHeaders({
         'accept-language': `${language.locale},${language.code},en;q=0.8`,
       });
-      await langPage.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
+      await langPage.goto(
+        `${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`
+      );
       await langPage.waitForSelector('.poi_panel__info__hours__table');
       const hourData = await getHours(langPage);
       if (language.code === 'fr') {
@@ -344,7 +356,7 @@ async function getTitle(page) {
 
 async function getHours(page) {
   return await page.evaluate(() => {
-    return Array.from(document.querySelector('.poi_panel__info__hours__table').querySelectorAll('tr')).map(line => {
+    return Array.from(document.querySelectorAll('.poi_panel__info__hours__table tr')).map(line => {
       return Array.from(line.querySelectorAll('td')).map(cell => {
         return cell.innerText.trim();
       });
