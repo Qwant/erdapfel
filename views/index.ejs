@@ -46,9 +46,6 @@
         <span class="icon-chevron-left"></span>
       </div>
     </div>
-    <div class="loader_bar" id="loader-bar">
-      <div id="progress-bar" class="loader_bar__progress"></div>
-    </div>
     <% if(config.performance.enabled) { %>
       <script>window.times = {init : Date.now()}</script>
     <% } %>
@@ -59,17 +56,5 @@
       <script src="./statics/javascript/file_loader-debug.js"></script>
     <% } %>
     <script src="./statics/build/javascript/bundle.js"></script>
-    <script>
-      /* Progress */
-      const progressBar = document.querySelector('#progress-bar')
-      const loaderBar = document.querySelector('#loader-bar')
-      let mapLoader = new FileLoader('./statics/build/javascript/map.js')
-      mapLoader.onLoad = function() {
-        loaderBar.classList.add('loader_bar--loaded')
-      }
-      mapLoader.onProgress = function(e) {
-        progressBar.style.width = e.loaded / e.total * 100 + '%'
-      }
-    </script>
   </body>
 </html>

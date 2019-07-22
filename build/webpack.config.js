@@ -87,7 +87,15 @@ const mainJsChunkConfig = buildMode => {
       chunkFilename: '[name].bundle.js',
       publicPath: './statics/build/javascript/',
     },
-    plugins: addJsOptimizePlugins(buildMode, []),
+    plugins: addJsOptimizePlugins(buildMode, [
+      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
+        if (buildMode === 'test') {
+          resource.request = resource.request.replace('--ENV', '-js-mock');
+        } else {
+          resource.request = resource.request.replace('--ENV', '');
+        }
+      }),
+    ]),
     module: {
       rules: [{
         test: /\.dot/,
@@ -113,6 +121,20 @@ const mainJsChunkConfig = buildMode => {
           {loader: 'yaml-loader'},
         ],
       }, {
+        test: /style\.json$/,
+        use: [
+          {
+            loader: '@qwant/map-style-loader',
+            options: {
+              output: 'production', // 'debug' | 'production' | 'omt'
+              outPath: __dirname + '/../public/mapstyle',
+              i18n: true,
+              icons: true,
+              pixelRatios: [1, 2],
+            },
+          },
+        ],
+      }, {
         test: /\.js$/,
         use: [
           {
@@ -124,78 +146,6 @@ const mainJsChunkConfig = buildMode => {
           /\/node_modules/,
         ],
       }],
-    },
-    devtool: 'source-map',
-    node: {
-      fs: 'empty',
-    },
-  };
-};
-
-const mapJsChunkConfig = buildMode => {
-  return {
-    entry: [path.join(__dirname, '..', 'src', 'map.js')],
-    output: {
-      path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
-      filename: 'map.js',
-    },
-    plugins: addJsOptimizePlugins(buildMode, [
-      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
-        if (buildMode === 'test') {
-          resource.request = resource.request.replace('--ENV', '-js-mock');
-        } else {
-          resource.request = resource.request.replace('--ENV', '');
-        }
-      }),
-    ]),
-    module: {
-      rules: [
-        {
-          test: /\.dot/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: babelConf(buildMode),
-            },
-            {
-              loader: 'dot-loader',
-              options: {},
-            },
-          ],
-        }, {
-          test: /\.yml$/,
-          use: [
-            {loader: '@qwant/config-sanitizer-loader'},
-            {loader: 'json-loader'},
-            {loader: 'yaml-loader'},
-          ],
-        }, {
-          test: /style\.json$/,
-          use: [
-            {
-              loader: '@qwant/map-style-loader',
-              options: {
-                output: 'production', // 'debug' | 'production' | 'omt'
-                outPath: __dirname + '/../public/mapstyle',
-                i18n: true,
-                icons: true,
-                pixelRatios: [1, 2],
-              },
-            },
-          ],
-        }, {
-          test: /\.js$/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: babelConf(buildMode),
-            },
-
-          ],
-          exclude: [
-            /\/node_modules/,
-          ],
-        }],
     },
     devtool: 'source-map',
     node: {
@@ -231,7 +181,6 @@ const webpackChunks = buildMode => {
     copyPluginConfig(),
     sassChunkConfig(buildMode),
     mainJsChunkConfig(buildMode),
-    mapJsChunkConfig(buildMode),
   ];
   const constants = yaml.readSync('../config/constants.yml');
 
