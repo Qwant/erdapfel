@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const App = require( './../../bin/app');
 const configBuilder = require('@qwant/nconf-builder');
 const nock = require('nock');
@@ -50,6 +49,7 @@ config.masq.enabled = false;
 global.appServer = new App(config);
 
 module.exports = async function() {
+  /* eslint-disable no-console */
   console.log(`Start test on PORT : ${config.PORT}`);
   await global.appServer.start(config.PORT);
 };

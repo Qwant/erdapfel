@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* globals puppeteerArguments */
 import puppeteer from 'puppeteer';
 
@@ -27,6 +26,7 @@ export const initBrowser = async function() {
   });
 
   page.on('console', msg => {
+    /* eslint-disable no-console */
     console.log(`> ${msg.text()}`);
   });
   return {browser, page};
