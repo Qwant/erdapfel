@@ -1,4 +1,4 @@
-module.exports = {
+{
   "routes":
     [{
       "geometry": {"coordinates": [[2.290454, 48.823566], [2.290454, 48.823566]], "type": "LineString"},

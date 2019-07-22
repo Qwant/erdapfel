@@ -4,8 +4,8 @@ const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
 const ROUTES_PATH = `routes`
-const mockAutocomplete = require('../../__data__/autocomplete')
-const mockMapBox = require('../../__data__/mapbox')
+const mockAutocomplete = require('../../__data__/autocomplete.json')
+const mockMapBox = require('../../__data__/mapbox.json')
 
 let browser
 let page

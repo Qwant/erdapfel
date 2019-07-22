@@ -1,4 +1,4 @@
-const poiMock = require('../../__data__/poi')
+const poiMock = require('../../__data__/poi.json')
 const configBuilder = require('@qwant/nconf-builder')
 const config = configBuilder.get()
 const APP_URL = `http://localhost:${config.PORT}`
@@ -25,7 +25,7 @@ beforeEach(async () => {
   responseHandler = new ResponseHandler(page)
   await responseHandler.prepareResponse()
 
-  const autocompleteMock = require('../../__data__/autocomplete')
+  const autocompleteMock = require('../../__data__/autocomplete.json')
   responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/)
   responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753/)
   responseHandler.addPreparedResponse(poiMock, /places\/1/)
@@ -208,7 +208,7 @@ test('Poi name i18n', async () => {
 test('Test 24/7', async () => {
   expect.assertions(1)
 
-  let {...poi} = require('../../__data__/poi')
+  let {...poi} = require('../../__data__/poi.json')
   poi.blocks.forEach((block => {
     if(block.type === 'opening_hours') {
       block.is_24_7 = true
