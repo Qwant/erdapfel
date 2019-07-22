@@ -144,6 +144,6 @@ export default class IdunnPoi extends Poi {
   }
 
   isFromPagesjaunes() {
-    return this.meta && this.meta.source == sources.pagesjaunes;
+    return this.meta && this.meta.source === sources.pagesjaunes;
   }
 }
