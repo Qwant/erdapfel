@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const App = require( './../../bin/app');
 const configBuilder = require('@qwant/nconf-builder');
 const nock = require('nock');

@@ -1,5 +1,4 @@
 import {clearStore, initBrowser, wait} from '../tools';
-import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
@@ -7,7 +6,6 @@ const APP_URL = `http://localhost:${config.PORT}`;
 
 let browser;
 let page;
-let autocompleteHelper;
 let responseHandler;
 
 beforeAll(async() => {
@@ -15,7 +13,6 @@ beforeAll(async() => {
   page = browserPage.page;
   browser = browserPage.browser;
   responseHandler = new ResponseHandler(page);
-  autocompleteHelper = new AutocompleteHelper(page);
   await responseHandler.prepareResponse();
 });
 

@@ -1,5 +1,4 @@
 import request from 'supertest';
-import wait from '../tools';
 
 let server;
 

@@ -1,3 +1,4 @@
+/* globals Poi */
 const poiMock = require('../../__data__/poi.json');
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
@@ -11,7 +12,6 @@ import {languages} from '../../../config/constants.yml';
 let browser;
 let page;
 let responseHandler;
-
 
 beforeAll(async() => {
   browser = (await initBrowser()).browser;
@@ -51,8 +51,8 @@ test('load a poi from url', async() => {
       address: document.querySelector('.poi_panel__address').innerText,
     };
   });
-  expect(title).toMatch(/Musée d\'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d\'Honneur \(Paris\)/);
+  expect(title).toMatch(/Musée d'Orsay/);
+  expect(address).toMatch(/1 Rue de la Légion d'Honneur \(Paris\)/);
 });
 
 test('load a poi from url on mobile', async() => {
@@ -69,8 +69,8 @@ test('load a poi from url on mobile', async() => {
       hours: document.querySelector('.poi_panel__content__card .poi_panel__info__hours__status__text').innerText,
     };
   });
-  expect(title).toMatch(/Musée d\'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d\'Honneur \(Paris\)/);
+  expect(title).toMatch(/Musée d'Orsay/);
+  expect(address).toMatch(/1 Rue de la Légion d'Honneur \(Paris\)/);
   expect(hours).toMatch(/Fermé/);
 });
 

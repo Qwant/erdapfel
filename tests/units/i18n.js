@@ -1,3 +1,4 @@
+/* globals _, getDay */
 import I18n from '../../src/libs/i18n';
 const i18nData = require('../__data__/i18n').i18nData;
 const date = require('../__data__/i18n').date;

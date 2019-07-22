@@ -1,7 +1,7 @@
+/* globals Poi */
 import {clearStore, initBrowser, wait} from '../tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
-import {autocomplete} from '../../../config/constants.yml';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
@@ -164,7 +164,7 @@ test('bbox & center', async() => {
   await wait(100);
   await page.waitForSelector('.autocomplete_suggestion');
   await page.click('.autocomplete_suggestion:nth-child(1)');
-  let {center, zoom} = await page.evaluate(() => {
+  const {center, zoom} = await page.evaluate(() => {
     return {center: window.MAP_MOCK.getCenter(), zoom: window.MAP_MOCK.getZoom()};
   });
   expect(center).toEqual({ lat: 5, lng: 30 });
@@ -174,10 +174,10 @@ test('bbox & center', async() => {
   await wait(100);
   await page.waitForSelector('.autocomplete_suggestion');
   await page.click('.autocomplete_suggestion:nth-child(2)');
-  center = await page.evaluate(() => {
+  const newCenter = await page.evaluate(() => {
     return window.MAP_MOCK.getCenter();
   });
-  expect(center).toEqual({ lat: 4, lng: 3 });
+  expect(newCenter).toEqual({ lat: 4, lng: 3 });
 });
 
 test('favorite search', async() => {
@@ -238,7 +238,10 @@ test('check template', async() => {
 
   const lines = await page.evaluate(() => {
     return Array.from(document.querySelectorAll('.autocomplete_suggestion')).map(rawSuggest => {
-      return [rawSuggest.querySelector('.autocomplete_suggestion__first_line').innerText.trim(), rawSuggest.querySelector('.autocomplete_suggestion__second_line').innerText.trim()];
+      return [
+        rawSuggest.querySelector('.autocomplete_suggestion__first_line').innerText.trim(),
+        rawSuggest.querySelector('.autocomplete_suggestion__second_line').innerText.trim(),
+      ];
     });
   });
   /* street */

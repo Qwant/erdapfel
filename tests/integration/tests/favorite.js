@@ -1,9 +1,9 @@
+/* globals Poi */
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
-import {initBrowser, wait, store, clearStore} from '../tools';
+import {initBrowser, wait, clearStore} from '../tools';
 import {toggleFavoritePanel} from '../favorites_tools';
-import {version} from '../../../config/constants.yml';
 
 let browser;
 let page;

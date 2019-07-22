@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* globals puppeteerArguments */
 import puppeteer from 'puppeteer';
 
 export const wait = async function wait(t = 1000) {
