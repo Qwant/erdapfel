@@ -20,4 +20,6 @@ import UrlState from './proxies/url_state';
   window.app = new App('panels');
 
   UrlState.load();
+
+  await import(/* webpackChunkName: "map" */ './map');
 })();
