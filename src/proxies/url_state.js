@@ -62,4 +62,8 @@ UrlState.getShardValue = function(shardPrefix) {
   return shard && shard.value;
 };
 
+UrlState.getShardCount = function() {
+  return UrlShards.parseUrl().length;
+};
+
 export default UrlState;
