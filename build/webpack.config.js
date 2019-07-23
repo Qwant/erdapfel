@@ -90,6 +90,7 @@ const mainJsChunkConfig = buildMode => {
     resolve: {
       alias: {
         config: path.resolve(__dirname, '../config/'),
+        src: path.resolve(__dirname, '../src/'),
       },
     },
     plugins: addJsOptimizePlugins(buildMode, [

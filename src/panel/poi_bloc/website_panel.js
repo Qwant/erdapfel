@@ -1,7 +1,7 @@
-import WebsiteView from '../../views/poi_bloc/website.dot';
-import Panel from '../../libs/panel';
+import WebsiteView from 'src/views/poi_bloc/website.dot';
+import Panel from 'src/libs/panel';
 import URI from '../../../local_modules/uri/index';
-import Telemetry from '../../libs/telemetry';
+import Telemetry from 'src/libs/telemetry';
 
 function Website(block, poi) {
   this.URI = URI;

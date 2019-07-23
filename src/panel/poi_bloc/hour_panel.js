@@ -1,8 +1,8 @@
-import HourPanelView from '../../views/poi_bloc/hour.dot';
-import nextTransitionPartial from '../../views/poi_bloc/hour_next_transition_partial.dot';
-import Panel from '../../libs/panel';
-import OsmSchedule from '../../../src/adapters/osm_schedule';
-import Telemetry from '../../libs/telemetry';
+import HourPanelView from 'src/views/poi_bloc/hour.dot';
+import nextTransitionPartial from 'src/views/poi_bloc/hour_next_transition_partial.dot';
+import Panel from 'src/libs/panel';
+import OsmSchedule from 'src/adapters/osm_schedule';
+import Telemetry from 'src/libs/telemetry';
 
 function HourPanel(block, poi, options) {
   this.nextTransitionPartial = nextTransitionPartial;
