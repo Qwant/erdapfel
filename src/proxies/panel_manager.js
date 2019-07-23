@@ -48,45 +48,35 @@ PanelManager.getDirectionPanel = function() {
   return window.__panel_manager.panels.find(panel => panel instanceof DirectionPanel);
 };
 
-PanelManager.openDirection = async function(options) {
+function openPanel(panelType, options) {
   /*
     "unminify" needs to be called before panel.open :
     DirectionPanel will minify the main search input (unused for Directions)
   */
   window.app.unminify();
-  window.__panel_manager.panels.find(panel => {
-    if (panel instanceof DirectionPanel) {
-      if (!panel.active) {
-        panel.open(options);
-      }
-    } else if (panel.active) {
-      panel.close();
-    }
-  });
-};
-
-PanelManager.openFavorite = async function() {
   window.__panel_manager.panels.forEach(panel => {
-    if (panel instanceof FavoritePanel) {
-      if (!panel.active) {
-        panel.open();
-      }
-    } else if (panel.active) {
-      panel.close();
-    }
-  });
-  window.app.unminify();
-};
-
-PanelManager.openCategory = async function(options) {
-  window.__panel_manager.panels.forEach(panel => {
-    if (panel instanceof CategoryPanel) {
+    if (panel instanceof panelType) {
       panel.open(options);
-    } else if (panel.active) {
+    } else {
       panel.close();
     }
   });
-  window.app.unminify();
+}
+
+PanelManager.openDirection = function(options) {
+  openPanel(DirectionPanel, options);
+};
+
+PanelManager.openFavorite = function() {
+  openPanel(FavoritePanel);
+};
+
+PanelManager.openCategory = function(options) {
+  openPanel(CategoryPanel, options);
+};
+
+PanelManager.resetLayout = function() {
+  openPanel(ServicePanel);
 };
 
 PanelManager.keepOnlyPoi = async function() {
@@ -95,17 +85,6 @@ PanelManager.keepOnlyPoi = async function() {
       panel.close();
     }
   });
-};
-
-PanelManager.resetLayout = function() {
-  window.__panel_manager.panels.forEach(panel => {
-    if (panel instanceof ServicePanel) {
-      panel.open();
-    } else {
-      panel.close();
-    }
-  });
-  window.app.unminify();
 };
 
 PanelManager.register = function(panel) {
