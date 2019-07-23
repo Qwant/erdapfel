@@ -9,7 +9,6 @@ import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import SceneState from '../adapters/scene_state';
-import {paramTypes} from '../proxies/url_shard';
 import layouts from './layouts.js';
 import nconf from '../../local_modules/nconf_getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
@@ -37,7 +36,7 @@ function PoiPanel(sharePanel) {
   this.sceneState = SceneState.getSceneState();
   this.isDirectionActive = nconf.get().direction.enabled;
   PanelManager.register(this);
-  UrlState.registerUrlShard(this, 'place', paramTypes.RESOURCE);
+  UrlState.registerResource(this, 'place');
   this.isMasqEnabled = nconf.get().masq.enabled;
 
   store.onToggleStore(async() => {
