@@ -78,5 +78,16 @@
         "prefer-const": ["error"],
         "no-var": "error",
         "eqeqeq": "error"
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "tests/**/*.js"
+            ],
+            "env": {
+                "jest": true,
+                "node": true
+            }
+        }
+    ]
 }

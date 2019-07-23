@@ -1,23 +1,22 @@
 import request from 'supertest';
-import wait from '../tools';
 
-let server
+let server;
 
-beforeAll(async () => {
-  server = request('http://localhost:3000')
-})
+beforeAll(async() => {
+  server = request('http://localhost:3000');
+});
 
 test('responds to /', done => {
   server
     .get('/')
-    .expect(200, done)
+    .expect(200, done);
 });
 
 test('responds to /statics', done => {
   server
     .get('/statics/images/qwant-logo.svg')
     .expect('Content-Type', 'image/svg+xml')
-    .expect(200, done)
+    .expect(200, done);
 });
 
 test('responds to logs', done => {
@@ -25,7 +24,7 @@ test('responds to logs', done => {
     .post('/logs')
     .set('Content-Type', 'application/json')
     .send('{"key":"value"}')
-    .expect(204, done)
+    .expect(204, done);
 });
 
 test('responds to events and update metrics', done => {
@@ -33,7 +32,8 @@ test('responds to events and update metrics', done => {
     .get('/metrics')
     .expect(200)
     .then(response => {
-      let currentFavSaveCount = parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1])
+      const currentFavSaveCount =
+        parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
       server
         .post('/events')
         .set('Content-Type', 'application/json')
@@ -42,12 +42,13 @@ test('responds to events and update metrics', done => {
           server.get('/metrics')
             .expect(200)
             .then(response => {
-              let newSaveCount = parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1])
-              expect(newSaveCount).toBeGreaterThan(currentFavSaveCount)
+              const newSaveCount =
+                parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
+              expect(newSaveCount).toBeGreaterThan(currentFavSaveCount);
             })
-            .then(done)
-        })
-    })
+            .then(done);
+        });
+    });
 });
 
 test('refuses unknown events', done => {
@@ -55,7 +56,7 @@ test('refuses unknown events', done => {
     .post('/events')
     .set('Content-Type', 'application/json')
     .send('{"type":"unknown"}')
-    .expect(400, done)
+    .expect(400, done);
 });
 
 test('refuses array in telemetry type', done => {
@@ -63,5 +64,5 @@ test('refuses array in telemetry type', done => {
     .post('/events')
     .set('Content-Type', 'application/json')
     .send('{"type":["localise_trigger"]}')
-    .expect(400, done)
-})
+    .expect(400, done);
+});

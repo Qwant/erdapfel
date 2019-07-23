@@ -1,3 +1,3 @@
-module.exports = async function () {
-  global.appServer.close()
-}
+module.exports = async function() {
+  global.appServer.close();
+};
