@@ -1,7 +1,7 @@
 /* global _ */
 
 import Poi from '../poi';
-import GeolocationCheck from '../../../libs/geolocation';
+import GeolocationCheck from 'src/libs/geolocation';
 export const GEOLOCALISATION_NAME = 'geolocalisation';
 
 export const navigatorGeolocationStatus = {

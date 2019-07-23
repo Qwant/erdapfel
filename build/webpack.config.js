@@ -87,6 +87,12 @@ const mainJsChunkConfig = buildMode => {
       chunkFilename: '[name].bundle.js',
       publicPath: './statics/build/javascript/',
     },
+    resolve: {
+      alias: {
+        config: path.resolve(__dirname, '../config/'),
+        src: path.resolve(__dirname, '../src/'),
+      },
+    },
     plugins: addJsOptimizePlugins(buildMode, [
       new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
         if (buildMode === 'test') {
