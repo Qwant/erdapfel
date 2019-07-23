@@ -43,7 +43,7 @@ export default class LatLonPoi extends Poi {
     } else {
       const urlData = urlParam.match(/^(.*?)(@(.*))?$/);
       const idunnId = urlData[1];
-      return IdunnPoi.poiApiLoad(idunnId);
+      return IdunnPoi.poiApiLoad({'id': idunnId});
     }
   }
 }

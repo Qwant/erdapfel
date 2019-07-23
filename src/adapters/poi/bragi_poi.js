@@ -1,6 +1,7 @@
 import Poi from './poi';
 import ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
+import QueryContext from '../query_context';
 
 const serviceConfigs = nconf.get().services;
 const geocoderConfig = serviceConfigs.geocoder;
@@ -10,7 +11,7 @@ if (!window.__bragiCache) {
 }
 
 export default class BragiPoi extends Poi {
-  constructor(feature) {
+  constructor(feature, queryContext) {
 
     let poiClassText = '';
     let poiSubclassText = '';
@@ -110,6 +111,7 @@ export default class BragiPoi extends Poi {
     if (feature.properties.geocoding.bbox) {
       this.bbox = feature.properties.geocoding.bbox;
     }
+    this.queryContext = queryContext;
   }
 
   getInputValue() {
@@ -145,8 +147,11 @@ export default class BragiPoi extends Poi {
       }
       suggestsPromise = ajax.get(geocoderConfig.url, query);
       suggestsPromise.then(suggests => {
+        let ranking = 0;
         const bragiResponse = suggests.features.map(feature => {
-          return new BragiPoi(feature);
+          ranking += 1;
+          // FIXME: add position when https://github.com/QwantResearch/erdapfel/pull/291 is merged.
+          return new BragiPoi(feature, new QueryContext(term, ranking, query.lang));
         });
         window.__bragiCache[term] = bragiResponse;
         resolve(bragiResponse);
