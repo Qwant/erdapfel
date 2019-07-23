@@ -3,9 +3,9 @@ import PanelResizerActionsView from '../views/panel_resizer_actions.dot';
 const REDUCED_PANEL_CLASS = 'reduced';
 const MAXIMIZED_PANEL_CLASS = 'full';
 
-function getClosest(arr, goal) {
-  return arr.reduce((prev, curr) =>
-    Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
+function getClosestIndex(arr, goal) {
+  return arr.reduce((closestIndex, curr, index) =>
+    Math.abs(curr - goal) < Math.abs(arr[closestIndex] - goal) ? index : closestIndex
   );
 }
 
@@ -41,7 +41,7 @@ export default class PanelResizer {
    * Triggered on mouse down of the panel resizer
    * @param {MouseEvent|TouchEvent} e event
    */
-  async holdResizer({event}) {
+  holdResizer({event}) {
     event.preventDefault();
 
     if (this.isTransitioning) {
@@ -103,22 +103,18 @@ export default class PanelResizer {
     clearTimeout(this.timer);
 
     const clientY = event.changedTouches ? event.changedTouches[0].clientY : event.clientY;
+    const sizes = [0, window.innerHeight / 2, window.innerHeight];
+    const positionIndex = getClosestIndex(sizes, clientY);
 
-    const SIZES = {
-      0: window.innerHeight,
-      [window.innerHeight / 2]: window.innerHeight / 2,
-      [window.innerHeight]: 50,
-    };
-    const index = getClosest(Object.keys(SIZES), clientY);
-    const adequateHeight = SIZES[index];
-
-    if (adequateHeight === 50) {
+    if (positionIndex === 2) {
+      /* closest position is "reduced" */
       if (this.holding) {
         this.reduced = true;
       }
-    } else if (!this.holding && adequateHeight === window.innerHeight / 2) {
+    } else if (!this.holding && positionIndex === 1) {
       this.reduced = true;
-    } else if (adequateHeight === window.innerHeight) {
+    } else if (positionIndex === 0) {
+      /* closest position is "maximized" */
       if (!this.holding) {
         this.resizableElement.style.height = null;
       }

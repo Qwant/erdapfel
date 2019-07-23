@@ -5,12 +5,9 @@ $MASQ_BANNER_HEIGHT: 93px;
   padding-right: 0;
 }
 
-.poi_panel__header + .poi_panel--card {
-  max-height: calc(100% - 50px);
 
-  &.show_masq {
-    max-height: calc(100% - 50px - #{$MASQ_BANNER_HEIGHT});
-  }
+.poi_panel__header + .poi_panel--card.show_masq {
+  max-height: calc(100vh - 120px - #{$HEADER_SIZE} - #{$MASQ_BANNER_HEIGHT});
 }
 
 .favorite_panel__show_list {
@@ -267,6 +264,7 @@ $MASQ_BANNER_HEIGHT: 93px;
   }
 
   .favorite_panel__container > .poi_panel.poi_panel--card {
+    max-height: calc(100% - 50px);
     box-shadow: initial;
     width: 100vw;
     left: initial;
