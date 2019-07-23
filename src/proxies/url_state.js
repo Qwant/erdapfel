@@ -57,4 +57,9 @@ UrlState.load = function() {
   });
 };
 
+UrlState.getShardValue = function(shardPrefix) {
+  const shard = UrlShards.parseUrl().find(shard => shard.prefix === shardPrefix);
+  return shard && shard.value;
+};
+
 export default UrlState;
