@@ -21,7 +21,7 @@ UrlState.registerResource = function(component, prefix) {
 
 UrlState.registerUrlShard = function(component, prefix, paramType) {
   if (!component.store || !component.restore) {
-    throw 'this componentn doesn\'t implement required methods';
+    throw 'this component doesn\'t implement required methods';
   }
   UrlShards.add(new UrlShard(component, prefix, paramType));
 };
