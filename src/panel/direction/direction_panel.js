@@ -26,7 +26,6 @@ export default class DirectionPanel {
       () => this.handleClose(),
       roadPanel,
     );
-    PanelManager.register(this);
     UrlState.registerResource(this, 'routes');
     this.activePanel = this;
   }

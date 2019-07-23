@@ -11,8 +11,6 @@ export default class ServicePanel {
     this.isDeployed = false;
     this.isDirectionActive = nconf.get().direction.enabled;
     this.active = true;
-
-    PanelManager.register(this);
   }
 
   toggleCategories() {

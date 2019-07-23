@@ -29,7 +29,6 @@ export default class CategoryPanel {
     this.dataSource = '';
 
     UrlState.registerResource(this, 'places');
-    PanelManager.register(this);
 
     listen('map_moveend', debounce( function() {
       if (this.active) {

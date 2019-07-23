@@ -35,7 +35,6 @@ function PoiPanel(sharePanel) {
   this.minimalHourPanel = new MinimalHourPanel();
   this.sceneState = SceneState.getSceneState();
   this.isDirectionActive = nconf.get().direction.enabled;
-  PanelManager.register(this);
   UrlState.registerResource(this, 'place');
   this.isMasqEnabled = nconf.get().masq.enabled;
 

@@ -31,7 +31,6 @@ function Favorite(sharePanel) {
   });
 
   this.panel = new Panel(this, FavoritePanelView);
-  PanelManager.register(this);
 
   this.store = new Store();
 

@@ -38,6 +38,16 @@ export default class AppPanel {
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel(this.sharePanel) : null;
 
+    PanelManager.register(this.servicePanel);
+    PanelManager.register(this.favoritePanel);
+    PanelManager.register(this.poiPanel);
+    if (this.categoryEnabled) {
+      PanelManager.register(this.categoryPanel);
+    }
+    if (this.directionPanel) {
+      PanelManager.register(this.directionPanel);
+    }
+
     this.panel = new Panel(this, PanelsView, parent);
     this.geolocationModal = new GeolocationModal();
     this.geolocationDeniedModal = new GeolocationDeniedModal();
