@@ -1,7 +1,6 @@
 import Suggest from '../adapters/suggest';
 import layouts from '../panel/layouts.js';
 import UrlState from '../proxies/url_state';
-import UrlShards from '../proxies/url_shards';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
 
@@ -90,8 +89,7 @@ export default class SearchInput {
   store() {}
 
   async restore(fragment) {
-    const shards = UrlShards.parseUrl();
-    if (shards.length === 1) {
+    if (UrlState.getShardCount() === 1) {
       return await this.suggest.preselect(fragment);
     }
   }

@@ -13,7 +13,6 @@ import SceneState from './scene_state';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
 import DirectionPoi from './poi/specials/direction_poi';
-import UrlShards from '../proxies/url_shards';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
@@ -195,8 +194,7 @@ Scene.prototype.initMapBox = function() {
 };
 
 Scene.prototype.saveLocation = function() {
-  const locationShard = UrlShards.parseUrl().find(shard => shard.prefix === 'map');
-  this.savedLocation = locationShard.value;
+  this.savedLocation = UrlState.getShardValue('map');
 };
 
 Scene.prototype.restoreLocation = function() {
@@ -370,15 +368,14 @@ Scene.prototype.isWindowedPoi = function(poi) {
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
 };
 
+// TODO: put that with global browser history management
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
-    const shards = UrlShards.parseUrl();
-    shards.forEach(shard => {
-      if (shard.prefix === 'map') {
-        this.restore(shard.value);
-        this.mb.jumpTo({center: this.urlCenter, zoom: this.urlZoom});
-      }
-    });
+    const mapShardValue = UrlState.getShardValue('map');
+    if (mapShardValue) {
+      this.restore(mapShardValue);
+      this.mb.jumpTo({center: this.urlCenter, zoom: this.urlZoom});
+    }
   };
 };
 

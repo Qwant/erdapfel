@@ -21,7 +21,7 @@ UrlState.registerResource = function(component, prefix) {
 
 UrlState.registerUrlShard = function(component, prefix, paramType) {
   if (!component.store || !component.restore) {
-    throw 'this componentn doesn\'t implement required methods';
+    throw 'this component doesn\'t implement required methods';
   }
   UrlShards.add(new UrlShard(component, prefix, paramType));
 };
@@ -55,6 +55,15 @@ UrlState.load = function() {
       shard.restore(matchingRawShard.value);
     }
   });
+};
+
+UrlState.getShardValue = function(shardPrefix) {
+  const shard = UrlShards.parseUrl().find(shard => shard.prefix === shardPrefix);
+  return shard && shard.value;
+};
+
+UrlState.getShardCount = function() {
+  return UrlShards.parseUrl().length;
 };
 
 export default UrlState;
