@@ -8,7 +8,7 @@ import layouts from './layouts.js';
 import {version} from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
-
+import PanelManager from 'src/proxies/panel_manager';
 import poiSubClass from '../mapbox/poi_subclass';
 
 const masqEnabled = nconf.get().masq.enabled;

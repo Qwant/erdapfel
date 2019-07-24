@@ -18,6 +18,7 @@ import DirectionPanel from './direction/direction_panel';
 import Menu from './menu';
 import Telemetry from '../libs/telemetry';
 import CategoryPanel from './category_panel';
+import PanelManager from 'src/proxies/panel_manager';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;

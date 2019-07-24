@@ -7,7 +7,6 @@
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
-        "PanelManager": "readonly",
         "listen": "readonly",
         "fire": "readonly"
     },

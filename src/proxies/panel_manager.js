@@ -5,93 +5,93 @@ import FavoritePanel from '../panel/favorites_panel';
 import CategoryPanel from '../panel/category_panel';
 import PoiPanel from '../panel/poi_panel';
 
-function PanelManager() {}
-
-PanelManager.init = function() {
-  window.__panel_manager = {panels: []};
-};
-
-PanelManager.setPoi = async function(poi, options = {}) {
-  window.__panel_manager.panels.forEach(panel => {
-    if (panel.isPoiComplient) {
-      panel.setPoi(poi, options);
-    } else if (!options.isFromList && !options.isFromFavorite) {
-      panel.close();
-    }
-  });
-  window.app.unminify();
-};
-
-PanelManager.loadPoiById = async function(id, options) {
-  if (id) {
-    const poi = await ApiPoi.poiApiLoad(id);
-    if (poi) {
-      PanelManager.setPoi(poi, options);
-    } else {
-      PanelManager.resetLayout();
-    }
-    return poi;
-  } else {
-    PanelManager.resetLayout();
+class PanelManager {
+  constructor() {
+    this.panels = [];
   }
-};
 
-PanelManager.emptyClickOnMap = function() {
-  window.__panel_manager.panels.forEach(p => {
-    if (p.emptyClickOnMap) {
-      p.emptyClickOnMap();
-    }
-  });
-};
+  async setPoi(poi, options = {}) {
+    this.panels.forEach(panel => {
+      if (panel.isPoiComplient) {
+        panel.setPoi(poi, options);
+      } else if (!options.isFromList && !options.isFromFavorite) {
+        panel.close();
+      }
+    });
+    window.app.unminify();
+  }
 
-PanelManager.getDirectionPanel = function() {
-  return window.__panel_manager.panels.find(panel => panel instanceof DirectionPanel);
-};
-
-function openPanel(panelType, options) {
-  /*
-    "unminify" needs to be called before panel.open :
-    DirectionPanel will minify the main search input (unused for Directions)
-  */
-  window.app.unminify();
-  window.__panel_manager.panels.forEach(panel => {
-    if (panel instanceof panelType) {
-      panel.open(options);
+  async loadPoiById(id, options) {
+    if (id) {
+      const poi = await ApiPoi.poiApiLoad(id);
+      if (poi) {
+        this.setPoi(poi, options);
+      } else {
+        this.resetLayout();
+      }
+      return poi;
     } else {
-      panel.close();
+      this.resetLayout();
     }
-  });
+  }
+
+  emptyClickOnMap() {
+    this.panels.forEach(p => {
+      if (p.emptyClickOnMap) {
+        p.emptyClickOnMap();
+      }
+    });
+  }
+
+  getDirectionPanel() {
+    return this.panels.find(panel => panel instanceof DirectionPanel);
+  }
+
+  _openPanel(panelType, options) {
+    /*
+      "unminify" needs to be called before panel.open :
+      DirectionPanel will minify the main search input (unused for Directions)
+    */
+    window.app.unminify();
+    this.panels.forEach(panel => {
+      if (panel instanceof panelType) {
+        panel.open(options);
+      } else {
+        panel.close();
+      }
+    });
+  }
+
+  openDirection(options) {
+    this._openPanel(DirectionPanel, options);
+  }
+
+  openFavorite() {
+    this._openPanel(FavoritePanel);
+  }
+
+  openCategory(options) {
+    this._openPanel(CategoryPanel, options);
+  }
+
+  resetLayout() {
+    this._openPanel(ServicePanel);
+  }
+
+  async keepOnlyPoi() {
+    this.panels.forEach(panel => {
+      if (!(panel instanceof PoiPanel) && panel.active) {
+        panel.close();
+      }
+    });
+  }
+
+  register(panel) {
+    const existingPanel = this.panels.find(panelIterator => {
+      return panelIterator.panel.cid === panel.panel.cid;
+    });
+    !existingPanel && this.panels.push(panel);
+  }
 }
 
-PanelManager.openDirection = function(options) {
-  openPanel(DirectionPanel, options);
-};
-
-PanelManager.openFavorite = function() {
-  openPanel(FavoritePanel);
-};
-
-PanelManager.openCategory = function(options) {
-  openPanel(CategoryPanel, options);
-};
-
-PanelManager.resetLayout = function() {
-  openPanel(ServicePanel);
-};
-
-PanelManager.keepOnlyPoi = async function() {
-  window.__panel_manager.panels.forEach(panel => {
-    if (!(panel instanceof PoiPanel) && panel.active) {
-      panel.close();
-    }
-  });
-};
-
-PanelManager.register = function(panel) {
-  const existingPanel = window.__panel_manager.panels.find(panelIterator => {
-    return panelIterator.panel.cid === panel.panel.cid;
-  });
-  !existingPanel && window.__panel_manager.panels.push(panel);
-};
-
-window.PanelManager = PanelManager;
+export default new PanelManager();

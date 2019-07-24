@@ -13,7 +13,7 @@ import layouts from './layouts.js';
 import nconf from '../../local_modules/nconf_getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import Device from '../libs/device';
-
+import PanelManager from 'src/proxies/panel_manager';
 import poiSubClass from '../mapbox/poi_subclass';
 
 const store = new Store();

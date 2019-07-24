@@ -5,6 +5,7 @@ import LoginMasqPanel from './login_masq';
 import SearchInput from '../ui_components/search_input';
 import nconf from '../../local_modules/nconf_getter';
 import Store from '../adapters/store';
+import PanelManager from 'src/proxies/panel_manager';
 
 export default class Menu {
   constructor() {

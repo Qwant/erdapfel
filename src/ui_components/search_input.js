@@ -3,6 +3,7 @@ import layouts from '../panel/layouts.js';
 import UrlState from '../proxies/url_state';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
+import PanelManager from 'src/proxies/panel_manager';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
