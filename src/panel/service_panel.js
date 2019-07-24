@@ -2,7 +2,6 @@ import ServicePanelView from '../views/service_panel.dot';
 import Panel from '../libs/panel';
 import nconf from '@qwant/nconf-getter';
 import CategoryService from '../adapters/category_service';
-import PanelManager from 'src/proxies/panel_manager';
 
 export default class ServicePanel {
   constructor() {
@@ -20,12 +19,12 @@ export default class ServicePanel {
   }
 
   openFavorite() {
-    PanelManager.openFavorite();
+    window.app.openFavorite();
   }
 
   openDirection() {
     if (this.isDirectionActive) {
-      PanelManager.openDirection();
+      window.app.openDirection();
     }
   }
 
@@ -48,6 +47,6 @@ export default class ServicePanel {
   }
 
   openCategory(category) {
-    PanelManager.openCategory({ category });
+    window.app.openCategory({ category });
   }
 }

@@ -3,7 +3,6 @@ import layouts from '../panel/layouts.js';
 import UrlState from '../proxies/url_state';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
-import PanelManager from 'src/proxies/panel_manager';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
@@ -24,7 +23,7 @@ export default class SearchInput {
       window.__searchInput = new SearchInput(tagSelector);
       window.clearSearch = () => {
         window.__searchInput.suggest.setValue('');
-        PanelManager.resetLayout();
+        window.app.resetLayout();
         setTimeout(() => {
           document.getElementById('search').focus();
         }, 0);
@@ -99,9 +98,9 @@ export default class SearchInput {
     if (selectedItem instanceof Poi) {
       fire('fit_map', selectedItem, layouts.POI);
       fire('map_mark_poi', selectedItem);
-      PanelManager.loadPoiById(selectedItem.id);
+      window.app.loadPoiById(selectedItem.id);
     } else if (selectedItem instanceof Category) {
-      PanelManager.openCategory({category: selectedItem});
+      window.app.openCategory({category: selectedItem});
     }
   }
 }

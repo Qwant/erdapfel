@@ -13,7 +13,6 @@ import layouts from './layouts.js';
 import nconf from '@qwant/nconf-getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import Device from '../libs/device';
-import PanelManager from 'src/proxies/panel_manager';
 import poiSubClass from '../mapbox/poi_subclass';
 
 const store = new Store();
@@ -81,7 +80,7 @@ PoiPanel.prototype.isDisplayed = function() {
 
 PoiPanel.prototype.closeAction = function() {
   SearchInput.setInputValue('');
-  PanelManager.resetLayout();
+  window.app.resetLayout();
 };
 
 PoiPanel.prototype.close = async function({cleanMarker = true} = {}) {
@@ -109,7 +108,7 @@ PoiPanel.prototype.restorePoi = async function(id) {
     this.poi.stored = await isPoiFavorite(this.poi);
     this.active = true;
     this.sceneState.setPoiId(this.poi.id);
-    PanelManager.keepOnlyPoi();
+    window.app.keepOnlyPoi();
     await this.minimalHourPanel.set(this.poi);
     await this.panel.update();
   }
@@ -193,7 +192,7 @@ PoiPanel.prototype.backToSmall = function() {
 
 PoiPanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-  PanelManager.openFavorite();
+  window.app.openFavorite();
 };
 
 PoiPanel.prototype.backToList = function() {
@@ -204,7 +203,7 @@ PoiPanel.prototype.backToList = function() {
 };
 
 PoiPanel.prototype.openDirection = function() {
-  PanelManager.openDirection({
+  window.app.openDirection({
     poi: this.poi,
     isFromCategory: this.fromCategory,
     isFromFavorite: this.fromFavorite,

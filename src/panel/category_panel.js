@@ -11,7 +11,6 @@ import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import {sources} from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
-import PanelManager from 'src/proxies/panel_manager';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -178,7 +177,7 @@ export default class CategoryPanel {
 
   closeAction() {
     SearchInput.setInputValue('');
-    PanelManager.resetLayout();
+    window.app.resetLayout();
   }
 
   addCategoryMarkers() {
@@ -208,7 +207,7 @@ export default class CategoryPanel {
       );
     }
     this.close(false);
-    PanelManager.loadPoiById(poi.id, {isFromCategory: true, list: this});
+    window.app.loadPoiById(poi.id, {isFromCategory: true, list: this});
     this.highlightPoiMarker(poi);
   }
 

@@ -16,7 +16,6 @@ import DirectionPoi from './poi/specials/direction_poi';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
-import PanelManager from 'src/proxies/panel_manager';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
@@ -117,7 +116,7 @@ Scene.prototype.initMapBox = function() {
               offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
             });
           }
-          const poi = await PanelManager.loadPoiById(mapPoi.id);
+          const poi = await window.app.loadPoiById(mapPoi.id);
           if (poi) {
             this.addMarker(poi);
           }
@@ -156,7 +155,7 @@ Scene.prototype.initMapBox = function() {
 
     this.mb.on('click', e => {
       if (!e._interactiveClick) {
-        PanelManager.emptyClickOnMap();
+        window.app.emptyClickOnMap();
       }
     });
 

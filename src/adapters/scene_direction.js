@@ -3,7 +3,6 @@ import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
-import PanelManager from 'src/proxies/panel_manager';
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3';
 const MAIN_ROUTE_COLOR = '#4ba2ea';
@@ -17,7 +16,7 @@ export default class SceneDirection {
     this.markerOrigin = null;
     this.markerDestination = null;
     this.markersSteps = [];
-    this.directionPanel = PanelManager.getDirectionPanel();
+    this.directionPanel = window.app.directionPanel;
 
     listen('set_route', ({routes, vehicle, origin, destination, move}) => {
       this.reset();
