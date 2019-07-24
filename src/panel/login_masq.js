@@ -1,7 +1,7 @@
 import LoginMasqPanelView from '../views/login_masq.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
 import Telemetry from '../libs/telemetry';
 

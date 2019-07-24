@@ -4,7 +4,7 @@ import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
 import UrlState from '../proxies/url_state';
 import {map, layout} from '../../config/constants.yml';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
 import HotLoadPoi from './poi/hotload_poi';
 import LocalStore from '../libs/local_store';

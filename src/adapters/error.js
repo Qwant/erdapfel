@@ -1,5 +1,5 @@
 import Ajax from '../libs/ajax';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 
 const errorEventUrl = 'logs';
 const system = nconf.get().system;
