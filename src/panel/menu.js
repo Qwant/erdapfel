@@ -3,7 +3,7 @@ import menuView from '../views/menu.dot';
 import constants from '../../config/constants.yml';
 import LoginMasqPanel from './login_masq';
 import SearchInput from '../ui_components/search_input';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 import Store from '../adapters/store';
 import PanelManager from 'src/proxies/panel_manager';
 

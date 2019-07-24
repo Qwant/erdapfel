@@ -1,5 +1,5 @@
 import Ajax from '../libs/ajax';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 
 const directionConfig = nconf.get().direction.service;
 const timeout = nconf.get().direction.timeout;

@@ -1,5 +1,5 @@
 import Category from './category';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 import categories from '../../config/categories.yml';
 import ExtendedString from '../libs/string';
 

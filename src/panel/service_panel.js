@@ -1,6 +1,6 @@
 import ServicePanelView from '../views/service_panel.dot';
 import Panel from '../libs/panel';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 import CategoryService from '../adapters/category_service';
 import PanelManager from 'src/proxies/panel_manager';
 

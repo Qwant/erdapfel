@@ -1,6 +1,6 @@
 import WebsiteView from 'src/views/poi_bloc/website.dot';
 import Panel from 'src/libs/panel';
-import URI from '../../../local_modules/uri/index';
+import URI from '@qwant/uri';
 import Telemetry from 'src/libs/telemetry';
 
 function Website(block, poi) {

@@ -10,7 +10,7 @@ import headerPartial from '../views/poi_partial/header.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import SceneState from '../adapters/scene_state';
 import layouts from './layouts.js';
-import nconf from '../../local_modules/nconf_getter';
+import nconf from '@qwant/nconf-getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import Device from '../libs/device';
 import PanelManager from 'src/proxies/panel_manager';
