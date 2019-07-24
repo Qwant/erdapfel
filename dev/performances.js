@@ -106,7 +106,6 @@ async function serverStart() {
 
   configBuilder.set('mapStyle:poiMapUrl', `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`)
   configBuilder.set('mapStyle:baseMapUrl', `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`)
-  configBuilder.set('system:evalFiles', false)
   configBuilder.set('performance:enabled', true)
 
 

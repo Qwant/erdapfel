@@ -60,10 +60,6 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 
 [![Travis Build](https://travis-ci.org/QwantResearch/erdapfel.svg?branch=master)](https://travis-ci.org/QwantResearch/erdapfel)
 
-
-**hint**: to debug the application from a browser, it is preferable to disable the dynamic loading of javascript files.
-When starting the server, add `TILEVIEW_system_evalFiles=false` to your config.
-
 #### Local node TLS errors (only for development and debug, **NOT** production!!!)
 
 Some requests to node server could trigger this message on node server logs:
