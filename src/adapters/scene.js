@@ -16,6 +16,7 @@ import DirectionPoi from './poi/specials/direction_poi';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
+import PanelManager from 'src/proxies/panel_manager';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;

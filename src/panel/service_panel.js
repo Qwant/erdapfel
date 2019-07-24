@@ -2,6 +2,7 @@ import ServicePanelView from '../views/service_panel.dot';
 import Panel from '../libs/panel';
 import nconf from '../../local_modules/nconf_getter';
 import CategoryService from '../adapters/category_service';
+import PanelManager from 'src/proxies/panel_manager';
 
 export default class ServicePanel {
   constructor() {
@@ -11,8 +12,6 @@ export default class ServicePanel {
     this.isDeployed = false;
     this.isDirectionActive = nconf.get().direction.enabled;
     this.active = true;
-
-    PanelManager.register(this);
   }
 
   toggleCategories() {

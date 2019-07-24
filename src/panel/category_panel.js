@@ -10,6 +10,7 @@ import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import {sources} from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
+import PanelManager from 'src/proxies/panel_manager';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -29,7 +30,6 @@ export default class CategoryPanel {
     this.dataSource = '';
 
     UrlState.registerResource(this, 'places');
-    PanelManager.register(this);
 
     listen('map_moveend', debounce( function() {
       if (this.active) {

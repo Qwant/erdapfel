@@ -11,6 +11,7 @@ import Device from '../../libs/device';
 import Telemetry from '../../libs/telemetry';
 import NavigatorGeolocalisationPoi from '../../adapters/poi/specials/navigator_geolocalisation_poi';
 import {vehiculeMatching} from '../../adapters/direction_api';
+import PanelManager from 'src/proxies/panel_manager';
 
 export default class DirectionPanel {
   constructor(roadPanel) {
@@ -26,7 +27,6 @@ export default class DirectionPanel {
       () => this.handleClose(),
       roadPanel,
     );
-    PanelManager.register(this);
     UrlState.registerResource(this, 'routes');
     this.activePanel = this;
   }

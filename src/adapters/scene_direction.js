@@ -3,6 +3,7 @@ import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
+import PanelManager from 'src/proxies/panel_manager';
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3';
 const MAIN_ROUTE_COLOR = '#4ba2ea';

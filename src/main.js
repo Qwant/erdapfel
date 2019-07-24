@@ -8,14 +8,12 @@ import './proxies/panel_manager';
 import Store from './adapters/store';
 import UrlState from './proxies/url_state';
 
-/* global PanelManager */
 (async function main() {
   new I18n();
   await window.setLang();
 
   new Store();
 
-  PanelManager.init();
   UrlState.init();
   window.app = new App('panels');
 

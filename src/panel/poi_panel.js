@@ -13,7 +13,7 @@ import layouts from './layouts.js';
 import nconf from '../../local_modules/nconf_getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import Device from '../libs/device';
-
+import PanelManager from 'src/proxies/panel_manager';
 import poiSubClass from '../mapbox/poi_subclass';
 
 const store = new Store();
@@ -35,7 +35,6 @@ function PoiPanel(sharePanel) {
   this.minimalHourPanel = new MinimalHourPanel();
   this.sceneState = SceneState.getSceneState();
   this.isDirectionActive = nconf.get().direction.enabled;
-  PanelManager.register(this);
   UrlState.registerResource(this, 'place');
   this.isMasqEnabled = nconf.get().masq.enabled;
 
