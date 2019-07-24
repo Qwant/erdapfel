@@ -1,104 +1,114 @@
 {{? this.loading == 0 }}
 
-<div class="category__panel{{= this.active ? '' : ' category__panel--hidden' }}">
+<div
+  class="
+    category__panel
+    {{= this.active ? ' ' : ' category__panel--hidden' }}
+    {{= this.panelResizer.getResizableClasses() }}
+  "
+>
   <span class="category__panel__close icon-x" {{= click(this.closeAction) }}></span>
 
-   {{? this.pois && this.pois.length }}
-     <div class="category__panel__head">
-        {{? this.isSourcePagesjaunes() }}
-        <span class="category__panel__partnership">{{= _('Partnership', 'categories') }}</span>
-        <span class="category__panel__partnership_icon">i</span>
-        <span class="category__panel__pj">
-          <img class="category__panel__logo_pj" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
-          <span class="category__panel__title">{{= _('PAGES JAUNES', 'categories') }}</span>
-        </span>
-        {{?}}
-     </div>
-  {{?}}
-  <div class="category__panel__scroll">
+  <div class="category__panel__head {{= this.panelResizer.HANDLE_CLASS }}"
+    {{= this.panelResizer.renderResizerActions() }}
+  >
+    {{? this.pois && this.pois.length }}
+    <span class="category__panel__show_results">{{= _('Show results', 'categories') }}</span>
+      {{? this.isSourcePagesjaunes() }}
+      <span class="category__panel__partnership_icon">i</span>
+      <span class="category__panel__partnership">{{= _('Partnership', 'categories') }}</span>
+      <span class="category__panel__pj">
+        <img class="category__panel__logo_pj" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
+        <span class="category__panel__title">{{= _('PAGES JAUNES', 'categories') }}</span>
+      </span>
+      {{?}}
+    {{?}}
+  </div>
+  <div class="category__panel__list">
+    <div class="category__panel__scroll">
 
-      {{? this.pois && this.pois.length }}
+        {{? this.pois && this.pois.length }}
 
-          {{~ this.pois:poi:i }}
+            {{~ this.pois:poi:i }}
 
-            {{
-                const image = poi.topImageUrl;
-                const ico = IconManager.get(poi);
-                const grades = poi.blocksByType.grades;
-                const phoneBlock = poi.blocksByType.phone;
-            }}
+              {{
+                  const image = poi.topImageUrl;
+                  const ico = IconManager.get(poi);
+                  const grades = poi.blocksByType.grades;
+                  const phoneBlock = poi.blocksByType.phone;
+              }}
 
-            <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }} {{= mouseover(this.highlightPoiMarker, this, poi) }} {{= mouseout(this.unhighlightPoiMarker, this, poi) }}>
-              <div class="category__panel__item_inner">
+              <div class="category__panel__item" {{= click(this.selectPoi, this, poi) }} {{= mouseover(this.highlightPoiMarker, this, poi) }} {{= mouseout(this.unhighlightPoiMarker, this, poi) }}>
+                <div class="category__panel__item_inner">
 
-                <div class="category__panel__image" {{? image}}style="background-image:url(&quot;{{= image}}&quot;)"{{?}}>
+                  <div class="category__panel__image" {{? image}}style="background-image:url(&quot;{{= image}}&quot;)"{{?}}>
 
-                {{? !image && ico }}
-                  <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-                {{?}}
+                  {{? !image && ico }}
+                    <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
+                  {{?}}
+
+                  </div>
+
+                  <h3 class="category__panel__name">
+                    {{= poi.getInputValue() }}
+                  </h3>
+
+                  {{? poi.subClassName }}
+                    <p class="category__panel__type">
+                      {{= this.poiSubClass(poi.subClassName) }}
+                    </p>
+                  {{?}}
+
+                  {{? poi.address && poi.address.label }}
+                    <p class="category__panel__address">
+                      {{= this.htmlEncode(poi.address.label) }}
+                    </p>
+                  {{?}}
+
+                  {{? grades }}
+                    <a class="panel__note" rel="noopener noreferrer" href="{{= grades.url }}" {{= click(poi.logGradesClick, poi, 'multiple') }}>
+                      {{~ [...Array(5)]:star:k }}      
+                        <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
+                      {{~}}
+
+                      <span class="panel__note__review_count">
+                        {{= grades.total_grades_count }} {{= _n('review', 'reviews', grades.total_grades_count) }}
+                      </span>
+                    </a>
+                  {{?}}
+
+                  {{= this.minimalHourPanel.set(poi).render() }}
+
+                  {{? phoneBlock }}
+                    <div class="category__panel__phone" {{= click(this.showPhoneNumber, this, {poi, i}) }}>
+                      <span class="icon-icon_phone"></span>
+                      <span id="category__panel__phone_hidden_{{= i}}">{{= _('SHOW NUMBER', 'poi') }}</span>
+                      <a href="{{= phoneBlock.url }}" id="category__panel__phone_revealed_{{= i}}" style="display: none">{{= phoneBlock.local_format }}</a>
+                    </div>
+                  {{?}}
 
                 </div>
-
-                <h3 class="category__panel__name">
-                  {{= poi.getInputValue() }}
-                </h3>
-
-                {{? poi.subClassName }}
-                  <p class="category__panel__type">
-                    {{= this.poiSubClass(poi.subClassName) }}
-                  </p>
-                {{?}}
-
-                {{? poi.address && poi.address.label }}
-                  <p class="category__panel__address">
-                    {{= this.htmlEncode(poi.address.label) }}
-                  </p>
-                {{?}}
-
-                {{? grades }}
-                  <a class="panel__note" rel="noopener noreferrer" href="{{= grades.url }}" {{= click(poi.logGradesClick, poi, 'multiple') }}>
-                    {{~ [...Array(5)]:star:k }}      
-                      <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
-                    {{~}}
-
-                    <span class="panel__note__review_count">
-                      {{= grades.total_grades_count }} {{= _n('review', 'reviews', grades.total_grades_count) }}
-                    </span>
-                  </a>
-                {{?}}
-
-                {{= this.minimalHourPanel.set(poi).render() }}
-
-                {{? phoneBlock }}
-                  <div class="category__panel__phone" {{= click(this.showPhoneNumber, this, {poi, i}) }}>
-                    <span class="icon-icon_phone"></span>
-                    <span id="category__panel__phone_hidden_{{= i}}">{{= _('SHOW NUMBER', 'poi') }}</span>
-                    <a href="{{= phoneBlock.url }}" id="category__panel__phone_revealed_{{= i}}" style="display: none">{{= phoneBlock.local_format }}</a>
-                  </div>
-                {{?}}
-
               </div>
-            </div>
-          {{~}}
+            {{~}}
 
-      {{?? !this.pois }}
+        {{?? !this.pois }}
 
-        <div class="category__panel__error">
-          {{= _('Please zoom in the map to see the results for this category.', 'categories') }}
-          <br>
-          <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()"><span class="icon-pin_geoloc"></span> {{= _('Search around my position', 'categories') }}</button>
-        </div>
+          <div class="category__panel__error">
+            {{= _('Please zoom in the map to see the results for this category.', 'categories') }}
+            <br>
+            <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()"><span class="icon-pin_geoloc"></span> {{= _('Search around my position', 'categories') }}</button>
+          </div>
 
-      {{?? this.pois && this.pois.length == 0 }}
+        {{?? this.pois && this.pois.length == 0 }}
 
-        <div class="category__panel__error">
-          {{= _('No results found. Please zoom out of the map.', 'categories') }}
-          <br>
-          <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()"><span class="icon-pin_geoloc"></span> {{= _('Search around my position', 'categories') }}</button>
-        </div>
+          <div class="category__panel__error">
+            {{= _('No results found. Please zoom out of the map.', 'categories') }}
+            <br>
+            <button onclick="document.querySelector('.mapboxgl-ctrl-geolocate').click()"><span class="icon-pin_geoloc"></span> {{= _('Search around my position', 'categories') }}</button>
+          </div>
 
-      {{?}}
+        {{?}}
+    </div>
   </div>
 </div>
-
 {{?}}

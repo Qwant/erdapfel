@@ -5,6 +5,7 @@ import UrlState from '../proxies/url_state';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
+import PanelResizer from '../libs/panel_resizer';
 import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
@@ -19,6 +20,7 @@ export default class CategoryPanel {
   constructor() {
     this.minimalHourPanel = new MinimalHourPanel();
     this.panel = new Panel(this, CategoryPanelView);
+    this.panelResizer = new PanelResizer(this.panel);
 
     this.pois = [];
     this.categoryName = '';
@@ -40,7 +42,6 @@ export default class CategoryPanel {
     listen('click_category_poi', poi => {
       this.selectPoi(poi);
     });
-
   }
 
   store() {

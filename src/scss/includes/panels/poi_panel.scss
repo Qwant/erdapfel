@@ -592,13 +592,6 @@ $HEADER_SIZE: 40px;
   display: none;
 }
 
-.poi_panel__header_title {
-  font-size: 13px;
-  color: #5c6f84;
-  padding: 7px 0 0 10px;
-  display: inline-block;
-}
-
 .poi_panel__back_to_list, .poi_panel__back_mobile {
   height: $HEADER_SIZE;
   line-height: $HEADER_SIZE;
@@ -629,7 +622,7 @@ $HEADER_SIZE: 40px;
     position: relative;
 
     &.favorites_header {
-      padding-top: 3px;
+      padding: 10px;
     }
   }
 
@@ -677,14 +670,18 @@ $HEADER_SIZE: 40px;
   }
 
   .poi_panel__close {
-    font-size: 15px;
+    font-size: 18px;
     top: 0px;
     right: 0px;
     transform: none;
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
+  }
+
+  .poi_panel__back_mobile + .poi_panel__close {
+    display: none;
   }
 
   .poi_panel.poi_panel--card {

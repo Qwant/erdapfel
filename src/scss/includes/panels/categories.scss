@@ -11,7 +11,7 @@ $category_panel_head_height : 40px;
 
 .category__panel--hidden {
   display: none;
- }
+}
 
 .category__panel__scroll {
   position: relative;
@@ -23,13 +23,9 @@ $category_panel_head_height : 40px;
   font-size: 12px;
   color: #5c6f84;
   border-bottom: 1px solid $surface;
-  padding: 9px 12px 9px 12px;
+  padding: 10px 16px;
   height: $category_panel_head_height;
-}
-
-.category__panel__pj {
-  height: 40px;
-  line-height: 20px;
+  line-height: 20px
 }
 
 .category__panel__logo_pj {
@@ -37,7 +33,7 @@ $category_panel_head_height : 40px;
   height: 18px;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 11px;
+  margin-right: 6px;
 }
 
 .category__panel__title {
@@ -53,19 +49,24 @@ $category_panel_head_height : 40px;
   line-height: 18px;
   display: inline-block;
   vertical-align: middle;
-  margin: 2px 0 0 10px;
+  margin-left: 10px;
   float: right;
   border: 2px solid #c8cbd3;
   color: #c8cbd3;
   border-radius: 50%;
   text-align: center;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .category__panel__partnership {
   font-size: 11px;
   color: #c8cbd3;
   float: right;
-  margin: 5px 0 0 4px;
+}
+
+.category__panel__show_results {
+  display: none;
 }
 
 .category__panel__close {
@@ -197,8 +198,8 @@ $category_panel_head_height : 40px;
 }
 
 .category__panel__error {
-  padding: 50px 40px;
-  color: #353c52;
+  padding: 30px 40px 50px;
+  color: $primary_text;
 
   button {
     font-size: 14px;
@@ -262,22 +263,50 @@ $category_panel_head_height : 40px;
     position: absolute;
     width: 100vw;
     bottom: 0;
-    height: 50vh;
-    min-height: 300px;
     background: $surface;
+  }
 
-    .category__panel__scroll {
-       max-height: calc(100% - #{$category_panel_head_height});
-    }
+  .category__panel__head {
+    overflow: hidden;
+  }
+
+  .category__panel__error {
+    padding-top: 0;
+  }
+
+  .resizable_panel.reduced .category__panel__show_results {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: $secondary_text;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+  }
+
+  .category__panel__list {
+    height: calc(100% - 50px);
+  }
+
+  .category__panel__scroll {
+    max-height: none;
+    height: 100%;
   }
 
   .category__panel__item {
     padding: 0 16px;
   }
 
+  .category__panel__item:last-of-type {
+    margin-bottom: 16px;
+  }
+
   .category__panel__item:hover {
     border-left: none;
     padding: 0 16px;
+  }
+
+  .category__panel__close {
+    display: none;
   }
 
   .category__panel__item_inner {
@@ -290,7 +319,8 @@ $category_panel_head_height : 40px;
   }
 
   .category__panel__pj {
-    margin: auto;
+    margin: 0 auto;
+    display: block;
     max-width: 180px;
     text-align: center;
   }

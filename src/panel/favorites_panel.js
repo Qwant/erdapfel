@@ -1,5 +1,6 @@
 import FavoritePanelView from '../views/favorites_panel.dot';
 import Panel from '../libs/panel';
+import PanelResizer from '../libs/panel_resizer';
 import Store from '../adapters/store';
 import FilterPanel from './filter_panel';
 import PoiStore from '../adapters/poi/poi_store';
@@ -22,6 +23,8 @@ function Favorite(sharePanel) {
   this.filterPanel = new FilterPanel();
   this.sharePanel = sharePanel;
   this.openMoreMenuPosition = -1;
+  this.reduced = false;
+  this.maximized = false;
 
   this.masqEnabled = masqEnabled;
   this.showMasq = false;
@@ -31,6 +34,7 @@ function Favorite(sharePanel) {
   });
 
   this.panel = new Panel(this, FavoritePanelView);
+  this.panelResizer = new PanelResizer(this.panel);
 
   this.store = new Store();
 
@@ -103,6 +107,7 @@ Favorite.prototype.open = async function() {
 
   this.displayed = true;
   this.active = true;
+  this.panelResizer.reset();
   this.panel.update();
 };
 

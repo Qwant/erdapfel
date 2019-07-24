@@ -101,6 +101,41 @@ BODY {
       margin: 0;
     }
   }
+
+  .resizable_panel {
+    max-height: none;
+    height: 50vh;
+  }
+
+  .resizable_panel_handle {
+    min-height: 50px;
+    width: 100%;
+    cursor: grab;
+    position: relative;
+
+    &:before{
+      content: '';
+      display: block;
+      border-radius: 2.5px;
+      background-color: #e0e1e6;
+      width: 40px;
+      height: 5px;
+      margin: 0px auto 8px;
+    }
+  }
+
+  .resizable_panel.smooth-resize {
+    transition: all .2s ease-in-out;
+  }
+
+  .resizable_panel.full {
+    height: calc(100% + 70px);
+    padding-top: 60px;
+  }
+
+  .resizable_panel.reduced {
+    height: 50px;
+  }
 }
 
 .map_container .marker-container {

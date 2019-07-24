@@ -1,0 +1,4 @@
+{{= mousedown(this.holdResizer, this) }}
+{{= touchstart(this.holdResizer, this) }}
+{{= mouseup(this.stopResize, this) }}
+{{= touchend(this.stopResize, this) }}
