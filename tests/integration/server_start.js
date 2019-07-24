@@ -41,7 +41,6 @@ config.mapStyle.baseMapUrl = '[]';
 config.mapStyle.poiMapUrl = '[]';
 config.services.idunn.url = 'http://idunn_test.test';
 config.services.geocoder.url = 'http://geocoder.test/autocomplete';
-config.system.evalFiles = false;
 config.direction.enabled = true;
 config.category.enabled = true;
 config.masq.enabled = false;

@@ -28,7 +28,6 @@ services:
 system:
   baseUrl: /
   timeout: 3
-  evalFiles: true
 
 # Store
 masq:

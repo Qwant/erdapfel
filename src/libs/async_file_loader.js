@@ -1,14 +1,10 @@
-/* global FileLoader */
 
-async function AsyncFileLoader(uri, options = {}) {
+async function AsyncFileLoader(uri) {
   return new Promise(resolve => {
-    const fileLoader = new FileLoader(uri);
-    fileLoader.onLoad = () => {
-      resolve();
-    };
-    if (options.onProgress) {
-      fileLoader.onProgress = this.onProgress;
-    }
+    const sc = document.createElement('script');
+    sc.onload = resolve;
+    sc.src = uri;
+    document.body.appendChild(sc);
   });
 }
 
