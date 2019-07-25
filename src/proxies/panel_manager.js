@@ -14,7 +14,7 @@ class PanelManager {
     this.panels.forEach(panel => {
       if (panel.isPoiComplient) {
         panel.setPoi(poi, options);
-      } else if (!options.isFromList && !options.isFromFavorite) {
+      } else if (!options.isFromCategory && !options.isFromFavorite) {
         panel.close();
       }
     });
