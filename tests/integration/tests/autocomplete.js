@@ -64,8 +64,7 @@ test('search has lang in query', async() => {
 
 test('keyboard navigation', async() => {
   const TypedSearch = 'Hello';
-  responseHandler.addPreparedResponse(mockAutocomplete, /Hello/);
-  responseHandler.addPreparedResponse(mockAutocomplete, /square/);
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait(TypedSearch);
   await wait(100);
@@ -158,7 +157,7 @@ test('move to on click', async() => {
 
 test('bbox & center', async() => {
   expect.assertions(3);
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await page.keyboard.type('Hello');
   await wait(100);
@@ -306,8 +305,27 @@ test('Retrieve restaurant category when we search "restau"', async() => {
   expect(suggestionId).toEqual('category:restaurant');
 });
 
+test('Retrieve no category when we search "barcelona", not even "bar"', async() => {
+  const searchQuery = 'barcelona';
+
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=barcelona/);
+
+  await page.goto(APP_URL);
+  await page.keyboard.type(searchQuery);
+  await page.waitForSelector('.autocomplete_suggestion');
+
+  const firstLine = await page.evaluate(() => {
+    return document.querySelector(
+      '.autocomplete_suggestion:first-child .autocomplete_suggestion__first_line'
+    ).innerText;
+  });
+
+  expect(firstLine).toEqual('test result 1');
+});
+
 afterEach(async() => {
   await clearStore(page);
+  responseHandler.reset();
 });
 
 afterAll(async() => {

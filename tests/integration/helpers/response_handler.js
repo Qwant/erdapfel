@@ -20,6 +20,10 @@ export default class ResponseHandler {
     }
   }
 
+  reset() {
+    this.preparedResponses = [];
+  }
+
   async prepareResponse() {
     await this.page.setRequestInterception(true);
     this.page.on('request', async interceptedRequest => {

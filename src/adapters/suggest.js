@@ -205,13 +205,13 @@ export default class Suggest {
 
   /* select sub template */
   renderItem(poi) {
-    const {id, name, fromHistory, className, subClassName, type, alternativeName} = poi;
+    const {id, name, className, subClassName, type, alternativeName} = poi;
     const icon = IconManager.get({className: className, subClassName: subClassName, type: type});
     const klass = `autocomplete-icon ${`icon icon-${icon.iconClass}`}`;
     const iconDom = `<div style="color:${icon ? icon.color : ''}" class="${klass}"></div>`;
 
     return `
-      <div class="autocomplete_suggestion${fromHistory ? ' autocomplete_suggestion--history' : ''}"
+      <div class="autocomplete_suggestion"
            data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
         ${this.renderLines(iconDom, name, alternativeName)}
       </div>`;
@@ -226,7 +226,8 @@ export default class Suggest {
     const categoryLabel = ExtendedString.htmlEncode(category.label);
 
     return `
-      <div class="autocomplete_suggestion" data-id="${category.id}" data-val="${categoryLabel}">
+      <div class="autocomplete_suggestion autocomplete_suggestion--category"
+        data-id="${category.id}" data-val="${categoryLabel}">
         ${this.renderLines(iconDom, label, alternativeName)}
       </div>`;
   }

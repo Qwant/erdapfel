@@ -189,7 +189,6 @@ input[type="search"] {
   display: inline-block;
   width: calc(100% - 50px);
   text-overflow:ellipsis;
-  text-transform: capitalize;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -200,21 +199,12 @@ input[type="search"] {
   font-size: 14px;
   margin-left: 37px;
   text-overflow:ellipsis;
-  text-transform: capitalize;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.autocomplete_suggestion--history {
-  color : $secondary_text;
-}
-
-.autocomplete_suggestion--history .autocomplete_prefix {
-  color : $primary_text;
-}
-
-.autocomplete_prefix {
-  color : $primary_text;
+.autocomplete_suggestion--category {
+  text-transform: capitalize;
 }
 
 .top_bar--small {

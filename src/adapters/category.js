@@ -4,7 +4,7 @@
  * Simple Category helper
  */
 import IconManager from '../adapters/icon_manager';
-import ExtentedString from '../libs/string';
+import ExtendedString from '../libs/string';
 import { CATEGORY_TYPE } from '../../config/constants.yml';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
@@ -37,7 +37,14 @@ export default class Category {
     const prefixLength = Math.min(4, this.label.length);
     // Match label prefix (eg: "supe" for "Supermarché", but not "supel")
     if (!matched && term.length >= prefixLength) {
-      matched = ExtentedString.compareIgnoreCase(term, this.label.slice(0, term.length)) >= 0;
+      if (this.label.length < term.length) {
+        // check if first word in term is label
+        matched = ExtendedString.compareIgnoreCase(term, `${this.label} `) === 0;
+      } else {
+        matched = ExtendedString.compareIgnoreCase(
+          term, this.label.substring(0, term.length)
+        ) === 0;
+      }
     }
 
     return matched;
