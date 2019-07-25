@@ -1,7 +1,7 @@
 {{? this.poi && this.active }}
   <div class="poi_panel__header
     {{= this.card ? ' poi_header_card' : '' }}
-    {{= this.fromFavorite || this.fromList ? ' poi_header_back_to_list' : '' }}
+    {{= this.fromFavorite || this.fromCategory ? ' poi_header_back_to_list' : '' }}
   ">
     {{? this.fromFavorite }}
       <div class="poi_panel__back_to_list" {{= click(this.backToFavorite, this) }}>
@@ -11,7 +11,7 @@
         <img class="poi_panel__back_to_list_logo" src="./statics/images/pagesjaunes.svg" alt="PagesJaunes" />
         {{?}}
       </div>
-    {{?? this.fromList }}
+    {{?? this.fromCategory }}
       <div class="poi_panel__back_to_list" {{= click(this.backToList, this) }}>
         <i class="poi_panel__back icon-arrow-left"></i>
         <span class="poi_panel__back_text">{{= _('Back to list') }}</span>
@@ -44,8 +44,8 @@
 <div class="poi_panel{{= this.active ? '' : ' poi_panel--hidden' }}{{= this.card ? ' poi_panel--card ' : '' }}">
   {{? this.poi }}
     <div class="poi_panel__content__card">
-      {{? this.fromList }}
-      <div class="poi_panel__close" {{= this.fromList ? click(this.backToList, this) : click(this.closeAction, this) }}>
+      {{? this.fromCategory }}
+      <div class="poi_panel__close" {{= this.fromCategory ? click(this.backToList, this) : click(this.closeAction, this) }}>
         <i class="icon-x"></i>
       </div>
       {{?}}

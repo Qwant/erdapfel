@@ -121,12 +121,12 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.poi.stored = await isPoiFavorite(this.poi);
   this.PoiBlocContainer.set(this.poi);
   this.fromFavorite = false;
-  this.fromList = false;
+  this.fromCategory = false;
   if (options && options.isFromFavorite) {
     this.fromFavorite = options.isFromFavorite;
   }
-  if (options && options.isFromList) {
-    this.fromList = options.isFromList;
+  if (options && options.isFromCategory) {
+    this.fromCategory = options.isFromCategory;
   }
   if (options && options.list) {
     this.list = options.list;
@@ -206,7 +206,7 @@ PoiPanel.prototype.backToList = function() {
 PoiPanel.prototype.openDirection = function() {
   PanelManager.openDirection({
     poi: this.poi,
-    isFromList: this.fromList,
+    isFromCategory: this.fromCategory,
     isFromFavorite: this.fromFavorite,
   });
 };

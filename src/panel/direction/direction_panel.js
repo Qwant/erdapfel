@@ -169,10 +169,10 @@ export default class DirectionPanel {
 
   closeAction() {
     if (this.poiBeforeOpening) {
-      const { poi, isFromList, isFromFavorite } = this.poiBeforeOpening;
+      const { poi, isFromCategory, isFromFavorite } = this.poiBeforeOpening;
       this.close();
       this.poiBeforeOpening = null;
-      return PanelManager.setPoi(poi, { isFromList, isFromFavorite });
+      return PanelManager.setPoi(poi, { isFromCategory, isFromFavorite });
     }
     return PanelManager.resetLayout();
   }
