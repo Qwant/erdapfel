@@ -9,7 +9,6 @@ import MapPoi from './poi/map_poi';
 import HotLoadPoi from './poi/hotload_poi';
 import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
-import SceneState from './scene_state';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
 import DirectionPoi from './poi/specials/direction_poi';
@@ -30,7 +29,6 @@ function Scene() {
   this.zoom = map.zoom;
   this.center = [map.center.lng, map.center.lat];
   this.savedLocation = null;
-  this.sceneState = SceneState.getSceneState();
 }
 
 Scene.prototype.initScene = async function() {
@@ -108,7 +106,6 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0], e.lngLat);
-          this.sceneState.setPoiId(mapPoi.id);
           if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
               window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({

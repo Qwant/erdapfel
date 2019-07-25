@@ -66,6 +66,8 @@ export default class AppPanel {
 
     this.menu = new Menu();
 
+    this.activePoiId = null;
+
     if (performanceEnabled) {
       this.panel.onRender = () => {
         window.times.appRendered = Date.now();
@@ -97,10 +99,11 @@ export default class AppPanel {
   }
 
   async setPoi(poi, options = {}) {
+    this.activePoiId = poi.id;
     this.panels.forEach(panel => {
-      if (panel.isPoiComplient) {
+      if (panel.isPoiCompliant) {
         panel.setPoi(poi, options);
-      } else if (!options.isFromList && !options.isFromFavorite) {
+      } else if (!options.isFromCategory && !options.isFromFavorite) {
         panel.close();
       }
     });
@@ -119,6 +122,10 @@ export default class AppPanel {
     } else {
       this.resetLayout();
     }
+  }
+
+  unsetPoi() {
+    this.activePoiId = null;
   }
 
   emptyClickOnMap() {
@@ -158,13 +165,5 @@ export default class AppPanel {
 
   resetLayout() {
     this._openPanel(this.servicePanel);
-  }
-
-  async keepOnlyPoi() {
-    this.panels.forEach(panel => {
-      if (!(panel instanceof PoiPanel) && panel.active) {
-        panel.close();
-      }
-    });
   }
 }

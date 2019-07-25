@@ -8,7 +8,6 @@ import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
-import SceneState from '../adapters/scene_state';
 import layouts from './layouts.js';
 import nconf from '@qwant/nconf-getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
@@ -19,7 +18,7 @@ const store = new Store();
 const masqFavoriteModal = new MasqFavoriteModal();
 
 function PoiPanel(sharePanel) {
-  this.isPoiComplient = true; /* Poi Compliant */
+  this.isPoiCompliant = true;
   this.poi = null;
   this.active = false;
   this.displayed = false;
@@ -32,7 +31,6 @@ function PoiPanel(sharePanel) {
   this.card = true;
   this.headerPartial = headerPartial;
   this.minimalHourPanel = new MinimalHourPanel();
-  this.sceneState = SceneState.getSceneState();
   this.isDirectionActive = nconf.get().direction.enabled;
   UrlState.registerResource(this, 'place');
   this.isMasqEnabled = nconf.get().masq.enabled;
@@ -92,7 +90,7 @@ PoiPanel.prototype.close = async function({cleanMarker = true} = {}) {
   }
   this.active = false;
   this.panel.update();
-  this.sceneState.unsetPoiID();
+  window.app.unsetPoi();
   UrlState.pushUrl();
 };
 
@@ -106,11 +104,7 @@ PoiPanel.prototype.restorePoi = async function(id) {
       fire('fit_map', this.poi, layouts.POI);
     });
     this.poi.stored = await isPoiFavorite(this.poi);
-    this.active = true;
-    this.sceneState.setPoiId(this.poi.id);
-    window.app.keepOnlyPoi();
-    await this.minimalHourPanel.set(this.poi);
-    await this.panel.update();
+    window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored });
   }
 };
 
@@ -132,7 +126,6 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   }
   this.active = true;
   UrlState.pushUrl();
-  this.sceneState.setPoiId(this.poi.id);
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
 };
