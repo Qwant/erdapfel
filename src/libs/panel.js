@@ -42,6 +42,10 @@ Panel.prototype.render = function() {
   }
 };
 
+Panel.prototype.setView = function(view) {
+  this.view = view;
+};
+
 /**
  * Cost 32 ms
  */

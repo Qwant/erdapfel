@@ -13,6 +13,10 @@ export default class Modal {
     child.renderModal = () => this.panel.render();
   }
 
+  setView(view) {
+    this.childPanel.setView(view);
+  }
+
   open() {
     if (Modal.currentOpenened) {
       Modal.currentOpenened.modal.close();
