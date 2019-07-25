@@ -9,7 +9,7 @@ import Category from './category';
 import CategoryService from './category_service';
 import nconf from '@qwant/nconf-getter';
 
-const SUGGEST_MAX_ITEMS = nconf.get().services.geocoder.max_items;
+const SUGGEST_MAX_ITEMS = nconf.get().services.geocoder.maxItems;
 
 export default class Suggest {
   constructor({ tagSelector, onSelect, prefixes = [], withCategories = false, menuClass = '' }) {
@@ -41,9 +41,9 @@ export default class Suggest {
           promise = PoiStore.getAll();
         } else {
           promise = new Promise(async (resolve, reject) => {
-            let focus = {};
+            const focus = {};
             if (window.map && window.map.mb && window.map.mb.getZoom() >= 11.) {
-              let center = window.map.center();
+              const center = window.map.center();
               focus.lat = center.lat;
               focus.lon = center.lng;
             }

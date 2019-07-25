@@ -6,7 +6,7 @@ const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
 
-const SUGGEST_MAX_ITEMS = config.services.geocoder.max_items;
+const SUGGEST_MAX_ITEMS = config.services.geocoder.maxItems;
 
 let browser;
 let page;

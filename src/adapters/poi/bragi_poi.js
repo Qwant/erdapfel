@@ -5,9 +5,15 @@ import QueryContext from '../query_context';
 
 const serviceConfigs = nconf.get().services;
 const geocoderConfig = serviceConfigs.geocoder;
+const geocoderFocusPrecision = geocoderConfig.focusPrecision;
 
 if (!window.__bragiCache) {
   window.__bragiCache = {};
+}
+
+function roundWithPrecision(value, precision) {
+  const rounded = Math.round(value * (1 / precision)) * precision;
+  return rounded.toFixed(3);
 }
 
 export default class BragiPoi extends Poi {
@@ -125,15 +131,17 @@ export default class BragiPoi extends Poi {
   }
 
 
-  static get(term, focus) {
-    let req = term;
-    if (focus && focus.lat !== undefined && focus.lon !== undefined) {
-      req += `&${focus.lat}:${focus.lon}`;
+  static get(term, {lat, lon} = {}) {
+    let cacheKey = term;
+    if (lat !== undefined && lon !== undefined) {
+      lat = roundWithPrecision(lat, geocoderFocusPrecision);
+      lon = roundWithPrecision(lon, geocoderFocusPrecision);
+      cacheKey += `;${lat};${lon}`;
     }
     /* cache */
-    if (req in window.__bragiCache) {
+    if (cacheKey in window.__bragiCache) {
       const cachePromise = new Promise(resolve => {
-        resolve(window.__bragiCache[req]);
+        resolve(window.__bragiCache[cacheKey]);
       });
       cachePromise.abort = () => {};
       return cachePromise;
@@ -144,11 +152,11 @@ export default class BragiPoi extends Poi {
     const queryPromise = new Promise(async (resolve, reject) => {
       const query = {
         'q': term,
-        'limit': geocoderConfig.max_items,
+        'limit': geocoderConfig.maxItems,
       };
-      if (focus && focus.lat !== undefined && focus.lon !== undefined) {
-        query['lat'] = focus.lat;
-        query['lon'] = focus.lon;
+      if (lat !== undefined && lon !== undefined) {
+        query['lat'] = lat;
+        query['lon'] = lon;
       }
       if (geocoderConfig.useLang) {
         query.lang = window.getLang().code;
@@ -161,7 +169,7 @@ export default class BragiPoi extends Poi {
           // FIXME: add position when https://github.com/QwantResearch/erdapfel/pull/291 is merged.
           return new BragiPoi(feature, new QueryContext(term, ranking, query.lang));
         });
-        window.__bragiCache[req] = bragiResponse;
+        window.__bragiCache[cacheKey] = bragiResponse;
         resolve(bragiResponse);
       }).catch(error => {
         if (error === 0) { /* abort */
