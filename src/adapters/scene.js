@@ -9,14 +9,12 @@ import MapPoi from './poi/map_poi';
 import HotLoadPoi from './poi/hotload_poi';
 import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
-import SceneState from './scene_state';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
 import DirectionPoi from './poi/specials/direction_poi';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
-import PanelManager from 'src/proxies/panel_manager';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
@@ -31,7 +29,6 @@ function Scene() {
   this.zoom = map.zoom;
   this.center = [map.center.lng, map.center.lat];
   this.savedLocation = null;
-  this.sceneState = SceneState.getSceneState();
 }
 
 Scene.prototype.initScene = async function() {
@@ -109,7 +106,6 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0], e.lngLat);
-          this.sceneState.setPoiId(mapPoi.id);
           if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
               window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({
@@ -117,7 +113,7 @@ Scene.prototype.initMapBox = function() {
               offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
             });
           }
-          const poi = await PanelManager.loadPoiById(mapPoi.id);
+          const poi = await window.app.loadPoiById(mapPoi.id);
           if (poi) {
             this.addMarker(poi);
           }
@@ -156,7 +152,7 @@ Scene.prototype.initMapBox = function() {
 
     this.mb.on('click', e => {
       if (!e._interactiveClick) {
-        PanelManager.emptyClickOnMap();
+        window.app.emptyClickOnMap();
       }
     });
 

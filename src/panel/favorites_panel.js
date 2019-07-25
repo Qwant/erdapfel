@@ -9,7 +9,6 @@ import layouts from './layouts.js';
 import {version} from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
-import PanelManager from 'src/proxies/panel_manager';
 import poiSubClass from '../mapbox/poi_subclass';
 
 const masqEnabled = nconf.get().masq.enabled;
@@ -113,7 +112,7 @@ Favorite.prototype.open = async function() {
 
 Favorite.prototype.closeAction = function() {
   Telemetry.add(Telemetry.FAVORITE_CLOSE);
-  PanelManager.resetLayout();
+  window.app.resetLayout();
 };
 
 Favorite.prototype.close = function() {
@@ -129,7 +128,7 @@ Favorite.prototype.go = async function(poiStore) {
   this.panel.update();
   fire('map_mark_poi', poiStore);
   fire('fit_map', poiStore, layouts.FAVORITE);
-  PanelManager.loadPoiById(poiStore.id, {isFromFavorite: true});
+  window.app.loadPoiById(poiStore.id, {isFromFavorite: true});
 };
 
 Favorite.prototype.add = async function(poi) {

@@ -18,7 +18,7 @@ import DirectionPanel from './direction/direction_panel';
 import Menu from './menu';
 import Telemetry from '../libs/telemetry';
 import CategoryPanel from './category_panel';
-import PanelManager from 'src/proxies/panel_manager';
+import ApiPoi from '../adapters/poi/idunn_poi';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -39,14 +39,16 @@ export default class AppPanel {
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel(this.sharePanel) : null;
 
-    PanelManager.register(this.servicePanel);
-    PanelManager.register(this.favoritePanel);
-    PanelManager.register(this.poiPanel);
+    this.panels = [
+      this.servicePanel,
+      this.favoritePanel,
+      this.poiPanel,
+    ];
     if (this.categoryEnabled) {
-      PanelManager.register(this.categoryPanel);
+      this.panels.push(this.categoryPanel);
     }
     if (this.directionPanel) {
-      PanelManager.register(this.directionPanel);
+      this.panels.push(this.directionPanel);
     }
 
     this.panel = new Panel(this, PanelsView, parent);
@@ -63,6 +65,8 @@ export default class AppPanel {
     }
 
     this.menu = new Menu();
+
+    this.activePoiId = null;
 
     if (performanceEnabled) {
       this.panel.onRender = () => {
@@ -92,5 +96,74 @@ export default class AppPanel {
     } else {
       this.minify();
     }
+  }
+
+  async setPoi(poi, options = {}) {
+    this.activePoiId = poi.id;
+    this.panels.forEach(panel => {
+      if (panel.isPoiCompliant) {
+        panel.setPoi(poi, options);
+      } else if (!options.isFromCategory && !options.isFromFavorite) {
+        panel.close();
+      }
+    });
+    this.unminify();
+  }
+
+  async loadPoiById(id, options) {
+    if (id) {
+      const poi = await ApiPoi.poiApiLoad(id);
+      if (poi) {
+        this.setPoi(poi, options);
+      } else {
+        this.resetLayout();
+      }
+      return poi;
+    } else {
+      this.resetLayout();
+    }
+  }
+
+  unsetPoi() {
+    this.activePoiId = null;
+  }
+
+  emptyClickOnMap() {
+    this.panels.forEach(p => {
+      if (p.emptyClickOnMap) {
+        p.emptyClickOnMap();
+      }
+    });
+  }
+
+  _openPanel(panelToOpen, options) {
+    /*
+      "unminify" needs to be called before panel.open :
+      DirectionPanel will minify the main search input (unused for Directions)
+    */
+    this.unminify();
+    this.panels.forEach(panel => {
+      if (panel === panelToOpen) {
+        panel.open(options);
+      } else {
+        panel.close();
+      }
+    });
+  }
+
+  openDirection(options) {
+    this._openPanel(this.directionPanel, options);
+  }
+
+  openFavorite() {
+    this._openPanel(this.favoritePanel);
+  }
+
+  openCategory(options) {
+    this._openPanel(this.categoryPanel, options);
+  }
+
+  resetLayout() {
+    this._openPanel(this.servicePanel);
   }
 }

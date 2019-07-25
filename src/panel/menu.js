@@ -5,7 +5,6 @@ import LoginMasqPanel from './login_masq';
 import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import Store from '../adapters/store';
-import PanelManager from 'src/proxies/panel_manager';
 
 export default class Menu {
   constructor() {
@@ -69,13 +68,13 @@ export default class Menu {
 
   openFavorite() {
     this.close();
-    PanelManager.openFavorite();
+    window.app.openFavorite();
   }
 
   openDirection() {
     this.close();
     if (this.isDirectionActive) {
-      PanelManager.openDirection();
+      window.app.openDirection();
     }
   }
 
@@ -99,7 +98,7 @@ export default class Menu {
   }
 
   async search() {
-    PanelManager.resetLayout();
+    window.app.resetLayout();
     await this.close();
     SearchInput.select();
   }

@@ -4,7 +4,6 @@ import IconManager from './icon_manager';
 import ExtendedString from '../libs/string';
 import ApiPoi from './poi/idunn_poi';
 import Device from '../libs/device';
-import SceneState from './scene_state';
 import poiSubClass from '../mapbox/poi_subclass';
 import popupTemplate from '../views/popup.dot';
 import poiConfigs from '../../config/constants.yml';
@@ -17,7 +16,6 @@ PoiPopup.prototype.init = function(map) {
   this.map = map;
   this.popupHandle = null;
   this.timeOutHandler = null;
-  this.sceneState = SceneState.getSceneState();
 
   listen('open_popup', (poi, e) => {
     if (Device.isMobile() || isTouchEvent(e)) {
@@ -36,7 +34,7 @@ PoiPopup.prototype.addListener = function(layer) {
     }
     this.timeOutHandler = setTimeout(() => {
       const poi = e.features[0];
-      if (this.sceneState.isDisplayed(poi.properties.global_id)) {
+      if (window.app.activePoiId === poi.properties.global_id) {
         return;
       }
       this.createOSMPopup(poi, e.originalEvent);
