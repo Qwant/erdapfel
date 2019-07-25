@@ -113,10 +113,7 @@ Scene.prototype.initMapBox = function() {
               offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
             });
           }
-          const poi = await window.app.loadPoiById(mapPoi.id);
-          if (poi) {
-            this.addMarker(poi);
-          }
+          window.app.loadPoiById(mapPoi.id, { disableMapPan: true });
         }
       });
 

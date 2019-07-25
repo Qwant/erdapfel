@@ -122,13 +122,11 @@ Favorite.prototype.close = function() {
   this.panel.update();
 };
 
-Favorite.prototype.go = async function(poiStore) {
+Favorite.prototype.go = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_GO);
   this.active = false;
   this.panel.update();
-  fire('map_mark_poi', poiStore);
-  fire('fit_map', poiStore, layouts.FAVORITE);
-  window.app.loadPoiById(poiStore.id, {isFromFavorite: true});
+  window.app.loadPoiById(poi.id, {isFromFavorite: true, layout: layouts.FAVORITE});
 };
 
 Favorite.prototype.add = async function(poi) {

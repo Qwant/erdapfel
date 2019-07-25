@@ -100,6 +100,14 @@ export default class AppPanel {
 
   async setPoi(poi, options = {}) {
     this.activePoiId = poi.id;
+    window.execOnMapLoaded(function() {
+      if (!options.isFromCategory) {
+        fire('map_mark_poi', poi);
+      }
+      if (!options.disableMapPan) {
+        fire('fit_map', poi, options.layout);
+      }
+    });
     this.panels.forEach(panel => {
       if (panel.isPoiCompliant) {
         panel.setPoi(poi, options);
@@ -111,21 +119,17 @@ export default class AppPanel {
   }
 
   async loadPoiById(id, options) {
-    if (id) {
-      const poi = await ApiPoi.poiApiLoad(id);
-      if (poi) {
-        this.setPoi(poi, options);
-      } else {
-        this.resetLayout();
-      }
-      return poi;
-    } else {
-      this.resetLayout();
+    const poi = id && await ApiPoi.poiApiLoad(id);
+    if (poi) {
+      this.setPoi(poi, options);
+      return;
     }
+    this.resetLayout();
   }
 
   unsetPoi() {
     this.activePoiId = null;
+    fire('clean_marker');
   }
 
   emptyClickOnMap() {
