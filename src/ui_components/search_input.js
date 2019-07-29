@@ -66,7 +66,7 @@ export default class SearchInput {
     this.isEnabled = true;
 
     UrlState.registerGet(this, 'q');
-    listen('submit_autocomplete', async() => {
+    listen('submit_autocomplete', async () => {
       this.suggest.onSubmit();
     });
   }

@@ -35,14 +35,14 @@ function PoiPanel(sharePanel) {
   UrlState.registerResource(this, 'place');
   this.isMasqEnabled = nconf.get().masq.enabled;
 
-  store.onToggleStore(async() => {
+  store.onToggleStore(async () => {
     if (this.poi) {
       this.poi.stored = await isPoiFavorite(this.poi);
       this.panel.update();
     }
   });
 
-  store.eventTarget.addEventListener('poi_added', async() => {
+  store.eventTarget.addEventListener('poi_added', async () => {
     if (this.poi && !this.poi.stored) {
       this.poi.stored = await isPoiFavorite(this.poi);
       this.panel.update();

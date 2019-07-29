@@ -2,7 +2,7 @@ import request from 'supertest';
 
 let server;
 
-beforeAll(async() => {
+beforeAll(async () => {
   server = request('http://localhost:3000');
 });
 

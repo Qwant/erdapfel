@@ -8,13 +8,13 @@ import {toggleFavoritePanel} from '../favorites_tools';
 let browser;
 let page;
 
-beforeAll(async() => {
+beforeAll(async () => {
   const browserPage = await initBrowser();
   page = browserPage.page;
   browser = browserPage.browser;
 });
 
-test('toggle favorite panel', async() => {
+test('toggle favorite panel', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   await page.waitForSelector('.side_panel__container', {visible: true});
@@ -26,7 +26,7 @@ test('toggle favorite panel', async() => {
   expect(favPanel).toBeTruthy();
 });
 
-test('favorite added is present in favorite panel', async() => {
+test('favorite added is present in favorite panel', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   page.evaluate(() => {
@@ -37,7 +37,7 @@ test('favorite added is present in favorite panel', async() => {
   expect(items).not.toBeNull();
 });
 
-test('restore favorite from localStorage', async() => {
+test('restore favorite from localStorage', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   const testTitle = 'demo_fav';
@@ -53,7 +53,7 @@ test('restore favorite from localStorage', async() => {
   expect(title.trim()).toEqual(testTitle);
 });
 
-test('remove favorite using favorite panel', async() => {
+test('remove favorite using favorite panel', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   await page.evaluate(() => {
@@ -74,7 +74,7 @@ test('remove favorite using favorite panel', async() => {
   expect(items).not.toBeNull();
 });
 
-test('center map after a favorite poi click', async() => {
+test('center map after a favorite poi click', async () => {
   await page.goto(APP_URL);
   await page.evaluate(() => {
     window.MAP_MOCK.flyTo({center: {lat: 10, lng: 0}, zoom: 10});
@@ -97,10 +97,10 @@ test('center map after a favorite poi click', async() => {
   expect(center).toEqual({lng: favoriteMockCoordinates.lng, lat: favoriteMockCoordinates.lat});
 });
 
-afterEach(async() => {
+afterEach(async () => {
   await clearStore(page);
 });
 
-afterAll(async() => {
+afterAll(async () => {
   await browser.close();
 });

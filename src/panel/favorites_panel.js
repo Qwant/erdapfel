@@ -37,7 +37,7 @@ function Favorite(sharePanel) {
 
   this.store = new Store();
 
-  this.store.onToggleStore(async() => {
+  this.store.onToggleStore(async () => {
     await this.updateList();
   });
 

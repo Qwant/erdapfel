@@ -25,7 +25,7 @@ export default class Menu {
       this.username = null;
       this.profileImage = null;
 
-      this.store.onToggleStore(async() => {
+      this.store.onToggleStore(async () => {
         this.isLoggedIn = await this.store.isLoggedIn();
         await this.getUserInfo();
         await this.updateAndKeepState();
@@ -38,7 +38,7 @@ export default class Menu {
         await this.getUserInfo();
       });
 
-      Promise.all([this.initPromise, this.masqPanel.init()]).then(async() => {
+      Promise.all([this.initPromise, this.masqPanel.init()]).then(async () => {
         this.menuInitialized = true;
         await this.updateAndKeepState();
       });

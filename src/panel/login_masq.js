@@ -18,7 +18,7 @@ export default class LoginMasqPanel {
     this.username = null;
     this.profileImage = null;
 
-    this.store.onToggleStore(async() => {
+    this.store.onToggleStore(async () => {
       this.isLoggedIn = await this.store.isLoggedIn();
       await this.getUserInfo();
       this.panel.update();

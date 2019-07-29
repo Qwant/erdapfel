@@ -5,13 +5,13 @@ const APP_URL = `http://localhost:${config.PORT}`;
 let browser;
 let page;
 
-beforeAll(async() => {
+beforeAll(async () => {
   const browserPage = await initBrowser();
   page = browserPage.page;
   browser = browserPage.browser;
 });
 
-test('priority order with url & local-storage', async() => {
+test('priority order with url & local-storage', async () => {
   const center = {lng: 11.1, lat: 43.3};
 
   expect.assertions(1);
@@ -26,7 +26,7 @@ test('priority order with url & local-storage', async() => {
   expect(pageCenter).toEqual(center);
 });
 
-test('test local storage map center', async() => {
+test('test local storage map center', async () => {
   const center = {lng: 11.1, lat: 43.3};
 
   expect.assertions(1);
@@ -41,10 +41,10 @@ test('test local storage map center', async() => {
   expect(pageCenter).toEqual(center);
 });
 
-afterEach(async() => {
+afterEach(async () => {
   await clearStore(page);
 });
 
-afterAll(async() => {
+afterAll(async () => {
   await browser.close();
 });
