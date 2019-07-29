@@ -206,7 +206,7 @@ export default class CategoryPanel {
       );
     }
     this.close(false);
-    window.app.loadPoiById(poi.id, {isFromCategory: true, list: this, layout: layouts.LIST});
+    window.app.loadPoi(poi, {isFromCategory: true, list: this, layout: layouts.LIST});
     this.highlightPoiMarker(poi);
   }
 

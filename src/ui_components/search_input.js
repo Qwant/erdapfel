@@ -96,7 +96,7 @@ export default class SearchInput {
 
   async selectItem(selectedItem) {
     if (selectedItem instanceof Poi) {
-      window.app.loadPoiById(selectedItem.id, { layout: layouts.POI });
+      window.app.loadPoi(selectedItem, { layout: layouts.POI });
     } else if (selectedItem instanceof Category) {
       window.app.openCategory({category: selectedItem});
     }

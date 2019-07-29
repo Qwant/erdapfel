@@ -98,8 +98,7 @@ export default class AppPanel {
     }
   }
 
-  async setPoi(poi, options = {}) {
-    this.activePoiId = poi.id;
+  _updateMapPoi(poi, options = {}) {
     window.execOnMapLoaded(function() {
       if (!options.isFromCategory) {
         fire('map_mark_poi', poi);
@@ -108,6 +107,13 @@ export default class AppPanel {
         fire('fit_map', poi, options.layout);
       }
     });
+  }
+
+  async setPoi(poi, options = {}, updateMap = true) {
+    this.activePoiId = poi.id;
+    if (updateMap) {
+      this._updateMapPoi(poi, options);
+    }
     this.panels.forEach(panel => {
       if (panel.isPoiCompliant) {
         panel.setPoi(poi, options);
@@ -118,10 +124,11 @@ export default class AppPanel {
     this.unminify();
   }
 
-  async loadPoiById(id, options) {
-    const poi = id && await ApiPoi.poiApiLoad(id);
-    if (poi) {
-      this.setPoi(poi, options);
+  async loadPoi(poi, options) {
+    this._updateMapPoi(poi, options);
+    const fullPoi = poi && poi.id && await ApiPoi.poiApiLoad(poi.id);
+    if (fullPoi) {
+      this.setPoi(fullPoi, options, false);
       return;
     }
     this.resetLayout();
