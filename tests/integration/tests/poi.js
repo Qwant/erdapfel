@@ -218,7 +218,7 @@ test('Poi name i18n', async () => {
 test('Test 24/7', async () => {
   expect.assertions(1);
 
-  const {...poi} = require('../../__data__/poi.json');
+  const poi = { ...poiMock };
   poi.blocks.forEach(block => {
     if (block.type === 'opening_hours') {
       block.is_24_7 = true;
@@ -253,16 +253,20 @@ test('check pre-loaded Poi error handling', async () => {
 });
 
 async function selectPoiLevel(page, level) {
-  await page.evaluate(level => {
+  const mockPoiFeature = Object.assign(
+    { properties: { global_id: 1 } },
+    poiMock,
+  );
+  await page.evaluate((level, poi) => {
     window.MAP_MOCK.evented.prepare(
       'click',
       `poi-level-${level}`,
       {
         originalEvent: {clientX: 1000},
-        features: [{properties: {global_id: 1}}],
+        features: [ poi ],
       },
     );
-  }, level);
+  }, level, mockPoiFeature);
   const mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox());
   // Click on the top-left corner
   await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);

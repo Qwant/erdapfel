@@ -105,7 +105,7 @@ Scene.prototype.initMapBox = function() {
       this.mb.on('click', interactiveLayer, async e => {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
-          const mapPoi = new MapPoi(e.features[0], e.lngLat);
+          const mapPoi = new MapPoi(e.features[0]);
           if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
               window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({
