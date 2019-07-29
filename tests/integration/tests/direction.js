@@ -12,17 +12,17 @@ let browser;
 let page;
 let responseHandler;
 
-beforeAll(async() => {
+beforeAll(async () => {
   browser = (await initBrowser()).browser;
 });
 
-beforeEach(async() => {
+beforeEach(async () => {
   page = await browser.newPage();
   responseHandler = new ResponseHandler(page);
   await responseHandler.prepareResponse();
 });
 
-test('check "My position" label', async() => {
+test('check "My position" label', async () => {
   expect.assertions(1);
   await showDirection(page);
 
@@ -35,7 +35,7 @@ test('check "My position" label', async() => {
   expect(yourPositionItem).not.toBeNull();
 });
 
-test('switch start end', async() => {
+test('switch start end', async () => {
   expect.assertions(1);
   await showDirection(page);
 
@@ -49,7 +49,7 @@ test('switch start end', async() => {
   expect(inputValues).toEqual({startInput: 'end', endInput: 'start'});
 });
 
-test('simple search', async() => {
+test('simple search', async () => {
   expect.assertions(1);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
   responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
@@ -65,7 +65,7 @@ test('simple search', async() => {
   expect(leg0).not.toBeNull();
 });
 
-test('route flag', async() => {
+test('route flag', async () => {
   expect.assertions(3);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
@@ -84,7 +84,7 @@ test('route flag', async() => {
 });
 
 
-test('destination', async() => {
+test('destination', async () => {
   expect.assertions(3);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?destination=latlon:47.4:7.5@Monoprix Nice`);
 
@@ -102,7 +102,7 @@ test('destination', async() => {
   expect(directionEndInput).toEqual('Monoprix Nice');
 });
 
-test('origin & destination', async() => {
+test('origin & destination', async () => {
   expect.assertions(3);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5@Franprix Cannes`);
   await page.waitForSelector('#itinerary_input_origin');
@@ -120,7 +120,7 @@ test('origin & destination', async() => {
   expect(directionEndInput).toEqual('Franprix Cannes');
 });
 
-test('origin & destination & mode', async() => {
+test('origin & destination & mode', async () => {
   expect.assertions(4);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5974115&mode=walking`);
 
@@ -149,7 +149,7 @@ const showDirection = async page => {
   await page.click('.service_panel__item__direction');
 };
 
-test('select itinerary leg', async() => {
+test('select itinerary leg', async () => {
   expect.assertions(1);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.0000000,6\.6000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`);
@@ -167,7 +167,7 @@ test('select itinerary leg', async() => {
   expect(featureState).toEqual({source: 'source_0', id: 1});
 });
 
-test('select itinerary step', async() => {
+test('select itinerary step', async () => {
   expect.assertions(1);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
@@ -185,7 +185,7 @@ test('select itinerary step', async() => {
 });
 
 
-test('api error handling', async() => {
+test('api error handling', async () => {
   expect.assertions(1);
   /* prepare "error" response */
   responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, {status: 422});
@@ -194,7 +194,7 @@ test('api error handling', async() => {
   expect(errorMessageHandler).not.toBeNull();
 });
 
-test('api wait effect', async() => {
+test('api wait effect', async () => {
   expect.assertions(2);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
@@ -204,6 +204,6 @@ test('api wait effect', async() => {
   expect(firstLeg).not.toBeNull(); // test result
 });
 
-afterAll(async() => {
+afterAll(async () => {
   await browser.close();
 });

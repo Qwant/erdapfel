@@ -13,11 +13,11 @@ let browser;
 let page;
 let responseHandler;
 
-beforeAll(async() => {
+beforeAll(async () => {
   browser = (await initBrowser()).browser;
 });
 
-beforeEach(async() => {
+beforeEach(async () => {
   page = await browser.newPage();
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */
@@ -31,7 +31,7 @@ beforeEach(async() => {
   responseHandler.addPreparedResponse(poiMock, /places\/1/);
 });
 
-test('click on a poi', async() => {
+test('click on a poi', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   await selectPoiLevel(page, 1);
@@ -41,7 +41,7 @@ test('click on a poi', async() => {
   expect(translatedSubClass).toEqual('musée');
 });
 
-test('load a poi from url', async() => {
+test('load a poi from url', async () => {
   expect.assertions(2);
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poi_panel__title');
@@ -55,7 +55,7 @@ test('load a poi from url', async() => {
   expect(address).toMatch(/1 Rue de la Légion d'Honneur \(Paris\)/);
 });
 
-test('load a poi from url on mobile', async() => {
+test('load a poi from url on mobile', async () => {
   await page.setViewport({
     width: 400,
     height: 800,
@@ -75,7 +75,7 @@ test('load a poi from url on mobile', async() => {
   expect(hours).toMatch(/Fermé/);
 });
 
-test('load a poi already in my favorite from url', async() => {
+test('load a poi already in my favorite from url', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   await page.evaluate(() => {
@@ -89,7 +89,7 @@ test('load a poi already in my favorite from url', async() => {
   expect(plainStar).not.toBeFalsy();
 });
 
-test('update url after a poi click', async() => {
+test('update url after a poi click', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   await selectPoiLevel(page, 1);
@@ -99,7 +99,7 @@ test('update url after a poi click', async() => {
   expect(location).toMatch(/@Mus%C3%A9e_dOrsay/);
 });
 
-test('update url after a favorite poi click', async() => {
+test('update url after a favorite poi click', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   page.evaluate(() => {
@@ -118,7 +118,7 @@ test('update url after a favorite poi click', async() => {
   expect(location).toMatch(/@Mus%C3%A9e_dOrsay/);
 });
 
-test('open poi from autocomplete selection', async() => {
+test('open poi from autocomplete selection', async () => {
   responseHandler.addPreparedResponse(poiMock, /places\/osm:node:4811858213/);
 
   expect.assertions(2);
@@ -138,7 +138,7 @@ test('open poi from autocomplete selection', async() => {
   expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy();
 });
 
-test('display a popup on hovering a poi', async() => {
+test('display a popup on hovering a poi', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   await selectPoiLevel(page, 1);
@@ -148,7 +148,7 @@ test('display a popup on hovering a poi', async() => {
   expect(popups).toHaveLength(1);
 });
 
-test('center the map to the poi on a poi click', async() => {
+test('center the map to the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poi_panel__title');
   expect.assertions(1);
@@ -166,7 +166,7 @@ test('center the map to the poi on a poi click', async() => {
   });
 });
 
-test('display details about the poi on a poi click', async() => {
+test('display details about the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/48.8605833/2.3261037`);
   await page.waitForSelector('.poi_panel__title');
   expect.assertions(8);
@@ -203,7 +203,7 @@ test('display details about the poi on a poi click', async() => {
   expect(wiki_block).not.toBeFalsy();
 });
 
-test('Poi name i18n', async() => {
+test('Poi name i18n', async () => {
   expect.assertions(2);
 
   await page.goto(`${APP_URL}/place/osm:way:453203@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
@@ -215,7 +215,7 @@ test('Poi name i18n', async() => {
 });
 
 
-test('Test 24/7', async() => {
+test('Test 24/7', async () => {
   expect.assertions(1);
 
   const {...poi} = require('../../__data__/poi.json');
@@ -241,7 +241,7 @@ test('Test 24/7', async() => {
   expect(hours).toEqual('Ouvert 24h/24 et 7j/7');
 });
 
-test('check pre-loaded Poi error handling', async() => {
+test('check pre-loaded Poi error handling', async () => {
 
   expect.assertions(1);
 
@@ -269,7 +269,7 @@ async function selectPoiLevel(page, level) {
   await wait(300);
 }
 
-test('add a poi as favorite and find it back in the favorite menu', async() => {
+test('add a poi as favorite and find it back in the favorite menu', async () => {
   await page.goto(APP_URL);
 
   // we select a poi and 'star' it
@@ -303,7 +303,7 @@ test('add a poi as favorite and find it back in the favorite menu', async() => {
 });
 
 
-test('Poi hour i18n', async() => {
+test('Poi hour i18n', async () => {
   await Promise.all(languages.supportedLanguages.map(async language => {
     return new Promise(async resolve => {
       const langPage = await browser.newPage();
@@ -327,7 +327,7 @@ test('Poi hour i18n', async() => {
   }));
 });
 
-afterEach(async() => {
+afterEach(async () => {
   try {
     await clearStore(page); /* if only the above test is run page is not used */
   } catch (e) {
@@ -335,7 +335,7 @@ afterEach(async() => {
   }
 });
 
-afterAll(async() => {
+afterAll(async () => {
   await browser.close();
 });
 

@@ -8,7 +8,7 @@ let browser;
 let page;
 let responseHandler;
 
-beforeAll(async() => {
+beforeAll(async () => {
   const browserPage = await initBrowser();
   page = browserPage.page;
   browser = browserPage.browser;
@@ -17,7 +17,7 @@ beforeAll(async() => {
 });
 
 
-test('test menu template', async() => {
+test('test menu template', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   page.waitForSelector('.menu__button');
@@ -40,7 +40,7 @@ test('test menu template', async() => {
   expect(panelPosition).toEqual(460);
 });
 
-test('menu open favorite', async() => {
+test('menu open favorite', async () => {
   await page.goto(APP_URL);
   expect.assertions(2);
   await page.goto(APP_URL);
@@ -61,7 +61,7 @@ test('menu open favorite', async() => {
   expect(favorites).not.toBeNull();
 });
 
-test('one panel open at a time', async() => {
+test('one panel open at a time', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   const servicePanelOpen = await page.waitForSelector('.service_panel--active');
@@ -72,17 +72,17 @@ test('one panel open at a time', async() => {
   expect(servicePanelClose).not.toBeFalsy();
 });
 
-test('service panel open on load', async() => {
+test('service panel open on load', async () => {
   expect.assertions(1);
   await page.goto(`${APP_URL}/routes`);
   const servicePanelOpen = await page.waitForSelector('.service_panel');
   expect(servicePanelOpen).not.toBeFalsy();
 });
 
-afterEach(async() => {
+afterEach(async () => {
   await clearStore(page);
 });
 
-afterAll(async() => {
+afterAll(async () => {
   await browser.close();
 });

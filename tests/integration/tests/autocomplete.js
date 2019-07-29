@@ -15,7 +15,7 @@ let responseHandler;
 const mockAutocomplete = require('../../__data__/autocomplete.json');
 const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type.json');
 
-beforeAll(async() => {
+beforeAll(async () => {
   const browserPage = await initBrowser();
   page = browserPage.page;
   browser = browserPage.browser;
@@ -23,7 +23,7 @@ beforeAll(async() => {
   autocompleteHelper = new AutocompleteHelper(page);
 });
 
-test('search and clear', async() => {
+test('search and clear', async () => {
   expect.assertions(4);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/);
@@ -44,7 +44,7 @@ test('search and clear', async() => {
   expect(searchValueAfterClear).toEqual('');
 });
 
-test('search has lang in query', async() => {
+test('search has lang in query', async () => {
   const langPage = await browser.newPage();
   await langPage.setDefaultTimeout(2000); // to raise Puppeteer timeout early on fail
   await langPage.setExtraHTTPHeaders({
@@ -62,7 +62,7 @@ test('search has lang in query', async() => {
   expect(autocompleteItems).toHaveLength(SUGGEST_MAX_ITEMS);
 });
 
-test('keyboard navigation', async() => {
+test('keyboard navigation', async () => {
   const TypedSearch = 'Hello';
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
@@ -116,7 +116,7 @@ test('keyboard navigation', async() => {
   expect(selectElemPosition).toEqual(-1);
 });
 
-test('mouse navigation', async() => {
+test('mouse navigation', async () => {
   const TypedSearch = 'Hello';
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await page.goto(APP_URL);
@@ -137,7 +137,7 @@ test('mouse navigation', async() => {
   expect(selectedSearchValue).toEqual(expectedLabelName);
 });
 
-test('move to on click', async() => {
+test('move to on click', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
@@ -155,7 +155,7 @@ test('move to on click', async() => {
   expect(map_position_after).toEqual({lat: expectedLat, lng: expectedLng});
 });
 
-test('bbox & center', async() => {
+test('bbox & center', async () => {
   expect.assertions(3);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
@@ -179,7 +179,7 @@ test('bbox & center', async() => {
   expect(newCenter).toEqual({ lat: 4, lng: 3 });
 });
 
-test('favorite search', async() => {
+test('favorite search', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
@@ -195,7 +195,7 @@ test('favorite search', async() => {
 
 
 // http://idunn_test.test/v1/pois/osm:node:4872758213?lang=fr
-test('submit key', async() => {
+test('submit key', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await page.goto(APP_URL);
   /* submit with data already loaded */
@@ -227,7 +227,7 @@ test('submit key', async() => {
   expect(center).toEqual({lat: firstFeatureCenter[1], lng: firstFeatureCenter[0]});
 });
 
-test('check template', async() => {
+test('check template', async () => {
   expect.assertions(8);
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/);
   await page.goto(APP_URL);
@@ -271,7 +271,7 @@ test('check template', async() => {
 });
 
 
-test('Search Query', async() => {
+test('Search Query', async () => {
   expect.assertions(1);
   const searchQuery = 'test';
   await page.goto(`${APP_URL}/?q=${searchQuery}`);
@@ -283,7 +283,7 @@ test('Search Query', async() => {
   expect(searchValue).toEqual(searchQuery);
 });
 
-test('Retrieve restaurant category when we search "restau"', async() => {
+test('Retrieve restaurant category when we search "restau"', async () => {
   const searchQuery = 'restau';
 
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=restau/);
@@ -305,7 +305,7 @@ test('Retrieve restaurant category when we search "restau"', async() => {
   expect(suggestionId).toEqual('category:restaurant');
 });
 
-test('Retrieve no category when we search "barcelona", not even "bar"', async() => {
+test('Retrieve no category when we search "barcelona", not even "bar"', async () => {
   const searchQuery = 'barcelona';
 
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=barcelona/);
@@ -323,11 +323,11 @@ test('Retrieve no category when we search "barcelona", not even "bar"', async() 
   expect(firstLine).toEqual('test result 1');
 });
 
-afterEach(async() => {
+afterEach(async () => {
   await clearStore(page);
   responseHandler.reset();
 });
 
-afterAll(async() => {
+afterAll(async () => {
   await browser.close();
 });

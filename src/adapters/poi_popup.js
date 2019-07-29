@@ -41,7 +41,7 @@ PoiPopup.prototype.addListener = function(layer) {
     }, WAIT_BEFORE_DISPLAY);
   });
 
-  this.map.on('mouseleave', layer, async() => {
+  this.map.on('mouseleave', layer, async () => {
     if (this.popupHandle) {
       this.popupHandle.remove();
     }

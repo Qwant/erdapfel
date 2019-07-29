@@ -40,7 +40,7 @@ export default class Suggest {
           // Prerender Favorites on focus in empty field
           promise = PoiStore.getAll();
         } else {
-          promise = new Promise(async(resolve, reject) => {
+          promise = new Promise(async (resolve, reject) => {
             this.historyPromise = PoiStore.get(term);
             this.bragiPromise = BragiPoi.get(term);
             this.categoryPromise = withCategories ?

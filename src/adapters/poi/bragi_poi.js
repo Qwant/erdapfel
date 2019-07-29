@@ -135,7 +135,7 @@ export default class BragiPoi extends Poi {
 
     /* ajax */
     let suggestsPromise;
-    const queryPromise = new Promise(async(resolve, reject) => {
+    const queryPromise = new Promise(async (resolve, reject) => {
       const query = {
         'q': term,
         'limit': geocoderConfig.max_items,
