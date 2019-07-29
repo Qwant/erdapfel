@@ -11,23 +11,41 @@ const ACCEPTED_LANGUAGES = [
 ];
 
 const geometries = 'geojson';
-export const vehiculeMatching = {
-  driving: 'driving-traffic',
-  walking: 'walking',
-  cycling: 'cycling',
+
+export const modes = {
+  DRIVING: 'driving',
+  WALKING: 'walking',
+  CYCLING: 'cycling',
+};
+
+const modeToProfile = {
+  [modes.DRIVING]: 'driving-traffic',
+  [modes.WALKING]: 'walking',
+  [modes.CYCLING]: 'cycling',
 };
 
 export default class DirectionApi {
 
-  static async search(start, end, vehicle, exclude = '') {
-    const apiVehicle = vehiculeMatching[vehicle];
+  static async search(start, end, mode) {
+    if (mode === modes.CYCLING) {
+      // Fetch routes without ferry in priority
+      const firstSearch = await DirectionApi._search(start, end, mode, {exclude: 'ferry'});
+      if (firstSearch && firstSearch.routes && firstSearch.routes.length > 0) {
+        return firstSearch;
+      }
+    }
+    return DirectionApi._search(start, end, mode);
+  }
+
+  static async _search(start, end, mode, {exclude = ''} = {}) {
+    const apiProfile = modeToProfile[mode];
     let directionsUrl = directionConfig.apiBaseUrl;
     const userLang = window.getLang();
     let language;
     if (ACCEPTED_LANGUAGES.indexOf(userLang.code) !== -1) {
       language = userLang.locale;
     } else {
-      language = userLang.fallback[0];
+      language = (userLang.fallback || [])[0] || 'en';
     }
     const directionsParams = {
       language: language,
@@ -42,10 +60,10 @@ export default class DirectionApi {
     }
 
     if (directionConfig.api === 'mapbox') {
-      directionsUrl = `${directionsUrl}${apiVehicle}/`;
+      directionsUrl = `${directionsUrl}${apiProfile}/`;
       directionsParams.access_token = directionConfig.token;
     } else if (directionConfig.api === 'qwant') {
-      directionsParams.type = apiVehicle;
+      directionsParams.type = apiProfile;
     }
     const s_start = poiToMapBoxCoordinates(start);
     const s_end = poiToMapBoxCoordinates(end);
