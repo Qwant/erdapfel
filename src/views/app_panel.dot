@@ -15,8 +15,6 @@
 /* modals */
 {{= this.sharePanel.renderModal() }}
 {{= this.geolocationModal.renderModal() }}
-{{= this.geolocationDeniedModal.renderModal() }}
-{{= this.geolocationNotActivatedModal.renderModal() }}
 {{? this.masqEnabled }}
   {{= this.masqFavoriteModal.renderModal() }}
   {{= this.masqOnboardingModal.renderModal() }}
