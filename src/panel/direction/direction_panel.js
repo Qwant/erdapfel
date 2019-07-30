@@ -3,6 +3,7 @@ import directionTemplate from '../../views/direction/direction.dot';
 import DirectionInput from '../../ui_components/direction_input';
 import RoadMapPanel from './road_map_panel';
 import DirectionApi from '../../adapters/direction_api';
+import { modes } from '../../adapters/direction_api';
 import SearchInput from '../../ui_components/search_input';
 import LatLonPoi from '../../adapters/poi/latlon_poi';
 import UrlState from '../../proxies/url_state';
@@ -10,17 +11,16 @@ import Error from '../../adapters/error';
 import Device from '../../libs/device';
 import Telemetry from '../../libs/telemetry';
 import NavigatorGeolocalisationPoi from '../../adapters/poi/specials/navigator_geolocalisation_poi';
-import {vehiculeMatching} from '../../adapters/direction_api';
 
 export default class DirectionPanel {
   constructor(roadPanel) {
     this.panel = new Panel(this, directionTemplate);
-    this.vehicles = {DRIVING: 'driving', WALKING: 'walking', CYCLING: 'cycling'};
+    this.vehicles = modes;
     this.active = false;
     this.poiBeforeOpening = null;
     this.origin = null;
     this.destination = null;
-    this.vehicle = this.vehicles.DRIVING;
+    this.vehicle = modes.DRIVING;
     this.roadMapPanel = new RoadMapPanel(
       () => this.handleOpen(),
       () => this.handleClose(),
@@ -236,7 +236,7 @@ export default class DirectionPanel {
         this.destination,
         this.vehicle,
       );
-      if (directionResponse && directionResponse.routes) {
+      if (directionResponse && directionResponse.routes && directionResponse.routes.length > 0) {
         const routes = directionResponse.routes;
         routes.forEach((route, i) => {
           route.isActive = i === 0;
@@ -308,11 +308,9 @@ export default class DirectionPanel {
   async restoreUrl() {
     const getParams = new URLSearchParams(window.location.search);
     if (getParams.get('mode')) {
-      const urlVehicle = getParams.get('mode');
-      const matchedVehicle = Object.keys(vehiculeMatching)
-        .find(vehiculeMatchingItem => vehiculeMatchingItem === urlVehicle);
-      if (matchedVehicle) {
-        this.vehicle = matchedVehicle;
+      const urlMode = getParams.get('mode');
+      if (Object.keys(modes).some(k => modes[k] === urlMode)) {
+        this.vehicle = urlMode;
       }
     }
 
