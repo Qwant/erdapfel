@@ -105,7 +105,7 @@ Scene.prototype.initMapBox = function() {
       this.mb.on('click', interactiveLayer, async e => {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
-          const mapPoi = new MapPoi(e.features[0], e.lngLat);
+          const mapPoi = new MapPoi(e.features[0]);
           if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
               window.innerWidth > layout.mobile.breakPoint) {
             this.mb.flyTo({
@@ -113,10 +113,7 @@ Scene.prototype.initMapBox = function() {
               offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
             });
           }
-          const poi = await window.app.loadPoiById(mapPoi.id);
-          if (poi) {
-            this.addMarker(poi);
-          }
+          window.app.loadPoi(mapPoi, { disableMapPan: true });
         }
       });
 

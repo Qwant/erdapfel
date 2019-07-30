@@ -189,7 +189,6 @@ export default class CategoryPanel {
   }
 
   selectPoi(poi) {
-    fire('fit_map', poi, layouts.LIST);
     const previousMarker = document.querySelector('.mapboxgl-marker.active');
     if (previousMarker) {
       previousMarker.classList.remove('active');
@@ -207,7 +206,7 @@ export default class CategoryPanel {
       );
     }
     this.close(false);
-    window.app.loadPoiById(poi.id, {isFromCategory: true, list: this});
+    window.app.loadPoi(poi, {isFromCategory: true, list: this, layout: layouts.LIST});
     this.highlightPoiMarker(poi);
   }
 

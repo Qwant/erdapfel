@@ -77,20 +77,17 @@ PoiPanel.prototype.isDisplayed = function() {
 };
 
 PoiPanel.prototype.closeAction = function() {
-  SearchInput.setInputValue('');
   window.app.resetLayout();
 };
 
-PoiPanel.prototype.close = async function({cleanMarker = true} = {}) {
+PoiPanel.prototype.close = async function() {
   if (!this.active) {
     return;
   }
-  if (cleanMarker) {
-    fire('clean_marker');
-  }
+  window.app.unsetPoi();
+  SearchInput.setInputValue('');
   this.active = false;
   this.panel.update();
-  window.app.unsetPoi();
   UrlState.pushUrl();
 };
 
@@ -99,12 +96,8 @@ PoiPanel.prototype.restorePoi = async function(id) {
   const hotLoadedPoi = new HotLoadPoi();
   if (hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi;
-    window.execOnMapLoaded(() => {
-      fire('map_mark_poi', this.poi);
-      fire('fit_map', this.poi, layouts.POI);
-    });
     this.poi.stored = await isPoiFavorite(this.poi);
-    window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored });
+    window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored, layout: layouts.POI });
   }
 };
 
@@ -190,7 +183,7 @@ PoiPanel.prototype.backToFavorite = function() {
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST);
-  this.close({cleanMarker: false});
+  this.close();
   fire('restore_location');
   this.list.open();
 };
