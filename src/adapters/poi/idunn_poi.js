@@ -31,6 +31,11 @@ export default class IdunnPoi extends Poi {
     this.address = IdunnPoi.getAddress(rawPoi);
     this.bbox = rawPoi.geometry.bbox;
     this.meta = rawPoi.meta || {};
+    if (this.isFromOSM()) {
+      const [_osmKey, itemKind, itemId] = rawPoi.id.split(':');
+      this.viewUrl = `https://www.openstreetmap.org/${itemKind}/${itemId}`;
+      this.editUrl = `https://www.openstreetmap.org/edit?editor=id&${itemKind}=${itemId}`;
+    }
 
     this.blocksByType = {};
     if (this.blocks) {
