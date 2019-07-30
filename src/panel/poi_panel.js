@@ -77,7 +77,7 @@ PoiPanel.prototype.isDisplayed = function() {
 };
 
 PoiPanel.prototype.closeAction = function() {
-  window.app.resetLayout();
+  window.app.navigateTo('/');
 };
 
 PoiPanel.prototype.close = async function() {
@@ -88,7 +88,6 @@ PoiPanel.prototype.close = async function() {
   SearchInput.setInputValue('');
   this.active = false;
   this.panel.update();
-  UrlState.pushUrl();
 };
 
 PoiPanel.prototype.restorePoi = async function(id) {
@@ -178,7 +177,7 @@ PoiPanel.prototype.backToSmall = function() {
 
 PoiPanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-  window.app.openFavorite();
+  window.app.navigateTo('/favs');
 };
 
 PoiPanel.prototype.backToList = function() {

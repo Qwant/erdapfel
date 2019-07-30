@@ -119,7 +119,6 @@ export default class CategoryPanel {
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
     }
     this.active = true;
-    UrlState.pushUrl();
 
     if (window.map.mb.isMoving()) {
       /*
@@ -150,7 +149,6 @@ export default class CategoryPanel {
     document.querySelector('.top_bar').classList.remove('top_bar--category-open');
     this.active = false;
     this.panel.update();
-    UrlState.pushUrl();
     if (toggleMarkers) {
       this.removeCategoryMarkers();
     }
@@ -177,7 +175,7 @@ export default class CategoryPanel {
 
   closeAction() {
     SearchInput.setInputValue('');
-    window.app.resetLayout();
+    window.app.navigateTo('/');
   }
 
   addCategoryMarkers() {

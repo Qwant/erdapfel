@@ -112,7 +112,7 @@ Favorite.prototype.open = async function() {
 
 Favorite.prototype.closeAction = function() {
   Telemetry.add(Telemetry.FAVORITE_CLOSE);
-  window.app.resetLayout();
+  window.app.navigateTo('/');
 };
 
 Favorite.prototype.close = function() {

@@ -17,6 +17,8 @@ import Menu from './menu';
 import Telemetry from '../libs/telemetry';
 import CategoryPanel from './category_panel';
 import ApiPoi from '../adapters/poi/idunn_poi';
+import Router from 'src/proxies/app_router';
+import CategoryService from 'src/adapters/category_service';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -72,6 +74,50 @@ export default class AppPanel {
 
     this.panel.render();
     Telemetry.add(Telemetry.APP_START);
+
+    this.initRouter();
+  }
+
+  initRouter() {
+    this.router = new Router();
+
+    this.router.addRoute('/places/\\?type=(.*)', categoryType => {
+      // @TODO: other query parameters (q, bbox, etc.)
+      console.log('SHOW category', categoryType);
+      this.openCategory(categoryType);
+    });
+
+    this.router.addRoute('/place/(.*)', poiId => {
+      console.log('SHOW poi', poiId);
+    });
+
+    this.router.addRoute('/favs', () => {
+      console.log('SHOW favs');
+      this.openFavorite();
+    });
+
+    this.router.addRoute('/routes/(.*)', params => {
+      // @TODO: manage params
+      console.log('SHOW routes', params);
+      this.openDirection();
+    });
+
+    // Default, fallback matching route
+    this.router.addRoute('/', () => {
+      console.log('SHOW default panel (services)');
+      this.resetLayout();
+    });
+
+    window.onpopstate = () => {
+      console.log('Restore URL:', window.location.href);
+      this.router.routeUrl(window.location.href);
+    };
+  }
+
+  navigateTo(url) {
+    // @TODO: manage the map hash
+    window.history.pushState(null, null, url);
+    this.router.routeUrl(url);
   }
 
   minify() {
@@ -166,8 +212,10 @@ export default class AppPanel {
     this._openPanel(this.favoritePanel);
   }
 
-  openCategory(options) {
-    this._openPanel(this.categoryPanel, options);
+  openCategory(categoryName) {
+    this._openPanel(this.categoryPanel, {
+      category: CategoryService.getCategoryByName(categoryName)
+    });
   }
 
   resetLayout() {

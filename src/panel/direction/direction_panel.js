@@ -173,7 +173,7 @@ export default class DirectionPanel {
       this.poiBeforeOpening = null;
       return window.app.setPoi(poi, { isFromCategory, isFromFavorite });
     }
-    return window.app.resetLayout();
+    window.app.navigateTo('/');
   }
 
   back() {
@@ -196,7 +196,6 @@ export default class DirectionPanel {
     this.cleanDirection();
     this.active = false;
     this.panel.update();
-    UrlState.pushUrl();
   }
 
   async open(options = {}) {

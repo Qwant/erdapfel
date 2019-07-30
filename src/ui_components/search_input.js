@@ -14,7 +14,6 @@ const MAPBOX_RESERVED_KEYS = [
   '=', // =
 ];
 
-
 export default class SearchInput {
 
   /* Singleton */
@@ -23,7 +22,7 @@ export default class SearchInput {
       window.__searchInput = new SearchInput(tagSelector);
       window.clearSearch = () => {
         window.__searchInput.suggest.setValue('');
-        window.app.resetLayout();
+        window.app.navigateTo('/');
         setTimeout(() => {
           document.getElementById('search').focus();
         }, 0);
@@ -98,7 +97,7 @@ export default class SearchInput {
     if (selectedItem instanceof Poi) {
       window.app.loadPoi(selectedItem, { layout: layouts.POI });
     } else if (selectedItem instanceof Category) {
-      window.app.openCategory({ category: selectedItem });
+      window.app.navigateTo(`/places/?type=${selectedItem.name}`);
     }
   }
 }
