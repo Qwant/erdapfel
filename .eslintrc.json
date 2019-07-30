@@ -76,7 +76,10 @@
         "arrow-parens": ["error", "as-needed"],
         "no-unused-vars": [
             "error",
-            { "argsIgnorePattern": "^_" }
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
         ],
         "prefer-const": ["error"],
         "no-var": "error",
