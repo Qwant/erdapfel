@@ -89,31 +89,24 @@ export default class AppPanel {
   initRouter() {
     this.router = new Router();
 
-    this.router.addRoute('/places/(.*)', query => {
-      // @TODO: other query parameters (q, bbox, etc.)
-      console.log('SHOW category', query);
-      this.openCategory(parseQueryString(query));
+    this.router.addRoute('Category', '/places/(.*)', placesParams => {
+      this.openCategory(parseQueryString(placesParams));
     });
 
-    this.router.addRoute('/place/(.*)', poiId => {
-      console.log('SHOW poi', poiId);
+    this.router.addRoute('POI', '/place/(.*)', poiId => {
       ApiPoi.poiApiLoad(poiId).then(poi => this.setPoi(poi));
     });
 
-    this.router.addRoute('/favs', () => {
-      console.log('SHOW favs');
+    this.router.addRoute('Favorites', '/favs', () => {
       this.openFavorite();
     });
 
-    this.router.addRoute('/routes/(.*)', params => {
-      // @TODO: manage params
-      console.log('SHOW routes', params);
-      this.openDirection();
+    this.router.addRoute('Routes', '/routes/(.*)', routeParams => {
+      this.openDirection(parseQueryString(routeParams));
     });
 
     // Default, fallback matching route
-    this.router.addRoute('/', () => {
-      console.log('SHOW default panel (services)');
+    this.router.addRoute('Services', '/', () => {
       this.resetLayout();
     });
 

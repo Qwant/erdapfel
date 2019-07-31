@@ -20,8 +20,9 @@ export default class Router {
     this.routeDefs = [];
   }
 
-  addRoute(urlRegexp, renderCallback) {
+  addRoute(name, urlRegexp, renderCallback) {
     this.routeDefs.push({
+      name,
       match: urlRegexp,
       render: renderCallback,
     });
@@ -32,6 +33,7 @@ export default class Router {
     if (!routeDef) {
       return;
     }
+    console.log(`ROUTER: render ${routeDef.name}`);
     applyRoute(routeDef, url);
   }
 }
