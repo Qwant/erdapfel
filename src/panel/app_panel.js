@@ -110,16 +110,17 @@ export default class AppPanel {
       this.resetLayout();
     });
 
-    window.onpopstate = () => {
-      console.log('Restore URL:', window.location.href);
-      this.router.routeUrl(window.location.href);
+    window.onpopstate = ({ state }) => {
+      console.log('Restore URL:', window.location.href, state);
+      this.router.routeUrl(window.location.href, state);
     };
   }
 
-  navigateTo(url) {
+  navigateTo(url, state = {}) {
+    console.log(state);
     // @TODO: manage the map hash
-    window.history.pushState(null, null, url);
-    this.router.routeUrl(url);
+    window.history.pushState(state, null, url);
+    this.router.routeUrl(url, state);
   }
 
   minify() {

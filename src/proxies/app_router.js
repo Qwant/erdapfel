@@ -10,9 +10,9 @@ function getMatchingRouteDefinition(routeDefs, url) {
   return routeDefs.find(route => new RegExp(route.match).test(url));
 }
 
-function applyRoute(routeDef, url) {
+function applyRoute(routeDef, url, state) {
   const [ , arg ] = new RegExp(routeDef.match).exec(url);
-  routeDef.render(arg);
+  routeDef.render(arg, state);
 }
 
 export default class Router {
@@ -28,12 +28,12 @@ export default class Router {
     });
   }
 
-  routeUrl(url) {
+  routeUrl(url, state) {
     const routeDef = getMatchingRouteDefinition(this.routeDefs, url);
     if (!routeDef) {
       return;
     }
     console.log(`ROUTER: render ${routeDef.name}`);
-    applyRoute(routeDef, url);
+    applyRoute(routeDef, url, state);
   }
 }
