@@ -150,15 +150,6 @@ export default class DirectionPanel {
     }
   }
 
-  /* panel manager implementation */
-  toggle(options) {
-    if (this.active) {
-      this.close();
-    } else {
-      this.open(options);
-    }
-  }
-
   cleanDirection() {
     if (this.originInput && this.destinationInput) {
       this.originInput.destroy();
