@@ -77,13 +77,13 @@ module.exports = function(config) {
   return function(req, res, next) {
     const placeUrlMatch = req.originalUrl.match(/place\/(.*)/);
     const locale = res.locals.language;
-    let poiId
+    let poiId;
     if (placeUrlMatch && placeUrlMatch.length > 0) {
       poiId = placeUrlMatch[1];
     }
     if (poiId && !poiId.startsWith('latlon:')) {
-      getPoi(poiId, locale).then((poi) => {
-        if(poi) {
+      getPoi(poiId, locale).then(poi => {
+        if (poi) {
           poiMeta(poi, locale, req, res, next);
         } else {
           res.redirect(307, config.system.baseUrl);

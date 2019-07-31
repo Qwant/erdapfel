@@ -111,21 +111,11 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('click', e => {
-      setTimeout(() => {
-        if (!this.poiShown) {
-          this.cleanMarker();
-          const point = new LatLonPoi({lat: e.lngLat.lat, lng: e.lngLat.lng});
-          PanelManager.setPoi(point);
-          const marker = document.createElement('div');
-          marker.className = 'marker-container marker-anywhere';
-          new Marker({element: marker})
-            .setLngLat(e.lngLat)
-            .addTo(this.mb);
-
-          this.currentMarker = marker;
-        }
-        e.originalEvent.stopPropagation();
-      }, 500);
+      if (e._interactiveClick) {
+        return;
+      }
+      const poi = new LatLonPoi(e.lngLat);
+      window.app.navigateTo(`/place/${poi.toUrl()}`, { poi });
     });
 
     this.mb.on('moveend', () => {

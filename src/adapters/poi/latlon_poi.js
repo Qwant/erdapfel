@@ -15,7 +15,7 @@ export default class LatLonPoi extends Poi {
       label = `${latLon.lat.toFixed(5)} : ${latLon.lng.toFixed(5)}`;
     }
     super(id, label, null, null, latLon);
-    this.type = 'poi';
+    this.type = 'latlon';
   }
 
   toUrl() {

@@ -10,6 +10,7 @@ import layouts from './layouts.js';
 import nconf from '@qwant/nconf-getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import Device from '../libs/device';
+import CategoryService from '../adapters/category_service';
 import poiSubClass from '../mapbox/poi_subclass';
 
 const store = new Store();
@@ -29,6 +30,7 @@ function PoiPanel(sharePanel) {
   this.headerPartial = headerPartial;
   this.minimalHourPanel = new MinimalHourPanel();
   this.isDirectionActive = nconf.get().direction.enabled;
+  this.categories = CategoryService.getCategories();
   this.isMasqEnabled = nconf.get().masq.enabled;
 
   store.onToggleStore(async () => {
@@ -186,8 +188,7 @@ PoiPanel.prototype.showPhone = function() {
 };
 
 PoiPanel.prototype.openCategory = function(category) {
-  fire('clean_marker');
-  PanelManager.openCategory({ category });
+  window.app.navigateTo(`/places/?type=${category.name}`);
 };
 
 /* private */
