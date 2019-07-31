@@ -25,6 +25,14 @@ const directionEnabled = nconf.get().direction.enabled;
 const masqEnabled = nconf.get().masq.enabled;
 const categoryEnabled = nconf.get().category.enabled;
 
+function parseQueryString(queryString) {
+  const params = {};
+  new URLSearchParams(queryString).forEach((value, key) => {
+    params[key] = value;
+  });
+  return params;
+}
+
 export default class AppPanel {
   constructor(parent) {
     this.topBar = new TopBar();
@@ -81,14 +89,15 @@ export default class AppPanel {
   initRouter() {
     this.router = new Router();
 
-    this.router.addRoute('/places/\\?type=(.*)', categoryType => {
+    this.router.addRoute('/places/(.*)', query => {
       // @TODO: other query parameters (q, bbox, etc.)
-      console.log('SHOW category', categoryType);
-      this.openCategory(categoryType);
+      console.log('SHOW category', query);
+      this.openCategory(parseQueryString(query));
     });
 
     this.router.addRoute('/place/(.*)', poiId => {
       console.log('SHOW poi', poiId);
+      ApiPoi.poiApiLoad(poiId).then(poi => this.setPoi(poi));
     });
 
     this.router.addRoute('/favs', () => {
@@ -152,6 +161,7 @@ export default class AppPanel {
   }
 
   async setPoi(poi, options = {}, updateMap = true) {
+    console.log(poi);
     this.activePoiId = poi.id;
     if (updateMap) {
       this._updateMapPoi(poi, options);
@@ -168,12 +178,13 @@ export default class AppPanel {
 
   async loadPoi(poi, options) {
     this._updateMapPoi(poi, options);
-    const fullPoi = poi && poi.id && await ApiPoi.poiApiLoad(poi);
-    if (fullPoi) {
-      this.setPoi(fullPoi, options, false);
-      return;
-    }
-    this.resetLayout();
+    this.navigateTo(`/place/${poi.id}`);
+    // const fullPoi = poi && poi.id && await ApiPoi.poiApiLoad(poi.id);
+    // if (fullPoi) {
+    //   this.setPoi(fullPoi, options, false);
+    //   return;
+    // }
+    // this.resetLayout();
   }
 
   unsetPoi() {
@@ -212,9 +223,11 @@ export default class AppPanel {
     this._openPanel(this.favoritePanel);
   }
 
-  openCategory(categoryName) {
+  openCategory(params) {
+    const { type: categoryName, ...otherOptions } = params;
     this._openPanel(this.categoryPanel, {
-      category: CategoryService.getCategoryByName(categoryName)
+      category: CategoryService.getCategoryByName(categoryName),
+      ...otherOptions,
     });
   }
 

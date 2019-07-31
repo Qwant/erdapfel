@@ -2,7 +2,6 @@ import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
-import UrlState from '../proxies/url_state';
 import HotLoadPoi from '../adapters/poi/hotload_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
@@ -32,7 +31,6 @@ function PoiPanel(sharePanel) {
   this.headerPartial = headerPartial;
   this.minimalHourPanel = new MinimalHourPanel();
   this.isDirectionActive = nconf.get().direction.enabled;
-  UrlState.registerResource(this, 'place');
   this.isMasqEnabled = nconf.get().masq.enabled;
 
   store.onToggleStore(async () => {
@@ -117,7 +115,6 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
     this.list = options.list;
   }
   this.active = true;
-  UrlState.pushUrl();
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
 };
