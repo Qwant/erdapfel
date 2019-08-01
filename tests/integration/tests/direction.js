@@ -185,6 +185,30 @@ test('select itinerary step', async () => {
 });
 
 
+test('show itinerary roadmap on mobile', async () => {
+  await page.setViewport({
+    width: 400,
+    height: 800,
+  });
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
+
+  await page.waitForSelector('#itinerary_leg_0');
+  await page.click('#itinerary_leg_0 .itinerary_leg_preview');
+  await page.waitForSelector('.itinerary_mobile_step');
+
+  /*
+    Force resetLayout.
+    This simulates a user action that will close
+    all panels related to the current itinerary,
+    such as a click on a POI on the map.
+  */
+  await page.evaluate('window.app.resetLayout()');
+  // Itinerary container should be disabled.
+  await page.waitForSelector('#itinerary_container', { hidden: true, timeout: 1000});
+});
+
+
 test('api error handling', async () => {
   expect.assertions(1);
   /* prepare "error" response */
