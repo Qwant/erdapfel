@@ -33,6 +33,7 @@ export default class ResponseHandler {
 
       if (preparedResponse) {
         interceptedRequest.headers['Access-Control-Allow-Origin'] = '*';
+        interceptedRequest.headers['Access-Control-Allow-Headers'] = '*';
         let status = 200;
         if (preparedResponse.options) {
           if (preparedResponse.options.status) {

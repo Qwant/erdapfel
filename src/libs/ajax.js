@@ -79,8 +79,7 @@ const query = (url, data, method = 'GET', options = {}, headers = {}) => {
     } else {
       xhr.open(method, url);
       setHeaders(xhr, headers);
-      if (method === 'POST' && !headersContain(headers, 'Content-Type') &&
-          data && data.length > 0) {
+      if (method === 'POST' && !headersContain(headers, 'Content-Type') && data) {
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       }
       xhr.send(JSON.stringify(data));
