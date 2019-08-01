@@ -29,11 +29,12 @@ export default class Router {
   }
 
   routeUrl(url, state) {
-    const routeDef = getMatchingRouteDefinition(this.routeDefs, url);
+    const urlWithoutHash = url.split('#')[0];
+    const routeDef = getMatchingRouteDefinition(this.routeDefs, urlWithoutHash);
     if (!routeDef) {
       return;
     }
     console.log(`ROUTER: render ${routeDef.name}`);
-    applyRoute(routeDef, url, state);
+    applyRoute(routeDef, urlWithoutHash, state);
   }
 }
