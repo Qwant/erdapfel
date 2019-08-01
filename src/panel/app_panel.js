@@ -128,6 +128,11 @@ export default class AppPanel {
     this.router.routeUrl(urlWithCurrentHash, state);
   }
 
+  replaceUrl(url, state = {}) {
+    const urlWithCurrentHash = url + location.hash;
+    window.history.replaceState(state, null, urlWithCurrentHash);
+  }
+
   updateHash(hash) {
     const urlWithoutHash = window.location.href.split('#')[0];
     console.log('Update hash', urlWithoutHash);
