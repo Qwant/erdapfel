@@ -4,6 +4,7 @@
 # Florent Thouvenin <github@eldar.fr>, 2019
 # Etienne Bacher <etienne.bacher@orange.fr>, 2019
 # K T <kzn.tengwar@email.com>, 2019
+# v k <vitaalis@hotmail.com>, 2019
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
 # Adrien Matissart, 2019
 # 
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 17:12+0000\n"
+"POT-Creation-Date: 2019-07-30 15:10+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2019\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -104,8 +105,8 @@ msgstr "Qwant.com"
 msgid "Qwant Music"
 msgstr "Qwant Music"
 
-msgid "Qwant boards"
-msgstr "Qwant boards"
+msgid "Qwant Boards"
+msgstr "Qwant Boards"
 
 msgid "Qwant on Android"
 msgstr "Qwant sur Android"
@@ -166,6 +167,17 @@ msgstr "Chercher avec Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "avis"
+msgstr[1] "avis"
+
+msgid "Open 24/7"
+msgstr "Ouvert 24h/24 et 7j/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "jusqu’à {nextTransitionTime}"
 
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -773,11 +785,26 @@ msgstr "adresse"
 msgid "street"
 msgstr "rue"
 
-msgid "Open 24/7"
-msgstr "Ouvert 24h/24 et 7j/7"
+msgid "Geolocation with privacy!"
+msgstr "La géolocalisation respectueuse de votre vie privée !"
 
-msgid "until {nextTransitionTime}"
-msgstr "jusqu’à {nextTransitionTime}"
+msgid ""
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"Besoin de savoir où vous êtes&#x202F;? Veuillez svp autoriser votre "
+"application à accéder à votre localisation pour qu’elle puisse vous "
+"l’indiquer. Comme indiqué dans {privacyPolicyLink} notre politique de "
+"protection des données{closeTag}, Qwant ne stockera pas vos informations de "
+"géolocalisation. Nous ne voulons pas connaître vos allées et venues."
+
+msgid "Ok, I've got it."
+msgstr "Ok, j'ai compris."
+
+msgid "Show favorites"
+msgstr "Afficher les favoris"
 
 msgid "Favorite places"
 msgstr "Lieux favoris"
@@ -885,11 +912,17 @@ msgstr "FAVORIS"
 msgid "SHARE"
 msgstr "PARTAGER"
 
-msgid "Qwant Maps uses OpenStreetMap"
-msgstr "Qwant Maps utilise OpenStreetMap"
+msgid "SHOW NUMBER"
+msgstr "VOIR LE N°"
 
-msgid "ABOUT THE PROJECT"
-msgstr "EN SAVOIR PLUS SUR LE PROJET"
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps utilise les données OpenStreetMap."
+
+msgid "VIEW"
+msgstr "VOIR"
+
+msgid "EDIT"
+msgstr "MODIFIER"
 
 msgid "Accessibility"
 msgstr "Accessibilité"
@@ -911,11 +944,6 @@ msgstr "Services & informations"
 
 msgid "WIKIPEDIA"
 msgstr "WIKIPÉDIA"
-
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "avis"
-msgstr[1] "avis"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -957,24 +985,6 @@ msgstr "PARTAGER SUR FACEBOOK"
 msgid "SHARE ON TWITTER"
 msgstr "PARTAGER SUR TWITTER"
 
-msgid "Geolocation with privacy!"
-msgstr "La géolocalisation respectueuse de votre vie privée !"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"Besoin de savoir où vous êtes&#x202F;? Veuillez svp autoriser votre "
-"application à accéder à votre localisation pour qu’elle puisse vous "
-"l’indiquer. Comme indiqué dans {privacyPolicyLink} notre politique de "
-"protection des données{closeTag}, Qwant ne stockera pas vos informations de "
-"géolocalisation. Nous ne voulons pas connaître vos allées et venues."
-
-msgid "Ok, I've got it."
-msgstr "Ok, j'ai compris."
-
 msgid "Geolocation not available."
 msgstr "Géolocalisation impossible"
 
@@ -1009,7 +1019,7 @@ msgstr "Arrivée"
 msgid "Invert start and end"
 msgstr "Inverser Départ et Arrivée"
 
-msgid "Qwant Maps found no results for this itinerary, please try again"
+msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps ne trouve pas de résultat pour cet itinéraire."
 
 msgid "Via"
@@ -1048,14 +1058,14 @@ msgstr "Activer"
 msgid "How does it work ?"
 msgstr "Comment ça marche ?"
 
+msgid "Show results"
+msgstr "Afficher les résultats"
+
 msgid "Partnership"
 msgstr "Partenariat"
 
 msgid "PAGES JAUNES"
 msgstr "Pages Jaunes"
-
-msgid "See the phone number"
-msgstr "Voir le numéro de téléphone"
 
 msgid "No results found. Please zoom out of the map."
 msgstr "Aucun résultat trouvé. Veuillez agrandir la zone de recherche."
@@ -1064,17 +1074,17 @@ msgid "Search around my position"
 msgstr "Rechercher autour de moi"
 
 msgid "Please zoom in the map to see the results for this category."
-msgstr "Veuillez restreindre la zone pour voir des résultats."
+msgstr "Veuillez zoomer sur la zone pour voir des résultats."
 
 msgid "^(?:"
-msgstr " "
+msgstr " ^(?:"
 
 msgid ""
-"The connection failed between Qwant Maps and the Masq application "
-"(Signalling error)"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
 msgstr ""
-"La connexion entre Qwant Maps et l'application Masq a échouée. (Erreur de "
-"signalement)"
+"La connexion entre Qwant Maps et l'application Masq a échoué. (Signalling "
+"error)"
 
 msgid "Could not connect to Masq"
 msgstr "Impossible de se connecter à Masq"
