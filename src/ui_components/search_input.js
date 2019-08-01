@@ -1,6 +1,5 @@
 import Suggest from '../adapters/suggest';
 import layouts from '../panel/layouts.js';
-import UrlState from '../proxies/url_state';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
 
@@ -64,7 +63,6 @@ export default class SearchInput {
     });
     this.isEnabled = true;
 
-    UrlState.registerGet(this, 'q');
     listen('submit_autocomplete', async () => {
       this.suggest.onSubmit();
     });
@@ -85,12 +83,8 @@ export default class SearchInput {
     };
   }
 
-  store() {}
-
-  async restore(fragment) {
-    if (UrlState.getShardCount() === 1) {
-      return await this.suggest.preselect(fragment);
-    }
+  static executeSearch(query) {
+    window.__searchInput.suggest.preselect(query);
   }
 
   async selectItem(selectedItem) {
