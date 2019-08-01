@@ -123,9 +123,15 @@ export default class AppPanel {
 
   navigateTo(url, state = {}) {
     console.log('NAV_TO', url, state);
-    // @TODO: manage the map hash
-    window.history.pushState(state, null, url);
-    this.router.routeUrl(url, state);
+    const urlWithCurrentHash = url + location.hash;
+    window.history.pushState(state, null, urlWithCurrentHash);
+    this.router.routeUrl(urlWithCurrentHash, state);
+  }
+
+  updateHash(hash) {
+    const urlWithoutHash = window.location.href.split('#')[0];
+    console.log('Update hash', urlWithoutHash);
+    window.history.replaceState(window.history.state, null, `${urlWithoutHash}#${hash}`);
   }
 
   minify() {

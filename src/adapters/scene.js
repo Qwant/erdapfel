@@ -2,8 +2,12 @@ import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
+<<<<<<< HEAD
 import UrlState from '../proxies/url_state';
 import { map, layout } from '../../config/constants.yml';
+=======
+import {map, layout} from '../../config/constants.yml';
+>>>>>>> Implement map hash system without url shards
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
 import HotLoadPoi from './poi/hotload_poi';
@@ -22,7 +26,6 @@ const easterEggsEnabled = nconf.get().app.easterEggs;
 const store = new LocalStore();
 
 function Scene() {
-  UrlState.registerHash(this, 'map');
   this.currentMarker = null;
   this.popup = new PoiPopup();
   this.zoom = map.zoom;
@@ -40,9 +43,6 @@ Scene.prototype.setupInitialPosition = async function() {
     const hotloadedPoi = new HotLoadPoi();
     this.zoom = hotloadedPoi.zoom;
     this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat];
-  } else if (this.urlCenter && this.urlZoom) {
-    this.zoom = this.urlZoom;
-    this.center = this.urlCenter;
   } else {
     const lastLocation = await store.getLastLocation();
     if (lastLocation) {
@@ -121,11 +121,10 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('moveend', () => {
-      UrlState.replaceUrl();
-      const lng = this.mb.getCenter().lng;
-      const lat = this.mb.getCenter().lat;
+      const { lng, lat } = this.mb.getCenter();
       const zoom = this.mb.getZoom();
       store.setLastLocation({ lng, lat, zoom });
+      window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
     });
 
@@ -188,7 +187,7 @@ Scene.prototype.initMapBox = function() {
 };
 
 Scene.prototype.saveLocation = function() {
-  this.savedLocation = UrlState.getShardValue('map');
+  this.savedLocation = this.getLocationHash();
 };
 
 Scene.prototype.restoreLocation = function() {
@@ -336,24 +335,6 @@ Scene.prototype.cleanMarker = async function() {
   }
 };
 
-/* UrlState interface implementation */
-Scene.prototype.store = function() {
-  const lat = this.mb.getCenter().lat.toFixed(7);
-  const lon = this.mb.getCenter().lng.toFixed(7);
-  return `${this.mb.getZoom().toFixed(2)}/${lat}/${lon}`;
-};
-
-Scene.prototype.restore = function(urlShard) {
-  const geoCenter = urlShard.match(/(\d*[.]?\d+)\/(-?\d*[.]?\d+)\/(-?\d*[.]?\d+)/);
-  if (geoCenter) {
-    const ZOOM_INDEX = 1;
-    const LAT_INDEX = 2;
-    const LNG_INDEX = 3;
-    this.urlZoom = parseFloat(geoCenter[ZOOM_INDEX]);
-    this.urlCenter = [parseFloat(geoCenter[LNG_INDEX]), parseFloat(geoCenter[LAT_INDEX])];
-  }
-};
-
 Scene.prototype.isWindowedPoi = function(poi) {
   const windowBounds = this.mb.getBounds();
   /* simple way to clone value */
@@ -363,14 +344,35 @@ Scene.prototype.isWindowedPoi = function(poi) {
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
 };
 
-// TODO: put that with global browser history management
+Scene.prototype.getLocationHash = function() {
+  const { lat, lng } = this.mb.getCenter();
+  return `map=${this.mb.getZoom().toFixed(2)}/${lat.toFixed(7)}/${lng.toFixed(7)}`;
+};
+
+Scene.prototype.restoreFromHash = function(hash, options = {}) {
+  const zoomLatLng = hash
+    .replace(/^#/, '')
+    .replace(/^map=/, '')
+    .split('/')
+    .map(value => parseFloat(value));
+  if (!zoomLatLng || zoomLatLng.length < 3) {
+    return;
+  }
+  const [ zoom, lat, lng ] = zoomLatLng;
+  this.mb.jumpTo({ zoom, center: [ lng, lat ], ...options });
+};
+
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
+<<<<<<< HEAD
     const mapShardValue = UrlState.getShardValue('map');
     if (mapShardValue) {
       this.restore(mapShardValue);
       this.mb.jumpTo({ center: this.urlCenter, zoom: this.urlZoom });
     }
+=======
+    this.restoreFromHash(window.location.hash);
+>>>>>>> Implement map hash system without url shards
   };
 };
 
