@@ -1,7 +1,6 @@
 import Panel from '../libs/panel';
 import CategoryPanelView from '../views/category_panel.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
-import UrlState from '../proxies/url_state';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
@@ -30,8 +29,6 @@ export default class CategoryPanel {
     this.query = '';
     this.dataSource = '';
 
-    UrlState.registerResource(this, 'places');
-
     listen('map_moveend', debounce( function() {
       if (this.active) {
         this.search();
@@ -43,40 +40,23 @@ export default class CategoryPanel {
     });
   }
 
-  store() {
-    if (this.active) {
-      const params = [];
-      if (this.categoryName) {
-        params.push(`type=${this.categoryName}`);
-      }
-      if (this.query) {
-        params.push(`q=${this.query}`);
-      }
-      if (params.length > 0) {
-        return `?${params.join('&')}`;
-      }
+  restoreParams(options) {
+    if (options.category) {
+      const { name, label } = options.category;
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category: name });
+      this.categoryName = name;
+      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
     }
-    return '';
-  }
-
-  restore() {
-    const getParams = new URLSearchParams(window.location.search);
-    const category = getParams.get('type') || '';
-    const query = getParams.get('q') || '';
-    const rawBbox = (getParams.get('bbox') || '').split(',');
+    this.query = options.q || '';
+    const rawBbox = (options.bbox || '').split(',');
     let bbox;
     if (rawBbox.length === 4) {
       bbox = [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
     }
 
-    if (category || query) {
-      this.categoryName = category;
-      this.query = query;
+    if (bbox) {
       window.execOnMapLoaded(() => {
-        if (bbox) {
-          window.map.mb.fitBounds(bbox, { animate: false });
-        }
-        this.open();
+        window.map.mb.fitBounds(bbox, { animate: false });
       });
     }
   }
@@ -111,13 +91,7 @@ export default class CategoryPanel {
   }
 
   async open(options = {}) {
-    if (options.category) {
-      const { name, label } = options.category;
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category: name });
-      this.categoryName = name;
-      this.query = '';
-      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
-    }
+    this.restoreParams(options);
     this.active = true;
 
     if (window.map.mb.isMoving()) {
