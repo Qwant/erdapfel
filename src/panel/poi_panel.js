@@ -22,7 +22,6 @@ function PoiPanel(sharePanel) {
   this.active = false;
   this.displayed = false;
   this.poiSubClass = poiSubClass;
-  this.list = null;
   this.PoiBlocContainer = PoiBlocContainer;
   this.panel = new Panel(this, PoiPanelView);
   this.sharePanel = sharePanel;
@@ -111,9 +110,7 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   if (options && options.isFromCategory) {
     this.fromCategory = options.isFromCategory;
   }
-  if (options && options.list) {
-    this.list = options.list;
-  }
+  this.sourceCategory = options.sourceCategory;
   this.active = true;
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
@@ -179,9 +176,8 @@ PoiPanel.prototype.backToFavorite = function() {
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST);
-  this.close();
   fire('restore_location');
-  this.list.open();
+  window.app.navigateTo(`/places/?type=${this.sourceCategory}`);
 };
 
 PoiPanel.prototype.openDirection = function() {
