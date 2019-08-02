@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 17:12+0000\n"
+"POT-Creation-Date: 2019-07-30 15:10+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: jmontane, 2019\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Qwant Music"
 msgstr ""
 
-msgid "Qwant boards"
+msgid "Qwant Boards"
 msgstr ""
 
 msgid "Qwant on Android"
@@ -161,6 +161,17 @@ msgstr ""
 
 msgid "The map that respects your privacy"
 msgstr "El mapa que respecta la vostra privadesa"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Open 24/7"
+msgstr ""
+
+msgid "until {nextTransitionTime}"
+msgstr "fins {nextTransitionTime}"
 
 msgid "accessories shop"
 msgstr "botia d'accessoris"
@@ -768,11 +779,25 @@ msgstr ""
 msgid "street"
 msgstr ""
 
-msgid "Open 24/7"
-msgstr ""
+msgid "Geolocation with privacy!"
+msgstr "Geolocalització amb privadesa!"
 
-msgid "until {nextTransitionTime}"
-msgstr "fins {nextTransitionTime}"
+msgid ""
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"Us cal saber on sou? Autoritzeu l'aplicació a accedir la vostra ubicació "
+"perquè us la puguem dir. Com s'explica a la nostra {privacyPolicyLink} "
+"política de privadesa {closeTag}, Qwant no emmagatzemarà la vostra "
+"informació de geolocalització. No volem saber on pareu."
+
+msgid "Ok, I've got it."
+msgstr "D'acord, ho he entès."
+
+msgid "Show favorites"
+msgstr ""
 
 msgid "Favorite places"
 msgstr "Llocs preferits"
@@ -872,11 +897,17 @@ msgstr "PREFERITS"
 msgid "SHARE"
 msgstr "COMPARTEIX"
 
-msgid "Qwant Maps uses OpenStreetMap"
-msgstr "Qwant Maps usa l'OpenStreetMap"
+msgid "SHOW NUMBER"
+msgstr ""
 
-msgid "ABOUT THE PROJECT"
-msgstr "QUANT AL PROJECTE"
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr ""
+
+msgid "VIEW"
+msgstr ""
+
+msgid "EDIT"
+msgstr ""
 
 msgid "Accessibility"
 msgstr "Acessibilitat"
@@ -898,11 +929,6 @@ msgstr "Serveis i informació"
 
 msgid "WIKIPEDIA"
 msgstr ""
-
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -942,23 +968,6 @@ msgstr "COMPARTEIX AL FACEBOOK"
 msgid "SHARE ON TWITTER"
 msgstr "COMPARTEIX AL TWITTER"
 
-msgid "Geolocation with privacy!"
-msgstr "Geolocalització amb privadesa!"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"Us cal saber on sou? Autoritzeu l'aplicació a accedir la vostra ubicació "
-"perquè us la puguem dir. Com s'explica a la nostra {privacyPolicyLink} "
-"política de privadesa {closeTag}, Qwant no emmagatzemarà la vostra "
-"informació de geolocalització. No volem saber on pareu."
-
-msgid "Ok, I've got it."
-msgstr "D'acord, ho he entès."
-
 msgid "Geolocation not available."
 msgstr ""
 
@@ -989,7 +998,7 @@ msgstr ""
 msgid "Invert start and end"
 msgstr ""
 
-msgid "Qwant Maps found no results for this itinerary, please try again"
+msgid "Qwant Maps found no results for this itinerary."
 msgstr ""
 
 msgid "Via"
@@ -1028,13 +1037,13 @@ msgstr ""
 msgid "How does it work ?"
 msgstr ""
 
+msgid "Show results"
+msgstr ""
+
 msgid "Partnership"
 msgstr ""
 
 msgid "PAGES JAUNES"
-msgstr ""
-
-msgid "See the phone number"
 msgstr ""
 
 msgid "No results found. Please zoom out of the map."
@@ -1050,8 +1059,8 @@ msgid "^(?:"
 msgstr ""
 
 msgid ""
-"The connection failed between Qwant Maps and the Masq application "
-"(Signalling error)"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
 msgstr ""
 
 msgid "Could not connect to Masq"

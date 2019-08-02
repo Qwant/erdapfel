@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 17:12+0000\n"
+"POT-Creation-Date: 2019-07-30 15:10+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -100,8 +100,8 @@ msgstr "Qwant.com"
 msgid "Qwant Music"
 msgstr "Qwant Sonerezh"
 
-msgid "Qwant boards"
-msgstr "Taolennoù Qwant"
+msgid "Qwant Boards"
+msgstr ""
 
 msgid "Qwant on Android"
 msgstr "Qwant war Android"
@@ -162,6 +162,20 @@ msgstr "Klask gant Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+msgid "Open 24/7"
+msgstr "Digor 24/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "betek {nextTransitionTime}"
 
 msgid "accessories shop"
 msgstr "stal rikoù"
@@ -769,11 +783,26 @@ msgstr ""
 msgid "street"
 msgstr ""
 
-msgid "Open 24/7"
-msgstr "Digor 24/7"
+msgid "Geolocation with privacy!"
+msgstr "Douarlec'hiañ ha prevezded!"
 
-msgid "until {nextTransitionTime}"
-msgstr "betek {nextTransitionTime}"
+msgid ""
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"C'hoant ho peus da c'houzout e pelec'h emaoc'h? Roit an aotre d'hoc'h arload"
+" da dizhout al lec'h m'emaoc'h evit ma c'hallfe lavaret deoc'h. Evel ma vez "
+"lavaret en hon {privacyPolicyLink} folitikerezh prevezded {closeTag}, Qwant "
+"na stoko ket ho titouroù douarlec'hiañ. N'hallimp ket gouzout e pelec'h "
+"emaoc'h."
+
+msgid "Ok, I've got it."
+msgstr "Mat eo, deuet eo ganin."
+
+msgid "Show favorites"
+msgstr ""
 
 msgid "Favorite places"
 msgstr "Lec'hioù karetañ"
@@ -874,11 +903,17 @@ msgstr "SINEDOÙ"
 msgid "SHARE"
 msgstr "RANNAÑ"
 
-msgid "Qwant Maps uses OpenStreetMap"
-msgstr "Qwant Maps a ra gant OpenStreetMap"
+msgid "SHOW NUMBER"
+msgstr ""
 
-msgid "ABOUT THE PROJECT"
-msgstr "DIWAR-BENN AR RAKTRES"
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr ""
+
+msgid "VIEW"
+msgstr ""
+
+msgid "EDIT"
+msgstr ""
 
 msgid "Accessibility"
 msgstr "Monedusted"
@@ -900,14 +935,6 @@ msgstr "Servijoù & Titouroù"
 
 msgid "WIKIPEDIA"
 msgstr ""
-
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -947,24 +974,6 @@ msgstr "RANNAÑ WAR FACEBOOK"
 msgid "SHARE ON TWITTER"
 msgstr "RANNAÑ WAR TWITTER"
 
-msgid "Geolocation with privacy!"
-msgstr "Douarlec'hiañ ha prevezded!"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"C'hoant ho peus da c'houzout e pelec'h emaoc'h? Roit an aotre d'hoc'h arload"
-" da dizhout al lec'h m'emaoc'h evit ma c'hallfe lavaret deoc'h. Evel ma vez "
-"lavaret en hon {privacyPolicyLink} folitikerezh prevezded {closeTag}, Qwant "
-"na stoko ket ho titouroù douarlec'hiañ. N'hallimp ket gouzout e pelec'h "
-"emaoc'h."
-
-msgid "Ok, I've got it."
-msgstr "Mat eo, deuet eo ganin."
-
 msgid "Geolocation not available."
 msgstr ""
 
@@ -995,7 +1004,7 @@ msgstr "poent fin"
 msgid "Invert start and end"
 msgstr "eilpennañ fin ha loc'hañ"
 
-msgid "Qwant Maps found no results for this itinerary, please try again"
+msgid "Qwant Maps found no results for this itinerary."
 msgstr ""
 
 msgid "Via"
@@ -1034,13 +1043,13 @@ msgstr ""
 msgid "How does it work ?"
 msgstr ""
 
+msgid "Show results"
+msgstr ""
+
 msgid "Partnership"
 msgstr ""
 
 msgid "PAGES JAUNES"
-msgstr ""
-
-msgid "See the phone number"
 msgstr ""
 
 msgid "No results found. Please zoom out of the map."
@@ -1056,8 +1065,8 @@ msgid "^(?:"
 msgstr ""
 
 msgid ""
-"The connection failed between Qwant Maps and the Masq application "
-"(Signalling error)"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
 msgstr ""
 
 msgid "Could not connect to Masq"
