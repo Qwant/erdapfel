@@ -14,7 +14,7 @@ const DEFAULT_ZOOM = 16;
 export const POI_TYPE = 'poi';
 
 export default class Poi {
-  constructor(id, name, alternativeName, type, latLon, className, subClassName) {
+  constructor(id, name, alternativeName, type, latLon, className, subClassName, bbox) {
     this.id = id;
     this.name = name;
     this.alternativeName = alternativeName;
@@ -23,6 +23,7 @@ export default class Poi {
     this.className = className;
     this.subClassName = subClassName;
     this.zoom = this.computeZoom();
+    this.bbox = bbox;
   }
 
   getLngLat() {
@@ -77,6 +78,17 @@ export default class Poi {
   static isPoiCompliantKey(k) {
     const keyPattern = new RegExp(`^qmaps_v${version}_favorite_place_.*`);
     return k.match(keyPattern) !== null;
+  }
+
+  static deserialize(raw) {
+    const { id, name, alternativeName, type, latLon, className, subClassName, bbox } = raw;
+    return new Poi(id, name, alternativeName, type, latLon, className, subClassName, bbox);
+  }
+
+  serialize() {
+    // eslint-disable-next-line
+    const { event, ...otherFields } = this;
+    return otherFields;
   }
 }
 

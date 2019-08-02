@@ -178,7 +178,8 @@ export default class CategoryPanel {
       );
     }
     this.close(false);
-    window.app.loadPoi(poi, {
+    window.app.navigateTo(`/place/${poi.id}`, {
+      poi: poi.serialize(),
       isFromCategory: true,
       sourceCategory: this.categoryName,
       layout: layouts.LIST,

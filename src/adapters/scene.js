@@ -105,7 +105,7 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
-          window.app.loadPoi(mapPoi);
+          window.app.navigateTo(`/place/${mapPoi.id}`, { poi: mapPoi.serialize() });
         }
       });
 
@@ -161,8 +161,8 @@ Scene.prototype.initMapBox = function() {
     this.mb.jumpTo({ center: [map.center.lng, map.center.lat], zoom: map.zoom });
   });
 
-  listen('map_mark_poi', poi => {
-    this.addMarker(poi);
+  listen('map_mark_poi', (poi, options) => {
+    this.addMarker(poi, options);
   });
 
   listen('clean_marker', () => {
@@ -301,22 +301,29 @@ Scene.prototype.fitMap = function(item, padding) {
   }
 };
 
-Scene.prototype.ensureMarkerIsVisible = function(poi) {
-  const { x: leftPixelOffset } = this.mb.project(poi.getLngLat());
-  const isPoiUnderPanel = leftPixelOffset < layout.sizes.sideBarWidth + layout.sizes.panelWidth
-    && window.innerWidth > layout.mobile.breakPoint;
-  if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
+Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
+  if (poi.bbox) {
+    this.fitBbox(poi.bbox, options.layout);
     return;
+  }
+  if (!options.centerMap) {
+    const { x: leftPixelOffset } = this.mb.project(poi.getLngLat());
+    const isPoiUnderPanel = leftPixelOffset < layout.sizes.sideBarWidth + layout.sizes.panelWidth
+      && window.innerWidth > layout.mobile.breakPoint;
+    if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
+      return;
+    }
   }
   this.mb.flyTo({
     center: poi.getLngLat(),
+    zoom: poi.zoom,
     offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
     maxDuration: 1200,
   });
 };
 
-Scene.prototype.addMarker = function(poi) {
-  this.ensureMarkerIsVisible(poi);
+Scene.prototype.addMarker = function(poi, options) {
+  this.ensureMarkerIsVisible(poi, options);
   const { className, subClassName, type } = poi;
 
   const element = createIcon({ className, subClassName, type });

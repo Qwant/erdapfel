@@ -81,19 +81,20 @@ PoiPanel.prototype.close = async function() {
   if (!this.active) {
     return;
   }
-  window.app.unsetPoi();
+  fire('clean_marker');
   SearchInput.setInputValue('');
   this.active = false;
   this.panel.update();
 };
 
+// @TODO: use the router, that's all
 PoiPanel.prototype.restorePoi = async function(id) {
   Telemetry.add(Telemetry.POI_RESTORE);
   const hotLoadedPoi = new HotLoadPoi();
   if (hotLoadedPoi.id === id) {
     this.poi = hotLoadedPoi;
     this.poi.stored = await isPoiFavorite(this.poi);
-    window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored, layout: layouts.POI });
+    // window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored, layout: layouts.POI });
   }
 };
 

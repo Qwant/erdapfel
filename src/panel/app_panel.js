@@ -19,6 +19,8 @@ import CategoryPanel from './category_panel';
 import ApiPoi from '../adapters/poi/idunn_poi';
 import Router from 'src/proxies/app_router';
 import CategoryService from 'src/adapters/category_service';
+import Poi from 'src/adapters/poi/poi.js';
+import layouts from './layouts.js';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -72,8 +74,6 @@ export default class AppPanel {
 
     this.menu = new Menu();
 
-    this.activePoiId = null;
-
     if (performanceEnabled) {
       this.panel.onRender = () => {
         window.times.appRendered = Date.now();
@@ -93,12 +93,21 @@ export default class AppPanel {
       this.openCategory(parseQueryString(placesParams));
     });
 
-    this.router.addRoute('POI', '/place/(.*)', async (poiId, options) => {
+    this.router.addRoute('POI', '/place/(.*)', async (poiId, options = {}) => {
+      options.layout = options.layout || layouts.POI;
+      if (options.poi) {
+        // If a POI object is provided before fetching full data,
+        // update the map immediately for UX responsiveness
+        this._updateMapPoi(Poi.deserialize(options.poi), options);
+      }
       const poi = await ApiPoi.poiApiLoad(poiId);
       if (!poi) {
         this.navigateTo('/');
       } else {
-        this.setPoi(poi, options);
+        this.openPoiPanel(poi, options);
+        if (!options.poi) {
+          this._updateMapPoi(poi, options);
+        }
       }
     });
 
@@ -120,7 +129,7 @@ export default class AppPanel {
     });
 
     window.onpopstate = ({ state }) => {
-      console.log('Restore URL:', window.location.href, state);
+      // console.log('Restore URL:', window.location.href, state);
       this.router.routeUrl(window.location.href, state);
     };
   }
@@ -166,35 +175,20 @@ export default class AppPanel {
   _updateMapPoi(poi, options = {}) {
     window.execOnMapLoaded(function() {
       if (!options.isFromCategory) {
-        fire('map_mark_poi', poi);
+        fire('map_mark_poi', poi, options);
       }
     });
   }
 
-  async setPoi(poi, options = {}, updateMap = true) {
-    console.log(poi);
-    this.activePoiId = poi.id;
-    if (updateMap) {
-      this._updateMapPoi(poi, options);
-    }
+  openPoiPanel(poi, options = {}) {
     this.panels.forEach(panel => {
-      if (panel.isPoiCompliant) {
+      if (panel === this.poiPanel) {
         panel.setPoi(poi, options);
       } else {
         panel.close();
       }
     });
     this.unminify();
-  }
-
-  async loadPoi(poi, options) {
-    this._updateMapPoi(poi, options);
-    this.navigateTo(`/place/${poi.id}`, options);
-  }
-
-  unsetPoi() {
-    this.activePoiId = null;
-    fire('clean_marker');
   }
 
   emptyClickOnMap() {

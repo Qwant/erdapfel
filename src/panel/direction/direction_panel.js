@@ -158,11 +158,15 @@ export default class DirectionPanel {
   closeAction() {
     if (this.poiBeforeOpening) {
       const { poi, isFromCategory, isFromFavorite } = this.poiBeforeOpening;
-      this.close();
       this.poiBeforeOpening = null;
-      return window.app.setPoi(poi, { isFromCategory, isFromFavorite });
+      window.app.navigateTo(`/place/${poi.id}`, {
+        poi: poi.serialize(),
+        isFromCategory,
+        isFromFavorite,
+      });
+    } else {
+      window.app.navigateTo('/');
     }
-    window.app.navigateTo('/');
   }
 
   back() {

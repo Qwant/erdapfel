@@ -1,5 +1,4 @@
 import Suggest from '../adapters/suggest';
-import layouts from '../panel/layouts.js';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
 
@@ -89,7 +88,10 @@ export default class SearchInput {
 
   async selectItem(selectedItem) {
     if (selectedItem instanceof Poi) {
-      window.app.loadPoi(selectedItem, { layout: layouts.POI });
+      window.app.navigateTo(`/place/${selectedItem.id}`, {
+        poi: selectedItem.serialize(),
+        centerMap: true,
+      });
     } else if (selectedItem instanceof Category) {
       window.app.navigateTo(`/places/?type=${selectedItem.name}`);
     }

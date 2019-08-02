@@ -126,7 +126,12 @@ Favorite.prototype.go = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_GO);
   this.active = false;
   this.panel.update();
-  window.app.loadPoi(poi, { isFromFavorite: true, layout: layouts.FAVORITE });
+  window.app.navigateTo(`/place/${poi.id}`, {
+    poi: poi.serialize(),
+    centerMap: true,
+    isFromFavorite: true,
+    layout: layouts.FAVORITE,
+  });
 };
 
 Favorite.prototype.add = async function(poi) {
