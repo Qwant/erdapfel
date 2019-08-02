@@ -224,13 +224,13 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
   // Check bounds:
 
   // Lng between -180 and 180 (wraps: 180 + 1 = -179)
-  if (viewport._ne.lng < 180) {
+  if (viewport._ne.lng < -180) {
     viewport._ne.lng += 360;
   } else if (viewport._ne.lng > 180) {
     viewport._ne.lng -= 360;
   }
 
-  if (viewport._sw.lng < 180) {
+  if (viewport._sw.lng < -180) {
     viewport._sw.lng += 360;
   } else if (viewport._sw.lng > 180) {
     viewport._sw.lng -= 360;

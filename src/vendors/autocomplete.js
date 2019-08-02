@@ -342,7 +342,7 @@ export default function autoComplete(options) {
       } else {
         that.removeAttribute('autocomplete');
       }
-      that.offsetParent.removeChild(that.sc);
+      that.sc.parentNode.removeChild(that.sc);
       that = null;
     }
   };
