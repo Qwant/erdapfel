@@ -105,15 +105,7 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
-          if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
-              window.innerWidth > layout.mobile.breakPoint) {
-            this.mb.flyTo({
-              center: mapPoi.getLngLat(),
-              offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
-            });
-          }
-
-          window.app.loadPoi(mapPoi, { disableMapPan: true });
+          window.app.loadPoi(mapPoi);
         }
       });
 
@@ -309,7 +301,22 @@ Scene.prototype.fitMap = function(item, padding) {
   }
 };
 
+Scene.prototype.ensureMarkerIsVisible = function(poi) {
+  const { x: leftPixelOffset } = this.mb.project(poi.getLngLat());
+  const isPoiUnderPanel = leftPixelOffset < layout.sizes.sideBarWidth + layout.sizes.panelWidth
+    && window.innerWidth > layout.mobile.breakPoint;
+  if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
+    return;
+  }
+  this.mb.flyTo({
+    center: poi.getLngLat(),
+    offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
+    maxDuration: 1200,
+  });
+};
+
 Scene.prototype.addMarker = function(poi) {
+  this.ensureMarkerIsVisible(poi);
   const { className, subClassName, type } = poi;
 
   const element = createIcon({ className, subClassName, type });

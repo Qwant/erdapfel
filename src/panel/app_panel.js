@@ -168,9 +168,6 @@ export default class AppPanel {
       if (!options.isFromCategory) {
         fire('map_mark_poi', poi);
       }
-      if (!options.disableMapPan) {
-        fire('fit_map', poi, options.layout);
-      }
     });
   }
 
