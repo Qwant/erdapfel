@@ -132,6 +132,10 @@ export default class AppPanel {
       // console.log('Restore URL:', window.location.href, state);
       this.router.routeUrl(window.location.href, state);
     };
+
+    // Route the initial URL
+    this.router.routeUrl(window.location.href, {});
+    // @TODO: manage async map initial view
   }
 
   navigateTo(url, state = {}) {
