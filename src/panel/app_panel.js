@@ -129,7 +129,6 @@ export default class AppPanel {
     });
 
     window.onpopstate = ({ state }) => {
-      // console.log('Restore URL:', window.location.href, state);
       this.router.routeUrl(window.location.href, state);
     };
 
@@ -139,7 +138,6 @@ export default class AppPanel {
   }
 
   navigateTo(url, state = {}) {
-    console.log('NAV_TO', url, state);
     const urlWithCurrentHash = url + location.hash;
     window.history.pushState(state, null, urlWithCurrentHash);
     this.router.routeUrl(urlWithCurrentHash, state);
@@ -152,7 +150,6 @@ export default class AppPanel {
 
   updateHash(hash) {
     const urlWithoutHash = window.location.href.split('#')[0];
-    console.log('Update hash', urlWithoutHash);
     window.history.replaceState(window.history.state, null, `${urlWithoutHash}#${hash}`);
   }
 

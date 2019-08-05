@@ -34,7 +34,6 @@ export default class Router {
     if (!routeDef) {
       return;
     }
-    console.log(`ROUTER: render ${routeDef.name}`);
     applyRoute(routeDef, urlWithoutHash, state);
   }
 }
