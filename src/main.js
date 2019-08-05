@@ -14,6 +14,4 @@ import Store from './adapters/store';
   new Store();
 
   window.app = new App('panels');
-
-  await import(/* webpackChunkName: "map" */ './map');
 })();

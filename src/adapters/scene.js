@@ -18,6 +18,7 @@ import SceneCategory from './scene_category';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
+import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
@@ -33,16 +34,19 @@ function Scene() {
   this.savedLocation = null;
 }
 
-Scene.prototype.initScene = async function() {
-  await this.setupInitialPosition();
+Scene.prototype.initScene = async function(locationHash) {
+  await this.setupInitialPosition(locationHash);
   this.initMapBox();
 };
 
-Scene.prototype.setupInitialPosition = async function() {
+Scene.prototype.setupInitialPosition = async function(locationHash) {
   if (window.hotLoadPoi) {
     const hotloadedPoi = new HotLoadPoi();
     this.zoom = hotloadedPoi.zoom;
     this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat];
+  } else if (locationHash) {
+    this.zoom = locationHash.zoom;
+    this.center = [locationHash.lng, locationHash.lat];
   } else {
     const lastLocation = await store.getLastLocation();
     if (lastLocation) {
@@ -360,19 +364,15 @@ Scene.prototype.isWindowedPoi = function(poi) {
 
 Scene.prototype.getLocationHash = function() {
   const { lat, lng } = this.mb.getCenter();
-  return `map=${this.mb.getZoom().toFixed(2)}/${lat.toFixed(7)}/${lng.toFixed(7)}`;
+  return getMapHash(this.mb.getZoom(), lat, lng);
 };
 
 Scene.prototype.restoreFromHash = function(hash, options = {}) {
-  const zoomLatLng = hash
-    .replace(/^#/, '')
-    .replace(/^map=/, '')
-    .split('/')
-    .map(value => parseFloat(value));
-  if (!zoomLatLng || zoomLatLng.length < 3) {
+  const zll = parseMapHash(hash);
+  if (!zll) {
     return;
   }
-  const [ zoom, lat, lng ] = zoomLatLng;
+  const { zoom, lat, lng } = zll;
   this.mb.jumpTo({ zoom, center: [ lng, lat ], ...options });
 };
 

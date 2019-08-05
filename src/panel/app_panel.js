@@ -21,19 +21,12 @@ import Router from 'src/proxies/app_router';
 import CategoryService from 'src/adapters/category_service';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
+import { parseMapHash, parseQueryString } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
 const masqEnabled = nconf.get().masq.enabled;
 const categoryEnabled = nconf.get().category.enabled;
-
-function parseQueryString(queryString) {
-  const params = {};
-  new URLSearchParams(queryString).forEach((value, key) => {
-    params[key] = value;
-  });
-  return params;
-}
 
 export default class AppPanel {
   constructor(parent) {
@@ -83,7 +76,17 @@ export default class AppPanel {
     this.panel.render();
     Telemetry.add(Telemetry.APP_START);
 
+    const mapHash = parseMapHash(window.location.hash);
     this.initRouter();
+    this.initMap(mapHash);
+  }
+
+  initMap(mapHash) {
+    import(/* webpackChunkName: "map" */ '../adapters/scene')
+      .then(({ default: Scene }) => {
+        this.scene = new Scene();
+        this.scene.initScene(mapHash);
+      });
   }
 
   initRouter() {
@@ -133,7 +136,7 @@ export default class AppPanel {
     };
 
     // Route the initial URL
-    this.router.routeUrl(window.location.href, {});
+    this.router.routeUrl(window.location.href);
     // @TODO: manage async map initial view
   }
 
