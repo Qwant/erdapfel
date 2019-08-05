@@ -288,7 +288,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   let fav = await getFavorites(page);
   expect(fav).toHaveLength(1);
   expect(fav[0].title).toEqual('Musée d\'Orsay');
-  expect(fav[0].desc).toEqual('musée');
+  expect(fav[0].desc).toEqual('Musée');
   expect(fav[0].icons).toContainEqual('icon-museum');
 
   // we then reopen the poi panel and 'unstar' the poi.

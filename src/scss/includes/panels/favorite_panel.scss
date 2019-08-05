@@ -124,6 +124,10 @@ $MASQ_BANNER_HEIGHT: 93px;
   color: $secondary_text;
 }
 
+.favorite_panel__item__desc:first-letter {
+  text-transform: uppercase;
+}
+
 .favorite_panel__item__more_container {
   background: $background;
   max-height: 100px;
