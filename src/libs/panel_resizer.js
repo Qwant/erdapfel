@@ -1,4 +1,5 @@
 import PanelResizerActionsView from '../views/panel_resizer_actions.dot';
+import Device from './device';
 
 const REDUCED_PANEL_CLASS = 'reduced';
 const MAXIMIZED_PANEL_CLASS = 'full';
@@ -44,7 +45,7 @@ export default class PanelResizer {
   holdResizer({event}) {
     event.preventDefault();
 
-    if (this.isTransitioning) {
+    if (this.isTransitioning || !Device.isMobile()) {
       return;
     }
 
