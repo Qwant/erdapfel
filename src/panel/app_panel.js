@@ -105,7 +105,7 @@ export default class AppPanel {
       this.openFavorite();
     });
 
-    this.router.addRoute('Routes', '/routes/(.*)', routeParams => {
+    this.router.addRoute('Routes', '/routes(?:/?)(.*)', routeParams => {
       this.openDirection(parseQueryString(routeParams));
     });
 
@@ -114,7 +114,7 @@ export default class AppPanel {
     });
 
     // Default, fallback matching route
-    this.router.addRoute('Services', '/', () => {
+    this.router.addRoute('Services', '(?:/?)', () => {
       this.resetLayout();
     });
 
