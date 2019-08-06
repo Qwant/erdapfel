@@ -10,7 +10,6 @@ import {map, layout} from '../../config/constants.yml';
 >>>>>>> Implement map hash system without url shards
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
-import HotLoadPoi from './poi/hotload_poi';
 import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
@@ -40,11 +39,7 @@ Scene.prototype.initScene = async function(locationHash) {
 };
 
 Scene.prototype.setupInitialPosition = async function(locationHash) {
-  if (window.hotLoadPoi) {
-    const hotloadedPoi = new HotLoadPoi();
-    this.zoom = hotloadedPoi.zoom;
-    this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat];
-  } else if (locationHash) {
+  if (locationHash) {
     this.zoom = locationHash.zoom;
     this.center = [locationHash.lng, locationHash.lat];
   } else {

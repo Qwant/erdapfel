@@ -96,22 +96,8 @@ export default class AppPanel {
       this.openCategory(parseQueryString(placesParams));
     });
 
-    this.router.addRoute('POI', '/place/(.*)', async (poiId, options = {}) => {
-      options.layout = options.layout || layouts.POI;
-      if (options.poi) {
-        // If a POI object is provided before fetching full data,
-        // update the map immediately for UX responsiveness
-        this._updateMapPoi(Poi.deserialize(options.poi), options);
-      }
-      const poi = await ApiPoi.poiApiLoad(poiId);
-      if (!poi) {
-        this.navigateTo('/');
-      } else {
-        this.openPoiPanel(poi, options);
-        if (!options.poi) {
-          this._updateMapPoi(poi, options);
-        }
-      }
+    this.router.addRoute('POI', '/place/(.*)', async (poiId, options) => {
+      this.setPoi(poiId, options || {});
     });
 
     this.router.addRoute('Favorites', '/favs', () => {
@@ -201,6 +187,33 @@ export default class AppPanel {
         p.emptyClickOnMap();
       }
     });
+  }
+
+  async setPoi(poiId, options) {
+    options.layout = options.layout || layouts.POI;
+    if (options.poi) {
+      // If a POI object is provided before fetching full data,
+      // update the map immediately for UX responsiveness
+      this._updateMapPoi(Poi.deserialize(options.poi), options);
+    }
+
+    let poi;
+    if (window.hotLoadPoi && window.hotLoadPoi.id === poiId) {
+      Telemetry.add(Telemetry.POI_RESTORE);
+      poi = new ApiPoi(window.hotLoadPoi);
+      options.centerMap = true;
+    } else {
+      poi = await ApiPoi.poiApiLoad(poiId);
+    }
+
+    if (!poi) {
+      this.navigateTo('/');
+    } else {
+      this.openPoiPanel(poi, options);
+      if (!options.poi) {
+        this._updateMapPoi(poi, options);
+      }
+    }
   }
 
   _openPanel(panelToOpen, options) {

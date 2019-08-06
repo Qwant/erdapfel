@@ -2,7 +2,6 @@ import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
-import HotLoadPoi from '../adapters/poi/hotload_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
@@ -87,17 +86,6 @@ PoiPanel.prototype.close = async function() {
   this.panel.update();
 };
 
-// @TODO: use the router, that's all
-PoiPanel.prototype.restorePoi = async function(id) {
-  Telemetry.add(Telemetry.POI_RESTORE);
-  const hotLoadedPoi = new HotLoadPoi();
-  if (hotLoadedPoi.id === id) {
-    this.poi = hotLoadedPoi;
-    this.poi.stored = await isPoiFavorite(this.poi);
-    // window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored, layout: layouts.POI });
-  }
-};
-
 PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.poi = poi;
   this.card = true;
@@ -129,26 +117,6 @@ PoiPanel.prototype.openShare = function() {
     Telemetry.add('share', 'poi', this.poi.meta.source);
   }
   this.sharePanel.open(this.poi.toAbsoluteUrl());
-};
-
-/* urlState interface implementation */
-
-PoiPanel.prototype.store = function() {
-  // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
-  if (this.poi && this.poi.name && this.active) {
-    return this.poi.toUrl();
-  }
-  return '';
-};
-
-PoiPanel.prototype.restore = async function(urlShard) {
-  if (urlShard) {
-    const idSlugMatch = urlShard.match(/^([^@]+)@?(.*)/);
-    if (idSlugMatch && window.hotLoadPoi) {
-      const id = idSlugMatch[1];
-      await this.restorePoi(id);
-    }
-  }
 };
 
 PoiPanel.prototype.showDetail = function() {
