@@ -83,12 +83,12 @@ $HEADER_SIZE: 40px;
 .poi_panel__close {
   position: absolute;
   right: 11px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 6px;
   cursor: pointer;
   transition: background-color .1s;
   border-radius: 50%;
   font-size: 20px;
+  height: 21px;
 }
 
 .poi_panel__close:hover {
