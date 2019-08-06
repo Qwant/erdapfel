@@ -96,7 +96,8 @@ export default class AppPanel {
       this.openCategory(parseQueryString(placesParams));
     });
 
-    this.router.addRoute('POI', '/place/(.*)', async (poiId, options) => {
+    this.router.addRoute('POI', '/place/(.*)', async (poiUrl, options) => {
+      const poiId = poiUrl.split('@')[0];
       this.setPoi(poiId, options || {});
     });
 

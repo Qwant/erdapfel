@@ -7,8 +7,9 @@ export default class MapPoi extends Poi {
       global_id: id,
       ['class']: className,
       subclass: subClassName,
+      name,
     } = feature.properties;
     const ll = LngLat.convert(feature.geometry.coordinates);
-    super(id, feature.name, null, POI_TYPE, ll, className, subClassName);
+    super(id, name, null, POI_TYPE, ll, className, subClassName);
   }
 }

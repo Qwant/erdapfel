@@ -104,7 +104,7 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
-          window.app.navigateTo(`/place/${mapPoi.id}`, { poi: mapPoi.serialize() });
+          window.app.navigateTo(`/place/${mapPoi.toUrl()}`, { poi: mapPoi.serialize() });
         }
       });
 
