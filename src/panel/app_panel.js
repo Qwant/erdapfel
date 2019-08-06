@@ -122,7 +122,7 @@ export default class AppPanel {
 
   async loadPoi(poi, options) {
     this._updateMapPoi(poi, options);
-    const fullPoi = poi && poi.id && await ApiPoi.poiApiLoad(poi.id);
+    const fullPoi = poi && poi.id && await ApiPoi.poiApiLoad(poi);
     if (fullPoi) {
       this.setPoi(fullPoi, options, false);
       return;
