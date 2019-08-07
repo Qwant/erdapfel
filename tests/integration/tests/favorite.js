@@ -2,8 +2,8 @@
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
-import {initBrowser, wait, clearStore} from '../tools';
-import {toggleFavoritePanel} from '../favorites_tools';
+import { initBrowser, wait, clearStore } from '../tools';
+import { toggleFavoritePanel } from '../favorites_tools';
 
 let browser;
 let page;
@@ -17,12 +17,12 @@ beforeAll(async () => {
 test('toggle favorite panel', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
-  await page.waitForSelector('.side_panel__container', {visible: true});
+  await page.waitForSelector('.side_panel__container', { visible: true });
   expect(await page.evaluate(() => {
     return document.getElementsByClassName('.favorites_container').length;
   })).toEqual(0);
   await toggleFavoritePanel(page);
-  const favPanel = await page.waitForSelector('.favorites_container', {visible: true});
+  const favPanel = await page.waitForSelector('.favorites_container', { visible: true });
   expect(favPanel).toBeTruthy();
 });
 
@@ -30,7 +30,7 @@ test('favorite added is present in favorite panel', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   page.evaluate(() => {
-    fire('store_poi', new Poi(1, 'some poi', '', {lat: 43, lng: 2}, '', '', []));
+    fire('store_poi', new Poi(1, 'some poi', '', { lat: 43, lng: 2 }, '', '', []));
   });
   await toggleFavoritePanel(page);
   const items = await page.waitForSelector('.favorite_panel__items');
@@ -42,7 +42,7 @@ test('restore favorite from localStorage', async () => {
   await page.goto(APP_URL);
   const testTitle = 'demo_fav';
   page.evaluate(testTitle => {
-    fire('store_poi', new Poi(1, testTitle, '', {lat: 43, lng: 2}, '', '', []));
+    fire('store_poi', new Poi(1, testTitle, '', { lat: 43, lng: 2 }, '', '', []));
   }, testTitle);
   await wait(100);
   await page.click('.service_panel__item__fav');
@@ -57,7 +57,7 @@ test('remove favorite using favorite panel', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   await page.evaluate(() => {
-    fire('store_poi', new Poi(1, 'some poi i will remove', '', {lat: 43, lng: 2}, '', '', []));
+    fire('store_poi', new Poi(1, 'some poi i will remove', '', { lat: 43, lng: 2 }, '', '', []));
   });
   await toggleFavoritePanel(page);
   let items = await page.waitForSelector('.favorite_panel__items');
@@ -77,9 +77,9 @@ test('remove favorite using favorite panel', async () => {
 test('center map after a favorite poi click', async () => {
   await page.goto(APP_URL);
   await page.evaluate(() => {
-    window.MAP_MOCK.flyTo({center: {lat: 10, lng: 0}, zoom: 10});
+    window.MAP_MOCK.flyTo({ center: { lat: 10, lng: 0 }, zoom: 10 });
   });
-  const favoriteMockCoordinates = {lat: 43.5, lng: 7.18};
+  const favoriteMockCoordinates = { lat: 43.5, lng: 7.18 };
   await page.evaluate(storeCoordinate => {
     fire(
       'store_poi',
@@ -94,7 +94,7 @@ test('center map after a favorite poi click', async () => {
     return window.MAP_MOCK.getCenter();
   });
 
-  expect(center).toEqual({lng: favoriteMockCoordinates.lng, lat: favoriteMockCoordinates.lat});
+  expect(center).toEqual({ lng: favoriteMockCoordinates.lng, lat: favoriteMockCoordinates.lat });
 });
 
 afterEach(async () => {

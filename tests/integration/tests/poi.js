@@ -5,9 +5,9 @@ const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
 
 import ResponseHandler from '../helpers/response_handler';
-import {initBrowser, getText, wait, clearStore} from '../tools';
-import {getFavorites, toggleFavoritePanel} from '../favorites_tools';
-import {languages} from '../../../config/constants.yml';
+import { initBrowser, getText, wait, clearStore } from '../tools';
+import { getFavorites, toggleFavoritePanel } from '../favorites_tools';
+import { languages } from '../../../config/constants.yml';
 
 let browser;
 let page;
@@ -45,7 +45,7 @@ test('load a poi from url', async () => {
   expect.assertions(2);
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poi_panel__title');
-  const {title, address} = await page.evaluate(() => {
+  const { title, address } = await page.evaluate(() => {
     return {
       title: document.querySelector('.poi_panel__title').innerText,
       address: document.querySelector('.poi_panel__address').innerText,
@@ -62,7 +62,7 @@ test('load a poi from url on mobile', async () => {
   });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poi_panel__title');
-  const {title, address, hours} = await page.evaluate(() => {
+  const { title, address, hours } = await page.evaluate(() => {
     return {
       title: document.querySelector('.poi_panel__content__card .poi_panel__title').innerText,
       address: document.querySelector('.poi_panel__content__card .poi_panel__address').innerText,
@@ -81,7 +81,7 @@ test('load a poi already in my favorite from url', async () => {
   await page.evaluate(() => {
     fire(
       'store_poi',
-      new Poi('osm:way:63178753', 'some poi', '', 'poi', {lat: 43, lng: 2}, '', '', [])
+      new Poi('osm:way:63178753', 'some poi', '', 'poi', { lat: 43, lng: 2 }, '', '', [])
     );
   });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
@@ -105,7 +105,7 @@ test('update url after a favorite poi click', async () => {
   page.evaluate(() => {
     fire(
       'store_poi',
-      new Poi(1, 'some poi i will click', 'one line', 'poi', {lat: 43, lng: 2}, '', '', [])
+      new Poi(1, 'some poi i will click', 'one line', 'poi', { lat: 43, lng: 2 }, '', '', [])
     );
   });
   await page.click('.service_panel__item__fav');
@@ -153,7 +153,7 @@ test('center the map to the poi on a poi click', async () => {
   await page.waitForSelector('.poi_panel__title');
   expect.assertions(1);
   await page.evaluate(() => {
-    window.MAP_MOCK.flyTo({center: {lat: 0, lng: 0}, zoom: 10});
+    window.MAP_MOCK.flyTo({ center: { lat: 0, lng: 0 }, zoom: 10 });
   });
   await wait(300);
   await page.click('.poi_panel__description_container');
@@ -184,7 +184,7 @@ test('display details about the poi on a poi click', async () => {
   });
   expect(infoTitle.trim()).toEqual('Services & informations');
 
-  const {contact, contactUrl, hours, phone, website} = await page.evaluate(() => {
+  const { contact, contactUrl, hours, phone, website } = await page.evaluate(() => {
     return {
       contact: document.querySelector('.poi_panel__info__contact').innerText,
       contactUrl: document.querySelector('.poi_panel__info__contact').href,
@@ -262,7 +262,7 @@ async function selectPoiLevel(page, level) {
       'click',
       `poi-level-${level}`,
       {
-        originalEvent: {clientX: 1000},
+        originalEvent: { clientX: 1000 },
         features: [ poi ],
       },
     );
@@ -353,7 +353,7 @@ async function getTitle(page) {
     if (alternative) {
       alternative = alternative.innerText.trim();
     }
-    return {main, alternative};
+    return { main, alternative };
   });
 }
 

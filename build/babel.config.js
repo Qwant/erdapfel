@@ -41,6 +41,6 @@ module.exports = function(mode) {
     'ignore': [
       'node_modules',
     ],
-    'plugins': plugins,
+    plugins,
   };
 };

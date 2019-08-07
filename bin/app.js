@@ -38,7 +38,7 @@ function App(config) {
 
   /* Define child logger in req */
   app.use((req, res, next) => {
-    req.logger = logger.child({req: req});
+    req.logger = logger.child({ req });
     next();
   });
 
@@ -103,18 +103,18 @@ function App(config) {
 
   const ogMeta = new require('./middlewares/og_meta')(config);
   app.get('/*', ogMeta, (req, res) => {
-    res.render('index', {config: config});
+    res.render('index', { config });
   });
 
   if (config.server.acceptPostedLogs) {
     app.post('/logs',
-      express.json({strict: true, limit: config.server.maxBodySize}),
+      express.json({ strict: true, limit: config.server.maxBodySize }),
       (req, res) => {
         if (Object.keys(req.body).length === 0) {
           res.sendStatus(400);
         } else {
           res.sendStatus(204);
-          req.logger.info({body: req.body}, 'Received client log');
+          req.logger.info({ body: req.body }, 'Received client log');
         }
       });
 
@@ -126,7 +126,7 @@ function App(config) {
 
   app.use((err, req, res, _next) => {
     finalhandler(req, res, {
-      onerror: req.logger.error({err: err}),
+      onerror: req.logger.error({ err }),
     })(err);
   });
 }

@@ -32,7 +32,7 @@ export default class LatLonPoi extends Poi {
       const lng = urlData[LON_POSITION];
 
       if (lat && lng) {
-        const latLng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+        const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
         if (urlData[LABEL_POSITION]) {
           return Promise.resolve(
             new LatLonPoi(latLng, ExtendedString.htmlEncode(urlData[LABEL_POSITION]))
@@ -43,7 +43,7 @@ export default class LatLonPoi extends Poi {
     } else {
       const urlData = urlParam.match(/^(.*?)(@(.*))?$/);
       const idunnId = urlData[1];
-      return IdunnPoi.poiApiLoad({'id': idunnId});
+      return IdunnPoi.poiApiLoad({ 'id': idunnId });
     }
   }
 }

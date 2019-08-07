@@ -19,7 +19,7 @@ export const initBrowser = async function() {
   const headless = process.env.headless !== 'false';
 
 
-  const browser = await puppeteer.launch({args: puppeteerArguments, headless: headless});
+  const browser = await puppeteer.launch({ args: puppeteerArguments, headless });
   const page = await browser.newPage();
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */
@@ -29,7 +29,7 @@ export const initBrowser = async function() {
     /* eslint-disable no-console */
     console.log(`> ${msg.text()}`);
   });
-  return {browser, page};
+  return { browser, page };
 };
 
 export function store(page, soreKey, data) {

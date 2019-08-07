@@ -50,7 +50,7 @@ export default class MasqOnboardingModal {
       return Promise.resolve();
     }
     return new Promise(resolve => {
-      this.eventTarget.addEventListener('closed', resolve, {once: true});
+      this.eventTarget.addEventListener('closed', resolve, { once: true });
     });
   }
 

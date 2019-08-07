@@ -1,13 +1,13 @@
 /**
  * simple Poi helper
  */
-import {version} from 'config/constants.yml';
+import { version } from 'config/constants.yml';
 import ExtendedString from '../../libs/string';
 
 const ZOOM_BY_POI_TYPES = [
-  {type: 'street', zoom: 17},
-  {type: 'house', zoom: 19},
-  {type: 'poi', zoom: 18, panel: true},
+  { type: 'street', zoom: 17 },
+  { type: 'house', zoom: 19 },
+  { type: 'poi', zoom: 18, panel: true },
 ];
 const DEFAULT_ZOOM = 16;
 

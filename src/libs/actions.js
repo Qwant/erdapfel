@@ -44,8 +44,8 @@ class Action {
     window[actionName] = function(method, ctx, options = {}) {
       const actionPayload = {
         id: actions.size,
-        method: method,
-        ctx: ctx,
+        method,
+        ctx,
         args: options,
       };
       const action = new Action(actionPayload.id, actionPayload, actionName);

@@ -45,7 +45,7 @@ export default class AutocompleteHelper {
     return await this.page.evaluate(SUGGEST_SELECTOR => {
       const suggests = Array.from(document.querySelectorAll(SUGGEST_SELECTOR));
       return suggests.map(suggest => {
-        return {label: suggest.innerText, classes: Array.from(suggest.classList)};
+        return { label: suggest.innerText, classes: Array.from(suggest.classList) };
       });
     }, SUGGEST_SELECTOR);
   }

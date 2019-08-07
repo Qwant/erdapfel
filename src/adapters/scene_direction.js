@@ -18,7 +18,7 @@ export default class SceneDirection {
     this.markersSteps = [];
     this.directionPanel = window.app.directionPanel;
 
-    listen('set_route', ({routes, vehicle, origin, destination, move}) => {
+    listen('set_route', ({ routes, vehicle, origin, destination, move }) => {
       this.reset();
       this.routes = routes;
       this.vehicle = vehicle;
@@ -73,7 +73,7 @@ export default class SceneDirection {
       if (isActive) {
         mainRoute = route;
       }
-      this.map.setFeatureState({source: `source_${route.id}`, id: 1}, {isActive});
+      this.map.setFeatureState({ source: `source_${route.id}`, id: 1 }, { isActive });
 
       if (this.vehicle === 'walking') {
         this.map.setLayoutProperty(`route_${route.id}`, 'icon-image',
@@ -144,14 +144,14 @@ export default class SceneDirection {
   refreshDirection(event, type) {
     if (type === 'origin') {
       const originLnglat = this.markerOrigin.getLngLat();
-      const newOrigin = new LatLonPoi({lat: parseFloat(originLnglat.lat),
-        lng: parseFloat(originLnglat.lng)});
+      const newOrigin = new LatLonPoi({ lat: parseFloat(originLnglat.lat),
+        lng: parseFloat(originLnglat.lng) });
       this.directionPanel.selectOrigin(newOrigin);
       this.directionPanel.setInputValue(type, newOrigin.getInputValue());
     } else if (type === 'destination') {
       const destinationLngLat = this.markerDestination.getLngLat();
-      const newDestination = new LatLonPoi({lat: parseFloat(destinationLngLat.lat),
-        lng: parseFloat(destinationLngLat.lng)});
+      const newDestination = new LatLonPoi({ lat: parseFloat(destinationLngLat.lat),
+        lng: parseFloat(destinationLngLat.lng) });
       this.directionPanel.selectDestination(newDestination);
       this.directionPanel.setInputValue(type, newDestination.getInputValue());
     }

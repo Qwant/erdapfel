@@ -1,4 +1,4 @@
-import {initBrowser, store, clearStore} from '../tools';
+import { initBrowser, store, clearStore } from '../tools';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
@@ -12,11 +12,11 @@ beforeAll(async () => {
 });
 
 test('priority order with url & local-storage', async () => {
-  const center = {lng: 11.1, lat: 43.3};
+  const center = { lng: 11.1, lat: 43.3 };
 
   expect.assertions(1);
   await page.goto(APP_URL);
-  await store(page, 'qmaps_v1_last_location', {lng: 19, lat: 47, zoom: 18});
+  await store(page, 'qmaps_v1_last_location', { lng: 19, lat: 47, zoom: 18 });
   await page.goto(`${APP_URL}/#map=2.00/${center.lat}/${center.lng}`);
   await page.reload(); // force reload
 
@@ -27,7 +27,7 @@ test('priority order with url & local-storage', async () => {
 });
 
 test('test local storage map center', async () => {
-  const center = {lng: 11.1, lat: 43.3};
+  const center = { lng: 11.1, lat: 43.3 };
 
   expect.assertions(1);
   await page.goto(APP_URL);

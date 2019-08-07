@@ -14,15 +14,15 @@ function OsmSchedule(scheduleResponse, messages) {
 
 function scheduleStatus(scheduleResponse, timeMessages) {
   if (!scheduleResponse) {
-    return {msg: '', color: '#fff'};
+    return { msg: '', color: '#fff' };
   }
   if (scheduleResponse.status === 'closed') {
-    return {msg: timeMessages.closed.msg, color: timeMessages.closed.color};
+    return { msg: timeMessages.closed.msg, color: timeMessages.closed.color };
   } else if (scheduleResponse.status === 'open') {
-    return {msg: timeMessages.open.msg, color: timeMessages.open.color};
+    return { msg: timeMessages.open.msg, color: timeMessages.open.color };
   }
 
-  return {msg: '', color: '#fff'};
+  return { msg: '', color: '#fff' };
 }
 
 /**

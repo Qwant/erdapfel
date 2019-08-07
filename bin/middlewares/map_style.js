@@ -40,7 +40,7 @@ module.exports = function(config, languages) {
       });
       if (!matchedLanguage) {
         res.status(400);
-        res.send({error: `Unsupported language code : ${langParameter}`});
+        res.send({ error: `Unsupported language code : ${langParameter}` });
         return;
       }
     } else {
@@ -60,8 +60,8 @@ module.exports = function(config, languages) {
       config.mapStyle.fontsUrl,
     );
     const urls = {
-      spritesUrl: spritesUrl,
-      fontsUrl: fontsUrl,
+      spritesUrl,
+      fontsUrl,
     };
     const mapStyle = Object.assign({}, config.mapStyle, urls);
 

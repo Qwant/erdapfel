@@ -42,7 +42,7 @@ export default class PanelResizer {
    * Triggered on mouse down of the panel resizer
    * @param {MouseEvent|TouchEvent} e event
    */
-  holdResizer({event}) {
+  holdResizer({ event }) {
     event.preventDefault();
 
     if (this.isTransitioning || !Device.isMobile()) {
@@ -99,7 +99,7 @@ export default class PanelResizer {
    * Triggered on mouse up of the panel resizer
    * @param {MouseEvent|TouchEvent} event
    */
-  async stopResize({event}) {
+  async stopResize({ event }) {
     event.preventDefault();
     clearTimeout(this.timer);
 

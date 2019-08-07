@@ -29,7 +29,7 @@ export default class DirectionApi {
   static async search(start, end, mode) {
     if (mode === modes.CYCLING) {
       // Fetch routes without ferry in priority
-      const firstSearch = await DirectionApi._search(start, end, mode, {exclude: 'ferry'});
+      const firstSearch = await DirectionApi._search(start, end, mode, { exclude: 'ferry' });
       if (firstSearch && firstSearch.routes && firstSearch.routes.length > 0) {
         return firstSearch;
       }
@@ -37,7 +37,7 @@ export default class DirectionApi {
     return DirectionApi._search(start, end, mode);
   }
 
-  static async _search(start, end, mode, {exclude = ''} = {}) {
+  static async _search(start, end, mode, { exclude = '' } = {}) {
     const apiProfile = modeToProfile[mode];
     let directionsUrl = directionConfig.apiBaseUrl;
     const userLang = window.getLang();
@@ -48,8 +48,8 @@ export default class DirectionApi {
       language = (userLang.fallback || [])[0] || 'en';
     }
     const directionsParams = {
-      language: language,
-      geometries: geometries,
+      language,
+      geometries,
       steps: true,
       alternatives: true,
       overview: OVERVIEW_SETTING,
@@ -70,7 +70,7 @@ export default class DirectionApi {
     directionsUrl = `${directionsUrl}${s_start};${s_end}`;
     let response = null;
     try {
-      response = await Ajax.get(directionsUrl, directionsParams, {timeout});
+      response = await Ajax.get(directionsUrl, directionsParams, { timeout });
     } catch (e) {
       return;
     }

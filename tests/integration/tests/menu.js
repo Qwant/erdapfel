@@ -1,4 +1,4 @@
-import {clearStore, initBrowser, wait} from '../tools';
+import { clearStore, initBrowser, wait } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
@@ -68,7 +68,7 @@ test('one panel open at a time', async () => {
   expect(servicePanelOpen).not.toBeFalsy();
 
   await page.click('.service_panel__item__direction');
-  const servicePanelClose = await page.waitForSelector('.service_panel', {visible: false});
+  const servicePanelClose = await page.waitForSelector('.service_panel', { visible: false });
   expect(servicePanelClose).not.toBeFalsy();
 });
 

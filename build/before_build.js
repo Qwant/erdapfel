@@ -8,7 +8,7 @@ const styleDir = path.join(__dirname, '../node_modules/@qwant/qwant-basic-gl-sty
 
 // Build mapstyle webfont
 webfont({
-  styleDir: styleDir,
+  styleDir,
   webfont: true,
 }).then(() => {
   fs.copy(

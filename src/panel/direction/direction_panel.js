@@ -257,7 +257,7 @@ export default class DirectionPanel {
   setRoutesOnMap(routes, options) {
     fire('set_route', {
       ...options,
-      routes: routes,
+      routes,
       vehicle: this.vehicle,
       origin: this.origin,
       destination: this.destination,

@@ -6,7 +6,7 @@ import FilterPanel from './filter_panel';
 import PoiStore from '../adapters/poi/poi_store';
 import Telemetry from '../libs/telemetry';
 import layouts from './layouts.js';
-import {version} from '../../config/constants.yml';
+import { version } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
 import poiSubClass from '../mapbox/poi_subclass';
@@ -126,7 +126,7 @@ Favorite.prototype.go = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_GO);
   this.active = false;
   this.panel.update();
-  window.app.loadPoi(poi, {isFromFavorite: true, layout: layouts.FAVORITE});
+  window.app.loadPoi(poi, { isFromFavorite: true, layout: layouts.FAVORITE });
 };
 
 Favorite.prototype.add = async function(poi) {
@@ -136,7 +136,7 @@ Favorite.prototype.add = async function(poi) {
   await this.store.add(poi);
 };
 
-Favorite.prototype.del = async function({poi, index}) {
+Favorite.prototype.del = async function({ poi, index }) {
   Telemetry.add(Telemetry.FAVORITE_DELETE);
 
   await this.panel.addClassName(0.3, `#favorite_item_${index}`, 'favorite_item--removed');

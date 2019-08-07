@@ -1,4 +1,4 @@
-import {initBrowser} from '../tools';
+import { initBrowser } from '../tools';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;

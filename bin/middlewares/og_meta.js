@@ -39,13 +39,13 @@ module.exports = function(config) {
 
   function commonMeta(locale, req, res) {
     res.locals.ogMetas = [];
-    res.locals.ogMetas.push({name: 'type', content: 'website'});
-    res.locals.ogMetas.push({name: 'site_name', content: 'Qwant Maps'});
+    res.locals.ogMetas.push({ name: 'type', content: 'website' });
+    res.locals.ogMetas.push({ name: 'site_name', content: 'Qwant Maps' });
     res.locals.ogMetas.push({
       name: 'image',
       content: `https://${req.get('host')}${config.system.baseUrl}statics/images/qwant_logo_og.png`,
     });
-    res.locals.ogMetas.push({name: 'locale', content: locale.locale});
+    res.locals.ogMetas.push({ name: 'locale', content: locale.locale });
     res.locals.ogMetas.push({
       name: 'description',
       content: res.locals._('The map that respects your privacy'),
@@ -55,16 +55,16 @@ module.exports = function(config) {
   function poiMeta(poi, locale, req, res, next) {
     commonMeta(locale, req, res);
     res.locals.poi = poi;
-    res.locals.ogMetas.push({name: 'title', content: poi.name});
-    res.locals.ogMetas.push({name: 'url', content: getUrl(req, poi)});
+    res.locals.ogMetas.push({ name: 'title', content: poi.name });
+    res.locals.ogMetas.push({ name: 'url', content: getUrl(req, poi) });
 
     next();
   }
 
   function homeMeta(locale, req, res, next) {
     commonMeta(locale, req, res);
-    res.locals.ogMetas.push({name: 'title', content: 'Qwant Maps'});
-    res.locals.ogMetas.push({name: 'url', content: getUrl(req)});
+    res.locals.ogMetas.push({ name: 'title', content: 'Qwant Maps' });
+    res.locals.ogMetas.push({ name: 'url', content: getUrl(req) });
 
     next();
   }
@@ -89,7 +89,7 @@ module.exports = function(config) {
           res.redirect(307, config.system.baseUrl);
         }
       }).catch(error => {
-        req.logger.error({err: error});
+        req.logger.error({ err: error });
         homeMeta(locale, req, res, next);
       });
     } else {

@@ -16,7 +16,7 @@ module.exports = (app, config, registry) => {
   });
 
   app.post('/events',
-    express.json({strict: true, limit: config.server.maxBodySize}),
+    express.json({ strict: true, limit: config.server.maxBodySize }),
     [
       body('type')
         .isString()
@@ -34,7 +34,7 @@ module.exports = (app, config, registry) => {
       res.sendStatus(204);
       const eventType = req.body.type;
       counters[eventType].inc();
-      req.logger.info({telemetry: req.body}, 'Received telemetry event');
+      req.logger.info({ telemetry: req.body }, 'Received telemetry event');
     }
   );
 };

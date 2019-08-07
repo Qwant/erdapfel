@@ -2,7 +2,7 @@ const App = require( './../../bin/app');
 const configBuilder = require('@qwant/nconf-builder');
 const nock = require('nock');
 
-const {...poiNoName} = require('../__data__/poi.json');
+const { ...poiNoName } = require('../__data__/poi.json');
 /* default test with matching name & local_name */
 poiNoName.id = 'osm:way:453204';
 nock(/idunn_test\.test/)
@@ -11,7 +11,7 @@ nock(/idunn_test\.test/)
   .reply(200, JSON.stringify(poiNoName));
 
 /* set mismatching local_name */
-const {...poiFullName} = require('../__data__/poi.json');
+const { ...poiFullName } = require('../__data__/poi.json');
 poiFullName.local_name = 'Orsay museum';
 poiFullName.id = 'osm:way:453203';
 nock(/idunn_test\.test/)
@@ -32,7 +32,7 @@ nock(/idunn_test\.test/)
 nock(/idunn_test\.test/)
   .persist(true)
   .get(/osm:way:2403/)
-  .reply(404, {status: 'not found'});
+  .reply(404, { status: 'not found' });
 
 const config = configBuilder.get();
 

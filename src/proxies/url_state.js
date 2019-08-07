@@ -1,4 +1,4 @@
-import UrlShard, {paramTypes} from './url_shard';
+import UrlShard, { paramTypes } from './url_shard';
 import UrlShards from './url_shards';
 
 function UrlState() {}

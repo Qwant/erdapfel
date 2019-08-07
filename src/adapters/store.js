@@ -1,6 +1,6 @@
 import nconf from '@qwant/nconf-getter';
 import Error from '../adapters/error';
-import {version} from '../../config/constants.yml';
+import { version } from '../../config/constants.yml';
 import ExtendedString from '../libs/string';
 import LocalStore from '../libs/local_store';
 import MasqStore from '../libs/masq';

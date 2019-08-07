@@ -1,4 +1,4 @@
-import {Popup} from 'mapbox-gl--ENV';
+import { Popup } from 'mapbox-gl--ENV';
 import OsmSchedule from '../../src/adapters/osm_schedule';
 import IconManager from './icon_manager';
 import ExtendedString from '../libs/string';
@@ -50,7 +50,7 @@ PoiPopup.prototype.addListener = function(layer) {
 };
 
 PoiPopup.prototype.createOSMPopup = async function(layerPoi, event) {
-  const poi = await ApiPoi.poiApiLoad({'id': layerPoi.properties.global_id}, {simple: true});
+  const poi = await ApiPoi.poiApiLoad({ 'id': layerPoi.properties.global_id }, { simple: true });
   if (poi) {
     this.showPopup(poi, event);
   }
@@ -67,7 +67,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
     this.popupHandle.remove();
     this.popupHandle = null;
   }
-  const {color} = IconManager.get(poi);
+  const { color } = IconManager.get(poi);
   const category = poiSubClass(poi.subClassName);
   const reviews = poi.blocksByType.grades;
   const hours = poi.blocksByType.opening_hours;
@@ -97,7 +97,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
 
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.getLngLat())
-    .setHTML(popupTemplate.call({poi, color, opening, address, reviews, category, htmlEncode}))
+    .setHTML(popupTemplate.call({ poi, color, opening, address, reviews, category, htmlEncode }))
     .addTo(this.map);
 };
 

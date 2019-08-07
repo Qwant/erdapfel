@@ -122,9 +122,9 @@ const mainJsChunkConfig = buildMode => {
             loader: 'babel-loader',
             options: babelConf(buildMode),
           },
-          {loader: '@qwant/config-sanitizer-loader'},
-          {loader: 'json-loader'},
-          {loader: 'yaml-loader'},
+          { loader: '@qwant/config-sanitizer-loader' },
+          { loader: 'json-loader' },
+          { loader: 'yaml-loader' },
         ],
       }, {
         test: /style\.json$/,

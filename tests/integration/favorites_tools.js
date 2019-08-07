@@ -1,4 +1,4 @@
-import {wait} from './tools';
+import { wait } from './tools';
 
 /**
  * Prerequisite : Favorite Panel Must be open

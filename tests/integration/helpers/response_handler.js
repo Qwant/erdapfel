@@ -16,7 +16,7 @@ export default class ResponseHandler {
       preparedResponse => preparedResponse.query.toString() === query.toString()
     );
     if (!alreadySetResponse) {
-      this.preparedResponses.push({response, query, options});
+      this.preparedResponses.push({ response, query, options });
     }
   }
 
@@ -41,9 +41,9 @@ export default class ResponseHandler {
           }
         }
         await interceptedRequest.respond({
-          status: status,
+          status,
           body: JSON.stringify(preparedResponse.response),
-          headers: interceptedRequest.headers}
+          headers: interceptedRequest.headers }
         );
         return;
       }
