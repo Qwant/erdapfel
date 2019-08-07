@@ -204,7 +204,7 @@ export default class AppPanel {
       poi = new ApiPoi(window.hotLoadPoi);
       options.centerMap = true;
     } else {
-      poi = await ApiPoi.poiApiLoad(poiId);
+      poi = await ApiPoi.poiApiLoad({ id: poiId });
     }
 
     if (!poi) {
