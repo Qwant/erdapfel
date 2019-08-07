@@ -86,8 +86,9 @@ export default class Poi {
   }
 
   serialize() {
-    // eslint-disable-next-line
-    const { event, ...otherFields } = this;
+    // In some cases the object has an `event` prop which is a low-level browser object
+    // that can't be serialized in the history state => just ignore it
+    const { event: _event, ...otherFields } = this;
     return otherFields;
   }
 }
