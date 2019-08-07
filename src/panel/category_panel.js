@@ -183,6 +183,7 @@ export default class CategoryPanel {
       isFromCategory: true,
       sourceCategory: this.categoryName,
       layout: layouts.LIST,
+      centerMap: true,
     });
     this.highlightPoiMarker(poi);
   }

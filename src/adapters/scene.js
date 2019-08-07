@@ -2,12 +2,7 @@ import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
-<<<<<<< HEAD
-import UrlState from '../proxies/url_state';
 import { map, layout } from '../../config/constants.yml';
-=======
-import {map, layout} from '../../config/constants.yml';
->>>>>>> Implement map hash system without url shards
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
 import LocalStore from '../libs/local_store';
@@ -156,12 +151,11 @@ Scene.prototype.initMapBox = function() {
     this.fitMap(item, padding);
   });
 
-  listen('map_reset', () => {
-    this.mb.jumpTo({ center: [map.center.lng, map.center.lat], zoom: map.zoom });
-  });
-
   listen('map_mark_poi', (poi, options) => {
-    this.addMarker(poi, options);
+    this.ensureMarkerIsVisible(poi, options);
+    if (!options.isFromCategory) {
+      this.addMarker(poi, options);
+    }
   });
 
   listen('clean_marker', () => {
@@ -321,8 +315,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
   });
 };
 
-Scene.prototype.addMarker = function(poi, options) {
-  this.ensureMarkerIsVisible(poi, options);
+Scene.prototype.addMarker = function(poi) {
   const { className, subClassName, type } = poi;
 
   const element = createIcon({ className, subClassName, type });
@@ -368,20 +361,12 @@ Scene.prototype.restoreFromHash = function(hash, options = {}) {
     return;
   }
   const { zoom, lat, lng } = zll;
-  this.mb.jumpTo({ zoom, center: [ lng, lat ], ...options });
+  this.mb.flyTo({ zoom, center: [ lng, lat ], ...options });
 };
 
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
-<<<<<<< HEAD
-    const mapShardValue = UrlState.getShardValue('map');
-    if (mapShardValue) {
-      this.restore(mapShardValue);
-      this.mb.jumpTo({ center: this.urlCenter, zoom: this.urlZoom });
-    }
-=======
     this.restoreFromHash(window.location.hash);
->>>>>>> Implement map hash system without url shards
   };
 };
 

@@ -93,7 +93,9 @@ export default class AppPanel {
     this.router = new Router();
 
     this.router.addRoute('Category', '/places/(.*)', placesParams => {
-      this.openCategory(parseQueryString(placesParams));
+      window.execOnMapLoaded(() => {
+        this.openCategory(parseQueryString(placesParams));
+      });
     });
 
     this.router.addRoute('POI', '/place/(.*)', async (poiUrl, options) => {
@@ -165,9 +167,7 @@ export default class AppPanel {
 
   _updateMapPoi(poi, options = {}) {
     window.execOnMapLoaded(function() {
-      if (!options.isFromCategory) {
-        fire('map_mark_poi', poi, options);
-      }
+      fire('map_mark_poi', poi, options);
     });
   }
 
@@ -175,7 +175,7 @@ export default class AppPanel {
     this.panels.forEach(panel => {
       if (panel === this.poiPanel) {
         panel.setPoi(poi, options);
-      } else {
+      } else if (!options.isFromCategory) {
         panel.close();
       }
     });
