@@ -83,7 +83,8 @@
         ],
         "prefer-const": ["error"],
         "no-var": "error",
-        "eqeqeq": "error"
+        "eqeqeq": "error",
+        "object-curly-spacing": ["error", "always"]
     },
     "overrides": [
         {
