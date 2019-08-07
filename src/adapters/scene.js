@@ -12,6 +12,7 @@ import SceneCategory from './scene_category';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
+import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
@@ -307,10 +308,13 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
       return;
     }
   }
+  const offset = Device.isMobile()
+    ? [0, 0]
+    : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0];
   this.mb.flyTo({
     center: poi.getLngLat(),
     zoom: poi.zoom,
-    offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
+    offset,
     maxDuration: 1200,
   });
 };
