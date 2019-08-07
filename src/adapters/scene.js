@@ -11,7 +11,6 @@ import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
-import DirectionPoi from './poi/specials/direction_poi';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
@@ -354,10 +353,6 @@ Scene.prototype.isWindowedPoi = function(poi) {
   const windowBounds = this.mb.getBounds();
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray();
-  if (poi instanceof DirectionPoi) {
-    windowBounds.extend(poi.bbox.getCenter());
-    return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
-  }
   const poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat);
   windowBounds.extend(poiCenter);
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
