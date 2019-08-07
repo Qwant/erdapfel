@@ -111,11 +111,16 @@ export default class AppPanel {
       this.openDirection(parseQueryString(routeParams));
     });
 
-    this.router.addRoute('Direct search query', '/?q=(.*)', query => {
-      SearchInput.executeSearch(query);
+    this.router.addRoute('Direct search query', '/([?].*)', queryString => {
+      const params = parseQueryString(queryString);
+      if (params.q) {
+        SearchInput.executeSearch(params.q);
+      } else {
+        this.navigateTo('/');
+      }
     });
 
-    // Default, fallback matching route
+    // Default matching route
     this.router.addRoute('Services', '(?:/?)', () => {
       this.resetLayout();
     });

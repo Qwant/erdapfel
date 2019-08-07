@@ -1,7 +1,10 @@
 
 export function parseMapHash(hash) {
-  const zoomLatLng = hash
-    .replace(/^#/, '')
+  const mapHash = hash.replace(/^#/, '');
+  if (!mapHash.startsWith('map=')) {
+    return;
+  }
+  const zoomLatLng = mapHash
     .replace(/^map=/, '')
     .split('/')
     .map(value => parseFloat(value));
