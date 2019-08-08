@@ -16,8 +16,8 @@
     "msgmerge": "node local_modules/merge-po/index",
     "prepare": "npm run build-map-fonts && node build/before_build.js",
     "build-map-fonts": "node build/build_map_fonts.js",
-    "lint": "eslint src bin public/javascript build tests",
-    "lint-fix": "eslint --fix src bin public/javascript build tests"
+    "lint": "eslint src bin build tests",
+    "lint-fix": "eslint --fix src bin build tests"
   },
   "repository": {
     "type": "git",
