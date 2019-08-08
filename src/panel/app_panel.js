@@ -195,6 +195,8 @@ export default class AppPanel {
   }
 
   async setPoi(poiId, options) {
+    this.activePoiId = poiId;
+
     options.layout = options.layout || layouts.POI;
     if (options.poi) {
       // If a POI object is provided before fetching full data,
@@ -227,6 +229,7 @@ export default class AppPanel {
       DirectionPanel will minify the main search input (unused for Directions)
     */
     this.unminify();
+    this.activePoiId = null;
     this.panels.forEach(panel => {
       if (panel === panelToOpen) {
         panel.open(options);
