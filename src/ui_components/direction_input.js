@@ -1,5 +1,5 @@
 import Suggest from '../adapters/suggest';
-import NavigatorGeolocalisationPoi, {navigatorGeolocationStatus} from
+import NavigatorGeolocalisationPoi, { navigatorGeolocationStatus } from
   '../adapters/poi/specials/navigator_geolocalisation_poi';
 import Error from '../adapters/error';
 

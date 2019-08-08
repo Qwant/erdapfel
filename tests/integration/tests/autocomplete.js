@@ -1,5 +1,5 @@
 /* globals Poi */
-import {clearStore, initBrowser, wait} from '../tools';
+import { clearStore, initBrowser, wait } from '../tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
@@ -107,7 +107,7 @@ test('keyboard navigation', async () => {
   /* select suggestion via Enter, should close the container */
   await page.keyboard.press('Enter');
   await wait(300);
-  await page.waitForSelector('div.autocomplete_suggestions', {hidden: true, timeout: 1000});
+  await page.waitForSelector('div.autocomplete_suggestions', { hidden: true, timeout: 1000 });
 
   /* type another char */
   await autocompleteHelper.typeAndWait('a');
@@ -152,7 +152,7 @@ test('move to on click', async () => {
   });
   expect(map_position_before).not.toEqual(map_position_after);
   const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates;
-  expect(map_position_after).toEqual({lat: expectedLat, lng: expectedLng});
+  expect(map_position_after).toEqual({ lat: expectedLat, lng: expectedLng });
 });
 
 test('bbox & center', async () => {
@@ -163,8 +163,8 @@ test('bbox & center', async () => {
   await wait(100);
   await page.waitForSelector('.autocomplete_suggestion');
   await page.click('.autocomplete_suggestion:nth-child(1)');
-  const {center, zoom} = await page.evaluate(() => {
-    return {center: window.MAP_MOCK.getCenter(), zoom: window.MAP_MOCK.getZoom()};
+  const { center, zoom } = await page.evaluate(() => {
+    return { center: window.MAP_MOCK.getCenter(), zoom: window.MAP_MOCK.getZoom() };
   });
   expect(center).toEqual({ lat: 5, lng: 30 });
   expect(zoom).toEqual(18);
@@ -185,7 +185,7 @@ test('favorite search', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
 
   await page.evaluate(() => {
-    fire('store_poi', new Poi(1, 'hello', 'second line', 'poi', {lat: 43, lng: 2}, '', '', []));
+    fire('store_poi', new Poi(1, 'hello', 'second line', 'poi', { lat: 43, lng: 2 }, '', '', []));
   });
 
   await page.keyboard.type('Hello');
@@ -209,7 +209,7 @@ test('submit key', async () => {
   });
 
   let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates;
-  expect(center).toEqual({lat: firstFeatureCenter[1], lng: firstFeatureCenter[0]});
+  expect(center).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
   await page.click('#clear_button');
 
   /* force specific query */
@@ -224,7 +224,7 @@ test('submit key', async () => {
   );
 
   firstFeatureCenter = mockAutocompleteAllTypes.features[0].geometry.coordinates;
-  expect(center).toEqual({lat: firstFeatureCenter[1], lng: firstFeatureCenter[0]});
+  expect(center).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
 });
 
 test('check template', async () => {

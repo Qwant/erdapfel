@@ -12,7 +12,7 @@ import nconf from '@qwant/nconf-getter';
 const SUGGEST_MAX_ITEMS = nconf.get().services.geocoder.max_items;
 
 export default class Suggest {
-  constructor({tagSelector, onSelect, prefixes = [], withCategories = false, menuClass = ''}) {
+  constructor({ tagSelector, onSelect, prefixes = [], withCategories = false, menuClass = '' }) {
     this.searchInputDomHandler = document.querySelector(tagSelector);
     this.poi = null;
     this.bragiPromise = null;
@@ -28,7 +28,7 @@ export default class Suggest {
       minChars: 0,
       cachePrefix: false,
       delay: 100,
-      menuClass: menuClass,
+      menuClass,
       width: '650px',
       updateData: items => {
         this.suggestList = items;
@@ -205,8 +205,8 @@ export default class Suggest {
 
   /* select sub template */
   renderItem(poi) {
-    const {id, name, className, subClassName, type, alternativeName} = poi;
-    const icon = IconManager.get({className: className, subClassName: subClassName, type: type});
+    const { id, name, className, subClassName, type, alternativeName } = poi;
+    const icon = IconManager.get({ className, subClassName, type });
     const klass = `autocomplete-icon ${`icon icon-${icon.iconClass}`}`;
     const iconDom = `<div style="color:${icon ? icon.color : ''}" class="${klass}"></div>`;
 

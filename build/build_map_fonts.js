@@ -7,7 +7,7 @@ const path = require('path');
 
 const sync = function(cmd, args, cwd) {
   return child_process.spawnSync(cmd, args, {
-    cwd: cwd,
+    cwd,
     stdio: [process.stdin, process.stdout, process.stderr],
   });
 };
@@ -21,7 +21,7 @@ const generatedVersionFile = path.join(fontsPackagePath, '_output', '.generated'
 const generateFonts = function() {
   sync('node', ['generate.js'], fontsPackagePath);
   if (fontsVersion) {
-    fs.writeFileSync(generatedVersionFile, JSON.stringify({version: fontsVersion}));
+    fs.writeFileSync(generatedVersionFile, JSON.stringify({ version: fontsVersion }));
     console.log('Map fonts generated. Version: ', fontsVersion);
   }
 };

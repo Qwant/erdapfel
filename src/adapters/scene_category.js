@@ -20,8 +20,8 @@ export default class SceneCategory {
     this.setOsmPoisVisibility(false);
     if (pois) {
       pois.forEach(poi => {
-        const {id, name, className, subClassName, type, latLon} = poi;
-        const marker = createIcon({className, subClassName, type}, name, true);
+        const { id, name, className, subClassName, type, latLon } = poi;
+        const marker = createIcon({ className, subClassName, type }, name, true);
         poi.marker_id = `marker_${id}`;
         marker.onclick = function(e) {
           // The event should not be propagated to the map itself
@@ -36,7 +36,7 @@ export default class SceneCategory {
         };
         marker.id = poi.marker_id;
         this.markers.push(
-          new Marker({element: marker})
+          new Marker({ element: marker })
             .setLngLat(latLon)
             .addTo(this.map)
         );

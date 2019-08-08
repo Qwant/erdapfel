@@ -34,7 +34,7 @@ export default class MobileCompassControl {
 
   _geolocate() {
     navigator.geolocation.getCurrentPosition(position => {
-      this._map.flyTo({center: [position.coords.longitude, position.coords.latitude]});
+      this._map.flyTo({ center: [position.coords.longitude, position.coords.latitude] });
     });
   }
 
@@ -54,7 +54,7 @@ export default class MobileCompassControl {
   }
 
   _resetNorthAndTilt() {
-    this._map.easeTo({pitch: 0, bearing: 0});
+    this._map.easeTo({ pitch: 0, bearing: 0 });
   }
 
   _pitchAndRotateCompassArrow() {

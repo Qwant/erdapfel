@@ -1,9 +1,9 @@
-import {Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds} from 'mapbox-gl--ENV';
+import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--ENV';
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
 import UrlState from '../proxies/url_state';
-import {map, layout} from '../../config/constants.yml';
+import { map, layout } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
 import HotLoadPoi from './poi/hotload_poi';
@@ -167,7 +167,7 @@ Scene.prototype.initMapBox = function() {
   });
 
   listen('map_reset', () => {
-    this.mb.jumpTo({center: [map.center.lng, map.center.lat], zoom: map.zoom});
+    this.mb.jumpTo({ center: [map.center.lng, map.center.lat], zoom: map.zoom });
   });
 
   listen('map_mark_poi', poi => {
@@ -194,7 +194,12 @@ Scene.prototype.saveLocation = function() {
 Scene.prototype.restoreLocation = function() {
   if (this.savedLocation) {
     this.restore(this.savedLocation);
-    const flyOptions = {center: this.urlCenter, zoom: this.urlZoom, animate: true, screenSpeed: 2};
+    const flyOptions = {
+      center: this.urlCenter,
+      zoom: this.urlZoom,
+      animate: true,
+      screenSpeed: 2,
+    };
     this.mb.flyTo(flyOptions);
   }
 };
@@ -254,8 +259,8 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
 
   if (
     this.isPointInBounds(bbox._ne, viewport) // ne
-      || this.isPointInBounds({lng: bbox._sw.lng, lat: bbox._ne.lat}, viewport) // nw
-      || this.isPointInBounds({lng: bbox._ne.lng, lat: bbox._sw.lat}, viewport) // se
+      || this.isPointInBounds({ lng: bbox._sw.lng, lat: bbox._ne.lat }, viewport) // nw
+      || this.isPointInBounds({ lng: bbox._ne.lng, lat: bbox._sw.lat }, viewport) // se
       || this.isPointInBounds(bbox._sw, viewport) // sw
   ) {
     return true;
@@ -264,7 +269,7 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
   return false;
 };
 
-Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, bottom: 0}) {
+Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, bottom: 0 }) {
   // normalise bbox
   if (bbox instanceof Array) {
     bbox = new LngLatBounds(bbox);
@@ -273,7 +278,7 @@ Scene.prototype.fitBbox = function(bbox, padding = {left: 0, top: 0, right: 0, b
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in
   // the extended viewport.
   const animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox);
-  this.mb.fitBounds(bbox, {padding: padding, animate: animate});
+  this.mb.fitBounds(bbox, { padding, animate });
 };
 
 
@@ -285,7 +290,7 @@ Scene.prototype.fitMap = function(item, padding) {
     if (item.bbox) { // poi Bbox
       this.fitBbox(item.bbox, padding);
     } else { // poi center
-      const flyOptions = {center: item.getLngLat(), screenSpeed: 1.5, animate: false};
+      const flyOptions = { center: item.getLngLat(), screenSpeed: 1.5, animate: false };
       if (item.zoom) {
         flyOptions.zoom = item.zoom;
       }
@@ -364,7 +369,7 @@ Scene.prototype.onHashChange = function() {
     const mapShardValue = UrlState.getShardValue('map');
     if (mapShardValue) {
       this.restore(mapShardValue);
-      this.mb.jumpTo({center: this.urlCenter, zoom: this.urlZoom});
+      this.mb.jumpTo({ center: this.urlCenter, zoom: this.urlZoom });
     }
   };
 };

@@ -1,5 +1,5 @@
 import Error from '../adapters/error';
-import {version} from '../../config/constants.yml';
+import { version } from '../../config/constants.yml';
 import Poi from '../adapters/poi/poi';
 
 export default class LocalStore {

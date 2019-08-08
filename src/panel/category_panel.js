@@ -9,7 +9,7 @@ import PanelResizer from '../libs/panel_resizer';
 import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
-import {sources} from '../../config/constants.yml';
+import { sources } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 
 const categoryConfig = nconf.get().category;
@@ -74,7 +74,7 @@ export default class CategoryPanel {
       this.query = query;
       window.execOnMapLoaded(() => {
         if (bbox) {
-          window.map.mb.fitBounds(bbox, {animate: false});
+          window.map.mb.fitBounds(bbox, { animate: false });
         }
         this.open();
       });
@@ -88,7 +88,7 @@ export default class CategoryPanel {
       .map(cardinal => cardinal.toFixed(7))
       .join(',');
 
-    const {places, source} = await IdunnPoi.poiCategoryLoad(
+    const { places, source } = await IdunnPoi.poiCategoryLoad(
       urlBBox,
       MAX_PLACES,
       this.categoryName,
@@ -113,7 +113,7 @@ export default class CategoryPanel {
   async open(options = {}) {
     if (options.category) {
       const { name, label } = options.category;
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, {category: name});
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category: name });
       this.categoryName = name;
       this.query = '';
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
@@ -135,11 +135,11 @@ export default class CategoryPanel {
 
     // Zoom < 5: focus on Paris
     if (currentZoom < 5) {
-      window.map.mb.flyTo({center: [2.35, 48.85], zoom: 12});
+      window.map.mb.flyTo({ center: [2.35, 48.85], zoom: 12 });
     } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
-      window.map.mb.flyTo({zoom: 12});
+      window.map.mb.flyTo({ zoom: 12 });
     } else if (currentZoom > 16) { // Zoom > 16: dezoom to zoom 16
-      window.map.mb.flyTo({zoom: 16});
+      window.map.mb.flyTo({ zoom: 16 });
     } else {
       this.search();
       await this.panel.update();
@@ -206,7 +206,7 @@ export default class CategoryPanel {
       );
     }
     this.close(false);
-    window.app.loadPoi(poi, {isFromCategory: true, list: this, layout: layouts.LIST});
+    window.app.loadPoi(poi, { isFromCategory: true, list: this, layout: layouts.LIST });
     this.highlightPoiMarker(poi);
   }
 

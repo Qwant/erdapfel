@@ -1,9 +1,9 @@
-import {paramTypes} from './url_shard';
+import { paramTypes } from './url_shard';
 
 function UrlShards() {}
 
 if (!window.__url_state) {
-  window.__url_state = {shards: []};
+  window.__url_state = { shards: [] };
 }
 
 UrlShards.add = function(shard) {
@@ -74,7 +74,7 @@ UrlShards.parseUrl = function() {
   this.getShards().forEach(shard => {
     const matchingShard = getParams.get(shard.prefix);
     if (matchingShard) {
-      shards.push({prefix: shard.prefix, value: matchingShard});
+      shards.push({ prefix: shard.prefix, value: matchingShard });
     }
   });
 
@@ -86,7 +86,7 @@ UrlShards.parseUrl = function() {
     const hashRawShards = rawHash.split('&');
     for (let i = 0; i < hashRawShards.length; i += 1) {
       const hashShardsKV = hashRawShards[i].split('=');
-      shards.push({prefix: hashShardsKV[0], value: hashShardsKV[1]});
+      shards.push({ prefix: hashShardsKV[0], value: hashShardsKV[1] });
     }
   }
   return shards;

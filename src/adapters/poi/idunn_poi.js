@@ -2,7 +2,7 @@ import Poi from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
-import {sources} from 'config/constants.yml';
+import { sources } from 'config/constants.yml';
 import Telemetry from '../../libs/telemetry';
 
 const serviceConfig = nconf.get().services;
@@ -39,7 +39,7 @@ export default class IdunnPoi extends Poi {
 
     this.blocksByType = {};
     if (this.blocks) {
-      this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({[b.type]: b})));
+      this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({ [b.type]: b })));
       const imagesBlock = this.blocksByType.images;
       if (imagesBlock && imagesBlock.images.length > 0) {
         this.topImageUrl = imagesBlock.images[0].url;
@@ -59,7 +59,7 @@ export default class IdunnPoi extends Poi {
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
   static async poiCategoryLoad(bbox, size, category, query) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
-    const requestParams = {bbox, size};
+    const requestParams = { bbox, size };
     if (category) {
       requestParams['category'] = category;
     }
@@ -91,7 +91,7 @@ export default class IdunnPoi extends Poi {
     const url = `${serviceConfig.idunn.url}/v1/places/${obj.id}`;
     let requestParams = {};
     if (options.simple) {
-      requestParams = {verbosity: 'short'};
+      requestParams = { verbosity: 'short' };
     }
     try {
       const headers = {};
@@ -116,7 +116,7 @@ export default class IdunnPoi extends Poi {
   static getAddress(rawPoi) {
     switch (rawPoi.type) {
     case 'admin':
-      return {label: rawPoi.address.admin.label};
+      return { label: rawPoi.address.admin.label };
     case 'address':
     case 'street': {
       const postcode = (rawPoi.address.postcode || '').split(';', 1)[0];
@@ -124,7 +124,7 @@ export default class IdunnPoi extends Poi {
       const country = rawPoi.address.admins.find(a => a.class_name === 'country') || {};
       const label = [postcode, city.name, country.name]
         .filter(x => x).join(', ');
-      return {label};
+      return { label };
     }
     default:
       return rawPoi.address;
@@ -138,7 +138,7 @@ export default class IdunnPoi extends Poi {
         Telemetry.buildInteractionData({
           id: this.id,
           source: this.meta.source,
-          template: template,
+          template,
           zone: template === 'multiple' ? 'list' : 'detail',
           element: 'reviews',
         })

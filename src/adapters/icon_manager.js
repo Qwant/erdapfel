@@ -1,7 +1,7 @@
 import styleIcons from '@qwant/qwant-basic-gl-style/icons.yml';
 
 export default class IconManager {
-  static get({className, subClassName, type}) {
+  static get({ className, subClassName, type }) {
     const nameToClass = iconName => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
 
     if (type === 'poi' || type === 'category') {
@@ -24,7 +24,7 @@ export default class IconManager {
         const iconName = icon.iconName;
         const color = icon.color;
         const iconClass = nameToClass(iconName);
-        return {iconClass: iconClass, color: color};
+        return { iconClass, color };
       }
 
       return {

@@ -98,7 +98,7 @@ export default class SearchInput {
     if (selectedItem instanceof Poi) {
       window.app.loadPoi(selectedItem, { layout: layouts.POI });
     } else if (selectedItem instanceof Category) {
-      window.app.openCategory({category: selectedItem});
+      window.app.openCategory({ category: selectedItem });
     }
   }
 }

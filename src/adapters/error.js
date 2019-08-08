@@ -27,7 +27,7 @@ export default class Error {
   }
 
   serialise() {
-    return {...this, exception: this.exception.toString()};
+    return { ...this, exception: this.exception.toString() };
   }
 
   static sendOnce(file, method, message, exception) {

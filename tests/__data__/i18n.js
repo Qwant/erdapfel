@@ -1,7 +1,7 @@
 module.exports = {
   i18nData: {
-    message: {'fr test': 'en test'},
-    getPlural: function(n) {
+    message: { 'fr test': 'en test' },
+    getPlural(n) {
       return n > 1;
     },
   },

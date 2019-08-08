@@ -36,7 +36,7 @@ export default class Telemetry {
       Error.send('telemetry', 'send', 'unknown event received', {});
       return;
     }
-    const data = {type: event};
+    const data = { type: event };
     if (typeof extra_data === 'object' && extra_data !== null) {
       Object.keys(extra_data).forEach(key => {
         data[key] = extra_data[key];
@@ -46,15 +46,15 @@ export default class Telemetry {
     return Ajax.post(telemetryUrl, data);
   }
 
-  static buildInteractionData({source, template, id, zone, element, category}) {
+  static buildInteractionData({ source, template, id, zone, element, category }) {
     const data = {
       'event': 'click',
       'component': 'local',
       'category': category || 'unknown',
       'type': source,
-      'template': template,
-      'zone': zone,
-      'element': element,
+      template,
+      zone,
+      element,
       'item': id.startsWith('pj:') ? id.slice(3) : id,
     };
     return {

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import {initBrowser, wait} from '../tools';
+import { initBrowser, wait } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
@@ -31,7 +31,7 @@ test('check "My position" label', async () => {
 
   await page.focus('#itinerary_input_origin');
 
-  const yourPositionItem = await page.waitForSelector('.itinerary_suggest_your_position', {visible: true});
+  const yourPositionItem = await page.waitForSelector('.itinerary_suggest_your_position', { visible: true });
   expect(yourPositionItem).not.toBeNull();
 });
 
@@ -43,10 +43,10 @@ test('switch start end', async () => {
   await page.type('#itinerary_input_destination', 'end');
   await page.click('.itinerary_invert_origin_destination');
   const inputValues = await page.evaluate(() => {
-    return {startInput: document.querySelector('#itinerary_input_origin').value, endInput: document.querySelector('#itinerary_input_destination').value};
+    return { startInput: document.querySelector('#itinerary_input_origin').value, endInput: document.querySelector('#itinerary_input_destination').value };
   });
 
-  expect(inputValues).toEqual({startInput: 'end', endInput: 'start'});
+  expect(inputValues).toEqual({ startInput: 'end', endInput: 'start' });
 });
 
 test('simple search', async () => {
@@ -164,7 +164,7 @@ test('select itinerary leg', async () => {
     return window.MAP_MOCK.featureState;
   });
 
-  expect(featureState).toEqual({source: 'source_0', id: 1});
+  expect(featureState).toEqual({ source: 'source_0', id: 1 });
 });
 
 test('select itinerary step', async () => {
@@ -181,7 +181,7 @@ test('select itinerary step', async () => {
     return window.MAP_MOCK.getCenter();
   });
 
-  expect(center).toEqual({'lat': 48.823566, 'lng': 2.290454});
+  expect(center).toEqual({ 'lat': 48.823566, 'lng': 2.290454 });
 });
 
 
@@ -205,14 +205,14 @@ test('show itinerary roadmap on mobile', async () => {
   */
   await page.evaluate('window.app.resetLayout()');
   // Itinerary container should be disabled.
-  await page.waitForSelector('#itinerary_container', { hidden: true, timeout: 1000});
+  await page.waitForSelector('#itinerary_container', { hidden: true, timeout: 1000 });
 });
 
 
 test('api error handling', async () => {
   expect.assertions(1);
   /* prepare "error" response */
-  responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, {status: 422});
+  responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, { status: 422 });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`);
   const errorMessageHandler = await page.waitForSelector('.itinerary_no-result');
   expect(errorMessageHandler).not.toBeNull();

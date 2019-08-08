@@ -29,7 +29,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
       navigator.geolocation.getCurrentPosition(position => {
-        this.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
+        this.setPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
         resolve();
       }, error => {
         if (error.code === 1) {

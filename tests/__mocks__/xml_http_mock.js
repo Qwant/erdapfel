@@ -1,6 +1,6 @@
 const xhrMockClass = () => ({
   open: jest.fn(),
-  send: function() {
+  send() {
     this.response = '{}';
     this.onload();
   },
