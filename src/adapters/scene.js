@@ -178,10 +178,10 @@ Scene.prototype.saveLocation = function() {
 
 Scene.prototype.restoreLocation = function() {
   if (this.savedLocation) {
-    this.restore(this.savedLocation);
+    const { zoom, lat, lng } = parseMapHash(this.savedLocation);
     const flyOptions = {
-      center: this.urlCenter,
-      zoom: this.urlZoom,
+      center: [ lng, lat ],
+      zoom,
       animate: true,
       screenSpeed: 2,
     };
