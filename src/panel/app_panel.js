@@ -131,7 +131,6 @@ export default class AppPanel {
 
     // Route the initial URL
     this.router.routeUrl(window.location.href);
-    // @TODO: manage async map initial view
   }
 
   navigateTo(url, state = {}) {
