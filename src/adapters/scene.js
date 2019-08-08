@@ -370,7 +370,7 @@ Scene.prototype.restoreFromHash = function(hash, options = {}) {
 
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
-    this.restoreFromHash(window.location.hash);
+    this.restoreFromHash(window.location.hash, { animate: false });
   };
 };
 
