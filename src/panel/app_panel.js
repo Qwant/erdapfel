@@ -21,7 +21,7 @@ import Router from 'src/proxies/app_router';
 import CategoryService from 'src/adapters/category_service';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
-import { parseMapHash, parseQueryString, joinPath } from 'src/libs/url_utils';
+import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -126,11 +126,11 @@ export default class AppPanel {
     });
 
     window.onpopstate = ({ state }) => {
-      this.router.routeUrl(window.location.href, state);
+      this.router.routeUrl(getCurrentUrl(), state);
     };
 
     // Route the initial URL
-    this.router.routeUrl(window.location.href);
+    this.router.routeUrl(getCurrentUrl());
   }
 
   navigateTo(url, state = {}, replace = false) {

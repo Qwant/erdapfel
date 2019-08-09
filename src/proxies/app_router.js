@@ -23,7 +23,7 @@ export default class Router {
   addRoute(name, urlRegexp, renderCallback) {
     this.routeDefs.push({
       name,
-      match: joinPath([this.baseUrl, urlRegexp]),
+      match: '^' + joinPath([this.baseUrl, urlRegexp]),
       render: renderCallback,
     });
   }

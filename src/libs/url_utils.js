@@ -45,3 +45,8 @@ export function joinPath(parts) {
     })
     .join('/');
 }
+
+export function getCurrentUrl() {
+  const { pathname, search, hash } = window.location;
+  return `${pathname}${search}${hash}`;
+}
