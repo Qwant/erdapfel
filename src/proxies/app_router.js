@@ -3,8 +3,7 @@ Really quick url router implementation.
 Sufficient to replace the horrible "URL shard" system
 and ensure the app state is consistent.
 */
-
-// @TODO: manage the base url
+import { joinPath } from 'src/libs/url_utils';
 
 function getMatchingRouteDefinition(routeDefs, url) {
   return routeDefs.find(route => new RegExp(route.match).test(url));
@@ -16,14 +15,15 @@ function applyRoute(routeDef, url, state) {
 }
 
 export default class Router {
-  constructor() {
+  constructor(baseUrl = '') {
+    this.baseUrl = baseUrl;
     this.routeDefs = [];
   }
 
   addRoute(name, urlRegexp, renderCallback) {
     this.routeDefs.push({
       name,
-      match: urlRegexp,
+      match: joinPath([this.baseUrl, urlRegexp]),
       render: renderCallback,
     });
   }

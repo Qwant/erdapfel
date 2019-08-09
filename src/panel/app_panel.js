@@ -21,7 +21,7 @@ import Router from 'src/proxies/app_router';
 import CategoryService from 'src/adapters/category_service';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
-import { parseMapHash, parseQueryString } from 'src/libs/url_utils';
+import { parseMapHash, parseQueryString, joinPath } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -90,7 +90,7 @@ export default class AppPanel {
   }
 
   initRouter() {
-    this.router = new Router();
+    this.router = new Router(window.baseUrl);
 
     this.router.addRoute('Category', '/places/(.*)', placesParams => {
       window.execOnMapLoaded(() => {
@@ -134,7 +134,7 @@ export default class AppPanel {
   }
 
   navigateTo(url, state = {}, replace = false) {
-    const urlWithCurrentHash = url + location.hash;
+    const urlWithCurrentHash = joinPath([window.baseUrl, url]) + location.hash;
     if (replace) {
       window.history.replaceState(state, null, urlWithCurrentHash);
     } else {
