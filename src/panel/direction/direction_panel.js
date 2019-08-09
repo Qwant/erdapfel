@@ -278,7 +278,7 @@ export default class DirectionPanel {
       routeParams.push(this.poiToUrl('destination', this.destination));
     }
     routeParams.push(`mode=${this.vehicle}`);
-    window.app.replaceUrl(`/routes/?${routeParams.join('&')}`, {}, true);
+    window.app.navigateTo(`/routes/?${routeParams.join('&')}`, {}, true /* replace */ );
   }
 
   async restoreParams(options) {

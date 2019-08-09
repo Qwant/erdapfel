@@ -133,15 +133,14 @@ export default class AppPanel {
     this.router.routeUrl(window.location.href);
   }
 
-  navigateTo(url, state = {}) {
+  navigateTo(url, state = {}, replace = false) {
     const urlWithCurrentHash = url + location.hash;
-    window.history.pushState(state, null, urlWithCurrentHash);
-    this.router.routeUrl(urlWithCurrentHash, state);
-  }
-
-  replaceUrl(url, state = {}) {
-    const urlWithCurrentHash = url + location.hash;
-    window.history.replaceState(state, null, urlWithCurrentHash);
+    if (replace) {
+      window.history.replaceState(state, null, urlWithCurrentHash);
+    } else {
+      window.history.pushState(state, null, urlWithCurrentHash);
+      this.router.routeUrl(urlWithCurrentHash, state);
+    }
   }
 
   updateHash(hash) {
