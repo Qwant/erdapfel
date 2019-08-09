@@ -9,7 +9,7 @@
       {{= this.categoryPanel.render() }}
     {{?}}
   </div>
-  {{= this.servicePanel.render() }}
+  <div class="service_panel__container"></div>
 </div>
 
 /* modals */

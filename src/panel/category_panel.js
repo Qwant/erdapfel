@@ -87,8 +87,6 @@ export default class CategoryPanel {
 
     this.addCategoryMarkers();
     fire('save_location');
-
-    document.querySelector('.service_panel').classList.remove('service_panel--active');
   }
 
   async open(options = {}) {
