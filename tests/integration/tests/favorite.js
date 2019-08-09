@@ -83,7 +83,7 @@ test('center map after a favorite poi click', async () => {
   await page.evaluate(storeCoordinate => {
     fire(
       'store_poi',
-      new Poi(1, 'some poi i will click', 'second line', 'poi', storeCoordinate, '', '', [])
+      new Poi(1, 'some poi i will click', 'second line', 'poi', storeCoordinate, '', '')
     );
   }, favoriteMockCoordinates);
 

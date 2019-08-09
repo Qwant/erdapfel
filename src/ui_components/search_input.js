@@ -1,6 +1,4 @@
 import Suggest from '../adapters/suggest';
-import layouts from '../panel/layouts.js';
-import UrlState from '../proxies/url_state';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
 
@@ -14,7 +12,6 @@ const MAPBOX_RESERVED_KEYS = [
   '=', // =
 ];
 
-
 export default class SearchInput {
 
   /* Singleton */
@@ -23,7 +20,7 @@ export default class SearchInput {
       window.__searchInput = new SearchInput(tagSelector);
       window.clearSearch = () => {
         window.__searchInput.suggest.setValue('');
-        window.app.resetLayout();
+        window.app.navigateTo('/');
         setTimeout(() => {
           document.getElementById('search').focus();
         }, 0);
@@ -65,7 +62,6 @@ export default class SearchInput {
     });
     this.isEnabled = true;
 
-    UrlState.registerGet(this, 'q');
     listen('submit_autocomplete', async () => {
       this.suggest.onSubmit();
     });
@@ -86,19 +82,18 @@ export default class SearchInput {
     };
   }
 
-  store() {}
-
-  async restore(fragment) {
-    if (UrlState.getShardCount() === 1) {
-      return await this.suggest.preselect(fragment);
-    }
+  static executeSearch(query) {
+    window.__searchInput.suggest.preselect(query);
   }
 
   async selectItem(selectedItem) {
     if (selectedItem instanceof Poi) {
-      window.app.loadPoi(selectedItem, { layout: layouts.POI });
+      window.app.navigateTo(`/place/${selectedItem.toUrl()}`, {
+        poi: selectedItem.serialize(),
+        centerMap: true,
+      });
     } else if (selectedItem instanceof Category) {
-      window.app.openCategory({ category: selectedItem });
+      window.app.navigateTo(`/places/?type=${selectedItem.name}`);
     }
   }
 }

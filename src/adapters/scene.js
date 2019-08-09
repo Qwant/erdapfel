@@ -2,11 +2,9 @@ import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
-import UrlState from '../proxies/url_state';
 import { map, layout } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
-import HotLoadPoi from './poi/hotload_poi';
 import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
@@ -14,6 +12,8 @@ import SceneCategory from './scene_category';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import SceneEasterEgg from './scene_easter_egg';
+import Device from '../libs/device';
+import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
@@ -22,7 +22,6 @@ const easterEggsEnabled = nconf.get().app.easterEggs;
 const store = new LocalStore();
 
 function Scene() {
-  UrlState.registerHash(this, 'map');
   this.currentMarker = null;
   this.popup = new PoiPopup();
   this.zoom = map.zoom;
@@ -30,19 +29,15 @@ function Scene() {
   this.savedLocation = null;
 }
 
-Scene.prototype.initScene = async function() {
-  await this.setupInitialPosition();
+Scene.prototype.initScene = async function(locationHash) {
+  await this.setupInitialPosition(locationHash);
   this.initMapBox();
 };
 
-Scene.prototype.setupInitialPosition = async function() {
-  if (window.hotLoadPoi) {
-    const hotloadedPoi = new HotLoadPoi();
-    this.zoom = hotloadedPoi.zoom;
-    this.center = [hotloadedPoi.getLngLat().lng, hotloadedPoi.getLngLat().lat];
-  } else if (this.urlCenter && this.urlZoom) {
-    this.zoom = this.urlZoom;
-    this.center = this.urlCenter;
+Scene.prototype.setupInitialPosition = async function(locationHash) {
+  if (locationHash) {
+    this.zoom = locationHash.zoom;
+    this.center = [locationHash.lng, locationHash.lat];
   } else {
     const lastLocation = await store.getLastLocation();
     if (lastLocation) {
@@ -105,15 +100,7 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
-          if (e.originalEvent.clientX < layout.sizes.sideBarWidth + layout.sizes.panelWidth &&
-              window.innerWidth > layout.mobile.breakPoint) {
-            this.mb.flyTo({
-              center: mapPoi.getLngLat(),
-              offset: [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0],
-            });
-          }
-
-          window.app.loadPoi(mapPoi, { disableMapPan: true });
+          window.app.navigateTo(`/place/${mapPoi.toUrl()}`, { poi: mapPoi.serialize() });
         }
       });
 
@@ -121,11 +108,10 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('moveend', () => {
-      UrlState.replaceUrl();
-      const lng = this.mb.getCenter().lng;
-      const lat = this.mb.getCenter().lat;
+      const { lng, lat } = this.mb.getCenter();
       const zoom = this.mb.getZoom();
       store.setLastLocation({ lng, lat, zoom });
+      window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
     });
 
@@ -166,12 +152,11 @@ Scene.prototype.initMapBox = function() {
     this.fitMap(item, padding);
   });
 
-  listen('map_reset', () => {
-    this.mb.jumpTo({ center: [map.center.lng, map.center.lat], zoom: map.zoom });
-  });
-
-  listen('map_mark_poi', poi => {
-    this.addMarker(poi);
+  listen('map_mark_poi', (poi, options) => {
+    this.ensureMarkerIsVisible(poi, options);
+    if (!options.isFromCategory) {
+      this.addMarker(poi, options);
+    }
   });
 
   listen('clean_marker', () => {
@@ -188,15 +173,15 @@ Scene.prototype.initMapBox = function() {
 };
 
 Scene.prototype.saveLocation = function() {
-  this.savedLocation = UrlState.getShardValue('map');
+  this.savedLocation = this.getLocationHash();
 };
 
 Scene.prototype.restoreLocation = function() {
   if (this.savedLocation) {
-    this.restore(this.savedLocation);
+    const { zoom, lat, lng } = parseMapHash(this.savedLocation);
     const flyOptions = {
-      center: this.urlCenter,
-      zoom: this.urlZoom,
+      center: [ lng, lat ],
+      zoom,
       animate: true,
       screenSpeed: 2,
     };
@@ -310,6 +295,30 @@ Scene.prototype.fitMap = function(item, padding) {
   }
 };
 
+Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
+  if (poi.bbox) {
+    this.fitBbox(poi.bbox, options.layout);
+    return;
+  }
+  if (!options.centerMap) {
+    const { x: leftPixelOffset } = this.mb.project(poi.getLngLat());
+    const isPoiUnderPanel = leftPixelOffset < layout.sizes.sideBarWidth + layout.sizes.panelWidth
+      && window.innerWidth > layout.mobile.breakPoint;
+    if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
+      return;
+    }
+  }
+  const offset = Device.isMobile()
+    ? [0, 0]
+    : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0];
+  this.mb.flyTo({
+    center: poi.getLngLat(),
+    zoom: poi.zoom,
+    offset,
+    maxDuration: 1200,
+  });
+};
+
 Scene.prototype.addMarker = function(poi) {
   const { className, subClassName, type } = poi;
 
@@ -336,24 +345,6 @@ Scene.prototype.cleanMarker = async function() {
   }
 };
 
-/* UrlState interface implementation */
-Scene.prototype.store = function() {
-  const lat = this.mb.getCenter().lat.toFixed(7);
-  const lon = this.mb.getCenter().lng.toFixed(7);
-  return `${this.mb.getZoom().toFixed(2)}/${lat}/${lon}`;
-};
-
-Scene.prototype.restore = function(urlShard) {
-  const geoCenter = urlShard.match(/(\d*[.]?\d+)\/(-?\d*[.]?\d+)\/(-?\d*[.]?\d+)/);
-  if (geoCenter) {
-    const ZOOM_INDEX = 1;
-    const LAT_INDEX = 2;
-    const LNG_INDEX = 3;
-    this.urlZoom = parseFloat(geoCenter[ZOOM_INDEX]);
-    this.urlCenter = [parseFloat(geoCenter[LNG_INDEX]), parseFloat(geoCenter[LAT_INDEX])];
-  }
-};
-
 Scene.prototype.isWindowedPoi = function(poi) {
   const windowBounds = this.mb.getBounds();
   /* simple way to clone value */
@@ -363,14 +354,23 @@ Scene.prototype.isWindowedPoi = function(poi) {
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
 };
 
-// TODO: put that with global browser history management
+Scene.prototype.getLocationHash = function() {
+  const { lat, lng } = this.mb.getCenter();
+  return getMapHash(this.mb.getZoom(), lat, lng);
+};
+
+Scene.prototype.restoreFromHash = function(hash, options = {}) {
+  const zll = parseMapHash(hash);
+  if (!zll) {
+    return;
+  }
+  const { zoom, lat, lng } = zll;
+  this.mb.flyTo({ zoom, center: [ lng, lat ], ...options });
+};
+
 Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
-    const mapShardValue = UrlState.getShardValue('map');
-    if (mapShardValue) {
-      this.restore(mapShardValue);
-      this.mb.jumpTo({ center: this.urlCenter, zoom: this.urlZoom });
-    }
+    this.restoreFromHash(window.location.hash, { animate: false });
   };
 };
 

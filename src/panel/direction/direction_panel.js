@@ -6,7 +6,6 @@ import DirectionApi from '../../adapters/direction_api';
 import { modes } from '../../adapters/direction_api';
 import SearchInput from '../../ui_components/search_input';
 import LatLonPoi from '../../adapters/poi/latlon_poi';
-import UrlState from '../../proxies/url_state';
 import Error from '../../adapters/error';
 import Device from '../../libs/device';
 import Telemetry from '../../libs/telemetry';
@@ -26,7 +25,6 @@ export default class DirectionPanel {
       () => this.handleClose(),
       roadPanel,
     );
-    UrlState.registerResource(this, 'routes');
     this.activePanel = this;
   }
 
@@ -110,7 +108,7 @@ export default class DirectionPanel {
     this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active');
     this.vehicle = vehicle;
     this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active');
-    UrlState.pushUrl();
+    this.updateUrl();
     this.searchDirection();
   }
 
@@ -129,7 +127,7 @@ export default class DirectionPanel {
   async selectOrigin(poi) {
     this.origin = poi;
     this.searchDirection();
-    UrlState.pushUrl();
+    this.updateUrl();
     if (!this.destination) {
       fire('fit_map', poi);
     }
@@ -141,21 +139,12 @@ export default class DirectionPanel {
   async selectDestination(poi) {
     this.destination = poi;
     this.searchDirection();
-    UrlState.pushUrl();
+    this.updateUrl();
     if (!this.origin) {
       fire('fit_map', poi);
     }
     if (!this.origin && !Device.isMobile()) {
       this.searchInputStart.focus();
-    }
-  }
-
-  /* panel manager implementation */
-  toggle(options) {
-    if (this.active) {
-      this.close();
-    } else {
-      this.open(options);
     }
   }
 
@@ -169,11 +158,15 @@ export default class DirectionPanel {
   closeAction() {
     if (this.poiBeforeOpening) {
       const { poi, isFromCategory, isFromFavorite } = this.poiBeforeOpening;
-      this.close();
       this.poiBeforeOpening = null;
-      return window.app.setPoi(poi, { isFromCategory, isFromFavorite });
+      window.app.navigateTo(`/place/${poi.toUrl()}`, {
+        poi: poi.serialize(),
+        isFromCategory,
+        isFromFavorite,
+      });
+    } else {
+      window.app.navigateTo('/');
     }
-    return window.app.resetLayout();
   }
 
   back() {
@@ -196,7 +189,6 @@ export default class DirectionPanel {
     this.cleanDirection();
     this.active = false;
     this.panel.update();
-    UrlState.pushUrl();
   }
 
   async open(options = {}) {
@@ -213,15 +205,12 @@ export default class DirectionPanel {
     );
     document.querySelector('#panels').classList.add('panels--direction-open');
     document.querySelector('.top_bar').classList.add('top_bar--direction-open');
-    if (options.poi) {
-      this.destination = options.poi;
-      this.poiBeforeOpening = options;
-    }
+    await this.restoreParams(options);
     SearchInput.minify();
     this.active = true;
     await this.panel.update();
     this.initDirection();
-    UrlState.pushUrl();
+    this.updateUrl();
     window.execOnMapLoaded(() => {
       this.searchDirection();
     });
@@ -280,66 +269,55 @@ export default class DirectionPanel {
     this.destination = null;
   }
 
-  /* urlState interface implementation */
-
-  async restore() {
-    await this.restoreUrl();
-  }
-
-  store() {
-    if (this.active) {
-      const routeParams = [];
-      if (this.origin) {
-        routeParams.push(this.poiToUrl('origin', this.origin));
-      }
-      if (this.destination) {
-        routeParams.push(this.poiToUrl('destination', this.destination));
-      }
-      if (routeParams.length > 0) {
-        return `?${routeParams.join('&')}&mode=${this.vehicle}`;
-      } else {
-        return true;
-      }
-    } else {
-      return false;
+  updateUrl() {
+    const routeParams = [];
+    if (this.origin) {
+      routeParams.push(this.poiToUrl('origin', this.origin));
     }
+    if (this.destination) {
+      routeParams.push(this.poiToUrl('destination', this.destination));
+    }
+    routeParams.push(`mode=${this.vehicle}`);
+    window.app.navigateTo(`/routes/?${routeParams.join('&')}`, {}, true /* replace */ );
   }
 
-  async restoreUrl() {
-    const getParams = new URLSearchParams(window.location.search);
-    if (getParams.get('mode')) {
-      const urlMode = getParams.get('mode');
-      if (Object.keys(modes).some(k => modes[k] === urlMode)) {
-        this.vehicle = urlMode;
+  async restoreParams(options) {
+    if (options.mode) {
+      if (Object.keys(modes).some(k => modes[k] === options.mode)) {
+        this.vehicle = options.mode;
       }
     }
 
-    if (getParams.get('origin')) {
+    if (options.origin) {
       try {
-        this.origin = await LatLonPoi.fromUrl(getParams.get('origin'));
+        this.origin = await LatLonPoi.fromUrl(options.origin);
       } catch (err) {
         Error.sendOnce(
           'direction_panel',
           'restoreUrl',
-          `Error restoring Poi from Url ${getParams.get('origin')}`,
-          err,
-        );
-      }
-    }
-    if (getParams.get('destination')) {
-      try {
-        this.destination = await LatLonPoi.fromUrl(getParams.get('destination'));
-      } catch (err) {
-        Error.sendOnce(
-          'direction_panel',
-          'restoreUrl',
-          `Error restoring Poi from Url ${getParams.get('destination')}`,
+          `Error restoring Poi from Url ${options.origin}`,
           err,
         );
       }
     }
 
-    window.app.openDirection();
+    if (options.destination) {
+      try {
+        this.destination = await LatLonPoi.fromUrl(options.destination);
+      } catch (err) {
+        Error.sendOnce(
+          'direction_panel',
+          'restoreUrl',
+          `Error restoring Poi from Url ${options.destination}`,
+          err,
+        );
+      }
+    }
+
+    if (options.poi) {
+      this.destination = options.poi;
+      this.poiBeforeOpening = options;
+    }
   }
 
   /* Private */

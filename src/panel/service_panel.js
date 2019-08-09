@@ -19,12 +19,12 @@ export default class ServicePanel {
   }
 
   openFavorite() {
-    window.app.openFavorite();
+    window.app.navigateTo('/favs');
   }
 
   openDirection() {
     if (this.isDirectionActive) {
-      window.app.openDirection();
+      window.app.navigateTo('/routes/');
     }
   }
 
@@ -47,6 +47,6 @@ export default class ServicePanel {
   }
 
   openCategory(category) {
-    window.app.openCategory({ category });
+    window.app.navigateTo(`/places/?type=${category.name}`);
   }
 }

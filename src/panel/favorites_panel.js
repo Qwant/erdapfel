@@ -112,7 +112,7 @@ Favorite.prototype.open = async function() {
 
 Favorite.prototype.closeAction = function() {
   Telemetry.add(Telemetry.FAVORITE_CLOSE);
-  window.app.resetLayout();
+  window.app.navigateTo('/');
 };
 
 Favorite.prototype.close = function() {
@@ -126,7 +126,12 @@ Favorite.prototype.go = async function(poi) {
   Telemetry.add(Telemetry.FAVORITE_GO);
   this.active = false;
   this.panel.update();
-  window.app.loadPoi(poi, { isFromFavorite: true, layout: layouts.FAVORITE });
+  window.app.navigateTo(`/place/${poi.toUrl()}`, {
+    poi: poi.serialize(),
+    centerMap: true,
+    isFromFavorite: true,
+    layout: layouts.FAVORITE,
+  });
 };
 
 Favorite.prototype.add = async function(poi) {

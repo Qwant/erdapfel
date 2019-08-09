@@ -2,8 +2,6 @@ import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
-import UrlState from '../proxies/url_state';
-import HotLoadPoi from '../adapters/poi/hotload_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
@@ -23,7 +21,6 @@ function PoiPanel(sharePanel) {
   this.active = false;
   this.displayed = false;
   this.poiSubClass = poiSubClass;
-  this.list = null;
   this.PoiBlocContainer = PoiBlocContainer;
   this.panel = new Panel(this, PoiPanelView);
   this.sharePanel = sharePanel;
@@ -32,7 +29,6 @@ function PoiPanel(sharePanel) {
   this.headerPartial = headerPartial;
   this.minimalHourPanel = new MinimalHourPanel();
   this.isDirectionActive = nconf.get().direction.enabled;
-  UrlState.registerResource(this, 'place');
   this.isMasqEnabled = nconf.get().masq.enabled;
 
   store.onToggleStore(async () => {
@@ -77,28 +73,17 @@ PoiPanel.prototype.isDisplayed = function() {
 };
 
 PoiPanel.prototype.closeAction = function() {
-  window.app.resetLayout();
+  window.app.navigateTo('/');
 };
 
 PoiPanel.prototype.close = async function() {
   if (!this.active) {
     return;
   }
-  window.app.unsetPoi();
+  fire('clean_marker');
   SearchInput.setInputValue('');
   this.active = false;
   this.panel.update();
-  UrlState.pushUrl();
-};
-
-PoiPanel.prototype.restorePoi = async function(id) {
-  Telemetry.add(Telemetry.POI_RESTORE);
-  const hotLoadedPoi = new HotLoadPoi();
-  if (hotLoadedPoi.id === id) {
-    this.poi = hotLoadedPoi;
-    this.poi.stored = await isPoiFavorite(this.poi);
-    window.app.setPoi(this.poi, { isFromFavorite: this.poi.stored, layout: layouts.POI });
-  }
 };
 
 PoiPanel.prototype.setPoi = async function(poi, options = {}) {
@@ -114,11 +99,8 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   if (options && options.isFromCategory) {
     this.fromCategory = options.isFromCategory;
   }
-  if (options && options.list) {
-    this.list = options.list;
-  }
+  this.sourceCategory = options.sourceCategory;
   this.active = true;
-  UrlState.pushUrl();
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
 };
@@ -135,26 +117,6 @@ PoiPanel.prototype.openShare = function() {
     Telemetry.add('share', 'poi', this.poi.meta.source);
   }
   this.sharePanel.open(this.poi.toAbsoluteUrl());
-};
-
-/* urlState interface implementation */
-
-PoiPanel.prototype.store = function() {
-  // TODO temporary way to store poi, will be replaced by poi id + slug & poi API
-  if (this.poi && this.poi.name && this.active) {
-    return this.poi.toUrl();
-  }
-  return '';
-};
-
-PoiPanel.prototype.restore = async function(urlShard) {
-  if (urlShard) {
-    const idSlugMatch = urlShard.match(/^([^@]+)@?(.*)/);
-    if (idSlugMatch && window.hotLoadPoi) {
-      const id = idSlugMatch[1];
-      await this.restorePoi(id);
-    }
-  }
 };
 
 PoiPanel.prototype.showDetail = function() {
@@ -178,14 +140,13 @@ PoiPanel.prototype.backToSmall = function() {
 
 PoiPanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-  window.app.openFavorite();
+  window.app.navigateTo('/favs');
 };
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST);
-  this.close();
   fire('restore_location');
-  this.list.open();
+  window.app.navigateTo(`/places/?type=${this.sourceCategory}`);
 };
 
 PoiPanel.prototype.openDirection = function() {

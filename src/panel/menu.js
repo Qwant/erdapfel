@@ -68,13 +68,13 @@ export default class Menu {
 
   openFavorite() {
     this.close();
-    window.app.openFavorite();
+    window.app.navigateTo('/favs');
   }
 
   openDirection() {
     this.close();
     if (this.isDirectionActive) {
-      window.app.openDirection();
+      window.app.navigateTo('/routes/');
     }
   }
 
@@ -98,7 +98,7 @@ export default class Menu {
   }
 
   async search() {
-    window.app.resetLayout();
+    window.app.navigateTo('/');
     await this.close();
     SearchInput.select();
   }

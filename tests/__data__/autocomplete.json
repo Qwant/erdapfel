@@ -107,10 +107,10 @@
     "properties": {
       "geocoding": {
         "bbox" : [1,2,3,4],
-        "id": "osm:node:4811858213",
+        "id": "osm:way:63178753",
         "type": "poi",
-        "label": "Dsquared2",
-        "name": "Dsquared2",
+        "label": "Musée d'Orsay",
+        "name": "Musée d'Orsay",
         "postcode": null,
         "city": null,
         "citycode": null,

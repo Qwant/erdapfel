@@ -28,7 +28,6 @@ beforeEach(async () => {
   const autocompleteMock = require('../../__data__/autocomplete.json');
   responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/);
   responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753/);
-  responseHandler.addPreparedResponse(poiMock, /places\/1/);
 });
 
 test('click on a poi', async () => {
@@ -102,12 +101,12 @@ test('update url after a poi click', async () => {
 test('update url after a favorite poi click', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
-  page.evaluate(() => {
+  page.evaluate(poi => {
     fire(
       'store_poi',
-      new Poi(1, 'some poi i will click', 'one line', 'poi', { lat: 43, lng: 2 }, '', '', [])
+      new Poi(poi.id, poi.name, 'one line', 'poi', { lat: 43, lng: 2 }, '', '', [])
     );
-  });
+  }, poiMock);
   await page.click('.service_panel__item__fav');
   await wait(300);
   await page.click('.favorite_panel__item__more_container');
@@ -119,8 +118,6 @@ test('update url after a favorite poi click', async () => {
 });
 
 test('open poi from autocomplete selection', async () => {
-  responseHandler.addPreparedResponse(poiMock, /places\/osm:node:4811858213/);
-
   expect.assertions(2);
   await page.goto(APP_URL);
   await page.keyboard.type('test');
@@ -136,16 +133,6 @@ test('open poi from autocomplete selection', async () => {
 
   // poi panel is visible
   expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy();
-});
-
-test('display a popup on hovering a poi', async () => {
-  expect.assertions(1);
-  await page.goto(APP_URL);
-  await selectPoiLevel(page, 1);
-  const popups = await page.evaluate(() => {
-    return window.MAP_MOCK.popups;
-  });
-  expect(popups).toHaveLength(1);
 });
 
 test('center the map to the poi on a poi click', async () => {
@@ -253,10 +240,13 @@ test('check pre-loaded Poi error handling', async () => {
 });
 
 async function selectPoiLevel(page, level) {
-  const mockPoiFeature = Object.assign(
-    { properties: { global_id: 1 } },
-    poiMock,
-  );
+  const mapPoiMock = {
+    properties: {
+      global_id: poiMock.id,
+      name: poiMock.name,
+    },
+    geometry: poiMock.geometry,
+  };
   await page.evaluate((level, poi) => {
     window.MAP_MOCK.evented.prepare(
       'click',
@@ -266,7 +256,7 @@ async function selectPoiLevel(page, level) {
         features: [ poi ],
       },
     );
-  }, level, mockPoiFeature);
+  }, level, mapPoiMock);
   const mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox());
   // Click on the top-left corner
   await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);

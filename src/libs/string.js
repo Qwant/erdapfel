@@ -38,7 +38,7 @@ ExtendedString.normalize = function(str) {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
 
-ExtendedString.slug = function(str) {
+ExtendedString.slug = function(str = '') {
   // Remove non-alphanumeric and non-latin characters
   return str.replace(/[^0-9a-zA-Z\u00C0-\u017F\s-_]/g, '').replace(/\s+/g, '_');
 };

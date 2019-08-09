@@ -152,7 +152,7 @@ const showDirection = async page => {
 test('select itinerary leg', async () => {
   expect.assertions(1);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.0000000,6\.6000000/);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`);
 
   await page.waitForSelector('#itinerary_leg_0');
 
@@ -170,7 +170,7 @@ test('select itinerary leg', async () => {
 test('select itinerary step', async () => {
   expect.assertions(1);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
 
   await page.waitForSelector('#itinerary_leg_0');
 
@@ -191,7 +191,7 @@ test('show itinerary roadmap on mobile', async () => {
     height: 800,
   });
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
 
   await page.waitForSelector('#itinerary_leg_0');
   await page.click('#itinerary_leg_0 .itinerary_leg_preview');
@@ -213,7 +213,7 @@ test('api error handling', async () => {
   expect.assertions(1);
   /* prepare "error" response */
   responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, { status: 422 });
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`);
   const errorMessageHandler = await page.waitForSelector('.itinerary_no-result');
   expect(errorMessageHandler).not.toBeNull();
 });
@@ -221,7 +221,7 @@ test('api error handling', async () => {
 test('api wait effect', async () => {
   expect.assertions(2);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/routes/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
   const errorMessageHandler = await page.waitForSelector('.itinerary_placeholder-box');
   expect(errorMessageHandler).not.toBeNull(); // test wait panel
   const firstLeg = await page.waitForSelector('#itinerary_leg_0');

@@ -17,6 +17,11 @@ import Menu from './menu';
 import Telemetry from '../libs/telemetry';
 import CategoryPanel from './category_panel';
 import ApiPoi from '../adapters/poi/idunn_poi';
+import Router from 'src/proxies/app_router';
+import CategoryService from 'src/adapters/category_service';
+import Poi from 'src/adapters/poi/poi.js';
+import layouts from './layouts.js';
+import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -62,8 +67,6 @@ export default class AppPanel {
 
     this.menu = new Menu();
 
-    this.activePoiId = null;
-
     if (performanceEnabled) {
       this.panel.onRender = () => {
         window.times.appRendered = Date.now();
@@ -72,6 +75,77 @@ export default class AppPanel {
 
     this.panel.render();
     Telemetry.add(Telemetry.APP_START);
+
+    const mapHash = parseMapHash(window.location.hash);
+    this.initRouter();
+    this.initMap(mapHash);
+  }
+
+  initMap(mapHash) {
+    import(/* webpackChunkName: "map" */ '../adapters/scene')
+      .then(({ default: Scene }) => {
+        this.scene = new Scene();
+        this.scene.initScene(mapHash);
+      });
+  }
+
+  initRouter() {
+    this.router = new Router(window.baseUrl);
+
+    this.router.addRoute('Category', '/places/(.*)', placesParams => {
+      window.execOnMapLoaded(() => {
+        this.openCategory(parseQueryString(placesParams));
+      });
+    });
+
+    this.router.addRoute('POI', '/place/(.*)', async (poiUrl, options) => {
+      const poiId = poiUrl.split('@')[0];
+      this.setPoi(poiId, options || {});
+    });
+
+    this.router.addRoute('Favorites', '/favs', () => {
+      this.openFavorite();
+    });
+
+    this.router.addRoute('Routes', '/routes(?:/?)(.*)', routeParams => {
+      this.openDirection(parseQueryString(routeParams));
+    });
+
+    this.router.addRoute('Direct search query', '/([?].*)', queryString => {
+      const params = parseQueryString(queryString);
+      if (params.q) {
+        SearchInput.executeSearch(params.q);
+      } else {
+        this.navigateTo('/');
+      }
+    });
+
+    // Default matching route
+    this.router.addRoute('Services', '(?:/?)', () => {
+      this.resetLayout();
+    });
+
+    window.onpopstate = ({ state }) => {
+      this.router.routeUrl(getCurrentUrl(), state);
+    };
+
+    // Route the initial URL
+    this.router.routeUrl(getCurrentUrl());
+  }
+
+  navigateTo(url, state = {}, replace = false) {
+    const urlWithCurrentHash = joinPath([window.baseUrl, url]) + location.hash;
+    if (replace) {
+      window.history.replaceState(state, null, urlWithCurrentHash);
+    } else {
+      window.history.pushState(state, null, urlWithCurrentHash);
+      this.router.routeUrl(urlWithCurrentHash, state);
+    }
+  }
+
+  updateHash(hash) {
+    const urlWithoutHash = window.location.href.split('#')[0];
+    window.history.replaceState(window.history.state, null, `${urlWithoutHash}#${hash}`);
   }
 
   minify() {
@@ -96,43 +170,19 @@ export default class AppPanel {
 
   _updateMapPoi(poi, options = {}) {
     window.execOnMapLoaded(function() {
-      if (!options.isFromCategory) {
-        fire('map_mark_poi', poi);
-      }
-      if (!options.disableMapPan) {
-        fire('fit_map', poi, options.layout);
-      }
+      fire('map_mark_poi', poi, options);
     });
   }
 
-  async setPoi(poi, options = {}, updateMap = true) {
-    this.activePoiId = poi.id;
-    if (updateMap) {
-      this._updateMapPoi(poi, options);
-    }
+  openPoiPanel(poi, options = {}) {
     this.panels.forEach(panel => {
-      if (panel.isPoiCompliant) {
+      if (panel === this.poiPanel) {
         panel.setPoi(poi, options);
-      } else if (!options.isFromCategory && !options.isFromFavorite) {
+      } else if (!options.isFromCategory) {
         panel.close();
       }
     });
     this.unminify();
-  }
-
-  async loadPoi(poi, options) {
-    this._updateMapPoi(poi, options);
-    const fullPoi = poi && poi.id && await ApiPoi.poiApiLoad(poi);
-    if (fullPoi) {
-      this.setPoi(fullPoi, options, false);
-      return;
-    }
-    this.resetLayout();
-  }
-
-  unsetPoi() {
-    this.activePoiId = null;
-    fire('clean_marker');
   }
 
   emptyClickOnMap() {
@@ -143,12 +193,42 @@ export default class AppPanel {
     });
   }
 
+  async setPoi(poiId, options) {
+    this.activePoiId = poiId;
+
+    options.layout = options.layout || layouts.POI;
+    if (options.poi) {
+      // If a POI object is provided before fetching full data,
+      // update the map immediately for UX responsiveness
+      this._updateMapPoi(Poi.deserialize(options.poi), options);
+    }
+
+    let poi;
+    if (window.hotLoadPoi && window.hotLoadPoi.id === poiId) {
+      Telemetry.add(Telemetry.POI_RESTORE);
+      poi = new ApiPoi(window.hotLoadPoi);
+      options.centerMap = true;
+    } else {
+      poi = await ApiPoi.poiApiLoad(options.poi || { id: poiId });
+    }
+
+    if (!poi) {
+      this.navigateTo('/');
+    } else {
+      this.openPoiPanel(poi, options);
+      if (!options.poi) {
+        this._updateMapPoi(poi, options);
+      }
+    }
+  }
+
   _openPanel(panelToOpen, options) {
     /*
       "unminify" needs to be called before panel.open :
       DirectionPanel will minify the main search input (unused for Directions)
     */
     this.unminify();
+    this.activePoiId = null;
     this.panels.forEach(panel => {
       if (panel === panelToOpen) {
         panel.open(options);
@@ -166,8 +246,12 @@ export default class AppPanel {
     this._openPanel(this.favoritePanel);
   }
 
-  openCategory(options) {
-    this._openPanel(this.categoryPanel, options);
+  openCategory(params) {
+    const { type: categoryName, ...otherOptions } = params;
+    this._openPanel(this.categoryPanel, {
+      category: CategoryService.getCategoryByName(categoryName),
+      ...otherOptions,
+    });
   }
 
   resetLayout() {
