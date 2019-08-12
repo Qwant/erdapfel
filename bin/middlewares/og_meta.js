@@ -81,7 +81,7 @@ module.exports = function(config) {
     if (placeUrlMatch && placeUrlMatch.length > 0) {
       poiId = placeUrlMatch[1];
     }
-    if (poiId && !poiId.startsWith('latlon:')) {
+    if (poiId) {
       getPoi(poiId, locale).then(poi => {
         if (poi) {
           poiMeta(poi, locale, req, res, next);
