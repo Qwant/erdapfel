@@ -110,7 +110,8 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('click', e => {
-      if (e._interactiveClick) {
+      // Disable POI anywhere feature on mobile until we opt for an adapted UX
+      if (Device.isMobile() || e._interactiveClick) {
         return;
       }
       const poi = new LatLonPoi(e.lngLat);
