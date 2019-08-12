@@ -28,11 +28,6 @@ export default class ServicePanel {
     }
   }
 
-  toggle() {
-    this.active = !this.active;
-    this.panel.update();
-  }
-
   open() {
     this.active = true;
     this.panel.update();

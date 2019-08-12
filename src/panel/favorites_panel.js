@@ -87,14 +87,6 @@ Favorite.prototype.isDisplayed = function() {
   return this.displayed;
 };
 
-Favorite.prototype.toggle = function() {
-  if (this.active) {
-    this.close();
-  } else {
-    this.open();
-  }
-};
-
 Favorite.prototype.getAll = async function() {
   this.favoritePois = await PoiStore.getAll();
 };
