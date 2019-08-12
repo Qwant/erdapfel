@@ -25,7 +25,6 @@ export default class SceneCategory {
         poi.marker_id = `marker_${id}`;
         marker.onclick = function(e) {
           e.stopPropagation();
-          fire('mark_poi_as_shown');
           fire('click_category_poi', poi);
         };
         marker.onmouseover = function(e) {

@@ -28,7 +28,6 @@ function Scene() {
   this.zoom = map.zoom;
   this.center = [map.center.lng, map.center.lat];
   this.savedLocation = null;
-  this.poiShown = false;
 }
 
 Scene.prototype.initScene = async function(locationHash) {
@@ -180,10 +179,6 @@ Scene.prototype.initMapBox = function() {
 
   listen('restore_location', () => {
     this.restoreLocation();
-  });
-
-  listen('mark_poi_as_shown', () => {
-    this.markPoiAsShown();
   });
 };
 
@@ -388,14 +383,6 @@ Scene.prototype.onHashChange = function() {
     this.restoreFromHash(window.location.hash, { animate: false });
   };
 };
-
-Scene.prototype.markPoiAsShown = function() {
-  this.poiShown = true;
-  setTimeout(() => {
-    this.poiShown = false;
-  }, 1000);
-};
-
 
 /* private */
 
