@@ -16,7 +16,6 @@ const masqOnboardingModal = new MasqOnboardingModal();
 
 function Favorite(sharePanel) {
   this.active = false;
-  this.displayed = false;
   this.favoritePois = [];
   this.poiSubClass = poiSubClass;
   this.filterPanel = new FilterPanel();
@@ -83,10 +82,6 @@ Favorite.prototype.openShare = function(poi) {
   this.sharePanel.open(url);
 };
 
-Favorite.prototype.isDisplayed = function() {
-  return this.displayed;
-};
-
 Favorite.prototype.getAll = async function() {
   this.favoritePois = await PoiStore.getAll();
 };
@@ -96,7 +91,6 @@ Favorite.prototype.open = async function() {
 
   await this.updateList();
 
-  this.displayed = true;
   this.active = true;
   this.panelResizer.reset();
   this.panel.update();
@@ -110,7 +104,6 @@ Favorite.prototype.closeAction = function() {
 Favorite.prototype.close = function() {
   this.closeMoreMenu();
   this.active = false;
-  this.displayed = false;
   this.panel.update();
 };
 
