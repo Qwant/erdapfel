@@ -2,7 +2,6 @@ import FavoritePanelView from '../views/favorites_panel.dot';
 import Panel from '../libs/panel';
 import PanelResizer from '../libs/panel_resizer';
 import Store from '../adapters/store';
-import FilterPanel from './filter_panel';
 import PoiStore from '../adapters/poi/poi_store';
 import Telemetry from '../libs/telemetry';
 import layouts from './layouts.js';
@@ -18,7 +17,6 @@ function Favorite(sharePanel) {
   this.active = false;
   this.favoritePois = [];
   this.poiSubClass = poiSubClass;
-  this.filterPanel = new FilterPanel();
   this.sharePanel = sharePanel;
   this.openMoreMenuPosition = -1;
   this.reduced = false;
