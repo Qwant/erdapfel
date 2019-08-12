@@ -98,7 +98,6 @@ Scene.prototype.initMapBox = function() {
       });
 
       this.mb.on('click', interactiveLayer, async e => {
-        e.originalEvent.stopPropagation();
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);

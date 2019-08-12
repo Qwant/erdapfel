@@ -37,6 +37,7 @@ export default class IdunnPoi extends Poi {
       this.editUrl = `https://www.openstreetmap.org/edit?editor=id&${itemKind}=${itemId}`;
     }
 
+    this.blocksByType = {};
     if (this.blocks) {
       this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({ [b.type]: b })));
       const imagesBlock = this.blocksByType.images;
