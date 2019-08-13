@@ -143,7 +143,7 @@ test('center the map to the poi on a poi click', async () => {
     window.MAP_MOCK.flyTo({ center: { lat: 0, lng: 0 }, zoom: 10 });
   });
   await wait(300);
-  await page.click('.poi_panel__description_container');
+  await page.click('.poi_panel__content .poi_panel__description_container');
   const center = await page.evaluate(() => {
     return window.MAP_MOCK.getCenter();
   });
@@ -158,7 +158,7 @@ test('display details about the poi on a poi click', async () => {
   await page.waitForSelector('.poi_panel__title');
   expect.assertions(8);
 
-  await page.click('.poi_panel__description_container');
+  await page.click('.poi_panel__content .poi_panel__description_container');
   let infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText;
   });

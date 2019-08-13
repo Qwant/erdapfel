@@ -1,47 +1,39 @@
 {{
-  const ico = IconManager.get(this.poi);
   const grades = this.poi.blocksByType ? this.poi.blocksByType.grades : null;
 }}
 
-<h4 class="poi_panel__title">
-  {{? this.poi.localName && this.poi.name }}
-    <span class="poi_panel__title__main">{{= this.htmlEncode(this.poi.name) }}</span>
-    {{? this.poi.localName !== this.poi.name }}
-      <p class="poi_panel__title__alternative">{{= this.htmlEncode(this.poi.localName) }}</p>
+<div>
+  <h4 class="poi_panel__title">
+    {{? this.poi.localName && this.poi.name }}
+      <span class="poi_panel__title__main">{{= this.htmlEncode(this.poi.name) }}</span>
+      {{? this.poi.localName !== this.poi.name }}
+        <p class="poi_panel__title__alternative">{{= this.htmlEncode(this.poi.localName) }}</p>
+      {{?}}
+    {{?? this.poi.name }}
+      {{= this.htmlEncode(this.poi.name) }}
+    {{?? this.poi.localName }}
+      {{= this.htmlEncode(this.poi.localName) }}
+    {{??}}
+      {{= this.poiSubClass(this.poi.subClassName) }}
     {{?}}
-  {{?? this.poi.name }}
-    {{= this.htmlEncode(this.poi.name) }}
-  {{?? this.poi.localName }}
-    {{= this.htmlEncode(this.poi.localName) }}
-  {{??}}
-    {{= this.poiSubClass(this.poi.subClassName) }}
+  </h4>
+  {{? this.poi.subClassName }}
+    <p class="poi_panel__description">{{= this.poiSubClass(this.poi.subClassName) }}</p>
   {{?}}
-</h4>
-{{? this.poi.subClassName }}
-  <p class="poi_panel__description">{{= this.poiSubClass(this.poi.subClassName) }}</p>
-{{?}}
-{{? this.poi.address && this.poi.address.label }}
-  <p class="poi_panel__address">
-    {{= this.htmlEncode(this.poi.address.label) }}
-  </p>
-{{?}}
-{{? grades }}
-  <a class="panel__note" rel="noopener noreferrer" href="{{= grades.url }}" {{= click(this.poi.logGradesClick, this.poi, 'single') }}>
-    {{~ [...Array(5)]:star:k }}      
-      <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
-    {{~}}
+  {{? this.poi.address && this.poi.address.label }}
+    <p class="poi_panel__address">
+      {{= this.htmlEncode(this.poi.address.label) }}
+    </p>
+  {{?}}
+  {{? grades }}
+    <a class="panel__note" rel="noopener noreferrer" href="{{= grades.url }}" {{= click(this.poi.logGradesClick, this.poi, 'single') }}>
+      {{~ [...Array(5)]:star:k }}
+        <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
+      {{~}}
 
-    <span class="panel__note__review_count">
-      {{= grades.total_grades_count }} {{= _n('review', 'reviews', grades.total_grades_count) }}
-    </span>
-  </a>
-{{?}}
-{{? ico }}
-  <div class="poi_panel__title__symbol icon icon-{{= ico.iconClass }}" style="color:{{= ico.color ? ico.color : '#444648' }}"></div>
-{{??}}
-  <div class="poi_panel__title__symbol icon-location" style="color:#444648"></div>
-{{?}}
-{{? this.poi.topImageUrl }}
-  <div class="poi_panel__image" style="background-image: url(&quot;{{= this.poi.topImageUrl }}&quot;)"></div>
-{{?}}
-
+      <span class="panel__note__review_count">
+        {{= grades.total_grades_count }} {{= _n('review', 'reviews', grades.total_grades_count) }}
+      </span>
+    </a>
+  {{?}}
+</div>
