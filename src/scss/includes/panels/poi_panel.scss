@@ -289,34 +289,29 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__actions {
-  width: 100%;
-  position: relative;
-  margin-bottom: 10px;
-  overflow: auto;
+  display: flex;
 }
 
 .button_container {
-  float: left;
+  flex-grow: 0;
   text-decoration: none;
   text-align: center;
-  min-width: 45px;
+  cursor: pointer;
 
   &:not(:last-child){
     margin-right: 15px;
-    max-width: calc(23% - 20px);
-  }
-
-  &.poi_panel__actions__phone_container {
-    max-width: 28%;
   }
 
   &:not(:first-child){
     min-width: 20%
   }
 
-
   &:hover {
     text-decoration: none;
+
+    button, div {
+      color: $primary_text;
+    }
   }
 
   button {
@@ -324,16 +319,6 @@ $HEADER_SIZE: 40px;
     display: block;
     cursor: pointer;
   }
-}
-
-.button_container:hover {
-  button, div {
-    color: $primary_text;
-  }
-}
-
-.button_container:hover {
-  cursor: pointer;
 }
 
 .poi_panel__actions__icon {
