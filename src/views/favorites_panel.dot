@@ -29,7 +29,6 @@
         {{= _('You have no favorite places. <br>You can add one by clicking on a place') }}
       </div>
     {{??}}
-      {{= this.filterPanel.render() }}
       <div class="favorite_panel__items">
         {{~ this.favoritePois:poi:i }}
           <div class="favorite_panel__item__more_container" {{= click(this.go, this, poi) }} id="{{= `favorite_item_${i}` }}">

@@ -19,7 +19,6 @@ function PoiPanel(sharePanel) {
   this.isPoiCompliant = true;
   this.poi = null;
   this.active = false;
-  this.displayed = false;
   this.poiSubClass = poiSubClass;
   this.PoiBlocContainer = PoiBlocContainer;
   this.panel = new Panel(this, PoiPanelView);
@@ -66,10 +65,6 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     await store.add(this.poi);
   }
   this.panel.update();
-};
-
-PoiPanel.prototype.isDisplayed = function() {
-  return this.active;
 };
 
 PoiPanel.prototype.closeAction = function() {
