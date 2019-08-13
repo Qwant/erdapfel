@@ -196,7 +196,7 @@ export default class DirectionPanel {
       options.poi ? Telemetry.buildInteractionData(
         {
           'id': options.poi.id,
-          'source': options.poi.meta.source,
+          'source': options.poi.meta ? options.poi.meta.source : options.poi.name,
           'template': 'simple',
           'zone': 'detail',
           'element': 'itinerary',

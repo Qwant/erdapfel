@@ -126,6 +126,7 @@ $HEADER_SIZE: 40px;
   border-top-left-radius: 0;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
   max-height: calc(100vh - 120px - #{$HEADER_SIZE});
+  overflow: hidden;
 }
 
 .poi_panel__back_to_list:hover {
@@ -137,7 +138,7 @@ $HEADER_SIZE: 40px;
   padding: 0 120px 0 0;
   margin-bottom: 25px;
   cursor: pointer;
-  min-height: 85px;
+  min-height: 50px;
 }
 
 .poi_panel__description_container:after {
@@ -315,6 +316,7 @@ $HEADER_SIZE: 40px;
   width: 100%;
   position: relative;
   margin-bottom: 10px;
+  overflow: auto;
 }
 
 .button_container {
@@ -372,7 +374,7 @@ $HEADER_SIZE: 40px;
   height: 25px;
   font-size: 12px;
   color: $secondary_text;
-  margin-top: 7px;
+  margin: 7px 0 0;
 }
 
 .poi_panel__actions__text:hover {
@@ -574,6 +576,36 @@ $HEADER_SIZE: 40px;
 .poi_panel__info__wiki__link:hover {
   color: $primary_text;
   text-decoration: none;
+}
+
+.marker .icon-marker::before {
+  content: '';
+}
+
+.service_panel__categories--poi {
+  margin: 15px 0;
+  border-top: 1px solid rgba(0,0,0,.16);
+
+  .service_panel__categories_title {
+    font-weight: normal;
+    font-size: 16px;
+    color: #495063;
+    margin: 20px 0 15px 12px;
+
+    .icon-icon_compass {
+      color: #c8cbd3;
+      font-size: 14px;
+      margin: 0 5px 0 0;
+    }
+  }
+
+  .service_panel__category {
+    width: 80px;
+  }
+}
+
+.marker-anywhere {
+  top: -15px;
 }
 
 /* symbols */

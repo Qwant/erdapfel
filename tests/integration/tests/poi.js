@@ -34,7 +34,7 @@ test('click on a poi', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   await selectPoiLevel(page, 1);
-  const poiPanel = await page.waitForSelector('.poi_panel__title ');
+  const poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
   const translatedSubClass = await getText(page, '.poi_panel__description');
   expect(translatedSubClass).toEqual('musée');

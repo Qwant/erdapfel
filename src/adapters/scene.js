@@ -11,6 +11,7 @@ import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
+import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
@@ -105,6 +106,15 @@ Scene.prototype.initMapBox = function() {
       });
 
       this.popup.addListener(interactiveLayer);
+    });
+
+    this.mb.on('click', e => {
+      // Disable POI anywhere feature on mobile until we opt for an adapted UX
+      if (Device.isMobile() || e._interactiveClick) {
+        return;
+      }
+      const poi = new LatLonPoi(e.lngLat);
+      window.app.navigateTo(`/place/${poi.toUrl()}`, { poi });
     });
 
     this.mb.on('moveend', () => {

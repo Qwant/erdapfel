@@ -1,5 +1,4 @@
 /* globals require, module */
-
 const request = require('request');
 
 module.exports = function(config) {
@@ -57,7 +56,6 @@ module.exports = function(config) {
     res.locals.poi = poi;
     res.locals.ogMetas.push({ name: 'title', content: poi.name });
     res.locals.ogMetas.push({ name: 'url', content: getUrl(req, poi) });
-
     next();
   }
 
@@ -65,7 +63,6 @@ module.exports = function(config) {
     commonMeta(locale, req, res);
     res.locals.ogMetas.push({ name: 'title', content: 'Qwant Maps' });
     res.locals.ogMetas.push({ name: 'url', content: getUrl(req) });
-
     next();
   }
 
@@ -80,8 +77,11 @@ module.exports = function(config) {
   return function(req, res, next) {
     const placeUrlMatch = req.originalUrl.match(/place\/(.*)/);
     const locale = res.locals.language;
+    let poiId;
     if (placeUrlMatch && placeUrlMatch.length > 0) {
-      const poiId = placeUrlMatch[1];
+      poiId = placeUrlMatch[1];
+    }
+    if (poiId) {
       getPoi(poiId, locale).then(poi => {
         if (poi) {
           poiMeta(poi, locale, req, res, next);
