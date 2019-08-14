@@ -292,11 +292,23 @@ $HEADER_SIZE: 40px;
   display: flex;
 }
 
-.button_container {
-  flex-grow: 0;
-  text-decoration: none;
-  text-align: center;
+.poi_panel__action {
+  font-size: 22px;
+  color: $secondary_text;
   cursor: pointer;
+  height: auto;
+  text-align: center;
+
+  div {
+    margin: 9px 0;
+    font-family: Asap;
+    font-size: 12px;
+  }
+
+  &:hover {
+    color: $primary_text;
+    text-decoration: none;
+  }
 
   &:not(:last-child){
     margin-right: 15px;
@@ -305,43 +317,7 @@ $HEADER_SIZE: 40px;
   &:not(:first-child){
     min-width: 20%
   }
-
-  &:hover {
-    text-decoration: none;
-
-    button, div {
-      color: $primary_text;
-    }
-  }
-
-  button {
-    width: 100%;
-    display: block;
-    cursor: pointer;
-  }
 }
-
-.poi_panel__actions__icon {
-  display: inline-block;
-  height: 25px;
-  font-size: 22px;
-  color: $secondary_text;
-  vertical-align: middle;
-}
-
-.poi_panel__actions__text {
-  display: flex;
-  justify-content: center;
-  height: 25px;
-  font-size: 12px;
-  color: $secondary_text;
-  margin: 7px 0 0;
-}
-
-.poi_panel__actions__text:hover {
-  color: $primary_text;
-}
-
 
 .poi_panel__store_status__toggle:after {
   content: '';

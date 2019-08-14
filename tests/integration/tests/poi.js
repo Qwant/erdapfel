@@ -176,7 +176,7 @@ test('display details about the poi on a poi click', async () => {
       contact: document.querySelector('.poi_panel__info__contact').innerText,
       contactUrl: document.querySelector('.poi_panel__info__contact').href,
       hours: document.querySelector('.poi_panel__info__hours__status').innerText,
-      phone: document.querySelector('.poi_panel__actions__phone_container').innerText,
+      phone: document.querySelector('.poi_phone_container_revealed').innerText,
       website: document.querySelector('.poi_panel__info__link').innerText,
     };
   });
