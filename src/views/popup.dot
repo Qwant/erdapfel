@@ -4,14 +4,7 @@
   <div>
   {{? this.reviews }}
     <div class="poi_popup__review">
-
-      {{~ [...Array(5)]:star:k }}
-        <span class="icon-icon_star{{= k+1 <= this.reviews.global_grade ? '-filled' : ''}}"></span>
-      {{~}}
-
-      <span class="panel__note__review_count">
-        {{= this.reviews.total_grades_count }} {{= _n('review', 'reviews', this.reviews.total_grades_count) }}
-      </span>
+      {{= this.reviewsPartial({ reviews: this.reviews, poi: this.poi }) }}
     </div>
 
   {{?? this.opening && this.opening.days }}

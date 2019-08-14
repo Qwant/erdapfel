@@ -26,14 +26,6 @@
     </p>
   {{?}}
   {{? grades }}
-    <a class="panel__note" rel="noopener noreferrer" href="{{= grades.url }}" {{= click(this.poi.logGradesClick, this.poi, 'single') }}>
-      {{~ [...Array(5)]:star:k }}
-        <span class="icon-icon_star{{= k+1 <= grades.global_grade ? '-filled' : ''}}"></span>
-      {{~}}
-
-      <span class="panel__note__review_count">
-        {{= grades.total_grades_count }} {{= _n('review', 'reviews', grades.total_grades_count) }}
-      </span>
-    </a>
+    {{= this.reviewsPartial({ reviews: grades, poi: this.poi }) }}
   {{?}}
 </div>

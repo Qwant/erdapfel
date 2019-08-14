@@ -1,0 +1,10 @@
+{{ const { poi, reviews } = it; }}
+<a class="panel__note" rel="noopener noreferrer" href="{{= reviews.url }}" {{= click(poi.logGradesClick, poi, 'single') }}>
+  {{~ [...Array(5)]:star:k }}
+    <span class="icon-icon_star{{= k+1 <= reviews.global_grade ? '-filled' : ''}}"></span>
+  {{~}}
+
+  <span class="panel__note__review_count">
+    {{= reviews.total_grades_count }} {{= _n('review', 'reviews', reviews.total_grades_count) }}
+  </span>
+</a>

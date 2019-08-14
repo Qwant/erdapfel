@@ -6,6 +6,7 @@ import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
 import titleImagePartial from '../views/poi_partial/title_image.dot';
+import reviewsPartial from 'src/views/poi_partial/reviews.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import layouts from './layouts.js';
 import nconf from '@qwant/nconf-getter';
@@ -29,6 +30,7 @@ function PoiPanel(sharePanel) {
   this.card = true;
   this.headerPartial = headerPartial;
   this.titleImagePartial = titleImagePartial;
+  this.reviewsPartial = reviewsPartial;
   this.minimalHourPanel = new MinimalHourPanel();
   this.isDirectionActive = nconf.get().direction.enabled;
   this.categories = CategoryService.getCategories();

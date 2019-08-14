@@ -6,6 +6,7 @@ import ApiPoi from './poi/idunn_poi';
 import Device from '../libs/device';
 import poiSubClass from '../mapbox/poi_subclass';
 import popupTemplate from '../views/popup.dot';
+import reviewsPartial from 'src/views/poi_partial/reviews.dot';
 import poiConfigs from '../../config/constants.yml';
 
 const WAIT_BEFORE_DISPLAY = 350;
@@ -96,7 +97,10 @@ PoiPopup.prototype.showPopup = function(poi, event) {
 
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.getLngLat())
-    .setHTML(popupTemplate.call({ poi, color, opening, address, reviews, category, htmlEncode }))
+    .setHTML(popupTemplate.call({
+      poi, color, opening, address, category, htmlEncode,
+      reviews, reviewsPartial,
+    }))
     .addTo(this.map);
 };
 
