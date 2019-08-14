@@ -290,6 +290,7 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__actions {
   display: flex;
+  margin-bottom: 12px;
 }
 
 .poi_panel__action {
@@ -514,7 +515,7 @@ $HEADER_SIZE: 40px;
 }
 
 .service_panel__categories--poi {
-  margin: 12px 0;
+  margin-bottom: 12px;
   border-top: 1px solid rgba(0,0,0,.16);
 
   .service_panel__categories_title {
