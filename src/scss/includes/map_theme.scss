@@ -33,10 +33,13 @@
   color: $primary_text;
   font-size: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate::before {
   background-image: none !important;
+  height: auto;
 }
 
 .mapboxgl-ctrl-geolocate::-moz-focus-inner { /* ff rotating outline fix */
