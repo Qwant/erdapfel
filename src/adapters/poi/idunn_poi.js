@@ -103,6 +103,11 @@ export default class IdunnPoi extends Poi {
     } catch (err) {
       if (err === 404) {
         return;
+      } else if (err === 0 && obj.queryContext !== undefined) {
+        // When the OPTIONS request is rejected, the error is 0 and not 405
+        console.warn('Headers aren\'t allowed, sending query without them...');
+        obj.queryContext = undefined;
+        return this.poiApiLoad(obj);
       }
       const s_requestParams = JSON.stringify(requestParams);
       Error.sendOnce(
