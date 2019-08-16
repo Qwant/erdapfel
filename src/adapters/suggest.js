@@ -9,7 +9,10 @@ import Category from './category';
 import CategoryService from './category_service';
 import nconf from '@qwant/nconf-getter';
 
-const SUGGEST_MAX_ITEMS = nconf.get().services.geocoder.maxItems;
+const geocoderConfig = nconf.get().services.geocoder;
+const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
+const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
+const SUGGEST_FOCUS_MIN_ZOOM = 11;
 
 export default class Suggest {
   constructor({ tagSelector, onSelect, prefixes = [], withCategories = false, menuClass = '' }) {
@@ -42,10 +45,13 @@ export default class Suggest {
         } else {
           promise = new Promise(async (resolve, reject) => {
             const focus = {};
-            if (window.map && window.map.mb && window.map.mb.getZoom() >= 11.) {
+            const mapZoom = window.map && window.map.mb && window.map.mb.getZoom();
+            if (
+              SUGGEST_USE_FOCUS && mapZoom >= SUGGEST_FOCUS_MIN_ZOOM) {
               const center = window.map.center();
               focus.lat = center.lat;
               focus.lon = center.lng;
+              focus.zoom = mapZoom;
             }
             this.historyPromise = PoiStore.get(term);
             this.bragiPromise = BragiPoi.get(term, focus);

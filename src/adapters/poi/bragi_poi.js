@@ -131,7 +131,7 @@ export default class BragiPoi extends Poi {
   }
 
 
-  static get(term, {lat, lon} = {}) {
+  static get(term, { lat, lon, zoom } = {}) {
     let cacheKey = term;
     if (lat !== undefined && lon !== undefined) {
       lat = roundWithPrecision(lat, geocoderFocusPrecision);
@@ -166,8 +166,13 @@ export default class BragiPoi extends Poi {
         let ranking = 0;
         const bragiResponse = suggests.features.map(feature => {
           ranking += 1;
-          // FIXME: add position when https://github.com/QwantResearch/erdapfel/pull/291 is merged.
-          return new BragiPoi(feature, new QueryContext(term, ranking, query.lang));
+          const queryContext = new QueryContext(
+            term,
+            ranking,
+            query.lang,
+            { lat, lon, zoom }
+          );
+          return new BragiPoi(feature, queryContext);
         });
         window.__bragiCache[cacheKey] = bragiResponse;
         resolve(bragiResponse);
