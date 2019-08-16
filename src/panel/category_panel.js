@@ -9,6 +9,7 @@ import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import { sources } from '../../config/constants.yml';
+import reviewsPartial from 'src/views/poi_partial/reviews.dot';
 import nconf from '@qwant/nconf-getter';
 
 const categoryConfig = nconf.get().category;
@@ -19,7 +20,7 @@ export default class CategoryPanel {
     this.minimalHourPanel = new MinimalHourPanel();
     this.panel = new Panel(this, CategoryPanelView);
     this.panelResizer = new PanelResizer(this.panel);
-
+    this.reviewsPartial = reviewsPartial;
     this.pois = [];
     this.categoryName = '';
     this.active = false;
