@@ -23,7 +23,7 @@ export default class QueryContext {
         this.position.zoom !== undefined) {
       const { lon, lat, zoom } = this.position;
       headers['X-QwantMaps-FocusPosition'] =
-        `${lon.toFixed(7)};${lat.toFixed(7)};${zoom.toFixed(1)}`;
+        `${Number(lon).toFixed(4)};${Number(lat).toFixed(4)};${Number(zoom).toFixed(1)}`;
     }
     headers['X-QwantMaps-Query'] = encodeURIComponent(this.term);
     headers['X-QwantMaps-SuggestionRank'] = this.ranking;

@@ -20,7 +20,9 @@ services:
   geocoder:
     url: override_by_environment
     useLang: true
-    max_items: 7
+    maxItems: 7
+    useFocus: false
+    focusPrecision: '0.1' # lat/lon degrees
   idunn:
     url: override_by_environment
 
