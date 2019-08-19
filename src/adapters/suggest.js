@@ -46,8 +46,7 @@ export default class Suggest {
           promise = new Promise(async (resolve, reject) => {
             const focus = {};
             const mapZoom = window.map && window.map.mb && window.map.mb.getZoom();
-            if (
-              SUGGEST_USE_FOCUS && mapZoom >= SUGGEST_FOCUS_MIN_ZOOM) {
+            if (SUGGEST_USE_FOCUS && mapZoom >= SUGGEST_FOCUS_MIN_ZOOM) {
               const center = window.map.center();
               focus.lat = center.lat;
               focus.lon = center.lng;
