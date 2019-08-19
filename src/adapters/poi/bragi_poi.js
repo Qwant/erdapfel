@@ -155,8 +155,8 @@ export default class BragiPoi extends Poi {
         'limit': geocoderConfig.maxItems,
       };
       if (lat !== undefined && lon !== undefined) {
-        query['lat'] = lat;
-        query['lon'] = lon;
+        query.lat = lat;
+        query.lon = lon;
       }
       if (geocoderConfig.useLang) {
         query.lang = window.getLang().code;
