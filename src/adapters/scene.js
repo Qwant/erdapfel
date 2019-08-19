@@ -77,6 +77,12 @@ Scene.prototype.initMapBox = function() {
   this.mb.on('load', () => {
     this.onHashChange();
     new SceneDirection(this.mb);
+    listen('set_route', () => {
+      this.routeDisplayed = true;
+    });
+    listen('clean_route', () => {
+      this.routeDisplayed = false;
+    });
     new SceneCategory(this.mb);
     if (performanceEnabled) {
       window.times.mapLoaded = Date.now();
@@ -110,7 +116,7 @@ Scene.prototype.initMapBox = function() {
 
     this.mb.on('click', e => {
       // Disable POI anywhere feature on mobile until we opt for an adapted UX
-      if (Device.isMobile() || e._interactiveClick) {
+      if (Device.isMobile() || e._interactiveClick || this.routeDisplayed) {
         return;
       }
       const poi = new LatLonPoi(e.lngLat);
