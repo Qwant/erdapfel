@@ -3,7 +3,15 @@
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
@@ -85,7 +93,8 @@
         "no-var": "error",
         "eqeqeq": "error",
         "object-curly-spacing": ["error", "always"],
-        "object-shorthand": "error"
+        "object-shorthand": "error",
+        "react/prop-types": 0
     },
     "overrides": [
         {
