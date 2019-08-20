@@ -1,4 +1,5 @@
 import { initBrowser } from '../tools';
+const {Options, runTests} = require('browser-ui-test');
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
@@ -34,4 +35,23 @@ test('is map loaded', async () => {
 
 afterAll(async () => {
   await browser.close();
+});
+
+test('goml', async () => {
+  const options = new Options();
+  try {
+      options.parseArguments(['--test-folder', __dirname, '--failure-folder', __dirname,
+                              '--no-screenshot', '--variable', 'URL', APP_URL]);
+  } catch (error) {
+      console.error(`invalid argument: ${error}`);
+      expect(false);
+  }
+  runTests(options).then(x => {
+    const [output, nb_failures] = x;
+    console.log(output);
+    expect(nb_failures === 0);
+  }).catch(err => {
+    console.error(err);
+    expect(false);
+  });
 });

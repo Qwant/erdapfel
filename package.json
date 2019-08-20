@@ -49,6 +49,7 @@
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "1.7.0",
+    "browser-ui-test": "^0.1.6",
     "detect-browser": "^4.5.1",
     "dot": "https://github.com/olado/doT.git#299b4da",
     "dot-loader": "^0.1.2",

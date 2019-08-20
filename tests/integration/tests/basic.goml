@@ -1,0 +1,3 @@
+goto: |URL|
+click: ".service_panel__item service_panel__item__fav"
+assert: (".favorite_header_title", "MES FAVORIS")
