@@ -12,12 +12,12 @@ ExtendedString.compareIgnoreCase = function(haystack, needle) {
   return haystack.toUpperCase().indexOf(needle.toUpperCase());
 };
 
+// replace accent by non accentued chars
 ExtendedString.normalize = function(str) {
   if (!str.normalize) {
-    // normalize is not available on IE11
-    return str;
+    // normalize is not available on IE11, but we can still replace
+    return str.replace(/[\u0300-\u036f]/g, '');
   }
-  // replace accent by non accentued chars
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
 
