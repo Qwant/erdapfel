@@ -197,10 +197,13 @@ export default class AppPanel {
     this.activePoiId = poiId;
 
     options.layout = options.layout || layouts.POI;
-    if (options.poi) {
-      // If a POI object is provided before fetching full data,
-      // update the map immediately for UX responsiveness
-      this._updateMapPoi(Poi.deserialize(options.poi), options);
+
+    // If a POI object is provided before fetching full data,
+    // we can update the map immediately for UX responsiveness
+    const shallowPoi = options.poi && Poi.deserialize(options.poi);
+    const updateMapEarly = !!shallowPoi;
+    if (updateMapEarly) {
+      this._updateMapPoi(shallowPoi, options);
     }
 
     let poi;
@@ -212,11 +215,15 @@ export default class AppPanel {
       poi = await ApiPoi.poiApiLoad(options.poi || { id: poiId });
     }
 
+    // fallback on the simple POI object from the map
+    // if Idunn doesn't know this POI
+    poi = poi || shallowPoi;
+
     if (!poi) {
       this.navigateTo('/');
     } else {
       this.openPoiPanel(poi, options);
-      if (!options.poi) {
+      if (!updateMapEarly) {
         this._updateMapPoi(poi, options);
       }
     }

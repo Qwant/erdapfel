@@ -98,7 +98,7 @@
             <div>{{= _('DIRECTIONS', 'poi') }}</div>
           </button>
         {{?}}
-        {{? this.poi.blocksByType.phone}}
+        {{? this.poi.blocksByType && this.poi.blocksByType.phone}}
           {{? this.shouldPhoneBeHidden() }}
           <button class="poi_panel__action icon-icon_phone poi_phone_container_hidden" {{= click(this.showPhone, this) }}>
             <div>{{= _('SHOW NUMBER', 'poi') }}</div>
