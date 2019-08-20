@@ -1,16 +1,10 @@
 .service_panel {
-  display: none;
-  position: relative;
-  min-height: 90px;
   width: $panel_width;
   background: url('../images/panel_top.svg') white repeat-x;
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
-}
-
-.service_panel--active {
-  display: block;
+  padding: 20px 20px 9px;
 }
 
 .service_panel__title {
@@ -18,47 +12,37 @@
   font-size: 14px;
   font-family: Asap;
   font-weight: 500;
+  padding-bottom: 9px;
   border-bottom: 1px solid #e0e1e6;
-  padding: 20px 0 10px;
-  margin: 0px 20px 8px;
+  margin-bottom: 9px;
 }
 
-.side_bar__item__icon {
-  color: $secondary_text;
-}
+.service_panel__actions {
+  display: flex;
+  margin-bottom: 30px;
 
-.service_panel__item {
-  float: left;
-  margin: 0 25px 0 20px;
-}
+  .service_panel__action {
+    margin-right: 45px;
+    cursor: pointer;
+    font-size: 13px;
+    color: $secondary_text;
 
-.service_panel__item--disabled {
-  .service_panel__item__action, .side_bar__item__icon {
-    cursor: default;
-    color: rgba(92, 111, 132, .4);
+    &:hover .service_panel__action__text {
+      color: $primary_text;
+      text-decoration: underline;
+    }
   }
 }
 
-.service_panel__item__action {
-  cursor: pointer;
-  font-size: 13px;
-  color: $secondary_text;
-}
-
-.service_panel__item:not(.service_panel__item--disabled) .service_panel__item__action:hover .service_panel__item__text {
-  color: $primary_text;
-  text-decoration: underline;
-}
-
 .service_panel__categories {
-  margin: 60px 0 0 0;
-  padding: 0 0 10px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -6px;
 }
 
 .service_panel__category {
-  width: 90px;
+  width: 25%;
   cursor: pointer;
-  display: inline-block;
   text-align: center;
   margin: 0 0 23px 0;
 

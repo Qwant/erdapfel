@@ -4,29 +4,27 @@ import ReactDOM from 'react-dom';
 import CategoryService from '../adapters/category_service';
 
 const ServicePanel_ = ({ categories, navTo }) =>
-  <div className="service_panel service_panel--active">
+  <div className="service_panel">
     <h3 className="service_panel__title">
       {_('Qwant Maps services', 'service panel')}
     </h3>
 
     {/* TODO: use real <a> links */}
-    <div
-      className="service_panel__item service_panel__item__fav"
-      onClick={() => navTo('/favs') }
-    >
-      <button className="service_panel__item__action">
-        <i className="icon-icon_star side_bar__item__icon"></i>
-        <span className="service_panel__item__text">{_('YOUR FAVORITES', 'service panel')}</span>
+    <div className="service_panel__actions">
+      <button
+        className="service_panel__action service_panel__item__fav"
+        onClick={() => navTo('/favs') }
+      >
+        <i className="icon-icon_star" />{' '}
+        <span className="service_panel__action__text">{_('YOUR FAVORITES', 'service panel')}</span>
       </button>
-    </div>
 
-    <div
-      className="service_panel__item service_panel__item__direction"
-      onClick={() => navTo('/routes') }
-    >
-      <button className="service_panel__item__action">
-        <i className="icon-corner-up-right side_bar__item__icon"></i>
-        <span className="service_panel__item__text">{_('DIRECTIONS', 'service panel')}</span>
+      <button
+        className="service_panel__action service_panel__item__direction"
+        onClick={() => navTo('/routes') }
+      >
+        <i className="icon-corner-up-right" />{' '}
+        <span className="service_panel__action__text">{_('DIRECTIONS', 'service panel')}</span>
       </button>
     </div>
 
