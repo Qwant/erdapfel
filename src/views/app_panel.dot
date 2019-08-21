@@ -10,6 +10,7 @@
     {{?}}
   </div>
   {{= this.servicePanel.render() }}
+  {{= this.servicePanelMobile.render() }}
 </div>
 
 /* modals */

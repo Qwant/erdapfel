@@ -9,7 +9,46 @@
   @include card_radius();
 }
 
+.service_panel_mobile {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  min-height: 90px;
+  width: 100%;
+  background: white;
+  background-size: 100% 5px;
+  @include card_shadow();
+  @include card_radius();
+
+  .service_panel__categories {
+    margin: 0 0 0 0;
+    padding: 0 0 10px 12px;
+    display: block;
+  }
+
+  .service_panel__category {
+    width: 23vw;
+  }
+
+  .service_panel__title {
+    color: #495063;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    text-transform: uppercase;
+  }
+
+  .service_panel_mobile__header {
+    padding: 10px 16px;
+  }
+}
+
 .service_panel--active {
+  display: block;
+}
+
+.service_panel_mobile--active {
   display: block;
 }
 
