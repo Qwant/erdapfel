@@ -10,9 +10,13 @@ import Error from '../../adapters/error';
 import Device from '../../libs/device';
 import Telemetry from '../../libs/telemetry';
 import NavigatorGeolocalisationPoi from '../../adapters/poi/specials/navigator_geolocalisation_poi';
+import nconf from '@qwant/nconf-getter';
+
+const isPublicTransportEnabled = nconf.get().direction.publicTransport.enabled;
 
 export default class DirectionPanel {
   constructor(roadPanel) {
+    this.isPublicTransportEnabled = isPublicTransportEnabled;
     this.panel = new Panel(this, directionTemplate);
     this.vehicles = modes;
     this.active = false;
@@ -239,6 +243,7 @@ export default class DirectionPanel {
       } else {
         this.roadMapPanel.hidePlaceholder();
         this.roadMapPanel.showError();
+        fire('clean_route');
       }
     }
   }

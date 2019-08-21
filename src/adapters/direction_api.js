@@ -16,6 +16,7 @@ export const modes = {
   DRIVING: 'driving',
   WALKING: 'walking',
   CYCLING: 'cycling',
+  PUBLIC_TRANSPORT: 'publicTransport',
 };
 
 const modeToProfile = {
