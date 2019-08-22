@@ -36,7 +36,7 @@ export default class AppPanel {
     this.directionEnabled = directionEnabled;
 
     this.sharePanel = new Share();
-    this.servicePanel = new ServicePanel();
+    this.servicePanel = new ServicePanel('.service_panel__container');
     this.favoritePanel = new FavoritePanel(this.sharePanel);
     this.poiPanel = new PoiPanel(this.sharePanel);
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
