@@ -54,28 +54,9 @@
     {{??}}
       <div class='itinerary_leg {{= route.isActive ? ' itinerary_leg--active' : '' }}' id='itinerary_leg_{{= route.id }}' {{= click(this.toggleRoute, this, route.id) }}>
         <div class=itinerary_leg_inner>
-
-            <div class="itinerary_panel__item__share" {{= click(this.openShare, this, route) }}>
-              <i class="icon-share-2"></i>
-            </div>
-
-            <!--
-            <div class="itinerary_panel__item__more_button" {{= click(this.toggleMore, this, i) }}>
-              <i class="icon-more-horizontal"></i>
-            </div>
-
-            <div class="itinerary_panel__item__more" id="itinerary_more_{{= i }}">
-              <p class="itinerary_panel__item__more__line" {{= click(this.openShare, this, route) }}>
-                <i class="icon-share-2 itinerary_panel__item__more__icon"></i>
-                <span>{{= _('Share') }}</span>
-              </p>
-              <p class="itinerary_panel__item__more__line" {{= click(this.openPrint, this, route) }}>
-                <i class="icon-printer itinerary_panel__item__more__icon"></i>
-                <span>{{= _('print') }}</span>
-              </p>
-            </div>
-            -->
-
+          <div class="itinerary_panel__item__share" {{= click(this.openShare, this, route) }}>
+            <i class="icon-share-2"></i>
+          </div>
           <div class='itinerary_leg_icon {{= this.getVehicleIcon() }}'></div>
           <div class='itinerary_leg_via'>
             <div class='itinerary_leg_via_title'>{{= _('Via', 'direction') }} {{= this.routes[route.id].legs[0].summary.replace(/^(.*), (.*)$/, '$1') }}</div>
