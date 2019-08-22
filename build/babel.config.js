@@ -3,6 +3,7 @@
 module.exports = function(mode) {
   const plugins = [
     '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-proposal-class-properties',
   ];
 
   const production = {
@@ -37,7 +38,7 @@ module.exports = function(mode) {
   const conf = mode === 'production' ? production : development;
 
   return {
-    'presets': conf.presets,
+    'presets': conf.presets.concat([ '@babel/preset-react' ]),
     'ignore': [
       'node_modules',
     ],
