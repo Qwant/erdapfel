@@ -126,11 +126,6 @@ export default class RoadMapPanel {
     return ret;
   }
 
-  close_leg() {
-    this.routes = [];
-    this.panel.update();
-  }
-
   highlightStepMarker(i) {
     fire('highlight_step', i);
   }
