@@ -2,6 +2,13 @@ BODY {
   background: url("../images/backgrounds/grid.png");
 }
 
+noscript {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .side_panel__container {
   position: absolute;
   top: 104px;

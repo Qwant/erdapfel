@@ -1,0 +1,26 @@
+{
+  "short_name": "Qwant Maps",
+  "name": "Qwant Maps - Beta",
+  "icons": [
+    {
+      "src": "./images/logo_128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "./images/logo_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./images/logo_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#ffffff",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#ffffff",
+  "categories": ["maps", "navigation", "travel"]
+}
