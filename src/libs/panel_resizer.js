@@ -149,4 +149,14 @@ export default class PanelResizer {
     this.reduced = false;
     this.maximized = false;
   }
+
+  start() {
+    window.updateLocationButtonStyle('bottom: 60px;');
+    window.updateDirectionButtonStyle('bottom: 115px;');
+  }
+
+  stop() {
+    window.updateLocationButtonStyle('');
+    window.updateDirectionButtonStyle('');
+  }
 }

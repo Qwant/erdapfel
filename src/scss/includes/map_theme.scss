@@ -180,10 +180,17 @@
     float: inherit;
   }
 
+  .mapboxgl-ctrl-bottom-right {
+    bottom: 26px;
+  }
+
   .mapboxgl-ctrl-attrib.mapboxgl-compact{
     margin: 0;
     padding: 0;
     border-radius: 12px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 
     &::after {
       position: relative;

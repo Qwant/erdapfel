@@ -78,6 +78,7 @@ PoiPanel.prototype.closeAction = function() {
 };
 
 PoiPanel.prototype.close = async function() {
+  window.updateLocationButtonStyle('');
   if (!this.active) {
     return;
   }
@@ -102,6 +103,7 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   }
   this.sourceCategory = options.sourceCategory;
   this.active = true;
+  window.updateLocationButtonStyle('bottom: 146px;');
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
 };

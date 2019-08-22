@@ -95,6 +95,8 @@ export default class CategoryPanel {
     this.restoreParams(options);
     this.active = true;
 
+    this.panelResizer.start();
+
     if (window.map.mb.isMoving()) {
       /*
         Do not trigger API search and zoom change when the map
@@ -124,6 +126,7 @@ export default class CategoryPanel {
     document.querySelector('.top_bar').classList.remove('top_bar--category-open');
     this.active = false;
     this.panel.update();
+    this.panelResizer.stop();
     if (toggleMarkers) {
       this.removeCategoryMarkers();
     }

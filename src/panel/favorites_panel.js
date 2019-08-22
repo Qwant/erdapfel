@@ -91,6 +91,7 @@ Favorite.prototype.open = async function() {
 
   this.active = true;
   this.panelResizer.reset();
+  this.panelResizer.start();
   this.panel.update();
 };
 
@@ -102,6 +103,7 @@ Favorite.prototype.closeAction = function() {
 Favorite.prototype.close = function() {
   this.closeMoreMenu();
   this.active = false;
+  this.panelResizer.stop();
   this.panel.update();
 };
 
