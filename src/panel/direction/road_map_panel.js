@@ -16,7 +16,6 @@ export default class RoadMapPanel {
     this.placeholder = false;
     this.error = false;
     this.origin = null;
-    this.openMoreMenuPosition = -1;
     this.sharePanel = sharePanel;
 
     listen('select_road_map', i => {
@@ -127,11 +126,6 @@ export default class RoadMapPanel {
     return ret;
   }
 
-  close_leg() {
-    this.routes = [];
-    this.panel.update();
-  }
-
   highlightStepMarker(i) {
     fire('highlight_step', i);
   }
@@ -154,27 +148,6 @@ export default class RoadMapPanel {
       return 'icon-bike';
     default:
       return '';
-    }
-  }
-
-  toggleMore(position) {
-    if (this.openMoreMenuPosition !== position) {
-      this.closeMoreMenu();
-    }
-    this.openMoreMenu(position);
-  }
-
-  openMoreMenu(position) {
-    this.openMoreMenuPosition = position;
-    const menu = document.querySelector(`#itinerary_more_${position}`);
-    menu.classList.add('itinerary_panel__item__more--active');
-  }
-
-  closeMoreMenu() {
-    const menu = document.querySelector(`#itinerary_more_${this.openMoreMenuPosition}`);
-    if (menu) {
-      menu.classList.remove('itinerary_panel__item__more--active');
-      this.openMoreMenuPosition = -1;
     }
   }
 
