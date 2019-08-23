@@ -21,6 +21,12 @@ export default class ExtendedControl {
     this._compass = this._createButton(compassClass, 'Reset North', () => {
       this._resetNorthAndTilt();
     });
+    this._direction = this._createButton('direction_shortcut icon-corner-up-right', 'direction',
+      ev => {
+        ev.target.style.display = 'none';
+        window.app.directionPanel.open();
+      }
+    );
 
     this._compassIndicator = this._createIcon('map_control__compass__icon');
     this._compass.appendChild(this._compassIndicator);
@@ -41,6 +47,7 @@ export default class ExtendedControl {
     }, this.bottomButtonGroup);
 
     this.topButtonGroup.appendChild(this._compass);
+    this.topButtonGroup.appendChild(this._direction);
 
     geolocControl.onReady(() => {
       this.bottomButtonGroup.appendChild(this._zoomInButton);

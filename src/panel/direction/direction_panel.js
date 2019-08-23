@@ -178,6 +178,9 @@ export default class DirectionPanel {
   }
 
   close() {
+    Array.prototype.slice.call(document.getElementsByClassName('direction_shortcut')).forEach(e => {
+      e.style.display = '';
+    });
     if (!this.active) {
       return;
     }
