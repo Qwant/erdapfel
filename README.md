@@ -57,6 +57,7 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 * [Project structure](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/project_structure.md)
 * [Project internationalisation](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/i18n.md)
 * [Code convention](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/code_convention.md)
+* [Tests](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/tests.md)
 
 [![Travis Build](https://travis-ci.org/QwantResearch/erdapfel.svg?branch=master)](https://travis-ci.org/QwantResearch/erdapfel)
 
@@ -91,11 +92,7 @@ Run unit tests only with `npm run unit-test`
 #### Integration tests
 Run integration tests only with `npm run integration-test`
 
-It will run chrome headless test suite with a mapbox-gl minimalist mock. The config override is done in the server_start file.
-
-*note on mapbox-gl mock*: We include out mapbox-gl mock fork to emulate mapbox-gl behaviour with the advanced support of mocked event & poi.
-
-**hint** : When you debug or add new tests, you may want to launch puppeteer in non headless mode and keep the browser open by setting the environment variable `headless` to `false`.
+*For extended information about tests, refer to the [dedicated page](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/tests.md).*
 
 ### Benchmark
 
