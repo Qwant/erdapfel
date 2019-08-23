@@ -9,15 +9,15 @@ import { version } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
 import poiSubClass from '../mapbox/poi_subclass';
+import { openShareModal } from 'src/modals/ShareModal';
 
 const masqEnabled = nconf.get().masq.enabled;
 const masqOnboardingModal = new MasqOnboardingModal();
 
-function Favorite(sharePanel) {
+function Favorite() {
   this.active = false;
   this.favoritePois = [];
   this.poiSubClass = poiSubClass;
-  this.sharePanel = sharePanel;
   this.openMoreMenuPosition = -1;
   this.reduced = false;
   this.maximized = false;
@@ -77,7 +77,7 @@ Favorite.prototype.closeMoreMenu = function() {
 Favorite.prototype.openShare = function(poi) {
   Telemetry.add(Telemetry.FAVORITE_SHARE);
   const url = poi.toAbsoluteUrl();
-  this.sharePanel.open(url);
+  openShareModal(url);
 };
 
 Favorite.prototype.getAll = async function() {

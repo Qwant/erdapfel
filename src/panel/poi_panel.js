@@ -14,18 +14,18 @@ import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import Device from '../libs/device';
 import CategoryService from '../adapters/category_service';
 import poiSubClass from '../mapbox/poi_subclass';
+import { openShareModal } from 'src/modals/ShareModal';
 
 const store = new Store();
 const masqFavoriteModal = new MasqFavoriteModal();
 
-function PoiPanel(sharePanel) {
+function PoiPanel() {
   this.isPoiCompliant = true;
   this.poi = null;
   this.active = false;
   this.poiSubClass = poiSubClass;
   this.PoiBlocContainer = PoiBlocContainer;
   this.panel = new Panel(this, PoiPanelView);
-  this.sharePanel = sharePanel;
   this.lang = window.getBaseLang().code;
   this.card = true;
   this.headerPartial = headerPartial;
@@ -117,7 +117,7 @@ PoiPanel.prototype.openShare = function() {
   if (this.poi.meta && this.poi.meta.source) {
     Telemetry.add('share', 'poi', this.poi.meta.source);
   }
-  this.sharePanel.open(this.poi.toAbsoluteUrl());
+  openShareModal(this.poi.toAbsoluteUrl());
 };
 
 PoiPanel.prototype.showDetail = function() {

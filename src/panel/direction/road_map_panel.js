@@ -3,9 +3,10 @@ import roadMapTemplate from '../../views/direction/road_map.dot';
 import Device from '../../libs/device';
 import RoadMapPreviewPanel from './road_map_preview';
 import Telemetry from '../../libs/telemetry';
+import { openShareModal } from 'src/modals/ShareModal';
 
 export default class RoadMapPanel {
-  constructor(onOpen, onClose, sharePanel) {
+  constructor(onOpen, onClose) {
     this.onOpen = onOpen;
     this.onClose = onClose;
     this.previewRoadMap = new RoadMapPreviewPanel(this.distance);
@@ -16,7 +17,6 @@ export default class RoadMapPanel {
     this.placeholder = false;
     this.error = false;
     this.origin = null;
-    this.sharePanel = sharePanel;
 
     listen('select_road_map', i => {
       this.toggleRoute(i);
@@ -153,6 +153,6 @@ export default class RoadMapPanel {
 
   openShare() {
     Telemetry.add(Telemetry.ITINERARY_SHARE);
-    this.sharePanel.open(window.location);
+    openShareModal(window.location);
   }
 }
