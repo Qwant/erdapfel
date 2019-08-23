@@ -55,21 +55,21 @@ pois:
       closed:
         msg: _('Closed')
         color: '#8c0212'
-- apiName: happy_hours
-  panelName: hour
-  options:
-    title: _('Happy hours')
-    messages:
-      open:
-        msg: _('happy hours!')
-        color: '#fcc035'
-      soon:
-        msg: _('Last pint')
-        time: 60
-        color: '#3f76e2'
-      closed:
-        msg: _('Closed')
-        color: '#8c0212'
+# - apiName: happy_hours
+#   panelName: hour
+#   options:
+#     title: _('Happy hours')
+#     messages:
+#       open:
+#         msg: _('happy hours!')
+#         color: '#fcc035'
+#       soon:
+#         msg: _('Last pint')
+#         time: 60
+#         color: '#3f76e2'
+#       closed:
+#         msg: _('Closed')
+#         color: '#8c0212'
 - apiName: website
   panelName: website
 - apiName: wikipedia
