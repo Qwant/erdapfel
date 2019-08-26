@@ -18,17 +18,21 @@
   width: 100%;
   background: white;
   background-size: 100% 5px;
+  overflow: auto;
   @include card_shadow();
   @include card_radius();
 
-  .service_panel__categories {
+  .service_panel__categories,
+  .service_panel__events {
     margin: 0 0 0 0;
     padding: 0 0 10px 12px;
     display: block;
   }
 
-  .service_panel__category {
+  .service_panel__category,
+  .service_panel__event {
     width: 23vw;
+    margin: 0 0 23px 0;
   }
 
   .service_panel__title {
@@ -41,6 +45,11 @@
 
   .service_panel_mobile__header {
     padding: 10px 16px;
+  }
+
+  hr {
+    border-top: 1px solid #e0e1e6;
+    margin: 0 16px;
   }
 }
 

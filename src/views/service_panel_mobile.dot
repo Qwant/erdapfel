@@ -26,12 +26,25 @@
   </div>
   {{?}}
 
-  <div {{= click(this.openFavorite, this) }} class="service_panel__item service_panel__item__fav">
-    <button class="service_panel__item__action">
-      <i class="icon-icon_star side_bar__item__icon"></i>
-      <span class="service_panel__item__text">{{= _('YOUR FAVORITES', 'service panel') }}</span>
-     </button>
-  </div>
+  <hr>
+
+    <h3 class="service_panel__title">
+      {{= _('Events', 'service panel') }}
+    </h3>
+
+    <div class="service_panel__events">
+
+      {{ for(var i = 0; i < 8; i++){ }}
+        <button class="service_panel__event" type="button">
+          <div class="service_panel__category__icon" style="background: #e93865">
+            <span class="icon icon-"></span>
+          </div>
+          <div class="service_panel__category__title">Title</div>
+        </button>
+      {{ } }}
+    </div>
+
+  <hr>
 
   <div {{= click(this.openDirection, this) }} class="service_panel__item service_panel__item__direction{{= this.isDirectionActive ? '' : ' service_panel__item--disabled'}}" >
     <button class="service_panel__item__action">
@@ -39,5 +52,12 @@
       <span class="service_panel__item__text">{{= _('DIRECTIONS', 'service panel') }}</span>
     </button>
   </div>
+
+    <div {{= click(this.openFavorite, this) }} class="service_panel__item service_panel__item__fav">
+      <button class="service_panel__item__action">
+        <i class="icon-icon_star side_bar__item__icon"></i>
+        <span class="service_panel__item__text">{{= _('FAVORITES', 'service panel') }}</span>
+       </button>
+    </div>
 
 </div>
