@@ -11,7 +11,7 @@ export default class CategoryService {
     }
 
     if (!window.__categoriesCache) {
-      window.__categoriesCache = categories.map(categ => Category.of(categ));
+      window.__categoriesCache = categories.map(categ => Category.create(categ));
     }
 
     return window.__categoriesCache;
