@@ -207,7 +207,7 @@ export default class SceneDirection {
     const sourceId = `source_${route.id}`;
     const sourceJSON = {
       type: 'geojson',
-      data: this.buildRouteGeoJSON(route.geometry),
+      data: this.getRouteGeoJson(route),
     };
     this.map.addSource(sourceId, sourceJSON);
     this.map.addLayer(layerStyle, map.routes_layer);
@@ -223,10 +223,12 @@ export default class SceneDirection {
     this.map.on('mouseleave', `route_${route.id}`, () => {
       this.map.getCanvas().style.cursor = '';
     });
-
   }
 
-  buildRouteGeoJSON(geometry) {
+  getRouteGeoJson({ geometry }) {
+    if (geometry.type === 'FeatureCollection' || geometry.type === 'Feature') {
+      return geometry;
+    }
     return {
       id: 1,
       type: 'Feature',
