@@ -104,7 +104,7 @@ export default class SceneDirection {
   displayRoute(move) {
     if (this.routes && this.routes.length > 0) {
       this.routes.forEach(route => {
-        this.showPolygon(route, this.vehicle);
+        this.addRouteFeature(route, this.vehicle);
       });
       const mainRoute = this.routes.find(route => route.isActive);
       this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer);
@@ -119,9 +119,8 @@ export default class SceneDirection {
         draggable: true,
       })
         .setLngLat(this.steps[0].maneuver.location)
-        .addTo(this.map);
-
-      this.markerOrigin.on('dragend', event => this.refreshDirection(event, 'origin'));
+        .addTo(this.map)
+        .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
 
       const markerDestination = document.createElement('div');
       markerDestination.className = 'itinerary_marker_destination';
@@ -130,9 +129,8 @@ export default class SceneDirection {
         draggable: true,
       })
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
-        .addTo(this.map);
-
-      this.markerDestination.on('dragend', event => this.refreshDirection(event, 'destination'));
+        .addTo(this.map)
+        .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
 
       const bbox = this.computeBBox(mainRoute);
       if (move !== false) {
@@ -141,19 +139,14 @@ export default class SceneDirection {
     }
   }
 
-  refreshDirection(event, type) {
+  refreshDirection(type, lngLat) {
+    const newPoint = new LatLonPoi(lngLat);
     if (type === 'origin') {
-      const originLnglat = this.markerOrigin.getLngLat();
-      const newOrigin = new LatLonPoi({ lat: parseFloat(originLnglat.lat),
-        lng: parseFloat(originLnglat.lng) });
-      this.directionPanel.selectOrigin(newOrigin);
-      this.directionPanel.setInputValue(type, newOrigin.getInputValue());
+      this.directionPanel.selectOrigin(newPoint);
+      this.directionPanel.setInputValue(type, newPoint.getInputValue());
     } else if (type === 'destination') {
-      const destinationLngLat = this.markerDestination.getLngLat();
-      const newDestination = new LatLonPoi({ lat: parseFloat(destinationLngLat.lat),
-        lng: parseFloat(destinationLngLat.lng) });
-      this.directionPanel.selectDestination(newDestination);
-      this.directionPanel.setInputValue(type, newDestination.getInputValue());
+      this.directionPanel.selectDestination(newPoint);
+      this.directionPanel.setInputValue(type, newPoint.getInputValue());
     }
   }
 
@@ -179,8 +172,8 @@ export default class SceneDirection {
     this.routes = [];
   }
 
-  showPolygon(route, vehicle) {
-    const geojson = vehicle === 'walking' ? {
+  addRouteFeature(route, vehicle) {
+    const layerStyle = vehicle === 'walking' ? {
       'id': `route_${route.id}`,
       'type': 'symbol',
       'source': `source_${route.id}`,
@@ -213,13 +206,13 @@ export default class SceneDirection {
 
     const sourceId = `source_${route.id}`;
     const sourceJSON = {
-      'type': 'geojson',
-      'data': this.buildRouteData(route.geometry.coordinates),
+      type: 'geojson',
+      data: this.buildRouteGeoJSON(route.geometry),
     };
     this.map.addSource(sourceId, sourceJSON);
-    this.map.addLayer(geojson, map.routes_layer);
+    this.map.addLayer(layerStyle, map.routes_layer);
 
-    this.map.on('click', `route_${route.id}`, function() {
+    this.map.on('click', `route_${route.id}`, () => {
       fire('select_road_map', route.id);
     });
 
@@ -233,15 +226,12 @@ export default class SceneDirection {
 
   }
 
-  buildRouteData(data) {
+  buildRouteGeoJSON(geometry) {
     return {
-      'id': 1,
-      'type': 'Feature',
-      'properties': {},
-      'geometry': {
-        'type': 'LineString',
-        'coordinates': data,
-      },
+      id: 1,
+      type: 'Feature',
+      properties: {},
+      geometry,
     };
   }
 
