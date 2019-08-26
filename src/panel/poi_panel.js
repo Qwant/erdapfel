@@ -121,15 +121,17 @@ PoiPanel.prototype.openShare = function() {
 };
 
 PoiPanel.prototype.showDetail = function() {
-  Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
-    Telemetry.buildInteractionData({
-      id: this.poi.id,
-      source: this.poi.meta.source,
-      template: 'single',
-      zone: 'detail',
-      element: 'more',
-    })
-  );
+  if (this.poi.meta && this.poi.meta.source) {
+    Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
+      Telemetry.buildInteractionData({
+        id: this.poi.id,
+        source: this.poi.meta.source,
+        template: 'single',
+        zone: 'detail',
+        element: 'more',
+      })
+    );
+  }
   this.card = false;
   this.panel.update();
 };
