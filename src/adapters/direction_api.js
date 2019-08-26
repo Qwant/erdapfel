@@ -23,6 +23,7 @@ const modeToProfile = {
   [modes.DRIVING]: 'driving-traffic',
   [modes.WALKING]: 'walking',
   [modes.CYCLING]: 'cycling',
+  [modes.PUBLIC_TRANSPORT]: 'publictransport',
 };
 
 export default class DirectionApi {
@@ -48,13 +49,13 @@ export default class DirectionApi {
     } else {
       language = (userLang.fallback || [])[0] || 'en';
     }
-    const directionsParams = {
-      language,
+    const directionsParams = mode === modes.PUBLIC_TRANSPORT ? {} : {
       geometries,
       steps: true,
       alternatives: true,
       overview: OVERVIEW_SETTING,
     };
+    directionsParams.language = language;
 
     if (exclude) {
       directionsParams['exclude'] = exclude;
