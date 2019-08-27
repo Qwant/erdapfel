@@ -1,4 +1,5 @@
-import { Marker, LngLat, LngLatBounds } from 'mapbox-gl--ENV';
+import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
+import bbox from '@turf/bbox';
 import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
@@ -237,13 +238,9 @@ export default class SceneDirection {
     };
   }
 
-  computeBBox(polygon) {
-    const bounds = new LngLatBounds();
-    polygon.geometry.coordinates.forEach(coordinate => {
-      bounds.extend(new LngLat(coordinate[0], coordinate[1]));
-    });
-
-    return bounds;
+  computeBBox({ geometry }) {
+    const [ minX, minY, maxX, maxY ] = bbox(geometry);
+    return new LngLatBounds([ minX, minY ], [ maxX, maxY ]);
   }
 
   highlightStep(step) {

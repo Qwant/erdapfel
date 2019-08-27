@@ -93,6 +93,7 @@
     "@qwant/qwant-basic-gl-style": "git+https://github.com/QwantResearch/qwant-basic-gl-style.git#c0bd1d",
     "@qwant/telemetry": "file:local_modules/telemetry",
     "@qwant/uri": "file:local_modules/uri",
+    "@turf/bbox": "^6.0.1",
     "bunyan": "^1.8.12",
     "compression": "^1.7.3",
     "ejs": "^2.6.1",
