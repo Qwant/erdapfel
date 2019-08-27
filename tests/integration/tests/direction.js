@@ -160,11 +160,11 @@ test('select itinerary leg', async () => {
 
   await wait(300);
 
-  const featureState = await page.evaluate(() => {
-    return window.MAP_MOCK.featureState;
+  const itineraryGeoJson = await page.evaluate(() => {
+    return window.MAP_MOCK._sources['source_0'].data;
   });
 
-  expect(featureState).toEqual({ source: 'source_0', id: 1 });
+  expect(itineraryGeoJson.properties.isActive).toBe(true);
 });
 
 test('select itinerary step', async () => {

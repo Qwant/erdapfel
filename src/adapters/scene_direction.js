@@ -1,5 +1,6 @@
 import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
+import { normalizeToFeatureCollection, setProperty } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
@@ -7,7 +8,6 @@ import LatLonPoi from '../adapters/poi/latlon_poi';
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3';
 const MAIN_ROUTE_COLOR = '#4ba2ea';
-
 
 export default class SceneDirection {
   constructor(map) {
@@ -74,8 +74,11 @@ export default class SceneDirection {
       if (isActive) {
         mainRoute = route;
       }
-      this.map.setFeatureState({ source: `source_${route.id}`, id: 1 }, { isActive });
+      const geoJson = this.getRouteGeoJson(route.geometry, isActive);
+      this.map.getSource(`source_${route.id}`).setData(geoJson);
 
+      // We need to do that explicitely because
+      // layout properties can't depend on dynamic expressions
       if (this.vehicle === 'walking') {
         this.map.setLayoutProperty(`route_${route.id}`, 'icon-image',
           isActive ? 'walking_bullet_active' : 'walking_bullet_inactive');
@@ -196,8 +199,7 @@ export default class SceneDirection {
         'visibility': 'visible',
       },
       'paint': {
-        'line-color': ['case',
-          ['boolean', ['feature-state', 'isActive'], route.isActive],
+        'line-color': ['case', ['boolean', ['get', 'isActive']],
           MAIN_ROUTE_COLOR,
           ALTERNATE_ROUTE_COLOR,
         ],
@@ -208,7 +210,7 @@ export default class SceneDirection {
     const sourceId = `source_${route.id}`;
     const sourceJSON = {
       type: 'geojson',
-      data: this.getRouteGeoJson(route),
+      data: this.getRouteGeoJson(route.geometry, route.isActive),
     };
     this.map.addSource(sourceId, sourceJSON);
     this.map.addLayer(layerStyle, map.routes_layer);
@@ -226,16 +228,10 @@ export default class SceneDirection {
     });
   }
 
-  getRouteGeoJson({ geometry }) {
-    if (geometry.type === 'FeatureCollection' || geometry.type === 'Feature') {
-      return geometry;
-    }
-    return {
-      id: 1,
-      type: 'Feature',
-      properties: {},
-      geometry,
-    };
+  getRouteGeoJson(geometry, isActive) {
+    const geoJson = setProperty(normalizeToFeatureCollection(geometry), 'isActive', isActive);
+    geoJson.features = geoJson.features.map(feature => setProperty(feature, 'isActive', isActive));
+    return geoJson;
   }
 
   computeBBox({ geometry }) {
