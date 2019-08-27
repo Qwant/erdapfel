@@ -20,6 +20,7 @@ module.exports = {
     'itinerary_mode_driving',
     'itinerary_mode_walking',
     'itinerary_mode_cycling',
+    'itinerary_mode_publictransport',
     /* Poi */
     'poi_category_open',
     'poi_backtofavorite',
