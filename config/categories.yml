@@ -47,27 +47,3 @@
   matcher:
     regex: "educ|[eé]coles?\\s*(maternelle|primaire|elementaire)?|college|universite|fac|faculte|iut|[ée]coles?\\s+(?:de\\s+|d')(?:commerce|ingenieurs?)"
   icon: school
-- label : _('museum')
-  name: museum
-  color: "#E93865"
-  matcher:
-    regex: "todo"
-  icon: museum
-- label : _('service')
-  name: service
-  color: "#F3C600"
-  matcher:
-    regex: "todo"
-  icon: service
-- label : _('fitness')
-  name: fitness
-  color: "#495063"
-  matcher:
-    regex: "todo"
-  icon: fitness
-- label : _('health')
-  name: health
-  color: "#4AA0E7"
-  matcher:
-    regex: "todo"
-  icon: health

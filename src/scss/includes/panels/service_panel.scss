@@ -15,24 +15,37 @@
   bottom: 0;
   left: 0;
   min-height: 90px;
+  height: 250px;
+  z-index: 5;
   width: 100%;
   background: white;
   background-size: 100% 5px;
-  overflow: auto;
+  /*overflow: auto;*/
   @include card_shadow();
   @include card_radius();
 
   .service_panel__categories,
-  .service_panel__events {
+  .service_panel__events,
+  .service_panel__actions {
     margin: 0 0 0 0;
     padding: 0 0 10px 12px;
     display: block;
   }
 
   .service_panel__category,
-  .service_panel__event {
-    width: 23vw;
+  .service_panel__event,
+  .service_panel__action {
+    width: 22vw;
     margin: 0 0 23px 0;
+  }
+
+  .service_panel__action__icon {
+    border: 1px solid #c8cbd3;
+
+    span {
+      color: #5c6f84;
+      font-size: 22px;
+    }
   }
 
   .service_panel__title {
@@ -120,7 +133,9 @@
   }
 }
 
-.service_panel__category__icon {
+.service_panel__category__icon,
+.service_panel__event__icon,
+.service_panel__action__icon {
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -143,7 +158,9 @@
   }
 }
 
-.service_panel__category__title {
+.service_panel__category__title,
+.service_panel__event__title,
+.service_panel__action__title {
   margin: 9px 0 0 0;
   color: #5c6f84;
   text-transform: uppercase;
