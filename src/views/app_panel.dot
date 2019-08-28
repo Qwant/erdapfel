@@ -8,9 +8,9 @@
     {{? this.categoryEnabled }}
       {{= this.categoryPanel.render() }}
     {{?}}
+    {{= this.servicePanelMobile.render() }}
   </div>
   {{= this.servicePanel.render() }}
-  {{= this.servicePanelMobile.render() }}
 </div>
 
 /* modals */

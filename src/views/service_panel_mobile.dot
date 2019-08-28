@@ -1,6 +1,9 @@
 <div class="service_panel_mobile{{= this.active ? ' service_panel_mobile--active' : ''}} {{= this.panelResizer.getResizableClasses() }}">
 
   <div class="service_panel_mobile__header {{= this.panelResizer.HANDLE_CLASS }}" {{= this.panelResizer.renderResizerActions() }}>
+
+    <span class="favorite_panel__show_list">{{= _('Show Qwant Maps services',  'favorite panel') }}</span>
+
     <h3 class="service_panel__title">
       {{= _('Qwant Maps services', 'service panel') }}
     </h3>
@@ -30,14 +33,14 @@
   <br>
   <div class="service_panel__actions">
 
-    <button class="service_panel__action">
+    <button class="service_panel__action" {{= click(this.openDirection, this) }}>
       <div class="service_panel__action__icon">
         <span class="icon-corner-up-right"></span>
       </div>
       <div class="service_panel__action__title">{{= _('DIRECTIONS', 'service panel') }}</div>
     </button>
 
-    <button class="service_panel_action">
+    <button class="service_panel_action" {{= click(this.openFavorite, this) }}>
       <div class="service_panel__action__icon">
         <span class="icon-icon_star"></span>
       </div>
