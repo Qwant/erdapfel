@@ -1,9 +1,13 @@
 /* globals _ */
-import facebookTemplate from '../views/templates/facebook';
-import twitterTemplate from '../views/templates/twitter';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'src/components/ui/Modal';
+
+const facebookShareUrl = location =>
+  `https://www.facebook.com/sharer/sharer.php?u=${ encodeURIComponent(location) }`;
+
+const twitterShareUrl = location =>
+  `https://twitter.com/home?status=${ encodeURIComponent(location) }`;
 
 export default class ShareModal extends React.Component {
   state = {
@@ -24,8 +28,8 @@ export default class ShareModal extends React.Component {
 
   render() {
     const { url, onClose } = this.props;
-    const facebookUrl = facebookTemplate(url);
-    const twitterUrl = twitterTemplate(url);
+    const facebookUrl = facebookShareUrl(url);
+    const twitterUrl = twitterShareUrl(url);
 
     return <Modal onClose={onClose}>
       <div className="modal__maps">
