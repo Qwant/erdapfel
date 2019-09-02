@@ -10,7 +10,8 @@ export default class RouteSummary extends React.Component {
     id: PropTypes.number.isRequired,
     route: PropTypes.object.isRequired,
     icon: PropTypes.string.isRequired,
-    toggleDetails: PropTypes.func.isRequired,
+    openDetails: PropTypes.func.isRequired,
+    openPreview: PropTypes.func.isRequired,
     selectRoute: PropTypes.func.isRequired,
   }
 
@@ -18,13 +19,18 @@ export default class RouteSummary extends React.Component {
     this.props.selectRoute(this.props.id);
   }
 
-  onClickDetails = () => {
-    this.props.toggleDetails(this.props.id);
+  onClickDetails = event => {
+    event.stopPropagation();
+    this.props.openDetails(this.props.id);
   }
 
   onClickShare = () => {
     Telemetry.add(Telemetry.ITINERARY_SHARE);
     openShareModal(window.location);
+  }
+
+  onClickPreview = () => {
+    this.props.openPreview(this.props.id);
   }
 
   render() {
@@ -51,6 +57,10 @@ export default class RouteSummary extends React.Component {
       </div>
       <div className="itinerary_panel__item__share" onClick={this.onClickShare}>
         <i className="icon-share-2" />
+      </div>
+      <div className="itinerary_leg_preview" onClick={this.onClickPreview}>
+        <span className="itinerary_leg_preview_icon icon-navigation" />
+        {_('PREVIEW', 'direction')}
       </div>
     </div>;
   }

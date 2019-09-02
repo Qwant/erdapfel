@@ -15,7 +15,7 @@ import nconf from '@qwant/nconf-getter';
 const isPublicTransportEnabled = nconf.get().direction.publicTransport.enabled;
 
 export default class DirectionPanel {
-  constructor(roadPanel) {
+  constructor() {
     this.isPublicTransportEnabled = isPublicTransportEnabled;
     this.panel = new Panel(this, directionTemplate);
     this.vehicles = modes;
@@ -24,22 +24,13 @@ export default class DirectionPanel {
     this.origin = null;
     this.destination = null;
     this.vehicle = modes.DRIVING;
-    this.roadMapPanel = new RoadMapPanel(
-      () => this.handleOpen(),
-      () => this.handleClose(),
-      roadPanel,
-    );
-    this.activePanel = this;
+    this.roadMapPanel = new RoadMapPanel(this.openMobilePreview);
+    this.isRoadMapPreviewActive = false;
   }
 
-  handleOpen() {
+  openMobilePreview = () => {
     this.hideForm();
-    this.activePanel = this.roadMapPanel;
-  }
-
-  handleClose() {
-    this.displayForm();
-    this.activePanel = this;
+    this.isRoadMapPreviewActive = true;
   }
 
   hideForm() {
@@ -160,6 +151,7 @@ export default class DirectionPanel {
   }
 
   closeAction() {
+    this.roadMapPanel.close();
     if (this.poiBeforeOpening) {
       const { poi, isFromCategory, isFromFavorite } = this.poiBeforeOpening;
       this.poiBeforeOpening = null;
@@ -174,7 +166,13 @@ export default class DirectionPanel {
   }
 
   back() {
-    this.activePanel.closeAction();
+    if (this.isRoadMapPreviewActive) {
+      this.roadMapPanel.close();
+      this.isRoadMapPreviewActive = false;
+      this.displayForm();
+    } else {
+      this.closeAction();
+    }
   }
 
   close() {

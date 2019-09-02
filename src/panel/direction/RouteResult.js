@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Route from './Route';
 import { getVehicleIcon } from 'src/libs/route_utils';
+import MobileRoadMapPreview from './MobileRoadMapPreview';
 
 export default class RouteResult extends React.Component {
   static propTypes = {
@@ -11,6 +12,10 @@ export default class RouteResult extends React.Component {
     vehicle: PropTypes.string,
     isLoading: PropTypes.bool,
     error: PropTypes.bool,
+    // we need this callback for now because the non-React mobile layout needs to know if it's open
+    // to decide if the "back" action only closes the preview or the whole direction UI
+    // @TODO: implement this behavior with React Router later
+    onOpenMobilePreview: PropTypes.func,
   }
 
   static defaultProps = {
@@ -20,6 +25,7 @@ export default class RouteResult extends React.Component {
   state = {
     activeRouteId: 0,
     activeDetails: false,
+    previewRoute: null,
   }
 
   componentDidMount() {
@@ -33,7 +39,7 @@ export default class RouteResult extends React.Component {
     this.setState({ activeRouteId: routeId });
   }
 
-  toggleDetails = routeId => {
+  openRouteDetails = routeId => {
     if (this.state.activeRouteId === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
     } else {
@@ -43,6 +49,14 @@ export default class RouteResult extends React.Component {
         activeDetails: true,
       });
     }
+  }
+
+  openPreview = routeId => {
+    fire('show_marker_steps');
+    this.props.onOpenMobilePreview();
+    this.setState({
+      previewRoute: this.props.routes[routeId],
+    });
   }
 
   render() {
@@ -74,18 +88,21 @@ export default class RouteResult extends React.Component {
       </div>;
     }
 
-    return <React.Fragment>
-      {this.props.routes.map((route, index) => <Route
-        key={index}
-        id={index}
-        route={route.legs[0]}
-        origin={this.props.origin}
-        icon={getVehicleIcon(this.props.vehicle)}
-        isActive={this.state.activeRouteId === index}
-        showDetails={this.state.activeRouteId === index && this.state.activeDetails}
-        toggleDetails={this.toggleDetails}
-        selectRoute={this.selectRoute}
-      />)}
-    </React.Fragment>;
+    if (this.state.previewRoute) {
+      return <MobileRoadMapPreview steps={this.state.previewRoute.legs[0].steps} />;
+    }
+
+    return this.props.routes.map((route, index) => <Route
+      key={index}
+      id={index}
+      route={route.legs[0]}
+      origin={this.props.origin}
+      icon={getVehicleIcon(this.props.vehicle)}
+      isActive={this.state.activeRouteId === index}
+      showDetails={this.state.activeRouteId === index && this.state.activeDetails}
+      openDetails={this.openRouteDetails}
+      openPreview={this.openPreview}
+      selectRoute={this.selectRoute}
+    />);
   }
 }
