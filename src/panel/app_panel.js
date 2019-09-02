@@ -3,7 +3,6 @@ import Panel from '../libs/panel';
 import FavoritePanel from './favorites_panel';
 import PoiPanel from './poi_panel';
 import ServicePanel from './service_panel';
-import Share from '../modals/share';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import GeolocationModal from '../modals/geolocation_modal';
@@ -35,12 +34,11 @@ export default class AppPanel {
     this.categoryEnabled = categoryEnabled;
     this.directionEnabled = directionEnabled;
 
-    this.sharePanel = new Share();
     this.servicePanel = new ServicePanel();
-    this.favoritePanel = new FavoritePanel(this.sharePanel);
-    this.poiPanel = new PoiPanel(this.sharePanel);
+    this.favoritePanel = new FavoritePanel();
+    this.poiPanel = new PoiPanel();
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
-    this.directionPanel = this.directionEnabled ? new DirectionPanel(this.sharePanel) : null;
+    this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
 
     this.panels = [
       this.servicePanel,
