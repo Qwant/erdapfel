@@ -3,8 +3,6 @@ import Panel from '../libs/panel';
 import FavoritePanel from './favorites_panel';
 import PoiPanel from './poi_panel';
 import ServicePanel from './service_panel';
-import ServicePanelMobile from './service_panel_mobile';
-import Share from '../modals/share';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import GeolocationModal from '../modals/geolocation_modal';
@@ -37,7 +35,6 @@ export default class AppPanel {
     this.directionEnabled = directionEnabled;
 
     this.servicePanel = new ServicePanel();
-    this.servicePanelMobile = new ServicePanelMobile();
     this.favoritePanel = new FavoritePanel();
     this.poiPanel = new PoiPanel();
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
@@ -45,7 +42,6 @@ export default class AppPanel {
 
     this.panels = [
       this.servicePanel,
-      this.servicePanelMobile,
       this.favoritePanel,
       this.poiPanel,
     ];
@@ -264,10 +260,6 @@ export default class AppPanel {
   }
 
   resetLayout() {
-    if (innerWidth >= 640) {
-      this._openPanel(this.servicePanel);
-    } else {
-      this._openPanel(this.servicePanelMobile);
-    }
+    this._openPanel(this.servicePanel);
   }
 }

@@ -2,10 +2,16 @@ import ServicePanelView from '../views/service_panel.dot';
 import Panel from '../libs/panel';
 import nconf from '@qwant/nconf-getter';
 import CategoryService from '../adapters/category_service';
+import PanelResizer from '../libs/panel_resizer';
+import Device from '../libs/device';
 
 export default class ServicePanel {
   constructor() {
     this.panel = new Panel(this, ServicePanelView);
+    if (Device.isMobile()){
+      this.panelResizer = new PanelResizer(this.panel);
+    }
+    this.isMobile = Device.isMobile();
     this.categories = CategoryService.getCategories();
     this.mustDeployCategories = this.categories.length > 8;
     this.isDeployed = false;
@@ -30,6 +36,9 @@ export default class ServicePanel {
 
   open() {
     this.active = true;
+    if (Device.isMobile()){
+      this.panelResizer.reset();
+    }
     this.panel.update();
   }
 

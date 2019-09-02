@@ -7,6 +7,15 @@
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
+
+  hr {
+    border-top: 1px solid #e0e1e6;
+    margin: 0 16px;
+  }
+}
+
+.service_panel__header {
+  padding: 25px 16px 15px;
 }
 
 .service_panel_mobile {
@@ -15,7 +24,7 @@
   bottom: 0;
   left: 0;
   min-height: 50px;
-  height: 250px;
+  height: 210px;
   z-index: 5;
   width: 100vw;
   background: white;
@@ -24,46 +33,58 @@
   @include card_shadow();
   @include card_radius();
 
-  .service_panel__categories,
-  .service_panel__events,
-  .service_panel__actions {
-    margin: 0 0 0 0;
-    padding: 0 0 10px 12px;
-    display: block;
-  }
-
   .service_panel__category,
   .service_panel__event,
   .service_panel__action {
-    width: 22vw;
-    margin: 0 0 23px 0;
+    width: 23vw
   }
 
-  .service_panel__action__icon {
-    border: 1px solid #c8cbd3;
-
-    span {
-      color: #5c6f84;
-      font-size: 22px;
-    }
-  }
-
-  .service_panel__title {
-    color: #495063;
-    text-align: center;
-    font-size: 12px;
-    border: none;
-    text-transform: uppercase;
-  }
-
-  .service_panel_mobile__header {
+  .service_panel__header {
     padding: 10px 16px;
   }
+}
 
-  hr {
-    border-top: 1px solid #e0e1e6;
-    margin: 0 16px;
+
+.service_panel__categories,
+.service_panel__events,
+.service_panel__actions {
+  margin: 0;
+  padding: 0 0 10px 12px;
+  display: block;
+}
+
+.service_panel__category,
+.service_panel__event,
+.service_panel__action {
+  width: 22%;
+  margin: 5px 0 15px 0;
+}
+
+.service_panel__category__title,
+.service_panel__event_title,
+.service_panel__action__title {
+  font-size: 11px;
+  color: #5c6f84;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 5px 0 0;
+}
+
+.service_panel__action__icon {
+  border: 1px solid #c8cbd3;
+
+  span {
+    color: #5c6f84;
+    font-size: 22px;
   }
+}
+
+.service_panel__title {
+  color: #495063;
+  text-align: center;
+  font-size: 12px;
+  border: none;
+  text-transform: uppercase;
 }
 
 .service_panel--active {
@@ -72,16 +93,6 @@
 
 .service_panel_mobile--active {
   display: block;
-}
-
-.service_panel__title {
-  color: $primary_text;
-  font-size: 14px;
-  font-family: Asap;
-  font-weight: 500;
-  border-bottom: 1px solid #e0e1e6;
-  padding: 20px 0 10px;
-  margin: 0px 20px 8px;
 }
 
 .side_bar__item__icon {
@@ -111,28 +122,6 @@
   text-decoration: underline;
 }
 
-.service_panel__categories {
-  margin: 60px 0 0 0;
-  padding: 0 0 10px 12px;
-}
-
-.service_panel__category {
-  width: 90px;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  margin: 0 0 23px 0;
-
-  &:hover {
-    .service_panel__category__icon {
-      transform: scale3d(1.1, 1.1, 1.1); // scale3d is used with GPU
-    }
-    .service_panel__category__title {
-      color: $primary_text;
-    }
-  }
-}
-
 .service_panel__category__icon,
 .service_panel__event__icon,
 .service_panel__action__icon {
@@ -144,12 +133,6 @@
   transition: transform .1s ease-in;
   position: relative;
 
-  span {
-    color: #fff;
-    font-size: 40px;
-    line-height: 40px;
-  }
-
   img {
     position: absolute;
     top: 50%;
@@ -158,38 +141,18 @@
   }
 }
 
-.service_panel__category__title,
-.service_panel__event__title,
-.service_panel__action__title {
-  margin: 9px 0 0 0;
-  color: #5c6f84;
-  text-transform: uppercase;
-  font-size: 11px;
+.service_panel__category__icon,
+.service_panel__event__icon {
+  span {
+    color: #fff;
+    font-size: 40px;
+    line-height: 40px;
+  }
 }
 
-@media (max-width: 640px) {
-  .service_panel {
-    display: none !important;
-  }
-
-  .service_panel__category {
-    width: 75px;
-  }
-
-  // Overrides with grid layout if supported else fallbacks to flex wrap
-  @supports (display: grid) {
-    .service_panel__categories {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
-        grid-gap: 20px;
-        padding: 0 10px 10px;
-        min-height: 0;
-        min-width: 0;
-    }
-
-    .service_panel__category {
-      width: auto;
-      min-width: 0;
-    }
+.service_panel__action__icon {
+  span {
+    font-size: 23px;
+    line-height: 36px;
   }
 }
