@@ -239,12 +239,10 @@ export default class DirectionPanel {
           route.id = i;
         });
 
-        this.roadMapPanel.hidePlaceholder();
         this.roadMapPanel.setRoad(routes, this.vehicle, this.origin);
         this.setRoutesOnMap(routes, options);
 
       } else {
-        this.roadMapPanel.hidePlaceholder();
         this.roadMapPanel.showError();
         fire('clean_route');
       }

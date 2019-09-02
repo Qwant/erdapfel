@@ -28,3 +28,20 @@ export function formatDistance(m) {
   }
   return '';
 }
+
+export function getVehicleIcon(vehicle) {
+  switch (vehicle) {
+  case 'driving':
+    return 'icon-drive';
+  case 'walking':
+    return 'icon-foot';
+  case 'cycling':
+    return 'icon-bike';
+  default:
+    return '';
+  }
+}
+
+export function getStepIcon(step) {
+  return (step.maneuver.modifier || step.maneuver.type).replace(/\s/g, '-');
+}
