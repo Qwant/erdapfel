@@ -2,7 +2,7 @@ import ServicePanelView from '../views/service_panel_mobile.dot';
 import Panel from '../libs/panel';
 import nconf from '@qwant/nconf-getter';
 import CategoryService from '../adapters/category_service';
-import PanelResizer from "../libs/panel_resizer";
+import PanelResizer from '../libs/panel_resizer';
 
 export default class ServicePanelMobile {
   constructor() {

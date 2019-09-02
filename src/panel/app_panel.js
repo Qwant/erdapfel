@@ -264,10 +264,9 @@ export default class AppPanel {
   }
 
   resetLayout() {
-    if(innerWidth >= 640) {
+    if (innerWidth >= 640) {
       this._openPanel(this.servicePanel);
-    }
-    else {
+    } else {
       this._openPanel(this.servicePanelMobile);
     }
   }
