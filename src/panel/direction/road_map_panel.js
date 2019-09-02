@@ -4,6 +4,7 @@ import Device from '../../libs/device';
 import RoadMapPreviewPanel from './road_map_preview';
 import Telemetry from '../../libs/telemetry';
 import { openShareModal } from 'src/modals/ShareModal';
+import { formatDuration, formatDistance } from 'src/libs/route_utils';
 
 export default class RoadMapPanel {
   constructor(onOpen, onClose) {
@@ -96,34 +97,11 @@ export default class RoadMapPanel {
   }
 
   duration(sec) {
-    sec = Math.max(60, sec); // For duration < 60s, return '1min'
-    let min = Math.round(sec / 60);
-    const hour = Math.floor(min / 60);
-    let ret = '';
-    if (hour) {
-      ret += hour + 'h ';
-      min = min - 60 * hour;
-    }
-    if ((hour > 0 || min > 0) && hour < 10) {
-      ret += min + 'min ';
-    }
-    return ret;
+    return formatDuration(sec);
   }
 
   distance(m) {
-    let ret = '';
-    if (m > 5) {
-      if (m > 1000) {
-        if (m > 99000) {
-          ret = `${Math.round(m / 1000)}km`;
-        } else {
-          ret = `${(m / 1000).toFixed(1).replace('.', ',')}km`;
-        }
-      } else {
-        ret = `${m.toFixed(0)}m`;
-      }
-    }
-    return ret;
+    return formatDistance(m);
   }
 
   highlightStepMarker(i) {
