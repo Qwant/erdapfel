@@ -40,7 +40,7 @@
       <div class="service_panel__action__title">{{= _('Directions', 'service panel') }}</div>
     </button>
 
-    <button class="service_panel_action" {{= click(this.openFavorite, this) }}>
+    <button class="service_panel__action" {{= click(this.openFavorite, this) }}>
       <div class="service_panel__action__icon">
         <span class="icon-icon_star"></span>
       </div>
