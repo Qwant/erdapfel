@@ -8,7 +8,7 @@ import Device from '../libs/device';
 export default class ServicePanel {
   constructor() {
     this.panel = new Panel(this, ServicePanelView);
-    if (Device.isMobile()){
+    if (Device.isMobile()) {
       this.panelResizer = new PanelResizer(this.panel);
     }
     this.isMobile = Device.isMobile();
@@ -36,7 +36,7 @@ export default class ServicePanel {
 
   open() {
     this.active = true;
-    if (Device.isMobile()){
+    if (Device.isMobile()) {
       this.panelResizer.reset();
     }
     this.panel.update();
