@@ -58,7 +58,7 @@ export default class Category {
     });
   }
 
-  static of({ name, label, icon, color, matcher }) {
+  static create({ name, label, icon, color, matcher }) {
     return new Category(name, label, icon, color, matcher);
   }
 }

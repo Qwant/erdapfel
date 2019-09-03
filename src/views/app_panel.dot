@@ -8,8 +8,8 @@
     {{? this.categoryEnabled }}
       {{= this.categoryPanel.render() }}
     {{?}}
+    {{= this.servicePanel.render() }}
   </div>
-  {{= this.servicePanel.render() }}
 </div>
 
 /* modals */
