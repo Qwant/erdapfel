@@ -122,6 +122,12 @@
   text-decoration: underline;
 }
 
+.service_panel__category:hover .service_panel__category__icon,
+.service_panel__event:hover .service_panel__event__icon,
+.service_panel__action:hover .service_panel__action__icon {
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
 .service_panel__category__icon,
 .service_panel__event__icon,
 .service_panel__action__icon {
