@@ -13,8 +13,7 @@
 </div>
 
 /* modals */
-<div class="share_modal__container"></div>
-{{= this.geolocationModal.renderModal() }}
+<div class="react_modal__container"></div>
 {{? this.masqEnabled }}
   {{= this.masqFavoriteModal.renderModal() }}
   {{= this.masqOnboardingModal.renderModal() }}

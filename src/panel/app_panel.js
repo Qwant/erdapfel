@@ -5,7 +5,6 @@ import PoiPanel from './poi_panel';
 import ServicePanel from './service_panel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
-import GeolocationModal from '../modals/geolocation_modal';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
 import MasqErrorModal from '../modals/masq_error_modal';
@@ -53,7 +52,6 @@ export default class AppPanel {
     }
 
     this.panel = new Panel(this, PanelsView, parent);
-    this.geolocationModal = new GeolocationModal();
 
     this.masqEnabled = masqEnabled;
     if (this.masqEnabled) {

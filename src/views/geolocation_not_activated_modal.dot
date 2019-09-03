@@ -1,6 +1,0 @@
-<div class="modal__maps">
-  <i class="icon-x modal__close" {{= click(this.close, this) }}></i>
-  <h2 class="modal__title">{{= _('Geolocation not available.', 'geolocation') }}</h2>
-  <span class="modal__subtitle">{{= _('Qwant Maps cannot determine your position. Check that location services are enabled on your system.') }}</span>
-  <button class="modal__button" {{= click(this.close, this) }}>{{= _('OK', 'geolocation') }}</button>
-</div>

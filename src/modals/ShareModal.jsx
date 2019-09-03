@@ -77,12 +77,12 @@ export default class ShareModal extends React.Component {
 }
 
 function close() {
-  ReactDOM.unmountComponentAtNode(document.querySelector('.share_modal__container'));
+  ReactDOM.unmountComponentAtNode(document.querySelector('.react_modal__container'));
 }
 
 export function openShareModal(url) {
   ReactDOM.render(
     <ShareModal url={url} onClose={close} />,
-    document.querySelector('.share_modal__container')
+    document.querySelector('.react_modal__container')
   );
 }
