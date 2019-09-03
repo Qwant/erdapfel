@@ -33,14 +33,14 @@
   <br>
   <div class="service_panel__actions">
 
-    <button class="service_panel__action" {{= click(this.openDirection, this) }}>
+    <button class="service_panel__action service_panel__item__direction" {{= click(this.openDirection, this) }}>
       <div class="service_panel__action__icon">
         <span class="icon-corner-up-right"></span>
       </div>
       <div class="service_panel__action__title">{{= _('Directions', 'service panel') }}</div>
     </button>
 
-    <button class="service_panel__action" {{= click(this.openFavorite, this) }}>
+    <button class="service_panel__action service_panel__item__fav" {{= click(this.openFavorite, this) }}>
       <div class="service_panel__action__icon">
         <span class="icon-icon_star"></span>
       </div>
