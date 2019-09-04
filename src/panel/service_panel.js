@@ -35,7 +35,6 @@ export default class ServicePanel {
   }
 
   open() {
-    console.log(1);
     this.active = true;
     if (Device.isMobile()) {
       this.panelResizer.reset();

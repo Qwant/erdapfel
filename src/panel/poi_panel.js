@@ -86,35 +86,6 @@ PoiPanel.prototype.close = async function() {
 
   this.active = false;
   this.panel.update();
-  //if (this.sceneState) {
-  //  this.sceneState.unsetPoiID();
-  //}
-  //if (UrlState) {
-  //  UrlState.pushUrl();
-  //}
-  //fire("move_mobile_bottom_ui", 0);
-};
-
-PoiPanel.prototype.restorePoi = async function(id) {
-  Telemetry.add(Telemetry.POI_RESTORE);
-  let hotLoadedPoi = new HotLoadPoi();
-  if (hotLoadedPoi.id === id) {
-    this.poi = hotLoadedPoi;
-    window.execOnMapLoaded(() => {
-      fire('map_mark_poi', this.poi);
-      fire('fit_map', this.poi, layouts.POI);
-    });
-    this.poi.stored = await isPoiFavorite(this.poi);
-    this.active = true;
-    this.sceneState.setPoiId(this.poi.id);
-    PanelManager.keepOnlyPoi();
-    await this.minimalHourPanel.set(this.poi);
-    await this.panel.update();
-
-    window.execOnMapLoaded(() => {
-      fire("move_mobile_bottom_ui", 130);
-    });
-  }
 };
 
 PoiPanel.prototype.setPoi = async function(poi, options = {}) {
@@ -134,7 +105,10 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.active = true;
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
-  fire("move_mobile_bottom_ui", 130);
+  fire("move_mobile_bottom_ui", document.querySelector('.poi_panel__content__card').offsetHeight + 20);
+  window.execOnMapLoaded(() => {
+    fire("move_mobile_bottom_ui", document.querySelector('.poi_panel__content__card').offsetHeight + 20);
+  });
 };
 
 PoiPanel.prototype.center = function() {

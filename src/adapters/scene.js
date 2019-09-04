@@ -412,13 +412,6 @@ Scene.prototype.moveMobileBottomUI = function(bottom = 0){
     if(direction){
       direction.style.bottom = bottom + 65 + "px";
     }
-
-    // Retry in 500ms if the map hasn't finished loading
-    if(!attrib || !scale || !geoloc){
-      setTimeout(()=> {
-        fire("move_mobile_bottom_ui", bottom);
-      },500);
-    }
   }
 };
 
