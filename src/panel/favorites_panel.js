@@ -108,7 +108,6 @@ Favorite.prototype.close = function() {
   this.closeMoreMenu();
   this.active = false;
   this.panel.update();
-  //fire("move_mobile_bottom_ui", 0);
 };
 
 Favorite.prototype.go = async function(poi) {
