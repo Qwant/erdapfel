@@ -86,8 +86,12 @@ PoiPanel.prototype.close = async function() {
 
   this.active = false;
   this.panel.update();
-  this.sceneState.unsetPoiID();
-  UrlState.pushUrl();
+  if (this.sceneState) {
+    this.sceneState.unsetPoiID();
+  }
+  if (UrlState) {
+    UrlState.pushUrl();
+  }
   fire("move_mobile_bottom_ui", 0);
 };
 

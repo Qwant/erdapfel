@@ -12,7 +12,6 @@ import SceneCategory from './scene_category';
 import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
-import Device from '../libs/device';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';

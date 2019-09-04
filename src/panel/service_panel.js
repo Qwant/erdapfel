@@ -35,11 +35,17 @@ export default class ServicePanel {
   }
 
   open() {
+    console.log(1);
     this.active = true;
     if (Device.isMobile()) {
       this.panelResizer.reset();
     }
     this.panel.update();
+
+    // Move mobile UI in 500ms because scene's listener is not loaded yet
+    window.execOnMapLoaded(() => {
+      fire("move_mobile_bottom_ui", 210);
+    });
   }
 
   close() {
@@ -48,6 +54,7 @@ export default class ServicePanel {
     }
     this.active = false;
     this.panel.update();
+    fire("move_mobile_bottom_ui", 0);
   }
 
   openCategory(category) {
