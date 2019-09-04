@@ -86,13 +86,13 @@ PoiPanel.prototype.close = async function() {
 
   this.active = false;
   this.panel.update();
-  if (this.sceneState) {
-    this.sceneState.unsetPoiID();
-  }
-  if (UrlState) {
-    UrlState.pushUrl();
-  }
-  fire("move_mobile_bottom_ui", 0);
+  //if (this.sceneState) {
+  //  this.sceneState.unsetPoiID();
+  //}
+  //if (UrlState) {
+  //  UrlState.pushUrl();
+  //}
+  //fire("move_mobile_bottom_ui", 0);
 };
 
 PoiPanel.prototype.restorePoi = async function(id) {
@@ -111,10 +111,9 @@ PoiPanel.prototype.restorePoi = async function(id) {
     await this.minimalHourPanel.set(this.poi);
     await this.panel.update();
 
-    // Move mobile UI in 500ms because scene's listener is not loaded yet
-    setTimeout(() => {
+    window.execOnMapLoaded(() => {
       fire("move_mobile_bottom_ui", 130);
-    }, 500);
+    });
   }
 };
 
@@ -176,14 +175,14 @@ PoiPanel.prototype.backToSmall = function() {
 PoiPanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
   window.app.navigateTo('/favs');
-  fire("move_mobile_bottom_ui", 0);
+  //fire("move_mobile_bottom_ui", 0);
 };
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST);
   fire('restore_location');
   window.app.navigateTo(`/places/?type=${this.sourceCategory}`);
-  fire("move_mobile_bottom_ui", 0);
+  //fire("move_mobile_bottom_ui", 0);
 };
 
 PoiPanel.prototype.openDirection = function() {

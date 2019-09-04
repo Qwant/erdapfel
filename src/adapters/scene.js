@@ -399,6 +399,7 @@ Scene.prototype.moveMobileBottomUI = function(bottom = 0){
     let attrib = document.querySelector(".mapboxgl-ctrl-attrib"); // default bottom: 2px
     let scale = document.querySelector(".map_control__scale"); // default bottom: 8px
     let geoloc = document.querySelector(".mapboxgl-ctrl-geolocate"); // default bottom: 10px
+    let direction = document.querySelector(".direction_shortcut"); // default bottom: 65px
     if(attrib){
       attrib.style.bottom = bottom + 2 + "px";
     }
@@ -407,6 +408,9 @@ Scene.prototype.moveMobileBottomUI = function(bottom = 0){
     }
     if(geoloc){
       geoloc.style.bottom = bottom + 10 + "px";
+    }
+    if(direction){
+      direction.style.bottom = bottom + 65 + "px";
     }
 
     // Retry in 500ms if the map hasn't finished loading
