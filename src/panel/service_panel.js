@@ -54,7 +54,6 @@ export default class ServicePanel {
     }
     this.active = false;
     this.panel.update();
-    //fire("move_mobile_bottom_ui", 0);
   }
 
   openCategory(category) {
