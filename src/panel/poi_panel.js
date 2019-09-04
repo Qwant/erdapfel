@@ -149,14 +149,12 @@ PoiPanel.prototype.backToSmall = function() {
 PoiPanel.prototype.backToFavorite = function() {
   Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
   window.app.navigateTo('/favs');
-  //fire("move_mobile_bottom_ui", 0);
 };
 
 PoiPanel.prototype.backToList = function() {
   Telemetry.add(Telemetry.POI_BACKTOLIST);
   fire('restore_location');
   window.app.navigateTo(`/places/?type=${this.sourceCategory}`);
-  //fire("move_mobile_bottom_ui", 0);
 };
 
 PoiPanel.prototype.openDirection = function() {

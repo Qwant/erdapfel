@@ -395,7 +395,7 @@ Scene.prototype.onHashChange = function() {
 };
 
 Scene.prototype.moveMobileBottomUI = function(bottom = 0){
-  if(Device.isMobile()){
+  if (Device.isMobile()) {
     let attrib = document.querySelector(".mapboxgl-ctrl-attrib"); // default bottom: 2px
     let scale = document.querySelector(".map_control__scale"); // default bottom: 8px
     let geoloc = document.querySelector(".mapboxgl-ctrl-geolocate"); // default bottom: 10px
