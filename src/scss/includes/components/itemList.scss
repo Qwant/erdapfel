@@ -1,0 +1,34 @@
+.itemList-item {
+  background: $background;
+  border-left: 4px solid $background;
+
+  &:hover {
+    background: $surface;
+    border-left: 4px solid #FF3B4A;
+  }
+
+  &:not(:last-child):after {
+    display: block;
+    content: '';
+    height: 1px;
+    width: 90%;
+    margin-left: 5%;
+    background-color: $separator_color;
+  }
+}
+
+@media (max-width: 640px) {
+  .itemList {
+    padding-bottom: 12px;
+  }
+
+  .itemList-item {
+    margin: 8px 0;
+    @include card_shadow();
+    @include card_radius();
+
+    &:not(:last-child):after {
+      display: none;
+    }
+  }
+}
