@@ -9,11 +9,11 @@
   </div>
   {{??}}
   <div class="menu__button" {{= click(this.open, this) }}>
-    {{? this.profileImage}}
-      <img src={{= this.profileImage }} class="menu__button_profile_image">
+    {{? this.masqUser.profileImage}}
+      <img src={{= this.masqUser.profileImage }} class="menu__button_profile_image">
     {{??}}
-      <div class="menu__button_default_profile_image {{= this.defaultProfileImage.backgroundColor}}">
-        <div>{{= this.defaultProfileImage.letter}}</div>
+      <div class="menu__button_default_profile_image {{= this.masqUser.defaultProfileImage.backgroundColor}}">
+        <div>{{= this.masqUser.defaultProfileImage.letter}}</div>
       </div>
     {{?}}
   </div>
@@ -30,7 +30,7 @@
       </h2>
 
       {{? this.isMasqEnabled}}
-        {{= this.masqPanel.render() }}
+      <div class="react_masqLogin_container"></div>
       {{?}}
     </div>
     <div class="menu__panel__items_container">
