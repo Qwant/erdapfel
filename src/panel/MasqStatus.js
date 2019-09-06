@@ -41,49 +41,52 @@ export default class MasqStatus extends Component {
     window.open(nconf.get().masq.baseMasqAppUrl, '_blank');
   }
 
-  render() {
-    const user = this.props.user;
-    const isLoggedIn = !!user;
+  renderLoggedIn = () => {
+    const { username, profileImage, defaultProfileImage } = this.props.user;
+    return <Fragment>
+      <div
+        className="masqStatus__login__button masqStatus__login__button_logged"
+        onClick={this.openMasq}
+      >
+        {profileImage
+          ? <img src={profileImage} className="masqStatus_profile_icon" />
+          : <div className={`masqStatus_profile_icon masqStatus_profile_icon_default
+              ${defaultProfileImage.backgroundColor}`}>
+            <div>{defaultProfileImage.letter}</div>
+          </div>
+        }
+        <span>{username}</span>
+      </div>
+      <div
+        className="masqStatus__second__button masqStatus__second__button_logout"
+        onClick={this.logout}
+      >
+        {_('Deactivate')}
+      </div>
+    </Fragment>;
+  }
 
+  renderLoggedOut = () => {
+    return <Fragment>
+      <input
+        type="button"
+        className="masqStatus__login__button"
+        value={_('Activate')}
+        onClick={this.login}
+      />
+      <div
+        className="masqStatus__second__button masqStatus__second__button_discover"
+        onClick={this.openMasqOnboarding}
+      >
+        {_('How does it work ?')}
+      </div>
+    </Fragment>;
+  }
+
+  render() {
     return <div className="masqStatus">
       <div className="icon-masq masqStatus__masq_icon" onClick={this.openMasq} />
-      {isLoggedIn
-        ? <Fragment>
-          <div
-            className="masqStatus__login__button masqStatus__login__button_logged"
-            onClick={this.openMasq}
-          >
-            {user.profileImage
-              ? <img src={user.profileImage} className="masqStatus_profile_icon" />
-              : <div className={`masqStatus_profile_icon masqStatus_profile_icon_default
-                  ${user.defaultProfileImage.backgroundColor}`}>
-                <div>{user.defaultProfileImage.letter}</div>
-              </div>
-            }
-            <span>{user.username}</span>
-          </div>
-          <div
-            className="masqStatus__second__button masqStatus__second__button_logout"
-            onClick={this.logout}
-          >
-            {_('Deactivate')}
-          </div>
-        </Fragment>
-        : <Fragment>
-          <input
-            type="button"
-            className="masqStatus__login__button"
-            value={_('Activate')}
-            onClick={this.login}
-          />
-          <div
-            className="masqStatus__second__button masqStatus__second__button_discover"
-            onClick={this.openMasqOnboarding}
-          >
-            {_('How does it work ?')}
-          </div>
-        </Fragment>
-      }
+      {this.props.user ? this.renderLoggedIn() : this.renderLoggedOut()}
     </div>;
   }
 }
