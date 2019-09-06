@@ -1,7 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Panel from '../libs/panel';
 import menuView from '../views/menu.dot';
 import constants from '../../config/constants.yml';
-import LoginMasqPanel from './login_masq';
+import MasqStatus from './MasqStatus';
 import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import Store from '../adapters/store';
@@ -16,14 +18,12 @@ export default class Menu {
     this.menuInitialized = true;
 
     this.isMasqEnabled = nconf.get().masq.enabled;
+
     if (this.isMasqEnabled) {
       this.menuInitialized = false;
-      this.masqPanel = new LoginMasqPanel();
-
+      this.masqUser = null;
+      this.isLoggedIn = false;
       this.store = new Store();
-
-      this.username = null;
-      this.profileImage = null;
 
       this.store.onToggleStore(async () => {
         this.isLoggedIn = await this.store.isLoggedIn();
@@ -31,15 +31,10 @@ export default class Menu {
         await this.updateAndKeepState();
       });
 
-      this.isLoggedIn = false;
-
-      this.initPromise = this.store.isLoggedIn().then(async b => {
-        this.isLoggedIn = b;
-        await this.getUserInfo();
-      });
-
-      Promise.all([this.initPromise, this.masqPanel.init()]).then(async () => {
+      this.store.isLoggedIn().then(async loggedIn => {
+        this.isLoggedIn = loggedIn;
         this.menuInitialized = true;
+        await this.getUserInfo();
         await this.updateAndKeepState();
       });
     }
@@ -47,16 +42,20 @@ export default class Menu {
 
   async getUserInfo() {
     if (this.isLoggedIn) {
-      const userInfo = await this.store.getUserInfo();
-      this.username = userInfo.username;
-      this.profileImage = userInfo.profileImage;
-      this.defaultProfileImage = userInfo.defaultProfileImage;
+      this.masqUser = await this.store.getUserInfo();
+    } else {
+      this.masqUser = null;
     }
   }
 
-
   async updateAndKeepState() {
     this.panel.update();
+    if (this.isMasqEnabled) {
+      ReactDOM.render(
+        <MasqStatus store={this.store} user={this.masqUser} />,
+        document.querySelector('.react_masqLogin_container')
+      );
+    }
     if (this.isOpen) {
       await Promise.all([
         this.panel.addClassName(.3, '.menu__panel', 'menu__panel--active'),
