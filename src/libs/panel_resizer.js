@@ -75,7 +75,7 @@ export default class PanelResizer {
         window.innerHeight - clientY + this.handleElement.offsetHeight - 10
       )}px`;
 
-      fire("move_mobile_bottom_ui", this.resizableElement.offsetHeight);
+      fire('move_mobile_bottom_ui', this.resizableElement.offsetHeight);
     }
   }
 
@@ -126,7 +126,7 @@ export default class PanelResizer {
 
     this.holding = false;
     await this.playTransition();
-    fire("move_mobile_bottom_ui", this.resizableElement.offsetHeight);
+    fire('move_mobile_bottom_ui', this.resizableElement.offsetHeight);
   }
 
   renderResizerActions() {

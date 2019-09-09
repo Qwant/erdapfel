@@ -25,7 +25,8 @@ export default class ExtendedControl {
       ev => {
         ev.target.style.display = 'none';
         window.app.navigateTo('/routes');
-        fire("move_mobile_bottom_ui", 0);}
+        fire('move_mobile_bottom_ui', 0);
+      }
     );
 
     this._compassIndicator = this._createIcon('map_control__compass__icon');

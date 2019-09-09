@@ -41,10 +41,10 @@ export default class ServicePanel {
     }
     this.panel.update();
 
-    fire("move_mobile_bottom_ui", 210);
+    fire('move_mobile_bottom_ui', 210);
 
     window.execOnMapLoaded(() => {
-      fire("move_mobile_bottom_ui", 210);
+      fire('move_mobile_bottom_ui', 210);
     });
   }
 

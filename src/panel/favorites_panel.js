@@ -92,10 +92,16 @@ Favorite.prototype.open = async function() {
   this.active = true;
   this.panelResizer.reset();
   this.panel.update();
-  fire("move_mobile_bottom_ui", document.querySelector('.favorite_panel__container').offsetHeight);
+  fire(
+    'move_mobile_bottom_ui',
+    document.querySelector('.favorite_panel__container').offsetHeight
+  );
 
   window.execOnMapLoaded(() => {
-    fire("move_mobile_bottom_ui", document.querySelector('.favorite_panel__container').offsetHeight);
+    fire(
+      'move_mobile_bottom_ui',
+      document.querySelector('.favorite_panel__container').offsetHeight
+    );
   });
 };
 

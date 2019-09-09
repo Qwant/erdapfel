@@ -105,9 +105,15 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.active = true;
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
-  fire("move_mobile_bottom_ui", document.querySelector('.poi_panel__content__card').offsetHeight + 20);
+  fire(
+    'move_mobile_bottom_ui',
+    document.querySelector('.poi_panel__content__card').offsetHeight + 20
+  );
   window.execOnMapLoaded(() => {
-    fire("move_mobile_bottom_ui", document.querySelector('.poi_panel__content__card').offsetHeight + 20);
+    fire(
+      'move_mobile_bottom_ui',
+      document.querySelector('.poi_panel__content__card').offsetHeight + 20
+    );
   });
 };
 
