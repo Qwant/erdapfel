@@ -6,7 +6,6 @@ import MenuItem from './menu/MenuItem';
 import MenuButton from './menu/MenuButton';
 import MasqStatus from './menu/MasqStatus';
 import Store from '../adapters/store';
-import SearchInput from '../ui_components/search_input';
 import classnames from 'classnames';
 
 const isDirectionActive = nconf.get().direction.enabled;
@@ -53,20 +52,9 @@ export default class Menu extends React.Component {
     this.setState({ isOpen: false });
   }
 
-  search = () => {
+  navTo = (url, options) => {
     this.close();
-    window.app.navigateTo('/');
-    SearchInput.select();
-  }
-
-  openFavorite = () => {
-    this.close();
-    window.app.navigateTo('/favs');
-  }
-
-  openDirection = () => {
-    this.close();
-    window.app.navigateTo('/routes/');
+    window.app.navigateTo(url, options);
   }
 
   render() {
@@ -98,7 +86,9 @@ export default class Menu extends React.Component {
 
           <div className="menu__panel__items_container">
             <div className="menu__panel__section menu__panel__section-internal">
-              <button className="menu__panel__action" onClick={this.search}>
+              <button className="menu__panel__action"
+                onClick={() => this.navTo('/', { focusSearch: true })}
+              >
                 <img
                   className="menu__panel__action__icon"
                   src="./statics/images/magnifier.svg" alt=""
@@ -106,12 +96,12 @@ export default class Menu extends React.Component {
                 <span>{_('Search', 'menu')}</span>
               </button>
               {isDirectionActive &&
-                <button className="menu__panel__action" onClick={this.openDirection}>
+                <button className="menu__panel__action" onClick={() => this.navTo('/routes/')}>
                   <i className="menu__panel__action__icon icon-corner-up-right" />
                   <span>{_('Directions', 'menu')}</span>
                 </button>
               }
-              <button className="menu__panel__action" onClick={this.openFavorite}>
+              <button className="menu__panel__action" onClick={() => this.navTo('/favs/')}>
                 <i className="menu__panel__action__icon icon-icon_star" />
                 <span>{_('Favorites', 'menu')}</span>
               </button>
