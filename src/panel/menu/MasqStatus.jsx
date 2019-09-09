@@ -14,7 +14,7 @@ export default class MasqStatus extends Component {
     user: PropTypes.shape({
       username: PropTypes.string.isRequired,
       profileImage: PropTypes.string,
-      defaultProfileImage: PropTypes.object.isRequired,
+      defaultProfileImage: PropTypes.object,
     }),
   }
 

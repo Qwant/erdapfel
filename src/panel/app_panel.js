@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import PanelsView from '../views/app_panel.dot';
 import Panel from '../libs/panel';
 import FavoritePanel from './favorites_panel';
@@ -12,7 +14,7 @@ import MasqErrorModal from '../modals/masq_error_modal';
 import MasqActivatingModal from '../modals/masq_activating_modal';
 import nconf from '@qwant/nconf-getter';
 import DirectionPanel from './direction/direction_panel';
-import Menu from './menu';
+import Menu from './Menu';
 import Telemetry from '../libs/telemetry';
 import CategoryPanel from './category_panel';
 import ApiPoi from '../adapters/poi/idunn_poi';
@@ -63,8 +65,6 @@ export default class AppPanel {
       this.masqActivatingModal = new MasqActivatingModal();
     }
 
-    this.menu = new Menu();
-
     if (performanceEnabled) {
       this.panel.onRender = () => {
         window.times.appRendered = Date.now();
@@ -72,6 +72,7 @@ export default class AppPanel {
     }
 
     this.panel.render();
+    ReactDOM.render(<Menu />, document.querySelector('.react_menu__container'));
     Telemetry.add(Telemetry.APP_START);
 
     const mapHash = parseMapHash(window.location.hash);
