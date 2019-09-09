@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Panel from '../libs/panel';
 import menuView from '../views/menu.dot';
 import constants from '../../config/constants.yml';
-import MasqStatus from './MasqStatus';
+import MasqStatus from './menu/MasqStatus';
 import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import Store from '../adapters/store';

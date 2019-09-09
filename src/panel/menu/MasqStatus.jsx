@@ -2,8 +2,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import nconf from '@qwant/nconf-getter';
-import MasqOnboardingModal from '../modals/masq_onboarding_modal';
-import Telemetry from '../libs/telemetry';
+import MasqOnboardingModal from 'src/modals/masq_onboarding_modal';
+import Telemetry from 'src/libs/telemetry';
 
 const masqOnboardingModal = new MasqOnboardingModal();
 
