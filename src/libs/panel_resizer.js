@@ -126,7 +126,9 @@ export default class PanelResizer {
 
     this.holding = false;
     await this.playTransition();
-    fire('move_mobile_bottom_ui', this.resizableElement.offsetHeight);
+    if (this.resizableElement) {
+      fire('move_mobile_bottom_ui', this.resizableElement.offsetHeight);
+    }
   }
 
   renderResizerActions() {

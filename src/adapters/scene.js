@@ -394,24 +394,24 @@ Scene.prototype.onHashChange = function() {
   };
 };
 
+Scene.prototype.translateUIControl = function(selector, bottom) {
+  const item = document.querySelector(selector);
+  if (item) {
+    item.style.transform = `translateY(${-bottom}px)` ;
+  }
+};
+
 Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
   if (Device.isMobile()) {
-    const attrib = document.querySelector('.mapboxgl-ctrl-attrib'); // default bottom: 2px
-    const scale = document.querySelector('.map_control__scale'); // default bottom: 8px
-    const geoloc = document.querySelector('.mapboxgl-ctrl-geolocate'); // default bottom: 10px
-    const direction = document.querySelector('.direction_shortcut'); // default bottom: 65px
-    if (attrib) {
-      attrib.style.bottom = bottom + 2 + 'px';
-    }
-    if (scale) {
-      scale.style.bottom = bottom + 8 + 'px';
-    }
-    if (geoloc) {
-      geoloc.style.bottom = bottom + 10 + 'px';
-    }
-    if (direction) {
-      direction.style.bottom = bottom + 65 + 'px';
-    }
+    const uiControls = [
+      '.mapboxgl-ctrl-attrib',
+      '.map_control__scale',
+      '.mapboxgl-ctrl-geolocate',
+      '.direction_shortcut',
+    ];
+    uiControls.forEach(uiControl => {
+      this.translateUIControl(uiControl, bottom);
+    });
   }
 };
 
