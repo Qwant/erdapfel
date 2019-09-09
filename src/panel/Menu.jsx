@@ -7,6 +7,7 @@ import MenuButton from './menu/MenuButton';
 import MasqStatus from './menu/MasqStatus';
 import Store from '../adapters/store';
 import SearchInput from '../ui_components/search_input';
+import classnames from 'classnames';
 
 const isDirectionActive = nconf.get().direction.enabled;
 const isMasqEnabled = nconf.get().masq.enabled;
@@ -74,15 +75,18 @@ export default class Menu extends React.Component {
     }
 
     return <div>
-      {this.state.isOpen && <div
-        className="menu__overlay menu__overlay--active menu__overlay--fade_active"
+      <div
+        className={classnames('menu__overlay', {
+          'menu__overlay--active': this.state.isOpen,
+          'menu__overlay--fade_active': this.state.isOpen,
+        })}
         onClick={this.close}
-      />}
+      />
 
       <MenuButton masqUser={this.state.masqUser} onClick={this.open} />
 
       <div className="menu">
-        {this.state.isOpen && <div className="menu__panel menu__panel--active">
+        <div className={classnames('menu__panel', { 'menu__panel--active': this.state.isOpen })}>
           <div className="menu__panel__top">
             <h2 className="menu__panel__top__title">
               <i className="menu__panel__top__icon icon-map" />
@@ -123,7 +127,7 @@ export default class Menu extends React.Component {
 
             {menuItems.map(menuItem => <MenuItem key={menuItem.sectionName} menuItem={menuItem} />)}
           </div>
-        </div>}
+        </div>
       </div>
     </div>;
   }
