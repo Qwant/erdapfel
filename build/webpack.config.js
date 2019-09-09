@@ -92,6 +92,7 @@ const mainJsChunkConfig = buildMode => {
         config: path.resolve(__dirname, '../config/'),
         src: path.resolve(__dirname, '../src/'),
       },
+      extensions: ['.js', '.jsx'],
     },
     plugins: addJsOptimizePlugins(buildMode, [
       new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
@@ -141,7 +142,7 @@ const mainJsChunkConfig = buildMode => {
           },
         ],
       }, {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         use: [
           {
             loader: 'babel-loader',
