@@ -186,6 +186,10 @@ Scene.prototype.initMapBox = function() {
   listen('restore_location', () => {
     this.restoreLocation();
   });
+
+  listen('move_mobile_bottom_ui', bottom => {
+    this.moveMobileBottomUI(bottom);
+  });
 };
 
 Scene.prototype.saveLocation = function() {
@@ -388,6 +392,27 @@ Scene.prototype.onHashChange = function() {
   window.onhashchange = () => {
     this.restoreFromHash(window.location.hash, { animate: false });
   };
+};
+
+Scene.prototype.translateUIControl = function(selector, bottom) {
+  const item = document.querySelector(selector);
+  if (item) {
+    item.style.transform = `translateY(${-bottom}px)` ;
+  }
+};
+
+Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
+  if (Device.isMobile()) {
+    const uiControls = [
+      '.mapboxgl-ctrl-attrib',
+      '.map_control__scale',
+      '.mapboxgl-ctrl-geolocate',
+      '.direction_shortcut',
+    ];
+    uiControls.forEach(uiControl => {
+      this.translateUIControl(uiControl, bottom);
+    });
+  }
 };
 
 /* private */

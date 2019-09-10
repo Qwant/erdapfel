@@ -92,6 +92,13 @@ Favorite.prototype.open = async function() {
   this.active = true;
   this.panelResizer.reset();
   this.panel.update();
+
+  window.execOnMapLoaded(() => {
+    fire(
+      'move_mobile_bottom_ui',
+      document.querySelector('.favorite_panel__container').offsetHeight
+    );
+  });
 };
 
 Favorite.prototype.closeAction = function() {

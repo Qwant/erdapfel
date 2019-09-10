@@ -24,7 +24,8 @@ export default class ExtendedControl {
     this._direction = this._createButton('direction_shortcut icon-corner-up-right', 'direction',
       ev => {
         ev.target.style.display = 'none';
-        window.app.directionPanel.open();
+        window.app.navigateTo('/routes');
+        fire('move_mobile_bottom_ui', 0);
       }
     );
 

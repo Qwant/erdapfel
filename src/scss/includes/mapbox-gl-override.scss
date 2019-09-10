@@ -2,3 +2,11 @@
 .mapboxgl-ctrl-top-right,
 .mapboxgl-ctrl-bottom-left,
 .mapboxgl-ctrl-bottom-right  { position:absolute; pointer-events:none; }
+
+@media (max-width: 640px) {
+  .map_container .map_control__scale_attribute_container .mapboxgl-ctrl-attrib {
+    position: fixed;
+    bottom: 2px;
+    left: 2px;
+  }
+}

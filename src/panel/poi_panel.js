@@ -83,6 +83,7 @@ PoiPanel.prototype.close = async function() {
   }
   fire('clean_marker');
   SearchInput.setInputValue('');
+
   this.active = false;
   this.panel.update();
 };
@@ -104,6 +105,13 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.active = true;
   await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
+
+  window.execOnMapLoaded(() => {
+    fire(
+      'move_mobile_bottom_ui',
+      document.querySelector('.poi_panel__content__card').offsetHeight + 20
+    );
+  });
 };
 
 PoiPanel.prototype.center = function() {

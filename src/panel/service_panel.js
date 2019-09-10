@@ -40,6 +40,10 @@ export default class ServicePanel {
       this.panelResizer.reset();
     }
     this.panel.update();
+
+    window.execOnMapLoaded(() => {
+      fire('move_mobile_bottom_ui', 210);
+    });
   }
 
   close() {
