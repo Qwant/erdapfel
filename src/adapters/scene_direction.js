@@ -1,6 +1,6 @@
 import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
-import { normalizeToFeatureCollection, setProperty } from 'src/libs/geojson';
+import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
@@ -74,14 +74,13 @@ export default class SceneDirection {
       if (isActive) {
         mainRoute = route;
       }
-      const geoJson = this.getRouteGeoJson(route.geometry, isActive);
-      this.map.getSource(`source_${route.id}`).setData(geoJson);
 
-      // We need to do that explicitely because
-      // layout properties can't depend on dynamic expressions
       if (this.vehicle === 'walking') {
         this.map.setLayoutProperty(`route_${route.id}`, 'icon-image',
           isActive ? 'walking_bullet_active' : 'walking_bullet_inactive');
+      } else {
+        this.map.setPaintProperty(`route_${route.id}`, 'line-color',
+          isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR);
       }
     });
     this.updateMarkers(mainRoute);
@@ -199,10 +198,8 @@ export default class SceneDirection {
         'visibility': 'visible',
       },
       'paint': {
-        'line-color': ['case', ['boolean', ['get', 'isActive']],
-          MAIN_ROUTE_COLOR,
-          ALTERNATE_ROUTE_COLOR,
-        ],
+        'line-color': route.isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR,
+        'line-color-transition': { duration: 0 },
         'line-width': 7,
       },
     };
@@ -210,7 +207,7 @@ export default class SceneDirection {
     const sourceId = `source_${route.id}`;
     const sourceJSON = {
       type: 'geojson',
-      data: this.getRouteGeoJson(route.geometry, route.isActive),
+      data: normalizeToFeatureCollection(route.geometry),
     };
     this.map.addSource(sourceId, sourceJSON);
     this.map.addLayer(layerStyle, map.routes_layer);
@@ -226,12 +223,6 @@ export default class SceneDirection {
     this.map.on('mouseleave', `route_${route.id}`, () => {
       this.map.getCanvas().style.cursor = '';
     });
-  }
-
-  getRouteGeoJson(geometry, isActive) {
-    const geoJson = setProperty(normalizeToFeatureCollection(geometry), 'isActive', isActive);
-    geoJson.features = geoJson.features.map(feature => setProperty(feature, 'isActive', isActive));
-    return geoJson;
   }
 
   computeBBox({ geometry }) {

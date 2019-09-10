@@ -14,11 +14,3 @@ export const normalizeToFeatureCollection = geoJson => {
     features: [ feature ],
   };
 };
-
-export const setProperty = (geoJson, key, value) => ({
-  ...geoJson,
-  properties: {
-    ...geoJson.properties,
-    [key]: value,
-  },
-});
