@@ -87,6 +87,12 @@ export default class CategoryPanel {
 
     this.addCategoryMarkers();
     fire('save_location');
+    window.execOnMapLoaded(() => {
+      fire(
+        'move_mobile_bottom_ui',
+        document.querySelector('.category__panel').offsetHeight
+      );
+    });
 
     document.querySelector('.service_panel').classList.remove('service_panel--active');
   }
