@@ -47,3 +47,27 @@
   matcher:
     regex: "educ|[eé]coles?\\s*(maternelle|primaire|elementaire)?|college|universite|fac|faculte|iut|[ée]coles?\\s+(?:de\\s+|d')(?:commerce|ingenieurs?)"
   icon: school
+- label: _('museum')
+  name: museum
+  color: "#E93865"
+  matcher:
+    regex: "museum|musee|musée"
+  icon: museum
+- label: _('service')
+  name: service
+  color: "#F3C600"
+  matcher:
+    regex: "service|car repair|post office|townhall|police|fire station|garage|poste|bureau de poste|gendarmerie|pompiers|caserne de pompiers"
+  icon: service
+- label: _('fitness')
+  name: fitness
+  color: "#495063"
+  matcher:
+    regex: "fitness|muscu(lation)?|salle de muscu(lation)?"
+  icon: fitness
+- label: _('health')
+  name: health
+  color: "#4AA0E7"
+  matcher:
+    regex: "health|sante|santé|clinic|dentist|doctors?|hospital|clinique|dentiste|docteurs?|hopital|hôpital"
+  icon: health
