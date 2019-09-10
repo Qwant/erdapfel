@@ -12,6 +12,11 @@ RUN chown node $PROJECT_DIR
 USER node
 WORKDIR $PROJECT_DIR
 
+# Use SOURCE_COMMIT set docker-hub automated build as label
+# Build args are defined in hooks/build
+ARG SOURCE_COMMIT
+LABEL source-commit=$SOURCE_COMMIT
+
 ###########################################################
 
 FROM base as builder
