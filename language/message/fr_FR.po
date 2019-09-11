@@ -4,15 +4,15 @@
 # Florent Thouvenin <github@eldar.fr>, 2019
 # Etienne Bacher <etienne.bacher@orange.fr>, 2019
 # K T <kzn.tengwar@email.com>, 2019
-# v k <vitaalis@hotmail.com>, 2019
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
+# v k <vitaalis@hotmail.com>, 2019
 # Adrien Matissart, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-30 15:10+0000\n"
+"POT-Creation-Date: 2019-09-11 11:41+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2019\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -35,6 +35,11 @@ msgstr "Qwant Maps"
 
 msgid "Search on Qwant Maps"
 msgstr "Rechercher dans Qwant Maps"
+
+msgid "JavaScript is required to view this application."
+msgstr ""
+"Il est nécessaire que JavaScript soit activé pour afficher cette "
+"application."
 
 msgid "hotel"
 msgstr "hôtel"
@@ -68,15 +73,6 @@ msgstr "Ouvert"
 
 msgid "Closed"
 msgstr "Fermé"
-
-msgid "Happy hours"
-msgstr "Happy hours"
-
-msgid "happy hours!"
-msgstr "happy hours !"
-
-msgid "Last pint"
-msgstr "Dernière pinte"
 
 msgid "Wheelchair accessible"
 msgstr "Accessible en fauteuil roulant"
@@ -167,11 +163,6 @@ msgstr "Chercher avec Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
-
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "avis"
-msgstr[1] "avis"
 
 msgid "Open 24/7"
 msgstr "Ouvert 24h/24 et 7j/7"
@@ -785,6 +776,11 @@ msgstr "adresse"
 msgid "street"
 msgstr "rue"
 
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "avis"
+msgstr[1] "avis"
+
 msgid "Geolocation with privacy!"
 msgstr "La géolocalisation respectueuse de votre vie privée !"
 
@@ -847,9 +843,6 @@ msgstr "Fermer"
 
 msgid "Masq activation failed"
 msgstr "Activation de Masq échouée"
-
-msgid "filter"
-msgstr "filtre"
 
 msgid "What is Masq?"
 msgstr "Qu'est-ce que Masq ?"
@@ -915,6 +908,9 @@ msgstr "PARTAGER"
 msgid "SHOW NUMBER"
 msgstr "VOIR LE N°"
 
+msgid "Search around this place"
+msgstr "Rechercher à proximité"
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps utilise les données OpenStreetMap."
 
@@ -964,26 +960,17 @@ msgstr "Non merci"
 msgid "Do not ask again"
 msgstr "Ne plus me demander"
 
+msgid "Show Qwant Maps services"
+msgstr "Voir les services Qwant Maps"
+
 msgid "Qwant Maps services"
 msgstr "Les services Qwant Maps"
 
-msgid "YOUR FAVORITES"
-msgstr "MES FAVORIS"
+msgid "Directions"
+msgstr "Itinéraire"
 
-msgid "MORE"
-msgstr "PLUS"
-
-msgid "Share link"
-msgstr "Lien de partage"
-
-msgid "Copied !"
-msgstr "Copié !"
-
-msgid "SHARE ON FACEBOOK"
-msgstr "PARTAGER SUR FACEBOOK"
-
-msgid "SHARE ON TWITTER"
-msgstr "PARTAGER SUR TWITTER"
+msgid "Favorites"
+msgstr "Favoris"
 
 msgid "Geolocation not available."
 msgstr "Géolocalisation impossible"
@@ -1028,9 +1015,6 @@ msgstr "Via"
 msgid "PREVIEW"
 msgstr "APERÇU"
 
-msgid "print"
-msgstr "imprimer"
-
 msgid "DETAILS"
 msgstr "DÉTAILS"
 
@@ -1040,23 +1024,8 @@ msgstr "Départ"
 msgid "Search"
 msgstr "Rechercher"
 
-msgid "Directions"
-msgstr "Itinéraire"
-
-msgid "Favorites"
-msgstr "Favoris"
-
 msgid "How to contribute"
 msgstr "Comment contribuer"
-
-msgid "Deactivate"
-msgstr "Désactiver"
-
-msgid "Activate"
-msgstr "Activer"
-
-msgid "How does it work ?"
-msgstr "Comment ça marche ?"
 
 msgid "Show results"
 msgstr "Afficher les résultats"
@@ -1076,9 +1045,6 @@ msgstr "Rechercher autour de moi"
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Veuillez zoomer sur la zone pour voir des résultats."
 
-msgid "^(?:"
-msgstr " ^(?:"
-
 msgid ""
 "The connection failed between Qwant Maps and the Masq"
 "                                            application (Signalling error)"
@@ -1089,8 +1055,29 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "Impossible de se connecter à Masq"
 
+msgid "Share link"
+msgstr "Lien de partage"
+
+msgid "Copied !"
+msgstr "Copié !"
+
+msgid "SHARE ON FACEBOOK"
+msgstr "PARTAGER SUR FACEBOOK"
+
+msgid "SHARE ON TWITTER"
+msgstr "PARTAGER SUR TWITTER"
+
 msgid "category"
 msgstr "catégorie"
 
 msgid "Your position"
 msgstr "Votre position"
+
+msgid "Deactivate"
+msgstr "Désactiver"
+
+msgid "Activate"
+msgstr "Activer"
+
+msgid "How does it work ?"
+msgstr "Comment ça marche ?"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-30 15:10+0000\n"
+"POT-Creation-Date: 2019-09-11 11:41+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -30,6 +30,9 @@ msgstr "Qwant Maps"
 
 msgid "Search on Qwant Maps"
 msgstr "Klask war Qwant Maps"
+
+msgid "JavaScript is required to view this application."
+msgstr ""
 
 msgid "hotel"
 msgstr "leti"
@@ -63,15 +66,6 @@ msgstr "Digor"
 
 msgid "Closed"
 msgstr "Serret"
-
-msgid "Happy hours"
-msgstr "Eurvezhioù eürus"
-
-msgid "happy hours!"
-msgstr "Eurvezhioù eürus!"
-
-msgid "Last pint"
-msgstr "Pintad diwezhañ"
 
 msgid "Wheelchair accessible"
 msgstr "Aezet evit ar c'hadorioù-ruilh"
@@ -162,14 +156,6 @@ msgstr "Klask gant Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
-
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 msgid "Open 24/7"
 msgstr "Digor 24/7"
@@ -783,6 +769,14 @@ msgstr ""
 msgid "street"
 msgstr ""
 
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
 msgid "Geolocation with privacy!"
 msgstr "Douarlec'hiañ ha prevezded!"
 
@@ -846,9 +840,6 @@ msgstr ""
 msgid "Masq activation failed"
 msgstr ""
 
-msgid "filter"
-msgstr "silañ"
-
 msgid "What is Masq?"
 msgstr ""
 
@@ -906,6 +897,9 @@ msgstr "RANNAÑ"
 msgid "SHOW NUMBER"
 msgstr ""
 
+msgid "Search around this place"
+msgstr ""
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr ""
 
@@ -953,26 +947,17 @@ msgstr ""
 msgid "Do not ask again"
 msgstr ""
 
+msgid "Show Qwant Maps services"
+msgstr ""
+
 msgid "Qwant Maps services"
 msgstr "Servijoù Qwant Maps"
 
-msgid "YOUR FAVORITES"
-msgstr "HO SINEDOÙ"
+msgid "Directions"
+msgstr "Hent"
 
-msgid "MORE"
-msgstr ""
-
-msgid "Share link"
-msgstr "Rannañ al liamm"
-
-msgid "Copied !"
-msgstr "Eilet!"
-
-msgid "SHARE ON FACEBOOK"
-msgstr "RANNAÑ WAR FACEBOOK"
-
-msgid "SHARE ON TWITTER"
-msgstr "RANNAÑ WAR TWITTER"
+msgid "Favorites"
+msgstr "Reoù karetañ"
 
 msgid "Geolocation not available."
 msgstr ""
@@ -1013,9 +998,6 @@ msgstr "Dre"
 msgid "PREVIEW"
 msgstr "RAKWEL"
 
-msgid "print"
-msgstr ""
-
 msgid "DETAILS"
 msgstr "MUNUDOÙ"
 
@@ -1025,23 +1007,8 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-msgid "Directions"
-msgstr "Hent"
-
-msgid "Favorites"
-msgstr "Reoù karetañ"
-
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
-
-msgid "Deactivate"
-msgstr ""
-
-msgid "Activate"
-msgstr ""
-
-msgid "How does it work ?"
-msgstr ""
 
 msgid "Show results"
 msgstr ""
@@ -1061,9 +1028,6 @@ msgstr ""
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 
-msgid "^(?:"
-msgstr ""
-
 msgid ""
 "The connection failed between Qwant Maps and the Masq"
 "                                            application (Signalling error)"
@@ -1072,8 +1036,29 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr ""
 
+msgid "Share link"
+msgstr "Rannañ al liamm"
+
+msgid "Copied !"
+msgstr "Eilet!"
+
+msgid "SHARE ON FACEBOOK"
+msgstr "RANNAÑ WAR FACEBOOK"
+
+msgid "SHARE ON TWITTER"
+msgstr "RANNAÑ WAR TWITTER"
+
 msgid "category"
 msgstr ""
 
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "How does it work ?"
+msgstr ""
