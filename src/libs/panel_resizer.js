@@ -75,7 +75,7 @@ export default class PanelResizer {
         window.innerHeight - clientY + this.handleElement.offsetHeight - 10
       )}px`;
 
-      fire('move_mobile_bottom_ui', this.resizableElement.offsetHeight);
+      this.updateMapUiPosition();
     }
   }
 
@@ -127,7 +127,7 @@ export default class PanelResizer {
     this.holding = false;
     await this.playTransition();
     if (this.resizableElement) {
-      fire('move_mobile_bottom_ui', this.resizableElement.offsetHeight);
+      this.updateMapUiPosition();
     }
   }
 
@@ -153,5 +153,9 @@ export default class PanelResizer {
   reset() {
     this.reduced = false;
     this.maximized = false;
+  }
+
+  updateMapUiPosition() {
+    fire('move_mobile_bottom_ui', this.resizableElement.offsetHeight);
   }
 }
