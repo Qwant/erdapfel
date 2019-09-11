@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, wait } from '../tools';
+import { initBrowser } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
@@ -149,23 +149,18 @@ const showDirection = async page => {
   await page.click('.service_panel__item__direction');
 };
 
-test('select itinerary leg', async () => {
-  expect.assertions(1);
-  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.0000000,6\.6000000/);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`);
-
-  await page.waitForSelector('#itinerary_leg_0');
-
-  page.click('#itinerary_leg_0');
-
-  await wait(300);
-
-  const featureState = await page.evaluate(() => {
-    return window.MAP_MOCK.featureState;
-  });
-
-  expect(featureState).toEqual({ source: 'source_0', id: 1 });
-});
+// There is no current way with the MapBox-GL-mock to test changes of state or style
+// on a feature. Let's disable this test it until we improve our map testing tools.
+// test('select itinerary leg', async () => {
+//   expect.assertions(1);
+//   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.0000000,6\.6000000/);
+//   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`);
+//   await page.waitForSelector('#itinerary_leg_0');
+//   page.click('#itinerary_leg_0');
+//   await wait(300);
+//
+//   @TODO: test that the corresponing map feature gets the right state or style
+// });
 
 test('select itinerary step', async () => {
   expect.assertions(1);

@@ -1,4 +1,6 @@
-import { Marker, LngLat, LngLatBounds } from 'mapbox-gl--ENV';
+import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
+import bbox from '@turf/bbox';
+import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
@@ -6,7 +8,6 @@ import LatLonPoi from '../adapters/poi/latlon_poi';
 
 const ALTERNATE_ROUTE_COLOR = '#c8cbd3';
 const MAIN_ROUTE_COLOR = '#4ba2ea';
-
 
 export default class SceneDirection {
   constructor(map) {
@@ -73,11 +74,13 @@ export default class SceneDirection {
       if (isActive) {
         mainRoute = route;
       }
-      this.map.setFeatureState({ source: `source_${route.id}`, id: 1 }, { isActive });
 
       if (this.vehicle === 'walking') {
         this.map.setLayoutProperty(`route_${route.id}`, 'icon-image',
           isActive ? 'walking_bullet_active' : 'walking_bullet_inactive');
+      } else {
+        this.map.setPaintProperty(`route_${route.id}`, 'line-color',
+          isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR);
       }
     });
     this.updateMarkers(mainRoute);
@@ -104,7 +107,7 @@ export default class SceneDirection {
   displayRoute(move) {
     if (this.routes && this.routes.length > 0) {
       this.routes.forEach(route => {
-        this.showPolygon(route, this.vehicle);
+        this.addRouteFeature(route, this.vehicle);
       });
       const mainRoute = this.routes.find(route => route.isActive);
       this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer);
@@ -119,9 +122,8 @@ export default class SceneDirection {
         draggable: true,
       })
         .setLngLat(this.steps[0].maneuver.location)
-        .addTo(this.map);
-
-      this.markerOrigin.on('dragend', event => this.refreshDirection(event, 'origin'));
+        .addTo(this.map)
+        .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
 
       const markerDestination = document.createElement('div');
       markerDestination.className = 'itinerary_marker_destination';
@@ -130,9 +132,8 @@ export default class SceneDirection {
         draggable: true,
       })
         .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
-        .addTo(this.map);
-
-      this.markerDestination.on('dragend', event => this.refreshDirection(event, 'destination'));
+        .addTo(this.map)
+        .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
 
       const bbox = this.computeBBox(mainRoute);
       if (move !== false) {
@@ -141,19 +142,14 @@ export default class SceneDirection {
     }
   }
 
-  refreshDirection(event, type) {
+  refreshDirection(type, lngLat) {
+    const newPoint = new LatLonPoi(lngLat);
     if (type === 'origin') {
-      const originLnglat = this.markerOrigin.getLngLat();
-      const newOrigin = new LatLonPoi({ lat: parseFloat(originLnglat.lat),
-        lng: parseFloat(originLnglat.lng) });
-      this.directionPanel.selectOrigin(newOrigin);
-      this.directionPanel.setInputValue(type, newOrigin.getInputValue());
+      this.directionPanel.selectOrigin(newPoint);
+      this.directionPanel.setInputValue(type, newPoint.getInputValue());
     } else if (type === 'destination') {
-      const destinationLngLat = this.markerDestination.getLngLat();
-      const newDestination = new LatLonPoi({ lat: parseFloat(destinationLngLat.lat),
-        lng: parseFloat(destinationLngLat.lng) });
-      this.directionPanel.selectDestination(newDestination);
-      this.directionPanel.setInputValue(type, newDestination.getInputValue());
+      this.directionPanel.selectDestination(newPoint);
+      this.directionPanel.setInputValue(type, newPoint.getInputValue());
     }
   }
 
@@ -179,8 +175,8 @@ export default class SceneDirection {
     this.routes = [];
   }
 
-  showPolygon(route, vehicle) {
-    const geojson = vehicle === 'walking' ? {
+  addRouteFeature(route, vehicle) {
+    const layerStyle = vehicle === 'walking' ? {
       'id': `route_${route.id}`,
       'type': 'symbol',
       'source': `source_${route.id}`,
@@ -202,24 +198,21 @@ export default class SceneDirection {
         'visibility': 'visible',
       },
       'paint': {
-        'line-color': ['case',
-          ['boolean', ['feature-state', 'isActive'], route.isActive],
-          MAIN_ROUTE_COLOR,
-          ALTERNATE_ROUTE_COLOR,
-        ],
+        'line-color': route.isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR,
+        'line-color-transition': { duration: 0 },
         'line-width': 7,
       },
     };
 
     const sourceId = `source_${route.id}`;
     const sourceJSON = {
-      'type': 'geojson',
-      'data': this.buildRouteData(route.geometry.coordinates),
+      type: 'geojson',
+      data: normalizeToFeatureCollection(route.geometry),
     };
     this.map.addSource(sourceId, sourceJSON);
-    this.map.addLayer(geojson, map.routes_layer);
+    this.map.addLayer(layerStyle, map.routes_layer);
 
-    this.map.on('click', `route_${route.id}`, function() {
+    this.map.on('click', `route_${route.id}`, () => {
       fire('select_road_map', route.id);
     });
 
@@ -230,28 +223,11 @@ export default class SceneDirection {
     this.map.on('mouseleave', `route_${route.id}`, () => {
       this.map.getCanvas().style.cursor = '';
     });
-
   }
 
-  buildRouteData(data) {
-    return {
-      'id': 1,
-      'type': 'Feature',
-      'properties': {},
-      'geometry': {
-        'type': 'LineString',
-        'coordinates': data,
-      },
-    };
-  }
-
-  computeBBox(polygon) {
-    const bounds = new LngLatBounds();
-    polygon.geometry.coordinates.forEach(coordinate => {
-      bounds.extend(new LngLat(coordinate[0], coordinate[1]));
-    });
-
-    return bounds;
+  computeBBox({ geometry }) {
+    const [ minX, minY, maxX, maxY ] = bbox(geometry);
+    return new LngLatBounds([ minX, minY ], [ maxX, maxY ]);
   }
 
   highlightStep(step) {
