@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-30 15:10+0000\n"
+"POT-Creation-Date: 2019-09-11 11:41+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: jmontane, 2019\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -29,6 +29,9 @@ msgstr ""
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca a Qwant Maps"
+
+msgid "JavaScript is required to view this application."
+msgstr ""
 
 msgid "hotel"
 msgstr "hotel"
@@ -62,15 +65,6 @@ msgstr "Obert"
 
 msgid "Closed"
 msgstr "Tancat"
-
-msgid "Happy hours"
-msgstr ""
-
-msgid "happy hours!"
-msgstr ""
-
-msgid "Last pint"
-msgstr "Última pinta"
 
 msgid "Wheelchair accessible"
 msgstr "Accessible amb cadira de rodes"
@@ -161,11 +155,6 @@ msgstr ""
 
 msgid "The map that respects your privacy"
 msgstr "El mapa que respecta la vostra privadesa"
-
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Open 24/7"
 msgstr ""
@@ -779,6 +768,11 @@ msgstr ""
 msgid "street"
 msgstr ""
 
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Geolocation with privacy!"
 msgstr "Geolocalització amb privadesa!"
 
@@ -840,9 +834,6 @@ msgstr ""
 msgid "Masq activation failed"
 msgstr ""
 
-msgid "filter"
-msgstr "filtre"
-
 msgid "What is Masq?"
 msgstr ""
 
@@ -900,6 +891,9 @@ msgstr "COMPARTEIX"
 msgid "SHOW NUMBER"
 msgstr ""
 
+msgid "Search around this place"
+msgstr ""
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr ""
 
@@ -947,26 +941,17 @@ msgstr ""
 msgid "Do not ask again"
 msgstr ""
 
+msgid "Show Qwant Maps services"
+msgstr ""
+
 msgid "Qwant Maps services"
 msgstr "Serveis Qwant Maps"
 
-msgid "YOUR FAVORITES"
-msgstr "PREFERITS"
-
-msgid "MORE"
+msgid "Directions"
 msgstr ""
 
-msgid "Share link"
-msgstr "Comparteix l'enllaç"
-
-msgid "Copied !"
-msgstr "Copiat!"
-
-msgid "SHARE ON FACEBOOK"
-msgstr "COMPARTEIX AL FACEBOOK"
-
-msgid "SHARE ON TWITTER"
-msgstr "COMPARTEIX AL TWITTER"
+msgid "Favorites"
+msgstr ""
 
 msgid "Geolocation not available."
 msgstr ""
@@ -1007,9 +992,6 @@ msgstr ""
 msgid "PREVIEW"
 msgstr ""
 
-msgid "print"
-msgstr ""
-
 msgid "DETAILS"
 msgstr ""
 
@@ -1019,22 +1001,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-msgid "Directions"
-msgstr ""
-
-msgid "Favorites"
-msgstr ""
-
 msgid "How to contribute"
-msgstr ""
-
-msgid "Deactivate"
-msgstr ""
-
-msgid "Activate"
-msgstr ""
-
-msgid "How does it work ?"
 msgstr ""
 
 msgid "Show results"
@@ -1055,9 +1022,6 @@ msgstr ""
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 
-msgid "^(?:"
-msgstr ""
-
 msgid ""
 "The connection failed between Qwant Maps and the Masq"
 "                                            application (Signalling error)"
@@ -1066,8 +1030,29 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr ""
 
+msgid "Share link"
+msgstr "Comparteix l'enllaç"
+
+msgid "Copied !"
+msgstr "Copiat!"
+
+msgid "SHARE ON FACEBOOK"
+msgstr "COMPARTEIX AL FACEBOOK"
+
+msgid "SHARE ON TWITTER"
+msgstr "COMPARTEIX AL TWITTER"
+
 msgid "category"
 msgstr ""
 
 msgid "Your position"
+msgstr ""
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "How does it work ?"
 msgstr ""
