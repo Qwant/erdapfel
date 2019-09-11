@@ -36,14 +36,12 @@ export default class ServicePanel {
 
   open() {
     this.active = true;
-    if (Device.isMobile()) {
-      this.panelResizer.reset();
-    }
     this.panel.update();
-
-    window.execOnMapLoaded(() => {
-      fire('move_mobile_bottom_ui', 210);
-    });
+    if (this.panelResizer) {
+      window.execOnMapLoaded(() => {
+        this.panelResizer.updateMapUiPosition();
+      });
+    }
   }
 
   close() {
