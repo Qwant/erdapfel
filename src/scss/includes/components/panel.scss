@@ -1,0 +1,117 @@
+.panel {
+  @include card_shadow();
+  @include card_radius();
+  background-color: white;
+  width: 400px;
+
+  &-header {
+    padding: 0 15px;
+    height: 40px;
+    color: #5c6f84;
+    font-size: 13px;
+    border-bottom: 1px solid #f4f6fa;
+    display: flex;
+    align-items: center;
+  }
+
+  &-close {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    cursor: pointer;
+    transition: background-color .1s;
+    border-radius: 50%;
+    font-size: 20px;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $secondary_text;
+    z-index: 1;
+  
+    &:hover {
+      background: $background_hover;
+      color: $primary_text;
+    }
+  }
+
+  &-content {
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+  }
+
+  &--resizable .panel-resizeHandle {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    width: 100vw;
+    height: 50%;
+    position: absolute;
+    background: #f4f6fa;
+    border-radius: 0;
+    bottom: 0;
+
+    &-header {
+      border-bottom: 0;
+      padding: 9px 15px;
+      display: block;
+    }
+
+    &-close {
+      top: 0;
+      right: 0;
+      padding: 21px;
+    }
+
+    &.smooth-resize {
+      transition: all .2s ease-in-out;
+    }
+
+    &.maximized {
+      height: calc(100% + 70px);
+      padding-top: 60px;
+
+      .panel-close {
+        top: 68px;
+      }
+    }
+
+    &.minimized {
+      height: 50px;
+
+      .panel-header {
+        text-align: center;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+    }
+
+    &-content {
+      max-height: none;
+      height: calc(100% - 50px);
+    }
+
+    .panel-resizeHandle {
+      display: block;
+      min-height: 50px;
+      width: 100%;
+      cursor: -webkit-grab;
+      cursor: grab;
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        border-radius: 2.5px;
+        background-color: #e0e1e6;
+        width: 40px;
+        height: 5px;
+        margin: 0 auto 8px;
+      }
+    }
+  }
+}
