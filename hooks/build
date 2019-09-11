@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "------ HOOK START - BUILD -------"
+
+# ENV VARs are set by the cloud.docker.com build process, and are available during automated builds, automated tests,
+# and while executing hooks like here.
+# SOURCE_COMMIT: the SHA1 hash of the commit being built.
+# https://docs.docker.com/docker-hub/builds/advanced/
+docker build -t $IMAGE_NAME --build-arg SOURCE_COMMIT=$SOURCE_COMMIT .
+
+echo "------ HOOK END   - BUILD -------"
