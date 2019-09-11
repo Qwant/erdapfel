@@ -188,19 +188,15 @@
     border-radius: 12px;
 
     &::after {
-      position: relative;
+      position: absolute;
       bottom: 0;
-      right: 0;
+      left: 0;
       display: inline-block;
       vertical-align: middle;
     }
 
     &:hover {
-      padding: 0 0 0 5px;
-
-      .mapboxgl-ctrl-attrib-inner {
-        display: inline-block;
-      }
+      padding: 2px 4px 2px 24px;
     }
   }
 
