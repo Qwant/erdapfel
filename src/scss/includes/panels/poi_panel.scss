@@ -109,7 +109,6 @@ $HEADER_SIZE: 40px;
   border-top-left-radius: 0;
   box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
   max-height: calc(100vh - 120px - #{$HEADER_SIZE});
-  overflow: hidden;
 }
 
 .poi_panel__back_to_list:hover {
