@@ -1,3 +1,5 @@
+import { openAndWaitForClose } from 'src/modals/GeolocationModal';
+
 const geolocationPermissions = {
   PROMPT: 'prompt',
   GRANTED: 'granted',
@@ -15,7 +17,7 @@ export default class GeolocationCheck {
       if (p.state === geolocationPermissions.PROMPT) {
         if (window._GEO_QUESTION_ASKED !== true) {
           window._GEO_QUESTION_ASKED = true;
-          await window.app.geolocationModal.openAndWaitForClose();
+          await openAndWaitForClose();
         }
       }
       return successCallback();
