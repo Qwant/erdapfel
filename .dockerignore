@@ -2,6 +2,7 @@
 !build/
 !public/fonts
 !public/images
+!public/manifest.json
 !src/
 !bin/
 !local_modules/
