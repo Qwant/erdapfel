@@ -9,6 +9,7 @@
       {{= this.categoryPanel.render() }}
     {{?}}
     {{= this.servicePanel.render() }}
+    <div class="react_panel__container"></div>
   </div>
 </div>
 
