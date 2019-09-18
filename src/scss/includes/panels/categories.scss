@@ -258,6 +258,11 @@ $category_panel_head_height : 40px;
   font-size: 16px;
 }
 
+.service_panel__category__icon .category__new-icon {
+  font-size: 20px;
+}
+
+
 @media (max-width: 640px) {
   .category__panel {
     position: absolute;

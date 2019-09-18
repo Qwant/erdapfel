@@ -59,12 +59,12 @@
   matcher:
     regex: "service|car repair|post office|townhall|police|fire station|garage|poste|bureau de poste|gendarmerie|pompiers|caserne de pompiers"
   icon: service
-- label: _('fitness')
+- label: _('sport')
   name: fitness
   color: "#495063"
   matcher:
     regex: "fitness|muscu(lation)?|salle de muscu(lation)?"
-  icon: fitness
+  icon: basketball
 - label: _('health')
   name: health
   color: "#4AA0E7"
