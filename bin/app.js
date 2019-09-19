@@ -10,19 +10,9 @@ const promClient = require('prom-client');
 const fakePbf = require('./middlewares/fake_pbf/index');
 const compression = require('compression');
 const mapStyle = require('./middlewares/map_style');
-const reqSerializer = require('./serializers/request');
+const getReqSerializer = require('./serializers/request');
 
 const app = express();
-const logger = bunyan.createLogger({
-  name: 'erdapfel',
-  stream: process.stdout,
-  level: process.env.NODE_ENV === 'test' ? 'warn' : 'info',
-  serializers: {
-    req: reqSerializer,
-    err: bunyan.stdSerializers.err,
-  },
-});
-
 const promRegistry = new promClient.Registry();
 
 function App(config) {
@@ -30,6 +20,15 @@ function App(config) {
   const constants = yaml.readSync('../config/constants.yml');
   const languages = constants.languages;
 
+  this.logger = bunyan.createLogger({
+    name: 'erdapfel',
+    stream: process.stdout,
+    level: process.env.NODE_ENV === 'test' ? 'warn' : 'info',
+    serializers: {
+      req: getReqSerializer(config),
+      err: bunyan.stdSerializers.err,
+    },
+  });
   this.handler = null;
   app.set('view engine', 'ejs');
   app.locals.rmWhitespace = true;
@@ -38,7 +37,7 @@ function App(config) {
 
   /* Define child logger in req */
   app.use((req, res, next) => {
-    req.logger = logger.child({ req });
+    req.logger = this.logger.child({ req });
     next();
   });
 
@@ -134,7 +133,7 @@ function App(config) {
 App.prototype.start = function(port) {
   return new Promise(resolve => {
     this.handler = app.listen(port, () => {
-      logger.info(`Server listening on PORT : ${port}`);
+      this.logger.info(`Server listening on PORT : ${port}`);
       resolve();
     });
   });
@@ -145,7 +144,7 @@ App.prototype.close = function() {
     this.handler.close();
     this.handler = null;
   } else {
-    logger.error('App handler does\'nt handle anything : can\'t stop');
+    this.logger.error('App handler does\'nt handle anything : can\'t stop');
   }
 };
 

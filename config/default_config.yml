@@ -10,6 +10,8 @@ server:
     idunn:
       url: # client url will be used by default
       timeout: 2000 # ms
+  logger:
+    headersWhitelistEnabled: true
 
 app:
   versionFlag: Beta
