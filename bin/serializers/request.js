@@ -16,9 +16,9 @@ const allowedHeaders = [
 ];
 
 const allowedHeadersRules = [
-  /^x-forwarded-(.*)/,
-  /^x-geoip-(.*)/,
-  /^x-qwantmaps-(.*)/,
+  /^x-forwarded-([^.]*)$/,
+  /^x-geoip-([^.]*)$/,
+  /^x-qwantmaps-([^.]*)$/,
 ];
 
 module.exports = function(config) {
