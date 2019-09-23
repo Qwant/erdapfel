@@ -1,3 +1,16 @@
 goto: |URL|
-click: ".service_panel__item service_panel__item__fav"
-assert: (".favorite_header_title", "MES FAVORIS")
+click: ".service_panel__actions .service_panel__item__fav"
+assert: (".favorite_header_title", "Lieux favoris")
+click: ".poi_panel__close"
+assert: (".service_panel--active > .service_panel__header > .service_panel__title", " Les services Qwant Maps ")
+write: ("#search", "test")
+wait-for: ".autocomplete_suggestions > .autocomplete_suggestion"
+click: ".autocomplete_suggestions > .autocomplete_suggestion"
+click: ".poi_panel__actions > .poi_panel__action"
+click: ".favorite_poi_panel__container .poi_panel__header.poi_header_card > .poi_panel__close"
+click: ".service_panel__actions .service_panel__item__fav"
+assert: (".favorite_panel__item__info", 1)
+click: "#favorite_item_0 > .favorite_panel__item__more_button"
+click: ".favorite_panel__item__more__line > .icon-trash"
+wait-for: 1000 // waiting for the element to be removed
+assert: (".favorite_panel__item__info", 0)
