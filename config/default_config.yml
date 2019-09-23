@@ -23,7 +23,7 @@ services:
     url: override_by_environment
     useLang: true
     maxItems: 7
-    useFocus: false
+    useFocus: true
     focusPrecision: '0.1' # lat/lon degrees
   idunn:
     url: override_by_environment
