@@ -81,7 +81,7 @@ export default class Menu extends React.Component {
               <span>Qwant Maps</span>
               <i className="icon-x menu__panel__top__close" onClick={this.close} />
             </h2>
-            <MasqStatus user={this.state.masqUser} store={this.store} />
+            {isMasqEnabled && <MasqStatus user={this.state.masqUser} store={this.store} />}
           </div>
 
           <div className="menu__panel__items_container">
