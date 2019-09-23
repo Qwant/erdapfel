@@ -13,15 +13,8 @@ export default class ServicePanel {
     }
     this.isMobile = Device.isMobile();
     this.categories = CategoryService.getCategories();
-    this.mustDeployCategories = this.categories.length > 8;
-    this.isDeployed = false;
     this.isDirectionActive = nconf.get().direction.enabled;
     this.active = true;
-  }
-
-  toggleCategories() {
-    this.isDeployed = !this.isDeployed;
-    this.panel.update();
   }
 
   openFavorite() {
