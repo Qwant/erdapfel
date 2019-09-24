@@ -83,8 +83,7 @@ test('goml', async () => {
   try {
       options.parseArguments(['--test-folder', __dirname, '--failure-folder', __dirname,
                               '--no-screenshot', '--variable', 'URL', APP_URL,
-                              '--timeout', '20000',
-                              '--no-headless']);
+                              '--timeout', '20000']);
   } catch (error) {
       console.error(`invalid argument: ${error}`);
       expect(false);
