@@ -11,7 +11,7 @@ public/build/
 #map style
 public/mapstyle/
 
-#documentantion
+#documentation
 /docs/*
 
 !/docs/images
