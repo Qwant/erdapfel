@@ -1,6 +1,6 @@
 import { initBrowser } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
-const {Options, runTests} = require('browser-ui-test');
+const { Options, runTests } = require('browser-ui-test');
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
 const APP_URL = `http://localhost:${config.PORT}`;
@@ -81,12 +81,13 @@ test('goml', async () => {
     });
   };
   try {
-      options.parseArguments(['--test-folder', __dirname, '--failure-folder', __dirname,
-                              '--no-screenshot', '--variable', 'URL', APP_URL,
-                              '--timeout', '20000']);
+    options.parseArguments(
+      ['--test-folder', __dirname, '--failure-folder', __dirname,
+        '--no-screenshot', '--variable', 'URL', APP_URL,
+        '--timeout', '20000']);
   } catch (error) {
-      console.error(`invalid argument: ${error}`);
-      expect(false);
+    console.error(`invalid argument: ${error}`);
+    expect(false).not.toBeFalsy();
   }
   const [output, nb_failures] = await runTests(options);
   console.log(output);
