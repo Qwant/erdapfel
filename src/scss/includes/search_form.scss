@@ -136,71 +136,67 @@ input[type="search"] {
   padding: 10px 20px;
 }
 
-.autocomplete_address {
-  padding-left: 6px;
-  color : $secondary_text;
-}
-
 .autocomplete_suggestion {
+  $suggestion_padding_left: 14px;
+
+  display: flex;
+  align-items: center;
   max-height: 100vh;
-  padding: 7px 0 7px 20px;
-  line-height: 23px;
+  padding: 8px 8px 8px $suggestion_padding_left;
   font-size: 1.02em;
   color: $secondary_text;
   background-color: $background;
   transition: background-color .2s;
   cursor: pointer;
+  line-height: 1.2;
 
   &.selected {
-    border-left: #FF3B4A solid 4px;
-    padding-left: 16px;
+    $selected_border_width: 4px;
+
+    border-left: #FF3B4A solid $selected_border_width;
+    padding-left: $suggestion_padding_left - $selected_border_width;
     background-color: $background_active;
   }
 }
 
-.autocomplete_suggestion__first_line__container {
-  width: 100%;
-  height: 20px;
-}
-
 .autocomplete-icon {
-  display: inline-block;
-  width: 22px;
-  margin-right: 10px;
-  line-height: 26px;
+  margin-bottom: 8px;
 
   &.icon:before {
     font-size: 28px;
-    line-height: 18px;
   }
 }
 
 .autocomplete-icon-rounded {
   border-radius: 50%;
+  margin-left: 3px;
+  margin-right: 3px;
 
   &.icon:before {
-    line-height: 22px;
     font-size: 22px;
   }
 }
 
-.autocomplete_suggestion__first_line {
-  color: $primary_text;
-  display: inline-block;
-  width: calc(100% - 50px);
-  text-overflow:ellipsis;
+.autocomplete_suggestion__lines_container {
+  margin-left: 8px;
   overflow: hidden;
-  white-space: nowrap;
-}
 
-.autocomplete_suggestion__second_line {
-  color: $secondary_text;
-  height: 23px;
-  font-size: 14px;
-  margin-left: 37px;
-  text-overflow:ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  > div {
+    display: inline-block;
+    width: 100%;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &.autocomplete_suggestion__first_line {
+      color: $primary_text;
+    }
+
+    &.autocomplete_suggestion__second_line {
+      color: $secondary_text;
+      font-size: 14px;
+    }
+  }
 }
 
 .autocomplete_suggestion--category {

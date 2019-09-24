@@ -224,7 +224,8 @@ export default class Suggest {
     return `
       <div class="autocomplete_suggestion"
            data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
-        ${this.renderLines(iconDom, name, alternativeName)}
+        ${iconDom}
+        ${this.renderLines(name, alternativeName)}
       </div>`;
   }
 
@@ -239,19 +240,19 @@ export default class Suggest {
     return `
       <div class="autocomplete_suggestion autocomplete_suggestion--category"
         data-id="${category.id}" data-val="${categoryLabel}">
-        ${this.renderLines(iconDom, label, alternativeName)}
+        ${iconDom}
+        ${this.renderLines(label, alternativeName)}
       </div>`;
   }
 
-  renderLines(iconDom, firstLabel, secondLabel) {
+  renderLines(firstLabel, secondLabel) {
     const s_firstLabel = ExtendedString.htmlEncode(firstLabel);
     const s_secondLabel = ExtendedString.htmlEncode(secondLabel ? secondLabel : '');
     return `
-      <div class="autocomplete_suggestion__first_line__container">
-        ${iconDom}
+      <div class="autocomplete_suggestion__lines_container">
         <div class="autocomplete_suggestion__first_line">${s_firstLabel}</div>
-      </div>
-      <div class="autocomplete_suggestion__second_line">${s_secondLabel}</div>`;
+        <div class="autocomplete_suggestion__second_line">${s_secondLabel}</div>
+      </div>`;
   }
 }
 
