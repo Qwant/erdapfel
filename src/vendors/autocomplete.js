@@ -290,38 +290,35 @@ export default function autoComplete(options) {
     };
     addEvent(that, 'keydown', that.keydownHandler);
 
-    that.keyupHandler = function(e) {
-      const key = window.event ? e.keyCode : e.which;
-      if (!key || (key < 35 || key > 40) && key != 13 && key != 27) {
-        const val = that.value;
-        if (val.length >= o.minChars) {
-          if (val != that.last_val) {
-            cancelObsolete();
-            that.last_val = val;
-            that.timer = setTimeout(function() {
-              that.sourcePending = o.source(val);
-              that.sourcePending.then(source => {
-                that.sourcePending = null;
-                if (source !== null) {
-                  suggest(source);
-                }
-              }).catch(e => {
-                console.warn(e); /* should be handled by a telemetry logger */
-                that.sourcePending = null;
-              });
-            }, o.delay);
-          }
-        } else {
+    that.inputHandler = function(e) {
+      const val = that.value;
+      if (val.length >= o.minChars) {
+        if (val != that.last_val) {
+          cancelObsolete();
           that.last_val = val;
-          that.sc.style.display = 'none';
+          that.timer = setTimeout(function() {
+            that.sourcePending = o.source(val);
+            that.sourcePending.then(source => {
+              that.sourcePending = null;
+              if (source !== null) {
+                suggest(source);
+              }
+            }).catch(e => {
+              console.warn(e); /* should be handled by a telemetry logger */
+              that.sourcePending = null;
+            });
+          }, o.delay);
         }
+      } else {
+        that.last_val = val;
+        that.sc.style.display = 'none';
       }
     };
-    addEvent(that, 'keyup', that.keyupHandler);
+    addEvent(that, 'input', that.inputHandler);
 
     that.focusHandler = function(e) {
       that.last_val = '\n';
-      that.keyupHandler(e);
+      that.inputHandler(e);
     };
     if (!o.minChars) {
       addEvent(that, 'focus', that.focusHandler);
@@ -336,7 +333,7 @@ export default function autoComplete(options) {
       removeEvent(that, 'blur', that.blurHandler);
       removeEvent(that, 'focus', that.focusHandler);
       removeEvent(that, 'keydown', that.keydownHandler);
-      removeEvent(that, 'keyup', that.keyupHandler);
+      removeEvent(that, 'input', that.inputHandler);
       if (that.autocompleteAttr) {
         that.setAttribute('autocomplete', that.autocompleteAttr);
       } else {
