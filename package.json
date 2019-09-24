@@ -4,7 +4,6 @@
   "description": "Qwant Maps frontend",
   "main": "public/index.html",
   "scripts": {
-    "doc": "./node_modules/.bin/esdoc -c ./docs/esdoc.json",
     "bench": "node ./dev/performances.js",
     "unit-test": "jest --config=./tests/unit.js",
     "integration-test": "jest --config=./tests/integration.js",
@@ -52,8 +51,6 @@
     "detect-browser": "^4.5.1",
     "dot": "https://github.com/olado/doT.git#299b4da",
     "dot-loader": "^0.1.2",
-    "esdoc": "^1.1.0",
-    "esdoc-standard-plugin": "1.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.14.3",
     "file-loader": "2.0.0",

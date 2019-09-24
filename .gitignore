@@ -11,12 +11,11 @@ public/build/
 #map style
 public/mapstyle/
 
-#doumentantion
+#documentation
 /docs/*
 
 !/docs/images
 !/docs/src/
-!/docs/esdoc.json
 !/docs/DEV.md
 
 #generated i18n messages
