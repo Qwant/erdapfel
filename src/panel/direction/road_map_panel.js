@@ -14,7 +14,7 @@ export default class RoadMapPanel {
       <RouteResult
         routes={routes}
         vehicle={vehicle}
-        origin={origin.getInputValue()}
+        origin={origin && origin.getInputValue()}
         onOpenMobilePreview={this.onOpenMobilePreview}
       />,
       this.getContainer()
