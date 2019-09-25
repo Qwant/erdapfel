@@ -29,17 +29,21 @@ export default class Panel extends React.Component {
   }
 
   componentDidMount() {
-    this.updateMobileMapUI();
+    this.updateMobileMapUI(this.panelDOMElement.offsetHeight);
   }
 
   componentDidUpdate() {
-    this.updateMobileMapUI();
+    this.updateMobileMapUI(this.panelDOMElement.offsetHeight);
   }
 
-  updateMobileMapUI = () => {
+  componentWillUnmount() {
+    this.updateMobileMapUI(0);
+  }
+
+  updateMobileMapUI = height => {
     if (this.props.resizable) {
       window.execOnMapLoaded(() => {
-        fire('move_mobile_bottom_ui', this.panelDOMElement.offsetHeight);
+        fire('move_mobile_bottom_ui', height);
       });
     }
   }
