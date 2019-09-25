@@ -161,7 +161,7 @@ PoiPanel.prototype.backToList = function() {
 };
 
 PoiPanel.prototype.openDirection = function() {
-  window.app.openDirection({
+  window.app.navigateTo('/routes/', {
     poi: this.poi,
     isFromCategory: this.fromCategory,
     isFromFavorite: this.fromFavorite,

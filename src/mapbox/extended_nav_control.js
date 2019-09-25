@@ -25,7 +25,6 @@ export default class ExtendedControl {
       ev => {
         ev.target.style.display = 'none';
         window.app.navigateTo('/routes');
-        fire('move_mobile_bottom_ui', 0);
       }
     );
 
