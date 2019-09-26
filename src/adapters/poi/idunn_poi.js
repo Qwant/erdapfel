@@ -4,6 +4,7 @@ import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import { sources } from 'config/constants.yml';
 import Telemetry from '../../libs/telemetry';
+import QueryContext from 'src/adapters/query_context';
 
 const serviceConfig = nconf.get().services;
 const LNG_INDEX = 0;
@@ -94,10 +95,7 @@ export default class IdunnPoi extends Poi {
       requestParams = { verbosity: 'short' };
     }
     try {
-      const headers = {};
-      if (obj.queryContext) {
-        obj.queryContext.fillHeaders(headers);
-      }
+      const headers = QueryContext.toHeaders(obj.queryContext);
       rawPoi = await Ajax.getLang(url, requestParams, {}, headers);
       return new IdunnPoi(rawPoi);
     } catch (err) {
