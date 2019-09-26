@@ -14,21 +14,24 @@ export default class QueryContext {
     this.position = position;
   }
 
-  fillHeaders(headers) {
-    if (!sendQueryContextHeaders) {
-      return;
+  static toHeaders(queryContext) {
+    if (!sendQueryContextHeaders || !queryContext) {
+      return {};
     }
-    if (this.position.lon !== undefined &&
-        this.position.lat !== undefined &&
-        this.position.zoom !== undefined) {
-      const { lon, lat, zoom } = this.position;
+    const headers = {};
+    const { term, ranking, lang, position } = queryContext;
+    if (position.lon !== undefined &&
+        position.lat !== undefined &&
+        position.zoom !== undefined) {
+      const { lon, lat, zoom } = position;
       headers['X-QwantMaps-FocusPosition'] =
         `${Number(lon).toFixed(4)};${Number(lat).toFixed(4)};${Number(zoom).toFixed(1)}`;
     }
-    headers['X-QwantMaps-Query'] = encodeURIComponent(this.term);
-    headers['X-QwantMaps-SuggestionRank'] = this.ranking;
-    if (this.lang !== null) {
-      headers['X-QwantMaps-QueryLang'] = this.lang;
+    headers['X-QwantMaps-Query'] = encodeURIComponent(term);
+    headers['X-QwantMaps-SuggestionRank'] = ranking;
+    if (lang !== null) {
+      headers['X-QwantMaps-QueryLang'] = lang;
     }
+    return headers;
   }
 }
