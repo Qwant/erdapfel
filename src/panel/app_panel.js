@@ -175,7 +175,10 @@ export default class AppPanel {
     this.panels.forEach(panel => {
       if (panel === this.poiPanel) {
         panel.setPoi(poi, options);
-      } else if (!options.isFromCategory) {
+      } else if (panel === this.categoryPanel) {
+        const keepCategoryMarkers = options.isFromCategory;
+        panel.close(keepCategoryMarkers);
+      } else {
         panel.close();
       }
     });

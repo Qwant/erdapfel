@@ -123,11 +123,11 @@ export default class CategoryPanel {
     }
   }
 
-  close(toggleMarkers = true) {
+  close(keepCategoryMarkers = false) {
     document.querySelector('.top_bar').classList.remove('top_bar--category-open');
     this.active = false;
     this.panel.update();
-    if (toggleMarkers) {
+    if (!keepCategoryMarkers) {
       this.removeCategoryMarkers();
     }
   }
@@ -181,7 +181,6 @@ export default class CategoryPanel {
         })
       );
     }
-    this.close(false);
     window.app.navigateTo(`/place/${poi.toUrl()}`, {
       poi: poi.serialize(),
       isFromCategory: true,
