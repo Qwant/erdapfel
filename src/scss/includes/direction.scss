@@ -804,11 +804,15 @@
 
     /* Attempt to fix rare layout bug on iOS */
     transform: translate3d(0,0,0);
-  }
 
-  .direction_shortcut:hover {
-    background: #353c52;
-    color: #fff;
-    background-size: 25px;
+    &:hover {
+      background: #353c52;
+      color: #fff;
+      background-size: 25px;
+    }
+
+    .directions-open & {
+      display: none;
+    }
   }
 }
