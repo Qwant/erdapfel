@@ -8,6 +8,7 @@ const allowedHeaders = [
   'content-type',
   'content-length',
   'host',
+  'origin',
   'referer',
   'user-agent',
   'x-client-hash',
