@@ -57,7 +57,7 @@
       {{?}}
       <div class="poi_panel__description_container">
         <div>
-          {{= this.panel.renderPartial(this.headerPartial) }}
+          {{= this.headerPartial(this.poi) }}
           {{= this.minimalHourPanel.render() }}
         </div>
         {{= this.panel.renderPartial(this.titleImagePartial) }}
@@ -80,7 +80,7 @@
   {{? this.poi }}
     <div class="poi_panel__container">
       <div class="poi_panel__description_container" {{= click(this.center, this) }}>
-         {{= this.panel.renderPartial(this.headerPartial) }}
+         {{= this.headerPartial(this.poi) }}
          {{= this.panel.renderPartial(this.titleImagePartial) }}
       </div>
       <div class="poi_panel__actions">

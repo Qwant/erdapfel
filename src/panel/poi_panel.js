@@ -1,13 +1,12 @@
 import React from 'react';
 import renderStaticReact from 'src/libs/renderStaticReact';
-import ReviewScore from 'src/components/ReviewScore';
+import PoiHeader from 'src/panel/poi/PoiHeader';
 import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
-import headerPartial from '../views/poi_partial/header.dot';
 import titleImagePartial from '../views/poi_partial/title_image.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import layouts from './layouts.js';
@@ -21,8 +20,7 @@ import { openShareModal } from 'src/modals/ShareModal';
 const store = new Store();
 const masqFavoriteModal = new MasqFavoriteModal();
 
-const reviewsPartial = ({ reviews, poi }) =>
-  renderStaticReact(<ReviewScore reviews={reviews} poi={poi} />);
+const headerPartial = poi => renderStaticReact(<PoiHeader poi={poi} />);
 
 function PoiPanel() {
   this.isPoiCompliant = true;
@@ -35,7 +33,6 @@ function PoiPanel() {
   this.card = true;
   this.headerPartial = headerPartial;
   this.titleImagePartial = titleImagePartial;
-  this.reviewsPartial = reviewsPartial;
   this.minimalHourPanel = new MinimalHourPanel();
   this.isDirectionActive = nconf.get().direction.enabled;
   this.categories = CategoryService.getCategories();
