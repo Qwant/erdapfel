@@ -3,10 +3,7 @@
   <h3 class="poi_popup__category">{{= this.category }}</h3>
   <div>
   {{? this.reviews }}
-    <div class="poi_popup__review">
-      {{= this.reviewsPartial({ reviews: this.reviews, poi: this.poi }) }}
-    </div>
-
+    {{= this.reviewsPartial({ reviews: this.reviews, poi: this.poi }) }}
   {{?? this.opening && this.opening.days }}
     <span class="poi_popup__opening">
     {{? this.opening.isTwentyFourSeven }}

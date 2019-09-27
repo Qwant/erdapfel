@@ -1,3 +1,6 @@
+import React from 'react';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import ReviewScore from 'src/components/ReviewScore';
 import Panel from '../libs/panel';
 import CategoryPanelView from '../views/category_panel.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
@@ -9,11 +12,13 @@ import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import { sources } from '../../config/constants.yml';
-import reviewsPartial from 'src/views/poi_partial/reviews.dot';
 import nconf from '@qwant/nconf-getter';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
+
+const reviewsPartial = ({ reviews, poi }) =>
+  renderStaticReact(<ReviewScore reviews={reviews} poi={poi} />);
 
 export default class CategoryPanel {
   constructor() {

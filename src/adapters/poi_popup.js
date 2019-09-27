@@ -1,3 +1,6 @@
+import React from 'react';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import ReviewScore from 'src/components/ReviewScore';
 import { Popup } from 'mapbox-gl--ENV';
 import OsmSchedule from '../../src/adapters/osm_schedule';
 import IconManager from './icon_manager';
@@ -6,10 +9,12 @@ import ApiPoi from './poi/idunn_poi';
 import Device from '../libs/device';
 import poiSubClass from '../mapbox/poi_subclass';
 import popupTemplate from '../views/popup.dot';
-import reviewsPartial from 'src/views/poi_partial/reviews.dot';
 import poiConfigs from '../../config/constants.yml';
 
 const WAIT_BEFORE_DISPLAY = 350;
+
+const reviewsPartial = ({ reviews, poi }) =>
+  renderStaticReact(<ReviewScore reviews={reviews} poi={poi} />);
 
 function PoiPopup() {}
 

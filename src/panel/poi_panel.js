@@ -1,3 +1,6 @@
+import React from 'react';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import ReviewScore from 'src/components/ReviewScore';
 import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
@@ -6,7 +9,6 @@ import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import headerPartial from '../views/poi_partial/header.dot';
 import titleImagePartial from '../views/poi_partial/title_image.dot';
-import reviewsPartial from 'src/views/poi_partial/reviews.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import layouts from './layouts.js';
 import nconf from '@qwant/nconf-getter';
@@ -18,6 +20,9 @@ import { openShareModal } from 'src/modals/ShareModal';
 
 const store = new Store();
 const masqFavoriteModal = new MasqFavoriteModal();
+
+const reviewsPartial = ({ reviews, poi }) =>
+  renderStaticReact(<ReviewScore reviews={reviews} poi={poi} />);
 
 function PoiPanel() {
   this.isPoiCompliant = true;
