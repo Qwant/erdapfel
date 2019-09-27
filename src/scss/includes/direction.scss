@@ -211,33 +211,35 @@
   display: inline-block;
 }
 
-.itinerary_roadmap {
+.itinerary_result {
   background: $background;
   overflow: auto;
   max-height: calc(100vh - 290px);
 }
 
 .itinerary_leg {
-  min-height: 95px;
   position: relative;
   cursor: pointer;
-  border-left: 4px solid $background;
-  background: $background;
 
-  &--active, &:hover {
+  &:not(:last-child):after {
+    content: '';
+    background-color: #e0e1e6;
+    height: 1px;
+    margin: 0 33px;
+    display: block;
+  }
+
+  &--active .itinerary_leg_summary,
+  &:hover .itinerary_leg_summary {
     border-left: 4px solid #ff3b4a;
   }
 }
 
-.itinerary_leg_inner {
+.itinerary_leg_summary {
+  border-left: 4px solid $background;
   display: flex;
   padding: 20px;
   align-items: center;
-}
-
-.itinerary__roadmap__separator {
-  border-bottom: 1px solid #e0e1e6;
-  margin: 0 33px;
 }
 
 .itinerary_leg_icon {
@@ -253,17 +255,16 @@
   align-self: flex-start;
   flex-grow: 1;
   margin-right: 24px;
+  color: $primary_text;
 }
 
 .itinerary_leg_via_title {
   font-size: 16px;
-  color: $primary_text;
 }
 
 .itinerary_leg_via_details {
   font-size: 12px;
   font-weight: 500;
-  color: $primary_text;
   margin: 10px 0 0;
 }
 
@@ -274,7 +275,6 @@
 .itinerary_leg_via_details_icon {
   display: inline-block;
   background: url('../images/direction_icons/arrow-right.svg') no-repeat center center;
-  color: $primary_text;
   width: 15px;
   height: 15px;
   margin: 0 5px 0 0;
@@ -305,12 +305,7 @@
   color: $primary_text;
 }
 
-.itinerary_leg_detail {
-  display: block;
-  cursor: pointer;
-}
-
-.itinerary_leg_detail--hidden {
+.itinerary_leg_preview {
   display: none;
 }
 
@@ -389,13 +384,15 @@
   border-left: 4px solid #ff3b4a;
 }
 
-.itinerary_roadmap_step:last-of-type .itinerary_roadmap_instruction {
+.itinerary_roadmap {
+  .itinerary_roadmap_step:last-of-type .itinerary_roadmap_instruction {
     border-bottom: none;
-}
+  }
 
-.itinerary_roadmap_step:last-of-type .itinerary_roadmap_icon {
-  background-image: url(../images/direction_icons/pin.png);
-  background-size: contain;
+  .itinerary_roadmap_step:last-of-type .itinerary_roadmap_icon {
+    background-image: url(../images/direction_icons/pin.png);
+    background-size: contain;
+  }
 }
 
 .itinerary_roadmap_instruction {
@@ -626,31 +623,33 @@
     background: $background;
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
-  }
-
-  .itinerary_leg {
     display: none;
+
+    &--active {
+      display: block;
+    }
   }
 
-  .itinerary_leg.itinerary_leg--active {
-    display: block;
+  .itinerary_leg_summary {
+    border-left: none !important;
+    pointer-events: none;
+    display: grid;
+    grid-template-areas: "info info actions" "via via actions";
   }
 
-  .itinerary_leg--active,
-  .itinerary_leg:hover {
-    border: 4px solid $background;
-  }
-
-  .itinerary_leg_inner {
-    padding: 17px;
-  }
-  
-  .itinerary_leg_inner_wrapper {
-    flex-grow: 1;
+  .itinerary_leg_icon,
+  .itinerary_leg_via_details,
+  .itinerary_panel__item__share {
+    display: none;
   }
 
   .itinerary_leg_info {
     text-align: left;
+    grid-area: info;
+  }
+
+  .itinerary_leg_via {
+    grid-area: via;
   }
 
   .itinerary_leg_duration,
@@ -660,6 +659,10 @@
   }
   
   .itinerary_leg_preview {
+    pointer-events: all;
+    grid-area: actions;
+    justify-self: end;
+    display: block;
     width: 110px;
     height: 35px;
     line-height: 35px;
@@ -680,32 +683,40 @@
   
   .itinerary_mobile_step {
     position: fixed;
-    display: flex;
-    align-items: center;
     top: 36px;
     background: $background;
     margin: 0 15px;
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
-    padding: 15px 12px;
     width: calc(100% - 30px);
     user-select: none;
+
+    .itinerary_roadmap_step {
+      border-left: 0;
+      padding: 12px;
+      display: grid;
+      grid-template-areas: "icon distance" "icon instruction";
+      grid-template-columns: 48px;
+      grid-column-gap: 12px;
+    }
   }
   
   .itinerary_roadmap_icon {
-    align-self: flex-start;
+    grid-area: icon;
     width: 48px;
     height: 48px;
     background-size: 100%;
-    margin: 0 12px 0 0;
+    margin: 0;
   }
   
   .itinerary_roadmap_instruction {
+    grid-area: instruction;
     padding: 0; 
     border: none;
   }
   
   .itinerary_roadmap_distance {
+    grid-area: distance;
     text-align: left;
     font-size: 16px;
     margin: 0 0 5px;
@@ -722,13 +733,10 @@
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
   
-  .itinerary_mobile_step_buttons > div {
+  .itinerary_mobile_step_button {
     width: 48px;
     height: 48px;
     float: left;
-  }
-  
-  .itinerary_mobile_step_button {
     border-right: 1px solid #f4f6fa;
     font-size: 24px;
     padding-bottom: 3px;
@@ -736,8 +744,8 @@
     justify-content: center;
     align-items: center;
 
-    &.itinerary_mobile_step_button--disabled {
-      color: $primary_clear
+    &:disabled {
+      color: $primary_clear;
     }
   }
 
@@ -796,11 +804,15 @@
 
     /* Attempt to fix rare layout bug on iOS */
     transform: translate3d(0,0,0);
-  }
 
-  .direction_shortcut:hover {
-    background: #353c52;
-    color: #fff;
-    background-size: 25px;
+    &:hover {
+      background: #353c52;
+      color: #fff;
+      background-size: 25px;
+    }
+
+    .directions-open & {
+      display: none;
+    }
   }
 }

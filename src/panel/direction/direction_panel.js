@@ -15,7 +15,7 @@ import nconf from '@qwant/nconf-getter';
 const isPublicTransportEnabled = nconf.get().direction.publicTransport.enabled;
 
 export default class DirectionPanel {
-  constructor(roadPanel) {
+  constructor() {
     this.isPublicTransportEnabled = isPublicTransportEnabled;
     this.panel = new Panel(this, directionTemplate);
     this.vehicles = modes;
@@ -24,22 +24,17 @@ export default class DirectionPanel {
     this.origin = null;
     this.destination = null;
     this.vehicle = modes.DRIVING;
-    this.roadMapPanel = new RoadMapPanel(
-      () => this.handleOpen(),
-      () => this.handleClose(),
-      roadPanel,
-    );
-    this.activePanel = this;
+    this.roadMapPanel = new RoadMapPanel(this.openMobilePreview);
+    this.isRoadMapPreviewActive = false;
   }
 
-  handleOpen() {
+  openMobilePreview = () => {
     this.hideForm();
-    this.activePanel = this.roadMapPanel;
-  }
-
-  handleClose() {
-    this.displayForm();
-    this.activePanel = this;
+    this.isRoadMapPreviewActive = true;
+    const bottomButtonGroup = document.querySelector('.map_bottom_button_group');
+    if (bottomButtonGroup) {
+      bottomButtonGroup.classList.add('itinerary_preview--active');
+    }
   }
 
   hideForm() {
@@ -160,6 +155,7 @@ export default class DirectionPanel {
   }
 
   closeAction() {
+    this.roadMapPanel.close();
     if (this.poiBeforeOpening) {
       const { poi, isFromCategory, isFromFavorite } = this.poiBeforeOpening;
       this.poiBeforeOpening = null;
@@ -174,17 +170,21 @@ export default class DirectionPanel {
   }
 
   back() {
-    this.activePanel.closeAction();
+    if (this.isRoadMapPreviewActive) {
+      this.roadMapPanel.close();
+      this.isRoadMapPreviewActive = false;
+      this.displayForm();
+    } else {
+      this.closeAction();
+    }
   }
 
   close() {
-    Array.prototype.slice.call(document.getElementsByClassName('direction_shortcut')).forEach(e => {
-      e.style.display = '';
-    });
     if (!this.active) {
       return;
     }
     Telemetry.add(Telemetry.ITINERARY_CLOSE);
+    document.body.classList.remove('directions-open');
     document.querySelector('#panels').classList.remove('panels--direction-open');
     document.querySelector('.top_bar').classList.remove('top_bar--direction-open');
     const bottomButtonGroup = document.querySelector('.map_bottom_button_group');
@@ -199,6 +199,7 @@ export default class DirectionPanel {
   }
 
   async open(options = {}) {
+    document.body.classList.add('directions-open');
     Telemetry.add(Telemetry.ITINERARY_OPEN, null, null,
       options.poi ? Telemetry.buildInteractionData(
         {
@@ -225,7 +226,6 @@ export default class DirectionPanel {
 
   async searchDirection(options) {
     if (this.origin && this.destination) {
-
       this.roadMapPanel.showPlaceholder(this.vehicle);
       const directionResponse = await DirectionApi.search(
         this.origin,
@@ -239,12 +239,10 @@ export default class DirectionPanel {
           route.id = i;
         });
 
-        this.roadMapPanel.hidePlaceholder();
         this.roadMapPanel.setRoad(routes, this.vehicle, this.origin);
         this.setRoutesOnMap(routes, options);
 
       } else {
-        this.roadMapPanel.hidePlaceholder();
         this.roadMapPanel.showError();
         fire('clean_route');
       }

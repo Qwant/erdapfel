@@ -36,5 +36,5 @@
       <span class="itinerary_button_label itinerary_button_label_publicTransport {{? this.vehicle === this.vehicles.PUBLIC_TRANSPORT }} label_active {{?}}" {{= click(this.setVehicle, this, this.vehicles.PUBLIC_TRANSPORT) }}>PT</span>
     {{?}}
   </div>
-  {{= this.roadMapPanel.render() }}
+  <div id="react_itinerary_result" class="itinerary_result"></div>
 </div>

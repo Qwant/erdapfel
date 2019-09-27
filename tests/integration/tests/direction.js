@@ -60,7 +60,7 @@ test('simple search', async () => {
   await page.type('#itinerary_input_destination', 'direction');
   await page.keyboard.press('Enter');
 
-  const leg0 = await page.waitForSelector('#itinerary_leg_0');
+  const leg0 = await page.waitForSelector('.itinerary_leg');
 
   expect(leg0).not.toBeNull();
 });
@@ -167,7 +167,7 @@ test('select itinerary step', async () => {
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
 
-  await page.waitForSelector('#itinerary_leg_0');
+  await page.waitForSelector('.itinerary_leg');
 
   await page.click('.itinerary_leg_via_details');
   await page.click('.itinerary_roadmap_step:nth-of-type(2)');
@@ -188,8 +188,8 @@ test('show itinerary roadmap on mobile', async () => {
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
 
-  await page.waitForSelector('#itinerary_leg_0');
-  await page.click('#itinerary_leg_0 .itinerary_leg_preview');
+  await page.waitForSelector('.itinerary_leg');
+  await page.click('.itinerary_leg .itinerary_leg_preview');
   await page.waitForSelector('.itinerary_mobile_step');
 
   /*
@@ -219,7 +219,7 @@ test('api wait effect', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
   const errorMessageHandler = await page.waitForSelector('.itinerary_placeholder-box');
   expect(errorMessageHandler).not.toBeNull(); // test wait panel
-  const firstLeg = await page.waitForSelector('#itinerary_leg_0');
+  const firstLeg = await page.waitForSelector('.itinerary_leg');
   expect(firstLeg).not.toBeNull(); // test result
 });
 
