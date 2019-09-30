@@ -92,6 +92,7 @@
     "@qwant/uri": "file:local_modules/uri",
     "@turf/bbox": "^6.0.1",
     "bunyan": "^1.8.12",
+    "classnames": "^2.2.6",
     "compression": "^1.7.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
