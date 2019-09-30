@@ -41,8 +41,8 @@
     overflow-y: auto;
   }
 
-  &--resizable .panel-resizeHandle {
-    display: none;
+  .panel-resizeHandle {
+    pointer-events: none;
   }
 }
 
@@ -96,7 +96,7 @@
     }
 
     .panel-resizeHandle {
-      display: block;
+      pointer-events: all;
       min-height: 50px;
       width: 100%;
       cursor: -webkit-grab;
