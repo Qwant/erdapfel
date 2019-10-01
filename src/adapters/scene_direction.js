@@ -5,9 +5,7 @@ import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
-
-const ALTERNATE_ROUTE_COLOR = '#c8cbd3';
-const MAIN_ROUTE_COLOR = '#4ba2ea';
+import { getRouteStyle, setActiveRouteStyle } from './route_styles';
 
 export default class SceneDirection {
   constructor(map) {
@@ -75,13 +73,7 @@ export default class SceneDirection {
         mainRoute = route;
       }
 
-      if (this.vehicle === 'walking') {
-        this.map.setLayoutProperty(`route_${route.id}`, 'icon-image',
-          isActive ? 'walking_bullet_active' : 'walking_bullet_inactive');
-      } else {
-        this.map.setPaintProperty(`route_${route.id}`, 'line-color',
-          isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR);
-      }
+      setActiveRouteStyle(this.map, `route_${route.id}`, this.vehicle, isActive);
     });
     this.updateMarkers(mainRoute);
     this.map.moveLayer(`route_${routeId}`, map.routes_layer);
@@ -176,33 +168,9 @@ export default class SceneDirection {
   }
 
   addRouteFeature(route, vehicle) {
-    const layerStyle = vehicle === 'walking' ? {
-      'id': `route_${route.id}`,
-      'type': 'symbol',
-      'source': `source_${route.id}`,
-      'layout': {
-        'icon-image': route.isActive ? 'walking_bullet_active' : 'walking_bullet_inactive',
-        'symbol-placement': 'line',
-        'symbol-spacing': 12,
-        'icon-ignore-placement': true,
-        'icon-allow-overlap': true,
-        'symbol-avoid-edges': true,
-      },
-    } : {
-      'id': `route_${route.id}`,
-      'type': 'line',
-      'source': `source_${route.id}`,
-      'layout': {
-        'line-join': 'round',
-        'line-cap': 'round',
-        'visibility': 'visible',
-      },
-      'paint': {
-        'line-color': route.isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR,
-        'line-color-transition': { duration: 0 },
-        'line-width': 7,
-      },
-    };
+    const layerStyle = getRouteStyle(vehicle, route.isActive);
+    layerStyle.id = `route_${route.id}`;
+    layerStyle.source = `source_${route.id}`;
 
     const sourceId = `source_${route.id}`;
     const sourceJSON = {
