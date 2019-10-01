@@ -1,5 +1,5 @@
-/* globals Poi */
 import { clearStore, initBrowser, wait } from '../tools';
+import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
@@ -183,11 +183,7 @@ test('favorite search', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
-
-  await page.evaluate(() => {
-    fire('store_poi', new Poi(1, 'hello', 'second line', 'poi', { lat: 43, lng: 2 }, '', '', []));
-  });
-
+  await page.evaluate(storePoi, { title: 'hello' });
   await page.keyboard.type('Hello');
   const favTitle = await page.waitForSelector('.autocomplete_suggestion__category_title');
   expect(favTitle).not.toBeNull();

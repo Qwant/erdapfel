@@ -1,4 +1,3 @@
-/* globals Poi */
 const poiMock = require('../../__data__/poi.json');
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
@@ -6,7 +5,7 @@ const APP_URL = `http://localhost:${config.PORT}`;
 
 import ResponseHandler from '../helpers/response_handler';
 import { initBrowser, getText, wait, clearStore } from '../tools';
-import { getFavorites, toggleFavoritePanel } from '../favorites_tools';
+import { getFavorites, toggleFavoritePanel, storePoi } from '../favorites_tools';
 import { languages } from '../../../config/constants.yml';
 
 let browser;
@@ -77,12 +76,7 @@ test('load a poi from url on mobile', async () => {
 test('load a poi already in my favorite from url', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
-  await page.evaluate(() => {
-    fire(
-      'store_poi',
-      new Poi('osm:way:63178753', 'some poi', '', 'poi', { lat: 43, lng: 2 }, '', '', [])
-    );
-  });
+  await page.evaluate(storePoi, { id: 'osm:way:63178753' });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   const plainStar = await page.waitForSelector('.icon-icon_star-filled');
   expect(plainStar).not.toBeFalsy();
@@ -101,16 +95,10 @@ test('update url after a poi click', async () => {
 test('update url after a favorite poi click', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
-  page.evaluate(poi => {
-    fire(
-      'store_poi',
-      new Poi(poi.id, poi.name, 'one line', 'poi', { lat: 43, lng: 2 }, '', '', [])
-    );
-  }, poiMock);
-  await page.click('.service_panel__item__fav');
-  await wait(300);
-  await page.click('.favorite_panel__item__more_container');
-  await wait(400);
+  await page.evaluate(storePoi, { id: poiMock.id, title: poiMock.name });
+  await toggleFavoritePanel(page);
+  await page.waitForSelector('.favorite_panel__item__title');
+  await page.click('.favorite_panel__item__title');
   const location = await page.evaluate(() => {
     return document.location.href;
   });
@@ -270,7 +258,6 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   await selectPoiLevel(page, 1);
   let poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
-  await wait(300);
   await page.click('.poi_panel__actions .poi_panel__actions__icon__store');
   await page.click('.poi_panel__header .poi_panel__close');
   // we check that the first favorite item is our poi
@@ -282,9 +269,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(fav[0].icons).toContainEqual('icon-museum');
 
   // we then reopen the poi panel and 'unstar' the poi.
-  await wait(100);
-  await page.click('#favorite_item_0');
-  await wait(300);
+  await page.click('.favorite_panel__item');
   poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
 
