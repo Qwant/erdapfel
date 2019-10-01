@@ -1,5 +1,9 @@
-const ALTERNATE_ROUTE_COLOR = '#c8cbd3';
-const MAIN_ROUTE_COLOR = '#4ba2ea';
+const INACTIVE_ROUTE_COLOR = '#c8cbd3';
+const ACTIVE_ROUTE_COLOR = '#4ba2ea';
+const DYNAMIC_COLOR_EXPRESSION = ['case', ['has', 'lineColor'],
+  ['concat', '#', ['get', 'lineColor']],
+  ACTIVE_ROUTE_COLOR,
+];
 
 export function getRouteStyle(vehicle, isActive) {
   if (vehicle === 'walking') {
@@ -24,7 +28,7 @@ export function getRouteStyle(vehicle, isActive) {
       'visibility': 'visible',
     },
     paint: {
-      'line-color': isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR,
+      'line-color': isActive ? DYNAMIC_COLOR_EXPRESSION : INACTIVE_ROUTE_COLOR,
       'line-color-transition': { 'duration': 0 },
       'line-width': 7,
     },
@@ -37,6 +41,6 @@ export function setActiveRouteStyle(map, layerId, vehicle, isActive) {
       isActive ? 'walking_bullet_active' : 'walking_bullet_inactive');
   } else {
     map.setPaintProperty(layerId, 'line-color',
-      isActive ? MAIN_ROUTE_COLOR : ALTERNATE_ROUTE_COLOR);
+      isActive ? DYNAMIC_COLOR_EXPRESSION : INACTIVE_ROUTE_COLOR);
   }
 }
