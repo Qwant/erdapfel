@@ -2,8 +2,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import nconf from '@qwant/nconf-getter';
-import MasqOnboardingModal from '../modals/masq_onboarding_modal';
-import Telemetry from '../libs/telemetry';
+import MasqOnboardingModal from 'src/modals/masq_onboarding_modal';
+import MasqAvatar from './MasqAvatar';
+import Telemetry from 'src/libs/telemetry';
 
 const masqOnboardingModal = new MasqOnboardingModal();
 
@@ -13,7 +14,7 @@ export default class MasqStatus extends Component {
     user: PropTypes.shape({
       username: PropTypes.string.isRequired,
       profileImage: PropTypes.string,
-      defaultProfileImage: PropTypes.object.isRequired,
+      defaultProfileImage: PropTypes.object,
     }),
   }
 
@@ -42,20 +43,13 @@ export default class MasqStatus extends Component {
   }
 
   renderLoggedIn = () => {
-    const { username, profileImage, defaultProfileImage } = this.props.user;
     return <Fragment>
       <div
         className="masqStatus__login__button masqStatus__login__button_logged"
         onClick={this.openMasq}
       >
-        {profileImage
-          ? <img src={profileImage} className="masqStatus_profile_icon" />
-          : <div className={`masqStatus_profile_icon masqStatus_profile_icon_default
-              ${defaultProfileImage.backgroundColor}`}>
-            <div>{defaultProfileImage.letter}</div>
-          </div>
-        }
-        <span>{username}</span>
+        <MasqAvatar user={this.props.user} />
+        <span>{this.props.user.username}</span>
       </div>
       <div
         className="masqStatus__second__button masqStatus__second__button_logout"

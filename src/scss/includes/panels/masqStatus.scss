@@ -39,24 +39,14 @@
     display: flex;
     align-items: center;
   }
-}
 
-.masqStatus_profile_icon {
-  margin-right: 9px;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-
-.masqStatus_profile_icon_default {
-  font-weight: bold;
-  font-size: 25px;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .masqAvatar {
+    margin-right: 9px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
 }
 
 .masqStatus__second__button {

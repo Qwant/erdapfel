@@ -21,4 +21,5 @@
   {{= this.masqErrorModal.renderModal() }}
   {{= this.masqActivatingModal.renderModal() }}
 {{?}}
-{{= this.menu.render() }}
+
+<div class="react_menu__container"></div>
