@@ -70,4 +70,4 @@
   color: "#4AA0E7"
   matcher:
     regex: "health|sante|santé|clinic|dentist|doctors?|hospital|clinique|dentiste|docteurs?|hopital|hôpital"
-  icon: health
+  icon: hospital
