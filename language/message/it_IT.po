@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 11:41+0000\n"
+"POT-Creation-Date: 2019-10-01 08:50+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Luca Elle <ikol89891@fastmail.com>, 2019\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
@@ -57,6 +57,18 @@ msgstr "farmacia"
 
 msgid "education"
 msgstr "istruzione"
+
+msgid "museum"
+msgstr "museo"
+
+msgid "service"
+msgstr ""
+
+msgid "sport"
+msgstr ""
+
+msgid "health"
+msgstr ""
 
 msgid "Opening hours"
 msgstr "Orari di apertura"
@@ -547,9 +559,6 @@ msgstr "negozio di motociclette"
 msgid "multi"
 msgstr "multi"
 
-msgid "museum"
-msgstr "museo"
-
 msgid "music shop"
 msgstr "negozio musicale"
 
@@ -792,6 +801,25 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "Ok, ho capito."
 
+msgid "Geolocation not available."
+msgstr "Geolocalizzazione non disponibile"
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"Non hai permesso a Qwant Maps (o al tuo dispositivo) di accedere alla tua "
+"posizione."
+
+msgid "OK"
+msgstr "OK"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps non può determinare la tua posizione. Verifica che i servizi di "
+"localizzazione siano abilitati sul sistema."
+
 msgid "Show favorites"
 msgstr ""
 
@@ -965,25 +993,6 @@ msgstr "Indicazioni"
 msgid "Favorites"
 msgstr "Preferiti"
 
-msgid "Geolocation not available."
-msgstr "Geolocalizzazione non disponibile"
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"Non hai permesso a Qwant Maps (o al tuo dispositivo) di accedere alla tua "
-"posizione."
-
-msgid "OK"
-msgstr "OK"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps non può determinare la tua posizione. Verifica che i servizi di "
-"localizzazione siano abilitati sul sistema."
-
 msgid "return"
 msgstr "ritorna"
 
@@ -998,27 +1007,6 @@ msgstr "Punto di arrivo"
 
 msgid "Invert start and end"
 msgstr "Inverti partenza e destinazione"
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr ""
-
-msgid "Via"
-msgstr "via"
-
-msgid "PREVIEW"
-msgstr "PREVIEW"
-
-msgid "DETAILS"
-msgstr "DETTAGLI"
-
-msgid "Start"
-msgstr "Inizia"
-
-msgid "Search"
-msgstr "Cerca"
-
-msgid "How to contribute"
-msgstr "Come contribuire"
 
 msgid "Show results"
 msgstr ""
@@ -1067,6 +1055,21 @@ msgstr "categoria"
 msgid "Your position"
 msgstr "La tua posizione"
 
+msgid "Via"
+msgstr "via"
+
+msgid "DETAILS"
+msgstr "DETTAGLI"
+
+msgid "PREVIEW"
+msgstr "PREVIEW"
+
+msgid "Start"
+msgstr "Inizia"
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr ""
+
 msgid "Deactivate"
 msgstr "Disattiva"
 
@@ -1075,3 +1078,9 @@ msgstr "Attiva"
 
 msgid "How does it work ?"
 msgstr "Come funziona?"
+
+msgid "Search"
+msgstr "Cerca"
+
+msgid "How to contribute"
+msgstr "Come contribuire"

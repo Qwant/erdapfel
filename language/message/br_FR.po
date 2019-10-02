@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 11:41+0000\n"
+"POT-Creation-Date: 2019-10-01 08:50+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -56,6 +56,18 @@ msgid "pharmacy"
 msgstr "apotikerezh"
 
 msgid "education"
+msgstr ""
+
+msgid "museum"
+msgstr "mirdi"
+
+msgid "service"
+msgstr ""
+
+msgid "sport"
+msgstr ""
+
+msgid "health"
 msgstr ""
 
 msgid "Opening hours"
@@ -547,9 +559,6 @@ msgstr "stal marc'hoù-tan"
 msgid "multi"
 msgstr "multi"
 
-msgid "museum"
-msgstr "mirdi"
-
 msgid "music shop"
 msgstr "stal sonerezh"
 
@@ -795,6 +804,21 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "Mat eo, deuet eo ganin."
 
+msgid "Geolocation not available."
+msgstr ""
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+
+msgid "OK"
+msgstr "Mat eo"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+
 msgid "Show favorites"
 msgstr ""
 
@@ -959,21 +983,6 @@ msgstr "Hent"
 msgid "Favorites"
 msgstr "Reoù karetañ"
 
-msgid "Geolocation not available."
-msgstr ""
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-
-msgid "OK"
-msgstr "Mat eo"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-
 msgid "return"
 msgstr "distreiñ"
 
@@ -988,27 +997,6 @@ msgstr "poent fin"
 
 msgid "Invert start and end"
 msgstr "eilpennañ fin ha loc'hañ"
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr ""
-
-msgid "Via"
-msgstr "Dre"
-
-msgid "PREVIEW"
-msgstr "RAKWEL"
-
-msgid "DETAILS"
-msgstr "MUNUDOÙ"
-
-msgid "Start"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "How to contribute"
-msgstr "Penaos kemer-perzh"
 
 msgid "Show results"
 msgstr ""
@@ -1054,6 +1042,21 @@ msgstr ""
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
 
+msgid "Via"
+msgstr "Dre"
+
+msgid "DETAILS"
+msgstr "MUNUDOÙ"
+
+msgid "PREVIEW"
+msgstr "RAKWEL"
+
+msgid "Start"
+msgstr ""
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr ""
+
 msgid "Deactivate"
 msgstr ""
 
@@ -1062,3 +1065,9 @@ msgstr ""
 
 msgid "How does it work ?"
 msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "How to contribute"
+msgstr "Penaos kemer-perzh"

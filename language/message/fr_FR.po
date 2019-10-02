@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 11:41+0000\n"
+"POT-Creation-Date: 2019-10-01 08:50+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2019\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -64,6 +64,18 @@ msgstr "pharmacie"
 
 msgid "education"
 msgstr "éducation"
+
+msgid "museum"
+msgstr "musée"
+
+msgid "service"
+msgstr "services"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "health"
+msgstr "santé"
 
 msgid "Opening hours"
 msgstr "Horaires d'ouverture"
@@ -554,9 +566,6 @@ msgstr "magasin de moto"
 msgid "multi"
 msgstr "multi"
 
-msgid "museum"
-msgstr "musée"
-
 msgid "music shop"
 msgstr "magasin de musique"
 
@@ -799,6 +808,25 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "Ok, j'ai compris."
 
+msgid "Geolocation not available."
+msgstr "Géolocalisation impossible"
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"Vous n'avez pas autorisé Qwant Maps (ou votre appareil) à accéder à votre "
+"position."
+
+msgid "OK"
+msgstr "OK"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps ne peut pas déterminer votre position. Veuillez vérifier que les "
+"services de localisation sont activés sur votre système."
+
 msgid "Show favorites"
 msgstr "Afficher les favoris"
 
@@ -964,32 +992,13 @@ msgid "Show Qwant Maps services"
 msgstr "Voir les services Qwant Maps"
 
 msgid "Qwant Maps services"
-msgstr "Les services Qwant Maps"
+msgstr "Services Qwant Maps"
 
 msgid "Directions"
 msgstr "Itinéraire"
 
 msgid "Favorites"
 msgstr "Favoris"
-
-msgid "Geolocation not available."
-msgstr "Géolocalisation impossible"
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"Vous n'avez pas autorisé Qwant Maps (ou votre appareil) à accéder à votre "
-"position."
-
-msgid "OK"
-msgstr "OK"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps ne peut pas déterminer votre position. Veuillez vérifier que les "
-"services de localisation sont activés sur votre système."
 
 msgid "return"
 msgstr "retour"
@@ -1005,27 +1014,6 @@ msgstr "Arrivée"
 
 msgid "Invert start and end"
 msgstr "Inverser Départ et Arrivée"
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr "Qwant Maps ne trouve pas de résultat pour cet itinéraire."
-
-msgid "Via"
-msgstr "Via"
-
-msgid "PREVIEW"
-msgstr "APERÇU"
-
-msgid "DETAILS"
-msgstr "DÉTAILS"
-
-msgid "Start"
-msgstr "Départ"
-
-msgid "Search"
-msgstr "Rechercher"
-
-msgid "How to contribute"
-msgstr "Comment contribuer"
 
 msgid "Show results"
 msgstr "Afficher les résultats"
@@ -1073,6 +1061,21 @@ msgstr "catégorie"
 msgid "Your position"
 msgstr "Votre position"
 
+msgid "Via"
+msgstr "Via"
+
+msgid "DETAILS"
+msgstr "DÉTAILS"
+
+msgid "PREVIEW"
+msgstr "APERÇU"
+
+msgid "Start"
+msgstr "Départ"
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr "Qwant Maps ne trouve pas de résultat pour cet itinéraire."
+
 msgid "Deactivate"
 msgstr "Désactiver"
 
@@ -1081,3 +1084,9 @@ msgstr "Activer"
 
 msgid "How does it work ?"
 msgstr "Comment ça marche ?"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "How to contribute"
+msgstr "Comment contribuer"
