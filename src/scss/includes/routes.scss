@@ -1,0 +1,29 @@
+.routePtLine {
+  padding: 3px 4px 2px;
+  margin: 0 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 12px;
+  text-transform: uppercase;
+  vertical-align: text-bottom;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.routeVia {
+  font-size: 16px;
+  line-height: 24px;
+
+  &-step {
+    display: inline-block;
+
+    &:not(:last-child):after {
+      content: '›';
+      padding: 0 3px;
+      font-size: 28px;
+      color: silver;
+    }
+  }
+}
