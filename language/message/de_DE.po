@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 11:41+0000\n"
+"POT-Creation-Date: 2019-10-01 08:50+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2019\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -60,6 +60,18 @@ msgstr "Apotheke"
 
 msgid "education"
 msgstr "Bildung"
+
+msgid "museum"
+msgstr "Museum"
+
+msgid "service"
+msgstr ""
+
+msgid "sport"
+msgstr ""
+
+msgid "health"
+msgstr ""
 
 msgid "Opening hours"
 msgstr "Öffnungszeiten"
@@ -550,9 +562,6 @@ msgstr "Motorradhändler"
 msgid "multi"
 msgstr "multi"
 
-msgid "museum"
-msgstr "Museum"
-
 msgid "music shop"
 msgstr "Musikgeschäft"
 
@@ -792,6 +801,24 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."
 
+msgid "Geolocation not available."
+msgstr "Standortbestimmung nicht verfügbar."
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
+
+msgid "OK"
+msgstr "O.k."
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
+"Standortbestimmung auf Ihrem System aktiviert ist."
+
 msgid "Show favorites"
 msgstr "Favoriten anzeigen"
 
@@ -965,24 +992,6 @@ msgstr "Wegbeschreibung"
 msgid "Favorites"
 msgstr "Favoriten"
 
-msgid "Geolocation not available."
-msgstr "Standortbestimmung nicht verfügbar."
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
-
-msgid "OK"
-msgstr "O.k."
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
-"Standortbestimmung auf Ihrem System aktiviert ist."
-
 msgid "return"
 msgstr "zurück"
 
@@ -997,27 +1006,6 @@ msgstr "Zielpunkt"
 
 msgid "Invert start and end"
 msgstr "Start und Ziel tauschen"
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr "Qwant Maps konnte keine Ergebnisse für diese Reiseroute finden."
-
-msgid "Via"
-msgstr "Über"
-
-msgid "PREVIEW"
-msgstr "VORSCHAU"
-
-msgid "DETAILS"
-msgstr "DETAILS"
-
-msgid "Start"
-msgstr "Start"
-
-msgid "Search"
-msgstr "Suchen"
-
-msgid "How to contribute"
-msgstr "Wie man mitmacht"
 
 msgid "Show results"
 msgstr "Ergebnisse anzeigen"
@@ -1066,6 +1054,21 @@ msgstr "Kategorie"
 msgid "Your position"
 msgstr "Deine Position"
 
+msgid "Via"
+msgstr "Über"
+
+msgid "DETAILS"
+msgstr "DETAILS"
+
+msgid "PREVIEW"
+msgstr "VORSCHAU"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr "Qwant Maps konnte keine Ergebnisse für diese Reiseroute finden."
+
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
@@ -1074,3 +1077,9 @@ msgstr "Aktivieren"
 
 msgid "How does it work ?"
 msgstr "Wie funktioniert das?"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "How to contribute"
+msgstr "Wie man mitmacht"

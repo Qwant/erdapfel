@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 11:41+0000\n"
+"POT-Creation-Date: 2019-10-01 08:50+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: jmontane, 2019\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -55,6 +55,18 @@ msgid "pharmacy"
 msgstr "farmàcia"
 
 msgid "education"
+msgstr ""
+
+msgid "museum"
+msgstr "museu"
+
+msgid "service"
+msgstr ""
+
+msgid "sport"
+msgstr ""
+
+msgid "health"
 msgstr ""
 
 msgid "Opening hours"
@@ -546,9 +558,6 @@ msgstr "botiga de motocicletes"
 msgid "multi"
 msgstr ""
 
-msgid "museum"
-msgstr "museu"
-
 msgid "music shop"
 msgstr ""
 
@@ -790,6 +799,21 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr "D'acord, ho he entès."
 
+msgid "Geolocation not available."
+msgstr ""
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+
+msgid "OK"
+msgstr "D'acord"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+
 msgid "Show favorites"
 msgstr ""
 
@@ -953,21 +977,6 @@ msgstr ""
 msgid "Favorites"
 msgstr ""
 
-msgid "Geolocation not available."
-msgstr ""
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-
-msgid "OK"
-msgstr "D'acord"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-
 msgid "return"
 msgstr ""
 
@@ -981,27 +990,6 @@ msgid "End point"
 msgstr ""
 
 msgid "Invert start and end"
-msgstr ""
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr ""
-
-msgid "Via"
-msgstr ""
-
-msgid "PREVIEW"
-msgstr ""
-
-msgid "DETAILS"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "How to contribute"
 msgstr ""
 
 msgid "Show results"
@@ -1048,6 +1036,21 @@ msgstr ""
 msgid "Your position"
 msgstr ""
 
+msgid "Via"
+msgstr ""
+
+msgid "DETAILS"
+msgstr ""
+
+msgid "PREVIEW"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr ""
+
 msgid "Deactivate"
 msgstr ""
 
@@ -1055,4 +1058,10 @@ msgid "Activate"
 msgstr ""
 
 msgid "How does it work ?"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "How to contribute"
 msgstr ""
