@@ -125,13 +125,14 @@ export default class SceneDirection {
         .addTo(this.map)
         .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
 
+      const lastStepCoords = this.steps[this.steps.length - 1].geometry.coordinates;
       const markerDestination = document.createElement('div');
       markerDestination.className = 'itinerary_marker_destination';
       this.markerDestination = new Marker({
         element: markerDestination,
         draggable: true,
       })
-        .setLngLat(this.steps[this.steps.length - 1].maneuver.location)
+        .setLngLat(lastStepCoords[lastStepCoords.length - 1])
         .addTo(this.map)
         .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
 
