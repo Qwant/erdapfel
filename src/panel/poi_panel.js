@@ -1,13 +1,13 @@
 import React from 'react';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import PoiHeader from 'src/panel/poi/PoiHeader';
+import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
-import titleImagePartial from '../views/poi_partial/title_image.dot';
 import MinimalHourPanel from './poi_bloc/opening_minimal';
 import layouts from './layouts.js';
 import nconf from '@qwant/nconf-getter';
@@ -21,6 +21,7 @@ const store = new Store();
 const masqFavoriteModal = new MasqFavoriteModal();
 
 const headerPartial = poi => renderStaticReact(<PoiHeader poi={poi} />);
+const titleImagePartial = poi => renderStaticReact(<PoiTitleImage poi={poi} />);
 
 function PoiPanel() {
   this.isPoiCompliant = true;
