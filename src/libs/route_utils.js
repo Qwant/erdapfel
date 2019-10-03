@@ -39,7 +39,7 @@ export function getVehicleIcon(vehicle) {
   case 'cycling':
     return 'icon-bike';
   default:
-    return '';
+    return 'icon-public-transport';
   }
 }
 
