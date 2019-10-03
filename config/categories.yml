@@ -25,7 +25,7 @@
   icon: bar
 - label : _('supermarket')
   name: supermarket
-  color: "#f3c600"
+  color: "#8665e7"
   matcher:
     regex: superettes?|epiciers?|epiceries?|8 [aà] huit|leader price express|coccimarket|naturalia|viveco|utile|proxi service|kusmi tea|votre marche|epi service|satoriz|proxi marche|spar supermarche|day by day|palais des thes|le monde du macaron|point coop|le marche d'a cote|corsaire|cali|g 20|paris store|hyper casino|les halles? de l'aveyron|rnpc|ecofrais|europrix|easy marche|ferrari|intermarche express|kelly services?|partisans? du gout|(?:super|hyper|inter)marches?|auchan|carrefour|(?:e\.)?leclerc|casino|(?:super|hyper)\s+u|monoprix|simply|u\s+express|proxi|spar|vival|lidl|leader\s+price|grand\s+frais|petit casino|leader price|picard|franprix|super u|simply market|casino shop|grand frais|netto|8 a huit|coop|monop'|proxi super|panier sympa|supermarche match|chronodrive|atac|colruyt|casino supermarche|coccinelle express|cora|sherpa|aldi|maximarche|bi1|marche u|shopi|ecomax|relais des mousquetaires|sitis|champion|intermarche contact|marche plus|score|a2pas|geant casino|norma|systeme u|jumbo score|o'tera|coccinelle supermarche|ecomarche|espace multimedia|express|intermarche super|casino drive|costco wholesale|franprix nano|galeries gourmandes|hyper champion|partisans du gout|simply city|u drive|unik market|carrefour market|intermarche
   icon: grocery
@@ -55,7 +55,7 @@
   icon: museum
 - label: _('service')
   name: service
-  color: "#F3C600"
+  color: "#8665E7"
   matcher:
     regex: "service|car repair|post office|townhall|police|fire station|garage|poste|bureau de poste|gendarmerie|pompiers|caserne de pompiers"
   icon: service
@@ -70,4 +70,4 @@
   color: "#4AA0E7"
   matcher:
     regex: "health|sante|santé|clinic|dentist|doctors?|hospital|clinique|dentiste|docteurs?|hopital|hôpital"
-  icon: health
+  icon: hospital
