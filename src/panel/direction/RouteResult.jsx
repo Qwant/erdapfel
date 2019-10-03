@@ -34,9 +34,19 @@ export default class RouteResult extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.routes.length !== prevProps.routes.length) {
+      this.setState({ activeRouteId: 0 });
+    }
+  }
+
   selectRoute = routeId => {
     fire('toggle_route', routeId);
     this.setState({ activeRouteId: routeId });
+  }
+
+  hoverRoute = (routeId, highlightMapRoute) => {
+    fire('toggle_route', highlightMapRoute ? routeId : this.state.activeRouteId);
   }
 
   openRouteDetails = routeId => {
@@ -103,6 +113,7 @@ export default class RouteResult extends React.Component {
       openDetails={this.openRouteDetails}
       openPreview={this.openPreview}
       selectRoute={this.selectRoute}
+      hoverRoute={this.hoverRoute}
     />);
   }
 }
