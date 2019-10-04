@@ -58,7 +58,7 @@
       <div class="poi_panel__description_container">
         <div>
           {{= this.headerPartial(this.poi) }}
-          {{= this.minimalHourPanel.render() }}
+          {{= this.openingHourPartial(this.poi) }}
         </div>
         {{= this.titleImagePartial(this.poi) }}
       </div>
