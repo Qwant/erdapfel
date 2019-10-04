@@ -12,7 +12,7 @@ export function formatDuration(sec) {
   min = min - 60 * hour;
   let ret = `${hour} h`;
   if (min > 0 && hour < 10) {
-    ret += ` ${min < 10 ? '0' : ''}${min} min`;
+    ret += ` ${min < 10 ? '0' : ''}${min}`;
   }
   return ret;
 }
