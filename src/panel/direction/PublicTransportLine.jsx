@@ -10,8 +10,10 @@ const PublicTransportLine = ({ mode, info }) => {
     type = 'métro';
   } else if (mode.startsWith('TRAM')) {
     type = 'tram';
-  } else if (mode.startsWith('SUBURBAN')) {
+  } else if (info.network === 'RER') {
     type = 'RER';
+  } else if (mode.indexOf('TRAIN') !== -1) {
+    type = 'train';
   }
   return <span className="routePtLine">{type} {info.num}</span>;
 };
