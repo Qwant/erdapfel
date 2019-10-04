@@ -107,7 +107,7 @@ export default class RouteResult extends React.Component {
       id={index}
       route={route.legs[0]}
       origin={this.props.origin}
-      icon={getVehicleIcon(this.props.vehicle)}
+      vehicle={this.props.vehicle}
       isActive={this.state.activeRouteId === index}
       showDetails={this.state.activeRouteId === index && this.state.activeDetails}
       openDetails={this.openRouteDetails}

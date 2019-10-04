@@ -3,13 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from '../../libs/telemetry';
 import { openShareModal } from 'src/modals/ShareModal';
-import { formatDuration, formatDistance } from 'src/libs/route_utils';
+import { formatDuration, formatDistance, getVehicleIcon } from 'src/libs/route_utils';
+import RouteVia from './RouteVia';
 
 export default class RouteSummary extends React.Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     route: PropTypes.object.isRequired,
-    icon: PropTypes.string.isRequired,
+    vehicle: PropTypes.string.isRequired,
     openDetails: PropTypes.func.isRequired,
     openPreview: PropTypes.func.isRequired,
     selectRoute: PropTypes.func.isRequired,
@@ -34,14 +35,12 @@ export default class RouteSummary extends React.Component {
   }
 
   render() {
-    const { route, icon } = this.props;
+    const { route, vehicle } = this.props;
 
     return <div className="itinerary_leg_summary" onClick={this.onClick}>
-      <div className={`itinerary_leg_icon ${icon}`} />
+      <div className={`itinerary_leg_icon ${getVehicleIcon(vehicle)}`} />
       <div className="itinerary_leg_via">
-        <div className="itinerary_leg_via_title">
-          {_('Via', 'direction')} { route.summary.replace(/^(.*), (.*)$/, '$1')}
-        </div>
+        <RouteVia route={route} vehicle={vehicle} />
         <div className="itinerary_leg_via_details" onClick={this.onClickDetails}>
           <i className="itinerary_leg_via_details_icon" />
           {_('DETAILS', 'direction')}
