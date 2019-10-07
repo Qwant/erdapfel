@@ -163,7 +163,11 @@ export default class AppPanel {
 
   toggleMinify() {
     if (SearchInput.isMinified()) {
-      this.unminify();
+      if (this.directionPanel.active) {
+        this.navigateTo('/');
+      } else {
+        this.unminify();
+      }
     } else {
       this.minify();
     }
@@ -234,10 +238,6 @@ export default class AppPanel {
   }
 
   _openPanel(panelToOpen, options) {
-    /*
-      "unminify" needs to be called before panel.open :
-      DirectionPanel will minify the main search input (unused for Directions)
-    */
     this.unminify();
     this.activePoiId = null;
     this.panels.forEach(panel => {
@@ -251,6 +251,7 @@ export default class AppPanel {
 
   openDirection(options) {
     this._openPanel(this.directionPanel, options);
+    SearchInput.minify();
   }
 
   openFavorite() {
