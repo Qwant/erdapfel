@@ -73,14 +73,14 @@ noscript {
 }
 
 @media (max-width: 640px) {
-  .panels--direction-open {
+  .directions-open {
     .menu__button,
-    .direction_shortcut {
+    .direction_shortcut,
+    .search_form {
       visibility: hidden;
     }
   }
 
-  .top_bar--direction-open,
   .top_bar--category-open {
     .search_form {
       visibility: hidden;
