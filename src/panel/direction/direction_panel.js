@@ -184,8 +184,6 @@ export default class DirectionPanel {
     }
     Telemetry.add(Telemetry.ITINERARY_CLOSE);
     document.body.classList.remove('directions-open');
-    document.querySelector('#panels').classList.remove('panels--direction-open');
-    document.querySelector('.top_bar').classList.remove('top_bar--direction-open');
     const bottomButtonGroup = document.querySelector('.map_bottom_button_group');
     if (bottomButtonGroup) {
       // buttons may be absent during map loading
@@ -210,8 +208,6 @@ export default class DirectionPanel {
         }
       ) : null
     );
-    document.querySelector('#panels').classList.add('panels--direction-open');
-    document.querySelector('.top_bar').classList.add('top_bar--direction-open');
     await this.restoreParams(options);
     this.active = true;
     await this.panel.update();
