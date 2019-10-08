@@ -29,6 +29,10 @@
   letter-spacing: normal;
   padding: 12px;
 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
   &_logged {
     background-color: #e9eaeb;
     font-size: 18px;
