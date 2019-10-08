@@ -4,7 +4,6 @@ import DirectionInput from '../../ui_components/direction_input';
 import RoadMapPanel from './road_map_panel';
 import DirectionApi from '../../adapters/direction_api';
 import { modes } from '../../adapters/direction_api';
-import SearchInput from '../../ui_components/search_input';
 import LatLonPoi from '../../adapters/poi/latlon_poi';
 import Error from '../../adapters/error';
 import Device from '../../libs/device';
@@ -214,7 +213,6 @@ export default class DirectionPanel {
     document.querySelector('#panels').classList.add('panels--direction-open');
     document.querySelector('.top_bar').classList.add('top_bar--direction-open');
     await this.restoreParams(options);
-    SearchInput.minify();
     this.active = true;
     await this.panel.update();
     this.initDirection();
