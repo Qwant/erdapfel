@@ -61,6 +61,22 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 
 [![Travis Build](https://travis-ci.org/QwantResearch/erdapfel.svg?branch=master)](https://travis-ci.org/QwantResearch/erdapfel)
 
+## Using your own map tiles server
+
+We explained earlier how to override some variables using `TILEVIEW_`. If you want to use your own map tiles server(s), you can do it by running with:
+
+```bash
+> TILEVIEW_mapStyle_baseMapUrl='["http://your-server/path-to-basemap-tiles/{z}/{x}/{y}.pbf"]' \
+TILEVIEW_mapStyle_poiMapUrl='["http://your-server/path-to-poi-tiles/{z}/{x}/{y}.pbf"]' \
+npm start
+```
+
+`TILEVIEW_mapStyle_baseMapUrl` is for the server providing tiles for the map itself and `TILEVIEW_mapStyle_poiMapUrl` is for the server providing tiles for the POIs.
+
+The part `{z}/{x}/{y}.pbf` is mandatory to tell `erdapfel` how to set the position and zoom.
+
+The `path-to-basemap-tiles` and `path-to-poi-tiles` are paths to where interrogate the server to get map's and POIs' tiles (so it might be different in your case).
+
 #### Local node TLS errors (only for development and debug, **NOT** production!!!)
 
 Some requests to node server could trigger this message on node server logs:
@@ -111,8 +127,6 @@ Parameters:
   |method |name |value       |optional |default |
   |-------|-----|------------|---------|--------|
   |get    |lang |en, gb ...  |true     |en      |
-
-
 
 
 ## License
