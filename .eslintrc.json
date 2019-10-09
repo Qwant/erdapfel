@@ -43,7 +43,7 @@
         "brace-style": [
             "error",
             "1tbs",
-            { "allowSingleLine": false }
+            { "allowSingleLine": true }
         ],
         "curly": "error",
         "no-trailing-spaces": "error",

@@ -14,9 +14,9 @@ const RoadMap = ({ steps = [], origin }) =>
     {steps.map((step, index) => <RoadMapStep
       key={index}
       step={step}
-      onMouseOver={() => fire('highlight_step', index)}
-      onMouseOut={() => fire('unhighlight_step', index)}
-      onClick={() => fire('zoom_step', step)}
+      onMouseOver={() => { fire('highlight_step', index); }}
+      onMouseOut={() => { fire('unhighlight_step', index); }}
+      onClick={() => { fire('zoom_step', step); }}
     />)}
   </div>;
 
