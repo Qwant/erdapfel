@@ -297,9 +297,9 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 });
 
 
-test('Poi hour i18n', async () => {
-  await Promise.all(languages.supportedLanguages.map(async language => {
-    return new Promise(async resolve => {
+describe('Poi hour i18n', () => {
+  languages.supportedLanguages.forEach(language => {
+    test(`Poi hour i18n [${language.locale}]`, async () => {
       const langPage = await browser.newPage();
       await langPage.setExtraHTTPHeaders({
         'accept-language': `${language.locale},${language.code},en;q=0.8`,
@@ -316,9 +316,8 @@ test('Poi hour i18n', async () => {
       } else {
         expect(hourData[1][1]).toEqual('09:30 - 18:00');
       }
-      resolve();
     });
-  }));
+  });
 });
 
 afterEach(async () => {
