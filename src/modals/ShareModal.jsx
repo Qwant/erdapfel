@@ -60,14 +60,14 @@ export default class ShareModal extends React.Component {
         <hr className="modal__hr" />
         <i className="share__icons icon-facebook" />
         <a rel="noopener noreferrer" target="_blank" className="share__link"
-          href={facebookUrl} onClick={() => this.openPopup(facebookUrl)}
+          href={facebookUrl} onClick={() => { this.openPopup(facebookUrl); }}
         >
           {_('SHARE ON FACEBOOK', 'share')}
         </a>
         <hr className="modal__hr" />
         <i className="share__icons icon-twitter"></i>
         <a rel="noopener noreferrer" target="_blank" className="share__link"
-          href={twitterUrl} onClick={() => this.openPopup(twitterUrl)}
+          href={twitterUrl} onClick={() => { this.openPopup(twitterUrl); }}
         >
           {_('SHARE ON TWITTER', 'share')}
         </a>

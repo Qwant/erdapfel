@@ -87,7 +87,7 @@ export default class Menu extends React.Component {
           <div className="menu__panel__items_container">
             <div className="menu__panel__section menu__panel__section-internal">
               <button className="menu__panel__action"
-                onClick={() => this.navTo('/', { focusSearch: true })}
+                onClick={() => { this.navTo('/', { focusSearch: true }); }}
               >
                 <img
                   className="menu__panel__action__icon"
@@ -96,12 +96,12 @@ export default class Menu extends React.Component {
                 <span>{_('Search', 'menu')}</span>
               </button>
               {isDirectionActive &&
-                <button className="menu__panel__action" onClick={() => this.navTo('/routes/')}>
+                <button className="menu__panel__action" onClick={() => { this.navTo('/routes/'); }}>
                   <i className="menu__panel__action__icon icon-corner-up-right" />
                   <span>{_('Directions', 'menu')}</span>
                 </button>
               }
-              <button className="menu__panel__action" onClick={() => this.navTo('/favs/')}>
+              <button className="menu__panel__action" onClick={() => { this.navTo('/favs/'); }}>
                 <i className="menu__panel__action__icon icon-icon_star" />
                 <span>{_('Favorites', 'menu')}</span>
               </button>

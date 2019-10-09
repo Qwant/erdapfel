@@ -137,7 +137,7 @@ export default class Panel extends React.Component {
       style={{ height: currentHeight && `${currentHeight}px` }}
       ref={panel => this.panelDOMElement = panel}
     >
-      {close && <div className="panel-close" onClick={() => close()}><i className="icon-x" /></div>}
+      {close && <div className="panel-close" onClick={() => { close(); }}><i className="icon-x" /></div>}
       <div
         className={classnames('panel-header', { 'panel-resizeHandle': resizable })}
         {...resizeHandlers}
