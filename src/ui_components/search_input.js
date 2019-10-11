@@ -82,18 +82,25 @@ export default class SearchInput {
     };
   }
 
-  static executeSearch(query) {
-    window.__searchInput.suggest.preselect(query);
+  static async executeSearch(query) {
+    const searchInput = window.__searchInput;
+    const autocomplete = searchInput.suggest.autocomplete;
+    const results = await autocomplete.prefetch(query);
+    if (results && results.length > 0) {
+      const firstResult = results[0];
+      searchInput.selectItem(firstResult, true);
+    }
   }
 
-  async selectItem(selectedItem) {
+  async selectItem(selectedItem, replaceUrl = false) {
     if (selectedItem instanceof Poi) {
       window.app.navigateTo(`/place/${selectedItem.toUrl()}`, {
         poi: selectedItem.serialize(),
         centerMap: true,
-      });
+      }, false, replaceUrl);
     } else if (selectedItem instanceof Category) {
-      window.app.navigateTo(`/places/?type=${selectedItem.name}`);
+      window.app.navigateTo(`/places/?type=${selectedItem.name}`,
+        undefined, false, replaceUrl);
     }
   }
 }

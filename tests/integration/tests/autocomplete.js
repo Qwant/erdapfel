@@ -288,8 +288,8 @@ test('Search Query', async () => {
   expect(page.url()).toEqual(`${APP_URL}/place/osm:node:4872758213@test_result_1`);
 
   // "go back" navigates to previous page
-  await page.goBack({waitUntil: 'networkidle0'}); // wait for potential requests to API
-  expect(page.url()).toEqual('about:blank')
+  await page.goBack({ waitUntil: 'networkidle0' }); // wait for potential requests to API
+  expect(page.url()).toEqual('about:blank');
 
 });
 
