@@ -48,9 +48,7 @@ PoiPopup.prototype.addListener = function(layer) {
   });
 
   this.map.on('mouseleave', layer, async () => {
-    if (this.popupHandle) {
-      this.popupHandle.remove();
-    }
+    this.close();
     clearTimeout(this.timeOutHandler);
   });
 };
@@ -69,10 +67,7 @@ PoiPopup.prototype.createPJPopup = function(poi, event) {
 };
 
 PoiPopup.prototype.showPopup = function(poi, event) {
-  if (this.popupHandle) {
-    this.popupHandle.remove();
-    this.popupHandle = null;
-  }
+  this.close();
   const { color } = IconManager.get(poi);
   const category = poiSubClass(poi.subClassName);
   const reviews = poi.blocksByType.grades;
@@ -138,6 +133,7 @@ PoiPopup.prototype.setPopupPosition = function(event, popupOptions) {
 PoiPopup.prototype.close = function() {
   if (this.popupHandle) {
     this.popupHandle.remove();
+    this.popupHandle = null;
   }
 };
 
