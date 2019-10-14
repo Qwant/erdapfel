@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Route from './Route';
-import { getVehicleIcon } from 'src/libs/route_utils';
+import { getVehicleIcon, getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 
 export default class RouteResult extends React.Component {
@@ -99,13 +99,13 @@ export default class RouteResult extends React.Component {
     }
 
     if (this.state.previewRoute) {
-      return <MobileRoadMapPreview steps={this.state.previewRoute.legs[0].steps} />;
+      return <MobileRoadMapPreview steps={getAllSteps(this.state.previewRoute)} />;
     }
 
     return this.props.routes.map((route, index) => <Route
       key={index}
       id={index}
-      route={route.legs[0]}
+      route={route}
       origin={this.props.origin}
       vehicle={this.props.vehicle}
       isActive={this.state.activeRouteId === index}

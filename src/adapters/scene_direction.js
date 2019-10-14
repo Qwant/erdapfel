@@ -6,6 +6,7 @@ import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { getRouteStyle, setActiveRouteStyle } from './route_styles';
+import { getAllSteps } from 'src/libs/route_utils';
 
 export default class SceneDirection {
   constructor(map) {
@@ -83,7 +84,7 @@ export default class SceneDirection {
     if (!mainRoute) {
       return;
     }
-    this.steps = mainRoute.legs[0].steps;
+    this.steps = getAllSteps(mainRoute);
     // Clean previous markers (if any)
     this.markersSteps.forEach(step => {
       step.remove();
