@@ -1,15 +1,11 @@
 import React from 'react';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import { Popup } from 'mapbox-gl--ENV';
-import OsmSchedule from '../../src/adapters/osm_schedule';
 import ApiPoi from './poi/idunn_poi';
 import Device from '../libs/device';
-import poiConfigs from '../../config/constants.yml';
 import ReactPoiPopup from 'src/components/PoiPopup';
 
 const WAIT_BEFORE_DISPLAY = 350;
-
-const popupTemplate = poi => renderStaticReact(<ReactPoiPopup poi={poi} />);
 
 function PoiPopup() {}
 
@@ -63,18 +59,6 @@ PoiPopup.prototype.createPJPopup = function(poi, event) {
 
 PoiPopup.prototype.showPopup = function(poi, event) {
   this.close();
-  const reviews = poi.blocksByType.grades;
-  const hours = poi.blocksByType.opening_hours;
-  const timeMessages = poiConfigs.pois.find(poiConfig => {
-    return poiConfig.apiName === 'opening_hours';
-  });
-  let opening;
-  if (!reviews && hours) {
-    opening = new OsmSchedule(hours, timeMessages.options.messages);
-  }
-  if (poi.address) {
-    address = poi.address.label;
-  }
 
   const popupOptions = {
     className: 'poi_popup__container',
@@ -85,14 +69,9 @@ PoiPopup.prototype.showPopup = function(poi, event) {
     anchor: this.getPopupAnchor(event),
   };
 
-  const htmlEncode = ExtendedString.htmlEncode;
-
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.getLngLat())
-    .setHTML(popupTemplate.call({
-      poi, color, opening, address, category, htmlEncode,
-      reviews, reviewsPartial,
-    }))
+    .setHTML(renderStaticReact(<ReactPoiPopup poi={poi} />))
     .addTo(this.map);
 };
 
