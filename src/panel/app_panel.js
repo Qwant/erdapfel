@@ -4,7 +4,7 @@ import PanelsView from '../views/app_panel.dot';
 import Panel from '../libs/panel';
 import FavoritePanel from './favorites_panel';
 import PoiPanel from './poi_panel';
-import ServicePanel from './servicePanel';
+import ServicePanel from './ServicePanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
