@@ -61,10 +61,17 @@ test('menu open favorite', async () => {
   expect(favorites).not.toBeNull();
 });
 
-test('open service panel on load', async () => {
+test('one panel open at a time', async () => {
   expect.assertions(2);
-  await page.goto(APP_URL);
-  const servicePanelOpen = await page.waitForSelector('.service_panel');
+  await page.click('.service_panel__item__direction');
+  const servicePanelClose = await page.waitForSelector('.service_panel', { hidden: true });
+  expect(servicePanelClose).not.toBeFalsy();
+});
+
+test('service panel open on load', async () => {
+  expect.assertions(1);
+  await page.goto(`${APP_URL}/routes`);
+  const servicePanelOpen = await page.waitForSelector('.service_panel', { hidden: true });
   expect(servicePanelOpen).not.toBeFalsy();
 });
 
