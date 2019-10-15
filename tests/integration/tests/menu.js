@@ -64,7 +64,7 @@ test('menu open favorite', async () => {
 test('one panel open at a time', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
-  const servicePanelOpen = await page.waitForSelector('.service_panel--active');
+  const servicePanelOpen = await page.waitForSelector('.service_panel');
   expect(servicePanelOpen).not.toBeFalsy();
 
   await page.click('.service_panel__item__direction');
