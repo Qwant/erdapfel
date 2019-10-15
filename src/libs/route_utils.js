@@ -46,3 +46,9 @@ export function getVehicleIcon(vehicle) {
 export function getStepIcon(step) {
   return (step.maneuver.modifier || step.maneuver.type).replace(/\s/g, '-');
 }
+
+export function getAllSteps(route) {
+  // Note: this is a flatMap operation
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#Alternative
+  return route.legs.reduce((acc, leg) => acc.concat(leg.steps), []);
+}

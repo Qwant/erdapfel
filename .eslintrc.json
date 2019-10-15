@@ -78,7 +78,7 @@
         ],
         "comma-dangle": ["error", "always-multiline"],
         "comma-style": ["error", "last"],
-        "max-len": ["error", { "code": 100, "tabWidth": 2 }],
+        "max-len": ["error", { "code": 100, "tabWidth": 2, "ignoreComments": true }],
         "eol-last": ["error", "always"],
         "no-extra-parens": "error",
         "arrow-parens": ["error", "as-needed"],
