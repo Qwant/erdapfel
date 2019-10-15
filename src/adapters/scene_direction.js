@@ -107,8 +107,7 @@ export default class SceneDirection {
       this.setMainRoute(mainRoute.id);
 
       const markerOrigin = document.createElement('div');
-      markerOrigin.className = this.vehicle === 'walking' ?
-        'itinerary_marker_origin_walking' : 'itinerary_marker_origin';
+      markerOrigin.className = 'itinerary_marker_origin';
       this.markerOrigin = new Marker({
         element: markerOrigin,
         draggable: true,
