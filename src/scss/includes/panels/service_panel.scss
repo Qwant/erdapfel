@@ -1,6 +1,5 @@
 .service_panel {
   position: relative;
-  min-height: 90px;
   background: url('../images/panel_top.svg') white repeat-x;
   background-size: 100% 5px;
   @include card_shadow();
@@ -128,9 +127,23 @@
 @media (max-width: 640px){
 
   .panel.service_panel {
-    height: 220px;
+    height: 210px;
+    background: #fff;
   }
+
   .service_panel .panel-header {
-    height: 60px;
+    height: 50px;
+    padding: 10px 16px 5px;
+    font-weight: 500;
+  }
+
+  .panel.service_panel.minimized {
+    height: 49px;
+  }
+
+  .panel.service_panel.minimized .panel-header {
+    padding-top: 7px;
+    font-weight: normal;
+    height: 49px;
   }
 }
