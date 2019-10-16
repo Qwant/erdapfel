@@ -96,7 +96,7 @@ export default class DirectionPanel {
       }
     };
 
-    if (!this.origin && !Device.isMobile()) {
+    if (!this.origin && !this.destination && !Device.isMobile()) {
       this.searchInputStart.focus();
     }
   }
