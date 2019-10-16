@@ -40,7 +40,7 @@ class ServicePanel extends React.Component {
             CategoryService.getEvents().map(item =>
               <button className="service_panel__event" type="button" key={item.name}>
                 <div className="service_panel__event__icon"
-                     style={{background: item.backgroundColor}}>
+                  style={{ background: item.backgroundColor }}>
                   <span className={`icon icon-${item.iconName}`}/>
                 </div>
                 <div className="service_panel__category__title">{item.label}</div>
