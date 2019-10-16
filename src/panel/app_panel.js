@@ -135,14 +135,21 @@ export default class AppPanel {
     this.router.routeUrl(getCurrentUrl());
   }
 
-  navigateTo(url, state = {}, replaceOnly = false, replaceAndRoute = false) {
+  /**
+  * @param {string} url - The URL to navigate to.
+  * @param {Object} state - State object to associate with the history entry.
+  * @param {Object} options
+  * @param {boolean} options.replace - If true, the new state/url will replace the current state in browser history
+  * @param {boolean} options.routeUrl- If true, the new URL will be evaluated by the router.
+  */
+  navigateTo(url, state = {}, { replace = false, routeUrl = true } = {}) {
     const urlWithCurrentHash = joinPath([window.baseUrl, url]) + location.hash;
-    if (replaceOnly || replaceAndRoute) {
+    if (replace) {
       window.history.replaceState(state, null, urlWithCurrentHash);
     } else {
       window.history.pushState(state, null, urlWithCurrentHash);
     }
-    if (!replaceOnly) {
+    if (routeUrl) {
       this.router.routeUrl(urlWithCurrentHash, state);
     }
   }

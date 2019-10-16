@@ -97,10 +97,10 @@ export default class SearchInput {
       window.app.navigateTo(`/place/${selectedItem.toUrl()}`, {
         poi: selectedItem.serialize(),
         centerMap: true,
-      }, false, replaceUrl);
+      }, { replace: replaceUrl });
     } else if (selectedItem instanceof Category) {
       window.app.navigateTo(`/places/?type=${selectedItem.name}`,
-        undefined, false, replaceUrl);
+        {}, { replace: replaceUrl });
     }
   }
 }
