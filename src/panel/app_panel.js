@@ -4,7 +4,7 @@ import PanelsView from '../views/app_panel.dot';
 import Panel from '../libs/panel';
 import FavoritePanel from './favorites_panel';
 import PoiPanel from './poi_panel';
-import ServicePanel from './service_panel';
+import ServicePanel from './ServicePanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
@@ -21,6 +21,7 @@ import Router from 'src/proxies/app_router';
 import CategoryService from 'src/adapters/category_service';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
+import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
@@ -35,7 +36,7 @@ export default class AppPanel {
     this.categoryEnabled = categoryEnabled;
     this.directionEnabled = directionEnabled;
 
-    this.servicePanel = new ServicePanel();
+    this.servicePanel = new ReactPanelWrapper(ServicePanel);
     this.favoritePanel = new FavoritePanel();
     this.poiPanel = new PoiPanel();
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
