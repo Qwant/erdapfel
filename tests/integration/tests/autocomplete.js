@@ -272,15 +272,25 @@ test('check template', async () => {
 
 
 test('Search Query', async () => {
-  expect.assertions(1);
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
+  await page.goto('about:blank');
+
   const searchQuery = 'test';
   await page.goto(`${APP_URL}/?q=${searchQuery}`);
-
   const searchValue = await page.evaluate(() => {
     return document.querySelector('#search').value;
   });
 
+  // search input is filled with query
   expect(searchValue).toEqual(searchQuery);
+
+  // app navigates to first result from autocomplete
+  expect(page.url()).toEqual(`${APP_URL}/place/osm:node:4872758213@test_result_1`);
+
+  // "go back" navigates to previous page
+  await page.goBack({ waitUntil: 'networkidle0' }); // wait for potential requests to API
+  expect(page.url()).toEqual('about:blank');
+
 });
 
 test('Retrieve restaurant category when we search "restau"', async () => {

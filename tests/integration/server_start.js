@@ -42,6 +42,7 @@ config.mapStyle.poiMapUrl = '[]';
 config.services.idunn.url = 'http://idunn_test.test';
 config.services.geocoder.url = 'http://geocoder.test/autocomplete';
 config.direction.enabled = true;
+config.direction.service.api = 'mapbox'; // Directions fixtures use mapbox format
 config.category.enabled = true;
 config.masq.enabled = false;
 
