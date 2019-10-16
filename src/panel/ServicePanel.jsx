@@ -16,9 +16,9 @@ class ServicePanel extends React.Component {
         {
           CategoryService.getCategories().map(item =>
             <button className="service_panel__category" type="button" key={item.name}
-              onClick={() => { window.app.navigateTo(`/places/?type=${item.name}`) }}>
+              onClick={() => { window.app.navigateTo(`/places/?type=${item.name}`); }}>
               <div className="service_panel__category__icon"
-                style={{background: item.backgroundColor}}>
+                style={{ background: item.backgroundColor }}>
                 <span className={`icon icon-${item.iconName}`}/>
               </div>
               <div className="service_panel__category__title">{item.label}</div>
@@ -33,7 +33,7 @@ class ServicePanel extends React.Component {
 
         {
           nconf.get().direction.enabled && <button
-            onClick={() => { window.app.navigateTo('/routes/') }}
+            onClick={() => { window.app.navigateTo('/routes/'); }}
             className="service_panel__action service_panel__item__direction">
             <div className="service_panel__action__icon">
               <span className="icon-corner-up-right"/>
@@ -43,7 +43,7 @@ class ServicePanel extends React.Component {
         }
 
         <button className="service_panel__action service_panel__item__fav"
-          onClick={() => { window.app.navigateTo('/favs') }}>
+          onClick={() => { window.app.navigateTo('/favs'); }}>
           <div className="service_panel__action__icon">
             <span className="icon-icon_star"/>
           </div>

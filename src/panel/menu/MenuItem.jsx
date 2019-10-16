@@ -22,6 +22,6 @@ const MenuItem = ({ menuItem: { uri, sectionName, links, icon } }) => <div>
       {link.name}
     </a>)}
   </div>}
-</div>
+</div>;
 
 export default MenuItem;
