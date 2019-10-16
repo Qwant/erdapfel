@@ -1,0 +1,37 @@
+---
+- label : _('concert')
+  name: concert
+  color: "#e93865"
+  matcher:
+    regex: "concert"
+  icon: music
+- label : _('spectacle')
+  name: spectacle
+  color: "#e93865"
+  matcher:
+    regex: "spectacle|show|theatre|théâtre"
+  icon: theatre
+- label : _('exhibition')
+  name: exhibition
+  color: "#e93865"
+  matcher:
+    regex: "exhibition"
+  icon: art-gallery
+- label : _('event')
+  name: event
+  color: "#e93865"
+  matcher:
+    regex: "event"
+  icon: event
+- label : _('animation')
+  name: animation
+  color: "#e93865"
+  matcher:
+    regex: "animation"
+  icon: animation
+- label : _('sport')
+  name: sport
+  color: "#e93865"
+  matcher:
+    regex: "sport"
+  icon: sportevent

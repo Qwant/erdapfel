@@ -9,17 +9,20 @@
     border-top: 1px solid #e0e1e6;
     margin: 0 29px;
   }
+
+  h3 {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 16px;
+    margin: 0 0 7px;
+    color: #495063;
+  }
 }
 
 .service_panel .panel-header {
-  padding: 25px 16px 15px;
-  color: #495063;
-  text-align: center;
-  font-size: 12px;
-  border: none;
-  text-transform: uppercase;
-  display: block;
-  height: 50px;
+  display: none;
 }
 
 .service_panel__categories,
@@ -131,8 +134,16 @@
     background: #fff;
   }
 
+  .panel.service_panel .panel-resizeHandle {
+    min-height: 15px;
+  }
+
+  .panel.service_panel .panel-content {
+    height: calc(100% - 15px);
+  }
+
   .service_panel .panel-header {
-    height: 50px;
+    height: 10px;
     padding: 10px 16px 5px;
     font-weight: 500;
   }
