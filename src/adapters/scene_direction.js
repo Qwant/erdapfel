@@ -11,12 +11,12 @@ import { getAllSteps } from 'src/libs/route_utils';
 export default class SceneDirection {
   constructor(map) {
     this.map = map;
-    this.routeCounter = 0;
     this.routes = [];
     this.markerOrigin = null;
     this.markerDestination = null;
     this.markersSteps = [];
     this.directionPanel = window.app.directionPanel;
+    this.mapFeaturesByRoute = {};
 
     listen('set_route', ({ routes, vehicle, origin, destination, move }) => {
       this.reset();
@@ -53,7 +53,7 @@ export default class SceneDirection {
   }
 
   showMarkerSteps() {
-    if (this.vehicle !== 'walking' && window.innerWidth > 640) {
+    if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport' && !Device.isMobile()) {
       this.steps.forEach(step => {
         const markerStep = document.createElement('div');
         markerStep.className = 'itinerary_marker_step';
@@ -73,11 +73,14 @@ export default class SceneDirection {
       if (isActive) {
         mainRoute = route;
       }
-
-      setActiveRouteStyle(this.map, `route_${route.id}`, this.vehicle, isActive);
+      this.mapFeaturesByRoute[route.id].forEach(({ layerId, vehicle }) => {
+        setActiveRouteStyle(this.map, layerId, vehicle, isActive);
+        if (isActive) {
+          this.map.moveLayer(layerId, map.routes_layer);
+        }
+      });
     });
     this.updateMarkers(mainRoute);
-    this.map.moveLayer(`route_${routeId}`, map.routes_layer);
   }
 
   updateMarkers(mainRoute) {
@@ -91,21 +94,17 @@ export default class SceneDirection {
     });
     this.markersSteps = [];
 
-    // Custom markers
-    if (!Device.isMobile()) {
-      this.showMarkerSteps();
-    }
+    this.showMarkerSteps();
   }
 
   displayRoute(move) {
     if (this.routes && this.routes.length > 0) {
+      this.mapFeaturesByRoute = {};
       this.routes.forEach(route => {
-        this.addRouteFeature(route, this.vehicle);
+        this.mapFeaturesByRoute[route.id] = this.addRouteFeatures(route);
       });
       const mainRoute = this.routes.find(route => route.isActive);
-      this.map.moveLayer(`route_${mainRoute.id}`, map.routes_layer);
-
-      this.updateMarkers(mainRoute);
+      this.setMainRoute(mainRoute.id);
 
       const markerOrigin = document.createElement('div');
       markerOrigin.className = this.vehicle === 'walking' ?
@@ -149,8 +148,10 @@ export default class SceneDirection {
 
   reset() {
     this.routes.forEach(route => {
-      this.map.removeLayer(`route_${route.id}`);
-      this.map.removeSource(`source_${route.id}`);
+      this.mapFeaturesByRoute[route.id].forEach(({ sourceId, layerId }) => {
+        this.map.removeLayer(layerId);
+        this.map.removeSource(sourceId);
+      });
     });
 
     this.markersSteps.forEach(step => {
@@ -169,29 +170,55 @@ export default class SceneDirection {
     this.routes = [];
   }
 
-  addRouteFeature(route, vehicle) {
-    const layerStyle = getRouteStyle(vehicle, route.isActive);
-    layerStyle.id = `route_${route.id}`;
-    layerStyle.source = `source_${route.id}`;
+  getDataSources(route) {
+    const featureCollection = normalizeToFeatureCollection(route.geometry);
+    const sources = [];
+    if (this.vehicle === 'publicTransport') {
+      const walkFeatures = [], nonWalkFeatures = [];
+      featureCollection.features.forEach(feature => {
+        if (feature.properties.mode === 'WALK') {
+          walkFeatures.push(feature);
+        } else {
+          nonWalkFeatures.push(feature);
+        }
+      });
+      if (walkFeatures.length > 0) {
+        sources.push({
+          vehicle: 'walking',
+          data: { type: 'FeatureCollection', features: walkFeatures },
+        });
+      }
+      if (nonWalkFeatures.length > 0) {
+        sources.push({
+          vehicle: this.vehicle,
+          data: { type: 'FeatureCollection', features: nonWalkFeatures },
+        });
+      }
+    } else {
+      sources.push({ vehicle: this.vehicle, data: featureCollection });
+    }
+    return sources;
+  }
 
-    const sourceId = `source_${route.id}`;
-    const sourceJSON = {
-      type: 'geojson',
-      data: normalizeToFeatureCollection(route.geometry),
-    };
-    this.map.addSource(sourceId, sourceJSON);
-    this.map.addLayer(layerStyle, map.routes_layer);
+  addRouteFeatures(route) {
+    const sources = this.getDataSources(route);
+    return sources.map((source, idx) => {
+      const layerId = `route_${route.id}_${idx}`;
+      const sourceId = `source_${route.id}_${idx}`;
+      const layerStyle = {
+        ...getRouteStyle(source.vehicle, route.isActive),
+        id: layerId,
+        source: sourceId,
+      };
 
-    this.map.on('click', `route_${route.id}`, () => {
-      fire('select_road_map', route.id);
-    });
+      this.map
+        .addSource(sourceId, { type: 'geojson', data: source.data })
+        .addLayer(layerStyle, map.routes_layer)
+        .on('click', layerId, () => { fire('select_road_map', route.id); })
+        .on('mouseenter', layerId, () => { this.map.getCanvas().style.cursor = 'pointer'; })
+        .on('mouseleave', layerId, () => { this.map.getCanvas().style.cursor = ''; });
 
-    this.map.on('mouseenter', `route_${route.id}`, () => {
-      this.map.getCanvas().style.cursor = 'pointer';
-    });
-
-    this.map.on('mouseleave', `route_${route.id}`, () => {
-      this.map.getCanvas().style.cursor = '';
+      return { sourceId, layerId, vehicle: source.vehicle };
     });
   }
 
