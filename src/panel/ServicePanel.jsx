@@ -8,13 +8,11 @@ class ServicePanel extends React.Component {
   render() {
     return <Panel
       resizable
-      title=''
+      title={_('Qwant Maps services', 'service panel')}
       minimizedTitle={_('Show Qwant Maps services', 'service panel')}
       className='service_panel'
     >
       <div className="service_panel__categories">
-        <br/>
-        <h3>{_('Qwant Maps services', 'service panel')}</h3>
         {
           CategoryService.getCategories().map(item =>
             <button className="service_panel__category" type="button" key={item.name}
@@ -30,7 +28,6 @@ class ServicePanel extends React.Component {
       </div>
 
       <hr/>
-      <br/>
 
       {
         nconf.get().events.enabled &&
@@ -48,7 +45,6 @@ class ServicePanel extends React.Component {
             )
           }
           <hr/>
-          <br/>
         </div>
       }
 

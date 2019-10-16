@@ -38,7 +38,6 @@ export default class CategoryService {
   }
 
   static getEvents() {
-
     if (!nconf.get().events.enabled) {
       return [];
     }
@@ -49,5 +48,4 @@ export default class CategoryService {
 
     return window.__eventsCache;
   }
-
 }
