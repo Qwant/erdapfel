@@ -250,13 +250,10 @@ export default class AppPanel {
   _openPanel(panelToOpen, options) {
     this.unminify();
     this.activePoiId = null;
-    this.panels.forEach(panel => {
-      if (panel === panelToOpen) {
-        panel.open(options);
-      } else {
-        panel.close();
-      }
-    });
+    this.panels
+      .filter(panel => panel !== panelToOpen)
+      .forEach(panel => { panel.close(); });
+    panelToOpen.open(options);
   }
 
   openDirection(options) {
