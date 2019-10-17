@@ -31,11 +31,10 @@ export default class ContextMenu extends React.Component {
   }
 
   close = () => {
-    if (!this._isMounted) {
-      return false;
-    }
-    this.setState({ open: false });
     document.removeEventListener('click', this.close);
+    if (this._isMounted) {
+      this.setState({ open: false });
+    }
   }
 
   render() {
