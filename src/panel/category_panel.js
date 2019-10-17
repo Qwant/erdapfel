@@ -90,8 +90,6 @@ export default class CategoryPanel {
     window.execOnMapLoaded(() => {
       this.panelResizer.updateMapUiPosition();
     });
-
-    document.querySelector('.service_panel').classList.remove('service_panel--active');
   }
 
   async open(options = {}) {
