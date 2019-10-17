@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class ContextMenu extends React.Component {
+  _isMounted = false;
+
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -14,6 +16,14 @@ export default class ContextMenu extends React.Component {
     open: false,
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   open = e => {
     e.stopPropagation();
     this.setState({ open: true });
@@ -21,6 +31,9 @@ export default class ContextMenu extends React.Component {
   }
 
   close = () => {
+    if (!this._isMounted) {
+      return false;
+    }
     this.setState({ open: false });
     document.removeEventListener('click', this.close);
   }
