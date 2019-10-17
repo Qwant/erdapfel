@@ -1,13 +1,14 @@
+import React from 'react';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import PoiHeader from 'src/panel/poi/PoiHeader';
+import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
+import OpeningHour from 'src/panel/poi/OpeningHour';
 import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
 import PoiBlocContainer from './poi_bloc/poi_bloc_container';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
-import headerPartial from '../views/poi_partial/header.dot';
-import titleImagePartial from '../views/poi_partial/title_image.dot';
-import reviewsPartial from 'src/views/poi_partial/reviews.dot';
-import MinimalHourPanel from './poi_bloc/opening_minimal';
 import layouts from './layouts.js';
 import nconf from '@qwant/nconf-getter';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
@@ -18,6 +19,10 @@ import { openShareModal } from 'src/modals/ShareModal';
 
 const store = new Store();
 const masqFavoriteModal = new MasqFavoriteModal();
+
+const headerPartial = poi => renderStaticReact(<PoiHeader poi={poi} />);
+const titleImagePartial = poi => renderStaticReact(<PoiTitleImage poi={poi} />);
+const openingHourPartial = poi => renderStaticReact(<OpeningHour poi={poi} />);
 
 function PoiPanel() {
   this.isPoiCompliant = true;
@@ -30,8 +35,7 @@ function PoiPanel() {
   this.card = true;
   this.headerPartial = headerPartial;
   this.titleImagePartial = titleImagePartial;
-  this.reviewsPartial = reviewsPartial;
-  this.minimalHourPanel = new MinimalHourPanel();
+  this.openingHourPartial = openingHourPartial;
   this.isDirectionActive = nconf.get().direction.enabled;
   this.categories = CategoryService.getCategories();
   this.isMasqEnabled = nconf.get().masq.enabled;
@@ -103,7 +107,6 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   }
   this.sourceCategory = options.sourceCategory;
   this.active = true;
-  await this.minimalHourPanel.set(this.poi);
   await this.panel.update();
 
   window.execOnMapLoaded(() => {

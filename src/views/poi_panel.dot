@@ -57,10 +57,10 @@
       {{?}}
       <div class="poi_panel__description_container">
         <div>
-          {{= this.panel.renderPartial(this.headerPartial) }}
-          {{= this.minimalHourPanel.render() }}
+          {{= this.headerPartial(this.poi) }}
+          {{= this.openingHourPartial(this.poi) }}
         </div>
-        {{= this.panel.renderPartial(this.titleImagePartial) }}
+        {{= this.titleImagePartial(this.poi) }}
       </div>
       <div class="poi_panel__content__card__action__container">
         {{? this.isDirectionActive }}
@@ -80,8 +80,8 @@
   {{? this.poi }}
     <div class="poi_panel__container">
       <div class="poi_panel__description_container" {{= click(this.center, this) }}>
-         {{= this.panel.renderPartial(this.headerPartial) }}
-         {{= this.panel.renderPartial(this.titleImagePartial) }}
+         {{= this.headerPartial(this.poi) }}
+         {{= this.titleImagePartial(this.poi) }}
       </div>
       <div class="poi_panel__actions">
         <button class="poi_panel__action poi_panel__actions__icon__store

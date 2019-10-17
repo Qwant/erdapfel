@@ -222,9 +222,11 @@ $HEADER_SIZE: 40px;
   position: relative;
 }
 
-.poi_panel__info__hours__status__text {
-  display: inline-block;
-  color: $primary_text;
+.poi_panel__info__section--hours {
+  .poi_panel__info__hours__status__text {
+    display: inline-block;
+    color: $primary_text;
+  }
 }
 
 .poi_panel__info__hours__status__toggle {

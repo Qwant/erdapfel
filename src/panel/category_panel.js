@@ -1,6 +1,9 @@
+import React from 'react';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import ReviewScore from 'src/components/ReviewScore';
 import Panel from '../libs/panel';
 import CategoryPanelView from '../views/category_panel.dot';
-import MinimalHourPanel from './poi_bloc/opening_minimal';
+import OpeningHour from 'src/panel/poi/OpeningHour';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
@@ -9,18 +12,21 @@ import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import { sources } from '../../config/constants.yml';
-import reviewsPartial from 'src/views/poi_partial/reviews.dot';
 import nconf from '@qwant/nconf-getter';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
+const reviewsPartial = ({ reviews, poi }) =>
+  renderStaticReact(<ReviewScore reviews={reviews} poi={poi} />);
+const openingHourPartial = poi => renderStaticReact(<OpeningHour poi={poi} />);
+
 export default class CategoryPanel {
   constructor() {
-    this.minimalHourPanel = new MinimalHourPanel();
     this.panel = new Panel(this, CategoryPanelView);
     this.panelResizer = new PanelResizer(this.panel);
     this.reviewsPartial = reviewsPartial;
+    this.openingHourPartial = openingHourPartial;
     this.pois = [];
     this.categoryName = '';
     this.active = false;

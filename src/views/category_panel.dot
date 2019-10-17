@@ -69,7 +69,7 @@
                     {{= this.reviewsPartial({ reviews: grades, poi }) }}
                   {{?}}
 
-                  {{= this.minimalHourPanel.set(poi).render() }}
+                  {{= this.openingHourPartial(poi) }}
 
                   {{? phoneBlock }}
                     <div class="category__panel__phone" {{= click(this.showPhoneNumber, this, {poi, i}) }}>
