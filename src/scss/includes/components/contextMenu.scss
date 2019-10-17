@@ -1,5 +1,6 @@
 .contextMenu {
   position: relative;
+  z-index: 3;
 
   &-button {
     height: 30px;
@@ -20,8 +21,8 @@
   &-menu {
     position: absolute;
     right: 36px;
-    top: -9px;
-    padding: 9px;
+    top: -15px;
+    padding: 6px 9px;
     background: $background;
     color: $primary_text;
     font-size: 13px;
@@ -30,7 +31,7 @@
   }
 
   &-menuItem {
-    padding: 6px;
+    padding: 4px 6px;
     cursor: pointer;
     
     &:hover {
