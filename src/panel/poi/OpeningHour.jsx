@@ -26,14 +26,14 @@ const OpeningHour = ({ poi }) => {
     </div>;
   }
 
-  return <span className="poi_panel__info__hours__status__text">
+  return <div className="poi_panel__info__hours__status__text">
     {_(status.msg)}
     {nextTransition &&
       ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
     }
     {' '}
     <div className="poi_panel__info__hour__circle" style={{ background: status.color }} />
-  </span>;
+  </div>;
 };
 
 export default OpeningHour;
