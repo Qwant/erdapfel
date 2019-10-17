@@ -16,7 +16,8 @@ const OpeningHour = ({ poi }) => {
     return null;
   }
 
-  const { isTwentyFourSeven, status, nextTransition } = new OsmSchedule(openingBlock, getMessages());
+  const schedule = new OsmSchedule(openingBlock, getMessages());
+  const { isTwentyFourSeven, status, nextTransition } = schedule;
   if (isTwentyFourSeven) {
     return <div className="poi_panel__info__hours__status__text poi_panel__info__hours__24_7">
       {_('Open 24/7', 'hour block')}
@@ -27,7 +28,9 @@ const OpeningHour = ({ poi }) => {
 
   return <span className="poi_panel__info__hours__status__text">
     {_(status.msg)}
-    {nextTransition && ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}` }
+    {nextTransition &&
+      ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
+    }
     {' '}
     <div className="poi_panel__info__hour__circle" style={{ background: status.color }} />
   </span>;
