@@ -56,6 +56,7 @@ Scene.prototype.initMapBox = function() {
     zoom: this.zoom,
     center: this.center,
     hash: false,
+    maxZoom: 20,
   });
 
   this.popup.init(this.mb);
