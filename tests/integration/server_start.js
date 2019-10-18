@@ -44,6 +44,7 @@ config.services.geocoder.url = 'http://geocoder.test/autocomplete';
 config.direction.enabled = true;
 config.direction.service.api = 'mapbox'; // Directions fixtures use mapbox format
 config.category.enabled = true;
+config.events.enabled = true;
 config.masq.enabled = false;
 
 global.appServer = new App(config);

@@ -79,3 +79,6 @@ direction:
 category:
   enabled: false
   maxPlaces: 40
+
+events:
+  enabled: false
