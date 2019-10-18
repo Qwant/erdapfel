@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PanelsView from '../views/app_panel.dot';
 import Panel from '../libs/panel';
-import FavoritePanel from './favorites_panel';
+import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './poi_panel';
 import ServicePanel from './ServicePanel';
 import SearchInput from '../ui_components/search_input';
@@ -37,7 +37,7 @@ export default class AppPanel {
     this.directionEnabled = directionEnabled;
 
     this.servicePanel = new ReactPanelWrapper(ServicePanel);
-    this.favoritePanel = new FavoritePanel();
+    this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
     this.poiPanel = new PoiPanel();
     this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
@@ -250,13 +250,10 @@ export default class AppPanel {
   _openPanel(panelToOpen, options) {
     this.unminify();
     this.activePoiId = null;
-    this.panels.forEach(panel => {
-      if (panel === panelToOpen) {
-        panel.open(options);
-      } else {
-        panel.close();
-      }
-    });
+    this.panels
+      .filter(panel => panel !== panelToOpen)
+      .forEach(panel => { panel.close(); });
+    panelToOpen.open(options);
   }
 
   openDirection(options) {

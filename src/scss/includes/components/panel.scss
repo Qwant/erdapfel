@@ -38,11 +38,12 @@
 
   &-content {
     max-height: calc(100vh - 160px);
-    overflow-y: auto;
+     overflow-y: auto;
+     scrollbar-width: thin;
   }
 
-  &--resizable .panel-resizeHandle {
-    display: none;
+  .panel-resizeHandle {
+    pointer-events: none;
   }
 }
 
@@ -96,7 +97,7 @@
     }
 
     .panel-resizeHandle {
-      display: block;
+      pointer-events: all;
       min-height: 50px;
       width: 100%;
       cursor: -webkit-grab;
