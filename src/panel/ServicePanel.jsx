@@ -28,7 +28,26 @@ class ServicePanel extends React.Component {
       </div>
 
       <hr/>
-      <br/>
+
+      {
+        nconf.get().events.enabled &&
+        <div className="service_panel__events">
+          <h3>{_('Good plans', 'service panel')}</h3>
+          {
+            CategoryService.getEvents().map(item =>
+              <button className="service_panel__event" type="button" key={item.name}>
+                <div className="service_panel__event__icon"
+                  style={{ background: item.backgroundColor }}>
+                  <span className={`icon icon-${item.iconName}`}/>
+                </div>
+                <div className="service_panel__category__title">{item.label}</div>
+              </button>
+            )
+          }
+          <hr/>
+        </div>
+      }
+
       <div className="service_panel__actions">
 
         {
