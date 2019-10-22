@@ -1,0 +1,13 @@
+.openingHour {
+  margin: 0;
+  font-size: 14px;
+  color: $primary_text;
+
+  &-circle {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    margin: 3px 1px;
+    border-radius: 50%;
+  }
+}

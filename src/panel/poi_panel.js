@@ -2,7 +2,7 @@ import React from 'react';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import PoiHeader from 'src/panel/poi/PoiHeader';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
-import OpeningHour from 'src/panel/poi/OpeningHour';
+import OpeningHour from 'src/components/OpeningHour';
 import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';

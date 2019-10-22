@@ -64,8 +64,7 @@ test('load a poi from url on mobile', async () => {
     return {
       title: document.querySelector('.poi_panel__content__card .poi_panel__title').innerText,
       address: document.querySelector('.poi_panel__content__card .poi_panel__address').innerText,
-      hours: document
-        .querySelector('.poi_panel__content__card .poi_panel__info__hours__status__text').innerText,
+      hours: document.querySelector('.poi_panel__content__card .openingHour').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);

@@ -1,20 +1,11 @@
 import React from 'react';
 import renderStaticReact from 'src/libs/renderStaticReact';
-import ReviewScore from 'src/components/ReviewScore';
 import { Popup } from 'mapbox-gl--ENV';
-import OsmSchedule from '../../src/adapters/osm_schedule';
-import IconManager from './icon_manager';
-import ExtendedString from '../libs/string';
 import ApiPoi from './poi/idunn_poi';
 import Device from '../libs/device';
-import poiSubClass from '../mapbox/poi_subclass';
-import popupTemplate from '../views/popup.dot';
-import poiConfigs from '../../config/constants.yml';
+import ReactPoiPopup from 'src/components/PoiPopup';
 
 const WAIT_BEFORE_DISPLAY = 350;
-
-const reviewsPartial = ({ reviews, poi }) =>
-  renderStaticReact(<ReviewScore reviews={reviews} poi={poi} />);
 
 function PoiPopup() {}
 
@@ -48,9 +39,7 @@ PoiPopup.prototype.addListener = function(layer) {
   });
 
   this.map.on('mouseleave', layer, async () => {
-    if (this.popupHandle) {
-      this.popupHandle.remove();
-    }
+    this.close();
     clearTimeout(this.timeOutHandler);
   });
 };
@@ -69,75 +58,53 @@ PoiPopup.prototype.createPJPopup = function(poi, event) {
 };
 
 PoiPopup.prototype.showPopup = function(poi, event) {
-  if (this.popupHandle) {
-    this.popupHandle.remove();
-    this.popupHandle = null;
-  }
-  const { color } = IconManager.get(poi);
-  const category = poiSubClass(poi.subClassName);
-  const reviews = poi.blocksByType.grades;
-  const hours = poi.blocksByType.opening_hours;
-  const timeMessages = poiConfigs.pois.find(poiConfig => {
-    return poiConfig.apiName === 'opening_hours';
-  });
-  let opening;
-  let address;
-  if (!reviews && hours) {
-    opening = new OsmSchedule(hours, timeMessages.options.messages);
-  }
-  if (poi.address) {
-    address = poi.address.label;
-  }
+  this.close();
 
   const popupOptions = {
     className: 'poi_popup__container',
     closeButton: false,
     closeOnClick: true,
     maxWidth: 'none',
-    offset: 18, //px
+    offset: 18, //px,
+    anchor: this.getPopupAnchor(event),
   };
-
-  this.setPopupPosition(event, popupOptions);
-  const htmlEncode = ExtendedString.htmlEncode;
 
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.getLngLat())
-    .setHTML(popupTemplate.call({
-      poi, color, opening, address, category, htmlEncode,
-      reviews, reviewsPartial,
-    }))
+    .setHTML(renderStaticReact(<ReactPoiPopup poi={poi} />))
     .addTo(this.map);
 };
 
-PoiPopup.prototype.setPopupPosition = function(event, popupOptions) {
+PoiPopup.prototype.getPopupAnchor = function(event) {
   const VERTICAL_OFFSET = 250;
   const HORIZONTAL_OFFSET = 300;
   const canvasWidth = window.innerWidth;
-  const positionFragments = [];
+  const anchorFragments = [];
 
   if (event) {
     if (event.clientY > VERTICAL_OFFSET) {
-      positionFragments.push('bottom');
+      anchorFragments.push('bottom');
     } else {
-      positionFragments.push('top');
+      anchorFragments.push('top');
     }
 
     if (event.clientX < canvasWidth - HORIZONTAL_OFFSET) {
-      positionFragments.push('left');
+      anchorFragments.push('left');
     } else {
-      positionFragments.push('right');
+      anchorFragments.push('right');
     }
   } else {
-    positionFragments.push('bottom');
-    positionFragments.push('left');
+    anchorFragments.push('bottom');
+    anchorFragments.push('left');
   }
 
-  popupOptions.anchor = positionFragments.join('-');
+  return anchorFragments.join('-');
 };
 
 PoiPopup.prototype.close = function() {
   if (this.popupHandle) {
     this.popupHandle.remove();
+    this.popupHandle = null;
   }
 };
 

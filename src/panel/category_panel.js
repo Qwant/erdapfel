@@ -3,7 +3,7 @@ import renderStaticReact from 'src/libs/renderStaticReact';
 import ReviewScore from 'src/components/ReviewScore';
 import Panel from '../libs/panel';
 import CategoryPanelView from '../views/category_panel.dot';
-import OpeningHour from 'src/panel/poi/OpeningHour';
+import OpeningHour from 'src/components/OpeningHour';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
