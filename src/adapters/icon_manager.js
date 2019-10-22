@@ -52,6 +52,12 @@ export default class IconManager {
 
 export function createIcon(iconOptions, name, hoverEffect = false) {
   const icon = IconManager.get(iconOptions);
+
+  // Show a white circle instead of marker2 in map markers of PoI that have no class or subclass.
+  if (icon.iconClass === 'marker2') {
+    icon.iconClass = 'circle';
+  }
+
   const element = document.createElement('div');
   element.innerHTML = `
     <div class="marker">
