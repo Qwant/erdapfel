@@ -1,8 +1,9 @@
 import styleIcons from '@qwant/qwant-basic-gl-style/icons.yml';
 
+const nameToClass = iconName => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
+
 export default class IconManager {
   static get({ className, subClassName, type }) {
-    const nameToClass = iconName => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
 
     if (type === 'poi' || type === 'category') {
       const icons = styleIcons.mappings;
@@ -54,7 +55,7 @@ export function createIcon(iconOptions, name, hoverEffect = false) {
   const icon = IconManager.get(iconOptions);
 
   // Show a white circle instead of marker2 in map markers of PoI that have no class or subclass.
-  if (icon.iconClass === 'marker2') {
+  if (icon.iconClass === nameToClass(styleIcons.defaultIcon)) {
     icon.iconClass = 'circle';
   }
 
