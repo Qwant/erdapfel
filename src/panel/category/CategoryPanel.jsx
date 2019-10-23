@@ -42,8 +42,10 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    SearchInput.setInputValue('');
-    fire('remove_category_markers');
+    if (!this._navToCategoryMarker) {
+      SearchInput.setInputValue('');
+      fire('remove_category_markers');
+    }
     unListen(this.clickHandler);
     unListen(this.mapMoveHandler);
   }
@@ -124,6 +126,8 @@ export default class CategoryPanel extends React.Component {
       );
     }
     this.highlightMarker(poi, true);
+    // remember we exited the panel by clicking on a marker so the other ones are not removed on unmount
+    this._navToCategoryMarker = true;
     window.app.navigateTo(`/place/${poi.toUrl()}`, {
       poi: poi.serialize(),
       isFromCategory: true,
