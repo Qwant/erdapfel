@@ -343,7 +343,9 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
 Scene.prototype.addMarker = function(poi) {
   const { className, subClassName, type } = poi;
 
-  const element = createIcon({ className, subClassName, type });
+  // Create a default marker (white circle on red background) when the PoI is clicked.
+  // To do so, we don't define class and subclass when we call createIcon.
+  const element = createIcon({ class: '', subclass: '', type });
   element.onclick = function(e) {
     // click event should not be propagated to the map itself;
     e.stopPropagation();
