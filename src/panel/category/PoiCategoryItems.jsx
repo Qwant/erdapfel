@@ -1,4 +1,3 @@
-/* globals _ */
 import React from 'react';
 import { ItemList, Item } from 'src/components/ui/ItemList';
 import PoiCategoryItem from './PoiCategoryItem';
