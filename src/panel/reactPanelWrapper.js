@@ -6,8 +6,9 @@ export default class ReactPanelWrapper {
     this.reactComponent = reactComponent;
   }
 
-  open() {
-    ReactDOM.render(<this.reactComponent />, document.querySelector('.react_panel__container'));
+  open(options = {}) {
+    ReactDOM.render(<this.reactComponent {...options} />,
+      document.querySelector('.react_panel__container'));
   }
 
   close() {
