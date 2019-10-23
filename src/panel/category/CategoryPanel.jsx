@@ -10,6 +10,7 @@ import Telemetry from 'src/libs/telemetry';
 import CategoryService from 'src/adapters/category_service';
 import SearchInput from 'src/ui_components/search_input';
 import layouts from 'src/panel/layouts.js';
+import { sources } from 'config/constants.yml';
 
 const MAX_PLACES = Number(nconf.get().category.maxPlaces);
 
@@ -160,7 +161,20 @@ export default class CategoryPanel extends React.Component {
       return null;
     }
 
+    let panelHeader = '';
+    if (this.state.dataSource === sources.pagesjaunes) {
+      panelHeader = <div className="category__panel__pj">
+        <div className="category__panel__pj_title">
+          {_('PAGES JAUNES', 'categories')}
+        </div>
+        <div className="category__panel__pj_partnership">
+          {_('Partnership', 'categories')}
+        </div>
+      </div>;
+    }
+
     return <Panel resizable
+      title={panelHeader}
       minimizedTitle={_('Show results', 'categories')}
       close={this.close}
       className="category__panel"
