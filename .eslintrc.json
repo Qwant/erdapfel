@@ -16,6 +16,7 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
         "listen": "readonly",
+        "unListen": "readonly",
         "fire": "readonly"
     },
     "parser": "babel-eslint",
