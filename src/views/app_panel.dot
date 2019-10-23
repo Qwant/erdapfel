@@ -4,9 +4,6 @@
     {{? this.directionEnabled }}
       {{= this.directionPanel.render() }}
     {{?}}
-    {{? this.categoryEnabled }}
-      {{= this.categoryPanel.render() }}
-    {{?}}
     <div class="react_panel__container"></div>
   </div>
 </div>
