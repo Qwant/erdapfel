@@ -341,7 +341,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
 };
 
 Scene.prototype.addMarker = function(poi) {
-  const { className, subClassName, type } = poi;
+  const type = poi.type;
 
   // Create a default marker (white circle on red background) when the PoI is clicked.
   // To do so, we don't define class and subclass when we call createIcon.
