@@ -41,6 +41,13 @@ export default class CategoryPanel extends React.Component {
     this.mapMoveHandler = listen('map_moveend', debounce(this.refresh, 300));
   }
 
+  componentDidUpdate() {
+    const panelContent = document.querySelector('.panel-content');
+    if (panelContent) {
+      panelContent.scrollTop = 0;
+    }
+  }
+
   componentWillUnmount() {
     if (!this._navToCategoryMarker) {
       SearchInput.setInputValue('');
