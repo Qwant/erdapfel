@@ -156,8 +156,34 @@ export default class CategoryPanel extends React.Component {
     }
   }
 
+  renderPanelContent() {
+    const { pois, dataSource } = this.state;
+    const zoomInRequired = !dataSource && !pois;
+
+    if (zoomInRequired || pois.length === 0) {
+      return <div className="category__panel__error">
+        <p>
+          {zoomInRequired
+            ? _('Please zoom in the map to see the results for this category.', 'categories')
+            : _('No results found. Please zoom out of the map.', 'categories')
+          }
+        </p>
+        <button onClick={this.geoloc}>
+          <span className="icon-pin_geoloc" /> {_('Search around my position', 'categories')}
+        </button>
+      </div>;
+    }
+
+    return <PoiCategoryItems
+      pois={pois}
+      selectPoi={this.selectPoi}
+      highlightMarker={this.highlightMarker}
+    />;
+  }
+
   render() {
-    if (this.state.isLoading && this.state.pois.length === 0) {
+    if (this.state.isLoading && (!this.state.pois || this.state.pois.length === 0)) {
+      // @TODO have proper loading indicators
       return null;
     }
 
@@ -179,11 +205,7 @@ export default class CategoryPanel extends React.Component {
       close={this.close}
       className="category__panel"
     >
-      <PoiCategoryItems
-        pois={this.state.pois}
-        selectPoi={this.selectPoi}
-        highlightMarker={this.highlightMarker}
-      />
+      {this.renderPanelContent()}
     </Panel>;
   }
 }
