@@ -1,11 +1,11 @@
 import React from 'react';
 import OpeningHour from 'src/components/OpeningHour';
 import ReviewScore from 'src/components/ReviewScore';
-import PhoneBlock from './PhoneBlock';
+import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 
-const PoiCategoryItem = ({ poi }) => {
+const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
   const reviews = poi.blocksByType.grades;
   const phoneBlock = poi.blocksByType.phone;
   const address = poi.address || {};
@@ -23,7 +23,10 @@ const PoiCategoryItem = ({ poi }) => {
 
     <OpeningHour poi={poi} />
 
-    {phoneBlock && <PhoneBlock phoneBlock={phoneBlock} />}
+    {phoneBlock && <PhoneNumber
+      phoneBlock={phoneBlock}
+      onReveal={() => { onShowPhoneNumber(poi); }} />
+    }
   </div>;
 };
 

@@ -156,6 +156,21 @@ export default class CategoryPanel extends React.Component {
     }
   }
 
+  onShowPhoneNumber = poi => {
+    if (poi.meta && poi.meta.source) {
+      Telemetry.add('phone', 'poi', poi.meta.source,
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source: poi.meta.source,
+          template: 'multiple',
+          zone: 'list',
+          element: 'phone',
+          category: this.props.categoryName,
+        })
+      );
+    }
+  }
+
   renderPanelContent() {
     const { pois, dataSource } = this.state;
     const zoomInRequired = !dataSource && !pois;
@@ -178,6 +193,7 @@ export default class CategoryPanel extends React.Component {
       pois={pois}
       selectPoi={this.selectPoi}
       highlightMarker={this.highlightMarker}
+      onShowPhoneNumber={this.onShowPhoneNumber}
     />;
   }
 
