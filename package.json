@@ -87,7 +87,7 @@
     "@qwant/merge-po": "file:local_modules/merge-po",
     "@qwant/nconf-builder": "file:local_modules/nconf_builder",
     "@qwant/po-js": "file:local_modules/po-js",
-    "@qwant/qwant-basic-gl-style": "git+https://github.com/QwantResearch/qwant-basic-gl-style.git#72e8387",
+    "@qwant/qwant-basic-gl-style": "git+https://github.com/QwantResearch/qwant-basic-gl-style.git#08a91096",
     "@qwant/telemetry": "file:local_modules/telemetry",
     "@qwant/uri": "file:local_modules/uri",
     "@turf/bbox": "^6.0.1",
