@@ -1,5 +1,6 @@
 /* global _ */
 import React from 'react';
+import { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryService from '../adapters/category_service';
 import nconf from '@qwant/nconf-getter';
@@ -31,21 +32,23 @@ class ServicePanel extends React.Component {
 
       {
         nconf.get().events.enabled &&
-        <div className="service_panel__events">
-          <h3>{_('Good plans', 'service panel')}</h3>
-          {
-            CategoryService.getEvents().map(item =>
-              <button className="service_panel__event" type="button" key={item.name}>
-                <div className="service_panel__event__icon"
-                  style={{ background: item.backgroundColor }}>
-                  <span className={`icon icon-${item.iconName}`}/>
-                </div>
-                <div className="service_panel__category__title">{item.label}</div>
-              </button>
-            )
-          }
+        <Fragment>
+          <div className="service_panel__events">
+            <h3>{_('Good plans', 'service panel')}</h3>
+            {
+              CategoryService.getEvents().map(item =>
+                <button className="service_panel__event" type="button" key={item.name}>
+                  <div className="service_panel__event__icon"
+                    style={{ background: item.backgroundColor }}>
+                    <span className={`icon icon-${item.iconName}`}/>
+                  </div>
+                  <div className="service_panel__category__title">{item.label}</div>
+                </button>
+              )
+            }
+          </div>
           <hr/>
-        </div>
+        </Fragment>
       }
 
       <div className="service_panel__actions">
