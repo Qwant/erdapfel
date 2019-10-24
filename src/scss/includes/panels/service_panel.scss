@@ -37,18 +37,19 @@
 .service_panel__events,
 .service_panel__actions {
   margin: 0;
-  padding: 0 0 10px 12px;
+  padding: 0 12px 10px 12px;
   display: block;
 }
 
-.service_panel__events {
+.service_panel__events,
+.service_panel__actions {
   padding-top: 15px;
 }
 
 .service_panel__category,
 .service_panel__event,
 .service_panel__action {
-  width: 24%;
+  width: 25%;
   margin: 5px 0 15px 0;
 }
 
