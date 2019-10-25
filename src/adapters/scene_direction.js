@@ -7,6 +7,8 @@ import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { getRouteStyle, setActiveRouteStyle } from './route_styles';
 import { getAllSteps } from 'src/libs/route_utils';
+import Error from '../adapters/error';
+import nconf from '@qwant/nconf-getter';
 
 export default class SceneDirection {
   constructor(map) {
@@ -17,6 +19,10 @@ export default class SceneDirection {
     this.markersSteps = [];
     this.directionPanel = window.app.directionPanel;
     this.mapFeaturesByRoute = {};
+
+    const iconsBaseUrl = nconf.get().system.baseUrl + 'statics/images/direction_icons';
+    this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active');
+    this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive');
 
     listen('set_route', ({ routes, vehicle, origin, destination, move }) => {
       this.reset();
@@ -236,5 +242,15 @@ export default class SceneDirection {
     if (this.markersSteps[step]) {
       this.markersSteps[step]._element.classList.remove('itinerary_marker_step--highlighted');
     }
+  }
+
+  addMapImage(url, name) {
+    this.map.loadImage(url, (error, image) => {
+      if (error) {
+        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url}`, error);
+        return;
+      }
+      this.map.addImage(name, image);
+    });
   }
 }

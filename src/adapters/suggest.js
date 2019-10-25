@@ -47,7 +47,7 @@ export default class Suggest {
             const focus = {};
             const mapZoom = window.map && window.map.mb && window.map.mb.getZoom();
             if (SUGGEST_USE_FOCUS && mapZoom >= SUGGEST_FOCUS_MIN_ZOOM) {
-              const center = window.map.center();
+              const center = window.map.mb.getCenter();
               focus.lat = center.lat;
               focus.lon = center.lng;
               focus.zoom = mapZoom;

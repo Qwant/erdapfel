@@ -9,14 +9,12 @@ import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
-import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 
-const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
 const easterEggsEnabled = nconf.get().app.easterEggs;
 
@@ -63,15 +61,7 @@ Scene.prototype.initMapBox = function() {
 
   setRTLTextPlugin(`${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`);
 
-  window.map = {
-    center: () => {
-      return this.mb.getCenter();
-    },
-    bbox: () => {
-      return this.mb.getBounds();
-    },
-    mb: this.mb,
-  };
+  window.map = { mb: this.mb };
 
   const interactiveLayers = ['poi-level-1', 'poi-level-2', 'poi-level-3'];
 
@@ -85,15 +75,9 @@ Scene.prototype.initMapBox = function() {
       this.routeDisplayed = false;
     });
     new SceneCategory(this.mb);
-    if (performanceEnabled) {
-      window.times.mapLoaded = Date.now();
-    }
 
-    const extendedControl = new ExtendedControl();
-    const mobileCompassControl = new MobileCompassControl();
-
-    this.mb.addControl(extendedControl, 'bottom-right');
-    this.mb.addControl(mobileCompassControl, 'top-right');
+    this.mb.addControl(new ExtendedControl(), 'bottom-right');
+    this.mb.addControl(new MobileCompassControl(), 'top-right');
 
     interactiveLayers.forEach(interactiveLayer => {
       this.mb.on('mouseenter', interactiveLayer, () => {
@@ -116,6 +100,9 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('click', e => {
+      if (!e._interactiveClick) {
+        window.app.emptyClickOnMap();
+      }
       // Disable POI anywhere feature on mobile until we opt for an adapted UX
       if (Device.isMobile() || e._interactiveClick || this.routeDisplayed) {
         return;
@@ -130,30 +117,6 @@ Scene.prototype.initMapBox = function() {
       store.setLastLocation({ lng, lat, zoom });
       window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
-    });
-
-    const url_active = `${baseUrl}statics/images/direction_icons/walking_bullet_active.png`;
-    this.mb.loadImage(url_active, (error, image) => {
-      if (error) {
-        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url_active}`, error);
-        return;
-      }
-      this.mb.addImage('walking_bullet_active', image);
-    });
-
-    const url_inactive = `${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`;
-    this.mb.loadImage(url_inactive, (error, image) => {
-      if (error) {
-        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url_inactive}`, error);
-        return;
-      }
-      this.mb.addImage('walking_bullet_inactive', image);
-    });
-
-    this.mb.on('click', e => {
-      if (!e._interactiveClick) {
-        window.app.emptyClickOnMap();
-      }
     });
 
     /* Easter egg for beta */

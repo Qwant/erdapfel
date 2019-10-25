@@ -70,7 +70,7 @@ export default class CategoryPanel {
 
   async search() {
     this.loading = true;
-    const bbox = window.map.bbox();
+    const bbox = window.map.mb.getBounds();
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
       .join(',');
