@@ -15,7 +15,6 @@ import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 
-const performanceEnabled = nconf.get().performance.enabled;
 const baseUrl = nconf.get().system.baseUrl;
 const easterEggsEnabled = nconf.get().app.easterEggs;
 
@@ -76,9 +75,6 @@ Scene.prototype.initMapBox = function() {
       this.routeDisplayed = false;
     });
     new SceneCategory(this.mb);
-    if (performanceEnabled) {
-      window.times.mapLoaded = Date.now();
-    }
 
     this.mb.addControl(new ExtendedControl(), 'bottom-right');
     this.mb.addControl(new MobileCompassControl(), 'top-right');

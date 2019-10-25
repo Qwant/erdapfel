@@ -68,6 +68,9 @@ export default class AppPanel {
       this.panel.onRender = () => {
         window.times.appRendered = Date.now();
       };
+      listen('map_loaded', () => {
+        window.times.mapLoaded = Date.now();
+      });
     }
 
     this.panel.render();
