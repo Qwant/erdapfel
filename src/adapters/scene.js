@@ -9,7 +9,6 @@ import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
-import Error from '../adapters/error';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
@@ -122,24 +121,6 @@ Scene.prototype.initMapBox = function() {
       store.setLastLocation({ lng, lat, zoom });
       window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
-    });
-
-    const url_active = `${baseUrl}statics/images/direction_icons/walking_bullet_active.png`;
-    this.mb.loadImage(url_active, (error, image) => {
-      if (error) {
-        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url_active}`, error);
-        return;
-      }
-      this.mb.addImage('walking_bullet_active', image);
-    });
-
-    const url_inactive = `${baseUrl}statics/images/direction_icons/walking_bullet_inactive.png`;
-    this.mb.loadImage(url_inactive, (error, image) => {
-      if (error) {
-        Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url_inactive}`, error);
-        return;
-      }
-      this.mb.addImage('walking_bullet_inactive', image);
     });
 
     this.mb.on('click', e => {
