@@ -80,11 +80,8 @@ Scene.prototype.initMapBox = function() {
       window.times.mapLoaded = Date.now();
     }
 
-    const extendedControl = new ExtendedControl();
-    const mobileCompassControl = new MobileCompassControl();
-
-    this.mb.addControl(extendedControl, 'bottom-right');
-    this.mb.addControl(mobileCompassControl, 'top-right');
+    this.mb.addControl(new ExtendedControl(), 'bottom-right');
+    this.mb.addControl(new MobileCompassControl(), 'top-right');
 
     interactiveLayers.forEach(interactiveLayer => {
       this.mb.on('mouseenter', interactiveLayer, () => {
