@@ -63,15 +63,7 @@ Scene.prototype.initMapBox = function() {
 
   setRTLTextPlugin(`${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`);
 
-  window.map = {
-    center: () => {
-      return this.mb.getCenter();
-    },
-    bbox: () => {
-      return this.mb.getBounds();
-    },
-    mb: this.mb,
-  };
+  window.map = { mb: this.mb };
 
   const interactiveLayers = ['poi-level-1', 'poi-level-2', 'poi-level-3'];
 
