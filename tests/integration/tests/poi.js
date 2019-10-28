@@ -15,6 +15,7 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   page = await browser.newPage();
+  page.setDefaultTimeout(3000);
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */
   });
@@ -23,7 +24,7 @@ beforeEach(async () => {
 
   const autocompleteMock = require('../../__data__/autocomplete.json');
   responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/);
-  responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753/);
+  responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753(\?.*)?$/);
 });
 
 test('click on a poi', async () => {
@@ -39,6 +40,20 @@ test('click on a poi', async () => {
 test('load a poi from url', async () => {
   expect.assertions(2);
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
+  await page.waitForSelector('.poi_panel__title');
+  const { title, address } = await page.evaluate(() => {
+    return {
+      title: document.querySelector('.poi_panel__title').innerText,
+      address: document.querySelector('.poi_panel__address').innerText,
+    };
+  });
+  expect(title).toMatch(/Musée d'Orsay/);
+  expect(address).toMatch(/1 Rue de la Légion d'Honneur \(Paris\)/);
+});
+
+test('load a poi from url with simple id', async () => {
+  expect.assertions(2);
+  await page.goto(`${APP_URL}/place/osm:way:63178753`);
   await page.waitForSelector('.poi_panel__title');
   const { title, address } = await page.evaluate(() => {
     return {
