@@ -50,3 +50,8 @@ export function getCurrentUrl() {
   const { pathname, search, hash } = window.location;
   return `${joinPath([ pathname, search ])}${hash}`;
 }
+
+export function toCssUrl(url) {
+  const escapedUrl = url.replace("'", "\\'");
+  return `url('${escapedUrl}')`;
+}
