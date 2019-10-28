@@ -3,7 +3,10 @@ import React from 'react';
 
 const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url } }) =>
   <a className="reviewScore" rel="noopener noreferrer" href={url}
-    onClick={() => poi.logGradesClick('single')}
+    onClick={e => {
+      e.stopPropagation();
+      poi.logGradesClick('single');
+    }}
   >
     <span className="reviewScore-stars">
       {[1, 2, 3, 4, 5].map(k =>

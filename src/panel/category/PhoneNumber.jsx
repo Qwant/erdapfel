@@ -1,10 +1,15 @@
 /* global _ */
 import React, { useState } from 'react';
 
-const PhoneBlock = ({ phoneBlock }) => {
+const PhoneNumber = ({ phoneBlock, onReveal }) => {
   const [isNumberHidden, setIsNumberHidden] = useState(true);
 
-  return <div className="category__panel__phone" onClick={() => setIsNumberHidden(!isNumberHidden)}>
+  return <div className="category__panel__phone" onClick={e => {
+    e.stopPropagation();
+    if (!isNumberHidden) { return; }
+    setIsNumberHidden(false);
+    if (onReveal) { onReveal(); }
+  }}>
     <span className="icon-icon_phone" />
     {isNumberHidden
       ? <span>{_('SHOW NUMBER', 'poi')}</span>
@@ -12,4 +17,4 @@ const PhoneBlock = ({ phoneBlock }) => {
   </div>;
 };
 
-export default PhoneBlock;
+export default PhoneNumber;

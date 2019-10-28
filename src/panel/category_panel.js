@@ -1,9 +1,7 @@
 import React from 'react';
-import renderStaticReact from 'src/libs/renderStaticReact';
-import ReviewScore from 'src/components/ReviewScore';
+import ReactDOM from 'react-dom';
 import Panel from '../libs/panel';
 import CategoryPanelView from '../views/category_panel.dot';
-import OpeningHour from 'src/components/OpeningHour';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
@@ -13,20 +11,16 @@ import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import { sources } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
+import PoiCategoryItemList from './category/PoiCategoryItemList';
+import CategoryPanelError from './category/CategoryPanelError';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
-
-const reviewsPartial = ({ reviews, poi }) =>
-  renderStaticReact(<ReviewScore reviews={reviews} poi={poi} />);
-const openingHourPartial = poi => renderStaticReact(<OpeningHour poi={poi} />);
 
 export default class CategoryPanel {
   constructor() {
     this.panel = new Panel(this, CategoryPanelView);
     this.panelResizer = new PanelResizer(this.panel);
-    this.reviewsPartial = reviewsPartial;
-    this.openingHourPartial = openingHourPartial;
     this.pois = [];
     this.categoryName = '';
     this.active = false;
@@ -86,10 +80,7 @@ export default class CategoryPanel {
     this.loading = false;
 
     this.panel.update();
-    const container = document.querySelector('.category__panel__scroll');
-    if (container) {
-      container.scrollTop = 0;
-    }
+    this.updateMarkerList();
 
     this.addCategoryMarkers();
     fire('save_location');
@@ -98,7 +89,7 @@ export default class CategoryPanel {
     });
   }
 
-  async open(options = {}) {
+  open(options = {}) {
     this.restoreParams(options);
     this.active = true;
 
@@ -123,22 +114,38 @@ export default class CategoryPanel {
       window.map.mb.flyTo({ zoom: 16 });
     } else {
       this.search();
-      await this.panel.update();
     }
+  }
+
+  updateMarkerList() {
+    let panelContent;
+
+    if (!this.pois || this.pois.length === 0) {
+      panelContent = <CategoryPanelError zoomIn={!this.pois} />;
+    } else {
+      panelContent = <PoiCategoryItemList
+        pois={this.pois}
+        selectPoi={this.selectPoi}
+        highlightMarker={this.highlightPoiMarker}
+        unhighlightMarker={this.unhighlightPoiMarker}
+        onShowPhoneNumber={this.onShowPhoneNumber}
+      />;
+    }
+
+    ReactDOM.render(panelContent, document.querySelector('.react_category__panel_list'));
   }
 
   close(keepCategoryMarkers = false) {
     document.querySelector('.top_bar').classList.remove('top_bar--category-open');
     this.active = false;
+    ReactDOM.unmountComponentAtNode(document.querySelector('.react_category__panel_list'));
     this.panel.update();
     if (!keepCategoryMarkers) {
       this.removeCategoryMarkers();
     }
   }
 
-  showPhoneNumber(options) {
-    const poi = options.poi;
-    const i = options.i;
+  onShowPhoneNumber = poi => {
     if (poi.meta && poi.meta.source) {
       Telemetry.add('phone', 'poi', poi.meta.source,
         Telemetry.buildInteractionData({
@@ -151,8 +158,6 @@ export default class CategoryPanel {
         })
       );
     }
-    document.querySelector('#category__panel__phone_hidden_' + i).style.display = 'none';
-    document.querySelector('#category__panel__phone_revealed_' + i).style.display = 'inline';
   }
 
   closeAction() {
@@ -168,7 +173,7 @@ export default class CategoryPanel {
     fire('remove_category_markers', this.pois);
   }
 
-  selectPoi(poi) {
+  selectPoi = poi => {
     const previousMarker = document.querySelector('.mapboxgl-marker.active');
     if (previousMarker) {
       previousMarker.classList.remove('active');
@@ -195,14 +200,14 @@ export default class CategoryPanel {
     this.highlightPoiMarker(poi);
   }
 
-  highlightPoiMarker(poi) {
+  highlightPoiMarker = poi => {
     const marker = document.getElementById(poi.marker_id);
     if (marker) {
       marker.classList.add('active');
     }
   }
 
-  unhighlightPoiMarker(poi) {
+  unhighlightPoiMarker = poi => {
     const marker = document.getElementById(poi.marker_id);
     if (marker) {
       marker.classList.remove('active');

@@ -6,10 +6,10 @@ const defaultIcon = { iconClass: 'location', color: '#444648' };
 
 const PoiTitleImage = ({ poi }) => {
   const icon = IconManager.get(poi) || defaultIcon;
-  return <div className="poi_panel__title_image">
-    {poi.topImageUrl && <div className="poi_panel__image"
+  return <div className="poiTitleImage">
+    {poi.topImageUrl && <div className="poiTitleImage-image"
       style={{ backgroundImage: toCssUrl(poi.topImageUrl) }} />}
-    <div className={`poi_panel__title__symbol icon icon-${icon.iconClass}`}
+    <div className={`poiTitleImage-icon icon icon-${icon.iconClass}`}
       style={{ color: icon.color }} />
   </div>;
 };

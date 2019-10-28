@@ -23,14 +23,6 @@ $HEADER_SIZE: 40px;
   animation: appear 600ms forwards;
 }
 
-.poi_panel__image {
-  width: 100px;
-  height: 100px;
-  background-size: cover;
-  background-position: center center;
-  background-color: white;
-}
-
 .poi_panel--hidden {
   display: none;
 }
@@ -323,10 +315,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__store_status__toggle:after {
   content: '';
-}
-
-.poi_panel__image + .poi_panel__title__symbol {
-    display: none;
 }
 
 .poi_panel__pictures {
@@ -697,6 +685,11 @@ $HEADER_SIZE: 40px;
     }
     .poi_panel__description {
       font-size: 12px;
+    }
+    .poiTitleImage {
+      width: auto;
+      height: auto;
+      margin-top: -6px;
     }
   }
 
