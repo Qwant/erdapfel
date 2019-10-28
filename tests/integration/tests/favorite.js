@@ -1,6 +1,3 @@
-const configBuilder = require('@qwant/nconf-builder');
-const config = configBuilder.get();
-const APP_URL = `http://localhost:${config.PORT}`;
 import { initBrowser, clearStore } from '../tools';
 import { toggleFavoritePanel, storePoi } from '../favorites_tools';
 

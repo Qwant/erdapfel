@@ -1,9 +1,6 @@
 /* eslint-disable max-len */
 import { initBrowser } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
-const configBuilder = require('@qwant/nconf-builder');
-const config = configBuilder.get();
-const APP_URL = `http://localhost:${config.PORT}`;
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
 const mockMapBox = require('../../__data__/mapbox.json');

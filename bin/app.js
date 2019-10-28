@@ -19,6 +19,7 @@ function App(config) {
   const openSearch = require('./middlewares/opensearch/index')(config);
   const constants = yaml.readSync('../config/constants.yml');
   const languages = constants.languages;
+  const router = express.Router();
 
   this.logger = bunyan.createLogger({
     name: 'erdapfel',
@@ -55,7 +56,7 @@ function App(config) {
 
   const publicDir = path.join(__dirname, '..', 'public');
 
-  app.use('/statics/build/javascript/map_plugins', expressStaticGzip(
+  router.use('/statics/build/javascript/map_plugins', expressStaticGzip(
     path.join(publicDir, 'build', 'javascript', 'map_plugins'),
     {
       fallthrough: false,
@@ -63,18 +64,18 @@ function App(config) {
     },
   ));
 
-  app.use('/mapstyle', expressStaticGzip(path.join(publicDir, 'mapstyle'), {
+  router.use('/mapstyle', expressStaticGzip(path.join(publicDir, 'mapstyle'), {
     fallthrough: false,
     maxAge: config.mapStyle.maxAge,
   }));
 
-  app.use('/opensearch.xml', openSearch);
+  router.use('/opensearch.xml', openSearch);
 
   if (config.performance.enabled) {
-    app.get('/fake_pbf/:z/:x/:y.pbf', fakePbf);
+    router.get('/fake_pbf/:z/:x/:y.pbf', fakePbf);
   }
 
-  app.use('/statics', expressStaticGzip(path.join(publicDir), {
+  router.use('/statics', expressStaticGzip(path.join(publicDir), {
     fallthrough: false,
     maxAge: config.statics.maxAge,
     setHeaders: (res, path, _stat) => {
@@ -85,28 +86,28 @@ function App(config) {
     },
   }));
 
-  app.use('/style.json',
+  router.use('/style.json',
     compression(),
     new mapStyle(config, languages));
 
   if (config.server.enablePrometheus) {
-    app.get('/metrics', (req, res) => {
+    router.get('/metrics', (req, res) => {
       res.set('Content-Type', promRegistry.contentType);
       res.end(promRegistry.metrics());
     });
   } else {
-    app.get('/metrics', (req, res) => {
+    router.get('/metrics', (req, res) => {
       res.sendStatus(404);
     });
   }
 
   const ogMeta = new require('./middlewares/og_meta')(config);
-  app.get('/*', ogMeta, (req, res) => {
+  router.get('/*', ogMeta, (req, res) => {
     res.render('index', { config });
   });
 
   if (config.server.acceptPostedLogs) {
-    app.post('/logs',
+    router.post('/logs',
       express.json({ strict: true, limit: config.server.maxBodySize }),
       (req, res) => {
         if (Object.keys(req.body).length === 0) {
@@ -119,9 +120,11 @@ function App(config) {
 
     if (config.server.acceptPostedEvents) {
       const metricsBuilder = require('./metrics_builder');
-      metricsBuilder(app, config, promRegistry);
+      metricsBuilder(router, config, promRegistry);
     }
   }
+
+  app.use(config.server.routerBaseUrl, router);
 
   app.use((err, req, res, _next) => {
     finalhandler(req, res, {

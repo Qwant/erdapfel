@@ -1,8 +1,5 @@
 import { clearStore, initBrowser, wait } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
-const configBuilder = require('@qwant/nconf-builder');
-const config = configBuilder.get();
-const APP_URL = `http://localhost:${config.PORT}`;
 
 let browser;
 let page;

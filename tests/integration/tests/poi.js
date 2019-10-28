@@ -1,7 +1,4 @@
 const poiMock = require('../../__data__/poi.json');
-const configBuilder = require('@qwant/nconf-builder');
-const config = configBuilder.get();
-const APP_URL = `http://localhost:${config.PORT}`;
 
 import ResponseHandler from '../helpers/response_handler';
 import { initBrowser, getText, wait, clearStore } from '../tools';
@@ -215,15 +212,12 @@ test('Test 24/7', async () => {
   expect(hours).toEqual('Ouvert 24h/24 et 7j/7');
 });
 
-test('check pre-loaded Poi error handling', async () => {
-
-  expect.assertions(1);
-
+test('check invalid Poi URL redirects to base URL', async () => {
   await page.goto(`${APP_URL}/place/osm:way:2403`);
   const pathname = await page.evaluate(() => {
     return location.pathname;
   });
-  expect(pathname).toEqual('/');
+  expect(pathname).toEqual('/maps/');
 });
 
 async function selectPoiLevel(page, level) {

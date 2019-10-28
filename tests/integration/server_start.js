@@ -29,11 +29,6 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404);
 
-nock(/idunn_test\.test/)
-  .persist(true)
-  .get(/osm:way:2403/)
-  .reply(404, { status: 'not found' });
-
 const config = configBuilder.get();
 
 // Specific config values for tests
@@ -46,6 +41,8 @@ config.direction.service.api = 'mapbox'; // Directions fixtures use mapbox forma
 config.category.enabled = true;
 config.events.enabled = true;
 config.masq.enabled = false;
+config.system.baseUrl = '/maps/';
+config.server.routerBaseUrl = '/maps/';
 
 global.appServer = new App(config);
 

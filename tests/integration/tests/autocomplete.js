@@ -4,7 +4,6 @@ import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get();
-const APP_URL = `http://localhost:${config.PORT}`;
 
 const SUGGEST_MAX_ITEMS = config.services.geocoder.maxItems;
 
