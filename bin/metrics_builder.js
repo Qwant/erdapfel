@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator');
 const promClient = require('prom-client');
 const events = require('@qwant/telemetry').events;
 
-module.exports = (app, config, registry) => {
+module.exports = (router, config, registry) => {
   const counters = {};
   events.forEach(eventType => {
     counters[eventType] = new promClient.Counter({
@@ -15,7 +15,7 @@ module.exports = (app, config, registry) => {
     });
   });
 
-  app.post('/events',
+  router.post('/events',
     express.json({ strict: true, limit: config.server.maxBodySize }),
     [
       body('type')

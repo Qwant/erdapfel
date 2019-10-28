@@ -1,7 +1,4 @@
 const poiMock = require('../../__data__/poi.json');
-const configBuilder = require('@qwant/nconf-builder');
-const config = configBuilder.get();
-const APP_URL = `http://localhost:${config.PORT}`;
 
 import ResponseHandler from '../helpers/response_handler';
 import { initBrowser, getText, wait, clearStore } from '../tools';
@@ -18,6 +15,7 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   page = await browser.newPage();
+  page.setDefaultTimeout(3000);
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */
   });
@@ -26,7 +24,7 @@ beforeEach(async () => {
 
   const autocompleteMock = require('../../__data__/autocomplete.json');
   responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/);
-  responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753/);
+  responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753(\?.*)?$/);
 });
 
 test('click on a poi', async () => {
@@ -42,6 +40,20 @@ test('click on a poi', async () => {
 test('load a poi from url', async () => {
   expect.assertions(2);
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
+  await page.waitForSelector('.poi_panel__title');
+  const { title, address } = await page.evaluate(() => {
+    return {
+      title: document.querySelector('.poi_panel__title').innerText,
+      address: document.querySelector('.poi_panel__address').innerText,
+    };
+  });
+  expect(title).toMatch(/Musée d'Orsay/);
+  expect(address).toMatch(/1 Rue de la Légion d'Honneur \(Paris\)/);
+});
+
+test('load a poi from url with simple id', async () => {
+  expect.assertions(2);
+  await page.goto(`${APP_URL}/place/osm:way:63178753`);
   await page.waitForSelector('.poi_panel__title');
   const { title, address } = await page.evaluate(() => {
     return {
@@ -215,15 +227,12 @@ test('Test 24/7', async () => {
   expect(hours).toEqual('Ouvert 24h/24 et 7j/7');
 });
 
-test('check pre-loaded Poi error handling', async () => {
-
-  expect.assertions(1);
-
+test('check invalid Poi URL redirects to base URL', async () => {
   await page.goto(`${APP_URL}/place/osm:way:2403`);
   const pathname = await page.evaluate(() => {
     return location.pathname;
   });
-  expect(pathname).toEqual('/');
+  expect(pathname).toEqual('/maps/');
 });
 
 async function selectPoiLevel(page, level) {

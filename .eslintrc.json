@@ -105,6 +105,9 @@
             "env": {
                 "jest": true,
                 "node": true
+            },
+            "globals": {
+                "APP_URL": "readonly"
             }
         }
     ]

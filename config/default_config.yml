@@ -12,6 +12,8 @@ server:
       timeout: 2000 # ms
   logger:
     headersWhitelistEnabled: true
+  routerBaseUrl: / # path prefix expected by the express server
+  # NB: `routerBaseUrl` may be different from `system.baseUrl` if a proxy is responsible for rewriting URLs
 
 app:
   versionFlag: Beta
@@ -30,7 +32,7 @@ services:
 
 # System
 system:
-  baseUrl: /
+  baseUrl: / # path prefix used in the application URLs (ends with '/')
   timeout: 3
 
 # Store
