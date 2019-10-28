@@ -123,7 +123,7 @@ export default class AppPanel {
     });
 
     // Default matching route
-    this.router.addRoute('Services', '(?:/?)', (_, options = {}) => {
+    this.router.addRoute('Services', '/?', (_, options = {}) => {
       this.resetLayout();
       if (options.focusSearch) {
         SearchInput.select();
