@@ -5,7 +5,7 @@
   width: 400px;
 
   &-header {
-    padding: 0 15px;
+    padding: 0 40px 0 15px;
     height: 40px;
     color: #5c6f84;
     font-size: 13px;
@@ -17,7 +17,7 @@
   &-close {
     position: absolute;
     right: 6px;
-    top: 6px;
+    top: 8px;
     cursor: pointer;
     transition: background-color .1s;
     border-radius: 50%;
