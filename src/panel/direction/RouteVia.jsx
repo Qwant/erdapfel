@@ -10,13 +10,16 @@ const RouteVia = ({ route, vehicle }) => {
   }
 
   return <div className="routeVia">
-    {route.summary.map((summary, idx) =>
-      <span key={idx} className="routeVia-step">
-        {summary.mode === 'WALK'
-          ? <i className="icon-foot" />
-          : <PublicTransportLine mode={summary.mode} info={summary.info} />
-        }
-      </span>)
+    {route.summary
+      .filter(summaryPart => summaryPart.mode !== 'WAIT')
+      .map((summaryPart, idx) =>
+        <span key={idx} className="routeVia-step">
+          {summaryPart.mode === 'WALK'
+            ? <i className="icon-foot" />
+            : <PublicTransportLine mode={summaryPart.mode} info={summaryPart.info} />
+          }
+        </span>
+      )
     }
   </div>;
 };
