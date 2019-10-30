@@ -60,7 +60,7 @@
           {{= this.headerPartial(this.poi) }}
           {{= this.openingHourPartial(this.poi) }}
         </div>
-        {{= this.titleImagePartial(this.poi) }}
+        {{= this.titleImagePartial(this.poi, true /* iconOnly */) }}
       </div>
       <div class="poi_panel__content__card__action__container">
         {{? this.isDirectionActive }}

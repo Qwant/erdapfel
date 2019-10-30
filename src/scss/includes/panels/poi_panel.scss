@@ -587,14 +587,6 @@ $HEADER_SIZE: 40px;
   margin: 0;
   flex-direction: row-reverse;
   justify-content: flex-end;
-
-  .poiTitleImage-image {
-    display: none;
-
-    & + .poiTitleImage-icon {
-      display: block;
-    }
-  }
 }
 
 @media (max-width: 640px) {
@@ -680,8 +672,6 @@ $HEADER_SIZE: 40px;
       font-size: 12px;
     }
     .poiTitleImage {
-      width: auto;
-      height: auto;
       margin-top: -6px;
     }
   }
