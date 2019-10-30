@@ -1,31 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Panel from '../libs/panel';
-import CategoryPanelView from '../views/category_panel.dot';
 import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
-import Telemetry from '../libs/telemetry';
-import PanelResizer from '../libs/panel_resizer';
-import layouts from './layouts.js';
 import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
-import { sources } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
-import PoiCategoryItemList from './category/PoiCategoryItemList';
-import CategoryPanelError from './category/CategoryPanelError';
+import Telemetry from '../libs/telemetry';
+import layouts from 'src/panel/layouts.js';
+import ReactCategoryPanel from './category/CategoryPanel';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
 export default class CategoryPanel {
   constructor() {
-    this.panel = new Panel(this, CategoryPanelView);
-    this.panelResizer = new PanelResizer(this.panel);
     this.pois = [];
     this.categoryName = '';
     this.active = false;
     this.poiSubClass = poiSubClass;
-    this.PoiMarkers = [];
     this.loading = false;
     this.query = '';
     this.dataSource = '';
@@ -79,14 +71,10 @@ export default class CategoryPanel {
     this.dataSource = source;
     this.loading = false;
 
-    this.panel.update();
-    this.updateMarkerList();
+    this.renderPanel();
 
     this.addCategoryMarkers();
     fire('save_location');
-    window.execOnMapLoaded(() => {
-      this.panelResizer.updateMapUiPosition();
-    });
   }
 
   open(options = {}) {
@@ -117,50 +105,30 @@ export default class CategoryPanel {
     }
   }
 
-  updateMarkerList() {
-    let panelContent;
-
-    if (!this.pois || this.pois.length === 0) {
-      panelContent = <CategoryPanelError zoomIn={!this.pois} />;
-    } else {
-      panelContent = <PoiCategoryItemList
-        pois={this.pois}
-        selectPoi={this.selectPoi}
-        highlightMarker={this.highlightPoiMarker}
-        unhighlightMarker={this.unhighlightPoiMarker}
-        onShowPhoneNumber={this.onShowPhoneNumber}
-      />;
-    }
-
-    ReactDOM.render(panelContent, document.querySelector('.react_category__panel_list'));
+  renderPanel() {
+    const panel = <ReactCategoryPanel
+      categoryName={this.categoryName}
+      pois={this.pois || []}
+      dataSource={this.dataSource}
+      hasError={!this.pois || this.pois.length === 0}
+      zoomIn={!this.pois}
+      close={this.closeAction}
+      selectPoi={this.selectPoi}
+      highlightPoiMarker={this.highlightPoiMarker}
+    />;
+    ReactDOM.render(panel, document.querySelector('.react_panel__container'));
   }
 
   close(keepCategoryMarkers = false) {
     document.querySelector('.top_bar').classList.remove('top_bar--category-open');
     this.active = false;
-    ReactDOM.unmountComponentAtNode(document.querySelector('.react_category__panel_list'));
-    this.panel.update();
+    ReactDOM.unmountComponentAtNode(document.querySelector('.react_panel__container'));
     if (!keepCategoryMarkers) {
       this.removeCategoryMarkers();
     }
   }
 
-  onShowPhoneNumber = poi => {
-    if (poi.meta && poi.meta.source) {
-      Telemetry.add('phone', 'poi', poi.meta.source,
-        Telemetry.buildInteractionData({
-          id: poi.id,
-          source: poi.meta.source,
-          template: 'multiple',
-          zone: 'list',
-          element: 'phone',
-          category: this.categoryName,
-        })
-      );
-    }
-  }
-
-  closeAction() {
+  closeAction = () => {
     SearchInput.setInputValue('');
     window.app.navigateTo('/');
   }
@@ -197,24 +165,17 @@ export default class CategoryPanel {
       layout: layouts.LIST,
       centerMap: true,
     });
-    this.highlightPoiMarker(poi);
+    this.highlightPoiMarker(poi, true);
   }
 
-  highlightPoiMarker = poi => {
+  highlightPoiMarker = (poi, highlight) => {
     const marker = document.getElementById(poi.marker_id);
     if (marker) {
-      marker.classList.add('active');
+      if (highlight) {
+        marker.classList.add('active');
+      } else {
+        marker.classList.remove('active');
+      }
     }
-  }
-
-  unhighlightPoiMarker = poi => {
-    const marker = document.getElementById(poi.marker_id);
-    if (marker) {
-      marker.classList.remove('active');
-    }
-  }
-
-  isSourcePagesjaunes() {
-    return this.dataSource === sources.pagesjaunes;
   }
 }

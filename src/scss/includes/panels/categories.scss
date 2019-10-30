@@ -1,90 +1,38 @@
-$category_panel_head_height : 40px;
 
-.category__panel {
-  display: block;
-  position: relative;
-  width: $panel_width;
-  background: $background;
-  @include card_shadow();
-  @include card_radius();
-}
-
-.category__panel--hidden {
-  display: none;
-}
-
-.category__panel__head {
-  font-size: 12px;
-  color: #5c6f84;
-  border-bottom: 1px solid $surface;
-  padding: 10px 16px;
-  height: $category_panel_head_height;
-  line-height: 20px
-}
-
-.category__panel__logo_pj {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 6px;
-}
-
-.category__panel__title {
-  font-weight: 400;
-  color: #353c52;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-.category__panel__partnership_icon {
-  width: 20px;
-  height: 20px;
+.category__panel__pj {
+  width: 100%;
+  display: flex;
   line-height: 18px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 10px;
-  float: right;
-  border: 2px solid #c8cbd3;
-  color: #c8cbd3;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-}
+  align-items: center;
+  justify-content: space-between;
 
-.category__panel__partnership {
-  font-size: 11px;
-  color: #c8cbd3;
-  float: right;
-}
+  &_title {
+    font-weight: 400;
+    color: #353c52;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: url('../images/pagesjaunes.svg') no-repeat left center;
+    background-size: 18px;
+    padding-left: 24px;
+  }
 
-.category__panel__show_results {
-  display: none;
-}
+  &_partnership {
+    font-size: 11px;
+    color: #c8cbd3;
 
-.category__panel__close {
-  float: right;
-  position: relative;
-  margin: 0 11px 0 8px;
-  width: 20px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 15px
-  
-}
-
-.category__panel__close::before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: $secondary_text;
-}
-
-.react_category__panel_list {
-  max-height: calc(100vh - 165px);
-  overflow-y: auto;
+    &::after {
+      content: "i";
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      border: 2px solid #c8cbd3;
+      color: #c8cbd3;
+      border-radius: 50%;
+      text-align: center;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+  }
 }
 
 .category__panel__item {
@@ -122,12 +70,6 @@ $category_panel_head_height : 40px;
   overflow: hidden;
 }
 
-.category__panel__status {
-  color: #353c52;
-  font-size: 14px;
-  display: inline-block;
-}
-
 .category__panel__phone {
   color: $secondary_text;
   font-size: 12px;
@@ -163,85 +105,20 @@ $category_panel_head_height : 40px;
   }
 }
 
-.category__panel__notfound {
-  position: relative;
-  width: 400px;
-  border-radius: 3px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ffffff;
-  padding: 35px 70px;
-  text-align: center;
-}
-
-.category__panel__notfound .category__panel__close {
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  color: $secondary_text;
-}
-
-.category__panel__warning {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  font-size: 26px;
-  color: rgba(0, 0, 0, 0.16);
-  margin-bottom: 8px;
-}
-
-.category__panel__close_text {
-  text-align: center;
-  color: #48718b;
-  margin-bottom: 15px;
-}
-
-.category__panel__back {
-  cursor: pointer;
-  text-transform: uppercase;
-  color: $secondary_text;
-  font-size: 12px;
-}
-
-.category__panel__back_icon {
-  display: inline-block;
-  vertical-align: bottom;
-  width: 16px;
-  height: 16px;
-  position: relative;
-  font-size: 16px;
-}
-
 @media (max-width: 640px) {
   .category__panel {
     position: absolute;
     width: 100vw;
     bottom: 0;
     background: $surface;
-  }
 
-  .category__panel__head {
-    overflow: hidden;
-  }
-
-  .category__panel__close {
-    display: none;
+    .panel-close {
+      display: none;
+    }
   }
 
   .category__panel__error {
     padding-top: 0;
-  }
-
-  .resizable_panel.reduced .category__panel__show_results {
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    color: $secondary_text;
-    text-transform: uppercase;
-    padding-bottom: 15px;
-  }
-
-  .react_category__panel_list {
-    height: calc(100% - 50px);
   }
 
   .category__panel__items {
@@ -253,13 +130,6 @@ $category_panel_head_height : 40px;
 
   .category__panel__item {
     padding: 14px 10px 14px 16px;
-  }
-
-  .category__panel__pj {
-    margin: 0 auto;
-    display: block;
-    max-width: 180px;
-    text-align: center;
   }
 
   .category__panel__phone {

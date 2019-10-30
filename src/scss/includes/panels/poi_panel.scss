@@ -391,12 +391,6 @@ $HEADER_SIZE: 40px;
   left: 5px;
 }
 
-/* title symbols */
-.poi_panel__title__symbol {
-  font-size: 45px;
-  color: #E93865;
-}
-
 /* symbols */
 .poi_panel__block__symbol {
   position: absolute;
@@ -594,13 +588,12 @@ $HEADER_SIZE: 40px;
   flex-direction: row-reverse;
   justify-content: flex-end;
 
-  .poi_panel__image {
+  .poiTitleImage-image {
     display: none;
-  }
 
-  .poi_panel__title__symbol {
-    display: block;
-    margin: -9px 3px 0 0;
+    & + .poiTitleImage-icon {
+      display: block;
+    }
   }
 }
 
