@@ -52,6 +52,6 @@ export function getCurrentUrl() {
 }
 
 export function toCssUrl(url) {
-  const escapedUrl = url.replace("'", "\\'");
+  const escapedUrl = url.replace(/'/g, "\\'");
   return `url('${escapedUrl}')`;
 }
