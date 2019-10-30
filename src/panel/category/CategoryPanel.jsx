@@ -5,7 +5,6 @@ import Panel from 'src/components/ui/Panel';
 import PoiCategoryItemList from './PoiCategoryItemList';
 import CategoryPanelError from './CategoryPanelError';
 import CategoryPanelHeader from './CategoryPanelHeader';
-import layouts from 'src/panel/layouts.js';
 import Telemetry from 'src/libs/telemetry';
 
 export default class CategoryPanel extends React.Component {
@@ -16,50 +15,14 @@ export default class CategoryPanel extends React.Component {
     hasError: PropTypes.bool,
     zoomIn: PropTypes.bool,
     close: PropTypes.func.isRequired,
+    selectPoi: PropTypes.func.isRequired,
+    highlightPoiMarker: PropTypes.func.isRequired,
   }
 
   componentDidUpdate() {
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
       panelContent.scrollTop = 0;
-    }
-  }
-
-  selectPoi = poi => {
-    const previousMarker = document.querySelector('.mapboxgl-marker.active');
-    if (previousMarker) {
-      previousMarker.classList.remove('active');
-    }
-    if (poi.meta && poi.meta.source) {
-      Telemetry.add('open', 'poi', poi.meta.source,
-        Telemetry.buildInteractionData({
-          id: poi.id,
-          source: poi.meta.source,
-          template: 'multiple',
-          zone: 'list',
-          element: 'item',
-          category: this.props.categoryName,
-        })
-      );
-    }
-    window.app.navigateTo(`/place/${poi.toUrl()}`, {
-      poi: poi.serialize(),
-      isFromCategory: true,
-      sourceCategory: this.props.categoryName,
-      layout: layouts.LIST,
-      centerMap: true,
-    });
-    this.highlightPoiMarker(poi, true);
-  }
-
-  highlightPoiMarker = (poi, highlight) => {
-    const marker = document.getElementById(poi.marker_id);
-    if (marker) {
-      if (highlight) {
-        marker.classList.add('active');
-      } else {
-        marker.classList.remove('active');
-      }
     }
   }
 
@@ -79,7 +42,7 @@ export default class CategoryPanel extends React.Component {
   }
 
   render() {
-    const { pois, dataSource, hasError, zoomIn, close } = this.props;
+    const { pois, dataSource, hasError, zoomIn, close, selectPoi, highlightPoiMarker } = this.props;
     let panelContent;
 
     if (hasError) {
@@ -87,8 +50,8 @@ export default class CategoryPanel extends React.Component {
     } else {
       panelContent = <PoiCategoryItemList
         pois={pois}
-        selectPoi={this.selectPoi}
-        highlightMarker={this.highlightPoiMarker}
+        selectPoi={selectPoi}
+        highlightMarker={highlightPoiMarker}
         onShowPhoneNumber={this.onShowPhoneNumber}
       />;
     }
