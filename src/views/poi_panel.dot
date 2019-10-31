@@ -83,49 +83,22 @@
          {{= this.headerPartial(this.poi) }}
          {{= this.titleImagePartial(this.poi) }}
       </div>
-      <div class="poi_panel__actions">
-        <button class="poi_panel__action poi_panel__actions__icon__store
-          {{? this.poi.stored}} icon-icon_star-filled {{??}} icon-icon_star {{?}}"
-          {{= click(this.toggleStorePoi, this) }}
-        >
-          <div>{{? this.poi.stored}} {{= _('SAVED', 'poi') }} {{??}} {{= _('FAVORITES', 'poi') }} {{?}}</div>
-        </button>
-        <button class="poi_panel__action icon-share-2" {{= click(this.openShare, this) }}>
-          <div>{{= _('SHARE', 'poi') }}</div>
-        </button>
-        {{? this.isDirectionActive }}
-          <button class="poi_panel__action icon-corner-up-right" {{= click(this.openDirection, this) }}>
-            <div>{{= _('DIRECTIONS', 'poi') }}</div>
-          </button>
-        {{?}}
-        {{? this.poi.blocksByType && this.poi.blocksByType.phone}}
-          {{? this.shouldPhoneBeHidden() }}
-          <button class="poi_panel__action icon-icon_phone poi_phone_container_hidden" {{= click(this.showPhone, this) }}>
-            <div>{{= _('SHOW NUMBER', 'poi') }}</div>
-          </button>
-          {{?}}
-          <a {{? this.shouldPhoneBeHidden() }} style="display:none" {{?}}
-            class="poi_panel__action icon-icon_phone poi_phone_container_revealed" data-rel="external" rel="noopener noreferrer" href="{{= this.poi.blocksByType.phone.url }}">
-            <div>{{= this.htmlEncode(this.poi.blocksByType.phone.local_format) }}</div>
-          </a>
-        {{?}}
-      </div>
 
       {{? isAnywherePoi && this.categories }}
-          <div class="service_panel__categories--poi">
-            <h3 class="service_panel__categories_title">
-              <span class="icon-icon_compass"></span>{{= _("Search around this place", "poi") }}
-            </h3>
-            {{~ this.categories:category:index }}
-              <button class="service_panel__category" type="button" {{= click(this.openCategory, this, category) }}>
-                <div class="service_panel__category__icon" style="background: {{= category.backgroundColor }}">
-                  <span class="icon icon-{{= category.iconName }}"></span>
-                </div>
-                <div class="service_panel__category__title">{{= category.label }}</div>
-              </button>
-            {{~}}
-          </div>
-        {{?}}
+        <div class="service_panel__categories--poi">
+          <h3 class="service_panel__categories_title">
+            <span class="icon-icon_compass"></span>{{= _("Search around this place", "poi") }}
+          </h3>
+          {{~ this.categories:category:index }}
+            <button class="service_panel__category" type="button" {{= click(this.openCategory, this, category) }}>
+              <div class="service_panel__category__icon" style="background: {{= category.backgroundColor }}">
+                <span class="icon icon-{{= category.iconName }}"></span>
+              </div>
+              <div class="service_panel__category__title">{{= category.label }}</div>
+            </button>
+          {{~}}
+        </div>
+      {{?}}
 
       {{= this.PoiBlocContainer.render(this.poi) }}
 
@@ -135,5 +108,6 @@
 
     </div>
   {{?}}
+  {{= this.actionButtonsPartial(this, this.poi) }}
   </div>
 </div>
