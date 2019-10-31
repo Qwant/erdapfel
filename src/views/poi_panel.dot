@@ -130,22 +130,7 @@
       {{= this.PoiBlocContainer.render(this.poi) }}
 
       {{? this.poi.isFromOSM && this.poi.isFromOSM() }}
-      <div class="osm_contribute">
-        <div class="osm_contribute__logo"></div>
-        <div class="osm_contribute__text_container">
-          <p class="osm_contribute__title">
-            {{= _('Qwant Maps uses OpenStreetMap data.') }}
-          </p>
-          <a class="osm_contribute__link" href="{{= this.poi.viewUrl }}" rel="noopener noreferrer" target="_blank">
-            <i class="icon-chevrons-right osm_contribute__icon"></i>
-            <span class="osm_contribute__about">{{= _('VIEW') }}</span>
-          </a>
-          <a class="osm_contribute__link" href="{{= this.poi.editUrl }}" rel="noopener noreferrer" target="_blank">
-            <i class="icon-chevrons-right osm_contribute__icon" style="margin-left: 10px;"></i>
-            <span class="osm_contribute__about">{{= _('EDIT') }}</span>
-          </a>
-        </div>
-      </div>
+        {{= this.osmContributionPartial(this.poi) }}
       {{?}}
 
     </div>

@@ -3,6 +3,7 @@ import renderStaticReact from 'src/libs/renderStaticReact';
 import PoiHeader from 'src/panel/poi/PoiHeader';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import OpeningHour from 'src/components/OpeningHour';
+import OsmContribution from 'src/components/OsmContribution';
 import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
@@ -23,6 +24,7 @@ const masqFavoriteModal = new MasqFavoriteModal();
 const headerPartial = poi => renderStaticReact(<PoiHeader poi={poi} />);
 const titleImagePartial = poi => renderStaticReact(<PoiTitleImage poi={poi} />);
 const openingHourPartial = poi => renderStaticReact(<OpeningHour poi={poi} />);
+const osmContributionPartial = poi => renderStaticReact(<OsmContribution poi={poi} />);
 
 function PoiPanel() {
   this.isPoiCompliant = true;
@@ -36,6 +38,7 @@ function PoiPanel() {
   this.headerPartial = headerPartial;
   this.titleImagePartial = titleImagePartial;
   this.openingHourPartial = openingHourPartial;
+  this.osmContributionPartial = osmContributionPartial;
   this.isDirectionActive = nconf.get().direction.enabled;
   this.categories = CategoryService.getCategories();
   this.isMasqEnabled = nconf.get().masq.enabled;
