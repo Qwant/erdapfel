@@ -31,15 +31,6 @@ PoiBlocContainer.getBlock = function(name) {
   return PoiBlocContainer.blockComponents[name];
 };
 
-PoiBlocContainer.setBlock = function(block) {
-  const blockComponent = PoiBlocContainer.blockComponents[block.type];
-  return new blockComponent.poiBlockConstructor.default(
-    block,
-    PoiBlocContainer.poi,
-    blockComponent.options,
-  );
-};
-
 PoiBlocContainer.renderBlock = function(block) {
   const blockComponent = getBlockComponent(block);
   if (blockComponent) {
