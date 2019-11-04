@@ -128,6 +128,29 @@ Parameters:
   |-------|-----|------------|---------|--------|
   |get    |lang |en, gb ...  |true     |en      |
 
+### Development tips
+
+If you intend to contribute on the project, those tips might be quite helpful!
+
+#### Get list of the item you're currently seeing on the map
+
+If you want to see all the information provided by an item you're currently seeing on the map, you can do it with your web browser development console. Please note that it's **simpler** to do when there are very few objects displayed, so at very high level of zoom is better:
+
+```js
+let objs = window.map.mb.queryRenderedFeatures();
+# objs is an array, just look each entry to find the one you're looking for!
+```
+
+A note on `window.map.mb`: it is the mapbox-gl object. You might be interested into looking to [mapbox-gl](https://docs.mapbox.com/mapbox-gl-js/api) documentation for more features. You can find the `queryRenderedFeatures`'s documentation [here](https://docs.mapbox.com/mapbox-gl-js/api/#map#queryrenderedfeatures).
+
+#### Change maximum zoom
+
+It can be useful in case you want to debug an object in an area with a lot of items, even at the current maximum zoom:
+
+```js
+# in your web browser development console:
+window.map.mb.setMaxZoom(25); # default maximum zoom is 20
+```
 
 ## License
 
