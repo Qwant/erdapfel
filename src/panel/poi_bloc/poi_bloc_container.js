@@ -14,11 +14,11 @@ PoiBlocContainer.initBlockComponents = function() {
       builder = require(`./${poiBlock.panelName}_panel`);
     } catch (err) {
       const name = poiBlock.panelName.charAt(0).toUpperCase() + poiBlock.panelName.slice(1);
-      const el = require(`../../views/poi_bloc/${name}`);
+      const ReactComponent = require(`../../views/poi_bloc/${name}`).default;
       builder = {
         default: function reactBlockWrapper(block, poi, options) {
           this.render = () =>
-            renderStaticReact(<el.default block={block} poi={poi} options={options} />);
+            renderStaticReact(<ReactComponent block={block} poi={poi} options={options} />);
         },
       };
     }
