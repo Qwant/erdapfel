@@ -44,6 +44,9 @@ export function getVehicleIcon(vehicle) {
 }
 
 export function getStepIcon(step) {
+  if (step.maneuver.type === 'depart') {
+    return 'depart';
+  }
   return (step.maneuver.modifier || step.maneuver.type).replace(/\s/g, '-');
 }
 
