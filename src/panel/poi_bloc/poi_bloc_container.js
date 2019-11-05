@@ -17,8 +17,10 @@ PoiBlocContainer.initBlockComponents = function() {
       const ReactComponent = require(`../../views/poi_bloc/${name}`).default;
       builder = {
         default: function reactBlockWrapper(block, poi, options) {
-          this.render = () =>
-            renderStaticReact(<ReactComponent block={block} poi={poi} options={options} />);
+          this.render = () => renderStaticReact(
+            <ReactComponent block={block} poi={poi} options={options} />);
+          this.toString = () => renderStaticReact(
+            <ReactComponent block={block} poi={poi} options={options} asString />);
         },
       };
     }
