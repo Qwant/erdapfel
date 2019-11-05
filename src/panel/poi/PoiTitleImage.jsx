@@ -4,13 +4,17 @@ import { toCssUrl } from 'src/libs/url_utils';
 
 const defaultIcon = { iconClass: 'location', color: '#444648' };
 
-const PoiTitleImage = ({ poi }) => {
+const PoiTitleImage = ({ poi, iconOnly }) => {
+  if (poi.topImageUrl && !iconOnly) {
+    return <div
+      className="poiTitleImage poiTitleImage--image"
+      style={{ backgroundImage: toCssUrl(poi.topImageUrl) }}
+    />;
+  }
+
   const icon = IconManager.get(poi) || defaultIcon;
   return <div className="poiTitleImage">
-    {poi.topImageUrl && <div className="poiTitleImage-image"
-      style={{ backgroundImage: toCssUrl(poi.topImageUrl) }} />}
-    <div className={`poiTitleImage-icon icon icon-${icon.iconClass}`}
-      style={{ color: icon.color }} />
+    <div className={`icon icon-${icon.iconClass}`} style={{ color: icon.color }} />
   </div>;
 };
 

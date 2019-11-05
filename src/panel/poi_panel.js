@@ -22,7 +22,8 @@ const store = new Store();
 const masqFavoriteModal = new MasqFavoriteModal();
 
 const headerPartial = poi => renderStaticReact(<PoiHeader poi={poi} />);
-const titleImagePartial = poi => renderStaticReact(<PoiTitleImage poi={poi} />);
+const titleImagePartial = (poi, iconOnly = false) =>
+  renderStaticReact(<PoiTitleImage poi={poi} iconOnly={iconOnly} />);
 const openingHourPartial = poi => renderStaticReact(<OpeningHour poi={poi} />);
 const osmContributionPartial = poi => renderStaticReact(<OsmContribution poi={poi} />);
 
