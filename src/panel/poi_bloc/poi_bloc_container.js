@@ -16,8 +16,9 @@ PoiBlocContainer.initBlockComponents = function() {
       const name = poiBlock.panelName.charAt(0).toUpperCase() + poiBlock.panelName.slice(1);
       const el = require(`../../views/poi_bloc/${name}`);
       builder = {
-        default: (block, poi, options) =>
-          renderStaticReact(<el.default block={block} poi={poi} options={options} />),
+        default: (block, poi, options, collapsed) =>
+          renderStaticReact(
+            <el.default block={block} poi={poi} options={options} collapsed={collapsed} />),
         func: true,
       };
     }
@@ -56,7 +57,7 @@ PoiBlocContainer.setBlock = function(block) {
 };
 
 PoiBlocContainer.renderBlock = function(block) {
-  const blockComponent = getBlockComponent(block);
+  const blockComponent = getBlockComponent(block, true);
   if (blockComponent) {
     return blockComponent.render ? blockComponent.render() : blockComponent;
   }
@@ -65,7 +66,7 @@ PoiBlocContainer.renderBlock = function(block) {
 
 PoiBlocContainer.toString = function(blocks) {
   return blocks.map(block => {
-    const blockComponent = getBlockComponent(block);
+    const blockComponent = getBlockComponent(block, false);
     if (blockComponent) {
       return blockComponent.toString();
     }
@@ -74,7 +75,7 @@ PoiBlocContainer.toString = function(blocks) {
 };
 
 /* private */
-function getBlockComponent(block) {
+function getBlockComponent(block, collapsed) {
   const blockComponent = PoiBlocContainer.blockComponents[block.type];
   if (blockComponent) {
     if (blockComponent.poiBlockConstructor.func === true) {
@@ -82,6 +83,7 @@ function getBlockComponent(block) {
         block,
         PoiBlocContainer.poi,
         blockComponent.options,
+        collapsed,
       );
     }
     return new blockComponent.poiBlockConstructor.default(
