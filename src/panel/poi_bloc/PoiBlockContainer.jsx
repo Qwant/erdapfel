@@ -2,6 +2,7 @@
 import Panel from '../../libs/panel';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import React from 'react';
+import HourBlock from '../../views/poi_bloc/Hour';
 import WikiBlock from '../../views/poi_bloc/Wiki';
 import AccessibilityBlock from '../../views/poi_bloc/Accessibility';
 import BreweryBlock from '../../views/poi_bloc/Brewery';
@@ -29,8 +30,9 @@ export default class PoiBlockContainer extends React.Component {
             'images'].find(b => b === blockName);
   }
 
-  render(poi, asString) {
+  render(poi, asString = false) {
     const blocks = poi.blocks;
+    const hourBlock = blocks.find(b => b.type === 'opening_hours');
     const wikiBlock = blocks.find(b => b.type === 'wikipedia');
     const accessibilityBlock = blocks.find(b => b.type === 'accessibility');
     const breweryBlock = blocks.find(b => b.type === 'brewery');
@@ -38,14 +40,15 @@ export default class PoiBlockContainer extends React.Component {
     const contactBlock = blocks.find(b => b.type === 'contact');
     const imagesBlock = blocks.find(b => b.type === 'images');
 
-    return renderStaticReact(<div className="poi_panel__info">
+    return <div className="poi_panel__info">
+      {hourBlock && <HourBlock block={hourBlock} asString />}
       {wikiBlock && <WikiBlock block={wikiBlock} />}
       {accessibilityBlock && <AccessibilityBlock block={accessibilityBlock} asString />}
       {breweryBlock && <BreweryBlock block={breweryBlock} asString />}
       {internetAccessBlock && <InternetAccessBlock block={internetAccessBlock} asString />}
       {contactBlock && <ContactBlock block={contactBlock} asString />}
       {imagesBlock && <ImagesBlock block={imagesBlock} poi={poi} />}
-    </div>);
+    </div>;
   }
 }
 
