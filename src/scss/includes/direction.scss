@@ -87,18 +87,18 @@
   height: 38px;
 }
 
-.itinerary_icon_origin {
-  font-size: 16px;
-  padding: 15px 11px;
-}
-
-.itinerary_icon_origin_inner {
+@mixin icon_origin {
   width: 16px;
   height: 16px;
   background: #4ba2ea;
   border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+.itinerary_icon_origin {
+  @include icon_origin;
+  margin: 15px 11px;
 }
 
 .itinerary_icon_destination {
@@ -311,13 +311,10 @@
 }
 
 .itinerary_marker_origin {
+  @include icon_origin;
+  cursor: pointer;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
-  background: #4ba2ea;
-  border: 2px solid $background;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
-  cursor: pointer;
   z-index: 2;
 }
 
@@ -358,7 +355,13 @@
 }
 
 .itinerary_roadmap_icon_origin {
-  padding: 5px;
+  &:after {
+    @include icon_origin;
+    content: '';
+    display: block;
+    box-sizing: border-box;
+  }
+  padding: 4px;
 }
 
 .itinerary_roadmap_step {

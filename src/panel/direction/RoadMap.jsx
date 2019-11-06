@@ -5,9 +5,7 @@ import RoadMapStep from './RoadMapStep';
 const RoadMap = ({ steps = [], origin }) =>
   <div className="itinerary_roadmap">
     <div className="itinerary_roadmap_step">
-      <div className="itinerary_roadmap_icon itinerary_roadmap_icon_origin">
-        <div className="itinerary_icon_origin_inner" />
-      </div>
+      <div className="itinerary_roadmap_icon itinerary_roadmap_icon_origin" />
       <div className="itinerary_roadmap_instruction">{`${_('Start')} ${origin}`}</div>
       <div className="itinerary_roadmap_distance" />
     </div>
