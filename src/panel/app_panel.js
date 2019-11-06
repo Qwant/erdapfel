@@ -5,7 +5,7 @@ import Panel from '../libs/panel';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
-import EventList from './EventList';
+import EventListPanel from './EventListPanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import nconf from '@qwant/nconf-getter';
@@ -37,7 +37,7 @@ export default class AppPanel {
     this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
     this.poiPanel = new ReactPanelWrapper(PoiPanel);
     this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
-    this.eventListPanel = this.eventEnabled ? new EventList() : null;
+    this.eventListPanel = this.eventEnabled ? new ReactPanelWrapper(EventListPanel) : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
 
     this.panels = [
@@ -89,6 +89,12 @@ export default class AppPanel {
     this.router.addRoute('Category', '/places/(.*)', placesParams => {
       window.execOnMapLoaded(() => {
         this.openCategory(parseQueryString(placesParams));
+      });
+    });
+
+    this.router.addRoute('EventListPanel', '/events/(.*)', eventsParams => {
+      window.execOnMapLoaded(() => {
+        this.openEvents(parseQueryString(eventsParams));
       });
     });
 
@@ -227,10 +233,8 @@ export default class AppPanel {
     this.panels
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
-        if (panel === this.categoryPanel) {
-          if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
-            fire('remove_category_markers');
-          }
+        if (panel === this.categoryPanel || !options.isFromCategory) {
+          fire('remove_category_markers');
         }
         if (panel === this.poiPanel) {
           fire('clean_marker');
@@ -257,6 +261,14 @@ export default class AppPanel {
       query,
       ...otherOptions,
     });
+  }
+
+  openEvents(params) {
+    //const { type: eventName, ...otherOptions } = params;
+    this._openPanel(this.eventListPanel, /*{
+      event: EventsService.getEventByName(eventName),
+      ...otherOptions,
+    }*/);
   }
 
   resetLayout() {
