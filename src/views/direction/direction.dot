@@ -9,9 +9,7 @@
     <div class="itinerary_fields">
       <form onsubmit="fire('submit_direction_origin');return false" novalidate>
         <div class="itinerary_field_origin">
-          <div class="itinerary_icon itinerary_icon_origin">
-            <div class="itinerary_icon_origin_inner"></div>
-          </div>
+          <div class="itinerary_icon itinerary_icon_origin"></div>
           <input id="itinerary_input_origin" type="search" autocomplete="off" spellcheck="false" value="{{= this.origin ? this.origin.getInputValue() : '' }}" required placeholder="{{= _('Start point', 'direction') }}">
           <button class="icon-x itinerary__field__clear" type="button" {{= mousedown(this.clearOrigin, this) }}></button>
         </div>
