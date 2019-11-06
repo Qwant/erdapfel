@@ -365,7 +365,7 @@
   display: flex;
   align-items: center;
   margin-top: 1px;
-  padding-left: 18px;
+  padding-left: 13px;
   border-left: 4px solid $secondary_text;
 }
 
@@ -377,11 +377,6 @@
 .itinerary_roadmap {
   .itinerary_roadmap_step:last-of-type .itinerary_roadmap_instruction {
     border-bottom: none;
-  }
-
-  .itinerary_roadmap_step:last-of-type .itinerary_roadmap_icon {
-    background-image: url(../images/direction_icons/pin.png);
-    background-size: contain;
   }
 }
 
@@ -442,6 +437,7 @@
 
 .itinerary_roadmap_icon_arrive {
   background-image: url('../images/direction_icons/pin.png');
+  background-size: contain;
 }
 
 .itinerary_roadmap_icon_slight-left {
