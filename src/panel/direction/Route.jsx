@@ -1,7 +1,6 @@
 import React from 'react';
 import RouteSummary from './RouteSummary';
 import RoadMap from './RoadMap';
-import { getAllSteps } from 'src/libs/route_utils';
 
 const Route = ({
   id, route, vehicle, showDetails, origin, isActive,
@@ -17,7 +16,7 @@ const Route = ({
       selectRoute={selectRoute}
       vehicle={vehicle}
     />
-    {showDetails && <RoadMap steps={getAllSteps(route)} origin={origin} />}
+    {showDetails && <RoadMap route={route} origin={origin} vehicle={vehicle} />}
   </div>;
 
 export default Route;
