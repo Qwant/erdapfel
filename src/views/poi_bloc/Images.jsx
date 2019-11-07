@@ -11,20 +11,20 @@ const ImagesBlock = ({
     return null;
   }
 
-  return <div className='poi_panel__pictures'>
-    <h5 className='poi_panel__pictures_title'>
-      <i className='icon-icon_camera'></i>
+  return <div className="poi_panel__pictures">
+    <h5 className="poi_panel__pictures_title">
+      <i className="icon-icon_camera"></i>
       { _('Photos') }
     </h5>
-    <div className='poi_panel__pictures_tiles'>
+    <div className="poi_panel__pictures_tiles">
       {
         images.map(i =>
           <a
             key={i.url}
-            target='_blank'
-            rel='noopener noreferrer'
+            target="_blank"
+            rel="noopener noreferrer"
             href={ i.source_url }
-            className='poi_panel__pictures_tile'
+            className="poi_panel__pictures_tile"
             style={{ backgroundImage: toCssUrl(i.url) }}
           />)
       }
