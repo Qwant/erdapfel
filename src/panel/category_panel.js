@@ -73,7 +73,7 @@ export default class CategoryPanel {
 
     this.renderPanel();
 
-    this.addCategoryMarkers();
+    fire('add_category_markers', this.pois);
     fire('save_location');
   }
 
@@ -112,7 +112,6 @@ export default class CategoryPanel {
       dataSource={this.dataSource}
       hasError={!this.pois || this.pois.length === 0}
       zoomIn={!this.pois}
-      close={this.closeAction}
       selectPoi={this.selectPoi}
       highlightPoiMarker={this.highlightPoiMarker}
     />;
@@ -124,21 +123,8 @@ export default class CategoryPanel {
     this.active = false;
     ReactDOM.unmountComponentAtNode(document.querySelector('.react_panel__container'));
     if (!keepCategoryMarkers) {
-      this.removeCategoryMarkers();
+      fire('remove_category_markers');
     }
-  }
-
-  closeAction = () => {
-    SearchInput.setInputValue('');
-    window.app.navigateTo('/');
-  }
-
-  addCategoryMarkers() {
-    fire('add_category_markers', this.pois);
-  }
-
-  removeCategoryMarkers() {
-    fire('remove_category_markers', this.pois);
   }
 
   selectPoi = poi => {
@@ -169,13 +155,6 @@ export default class CategoryPanel {
   }
 
   highlightPoiMarker = (poi, highlight) => {
-    const marker = document.getElementById(poi.marker_id);
-    if (marker) {
-      if (highlight) {
-        marker.classList.add('active');
-      } else {
-        marker.classList.remove('active');
-      }
-    }
+    fire('highlight_category_marker', poi, highlight);
   }
 }

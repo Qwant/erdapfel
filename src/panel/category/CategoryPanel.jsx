@@ -6,6 +6,7 @@ import PoiCategoryItemList from './PoiCategoryItemList';
 import CategoryPanelError from './CategoryPanelError';
 import CategoryPanelHeader from './CategoryPanelHeader';
 import Telemetry from 'src/libs/telemetry';
+import SearchInput from 'src/ui_components/search_input';
 
 export default class CategoryPanel extends React.Component {
   static propTypes = {
@@ -14,7 +15,6 @@ export default class CategoryPanel extends React.Component {
     dataSource: PropTypes.string.isRequired,
     hasError: PropTypes.bool,
     zoomIn: PropTypes.bool,
-    close: PropTypes.func.isRequired,
     selectPoi: PropTypes.func.isRequired,
     highlightPoiMarker: PropTypes.func.isRequired,
   }
@@ -41,8 +41,13 @@ export default class CategoryPanel extends React.Component {
     }
   }
 
+  close = () => {
+    SearchInput.setInputValue('');
+    window.app.navigateTo('/');
+  }
+
   render() {
-    const { pois, dataSource, hasError, zoomIn, close, selectPoi, highlightPoiMarker } = this.props;
+    const { pois, dataSource, hasError, zoomIn, selectPoi, highlightPoiMarker } = this.props;
     let panelContent;
 
     if (hasError) {
@@ -60,7 +65,7 @@ export default class CategoryPanel extends React.Component {
       resizable
       title={<CategoryPanelHeader dataSource={dataSource} />}
       minimizedTitle={_('Show results', 'categories')}
-      close={close}
+      close={this.close}
       className="category__panel"
     >
       {panelContent}

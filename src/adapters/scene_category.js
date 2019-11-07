@@ -14,7 +14,12 @@ export default class SceneCategory {
     listen('remove_category_markers', () => {
       this.removeCategoryMarkers();
     });
+    listen('highlight_category_marker', (poi, highlight) => {
+      this.highlightPoiMarker(poi, highlight);
+    });
   }
+
+
 
   addCategoryMarkers(pois) {
     this.setOsmPoisVisibility(false);
@@ -58,5 +63,16 @@ export default class SceneCategory {
     constants.map.pois_layers.map(poi => {
       this.map.setLayoutProperty(poi, 'visibility', displayed ? 'visible' : 'none');
     });
+  }
+
+  highlightPoiMarker = (poi, highlight) => {
+    const marker = document.getElementById(poi.marker_id);
+    if (marker) {
+      if (highlight) {
+        marker.classList.add('active');
+      } else {
+        marker.classList.remove('active');
+      }
+    }
   }
 }
