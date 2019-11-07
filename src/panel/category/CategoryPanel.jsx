@@ -38,15 +38,7 @@ export default class CategoryPanel extends React.Component {
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
     }
 
-    const rawBbox = (this.props.bbox || '').split(',');
-    const bbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
-    if (bbox) {
-      window.execOnMapLoaded(() => {
-        window.map.mb.fitBounds(bbox, { animate: false });
-      });
-    }
-
-    this.fitMap();
+    this.fitMapAndFetch();
   }
 
   componentDidUpdate() {
@@ -60,7 +52,15 @@ export default class CategoryPanel extends React.Component {
     window.unListen(this.mapMoveHandler);
   }
 
-  fitMap() {
+  fitMapAndFetch() {
+    const rawBbox = (this.props.bbox || '').split(',');
+    const bbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
+    if (bbox) {
+      window.execOnMapLoaded(() => {
+        window.map.mb.fitBounds(bbox, { animate: false });
+      });
+    }
+
     if (window.map.mb.isMoving()) {
       /*
         Do not trigger API search and zoom change when the map
