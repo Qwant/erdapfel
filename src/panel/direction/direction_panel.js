@@ -79,7 +79,7 @@ export default class DirectionPanel {
       if (this.originInput.getValue() === '') {
         this.origin = null;
         fire('clean_route');
-        this.roadMapPanel.setRoad([], this.vehicle, this.origin);
+        this.roadMapPanel.setRoad([], this.vehicle, this.origin, this.destination);
       }
     };
 
@@ -92,7 +92,7 @@ export default class DirectionPanel {
       if (this.destinationInput.getValue() === '') {
         this.destination = null;
         fire('clean_route');
-        this.roadMapPanel.setRoad([], this.vehicle, this.origin);
+        this.roadMapPanel.setRoad([], this.vehicle, this.origin, this.destination);
       }
     };
 
@@ -233,7 +233,7 @@ export default class DirectionPanel {
           route.id = i;
         });
 
-        this.roadMapPanel.setRoad(routes, this.vehicle, this.origin);
+        this.roadMapPanel.setRoad(routes, this.vehicle, this.origin, this.destination);
         this.setRoutesOnMap(routes, options);
 
       } else {

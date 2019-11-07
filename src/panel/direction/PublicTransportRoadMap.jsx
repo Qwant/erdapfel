@@ -14,7 +14,7 @@ const Leg = ({ leg }) => {
     : <TransportLineLeg leg={leg} />;
 };
 
-const PublicTransportRoadMap = ({ route, origin }) => {
+const PublicTransportRoadMap = ({ route, origin, destination }) => {
   return <div className="itinerary_roadmap">
     <div className="itinerary_roadmap_step">
       <div className="itinerary_roadmap_icon itinerary_roadmap_icon_origin" />
@@ -22,6 +22,11 @@ const PublicTransportRoadMap = ({ route, origin }) => {
       <div className="itinerary_roadmap_distance" />
     </div>
     {route.legs.map((leg, index) => <Leg key={index} leg={leg} />)}
+    <div className="itinerary_roadmap_step">
+      <div className="itinerary_roadmap_icon itinerary_roadmap_icon_arrive" />
+      <div className="itinerary_roadmap_instruction">{`${_('Arrival')} ${destination}`}</div>
+      <div className="itinerary_roadmap_distance" />
+    </div>
   </div>;
 };
 

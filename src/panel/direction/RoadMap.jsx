@@ -4,9 +4,9 @@ import RoadMapStep from './RoadMapStep';
 import { getAllSteps } from 'src/libs/route_utils';
 import PublicTransportRoadMap from './PublicTransportRoadMap';
 
-const RoadMap = ({ route, origin, vehicle }) => {
+const RoadMap = ({ route, origin, destination, vehicle }) => {
   if (vehicle === 'publicTransport') {
-    return <PublicTransportRoadMap route={route} origin={origin} />;
+    return <PublicTransportRoadMap route={route} origin={origin} destination={destination} />;
   }
 
   return <div className="itinerary_roadmap">

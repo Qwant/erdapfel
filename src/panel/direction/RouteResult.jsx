@@ -9,6 +9,7 @@ export default class RouteResult extends React.Component {
   static propTypes = {
     routes: PropTypes.array,
     origin: PropTypes.string,
+    destination: PropTypes.string,
     vehicle: PropTypes.string,
     isLoading: PropTypes.bool,
     error: PropTypes.bool,
@@ -107,6 +108,7 @@ export default class RouteResult extends React.Component {
       id={index}
       route={route}
       origin={this.props.origin}
+      destination={this.props.destination}
       vehicle={this.props.vehicle}
       isActive={this.state.activeRouteId === index}
       showDetails={this.state.activeRouteId === index && this.state.activeDetails}
