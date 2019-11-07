@@ -96,7 +96,7 @@ pois:
 - apiName: brewery
   panelName: brewery
 - apiName: internet_access
-  panelName: internet_access
+  panelName: InternetAccess
 - apiName: contact
   panelName: contact
 - apiName: images
