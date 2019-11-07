@@ -107,7 +107,6 @@ export default class CategoryPanel {
       dataSource={this.dataSource}
       hasError={!this.pois || this.pois.length === 0}
       zoomIn={!this.pois}
-      highlightPoiMarker={this.highlightPoiMarker}
     />;
     ReactDOM.render(panel, document.querySelector('.react_panel__container'));
   }
@@ -119,9 +118,5 @@ export default class CategoryPanel {
     if (!keepCategoryMarkers) {
       fire('remove_category_markers');
     }
-  }
-
-  highlightPoiMarker = (poi, highlight) => {
-    fire('highlight_category_marker', poi, highlight);
   }
 }

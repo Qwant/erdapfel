@@ -15,7 +15,6 @@ export default class CategoryPanel extends React.Component {
     dataSource: PropTypes.string.isRequired,
     hasError: PropTypes.bool,
     zoomIn: PropTypes.bool,
-    highlightPoiMarker: PropTypes.func.isRequired,
   }
 
   componentDidUpdate() {
@@ -49,8 +48,12 @@ export default class CategoryPanel extends React.Component {
     fire('click_category_poi', poi, this.props.categoryName);
   }
 
+  highlightPoiMarker = (poi, highlight) => {
+    fire('highlight_category_marker', poi, highlight);
+  }
+
   render() {
-    const { pois, dataSource, hasError, zoomIn, highlightPoiMarker } = this.props;
+    const { pois, dataSource, hasError, zoomIn } = this.props;
     let panelContent;
 
     if (hasError) {
@@ -59,7 +62,7 @@ export default class CategoryPanel extends React.Component {
       panelContent = <PoiCategoryItemList
         pois={pois}
         selectPoi={this.selectPoi}
-        highlightMarker={highlightPoiMarker}
+        highlightMarker={this.highlightPoiMarker}
         onShowPhoneNumber={this.onShowPhoneNumber}
       />;
     }
