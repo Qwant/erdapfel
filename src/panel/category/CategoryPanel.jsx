@@ -7,24 +7,46 @@ import CategoryPanelError from './CategoryPanelError';
 import CategoryPanelHeader from './CategoryPanelHeader';
 import Telemetry from 'src/libs/telemetry';
 import SearchInput from 'src/ui_components/search_input';
-import debounce from 'src/libs/debounce';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
+import CategoryService from 'src/adapters/category_service';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
 export default class CategoryPanel extends React.Component {
   static propTypes = {
-    categoryName: PropTypes.string.isRequired,
-    pois: PropTypes.array.isRequired,
-    dataSource: PropTypes.string.isRequired,
-    hasError: PropTypes.bool,
-    zoomIn: PropTypes.bool,
+    categoryName: PropTypes.string,
+    query: PropTypes.string,
+    bbox: PropTypes.string,
+  }
+
+  state = {
+    pois: [],
+    dataSource: '',
+    hasError: false,
+    zoomIn: false,
+    loading: true,
   }
 
   componentDidMount() {
-    listen('map_moveend', this.fetchData);
+    this.mapMoveHandler = listen('map_moveend', this.fetchData);
+
+    if (this.props.categoryName) {
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category: this.props.categoryName });
+      const { label } = CategoryService.getCategoryByName(this.props.categoryName);
+      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
+    }
+
+    const rawBbox = (this.props.bbox || '').split(',');
+    const bbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
+    if (bbox) {
+      window.execOnMapLoaded(() => {
+        window.map.mb.fitBounds(bbox, { animate: false });
+      });
+    }
+
+    this.fitMap();
   }
 
   componentDidUpdate() {
@@ -35,11 +57,37 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    window.unListen('map_moveend', this.fetchData);
+    window.unListen(this.mapMoveHandler);
   }
 
-  fetchData = debounce(async () => {
-    this.loading = true;
+  fitMap() {
+    if (window.map.mb.isMoving()) {
+      /*
+        Do not trigger API search and zoom change when the map
+        is already moving, to avoid flickering.
+        The search will be triggered on moveend.
+      */
+      return;
+    }
+
+    // Apply correct zoom when opening a category
+    const currentZoom = window.map.mb.getZoom();
+
+    // Zoom < 5: focus on Paris
+    if (currentZoom < 5) {
+      window.map.mb.flyTo({ center: [2.35, 48.85], zoom: 12 });
+    } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
+      window.map.mb.flyTo({ zoom: 12 });
+    } else if (currentZoom > 16) { // Zoom > 16: dezoom to zoom 16
+      window.map.mb.flyTo({ zoom: 16 });
+    } else {
+      this.fetchData();
+    }
+  }
+
+  fetchData = async () => {
+    this.setState({ loading: true });
+
     const bbox = window.map.mb.getBounds();
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
@@ -48,16 +96,18 @@ export default class CategoryPanel extends React.Component {
     const { places, source } = await IdunnPoi.poiCategoryLoad(
       urlBBox,
       MAX_PLACES,
-      this.categoryName,
-      this.query
+      this.props.categoryName,
+      this.props.query
     );
-    this.pois = places;
-    this.dataSource = source;
-    this.loading = false;
+    this.setState({
+      pois: places,
+      dataSource: source,
+      loading: false,
+    });
 
-    fire('add_category_markers', this.pois);
+    fire('add_category_markers', places);
     fire('save_location');
-  });
+  };
 
   onShowPhoneNumber = poi => {
     if (poi.meta && poi.meta.source) {
@@ -88,7 +138,15 @@ export default class CategoryPanel extends React.Component {
   }
 
   render() {
-    const { pois, dataSource, hasError, zoomIn } = this.props;
+    const { loading, pois, dataSource } = this.state;
+
+    if (loading) {
+      return null;
+    }
+
+    const hasError = !pois || pois.length === 0;
+    const zoomIn = !this.pois;
+
     let panelContent;
 
     if (hasError) {

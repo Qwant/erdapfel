@@ -15,10 +15,9 @@ import nconf from '@qwant/nconf-getter';
 import DirectionPanel from './direction/direction_panel';
 import Menu from './Menu';
 import Telemetry from '../libs/telemetry';
-import CategoryPanel from './category_panel';
+import CategoryPanel from 'src/panel/category/CategoryPanel';
 import ApiPoi from '../adapters/poi/idunn_poi';
 import Router from 'src/proxies/app_router';
-import CategoryService from 'src/adapters/category_service';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
@@ -39,7 +38,7 @@ export default class AppPanel {
     this.servicePanel = new ReactPanelWrapper(ServicePanel);
     this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
     this.poiPanel = new PoiPanel();
-    this.categoryPanel = this.categoryEnabled ? new CategoryPanel() : null;
+    this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
 
     this.panels = [
@@ -196,10 +195,10 @@ export default class AppPanel {
     this.panels.forEach(panel => {
       if (panel === this.poiPanel) {
         panel.setPoi(poi, options);
-      } else if (panel === this.categoryPanel) {
-        const keepCategoryMarkers = options.isFromCategory;
-        panel.close(keepCategoryMarkers);
       } else {
+        if (panel === this.categoryPanel && !options.isFromCategory) {
+          fire('remove_category_markers');
+        }
         panel.close();
       }
     });
@@ -255,7 +254,12 @@ export default class AppPanel {
     this.activePoiId = null;
     this.panels
       .filter(panel => panel !== panelToOpen)
-      .forEach(panel => { panel.close(); });
+      .forEach(panel => {
+        if (panel === this.categoryPanel) {
+          fire('remove_category_markers');
+        }
+        panel.close();
+      });
     panelToOpen.open(options);
   }
 
@@ -269,9 +273,10 @@ export default class AppPanel {
   }
 
   openCategory(params) {
-    const { type: categoryName, ...otherOptions } = params;
+    const { type: categoryName, q: query, ...otherOptions } = params;
     this._openPanel(this.categoryPanel, {
-      category: CategoryService.getCategoryByName(categoryName),
+      categoryName,
+      query,
       ...otherOptions,
     });
   }
