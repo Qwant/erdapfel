@@ -1,6 +1,8 @@
 import { Marker } from 'mapbox-gl--ENV';
 import constants from '../../config/constants.yml';
 import { createIcon } from '../adapters/icon_manager';
+import Telemetry from 'src/libs/telemetry';
+import layouts from 'src/panel/layouts.js';
 
 export default class SceneCategory {
   constructor(map) {
@@ -17,9 +19,37 @@ export default class SceneCategory {
     listen('highlight_category_marker', (poi, highlight) => {
       this.highlightPoiMarker(poi, highlight);
     });
+    listen('click_category_poi', (poi, categoryName) => {
+      this.selectPoi(poi, categoryName);
+    });
   }
 
-
+  selectPoi = (poi, categoryName) => {
+    const previousMarker = document.querySelector('.mapboxgl-marker.active');
+    if (previousMarker) {
+      previousMarker.classList.remove('active');
+    }
+    if (poi.meta && poi.meta.source) {
+      Telemetry.add('open', 'poi', poi.meta.source,
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source: poi.meta.source,
+          template: 'multiple',
+          zone: 'list',
+          element: 'item',
+          category: categoryName,
+        })
+      );
+    }
+    window.app.navigateTo(`/place/${poi.toUrl()}`, {
+      poi: poi.serialize(),
+      isFromCategory: true,
+      sourceCategory: this.categoryName,
+      layout: layouts.LIST,
+      centerMap: true,
+    });
+    this.highlightPoiMarker(poi, true);
+  }
 
   addCategoryMarkers(pois) {
     this.setOsmPoisVisibility(false);

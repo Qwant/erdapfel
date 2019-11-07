@@ -6,7 +6,6 @@ import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
 import nconf from '@qwant/nconf-getter';
 import Telemetry from '../libs/telemetry';
-import layouts from 'src/panel/layouts.js';
 import ReactCategoryPanel from './category/CategoryPanel';
 
 const categoryConfig = nconf.get().category;
@@ -27,10 +26,6 @@ export default class CategoryPanel {
         this.search();
       }
     }, 300, this));
-
-    listen('click_category_poi', poi => {
-      this.selectPoi(poi);
-    });
   }
 
   restoreParams(options) {
@@ -112,7 +107,6 @@ export default class CategoryPanel {
       dataSource={this.dataSource}
       hasError={!this.pois || this.pois.length === 0}
       zoomIn={!this.pois}
-      selectPoi={this.selectPoi}
       highlightPoiMarker={this.highlightPoiMarker}
     />;
     ReactDOM.render(panel, document.querySelector('.react_panel__container'));
@@ -125,33 +119,6 @@ export default class CategoryPanel {
     if (!keepCategoryMarkers) {
       fire('remove_category_markers');
     }
-  }
-
-  selectPoi = poi => {
-    const previousMarker = document.querySelector('.mapboxgl-marker.active');
-    if (previousMarker) {
-      previousMarker.classList.remove('active');
-    }
-    if (poi.meta && poi.meta.source) {
-      Telemetry.add('open', 'poi', poi.meta.source,
-        Telemetry.buildInteractionData({
-          id: poi.id,
-          source: poi.meta.source,
-          template: 'multiple',
-          zone: 'list',
-          element: 'item',
-          category: this.categoryName,
-        })
-      );
-    }
-    window.app.navigateTo(`/place/${poi.toUrl()}`, {
-      poi: poi.serialize(),
-      isFromCategory: true,
-      sourceCategory: this.categoryName,
-      layout: layouts.LIST,
-      centerMap: true,
-    });
-    this.highlightPoiMarker(poi, true);
   }
 
   highlightPoiMarker = (poi, highlight) => {
