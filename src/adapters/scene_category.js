@@ -44,7 +44,7 @@ export default class SceneCategory {
     window.app.navigateTo(`/place/${poi.toUrl()}`, {
       poi: poi.serialize(),
       isFromCategory: true,
-      sourceCategory: this.categoryName,
+      sourceCategory: categoryName,
       layout: layouts.LIST,
       centerMap: true,
     });

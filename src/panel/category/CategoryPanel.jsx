@@ -7,6 +7,12 @@ import CategoryPanelError from './CategoryPanelError';
 import CategoryPanelHeader from './CategoryPanelHeader';
 import Telemetry from 'src/libs/telemetry';
 import SearchInput from 'src/ui_components/search_input';
+import debounce from 'src/libs/debounce';
+import nconf from '@qwant/nconf-getter';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
+
+const categoryConfig = nconf.get().category;
+const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
 export default class CategoryPanel extends React.Component {
   static propTypes = {
@@ -17,12 +23,41 @@ export default class CategoryPanel extends React.Component {
     zoomIn: PropTypes.bool,
   }
 
+  componentDidMount() {
+    listen('map_moveend', this.fetchData);
+  }
+
   componentDidUpdate() {
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
       panelContent.scrollTop = 0;
     }
   }
+
+  componentWillUnmount() {
+    window.unListen('map_moveend', this.fetchData);
+  }
+
+  fetchData = debounce(async () => {
+    this.loading = true;
+    const bbox = window.map.mb.getBounds();
+    const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
+      .map(cardinal => cardinal.toFixed(7))
+      .join(',');
+
+    const { places, source } = await IdunnPoi.poiCategoryLoad(
+      urlBBox,
+      MAX_PLACES,
+      this.categoryName,
+      this.query
+    );
+    this.pois = places;
+    this.dataSource = source;
+    this.loading = false;
+
+    fire('add_category_markers', this.pois);
+    fire('save_location');
+  });
 
   onShowPhoneNumber = poi => {
     if (poi.meta && poi.meta.source) {

@@ -1,15 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import IdunnPoi from '../adapters/poi/idunn_poi';
 import SearchInput from '../ui_components/search_input';
-import debounce from '../libs/debounce';
 import poiSubClass from '../mapbox/poi_subclass';
-import nconf from '@qwant/nconf-getter';
 import Telemetry from '../libs/telemetry';
 import ReactCategoryPanel from './category/CategoryPanel';
 
-const categoryConfig = nconf.get().category;
-const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
 export default class CategoryPanel {
   constructor() {
@@ -20,12 +15,6 @@ export default class CategoryPanel {
     this.loading = false;
     this.query = '';
     this.dataSource = '';
-
-    listen('map_moveend', debounce( function() {
-      if (this.active) {
-        this.search();
-      }
-    }, 300, this));
   }
 
   restoreParams(options) {
@@ -47,29 +36,6 @@ export default class CategoryPanel {
         window.map.mb.fitBounds(bbox, { animate: false });
       });
     }
-  }
-
-  async search() {
-    this.loading = true;
-    const bbox = window.map.mb.getBounds();
-    const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
-      .map(cardinal => cardinal.toFixed(7))
-      .join(',');
-
-    const { places, source } = await IdunnPoi.poiCategoryLoad(
-      urlBBox,
-      MAX_PLACES,
-      this.categoryName,
-      this.query
-    );
-    this.pois = places;
-    this.dataSource = source;
-    this.loading = false;
-
-    this.renderPanel();
-
-    fire('add_category_markers', this.pois);
-    fire('save_location');
   }
 
   open(options = {}) {
