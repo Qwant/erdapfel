@@ -105,7 +105,7 @@ export default class CategoryPanel extends React.Component {
       loading: false,
     });
 
-    fire('add_category_markers', places);
+    fire('add_category_markers', places, this.props.categoryName);
     fire('save_location');
   };
 
