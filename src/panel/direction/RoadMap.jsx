@@ -1,6 +1,7 @@
 /* global _ */
 import React from 'react';
 import RoadMapStep from './RoadMapStep';
+import RoadMapItem from './RoadMapItem';
 import { getAllSteps } from 'src/libs/route_utils';
 import PublicTransportRoadMap from './PublicTransportRoadMap';
 
@@ -10,11 +11,9 @@ const RoadMap = ({ route, origin, destination, vehicle }) => {
   }
 
   return <div className="itinerary_roadmap">
-    <div className="itinerary_roadmap_step">
-      <div className="itinerary_roadmap_icon itinerary_roadmap_icon_origin" />
-      <div className="itinerary_roadmap_instruction">{`${_('Start')} ${origin}`}</div>
-      <div className="itinerary_roadmap_distance" />
-    </div>
+    <RoadMapItem icon="origin">
+      {`${_('Start')} ${origin}`}
+    </RoadMapItem>
     {getAllSteps(route).map((step, index) => <RoadMapStep
       key={index}
       step={step}

@@ -2,6 +2,7 @@
 import React from 'react';
 import WalkLeg from './WalkLeg';
 import TransportLineLeg from './TransportLineLeg';
+import RoadMapItem from './RoadMapItem';
 
 const Leg = ({ leg }) => {
   // @TODO: decide what to do with waiting parts. For now just ignore.
@@ -16,17 +17,13 @@ const Leg = ({ leg }) => {
 
 const PublicTransportRoadMap = ({ route, origin, destination }) => {
   return <div className="itinerary_roadmap">
-    <div className="itinerary_roadmap_step">
-      <div className="itinerary_roadmap_icon itinerary_roadmap_icon_origin" />
-      <div className="itinerary_roadmap_instruction">{`${_('Start')} ${origin}`}</div>
-      <div className="itinerary_roadmap_distance" />
-    </div>
+    <RoadMapItem icon="origin">
+      {`${_('Start')} ${origin}`}
+    </RoadMapItem>
     {route.legs.map((leg, index) => <Leg key={index} leg={leg} />)}
-    <div className="itinerary_roadmap_step">
-      <div className="itinerary_roadmap_icon itinerary_roadmap_icon_arrive" />
-      <div className="itinerary_roadmap_instruction">{`${_('Arrival')} ${destination}`}</div>
-      <div className="itinerary_roadmap_distance" />
-    </div>
+    <RoadMapItem icon="arrive">
+      {`${_('Arrival')} ${destination}`}
+    </RoadMapItem>
   </div>;
 };
 

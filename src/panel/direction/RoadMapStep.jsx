@@ -1,13 +1,14 @@
 import React from 'react';
 import { formatDistance, getStepIcon } from 'src/libs/route_utils';
+import RoadMapItem from './RoadMapItem';
 
 const RoadMapStep = ({ step, ...rest }) =>
-  <div className="itinerary_roadmap_step" {...rest}>
-    <div className={`itinerary_roadmap_icon itinerary_roadmap_icon_${getStepIcon(step)}`} />
-    <div className="itinerary_roadmap_instruction">{step.maneuver.instruction}</div>
-    <div className="itinerary_roadmap_distance">
-      {step.distance ? formatDistance(step.distance) : null}
-    </div>
-  </div>;
+  <RoadMapItem
+    icon={getStepIcon(step)}
+    distance={step.distance ? formatDistance(step.distance) : null}
+    {...rest}
+  >
+    {step.maneuver.instruction}
+  </RoadMapItem>;
 
 export default RoadMapStep;
