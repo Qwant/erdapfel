@@ -7,7 +7,6 @@ const TransportLineLeg = ({ leg }) => {
   const { mode, info = {}, stops = [] } = leg;
   const from = stops[0];
   const to = stops[stops.length - 1];
-  const middleStops = stops.slice(1, stops.length - 1);
 
   return <Fragment>
     <RoadMapItem>
@@ -16,11 +15,10 @@ const TransportLineLeg = ({ leg }) => {
         {from.name && to.name && <div className="itinerary_roadmap_fromTo">
           {`${from.name} => ${to.name}`}
         </div>}
-        {middleStops.length > 0 &&
-          <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />}
+        <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
       </div>
     </RoadMapItem>
-    {detailsOpen && middleStops.map((stop, index) =>
+    {detailsOpen && stops.map((stop, index) =>
       <RoadMapItem key={index}>
         {stop.name}
       </RoadMapItem>)}
