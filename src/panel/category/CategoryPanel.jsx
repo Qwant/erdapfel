@@ -24,9 +24,7 @@ export default class CategoryPanel extends React.Component {
   state = {
     pois: [],
     dataSource: '',
-    hasError: false,
-    zoomIn: false,
-    loading: true,
+    initialLoading: true,
   }
 
   componentDidMount() {
@@ -86,8 +84,6 @@ export default class CategoryPanel extends React.Component {
   }
 
   fetchData = async () => {
-    this.setState({ loading: true });
-
     const bbox = window.map.mb.getBounds();
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
@@ -102,7 +98,7 @@ export default class CategoryPanel extends React.Component {
     this.setState({
       pois: places,
       dataSource: source,
-      loading: false,
+      initialLoading: false,
     });
 
     fire('add_category_markers', places, this.props.categoryName);
@@ -138,14 +134,14 @@ export default class CategoryPanel extends React.Component {
   }
 
   render() {
-    const { loading, pois, dataSource } = this.state;
+    const { initialLoading, pois, dataSource } = this.state;
 
-    if (loading) {
+    if (initialLoading) {
       return null;
     }
 
     const hasError = !pois || pois.length === 0;
-    const zoomIn = !this.pois;
+    const zoomIn = !pois;
 
     let panelContent;
 
