@@ -154,7 +154,6 @@ export default class DirectionPanel {
   }
 
   closeAction() {
-    this.roadMapPanel.close();
     if (this.poiBeforeOpening) {
       const { poi, isFromCategory, isFromFavorite } = this.poiBeforeOpening;
       this.poiBeforeOpening = null;
@@ -182,6 +181,7 @@ export default class DirectionPanel {
     if (!this.active) {
       return;
     }
+    this.roadMapPanel.close();
     Telemetry.add(Telemetry.ITINERARY_CLOSE);
     document.body.classList.remove('directions-open');
     const bottomButtonGroup = document.querySelector('.map_bottom_button_group');
