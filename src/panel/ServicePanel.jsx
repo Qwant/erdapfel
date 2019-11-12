@@ -11,7 +11,7 @@ class ServicePanel extends React.Component {
       resizable
       title={_('Qwant Maps services', 'service panel')}
       minimizedTitle={_('Show Qwant Maps services', 'service panel')}
-      className='service_panel'
+      className="service_panel"
     >
       <div className="service_panel__categories">
         {
