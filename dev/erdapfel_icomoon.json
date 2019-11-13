@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "name": "Untitled Project",
+    "name": "Qwant Maps icon font",
     "lastOpened": 0,
-    "created": 1570020953956
+    "created": 1573654199929
   },
   "iconSets": [
     {
@@ -133,7 +133,7 @@
           "name": "pin_geoloc",
           "prevSize": 24,
           "code": 59661,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 0,
@@ -190,7 +190,7 @@
           "prevSize": 24,
           "code": 59691,
           "name": "alert-triangle",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 10,
@@ -254,7 +254,7 @@
           "prevSize": 24,
           "code": 59693,
           "name": "arrow-left",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 22,
@@ -306,7 +306,7 @@
           "prevSize": 24,
           "code": 59682,
           "name": "at-sign",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 30,
@@ -386,7 +386,7 @@
           "prevSize": 24,
           "code": 59677,
           "name": "check",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 49,
@@ -410,7 +410,7 @@
           "prevSize": 24,
           "code": 59667,
           "name": "chevron-left",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 53,
@@ -418,7 +418,7 @@
           "prevSize": 24,
           "code": 59668,
           "name": "chevron-right",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 54,
@@ -442,7 +442,7 @@
           "prevSize": 24,
           "code": 59665,
           "name": "chevrons-right",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 58,
@@ -506,7 +506,7 @@
           "prevSize": 24,
           "code": 59670,
           "name": "compass",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 73,
@@ -514,7 +514,7 @@
           "prevSize": 24,
           "code": 59676,
           "name": "copy",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 74,
@@ -570,7 +570,7 @@
           "prevSize": 24,
           "code": 59696,
           "name": "corner-up-left",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 81,
@@ -578,7 +578,7 @@
           "prevSize": 24,
           "code": 59663,
           "name": "corner-up-right",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 82,
@@ -598,7 +598,7 @@
           "prevSize": 24,
           "code": 59697,
           "name": "crosshair",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 86,
@@ -662,7 +662,7 @@
           "prevSize": 24,
           "code": 59666,
           "name": "facebook",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 100,
@@ -762,7 +762,7 @@
           "prevSize": 24,
           "code": 59679,
           "name": "hash",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 123,
@@ -850,7 +850,7 @@
           "prevSize": 24,
           "code": 59678,
           "name": "mail",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 144,
@@ -858,7 +858,7 @@
           "prevSize": 24,
           "code": 59680,
           "name": "map",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 145,
@@ -866,7 +866,7 @@
           "prevSize": 24,
           "code": 59690,
           "name": "map-pin",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 146,
@@ -910,7 +910,7 @@
           "prevSize": 24,
           "code": 59674,
           "name": "minus",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 156,
@@ -934,7 +934,7 @@
           "prevSize": 24,
           "code": 59671,
           "name": "more-horizontal",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 161,
@@ -954,7 +954,7 @@
           "prevSize": 24,
           "code": 59683,
           "name": "navigation",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 165,
@@ -1030,7 +1030,7 @@
           "prevSize": 24,
           "code": 59675,
           "name": "plus",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 183,
@@ -1054,7 +1054,7 @@
           "prevSize": 24,
           "code": 59692,
           "name": "printer",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 188,
@@ -1122,7 +1122,7 @@
           "prevSize": 24,
           "code": 59673,
           "name": "share-2",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 204,
@@ -1142,7 +1142,7 @@
         },
         {
           "id": 208,
-          "order": 77,
+          "order": 0,
           "prevSize": 24,
           "code": 59687,
           "name": "shuffle",
@@ -17610,12 +17610,20 @@
     {
       "selection": [
         {
+          "order": 87,
+          "id": 28,
+          "name": "reverse",
+          "prevSize": 32,
+          "code": 59687,
+          "tempChar": ""
+        },
+        {
           "order": 83,
           "id": 27,
           "name": "public-transport",
           "prevSize": 32,
           "code": 59700,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 78,
@@ -17623,7 +17631,7 @@
           "name": "bike",
           "prevSize": 32,
           "code": 59686,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 72,
@@ -17631,7 +17639,7 @@
           "name": "drive",
           "prevSize": 32,
           "code": 59684,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 73,
@@ -17639,7 +17647,7 @@
           "name": "foot",
           "prevSize": 32,
           "code": 59685,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 0,
@@ -17663,7 +17671,7 @@
           "name": "icon_chevron-down",
           "prevSize": 32,
           "code": 59648,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 3,
@@ -17671,7 +17679,7 @@
           "name": "icon_chevron-up",
           "prevSize": 32,
           "code": 59649,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 4,
@@ -17679,7 +17687,7 @@
           "name": "icon_globe",
           "prevSize": 32,
           "code": 59650,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 5,
@@ -17687,7 +17695,7 @@
           "name": "icon_list",
           "prevSize": 32,
           "code": 59651,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 6,
@@ -17695,7 +17703,7 @@
           "name": "icon_star",
           "prevSize": 32,
           "code": 59652,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 7,
@@ -17703,7 +17711,7 @@
           "name": "icon_star-filled",
           "prevSize": 32,
           "code": 59653,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 8,
@@ -17711,7 +17719,7 @@
           "name": "icon_at-sign",
           "prevSize": 32,
           "code": 59654,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 9,
@@ -17719,7 +17727,7 @@
           "name": "icon_award",
           "prevSize": 32,
           "code": 59655,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 10,
@@ -17727,7 +17735,7 @@
           "name": "icon_camera",
           "prevSize": 32,
           "code": 59656,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 0,
@@ -17745,7 +17753,7 @@
           "name": "icon_clock",
           "prevSize": 32,
           "code": 59657,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 14,
@@ -17753,7 +17761,7 @@
           "name": "icon_compass",
           "prevSize": 32,
           "code": 59658,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 15,
@@ -17761,7 +17769,7 @@
           "name": "icon_edit-2",
           "prevSize": 32,
           "code": 59659,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 0,
@@ -17774,7 +17782,7 @@
           "name": "icon_info",
           "prevSize": 32,
           "code": 59660,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 0,
@@ -17795,7 +17803,7 @@
           "name": "icon_phone",
           "prevSize": 32,
           "code": 59662,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 0,
@@ -17820,13 +17828,44 @@
       "metadata": {
         "name": "Untitled Set",
         "importSize": {
-          "width": 14,
-          "height": 18
+          "width": 20,
+          "height": 20
         }
       },
       "height": 1024,
       "prevSize": 32,
       "icons": [
+        {
+          "id": 28,
+          "paths": [
+            "M543.693 683.878l-219.443 219.443c-3.635 3.635-7.322 7.322-10.957 7.322-3.635 3.635-10.957 3.635-14.643 3.635-3.635 0-10.957 0-14.592-3.635-3.686-3.686-7.322-3.686-11.008-7.322l-219.392-219.443c-6.771-6.449-10.982-15.533-10.982-25.6s4.211-19.151 10.968-25.586l0.014-0.014c6.449-6.771 15.533-10.982 25.6-10.982s19.151 4.211 25.586 10.968l0.014 0.014 157.235 157.286v-540.109c0-20.204 16.378-36.582 36.582-36.582s36.582 16.378 36.582 36.582v0 540.058l157.235-157.286c6.449-6.771 15.533-10.982 25.6-10.982s19.151 4.211 25.586 10.968l0.014 0.014c6.771 6.449 10.982 15.533 10.982 25.6s-4.211 19.151-10.968 25.586l-0.014 0.014z",
+            "M970.342 451.738c-6.1 6.778-14.902 11.020-24.694 11.020-0.318 0-0.636-0.004-0.952-0.013l0.047 0.001c-0.27 0.008-0.587 0.012-0.906 0.012-9.793 0-18.595-4.243-24.668-10.99l-0.027-0.030-157.235-157.491v540.826c0 21.965-14.643 36.608-36.557 36.608-21.965 0-36.608-14.643-36.608-36.608v-540.826l-157.235 157.491c-6.449 6.771-15.533 10.982-25.6 10.982s-19.151-4.211-25.586-10.968l-0.014-0.014c-6.761-6.463-10.963-15.554-10.963-25.626s4.203-19.162 10.95-25.613l0.013-0.013 219.443-219.75c3.635-3.635 7.322-7.322 10.957-7.322 7.322-3.686 18.278-3.686 29.235 0 3.686 3.686 7.322 3.686 11.008 7.322l219.392 219.75c6.761 6.463 10.963 15.554 10.963 25.626s-4.203 19.162-10.95 25.613l-0.013 0.013z"
+          ],
+          "attrs": [
+            {
+              "fill": "rgb(92, 111, 132)"
+            },
+            {
+              "fill": "rgb(92, 111, 132)"
+            }
+          ],
+          "isMulticolor": false,
+          "isMulticolor2": false,
+          "grid": 0,
+          "tags": [
+            "reverse"
+          ],
+          "colorPermutations": {
+            "12525251921111321": [
+              {
+                "f": 2
+              },
+              {
+                "f": 2
+              }
+            ]
+          }
+        },
         {
           "id": 27,
           "paths": [
