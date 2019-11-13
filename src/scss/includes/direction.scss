@@ -382,6 +382,13 @@
   }
 }
 
+.itinerary_roadmap_item_summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 12px;
+}
+
 .itinerary_roadmap_instruction {
   font-size: 14px;
   color: $primary_text;

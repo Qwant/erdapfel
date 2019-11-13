@@ -10,8 +10,12 @@ const WalkLeg = ({ leg }) => {
 
   return <Fragment>
     <RoadMapItem icon="walk">
-      <div onClick={() => setDetailsOpen(!detailsOpen)}>
-        {summary} <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
+      <div
+        className="itinerary_roadmap_item_summary"
+        onClick={() => setDetailsOpen(!detailsOpen)}
+      >
+        <div>{summary}</div>
+        <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
       </div>
     </RoadMapItem>
     {detailsOpen && leg.steps.map((step, index) => <RoadMapStep key={index} step={step} />)}

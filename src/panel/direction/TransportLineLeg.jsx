@@ -11,11 +11,16 @@ const TransportLineLeg = ({ leg }) => {
 
   return <Fragment>
     <RoadMapItem icon={getTransportTypeIcon(leg)}>
-      <div onClick={() => setDetailsOpen(!detailsOpen)}>
-        <PublicTransportLine mode={mode} info={info} />
-        {from.name && to.name && <div className="itinerary_roadmap_fromTo">
-          {`${from.name} => ${to.name}`}
-        </div>}
+      <div
+        className="itinerary_roadmap_item_summary"
+        onClick={() => setDetailsOpen(!detailsOpen)}
+      >
+        <div>
+          <PublicTransportLine mode={mode} info={info} />
+          {from.name && to.name && <div className="itinerary_roadmap_fromTo">
+            {`${from.name} => ${to.name}`}
+          </div>}
+        </div>
         <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
       </div>
     </RoadMapItem>
