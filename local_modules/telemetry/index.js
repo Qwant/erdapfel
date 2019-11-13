@@ -23,6 +23,7 @@ module.exports = {
     'itinerary_mode_publictransport',
     /* Poi */
     'poi_category_open',
+    'poi_event_open',
     'poi_backtofavorite',
     'poi_backtolist',
     'poi_restore',

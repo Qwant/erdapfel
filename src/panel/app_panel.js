@@ -18,6 +18,7 @@ import Router from 'src/proxies/app_router';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
+import events from '../../config/events.yml';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
@@ -264,11 +265,11 @@ export default class AppPanel {
   }
 
   openEvents(params) {
-    //const { type: eventName, ...otherOptions } = params;
-    this._openPanel(this.eventListPanel, /*{
-      event: EventsService.getEventByName(eventName),
-      ...otherOptions,
-    }*/);
+    if (events.find(ev => ev.name === params.type)) {
+      this._openPanel(this.eventListPanel, params);
+    } else {
+      window.app.navigateTo('/');
+    }
   }
 
   resetLayout() {
