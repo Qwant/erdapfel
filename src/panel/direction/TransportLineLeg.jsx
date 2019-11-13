@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import RoadMapItem from './RoadMapItem';
 import PublicTransportLine from './PublicTransportLine';
+import { getTransportTypeIcon } from 'src/libs/route_utils';
 
 const TransportLineLeg = ({ leg }) => {
   const [ detailsOpen, setDetailsOpen ] = useState(false);
@@ -9,7 +10,7 @@ const TransportLineLeg = ({ leg }) => {
   const to = stops[stops.length - 1];
 
   return <Fragment>
-    <RoadMapItem>
+    <RoadMapItem icon={getTransportTypeIcon(leg)}>
       <div onClick={() => setDetailsOpen(!detailsOpen)}>
         <PublicTransportLine mode={mode} info={info} />
         {from.name && to.name && <div className="itinerary_roadmap_fromTo">
@@ -19,7 +20,7 @@ const TransportLineLeg = ({ leg }) => {
       </div>
     </RoadMapItem>
     {detailsOpen && stops.map((stop, index) =>
-      <RoadMapItem key={index}>
+      <RoadMapItem key={index} icon="stop">
         {stop.name}
       </RoadMapItem>)}
   </Fragment>;

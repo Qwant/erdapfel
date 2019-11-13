@@ -494,6 +494,44 @@
   background-image: url('../images/direction_icons/pin.png');
 }
 
+.itinerary_roadmap_icon_bus {
+  background-image:url(../images/direction_icons/bus.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_metro {
+  background-image:url(../images/direction_icons/metro.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_train {
+  background-image:url(../images/direction_icons/train.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_tram {
+  background-image:url(../images/direction_icons/tram.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_walk {
+  background-image:url(../images/direction_icons/walk.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_stop {
+  text-align: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $primary_text;
+  }
+}
+
 .itinerary_close_mobile {
   display: none;
 }

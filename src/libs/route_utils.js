@@ -43,6 +43,25 @@ export function getVehicleIcon(vehicle) {
   }
 }
 
+export function getTransportTypeIcon({ mode = '', info = {} }) {
+  if (mode.startsWith('WALK')) {
+    return 'walk';
+  }
+  if (mode.startsWith('BUS')) {
+    return 'bus';
+  }
+  if (mode.startsWith('SUBWAY')) {
+    return 'metro';
+  }
+  if (mode.startsWith('TRAM')) {
+    return 'tram';
+  }
+  if (info.network === 'RER' || mode.indexOf('TRAIN') !== -1) {
+    return 'train';
+  }
+  return null;
+}
+
 export function getStepIcon(step) {
   if (step.maneuver.type === 'depart' || step.maneuver.type === 'arrive') {
     return step.maneuver.type;

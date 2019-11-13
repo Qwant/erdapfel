@@ -9,7 +9,7 @@ const WalkLeg = ({ leg }) => {
   const summary = `Walk on ${formatDistance(leg.distance)}`;
 
   return <Fragment>
-    <RoadMapItem>
+    <RoadMapItem icon="walk">
       <div onClick={() => setDetailsOpen(!detailsOpen)}>
         {summary} <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
       </div>
