@@ -143,6 +143,7 @@ const subClasses = {
   outdoor: () => _('outdoor'),
   paragliding: () => _('paragliding'),
   park: () => _('park'),
+  parking: () => _('car park'),
   perfumery: () => _('perfumery'),
   pet: () => _('pet store'),
   pharmacy: () => _('pharmacy'),
