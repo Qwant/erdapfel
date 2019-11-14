@@ -22,7 +22,7 @@
           <button class="icon-x itinerary__field__clear" type="button" {{= mousedown(this.clearDestination, this) }}></button>
         </div>
       </form>
-      <div class="itinerary_invert_origin_destination icon-shuffle" {{= click(this.invertOriginDestination, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
+      <div class="itinerary_invert_origin_destination icon-reverse" {{= click(this.invertOriginDestination, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
     </div>
   </div>
 
