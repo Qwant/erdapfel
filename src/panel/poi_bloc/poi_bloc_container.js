@@ -9,25 +9,24 @@ function PoiBlocContainer() {}
 
 PoiBlocContainer.initBlockComponents = function() {
   const pois = [
-    ['opening_hours', 'hour'],
-    ['website', 'website'],
-    ['wikipedia', 'wiki'],
-    ['services_and_information', 'services_information'],
-    ['information', 'informations'],
-    ['accessibility', 'accessibility'],
-    ['brewery', 'brewery'],
+    ['opening_hours', 'hour_panel'],
+    ['website', 'website_panel'],
+    ['wikipedia', 'Wiki'],
+    ['services_and_information', 'services_information_panel'],
+    ['information', 'informations_panel'],
+    ['accessibility', 'Accessibility'],
+    ['brewery', 'Brewery'],
     ['internet_access', 'InternetAccess'],
-    ['contact', 'contact'],
-    ['images', 'images'],
+    ['contact', 'Contact'],
+    ['images', 'Images'],
   ];
   PoiBlocContainer.blockComponents = {};
   for (const [apiName, panelName] of pois) {
     let builder;
     try {
-      builder = require(`./${panelName}_panel`);
+      builder = require(`./${panelName}`);
     } catch (err) {
-      const name = panelName.charAt(0).toUpperCase() + panelName.slice(1);
-      const ReactComponent = require(`../../views/poi_bloc/${name}`).default;
+      const ReactComponent = require(`../../views/poi_bloc/${panelName}`).default;
       builder = {
         default: function reactBlockWrapper(block, poi, options) {
           this.render = () => renderStaticReact(
