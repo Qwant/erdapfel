@@ -1,3 +1,4 @@
+/* global _ */
 import HourPanelView from 'src/views/poi_bloc/hour.dot';
 import nextTransitionPartial from 'src/views/poi_bloc/hour_next_transition_partial.dot';
 import Panel from 'src/libs/panel';
@@ -17,7 +18,7 @@ function HourPanel(block, poi, options) {
     closed: {
       msg: _('Closed'),
       color: '#8c0212',
-    }
+    },
   });
   this.messages = options.messages;
   this.latLng = poi.latLon;

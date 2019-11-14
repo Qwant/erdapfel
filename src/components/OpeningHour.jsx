@@ -1,7 +1,6 @@
 /* global _ */
 import React from 'react';
 import OsmSchedule from 'src/adapters/osm_schedule';
-import constants from 'config/constants.yml';
 
 let memoizedMessages = null;
 const getMessages = () => {
@@ -9,11 +8,11 @@ const getMessages = () => {
     {
       open: {
         msg: _('Open'),
-        color: '#60ad51'
+        color: '#60ad51',
       },
       closed: {
         msg: _('Closed'),
-        color: '#8c0212'
+        color: '#8c0212',
       },
     };
   return memoizedMessages;
