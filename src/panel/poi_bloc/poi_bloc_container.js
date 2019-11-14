@@ -8,12 +8,25 @@ import React from 'react';
 function PoiBlocContainer() {}
 
 PoiBlocContainer.initBlockComponents = function() {
-  PoiBlocContainer.blockComponents = constants.pois.reduce((accBlocks, poiBlock) => {
+  const pois = [
+    ['opening_hours', 'hour'],
+    ['website', 'website'],
+    ['wikipedia', 'wiki'],
+    ['services_and_information', 'services_information'],
+    ['information', 'informations'],
+    ['accessibility', 'accessibility'],
+    ['brewery', 'brewery'],
+    ['internet_access', 'InternetAccess'],
+    ['contact', 'contact'],
+    ['images', 'images'],
+  ];
+  PoiBlocContainer.blockComponents = {};
+  for (const [apiName, panelName] of pois) {
     let builder;
     try {
-      builder = require(`./${poiBlock.panelName}_panel`);
+      builder = require(`./${panelName}_panel`);
     } catch (err) {
-      const name = poiBlock.panelName.charAt(0).toUpperCase() + poiBlock.panelName.slice(1);
+      const name = panelName.charAt(0).toUpperCase() + panelName.slice(1);
       const ReactComponent = require(`../../views/poi_bloc/${name}`).default;
       builder = {
         default: function reactBlockWrapper(block, poi, options) {
@@ -24,12 +37,11 @@ PoiBlocContainer.initBlockComponents = function() {
         },
       };
     }
-    accBlocks[poiBlock.apiName] = {
+    PoiBlocContainer.blockComponents[apiName] = {
       poiBlockConstructor: builder,
-      options: poiBlock.options,
+      options: {},
     };
-    return accBlocks;
-  }, {});
+  }
 };
 PoiBlocContainer.initBlockComponents();
 

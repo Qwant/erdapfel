@@ -9,7 +9,16 @@ function HourPanel(block, poi, options) {
   this.panel = new Panel(this, HourPanelView);
   this.name = block.name;
   this.title = options.title;
-  this.opening = new OsmSchedule(block, options.messages);
+  this.opening = new OsmSchedule(block, {
+    open: {
+      msg: _('Open'),
+      color: '#60ad51',
+    },
+    closed: {
+      msg: _('Closed'),
+      color: '#8c0212',
+    }
+  });
   this.messages = options.messages;
   this.latLng = poi.latLon;
   this.isCollapsed = true;

@@ -5,7 +5,7 @@
       <div class="poi_panel__block__content">
         {{? this.opening.isTwentyFourSeven }}
           <div class="poi_panel__info__hours__status__text poi_panel__info__hours__24_7">{{= _('Open 24/7', 'hour block') }}
-            <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status.color }}"></div>
+            <div class="poi_panel__info__hour__circle" style="background:{{= this.opening.status === 'open' ? '#60ad51' : '#8c0212' }}"></div>
           </div>
         {{??}}
           <div class="poi_panel__info__hours__status" {{= click(this.extend, this) }}>
@@ -34,4 +34,6 @@
       </div>
     </p>
   </div>
+{{??}}
+{{= _('Opening hours') }}
 {{?}}

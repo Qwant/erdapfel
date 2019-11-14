@@ -6,7 +6,16 @@ import constants from 'config/constants.yml';
 let memoizedMessages = null;
 const getMessages = () => {
   memoizedMessages = memoizedMessages ||
-    constants.pois.find(poiConfig => poiConfig.apiName === 'opening_hours').options.messages;
+    {
+      open: {
+        msg: _('Open'),
+        color: '#60ad51'
+      },
+      closed: {
+        msg: _('Closed'),
+        color: '#8c0212'
+      },
+    };
   return memoizedMessages;
 };
 
