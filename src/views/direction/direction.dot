@@ -6,24 +6,7 @@
       {{= _('return', 'direction') }}
     </div>
     <h3 class="itinerary_title">{{= _('directions', 'direction') }}</h3>
-    <div class="itinerary_fields">
-      <form onsubmit="fire('submit_direction_origin');return false" novalidate>
-        <div class="itinerary_field_origin">
-          <div class="itinerary_icon itinerary_icon_origin"></div>
-          <input id="itinerary_input_origin" type="search" autocomplete="off" spellcheck="false" value="{{= this.origin ? this.origin.getInputValue() : '' }}" required placeholder="{{= _('Start point', 'direction') }}">
-          <button class="icon-x itinerary__field__clear" type="button" {{= mousedown(this.clearOrigin, this) }}></button>
-        </div>
-      </form>
-      <div class="itinerary__form__separator"></div>
-      <form onsubmit="fire('submit_direction_destination');return false" novalidate>
-        <div class="itinerary_field_destination">
-          <div class="itinerary_icon itinerary_icon_destination"></div>
-          <input id="itinerary_input_destination" type="search" autocomplete="off" spellcheck="false" value="{{= this.destination ? this.destination.getInputValue() : '' }}" required placeholder="{{= _('End point', 'direction') }}">
-          <button class="icon-x itinerary__field__clear" type="button" {{= mousedown(this.clearDestination, this) }}></button>
-        </div>
-      </form>
-      <div class="itinerary_invert_origin_destination icon-reverse" {{= click(this.invertOriginDestination, this) }} title="{{= _('Invert start and end', 'direction') }}"></div>
-    </div>
+    <div id="react_itinerary_fields"></div>
   </div>
 
   <div class="itinerary_vehicles">

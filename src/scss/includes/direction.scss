@@ -39,20 +39,20 @@
 }
 
 .itinerary__field__clear {
-  display: none;
+  opacity: 0;
   position: absolute;
-  right: 30px;
-  top: 4px;
-  padding: 8px;
+  right: 32px;
+  top: 1px;
+  padding: 10px;
   color: $secondary_text;
-  cursor: text;
-  font-size: 15px;
+  font-size: 16px;
+  pointer-events: none;
 }
 
-.itinerary_container--start-focused #itinerary_input_origin:valid:focus ~ .itinerary__field__clear,
-.itinerary_container--end-focused #itinerary_input_destination:valid:focus ~ .itinerary__field__clear {
-  display: block;
+input:valid:focus + .itinerary__field__clear {
+  opacity: 1;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .itinerary_fields {
@@ -64,8 +64,7 @@
   border-radius: 3px;
 }
 
-.itinerary_field_origin,
-.itinerary_field_destination {
+.itinerary_field {
   position: relative;
 }
 
@@ -109,7 +108,7 @@
   margin: 10px 12px 0 12px;
 }
 
-#itinerary_input_origin, #itinerary_input_destination {
+.itinerary_input {
   position: relative;
   width: 364px;
   height: 40px;
@@ -117,16 +116,16 @@
   border: none;
   font-size: 16px;
   color: $primary_text;
-}
 
-#itinerary_input_origin:disabled, #itinerary_input_destination:disabled {
-  color: #dddddd;
-}
+  &:disabled{
+    color: #dddddd;
+  }
 
-#itinerary_input_origin::placeholder, #itinerary_input_destination::placeholder {
-  font-style: italic;
-  color: #c8cbd3;
-  font-size: 16px;
+  &::placeholder {
+    font-style: italic;
+    color: #c8cbd3;
+    font-size: 16px;
+  }
 }
 
 .itinerary__form__separator {
@@ -579,9 +578,29 @@
     width: auto;
   }
 
-  #itinerary_input_origin, #itinerary_input_destination {
+  .itinerary_input {
     width: calc(100% - 36px);
     font-size: 14px;
+
+    &:focus {
+      position: fixed;
+      z-index: 1;
+      top: 5px;
+      left: 0;
+      width: 100%;
+      background: $background;
+      padding-right: 50px;
+      padding-left: 20px;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
+
+  .itinerary__field__clear {
+    position: fixed;
+    z-index: 2;
+    right: 12px;
+    top: 15px;
   }
   
   .direction_suggestions {
@@ -620,32 +639,6 @@
     top: -4px;
     margin: 0 5px 0 0;
     font-size: 22px;
-  }
-
-  .itinerary_input_focused {
-    position: fixed;
-    top: 5px;
-    left: 0;
-    width: 100% !important;
-    height: 60px !important;
-    line-height: 60px;
-    background: $background;
-    padding: 0 10px 0;
-    font-size: 16px;
-  }
-
-  .itinerary_container--start-focused .itinerary_icon,
-  .itinerary_container--end-focused .itinerary_icon{
-    display: none;
-  }
-
-  .itinerary__field__clear {
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin-top: -24px;
-    font-size: 16px;
-    padding: 10px;
   }
 
   .itinerary_leg {
@@ -793,33 +786,6 @@
     background: $background;
     @include card_shadow();
     font-size: 24px;
-  }
-
-  .itinerary_container--start-focused,
-  .itinerary_container--end-focused {
-    height: 5px;
-    overflow: hidden;
-
-    .itinerary_vehicles {
-      display: none;
-    }
-  }
-
-  #itinerary_input_origin:focus,
-  #itinerary_input_destination:focus {
-    position: fixed;
-    top: 5px;
-    left: 0;
-    width: 100%;
-    background: $background;
-    padding: 20px 50px 20px 20px;
-    height: 60px;
-    line-height: 45px;
-  }
-
-  .itinerary_container--start-focused #itinerary_input_destination,
-  .itinerary_container--end-focused #itinerary_input_origin {
-    display: none;
   }
 
   .direction_shortcut {
