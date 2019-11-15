@@ -127,7 +127,7 @@
           </div>
         {{?}}
 
-      {{= this.PoiBlocContainer.render(this.poi) }}
+      {{= this.PoiBlockContainer.render(this.poi) }}
 
       {{? this.poi.isFromOSM && this.poi.isFromOSM() }}
         {{= this.osmContributionPartial(this.poi) }}

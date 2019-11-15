@@ -1,11 +1,11 @@
 import ServicesInformationView from '../../views/poi_bloc/services_information.dot';
 import Panel from '../../libs/panel';
-import PoiBlocContainer from './poi_bloc_container';
+import PoiBlockContainer from './PoiBlockContainer';
 import Telemetry from '../../libs/telemetry';
 
 function ServicesInformation(block) {
   this.blocks = block.blocks;
-  this.PoiBlocContainer = PoiBlocContainer;
+  this.PoiBlockContainer = PoiBlockContainer;
   this.panel = new Panel(this, ServicesInformationView);
 }
 
@@ -29,7 +29,7 @@ ServicesInformation.prototype.toggle = async function() {
 };
 
 ServicesInformation.prototype.title = function() {
-  return this.PoiBlocContainer.toString(this.blocks);
+  return this.PoiBlockContainer.toString(this.blocks);
 };
 
 export default ServicesInformation;

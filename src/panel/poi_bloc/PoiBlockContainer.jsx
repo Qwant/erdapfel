@@ -1,10 +1,55 @@
 /* global require */
 import Panel from '../../libs/panel';
-import PoiBlocContainerView from '../../views/poi_bloc/poi_bloc_container.dot';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import React from 'react';
+import WikiBlock from '../../views/poi_bloc/Wiki';
+import AccessibilityBlock from '../../views/poi_bloc/Accessibility';
+import BreweryBlock from '../../views/poi_bloc/Brewery';
+import InternetAccessBlock from '../../views/poi_bloc/InternetAccess';
+import ContactBlock from '../../views/poi_bloc/Contact';
+import ImagesBlock from '../../views/poi_bloc/Images';
 
-function PoiBlocContainer() {}
+export default class PoiBlockContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.poi = null;
+  }
+
+  set(poi) {
+    this.poi = poi;
+  }
+
+  toString(blocks) {
+    return this.render(blocks, true);
+  }
+
+  getBlock(blockName) {
+    return ['opening_hours', 'website', 'wikipedia', 'services_and_information', 'information',
+            'accessibility', 'brewery', 'internet_access', 'contact',
+            'images'].find(b => b === blockName);
+  }
+
+  render(poi, asString) {
+    const blocks = poi.blocks;
+    const wikiBlock = blocks.find(b => b.type === 'wikipedia');
+    const accessibilityBlock = blocks.find(b => b.type === 'accessibility');
+    const breweryBlock = blocks.find(b => b.type === 'brewery');
+    const internetAccessBlock = blocks.find(b => b.type === 'internet_access');
+    const contactBlock = blocks.find(b => b.type === 'contact');
+    const imagesBlock = blocks.find(b => b.type === 'images');
+
+    return renderStaticReact(<div className="poi_panel__info">
+      {wikiBlock && <WikiBlock block={wikiBlock} />}
+      {accessibilityBlock && <AccessibilityBlock block={accessibilityBlock} asString />}
+      {breweryBlock && <BreweryBlock block={breweryBlock} asString />}
+      {internetAccessBlock && <InternetAccessBlock block={internetAccessBlock} asString />}
+      {contactBlock && <ContactBlock block={contactBlock} asString />}
+      {imagesBlock && <ImagesBlock block={imagesBlock} poi={poi} />}
+    </div>);
+  }
+}
+
+/*function PoiBlocContainer() {}
 
 PoiBlocContainer.initBlockComponents = function() {
   const pois = [
@@ -76,7 +121,7 @@ PoiBlocContainer.toString = function(blocks) {
   }).join(' - ');
 };
 
-/* private */
+// private
 function getBlockComponent(block) {
   const blockComponent = PoiBlocContainer.blockComponents[block.type];
   if (blockComponent) {
@@ -89,4 +134,4 @@ function getBlockComponent(block) {
   return null;
 }
 
-export default PoiBlocContainer;
+export default PoiBlocContainer;*/

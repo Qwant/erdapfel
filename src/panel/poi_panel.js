@@ -7,7 +7,7 @@ import OsmContribution from 'src/components/OsmContribution';
 import PoiPanelView from '../views/poi_panel.dot';
 import Panel from '../libs/panel';
 import Store from '../adapters/store';
-import PoiBlocContainer from './poi_bloc/poi_bloc_container';
+import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
 import SearchInput from '../ui_components/search_input';
 import Telemetry from '../libs/telemetry';
 import layouts from './layouts.js';
@@ -32,7 +32,7 @@ function PoiPanel() {
   this.poi = null;
   this.active = false;
   this.poiSubClass = poiSubClass;
-  this.PoiBlocContainer = PoiBlocContainer;
+  this.PoiBlockContainer = new PoiBlockContainer();
   this.panel = new Panel(this, PoiPanelView);
   this.lang = window.getBaseLang().code;
   this.card = true;
@@ -100,7 +100,7 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.poi = poi;
   this.card = true;
   this.poi.stored = await isPoiFavorite(this.poi);
-  this.PoiBlocContainer.set(this.poi);
+  this.PoiBlockContainer.set(this.poi);
   this.fromFavorite = false;
   this.fromCategory = false;
   if (options && options.isFromFavorite) {

@@ -10,8 +10,6 @@
 </div>
 <div class="poi_panel__service_information__container">
   <div class="poi_panel__block__information{{= this.extended ? ' poi_panel__block__information--extended' : ''}}">
-    {{~ this.blocks:block }}
-      {{= this.PoiBlocContainer.renderBlock(block) }}
-    {{~}}
+    {{= this.PoiBlockContainer.render(this.blocks) }}
   </div>
 </div>
