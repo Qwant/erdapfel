@@ -5,7 +5,7 @@ const PublicTransportLine = ({ mode, info }) => {
   // @TODO: use network-specific iconography where possible
   let type = 'ligne';
   if (mode.startsWith('BUS')) {
-    type = 'bus';
+    type = `bus ${info.network}`;
   } else if (mode.startsWith('SUBWAY')) {
     type = 'métro';
   } else if (mode.startsWith('TRAM')) {
@@ -13,7 +13,7 @@ const PublicTransportLine = ({ mode, info }) => {
   } else if (info.network === 'RER') {
     type = 'RER';
   } else if (mode.indexOf('TRAIN') !== -1) {
-    type = 'train';
+    type = `train ${info.network}`;
   }
   return <span className="routePtLine">{type} {info.num}</span>;
 };

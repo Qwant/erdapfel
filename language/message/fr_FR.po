@@ -1073,6 +1073,9 @@ msgstr "APERÇU"
 msgid "Start"
 msgstr "Départ"
 
+msgid "End"
+msgstr "Arrivée"
+
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps ne trouve pas de résultat pour cet itinéraire."
 

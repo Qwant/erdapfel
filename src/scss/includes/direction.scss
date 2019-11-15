@@ -364,7 +364,7 @@
   padding: 4px;
 }
 
-.itinerary_roadmap_step {
+.itinerary_roadmap_item {
   display: flex;
   align-items: center;
   margin-top: 1px;
@@ -372,15 +372,21 @@
   border-left: 4px solid $secondary_text;
 }
 
-.itinerary_roadmap_step:hover,
-.itinerary_roadmap_step--selected {
+.itinerary_roadmap_item:hover {
   border-left: 4px solid #ff3b4a;
 }
 
 .itinerary_roadmap {
-  .itinerary_roadmap_step:last-of-type .itinerary_roadmap_instruction {
+  .itinerary_roadmap_item:last-of-type .itinerary_roadmap_instruction {
     border-bottom: none;
   }
+}
+
+.itinerary_roadmap_item_summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 12px;
 }
 
 .itinerary_roadmap_instruction {
@@ -493,6 +499,44 @@
 
 .itinerary_roadmap_icon_waypoint {
   background-image: url('../images/direction_icons/pin.png');
+}
+
+.itinerary_roadmap_icon_bus {
+  background-image:url(../images/direction_icons/bus.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_metro {
+  background-image:url(../images/direction_icons/metro.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_train {
+  background-image:url(../images/direction_icons/train.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_tram {
+  background-image:url(../images/direction_icons/tram.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_walk {
+  background-image:url(../images/direction_icons/walk.svg);
+  background-size: 20px;
+}
+
+.itinerary_roadmap_icon_stop {
+  text-align: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $primary_text;
+  }
 }
 
 .itinerary_close_mobile {
@@ -680,7 +724,7 @@
     width: calc(100% - 30px);
     user-select: none;
 
-    .itinerary_roadmap_step {
+    .itinerary_roadmap_item {
       border-left: 0;
       padding: 12px;
       display: grid;

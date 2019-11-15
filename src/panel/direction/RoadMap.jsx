@@ -1,15 +1,20 @@
 /* global _ */
 import React from 'react';
 import RoadMapStep from './RoadMapStep';
+import RoadMapItem from './RoadMapItem';
+import { getAllSteps } from 'src/libs/route_utils';
+import PublicTransportRoadMap from './PublicTransportRoadMap';
 
-const RoadMap = ({ steps = [], origin }) =>
-  <div className="itinerary_roadmap">
-    <div className="itinerary_roadmap_step">
-      <div className="itinerary_roadmap_icon itinerary_roadmap_icon_origin" />
-      <div className="itinerary_roadmap_instruction">{`${_('Start')} ${origin}`}</div>
-      <div className="itinerary_roadmap_distance" />
-    </div>
-    {steps.map((step, index) => <RoadMapStep
+const RoadMap = ({ route, origin, destination, vehicle }) => {
+  if (vehicle === 'publicTransport') {
+    return <PublicTransportRoadMap route={route} origin={origin} destination={destination} />;
+  }
+
+  return <div className="itinerary_roadmap">
+    <RoadMapItem icon="origin">
+      {`${_('Start')} ${origin}`}
+    </RoadMapItem>
+    {getAllSteps(route).map((step, index) => <RoadMapStep
       key={index}
       step={step}
       onMouseOver={() => { fire('highlight_step', index); }}
@@ -17,5 +22,6 @@ const RoadMap = ({ steps = [], origin }) =>
       onClick={() => { fire('zoom_step', step); }}
     />)}
   </div>;
+};
 
 export default RoadMap;

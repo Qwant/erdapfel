@@ -999,6 +999,9 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
+msgid "End"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
