@@ -1,28 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HourBlock from '../../views/poi_bloc/Hour';
-import WikiBlock from '../../views/poi_bloc/Wiki';
-import AccessibilityBlock from '../../views/poi_bloc/Accessibility';
-import BreweryBlock from '../../views/poi_bloc/Brewery';
-import InternetAccessBlock from '../../views/poi_bloc/InternetAccess';
 import ContactBlock from '../../views/poi_bloc/Contact';
 import ImagesBlock from '../../views/poi_bloc/Images';
 import WebsiteBlock from '../../views/poi_bloc/Website';
-
-function findBlock(blocks, toFind) {
-  for (let i = 0; i < blocks.length; ++i) {
-    const block = blocks[i];
-    if (block.type === toFind) {
-      return block;
-    } else if (block.blocks !== undefined) {
-      const ret = findBlock(block.blocks, toFind);
-      if (ret !== null) {
-        return ret;
-      }
-    }
-  }
-  return null;
-}
+import InformationBlock from '../../views/poi_bloc/Information';
 
 export default class PoiBlockContainer extends React.Component {
   static propTypes = {
@@ -55,24 +37,16 @@ export default class PoiBlockContainer extends React.Component {
     }
     const blocks = this.props.poi.blocks;
     console.log(blocks);
-    const hourBlock = findBlock(blocks, 'opening_hours');
-    const wikiBlock = findBlock(blocks, 'wikipedia');
-    const accessibilityBlock = findBlock(blocks, 'accessibility');
-    const websiteBlock = findBlock(blocks, 'website');
-    const breweryBlock = findBlock(blocks, 'brewery');
-    const internetAccessBlock = findBlock(blocks, 'internet_access');
-    const contactBlock = findBlock(blocks, 'contact');
-    const imagesBlock = findBlock(blocks, 'images');
+    const hourBlock = blocks.find(b => b.type === 'opening_hours');
+    const informationBlock = blocks.find(b => b.type === 'information');
+    const websiteBlock = blocks.find(b => b.type === 'website');
+    const contactBlock = blocks.find(b => b.type === 'contact');
+    const imagesBlock = blocks.find(b => b.type === 'images');
 
     return <div className="poi_panel__info">
       {hourBlock && <HourBlock block={hourBlock} asString />}
-      <div className="poi_panel__info__section poi_panel__info__section--information">
-        {wikiBlock && <WikiBlock block={wikiBlock} />}
-        {accessibilityBlock && <AccessibilityBlock block={accessibilityBlock} asString />}
-      </div>
+      {informationBlock && <InformationBlock block={informationBlock} />}
       {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
-      {breweryBlock && <BreweryBlock block={breweryBlock} asString />}
-      {internetAccessBlock && <InternetAccessBlock block={internetAccessBlock} asString />}
       {contactBlock && <ContactBlock block={contactBlock} asString />}
       {imagesBlock && <ImagesBlock block={imagesBlock} poi={this.props.poi} />}
     </div>;
