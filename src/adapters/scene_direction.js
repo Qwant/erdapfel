@@ -5,7 +5,7 @@ import { map } from '../../config/constants.yml';
 import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
-import { getRouteStyle, setActiveRouteStyle } from './route_styles';
+import { getOutlineFeature, getRouteStyle, setActiveRouteStyle } from './route_styles';
 import { getAllSteps } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
@@ -79,8 +79,8 @@ export default class SceneDirection {
       if (isActive) {
         mainRoute = route;
       }
-      this.mapFeaturesByRoute[route.id].forEach(({ layerId, vehicle }) => {
-        setActiveRouteStyle(this.map, layerId, vehicle, isActive);
+      this.mapFeaturesByRoute[route.id].forEach(({ layerId, vehicle, isOutline }) => {
+        setActiveRouteStyle(this.map, layerId, vehicle, isActive, isOutline);
         if (isActive) {
           this.map.moveLayer(layerId, map.routes_layer);
         }
@@ -178,8 +178,8 @@ export default class SceneDirection {
   getDataSources(route) {
     const featureCollection = normalizeToFeatureCollection(route.geometry);
     const sources = [];
+    let walkFeatures = [], nonWalkFeatures = [];
     if (this.vehicle === 'publicTransport') {
-      const walkFeatures = [], nonWalkFeatures = [];
       featureCollection.features.forEach(feature => {
         if (feature.properties.mode === 'WALK') {
           walkFeatures.push(feature);
@@ -187,21 +187,32 @@ export default class SceneDirection {
           nonWalkFeatures.push(feature);
         }
       });
-      if (walkFeatures.length > 0) {
-        sources.push({
-          vehicle: 'walking',
-          data: { type: 'FeatureCollection', features: walkFeatures },
-        });
-      }
-      if (nonWalkFeatures.length > 0) {
-        sources.push({
-          vehicle: this.vehicle,
-          data: { type: 'FeatureCollection', features: nonWalkFeatures },
-        });
-      }
+    } else if (this.vehicle === 'walking') {
+      walkFeatures = featureCollection.features;
     } else {
-      sources.push({ vehicle: this.vehicle, data: featureCollection });
+      nonWalkFeatures = featureCollection.features;
     }
+
+    if (walkFeatures.length > 0) {
+      sources.push({
+        vehicle: 'walking',
+        data: { type: 'FeatureCollection', features: walkFeatures },
+      });
+    }
+
+    if (nonWalkFeatures.length > 0) {
+      // we have to duplicate the layers to get the outline effect
+      sources.push({
+        vehicle: this.vehicle,
+        isOutline: true,
+        data: { type: 'FeatureCollection', features: nonWalkFeatures.map(getOutlineFeature) },
+      });
+      sources.push({
+        vehicle: this.vehicle,
+        data: { type: 'FeatureCollection', features: nonWalkFeatures },
+      });
+    }
+
     return sources;
   }
 
@@ -211,7 +222,7 @@ export default class SceneDirection {
       const layerId = `route_${route.id}_${idx}`;
       const sourceId = `source_${route.id}_${idx}`;
       const layerStyle = {
-        ...getRouteStyle(source.vehicle, route.isActive),
+        ...getRouteStyle(source.vehicle, route.isActive, source.isOutline),
         id: layerId,
         source: sourceId,
       };
@@ -223,7 +234,7 @@ export default class SceneDirection {
         .on('mouseenter', layerId, () => { this.map.getCanvas().style.cursor = 'pointer'; })
         .on('mouseleave', layerId, () => { this.map.getCanvas().style.cursor = ''; });
 
-      return { sourceId, layerId, vehicle: source.vehicle };
+      return { sourceId, layerId, vehicle: source.vehicle, isOutline: source.isOutline };
     });
   }
 
