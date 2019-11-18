@@ -1,6 +1,3 @@
-/* global require */
-import Panel from '../../libs/panel';
-import renderStaticReact from 'src/libs/renderStaticReact';
 import React from 'react';
 import PropTypes from 'prop-types';
 import HourBlock from '../../views/poi_bloc/Hour';
@@ -10,6 +7,7 @@ import BreweryBlock from '../../views/poi_bloc/Brewery';
 import InternetAccessBlock from '../../views/poi_bloc/InternetAccess';
 import ContactBlock from '../../views/poi_bloc/Contact';
 import ImagesBlock from '../../views/poi_bloc/Images';
+import WebsiteBlock from '../../views/poi_bloc/Website';
 
 function findBlock(blocks, toFind) {
   for (let i = 0; i < blocks.length; ++i) {
@@ -47,8 +45,8 @@ export default class PoiBlockContainer extends React.Component {
 
   getBlock(blockName) {
     return ['opening_hours', 'website', 'wikipedia', 'services_and_information', 'information',
-            'accessibility', 'brewery', 'internet_access', 'contact',
-            'images'].find(b => b === blockName);
+      'accessibility', 'brewery', 'internet_access', 'contact',
+      'images'].find(b => b === blockName);
   }
 
   render() {
@@ -60,6 +58,7 @@ export default class PoiBlockContainer extends React.Component {
     const hourBlock = findBlock(blocks, 'opening_hours');
     const wikiBlock = findBlock(blocks, 'wikipedia');
     const accessibilityBlock = findBlock(blocks, 'accessibility');
+    const websiteBlock = findBlock(blocks, 'website');
     const breweryBlock = findBlock(blocks, 'brewery');
     const internetAccessBlock = findBlock(blocks, 'internet_access');
     const contactBlock = findBlock(blocks, 'contact');
@@ -71,6 +70,7 @@ export default class PoiBlockContainer extends React.Component {
         {wikiBlock && <WikiBlock block={wikiBlock} />}
         {accessibilityBlock && <AccessibilityBlock block={accessibilityBlock} asString />}
       </div>
+      {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
       {breweryBlock && <BreweryBlock block={breweryBlock} asString />}
       {internetAccessBlock && <InternetAccessBlock block={internetAccessBlock} asString />}
       {contactBlock && <ContactBlock block={contactBlock} asString />}

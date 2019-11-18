@@ -11,7 +11,7 @@ export default class AccessibilityBlock extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {isCollapsed: this.props.asString};
+    this.state = { isCollapsed: this.props.asString };
 
     this.labels = {
       'wheelchair': {
@@ -42,7 +42,7 @@ export default class AccessibilityBlock extends React.Component {
         classnames('poi_panel__block__collapse', 'icon-icon_chevron-down', {
           'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
         })} />
-    </div>
+    </div>;
   }
 
   renderExpandedContent(availableAccessibilities) {
@@ -50,10 +50,10 @@ export default class AccessibilityBlock extends React.Component {
       <div className="poi_panel__block__information poi_panel__block__information--extended">
         <h6 className="poi_panel__sub__sub_block__title">{ _('Accessibility', 'poi') }</h6>
         <ul className="poi_panel__info__accessibilities">
-          {availableAccessibilities.map((a11y, index) => <li key={index}>{a11y}</li>)}
+          {availableAccessibilities.map((a11y, index) => <li key={`i11y${index}`}>{a11y}</li>)}
         </ul>
       </div>
-    </div>
+    </div>;
   }
 
   renderCollapsed(availableAccessibilities) {

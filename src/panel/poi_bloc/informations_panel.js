@@ -1,6 +1,8 @@
 import InformationsView from '../../views/poi_bloc/informations.dot';
 import Panel from '../../libs/panel';
 import PoiBlockContainer from './PoiBlockContainer';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Informations {
   constructor(block) {

@@ -16,8 +16,10 @@ function showHours(displayHours) {
   const dayNumber = new Date().getDay();
 
   return <tbody>
-    {displayHours.map((day, i) => 
-      <tr key={i} className={ classnames({ 'poi_panel__info__hours--current': (i + 1) % 7 === dayNumber}) }>
+    {displayHours.map((day, i) =>
+      <tr key={i} className={
+        classnames({ 'poi_panel__info__hours--current': (i + 1) % 7 === dayNumber })
+      }>
         <td className="day">{ day.dayName }</td>
         <td className="hours">{ showHour(day, i) }</td>
       </tr>)}
@@ -28,8 +30,8 @@ function renderTitle(opening) {
   let text = `${_(opening.status.msg)} `;
   if (opening.nextTransition) {
     text += ' - ' +
-      _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime: opening.nextTransition}) +
-      ' ';
+      _('until {nextTransitionTime}', 'hour panel',
+        { nextTransitionTime: opening.nextTransition }) + ' ';
   }
   return <span className="poi_panel__info__hours__status__text">{ text }
     <div className="poi_panel__info__hour__circle" style={{ background: opening.status.color }} />
@@ -44,7 +46,7 @@ export default class HourBlock extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {isCollapsed: this.props.asString};
+    this.state = { isCollapsed: this.props.asString };
 
     this.messages = {
       open: {
@@ -70,7 +72,9 @@ export default class HourBlock extends React.Component {
     if (opening.isTwentyFourSeven) {
       return <div className="poi_panel__info__hours__status__text poi_panel__info__hours__24_7">
         { _('Open 24/7', 'hour block') }
-        <div className="poi_panel__info__hour__circle" style={{ background: opening.status.color }} />
+        <div className="poi_panel__info__hour__circle"
+          style={{ background: opening.status.color }}
+        />
       </div>;
     }
     return <div>

@@ -2,6 +2,8 @@ import ServicesInformationView from '../../views/poi_bloc/services_information.d
 import Panel from '../../libs/panel';
 import PoiBlockContainer from './PoiBlockContainer';
 import Telemetry from '../../libs/telemetry';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 function ServicesInformation(block) {
   this.blocks = block.blocks;
