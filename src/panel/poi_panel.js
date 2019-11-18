@@ -33,7 +33,6 @@ function PoiPanel() {
   this.poi = null;
   this.active = false;
   this.poiSubClass = poiSubClass;
-  this.PoiBlockContainer = new PoiBlockContainer();
   this.panel = new Panel(this, PoiPanelView);
   this.lang = window.getBaseLang().code;
   this.card = true;
@@ -108,7 +107,6 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   this.poi = poi;
   this.card = true;
   this.poi.stored = await isPoiFavorite(this.poi);
-  this.PoiBlockContainer.set(this.poi);
   this.fromFavorite = false;
   this.fromCategory = false;
   if (options && options.isFromFavorite) {

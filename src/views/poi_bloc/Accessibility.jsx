@@ -28,7 +28,7 @@ const AccessibilityBlock = ({
   return <div>
     <h6 className="poi_panel__sub__sub_block__title">{ _('Accessibility', 'poi') }</h6>
     <ul className="poi_panel__info__accessibilities">
-      { availableAccessibilities.map(el => <li>{ el }</li>) }
+      { availableAccessibilities.map((el, index) => <li key={index}>{el}</li>) }
     </ul>
   </div>;
 };

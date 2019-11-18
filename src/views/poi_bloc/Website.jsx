@@ -12,21 +12,19 @@ export default class WebsiteBlock extends React.Component {
   constructor(props) {
     super(props);
 
-    this.clickWebsite = this.clickWebsite.bind(this);
-  }
-
-  clickWebsite() {
-    Telemetry.add('website', 'poi', this.props.poi.meta.source,
-      Telemetry.buildInteractionData(
-        {
-          'id': this.props.poi.id,
-          'source': this.props.poi.meta.source,
-          'template': 'single',
-          'zone': 'detail',
-          'element': 'website',
-        }
-      )
-    );
+    this.clickWebsite = () => {
+      Telemetry.add('website', 'poi', this.props.poi.meta.source,
+        Telemetry.buildInteractionData(
+          {
+            'id': this.props.poi.id,
+            'source': this.props.poi.meta.source,
+            'template': 'single',
+            'zone': 'detail',
+            'element': 'website',
+          }
+        )
+      );
+    };
   }
 
   render() {
@@ -36,8 +34,7 @@ export default class WebsiteBlock extends React.Component {
         <div className="poi_panel__block__content">
           <a className="poi_panel__info__link"
             href={URI.externalise(this.props.block.url)}
-            no-follow={''}
-            rel="noopener noreferrer"
+            rel="noopener noreferrer nofollow"
             target="_blank"
             onClick={this.clickWebsite}
           >

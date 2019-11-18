@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import renderStaticReact from 'src/libs/renderStaticReact';
 import AccessibilityBlock from '../../views/poi_bloc/Accessibility';
 import BreweryBlock from '../../views/poi_bloc/Brewery';
 import InternetAccessBlock from '../../views/poi_bloc/InternetAccess';
@@ -36,15 +35,11 @@ export default class InformationBlock extends React.Component {
     this.internetAccessBlock = findBlock(this.props.block.blocks, 'internet_access');
     this.wikiBlock = this.props.block.blocks.find(b => b.type === 'wikipedia');
 
-    console.log(this.props.block);
-
-    this.expandCollapse = this.expandCollapse.bind(this);
-  }
-
-  expandCollapse() {
-    this.setState(state => ({
-      isCollapsed: !state.isCollapsed,
-    }));
+    this.expandCollapse = () => {
+      this.setState(state => ({
+        isCollapsed: !state.isCollapsed,
+      }));
+    };
   }
 
   checkSubBlocks() {
@@ -55,30 +50,26 @@ export default class InformationBlock extends React.Component {
     if (!this.state.isCollapsed) {
       return _('Services & information');
     }
-    const elems = [];
-    if (this.accessibilityBlock) {
-      elems.push(renderStaticReact(
-        <AccessibilityBlock block={this.accessibilityBlock} asString />));
-    }
-    if (this.breweryBlock) {
-      elems.push(renderStaticReact(
-        <BreweryBlock block={this.breweryBlock} asString />));
-    }
-    if (this.internetAccessBlock) {
-      elems.push(renderStaticReact(
-        <InternetAccessBlock block={this.internetAccessBlock} asString />));
-    }
-    return elems.join(' - ');
+    return <div>
+      {this.accessibilityBlock && <AccessibilityBlock block={this.accessibilityBlock} asString/>}
+      {this.accessibilityBlock && this.internetAccessBlock && ' - '}
+      {this.internetAccessBlock && <InternetAccessBlock block={this.internetAccessBlock} asString/>}
+      {this.internetAccessBlock && this.breweryBlock && ' - '}
+      {this.breweryBlock && <BreweryBlock block={this.breweryBlock} asString/>}
+    </div>;
   }
 
   renderTitle() {
-    return <div className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
-      <h4 className="poi_panel__sub_block__title__text">{this.getText()}</h4>
-      <div className={
-        classnames('poi_panel__block__collapse', 'icon-icon_chevron-down', {
-          'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
-        })} />
-    </div>;
+    return [
+      <div className="icon-icon_info poi_panel__block__symbol" key="1" />,
+      <div className="poi_panel__sub_block__title" key="2" onClick={this.expandCollapse}>
+        <h4 className="poi_panel__sub_block__title__text">{this.getText()}</h4>
+        <div className={
+          classnames('poi_panel__block__collapse', 'icon-icon_chevron-down', {
+            'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
+          })} />
+      </div>,
+    ];
   }
 
   renderExpanded() {
@@ -87,8 +78,8 @@ export default class InformationBlock extends React.Component {
     }
     return <div className="poi_panel__service_information__container">
       {this.accessibilityBlock && <AccessibilityBlock block={this.accessibilityBlock} />}
-      {this.breweryBlock && <BreweryBlock block={this.breweryBlock} />}
       {this.internetAccessBlock && <InternetAccessBlock block={this.internetAccessBlock} />}
+      {this.breweryBlock && <BreweryBlock block={this.breweryBlock} />}
     </div>;
   }
 
