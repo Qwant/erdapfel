@@ -3,6 +3,7 @@
       {{? this.extended }}
         {{= _('Services & information', 'poi') }}
       {{??}}
+        <div id="service_information_react_1"></div>
         {{= this.title() }}
       {{?}}
     </h4>
@@ -10,6 +11,7 @@
 </div>
 <div class="poi_panel__service_information__container">
   <div class="poi_panel__block__information{{= this.extended ? ' poi_panel__block__information--extended' : ''}}">
-    {{= this.PoiBlockContainer.render(this.blocks) }}
+    <div id="service_information_react_2"></div>
+    {{= this.renderPoiBlockContainer() }}
   </div>
 </div>

@@ -5,7 +5,6 @@ import Telemetry from '../../libs/telemetry';
 
 function ServicesInformation(block) {
   this.blocks = block.blocks;
-  this.PoiBlockContainer = PoiBlockContainer;
   this.panel = new Panel(this, ServicesInformationView);
 }
 
@@ -29,7 +28,13 @@ ServicesInformation.prototype.toggle = async function() {
 };
 
 ServicesInformation.prototype.title = function() {
-  return this.PoiBlockContainer.toString(this.blocks);
+  ReactDOM.render(<PoiBlockContainer poi={this} asString />,
+    document.getElementById('service_information_react_1'));
+};
+
+ServicesInformation.prototype.renderPoiBlockContainer = function() {
+  ReactDOM.render(<PoiBlockContainer poi={this} />,
+    document.getElementById('service_information_react_2'));
 };
 
 export default ServicesInformation;

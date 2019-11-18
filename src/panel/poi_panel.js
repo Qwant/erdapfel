@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import PoiHeader from 'src/panel/poi/PoiHeader';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
@@ -47,17 +48,24 @@ function PoiPanel() {
   store.onToggleStore(async () => {
     if (this.poi) {
       this.poi.stored = await isPoiFavorite(this.poi);
-      this.panel.update();
+      this.update();
     }
   });
 
   store.eventTarget.addEventListener('poi_added', async () => {
     if (this.poi && !this.poi.stored) {
       this.poi.stored = await isPoiFavorite(this.poi);
-      this.panel.update();
+      this.update();
     }
   });
 }
+
+PoiPanel.prototype.update = async function() {
+  await this.panel.update();
+  if (this.poi) {
+    this.renderPoiBlockContainer();
+  }
+};
 
 PoiPanel.prototype.toggleStorePoi = async function() {
   if (this.poi.meta && this.poi.meta.source) {
@@ -78,7 +86,7 @@ PoiPanel.prototype.toggleStorePoi = async function() {
     this.poi.stored = true;
     await store.add(this.poi);
   }
-  this.panel.update();
+  this.update();
 };
 
 PoiPanel.prototype.closeAction = function() {
@@ -93,7 +101,7 @@ PoiPanel.prototype.close = async function() {
   SearchInput.setInputValue('');
 
   this.active = false;
-  this.panel.update();
+  this.update();
 };
 
 PoiPanel.prototype.setPoi = async function(poi, options = {}) {
@@ -111,7 +119,7 @@ PoiPanel.prototype.setPoi = async function(poi, options = {}) {
   }
   this.sourceCategory = options.sourceCategory;
   this.active = true;
-  await this.panel.update();
+  await this.update();
 
   window.execOnMapLoaded(() => {
     fire(
@@ -148,12 +156,12 @@ PoiPanel.prototype.showDetail = function() {
     );
   }
   this.card = false;
-  this.panel.update();
+  this.update();
 };
 
 PoiPanel.prototype.backToSmall = function() {
   this.card = true;
-  this.panel.update();
+  this.update();
 };
 
 PoiPanel.prototype.backToFavorite = function() {
@@ -205,6 +213,11 @@ PoiPanel.prototype.showPhone = function() {
 
 PoiPanel.prototype.openCategory = function(category) {
   window.app.navigateTo(`/places/?type=${category.name}`);
+};
+
+PoiPanel.prototype.renderPoiBlockContainer = function() {
+  ReactDOM.render(<PoiBlockContainer poi={this.poi} />,
+    document.getElementById('poi_panel_react_1'));
 };
 
 /* private */

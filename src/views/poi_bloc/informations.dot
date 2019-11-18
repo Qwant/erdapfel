@@ -2,7 +2,8 @@
 <div class="poi_panel__info__section poi_panel__info__section--information">
   <p class="poi_panel__info__section__description">
     <div class="icon-icon_info poi_panel__block__symbol"></div>
-    {{= this.PoiBlockContainer.render(this.blocks) }}
+    <div id="information_react_1"></div>
+    {{= this.renderPoiBlockContainer(this.blocks) }}
   </p>
 </div>
 {{?}}

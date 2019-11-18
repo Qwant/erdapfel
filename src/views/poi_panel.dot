@@ -127,7 +127,7 @@
           </div>
         {{?}}
 
-      {{= this.PoiBlockContainer.render(this.poi) }}
+      <div id="poi_panel_react_1"></div>
 
       {{? this.poi.isFromOSM && this.poi.isFromOSM() }}
         {{= this.osmContributionPartial(this.poi) }}

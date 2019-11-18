@@ -15,16 +15,22 @@ function showHour(day, i) {
 function showHours(displayHours) {
   const dayNumber = new Date().getDay();
 
-  return displayHours.map((day, i) => 
-    <tr key={i} className={ classnames({ 'poi_panel__info__hours--current': (i + 1) % 7 === dayNumber}) }>
-      <td className="day">{ day.dayName }</td>
-      <td className="hours">{ showHour(day, i) }</td>
-    </tr>);
+  return <tbody>
+    {displayHours.map((day, i) => 
+      <tr key={i} className={ classnames({ 'poi_panel__info__hours--current': (i + 1) % 7 === dayNumber}) }>
+        <td className="day">{ day.dayName }</td>
+        <td className="hours">{ showHour(day, i) }</td>
+      </tr>)}
+  </tbody>;
 }
 
 function renderTitle(opening) {
-  const text = `${_(opening.status.msg)} ${opening.nextTransition} - ` +
-    _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime: opening.nextTransition});
+  let text = `${_(opening.status.msg)} `;
+  if (opening.nextTransition) {
+    text += ' - ' +
+      _('until {nextTransitionTime}', 'hour panel', {nextTransitionTime: opening.nextTransition}) +
+      ' ';
+  }
   return <span className="poi_panel__info__hours__status__text">{ text }
     <div className="poi_panel__info__hour__circle" style={{ background: opening.status.color }} />
   </span>;
@@ -55,10 +61,36 @@ export default class HourBlock extends React.Component {
   }
 
   expandCollapse() {
-    console.log('hello:');
     this.setState(state => ({
       isCollapsed: !state.isCollapsed,
     }));
+  }
+
+  renderStatus(opening) {
+    if (opening.isTwentyFourSeven) {
+      return <div className="poi_panel__info__hours__status__text poi_panel__info__hours__24_7">
+        { _('Open 24/7', 'hour block') }
+        <div className="poi_panel__info__hour__circle" style={{ background: opening.status.color }} />
+      </div>;
+    }
+    return <div>
+      <div className="poi_panel__info__hours__status" onClick={this.expandCollapse}>
+        { renderTitle(opening) }
+        <i className={classnames(
+          'icon-icon_chevron-down',
+          'poi_panel__info__hours__status__toggle',
+          {
+            'poi_panel__info__hours__status__toggle--reversed': !this.state.isCollapsed,
+          })} />
+      </div>
+      <div className={classnames('poi_panel__info__hours', {
+        'poi_panel__info__hours--open': !this.state.isCollapsed,
+      })}>
+        <table className="poi_panel__info__hours__table">
+          { showHours(opening.displayHours) }
+        </table>
+      </div>
+    </div>;
   }
 
   render() {
@@ -67,38 +99,13 @@ export default class HourBlock extends React.Component {
       return null;
     }
 
-              // {{= this.panel.renderPartial(this.nextTransitionPartial) }}
     return <div className="poi_panel__info__section poi_panel__info__section--hours">
-      <p className="poi_panel__info__section__description">
+      <div className="poi_panel__info__section__description">
         <div className="icon-icon_clock poi_panel__block__symbol"></div>
         <div className="poi_panel__block__content">
-          { opening.isTwentyFourSeven ?
-            <div className="poi_panel__info__hours__status__text poi_panel__info__hours__24_7">
-              { _('Open 24/7', 'hour block') }
-              <div className="poi_panel__info__hour__circle" style={{ background: opening.status.color }} />
-            </div>
-            :
-            <div>
-              <div className="poi_panel__info__hours__status" onClick={this.expandCollapse}>
-                { renderTitle(opening) }
-                <i className={classnames(
-                  'icon-icon_chevron-down',
-                  'poi_panel__info__hours__status__toggle',
-                  {
-                    'poi_panel__info__hours__status__toggle--reversed': !this.state.isCollapsed,
-                  })} />
-              </div>
-              <div className={classnames('poi_panel__info__hours', {
-                'poi_panel__info__hours--open': !this.state.isCollapsed,
-              })}>
-                <table className="poi_panel__info__hours__table">
-                  { showHours(opening.displayHours) }
-                </table>
-              </div>
-            </div>
-          }
+          { this.renderStatus(opening) }
         </div>
-      </p>
+      </div>
     </div>;
   }
 }

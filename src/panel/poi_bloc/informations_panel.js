@@ -4,7 +4,7 @@ import PoiBlockContainer from './PoiBlockContainer';
 
 export default class Informations {
   constructor(block) {
-    this.PoiBlockContainer = PoiBlockContainer;
+    this.PoiBlockContainer = new PoiBlockContainer();
     this.blocks = this.cleanBlocks(block.blocks);
     this.panel = new Panel(this, InformationsView);
     this.extended = false;
@@ -18,11 +18,16 @@ export default class Informations {
     return blocks
       .filter(b => {
         if (b.blocks) {
-          b.blocks = b.blocks.filter(b => PoiBlockContainer.getBlock(b.type));
+          b.blocks = b.blocks.filter(b => this.PoiBlockContainer.getBlock(b.type));
           return b.blocks.length > 0;
         }
         return true;
       })
-      .filter(b => PoiBlockContainer.getBlock(b.type));
+      .filter(b => this.PoiBlockContainer.getBlock(b.type));
+  }
+
+  renderPoiBlockContainer() {
+    ReactDOM.render(<PoiBlockContainer poi={this} />,
+      document.getElementById('information_react_1'));
   }
 }

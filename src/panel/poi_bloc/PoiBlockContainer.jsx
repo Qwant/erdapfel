@@ -2,6 +2,7 @@
 import Panel from '../../libs/panel';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import React from 'react';
+import PropTypes from 'prop-types';
 import HourBlock from '../../views/poi_bloc/Hour';
 import WikiBlock from '../../views/poi_bloc/Wiki';
 import AccessibilityBlock from '../../views/poi_bloc/Accessibility';
@@ -10,7 +11,27 @@ import InternetAccessBlock from '../../views/poi_bloc/InternetAccess';
 import ContactBlock from '../../views/poi_bloc/Contact';
 import ImagesBlock from '../../views/poi_bloc/Images';
 
+function findBlock(blocks, toFind) {
+  for (let i = 0; i < blocks.length; ++i) {
+    const block = blocks[i];
+    if (block.type === toFind) {
+      return block;
+    } else if (block.blocks !== undefined) {
+      const ret = findBlock(block.blocks, toFind);
+      if (ret !== null) {
+        return ret;
+      }
+    }
+  }
+  return null;
+}
+
 export default class PoiBlockContainer extends React.Component {
+  static propTypes = {
+    poi: PropTypes.object,
+    asString: PropTypes.bool,
+  }
+
   constructor(props) {
     super(props);
     this.poi = null;
@@ -30,24 +51,30 @@ export default class PoiBlockContainer extends React.Component {
             'images'].find(b => b === blockName);
   }
 
-  render(poi, asString = false) {
-    const blocks = poi.blocks;
-    const hourBlock = blocks.find(b => b.type === 'opening_hours');
-    const wikiBlock = blocks.find(b => b.type === 'wikipedia');
-    const accessibilityBlock = blocks.find(b => b.type === 'accessibility');
-    const breweryBlock = blocks.find(b => b.type === 'brewery');
-    const internetAccessBlock = blocks.find(b => b.type === 'internet_access');
-    const contactBlock = blocks.find(b => b.type === 'contact');
-    const imagesBlock = blocks.find(b => b.type === 'images');
+  render() {
+    if (!this.props.poi || !this.props.poi.blocks) {
+      return null;
+    }
+    const blocks = this.props.poi.blocks;
+    console.log(blocks);
+    const hourBlock = findBlock(blocks, 'opening_hours');
+    const wikiBlock = findBlock(blocks, 'wikipedia');
+    const accessibilityBlock = findBlock(blocks, 'accessibility');
+    const breweryBlock = findBlock(blocks, 'brewery');
+    const internetAccessBlock = findBlock(blocks, 'internet_access');
+    const contactBlock = findBlock(blocks, 'contact');
+    const imagesBlock = findBlock(blocks, 'images');
 
     return <div className="poi_panel__info">
       {hourBlock && <HourBlock block={hourBlock} asString />}
-      {wikiBlock && <WikiBlock block={wikiBlock} />}
-      {accessibilityBlock && <AccessibilityBlock block={accessibilityBlock} asString />}
+      <div className="poi_panel__info__section poi_panel__info__section--information">
+        {wikiBlock && <WikiBlock block={wikiBlock} />}
+        {accessibilityBlock && <AccessibilityBlock block={accessibilityBlock} asString />}
+      </div>
       {breweryBlock && <BreweryBlock block={breweryBlock} asString />}
       {internetAccessBlock && <InternetAccessBlock block={internetAccessBlock} asString />}
       {contactBlock && <ContactBlock block={contactBlock} asString />}
-      {imagesBlock && <ImagesBlock block={imagesBlock} poi={poi} />}
+      {imagesBlock && <ImagesBlock block={imagesBlock} poi={this.props.poi} />}
     </div>;
   }
 }
