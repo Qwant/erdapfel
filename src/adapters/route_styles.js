@@ -1,6 +1,6 @@
 import Color from 'color';
 
-const darkenColor = hex => Color(hex).mix(Color('black'), 0.2).hex();
+const darkenColor = hex => Color(hex).mix(Color('black'), 0.33).hex();
 
 const INACTIVE_ROUTE_COLOR = '#c8cbd3';
 const ACTIVE_ROUTE_COLOR = '#4ba2ea';
