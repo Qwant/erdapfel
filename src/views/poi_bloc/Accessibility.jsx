@@ -25,11 +25,10 @@ const AccessibilityBlock = ({
   if (asString) {
     return availableAccessibilities.join('. ');
   }
-
   return <div>
     <h6 className="poi_panel__sub__sub_block__title">{ _('Accessibility', 'poi') }</h6>
     <ul className="poi_panel__info__accessibilities">
-      {availableAccessibilities.map((a11y, index) => <li key={index}>{a11y}</li>)}
+      { availableAccessibilities.map((el, index) => <li key={index}>{el}</li>) }
     </ul>
   </div>;
 };
