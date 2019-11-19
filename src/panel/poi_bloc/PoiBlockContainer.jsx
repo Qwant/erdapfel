@@ -11,10 +11,6 @@ export default class PoiBlockContainer extends React.Component {
     poi: PropTypes.object,
   }
 
-  toString(blocks) {
-    return this.render(blocks, true);
-  }
-
   render() {
     if (!this.props.poi || !this.props.poi.blocks) {
       return null;

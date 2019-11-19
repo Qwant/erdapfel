@@ -60,6 +60,10 @@ function PoiPanel() {
 }
 
 PoiPanel.prototype.update = async function() {
+  const react_dom = document.getElementById('poi_panel_react_1');
+  if (react_dom) {
+    ReactDOM.unmountComponentAtNode(react_dom);
+  }
   await this.panel.update();
   if (this.poi) {
     this.renderPoiBlockContainer();
