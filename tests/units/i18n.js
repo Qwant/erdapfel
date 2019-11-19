@@ -1,4 +1,4 @@
-/* globals _, getDay */
+/* globals _ */
 import I18n from '../../src/libs/i18n';
 const i18nData = require('../__data__/i18n').i18nData;
 const date = require('../__data__/i18n').date;
@@ -12,9 +12,5 @@ describe('i18n', () => {
 
   test('_', () => {
     expect(_('fr test')).toEqual('en test');
-  });
-
-  test('getDay', () => {
-    expect(getDay(1)).toEqual('Monday');
   });
 });

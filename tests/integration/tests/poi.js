@@ -294,20 +294,23 @@ describe('Poi hour i18n', () => {
   languages.supportedLanguages.forEach(language => {
     test(`Poi hour i18n [${language.locale}]`, async () => {
       const langPage = await browser.newPage();
+      const httpLocale = language.locale.replace(/_/g, '-');
       await langPage.setExtraHTTPHeaders({
-        'accept-language': `${language.locale},${language.code},en;q=0.8`,
+        'accept-language': `${httpLocale},${language.code},en;q=0.8`,
       });
       await langPage.goto(
         `${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`
       );
       await langPage.waitForSelector('.poi_panel__info__hours__table');
       const hourData = await getHours(langPage);
-      if (language.code === 'fr') {
-        expect(hourData[1][1]).toEqual('09h30 - 18h00');
-      } else if (language.code === 'en') {
+      if (language.locale === 'en_US') {
+        // Tuesday
         expect(hourData[1][1]).toEqual('09:30 AM - 06:00 PM');
+        // Thursday
+        expect(hourData[3][1]).toEqual('12:30 PM - 09:45 PM');
       } else {
         expect(hourData[1][1]).toEqual('09:30 - 18:00');
+        expect(hourData[3][1]).toEqual('12:30 - 21:45');
       }
     });
   });
