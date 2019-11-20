@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PanelsView from '../views/app_panel.dot';
 import Panel from '../libs/panel';
 import FavoritesPanel from './favorites/FavoritesPanel';
-import PoiPanel from './poi_panel';
+import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
@@ -18,6 +18,7 @@ import CategoryPanel from 'src/panel/category/CategoryPanel';
 import ApiPoi from '../adapters/poi/idunn_poi';
 import Router from 'src/proxies/app_router';
 import Poi from 'src/adapters/poi/poi.js';
+import PoiStore from 'src/adapters/poi/poi_store.js';
 import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
@@ -36,7 +37,7 @@ export default class AppPanel {
 
     this.servicePanel = new ReactPanelWrapper(ServicePanel);
     this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
-    this.poiPanel = new PoiPanel();
+    this.poiPanel = new ReactPanelWrapper(PoiPanel, '.react_poi_panel');
     this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
 
@@ -189,20 +190,6 @@ export default class AppPanel {
     });
   }
 
-  openPoiPanel(poi, options = {}) {
-    this.panels.forEach(panel => {
-      if (panel === this.poiPanel) {
-        panel.setPoi(poi, options);
-      } else {
-        if (panel === this.categoryPanel && !options.isFromCategory) {
-          fire('remove_category_markers');
-        }
-        panel.close();
-      }
-    });
-    this.unminify();
-  }
-
   emptyClickOnMap() {
     this.panels.forEach(p => {
       if (p.emptyClickOnMap) {
@@ -218,7 +205,7 @@ export default class AppPanel {
 
     // If a POI object is provided before fetching full data,
     // we can update the map immediately for UX responsiveness
-    const shallowPoi = options.poi && Poi.deserialize(options.poi);
+    const shallowPoi = options.poi && PoiStore.deserialize(options.poi);
     const updateMapEarly = !!shallowPoi;
     if (updateMapEarly) {
       this._updateMapPoi(shallowPoi, options);
@@ -258,6 +245,7 @@ export default class AppPanel {
         }
         panel.close();
       });
+    panelToOpen.close();
     panelToOpen.open(options);
   }
 
@@ -277,6 +265,20 @@ export default class AppPanel {
       query,
       ...otherOptions,
     });
+  }
+
+  openPoiPanel(poi, options = {}) {
+    this.panels.forEach(panel => {
+      if (panel === this.poiPanel) {
+        this._openPanel(this.poiPanel, {...options, 'poi': poi});
+      } else {
+        if (panel === this.categoryPanel && !options.isFromCategory) {
+          fire('remove_category_markers');
+        }
+        panel.close();
+      }
+    });
+    this.unminify();
   }
 
   resetLayout() {
