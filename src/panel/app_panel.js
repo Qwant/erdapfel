@@ -5,7 +5,7 @@ import Panel from '../libs/panel';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
-import EventListPanel from './EventListPanel';
+import EventListPanel from './event/EventListPanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import nconf from '@qwant/nconf-getter';
@@ -265,8 +265,13 @@ export default class AppPanel {
   }
 
   openEvents(params) {
+    const { type: eventName, q: query, ...otherOptions } = params;
     if (events.find(ev => ev.name === params.type)) {
-      this._openPanel(this.eventListPanel, params);
+      this._openPanel(this.eventListPanel, {
+        eventName,
+        query,
+        ...otherOptions,
+      });
     } else {
       window.app.navigateTo('/');
     }

@@ -2,41 +2,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
-import PoiCategoryItemList from './PoiCategoryItemList';
-import CategoryPanelError from './CategoryPanelError';
-import CategoryPanelHeader from './CategoryPanelHeader';
-import Telemetry from 'src/libs/telemetry';
-import SearchInput from 'src/ui_components/search_input';
+import PoiEventItemList from './PoiEventItemList';
+import EventPanelError from './EventPanelError';
+import EventPanelHeader from './EventPanelHeader';
+import Telemetry from "src/libs/telemetry";
+import SearchInput from "src/ui_components/search_input";
 import nconf from '@qwant/nconf-getter';
-import IdunnPoi from 'src/adapters/poi/idunn_poi';
-import CategoryService from 'src/adapters/category_service';
+import IdunnPoi from "src/adapters/poi/idunn_poi";
+import events from "config/events.yml"
 
-const categoryConfig = nconf.get().category;
-const MAX_PLACES = Number(categoryConfig.maxPlaces);
+const eventConfig = nconf.get().events;
+const MAX_PLACES = Number(eventConfig.maxPlaces);
 
-export default class CategoryPanel extends React.Component {
+class EventListPanel extends React.Component {
+
   static propTypes = {
-    categoryName: PropTypes.string,
+    eventName: PropTypes.string,
     query: PropTypes.string,
     bbox: PropTypes.string,
-  }
+  };
 
   state = {
     pois: [],
     dataSource: '',
     initialLoading: true,
-  }
+  };
 
   componentDidMount() {
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
 
-    console.log(this.props);
-    if (this.props.categoryName) {
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category: this.props.categoryName });
-      const { label } = CategoryService.getCategoryByName(this.props.categoryName);
+    if (this.props.eventName) {
+      Telemetry.add(Telemetry.POI_EVENT_OPEN, null, null, { category: this.props.eventName });
+      const { label } = events.find(ev => ev.name === this.props.eventName);
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
     }
-
     this.fitMapAndFetch();
   }
 
@@ -69,7 +68,7 @@ export default class CategoryPanel extends React.Component {
       return;
     }
 
-    // Apply correct zoom when opening a category
+    // Apply correct zoom when opening an event
     const currentZoom = window.map.mb.getZoom();
 
     // Zoom < 5: focus on Paris
@@ -89,11 +88,11 @@ export default class CategoryPanel extends React.Component {
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
       .join(',');
-
-    const { places, source } = await IdunnPoi.poiCategoryLoad(
+    console.log(this.props.eventName);
+    const { places, source } = await IdunnPoi.poiEventLoad(
       urlBBox,
       MAX_PLACES,
-      this.props.categoryName,
+      this.props.eventName,
       this.props.query
     );
     this.setState({
@@ -102,69 +101,32 @@ export default class CategoryPanel extends React.Component {
       initialLoading: false,
     });
 
-    fire('add_category_markers', places, this.props.categoryName);
+    fire('add_category_markers', places, this.props.eventName);
     fire('save_location');
-  };
-
-  onShowPhoneNumber = poi => {
-    if (poi.meta && poi.meta.source) {
-      Telemetry.add('phone', 'poi', poi.meta.source,
-        Telemetry.buildInteractionData({
-          id: poi.id,
-          source: poi.meta.source,
-          template: 'multiple',
-          zone: 'list',
-          element: 'phone',
-          category: this.props.categoryName,
-        })
-      );
-    }
-  }
-
-  close = () => {
-    SearchInput.setInputValue('');
-    window.app.navigateTo('/');
   }
 
   selectPoi = poi => {
-    fire('click_category_poi', poi, this.props.categoryName);
+    fire('click_category_poi', poi, this.props.eventName);
   }
 
   highlightPoiMarker = (poi, highlight) => {
     fire('highlight_category_marker', poi, highlight);
   }
 
+  close = () => {
+    window.app.navigateTo('/');
+  }
+
   render() {
-    const { initialLoading, pois, dataSource } = this.state;
-
-    if (initialLoading) {
-      return null;
-    }
-
-    const hasError = !pois || pois.length === 0;
-    const zoomIn = !pois;
-
-    let panelContent;
-
-    if (hasError) {
-      panelContent = <CategoryPanelError zoomIn={zoomIn} />;
-    } else {
-      panelContent = <PoiCategoryItemList
-        pois={pois}
-        selectPoi={this.selectPoi}
-        highlightMarker={this.highlightPoiMarker}
-        onShowPhoneNumber={this.onShowPhoneNumber}
-      />;
-    }
-
     return <Panel
       resizable
-      title={<CategoryPanelHeader dataSource={dataSource} />}
-      minimizedTitle={_('Show results', 'categories')}
-      close={this.close}
-      className="category__panel"
-    >
-      {panelContent}
+      title='Hi'
+      minimizedTitle='Hi'
+      className='events_list'
+      close={this.close}>
+      <h1>{this.props.eventName}</h1>
     </Panel>;
   }
 }
+
+export default EventListPanel;

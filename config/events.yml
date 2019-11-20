@@ -5,8 +5,8 @@
   matcher:
     regex: "concert"
   icon: music
-- label : _('spectacle')
-  name: spectacle
+- label : _('show')
+  name: show
   color: "#e93865"
   matcher:
     regex: "spectacle|show|theatre|théâtre"
