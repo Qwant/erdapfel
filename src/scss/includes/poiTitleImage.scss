@@ -2,6 +2,8 @@
   &--image {
     width: 100px;
     height: 100px;
+    flex-shrink: 0;
+    margin-left: 10px;
     background-size: cover;
     background-position: center center;
     background-color: white;
