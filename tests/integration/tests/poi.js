@@ -305,8 +305,10 @@ describe('Poi hour i18n', () => {
       const hourData = await getHours(langPage);
       if (language.locale === 'en_US') {
         // Tuesday
+        expect(hourData[1][0]).toEqual('Tuesday');
         expect(hourData[1][1]).toEqual('09:30 AM - 06:00 PM');
         // Thursday
+        expect(hourData[3][0]).toEqual('Thursday');
         expect(hourData[3][1]).toEqual('12:30 PM - 09:45 PM');
       } else {
         expect(hourData[1][1]).toEqual('09:30 - 18:00');
