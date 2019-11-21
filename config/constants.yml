@@ -7,6 +7,9 @@ languages:
       locale: en_GB
       code: en
     -
+      locale: en_US
+      code: en
+    -
       locale: fr_FR
       code: fr
     -

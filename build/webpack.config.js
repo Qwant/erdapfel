@@ -192,22 +192,10 @@ const webpackChunks = buildMode => {
   const constants = yaml.readSync('../config/constants.yml');
 
   webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(language => {
-    const s_path = `${__dirname}/../language/date/date-${language.locale.toLocaleLowerCase()}.json`;
     return {
       entry: path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
       module: {
         rules: [
-          {
-            loader: '@qwant/merge-i18n-source-loader',
-            options: {
-              sources: [
-                {
-                  path: s_path,
-                  name: 'i18nDate',
-                },
-              ],
-            },
-          },
           {
             loader: '@qwant/po-js-loader',
           },

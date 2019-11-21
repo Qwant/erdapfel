@@ -21,7 +21,7 @@
         "next_transition_datetime": "2018-08-28T09:30:00+02:00",
         "seconds_before_next_transition": 58874,
         "is_24_7": false,
-        "raw": "Tu-Su 09:30-18:00; Th 09:30-21:45",
+        "raw": "Tu-Su 09:30-18:00; Th 12:30-21:45",
         "days": [{
             "dayofweek": 1,
             "local_date": "2018-08-27",
@@ -48,7 +48,7 @@
             "local_date": "2018-08-30",
             "status": "open",
             "opening_hours": [{
-                "beginning": "09:30",
+                "beginning": "12:30",
                 "end": "21:45"
             }]
         }, {
