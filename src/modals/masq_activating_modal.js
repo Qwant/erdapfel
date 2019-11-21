@@ -3,11 +3,11 @@ import Modal from './modal';
 
 export default class MasqActivatingModal {
   constructor() {
-    // get masqErrorModal from window if already initialized
+    // get masqActivatingModal from window if already initialized
     if (window.__masqActivatingModal) {
       return window.__masqActivatingModal;
     }
-    // if masqErrorModal not initialized, use this
+    // if masqActivatingModal not initialized, use this
     window.__masqActivatingModal = this;
 
     this.modal = new Modal(this, MasqActivatingModalView, false);
