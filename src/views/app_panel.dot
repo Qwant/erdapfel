@@ -12,7 +12,6 @@
 {{? this.masqEnabled }}
   {{= this.masqFavoriteModal.renderModal() }}
   {{= this.masqOnboardingModal.renderModal() }}
-  {{= this.masqActivatingModal.renderModal() }}
 {{?}}
 
 <div class="react_menu__container"></div>

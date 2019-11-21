@@ -9,7 +9,6 @@ import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
-import MasqActivatingModal from '../modals/masq_activating_modal';
 import nconf from '@qwant/nconf-getter';
 import DirectionPanel from './direction/direction_panel';
 import Menu from './Menu';
@@ -58,7 +57,6 @@ export default class AppPanel {
     if (this.masqEnabled) {
       this.masqFavoriteModal = new MasqFavoriteModal();
       this.masqOnboardingModal = new MasqOnboardingModal();
-      this.masqActivatingModal = new MasqActivatingModal();
     }
 
     if (performanceEnabled) {
