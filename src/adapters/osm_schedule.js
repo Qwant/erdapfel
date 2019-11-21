@@ -22,12 +22,15 @@ function scheduleStatus(scheduleResponse, timeMessages) {
   return { msg: '', color: '#fff' };
 }
 
-function getIntlLocale() {
-  return window.getLang().locale.replace(/_/g, '-');
+function getIntlLocales() {
+  const lang = window.getLang();
+  const locales = [lang.locale].concat(lang.fallback || []);
+  // Intl expects '-' in locales, such as "en-GB"
+  return locales.map(l => l.replace(/_/g, '-'));
 }
 
 function getTimeFormatter() {
-  return Intl.DateTimeFormat(getIntlLocale(), { hour: '2-digit', minute: '2-digit' });
+  return Intl.DateTimeFormat(getIntlLocales(), { hour: '2-digit', minute: '2-digit' });
 }
 
 /**
@@ -69,7 +72,7 @@ function toLocaleOpeningHours(hours) {
 
 
 function translateSchedule(days) {
-  const dayNameFormatter = Intl.DateTimeFormat(getIntlLocale(), { weekday: 'long' });
+  const dayNameFormatter = Intl.DateTimeFormat(getIntlLocales(), { weekday: 'long' });
   const getDayName = dow => {
     /* 2018-01-01 is a Monday */
     return dayNameFormatter.format(new Date(2018, 0, dow));
