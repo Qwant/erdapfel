@@ -37,7 +37,6 @@
     "@mapbox/mapbox-gl-rtl-text": "^0.2.1",
     "@qwant/config-sanitizer-loader": "file:local_modules/config-sanitizer-loader",
     "@qwant/map-style-loader": "file:local_modules/map-style-loader",
-    "@qwant/merge-i18n-source-loader": "file:local_modules/merge-i18n-source-loader",
     "@qwant/merge-po-loader": "file:local_modules/merge-po-loader",
     "@qwant/nconf-getter": "file:local_modules/nconf_getter",
     "@qwant/po-js-loader": "file:local_modules/po-js-loader",
