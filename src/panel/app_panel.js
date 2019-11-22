@@ -7,7 +7,6 @@ import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
-import MasqFavoriteModal from '../modals/masq_favorite_modal';
 import MasqOnboardingModal from '../modals/masq_onboarding_modal';
 import nconf from '@qwant/nconf-getter';
 import DirectionPanel from './direction/direction_panel';
@@ -55,7 +54,6 @@ export default class AppPanel {
 
     this.masqEnabled = masqEnabled;
     if (this.masqEnabled) {
-      this.masqFavoriteModal = new MasqFavoriteModal();
       this.masqOnboardingModal = new MasqOnboardingModal();
     }
 
