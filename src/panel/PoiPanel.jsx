@@ -60,9 +60,6 @@ export default class PoiPanel extends React.Component {
   }
 
   backToFavorite = () => {
-    if (!window.app) {
-      return;
-    }
     Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
     window.app.navigateTo('/favs');
   }
@@ -101,23 +98,14 @@ export default class PoiPanel extends React.Component {
   }
 
   closeAction = () => {
-    if (!window.app) {
-      return;
-    }
     window.app.navigateTo('/');
   }
 
   openCategory = category => {
-    if (!window.app) {
-      return;
-    }
     window.app.navigateTo(`/places/?type=${category.name}`);
   }
 
   backToList = () => {
-    if (!window.app) {
-      return;
-    }
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
     window.app.navigateTo(`/places/?type=${this.props.sourceCategory}`);

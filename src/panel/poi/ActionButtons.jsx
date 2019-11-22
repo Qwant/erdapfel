@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Telemetry from '../../libs/telemetry';
-import MasqFavoriteModal from '../modals/masq_favorite_modal';
+import MasqFavoriteModal from '../../modals/masq_favorite_modal';
 import Store from '../../adapters/store';
 
 const store = new Store();
@@ -120,9 +120,6 @@ export default class ActionButtons extends React.Component {
   }
 
   openDirection = () => {
-    if (!window.app) {
-      return;
-    }
     window.app.navigateTo('/routes/', {
       poi: this.props.poi,
       isFromCategory: this.props.isFromCategory,
