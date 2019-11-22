@@ -33,10 +33,14 @@ export default class PoiStore extends Poi {
   }
 
   static deserialize(raw) {
-    const { id, name, alternativeName, type, latLon, className, subClassName, bbox, blocks, topImageUrl, kind } = raw;
+    const {
+      id, name, alternativeName, type, latLon, className, subClassName, bbox, blocks,
+      topImageUrl, kind,
+    } = raw;
     if (kind === 'idunn') {
       return new IdunnPoi(raw);
     }
-    return new Poi(id, name, alternativeName, type, latLon, className, subClassName, bbox, blocks, topImageUrl, raw);
+    return new Poi(id, name, alternativeName, type, latLon, className, subClassName, bbox, blocks,
+      topImageUrl, raw);
   }
 }

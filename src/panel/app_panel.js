@@ -17,7 +17,6 @@ import Telemetry from '../libs/telemetry';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import ApiPoi from '../adapters/poi/idunn_poi';
 import Router from 'src/proxies/app_router';
-import Poi from 'src/adapters/poi/poi.js';
 import PoiStore from 'src/adapters/poi/poi_store.js';
 import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
@@ -270,7 +269,7 @@ export default class AppPanel {
   openPoiPanel(poi, options = {}) {
     this.panels.forEach(panel => {
       if (panel === this.poiPanel) {
-        this._openPanel(this.poiPanel, {...options, 'poi': poi});
+        this._openPanel(this.poiPanel, { ...options, poi });
       } else {
         if (panel === this.categoryPanel && !options.isFromCategory) {
           fire('remove_category_markers');

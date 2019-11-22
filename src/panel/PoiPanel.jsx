@@ -1,3 +1,4 @@
+/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -57,13 +58,13 @@ export default class PoiPanel extends React.Component {
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
 
-    isPoiFavorite(this.poi).then(x => this.setState({poiIsInFavorite: x}));
+    isPoiFavorite(this.poi).then(x => this.setState({ poiIsInFavorite: x }));
     this.active = true;
 
     store.onToggleStore(async () => {
       if (this.poi) {
         this.setState({
-          poiIsInFavorite: await isPoiFavorite(this.poi)
+          poiIsInFavorite: await isPoiFavorite(this.poi),
         });
       }
     });
@@ -71,7 +72,7 @@ export default class PoiPanel extends React.Component {
     store.eventTarget.addEventListener('poi_added', async () => {
       if (this.poi && !this.state.poiIsInFavorite) {
         this.setState({
-          poiIsInFavorite: await isPoiFavorite(this.poi)
+          poiIsInFavorite: await isPoiFavorite(this.poi),
         });
       }
     });
@@ -227,8 +228,6 @@ export default class PoiPanel extends React.Component {
   }
 
   renderPhone() {
-    const elems = [];
-
     if (this.shouldPhoneBeHidden()) {
       return <button className="poi_panel__action icon-icon_phone poi_phone_container_hidden"
         onClick={this.showPhone}
@@ -267,12 +266,12 @@ export default class PoiPanel extends React.Component {
       data.callback = this.backToSmall;
       data.text = _('Back');
       data.className = 'poi_panel__back_mobile';
-    };
+    }
     return <div>
       <div className={classnames('poi_panel__header', {
-          'poi_header_card': this.state.card,
-          'poi_header_back_to_list': this.props.isFromFavorite || this.props.isFromCategory,
-        })}
+        'poi_header_card': this.state.card,
+        'poi_header_back_to_list': this.props.isFromFavorite || this.props.isFromCategory,
+      })}
       >
         {data.text && data.callback &&
           <div className={data.className} onClick={data.callback}>
@@ -306,7 +305,9 @@ export default class PoiPanel extends React.Component {
           <div className="poi_panel__content__card__action__container">
             { this.isDirectionActive &&
               <button
-                className="poi_panel__content__card__action poi_panel__content__card__action__direction"
+                className={
+                  'poi_panel__content__card__action poi_panel__content__card__action__direction'
+                }
                 onClick={this.openDirection}
               >
                 <span className="icon-corner-up-right" />
@@ -322,19 +323,19 @@ export default class PoiPanel extends React.Component {
         <div className="poi_panel__content">
           <div className="poi_panel__container">
             <div className="poi_panel__description_container" onClick={this.center}>
-               <PoiHeader poi={this.poi} />
-               <PoiTitleImage poi={this.poi} iconOnly={false} />
+              <PoiHeader poi={this.poi} />
+              <PoiTitleImage poi={this.poi} iconOnly={false} />
             </div>
             <div className="poi_panel__actions">
               <button className={classnames(
-                  'poi_panel__action',
-                  'poi_panel__actions__icon__store',
-                  {
-                    'icon-icon_star-filled': this.state.poiIsInFavorite,
-                    'icon-icon_star': !this.state.poiIsInFavorite,
-                  })
-                }
-                onClick={this.toggleStorePoi}
+                'poi_panel__action',
+                'poi_panel__actions__icon__store',
+                {
+                  'icon-icon_star-filled': this.state.poiIsInFavorite,
+                  'icon-icon_star': !this.state.poiIsInFavorite,
+                })
+              }
+              onClick={this.toggleStorePoi}
               >
                 <div>{this.state.poiIsInFavorite ? _('SAVED', 'poi') : _('FAVORITES', 'poi')}</div>
               </button>
@@ -347,32 +348,31 @@ export default class PoiPanel extends React.Component {
                   <div>{_('DIRECTIONS', 'poi')}</div>
                 </button>
               }
-              {this.poi.blocksByType && this.poi.blocksByType.phone &&
-                this.renderPhone()}
+              {this.poi.blocksByType && this.poi.blocksByType.phone && this.renderPhone()}
             </div>
             {this.poi && this.poi.id.match(/latlon:/) && this.categories &&
               <div className="service_panel__categories--poi">
                 <h3 className="service_panel__categories_title">
-                  <span className="icon-icon_compass" />{_("Search around this place", "poi")}
+                  <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
                 </h3>
                 {this.categories.map((category, index) => {
                   return <button className="service_panel__category"
+                    key={index}
                     type="button"
                     onClick={() => this.openCategory(category)}
                   >
                     <div className="service_panel__category__icon"
-                      style={{'background':category.backgroundColor}}
+                      style={{ 'background': category.backgroundColor }}
                     >
                       <span className={classnames('icon', `icon-${category.iconName}`)} />
                     </div>
                     <div className="service_panel__category__title">{category.label}</div>
-                  </button>
+                  </button>;
                 })}
               </div>
             }
             <PoiBlockContainer poi={this.poi} />
-            {this.poi.isFromOSM && this.poi.isFromOSM() &&
-              <OsmContribution poi={this.poi} />}
+            {this.poi.isFromOSM && this.poi.isFromOSM() && <OsmContribution poi={this.poi} />}
           </div>
         </div>
       </div>
