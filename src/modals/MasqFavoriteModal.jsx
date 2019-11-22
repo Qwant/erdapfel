@@ -6,7 +6,8 @@ import Modal from 'src/components/ui/Modal';
 import Telemetry from 'src/libs/telemetry';
 import Error from 'src/adapters/error';
 import { version } from 'config/constants.yml';
-import MasqOnboardingModal from './masq_onboarding_modal';
+import { openAndWaitForClose as openMasqOnboardingAndWaitForClose }
+  from './MasqOnboardingModal';
 import Store from 'src/adapters/store';
 
 const store = new Store();
@@ -37,10 +38,8 @@ class MasqFavoriteModal extends React.Component {
   }
 
   openOnboarding = async () => {
-    const onboardingModal = new MasqOnboardingModal();
-    onboardingModal.open();
     Telemetry.add(Telemetry.MASQ_ADD_POI_MODAL_ONBOARDING);
-    await onboardingModal.waitForClose();
+    await openMasqOnboardingAndWaitForClose();
 
     if (await store.isLoggedIn()) {
       this.props.onClose();

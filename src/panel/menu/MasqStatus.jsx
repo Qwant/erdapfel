@@ -2,11 +2,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import nconf from '@qwant/nconf-getter';
-import MasqOnboardingModal from 'src/modals/masq_onboarding_modal';
+import { open as openMasqOnboarding } from 'src/modals/MasqOnboardingModal';
 import MasqAvatar from './MasqAvatar';
 import Telemetry from 'src/libs/telemetry';
-
-const masqOnboardingModal = new MasqOnboardingModal();
 
 export default class MasqStatus extends Component {
   static propTypes = {
@@ -34,7 +32,7 @@ export default class MasqStatus extends Component {
 
   openMasqOnboarding = () => {
     Telemetry.add(Telemetry.MASQ_MENU_ONBOARDING);
-    masqOnboardingModal.open();
+    openMasqOnboarding();
   }
 
   openMasq = () => {

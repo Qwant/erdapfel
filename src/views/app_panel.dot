@@ -9,8 +9,5 @@
 
 /* modals */
 <div class="react_modal__container"></div>
-{{? this.masqEnabled }}
-  {{= this.masqOnboardingModal.renderModal() }}
-{{?}}
 
 <div class="react_menu__container"></div>
