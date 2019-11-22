@@ -43,31 +43,36 @@ export default class PoiPanel extends React.Component {
 
   constructor(props) {
     super(props);
+    this.poi = props.poi;
     if (props.poi) {
       this.poi = PoiStore.deserialize(props.poi);
     }
     this.state = {
       isCollapsed: true,
       card: true,
+      showPhoneNumber: false,
+      poiIsInFavorite: this.poi.stored,
     };
     this.categories = CategoryService.getCategories();
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
 
-    isPoiFavorite(this.poi).then(x => this.poi.stored = x);
+    isPoiFavorite(this.poi).then(x => this.setState({poiIsInFavorite: x}));
     this.active = true;
 
     store.onToggleStore(async () => {
       if (this.poi) {
-        this.poi.stored = await isPoiFavorite(this.poi);
-        this.update();
+        this.setState({
+          poiIsInFavorite: await isPoiFavorite(this.poi)
+        });
       }
     });
 
     store.eventTarget.addEventListener('poi_added', async () => {
-      if (this.poi && !this.poi.stored) {
-        this.poi.stored = await isPoiFavorite(this.poi);
-        this.update();
+      if (this.poi && !this.state.poiIsInFavorite) {
+        this.setState({
+          poiIsInFavorite: await isPoiFavorite(this.poi)
+        });
       }
     });
 
@@ -137,9 +142,11 @@ export default class PoiPanel extends React.Component {
     if (this.poi.meta && this.poi.meta.source) {
       Telemetry.add('favorite', 'poi', this.poi.meta.source);
     }
-    if (this.poi.stored) {
-      this.poi.stored = false;
+    if (this.state.poiIsInFavorite) {
       await store.del(this.poi);
+      this.setState({
+        poiIsInFavorite: false,
+      });
     } else {
       if (this.isMasqEnabled) {
         const isLoggedIn = await store.isLoggedIn();
@@ -149,10 +156,11 @@ export default class PoiPanel extends React.Component {
         }
       }
 
-      this.poi.stored = true;
       await store.add(this.poi);
+      this.setState({
+        poiIsInFavorite: true,
+      });
     }
-    // re-render
   }
 
   openShare = () => {
@@ -165,8 +173,6 @@ export default class PoiPanel extends React.Component {
   }
 
   showPhone = () => {
-    document.querySelector('.poi_phone_container_hidden').style.display = 'none';
-    document.querySelector('.poi_phone_container_revealed').style.display = 'block';
     const poi = this.poi;
     if (poi && poi.meta && poi.meta.source) {
       Telemetry.add('phone', 'poi', poi.meta.source,
@@ -179,6 +185,9 @@ export default class PoiPanel extends React.Component {
         })
       );
     }
+    this.setState({
+      showPhoneNumber: true,
+    });
   }
 
   closeAction = () => {
@@ -211,7 +220,10 @@ export default class PoiPanel extends React.Component {
   }
 
   shouldPhoneBeHidden() {
-    return this.poi && this.poi.isFromPagesjaunes && this.poi.isFromPagesjaunes();
+    return this.poi &&
+      this.poi.isFromPagesjaunes &&
+      this.poi.isFromPagesjaunes() &&
+      !this.state.showPhoneNumber;
   }
 
   renderPhone() {
@@ -318,13 +330,13 @@ export default class PoiPanel extends React.Component {
                   'poi_panel__action',
                   'poi_panel__actions__icon__store',
                   {
-                    'icon-icon_star-filled': this.poi.stored,
-                    'icon-icon_star': !this.poi.stored,
+                    'icon-icon_star-filled': this.state.poiIsInFavorite,
+                    'icon-icon_star': !this.state.poiIsInFavorite,
                   })
                 }
                 onClick={this.toggleStorePoi}
               >
-                <div>{this.poi.stored ? _('SAVED', 'poi') : _('FAVORITES', 'poi')}</div>
+                <div>{this.state.poiIsInFavorite ? _('SAVED', 'poi') : _('FAVORITES', 'poi')}</div>
               </button>
               <button className="poi_panel__action icon-share-2" onClick={this.openShare}>
                 <div>{_('SHARE', 'poi')}</div>
