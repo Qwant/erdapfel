@@ -59,7 +59,6 @@ export default class PoiPanel extends React.Component {
     this.isMasqEnabled = nconf.get().masq.enabled;
 
     isPoiFavorite(this.poi).then(x => this.setState({ poiIsInFavorite: x }));
-    this.active = true;
 
     store.onToggleStore(async () => {
       if (this.poi) {
@@ -244,7 +243,7 @@ export default class PoiPanel extends React.Component {
   }
 
   render() {
-    if (!this.poi || !this.active) {
+    if (!this.poi) {
       return null;
     }
     const data = {
