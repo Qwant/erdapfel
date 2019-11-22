@@ -71,116 +71,6 @@ export default class PoiPanel extends React.Component {
       }
     });
 
-    this.expandCollapse = () => {
-      this.setState(state => ({
-        isCollapsed: !state.isCollapsed,
-      }));
-    };
-    this.backToFavorite = () => {
-      if (!window.app) {
-        return;
-      }
-      Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-      window.app.navigateTo('/favs');
-    };
-    this.openDirection = () => {
-      if (!window.app) {
-        return;
-      }
-      window.app.navigateTo('/routes/', {
-        poi: this.poi,
-        isFromCategory: this.props.isFromCategory,
-        isFromFavorite: this.props.isFromFavorite,
-      });
-    };
-    this.showDetail = () => {
-      if (this.poi.meta && this.poi.meta.source) {
-        Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
-          Telemetry.buildInteractionData({
-            id: this.poi.id,
-            source: this.poi.meta.source,
-            template: 'single',
-            zone: 'detail',
-            element: 'more',
-          })
-        );
-      }
-      this.setState({
-        card: false,
-      });
-    };
-    this.center = () => {
-      if (this.poi.meta && this.poi.meta.source) {
-        Telemetry.add('go', 'poi', this.poi.meta.source);
-      }
-      fire('fit_map', this.poi, layouts.POI);
-    };
-    this.toggleStorePoi = async () => {
-      if (this.poi.meta && this.poi.meta.source) {
-        Telemetry.add('favorite', 'poi', this.poi.meta.source);
-      }
-      if (this.poi.stored) {
-        this.poi.stored = false;
-        await store.del(this.poi);
-      } else {
-        if (this.isMasqEnabled) {
-          const isLoggedIn = await store.isLoggedIn();
-          if (!isLoggedIn) {
-            masqFavoriteModal.open();
-            await masqFavoriteModal.waitForClose();
-          }
-        }
-
-        this.poi.stored = true;
-        await store.add(this.poi);
-      }
-      // re-render
-    };
-    this.openShare = () => {
-      if (this.poi.meta && this.poi.meta.source) {
-        Telemetry.add('share', 'poi', this.poi.meta.source);
-      }
-      if (this.poi) {
-        openShareModal(this.poi.toAbsoluteUrl());
-      }
-    };
-    this.showPhone = () => {
-      document.querySelector('.poi_phone_container_hidden').style.display = 'none';
-      document.querySelector('.poi_phone_container_revealed').style.display = 'block';
-      const poi = this.poi;
-      if (poi && poi.meta && poi.meta.source) {
-        Telemetry.add('phone', 'poi', poi.meta.source,
-          Telemetry.buildInteractionData({
-            id: poi.id,
-            source: poi.meta.source,
-            template: 'single',
-            zone: 'detail',
-            element: 'phone',
-          })
-        );
-      }
-    };
-    this.closeAction = () => {
-      if (!window.app) {
-        return;
-      }
-      window.app.navigateTo('/');
-    };
-    this.openCategory = category => {
-      if (!window.app) {
-        return;
-      }
-      window.app.navigateTo(`/places/?type=${category.name}`);
-    };
-    this.backToList = () => {
-      if (!window.app) {
-        return;
-      }
-      Telemetry.add(Telemetry.POI_BACKTOLIST);
-      fire('restore_location');
-      window.app.navigateTo(`/places/?type=${this.props.sourceCategory}`);
-    };
-
     window.execOnMapLoaded(() => {
       const elem = document.querySelector('.poi_panel__content__card');
 
@@ -192,11 +82,132 @@ export default class PoiPanel extends React.Component {
         elem.offsetHeight + 20
       );
     });
-    this.backToSmall = () => {
-      this.setState({
-        card: true,
-      });
-    };
+  }
+
+  expandCollapse = () => {
+    this.setState(state => ({
+      isCollapsed: !state.isCollapsed,
+    }));
+  }
+
+  backToFavorite = () => {
+    if (!window.app) {
+      return;
+    }
+    Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
+    window.app.navigateTo('/favs');
+  }
+
+  openDirection = () => {
+    if (!window.app) {
+      return;
+    }
+    window.app.navigateTo('/routes/', {
+      poi: this.poi,
+      isFromCategory: this.props.isFromCategory,
+      isFromFavorite: this.props.isFromFavorite,
+    });
+  }
+
+  showDetail = () => {
+    if (this.poi.meta && this.poi.meta.source) {
+      Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
+        Telemetry.buildInteractionData({
+          id: this.poi.id,
+          source: this.poi.meta.source,
+          template: 'single',
+          zone: 'detail',
+          element: 'more',
+        })
+      );
+    }
+    this.setState({
+      card: false,
+    });
+  }
+
+  center = () => {
+    if (this.poi.meta && this.poi.meta.source) {
+      Telemetry.add('go', 'poi', this.poi.meta.source);
+    }
+    fire('fit_map', this.poi, layouts.POI);
+  }
+
+  toggleStorePoi = async () => {
+    if (this.poi.meta && this.poi.meta.source) {
+      Telemetry.add('favorite', 'poi', this.poi.meta.source);
+    }
+    if (this.poi.stored) {
+      this.poi.stored = false;
+      await store.del(this.poi);
+    } else {
+      if (this.isMasqEnabled) {
+        const isLoggedIn = await store.isLoggedIn();
+        if (!isLoggedIn) {
+          masqFavoriteModal.open();
+          await masqFavoriteModal.waitForClose();
+        }
+      }
+
+      this.poi.stored = true;
+      await store.add(this.poi);
+    }
+    // re-render
+  }
+
+  openShare = () => {
+    if (this.poi.meta && this.poi.meta.source) {
+      Telemetry.add('share', 'poi', this.poi.meta.source);
+    }
+    if (this.poi) {
+      openShareModal(this.poi.toAbsoluteUrl());
+    }
+  }
+
+  showPhone = () => {
+    document.querySelector('.poi_phone_container_hidden').style.display = 'none';
+    document.querySelector('.poi_phone_container_revealed').style.display = 'block';
+    const poi = this.poi;
+    if (poi && poi.meta && poi.meta.source) {
+      Telemetry.add('phone', 'poi', poi.meta.source,
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source: poi.meta.source,
+          template: 'single',
+          zone: 'detail',
+          element: 'phone',
+        })
+      );
+    }
+  }
+
+  closeAction = () => {
+    if (!window.app) {
+      return;
+    }
+    window.app.navigateTo('/');
+  }
+
+  openCategory = category => {
+    if (!window.app) {
+      return;
+    }
+    window.app.navigateTo(`/places/?type=${category.name}`);
+  }
+
+  backToList = () => {
+    if (!window.app) {
+      return;
+    }
+    Telemetry.add(Telemetry.POI_BACKTOLIST);
+    fire('restore_location');
+    window.app.navigateTo(`/places/?type=${this.props.sourceCategory}`);
+  }
+
+  backToSmall = () => {
+    this.setState({
+      card: true,
+    });
   }
 
   shouldPhoneBeHidden() {
