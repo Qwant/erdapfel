@@ -239,13 +239,13 @@ export default class SceneDirection {
 
   highlightStep(step) {
     if (this.markersSteps[step]) {
-      this.markersSteps[step]._element.classList.add('itinerary_marker_step--highlighted');
+      this.markersSteps[step].getElement().classList.add('itinerary_marker_step--highlighted');
     }
   }
 
   unhighlightStep(step) {
     if (this.markersSteps[step]) {
-      this.markersSteps[step]._element.classList.remove('itinerary_marker_step--highlighted');
+      this.markersSteps[step].getElement().classList.remove('itinerary_marker_step--highlighted');
     }
   }
 
