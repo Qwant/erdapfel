@@ -117,7 +117,7 @@ export default class PoiPanel extends React.Component {
     } else if (isFromCategory) {
       backAction = {
         callback: this.backToList,
-        data: _('Back to list'),
+        text: _('Back to list'),
         className: 'poi_panel__back_to_list',
       };
     } else if (!this.state.card) {
