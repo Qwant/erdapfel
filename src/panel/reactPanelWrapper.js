@@ -2,17 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class ReactPanelWrapper {
-  constructor(reactComponent, selector = '.react_panel__container') {
+  constructor(reactComponent) {
     this.reactComponent = reactComponent;
-    this.selector = selector;
   }
 
   open(options) {
     ReactDOM.render(<this.reactComponent {...options} />,
-      document.querySelector(this.selector));
+      document.querySelector('.react_panel__container'));
   }
 
   close() {
-    ReactDOM.unmountComponentAtNode(document.querySelector(this.selector));
+    ReactDOM.unmountComponentAtNode(document.querySelector('.react_panel__container'));
   }
 }

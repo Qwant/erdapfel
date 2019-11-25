@@ -4,7 +4,6 @@
       {{= this.directionPanel.render() }}
     {{?}}
     <div class="react_panel__container"></div>
-    <div class="react_poi_panel"></div>
   </div>
 </div>
 

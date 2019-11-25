@@ -36,7 +36,7 @@ export default class AppPanel {
 
     this.servicePanel = new ReactPanelWrapper(ServicePanel);
     this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
-    this.poiPanel = new ReactPanelWrapper(PoiPanel, '.react_poi_panel');
+    this.poiPanel = new ReactPanelWrapper(PoiPanel);
     this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
 
