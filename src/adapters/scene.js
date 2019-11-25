@@ -100,8 +100,8 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('click', e => {
-      if (!e._interactiveClick) {
-        window.app.emptyClickOnMap();
+      if (!e._interactiveClick && Device.isMobile()) {
+        window.app.navigateTo('/');
       }
       // Disable POI anywhere feature on mobile until we opt for an adapted UX
       if (Device.isMobile() || e._interactiveClick || this.routeDisplayed) {

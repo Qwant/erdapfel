@@ -189,14 +189,6 @@ export default class AppPanel {
     });
   }
 
-  emptyClickOnMap() {
-    this.panels.forEach(p => {
-      if (p.emptyClickOnMap) {
-        p.emptyClickOnMap();
-      }
-    });
-  }
-
   async setPoi(poiId, options) {
     this.activePoiId = poiId;
 
