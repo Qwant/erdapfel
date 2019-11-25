@@ -28,12 +28,7 @@ export default class PoiPanel extends React.Component {
 
   constructor(props) {
     super(props);
-    this.poi = props.poi;
-    if (props.poi) {
-      this.poi = PoiStore.deserialize(props.poi);
-    }
     this.state = {
-      isCollapsed: true,
       card: true,
     };
     this.categories = CategoryService.getCategories();
@@ -65,11 +60,11 @@ export default class PoiPanel extends React.Component {
   }
 
   showDetail = () => {
-    if (this.poi.meta && this.poi.meta.source) {
+    if (this.props.poi.meta && this.props.poi.meta.source) {
       Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
         Telemetry.buildInteractionData({
-          id: this.poi.id,
-          source: this.poi.meta.source,
+          id: this.props.poi.id,
+          source: this.props.poi.meta.source,
           template: 'single',
           zone: 'detail',
           element: 'more',
@@ -82,18 +77,18 @@ export default class PoiPanel extends React.Component {
   }
 
   center = () => {
-    if (this.poi.meta && this.poi.meta.source) {
-      Telemetry.add('go', 'poi', this.poi.meta.source);
+    if (this.props.poi.meta && this.props.poi.meta.source) {
+      Telemetry.add('go', 'poi', this.props.poi.meta.source);
     }
-    fire('fit_map', this.poi, layouts.POI);
+    fire('fit_map', this.props.poi, layouts.POI);
   }
 
   openShare = () => {
-    if (this.poi.meta && this.poi.meta.source) {
-      Telemetry.add('share', 'poi', this.poi.meta.source);
+    if (this.props.poi.meta && this.props.poi.meta.source) {
+      Telemetry.add('share', 'poi', this.props.poi.meta.source);
     }
-    if (this.poi) {
-      openShareModal(this.poi.toAbsoluteUrl());
+    if (this.props.poi) {
+      openShareModal(this.props.poi.toAbsoluteUrl());
     }
   }
 
@@ -118,13 +113,12 @@ export default class PoiPanel extends React.Component {
   }
 
   render() {
-    if (!this.poi) {
-      return null;
-    }
+    const { poi } = this.props;
+
     const data = {
       className: 'poi_panel__back_to_list',
     };
-    const pagesjaunes = this.poi.isFromPagesjaunes && this.poi.isFromPagesjaunes() ?
+    const pagesjaunes = poi.isFromPagesjaunes && poi.isFromPagesjaunes() ?
       <img className="poi_panel__back_to_list_logo"
         src="./statics/images/pagesjaunes.svg"
         alt="PagesJaunes" />
@@ -171,10 +165,10 @@ export default class PoiPanel extends React.Component {
           }
           <div className="poi_panel__description_container">
             <div>
-              <PoiHeader poi={this.poi} />
-              <OpeningHour poi={this.poi} />
+              <PoiHeader poi={poi} />
+              <OpeningHour poi={poi} />
             </div>
-            <PoiTitleImage poi={this.poi} iconOnly={true} />
+            <PoiTitleImage poi={poi} iconOnly={true} />
           </div>
           <div className="poi_panel__content__card__action__container">
             { this.isDirectionActive &&
@@ -197,16 +191,16 @@ export default class PoiPanel extends React.Component {
         <div className="poi_panel__content">
           <div className="poi_panel__container">
             <div className="poi_panel__description_container" onClick={this.center}>
-              <PoiHeader poi={this.poi} />
-              <PoiTitleImage poi={this.poi} iconOnly={false} />
+              <PoiHeader poi={poi} />
+              <PoiTitleImage poi={poi} iconOnly={false} />
             </div>
             <ActionButtons
-              poi={this.props.poi}
+              poi={poi}
               isFromCategory={this.props.isFromCategory}
               isFromFavorite={this.props.isFromFavorite}
               isDirectionActive={this.isDirectionActive}
             />
-            {this.poi && this.poi.id.match(/latlon:/) && this.categories &&
+            {poi && poi.id.match(/latlon:/) && this.categories &&
               <div className="service_panel__categories--poi">
                 <h3 className="service_panel__categories_title">
                   <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
@@ -227,8 +221,8 @@ export default class PoiPanel extends React.Component {
                 })}
               </div>
             }
-            <PoiBlockContainer poi={this.poi} />
-            {this.poi.isFromOSM && this.poi.isFromOSM() && <OsmContribution poi={this.poi} />}
+            <PoiBlockContainer poi={poi} />
+            {poi.isFromOSM && poi.isFromOSM() && <OsmContribution poi={poi} />}
           </div>
         </div>
       </div>

@@ -244,7 +244,6 @@ export default class AppPanel {
         }
         panel.close();
       });
-    panelToOpen.close();
     panelToOpen.open(options);
   }
 
@@ -267,17 +266,7 @@ export default class AppPanel {
   }
 
   openPoiPanel(poi, options = {}) {
-    this.panels.forEach(panel => {
-      if (panel === this.poiPanel) {
-        this._openPanel(this.poiPanel, { ...options, poi });
-      } else {
-        if (panel === this.categoryPanel && !options.isFromCategory) {
-          fire('remove_category_markers');
-        }
-        panel.close();
-      }
-    });
-    this.unminify();
+    this._openPanel(this.poiPanel, { ...options, poi: PoiStore.deserialize(poi) });
   }
 
   resetLayout() {
