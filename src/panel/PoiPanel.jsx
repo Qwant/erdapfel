@@ -16,8 +16,6 @@ import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
 import CategoryService from '../adapters/category_service';
 import { openShareModal } from 'src/modals/ShareModal';
 
-import PoiStore from '../adapters/poi/poi_store';
-
 export default class PoiPanel extends React.Component {
   static propTypes = {
     poi: PropTypes.object.isRequired,
