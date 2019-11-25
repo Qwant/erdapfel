@@ -88,20 +88,20 @@ class EventListPanel extends React.Component {
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
       .join(',');
-    console.log(this.props.eventName);
-    const { places, source } = await IdunnPoi.poiEventLoad(
+    const { events } = await IdunnPoi.poiEventLoad(
       urlBBox,
       MAX_PLACES,
       this.props.eventName,
       this.props.query
     );
     this.setState({
-      pois: places,
-      dataSource: source,
+      pois: events,
       initialLoading: false,
     });
 
-    fire('add_category_markers', places, this.props.eventName);
+    console.log(this.state);
+
+    fire('add_category_markers', events, this.props.eventName);
     fire('save_location');
   }
 

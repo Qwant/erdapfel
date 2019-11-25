@@ -19,7 +19,7 @@ const PoiEventItem = ({ poi }) => {
 
     {reviews && <ReviewScore reviews={reviews} poi={poi} />}
 
-    <OpeningHour poi={poi} />}
+    <OpeningHour poi={poi} />
   </div>;
 };
 
