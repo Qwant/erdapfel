@@ -5,14 +5,12 @@ import classnames from 'classnames';
 import Telemetry from '../libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import layouts from './layouts.js';
-
 import ActionButtons from 'src/panel/poi/ActionButtons';
 import PoiHeader from 'src/panel/poi/PoiHeader';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmContribution from 'src/components/OsmContribution';
 import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
-
 import CategoryService from '../adapters/category_service';
 import { openShareModal } from 'src/modals/ShareModal';
 
@@ -63,9 +61,7 @@ export default class PoiPanel extends React.Component {
         })
       );
     }
-    this.setState({
-      card: false,
-    });
+    this.setState({ card: false });
   }
 
   center = () => {
@@ -99,48 +95,52 @@ export default class PoiPanel extends React.Component {
   }
 
   backToSmall = () => {
-    this.setState({
-      card: true,
-    });
+    this.setState({ card: true });
   }
 
   render() {
-    const { poi } = this.props;
+    const { poi, isFromCategory, isFromFavorite } = this.props;
 
-    const data = {
-      className: 'poi_panel__back_to_list',
-    };
     const pagesjaunes = poi.isFromPagesjaunes && poi.isFromPagesjaunes() ?
       <img className="poi_panel__back_to_list_logo"
         src="./statics/images/pagesjaunes.svg"
         alt="PagesJaunes" />
       : null;
 
-    if (this.props.isFromFavorite) {
-      data.callback = this.backToFavorite;
-      data.text = _('Back to favorite');
-    } else if (this.props.isFromCategory) {
-      data.callback = this.backToList;
-      data.text = _('Back to list');
+    let backAction = null;
+    if (isFromFavorite) {
+      backAction = {
+        callback: this.backToFavorite,
+        text: _('Back to favorite'),
+        className: 'poi_panel__back_to_list',
+      };
+    } else if (isFromCategory) {
+      backAction = {
+        callback: this.backToList,
+        data: _('Back to list'),
+        className: 'poi_panel__back_to_list',
+      };
     } else if (!this.state.card) {
-      data.callback = this.backToSmall;
-      data.text = _('Back');
-      data.className = 'poi_panel__back_mobile';
+      backAction = {
+        callback: this.backToSmall,
+        text: _('Back'),
+        className: 'poi_panel__back_mobile',
+      };
     }
     return <div>
       <div className={classnames('poi_panel__header', {
         'poi_header_card': this.state.card,
-        'poi_header_back_to_list': this.props.isFromFavorite || this.props.isFromCategory,
+        'poi_header_back_to_list': isFromFavorite || isFromCategory,
       })}
       >
-        {data.text && data.callback &&
-          <div className={data.className} onClick={data.callback}>
+        {backAction &&
+          <div className={backAction.className} onClick={backAction.callback}>
             <i className="poi_panel__back icon-arrow-left" />
-            <span className="poi_panel__back_text">{data.text}</span>
+            <span className="poi_panel__back_text">{backAction.text}</span>
             {pagesjaunes}
           </div>
         }
-        {(!data.text || !data.callback) && pagesjaunes &&
+        {!backAction && pagesjaunes &&
           <div className="poi_panel__pj_logo_container">{pagesjaunes}</div>
         }
         <div className="poi_panel__close" onClick={this.closeAction}>
@@ -149,9 +149,8 @@ export default class PoiPanel extends React.Component {
       </div>
       <div className={classnames('poi_panel', { 'poi_panel--card': this.state.card })}>
         <div className="poi_panel__content__card">
-          { this.props.isFromCategory &&
-            <div className="poi_panel__close"
-              onClick={ this.props.isFromCategory ? this.backToList : this.closeAction }>
+          { isFromCategory &&
+            <div className="poi_panel__close" onClick={this.backToList}>
               <i className="icon-x" />
             </div>
           }
@@ -188,11 +187,11 @@ export default class PoiPanel extends React.Component {
             </div>
             <ActionButtons
               poi={poi}
-              isFromCategory={this.props.isFromCategory}
-              isFromFavorite={this.props.isFromFavorite}
+              isFromCategory={isFromCategory}
+              isFromFavorite={isFromFavorite}
               isDirectionActive={this.isDirectionActive}
             />
-            {poi && poi.id.match(/latlon:/) && this.categories &&
+            {poi.id.match(/latlon:/) && this.categories &&
               <div className="service_panel__categories--poi">
                 <h3 className="service_panel__categories_title">
                   <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
