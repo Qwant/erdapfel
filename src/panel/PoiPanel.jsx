@@ -48,12 +48,6 @@ export default class PoiPanel extends React.Component {
     });
   }
 
-  expandCollapse = () => {
-    this.setState(state => ({
-      isCollapsed: !state.isCollapsed,
-    }));
-  }
-
   backToFavorite = () => {
     Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
     window.app.navigateTo('/favs');
