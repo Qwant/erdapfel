@@ -17,7 +17,7 @@ import Telemetry from '../libs/telemetry';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import ApiPoi from '../adapters/poi/idunn_poi';
 import Router from 'src/proxies/app_router';
-import PoiStore from 'src/adapters/poi/poi_store.js';
+import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
@@ -196,7 +196,7 @@ export default class AppPanel {
 
     // If a POI object is provided before fetching full data,
     // we can update the map immediately for UX responsiveness
-    const shallowPoi = options.poi && PoiStore.deserialize(options.poi);
+    const shallowPoi = options.poi && Poi.deserialize(options.poi);
     const updateMapEarly = !!shallowPoi;
     if (updateMapEarly) {
       this._updateMapPoi(shallowPoi, options);
@@ -218,7 +218,7 @@ export default class AppPanel {
     if (!poi) {
       this.navigateTo('/');
     } else {
-      this.openPoiPanel(poi, options);
+      this._openPanel(this.poiPanel, { ...options, poi });
       if (!updateMapEarly) {
         this._updateMapPoi(poi, options);
       }
@@ -261,10 +261,6 @@ export default class AppPanel {
       query,
       ...otherOptions,
     });
-  }
-
-  openPoiPanel(poi, options = {}) {
-    this._openPanel(this.poiPanel, { ...options, poi: PoiStore.deserialize(poi) });
   }
 
   resetLayout() {

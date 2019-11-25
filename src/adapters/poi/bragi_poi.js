@@ -105,7 +105,7 @@ export default class BragiPoi extends Poi {
     super(feature.properties.geocoding.id, name, alternativeName, resultType, {
       lat: feature.geometry.coordinates[1],
       lng: feature.geometry.coordinates[0],
-    }, poiClassText, poiSubclassText, 'bragi');
+    }, poiClassText, poiSubclassText);
     /* extract custom data for autocomplete */
     this.value = feature.properties.geocoding.label;
     this.adminLabel = adminLabel;

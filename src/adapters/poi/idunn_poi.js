@@ -2,6 +2,7 @@ import Poi from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
+import { sources } from 'config/constants.yml';
 import Telemetry from '../../libs/telemetry';
 import QueryContext from 'src/adapters/query_context';
 
@@ -24,9 +25,8 @@ export default class IdunnPoi extends Poi {
       lat: rawPoi.geometry.coordinates[LAT_INDEX],
       lng: rawPoi.geometry.coordinates[LNG_INDEX],
     };
-    rawPoi.kind = 'idunn';
     super(rawPoi.id, rawPoi.name, alternativeName, rawPoi.type, latLng, rawPoi.class_name,
-      rawPoi.subclass_name, rawPoi);
+      rawPoi.subclass_name);
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
     this.address = IdunnPoi.getAddress(rawPoi);
@@ -147,5 +147,13 @@ export default class IdunnPoi extends Poi {
         })
       );
     }
+  }
+
+  isFromOSM() {
+    return this.meta && this.meta.source === sources.osm;
+  }
+
+  isFromPagesjaunes() {
+    return this.meta && this.meta.source === sources.pagesjaunes;
   }
 }

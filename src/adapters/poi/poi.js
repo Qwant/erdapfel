@@ -3,7 +3,6 @@
  */
 import { version } from 'config/constants.yml';
 import ExtendedString from '../../libs/string';
-import { sources } from 'config/constants.yml';
 
 const ZOOM_BY_POI_TYPES = [
   { type: 'street', zoom: 17 },
@@ -15,7 +14,7 @@ const DEFAULT_ZOOM = 16;
 export const POI_TYPE = 'poi';
 
 export default class Poi {
-  constructor(id, name, alternativeName, type, latLon, className, subClassName, extras) {
+  constructor(id, name, alternativeName, type, latLon, className, subClassName, bbox) {
     this.id = id;
     this.name = name;
     this.alternativeName = alternativeName;
@@ -24,11 +23,7 @@ export default class Poi {
     this.className = className;
     this.subClassName = subClassName;
     this.zoom = this.computeZoom();
-    if (extras) {
-      for (const [key, value] of Object.entries(extras)) {
-        this[key] = value;
-      }
-    }
+    this.bbox = bbox;
   }
 
   getLngLat() {
@@ -49,8 +44,9 @@ export default class Poi {
     );
     if (zoomSetting) {
       return zoomSetting.zoom;
+    } else {
+      return DEFAULT_ZOOM;
     }
-    return DEFAULT_ZOOM;
   }
 
   poiStoreLiteral() {
@@ -84,19 +80,16 @@ export default class Poi {
     return k.match(keyPattern) !== null;
   }
 
+  static deserialize(raw) {
+    const { id, name, alternativeName, type, latLon, className, subClassName, bbox } = raw;
+    return new Poi(id, name, alternativeName, type, latLon, className, subClassName, bbox);
+  }
+
   serialize() {
     // In some cases the object has an `event` prop which is a low-level browser object
     // that can't be serialized in the history state => just ignore it
     const { event: _event, ...otherFields } = this;
     return otherFields;
-  }
-
-  isFromOSM() {
-    return this.meta && this.meta.source === sources.osm;
-  }
-
-  isFromPagesjaunes() {
-    return this.meta && this.meta.source === sources.pagesjaunes;
   }
 }
 
