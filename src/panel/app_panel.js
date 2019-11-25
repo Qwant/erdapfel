@@ -240,7 +240,9 @@ export default class AppPanel {
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
         if (panel === this.categoryPanel) {
-          fire('remove_category_markers');
+          if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
+            fire('remove_category_markers');
+          }
         }
         panel.close();
       });
