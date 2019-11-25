@@ -236,6 +236,10 @@ export default class AppPanel {
             fire('remove_category_markers');
           }
         }
+        if (panel === this.poiPanel) {
+          fire('clean_marker');
+          SearchInput.setInputValue('');
+        }
         panel.close();
       });
     panelToOpen.open(options);
