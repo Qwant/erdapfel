@@ -12,13 +12,10 @@ const masqFavoriteModal = new MasqFavoriteModal();
 async function isPoiFavorite(poi) {
   try {
     const storePoi = await store.has(poi);
-    if (storePoi) {
-      return true;
-    }
+    return !!storePoi;
   } catch (e) {
     return false;
   }
-  return false;
 }
 
 export default class ActionButtons extends React.Component {
@@ -29,29 +26,32 @@ export default class ActionButtons extends React.Component {
     isFromFavorite: PropTypes.bool,
   }
 
-  constructor(props) {
-    super(props);
+  state = {
+    showPhoneNumber: false,
+    poiIsInFavorite: false,
+  };
 
-    this.state = {
-      showPhoneNumber: false,
-      poiIsInFavorite: this.props.poi.stored,
-    };
-
-    isPoiFavorite(this.props.poi).then(x => this.setState({ poiIsInFavorite: x }));
-
-    store.onToggleStore(async () => {
-      this.setState({
-        poiIsInFavorite: await isPoiFavorite(this.props.poi),
-      });
-    });
-
-    store.eventTarget.addEventListener('poi_added', async () => {
-      if (!this.state.poiIsInFavorite) {
-        this.setState({
-          poiIsInFavorite: await isPoiFavorite(this.props.poi),
-        });
+  componentDidMount() {
+    this.storeAddHandler = listen('poi_added_to_favs', poi => {
+      if (poi === this.props.poi) {
+        this.setState({ poiIsInFavorite: true });
       }
     });
+
+    this.storeRemoveHandler = listen('poi_removed_from_favs', poi => {
+      if (poi === this.props.poi) {
+        this.setState({ poiIsInFavorite: false });
+      }
+    });
+
+    isPoiFavorite(this.props.poi).then(poiIsInFavorite => {
+      this.setState({ poiIsInFavorite });
+    });
+  }
+
+  componentWillUnmount() {
+    window.unListen(this.storeAddHandler);
+    window.unListen(this.storeRemoveHandler);
   }
 
   shouldPhoneBeHidden() {
@@ -99,10 +99,7 @@ export default class ActionButtons extends React.Component {
       Telemetry.add('favorite', 'poi', this.props.poi.meta.source);
     }
     if (this.state.poiIsInFavorite) {
-      await store.del(this.props.poi);
-      this.setState({
-        poiIsInFavorite: false,
-      });
+      store.del(this.props.poi);
     } else {
       if (this.isMasqEnabled) {
         const isLoggedIn = await store.isLoggedIn();
@@ -111,11 +108,7 @@ export default class ActionButtons extends React.Component {
           await masqFavoriteModal.waitForClose();
         }
       }
-
-      await store.add(this.props.poi);
-      this.setState({
-        poiIsInFavorite: true,
-      });
+      store.add(this.props.poi);
     }
   }
 
