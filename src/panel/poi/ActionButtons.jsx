@@ -24,6 +24,7 @@ export default class ActionButtons extends React.Component {
     isDirectionActive: PropTypes.bool,
     isFromCategory: PropTypes.bool,
     isFromFavorite: PropTypes.bool,
+    openDirection: PropTypes.func,
   }
 
   state = {
@@ -112,14 +113,6 @@ export default class ActionButtons extends React.Component {
     }
   }
 
-  openDirection = () => {
-    window.app.navigateTo('/routes/', {
-      poi: this.props.poi,
-      isFromCategory: this.props.isFromCategory,
-      isFromFavorite: this.props.isFromFavorite,
-    });
-  }
-
   render() {
     const shouldRenderPhone = this.props.poi.blocksByType && this.props.poi.blocksByType.phone;
 
@@ -141,7 +134,7 @@ export default class ActionButtons extends React.Component {
       </button>
       {this.props.isDirectionActive &&
         <button className="poi_panel__action icon-corner-up-right"
-          onClick={this.openDirection}>
+          onClick={this.props.openDirection}>
           <div>{_('DIRECTIONS', 'poi')}</div>
         </button>
       }

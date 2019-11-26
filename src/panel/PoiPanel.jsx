@@ -90,6 +90,14 @@ export default class PoiPanel extends React.Component {
     }
   }
 
+  openDirection = () => {
+    window.app.navigateTo('/routes/', {
+      poi: this.props.poi,
+      isFromCategory: this.props.isFromCategory,
+      isFromFavorite: this.props.isFromFavorite,
+    });
+  }
+
   closeAction = () => {
     window.app.navigateTo('/');
   }
@@ -182,12 +190,12 @@ export default class PoiPanel extends React.Component {
                 }
                 onClick={this.openDirection}
               >
-                <span className="icon-corner-up-right" />
+                <span className="icon-corner-up-right" />{' '}
                 { _('DIRECTIONS', 'poi panel') }
               </button>
             }
             <button className="poi_panel__content__card__action" onClick={this.showDetail}>
-              <span className="icon-chevrons-right" />
+              <span className="icon-chevrons-right" />{' '}
               { _('SEE MORE', 'poi panel') }
             </button>
           </div>
@@ -203,6 +211,7 @@ export default class PoiPanel extends React.Component {
               isFromCategory={isFromCategory}
               isFromFavorite={isFromFavorite}
               isDirectionActive={this.isDirectionActive}
+              openDirection={this.openDirection}
             />
             {poi.id.match(/latlon:/) && this.categories &&
               <div className="service_panel__categories--poi">
