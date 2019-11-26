@@ -194,7 +194,7 @@ export default class Store {
     await this.checkInit();
     try {
       await this.abstractStore.set(poi.getKey(), poi.poiStoreLiteral());
-      this.eventTarget.dispatchEvent(new Event('poi_added'));
+      fire('poi_added_to_favs', poi);
     } catch (e) {
       Error.sendOnce('store', 'add', `error adding poi in ${this.abstractStore.storeName}`, e);
     }
@@ -204,6 +204,7 @@ export default class Store {
     await this.checkInit();
     try {
       await this.abstractStore.del(poi.getKey());
+      fire('poi_removed_from_favs', poi);
     } catch (e) {
       Error.sendOnce('store', 'del', `error deleting key from ${this.abstractStore.storeName}`, e);
     }

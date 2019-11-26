@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PanelsView from '../views/app_panel.dot';
 import Panel from '../libs/panel';
 import FavoritesPanel from './favorites/FavoritesPanel';
-import PoiPanel from './poi_panel';
+import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
@@ -36,7 +36,7 @@ export default class AppPanel {
 
     this.servicePanel = new ReactPanelWrapper(ServicePanel);
     this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
-    this.poiPanel = new PoiPanel();
+    this.poiPanel = new ReactPanelWrapper(PoiPanel);
     this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
 
@@ -189,28 +189,6 @@ export default class AppPanel {
     });
   }
 
-  openPoiPanel(poi, options = {}) {
-    this.panels.forEach(panel => {
-      if (panel === this.poiPanel) {
-        panel.setPoi(poi, options);
-      } else {
-        if (panel === this.categoryPanel && !options.isFromCategory) {
-          fire('remove_category_markers');
-        }
-        panel.close();
-      }
-    });
-    this.unminify();
-  }
-
-  emptyClickOnMap() {
-    this.panels.forEach(p => {
-      if (p.emptyClickOnMap) {
-        p.emptyClickOnMap();
-      }
-    });
-  }
-
   async setPoi(poiId, options) {
     this.activePoiId = poiId;
 
@@ -240,7 +218,7 @@ export default class AppPanel {
     if (!poi) {
       this.navigateTo('/');
     } else {
-      this.openPoiPanel(poi, options);
+      this._openPanel(this.poiPanel, { ...options, poi });
       if (!updateMapEarly) {
         this._updateMapPoi(poi, options);
       }
@@ -254,7 +232,13 @@ export default class AppPanel {
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
         if (panel === this.categoryPanel) {
-          fire('remove_category_markers');
+          if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
+            fire('remove_category_markers');
+          }
+        }
+        if (panel === this.poiPanel) {
+          fire('clean_marker');
+          SearchInput.setInputValue('');
         }
         panel.close();
       });

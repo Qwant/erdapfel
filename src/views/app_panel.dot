@@ -1,6 +1,5 @@
 <div class="side_panel__container">
   <div class="favorite_poi_panel__container">
-    {{= this.poiPanel.render() }}
     {{? this.directionEnabled }}
       {{= this.directionPanel.render() }}
     {{?}}
