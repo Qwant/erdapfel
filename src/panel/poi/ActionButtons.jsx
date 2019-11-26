@@ -21,6 +21,7 @@ export default class ActionButtons extends React.Component {
   static propTypes = {
     poi: PropTypes.object.isRequired,
     isDirectionActive: PropTypes.bool,
+    isMasqEnabled: PropTypes.bool,
     isFromCategory: PropTypes.bool,
     isFromFavorite: PropTypes.bool,
     openDirection: PropTypes.func,
@@ -95,7 +96,7 @@ export default class ActionButtons extends React.Component {
     if (this.state.poiIsInFavorite) {
       store.del(this.props.poi);
     } else {
-      if (this.isMasqEnabled) {
+      if (this.props.isMasqEnabled) {
         const isLoggedIn = await store.isLoggedIn();
         if (!isLoggedIn) {
           const masqFavoriteModal = new MasqFavoriteModal();
