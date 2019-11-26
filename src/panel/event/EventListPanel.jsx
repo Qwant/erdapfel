@@ -1,15 +1,17 @@
-/* global _ */
+// /* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import PoiEventItemList from './PoiEventItemList';
 import EventPanelError from './EventPanelError';
-import EventPanelHeader from './EventPanelHeader';
-import Telemetry from "src/libs/telemetry";
-import SearchInput from "src/ui_components/search_input";
+// import EventPanelHeader from './EventPanelHeader';
+import Telemetry from 'src/libs/telemetry';
+import SearchInput from 'src/ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
-import IdunnPoi from "src/adapters/poi/idunn_poi";
-import events from "config/events.yml"
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
+import events from 'config/events.yml';
+// import CategoryPanelError from '../category/CategoryPanelError';
+// import PoiCategoryItemList from '../category/PoiCategoryItemList';
 
 const eventConfig = nconf.get().events;
 const MAX_PLACES = Number(eventConfig.maxPlaces);
@@ -98,9 +100,6 @@ class EventListPanel extends React.Component {
       pois: events,
       initialLoading: false,
     });
-
-    console.log(this.state);
-
     fire('add_category_markers', events, this.props.eventName);
     fire('save_location');
   }
@@ -118,13 +117,37 @@ class EventListPanel extends React.Component {
   }
 
   render() {
+
+    const { initialLoading, pois } = this.state;
+
+    if (initialLoading) {
+      return null;
+    }
+
+    const hasError = !pois || pois.length === 0;
+
+    const zoomIn = !pois;
+
+    let panelContent;
+
+    if (hasError) {
+      panelContent = <EventPanelError zoomIn={zoomIn} />;
+    } else {
+      panelContent = <PoiEventItemList
+        pois={pois}
+        selectPoi={this.selectPoi}
+        highlightMarker={this.highlightPoiMarker}
+        eventName={this.props.eventName.charAt(0).toUpperCase() + this.props.eventName.slice(1)}
+      />;
+    }
+
     return <Panel
       resizable
-      title='Hi'
-      minimizedTitle='Hi'
-      className='events_list'
+      title=""
+      minimizedTitle=""
+      className="events_list"
       close={this.close}>
-      <h1>{this.props.eventName}</h1>
+      {panelContent}
     </Panel>;
   }
 }

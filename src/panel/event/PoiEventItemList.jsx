@@ -6,7 +6,7 @@ const PoiEventItems = ({
   pois,
   selectPoi,
   highlightMarker,
-  onShowPhoneNumber,
+  eventName,
 }) =>
   <ItemList className="event__panel__items">
     {pois.map(poi => <Item key={poi.id}
@@ -14,7 +14,10 @@ const PoiEventItems = ({
       onMouseOver={() => { highlightMarker(poi, true); }}
       onMouseOut={() => { highlightMarker(poi, false); }}
     >
-      <PoiEventItem poi={poi} onShowPhoneNumber={onShowPhoneNumber} />
+      <PoiEventItem
+        poi={poi}
+        eventName={eventName}
+      />
     </Item>)}
   </ItemList>;
 

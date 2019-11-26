@@ -29,8 +29,6 @@ export default class CategoryPanel extends React.Component {
 
   componentDidMount() {
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
-
-    console.log(this.props);
     if (this.props.categoryName) {
       Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category: this.props.categoryName });
       const { label } = CategoryService.getCategoryByName(this.props.categoryName);

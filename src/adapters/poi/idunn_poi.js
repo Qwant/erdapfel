@@ -87,7 +87,7 @@ export default class IdunnPoi extends Poi {
     }
   }
 
-  static async poiEventLoad(bbox, size, category, query) {
+  static async poiEventLoad(bbox, size, category) {
     const url = `${serviceConfig.idunn.url}/v1/events`;
     const requestParams = { bbox, size };
     if (category) {
@@ -96,12 +96,9 @@ export default class IdunnPoi extends Poi {
 
     try {
       const response = await Ajax.getLang(url, requestParams);
-      console.log(response);
       response.events = response.events.map(rawPoi => new IdunnPoi(rawPoi));
-      console.log(response);
       return response;
     } catch (err) {
-      console.log(err);
       if (err === 400 || err === 404 ) {
         return {};
       } else {
