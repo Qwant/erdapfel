@@ -11,7 +11,7 @@ import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmContribution from 'src/components/OsmContribution';
 import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
-import CategoryService from '../adapters/category_service';
+import CategoryList from 'src/components/CategoryList';
 import { openShareModal } from 'src/modals/ShareModal';
 
 export default class PoiPanel extends React.Component {
@@ -27,7 +27,6 @@ export default class PoiPanel extends React.Component {
     this.state = {
       card: true,
     };
-    this.categories = CategoryService.getCategories();
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
 
@@ -214,28 +213,13 @@ export default class PoiPanel extends React.Component {
               openDirection={this.openDirection}
               openShare={this.openShare}
             />
-            {poi.id.match(/latlon:/) && this.categories &&
-              <div className="service_panel__categories--poi">
-                <h3 className="service_panel__categories_title">
-                  <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
-                </h3>
-                {this.categories.map((category, index) => {
-                  return <button className="service_panel__category"
-                    key={index}
-                    type="button"
-                    onClick={() => this.openCategory(category)}
-                  >
-                    <div className="service_panel__category__icon"
-                      style={{ 'background': category.backgroundColor }}
-                    >
-                      <span className={classnames('icon', `icon-${category.iconName}`)} />
-                    </div>
-                    <div className="service_panel__category__title">{category.label}</div>
-                  </button>;
-                })}
-              </div>
-            }
             <PoiBlockContainer poi={poi} />
+            {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
+              <h3 className="service_panel__categories_title">
+                <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
+              </h3>
+              <CategoryList />
+            </div>}
             {poi.isFromOSM && poi.isFromOSM() && <OsmContribution poi={poi} />}
           </div>
         </div>
