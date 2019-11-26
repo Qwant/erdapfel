@@ -24,6 +24,7 @@ export default class ActionButtons extends React.Component {
     isFromCategory: PropTypes.bool,
     isFromFavorite: PropTypes.bool,
     openDirection: PropTypes.func,
+    openShare: PropTypes.func,
   }
 
   state = {
@@ -122,7 +123,7 @@ export default class ActionButtons extends React.Component {
       >
         <div>{this.state.poiIsInFavorite ? _('SAVED', 'poi') : _('FAVORITES', 'poi')}</div>
       </button>
-      <button className="poi_panel__action icon-share-2" onClick={this.openShare}>
+      <button className="poi_panel__action icon-share-2" onClick={this.props.openShare}>
         <div>{_('SHARE', 'poi')}</div>
       </button>
       {this.props.isDirectionActive &&

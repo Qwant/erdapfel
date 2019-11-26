@@ -212,6 +212,7 @@ export default class PoiPanel extends React.Component {
               isFromFavorite={isFromFavorite}
               isDirectionActive={this.isDirectionActive}
               openDirection={this.openDirection}
+              openShare={this.openShare}
             />
             {poi.id.match(/latlon:/) && this.categories &&
               <div className="service_panel__categories--poi">
