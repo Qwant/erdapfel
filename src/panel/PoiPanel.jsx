@@ -31,15 +31,25 @@ export default class PoiPanel extends React.Component {
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
 
-    window.execOnMapLoaded(() => {
-      const elem = document.querySelector('.poi_panel__content__card');
+    this.cardRef = React.createRef();
+  }
 
-      if (!elem) {
-        return;
-      }
+  componentDidMount() {
+    this.moveMobileMapUI();
+  }
+
+  componentDidUpdate() {
+    this.moveMobileMapUI();
+  }
+
+  moveMobileMapUI = () => {
+    if (!this.state.card) {
+      return;
+    }
+    window.execOnMapLoaded(() => {
       fire(
         'move_mobile_bottom_ui',
-        elem.offsetHeight + 20
+        this.cardRef.current.offsetHeight + 10
       );
     });
   }
@@ -147,7 +157,10 @@ export default class PoiPanel extends React.Component {
           <i className="icon-x" />
         </div>
       </div>
-      <div className={classnames('poi_panel', { 'poi_panel--card': this.state.card })}>
+      <div
+        className={classnames('poi_panel', { 'poi_panel--card': this.state.card })}
+        ref={this.cardRef}
+      >
         <div className="poi_panel__content__card">
           { isFromCategory &&
             <div className="poi_panel__close" onClick={this.backToList}>
