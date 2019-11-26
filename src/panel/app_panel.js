@@ -228,13 +228,13 @@ export default class AppPanel {
     }
   }
 
-  _openPanel(panelToOpen, options) {
+  _openPanel(panelToOpen, options = {}) {
     this.unminify();
     this.activePoiId = null;
     this.panels
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
-        if (panel === this.categoryPanel || panel === this.eventListPanel || !options.isFromCategory) {
+        if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
           fire('remove_category_markers');
         }
         if (panel === this.poiPanel) {
