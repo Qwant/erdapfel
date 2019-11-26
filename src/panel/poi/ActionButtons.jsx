@@ -7,7 +7,6 @@ import MasqFavoriteModal from '../../modals/masq_favorite_modal';
 import Store from '../../adapters/store';
 
 const store = new Store();
-const masqFavoriteModal = new MasqFavoriteModal();
 
 async function isPoiFavorite(poi) {
   try {
@@ -28,7 +27,9 @@ export default class ActionButtons extends React.Component {
   }
 
   state = {
-    showPhoneNumber: false,
+    showPhoneNumber:
+      !(this.props.poi.isFromPagesjaunes &&
+      this.props.poi.isFromPagesjaunes()),
     poiIsInFavorite: false,
   };
 
@@ -55,13 +56,6 @@ export default class ActionButtons extends React.Component {
     window.unListen(this.storeRemoveHandler);
   }
 
-  shouldPhoneBeHidden() {
-    return this.props.poi &&
-      this.props.poi.isFromPagesjaunes &&
-      this.props.poi.isFromPagesjaunes() &&
-      !this.state.showPhoneNumber;
-  }
-
   showPhone = () => {
     if (this.props.poi && this.props.poi.meta && this.props.poi.meta.source) {
       Telemetry.add('phone', 'poi', this.props.poi.meta.source,
@@ -74,13 +68,11 @@ export default class ActionButtons extends React.Component {
         })
       );
     }
-    this.setState({
-      showPhoneNumber: true,
-    });
+    this.setState({ showPhoneNumber: true });
   }
 
   renderPhone() {
-    if (this.shouldPhoneBeHidden()) {
+    if (!this.state.showPhoneNumber) {
       return <button className="poi_panel__action icon-icon_phone poi_phone_container_hidden"
         onClick={this.showPhone}
       >
@@ -105,6 +97,7 @@ export default class ActionButtons extends React.Component {
       if (this.isMasqEnabled) {
         const isLoggedIn = await store.isLoggedIn();
         if (!isLoggedIn) {
+          const masqFavoriteModal = new MasqFavoriteModal();
           masqFavoriteModal.open();
           await masqFavoriteModal.waitForClose();
         }
