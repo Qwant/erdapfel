@@ -20,7 +20,6 @@ class EventListPanel extends React.Component {
 
   static propTypes = {
     eventName: PropTypes.string,
-    query: PropTypes.string,
     bbox: PropTypes.string,
   };
 
@@ -94,7 +93,6 @@ class EventListPanel extends React.Component {
       urlBBox,
       MAX_PLACES,
       this.props.eventName,
-      this.props.query
     );
     this.setState({
       pois: events,

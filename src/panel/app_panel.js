@@ -18,7 +18,7 @@ import Router from 'src/proxies/app_router';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
-import events from '../../config/events.yml';
+import events from 'config/events.yml';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
@@ -234,7 +234,7 @@ export default class AppPanel {
     this.panels
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
-        if (panel === this.categoryPanel || !options.isFromCategory) {
+        if (panel === this.categoryPanel || panel === this.eventListPanel || !options.isFromCategory) {
           fire('remove_category_markers');
         }
         if (panel === this.poiPanel) {
@@ -265,11 +265,10 @@ export default class AppPanel {
   }
 
   openEvents(params) {
-    const { type: eventName, q: query, ...otherOptions } = params;
+    const { type: eventName, ...otherOptions } = params;
     if (events.find(ev => ev.name === params.type)) {
       this._openPanel(this.eventListPanel, {
         eventName,
-        query,
         ...otherOptions,
       });
     } else {
