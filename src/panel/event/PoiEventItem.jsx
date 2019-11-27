@@ -1,3 +1,4 @@
+/* global _ */
 import React from 'react';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 
@@ -20,9 +21,31 @@ const PoiEventItem = ({ poi, eventName }) => {
       && date_start.getUTCMonth() === date_end.getUTCMonth()
       && date_start.getUTCDate() === date_end.getUTCDate()
     ) {
-      dates_string = `Le ${date_start.getUTCFullYear() + ' ' + date_start.getUTCMonth() + ' ' + date_start.getUTCDate()}`;
+      dates_string = _(
+        'the {date}',
+        'events',
+        {
+          date: Intl.DateTimeFormat(
+            'fr',
+            { day: 'numeric', month: 'short', year: 'numeric' }
+          ).format(date_start),
+        }
+      );
     } else {
-      dates_string = `Du ${date_start.getUTCFullYear() + ' ' + date_start.getUTCMonth() + ' ' + date_start.getUTCDate()} au ${date_end.getUTCFullYear() + ' ' + date_end.getUTCMonth() + ' ' + date_end.getUTCDate()}`;
+      dates_string = _(
+        'from {date1} to {date2}',
+        'events',
+        {
+          date1: Intl.DateTimeFormat(
+            'fr',
+            { day: 'numeric', month: 'short', year: 'numeric' }
+          ).format(date_start),
+          date2: Intl.DateTimeFormat(
+            'fr',
+            { day: 'numeric', month: 'short', year: 'numeric' }
+          ).format(date_end),
+        }
+      );
     }
   }
 
