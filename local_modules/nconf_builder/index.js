@@ -47,11 +47,15 @@ class ConfigChecker {
   }
 
   get() {
-    const confToCheck = this.conf.get();
+    const confToCheck = this.get_without_check();
     if (this.check(confToCheck) !== 0) {
       return null;
     }
     return confToCheck;
+  }
+
+  get_without_check() {
+    return this.conf.get();
   }
 }
 

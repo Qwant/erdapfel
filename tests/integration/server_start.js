@@ -29,7 +29,7 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404);
 
-const config = configBuilder.get();
+const config = configBuilder.get_without_check();
 
 // Specific config values for tests
 config.mapStyle.baseMapUrl = '[]';
