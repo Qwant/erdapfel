@@ -45,7 +45,6 @@ export default class DirectionInput extends React.Component {
   onChange = event => {
     const input = event.target.value;
     this.props.onChangePoint(input, null);
-    this.suggest.setValue(input);
   }
 
   onKeyPress = event => {
