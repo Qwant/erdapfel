@@ -48,24 +48,26 @@ export default class DirectionForm extends React.Component {
     const isMobile = Device.isMobile();
 
     return <div className="itinerary_fields">
-      <DirectionInput
-        value={originInputText}
-        pointType="origin"
-        onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
-        claimFocus={!isMobile && !originInputText && !destination}
-      />
-      <div className="itinerary__form__separator" />
-      <DirectionInput
-        value={destinationInputText}
-        pointType="destination"
-        onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
-        claimFocus={!isMobile && origin && !destinationInputText}
-      />
-      <div
-        className="itinerary_invert_origin_destination icon-reverse"
-        onClick={this.onReverse}
-        title={_('Invert start and end', 'direction')}
-      />
+      <form noValidate>
+        <DirectionInput
+          value={originInputText}
+          pointType="origin"
+          onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
+          claimFocus={!isMobile && !originInputText && !destination}
+        />
+        <div className="itinerary__form__separator" />
+        <DirectionInput
+          value={destinationInputText}
+          pointType="destination"
+          onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
+          claimFocus={!isMobile && origin && !destinationInputText}
+        />
+        <div
+          className="itinerary_invert_origin_destination icon-reverse"
+          onClick={this.onReverse}
+          title={_('Invert start and end', 'direction')}
+        />
+      </form>
     </div>;
   }
 }
