@@ -3,7 +3,7 @@ import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
-const config = configBuilder.get();
+const config = configBuilder.get_without_check();
 
 const SUGGEST_MAX_ITEMS = config.services.geocoder.maxItems;
 
