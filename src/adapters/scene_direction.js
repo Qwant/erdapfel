@@ -128,6 +128,7 @@ export default class SceneDirection {
       this.markerDestination = new Marker({
         element: markerDestination,
         draggable: true,
+        anchor: 'bottom',
       })
         .setLngLat(lastStepCoords[lastStepCoords.length - 1])
         .addTo(this.map)
