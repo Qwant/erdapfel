@@ -59,6 +59,9 @@ export default class BragiPoi extends Poi {
     const country = feature.properties.geocoding.administrative_regions.find(administrativeRegion =>
       administrativeRegion.zone_type === 'country'
     );
+    const cityObj = feature.properties.geocoding.administrative_regions.find(administrativeRegion =>
+      administrativeRegion.zone_type === 'city'
+    );
     let countryName;
     if (country) {
       countryName = country.name;
@@ -67,18 +70,16 @@ export default class BragiPoi extends Poi {
     switch (resultType) {
     case 'poi':
       name = feature.properties.geocoding.name;
-      alternativeName = addressLabel;
+      alternativeName = addressLabel || cityObj && cityObj.label ||
+        [postcode, city, countryName].filter(zone => zone).join(', ');
       break;
     case 'house':
       name = feature.properties.geocoding.name;
-
       alternativeName = [postcode, city, countryName].filter(zone => zone).join(', ');
-
       break;
     case 'street':
       name = feature.properties.geocoding.name;
       alternativeName = [postcode, city, countryName].filter(zone => zone).join(', ');
-
       break;
     default: {
       /* admin */
