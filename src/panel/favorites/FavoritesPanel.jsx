@@ -5,7 +5,7 @@ import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
 import FavoriteMasqFooter from './FavoriteMasqFooter';
 import { version } from 'config/constants.yml';
-import MasqOnboardingModal from 'src/modals/masq_onboarding_modal';
+import { open as openMasqOnboarding } from 'src/modals/MasqOnboardingModal';
 import Store from 'src/adapters/store';
 import PoiStore from 'src/adapters/poi/poi_store';
 import nconf from '@qwant/nconf-getter';
@@ -39,7 +39,7 @@ export default class FavoritesPanel extends React.Component {
 
   openMasq = () => {
     Telemetry.add(Telemetry.MASQ_BANNER_CLICK);
-    (new MasqOnboardingModal()).open();
+    openMasqOnboarding();
   }
 
   closeMasqFooter = () => {

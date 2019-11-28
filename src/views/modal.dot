@@ -1,5 +1,0 @@
-<div {{= click(this.overlayClickHandler, this) }} class="modal_overlay {{= this.active ? 'modal--active' : '' }}">
-  <div {{= click(() => {}, this) }} class="modal">
-    {{= this.child.render() }}
-  </div>
-</div>

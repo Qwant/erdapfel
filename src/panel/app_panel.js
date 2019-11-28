@@ -7,9 +7,6 @@ import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
-import MasqFavoriteModal from '../modals/masq_favorite_modal';
-import MasqOnboardingModal from '../modals/masq_onboarding_modal';
-import MasqActivatingModal from '../modals/masq_activating_modal';
 import nconf from '@qwant/nconf-getter';
 import DirectionPanel from './direction/direction_panel';
 import Menu from './Menu';
@@ -24,7 +21,6 @@ import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/lib
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
-const masqEnabled = nconf.get().masq.enabled;
 const categoryEnabled = nconf.get().category.enabled;
 
 export default class AppPanel {
@@ -53,13 +49,6 @@ export default class AppPanel {
     }
 
     this.panel = new Panel(this, PanelsView, parent);
-
-    this.masqEnabled = masqEnabled;
-    if (this.masqEnabled) {
-      this.masqFavoriteModal = new MasqFavoriteModal();
-      this.masqOnboardingModal = new MasqOnboardingModal();
-      this.masqActivatingModal = new MasqActivatingModal();
-    }
 
     if (performanceEnabled) {
       this.panel.onRender = () => {

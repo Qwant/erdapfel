@@ -1,7 +1,7 @@
 /* global _ */
 
 import Error from '../adapters/error';
-import MasqActivatingModal from '../modals/masq_activating_modal';
+import { setMasqActivatingModal } from 'src/modals/MasqActivatingModal';
 import importMasq from './import_masq';
 import Poi from '../adapters/poi/poi';
 import { detect } from 'detect-browser';
@@ -88,19 +88,18 @@ export default class MasqStore {
     this.openLoginPopupWindow(this.masq.loginLink);
 
     try {
-      this.masqActivatingModal = new MasqActivatingModal();
-      this.masqActivatingModal.open();
+      setMasqActivatingModal('activating');
       await this.masq.logIntoMasq(true);
-      this.masqActivatingModal.succeeded();
+      setMasqActivatingModal('success');
       Telemetry.add(Telemetry.MASQ_ACTIVATED);
     } catch (e) {
       switch (e.code) {
       case this.MasqError.SIGNALLING_SERVER_ERROR:
-        this.masqActivatingModal.failed(_('The connection failed between Qwant Maps and the Masq \
+        setMasqActivatingModal(_('The connection failed between Qwant Maps and the Masq \
                                            application (Signalling error)'));
         break;
       default:
-        this.masqActivatingModal.failed(_('Could not connect to Masq'));
+        setMasqActivatingModal(_('Could not connect to Masq'));
         break;
       }
       throw e;

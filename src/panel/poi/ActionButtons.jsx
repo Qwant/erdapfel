@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Telemetry from '../../libs/telemetry';
-import MasqFavoriteModal from '../../modals/masq_favorite_modal';
+import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
+  from 'src/modals/MasqFavoriteModal';
 import Store from '../../adapters/store';
 
 const store = new Store();
@@ -99,9 +100,7 @@ export default class ActionButtons extends React.Component {
       if (this.props.isMasqEnabled) {
         const isLoggedIn = await store.isLoggedIn();
         if (!isLoggedIn) {
-          const masqFavoriteModal = new MasqFavoriteModal();
-          masqFavoriteModal.open();
-          await masqFavoriteModal.waitForClose();
+          await openMasqFavModalAndWaitForClose();
         }
       }
       store.add(this.props.poi);
