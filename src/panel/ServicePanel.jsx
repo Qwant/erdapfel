@@ -2,7 +2,8 @@
 import React from 'react';
 import { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
-import CategoryService from '../adapters/category_service';
+import CategoryService from 'src/adapters/category_service';
+import CategoryList from 'src/components/CategoryList';
 import nconf from '@qwant/nconf-getter';
 
 class ServicePanel extends React.Component {
@@ -13,20 +14,7 @@ class ServicePanel extends React.Component {
       minimizedTitle={_('Show Qwant Maps services', 'service panel')}
       className="service_panel"
     >
-      <div className="service_panel__categories">
-        {
-          CategoryService.getCategories().map(item =>
-            <button className="service_panel__category" type="button" key={item.name}
-              onClick={() => { window.app.navigateTo(`/places/?type=${item.name}`); }}>
-              <div className="service_panel__category__icon"
-                style={{ background: item.backgroundColor }}>
-                <span className={`icon icon-${item.iconName}`}/>
-              </div>
-              <div className="service_panel__category__title">{item.label}</div>
-            </button>
-          )
-        }
-      </div>
+      <CategoryList className="service_panel__categories" />
 
       <hr/>
 
