@@ -2,11 +2,10 @@ import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
 import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
-import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { getOutlineFeature, getRouteStyle, setActiveRouteStyle } from './route_styles';
-import { getAllSteps, originDestinationCoords } from 'src/libs/route_utils';
+import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 
@@ -57,11 +56,20 @@ export default class SceneDirection {
   }
 
   addMarkerSteps(route) {
-    if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport' && !Device.isMobile()) {
+    if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport') {
       getAllSteps(route).forEach((step, idx) => {
         const stepMarker = createMarker(step.maneuver.location, 'itinerary_marker_step');
         stepMarker.getElement().id = 'itinerary_marker_step_' + idx;
         this.routeMarkers.push(stepMarker.addTo(this.map));
+      });
+    }
+
+    if (this.vehicle === 'publicTransport') {
+      getAllStops(route).forEach((stop, idx) => {
+        const stopMarker = createMarker(stop.location, 'itinerary_marker_step');
+        stopMarker.getElement().id = 'itinerary_marker_stop_' + idx;
+        stopMarker.getElement().title = stop.name;
+        this.routeMarkers.push(stopMarker.addTo(this.map));
       });
     }
   }

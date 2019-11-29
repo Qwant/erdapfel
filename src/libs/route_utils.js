@@ -76,6 +76,10 @@ export function getAllSteps(route) {
   return route.legs.reduce((acc, leg) => acc.concat(leg.steps), []);
 }
 
+export function getAllStops(route) {
+  return route.legs.reduce((acc, leg) => acc.concat(leg.stops), []);
+}
+
 const first = array => array && array[0];
 const last = array => array && array[array.length - 1];
 
