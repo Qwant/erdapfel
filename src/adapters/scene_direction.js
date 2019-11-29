@@ -28,17 +28,11 @@ export default class SceneDirection {
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active');
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive');
 
-    listen('set_route', ({ routes, vehicle, origin, destination, move }) => {
+    listen('set_route', ({ routes, vehicle, move }) => {
       this.reset();
       this.routes = routes;
       this.vehicle = vehicle;
-      this.origin = origin;
-      this.destination = destination;
       this.displayRoute(move);
-    });
-
-    listen('show_marker_steps', () => {
-      this.showMarkerSteps();
     });
 
     listen('toggle_route', mainRouteId => {
@@ -147,11 +141,10 @@ export default class SceneDirection {
         this.map.removeSource(sourceId);
       });
     });
+    this.routes = [];
 
     this.routeMarkers.forEach(step => { step.remove(); });
     this.routeMarkers = [];
-
-    this.routes = [];
   }
 
   getDataSources(route) {

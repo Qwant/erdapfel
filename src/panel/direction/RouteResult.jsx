@@ -69,7 +69,6 @@ export default class RouteResult extends React.Component {
   }
 
   openPreview = routeId => {
-    fire('show_marker_steps');
     this.props.onOpenMobilePreview();
     this.setState({
       previewRoute: this.props.routes[routeId],
