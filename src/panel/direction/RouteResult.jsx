@@ -42,11 +42,17 @@ export default class RouteResult extends React.Component {
   }
 
   selectRoute = routeId => {
+    if (routeId === this.state.activeRouteId) {
+      return;
+    }
     fire('toggle_route', routeId);
     this.setState({ activeRouteId: routeId });
   }
 
   hoverRoute = (routeId, highlightMapRoute) => {
+    if (routeId === this.state.activeRouteId) {
+      return;
+    }
     fire('toggle_route', highlightMapRoute ? routeId : this.state.activeRouteId);
   }
 
