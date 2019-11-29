@@ -10,6 +10,12 @@ import { getAllSteps } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 
+const createMarker = (lngLat, className = '', options = {}) => {
+  const element = document.createElement('div');
+  element.className = className;
+  return new Marker({ ...options, element }).setLngLat(lngLat);
+};
+
 export default class SceneDirection {
   constructor(map) {
     this.map = map;
@@ -61,11 +67,8 @@ export default class SceneDirection {
   showMarkerSteps() {
     if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport' && !Device.isMobile()) {
       this.steps.forEach(step => {
-        const markerStep = document.createElement('div');
-        markerStep.className = 'itinerary_marker_step';
         this.markersSteps.push(
-          new Marker(markerStep)
-            .setLngLat(step.maneuver.location)
+          createMarker(step.maneuver.location, 'itinerary_marker_step')
             .addTo(this.map)
         );
       });
@@ -93,6 +96,7 @@ export default class SceneDirection {
     if (!mainRoute) {
       return;
     }
+
     this.steps = getAllSteps(mainRoute);
     // Clean previous markers (if any)
     this.markersSteps.forEach(step => {
@@ -112,25 +116,17 @@ export default class SceneDirection {
       const mainRoute = this.routes.find(route => route.isActive);
       this.setMainRoute(mainRoute.id);
 
-      const markerOrigin = document.createElement('div');
-      markerOrigin.className = 'itinerary_marker_origin';
-      this.markerOrigin = new Marker({
-        element: markerOrigin,
-        draggable: true,
-      })
-        .setLngLat(this.steps[0].maneuver.location)
+      const firstCoords = this.steps[0].maneuver.location;
+      this.markerOrigin = createMarker(firstCoords, 'itinerary_marker_origin', { draggable: true })
         .addTo(this.map)
         .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
 
       const lastStepCoords = this.steps[this.steps.length - 1].geometry.coordinates;
-      const markerDestination = document.createElement('div');
-      markerDestination.className = 'itinerary_marker_destination';
-      this.markerDestination = new Marker({
-        element: markerDestination,
-        draggable: true,
-        anchor: 'bottom',
-      })
-        .setLngLat(lastStepCoords[lastStepCoords.length - 1])
+      this.markerDestination = createMarker(lastStepCoords[lastStepCoords.length - 1],
+        'itinerary_marker_destination', {
+          draggable: true,
+          anchor: 'bottom',
+        })
         .addTo(this.map)
         .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
 
