@@ -20,9 +20,7 @@ export default class SceneDirection {
   constructor(map) {
     this.map = map;
     this.routes = [];
-    this.markerOrigin = null;
-    this.markerDestination = null;
-    this.markersSteps = [];
+    this.routeMarkers = [];
     this.directionPanel = window.app.directionPanel;
     this.mapFeaturesByRoute = {};
 
@@ -64,10 +62,10 @@ export default class SceneDirection {
     });
   }
 
-  showMarkerSteps() {
+  addMarkerSteps() {
     if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport' && !Device.isMobile()) {
       this.steps.forEach(step => {
-        this.markersSteps.push(
+        this.routeMarkers.push(
           createMarker(step.maneuver.location, 'itinerary_marker_step')
             .addTo(this.map)
         );
@@ -98,13 +96,28 @@ export default class SceneDirection {
     }
 
     this.steps = getAllSteps(mainRoute);
-    // Clean previous markers (if any)
-    this.markersSteps.forEach(step => {
-      step.remove();
-    });
-    this.markersSteps = [];
 
-    this.showMarkerSteps();
+    this.routeMarkers.forEach(marker => { marker.remove(); });
+    this.routeMarkers = [];
+
+    this.addMarkerSteps();
+
+    const firstCoords = this.steps[0].maneuver.location;
+    const originMarker = createMarker(firstCoords, 'itinerary_marker_origin', { draggable: true })
+      .addTo(this.map)
+      .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
+
+    const lastStepCoords = this.steps[this.steps.length - 1].geometry.coordinates;
+    const destinationMarker = createMarker(lastStepCoords[lastStepCoords.length - 1],
+      'itinerary_marker_destination', {
+        draggable: true,
+        anchor: 'bottom',
+      })
+      .addTo(this.map)
+      .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
+
+    this.routeMarkers.push(originMarker);
+    this.routeMarkers.push(destinationMarker);
   }
 
   displayRoute(move) {
@@ -115,20 +128,6 @@ export default class SceneDirection {
       });
       const mainRoute = this.routes.find(route => route.isActive);
       this.setMainRoute(mainRoute.id);
-
-      const firstCoords = this.steps[0].maneuver.location;
-      this.markerOrigin = createMarker(firstCoords, 'itinerary_marker_origin', { draggable: true })
-        .addTo(this.map)
-        .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
-
-      const lastStepCoords = this.steps[this.steps.length - 1].geometry.coordinates;
-      this.markerDestination = createMarker(lastStepCoords[lastStepCoords.length - 1],
-        'itinerary_marker_destination', {
-          draggable: true,
-          anchor: 'bottom',
-        })
-        .addTo(this.map)
-        .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
 
       const bbox = this.computeBBox(mainRoute);
       if (move !== false) {
@@ -149,19 +148,9 @@ export default class SceneDirection {
       });
     });
 
-    this.markersSteps.forEach(step => {
-      step.remove();
-    });
-    this.markersSteps = [];
+    this.routeMarkers.forEach(step => { step.remove(); });
+    this.routeMarkers = [];
 
-    if (this.markerOrigin) {
-      this.markerOrigin.remove();
-    }
-    if (this.markerDestination) {
-      this.markerDestination.remove();
-    }
-    this.markerOrigin = null;
-    this.markerDestination = null;
     this.routes = [];
   }
 
@@ -234,14 +223,14 @@ export default class SceneDirection {
   }
 
   highlightStep(step) {
-    if (this.markersSteps[step]) {
-      this.markersSteps[step].getElement().classList.add('itinerary_marker_step--highlighted');
+    if (this.routeMarkers[step]) {
+      this.routeMarkers[step].getElement().classList.add('itinerary_marker_step--highlighted');
     }
   }
 
   unhighlightStep(step) {
-    if (this.markersSteps[step]) {
-      this.markersSteps[step].getElement().classList.remove('itinerary_marker_step--highlighted');
+    if (this.routeMarkers[step]) {
+      this.routeMarkers[step].getElement().classList.remove('itinerary_marker_step--highlighted');
     }
   }
 
