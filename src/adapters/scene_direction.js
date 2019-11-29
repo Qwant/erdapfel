@@ -58,11 +58,10 @@ export default class SceneDirection {
 
   addMarkerSteps() {
     if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport' && !Device.isMobile()) {
-      this.steps.forEach(step => {
-        this.routeMarkers.push(
-          createMarker(step.maneuver.location, 'itinerary_marker_step')
-            .addTo(this.map)
-        );
+      this.steps.forEach((step, idx) => {
+        const stepMarker = createMarker(step.maneuver.location, 'itinerary_marker_step');
+        stepMarker.getElement().id = 'itinerary_marker_step_' + idx;
+        this.routeMarkers.push(stepMarker.addTo(this.map));
       });
     }
   }
@@ -216,14 +215,16 @@ export default class SceneDirection {
   }
 
   highlightStep(step) {
-    if (this.routeMarkers[step]) {
-      this.routeMarkers[step].getElement().classList.add('itinerary_marker_step--highlighted');
+    const marker = document.querySelector('#itinerary_marker_step_' + step);
+    if (marker) {
+      marker.classList.add('itinerary_marker_step--highlighted');
     }
   }
 
   unhighlightStep(step) {
-    if (this.routeMarkers[step]) {
-      this.routeMarkers[step].getElement().classList.remove('itinerary_marker_step--highlighted');
+    const marker = document.querySelector('#itinerary_marker_step_' + step);
+    if (marker) {
+      marker.classList.remove('itinerary_marker_step--highlighted');
     }
   }
 
