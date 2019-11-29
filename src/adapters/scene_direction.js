@@ -6,7 +6,7 @@ import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { getOutlineFeature, getRouteStyle, setActiveRouteStyle } from './route_styles';
-import { getAllSteps } from 'src/libs/route_utils';
+import { getAllSteps, originDestinationCoords } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 
@@ -56,9 +56,9 @@ export default class SceneDirection {
     });
   }
 
-  addMarkerSteps() {
+  addMarkerSteps(route) {
     if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport' && !Device.isMobile()) {
-      this.steps.forEach((step, idx) => {
+      getAllSteps(route).forEach((step, idx) => {
         const stepMarker = createMarker(step.maneuver.location, 'itinerary_marker_step');
         stepMarker.getElement().id = 'itinerary_marker_step_' + idx;
         this.routeMarkers.push(stepMarker.addTo(this.map));
@@ -88,20 +88,18 @@ export default class SceneDirection {
       return;
     }
 
-    this.steps = getAllSteps(mainRoute);
-
     this.routeMarkers.forEach(marker => { marker.remove(); });
     this.routeMarkers = [];
 
-    this.addMarkerSteps();
+    this.addMarkerSteps(mainRoute);
 
-    const firstCoords = this.steps[0].maneuver.location;
-    const originMarker = createMarker(firstCoords, 'itinerary_marker_origin', { draggable: true })
+    const { origin, destination } = originDestinationCoords(mainRoute);
+
+    const originMarker = createMarker(origin, 'itinerary_marker_origin', { draggable: true })
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
 
-    const lastStepCoords = this.steps[this.steps.length - 1].geometry.coordinates;
-    const destinationMarker = createMarker(lastStepCoords[lastStepCoords.length - 1],
+    const destinationMarker = createMarker(destination,
       'itinerary_marker_destination', {
         draggable: true,
         anchor: 'bottom',
