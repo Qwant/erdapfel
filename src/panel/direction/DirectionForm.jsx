@@ -14,6 +14,7 @@ export default class DirectionForm extends React.Component {
     vehicles: PropTypes.array.isRequired,
     onSelectVehicle: PropTypes.func.isRequired,
     activeVehicle: PropTypes.string.isRequired,
+    isInitializing: PropTypes.bool,
   }
 
   state = {
@@ -48,24 +49,27 @@ export default class DirectionForm extends React.Component {
 
   render() {
     const { originInputText, destinationInputText } = this.state;
-    const { origin, destination, vehicles, activeVehicle, onSelectVehicle } = this.props;
+    const {
+      origin, destination, isInitializing,
+      vehicles, activeVehicle, onSelectVehicle,
+    } = this.props;
     const isMobile = Device.isMobile();
 
-    return <div>
+    return <div className="itinerary_form">
       <div className="itinerary_fields">
         <form noValidate>
           <DirectionInput
             value={originInputText}
             pointType="origin"
             onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
-            claimFocus={!isMobile && !originInputText && !destination}
+            claimFocus={!isMobile && !isInitializing && !originInputText && !destination}
           />
           <div className="itinerary__form__separator" />
           <DirectionInput
             value={destinationInputText}
             pointType="destination"
             onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
-            claimFocus={!isMobile && origin && !destinationInputText}
+            claimFocus={!isMobile && !isInitializing && origin && !destinationInputText}
           />
           <div
             className="itinerary_invert_origin_destination icon-reverse"

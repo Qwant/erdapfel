@@ -20,7 +20,6 @@ export default class SceneDirection {
     this.map = map;
     this.routes = [];
     this.routeMarkers = [];
-    this.directionPanel = window.app.directionPanel;
     this.mapFeaturesByRoute = {};
 
     const iconsBaseUrl = nconf.get().system.baseUrl + 'statics/images/direction_icons';
@@ -136,7 +135,8 @@ export default class SceneDirection {
   }
 
   refreshDirection(type, lngLat) {
-    this.directionPanel.selectPoint(type, new LatLonPoi(lngLat));
+    const newPoint = new LatLonPoi(lngLat);
+    fire('change_direction_point', type, newPoint);
   }
 
   reset() {

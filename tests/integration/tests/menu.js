@@ -47,14 +47,14 @@ test('menu open favorite', async () => {
   await wait(600);
 
   page.click('.menu__panel__action:nth-child(2)');
-  const itinerary = await page.waitForSelector('.itinerary_container--active');
+  const itinerary = await page.waitForSelector('.direction_panel');
   expect(itinerary).not.toBeNull();
   await wait(600);
   page.click('.menu__button');
   await wait(600);
   page.click('.menu__panel__action:nth-child(3)');
   await wait(600);
-  const favorites = await page.waitForSelector('.favorite_poi_panel__container');
+  const favorites = await page.waitForSelector('.favorite_panel');
   expect(favorites).not.toBeNull();
 });
 

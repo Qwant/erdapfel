@@ -9,7 +9,6 @@ import EventListPanel from './event/EventListPanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import nconf from '@qwant/nconf-getter';
-import DirectionPanel from './direction/direction_panel';
 import Menu from './Menu';
 import Telemetry from '../libs/telemetry';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
@@ -20,6 +19,7 @@ import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
 import events from 'config/events.yml';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
+import DirectionPanel from 'src/panel/direction/DirectionPanel';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -39,7 +39,7 @@ export default class AppPanel {
     this.poiPanel = new ReactPanelWrapper(PoiPanel);
     this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
     this.eventListPanel = this.eventEnabled ? new ReactPanelWrapper(EventListPanel) : null;
-    this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
+    this.directionPanel = this.directionEnabled ? new ReactPanelWrapper(DirectionPanel) : null;
 
     this.panels = [
       this.servicePanel,
