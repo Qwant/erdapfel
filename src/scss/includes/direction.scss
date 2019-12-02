@@ -730,7 +730,7 @@ input:valid:focus + .itinerary__field__clear {
     grid-area: icon;
     width: 48px;
     height: 48px;
-    background-size: 100%;
+    background-size: contain;
     margin: 0;
   }
   
