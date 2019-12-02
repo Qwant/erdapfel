@@ -137,7 +137,7 @@ test('origin & destination & mode', async () => {
   const activeLabel = await page.evaluate(() => {
     return Array.from(document.querySelector('.label_active').classList).join(',');
   });
-  expect(activeLabel).toContain('itinerary_button_label_walking');
+  expect(activeLabel).toContain('icon-foot');
 });
 
 // There is no current way with the MapBox-GL-mock to test changes of state or style
