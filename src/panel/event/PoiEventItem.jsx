@@ -22,7 +22,7 @@ const PoiEventItem = ({ poi, eventName }) => {
       && date_start.getUTCDate() === date_end.getUTCDate()
     ) {
       dates_string = _(
-        'the {date}',
+        'on {date}',
         'events',
         {
           date: Intl.DateTimeFormat(
@@ -54,7 +54,10 @@ const PoiEventItem = ({ poi, eventName }) => {
     <h3 className="event__panel__name">{poi.getInputValue()}</h3>
     <div className="event__panel__type">{eventName}</div>
     {address.label && <p className="event__panel__address">{address.label}</p>}
-    {dates_string && <div className="event__panel__date">{dates_string}</div>}
+    {dates_string && <div className="event__panel__date">
+      <span className="icon icon-calendar"></span>
+      {dates_string}
+    </div>}
   </div>;
 };
 

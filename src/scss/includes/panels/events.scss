@@ -34,6 +34,13 @@
   overflow: hidden;
 }
 
+.event__panel__date {
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 4px;
+  color: #353C52;
+}
+
 .event__panel__error {
   padding: 30px 40px 50px;
   color: $primary_text;
