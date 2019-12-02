@@ -142,14 +142,7 @@ export default class SceneDirection {
   }
 
   refreshDirection(type, lngLat) {
-    const newPoint = new LatLonPoi(lngLat);
-    if (type === 'origin') {
-      this.directionPanel.selectOrigin(newPoint);
-      this.directionPanel.setInputValue(type, newPoint.getInputValue());
-    } else if (type === 'destination') {
-      this.directionPanel.selectDestination(newPoint);
-      this.directionPanel.setInputValue(type, newPoint.getInputValue());
-    }
+    this.directionPanel.selectPoint(type, new LatLonPoi(lngLat));
   }
 
   reset() {

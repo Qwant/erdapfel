@@ -21,7 +21,7 @@ beforeEach(async () => {
 
 test('check "My position" label', async () => {
   expect.assertions(1);
-  await showDirection(page);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
   // wait for autocomplete library starting-up
   await page.waitForSelector('.itinerary_suggest_your_position');
@@ -34,8 +34,8 @@ test('check "My position" label', async () => {
 
 test('switch start end', async () => {
   expect.assertions(1);
-  await showDirection(page);
-
+  await page.goto(`${APP_URL}/${ROUTES_PATH}`);
+  await page.waitForSelector('#itinerary_input_origin');
   await page.type('#itinerary_input_origin', 'start');
   await page.type('#itinerary_input_destination', 'end');
   await page.click('.itinerary_invert_origin_destination');
@@ -50,8 +50,8 @@ test('simple search', async () => {
   expect.assertions(1);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
   responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
-  await showDirection(page);
-
+  await page.goto(`${APP_URL}/${ROUTES_PATH}`);
+  await page.waitForSelector('#itinerary_input_origin');
   await page.type('#itinerary_input_origin', 'direction');
   await page.keyboard.press('Enter');
   await page.type('#itinerary_input_destination', 'direction');
@@ -139,12 +139,6 @@ test('origin & destination & mode', async () => {
   });
   expect(activeLabel).toContain('itinerary_button_label_walking');
 });
-
-const showDirection = async page => {
-  await page.goto(APP_URL);
-  await page.waitForSelector('.service_panel__item__direction');
-  await page.click('.service_panel__item__direction');
-};
 
 // There is no current way with the MapBox-GL-mock to test changes of state or style
 // on a feature. Let's disable this test it until we improve our map testing tools.
