@@ -5,6 +5,7 @@ import Panel from '../libs/panel';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
+import EventListPanel from './event/EventListPanel';
 import SearchInput from '../ui_components/search_input';
 import TopBar from './top_bar';
 import nconf from '@qwant/nconf-getter';
@@ -17,23 +18,27 @@ import Router from 'src/proxies/app_router';
 import Poi from 'src/adapters/poi/poi.js';
 import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
+import events from 'config/events.yml';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
 const categoryEnabled = nconf.get().category.enabled;
+const eventEnabled = nconf.get().events.enabled;
 
 export default class AppPanel {
   constructor(parent) {
     this.topBar = new TopBar();
     SearchInput.initSearchInput('#search');
     this.categoryEnabled = categoryEnabled;
+    this.eventEnabled = eventEnabled;
     this.directionEnabled = directionEnabled;
 
     this.servicePanel = new ReactPanelWrapper(ServicePanel);
     this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
     this.poiPanel = new ReactPanelWrapper(PoiPanel);
     this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
+    this.eventListPanel = this.eventEnabled ? new ReactPanelWrapper(EventListPanel) : null;
     this.directionPanel = this.directionEnabled ? new DirectionPanel() : null;
 
     this.panels = [
@@ -43,6 +48,9 @@ export default class AppPanel {
     ];
     if (this.categoryEnabled) {
       this.panels.push(this.categoryPanel);
+    }
+    if (this.eventEnabled) {
+      this.panels.push(this.eventListPanel);
     }
     if (this.directionPanel) {
       this.panels.push(this.directionPanel);
@@ -82,6 +90,12 @@ export default class AppPanel {
     this.router.addRoute('Category', '/places/(.*)', placesParams => {
       window.execOnMapLoaded(() => {
         this.openCategory(parseQueryString(placesParams));
+      });
+    });
+
+    this.router.addRoute('EventListPanel', '/events/(.*)', eventsParams => {
+      window.execOnMapLoaded(() => {
+        this.openEvents(parseQueryString(eventsParams));
       });
     });
 
@@ -214,16 +228,14 @@ export default class AppPanel {
     }
   }
 
-  _openPanel(panelToOpen, options) {
+  _openPanel(panelToOpen, options = {}) {
     this.unminify();
     this.activePoiId = null;
     this.panels
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
-        if (panel === this.categoryPanel) {
-          if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
-            fire('remove_category_markers');
-          }
+        if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
+          fire('remove_category_markers');
         }
         if (panel === this.poiPanel) {
           fire('clean_marker');
@@ -250,6 +262,18 @@ export default class AppPanel {
       query,
       ...otherOptions,
     });
+  }
+
+  openEvents(params) {
+    const { type: eventName, ...otherOptions } = params;
+    if (events.find(ev => ev.name === params.type)) {
+      this._openPanel(this.eventListPanel, {
+        eventName,
+        ...otherOptions,
+      });
+    } else {
+      window.app.navigateTo('/');
+    }
   }
 
   resetLayout() {

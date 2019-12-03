@@ -37,6 +37,13 @@
 .icon-service:before {
   content: "\e933";
 }
+.icon-reverse:before {
+  content: "\e927";
+  color: #5c6f84;
+}
+.icon-public-transport:before {
+  content: "\e934";
+}
 .icon-bike:before {
   content: "\e926";
 }
@@ -45,9 +52,6 @@
 }
 .icon-foot:before {
   content: "\e925";
-}
-.icon-public-transport:before {
-  content: "\e934";
 }
 .icon-icon_chevron-down:before {
   content: "\e900";
@@ -104,6 +108,10 @@
 .icon-at-sign:before {
   content: "\e922";
 }
+.icon-calendar:before {
+  content: "\e935";
+}
+
 .icon-check:before {
   content: "\e91d";
 }
@@ -163,9 +171,6 @@
 }
 .icon-share-2:before {
   content: "\e919";
-}
-.icon-reverse:before {
-  content: "\e927";
 }
 .icon-star:before {
   content: "\e928";

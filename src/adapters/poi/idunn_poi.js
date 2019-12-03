@@ -78,7 +78,33 @@ export default class IdunnPoi extends Poi {
       } else {
         const s_requestParams = JSON.stringify(requestParams);
         Error.sendOnce(
-          'idunn_poi', 'poiApiLoad',
+          'idunn_poi', 'poiCategoryLoad',
+          `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
+          err
+        );
+        return {};
+      }
+    }
+  }
+
+  static async poiEventLoad(bbox, size, category) {
+    const url = `${serviceConfig.idunn.url}/v1/events`;
+    const requestParams = { bbox, size };
+    if (category) {
+      requestParams['category'] = category;
+    }
+
+    try {
+      const response = await Ajax.getLang(url, requestParams);
+      response.events = response.events.map(rawPoi => new IdunnPoi(rawPoi));
+      return response;
+    } catch (err) {
+      if (err === 400 || err === 404 ) {
+        return {};
+      } else {
+        const s_requestParams = JSON.stringify(requestParams);
+        Error.sendOnce(
+          'idunn_poi', 'poiEventLoad',
           `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
           err
         );
