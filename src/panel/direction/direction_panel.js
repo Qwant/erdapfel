@@ -12,18 +12,18 @@ import Telemetry from '../../libs/telemetry';
 import NavigatorGeolocalisationPoi from '../../adapters/poi/specials/navigator_geolocalisation_poi';
 import nconf from '@qwant/nconf-getter';
 
-const isPublicTransportEnabled = nconf.get().direction.publicTransport.enabled;
-
 export default class DirectionPanel {
   constructor() {
-    this.isPublicTransportEnabled = isPublicTransportEnabled;
     this.panel = new Panel(this, directionTemplate);
-    this.vehicles = modes;
     this.active = false;
     this.poiBeforeOpening = null;
     this.origin = null;
     this.destination = null;
-    this.vehicle = modes.DRIVING;
+    this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
+    if (nconf.get().direction.publicTransport.enabled) {
+      this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
+    }
+    this.vehicle = this.vehicles[0];
     this.roadMapPanel = new RoadMapPanel(this.openMobilePreview);
     this.isRoadMapPreviewActive = false;
   }
@@ -52,6 +52,9 @@ export default class DirectionPanel {
         destination={destination}
         onChangeDirectionPoint={this.selectPoint}
         onReversePoints={this.invertOriginDestination}
+        vehicles={this.vehicles}
+        activeVehicle={this.vehicle}
+        onSelectVehicle={this.setVehicle}
       />,
       document.getElementById('react_itinerary_fields')
     );
@@ -63,11 +66,9 @@ export default class DirectionPanel {
     this.updateUrl();
   }
 
-  setVehicle(vehicle) {
+  setVehicle = vehicle => {
     Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
-    this.panel.removeClassName(0, `.itinerary_button_label_${this.vehicle}`, 'label_active');
     this.vehicle = vehicle;
-    this.panel.addClassName(0, `.itinerary_button_label_${vehicle}`, 'label_active');
     this.updateParameters();
   }
 
@@ -223,10 +224,8 @@ export default class DirectionPanel {
   }
 
   async restoreParams(options) {
-    if (options.mode) {
-      if (Object.keys(modes).some(k => modes[k] === options.mode)) {
-        this.vehicle = options.mode;
-      }
+    if (options.mode && this.vehicles.indexOf(options.mode) !== -1) {
+      this.vehicle = options.mode;
     }
 
     if (options.origin) {

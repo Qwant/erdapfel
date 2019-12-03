@@ -9,13 +9,5 @@
     <div id="react_itinerary_fields"></div>
   </div>
 
-  <div class="itinerary_vehicles">
-    <span class="itinerary_button_label itinerary_button_label_driving icon-drive{{= this.vehicle === this.vehicles.DRIVING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.vehicles.DRIVING) }}></span>
-    {{? this.isPublicTransportEnabled }}
-      <span class="itinerary_button_label itinerary_button_label_publicTransport icon-public-transport{{? this.vehicle === this.vehicles.PUBLIC_TRANSPORT }} label_active {{?}}" {{= click(this.setVehicle, this, this.vehicles.PUBLIC_TRANSPORT) }}></span>
-    {{?}}
-    <span class="itinerary_button_label itinerary_button_label_walking icon-foot{{= this.vehicle === this.vehicles.WALKING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.vehicles.WALKING) }}></span>
-    <span class="itinerary_button_label itinerary_button_label_cycling icon-bike{{= this.vehicle === this.vehicles.CYCLING ? ' label_active' : '' }}" {{= click(this.setVehicle, this, this.vehicles.CYCLING) }}></span>
-  </div>
   <div id="react_itinerary_result" class="itinerary_result"></div>
 </div>
