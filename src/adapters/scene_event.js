@@ -1,9 +1,9 @@
 import { Marker } from 'mapbox-gl--ENV';
-import constants from '../../config/constants.yml';
+import constants from 'config/constants.yml';
 import { createEventIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
 import layouts from 'src/panel/layouts.js';
-import events from "../../config/events.yml";
+import events from 'config/events.yml';
 
 export default class SceneEvent {
   constructor(map) {
@@ -54,7 +54,6 @@ export default class SceneEvent {
 
   addEventMarkers(pois, eventName) {
     const eventIcon = events.find(ev => ev.name === eventName.toLowerCase()).icon;
-    console.log(eventIcon);
     if (pois) {
       pois.forEach(poi => {
         const { id, name, latLon } = poi;
