@@ -1,7 +1,7 @@
 import Category from './category';
 import nconf from '@qwant/nconf-getter';
-import categories from '../../config/categories.yml';
-import events from '../../config/events.yml';
+import categories from 'config/categories.yml';
+import events from 'config/events.yml';
 import ExtendedString from '../libs/string';
 
 export default class CategoryService {

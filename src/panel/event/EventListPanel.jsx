@@ -33,7 +33,7 @@ class EventListPanel extends React.Component {
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
 
     if (this.props.eventName) {
-      Telemetry.add(Telemetry.POI_EVENT_OPEN, null, null, { category: this.props.eventName });
+      Telemetry.add(Telemetry.POI_EVENT_OPEN, null, null, { event: this.props.eventName });
       const { label } = events.find(ev => ev.name === this.props.eventName);
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
     }
@@ -98,16 +98,16 @@ class EventListPanel extends React.Component {
       pois: events,
       initialLoading: false,
     });
-    fire('add_category_markers', events, this.props.eventName);
+    fire('add_event_markers', events, this.props.eventName);
     fire('save_location');
   }
 
   selectPoi = poi => {
-    fire('click_category_poi', poi, this.props.eventName);
+    fire('click_event_poi', poi, this.props.eventName);
   }
 
   highlightPoiMarker = (poi, highlight) => {
-    fire('highlight_category_marker', poi, highlight);
+    fire('highlight_event_marker', poi, highlight);
   }
 
   close = () => {
