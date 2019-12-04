@@ -1,8 +1,9 @@
 /* global _ */
 import React from 'react';
-import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
+import EventTitleImage from 'src/panel/event/EventTitleImage';
 
 const PoiEventItem = ({ poi, eventName }) => {
+
   const address = poi.address || {};
 
   const blocks = poi.blocks;
@@ -50,12 +51,12 @@ const PoiEventItem = ({ poi, eventName }) => {
   }
 
   return <div className="event__panel__item">
-    <PoiTitleImage poi={poi} />
+    <EventTitleImage poi={poi} eventName={eventName}/>
     <h3 className="event__panel__name">{poi.getInputValue()}</h3>
     <div className="event__panel__type">{eventName}</div>
     {address.label && <p className="event__panel__address">{address.label}</p>}
     {dates_string && <div className="event__panel__date">
-      <span className="icon icon-calendar"></span>
+      <span className="icon-calendar"></span>
       {dates_string}
     </div>}
   </div>;

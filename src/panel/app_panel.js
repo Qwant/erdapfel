@@ -236,6 +236,7 @@ export default class AppPanel {
       .forEach(panel => {
         if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
           fire('remove_category_markers');
+          fire('remove_event_markers');
         }
         if (panel === this.poiPanel) {
           fire('clean_marker');

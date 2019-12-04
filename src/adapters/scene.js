@@ -9,6 +9,7 @@ import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
+import SceneEvent from './scene_event';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
@@ -75,6 +76,7 @@ Scene.prototype.initMapBox = function() {
       this.routeDisplayed = false;
     });
     new SceneCategory(this.mb);
+    new SceneEvent(this.mb);
 
     this.mb.addControl(new ExtendedControl(), 'bottom-right');
     this.mb.addControl(new MobileCompassControl(), 'top-right');
