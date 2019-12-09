@@ -83,5 +83,5 @@ category:
   maxPlaces: 40
 
 events:
-  enabled: yml
+  enabled: false
   maxPlaces: 40
