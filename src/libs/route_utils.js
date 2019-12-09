@@ -1,4 +1,5 @@
 /* eslint-disable no-irregular-whitespace */
+import { normalizeToFeatureCollection } from './geojson';
 
 export function formatDuration(sec) {
   sec = Math.max(60, sec); // For duration < 60s, return '1 min'
@@ -74,3 +75,18 @@ export function getAllSteps(route) {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#Alternative
   return route.legs.reduce((acc, leg) => acc.concat(leg.steps), []);
 }
+
+export function getAllStops(route) {
+  return route.legs.reduce((acc, leg) => acc.concat(leg.stops), []);
+}
+
+const first = array => array && array[0];
+const last = array => array && array[array.length - 1];
+
+export const originDestinationCoords = route => {
+  const fc = normalizeToFeatureCollection(route.geometry);
+  return {
+    origin: first(first(fc.features).geometry.coordinates),
+    destination: last(last(fc.features).geometry.coordinates),
+  };
+};

@@ -2,21 +2,24 @@ import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
 import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
-import Device from '../libs/device';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { getOutlineFeature, getRouteStyle, setActiveRouteStyle } from './route_styles';
-import { getAllSteps } from 'src/libs/route_utils';
+import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
+
+const createMarker = (lngLat, className = '', options = {}) => {
+  const element = document.createElement('div');
+  element.className = className;
+  return new Marker({ ...options, element }).setLngLat(lngLat);
+};
 
 export default class SceneDirection {
   constructor(map) {
     this.map = map;
     this.routes = [];
-    this.markerOrigin = null;
-    this.markerDestination = null;
-    this.markersSteps = [];
+    this.routeMarkers = [];
     this.directionPanel = window.app.directionPanel;
     this.mapFeaturesByRoute = {};
 
@@ -24,17 +27,11 @@ export default class SceneDirection {
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active');
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive');
 
-    listen('set_route', ({ routes, vehicle, origin, destination, move }) => {
+    listen('set_route', ({ routes, vehicle, move }) => {
       this.reset();
       this.routes = routes;
       this.vehicle = vehicle;
-      this.origin = origin;
-      this.destination = destination;
       this.displayRoute(move);
-    });
-
-    listen('show_marker_steps', () => {
-      this.showMarkerSteps();
     });
 
     listen('toggle_route', mainRouteId => {
@@ -58,16 +55,21 @@ export default class SceneDirection {
     });
   }
 
-  showMarkerSteps() {
-    if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport' && !Device.isMobile()) {
-      this.steps.forEach(step => {
-        const markerStep = document.createElement('div');
-        markerStep.className = 'itinerary_marker_step';
-        this.markersSteps.push(
-          new Marker(markerStep)
-            .setLngLat(step.maneuver.location)
-            .addTo(this.map)
-        );
+  addMarkerSteps(route) {
+    if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport') {
+      getAllSteps(route).forEach((step, idx) => {
+        const stepMarker = createMarker(step.maneuver.location, 'itinerary_marker_step');
+        stepMarker.getElement().id = 'itinerary_marker_step_' + idx;
+        this.routeMarkers.push(stepMarker.addTo(this.map));
+      });
+    }
+
+    if (this.vehicle === 'publicTransport') {
+      getAllStops(route).forEach((stop, idx) => {
+        const stopMarker = createMarker(stop.location, 'itinerary_marker_step');
+        stopMarker.getElement().id = 'itinerary_marker_stop_' + idx;
+        stopMarker.getElement().title = stop.name;
+        this.routeMarkers.push(stopMarker.addTo(this.map));
       });
     }
   }
@@ -93,14 +95,28 @@ export default class SceneDirection {
     if (!mainRoute) {
       return;
     }
-    this.steps = getAllSteps(mainRoute);
-    // Clean previous markers (if any)
-    this.markersSteps.forEach(step => {
-      step.remove();
-    });
-    this.markersSteps = [];
 
-    this.showMarkerSteps();
+    this.routeMarkers.forEach(marker => { marker.remove(); });
+    this.routeMarkers = [];
+
+    this.addMarkerSteps(mainRoute);
+
+    const { origin, destination } = originDestinationCoords(mainRoute);
+
+    const originMarker = createMarker(origin, 'itinerary_marker_origin', { draggable: true })
+      .addTo(this.map)
+      .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
+
+    const destinationMarker = createMarker(destination,
+      'itinerary_marker_destination', {
+        draggable: true,
+        anchor: 'bottom',
+      })
+      .addTo(this.map)
+      .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
+
+    this.routeMarkers.push(originMarker);
+    this.routeMarkers.push(destinationMarker);
   }
 
   displayRoute(move) {
@@ -111,28 +127,6 @@ export default class SceneDirection {
       });
       const mainRoute = this.routes.find(route => route.isActive);
       this.setMainRoute(mainRoute.id);
-
-      const markerOrigin = document.createElement('div');
-      markerOrigin.className = 'itinerary_marker_origin';
-      this.markerOrigin = new Marker({
-        element: markerOrigin,
-        draggable: true,
-      })
-        .setLngLat(this.steps[0].maneuver.location)
-        .addTo(this.map)
-        .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
-
-      const lastStepCoords = this.steps[this.steps.length - 1].geometry.coordinates;
-      const markerDestination = document.createElement('div');
-      markerDestination.className = 'itinerary_marker_destination';
-      this.markerDestination = new Marker({
-        element: markerDestination,
-        draggable: true,
-        anchor: 'bottom',
-      })
-        .setLngLat(lastStepCoords[lastStepCoords.length - 1])
-        .addTo(this.map)
-        .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
 
       const bbox = this.computeBBox(mainRoute);
       if (move !== false) {
@@ -152,21 +146,10 @@ export default class SceneDirection {
         this.map.removeSource(sourceId);
       });
     });
-
-    this.markersSteps.forEach(step => {
-      step.remove();
-    });
-    this.markersSteps = [];
-
-    if (this.markerOrigin) {
-      this.markerOrigin.remove();
-    }
-    if (this.markerDestination) {
-      this.markerDestination.remove();
-    }
-    this.markerOrigin = null;
-    this.markerDestination = null;
     this.routes = [];
+
+    this.routeMarkers.forEach(step => { step.remove(); });
+    this.routeMarkers = [];
   }
 
   getDataSources(route) {
@@ -238,14 +221,16 @@ export default class SceneDirection {
   }
 
   highlightStep(step) {
-    if (this.markersSteps[step]) {
-      this.markersSteps[step]._element.classList.add('itinerary_marker_step--highlighted');
+    const marker = document.querySelector('#itinerary_marker_step_' + step);
+    if (marker) {
+      marker.classList.add('itinerary_marker_step--highlighted');
     }
   }
 
   unhighlightStep(step) {
-    if (this.markersSteps[step]) {
-      this.markersSteps[step]._element.classList.remove('itinerary_marker_step--highlighted');
+    const marker = document.querySelector('#itinerary_marker_step_' + step);
+    if (marker) {
+      marker.classList.remove('itinerary_marker_step--highlighted');
     }
   }
 

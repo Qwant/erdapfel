@@ -203,8 +203,6 @@ export default class DirectionPanel {
       ...options,
       routes,
       vehicle: this.vehicle,
-      origin: this.origin,
-      destination: this.destination,
     });
   }
 
