@@ -1,5 +1,4 @@
 import { Marker } from 'mapbox-gl--ENV';
-import constants from 'config/constants.yml';
 import { createEventIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
 import layouts from 'src/panel/layouts.js';
