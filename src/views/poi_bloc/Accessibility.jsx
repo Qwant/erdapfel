@@ -7,19 +7,19 @@ const AccessibilityBlock = ({
 }) => {
   const labels = {
     'wheelchair': {
-      'yes': 'Wheelchair accessible',
-      'partial': 'Partially wheelchair accessible',
-      'no': 'Not wheelchair accessible',
+      'yes': _('Wheelchair accessible'),
+      'partial': _('Partially wheelchair accessible'),
+      'no': _('Not wheelchair accessible'),
     },
     'toilets_wheelchair': {
-      'yes': 'Wheelchair accessible toilets',
-      'partial': 'Partial wheelchair accessible toilets',
-      'no': 'No wheelchair accessible toilets',
+      'yes': _('Wheelchair accessible toilets'),
+      'partial': _('Partial wheelchair accessible toilets'),
+      'no': _('No wheelchair accessible toilets'),
     },
   };
   const availableAccessibilities = [];
   for (const [label, elems] of Object.entries(labels)) {
-    availableAccessibilities.push(_(elems[accessibilityList[label]]));
+    availableAccessibilities.push(elems[accessibilityList[label]]);
   }
 
   if (asString) {

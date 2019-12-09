@@ -71,6 +71,24 @@ msgstr "Sport"
 msgid "health"
 msgstr "Salute"
 
+msgid "Wheelchair accessible"
+msgstr "Accessibile con sedia a rotelle"
+
+msgid "Partially wheelchair accessible"
+msgstr "Parzialmente accessibile con sedia a rotelle"
+
+msgid "Not wheelchair accessible"
+msgstr "Non accessibile con sedia a rotelle"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Servizi igienici accessibili con sedia a rotelle"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Servizi igienici parzialmente accessibili con sedia a rotelle"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Non sono presenti bagni accessibili con sedia a rotelle"
+
 msgid "Qwant is also"
 msgstr "Qwant è anche"
 

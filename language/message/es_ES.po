@@ -69,6 +69,24 @@ msgstr ""
 msgid "health"
 msgstr ""
 
+msgid "Wheelchair accessible"
+msgstr "Accesible para las sillas de ruedas"
+
+msgid "Partially wheelchair accessible"
+msgstr "Parcialmente accesible para sillas de ruedas"
+
+msgid "Not wheelchair accessible"
+msgstr "No accesible para sillas de ruedas"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Baños accesibles para sillas de ruedas"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Aseos parcialmente accesibles para sillas de ruedas "
+
+msgid "No wheelchair accessible toilets"
+msgstr "No hay baños accesibles para sillas de ruedas"
+
 msgid "Qwant is also"
 msgstr "Qwant es también"
 

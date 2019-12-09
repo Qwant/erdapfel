@@ -70,6 +70,24 @@ msgstr "sport"
 msgid "health"
 msgstr "yec'hed"
 
+msgid "Wheelchair accessible"
+msgstr "Aezet evit ar c'hadorioù-ruilh"
+
+msgid "Partially wheelchair accessible"
+msgstr "Aezet a-zarn evit ar c'hadorioù-ruilh"
+
+msgid "Not wheelchair accessible"
+msgstr "Diaezet evit ar c'hadorioù-ruilh"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Privezioù aezet a-zarn d'ar c'hadorioù-ruilh"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Privez ebet aezet d'ar c'hadorioù-ruilh"
+
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
 
