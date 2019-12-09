@@ -1,4 +1,6 @@
 import React from 'react';
+import Color from 'color';
+import classnames from 'classnames';
 
 const PublicTransportLine = ({ mode, info }) => {
   // @TODO: translate
@@ -15,7 +17,16 @@ const PublicTransportLine = ({ mode, info }) => {
   } else if (mode.indexOf('TRAIN') !== -1) {
     type = `train ${info.network}`;
   }
-  return <span className="routePtLine">{type} {info.num}</span>;
+  const lineColor = info.lineColor ? Color('#' + info.lineColor) : Color('white');
+  return <span
+    className={classnames('routePtLine', { 'routePtLine--dark': lineColor.isDark() })}
+    style={{
+      backgroundColor: lineColor.hex(),
+      borderColor: lineColor.rgbNumber() === 0xffffff ? 'black' : lineColor.hex(),
+    }}
+  >
+    {type} {info.num}
+  </span>;
 };
 
 export default PublicTransportLine;
