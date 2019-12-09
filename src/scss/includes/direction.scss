@@ -317,9 +317,9 @@ input:valid:focus + .itinerary__field__clear {
   height: 24px;
   background-position: center center;
   background-repeat: no-repeat;
-  vertical-align: top;
-  margin: 0 24px 0 12px;
+  margin: 12px 24px 0 12px;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .itinerary_roadmap_icon_origin {
@@ -357,12 +357,30 @@ input:valid:focus + .itinerary__field__clear {
   column-gap: 12px;
 }
 
+.itinerary_roadmap_substeps {
+  >div {
+    position: relative;
+
+    &:before {
+      content: '';
+      border: 1px $primary_text solid;
+      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      top: 6px;
+      left: -41px;
+    }
+  }
+}
+
 .itinerary_roadmap_instruction {
   font-size: 14px;
   color: $primary_text;
   padding: 14px 0;
   border-bottom: 1px solid #e0e1e6;
   flex-grow: 1;
+  line-height: 1.5em;
 }
 
 .itinerary_roadmap_instruction_light {
