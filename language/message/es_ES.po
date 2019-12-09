@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-01 08:50+0000\n"
+"POT-Creation-Date: 2019-12-09 13:31+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: T S <tsalaba2004@gmail.com>, 2019\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
@@ -68,33 +68,6 @@ msgstr ""
 
 msgid "health"
 msgstr ""
-
-msgid "Opening hours"
-msgstr "Horario de apertura"
-
-msgid "Open"
-msgstr "Abierto"
-
-msgid "Closed"
-msgstr "Cerrado"
-
-msgid "Wheelchair accessible"
-msgstr "Accesible para las sillas de ruedas"
-
-msgid "Partially wheelchair accessible"
-msgstr "Parcialmente accesible para sillas de ruedas"
-
-msgid "Not wheelchair accessible"
-msgstr "No accesible para sillas de ruedas"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Baños accesibles para sillas de ruedas"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Aseos parcialmente accesibles para sillas de ruedas "
-
-msgid "No wheelchair accessible toilets"
-msgstr "No hay baños accesibles para sillas de ruedas"
 
 msgid "Qwant is also"
 msgstr "Qwant es también"
@@ -162,17 +135,29 @@ msgstr "en Twitter"
 msgid "on Facebook"
 msgstr "en Facebook"
 
+msgid "concert"
+msgstr ""
+
+msgid "show"
+msgstr ""
+
+msgid "exhibition"
+msgstr ""
+
+msgid "event"
+msgstr ""
+
+msgid "animation"
+msgstr ""
+
 msgid "Search with Qwant Maps"
 msgstr "Busca con Qwant Maps"
 
 msgid "The map that respects your privacy"
 msgstr "El mapa que respeta tu privacidad"
 
-msgid "Open 24/7"
-msgstr "Abierto 24/7"
-
-msgid "until {nextTransitionTime}"
-msgstr "hasta {nextTransitionTime}"
+msgid "write"
+msgstr ""
 
 msgid "accessories shop"
 msgstr "tienda de accesorios"
@@ -588,6 +573,9 @@ msgstr "parapente"
 msgid "park"
 msgstr "parque"
 
+msgid "car park"
+msgstr ""
+
 msgid "perfumery"
 msgstr "perfumería"
 
@@ -782,6 +770,18 @@ msgid_plural "reviews"
 msgstr[0] "opinión"
 msgstr[1] "opiniones"
 
+msgid "Open"
+msgstr "Abierto"
+
+msgid "Closed"
+msgstr "Cerrado"
+
+msgid "Open 24/7"
+msgstr "Abierto 24/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "hasta {nextTransitionTime}"
+
 msgid "Geolocation with privacy!"
 msgstr "¡Geolocalización con privacidad!"
 
@@ -818,26 +818,35 @@ msgstr ""
 "Qwant Maps no pudo determinar tu localización. Por favor, comprueba si los "
 "servicios de localizaciñon están activados en tu sistema."
 
-msgid "Show favorites"
-msgstr "Mostrar favoritos"
+msgid "return"
+msgstr "volver"
 
-msgid "Favorite places"
-msgstr "Lugares favoritos"
+msgid "directions"
+msgstr "indicaciones"
 
-msgid "MY FAVORITES"
-msgstr "MIS FAVORITOS"
+msgid "Share link"
+msgstr "Compartir enlace"
 
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-"No tiene lugares favoritos. <br>Puede añadir uno mediante un clic en un "
-"lugar"
+msgid "Copied !"
+msgstr "¡Enlace copiado!"
+
+msgid "SHARE ON FACEBOOK"
+msgstr "COMPARTIR EN FACEBOOK"
+
+msgid "SHARE ON TWITTER"
+msgstr "COMPARTIR EN TWITTER"
 
 msgid "Share"
 msgstr "Compartir"
 
 msgid "Delete"
 msgstr "Borrar"
+
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+"No tiene lugares favoritos. <br>Puede añadir uno mediante un clic en un "
+"lugar"
 
 msgid "Use"
 msgstr "Usar"
@@ -863,101 +872,26 @@ msgstr "Cerrar"
 msgid "Masq activation failed"
 msgstr "Hubo un error al activar Masq."
 
-msgid "What is Masq?"
-msgstr "¿Qué es Masq?"
-
-msgid "How does Masq work?"
-msgstr "¿Cómo funciona Masq?"
-
-msgid "Why use Masq?"
-msgstr "¿Por qué usar Masq?"
-
-msgid "Welcome to Masq!"
-msgstr "¡Bienvenido a Masq!"
-
 msgid ""
-"Masq allows you to store all your preferences while guarantying your privacy"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
 msgstr ""
-"Masq te permite guardar todas tus preferencias garantizando tu privacidad."
+"La conexión ha fallado entre Qwant Maps y Masq (Error de señalización)"
 
-msgid ""
-"No more need for the Cloud! Your preferences and personnal data are stored "
-"directly on your devices, they are encrypted to guarantee their security. "
-"You are the owner of your data."
-msgstr ""
-"¡Ya no necesitas la nube! Tus preferencias y tus datos personales son "
-"almacenados directamente en tus dispositivos y encriptados para garantizar "
-"su seguridad. Eres el dueño de tus datos."
-
-msgid ""
-"In the final release you will be able to synchronize your Masq profile "
-"between all your devices in real time without any Cloud!"
-msgstr ""
-"¡En el lanzamiento final podrás sincronizar tu perfil de Masq entre todos "
-"tus dispositivos en tiempo real sin usar la nube!"
+msgid "Could not connect to Masq"
+msgstr "No se ha podido conectar a Masq"
 
 msgid "Activate Masq"
 msgstr "Activar Masq"
 
-msgid "Back to favorite"
-msgstr "Volver al favorito"
+msgid "Favorite places"
+msgstr "Lugares favoritos"
 
-msgid "Back to list"
-msgstr "Volver a la lista"
+msgid "MY FAVORITES"
+msgstr "MIS FAVORITOS"
 
-msgid "Back"
-msgstr "Volver"
-
-msgid "DIRECTIONS"
-msgstr "INDICACIONES"
-
-msgid "SEE MORE"
-msgstr "VER MÁS"
-
-msgid "SAVED"
-msgstr "GUARDADO"
-
-msgid "FAVORITES"
-msgstr "FAVORITOS"
-
-msgid "SHARE"
-msgstr "COMPARTIR"
-
-msgid "SHOW NUMBER"
-msgstr "MOSTRAR NÚMERO"
-
-msgid "Search around this place"
-msgstr "Buscar por esta zona"
-
-msgid "Qwant Maps uses OpenStreetMap data."
-msgstr "Qwant Maps usa datos de OpenStreetMaps."
-
-msgid "VIEW"
-msgstr "VER"
-
-msgid "EDIT"
-msgstr "EDITAR"
-
-msgid "Accessibility"
-msgstr "Accessibilidad"
-
-msgid "Beers"
-msgstr "Cervezas"
-
-msgid "Photos"
-msgstr "Fotos"
-
-msgid "Internet access"
-msgstr "acceso a internet"
-
-msgid "WiFi"
-msgstr "Wifi"
-
-msgid "Services & information"
-msgstr "Servicios e información"
-
-msgid "WIKIPEDIA"
-msgstr "WIKIPEDIA"
+msgid "Show favorites"
+msgstr "Mostrar favoritos"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -978,11 +912,77 @@ msgstr "No, gracias"
 msgid "Do not ask again"
 msgstr "No volver a preguntar"
 
-msgid "Show Qwant Maps services"
-msgstr ""
+msgid "SHOW NUMBER"
+msgstr "MOSTRAR NÚMERO"
+
+msgid "SAVED"
+msgstr "GUARDADO"
+
+msgid "FAVORITES"
+msgstr "FAVORITOS"
+
+msgid "SHARE"
+msgstr "COMPARTIR"
+
+msgid "DIRECTIONS"
+msgstr "INDICACIONES"
+
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps usa datos de OpenStreetMaps."
+
+msgid "VIEW"
+msgstr "VER"
+
+msgid "EDIT"
+msgstr "EDITAR"
+
+msgid "Photos"
+msgstr "Fotos"
+
+msgid "Accessibility"
+msgstr "Accessibilidad"
+
+msgid "Beers"
+msgstr "Cervezas"
+
+msgid "Internet access"
+msgstr "acceso a internet"
+
+msgid "WiFi"
+msgstr "Wifi"
+
+msgid "WIKIPEDIA"
+msgstr "WIKIPEDIA"
+
+msgid "Services & information"
+msgstr "Servicios e información"
+
+msgid "category"
+msgstr "categoría"
+
+msgid "Back to favorite"
+msgstr "Volver al favorito"
+
+msgid "Back to list"
+msgstr "Volver a la lista"
+
+msgid "Back"
+msgstr "Volver"
+
+msgid "SEE MORE"
+msgstr "VER MÁS"
+
+msgid "Search around this place"
+msgstr "Buscar por esta zona"
 
 msgid "Qwant Maps services"
 msgstr "Servicios de Qwant Maps"
+
+msgid "Show Qwant Maps services"
+msgstr ""
+
+msgid "Good plans"
+msgstr ""
 
 msgid "Directions"
 msgstr "Indicaciones"
@@ -990,65 +990,20 @@ msgstr "Indicaciones"
 msgid "Favorites"
 msgstr "Favoritos"
 
-msgid "return"
-msgstr "volver"
+msgid "on {date}"
+msgstr ""
 
-msgid "directions"
-msgstr "indicaciones"
+msgid "from {date1} to {date2}"
+msgstr ""
 
-msgid "Start point"
-msgstr "Punto de origen"
-
-msgid "End point"
-msgstr "Punto de destino"
-
-msgid "Invert start and end"
-msgstr "Invertir origen y destino"
-
-msgid "Show results"
-msgstr "Mostrar resultados"
-
-msgid "Partnership"
-msgstr "Colaboración"
-
-msgid "PAGES JAUNES"
-msgstr "PÁGINAS AMARILLAS"
+msgid "Please zoom in the map to see the results for this event."
+msgstr ""
 
 msgid "No results found. Please zoom out of the map."
 msgstr "No se han encontrado resultados. Por favor aleja el mapa."
 
 msgid "Search around my position"
 msgstr "Buscar cerca de mi localización"
-
-msgid "Please zoom in the map to see the results for this category."
-msgstr "Por favor amplia el mapa para ver los resultados de esta categoría."
-
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-"La conexión ha fallado entre Qwant Maps y Masq (Error de señalización)"
-
-msgid "Could not connect to Masq"
-msgstr "No se ha podido conectar a Masq"
-
-msgid "Share link"
-msgstr "Compartir enlace"
-
-msgid "Copied !"
-msgstr "¡Enlace copiado!"
-
-msgid "SHARE ON FACEBOOK"
-msgstr "COMPARTIR EN FACEBOOK"
-
-msgid "SHARE ON TWITTER"
-msgstr "COMPARTIR EN TWITTER"
-
-msgid "category"
-msgstr "categoría"
-
-msgid "Your position"
-msgstr "Tu localización"
 
 msgid "Via"
 msgstr "Por"
@@ -1062,8 +1017,23 @@ msgstr "MUESTRA"
 msgid "Start"
 msgstr "Comenzar"
 
+msgid "Arrival"
+msgstr ""
+
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps no ha encontrado una ruta."
+
+msgid "Your position"
+msgstr "Tu localización"
+
+msgid "Start point"
+msgstr "Punto de origen"
+
+msgid "End point"
+msgstr "Punto de destino"
+
+msgid "Invert start and end"
+msgstr "Invertir origen y destino"
 
 msgid "Deactivate"
 msgstr "Desactivar"
@@ -1079,3 +1049,15 @@ msgstr "Buscar"
 
 msgid "How to contribute"
 msgstr "Cómo contribuir"
+
+msgid "Please zoom in the map to see the results for this category."
+msgstr "Por favor amplia el mapa para ver los resultados de esta categoría."
+
+msgid "PAGES JAUNES"
+msgstr "PÁGINAS AMARILLAS"
+
+msgid "Partnership"
+msgstr "Colaboración"
+
+msgid "Show results"
+msgstr "Mostrar resultados"
