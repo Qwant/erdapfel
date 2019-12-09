@@ -11,7 +11,7 @@ export default class SceneEvent {
     this.markers = [];
 
     listen('add_event_markers', (pois, eventName) => {
-      this.resetMarkers();
+      this.removeEventMarkers();
       this.addEventMarkers(pois, eventName);
     });
     listen('remove_event_markers', () => {
@@ -81,20 +81,9 @@ export default class SceneEvent {
     }
   }
 
-  resetMarkers() {
+  removeEventMarkers() {
     this.markers.map(mark => mark.remove());
     this.markers = [];
-  }
-
-  removeEventMarkers() {
-    this.resetMarkers();
-    this.setOsmPoisVisibility(true);
-  }
-
-  setOsmPoisVisibility(displayed) {
-    constants.map.pois_layers.map(poi => {
-      this.map.setLayoutProperty(poi, 'visibility', displayed ? 'visible' : 'none');
-    });
   }
 
   highlightPoiMarker = (poi, highlight) => {
