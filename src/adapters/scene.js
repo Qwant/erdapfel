@@ -64,7 +64,7 @@ Scene.prototype.initMapBox = function() {
 
   window.map = { mb: this.mb };
 
-  const interactiveLayers = ['poi-level-1', 'poi-level-2', 'poi-level-3'];
+  const interactiveLayers = ['poi-level-1', 'poi-level-2', 'poi-level-3', 'poi-level-public-transports-1', 'poi-level-public-transports-2'];
 
   this.mb.on('load', () => {
     this.onHashChange();
@@ -92,6 +92,8 @@ Scene.prototype.initMapBox = function() {
 
       this.mb.on('click', interactiveLayer, async e => {
         e._interactiveClick = true;
+        console.log(e);
+
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
           window.app.navigateTo(`/place/${mapPoi.toUrl()}`, { poi: mapPoi.serialize() });
@@ -102,6 +104,7 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('click', e => {
+      console.log(e);
       if (!e._interactiveClick && Device.isMobile()) {
         window.app.navigateTo('/');
       }
