@@ -64,7 +64,13 @@ Scene.prototype.initMapBox = function() {
 
   window.map = { mb: this.mb };
 
-  const interactiveLayers = ['poi-level-1', 'poi-level-2', 'poi-level-3'];
+  const interactiveLayers = [
+    'poi-level-1',
+    'poi-level-2',
+    'poi-level-3',
+    'poi-level-public-transports-1',
+    'poi-level-public-transports-2',
+  ];
 
   this.mb.on('load', () => {
     this.onHashChange();
