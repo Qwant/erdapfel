@@ -13,5 +13,5 @@ import Store from './adapters/store';
 
   new Store();
 
-  window.app = new App('panels');
+  window.app = new App();
 })();

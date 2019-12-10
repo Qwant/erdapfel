@@ -33,8 +33,13 @@
       (k,v) => k==='server' ? undefined : v)};` %>
   </script>
     <div id="scene_container" class="map_container"></div>
-
-    <div id="panels"></div>
+    <div class="side_panel__container">
+      <div class="favorite_poi_panel__container">
+        <div class="react_panel__container"></div>
+      </div>
+    </div>
+    <div class="react_modal__container"></div>
+    <div class="react_menu__container"></div>
     <div class="top_bar">
       <form onsubmit="return false" novalidate class="search_form"
         <% if(config.app.versionFlag) { %>
