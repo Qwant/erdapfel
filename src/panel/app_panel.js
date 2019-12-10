@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PanelsView from '../views/app_panel.dot';
-import Panel from '../libs/panel';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
@@ -27,7 +25,7 @@ const categoryEnabled = nconf.get().category.enabled;
 const eventEnabled = nconf.get().events.enabled;
 
 export default class AppPanel {
-  constructor(parent) {
+  constructor() {
     this.topBar = new TopBar();
     SearchInput.initSearchInput('#search');
     this.categoryEnabled = categoryEnabled;
@@ -56,23 +54,18 @@ export default class AppPanel {
       this.panels.push(this.directionPanel);
     }
 
-    this.panel = new Panel(this, PanelsView, parent);
+    ReactDOM.render(<Menu />, document.querySelector('.react_menu__container'));
+    Telemetry.add(Telemetry.APP_START);
 
+    this.initRouter();
     if (performanceEnabled) {
-      this.panel.onRender = () => {
-        window.times.appRendered = Date.now();
-      };
+      window.times.appRendered = Date.now();
       listen('map_loaded', () => {
         window.times.mapLoaded = Date.now();
       });
     }
 
-    this.panel.render();
-    ReactDOM.render(<Menu />, document.querySelector('.react_menu__container'));
-    Telemetry.add(Telemetry.APP_START);
-
     const mapHash = parseMapHash(window.location.hash);
-    this.initRouter();
     this.initMap(mapHash);
   }
 
