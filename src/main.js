@@ -3,7 +3,6 @@ import 'url-search-params-polyfill';
 import I18n from './libs/i18n';
 import './libs/sync_manager';
 import './libs/listen';
-import './libs/actions';
 import App from './panel/app_panel';
 import Store from './adapters/store';
 
