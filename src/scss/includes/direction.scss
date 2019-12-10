@@ -338,6 +338,7 @@ input:valid:focus + .itinerary__field__clear {
   margin-top: 1px;
   padding-left: 13px;
   border-left: 4px solid $secondary_text;
+  position: relative;
 }
 
 .itinerary_roadmap_item:hover {
@@ -348,6 +349,10 @@ input:valid:focus + .itinerary__field__clear {
   .itinerary_roadmap_item:last-of-type .itinerary_roadmap_instruction {
     border-bottom: none;
   }
+
+  &--publicTransport .itinerary_roadmap_item {
+    border-left: 4px solid transparent;
+  }
 }
 
 .itinerary_roadmap_item_summary {
@@ -357,20 +362,19 @@ input:valid:focus + .itinerary__field__clear {
   column-gap: 12px;
 }
 
-.itinerary_roadmap_substeps {
-  >div {
-    position: relative;
+.itinerary_roadmap_item--transportLine .itinerary_roadmap_substeps > div {
+  position: relative;
 
-    &:before {
-      content: '';
-      border: 1px $primary_text solid;
-      border-radius: 50%;
-      width: 8px;
-      height: 8px;
-      position: absolute;
-      top: 6px;
-      left: -41px;
-    }
+  &:before {
+    background: white;
+    content: '';
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 6px;
+    left: -38px;
   }
 }
 
@@ -383,8 +387,18 @@ input:valid:focus + .itinerary__field__clear {
   line-height: 1.5em;
 }
 
-.itinerary_roadmap_instruction_light {
-  color: $secondary_text;
+.itinerary_roadmap_line {
+  position: absolute;
+  width: 7px;
+  left: 34px;
+  height: calc(100% - 28px);
+  top: 38px;
+  border-radius: 3px;
+
+  &--walk {
+    background: url(../images/direction_icons/walking_bullet_active.png) repeat space;
+    background-size: 7px;
+  }
 }
 
 .itinerary_roadmap_distance {
