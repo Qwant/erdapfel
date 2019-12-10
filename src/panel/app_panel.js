@@ -56,6 +56,8 @@ export default class AppPanel {
 
     ReactDOM.render(<Menu />, document.querySelector('.react_menu__container'));
     Telemetry.add(Telemetry.APP_START);
+
+    this.initRouter();
     if (performanceEnabled) {
       window.times.appRendered = Date.now();
       listen('map_loaded', () => {
@@ -64,7 +66,6 @@ export default class AppPanel {
     }
 
     const mapHash = parseMapHash(window.location.hash);
-    this.initRouter();
     this.initMap(mapHash);
   }
 
