@@ -1,8 +1,5 @@
 <div class="side_panel__container">
   <div class="favorite_poi_panel__container">
-    {{? this.directionEnabled }}
-      {{= this.directionPanel.render() }}
-    {{?}}
     <div class="react_panel__container"></div>
   </div>
 </div>

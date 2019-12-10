@@ -13,10 +13,8 @@ export default class RouteResult extends React.Component {
     vehicle: PropTypes.string,
     isLoading: PropTypes.bool,
     error: PropTypes.bool,
-    // we need this callback for now because the non-React mobile layout needs to know if it's open
-    // to decide if the "back" action only closes the preview or the whole direction UI
-    // @TODO: implement this behavior with React Router later
-    onOpenMobilePreview: PropTypes.func,
+    previewRoute: PropTypes.object,
+    openMobilePreview: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -26,7 +24,6 @@ export default class RouteResult extends React.Component {
   state = {
     activeRouteId: 0,
     activeDetails: false,
-    previewRoute: null,
   }
 
   componentDidMount() {
@@ -69,10 +66,7 @@ export default class RouteResult extends React.Component {
   }
 
   openPreview = routeId => {
-    this.props.onOpenMobilePreview();
-    this.setState({
-      previewRoute: this.props.routes[routeId],
-    });
+    this.props.openMobilePreview(this.props.routes[routeId]);
   }
 
   render() {
@@ -84,43 +78,47 @@ export default class RouteResult extends React.Component {
     }
 
     if (this.props.isLoading) {
-      return <div className="itinerary_leg itinerary_leg--placeholder">
-        <div className="itinerary_leg_summary">
-          <div className={`itinerary_leg_icon ${getVehicleIcon(this.props.vehicle)}`} />
-          <div className="itinerary_leg_via">
-            <div className="itinerary_placeholder-box" style={{ width: '133px' }} />
-            <div className="itinerary_placeholder-box" style={{ width: '165px' }} />
-            <div className="itinerary_placeholder-box" style={{ width: '70px' }} />
-          </div>
-          <div className="itinerary_leg_info">
-            <div className="itinerary_leg_duration">
-              <div className="itinerary_placeholder-box" style={{ width: '47px' }} />
+      return <div className="itinerary_result">
+        <div className="itinerary_leg itinerary_leg--placeholder">
+          <div className="itinerary_leg_summary">
+            <div className={`itinerary_leg_icon ${getVehicleIcon(this.props.vehicle)}`} />
+            <div className="itinerary_leg_via">
+              <div className="itinerary_placeholder-box" style={{ width: '133px' }} />
+              <div className="itinerary_placeholder-box" style={{ width: '165px' }} />
+              <div className="itinerary_placeholder-box" style={{ width: '70px' }} />
             </div>
-            <div className="itinerary_leg_distance">
-              <div className="itinerary_placeholder-box" style={{ width: '59px' }} />
+            <div className="itinerary_leg_info">
+              <div className="itinerary_leg_duration">
+                <div className="itinerary_placeholder-box" style={{ width: '47px' }} />
+              </div>
+              <div className="itinerary_leg_distance">
+                <div className="itinerary_placeholder-box" style={{ width: '59px' }} />
+              </div>
             </div>
           </div>
         </div>
       </div>;
     }
 
-    if (this.state.previewRoute) {
-      return <MobileRoadMapPreview steps={getAllSteps(this.state.previewRoute)} />;
+    if (this.props.previewRoute) {
+      return <MobileRoadMapPreview steps={getAllSteps(this.props.previewRoute)} />;
     }
 
-    return this.props.routes.map((route, index) => <Route
-      key={index}
-      id={index}
-      route={route}
-      origin={this.props.origin}
-      destination={this.props.destination}
-      vehicle={this.props.vehicle}
-      isActive={this.state.activeRouteId === index}
-      showDetails={this.state.activeRouteId === index && this.state.activeDetails}
-      openDetails={this.openRouteDetails}
-      openPreview={this.openPreview}
-      selectRoute={this.selectRoute}
-      hoverRoute={this.hoverRoute}
-    />);
+    return <div className="itinerary_result">
+      {this.props.routes.map((route, index) => <Route
+        key={index}
+        id={index}
+        route={route}
+        origin={this.props.origin}
+        destination={this.props.destination}
+        vehicle={this.props.vehicle}
+        isActive={this.state.activeRouteId === index}
+        showDetails={this.state.activeRouteId === index && this.state.activeDetails}
+        openDetails={this.openRouteDetails}
+        openPreview={this.openPreview}
+        selectRoute={this.selectRoute}
+        hoverRoute={this.hoverRoute}
+      />)}
+    </div>;
   }
 }

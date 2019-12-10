@@ -191,9 +191,8 @@ test('show itinerary roadmap on mobile', async () => {
   */
   await page.evaluate('window.app.resetLayout()');
   // Itinerary container should be disabled.
-  await page.waitForSelector('#itinerary_container', { hidden: true, timeout: 1000 });
+  await page.waitForSelector('.direction_panel', { hidden: true, timeout: 1000 });
 });
-
 
 test('api error handling', async () => {
   expect.assertions(1);
@@ -206,12 +205,12 @@ test('api error handling', async () => {
 
 test('api wait effect', async () => {
   expect.assertions(2);
-  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/);
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/, { delay: 250 });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
-  const errorMessageHandler = await page.waitForSelector('.itinerary_placeholder-box');
-  expect(errorMessageHandler).not.toBeNull(); // test wait panel
-  const firstLeg = await page.waitForSelector('.itinerary_leg');
-  expect(firstLeg).not.toBeNull(); // test result
+  const placeholderHandler = await page.waitForSelector('.itinerary_leg--placeholder');
+  expect(placeholderHandler).not.toBeNull();
+  const firstLeg = await page.waitForSelector('.itinerary_leg:not(.itinerary_leg--placeholder)');
+  expect(firstLeg).not.toBeNull();
 });
 
 afterAll(async () => {

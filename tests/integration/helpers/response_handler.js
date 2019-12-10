@@ -1,3 +1,4 @@
+
 export default class ResponseHandler {
 
   constructor(page) {
@@ -39,12 +40,18 @@ export default class ResponseHandler {
           if (preparedResponse.options.status) {
             status = preparedResponse.options.status;
           }
+          if (preparedResponse.options.delay) {
+            await new Promise(function(resolve) {
+              setTimeout(resolve, preparedResponse.options.delay);
+            });
+          }
         }
+        // await delay(200);
         await interceptedRequest.respond({
           status,
           body: JSON.stringify(preparedResponse.response),
-          headers: interceptedRequest.headers }
-        );
+          headers: interceptedRequest.headers,
+        });
         return;
       }
       interceptedRequest.continue();

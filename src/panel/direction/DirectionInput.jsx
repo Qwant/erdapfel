@@ -67,11 +67,11 @@ export default class DirectionInput extends React.Component {
         this.suggest.clear();
       }
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
-        this.props.onChangePoint(this.props.value, selectedPoi);
+        this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
       }
       this.suggest.setIdle(false);
     } else {
-      this.props.onChangePoint(this.props.value, selectedPoi);
+      this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
     }
   }
 

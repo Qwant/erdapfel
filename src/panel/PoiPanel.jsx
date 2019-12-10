@@ -90,11 +90,7 @@ export default class PoiPanel extends React.Component {
   }
 
   openDirection = () => {
-    window.app.navigateTo('/routes/', {
-      poi: this.props.poi,
-      isFromCategory: this.props.isFromCategory,
-      isFromFavorite: this.props.isFromFavorite,
-    });
+    window.app.navigateTo('/routes/', { poi: this.props.poi });
   }
 
   closeAction = () => {

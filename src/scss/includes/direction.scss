@@ -1,41 +1,20 @@
-#itinerary_container {
-  display: none;
-  max-height: calc(100vh - 110px);
-  overflow: visible;
-  font-size: 12px;
-  width: 400px;
-  background: url("../images/panel_top.svg") #f4f6fa repeat-x;
+.direction_panel {
+  background: url("../images/panel_top.svg") #f4f6fa repeat-x !important;
   background-size: 100% 5px;
-  @include card_shadow();
-  border-radius: 3px;
 
-  input[readonly] {
-    opacity: 0.5
+  .panel-content {
+    overflow-y: visible;
   }
-
-  &.itinerary_container--active {
-    display: block;
-  }
-}
-
-.itinerary_close {
-  width: 20px;
-  height: 20px;
-  float: right;
-  margin: 9px;
-  color: $secondary_text;
-  background-size: 16px;
-  cursor: pointer;
-  font-size: 18px;
 }
 
 .itinerary_title {
   font-size: 14px;
-  margin: 0;
-  padding: 12px;
-  text-align: center;
+  font-weight: bold;
   text-transform: uppercase;
   color: #495063;
+  border: none;
+  text-align: center;
+  width: 100%;
 }
 
 .itinerary__field__clear {
@@ -58,7 +37,6 @@ input:valid:focus + .itinerary__field__clear {
 .itinerary_fields {
   background: $background;
   @include card_shadow();
-  width: 364px;
   margin: 0 18px;
   position: relative;
   border-radius: 3px;
@@ -68,13 +46,7 @@ input:valid:focus + .itinerary__field__clear {
   position: relative;
 }
 
-.itinerary_fields,
-.itinerary_vehicles {
-  display: block;
-}
-
-.itinerary_container--preview .itinerary_fields,
-.itinerary_container--preview .itinerary_vehicles {
+.itinerary_container--preview .itinerary_form {
   display: none;
 }
 
@@ -110,9 +82,9 @@ input:valid:focus + .itinerary__field__clear {
 
 .itinerary_input {
   position: relative;
-  width: 364px;
+  width: 100%;
   height: 40px;
-  padding: 0 22px 0 44px;
+  padding: 0 36px 0 44px;
   border: none;
   font-size: 16px;
   color: $primary_text;
@@ -130,8 +102,7 @@ input:valid:focus + .itinerary__field__clear {
 
 .itinerary__form__separator {
   border-top: 1px solid #c8cbd3;
-  width: 290px;
-  margin-left: 37px;
+  margin: 0 37px;
 }
 
 .itinerary_invert_origin_destination {
@@ -147,7 +118,6 @@ input:valid:focus + .itinerary__field__clear {
 }
 
 .itinerary_vehicles {
-  height: 55px;
   text-align: center;
   padding: 15px;
 }
@@ -220,6 +190,7 @@ input:valid:focus + .itinerary__field__clear {
 .itinerary_leg {
   position: relative;
   cursor: pointer;
+  background: $background;
 
   &:not(:last-child):after {
     content: '';
@@ -553,7 +524,8 @@ input:valid:focus + .itinerary__field__clear {
 /* Mobile */
 
 @media (max-width: 640px){
-  #itinerary_container {
+  .direction_panel_mobile {
+    @include card_shadow();
     top: 0;
     left: 0;
     width: 100%;
@@ -561,23 +533,38 @@ input:valid:focus + .itinerary__field__clear {
     background-size: 640px auto;
     position: fixed;
     z-index: 3;
+    font-size: 12px;
+    min-height: 42px;
+  }
+
+  .itinerary_close_mobile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: $background;
+    line-height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    padding-left: 6px;
+
+    .icon-chevron-left {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin: -6px 6px 0 0;
+      font-size: 22px;
+    }
   }
   
   .itinerary_title {
     color: $background;
-  }
-
-  .itinerary__form__separator {
-    width: calc(100% - 80px);
-  }
-  
-  .itinerary_fields {
-    border-radius: 3px;
-    width: auto;
+    line-height: 36px;
   }
 
   .itinerary_input {
-    width: calc(100% - 36px);
     font-size: 14px;
 
     &:focus {
@@ -606,37 +593,7 @@ input:valid:focus + .itinerary__field__clear {
   }
   
   .itinerary_vehicles {
-    margin: 8px 5px 5px;
-    padding: 0;
-    height: auto;
-  }
-  
-  .itinerary_close {
-    display: none;
-  }
-  
-  .itinerary_close_mobile {
-    display: block;
-    cursor: pointer;
-    text-transform: uppercase;
-    color: $background;
-    line-height: 17px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: bold;
-    padding: 10px 5px;
-  }
-  
-  .itinerary_close_mobile_icon {
-    display: inline-block;
-    vertical-align: middle;
-    width: 18px;
-    height: 18px;
-    position: relative;
-    top: -4px;
-    margin: 0 5px 0 0;
-    font-size: 22px;
+    padding: 9px 0 6px;
   }
 
   .itinerary_leg {
@@ -644,7 +601,6 @@ input:valid:focus + .itinerary__field__clear {
     bottom: 10px;
     left: 10px;
     width: calc(100vw - 20px);
-    background: $background;
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     display: none;
@@ -771,19 +727,6 @@ input:valid:focus + .itinerary__field__clear {
     &:disabled {
       color: $primary_clear;
     }
-  }
-
-  .service_panel_mobile__direction {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    color: $secondary_text;
-    position: fixed;
-    right: 9px;
-    bottom: 115px;
-    background: $background;
-    @include card_shadow();
-    font-size: 24px;
   }
 
   .direction_shortcut {
