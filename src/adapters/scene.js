@@ -69,7 +69,7 @@ Scene.prototype.initMapBox = function() {
     'poi-level-2',
     'poi-level-3',
     'poi-level-public-transports-1',
-    'poi-level-public-transports-2'
+    'poi-level-public-transports-2',
   ];
 
   this.mb.on('load', () => {
