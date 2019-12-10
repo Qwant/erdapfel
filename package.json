@@ -48,8 +48,6 @@
     "babel-loader": "^8.0.4",
     "babel-preset-env": "1.7.0",
     "detect-browser": "^4.7.0",
-    "dot": "https://github.com/olado/doT.git#299b4da",
-    "dot-loader": "^0.1.2",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.14.3",
     "file-loader": "2.0.0",

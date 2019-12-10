@@ -105,18 +105,6 @@ const mainJsChunkConfig = buildMode => {
     ]),
     module: {
       rules: [{
-        test: /\.dot/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: babelConf(buildMode),
-          },
-          {
-            loader: 'dot-loader',
-            options: {},
-          },
-        ],
-      }, {
         test: /\.yml$/,
         use: [
           {
