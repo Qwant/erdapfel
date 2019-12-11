@@ -1,3 +1,4 @@
+/* global _ */
 import React from 'react';
 import ReviewScore from 'src/components/ReviewScore';
 import poiSubClass from 'src/mapbox/poi_subclass';
@@ -9,7 +10,9 @@ const PoiHeader = ({ poi }) => {
 
   return <div>
     {subClassName === 'latlon' && <div>
-      <div className="poi_panel__pre_title">{_('Close to', 'poi')}</div>
+      {address && address.label &&
+        <div className="poi_panel__pre_title">{ _('Close to', 'poi')}</div>
+      }
       <h4 className="poi_panel__title">
         <span className="poi_panel__title__main">
           {address && address.label ? address.label : title}
