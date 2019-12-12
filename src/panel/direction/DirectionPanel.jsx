@@ -7,7 +7,7 @@ import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
-import LatLonPoi from 'src/adapters/poi/latlon_poi';
+import { fromUrl as poiFromUrl } from 'src/libs/pois';
 import Device from 'src/libs/device';
 import Error from 'src/adapters/error';
 
@@ -78,10 +78,10 @@ export default class DirectionPanel extends React.Component {
   restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
     const poiRestorePromises = [
       originUrlValue
-        ? LatLonPoi.fromUrl(originUrlValue)
+        ? poiFromUrl(originUrlValue)
         : Promise.resolve(this.state.origin),
       destinationUrlValue
-        ? LatLonPoi.fromUrl(destinationUrlValue)
+        ? poiFromUrl(destinationUrlValue)
         : Promise.resolve(this.state.destination),
     ];
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
