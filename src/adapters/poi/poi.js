@@ -1,7 +1,6 @@
 /**
  * simple Poi helper
  */
-import { version } from 'config/constants.yml';
 import ExtendedString from 'src/libs/string';
 
 const ZOOM_BY_POI_TYPES = [
@@ -34,10 +33,6 @@ export default class Poi {
     return this.name;
   }
 
-  getKey() {
-    return `qmaps_v${version}_favorite_place_${this.id}`;
-  }
-
   computeZoom() {
     const zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
       this.type === zoomType.type
@@ -63,21 +58,6 @@ export default class Poi {
   toUrl() {
     const slug = ExtendedString.slug(this.name);
     return `${this.id}@${slug}`;
-  }
-
-  toAbsoluteUrl() {
-    const location = window.location;
-    const protocol = location.protocol;
-    const host = location.host;
-    const baseUrl = window.baseUrl;
-    const lat = this.latLon.lat.toFixed(7);
-    const lon = this.latLon.lng.toFixed(7);
-    return `${protocol}//${host}${baseUrl}place/${this.toUrl()}/#map=${this.zoom}/${lat}/${lon}`;
-  }
-
-  static isPoiCompliantKey(k) {
-    const keyPattern = new RegExp(`^qmaps_v${version}_favorite_place_.*`);
-    return k.match(keyPattern) !== null;
   }
 
   static deserialize(raw) {

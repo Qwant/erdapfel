@@ -1,6 +1,6 @@
 import Error from '../adapters/error';
 import { version } from '../../config/constants.yml';
-import Poi from '../adapters/poi/poi';
+import { isPoiCompliantKey } from 'src/libs/pois';
 
 export default class LocalStore {
 
@@ -17,7 +17,7 @@ export default class LocalStore {
       return [];
     }
     const items = localStorageKeys.reduce((filtered, k) => {
-      if (Poi.isPoiCompliantKey(k)) {
+      if (isPoiCompliantKey(k)) {
         try {
           const poi = JSON.parse(localStorage.getItem(k));
           filtered.push(poi);

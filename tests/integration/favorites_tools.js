@@ -1,4 +1,5 @@
 import Poi from 'src/adapters/poi/poi';
+import { getKey } from 'src/libs/pois';
 
 /**
  * Prerequisite : Favorite Panel Must be open
@@ -33,5 +34,5 @@ export async function storePoi(page, { id = 1, title = 'poi', coords = { lat: 43
   const poi = new Poi(id, title, 'second line', 'poi', coords, '', '');
   await page.evaluate((storageKey, serializedPoi) => {
     window.localStorage.setItem(storageKey, serializedPoi);
-  }, poi.getKey(), JSON.stringify(poi.poiStoreLiteral()));
+  }, getKey(poi), JSON.stringify(poi.poiStoreLiteral()));
 }

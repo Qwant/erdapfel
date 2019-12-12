@@ -13,6 +13,7 @@ import OsmContribution from 'src/components/OsmContribution';
 import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
 import CategoryList from 'src/components/CategoryList';
 import { openShareModal } from 'src/modals/ShareModal';
+import { toAbsoluteUrl } from 'src/libs/pois';
 
 export default class PoiPanel extends React.Component {
   static propTypes = {
@@ -85,7 +86,7 @@ export default class PoiPanel extends React.Component {
       Telemetry.add('share', 'poi', this.props.poi.meta.source);
     }
     if (this.props.poi) {
-      openShareModal(this.props.poi.toAbsoluteUrl());
+      openShareModal(toAbsoluteUrl(this.props.poi));
     }
   }
 
