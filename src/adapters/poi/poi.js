@@ -44,17 +44,6 @@ export default class Poi {
     }
   }
 
-  poiStoreLiteral() {
-    const serializeKeys = ['id', 'name', 'alternativeName', 'type', 'latLon', 'className',
-      'subClassName', 'zoom', 'bbox'];
-    return Object.keys(this).reduce((poiLiteral, key) => {
-      if (serializeKeys.includes(key)) {
-        poiLiteral[key] = this[key];
-      }
-      return poiLiteral;
-    }, {});
-  }
-
   toUrl() {
     const slug = ExtendedString.slug(this.name);
     return `${this.id}@${slug}`;

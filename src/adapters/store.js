@@ -194,7 +194,7 @@ export default class Store {
   async add(poi) {
     await this.checkInit();
     try {
-      await this.abstractStore.set(getKey(poi), poi.poiStoreLiteral());
+      await this.abstractStore.set(getKey(poi), poi.serialize());
       fire('poi_added_to_favs', poi);
     } catch (e) {
       Error.sendOnce('store', 'add', `error adding poi in ${this.abstractStore.storeName}`, e);
