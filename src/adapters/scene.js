@@ -108,7 +108,8 @@ Scene.prototype.initMapBox = function() {
     });
 
     this.mb.on('click', e => {
-      if (!e._interactiveClick && Device.isMobile()) {
+      if (!e._interactiveClick && Device.isMobile()
+          && !document.querySelector('.directions-open')) {
         window.app.navigateTo('/');
       }
       // Disable POI anywhere feature on mobile until we opt for an adapted UX
