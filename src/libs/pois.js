@@ -1,5 +1,5 @@
 
-import { version } from 'config/constants.yml';
+import { version, sources } from 'config/constants.yml';
 import ExtendedString from 'src/libs/string';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import LatLonPoi from 'src/adapters/poi/latlon_poi';
@@ -38,4 +38,12 @@ export function fromUrl(urlParam) {
     }
   }
   return Promise.reject();
+}
+
+export function isFromPagesJaunes(poi) {
+  return poi.meta && poi.meta.source === sources.pagesjaunes;
+}
+
+export function isFromOSM(poi) {
+  return poi.meta && poi.meta.source === sources.osm;
 }

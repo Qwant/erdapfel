@@ -2,9 +2,9 @@ import Poi from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
-import { sources } from 'config/constants.yml';
 import Telemetry from '../../libs/telemetry';
 import QueryContext from 'src/adapters/query_context';
+import { isFromOSM } from 'src/libs/pois';
 
 const serviceConfig = nconf.get().services;
 const LNG_INDEX = 0;
@@ -32,7 +32,7 @@ export default class IdunnPoi extends Poi {
     this.address = IdunnPoi.getAddress(rawPoi);
     this.bbox = rawPoi.geometry.bbox;
     this.meta = rawPoi.meta || {};
-    if (this.isFromOSM()) {
+    if (isFromOSM(this)) {
       const [_osmKey, itemKind, itemId] = rawPoi.id.split(':');
       this.viewUrl = `https://www.openstreetmap.org/${itemKind}/${itemId}`;
       this.editUrl = `https://www.openstreetmap.org/edit?editor=id&${itemKind}=${itemId}`;
@@ -173,13 +173,5 @@ export default class IdunnPoi extends Poi {
         })
       );
     }
-  }
-
-  isFromOSM() {
-    return this.meta && this.meta.source === sources.osm;
-  }
-
-  isFromPagesjaunes() {
-    return this.meta && this.meta.source === sources.pagesjaunes;
   }
 }

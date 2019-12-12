@@ -6,6 +6,7 @@ import Telemetry from '../../libs/telemetry';
 import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
   from 'src/modals/MasqFavoriteModal';
 import Store from '../../adapters/store';
+import { isFromPagesJaunes } from 'src/libs/pois';
 
 const store = new Store();
 
@@ -30,9 +31,7 @@ export default class ActionButtons extends React.Component {
   }
 
   state = {
-    showPhoneNumber:
-      !(this.props.poi.isFromPagesjaunes &&
-      this.props.poi.isFromPagesjaunes()),
+    showPhoneNumber: !isFromPagesJaunes(this.props.poi),
     poiIsInFavorite: false,
   };
 
