@@ -10,8 +10,4 @@ export default class LatLonPoi extends Poi {
     super(id, label, null, null, latLon);
     this.type = 'latlon';
   }
-
-  toUrl() {
-    return this.id;
-  }
 }

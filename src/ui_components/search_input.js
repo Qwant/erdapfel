@@ -1,6 +1,7 @@
 import Suggest from '../adapters/suggest';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
+import { toUrl } from 'src/libs/pois';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
@@ -94,7 +95,7 @@ export default class SearchInput {
 
   async selectItem(selectedItem, replaceUrl = false) {
     if (selectedItem instanceof Poi) {
-      window.app.navigateTo(`/place/${selectedItem.toUrl()}`, {
+      window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
         poi: selectedItem.serialize(),
         centerMap: true,
       }, { replace: replaceUrl });

@@ -3,6 +3,7 @@ import { createEventIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
 import layouts from 'src/panel/layouts.js';
 import events from 'config/events.yml';
+import { toUrl } from 'src/libs/pois';
 
 export default class SceneEvent {
   constructor(map) {
@@ -41,7 +42,7 @@ export default class SceneEvent {
         })
       );
     }
-    window.app.navigateTo(`/place/${poi.toUrl()}`, {
+    window.app.navigateTo(`/place/${toUrl(poi)}`, {
       poi: poi.serialize(),
       isFromEvent: true,
       sourceEvent: eventName,

@@ -46,10 +46,6 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     this.latLon = latLng;
   }
 
-  toUrl() {
-    return `latlon:${this.latLon.lat.toFixed(6)}:${this.latLon.lng.toFixed(6)}`;
-  }
-
   render() {
     return `
       <div data-id="${GEOLOCALISATION_NAME}" data-val="${_('Your position', 'direction')}"

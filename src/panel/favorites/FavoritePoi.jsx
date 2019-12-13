@@ -8,7 +8,7 @@ import Telemetry from 'src/libs/telemetry';
 import layouts from 'src/panel/layouts.js';
 import ContextMenu from 'src/components/ui/ContextMenu';
 import { openShareModal } from 'src/modals/ShareModal';
-import { toAbsoluteUrl } from 'src/libs/pois';
+import { toAbsoluteUrl, toUrl } from 'src/libs/pois';
 
 export default class FavoritePoi extends React.Component {
   static propTypes = {
@@ -18,7 +18,7 @@ export default class FavoritePoi extends React.Component {
 
   onClick = () => {
     Telemetry.add(Telemetry.FAVORITE_GO);
-    window.app.navigateTo(`/place/${this.props.poi.toUrl()}`, {
+    window.app.navigateTo(`/place/${toUrl(this.props.poi)}`, {
       poi: this.props.poi.serialize(),
       centerMap: true,
       isFromFavorite: true,

@@ -15,6 +15,7 @@ import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
+import { toUrl } from 'src/libs/pois';
 
 const baseUrl = nconf.get().system.baseUrl;
 const easterEggsEnabled = nconf.get().app.easterEggs;
@@ -100,7 +101,7 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
-          window.app.navigateTo(`/place/${mapPoi.toUrl()}`, { poi: mapPoi.serialize() });
+          window.app.navigateTo(`/place/${toUrl(mapPoi)}`, { poi: mapPoi.serialize() });
         }
       });
 
@@ -117,7 +118,7 @@ Scene.prototype.initMapBox = function() {
         return;
       }
       const poi = new LatLonPoi(e.lngLat);
-      window.app.navigateTo(`/place/${poi.toUrl()}`, { poi });
+      window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
     });
 
     this.mb.on('moveend', () => {

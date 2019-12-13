@@ -1,7 +1,6 @@
 /**
  * simple Poi helper
  */
-import ExtendedString from 'src/libs/string';
 
 const ZOOM_BY_POI_TYPES = [
   { type: 'street', zoom: 17 },
@@ -42,11 +41,6 @@ export default class Poi {
     } else {
       return DEFAULT_ZOOM;
     }
-  }
-
-  toUrl() {
-    const slug = ExtendedString.slug(this.name);
-    return `${this.id}@${slug}`;
   }
 
   static deserialize(raw) {
