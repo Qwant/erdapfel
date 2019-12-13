@@ -6,7 +6,7 @@ const LegLine = ({ mode, info }) => {
   }
   return <div
     className="itinerary_roadmap_line itinerary_roadmap_line--transportLine"
-    style={{ backgroundColor: '#' + info.lineColor }}
+    style={{ backgroundColor: info.lineColor ? `#${info.lineColor}` : 'black' }}
   />;
 };
 
