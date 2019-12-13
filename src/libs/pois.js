@@ -9,7 +9,8 @@ export function toAbsoluteUrl(poi) {
   const baseUrl = window.baseUrl;
   const lat = poi.latLon.lat.toFixed(7);
   const lon = poi.latLon.lng.toFixed(7);
-  return `${protocol}//${host}${baseUrl}place/${toUrl(poi)}/#map=${poi.zoom}/${lat}/${lon}`;
+  const mapHash = `#map=${getBestZoom(poi.zoom)}/${lat}/${lon}`;
+  return `${protocol}//${host}${baseUrl}place/${toUrl(poi)}/${mapHash}`;
 }
 
 const storeKeyPrefix = `qmaps_v${version}_favorite_place_`;
@@ -53,4 +54,15 @@ export function isFromPagesJaunes(poi) {
 
 export function isFromOSM(poi) {
   return poi.meta && poi.meta.source === sources.osm;
+}
+
+const ZOOM_BY_POI_TYPES = {
+  street: 17,
+  house: 19,
+  poi: 18,
+};
+const DEFAULT_ZOOM = 16;
+
+export function getBestZoom(poi) {
+  return ZOOM_BY_POI_TYPES[poi.type] || DEFAULT_ZOOM;
 }

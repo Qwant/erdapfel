@@ -15,7 +15,7 @@ import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
-import { toUrl } from 'src/libs/pois';
+import { toUrl, getBestZoom } from 'src/libs/pois';
 
 const baseUrl = nconf.get().system.baseUrl;
 const easterEggsEnabled = nconf.get().app.easterEggs;
@@ -269,10 +269,12 @@ Scene.prototype.fitMap = function(item, padding) {
     if (item.bbox) { // poi Bbox
       this.fitBbox(item.bbox, padding);
     } else { // poi center
-      const flyOptions = { center: item.latLon, screenSpeed: 1.5, animate: false };
-      if (item.zoom) {
-        flyOptions.zoom = item.zoom;
-      }
+      const flyOptions = {
+        center: item.latLon,
+        zoom: getBestZoom(item),
+        screenSpeed: 1.5,
+        animate: false,
+      };
 
       if (padding) {
         flyOptions.offset = [
@@ -307,7 +309,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
     : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0];
   this.mb.flyTo({
     center: poi.latLon,
-    zoom: poi.zoom,
+    zoom: getBestZoom(poi),
     offset,
     maxDuration: 1200,
   });

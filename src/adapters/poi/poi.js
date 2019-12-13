@@ -2,13 +2,6 @@
  * simple Poi helper
  */
 
-const ZOOM_BY_POI_TYPES = [
-  { type: 'street', zoom: 17 },
-  { type: 'house', zoom: 19 },
-  { type: 'poi', zoom: 18, panel: true },
-];
-const DEFAULT_ZOOM = 16;
-
 export const POI_TYPE = 'poi';
 
 export default class Poi {
@@ -20,23 +13,11 @@ export default class Poi {
     this.latLon = latLon;
     this.className = className;
     this.subClassName = subClassName;
-    this.zoom = this.computeZoom();
     this.bbox = bbox;
   }
 
   getInputValue() {
     return this.name;
-  }
-
-  computeZoom() {
-    const zoomSetting = ZOOM_BY_POI_TYPES.find(zoomType =>
-      this.type === zoomType.type
-    );
-    if (zoomSetting) {
-      return zoomSetting.zoom;
-    } else {
-      return DEFAULT_ZOOM;
-    }
   }
 
   static deserialize(raw) {
