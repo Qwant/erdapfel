@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { formatDistance } from 'src/libs/route_utils';
 import RoadMapItem from './RoadMapItem';
 import LegLine from './LegLine';
+import classnames from 'classnames';
 
 const WalkLeg = ({ leg }) => {
   const [ detailsOpen, setDetailsOpen ] = useState(false);
@@ -15,7 +16,9 @@ const WalkLeg = ({ leg }) => {
     line={<LegLine mode="WALK" />}
   >
     <div
-      className="itinerary_roadmap_item_summary"
+      className={classnames('itinerary_roadmap_item_summary', {
+        'itinerary_roadmap_item_summary--openable': hasSteps,
+      })}
       onClick={() => { if (hasSteps) { setDetailsOpen(!detailsOpen); } } }
     >
       <div>{summary}</div>

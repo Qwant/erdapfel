@@ -16,7 +16,7 @@ const TransportLineLeg = ({ leg }) => {
     line={<LegLine info={info} mode={mode} />}
   >
     <div
-      className="itinerary_roadmap_item_summary"
+      className="itinerary_roadmap_item_summary itinerary_roadmap_item_summary--openable"
       onClick={() => setDetailsOpen(!detailsOpen)}
     >
       <div>

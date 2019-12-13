@@ -189,7 +189,6 @@ input:valid:focus + .itinerary__field__clear {
 
 .itinerary_leg {
   position: relative;
-  cursor: pointer;
   background: $background;
 
   &:not(:last-child):after {
@@ -211,6 +210,7 @@ input:valid:focus + .itinerary__field__clear {
   display: flex;
   padding: 20px;
   align-items: center;
+  cursor: pointer;
 }
 
 .itinerary_leg_icon {
@@ -339,6 +339,7 @@ input:valid:focus + .itinerary__field__clear {
   padding-left: 13px;
   border-left: 4px solid $secondary_text;
   position: relative;
+  cursor: pointer;
 }
 
 .itinerary_roadmap_item:hover {
@@ -352,6 +353,7 @@ input:valid:focus + .itinerary__field__clear {
 
   &--publicTransport .itinerary_roadmap_item {
     border-left: 4px solid transparent;
+    cursor: default;
   }
 }
 
@@ -360,6 +362,10 @@ input:valid:focus + .itinerary__field__clear {
   justify-content: space-between;
   align-items: center;
   column-gap: 12px;
+
+  &--openable {
+    cursor: pointer;
+  }
 }
 
 .itinerary_roadmap_item--transportLine .itinerary_roadmap_substeps > div {
