@@ -269,7 +269,7 @@ Scene.prototype.fitMap = function(item, padding) {
     if (item.bbox) { // poi Bbox
       this.fitBbox(item.bbox, padding);
     } else { // poi center
-      const flyOptions = { center: item.getLngLat(), screenSpeed: 1.5, animate: false };
+      const flyOptions = { center: item.latLon, screenSpeed: 1.5, animate: false };
       if (item.zoom) {
         flyOptions.zoom = item.zoom;
       }
@@ -295,7 +295,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
     return;
   }
   if (!options.centerMap) {
-    const { x: leftPixelOffset } = this.mb.project(poi.getLngLat());
+    const { x: leftPixelOffset } = this.mb.project(poi.latLon);
     const isPoiUnderPanel = leftPixelOffset < layout.sizes.sideBarWidth + layout.sizes.panelWidth
       && window.innerWidth > layout.mobile.breakPoint;
     if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
@@ -306,7 +306,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
     ? [0, 0]
     : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0];
   this.mb.flyTo({
-    center: poi.getLngLat(),
+    center: poi.latLon,
     zoom: poi.zoom,
     offset,
     maxDuration: 1200,
@@ -329,7 +329,7 @@ Scene.prototype.addMarker = function(poi) {
   }
 
   const marker = new Marker({ element, anchor: 'bottom', offset: [0, -5] })
-    .setLngLat(poi.getLngLat())
+    .setLngLat(poi.latLon)
     .addTo(this.mb);
   this.currentMarker = marker;
   return marker;
@@ -345,7 +345,7 @@ Scene.prototype.isWindowedPoi = function(poi) {
   const windowBounds = this.mb.getBounds();
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray();
-  const poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat);
+  const poiCenter = new LngLat(poi.latLon.lng, poi.latLon.lat);
   windowBounds.extend(poiCenter);
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
 };

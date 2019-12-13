@@ -24,10 +24,6 @@ export default class Poi {
     this.bbox = bbox;
   }
 
-  getLngLat() {
-    return this.latLon;
-  }
-
   getInputValue() {
     return this.name;
   }
