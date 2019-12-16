@@ -15,4 +15,8 @@ module.exports = {
     puppeteerArguments: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     APP_URL: 'http://localhost:3000/maps',
   },
+  moduleNameMapper: {
+    '^src(.*)$': '<rootDir>/src$1',
+    '^config(.*)$': '<rootDir>/config$1',
+  },
 };

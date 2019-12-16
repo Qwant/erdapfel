@@ -1,8 +1,8 @@
 /**
  * simple Poi helper
  */
-import { version } from '../../../config/constants.yml';
-import ExtendedString from '../../libs/string';
+import { version } from 'config/constants.yml';
+import ExtendedString from 'src/libs/string';
 
 const ZOOM_BY_POI_TYPES = [
   { type: 'street', zoom: 17 },

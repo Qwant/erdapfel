@@ -1,4 +1,4 @@
-import Poi from '../../src/adapters/poi/poi';
+import Poi from 'src/adapters/poi/poi';
 
 /**
  * Prerequisite : Favorite Panel Must be open
