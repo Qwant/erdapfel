@@ -18,7 +18,9 @@ const PoiHeader = ({ poi }) => {
           {address && address.label ? address.label : title}
         </span>
       </h4>
-      {<p className="poi_panel__address">{address && address.label ? title : ''}</p>}
+      {address && address.label &&
+        <p className="poi_panel__address">{ title }</p>
+      }
     </div>}
 
     {subClassName !== 'latlon' && <div>
