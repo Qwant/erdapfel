@@ -1,3 +1,4 @@
+/* global _ */
 import React, { useState } from 'react';
 import { formatDistance } from 'src/libs/route_utils';
 import RoadMapItem from './RoadMapItem';
@@ -6,8 +7,9 @@ import classnames from 'classnames';
 
 const WalkLeg = ({ leg }) => {
   const [ detailsOpen, setDetailsOpen ] = useState(false);
-  // @TODO: build and translate a complete summary
-  const summary = `Walk on ${formatDistance(leg.distance)}`;
+  const summary = _('Walk on {walkDistance}', 'direction', {
+    walkDistance: formatDistance(leg.distance),
+  });
   const hasSteps = leg.steps.length > 1;
 
   return <RoadMapItem
