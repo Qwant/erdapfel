@@ -1,3 +1,4 @@
+/* global _ */
 import React from 'react';
 import ReviewScore from 'src/components/ReviewScore';
 import poiSubClass from 'src/mapbox/poi_subclass';
@@ -8,15 +9,32 @@ const PoiHeader = ({ poi }) => {
   const title = name || localName || poiSubClass(subClassName);
 
   return <div>
-    <h4 className="poi_panel__title">
-      <span className="poi_panel__title__main">{title}</span>
-      {name && localName && localName !== name &&
-        <p className="poi_panel__title__alternative">{localName}</p>
+    {subClassName === 'latlon' && <div>
+      {address && address.label &&
+        <div className="poi_panel__pre_title">{ _('Close to', 'poi')}</div>
       }
-    </h4>
-    {subClassName && <p className="poi_panel__description">{poiSubClass(subClassName)}</p>}
-    {address && address.label && <p className="poi_panel__address">{address.label}</p>}
-    {grades && <ReviewScore reviews={grades} poi={poi} />}
+      <h4 className="poi_panel__title">
+        <span className="poi_panel__title__main">
+          {address && address.label ? address.label : title}
+        </span>
+      </h4>
+      {address && address.label &&
+        <p className="poi_panel__address">{ title }</p>
+      }
+    </div>}
+
+    {subClassName !== 'latlon' && <div>
+      <h4 className="poi_panel__title">
+        <span className="poi_panel__title__main">{title}</span>
+        {name && localName && localName !== name &&
+        <p className="poi_panel__title__alternative">{localName}</p>
+        }
+      </h4>
+      {subClassName && <p className="poi_panel__description">{poiSubClass(subClassName)}</p>}
+      {address && address.label && <p className="poi_panel__address">{address.label}</p>}
+      {grades && <ReviewScore reviews={grades} poi={poi} />}
+    </div>}
+
   </div>;
 };
 
