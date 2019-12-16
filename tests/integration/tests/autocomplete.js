@@ -182,7 +182,7 @@ test('favorite search', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
-  await page.evaluate(storePoi, { title: 'hello' });
+  await storePoi(page, { title: 'hello' });
   await page.keyboard.type('Hello');
   const favTitle = await page.waitForSelector('.autocomplete_suggestion__category_title');
   expect(favTitle).not.toBeNull();

@@ -25,7 +25,7 @@ test('toggle favorite panel', async () => {
 test('favorite added is present in favorite panel', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
-  await page.evaluate(storePoi, { title: 'some poi' });
+  await storePoi(page, { title: 'some poi' });
   await toggleFavoritePanel(page);
   const items = await page.waitForSelector('.favorite_panel__items');
   expect(items).not.toBeNull();
@@ -35,7 +35,7 @@ test('restore favorite from localStorage', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
   const testTitle = 'demo_fav';
-  await page.evaluate(storePoi, { title: testTitle });
+  await storePoi(page, { title: testTitle });
   await page.click('.service_panel__item__fav');
   await page.waitForSelector('.favorite_panel__item__title');
   const title = await page.evaluate(() => {
@@ -47,7 +47,7 @@ test('restore favorite from localStorage', async () => {
 test('remove favorite using favorite panel', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
-  await page.evaluate(storePoi, { title: 'some poi i will remove' });
+  await storePoi(page, { title: 'some poi i will remove' });
   await toggleFavoritePanel(page);
   let items = await page.waitForSelector('.favorite_panel__items');
   expect(items).not.toBeNull();
@@ -67,7 +67,7 @@ test('center map after a favorite poi click', async () => {
     window.MAP_MOCK.flyTo({ center: { lat: 10, lng: 0 }, zoom: 10 });
   });
   const favoritePoiCoordinates = { lat: 43.5, lng: 7.18 };
-  await page.evaluate(storePoi, { coords: favoritePoiCoordinates });
+  await storePoi(page, { coords: favoritePoiCoordinates });
   await toggleFavoritePanel(page);
   await page.waitForSelector('.favorite_panel__item__title');
   await page.click('.favorite_panel__item__title');
