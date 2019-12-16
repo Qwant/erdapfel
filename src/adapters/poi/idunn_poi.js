@@ -2,7 +2,6 @@ import Poi from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
-import Telemetry from '../../libs/telemetry';
 import QueryContext from 'src/adapters/query_context';
 
 const serviceConfig = nconf.get().services;
@@ -151,21 +150,6 @@ export default class IdunnPoi extends Poi {
     }
     default:
       return rawPoi.address;
-    }
-  }
-
-  logGradesClick(template) {
-    const grades = this.blocksByType.grades;
-    if (grades && grades.url) {
-      Telemetry.add('reviews', 'poi', this.meta.source,
-        Telemetry.buildInteractionData({
-          id: this.id,
-          source: this.meta.source,
-          template,
-          zone: template === 'multiple' ? 'list' : 'detail',
-          element: 'reviews',
-        })
-      );
     }
   }
 }

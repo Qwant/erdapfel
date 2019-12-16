@@ -19,7 +19,7 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
 
     {address.label && <p className="category__panel__address">{address.label}</p>}
 
-    {reviews && <ReviewScore reviews={reviews} poi={poi} />}
+    {reviews && <ReviewScore reviews={reviews} poi={poi} inList />}
 
     <OpeningHour poi={poi} />
 
