@@ -87,7 +87,7 @@ test('load a poi from url on mobile', async () => {
 test('load a poi already in my favorite from url', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
-  await page.evaluate(storePoi, { id: 'osm:way:63178753' });
+  await storePoi(page, { id: 'osm:way:63178753' });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   const plainStar = await page.waitForSelector('.icon-icon_star-filled');
   expect(plainStar).not.toBeFalsy();
@@ -106,7 +106,7 @@ test('update url after a poi click', async () => {
 test('update url after a favorite poi click', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
-  await page.evaluate(storePoi, { id: poiMock.id, title: poiMock.name });
+  await storePoi(page, { id: poiMock.id, title: poiMock.name });
   await toggleFavoritePanel(page);
   await page.waitForSelector('.favorite_panel__item__title');
   await page.click('.favorite_panel__item__title');

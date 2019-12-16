@@ -1,4 +1,4 @@
-/* global Poi */
+import Poi from 'src/adapters/poi/poi';
 
 /**
  * Prerequisite : Favorite Panel Must be open
@@ -29,7 +29,9 @@ export async function toggleFavoritePanel(page) {
   await page.waitForSelector('.favorite_panel', { visible: true, timeOut: 300 });
 }
 
-export const storePoi = ({ id = 1, title = 'poi', coords = { lat: 43, lng: 2 } } = {}) => {
+export async function storePoi(page, { id = 1, title = 'poi', coords = { lat: 43, lng: 2 } } = {}) {
   const poi = new Poi(id, title, 'second line', 'poi', coords, '', '');
-  window.localStorage.setItem(poi.getKey(), JSON.stringify(poi.poiStoreLiteral()));
-};
+  await page.evaluate((storageKey, serializedPoi) => {
+    window.localStorage.setItem(storageKey, serializedPoi);
+  }, poi.getKey(), JSON.stringify(poi.poiStoreLiteral()));
+}

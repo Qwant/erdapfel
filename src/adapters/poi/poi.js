@@ -2,7 +2,7 @@
  * simple Poi helper
  */
 import { version } from 'config/constants.yml';
-import ExtendedString from '../../libs/string';
+import ExtendedString from 'src/libs/string';
 
 const ZOOM_BY_POI_TYPES = [
   { type: 'street', zoom: 17 },
@@ -92,6 +92,3 @@ export default class Poi {
     return otherFields;
   }
 }
-
-// Helper used by tests.
-window.Poi = Poi;
