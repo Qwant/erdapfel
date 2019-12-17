@@ -14,6 +14,7 @@ module.exports = {
   globals: {
     puppeteerArguments: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     APP_URL: 'http://localhost:3000/maps',
+    __config: require('@qwant/nconf-builder').get_without_check(),
   },
   moduleNameMapper: {
     '^src(.*)$': '<rootDir>/src$1',
