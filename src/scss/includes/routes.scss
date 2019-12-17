@@ -1,7 +1,7 @@
 .routePtLine {
   padding: 3px 4px 2px;
   margin: 0 2px;
-  border: 1px solid black;
+  border: 1px solid transparent;
   border-radius: 3px;
   font-weight: bold;
   font-size: 10px;
@@ -10,6 +10,10 @@
   vertical-align: text-bottom;
   white-space: nowrap;
   display: inline-block;
+
+  &--dark {
+    color: white;
+  }
 }
 
 .routeVia {

@@ -12,6 +12,7 @@ const RouteVia = ({ route, vehicle }) => {
   return <div className="routeVia">
     {route.summary
       .filter(summaryPart => summaryPart.mode !== 'WAIT')
+      .filter(summaryPart => summaryPart.mode !== 'WALK' || summaryPart.distance > 100)
       .map((summaryPart, idx) =>
         <span key={idx} className="routeVia-step">
           {summaryPart.mode === 'WALK'

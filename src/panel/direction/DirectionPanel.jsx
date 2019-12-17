@@ -211,6 +211,7 @@ export default class DirectionPanel extends React.Component {
       error={error}
       routes={routes}
       origin={origin && origin.getInputValue()}
+      destination={destination && destination.getInputValue()}
       openMobilePreview={this.openMobilePreview}
       previewRoute={activePreviewRoute}
     />;
