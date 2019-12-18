@@ -18,6 +18,7 @@ import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
 import events from 'config/events.yml';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
+import Device from '../libs/device';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -55,7 +56,10 @@ export default class AppPanel {
     }
 
     ReactDOM.render(<Menu />, document.querySelector('.react_menu__container'));
-    Telemetry.add(Telemetry.APP_START);
+    Telemetry.add(Telemetry.APP_START, null, null, {
+      'language': window.getLang(),
+      'is_mobile': Device.isMobile(),
+    });
 
     this.initRouter();
     if (performanceEnabled) {
