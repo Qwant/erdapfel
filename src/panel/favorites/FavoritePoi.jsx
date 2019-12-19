@@ -19,7 +19,7 @@ export default class FavoritePoi extends React.Component {
   onClick = () => {
     Telemetry.add(Telemetry.FAVORITE_GO);
     window.app.navigateTo(`/place/${toUrl(this.props.poi)}`, {
-      poi: this.props.poi.serialize(),
+      poi: this.props.poi,
       centerMap: true,
       isFromFavorite: true,
       layout: layouts.FAVORITE,

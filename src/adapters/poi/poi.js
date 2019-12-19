@@ -24,11 +24,4 @@ export default class Poi {
     const { id, name, alternativeName, type, latLon, className, subClassName, bbox } = raw;
     return new Poi(id, name, alternativeName, type, latLon, className, subClassName, bbox);
   }
-
-  serialize() {
-    // In some cases the object has an `event` prop which is a low-level browser object
-    // that can't be serialized in the history state => just ignore it
-    const { event: _event, ...otherFields } = this;
-    return otherFields;
-  }
 }

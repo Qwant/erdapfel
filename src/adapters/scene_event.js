@@ -43,7 +43,7 @@ export default class SceneEvent {
       );
     }
     window.app.navigateTo(`/place/${toUrl(poi)}`, {
-      poi: poi.serialize(),
+      poi,
       isFromEvent: true,
       sourceEvent: eventName,
       layout: layouts.LIST,

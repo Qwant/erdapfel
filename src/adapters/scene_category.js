@@ -43,7 +43,7 @@ export default class SceneCategory {
       );
     }
     window.app.navigateTo(`/place/${toUrl(poi)}`, {
-      poi: poi.serialize(),
+      poi,
       isFromCategory: true,
       sourceCategory: categoryName,
       layout: layouts.LIST,

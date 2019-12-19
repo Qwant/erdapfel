@@ -96,7 +96,7 @@ export default class SearchInput {
   async selectItem(selectedItem, replaceUrl = false) {
     if (selectedItem instanceof Poi) {
       window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
-        poi: selectedItem.serialize(),
+        poi: selectedItem,
         centerMap: true,
       }, { replace: replaceUrl });
     } else if (selectedItem instanceof Category) {
