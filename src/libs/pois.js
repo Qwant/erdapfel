@@ -4,6 +4,15 @@ import ExtendedString from 'src/libs/string';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import LatLonPoi from 'src/adapters/poi/latlon_poi';
 
+// POI from/to url functions
+
+export function toUrl(poi) {
+  if (poi.id === 'geolocalisation' || poi.type === 'latlon') {
+    return `latlon:${poi.latLon.lat.toFixed(5)}:${poi.latLon.lng.toFixed(5)}`;
+  }
+  return `${poi.id}@${ExtendedString.slug(poi.name)}`;
+}
+
 export function toAbsoluteUrl(poi) {
   const { protocol, host } = window.location;
   const baseUrl = window.baseUrl;
@@ -11,18 +20,6 @@ export function toAbsoluteUrl(poi) {
   const lon = poi.latLon.lng.toFixed(7);
   const mapHash = `#map=${getBestZoom(poi.zoom)}/${lat}/${lon}`;
   return `${protocol}//${host}${baseUrl}place/${toUrl(poi)}/${mapHash}`;
-}
-
-const storeKeyPrefix = `qmaps_v${version}_favorite_place_`;
-
-export const getKey = poi => `${storeKeyPrefix}${poi.id}`;
-export const isPoiCompliantKey = key => key.indexOf(storeKeyPrefix) === 0;
-
-export function toUrl(poi) {
-  if (poi.id === 'geolocalisation' || poi.type === 'latlon') {
-    return `latlon:${poi.latLon.lat.toFixed(5)}:${poi.latLon.lng.toFixed(5)}`;
-  }
-  return `${poi.id}@${ExtendedString.slug(poi.name)}`;
 }
 
 export function fromUrl(urlParam) {
@@ -38,23 +35,28 @@ export function fromUrl(urlParam) {
     return Promise.resolve(
       new LatLonPoi(latLng, label ? ExtendedString.htmlEncode(label) : null)
     );
-  } else {
-    urlData = urlParam.match(/^(.*?)(@(.*))?$/);
-    if (urlData) {
-      const idunnId = urlData[1];
-      return IdunnPoi.poiApiLoad({ id: idunnId });
-    }
+  }
+  urlData = urlParam.match(/^(.*?)(@(.*))?$/);
+  if (urlData) {
+    const idunnId = urlData[1];
+    return IdunnPoi.poiApiLoad({ id: idunnId });
   }
   return Promise.reject();
 }
 
-export function isFromPagesJaunes(poi) {
-  return poi.meta && poi.meta.source === sources.pagesjaunes;
-}
+// POI fav storage functions
 
-export function isFromOSM(poi) {
-  return poi.meta && poi.meta.source === sources.osm;
-}
+const storeKeyPrefix = `qmaps_v${version}_favorite_place_`;
+
+export const getKey = poi => `${storeKeyPrefix}${poi.id}`;
+export const isPoiCompliantKey = key => key.indexOf(storeKeyPrefix) === 0;
+
+// POI source functions
+
+export const isFromPagesJaunes = poi => poi.meta && poi.meta.source === sources.pagesjaunes;
+export const isFromOSM = poi => poi.meta && poi.meta.source === sources.osm;
+
+// POI map util functions
 
 const ZOOM_BY_POI_TYPES = {
   street: 17,
