@@ -1,9 +1,9 @@
-FROM node:8-stretch-slim as base
+FROM node:10-stretch-slim as base
 
 ENV PROJECT_DIR=/srv/maps-tileview/
 
-RUN apt-get update && apt-get -y install \
-  gettext git python build-essential
+RUN apt-get update && apt-get -y install --no-install-recommends \
+  gettext git python3 build-essential
 
 RUN npm i npm@latest -g
 RUN mkdir -p $PROJECT_DIR

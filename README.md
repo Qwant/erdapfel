@@ -34,8 +34,8 @@ is overriden by `TILEVIEW_system_timeout=3`
 
 You will need
 
-- npm >= 6
-- node >= 8
+- npm >= 6.13
+- Node.js 10
 
 Then you can build and run Erdapfel with the following commands:
 
