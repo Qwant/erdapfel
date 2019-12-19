@@ -18,106 +18,64 @@ function roundWithPrecision(value, precision) {
 
 export default class BragiPoi extends Poi {
   constructor(feature, queryContext) {
+    const geocodingProps = feature.properties.geocoding;
+    const { id, type, label, address, city, administrative_regions } = geocodingProps;
 
     let poiClassText = '';
     let poiSubclassText = '';
 
-    if (feature.properties.geocoding.properties &&
-        feature.properties.geocoding.properties.length > 0) {
-      const poiClass = feature.properties.geocoding.properties.find(property => {
-        return property.key === 'poi_class';
-      });
-
+    if (geocodingProps.properties && geocodingProps.properties.length > 0) {
+      const poiClass = geocodingProps.properties.find(property => property.key === 'poi_class');
       if (poiClass) {
         poiClassText = poiClass.value;
       }
-      const poiSubclass = feature.properties.geocoding.properties.find(property => {
-        return property.key === 'poi_subclass';
-      });
+      const poiSubclass = geocodingProps.properties.find(property =>
+        property.key === 'poi_subclass');
       if (poiSubclass) {
         poiSubclassText = poiSubclass.value;
       }
-    }
-    let addressLabel = '';
-    if (feature.properties &&
-        feature.properties.geocoding &&
-        feature.properties.geocoding.address) {
-      addressLabel = feature.properties.geocoding.address.label;
     }
 
     /* generate name corresponding to poi type */
     let name = '';
     let alternativeName = '';
-    const adminLabel = '';
-    const resultType = feature.properties.geocoding.type;
 
-    let postcode;
-    if (feature.properties.geocoding.postcode) {
-      postcode = feature.properties.geocoding.postcode.split(';')[0];
-    }
-    const city = feature.properties.geocoding.city;
-    const country = feature.properties.geocoding.administrative_regions.find(administrativeRegion =>
-      administrativeRegion.zone_type === 'country'
-    );
-    const cityObj = feature.properties.geocoding.administrative_regions.find(administrativeRegion =>
-      administrativeRegion.zone_type === 'city'
-    );
-    let countryName;
-    if (country) {
-      countryName = country.name;
-    }
+    const postcode = geocodingProps.postcode && geocodingProps.postcode.split(';')[0];
+    const cityObj = administrative_regions.find(region => region.zone_type === 'city');
+    const country = administrative_regions.find(region => region.zone_type === 'country');
+    const countryName = country && country.name;
 
-    switch (resultType) {
+    switch (type) {
     case 'poi':
-      name = feature.properties.geocoding.name;
-      alternativeName = addressLabel || cityObj && cityObj.label ||
-        [postcode, city, countryName].filter(zone => zone).join(', ');
+      name = geocodingProps.name;
+      alternativeName = address && address.label
+        || cityObj && cityObj.label
+        || [postcode, city, countryName].filter(zone => zone).join(', ');
       break;
     case 'house':
-      name = feature.properties.geocoding.name;
-      alternativeName = [postcode, city, countryName].filter(zone => zone).join(', ');
-      break;
     case 'street':
-      name = feature.properties.geocoding.name;
+      name = geocodingProps.name;
       alternativeName = [postcode, city, countryName].filter(zone => zone).join(', ');
       break;
     default: {
       /* admin */
-      const splitPosition = feature.properties.geocoding.label.indexOf(',');
-      let nameFragments;
+      const splitPosition = label.indexOf(',');
       if (splitPosition === -1) {
-        nameFragments = [feature.properties.geocoding.label];
+        name = label;
       } else {
-        nameFragments = [
-          feature.properties.geocoding.label.slice(0, splitPosition),
-          feature.properties.geocoding.label.slice(splitPosition + 1),
-        ];
-      }
-      if (nameFragments.length > 1) {
-        name = nameFragments[0];
-        alternativeName = nameFragments[1];
-      } else {
-        name = feature.properties.geocoding.label;
-        alternativeName = '';
+        name = label.slice(0, splitPosition);
+        alternativeName = label.slice(splitPosition + 1);
       }
     }
     }
 
-    super(feature.properties.geocoding.id, name, alternativeName, resultType, {
+    super(id, name, alternativeName, type, {
       lat: feature.geometry.coordinates[1],
       lng: feature.geometry.coordinates[0],
-    }, poiClassText, poiSubclassText);
-    /* extract custom data for autocomplete */
-    this.value = feature.properties.geocoding.label;
-    this.adminLabel = adminLabel;
+    }, poiClassText, poiSubclassText, geocodingProps.bbox);
 
-    this.city = feature.properties.geocoding.city;
-    /* extract country */
+    this.value = label;
 
-    /* extract bbox */
-    if (feature.properties.geocoding.bbox) {
-      this.bbox = feature.properties.geocoding.bbox;
-    }
     this.queryContext = queryContext;
   }
 
