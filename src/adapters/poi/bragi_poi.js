@@ -48,8 +48,8 @@ export default class BragiPoi extends Poi {
     switch (type) {
     case 'poi':
       name = geocodingProps.name;
-      alternativeName = address && address.label
-        || cityObj && cityObj.label
+      alternativeName = (address && address.label)
+        || (cityObj && cityObj.label)
         || [postcode, city, countryName].filter(zone => zone).join(', ');
       break;
     case 'house':
