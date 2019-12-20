@@ -70,7 +70,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
   };
 
   this.popupHandle = new Popup(popupOptions)
-    .setLngLat(poi.getLngLat())
+    .setLngLat(poi.latLon)
     .setHTML(renderStaticReact(<ReactPoiPopup poi={poi} />))
     .addTo(this.map);
 };

@@ -4,6 +4,7 @@ import { version } from '../../config/constants.yml';
 import ExtendedString from '../libs/string';
 import LocalStore from '../libs/local_store';
 import MasqStore from '../libs/masq';
+import { getKey } from 'src/libs/pois';
 
 const masqConfig = nconf.get().masq;
 if (!MasqStore.isMasqSupported(masqConfig) && !MasqStore.isMasqForced()) {
@@ -183,7 +184,7 @@ export default class Store {
   async has(poi) {
     await this.checkInit();
     try {
-      return await this.abstractStore.has(poi.getKey());
+      return await this.abstractStore.has(getKey(poi));
     } catch (e) {
       Error.sendOnce('store', 'has',
         `error checking existing key in ${this.abstractStore.storeName}`, e);
@@ -193,7 +194,7 @@ export default class Store {
   async add(poi) {
     await this.checkInit();
     try {
-      await this.abstractStore.set(poi.getKey(), poi.poiStoreLiteral());
+      await this.abstractStore.set(getKey(poi), poi);
       fire('poi_added_to_favs', poi);
     } catch (e) {
       Error.sendOnce('store', 'add', `error adding poi in ${this.abstractStore.storeName}`, e);
@@ -203,7 +204,7 @@ export default class Store {
   async del(poi) {
     await this.checkInit();
     try {
-      await this.abstractStore.del(poi.getKey());
+      await this.abstractStore.del(getKey(poi));
       fire('poi_removed_from_favs', poi);
     } catch (e) {
       Error.sendOnce('store', 'del', `error deleting key from ${this.abstractStore.storeName}`, e);

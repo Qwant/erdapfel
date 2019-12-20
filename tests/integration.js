@@ -1,3 +1,5 @@
+const config = require('./integration/test_config');
+
 module.exports = {
   setupFilesAfterEnv: ['jest-extended'],
   testMatch: [`${__dirname}/integration/tests/*.js`],
@@ -14,6 +16,7 @@ module.exports = {
   globals: {
     puppeteerArguments: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     APP_URL: 'http://localhost:3000/maps',
+    __config: config,
   },
   moduleNameMapper: {
     '^src(.*)$': '<rootDir>/src$1',

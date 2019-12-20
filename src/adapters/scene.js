@@ -15,6 +15,7 @@ import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
+import { toUrl, getBestZoom } from 'src/libs/pois';
 
 const baseUrl = nconf.get().system.baseUrl;
 const easterEggsEnabled = nconf.get().app.easterEggs;
@@ -100,7 +101,7 @@ Scene.prototype.initMapBox = function() {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           const mapPoi = new MapPoi(e.features[0]);
-          window.app.navigateTo(`/place/${mapPoi.toUrl()}`, { poi: mapPoi.serialize() });
+          window.app.navigateTo(`/place/${toUrl(mapPoi)}`, { poi: mapPoi });
         }
       });
 
@@ -117,7 +118,7 @@ Scene.prototype.initMapBox = function() {
         return;
       }
       const poi = new LatLonPoi(e.lngLat);
-      window.app.navigateTo(`/place/${poi.toUrl()}`, { poi });
+      window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
     });
 
     this.mb.on('moveend', () => {
@@ -268,10 +269,12 @@ Scene.prototype.fitMap = function(item, padding) {
     if (item.bbox) { // poi Bbox
       this.fitBbox(item.bbox, padding);
     } else { // poi center
-      const flyOptions = { center: item.getLngLat(), screenSpeed: 1.5, animate: false };
-      if (item.zoom) {
-        flyOptions.zoom = item.zoom;
-      }
+      const flyOptions = {
+        center: item.latLon,
+        zoom: getBestZoom(item),
+        screenSpeed: 1.5,
+        animate: false,
+      };
 
       if (padding) {
         flyOptions.offset = [
@@ -294,7 +297,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
     return;
   }
   if (!options.centerMap) {
-    const { x: leftPixelOffset } = this.mb.project(poi.getLngLat());
+    const { x: leftPixelOffset } = this.mb.project(poi.latLon);
     const isPoiUnderPanel = leftPixelOffset < layout.sizes.sideBarWidth + layout.sizes.panelWidth
       && window.innerWidth > layout.mobile.breakPoint;
     if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
@@ -305,8 +308,8 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
     ? [0, 0]
     : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0];
   this.mb.flyTo({
-    center: poi.getLngLat(),
-    zoom: poi.zoom,
+    center: poi.latLon,
+    zoom: getBestZoom(poi),
     offset,
     maxDuration: 1200,
   });
@@ -328,7 +331,7 @@ Scene.prototype.addMarker = function(poi) {
   }
 
   const marker = new Marker({ element, anchor: 'bottom', offset: [0, -5] })
-    .setLngLat(poi.getLngLat())
+    .setLngLat(poi.latLon)
     .addTo(this.mb);
   this.currentMarker = marker;
   return marker;
@@ -344,7 +347,7 @@ Scene.prototype.isWindowedPoi = function(poi) {
   const windowBounds = this.mb.getBounds();
   /* simple way to clone value */
   const originalWindowBounds = windowBounds.toArray();
-  const poiCenter = new LngLat(poi.getLngLat().lng, poi.getLngLat().lat);
+  const poiCenter = new LngLat(poi.latLon.lng, poi.latLon.lat);
   windowBounds.extend(poiCenter);
   return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
 };

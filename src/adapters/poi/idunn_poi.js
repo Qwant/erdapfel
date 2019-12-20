@@ -2,8 +2,6 @@ import Poi from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
-import { sources } from 'config/constants.yml';
-import Telemetry from '../../libs/telemetry';
 import QueryContext from 'src/adapters/query_context';
 
 const serviceConfig = nconf.get().services;
@@ -32,11 +30,6 @@ export default class IdunnPoi extends Poi {
     this.address = IdunnPoi.getAddress(rawPoi);
     this.bbox = rawPoi.geometry.bbox;
     this.meta = rawPoi.meta || {};
-    if (this.isFromOSM()) {
-      const [_osmKey, itemKind, itemId] = rawPoi.id.split(':');
-      this.viewUrl = `https://www.openstreetmap.org/${itemKind}/${itemId}`;
-      this.editUrl = `https://www.openstreetmap.org/edit?editor=id&${itemKind}=${itemId}`;
-    }
 
     this.blocksByType = {};
     if (this.blocks) {
@@ -158,28 +151,5 @@ export default class IdunnPoi extends Poi {
     default:
       return rawPoi.address;
     }
-  }
-
-  logGradesClick(template) {
-    const grades = this.blocksByType.grades;
-    if (grades && grades.url) {
-      Telemetry.add('reviews', 'poi', this.meta.source,
-        Telemetry.buildInteractionData({
-          id: this.id,
-          source: this.meta.source,
-          template,
-          zone: template === 'multiple' ? 'list' : 'detail',
-          element: 'reviews',
-        })
-      );
-    }
-  }
-
-  isFromOSM() {
-    return this.meta && this.meta.source === sources.osm;
-  }
-
-  isFromPagesjaunes() {
-    return this.meta && this.meta.source === sources.pagesjaunes;
   }
 }

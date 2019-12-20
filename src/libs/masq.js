@@ -3,7 +3,7 @@
 import Error from '../adapters/error';
 import { setMasqActivatingModal } from 'src/modals/MasqActivatingModal';
 import importMasq from './import_masq';
-import Poi from '../adapters/poi/poi';
+import { isPoiCompliantKey } from 'src/libs/pois';
 import { detect } from 'detect-browser';
 import Telemetry from '../libs/telemetry';
 
@@ -158,7 +158,7 @@ export default class MasqStore {
       const list = await this.masq.list();
 
       const filteredValues = Object.entries(list)
-        .filter(kv => Poi.isPoiCompliantKey(kv[0]))
+        .filter(kv => isPoiCompliantKey(kv[0]))
         .map(kv => kv[1]);
 
       return filteredValues;

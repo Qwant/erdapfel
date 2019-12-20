@@ -13,6 +13,7 @@ import OsmContribution from 'src/components/OsmContribution';
 import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
 import CategoryList from 'src/components/CategoryList';
 import { openShareModal } from 'src/modals/ShareModal';
+import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 
 export default class PoiPanel extends React.Component {
   static propTypes = {
@@ -85,7 +86,7 @@ export default class PoiPanel extends React.Component {
       Telemetry.add('share', 'poi', this.props.poi.meta.source);
     }
     if (this.props.poi) {
-      openShareModal(this.props.poi.toAbsoluteUrl());
+      openShareModal(toAbsoluteUrl(this.props.poi));
     }
   }
 
@@ -114,7 +115,7 @@ export default class PoiPanel extends React.Component {
   render() {
     const { poi, isFromCategory, isFromFavorite } = this.props;
 
-    const pagesjaunes = poi.isFromPagesjaunes && poi.isFromPagesjaunes() ?
+    const pagesjaunes = isFromPagesJaunes(poi) ?
       <img className="poi_panel__back_to_list_logo"
         src="./statics/images/pagesjaunes.svg"
         alt="PagesJaunes" />
@@ -217,7 +218,7 @@ export default class PoiPanel extends React.Component {
               </h3>
               <CategoryList />
             </div>}
-            {poi.isFromOSM && poi.isFromOSM() && <OsmContribution poi={poi} />}
+            {isFromOSM(poi) && <OsmContribution poi={poi} />}
           </div>
         </div>
       </div>

@@ -1,11 +1,27 @@
 /* global _n */
 import React from 'react';
+import Telemetry from 'src/libs/telemetry';
 
-const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url } }) =>
+function logGradesClick(poi, inList) {
+  const grades = poi.blocksByType.grades;
+  if (grades && grades.url) {
+    Telemetry.add('reviews', 'poi', poi.meta.source,
+      Telemetry.buildInteractionData({
+        id: poi.id,
+        source: poi.meta.source,
+        template: inList ? 'multiple' : 'single',
+        zone: inList ? 'list' : 'detail',
+        element: 'reviews',
+      })
+    );
+  }
+}
+
+const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, inList }) =>
   <a className="reviewScore" rel="noopener noreferrer" href={url}
     onClick={e => {
       e.stopPropagation();
-      poi.logGradesClick('single');
+      logGradesClick(poi, inList);
     }}
   >
     <span className="reviewScore-stars">

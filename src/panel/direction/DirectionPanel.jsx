@@ -7,12 +7,9 @@ import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
-import LatLonPoi from 'src/adapters/poi/latlon_poi';
+import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Device from 'src/libs/device';
 import Error from 'src/adapters/error';
-
-const poiUrlValue = poi =>
-  typeof poi.toUrl === 'function' ? poi.toUrl() : `${poi.id}@${poi.name}`;
 
 // this outside state is used to restore origin/destination when returning to the panel after closing
 const persistentPointState = {
@@ -78,10 +75,10 @@ export default class DirectionPanel extends React.Component {
   restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
     const poiRestorePromises = [
       originUrlValue
-        ? LatLonPoi.fromUrl(originUrlValue)
+        ? poiFromUrl(originUrlValue)
         : Promise.resolve(this.state.origin),
       destinationUrlValue
-        ? LatLonPoi.fromUrl(destinationUrlValue)
+        ? poiFromUrl(destinationUrlValue)
         : Promise.resolve(this.state.destination),
     ];
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
@@ -133,10 +130,10 @@ export default class DirectionPanel extends React.Component {
   updateUrl() {
     const routeParams = [];
     if (this.state.origin) {
-      routeParams.push('origin=' + poiUrlValue(this.state.origin));
+      routeParams.push('origin=' + poiToUrl(this.state.origin));
     }
     if (this.state.destination) {
-      routeParams.push('destination=' + poiUrlValue(this.state.destination));
+      routeParams.push('destination=' + poiToUrl(this.state.destination));
     }
     routeParams.push(`mode=${this.state.vehicle}`);
     window.app.navigateTo(`/routes/?${routeParams.join('&')}`, {}, {
