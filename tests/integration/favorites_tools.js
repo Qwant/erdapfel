@@ -30,7 +30,10 @@ export async function toggleFavoritePanel(page) {
   await page.waitForSelector('.favorite_panel', { visible: true, timeOut: 300 });
 }
 
-export async function storePoi(page, { id = 1, title = 'poi', coords = { lat: 43, lng: 2 } } = {}) {
+export async function storePoi(
+  page,
+  { id = 'A', title = 'poi', coords = { lat: 43, lng: 2 } } = {}
+) {
   const poi = new Poi(id, title, 'second line', 'poi', coords, '', '');
   await page.evaluate((storageKey, serializedPoi) => {
     window.localStorage.setItem(storageKey, serializedPoi);

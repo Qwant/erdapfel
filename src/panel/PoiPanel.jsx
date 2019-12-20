@@ -14,19 +14,29 @@ import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
 import CategoryList from 'src/components/CategoryList';
 import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
+import Poi from 'src/adapters/poi/poi.js';
 
 export default class PoiPanel extends React.Component {
   static propTypes = {
-    poi: PropTypes.object.isRequired,
+    poiId: PropTypes.string.isRequired,
+    poi: PropTypes.object,
     isFromFavorite: PropTypes.bool,
     isFromCategory: PropTypes.bool,
     sourceCategory: PropTypes.string,
+    centerMap: PropTypes.bool,
+    layout: PropTypes.object,
   }
+
+  static defaultProps = {
+    layout: layouts.POI,
+  };
 
   constructor(props) {
     super(props);
     this.state = {
       card: true,
+      fullPoi: null,
     };
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
@@ -35,11 +45,57 @@ export default class PoiPanel extends React.Component {
   }
 
   componentDidMount() {
+    this.loadPoi();
     this.moveMobileMapUI();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (this.props.poiId !== prevProps.poiId) {
+      this.loadPoi();
+    }
     this.moveMobileMapUI();
+  }
+
+  loadPoi = async () => {
+    const { poiId, centerMap, isFromCategory, layout } = this.props;
+    const mapOptions = { centerMap, isFromCategory, layout };
+
+    // If a POI object is provided before fetching full data,
+    // we can update the map immediately for UX responsiveness
+    const shallowPoi = this.props.poi && Poi.deserialize(this.props.poi);
+    const updateMapEarly = !!shallowPoi;
+    if (updateMapEarly) {
+      this._updateMapPoi(shallowPoi, mapOptions);
+    }
+
+    let poi;
+    if (window.hotLoadPoi && window.hotLoadPoi.id === poiId) {
+      Telemetry.add(Telemetry.POI_RESTORE);
+      poi = new IdunnPoi(window.hotLoadPoi);
+      mapOptions.centerMap = true;
+    } else {
+      poi = await IdunnPoi.poiApiLoad(this.props.poi || { id: poiId });
+    }
+
+    // fallback on the simple POI object from the map
+    // if Idunn doesn't know this POI
+    poi = poi || shallowPoi;
+
+    if (!poi) {
+      // @TODO: error message instead of close in case of unrecognized POI
+      this.closeAction();
+    } else {
+      this.setState({ fullPoi: poi });
+      if (!updateMapEarly) {
+        this._updateMapPoi(poi, mapOptions);
+      }
+    }
+  }
+
+  _updateMapPoi(poi, options = {}) {
+    window.execOnMapLoaded(function() {
+      fire('map_mark_poi', poi, options);
+    });
   }
 
   moveMobileMapUI = () => {
@@ -60,34 +116,33 @@ export default class PoiPanel extends React.Component {
   }
 
   showDetail = () => {
-    if (this.props.poi.meta && this.props.poi.meta.source) {
-      Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
-        Telemetry.buildInteractionData({
-          id: this.props.poi.id,
-          source: this.props.poi.meta.source,
-          template: 'single',
-          zone: 'detail',
-          element: 'more',
-        })
-      );
-    }
+    const poi = this.getBestPoi();
+    Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
+      Telemetry.buildInteractionData({
+        id: poi.id,
+        source: poi.meta && poi.meta.source,
+        template: 'single',
+        zone: 'detail',
+        element: 'more',
+      })
+    );
     this.setState({ card: false });
   }
 
+  getBestPoi() {
+    return this.state.fullPoi || this.props.poi;
+  }
+
   center = () => {
-    if (this.props.poi.meta && this.props.poi.meta.source) {
-      Telemetry.add('go', 'poi', this.props.poi.meta.source);
-    }
-    fire('fit_map', this.props.poi, layouts.POI);
+    const poi = this.getBestPoi();
+    Telemetry.add('go', 'poi', poi.meta && poi.meta.source);
+    fire('fit_map', poi, layouts.POI);
   }
 
   openShare = () => {
-    if (this.props.poi.meta && this.props.poi.meta.source) {
-      Telemetry.add('share', 'poi', this.props.poi.meta.source);
-    }
-    if (this.props.poi) {
-      openShareModal(toAbsoluteUrl(this.props.poi));
-    }
+    const poi = this.getBestPoi();
+    Telemetry.add('share', 'poi', poi.meta && poi.meta.source);
+    openShareModal(toAbsoluteUrl(poi));
   }
 
   openDirection = () => {
@@ -113,7 +168,13 @@ export default class PoiPanel extends React.Component {
   }
 
   render() {
-    const { poi, isFromCategory, isFromFavorite } = this.props;
+    const { isFromCategory, isFromFavorite } = this.props;
+
+    const poi = this.getBestPoi();
+    if (!poi) {
+      // @TODO: we could implement a loading indicator instead
+      return null;
+    }
 
     const pagesjaunes = isFromPagesJaunes(poi) ?
       <img className="poi_panel__back_to_list_logo"

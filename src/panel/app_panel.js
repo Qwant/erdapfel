@@ -10,10 +10,7 @@ import nconf from '@qwant/nconf-getter';
 import Menu from './Menu';
 import Telemetry from '../libs/telemetry';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
-import ApiPoi from '../adapters/poi/idunn_poi';
 import Router from 'src/proxies/app_router';
-import Poi from 'src/adapters/poi/poi.js';
-import layouts from './layouts.js';
 import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
 import events from 'config/events.yml';
 import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
@@ -96,9 +93,10 @@ export default class AppPanel {
       });
     });
 
-    this.router.addRoute('POI', '/place/(.*)', async (poiUrl, options) => {
+    this.router.addRoute('POI', '/place/(.*)', async (poiUrl, options = {}) => {
       const poiId = poiUrl.split('@')[0];
-      this.setPoi(poiId, options || {});
+      this.activePoiId = poiId;
+      this.openPoi({ ...options, poiId });
     });
 
     this.router.addRoute('Favorites', '/favs', () => {
@@ -183,51 +181,11 @@ export default class AppPanel {
     }
   }
 
-  _updateMapPoi(poi, options = {}) {
-    window.execOnMapLoaded(function() {
-      fire('map_mark_poi', poi, options);
-    });
-  }
-
-  async setPoi(poiId, options) {
-    this.activePoiId = poiId;
-
-    options.layout = options.layout || layouts.POI;
-
-    // If a POI object is provided before fetching full data,
-    // we can update the map immediately for UX responsiveness
-    const shallowPoi = options.poi && Poi.deserialize(options.poi);
-    const updateMapEarly = !!shallowPoi;
-    if (updateMapEarly) {
-      this._updateMapPoi(shallowPoi, options);
-    }
-
-    let poi;
-    if (window.hotLoadPoi && window.hotLoadPoi.id === poiId) {
-      Telemetry.add(Telemetry.POI_RESTORE);
-      poi = new ApiPoi(window.hotLoadPoi);
-      options.centerMap = true;
-    } else {
-      poi = await ApiPoi.poiApiLoad(options.poi || { id: poiId });
-    }
-
-    // fallback on the simple POI object from the map
-    // if Idunn doesn't know this POI
-    poi = poi || shallowPoi;
-
-    if (!poi) {
-      this.navigateTo('/');
-    } else {
-      this._openPanel(this.poiPanel, { ...options, poi });
-      if (!updateMapEarly) {
-        this._updateMapPoi(poi, options);
-      }
-    }
-  }
-
   _openPanel(panelToOpen, options = {}) {
     this.unminify();
-    this.activePoiId = null;
+    if (panelToOpen !== this.poiPanel) {
+      this.activePoiId = null;
+    }
     this.panels
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
@@ -272,6 +230,10 @@ export default class AppPanel {
     } else {
       window.app.navigateTo('/');
     }
+  }
+
+  openPoi(options) {
+    this._openPanel(this.poiPanel, options);
   }
 
   resetLayout() {
