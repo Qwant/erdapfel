@@ -1,5 +1,5 @@
 import React from 'react';
-import WikiBlock from '../../views/poi_bloc/Wiki';
+import WikiBlock from './Wiki';
 import Services from './Services';
 
 function findBlock(blocks, toFind) {

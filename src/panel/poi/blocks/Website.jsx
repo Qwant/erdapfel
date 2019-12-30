@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import URI from '@qwant/uri';
-import Telemetry from '../../libs/telemetry';
+import Telemetry from 'src/libs/telemetry';
 
 export default class WebsiteBlock extends React.Component {
   static propTypes = {

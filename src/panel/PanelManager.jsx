@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import FavoritesPanel from './favorites/FavoritesPanel';
-import PoiPanel from './PoiPanel';
+import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './ServicePanel';
 import EventListPanel from './event/EventListPanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
