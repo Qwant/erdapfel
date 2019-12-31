@@ -4,7 +4,7 @@ import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
 import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
-import { getOutlineFeature, getRouteStyle, setActiveRouteStyle } from './route_styles';
+import { prepareRouteColor, getRouteStyle, setActiveRouteStyle } from './route_styles';
 import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
@@ -80,9 +80,15 @@ export default class SceneDirection {
       if (isActive) {
         mainRoute = route;
       }
-      this.mapFeaturesByRoute[route.id].forEach(({ layerId, vehicle, isOutline }) => {
-        setActiveRouteStyle(this.map, layerId, vehicle, isActive, isOutline);
+      this.mapFeaturesByRoute[route.id].forEach(({ layerId, outlineLayerId, vehicle }) => {
+        setActiveRouteStyle(this.map, layerId, vehicle, isActive, false);
+        if (outlineLayerId) {
+          setActiveRouteStyle(this.map, outlineLayerId, vehicle, isActive, true);
+        }
         if (isActive) {
+          if (outlineLayerId) {
+            this.map.moveLayer(outlineLayerId, map.routes_layer);
+          }
           this.map.moveLayer(layerId, map.routes_layer);
         }
       });
@@ -141,7 +147,10 @@ export default class SceneDirection {
 
   reset() {
     this.routes.forEach(route => {
-      this.mapFeaturesByRoute[route.id].forEach(({ sourceId, layerId }) => {
+      this.mapFeaturesByRoute[route.id].forEach(({ outlineLayerId, layerId, sourceId }) => {
+        if (outlineLayerId) {
+          this.map.removeLayer(outlineLayerId);
+        }
         this.map.removeLayer(layerId);
         this.map.removeSource(sourceId);
       });
@@ -155,20 +164,15 @@ export default class SceneDirection {
   getDataSources(route) {
     const featureCollection = normalizeToFeatureCollection(route.geometry);
     const sources = [];
-    let walkFeatures = [], nonWalkFeatures = [];
-    if (this.vehicle === 'publicTransport') {
-      featureCollection.features.forEach(feature => {
-        if (feature.properties.mode === 'WALK') {
-          walkFeatures.push(feature);
-        } else {
-          nonWalkFeatures.push(feature);
-        }
-      });
-    } else if (this.vehicle === 'walking') {
-      walkFeatures = featureCollection.features;
-    } else {
-      nonWalkFeatures = featureCollection.features;
-    }
+    const walkFeatures = [], nonWalkFeatures = [];
+    featureCollection.features.forEach(feature => {
+      if (this.vehicle === 'walking'
+      || (this.vehicle === 'publicTransport' && feature.properties.mode === 'WALK')) {
+        walkFeatures.push(feature);
+      } else {
+        nonWalkFeatures.push(prepareRouteColor(feature));
+      }
+    });
 
     if (walkFeatures.length > 0) {
       sources.push({
@@ -178,12 +182,6 @@ export default class SceneDirection {
     }
 
     if (nonWalkFeatures.length > 0) {
-      // we have to duplicate the layers to get the outline effect
-      sources.push({
-        vehicle: this.vehicle,
-        isOutline: true,
-        data: { type: 'FeatureCollection', features: nonWalkFeatures.map(getOutlineFeature) },
-      });
       sources.push({
         vehicle: this.vehicle,
         data: { type: 'FeatureCollection', features: nonWalkFeatures },
@@ -196,22 +194,33 @@ export default class SceneDirection {
   addRouteFeatures(route) {
     const sources = this.getDataSources(route);
     return sources.map((source, idx) => {
-      const layerId = `route_${route.id}_${idx}`;
       const sourceId = `source_${route.id}_${idx}`;
+      this.map.addSource(sourceId, { type: 'geojson', data: source.data });
+
+      const layerId = `route_${route.id}_${idx}`;
       const layerStyle = {
-        ...getRouteStyle(source.vehicle, route.isActive, source.isOutline),
+        ...getRouteStyle(source.vehicle, route.isActive, false),
         id: layerId,
         source: sourceId,
       };
 
-      this.map
-        .addSource(sourceId, { type: 'geojson', data: source.data })
-        .addLayer(layerStyle, map.routes_layer)
+      let outlineLayerId;
+      if (source.vehicle !== 'walking') {
+        outlineLayerId = layerId + '_outline';
+        const outlineLayerStyle = {
+          ...getRouteStyle(source.vehicle, route.isActive, true),
+          id: layerId + '_outline',
+          source: sourceId,
+        };
+        this.map.addLayer(outlineLayerStyle, map.routes_layer);
+      }
+
+      this.map.addLayer(layerStyle, map.routes_layer)
         .on('click', layerId, () => { fire('select_road_map', route.id); })
         .on('mouseenter', layerId, () => { this.map.getCanvas().style.cursor = 'pointer'; })
         .on('mouseleave', layerId, () => { this.map.getCanvas().style.cursor = ''; });
 
-      return { sourceId, layerId, vehicle: source.vehicle, isOutline: source.isOutline };
+      return { sourceId, layerId, outlineLayerId, vehicle: source.vehicle };
     });
   }
 
