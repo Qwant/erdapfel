@@ -181,10 +181,34 @@ input:valid:focus + .itinerary__field__clear {
   display: inline-block;
 }
 
+
+.itinerary_source {
+  background: $background;
+  border-top: 1px solid #e0e1e6;
+  padding: 9px 18px;
+  font-size: 12px;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: $primary_text;
+    text-transform: uppercase;
+  }
+
+  img {
+    height: 18px;
+    margin-right: 9px;
+  }
+}
+
 .itinerary_result {
   background: $background;
   overflow: auto;
   max-height: calc(100vh - 290px);
+
+  &--publicTransport {
+    max-height: calc(100vh - 330px);
+  }
 }
 
 .itinerary_leg {
@@ -792,5 +816,9 @@ input:valid:focus + .itinerary__field__clear {
     .directions-open & {
       display: none;
     }
+  }
+
+  .itinerary_source {
+    display: none;
   }
 }
