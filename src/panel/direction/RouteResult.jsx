@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Route from './Route';
 import { getVehicleIcon, getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
+import classnames from 'classnames';
 
 export default class RouteResult extends React.Component {
   static propTypes = {
@@ -104,21 +105,32 @@ export default class RouteResult extends React.Component {
       return <MobileRoadMapPreview steps={getAllSteps(this.props.previewRoute)} />;
     }
 
-    return <div className="itinerary_result">
-      {this.props.routes.map((route, index) => <Route
-        key={index}
-        id={index}
-        route={route}
-        origin={this.props.origin}
-        destination={this.props.destination}
-        vehicle={this.props.vehicle}
-        isActive={this.state.activeRouteId === index}
-        showDetails={this.state.activeRouteId === index && this.state.activeDetails}
-        openDetails={this.openRouteDetails}
-        openPreview={this.openPreview}
-        selectRoute={this.selectRoute}
-        hoverRoute={this.hoverRoute}
-      />)}
+    return <div>
+      <div className={classnames('itinerary_result', {
+        'itinerary_result--publicTransport': this.props.vehicle === 'publicTransport',
+      })}>
+        {this.props.routes.map((route, index) => <Route
+          key={index}
+          id={index}
+          route={route}
+          origin={this.props.origin}
+          destination={this.props.destination}
+          vehicle={this.props.vehicle}
+          isActive={this.state.activeRouteId === index}
+          showDetails={this.state.activeRouteId === index && this.state.activeDetails}
+          openDetails={this.openRouteDetails}
+          openPreview={this.openPreview}
+          selectRoute={this.selectRoute}
+          hoverRoute={this.hoverRoute}
+        />)}
+      </div>
+      {this.props.vehicle === 'publicTransport' && this.props.routes.length > 0 &&
+      <div className="itinerary_source">
+        <a href="https://combigo.com/">
+          <img src="./statics/images/direction_icons/logo_combigo.svg" alt="" />
+          Combigo
+        </a>
+      </div>}
     </div>;
   }
 }
