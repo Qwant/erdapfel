@@ -107,7 +107,7 @@ export default class Suggest {
 
         // fill the suggest with the remotes poi according to the remaining places
         const remotesLen = SUGGEST_MAX_ITEMS - nbFavorites - categories.length;
-        suggestDom += this.remotesRender(remotes.slice(0, remotesLen));
+        suggestDom += this.remotesRender(remotes.slice(0, remotesLen), query);
 
         if (favorites.length > 0) {
           suggestDom += this.favoritesRender(favorites.slice(0, query === '' ? 5 : nbFavorites));
@@ -181,8 +181,11 @@ export default class Suggest {
     return this.prefixes.map(prefix => prefix.render());
   }
 
-  remotesRender(pois) {
-    return pois.map(poi => this.renderItem(poi)).join('');
+  remotesRender(pois, query) {
+    if (pois.length > 0) {
+      return pois.map(poi => this.renderItem(poi)).join('');
+    }
+    return this.renderEmpty(query);
   }
 
   categoriesRender(categories) {
@@ -212,6 +215,23 @@ export default class Suggest {
 
   clear() {
     this.autocomplete.clear();
+  }
+
+  renderEmpty(query = '') {
+    if (query.trim() === '') {
+      return '';
+    }
+    return `
+      <div class="no_suggestion">
+        <div class="first_line">
+          ${_(`Impossible to find "${query}" in Qwant Maps...`)}
+        </div>
+        <div class="second_line">
+          ${_('You can add this place in OpenStreetMap so you can find it in Qwant Maps')}
+          <a href="https://learnosm.org/en/beginner/start-osm/">${_('here')}</a>.
+        </div>
+      </div>
+    `;
   }
 
   /* select sub template */

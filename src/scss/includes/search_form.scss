@@ -128,10 +128,26 @@ input[type="search"] {
   @include long_shadow();
   @include card_radius();
   overflow-y: auto;
+
+  .no_suggestion {
+    padding: 10px;
+    background-color: $background;
+    line-height: 1.2;
+    color: $primary_text;
+
+    .first_line {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+
+    .second_line {
+      font-size: 1em;
+    }
+  }
 }
 
 .autocomplete_suggestion__category_title {
-  color : $primary_clear;
+  color: $primary_clear;
   font-size: 14px;
   padding: 10px 20px;
 }
