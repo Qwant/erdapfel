@@ -1,74 +1,33 @@
 @import "../osm_contribute";
 
 $BLOCK_INDENT: 28px;
-$CARD_ACTION_WIDTH: 112px;
-$CARD_PADDING: 8px;
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
 $HEADER_SIZE: 40px;
 
+
 .poi_panel {
-  display: block;
-  position: relative;
-  width: $panel_width;
-  padding-bottom: 10px;
-  background: $background;
-  @include card_shadow();
-  @include card_radius();
-  overflow-y: auto;
-  scrollbar-width: thin; /* Works on Firefox only */
+  .panel-header {
+    margin-bottom: 9px;
+  }
+
+  &--empty-header {
+    .panel-header {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
 }
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-}
-
-.poi_panel--hidden {
-  display: none;
-}
-
-.poi_panel__content__card {
-  display: none;
-}
-
-.poi_panel__container {
   padding: 0 $BLOCK_INDENT;
-  width: 100%;
   position: relative;
 }
 
-.poi_panel__content__card__action {
-  display: block;
-  width: $CARD_ACTION_WIDTH;
-  height: 35px;
-  line-height: 35px;
-  border: 1px solid $primary_clear;
-  font-size: 12px;
-  font-weight: 600;
-  color: $primary_text;
-  border-radius: 18px;
-  margin: 8px 0;
-  cursor: pointer;
-  text-align: center;
-  /* secure  long translation */
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.poi_panel__close {
-  position: absolute;
-  right: 11px;
-  top: 6px;
-  cursor: pointer;
-  transition: background-color .1s;
-  border-radius: 50%;
-  font-size: 20px;
-  height: 21px;
-}
-
-.poi_panel__close:hover {
-  background: $background_hover;
-  color: $primary_text;
+@keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 1; }
 }
 
 .poi_panel__info__section {
@@ -94,13 +53,6 @@ $HEADER_SIZE: 40px;
 .poi_panel__back.icon-arrow-left {
   font-size: 22px;
   vertical-align: -5px;
-}
-
-.poi_panel__header + .poi_panel--card {
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  box-shadow: rgba(0, 0, 0, 0.16) 1px 4px 4px;
-  max-height: calc(100vh - 120px - #{$HEADER_SIZE});
 }
 
 .poi_panel__back_to_list:hover {
@@ -147,10 +99,6 @@ $HEADER_SIZE: 40px;
   height: 1px;
   margin-top: 8px;
   background: $separator_color;
-}
-
-.poi_panel__info {
-  clear: both;
 }
 
 .poi_panel__description {
@@ -403,13 +351,6 @@ $HEADER_SIZE: 40px;
   }
 }
 
-.poi_panel__pj_logo_container {
-  position: relative;
-  display: inline-block;
-  top: 5px;
-  left: 5px;
-}
-
 /* symbols */
 .poi_panel__block__symbol {
   position: absolute;
@@ -538,18 +479,6 @@ $HEADER_SIZE: 40px;
   top: -15px;
 }
 
-/* symbols */
-.poi_panel__section__symbol {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-}
-
-@keyframes appear {
-  0% {opacity: 0;}
-  100% {opacity: 1; }
-}
-
 .poi_panel__back_mobile {
   display: none;
 }
@@ -557,63 +486,21 @@ $HEADER_SIZE: 40px;
 .poi_panel__back_to_list, .poi_panel__back_mobile {
   height: $HEADER_SIZE;
   line-height: $HEADER_SIZE;
-  padding-left: 8px;
   cursor: pointer;
-
-  .poi_panel__back_to_list_logo {
-    margin-left: 8px;
-    vertical-align: text-bottom;
-  }
+  margin-right: 6px;
 }
 
-@media (min-width: 641px) {
-  .poi_panel {
-    max-height: calc(100vh - 120px);
-  }
-
-  .poi_panel__header {
-    font-size: 12px;
-    color: $secondary_text;
-    text-transform: uppercase;
-    height: $HEADER_SIZE;
-    background: $background;
-    z-index: 1;
-    box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
-    position: relative;
-
-    &.favorites_header {
-      padding: 10px;
-    }
-  }
-
-  .poi_panel__back_to_list, .favorites_header {
-    border-bottom: solid 1px #f4f6fa;
-  }
-
-  .poi_header_back_to_list + .poi_panel--card {
-    padding-top: 10px;
-  }
-}
-
-.poi_panel__content__card .poi_panel__description_container {
-  flex-grow: 1;
-  margin: 0;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+.poi_panel__header {
+  font-size: 12px;
+  color: $secondary_text;
+  text-transform: uppercase;
+  display: flex;
+  margin-left: -6px;
 }
 
 @media (max-width: 640px) {
-  .poi_panel {
-    width: 100vw;
-    position: absolute;
-    border-radius: 0;
-  }
-
-  .poi_panel:not(.poi_panel--card) {
-    height: calc(100% - 30px);
-    top: 30px;
+  .poi_panel__header {
+    margin-left: 0;
   }
 
   .poi_panel__back_mobile, .poi_panel__back_to_list {
@@ -621,99 +508,29 @@ $HEADER_SIZE: 40px;
     color: $primary_text;
   }
 
-  .poi_panel__header {
-    position: absolute;
-    height: 100px;
-    bottom: calc(100% - 30px);
-    z-index: 2;
-    display: block;
-    width: 100vw;
-    padding-top: 62px;
-    background-color: #F0F0F0;
-    display: block;
-    font-size: 12px;
-  }
-
-  .poi_header_card {
-    display: none;
-  }
-
-  .poi_panel__close {
-    font-size: 18px;
-    top: 0px;
-    right: 0px;
-    transform: none;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-  }
-
-  .poi_panel__back_mobile + .poi_panel__close {
-    display: none;
-  }
-
-  .poi_panel.poi_panel--card {
-    @include card_shadow();
-    width: calc(100vw - 16px);
-    left: 8px;
-    bottom: 8px;
-    clear: both;
-    max-height: calc(100vh - 200px);
-    position: fixed;
-    min-height: 125px;
-  }
-
-  .poi_panel--card .poi_panel__content {
-    display: none;
-  }
-
-  .poi_panel--card .poi_panel__content__card {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px $CARD_PADDING $CARD_PADDING;
-  }
-
-  .poi_panel--card {
-    .poi_panel__address {
-      font-size: 14px;
-      padding: 8px 10px 0 0;
+  .poi_panel {
+    .panel-header {
+      height: auto;
+      background-color: #f4f6fa;
+      padding-bottom: 0;
+      padding-left: 6px;
     }
-    .poi_panel__info__hours__status__text {
-      font-size: 14px;
-      white-space: nowrap;
+
+    .panel-content {
+      box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
     }
-    .poi_panel__description {
-      font-size: 12px;
-    }
-    .poiTitleImage {
-      margin-top: -6px;
-    }
+  }
+
+  .poi_panel__content {
+    padding: 15px;
   }
 
   .poi_panel__info__hours__status {
     width: calc(100% - 16px);
   }
 
-  .poi_panel__toggle_display--mobile {
-    display: block;
-  }
-
-  .poi_panel__toggle_display--desktop {
-    display: none;
-  }
-
-  .poi_panel__toggle_display {
-    top: 75px;
-    right: 10px
-  }
-
   .poi_panel__sub_block__title {
     width: calc(100% - 16px);
-  }
-
-  .poi_panel__content {
-    margin-top: 17px;
   }
 
   .poi_panel__info__section:not(:last-of-type):after {
@@ -723,14 +540,82 @@ $HEADER_SIZE: 40px;
   .poi_panel__description__ellipsis {
     width: 100%;
   }
+}
 
-  .poi_panel__content__card__action__direction {
-    background-color: $primary_text;
-    border-color: $primary_text;
-    color: #fff;
+
+.poi_card {
+  background: white;
+  @include card_shadow();
+  width: calc(100vw - 16px);
+  left: 8px;
+  bottom: 8px;
+  max-height: calc(100vh - 200px);
+  position: fixed;
+  min-height: 125px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 9px 15px;
+
+  &__description_container {
+    flex-grow: 1;
+    display: flex;
+    margin-top: 18px;
   }
 
-  .poi_panel__container {
-    padding: 0 15px;
+  .poiTitleImage {
+    margin: -6px 0 0 -3px;
+  }
+
+  .poi_panel__description {
+    font-size: 12px;
+  }
+
+  &__action_container {
+    margin-left: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__close {
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: background-color .1s;
+    border-radius: 50%;
+    font-size: 18px;
+    transform: none;
+    line-height: 40px;
+    text-align: center;
+    margin-right: -9px;
+
+    &:hover {
+      background: $background_hover;
+      color: $primary_text;
+    }
+  }
+
+  &__action {
+    display: block;
+    width: 112px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid $primary_clear;
+    font-size: 12px;
+    font-weight: 600;
+    color: $primary_text;
+    border-radius: 18px;
+    cursor: pointer;
+    text-align: center;
+    /* secure  long translation */
+    white-space: nowrap;
+    overflow: hidden;
+
+    &__direction {
+      background-color: $primary_text;
+      border-color: $primary_text;
+      color: #fff;
+      margin-bottom: 9px;
+    }
   }
 }
