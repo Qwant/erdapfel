@@ -29,7 +29,7 @@
   border: none;
   text-transform: uppercase;
   display: block;
-  height: 50px;
+  min-height: 50px;
   font-weight: 500;
 }
 
@@ -152,9 +152,12 @@
   }
 
   .service_panel .panel-header {
-    height: 50px;
     padding: 10px 16px 5px;
     font-weight: 500;
+  }
+
+  .panel.service_panel.maximized .panel-header {
+    padding: 75px 16px 12px;
   }
 
   .panel.service_panel.minimized {

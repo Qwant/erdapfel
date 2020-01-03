@@ -56,10 +56,10 @@ noscript {
   }
 
   .panel_container {
-    position: fixed;
+    top: auto;
     left: 0;
-    height: calc(100% - 75px);
-    top: 75px;
+    height: 100%;
+    max-height: none;
   }
 
   .map_container .map_control__scale_attribute_container {
