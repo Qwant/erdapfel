@@ -90,7 +90,3 @@ export const originDestinationCoords = route => {
     destination: last(last(fc.features).geometry.coordinates),
   };
 };
-
-export function sanitizeStationName(name) {
-  return (name || '').replace(/\s*\(.*\)$/, '');
-}
