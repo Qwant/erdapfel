@@ -16,6 +16,7 @@ import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
+import Error from 'src/adapters/error';
 
 const baseUrl = nconf.get().system.baseUrl;
 const easterEggsEnabled = nconf.get().app.easterEggs;
@@ -49,6 +50,12 @@ Scene.prototype.setupInitialPosition = async function(locationHash) {
 };
 
 Scene.prototype.initMapBox = function() {
+  setRTLTextPlugin(
+    `${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`,
+    error => Error.send('scene', 'setRTLTextPlugin', 'Failed to load mapbox RTL plugin', error),
+    /* lazy */ true
+  );
+
   this.mb = new Map({
     attributionControl: false,
     container: 'scene_container',
@@ -61,7 +68,6 @@ Scene.prototype.initMapBox = function() {
 
   this.popup.init(this.mb);
 
-  setRTLTextPlugin(`${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`);
 
   window.map = { mb: this.mb };
 
