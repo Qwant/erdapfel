@@ -152,11 +152,11 @@ const mainJsChunkConfig = buildMode => {
 const copyPluginConfig = () => {
   return {
     entry: [
-      path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.js.min'),
+      path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.min.js'),
     ],
     output: {
       path: path.join(__dirname, '..'),
-      filename: 'tmp/mapbox-gl-rtl-text.js.min',
+      filename: 'tmp/mapbox-gl-rtl-text.min.js',
     },
     module: {
       rules: [{
