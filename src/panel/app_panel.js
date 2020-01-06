@@ -95,7 +95,6 @@ export default class AppPanel {
 
     this.router.addRoute('POI', '/place/(.*)', async (poiUrl, options = {}) => {
       const poiId = poiUrl.split('@')[0];
-      this.activePoiId = poiId;
       this.openPoi({ ...options, poiId });
     });
 
@@ -183,9 +182,6 @@ export default class AppPanel {
 
   _openPanel(panelToOpen, options = {}) {
     this.unminify();
-    if (panelToOpen !== this.poiPanel) {
-      this.activePoiId = null;
-    }
     this.panels
       .filter(panel => panel !== panelToOpen)
       .forEach(panel => {
