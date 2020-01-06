@@ -6,9 +6,7 @@ import { getTransportTypeIcon } from 'src/libs/route_utils';
 
 const TransportLineLeg = ({ leg }) => {
   const [ detailsOpen, setDetailsOpen ] = useState(false);
-  const { mode, info = {}, stops = [] } = leg;
-  const from = stops[0];
-  const to = stops[stops.length - 1];
+  const { mode, info = {}, stops = [], from, to } = leg;
 
   return <RoadMapItem
     icon={getTransportTypeIcon(leg)}
@@ -28,7 +26,9 @@ const TransportLineLeg = ({ leg }) => {
       <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
     </div>
     {detailsOpen && <div className="itinerary_roadmap_substeps">
+      <div>{from.name}</div>
       {stops.map((stop, index) => <div key={index}>{stop.name}</div>)}
+      <div>{to.name}</div>
     </div>}
   </RoadMapItem>;
 };
