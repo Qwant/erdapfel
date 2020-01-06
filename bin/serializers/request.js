@@ -25,6 +25,8 @@ const allowedHeadersRules = [
 module.exports = function(config) {
   return req => {
     const reqObject = bunyan.stdSerializers.req(req);
+    // Shallow copy headers to avoid mutating `req`
+    reqObject.headers = { ...reqObject.headers };
     const headers = reqObject.headers;
     for (const k in headers) {
       // geoip headers are utf8 encoded
