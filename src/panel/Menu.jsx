@@ -1,12 +1,11 @@
 /* globals _ */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { menu as menuItems } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MenuItem from './menu/MenuItem';
 import MenuButton from './menu/MenuButton';
 import MasqStatus from './menu/MasqStatus';
 import Store from '../adapters/store';
-import classnames from 'classnames';
 
 const isDirectionActive = nconf.get().direction.enabled;
 const isMasqEnabled = nconf.get().masq.enabled;
@@ -62,19 +61,13 @@ export default class Menu extends React.Component {
       return null;
     }
 
-    return <div>
-      <div
-        className={classnames('menu__overlay', {
-          'menu__overlay--active': this.state.isOpen,
-          'menu__overlay--fade_active': this.state.isOpen,
-        })}
-        onClick={this.close}
-      />
-
+    return <Fragment>
       <MenuButton masqUser={this.state.masqUser} onClick={this.open} />
 
-      <div className="menu">
-        <div className={classnames('menu__panel', { 'menu__panel--active': this.state.isOpen })}>
+      {this.state.isOpen && <div className="menu">
+        <div className="menu__overlay" onClick={this.close} />
+
+        <div className="menu__panel">
           <div className="menu__panel__top">
             <h2 className="menu__panel__top__title">
               <i className="menu__panel__top__icon icon-map" />
@@ -118,7 +111,7 @@ export default class Menu extends React.Component {
             {menuItems.map(menuItem => <MenuItem key={menuItem.sectionName} menuItem={menuItem} />)}
           </div>
         </div>
-      </div>
-    </div>;
+      </div>}
+    </Fragment>;
   }
 }
