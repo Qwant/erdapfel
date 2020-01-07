@@ -38,8 +38,10 @@
   z-index: 3;
 }
 
-.top_bar--search_focus {
-  z-index: 4;
+@media (max-width: 640px) {
+  .top_bar--search_focus {
+    z-index: 4;
+  }
 }
 
 .menu__overlay {
