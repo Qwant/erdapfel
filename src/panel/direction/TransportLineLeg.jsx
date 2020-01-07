@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import RoadMapItem from './RoadMapItem';
 import PublicTransportLine from './PublicTransportLine';
 import LegLine from './LegLine';
-import { getTransportTypeIcon, sanitizeStationName } from 'src/libs/route_utils';
+import { getTransportTypeIcon } from 'src/libs/route_utils';
 
 const TransportLineLeg = ({ leg }) => {
   const [ detailsOpen, setDetailsOpen ] = useState(false);
-  const { mode, info = {}, stops = [] } = leg;
-  const from = stops[0];
-  const to = stops[stops.length - 1];
+  const { mode, info = {}, stops = [], from, to } = leg;
 
   return <RoadMapItem
     icon={getTransportTypeIcon(leg)}
@@ -22,17 +20,15 @@ const TransportLineLeg = ({ leg }) => {
       <div>
         <PublicTransportLine mode={mode} info={info} />
         {!detailsOpen && from.name && to.name && <div>
-          {sanitizeStationName(from.name)}{' '}
-          <i className="icon-chevrons-right" />{' '}
-          {sanitizeStationName(to.name)}
+          {from.name} <i className="icon-chevrons-right" /> {to.name}
         </div>}
       </div>
       <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
     </div>
     {detailsOpen && <div className="itinerary_roadmap_substeps">
-      {stops.map((stop, index) => <div key={index}>
-        {sanitizeStationName(stop.name)}
-      </div>)}
+      <div>{from.name}</div>
+      {stops.map((stop, index) => <div key={index}>{stop.name}</div>)}
+      <div>{to.name}</div>
     </div>}
   </RoadMapItem>;
 };
