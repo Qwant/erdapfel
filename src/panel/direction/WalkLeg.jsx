@@ -1,6 +1,6 @@
 /* global _ */
 import React, { useState } from 'react';
-import { formatDistance } from 'src/libs/route_utils';
+import { formatDistance, getStepIcon } from 'src/libs/route_utils';
 import RoadMapItem from './RoadMapItem';
 import LegLine from './LegLine';
 import classnames from 'classnames';
@@ -27,8 +27,9 @@ const WalkLeg = ({ leg }) => {
       {hasSteps && <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />}
     </div>
     {detailsOpen && <div className="itinerary_roadmap_substeps">
-      {leg.steps.map((step, index) => <div key={index}>
-        {step.maneuver.instruction}
+      {leg.steps.map((step, index) => <div key={index} className="itinerary_roadmap_substep">
+        <div className={`itinerary_roadmap_icon itinerary_roadmap_icon_${getStepIcon(step)}`} />
+        <div>{step.maneuver.instruction}</div>
       </div>)}
     </div>}
   </RoadMapItem>;
