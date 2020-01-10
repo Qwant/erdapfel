@@ -14,31 +14,23 @@ beforeAll(async () => {
 });
 
 
-test('test menu template', async () => {
-  expect.assertions(2);
+test('test menu toggling', async () => {
+  expect.assertions(3);
   await page.goto(APP_URL);
   page.waitForSelector('.menu__button');
-
-  let panelPosition = await page.evaluate(() => {
-    return window.innerWidth - document.querySelector('.menu__panel').offsetLeft;
-  });
-
-  expect(panelPosition).toEqual(0);
+  let panel = await page.waitForSelector('.menu__panel', { hidden: true });
+  expect(panel).toBeNull();
 
   await page.click('.menu__button');
-  await wait(600);
-
-  panelPosition = await page.evaluate(() => {
-    return window.innerWidth - document.querySelector('.menu__panel').offsetLeft;
-  });
+  panel = await page.waitForSelector('.menu__panel', { visible: true });
+  expect(panel).not.toBeNull();
 
   await page.click('.menu__panel__top__close');
-  await wait(600);
-  expect(panelPosition).toEqual(460);
+  panel = await page.waitForSelector('.menu__panel', { hidden: true });
+  expect(panel).toBeNull();
 });
 
 test('menu open favorite', async () => {
-  await page.goto(APP_URL);
   expect.assertions(2);
   await page.goto(APP_URL);
   page.waitForSelector('.menu__button');
