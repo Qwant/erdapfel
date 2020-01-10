@@ -13,6 +13,7 @@ PoiPopup.prototype.init = function(map) {
   this.map = map;
   this.popupHandle = null;
   this.timeOutHandler = null;
+  this.activePoiId = null;
 
   listen('open_popup', (poi, e) => {
     if (Device.isMobile() || isTouchEvent(e)) {
@@ -21,7 +22,8 @@ PoiPopup.prototype.init = function(map) {
     this.createPJPopup(poi, e);
   });
   listen('close_popup', () => this.close());
-
+  listen('map_mark_poi', poi => { this.activePoiId = poi.id; });
+  listen('clean_marker', () => { this.activePoiId = null; });
 };
 
 PoiPopup.prototype.addListener = function(layer) {
@@ -31,7 +33,7 @@ PoiPopup.prototype.addListener = function(layer) {
     }
     this.timeOutHandler = setTimeout(() => {
       const poi = e.features[0];
-      if (window.app.activePoiId === poi.properties.global_id) {
+      if (this.activePoiId === poi.properties.global_id) {
         return;
       }
       this.createOSMPopup(poi, e.originalEvent);
