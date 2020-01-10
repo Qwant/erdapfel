@@ -1,4 +1,4 @@
-import { clearStore, initBrowser, wait } from '../tools';
+import { clearStore, initBrowser } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 
 let browser;
@@ -36,16 +36,16 @@ test('menu open favorite', async () => {
   page.waitForSelector('.menu__button');
 
   page.click('.menu__button');
-  await wait(600);
-
+  await page.waitForSelector('.menu__panel__action');
   page.click('.menu__panel__action:nth-child(2)');
+
   const itinerary = await page.waitForSelector('.direction_panel');
   expect(itinerary).not.toBeNull();
-  await wait(600);
+
   page.click('.menu__button');
-  await wait(600);
+  await page.waitForSelector('.menu__panel__action');
   page.click('.menu__panel__action:nth-child(3)');
-  await wait(600);
+
   const favorites = await page.waitForSelector('.favorite_panel');
   expect(favorites).not.toBeNull();
 });
