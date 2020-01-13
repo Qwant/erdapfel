@@ -3,7 +3,8 @@ FROM node:10-stretch-slim as base
 ENV PROJECT_DIR=/srv/maps-tileview/
 
 RUN apt-get update && apt-get -y install --no-install-recommends \
-  gettext git python3 build-essential
+    gettext git python3 build-essential ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN npm i npm@latest -g
 RUN mkdir -p $PROJECT_DIR
