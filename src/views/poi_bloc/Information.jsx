@@ -60,16 +60,13 @@ export default class InformationBlock extends React.Component {
   }
 
   renderTitle() {
-    return [
-      <div className="icon-icon_info poi_panel__block__symbol" key="1" />,
-      <div className="poi_panel__sub_block__title" key="2" onClick={this.expandCollapse}>
-        <h4 className="poi_panel__sub_block__title__text">{this.getText()}</h4>
-        <div className={
-          classnames('poi_panel__block__collapse', 'icon-icon_chevron-down', {
-            'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
-          })} />
-      </div>,
-    ];
+    return <div className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
+      <h4 className="poi_panel__sub_block__title__text">{this.getText()}</h4>
+      <div className={
+        classnames('poi_panel__block__collapse', 'icon-icon_chevron-down', {
+          'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
+        })} />
+    </div>;
   }
 
   renderExpanded() {
@@ -88,6 +85,7 @@ export default class InformationBlock extends React.Component {
       return null;
     }
     return <div className="poi_panel__info__section poi_panel__info__section--information">
+      <div className="icon-icon_info poi_panel__block__symbol" />
       { this.wikiBlock && <WikiBlock block={this.wikiBlock} /> }
       { this.checkSubBlocks() && this.renderTitle() }
       { this.checkSubBlocks() && this.renderExpanded() }
