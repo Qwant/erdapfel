@@ -1,11 +1,12 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('../fonts/icomoon.ttf?duzqzp') format('truetype'),
-    url('../fonts/icomoon.woff?duzqzp') format('woff'),
-    url('../fonts/icomoon.svg?duzqzp#icomoon') format('svg');
+    url('../fonts/icomoon.ttf?dinmw7') format('truetype'),
+    url('../fonts/icomoon.woff?dinmw7') format('woff'),
+    url('../fonts/icomoon.svg?dinmw7#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 
 @import "./asap";
@@ -25,79 +26,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-fitness:before {
-  content: "\e92e";
-}
-.icon-health:before {
-  content: "\e92f";
-}
-.icon-museum:before {
-  content: "\e932";
-}
-.icon-service:before {
-  content: "\e933";
-}
-.icon-reverse:before {
-  content: "\e927";
-  color: #5c6f84;
-}
-.icon-public-transport:before {
-  content: "\e934";
-}
-.icon-bike:before {
-  content: "\e926";
-}
-.icon-drive:before {
-  content: "\e924";
-}
-.icon-foot:before {
-  content: "\e925";
-}
-.icon-icon_chevron-down:before {
-  content: "\e900";
-}
-.icon-icon_chevron-up:before {
-  content: "\e901";
-}
-.icon-icon_globe:before {
-  content: "\e902";
-}
-.icon-icon_list:before {
-  content: "\e903";
-}
-.icon-icon_star:before {
-  content: "\e904";
-}
-.icon-icon_star-filled:before {
-  content: "\e905";
-}
-.icon-icon_at-sign:before {
-  content: "\e906";
-}
-.icon-icon_award:before {
-  content: "\e907";
-}
-.icon-icon_camera:before {
-  content: "\e908";
-}
-.icon-icon_clock:before {
-  content: "\e909";
-}
-.icon-icon_compass:before {
-  content: "\e90a";
-}
-.icon-icon_edit-2:before {
-  content: "\e90b";
-}
-.icon-icon_info:before {
-  content: "\e90c";
-}
-.icon-icon_phone:before {
-  content: "\e90e";
-}
 .icon-pin_geoloc:before {
   content: "\e90d";
-  color: #5c6f84;
 }
 .icon-alert-triangle:before {
   content: "\e92b";
@@ -111,7 +41,6 @@
 .icon-calendar:before {
   content: "\e935";
 }
-
 .icon-check:before {
   content: "\e91d";
 }
@@ -189,4 +118,62 @@
 }
 .icon-zap:before {
   content: "\e929";
+}
+.icon-reverse:before {
+  content: "\e927";
+  color: #5c6f84;
+}
+.icon-public-transport:before {
+  content: "\e934";
+}
+.icon-bike:before {
+  content: "\e926";
+}
+.icon-drive:before {
+  content: "\e924";
+}
+.icon-foot:before {
+  content: "\e925";
+}
+.icon-icon_chevron-down:before {
+  content: "\e900";
+}
+.icon-icon_chevron-up:before {
+  content: "\e901";
+}
+.icon-icon_globe:before {
+  content: "\e902";
+}
+.icon-icon_list:before {
+  content: "\e903";
+}
+.icon-icon_star:before {
+  content: "\e904";
+}
+.icon-icon_star-filled:before {
+  content: "\e905";
+}
+.icon-icon_at-sign:before {
+  content: "\e906";
+}
+.icon-icon_award:before {
+  content: "\e907";
+}
+.icon-icon_camera:before {
+  content: "\e908";
+}
+.icon-icon_clock:before {
+  content: "\e909";
+}
+.icon-icon_compass:before {
+  content: "\e90a";
+}
+.icon-icon_edit-2:before {
+  content: "\e90b";
+}
+.icon-icon_info:before {
+  content: "\e90c";
+}
+.icon-icon_phone:before {
+  content: "\e90e";
 }

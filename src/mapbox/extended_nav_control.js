@@ -9,15 +9,15 @@ export default class ExtendedControl {
     this.topButtonGroup = document.createElement('div');
     this.bottomButtonGroup = document.createElement('div');
 
-    const buttonClass = 'icon-plus map_control_group__button map_control_group__button__zoom';
+    const buttonClass = 'icon-plus map_control_group__button__zoom';
     this._zoomInButton = this._createButton(buttonClass, 'Zoom In', () => this._map.zoomIn());
     this._zoomOutButton = this._createButton(
-      'icon-minus map_control_group__button map_control_group__button__zoom',
+      'icon-minus map_control_group__button__zoom',
       'Zoom Out',
       () => this._map.zoomOut(),
     );
 
-    const compassClass = 'map_control_group__button map_control_group__button__compass';
+    const compassClass = 'map_control_group__button__compass';
     this._compass = this._createButton(compassClass, 'Reset North', () => {
       this._resetNorthAndTilt();
     });
@@ -35,7 +35,7 @@ export default class ExtendedControl {
     this._map = map;
     this.topButtonGroup.className = 'map_control_group';
     this.topButtonGroup.textContent = '';
-    this.bottomButtonGroup.className = 'map_control_group map_bottom_button_group';
+    this.bottomButtonGroup.className = 'map_control_group map_bottom_button_group mapboxgl-ctrl';
     this.bottomButtonGroup.textContent = '';
 
     const geolocControl = new GeolocControl({

@@ -2,7 +2,7 @@ export default class MobileCompassControl {
 
   constructor() {
     this._container = document.createElement('div');
-    const compassClass = 'map_control_group__button map_control_group__button__compass--mobile';
+    const compassClass = 'map_control_group__button__compass--mobile';
     this._compass = this._createButton(compassClass, 'Reset North', () => {
       this._resetNorthAndTilt();
     });
