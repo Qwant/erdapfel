@@ -32,8 +32,8 @@ export const initBrowser = async function() {
   return { browser, page };
 };
 
-export function store(page, soreKey, data) {
-  page.evaluate((favorite, key) => {
+export async function store(page, soreKey, data) {
+  await page.evaluate((favorite, key) => {
     localStorage.setItem(key, JSON.stringify(favorite));
   }, data, soreKey);
 }
