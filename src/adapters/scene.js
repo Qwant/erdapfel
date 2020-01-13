@@ -195,12 +195,6 @@ Scene.prototype.restoreLocation = function() {
   }
 };
 
-Scene.prototype.isPointInBounds = function(point, bounds) {
-  const lng = (point.lng - bounds._ne.lng) * (point.lng - bounds._sw.lng) < 0;
-  const lat = (point.lat - bounds._ne.lat) * (point.lat - bounds._sw.lat) < 0;
-  return lng && lat;
-};
-
 Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
 
   // Get viewport bounds
@@ -247,12 +241,9 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
 
 
   // Check if one corner of the BBox is in the extended viewport:
-
-  if (
-    this.isPointInBounds(bbox._ne, viewport) // ne
-      || this.isPointInBounds({ lng: bbox._sw.lng, lat: bbox._ne.lat }, viewport) // nw
-      || this.isPointInBounds({ lng: bbox._ne.lng, lat: bbox._sw.lat }, viewport) // se
-      || this.isPointInBounds(bbox._sw, viewport) // sw
+  if (viewport.contains(bbox._ne) || viewport.contains(bbox._sw)
+    || viewport.contains({ lng: bbox._sw.lng, lat: bbox._ne.lat }) // nw
+    || viewport.contains({ lng: bbox._ne.lng, lat: bbox._sw.lat }) // se
   ) {
     return true;
   }
