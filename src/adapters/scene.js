@@ -52,7 +52,11 @@ Scene.prototype.setupInitialPosition = async function(locationHash) {
 Scene.prototype.initMapBox = function() {
   setRTLTextPlugin(
     `${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`,
-    error => Error.send('scene', 'setRTLTextPlugin', 'Failed to load mapbox RTL plugin', error),
+    error => {
+      if (error) {
+        Error.send('scene', 'setRTLTextPlugin', 'Failed to load mapbox RTL plugin', error);
+      }
+    },
     /* lazy */ true
   );
 
