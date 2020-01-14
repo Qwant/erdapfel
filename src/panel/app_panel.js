@@ -1,111 +1,90 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import SearchInput from '../ui_components/search_input';
+import nconf from '@qwant/nconf-getter';
+import Telemetry from '../libs/telemetry';
+import Router from 'src/proxies/app_router';
+import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './PoiPanel';
 import ServicePanel from './ServicePanel';
 import EventListPanel from './event/EventListPanel';
-import SearchInput from '../ui_components/search_input';
-import TopBar from './top_bar';
-import nconf from '@qwant/nconf-getter';
-import Menu from './Menu';
-import Telemetry from '../libs/telemetry';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
-import Router from 'src/proxies/app_router';
-import ReactPanelWrapper from 'src/panel/reactPanelWrapper';
-import events from 'config/events.yml';
-import { parseMapHash, parseQueryString, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Device from '../libs/device';
+import Menu from 'src/panel/Menu';
+import classnames from 'classnames';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
 const categoryEnabled = nconf.get().category.enabled;
 const eventEnabled = nconf.get().events.enabled;
 
-export default class AppPanel {
+export default class App {
   constructor() {
-    this.topBar = new TopBar();
+    this.initMap();
+
     SearchInput.initSearchInput('#search');
-    this.categoryEnabled = categoryEnabled;
-    this.eventEnabled = eventEnabled;
-    this.directionEnabled = directionEnabled;
 
-    this.servicePanel = new ReactPanelWrapper(ServicePanel);
-    this.favoritePanel = new ReactPanelWrapper(FavoritesPanel);
-    this.poiPanel = new ReactPanelWrapper(PoiPanel);
-    this.categoryPanel = this.categoryEnabled ? new ReactPanelWrapper(CategoryPanel) : null;
-    this.eventListPanel = this.eventEnabled ? new ReactPanelWrapper(EventListPanel) : null;
-    this.directionPanel = this.directionEnabled ? new ReactPanelWrapper(DirectionPanel) : null;
-
-    this.panels = [
-      this.servicePanel,
-      this.favoritePanel,
-      this.poiPanel,
-    ];
-    if (this.categoryEnabled) {
-      this.panels.push(this.categoryPanel);
-    }
-    if (this.eventEnabled) {
-      this.panels.push(this.eventListPanel);
-    }
-    if (this.directionPanel) {
-      this.panels.push(this.directionPanel);
-    }
-
-    ReactDOM.render(<Menu />, document.querySelector('.react_menu__container'));
     Telemetry.add(Telemetry.APP_START, null, null, {
       'language': window.getLang(),
       'is_mobile': Device.isMobile(),
     });
-
-    this.initRouter();
     if (performanceEnabled) {
-      window.times.appRendered = Date.now();
-      listen('map_loaded', () => {
-        window.times.mapLoaded = Date.now();
-      });
+      listen('map_loaded', () => { window.times.mapLoaded = Date.now(); });
     }
 
-    const mapHash = parseMapHash(window.location.hash);
-    this.initMap(mapHash);
+    this.initRouter();
   }
 
-  initMap(mapHash) {
+  updatePanel(activePanel, options) {
+    ReactDOM.render(<PanelManager
+      ActivePanel={activePanel}
+      options={options}
+    />, document.querySelector('#react_root'));
+  }
+
+  initMap() {
+    const mapHash = parseMapHash(window.location.hash);
     import(/* webpackChunkName: "map" */ '../adapters/scene')
       .then(({ default: Scene }) => {
-        this.scene = new Scene();
-        this.scene.initScene(mapHash);
+        const scene = new Scene();
+        scene.initScene(mapHash);
       });
   }
 
   initRouter() {
     this.router = new Router(window.baseUrl);
 
-    this.router.addRoute('Category', '/places/(.*)', placesParams => {
-      window.execOnMapLoaded(() => {
-        this.openCategory(parseQueryString(placesParams));
+    if (categoryEnabled) {
+      this.router.addRoute('Category', '/places/(.*)', placesParams => {
+        const { type: categoryName, q: query, ...otherOptions } = parseQueryString(placesParams);
+        this.updatePanel(CategoryPanel, { categoryName, query, ...otherOptions });
       });
-    });
+    }
 
-    this.router.addRoute('EventListPanel', '/events/(.*)', eventsParams => {
-      window.execOnMapLoaded(() => {
-        this.openEvents(parseQueryString(eventsParams));
+    if (eventEnabled) {
+      this.router.addRoute('EventListPanel', '/events/(.*)', eventsParams => {
+        const { type: eventName, ...otherOptions } = parseQueryString(eventsParams);
+        this.updatePanel(EventListPanel, { eventName, ...otherOptions });
       });
-    });
+    }
 
     this.router.addRoute('POI', '/place/(.*)', async (poiUrl, options = {}) => {
       const poiId = poiUrl.split('@')[0];
-      this.openPoi({ ...options, poiId });
+      this.updatePanel(PoiPanel, { ...options, poiId });
     });
 
     this.router.addRoute('Favorites', '/favs', () => {
-      this.openFavorite();
+      this.updatePanel(FavoritesPanel);
     });
 
-    this.router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
-      fire('move_mobile_bottom_ui', 0);
-      this.openDirection({ ...parseQueryString(routeParams), ...options });
-    });
+    if (directionEnabled) {
+      this.router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
+        this.updatePanel(DirectionPanel, { ...parseQueryString(routeParams), ...options });
+      });
+    }
 
     this.router.addRoute('Direct search query', '/([?].*)', queryString => {
       const params = parseQueryString(queryString);
@@ -118,7 +97,7 @@ export default class AppPanel {
 
     // Default matching route
     this.router.addRoute('Services', '/?', (_, options = {}) => {
-      this.resetLayout();
+      this.updatePanel(ServicePanel, options);
       if (options.focusSearch) {
         SearchInput.select();
       }
@@ -132,6 +111,7 @@ export default class AppPanel {
     this.router.routeUrl(getCurrentUrl());
   }
 
+  // @TODO: move that outside so we don't need to call window.app.navigateTo
   /**
   * @param {string} url - The URL to navigate to.
   * @param {Object} state - State object to associate with the history entry.
@@ -155,84 +135,90 @@ export default class AppPanel {
     const urlWithoutHash = window.location.href.split('#')[0];
     window.history.replaceState(window.history.state, null, `${urlWithoutHash}#${hash}`);
   }
+}
 
-  minify() {
-    SearchInput.minify();
-    document.querySelector('.side_panel__container').classList.add('side_panel__container--hidden');
+class PanelManager extends React.Component {
+  static propTypes = {
+    ActivePanel: PropTypes.func.isRequired,
+    options: PropTypes.object,
+  };
+
+  static defaultProps = {
+    options: {},
+  };
+
+  state = {
+    isMinified: false,
+  };
+
+  componentDidMount() {
+    if (performanceEnabled) {
+      window.times.appRendered = Date.now();
+    }
+    this.initTopBar();
   }
 
-  unminify() {
-    document.querySelector('.side_panel__container')
-      .classList
-      .remove('side_panel__container--hidden');
-    SearchInput.unminify();
-  }
+  componentDidUpdate(previousProps) {
+    const { ActivePanel, options } = this.props;
 
-  toggleMinify() {
-    if (SearchInput.isMinified()) {
-      if (this.directionPanel.active) {
-        this.navigateTo('/');
-      } else {
-        this.unminify();
+    if (previousProps.ActivePanel !== ActivePanel || previousProps.options !== options) {
+      if (ActivePanel !== PoiPanel || !options.isFromCategory) {
+        fire('remove_category_markers');
+        fire('remove_event_markers');
       }
-    } else {
-      this.minify();
+
+      if (ActivePanel === DirectionPanel) {
+        SearchInput.minify();
+      } else {
+        SearchInput.unminify();
+        if (this.state.isMinified) {
+          this.setState({ isMinified: false });
+        }
+      }
     }
   }
 
-  _openPanel(panelToOpen, options = {}) {
-    this.unminify();
-    this.panels
-      .filter(panel => panel !== panelToOpen)
-      .forEach(panel => {
-        if (panelToOpen !== this.poiPanel || !options.isFromCategory) {
-          fire('remove_category_markers');
-          fire('remove_event_markers');
-        }
-        if (panel === this.poiPanel) {
-          fire('clean_marker');
-          SearchInput.setInputValue('');
-        }
-        panel.close();
-      });
-    panelToOpen.open(options);
-  }
-
-  openDirection(options) {
-    this._openPanel(this.directionPanel, options);
-    SearchInput.minify();
-  }
-
-  openFavorite() {
-    this._openPanel(this.favoritePanel);
-  }
-
-  openCategory(params) {
-    const { type: categoryName, q: query, ...otherOptions } = params;
-    this._openPanel(this.categoryPanel, {
-      categoryName,
-      query,
-      ...otherOptions,
-    });
-  }
-
-  openEvents(params) {
-    const { type: eventName, ...otherOptions } = params;
-    if (events.find(ev => ev.name === params.type)) {
-      this._openPanel(this.eventListPanel, {
-        eventName,
-        ...otherOptions,
-      });
+  toggleMinify = () => {
+    if (this.state.isMinified) {
+      SearchInput.unminify();
+      this.setState({ isMinified: false });
     } else {
-      window.app.navigateTo('/');
+      SearchInput.minify();
+      this.setState({ isMinified: true });
     }
   }
 
-  openPoi(options) {
-    this._openPanel(this.poiPanel, options);
+  initTopBar() {
+    const searchInput = document.querySelector('#search');
+    const topBarHandle = document.querySelector('.top_bar');
+
+    searchInput.onfocus = () => {
+      topBarHandle.classList.add('top_bar--search_focus');
+    };
+
+    searchInput.onblur = () => {
+      topBarHandle.classList.remove('top_bar--search_focus');
+    };
+
+    const minifierButton = document.querySelector('.top_bar .minifier');
+    if (minifierButton) {
+      minifierButton.onclick = this.toggleMinify;
+    }
   }
 
-  resetLayout() {
-    this._openPanel(this.servicePanel);
+  render() {
+    const { ActivePanel, options } = this.props;
+    const { isMinified } = this.state;
+
+    return <Fragment>
+      <div className={classnames('side_panel__container', {
+        'side_panel__container--hidden': isMinified }
+      )}>
+        <div className="favorite_poi_panel__container">
+          <ActivePanel {...options} />
+        </div>
+      </div>
+      <Menu />
+    </Fragment>;
   }
 }

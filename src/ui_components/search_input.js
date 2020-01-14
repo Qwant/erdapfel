@@ -49,10 +49,6 @@ export default class SearchInput {
     window.__searchInput.isEnabled = true;
   }
 
-  static isMinified() {
-    return !window.__searchInput.isEnabled;
-  }
-
   constructor(tagSelector) {
     this.searchInputHandle = document.querySelector(tagSelector);
     this.handleKeyboard();
