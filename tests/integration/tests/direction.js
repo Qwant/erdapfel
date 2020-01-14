@@ -184,12 +184,11 @@ test('show itinerary roadmap on mobile', async () => {
   await page.waitForSelector('.itinerary_mobile_step');
 
   /*
-    Force resetLayout.
     This simulates a user action that will close
     all panels related to the current itinerary,
     such as a click on a POI on the map.
   */
-  await page.evaluate('window.app.resetLayout()');
+  await page.evaluate('window.app.navigateTo("/")');
   // Itinerary container should be disabled.
   await page.waitForSelector('.direction_panel', { hidden: true, timeout: 1000 });
 });
