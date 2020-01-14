@@ -195,60 +195,27 @@ Scene.prototype.restoreLocation = function() {
   }
 };
 
-Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
+const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
-  // Get viewport bounds
+Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
   const viewport = this.mb.getBounds();
 
-  // Compute "width", "height"
-  const width = viewport._ne.lng - viewport._sw.lng;
-  const height = viewport._ne.lat - viewport._sw.lat;
+  const width = viewport.getEast() - viewport.getWest();
+  const height = viewport.getNorth() - viewport.getSouth();
 
-  // Compute extended viewport
-  viewport._ne.lng += width;
-  viewport._ne.lat += height;
+  // Compute extended viewport, with lats between -85 and 85
+  viewport.setNorthEast(new LngLat(
+    viewport.getEast() + width,
+    clamp(-85, 85, viewport.getNorth() + height)).wrap());
+  viewport.setSouthWest(new LngLat(
+    viewport.getWest() - width,
+    clamp(-85, 85, viewport.getSouth() - height)).wrap());
 
-  viewport._sw.lng -= width;
-  viewport._sw.lat -= height;
-
-  // Check bounds:
-
-  // Lng between -180 and 180 (wraps: 180 + 1 = -179)
-  if (viewport._ne.lng < -180) {
-    viewport._ne.lng += 360;
-  } else if (viewport._ne.lng > 180) {
-    viewport._ne.lng -= 360;
-  }
-
-  if (viewport._sw.lng < -180) {
-    viewport._sw.lng += 360;
-  } else if (viewport._sw.lng > 180) {
-    viewport._sw.lng -= 360;
-  }
-
-  // Lat between -85 and 85 (does not wrap)
-  if (viewport._ne.lat < -85) {
-    viewport._ne.lat = -85;
-  } else if (viewport._ne.lat > 85) {
-    viewport._ne.lat = 85;
-  }
-
-  if (viewport._sw.lat < -85) {
-    viewport._sw.lat = -85;
-  } else if (viewport._sw.lat > 85) {
-    viewport._sw.lat = 85;
-  }
-
-
-  // Check if one corner of the BBox is in the extended viewport:
-  if (viewport.contains(bbox._ne) || viewport.contains(bbox._sw)
-    || viewport.contains({ lng: bbox._sw.lng, lat: bbox._ne.lat }) // nw
-    || viewport.contains({ lng: bbox._ne.lng, lat: bbox._sw.lat }) // se
-  ) {
-    return true;
-  }
-
-  return false;
+  // Check if the bbox overlaps the viewport
+  return viewport.contains(bbox.getNorthWest())
+      || viewport.contains(bbox.getNorthEast())
+      || viewport.contains(bbox.getSouthEast())
+      || viewport.contains(bbox.getSouthWest());
 };
 
 Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, bottom: 0 }) {
