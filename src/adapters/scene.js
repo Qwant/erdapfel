@@ -16,6 +16,7 @@ import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
+import {originDestinationCoords} from "../libs/route_utils";
 import Error from 'src/adapters/error';
 
 const baseUrl = nconf.get().system.baseUrl;
@@ -107,28 +108,61 @@ Scene.prototype.initMapBox = function() {
         this.mb.getCanvas().style.cursor = '';
       });
 
+      // The OSM PoIs are on separate interactive layers.
+      // This code listens to clicks on each interactive layer, and if an interactive PoI marker is clicked, instantiate a MapPoi and save it in e._mapPoi.
+      // The global click listener (below) will open the corresponding PoI panel or complete the direction panel fields with it.
       this.mb.on('click', interactiveLayer, async e => {
         e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
-          const mapPoi = new MapPoi(e.features[0]);
-          window.app.navigateTo(`/place/${toUrl(mapPoi)}`, { poi: mapPoi });
+          e._mapPoi = new MapPoi(e.features[0]);
         }
       });
 
       this.popup.addListener(interactiveLayer);
     });
 
+    // This code listens to clicks on the whole map.
+    // - On mobile: return to home if no OSM PoI was clicked and Direction panel is not open
+    // - If an OSM PoI was clicked, use it.
+    // - Otherwise, create a latlon PoI.
+    // Then:
+    // - If the Direction panel is open, complete itinerary fields with the current PoI (QMAPS-1205)
+    // - Otherwise: show a PoI panel
     this.mb.on('click', e => {
-      if (!e._interactiveClick && Device.isMobile()
-          && !document.querySelector('.directions-open')) {
+
+      // Mobile
+      if (Device.isMobile() && !e._mapPoi && !document.querySelector('.directions-open')) {
         window.app.navigateTo('/');
-      }
-      // Disable POI anywhere feature on mobile until we opt for an adapted UX
-      if (Device.isMobile() || e._interactiveClick || this.routeDisplayed) {
         return;
       }
-      const poi = new LatLonPoi(e.lngLat);
-      window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
+
+      // Select PoI (OSM or LatLon)
+      let poi;
+      if (e._mapPoi) {
+        poi = e._mapPoi;
+      } else {
+        poi = new LatLonPoi(e.lngLat);
+      }
+
+      // Complete Direction panel if it's open, open PoI panel if it's already full
+      if (document.querySelector('.directions-open')) {
+        const originField = document.querySelector('#itinerary_input_origin');
+        if (originField.value === '') {
+          fire('change_direction_point', 'origin', poi);
+        } else {
+          const destinationField = document.querySelector('#itinerary_input_destination');
+          if (destinationField.value === '') {
+            fire('change_direction_point', 'destination', poi);
+          } else {
+            window.app.navigateTo(`/place/${toUrl(poi)}`, {poi});
+          }
+        }
+      }
+
+      // Otherwise show PoI panel
+      else {
+        window.app.navigateTo(`/place/${toUrl(poi)}`, {poi});
+      }
     });
 
     this.mb.on('moveend', () => {
