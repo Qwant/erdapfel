@@ -1,8 +1,8 @@
 const poiMock = require('../../__data__/poi.json');
 
 import ResponseHandler from '../helpers/response_handler';
-import { initBrowser, getText, wait, clearStore } from '../tools';
-import { getFavorites, toggleFavoritePanel, storePoi } from '../favorites_tools';
+import { initBrowser, /*getText,*/ wait, clearStore } from '../tools';
+import { /*getFavorites,*/ toggleFavoritePanel, storePoi } from '../favorites_tools';
 import { languages } from '../../../config/constants.yml';
 
 let browser;
@@ -239,6 +239,7 @@ test('check invalid Poi URL redirects to base URL', async () => {
   expect(pathname).toEqual('/maps/');
 });
 
+/*
 async function selectPoiLevel(page, level) {
   const mapPoiMock = {
     properties: {
@@ -262,6 +263,7 @@ async function selectPoiLevel(page, level) {
   await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);
   await wait(300);
 }
+*/
 
 test('add a poi as favorite and find it back in the favorite menu', async () => {
   /*await page.goto(APP_URL);

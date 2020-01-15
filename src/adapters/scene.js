@@ -16,7 +16,6 @@ import SceneEasterEgg from './scene_easter_egg';
 import Device from '../libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
-import {originDestinationCoords} from "../libs/route_utils";
 import Error from 'src/adapters/error';
 
 const baseUrl = nconf.get().system.baseUrl;
@@ -154,14 +153,12 @@ Scene.prototype.initMapBox = function() {
           if (destinationField.value === '') {
             fire('change_direction_point', 'destination', poi);
           } else {
-            window.app.navigateTo(`/place/${toUrl(poi)}`, {poi});
+            window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
           }
         }
-      }
-
-      // Otherwise show PoI panel
-      else {
-        window.app.navigateTo(`/place/${toUrl(poi)}`, {poi});
+      } else {
+        // Otherwise show PoI panel
+        window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
       }
     });
 
