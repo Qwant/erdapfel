@@ -131,6 +131,10 @@ export default class PanelManager extends React.Component {
       SearchInput.unminify();
       this.setState({ isMinified: false });
     } else {
+      if (this.state.ActivePanel === DirectionPanel && SearchInput.isMinified()) {
+        SearchInput.unminify();
+        return;
+      }
       SearchInput.minify();
       this.setState({ isMinified: true });
     }
