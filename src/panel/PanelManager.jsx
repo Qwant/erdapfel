@@ -157,12 +157,10 @@ export default class PanelManager extends React.Component {
   render() {
     const { ActivePanel, options, isMinified } = this.state;
 
-    return <div className={classnames('side_panel__container', {
-      'side_panel__container--hidden': isMinified }
+    return <div className={classnames('panel_container',
+      { 'panel_container--hidden': isMinified }
     )}>
-      <div className="favorite_poi_panel__container">
-        <ActivePanel {...options} />
-      </div>
+      <ActivePanel {...options} />
     </div>;
   }
 }

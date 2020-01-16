@@ -9,20 +9,16 @@ noscript {
   justify-content: center;
 }
 
-.side_panel__container {
+.panel_container {
   position: absolute;
   top: 104px;
   left: 18px;
   transition: transform 0.3s;
+  max-height: calc(100vh - 75px);
 
-  &.side_panel__container--hidden {
+  &--hidden {
     transform: translateX(-450px);
   }
-}
-
-.favorite_poi_panel__container {
-  position: relative;
-  max-height: calc(100vh - 75px);
 }
 
 .map_container {
@@ -59,17 +55,11 @@ noscript {
     }
   }
 
-  .side_panel__container {
-    position: inherit;
-    height: 0;
-    overflow: visible;
-  }
-
-  .favorite_poi_panel__container {
+  .panel_container {
     position: fixed;
+    left: 0;
     height: calc(100% - 75px);
     top: 75px;
-    z-index: 3;
   }
 
   .map_container .map_control__scale_attribute_container {
