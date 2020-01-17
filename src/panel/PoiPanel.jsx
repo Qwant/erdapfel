@@ -16,6 +16,7 @@ import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
+import SearchInput from '../ui_components/search_input';
 
 export default class PoiPanel extends React.Component {
   static propTypes = {
@@ -54,6 +55,12 @@ export default class PoiPanel extends React.Component {
       this.loadPoi();
     }
     this.moveMobileMapUI();
+  }
+
+  componentWillUnmount() {
+    fire('move_mobile_bottom_ui', 0);
+    fire('clean_marker');
+    SearchInput.setInputValue('');
   }
 
   loadPoi = async () => {

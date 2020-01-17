@@ -13,7 +13,7 @@ beforeAll(async () => {
 test('toggle favorite panel', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
-  await page.waitForSelector('.side_panel__container', { visible: true });
+  await page.waitForSelector('.panel_container', { visible: true });
   expect(await page.evaluate(() => {
     return document.getElementsByClassName('.favorite_panel').length;
   })).toEqual(0);

@@ -35,7 +35,7 @@ export default class CategoryPanel extends React.Component {
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
     }
 
-    this.fitMapAndFetch();
+    window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
   }
 
   componentDidUpdate() {
@@ -53,9 +53,7 @@ export default class CategoryPanel extends React.Component {
     const rawBbox = (this.props.bbox || '').split(',');
     const bbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
     if (bbox) {
-      window.execOnMapLoaded(() => {
-        window.map.mb.fitBounds(bbox, { animate: false });
-      });
+      window.map.mb.fitBounds(bbox, { animate: false });
     }
 
     if (window.map.mb.isMoving()) {
