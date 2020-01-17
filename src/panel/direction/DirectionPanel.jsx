@@ -8,7 +8,7 @@ import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
-import Device from 'src/libs/device';
+import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
 
 // this outside state is used to restore origin/destination when returning to the panel after closing
@@ -213,25 +213,29 @@ export default class DirectionPanel extends React.Component {
       previewRoute={activePreviewRoute}
     />;
 
-    if (Device.isMobile()) {
-      return <div className="direction_panel_mobile">
-        <div className="itinerary_close_mobile" onClick={this.onClose}>
-          <span className="icon-chevron-left" />
-          {_('return', 'direction')}
-        </div>
-        {title}
-        {!activePreviewRoute && form}
-        {result}
-      </div>;
-    }
+    return <DeviceContext.Consumer>
+      {isMobile => {
+        if (isMobile) {
+          return <div className="direction_panel_mobile">
+            <div className="itinerary_close_mobile" onClick={this.onClose}>
+              <span className="icon-chevron-left" />
+              {_('return', 'direction')}
+            </div>
+            {title}
+            {!activePreviewRoute && form}
+            {result}
+          </div>;
+        }
 
-    return <Panel
-      title={title}
-      close={this.onClose}
-      className="direction_panel"
-    >
-      {form}
-      {result}
-    </Panel>;
+        return <Panel
+          title={title}
+          close={this.onClose}
+          className="direction_panel"
+        >
+          {form}
+          {result}
+        </Panel>;
+      }}
+    </DeviceContext.Consumer>;
   }
 }
