@@ -1,7 +1,7 @@
 const poiMock = require('../../__data__/poi.json');
 
 import ResponseHandler from '../helpers/response_handler';
-import { initBrowser, getText, wait, clearStore } from '../tools';
+import { initBrowser, getText, clearStore } from '../tools';
 import { getFavorites, toggleFavoritePanel, storePoi } from '../favorites_tools';
 import { languages } from '../../../config/constants.yml';
 
@@ -122,7 +122,6 @@ test('open poi from autocomplete selection', async () => {
   await page.keyboard.type('test');
   await page.waitForSelector('.autocomplete_suggestion');
   await page.click('.autocomplete_suggestion:nth-child(2)');
-  await wait(300);
   const location = await page.evaluate(() => {
     return document.location;
   });
@@ -141,7 +140,6 @@ test('center the map to the poi on a poi click', async () => {
   await page.evaluate(() => {
     window.MAP_MOCK.flyTo({ center: { lat: 0, lng: 0 }, zoom: 10 });
   });
-  await wait(300);
   await page.click('.poi_panel__content .poi_panel__description_container');
   const center = await page.evaluate(() => {
     return window.MAP_MOCK.getCenter();
@@ -164,7 +162,6 @@ test('display details about the poi on a poi click', async () => {
   expect(infoTitle.trim()).toEqual('Accessible en fauteuil roulant.');
   await page.click('.poi_panel__block__collapse');
 
-  await wait(300);
   infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText;
   });
@@ -256,7 +253,6 @@ async function selectPoiLevel(page, level) {
   const mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox());
   // Click on the top-left corner
   await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);
-  await wait(300);
 }
 
 test('add a poi as favorite and find it back in the favorite menu', async () => {
