@@ -28,24 +28,6 @@ noscript {
   width: 100%;
 }
 
-#info {
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  background-color: $background;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
-  @include card_radius();
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  padding: 10px;
-}
-
-#layers {
-  position: absolute;
-  background: $background;
-  padding: 10px;
-  right: 10px;
-}
-
 @media (max-width: 640px) {
   .directions-open {
     .menu__button,
@@ -69,41 +51,6 @@ noscript {
       bottom: 8px;
       margin: 0;
     }
-  }
-
-  .resizable_panel {
-    max-height: none;
-    height: 50vh;
-  }
-
-  .resizable_panel_handle {
-    min-height: 50px;
-    width: 100%;
-    cursor: grab;
-    position: relative;
-
-    &:before{
-      content: '';
-      display: block;
-      border-radius: 2.5px;
-      background-color: #e0e1e6;
-      width: 40px;
-      height: 5px;
-      margin: 0px auto 8px;
-    }
-  }
-
-  .resizable_panel.smooth-resize {
-    transition: all .2s ease-in-out;
-  }
-
-  .resizable_panel.full {
-    height: calc(100% + 70px);
-    padding-top: 60px;
-  }
-
-  .resizable_panel.reduced {
-    height: 50px;
   }
 }
 
