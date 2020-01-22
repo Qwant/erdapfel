@@ -64,11 +64,13 @@ export default class DirectionPanel extends React.Component {
   componentDidMount() {
     document.body.classList.add('directions-open');
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
+    this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
   }
 
   componentWillUnmount() {
     fire('clean_route');
     window.unListen(this.dragPointHandler);
+    window.unListen(this.setPointHandler);
     document.body.classList.remove('directions-open');
   }
 
@@ -178,6 +180,31 @@ export default class DirectionPanel extends React.Component {
   changeDirectionPoint = (which, value) => {
     persistentPointState[which] = value;
     this.setState({ [which]: value, isDirty: true }, this.update);
+  }
+
+  setDirectionPoint = poi => {
+
+    // Special case: if both origin and destination are already set, open PoI panel
+    if (persistentPointState.origin !== null && persistentPointState.destination !== null) {
+      window.app.navigateTo(`/place/${poiToUrl(poi)}`, { poi });
+      return;
+    }
+
+    // If origin field is empty, set it
+    // or, if destination field is empty, set it
+    if (persistentPointState.origin === null) {
+      persistentPointState.origin = poi;
+    } else if (persistentPointState.destination === null) {
+      persistentPointState.destination = poi;
+    }
+
+    // Update state
+    // If both fields are set, update() performs a search
+    this.setState({
+      origin: persistentPointState.origin,
+      destination: persistentPointState.destination,
+      isDirty: true,
+    }, this.update);
   }
 
   openMobilePreview = route => {

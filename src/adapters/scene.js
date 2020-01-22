@@ -72,7 +72,6 @@ Scene.prototype.initMapBox = function() {
 
   this.popup.init(this.mb);
 
-
   window.map = { mb: this.mb };
 
   const interactiveLayers = [
@@ -111,7 +110,6 @@ Scene.prototype.initMapBox = function() {
       // This code listens to clicks on each interactive layer, and if an interactive PoI marker is clicked, instantiate a MapPoi and save it in e._mapPoi.
       // The global click listener (below) will open the corresponding PoI panel or complete the direction panel fields with it.
       this.mb.on('click', interactiveLayer, async e => {
-        e._interactiveClick = true;
         if (e.features && e.features.length > 0) {
           e._mapPoi = new MapPoi(e.features[0]);
         }
@@ -143,19 +141,10 @@ Scene.prototype.initMapBox = function() {
         poi = new LatLonPoi(e.lngLat);
       }
 
-      // Complete Direction panel if it's open, open PoI panel if it's already full
+      // If direction panel is open, tell it to fill its empty fields with this PoI
+      // If it's closed, open PoI panel
       if (document.querySelector('.directions-open')) {
-        const originField = document.querySelector('#itinerary_input_origin');
-        if (originField.value === '') {
-          fire('change_direction_point', 'origin', poi);
-        } else {
-          const destinationField = document.querySelector('#itinerary_input_destination');
-          if (destinationField.value === '') {
-            fire('change_direction_point', 'destination', poi);
-          } else {
-            window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
-          }
-        }
+        fire('set_direction_point', poi);
       } else {
         // Otherwise show PoI panel
         window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
