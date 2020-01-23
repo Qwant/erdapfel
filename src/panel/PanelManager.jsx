@@ -39,7 +39,12 @@ export default class PanelManager extends React.Component {
       window.times.appRendered = Date.now();
     }
     const mobileQuery = window.matchMedia('(max-width: 640px)');
-    mobileQuery.addListener(e => this.setState({ isMobile: e.matches }));
+    mobileQuery.addListener(e => {
+      this.setState({ isMobile: e.matches });
+      if (!e.matches) {
+        window.execOnMapLoaded(() => { fire('move_mobile_bottom_ui', 0); });
+      }
+    });
   }
 
   componentDidUpdate(_prevProps, prevState) {

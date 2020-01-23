@@ -350,7 +350,7 @@ Scene.prototype.translateUIControl = function(selector, bottom) {
 };
 
 Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
-  if (Device.isMobile()) {
+  if (Device.isMobile() || bottom === 0) {
     const uiControls = [
       '.mapboxgl-ctrl-attrib',
       '.map_control__scale',
