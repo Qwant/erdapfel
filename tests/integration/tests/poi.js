@@ -74,9 +74,9 @@ test('load a poi from url on mobile', async () => {
   await page.waitForSelector('.poi_panel__title');
   const { title, address, hours } = await page.evaluate(() => {
     return {
-      title: document.querySelector('.poi_panel__content__card .poi_panel__title').innerText,
-      address: document.querySelector('.poi_panel__content__card .poi_panel__address').innerText,
-      hours: document.querySelector('.poi_panel__content__card .openingHour').innerText,
+      title: document.querySelector('.poi_card .poi_panel__title').innerText,
+      address: document.querySelector('.poi_card .poi_panel__address').innerText,
+      hours: document.querySelector('.poi_card .openingHour').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
@@ -263,7 +263,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   let poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
   await page.click('.poi_panel__actions .poi_panel__actions__icon__store');
-  await page.click('.poi_panel__header .poi_panel__close');
+  await page.click('.poi_panel .panel-close');
   // we check that the first favorite item is our poi
   await toggleFavoritePanel(page);
   let fav = await getFavorites(page);
@@ -278,7 +278,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(poiPanel).not.toBeFalsy();
 
   await page.click('.poi_panel__actions .poi_panel__actions__icon__store');
-  await page.click('.poi_panel__header .poi_panel__close');
+  await page.click('.poi_panel .panel-close');
   // it should disappear from the favorites
   await toggleFavoritePanel(page);
   fav = await getFavorites(page);

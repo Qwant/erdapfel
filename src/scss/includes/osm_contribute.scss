@@ -4,6 +4,7 @@
   width: 100%;
   border: solid 1px $separator_color;
   @include card_radius();
+  margin-bottom: 12px;
 }
 
 .osm_contribute__logo {

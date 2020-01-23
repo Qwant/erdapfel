@@ -2,21 +2,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Telemetry from '../libs/telemetry';
+import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
-import layouts from './layouts.js';
-import ActionButtons from 'src/panel/poi/ActionButtons';
-import PoiHeader from 'src/panel/poi/PoiHeader';
-import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
-import OpeningHour from 'src/components/OpeningHour';
+import layouts from 'src/panel/layouts.js';
+import PoiCard from './PoiCard';
+import ActionButtons from './ActionButtons';
+import PoiHeader from './PoiHeader';
+import PoiTitleImage from './PoiTitleImage';
+import PoiBlockContainer from './PoiBlockContainer';
+import Panel from 'src/components/ui/Panel';
 import OsmContribution from 'src/components/OsmContribution';
-import PoiBlockContainer from './poi_bloc/PoiBlockContainer';
 import CategoryList from 'src/components/CategoryList';
 import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
-import SearchInput from '../ui_components/search_input';
+import SearchInput from 'src/ui_components/search_input';
+import Device from 'src/libs/device';
 
 export default class PoiPanel extends React.Component {
   static propTypes = {
@@ -36,25 +38,21 @@ export default class PoiPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      card: true,
+      showDetails: false,
       fullPoi: null,
     };
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
-
-    this.cardRef = React.createRef();
   }
 
   componentDidMount() {
     this.loadPoi();
-    this.moveMobileMapUI();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.poiId !== prevProps.poiId) {
       this.loadPoi();
     }
-    this.moveMobileMapUI();
   }
 
   componentWillUnmount() {
@@ -105,24 +103,12 @@ export default class PoiPanel extends React.Component {
     });
   }
 
-  moveMobileMapUI = () => {
-    if (!this.state.card) {
-      return;
-    }
-    window.execOnMapLoaded(() => {
-      fire(
-        'move_mobile_bottom_ui',
-        this.cardRef.current.offsetHeight + 10
-      );
-    });
-  }
-
   backToFavorite = () => {
     Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
     window.app.navigateTo('/favs');
   }
 
-  showDetail = () => {
+  showDetails = () => {
     const poi = this.getBestPoi();
     Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
       Telemetry.buildInteractionData({
@@ -133,7 +119,7 @@ export default class PoiPanel extends React.Component {
         element: 'more',
       })
     );
-    this.setState({ card: false });
+    this.setState({ showDetails: true });
   }
 
   getBestPoi() {
@@ -160,10 +146,6 @@ export default class PoiPanel extends React.Component {
     window.app.navigateTo('/');
   }
 
-  openCategory = category => {
-    window.app.navigateTo(`/places/?type=${category.name}`);
-  }
-
   backToList = () => {
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
@@ -171,23 +153,26 @@ export default class PoiPanel extends React.Component {
   }
 
   backToSmall = () => {
-    this.setState({ card: true });
+    this.setState({ showDetails: false });
   }
 
   render() {
-    const { isFromCategory, isFromFavorite } = this.props;
-
     const poi = this.getBestPoi();
     if (!poi) {
       // @TODO: we could implement a loading indicator instead
       return null;
     }
 
-    const pagesjaunes = isFromPagesJaunes(poi) ?
-      <img className="poi_panel__back_to_list_logo"
-        src="./statics/images/pagesjaunes.svg"
-        alt="PagesJaunes" />
-      : null;
+    if (Device.isMobile() && !this.state.showDetails) {
+      return <PoiCard
+        poi={poi}
+        closeAction={this.closeAction}
+        openDirection={this.isDirectionActive && this.openDirection}
+        showDetails={this.showDetails}
+      />;
+    }
+
+    const { isFromCategory, isFromFavorite } = this.props;
 
     let backAction = null;
     if (isFromFavorite) {
@@ -202,94 +187,59 @@ export default class PoiPanel extends React.Component {
         text: _('Back to list'),
         className: 'poi_panel__back_to_list',
       };
-    } else if (!this.state.card) {
+    } else {
       backAction = {
         callback: this.backToSmall,
         text: _('Back'),
         className: 'poi_panel__back_mobile',
       };
     }
-    return <div>
-      <div className={classnames('poi_panel__header', {
-        'poi_header_card': this.state.card,
-        'poi_header_back_to_list': isFromFavorite || isFromCategory,
-      })}
-      >
-        {backAction &&
-          <div className={backAction.className} onClick={backAction.callback}>
-            <i className="poi_panel__back icon-arrow-left" />
-            <span className="poi_panel__back_text">{backAction.text}</span>
-            {pagesjaunes}
-          </div>
-        }
-        {!backAction && pagesjaunes &&
-          <div className="poi_panel__pj_logo_container">{pagesjaunes}</div>
-        }
-        <div className="poi_panel__close" onClick={this.closeAction}>
-          <i className="icon-x" />
+
+    const header = <div className="poi_panel__header">
+      {backAction &&
+        <div className={backAction.className} onClick={backAction.callback}>
+          <i className="poi_panel__back icon-arrow-left" />
+          <span className="poi_panel__back_text">{backAction.text}</span>
         </div>
-      </div>
-      <div
-        className={classnames('poi_panel', { 'poi_panel--card': this.state.card })}
-        ref={this.cardRef}
-      >
-        <div className="poi_panel__content__card">
-          { isFromCategory &&
-            <div className="poi_panel__close" onClick={this.backToList}>
-              <i className="icon-x" />
-            </div>
-          }
-          <div className="poi_panel__description_container">
-            <div>
-              <PoiHeader poi={poi} />
-              <OpeningHour poi={poi} />
-            </div>
-            <PoiTitleImage poi={poi} iconOnly={true} />
-          </div>
-          <div className="poi_panel__content__card__action__container">
-            { this.isDirectionActive &&
-              <button
-                className={
-                  'poi_panel__content__card__action poi_panel__content__card__action__direction'
-                }
-                onClick={this.openDirection}
-              >
-                <span className="icon-corner-up-right" />{' '}
-                { _('DIRECTIONS', 'poi panel') }
-              </button>
-            }
-            <button className="poi_panel__content__card__action" onClick={this.showDetail}>
-              <span className="icon-chevrons-right" />{' '}
-              { _('SEE MORE', 'poi panel') }
-            </button>
-          </div>
-        </div>
-        <div className="poi_panel__content">
-          <div className="poi_panel__container">
-            <div className="poi_panel__description_container" onClick={this.center}>
-              <PoiHeader poi={poi} />
-              <PoiTitleImage poi={poi} iconOnly={false} />
-            </div>
-            <ActionButtons
-              poi={poi}
-              isFromCategory={isFromCategory}
-              isFromFavorite={isFromFavorite}
-              isDirectionActive={this.isDirectionActive}
-              openDirection={this.openDirection}
-              openShare={this.openShare}
-              isMasqEnabled={this.isMasqEnabled}
-            />
-            <PoiBlockContainer poi={poi} />
-            {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
-              <h3 className="service_panel__categories_title">
-                <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
-              </h3>
-              <CategoryList />
-            </div>}
-            {isFromOSM(poi) && <OsmContribution poi={poi} />}
-          </div>
-        </div>
-      </div>
+      }
+      {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
+        src="./statics/images/pagesjaunes.svg"
+        alt="PagesJaunes" />
+      }
     </div>;
+
+    return <Panel
+      title={header}
+      close={this.closeAction}
+      className={classnames('poi_panel', {
+        'poi_panel--empty-header': !isFromPagesJaunes(poi) && !isFromFavorite && !isFromCategory,
+      } )}
+      initialSize="maximized"
+      white
+    >
+      <div className="poi_panel__content">
+        <div className="poi_panel__description_container" onClick={this.center}>
+          <PoiHeader poi={poi} />
+          <PoiTitleImage poi={poi} iconOnly={false} />
+        </div>
+        <ActionButtons
+          poi={poi}
+          isFromCategory={isFromCategory}
+          isFromFavorite={isFromFavorite}
+          isDirectionActive={this.isDirectionActive}
+          openDirection={this.openDirection}
+          openShare={this.openShare}
+          isMasqEnabled={this.isMasqEnabled}
+        />
+        <PoiBlockContainer poi={poi} />
+        {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
+          <h3 className="service_panel__categories_title">
+            <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
+          </h3>
+          <CategoryList />
+        </div>}
+        {isFromOSM(poi) && <OsmContribution poi={poi} />}
+      </div>
+    </Panel>;
   }
 }

@@ -2,9 +2,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import AccessibilityBlock from '../../views/poi_bloc/Accessibility';
-import BreweryBlock from '../../views/poi_bloc/Brewery';
-import InternetAccessBlock from '../../views/poi_bloc/InternetAccess';
+import AccessibilityBlock from './Accessibility';
+import BreweryBlock from './Brewery';
+import InternetAccessBlock from './InternetAccess';
 
 export default class Services extends React.Component {
   static propTypes = {

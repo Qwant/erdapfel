@@ -14,8 +14,10 @@ export default class Panel extends React.Component {
     title: PropTypes.node,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
+    initialSize: PropTypes.string,
     close: PropTypes.func,
     className: PropTypes.string,
+    white: PropTypes.bool,
   }
 
   constructor(props) {
@@ -23,7 +25,7 @@ export default class Panel extends React.Component {
     this.moveCallback = e => this.move(e);
     this.state = {
       isTransitioning: false,
-      size: null,
+      size: props.initialSize,
       currentHeight: null,
     };
   }
@@ -122,7 +124,7 @@ export default class Panel extends React.Component {
   }
 
   render() {
-    const { children, title, minimizedTitle, resizable, close, className } = this.props;
+    const { children, title, minimizedTitle, resizable, close, className, white } = this.props;
     const { size, isTransitioning, currentHeight } = this.state;
 
     const resizeHandlers = resizable ? {
@@ -133,7 +135,10 @@ export default class Panel extends React.Component {
     } : {};
 
     return <div
-      className={classnames('panel', size, className, { 'smooth-resize': isTransitioning })}
+      className={classnames('panel', size, className, {
+        'smooth-resize': isTransitioning,
+        'panel--white': white,
+      })}
       style={{ height: currentHeight && `${currentHeight}px` }}
       ref={panel => this.panelDOMElement = panel}
     >

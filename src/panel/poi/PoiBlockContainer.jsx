@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HourBlock from '../../views/poi_bloc/Hour';
-import ContactBlock from '../../views/poi_bloc/Contact';
-import ImagesBlock from '../../views/poi_bloc/Images';
-import WebsiteBlock from '../../views/poi_bloc/Website';
-import InformationBlock from '../../views/poi_bloc/Information';
+import HourBlock from './blocks/Hour';
+import ContactBlock from './blocks/Contact';
+import ImagesBlock from './blocks/Images';
+import WebsiteBlock from './blocks/Website';
+import InformationBlock from './blocks/Information';
 
 export default class PoiBlockContainer extends React.Component {
   static propTypes = {
