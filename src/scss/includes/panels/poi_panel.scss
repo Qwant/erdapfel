@@ -499,6 +499,10 @@ $HEADER_SIZE: 40px;
 }
 
 @media (max-width: 640px) {
+  .poi_panel .panel-header {
+    margin-bottom: 0;
+  }
+
   .poi_panel__header {
     margin-left: 0;
   }
