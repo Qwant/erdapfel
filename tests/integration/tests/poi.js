@@ -30,7 +30,7 @@ beforeEach(async () => {
 test('click on a poi', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
-  await selectPoiLevel(page, 1);
+  await clickPoi(page);
   const poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
   const translatedSubClass = await getText(page, '.poi_panel__description');
@@ -96,7 +96,7 @@ test('load a poi already in my favorite from url', async () => {
 test('update url after a poi click', async () => {
   expect.assertions(1);
   await page.goto(APP_URL);
-  await selectPoiLevel(page, 1);
+  await clickPoi(page);
   const location = await page.evaluate(() => {
     return document.location.href;
   });
@@ -214,7 +214,7 @@ test('Test 24/7', async () => {
   responseHandler.addPreparedResponse(poi, /pois\/24_7/);
 
   await page.goto(APP_URL);
-  await selectPoiLevel(page, 1);
+  await clickPoi(page);
   await page.waitForSelector('.poi_panel__title');
 
   const hours = await page.evaluate(() => {
@@ -232,7 +232,7 @@ test('check invalid Poi URL redirects to base URL', async () => {
   expect(pathname).toEqual('/maps/');
 });
 
-async function selectPoiLevel(page, level) {
+async function clickPoi(page) {
   const mapPoiMock = {
     properties: {
       global_id: poiMock.id,
@@ -240,16 +240,9 @@ async function selectPoiLevel(page, level) {
     },
     geometry: poiMock.geometry,
   };
-  await page.evaluate((level, poi) => {
-    window.MAP_MOCK.evented.prepare(
-      'click',
-      `poi-level-${level}`,
-      {
-        originalEvent: { clientX: 1000 },
-        features: [ poi ],
-      },
-    );
-  }, level, mapPoiMock);
+  await page.evaluate(clickedFeature => {
+    window.map.clickOnMap({}, clickedFeature);
+  }, mapPoiMock);
   const mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox());
   // Click on the top-left corner
   await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);
@@ -259,7 +252,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   await page.goto(APP_URL);
 
   // we select a poi and 'star' it
-  await selectPoiLevel(page, 1);
+  await clickPoi(page);
   let poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
   await page.click('.poi_panel__actions .poi_panel__actions__icon__store');
