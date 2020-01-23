@@ -18,7 +18,7 @@ import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import SearchInput from 'src/ui_components/search_input';
-import Device from 'src/libs/device';
+import { DeviceContext } from 'src/libs/device';
 
 export default class PoiPanel extends React.Component {
   static propTypes = {
@@ -156,22 +156,7 @@ export default class PoiPanel extends React.Component {
     this.setState({ showDetails: false });
   }
 
-  render() {
-    const poi = this.getBestPoi();
-    if (!poi) {
-      // @TODO: we could implement a loading indicator instead
-      return null;
-    }
-
-    if (Device.isMobile() && !this.state.showDetails) {
-      return <PoiCard
-        poi={poi}
-        closeAction={this.closeAction}
-        openDirection={this.isDirectionActive && this.openDirection}
-        showDetails={this.showDetails}
-      />;
-    }
-
+  renderFull = poi => {
     const { isFromCategory, isFromFavorite } = this.props;
 
     let backAction = null;
@@ -241,5 +226,27 @@ export default class PoiPanel extends React.Component {
         {isFromOSM(poi) && <OsmContribution poi={poi} />}
       </div>
     </Panel>;
+  }
+
+  render() {
+    const poi = this.getBestPoi();
+    if (!poi) {
+      // @TODO: we could implement a loading indicator instead
+      return null;
+    }
+
+    return <DeviceContext.Consumer>
+      {isMobile => {
+        if (isMobile && !this.state.showDetails) {
+          return <PoiCard
+            poi={poi}
+            closeAction={this.closeAction}
+            openDirection={this.isDirectionActive && this.openDirection}
+            showDetails={this.showDetails}
+          />;
+        }
+        return this.renderFull(poi);
+      }}
+    </DeviceContext.Consumer>;
   }
 }
