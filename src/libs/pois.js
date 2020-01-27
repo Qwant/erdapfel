@@ -1,4 +1,3 @@
-
 import { version, sources } from 'config/constants.yml';
 import ExtendedString from 'src/libs/string';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
