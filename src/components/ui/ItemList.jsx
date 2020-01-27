@@ -6,8 +6,8 @@ const Item = ({ children, className = '', ...rest }) =>
     {children}
   </div>;
 
-const ItemList = ({ children, className = '' }) =>
-  <div className={classnames('itemList', className)}>
+const ItemList = ({ children, hover, className = '' }) =>
+  <div className={classnames('itemList', { 'itemList--hover': hover }, className)}>
     {children}
   </div>;
 
