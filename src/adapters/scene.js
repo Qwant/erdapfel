@@ -195,69 +195,27 @@ Scene.prototype.restoreLocation = function() {
   }
 };
 
-Scene.prototype.isPointInBounds = function(point, bounds) {
-  const lng = (point.lng - bounds._ne.lng) * (point.lng - bounds._sw.lng) < 0;
-  const lat = (point.lat - bounds._ne.lat) * (point.lat - bounds._sw.lat) < 0;
-  return lng && lat;
-};
+const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
 Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
-
-  // Get viewport bounds
   const viewport = this.mb.getBounds();
 
-  // Compute "width", "height"
-  const width = viewport._ne.lng - viewport._sw.lng;
-  const height = viewport._ne.lat - viewport._sw.lat;
+  const width = viewport.getEast() - viewport.getWest();
+  const height = viewport.getNorth() - viewport.getSouth();
 
-  // Compute extended viewport
-  viewport._ne.lng += width;
-  viewport._ne.lat += height;
+  // Compute extended viewport, with lats between -85 and 85
+  viewport.setNorthEast(new LngLat(
+    viewport.getEast() + width,
+    clamp(-85, 85, viewport.getNorth() + height)).wrap());
+  viewport.setSouthWest(new LngLat(
+    viewport.getWest() - width,
+    clamp(-85, 85, viewport.getSouth() - height)).wrap());
 
-  viewport._sw.lng -= width;
-  viewport._sw.lat -= height;
-
-  // Check bounds:
-
-  // Lng between -180 and 180 (wraps: 180 + 1 = -179)
-  if (viewport._ne.lng < -180) {
-    viewport._ne.lng += 360;
-  } else if (viewport._ne.lng > 180) {
-    viewport._ne.lng -= 360;
-  }
-
-  if (viewport._sw.lng < -180) {
-    viewport._sw.lng += 360;
-  } else if (viewport._sw.lng > 180) {
-    viewport._sw.lng -= 360;
-  }
-
-  // Lat between -85 and 85 (does not wrap)
-  if (viewport._ne.lat < -85) {
-    viewport._ne.lat = -85;
-  } else if (viewport._ne.lat > 85) {
-    viewport._ne.lat = 85;
-  }
-
-  if (viewport._sw.lat < -85) {
-    viewport._sw.lat = -85;
-  } else if (viewport._sw.lat > 85) {
-    viewport._sw.lat = 85;
-  }
-
-
-  // Check if one corner of the BBox is in the extended viewport:
-
-  if (
-    this.isPointInBounds(bbox._ne, viewport) // ne
-      || this.isPointInBounds({ lng: bbox._sw.lng, lat: bbox._ne.lat }, viewport) // nw
-      || this.isPointInBounds({ lng: bbox._ne.lng, lat: bbox._sw.lat }, viewport) // se
-      || this.isPointInBounds(bbox._sw, viewport) // sw
-  ) {
-    return true;
-  }
-
-  return false;
+  // Check if the bbox overlaps the viewport
+  return viewport.contains(bbox.getNorthWest())
+      || viewport.contains(bbox.getNorthEast())
+      || viewport.contains(bbox.getSouthEast())
+      || viewport.contains(bbox.getSouthWest());
 };
 
 Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, bottom: 0 }) {
