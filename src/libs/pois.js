@@ -14,11 +14,12 @@ export function toUrl(poi) {
 }
 
 export function toAbsoluteUrl(poi) {
+  console.log(poi);
   const { protocol, host } = window.location;
   const baseUrl = window.baseUrl;
   const lat = poi.latLon.lat.toFixed(7);
   const lon = poi.latLon.lng.toFixed(7);
-  const mapHash = `#map=${getBestZoom(poi.zoom)}/${lat}/${lon}`;
+  const mapHash = `#map=${getBestZoom(poi)}/${lat}/${lon}`;
   return `${protocol}//${host}${baseUrl}place/${toUrl(poi)}/${mapHash}`;
 }
 
@@ -66,5 +67,6 @@ const ZOOM_BY_POI_TYPES = {
 const DEFAULT_ZOOM = 16;
 
 export function getBestZoom(poi) {
+  console.log(poi);
   return ZOOM_BY_POI_TYPES[poi.type] || DEFAULT_ZOOM;
 }
