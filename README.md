@@ -47,6 +47,8 @@ Then you can build and run Erdapfel with the following commands:
 > npm start
 ```
 
+(see also: [Windows setup guide](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/windows.md)
+
 ### Run with docker
 
 Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img.shields.io/docker/pulls/qwantresearch/erdapfel.svg)](https://hub.docker.com/r/qwantresearch/erdapfel/)
