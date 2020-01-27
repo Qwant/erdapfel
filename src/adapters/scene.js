@@ -180,7 +180,7 @@ Scene.prototype.clickOnMap = function(lngLat, clickedFeature) {
   if (document.querySelector('.directions-open')) {
     fire('set_direction_point', poi);
   } else {
-    window.app.navigateTo(`/place/${toUrl(poi)}`, {poi});
+    window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
   }
 };
 
@@ -238,7 +238,6 @@ Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, 
 
 
 Scene.prototype.fitMap = function(item, padding) {
-  console.log(item);
   // BBox
   if (item._ne && item._sw) {
     this.fitBbox(item, padding);
@@ -269,7 +268,6 @@ Scene.prototype.fitMap = function(item, padding) {
 };
 
 Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
-  console.log(poi);
   if (poi.bbox) {
     this.fitBbox(poi.bbox, options.layout);
     return;
