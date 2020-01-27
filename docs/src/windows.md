@@ -41,27 +41,14 @@ pip install pipenv
 ```
 
 - Then enter the [commands](#commands) below to build and run Erdapfel
+- You'll be able to browse your local Qwant Maps instance on [http://localhost:3000](http://localhost:3000)
 
-<!--
+## Windows 7 / 8
 
-## Windows 7 / 8 (obsolete)
-
-- Install [VirtualBox](https://www.virtualbox.org/)
-- Mount [this xubuntu image](http://cdimages.ubuntu.com/xubuntu/releases/18.04/release/xubuntu-18.04.1-desktop-amd64.iso)
-- Allocate at least 2 CPU, 4GB of RAM and 20GB of HDD and material acceleration to the VM
-- In settings > Network, choose Bridge Adapter
-- Inside the VM, open a terminal
-- Clone erdapfel in the folder of your choice (ex: "/home/{username}/www/"): 
-```
-sudo apt install git
-git clone https://github.com/QwantResearch/erdapfel.git
-```
-- Enter the [commands](#commands) below to build and run Erdapfel
-- Retrieve your IP with ```ifconfig``` (just after "inet ...")
-<br>Your local instance of Erdapfel will be visible at **http://localhost:3000** in the VM or **http://{ip}:3000** outside of the VM
-
--->
-
+These versions on Windows are not recommended, as they don't include a Linux subsystem.
+<br>Linux is necessary to build certain resources used by the map, like WebGL fonts.
+<br>If you *really* need to build Erdapfel on these OS, you'll need to use a Linux virtual machine (for example: [VirtualBox](https://www.virtualbox.org/) + [xubuntu](http://cdimages.ubuntu.com/xubuntu/releases/18.04/release/xubuntu-18.04.1-desktop-amd64.iso) + bridge connection)
+<br>Run the [commands](#commands) below inside the VM, then get the VM's IP with `ifconfig`, and you'll be able to browse your local Qwant Maps instance on [http://{ip}:3000](http://IP:3000)
 
 # Commands
 
