@@ -72,8 +72,7 @@ Scene.prototype.initMapBox = function() {
 
   this.popup.init(this.mb);
 
-
-  window.map = { mb: this.mb };
+  window.map = this;
 
   const interactiveLayers = [
     'poi-level-1',
@@ -107,28 +106,12 @@ Scene.prototype.initMapBox = function() {
         this.mb.getCanvas().style.cursor = '';
       });
 
-      this.mb.on('click', interactiveLayer, async e => {
-        e._interactiveClick = true;
-        if (e.features && e.features.length > 0) {
-          const mapPoi = new MapPoi(e.features[0]);
-          window.app.navigateTo(`/place/${toUrl(mapPoi)}`, { poi: mapPoi });
-        }
-      });
-
       this.popup.addListener(interactiveLayer);
     });
 
     this.mb.on('click', e => {
-      if (!e._interactiveClick && Device.isMobile()
-          && !document.querySelector('.directions-open')) {
-        window.app.navigateTo('/');
-      }
-      // Disable POI anywhere feature on mobile until we opt for an adapted UX
-      if (Device.isMobile() || e._interactiveClick || this.routeDisplayed) {
-        return;
-      }
-      const poi = new LatLonPoi(e.lngLat);
-      window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
+      const pois = this.mb.queryRenderedFeatures(e.point, { layers: interactiveLayers });
+      this.clickOnMap(e.lngLat, pois[0]);
     });
 
     this.mb.on('moveend', () => {
@@ -174,6 +157,25 @@ Scene.prototype.initMapBox = function() {
   listen('move_mobile_bottom_ui', bottom => {
     this.moveMobileBottomUI(bottom);
   });
+};
+
+Scene.prototype.clickOnMap = function(lngLat, clickedFeature) {
+  // Disable POI anywhere feature on mobile until we opt for an adapted UX
+  if (Device.isMobile() && !clickedFeature) {
+    if (document.querySelector('.directions-open')) {
+      return;
+    }
+    window.app.navigateTo('/');
+    return;
+  }
+
+  if (this.routeDisplayed && !clickedFeature) {
+    return;
+  }
+
+  const poi = clickedFeature ? new MapPoi(clickedFeature) : new LatLonPoi(lngLat);
+
+  window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
 };
 
 Scene.prototype.saveLocation = function() {
