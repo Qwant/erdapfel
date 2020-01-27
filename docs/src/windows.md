@@ -48,7 +48,7 @@ pip install pipenv
 These versions on Windows are not recommended, as they don't include a Linux subsystem.
 <br>Linux is necessary to build certain resources used by the map, like WebGL fonts.
 <br>If you *really* need to build Erdapfel on these OS, you'll need to use a Linux virtual machine (for example: [VirtualBox](https://www.virtualbox.org/) + [xubuntu](http://cdimages.ubuntu.com/xubuntu/releases/18.04/release/xubuntu-18.04.1-desktop-amd64.iso) + bridge connection)
-<br>Run the [commands](#commands) below inside the VM, then get the VM's IP with `ifconfig`, and you'll be able to browse your local Qwant Maps instance on [http://{ip}:3000](http://IP:3000)
+<br>Run the [commands](#commands) below inside the VM, then get the VM's IP with `ifconfig`, and you'll be able to browse your local Qwant Maps instance on [http://IP:3000](http://IP:3000)
 
 # Commands
 
