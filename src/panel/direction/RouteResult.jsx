@@ -5,6 +5,7 @@ import Route from './Route';
 import { getVehicleIcon, getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import classnames from 'classnames';
+import { Item, ItemList } from 'src/components/ui/ItemList';
 
 export default class RouteResult extends React.Component {
   static propTypes = {
@@ -109,20 +110,23 @@ export default class RouteResult extends React.Component {
       <div className={classnames('itinerary_result', {
         'itinerary_result--publicTransport': this.props.vehicle === 'publicTransport',
       })}>
-        {this.props.routes.map((route, index) => <Route
-          key={index}
-          id={index}
-          route={route}
-          origin={this.props.origin}
-          destination={this.props.destination}
-          vehicle={this.props.vehicle}
-          isActive={this.state.activeRouteId === index}
-          showDetails={this.state.activeRouteId === index && this.state.activeDetails}
-          openDetails={this.openRouteDetails}
-          openPreview={this.openPreview}
-          selectRoute={this.selectRoute}
-          hoverRoute={this.hoverRoute}
-        />)}
+        <ItemList>
+          {this.props.routes.map((route, index) => <Item key={index}>
+            <Route
+              id={index}
+              route={route}
+              origin={this.props.origin}
+              destination={this.props.destination}
+              vehicle={this.props.vehicle}
+              isActive={this.state.activeRouteId === index}
+              showDetails={this.state.activeRouteId === index && this.state.activeDetails}
+              openDetails={this.openRouteDetails}
+              openPreview={this.openPreview}
+              selectRoute={this.selectRoute}
+              hoverRoute={this.hoverRoute}
+            />
+          </Item>)}
+        </ItemList>
       </div>
       {this.props.vehicle === 'publicTransport' && this.props.routes.length > 0 &&
       <div className="itinerary_source">
