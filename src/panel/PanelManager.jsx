@@ -10,6 +10,7 @@ import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import classnames from 'classnames';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
+import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -27,6 +28,7 @@ export default class PanelManager extends React.Component {
       isMinified: false,
       ActivePanel: ServicePanel,
       options: {},
+      isMobile: isMobileDevice(),
     };
   }
 
@@ -36,6 +38,11 @@ export default class PanelManager extends React.Component {
     if (performanceEnabled) {
       window.times.appRendered = Date.now();
     }
+    mobileDeviceMediaQuery.addListener(this.deviceChanged);
+  }
+
+  componentWillUnmount() {
+    mobileDeviceMediaQuery.removeListener(this.deviceChanged);
   }
 
   componentDidUpdate(_prevProps, prevState) {
@@ -55,6 +62,13 @@ export default class PanelManager extends React.Component {
           this.setState({ isMinified: false });
         }
       }
+    }
+  }
+
+  deviceChanged = ({ matches: isMobile }) => {
+    this.setState({ isMobile });
+    if (!isMobile) {
+      window.execOnMapLoaded(() => { fire('move_mobile_bottom_ui', 0); });
     }
   }
 
@@ -159,12 +173,14 @@ export default class PanelManager extends React.Component {
   }
 
   render() {
-    const { ActivePanel, options, isMinified } = this.state;
+    const { ActivePanel, options, isMinified, isMobile } = this.state;
 
-    return <div className={classnames('panel_container',
-      { 'panel_container--hidden': isMinified }
-    )}>
-      <ActivePanel {...options} />
-    </div>;
+    return <DeviceContext.Provider value={isMobile}>
+      <div className={classnames('panel_container',
+        { 'panel_container--hidden': isMinified }
+      )}>
+        <ActivePanel {...options} />
+      </div>
+    </DeviceContext.Provider>;
   }
 }

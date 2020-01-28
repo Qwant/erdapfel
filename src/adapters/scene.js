@@ -13,7 +13,7 @@ import SceneEvent from './scene_event';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import SceneEasterEgg from './scene_easter_egg';
-import Device from '../libs/device';
+import { isMobileDevice } from 'src/libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
@@ -161,7 +161,7 @@ Scene.prototype.initMapBox = function() {
 
 Scene.prototype.clickOnMap = function(lngLat, clickedFeature) {
   // Disable POI anywhere feature on mobile until we opt for an adapted UX
-  if (Device.isMobile() && !clickedFeature) {
+  if (isMobileDevice() && !clickedFeature) {
     if (document.querySelector('.directions-open')) {
       return;
     }
@@ -274,7 +274,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
       return;
     }
   }
-  const offset = Device.isMobile()
+  const offset = isMobileDevice()
     ? [0, 0]
     : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0];
   this.mb.flyTo({
@@ -350,7 +350,7 @@ Scene.prototype.translateUIControl = function(selector, bottom) {
 };
 
 Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
-  if (Device.isMobile()) {
+  if (isMobileDevice() || bottom === 0) {
     const uiControls = [
       '.mapboxgl-ctrl-attrib',
       '.map_control__scale',
