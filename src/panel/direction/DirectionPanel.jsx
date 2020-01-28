@@ -198,7 +198,7 @@ export default class DirectionPanel extends React.Component {
     }
 
     // Update state
-    // If both fields are now set, call update() to redraw the UI and perform a search
+    // If both fields are now set, call update() to perform a search and redraw the UI
     this.setState({
       origin: persistentPointState.origin,
       destination: persistentPointState.destination,

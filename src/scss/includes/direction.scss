@@ -653,6 +653,7 @@ input:valid:focus + .itinerary__field__clear {
       padding-left: 20px;
       height: 60px;
       line-height: 60px;
+      box-shadow: 0 10px 0 10px #fff;
     }
   }
 
@@ -668,7 +669,7 @@ input:valid:focus + .itinerary__field__clear {
   }
   
   .itinerary_vehicles {
-    padding: 9px 0 6px;
+    padding: 12px 0 3px;
   }
 
   .itinerary_leg {

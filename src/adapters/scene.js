@@ -160,22 +160,11 @@ Scene.prototype.initMapBox = function() {
 };
 
 Scene.prototype.clickOnMap = function(lngLat, clickedFeature) {
-  // Disable POI anywhere feature on mobile until we opt for an adapted UX
-  if (isMobileDevice() && !clickedFeature) {
-    if (document.querySelector('.directions-open')) {
-      return;
-    }
-    window.app.navigateTo('/');
-    return;
-  }
 
-  if (this.routeDisplayed && !clickedFeature) {
-    return;
-  }
-
+  // Instantiate the place clicked as a PoI
   const poi = clickedFeature ? new MapPoi(clickedFeature) : new LatLonPoi(lngLat);
 
-  // If Direction panel is open, tell it to fill its fields with this PoI
+  // If Direction panel is open, tell it to fill its fields with this PoI, on PC and mobile
   // Else, open PoI panel
   if (document.querySelector('.directions-open')) {
     fire('set_direction_point', poi);
