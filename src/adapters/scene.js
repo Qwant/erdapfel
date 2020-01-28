@@ -161,6 +161,12 @@ Scene.prototype.initMapBox = function() {
 
 Scene.prototype.clickOnMap = function(lngLat, clickedFeature) {
 
+  // Ignore clicks anywhere on mobile if direction panel is not open
+  if (isMobileDevice() && !clickedFeature && !document.querySelector('.directions-open')) {
+    window.app.navigateTo('/');
+    return;
+  }
+
   // Instantiate the place clicked as a PoI
   const poi = clickedFeature ? new MapPoi(clickedFeature) : new LatLonPoi(lngLat);
 
