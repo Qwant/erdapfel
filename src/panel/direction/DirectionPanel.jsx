@@ -214,28 +214,21 @@ export default class DirectionPanel extends React.Component {
     />;
 
     return <DeviceContext.Consumer>
-      {isMobile => {
-        if (isMobile) {
-          return <div className="direction_panel_mobile">
-            <div className="itinerary_close_mobile" onClick={this.onClose}>
-              <span className="icon-chevron-left" />
-              {_('return', 'direction')}
-            </div>
-            {title}
-            {!activePreviewRoute && form}
-            {result}
-          </div>;
-        }
-
-        return <Panel
-          title={title}
-          close={this.onClose}
-          className="direction_panel"
-        >
+      {isMobile => isMobile
+        ? <div className="direction_panel_mobile">
+          <div className="itinerary_close_mobile" onClick={this.onClose}>
+            <span className="icon-chevron-left" />
+            {_('return', 'direction')}
+          </div>
+          {title}
+          {!activePreviewRoute && form}
+          {result}
+        </div>
+        : <Panel title={title} close={this.onClose} className="direction_panel">
           {form}
           {result}
-        </Panel>;
-      }}
+        </Panel>
+      }
     </DeviceContext.Consumer>;
   }
 }
