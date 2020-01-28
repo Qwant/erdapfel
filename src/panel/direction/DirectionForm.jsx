@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
-import Device from 'src/libs/device';
+import { DeviceContext } from 'src/libs/device';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {
@@ -53,36 +53,37 @@ export default class DirectionForm extends React.Component {
       origin, destination, isInitializing,
       vehicles, activeVehicle, onSelectVehicle,
     } = this.props;
-    const isMobile = Device.isMobile();
 
-    return <div className="itinerary_form">
-      <div className="itinerary_fields">
-        <form noValidate>
-          <DirectionInput
-            value={originInputText}
-            pointType="origin"
-            onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
-            claimFocus={!isMobile && !isInitializing && !originInputText && !destination}
-          />
-          <div className="itinerary__form__separator" />
-          <DirectionInput
-            value={destinationInputText}
-            pointType="destination"
-            onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
-            claimFocus={!isMobile && !isInitializing && origin && !destinationInputText}
-          />
-          <div
-            className="itinerary_invert_origin_destination icon-reverse"
-            onClick={this.onReverse}
-            title={_('Invert start and end', 'direction')}
-          />
-        </form>
-      </div>
-      <VehicleSelector
-        vehicles={vehicles}
-        activeVehicle={activeVehicle}
-        onSelectVehicle={onSelectVehicle}
-      />
-    </div>;
+    return <DeviceContext.Consumer>
+      {isMobile => <div className="itinerary_form">
+        <div className="itinerary_fields">
+          <form noValidate>
+            <DirectionInput
+              value={originInputText}
+              pointType="origin"
+              onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
+              claimFocus={!isMobile && !isInitializing && !originInputText && !destination}
+            />
+            <div className="itinerary__form__separator" />
+            <DirectionInput
+              value={destinationInputText}
+              pointType="destination"
+              onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
+              claimFocus={!isMobile && !isInitializing && origin && !destinationInputText}
+            />
+            <div
+              className="itinerary_invert_origin_destination icon-reverse"
+              onClick={this.onReverse}
+              title={_('Invert start and end', 'direction')}
+            />
+          </form>
+        </div>
+        <VehicleSelector
+          vehicles={vehicles}
+          activeVehicle={activeVehicle}
+          onSelectVehicle={onSelectVehicle}
+        />
+      </div>}
+    </DeviceContext.Consumer>;
   }
 }
