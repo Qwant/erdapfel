@@ -10,7 +10,7 @@ import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import classnames from 'classnames';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
-import Device, { DeviceContext } from '../libs/device';
+import { isMobileDevice, onDeviceSizeChange, DeviceContext } from 'src/libs/device';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionEnabled = nconf.get().direction.enabled;
@@ -28,7 +28,7 @@ export default class PanelManager extends React.Component {
       isMinified: false,
       ActivePanel: ServicePanel,
       options: {},
-      isMobile: Device.isMobile(),
+      isMobile: isMobileDevice(),
     };
   }
 
@@ -38,10 +38,9 @@ export default class PanelManager extends React.Component {
     if (performanceEnabled) {
       window.times.appRendered = Date.now();
     }
-    const mobileQuery = window.matchMedia('(max-width: 640px)');
-    mobileQuery.addListener(e => {
-      this.setState({ isMobile: e.matches });
-      if (!e.matches) {
+    onDeviceSizeChange(isMobile => {
+      this.setState({ isMobile });
+      if (!isMobile) {
         window.execOnMapLoaded(() => { fire('move_mobile_bottom_ui', 0); });
       }
     });

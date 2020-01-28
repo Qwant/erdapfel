@@ -2,7 +2,7 @@ import React from 'react';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import { Popup } from 'mapbox-gl--ENV';
 import ApiPoi from './poi/idunn_poi';
-import Device from '../libs/device';
+import { isMobileDevice } from 'src/libs/device';
 import ReactPoiPopup from 'src/components/PoiPopup';
 
 const WAIT_BEFORE_DISPLAY = 350;
@@ -16,7 +16,7 @@ PoiPopup.prototype.init = function(map) {
   this.activePoiId = null;
 
   listen('open_popup', (poi, e) => {
-    if (Device.isMobile() || isTouchEvent(e)) {
+    if (isMobileDevice() || isTouchEvent(e)) {
       return;
     }
     this.createPJPopup(poi, e);
@@ -28,7 +28,7 @@ PoiPopup.prototype.init = function(map) {
 
 PoiPopup.prototype.addListener = function(layer) {
   this.map.on('mouseenter', layer, e => {
-    if (Device.isMobile() || isTouchEvent(e)) {
+    if (isMobileDevice() || isTouchEvent(e)) {
       return;
     }
     this.timeOutHandler = setTimeout(() => {

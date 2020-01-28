@@ -5,7 +5,7 @@ import nconf from '@qwant/nconf-getter';
 import Telemetry from '../libs/telemetry';
 import Router from 'src/proxies/app_router';
 import { parseMapHash, joinPath, getCurrentUrl } from 'src/libs/url_utils';
-import Device from '../libs/device';
+import { isMobileDevice } from 'src/libs/device';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 
@@ -19,7 +19,7 @@ export default class App {
 
     Telemetry.add(Telemetry.APP_START, null, null, {
       'language': window.getLang(),
-      'is_mobile': Device.isMobile(),
+      'is_mobile': isMobileDevice(),
     });
     if (performanceEnabled) {
       listen('map_loaded', () => { window.times.mapLoaded = Date.now(); });

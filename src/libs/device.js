@@ -1,14 +1,15 @@
 import React from 'react';
 
-export const MOBILE_THRESHOLD = 640;
+const mediaQuery = window.matchMedia('(max-width: 640px)');
 
-export default class Device {
-  /**
-   * return if device is mobile according to the viewport width
-   */
-  static isMobile() {
-    return window.innerWidth < MOBILE_THRESHOLD;
-  }
+export function isMobileDevice() {
+  return mediaQuery.matches;
 }
 
-export const DeviceContext = React.createContext({ isMobile: Device.isMobile() });
+export function onDeviceSizeChange(callback /* isMobile => {…} */ ) {
+  return mediaQuery.addListener(mediaQueryEvent => {
+    callback(mediaQueryEvent.matches);
+  });
+}
+
+export const DeviceContext = React.createContext({ isMobile: isMobileDevice() });
