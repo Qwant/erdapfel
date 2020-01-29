@@ -1,4 +1,3 @@
-
 import { version, sources } from 'config/constants.yml';
 import ExtendedString from 'src/libs/string';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
@@ -18,7 +17,7 @@ export function toAbsoluteUrl(poi) {
   const baseUrl = window.baseUrl;
   const lat = poi.latLon.lat.toFixed(7);
   const lon = poi.latLon.lng.toFixed(7);
-  const mapHash = `#map=${getBestZoom(poi.zoom)}/${lat}/${lon}`;
+  const mapHash = `#map=${getBestZoom(poi)}/${lat}/${lon}`;
   return `${protocol}//${host}${baseUrl}place/${toUrl(poi)}/${mapHash}`;
 }
 
