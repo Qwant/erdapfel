@@ -10,6 +10,7 @@ import nconf from '@qwant/nconf-getter';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
+import Poi from 'src/adapters/poi/poi.js';
 
 // this outside state is used to restore origin/destination when returning to the panel after closing
 const persistentPointState = {
@@ -49,7 +50,8 @@ export default class DirectionPanel extends React.Component {
     this.state = {
       vehicle: activeVehicle,
       origin: persistentPointState.origin || null,
-      destination: props.poi || persistentPointState.destination || null,
+      destination:
+        (props.poi && Poi.deserialize(props.poi)) || persistentPointState.destination || null,
       isLoading: false,
       isDirty: true, // useful to track intermediary states, when API update call is not made yet
       error: false,
@@ -216,7 +218,6 @@ export default class DirectionPanel extends React.Component {
       routes, error, activePreviewRoute,
       isLoading, isDirty, isInitializing,
     } = this.state;
-
     const title = <h3 className="itinerary_title">{_('directions', 'direction')}</h3>;
     const form = <DirectionForm
       origin={origin}
