@@ -57,7 +57,7 @@
     "mapbox-gl": "^1.6.1",
     "mapbox-gl-js-mock": "https://github.com/QwantResearch/mapbox-gl-js-mock.git#7eaee7b",
     "masq-lib": "git+https://github.com/QwantResearch/masq-lib.git#v0.14.3",
-    "node-sass": "^4.9.2",
+    "node-sass": "^4.13.1",
     "po2json": "0.4.5",
     "postcss-import": "12.0.0",
     "postcss-loader": "2.0.9",
