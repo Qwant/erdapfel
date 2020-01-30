@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import NavigatorGeolocalisationPoi, { navigatorGeolocationStatus } from
   'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Suggest from 'src/adapters/suggest';
+import Error from 'src/adapters/error';
 
 export default class DirectionInput extends React.Component {
   static propTypes = {
