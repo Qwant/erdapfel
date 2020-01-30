@@ -2,8 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Route from './Route';
-import { getVehicleIcon, getAllSteps } from 'src/libs/route_utils';
-import MobileRoadMapPreview from './MobileRoadMapPreview';
+import { getVehicleIcon } from 'src/libs/route_utils';
 import classnames from 'classnames';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 
@@ -15,7 +14,6 @@ export default class RouteResult extends React.Component {
     vehicle: PropTypes.string,
     isLoading: PropTypes.bool,
     error: PropTypes.bool,
-    previewRoute: PropTypes.object,
     openMobilePreview: PropTypes.func.isRequired,
   }
 
@@ -81,29 +79,29 @@ export default class RouteResult extends React.Component {
 
     if (this.props.isLoading) {
       return <div className="itinerary_result">
-        <div className="itinerary_leg itinerary_leg--placeholder">
-          <div className="itinerary_leg_summary">
-            <div className={`itinerary_leg_icon ${getVehicleIcon(this.props.vehicle)}`} />
-            <div className="itinerary_leg_via">
-              <div className="itinerary_placeholder-box" style={{ width: '133px' }} />
-              <div className="itinerary_placeholder-box" style={{ width: '165px' }} />
-              <div className="itinerary_placeholder-box" style={{ width: '70px' }} />
-            </div>
-            <div className="itinerary_leg_info">
-              <div className="itinerary_leg_duration">
-                <div className="itinerary_placeholder-box" style={{ width: '47px' }} />
+        <ItemList>
+          <Item>
+            <div className="itinerary_leg itinerary_leg--placeholder">
+              <div className="itinerary_leg_summary">
+                <div className={`itinerary_leg_icon ${getVehicleIcon(this.props.vehicle)}`} />
+                <div className="itinerary_leg_via">
+                  <div className="itinerary_placeholder-box" style={{ width: '133px' }} />
+                  <div className="itinerary_placeholder-box" style={{ width: '165px' }} />
+                  <div className="itinerary_placeholder-box" style={{ width: '70px' }} />
+                </div>
+                <div className="itinerary_leg_info">
+                  <div className="itinerary_leg_duration">
+                    <div className="itinerary_placeholder-box" style={{ width: '47px' }} />
+                  </div>
+                  <div className="itinerary_leg_distance">
+                    <div className="itinerary_placeholder-box" style={{ width: '59px' }} />
+                  </div>
+                </div>
               </div>
-              <div className="itinerary_leg_distance">
-                <div className="itinerary_placeholder-box" style={{ width: '59px' }} />
-              </div>
             </div>
-          </div>
-        </div>
+          </Item>
+        </ItemList>
       </div>;
-    }
-
-    if (this.props.previewRoute) {
-      return <MobileRoadMapPreview steps={getAllSteps(this.props.previewRoute)} />;
     }
 
     return <div>

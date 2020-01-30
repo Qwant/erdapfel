@@ -57,10 +57,11 @@ export default class RouteSummary extends React.Component {
       <div className="itinerary_panel__item__share" onClick={this.onClickShare}>
         <i className="icon-share-2" />
       </div>
-      <div className="itinerary_leg_preview" onClick={this.onClickPreview}>
-        <span className="itinerary_leg_preview_icon icon-navigation" />
-        {_('PREVIEW', 'direction')}
-      </div>
+      {vehicle !== 'publicTransport' &&
+        <div className="itinerary_leg_preview" onClick={this.onClickPreview}>
+          <span className="itinerary_leg_preview_icon icon-navigation" />
+          {_('PREVIEW', 'direction')}
+        </div>}
     </div>;
   }
 }
