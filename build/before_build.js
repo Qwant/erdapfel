@@ -21,6 +21,6 @@ webfont({
   });
 
 fs.copySync(
-  path.join(__dirname, '../node_modules/klokantech-noto-sans/_output'),
+  path.join(__dirname, '../node_modules/qwant-maps-fonts/dist'),
   path.join(__dirname, '../public/mapstyle/font')
 );
