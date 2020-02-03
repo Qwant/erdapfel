@@ -128,6 +128,7 @@ export default class DirectionPanel extends React.Component {
       }
     } else {
       this.setState({ isDirty: false, routes: [] });
+      fire('clean_route');
     }
   }
 

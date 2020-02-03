@@ -85,12 +85,6 @@ Scene.prototype.initMapBox = function() {
   this.mb.on('load', () => {
     this.onHashChange();
     new SceneDirection(this.mb);
-    listen('set_route', () => {
-      this.routeDisplayed = true;
-    });
-    listen('clean_route', () => {
-      this.routeDisplayed = false;
-    });
     new SceneCategory(this.mb);
     new SceneEvent(this.mb);
 
