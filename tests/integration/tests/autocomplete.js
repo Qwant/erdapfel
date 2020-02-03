@@ -13,13 +13,18 @@ let autocompleteHelper;
 let responseHandler;
 const mockAutocomplete = require('../../__data__/autocomplete.json');
 const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type.json');
+const mockPoi = require('../../__data__/poi.json');
 
 beforeAll(async () => {
-  const browserPage = await initBrowser();
-  page = browserPage.page;
-  browser = browserPage.browser;
-  responseHandler = await ResponseHandler.init(page);
+  browser = (await initBrowser()).browser;
+});
+
+beforeEach(async () => {
+  page = await browser.newPage();
   autocompleteHelper = new AutocompleteHelper(page);
+  responseHandler = new ResponseHandler(page);
+  await responseHandler.prepareResponse();
+  responseHandler.addPreparedResponse(mockPoi, /places\/*/);
 });
 
 test('search and clear', async () => {
