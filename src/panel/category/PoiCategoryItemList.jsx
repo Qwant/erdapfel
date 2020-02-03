@@ -8,7 +8,7 @@ const PoiCategoryItems = ({
   highlightMarker,
   onShowPhoneNumber,
 }) =>
-  <ItemList className="category__panel__items">
+  <ItemList hover className="category__panel__items">
     {pois.map(poi => <Item key={poi.id}
       onClick={() => { selectPoi(poi); }}
       onMouseOver={() => { highlightMarker(poi, true); }}

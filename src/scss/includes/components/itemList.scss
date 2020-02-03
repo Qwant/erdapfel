@@ -1,11 +1,5 @@
 .itemList-item {
   background: $background;
-  border-left: 4px solid $background;
-
-  &:hover {
-    background: $surface;
-    border-left: 4px solid #FF3B4A;
-  }
 
   &:not(:last-child):after {
     display: block;
@@ -17,9 +11,19 @@
   }
 }
 
+.itemList--hover .itemList-item {
+  border-left: 4px solid $background;
+
+  &:hover {
+    background: $surface;
+    border-left: 4px solid #FF3B4A;
+  }
+}
+
 @media (max-width: 640px) {
   .itemList {
     padding-bottom: 12px;
+    margin: 0 15px;
   }
 
   .itemList-item {

@@ -1,5 +1,5 @@
 /* globals _ */
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import DirectionForm from './DirectionForm';
@@ -11,6 +11,8 @@ import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
+import { getAllSteps } from 'src/libs/route_utils';
+import MobileRoadMapPreview from './MobileRoadMapPreview';
 
 // this outside state is used to restore origin/destination when returning to the panel after closing
 const persistentPointState = {
@@ -238,21 +240,31 @@ export default class DirectionPanel extends React.Component {
       origin={origin && origin.getInputValue()}
       destination={destination && destination.getInputValue()}
       openMobilePreview={this.openMobilePreview}
-      previewRoute={activePreviewRoute}
     />;
 
     return <DeviceContext.Consumer>
       {isMobile => isMobile
-        ? <div className="direction_panel_mobile">
-          <div className="itinerary_close_mobile" onClick={this.onClose}>
-            <span className="icon-chevron-left" />
-            {_('return', 'direction')}
+        ? <Fragment>
+          <div className="direction_panel_mobile">
+            <div className="itinerary_close_mobile" onClick={this.onClose}>
+              <span className="icon-chevron-left" />
+              {_('return', 'direction')}
+            </div>
+            {title}
+            {!activePreviewRoute && form}
           </div>
-          {title}
-          {!activePreviewRoute && form}
-          {result}
-        </div>
-        : <Panel title={title} close={this.onClose} className="direction_panel">
+          {(routes.length > 0 || isLoading) && !activePreviewRoute &&
+            <Panel className="directionResult_panel">
+              {result}
+            </Panel>}
+          {activePreviewRoute &&
+            <MobileRoadMapPreview steps={getAllSteps(activePreviewRoute)} />}
+        </Fragment>
+        : <Panel
+          title={title}
+          close={this.onClose}
+          className="direction_panel"
+        >
           {form}
           {result}
         </Panel>

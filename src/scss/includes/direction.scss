@@ -202,7 +202,6 @@ input:valid:focus + .itinerary__field__clear {
 }
 
 .itinerary_result {
-  background: $background;
   overflow: auto;
   max-height: calc(100vh - 290px);
 
@@ -213,7 +212,6 @@ input:valid:focus + .itinerary__field__clear {
 
 .itinerary_leg {
   position: relative;
-  background: $background;
 
   &:not(:last-child):after {
     content: '';
@@ -672,23 +670,19 @@ input:valid:focus + .itinerary__field__clear {
     padding: 9px 0 6px;
   }
 
-  .itinerary_leg {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    width: calc(100vw - 20px);
-    border-radius: 3px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
-    display: none;
+  .panel.directionResult_panel {
+    height: auto;
 
-    &--active {
-      display: block;
+    .panel-header {
+      min-height: auto;
     }
   }
 
+  .itinerary_result .itemList-item {
+    overflow: hidden;
+  }
+
   .itinerary_leg_summary {
-    border-left: none !important;
-    pointer-events: none;
     display: grid;
     grid-template-areas: "info info actions" "via via actions";
   }
@@ -714,17 +708,20 @@ input:valid:focus + .itinerary__field__clear {
     margin-right: 6px;
   }
   
-  .itinerary_leg_preview {
-    pointer-events: all;
-    grid-area: actions;
-    justify-self: end;
-    display: block;
-    width: 110px;
-    height: 35px;
-    line-height: 35px;
-    border-radius: 50px;
-    border: 1px solid #c8cbd3;
-    font-weight: bold;
+  .itinerary_leg--active {
+    .itinerary_leg_preview {
+      pointer-events: all;
+      grid-area: actions;
+      justify-self: end;
+      display: block;
+      width: 110px;
+      height: 35px;
+      line-height: 35px;
+      border-radius: 50px;
+      border: 1px solid #c8cbd3;
+      font-weight: bold;
+      font-size: 12px;
+    }
   }
   
   .itinerary_leg_preview_icon {
@@ -746,6 +743,7 @@ input:valid:focus + .itinerary__field__clear {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     width: calc(100% - 30px);
     user-select: none;
+    z-index: 3;
 
     .itinerary_roadmap_item {
       border-left: 0;

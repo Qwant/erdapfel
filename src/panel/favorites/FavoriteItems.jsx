@@ -13,7 +13,7 @@ const FavoriteItems = ({ favorites = [], removeFavorite }) => {
     />;
   }
 
-  return <ItemList className="favorite_panel__items">
+  return <ItemList hover className="favorite_panel__items">
     {favorites.map(favorite => <Item key={favorite.id}>
       <FavoritePoi poi={favorite} removeFavorite={removeFavorite} />
     </Item>)}
