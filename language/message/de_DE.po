@@ -1,5 +1,4 @@
 # Translators:
-# Noémie Lehuby <n.lehuby@qwant.com>, 2018
 # Jannik Vieten <me@exploide.net>, 2019
 # raphty m <mail+transfix@raphty.com>, 2019
 # Nils Hahmann <nhahmann@me.com>, 2019
@@ -7,19 +6,21 @@
 # Isolator70 <henrik.heinsch@online.de>, 2019
 # Acrylic Boy, 2019
 # ENT8R <info.ent8r@gmail.com>, 2019
-# 
+# Noémie Lehuby <n.lehuby@qwant.com>, 2019
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-09 13:31+0000\n"
+"POT-Creation-Date: 2020-02-03 14:48+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: ENT8R <info.ent8r@gmail.com>, 2019\n"
-"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
+"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
+"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/"
+"teams/89416/de_DE/)\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -74,24 +75,6 @@ msgstr "Sport"
 
 msgid "health"
 msgstr "Gesundheit"
-
-msgid "Wheelchair accessible"
-msgstr "Rollstuhlgerecht"
-
-msgid "Partially wheelchair accessible"
-msgstr " Teilweise rollstuhlgerecht"
-
-msgid "Not wheelchair accessible"
-msgstr "Nicht rollstuhlgerecht"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Rollstuhlgerechte Toiletten"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
 
 msgid "Qwant is also"
 msgstr "Qwant ist außerdem"
@@ -174,14 +157,11 @@ msgstr "Veranstaltung"
 msgid "animation"
 msgstr "Animation"
 
-msgid "Search with Qwant Maps"
-msgstr "Suche mit Qwant Maps"
-
 msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
-msgid "write"
-msgstr "schreiben"
+msgid "Search with Qwant Maps"
+msgstr "Suche mit Qwant Maps"
 
 msgid "accessories shop"
 msgstr "Zubehörshop "
@@ -810,13 +790,16 @@ msgid "Geolocation with privacy!"
 msgstr "Geolokalisierung mit Privatsphäre!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standort, damit wir Sie orten können. \n"
-"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant Ihre Standortdaten nicht. Wir wollen nicht wissen, wo Sie sich befinden."
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den "
+"Zugriff auf Ihren Standort, damit wir Sie orten können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}"
+"angegeben, speichert Qwant Ihre Standortdaten nicht. Wir wollen nicht "
+"wissen, wo Sie sich befinden."
 
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."
@@ -839,42 +822,6 @@ msgstr ""
 "Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
 "Standortbestimmung auf Ihrem System aktiviert ist."
 
-msgid "return"
-msgstr "zurück"
-
-msgid "directions"
-msgstr "Wegbeschreibung"
-
-msgid "Share link"
-msgstr "Link teilen"
-
-msgid "Copied !"
-msgstr "Kopiert !"
-
-msgid "SHARE ON FACEBOOK"
-msgstr "AUF  FACEBOOK TEILEN"
-
-msgid "SHARE ON TWITTER"
-msgstr "AUF TWITTER TEILEN"
-
-msgid "Share"
-msgstr "Teilen"
-
-msgid "Delete"
-msgstr "Löschen"
-
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-"Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
-"auf einen Ort klicken."
-
-msgid "Use"
-msgstr "Verwende"
-
-msgid "to secure your favorites on all your devices"
-msgstr "um deine Favoriten auf all deinen Geräten zu sichern"
-
 msgid "Patience, Masq is activating..."
 msgstr "Moment, Masq wird aktiviert..."
 
@@ -894,8 +841,9 @@ msgid "Masq activation failed"
 msgstr "Masq Aktivierung fehlgeschlagen"
 
 msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
+"The connection failed between Qwant Maps and the "
+"Masq                                            application (Signalling "
+"error)"
 msgstr ""
 "Die Verbindung zwischen Qwant Maps und Masq ist fehlgeschlagen "
 "(Signalisierungsfehler)"
@@ -903,8 +851,64 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "Keine Verbindung zu Masq"
 
+msgid "category"
+msgstr "Kategorie"
+
+msgid "FAVORITES"
+msgstr "FAVORITEN"
+
 msgid "Activate Masq"
 msgstr "Aktiviere Masq"
+
+msgid "Deactivate"
+msgstr "Deaktivieren"
+
+msgid "Activate"
+msgstr "Aktivieren"
+
+msgid "How does it work ?"
+msgstr "Wie funktioniert das?"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Directions"
+msgstr "Wegbeschreibung"
+
+msgid "Favorites"
+msgstr "Favoriten"
+
+msgid "How to contribute"
+msgstr "Wie man mitmacht"
+
+msgid "Share link"
+msgstr "Link teilen"
+
+msgid "Copied !"
+msgstr "Kopiert !"
+
+msgid "SHARE ON FACEBOOK"
+msgstr "AUF  FACEBOOK TEILEN"
+
+msgid "SHARE ON TWITTER"
+msgstr "AUF TWITTER TEILEN"
+
+msgid "Share"
+msgstr "Teilen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+"Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
+"auf einen Ort klicken."
+
+msgid "Use"
+msgstr "Verwende"
+
+msgid "to secure your favorites on all your devices"
+msgstr "um deine Favoriten auf all deinen Geräten zu sichern"
 
 msgid "Favorite places"
 msgstr "Lieblingsorte"
@@ -914,6 +918,15 @@ msgstr "MEINE FAVORITEN"
 
 msgid "Show favorites"
 msgstr "Favoriten anzeigen"
+
+msgid "Close to"
+msgstr ""
+
+msgid "DIRECTIONS"
+msgstr "WEGBESCHREIBUNG"
+
+msgid "SEE MORE"
+msgstr "ZEIGE MEHR"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -940,26 +953,32 @@ msgstr "NUMMER ANZEIGEN"
 msgid "SAVED"
 msgstr "GESPEICHERT"
 
-msgid "FAVORITES"
-msgstr "FAVORITEN"
-
 msgid "SHARE"
 msgstr "TEILEN"
 
-msgid "DIRECTIONS"
-msgstr "WEGBESCHREIBUNG"
-
-msgid "Qwant Maps uses OpenStreetMap data."
-msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
-
-msgid "VIEW"
-msgstr "ANSICHT"
-
-msgid "EDIT"
-msgstr "BEARBEITEN"
-
 msgid "Photos"
 msgstr "Fotos"
+
+msgid "WIKIPEDIA"
+msgstr "WIKIPEDIA"
+
+msgid "Wheelchair accessible"
+msgstr "Rollstuhlgerecht"
+
+msgid "Partially wheelchair accessible"
+msgstr " Teilweise rollstuhlgerecht"
+
+msgid "Not wheelchair accessible"
+msgstr "Nicht rollstuhlgerecht"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Rollstuhlgerechte Toiletten"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
 
 msgid "Accessibility"
 msgstr "Barrierefreiheit"
@@ -973,14 +992,17 @@ msgstr "Internetzugang"
 msgid "WiFi"
 msgstr "Wi-Fi"
 
-msgid "WIKIPEDIA"
-msgstr "WIKIPEDIA"
-
 msgid "Services & information"
 msgstr "Dienstleistungen und Information"
 
-msgid "category"
-msgstr "Kategorie"
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
+
+msgid "VIEW"
+msgstr "ANSICHT"
+
+msgid "EDIT"
+msgstr "BEARBEITEN"
 
 msgid "Back to favorite"
 msgstr "Zurück zu Favoriten"
@@ -990,9 +1012,6 @@ msgstr "Zurück zur Liste"
 
 msgid "Back"
 msgstr "Zurück"
-
-msgid "SEE MORE"
-msgstr "ZEIGE MEHR"
 
 msgid "Search around this place"
 msgstr "Um diesen Ort herum suchen"
@@ -1005,12 +1024,6 @@ msgstr "Zeige Qwant Maps Dienste"
 
 msgid "Good plans"
 msgstr "Gute Pläne"
-
-msgid "Directions"
-msgstr "Wegbeschreibung"
-
-msgid "Favorites"
-msgstr "Favoriten"
 
 msgid "on {date}"
 msgstr ""
@@ -1027,23 +1040,18 @@ msgstr "Keine Ergebnisse gefunden. Bitte aus der Karte herauszoomen."
 msgid "Search around my position"
 msgstr "Um meinen Standort herum suchen"
 
-msgid "Via"
-msgstr "Über"
+msgid "Please zoom in the map to see the results for this category."
+msgstr ""
+"Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
 
-msgid "DETAILS"
-msgstr "DETAILS"
+msgid "PAGES JAUNES"
+msgstr "Gelbe Seiten"
 
-msgid "PREVIEW"
-msgstr "VORSCHAU"
+msgid "Partnership"
+msgstr "Partnerschaft"
 
-msgid "Start"
-msgstr "Start"
-
-msgid "Arrival"
-msgstr "Ankunft"
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr "Qwant Maps konnte keine Ergebnisse für diese Reiseroute finden."
+msgid "Show results"
+msgstr "Ergebnisse anzeigen"
 
 msgid "Your position"
 msgstr "Deine Position"
@@ -1057,30 +1065,32 @@ msgstr "Zielpunkt"
 msgid "Invert start and end"
 msgstr "Start und Ziel tauschen"
 
-msgid "Deactivate"
-msgstr "Deaktivieren"
+msgid "Via"
+msgstr "Über"
 
-msgid "Activate"
-msgstr "Aktivieren"
+msgid "DETAILS"
+msgstr "DETAILS"
 
-msgid "How does it work ?"
-msgstr "Wie funktioniert das?"
+msgid "PREVIEW"
+msgstr "VORSCHAU"
 
-msgid "Search"
-msgstr "Suchen"
-
-msgid "How to contribute"
-msgstr "Wie man mitmacht"
-
-msgid "Please zoom in the map to see the results for this category."
+msgid "Walk on {walkDistance}"
 msgstr ""
-"Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
 
-msgid "PAGES JAUNES"
-msgstr "Gelbe Seiten"
+msgid "Start"
+msgstr "Start"
 
-msgid "Partnership"
-msgstr "Partnerschaft"
+msgid "Arrival"
+msgstr "Ankunft"
 
-msgid "Show results"
-msgstr "Ergebnisse anzeigen"
+msgid "Qwant Maps found no results for this itinerary."
+msgstr "Qwant Maps konnte keine Ergebnisse für diese Reiseroute finden."
+
+msgid "directions"
+msgstr "Wegbeschreibung"
+
+msgid "return"
+msgstr "zurück"
+
+msgid "write"
+msgstr "schreiben"

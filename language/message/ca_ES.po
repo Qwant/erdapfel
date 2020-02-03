@@ -1,19 +1,20 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-# jmontane, 2019
-# 
+# jmontane, 2020
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-09 13:31+0000\n"
+"POT-Creation-Date: 2020-02-03 14:48+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: jmontane, 2019\n"
-"Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
+"Last-Translator: jmontane, 2020\n"
+"Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/"
+"teams/89416/ca_ES/)\n"
+"Language: ca_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ca_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -25,13 +26,13 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Qwant Maps"
-msgstr ""
+msgstr "Qwant Maps"
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca a Qwant Maps"
 
 msgid "JavaScript is required to view this application."
-msgstr ""
+msgstr "El JavaScript és necessari per a veure aquesta aplicació."
 
 msgid "hotel"
 msgstr "hotel"
@@ -55,127 +56,106 @@ msgid "pharmacy"
 msgstr "farmàcia"
 
 msgid "education"
-msgstr ""
+msgstr "educació"
 
 msgid "museum"
 msgstr "museu"
 
 msgid "service"
-msgstr ""
+msgstr "servei"
 
 msgid "sport"
-msgstr ""
+msgstr "esport"
 
 msgid "health"
-msgstr ""
-
-msgid "Wheelchair accessible"
-msgstr "Accessible amb cadira de rodes"
-
-msgid "Partially wheelchair accessible"
-msgstr "Accessible amb cadira de rodes parcialment"
-
-msgid "Not wheelchair accessible"
-msgstr "No és accessible amb cadira de rodes"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Serveis accessibles amb cadira de rodes"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Serveis accessibles amb cadira de rodes parcialment"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Serveis no accessibles amb cadira de rodes"
+msgstr "salut"
 
 msgid "Qwant is also"
-msgstr ""
+msgstr "Qwant també és"
 
 msgid "Qwant.com"
-msgstr ""
+msgstr "Qwant.com"
 
 msgid "Qwant Music"
-msgstr ""
+msgstr "Qwant Music"
 
 msgid "Qwant Boards"
 msgstr ""
 
 msgid "Qwant on Android"
-msgstr ""
+msgstr "Qwant a l'Android"
 
 msgid "Qwant on iOS"
-msgstr ""
+msgstr "Qwant a l'iOS"
 
 msgid "Qwant Junior"
-msgstr ""
+msgstr "Qwant Júnior"
 
 msgid "Qwant Lite"
 msgstr ""
 
 msgid "About Qwant"
-msgstr ""
+msgstr "Quant a Qwant"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 msgid "Press"
-msgstr ""
+msgstr "Premsa"
 
 msgid "Jobs"
-msgstr ""
+msgstr "Treballar-hi"
 
 msgid "F.A.Q."
-msgstr ""
+msgstr "PMF"
 
 msgid "Maps legal notices"
 msgstr ""
 
 msgid "Terms of Service"
-msgstr ""
+msgstr "Condicions del servei"
 
 msgid "About us"
-msgstr ""
+msgstr "Quant a nosaltres"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privadesa"
 
 msgid "Results ranking"
 msgstr ""
 
 msgid "Contact us"
-msgstr ""
+msgstr "Contacte"
 
 msgid "Share Qwant"
-msgstr ""
+msgstr "Comparteix Qwant"
 
 msgid "on Twitter"
-msgstr ""
+msgstr "a Twitter"
 
 msgid "on Facebook"
-msgstr ""
+msgstr "a Facebook"
 
 msgid "concert"
 msgstr ""
 
 msgid "show"
-msgstr ""
+msgstr "mostra"
 
 msgid "exhibition"
 msgstr ""
 
 msgid "event"
-msgstr ""
+msgstr "esdeveniment"
 
 msgid "animation"
-msgstr ""
-
-msgid "Search with Qwant Maps"
-msgstr ""
+msgstr "animació"
 
 msgid "The map that respects your privacy"
 msgstr "El mapa que respecta la vostra privadesa"
 
-msgid "write"
-msgstr ""
+msgid "Search with Qwant Maps"
+msgstr "Cerca Qwant Maps"
 
 msgid "accessories shop"
 msgstr "botia d'accessoris"
@@ -190,7 +170,7 @@ msgid "alpine hut"
 msgstr ""
 
 msgid "antiques shop"
-msgstr ""
+msgstr "botiga d'antiguitats"
 
 msgid "aquarium"
 msgstr "aquari"
@@ -202,7 +182,7 @@ msgid "art shop"
 msgstr ""
 
 msgid "arts centre"
-msgstr ""
+msgstr "centre d'arts"
 
 msgid "athletics"
 msgstr ""
@@ -514,7 +494,7 @@ msgid "lamps shop"
 msgstr "botiga de llums"
 
 msgid "laundry"
-msgstr ""
+msgstr "bugaderia"
 
 msgid "library"
 msgstr "biblioteca"
@@ -772,16 +752,16 @@ msgid "zoo"
 msgstr "zoo"
 
 msgid "city"
-msgstr ""
+msgstr "ciutat"
 
 msgid "country"
-msgstr ""
+msgstr "país"
 
 msgid "address"
-msgstr ""
+msgstr "adreça"
 
 msgid "street"
-msgstr ""
+msgstr "carrer"
 
 msgid "review"
 msgid_plural "reviews"
@@ -795,7 +775,7 @@ msgid "Closed"
 msgstr "Tancat"
 
 msgid "Open 24/7"
-msgstr ""
+msgstr "Obert 24/7"
 
 msgid "until {nextTransitionTime}"
 msgstr "fins {nextTransitionTime}"
@@ -804,8 +784,8 @@ msgid "Geolocation with privacy!"
 msgstr "Geolocalització amb privadesa!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -818,11 +798,13 @@ msgid "Ok, I've got it."
 msgstr "D'acord, ho he entès."
 
 msgid "Geolocation not available."
-msgstr ""
+msgstr "La geolocalització no és disponible."
 
 msgid ""
 "You have not allowed Qwant Maps (or your device) to access your location."
 msgstr ""
+"No heu autoritzat Qwant Maps (en el vostre aparell) per a accedir a la "
+"vostra ubicació."
 
 msgid "OK"
 msgstr "D'acord"
@@ -831,12 +813,65 @@ msgid ""
 "Qwant Maps cannot determine your position. Check that location services are "
 "enabled on your system."
 msgstr ""
+"Qwant Maps no pot determinar la vostra posició. Comproveu que els serveis de "
+"geolocalització estan habilitats en el sistema."
 
-msgid "return"
+msgid "Patience, Masq is activating..."
+msgstr "Paciència, s'està activant Masq..."
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgid "Well done, Masq is activated !"
+msgstr "Ben fet, s'ha activat Masq!"
+
+msgid "Your data is now secured, enjoy !"
+msgstr "Les dades ara s'han assegurat, gaudiu-ne!"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Masq activation failed"
 msgstr ""
 
-msgid "directions"
+msgid ""
+"The connection failed between Qwant Maps and the "
+"Masq                                            application (Signalling "
+"error)"
 msgstr ""
+
+msgid "Could not connect to Masq"
+msgstr ""
+
+msgid "category"
+msgstr "categoria"
+
+msgid "FAVORITES"
+msgstr "PREFERITS"
+
+msgid "Activate Masq"
+msgstr "Activa Masq"
+
+msgid "Deactivate"
+msgstr "Desactiva"
+
+msgid "Activate"
+msgstr "Activa"
+
+msgid "How does it work ?"
+msgstr "Com funciona?"
+
+msgid "Search"
+msgstr "Cerca"
+
+msgid "Directions"
+msgstr "Indicacions"
+
+msgid "Favorites"
+msgstr "Preferits"
+
+msgid "How to contribute"
+msgstr "Com contribuir-hi"
 
 msgid "Share link"
 msgstr "Comparteix l'enllaç"
@@ -856,44 +891,14 @@ msgstr "Comparteix"
 msgid "Delete"
 msgstr "Suprimeix"
 
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "No teniu cap lloc preferit. <br>Podeu afegir-ne un fent clic en algun lloc"
 
 msgid "Use"
-msgstr ""
+msgstr "Usa"
 
 msgid "to secure your favorites on all your devices"
-msgstr ""
-
-msgid "Patience, Masq is activating..."
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
-msgid "Well done, Masq is activated !"
-msgstr ""
-
-msgid "Your data is now secured, enjoy !"
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "Masq activation failed"
-msgstr ""
-
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-
-msgid "Could not connect to Masq"
-msgstr ""
-
-msgid "Activate Masq"
 msgstr ""
 
 msgid "Favorite places"
@@ -903,7 +908,16 @@ msgid "MY FAVORITES"
 msgstr "PREFERITS"
 
 msgid "Show favorites"
+msgstr "Mostra els preferits"
+
+msgid "Close to"
 msgstr ""
+
+msgid "DIRECTIONS"
+msgstr "INDICACIONS"
+
+msgid "SEE MORE"
+msgstr "MÉS INFORMACIÓ"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -911,43 +925,49 @@ msgid ""
 msgstr ""
 
 msgid "More Details"
-msgstr ""
+msgstr "Més detalls"
 
 msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr ""
+msgstr "Voleu sincronitzar els preferits amb Masq?"
 
 msgid "No thanks"
-msgstr ""
+msgstr "No, gràcies"
 
 msgid "Do not ask again"
-msgstr ""
+msgstr "No m'ho tornis a demanar"
 
 msgid "SHOW NUMBER"
-msgstr ""
+msgstr "MOSTRA EL NOMBRE"
 
 msgid "SAVED"
-msgstr ""
-
-msgid "FAVORITES"
-msgstr "PREFERITS"
+msgstr "DESAT"
 
 msgid "SHARE"
 msgstr "COMPARTEIX"
 
-msgid "DIRECTIONS"
-msgstr ""
-
-msgid "Qwant Maps uses OpenStreetMap data."
-msgstr ""
-
-msgid "VIEW"
-msgstr ""
-
-msgid "EDIT"
-msgstr ""
-
 msgid "Photos"
-msgstr ""
+msgstr "Fotos"
+
+msgid "WIKIPEDIA"
+msgstr "VIQUIPÈDIA"
+
+msgid "Wheelchair accessible"
+msgstr "Accessible amb cadira de rodes"
+
+msgid "Partially wheelchair accessible"
+msgstr "Accessible amb cadira de rodes parcialment"
+
+msgid "Not wheelchair accessible"
+msgstr "No és accessible amb cadira de rodes"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Serveis accessibles amb cadira de rodes"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Serveis accessibles amb cadira de rodes parcialment"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Serveis no accessibles amb cadira de rodes"
 
 msgid "Accessibility"
 msgstr "Acessibilitat"
@@ -961,50 +981,44 @@ msgstr "Accés a internet"
 msgid "WiFi"
 msgstr "WiFi"
 
-msgid "WIKIPEDIA"
-msgstr ""
-
 msgid "Services & information"
 msgstr "Serveis i informació"
 
-msgid "category"
-msgstr ""
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps usa dades de l'OpenStreetMap."
+
+msgid "VIEW"
+msgstr "MOSTRA"
+
+msgid "EDIT"
+msgstr "EDITA"
 
 msgid "Back to favorite"
 msgstr "Torna als preferits"
 
 msgid "Back to list"
-msgstr ""
+msgstr "Torna a la llista"
 
 msgid "Back"
-msgstr ""
-
-msgid "SEE MORE"
-msgstr "MÉS INFORMACIÓ"
+msgstr "Enrere"
 
 msgid "Search around this place"
-msgstr ""
+msgstr "Cerca prop d'aquest lloc"
 
 msgid "Qwant Maps services"
 msgstr "Serveis Qwant Maps"
 
 msgid "Show Qwant Maps services"
-msgstr ""
+msgstr "Mostra els serveis de Qwant Maps"
 
 msgid "Good plans"
-msgstr ""
-
-msgid "Directions"
-msgstr ""
-
-msgid "Favorites"
 msgstr ""
 
 msgid "on {date}"
 msgstr ""
 
 msgid "from {date1} to {date2}"
-msgstr ""
+msgstr "de {date1} a {date2}"
 
 msgid "Please zoom in the map to see the results for this event."
 msgstr ""
@@ -1013,52 +1027,7 @@ msgid "No results found. Please zoom out of the map."
 msgstr ""
 
 msgid "Search around my position"
-msgstr ""
-
-msgid "Via"
-msgstr ""
-
-msgid "DETAILS"
-msgstr ""
-
-msgid "PREVIEW"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "Arrival"
-msgstr ""
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr ""
-
-msgid "Your position"
-msgstr ""
-
-msgid "Start point"
-msgstr ""
-
-msgid "End point"
-msgstr ""
-
-msgid "Invert start and end"
-msgstr ""
-
-msgid "Deactivate"
-msgstr ""
-
-msgid "Activate"
-msgstr ""
-
-msgid "How does it work ?"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "How to contribute"
-msgstr ""
+msgstr "Cerca al voltant de la meva posició"
 
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
@@ -1070,4 +1039,46 @@ msgid "Partnership"
 msgstr ""
 
 msgid "Show results"
+msgstr "Mostra els resultats"
+
+msgid "Your position"
+msgstr "La vostra posició"
+
+msgid "Start point"
+msgstr "Punt d'inici"
+
+msgid "End point"
+msgstr "Punt final"
+
+msgid "Invert start and end"
+msgstr "Inverteix l'inici i el final"
+
+msgid "Via"
+msgstr "Via"
+
+msgid "DETAILS"
+msgstr "DETALLS"
+
+msgid "PREVIEW"
+msgstr ""
+
+msgid "Walk on {walkDistance}"
+msgstr "Camineu {walkDistance}"
+
+msgid "Start"
+msgstr "Inici"
+
+msgid "Arrival"
+msgstr "Arribada"
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr ""
+
+msgid "directions"
+msgstr "indicacions"
+
+msgid "return"
+msgstr ""
+
+msgid "write"
 msgstr ""

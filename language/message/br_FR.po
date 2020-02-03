@@ -1,21 +1,26 @@
 # Translators:
-# Gwenn M <tornoz@laposte.net>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2019
-# 
+# Gwenn M <tornoz@laposte.net>, 2019
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-09 13:31+0000\n"
+"POT-Creation-Date: 2020-02-03 14:48+0100\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2019\n"
-"Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2020\n"
+"Language-Team: Breton (France) (https://www.transifex.com/qwant-1/"
+"teams/89416/br_FR/)\n"
+"Language: br_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: br_FR\n"
-"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !"
+"=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n"
+"%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > "
+"19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 "
+"&& n % 1000000 == 0) ? 3 : 4);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
@@ -69,24 +74,6 @@ msgstr "sport"
 
 msgid "health"
 msgstr "yec'hed"
-
-msgid "Wheelchair accessible"
-msgstr "Aezet evit ar c'hadorioù-ruilh"
-
-msgid "Partially wheelchair accessible"
-msgstr "Aezet a-zarn evit ar c'hadorioù-ruilh"
-
-msgid "Not wheelchair accessible"
-msgstr "Diaezet evit ar c'hadorioù-ruilh"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Privezioù aezet a-zarn d'ar c'hadorioù-ruilh"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Privez ebet aezet d'ar c'hadorioù-ruilh"
 
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
@@ -155,28 +142,25 @@ msgid "on Facebook"
 msgstr "war Facebook"
 
 msgid "concert"
-msgstr ""
+msgstr "sonadeg"
 
 msgid "show"
-msgstr ""
+msgstr "arvest"
 
 msgid "exhibition"
-msgstr ""
+msgstr "diskouezadeg"
 
 msgid "event"
-msgstr ""
+msgstr "darvoud"
 
 msgid "animation"
-msgstr ""
-
-msgid "Search with Qwant Maps"
-msgstr "Klask gant Qwant Maps"
+msgstr "luskadurioù"
 
 msgid "The map that respects your privacy"
 msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
-msgid "write"
-msgstr ""
+msgid "Search with Qwant Maps"
+msgstr "Klask gant Qwant Maps"
 
 msgid "accessories shop"
 msgstr "stal rikoù"
@@ -593,7 +577,7 @@ msgid "park"
 msgstr "park"
 
 msgid "car park"
-msgstr ""
+msgstr "park kiri"
 
 msgid "perfumery"
 msgstr "porfumerezh"
@@ -808,13 +792,13 @@ msgid "Geolocation with privacy!"
 msgstr "Douarlec'hiañ ha prevezded!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your "
+"location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"C'hoant ho peus da c'houzout e pelec'h emaoc'h? Roit an aotre d'hoc'h arload"
-" da dizhout al lec'h m'emaoc'h evit ma c'hallfe lavaret deoc'h. Evel ma vez "
+"C'hoant ho peus da c'houzout e pelec'h emaoc'h? Roit an aotre d'hoc'h arload "
+"da dizhout al lec'h m'emaoc'h evit ma c'hallfe lavaret deoc'h. Evel ma vez "
 "lavaret en hon {privacyPolicyLink} folitikerezh prevezded {closeTag}, Qwant "
 "na stoko ket ho titouroù douarlec'hiañ. N'hallimp ket gouzout e pelec'h "
 "emaoc'h."
@@ -828,6 +812,8 @@ msgstr "Douarlec'hiañ dihegerz"
 msgid ""
 "You have not allowed Qwant Maps (or your device) to access your location."
 msgstr ""
+"N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho "
+"touarlec'hiañ"
 
 msgid "OK"
 msgstr "Mat eo"
@@ -836,42 +822,8 @@ msgid ""
 "Qwant Maps cannot determine your position. Check that location services are "
 "enabled on your system."
 msgstr ""
-
-msgid "return"
-msgstr "distreiñ"
-
-msgid "directions"
-msgstr "hent"
-
-msgid "Share link"
-msgstr "Rannañ al liamm"
-
-msgid "Copied !"
-msgstr "Eilet!"
-
-msgid "SHARE ON FACEBOOK"
-msgstr "RANNAÑ WAR FACEBOOK"
-
-msgid "SHARE ON TWITTER"
-msgstr "RANNAÑ WAR TWITTER"
-
-msgid "Share"
-msgstr "Rannañ"
-
-msgid "Delete"
-msgstr "Dilemel"
-
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-"N'ho peus lec'h karetañ ebet. <br> Gellout a rit ouzhpennañ unan en ur "
-"glikañ war ur blasenn"
-
-msgid "Use"
-msgstr "Implijit"
-
-msgid "to secure your favorites on all your devices"
-msgstr ""
+"Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
+"enaouet ar servijoù douarlec'hiañ en ho sistem."
 
 msgid "Patience, Masq is activating..."
 msgstr "Gortozit, war enaouiñ emañ Masq..."
@@ -892,164 +844,24 @@ msgid "Masq activation failed"
 msgstr "Enaouadur Masq c'hwitet"
 
 msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
+"The connection failed between Qwant Maps and the "
+"Masq                                            application (Signalling "
+"error)"
 msgstr ""
+"C'hwitet en deus ar c'hevreañ etre Qwant Maps hag an arload Masq. "
+"(Danevelliñ ar gudenn)"
 
 msgid "Could not connect to Masq"
 msgstr "N'heller ket kevreañ ouzh Masq"
 
-msgid "Activate Masq"
-msgstr "Enaouiñ Masq"
-
-msgid "Favorite places"
-msgstr "Lec'hioù karetañ"
-
-msgid "MY FAVORITES"
-msgstr "MA SINEDOÙ"
-
-msgid "Show favorites"
-msgstr "Diskouez ar c'haretañ"
-
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-
-msgid "More Details"
-msgstr "Muioc'h a vunudoù"
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr ""
-
-msgid "No thanks"
-msgstr "Nann avat"
-
-msgid "Do not ask again"
-msgstr "Na goulenn ken ouzhin"
-
-msgid "SHOW NUMBER"
-msgstr "GWELET AN NIVER"
-
-msgid "SAVED"
-msgstr "ENROLLET"
+msgid "category"
+msgstr "rummad"
 
 msgid "FAVORITES"
 msgstr "SINEDOÙ"
 
-msgid "SHARE"
-msgstr "RANNAÑ"
-
-msgid "DIRECTIONS"
-msgstr "TUADURIOÙ"
-
-msgid "Qwant Maps uses OpenStreetMap data."
-msgstr ""
-
-msgid "VIEW"
-msgstr "GWELET"
-
-msgid "EDIT"
-msgstr "AOZAÑ"
-
-msgid "Photos"
-msgstr "Fotoioù"
-
-msgid "Accessibility"
-msgstr "Monedusted"
-
-msgid "Beers"
-msgstr "Bieroù"
-
-msgid "Internet access"
-msgstr "Moned internet"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "WIKIPEDIA"
-msgstr "WIKIPEDIA"
-
-msgid "Services & information"
-msgstr "Servijoù & Titouroù"
-
-msgid "category"
-msgstr "rummad"
-
-msgid "Back to favorite"
-msgstr "Distreiñ d'ar sinedoù"
-
-msgid "Back to list"
-msgstr "Distreiñ d'al listenn"
-
-msgid "Back"
-msgstr "Distreiñ"
-
-msgid "SEE MORE"
-msgstr "GWELET MUIOC'H"
-
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
-
-msgid "Qwant Maps services"
-msgstr "Servijoù Qwant Maps"
-
-msgid "Show Qwant Maps services"
-msgstr "Gwelet ar servijoù Qwant Maps"
-
-msgid "Good plans"
-msgstr ""
-
-msgid "Directions"
-msgstr "Hent"
-
-msgid "Favorites"
-msgstr "Reoù karetañ"
-
-msgid "on {date}"
-msgstr ""
-
-msgid "from {date1} to {date2}"
-msgstr ""
-
-msgid "Please zoom in the map to see the results for this event."
-msgstr ""
-
-msgid "No results found. Please zoom out of the map."
-msgstr ""
-
-msgid "Search around my position"
-msgstr "Klask tro-dro din"
-
-msgid "Via"
-msgstr "Dre"
-
-msgid "DETAILS"
-msgstr "MUNUDOÙ"
-
-msgid "PREVIEW"
-msgstr "RAKWEL"
-
-msgid "Start"
-msgstr "Loc'hañ"
-
-msgid "Arrival"
-msgstr ""
-
-msgid "Qwant Maps found no results for this itinerary."
-msgstr ""
-
-msgid "Your position"
-msgstr "Ho touarlec'hiañ"
-
-msgid "Start point"
-msgstr "poent loc'hañ"
-
-msgid "End point"
-msgstr "poent fin"
-
-msgid "Invert start and end"
-msgstr "eilpennañ fin ha loc'hañ"
+msgid "Activate Masq"
+msgstr "Enaouiñ Masq"
 
 msgid "Deactivate"
 msgstr "Lazhañ"
@@ -1063,11 +875,176 @@ msgstr "Penaos ez a en-dro?"
 msgid "Search"
 msgstr "Klask"
 
+msgid "Directions"
+msgstr "Hentoù war-du"
+
+msgid "Favorites"
+msgstr "Reoù karetañ"
+
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
 
-msgid "Please zoom in the map to see the results for this category."
+msgid "Share link"
+msgstr "Rannañ al liamm"
+
+msgid "Copied !"
+msgstr "Eilet!"
+
+msgid "SHARE ON FACEBOOK"
+msgstr "RANNAÑ WAR FACEBOOK"
+
+msgid "SHARE ON TWITTER"
+msgstr "RANNAÑ WAR TWITTER"
+
+msgid "Share"
+msgstr "Rannañ"
+
+msgid "Delete"
+msgstr "Dilemel"
+
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
+"N'ho peus lec'h karetañ ebet. <br> Gellout a rit ouzhpennañ unan en ur "
+"glikañ war ur blasenn"
+
+msgid "Use"
+msgstr "Implijit"
+
+msgid "to secure your favorites on all your devices"
+msgstr "evit skoriñ hoc'h arventennoù war hollad hoc'h aparailhoù"
+
+msgid "Favorite places"
+msgstr "Lec'hioù karetañ"
+
+msgid "MY FAVORITES"
+msgstr "MA SINEDOÙ"
+
+msgid "Show favorites"
+msgstr "Diskouez ar c'haretañ"
+
+msgid "Close to"
+msgstr "Da gichen"
+
+msgid "DIRECTIONS"
+msgstr "TUADURIOÙ"
+
+msgid "SEE MORE"
+msgstr "GWELET MUIOC'H"
+
+msgid ""
+"Qwant Maps + Masq is the solution for a web mapping service respecting your "
+"privacy!"
+msgstr ""
+"Qwant Maps + Masq a zo an diskoulm gwellañ evit ur servij kartennaouiñ "
+"doujus d'ar vuhez brevez!"
+
+msgid "More Details"
+msgstr "Muioc'h a vunudoù"
+
+msgid "Do you want to synchronize your favorites with Masq ?"
+msgstr "C'hoant ho peus da sinkronelaat ho karetañ gant Masq?"
+
+msgid "No thanks"
+msgstr "Nann avat"
+
+msgid "Do not ask again"
+msgstr "Na goulenn ken ouzhin"
+
+msgid "SHOW NUMBER"
+msgstr "GWELET AN NIVER"
+
+msgid "SAVED"
+msgstr "ENROLLET"
+
+msgid "SHARE"
+msgstr "RANNAÑ"
+
+msgid "Photos"
+msgstr "Fotoioù"
+
+msgid "WIKIPEDIA"
+msgstr "WIKIPEDIA"
+
+msgid "Wheelchair accessible"
+msgstr "Aezet evit ar c'hadorioù-ruilh"
+
+msgid "Partially wheelchair accessible"
+msgstr "Aezet a-zarn evit ar c'hadorioù-ruilh"
+
+msgid "Not wheelchair accessible"
+msgstr "Diaezet evit ar c'hadorioù-ruilh"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Privezioù aezet a-zarn d'ar c'hadorioù-ruilh"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Privez ebet aezet d'ar c'hadorioù-ruilh"
+
+msgid "Accessibility"
+msgstr "Monedusted"
+
+msgid "Beers"
+msgstr "Bieroù"
+
+msgid "Internet access"
+msgstr "Moned internet"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Services & information"
+msgstr "Servijoù & Titouroù"
+
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
+
+msgid "VIEW"
+msgstr "GWELET"
+
+msgid "EDIT"
+msgstr "AOZAÑ"
+
+msgid "Back to favorite"
+msgstr "Distreiñ d'ar sinedoù"
+
+msgid "Back to list"
+msgstr "Distreiñ d'al listenn"
+
+msgid "Back"
+msgstr "Distreiñ"
+
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
+
+msgid "Qwant Maps services"
+msgstr "Servijoù Qwant Maps"
+
+msgid "Show Qwant Maps services"
+msgstr "Gwelet ar servijoù Qwant Maps"
+
+msgid "Good plans"
+msgstr "Planioù mat"
+
+msgid "on {date}"
+msgstr "d'an/ar {date}"
+
+msgid "from {date1} to {date2}"
+msgstr "eus an/ar {deiziad1} d'an/ar {date2}"
+
+msgid "Please zoom in the map to see the results for this event."
+msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit an darvoud-mañ."
+
+msgid "No results found. Please zoom out of the map."
+msgstr "N'eus bet kavet disoc'h ebet. Dizoumit ar gartenn mar plij."
+
+msgid "Search around my position"
+msgstr "Klask tro-dro din"
+
+msgid "Please zoom in the map to see the results for this category."
+msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
 
 msgid "PAGES JAUNES"
 msgstr "PAJENNOÙ MELEN"
@@ -1077,3 +1054,45 @@ msgstr "Kevelerezh"
 
 msgid "Show results"
 msgstr "Diskouez an disoc'hoù"
+
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
+
+msgid "Start point"
+msgstr "poent loc'hañ"
+
+msgid "End point"
+msgstr "poent fin"
+
+msgid "Invert start and end"
+msgstr "eilpennañ fin ha loc'hañ"
+
+msgid "Via"
+msgstr "Dre"
+
+msgid "DETAILS"
+msgstr "MUNUDOÙ"
+
+msgid "PREVIEW"
+msgstr "RAKWEL"
+
+msgid "Walk on {walkDistance}"
+msgstr "Kerzhit e-pad {walkDistance}"
+
+msgid "Start"
+msgstr "Loc'hañ"
+
+msgid "Arrival"
+msgstr "Poent-degouezhout"
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr "Ne vez kavet disoc'h ebet evit an hentad-mañ."
+
+msgid "directions"
+msgstr "hentoù war-du"
+
+msgid "return"
+msgstr "distreiñ"
+
+msgid "write"
+msgstr "skrivañ"
