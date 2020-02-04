@@ -25,7 +25,7 @@ const HOST_URI = `http://localhost:${PORT}`
   await page.goto(HOST_URI);
 
   const metrics = await page.metrics();
-  const mapStats = fs.statSync(path.join(__dirname, '../public/build/javascript/map.js'));
+  const mapStats = fs.statSync(path.join(__dirname, '../public/build/javascript/map.bundle.js'));
   const appStats = fs.statSync(path.join(__dirname, '../public/build/javascript/bundle.js'));
   await wait(3000);
   const times = await page.evaluate(() => {
