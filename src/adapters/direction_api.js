@@ -74,9 +74,9 @@ export default class DirectionApi {
     try {
       response = await Ajax.get(directionsUrl, directionsParams, { timeout });
     } catch (e) {
-      return;
+      response = e;
     }
-    if (directionConfig.api === 'qwant') {
+    if (directionConfig.api === 'qwant' && response.data) {
       response = response.data;
     }
     return response;

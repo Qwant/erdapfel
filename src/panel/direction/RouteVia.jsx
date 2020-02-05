@@ -9,20 +9,26 @@ const RouteVia = ({ route, vehicle }) => {
     </div>;
   }
 
-  return <div className="routeVia">
-    {route.summary
-      .filter(summaryPart => summaryPart.mode !== 'WAIT')
-      .filter(summaryPart => summaryPart.mode !== 'WALK' || summaryPart.distance > 100)
-      .map((summaryPart, idx) =>
-        <span key={idx} className="routeVia-step">
-          {summaryPart.mode === 'WALK'
-            ? <i className="icon-foot" />
-            : <PublicTransportLine mode={summaryPart.mode} info={summaryPart.info} />
-          }
-        </span>
-      )
-    }
-  </div>;
+  else if (route.summary) {
+    return <div className="routeVia">
+      {route.summary
+        .filter(summaryPart => summaryPart.mode !== 'WAIT')
+        .filter(summaryPart => summaryPart.mode !== 'WALK' || summaryPart.distance > 100)
+        .map((summaryPart, idx) =>
+          <span key={idx} className="routeVia-step">
+            {summaryPart.mode === 'WALK'
+              ? <i className="icon-foot"/>
+              : <PublicTransportLine mode={summaryPart.mode} info={summaryPart.info}/>
+            }
+          </span>
+        )
+      }
+    </div>;
+  }
+
+  else {
+    return <div></div>;
+  }
 };
 
 export default RouteVia;

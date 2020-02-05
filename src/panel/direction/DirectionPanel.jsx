@@ -56,7 +56,7 @@ export default class DirectionPanel extends React.Component {
         (props.poi && Poi.deserialize(props.poi)) || persistentPointState.destination || null,
       isLoading: false,
       isDirty: true, // useful to track intermediary states, when API update call is not made yet
-      error: false,
+      error: 0,
       routes: [],
       activePreviewRoute: null,
       isInitializing: true,
@@ -120,12 +120,12 @@ export default class DirectionPanel extends React.Component {
           isActive: i === 0,
           id: i,
         }));
-        this.setState({ isLoading: false, error: false, routes });
+        this.setState({ isLoading: false, error: 0, routes });
         window.execOnMapLoaded(() => {
           fire('set_route', { routes, vehicle, origin, destination });
         });
       } else {
-        this.setState({ isLoading: true, error: true });
+        this.setState({ isLoading: true, error: directionResponse });
         fire('clean_route');
       }
     } else {
