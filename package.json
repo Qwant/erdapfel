@@ -4,7 +4,7 @@
   "description": "Qwant Maps frontend",
   "main": "public/index.html",
   "scripts": {
-    "bench": "node ./dev/performances.js",
+    "bench": "node ./bench/performances.js",
     "unit-test": "jest --config=./tests/unit.js",
     "integration-test": "jest --config=./tests/integration.js",
     "test": "npm run unit-test && npm run integration-test",
@@ -63,6 +63,7 @@
     "postcss-loader": "2.0.9",
     "promise-loader": "1.0.0",
     "puppeteer": "^2.0.0",
+    "puppeteer-har": "^1.1.2",
     "qwant-maps-fonts": "^1.0.0",
     "regenerator-runtime": "^0.11.1",
     "sass-loader": "6.0.6",

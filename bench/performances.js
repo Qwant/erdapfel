@@ -1,6 +1,7 @@
 /* globals require, __dirname */
 /* eslint no-console: off, max-len: off */
 const puppeteer = require('puppeteer');
+const PuppeteerHar = require('puppeteer-har');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -20,6 +21,12 @@ const HOST_URI = `http://localhost:${PORT}`
   /* start puppeteer */
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+
+  /* start tracing */
+  await page.tracing.start({ screenshots: true, path: path.join(__dirname, './trace.json') });
+  const har = new PuppeteerHar(page);
+  await har.start({ path: path.join(__dirname, 'results.har') });
+
 
   /* connect to homepage for performance test */
   await page.goto(HOST_URI);
@@ -51,6 +58,9 @@ const HOST_URI = `http://localhost:${PORT}`
   writeReport(reportData);
 
   serverClose(appServer);
+
+  await page.tracing.stop();
+  await har.stop();
   await browser.close();
 })();
 
