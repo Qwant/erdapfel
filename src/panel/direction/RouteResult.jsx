@@ -76,9 +76,7 @@ export default class RouteResult extends React.Component {
         <div>{
           this.props.error >= 500 && this.props.error < 600
             ? _('The service is temporarily unavailable, please try again later.', 'direction')
-            : this.props.error === 422
-              ? _('Qwant Maps found no results for this itinerary.', 'direction')
-              : ''
+            : _('Qwant Maps found no results for this itinerary.', 'direction')
         }</div>
         <div>{
           this.props.error === 422 && this.props.vehicle === 'publicTransport' &&
