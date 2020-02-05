@@ -7,9 +7,7 @@ const RouteVia = ({ route, vehicle }) => {
     return <div className="routeVia">
       {_('Via', 'direction')} {route.legs[0].summary.replace(/^(.*), (.*)$/, '$1')}
     </div>;
-  }
-
-  else if (route.summary) {
+  } else if (route.summary) {
     return <div className="routeVia">
       {route.summary
         .filter(summaryPart => summaryPart.mode !== 'WAIT')
@@ -24,9 +22,7 @@ const RouteVia = ({ route, vehicle }) => {
         )
       }
     </div>;
-  }
-
-  else {
+  } else {
     return <div></div>;
   }
 };
