@@ -106,6 +106,8 @@ export default class DirectionInput extends React.Component {
         onKeyPress={this.onKeyPress}
       />
       <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
+      <div className="itinerary_field_return">&lt;==</div>
+      <div className="itinerary_field_icon">icon</div>
     </div>;
   }
 }
