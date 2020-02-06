@@ -290,13 +290,20 @@ export default function autoComplete(options) {
     };
     addEvent(that, 'keydown', that.keydownHandler);
 
-    that.inputHandler = function(e) {
+    that.inputHandler = function() {
       const val = that.value;
       if (val.length >= o.minChars) {
         if (val != that.last_val) {
           cancelObsolete();
           that.last_val = val;
           that.timer = setTimeout(function() {
+            // @HACK: a bug in Firefox for Android (https://bugzilla.mozilla.org/show_bug.cgi?id=1610083)
+            // triggers a redundant 'input' event on the field just before it's blurred,
+            // resulting in the suggest list re-appearing after a suggestion has been made.
+            // So we check if the element having the focus is the field before doing anything.            
+            if (document.activeElement && document.activeElement !== that) {
+              return;
+            }
             that.sourcePending = o.source(val);
             that.sourcePending.then(source => {
               that.sourcePending = null;
