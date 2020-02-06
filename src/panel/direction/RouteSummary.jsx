@@ -11,7 +11,7 @@ export default class RouteSummary extends React.Component {
     id: PropTypes.number.isRequired,
     route: PropTypes.object.isRequired,
     vehicle: PropTypes.string.isRequired,
-    openDetails: PropTypes.func.isRequired,
+    toggleDetails: PropTypes.func.isRequired,
     openPreview: PropTypes.func.isRequired,
     selectRoute: PropTypes.func.isRequired,
   }
@@ -22,7 +22,7 @@ export default class RouteSummary extends React.Component {
 
   onClickDetails = event => {
     event.stopPropagation();
-    this.props.openDetails(this.props.id);
+    this.props.toggleDetails(this.props.id);
   }
 
   onClickShare = () => {

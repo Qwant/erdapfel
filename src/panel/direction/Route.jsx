@@ -4,14 +4,14 @@ import RoadMap from './RoadMap';
 
 const Route = ({
   id, route, vehicle, showDetails, origin, destination, isActive,
-  openDetails, openPreview, selectRoute, hoverRoute,
+  toggleDetails, openPreview, selectRoute, hoverRoute,
 }) =>
   <div className={`itinerary_leg ${isActive ? 'itinerary_leg--active' : ''}`}
     onMouseEnter={() => { hoverRoute(id, true); }}
     onMouseLeave={() => { hoverRoute(id, false); }}
   >
     <RouteSummary id={id} route={route}
-      openDetails={openDetails}
+      toggleDetails={toggleDetails}
       openPreview={openPreview}
       selectRoute={selectRoute}
       vehicle={vehicle}
