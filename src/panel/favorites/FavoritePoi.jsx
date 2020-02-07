@@ -5,7 +5,6 @@ import IconManager from 'src/adapters/icon_manager';
 import ExtendedString from 'src/libs/string';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import Telemetry from 'src/libs/telemetry';
-import layouts from 'src/panel/layouts.js';
 import ContextMenu from 'src/components/ui/ContextMenu';
 import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, toUrl } from 'src/libs/pois';
@@ -22,7 +21,6 @@ export default class FavoritePoi extends React.Component {
       poi: this.props.poi,
       centerMap: true,
       isFromFavorite: true,
-      layout: layouts.FAVORITE,
     });
   }
 

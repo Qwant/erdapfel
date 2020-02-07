@@ -2,7 +2,6 @@ import { Marker } from 'mapbox-gl--ENV';
 import constants from '../../config/constants.yml';
 import { createIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
-import layouts from 'src/panel/layouts.js';
 import { toUrl } from 'src/libs/pois';
 
 export default class SceneCategory {
@@ -46,7 +45,6 @@ export default class SceneCategory {
       poi,
       isFromCategory: true,
       sourceCategory: categoryName,
-      layout: layouts.LIST,
       centerMap: true,
     });
     this.highlightPoiMarker(poi, true);

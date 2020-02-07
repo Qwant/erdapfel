@@ -2,7 +2,8 @@ import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
-import { map, layout } from '../../config/constants.yml';
+import { map } from 'config/constants.yml';
+import { getMapPaddings, getMapCenterOffset, isPositionUnderPanel } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
 import LocalStore from '../libs/local_store';
@@ -118,8 +119,8 @@ Scene.prototype.initMapBox = function() {
     fire('map_loaded');
   });
 
-  listen('fit_map', (item, padding) => {
-    this.fitMap(item, padding);
+  listen('fit_map', item => {
+    this.fitMap(item, this.getCurrentPaddings());
   });
 
   listen('map_mark_poi', (poi, options) => {
@@ -145,6 +146,11 @@ Scene.prototype.initMapBox = function() {
     this.moveMobileBottomUI(bottom);
   });
 };
+
+Scene.prototype.getCurrentPaddings = () => getMapPaddings({
+  isMobile: isMobileDevice(),
+  isDirectionsActive: !!document.querySelector('.directions-open'),
+});
 
 Scene.prototype.clickOnMap = function(lngLat, clickedFeature) {
 
@@ -251,24 +257,20 @@ Scene.prototype.fitMap = function(item, padding) {
 
 Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
   if (poi.bbox) {
-    this.fitBbox(poi.bbox, options.layout);
+    this.fitBbox(poi.bbox, options.padding || this.getCurrentPaddings());
     return;
   }
+  const isMobile = isMobileDevice();
   if (!options.centerMap) {
-    const { x: leftPixelOffset } = this.mb.project(poi.latLon);
-    const isPoiUnderPanel = leftPixelOffset < layout.sizes.sideBarWidth + layout.sizes.panelWidth
-      && window.innerWidth > layout.mobile.breakPoint;
+    const isPoiUnderPanel = isPositionUnderPanel(this.mb.project(poi.latLon), { isMobile });
     if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
       return;
     }
   }
-  const offset = isMobileDevice()
-    ? [0, 0]
-    : [(layout.sizes.panelWidth + layout.sizes.sideBarWidth) / 2, 0];
   this.mb.flyTo({
     center: poi.latLon,
     zoom: getBestZoom(poi),
-    offset,
+    offset: getMapCenterOffset({ isMobile }),
     maxDuration: 1200,
   });
 };

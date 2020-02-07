@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
-import layouts from 'src/panel/layouts.js';
 import PoiCard from './PoiCard';
 import ActionButtons from './ActionButtons';
 import PoiHeader from './PoiHeader';
@@ -28,12 +27,7 @@ export default class PoiPanel extends React.Component {
     isFromCategory: PropTypes.bool,
     sourceCategory: PropTypes.string,
     centerMap: PropTypes.bool,
-    layout: PropTypes.object,
   }
-
-  static defaultProps = {
-    layout: layouts.POI,
-  };
 
   constructor(props) {
     super(props);
@@ -62,8 +56,8 @@ export default class PoiPanel extends React.Component {
   }
 
   loadPoi = async () => {
-    const { poiId, centerMap, isFromCategory, layout } = this.props;
-    const mapOptions = { centerMap, isFromCategory, layout };
+    const { poiId, centerMap, isFromCategory } = this.props;
+    const mapOptions = { centerMap, isFromCategory };
 
     // If a POI object is provided before fetching full data,
     // we can update the map immediately for UX responsiveness
@@ -129,7 +123,7 @@ export default class PoiPanel extends React.Component {
   center = () => {
     const poi = this.getBestPoi();
     Telemetry.add('go', 'poi', poi.meta && poi.meta.source);
-    fire('fit_map', poi, layouts.POI);
+    fire('fit_map', poi);
   }
 
   openShare = () => {
