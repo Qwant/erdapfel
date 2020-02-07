@@ -5,6 +5,7 @@ import Telemetry from '../../libs/telemetry';
 import { openShareModal } from 'src/modals/ShareModal';
 import { formatDuration, formatDistance, getVehicleIcon } from 'src/libs/route_utils';
 import RouteVia from './RouteVia';
+import Button from 'src/components/ui/Button';
 
 export default class RouteSummary extends React.Component {
   static propTypes = {
@@ -59,14 +60,13 @@ export default class RouteSummary extends React.Component {
       </div>
       <div className="itinerary_leg_mobileActions">
         {vehicle !== 'publicTransport' &&
-          <button className="itinerary_leg_preview" onClick={this.onClickPreview}>
-            <span className="itinerary_leg_preview_icon icon-navigation" />
+          <Button className="itinerary_leg_preview" onClick={this.onClickPreview} icon="navigation">
             {_('PREVIEW', 'direction')}
-          </button>}
+          </Button>}
         {vehicle === 'publicTransport' &&
-          <button className="itinerary_leg_details" onClick={this.onClickDetails}>
+          <Button onClick={this.onClickDetails} icon="icon_list">
             {_('DETAILS', 'direction')}
-          </button>}
+          </Button>}
       </div>
     </div>;
   }
