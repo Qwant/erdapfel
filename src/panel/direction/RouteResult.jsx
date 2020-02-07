@@ -53,7 +53,7 @@ export default class RouteResult extends React.Component {
     fire('toggle_route', highlightMapRoute ? routeId : this.state.activeRouteId);
   }
 
-  openRouteDetails = routeId => {
+  toggleRouteDetails = routeId => {
     if (this.state.activeRouteId === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
     } else {
@@ -118,7 +118,7 @@ export default class RouteResult extends React.Component {
               vehicle={this.props.vehicle}
               isActive={this.state.activeRouteId === index}
               showDetails={this.state.activeRouteId === index && this.state.activeDetails}
-              openDetails={this.openRouteDetails}
+              toggleDetails={this.toggleRouteDetails}
               openPreview={this.openPreview}
               selectRoute={this.selectRoute}
               hoverRoute={this.hoverRoute}
