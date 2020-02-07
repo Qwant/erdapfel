@@ -17,7 +17,6 @@ server:
 
 app:
   versionFlag: Beta
-  easterEggs: true
 
 # Services
 services:
