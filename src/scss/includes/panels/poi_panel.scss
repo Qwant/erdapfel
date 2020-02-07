@@ -603,27 +603,11 @@ $HEADER_SIZE: 40px;
     }
   }
 
-  &__action {
-    display: block;
-    width: 112px;
-    height: 35px;
-    line-height: 35px;
-    border: 1px solid $primary_clear;
-    font-size: 12px;
-    font-weight: 600;
-    color: $primary_text;
-    border-radius: 18px;
-    cursor: pointer;
-    text-align: center;
-    /* secure  long translation */
-    white-space: nowrap;
-    overflow: hidden;
+  .button {
+    width: 120px;
+  }
 
-    &__direction {
-      background-color: $primary_text;
-      border-color: $primary_text;
-      color: #fff;
-      margin-bottom: 9px;
-    }
+  &__action__direction {
+    margin-bottom: 9px;
   }
 }

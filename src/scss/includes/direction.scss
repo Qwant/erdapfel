@@ -715,30 +715,7 @@ input:valid:focus + .itinerary__field__clear {
       justify-content: flex-end;
       grid-area: actions;
       margin-top: 9px;
-
-      button {
-        display: block;
-        pointer-events: all;
-        height: 35px;
-        line-height: 35px;
-        border-radius: 50px;
-        border: 1px solid #c8cbd3;
-        font-weight: bold;
-        font-size: 12px; 
-        margin-left: 6px;
-        padding: 0 9px;
-      }
     }
-  }
-  
-  .itinerary_leg_preview_icon {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    vertical-align: middle;
-    background-size: 100% auto;
-    margin-right: 10px;
-    font-size: 16px;
   }
   
   .itinerary_mobile_step {

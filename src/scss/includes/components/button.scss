@@ -1,0 +1,35 @@
+.button {
+  background-color: white;
+  display: inline-flex;
+  align-items: center;
+  height: 35px;
+  padding: 0 9px;
+  border-radius: 18px;
+  border: 1px solid $primary_clear;
+  font-size: 12px;
+  font-weight: 600;
+  color: $primary_text;
+  pointer-events: all;
+  cursor: pointer;
+
+  &--invert {
+    background-color: $primary_text;
+    border-color: $primary_text;
+    color: white;
+  }
+
+  &-content {
+    flex-grow: 1;
+    text-align: center;
+    /* secure long content */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-icon {
+    vertical-align: middle;
+    margin-right: 6px;
+    font-size: 16px;
+  }
+}

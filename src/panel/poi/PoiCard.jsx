@@ -3,6 +3,7 @@ import React from 'react';
 import PoiHeader from './PoiHeader';
 import PoiTitleImage from './PoiTitleImage';
 import OpeningHour from 'src/components/OpeningHour';
+import Button from 'src/components/ui/Button';
 
 class PoiCard extends React.Component {
   constructor(props) {
@@ -35,18 +36,18 @@ class PoiCard extends React.Component {
           <i className="icon-x" />
         </div>
         { !!openDirection &&
-          <button
-            className="poi_card__action poi_card__action__direction"
+          <Button
+            className="poi_card__action__direction"
+            variant="invert"
             onClick={openDirection}
+            icon="corner-up-right"
           >
-            <span className="icon-corner-up-right" />{' '}
             { _('DIRECTIONS', 'poi panel') }
-          </button>
+          </Button>
         }
-        <button className="poi_card__action" onClick={showDetails}>
-          <span className="icon-chevrons-right" />{' '}
+        <Button onClick={showDetails} icon="chevrons-right">
           { _('SEE MORE', 'poi panel') }
-        </button>
+        </Button>
       </div>
     </div>;
   }
