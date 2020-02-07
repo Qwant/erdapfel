@@ -12,14 +12,12 @@ import SceneCategory from './scene_category';
 import SceneEvent from './scene_event';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
-import SceneEasterEgg from './scene_easter_egg';
 import { isMobileDevice } from 'src/libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 
 const baseUrl = nconf.get().system.baseUrl;
-const easterEggsEnabled = nconf.get().app.easterEggs;
 
 const store = new LocalStore();
 
@@ -115,11 +113,6 @@ Scene.prototype.initMapBox = function() {
       window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
     });
-
-    /* Easter egg for beta */
-    if (easterEggsEnabled) {
-      SceneEasterEgg.enableEggs(this.mb);
-    }
 
     window.execOnMapLoaded = f => f();
     fire('map_loaded');
