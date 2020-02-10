@@ -304,12 +304,7 @@ Scene.prototype.cleanMarker = async function() {
 };
 
 Scene.prototype.isWindowedPoi = function(poi) {
-  const windowBounds = this.mb.getBounds();
-  /* simple way to clone value */
-  const originalWindowBounds = windowBounds.toArray();
-  const poiCenter = new LngLat(poi.latLon.lng, poi.latLon.lat);
-  windowBounds.extend(poiCenter);
-  return compareBoundsArray(windowBounds.toArray(), originalWindowBounds);
+  return this.mb.getBounds().contains(new LngLat(poi.latLon.lng, poi.latLon.lat));
 };
 
 Scene.prototype.getLocationHash = function() {
@@ -352,12 +347,5 @@ Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
     });
   }
 };
-
-/* private */
-
-function compareBoundsArray(boundsA, boundsB) {
-  return boundsA[0][0] === boundsB[0][0] && boundsA[0][1] === boundsB[0][1] &&
-         boundsA[1][0] === boundsB[1][0] && boundsA[1][1] === boundsB[1][1];
-}
 
 export default Scene;
