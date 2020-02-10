@@ -74,7 +74,13 @@ export default class DirectionApi {
     try {
       response = await Ajax.get(directionsUrl, directionsParams, { timeout });
     } catch (e) {
-      response = e;
+      if (e >= 400 && e < 600) {
+        // Use the error codes 4xx and 5xx to display different error messages
+        response = { data: null, error: true, errorCode: e };
+      } else {
+        // Other errors are catched silently
+        return;
+      }
     }
     if (directionConfig.api === 'qwant' && response.data) {
       response = response.data;
