@@ -1,6 +1,13 @@
 
-const DESKTOP_PANEL_WIDTH = 450;
-const DESKTOP_SIDE_PANEL = { top: 100, left: DESKTOP_PANEL_WIDTH, right: 60, bottom: 45 };
+const DESKTOP_PANEL_WIDTH = 400;
+const DESKTOP_TOP_BAR_HEIGHT = 100;
+const ADDITIONAL_PADDING = 50;
+const DESKTOP_SIDE_PANEL = {
+  top: DESKTOP_TOP_BAR_HEIGHT + ADDITIONAL_PADDING,
+  left: DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING,
+  right: 60,
+  bottom: 45,
+};
 const MOBILE_CARD = { top: 80, right: 70, bottom: 130, left: 20 };
 const MOBILE_FULL_SCREEN_PANEL = { top: 184, right: 70, bottom: 130, left: 20 };
 
@@ -12,9 +19,13 @@ export function getMapPaddings({ isMobile, isDirectionsActive }) {
 }
 
 export function getMapCenterOffset({ isMobile }) {
-  return isMobile ? [0, 0] : [DESKTOP_PANEL_WIDTH / 2, 0];
+  return isMobile ? [0, 0] : [(DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING) / 2, 0];
 }
 
-export function isPositionUnderPanel({ x }, { isMobile }) {
-  return !isMobile && x < DESKTOP_PANEL_WIDTH;
+export function isPositionUnderUI({ x, y }, { isMobile }) {
+  return !isMobile && (
+    x < (DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING)
+    ||
+    y < (DESKTOP_TOP_BAR_HEIGHT + ADDITIONAL_PADDING)
+  );
 }

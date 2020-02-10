@@ -3,7 +3,7 @@ import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
 import { map } from 'config/constants.yml';
-import { getMapPaddings, getMapCenterOffset, isPositionUnderPanel } from 'src/panel/layouts';
+import { getMapPaddings, getMapCenterOffset, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
 import LocalStore from '../libs/local_store';
@@ -262,7 +262,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
   }
   const isMobile = isMobileDevice();
   if (!options.centerMap) {
-    const isPoiUnderPanel = isPositionUnderPanel(this.mb.project(poi.latLon), { isMobile });
+    const isPoiUnderPanel = isPositionUnderUI(this.mb.project(poi.latLon), { isMobile });
     if (this.isWindowedPoi(poi) && !isPoiUnderPanel) {
       return;
     }
