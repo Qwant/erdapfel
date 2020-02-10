@@ -34,6 +34,7 @@ const Route = ({
       destination={destination}
       vehicle={vehicle}
       toggleDetails={toggleDetails}
+      openPreview={openPreview}
     />}
   </Fragment>;
 };

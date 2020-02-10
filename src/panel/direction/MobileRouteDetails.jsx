@@ -1,9 +1,12 @@
+/* global _ */
 import React from 'react';
 import RouteVia from './RouteVia';
 import RoadMap from './RoadMap';
+import Button from 'src/components/ui/Button';
 import { formatDuration } from 'src/libs/route_utils';
 
-const MobileRouteDetails = ({ id, route, origin, destination, vehicle, toggleDetails }) => {
+const MobileRouteDetails =
+({ id, route, origin, destination, vehicle, toggleDetails, openPreview }) => {
   return <div className="itinerary_legDetails">
     <div className="itinerary_legDetails_header">
       <button className="itinerary_legDetails_back" onClick={() => { toggleDetails(id); }}>
@@ -13,6 +16,16 @@ const MobileRouteDetails = ({ id, route, origin, destination, vehicle, toggleDet
       <div className="itinerary_leg_duration">
         {formatDuration(route.duration)}
       </div>
+    </div>
+    <div className="itinerary_legDetails_title">
+      <div className="u-bold">{_('DETAILS', 'direction')}</div>
+      {vehicle !== 'publicTransport' && <Button
+        onClick={() => { openPreview(id); }}
+        variant="noBorder"
+        icon="chevrons-right"
+      >
+        {_('PREVIEW', 'direction')}
+      </Button>}
     </div>
     <RoadMap
       route={route}

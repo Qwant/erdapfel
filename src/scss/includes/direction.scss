@@ -684,7 +684,7 @@ input:valid:focus + .itinerary__field__clear {
 
   .itinerary_leg_summary {
     display: grid;
-    grid-template-areas: "info actions" "via actions";
+    grid-template-areas: "info" "via" "actions";
     padding: 15px 18px;
   }
 
@@ -709,12 +709,13 @@ input:valid:focus + .itinerary__field__clear {
     margin-right: 6px;
   }
   
-  .itinerary_leg--active {
-    .itinerary_leg_mobileActions {
-      display: flex;
-      justify-content: flex-end;
-      grid-area: actions;
-      margin-top: 9px;
+  .itinerary_leg_mobileActions {
+    display: flex;
+    grid-area: actions;
+    margin-top: 9px;
+
+    button {
+      margin-right: 6px;
     }
   }
   
@@ -855,6 +856,14 @@ input:valid:focus + .itinerary__field__clear {
       .itinerary_leg_duration {
         margin: 0 0 0 12px;
       }
+    }
+
+    &_title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      font-size: 14px;
     }
 
     .itinerary_roadmap {

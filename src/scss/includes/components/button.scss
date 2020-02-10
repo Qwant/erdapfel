@@ -2,7 +2,7 @@
   background-color: white;
   display: inline-flex;
   align-items: center;
-  height: 35px;
+  height: 36px;
   padding: 0 9px;
   border-radius: 18px;
   border: 1px solid $primary_clear;
@@ -18,6 +18,11 @@
     color: white;
   }
 
+  &--noBorder {
+    border-color: transparent;
+    padding: 0;
+  }
+
   &-content {
     flex-grow: 1;
     text-align: center;
@@ -29,7 +34,11 @@
 
   &-icon {
     vertical-align: middle;
-    margin-right: 6px;
     font-size: 16px;
+    width: 16px;
+  }
+
+  &-icon + &-content {
+    margin-left: 6px;
   }
 }
