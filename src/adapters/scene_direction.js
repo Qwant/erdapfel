@@ -2,7 +2,6 @@ import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
 import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
-import layouts from '../panel/layouts.js';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { prepareRouteColor, getRouteStyle, setActiveRouteStyle } from './route_styles';
 import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
@@ -42,7 +41,7 @@ export default class SceneDirection {
     });
 
     listen('zoom_step', step => {
-      fire('fit_map', this.computeBBox(step), layouts.ITINERARY);
+      fire('fit_map', this.computeBBox(step));
     });
 
     listen('highlight_step', step => {
@@ -135,7 +134,7 @@ export default class SceneDirection {
 
       const bbox = this.computeBBox(mainRoute);
       if (move !== false) {
-        fire('fit_map', bbox, layouts.ITINERARY);
+        fire('fit_map', bbox);
       }
     }
   }

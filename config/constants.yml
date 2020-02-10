@@ -33,14 +33,6 @@ languages:
         - es_ES
   defaultLanguage: *default
 
-layout:
-  sizes:
-    panelWidth : 400
-    topBarHeight: 100
-    sideBarWidth: 96
-  mobile:
-    breakPoint: 640
-
 # Map
 map:
   zoom: 2

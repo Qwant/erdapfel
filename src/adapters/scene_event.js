@@ -1,7 +1,6 @@
 import { Marker } from 'mapbox-gl--ENV';
 import { createEventIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
-import layouts from 'src/panel/layouts.js';
 import events from 'config/events.yml';
 import { toUrl } from 'src/libs/pois';
 
@@ -46,7 +45,6 @@ export default class SceneEvent {
       poi,
       isFromEvent: true,
       sourceEvent: eventName,
-      layout: layouts.LIST,
       centerMap: true,
     });
     this.highlightPoiMarker(poi, true);
