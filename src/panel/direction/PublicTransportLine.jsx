@@ -7,15 +7,17 @@ const PublicTransportLine = ({ mode, info }) => {
   // @TODO: use network-specific iconography where possible
   let type = 'ligne';
   if (mode.startsWith('BUS')) {
-    type = `bus ${info.network}`;
+    type = 'bus';
   } else if (mode.startsWith('SUBWAY')) {
     type = 'métro';
   } else if (mode.startsWith('TRAM')) {
     type = 'tram';
-  } else if (info.network === 'RER') {
-    type = 'RER';
   } else if (mode.indexOf('TRAIN') !== -1) {
-    type = `train ${info.network}`;
+    if (info.num.startsWith('RER')) {
+      type = '';
+    } else {
+      type = `train ${info.network}`;
+    }
   }
   const lineColor = info.lineColor ? Color('#' + info.lineColor) : Color('white');
   return <span

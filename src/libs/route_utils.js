@@ -44,7 +44,7 @@ export function getVehicleIcon(vehicle) {
   }
 }
 
-export function getTransportTypeIcon({ mode = '', info = {} }) {
+export function getTransportTypeIcon({ mode = '' }) {
   if (mode.startsWith('WALK')) {
     return 'walk';
   }
@@ -57,7 +57,7 @@ export function getTransportTypeIcon({ mode = '', info = {} }) {
   if (mode.startsWith('TRAM')) {
     return 'tram';
   }
-  if (info.network === 'RER' || mode.indexOf('TRAIN') !== -1) {
+  if (mode.indexOf('TRAIN') !== -1) {
     return 'train';
   }
   return null;
