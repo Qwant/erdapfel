@@ -843,6 +843,7 @@ input:valid:focus + .itinerary__field__clear {
       padding: 12px 18px;
       background-color: $background_active;
       z-index: 1;
+      transition: all .2s ease-out;
 
       .icon-arrow-left {
         font-size: 24px;
@@ -855,6 +856,19 @@ input:valid:focus + .itinerary__field__clear {
 
       .itinerary_leg_duration {
         margin: 0 0 0 12px;
+      }
+
+      .itinerary_legDetails__scrolled & {
+        @include card_shadow();
+        background-color: $primary_text;
+        color: white;
+        transition: all .2s ease-in;
+
+        .itinerary_leg_duration,
+        .itinerary_legDetails_back {
+          color: white;
+          transition: all .2s ease-in;
+        }
       }
     }
 

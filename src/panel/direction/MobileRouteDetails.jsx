@@ -1,13 +1,31 @@
 /* global _ */
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import RouteVia from './RouteVia';
 import RoadMap from './RoadMap';
 import Button from 'src/components/ui/Button';
 import { formatDuration } from 'src/libs/route_utils';
+import classnames from 'classnames';
+import throttle from 'lodash.throttle';
 
 const MobileRouteDetails =
 ({ id, route, origin, destination, vehicle, toggleDetails, openPreview }) => {
-  return <div className="itinerary_legDetails">
+  const panelElement = useRef(null);
+  const [scrolledDown, setScrolledDown] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      setScrolledDown(panelElement.current.scrollTop > 0);
+    }, 100, { leading: true, trailing: true });
+    panelElement.current.addEventListener('scroll', handleScroll, { passive: true });
+    return () => panelElement.current.removeEventListener('scroll', handleScroll);
+  });
+
+  return <div
+    ref={panelElement}
+    className={classnames('itinerary_legDetails', {
+      ['itinerary_legDetails__scrolled']: scrolledDown,
+    })}
+  >
     <div className="itinerary_legDetails_header">
       <button className="itinerary_legDetails_back" onClick={() => { toggleDetails(id); }}>
         <i className="icon-arrow-left" />

@@ -10,9 +10,10 @@
   vertical-align: text-bottom;
   white-space: nowrap;
   display: inline-block;
+  color: black !important;
 
   &--dark {
-    color: white;
+    color: white !important;
   }
 }
 
