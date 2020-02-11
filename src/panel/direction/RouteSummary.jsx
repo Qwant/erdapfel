@@ -59,7 +59,9 @@ export default class RouteSummary extends React.Component {
         <i className="icon-share-2" />
       </div>
       <div className="itinerary_leg_mobileActions">
-        <Button onClick={this.onClickDetails} icon="icon_list">{_('DETAILS', 'direction')}</Button>
+        <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">
+          {_('DETAILS', 'direction')}
+        </Button>
         <Button onClick={this.onClickShare} icon="share-2" />
       </div>
     </div>;
