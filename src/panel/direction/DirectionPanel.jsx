@@ -114,22 +114,26 @@ export default class DirectionPanel extends React.Component {
         destination,
         vehicle,
       );
-      if (directionResponse && directionResponse.routes && directionResponse.routes.length > 0) {
-        const routes = directionResponse.routes.map((route, i) => ({
+      if (directionResponse
+          && directionResponse.data
+          && directionResponse.data.routes
+          && directionResponse.data.routes.length > 0
+      ) {
+        const routes = directionResponse.data.routes.map((route, i) => ({
           ...route,
           isActive: i === 0,
           id: i,
         }));
-        this.setState({ isLoading: false, error: false, routes });
+        this.setState({ isLoading: false, error: 0, routes });
         window.execOnMapLoaded(() => {
           fire('set_route', { routes, vehicle, origin, destination });
         });
       } else {
-        this.setState({ isLoading: true, error: true, errorCode: directionResponse });
+        this.setState({ isLoading: true, error: directionResponse.error });
         fire('clean_route');
       }
     } else {
-      this.setState({ isDirty: false, routes: [] });
+      this.setState({ isDirty: false, error: -1, routes: [] });
       fire('clean_route');
     }
   }

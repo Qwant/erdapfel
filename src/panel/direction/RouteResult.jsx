@@ -13,8 +13,7 @@ export default class RouteResult extends React.Component {
     destination: PropTypes.string,
     vehicle: PropTypes.string,
     isLoading: PropTypes.bool,
-    error: PropTypes.bool,
-    errorCode: PropTypes.number,
+    error: PropTypes.number,
     openMobilePreview: PropTypes.func.isRequired,
   }
 
@@ -71,11 +70,11 @@ export default class RouteResult extends React.Component {
   }
 
   render() {
-    if (this.props.error) {
+    if (this.props.error !== 0) {
       return <div className="itinerary_no-result">
         <span className="icon-alert-triangle" />
         <div>{
-          this.props.errorCode >= 500 && this.props.errorCode < 600
+          this.props.error >= 500 && this.props.error < 600
             ? _('The service is temporarily unavailable, please try again later.', 'direction')
             : _('Qwant Maps found no results for this itinerary.', 'direction')
         }</div>
@@ -83,8 +82,7 @@ export default class RouteResult extends React.Component {
           this.props.vehicle === 'publicTransport' &&
           <div>{
             _(
-              'For information, public transport mode is currently in test version for some ' +
-              'cities.',
+              'We are currently testing public transport mode in a restricted set of cities.',
               'direction'
             )
           }</div>
