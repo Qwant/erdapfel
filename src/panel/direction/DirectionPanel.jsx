@@ -56,7 +56,7 @@ export default class DirectionPanel extends React.Component {
         (props.poi && Poi.deserialize(props.poi)) || persistentPointState.destination || null,
       isLoading: false,
       isDirty: true, // useful to track intermediary states, when API update call is not made yet
-      error: false,
+      error: 0,
       routes: [],
       activePreviewRoute: null,
       isInitializing: true,
@@ -114,11 +114,8 @@ export default class DirectionPanel extends React.Component {
         destination,
         vehicle,
       );
-      if (directionResponse
-          && directionResponse.data
-          && directionResponse.data.routes
-          && directionResponse.data.routes.length > 0
-      ) {
+      if (directionResponse && directionResponse.error === 0) {
+        // Valid, non-empty response
         const routes = directionResponse.data.routes.map((route, i) => ({
           ...route,
           isActive: i === 0,
@@ -129,11 +126,13 @@ export default class DirectionPanel extends React.Component {
           fire('set_route', { routes, vehicle, origin, destination });
         });
       } else {
-        this.setState({ isLoading: true, error: directionResponse.error });
+        // Error or empty response
+        this.setState({ isLoading: false, error: directionResponse.error });
         fire('clean_route');
       }
     } else {
-      this.setState({ isDirty: false, error: -1, routes: [] });
+      // When both fields are not filled yet or not filled anymore
+      this.setState({ isLoading: false, isDirty: false, error: 0, routes: [] });
       fire('clean_route');
     }
   }

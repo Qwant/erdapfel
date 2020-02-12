@@ -76,16 +76,25 @@ export default class DirectionApi {
     } catch (e) {
       if (Number.isInteger(e) && e >= 400 && e < 600) {
         // Use the error codes 4xx and 5xx to display different error messages
-        response = { data: null, error: e };
+        return { data: null, error: e };
       } else {
         // Other errors
-        response = { data: null, error: -1 };
+        return { data: null, error: -1 };
       }
     }
-    if (directionConfig.api === 'qwant' && response.data) {
-      response = { data: response.data, error: 0 };
+
+    // Valid response
+    if (
+      directionConfig.api === 'qwant'
+      && response.data
+      && response.data.routes
+      && response.data.routes.length > 0
+    ) {
+      return { data: response.data, error: 0 };
     }
-    return response;
+
+    // Empty response
+    return { data: null, error: -1 };
   }
 }
 
