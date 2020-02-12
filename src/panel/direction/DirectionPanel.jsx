@@ -56,7 +56,7 @@ export default class DirectionPanel extends React.Component {
         (props.poi && Poi.deserialize(props.poi)) || persistentPointState.destination || null,
       isLoading: false,
       isDirty: true, // useful to track intermediary states, when API update call is not made yet
-      error: false,
+      error: 0,
       routes: [],
       activePreviewRoute: null,
       isInitializing: true,
@@ -108,28 +108,31 @@ export default class DirectionPanel extends React.Component {
   computeRoutes = async () => {
     const { origin, destination, vehicle } = this.state;
     if (origin && destination) {
-      this.setState({ isDirty: false, isLoading: true, routes: [] });
+      this.setState({ isDirty: false, isLoading: true, error: 0, routes: [] });
       const directionResponse = await DirectionApi.search(
         origin,
         destination,
         vehicle,
       );
-      if (directionResponse && directionResponse.routes && directionResponse.routes.length > 0) {
-        const routes = directionResponse.routes.map((route, i) => ({
+      if (directionResponse && directionResponse.error === 0) {
+        // Valid, non-empty response
+        const routes = directionResponse.data.routes.map((route, i) => ({
           ...route,
           isActive: i === 0,
           id: i,
         }));
-        this.setState({ isLoading: false, error: false, routes });
+        this.setState({ isLoading: false, error: 0, routes });
         window.execOnMapLoaded(() => {
           fire('set_route', { routes, vehicle, origin, destination });
         });
       } else {
-        this.setState({ isLoading: true, error: true });
+        // Error or empty response
+        this.setState({ isLoading: false, error: directionResponse.error });
         fire('clean_route');
       }
     } else {
-      this.setState({ isDirty: false, routes: [] });
+      // When both fields are not filled yet or not filled anymore
+      this.setState({ isLoading: false, isDirty: false, error: 0, routes: [] });
       fire('clean_route');
     }
   }

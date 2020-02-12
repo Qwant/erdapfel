@@ -74,12 +74,32 @@ export default class DirectionApi {
     try {
       response = await Ajax.get(directionsUrl, directionsParams, { timeout });
     } catch (e) {
-      return;
+      if (Number.isInteger(e) && e >= 400 && e < 600) {
+        // Use the error codes 4xx and 5xx to display different error messages
+        return { data: null, error: e };
+      } else {
+        // Other errors
+        return { data: null, error: -1 };
+      }
     }
-    if (directionConfig.api === 'qwant') {
-      response = response.data;
+
+    // Valid response
+    if (
+      directionConfig.api === 'qwant'
+      && response.data
+      && response.data.routes
+      && response.data.routes.length > 0
+    ) {
+      return { data: response.data, error: 0 };
     }
-    return response;
+
+    // Mock response / direction not proxified by qwant
+    if (directionConfig.api === 'mapbox') {
+      return { data: response, error: 0 };
+    }
+
+    // Empty response
+    return { data: null, error: -1 };
   }
 }
 

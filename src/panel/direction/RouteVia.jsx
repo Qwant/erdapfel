@@ -8,7 +8,6 @@ const RouteVia = ({ route, vehicle }) => {
       {_('Via', 'direction')} {route.legs[0].summary.replace(/^(.*), (.*)$/, '$1')}
     </div>;
   }
-
   return <div className="routeVia">
     {route.summary
       .filter(summaryPart => summaryPart.mode !== 'WAIT')
@@ -16,8 +15,8 @@ const RouteVia = ({ route, vehicle }) => {
       .map((summaryPart, idx) =>
         <span key={idx} className="routeVia-step">
           {summaryPart.mode === 'WALK'
-            ? <i className="icon-foot" />
-            : <PublicTransportLine mode={summaryPart.mode} info={summaryPart.info} />
+            ? <i className="icon-foot"/>
+            : <PublicTransportLine mode={summaryPart.mode} info={summaryPart.info}/>
           }
         </span>
       )
