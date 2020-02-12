@@ -108,7 +108,7 @@ export default class DirectionPanel extends React.Component {
   computeRoutes = async () => {
     const { origin, destination, vehicle } = this.state;
     if (origin && destination) {
-      this.setState({ isDirty: false, isLoading: true, routes: [] });
+      this.setState({ isDirty: false, isLoading: true, error: 0, routes: [] });
       const directionResponse = await DirectionApi.search(
         origin,
         destination,
