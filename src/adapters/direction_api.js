@@ -93,6 +93,11 @@ export default class DirectionApi {
       return { data: response.data, error: 0 };
     }
 
+    // Mock response / direction not proxified by qwant
+    if (directionConfig.api === 'mapbox') {
+      return { data: response, error: 0 };
+    }
+
     // Empty response
     return { data: null, error: -1 };
   }
