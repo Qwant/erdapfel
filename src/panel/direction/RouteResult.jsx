@@ -42,7 +42,7 @@ export default class RouteResult extends React.Component {
     if (routeId === this.state.activeRouteId) {
       return;
     }
-    fire('set_main_route', routeId);
+    fire('set_main_route', { routeId, fitView: true });
     this.setState({ activeRouteId: routeId });
   }
 
@@ -50,14 +50,14 @@ export default class RouteResult extends React.Component {
     if (routeId === this.state.activeRouteId) {
       return;
     }
-    fire('set_main_route', highlightMapRoute ? routeId : this.state.activeRouteId);
+    fire('set_main_route', { routeId: highlightMapRoute ? routeId : this.state.activeRouteId });
   }
 
   toggleRouteDetails = routeId => {
     if (this.state.activeRouteId === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
     } else {
-      fire('set_main_route', routeId);
+      fire('set_main_route', { routeId, fitView: true });
       this.setState({
         activeRouteId: routeId,
         activeDetails: true,
