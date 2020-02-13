@@ -670,6 +670,10 @@ input:valid:focus + .itinerary__field__clear {
     padding: 9px 0 6px;
   }
 
+  .itinerary_no-result {
+    background-color: transparent;
+  }
+
   .panel.directionResult_panel {
     height: auto;
 

@@ -256,7 +256,7 @@ export default class DirectionPanel extends React.Component {
             {title}
             {!activePreviewRoute && form}
           </div>
-          {(routes.length > 0 || isLoading) && !activePreviewRoute &&
+          {!activePreviewRoute && origin && destination &&
             <Panel className="directionResult_panel">
               {result}
             </Panel>}
