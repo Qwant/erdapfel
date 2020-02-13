@@ -257,7 +257,7 @@ export default class DirectionPanel extends React.Component {
             {!activePreviewRoute && form}
           </div>
           {!activePreviewRoute && origin && destination &&
-            <Panel className="directionResult_panel">
+            <Panel className="directionResult_panel" resizable>
               {result}
             </Panel>}
           {activePreviewRoute &&

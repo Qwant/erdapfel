@@ -13,6 +13,7 @@ class ServicePanel extends React.Component {
       title={_('Qwant Maps services', 'service panel')}
       minimizedTitle={_('Show Qwant Maps services', 'service panel')}
       className="service_panel"
+      white
     >
       <CategoryList className="service_panel__categories" />
 

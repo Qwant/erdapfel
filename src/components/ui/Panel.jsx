@@ -8,6 +8,14 @@ function getClosestIndex(arr, goal) {
   );
 }
 
+const getEventClientY = event => event.changedTouches
+  ? event.changedTouches[0].clientY
+  : event.clientY;
+
+// Delay below which a mouseDown/mouseUp interaction
+// will be considered a as single click instead of a draggin action
+const CLICK_RESIZE_TIMEOUT_MS = 250;
+
 export default class Panel extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -24,7 +32,7 @@ export default class Panel extends React.Component {
     super(props);
     this.moveCallback = e => this.move(e);
     this.state = {
-      isTransitioning: false,
+      holding: false,
       size: props.initialSize,
       currentHeight: null,
     };
@@ -40,6 +48,8 @@ export default class Panel extends React.Component {
 
   componentWillUnmount() {
     this.updateMobileMapUI(0);
+    document.removeEventListener('mousemove', this.moveCallback);
+    document.removeEventListener('touchmove', this.moveCallback);
   }
 
   updateMobileMapUI = height => {
@@ -53,36 +63,31 @@ export default class Panel extends React.Component {
   holdResizer = event => {
     event.preventDefault();
 
-    if (this.state.isTransitioning) {
-      return;
-    }
+    this.startHeight = this.panelDOMElement.offsetHeight;
+    this.startClientY = getEventClientY(event.nativeEvent);
+    this.interactionStarted = event.timeStamp;
 
-    this.setState({ size: null });
-    this.move(event.nativeEvent, true);
+    document.addEventListener('mousemove', this.moveCallback);
+    document.addEventListener('touchmove', this.moveCallback);
 
-    this.timer = setTimeout(() => {
-      if (this.timer) {
-        this.holding = true;
-        document.addEventListener('touchmove', this.moveCallback);
-        document.addEventListener('mousemove', this.moveCallback);
-      }
-    }, 250);
+    this.setState(previousState => ({
+      currentHeight: this.startHeight,
+      size: null,
+      previousSize: previousState.size,
+      holding: true,
+    }));
   }
 
   /**
-  * Triggered on mouse move inside the body element while holding the panel resizer
+  * Triggered on mouse move on the panel resizer
   * @param {MouseEvent|TouchEvent} e event
-  * @param {boolean} force Apply the height outside a panel resize
   */
-  move(e, force = false) {
-    if ((this.holding || force) && !this.state.isTransitioning) {
-      const clientY = e.changedTouches ? e.touches[0].clientY : e.clientY;
-      this.setState({
-        currentHeight: Math.abs(
-          window.innerHeight - clientY + this.handleElement.offsetHeight - 10
-        ),
-      });
-    }
+  move = event => {
+    event.preventDefault();
+
+    const clientY = getEventClientY(event);
+    const currentHeight = this.startHeight + (this.startClientY - clientY);
+    this.setState({ currentHeight });
   }
 
   /**
@@ -91,41 +96,41 @@ export default class Panel extends React.Component {
    */
   stopResize = event => {
     event.preventDefault();
-    clearTimeout(this.timer);
 
-    const nativeEvent = event.nativeEvent;
-    const clientY = nativeEvent.changedTouches
-      ? nativeEvent.changedTouches[0].clientY
-      : nativeEvent.clientY;
-    const sizes = [0, window.innerHeight / 2, window.innerHeight];
-    const positionIndex = getClosestIndex(sizes, clientY);
+    document.removeEventListener('mousemove', this.moveCallback);
+    document.removeEventListener('touchmove', this.moveCallback);
+
+    const { previousSize, currentHeight } = this.state;
 
     let size = null;
-    if (positionIndex === 2 && this.holding) {
-      size = 'minimized';
-    } else if (positionIndex === 1 && !this.holding) {
-      size = 'minimized';
-    } else if (positionIndex === 0) {
-      size = 'maximized';
+    if (event.timeStamp - this.interactionStarted < CLICK_RESIZE_TIMEOUT_MS) {
+      // the resize handler was only clicked, provide 'smart' resize
+      size = !previousSize ? 'minimized' : null;
+    } else {
+      // the resize handler was really dragged-n-dropped
+      const sizes = [0, window.innerHeight / 2, window.innerHeight];
+      const positionIndex = getClosestIndex(sizes, currentHeight);
+      if (positionIndex === 0) {
+        size = 'minimized';
+      } else if (positionIndex === 2) {
+        size = 'maximized';
+      }
     }
 
-    this.holding = false;
     this.setState({
-      isTransitioning: true,
+      holding: false,
       size,
       currentHeight: null,
+      isTransitioning: true,
     });
 
-    setTimeout(() => {
-      this.setState({ isTransitioning: false });
-      document.removeEventListener('touchmove', this.moveCallback);
-      document.removeEventListener('mousemove', this.moveCallback);
-    }, 250); // css transition delay
+    // Still useful so componentDidUpdate gets called to move the map UI elements -_-
+    setTimeout(() => { this.setState({ isTransitioning: false }); }, 250);
   }
 
   render() {
     const { children, title, minimizedTitle, resizable, close, className, white } = this.props;
-    const { size, isTransitioning, currentHeight } = this.state;
+    const { size, currentHeight, holding } = this.state;
 
     const resizeHandlers = resizable ? {
       onMouseDown: this.holdResizer,
@@ -136,8 +141,8 @@ export default class Panel extends React.Component {
 
     return <div
       className={classnames('panel', size, className, {
-        'smooth-resize': isTransitioning,
         'panel--white': white,
+        'panel--holding': holding,
       })}
       style={{ height: currentHeight && `${currentHeight}px` }}
       ref={panel => this.panelDOMElement = panel}
