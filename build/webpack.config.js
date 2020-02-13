@@ -5,7 +5,6 @@ const yaml = require('node-yaml');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const babelConf = require('./babel.config');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const getBuildMode = function(argv) {
   const isTestMode = process.env.TEST === 'true';
@@ -80,23 +79,6 @@ const sassChunkConfig = () => {
 
 
 const mainJsChunkConfig = buildMode => {
-  const plugins = [
-    new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
-      if (buildMode === 'test') {
-        resource.request = resource.request.replace('--ENV', '-js-mock');
-      } else {
-        resource.request = resource.request.replace('--ENV', '');
-      }
-    }),
-    ...buildMode === 'production'
-      ? [
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
-          openAnalyzer: false,
-        })]
-      : [],
-  ];
-
   return {
     entry: [path.join(__dirname, '..', 'src', 'main.js')],
     output: {
@@ -112,7 +94,15 @@ const mainJsChunkConfig = buildMode => {
       },
       extensions: ['.js', '.jsx'],
     },
-    plugins: addJsOptimizePlugins(buildMode, plugins),
+    plugins: addJsOptimizePlugins(buildMode, [
+      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
+        if (buildMode === 'test') {
+          resource.request = resource.request.replace('--ENV', '-js-mock');
+        } else {
+          resource.request = resource.request.replace('--ENV', '');
+        }
+      }),
+    ]),
     module: {
       rules: [{
         test: /\.yml$/,
