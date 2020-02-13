@@ -25,18 +25,18 @@ export default class SceneDirection {
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active');
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive');
 
-    listen('set_route', ({ routes, vehicle, move }) => {
+    listen('set_routes', ({ routes, vehicle, move }) => {
       this.reset();
       this.routes = routes;
       this.vehicle = vehicle;
       this.displayRoute(move);
     });
 
-    listen('toggle_route', mainRouteId => {
-      this.setMainRoute(mainRouteId);
+    listen('set_main_route', routeId => {
+      this.setMainRoute(routeId);
     });
 
-    listen('clean_route', () => {
+    listen('clean_routes', () => {
       this.reset();
     });
 
