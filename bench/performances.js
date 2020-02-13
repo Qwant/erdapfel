@@ -8,10 +8,10 @@ const webpack = require('webpack');
 const childProcess = require('child_process');
 const webpackConfig = require('../build/webpack.config');
 const PORT = 3010;
-const HOST_URI = `http://localhost:${PORT}`
+const HOST_URI = `http://localhost:${PORT}`;
 
 
-;(async () => {
+(async () => {
   /* production build */
   const buildTime = await buildProd();
 
