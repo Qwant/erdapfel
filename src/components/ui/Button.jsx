@@ -9,7 +9,7 @@ const Button = ({ children, icon, variant, className = '', type = 'button', onCl
     {...rest}
   >
     {icon && <span className={`button-icon icon-${icon}`} />}
-    <div className="button-content">{children}</div>
+    {children && <div className="button-content">{children}</div>}
   </button>;
 
 export default Button;
