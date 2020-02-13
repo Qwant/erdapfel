@@ -1,4 +1,4 @@
-import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--ENV';
+import mapboxgl, { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl/dist/mapbox-gl-dev.js';
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
@@ -20,6 +20,9 @@ import Error from 'src/adapters/error';
 
 const baseUrl = nconf.get().system.baseUrl;
 
+// mapboxgl.workerCount = 1;
+mapboxgl.maxParallelImageRequests = 1;
+
 const store = new LocalStore();
 
 function Scene() {
@@ -36,6 +39,7 @@ Scene.prototype.initScene = async function(locationHash) {
 };
 
 Scene.prototype.setupInitialPosition = async function(locationHash) {
+  console.log('setupInitialPosition');
   if (locationHash) {
     this.zoom = locationHash.zoom;
     this.center = [locationHash.lng, locationHash.lat];
@@ -59,15 +63,65 @@ Scene.prototype.initMapBox = function() {
     /* lazy */ true
   );
 
+  const mapStyle = getStyle();
+
+  const layersHidden = mapStyle.layers
+    .filter(l => l.source !== 'basemap' ||
+  l['source-layer'] === 'transportation' ||
+  l['source-layer'] === 'transportation_name')
+    .map(l => l.id);
+
+  console.log(layersHidden.length);
+
   this.mb = new Map({
     attributionControl: false,
     container: 'scene_container',
-    style: getStyle(),
+    style: mapStyle,
     zoom: this.zoom,
     center: this.center,
     hash: false,
     maxZoom: 20,
   });
+
+  const hide = () => {
+    layersHidden.forEach(id => {
+      this.mb.setLayoutProperty(id, 'visibility', 'none');
+    });
+  };
+
+  const show = () => {
+    layersHidden.forEach(id => {
+      this.mb.setLayoutProperty(id, 'visibility', 'visible');
+    });
+  };
+
+  this.mb.once('load', () => {
+    show();
+  });
+
+  this.mb.on('zoomstart', () => {
+    console.log('zoomstart');
+    hide();
+  });
+
+  this.mb.on('zoomend', () => {
+    console.log('zoomend');
+    show();
+  });
+
+  this.mb.on('dragstart', () => {
+    console.log('movestart');
+    hide();
+  });
+
+  this.mb.on('dragend', () => {
+    console.log('moveend');
+    show();
+  });
+
+  // this.mb.repaint = 1;
+
+  console.log('#####', this.mb.repaint);
 
   this.popup.init(this.mb);
 
@@ -177,6 +231,7 @@ Scene.prototype.saveLocation = function() {
 };
 
 Scene.prototype.restoreLocation = function() {
+  console.log('restoreLocation');
   if (this.savedLocation) {
     const { zoom, lat, lng } = parseMapHash(this.savedLocation);
     const flyOptions = {

@@ -194,7 +194,7 @@ export default class SceneDirection {
     const sources = this.getDataSources(route);
     return sources.map((source, idx) => {
       const sourceId = `source_${route.id}_${idx}`;
-      this.map.addSource(sourceId, { type: 'geojson', data: source.data });
+      // this.map.addSource(sourceId, { type: 'geojson', data: source.data });
 
       const layerId = `route_${route.id}_${idx}`;
       const layerStyle = {
