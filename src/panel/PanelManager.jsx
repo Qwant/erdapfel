@@ -128,7 +128,7 @@ export default class PanelManager extends React.Component {
       if (params.q) {
         SearchInput.executeSearch(params.q);
       } else {
-        router.routeUrl.navigateTo('/');
+        router.routeUrl('/');
       }
     });
 
