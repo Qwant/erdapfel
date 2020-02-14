@@ -173,9 +173,9 @@ const copyPluginConfig = () => {
 
 const webpackChunks = buildMode => {
   let webpackChunks = [
+    mainJsChunkConfig(buildMode),
     copyPluginConfig(),
     sassChunkConfig(buildMode),
-    mainJsChunkConfig(buildMode),
   ];
   const constants = yaml.readSync('../config/constants.yml');
 
@@ -209,10 +209,5 @@ const webpackChunks = buildMode => {
 module.exports = (env, argv) => {
   /* eslint no-console: 0 */
   const buildMode = getBuildMode(argv);
-
-  console.log('*--------------------*');
-  console.log(`Building on ${buildMode} mode`);
-  console.log('*--------------------*');
-
   return webpackChunks(buildMode);
 };

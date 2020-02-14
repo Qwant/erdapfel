@@ -24,3 +24,5 @@ public/message
 bench/trace.json
 bench/report.json
 bench/results.har
+
+stats.json
