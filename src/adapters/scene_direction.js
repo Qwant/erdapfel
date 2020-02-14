@@ -22,8 +22,10 @@ export default class SceneDirection {
     this.mapFeaturesByRoute = {};
 
     const iconsBaseUrl = nconf.get().system.baseUrl + 'statics/images/direction_icons';
-    this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active');
-    this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive');
+    this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active',
+      { pixelRatio: 4 });
+    this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive',
+      { pixelRatio: 4 });
 
     listen('set_route', ({ routes, vehicle, move }) => {
       this.reset();
@@ -242,13 +244,13 @@ export default class SceneDirection {
     }
   }
 
-  addMapImage(url, name) {
+  addMapImage(url, name, options = {}) {
     this.map.loadImage(url, (error, image) => {
       if (error) {
         Error.sendOnce('scene', 'initMapBox', `Failed to load image at ${url}`, error);
         return;
       }
-      this.map.addImage(name, image);
+      this.map.addImage(name, image, options);
     });
   }
 }
