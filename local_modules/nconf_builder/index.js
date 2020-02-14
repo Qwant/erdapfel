@@ -1,26 +1,26 @@
-const path = require('path')
-const nconf = require('nconf')
-const nconfYml = require('nconf-yaml')
+const path = require('path');
+const nconf = require('nconf');
+const nconfYml = require('nconf-yaml');
 
-const PREFIX = 'TILEVIEW_'
+const PREFIX = 'TILEVIEW_';
 
 nconf
   .env({
-    transform : (configObject) => {
+    transform: configObject => {
       if (configObject.value === 'false') {
-        configObject.value = false
+        configObject.value = false;
       }
       if (configObject.value === 'true') {
-        configObject.value = true
+        configObject.value = true;
       }
       if (configObject.key.indexOf(PREFIX) === 0) {
-        configObject.key = configObject.key.replace(PREFIX, '')
-        return configObject
+        configObject.key = configObject.key.replace(PREFIX, '');
+        return configObject;
       }
     },
-    separator : '_'
+    separator: '_',
   })
-  .file({file : path.resolve(`${__dirname}/../../config/default_config.yml`), format : nconfYml})
+  .file({ file: path.resolve(`${__dirname}/../../config/default_config.yml`), format: nconfYml });
 
 function check_is_json_var(toCheck, name) {
   try {
@@ -54,6 +54,10 @@ class ConfigChecker {
     return confToCheck;
   }
 
+  set(key, value) {
+    this.conf.set(key, value);
+  }
+
   get_without_check() {
     return this.conf.get();
   }
@@ -61,4 +65,4 @@ class ConfigChecker {
 
 module.exports = (function() {
   return new ConfigChecker(nconf);
-})()
+})();
