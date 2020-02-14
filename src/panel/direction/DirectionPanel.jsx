@@ -146,6 +146,9 @@ export default class DirectionPanel extends React.Component {
       routeParams.push('destination=' + poiToUrl(this.state.destination));
     }
     routeParams.push(`mode=${this.state.vehicle}`);
+    if (this.props.isPublicTransportActive) {
+      routeParams.push('pt=true');
+    }
     window.app.navigateTo(`/routes/?${routeParams.join('&')}`, {}, {
       replace: true,
       routeUrl: false,
