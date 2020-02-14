@@ -1,6 +1,6 @@
 /* global _ */
 import React, { useState } from 'react';
-import { formatDistance, getStepIcon } from 'src/libs/route_utils';
+import { formatDistance, formatDuration, getStepIcon } from 'src/libs/route_utils';
 import RoadMapItem from './RoadMapItem';
 import LegLine from './LegLine';
 import classnames from 'classnames';
@@ -16,6 +16,7 @@ const WalkLeg = ({ leg }) => {
     icon="walk"
     className="itinerary_roadmap_item--walk"
     line={<LegLine mode="WALK" />}
+    distance={formatDuration(leg.duration)}
   >
     <div
       className={classnames('itinerary_roadmap_item_summary', {
