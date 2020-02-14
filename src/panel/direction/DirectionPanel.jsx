@@ -6,7 +6,6 @@ import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
-import nconf from '@qwant/nconf-getter';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
@@ -26,6 +25,7 @@ export default class DirectionPanel extends React.Component {
     destination: PropTypes.string,
     poi: PropTypes.object,
     mode: PropTypes.string,
+    isPublicTransportActive: PropTypes.bool,
   }
 
   constructor(props) {
@@ -42,7 +42,7 @@ export default class DirectionPanel extends React.Component {
     );
 
     this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
-    if (nconf.get().direction.publicTransport.enabled) {
+    if (this.props.isPublicTransportActive) {
       this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
     }
 
