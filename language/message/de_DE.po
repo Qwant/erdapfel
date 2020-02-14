@@ -7,20 +7,19 @@
 # Acrylic Boy, 2019
 # ENT8R <info.ent8r@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 14:48+0100\n"
+"POT-Creation-Date: 2020-02-13 10:24+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
-"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/"
-"teams/89416/de_DE/)\n"
-"Language: de_DE\n"
+"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -157,11 +156,14 @@ msgstr "Veranstaltung"
 msgid "animation"
 msgstr "Animation"
 
+msgid "Search with Qwant Maps"
+msgstr "Suche mit Qwant Maps"
+
 msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
-msgid "Search with Qwant Maps"
-msgstr "Suche mit Qwant Maps"
+msgid "write"
+msgstr "schreiben"
 
 msgid "accessories shop"
 msgstr "Zubehörshop "
@@ -790,16 +792,13 @@ msgid "Geolocation with privacy!"
 msgstr "Geolokalisierung mit Privatsphäre!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den "
-"Zugriff auf Ihren Standort, damit wir Sie orten können. \n"
-"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}"
-"angegeben, speichert Qwant Ihre Standortdaten nicht. Wir wollen nicht "
-"wissen, wo Sie sich befinden."
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standort, damit wir Sie orten können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant Ihre Standortdaten nicht. Wir wollen nicht wissen, wo Sie sich befinden."
 
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."
@@ -841,9 +840,8 @@ msgid "Masq activation failed"
 msgstr "Masq Aktivierung fehlgeschlagen"
 
 msgid ""
-"The connection failed between Qwant Maps and the "
-"Masq                                            application (Signalling "
-"error)"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
 msgstr ""
 "Die Verbindung zwischen Qwant Maps und Masq ist fehlgeschlagen "
 "(Signalisierungsfehler)"
@@ -899,7 +897,8 @@ msgstr "Teilen"
 msgid "Delete"
 msgstr "Löschen"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
 "auf einen Ort klicken."
@@ -1068,12 +1067,6 @@ msgstr "Start und Ziel tauschen"
 msgid "Via"
 msgstr "Über"
 
-msgid "DETAILS"
-msgstr "DETAILS"
-
-msgid "PREVIEW"
-msgstr "VORSCHAU"
-
 msgid "Walk on {walkDistance}"
 msgstr ""
 
@@ -1083,14 +1076,25 @@ msgstr "Start"
 msgid "Arrival"
 msgstr "Ankunft"
 
+msgid "DETAILS"
+msgstr "DETAILS"
+
+msgid "PREVIEW"
+msgstr "VORSCHAU"
+
+msgid "The service is temporarily unavailable, please try again later."
+msgstr ""
+
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps konnte keine Ergebnisse für diese Reiseroute finden."
+
+msgid ""
+"We are currently testing public transport mode in a restricted set of "
+"cities."
+msgstr ""
 
 msgid "directions"
 msgstr "Wegbeschreibung"
 
 msgid "return"
 msgstr "zurück"
-
-msgid "write"
-msgstr "schreiben"

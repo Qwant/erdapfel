@@ -1,20 +1,19 @@
 # Translators:
 # T S <tsalaba2004@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 14:48+0100\n"
+"POT-Creation-Date: 2020-02-13 10:24+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
-"Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/"
-"teams/89416/es_ES/)\n"
-"Language: es_ES\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -151,11 +150,14 @@ msgstr ""
 msgid "animation"
 msgstr ""
 
+msgid "Search with Qwant Maps"
+msgstr "Busca con Qwant Maps"
+
 msgid "The map that respects your privacy"
 msgstr "El mapa que respeta tu privacidad"
 
-msgid "Search with Qwant Maps"
-msgstr "Busca con Qwant Maps"
+msgid "write"
+msgstr ""
 
 msgid "accessories shop"
 msgstr "tienda de accesorios"
@@ -784,8 +786,8 @@ msgid "Geolocation with privacy!"
 msgstr "¡Geolocalización con privacidad!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -835,10 +837,10 @@ msgid "Masq activation failed"
 msgstr "Hubo un error al activar Masq."
 
 msgid ""
-"The connection failed between Qwant Maps and the "
-"Masq                                            application (Signalling "
-"error)"
-msgstr "La conexión ha fallado entre Qwant Maps y Masq (Error de señalización)"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
+msgstr ""
+"La conexión ha fallado entre Qwant Maps y Masq (Error de señalización)"
 
 msgid "Could not connect to Masq"
 msgstr "No se ha podido conectar a Masq"
@@ -891,9 +893,11 @@ msgstr "Compartir"
 msgid "Delete"
 msgstr "Borrar"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
-"No tiene lugares favoritos. <br>Puede añadir uno mediante un clic en un lugar"
+"No tiene lugares favoritos. <br>Puede añadir uno mediante un clic en un "
+"lugar"
 
 msgid "Use"
 msgstr "Usar"
@@ -1058,12 +1062,6 @@ msgstr "Invertir origen y destino"
 msgid "Via"
 msgstr "Por"
 
-msgid "DETAILS"
-msgstr "DETALLES"
-
-msgid "PREVIEW"
-msgstr "MUESTRA"
-
 msgid "Walk on {walkDistance}"
 msgstr ""
 
@@ -1073,14 +1071,25 @@ msgstr "Comenzar"
 msgid "Arrival"
 msgstr ""
 
+msgid "DETAILS"
+msgstr "DETALLES"
+
+msgid "PREVIEW"
+msgstr "MUESTRA"
+
+msgid "The service is temporarily unavailable, please try again later."
+msgstr ""
+
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps no ha encontrado una ruta."
+
+msgid ""
+"We are currently testing public transport mode in a restricted set of "
+"cities."
+msgstr ""
 
 msgid "directions"
 msgstr "indicaciones"
 
 msgid "return"
 msgstr "volver"
-
-msgid "write"
-msgstr ""
