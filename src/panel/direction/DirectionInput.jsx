@@ -6,17 +6,12 @@ import NavigatorGeolocalisationPoi, { navigatorGeolocationStatus } from
 import Suggest from 'src/adapters/suggest';
 import Error from 'src/adapters/error';
 
-export default class DirectionInput extends React.Component {
+class DirectionInput extends React.Component {
   static propTypes = {
     value: PropTypes.string,
     onChangePoint: PropTypes.func.isRequired,
     pointType: PropTypes.oneOf(['origin', 'destination']).isRequired,
-    claimFocus: PropTypes.bool,
-  }
-
-  constructor(props) {
-    super(props);
-    this.inputRef = React.createRef();
+    inputRef: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
@@ -26,15 +21,6 @@ export default class DirectionInput extends React.Component {
       prefixes: [ NavigatorGeolocalisationPoi.getInstance() ],
       menuClass: 'direction_suggestions',
     });
-    if (this.props.claimFocus) {
-      this.focus();
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.props.claimFocus) {
-      this.focus();
-    }
   }
 
   componentWillUnmount() {
@@ -77,7 +63,7 @@ export default class DirectionInput extends React.Component {
   }
 
   focus = () => {
-    setTimeout(() => { this.inputRef.current.focus(); }, 0);
+    setTimeout(() => { this.props.inputRef.current.focus(); }, 0);
   }
 
   clear = () => {
@@ -86,12 +72,12 @@ export default class DirectionInput extends React.Component {
   }
 
   render() {
-    const { pointType } = this.props;
+    const { pointType, inputRef } = this.props;
 
     return <div className="itinerary_field" >
       <div className={`itinerary_icon itinerary_icon_${pointType}`} />
       <input
-        ref={this.inputRef}
+        ref={inputRef}
         id={`itinerary_input_${pointType}`}
         className="itinerary_input"
         type="search"
@@ -109,3 +95,10 @@ export default class DirectionInput extends React.Component {
     </div>;
   }
 }
+
+const DirectionInputWithRef =
+  React.forwardRef((props, ref) => <DirectionInput {...props} inputRef={ref} />);
+
+DirectionInputWithRef.displayName = 'DirectionInput';
+
+export default DirectionInputWithRef;
