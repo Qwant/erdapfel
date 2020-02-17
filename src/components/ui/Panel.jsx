@@ -39,11 +39,11 @@ export default class Panel extends React.Component {
   }
 
   componentDidMount() {
-    this.updateMobileMapUI(this.panelDOMElement.offsetHeight);
+    this.updateMobileMapUI();
   }
 
   componentDidUpdate() {
-    this.updateMobileMapUI(this.panelDOMElement.offsetHeight);
+    this.updateMobileMapUI();
   }
 
   componentWillUnmount() {
@@ -52,7 +52,7 @@ export default class Panel extends React.Component {
     document.removeEventListener('touchmove', this.moveCallback);
   }
 
-  updateMobileMapUI = height => {
+  updateMobileMapUI = (height = this.panelDOMElement.offsetHeight) => {
     if (this.props.resizable) {
       window.execOnMapLoaded(() => {
         fire('move_mobile_bottom_ui', height);
@@ -121,11 +121,7 @@ export default class Panel extends React.Component {
       holding: false,
       size,
       currentHeight: null,
-      isTransitioning: true,
     });
-
-    // Still useful so componentDidUpdate gets called to move the map UI elements -_-
-    setTimeout(() => { this.setState({ isTransitioning: false }); }, 250);
   }
 
   render() {
@@ -146,6 +142,7 @@ export default class Panel extends React.Component {
       })}
       style={{ height: currentHeight && `${currentHeight}px` }}
       ref={panel => this.panelDOMElement = panel}
+      onTransitionEnd={() => this.updateMobileMapUI()}
     >
       {close && <div className="panel-close" onClick={() => { close(); }}>
         <i className="icon-x" />
