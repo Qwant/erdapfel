@@ -13,9 +13,9 @@ import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 
 const performanceEnabled = nconf.get().performance.enabled;
-const directionEnabled = nconf.get().direction.enabled;
 const categoryEnabled = nconf.get().category.enabled;
 const eventEnabled = nconf.get().events.enabled;
+const directionConf = nconf.get().direction;
 
 export default class PanelManager extends React.Component {
   static propTypes = {
@@ -110,11 +110,15 @@ export default class PanelManager extends React.Component {
       });
     });
 
-    if (directionEnabled) {
+    if (directionConf.enabled) {
+      const isPublicTransportActive =
+        (directionConf.publicTransport && directionConf.publicTransport.enabled)
+        || parseQueryString(document.location.search)['pt'] === 'true';
+
       router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
         this.setState({
           ActivePanel: DirectionPanel,
-          options: { ...parseQueryString(routeParams), ...options },
+          options: { ...parseQueryString(routeParams), ...options, isPublicTransportActive },
         });
       });
     }
@@ -124,7 +128,7 @@ export default class PanelManager extends React.Component {
       if (params.q) {
         SearchInput.executeSearch(params.q);
       } else {
-        router.routeUrl.navigateTo('/');
+        router.routeUrl('/');
       }
     });
 
