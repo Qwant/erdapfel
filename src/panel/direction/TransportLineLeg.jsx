@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import RoadMapItem from './RoadMapItem';
 import PublicTransportLine from './PublicTransportLine';
 import LegLine from './LegLine';
-import { getTransportTypeIcon } from 'src/libs/route_utils';
+import { getTransportTypeIcon, formatDuration } from 'src/libs/route_utils';
 
 const TransportLineLeg = ({ leg }) => {
   const [ detailsOpen, setDetailsOpen ] = useState(false);
-  const { mode, info = {}, stops = [], from, to } = leg;
+  const { mode, info = {}, stops = [], from, to, duration } = leg;
 
   return <RoadMapItem
     icon={getTransportTypeIcon(leg)}
     className="itinerary_roadmap_item--transportLine"
     line={<LegLine info={info} mode={mode} />}
+    distance={formatDuration(duration)}
   >
     <div
       className="itinerary_roadmap_item_summary itinerary_roadmap_item_summary--openable"
