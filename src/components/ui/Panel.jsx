@@ -23,9 +23,14 @@ export default class Panel extends React.Component {
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
     initialSize: PropTypes.string,
+    marginTop: PropTypes.number,
     close: PropTypes.func,
     className: PropTypes.string,
     white: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    marginTop: 0,
   }
 
   constructor(props) {
@@ -108,7 +113,8 @@ export default class Panel extends React.Component {
       size = !previousSize ? 'minimized' : null;
     } else {
       // the resize handler was really dragged-n-dropped
-      const sizes = [0, window.innerHeight / 2, window.innerHeight];
+      const maxSize = window.innerHeight - this.props.marginTop;
+      const sizes = [0, maxSize / 2, maxSize];
       const positionIndex = getClosestIndex(sizes, currentHeight);
       if (positionIndex === 0) {
         size = 'minimized';
