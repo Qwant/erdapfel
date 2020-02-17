@@ -670,6 +670,10 @@ input:valid:focus + .itinerary__field__clear {
     padding: 9px 0 6px;
   }
 
+  .itinerary_result {
+    max-height: none;
+  }
+
   .itinerary_no-result {
     background-color: transparent;
   }
@@ -677,10 +681,25 @@ input:valid:focus + .itinerary__field__clear {
   .panel.directionResult_panel {
     height: auto;
 
+    &:not(.panel--holding) {
+      max-height: 50%;
+    }
+
     .panel-header {
       min-height: auto;
     }
+
+    &.maximized {
+      height: calc(100% - 160px);
+      max-height: none;
+
+      .panel-header {
+        padding-top: 9px;
+        height: auto;
+      }
+    }
   }
+
 
   .itinerary_result .itemList-item {
     overflow: hidden;

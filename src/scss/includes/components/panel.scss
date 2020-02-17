@@ -52,6 +52,8 @@
     width: 100vw;
     height: 50%;
     position: absolute;
+    display: flex;
+    flex-direction: column;
     background: #f4f6fa;
     border-radius: 0;
     bottom: 0;
@@ -72,24 +74,27 @@
       padding: 21px;
     }
 
-    &.smooth-resize {
-      transition: all .2s ease-in-out;
+    &:not(.panel--holding) {
+      transition: height 0.2s ease-in-out;
     }
 
     &.maximized {
-      height: 100%;
+      height: calc(100% - 68px);
 
-      .panel-close {
-        top: 68px;
+      // a "fake" background area added above the panel itself,
+      // allowing height transitions without changing paddings and preventing "jumps"
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 68px;
+        background-color: #f4f6fa;
+        position: absolute;
+        top: -68px;
       }
 
-      .panel-header {
-        padding-top: 72px;
-        height: 116px;
-      }
-
-      .panel-content {
-        height: calc(100% - 116px);
+      &.panel--white::before {
+        background-color: white;
       }
     }
 
@@ -110,6 +115,10 @@
 
     .panel-resizeHandle {
       pointer-events: all;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       min-height: 50px;
       width: 100%;
       cursor: -webkit-grab;
