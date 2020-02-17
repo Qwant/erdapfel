@@ -7,20 +7,20 @@
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Adrien Matissart, 2019
-#
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 14:48+0100\n"
+"POT-Creation-Date: 2020-02-13 10:24+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2019\n"
-"Language-Team: French (France) (https://www.transifex.com/qwant-1/"
-"teams/89416/fr_FR/)\n"
-"Language: fr_FR\n"
+"Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
+"Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -39,7 +39,8 @@ msgstr "Rechercher dans Qwant Maps"
 
 msgid "JavaScript is required to view this application."
 msgstr ""
-"Il est nécessaire que JavaScript soit activé pour afficher cette application."
+"Il est nécessaire que JavaScript soit activé pour afficher cette "
+"application."
 
 msgid "hotel"
 msgstr "hôtel"
@@ -158,11 +159,14 @@ msgstr "événement"
 msgid "animation"
 msgstr "animation"
 
+msgid "Search with Qwant Maps"
+msgstr "Chercher avec Qwant Maps"
+
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
 
-msgid "Search with Qwant Maps"
-msgstr "Chercher avec Qwant Maps"
+msgid "write"
+msgstr " "
 
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -791,8 +795,8 @@ msgid "Geolocation with privacy!"
 msgstr "La géolocalisation respectueuse de votre vie privée !"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
@@ -843,9 +847,8 @@ msgid "Masq activation failed"
 msgstr "Activation de Masq échouée"
 
 msgid ""
-"The connection failed between Qwant Maps and the "
-"Masq                                            application (Signalling "
-"error)"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
 msgstr ""
 "La connexion entre Qwant Maps et l'application Masq a échoué. (Signalling "
 "error)"
@@ -901,7 +904,8 @@ msgstr "Partager"
 msgid "Delete"
 msgstr "Supprimer"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
 "lieu"
@@ -934,8 +938,8 @@ msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
 "privacy!"
 msgstr ""
-"Qwant Maps + Masq est la solution idéale pour un service de cartographie qui "
-"respecte votre vie privée !"
+"Qwant Maps + Masq est la solution idéale pour un service de cartographie qui"
+" respecte votre vie privée !"
 
 msgid "More Details"
 msgstr "Plus de détails"
@@ -1069,12 +1073,6 @@ msgstr "Inverser Départ et Arrivée"
 msgid "Via"
 msgstr "Via"
 
-msgid "DETAILS"
-msgstr "DÉTAILS"
-
-msgid "PREVIEW"
-msgstr "APERÇU"
-
 msgid "Walk on {walkDistance}"
 msgstr "Marchez sur {walkDistance}"
 
@@ -1084,14 +1082,28 @@ msgstr "Départ"
 msgid "Arrival"
 msgstr "Arrivée"
 
+msgid "DETAILS"
+msgstr "DÉTAILS"
+
+msgid "PREVIEW"
+msgstr "APERÇU"
+
+msgid "The service is temporarily unavailable, please try again later."
+msgstr ""
+"Le service est momentanément indisponible, veuillez réessayer "
+"ultérieurement."
+
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps ne trouve pas de résultat pour cet itinéraire."
+
+msgid ""
+"We are currently testing public transport mode in a restricted set of "
+"cities."
+msgstr ""
+"Ce mode d'itinéraire est actuellement en version test pour quelques villes."
 
 msgid "directions"
 msgstr "itinéraire"
 
 msgid "return"
 msgstr "retour"
-
-msgid "write"
-msgstr " "

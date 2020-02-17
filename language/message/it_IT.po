@@ -3,20 +3,19 @@
 # Davide Donati <davide.donati@gmail.com>, 2019
 # Federico Montemaro <montemarostore@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 14:48+0100\n"
+"POT-Creation-Date: 2020-02-13 10:24+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
-"Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/"
-"teams/89416/it_IT/)\n"
-"Language: it_IT\n"
+"Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: it_IT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -153,11 +152,14 @@ msgstr "evento"
 msgid "animation"
 msgstr ""
 
+msgid "Search with Qwant Maps"
+msgstr "Cerca con Qwant Maps"
+
 msgid "The map that respects your privacy"
 msgstr "La mappa che rispetta la tua privacy"
 
-msgid "Search with Qwant Maps"
-msgstr "Cerca con Qwant Maps"
+msgid "write"
+msgstr ""
 
 msgid "accessories shop"
 msgstr "negozio di accessori"
@@ -786,13 +788,13 @@ msgid "Geolocation with privacy!"
 msgstr "Geolocalizzazione con privacy!"
 
 msgid ""
-"You need to know where you are? Please allow your application to access your "
-"location so that it can tell you. As stated in our {privacyPolicyLink} "
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
 "privacy policy {closeTag}, Qwant will not store your geolocation "
 "information. We don't want to know your whereabouts."
 msgstr ""
-"Vuoi sapere dove ti trovi? Dai il permesso alla tua applicazione di accedere "
-"alla tua posizione in modo che te lo possa dire. Come specificato nella "
+"Vuoi sapere dove ti trovi? Dai il permesso alla tua applicazione di accedere"
+" alla tua posizione in modo che te lo possa dire. Come specificato nella "
 "nostra {privacyPolicyLink} informativa sulla privacy {closeTag}, Qwant non "
 "tratterrà le informazioni sulla tua geolocalizzazione. Non vogliamo sapere "
 "la tua posizione. "
@@ -838,9 +840,8 @@ msgid "Masq activation failed"
 msgstr "Errore di attivazione di Masq"
 
 msgid ""
-"The connection failed between Qwant Maps and the "
-"Masq                                            application (Signalling "
-"error)"
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
 msgstr ""
 "La connessione tra Qwant Maps e l'applicazione Masq (Signalling error) è "
 "fallita."
@@ -896,7 +897,8 @@ msgstr "Condividi"
 msgid "Delete"
 msgstr "Cancella"
 
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Non hai alcun luogo tra i preferiti. <br>Puoi aggiungerne uno cliccando su "
 "un luogo"
@@ -1065,12 +1067,6 @@ msgstr "Inverti partenza e destinazione"
 msgid "Via"
 msgstr "via"
 
-msgid "DETAILS"
-msgstr "DETTAGLI"
-
-msgid "PREVIEW"
-msgstr "PREVIEW"
-
 msgid "Walk on {walkDistance}"
 msgstr ""
 
@@ -1080,14 +1076,25 @@ msgstr "Inizia"
 msgid "Arrival"
 msgstr ""
 
+msgid "DETAILS"
+msgstr "DETTAGLI"
+
+msgid "PREVIEW"
+msgstr "PREVIEW"
+
+msgid "The service is temporarily unavailable, please try again later."
+msgstr ""
+
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps non ha trovato soluzioni per questo itinerario"
+
+msgid ""
+"We are currently testing public transport mode in a restricted set of "
+"cities."
+msgstr ""
 
 msgid "directions"
 msgstr "indicazioni"
 
 msgid "return"
 msgstr "ritorna"
-
-msgid "write"
-msgstr ""
