@@ -21,7 +21,7 @@ describe('route_utils', () => {
 
   describe('formatDistance', () => {
     const cases = [
-      { meters: 0, result: '' },
+      { meters: 0, result: '0 m' },
       { meters: 15, result: '15 m' },
       { meters: 500, result: '500 m' },
       { meters: 1234, result: '1,2 km' },
