@@ -15,7 +15,14 @@ export function getMapPaddings({ isMobile, isDirectionsActive }) {
   if (!isMobile) {
     return DESKTOP_SIDE_PANEL;
   }
-  return isDirectionsActive ? MOBILE_FULL_SCREEN_PANEL : MOBILE_CARD;
+  if (isDirectionsActive) {
+    const resultPanel = document.querySelector('.directionResult_panel');
+    const bottomPadding = resultPanel
+      ? resultPanel.clientHeight + (ADDITIONAL_PADDING / 2)
+      : MOBILE_FULL_SCREEN_PANEL.bottom;
+    return { ...MOBILE_FULL_SCREEN_PANEL, bottom: bottomPadding };
+  }
+  return MOBILE_CARD;
 }
 
 export function getMapCenterOffset({ isMobile }) {

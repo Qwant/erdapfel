@@ -72,7 +72,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    fire('clean_route');
+    fire('clean_routes');
     window.unListen(this.dragPointHandler);
     window.unListen(this.setPointHandler);
     document.body.classList.remove('directions-open');
@@ -123,17 +123,17 @@ export default class DirectionPanel extends React.Component {
         }));
         this.setState({ isLoading: false, error: 0, routes });
         window.execOnMapLoaded(() => {
-          fire('set_route', { routes, vehicle, origin, destination });
+          fire('set_routes', { routes, vehicle });
         });
       } else {
         // Error or empty response
         this.setState({ isLoading: false, error: directionResponse.error });
-        fire('clean_route');
+        fire('clean_routes');
       }
     } else {
       // When both fields are not filled yet or not filled anymore
       this.setState({ isLoading: false, isDirty: false, error: 0, routes: [] });
-      fire('clean_route');
+      fire('clean_routes');
     }
   }
 

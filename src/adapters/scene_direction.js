@@ -27,18 +27,18 @@ export default class SceneDirection {
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive',
       { pixelRatio: 4 });
 
-    listen('set_route', ({ routes, vehicle, move }) => {
+    listen('set_routes', ({ routes, vehicle }) => {
       this.reset();
       this.routes = routes;
       this.vehicle = vehicle;
-      this.displayRoute(move);
+      this.displayRoute();
     });
 
-    listen('toggle_route', mainRouteId => {
-      this.setMainRoute(mainRouteId);
+    listen('set_main_route', ({ routeId, fitView }) => {
+      this.setMainRoute(routeId, fitView);
     });
 
-    listen('clean_route', () => {
+    listen('clean_routes', () => {
       this.reset();
     });
 
@@ -74,7 +74,7 @@ export default class SceneDirection {
     }
   }
 
-  setMainRoute(routeId) {
+  setMainRoute(routeId, fitView) {
     let mainRoute = null;
     this.routes.forEach(route => {
       const isActive = route.id === routeId;
@@ -95,6 +95,9 @@ export default class SceneDirection {
       });
     });
     this.updateMarkers(mainRoute);
+    if (fitView) {
+      fire('fit_map', this.computeBBox(mainRoute));
+    }
   }
 
   updateMarkers(mainRoute) {
@@ -125,19 +128,14 @@ export default class SceneDirection {
     this.routeMarkers.push(destinationMarker);
   }
 
-  displayRoute(move) {
+  displayRoute() {
     if (this.routes && this.routes.length > 0) {
       this.mapFeaturesByRoute = {};
       this.routes.forEach(route => {
         this.mapFeaturesByRoute[route.id] = this.addRouteFeatures(route);
       });
       const mainRoute = this.routes.find(route => route.isActive);
-      this.setMainRoute(mainRoute.id);
-
-      const bbox = this.computeBBox(mainRoute);
-      if (move !== false) {
-        fire('fit_map', bbox);
-      }
+      this.setMainRoute(mainRoute.id, true);
     }
   }
 
