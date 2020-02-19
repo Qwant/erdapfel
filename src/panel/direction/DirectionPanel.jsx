@@ -134,6 +134,11 @@ export default class DirectionPanel extends React.Component {
       // When both fields are not filled yet or not filled anymore
       this.setState({ isLoading: false, isDirty: false, error: 0, routes: [] });
       fire('clean_routes');
+      if (origin) {
+        fire('set_origin', origin.latLon);
+      } else if (destination) {
+        fire('set_destination', destination.latLon);
+      }
     }
   }
 
@@ -209,7 +214,7 @@ export default class DirectionPanel extends React.Component {
     }
 
     // Update state
-    // If both fields are now set, call update() to perform a search and redraw the UI
+    // (Call update() that will perform a search and redraw the UI if both fields are set)
     this.setState({
       origin: persistentPointState.origin,
       destination: persistentPointState.destination,
