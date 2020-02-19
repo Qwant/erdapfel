@@ -4,6 +4,8 @@ import Poi from '../poi';
 import GeolocationCheck from 'src/libs/geolocation';
 export const GEOLOCALISATION_NAME = 'geolocalisation';
 
+import React from 'react';
+
 export const navigatorGeolocationStatus = {
   PENDING: 'pending',
   FOUND: 'found',
@@ -47,11 +49,12 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   }
 
   render() {
-    return `
-      <div data-id="${GEOLOCALISATION_NAME}" data-val="${_('Your position', 'direction')}"
-       class="autocomplete_suggestion itinerary_suggest_your_position">
-        <div class="itinerary_suggest_your_position_icon icon-pin_geoloc"></div>
-        ${_('Your position', 'direction')}
-      </div>`;
+    return (
+      <div data-id={GEOLOCALISATION_NAME} data-val={_('Your position', 'direction')}
+        className="autocomplete_suggestion itinerary_suggest_your_position">
+        <div className="itinerary_suggest_your_position_icon icon-pin_geoloc"></div>
+        {_('Your position', 'direction')}
+      </div>
+    );
   }
 }

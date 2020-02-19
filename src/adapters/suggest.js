@@ -2,12 +2,12 @@
 
 import Autocomplete from '../vendors/autocomplete';
 import IconManager from '../adapters/icon_manager';
-import ExtendedString from '../libs/string';
 import BragiPoi from './poi/bragi_poi';
 import PoiStore from './poi/poi_store';
 import Category from './category';
 import CategoryService from './category_service';
 import nconf from '@qwant/nconf-getter';
+import React, { Fragment } from 'react';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -94,7 +94,6 @@ export default class Suggest {
         const remotes = pois.filter(poi => {
           return !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi);
         });
-        let suggestDom = this.prefixesRender();
 
         let nbFavorites = 0;
         if (favorites.length > 0 && favorites.length <= 2) {
@@ -103,17 +102,20 @@ export default class Suggest {
           nbFavorites = 2;
         }
 
-        suggestDom += this.categoriesRender(categories);
-
-        // fill the suggest with the remotes poi according to the remaining places
+        // // fill the suggest with the remotes poi according to the remaining places
         const remotesLen = SUGGEST_MAX_ITEMS - nbFavorites - categories.length;
-        suggestDom += this.remotesRender(remotes.slice(0, remotesLen));
 
-        if (favorites.length > 0) {
-          suggestDom += this.favoritesRender(favorites.slice(0, query === '' ? 5 : nbFavorites));
-        }
-
-        return suggestDom;
+        const Items = () =>
+          <>
+            {this.prefixesRender()}
+            {this.categoriesRender(categories)}
+            {this.remotesRender(remotes.slice(0, remotesLen))}
+            {favorites.length > 0 &&
+              this.favoritesRender(favorites.slice(0, query === '' ? 5 : nbFavorites))
+            }
+          </>
+        ;
+        return <Items />;
       },
 
       onSelect: (e, term, item, items = []) => {
@@ -178,27 +180,40 @@ export default class Suggest {
   }
 
   prefixesRender() {
-    return this.prefixes.map(prefix => prefix.render());
+    return (
+      this.prefixes.map((prefix, index) => <Fragment key={index}>{prefix.render()}</Fragment>)
+    );
   }
 
   remotesRender(pois) {
-    return pois.map(poi => this.renderItem(poi)).join('');
+    return (
+      <>
+        {pois.map((poi, index) => <Fragment key={index}>{this.renderItem(poi)}</Fragment>)}
+      </>
+    );
   }
 
   categoriesRender(categories) {
-    if (!categories) {
-      return '';
-    }
-
-    return categories.map(category => this.renderCategory(category)).join('');
+    return (
+      <>
+        {categories.map((category, index) =>
+          <Fragment key={index}>{this.renderCategory(category)}</Fragment>
+        )}
+      </>
+    );
   }
 
   favoritesRender(pois) {
-    return `
-      <h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">
-        ${_('FAVORITES', 'autocomplete')}
-      </h3>
-      ${pois.map(poi => this.renderItem(poi)).join('')}`;
+    return (
+      <>
+        <h3 className="autocomplete_suggestion__category_title" onMouseDown={() => false }>
+          {_('FAVORITES', 'autocomplete')}
+        </h3>
+        {pois.map((poi, index) =>
+          <Fragment key={index}>{this.renderItem(poi)}</Fragment>
+        )}
+      </>
+    );
   }
 
   getValue() {
@@ -219,40 +234,40 @@ export default class Suggest {
     const { id, name, className, subClassName, type, alternativeName } = poi;
     const icon = IconManager.get({ className, subClassName, type });
     const klass = `autocomplete-icon ${`icon icon-${icon.iconClass}`}`;
-    const iconDom = `<div style="color:${icon ? icon.color : ''}" class="${klass}"></div>`;
+    const Icon = () => <div style={{ color: icon ? icon.color : '' }} className={klass}></div>;
 
-    return `
-      <div class="autocomplete_suggestion"
-           data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
-        ${iconDom}
-        ${this.renderLines(name, alternativeName)}
-      </div>`;
+    return (
+      <div className="autocomplete_suggestion"
+        data-id={id} data-val={poi.getInputValue()}>
+        <Icon />
+        {this.renderLines(name, alternativeName)}
+      </div>
+    );
   }
 
   renderCategory(category) {
     const { label, alternativeName, color, backgroundColor } = category;
     const icon = category.getIcon();
-    const style = `color: ${color}; background: ${backgroundColor}`;
+    const style = { color, backgroundColor };
     const klass = `autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}`;
-    const iconDom = `<div style="${style}" class="${klass}"></div>`;
-    const categoryLabel = ExtendedString.htmlEncode(category.label);
+    const Icon = () => <div style={style} className={klass}></div>;
 
-    return `
-      <div class="autocomplete_suggestion autocomplete_suggestion--category"
-        data-id="${category.id}" data-val="${categoryLabel}">
-        ${iconDom}
-        ${this.renderLines(label, alternativeName)}
-      </div>`;
+    return (
+      <div className="autocomplete_suggestion autocomplete_suggestion--category"
+        data-id={category.id} data-val={category.label}>
+        <Icon />
+        {this.renderLines(label, alternativeName)}
+      </div>
+    );
   }
 
   renderLines(firstLabel, secondLabel) {
-    const s_firstLabel = ExtendedString.htmlEncode(firstLabel);
-    const s_secondLabel = ExtendedString.htmlEncode(secondLabel ? secondLabel : '');
-    return `
-      <div class="autocomplete_suggestion__lines_container">
-        <div class="autocomplete_suggestion__first_line">${s_firstLabel}</div>
-        <div class="autocomplete_suggestion__second_line">${s_secondLabel}</div>
-      </div>`;
+    return (
+      <div className="autocomplete_suggestion__lines_container">
+        <div className="autocomplete_suggestion__first_line">{firstLabel}</div>
+        <div className="autocomplete_suggestion__second_line">{secondLabel}</div>
+      </div>
+    );
   }
 }
 

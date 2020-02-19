@@ -5,6 +5,8 @@
     License: http://www.opensource.org/licenses/mit-license.php
 */
 
+import ReactDOM from 'react-dom'
+
 // Add Element.matches to IE11
 if (!Element.prototype.matches) {
   Element.prototype.matches = Element.prototype.msMatchesSelector;
@@ -83,6 +85,7 @@ export default function autoComplete(options) {
 
     // create suggestions container "sc"
     that.sc = document.createElement('div');
+    that.sc.setAttribute("id", "autocomplete-react" + o.selector);
     that.sc.className = 'autocomplete_suggestions ' + o.menuClass;
 
     that.autocompleteAttr = that.getAttribute('autocomplete');
@@ -184,7 +187,12 @@ export default function autoComplete(options) {
     that.sourceDom = function(data, val) {
       that.items = data;
       o.updateData(data);
-      that.sc.innerHTML = o.renderItems(data, val);
+
+      ReactDOM.render(
+        o.renderItems(data, val),
+        document.getElementById('autocomplete-react' + o.selector)
+      )
+
       that.updateSC(true);
     };
 
@@ -200,12 +208,11 @@ export default function autoComplete(options) {
       cancelObsolete();
       that.items = data;
       const val = that.value;
-      let innerHTML = null;
       if (data && val.length >= o.minChars) {
-        innerHTML = o.renderItems(data, val);
-      }
-      if (innerHTML) {
-        that.sc.innerHTML = innerHTML;
+        ReactDOM.render(
+          o.renderItems(data, val),
+          document.getElementById('autocomplete-react' + o.selector)
+        )
         that.updateSC(0);
       } else {
         that.sc.style.display = 'none';
@@ -277,7 +284,8 @@ export default function autoComplete(options) {
         that.updateSC(0, next);
         return false;
       } else if (key == 27) { // esc
-        that.value = that.last_val; that.sc.style.display = 'none';
+        that.value = that.last_val;
+        that.sc.style.display = 'none';
       } else if (key == 13 || key == 9) { // enter
         const sel = that.sc.querySelector('.autocomplete_suggestion.selected');
         if (sel && that.sc.style.display != 'none') {
@@ -300,7 +308,7 @@ export default function autoComplete(options) {
             // @HACK: a bug in Firefox for Android (https://bugzilla.mozilla.org/show_bug.cgi?id=1610083)
             // triggers a redundant 'input' event on the field just before it's blurred,
             // resulting in the suggest list re-appearing after a suggestion has been made.
-            // So we check if the element having the focus is the field before doing anything.            
+            // So we check if the element having the focus is the field before doing anything.
             if (document.activeElement && document.activeElement !== that) {
               return;
             }
@@ -362,7 +370,7 @@ export default function autoComplete(options) {
 
   this.preRender = function(items = []) {
     that.items = items;
-    that.sc.innerHTML = o.renderItems(items);
+    // that.sc.innerHTML = o.renderItems(items);
     that.updateSC(true);
   };
 
