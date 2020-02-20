@@ -373,9 +373,23 @@ input:valid:focus + .itinerary__field__clear {
     border-bottom: none;
   }
 
-  &--publicTransport .itinerary_roadmap_item {
-    border-left: 4px solid transparent;
-    cursor: default;
+  &--publicTransport {
+    .itinerary_roadmap_item {
+      border-left: 4px solid transparent;
+      cursor: default;
+    }
+
+    .itinerary_roadmap_distance {
+      align-self: flex-start;
+      padding-top: 14px;
+      line-height: 21px;
+    }
+
+    .icon-icon_chevron-up,
+    .icon-icon_chevron-down {
+      align-self: flex-start;
+      line-height: 21px;
+    }
   }
 }
 
