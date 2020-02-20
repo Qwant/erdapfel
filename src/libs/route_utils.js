@@ -25,10 +25,7 @@ export function formatDistance(m) {
   if (m > 1000) {
     return `${(m / 1000).toFixed(1).replace('.', ',')} km`;
   }
-  if (m > 5) {
-    return `${m.toFixed(0)} m`;
-  }
-  return '';
+  return `${m.toFixed(0)} m`;
 }
 
 export function getVehicleIcon(vehicle) {
