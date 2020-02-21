@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import PoiCategoryItemList from './PoiCategoryItemList';
+import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
 import CategoryPanelHeader from './CategoryPanelHeader';
 import Telemetry from 'src/libs/telemetry';
@@ -133,24 +134,24 @@ export default class CategoryPanel extends React.Component {
   render() {
     const { initialLoading, pois, dataSource } = this.state;
 
-    if (initialLoading) {
-      return null;
-    }
-
-    const hasError = !pois || pois.length === 0;
-    const zoomIn = !pois;
-
     let panelContent;
 
-    if (hasError) {
-      panelContent = <CategoryPanelError zoomIn={zoomIn} />;
+    if (initialLoading) {
+      panelContent = <PoiItemListPlaceholder />;
     } else {
-      panelContent = <PoiCategoryItemList
-        pois={pois}
-        selectPoi={this.selectPoi}
-        highlightMarker={this.highlightPoiMarker}
-        onShowPhoneNumber={this.onShowPhoneNumber}
-      />;
+      const hasError = !pois || pois.length === 0;
+      const zoomIn = !pois;
+
+      if (hasError) {
+        panelContent = <CategoryPanelError zoomIn={zoomIn} />;
+      } else {
+        panelContent = <PoiCategoryItemList
+          pois={pois}
+          selectPoi={this.selectPoi}
+          highlightMarker={this.highlightPoiMarker}
+          onShowPhoneNumber={this.onShowPhoneNumber}
+        />;
+      }
     }
 
     return <Panel
