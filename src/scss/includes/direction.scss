@@ -497,6 +497,10 @@ input:valid:focus + .itinerary__field__clear {
   padding: 0px 5px 5px 29px;
 }
 
+.itinerary_field_return {
+  display: none;
+}
+
 /* ../images/direction_icons */
 
 .itinerary_roadmap_icon_arrive {
@@ -661,11 +665,11 @@ input:valid:focus + .itinerary__field__clear {
       left: 0;
       width: 100%;
       background: $background;
-      padding-right: 50px;
-      padding-left: 20px;
-      height: 60px;
-      line-height: 60px;
-      box-shadow: 0 10px 0 10px #fff;
+      padding-right: 60px;
+      padding-left: 50px;
+      height: 56px;
+      line-height: 56px;
+      box-shadow: 0 14px 0 10px #fff;
     }
   }
 
@@ -947,5 +951,32 @@ input:valid:focus + .itinerary__field__clear {
         margin-right: 9px;
       }
     }
+  }
+
+  input:focus ~ .itinerary_field_return,
+  input:focus ~ .itinerary_field_icon {
+    display: block;
+    position: fixed;
+    z-index: 2;
+  }
+
+  input:focus ~ .itinerary_field_return {
+    left: 10px;
+    top: 20px;
+    font-size: 25px;
+    color: #353C52;
+  }
+
+  input:focus ~ .itinerary_field_icon {
+    right: 42px;
+    top: 11px;
+
+    & .itinerary_icon_destination {
+      top: 3px;
+    }
+  }
+
+  input:valid:focus + .itinerary__field__clear {
+    right: 30px;
   }
 }

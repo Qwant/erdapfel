@@ -75,7 +75,6 @@ class DirectionInput extends React.Component {
     const { pointType, inputRef } = this.props;
 
     return <div className="itinerary_field" >
-      <div className={`itinerary_icon itinerary_icon_${pointType}`} />
       <input
         ref={inputRef}
         id={`itinerary_input_${pointType}`}
@@ -92,6 +91,12 @@ class DirectionInput extends React.Component {
         onKeyPress={this.onKeyPress}
       />
       <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
+      <div className="itinerary_field_return">
+        <span className="icon-arrow-left"/>
+      </div>
+      <div className="itinerary_field_icon">
+        <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
+      </div>
     </div>;
   }
 }
