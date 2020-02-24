@@ -58,7 +58,7 @@ sudo apt install python3
 sudo apt install curl
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash # see https://github.com/creationix/nvm#install-script
 source ~/.bashrc
-nvm install 8.9.0
+nvm install 10
 npm i webpack -g
 npm i webpack-cli -g
 ```
