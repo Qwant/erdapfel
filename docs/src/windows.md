@@ -94,3 +94,13 @@ npm start
 ```
 npm watch
 ```
+
+- If W10's Linux Bash stops resolving domain names, here's a fix ([source](https://github.com/microsoft/WSL/issues/3268#issuecomment-485096972)):
+
+```
+sudo rm /etc/resolv.conf
+echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
+sudo chmod 444 /etc/resolv.conf
+```
+
+(you can replace "1.1.1.1" with your favourite DNS)
