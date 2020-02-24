@@ -118,25 +118,61 @@ input:valid:focus + .itinerary__field__clear {
 }
 
 .itinerary_vehicles {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   padding: 15px;
 }
 
-.itinerary_button_label {
-  display: inline-block;
+.itinerary_vehicle_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 50px;
   height: 28px;
-  margin: 0 18px;
-  padding-top: 5px;
   border-radius: 14px;
   color: $secondary_text;
   cursor: pointer;
   font-size: 18px;
+  margin: 0 18px;
+  border: 1px solid transparent;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus {
+    border-color: $secondary_text;
+  }
+
+  &.icon-public-transport {
+    padding: 0 6px 0 9px;
+  }
+
+  &--active {
+    background: $secondary_text;
+    color: $background;
+  }
+
+  .testLabel {
+    font-family: Asap;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+    border-radius: 20px;
+    padding: 3px 6px;
+    margin-left: 6px;
+    text-transform: uppercase;
+  }
 }
 
-.label_active {
-  background: $secondary_text;
-  color: $background;
+.itinerary_vehicles--withPublicTransport {
+  margin: 0 18px;
+  justify-content: space-between;
+
+  .itinerary_vehicle_button {
+    margin: 0;
+  }
 }
 
 .itinerary_suggest_your_position {

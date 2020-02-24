@@ -135,7 +135,7 @@ test('origin & destination & mode', async () => {
   expect(directionEndInput).toEqual('47.40000 : 7.59741');
 
   const activeLabel = await page.evaluate(() => {
-    return Array.from(document.querySelector('.label_active').classList).join(',');
+    return Array.from(document.querySelector('.itinerary_vehicle_button--active').classList).join(',');
   });
   expect(activeLabel).toContain('icon-foot');
 });
