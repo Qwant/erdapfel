@@ -169,19 +169,6 @@ input:valid:focus + .itinerary__field__clear {
   display: inline-block;
 }
 
-.itinerary_leg--placeholder .itinerary_leg_distance {
-  margin: 0;
-}
-
-.itinerary_placeholder-box {
-  margin: 0 0 7px;
-  background: #e0e1e6;
-  border-radius: 3px;
-  height: 13px;
-  display: inline-block;
-}
-
-
 .itinerary_source {
   background: $background;
   border-top: 1px solid #e0e1e6;

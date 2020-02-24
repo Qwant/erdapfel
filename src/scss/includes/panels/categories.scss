@@ -34,6 +34,10 @@
   }
 }
 
+.category__panel__items {
+  animation: appear 600ms forwards;
+}
+
 .category__panel__item {
   padding: 15px 20px;
   cursor: pointer;
