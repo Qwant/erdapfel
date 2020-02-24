@@ -5,6 +5,7 @@ import Route from './Route';
 import { getVehicleIcon } from 'src/libs/route_utils';
 import classnames from 'classnames';
 import { Item, ItemList } from 'src/components/ui/ItemList';
+import PlaceholderText from 'src/components/ui/PlaceholderText';
 
 export default class RouteResult extends React.Component {
   static propTypes = {
@@ -98,17 +99,15 @@ export default class RouteResult extends React.Component {
               <div className="itinerary_leg_summary">
                 <div className={`itinerary_leg_icon ${getVehicleIcon(this.props.vehicle)}`} />
                 <div className="itinerary_leg_via">
-                  <div className="itinerary_placeholder-box" style={{ width: '133px' }} />
-                  <div className="itinerary_placeholder-box" style={{ width: '165px' }} />
-                  <div className="itinerary_placeholder-box" style={{ width: '70px' }} />
+                  <div className="routeVia">
+                    <PlaceholderText length={17} />
+                    <PlaceholderText length={20} />
+                  </div>
+                  <PlaceholderText length={10} className="itinerary_leg_via_details"/>
                 </div>
                 <div className="itinerary_leg_info">
-                  <div className="itinerary_leg_duration">
-                    <div className="itinerary_placeholder-box" style={{ width: '47px' }} />
-                  </div>
-                  <div className="itinerary_leg_distance">
-                    <div className="itinerary_placeholder-box" style={{ width: '59px' }} />
-                  </div>
+                  <PlaceholderText length={5} className="itinerary_leg_duration" />
+                  <PlaceholderText length={7} className="itinerary_leg_distance" />
                 </div>
               </div>
             </div>
