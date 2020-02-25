@@ -81,6 +81,20 @@ Scene.prototype.initMapBox = function() {
     'poi-level-public-transports-2',
   ];
 
+  // Max time between two touch to be considered a single "double click" event
+  // This is the value Mapbox-GL uses, in src/ui/handler/dblclick_zoom.js
+  this.DOUBLE_TAP_DELAY_MS = 300;
+  this.lastDoubleTapTimeStamp = 0;
+  this.lastTouchEndTimeStamp = 0;
+  this.mb.on('touchend', _e => {
+    const timeStamp = Date.now();
+    // maybe we should also check the distance between the two touch events…
+    if (timeStamp - this.lastTouchEndTimeStamp < this.DOUBLE_TAP_DELAY_MS) {
+      this.lastDoubleTapTimeStamp = timeStamp;
+    }
+    this.lastTouchEndTimeStamp = timeStamp;
+  });
+
   this.mb.on('load', () => {
     this.onHashChange();
     new SceneDirection(this.mb);
@@ -102,9 +116,24 @@ Scene.prototype.initMapBox = function() {
       this.popup.addListener(interactiveLayer);
     });
 
+    // we have to delay click event resolution to make time for possible double click events,
+    // which are thrown *after* two separate click events are thrown
+    this.clickDelayHandler = null;
     this.mb.on('click', e => {
       const pois = this.mb.queryRenderedFeatures(e.point, { layers: interactiveLayers });
-      this.clickOnMap(e.lngLat, pois[0]);
+      // cancel the previous click handler if it's still pending
+      clearTimeout(this.clickDelayHandler);
+      // if this is a real mouse double-click, we can simply return here
+      if (e.originalEvent.detail >= 2) {
+        return;
+      }
+      this.clickDelayHandler = setTimeout(() => {
+        // for touch UX we have to make sure a double tap zoom hasn't been made in the meantime
+        if (Date.now() - this.lastDoubleTapTimeStamp < this.DOUBLE_TAP_DELAY_MS) {
+          return;
+        }
+        this.clickOnMap(e.lngLat, pois[0]);
+      }, this.DOUBLE_TAP_DELAY_MS);
     });
 
     this.mb.on('moveend', () => {
