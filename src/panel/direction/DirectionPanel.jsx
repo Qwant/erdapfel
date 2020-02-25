@@ -60,6 +60,7 @@ export default class DirectionPanel extends React.Component {
       routes: [],
       activePreviewRoute: null,
       isInitializing: true,
+      focusedField: null
     };
 
     this.restorePoints(props);
@@ -69,6 +70,11 @@ export default class DirectionPanel extends React.Component {
     document.body.classList.add('directions-open');
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
+    listen('set_focused_field', this.setFocusedField );
+  }
+
+  setFocusedField = field => {
+    this.focusedField = field;
   }
 
   componentWillUnmount() {
@@ -215,9 +221,12 @@ export default class DirectionPanel extends React.Component {
       return;
     }
 
-    // If origin field is empty, set it
-    // or, if destination field is empty, set it
-    if (persistentPointState.origin === null) {
+    // If destination field is empty and focused, set it
+    // else, if origin field is empty (focused or not), set it
+    // else, if destination field is empty (focused or not), set it
+    if (persistentPointState.destination === null && this.focusedField === 'destination') {
+      persistentPointState.destination = poi;
+    } else if (persistentPointState.origin === null) {
       persistentPointState.origin = poi;
     } else if (persistentPointState.destination === null) {
       persistentPointState.destination = poi;
