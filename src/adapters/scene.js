@@ -121,6 +121,12 @@ Scene.prototype.initMapBox = function() {
     this.clickDelayHandler = null;
     this.mb.on('click', e => {
       const pois = this.mb.queryRenderedFeatures(e.point, { layers: interactiveLayers });
+      // when clicking on a POI, just trigger the action without delay,
+      // as a subsequent double click isn't a problem
+      if (pois[0]) {
+        this.clickOnMap(e.lngLat, pois[0]);
+        return;
+      }
       // cancel the previous click handler if it's still pending
       clearTimeout(this.clickDelayHandler);
       // if this is a real mouse double-click, we can simply return here
@@ -132,7 +138,7 @@ Scene.prototype.initMapBox = function() {
         if (Date.now() - this.lastDoubleTapTimeStamp < this.DOUBLE_TAP_DELAY_MS) {
           return;
         }
-        this.clickOnMap(e.lngLat, pois[0]);
+        this.clickOnMap(e.lngLat, null);
       }, this.DOUBLE_TAP_DELAY_MS);
     });
 
