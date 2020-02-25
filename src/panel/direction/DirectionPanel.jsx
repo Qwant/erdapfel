@@ -60,7 +60,7 @@ export default class DirectionPanel extends React.Component {
       routes: [],
       activePreviewRoute: null,
       isInitializing: true,
-      focusedField: null
+      focusedField: null,
     };
 
     this.restorePoints(props);
