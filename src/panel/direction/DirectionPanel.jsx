@@ -90,6 +90,16 @@ export default class DirectionPanel extends React.Component {
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
       persistentPointState.origin = origin;
       persistentPointState.destination = destination;
+      if (origin) {
+        window.execOnMapLoaded(() => {
+          fire('set_origin', origin.latLon);
+        });
+      }
+      if (destination) {
+        window.execOnMapLoaded(() => {
+          fire('set_destination', destination.latLon);
+        });
+      }
       this.setState({
         origin,
         destination,

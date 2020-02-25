@@ -54,23 +54,24 @@ export default class SceneDirection {
       this.unhighlightStep(step);
     });
 
-    listen('set_origin', pos => {
+    listen('set_origin', (pos) => {
       this.setOrigin(pos);
     });
 
-    listen('set_destination', pos => {
+    listen('set_destination', (pos) => {
       this.setDestination(pos);
     });
   }
 
-  setOrigin = pos => {
+  setOrigin = (pos) => {
     const originMarker = createMarker(pos, 'itinerary_marker_origin', { draggable: true })
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
     this.routeMarkers.push(originMarker);
+    window.map.mb.flyTo({ center: pos });
   }
 
-  setDestination = pos => {
+  setDestination = (pos) => {
     const destinationMarker = createMarker(pos,
       'itinerary_marker_destination', {
         draggable: true,
@@ -79,6 +80,7 @@ export default class SceneDirection {
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
     this.routeMarkers.push(destinationMarker);
+    window.map.mb.flyTo({ center: pos });
   }
 
   addMarkerSteps(route) {
