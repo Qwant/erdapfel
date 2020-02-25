@@ -479,6 +479,12 @@ input:valid:focus + .itinerary__field__clear {
   }
 }
 
+@supports (-moz-appearance:none) {
+  .itinerary_roadmap_line--walk {
+    background-repeat: repeat-y;
+  }
+}
+
 .itinerary_roadmap_distance {
   flex-basis: 60px;
   flex-shrink: 0;
