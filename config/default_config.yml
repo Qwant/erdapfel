@@ -60,6 +60,9 @@ mapPlugins:
 statics:
   maxAge: 0  # string accepted by the ms module, or milliseconds
 
+burgerMenu:
+  enabled: true
+
 performance:
   enabled: false
 
