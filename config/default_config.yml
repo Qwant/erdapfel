@@ -12,6 +12,8 @@ server:
       timeout: 2000 # ms
   logger:
     headersWhitelistEnabled: true
+  disableBurgerMenu:
+    userAgentRule: '' # regex, ignored if empty
   routerBaseUrl: / # path prefix expected by the express server
   # NB: `routerBaseUrl` may be different from `system.baseUrl` if a proxy is responsible for rewriting URLs
 
