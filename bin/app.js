@@ -103,7 +103,15 @@ function App(config) {
 
   const ogMeta = new require('./middlewares/og_meta')(config);
   router.get('/*', ogMeta, (req, res) => {
-    res.render('index', { config });
+    const userAgent = req.headers['user-agent'];
+    const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
+    let appConfig = config;
+    if (disableMenuRule && userAgent && userAgent.match(disableMenuRule)) {
+      appConfig = JSON.parse(JSON.stringify(config));
+      appConfig.burgerMenu.enabled = false;
+      appConfig.masq.enabled = false;
+    }
+    res.render('index', { config: appConfig });
   });
 
   if (config.server.acceptPostedLogs) {
