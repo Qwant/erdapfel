@@ -12,6 +12,10 @@ import PanelManager from 'src/panel/PanelManager';
 const performanceEnabled = nconf.get().performance.enabled;
 const burgerMenuEnabled = nconf.get().burgerMenu.enabled;
 
+if (!burgerMenuEnabled) {
+  document.body.classList.add('no-burger');
+}
+
 export default class App {
   constructor() {
     this.initMap();

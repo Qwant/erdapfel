@@ -10,6 +10,10 @@
   pointer-events: auto;
   @include long_shadow();
 
+  .no-burger & {
+    width: calc(100% - 68px);
+  }
+
   &[data-flag-text]:before {
     font-weight: 600;
     content: attr(data-flag-text);
@@ -252,6 +256,10 @@ input[type="search"] {
     left: 8px;
     top:16px;
     margin: 0;
+
+    .no-burger & {
+      width: calc(100% - 16px);
+    }
   }
 
   .search_form__input {
