@@ -120,17 +120,17 @@ Scene.prototype.initMapBox = function() {
     // which are thrown *after* two separate click events are thrown
     this.clickDelayHandler = null;
     this.mb.on('click', e => {
+      // cancel the previous click handler if it's still pending
+      clearTimeout(this.clickDelayHandler);
+      // if this is a real mouse double-click, we can simply return here
+      if (e.originalEvent.detail >= 2) {
+        return;
+      }
       const pois = this.mb.queryRenderedFeatures(e.point, { layers: interactiveLayers });
       // when clicking on a POI, just trigger the action without delay,
       // as a subsequent double click isn't a problem
       if (pois[0]) {
         this.clickOnMap(e.lngLat, pois[0]);
-        return;
-      }
-      // cancel the previous click handler if it's still pending
-      clearTimeout(this.clickDelayHandler);
-      // if this is a real mouse double-click, we can simply return here
-      if (e.originalEvent.detail >= 2) {
         return;
       }
       this.clickDelayHandler = setTimeout(() => {
