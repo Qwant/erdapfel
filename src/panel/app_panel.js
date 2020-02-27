@@ -10,6 +10,11 @@ import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 
 const performanceEnabled = nconf.get().performance.enabled;
+const burgerMenuEnabled = nconf.get().burgerMenu.enabled;
+
+if (!burgerMenuEnabled) {
+  document.body.classList.add('no-burger');
+}
 
 export default class App {
   constructor() {
@@ -34,7 +39,7 @@ export default class App {
     ReactDOM.render(
       <Fragment>
         <PanelManager router={this.router} />
-        <Menu />
+        {burgerMenuEnabled && <Menu />}
       </Fragment>,
       document.querySelector('#react_root')
     );
