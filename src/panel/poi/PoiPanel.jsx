@@ -194,7 +194,6 @@ export default class PoiPanel extends React.Component {
         'poi_panel--empty-header': !isFromPagesJaunes(poi) && !isFromFavorite && !isFromCategory,
       } )}
       initialSize="maximized"
-      white
     >
       <div className="poi_panel__content">
         <div className="poi_panel__description_container" onClick={this.center}>
