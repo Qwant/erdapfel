@@ -18,7 +18,7 @@ export function toAbsoluteUrl(poi) {
   const lat = poi.latLon.lat.toFixed(7);
   const lon = poi.latLon.lng.toFixed(7);
   const mapHash = `#map=${getBestZoom(poi)}/${lat}/${lon}`;
-  return `${protocol}//${host}${baseUrl}place/${toUrl(poi)}/${mapHash}`;
+  return `${protocol}//${host}${baseUrl}place/${toUrl(poi)}${mapHash}`;
 }
 
 export function fromUrl(urlParam) {
