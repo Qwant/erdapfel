@@ -27,9 +27,14 @@ const TransportLineLeg = ({ leg }) => {
       <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />
     </div>
     {detailsOpen && <div className="itinerary_roadmap_substeps">
-      <div>{from.name}</div>
-      {stops.map((stop, index) => <div key={index}>{stop.name}</div>)}
-      <div>{to.name}</div>
+      {[from, ...stops, to].map((stop, index) =>
+        <div className="itinerary_roadmap_substep" key={index}>
+          <div
+            className="itinerary_roadmap_substep_bullet"
+            style={{ borderColor: info.lineColor ? `#${info.lineColor}` : 'black' }}
+          />
+          {stop.name}
+        </div>)}
     </div>}
   </RoadMapItem>;
 };
