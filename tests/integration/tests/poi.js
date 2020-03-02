@@ -51,6 +51,15 @@ test('load a poi from url', async () => {
   expect(address).toMatch(/1 Rue de la Légion d'Honneur \(Paris\)/);
 });
 
+test('load a poi from url and click on directions', async () => {
+  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
+  await page.waitForSelector('.poi_panel__title');
+  await page.click('.poi_panel__actions button.icon-corner-up-right'); // Click on directions button
+  await page.waitForSelector('#itinerary_input_destination');
+  const destinationValue = await page.$eval('#itinerary_input_destination', el => el.value);
+  expect(destinationValue).toEqual("Musée d'Orsay");
+});
+
 test('load a poi from url with simple id', async () => {
   expect.assertions(2);
   await page.goto(`${APP_URL}/place/osm:way:63178753`);

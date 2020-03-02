@@ -133,7 +133,7 @@ export default class PoiPanel extends React.Component {
   }
 
   openDirection = () => {
-    window.app.navigateTo('/routes/', { poi: this.props.poi });
+    window.app.navigateTo('/routes/', { poi: this.getBestPoi() });
   }
 
   closeAction = () => {
