@@ -40,10 +40,6 @@ class DirectionInput extends React.Component {
     }
   }
 
-  onFocus = () => {
-    fire('set_focused_field', this.props.pointType);
-  }
-
   selectItem = async selectedPoi => {
     if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
       this.suggest.setIdle(true);
@@ -93,7 +89,6 @@ class DirectionInput extends React.Component {
         value={this.props.value}
         onChange={this.onChange}
         onKeyPress={this.onKeyPress}
-        onFocus={this.onFocus}
       />
       <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
       <div className="itinerary_field_return">

@@ -54,33 +54,35 @@ export default class SceneDirection {
       this.unhighlightStep(step);
     });
 
-    listen('set_origin', pos => {
-      this.setOrigin(pos);
+    listen('set_origin', poi => {
+      this.setOrigin(poi);
     });
 
-    listen('set_destination', pos => {
-      this.setDestination(pos);
+    listen('set_destination', poi => {
+      this.setDestination(poi);
     });
   }
 
-  setOrigin = pos => {
-    const originMarker = createMarker(pos, 'itinerary_marker_origin', { draggable: true })
+  setOrigin = poi => {
+    const originMarker = createMarker(
+      poi.latLon,
+      'itinerary_marker_origin', { draggable: true }
+    )
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
     this.routeMarkers.push(originMarker);
-    window.map.mb.flyTo({ center: pos });
+    fire('fit_map', poi);
   }
 
-  setDestination = pos => {
-    const destinationMarker = createMarker(pos,
-      'itinerary_marker_destination', {
-        draggable: true,
-        anchor: 'bottom',
-      })
+  setDestination = poi => {
+    const destinationMarker = createMarker(
+      poi.latLon,
+      'itinerary_marker_destination', { draggable: true, anchor: 'bottom' }
+    )
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
     this.routeMarkers.push(destinationMarker);
-    window.map.mb.flyTo({ center: pos });
+    fire('fit_map', poi);
   }
 
   addMarkerSteps(route) {
@@ -137,11 +139,11 @@ export default class SceneDirection {
     this.routeMarkers = [];
 
     this.addMarkerSteps(mainRoute);
-
     const { origin, destination } = originDestinationCoords(mainRoute);
 
-    this.setOrigin(origin);
-    this.setDestination(destination);
+    this.setOrigin({ latLon: { lng: origin[0], lat: origin[1] } });
+
+    this.setDestination({ latLon: { lng: destination[0], lat: destination[1] } });
   }
 
   displayRoute() {
