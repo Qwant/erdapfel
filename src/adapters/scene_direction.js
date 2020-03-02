@@ -71,7 +71,7 @@ export default class SceneDirection {
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
     this.routeMarkers.push(originMarker);
-    fire('fit_map', poi);
+    fire('fit_map', poi, false);
   }
 
   setDestination = poi => {
@@ -82,7 +82,7 @@ export default class SceneDirection {
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
     this.routeMarkers.push(destinationMarker);
-    fire('fit_map', poi);
+    fire('fit_map', poi, false);
   }
 
   addMarkerSteps(route) {
