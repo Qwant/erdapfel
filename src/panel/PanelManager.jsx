@@ -11,6 +11,7 @@ import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import classnames from 'classnames';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
+import { fire } from 'src/libs/customEvents';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const categoryEnabled = nconf.get().category.enabled;

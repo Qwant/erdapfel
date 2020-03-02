@@ -4,6 +4,7 @@ import RoadMapStep from './RoadMapStep';
 import RoadMapItem from './RoadMapItem';
 import { getAllSteps } from 'src/libs/route_utils';
 import PublicTransportRoadMap from './PublicTransportRoadMap';
+import { fire } from 'src/libs/customEvents';
 
 const RoadMap = ({ route, origin, destination, vehicle }) => {
   if (vehicle === 'publicTransport') {

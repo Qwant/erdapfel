@@ -13,6 +13,7 @@ import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
+import { fire, listen, unListen } from 'src/libs/customEvents';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -72,8 +73,8 @@ export default class DirectionPanel extends React.Component {
 
   componentWillUnmount() {
     fire('clean_routes');
-    window.unListen(this.dragPointHandler);
-    window.unListen(this.setPointHandler);
+    unListen(this.dragPointHandler);
+    unListen(this.setPointHandler);
     document.body.classList.remove('directions-open');
   }
 

@@ -17,6 +17,7 @@ import { isMobileDevice } from 'src/libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
+import { fire, listen } from 'src/libs/customEvents';
 
 const baseUrl = nconf.get().system.baseUrl;
 

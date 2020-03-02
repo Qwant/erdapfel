@@ -12,6 +12,7 @@ import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import CategoryService from 'src/adapters/category_service';
 import { getVisibleBbox } from 'src/panel/layouts';
+import { fire, listen, unListen } from 'src/libs/customEvents';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -68,7 +69,7 @@ export default class CategoryPanel extends React.Component {
 
   componentWillUnmount() {
     SearchInput.setInputValue('');
-    window.unListen(this.mapMoveHandler);
+    unListen(this.mapMoveHandler);
   }
 
   fitMapAndFetch() {

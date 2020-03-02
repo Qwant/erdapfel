@@ -8,6 +8,7 @@ import { parseMapHash, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 import { isMobileDevice } from 'src/libs/device';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
+import { listen } from 'src/libs/customEvents';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const burgerMenuEnabled = nconf.get().burgerMenu.enabled;

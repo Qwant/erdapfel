@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RoadMapStep from './RoadMapStep';
+import { fire } from 'src/libs/customEvents';
 
 export default class MobileRoadMapPreview extends React.Component {
   static propTypes = {

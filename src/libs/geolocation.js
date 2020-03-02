@@ -1,4 +1,5 @@
 import { openAndWaitForClose } from 'src/modals/GeolocationModal';
+import { fire } from 'src/libs/customEvents';
 
 const geolocationPermissions = {
   PROMPT: 'prompt',

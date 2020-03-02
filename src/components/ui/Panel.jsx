@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { fire } from 'src/libs/customEvents';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY

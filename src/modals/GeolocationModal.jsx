@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'src/components/ui/Modal';
+import { listen } from 'src/libs/customEvents';
 
 const GeolocationModal = ({ status, onClose }) => {
   /* eslint-disable max-len */

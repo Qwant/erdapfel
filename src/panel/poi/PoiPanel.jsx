@@ -19,6 +19,7 @@ import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import SearchInput from 'src/ui_components/search_input';
 import { DeviceContext } from 'src/libs/device';
+import { fire, listen, unListen } from 'src/libs/customEvents';
 import Store from '../../adapters/store';
 import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
   from 'src/modals/MasqFavoriteModal';
@@ -83,8 +84,8 @@ export default class PoiPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    window.unListen(this.storeAddHandler);
-    window.unListen(this.storeRemoveHandler);
+    unListen(this.storeAddHandler);
+    unListen(this.storeRemoveHandler);
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);

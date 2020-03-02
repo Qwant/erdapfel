@@ -5,6 +5,7 @@ import PoiTitleImage from './PoiTitleImage';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Button from 'src/components/ui/Button';
+import { fire } from 'src/libs/customEvents';
 
 class PoiCard extends React.Component {
   constructor(props) {
