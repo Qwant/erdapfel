@@ -32,7 +32,7 @@ export default class DirectionApi {
     if (mode === modes.CYCLING) {
       // Fetch routes without ferry in priority
       const firstSearch = await DirectionApi._search(start, end, mode, { exclude: 'ferry' });
-      if (firstSearch && firstSearch.routes && firstSearch.routes.length > 0) {
+      if (firstSearch.data && firstSearch.data.routes && firstSearch.data.routes.length > 0) {
         return firstSearch;
       }
     }
