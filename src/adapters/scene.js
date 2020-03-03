@@ -120,7 +120,7 @@ Scene.prototype.initMapBox = function() {
   });
 
   listen('fit_map', (item, zoom) => {
-    this.fitMap(item, this.getCurrentPaddings(), zoom);
+    this.fitMap(item, { padding: this.getCurrentPaddings(), zoom });
   });
 
   listen('map_mark_poi', (poi, options) => {
@@ -224,26 +224,29 @@ Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, 
   this.mb.fitBounds(bbox, { padding, animate });
 };
 
-
-Scene.prototype.fitMap = function(item, padding, zoom = true) {
+// Move the map to focus on an item
+// Options:
+// - padding: {left, right, top, bottom} (optional)
+// - zoom: true/false (optional)
+Scene.prototype.fitMap = function(item, options = {}) {
   // BBox
   if (item._ne && item._sw) {
-    this.fitBbox(item, padding);
+    this.fitBbox(item, options.padding);
   } else { // PoI
     if (item.bbox) { // poi Bbox
-      this.fitBbox(item.bbox, padding);
+      this.fitBbox(item.bbox, options.padding);
     } else { // poi center
       const flyOptions = {
         center: item.latLon,
-        zoom: zoom ? getBestZoom(item) : this.mb.getZoom(),
+        zoom: options.zoom ? getBestZoom(item) : this.mb.getZoom(),
         screenSpeed: 1.5,
         animate: false,
       };
 
-      if (padding) {
+      if (options.padding) {
         flyOptions.offset = [
-          (padding.left - padding.right) / 2,
-          (padding.top - padding.bottom) / 2,
+          (options.padding.left - options.padding.right) / 2,
+          (options.padding.top - options.padding.bottom) / 2,
         ];
       }
 
