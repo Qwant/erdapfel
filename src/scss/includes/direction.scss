@@ -427,26 +427,25 @@ input:valid:focus + .itinerary__field__clear {
   }
 }
 
-.itinerary_roadmap_item--transportLine .itinerary_roadmap_substeps > div {
-  position: relative;
-  padding-top: 6px;
-
-  &:before {
-    background: white;
-    content: '';
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-    position: absolute;
-    top: 12px;
-    left: -32px;
-  }
-}
-
-.itinerary_roadmap_item--walk .itinerary_roadmap_substep {
+.itinerary_roadmap_substep {
   display: flex;
-  padding-top: 6px;
+  padding: 3px 0;
+  position: relative;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &_bullet {
+    background: white;
+    border-radius: 50%;
+    border: 3px solid;
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    top: 6px;
+    left: -36px;
+  }
 
   .itinerary_roadmap_icon {
     margin: 0 6px 0 0;
@@ -476,6 +475,11 @@ input:valid:focus + .itinerary__field__clear {
   &--walk {
     background: url(../images/direction_icons/walking_bullet_roadmap.png) repeat space;
     background-size: 7px 10px;
+  }
+
+  &--transportLine {
+    height: calc(100% - 36px);
+    top: 42px;
   }
 }
 
