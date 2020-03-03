@@ -56,10 +56,12 @@ export default class SceneDirection {
 
     listen('set_origin', poi => {
       this.setOrigin(poi);
+      fire('fit_map', poi, false);
     });
 
     listen('set_destination', poi => {
       this.setDestination(poi);
+      fire('fit_map', poi, false);
     });
   }
 
@@ -71,7 +73,6 @@ export default class SceneDirection {
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
     this.routeMarkers.push(originMarker);
-    fire('fit_map', poi, false);
   }
 
   setDestination = poi => {
@@ -82,7 +83,6 @@ export default class SceneDirection {
       .addTo(this.map)
       .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
     this.routeMarkers.push(destinationMarker);
-    fire('fit_map', poi, false);
   }
 
   addMarkerSteps(route) {
