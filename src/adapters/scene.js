@@ -120,7 +120,7 @@ Scene.prototype.initMapBox = function() {
   });
 
   listen('fit_map', (item, zoom) => {
-    this.fitMap(item, { padding: this.getCurrentPaddings(), zoom });
+    this.fitMap(item, this.getCurrentPaddings(), zoom);
   });
 
   listen('map_mark_poi', (poi, options) => {
@@ -228,25 +228,26 @@ Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, 
 // Options:
 // - padding: {left, right, top, bottom} (optional)
 // - zoom: true/false (optional)
-Scene.prototype.fitMap = function(item, options = {}) {
+Scene.prototype.fitMap = function(item, padding, allowZoom = true) {
+
   // BBox
   if (item._ne && item._sw) {
-    this.fitBbox(item, options.padding);
+    this.fitBbox(item, padding);
   } else { // PoI
     if (item.bbox) { // poi Bbox
-      this.fitBbox(item.bbox, options.padding);
+      this.fitBbox(item.bbox, padding);
     } else { // poi center
       const flyOptions = {
         center: item.latLon,
-        zoom: options.zoom ? getBestZoom(item) : this.mb.getZoom(),
+        zoom: allowZoom ? getBestZoom(item) : this.mb.getZoom(),
         screenSpeed: 1.5,
         animate: false,
       };
 
-      if (options.padding) {
+      if (padding) {
         flyOptions.offset = [
-          (options.padding.left - options.padding.right) / 2,
-          (options.padding.top - options.padding.bottom) / 2,
+          (padding.left - padding.right) / 2,
+          (padding.top - padding.bottom) / 2,
         ];
       }
 
