@@ -154,8 +154,8 @@ Scene.prototype.initMapBox = function() {
     fire('map_loaded');
   });
 
-  listen('fit_map', item => {
-    this.fitMap(item, this.getCurrentPaddings());
+  listen('fit_map', (item, zoom) => {
+    this.fitMap(item, this.getCurrentPaddings(), zoom);
   });
 
   listen('map_mark_poi', (poi, options) => {
@@ -259,8 +259,12 @@ Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, 
   this.mb.fitBounds(bbox, { padding, animate });
 };
 
+// Move the map to focus on an item
+// Options:
+// - padding: {left, right, top, bottom} (optional)
+// - zoom: true/false (optional)
+Scene.prototype.fitMap = function(item, padding, allowZoom = true) {
 
-Scene.prototype.fitMap = function(item, padding) {
   // BBox
   if (item._ne && item._sw) {
     this.fitBbox(item, padding);
@@ -270,7 +274,7 @@ Scene.prototype.fitMap = function(item, padding) {
     } else { // poi center
       const flyOptions = {
         center: item.latLon,
-        zoom: getBestZoom(item),
+        zoom: allowZoom ? getBestZoom(item) : this.mb.getZoom(),
         screenSpeed: 1.5,
         animate: false,
       };

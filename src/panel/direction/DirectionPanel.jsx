@@ -90,6 +90,16 @@ export default class DirectionPanel extends React.Component {
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
       persistentPointState.origin = origin;
       persistentPointState.destination = destination;
+      if (origin) {
+        window.execOnMapLoaded(() => {
+          fire('set_origin', origin);
+        });
+      }
+      if (destination) {
+        window.execOnMapLoaded(() => {
+          fire('set_destination', destination);
+        });
+      }
       this.setState({
         origin,
         destination,
@@ -134,6 +144,11 @@ export default class DirectionPanel extends React.Component {
       // When both fields are not filled yet or not filled anymore
       this.setState({ isLoading: false, isDirty: false, error: 0, routes: [] });
       fire('clean_routes');
+      if (origin) {
+        fire('set_origin', origin);
+      } else if (destination) {
+        fire('set_destination', destination);
+      }
     }
   }
 
@@ -201,7 +216,7 @@ export default class DirectionPanel extends React.Component {
     }
 
     // If origin field is empty, set it
-    // or, if destination field is empty, set it
+    // else, if destination field is empty, set it
     if (persistentPointState.origin === null) {
       persistentPointState.origin = poi;
     } else if (persistentPointState.destination === null) {
@@ -209,7 +224,7 @@ export default class DirectionPanel extends React.Component {
     }
 
     // Update state
-    // If both fields are now set, call update() to perform a search and redraw the UI
+    // (Call update() that will perform a search and redraw the UI if both fields are set)
     this.setState({
       origin: persistentPointState.origin,
       destination: persistentPointState.destination,
