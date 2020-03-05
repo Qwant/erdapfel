@@ -49,6 +49,8 @@ export default class DirectionPanel extends React.Component {
     const activeVehicle = this.vehicles.indexOf(props.mode) !== -1
       ? props.mode : modes.DRIVING;
 
+    this.lastQueryId = 0;
+
     this.state = {
       vehicle: activeVehicle,
       origin: persistentPointState.origin || null,
@@ -119,11 +121,16 @@ export default class DirectionPanel extends React.Component {
     const { origin, destination, vehicle } = this.state;
     if (origin && destination) {
       this.setState({ isDirty: false, isLoading: true, error: 0, routes: [] });
+      const currentQueryId = ++this.lastQueryId;
       const directionResponse = await DirectionApi.search(
         origin,
         destination,
         vehicle,
       );
+      // A more recent query was done in the meantime, ignore this result silently
+      if (currentQueryId !== this.lastQueryId) {
+        return;
+      }
       if (directionResponse && directionResponse.error === 0) {
         // Valid, non-empty response
         const routes = directionResponse.data.routes.map((route, i) => ({
