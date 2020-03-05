@@ -22,7 +22,7 @@ export default class Panel extends React.Component {
     title: PropTypes.node,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
-    initialSize: PropTypes.string,
+    initialSize: PropTypes.oneOf(['default', 'minimized', 'maximized']),
     marginTop: PropTypes.number,
     close: PropTypes.func,
     className: PropTypes.string,
@@ -31,6 +31,7 @@ export default class Panel extends React.Component {
 
   static defaultProps = {
     marginTop: 0,
+    initialSize: 'default',
   }
 
   constructor(props) {
@@ -77,7 +78,7 @@ export default class Panel extends React.Component {
 
     this.setState(previousState => ({
       currentHeight: this.startHeight,
-      size: null,
+      size: 'default',
       previousSize: previousState.size,
       holding: true,
     }));
@@ -107,10 +108,10 @@ export default class Panel extends React.Component {
 
     const { previousSize, currentHeight } = this.state;
 
-    let size = null;
+    let size = 'default';
     if (event.timeStamp - this.interactionStarted < CLICK_RESIZE_TIMEOUT_MS) {
       // the resize handler was only clicked, provide 'smart' resize
-      size = !previousSize ? 'minimized' : null;
+      size = previousSize === 'default' ? 'minimized' : 'default';
     } else {
       // the resize handler was really dragged-n-dropped
       const maxSize = window.innerHeight - this.props.marginTop;
