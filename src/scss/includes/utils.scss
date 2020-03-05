@@ -2,14 +2,20 @@
   font-weight: bold;
 }
 
+@keyframes placeholderPulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
 .u-placeholder {
   user-select: none;
   color: transparent;
   background-color: #e0e1e6;
   border-radius: 3px;
+  animation: placeholderPulse 0.8s ease-in-out alternate infinite;
 
   &--text {
-    margin: 0 0 7px;
+    margin: 4px 0 3px;
     height: 13px;
     display: inline-block;
   }

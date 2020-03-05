@@ -156,7 +156,7 @@ export default class CategoryPanel extends React.Component {
 
     return <Panel
       resizable
-      title={<CategoryPanelHeader dataSource={dataSource} />}
+      title={<CategoryPanelHeader dataSource={dataSource} loading={initialLoading} />}
       minimizedTitle={_('Show results', 'categories')}
       close={this.close}
       className="category__panel"
