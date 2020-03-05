@@ -2,19 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-function getClosestIndex(arr, goal) {
-  return arr.reduce((closestIndex, curr, index) =>
-    Math.abs(curr - goal) < Math.abs(arr[closestIndex] - goal) ? index : closestIndex
-  );
-}
-
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
   : event.clientY;
 
+// Pixel threshold to consider vertical resize moves
+const HEIGHT_RESIZE_THRESHOLD_PX = 50;
 // Delay below which a mouseDown/mouseUp interaction
 // will be considered a as single click instead of a draggin action
-const CLICK_RESIZE_TIMEOUT_MS = 250;
+const CLICK_RESIZE_TIMEOUT_MS = 150;
+
+function getTargetSize(previousSize, moveDuration, heightDelta) {
+  let size = previousSize;
+  if (Math.abs(heightDelta) < HEIGHT_RESIZE_THRESHOLD_PX) {
+    if (moveDuration < CLICK_RESIZE_TIMEOUT_MS) {
+      // the resize handler was only clicked, provide 'smart' resize
+      size = previousSize === 'default' ? 'minimized' : 'default';
+    }
+  } else if (heightDelta < 0) {
+    // move to the top
+    size = previousSize === 'default' ? 'maximized' : 'default';
+  } else {
+    // move to the bottom
+    size = previousSize === 'default' ? 'minimized' : 'default';
+  }
+  return size;
+}
 
 export default class Panel extends React.Component {
   static propTypes = {
@@ -23,14 +36,12 @@ export default class Panel extends React.Component {
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
     initialSize: PropTypes.oneOf(['default', 'minimized', 'maximized']),
-    marginTop: PropTypes.number,
     close: PropTypes.func,
     className: PropTypes.string,
     white: PropTypes.bool,
   }
 
   static defaultProps = {
-    marginTop: 0,
     initialSize: 'default',
   }
 
@@ -106,27 +117,15 @@ export default class Panel extends React.Component {
     document.removeEventListener('mousemove', this.moveCallback);
     document.removeEventListener('touchmove', this.moveCallback);
 
-    const { previousSize, currentHeight } = this.state;
-
-    let size = 'default';
-    if (event.timeStamp - this.interactionStarted < CLICK_RESIZE_TIMEOUT_MS) {
-      // the resize handler was only clicked, provide 'smart' resize
-      size = previousSize === 'default' ? 'minimized' : 'default';
-    } else {
-      // the resize handler was really dragged-n-dropped
-      const maxSize = window.innerHeight - this.props.marginTop;
-      const sizes = [0, maxSize / 2, maxSize];
-      const positionIndex = getClosestIndex(sizes, currentHeight);
-      if (positionIndex === 0) {
-        size = 'minimized';
-      } else if (positionIndex === 2) {
-        size = 'maximized';
-      }
-    }
+    const newSize = getTargetSize(
+      this.state.previousSize,
+      event.timeStamp - this.interactionStarted,
+      this.startHeight - this.state.currentHeight,
+    );
 
     this.setState({
       holding: false,
-      size,
+      size: newSize,
       currentHeight: null,
     });
   }
