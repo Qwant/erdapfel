@@ -79,7 +79,7 @@ function App(config) {
     fallthrough: false,
     maxAge: config.statics.maxAge,
     setHeaders: (res, path, _stat) => {
-      if (path.endsWith('/favicon.png')) {
+      if (path.endsWith('/favicon.png') || path.match(/logo_\d+.png$/)) {
         /* Chrome Mobile reloads favicon on each map move */
         res.set('Cache-Control', 'public, max-age=300');
       }
