@@ -2,19 +2,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-function getClosestIndex(arr, goal) {
-  return arr.reduce((closestIndex, curr, index) =>
-    Math.abs(curr - goal) < Math.abs(arr[closestIndex] - goal) ? index : closestIndex
-  );
-}
-
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
   : event.clientY;
 
+// Pixel threshold to consider vertical swipes
+const SWIPE_THRESHOLD_PX = 50;
+// Pixel threshold from the bottom or top of the viewport to span to min or max
+const MIN_MAX_THRESHOLD_PX = 75;
 // Delay below which a mouseDown/mouseUp interaction
 // will be considered a as single click instead of a draggin action
-const CLICK_RESIZE_TIMEOUT_MS = 250;
+const CLICK_RESIZE_TIMEOUT_MS = 150;
+
+function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSize) {
+  let size = previousSize;
+  const heightDelta = startHeight - endHeight;
+  if (Math.abs(heightDelta) < SWIPE_THRESHOLD_PX) {
+    if (moveDuration < CLICK_RESIZE_TIMEOUT_MS) {
+      // the resize handler was only clicked, provide 'smart' resize
+      size = previousSize === 'default' ? 'minimized' : 'default';
+    }
+  } else if (endHeight < MIN_MAX_THRESHOLD_PX) {
+    size = 'minimized';
+  } else if (endHeight > maxSize - MIN_MAX_THRESHOLD_PX) {
+    size = 'maximized';
+  } else if (heightDelta < 0) {
+    // swipe towards the top
+    size = previousSize === 'default' ? 'maximized' : 'default';
+  } else {
+    // swipe towards the bottom
+    size = previousSize === 'default' ? 'minimized' : 'default';
+  }
+  return size;
+}
 
 export default class Panel extends React.Component {
   static propTypes = {
@@ -22,7 +42,7 @@ export default class Panel extends React.Component {
     title: PropTypes.node,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
-    initialSize: PropTypes.string,
+    initialSize: PropTypes.oneOf(['default', 'minimized', 'maximized']),
     marginTop: PropTypes.number,
     close: PropTypes.func,
     className: PropTypes.string,
@@ -30,7 +50,8 @@ export default class Panel extends React.Component {
   }
 
   static defaultProps = {
-    marginTop: 0,
+    initialSize: 'default',
+    marginTop: 50, // default top bar size
   }
 
   constructor(props) {
@@ -77,7 +98,7 @@ export default class Panel extends React.Component {
 
     this.setState(previousState => ({
       currentHeight: this.startHeight,
-      size: null,
+      size: 'default',
       previousSize: previousState.size,
       holding: true,
     }));
@@ -105,27 +126,17 @@ export default class Panel extends React.Component {
     document.removeEventListener('mousemove', this.moveCallback);
     document.removeEventListener('touchmove', this.moveCallback);
 
-    const { previousSize, currentHeight } = this.state;
-
-    let size = null;
-    if (event.timeStamp - this.interactionStarted < CLICK_RESIZE_TIMEOUT_MS) {
-      // the resize handler was only clicked, provide 'smart' resize
-      size = !previousSize ? 'minimized' : null;
-    } else {
-      // the resize handler was really dragged-n-dropped
-      const maxSize = window.innerHeight - this.props.marginTop;
-      const sizes = [0, maxSize / 2, maxSize];
-      const positionIndex = getClosestIndex(sizes, currentHeight);
-      if (positionIndex === 0) {
-        size = 'minimized';
-      } else if (positionIndex === 2) {
-        size = 'maximized';
-      }
-    }
+    const newSize = getTargetSize(
+      this.state.previousSize,
+      event.timeStamp - this.interactionStarted,
+      this.startHeight,
+      this.state.currentHeight,
+      window.innerHeight - this.props.marginTop,
+    );
 
     this.setState({
       holding: false,
-      size,
+      size: newSize,
       currentHeight: null,
     });
   }
