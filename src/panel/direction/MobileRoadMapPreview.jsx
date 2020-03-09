@@ -13,6 +13,7 @@ export default class MobileRoadMapPreview extends React.Component {
 
   componentDidMount() {
     this.zoomToCurrentStep();
+    fire('move_mobile_geolocation_button', 65);
   }
 
   zoomToCurrentStep = () => {
