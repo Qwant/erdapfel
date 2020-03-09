@@ -180,6 +180,10 @@ Scene.prototype.initMapBox = function() {
   listen('move_mobile_bottom_ui', bottom => {
     this.moveMobileBottomUI(bottom);
   });
+
+  listen('move_mobile_geolocation_button', bottom => {
+    this.moveMobileGeolocationButton(bottom);
+  });
 };
 
 Scene.prototype.getCurrentPaddings = () => getMapPaddings({
@@ -384,6 +388,12 @@ Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
     uiControls.forEach(uiControl => {
       this.translateUIControl(uiControl, bottom);
     });
+  }
+};
+
+Scene.prototype.moveMobileGeolocationButton = function(bottom = 0) {
+  if (isMobileDevice() || bottom === 0) {
+    this.translateUIControl('.mapboxgl-ctrl-geolocate', bottom);
   }
 };
 
