@@ -6,24 +6,31 @@ const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
   : event.clientY;
 
-// Pixel threshold to consider vertical resize moves
-const HEIGHT_RESIZE_THRESHOLD_PX = 50;
+// Pixel threshold to consider vertical swipes
+const SWIPE_THRESHOLD_PX = 50;
+// Pixel threshold from the bottom or top of the viewport to span to min or max
+const MIN_MAX_THRESHOLD_PX = 75;
 // Delay below which a mouseDown/mouseUp interaction
 // will be considered a as single click instead of a draggin action
 const CLICK_RESIZE_TIMEOUT_MS = 150;
 
-function getTargetSize(previousSize, moveDuration, heightDelta) {
+function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSize) {
   let size = previousSize;
-  if (Math.abs(heightDelta) < HEIGHT_RESIZE_THRESHOLD_PX) {
+  const heightDelta = startHeight - endHeight;
+  if (Math.abs(heightDelta) < SWIPE_THRESHOLD_PX) {
     if (moveDuration < CLICK_RESIZE_TIMEOUT_MS) {
       // the resize handler was only clicked, provide 'smart' resize
       size = previousSize === 'default' ? 'minimized' : 'default';
     }
+  } else if (endHeight < MIN_MAX_THRESHOLD_PX) {
+    size = 'minimized';
+  } else if (endHeight > maxSize - MIN_MAX_THRESHOLD_PX) {
+    size = 'maximized';
   } else if (heightDelta < 0) {
-    // move to the top
+    // swipe towards the top
     size = previousSize === 'default' ? 'maximized' : 'default';
   } else {
-    // move to the bottom
+    // swipe towards the bottom
     size = previousSize === 'default' ? 'minimized' : 'default';
   }
   return size;
@@ -36,6 +43,7 @@ export default class Panel extends React.Component {
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
     initialSize: PropTypes.oneOf(['default', 'minimized', 'maximized']),
+    marginTop: PropTypes.number,
     close: PropTypes.func,
     className: PropTypes.string,
     white: PropTypes.bool,
@@ -43,6 +51,7 @@ export default class Panel extends React.Component {
 
   static defaultProps = {
     initialSize: 'default',
+    marginTop: 50, // default top bar size
   }
 
   constructor(props) {
@@ -120,7 +129,9 @@ export default class Panel extends React.Component {
     const newSize = getTargetSize(
       this.state.previousSize,
       event.timeStamp - this.interactionStarted,
-      this.startHeight - this.state.currentHeight,
+      this.startHeight,
+      this.state.currentHeight,
+      window.innerHeight - this.props.marginTop,
     );
 
     this.setState({
