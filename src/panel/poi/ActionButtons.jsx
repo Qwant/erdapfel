@@ -48,6 +48,16 @@ export default class ActionButtons extends React.Component {
       }
     });
 
+    this.updateFavoriteState();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.poi !== this.props.poi) {
+      this.updateFavoriteState();
+    }
+  }
+
+  updateFavoriteState() {
     isPoiFavorite(this.props.poi).then(poiIsInFavorite => {
       this.setState({ poiIsInFavorite });
     });
