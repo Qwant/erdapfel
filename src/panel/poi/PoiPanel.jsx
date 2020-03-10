@@ -18,6 +18,20 @@ import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import SearchInput from 'src/ui_components/search_input';
 import { DeviceContext } from 'src/libs/device';
+import Store from '../../adapters/store';
+import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
+  from 'src/modals/MasqFavoriteModal';
+
+const store = new Store();
+
+async function isPoiFavorite(poi) {
+  try {
+    const storePoi = await store.has(poi);
+    return !!storePoi;
+  } catch (e) {
+    return false;
+  }
+}
 
 export default class PoiPanel extends React.Component {
   static propTypes = {
@@ -34,6 +48,8 @@ export default class PoiPanel extends React.Component {
     this.state = {
       showDetails: false,
       fullPoi: null,
+      isPoiInFavorite: false,
+      isPhoneNumberVisible: false,
     };
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
@@ -41,6 +57,17 @@ export default class PoiPanel extends React.Component {
 
   componentDidMount() {
     this.loadPoi();
+    this.storeAddHandler = listen('poi_added_to_favs', poi => {
+      if (poi === this.state.fullPoi) {
+        this.setState({ isPoiInFavorite: true });
+      }
+    });
+
+    this.storeRemoveHandler = listen('poi_removed_from_favs', poi => {
+      if (poi === this.state.fullPoi) {
+        this.setState({ isPoiInFavorite: false });
+      }
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -50,6 +77,8 @@ export default class PoiPanel extends React.Component {
   }
 
   componentWillUnmount() {
+    window.unListen(this.storeAddHandler);
+    window.unListen(this.storeRemoveHandler);
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     SearchInput.setInputValue('');
@@ -84,7 +113,13 @@ export default class PoiPanel extends React.Component {
       // @TODO: error message instead of close in case of unrecognized POI
       this.closeAction();
     } else {
-      this.setState({ fullPoi: poi });
+      this.setState({
+        fullPoi: poi,
+        isPhoneNumberVisible: !isFromPagesJaunes(poi),
+      });
+      isPoiFavorite(poi).then(isPoiInFavorite => {
+        this.setState({ isPoiInFavorite });
+      });
       if (!updateMapEarly) {
         this._updateMapPoi(poi, mapOptions);
       }
@@ -150,6 +185,42 @@ export default class PoiPanel extends React.Component {
     this.setState({ showDetails: false });
   }
 
+  showPhoneNumber = () => {
+    const poi = this.getBestPoi();
+    const source = poi.meta && poi.meta.source;
+    if (source) {
+      Telemetry.add('phone', 'poi', source,
+        Telemetry.buildInteractionData({
+          id: poi.id,
+          source,
+          template: 'single',
+          zone: 'detail',
+          element: 'phone',
+        })
+      );
+    }
+    this.setState({ isPhoneNumberVisible: true });
+  }
+
+  toggleStorePoi = async () => {
+    const poi = this.state.fullPoi;
+    if (poi.meta && poi.meta.source) {
+      Telemetry.add('favorite', 'poi', poi.meta.source);
+    }
+    if (this.state.isPoiInFavorite) {
+      store.del(poi);
+    } else {
+      if (this.isMasqEnabled) {
+        const isLoggedIn = await store.isLoggedIn();
+        if (!isLoggedIn) {
+          await openMasqFavModalAndWaitForClose();
+        }
+      }
+      store.add(poi);
+    }
+  }
+
+
   renderFull = poi => {
     const { isFromCategory, isFromFavorite } = this.props;
 
@@ -202,12 +273,13 @@ export default class PoiPanel extends React.Component {
         </div>
         <ActionButtons
           poi={poi}
-          isFromCategory={isFromCategory}
-          isFromFavorite={isFromFavorite}
           isDirectionActive={this.isDirectionActive}
           openDirection={this.openDirection}
           openShare={this.openShare}
-          isMasqEnabled={this.isMasqEnabled}
+          isPhoneNumberVisible={this.state.isPhoneNumberVisible}
+          showPhoneNumber={this.showPhoneNumber}
+          isPoiInFavorite={this.state.isPoiInFavorite}
+          toggleStorePoi={this.toggleStorePoi}
         />
         <PoiBlockContainer poi={poi} />
         {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
