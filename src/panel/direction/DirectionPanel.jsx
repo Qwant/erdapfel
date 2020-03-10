@@ -253,6 +253,12 @@ export default class DirectionPanel extends React.Component {
     const form = <DirectionForm
       origin={origin}
       destination={destination}
+      originInputText = {origin && origin.getInputValue ? origin.getInputValue() : ''}
+      destinationInputText = {
+        destination && destination.getInputValue
+          ? destination.getInputValue()
+          : ''
+      }
       onChangeDirectionPoint={this.changeDirectionPoint}
       onReversePoints={this.reversePoints}
       vehicles={this.vehicles}
