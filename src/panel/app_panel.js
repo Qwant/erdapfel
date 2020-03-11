@@ -20,7 +20,7 @@ export default class App {
   constructor() {
     this.initMap();
 
-    SearchInput.initSearchInput('#search');
+    SearchInput.initSearchInput('#search_react');
 
     Telemetry.add(Telemetry.APP_START, null, null, {
       'language': window.getLang(),

@@ -74,6 +74,12 @@ input[type="search"] {
   }
 }
 
+.search_form__list {
+  $MARGIN_LEFT: 28px;
+  width: calc(100% - 2 * #{$MARGIN_LEFT}) !important;
+  margin-left: $MARGIN_LEFT;
+}
+
 .search_form__logo {
   display: block;
   position: absolute;
@@ -119,6 +125,8 @@ input[type="search"] {
 }
 
 .autocomplete_suggestions {
+  display: block;
+  width: 100%;
   position: absolute;
   max-height: calc(100vh - 100px);
   text-align: left;

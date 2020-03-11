@@ -272,7 +272,7 @@ test('Search Query', async () => {
   const searchQuery = 'test';
   await page.goto(`${APP_URL}/?q=${searchQuery}`);
   const searchValue = await page.evaluate(() => {
-    return document.querySelector('#search').value;
+    return document.querySelector('#search_react').value;
   });
 
   // search input is filled with query

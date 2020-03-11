@@ -15,12 +15,15 @@ class DirectionInput extends React.Component {
   }
 
   componentDidMount() {
-    this.suggest = new Suggest({
-      tagSelector: `#itinerary_input_${this.props.pointType}`,
-      onSelect: this.selectItem,
-      prefixes: [ NavigatorGeolocalisationPoi.getInstance() ],
-      menuClass: 'direction_suggestions',
-    });
+    if (this.props.claimFocus) {
+      this.focus();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.claimFocus) {
+      this.focus();
+    }
   }
 
   componentWillUnmount() {
@@ -29,20 +32,15 @@ class DirectionInput extends React.Component {
     }
   }
 
-  onChange = event => {
-    const input = event.target.value;
-    this.props.onChangePoint(input, null);
-  }
-
-  onKeyPress = event => {
-    if (event.key === 'Enter' && this.props.value !== '') {
-      this.suggest.onSubmit();
+  onChange = value => {
+    if (value !== this.props.value) {
+      this.props.onChangePoint(value, null);
     }
   }
 
   selectItem = async selectedPoi => {
     if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
-      this.suggest.setIdle(true);
+      // this.suggest.setIdle(true);
       try {
         await selectedPoi.geolocate();
       } catch (error) {
@@ -56,7 +54,7 @@ class DirectionInput extends React.Component {
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
         this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
       }
-      this.suggest.setIdle(false);
+      // this.suggest.setIdle(false);
     } else {
       this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
     }
@@ -75,28 +73,38 @@ class DirectionInput extends React.Component {
     const { pointType, inputRef } = this.props;
 
     return <div className="itinerary_field" >
-      <input
-        ref={inputRef}
-        id={`itinerary_input_${pointType}`}
-        className="itinerary_input"
-        type="search"
-        required
-        autoComplete="off"
-        spellCheck="false"
-        placeholder={pointType === 'origin'
-          ? _('Start point', 'direction')
-          : _('End point', 'direction')}
-        value={this.props.value}
-        onChange={this.onChange}
-        onKeyPress={this.onKeyPress}
+      <div className={`itinerary_icon itinerary_icon_${pointType}`} />
+      <Suggest
+        className="direction_suggestions"
+        inputValue={this.props.value}
+        onChange={this.selectItem}
+        prefixes={[NavigatorGeolocalisationPoi.getInstance()]}
+        input={props =>
+          <>
+            <input
+              ref={inputRef}
+              id={`itinerary_input_${pointType}`}
+              className="itinerary_input"
+              type="search"
+              required
+              autoComplete="off"
+              spellCheck="false"
+              placeholder={pointType === 'origin'
+                ? _('Start point', 'direction')
+                : _('End point', 'direction')}
+              {...props}
+              onChange={e => {this.onChange(e.target.value); }}
+            />
+            <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
+            <div className="itinerary_field_return">
+              <span className="icon-arrow-left"/>
+            </div>
+            <div className="itinerary_field_icon">
+              <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
+            </div>
+          </>
+        }
       />
-      <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
-      <div className="itinerary_field_return">
-        <span className="icon-arrow-left"/>
-      </div>
-      <div className="itinerary_field_icon">
-        <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
-      </div>
     </div>;
   }
 }

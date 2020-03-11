@@ -682,7 +682,7 @@ input:valid:focus + .itinerary__field__clear {
       font-size: 22px;
     }
   }
-  
+
   .itinerary_title {
     color: $background;
     line-height: 36px;
@@ -712,11 +712,11 @@ input:valid:focus + .itinerary__field__clear {
     right: 12px;
     top: 15px;
   }
-  
+
   .direction_suggestions {
     position: fixed;
   }
-  
+
   .itinerary_vehicles {
     padding: 9px 0 6px;
   }
@@ -782,7 +782,7 @@ input:valid:focus + .itinerary__field__clear {
     display: inline-block;
     margin-right: 6px;
   }
-  
+
   .itinerary_leg_mobileActions {
     display: flex;
     grid-area: actions;
@@ -792,7 +792,7 @@ input:valid:focus + .itinerary__field__clear {
       margin-right: 6px;
     }
   }
-  
+
   .itinerary_mobile_step {
     position: fixed;
     top: 36px;
@@ -834,7 +834,7 @@ input:valid:focus + .itinerary__field__clear {
       margin: 0 0 5px;
     }
   }
-  
+
   .itinerary_mobile_step_buttons {
     width: 96px;
     height: 48px;
@@ -845,7 +845,7 @@ input:valid:focus + .itinerary__field__clear {
     border-radius: 3px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
-  
+
   .itinerary_mobile_step_button {
     width: 48px;
     height: 48px;
@@ -970,7 +970,7 @@ input:valid:focus + .itinerary__field__clear {
     &_source {
       padding: 9px 18px 18px;
       font-size: 12px;
-    
+
       a {
         display: flex;
         align-items: center;
@@ -978,7 +978,7 @@ input:valid:focus + .itinerary__field__clear {
         text-transform: uppercase;
         justify-content: flex-end;
       }
-    
+
       img {
         height: 18px;
         margin-right: 9px;

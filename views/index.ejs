@@ -41,6 +41,7 @@
           data-flag-text="<%= config.app.versionFlag %>"
         <% } %> >
         <input id="search" type="search" class="search_form__input" spellcheck="false" required placeholder="<%= _('Search on Qwant Maps') %>">
+        <div id="search_react"></div>
         <input type="submit" value="" class="search_form__action" onclick="fire('submit_autocomplete')">
         <button id="clear_button" class="search_form__clear icon-x" type="button" onmousedown="clearSearch()"></button>
         <a class="search_form__logo" title="qwant.com" href="https://www.qwant.com"></a>

@@ -1,6 +1,6 @@
 const SUGGEST_SELECTOR = '.autocomplete_suggestion';
 const CLEAR_BUTTON_SELECTOR = '#clear_button';
-const SEARCH_INPUT_SELECTOR = '#search';
+const SEARCH_INPUT_SELECTOR = '#search_react';
 
 export default class AutocompleteHelper {
   constructor(page) {

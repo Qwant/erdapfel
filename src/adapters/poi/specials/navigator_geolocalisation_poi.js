@@ -48,10 +48,10 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     this.latLon = latLng;
   }
 
-  render() {
+  render(selected) {
     return (
       <div data-id={GEOLOCALISATION_NAME} data-val={_('Your position', 'direction')}
-        className="autocomplete_suggestion itinerary_suggest_your_position">
+        className={`autocomplete_suggestion itinerary_suggest_your_position ${selected ? 'selected' : ''}`}>
         <div className="itinerary_suggest_your_position_icon icon-pin_geoloc"></div>
         {_('Your position', 'direction')}
       </div>

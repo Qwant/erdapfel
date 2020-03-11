@@ -159,7 +159,7 @@ export default class PanelManager extends React.Component {
   }
 
   initTopBar() {
-    const searchInput = document.querySelector('#search');
+    const searchInput = document.querySelector('#search_react');
     const topBarHandle = document.querySelector('.top_bar');
 
     searchInput.onfocus = () => {
