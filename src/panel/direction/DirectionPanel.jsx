@@ -12,6 +12,7 @@ import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
+import IdunnPoi from "src/adapters/poi/idunn_poi";
 
 // this outside state is used to restore origin/destination when returning to the panel after closing
 const persistentPointState = {
@@ -62,6 +63,8 @@ export default class DirectionPanel extends React.Component {
       routes: [],
       activePreviewRoute: null,
       isInitializing: true,
+      originInputText: '',
+      destinationInputText: '',
     };
 
     this.restorePoints(props);
@@ -92,6 +95,16 @@ export default class DirectionPanel extends React.Component {
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
       persistentPointState.origin = origin;
       persistentPointState.destination = destination;
+
+      // Show the raw POI name/latlon while waiting for computeRoutes to complete
+      if (origin) {
+        this.setState({ originInputText: origin.name });
+      }
+      if (destination) {
+        this.setState({ destinationInputText: destination.name });
+      }
+
+      // Set markers
       if (origin) {
         window.execOnMapLoaded(() => {
           fire('set_origin', origin);
@@ -157,6 +170,25 @@ export default class DirectionPanel extends React.Component {
         fire('set_destination', destination);
       }
     }
+
+    let poiInfo;
+    if (origin) {
+      if (origin.type === 'latlon') {
+        poiInfo = await IdunnPoi.poiApiLoad(origin);
+        this.setState({ originInputText: poiInfo.alternativeName || poiInfo.name});
+      } else {
+        this.setState({ originInputText: origin.name });
+      }
+    }
+
+    if (destination) {
+      if (destination.type === 'latlon') {
+        poiInfo = await IdunnPoi.poiApiLoad(destination);
+        this.setState({ destinationInputText: poiInfo.alternativeName || poiInfo.name});
+      } else {
+        this.setState({ destinationInputText: destination.name });
+      }
+    }
   }
 
   updateUrl() {
@@ -210,9 +242,21 @@ export default class DirectionPanel extends React.Component {
     }), this.update);
   }
 
+  emptyOrigin = () => {
+    this.setState({ originInputText: '' });
+  }
+
+  emptyDestination = () => {
+    this.setState({ destinationInputText: '' });
+  }
+
   changeDirectionPoint = (which, value) => {
     persistentPointState[which] = value;
-    this.setState({ [which]: value, isDirty: true }, this.update);
+    this.setState({
+      [which]: value,
+      isDirty: true,
+      [which + 'InputText']: value && value.name ? value.name : '',
+    }, this.update);
   }
 
   setDirectionPoint = poi => {
@@ -248,19 +292,18 @@ export default class DirectionPanel extends React.Component {
       origin, destination, vehicle,
       routes, error, activePreviewRoute,
       isLoading, isDirty, isInitializing,
+      originInputText, destinationInputText,
     } = this.state;
     const title = <h3 className="itinerary_title">{_('directions', 'direction')}</h3>;
     const form = <DirectionForm
       origin={origin}
       destination={destination}
-      originInputText = {origin && origin.getInputValue ? origin.getInputValue() : ''}
-      destinationInputText = {
-        destination && destination.getInputValue
-          ? destination.getInputValue()
-          : ''
-      }
+      originInputText = {originInputText}
+      destinationInputText = {destinationInputText}
       onChangeDirectionPoint={this.changeDirectionPoint}
       onReversePoints={this.reversePoints}
+      onEmptyOrigin={this.emptyOrigin}
+      onEmptyDestination={this.emptyDestination}
       vehicles={this.vehicles}
       onSelectVehicle={this.onSelectVehicle}
       activeVehicle={vehicle}
