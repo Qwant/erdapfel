@@ -113,15 +113,11 @@ async function wait(time) {
 async function serverStart() {
   const App = require(path.join(__dirname, '../bin/app'));
   const configBuilder = require('@qwant/nconf-builder');
-
-  configBuilder.set('store:name', 'local_store');
-
-  configBuilder.set('mapStyle:poiMapUrl', `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`);
-  configBuilder.set('mapStyle:baseMapUrl', `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`);
-  configBuilder.set('performance:enabled', true);
-
-
-  const config = configBuilder.get();
+  const config = configBuilder.get_without_check();
+  config.mapStyle.baseMapUrl = `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`;
+  config.mapStyle.poiMapUrl = `["http://localhost:${PORT}/fake_pbf/{z}/{x}/{y}.pbf"]`;
+  config.performance.enabled = true;
+  config.store.name = 'local_store';
   const appServer = new App(config);
 
   console.log(`Start test on PORT : ${PORT}`);
