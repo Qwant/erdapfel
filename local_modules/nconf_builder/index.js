@@ -54,10 +54,6 @@ class ConfigChecker {
     return confToCheck;
   }
 
-  set(key, value) {
-    this.conf.set(key, value);
-  }
-
   get_without_check() {
     return this.conf.get();
   }
