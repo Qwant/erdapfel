@@ -43,6 +43,7 @@ export default class ExtendedControl {
         enableHighAccuracy: true,
       },
       trackUserLocation: true,
+      showAccuracyCircle: false,
     }, this.bottomButtonGroup);
 
     this.topButtonGroup.appendChild(this._compass);
