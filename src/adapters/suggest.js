@@ -9,6 +9,7 @@ import React, { Component, Fragment } from 'react';
 import Downshift from 'downshift';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
+import { ImageSource } from 'mapbox-gl';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -57,10 +58,13 @@ export default class Suggest extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      inputValue: '',
       pois: [],
       favorites: [],
       categories: [],
       isOpen: false,
+      selectedItem: null,
+      typedValue: '',
     };
   }
 
@@ -72,9 +76,9 @@ export default class Suggest extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.inputValue !== prevProps.inputValue) {
-      this.source(this.props.inputValue);
-    }
+    // if (this.props.inputValue !== prevProps.inputValue) {
+    //   this.source(this.props.inputValue);
+    // }
   }
 
   source = debounce(async term => {
@@ -125,6 +129,8 @@ export default class Suggest extends Component {
           this.suggestList = this.suggestList.concat(bragiResponse);
           this.suggestList = this.suggestList.concat(storeResponse);
 
+          // console.log(this.suggestList);
+
           resolve(this.suggestList);
         } catch (e) {
           reject(e);
@@ -141,20 +147,70 @@ export default class Suggest extends Component {
   render() {
     const { prefixes } = this.props;
     const { categories, pois, favorites } = this.state;
+    // console.log('pois.length', pois.length);
+
+    const items = [
+      ...prefixes,
+      ...categories,
+      ...pois.length > 0 ? pois.slice(0, SUGGEST_MAX_ITEMS - categories.length) : [],
+      ...favorites.filter(item => item.name.toUpperCase().includes(this.props.inputValue.toUpperCase())),
+    ];
+
+    // console.log(' pois.slice(0, SUGGEST_MAX_ITEMS - categories.length)', pois.slice(0, SUGGEST_MAX_ITEMS - categories.length));
 
     return (
       <Downshift
         inputValue={this.props.inputValue}
         itemToString={item => item ? item.name : ''}
         isOpen={this.state.isOpen}
-        onOuterClick={() =>
-          this.setState({ isOpen: false })
-        }
+        // onOuterClick={() =>
+        //   this.setState({ isOpen: false })
+        // }
         onChange={value => {
-          this.props.onChange(value);
-          this.setState({ isOpen: false });
+          this.props.onSelect(value);
+          this.setState({
+            selectedItem: value,
+            isOpen: false,
+          });
         }}
-        selectedItem={null}
+        onInputValueChange={value => {
+          console.log('onInputValueChange', value);
+          this.setState({ typedValue: value });
+          this.source(value);
+          this.props.onChange(value);
+        }}
+        selectedItem={this.state.selectedItem}
+        onStateChange={({ type, highlightedIndex }, stateAndHelpers) => {
+          if (highlightedIndex === null) {
+            this.props.onChange(this.state.typedValue);
+            return;
+          }
+          // console.log(type, stateAndHelpers);
+          if (type === '__autocomplete_keydown_arrow_down__' ||
+              type === '__autocomplete_keydown_arrow_up__') {
+            this.props.onChange(items[highlightedIndex].name);
+          }
+        }}
+        stateReducer={(state, changes) => {
+          switch (changes.type) {
+          case Downshift.stateChangeTypes.keyDownArrowUp:
+            return {
+              ...changes,
+              highlightedIndex: state.highlightedIndex !== null
+                ? state.highlightedIndex === 0 ? null : state.highlightedIndex - 1
+                : items.length - 1,
+            };
+          case Downshift.stateChangeTypes.keyDownArrowDown:
+            return {
+              ...changes,
+              highlightedIndex: state.highlightedIndex !== null
+                ? state.highlightedIndex === items.length - 1 ? null : state.highlightedIndex + 1
+                : 0,
+            };
+          default:
+            return changes;
+          }
+        }}
       >
         {({
           getInputProps,
@@ -162,7 +218,6 @@ export default class Suggest extends Component {
           getMenuProps,
           highlightedIndex,
           getRootProps,
-          inputValue,
         }) =>
           <div>
             <div
@@ -170,6 +225,18 @@ export default class Suggest extends Component {
               {...getRootProps({}, { suppressRefError: true })}
             >
               {this.props.input(getInputProps({
+                value: this.props.inputValue,
+                onKeyDown: e => {
+                  if (e.key === 'Enter') {
+                    console.log('onKeyDown!');
+                    const item = items[0 + prefixes.length];
+                    this.props.onSelect(item);
+                    this.setState({
+                      selectedItem: item,
+                      isOpen: false,
+                    });
+                  }
+                },
                 onFocus: () => this.setState({ isOpen: true }),
               }))}
             </div>
@@ -178,22 +245,20 @@ export default class Suggest extends Component {
               className={classNames('autocomplete_suggestions', this.props.className)}
               style={{ display: 'block' }}
             >
-
-              {this.state.isOpen && [
-                ...prefixes,
-                ...categories,
-                ...pois,
-                ...favorites.filter(item => item.name.toUpperCase().includes(inputValue.toUpperCase())),
-              ].map((item, index) =>
+              {this.state.isOpen && items.map((item, index) =>
                 <li
                   key={index}
                   {...getItemProps({
                     item,
                   })}
                 >
+                  {/* <h3 className="autocomplete_suggestion__category_title" onMouseDown="return false;">
+                    FAVORITES
+                  </h3> */}
                   {undefined === item.type && item.render(highlightedIndex === index)} {/* type is undefined in prefixes */}
-                  {'category' === item.type && <Category category={item} selected={highlightedIndex === index} />}
-                  {['poi', 'zone'].includes(item.type) && <Poi poi={item} selected={highlightedIndex === index} />}
+                  {'category' === item.type
+                    ? <Category category={item} selected={highlightedIndex === index} />
+                    : <Poi poi={item} selected={highlightedIndex === index} />}
                 </li>
               )
               }

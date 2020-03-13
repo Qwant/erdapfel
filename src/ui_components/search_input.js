@@ -42,30 +42,34 @@ class SearchInputReact extends Component {
 
   render() {
     return (
-      <Suggest
-        className="search_form__list"
-        withCategories
-        inputValue={this.state.value}
-        onChange={item => this.selectItem(item, true)}
-        prefixes={[]}
-        input={props =>
-        <>
-          <input
-            ref={this.inputRef}
-            type="search"
-            className="search_form__input"
-            spellCheck="false"
-            required
-            placeholder="Search on Qwant Maps"
-            {...props}
-            id="search-react-input"
-            onChange={e => {
-              this.setState({ value: e.target.value });
-            }}
-          />
-        </>
-        }
-      />
+      <>
+        <Suggest
+          className="search_form__list"
+          withCategories
+          onChange={value => {
+            this.setState({ value });
+          }}
+          inputValue={this.state.value}
+          onSelect={item => this.selectItem(item, true)}
+          prefixes={[]}
+          input={props =>
+          <>
+            <input
+              ref={this.inputRef}
+              type="search"
+              className="search_form__input"
+              spellCheck="false"
+              required
+              placeholder="Search on Qwant Maps"
+              {...props}
+              id="search-react-input"
+              autoFocus={true}
+            />
+          </>
+          }
+        />
+      <button type="button" className="search_form__action" onClick={e => console.log('hello')}></button>
+    </>
     );
   }
 }
@@ -83,10 +87,8 @@ export default class SearchInput {
         setTimeout(() => {
           // document.getElementById('search_react').focus();
           const elem = document.getElementById('search-react-input');
-
           const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
           nativeInputValueSetter.call(elem, '');
-
           const ev2 = new Event('input', { bubbles: true });
           elem.dispatchEvent(ev2);
           elem.focus();
@@ -117,15 +119,18 @@ export default class SearchInput {
     const elem = document.getElementById('search-react-input');
     const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
     nativeInputValueSetter.call(elem, value);
-
-    const ev2 = new Event('input', { bubbles: true });
-    elem.dispatchEvent(ev2);
+    const event = new Event('input', { bubbles: true });
+    elem.dispatchEvent(event);
   }
 
   static unminify() {
     document.querySelector('.top_bar').classList.remove('top_bar--small');
     window.__searchInput.isEnabled = true;
   }
+
+  // static executeSearch(value) {
+
+  // }
 
   static isMinified() {
     return !window.__searchInput.isEnabled;
@@ -136,23 +141,33 @@ export default class SearchInput {
     this.handleKeyboard();
     this.isEnabled = true;
 
-    listen('submit_autocomplete', async () => {
-      this.suggest.onSubmit();
-    });
+    // listen('submit_autocomplete', async () => {
+    //   console.log('submit!!!');
+    //   // this.suggest.onSubmit();
+
+    //   // setTimeout(() => {
+    //   const elem = document.getElementById('search-react-input');
+    //   // const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+    //   // nativeInputValueSetter.call(elem, '');
+    //   // const ev2 = new Event('input', { bubbles: true });
+    //   const event = new KeyboardEvent('keyDown', { key: 'Enter' });
+    //   elem.dispatchEvent(event);
+    //   // }, 0);
+    // });
   }
 
   handleKeyboard() {
-    document.onkeydown = function(e) {
-      if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
-        return;
-      }
-      if (!e.shiftKey && !e.ctrlKey && e.key !== 'Enter' && !e.altKey) {
-        if (document.activeElement
-          && document.activeElement.tagName !== 'INPUT'
-          && window.__searchInput.isEnabled) {
-          document.getElementById('search_react').focus();
-        }
-      }
-    };
+    // document.onkeydown = function(e) {
+    //   if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
+    //     return;
+    //   }
+    //   if (!e.shiftKey && !e.ctrlKey && e.key !== 'Enter' && !e.altKey) {
+    //     if (document.activeElement
+    //       && document.activeElement.tagName !== 'INPUT'
+    //       && window.__searchInput.isEnabled) {
+    //       document.getElementById('search_react').focus();
+    //     }
+    //   }
+    // };
   }
 }

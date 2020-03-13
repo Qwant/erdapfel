@@ -27,9 +27,9 @@ class DirectionInput extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.suggest) {
-      this.suggest.destroy();
-    }
+    // if (this.suggest) {
+    //   this.suggest.destroy();
+    // }
   }
 
   onChange = value => {
@@ -39,6 +39,7 @@ class DirectionInput extends React.Component {
   }
 
   selectItem = async selectedPoi => {
+    // console.log('selectedPoi', selectedPoi);
     if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
       // this.suggest.setIdle(true);
       try {
@@ -49,7 +50,7 @@ class DirectionInput extends React.Component {
         } else {
           Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error);
         }
-        this.suggest.clear();
+        // this.suggest.clear();
       }
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
         this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
@@ -57,6 +58,7 @@ class DirectionInput extends React.Component {
       // this.suggest.setIdle(false);
     } else {
       this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
+      console.log('############', this.props.value, selectedPoi.getInputValue());
     }
   }
 
@@ -65,6 +67,7 @@ class DirectionInput extends React.Component {
   }
 
   clear = () => {
+    console.log('clear!!!!!');
     this.props.onChangePoint('', null);
     this.focus();
   }
@@ -77,13 +80,13 @@ class DirectionInput extends React.Component {
       <Suggest
         className="direction_suggestions"
         inputValue={this.props.value}
-        onChange={this.selectItem}
+        onChange={value => {this.onChange(value); }}
+        onSelect={this.selectItem}
         prefixes={[NavigatorGeolocalisationPoi.getInstance()]}
         input={props =>
           <>
             <input
               ref={inputRef}
-              id={`itinerary_input_${pointType}`}
               className="itinerary_input"
               type="search"
               required
@@ -93,7 +96,7 @@ class DirectionInput extends React.Component {
                 ? _('Start point', 'direction')
                 : _('End point', 'direction')}
               {...props}
-              onChange={e => {this.onChange(e.target.value); }}
+              id={`itinerary_input_${pointType}`}
             />
             <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
             <div className="itinerary_field_return">

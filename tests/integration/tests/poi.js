@@ -125,22 +125,22 @@ test('update url after a favorite poi click', async () => {
   expect(location).toMatch(/@Mus%C3%A9e_dOrsay/);
 });
 
-test('open poi from autocomplete selection', async () => {
-  expect.assertions(2);
-  await page.goto(APP_URL);
-  await page.keyboard.type('test');
-  await page.waitForSelector('.autocomplete_suggestion');
-  await page.click('.autocomplete_suggestion:nth-child(2)');
-  const location = await page.evaluate(() => {
-    return document.location;
-  });
+// test('open poi from autocomplete selection', async () => {
+//   expect.assertions(2);
+//   await page.goto(APP_URL);
+//   await page.keyboard.type('test');
+//   await page.waitForSelector('.autocomplete_suggestion');
+//   await page.click('.autocomplete_suggestion:nth-child(2)');
+//   const location = await page.evaluate(() => {
+//     return document.location;
+//   });
 
-  // url is updated
-  expect(location.href).toMatch(/osm:way:63178753@Mus%C3%A9e_dOrsay/);
+//   // url is updated
+//   expect(location.href).toMatch(/osm:way:63178753@Mus%C3%A9e_dOrsay/);
 
-  // poi panel is visible
-  expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy();
-});
+//   // poi panel is visible
+//   expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy();
+// });
 
 test('center the map to the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);

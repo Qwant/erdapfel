@@ -2,7 +2,7 @@ const config = require('./integration/test_config');
 
 module.exports = {
   setupFilesAfterEnv: ['jest-extended'],
-  testMatch: [`${__dirname}/integration/tests/*.js`],
+  testMatch: [`${__dirname}/integration/tests/autocomplete.js`],
   globalSetup: `${__dirname}/integration/server_start.js`,
   globalTeardown: `${__dirname}/integration/server_close.js`,
   testPathIgnorePatterns: ['/node_modules/'],
