@@ -11,13 +11,13 @@ let responseHandler;
 
 beforeAll(async () => {
   browser = (await initBrowser()).browser;
-});
+}, 60000);
 
 beforeEach(async () => {
   page = await browser.newPage();
   responseHandler = new ResponseHandler(page);
   await responseHandler.prepareResponse();
-});
+}, 60000);
 
 test('check "My position" label', async () => {
   expect.assertions(1);
@@ -35,19 +35,21 @@ test('switch start end', async () => {
   expect.assertions(1);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
   await page.waitForSelector('#itinerary_input_origin');
-  await page.click('#itinerary_input_origin');
+  // await page.click('#itinerary_input_origin');
   await page.type('#itinerary_input_origin', 'start');
-  // await page.waitForSelector('#itinerary_input_destination');
-  await page.click('#itinerary_input_destination');
+  // await page.click('#itinerary_input_destination');
   await page.type('#itinerary_input_destination', 'end');
   await page.click('.itinerary_invert_origin_destination');
-  // await page.waitFor(4000);
   const inputValues = await page.evaluate(() => {
-    return { startInput: document.querySelector('#itinerary_input_origin').value, endInput: document.querySelector('#itinerary_input_destination').value };
+    return {
+      startInput: document.querySelector('#itinerary_input_origin').value,
+      endInput: document.querySelector('#itinerary_input_destination').value,
+    };
   });
 
   expect(inputValues).toEqual({ startInput: 'end', endInput: 'start' });
-});
+  // await page.waitFor(50000);
+}, 60000);
 
 // test('simple search', async () => {
 //   expect.assertions(1);
@@ -56,18 +58,18 @@ test('switch start end', async () => {
 //   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 //   await page.waitForSelector('#itinerary_input_origin');
 //   await page.type('#itinerary_input_origin', 'direction');
-//   await page.waitFor(1000);
+//   // await page.waitFor(1000);
 //   await page.keyboard.press('Enter');
 //   await page.type('#itinerary_input_destination', 'direction');
-//   await page.waitFor(1000);
+//   // await page.waitFor(1000);
 //   await page.keyboard.press('Enter');
 
-//   await page.waitFor(2000);
+//   // await page.waitFor(50000);
 
 //   const leg0 = await page.waitForSelector('.itinerary_leg');
 
 //   expect(leg0).not.toBeNull();
-// });
+// }, 50000);
 
 test('route flag', async () => {
   expect.assertions(3);
