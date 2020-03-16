@@ -144,6 +144,20 @@ export default class Suggest extends Component {
     }
   }, 100)
 
+  renderItem(item, highlightedIndex, index) {
+    console.log('item', item);
+    if (item.id && item.id === 'geolocalisation') {
+      return item.render();
+    }
+
+    switch (item.type) {
+    case 'category':
+      return <Category category={item} selected={highlightedIndex === index} />;
+    default:
+      return <Poi poi={item} selected={highlightedIndex === index} />;
+    }
+  }
+
   render() {
     const { prefixes } = this.props;
     const { categories, pois, favorites } = this.state;
@@ -156,6 +170,7 @@ export default class Suggest extends Component {
       ...favorites.filter(item => item.name.toUpperCase().includes(this.props.inputValue.toUpperCase())),
     ];
 
+    console.log('items', items);
     // console.log(' pois.slice(0, SUGGEST_MAX_ITEMS - categories.length)', pois.slice(0, SUGGEST_MAX_ITEMS - categories.length));
 
     return (
@@ -163,9 +178,9 @@ export default class Suggest extends Component {
         inputValue={this.props.inputValue}
         itemToString={item => item ? item.name : ''}
         isOpen={this.state.isOpen}
-        // onOuterClick={() =>
-        //   this.setState({ isOpen: false })
-        // }
+        onOuterClick={() =>
+          this.setState({ isOpen: false })
+        }
         onChange={value => {
           this.props.onSelect(value);
           this.setState({
@@ -255,10 +270,7 @@ export default class Suggest extends Component {
                   {/* <h3 className="autocomplete_suggestion__category_title" onMouseDown="return false;">
                     FAVORITES
                   </h3> */}
-                  {undefined === item.type && item.render(highlightedIndex === index)} {/* type is undefined in prefixes */}
-                  {'category' === item.type
-                    ? <Category category={item} selected={highlightedIndex === index} />
-                    : <Poi poi={item} selected={highlightedIndex === index} />}
+                  {this.renderItem(item, highlightedIndex, index)}
                 </li>
               )
               }

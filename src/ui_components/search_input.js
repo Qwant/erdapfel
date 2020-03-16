@@ -68,7 +68,16 @@ class SearchInputReact extends Component {
           </>
           }
         />
-      <button type="button" className="search_form__action" onClick={e => console.log('hello')}></button>
+      <button className="search_form__action" onClick={e => {
+        setTimeout(() => {
+          const elem = document.getElementById('search-react-input');
+          //   // const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+          //   // nativeInputValueSetter.call(elem, '');
+          //   // const ev2 = new Event('input', { bubbles: true });
+          const event = new KeyboardEvent('keyDown', { key: 'Enter' });
+          elem.dispatchEvent(event);
+        });
+      }}></button>
     </>
     );
   }

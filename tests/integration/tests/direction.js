@@ -35,9 +35,13 @@ test('switch start end', async () => {
   expect.assertions(1);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
   await page.waitForSelector('#itinerary_input_origin');
+  await page.click('#itinerary_input_origin');
   await page.type('#itinerary_input_origin', 'start');
+  // await page.waitForSelector('#itinerary_input_destination');
+  await page.click('#itinerary_input_destination');
   await page.type('#itinerary_input_destination', 'end');
   await page.click('.itinerary_invert_origin_destination');
+  // await page.waitFor(4000);
   const inputValues = await page.evaluate(() => {
     return { startInput: document.querySelector('#itinerary_input_origin').value, endInput: document.querySelector('#itinerary_input_destination').value };
   });
