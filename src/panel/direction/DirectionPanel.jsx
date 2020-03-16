@@ -12,7 +12,7 @@ import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
-import IdunnPoi from "src/adapters/poi/idunn_poi";
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
 
 // this outside state is used to restore origin/destination when returning to the panel after closing
 const persistentPointState = {
@@ -175,7 +175,7 @@ export default class DirectionPanel extends React.Component {
     if (origin) {
       if (origin.type === 'latlon') {
         poiInfo = await IdunnPoi.poiApiLoad(origin);
-        this.setState({ originInputText: poiInfo.alternativeName || poiInfo.name});
+        this.setState({ originInputText: poiInfo.alternativeName || poiInfo.name });
       } else {
         this.setState({ originInputText: origin.name });
       }
@@ -184,7 +184,7 @@ export default class DirectionPanel extends React.Component {
     if (destination) {
       if (destination.type === 'latlon') {
         poiInfo = await IdunnPoi.poiApiLoad(destination);
-        this.setState({ destinationInputText: poiInfo.alternativeName || poiInfo.name});
+        this.setState({ destinationInputText: poiInfo.alternativeName || poiInfo.name });
       } else {
         this.setState({ destinationInputText: destination.name });
       }
