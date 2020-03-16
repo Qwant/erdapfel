@@ -253,6 +253,7 @@ export default class Suggest extends Component {
                   }
                 },
                 onFocus: () => this.setState({ isOpen: true }),
+                onBlur: () => this.setState({ isOpen: false }),
               }))}
             </div>
             <ul
