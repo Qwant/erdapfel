@@ -190,7 +190,7 @@ export default class Suggest extends Component {
         }}
         onInputValueChange={value => {
           console.log('onInputValueChange', value);
-          if (value === '') {return;}
+          // if (value === '') {return;}
           this.setState({ typedValue: value });
           this.source(value);
           this.props.onChange(value);

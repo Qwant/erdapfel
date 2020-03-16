@@ -51,25 +51,21 @@ test('switch start end', async () => {
   // await page.waitFor(50000);
 }, 60000);
 
-// test('simple search', async () => {
-//   expect.assertions(1);
-//   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
-//   responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
-//   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
-//   await page.waitForSelector('#itinerary_input_origin');
-//   await page.type('#itinerary_input_origin', 'direction');
-//   // await page.waitFor(1000);
-//   await page.keyboard.press('Enter');
-//   await page.type('#itinerary_input_destination', 'direction');
-//   // await page.waitFor(1000);
-//   await page.keyboard.press('Enter');
+test('simple search', async () => {
+  expect.assertions(1);
+  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
+  responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}`);
+  await page.waitForSelector('#itinerary_input_origin');
+  await page.type('#itinerary_input_origin', 'direction');
+  await page.keyboard.press('Enter');
+  await page.type('#itinerary_input_destination', 'direction');
+  await page.keyboard.press('Enter');
 
-//   // await page.waitFor(50000);
+  const leg0 = await page.waitForSelector('.itinerary_leg');
 
-//   const leg0 = await page.waitForSelector('.itinerary_leg');
-
-//   expect(leg0).not.toBeNull();
-// }, 50000);
+  expect(leg0).not.toBeNull();
+}, 50000);
 
 test('route flag', async () => {
   expect.assertions(3);
