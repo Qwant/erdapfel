@@ -159,7 +159,7 @@ export default class SceneDirection {
 
   refreshDirection(type, lngLat) {
     const newPoint = new LatLonPoi(lngLat);
-    fire('change_direction_point', type, newPoint);
+    fire('change_direction_point', type, '', newPoint);
   }
 
   reset() {

@@ -250,12 +250,12 @@ export default class DirectionPanel extends React.Component {
     this.setState({ destinationInputText: '' });
   }
 
-  changeDirectionPoint = (which, value) => {
+  changeDirectionPoint = (which, value, point) => {
     persistentPointState[which] = value;
     this.setState({
-      [which]: value,
+      [which]: point,
       isDirty: true,
-      [which + 'InputText']: value && value.name ? value.name : '',
+      [which + 'InputText']: value || '',
     }, this.update);
   }
 

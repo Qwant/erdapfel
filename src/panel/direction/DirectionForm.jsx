@@ -39,8 +39,8 @@ export default class DirectionForm extends React.Component {
     }
   }
 
-  onChangePoint = (which, textInput, point) => {
-    this.props.onChangeDirectionPoint(which, point);
+  onChangePoint = (which, value, point) => {
+    this.props.onChangeDirectionPoint(which, value, point);
   }
 
   onReverse = () => {
