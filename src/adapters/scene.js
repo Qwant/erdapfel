@@ -142,6 +142,12 @@ Scene.prototype.initMapBox = function() {
       }, this.DOUBLE_TAP_DELAY_MS);
     });
 
+    if (isMobileDevice()) {
+      this.mb.on('contextmenu', e => {
+        this.clickOnMap(e.lngLat, null, { longTouch: true });
+      });
+    }
+
     this.mb.on('moveend', () => {
       const { lng, lat } = this.mb.getCenter();
       const zoom = this.mb.getZoom();
@@ -191,22 +197,18 @@ Scene.prototype.getCurrentPaddings = () => getMapPaddings({
   isDirectionsActive: !!document.querySelector('.directions-open'),
 });
 
-Scene.prototype.clickOnMap = function(lngLat, clickedFeature) {
-
-  // Ignore clicks anywhere on mobile if direction panel is not open
-  if (isMobileDevice() && !clickedFeature && !document.querySelector('.directions-open')) {
-    window.app.navigateTo('/');
-    return;
-  }
-
+Scene.prototype.clickOnMap = function(lngLat, clickedFeature, { longTouch = false } = {}) {
   // Instantiate the place clicked as a PoI
   const poi = clickedFeature ? new MapPoi(clickedFeature) : new LatLonPoi(lngLat);
 
-  // If Direction panel is open, tell it to fill its fields with this PoI, on PC and mobile
-  // Else, open PoI panel
   if (document.querySelector('.directions-open')) {
+    // If Direction panel is open, tell it to fill its fields with this PoI
     fire('set_direction_point', poi);
+  } else if (isMobileDevice() && !clickedFeature && !longTouch) {
+    // On mobile, simple clicks anywhere close the currently open panel
+    window.app.navigateTo('/');
   } else {
+    // Default case: open the POI panel
     window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
   }
 };
