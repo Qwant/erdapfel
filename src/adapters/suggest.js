@@ -269,9 +269,11 @@ export default class Suggest extends Component {
                     item,
                   })}
                 >
-                  {/* <h3 className="autocomplete_suggestion__category_title" onMouseDown="return false;">
-                    FAVORITES
-                  </h3> */}
+                  {item instanceof PoiStore && item === this.state.favorites[0] &&
+                    <h3 className="autocomplete_suggestion__category_title" onMouseDown="return false;">
+                      FAVORITES
+                    </h3>
+                  }
                   {this.renderItem(item, highlightedIndex, index)}
                 </li>
               )
