@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { exact, string, arrayOf, func } from 'prop-types';
+import { exact, string, arrayOf, func, bool } from 'prop-types';
 
 import SuggestItem from './SuggestItem';
 
@@ -22,6 +22,12 @@ const SuggestsDropdown = ({
       if (key === 'ArrowUp') {
         const h = highlighted === null ? suggests.length : highlighted;
         return h > 0 ? setHighlighted(h - 1) : setHighlighted(null);
+      }
+
+      if (key === 'Enter') {
+        if (highlighted !== null) {
+          onSelect(highlighted);
+        }
       }
     };
 
@@ -58,9 +64,12 @@ const SuggestsDropdown = ({
 
 SuggestsDropdown.propTypes = {
   suggests: arrayOf(exact({
-    icon: string,
-    name: string,
+    icon: string.isRequired,
+    iconColor: string,
+    name: string.isRequired,
     location: string,
+    divider: bool,
+    categoryLabel: string,
   })).isRequired,
   onHighlight: func.isRequired,
   onSelect: func.isRequired,
