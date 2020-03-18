@@ -5,6 +5,7 @@ import NavigatorGeolocalisationPoi, { navigatorGeolocationStatus } from
   'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Suggest from 'src/adapters/suggest';
 import Error from 'src/adapters/error';
+import SuggestsDropdown from '../../components/ui/SuggestsDropdown';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -14,19 +15,23 @@ class DirectionInput extends React.Component {
     inputRef: PropTypes.object.isRequired,
   }
 
+  state = {
+    isFocused: false,
+  }
+
   componentDidMount() {
-    this.suggest = new Suggest({
-      tagSelector: `#itinerary_input_${this.props.pointType}`,
-      onSelect: this.selectItem,
-      prefixes: [ NavigatorGeolocalisationPoi.getInstance() ],
-      menuClass: 'direction_suggestions',
-    });
+    // this.suggest = new Suggest({
+    //   tagSelector: `#itinerary_input_${this.props.pointType}`,
+    //   onSelect: this.selectItem,
+    //   prefixes: [ NavigatorGeolocalisationPoi.getInstance() ],
+    //   menuClass: 'direction_suggestions',
+    // });
   }
 
   componentWillUnmount() {
-    if (this.suggest) {
-      this.suggest.destroy();
-    }
+    // if (this.suggest) {
+    //   this.suggest.destroy();
+    // }
   }
 
   onChange = event => {
@@ -34,32 +39,32 @@ class DirectionInput extends React.Component {
     this.props.onChangePoint(input, null);
   }
 
-  onKeyPress = event => {
-    if (event.key === 'Enter' && this.props.value !== '') {
-      this.suggest.onSubmit();
-    }
-  }
+  // onKeyPress = event => {
+  //   if (event.key === 'Enter' && this.props.value !== '') {
+  //     this.suggest.onSubmit();
+  //   }
+  // }
 
   selectItem = async selectedPoi => {
-    if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
-      this.suggest.setIdle(true);
-      try {
-        await selectedPoi.geolocate();
-      } catch (error) {
-        if (selectedPoi.status === navigatorGeolocationStatus.FORBIDDEN) {
-          fire('open_geolocate_denied_modal');
-        } else {
-          Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error);
-        }
-        this.suggest.clear();
-      }
-      if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
-        this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
-      }
-      this.suggest.setIdle(false);
-    } else {
-      this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
-    }
+    // if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
+    //   this.suggest.setIdle(true);
+    //   try {
+    //     await selectedPoi.geolocate();
+    //   } catch (error) {
+    //     if (selectedPoi.status === navigatorGeolocationStatus.FORBIDDEN) {
+    //       fire('open_geolocate_denied_modal');
+    //     } else {
+    //       Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error);
+    //     }
+    //     this.suggest.clear();
+    //   }
+    //   if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
+    //     this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
+    //   }
+    //   this.suggest.setIdle(false);
+    // } else {
+    //   this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
+    // }
   }
 
   focus = () => {
@@ -73,6 +78,7 @@ class DirectionInput extends React.Component {
 
   render() {
     const { pointType, inputRef } = this.props;
+    const { isFocused } = this.state;
 
     return <div className="itinerary_field" >
       <input
@@ -89,7 +95,10 @@ class DirectionInput extends React.Component {
         value={this.props.value}
         onChange={this.onChange}
         onKeyPress={this.onKeyPress}
+        onFocus={() => this.setState({ isFocused: true })}
+        onBlur={() => this.setState({ isFocused: false })}
       />
+
       <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
       <div className="itinerary_field_return">
         <span className="icon-arrow-left"/>
@@ -97,6 +106,20 @@ class DirectionInput extends React.Component {
       <div className="itinerary_field_icon">
         <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
       </div>
+
+      {isFocused &&
+        <SuggestsDropdown
+          suggests={[
+            { icon: 'pin_geoloc', name: 'You position', divider: true },
+            { icon: 'gift', iconColor: 'blue', name: 'name', location: 'location' },
+            { icon: 'gift', iconColor: 'blue', name: 'name', location: 'location' },
+            { icon: 'gift', name: 'name', location: 'location' },
+            { icon: 'rail-metro', name: 'favorites', location: 'location', categoryLabel: 'Favorites' },
+          ]}
+          onHighlight={index => this.props.inputRef.current.value = index}
+          onSelect={s => console.log('onSelect', s)}
+        />
+      }
     </div>;
   }
 }
