@@ -21,7 +21,10 @@ const SuggestItem = ({
       onClick={onClick}
       {...rest}
     >
-      <div className={`autocomplete-icon icon icon-${suggest.icon}`} style={{ color: suggest.iconColor }} />
+      <div
+        className={`autocomplete-icon icon icon-${suggest.icon}`}
+        style={{ color: suggest.iconColor }}
+      />
       <div className="autocomplete_suggestion__lines_container">
         <div className="autocomplete_suggestion__first_line">
           {suggest.name}
