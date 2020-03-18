@@ -11,8 +11,6 @@ export default class DirectionForm extends React.Component {
     destination: PropTypes.object,
     onChangeDirectionPoint: PropTypes.func.isRequired,
     onReversePoints: PropTypes.func.isRequired,
-    onEmptyOrigin: PropTypes.func.isRequired,
-    onEmptyDestination: PropTypes.func.isRequired,
     vehicles: PropTypes.array.isRequired,
     onSelectVehicle: PropTypes.func.isRequired,
     activeVehicle: PropTypes.string.isRequired,

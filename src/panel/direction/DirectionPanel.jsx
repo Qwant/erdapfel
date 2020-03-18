@@ -97,12 +97,10 @@ export default class DirectionPanel extends React.Component {
       persistentPointState.destination = destination;
 
       // Show the raw POI name/latlon while waiting for computeRoutes to complete
-      if (origin) {
-        this.setState({ originInputText: origin.name });
-      }
-      if (destination) {
-        this.setState({ destinationInputText: destination.name });
-      }
+      this.setState({
+        originInputText: origin ? origin.name : '',
+        destinationInputText: destination ? destination.name : '',
+      });
 
       // Set markers
       if (origin) {
@@ -251,16 +249,8 @@ export default class DirectionPanel extends React.Component {
     }), this.update);
   }
 
-  emptyOrigin = () => {
-    this.setState({ originInputText: '' });
-  }
-
-  emptyDestination = () => {
-    this.setState({ destinationInputText: '' });
-  }
-
   changeDirectionPoint = (which, value, point) => {
-    persistentPointState[which] = value;
+    persistentPointState[which] = point;
     this.setState({
       [which]: point,
       isDirty: true,
