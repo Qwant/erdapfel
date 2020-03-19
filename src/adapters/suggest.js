@@ -6,6 +6,7 @@ import ExtendedString from '../libs/string';
 import PoiStore from './poi/poi_store';
 import Category from './category';
 import nconf from '@qwant/nconf-getter';
+import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -15,19 +16,18 @@ const SUGGEST_FOCUS_MIN_ZOOM = 11;
 import { suggestResults } from './suggest_sources';
 
 export default class Suggest {
-  constructor({ tagSelector, onSelect, prefixes = [], withCategories = false, menuClass = '' }) {
+  constructor({ tagSelector, onSelect,
+    withGeoloc = false, withCategories = false, menuClass = '',
+  }) {
     this.searchInputDomHandler = document.querySelector(tagSelector);
     this.poi = null;
     this.suggestList = [];
     this.pending = false;
     this.onSelect = onSelect;
 
-    this.prefixes = prefixes;
-
     this.autocomplete = new Autocomplete({
       selector: tagSelector,
       minChars: 0,
-      cachePrefix: false,
       delay: 100,
       menuClass,
       width: '650px',
@@ -47,7 +47,11 @@ export default class Suggest {
         const remotes = pois.filter(poi => {
           return !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi);
         });
-        let suggestDom = this.prefixesRender();
+
+        let suggestDom = '';
+        if (withGeoloc) {
+          suggestDom += NavigatorGeolocalisationPoi.getInstance().render();
+        }
 
         let nbFavorites = 0;
         if (favorites.length > 0 && favorites.length <= 2) {
@@ -72,14 +76,10 @@ export default class Suggest {
       onSelect: (e, term, item, items = []) => {
         e.preventDefault();
         const itemId = item.getAttribute('data-id');
-
-        const prefixPoint = this.prefixes.find(prefix => prefix.id === itemId);
-        if (prefixPoint !== undefined) {
-          this.onSelect(prefixPoint);
-        } else {
-          const selectedItem = items.find(item => item.id === itemId);
-          this.onSelect(selectedItem);
-        }
+        const selectedItem = itemId === 'geolocalisation'
+          ? NavigatorGeolocalisationPoi.getInstance()
+          : items.find(item => item.id === itemId);
+        this.onSelect(selectedItem);
         this.searchInputDomHandler.blur();
       },
     });
@@ -125,10 +125,6 @@ export default class Suggest {
 
   preRender(items) {
     this.autocomplete.preRender(items);
-  }
-
-  prefixesRender() {
-    return this.prefixes.map(prefix => prefix.render());
   }
 
   remotesRender(pois) {

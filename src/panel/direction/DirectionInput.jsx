@@ -18,7 +18,7 @@ class DirectionInput extends React.Component {
     this.suggest = new Suggest({
       tagSelector: `#itinerary_input_${this.props.pointType}`,
       onSelect: this.selectItem,
-      prefixes: [ NavigatorGeolocalisationPoi.getInstance() ],
+      withGeoloc: true,
       menuClass: 'direction_suggestions',
     });
   }
