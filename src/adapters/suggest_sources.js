@@ -28,9 +28,10 @@ export function suggestResults(term, { withCategories, useFocus, focusMinZoom = 
         const [geocoderSuggestions, favorites, categories] =
           await Promise.all([ geocoderPromise, favoritePromise, categoryPromise ]);
 
-        // For now don't display anything when there is no geocoder match
-        if (geocoderSuggestions.length === 0) {
-          return resolve([]);
+        // This case happens when this query and the underlying XHR have been aborted.
+        // resolve(null) will cause the suggest to discard this response.
+        if (!geocoderSuggestions) {
+          return resolve(null);
         }
 
         const suggestList = [
