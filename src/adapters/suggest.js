@@ -43,32 +43,19 @@ export default class Suggest {
 
       renderItems: (pois, query) => {
         const favorites = pois.filter(poi => poi instanceof PoiStore);
+        const nbDisplayedFavorites = Math.min(favorites.length, !query ? 5 : 2);
         const categories = pois.filter(poi => poi instanceof Category).slice(0, 1);
-        const remotes = pois.filter(poi => {
+        const geocoderResults = pois.filter(poi => {
           return !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi);
-        });
+        }).slice(0, SUGGEST_MAX_ITEMS - nbDisplayedFavorites - categories.length);
 
         let suggestDom = '';
         if (withGeoloc) {
           suggestDom += NavigatorGeolocalisationPoi.getInstance().render();
         }
-
-        let nbFavorites = 0;
-        if (favorites.length > 0 && favorites.length <= 2) {
-          nbFavorites = favorites.length;
-        } else if (favorites.length > 2) {
-          nbFavorites = 2;
-        }
-
         suggestDom += this.categoriesRender(categories);
-
-        // fill the suggest with the remotes poi according to the remaining places
-        const remotesLen = SUGGEST_MAX_ITEMS - nbFavorites - categories.length;
-        suggestDom += this.remotesRender(remotes.slice(0, remotesLen));
-
-        if (favorites.length > 0) {
-          suggestDom += this.favoritesRender(favorites.slice(0, query === '' ? 5 : nbFavorites));
-        }
+        suggestDom += this.geocoderResultsRender(geocoderResults);
+        suggestDom += this.favoritesRender(favorites.slice(0, nbDisplayedFavorites));
 
         return suggestDom;
       },
@@ -127,19 +114,18 @@ export default class Suggest {
     this.autocomplete.preRender(items);
   }
 
-  remotesRender(pois) {
+  geocoderResultsRender(pois) {
     return pois.map(poi => this.renderItem(poi)).join('');
   }
 
   categoriesRender(categories) {
-    if (!categories) {
-      return '';
-    }
-
     return categories.map(category => this.renderCategory(category)).join('');
   }
 
   favoritesRender(pois) {
+    if (pois.length === 0) {
+      return '';
+    }
     return `
       <h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">
         ${_('FAVORITES', 'autocomplete')}
