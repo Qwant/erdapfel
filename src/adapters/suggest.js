@@ -1,12 +1,12 @@
 /* global _ */
-
+import React, { Fragment } from 'react';
 import Autocomplete from '../vendors/autocomplete';
-import IconManager from '../adapters/icon_manager';
-import ExtendedString from '../libs/string';
 import PoiStore from './poi/poi_store';
 import Category from './category';
 import nconf from '@qwant/nconf-getter';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import SuggestItem from 'src/components/SuggestItem';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -43,21 +43,30 @@ export default class Suggest {
 
       renderItems: (pois, query) => {
         const favorites = pois.filter(poi => poi instanceof PoiStore);
-        const nbDisplayedFavorites = Math.min(favorites.length, !query ? 5 : 2);
         const categories = pois.filter(poi => poi instanceof Category).slice(0, 1);
         const geocoderResults = pois.filter(poi => {
           return !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi);
-        }).slice(0, SUGGEST_MAX_ITEMS - nbDisplayedFavorites - categories.length);
+        });
 
-        let suggestDom = '';
+        const nbDisplayedFavorites = Math.min(favorites.length, !query ? 5 : 2);
+        const nbDisplayedGeocoder = SUGGEST_MAX_ITEMS - nbDisplayedFavorites - categories.length;
+
+        let suggestItems = [];
         if (withGeoloc) {
-          suggestDom += NavigatorGeolocalisationPoi.getInstance().render();
+          suggestItems.push(NavigatorGeolocalisationPoi.getInstance());
         }
-        suggestDom += this.categoriesRender(categories);
-        suggestDom += this.geocoderResultsRender(geocoderResults);
-        suggestDom += this.favoritesRender(favorites.slice(0, nbDisplayedFavorites));
+        suggestItems = suggestItems.concat(categories);
+        suggestItems = suggestItems.concat(geocoderResults.slice(0, nbDisplayedGeocoder));
+        if (nbDisplayedFavorites > 0) {
+          suggestItems.push({ simpleLabel: _('FAVORITES', 'autocomplete') });
+          suggestItems = suggestItems.concat(favorites.slice(0, nbDisplayedFavorites));
+        }
 
-        return suggestDom;
+        return renderStaticReact(
+          <Fragment>
+            {suggestItems.map((item, index) => <SuggestItem item={item} key={index} />)}
+          </Fragment>
+        );
       },
 
       onSelect: (e, term, item, items = []) => {
@@ -114,25 +123,6 @@ export default class Suggest {
     this.autocomplete.preRender(items);
   }
 
-  geocoderResultsRender(pois) {
-    return pois.map(poi => this.renderItem(poi)).join('');
-  }
-
-  categoriesRender(categories) {
-    return categories.map(category => this.renderCategory(category)).join('');
-  }
-
-  favoritesRender(pois) {
-    if (pois.length === 0) {
-      return '';
-    }
-    return `
-      <h3 class="autocomplete_suggestion__category_title" onmousedown="return false;">
-        ${_('FAVORITES', 'autocomplete')}
-      </h3>
-      ${pois.map(poi => this.renderItem(poi)).join('')}`;
-  }
-
   getValue() {
     return this.autocomplete.getValue();
   }
@@ -144,47 +134,6 @@ export default class Suggest {
 
   clear() {
     this.autocomplete.clear();
-  }
-
-  /* select sub template */
-  renderItem(poi) {
-    const { id, name, className, subClassName, type, alternativeName } = poi;
-    const icon = IconManager.get({ className, subClassName, type });
-    const klass = `autocomplete-icon ${`icon icon-${icon.iconClass}`}`;
-    const iconDom = `<div style="color:${icon ? icon.color : ''}" class="${klass}"></div>`;
-
-    return `
-      <div class="autocomplete_suggestion"
-           data-id="${id}" data-val="${ExtendedString.htmlEncode(poi.getInputValue())}">
-        ${iconDom}
-        ${this.renderLines(name, alternativeName)}
-      </div>`;
-  }
-
-  renderCategory(category) {
-    const { label, alternativeName, color, backgroundColor } = category;
-    const icon = category.getIcon();
-    const style = `color: ${color}; background: ${backgroundColor}`;
-    const klass = `autocomplete-icon autocomplete-icon-rounded ${`icon icon-${icon.iconClass}`}`;
-    const iconDom = `<div style="${style}" class="${klass}"></div>`;
-    const categoryLabel = ExtendedString.htmlEncode(category.label);
-
-    return `
-      <div class="autocomplete_suggestion autocomplete_suggestion--category"
-        data-id="${category.id}" data-val="${categoryLabel}">
-        ${iconDom}
-        ${this.renderLines(label, alternativeName)}
-      </div>`;
-  }
-
-  renderLines(firstLabel, secondLabel) {
-    const s_firstLabel = ExtendedString.htmlEncode(firstLabel);
-    const s_secondLabel = ExtendedString.htmlEncode(secondLabel ? secondLabel : '');
-    return `
-      <div class="autocomplete_suggestion__lines_container">
-        <div class="autocomplete_suggestion__first_line">${s_firstLabel}</div>
-        <div class="autocomplete_suggestion__second_line">${s_secondLabel}</div>
-      </div>`;
   }
 }
 
