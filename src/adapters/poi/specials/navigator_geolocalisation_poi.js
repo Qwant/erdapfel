@@ -2,7 +2,6 @@
 
 import Poi from '../poi';
 import GeolocationCheck from 'src/libs/geolocation';
-export const GEOLOCALISATION_NAME = 'geolocalisation';
 
 export const navigatorGeolocationStatus = {
   PENDING: 'pending',
@@ -13,7 +12,7 @@ export const navigatorGeolocationStatus = {
 
 export default class NavigatorGeolocalisationPoi extends Poi {
   constructor() {
-    super(GEOLOCALISATION_NAME, _('Your position', 'direction'));
+    super('geolocalisation', _('Your position', 'direction'));
     this.status = navigatorGeolocationStatus.UNKNOWN;
   }
 
@@ -44,14 +43,5 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   setPosition(latLng) {
     this.status = navigatorGeolocationStatus.FOUND;
     this.latLon = latLng;
-  }
-
-  render() {
-    return `
-      <div data-id="${GEOLOCALISATION_NAME}" data-val="${_('Your position', 'direction')}"
-       class="autocomplete_suggestion itinerary_suggest_your_position">
-        <div class="itinerary_suggest_your_position_icon icon-pin_geoloc"></div>
-        ${_('Your position', 'direction')}
-      </div>`;
   }
 }
