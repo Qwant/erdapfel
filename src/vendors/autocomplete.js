@@ -126,6 +126,11 @@ export default function autoComplete(options) {
     addEvent(window, 'resize', that.updateSC);
     that.offsetParent.appendChild(that.sc);
 
+    // @HACK: cancel clicks on separator titles so they don't steal the focus from the input
+    live('autocomplete_suggestion__category_title', 'mousedown', function(e) {
+      e.preventDefault();
+    });
+
     live('autocomplete_suggestion', 'mouseleave', function() {
       const sel = that.sc.querySelector('.autocomplete_suggestion.selected');
       if (sel) {

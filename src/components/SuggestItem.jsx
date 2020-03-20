@@ -59,7 +59,7 @@ const PoiItem = ({ poi }) => {
 };
 
 const SeparatorLabel = ({ label }) =>
-  <h3 className="autocomplete_suggestion__category_title" onMouseDown="return false;">
+  <h3 className="autocomplete_suggestion__category_title">
     {label}
   </h3>;
 
