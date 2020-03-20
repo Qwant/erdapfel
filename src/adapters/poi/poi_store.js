@@ -7,10 +7,8 @@ const store = new Store();
 export default class PoiStore extends Poi {
   static async get(term) {
     try {
-      const prefixes = await store.getPrefixes(term);
-      return prefixes.map(historySuggest => {
-        return Object.assign(new PoiStore(), historySuggest);
-      });
+      const matches = await store.getMatches(term);
+      return matches.map(match => Object.assign(new PoiStore(), match));
     } catch (e) {
       Error.sendOnce('poi_store', 'get', 'error getting matching favorites', e);
       return [];
