@@ -173,11 +173,11 @@ export default class Store {
     }
   }
 
-  async getPrefixes(prefix) {
+  async getMatches(term) {
     await this.checkInit();
     const storedItems = await this.abstractStore.getAllPois();
     return storedItems.filter(storedItem => {
-      return ExtendedString.compareIgnoreCase(storedItem.name, prefix) === 0; /* start with */
+      return ExtendedString.compareIgnoreCase(storedItem.name, term) !== -1;
     });
   }
 
