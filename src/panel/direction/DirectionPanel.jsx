@@ -74,6 +74,7 @@ export default class DirectionPanel extends React.Component {
     document.body.classList.add('directions-open');
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
+    this.refreshAddressesHandler = listen('get_addresses', this.refreshAddresses);
   }
 
   componentWillUnmount() {
@@ -81,6 +82,39 @@ export default class DirectionPanel extends React.Component {
     window.unListen(this.dragPointHandler);
     window.unListen(this.setPointHandler);
     document.body.classList.remove('directions-open');
+  }
+
+  getAddresses = (origin, destination) => {
+    const inputTextPromises = [
+      origin
+        ? origin.type === 'latlon'
+          ? IdunnPoi.poiApiLoad(origin)
+          : Promise.resolve(origin)
+        : '',
+      destination
+        ? destination.type === 'latlon'
+          ? IdunnPoi.poiApiLoad(destination)
+          : Promise.resolve(destination)
+        : '',
+    ];
+    Promise.all(inputTextPromises).then(([ origin, destination ]) => {
+      this.setState({
+        originInputText: origin
+          ? origin.type === 'latlon'
+            ? origin.alternativeName
+            : origin.name
+          : '',
+        destinationInputText: destination
+          ? destination.type === 'latlon'
+            ? destination.alternativeName
+            : destination.name
+          : '',
+      });
+    });
+  }
+
+  refreshAddresses = () => {
+    this.getAddresses(this.state.origin, this.state.destination);
   }
 
   restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
@@ -98,8 +132,8 @@ export default class DirectionPanel extends React.Component {
 
       // Show the raw POI name/latlon while waiting for computeRoutes to complete
       this.setState({
-        originInputText: origin ? origin.name : '',
-        destinationInputText: destination ? destination.name : '',
+        originInputText: ' ',
+        destinationInputText: ' ',
       });
 
       // Set markers
@@ -113,6 +147,10 @@ export default class DirectionPanel extends React.Component {
           fire('set_destination', destination);
         });
       }
+
+      // Retrieve addresses
+      this.getAddresses(origin, destination);
+
       this.setState({
         origin,
         destination,
@@ -173,25 +211,6 @@ export default class DirectionPanel extends React.Component {
         fire('set_origin', origin);
       } else if (destination) {
         fire('set_destination', destination);
-      }
-    }
-
-    let poiInfo;
-    if (origin) {
-      if (origin.type === 'latlon') {
-        poiInfo = await IdunnPoi.poiApiLoad(origin);
-        this.setState({ originInputText: poiInfo.alternativeName || poiInfo.name });
-      } else {
-        this.setState({ originInputText: origin.name });
-      }
-    }
-
-    if (destination) {
-      if (destination.type === 'latlon') {
-        poiInfo = await IdunnPoi.poiApiLoad(destination);
-        this.setState({ destinationInputText: poiInfo.alternativeName || poiInfo.name });
-      } else {
-        this.setState({ destinationInputText: destination.name });
       }
     }
   }
@@ -272,6 +291,9 @@ export default class DirectionPanel extends React.Component {
     } else if (persistentPointState.destination === null) {
       persistentPointState.destination = poi;
     }
+
+    // Retrieve addresses
+    this.getAddresses(persistentPointState.origin, persistentPointState.destination);
 
     // Update state
     // (Call update() that will perform a search and redraw the UI if both fields are set)
