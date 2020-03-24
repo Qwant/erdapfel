@@ -131,10 +131,10 @@ export default class DirectionPanel extends React.Component {
       persistentPointState.destination = destination;
 
       // Show the raw POI name/latlon while waiting for computeRoutes to complete
-      this.setState({
+      /*this.setState({
         originInputText: ' ',
         destinationInputText: ' ',
-      });
+      });*/
 
       // Set markers
       if (origin) {

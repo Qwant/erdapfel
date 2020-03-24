@@ -26,7 +26,7 @@ test('check "My position" label', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
   // wait for autocomplete library starting-up
-  //await page.waitForSelector('.itinerary_suggest_your_position');
+  await page.waitForSelector('.itinerary_suggest_your_position');
 
   await page.focus('#itinerary_input_origin');
 
