@@ -100,13 +100,13 @@ export default class DirectionPanel extends React.Component {
       this.setState({
         originInputText: origin
           ? origin.type === 'latlon'
-            ? origin.alternativeName || origin.name
-            : origin.name
+            ? origin.alternativeName || origin.getInputValue()
+            : origin.getInputValue()
           : this.state.originInputText,
         destinationInputText: destination
           ? destination.type === 'latlon'
-            ? destination.alternativeName || destination.name
-            : destination.name
+            ? destination.alternativeName || destination.getInputValue()
+            : destination.getInputValue()
           : this.state.destinationInputText,
       });
     });
