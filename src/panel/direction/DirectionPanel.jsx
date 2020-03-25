@@ -84,10 +84,14 @@ export default class DirectionPanel extends React.Component {
   }
 
   setTextInput(which, poi) {
-    if (poi.type === 'latlon') {
-      this.getAddress(which, poi);
+    if (poi) {
+      if (poi.type === 'latlon') {
+        this.getAddress(which, poi);
+      } else {
+        this.setState({ [which + 'InputText']: poi.name || '' });
+      }
     } else {
-      this.setState({ [which + 'InputText']: poi.name || '' });
+      this.setState({ [which + 'InputText']: '' });
     }
   }
 
@@ -110,12 +114,12 @@ export default class DirectionPanel extends React.Component {
       persistentPointState.destination = destination;
 
       // Show the raw POI name/latlon while waiting for computeRoutes to complete
-      if (origin || destination) {
+      /*if (origin || destination) {
         this.setState({
-          originInputText: ' ',
-          destinationInputText: ' ',
+          originInputText: origin && origin.name ? origin.name : '',
+          destinationInputText: destination && destination.name ? destination.name : '',
         });
-      }
+      }*/
 
       // Set markers
       if (origin) {
