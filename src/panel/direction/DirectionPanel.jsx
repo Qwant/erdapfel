@@ -83,33 +83,17 @@ export default class DirectionPanel extends React.Component {
     document.body.classList.remove('directions-open');
   }
 
-  getAddresses = (origin, destination) => {
-    const inputTextPromises = [
-      origin
-        ? origin.type === 'latlon'
-          ? IdunnPoi.poiApiLoad(origin)
-          : Promise.resolve(origin)
-        : null,
-      destination
-        ? destination.type === 'latlon'
-          ? IdunnPoi.poiApiLoad(destination)
-          : Promise.resolve(destination)
-        : null,
-    ];
-    Promise.all(inputTextPromises).then(([ origin, destination ]) => {
-      this.setState({
-        originInputText: origin
-          ? origin.type === 'latlon'
-            ? origin.alternativeName || origin.getInputValue()
-            : origin.getInputValue()
-          : this.state.originInputText,
-        destinationInputText: destination
-          ? destination.type === 'latlon'
-            ? destination.alternativeName || destination.getInputValue()
-            : destination.getInputValue()
-          : this.state.destinationInputText,
-      });
-    });
+  setTextInput(which, poi) {
+    if (poi.type === 'latlon') {
+      this.getAddress(which, poi);
+    } else {
+      this.setState({ [which + 'InputText']: poi.name || '' });
+    }
+  }
+
+  async getAddress(which, poi) {
+    const address = await IdunnPoi.poiApiLoad(poi);
+    this.setState({ [which + 'InputText']: address.alternativeName || address.name });
   }
 
   restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
@@ -138,15 +122,14 @@ export default class DirectionPanel extends React.Component {
         window.execOnMapLoaded(() => {
           fire('set_origin', origin);
         });
+        this.setTextInput('origin', origin);
       }
       if (destination) {
         window.execOnMapLoaded(() => {
           fire('set_destination', destination);
         });
+        this.setTextInput('destination', destination);
       }
-
-      // Retrieve addresses
-      this.getAddresses(origin, destination);
 
       this.setState({
         origin,
@@ -274,11 +257,7 @@ export default class DirectionPanel extends React.Component {
     }, this.update);
 
     // Retrieve addresses
-    if (which === 'origin') {
-      this.getAddresses(persistentPointState.origin, null);
-    } else {
-      this.getAddresses(null, persistentPointState.destination);
-    }
+    this.setTextInput(which, persistentPointState[which]);
   }
 
   setDirectionPoint = poi => {
@@ -292,10 +271,10 @@ export default class DirectionPanel extends React.Component {
     // else, if destination field is empty, set it
     if (persistentPointState.origin === null) {
       persistentPointState.origin = poi;
-      this.getAddresses(persistentPointState.origin, null);
+      this.setTextInput('origin', poi);
     } else if (persistentPointState.destination === null) {
       persistentPointState.destination = poi;
-      this.getAddresses(null, persistentPointState.destination);
+      this.setTextInput('destination', poi);
     }
 
     // Update state
