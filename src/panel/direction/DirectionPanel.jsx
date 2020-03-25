@@ -259,8 +259,8 @@ export default class DirectionPanel extends React.Component {
     this.setState(previousState => ({
       origin: previousState.destination,
       destination: previousState.origin,
-      originInputText: this.state.destinationInputText,
-      destinationInputText: this.state.originInputText,
+      originInputText: previousState.destinationInputText,
+      destinationInputText: previousState.originInputText,
       isDirty: true,
     }), this.update);
   }
