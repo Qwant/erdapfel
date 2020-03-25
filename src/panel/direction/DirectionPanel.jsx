@@ -253,7 +253,9 @@ export default class DirectionPanel extends React.Component {
     }, this.update);
 
     // Retrieve addresses
-    this.setTextInput(which, persistentPointState[which]);
+    if (point && point.type === 'latlon') {
+      this.setTextInput(which, persistentPointState[which]);
+    }
   }
 
   setDirectionPoint = poi => {
