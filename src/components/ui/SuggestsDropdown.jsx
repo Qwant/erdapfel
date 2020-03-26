@@ -76,7 +76,7 @@ const SuggestsDropdown = ({
       {suggestItems.map((suggest, index) =>
         <li
           key={index}
-          onClick={() => onSelect(suggestItems[index])}
+          onMouseDown={() => onSelect(suggestItems[index])}
           onMouseEnter={() => { setHighlighted(index); }}
         >
           <SuggestItem item={suggest} isHighlighted={highlighted === index} />
