@@ -21,8 +21,14 @@ const SuggestsDropdown = ({
       }
 
       if (key === 'ArrowDown') {
-        const h = highlighted === null ? - 1 : highlighted;
+        let h = highlighted === null ? - 1 : highlighted;
+
         if (h < suggestItems.length - 1) {
+          // Jump labels
+          if (!suggestItems[h + 1].id) {
+            h++;
+          }
+
           setHighlighted(h + 1);
           onHighlight(suggestItems[h + 1]);
         } else {
@@ -32,8 +38,14 @@ const SuggestsDropdown = ({
       }
 
       if (key === 'ArrowUp') {
-        const h = highlighted === null ? suggestItems.length : highlighted;
+        let h = highlighted === null ? suggestItems.length : highlighted;
+
         if (h > 0) {
+          // Jump labels
+          if (!suggestItems[h - 1].id) {
+            h--;
+          }
+
           setHighlighted(h - 1);
           onHighlight(suggestItems[h - 1]);
         } else {
