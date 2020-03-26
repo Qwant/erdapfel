@@ -4,6 +4,8 @@ import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
 const mockMapBox = require('../../__data__/mapbox.json');
+const mockPoi1 = require('../../__data__/poi.json');
+const mockPoi2 = require('../../__data__/poi2.json');
 
 let browser;
 let page;
@@ -80,14 +82,13 @@ test('route flag', async () => {
   expect(directionEndInput).toEqual('');
 });
 
-
 test('destination', async () => {
-  expect.assertions(3);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?destination=latlon:47.4:7.5@Monoprix Nice`);
+  responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
 
+  expect.assertions(2);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?destination=${mockPoi1.id}`);
   await page.waitForSelector('#itinerary_input_origin');
-  const smallToolBar = await page.waitForSelector('.top_bar--small');
-  expect(smallToolBar).not.toBeNull();
+
   const directionStartInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_origin').value
   );
@@ -96,38 +97,39 @@ test('destination', async () => {
   const directionEndInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_destination').value
   );
-  expect(directionEndInput).toEqual('Monoprix Nice');
+  expect(directionEndInput).toEqual(mockPoi1.name);
 });
 
 test('origin & destination', async () => {
-  expect.assertions(3);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5@Franprix Cannes`);
-  await page.waitForSelector('#itinerary_input_origin');
-  const smallToolBar = await page.waitForSelector('.top_bar--small');
+  responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
+  responseHandler.addPreparedResponse(mockPoi2, new RegExp(`places/${mockPoi2.id}`));
 
-  expect(smallToolBar).not.toBeNull();
+  expect.assertions(2);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockPoi2.id}`);
+  await page.waitForSelector('#itinerary_input_origin');
+
   const directionStartInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_origin').value
   );
-  expect(directionStartInput).toEqual('Monoprix Nice');
+  expect(directionStartInput).toEqual(mockPoi1.name);
 
   const directionEndInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_destination').value
   );
-  expect(directionEndInput).toEqual('Franprix Cannes');
+  expect(directionEndInput).toEqual(mockPoi2.name);
 });
 
 test('origin & destination & mode', async () => {
-  expect.assertions(4);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5@Monoprix Nice&destination=latlon:47.4:7.5974115&mode=walking`);
+  responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
 
+  expect.assertions(3);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=latlon:47.4:7.5974115&mode=walking`);
   await page.waitForSelector('#itinerary_input_origin');
-  const smallToolBar = await page.waitForSelector('.top_bar--small');
-  expect(smallToolBar).not.toBeNull();
+
   const directionStartInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_origin').value
   );
-  expect(directionStartInput).toEqual('Monoprix Nice');
+  expect(directionStartInput).toEqual(mockPoi1.name);
 
   const directionEndInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_destination').value

@@ -1,0 +1,19 @@
+{
+  "id": "osm:node:1234567890",
+  "meta": {
+      "source": "osm"
+  },
+  "name": "Monoprix Nice",
+  "local_name": "Monoprix Nice",
+  "class_name": "shop",
+  "subclass_name": "shop",
+  "type" : "poi",
+  "geometry": {
+      "coordinates": [7.25, 43.7],
+      "type": "Point"
+  },
+  "address": {
+      "label": "1 avenue Toto, Nice"
+  },
+  "blocks": []
+}
