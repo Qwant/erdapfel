@@ -70,10 +70,7 @@ export default class Suggest {
 
         const elem = document.createElement('div');
         elem.setAttribute('id', 'react-suggests-' + tagSelector);
-        this.searchInputDomHandler.parentNode.insertBefore(
-          elem,
-          this.searchInputDomHandler.nextSibling
-        );
+        this.searchInputDomHandler.parentNode.append(elem);
 
         const typedValue = this.searchInputDomHandler.value;
 
@@ -89,7 +86,8 @@ export default class Suggest {
               this.onSelect(item);
             }}
           />
-          , elem);
+          , elem
+        );
       },
 
       onSelect: (e, term, item, items = []) => {
@@ -102,6 +100,10 @@ export default class Suggest {
         this.searchInputDomHandler.blur();
       },
     });
+
+    this.searchInputDomHandler.onblur = _ => {
+      document.getElementById('react-suggests-' + tagSelector).style.opacity = 0;
+    };
 
     this.searchInputDomHandler.onkeydown = event => {
       if (event.keyCode !== 13) { /* prevent enter key */

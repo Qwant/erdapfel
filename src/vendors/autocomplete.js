@@ -82,7 +82,7 @@ export default function autoComplete(options) {
     that = elems[i];
 
     // create suggestions container "sc"
-    that.sc = document.createElement('div');
+    that.sc = document.createElement('div')
 
     that.last_val = '';
     // that.sourcePending = null;
@@ -93,21 +93,14 @@ export default function autoComplete(options) {
     // that.offsetParent.appendChild(that.sc);
 
     // @HACK: cancel clicks on separator titles so they don't steal the focus from the input
-    live('autocomplete_suggestion__category_title', 'mousedown', function(e) {
-      e.preventDefault();
-    });
-
-
-    that.blurHandler = function() {
-      console.log('blur handler', 'react-suggests-' + options.selector);
-      document.getElementById('react-suggests-' + options.selector).style.opacity = 0;
-    };
-    addEvent(that, 'blur', that.blurHandler);
+    // live('autocomplete_suggestion__category_title', 'mousedown', function(e) {
+    //   e.preventDefault();
+    // });
 
     that.sourceDom = function(data, val) {
       that.items = data;
       o.updateData(data);
-      that.sc.innerHTML = o.renderItems(data, val);
+      o.renderItems(data, val);
       that.updateSC(true);
     };
 
@@ -125,13 +118,13 @@ export default function autoComplete(options) {
       const val = that.value;
       let innerHTML = null;
       if (data && val.length >= o.minChars) {
-        innerHTML = o.renderItems(data, val);
+        o.renderItems(data, val);
       }
       if (innerHTML) {
-        that.sc.innerHTML = innerHTML;
+        // that.sc.innerHTML = innerHTML;
         that.updateSC(0);
       } else {
-        that.sc.style.display = 'none';
+        // that.sc.style.display = 'none';
       }
     };
 
@@ -164,7 +157,7 @@ export default function autoComplete(options) {
         }
       } else {
         that.last_val = val;
-        that.sc.style.display = 'none';
+        // that.sc.style.display = 'none';
       }
     };
     addEvent(that, 'input', that.inputHandler);
@@ -208,7 +201,7 @@ export default function autoComplete(options) {
 
   this.preRender = function(items = []) {
     that.items = items;
-    that.sc.innerHTML = o.renderItems(items);
+    o.renderItems(items);
     that.updateSC(true);
   };
 
