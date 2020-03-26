@@ -89,3 +89,6 @@ category:
 events:
   enabled: false
   maxPlaces: 40
+
+covid19:
+  enabled: false
