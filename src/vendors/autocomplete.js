@@ -93,9 +93,9 @@ export default function autoComplete(options) {
     // that.offsetParent.appendChild(that.sc);
 
     // @HACK: cancel clicks on separator titles so they don't steal the focus from the input
-    // live('autocomplete_suggestion__category_title', 'mousedown', function(e) {
-    //   e.preventDefault();
-    // });
+    live('autocomplete_suggestion__category_title', 'mousedown', function(e) {
+      e.preventDefault();
+    });
 
     that.sourceDom = function(data, val) {
       that.items = data;
