@@ -9,11 +9,17 @@ const SuggestsDropdown = ({
   suggestItems,
   onSelect,
   onHighlight,
+  inputId,
 }) => {
   const [highlighted, setHighlighted] = useState(null);
 
   useEffect(() => {
     const keyDownHandler = ({ key }) => {
+      if (document.activeElement.getAttribute('id') !== inputId) {
+        document.removeEventListener('keydown', keyDownHandler);
+        return;
+      }
+
       if (key === 'ArrowDown') {
         const h = highlighted === null ? - 1 : highlighted;
         if (h < suggestItems.length - 1) {
@@ -73,6 +79,7 @@ SuggestsDropdown.propTypes = {
   onHighlight: func.isRequired,
   onSelect: func.isRequired,
   className: string,
+  inputId: string.isRequired,
 };
 
 export default SuggestsDropdown;

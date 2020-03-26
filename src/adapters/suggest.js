@@ -79,6 +79,7 @@ export default class Suggest {
 
         ReactDOM.render(
           <SuggestsDropdown
+            inputId={this.searchInputDomHandler.getAttribute('id')}
             suggestItems={suggestItems}
             onHighlight={item => {
               this.searchInputDomHandler.value = item ? item.name : typedValue;
