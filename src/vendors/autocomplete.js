@@ -176,7 +176,6 @@ export default function autoComplete(options) {
     for (let i = 0; i < elems.length; i++) {
       let that = elems[i];
       removeEvent(window, 'resize', that.updateSC);
-      removeEvent(that, 'blur', that.blurHandler);
       removeEvent(that, 'focus', that.focusHandler);
       removeEvent(that, 'keydown', that.keydownHandler);
       removeEvent(that, 'input', that.inputHandler);

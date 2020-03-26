@@ -74,6 +74,7 @@ export default class Suggest {
 
         const typedValue = this.searchInputDomHandler.value;
 
+
         ReactDOM.render(
           <SuggestsDropdown
             inputId={this.searchInputDomHandler.getAttribute('id')}
@@ -101,9 +102,13 @@ export default class Suggest {
       },
     });
 
-    this.searchInputDomHandler.onblur = _ => {
-      document.getElementById('react-suggests-' + tagSelector).style.opacity = 0;
-    };
+    this.searchInputDomHandler.addEventListener('blur', function handleSearchInputBlur() {
+      const existingElem = document.getElementById('react-suggests-' + tagSelector);
+      if (existingElem) {
+        ReactDOM.unmountComponentAtNode(existingElem);
+        existingElem.remove();
+      }
+    });
 
     this.searchInputDomHandler.onkeydown = event => {
       if (event.keyCode !== 13) { /* prevent enter key */
