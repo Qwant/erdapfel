@@ -1,12 +1,11 @@
 /* global _ */
-import React, { Fragment } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Autocomplete from '../vendors/autocomplete';
 import PoiStore from './poi/poi_store';
 import Category from './category';
 import nconf from '@qwant/nconf-getter';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import renderStaticReact from 'src/libs/renderStaticReact';
-import SuggestItem from 'src/components/SuggestItem';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -14,6 +13,7 @@ const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
 const SUGGEST_FOCUS_MIN_ZOOM = 11;
 
 import { suggestResults } from './suggest_sources';
+import SuggestsDropdown from '../components/ui/SuggestsDropdown';
 
 export default class Suggest {
   constructor({ tagSelector, onSelect,
@@ -62,11 +62,33 @@ export default class Suggest {
           suggestItems = suggestItems.concat(favorites.slice(0, nbDisplayedFavorites));
         }
 
-        return renderStaticReact(
-          <Fragment>
-            {suggestItems.map((item, index) => <SuggestItem item={item} key={index} />)}
-          </Fragment>
+        const existingElem = document.getElementById('react-suggests-' + tagSelector);
+        if (existingElem) {
+          ReactDOM.unmountComponentAtNode(existingElem);
+          existingElem.remove();
+        }
+
+        const elem = document.createElement('div');
+        elem.setAttribute('id', 'react-suggests-' + tagSelector);
+        this.searchInputDomHandler.parentNode.insertBefore(
+          elem,
+          this.searchInputDomHandler.nextSibling
         );
+
+        const typedValue = this.searchInputDomHandler.value;
+
+        ReactDOM.render(
+          <SuggestsDropdown
+            suggestItems={suggestItems}
+            onHighlight={item => {
+              this.searchInputDomHandler.value = item ? item.name : typedValue;
+            }}
+            onSelect={item => {
+              this.searchInputDomHandler.value = item.name || '';
+              this.onSelect(item);
+            }}
+          />
+          , elem);
       },
 
       onSelect: (e, term, item, items = []) => {

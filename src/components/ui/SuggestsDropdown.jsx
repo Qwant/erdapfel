@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { exact, string, arrayOf, func, bool } from 'prop-types';
+import { object, func, string, arrayOf } from 'prop-types';
 
 import SuggestItem from './SuggestItem';
 
 const SuggestsDropdown = ({
   className = '',
-  suggests,
+  suggestItems,
   onSelect,
   onHighlight,
 }) => {
@@ -16,17 +16,29 @@ const SuggestsDropdown = ({
     const keyDownHandler = ({ key }) => {
       if (key === 'ArrowDown') {
         const h = highlighted === null ? - 1 : highlighted;
-        return h < suggests.length - 1 ? setHighlighted(h + 1) : setHighlighted(null);
+        if (h < suggestItems.length - 1) {
+          setHighlighted(h + 1);
+          onHighlight(suggestItems[h + 1]);
+        } else {
+          setHighlighted(null);
+          onHighlight(null);
+        }
       }
 
       if (key === 'ArrowUp') {
-        const h = highlighted === null ? suggests.length : highlighted;
-        return h > 0 ? setHighlighted(h - 1) : setHighlighted(null);
+        const h = highlighted === null ? suggestItems.length : highlighted;
+        if (h > 0) {
+          setHighlighted(h - 1);
+          onHighlight(suggestItems[h - 1]);
+        } else {
+          setHighlighted(null);
+          onHighlight(null);
+        }
       }
 
       if (key === 'Enter') {
         if (highlighted !== null) {
-          onSelect(highlighted);
+          onSelect(suggestItems[highlighted]);
         }
       }
     };
@@ -38,41 +50,29 @@ const SuggestsDropdown = ({
     };
   });
 
-  useEffect(() => {
-    if (onHighlight) {
-      onHighlight(highlighted);
-    }
-  }, [highlighted]);
-
   return (
     <ul
       className={classnames('autocomplete_suggestions', className)}
       style={{ display: 'block', width: '100%' }}
     >
-      {suggests.map((suggest, index) =>
-        <SuggestItem
-          isHighlighted={highlighted === index}
+      {suggestItems.map((suggest, index) =>
+        <li
           key={index}
-          suggest={suggest}
-          onClick={() => onSelect(index)}
-          onMouseEnter={() => setHighlighted(index)}
-        />
+          onClick={() => onSelect(suggestItems[index])}
+          onMouseEnter={() => { setHighlighted(index); }}
+        >
+          <SuggestItem item={suggest} isHighlighted={highlighted === index} />
+        </li>
       )}
     </ul>
   );
 };
 
 SuggestsDropdown.propTypes = {
-  suggests: arrayOf(exact({
-    icon: string.isRequired,
-    iconColor: string,
-    name: string.isRequired,
-    location: string,
-    divider: bool,
-    categoryLabel: string,
-  })).isRequired,
+  suggestItems: arrayOf(object).isRequired,
   onHighlight: func.isRequired,
   onSelect: func.isRequired,
+  className: string,
 };
 
 export default SuggestsDropdown;

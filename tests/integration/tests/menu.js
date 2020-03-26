@@ -36,7 +36,7 @@ test('menu open favorite', async () => {
   page.waitForSelector('.menu__button');
 
   page.click('.menu__button');
-  await page.waitForSelector('.menu__panel__action');
+  await page.waitForSelector('.menu__panel');
   page.click('.menu__panel__action:nth-child(2)');
 
   const itinerary = await page.waitForSelector('.direction_panel');

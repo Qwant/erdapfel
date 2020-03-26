@@ -1,54 +1,89 @@
+/* global _ */
 import React from 'react';
-import classnames from 'classnames';
-import { exact, string, func, bool } from 'prop-types';
+import classNames from 'classnames';
+import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
+import IconManager from '../../adapters/icon_manager';
+import Category from 'src/adapters/category';
 
-const SuggestItem = ({
-  className = '',
-  suggest,
-  isHighlighted = false,
-  onClick,
-  ...rest
-}) =>
-  <>
-    {suggest.categoryLabel &&
-      <h3 className="autocomplete_suggestion__category_title">
-        {suggest.categoryLabel.toUpperCase()}
-      </h3>
-    }
-    <li
-      className={classnames('autocomplete_suggestion', { 'selected': isHighlighted }, className)}
-      style={{ borderBottom: suggest.divider ? '1px solid #e0e1e6' : '' }}
-      onClick={onClick}
-      {...rest}
+const ItemLabels = ({ firstLabel, secondLabel }) =>
+  <div className="autocomplete_suggestion__lines_container">
+    <div className="autocomplete_suggestion__first_line">{firstLabel}</div>
+    <div className="autocomplete_suggestion__second_line">{secondLabel}</div>
+  </div>;
+
+const GeolocationItem = ({ isHighlighted }) =>
+  <div
+    className={classNames(
+      'autocomplete_suggestion itinerary_suggest_your_position',
+      { 'selected': isHighlighted }
+    )}
+    data-id="geolocalisation"
+    data-val={_('Your position', 'direction')}
+  >
+    <div className="itinerary_suggest_your_position_icon icon-pin_geoloc" />
+    {_('Your position', 'direction')}
+  </div>;
+
+const CategoryItem = ({ category, isHighlighted }) => {
+  const { id, label, alternativeName, color, backgroundColor } = category;
+  const icon = category.getIcon();
+
+  return (
+    <div
+      className={classNames(
+        'autocomplete_suggestion autocomplete_suggestion--category',
+        { 'selected': isHighlighted }
+      )}
+      data-id={id}
+      data-val={label}
     >
       <div
-        className={`autocomplete-icon icon icon-${suggest.icon}`}
-        style={{ color: suggest.iconColor }}
+        style={{ color, backgroundColor }}
+        className={`autocomplete-icon autocomplete-icon-rounded icon icon-${icon.iconClass}`}
       />
-      <div className="autocomplete_suggestion__lines_container">
-        <div className="autocomplete_suggestion__first_line">
-          {suggest.name}
-        </div>
-        {suggest.location && <div className="autocomplete_suggestion__second_line">
-          {suggest.location}
-        </div>}
-      </div>
-    </li>
-  </>
-;
-
-SuggestItem.propTypes = {
-  suggest: exact({
-    icon: string.isRequired,
-    iconColor: string,
-    name: string.isRequired,
-    location: string,
-    divider: bool,
-    categoryLabel: string,
-  }).isRequired,
-  isHighlighted: bool,
-  onClick: func.isRequired,
+      <ItemLabels firstLabel={label} secondLabel={alternativeName} />
+    </div>
+  );
 };
 
-export default SuggestItem
-;
+const PoiItem = ({ poi, isHighlighted }) => {
+  const { id, name, className, subClassName, type, alternativeName } = poi;
+  const icon = IconManager.get({ className, subClassName, type });
+
+  return (
+    <div
+      className={classNames('autocomplete_suggestion', { 'selected': isHighlighted })}
+      data-id={id}
+      data-val={poi.getInputValue()}
+    >
+      <div
+        style={{ color: icon ? icon.color : '' }}
+        className={`autocomplete-icon icon icon-${icon.iconClass}`}
+      />
+      <ItemLabels firstLabel={name} secondLabel={alternativeName} />
+    </div>
+  );
+};
+
+const SeparatorLabel = ({ label }) =>
+  <h3 className="autocomplete_suggestion__category_title">
+    {label}
+  </h3>;
+
+const SuggestItem = ({ item, isHighlighted }) => {
+  if (item.simpleLabel) {
+    return <SeparatorLabel label={item.simpleLabel} isHighlighted={isHighlighted} />;
+  }
+
+  if (item instanceof NavigatorGeolocalisationPoi) {
+    return <GeolocationItem isHighlighted={isHighlighted}/>;
+  }
+
+  if (item instanceof Category) {
+    return <CategoryItem category={item} isHighlighted={isHighlighted} />;
+  }
+
+  return <PoiItem poi={item} isHighlighted={isHighlighted} />;
+};
+
+export default SuggestItem;
