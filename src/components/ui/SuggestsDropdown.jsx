@@ -17,7 +17,9 @@ const SuggestsDropdown = ({
   const liRef = useRef(null);
 
   useEffect(() => {
-    const keyDownHandler = ({ key }) => {
+    const keyDownHandler = e => {
+      const { key } = e;
+
       if (document.activeElement.getAttribute('id') !== inputId) {
         document.removeEventListener('keydown', keyDownHandler);
         return;
@@ -41,6 +43,8 @@ const SuggestsDropdown = ({
       }
 
       if (key === 'ArrowUp') {
+        e.preventDefault(); // prevent cursor returning at beggining
+
         let h = highlighted === null ? suggestItems.length : highlighted;
 
         if (h > 0) {
