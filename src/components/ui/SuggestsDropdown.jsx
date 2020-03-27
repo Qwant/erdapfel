@@ -29,7 +29,7 @@ const SuggestsDropdown = ({
         let h = highlighted === null ? - 1 : highlighted;
 
         if (h < suggestItems.length - 1) {
-          // Jump labels
+          // Jump label
           if (!suggestItems[h + 1].id) {
             h++;
           }
@@ -44,15 +44,13 @@ const SuggestsDropdown = ({
 
       if (key === 'ArrowUp') {
         e.preventDefault(); // prevent cursor returning at beggining
-
         let h = highlighted === null ? suggestItems.length : highlighted;
+        // Jump label
+        if (!suggestItems[h - 1].id) {
+          h--;
+        }
 
         if (h > 0) {
-          // Jump labels
-          if (!suggestItems[h - 1].id) {
-            h--;
-          }
-
           setHighlighted(h - 1);
           onHighlight(suggestItems[h - 1]);
         } else {
