@@ -62,6 +62,7 @@ export default class Suggest {
           suggestItems = suggestItems.concat(favorites.slice(0, nbDisplayedFavorites));
         }
 
+        // Create a react node, or reuse the existing node
         const existingElem = document.getElementById('react-suggests-' + tagSelector);
         let elem = null;
         if (!existingElem) {
@@ -101,15 +102,22 @@ export default class Suggest {
     });
 
     this.searchInputDomHandler.addEventListener('blur', function handleSearchInputBlur() {
+      unmountReactSuggestDropdown();
+    });
+
+    const unmountReactSuggestDropdown = () => {
       const existingElem = document.getElementById('react-suggests-' + tagSelector);
-      // existingElem.style.display = 'none';
       if (existingElem) {
         ReactDOM.unmountComponentAtNode(existingElem);
         existingElem.remove();
       }
-    });
+    };
 
     this.searchInputDomHandler.onkeydown = event => {
+      if (event.keyCode === 27) { // esc
+        unmountReactSuggestDropdown();
+      }
+
       if (event.keyCode !== 13) { /* prevent enter key */
         this.pending = true;
       }
