@@ -63,17 +63,15 @@ export default class Suggest {
         }
 
         const existingElem = document.getElementById('react-suggests-' + tagSelector);
-        if (existingElem) {
-          ReactDOM.unmountComponentAtNode(existingElem);
-          existingElem.remove();
+        let elem = null;
+        if (!existingElem) {
+          elem = document.createElement('div');
+          elem.setAttribute('id', 'react-suggests-' + tagSelector);
+          this.searchInputDomHandler.parentNode.append(elem);
         }
 
-        const elem = document.createElement('div');
-        elem.setAttribute('id', 'react-suggests-' + tagSelector);
-        this.searchInputDomHandler.parentNode.append(elem);
-
+        const reactElem = existingElem || elem;
         const typedValue = this.searchInputDomHandler.value;
-
 
         ReactDOM.render(
           <SuggestsDropdown
@@ -87,7 +85,7 @@ export default class Suggest {
               this.onSelect(item);
             }}
           />
-          , elem
+          , reactElem
         );
       },
 
@@ -104,6 +102,7 @@ export default class Suggest {
 
     this.searchInputDomHandler.addEventListener('blur', function handleSearchInputBlur() {
       const existingElem = document.getElementById('react-suggests-' + tagSelector);
+      // existingElem.style.display = 'none';
       if (existingElem) {
         ReactDOM.unmountComponentAtNode(existingElem);
         existingElem.remove();
