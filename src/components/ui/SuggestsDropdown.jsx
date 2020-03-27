@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { object, func, string, arrayOf } from 'prop-types';
 
@@ -12,6 +12,9 @@ const SuggestsDropdown = ({
   inputId,
 }) => {
   const [highlighted, setHighlighted] = useState(null);
+  const [style, setStyle] = useState({});
+  const dropDownRef = useRef(null);
+  const liRef = useRef(null);
 
   useEffect(() => {
     const keyDownHandler = ({ key }) => {
@@ -68,16 +71,35 @@ const SuggestsDropdown = ({
     };
   });
 
+  useEffect(() => {
+    const inputElement = document.getElementById(inputId);
+    const computedStyle = window.getComputedStyle(inputElement);
+    const boundingRect = inputElement.getBoundingClientRect();
+    const isMobile =
+      computedStyle.position === 'fixed' || // Top bar
+      computedStyle.position === 'absolute'; // itineray
+
+    setStyle({
+      display: 'block',
+      top: isMobile ? boundingRect.bottom : computedStyle.height,
+      left: computedStyle.marginLeft,
+      width: inputElement.offsetWidth,
+    });
+
+  }, []);
+
   return (
     <ul
       className={classnames('autocomplete_suggestions', className)}
-      style={{ display: 'block', width: '100%' }}
+      style={style}
+      ref={dropDownRef}
     >
       {suggestItems.map((suggest, index) =>
         <li
           key={index}
           onMouseDown={() => onSelect(suggestItems[index])}
           onMouseEnter={() => { setHighlighted(index); }}
+          ref={liRef}
         >
           <SuggestItem item={suggest} isHighlighted={highlighted === index} />
         </li>

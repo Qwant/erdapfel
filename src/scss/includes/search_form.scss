@@ -292,6 +292,7 @@ input[type="search"] {
   .autocomplete_suggestions {
     max-height: calc(100vh - 120px);
     margin-top: -1px;
+    position: fixed;
     width: 100% !important;
     left: 0 !important;
   }
