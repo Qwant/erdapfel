@@ -100,7 +100,10 @@ const SuggestsDropdown = ({
       {suggestItems.map((suggest, index) =>
         <li
           key={index}
-          onMouseDown={() => onSelect(suggestItems[index])}
+          onMouseDown={e => suggestItems[index].simpleLabel
+            ? e.preventDefault()
+            : onSelect(suggestItems[index])
+          }
           onMouseEnter={() => { setHighlighted(index); }}
           ref={liRef}
         >
