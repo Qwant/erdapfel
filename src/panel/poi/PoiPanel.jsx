@@ -310,6 +310,7 @@ export default class PoiPanel extends React.Component {
             closeAction={this.closeAction}
             openDirection={this.isDirectionActive && this.openDirection}
             showDetails={this.showDetails}
+            covid19Enabled={covid19Enabled}
           />;
         }
         return this.renderFull(poi);
