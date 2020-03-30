@@ -23,7 +23,8 @@ class PoiCard extends React.Component {
   render() {
     const { poi, closeAction, showDetails, openDirection, covid19Enabled } = this.props;
 
-    const hideOpeningHour = covid19Enabled && poi.blocks.find(b => b.type === 'covid19');
+    const hideOpeningHour = covid19Enabled
+      && poi.blocks && poi.blocks.find(b => b.type === 'covid19');
 
     return <div className="poi_card" ref={this.cardRef}>
       <div className="poi_card__description_container">
