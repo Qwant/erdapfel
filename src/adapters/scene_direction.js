@@ -56,12 +56,10 @@ export default class SceneDirection {
 
     listen('set_origin', poi => {
       this.setOrigin(poi);
-      fire('fit_map', poi, false);
     });
 
     listen('set_destination', poi => {
       this.setDestination(poi);
-      fire('fit_map', poi, false);
     });
   }
 
