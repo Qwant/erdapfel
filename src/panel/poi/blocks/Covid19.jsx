@@ -23,10 +23,15 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
       <span dangerouslySetInnerHTML={{ __html: note }}/>
     </div>;
 
-  const source =
-    <a className="covid19-contributeLink" href={contribute_url}>
-      {covidStrings.linkToCaResteOuvert}
-    </a>;
+  const source = contribute_url &&
+    <div className="covid19-source">
+      <div>Source&nbsp;:&nbsp;
+        <a href="https://caresteouvert.fr">Ça reste ouvert</a>
+      </div>
+      <a className="covid19-contributeLink" href={contribute_url}>
+        {covidStrings.linkToCaResteOuvert}
+      </a>
+    </div>;
 
   let content;
   let schedule;
@@ -56,12 +61,18 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
     </Fragment>;
     break;
   case 'closed':
-    content = <div className="covid19-status covid19-status--closed">
-      {covidStrings.statusClosed}
-    </div>;
+    content = <Fragment>
+      <div className="covid19-status covid19-status--closed">
+        {covidStrings.statusClosed}
+      </div>
+      {source}
+    </Fragment>;
     break;
   default:
-    content = <span>{covidStrings.statusNoData}</span>;
+    content = <Fragment>
+      <span>{covidStrings.statusNoData}</span>
+      {source}
+    </Fragment>;
   }
 
   return content;

@@ -50,10 +50,19 @@
     margin-bottom: 3px;
   }
 
-  &-contributeLink {
-    display: block;
+  &-source {
+    font-size: 12px;
     text-align: right;
     color: $secondary_text;
+    margin-top: 6px;
+
+    a {
+      color: $secondary_text;
+    }
+  }
+
+  &-contributeLink {
+    font-weight: bold;
 
     &:before {
       content: '» '
