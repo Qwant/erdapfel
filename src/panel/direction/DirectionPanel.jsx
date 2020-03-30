@@ -117,12 +117,18 @@ export default class DirectionPanel extends React.Component {
       if (origin) {
         window.execOnMapLoaded(() => {
           fire('set_origin', origin);
+          if (!destination) {
+            fire('fit_map', origin);
+          }
         });
         this.setTextInput('origin', origin);
       }
       if (destination) {
         window.execOnMapLoaded(() => {
           fire('set_destination', destination);
+          if (!origin) {
+            fire('fit_map', destination);
+          }
         });
         this.setTextInput('destination', destination);
       }
