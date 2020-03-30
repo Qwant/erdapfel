@@ -180,7 +180,7 @@ test('display details about the poi on a poi click', async () => {
     return {
       contact: document.querySelector('.poi_panel__info__contact').innerText,
       contactUrl: document.querySelector('.poi_panel__info__contact').href,
-      hours: document.querySelector('.poi_panel__info__hours__status').innerText,
+      hours: document.querySelector('.poi_panel .timetable-status').innerText,
       phone: document.querySelector('.poi_phone_container_revealed').innerText,
       website: document.querySelector('.poi_panel__info__link').innerText,
     };
@@ -299,7 +299,7 @@ describe('Poi hour i18n', () => {
       await langPage.goto(
         `${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`
       );
-      await langPage.waitForSelector('.poi_panel__info__hours__table');
+      await langPage.waitForSelector('.timetable');
       const hourData = await getHours(langPage);
       if (language.locale === 'en_US') {
         // Tuesday
@@ -345,7 +345,7 @@ async function getTitle(page) {
 
 async function getHours(page) {
   return await page.evaluate(() => {
-    return Array.from(document.querySelectorAll('.poi_panel__info__hours__table tr')).map(line => {
+    return Array.from(document.querySelectorAll('.timetable tr')).map(line => {
       return Array.from(line.querySelectorAll('td')).map(cell => {
         return cell.innerText.trim();
       });
