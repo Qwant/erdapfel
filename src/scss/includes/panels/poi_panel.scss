@@ -137,80 +137,6 @@ $HEADER_SIZE: 40px;
   color: $primary_text;
 }
 
-.poi_panel__info__hours {
-  max-height: 0;
-  transition: max-height 0.3s;
-  overflow: hidden;
-}
-
-.poi_panel__info__hours__table {
-  width: calc(100% - 20px);
-  margin-top: 8px;
-  font-size: 15px;
-  color: $primary_text;
-}
-
-.poi_panel__info__hours .hours {
-  text-align: right;
-  padding: 4px 10px;
-}
-
-.poi_panel__info__hours_status {
-  cursor: pointer;
-}
-
-.poi_panel__info__hours--open {
-  max-height: 400px;
-}
-
-.poi_panel__info__hours__status {
-  cursor: pointer;
-  position: relative;
-}
-
-.poi_panel__info__section--hours {
-  .poi_panel__info__hours__status__text {
-    display: inline-block;
-    color: $primary_text;
-  }
-}
-
-.poi_panel__info__hours__status__toggle {
-  position: absolute;
-  right: 0;
-  font-size: 24px;
-  color: $secondary_text;
-  transition: transform .2s;
-}
-
-.poi_panel__info__hours__status__toggle--reversed {
-  transform: rotate(180deg);
-}
-
-.poi_panel__info__hours .day {
-  padding: 4px 5px 4px 0;
-}
-
-.poi_panel__info__hours .day:first-letter {
-  text-transform: uppercase;
-}
-
-.poi_panel__info__hours--current {
-  font-family: Asap;
-  font-weight: 700;
-}
-
-.poi_panel__hour__extend {
-  position: absolute;
-  right: 20px;
-}
-
-.hour_panel__no_data  {
-  padding-left: 64px;
-  color: $secondary_text;
-  font-size: 14px;
-}
-
 .poi_panel__info__hour__circle {
   width: 6px;
   height: 6px;
@@ -361,8 +287,11 @@ $HEADER_SIZE: 40px;
   height: 18px;
 }
 
-.poi_panel__block__symbol.icon-icon_phone, .poi_panel__block__symbol.icon-icon_clock {
+.poi_panel__block__symbol.icon-icon_phone {
   top: 20px;
+}
+.poi_panel__block__symbol.icon-icon_clock {
+  top: 24px;
 }
 
 .poi_panel__block__content {
@@ -527,10 +456,6 @@ $HEADER_SIZE: 40px;
     padding: 15px;
   }
 
-  .poi_panel__info__hours__status {
-    width: calc(100% - 16px);
-  }
-
   .poi_panel__sub_block__title {
     width: calc(100% - 16px);
   }
@@ -609,3 +534,6 @@ $HEADER_SIZE: 40px;
     margin-bottom: 9px;
   }
 }
+
+@import "./covid";
+@import "./timetable";

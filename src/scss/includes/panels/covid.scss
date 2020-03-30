@@ -1,0 +1,79 @@
+.covid19 {
+  font-size: 15px;
+  color: $primary_text;
+
+  .poi_panel__sub_block__title {
+    cursor: default;
+    margin-bottom: 6px;
+  }
+
+  &-timeTableContainer {
+    margin-top: 3px;
+    position: relative;
+  }
+
+  .icon-icon_clock,
+  .icon-icon_info {
+    font-size: 16px;
+    width: 20px;
+    height: 18px;
+    color: $primary_clear;
+  }
+
+  .icon-icon_clock {
+    position: absolute;
+    top: 5px;
+  }
+
+  .icon-icon_info {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  &-status {
+    &--open {
+      color: #60ad51;
+    }
+    
+    &--maybeOpen {
+      color: orange;
+    }
+    
+    &--closed {
+      color: #8c0212; 
+    }
+  }
+
+  .timetable {
+    margin-left: 24px;
+    margin-bottom: 3px;
+  }
+
+  &-source {
+    font-size: 12px;
+    text-align: right;
+    color: $secondary_text;
+    margin-top: 6px;
+
+    a {
+      color: $secondary_text;
+    }
+  }
+
+  &-contributeLink {
+    font-weight: bold;
+
+    &:before {
+      content: '» '
+    }
+  }
+
+  &-changeWarning {
+    margin-bottom: 6px;
+  }
+
+  &-note {
+    margin: 12px 0 6px;
+  }
+}
