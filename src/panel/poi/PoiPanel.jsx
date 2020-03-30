@@ -22,6 +22,8 @@ import Store from '../../adapters/store';
 import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
   from 'src/modals/MasqFavoriteModal';
 
+const covid19Enabled = (nconf.get().covid19 || {}).enabled;
+
 const store = new Store();
 
 async function isPoiFavorite(poi) {
@@ -281,7 +283,7 @@ export default class PoiPanel extends React.Component {
           isPoiInFavorite={this.state.isPoiInFavorite}
           toggleStorePoi={this.toggleStorePoi}
         />
-        <PoiBlockContainer poi={poi} />
+        <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
         {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
           <h3 className="service_panel__categories_title">
             <span className="icon-icon_compass" />{_('Search around this place', 'poi')}

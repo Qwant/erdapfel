@@ -1,0 +1,32 @@
+.covid19 {
+  font-size: 15px;
+  color: $primary_text;
+
+  .poi_panel__sub_block__title {
+    cursor: default;
+  }
+
+  &-status {
+    &--open {
+      color: #60ad51;
+    }
+    
+    &--maybeOpen {
+      color: orange;
+    }
+    
+    &--closed {
+      color: #8c0212; 
+    }
+  }
+
+  &-contributeLink {
+    display: block;
+    text-align: right;
+    color: $secondary_text;
+
+    &:before {
+      content: '» '
+    }
+  }
+}

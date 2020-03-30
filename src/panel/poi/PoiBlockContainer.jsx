@@ -5,10 +5,12 @@ import ContactBlock from './blocks/Contact';
 import ImagesBlock from './blocks/Images';
 import WebsiteBlock from './blocks/Website';
 import InformationBlock from './blocks/Information';
+import CovidBlock from './blocks/Covid19';
 
 export default class PoiBlockContainer extends React.Component {
   static propTypes = {
     poi: PropTypes.object,
+    covid19Enabled: PropTypes.bool,
   }
 
   render() {
@@ -21,8 +23,11 @@ export default class PoiBlockContainer extends React.Component {
     const websiteBlock = blocks.find(b => b.type === 'website');
     const contactBlock = blocks.find(b => b.type === 'contact');
     const imagesBlock = blocks.find(b => b.type === 'images');
+    const covidBlock = blocks.find(b => b.type === 'covid19');
+    const displayCovidInfo = this.props.covid19Enabled && blocks.find(b => b.type === 'covid19');
 
     return <div className="poi_panel__info">
+      {displayCovidInfo && <CovidBlock block={covidBlock} normalHourBlock={hourBlock} />}
       {hourBlock && <HourBlock block={hourBlock} />}
       {informationBlock && <InformationBlock block={informationBlock} />}
       {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
