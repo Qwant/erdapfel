@@ -1,0 +1,63 @@
+
+.timetable {
+  color: $primary_text;
+  font-size: 15px;
+
+  &-table {
+    transition: max-height 0.3s;
+    overflow: hidden;
+    max-height: 400px;
+  }
+
+  table {
+    width: calc(100% - 20px);
+    margin-top: 8px;
+    font-size: 15px;
+    color: $primary_text;
+  }
+
+  .day {
+    padding: 4px 5px 4px 0;
+  
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .hours {
+    text-align: right;
+    padding: 4px 10px;
+  }
+  
+  .currentDay {
+    font-family: Asap;
+    font-weight: 700;
+  }
+
+  &-status {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  &-status-text {
+    flex-grow: 1;
+  }
+
+  .icon-icon_chevron-down {
+    font-size: 24px;
+    color: $secondary_text;
+    transition: transform .2s;
+    transform: rotate(180deg);
+  }
+
+  &--collapsed {
+    .timetable-table {
+      max-height: 0;
+    }
+
+    .icon-icon_chevron-down {
+      transform: rotate(0deg);
+    }
+  }
+}
