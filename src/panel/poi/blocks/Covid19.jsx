@@ -70,7 +70,7 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
     break;
   default:
     content = <Fragment>
-      <span>{covidStrings.statusNoData}</span>
+      <div className="covid19-status">{covidStrings.statusNoData}</div>
       {source}
     </Fragment>;
   }
