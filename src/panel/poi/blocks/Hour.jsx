@@ -26,7 +26,13 @@ function showHours(displayHours) {
   </tbody>;
 }
 
-function renderTitle(opening) {
+function renderTitle(opening, covid19) {
+  if (covid19) {
+    return <span className="poi_panel__info__hours__status__text">
+      Voir les horaires habituels
+    </span>;
+  }
+
   let text = `${_(opening.status.msg)} `;
   if (opening.nextTransition) {
     text += ' - ' +
@@ -41,6 +47,7 @@ function renderTitle(opening) {
 export default class HourBlock extends React.Component {
   static propTypes = {
     block: PropTypes.object,
+    covid19enabled: PropTypes.bool,
   }
 
   constructor(props) {
@@ -77,7 +84,7 @@ export default class HourBlock extends React.Component {
     }
     return <div>
       <div className="poi_panel__info__hours__status" onClick={this.expandCollapse}>
-        { renderTitle(opening) }
+        { renderTitle(opening, this.props.covid19enabled) }
         <i className={classnames(
           'icon-icon_chevron-down',
           'poi_panel__info__hours__status__toggle',
