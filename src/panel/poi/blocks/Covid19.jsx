@@ -20,7 +20,7 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note &&
     <div className="covid19-note">
       <i className="icon-icon_info" />
-      <span dangerouslySetInnerHTML={{ __html: note }}/>
+      {note}
     </div>;
 
   const source = contribute_url &&
