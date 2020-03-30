@@ -30,7 +30,7 @@ const SuggestsDropdown = ({
 
         if (h < suggestItems.length - 1) {
           // Jump label
-          if (!suggestItems[h + 1].id) {
+          if (suggestItems[h + 1] && suggestItems[h + 1].simpleLabel) {
             h++;
           }
 
@@ -46,7 +46,7 @@ const SuggestsDropdown = ({
         e.preventDefault(); // prevent cursor returning at beggining
         let h = highlighted === null ? suggestItems.length : highlighted;
         // Jump label
-        if (!suggestItems[h - 1].id) {
+        if (suggestItems[h - 1] && suggestItems[h - 1].simpleLabel) {
           h--;
         }
 
