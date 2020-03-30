@@ -40,7 +40,7 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
         <i className="icon-icon_clock" />
         <TimeTable title={<OpeningHour poi={poi} />} schedule={schedule} />
       </div>}
-      {<div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>}
+      {!schedule && <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>}
       {additionalInfo}
       {source}
     </Fragment>;
