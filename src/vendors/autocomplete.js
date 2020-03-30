@@ -5,22 +5,7 @@
     License: http://www.opensource.org/licenses/mit-license.php
 */
 
-// Add Element.matches to IE11
-if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector;
-}
-
 export default function autoComplete(options) {
-  if (!document.querySelector) {
-    return;
-  }
-
-  // helpers
-  function hasClass(el, className) {
-    return el.classList ?
-      el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
-  }
-
   function addEvent(el, type, handler) {
     if (el.attachEvent) {
       el.attachEvent('on' + type, handler);
@@ -38,26 +23,11 @@ export default function autoComplete(options) {
     }
   }
 
-  function live(elClass, event, cb, context) {
-    addEvent(context || document, event, function(e) {
-      let found, el = e.target || e.srcElement;
-      while (el && !(found = hasClass(el, elClass))) {
-        el = el.parentElement;
-      }
-      if (found) {
-        cb.call(el, e);
-      }
-    });
-  }
-
   const o = {
     selector: 0,
     source: 0,
     minChars: 3,
     delay: 150,
-    offsetLeft: 0,
-    offsetTop: 1,
-    menuClass: '',
     // Takes as arguments: items, search
     renderItems: function() {},
     // Takes as arguments: e, term, item, items
@@ -80,28 +50,11 @@ export default function autoComplete(options) {
   let that;
   for (let i = 0; i < elems.length; i++) {
     that = elems[i];
-
-    // create suggestions container "sc"
-    that.sc = document.createElement('div')
-
     that.last_val = '';
-    // that.sourcePending = null;
-
-    that.updateSC = function(resize, next) {
-    };
-    addEvent(window, 'resize', that.updateSC);
-    // that.offsetParent.appendChild(that.sc);
-
-    // @HACK: cancel clicks on separator titles so they don't steal the focus from the input
-    live('autocomplete_suggestion__category_title', 'mousedown', function(e) {
-      e.preventDefault();
-    });
 
     that.sourceDom = function(data, val) {
-      that.items = data;
       o.updateData(data);
       o.renderItems(data, val);
-      that.updateSC(true);
     };
 
     const cancelObsolete = function() {
@@ -114,17 +67,9 @@ export default function autoComplete(options) {
 
     const suggest = function(data) {
       cancelObsolete();
-      that.items = data;
       const val = that.value;
-      let innerHTML = null;
       if (data && val.length >= o.minChars) {
         o.renderItems(data, val);
-      }
-      if (innerHTML) {
-        // that.sc.innerHTML = innerHTML;
-        that.updateSC(0);
-      } else {
-        // that.sc.style.display = 'none';
       }
     };
 
@@ -157,7 +102,6 @@ export default function autoComplete(options) {
         }
       } else {
         that.last_val = val;
-        // that.sc.style.display = 'none';
       }
     };
     addEvent(that, 'input', that.inputHandler);
@@ -175,16 +119,8 @@ export default function autoComplete(options) {
   this.destroy = function() {
     for (let i = 0; i < elems.length; i++) {
       let that = elems[i];
-      removeEvent(window, 'resize', that.updateSC);
       removeEvent(that, 'focus', that.focusHandler);
-      removeEvent(that, 'keydown', that.keydownHandler);
       removeEvent(that, 'input', that.inputHandler);
-      if (that.autocompleteAttr) {
-        that.setAttribute('autocomplete', that.autocompleteAttr);
-      } else {
-        that.removeAttribute('autocomplete');
-      }
-      // that.sc.parentNode.removeChild(that.sc);
       that = null;
     }
   };
@@ -199,9 +135,7 @@ export default function autoComplete(options) {
   };
 
   this.preRender = function(items = []) {
-    that.items = items;
     o.renderItems(items);
-    that.updateSC(true);
   };
 
   this.getValue = function() {

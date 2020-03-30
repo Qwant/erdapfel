@@ -17,7 +17,7 @@ import SuggestsDropdown from '../components/ui/SuggestsDropdown';
 
 export default class Suggest {
   constructor({ tagSelector, onSelect,
-    withGeoloc = false, withCategories = false, menuClass = '',
+    withGeoloc = false, withCategories = false,
   }) {
     this.searchInputDomHandler = document.querySelector(tagSelector);
     this.poi = null;
@@ -29,8 +29,6 @@ export default class Suggest {
       selector: tagSelector,
       minChars: 0,
       delay: 100,
-      menuClass,
-      width: '650px',
       updateData: items => {
         this.suggestList = items;
         this.pending = false;
