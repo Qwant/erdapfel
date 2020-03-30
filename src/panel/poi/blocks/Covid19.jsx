@@ -33,7 +33,7 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
   switch (status) {
   case 'open':
   case 'open_as_usual':
-    schedule = new OsmSchedule(opening_hours, scheduleMessages);
+    schedule = opening_hours && new OsmSchedule(opening_hours, scheduleMessages);
     content = <Fragment>
       <div className="covid19-status covid19-status--open">{covidStrings.statusOpen}</div>
       {schedule && <div className="covid19-timeTableContainer">
