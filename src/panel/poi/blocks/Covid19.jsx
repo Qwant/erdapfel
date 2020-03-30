@@ -1,56 +1,76 @@
 import React, { Fragment } from 'react';
+import TimeTable from './TimeTable';
+import covidStrings from './covid_strings';
+import OsmSchedule from 'src/adapters/osm_schedule';
+import OpeningHour from 'src/components/OpeningHour';
 
-const strings = {
-  blockTitle: 'Informations spéciales confinement',
-  linkToCaResteOuvert: 'Signaler un changement',
-  statusOpen: 'Ouvert',
-  statusMaybeOpen: 'Susceptible d\'être ouvert',
-  statusClosed: 'Fermé',
-  statusNoData: 'Pas d\'information renseignée',
-  hoursMayChange: 'Horaires susceptibles d\'être adaptés',
+// @TODO: refacto OsmSchedule so it doesn't need presentational data
+const scheduleMessages = {
+  open: {
+    msg: 'Ouvert',
+    color: '#60ad51',
+  },
+  closed: {
+    msg: 'Fermé',
+    color: '#8c0212',
+  },
 };
 
-const getContent = ({ status, contribute_url, note }) => {
+const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note &&
-    <div className="covid19-note" dangerouslySetInnerHTML={{ __html: note }}/>;
+    <div className="covid19-note">
+      <i className="icon-icon_info" />
+      <span dangerouslySetInnerHTML={{ __html: note }}/>
+    </div>;
 
-  const contributeLink =
+  const source =
     <a className="covid19-contributeLink" href={contribute_url}>
-      {strings.linkToCaResteOuvert}
+      {covidStrings.linkToCaResteOuvert}
     </a>;
 
-  let content = null;
+  let content;
+  let schedule;
   switch (status) {
   case 'open':
   case 'open_as_usual':
+    schedule = new OsmSchedule(opening_hours, scheduleMessages);
     content = <Fragment>
-      <span className="covid19-status covid19-status--open">{strings.statusOpen}</span>
+      <div className="covid19-status covid19-status--open">{covidStrings.statusOpen}</div>
+      {schedule && <div className="covid19-timeTableContainer">
+        <i className="icon-icon_clock" />
+        <TimeTable title={<OpeningHour poi={poi} />} schedule={schedule} />
+      </div>}
+      {<div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>}
       {additionalInfo}
-      {contributeLink}
+      {source}
     </Fragment>;
     break;
   case 'maybe_open':
     content = <Fragment>
-      <span className="covid19-status covid19-status--maybeOpen">{strings.statusMaybeOpen}</span>
-      <span className="covid19-changeWarning">{strings.hoursMayChange}</span>
+      <div className="covid19-status covid19-status--maybeOpen">
+        {covidStrings.statusMaybeOpen}
+      </div>
+      <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>
       {additionalInfo}
-      {contributeLink}
+      {source}
     </Fragment>;
     break;
   case 'closed':
-    content = <span className="covid19-status covid19-status--closed">{strings.statusClosed}</span>;
+    content = <div className="covid19-status covid19-status--closed">
+      {covidStrings.statusClosed}
+    </div>;
     break;
   default:
-    content = <span>{strings.statusNoData}</span>;
+    content = <span>{covidStrings.statusNoData}</span>;
   }
 
   return content;
 };
 
-const Covid19 = ({ block }) => {
+const Covid19 = ({ poi, block }) => {
   return <div className="poi_panel__info__section covid19">
-    <h4 className="poi_panel__sub_block__title">{strings.blockTitle}</h4>
-    {getContent(block)}
+    <h4 className="poi_panel__sub_block__title">{covidStrings.blockTitle}</h4>
+    {getContent(poi, block)}
   </div>;
 };
 

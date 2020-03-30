@@ -3,12 +3,11 @@ import React from 'react';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import TimeTable from './TimeTable';
 import PropTypes from 'prop-types';
+import covidStrings from './covid_strings';
 
 function renderTitle(opening, covid19) {
   if (covid19) {
-    return <span className="poi_panel__info__hours__status__text">
-      Voir les horaires habituels
-    </span>;
+    return <span>{covidStrings.seeNormalHours}</span>;
   }
 
   let text = `${_(opening.status.msg)} `;
@@ -17,7 +16,7 @@ function renderTitle(opening, covid19) {
       _('until {nextTransitionTime}', 'hour panel',
         { nextTransitionTime: opening.nextTransition }) + ' ';
   }
-  return <span className="poi_panel__info__hours__status__text">{ text }
+  return <span>{ text }
     <div className="poi_panel__info__hour__circle" style={{ background: opening.status.color }} />
   </span>;
 }
