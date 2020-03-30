@@ -83,6 +83,7 @@ export default class Suggest {
             }}
             onSelect={item => {
               this.searchInputDomHandler.value = item.name || '';
+              this.searchInputDomHandler.blur();
               this.onSelect(item);
             }}
           />
