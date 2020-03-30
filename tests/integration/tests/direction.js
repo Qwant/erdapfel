@@ -122,9 +122,10 @@ test('origin & destination', async () => {
 
 test('origin & latlon destination & mode', async () => {
   responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
+  responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp(`places/${mockLatlonPoi.id}`));
 
   expect.assertions(3);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=latlon:43.70324:7.25997&mode=walking`);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockLatlonPoi.id}&mode=walking`);
   await page.waitForSelector('#itinerary_input_origin');
 
   const directionStartInput = await page.evaluate(() =>
