@@ -92,7 +92,7 @@ test('destination', async () => {
   const directionStartInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_origin').value
   );
-  expect(directionStartInput).toEqual(' ');
+  expect(directionStartInput).toEqual('');
 
   const directionEndInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_destination').value
