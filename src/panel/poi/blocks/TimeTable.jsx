@@ -12,12 +12,12 @@ function showHour(day) {
   return _('Closed', 'hour block');
 }
 
-function showHours(displayHours) {
+const Days = ({ days }) => {
   const dayNumber = new Date().getDay();
 
   return <table>
     <tbody>
-      {displayHours.map((day, i) =>
+      {days.map((day, i) =>
         <tr key={i} className={
           classnames({ 'currentDay': (i + 1) % 7 === dayNumber })
         }>
@@ -26,21 +26,41 @@ function showHours(displayHours) {
         </tr>)}
     </tbody>
   </table>;
-}
+};
 
 const TimeTable = ({ title, schedule }) => {
   const [ isCollapsed, setCollapsed ] = useState(true);
 
-  return <div className={classnames('timetable', { 'timetable--collapsed': isCollapsed })}>
-    <div className="timetable-status" onClick={() => { setCollapsed(!isCollapsed); }}>
-      <div className="timetable-status-text">{title}</div>
-      <i className="icon-icon_chevron-down" />
+  let header;
+  let content;
+  if (title) {
+    header = title;
+    content = schedule.isTwentyFourSeven
+      ? <OpeningHour schedule={schedule} />
+      : <Days days={schedule.displayHours} />;
+  } else {
+    header = <OpeningHour schedule={schedule} />;
+    if (!schedule.isTwentyFourSeven) {
+      content = <Days days={schedule.displayHours} />;
+    }
+  }
+
+  const collapsable = !!content;
+  return <div className={classnames('timetable', {
+    'timetable--collapsable': collapsable,
+    'timetable--collapsed': isCollapsed,
+  })}>
+    <div className="timetable-status" onClick={() => {
+      if (collapsable) {
+        setCollapsed(!isCollapsed);
+      }
+    }}>
+      <div className="timetable-status-text">{header}</div>
+      {collapsable && <i className="icon-icon_chevron-down" />}
     </div>
-    <div className={classnames('timetable-table')}>
-      {schedule.isTwentyFourSeven
-        ? <OpeningHour schedule={schedule} />
-        : showHours(schedule.displayHours)}
-    </div>
+    {collapsable && <div className={classnames('timetable-table')}>
+      {content}
+    </div>}
   </div>;
 };
 

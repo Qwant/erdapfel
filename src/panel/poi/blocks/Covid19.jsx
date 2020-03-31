@@ -3,7 +3,6 @@ import nconf from '@qwant/nconf-getter';
 import TimeTable from './TimeTable';
 import covidStrings from './covid_strings';
 import OsmSchedule from 'src/adapters/osm_schedule';
-import OpeningHour from 'src/components/OpeningHour';
 
 const covidConf = nconf.get().covid19;
 
@@ -34,7 +33,7 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
       <div className="covid19-status covid19-status--open">{covidStrings.statusOpen}</div>
       {schedule && <div className="covid19-timeTableContainer">
         <i className="icon-icon_clock" />
-        <TimeTable title={<OpeningHour schedule={schedule} />} schedule={schedule} />
+        <TimeTable schedule={schedule} />
       </div>}
       {!schedule && <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>}
       {additionalInfo}

@@ -35,13 +35,19 @@
   }
 
   &-status {
-    cursor: pointer;
     display: flex;
     align-items: center;
   }
 
   &-status-text {
     flex-grow: 1;
+    line-height: 24px;
+  }
+
+  &--collapsable {
+    .timetable-status {
+      cursor: pointer;
+    }
   }
 
   .icon-icon_chevron-down {
