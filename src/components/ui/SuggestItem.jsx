@@ -72,7 +72,7 @@ const SeparatorLabel = ({ label }) =>
 
 const SuggestItem = ({ item, isHighlighted }) => {
   if (item.simpleLabel) {
-    return <SeparatorLabel label={item.simpleLabel} isHighlighted={isHighlighted} />;
+    return <SeparatorLabel label={item.simpleLabel} />;
   }
 
   if (item instanceof NavigatorGeolocalisationPoi) {
