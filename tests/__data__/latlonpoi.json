@@ -1,0 +1,74 @@
+{
+  "type": "latlon",
+  "id": "latlon:43.70324:7.25997",
+  "name": "43.70324 : 7.25997",
+  "local_name": "43.70324 : 7.25997",
+  "class_name": "latlon",
+  "subclass_name": "latlon",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      7.25997,
+      43.70324
+    ],
+    "center": [
+      7.25997,
+      43.70324
+    ]
+  },
+  "address": {
+    "id": "addr:7.259928;43.703297:16",
+    "name": "16 Avenue Thiers",
+    "housenumber": "16",
+    "postcode": "06000",
+    "label": "16 Avenue Thiers (Nice)",
+    "admin": null,
+    "street": {
+      "id": "street:",
+      "name": "Avenue Thiers",
+      "label": "Avenue Thiers (Nice)",
+      "postcodes": [
+        "06000"
+      ]
+    },
+    "admins": [
+      {
+        "id": "admin:osm:relation:170100",
+        "label": "Nice (06000-06300), Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France",
+        "name": "Nice",
+        "class_name": "city",
+        "postcodes": [
+          "06000",
+          "06100",
+          "06200",
+          "06300"
+        ]
+      },
+      {
+        "id": "admin:osm:relation:7385",
+        "label": "Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France",
+        "name": "Alpes-Maritimes",
+        "class_name": "state_district",
+        "postcodes": []
+      },
+      {
+        "id": "admin:osm:relation:8654",
+        "label": "Provence-Alpes-Côte d'Azur, France",
+        "name": "Provence-Alpes-Côte d'Azur",
+        "class_name": "state",
+        "postcodes": []
+      },
+      {
+        "id": "admin:osm:relation:2202162",
+        "label": "France",
+        "name": "France",
+        "class_name": "country",
+        "postcodes": []
+      }
+    ]
+  },
+  "blocks": [],
+  "meta": {
+    "source": null
+  }
+}

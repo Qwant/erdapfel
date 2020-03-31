@@ -15,11 +15,8 @@ export default class DirectionForm extends React.Component {
     onSelectVehicle: PropTypes.func.isRequired,
     activeVehicle: PropTypes.string.isRequired,
     isInitializing: PropTypes.bool,
-  }
-
-  state = {
-    originInputText: '',
-    destinationInputText: '',
+    originInputText: PropTypes.string,
+    destinationInputText: PropTypes.string,
   }
 
   constructor(props) {
@@ -28,20 +25,11 @@ export default class DirectionForm extends React.Component {
     this.destinationRef = React.createRef();
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const { origin, destination } = props;
-    return {
-      originInputText: origin ? origin.getInputValue() : state.originInputText,
-      destinationInputText: destination ? destination.getInputValue() : state.destinationInputText,
-    };
-  }
-
   componentDidUpdate(prevProps) {
     if (isMobileDevice() || this.props.isInitializing) {
       return;
     }
-    const { originInputText, destinationInputText } = this.state;
-    const { origin, destination } = this.props;
+    const { origin, destination, originInputText, destinationInputText } = this.props;
     if (!originInputText && (prevProps.destination !== destination || prevProps.isInitializing)) {
       this.originRef.current.focus();
     } else if (!destinationInputText && prevProps.origin !== origin) {
@@ -49,26 +37,22 @@ export default class DirectionForm extends React.Component {
     }
   }
 
-  onChangePoint = (which, textInput, point) => {
-    if (which === 'origin') {
-      this.setState({ originInputText: textInput });
-    } else {
-      this.setState({ destinationInputText: textInput });
-    }
-    this.props.onChangeDirectionPoint(which, point);
+  onChangePoint = (which, value, point) => {
+    this.props.onChangeDirectionPoint(which, value, point);
   }
 
   onReverse = () => {
-    this.setState(prevState => ({
-      originInputText: prevState.destinationInputText,
-      destinationInputText: prevState.originInputText,
-    }));
     this.props.onReversePoints();
   }
 
   render() {
-    const { originInputText, destinationInputText } = this.state;
-    const { vehicles, activeVehicle, onSelectVehicle } = this.props;
+    const {
+      vehicles,
+      activeVehicle,
+      onSelectVehicle,
+      originInputText,
+      destinationInputText,
+    } = this.props;
 
     return <div className="itinerary_form">
       <div className="itinerary_fields">

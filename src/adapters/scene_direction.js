@@ -56,12 +56,10 @@ export default class SceneDirection {
 
     listen('set_origin', poi => {
       this.setOrigin(poi);
-      fire('fit_map', poi, false);
     });
 
     listen('set_destination', poi => {
       this.setDestination(poi);
-      fire('fit_map', poi, false);
     });
   }
 
@@ -71,7 +69,9 @@ export default class SceneDirection {
       'itinerary_marker_origin', { draggable: true }
     )
       .addTo(this.map)
-      .on('dragend', event => this.refreshDirection('origin', event.target.getLngLat()));
+      .on('dragend', event => {
+        this.refreshDirection('origin', event.target.getLngLat());
+      });
     this.routeMarkers.push(originMarker);
   }
 
@@ -81,7 +81,9 @@ export default class SceneDirection {
       'itinerary_marker_destination', { draggable: true, anchor: 'bottom' }
     )
       .addTo(this.map)
-      .on('dragend', event => this.refreshDirection('destination', event.target.getLngLat()));
+      .on('dragend', event => {
+        this.refreshDirection('destination', event.target.getLngLat());
+      });
     this.routeMarkers.push(destinationMarker);
   }
 
@@ -159,7 +161,7 @@ export default class SceneDirection {
 
   refreshDirection(type, lngLat) {
     const newPoint = new LatLonPoi(lngLat);
-    fire('change_direction_point', type, newPoint);
+    fire('change_direction_point', type, '', newPoint);
   }
 
   reset() {

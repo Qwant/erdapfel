@@ -12,6 +12,7 @@ import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
 
 // this outside state is used to restore origin/destination when returning to the panel after closing
 const persistentPointState = {
@@ -62,6 +63,8 @@ export default class DirectionPanel extends React.Component {
       routes: [],
       activePreviewRoute: null,
       isInitializing: true,
+      originInputText: '',
+      destinationInputText: '',
     };
 
     this.restorePoints(props);
@@ -80,6 +83,23 @@ export default class DirectionPanel extends React.Component {
     document.body.classList.remove('directions-open');
   }
 
+  setTextInput(which, poi) {
+    if (poi) {
+      if (poi.type === 'latlon') {
+        this.getAddress(which, poi);
+      } else {
+        this.setState({ [which + 'InputText']: poi.getInputValue() || '' });
+      }
+    } else {
+      this.setState({ [which + 'InputText']: '' });
+    }
+  }
+
+  async getAddress(which, poi) {
+    const address = await IdunnPoi.poiApiLoad(poi);
+    this.setState({ [which + 'InputText']: address.alternativeName || address.name });
+  }
+
   restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
     const poiRestorePromises = [
       originUrlValue
@@ -92,16 +112,27 @@ export default class DirectionPanel extends React.Component {
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
       persistentPointState.origin = origin;
       persistentPointState.destination = destination;
+
+      // Set markers
       if (origin) {
         window.execOnMapLoaded(() => {
           fire('set_origin', origin);
+          if (!destination) {
+            fire('fit_map', origin);
+          }
         });
+        this.setTextInput('origin', origin);
       }
       if (destination) {
         window.execOnMapLoaded(() => {
           fire('set_destination', destination);
+          if (!origin) {
+            fire('fit_map', destination);
+          }
         });
+        this.setTextInput('destination', destination);
       }
+
       this.setState({
         origin,
         destination,
@@ -120,8 +151,15 @@ export default class DirectionPanel extends React.Component {
   computeRoutes = async () => {
     const { origin, destination, vehicle } = this.state;
     if (origin && destination) {
-      this.setState({ isDirty: false, isLoading: true, error: 0, routes: [] });
+      this.setState({
+        isDirty: false,
+        isLoading: true,
+        error: 0,
+        routes: [],
+      });
       const currentQueryId = ++this.lastQueryId;
+      fire('set_origin', origin);
+      fire('set_destination', destination);
       const directionResponse = await DirectionApi.search(
         origin,
         destination,
@@ -206,13 +244,24 @@ export default class DirectionPanel extends React.Component {
     this.setState(previousState => ({
       origin: previousState.destination,
       destination: previousState.origin,
+      originInputText: previousState.destinationInputText,
+      destinationInputText: previousState.originInputText,
       isDirty: true,
     }), this.update);
   }
 
-  changeDirectionPoint = (which, value) => {
-    persistentPointState[which] = value;
-    this.setState({ [which]: value, isDirty: true }, this.update);
+  changeDirectionPoint = (which, value, point) => {
+    persistentPointState[which] = point;
+    this.setState({
+      [which]: point,
+      isDirty: true,
+      [which + 'InputText']: value || '',
+    }, this.update);
+
+    // Retrieve addresses
+    if (point && point.type === 'latlon') {
+      this.setTextInput(which, persistentPointState[which]);
+    }
   }
 
   setDirectionPoint = poi => {
@@ -226,8 +275,10 @@ export default class DirectionPanel extends React.Component {
     // else, if destination field is empty, set it
     if (persistentPointState.origin === null) {
       persistentPointState.origin = poi;
+      this.setTextInput('origin', poi);
     } else if (persistentPointState.destination === null) {
       persistentPointState.destination = poi;
+      this.setTextInput('destination', poi);
     }
 
     // Update state
@@ -248,13 +299,18 @@ export default class DirectionPanel extends React.Component {
       origin, destination, vehicle,
       routes, error, activePreviewRoute,
       isLoading, isDirty, isInitializing,
+      originInputText, destinationInputText,
     } = this.state;
     const title = <h3 className="itinerary_title">{_('directions', 'direction')}</h3>;
     const form = <DirectionForm
       origin={origin}
       destination={destination}
+      originInputText = {originInputText}
+      destinationInputText = {destinationInputText}
       onChangeDirectionPoint={this.changeDirectionPoint}
       onReversePoints={this.reversePoints}
+      onEmptyOrigin={this.emptyOrigin}
+      onEmptyDestination={this.emptyDestination}
       vehicles={this.vehicles}
       onSelectVehicle={this.onSelectVehicle}
       activeVehicle={vehicle}

@@ -6,6 +6,7 @@ const mockAutocomplete = require('../../__data__/autocomplete.json');
 const mockMapBox = require('../../__data__/mapbox.json');
 const mockPoi1 = require('../../__data__/poi.json');
 const mockPoi2 = require('../../__data__/poi2.json');
+const mockLatlonPoi = require('../../__data__/latlonpoi.json');
 
 let browser;
 let page;
@@ -119,11 +120,12 @@ test('origin & destination', async () => {
   expect(directionEndInput).toEqual(mockPoi2.name);
 });
 
-test('origin & destination & mode', async () => {
+test('origin & latlon destination & mode', async () => {
   responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
+  responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp(`places/${mockLatlonPoi.id}`));
 
   expect.assertions(3);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=latlon:47.4:7.5974115&mode=walking`);
+  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockLatlonPoi.id}&mode=walking`);
   await page.waitForSelector('#itinerary_input_origin');
 
   const directionStartInput = await page.evaluate(() =>
@@ -134,7 +136,7 @@ test('origin & destination & mode', async () => {
   const directionEndInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_destination').value
   );
-  expect(directionEndInput).toEqual('47.40000 : 7.59741');
+  expect(directionEndInput).toEqual(mockLatlonPoi.address.label);
 
   const activeLabel = await page.evaluate(() => {
     return Array.from(document.querySelector('.itinerary_vehicle_button--active').classList).join(',');

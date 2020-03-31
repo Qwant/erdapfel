@@ -30,8 +30,8 @@ class DirectionInput extends React.Component {
   }
 
   onChange = event => {
-    const input = event.target.value;
-    this.props.onChangePoint(input, null);
+    const value = event.target.value;
+    this.props.onChangePoint(value, null);
   }
 
   onKeyPress = event => {
