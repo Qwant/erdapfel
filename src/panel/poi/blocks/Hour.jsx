@@ -27,23 +27,8 @@ export default class HourBlock extends React.Component {
     covid19enabled: PropTypes.bool,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.messages = {
-      open: {
-        msg: _('Open'),
-        color: '#60ad51',
-      },
-      closed: {
-        msg: _('Closed'),
-        color: '#8c0212',
-      },
-    };
-  }
-
   render() {
-    const opening = new OsmSchedule(this.props.block, this.messages);
+    const opening = new OsmSchedule(this.props.block);
     if (!opening.days) {
       return null;
     }

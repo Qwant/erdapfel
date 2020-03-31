@@ -1,45 +1,44 @@
 /* global _ */
 import React from 'react';
-import OsmSchedule from 'src/adapters/osm_schedule';
 
-let memoizedMessages = null;
-const getMessages = () => {
-  memoizedMessages = memoizedMessages ||
-    {
-      open: {
-        msg: _('Open'),
-        color: '#60ad51',
-      },
-      closed: {
-        msg: _('Closed'),
-        color: '#8c0212',
-      },
+const getStatusMessage = status => {
+  if (status === 'open') {
+    return {
+      label: _('Open'),
+      color: '#60ad51',
     };
-  return memoizedMessages;
+  }
+  if (status === 'closed') {
+    return {
+      label: _('Closed'),
+      color: '#8c0212',
+    };
+  }
+  return { label: '', color: '#fff' };
 };
 
-const OpeningHour = ({ openingHours }) => {
-  if (!openingHours) {
+const OpeningHour = ({ schedule }) => {
+  if (!schedule) {
     return null;
   }
 
-  const schedule = new OsmSchedule(openingHours, getMessages());
   const { isTwentyFourSeven, status, nextTransition } = schedule;
+  const { label, color } = getStatusMessage(status);
   if (isTwentyFourSeven) {
     return <div className="openingHour poi_panel__info__hours__24_7">
       {_('Open 24/7', 'hour block')}
       {' '}
-      <div className="openingHour-circle" style={{ background: status.color }} />
+      <div className="openingHour-circle" style={{ background: color }} />
     </div>;
   }
 
   return <div className="openingHour">
-    {_(status.msg)}
+    {label}
     {nextTransition &&
       ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
     }
     {' '}
-    <div className="openingHour-circle" style={{ background: status.color }} />
+    <div className="openingHour-circle" style={{ background: color }} />
   </div>;
 };
 

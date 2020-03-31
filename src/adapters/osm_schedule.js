@@ -1,4 +1,8 @@
-function OsmSchedule(scheduleResponse, messages) {
+
+function OsmSchedule(scheduleResponse) {
+  if (!scheduleResponse) {
+    return null;
+  }
   this.isTwentyFourSeven = scheduleResponse.is_24_7;
   this.days = scheduleResponse.days;
   this.displayHours = translateSchedule(this.days);
@@ -6,20 +10,7 @@ function OsmSchedule(scheduleResponse, messages) {
     scheduleResponse.seconds_before_next_transition,
     scheduleResponse.next_transition_datetime,
   );
-  this.status = scheduleStatus(scheduleResponse, messages);
-}
-
-function scheduleStatus(scheduleResponse, timeMessages) {
-  if (!scheduleResponse) {
-    return { msg: '', color: '#fff' };
-  }
-  if (scheduleResponse.status === 'closed') {
-    return { msg: timeMessages.closed.msg, color: timeMessages.closed.color };
-  } else if (scheduleResponse.status === 'open') {
-    return { msg: timeMessages.open.msg, color: timeMessages.open.color };
-  }
-
-  return { msg: '', color: '#fff' };
+  this.status = scheduleResponse.status;
 }
 
 function getIntlLocales() {
