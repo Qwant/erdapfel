@@ -1,0 +1,22 @@
+.tooltip {
+  display: inline-block;
+  position: relative;
+  z-index: 3;
+
+  &-trigger {
+    cursor: pointer;
+  }
+}
+
+.tooltip-content {
+  max-width: 250px;
+  z-index: 4;
+  user-select: none;
+  position: absolute;
+  margin-left: 12px;
+  margin-top: -12px;
+  padding: 6px 9px;
+  background: $background;
+  border-radius: 3px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+}
