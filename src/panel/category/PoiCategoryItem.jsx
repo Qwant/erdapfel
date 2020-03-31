@@ -4,11 +4,16 @@ import ReviewScore from 'src/components/ReviewScore';
 import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
+import nconf from '@qwant/nconf-getter';
+
+const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
 const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
   const reviews = poi.blocksByType.grades;
   const phoneBlock = poi.blocksByType.phone;
   const address = poi.address || {};
+
+  const hideOpeningHour = covid19Enabled && poi.blocksByType.covid19;
 
   return <div className="category__panel__item">
     <PoiTitleImage poi={poi} />
@@ -21,7 +26,7 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
 
     {reviews && <ReviewScore reviews={reviews} poi={poi} inList />}
 
-    <OpeningHour openingHours={poi.blocksByType.opening_hours} />
+    {!hideOpeningHour && <OpeningHour openingHours={poi.blocksByType.opening_hours} />}
 
     {phoneBlock && <PhoneNumber
       phoneBlock={phoneBlock}
