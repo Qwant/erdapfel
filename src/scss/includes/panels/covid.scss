@@ -8,7 +8,7 @@
   }
 
   &-timeTableContainer {
-    margin-top: 3px;
+    margin-top: 6px;
     position: relative;
   }
 
@@ -27,8 +27,13 @@
 
   .icon-icon_info {
     display: inline-block;
-    margin-right: 5px;
     vertical-align: middle;
+  }
+
+  .icon-icon_clock,
+  .icon-icon_info,
+  .icon-alert-triangle {
+    min-width: 24px;
   }
 
   &-status {
@@ -75,5 +80,19 @@
 
   &-note {
     margin: 12px 0 6px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-legalWarning {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    margin-top: 20px;
+
+    i {
+      color: #ff8f00;
+      font-size: 15px;
+    }
   }
 }

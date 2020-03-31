@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
+import nconf from '@qwant/nconf-getter';
 import TimeTable from './TimeTable';
 import covidStrings from './covid_strings';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import OpeningHour from 'src/components/OpeningHour';
+
+const covidConf = nconf.get().covid19;
 
 // @TODO: refacto OsmSchedule so it doesn't need presentational data
 const scheduleMessages = {
@@ -20,15 +23,15 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note &&
     <div className="covid19-note">
       <i className="icon-icon_info" />
-      {note}
+      <p>{note}</p>
     </div>;
 
   const source = contribute_url &&
     <div className="covid19-source">
       <div>Source&nbsp;:&nbsp;
-        <a href="https://caresteouvert.fr">Ça reste ouvert</a>
+        <a rel="noopener noreferrer" href="https://caresteouvert.fr">Ça reste ouvert</a>
       </div>
-      <a className="covid19-contributeLink" href={contribute_url}>
+      <a className="covid19-contributeLink" rel="noopener noreferrer" href={contribute_url}>
         {covidStrings.linkToCaResteOuvert}
       </a>
     </div>;
@@ -78,11 +81,29 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
   return content;
 };
 
+
+/* eslint-disable */
 const Covid19 = ({ block }) => {
   return <div className="poi_panel__info__section covid19">
-    <h4 className="poi_panel__sub_block__title">{covidStrings.blockTitle}</h4>
+    <h4 className="poi_panel__sub_block__title">
+      {covidStrings.blockTitle}
+    </h4>
     {getContent(block)}
+    <div className="covid19-legalWarning">
+      <i className="icon-alert-triangle" />
+      <div>
+        <p>
+          Pendant toute la période de confinement, se déplacer vers ce lieu n'est autorisé
+          qu'en possession d'une attestation de déplacement dérogatoire.
+        </p>
+        <p>
+          Plus d'informations sur{' '}
+          <a rel="noopener noreferrer" href={covidConf.frInformationUrl}>interieur.gouv.fr</a>
+        </p>
+      </div>
+    </div>
   </div>;
 };
+/* eslint-enable */
 
 export default Covid19;
