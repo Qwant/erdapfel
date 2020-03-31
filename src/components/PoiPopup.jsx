@@ -15,7 +15,7 @@ const PoiPopup = ({ poi }) => {
   if (reviews) {
     displayedInfo = <ReviewScore reviews={reviews} poi={poi} />;
   } else if (openingHours && !covid19Enabled) {
-    displayedInfo = <OpeningHour poi={poi} />;
+    displayedInfo = <OpeningHour openingHours={openingHours} />;
   } else if (address) {
     displayedInfo = <span className="poi_popup__address">{address}</span>;
   }

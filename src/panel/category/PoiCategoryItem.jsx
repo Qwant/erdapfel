@@ -21,7 +21,7 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
 
     {reviews && <ReviewScore reviews={reviews} poi={poi} inList />}
 
-    <OpeningHour poi={poi} />
+    <OpeningHour openingHours={poi.blocksByType.opening_hours} />
 
     {phoneBlock && <PhoneNumber
       phoneBlock={phoneBlock}

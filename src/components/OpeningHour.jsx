@@ -18,13 +18,12 @@ const getMessages = () => {
   return memoizedMessages;
 };
 
-const OpeningHour = ({ poi }) => {
-  const openingBlock = poi.blocksByType && poi.blocksByType.opening_hours;
-  if (!openingBlock) {
+const OpeningHour = ({ openingHours }) => {
+  if (!openingHours) {
     return null;
   }
 
-  const schedule = new OsmSchedule(openingBlock, getMessages());
+  const schedule = new OsmSchedule(openingHours, getMessages());
   const { isTwentyFourSeven, status, nextTransition } = schedule;
   if (isTwentyFourSeven) {
     return <div className="openingHour poi_panel__info__hours__24_7">
