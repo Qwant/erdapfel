@@ -26,12 +26,14 @@ class PoiCard extends React.Component {
     const hideOpeningHour = covid19Enabled
       && poi.blocks && poi.blocks.find(b => b.type === 'covid19');
 
+    const openingHours = poi.blocksByType && poi.blocksByType.opening_hours;
+
     return <div className="poi_card" ref={this.cardRef}>
       <div className="poi_card__description_container">
         <PoiTitleImage poi={poi} iconOnly={true} />
         <div>
           <PoiHeader poi={poi} />
-          {!hideOpeningHour && <OpeningHour poi={poi} />}
+          {!hideOpeningHour && <OpeningHour openingHours={openingHours} />}
         </div>
       </div>
       <div className="poi_card__action_container">

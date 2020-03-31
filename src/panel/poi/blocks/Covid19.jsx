@@ -16,7 +16,7 @@ const scheduleMessages = {
   },
 };
 
-const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
+const getContent = ({ status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note &&
     <div className="covid19-note">
       <i className="icon-icon_info" />
@@ -43,7 +43,7 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
       <div className="covid19-status covid19-status--open">{covidStrings.statusOpen}</div>
       {schedule && <div className="covid19-timeTableContainer">
         <i className="icon-icon_clock" />
-        <TimeTable title={<OpeningHour poi={poi} />} schedule={schedule} />
+        <TimeTable title={<OpeningHour openingHours={opening_hours} />} schedule={schedule} />
       </div>}
       {!schedule && <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>}
       {additionalInfo}
@@ -78,10 +78,10 @@ const getContent = (poi, { status, opening_hours, note, contribute_url }) => {
   return content;
 };
 
-const Covid19 = ({ poi, block }) => {
+const Covid19 = ({ block }) => {
   return <div className="poi_panel__info__section covid19">
     <h4 className="poi_panel__sub_block__title">{covidStrings.blockTitle}</h4>
-    {getContent(poi, block)}
+    {getContent(block)}
   </div>;
 };
 
