@@ -104,7 +104,10 @@ const SuggestsDropdown = ({
             ? e.preventDefault()
             : onSelect(suggestItems[index])
           }
-          onMouseEnter={() => { setHighlighted(index); }}
+          onMouseEnter={() => suggestItems[index].simpleLabel
+            ? setHighlighted(null)
+            : setHighlighted(index)
+          }
           ref={liRef}
         >
           <SuggestItem item={suggest} isHighlighted={highlighted === index} />
