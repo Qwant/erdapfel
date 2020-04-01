@@ -92,3 +92,4 @@ events:
 
 covid19:
   enabled: false
+  frInformationUrl: https://www.interieur.gouv.fr/Actualites/L-actu-du-Ministere/Attestation-de-deplacement-derogatoire-et-justificatif-de-deplacement-professionnel
