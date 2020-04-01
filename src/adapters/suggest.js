@@ -88,16 +88,6 @@ export default class Suggest {
           , reactElem
         );
       },
-
-      onSelect: (e, term, item, items = []) => {
-        e.preventDefault();
-        const itemId = item.getAttribute('data-id');
-        const selectedItem = itemId === 'geolocalisation'
-          ? NavigatorGeolocalisationPoi.getInstance()
-          : items.find(item => item.id === itemId);
-        this.onSelect(selectedItem);
-        this.searchInputDomHandler.blur();
-      },
     });
 
     this.searchInputDomHandler.addEventListener('blur', function handleSearchInputBlur() {

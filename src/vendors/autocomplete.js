@@ -128,9 +128,6 @@ export default function autoComplete(options) {
   this.prefetch = async function(val) {
     that.value = val;
     const source = await o.source(val);
-    if (source !== null) {
-      that.sourceDom(source, val);
-    }
     return source;
   };
 

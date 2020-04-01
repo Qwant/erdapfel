@@ -45,7 +45,6 @@ test('menu open favorite', async () => {
   page.click('.menu__button');
   await page.waitForSelector('.menu__panel__action');
   page.click('.menu__panel__action:nth-child(3)');
-  await page.waitFor(300);
 
   const favorites = await page.waitForSelector('.favorite_panel');
   expect(favorites).not.toBeNull();
