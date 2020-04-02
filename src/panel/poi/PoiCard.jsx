@@ -3,6 +3,7 @@ import React from 'react';
 import PoiHeader from './PoiHeader';
 import PoiTitleImage from './PoiTitleImage';
 import OpeningHour from 'src/components/OpeningHour';
+import OsmSchedule from 'src/adapters/osm_schedule';
 import Button from 'src/components/ui/Button';
 
 class PoiCard extends React.Component {
@@ -33,7 +34,7 @@ class PoiCard extends React.Component {
         <PoiTitleImage poi={poi} iconOnly={true} />
         <div>
           <PoiHeader poi={poi} />
-          {!hideOpeningHour && <OpeningHour openingHours={openingHours} />}
+          {!hideOpeningHour && <OpeningHour schedule={new OsmSchedule(openingHours)} />}
         </div>
       </div>
       <div className="poi_card__action_container">

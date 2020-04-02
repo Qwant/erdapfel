@@ -3,21 +3,8 @@ import nconf from '@qwant/nconf-getter';
 import TimeTable from './TimeTable';
 import covidStrings from './covid_strings';
 import OsmSchedule from 'src/adapters/osm_schedule';
-import OpeningHour from 'src/components/OpeningHour';
 
 const covidConf = nconf.get().covid19;
-
-// @TODO: refacto OsmSchedule so it doesn't need presentational data
-const scheduleMessages = {
-  open: {
-    msg: 'Ouvert',
-    color: '#60ad51',
-  },
-  closed: {
-    msg: 'Fermé',
-    color: '#8c0212',
-  },
-};
 
 const getContent = ({ status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note &&
@@ -41,12 +28,12 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
   switch (status) {
   case 'open':
   case 'open_as_usual':
-    schedule = opening_hours && new OsmSchedule(opening_hours, scheduleMessages);
+    schedule = opening_hours && new OsmSchedule(opening_hours);
     content = <Fragment>
       <div className="covid19-status covid19-status--open">{covidStrings.statusOpen}</div>
       {schedule && <div className="covid19-timeTableContainer">
         <i className="icon-icon_clock" />
-        <TimeTable title={<OpeningHour openingHours={opening_hours} />} schedule={schedule} />
+        <TimeTable schedule={schedule} />
       </div>}
       {!schedule && <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>}
       {additionalInfo}
@@ -80,7 +67,6 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 
   return content;
 };
-
 
 /* eslint-disable */
 const Covid19 = ({ block }) => {

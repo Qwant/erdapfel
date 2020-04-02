@@ -1,5 +1,6 @@
 import React from 'react';
 import OpeningHour from 'src/components/OpeningHour';
+import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
 import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
@@ -26,7 +27,7 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
 
     {reviews && <ReviewScore reviews={reviews} poi={poi} inList />}
 
-    {!hideOpeningHour && <OpeningHour openingHours={poi.blocksByType.opening_hours} />}
+    {!hideOpeningHour && <OpeningHour schedule={new OsmSchedule(poi.blocksByType.opening_hours)} />}
 
     {phoneBlock && <PhoneNumber
       phoneBlock={phoneBlock}

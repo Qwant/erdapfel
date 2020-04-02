@@ -1,25 +1,8 @@
-/* global _ */
 import React from 'react';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import TimeTable from './TimeTable';
 import PropTypes from 'prop-types';
 import covidStrings from './covid_strings';
-
-function renderTitle(opening, covid19) {
-  if (covid19) {
-    return <span>{covidStrings.seeNormalHours}</span>;
-  }
-
-  let text = `${_(opening.status.msg)} `;
-  if (opening.nextTransition) {
-    text += ' - ' +
-      _('until {nextTransitionTime}', 'hour panel',
-        { nextTransitionTime: opening.nextTransition }) + ' ';
-  }
-  return <span>{ text }
-    <div className="poi_panel__info__hour__circle" style={{ background: opening.status.color }} />
-  </span>;
-}
 
 export default class HourBlock extends React.Component {
   static propTypes = {
@@ -27,24 +10,9 @@ export default class HourBlock extends React.Component {
     covid19enabled: PropTypes.bool,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.messages = {
-      open: {
-        msg: _('Open'),
-        color: '#60ad51',
-      },
-      closed: {
-        msg: _('Closed'),
-        color: '#8c0212',
-      },
-    };
-  }
-
   render() {
-    const opening = new OsmSchedule(this.props.block, this.messages);
-    if (!opening.days) {
+    const schedule = new OsmSchedule(this.props.block);
+    if (!schedule.days) {
       return null;
     }
 
@@ -52,7 +20,10 @@ export default class HourBlock extends React.Component {
       <div className="poi_panel__info__section__description">
         <div className="icon-icon_clock poi_panel__block__symbol"></div>
         <div className="poi_panel__block__content">
-          <TimeTable title={renderTitle(opening, this.props.covid19enabled)} schedule={opening} />
+          <TimeTable
+            schedule={schedule}
+            title={this.props.covid19enabled && covidStrings.seeNormalHours}
+          />
         </div>
       </div>
     </div>;
