@@ -67,10 +67,12 @@
   }
 
   &-contributeLink {
-    font-weight: bold;
+    text-transform: uppercase;
+    font-weight: normal !important;
+    transition: background-color 0.25s;
 
-    &:before {
-      content: '» '
+    &:hover {
+      background-color: $primary_clear;
     }
   }
 

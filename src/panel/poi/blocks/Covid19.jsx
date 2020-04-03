@@ -4,6 +4,7 @@ import TimeTable from './TimeTable';
 import covidStrings from './covid_strings';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
+import Button from 'src/components/ui/Button';
 
 const covidConf = nconf.get().covid19;
 
@@ -23,14 +24,16 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
           onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK); }}
         >Ça reste ouvert</a>
       </div>
-      <a
-        className="covid19-contributeLink"
-        rel="noopener noreferrer"
-        href={contribute_url}
-        onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE); }}
-      >
-        {covidStrings.linkToCaResteOuvert}
-      </a>
+      <div className="u-center">
+        <Button
+          className="covid19-contributeLink"
+          rel="noopener noreferrer"
+          href={contribute_url}
+          onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE); }}
+        >
+          {covidStrings.linkToCaResteOuvert}
+        </Button>
+      </div>
     </div>;
 
   let content;
