@@ -68,10 +68,10 @@
     text-transform: uppercase;
     font-weight: normal !important;
     transition: background-color 0.25s;
-    margin-top: 24px;
+    margin-top: 20px;
 
     &:hover {
-      background-color: $primary_clear;
+      background-color: $background_hover;
     }
   }
 
@@ -87,13 +87,30 @@
 
   &-legalWarning {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     font-size: 12px;
+    background-color: $surface;
+    border-radius: 3px;
+    padding: 9px 6px;
     margin-top: 20px;
 
+    p + p {
+      margin-top: 0.5em;
+    }
+
     i {
-      color: #ff8f00;
+      color: red;
       font-size: 15px;
+      margin: 0 6px;
+    }
+
+    a {
+      color: $primary_text;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
