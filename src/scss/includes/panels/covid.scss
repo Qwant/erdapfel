@@ -7,6 +7,18 @@
     margin-bottom: 6px;
   }
 
+  &-tag {
+    color: red;
+    border: 1px solid red;
+    border-radius: 3px;
+    padding: 1px 6px;
+    display: inline-block;
+    vertical-align: bottom;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right: 12px;
+  }
+
   &-timeTableContainer {
     margin-top: 6px;
     position: relative;

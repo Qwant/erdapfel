@@ -85,7 +85,7 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 const Covid19 = ({ block }) => {
   return <div className="poi_panel__info__section covid19">
     <h4 className="poi_panel__sub_block__title">
-      {covidStrings.blockTitle}
+      <span className="covid19-tag">Covid-19</span>{covidStrings.blockTitle}
     </h4>
     {getContent(block)}
     <div className="covid19-legalWarning">
