@@ -43,7 +43,6 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
   case 'open_as_usual':
     schedule = opening_hours && new OsmSchedule(opening_hours);
     content = <Fragment>
-      <div className="covid19-status covid19-status--open">{covidStrings.statusOpen}</div>
       {schedule && <div className="covid19-timeTableContainer">
         <i className="icon-icon_clock" />
         <TimeTable schedule={schedule} />
@@ -55,37 +54,33 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
     break;
   case 'maybe_open':
     content = <Fragment>
-      <div className="covid19-status covid19-status--maybeOpen">
-        {covidStrings.statusMaybeOpen}
-      </div>
-      <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>
       {additionalInfo}
       {source}
     </Fragment>;
     break;
   case 'closed':
-    content = <Fragment>
-      <div className="covid19-status covid19-status--closed">
-        {covidStrings.statusClosed}
-      </div>
-      {source}
-    </Fragment>;
-    break;
   default:
-    content = <Fragment>
-      <div className="covid19-status">{covidStrings.statusNoData}</div>
-      {source}
-    </Fragment>;
+    content = source;
   }
 
   return content;
 };
 
+const statusMessages = {
+  open: covidStrings.statusOpen,
+  open_as_usual: covidStrings.statusOpen,
+  maybe_open: covidStrings.statusMaybeOpen,
+  closed: covidStrings.statusClosed,
+  unknown: covidStrings.statusNoData,
+};
+
 /* eslint-disable */
 const Covid19 = ({ block }) => {
+  const statusMsg = statusMessages[block.status] || statusMessages['unknown'];
+
   return <div className="poi_panel__info__section covid19">
     <h4 className="poi_panel__sub_block__title">
-      <span className="covid19-tag">Covid-19</span>{covidStrings.blockTitle}
+      <span className="covid19-tag">Covid-19</span>{statusMsg}
     </h4>
     {getContent(block)}
     <div className="covid19-legalWarning">
