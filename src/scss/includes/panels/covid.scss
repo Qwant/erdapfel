@@ -17,6 +17,7 @@
     font-size: 12px;
     margin-right: 12px;
     align-self: flex-start;
+    flex-shrink: 0;
   }
 
   &-status {
