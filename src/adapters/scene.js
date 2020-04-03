@@ -166,7 +166,7 @@ Scene.prototype.initMapBox = function() {
 
   listen('map_mark_poi', (poi, options) => {
     this.ensureMarkerIsVisible(poi, options);
-    if (!options.isFromCategory) {
+    if (!options.resource || !options.resource.category) {
       this.addMarker(poi, options);
     }
   });

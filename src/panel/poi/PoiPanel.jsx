@@ -39,9 +39,7 @@ export default class PoiPanel extends React.Component {
   static propTypes = {
     poiId: PropTypes.string.isRequired,
     poi: PropTypes.object,
-    isFromFavorite: PropTypes.bool,
-    isFromCategory: PropTypes.bool,
-    sourceCategory: PropTypes.string,
+    resource: PropTypes.object,
     centerMap: PropTypes.bool,
   }
 
@@ -87,8 +85,8 @@ export default class PoiPanel extends React.Component {
   }
 
   loadPoi = async () => {
-    const { poiId, centerMap, isFromCategory } = this.props;
-    const mapOptions = { centerMap, isFromCategory };
+    const { poiId, centerMap, resource } = this.props;
+    const mapOptions = { centerMap, resource };
 
     // If a POI object is provided before fetching full data,
     // we can update the map immediately for UX responsiveness
@@ -180,7 +178,10 @@ export default class PoiPanel extends React.Component {
   backToList = () => {
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
-    window.app.navigateTo(`/places/?type=${this.props.sourceCategory}`);
+    const uri = this.props.resource.category
+      ? `/places/?type=${this.props.resource.category}`
+      : `/places/?q=${this.props.resource.query}`;
+    window.app.navigateTo(uri);
   }
 
   backToSmall = () => {
@@ -224,7 +225,7 @@ export default class PoiPanel extends React.Component {
 
 
   renderFull = poi => {
-    const { isFromCategory, isFromFavorite } = this.props;
+    const { resource, isFromFavorite } = this.props;
 
     let backAction = null;
     if (isFromFavorite) {
@@ -233,7 +234,7 @@ export default class PoiPanel extends React.Component {
         text: _('Back to favorite'),
         className: 'poi_panel__back_to_list',
       };
-    } else if (isFromCategory) {
+    } else if (resource && (resource.category || resource.query)) {
       backAction = {
         callback: this.backToList,
         text: _('Back to list'),
@@ -264,7 +265,10 @@ export default class PoiPanel extends React.Component {
       title={header}
       close={this.closeAction}
       className={classnames('poi_panel', {
-        'poi_panel--empty-header': !isFromPagesJaunes(poi) && !isFromFavorite && !isFromCategory,
+        'poi_panel--empty-header':
+          !isFromPagesJaunes(poi) &&
+          !isFromFavorite &&
+          (!resource || !resource.category),
       } )}
       initialSize="maximized"
     >
