@@ -61,5 +61,8 @@ module.exports = {
     'masq_add_poi_modal_onboarding',
     'masq_put',
     'masq_del',
+    /* Covid-19 */
+    'covid_caresteouvert_link',
+    'covid_caresteouvert_contribute',
   ]
 }
