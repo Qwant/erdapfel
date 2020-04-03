@@ -17,13 +17,13 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 
   const source = contribute_url &&
     <div className="covid19-source">
-      <div>Source&nbsp;:&nbsp;
-        <a
-          rel="noopener noreferrer"
-          href="https://caresteouvert.fr"
-          onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK); }}
-        >Ça reste ouvert</a>
-      </div>
+      Source&nbsp;:&nbsp;<a
+        rel="noopener noreferrer"
+        href="https://caresteouvert.fr"
+        onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK); }}
+      >
+        caresteouvert.fr
+      </a>
       <div className="u-center">
         <Button
           className="covid19-contributeLink"

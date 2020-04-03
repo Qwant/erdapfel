@@ -56,8 +56,6 @@
   }
 
   &-source {
-    font-size: 12px;
-    text-align: right;
     color: $secondary_text;
     margin-top: 6px;
 
@@ -70,6 +68,7 @@
     text-transform: uppercase;
     font-weight: normal !important;
     transition: background-color 0.25s;
+    margin-top: 24px;
 
     &:hover {
       background-color: $primary_clear;
