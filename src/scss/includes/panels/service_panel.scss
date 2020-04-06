@@ -43,7 +43,7 @@
 
 .service_panel__events,
 .service_panel__actions {
-  padding-top: 15px;
+  padding-top: 5px;
 }
 
 .service_panel__category,
@@ -69,6 +69,7 @@
   span {
     color: #5c6f84;
     font-size: 22px;
+    line-height: 36px;
   }
 }
 
@@ -133,22 +134,19 @@
   }
 }
 
-.service_panel__action__icon {
-  span {
-    font-size: 23px;
-    line-height: 36px;
-  }
-}
-
 @media (max-width: 640px){
 
   .panel.service_panel {
-    height: 215px;
+    height: 235px;
     background: #fff;
+
+    hr {
+      margin-bottom: 16px;
+    }
   }
 
   .panel.service_panel .panel-resizeHandle {
-    min-height: 50px;
+    min-height: 25px;
   }
 
   .service_panel .panel-header {
@@ -164,5 +162,16 @@
     padding-top: 7px;
     font-weight: normal;
     height: 50px;
+  }
+
+  .service_panel__action__icon {
+    background: #1050c5;
+    border: none;
+
+    span {
+      color: #fff;
+      font-size: 20px;
+      line-height: 40px;
+    }
   }
 }
