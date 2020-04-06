@@ -1,12 +1,11 @@
 /* global _ */
-import React, { Fragment } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Autocomplete from '../vendors/autocomplete';
 import PoiStore from './poi/poi_store';
 import Category from './category';
 import nconf from '@qwant/nconf-getter';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import renderStaticReact from 'src/libs/renderStaticReact';
-import SuggestItem from 'src/components/SuggestItem';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -14,10 +13,11 @@ const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
 const SUGGEST_FOCUS_MIN_ZOOM = 11;
 
 import { suggestResults } from './suggest_sources';
+import SuggestsDropdown from '../components/ui/SuggestsDropdown';
 
 export default class Suggest {
   constructor({ tagSelector, onSelect,
-    withGeoloc = false, withCategories = false, menuClass = '',
+    withGeoloc = false, withCategories = false,
   }) {
     this.searchInputDomHandler = document.querySelector(tagSelector);
     this.poi = null;
@@ -29,8 +29,6 @@ export default class Suggest {
       selector: tagSelector,
       minChars: 0,
       delay: 100,
-      menuClass,
-      width: '650px',
       updateData: items => {
         this.suggestList = items;
         this.pending = false;
@@ -62,25 +60,53 @@ export default class Suggest {
           suggestItems = suggestItems.concat(favorites.slice(0, nbDisplayedFavorites));
         }
 
-        return renderStaticReact(
-          <Fragment>
-            {suggestItems.map((item, index) => <SuggestItem item={item} key={index} />)}
-          </Fragment>
-        );
-      },
+        // Create a react node, or reuse the existing node
+        const existingElem = document.getElementById('react-suggests-' + tagSelector);
+        let elem = null;
+        if (!existingElem) {
+          elem = document.createElement('div');
+          elem.setAttribute('id', 'react-suggests-' + tagSelector);
+          this.searchInputDomHandler.parentNode.append(elem);
+        }
 
-      onSelect: (e, term, item, items = []) => {
-        e.preventDefault();
-        const itemId = item.getAttribute('data-id');
-        const selectedItem = itemId === 'geolocalisation'
-          ? NavigatorGeolocalisationPoi.getInstance()
-          : items.find(item => item.id === itemId);
-        this.onSelect(selectedItem);
-        this.searchInputDomHandler.blur();
+        const reactElem = existingElem || elem;
+        const typedValue = this.searchInputDomHandler.value;
+
+        ReactDOM.render(
+          <SuggestsDropdown
+            inputId={this.searchInputDomHandler.getAttribute('id')}
+            suggestItems={suggestItems}
+            onHighlight={item => {
+              this.searchInputDomHandler.value = item ? item.name : typedValue;
+            }}
+            onSelect={item => {
+              this.searchInputDomHandler.value = item.name || '';
+              this.searchInputDomHandler.blur();
+              this.onSelect(item);
+            }}
+          />
+          , reactElem
+        );
       },
     });
 
+    this.searchInputDomHandler.addEventListener('blur', function handleSearchInputBlur() {
+      unmountReactSuggestDropdown();
+    });
+
+    const unmountReactSuggestDropdown = () => {
+      const existingElem = document.getElementById('react-suggests-' + tagSelector);
+      if (existingElem) {
+        ReactDOM.unmountComponentAtNode(existingElem);
+        existingElem.remove();
+      }
+    };
+
     this.searchInputDomHandler.onkeydown = event => {
+      if (event.keyCode === 27) { // esc
+        unmountReactSuggestDropdown();
+      }
+
       if (event.keyCode !== 13) { /* prevent enter key */
         this.pending = true;
       }

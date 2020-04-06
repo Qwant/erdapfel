@@ -71,7 +71,10 @@ test('keyboard navigation', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait(TypedSearch);
+  await page.waitForSelector('.autocomplete_suggestions');
+  await page.waitFor(100);
   await autocompleteHelper.pressDown();
+  await page.waitFor(100);
   await autocompleteHelper.pressDown();
 
   let selectElemPosition = await autocompleteHelper.getSelectedElementPos();
@@ -87,8 +90,10 @@ test('keyboard navigation', async () => {
 
   /* got to last item */
   for (let i = 0; i < SUGGEST_MAX_ITEMS - 2; i++) {
+    await page.waitFor(100);
     await autocompleteHelper.pressDown();
   }
+  await page.waitFor(100);
   /* one step more */
   await autocompleteHelper.pressDown();
 
@@ -101,7 +106,9 @@ test('keyboard navigation', async () => {
   const originalSearchValue = await autocompleteHelper.getSearchInputValue();
   expect(originalSearchValue.trim()).toEqual(TypedSearch);
 
+  await page.waitFor(100);
   await autocompleteHelper.pressDown();
+  await page.waitFor(100);
   /* fist element is selected */
   selectElemPosition = await autocompleteHelper.getSelectedElementPos();
   expect(selectElemPosition).toEqual(0);
@@ -112,7 +119,7 @@ test('keyboard navigation', async () => {
 
   /* type another char */
   await autocompleteHelper.typeAndWait('a');
-  await page.waitFor(300);
+  await page.waitFor(100);
   selectElemPosition = await autocompleteHelper.getSelectedElementPos();
   expect(selectElemPosition).toEqual(-1);
 });
@@ -144,7 +151,8 @@ test('move to on click', async () => {
     return window.MAP_MOCK.center;
   });
   await autocompleteHelper.typeAndWait('Hello');
-  await page.click('.autocomplete_suggestion:nth-child(3)');
+  await page.waitForSelector('.autocomplete_suggestions');
+  await page.click('.autocomplete_suggestions li:nth-child(3)');
   const map_position_after = await page.evaluate(() => {
     return window.MAP_MOCK.center;
   });
@@ -158,7 +166,7 @@ test('center on select', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await page.keyboard.type('Hello');
-  await page.waitForSelector('.autocomplete_suggestion');
+  await page.waitForSelector('.autocomplete_suggestions');
   await page.click('.autocomplete_suggestion:nth-child(1)');
   const { center, zoom } = await page.evaluate(() => {
     return { center: window.MAP_MOCK.getCenter(), zoom: window.MAP_MOCK.getZoom() };

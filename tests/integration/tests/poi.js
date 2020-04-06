@@ -130,7 +130,8 @@ test('open poi from autocomplete selection', async () => {
   await page.goto(APP_URL);
   await page.keyboard.type('test');
   await page.waitForSelector('.autocomplete_suggestion');
-  await page.click('.autocomplete_suggestion:nth-child(2)');
+  await page.waitFor(100);
+  await page.click('.autocomplete_suggestions li:nth-child(2)');
   const location = await page.evaluate(() => {
     return document.location;
   });

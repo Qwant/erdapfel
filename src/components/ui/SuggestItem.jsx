@@ -1,7 +1,8 @@
 /* global _ */
 import React from 'react';
+import classNames from 'classnames';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import IconManager from '../adapters/icon_manager';
+import IconManager from '../../adapters/icon_manager';
 import Category from 'src/adapters/category';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
@@ -10,9 +11,12 @@ const ItemLabels = ({ firstLabel, secondLabel }) =>
     <div className="autocomplete_suggestion__second_line">{secondLabel}</div>
   </div>;
 
-const GeolocationItem = () =>
+const GeolocationItem = ({ isHighlighted }) =>
   <div
-    className="autocomplete_suggestion itinerary_suggest_your_position"
+    className={classNames(
+      'autocomplete_suggestion itinerary_suggest_your_position',
+      { 'selected': isHighlighted }
+    )}
     data-id="geolocalisation"
     data-val={_('Your position', 'direction')}
   >
@@ -20,13 +24,16 @@ const GeolocationItem = () =>
     {_('Your position', 'direction')}
   </div>;
 
-const CategoryItem = ({ category }) => {
+const CategoryItem = ({ category, isHighlighted }) => {
   const { id, label, alternativeName, color, backgroundColor } = category;
   const icon = category.getIcon();
 
   return (
     <div
-      className="autocomplete_suggestion autocomplete_suggestion--category"
+      className={classNames(
+        'autocomplete_suggestion autocomplete_suggestion--category',
+        { 'selected': isHighlighted }
+      )}
       data-id={id}
       data-val={label}
     >
@@ -39,13 +46,13 @@ const CategoryItem = ({ category }) => {
   );
 };
 
-const PoiItem = ({ poi }) => {
+const PoiItem = ({ poi, isHighlighted }) => {
   const { id, name, className, subClassName, type, alternativeName } = poi;
   const icon = IconManager.get({ className, subClassName, type });
 
   return (
     <div
-      className="autocomplete_suggestion"
+      className={classNames('autocomplete_suggestion', { 'selected': isHighlighted })}
       data-id={id}
       data-val={poi.getInputValue()}
     >
@@ -63,20 +70,20 @@ const SeparatorLabel = ({ label }) =>
     {label}
   </h3>;
 
-const SuggestItem = ({ item }) => {
+const SuggestItem = ({ item, isHighlighted }) => {
   if (item.simpleLabel) {
     return <SeparatorLabel label={item.simpleLabel} />;
   }
 
   if (item instanceof NavigatorGeolocalisationPoi) {
-    return <GeolocationItem />;
+    return <GeolocationItem isHighlighted={isHighlighted}/>;
   }
 
   if (item instanceof Category) {
-    return <CategoryItem category={item} />;
+    return <CategoryItem category={item} isHighlighted={isHighlighted} />;
   }
 
-  return <PoiItem poi={item} />;
+  return <PoiItem poi={item} isHighlighted={isHighlighted} />;
 };
 
 export default SuggestItem;
