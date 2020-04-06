@@ -17,7 +17,9 @@ class ServicePanel extends React.Component {
       />;
     } else {
       return <ServicePanelDesktop
+        title={_('Qwant Maps services', 'service panel')}
         className="service_panel"
+        white
       />;
     }
   }
