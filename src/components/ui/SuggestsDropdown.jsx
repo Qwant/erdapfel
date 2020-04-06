@@ -109,8 +109,9 @@ const SuggestsDropdown = ({
             : setHighlighted(index)
           }
           ref={liRef}
+          className={classnames({ 'selected': highlighted === index })}
         >
-          <SuggestItem item={suggest} isHighlighted={highlighted === index} />
+          <SuggestItem item={suggest} />
         </li>
       )}
     </ul>
