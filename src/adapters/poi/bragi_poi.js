@@ -120,6 +120,9 @@ export default class BragiPoi extends Poi {
       if (geocoderConfig.useLang) {
         query.lang = window.getLang().code;
       }
+      if (geocoderConfig.useNlu) {
+        query.nlu = 'true';
+      }
       suggestsPromise = ajax.get(geocoderConfig.url, query);
       suggestsPromise.then(suggests => {
         let ranking = 0;
