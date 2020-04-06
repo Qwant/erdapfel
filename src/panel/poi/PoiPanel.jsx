@@ -39,7 +39,7 @@ export default class PoiPanel extends React.Component {
   static propTypes = {
     poiId: PropTypes.string.isRequired,
     poi: PropTypes.object,
-    resource: PropTypes.object,
+    poiFilters: PropTypes.object,
     centerMap: PropTypes.bool,
   }
 
@@ -85,8 +85,8 @@ export default class PoiPanel extends React.Component {
   }
 
   loadPoi = async () => {
-    const { poiId, centerMap, resource } = this.props;
-    const mapOptions = { centerMap, resource };
+    const { poiId, centerMap, poiFilters } = this.props;
+    const mapOptions = { centerMap, poiFilters };
 
     // If a POI object is provided before fetching full data,
     // we can update the map immediately for UX responsiveness
@@ -178,9 +178,9 @@ export default class PoiPanel extends React.Component {
   backToList = () => {
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
-    const uri = this.props.resource.category
-      ? `/places/?type=${this.props.resource.category}`
-      : `/places/?q=${this.props.resource.query}`;
+    const uri = this.props.poiFilters.category
+      ? `/places/?type=${this.props.poiFilters.category}`
+      : `/places/?q=${this.props.poiFilters.query}`;
     window.app.navigateTo(uri);
   }
 
@@ -225,7 +225,7 @@ export default class PoiPanel extends React.Component {
 
 
   renderFull = poi => {
-    const { resource, isFromFavorite } = this.props;
+    const { poiFilters, isFromFavorite } = this.props;
 
     let backAction = null;
     if (isFromFavorite) {
@@ -234,7 +234,7 @@ export default class PoiPanel extends React.Component {
         text: _('Back to favorite'),
         className: 'poi_panel__back_to_list',
       };
-    } else if (resource && (resource.category || resource.query)) {
+    } else if (poiFilters && (poiFilters.category || poiFilters.query)) {
       backAction = {
         callback: this.backToList,
         text: _('Back to list'),
@@ -268,7 +268,7 @@ export default class PoiPanel extends React.Component {
         'poi_panel--empty-header':
           !isFromPagesJaunes(poi) &&
           !isFromFavorite &&
-          (!resource || !resource.category),
+          (!poiFilters || !poiFilters.category),
       } )}
       initialSize="maximized"
     >

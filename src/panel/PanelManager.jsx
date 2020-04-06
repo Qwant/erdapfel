@@ -49,7 +49,7 @@ export default class PanelManager extends React.Component {
     const { ActivePanel, options } = this.state;
 
     if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
-      if (ActivePanel !== PoiPanel || !options.resource || !options.resource.category) {
+      if (ActivePanel !== PoiPanel || !options.poiFilters || !options.poiFilters.category) {
         fire('remove_category_markers');
         fire('remove_event_markers');
       }
@@ -81,7 +81,7 @@ export default class PanelManager extends React.Component {
         this.setState({
           ActivePanel: CategoryPanel,
           options: {
-            resource: {
+            poiFilters: {
               category,
               query,
             },

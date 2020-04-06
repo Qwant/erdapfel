@@ -17,12 +17,12 @@ const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
 export default class CategoryPanel extends React.Component {
   static propTypes = {
-    resource: PropTypes.object,
+    poiFilters: PropTypes.object,
     bbox: PropTypes.string,
   }
 
   static defaultProps = {
-    resource: {},
+    poiFilters: {},
   }
 
   state = {
@@ -32,7 +32,7 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentDidMount() {
-    const { category } = this.props.resource;
+    const { category } = this.props.poiFilters;
 
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
 
@@ -88,7 +88,7 @@ export default class CategoryPanel extends React.Component {
   }
 
   fetchData = async () => {
-    const { category, query } = this.props.resource;
+    const { category, query } = this.props.poiFilters;
 
     const bbox = window.map.mb.getBounds();
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
@@ -107,7 +107,7 @@ export default class CategoryPanel extends React.Component {
       initialLoading: false,
     });
 
-    fire('add_category_markers', places, this.props.resource.categoryName);
+    fire('add_category_markers', places, this.props.poiFilters.categoryName);
     fire('save_location');
   };
 
@@ -120,7 +120,7 @@ export default class CategoryPanel extends React.Component {
           template: 'multiple',
           zone: 'list',
           element: 'phone',
-          category: this.props.resource.categoryName,
+          category: this.props.poiFilters.categoryName,
         })
       );
     }
@@ -132,8 +132,8 @@ export default class CategoryPanel extends React.Component {
   }
 
   selectPoi = poi => {
-    const { resource } = this.props;
-    fire('click_category_poi', poi, resource);
+    const { poiFilters } = this.props;
+    fire('click_category_poi', poi, poiFilters);
   }
 
   highlightPoiMarker = (poi, highlight) => {

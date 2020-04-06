@@ -19,12 +19,12 @@ export default class SceneCategory {
     listen('highlight_category_marker', (poi, highlight) => {
       this.highlightPoiMarker(poi, highlight);
     });
-    listen('click_category_poi', (poi, resource) => {
-      this.selectPoi(poi, resource);
+    listen('click_category_poi', (poi, poiFilters) => {
+      this.selectPoi(poi, poiFilters);
     });
   }
 
-  selectPoi = (poi, resource) => {
+  selectPoi = (poi, poiFilters) => {
     const previousMarker = document.querySelector('.mapboxgl-marker.active');
     if (previousMarker) {
       previousMarker.classList.remove('active');
@@ -37,13 +37,13 @@ export default class SceneCategory {
           template: 'multiple',
           zone: 'list',
           element: 'item',
-          category: resource.category,
+          category: poiFilters.category,
         })
       );
     }
     window.app.navigateTo(`/place/${toUrl(poi)}`, {
       poi,
-      resource,
+      poiFilters,
       centerMap: true,
     });
     this.highlightPoiMarker(poi, true);
