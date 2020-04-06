@@ -43,6 +43,10 @@ export default class PoiPanel extends React.Component {
     centerMap: PropTypes.bool,
   }
 
+  static defaultProps = {
+    poiFilters: {},
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -178,9 +182,27 @@ export default class PoiPanel extends React.Component {
   backToList = () => {
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
-    const uri = this.props.poiFilters.category
-      ? `/places/?type=${this.props.poiFilters.category}`
-      : `/places/?q=${this.props.poiFilters.query}`;
+
+    const uri = Object
+      .keys(this.props.poiFilters)
+      .reduce((uri, filterName) => {
+        if (!this.props.poiFilters[filterName]) {
+          return uri;
+        }
+
+        uri += uri[uri.length - 1] === '/' ? '?' : '&';
+
+        // TODO use keys as query param
+        if (filterName === 'category') {
+          uri += 'type=';
+        } else if (filterName === 'query') {
+          uri += 'q=';
+        }
+
+        uri += this.props.poiFilters[filterName];
+        return uri;
+      }, '/places/');
+
     window.app.navigateTo(uri);
   }
 
@@ -234,7 +256,7 @@ export default class PoiPanel extends React.Component {
         text: _('Back to favorite'),
         className: 'poi_panel__back_to_list',
       };
-    } else if (poiFilters && (poiFilters.category || poiFilters.query)) {
+    } else if (poiFilters.category || poiFilters.query) {
       backAction = {
         callback: this.backToList,
         text: _('Back to list'),
