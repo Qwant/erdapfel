@@ -66,6 +66,26 @@ test('search has lang in query', async () => {
   expect(autocompleteItems).toHaveLength(SUGGEST_MAX_ITEMS);
 });
 
+test('search with focus on current map position', async () => {
+  const page = await browser.newPage();
+  await page.setDefaultTimeout(2000);
+  const responseHandler = await ResponseHandler.init(page);
+  const autocompleteHelper = new AutocompleteHelper(page);
+
+  const query = 'townhall';
+  responseHandler.addPreparedResponse(
+    mockAutocomplete, /autocomplete\?q=townhall(.*)&lat=45(.*)&lon=5/
+  );
+
+  await page.goto(APP_URL);
+  await page.evaluate(() => {
+    window.map.mb.flyTo({ center: { lat: 45, lng: 5 }, zoom: 15, animate: false });
+  });
+  await autocompleteHelper.typeAndWait(query);
+  const autocompleteItems = await autocompleteHelper.getSuggestList();
+  expect(autocompleteItems).toHaveLength(SUGGEST_MAX_ITEMS);
+});
+
 test('keyboard navigation', async () => {
   const TypedSearch = 'Hello';
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);

@@ -6,7 +6,7 @@ import CategoryService from './category_service';
 function getFocus(focusMinZoom) {
   const zoom = window.map && window.map.mb && window.map.mb.getZoom();
   if (zoom >= focusMinZoom) {
-    const { lat, lon } = window.map.mb.getCenter();
+    const { lat, lng: lon } = window.map.mb.getCenter();
     return { lat, lon, zoom };
   }
   return {};
