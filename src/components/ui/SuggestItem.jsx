@@ -11,25 +11,17 @@ const ItemLabels = ({ firstLabel, secondLabel }) =>
   </div>;
 
 const GeolocationItem = () =>
-  <div
-    className="autocomplete_suggestion autocomplete_suggestion--geoloc"
-    data-id="geolocalisation"
-    data-val={_('Your position', 'direction')}
-  >
+  <div className="autocomplete_suggestion autocomplete_suggestion--geoloc">
     <div className="autocomplete-icon icon-pin_geoloc" />
     <ItemLabels firstLabel={_('Your position', 'direction')} />
   </div>;
 
 const CategoryItem = ({ category }) => {
-  const { id, label, alternativeName, color, backgroundColor } = category;
+  const { label, alternativeName, color, backgroundColor } = category;
   const icon = category.getIcon();
 
   return (
-    <div
-      className="autocomplete_suggestion autocomplete_suggestion--category"
-      data-id={id}
-      data-val={label}
-    >
+    <div className="autocomplete_suggestion autocomplete_suggestion--category">
       <div
         style={{ color, backgroundColor }}
         className={`autocomplete-icon icon icon-${icon.iconClass}`}
@@ -40,15 +32,11 @@ const CategoryItem = ({ category }) => {
 };
 
 const PoiItem = ({ poi }) => {
-  const { id, name, className, subClassName, type, alternativeName } = poi;
+  const { name, className, subClassName, type, alternativeName } = poi;
   const icon = IconManager.get({ className, subClassName, type });
 
   return (
-    <div
-      className="autocomplete_suggestion"
-      data-id={id}
-      data-val={poi.getInputValue()}
-    >
+    <div className="autocomplete_suggestion">
       <div
         style={{ color: icon ? icon.color : '' }}
         className={`autocomplete-icon icon icon-${icon.iconClass}`}
