@@ -180,28 +180,30 @@ export default class PoiPanel extends React.Component {
   }
 
   backToList = () => {
+    const { poiFilters } = this.props;
+
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
 
-    const uri = Object
-      .keys(this.props.poiFilters)
-      .reduce((uri, filterName) => {
-        if (!this.props.poiFilters[filterName]) {
-          return uri;
-        }
+    let uri = '/places/';
 
-        uri += uri[uri.length - 1] === '/' ? '?' : '&';
+    // Reconstruct uri
+    for (const filterName of Object.keys(poiFilters)) {
+      if (!poiFilters[filterName]) {
+        continue;
+      }
 
-        // TODO use keys as query param
-        if (filterName === 'category') {
-          uri += 'type=';
-        } else if (filterName === 'query') {
-          uri += 'q=';
-        }
+      uri += uri[uri.length - 1] === '/' ? '?' : '&';
 
-        uri += this.props.poiFilters[filterName];
-        return uri;
-      }, '/places/');
+      // TODO use keys as query param ?
+      if (filterName === 'category') {
+        uri += 'type=';
+      } else if (filterName === 'query') {
+        uri += 'q=';
+      }
+
+      uri += poiFilters[filterName];
+    }
 
     window.app.navigateTo(uri);
   }
