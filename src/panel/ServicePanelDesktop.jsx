@@ -10,6 +10,7 @@ class ServicePanelDesktop extends React.Component {
   render() {
     return <Panel
       className="service_panel"
+      title={this.props.title}
       white
     >
       <CategoryList className="service_panel__categories" />
