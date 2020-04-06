@@ -107,7 +107,7 @@ export default class CategoryPanel extends React.Component {
       initialLoading: false,
     });
 
-    fire('add_category_markers', places, this.props.poiFilters.categoryName);
+    fire('add_category_markers', places, this.props.poiFilters.category);
     fire('save_location');
   };
 
@@ -120,7 +120,7 @@ export default class CategoryPanel extends React.Component {
           template: 'multiple',
           zone: 'list',
           element: 'phone',
-          category: this.props.poiFilters.categoryName,
+          category: this.props.poiFilters.category,
         })
       );
     }
