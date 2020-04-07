@@ -3,6 +3,7 @@ import nconf from '@qwant/nconf-getter';
 import TimeTable from './TimeTable';
 import covidStrings from './covid_strings';
 import OsmSchedule from 'src/adapters/osm_schedule';
+import Telemetry from 'src/libs/telemetry';
 
 const covidConf = nconf.get().covid19;
 
@@ -16,9 +17,18 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
   const source = contribute_url &&
     <div className="covid19-source">
       <div>Source&nbsp;:&nbsp;
-        <a rel="noopener noreferrer" href="https://caresteouvert.fr">Ça reste ouvert</a>
+        <a
+          rel="noopener noreferrer"
+          href="https://caresteouvert.fr"
+          onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK); }}
+        >Ça reste ouvert</a>
       </div>
-      <a className="covid19-contributeLink" rel="noopener noreferrer" href={contribute_url}>
+      <a
+        className="covid19-contributeLink"
+        rel="noopener noreferrer"
+        href={contribute_url}
+        onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE); }}
+      >
         {covidStrings.linkToCaResteOuvert}
       </a>
     </div>;
