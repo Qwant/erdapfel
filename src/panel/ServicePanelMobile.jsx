@@ -79,7 +79,9 @@ class ServicePanelMobile extends React.Component {
 
       <CategoryList className="service_panel__categories" />
 
-      { nconf.get().events.enabled && this.props.events }
+      {
+        nconf.get().events.enabled && this.props.events
+      }
     </Panel>;
   }
 }
