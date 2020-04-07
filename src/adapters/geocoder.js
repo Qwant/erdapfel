@@ -7,9 +7,7 @@ const serviceConfigs = nconf.get().services;
 const geocoderConfig = serviceConfigs.geocoder;
 const geocoderFocusPrecision = geocoderConfig.focusPrecision;
 
-if (!window.__bragiCache) {
-  window.__bragiCache = {};
-}
+const bragiCache = {};
 
 function roundWithPrecision(value, precision) {
   const rounded = Math.round(value * (1 / precision)) * precision;
@@ -24,9 +22,9 @@ export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
     cacheKey += `;${lat};${lon}`;
   }
   /* cache */
-  if (cacheKey in window.__bragiCache) {
+  if (cacheKey in bragiCache) {
     const cachePromise = new Promise(resolve => {
-      resolve(window.__bragiCache[cacheKey]);
+      resolve(bragiCache[cacheKey]);
     });
     cachePromise.abort = () => {};
     return cachePromise;
@@ -61,7 +59,7 @@ export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
         );
         return new BragiPoi(feature, queryContext);
       });
-      window.__bragiCache[cacheKey] = bragiResponse;
+      bragiCache[cacheKey] = bragiResponse;
       resolve(bragiResponse);
     }).catch(error => {
       if (error === 0) { /* abort */
