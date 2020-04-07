@@ -4,9 +4,15 @@ import { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryService from 'src/adapters/category_service';
 import CategoryList from 'src/components/CategoryList';
+import PropTypes from 'prop-types';
 import nconf from '@qwant/nconf-getter';
 
 class ServicePanelDesktop extends React.Component {
+
+  static propTypes = {
+    events: PropTypes.object,
+  };
+
   render() {
     return <Panel
       className="service_panel"
@@ -61,6 +67,8 @@ class ServicePanelDesktop extends React.Component {
         </button>
 
       </div>
+
+      { nconf.get().events.enabled && this.props.events }
     </Panel>;
   }
 }

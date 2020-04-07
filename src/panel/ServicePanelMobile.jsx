@@ -2,17 +2,21 @@
 import React from 'react';
 import { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
-import CategoryService from 'src/adapters/category_service';
 import CategoryList from 'src/components/CategoryList';
+import PropTypes from 'prop-types';
 import nconf from '@qwant/nconf-getter';
 
 const directionConf = nconf.get().direction;
 
 class ServicePanelMobile extends React.Component {
+
+  static propTypes = {
+    events: PropTypes.object,
+  };
+
   render() {
     return <Panel
       resizable
-      title=""
       minimizedTitle={_('Unfold to see quick actions', 'service panel')}
       className="service_panel"
       white
@@ -62,7 +66,7 @@ class ServicePanelMobile extends React.Component {
               <div className="service_panel__action__icon">
                 <span className="icon-bike"/>
               </div>
-              <div className="service_panel__action__title">{_('on bike', 'service panel')}</div>
+              <div className="service_panel__action__title">{_('by bike', 'service panel')}</div>
             </button>
           </Fragment>
         }
@@ -75,28 +79,7 @@ class ServicePanelMobile extends React.Component {
 
       <CategoryList className="service_panel__categories" />
 
-      {
-        nconf.get().events.enabled &&
-        <Fragment>
-          <hr/>
-          <div className="service_panel__events">
-            <h3>{_('Good plans', 'service panel')}</h3>
-            {
-              CategoryService.getEvents().map(item =>
-                <button className="service_panel__event" type="button" key={item.name}
-                  onClick={() => { window.app.navigateTo(`/events/?type=${item.name}`); }}>
-                  <div className="service_panel__event__icon"
-                    style={{ background: item.backgroundColor }}>
-                    <span className={`icon icon-${item.iconName}`}/>
-                  </div>
-                  <div className="service_panel__category__title">{item.label}</div>
-                </button>
-              )
-            }
-          </div>
-          <hr/>
-        </Fragment>
-      }
+      { nconf.get().events.enabled && this.props.events }
     </Panel>;
   }
 }

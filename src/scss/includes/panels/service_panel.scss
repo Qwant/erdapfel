@@ -141,8 +141,7 @@
 
 @media (max-width: 640px){
   .panel.service_panel {
-    height: 220px;
-    height: 235px;
+    height: 210px;
     background: #fff;
 
     hr {
@@ -150,7 +149,7 @@
     }
 
     .panel-content {
-      height: calc(100% - 40px);
+      height: calc(100% - 26px);
     }
   }
 
