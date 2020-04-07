@@ -1,5 +1,5 @@
 import PoiStore from './poi/poi_store';
-import BragiPoi from './poi/bragi_poi';
+import { getGeocoderSuggestions } from 'src/adapters/geocoder';
 import CategoryService from './category_service';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 
@@ -28,7 +28,7 @@ export function suggestResults(term, {
     promise = PoiStore.getAll();
   } else {
     promise = new Promise(async (resolve, reject) => {
-      geocoderPromise = BragiPoi.get(term, useFocus ? getFocus(focusMinZoom) : {});
+      geocoderPromise = getGeocoderSuggestions(term, useFocus ? getFocus(focusMinZoom) : {});
       const favoritePromise = PoiStore.get(term);
       const categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : [];
 
