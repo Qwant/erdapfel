@@ -47,18 +47,17 @@ export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
       query.nlu = 'true';
     }
     suggestsPromise = ajax.get(geocoderConfig.url, query);
-    suggestsPromise.then(suggests => {
-      let ranking = 0;
-      const bragiResponse = suggests.features.map(feature => {
-        ranking += 1;
+    suggestsPromise.then(({ features, intentions }) => {
+      const pois = features.map((feature, index) => {
         const queryContext = new QueryContext(
           term,
-          ranking,
+          index + 1, // ranking
           query.lang,
           { lat, lon, zoom }
         );
         return new BragiPoi(feature, queryContext);
       });
+      const bragiResponse = { pois, intentions };
       bragiCache[cacheKey] = bragiResponse;
       resolve(bragiResponse);
     }).catch(error => {

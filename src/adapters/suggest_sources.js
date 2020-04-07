@@ -52,6 +52,7 @@ export function suggestResults(term, {
 
         const keptFavorites = favorites.slice(0, maxFavorites);
         const keptGeocoderSuggestions = geocoderSuggestions
+          .pois
           .slice(0, maxItems - keptFavorites.length - (categories.length > 0 ? 1 : 0));
 
         suggestList = suggestList.concat(
