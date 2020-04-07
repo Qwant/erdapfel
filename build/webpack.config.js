@@ -125,7 +125,7 @@ const mainJsChunkConfig = buildMode => {
         ],
       }],
     },
-    devtool: 'source-map',
+    devtool: buildMode === 'production' ? false : 'source-map',
     node: {
       fs: 'empty',
     },
