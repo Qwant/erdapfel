@@ -1,4 +1,4 @@
-const SUGGEST_SELECTOR = '.autocomplete_suggestion';
+const SUGGEST_SELECTOR = '.autocomplete_suggestions li';
 const CLEAR_BUTTON_SELECTOR = '#clear_button';
 const SEARCH_INPUT_SELECTOR = '#search';
 

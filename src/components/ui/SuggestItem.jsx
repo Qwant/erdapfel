@@ -17,11 +17,14 @@ const GeolocationItem = () =>
   </div>;
 
 const CategoryItem = ({ category }) => {
-  const { label, alternativeName, color, backgroundColor } = category;
+  const { id, label, alternativeName, color, backgroundColor } = category;
   const icon = category.getIcon();
 
   return (
-    <div className="autocomplete_suggestion autocomplete_suggestion--category">
+    <div
+      className="autocomplete_suggestion autocomplete_suggestion--category"
+      data-id={id}
+    >
       <div
         style={{ color, backgroundColor }}
         className={`autocomplete-icon icon icon-${icon.iconClass}`}
