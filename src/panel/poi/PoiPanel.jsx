@@ -14,6 +14,7 @@ import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
+import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import SearchInput from 'src/ui_components/search_input';
@@ -181,30 +182,25 @@ export default class PoiPanel extends React.Component {
 
   backToList = () => {
     const { poiFilters } = this.props;
+    const queryObject = {};
+    const mappingParams = {
+      query: 'q',
+      category: 'type',
+    };
+
+    for (const name in poiFilters) {
+      if (!poiFilters[name]) {
+        continue;
+      }
+      const key = mappingParams[name];
+      queryObject[key || name] = poiFilters[name];
+    }
+
+    const params = buildQueryString(queryObject);
+    const uri = `/places/${params}`;
 
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
-
-    let uri = '/places/';
-
-    // Reconstruct uri
-    for (const filterName of Object.keys(poiFilters)) {
-      if (!poiFilters[filterName]) {
-        continue;
-      }
-
-      uri += uri[uri.length - 1] === '/' ? '?' : '&';
-
-      // TODO use keys as query param ?
-      if (filterName === 'category') {
-        uri += 'type=';
-      } else if (filterName === 'query') {
-        uri += 'q=';
-      }
-
-      uri += poiFilters[filterName];
-    }
-
     window.app.navigateTo(uri);
   }
 
