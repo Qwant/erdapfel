@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { object, func, string, arrayOf } from 'prop-types';
 
@@ -13,8 +13,6 @@ const SuggestsDropdown = ({
 }) => {
   const [highlighted, setHighlighted] = useState(null);
   const [style, setStyle] = useState({});
-  const dropDownRef = useRef(null);
-  const liRef = useRef(null);
 
   useEffect(() => {
     const keyDownHandler = e => {
@@ -95,7 +93,6 @@ const SuggestsDropdown = ({
     <ul
       className={classnames('autocomplete_suggestions', className)}
       style={style}
-      ref={dropDownRef}
     >
       {suggestItems.map((suggest, index) =>
         <li
@@ -108,7 +105,6 @@ const SuggestsDropdown = ({
             ? setHighlighted(null)
             : setHighlighted(index)
           }
-          ref={liRef}
           className={classnames({ 'selected': highlighted === index })}
         >
           <SuggestItem item={suggest} />
