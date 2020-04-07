@@ -3,7 +3,6 @@
 const path = require('path');
 const yaml = require('node-yaml');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const babelConf = require('./babel.config');
 
 const getBuildMode = function(argv) {
@@ -18,22 +17,6 @@ const getBuildMode = function(argv) {
   return 'production';
 };
 
-
-const addJsOptimizePlugins = function(buildMode, plugins) {
-  if (buildMode === 'production') {
-    plugins = plugins.concat([
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          beautify: false,
-          ecma: 5,
-          compress: true,
-          comments: false,
-        },
-      }),
-    ]);
-  }
-  return plugins;
-};
 
 const sassChunkConfig = () => {
   return {
@@ -94,7 +77,7 @@ const mainJsChunkConfig = buildMode => {
       },
       extensions: ['.js', '.jsx'],
     },
-    plugins: addJsOptimizePlugins(buildMode, [
+    plugins: [
       new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
         if (buildMode === 'test') {
           resource.request = resource.request.replace('--ENV', '-js-mock');
@@ -102,7 +85,7 @@ const mainJsChunkConfig = buildMode => {
           resource.request = resource.request.replace('--ENV', '');
         }
       }),
-    ]),
+    ],
     module: {
       rules: [{
         test: /\.yml$/,
