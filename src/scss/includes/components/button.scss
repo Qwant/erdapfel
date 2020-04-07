@@ -42,3 +42,9 @@
     margin-left: 6px;
   }
 }
+
+a.button {
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -4,6 +4,7 @@ import TimeTable from './TimeTable';
 import covidStrings from './covid_strings';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
+import Button from 'src/components/ui/Button';
 
 const covidConf = nconf.get().covid19;
 
@@ -16,21 +17,23 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 
   const source = contribute_url &&
     <div className="covid19-source">
-      <div>Source&nbsp;:&nbsp;
-        <a
-          rel="noopener noreferrer"
-          href="https://caresteouvert.fr"
-          onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK); }}
-        >Ça reste ouvert</a>
-      </div>
-      <a
-        className="covid19-contributeLink"
+      Source&nbsp;:&nbsp;<a
         rel="noopener noreferrer"
-        href={contribute_url}
-        onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE); }}
+        href="https://caresteouvert.fr"
+        onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK); }}
       >
-        {covidStrings.linkToCaResteOuvert}
+        caresteouvert.fr
       </a>
+      <div className="u-center">
+        <Button
+          className="covid19-contributeLink"
+          rel="noopener noreferrer"
+          href={contribute_url}
+          onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE); }}
+        >
+          {covidStrings.linkToCaResteOuvert}
+        </Button>
+      </div>
     </div>;
 
   let content;
@@ -40,7 +43,6 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
   case 'open_as_usual':
     schedule = opening_hours && new OsmSchedule(opening_hours);
     content = <Fragment>
-      <div className="covid19-status covid19-status--open">{covidStrings.statusOpen}</div>
       {schedule && <div className="covid19-timeTableContainer">
         <i className="icon-icon_clock" />
         <TimeTable schedule={schedule} />
@@ -52,37 +54,33 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
     break;
   case 'maybe_open':
     content = <Fragment>
-      <div className="covid19-status covid19-status--maybeOpen">
-        {covidStrings.statusMaybeOpen}
-      </div>
-      <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>
       {additionalInfo}
       {source}
     </Fragment>;
     break;
   case 'closed':
-    content = <Fragment>
-      <div className="covid19-status covid19-status--closed">
-        {covidStrings.statusClosed}
-      </div>
-      {source}
-    </Fragment>;
-    break;
   default:
-    content = <Fragment>
-      <div className="covid19-status">{covidStrings.statusNoData}</div>
-      {source}
-    </Fragment>;
+    content = source;
   }
 
   return content;
 };
 
+const statusMessages = {
+  open: covidStrings.statusOpen,
+  open_as_usual: covidStrings.statusOpen,
+  maybe_open: covidStrings.statusMaybeOpen,
+  closed: covidStrings.statusClosed,
+  unknown: covidStrings.statusNoData,
+};
+
 /* eslint-disable */
 const Covid19 = ({ block }) => {
+  const statusMsg = statusMessages[block.status] || statusMessages['unknown'];
+
   return <div className="poi_panel__info__section covid19">
     <h4 className="poi_panel__sub_block__title">
-      {covidStrings.blockTitle}
+      <span className="covid19-tag">Covid-19</span>{statusMsg}
     </h4>
     {getContent(block)}
     <div className="covid19-legalWarning">

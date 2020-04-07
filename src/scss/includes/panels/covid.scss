@@ -5,6 +5,23 @@
   .poi_panel__sub_block__title {
     cursor: default;
     margin-bottom: 6px;
+    display: flex;
+  }
+
+  &-tag {
+    color: red;
+    border: 1px solid red;
+    border-radius: 3px;
+    padding: 1px 6px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right: 12px;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+
+  &-status {
+    flex-grow: 1;
   }
 
   &-timeTableContainer {
@@ -36,28 +53,12 @@
     min-width: 24px;
   }
 
-  &-status {
-    &--open {
-      color: #60ad51;
-    }
-    
-    &--maybeOpen {
-      color: orange;
-    }
-    
-    &--closed {
-      color: #8c0212; 
-    }
-  }
-
   .timetable {
     margin-left: 24px;
     margin-bottom: 3px;
   }
 
   &-source {
-    font-size: 12px;
-    text-align: right;
     color: $secondary_text;
     margin-top: 6px;
 
@@ -67,10 +68,13 @@
   }
 
   &-contributeLink {
-    font-weight: bold;
+    text-transform: uppercase;
+    font-weight: normal !important;
+    transition: background-color 0.25s;
+    margin-top: 20px;
 
-    &:before {
-      content: '» '
+    &:hover {
+      background-color: $background_hover;
     }
   }
 
@@ -86,13 +90,30 @@
 
   &-legalWarning {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     font-size: 12px;
+    background-color: $surface;
+    border-radius: 3px;
+    padding: 9px 6px;
     margin-top: 20px;
 
+    p + p {
+      margin-top: 0.5em;
+    }
+
     i {
-      color: #ff8f00;
+      color: red;
       font-size: 15px;
+      margin: 0 6px;
+    }
+
+    a {
+      color: $primary_text;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
