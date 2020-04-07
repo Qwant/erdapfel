@@ -57,9 +57,10 @@ export function toCssUrl(url) {
 }
 
 export function buildQueryString(queriesObject) {
-  const params = new URLSearchParams();
-  for (const name in queriesObject) {
-    params.append(name, queriesObject[name]);
+  if (Object.keys(queriesObject).length === 0) {
+    return '';
   }
-  return params.toString();
+
+  const params = new URLSearchParams(queriesObject);
+  return `?${params.toString()}`;
 }
