@@ -190,6 +190,22 @@ Scene.prototype.initMapBox = function() {
   listen('move_mobile_geolocation_button', bottom => {
     this.moveMobileGeolocationButton(bottom);
   });
+
+  listen('show_mobile_geolocation_button', () => {
+    this.showMobileGeolocationButton();
+  });
+
+  listen('hide_mobile_geolocation_button', () => {
+    this.hideMobileGeolocationButton();
+  });
+
+  listen('show_mobile_direction_button', () => {
+    this.showMobileDirectionButton();
+  });
+
+  listen('hide_mobile_direction_button', () => {
+    this.hideMobileDirectionButton();
+  });
 };
 
 Scene.prototype.getCurrentPaddings = () => getMapPaddings({
@@ -396,6 +412,42 @@ Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
 Scene.prototype.moveMobileGeolocationButton = function(bottom = 0) {
   if (isMobileDevice() || bottom === 0) {
     this.translateUIControl('.mapboxgl-ctrl-geolocate', bottom);
+  }
+};
+
+Scene.prototype.showMobileGeolocationButton = function() {
+  if (isMobileDevice()) {
+    const item = document.querySelector('.mapboxgl-ctrl-geolocate');
+    if (item) {
+      item.classList.remove('hidden');
+    }
+  }
+};
+
+Scene.prototype.hideMobileGeolocationButton = function() {
+  if (isMobileDevice()) {
+    const item = document.querySelector('.mapboxgl-ctrl-geolocate');
+    if (item) {
+      item.classList.add('hidden');
+    }
+  }
+};
+
+Scene.prototype.showMobileDirectionButton = function() {
+  if (isMobileDevice()) {
+    const item = document.querySelector('.direction_shortcut');
+    if (item) {
+      item.classList.remove('hidden');
+    }
+  }
+};
+
+Scene.prototype.hideMobileDirectionButton = function() {
+  if (isMobileDevice()) {
+    const item = document.querySelector('.direction_shortcut');
+    if (item) {
+      item.classList.add('hidden');
+    }
   }
 };
 
