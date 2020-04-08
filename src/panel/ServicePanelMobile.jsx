@@ -23,7 +23,7 @@ class ServicePanelMobile extends React.Component {
     >
       <div className="service_panel__actions">
 
-        <h3>{_('Itineraries', 'service panel')}</h3>
+        <h3>{_('Directions', 'service panel')}</h3>
 
         {
           nconf.get().direction.enabled &&
@@ -48,7 +48,7 @@ class ServicePanelMobile extends React.Component {
                   <span className="icon-public-transport"/>
                 </div>
                 <div className="service_panel__action__title">
-                  {_('transport', 'service panel')}
+                  {_('transit', 'service panel')}
                 </div>
               </button>
             }

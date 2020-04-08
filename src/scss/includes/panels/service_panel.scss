@@ -49,6 +49,7 @@
 .service_panel__events,
 .service_panel__actions {
   padding-top: 5px;
+  text-align: center;
 }
 
 .service_panel__category,
@@ -141,7 +142,7 @@
 
 @media (max-width: 640px){
   .panel.service_panel {
-    height: 210px;
+    height: 220px;
     background: #fff;
 
     hr {
@@ -149,12 +150,12 @@
     }
 
     .panel-content {
-      height: calc(100% - 26px);
+      height: calc(100% - 35px);
     }
   }
 
   .panel.service_panel .panel-resizeHandle {
-    min-height: 40px;
+    min-height: 35px;
   }
 
   .service_panel .panel-header {
