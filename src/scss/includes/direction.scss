@@ -874,6 +874,8 @@ input:valid:focus ~ .itinerary__field__clear {
     right: 9px;
     color: #5c6f84;
     font-size: 25px;
+    opacity: 1;
+    transition: opacity .3s;
 
     /* Attempt to fix rare layout bug on iOS */
     transform: translate3d(0,0,0);
@@ -886,6 +888,10 @@ input:valid:focus ~ .itinerary__field__clear {
 
     .directions-open & {
       display: none;
+    }
+
+    &.hidden {
+      opacity: 0;
     }
   }
 
