@@ -21,7 +21,7 @@ export default class ExtendedControl {
     this._compass = this._createButton(compassClass, 'Reset North', () => {
       this._resetNorthAndTilt();
     });
-    this._direction = this._createButton('direction_shortcut icon-corner-up-right', 'direction',
+    this._direction = this._createButton('direction_shortcut icon-corner-up-right hidden', 'direction',
       () => {
         window.app.navigateTo('/routes');
       }
