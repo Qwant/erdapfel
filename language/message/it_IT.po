@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-13 10:24+0000\n"
+"POT-Creation-Date: 2020-04-09 13:53+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
@@ -767,11 +767,6 @@ msgstr "Indirizzo"
 msgid "street"
 msgstr "Strada"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "recensione"
-msgstr[1] "recensioni"
-
 msgid "Open"
 msgstr "Aperto"
 
@@ -783,6 +778,11 @@ msgstr "Aperto 24/7"
 
 msgid "until {nextTransitionTime}"
 msgstr "fino a {nextTransitionTime}"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "recensione"
+msgstr[1] "recensioni"
 
 msgid "Geolocation with privacy!"
 msgstr "Geolocalizzazione con privacy!"
@@ -851,6 +851,9 @@ msgstr "Impossibile connettersi a Masq"
 
 msgid "category"
 msgstr "categoria"
+
+msgid "Your position"
+msgstr "La tua posizione"
 
 msgid "FAVORITES"
 msgstr "PREFERITI"
@@ -927,25 +930,6 @@ msgstr "ITINERARIO"
 msgid "SEE MORE"
 msgstr "Altre info"
 
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-"Qwant Maps + Masq è la soluzione per un servizio di mappe web che rispetta "
-"la tua privacy!"
-
-msgid "More Details"
-msgstr "Maggiori dettagli"
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr "Vuoi sincronizzare i tuoi preferiti con Masq?"
-
-msgid "No thanks"
-msgstr "No grazie"
-
-msgid "Do not ask again"
-msgstr "Non chiederlo più"
-
 msgid "SHOW NUMBER"
 msgstr ""
 
@@ -1003,6 +987,25 @@ msgstr "VEDI"
 msgid "EDIT"
 msgstr "MODIFICA"
 
+msgid ""
+"Qwant Maps + Masq is the solution for a web mapping service respecting your "
+"privacy!"
+msgstr ""
+"Qwant Maps + Masq è la soluzione per un servizio di mappe web che rispetta "
+"la tua privacy!"
+
+msgid "More Details"
+msgstr "Maggiori dettagli"
+
+msgid "Do you want to synchronize your favorites with Masq ?"
+msgstr "Vuoi sincronizzare i tuoi preferiti con Masq?"
+
+msgid "No thanks"
+msgstr "No grazie"
+
+msgid "Do not ask again"
+msgstr "Non chiederlo più"
+
 msgid "Back to favorite"
 msgstr "Torna ai preferiti"
 
@@ -1015,13 +1018,28 @@ msgstr "Indietro"
 msgid "Search around this place"
 msgstr "Cerca nei dintorni di questo luogo"
 
+msgid "Good plans"
+msgstr ""
+
 msgid "Qwant Maps services"
 msgstr "Servizi Qwant Maps"
 
-msgid "Show Qwant Maps services"
-msgstr "Mostra i servizi Qwant Maps"
+msgid "Unfold to see quick actions"
+msgstr ""
 
-msgid "Good plans"
+msgid "by car"
+msgstr ""
+
+msgid "transit"
+msgstr ""
+
+msgid "on foot"
+msgstr ""
+
+msgid "by bike"
+msgstr ""
+
+msgid "Services nearby"
 msgstr ""
 
 msgid "on {date}"
@@ -1052,14 +1070,14 @@ msgstr "Partnership"
 msgid "Show results"
 msgstr "Mostra soluzioni"
 
-msgid "Your position"
-msgstr "La tua posizione"
-
 msgid "Start point"
 msgstr "Punto di partenza"
 
 msgid "End point"
 msgstr "Punto di arrivo"
+
+msgid "Test"
+msgstr ""
 
 msgid "Invert start and end"
 msgstr "Inverti partenza e destinazione"

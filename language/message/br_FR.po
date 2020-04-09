@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-13 10:24+0000\n"
+"POT-Creation-Date: 2020-04-09 13:53+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -766,14 +766,6 @@ msgstr "chomlec'h"
 msgid "street"
 msgstr "straed"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "ali"
-msgstr[1] "ali"
-msgstr[2] "ali"
-msgstr[3] "ali"
-msgstr[4] "ali"
-
 msgid "Open"
 msgstr "Digor"
 
@@ -785,6 +777,14 @@ msgstr "Digor 24/7"
 
 msgid "until {nextTransitionTime}"
 msgstr "betek {nextTransitionTime}"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "ali"
+msgstr[1] "ali"
+msgstr[2] "ali"
+msgstr[3] "ali"
+msgstr[4] "ali"
 
 msgid "Geolocation with privacy!"
 msgstr "Douarlec'hiañ ha prevezded!"
@@ -853,6 +853,9 @@ msgstr "N'heller ket kevreañ ouzh Masq"
 
 msgid "category"
 msgstr "rummad"
+
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
 
 msgid "FAVORITES"
 msgstr "SINEDOÙ"
@@ -929,25 +932,6 @@ msgstr "TUADURIOÙ"
 msgid "SEE MORE"
 msgstr "GWELET MUIOC'H"
 
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-"Qwant Maps + Masq a zo an diskoulm gwellañ evit ur servij kartennaouiñ "
-"doujus d'ar vuhez brevez!"
-
-msgid "More Details"
-msgstr "Muioc'h a vunudoù"
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr "C'hoant ho peus da sinkronelaat ho karetañ gant Masq?"
-
-msgid "No thanks"
-msgstr "Nann avat"
-
-msgid "Do not ask again"
-msgstr "Na goulenn ken ouzhin"
-
 msgid "SHOW NUMBER"
 msgstr "GWELET AN NIVER"
 
@@ -1005,6 +989,25 @@ msgstr "GWELET"
 msgid "EDIT"
 msgstr "AOZAÑ"
 
+msgid ""
+"Qwant Maps + Masq is the solution for a web mapping service respecting your "
+"privacy!"
+msgstr ""
+"Qwant Maps + Masq a zo an diskoulm gwellañ evit ur servij kartennaouiñ "
+"doujus d'ar vuhez brevez!"
+
+msgid "More Details"
+msgstr "Muioc'h a vunudoù"
+
+msgid "Do you want to synchronize your favorites with Masq ?"
+msgstr "C'hoant ho peus da sinkronelaat ho karetañ gant Masq?"
+
+msgid "No thanks"
+msgstr "Nann avat"
+
+msgid "Do not ask again"
+msgstr "Na goulenn ken ouzhin"
+
 msgid "Back to favorite"
 msgstr "Distreiñ d'ar sinedoù"
 
@@ -1017,14 +1020,29 @@ msgstr "Distreiñ"
 msgid "Search around this place"
 msgstr "Klask tro-dro al lec'h-mañ"
 
+msgid "Good plans"
+msgstr "Planioù mat"
+
 msgid "Qwant Maps services"
 msgstr "Servijoù Qwant Maps"
 
-msgid "Show Qwant Maps services"
-msgstr "Gwelet ar servijoù Qwant Maps"
+msgid "Unfold to see quick actions"
+msgstr ""
 
-msgid "Good plans"
-msgstr "Planioù mat"
+msgid "by car"
+msgstr ""
+
+msgid "transit"
+msgstr ""
+
+msgid "on foot"
+msgstr ""
+
+msgid "by bike"
+msgstr ""
+
+msgid "Services nearby"
+msgstr ""
 
 msgid "on {date}"
 msgstr "d'an/ar {date}"
@@ -1053,14 +1071,14 @@ msgstr "Kevelerezh"
 msgid "Show results"
 msgstr "Diskouez an disoc'hoù"
 
-msgid "Your position"
-msgstr "Ho touarlec'hiañ"
-
 msgid "Start point"
 msgstr "poent loc'hañ"
 
 msgid "End point"
 msgstr "poent fin"
+
+msgid "Test"
+msgstr ""
 
 msgid "Invert start and end"
 msgstr "eilpennañ fin ha loc'hañ"
