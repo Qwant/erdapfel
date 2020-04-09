@@ -44,7 +44,6 @@
 .service_panel__events,
 .service_panel__actions {
   padding-top: 5px;
-  text-align: center;
 }
 
 .service_panel__category,
@@ -178,5 +177,10 @@
       font-size: 20px;
       line-height: 40px;
     }
+  }
+
+  .service_panel__events,
+  .service_panel__actions {
+    text-align: center;
   }
 }
