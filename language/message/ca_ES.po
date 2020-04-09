@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-13 10:24+0000\n"
+"POT-Creation-Date: 2020-04-09 13:53+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: jmontane, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -765,11 +765,6 @@ msgstr "adreça"
 msgid "street"
 msgstr "carrer"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Open"
 msgstr "Obert"
 
@@ -781,6 +776,11 @@ msgstr "Obert 24/7"
 
 msgid "until {nextTransitionTime}"
 msgstr "fins {nextTransitionTime}"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Geolocation with privacy!"
 msgstr "Geolocalització amb privadesa!"
@@ -846,6 +846,9 @@ msgstr ""
 
 msgid "category"
 msgstr "categoria"
+
+msgid "Your position"
+msgstr "La vostra posició"
 
 msgid "FAVORITES"
 msgstr "PREFERITS"
@@ -921,23 +924,6 @@ msgstr "INDICACIONS"
 msgid "SEE MORE"
 msgstr "MÉS INFORMACIÓ"
 
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-
-msgid "More Details"
-msgstr "Més detalls"
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr "Voleu sincronitzar els preferits amb Masq?"
-
-msgid "No thanks"
-msgstr "No, gràcies"
-
-msgid "Do not ask again"
-msgstr "No m'ho tornis a demanar"
-
 msgid "SHOW NUMBER"
 msgstr "MOSTRA EL NOMBRE"
 
@@ -995,6 +981,23 @@ msgstr "MOSTRA"
 msgid "EDIT"
 msgstr "EDITA"
 
+msgid ""
+"Qwant Maps + Masq is the solution for a web mapping service respecting your "
+"privacy!"
+msgstr ""
+
+msgid "More Details"
+msgstr "Més detalls"
+
+msgid "Do you want to synchronize your favorites with Masq ?"
+msgstr "Voleu sincronitzar els preferits amb Masq?"
+
+msgid "No thanks"
+msgstr "No, gràcies"
+
+msgid "Do not ask again"
+msgstr "No m'ho tornis a demanar"
+
 msgid "Back to favorite"
 msgstr "Torna als preferits"
 
@@ -1007,13 +1010,28 @@ msgstr "Enrere"
 msgid "Search around this place"
 msgstr "Cerca prop d'aquest lloc"
 
+msgid "Good plans"
+msgstr ""
+
 msgid "Qwant Maps services"
 msgstr "Serveis Qwant Maps"
 
-msgid "Show Qwant Maps services"
-msgstr "Mostra els serveis de Qwant Maps"
+msgid "Unfold to see quick actions"
+msgstr ""
 
-msgid "Good plans"
+msgid "by car"
+msgstr ""
+
+msgid "transit"
+msgstr ""
+
+msgid "on foot"
+msgstr ""
+
+msgid "by bike"
+msgstr ""
+
+msgid "Services nearby"
 msgstr ""
 
 msgid "on {date}"
@@ -1043,14 +1061,14 @@ msgstr ""
 msgid "Show results"
 msgstr "Mostra els resultats"
 
-msgid "Your position"
-msgstr "La vostra posició"
-
 msgid "Start point"
 msgstr "Punt d'inici"
 
 msgid "End point"
 msgstr "Punt final"
+
+msgid "Test"
+msgstr ""
 
 msgid "Invert start and end"
 msgstr "Inverteix l'inici i el final"
