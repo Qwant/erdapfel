@@ -1,26 +1,23 @@
 /* global _ */
-import React, { Fragment } from 'react';
+import React from 'react';
 import CategoryService from 'src/adapters/category_service';
+import Action from 'src/components/ui/MainActionButton';
 
-const EventTypeList = () => {
-  return <Fragment>
-    <hr/>
-    <div className="service_panel__events">
-      <h3>{_('Good plans', 'service panel')}</h3>
-      {
-        CategoryService.getEvents().map(item =>
-          <button className="service_panel__event" type="button" key={item.name}
-            onClick={() => { window.app.navigateTo(`/events/?type=${item.name}`); }}>
-            <div className="service_panel__event__icon"
-              style={{ background: item.backgroundColor }}>
-              <span className={`icon icon-${item.iconName}`}/>
-            </div>
-            <div className="service_panel__category__title">{item.label}</div>
-          </button>
-        )
-      }
-    </div>
-  </Fragment>;
-};
+const EventTypeList = () =>
+  <div className="service_panel__events">
+    <h3>{_('Good plans', 'service panel')}</h3>
+    {
+      CategoryService.getEvents().map(item =>
+        <Action
+          key={item.name}
+          onClick={() => { window.app.navigateTo(`/events/?type=${item.name}`); }}
+          variant="event"
+          label={item.label}
+          icon={item.iconName}
+          iconStyle={{ backgroundColor: item.backgroundColor }}
+        />
+      )
+    }
+  </div>;
 
 export default EventTypeList;

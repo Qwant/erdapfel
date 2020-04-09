@@ -1,9 +1,9 @@
 /* global _ */
-import React from 'react';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
 import EventTypeList from './EventTypeList';
+import Action from 'src/components/ui/MainActionButton';
 import nconf from '@qwant/nconf-getter';
 
 const directionConf = nconf.get().direction;
@@ -23,46 +23,34 @@ class ServicePanelMobile extends React.Component {
         {
           nconf.get().direction.enabled &&
           <Fragment>
-            <button
+            <Action
               onClick={() => { window.app.navigateTo('/routes/?mode=driving'); }}
-              className="service_panel__action service_panel__item__direction">
-              <div className="service_panel__action__icon">
-                <span className="icon-drive"/>
-              </div>
-              <div className="service_panel__action__title">{_('by car', 'service panel')}</div>
-            </button>
-            {/* {
+              variant="directionMode"
+              icon="drive"
+              label={_('by car', 'service panel')}
+            />
+            {
               directionConf.publicTransport
               && directionConf.publicTransport.enabled
-              && <button
-                onClick={() => {
-                  window.app.navigateTo('/routes/?mode=publicTransport');
-                }}
-                className="service_panel__action service_panel__item__direction">
-                <div className="service_panel__action__icon">
-                  <span className="icon-public-transport"/>
-                </div>
-                <div className="service_panel__action__title">
-                  {_('transit', 'service panel')}
-                </div>
-              </button>
-            } */}
-            <button
+              && <Action
+                onClick={() => { window.app.navigateTo('/routes/?mode=publicTransport'); }}
+                variant="directionMode"
+                icon="public-transport"
+                label={_('transit', 'service panel')}
+              />
+            }
+            <Action
               onClick={() => { window.app.navigateTo('/routes/?mode=walking'); }}
-              className="service_panel__action service_panel__item__direction">
-              <div className="service_panel__action__icon">
-                <span className="icon-foot"/>
-              </div>
-              <div className="service_panel__action__title">{_('on foot', 'service panel')}</div>
-            </button>
-            <button
+              variant="directionMode"
+              icon="foot"
+              label={_('on foot', 'service panel')}
+            />
+            <Action
               onClick={() => { window.app.navigateTo('/routes/?mode=cycling'); }}
-              className="service_panel__action service_panel__item__direction">
-              <div className="service_panel__action__icon">
-                <span className="icon-bike"/>
-              </div>
-              <div className="service_panel__action__title">{_('by bike', 'service panel')}</div>
-            </button>
+              variant="directionMode"
+              icon="bike"
+              label={_('by bike', 'service panel')}
+            />
           </Fragment>
         }
 
@@ -74,7 +62,10 @@ class ServicePanelMobile extends React.Component {
 
       <CategoryList className="service_panel__categories" />
 
-      {nconf.get().events.enabled && <EventTypeList />}
+      {nconf.get().events.enabled && <Fragment>
+        <hr />
+        <EventTypeList />
+      </Fragment>}
     </Panel>;
   }
 }

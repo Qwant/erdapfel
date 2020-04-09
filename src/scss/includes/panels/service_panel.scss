@@ -39,103 +39,19 @@
   margin: 0;
   padding: 0 12px 10px 12px;
   display: block;
+
+  .mainActionButton {
+    width: 25%;
+    margin: 5px 0 15px 0;
+  }
 }
 
 .service_panel__events,
 .service_panel__actions {
-  padding-top: 5px;
-}
-
-.service_panel__category,
-.service_panel__event,
-.service_panel__action {
-  width: 25%;
-  margin: 5px 0 15px 0;
-}
-
-.service_panel__category__title,
-.service_panel__event_title,
-.service_panel__action__title {
-  font-size: 11px;
-  color: #5c6f84;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 5px 0 0;
-}
-
-.service_panel__action__icon {
-  border: 1px solid #c8cbd3;
-
-  span {
-    color: #5c6f84;
-    font-size: 22px;
-    line-height: 36px;
-  }
-}
-
-.side_bar__item__icon {
-  color: $secondary_text;
-}
-
-.service_panel__item {
-  float: left;
-  margin: 0 25px 0 20px;
-}
-
-.service_panel__item--disabled {
-  .service_panel__item__action, .side_bar__item__icon {
-    cursor: default;
-    color: rgba(92, 111, 132, .4);
-  }
-}
-
-.service_panel__item__action {
-  cursor: pointer;
-  font-size: 13px;
-  color: $secondary_text;
-}
-
-.service_panel__item:not(.service_panel__item--disabled) .service_panel__item__action:hover .service_panel__item__text {
-  color: $primary_text;
-  text-decoration: underline;
-}
-
-.service_panel__category:hover .service_panel__category__icon,
-.service_panel__event:hover .service_panel__event__icon,
-.service_panel__action:hover .service_panel__action__icon {
-  transform: scale3d(1.1, 1.1, 1.1);
-}
-
-.service_panel__category__icon,
-.service_panel__event__icon,
-.service_panel__action__icon {
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  margin: auto;
-  border-radius: 50%;
-  transition: transform .1s ease-in;
-  position: relative;
-
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-.service_panel__category__icon,
-.service_panel__event__icon {
-  span {
-    color: #fff;
-    font-size: 40px;
-    line-height: 40px;
-  }
+  padding-top: 15px;
 }
 
 @media (max-width: 640px){
-
   .panel.service_panel {
     height: 220px;
     background: #fff;
@@ -168,19 +84,9 @@
     height: 50px;
   }
 
-  .service_panel__action__icon {
-    background: #1050c5;
-    border: none;
-
-    span {
-      color: #fff;
-      font-size: 20px;
-      line-height: 40px;
-    }
-  }
-
   .service_panel__events,
   .service_panel__actions {
+    padding-top: 5px;
     text-align: center;
   }
 }
