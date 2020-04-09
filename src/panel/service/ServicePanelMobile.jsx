@@ -3,17 +3,12 @@ import React from 'react';
 import { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
-import PropTypes from 'prop-types';
+import EventTypeList from './EventTypeList';
 import nconf from '@qwant/nconf-getter';
 
 const directionConf = nconf.get().direction;
 
 class ServicePanelMobile extends React.Component {
-
-  static propTypes = {
-    events: PropTypes.object,
-  };
-
   render() {
     return <Panel
       resizable
@@ -36,7 +31,7 @@ class ServicePanelMobile extends React.Component {
               </div>
               <div className="service_panel__action__title">{_('by car', 'service panel')}</div>
             </button>
-            {
+            {/* {
               directionConf.publicTransport
               && directionConf.publicTransport.enabled
               && <button
@@ -51,7 +46,7 @@ class ServicePanelMobile extends React.Component {
                   {_('transit', 'service panel')}
                 </div>
               </button>
-            }
+            } */}
             <button
               onClick={() => { window.app.navigateTo('/routes/?mode=walking'); }}
               className="service_panel__action service_panel__item__direction">
@@ -79,9 +74,7 @@ class ServicePanelMobile extends React.Component {
 
       <CategoryList className="service_panel__categories" />
 
-      {
-        nconf.get().events.enabled && this.props.events
-      }
+      {nconf.get().events.enabled && <EventTypeList />}
     </Panel>;
   }
 }
