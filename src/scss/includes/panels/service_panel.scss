@@ -61,12 +61,12 @@
     }
 
     .panel-content {
-      height: calc(100% - 35px);
+      height: calc(100% - 40px);
     }
   }
 
   .panel.service_panel .panel-resizeHandle {
-    min-height: 35px;
+    min-height: 40px;
   }
 
   .service_panel .panel-header {
@@ -81,7 +81,6 @@
   .panel.service_panel.minimized .panel-header {
     padding-top: 7px;
     font-weight: normal;
-    height: 50px;
   }
 
   .service_panel__events,
