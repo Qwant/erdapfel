@@ -1,21 +1,18 @@
 import React from 'react';
 import CategoryService from 'src/adapters/category_service';
+import MainActionButton from 'src/components/ui/MainActionButton';
 
 const CategoryList = ({ className }) =>
   <div className={className}>
     {CategoryService.getCategories().map(category =>
-      <button className="service_panel__category"
+      <MainActionButton
         key={category.name}
-        type="button"
         onClick={() => { window.app.navigateTo(`/places/?type=${category.name}`); }}
-      >
-        <div className="service_panel__category__icon"
-          style={{ background: category.backgroundColor }}
-        >
-          <span className={`icon icon-${category.iconName}`} />
-        </div>
-        <div className="service_panel__category__title">{category.label}</div>
-      </button>)
+        variant="category"
+        label={category.label}
+        icon={category.iconName}
+        iconStyle={{ backgroundColor: category.backgroundColor }}
+      />)
     }
   </div>;
 

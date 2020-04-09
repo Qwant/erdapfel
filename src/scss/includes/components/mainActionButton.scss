@@ -1,0 +1,54 @@
+.mainActionButton {
+  cursor: pointer;
+
+  &-label {
+    font-size: 11px;
+    color: #5c6f84;
+    line-height: 16px;
+    text-transform: uppercase;
+    margin: 5px 0 0;
+  }
+
+  &-icon {
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    border-radius: 50%;
+    transition: transform .1s ease-in;
+  }
+
+  &:hover {
+    .mainActionButton-icon {
+      transform: scale3d(1.1, 1.1, 1.1);
+    }
+  }
+}
+
+.mainActionButton--category,
+.mainActionButton--event {
+  .mainActionButton-icon {
+    font-family: iconfont !important;
+    color: #fff;
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+.mainActionButton--feature {
+  .mainActionButton-icon {
+    border: 1px solid #c8cbd3;
+    color: #5c6f84;
+    font-size: 22px;
+    line-height: 36px;
+  }
+}
+
+.mainActionButton--directionMode {
+  .mainActionButton-icon {
+    background: #1050c5;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    line-height: 40px;
+  }
+}
