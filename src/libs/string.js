@@ -32,4 +32,8 @@ ExtendedString.htmlEncode = function(str) {
   });
 };
 
+ExtendedString.capitalizeFirstLetter = function(str) {
+  return !str ? str : str[0].toUpperCase() + str.substring(1);
+};
+
 export default ExtendedString;

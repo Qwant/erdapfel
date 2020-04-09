@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Autocomplete from '../vendors/autocomplete';
 import nconf from '@qwant/nconf-getter';
 import PoiStore from './poi/poi_store';
+import StringUtils from 'src/libs/string';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -62,10 +63,12 @@ export default class Suggest {
             inputId={this.searchInputDomHandler.getAttribute('id')}
             suggestItems={items}
             onHighlight={item => {
-              this.searchInputDomHandler.value = item ? item.name : typedValue;
+              this.searchInputDomHandler.value = item
+                ? StringUtils.capitalizeFirstLetter(item.name)
+                : typedValue;
             }}
             onSelect={item => {
-              this.searchInputDomHandler.value = item.name || '';
+              this.searchInputDomHandler.value = StringUtils.capitalizeFirstLetter(item.name || '');
               this.searchInputDomHandler.blur();
               this.onSelect(item);
             }}
