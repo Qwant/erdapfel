@@ -1,6 +1,7 @@
 import PoiStore from './poi/poi_store';
 import BragiPoi from './poi/bragi_poi';
 import CategoryService from './category_service';
+import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 
 // @TODO: Improvement: don't access directly to window.map
 function getFocus(focusMinZoom) {
@@ -12,7 +13,14 @@ function getFocus(focusMinZoom) {
   return {};
 }
 
-export function suggestResults(term, { withCategories, useFocus, focusMinZoom = 11 } = {}) {
+export function suggestResults(term, {
+  withGeoloc,
+  withCategories,
+  useFocus,
+  focusMinZoom = 11,
+  maxFavorites = 2,
+  maxItems = 10,
+} = {}) {
   let geocoderPromise;
   let promise;
   if (term === '') {
@@ -34,11 +42,22 @@ export function suggestResults(term, { withCategories, useFocus, focusMinZoom = 
           return resolve(null);
         }
 
-        const suggestList = [
-          ...categories,
-          ...geocoderSuggestions,
-          ...favorites,
-        ];
+        let suggestList = [];
+        if (withGeoloc) {
+          suggestList.push(NavigatorGeolocalisationPoi.getInstance());
+        }
+        if (categories.length > 0) {
+          suggestList.push(categories[0]);
+        }
+
+        const keptFavorites = favorites.slice(0, maxFavorites);
+        const keptGeocoderSuggestions = geocoderSuggestions
+          .slice(0, maxItems - keptFavorites.length - (categories.length > 0 ? 1 : 0));
+
+        suggestList = suggestList.concat(
+          keptGeocoderSuggestions,
+          keptFavorites,
+        );
 
         resolve(suggestList);
       } catch (e) {

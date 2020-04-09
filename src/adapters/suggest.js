@@ -2,10 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Autocomplete from '../vendors/autocomplete';
-import PoiStore from './poi/poi_store';
-import Category from './category';
 import nconf from '@qwant/nconf-getter';
-import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
+import PoiStore from './poi/poi_store';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -34,30 +32,17 @@ export default class Suggest {
         this.pending = false;
       },
       source: term => suggestResults(term, {
+        withGeoloc,
         withCategories,
         useFocus: SUGGEST_USE_FOCUS,
         focusMinZoom: SUGGEST_FOCUS_MIN_ZOOM,
+        maxFavorites: !term ? 5 : 2,
+        maxItems: SUGGEST_MAX_ITEMS,
       }),
-
-      renderItems: (pois, query) => {
-        const favorites = pois.filter(poi => poi instanceof PoiStore);
-        const categories = pois.filter(poi => poi instanceof Category).slice(0, 1);
-        const geocoderResults = pois.filter(poi => {
-          return !favorites.find(fav => fav.id === poi.id) && !categories.includes(poi);
-        });
-
-        const nbDisplayedFavorites = Math.min(favorites.length, !query ? 5 : 2);
-        const nbDisplayedGeocoder = SUGGEST_MAX_ITEMS - nbDisplayedFavorites - categories.length;
-
-        let suggestItems = [];
-        if (withGeoloc) {
-          suggestItems.push(NavigatorGeolocalisationPoi.getInstance());
-        }
-        suggestItems = suggestItems.concat(categories);
-        suggestItems = suggestItems.concat(geocoderResults.slice(0, nbDisplayedGeocoder));
-        if (nbDisplayedFavorites > 0) {
-          suggestItems.push({ simpleLabel: _('Favorites', 'autocomplete').toUpperCase() });
-          suggestItems = suggestItems.concat(favorites.slice(0, nbDisplayedFavorites));
+      renderItems: items => {
+        const firstFav = items.findIndex(item => item instanceof PoiStore);
+        if (firstFav !== -1) {
+          items.splice(firstFav, 0, { simpleLabel: _('Favorites', 'autocomplete').toUpperCase() });
         }
 
         // Create a react node, or reuse the existing node
@@ -75,7 +60,7 @@ export default class Suggest {
         ReactDOM.render(
           <SuggestsDropdown
             inputId={this.searchInputDomHandler.getAttribute('id')}
-            suggestItems={suggestItems}
+            suggestItems={items}
             onHighlight={item => {
               this.searchInputDomHandler.value = item ? item.name : typedValue;
             }}
