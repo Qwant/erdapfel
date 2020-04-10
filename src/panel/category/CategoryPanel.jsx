@@ -55,7 +55,7 @@ export default class CategoryPanel extends React.Component {
     }
 
     if (bbox !== prevProps.bbox) {
-      this.fitMapAndFetch();
+      window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
     }
   }
 
