@@ -32,23 +32,30 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentDidMount() {
-    const { category } = this.props.poiFilters;
-
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
-
-    if (category) {
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
-      const { label } = CategoryService.getCategoryByName(category);
-      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
-    }
-
     window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    const { bbox } = this.props;
+    const { category } = this.props.poiFilters;
+
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
       panelContent.scrollTop = 0;
+    }
+
+    if (category !== prevProps.poiFilters.category) {
+      if (category) {
+        Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
+        const { label } = CategoryService.getCategoryByName(category);
+        SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
+      }
+      this.fetchData();
+    }
+
+    if (bbox !== prevProps.bbox) {
+      this.fitMapAndFetch();
     }
   }
 
@@ -101,6 +108,7 @@ export default class CategoryPanel extends React.Component {
       category,
       query
     );
+
     this.setState({
       pois: places,
       dataSource: source,
