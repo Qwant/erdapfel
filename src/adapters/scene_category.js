@@ -19,12 +19,12 @@ export default class SceneCategory {
     listen('highlight_category_marker', (poi, highlight) => {
       this.highlightPoiMarker(poi, highlight);
     });
-    listen('click_category_poi', (poi, categoryName) => {
-      this.selectPoi(poi, categoryName);
+    listen('click_category_poi', (poi, poiFilters) => {
+      this.selectPoi(poi, poiFilters);
     });
   }
 
-  selectPoi = (poi, categoryName) => {
+  selectPoi = (poi, poiFilters) => {
     const previousMarker = document.querySelector('.mapboxgl-marker.active');
     if (previousMarker) {
       previousMarker.classList.remove('active');
@@ -37,14 +37,13 @@ export default class SceneCategory {
           template: 'multiple',
           zone: 'list',
           element: 'item',
-          category: categoryName,
+          category: poiFilters.category,
         })
       );
     }
     window.app.navigateTo(`/place/${toUrl(poi)}`, {
       poi,
-      isFromCategory: true,
-      sourceCategory: categoryName,
+      poiFilters,
       centerMap: true,
     });
     this.highlightPoiMarker(poi, true);
@@ -59,7 +58,9 @@ export default class SceneCategory {
         poi.marker_id = `marker_${id}`;
         marker.onclick = function(e) {
           e.stopPropagation();
-          fire('click_category_poi', poi, categoryName);
+          fire('click_category_poi', poi, {
+            category: categoryName,
+          });
         };
         marker.onmouseover = function(e) {
           fire('open_popup', poi, e);

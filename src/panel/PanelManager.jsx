@@ -49,7 +49,7 @@ export default class PanelManager extends React.Component {
     const { ActivePanel, options } = this.state;
 
     if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
-      if (ActivePanel !== PoiPanel || !options.isFromCategory) {
+      if (ActivePanel !== PoiPanel || !options.poiFilters || !options.poiFilters.category) {
         fire('remove_category_markers');
         fire('remove_event_markers');
       }
@@ -77,10 +77,16 @@ export default class PanelManager extends React.Component {
 
     if (categoryEnabled) {
       router.addRoute('Category', '/places/(.*)', placesParams => {
-        const { type: categoryName, q: query, ...otherOptions } = parseQueryString(placesParams);
+        const { type: category, q: query, ...otherOptions } = parseQueryString(placesParams);
         this.setState({
           ActivePanel: CategoryPanel,
-          options: { categoryName, query, ...otherOptions },
+          options: {
+            poiFilters: {
+              category,
+              query,
+            },
+            ...otherOptions,
+          },
         });
       });
     }

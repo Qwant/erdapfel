@@ -17,9 +17,12 @@ const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
 export default class CategoryPanel extends React.Component {
   static propTypes = {
-    categoryName: PropTypes.string,
-    query: PropTypes.string,
+    poiFilters: PropTypes.object,
     bbox: PropTypes.string,
+  }
+
+  static defaultProps = {
+    poiFilters: {},
   }
 
   state = {
@@ -29,10 +32,13 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentDidMount() {
+    const { category } = this.props.poiFilters;
+
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
-    if (this.props.categoryName) {
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category: this.props.categoryName });
-      const { label } = CategoryService.getCategoryByName(this.props.categoryName);
+
+    if (category) {
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
+      const { label } = CategoryService.getCategoryByName(category);
       SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
     }
 
@@ -82,6 +88,8 @@ export default class CategoryPanel extends React.Component {
   }
 
   fetchData = async () => {
+    const { category, query } = this.props.poiFilters;
+
     const bbox = window.map.mb.getBounds();
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
@@ -90,8 +98,8 @@ export default class CategoryPanel extends React.Component {
     const { places, source } = await IdunnPoi.poiCategoryLoad(
       urlBBox,
       MAX_PLACES,
-      this.props.categoryName,
-      this.props.query
+      category,
+      query
     );
     this.setState({
       pois: places,
@@ -99,7 +107,7 @@ export default class CategoryPanel extends React.Component {
       initialLoading: false,
     });
 
-    fire('add_category_markers', places, this.props.categoryName);
+    fire('add_category_markers', places, this.props.poiFilters.category);
     fire('save_location');
   };
 
@@ -112,7 +120,7 @@ export default class CategoryPanel extends React.Component {
           template: 'multiple',
           zone: 'list',
           element: 'phone',
-          category: this.props.categoryName,
+          category: this.props.poiFilters.category,
         })
       );
     }
@@ -124,7 +132,8 @@ export default class CategoryPanel extends React.Component {
   }
 
   selectPoi = poi => {
-    fire('click_category_poi', poi, this.props.categoryName);
+    const { poiFilters } = this.props;
+    fire('click_category_poi', poi, poiFilters);
   }
 
   highlightPoiMarker = (poi, highlight) => {

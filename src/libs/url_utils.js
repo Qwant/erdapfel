@@ -55,3 +55,12 @@ export function toCssUrl(url) {
   const escapedUrl = url.replace(/'/g, "\\'");
   return `url('${escapedUrl}')`;
 }
+
+export function buildQueryString(queriesObject) {
+  if (Object.keys(queriesObject).length === 0) {
+    return '';
+  }
+
+  const params = new URLSearchParams(queriesObject);
+  return `?${params.toString()}`;
+}

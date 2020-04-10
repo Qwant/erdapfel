@@ -14,6 +14,7 @@ import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
+import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import SearchInput from 'src/ui_components/search_input';
@@ -39,10 +40,12 @@ export default class PoiPanel extends React.Component {
   static propTypes = {
     poiId: PropTypes.string.isRequired,
     poi: PropTypes.object,
-    isFromFavorite: PropTypes.bool,
-    isFromCategory: PropTypes.bool,
-    sourceCategory: PropTypes.string,
+    poiFilters: PropTypes.object,
     centerMap: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    poiFilters: {},
   }
 
   constructor(props) {
@@ -87,8 +90,8 @@ export default class PoiPanel extends React.Component {
   }
 
   loadPoi = async () => {
-    const { poiId, centerMap, isFromCategory } = this.props;
-    const mapOptions = { centerMap, isFromCategory };
+    const { poiId, centerMap, poiFilters } = this.props;
+    const mapOptions = { centerMap, poiFilters };
 
     // If a POI object is provided before fetching full data,
     // we can update the map immediately for UX responsiveness
@@ -178,9 +181,27 @@ export default class PoiPanel extends React.Component {
   }
 
   backToList = () => {
+    const { poiFilters } = this.props;
+    const queryObject = {};
+    const mappingParams = {
+      query: 'q',
+      category: 'type',
+    };
+
+    for (const name in poiFilters) {
+      if (!poiFilters[name]) {
+        continue;
+      }
+      const key = mappingParams[name];
+      queryObject[key || name] = poiFilters[name];
+    }
+
+    const params = buildQueryString(queryObject);
+    const uri = `/places/${params}`;
+
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
-    window.app.navigateTo(`/places/?type=${this.props.sourceCategory}`);
+    window.app.navigateTo(uri);
   }
 
   backToSmall = () => {
@@ -224,7 +245,7 @@ export default class PoiPanel extends React.Component {
 
 
   renderFull = poi => {
-    const { isFromCategory, isFromFavorite } = this.props;
+    const { poiFilters, isFromFavorite } = this.props;
 
     let backAction = null;
     if (isFromFavorite) {
@@ -233,7 +254,7 @@ export default class PoiPanel extends React.Component {
         text: _('Back to favorite'),
         className: 'poi_panel__back_to_list',
       };
-    } else if (isFromCategory) {
+    } else if (poiFilters.category || poiFilters.query) {
       backAction = {
         callback: this.backToList,
         text: _('Back to list'),
@@ -264,7 +285,10 @@ export default class PoiPanel extends React.Component {
       title={header}
       close={this.closeAction}
       className={classnames('poi_panel', {
-        'poi_panel--empty-header': !isFromPagesJaunes(poi) && !isFromFavorite && !isFromCategory,
+        'poi_panel--empty-header':
+          !isFromPagesJaunes(poi) &&
+          !isFromFavorite &&
+          (!poiFilters || !poiFilters.category),
       } )}
       initialSize="maximized"
     >
