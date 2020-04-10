@@ -30,7 +30,7 @@ test('check "My position" label', async () => {
   await page.click('#itinerary_input_origin');
   await page.waitForSelector('.autocomplete_suggestions');
 
-  const yourPositionItem = await page.waitForSelector('.itinerary_suggest_your_position', { visible: true });
+  const yourPositionItem = await page.waitForSelector('.autocomplete_suggestion--geoloc', { visible: true });
   expect(yourPositionItem).not.toBeNull();
 });
 

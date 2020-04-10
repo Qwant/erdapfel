@@ -1,61 +1,45 @@
 /* global _ */
 import React from 'react';
-import classNames from 'classnames';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import IconManager from '../../adapters/icon_manager';
 import Category from 'src/adapters/category';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
-  <div className="autocomplete_suggestion__lines_container">
+  <div className="autocomplete_suggestion__labels">
     <div className="autocomplete_suggestion__first_line">{firstLabel}</div>
-    <div className="autocomplete_suggestion__second_line">{secondLabel}</div>
+    {secondLabel && <div className="autocomplete_suggestion__second_line">{secondLabel}</div>}
   </div>;
 
-const GeolocationItem = ({ isHighlighted }) =>
-  <div
-    className={classNames(
-      'autocomplete_suggestion itinerary_suggest_your_position',
-      { 'selected': isHighlighted }
-    )}
-    data-id="geolocalisation"
-    data-val={_('Your position', 'direction')}
-  >
-    <div className="itinerary_suggest_your_position_icon icon-pin_geoloc" />
-    {_('Your position', 'direction')}
+const GeolocationItem = () =>
+  <div className="autocomplete_suggestion autocomplete_suggestion--geoloc">
+    <div className="autocomplete-icon icon-pin_geoloc" />
+    <ItemLabels firstLabel={_('Your position', 'direction')} />
   </div>;
 
-const CategoryItem = ({ category, isHighlighted }) => {
+const CategoryItem = ({ category }) => {
   const { id, label, alternativeName, color, backgroundColor } = category;
   const icon = category.getIcon();
 
   return (
     <div
-      className={classNames(
-        'autocomplete_suggestion autocomplete_suggestion--category',
-        { 'selected': isHighlighted }
-      )}
+      className="autocomplete_suggestion autocomplete_suggestion--category"
       data-id={id}
-      data-val={label}
     >
       <div
         style={{ color, backgroundColor }}
-        className={`autocomplete-icon autocomplete-icon-rounded icon icon-${icon.iconClass}`}
+        className={`autocomplete-icon icon icon-${icon.iconClass}`}
       />
       <ItemLabels firstLabel={label} secondLabel={alternativeName} />
     </div>
   );
 };
 
-const PoiItem = ({ poi, isHighlighted }) => {
-  const { id, name, className, subClassName, type, alternativeName } = poi;
+const PoiItem = ({ poi }) => {
+  const { name, className, subClassName, type, alternativeName } = poi;
   const icon = IconManager.get({ className, subClassName, type });
 
   return (
-    <div
-      className={classNames('autocomplete_suggestion', { 'selected': isHighlighted })}
-      data-id={id}
-      data-val={poi.getInputValue()}
-    >
+    <div className="autocomplete_suggestion">
       <div
         style={{ color: icon ? icon.color : '' }}
         className={`autocomplete-icon icon icon-${icon.iconClass}`}
@@ -66,24 +50,24 @@ const PoiItem = ({ poi, isHighlighted }) => {
 };
 
 const SeparatorLabel = ({ label }) =>
-  <h3 className="autocomplete_suggestion__category_title">
+  <h3 className="autocomplete_separator_label">
     {label}
   </h3>;
 
-const SuggestItem = ({ item, isHighlighted }) => {
+const SuggestItem = ({ item }) => {
   if (item.simpleLabel) {
     return <SeparatorLabel label={item.simpleLabel} />;
   }
 
   if (item instanceof NavigatorGeolocalisationPoi) {
-    return <GeolocationItem isHighlighted={isHighlighted}/>;
+    return <GeolocationItem />;
   }
 
   if (item instanceof Category) {
-    return <CategoryItem category={item} isHighlighted={isHighlighted} />;
+    return <CategoryItem category={item} />;
   }
 
-  return <PoiItem poi={item} isHighlighted={isHighlighted} />;
+  return <PoiItem poi={item} />;
 };
 
 export default SuggestItem;
