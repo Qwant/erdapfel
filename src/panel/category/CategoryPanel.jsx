@@ -53,11 +53,11 @@ export default class CategoryPanel extends React.Component {
       panelContent.scrollTop = 0;
     }
 
-    if (category !== prevProps.poiFilters.category) {
+    if (category && category !== prevProps.poiFilters.category) {
       this.fetchData();
     }
 
-    if (bbox !== prevProps.bbox) {
+    if (bbox && bbox !== prevProps.bbox) {
       window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
     }
   }
