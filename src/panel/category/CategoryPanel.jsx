@@ -33,7 +33,6 @@ export default class CategoryPanel extends React.Component {
 
   componentDidMount() {
     const { category } = this.props.poiFilters;
-
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
 
     if (category) {
@@ -45,10 +44,24 @@ export default class CategoryPanel extends React.Component {
     window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    const { bbox, poiFilters } = this.props;
+
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
       panelContent.scrollTop = 0;
+    }
+
+    // Check for a new, or changed poiFilter
+    for (const key in poiFilters) {
+      if (poiFilters[key] !== prevProps.poiFilters[key]) {
+        this.fetchData();
+        break;
+      }
+    }
+
+    if (bbox && bbox !== prevProps.bbox) {
+      window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
     }
   }
 
@@ -101,6 +114,7 @@ export default class CategoryPanel extends React.Component {
       category,
       query
     );
+
     this.setState({
       pois: places,
       dataSource: source,
