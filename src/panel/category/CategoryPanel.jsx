@@ -45,16 +45,19 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { bbox } = this.props;
-    const { category } = this.props.poiFilters;
+    const { bbox, poiFilters } = this.props;
 
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
       panelContent.scrollTop = 0;
     }
 
-    if (category && category !== prevProps.poiFilters.category) {
-      this.fetchData();
+    // Check for a new, or changed poiFilter
+    for (const key in poiFilters) {
+      if (poiFilters[key] !== prevProps.poiFilters[key]) {
+        this.fetchData();
+        break;
+      }
     }
 
     if (bbox && bbox !== prevProps.bbox) {
