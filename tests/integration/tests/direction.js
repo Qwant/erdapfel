@@ -207,7 +207,7 @@ test('api error handling', async () => {
 
 test('api wait effect', async () => {
   expect.assertions(2);
-  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/, { delay: 250 });
+  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/, { delay: 1000 });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
   const placeholderHandler = await page.waitForSelector('.itinerary_leg--placeholder');
   expect(placeholderHandler).not.toBeNull();
