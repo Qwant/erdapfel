@@ -161,8 +161,8 @@ input[type="search"] {
 
 .autocomplete_suggestion--geoloc {
   border-bottom: 1px solid #e0e1e6;
-  padding-top: 12px; 
-  padding-bottom: 12px; 
+  padding-top: 12px;
+  padding-bottom: 12px;
 
   .autocomplete-icon {
     color: $primary_text;
@@ -230,7 +230,6 @@ input[type="search"] {
     }
 
     .search_form__logo {
-      cursor: pointer;
       left: 0;
       top: 0;
       width: 40px;
