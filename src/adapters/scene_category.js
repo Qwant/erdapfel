@@ -9,9 +9,9 @@ export default class SceneCategory {
     this.map = map;
     this.markers = [];
 
-    listen('add_category_markers', (pois, categoryName) => {
+    listen('add_category_markers', (pois, poiFilters) => {
       this.resetMarkers();
-      this.addCategoryMarkers(pois, categoryName);
+      this.addCategoryMarkers(pois, poiFilters);
     });
     listen('remove_category_markers', () => {
       this.removeCategoryMarkers();
@@ -49,7 +49,7 @@ export default class SceneCategory {
     this.highlightPoiMarker(poi, true);
   }
 
-  addCategoryMarkers(pois, categoryName) {
+  addCategoryMarkers(pois, poiFilters) {
     this.setOsmPoisVisibility(false);
     if (pois) {
       pois.forEach(poi => {
@@ -58,9 +58,7 @@ export default class SceneCategory {
         poi.marker_id = `marker_${id}`;
         marker.onclick = function(e) {
           e.stopPropagation();
-          fire('click_category_poi', poi, {
-            category: categoryName,
-          });
+          fire('click_category_poi', poi, poiFilters);
         };
         marker.onmouseover = function(e) {
           fire('open_popup', poi, e);
