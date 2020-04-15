@@ -117,6 +117,16 @@
     overflow: visible;
 
     button {
+      &:not(:disabled):hover {
+        background: #fff;
+        color: $secondary_text;
+
+        &:active {
+          background: $primary_text;
+          color: white;
+        }
+      }
+
       width: 48px;
       height: 48px;
       border-radius: 50%;
