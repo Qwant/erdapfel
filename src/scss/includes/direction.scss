@@ -590,9 +590,11 @@ input:valid:focus ~ .itinerary__field__clear {
   display: none;
 }
 
-.direction_shortcut {
+button.direction_shortcut {
   display: none;
   cursor: pointer;
+  background: #353c52;
+  color: #fff;
 }
 
 .itinerary_panel__item__share {
@@ -817,17 +819,15 @@ input:valid:focus ~ .itinerary__field__clear {
     }
   }
 
-  .direction_shortcut {
+  button.direction_shortcut {
     display: block;
     width: 48px;
     height: 48px;
-    background: #fff;
     border-radius: 50%;
     box-shadow: rgba(0,0,0,.2) 0 2px 12px 0;
     position: fixed;
     bottom: 66px;
     right: 9px;
-    color: #5c6f84;
     font-size: 25px;
     opacity: 1;
     transition: opacity .3s;
