@@ -191,20 +191,12 @@ Scene.prototype.initMapBox = function() {
     this.moveMobileGeolocationButton(bottom);
   });
 
-  listen('show_mobile_geolocation_button', () => {
-    this.showMobileGeolocationButton();
+  listen('mobile_geolocation_button_visibility', visible => {
+    this.mobileGeolocationButtonVisibility(visible);
   });
 
-  listen('hide_mobile_geolocation_button', () => {
-    this.hideMobileGeolocationButton();
-  });
-
-  listen('show_mobile_direction_button', () => {
-    this.showMobileDirectionButton();
-  });
-
-  listen('hide_mobile_direction_button', () => {
-    this.hideMobileDirectionButton();
+  listen('mobile_direction_button_visibility', visible => {
+    this.mobileDirectionButtonVisibility(visible);
   });
 };
 
@@ -415,38 +407,28 @@ Scene.prototype.moveMobileGeolocationButton = function(bottom = 0) {
   }
 };
 
-Scene.prototype.showMobileGeolocationButton = function() {
+Scene.prototype.mobileGeolocationButtonVisibility = function(visible) {
   if (isMobileDevice()) {
     const item = document.querySelector('.mapboxgl-ctrl-geolocate');
     if (item) {
-      item.classList.remove('hidden');
+      if (visible) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
     }
   }
 };
 
-Scene.prototype.hideMobileGeolocationButton = function() {
-  if (isMobileDevice()) {
-    const item = document.querySelector('.mapboxgl-ctrl-geolocate');
-    if (item) {
-      item.classList.add('hidden');
-    }
-  }
-};
-
-Scene.prototype.showMobileDirectionButton = function() {
+Scene.prototype.mobileDirectionButtonVisibility = function(visible) {
   if (isMobileDevice()) {
     const item = document.querySelector('.direction_shortcut');
     if (item) {
-      item.classList.remove('hidden');
-    }
-  }
-};
-
-Scene.prototype.hideMobileDirectionButton = function() {
-  if (isMobileDevice()) {
-    const item = document.querySelector('.direction_shortcut');
-    if (item) {
-      item.classList.add('hidden');
+      if (visible) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
     }
   }
 };
