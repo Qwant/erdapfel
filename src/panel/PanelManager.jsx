@@ -139,9 +139,9 @@ export default class PanelManager extends React.Component {
     });
 
     // Default matching route
-    router.addRoute('Services', '/?', (_, options = {}) => {
+    router.addRoute('Services', '/?', (_, options) => {
       this.setState({ ActivePanel: ServicePanel, options });
-      if (options.focusSearch) {
+      if (options?.focusSearch) {
         SearchInput.select();
       }
     });
