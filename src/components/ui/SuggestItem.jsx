@@ -20,8 +20,8 @@ const GeolocationItem = () =>
 const IntentionItem = ({ intention }) => {
   const { category, place } = intention;
   const placeString = place
-    ? `À proximité de ${place.properties.geocoding.name}`
-    : 'À proximité';
+    ? `${_('Close to')} ${place.properties.geocoding.name}`
+    : _('Search around this place');
 
   return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
     <div className="autocomplete-icon" />
