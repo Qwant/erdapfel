@@ -2,6 +2,7 @@ import ajax from 'src/libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import QueryContext from 'src/adapters/query_context';
 import BragiPoi from 'src/adapters/poi/bragi_poi';
+import Intention from './intention';
 
 const serviceConfigs = nconf.get().services;
 const geocoderConfig = serviceConfigs.geocoder;
@@ -57,7 +58,10 @@ export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
         );
         return new BragiPoi(feature, queryContext);
       });
-      const bragiResponse = { pois, intentions };
+      const bragiResponse = {
+        pois,
+        intentions: intentions.map(intention => new Intention(intention)),
+      };
       bragiCache[cacheKey] = bragiResponse;
       resolve(bragiResponse);
     }).catch(error => {

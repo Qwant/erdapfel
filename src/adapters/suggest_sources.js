@@ -1,7 +1,6 @@
 import PoiStore from './poi/poi_store';
 import { getGeocoderSuggestions } from 'src/adapters/geocoder';
 import CategoryService from './category_service';
-import Intention from './intention';
 
 // @TODO: Improvement: don't access directly to window.map
 function getFocus(focusMinZoom) {
@@ -11,16 +10,6 @@ function getFocus(focusMinZoom) {
     return { lat, lon, zoom };
   }
   return {};
-}
-
-function intentionsOrCategories(intentions, term) {
-  if (!intentions) { // no NLU activated
-    return CategoryService.getMatchingCategories(term);
-  }
-
-  return intentions
-    .filter(intention => intention.filter.category)
-    .map(intention => new Intention(intention));
 }
 
 export function suggestResults(term, {
@@ -50,15 +39,20 @@ export function suggestResults(term, {
         }
 
         const { pois, intentions } = geocoderSuggestions;
-        const categories = withCategories
-          ? intentionsOrCategories(intentions, term).slice(0, 1)
-          : [];
+        let intentionsOrCategories = [];
+        if (withCategories) {
+          if (!intentions) { // no NLU activated
+            intentionsOrCategories = CategoryService.getMatchingCategories(term);
+          } else {
+            intentionsOrCategories = intentions.filter(intention => intention.category);
+          }
+        }
         const keptFavorites = favorites.slice(0, maxFavorites);
         const keptGeocoderSuggestions = pois
-          .slice(0, maxItems - keptFavorites.length - categories.length);
+          .slice(0, maxItems - keptFavorites.length - intentionsOrCategories.length);
 
         const suggestList = [
-          ...categories,
+          ...intentionsOrCategories,
           ...keptGeocoderSuggestions,
           ...keptFavorites,
         ];
