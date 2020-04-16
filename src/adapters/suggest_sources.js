@@ -1,7 +1,6 @@
 import PoiStore from './poi/poi_store';
 import { getGeocoderSuggestions } from 'src/adapters/geocoder';
 import CategoryService from './category_service';
-import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Intention from './intention';
 
 // @TODO: Improvement: don't access directly to window.map
@@ -25,7 +24,6 @@ function intentionsOrCategories(intentions, term) {
 }
 
 export function suggestResults(term, {
-  withGeoloc,
   withCategories,
   useFocus,
   focusMinZoom = 11,
@@ -41,7 +39,6 @@ export function suggestResults(term, {
     promise = new Promise(async (resolve, reject) => {
       geocoderPromise = getGeocoderSuggestions(term, useFocus ? getFocus(focusMinZoom) : {});
       const favoritePromise = PoiStore.get(term);
-
       try {
         const [geocoderSuggestions, favorites] =
           await Promise.all([ geocoderPromise, favoritePromise ]);
@@ -53,10 +50,6 @@ export function suggestResults(term, {
         }
 
         const { pois, intentions } = geocoderSuggestions;
-        let suggestList = [];
-        if (withGeoloc) {
-          suggestList.push(NavigatorGeolocalisationPoi.getInstance());
-        }
         const categories = withCategories
           ? intentionsOrCategories(intentions, term).slice(0, 1)
           : [];
@@ -64,12 +57,11 @@ export function suggestResults(term, {
         const keptGeocoderSuggestions = pois
           .slice(0, maxItems - keptFavorites.length - categories.length);
 
-        suggestList = suggestList.concat(
-          categories,
-          keptGeocoderSuggestions,
-          keptFavorites,
-        );
-
+        const suggestList = [
+          ...categories,
+          ...keptGeocoderSuggestions,
+          ...keptFavorites,
+        ];
         resolve(suggestList);
       } catch (e) {
         reject(e);

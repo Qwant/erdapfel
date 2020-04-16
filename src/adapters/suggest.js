@@ -5,6 +5,7 @@ import Autocomplete from '../vendors/autocomplete';
 import nconf from '@qwant/nconf-getter';
 import PoiStore from './poi/poi_store';
 import StringUtils from 'src/libs/string';
+import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
@@ -33,7 +34,6 @@ export default class Suggest {
         this.pending = false;
       },
       source: term => suggestResults(term, {
-        withGeoloc,
         withCategories,
         useFocus: SUGGEST_USE_FOCUS,
         focusMinZoom: SUGGEST_FOCUS_MIN_ZOOM,
@@ -44,6 +44,9 @@ export default class Suggest {
         const firstFav = items.findIndex(item => item instanceof PoiStore);
         if (firstFav !== -1) {
           items.splice(firstFav, 0, { simpleLabel: _('Favorites', 'autocomplete').toUpperCase() });
+        }
+        if (withGeoloc) {
+          items.splice(0, 0, NavigatorGeolocalisationPoi.getInstance());
         }
 
         // Create a react node, or reuse the existing node
