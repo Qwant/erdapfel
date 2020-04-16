@@ -34,7 +34,7 @@ export function suggestResults(term, {
   let promise;
   if (term === '') {
     // Prerender Favorites on focus in empty field
-    promise = PoiStore.getAll();
+    promise = PoiStore.getAll().then(favorites => favorites.slice(0, maxFavorites));
   } else {
     promise = new Promise(async (resolve, reject) => {
       geocoderPromise = getGeocoderSuggestions(term, useFocus ? getFocus(focusMinZoom) : {});
