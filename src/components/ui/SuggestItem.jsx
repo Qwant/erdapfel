@@ -4,13 +4,10 @@ import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geo
 import IconManager from '../../adapters/icon_manager';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
-import StringUtils from 'src/libs/string';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
   <div className="autocomplete_suggestion__labels">
-    <div className="autocomplete_suggestion__first_line">
-      {StringUtils.capitalizeFirstLetter(firstLabel)}
-    </div>
+    <div className="autocomplete_suggestion__first_line">{firstLabel}</div>
     {secondLabel && <div className="autocomplete_suggestion__second_line">{secondLabel}</div>}
   </div>;
 
