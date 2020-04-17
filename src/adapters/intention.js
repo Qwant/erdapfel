@@ -1,8 +1,9 @@
+import CategoryService from 'src/adapters/category_service';
 
 export default class Intention {
   constructor({ filter, description }) {
-    this.name = filter.category;
-    this.category = filter.category;
+    this.category = CategoryService.getCategoryByName(filter.category);
+    this.name = this.category ? this.category.getInputValue() : '';
     this.bbox = filter.bbox;
     this.place = description.place;
   }
@@ -10,7 +11,7 @@ export default class Intention {
   toQueryString = () => {
     const params = {};
     if (this.category) {
-      params.type = this.category;
+      params.type = this.category.name;
     }
     if (this.bbox) {
       params.bbox = this.bbox.join(',');
