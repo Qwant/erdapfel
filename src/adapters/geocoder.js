@@ -58,10 +58,10 @@ export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
         );
         return new BragiPoi(feature, queryContext);
       });
-      const bragiResponse = {
-        pois,
-        intentions: intentions.map(intention => new Intention(intention)),
-      };
+      const bragiResponse = { pois };
+      if (intentions) {
+        bragiResponse.intentions = intentions.map(intention => new Intention(intention));
+      }
       bragiCache[cacheKey] = bragiResponse;
       resolve(bragiResponse);
     }).catch(error => {
