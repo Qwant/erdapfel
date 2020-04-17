@@ -22,8 +22,14 @@ PoiPopup.prototype.init = function(map) {
     this.createPJPopup(poi, e);
   });
   listen('close_popup', () => this.close());
-  listen('map_mark_poi', poi => { this.activePoiId = poi.id; });
-  listen('clean_marker', () => { this.activePoiId = null; });
+  listen('map_mark_poi', poi => {
+    this.close();
+    this.activePoiId = poi.id;
+  });
+  listen('clean_marker', () => {
+    this.close();
+    this.activePoiId = null;
+  });
 };
 
 PoiPopup.prototype.addListener = function(layer) {
