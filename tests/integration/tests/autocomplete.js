@@ -192,7 +192,7 @@ test('center on select', async () => {
     return { center: window.MAP_MOCK.getCenter(), zoom: window.MAP_MOCK.getZoom() };
   });
   expect(center).toEqual({ lat: 5, lng: 30 });
-  expect(zoom).toEqual(18);
+  expect(zoom).toEqual(16.5);
 
   // @TODO: this is supposed to test that the 'bbox' parameter is used, when present,
   // to fit the map bounds to the best view. But this test is broken because of
