@@ -57,12 +57,12 @@ export const isFromOSM = poi => poi.meta && poi.meta.source === sources.osm;
 
 // POI map util functions
 
+const DEFAULT_ZOOM = 16.5;
 const ZOOM_BY_POI_TYPES = {
-  street: 17,
-  house: 19,
-  poi: 18,
+  street: DEFAULT_ZOOM,
+  house: DEFAULT_ZOOM,
+  poi: DEFAULT_ZOOM,
 };
-const DEFAULT_ZOOM = 16;
 
 export function getBestZoom(poi) {
   return ZOOM_BY_POI_TYPES[poi.type] || DEFAULT_ZOOM;
