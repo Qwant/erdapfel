@@ -66,6 +66,7 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentWillUnmount() {
+    SearchInput.setInputValue('');
     window.unListen(this.mapMoveHandler);
   }
 
@@ -141,7 +142,6 @@ export default class CategoryPanel extends React.Component {
   }
 
   close = () => {
-    SearchInput.setInputValue('');
     window.app.navigateTo('/');
   }
 
