@@ -10,9 +10,9 @@ const geocoderFocusPrecision = geocoderConfig.focusPrecision;
 
 const bragiCache = {};
 
-function roundWithPrecision(value, precision) {
+function roundWithPrecision(value, precision, digits = 3) {
   const rounded = Math.round(value * (1 / precision)) * precision;
-  return rounded.toFixed(3);
+  return rounded.toFixed(digits);
 }
 
 export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
