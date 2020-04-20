@@ -352,7 +352,7 @@ test('Retrieve no category when we search "barcelona", not even "bar"', async ()
     ).innerText;
   });
 
-  expect(firstLine).toEqual('test result 1');
+  expect(firstLine).toEqual('Test result 1');
 });
 
 afterEach(async () => {

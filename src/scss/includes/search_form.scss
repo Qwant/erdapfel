@@ -171,8 +171,6 @@ input[type="search"] {
 }
 
 .autocomplete_suggestion--category {
-  text-transform: capitalize;
-
   .autocomplete-icon {
     font-size: 22px;
     width: 22px;
@@ -183,8 +181,6 @@ input[type="search"] {
 }
 
 .autocomplete_suggestion--intention {
-  text-transform: capitalize;
-
   .autocomplete-icon {
     width: 48px;
     height: 30px;
@@ -208,6 +204,10 @@ input[type="search"] {
     &.autocomplete_suggestion__second_line {
       color: $secondary_text;
       font-size: 14px;
+    }
+
+    &:first-letter {
+      text-transform: capitalize;
     }
   }
 }
