@@ -66,6 +66,7 @@ export default class Panel extends React.Component {
 
   componentDidMount() {
     this.updateMobileMapUI();
+    this.defaultHeight = this.panelDOMElement.offsetHeight;
   }
 
   componentDidUpdate() {
@@ -83,6 +84,20 @@ export default class Panel extends React.Component {
       window.execOnMapLoaded(() => {
         fire('move_mobile_bottom_ui', height);
       });
+
+      if (height > this.defaultHeight) {
+        // Transition to maximized
+        fire('mobile_geolocation_button_visibility', false);
+        fire('mobile_direction_button_visibility', false);
+      } else if (this.state.size === 'minimized' || height < 40) {
+        // Transition to minimized
+        fire('mobile_geolocation_button_visibility', true);
+        fire('mobile_direction_button_visibility', true);
+      } else {
+        // Transition to default
+        fire('mobile_geolocation_button_visibility', true);
+        fire('mobile_direction_button_visibility', false);
+      }
     }
   }
 
