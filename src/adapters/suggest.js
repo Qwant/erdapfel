@@ -66,7 +66,7 @@ export default class Suggest {
         if (!existingElem) {
           elem = document.createElement('div');
           elem.setAttribute('id', 'react-suggests-' + tagSelector);
-          this.searchInputDomHandler.parentNode.append(elem);
+          this.searchInputDomHandler.parentNode.appendChild(elem);
         }
 
         const reactElem = existingElem || elem;
@@ -98,7 +98,7 @@ export default class Suggest {
       const existingElem = document.getElementById('react-suggests-' + tagSelector);
       if (existingElem) {
         ReactDOM.unmountComponentAtNode(existingElem);
-        existingElem.remove();
+        this.searchInputDomHandler.parentNode.removeChild(existingElem);
       }
     };
 
