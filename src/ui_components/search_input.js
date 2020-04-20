@@ -104,7 +104,7 @@ export default class SearchInput {
       window.app.navigateTo(`/places/?type=${selectedItem.name}`,
         {}, { replace: replaceUrl });
     } else if (selectedItem instanceof Intention) {
-      window.app.navigateTo(`/places/?${selectedItem.toQueryString()}`,
+      window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
         {}, { replace: replaceUrl });
     }
   }

@@ -1,4 +1,5 @@
 import CategoryService from 'src/adapters/category_service';
+import { buildQueryString } from 'src/libs/url_utils';
 
 export default class Intention {
   constructor({ filter, description }) {
@@ -8,14 +9,8 @@ export default class Intention {
     this.place = description.place;
   }
 
-  toQueryString = () => {
-    const params = {};
-    if (this.category) {
-      params.type = this.category.name;
-    }
-    if (this.bbox) {
-      params.bbox = this.bbox.join(',');
-    }
-    return new URLSearchParams(params).toString();
-  }
+  toQueryString = () => buildQueryString({
+    type: this.category?.name,
+    bbox: this.bbox?.join(','),
+  });
 }

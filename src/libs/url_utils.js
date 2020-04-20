@@ -1,4 +1,3 @@
-
 export function parseMapHash(hash) {
   const mapHash = hash.replace(/^#/, '');
   if (!mapHash.startsWith('map=')) {
@@ -56,11 +55,13 @@ export function toCssUrl(url) {
   return `url('${escapedUrl}')`;
 }
 
-export function buildQueryString(queriesObject) {
-  if (Object.keys(queriesObject).length === 0) {
-    return '';
-  }
+const removeNullEntries = obj =>
+  Object.keys(obj) // Object.entries is not supported by IE :(
+    .map(key => [ key, obj[key] ])
+    .filter(([ _key, value ]) => value !== null && value !== undefined)
+    .reduce((result, [ key, value ]) => ({ ...result, [key]: value }), {});
 
-  const params = new URLSearchParams(queriesObject);
-  return `?${params.toString()}`;
+export function buildQueryString(queriesObject) {
+  const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();
+  return params ? `?${params}` : '';
 }
