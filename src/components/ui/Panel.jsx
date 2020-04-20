@@ -66,9 +66,7 @@ export default class Panel extends React.Component {
 
   componentDidMount() {
     this.updateMobileMapUI();
-    this.setState({
-      defaultHeight: this.panelDOMElement.offsetHeight,
-    });
+    this.defaultHeight = this.panelDOMElement.offsetHeight;
   }
 
   componentDidUpdate() {
@@ -87,7 +85,7 @@ export default class Panel extends React.Component {
         fire('move_mobile_bottom_ui', height);
       });
 
-      if (height > this.state.defaultHeight) {
+      if (height > this.defaultHeight) {
         // Transition to maximized
         fire('mobile_geolocation_button_visibility', false);
         fire('mobile_direction_button_visibility', false);

@@ -192,11 +192,11 @@ Scene.prototype.initMapBox = function() {
   });
 
   listen('mobile_geolocation_button_visibility', visible => {
-    this.mobileGeolocationButtonVisibility(visible);
+    this.mobileButtonVisibility('.mapboxgl-ctrl-geolocate', visible);
   });
 
   listen('mobile_direction_button_visibility', visible => {
-    this.mobileDirectionButtonVisibility(visible);
+    this.mobileButtonVisibility('.direction_shortcut', visible);
   });
 };
 
@@ -388,47 +388,37 @@ Scene.prototype.translateUIControl = function(selector, bottom) {
 };
 
 Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
-  if (isMobileDevice() || bottom === 0) {
-    const uiControls = [
-      '.mapboxgl-ctrl-attrib',
-      '.map_control__scale',
-      '.mapboxgl-ctrl-geolocate',
-      '.direction_shortcut',
-    ];
-    uiControls.forEach(uiControl => {
-      this.translateUIControl(uiControl, bottom);
-    });
+  if (!isMobileDevice() && bottom > 0) {
+    return;
   }
+  const uiControls = [
+    '.mapboxgl-ctrl-attrib',
+    '.map_control__scale',
+    '.mapboxgl-ctrl-geolocate',
+    '.direction_shortcut',
+  ];
+  uiControls.forEach(uiControl => {
+    this.translateUIControl(uiControl, bottom);
+  });
 };
 
 Scene.prototype.moveMobileGeolocationButton = function(bottom = 0) {
-  if (isMobileDevice() || bottom === 0) {
-    this.translateUIControl('.mapboxgl-ctrl-geolocate', bottom);
+  if (!isMobileDevice() && bottom > 0) {
+    return;
   }
+  this.translateUIControl('.mapboxgl-ctrl-geolocate', bottom);
 };
 
-Scene.prototype.mobileGeolocationButtonVisibility = function(visible) {
-  if (isMobileDevice()) {
-    const item = document.querySelector('.mapboxgl-ctrl-geolocate');
-    if (item) {
-      if (visible) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    }
+Scene.prototype.mobileButtonVisibility = function(selector, visible) {
+  if (!isMobileDevice()) {
+    return;
   }
-};
-
-Scene.prototype.mobileDirectionButtonVisibility = function(visible) {
-  if (isMobileDevice()) {
-    const item = document.querySelector('.direction_shortcut');
-    if (item) {
-      if (visible) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
+  const item = document.querySelector(selector);
+  if (item) {
+    if (visible) {
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
     }
   }
 };
