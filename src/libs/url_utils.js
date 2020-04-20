@@ -22,7 +22,7 @@ export function getMapHash(zoom, lat, lng) {
 export function parseQueryString(queryString) {
   const params = {};
   new URLSearchParams(queryString).forEach((value, key) => {
-    params[key] = decodeURIComponent(value);
+    params[key] = value;
   });
   return params;
 }
