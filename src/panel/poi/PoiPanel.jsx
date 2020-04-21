@@ -87,6 +87,7 @@ export default class PoiPanel extends React.Component {
     window.unListen(this.storeRemoveHandler);
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
+    fire('mobile_direction_button_visibility', true);
     SearchInput.setInputValue('');
   }
 
