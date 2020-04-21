@@ -25,7 +25,7 @@ const IntentionItem = ({ intention }) => {
 
   return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
     <div className="autocomplete-icon" />
-    <ItemLabels firstLabel={category.name} secondLabel={placeString} />
+    <ItemLabels firstLabel={category.label} secondLabel={placeString} />
   </div>;
 };
 
