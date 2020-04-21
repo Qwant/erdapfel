@@ -191,6 +191,7 @@ input[type="search"] {
 
 .autocomplete_suggestion__labels {
   overflow: hidden;
+  flex-grow: 1;
 
   > div {
     text-overflow:ellipsis;
