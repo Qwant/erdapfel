@@ -26,7 +26,10 @@ export function suggestResults(term, {
     promise = PoiStore.getAll().then(favorites => favorites.slice(0, maxFavorites));
   } else {
     promise = new Promise(async (resolve, reject) => {
-      geocoderPromise = getGeocoderSuggestions(term, useFocus ? getFocus(focusMinZoom) : {});
+      geocoderPromise = getGeocoderSuggestions(term, {
+        focus: useFocus ? getFocus(focusMinZoom) : {},
+        useNlu: withCategories,
+      });
       const favoritePromise = PoiStore.get(term);
       try {
         const [geocoderSuggestions, favorites] =

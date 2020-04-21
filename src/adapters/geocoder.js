@@ -15,8 +15,9 @@ function roundWithPrecision(value, precision, digits = 3) {
   return rounded.toFixed(digits);
 }
 
-export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
+export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}) {
   let cacheKey = term;
+  let { lat, lon } = focus;
   if (lat !== undefined && lon !== undefined) {
     lat = roundWithPrecision(lat, geocoderFocusPrecision);
     lon = roundWithPrecision(lon, geocoderFocusPrecision);
@@ -44,7 +45,7 @@ export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
     if (geocoderConfig.useLang) {
       query.lang = window.getLang().code;
     }
-    if (geocoderConfig.useNlu) {
+    if (geocoderConfig.useNlu && useNlu) {
       query.nlu = 'true';
     }
     suggestsPromise = ajax.get(geocoderConfig.url, query);
@@ -54,7 +55,7 @@ export function getGeocoderSuggestions(term, { lat, lon, zoom } = {}) {
           term,
           index + 1, // ranking
           query.lang,
-          { lat, lon, zoom }
+          { lat, lon, zoom: focus.zoom }
         );
         return new BragiPoi(feature, queryContext);
       });
