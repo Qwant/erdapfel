@@ -18,14 +18,14 @@ const GeolocationItem = () =>
   </div>;
 
 const IntentionItem = ({ intention }) => {
-  const { name, place } = intention;
+  const { category, place } = intention;
   const placeString = place
     ? `${_('Close to')} ${place.properties.geocoding.name}`
     : _('Search around this place');
 
   return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
     <div className="autocomplete-icon" />
-    <ItemLabels firstLabel={name} secondLabel={placeString} />
+    <ItemLabels firstLabel={category.name} secondLabel={placeString} />
   </div>;
 };
 

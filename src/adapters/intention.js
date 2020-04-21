@@ -4,7 +4,6 @@ import { buildQueryString } from 'src/libs/url_utils';
 export default class Intention {
   constructor({ filter, description }) {
     this.category = CategoryService.getCategoryByName(filter.category);
-    this.name = this.category ? this.category.getInputValue() : '';
     this.bbox = filter.bbox;
     this.place = description.place;
   }

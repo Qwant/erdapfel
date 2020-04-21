@@ -65,7 +65,7 @@ export default class Suggest {
             inputId={this.searchInputDomHandler.getAttribute('id')}
             suggestItems={items}
             onHighlight={item => {
-              this.searchInputDomHandler.value = item ? item.name : typedValue;
+              this.searchInputDomHandler.value = item && item.name || typedValue;
             }}
             onSelect={item => {
               this.searchInputDomHandler.value = item.name || '';
