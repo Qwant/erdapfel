@@ -12,7 +12,7 @@ const PhoneNumber = ({ phoneBlock, onReveal }) => {
   }}>
     <span className="icon-icon_phone" />
     {isNumberHidden
-      ? <span>{_('SHOW NUMBER', 'poi')}</span>
+      ? <span>{_('Show number', 'poi')}</span>
       : <a href={phoneBlock.url}>{phoneBlock.local_format}</a>}
   </div>;
 };

@@ -48,11 +48,14 @@ class PoiCard extends React.Component {
             onClick={openDirection}
             icon="corner-up-right"
           >
-            { _('DIRECTIONS', 'poi panel') }
+            { _('Directions', 'poi panel') }
           </Button>
         }
-        <Button onClick={showDetails} icon="chevrons-right">
-          { _('SEE MORE', 'poi panel') }
+        <Button
+          className="poi_card__action__see-more"
+          onClick={showDetails} icon="chevrons-right"
+        >
+          { _('See more', 'poi panel') }
         </Button>
       </div>
     </div>;

@@ -36,13 +36,13 @@ const MobileRouteDetails =
       </div>
     </div>
     <div className="itinerary_legDetails_title">
-      <div className="u-bold">{_('DETAILS', 'direction')}</div>
+      <div className="u-bold">{_('Details', 'direction')}</div>
       {vehicle !== 'publicTransport' && <Button
         onClick={() => { openPreview(id); }}
         variant="noBorder"
         icon="chevrons-right"
       >
-        {_('PREVIEW', 'direction')}
+        {_('Preview', 'direction')}
       </Button>}
     </div>
     <RoadMap

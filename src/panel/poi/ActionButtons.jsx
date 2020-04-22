@@ -20,7 +20,7 @@ export default class ActionButtons extends React.Component {
       return <button className="poi_panel__action icon-icon_phone poi_phone_container_hidden"
         onClick={this.props.showPhoneNumber}
       >
-        <div>{_('SHOW NUMBER', 'poi')}</div>
+        <div>{_('Show number', 'poi')}</div>
       </button>;
     }
     return <a className="poi_panel__action icon-icon_phone poi_phone_container_revealed"
@@ -45,15 +45,15 @@ export default class ActionButtons extends React.Component {
       }
       onClick={this.props.toggleStorePoi}
       >
-        <div>{this.props.isPoiInFavorite ? _('SAVED', 'poi') : _('FAVORITES', 'poi')}</div>
+        <div>{this.props.isPoiInFavorite ? _('Saved', 'poi') : _('Favorites', 'poi')}</div>
       </button>
       <button className="poi_panel__action icon-share-2" onClick={this.props.openShare}>
-        <div>{_('SHARE', 'poi')}</div>
+        <div>{_('Share', 'poi')}</div>
       </button>
       {this.props.isDirectionActive &&
         <button className="poi_panel__action icon-corner-up-right"
           onClick={this.props.openDirection}>
-          <div>{_('DIRECTIONS', 'poi')}</div>
+          <div>{_('Directions', 'poi')}</div>
         </button>
       }
       {shouldRenderPhone && this.renderPhone()}

@@ -267,6 +267,7 @@ input:valid:focus ~ .itinerary__field__clear {
   font-size: 12px;
   font-weight: 500;
   margin: 10px 0 0;
+  text-transform: uppercase;
 }
 
 .itinerary_leg_via_details:hover {
@@ -747,6 +748,7 @@ button.direction_shortcut {
 
     button {
       margin-right: 6px;
+      text-transform: uppercase;
     }
   }
 
@@ -907,6 +909,11 @@ button.direction_shortcut {
       justify-content: space-between;
       padding: 12px 18px;
       font-size: 14px;
+      text-transform: uppercase;
+
+      & .button-content {
+        text-transform: uppercase;
+      }
     }
 
     .itinerary_roadmap {

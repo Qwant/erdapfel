@@ -19,12 +19,12 @@ const GeolocationModal = ({ status, onClose }) => {
     DENIED: {
       title: _('Geolocation not available.', 'geolocation'),
       text: _('You have not allowed Qwant Maps (or your device) to access your location.', 'geolocation'),
-      button: _('OK', 'geolocation'),
+      button: _('Ok', 'geolocation'),
     },
     NOT_ACTIVATED: {
       title: _('Geolocation not available.', 'geolocation'),
       text: _('Qwant Maps cannot determine your position. Check that location services are enabled on your system.'),
-      button: _('OK', 'geolocation'),
+      button: _('Ok', 'geolocation'),
     },
   };
   /* eslint-enable max-len */
