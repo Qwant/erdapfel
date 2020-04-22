@@ -8,13 +8,14 @@
 # ENT8R <info.ent8r@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Edouard Aubert Jurgens <edou.aubert@gmail.com>, 2020
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 13:53+0000\n"
+"POT-Creation-Date: 2020-04-22 15:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -34,6 +35,9 @@ msgstr ""
 
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
+
+msgid "The map that respects your privacy"
+msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
 msgid "Search on Qwant Maps"
 msgstr "Auf Qwant Maps suchen"
@@ -160,9 +164,6 @@ msgstr "Animation"
 
 msgid "Search with Qwant Maps"
 msgstr "Suche mit Qwant Maps"
-
-msgid "The map that respects your privacy"
-msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
 msgid "write"
 msgstr "schreiben"
@@ -813,7 +814,7 @@ msgid ""
 msgstr ""
 "Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
 
-msgid "OK"
+msgid "Ok"
 msgstr "O.k."
 
 msgid ""
@@ -857,8 +858,8 @@ msgstr "Kategorie"
 msgid "Your position"
 msgstr "Deine Position"
 
-msgid "FAVORITES"
-msgstr "FAVORITEN"
+msgid "Favorites"
+msgstr "Favoriten"
 
 msgid "Activate Masq"
 msgstr "Aktiviere Masq"
@@ -878,9 +879,6 @@ msgstr "Suchen"
 msgid "Directions"
 msgstr "Wegbeschreibung"
 
-msgid "Favorites"
-msgstr "Favoriten"
-
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
 
@@ -890,11 +888,11 @@ msgstr "Link teilen"
 msgid "Copied !"
 msgstr "Kopiert !"
 
-msgid "SHARE ON FACEBOOK"
-msgstr "AUF  FACEBOOK TEILEN"
+msgid "Share on Facebook"
+msgstr "Auf Facebook teilen"
 
-msgid "SHARE ON TWITTER"
-msgstr "AUF TWITTER TEILEN"
+msgid "Share on Twitter"
+msgstr "Auf Twitter teilen"
 
 msgid "Share"
 msgstr "Teilen"
@@ -917,8 +915,8 @@ msgstr "um deine Favoriten auf all deinen Geräten zu sichern"
 msgid "Favorite places"
 msgstr "Lieblingsorte"
 
-msgid "MY FAVORITES"
-msgstr "MEINE FAVORITEN"
+msgid "My favorites"
+msgstr "Meine Favoriten"
 
 msgid "Show favorites"
 msgstr "Favoriten anzeigen"
@@ -926,26 +924,20 @@ msgstr "Favoriten anzeigen"
 msgid "Close to"
 msgstr "Neben"
 
-msgid "DIRECTIONS"
-msgstr "WEGBESCHREIBUNG"
+msgid "See more"
+msgstr "Zeige mehr"
 
-msgid "SEE MORE"
-msgstr "ZEIGE MEHR"
+msgid "Show number"
+msgstr "Nummer anzeigen"
 
-msgid "SHOW NUMBER"
-msgstr "NUMMER ANZEIGEN"
-
-msgid "SAVED"
-msgstr "GESPEICHERT"
-
-msgid "SHARE"
-msgstr "TEILEN"
+msgid "Saved"
+msgstr "Gespeichert"
 
 msgid "Photos"
 msgstr "Fotos"
 
-msgid "WIKIPEDIA"
-msgstr "WIKIPEDIA"
+msgid "Wikipedia"
+msgstr "Wikipedia"
 
 msgid "Wheelchair accessible"
 msgstr "Rollstuhlgerecht"
@@ -983,11 +975,11 @@ msgstr "Dienstleistungen und Information"
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
 
-msgid "VIEW"
-msgstr "ANSICHT"
+msgid "View"
+msgstr "Ansicht"
 
-msgid "EDIT"
-msgstr "BEARBEITEN"
+msgid "Edit"
+msgstr "Bearbeiten"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -1064,8 +1056,8 @@ msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 "Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
 
-msgid "PAGES JAUNES"
-msgstr "Gelbe Seiten"
+msgid "Pages Jaunes"
+msgstr "Pages Jaunes"
 
 msgid "Partnership"
 msgstr "Partnerschaft"
@@ -1097,11 +1089,11 @@ msgstr "Start"
 msgid "Arrival"
 msgstr "Ankunft"
 
-msgid "DETAILS"
-msgstr "DETAILS"
+msgid "Details"
+msgstr "Details"
 
-msgid "PREVIEW"
-msgstr "VORSCHAU"
+msgid "Preview"
+msgstr "Vorschau"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr "Das Qwant Dienst ist derzeit nicht verfügbar, bitte versuche später."
@@ -1113,9 +1105,6 @@ msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr "Wir testen gerade ein öffentliches Verkehrsmode in einpaar Städten."
-
-msgid "directions"
-msgstr "Wegbeschreibung"
 
 msgid "return"
 msgstr "zurück"

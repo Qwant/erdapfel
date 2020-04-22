@@ -2,14 +2,15 @@
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Gwenn M <tornoz@laposte.net>, 2019
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 13:53+0000\n"
+"POT-Creation-Date: 2020-04-22 15:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2020\n"
+"Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,6 +28,9 @@ msgstr ""
 
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
+
+msgid "The map that respects your privacy"
+msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
 msgid "Search on Qwant Maps"
 msgstr "Klask war Qwant Maps"
@@ -153,9 +157,6 @@ msgstr "luskadurioù"
 
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
-
-msgid "The map that respects your privacy"
-msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
 msgid "write"
 msgstr "skrivañ"
@@ -813,7 +814,7 @@ msgstr ""
 "N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho"
 " touarlec'hiañ"
 
-msgid "OK"
+msgid "Ok"
 msgstr "Mat eo"
 
 msgid ""
@@ -857,8 +858,8 @@ msgstr "rummad"
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
 
-msgid "FAVORITES"
-msgstr "SINEDOÙ"
+msgid "Favorites"
+msgstr "Sinedoù"
 
 msgid "Activate Masq"
 msgstr "Enaouiñ Masq"
@@ -876,10 +877,7 @@ msgid "Search"
 msgstr "Klask"
 
 msgid "Directions"
-msgstr "Hentoù war-du"
-
-msgid "Favorites"
-msgstr "Reoù karetañ"
+msgstr "Tuadurioù"
 
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
@@ -890,11 +888,11 @@ msgstr "Rannañ al liamm"
 msgid "Copied !"
 msgstr "Eilet!"
 
-msgid "SHARE ON FACEBOOK"
-msgstr "RANNAÑ WAR FACEBOOK"
+msgid "Share on Facebook"
+msgstr "Rannañ war Facebook"
 
-msgid "SHARE ON TWITTER"
-msgstr "RANNAÑ WAR TWITTER"
+msgid "Share on Twitter"
+msgstr "Rannañ war Twitter"
 
 msgid "Share"
 msgstr "Rannañ"
@@ -917,8 +915,8 @@ msgstr "evit skoriñ hoc'h arventennoù war hollad hoc'h aparailhoù"
 msgid "Favorite places"
 msgstr "Lec'hioù karetañ"
 
-msgid "MY FAVORITES"
-msgstr "MA SINEDOÙ"
+msgid "My favorites"
+msgstr "Ma sinedoù"
 
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
@@ -926,26 +924,20 @@ msgstr "Diskouez ar c'haretañ"
 msgid "Close to"
 msgstr "Da gichen"
 
-msgid "DIRECTIONS"
-msgstr "TUADURIOÙ"
+msgid "See more"
+msgstr "Gwelet muioc'h"
 
-msgid "SEE MORE"
-msgstr "GWELET MUIOC'H"
+msgid "Show number"
+msgstr "Gwelet an niver"
 
-msgid "SHOW NUMBER"
-msgstr "GWELET AN NIVER"
-
-msgid "SAVED"
-msgstr "ENROLLET"
-
-msgid "SHARE"
-msgstr "RANNAÑ"
+msgid "Saved"
+msgstr "Enrollet"
 
 msgid "Photos"
 msgstr "Fotoioù"
 
-msgid "WIKIPEDIA"
-msgstr "WIKIPEDIA"
+msgid "Wikipedia"
+msgstr "Wikipedia"
 
 msgid "Wheelchair accessible"
 msgstr "Aezet evit ar c'hadorioù-ruilh"
@@ -983,11 +975,11 @@ msgstr "Servijoù & Titouroù"
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
 
-msgid "VIEW"
-msgstr "GWELET"
+msgid "View"
+msgstr "Gwelet"
 
-msgid "EDIT"
-msgstr "AOZAÑ"
+msgid "Edit"
+msgstr "Aozañ"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -1062,8 +1054,8 @@ msgstr "Klask tro-dro din"
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
 
-msgid "PAGES JAUNES"
-msgstr "PAJENNOÙ MELEN"
+msgid "Pages Jaunes"
+msgstr "Pajennoù Melen"
 
 msgid "Partnership"
 msgstr "Kevelerezh"
@@ -1095,11 +1087,11 @@ msgstr "Loc'hañ"
 msgid "Arrival"
 msgstr "Poent-degouezhout"
 
-msgid "DETAILS"
-msgstr "MUNUDOÙ"
+msgid "Details"
+msgstr "Munudoù"
 
-msgid "PREVIEW"
-msgstr "RAKWEL"
+msgid "Preview"
+msgstr "Rakwel"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
@@ -1111,9 +1103,6 @@ msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr ""
-
-msgid "directions"
-msgstr "hentoù war-du"
 
 msgid "return"
 msgstr "distreiñ"

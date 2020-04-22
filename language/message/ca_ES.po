@@ -1,14 +1,15 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # jmontane, 2020
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 13:53+0000\n"
+"POT-Creation-Date: 2020-04-22 15:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: jmontane, 2020\n"
+"Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,6 +27,9 @@ msgstr ""
 
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
+
+msgid "The map that respects your privacy"
+msgstr "El mapa que respecta la vostra privadesa"
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca a Qwant Maps"
@@ -152,9 +156,6 @@ msgstr "animació"
 
 msgid "Search with Qwant Maps"
 msgstr "Cerca Qwant Maps"
-
-msgid "The map that respects your privacy"
-msgstr "El mapa que respecta la vostra privadesa"
 
 msgid "write"
 msgstr ""
@@ -808,7 +809,7 @@ msgstr ""
 "No heu autoritzat Qwant Maps (en el vostre aparell) per a accedir a la "
 "vostra ubicació."
 
-msgid "OK"
+msgid "Ok"
 msgstr "D'acord"
 
 msgid ""
@@ -850,8 +851,8 @@ msgstr "categoria"
 msgid "Your position"
 msgstr "La vostra posició"
 
-msgid "FAVORITES"
-msgstr "PREFERITS"
+msgid "Favorites"
+msgstr "Preferits"
 
 msgid "Activate Masq"
 msgstr "Activa Masq"
@@ -871,9 +872,6 @@ msgstr "Cerca"
 msgid "Directions"
 msgstr "Indicacions"
 
-msgid "Favorites"
-msgstr "Preferits"
-
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
 
@@ -883,11 +881,11 @@ msgstr "Comparteix l'enllaç"
 msgid "Copied !"
 msgstr "Copiat!"
 
-msgid "SHARE ON FACEBOOK"
-msgstr "COMPARTEIX AL FACEBOOK"
+msgid "Share on Facebook"
+msgstr "Comparteix al Facebook"
 
-msgid "SHARE ON TWITTER"
-msgstr "COMPARTEIX AL TWITTER"
+msgid "Share on Twitter"
+msgstr "Comparteix al Twitter"
 
 msgid "Share"
 msgstr "Comparteix"
@@ -909,8 +907,8 @@ msgstr ""
 msgid "Favorite places"
 msgstr "Llocs preferits"
 
-msgid "MY FAVORITES"
-msgstr "PREFERITS"
+msgid "My favorites"
+msgstr "Preferits"
 
 msgid "Show favorites"
 msgstr "Mostra els preferits"
@@ -918,26 +916,20 @@ msgstr "Mostra els preferits"
 msgid "Close to"
 msgstr ""
 
-msgid "DIRECTIONS"
-msgstr "INDICACIONS"
+msgid "See more"
+msgstr "Més informació"
 
-msgid "SEE MORE"
-msgstr "MÉS INFORMACIÓ"
+msgid "Show number"
+msgstr "Mostra el nombre"
 
-msgid "SHOW NUMBER"
-msgstr "MOSTRA EL NOMBRE"
-
-msgid "SAVED"
-msgstr "DESAT"
-
-msgid "SHARE"
-msgstr "COMPARTEIX"
+msgid "Saved"
+msgstr "Desat"
 
 msgid "Photos"
 msgstr "Fotos"
 
-msgid "WIKIPEDIA"
-msgstr "VIQUIPÈDIA"
+msgid "Wikipedia"
+msgstr "Viquipèdia"
 
 msgid "Wheelchair accessible"
 msgstr "Accessible amb cadira de rodes"
@@ -975,11 +967,11 @@ msgstr "Serveis i informació"
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa dades de l'OpenStreetMap."
 
-msgid "VIEW"
-msgstr "MOSTRA"
+msgid "View"
+msgstr "Mostra"
 
-msgid "EDIT"
-msgstr "EDITA"
+msgid "Edit"
+msgstr "Edita"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -1052,7 +1044,7 @@ msgstr "Cerca al voltant de la meva posició"
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 
-msgid "PAGES JAUNES"
+msgid "Pages Jaunes"
 msgstr ""
 
 msgid "Partnership"
@@ -1085,10 +1077,10 @@ msgstr "Inici"
 msgid "Arrival"
 msgstr "Arribada"
 
-msgid "DETAILS"
-msgstr "DETALLS"
+msgid "Details"
+msgstr "Detalls"
 
-msgid "PREVIEW"
+msgid "Preview"
 msgstr ""
 
 msgid "The service is temporarily unavailable, please try again later."
@@ -1101,9 +1093,6 @@ msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr ""
-
-msgid "directions"
-msgstr "indicacions"
 
 msgid "return"
 msgstr ""
