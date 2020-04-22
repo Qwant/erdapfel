@@ -44,7 +44,7 @@ export default class RouteSummary extends React.Component {
         <RouteVia route={route} vehicle={vehicle} />
         <div className="itinerary_leg_via_details" onClick={this.onClickDetails}>
           <i className="itinerary_leg_via_details_icon" />
-          {_('DETAILS', 'direction')}
+          {_('Details', 'direction')}
         </div>
       </div>
       <div className="itinerary_leg_info">
@@ -60,7 +60,7 @@ export default class RouteSummary extends React.Component {
       </div>
       <div className="itinerary_leg_mobileActions">
         <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">
-          {_('DETAILS', 'direction')}
+          {_('Details', 'direction')}
         </Button>
         <Button onClick={this.onClickShare} icon="share-2" />
       </div>

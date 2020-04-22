@@ -177,6 +177,7 @@ $HEADER_SIZE: 40px;
     margin: 9px 0;
     font-family: Asap;
     font-size: 12px;
+    text-transform: uppercase;
   }
 
   &:hover {
@@ -367,6 +368,7 @@ $HEADER_SIZE: 40px;
   font-size: 13px;
   color: $secondary_text;
   position: relative;
+  text-transform: uppercase;
 
   .icon-chevrons-right {
     position: absolute;
@@ -537,6 +539,11 @@ $HEADER_SIZE: 40px;
 
   &__action__direction {
     margin-bottom: 9px;
+    text-transform: uppercase;
+  }
+
+  &__action__see-more {
+    text-transform: uppercase;
   }
 }
 

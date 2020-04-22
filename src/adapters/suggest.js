@@ -56,7 +56,7 @@ export default class Suggest {
         suggestItems = suggestItems.concat(categories);
         suggestItems = suggestItems.concat(geocoderResults.slice(0, nbDisplayedGeocoder));
         if (nbDisplayedFavorites > 0) {
-          suggestItems.push({ simpleLabel: _('FAVORITES', 'autocomplete') });
+          suggestItems.push({ simpleLabel: _('Favorites', 'autocomplete').toUpperCase() });
           suggestItems = suggestItems.concat(favorites.slice(0, nbDisplayedFavorites));
         }
 

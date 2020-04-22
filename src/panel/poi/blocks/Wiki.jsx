@@ -16,7 +16,7 @@ const WikiBlock = ({
         rel="noopener noreferrer"
         target="_blank"
         href={ block.url } >
-        <i className="icon-chevrons-right"/><span>{ _('WIKIPEDIA') }</span>
+        <i className="icon-chevrons-right"/><span>{ _('Wikipedia') }</span>
       </a> }
   </div>;
 };

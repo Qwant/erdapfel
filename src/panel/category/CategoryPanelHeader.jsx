@@ -14,7 +14,7 @@ const CategoryPanelHeader = ({ loading, dataSource }) => {
   if (dataSource === sources.pagesjaunes) {
     return <div className="category__panel__pj">
       <div className="category__panel__pj_title">
-        {_('PAGES JAUNES', 'categories')}
+        {_('Pages Jaunes', 'categories')}
       </div>
       <div className="category__panel__pj_partnership">
         {_('Partnership', 'categories')}
