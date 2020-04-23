@@ -1,14 +1,15 @@
 # Translators:
 # T S <tsalaba2004@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 13:53+0000\n"
+"POT-Creation-Date: 2020-04-22 15:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2019\n"
+"Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,6 +27,9 @@ msgstr ""
 
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
+
+msgid "The map that respects your privacy"
+msgstr "El mapa que respeta tu privacidad"
 
 msgid "Search on Qwant Maps"
 msgstr "Buscar en Qwant Maps"
@@ -152,9 +156,6 @@ msgstr ""
 
 msgid "Search with Qwant Maps"
 msgstr "Busca con Qwant Maps"
-
-msgid "The map that respects your privacy"
-msgstr "El mapa que respeta tu privacidad"
 
 msgid "write"
 msgstr ""
@@ -808,8 +809,8 @@ msgstr ""
 "No has permitido a Qwant Maps (o a tu dispositivo) a acceder a tu "
 "localización."
 
-msgid "OK"
-msgstr "VALE"
+msgid "Ok"
+msgstr "Vale"
 
 msgid ""
 "Qwant Maps cannot determine your position. Check that location services are "
@@ -851,8 +852,8 @@ msgstr "categoría"
 msgid "Your position"
 msgstr "Tu localización"
 
-msgid "FAVORITES"
-msgstr "FAVORITOS"
+msgid "Favorites"
+msgstr "Favoritos"
 
 msgid "Activate Masq"
 msgstr "Activar Masq"
@@ -872,9 +873,6 @@ msgstr "Buscar"
 msgid "Directions"
 msgstr "Indicaciones"
 
-msgid "Favorites"
-msgstr "Favoritos"
-
 msgid "How to contribute"
 msgstr "Cómo contribuir"
 
@@ -884,11 +882,11 @@ msgstr "Compartir enlace"
 msgid "Copied !"
 msgstr "¡Enlace copiado!"
 
-msgid "SHARE ON FACEBOOK"
-msgstr "COMPARTIR EN FACEBOOK"
+msgid "Share on Facebook"
+msgstr "Compartir en Facebook"
 
-msgid "SHARE ON TWITTER"
-msgstr "COMPARTIR EN TWITTER"
+msgid "Share on Twitter"
+msgstr "Compartir en Twitter"
 
 msgid "Share"
 msgstr "Compartir"
@@ -911,8 +909,8 @@ msgstr "para proteger tus favoritos en todos tus dispositivos"
 msgid "Favorite places"
 msgstr "Lugares favoritos"
 
-msgid "MY FAVORITES"
-msgstr "MIS FAVORITOS"
+msgid "My favorites"
+msgstr "Mis Favoritos"
 
 msgid "Show favorites"
 msgstr "Mostrar favoritos"
@@ -920,26 +918,20 @@ msgstr "Mostrar favoritos"
 msgid "Close to"
 msgstr ""
 
-msgid "DIRECTIONS"
-msgstr "INDICACIONES"
+msgid "See more"
+msgstr "Ver Más"
 
-msgid "SEE MORE"
-msgstr "VER MÁS"
+msgid "Show number"
+msgstr "Mostrar Número"
 
-msgid "SHOW NUMBER"
-msgstr "MOSTRAR NÚMERO"
-
-msgid "SAVED"
-msgstr "GUARDADO"
-
-msgid "SHARE"
-msgstr "COMPARTIR"
+msgid "Saved"
+msgstr "Guardado"
 
 msgid "Photos"
 msgstr "Fotos"
 
-msgid "WIKIPEDIA"
-msgstr "WIKIPEDIA"
+msgid "Wikipedia"
+msgstr "Wikipedia"
 
 msgid "Wheelchair accessible"
 msgstr "Accesible para las sillas de ruedas"
@@ -977,11 +969,11 @@ msgstr "Servicios e información"
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa datos de OpenStreetMaps."
 
-msgid "VIEW"
-msgstr "VER"
+msgid "View"
+msgstr "Ver"
 
-msgid "EDIT"
-msgstr "EDITAR"
+msgid "Edit"
+msgstr "Editar"
 
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
@@ -1056,8 +1048,8 @@ msgstr "Buscar cerca de mi localización"
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Por favor amplia el mapa para ver los resultados de esta categoría."
 
-msgid "PAGES JAUNES"
-msgstr "PÁGINAS AMARILLAS"
+msgid "Pages Jaunes"
+msgstr "Páginas Amarillas"
 
 msgid "Partnership"
 msgstr "Colaboración"
@@ -1089,11 +1081,11 @@ msgstr "Comenzar"
 msgid "Arrival"
 msgstr ""
 
-msgid "DETAILS"
-msgstr "DETALLES"
+msgid "Details"
+msgstr "Detalles"
 
-msgid "PREVIEW"
-msgstr "MUESTRA"
+msgid "Preview"
+msgstr "Muestra"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
@@ -1105,9 +1097,6 @@ msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr ""
-
-msgid "directions"
-msgstr "indicaciones"
 
 msgid "return"
 msgstr "volver"

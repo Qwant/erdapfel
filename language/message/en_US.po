@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 14:48+0100\n"
+"POT-Creation-Date: 2020-04-22 18:27+0200\n"
 "PO-Revision-Date: 2018-08-08 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,46 +23,13 @@ msgstr ""
 msgid "Qwant Maps"
 msgstr ""
 
+msgid "The map that respects your privacy"
+msgstr ""
+
 msgid "Search on Qwant Maps"
 msgstr ""
 
 msgid "JavaScript is required to view this application."
-msgstr ""
-
-msgid "hotel"
-msgstr ""
-
-msgid "restaurant"
-msgstr ""
-
-msgid "leisure"
-msgstr ""
-
-msgid "bar"
-msgstr ""
-
-msgid "supermarket"
-msgstr ""
-
-msgid "bank"
-msgstr ""
-
-msgid "pharmacy"
-msgstr ""
-
-msgid "education"
-msgstr ""
-
-msgid "museum"
-msgstr ""
-
-msgid "service"
-msgstr ""
-
-msgid "sport"
-msgstr ""
-
-msgid "health"
 msgstr ""
 
 msgid "Qwant is also"
@@ -131,6 +98,42 @@ msgstr ""
 msgid "on Facebook"
 msgstr ""
 
+msgid "hotel"
+msgstr ""
+
+msgid "restaurant"
+msgstr ""
+
+msgid "leisure"
+msgstr ""
+
+msgid "bar"
+msgstr ""
+
+msgid "supermarket"
+msgstr ""
+
+msgid "bank"
+msgstr ""
+
+msgid "pharmacy"
+msgstr ""
+
+msgid "education"
+msgstr ""
+
+msgid "museum"
+msgstr ""
+
+msgid "service"
+msgstr ""
+
+msgid "sport"
+msgstr ""
+
+msgid "health"
+msgstr ""
+
 msgid "concert"
 msgstr ""
 
@@ -144,9 +147,6 @@ msgid "event"
 msgstr ""
 
 msgid "animation"
-msgstr ""
-
-msgid "The map that respects your privacy"
 msgstr ""
 
 msgid "Search with Qwant Maps"
@@ -758,11 +758,6 @@ msgstr ""
 msgid "street"
 msgstr ""
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Open"
 msgstr ""
 
@@ -774,6 +769,11 @@ msgstr ""
 
 msgid "until {nextTransitionTime}"
 msgstr ""
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Geolocation with privacy!"
 msgstr ""
@@ -795,7 +795,7 @@ msgid ""
 "You have not allowed Qwant Maps (or your device) to access your location."
 msgstr ""
 
-msgid "OK"
+msgid "Ok"
 msgstr ""
 
 msgid ""
@@ -833,7 +833,10 @@ msgstr ""
 msgid "category"
 msgstr ""
 
-msgid "FAVORITES"
+msgid "Your position"
+msgstr ""
+
+msgid "Favorites"
 msgstr ""
 
 msgid "Activate Masq"
@@ -854,9 +857,6 @@ msgstr ""
 msgid "Directions"
 msgstr ""
 
-msgid "Favorites"
-msgstr ""
-
 msgid "How to contribute"
 msgstr ""
 
@@ -866,10 +866,10 @@ msgstr ""
 msgid "Copied !"
 msgstr ""
 
-msgid "SHARE ON FACEBOOK"
+msgid "Share on Facebook"
 msgstr ""
 
-msgid "SHARE ON TWITTER"
+msgid "Share on Twitter"
 msgstr ""
 
 msgid "Share"
@@ -890,7 +890,7 @@ msgstr ""
 msgid "Favorite places"
 msgstr ""
 
-msgid "MY FAVORITES"
+msgid "My favorites"
 msgstr ""
 
 msgid "Show favorites"
@@ -899,42 +899,19 @@ msgstr ""
 msgid "Close to"
 msgstr ""
 
-msgid "DIRECTIONS"
+msgid "See more"
 msgstr ""
 
-msgid "SEE MORE"
+msgid "Show number"
 msgstr ""
 
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-
-msgid "More Details"
-msgstr ""
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr ""
-
-msgid "No thanks"
-msgstr ""
-
-msgid "Do not ask again"
-msgstr ""
-
-msgid "SHOW NUMBER"
-msgstr ""
-
-msgid "SAVED"
-msgstr ""
-
-msgid "SHARE"
+msgid "Saved"
 msgstr ""
 
 msgid "Photos"
 msgstr ""
 
-msgid "WIKIPEDIA"
+msgid "Wikipedia"
 msgstr ""
 
 msgid "Wheelchair accessible"
@@ -973,10 +950,27 @@ msgstr ""
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr ""
 
-msgid "VIEW"
+msgid "View"
 msgstr ""
 
-msgid "EDIT"
+msgid "Edit"
+msgstr ""
+
+msgid ""
+"Qwant Maps + Masq is the solution for a web mapping service respecting your "
+"privacy!"
+msgstr ""
+
+msgid "More Details"
+msgstr ""
+
+msgid "Do you want to synchronize your favorites with Masq ?"
+msgstr ""
+
+msgid "No thanks"
+msgstr ""
+
+msgid "Do not ask again"
 msgstr ""
 
 msgid "Back to favorite"
@@ -991,13 +985,28 @@ msgstr ""
 msgid "Search around this place"
 msgstr ""
 
+msgid "Good plans"
+msgstr ""
+
 msgid "Qwant Maps services"
 msgstr ""
 
-msgid "Show Qwant Maps services"
+msgid "Unfold to see quick actions"
 msgstr ""
 
-msgid "Good plans"
+msgid "by car"
+msgstr ""
+
+msgid "transit"
+msgstr ""
+
+msgid "on foot"
+msgstr ""
+
+msgid "by bike"
+msgstr ""
+
+msgid "Services nearby"
 msgstr ""
 
 msgid "on {date}"
@@ -1018,7 +1027,7 @@ msgstr ""
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 
-msgid "PAGES JAUNES"
+msgid "Pages Jaunes"
 msgstr ""
 
 msgid "Partnership"
@@ -1027,25 +1036,19 @@ msgstr ""
 msgid "Show results"
 msgstr ""
 
-msgid "Your position"
-msgstr ""
-
 msgid "Start point"
 msgstr ""
 
 msgid "End point"
 msgstr ""
 
+msgid "Test"
+msgstr ""
+
 msgid "Invert start and end"
 msgstr ""
 
 msgid "Via"
-msgstr ""
-
-msgid "DETAILS"
-msgstr ""
-
-msgid "PREVIEW"
 msgstr ""
 
 msgid "Walk on {walkDistance}"
@@ -1057,10 +1060,20 @@ msgstr ""
 msgid "Arrival"
 msgstr ""
 
+msgid "Details"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "The service is temporarily unavailable, please try again later."
+msgstr ""
+
 msgid "Qwant Maps found no results for this itinerary."
 msgstr ""
 
-msgid "directions"
+msgid ""
+"We are currently testing public transport mode in a restricted set of cities."
 msgstr ""
 
 msgid "return"
