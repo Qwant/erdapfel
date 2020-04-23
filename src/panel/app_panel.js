@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import SearchInput from '../ui_components/search_input';
+import Suggest from 'src/components/ui/Suggest';
+import SearchInput, { selectItem } from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import Telemetry from '../libs/telemetry';
 import Router from 'src/proxies/app_router';
@@ -20,7 +21,7 @@ export default class App {
   constructor() {
     this.initMap();
 
-    SearchInput.initSearchInput('#search');
+    // SearchInput.initSearchInput('#search');
 
     Telemetry.add(Telemetry.APP_START, null, null, {
       'language': window.getLang(),
@@ -40,6 +41,12 @@ export default class App {
       <Fragment>
         <PanelManager router={this.router} />
         {burgerMenuEnabled && <Menu />}
+        <Suggest
+          tagSelector="#search"
+          onSelect={selectItem}
+          withCategories
+          clasName="mainSearchSuggest"
+        />
       </Fragment>,
       document.querySelector('#react_root')
     );

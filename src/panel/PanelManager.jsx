@@ -54,14 +54,14 @@ export default class PanelManager extends React.Component {
         fire('remove_event_markers');
       }
 
-      if (ActivePanel === DirectionPanel) {
-        SearchInput.minify();
-      } else {
-        SearchInput.unminify();
-        if (this.state.isMinified) {
-          this.setState({ isMinified: false });
-        }
-      }
+      // if (ActivePanel === DirectionPanel) {
+      //   SearchInput.minify();
+      // } else {
+      //   SearchInput.unminify();
+      //   if (this.state.isMinified) {
+      //     this.setState({ isMinified: false });
+      //   }
+      // }
     }
   }
 
@@ -130,20 +130,20 @@ export default class PanelManager extends React.Component {
     }
 
     router.addRoute('Direct search query', '/([?].*)', queryString => {
-      const params = parseQueryString(queryString);
-      if (params.q) {
-        SearchInput.executeSearch(params.q);
-      } else {
-        router.routeUrl('/');
-      }
+      // const params = parseQueryString(queryString);
+      // if (params.q) {
+      //   SearchInput.executeSearch(params.q);
+      // } else {
+      //   router.routeUrl('/');
+      // }
     });
 
     // Default matching route
     router.addRoute('Services', '/?', (_, options) => {
       this.setState({ ActivePanel: ServicePanel, options });
-      if (options?.focusSearch) {
-        SearchInput.select();
-      }
+      // if (options?.focusSearch) {
+      //   SearchInput.select();
+      // }
     });
 
     // Route the initial URL
@@ -152,14 +152,14 @@ export default class PanelManager extends React.Component {
 
   toggleMinify = () => {
     if (this.state.isMinified) {
-      SearchInput.unminify();
+      // SearchInput.unminify();
       this.setState({ isMinified: false });
     } else {
-      if (this.state.ActivePanel === DirectionPanel && SearchInput.isMinified()) {
-        SearchInput.unminify();
+      if (this.state.ActivePanel === DirectionPanel /* && SearchInput.isMinified() */) {
+        // SearchInput.unminify();
         return;
       }
-      SearchInput.minify();
+      // SearchInput.minify();
       this.setState({ isMinified: true });
     }
   }

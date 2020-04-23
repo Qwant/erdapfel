@@ -60,7 +60,7 @@ export default class SearchInput {
     this.suggest = new Suggest({
       tagSelector,
       withCategories: true,
-      onSelect: selectedPoi => this.selectItem(selectedPoi),
+      onSelect: selectedPoi => selectItem(selectedPoi),
     });
     this.isEnabled = true;
 
@@ -90,22 +90,22 @@ export default class SearchInput {
     const results = await autocomplete.prefetch(query);
     if (results && results.length > 0) {
       const firstResult = results[0];
-      searchInput.selectItem(firstResult, true);
+      selectItem(firstResult, true);
     }
   }
+}
 
-  async selectItem(selectedItem, replaceUrl = false) {
-    if (selectedItem instanceof Poi) {
-      window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
-        poi: selectedItem,
-        centerMap: true,
-      }, { replace: replaceUrl });
-    } else if (selectedItem instanceof Category) {
-      window.app.navigateTo(`/places/?type=${selectedItem.name}`,
-        {}, { replace: replaceUrl });
-    } else if (selectedItem instanceof Intention) {
-      window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
-        {}, { replace: replaceUrl });
-    }
+export function selectItem(selectedItem, replaceUrl = false) {
+  if (selectedItem instanceof Poi) {
+    window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
+      poi: selectedItem,
+      centerMap: true,
+    }, { replace: replaceUrl });
+  } else if (selectedItem instanceof Category) {
+    window.app.navigateTo(`/places/?type=${selectedItem.name}`,
+      {}, { replace: replaceUrl });
+  } else if (selectedItem instanceof Intention) {
+    window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
+      {}, { replace: replaceUrl });
   }
 }
