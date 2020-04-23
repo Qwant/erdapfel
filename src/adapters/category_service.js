@@ -22,7 +22,7 @@ export default class CategoryService {
     return CategoryService.getCategories().find(categ => categ.name === name) || null;
   }
 
-  static async getMatchingCategories(term) {
+  static getMatchingCategories(term) {
     const matchedCategories = [];
 
     const loadedCategories = CategoryService.getCategories();

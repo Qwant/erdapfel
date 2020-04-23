@@ -3,6 +3,7 @@ import React from 'react';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import IconManager from '../../adapters/icon_manager';
 import Category from 'src/adapters/category';
+import Intention from 'src/adapters/intention';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
   <div className="autocomplete_suggestion__labels">
@@ -15,6 +16,18 @@ const GeolocationItem = () =>
     <div className="autocomplete-icon icon-pin_geoloc" />
     <ItemLabels firstLabel={_('Your position', 'direction')} />
   </div>;
+
+const IntentionItem = ({ intention }) => {
+  const { category, place } = intention;
+  const placeString = place
+    ? `${_('Close to')} ${place.properties.geocoding.name}`
+    : _('Search around this place');
+
+  return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
+    <div className="autocomplete-icon" />
+    <ItemLabels firstLabel={category.label} secondLabel={placeString} />
+  </div>;
+};
 
 const CategoryItem = ({ category }) => {
   const { id, label, alternativeName, color, backgroundColor } = category;
@@ -65,6 +78,10 @@ const SuggestItem = ({ item }) => {
 
   if (item instanceof Category) {
     return <CategoryItem category={item} />;
+  }
+
+  if (item instanceof Intention) {
+    return <IntentionItem intention={item} />;
   }
 
   return <PoiItem poi={item} />;

@@ -1,6 +1,7 @@
 import Suggest from '../adapters/suggest';
 import Poi from '../adapters/poi/poi';
 import Category from '../adapters/category';
+import Intention from '../adapters/intention';
 import { toUrl } from 'src/libs/pois';
 
 const MAPBOX_RESERVED_KEYS = [
@@ -101,6 +102,9 @@ export default class SearchInput {
       }, { replace: replaceUrl });
     } else if (selectedItem instanceof Category) {
       window.app.navigateTo(`/places/?type=${selectedItem.name}`,
+        {}, { replace: replaceUrl });
+    } else if (selectedItem instanceof Intention) {
+      window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
         {}, { replace: replaceUrl });
     }
   }

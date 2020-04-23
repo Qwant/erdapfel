@@ -1,5 +1,5 @@
 import PoiStore from './poi/poi_store';
-import BragiPoi from './poi/bragi_poi';
+import { getGeocoderSuggestions } from 'src/adapters/geocoder';
 import CategoryService from './category_service';
 
 // @TODO: Improvement: don't access directly to window.map
@@ -12,21 +12,28 @@ function getFocus(focusMinZoom) {
   return {};
 }
 
-export function suggestResults(term, { withCategories, useFocus, focusMinZoom = 11 } = {}) {
+export function suggestResults(term, {
+  withCategories,
+  useFocus,
+  focusMinZoom = 11,
+  maxFavorites = 2,
+  maxItems = 10,
+} = {}) {
   let geocoderPromise;
   let promise;
   if (term === '') {
     // Prerender Favorites on focus in empty field
-    promise = PoiStore.getAll();
+    promise = PoiStore.getAll().then(favorites => favorites.slice(0, maxFavorites));
   } else {
     promise = new Promise(async (resolve, reject) => {
-      geocoderPromise = BragiPoi.get(term, useFocus ? getFocus(focusMinZoom) : {});
+      geocoderPromise = getGeocoderSuggestions(term, {
+        focus: useFocus ? getFocus(focusMinZoom) : {},
+        useNlu: withCategories,
+      });
       const favoritePromise = PoiStore.get(term);
-      const categoryPromise = withCategories ? CategoryService.getMatchingCategories(term) : [];
-
       try {
-        const [geocoderSuggestions, favorites, categories] =
-          await Promise.all([ geocoderPromise, favoritePromise, categoryPromise ]);
+        const [geocoderSuggestions, favorites] =
+          await Promise.all([ geocoderPromise, favoritePromise ]);
 
         // This case happens when this query and the underlying XHR have been aborted.
         // resolve(null) will cause the suggest to discard this response.
@@ -34,12 +41,24 @@ export function suggestResults(term, { withCategories, useFocus, focusMinZoom = 
           return resolve(null);
         }
 
-        const suggestList = [
-          ...categories,
-          ...geocoderSuggestions,
-          ...favorites,
-        ];
+        const { pois, intentions } = geocoderSuggestions;
+        let intentionsOrCategories = [];
+        if (withCategories) {
+          if (!intentions) { // no NLU activated
+            intentionsOrCategories = CategoryService.getMatchingCategories(term);
+          } else {
+            intentionsOrCategories = intentions.filter(intention => intention.category);
+          }
+        }
+        const keptFavorites = favorites.slice(0, maxFavorites);
+        const keptGeocoderSuggestions = pois
+          .slice(0, maxItems - keptFavorites.length - intentionsOrCategories.length);
 
+        const suggestList = [
+          ...intentionsOrCategories,
+          ...keptGeocoderSuggestions,
+          ...keptFavorites,
+        ];
         resolve(suggestList);
       } catch (e) {
         reject(e);
@@ -54,3 +73,4 @@ export function suggestResults(term, { withCategories, useFocus, focusMinZoom = 
   };
   return promise;
 }
+

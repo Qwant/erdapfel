@@ -16,6 +16,10 @@ describe('url_utils', () => {
         param: { q: 'myquery', type: 'restaurant' },
         expected: '?q=myquery&type=restaurant',
       },
+      {
+        param: { q: 'myquery', foo: null, bar: undefined, baz: 0, qux: '' },
+        expected: '?q=myquery&baz=0&qux=',
+      },
     ];
 
     cases.map(({ param, expected }) =>
