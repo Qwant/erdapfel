@@ -120,11 +120,11 @@ const Status = ({ status }) => {
   )
 }
 
-const Covid19 = ({ block, poi }) => {
+const Covid19 = ({ block, countryCode }) => {
   return <div className="poi_panel__info__section covid19">
     <Status status={block.status} />
     {getContent(block)}
-    <LegalWarning countryCode={poi.address.country_code} />
+    <LegalWarning countryCode={countryCode} />
   </div>;
 };
 /* eslint-enable */
