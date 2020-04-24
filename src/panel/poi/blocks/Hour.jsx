@@ -1,8 +1,8 @@
+/* globals _ */
 import React from 'react';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import TimeTable from './TimeTable';
 import PropTypes from 'prop-types';
-import covidStrings from './covid_strings';
 
 export default class HourBlock extends React.Component {
   static propTypes = {
@@ -22,7 +22,7 @@ export default class HourBlock extends React.Component {
         <div className="poi_panel__block__content">
           <TimeTable
             schedule={schedule}
-            title={this.props.covid19enabled && covidStrings.seeNormalHours}
+            title={this.props.covid19enabled && _('See the usual schedules', 'covid19')}
           />
         </div>
       </div>
