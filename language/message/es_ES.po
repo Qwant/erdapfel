@@ -1,3 +1,4 @@
+# 
 # Translators:
 # T S <tsalaba2004@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
@@ -7,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 15:58+0000\n"
+"POT-Creation-Date: 2020-04-24 15:30+0200\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
@@ -36,42 +37,6 @@ msgstr "Buscar en Qwant Maps"
 
 msgid "JavaScript is required to view this application."
 msgstr "Es necesario activar JavaScript para ver esta aplicación"
-
-msgid "hotel"
-msgstr "hotel"
-
-msgid "restaurant"
-msgstr "restaurante"
-
-msgid "leisure"
-msgstr "ocio"
-
-msgid "bar"
-msgstr "bar"
-
-msgid "supermarket"
-msgstr "supermercado"
-
-msgid "bank"
-msgstr "banco"
-
-msgid "pharmacy"
-msgstr "farmacia"
-
-msgid "education"
-msgstr "Educación"
-
-msgid "museum"
-msgstr "museo"
-
-msgid "service"
-msgstr ""
-
-msgid "sport"
-msgstr ""
-
-msgid "health"
-msgstr ""
 
 msgid "Qwant is also"
 msgstr "Qwant es también"
@@ -139,6 +104,42 @@ msgstr "en Twitter"
 msgid "on Facebook"
 msgstr "en Facebook"
 
+msgid "hotel"
+msgstr "hotel"
+
+msgid "restaurant"
+msgstr "restaurante"
+
+msgid "leisure"
+msgstr "ocio"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermercado"
+
+msgid "bank"
+msgstr "banco"
+
+msgid "pharmacy"
+msgstr "farmacia"
+
+msgid "education"
+msgstr "Educación"
+
+msgid "museum"
+msgstr "museo"
+
+msgid "service"
+msgstr ""
+
+msgid "sport"
+msgstr ""
+
+msgid "health"
+msgstr ""
+
 msgid "concert"
 msgstr ""
 
@@ -156,9 +157,6 @@ msgstr ""
 
 msgid "Search with Qwant Maps"
 msgstr "Busca con Qwant Maps"
-
-msgid "write"
-msgstr ""
 
 msgid "accessories shop"
 msgstr "tienda de accesorios"
@@ -390,6 +388,9 @@ msgstr "escape game"
 
 msgid "fabric"
 msgstr "telas"
+
+msgid "farm shop"
+msgstr ""
 
 msgid "fast food"
 msgstr "comida rápida"
@@ -846,11 +847,17 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "No se ha podido conectar a Masq"
 
+msgid "Your position"
+msgstr "Tu localización"
+
 msgid "category"
 msgstr "categoría"
 
-msgid "Your position"
-msgstr "Tu localización"
+msgid "Close to"
+msgstr ""
+
+msgid "Search around this place"
+msgstr "Buscar por esta zona"
 
 msgid "Favorites"
 msgstr "Favoritos"
@@ -914,9 +921,6 @@ msgstr "Mis Favoritos"
 
 msgid "Show favorites"
 msgstr "Mostrar favoritos"
-
-msgid "Close to"
-msgstr ""
 
 msgid "See more"
 msgstr "Ver Más"
@@ -1002,9 +1006,6 @@ msgstr "Volver a la lista"
 
 msgid "Back"
 msgstr "Volver"
-
-msgid "Search around this place"
-msgstr "Buscar por esta zona"
 
 msgid "Good plans"
 msgstr ""
@@ -1100,3 +1101,6 @@ msgstr ""
 
 msgid "return"
 msgstr "volver"
+
+msgid "write"
+msgstr ""

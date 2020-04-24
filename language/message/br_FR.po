@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Gwenn M <tornoz@laposte.net>, 2019
@@ -8,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 15:58+0000\n"
+"POT-Creation-Date: 2020-04-24 15:30+0200\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -37,42 +38,6 @@ msgstr "Klask war Qwant Maps"
 
 msgid "JavaScript is required to view this application."
 msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
-
-msgid "hotel"
-msgstr "leti"
-
-msgid "restaurant"
-msgstr "predti"
-
-msgid "leisure"
-msgstr "dudioù"
-
-msgid "bar"
-msgstr "tavarn"
-
-msgid "supermarket"
-msgstr "gourmarc'had"
-
-msgid "bank"
-msgstr "ti-bank"
-
-msgid "pharmacy"
-msgstr "apotikerezh"
-
-msgid "education"
-msgstr "deskadurezh"
-
-msgid "museum"
-msgstr "mirdi"
-
-msgid "service"
-msgstr "servij"
-
-msgid "sport"
-msgstr "sport"
-
-msgid "health"
-msgstr "yec'hed"
 
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
@@ -140,6 +105,42 @@ msgstr "war Twitter"
 msgid "on Facebook"
 msgstr "war Facebook"
 
+msgid "hotel"
+msgstr "leti"
+
+msgid "restaurant"
+msgstr "predti"
+
+msgid "leisure"
+msgstr "dudioù"
+
+msgid "bar"
+msgstr "tavarn"
+
+msgid "supermarket"
+msgstr "gourmarc'had"
+
+msgid "bank"
+msgstr "ti-bank"
+
+msgid "pharmacy"
+msgstr "apotikerezh"
+
+msgid "education"
+msgstr "deskadurezh"
+
+msgid "museum"
+msgstr "mirdi"
+
+msgid "service"
+msgstr "servij"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "health"
+msgstr "yec'hed"
+
 msgid "concert"
 msgstr "sonadeg"
 
@@ -157,9 +158,6 @@ msgstr "luskadurioù"
 
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
-
-msgid "write"
-msgstr "skrivañ"
 
 msgid "accessories shop"
 msgstr "stal rikoù"
@@ -391,6 +389,9 @@ msgstr "c'hoari achapiñ"
 
 msgid "fabric"
 msgstr "labouradeg"
+
+msgid "farm shop"
+msgstr ""
 
 msgid "fast food"
 msgstr "pretierezh prim"
@@ -852,11 +853,17 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "N'heller ket kevreañ ouzh Masq"
 
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
+
 msgid "category"
 msgstr "rummad"
 
-msgid "Your position"
-msgstr "Ho touarlec'hiañ"
+msgid "Close to"
+msgstr "Da gichen"
+
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
 
 msgid "Favorites"
 msgstr "Sinedoù"
@@ -920,9 +927,6 @@ msgstr "Ma sinedoù"
 
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
-
-msgid "Close to"
-msgstr "Da gichen"
 
 msgid "See more"
 msgstr "Gwelet muioc'h"
@@ -1008,9 +1012,6 @@ msgstr "Distreiñ d'al listenn"
 
 msgid "Back"
 msgstr "Distreiñ"
-
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
 
 msgid "Good plans"
 msgstr "Planioù mat"
@@ -1106,3 +1107,6 @@ msgstr ""
 
 msgid "return"
 msgstr "distreiñ"
+
+msgid "write"
+msgstr "skrivañ"

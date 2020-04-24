@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Luca Elle <ikol89891@fastmail.com>, 2019
 # Davide Donati <davide.donati@gmail.com>, 2019
@@ -9,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 15:58+0000\n"
+"POT-Creation-Date: 2020-04-24 15:30+0200\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
@@ -38,42 +39,6 @@ msgstr "Cerca su Qwant Maps"
 
 msgid "JavaScript is required to view this application."
 msgstr "Per vedere questa applicazione è richiesto JavaScript"
-
-msgid "hotel"
-msgstr "hotel"
-
-msgid "restaurant"
-msgstr "ristorante"
-
-msgid "leisure"
-msgstr "Tempo libero"
-
-msgid "bar"
-msgstr "bar"
-
-msgid "supermarket"
-msgstr "supermercato"
-
-msgid "bank"
-msgstr "banca"
-
-msgid "pharmacy"
-msgstr "farmacia"
-
-msgid "education"
-msgstr "istruzione"
-
-msgid "museum"
-msgstr "museo"
-
-msgid "service"
-msgstr "Servizi"
-
-msgid "sport"
-msgstr "Sport"
-
-msgid "health"
-msgstr "Salute"
 
 msgid "Qwant is also"
 msgstr "Qwant è anche"
@@ -141,6 +106,42 @@ msgstr "su Twitter"
 msgid "on Facebook"
 msgstr "su Facebook"
 
+msgid "hotel"
+msgstr "hotel"
+
+msgid "restaurant"
+msgstr "ristorante"
+
+msgid "leisure"
+msgstr "Tempo libero"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermercato"
+
+msgid "bank"
+msgstr "banca"
+
+msgid "pharmacy"
+msgstr "farmacia"
+
+msgid "education"
+msgstr "istruzione"
+
+msgid "museum"
+msgstr "museo"
+
+msgid "service"
+msgstr "Servizi"
+
+msgid "sport"
+msgstr "Sport"
+
+msgid "health"
+msgstr "Salute"
+
 msgid "concert"
 msgstr "concerto"
 
@@ -158,9 +159,6 @@ msgstr ""
 
 msgid "Search with Qwant Maps"
 msgstr "Cerca con Qwant Maps"
-
-msgid "write"
-msgstr ""
 
 msgid "accessories shop"
 msgstr "negozio di accessori"
@@ -392,6 +390,9 @@ msgstr "gioco di evasione"
 
 msgid "fabric"
 msgstr "tessuto"
+
+msgid "farm shop"
+msgstr ""
 
 msgid "fast food"
 msgstr "fast food"
@@ -850,11 +851,17 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "Impossibile connettersi a Masq"
 
+msgid "Your position"
+msgstr "La tua posizione"
+
 msgid "category"
 msgstr "categoria"
 
-msgid "Your position"
-msgstr "La tua posizione"
+msgid "Close to"
+msgstr ""
+
+msgid "Search around this place"
+msgstr "Cerca nei dintorni di questo luogo"
 
 msgid "Favorites"
 msgstr "Preferiti"
@@ -918,9 +925,6 @@ msgstr "I miei preferiti"
 
 msgid "Show favorites"
 msgstr "Mostra favoriti"
-
-msgid "Close to"
-msgstr ""
 
 msgid "See more"
 msgstr "Altre info"
@@ -1006,9 +1010,6 @@ msgstr "Torna alla lista"
 
 msgid "Back"
 msgstr "Indietro"
-
-msgid "Search around this place"
-msgstr "Cerca nei dintorni di questo luogo"
 
 msgid "Good plans"
 msgstr ""
@@ -1105,3 +1106,6 @@ msgstr ""
 
 msgid "return"
 msgstr "ritorna"
+
+msgid "write"
+msgstr ""
