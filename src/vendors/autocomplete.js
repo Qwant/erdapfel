@@ -84,7 +84,7 @@ export default function autoComplete(options) {
             that.sourcePending = o.source(val);
             that.sourcePending.then(source => {
               that.sourcePending = null;
-              if (source !== null) {
+              if (source !== null && document.activeElement === that) {
                 suggest(source);
               }
             }).catch(e => {
