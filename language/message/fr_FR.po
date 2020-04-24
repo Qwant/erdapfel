@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Boo Teille <booteille@tutanota.com>, 2019
 # Florent Thouvenin <github@eldar.fr>, 2019
@@ -5,17 +6,17 @@
 # K T <kzn.tengwar@email.com>, 2019
 # v k <vitaalis@hotmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2020
 # Adrien Matissart, 2020
-# MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 15:58+0000\n"
+"POT-Creation-Date: 2020-04-24 15:30+0200\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
+"Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,42 +45,6 @@ msgid "JavaScript is required to view this application."
 msgstr ""
 "Il est nécessaire que JavaScript soit activé pour afficher cette "
 "application."
-
-msgid "hotel"
-msgstr "hôtel"
-
-msgid "restaurant"
-msgstr "restaurant"
-
-msgid "leisure"
-msgstr "loisirs"
-
-msgid "bar"
-msgstr "bar"
-
-msgid "supermarket"
-msgstr "supermarché"
-
-msgid "bank"
-msgstr "banque"
-
-msgid "pharmacy"
-msgstr "pharmacie"
-
-msgid "education"
-msgstr "éducation"
-
-msgid "museum"
-msgstr "musée"
-
-msgid "service"
-msgstr "services"
-
-msgid "sport"
-msgstr "sport"
-
-msgid "health"
-msgstr "santé"
 
 msgid "Qwant is also"
 msgstr "Qwant c'est aussi"
@@ -147,6 +112,42 @@ msgstr "sur Twitter"
 msgid "on Facebook"
 msgstr "sur Facebook"
 
+msgid "hotel"
+msgstr "hôtel"
+
+msgid "restaurant"
+msgstr "restaurant"
+
+msgid "leisure"
+msgstr "loisirs"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermarché"
+
+msgid "bank"
+msgstr "banque"
+
+msgid "pharmacy"
+msgstr "pharmacie"
+
+msgid "education"
+msgstr "éducation"
+
+msgid "museum"
+msgstr "musée"
+
+msgid "service"
+msgstr "services"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "health"
+msgstr "santé"
+
 msgid "concert"
 msgstr "concert"
 
@@ -164,9 +165,6 @@ msgstr "animation"
 
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
-
-msgid "write"
-msgstr " "
 
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -398,6 +396,9 @@ msgstr "jeu d'évasion"
 
 msgid "fabric"
 msgstr "magasin de tissus"
+
+msgid "farm shop"
+msgstr "produits de la ferme"
 
 msgid "fast food"
 msgstr "restauration rapide"
@@ -856,11 +857,17 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "Impossible de se connecter à Masq"
 
+msgid "Your position"
+msgstr "Votre position"
+
 msgid "category"
 msgstr "catégorie"
 
-msgid "Your position"
-msgstr "Votre position"
+msgid "Close to"
+msgstr "À proximité de"
+
+msgid "Search around this place"
+msgstr "Rechercher à proximité"
 
 msgid "Favorites"
 msgstr "Favoris"
@@ -925,14 +932,11 @@ msgstr "Mes favoris"
 msgid "Show favorites"
 msgstr "Afficher les favoris"
 
-msgid "Close to"
-msgstr "À proximité de"
-
 msgid "See more"
 msgstr "Voir plus"
 
 msgid "Show number"
-msgstr "Voir le n°"
+msgstr "Voir le numéro"
 
 msgid "Saved"
 msgstr "Enregistré"
@@ -1012,9 +1016,6 @@ msgstr "Retour à la liste"
 
 msgid "Back"
 msgstr "Retour"
-
-msgid "Search around this place"
-msgstr "Rechercher à proximité"
 
 msgid "Good plans"
 msgstr "Bons plans"
@@ -1113,3 +1114,6 @@ msgstr ""
 
 msgid "return"
 msgstr "retour"
+
+msgid "write"
+msgstr " "

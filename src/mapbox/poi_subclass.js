@@ -79,6 +79,7 @@ const subClasses = {
   erotic: () => _('erotic shop'),
   escape_game: () => _('escape game'),
   fabric: () => _('fabric'),
+  farm: () => _('farm shop'),
   fast_food: () => _('fast food'),
   fire_station: () => _('fire station'),
   florist: () => _('florist'),

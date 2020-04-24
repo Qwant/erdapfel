@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # jmontane, 2020
@@ -7,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 15:58+0000\n"
+"POT-Creation-Date: 2020-04-24 15:30+0200\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -36,42 +37,6 @@ msgstr "Cerca a Qwant Maps"
 
 msgid "JavaScript is required to view this application."
 msgstr "El JavaScript és necessari per a veure aquesta aplicació."
-
-msgid "hotel"
-msgstr "hotel"
-
-msgid "restaurant"
-msgstr "restaurant"
-
-msgid "leisure"
-msgstr ""
-
-msgid "bar"
-msgstr "bar de copes"
-
-msgid "supermarket"
-msgstr "supermercat"
-
-msgid "bank"
-msgstr "banc"
-
-msgid "pharmacy"
-msgstr "farmàcia"
-
-msgid "education"
-msgstr "educació"
-
-msgid "museum"
-msgstr "museu"
-
-msgid "service"
-msgstr "servei"
-
-msgid "sport"
-msgstr "esport"
-
-msgid "health"
-msgstr "salut"
 
 msgid "Qwant is also"
 msgstr "Qwant també és"
@@ -139,6 +104,42 @@ msgstr "a Twitter"
 msgid "on Facebook"
 msgstr "a Facebook"
 
+msgid "hotel"
+msgstr "hotel"
+
+msgid "restaurant"
+msgstr "restaurant"
+
+msgid "leisure"
+msgstr ""
+
+msgid "bar"
+msgstr "bar de copes"
+
+msgid "supermarket"
+msgstr "supermercat"
+
+msgid "bank"
+msgstr "banc"
+
+msgid "pharmacy"
+msgstr "farmàcia"
+
+msgid "education"
+msgstr "educació"
+
+msgid "museum"
+msgstr "museu"
+
+msgid "service"
+msgstr "servei"
+
+msgid "sport"
+msgstr "esport"
+
+msgid "health"
+msgstr "salut"
+
 msgid "concert"
 msgstr ""
 
@@ -156,9 +157,6 @@ msgstr "animació"
 
 msgid "Search with Qwant Maps"
 msgstr "Cerca Qwant Maps"
-
-msgid "write"
-msgstr ""
 
 msgid "accessories shop"
 msgstr "botia d'accessoris"
@@ -390,6 +388,9 @@ msgstr ""
 
 msgid "fabric"
 msgstr "fàbrica"
+
+msgid "farm shop"
+msgstr ""
 
 msgid "fast food"
 msgstr "menjar ràpid"
@@ -845,11 +846,17 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr ""
 
+msgid "Your position"
+msgstr "La vostra posició"
+
 msgid "category"
 msgstr "categoria"
 
-msgid "Your position"
-msgstr "La vostra posició"
+msgid "Close to"
+msgstr ""
+
+msgid "Search around this place"
+msgstr "Cerca prop d'aquest lloc"
 
 msgid "Favorites"
 msgstr "Preferits"
@@ -912,9 +919,6 @@ msgstr "Preferits"
 
 msgid "Show favorites"
 msgstr "Mostra els preferits"
-
-msgid "Close to"
-msgstr ""
 
 msgid "See more"
 msgstr "Més informació"
@@ -998,9 +1002,6 @@ msgstr "Torna a la llista"
 
 msgid "Back"
 msgstr "Enrere"
-
-msgid "Search around this place"
-msgstr "Cerca prop d'aquest lloc"
 
 msgid "Good plans"
 msgstr ""
@@ -1095,4 +1096,7 @@ msgid ""
 msgstr ""
 
 msgid "return"
+msgstr ""
+
+msgid "write"
 msgstr ""
