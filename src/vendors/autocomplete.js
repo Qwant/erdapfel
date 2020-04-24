@@ -30,10 +30,6 @@ export default function autoComplete(options) {
     delay: 150,
     // Takes as arguments: items, search
     renderItems: function() {},
-    // Takes as arguments: e, term, item, items
-    onSelect: function() {},
-    // Takes as arguments: e, term, items
-    onUpdate: function() {},
   };
   for (const k in options) {
     if (options.hasOwnProperty(k)) {
