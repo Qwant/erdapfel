@@ -34,8 +34,6 @@ export default function autoComplete(options) {
     onSelect: function() {},
     // Takes as arguments: e, term, items
     onUpdate: function() {},
-    // Takes as argument: items
-    updateData: function() {},
   };
   for (const k in options) {
     if (options.hasOwnProperty(k)) {
@@ -51,11 +49,6 @@ export default function autoComplete(options) {
   for (let i = 0; i < elems.length; i++) {
     that = elems[i];
     that.last_val = '';
-
-    that.sourceDom = function(data, val) {
-      o.updateData(data);
-      o.renderItems(data, val);
-    };
 
     const cancelObsolete = function() {
       clearTimeout(that.timer);
