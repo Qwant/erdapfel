@@ -75,7 +75,36 @@ const statusMessages = {
 };
 
 /* eslint-disable */
-const Covid19 = ({ block }) => {
+const localizedWarnings = {
+  'FR': (
+    <div>
+      <p>
+        Pendant toute la période de confinement, se déplacer vers ce lieu n'est autorisé
+        qu'en possession d'une attestation de déplacement dérogatoire.
+      </p>
+      <p>
+        Plus d'informations sur{' '}
+        <a rel="noopener noreferrer" href={covidConf.frInformationUrl}>interieur.gouv.fr</a>
+      </p>
+    </div>
+  ),
+  'default': (
+    <div>
+      <p>
+        Respectez les restrictions gouvernementales liées aux déplacements.
+      </p>
+    </div>
+  )
+};
+
+const LegalWarning = ({ countryCode }) => (
+  <div className="covid19-legalWarning">
+    <i className="icon-alert-triangle" />
+    {localizedWarnings[countryCode] || localizedWarnings['default']}
+  </div>
+)
+
+const Covid19 = ({ block, poi }) => {
   const statusMsg = statusMessages[block.status] || statusMessages['unknown'];
 
   return <div className="poi_panel__info__section covid19">
@@ -83,19 +112,7 @@ const Covid19 = ({ block }) => {
       <span className="covid19-tag">Covid-19</span>{statusMsg}
     </h4>
     {getContent(block)}
-    <div className="covid19-legalWarning">
-      <i className="icon-alert-triangle" />
-      <div>
-        <p>
-          Pendant toute la période de confinement, se déplacer vers ce lieu n'est autorisé
-          qu'en possession d'une attestation de déplacement dérogatoire.
-        </p>
-        <p>
-          Plus d'informations sur{' '}
-          <a rel="noopener noreferrer" href={covidConf.frInformationUrl}>interieur.gouv.fr</a>
-        </p>
-      </div>
-    </div>
+    <LegalWarning countryCode={poi.address.country_code} />
   </div>;
 };
 /* eslint-enable */
