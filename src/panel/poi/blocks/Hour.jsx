@@ -22,7 +22,7 @@ export default class HourBlock extends React.Component {
         <div className="poi_panel__block__content">
           <TimeTable
             schedule={schedule}
-            title={this.props.covid19enabled && _('See the usual schedules', 'covid19')}
+            title={this.props.covid19enabled && _('See the usual opening hours', 'covid19')}
           />
         </div>
       </div>
