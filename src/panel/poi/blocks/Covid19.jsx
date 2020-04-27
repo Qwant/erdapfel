@@ -49,7 +49,7 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
       </div>}
       {!schedule &&
         <div className="covid19-changeWarning">
-          {_('Schedules subject to change', 'covid19')}
+          {_('Opening hours subject to change', 'covid19')}
         </div>
       }
       {additionalInfo}
@@ -76,7 +76,7 @@ const LocalizedWarning = ({ countryCode }) => {
     'FR': (
       <div>
         <p>
-          {_('During the entire period of containment, movement to this location is only permitted with an overriding movement certificate.', 'covid19')}
+          {_('During the entire period of lockdown, moving to this location is only permitted with a derogatory certificate.', 'covid19')}
         </p>
         <p>
           {_('More information at', 'covid19')}
@@ -105,11 +105,11 @@ const LegalWarning = ({ countryCode }) => (
 
 const Status = ({ status }) => {
   const statusMessages = {
-    open: _('Opened during containment', 'covid19'),
-    open_as_usual: _('Opened during containment', 'covid19'),
-    maybe_open: _('Potentially opened during containment', 'covid19'),
-    closed: _('Closed during containment', 'covid19'),
-    unknown: _('No information on opening during containment', 'covid19'),
+    open: _('Open during lockdown', 'covid19'),
+    open_as_usual: _('Open during lockdown', 'covid19'),
+    maybe_open: _('Potentially open during lockdown', 'covid19'),
+    closed: _('Closed during lockdown', 'covid19'),
+    unknown: _('No information on opening during lockdown', 'covid19'),
   };
 
   return (
