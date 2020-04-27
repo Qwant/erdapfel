@@ -27,7 +27,9 @@ export default class PoiBlockContainer extends React.Component {
     const displayCovidInfo = this.props.covid19Enabled && blocks.find(b => b.type === 'covid19');
 
     return <div className="poi_panel__info">
-      {displayCovidInfo && <CovidBlock block={covidBlock} />}
+      {displayCovidInfo &&
+        <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />
+      }
       {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
       {informationBlock && <InformationBlock block={informationBlock} />}
       {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}

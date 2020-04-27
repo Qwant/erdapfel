@@ -1,7 +1,7 @@
+/* globals _ */
 import React, { Fragment } from 'react';
 import nconf from '@qwant/nconf-getter';
 import TimeTable from './TimeTable';
-import covidStrings from './covid_strings';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
 import Button from 'src/components/ui/Button';
@@ -31,7 +31,7 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
           href={contribute_url}
           onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE); }}
         >
-          {covidStrings.linkToCaResteOuvert}
+          {_('Report a change', 'covid19')}
         </Button>
       </div>
     </div>;
@@ -47,7 +47,11 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
         <i className="icon-icon_clock" />
         <TimeTable schedule={schedule} />
       </div>}
-      {!schedule && <div className="covid19-changeWarning">{covidStrings.hoursMayChange}</div>}
+      {!schedule &&
+        <div className="covid19-changeWarning">
+          {_('Schedules subject to change', 'covid19')}
+        </div>
+      }
       {additionalInfo}
       {source}
     </Fragment>;
@@ -66,36 +70,61 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
   return content;
 };
 
-const statusMessages = {
-  open: covidStrings.statusOpen,
-  open_as_usual: covidStrings.statusOpen,
-  maybe_open: covidStrings.statusMaybeOpen,
-  closed: covidStrings.statusClosed,
-  unknown: covidStrings.statusNoData,
-};
-
 /* eslint-disable */
-const Covid19 = ({ block }) => {
-  const statusMsg = statusMessages[block.status] || statusMessages['unknown'];
-
-  return <div className="poi_panel__info__section covid19">
-    <h4 className="poi_panel__sub_block__title">
-      <span className="covid19-tag">Covid-19</span>{statusMsg}
-    </h4>
-    {getContent(block)}
-    <div className="covid19-legalWarning">
-      <i className="icon-alert-triangle" />
+const LocalizedWarning = ({ countryCode }) => {
+  const warnings = {
+    'FR': (
       <div>
         <p>
-          Pendant toute la période de confinement, se déplacer vers ce lieu n'est autorisé
-          qu'en possession d'une attestation de déplacement dérogatoire.
+          {_('During the entire period of containment, movement to this location is only permitted with an overriding movement certificate.', 'covid19')}
         </p>
         <p>
-          Plus d'informations sur{' '}
-          <a rel="noopener noreferrer" href={covidConf.frInformationUrl}>interieur.gouv.fr</a>
+          {_('More information at', 'covid19')}
+          {' '}<a rel="noopener noreferrer" href={covidConf.frInformationUrl}>interieur.gouv.fr</a>
         </p>
       </div>
-    </div>
+    ),
+    'default': (
+      <div>
+        <p>
+          {_('Please comply with government travel restrictions.', 'covid19')}
+        </p>
+      </div>
+    )
+  };
+
+  return warnings[countryCode] || warnings['default']
+}
+
+const LegalWarning = ({ countryCode }) => (
+  <div className="covid19-legalWarning">
+    <i className="icon-alert-triangle" />
+    <LocalizedWarning countryCode={countryCode} />
+  </div>
+)
+
+const Status = ({ status }) => {
+  const statusMessages = {
+    open: _('Opened during containment', 'covid19'),
+    open_as_usual: _('Opened during containment', 'covid19'),
+    maybe_open: _('Potentially opened during containment', 'covid19'),
+    closed: _('Closed during containment', 'covid19'),
+    unknown: _('No information on opening during containment', 'covid19'),
+  };
+
+  return (
+    <h4 className="poi_panel__sub_block__title">
+      <span className="covid19-tag">Covid-19</span>
+      {statusMessages[status] || statusMessages['unknown']}
+    </h4>
+  )
+}
+
+const Covid19 = ({ block, countryCode }) => {
+  return <div className="poi_panel__info__section covid19">
+    <Status status={block.status} />
+    {getContent(block)}
+    <LegalWarning countryCode={countryCode} />
   </div>;
 };
 /* eslint-enable */
