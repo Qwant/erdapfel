@@ -80,7 +80,7 @@ const LocalizedWarning = ({ countryCode }) => {
         </p>
         <p>
           {_('More information at', 'covid19')}
-          <a rel="noopener noreferrer" href={covidConf.frInformationUrl}> interieur.gouv.fr</a>
+          {' '}<a rel="noopener noreferrer" href={covidConf.frInformationUrl}>interieur.gouv.fr</a>
         </p>
       </div>
     ),
