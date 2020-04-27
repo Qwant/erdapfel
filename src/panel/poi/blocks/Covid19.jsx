@@ -107,7 +107,7 @@ const Status = ({ status }) => {
   const statusMessages = {
     open: _('Opened during containment', 'covid19'),
     open_as_usual: _('Opened during containment', 'covid19'),
-    maybe_open: _('Potentially opened during containment'),
+    maybe_open: _('Potentially opened during containment', 'covid19'),
     closed: _('Closed during containment', 'covid19'),
     unknown: _('No information on opening during containment', 'covid19'),
   };
