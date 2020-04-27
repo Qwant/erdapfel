@@ -21,7 +21,9 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
 
     <h3 className="category__panel__name">{poi.getInputValue()}</h3>
 
-    {poi.subClassName && <p className="category__panel__type">{poiSubClass(poi.subClassName)}</p>}
+    {poi.subClassName && <p className="category__panel__type u-text--subtitle">
+      {poiSubClass(poi.subClassName)}
+    </p>}
 
     {address.label && <p className="category__panel__address">{address.label}</p>}
 

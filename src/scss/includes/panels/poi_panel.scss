@@ -1,27 +1,22 @@
 @import "../osm_contribute";
 
-$BLOCK_INDENT: 28px;
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
 $HEADER_SIZE: 40px;
 
-
-.poi_panel {
+.poi_panel--empty-header {
   .panel-header {
-    margin-bottom: 9px;
+    border-bottom: none;
   }
 
-  &--empty-header {
-    .panel-header {
-      border-bottom: none;
-      margin-bottom: 0;
-    }
+  .poi_panel__content {
+    padding-top: 0;
   }
 }
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 0 $BLOCK_INDENT;
+  padding: 15px 24px;
   position: relative;
 }
 
@@ -74,7 +69,6 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__title {
-  font-family: $font_system;
   font-weight: bold;
   color: $primary_text;
   font-size: 16px;
@@ -101,19 +95,12 @@ $HEADER_SIZE: 40px;
   background: $separator_color;
 }
 
-.poi_panel__description {
-  position: relative;
-  color: $secondary_text;
-}
-
 .poi_panel__description:first-letter {
   text-transform: uppercase;
 }
 
 .poi_panel__address {
   padding: 8px 0 0 0;
-  font-size: 15px;
-  color: $primary_text;
 }
 
 .poi_panel__info__section__description  {
@@ -131,11 +118,6 @@ $HEADER_SIZE: 40px;
   color: $primary_text;
 }
 
-.poi_panel__info__accessibilities {
-  font-size: 15px;
-  color: $primary_text;
-}
-
 .poi_panel__info__hour__circle {
   width: 6px;
   height: 6px;
@@ -146,8 +128,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__description__ellipsis {
   margin-top: 13px;
-  line-height: 22px;
-  font-size: 15px;
   padding-right: 45px;
 }
 
@@ -204,8 +184,7 @@ $HEADER_SIZE: 40px;
 .poi_panel__pictures_title {
   border-top: 1px solid #e0e1e6;
   padding: 15px 0;
-  font-family: $font_system;
-  font-size: 16px;
+  font-size: 14px;
   color: #495063;
   font-weight: normal;
   position: relative;
@@ -347,7 +326,6 @@ $HEADER_SIZE: 40px;
 .poi_panel__sub_block__title__text {
   width: 285px;
   color: $secondary_text;
-  font-family: $font_system;
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -357,8 +335,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__info__wiki {
   margin-top: 15px;
-  font-size: 12px;
-  color: $primary_text;
   padding-left: $BLOCK_PADDING;
 }
 
@@ -457,7 +433,8 @@ $HEADER_SIZE: 40px;
     }
   }
 
-  .poi_panel__content {
+  .poi_panel__content,
+  .poi_panel--empty-header .poi_panel__content {
     padding: 15px;
   }
 
@@ -496,10 +473,6 @@ $HEADER_SIZE: 40px;
 
   .poiTitleImage {
     margin: -6px 0 0 -3px;
-  }
-
-  .poi_panel__description {
-    font-size: 12px;
   }
 
   &__action_container {

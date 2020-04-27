@@ -6,7 +6,7 @@ const PoiItemPlaceholder = () =>
   <div className="category__panel__item">
     <div className="poiTitleImage u-placeholder" />
     <PlaceholderText length={25} tagName="h3" className="category__panel__name"/>
-    <PlaceholderText length={15} tagName="p" className="category__panel__type" />
+    <PlaceholderText length={15} tagName="p" className="category__panel__type u-text--subtitle" />
     <PlaceholderText length={25} tagName="p" className="category__panel__address" />
     <div className="openingHour"><PlaceholderText length={15} /></div>
   </div>;

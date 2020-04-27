@@ -30,7 +30,9 @@ const PoiHeader = ({ poi }) => {
         <p className="poi_panel__title__alternative">{localName}</p>
         }
       </h4>
-      {subClassName && <p className="poi_panel__description">{poiSubClass(subClassName)}</p>}
+      {subClassName && <p className="poi_panel__description u-text--subtitle">
+        {poiSubClass(subClassName)}
+      </p>}
       {address && address.label && <p className="poi_panel__address">{address.label}</p>}
       {grades && <ReviewScore reviews={grades} poi={poi} />}
     </div>}

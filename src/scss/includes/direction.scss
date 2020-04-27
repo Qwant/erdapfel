@@ -480,8 +480,6 @@ input:valid:focus ~ .itinerary__field__clear {
   margin-bottom: -6px;
   padding-right: 9px;
   text-align: right;
-  font-size: 12px;
-  color: $secondary_text;
 }
 
 .itinerary_field_return {
@@ -873,6 +871,7 @@ button.direction_shortcut {
       background-color: $background_active;
       z-index: 1;
       transition: all .2s ease-out;
+      font-size: 16px;
 
       .icon-arrow-left {
         font-size: 24px;
