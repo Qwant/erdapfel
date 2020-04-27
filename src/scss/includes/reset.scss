@@ -8,12 +8,12 @@
 }
 
 BODY {
-  font-family: 'Asap', 'Open Sans', sans-serif;
+  font-family: $font_system;
   overflow: hidden;
 }
 
-INPUT {
-  font-family: 'Asap', 'Open Sans', sans-serif;
+input, button {
+  font-family: $font_system;
 }
 
 UL {

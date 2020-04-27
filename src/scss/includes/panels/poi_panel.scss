@@ -74,7 +74,7 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__title {
-  font-family: Asap;
+  font-family: $font_system;
   font-weight: 700;
   color: $primary_text;
   font-size: 16px;
@@ -175,7 +175,7 @@ $HEADER_SIZE: 40px;
 
   div {
     margin: 9px 0;
-    font-family: Asap;
+    font-family: $font_system;
     font-size: 12px;
     text-transform: uppercase;
   }
@@ -205,7 +205,7 @@ $HEADER_SIZE: 40px;
 .poi_panel__pictures_title {
   border-top: 1px solid #e0e1e6;
   padding: 15px 0;
-  font-family: Asap;
+  font-family: $font_system;
   font-size: 16px;
   color: #495063;
   font-weight: normal;
@@ -349,7 +349,7 @@ $HEADER_SIZE: 40px;
   width: 285px;
   font-size: 14px;
   color: $secondary_text;
-  font-family: Asap;
+  font-family: $font_system;
   font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;
