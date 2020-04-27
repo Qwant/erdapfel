@@ -81,7 +81,6 @@ input[type="search"] {
   top: 8px;
   width: 52px;
   height: 52px;
-  font-size: 14px;
   background: url(../images/qwant-logo.svg) no-repeat;
   color: #888;
 }
@@ -93,8 +92,6 @@ input[type="search"] {
   right: 25px;
   top: 4px;
   background: url(../images/magnifier.svg) center no-repeat;
-  font-size: 14px;
-  color: $primary_text;
   cursor: pointer;
 }
 
@@ -215,8 +212,8 @@ input[type="search"] {
 }
 
 .autocomplete_separator_label {
-  color : $primary_clear;
   font-size: 14px;
+  color : $primary_clear;
   cursor: default;
   padding: 9px 18px;
 }

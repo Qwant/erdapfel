@@ -103,7 +103,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__description {
   position: relative;
-  font-size: 14px;
   color: $secondary_text;
 }
 
@@ -176,7 +175,7 @@ $HEADER_SIZE: 40px;
   div {
     margin: 9px 0;
     font-family: $font_system;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
   }
 
@@ -347,7 +346,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__sub_block__title__text {
   width: 285px;
-  font-size: 14px;
   color: $secondary_text;
   font-family: $font_system;
   font-weight: bold;
@@ -502,10 +500,6 @@ $HEADER_SIZE: 40px;
 
   .poi_panel__description {
     font-size: 12px;
-  }
-
-  .poi_panel__address {
-    font-size: 14px;
   }
 
   &__action_container {

@@ -7,13 +7,17 @@
   outline: none;
 }
 
-BODY {
+body {
   font-family: $font_system;
+  font-size: 14px;
+  line-height: 20px;
+  color: $primary_text;
   overflow: hidden;
 }
 
 input, button {
   font-family: $font_system;
+  font-size: 14px;
 }
 
 UL {
