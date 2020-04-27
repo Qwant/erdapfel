@@ -15,7 +15,7 @@
   }
 
   &[data-flag-text]:before {
-    font-weight: 600;
+    font-weight: bold;
     content: attr(data-flag-text);
     background: $secondary_text;
     color: $surface;

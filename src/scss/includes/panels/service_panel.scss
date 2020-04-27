@@ -13,7 +13,7 @@
   h3 {
     text-align: center;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: uppercase;
     line-height: 16px;
     margin: 0 0 7px;
@@ -30,7 +30,7 @@
   text-transform: uppercase;
   display: block;
   min-height: 50px;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .service_panel__categories,
@@ -71,7 +71,7 @@
 
   .service_panel .panel-header {
     padding: 10px 16px 5px;
-    font-weight: 500;
+    font-weight: bold;
   }
 
   .panel.service_panel.minimized {
