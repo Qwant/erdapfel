@@ -21,17 +21,12 @@ export default class Suggest {
     this.searchInputDomHandler = document.querySelector(tagSelector);
     this.poi = null;
     this.suggestList = [];
-    this.pending = false;
     this.onSelect = onSelect;
 
     this.autocomplete = new Autocomplete({
       selector: tagSelector,
       minChars: 0,
       delay: 100,
-      updateData: items => {
-        this.suggestList = items;
-        this.pending = false;
-      },
       source: term => suggestResults(term, {
         withCategories,
         useFocus: SUGGEST_USE_FOCUS,
@@ -94,10 +89,6 @@ export default class Suggest {
       if (event.keyCode === 27) { // esc
         unmountReactSuggestDropdown();
       }
-
-      if (event.keyCode !== 13) { /* prevent enter key */
-        this.pending = true;
-      }
     };
   }
 
@@ -116,17 +107,8 @@ export default class Suggest {
   }
 
   async onSubmit() {
-    if (this.pending) {
-      const term = this.searchInputDomHandler.value;
-      this.preselect(term);
-    } else {
-      if (this.suggestList && this.suggestList.length > 0 &&
-          this.searchInputDomHandler.value &&
-          this.searchInputDomHandler.value.length > 0) {
-        this.onSelect(this.suggestList[0]);
-        this.searchInputDomHandler.blur();
-      }
-    }
+    const term = this.searchInputDomHandler.value;
+    this.preselect(term);
   }
 
   destroy() {

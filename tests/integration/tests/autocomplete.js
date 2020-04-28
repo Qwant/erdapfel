@@ -250,6 +250,21 @@ test('submit key', async () => {
   expect(center).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
 });
 
+
+test('suggestions should not reappear after fast submit', async () => {
+  responseHandler.addPreparedResponse(
+    mockAutocompleteAllTypes,
+    /autocomplete\?q=paris/,
+    { delay: 300 }
+  );
+  await page.goto(APP_URL);
+  await page.keyboard.type('paris');
+  await page.keyboard.press('Enter');
+  await page.waitFor(600);
+  await page.waitForSelector('.autocomplete_suggestions', { hidden: true });
+});
+
+
 test('check template', async () => {
   expect.assertions(8);
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/);

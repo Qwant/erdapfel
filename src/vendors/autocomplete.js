@@ -30,12 +30,6 @@ export default function autoComplete(options) {
     delay: 150,
     // Takes as arguments: items, search
     renderItems: function() {},
-    // Takes as arguments: e, term, item, items
-    onSelect: function() {},
-    // Takes as arguments: e, term, items
-    onUpdate: function() {},
-    // Takes as argument: items
-    updateData: function() {},
   };
   for (const k in options) {
     if (options.hasOwnProperty(k)) {
@@ -51,11 +45,6 @@ export default function autoComplete(options) {
   for (let i = 0; i < elems.length; i++) {
     that = elems[i];
     that.last_val = '';
-
-    that.sourceDom = function(data, val) {
-      o.updateData(data);
-      o.renderItems(data, val);
-    };
 
     const cancelObsolete = function() {
       clearTimeout(that.timer);
@@ -91,7 +80,7 @@ export default function autoComplete(options) {
             that.sourcePending = o.source(val);
             that.sourcePending.then(source => {
               that.sourcePending = null;
-              if (source !== null) {
+              if (source !== null && document.activeElement === that) {
                 suggest(source);
               }
             }).catch(e => {
