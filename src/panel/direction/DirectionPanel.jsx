@@ -14,12 +14,6 @@ import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 
-// this outside state is used to restore origin/destination when returning to the panel after closing
-const persistentPointState = {
-  origin: null,
-  destination: null,
-};
-
 export default class DirectionPanel extends React.Component {
   static propTypes = {
     origin: PropTypes.string,
@@ -54,9 +48,9 @@ export default class DirectionPanel extends React.Component {
 
     this.state = {
       vehicle: activeVehicle,
-      origin: persistentPointState.origin || null,
+      origin: null,
       destination:
-        (props.poi && Poi.deserialize(props.poi)) || persistentPointState.destination || null,
+        (props.poi && Poi.deserialize(props.poi)) || null,
       isLoading: false,
       isDirty: true, // useful to track intermediary states, when API update call is not made yet
       error: 0,
@@ -110,9 +104,6 @@ export default class DirectionPanel extends React.Component {
         : Promise.resolve(this.state.destination),
     ];
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
-      persistentPointState.origin = origin;
-      persistentPointState.destination = destination;
-
       // Set markers
       if (origin) {
         window.execOnMapLoaded(() => {
@@ -239,8 +230,6 @@ export default class DirectionPanel extends React.Component {
 
   reversePoints = () => {
     Telemetry.add(Telemetry.ITINERARY_INVERT);
-    persistentPointState.origin = this.state.destination;
-    persistentPointState.destination = this.state.origin;
     this.setState(previousState => ({
       origin: previousState.destination,
       destination: previousState.origin,
@@ -251,41 +240,30 @@ export default class DirectionPanel extends React.Component {
   }
 
   changeDirectionPoint = (which, value, point) => {
-    persistentPointState[which] = point;
     this.setState({
       [which]: point,
       isDirty: true,
       [which + 'InputText']: value || '',
-    }, this.update);
-
-    // Retrieve addresses
-    if (point && point.type === 'latlon') {
-      this.setTextInput(which, persistentPointState[which]);
-    }
+    }, () => {
+      this.update();
+      // Retrieve addresses
+      if (point && point.type === 'latlon') {
+        this.setTextInput(which, this.state[which]);
+      }
+    });
   }
 
   setDirectionPoint = poi => {
-
-    // If both origin and destination are already set, do nothing
-    if (persistentPointState.origin !== null && persistentPointState.destination !== null) {
+    if (this.state.origin && this.state.destination) {
       return;
     }
-
-    // If origin field is empty, set it
-    // else, if destination field is empty, set it
-    if (persistentPointState.origin === null) {
-      persistentPointState.origin = poi;
-      this.setTextInput('origin', poi);
-    } else if (persistentPointState.destination === null) {
-      persistentPointState.destination = poi;
-      this.setTextInput('destination', poi);
-    }
+    const which = this.state.origin ? 'destination' : 'origin';
+    this.setTextInput(which, poi);
 
     // Update state
     // (Call update() that will perform a search and redraw the UI if both fields are set)
     this.setState({
-      origin: persistentPointState.origin,
-      destination: persistentPointState.destination,
+      [which]: poi,
       isDirty: true,
     }, this.update);
   }
