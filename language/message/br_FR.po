@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-24 15:30+0200\n"
+"POT-Creation-Date: 2020-04-28 14:24+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -38,6 +38,42 @@ msgstr "Klask war Qwant Maps"
 
 msgid "JavaScript is required to view this application."
 msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
+
+msgid "hotel"
+msgstr "leti"
+
+msgid "restaurant"
+msgstr "predti"
+
+msgid "leisure"
+msgstr "dudioù"
+
+msgid "bar"
+msgstr "tavarn"
+
+msgid "supermarket"
+msgstr "gourmarc'had"
+
+msgid "bank"
+msgstr "ti-bank"
+
+msgid "pharmacy"
+msgstr "apotikerezh"
+
+msgid "education"
+msgstr "deskadurezh"
+
+msgid "museum"
+msgstr "mirdi"
+
+msgid "service"
+msgstr "servij"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "health"
+msgstr "yec'hed"
 
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
@@ -105,42 +141,6 @@ msgstr "war Twitter"
 msgid "on Facebook"
 msgstr "war Facebook"
 
-msgid "hotel"
-msgstr "leti"
-
-msgid "restaurant"
-msgstr "predti"
-
-msgid "leisure"
-msgstr "dudioù"
-
-msgid "bar"
-msgstr "tavarn"
-
-msgid "supermarket"
-msgstr "gourmarc'had"
-
-msgid "bank"
-msgstr "ti-bank"
-
-msgid "pharmacy"
-msgstr "apotikerezh"
-
-msgid "education"
-msgstr "deskadurezh"
-
-msgid "museum"
-msgstr "mirdi"
-
-msgid "service"
-msgstr "servij"
-
-msgid "sport"
-msgstr "sport"
-
-msgid "health"
-msgstr "yec'hed"
-
 msgid "concert"
 msgstr "sonadeg"
 
@@ -158,6 +158,9 @@ msgstr "luskadurioù"
 
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
+
+msgid "write"
+msgstr "skrivañ"
 
 msgid "accessories shop"
 msgstr "stal rikoù"
@@ -937,6 +940,9 @@ msgstr "Gwelet an niver"
 msgid "Saved"
 msgstr "Enrollet"
 
+msgid "See the usual opening hours"
+msgstr ""
+
 msgid "Photos"
 msgstr "Fotoioù"
 
@@ -975,6 +981,35 @@ msgstr "WiFi"
 
 msgid "Services & information"
 msgstr "Servijoù & Titouroù"
+
+msgid ""
+"During the entire period of lockdown, moving to this location is only "
+"permitted with a derogatory certificate."
+msgstr ""
+
+msgid "More information at"
+msgstr ""
+
+msgid "Please comply with government travel restrictions."
+msgstr ""
+
+msgid "Open during lockdown"
+msgstr ""
+
+msgid "Potentially open during lockdown"
+msgstr ""
+
+msgid "Closed during lockdown"
+msgstr ""
+
+msgid "No information on opening during lockdown"
+msgstr ""
+
+msgid "Report a change"
+msgstr ""
+
+msgid "Opening hours subject to change"
+msgstr ""
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
@@ -1107,6 +1142,3 @@ msgstr ""
 
 msgid "return"
 msgstr "distreiñ"
-
-msgid "write"
-msgstr "skrivañ"

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-24 15:30+0200\n"
+"POT-Creation-Date: 2020-04-28 14:24+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -45,6 +45,42 @@ msgstr "Auf Qwant Maps suchen"
 
 msgid "JavaScript is required to view this application."
 msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
+
+msgid "hotel"
+msgstr "Hotel"
+
+msgid "restaurant"
+msgstr "Restaurant"
+
+msgid "leisure"
+msgstr "Freizeit"
+
+msgid "bar"
+msgstr "Bar"
+
+msgid "supermarket"
+msgstr "Supermarkt"
+
+msgid "bank"
+msgstr "Bank"
+
+msgid "pharmacy"
+msgstr "Apotheke"
+
+msgid "education"
+msgstr "Bildung"
+
+msgid "museum"
+msgstr "Museum"
+
+msgid "service"
+msgstr "Service"
+
+msgid "sport"
+msgstr "Sport"
+
+msgid "health"
+msgstr "Gesundheit"
 
 msgid "Qwant is also"
 msgstr "Qwant ist außerdem"
@@ -112,42 +148,6 @@ msgstr "auf Twitter"
 msgid "on Facebook"
 msgstr "auf Facebook"
 
-msgid "hotel"
-msgstr "Hotel"
-
-msgid "restaurant"
-msgstr "Restaurant"
-
-msgid "leisure"
-msgstr "Freizeit"
-
-msgid "bar"
-msgstr "Bar"
-
-msgid "supermarket"
-msgstr "Supermarkt"
-
-msgid "bank"
-msgstr "Bank"
-
-msgid "pharmacy"
-msgstr "Apotheke"
-
-msgid "education"
-msgstr "Bildung"
-
-msgid "museum"
-msgstr "Museum"
-
-msgid "service"
-msgstr "Service"
-
-msgid "sport"
-msgstr "Sport"
-
-msgid "health"
-msgstr "Gesundheit"
-
 msgid "concert"
 msgstr "Konzert"
 
@@ -165,6 +165,9 @@ msgstr "Animation"
 
 msgid "Search with Qwant Maps"
 msgstr "Suche mit Qwant Maps"
+
+msgid "write"
+msgstr "schreiben"
 
 msgid "accessories shop"
 msgstr "Zubehörshop "
@@ -937,6 +940,9 @@ msgstr "Nummer anzeigen"
 msgid "Saved"
 msgstr "Gespeichert"
 
+msgid "See the usual opening hours"
+msgstr ""
+
 msgid "Photos"
 msgstr "Fotos"
 
@@ -975,6 +981,35 @@ msgstr "Wi-Fi"
 
 msgid "Services & information"
 msgstr "Dienstleistungen und Information"
+
+msgid ""
+"During the entire period of lockdown, moving to this location is only "
+"permitted with a derogatory certificate."
+msgstr ""
+
+msgid "More information at"
+msgstr ""
+
+msgid "Please comply with government travel restrictions."
+msgstr ""
+
+msgid "Open during lockdown"
+msgstr ""
+
+msgid "Potentially open during lockdown"
+msgstr ""
+
+msgid "Closed during lockdown"
+msgstr ""
+
+msgid "No information on opening during lockdown"
+msgstr ""
+
+msgid "Report a change"
+msgstr ""
+
+msgid "Opening hours subject to change"
+msgstr ""
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
@@ -1109,6 +1144,3 @@ msgstr "Wir testen gerade ein öffentliches Verkehrsmode in einpaar Städten."
 
 msgid "return"
 msgstr "zurück"
-
-msgid "write"
-msgstr "schreiben"
