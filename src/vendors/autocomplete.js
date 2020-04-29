@@ -1,140 +1,109 @@
-/**
-    JavaScript autoComplete v1.0.4
-    Copyright (c) 2014 Simon Steinberger / Pixabay
-    GitHub: https://github.com/Pixabay/JavaScript-autoComplete
-    License: http://www.opensource.org/licenses/mit-license.php
-*/
+class Autocomplete {
+  constructor({ selector, renderItems, source, minChars = 3, delay = 150 }) {
+    this.selector = selector;
+    this.renderItems = renderItems
+    this.source = source;
+    this.minChars = minChars;
+    this.delay = delay;
 
-export default function autoComplete(options) {
-  function addEvent(el, type, handler) {
-    if (el.attachEvent) {
-      el.attachEvent('on' + type, handler);
-    } else {
-      el.addEventListener(type, handler);
+    this.previousValue = '';
+    this.timer;
+    this.sourcePending;
+
+    this.input = document.querySelector(this.selector);
+    this.input.addEventListener('input', this.inputHandler.bind(this));
+
+    if (!this.minChars) {
+      this.input.addEventListener('focus', this.focusHandler.bind(this));
     }
   }
 
-  function removeEvent(el, type, handler) {
-    // if (el.removeEventListener) not working in IE11
-    if (el.detachEvent) {
-      el.detachEvent('on' + type, handler);
-    } else {
-      el.removeEventListener(type, handler);
+  suggest(data) {
+    this.cancelObsolete();
+    const value= this.input.value;
+    if (data && value.length >= this.minChars) {
+      this.renderItems(data, value);
     }
   }
 
-  const o = {
-    selector: 0,
-    source: 0,
-    minChars: 3,
-    delay: 150,
-    // Takes as arguments: items, search
-    renderItems: function() {},
-  };
-  for (const k in options) {
-    if (options.hasOwnProperty(k)) {
-      o[k] = options[k];
+  async inputHandler() {
+    const value = this.input.value;
+
+    if (value === this.previousValue) {
+      return
     }
+
+    if (value.length < this.minChars) {
+      return this.previousValue = value
+    }
+
+
+    this.cancelObsolete();
+    this.previousValue = value;
+    this.timer = setTimeout(() => {
+      // @HACK: a bug in Firefox for Android (https://bugzilla.mozilla.org/show_bug.cgi?id=1610083)
+      // triggers a redundant 'input' event on the field just before it's blurred,
+      // resulting in the suggest list re-appearing after a suggestion has been made.
+      // So we check if the element having the focus is the field before doing anything.
+      if (document.activeElement && document.activeElement !== this.input) {
+        return;
+      }
+
+      this.sourcePending = this.source(value);
+      this.sourcePending
+        .then((source) => {
+          this.sourcePending = null;
+          if (source !== null && document.activeElement === this.input) {
+            this.suggest(source);
+          }
+        })
+        .catch((e) => {
+          this.sourcePending = null;
+          console.warn(e); /* should be handled by a telemetry logger */
+        });
+
+    }, this.delay);
   }
 
-  // init
-  const elems = typeof o.selector == 'object'
-    ? [o.selector]
-    : document.querySelectorAll(o.selector);
-  let that;
-  for (let i = 0; i < elems.length; i++) {
-    that = elems[i];
-    that.last_val = '';
+  focusHandler(e) {
+    this.previousValue = '\n';
+    this.inputHandler(e);
+  }
 
-    const cancelObsolete = function() {
-      clearTimeout(that.timer);
-      if (that.sourcePending) {
-        that.sourcePending.abort();
-        that.sourcePending = null;
-      }
-    };
-
-    const suggest = function(data) {
-      cancelObsolete();
-      const val = that.value;
-      if (data && val.length >= o.minChars) {
-        o.renderItems(data, val);
-      }
-    };
-
-
-    that.inputHandler = function() {
-      const val = that.value;
-      if (val.length >= o.minChars) {
-        if (val != that.last_val) {
-          cancelObsolete();
-          that.last_val = val;
-          that.timer = setTimeout(function() {
-            // @HACK: a bug in Firefox for Android (https://bugzilla.mozilla.org/show_bug.cgi?id=1610083)
-            // triggers a redundant 'input' event on the field just before it's blurred,
-            // resulting in the suggest list re-appearing after a suggestion has been made.
-            // So we check if the element having the focus is the field before doing anything.
-            if (document.activeElement && document.activeElement !== that) {
-              return;
-            }
-            that.sourcePending = o.source(val);
-            that.sourcePending.then(source => {
-              that.sourcePending = null;
-              if (source !== null && document.activeElement === that) {
-                suggest(source);
-              }
-            }).catch(e => {
-              console.warn(e); /* should be handled by a telemetry logger */
-              that.sourcePending = null;
-            });
-          }, o.delay);
-        }
-      } else {
-        that.last_val = val;
-      }
-    };
-    addEvent(that, 'input', that.inputHandler);
-
-    that.focusHandler = function(e) {
-      that.last_val = '\n';
-      that.inputHandler(e);
-    };
-    if (!o.minChars) {
-      addEvent(that, 'focus', that.focusHandler);
+  cancelObsolete() {
+    clearTimeout(this.timer);
+    if (this.sourcePending) {
+      this.sourcePending.abort();
+      this.sourcePending = null;
     }
   }
 
   // public destroy method
-  this.destroy = function() {
-    for (let i = 0; i < elems.length; i++) {
-      let that = elems[i];
-      removeEvent(that, 'focus', that.focusHandler);
-      removeEvent(that, 'input', that.inputHandler);
-      that = null;
-    }
-  };
+  destroy() {
+    this.input.removeEventListener('focus', this.focusHandler);
+    this.input.removeEventListener('input', this.inputHandler);
+    this.input = null;
+  }
 
-  this.prefetch = async function(val) {
-    that.value = val;
-    const source = await o.source(val);
+  async prefetch(value) {
+    this.input.value = value;
+    const source = await this.source(value);
     return source;
-  };
+  }
 
-  this.preRender = function(items = []) {
-    o.renderItems(items);
-  };
+  preRender(items = []) {
+    this.renderItems(items);
+  }
 
-  this.getValue = function() {
-    return that.value;
-  };
+  clear() {
+    this.input.value = '';
+    this.previousValue = '';
+  }
 
-  this.clear = function() {
-    that.value = '';
-    that.last_val = '';
-  };
-
-  this.setValue = function(value) {
-    that.value = value;
-    that.last_val = '';
-  };
+  setValue(value) {
+    this.input.value = value;
+    this.previousValue = '';
+  }
 }
+
+export default Autocomplete;
