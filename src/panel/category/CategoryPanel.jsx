@@ -11,7 +11,7 @@ import SearchInput from 'src/ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import CategoryService from 'src/adapters/category_service';
-import { getMapPaddings } from 'src/panel/layouts';
+import { getVisibleBbox } from 'src/panel/layouts';
 import { isMobileDevice } from '../../libs/device';
 
 const categoryConfig = nconf.get().category;
@@ -105,22 +105,7 @@ export default class CategoryPanel extends React.Component {
 
   fetchData = async () => {
     const { category, query } = this.props.poiFilters;
-    const bbox = window.map.mb.getBounds();
-
-    // On desktop, fetch PoIs on a bbox that doesn't include the list panel's width and the header's height
-    if (!isMobileDevice()) {
-      let ne = bbox.getNorthEast();
-      let sw = bbox.getSouthWest();
-      const ne_canvas = window.map.mb.project(ne);
-      const sw_canvas = window.map.mb.project(sw);
-      const paddings = getMapPaddings({});
-      sw_canvas.x += paddings.left;
-      ne_canvas.y += paddings.top;
-      ne = window.map.mb.unproject(ne_canvas);
-      sw = window.map.mb.unproject(sw_canvas);
-      bbox.setNorthEast(ne);
-      bbox.setSouthWest(sw);
-    }
+    const bbox = getVisibleBbox();
 
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))

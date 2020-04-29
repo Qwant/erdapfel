@@ -1,3 +1,4 @@
+import { isMobileDevice } from '../libs/device';
 
 const DESKTOP_PANEL_WIDTH = 400;
 const DESKTOP_TOP_BAR_HEIGHT = 100;
@@ -23,6 +24,31 @@ export function getMapPaddings({ isMobile, isDirectionsActive }) {
     return { ...MOBILE_FULL_SCREEN_PANEL, bottom: bottomPadding };
   }
   return MOBILE_CARD;
+}
+
+export function getVisibleBbox() {
+
+  const bbox = window.map.mb.getBounds();
+  let ne = bbox.getNorthEast();
+  let sw = bbox.getSouthWest();
+  const ne_canvas = window.map.mb.project(ne);
+  const sw_canvas = window.map.mb.project(sw);
+
+  if (isMobileDevice()) {
+    // On mobile, compute a bbox that excludes the resizable panel height and the header's height
+    ne_canvas.y += 65;
+    sw_canvas.y -= window.innerHeight / 2;
+  } else {
+    // On desktop, compute a bbox that excludes the left panel's width and the header's height
+    sw_canvas.x += DESKTOP_PANEL_WIDTH;
+    ne_canvas.y += DESKTOP_TOP_BAR_HEIGHT;
+  }
+
+  ne = window.map.mb.unproject(ne_canvas);
+  sw = window.map.mb.unproject(sw_canvas);
+  bbox.setNorthEast(ne);
+  bbox.setSouthWest(sw);
+  return bbox;
 }
 
 export function getMapCenterOffset({ isMobile }) {
