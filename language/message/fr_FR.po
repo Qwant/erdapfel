@@ -6,15 +6,16 @@
 # K T <kzn.tengwar@email.com>, 2019
 # v k <vitaalis@hotmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
-# MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2020
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
+# Louis Bedat <louisbedat33@gmail.com>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-24 15:30+0200\n"
+"POT-Creation-Date: 2020-04-28 14:24+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -45,6 +46,42 @@ msgid "JavaScript is required to view this application."
 msgstr ""
 "Il est nécessaire que JavaScript soit activé pour afficher cette "
 "application."
+
+msgid "hotel"
+msgstr "hôtel"
+
+msgid "restaurant"
+msgstr "restaurant"
+
+msgid "leisure"
+msgstr "loisirs"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "supermarket"
+msgstr "supermarché"
+
+msgid "bank"
+msgstr "banque"
+
+msgid "pharmacy"
+msgstr "pharmacie"
+
+msgid "education"
+msgstr "éducation"
+
+msgid "museum"
+msgstr "musée"
+
+msgid "service"
+msgstr "services"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "health"
+msgstr "santé"
 
 msgid "Qwant is also"
 msgstr "Qwant c'est aussi"
@@ -112,42 +149,6 @@ msgstr "sur Twitter"
 msgid "on Facebook"
 msgstr "sur Facebook"
 
-msgid "hotel"
-msgstr "hôtel"
-
-msgid "restaurant"
-msgstr "restaurant"
-
-msgid "leisure"
-msgstr "loisirs"
-
-msgid "bar"
-msgstr "bar"
-
-msgid "supermarket"
-msgstr "supermarché"
-
-msgid "bank"
-msgstr "banque"
-
-msgid "pharmacy"
-msgstr "pharmacie"
-
-msgid "education"
-msgstr "éducation"
-
-msgid "museum"
-msgstr "musée"
-
-msgid "service"
-msgstr "services"
-
-msgid "sport"
-msgstr "sport"
-
-msgid "health"
-msgstr "santé"
-
 msgid "concert"
 msgstr "concert"
 
@@ -165,6 +166,9 @@ msgstr "animation"
 
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
+
+msgid "write"
+msgstr " "
 
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -936,10 +940,13 @@ msgid "See more"
 msgstr "Voir plus"
 
 msgid "Show number"
-msgstr "Voir le numéro"
+msgstr "Voir le n°"
 
 msgid "Saved"
 msgstr "Enregistré"
+
+msgid "See the usual opening hours"
+msgstr "Voir les horaires habituels"
 
 msgid "Photos"
 msgstr "Photos"
@@ -979,6 +986,39 @@ msgstr "WiFi"
 
 msgid "Services & information"
 msgstr "Services & informations"
+
+msgid ""
+"During the entire period of lockdown, moving to this location is only "
+"permitted with a derogatory certificate."
+msgstr ""
+"Pendant toute la période de confinement, se déplacer vers ce lieu n'est "
+"autorisé qu'en possession d'une attestation de déplacement dérogatoire."
+
+msgid "More information at"
+msgstr "Plus d'informations sur"
+
+msgid "Please comply with government travel restrictions."
+msgstr ""
+"Veuillez respecter les restrictions mises en place par les autorités "
+"locales."
+
+msgid "Open during lockdown"
+msgstr "Ouvert durant le confinement"
+
+msgid "Potentially open during lockdown"
+msgstr "Potentiellement ouvert durant le confinement"
+
+msgid "Closed during lockdown"
+msgstr "Fermé durant le confinement"
+
+msgid "No information on opening during lockdown"
+msgstr "Pas d'information sur l'ouverture durant le confinement"
+
+msgid "Report a change"
+msgstr "Signaler un changement"
+
+msgid "Opening hours subject to change"
+msgstr "Horaires susceptibles d'être adaptés"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps utilise les données OpenStreetMap."
@@ -1114,6 +1154,3 @@ msgstr ""
 
 msgid "return"
 msgstr "retour"
-
-msgid "write"
-msgstr " "
