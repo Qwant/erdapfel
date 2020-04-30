@@ -1,7 +1,7 @@
 
-function fire(name, params, ...additionalParams) {
+function fire(name, ...params) {
   const event = document.createEvent('CustomEvent');
-  event.initCustomEvent(name, false, false, { params, additionalParams });
+  event.initCustomEvent(name, false, false, { params });
   document.dispatchEvent(event);
 }
 
@@ -18,7 +18,7 @@ function unListen({ name, presetEvent }) {
 function eventHandler(cb) {
   return opt => {
     const { detail } = opt;
-    cb(detail.params, ...detail.additionalParams);
+    cb(...detail.params);
   };
 }
 
