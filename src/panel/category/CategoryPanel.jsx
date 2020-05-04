@@ -11,6 +11,7 @@ import SearchInput from 'src/ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import CategoryService from 'src/adapters/category_service';
+import { getVisibleBbox } from 'src/panel/layouts';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -103,8 +104,8 @@ export default class CategoryPanel extends React.Component {
 
   fetchData = async () => {
     const { category, query } = this.props.poiFilters;
+    const bbox = getVisibleBbox(window.map.mb);
 
-    const bbox = window.map.mb.getBounds();
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
       .join(',');
