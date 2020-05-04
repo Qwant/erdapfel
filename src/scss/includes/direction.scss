@@ -8,11 +8,6 @@
 }
 
 .itinerary_title {
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #495063;
-  border: none;
   text-align: center;
   width: 100%;
 }
@@ -614,6 +609,11 @@ button.direction_shortcut {
     z-index: 3;
     font-size: 12px;
     min-height: 42px;
+
+    .itinerary_title {
+      color: $background;
+      line-height: 36px;
+    }
   }
 
   .itinerary_close_mobile {
@@ -636,11 +636,6 @@ button.direction_shortcut {
       margin: -6px 6px 0 0;
       font-size: 22px;
     }
-  }
-
-  .itinerary_title {
-    color: $background;
-    line-height: 36px;
   }
 
   .itinerary_input {

@@ -10,7 +10,9 @@ class ServicePanelDesktop extends React.Component {
   render() {
     return <Panel
       className="service_panel"
-      title={_('Qwant Maps services', 'service panel')}
+      title={<div className="u-text--smallTitle u-center">
+        {_('Qwant Maps services', 'service panel')}
+      </div>}
       white
     >
       <CategoryList className="service_panel__categories" />
