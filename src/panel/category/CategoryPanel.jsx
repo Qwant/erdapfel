@@ -104,7 +104,7 @@ export default class CategoryPanel extends React.Component {
 
   fetchData = async () => {
     const { category, query } = this.props.poiFilters;
-    const bbox = getVisibleBbox();
+    const bbox = getVisibleBbox(window.map.mb);
 
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))

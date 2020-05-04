@@ -26,25 +26,25 @@ export function getMapPaddings({ isMobile, isDirectionsActive }) {
   return MOBILE_CARD;
 }
 
-export function getVisibleBbox() {
+export function getVisibleBbox(mb) {
 
-  const bbox = window.map.mb.getBounds();
+  const bbox = mb.getBounds();
   let ne = bbox.getNorthEast();
   let sw = bbox.getSouthWest();
-  const ne_canvas = window.map.mb.project(ne);
-  const sw_canvas = window.map.mb.project(sw);
+  const ne_canvas = mb.project(ne);
+  const sw_canvas = mb.project(sw);
 
   if (isMobileDevice()) {
     // On mobile, compute a bbox that excludes the header's height
     ne_canvas.y += 65;
   } else {
     // On desktop, compute a bbox that excludes the left panel's width and the header's height
-    sw_canvas.x += DESKTOP_PANEL_WIDTH;
+    sw_canvas.x += DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING / 2;
     ne_canvas.y += DESKTOP_TOP_BAR_HEIGHT;
   }
 
-  ne = window.map.mb.unproject(ne_canvas);
-  sw = window.map.mb.unproject(sw_canvas);
+  ne = mb.unproject(ne_canvas);
+  sw = mb.unproject(sw_canvas);
   bbox.setNorthEast(ne);
   bbox.setSouthWest(sw);
   return bbox;
