@@ -52,27 +52,21 @@
     h3 {
       margin-bottom: 6px;
     }
-
-    .panel-content {
-      height: calc(100% - 40px);
-    }
   }
 
-  .panel.service_panel .panel-resizeHandle {
-    min-height: 40px;
+  .service_panel:not(.minimized) {
+    .panel-resizeHandle {
+      height: 30px;
+      min-height: auto;
+    }
+
+    .panel-content {
+      height: calc(100% - 30px);
+    }
   }
 
   .service_panel .panel-header {
     padding: 10px 16px 5px;
-  }
-
-  .panel.service_panel.minimized {
-    height: 40px;
-  }
-
-  .panel.service_panel.minimized .panel-header {
-    padding-top: 7px;
-    font-weight: normal;
   }
 
   .service_panel__events,
