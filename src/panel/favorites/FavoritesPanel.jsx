@@ -72,7 +72,7 @@ export default class FavoritesPanel extends React.Component {
     const header = <React.Fragment>
       {favoritePois.length === 0
         ? _('Favorite places', 'favorite panel')
-        : _('My favorites', 'favorite panel').toUpperCase()}
+        : _('My favorites', 'favorite panel')}
       {isLoggedIn && <div className="icon-masq_dark favorite_panel__masq_icon" />}
     </React.Fragment>;
 

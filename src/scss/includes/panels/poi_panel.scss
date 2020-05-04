@@ -42,7 +42,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__back_text {
   padding-left: 5px;
-  text-transform: uppercase;
 }
 
 .poi_panel__back.icon-arrow-left {
@@ -390,9 +389,7 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__header {
-  font-size: 12px;
   color: $secondary_text;
-  text-transform: uppercase;
   display: flex;
   margin-left: -6px;
 }
