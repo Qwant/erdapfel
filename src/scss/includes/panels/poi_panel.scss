@@ -107,15 +107,14 @@ $HEADER_SIZE: 40px;
   margin: 0;
 }
 
-.poi_panel__info__link, .poi_panel__info__contact {
-  font-size: 13px;
+.poi_panel__info__link,
+.poi_panel__info__contact {
   color: $secondary_text;
-  text-transform: uppercase;
-}
 
-.poi_panel__info__link:HOVER, .poi_panel__info__contact:HOVER {
-  text-decoration: none;
-  color: $primary_text;
+  &:hover {
+    text-decoration: none;
+    color: $primary_text;
+  }
 }
 
 .poi_panel__info__hour__circle {
