@@ -21,7 +21,7 @@ const Days = ({ days }) => {
         <tr key={i} className={
           classnames({ 'currentDay': (i + 1) % 7 === dayNumber })
         }>
-          <td className="day">{ day.dayName }</td>
+          <td className="day u-firstCap">{ day.dayName }</td>
           <td className="hours">{ showHour(day) }</td>
         </tr>)}
     </tbody>

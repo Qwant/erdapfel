@@ -14,7 +14,7 @@ const PoiHeader = ({ poi }) => {
         <div className="poi_panel__pre_title">{ _('Close to', 'poi')}</div>
       }
       <h4 className="poi_panel__title">
-        <span className="poi_panel__title__main">
+        <span className="poi_panel__title__main u-text--smallTitle">
           {address && address.label ? address.label : title}
         </span>
       </h4>
@@ -25,12 +25,12 @@ const PoiHeader = ({ poi }) => {
 
     {subClassName !== 'latlon' && <div>
       <h4 className="poi_panel__title">
-        <span className="poi_panel__title__main">{title}</span>
+        <span className="poi_panel__title__main u-text--smallTitle">{title}</span>
         {name && localName && localName !== name &&
         <p className="poi_panel__title__alternative">{localName}</p>
         }
       </h4>
-      {subClassName && <p className="poi_panel__description u-text--subtitle">
+      {subClassName && <p className="u-firstCap u-text--subtitle">
         {poiSubClass(subClassName)}
       </p>}
       {address && address.label && <p className="poi_panel__address">{address.label}</p>}

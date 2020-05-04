@@ -62,7 +62,7 @@ export default class FavoritePoi extends React.Component {
             : 'default',
           }}
         />
-        <p className="favorite_panel__item__desc u-text--subtitle">
+        <p className="favorite_panel__item__desc u-text--subtitle u-firstCap">
           {poi.subClassName ? poiSubClass(poi.subClassName) : ''}
         </p>
       </div>
