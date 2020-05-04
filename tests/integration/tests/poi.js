@@ -188,9 +188,9 @@ test('display details about the poi on a poi click', async () => {
   });
   expect(hours.trim()).toMatch('Fermé');
   expect(phone).toMatch('01 40 49 48 14');
-  expect(website).toMatch('WWW.MUSEE-ORSAY.FR');
+  expect(website).toMatch('www.musee-orsay.fr');
   expect(contactUrl).toMatch('mailto:admin@orsay.fr');
-  expect(contact).toMatch('ADMIN@ORSAY.FR');
+  expect(contact).toMatch('admin@orsay.fr');
 
   const wiki_block = await page.waitForSelector('.poi_panel__info__wiki');
   expect(wiki_block).not.toBeFalsy();
