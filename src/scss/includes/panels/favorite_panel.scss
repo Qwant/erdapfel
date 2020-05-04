@@ -4,10 +4,6 @@ $MASQ_BANNER_HEIGHT: 93px;
   display: none;
 }
 
-.favorite_panel__items {
-  font-size: 18px;
-}
-
 .favorite_panel__container__empty {
   color: $secondary_text;
   padding: 20px;
@@ -61,17 +57,11 @@ $MASQ_BANNER_HEIGHT: 93px;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: $primary_text;
-  font-family: Asap;
-  font-weight: 700;
+  font-weight: bold;
 }
 
-.favorite_panel__item__desc {
-  font-size: 12px;
-  color: $secondary_text;
-
-  &:first-letter {
-    text-transform: uppercase;
-  }
+.favorite_panel__item__desc:first-letter {
+  text-transform: uppercase;
 }
 
 .favorite_panel__masq_footer {

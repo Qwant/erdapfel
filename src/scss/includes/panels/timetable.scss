@@ -1,8 +1,5 @@
 
 .timetable {
-  color: $primary_text;
-  font-size: 15px;
-
   &-table {
     transition: max-height 0.3s;
     overflow: hidden;
@@ -12,8 +9,6 @@
   table {
     width: calc(100% - 20px);
     margin-top: 8px;
-    font-size: 15px;
-    color: $primary_text;
   }
 
   .day {
@@ -30,8 +25,7 @@
   }
   
   .currentDay {
-    font-family: Asap;
-    font-weight: 700;
+    font-weight: bold;
   }
 
   &-status {
@@ -42,10 +36,6 @@
   &-status-text {
     flex-grow: 1;
     line-height: 24px;
-  }
-
-  .openingHour {
-    font-size: 15px;
   }
 
   &--collapsable {

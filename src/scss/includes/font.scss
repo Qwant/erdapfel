@@ -1,3 +1,6 @@
+
+$font_system: 'Helvetica', 'Arial', 'Noto Sans', 'Ubuntu', sans-serif;
+
 @font-face {
   font-family: 'icomoon';
   src:
@@ -8,8 +11,6 @@
   font-style: normal;
   font-display: block;
 }
-
-@import "./asap";
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */

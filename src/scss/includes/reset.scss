@@ -7,13 +7,17 @@
   outline: none;
 }
 
-BODY {
-  font-family: 'Asap', 'Open Sans', sans-serif;
+body {
+  font-family: $font_system;
+  font-size: 14px;
+  line-height: 20px;
+  color: $primary_text;
   overflow: hidden;
 }
 
-INPUT {
-  font-family: 'Asap', 'Open Sans', sans-serif;
+input, button {
+  font-family: $font_system;
+  font-size: 14px;
 }
 
 UL {
