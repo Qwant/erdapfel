@@ -35,9 +35,8 @@ export function getVisibleBbox() {
   const sw_canvas = window.map.mb.project(sw);
 
   if (isMobileDevice()) {
-    // On mobile, compute a bbox that excludes the resizable panel height and the header's height
+    // On mobile, compute a bbox that excludes the header's height
     ne_canvas.y += 65;
-    sw_canvas.y -= window.innerHeight / 2;
   } else {
     // On desktop, compute a bbox that excludes the left panel's width and the header's height
     sw_canvas.x += DESKTOP_PANEL_WIDTH;
