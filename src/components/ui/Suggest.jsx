@@ -122,7 +122,7 @@ const Suggest = ({ withCategories, withGeoloc }) => {
         }
       }}
       onSelect={item => {
-        window.__searchInput.searchInputHandle.value = item.name;
+        searchInputDomHandler.value = item.name;
         selectItem(item);
         setIsOpen(false);
         setIsHighlighted(false);
