@@ -8,6 +8,7 @@ import Error from 'src/adapters/error';
 
 class DirectionInput extends React.Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     value: PropTypes.string,
     onChangePoint: PropTypes.func.isRequired,
     pointType: PropTypes.oneOf(['origin', 'destination']).isRequired,
@@ -71,7 +72,7 @@ class DirectionInput extends React.Component {
   }
 
   render() {
-    const { pointType, inputRef } = this.props;
+    const { pointType, inputRef, isLoading } = this.props;
 
     return <div className="itinerary_field" >
       <input
@@ -88,6 +89,7 @@ class DirectionInput extends React.Component {
         value={this.props.value}
         onChange={this.onChange}
         onKeyPress={this.onKeyPress}
+        disabled={isLoading}
       />
       <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
       <div className="itinerary_field_return">

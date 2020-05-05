@@ -7,6 +7,7 @@ import { isMobileDevice } from 'src/libs/device';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     origin: PropTypes.object,
     destination: PropTypes.object,
     onChangeDirectionPoint: PropTypes.func.isRequired,
@@ -47,6 +48,7 @@ export default class DirectionForm extends React.Component {
 
   render() {
     const {
+      isLoading,
       vehicles,
       activeVehicle,
       onSelectVehicle,
@@ -58,6 +60,7 @@ export default class DirectionForm extends React.Component {
       <div className="itinerary_fields">
         <form noValidate>
           <DirectionInput
+            isLoading={isLoading}
             value={originInputText}
             pointType="origin"
             onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
@@ -65,6 +68,7 @@ export default class DirectionForm extends React.Component {
           />
           <div className="itinerary__form__separator" />
           <DirectionInput
+            isLoading={isLoading}
             value={destinationInputText}
             pointType="destination"
             onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}

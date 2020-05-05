@@ -281,6 +281,7 @@ export default class DirectionPanel extends React.Component {
     } = this.state;
     const title = <h3 className="itinerary_title">{_('Directions', 'direction')}</h3>;
     const form = <DirectionForm
+      isLoading={isLoading || routes.length > 0 && isDirty}
       origin={origin}
       destination={destination}
       originInputText = {originInputText}
