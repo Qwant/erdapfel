@@ -63,7 +63,7 @@ const Suggest = ({ withCategories, withGeoloc }) => {
     searchInputDomHandler.addEventListener('input', handleInput);
 
     return () => {
-      searchInputDomHandler.removeEventListener('blur', handleFocus);
+      searchInputDomHandler.removeEventListener('focus', handleFocus);
       searchInputDomHandler.removeEventListener('blur', handleBlur);
       searchInputDomHandler.removeEventListener('input', handleInput);
     };
