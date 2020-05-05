@@ -10,13 +10,12 @@ const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
 const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
 const SUGGEST_FOCUS_MIN_ZOOM = 11;
+const SUGGEST_DEBOUNCE_WAIT = 100;
 
 const Suggest = ({ withCategories, withGeoloc }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
-  const [isPending, setIsPending] = useState('unset');
-  const [isPendingSubmit, setIsPendingSubmit] = useState(false);
   const [isHighlighted, setIsHighlighted] = useState(false);
   const searchInputDomHandler = document.getElementById('search');
   let currentQuery = null;
@@ -31,7 +30,6 @@ const Suggest = ({ withCategories, withGeoloc }) => {
 
     const handleInput = debounce(e => {
       const typedValue = e.target.value;
-      setIsPending('fetching');
 
       if (currentQuery) {
         currentQuery.abort();
@@ -52,11 +50,10 @@ const Suggest = ({ withCategories, withGeoloc }) => {
         .then(suggestions => modifyList(suggestions, withGeoloc))
         .then(items => {
           setItems(items);
-          setIsPending('completed');
           currentQuery = null;
         })
         .catch(() => { /* Query aborted. Just ignore silently */ });
-    }, 100);
+    }, SUGGEST_DEBOUNCE_WAIT);
 
     searchInputDomHandler.addEventListener('focus', handleFocus);
     searchInputDomHandler.addEventListener('blur', handleBlur);
@@ -75,11 +72,10 @@ const Suggest = ({ withCategories, withGeoloc }) => {
     };
 
     const handleKeyDown = async event => {
-      if (event.key === 'Esc' || event.key === 'Escape') { // esc
+      if (event.key === 'Esc' || event.key === 'Escape') {
         setIsOpen(false);
         setIsHighlighted(false);
-      } else if (event.key === 'Enter' && !isHighlighted) {
-        setIsPendingSubmit(true);
+      } else if (event.key === 'Enter') {
         setIsOpen(false);
       } else {
         setIsOpen(true);
@@ -94,15 +90,6 @@ const Suggest = ({ withCategories, withGeoloc }) => {
       searchInputDomHandler.removeEventListener('submit', handleSubmit);
     };
   }, [items, isHighlighted]);
-
-  useEffect(() => {
-    if (isPending === 'completed' && isPendingSubmit) {
-      selectItem(items[0], true);
-      setIsOpen(false);
-      setIsPendingSubmit(false);
-      setIsPending('unset');
-    }
-  }, [isPending, isPendingSubmit]);
 
   if (!isOpen) {
     return null;
