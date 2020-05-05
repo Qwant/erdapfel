@@ -9,6 +9,7 @@ import { isMobileDevice } from 'src/libs/device';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 import { listen } from 'src/libs/customEvents';
+import Suggest from 'src/components/ui/Suggest';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const burgerMenuEnabled = nconf.get().burgerMenu.enabled;
@@ -41,6 +42,10 @@ export default class App {
       <Fragment>
         <PanelManager router={this.router} />
         {burgerMenuEnabled && <Menu />}
+        <Suggest
+          tagSelector="search"
+          withCategories
+        />
       </Fragment>,
       document.querySelector('#react_root')
     );

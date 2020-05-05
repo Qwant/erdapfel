@@ -1,8 +1,5 @@
-import Suggest from '../adapters/suggest';
-import Poi from '../adapters/poi/poi';
-import Category from '../adapters/category';
-import Intention from '../adapters/intention';
-import { toUrl } from 'src/libs/pois';
+
+import { selectItem, fetchSuggests } from 'src/libs/suggest';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
@@ -16,19 +13,30 @@ const MAPBOX_RESERVED_KEYS = [
 
 export default class SearchInput {
 
+  constructor(tagSelector) {
+    this.searchInputHandle = document.querySelector(tagSelector);
+    this.handleKeyboard();
+    this.isEnabled = true;
+  }
+
   /* Singleton */
   static initSearchInput(tagSelector) {
     if (! window.__searchInput) {
       window.__searchInput = new SearchInput(tagSelector);
-      window.submitSearch = () => {
-        window.__searchInput.suggest.onSubmit();
-      };
+
       window.clearSearch = () => {
-        window.__searchInput.suggest.setValue('');
+        window.__searchInput.searchInputHandle.value = '';
         window.app.navigateTo('/');
         setTimeout(() => {
           document.getElementById('search').focus();
         }, 0);
+
+      };
+
+      window.submitSearch = () => {
+        if (window.__searchInput.searchInputHandle.value.length > 0) {
+          this.executeSearch(window.__searchInput.searchInputHandle.value);
+        }
       };
     }
     return window.__searchInput;
@@ -45,7 +53,7 @@ export default class SearchInput {
   }
 
   static setInputValue(value) {
-    window.__searchInput.suggest.setValue(value);
+    window.__searchInput.searchInputHandle.value = value;
   }
 
   static unminify() {
@@ -55,17 +63,6 @@ export default class SearchInput {
 
   static isMinified() {
     return !window.__searchInput.isEnabled;
-  }
-
-  constructor(tagSelector) {
-    this.searchInputHandle = document.querySelector(tagSelector);
-    this.handleKeyboard();
-    this.suggest = new Suggest({
-      tagSelector,
-      withCategories: true,
-      onSelect: selectedPoi => this.selectItem(selectedPoi),
-    });
-    this.isEnabled = true;
   }
 
   handleKeyboard() {
@@ -84,27 +81,11 @@ export default class SearchInput {
   }
 
   static async executeSearch(query) {
-    const searchInput = window.__searchInput;
-    const autocomplete = searchInput.suggest.autocomplete;
-    const results = await autocomplete.prefetch(query);
+    window.__searchInput.searchInputHandle.value = query;
+    const results = await fetchSuggests(query);
     if (results && results.length > 0) {
       const firstResult = results[0];
-      searchInput.selectItem(firstResult, true);
-    }
-  }
-
-  async selectItem(selectedItem, replaceUrl = false) {
-    if (selectedItem instanceof Poi) {
-      window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
-        poi: selectedItem,
-        centerMap: true,
-      }, { replace: replaceUrl });
-    } else if (selectedItem instanceof Category) {
-      window.app.navigateTo(`/places/?type=${selectedItem.name}`,
-        {}, { replace: replaceUrl });
-    } else if (selectedItem instanceof Intention) {
-      window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
-        {}, { replace: replaceUrl });
+      selectItem(firstResult, true);
     }
   }
 }
