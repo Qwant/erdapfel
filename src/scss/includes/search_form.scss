@@ -117,7 +117,8 @@ input[type="search"] {
 }
 
 .autocomplete_suggestions {
-  position: absolute;
+  position: fixed;
+  display: block;
   max-height: calc(100vh - 100px);
   text-align: left;
   border-top: 0;
@@ -125,7 +126,6 @@ input[type="search"] {
   margin-top: 8px;
   font-size: 16px;
   /* core styles should not be changed */
-  display: none;
   cursor: default;
   @include long_shadow();
   @include card_radius();
@@ -301,11 +301,9 @@ input[type="search"] {
   }
 
   .autocomplete_suggestions {
+    position: fixed;
     max-height: calc(100vh - 120px);
     margin-top: -1px;
-    position: fixed;
-    width: 100% !important;
-    left: 0 !important;
   }
 
   .search_form__logo {
