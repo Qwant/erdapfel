@@ -185,7 +185,7 @@ test('center on select', async () => {
   expect.assertions(2);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
-  await page.keyboard.type('Hello');
+  await autocompleteHelper.typeAndWait('Hello');
   await page.waitForSelector('.autocomplete_suggestions');
   await page.click('.autocomplete_suggestion:nth-child(1)');
   const { center, zoom } = await page.evaluate(() => {
@@ -228,9 +228,9 @@ test('submit key', async () => {
   await page.keyboard.press('Enter');
   await page.waitForSelector('.autocomplete_suggestions', { hidden: true });
 
-  let center = await page.evaluate(() => {
-    return window.MAP_MOCK.getCenter();
-  });
+  let center = await page.evaluate(() =>
+    window.MAP_MOCK.getCenter()
+  );
 
   let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates;
   expect(center).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
@@ -238,9 +238,11 @@ test('submit key', async () => {
 
   /* force specific query */
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=paris/);
-  await page.keyboard.type('paris');
+  await autocompleteHelper.typeAndWait('paris');
   await page.keyboard.press('Enter');
   await page.waitForSelector('.autocomplete_suggestions', { hidden: true });
+
+  await page.waitFor(300);
 
   center = await page.evaluate(() =>
     window.MAP_MOCK.getCenter()

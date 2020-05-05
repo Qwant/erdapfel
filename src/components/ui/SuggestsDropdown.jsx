@@ -80,12 +80,23 @@ const SuggestsDropdown = ({
       computedStyle.position === 'fixed' || // Top bar
       computedStyle.position === 'absolute'; // itineray
 
-    setStyle({
-      display: 'block',
-      top: isMobile ? boundingRect.bottom : computedStyle.height,
-      left: computedStyle.marginLeft,
-      width: inputElement.offsetWidth,
-    });
+    // FIXME
+    if (inputId === 'search') {
+      setStyle({
+        display: 'block',
+        zIndex: 999,
+        top: boundingRect.bottom,
+        left: boundingRect.left,
+        width: boundingRect.width,
+      });
+    } else {
+      setStyle({
+        display: 'block',
+        top: isMobile ? boundingRect.bottom : computedStyle.height,
+        left: computedStyle.marginLeft,
+        width: inputElement.offsetWidth,
+      });
+    }
 
   }, []);
 
