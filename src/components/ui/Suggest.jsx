@@ -15,29 +15,20 @@ const Suggest = ({ withCategories, withGeoloc }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
-  const [currentQuery, setCurrentQuery] = useState(null);
   const [isPending, setIsPending] = useState('unset');
   const [isPendingSubmit, setIsPendingSubmit] = useState(false);
   const [isHighlighted, setIsHighlighted] = useState(false);
   const searchInputDomHandler = document.getElementById('search');
+  let currentQuery = null;
 
   useEffect(() => {
     const handleFocus = () => setIsOpen(true);
+
     const handleBlur = () => {
       setIsHighlighted(false);
       setIsOpen(false);
     };
 
-    searchInputDomHandler.addEventListener('focus', handleFocus);
-    searchInputDomHandler.addEventListener('blur', handleBlur);
-
-    return () => {
-      searchInputDomHandler.removeEventListener('blur', handleFocus);
-      searchInputDomHandler.removeEventListener('blur', handleBlur);
-    };
-  }, []);
-
-  useEffect(() => {
     const handleInput = debounce(e => {
       const typedValue = e.target.value;
       setIsPending('fetching');
@@ -54,7 +45,7 @@ const Suggest = ({ withCategories, withGeoloc }) => {
         maxItems: SUGGEST_MAX_ITEMS,
       });
 
-      setCurrentQuery(query);
+      currentQuery = query;
       setLastQuery(typedValue);
 
       query
@@ -62,17 +53,21 @@ const Suggest = ({ withCategories, withGeoloc }) => {
         .then(items => {
           setItems(items);
           setIsPending('completed');
-          setCurrentQuery(null);
+          currentQuery = null;
         })
         .catch(() => { /* Query aborted. Just ignore silently */ });
     }, 100);
 
+    searchInputDomHandler.addEventListener('focus', handleFocus);
+    searchInputDomHandler.addEventListener('blur', handleBlur);
     searchInputDomHandler.addEventListener('input', handleInput);
 
     return () => {
+      searchInputDomHandler.removeEventListener('blur', handleFocus);
+      searchInputDomHandler.removeEventListener('blur', handleBlur);
       searchInputDomHandler.removeEventListener('input', handleInput);
     };
-  }, [currentQuery]);
+  }, []);
 
   useEffect(() => {
     const handleSubmit = () => {
