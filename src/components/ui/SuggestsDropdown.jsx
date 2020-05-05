@@ -12,7 +12,13 @@ const SuggestsDropdown = ({
   inputId,
 }) => {
   const [highlighted, setHighlighted] = useState(null);
-  const [style, setStyle] = useState({});
+  const inputElement = document.getElementById(inputId);
+  const boundingRect = inputElement.getBoundingClientRect();
+  const style = {
+    top: boundingRect.bottom,
+    left: boundingRect.left,
+    width: boundingRect.width,
+  };
 
   useEffect(() => {
     const keyDownHandler = e => {
@@ -71,34 +77,6 @@ const SuggestsDropdown = ({
       document.removeEventListener('keydown', keyDownHandler);
     };
   });
-
-  useEffect(() => {
-    const inputElement = document.getElementById(inputId);
-    const computedStyle = window.getComputedStyle(inputElement);
-    const boundingRect = inputElement.getBoundingClientRect();
-    const isMobile =
-      computedStyle.position === 'fixed' || // Top bar
-      computedStyle.position === 'absolute'; // itineray
-
-    // FIXME
-    if (inputId === 'search') {
-      setStyle({
-        display: 'block',
-        zIndex: 999,
-        top: boundingRect.bottom,
-        left: boundingRect.left,
-        width: boundingRect.width,
-      });
-    } else {
-      setStyle({
-        display: 'block',
-        top: isMobile ? boundingRect.bottom : computedStyle.height,
-        left: computedStyle.marginLeft,
-        width: inputElement.offsetWidth,
-      });
-    }
-
-  }, []);
 
   return (
     <ul
