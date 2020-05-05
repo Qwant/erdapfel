@@ -607,7 +607,6 @@ button.direction_shortcut {
     background-size: 640px auto;
     position: fixed;
     z-index: 3;
-    font-size: 12px;
     min-height: 42px;
 
     .itinerary_title {
@@ -620,7 +619,6 @@ button.direction_shortcut {
     display: flex;
     align-items: center;
     cursor: pointer;
-    text-transform: uppercase;
     color: $background;
     line-height: 36px;
     position: absolute;
