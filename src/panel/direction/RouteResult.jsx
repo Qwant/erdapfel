@@ -1,4 +1,4 @@
-/* globals _, fire, listen */
+/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Route from './Route';
@@ -6,6 +6,7 @@ import { getVehicleIcon } from 'src/libs/route_utils';
 import classnames from 'classnames';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
+import { fire, listen } from 'src/libs/customEvents';
 
 export default class RouteResult extends React.Component {
   static propTypes = {

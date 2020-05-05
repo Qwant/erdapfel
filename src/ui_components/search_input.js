@@ -20,6 +20,9 @@ export default class SearchInput {
   static initSearchInput(tagSelector) {
     if (! window.__searchInput) {
       window.__searchInput = new SearchInput(tagSelector);
+      window.submitSearch = () => {
+        window.__searchInput.suggest.onSubmit();
+      };
       window.clearSearch = () => {
         window.__searchInput.suggest.setValue('');
         window.app.navigateTo('/');
@@ -63,10 +66,6 @@ export default class SearchInput {
       onSelect: selectedPoi => this.selectItem(selectedPoi),
     });
     this.isEnabled = true;
-
-    listen('submit_autocomplete', async () => {
-      this.suggest.onSubmit();
-    });
   }
 
   handleKeyboard() {

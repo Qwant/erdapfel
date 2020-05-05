@@ -3,6 +3,7 @@ import constants from '../../config/constants.yml';
 import { createIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
+import { fire, listen } from 'src/libs/customEvents';
 
 export default class SceneCategory {
   constructor(map) {

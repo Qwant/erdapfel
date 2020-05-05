@@ -5,6 +5,7 @@ import ExtendedString from '../libs/string';
 import LocalStore from '../libs/local_store';
 import MasqStore from '../libs/masq';
 import { getKey } from 'src/libs/pois';
+import { fire } from 'src/libs/customEvents';
 
 const masqConfig = nconf.get().masq;
 if (!MasqStore.isMasqSupported(masqConfig) && !MasqStore.isMasqForced()) {

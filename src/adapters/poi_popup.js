@@ -4,6 +4,7 @@ import { Popup } from 'mapbox-gl--ENV';
 import ApiPoi from './poi/idunn_poi';
 import { isMobileDevice } from 'src/libs/device';
 import ReactPoiPopup from 'src/components/PoiPopup';
+import { listen } from 'src/libs/customEvents';
 
 const WAIT_BEFORE_DISPLAY = 350;
 

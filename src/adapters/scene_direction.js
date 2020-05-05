@@ -7,6 +7,7 @@ import { prepareRouteColor, getRouteStyle, setActiveRouteStyle } from './route_s
 import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
+import { fire, listen } from 'src/libs/customEvents';
 
 const createMarker = (lngLat, className = '', options = {}) => {
   const element = document.createElement('div');

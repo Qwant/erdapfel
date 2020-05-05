@@ -10,6 +10,7 @@ import SearchInput from 'src/ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import events from 'config/events.yml';
+import { fire, listen, unListen } from 'src/libs/customEvents';
 // import CategoryPanelError from '../category/CategoryPanelError';
 // import PoiCategoryItemList from '../category/PoiCategoryItemList';
 
@@ -48,7 +49,7 @@ class EventListPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    window.unListen(this.mapMoveHandler);
+    unListen(this.mapMoveHandler);
   }
 
   fitMapAndFetch() {

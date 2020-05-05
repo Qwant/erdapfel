@@ -3,6 +3,7 @@ import { createEventIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
 import events from 'config/events.yml';
 import { toUrl } from 'src/libs/pois';
+import { fire, listen } from 'src/libs/customEvents';
 
 export default class SceneEvent {
   constructor(map) {
