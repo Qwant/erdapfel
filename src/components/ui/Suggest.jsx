@@ -76,7 +76,7 @@ const Suggest = ({
 
   useEffect(() => {
     const handleKeyDown = async event => {
-      if (event.key === 'Esc' || event.key === 'Escape') {
+      if (event.key === 'Esc' || event.key === 'Escape' && searchInputDomHandler.value === '') {
         setIsOpen(false);
       } else if (event.key === 'Enter') {
         setIsOpen(false);
