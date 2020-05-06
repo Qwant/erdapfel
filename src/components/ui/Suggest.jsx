@@ -12,39 +12,45 @@ const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
 const SUGGEST_FOCUS_MIN_ZOOM = 11;
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
-const Suggest = ({ withCategories, withGeoloc }) => {
+const Suggest = ({
+  tagSelector,
+  withCategories,
+  withGeoloc,
+  onSelect = selectItem,
+}) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
   const [isHighlighted, setIsHighlighted] = useState(false);
-  const searchInputDomHandler = document.getElementById('search');
+  const searchInputDomHandler = document.getElementById(tagSelector);
   let currentQuery = null;
 
   useEffect(() => {
-    const handleFocus = () => setIsOpen(true);
+    const handleFocus = () => {
+      setIsOpen(true);
+      fetchItems(searchInputDomHandler.value);
+    };
 
     const handleBlur = () => {
       setIsHighlighted(false);
       setIsOpen(false);
     };
 
-    const handleInput = debounce(e => {
-      const typedValue = e.target.value;
-
+    const fetchItems = debounce(value => {
       if (currentQuery) {
         currentQuery.abort();
       }
 
-      const query = suggestResults(typedValue, {
+      const query = suggestResults(value, {
         withCategories,
         useFocus: SUGGEST_USE_FOCUS,
         focusMinZoom: SUGGEST_FOCUS_MIN_ZOOM,
-        maxFavorites: !typedValue ? 5 : 2,
+        maxFavorites: !value ? 5 : 2,
         maxItems: SUGGEST_MAX_ITEMS,
       });
 
       currentQuery = query;
-      setLastQuery(typedValue);
+      setLastQuery(value);
 
       query
         .then(suggestions => modifyList(suggestions, withGeoloc))
@@ -54,6 +60,10 @@ const Suggest = ({ withCategories, withGeoloc }) => {
         })
         .catch(() => { /* Query aborted. Just ignore silently */ });
     }, SUGGEST_DEBOUNCE_WAIT);
+
+    const handleInput = e => {
+      fetchItems(e.target.value);
+    };
 
     searchInputDomHandler.addEventListener('focus', handleFocus);
     searchInputDomHandler.addEventListener('blur', handleBlur);
@@ -67,10 +77,6 @@ const Suggest = ({ withCategories, withGeoloc }) => {
   }, []);
 
   useEffect(() => {
-    const handleSubmit = () => {
-      selectItem(items[0], true);
-    };
-
     const handleKeyDown = async event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
         setIsOpen(false);
@@ -83,11 +89,9 @@ const Suggest = ({ withCategories, withGeoloc }) => {
     };
 
     searchInputDomHandler.addEventListener('keydown', handleKeyDown);
-    searchInputDomHandler.addEventListener('submit', handleSubmit);
 
     return () => {
       searchInputDomHandler.removeEventListener('keydown', handleKeyDown);
-      searchInputDomHandler.removeEventListener('submit', handleSubmit);
     };
   }, [items, isHighlighted]);
 
@@ -97,7 +101,7 @@ const Suggest = ({ withCategories, withGeoloc }) => {
 
   return (
     <SuggestsDropdown
-      inputId="search"
+      inputId={tagSelector}
       suggestItems={items}
       onHighlight={item => {
         if (!item) {
@@ -110,9 +114,9 @@ const Suggest = ({ withCategories, withGeoloc }) => {
       }}
       onSelect={item => {
         searchInputDomHandler.value = item.name;
-        selectItem(item);
         setIsOpen(false);
         setIsHighlighted(false);
+        onSelect(item);
       }}
     />
   );

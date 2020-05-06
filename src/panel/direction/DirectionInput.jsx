@@ -3,9 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NavigatorGeolocalisationPoi, { navigatorGeolocationStatus } from
   'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import Suggest from 'src/adapters/suggest';
+import Suggest from 'src/components/ui/Suggest';
 import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
+import { fetchSuggests } from 'src/libs/suggest';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -16,18 +17,15 @@ class DirectionInput extends React.Component {
     inputRef: PropTypes.object.isRequired,
   }
 
-  componentDidMount() {
-    this.suggest = new Suggest({
-      tagSelector: `#itinerary_input_${this.props.pointType}`,
-      onSelect: this.selectItem,
-      withGeoloc: true,
-    });
+  state = {
+    mounted: false,
+    readOnly: false,
   }
 
-  componentWillUnmount() {
-    if (this.suggest) {
-      this.suggest.destroy();
-    }
+  componentDidMount() {
+    this.setState({
+      mounted: true,
+    });
   }
 
   onChange = event => {
@@ -35,15 +33,20 @@ class DirectionInput extends React.Component {
     this.props.onChangePoint(value, null);
   }
 
-  onKeyPress = event => {
+  onKeyPress = async event => {
     if (event.key === 'Enter' && this.props.value !== '') {
-      this.suggest.onSubmit();
+      const items = await fetchSuggests(this.props.value);
+      if (items && items.length > 0) {
+        const firstPoi = items[0];
+        this.selectItem(firstPoi);
+      }
     }
   }
 
   selectItem = async selectedPoi => {
     if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
-      this.suggest.setIdle(true);
+      this.setState({ readOnly: true });
+
       try {
         await selectedPoi.geolocate();
       } catch (error) {
@@ -54,10 +57,12 @@ class DirectionInput extends React.Component {
         }
         this.suggest.clear();
       }
+
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
         this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
       }
-      this.suggest.setIdle(false);
+
+      this.setState({ readOnly: false });
     } else {
       this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
     }
@@ -74,6 +79,7 @@ class DirectionInput extends React.Component {
 
   render() {
     const { pointType, inputRef, isLoading } = this.props;
+    const { mounted, readOnly } = this.state;
 
     return <div className="itinerary_field" >
       <input
@@ -91,7 +97,15 @@ class DirectionInput extends React.Component {
         onChange={this.onChange}
         onKeyPress={this.onKeyPress}
         disabled={isLoading}
+        readOnly={readOnly}
       />
+      {mounted &&
+        <Suggest
+          tagSelector={`itinerary_input_${pointType}`}
+          withGeoloc
+          onSelect={this.selectItem}
+        />
+      }
       <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
       <div className="itinerary_field_return">
         <span className="icon-arrow-left"/>
