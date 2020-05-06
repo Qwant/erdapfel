@@ -86,6 +86,7 @@ export default class SearchInput {
     if (results && results.length > 0) {
       const firstResult = results[0];
       selectItem(firstResult, true);
+      window.__searchInput.searchInputHandle.blur();
     }
   }
 }
