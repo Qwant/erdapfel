@@ -21,7 +21,6 @@ const Suggest = ({
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
-  const [isHighlighted, setIsHighlighted] = useState(false);
   const searchInputDomHandler = document.getElementById(tagSelector);
   let currentQuery = null;
 
@@ -32,7 +31,6 @@ const Suggest = ({
     };
 
     const handleBlur = () => {
-      setIsHighlighted(false);
       setIsOpen(false);
     };
 
@@ -80,7 +78,6 @@ const Suggest = ({
     const handleKeyDown = async event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
         setIsOpen(false);
-        setIsHighlighted(false);
       } else if (event.key === 'Enter') {
         setIsOpen(false);
       } else {
@@ -93,7 +90,7 @@ const Suggest = ({
     return () => {
       searchInputDomHandler.removeEventListener('keydown', handleKeyDown);
     };
-  }, [items, isHighlighted]);
+  }, [items]);
 
   if (!isOpen) {
     return null;
@@ -105,17 +102,14 @@ const Suggest = ({
       suggestItems={items}
       onHighlight={item => {
         if (!item) {
-          setIsHighlighted(false);
           searchInputDomHandler.value = lastQuery;
         } else {
-          setIsHighlighted(true);
           searchInputDomHandler.value = item.name;
         }
       }}
       onSelect={item => {
         searchInputDomHandler.value = item.name;
         setIsOpen(false);
-        setIsHighlighted(false);
         onSelect(item);
       }}
     />
