@@ -55,7 +55,7 @@ class DirectionInput extends React.Component {
         } else {
           Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error);
         }
-        this.suggest.clear();
+        this.inputRef.current.value = '';
       }
 
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
