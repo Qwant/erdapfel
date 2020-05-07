@@ -34,19 +34,13 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentDidMount() {
-    const { category } = this.props.poiFilters;
+    this.updateSearchBarContent();
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
-
-    if (category) {
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
-      const { label } = CategoryService.getCategoryByName(category);
-      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
-    }
-
     window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
   }
 
   componentDidUpdate(prevProps) {
+    this.updateSearchBarContent();
     const { bbox, poiFilters } = this.props;
 
     const panelContent = document.querySelector('.panel-content');
@@ -64,6 +58,17 @@ export default class CategoryPanel extends React.Component {
 
     if (bbox && bbox !== prevProps.bbox) {
       window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
+    }
+  }
+
+  updateSearchBarContent() {
+    const { category, query } = this.props.poiFilters;
+    if (category) {
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
+      const { label } = CategoryService.getCategoryByName(category);
+      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
+    } else if (query) {
+      SearchInput.setInputValue(query);
     }
   }
 
