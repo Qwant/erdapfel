@@ -82,7 +82,7 @@ export default class SearchInput {
 
   static async executeSearch(query) {
     window.__searchInput.searchInputHandle.value = query;
-    const results = await fetchSuggests(query);
+    const results = await fetchSuggests(query, { withCategories: true });
     if (results && results.length > 0) {
       const firstResult = results[0];
       selectItem(firstResult, true);

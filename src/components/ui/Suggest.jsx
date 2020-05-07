@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import nconf from '@qwant/nconf-getter';
 import debounce from 'lodash.debounce';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
-import { suggestResults } from 'src/adapters/suggest_sources';
-import { selectItem, modifyList } from 'src/libs/suggest';
+import { fetchSuggests, selectItem, modifyList } from 'src/libs/suggest';
 
-const geocoderConfig = nconf.get().services.geocoder;
-const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
-const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
-const SUGGEST_FOCUS_MIN_ZOOM = 11;
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
 const Suggest = ({
@@ -39,12 +33,8 @@ const Suggest = ({
         currentQuery.abort();
       }
 
-      const query = suggestResults(value, {
+      const query = fetchSuggests(value, {
         withCategories,
-        useFocus: SUGGEST_USE_FOCUS,
-        focusMinZoom: SUGGEST_FOCUS_MIN_ZOOM,
-        maxFavorites: !value ? 5 : 2,
-        maxItems: SUGGEST_MAX_ITEMS,
       });
 
       currentQuery = query;

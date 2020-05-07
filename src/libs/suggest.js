@@ -29,13 +29,13 @@ export const selectItem = (selectedItem, replaceUrl = false) => {
   }
 };
 
-export const fetchSuggests = query =>
+export const fetchSuggests = (query, options = {}) =>
   suggestResults(query, {
-    withCategories: true,
-    useFocus: SUGGEST_USE_FOCUS,
-    focusMinZoom: SUGGEST_FOCUS_MIN_ZOOM,
-    maxItems: SUGGEST_MAX_ITEMS,
-    maxFavorites: !query ? 5 : 2,
+    withCategories: options.withCategories || false,
+    useFocus: options.useFocus || SUGGEST_USE_FOCUS,
+    focusMinZoom: options.focusMinZoom || SUGGEST_FOCUS_MIN_ZOOM,
+    maxItems: options.maxItems || SUGGEST_MAX_ITEMS,
+    maxFavorites: options.maxFavorites || !query ? 5 : 2,
   });
 
 export const modifyList = (items, withGeoloc) => {
