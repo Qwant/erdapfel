@@ -5,7 +5,7 @@ import Action from 'src/components/ui/MainActionButton';
 
 const EventTypeList = () =>
   <div className="service_panel__events">
-    <h3>{_('Good plans', 'service panel')}</h3>
+    <h3 className="u-text--smallTitle u-center">{_('Good plans', 'service panel')}</h3>
     {
       CategoryService.getEvents().map(item =>
         <Action

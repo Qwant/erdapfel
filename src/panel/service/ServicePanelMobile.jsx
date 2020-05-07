@@ -18,7 +18,7 @@ class ServicePanelMobile extends React.Component {
     >
       <div className="service_panel__actions">
 
-        <h3>{_('Directions', 'service panel')}</h3>
+        <h3 className="u-text--smallTitle u-center">{_('Directions', 'service panel')}</h3>
 
         {
           nconf.get().direction.enabled &&
@@ -58,7 +58,7 @@ class ServicePanelMobile extends React.Component {
 
       <hr/>
 
-      <h3>{_('Services nearby', 'service panel')}</h3>
+      <h3 className="u-text--smallTitle u-center">{_('Services nearby', 'service panel')}</h3>
 
       <CategoryList className="service_panel__categories" />
 

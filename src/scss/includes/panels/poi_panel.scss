@@ -42,7 +42,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__back_text {
   padding-left: 5px;
-  text-transform: uppercase;
 }
 
 .poi_panel__back.icon-arrow-left {
@@ -68,12 +67,6 @@ $HEADER_SIZE: 40px;
   color: $secondary_text;
 }
 
-.poi_panel__title {
-  font-weight: bold;
-  color: $primary_text;
-  font-size: 16px;
-}
-
 .poi_panel__title__alternative {
   color: $secondary_text;
   font-weight: lighter;
@@ -95,10 +88,6 @@ $HEADER_SIZE: 40px;
   background: $separator_color;
 }
 
-.poi_panel__description:first-letter {
-  text-transform: uppercase;
-}
-
 .poi_panel__address {
   padding: 8px 0 0 0;
 }
@@ -107,15 +96,14 @@ $HEADER_SIZE: 40px;
   margin: 0;
 }
 
-.poi_panel__info__link, .poi_panel__info__contact {
-  font-size: 13px;
+.poi_panel__info__link,
+.poi_panel__info__contact {
   color: $secondary_text;
-  text-transform: uppercase;
-}
 
-.poi_panel__info__link:HOVER, .poi_panel__info__contact:HOVER {
-  text-decoration: none;
-  color: $primary_text;
+  &:hover {
+    text-decoration: none;
+    color: $primary_text;
+  }
 }
 
 .poi_panel__info__hour__circle {
@@ -339,10 +327,9 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__info__wiki__link {
-  font-size: 13px;
+  font-size: 12px;
   color: $secondary_text;
   position: relative;
-  text-transform: uppercase;
 
   .icon-chevrons-right {
     position: absolute;
@@ -401,9 +388,7 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__header {
-  font-size: 12px;
   color: $secondary_text;
-  text-transform: uppercase;
   display: flex;
   margin-left: -6px;
 }

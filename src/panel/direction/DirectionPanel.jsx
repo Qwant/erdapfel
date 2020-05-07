@@ -280,7 +280,9 @@ export default class DirectionPanel extends React.Component {
       isLoading, isDirty, isInitializing,
       originInputText, destinationInputText,
     } = this.state;
-    const title = <h3 className="itinerary_title">{_('Directions', 'direction')}</h3>;
+    const title = <h3 className="itinerary_title u-text--smallTitle u-center">
+      {_('Directions', 'direction')}
+    </h3>;
     const form = <DirectionForm
       isLoading={isLoading}
       origin={origin}
@@ -312,7 +314,7 @@ export default class DirectionPanel extends React.Component {
           <div className="direction_panel_mobile">
             <div className="itinerary_close_mobile" onClick={this.onClose}>
               <span className="icon-chevron-left" />
-              {_('return', 'direction')}
+              <span className="u-firstCap">{_('return', 'direction')}</span>
             </div>
             {title}
             {!activePreviewRoute && form}

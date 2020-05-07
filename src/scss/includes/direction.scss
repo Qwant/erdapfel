@@ -8,11 +8,6 @@
 }
 
 .itinerary_title {
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #495063;
-  border: none;
   text-align: center;
   width: 100%;
 }
@@ -156,11 +151,12 @@ input:valid:focus ~ .itinerary__field__clear {
   .testLabel {
     font-family: $font_system;
     font-size: 12px;
+    line-height: 16px;
     font-weight: bold;
     color: white;
     background-color: red;
     border-radius: 20px;
-    padding: 3px 6px;
+    padding: 1px 6px;
     margin-left: 6px;
     text-transform: uppercase;
   }
@@ -611,15 +607,18 @@ button.direction_shortcut {
     background-size: 640px auto;
     position: fixed;
     z-index: 3;
-    font-size: 12px;
     min-height: 42px;
+
+    .itinerary_title {
+      color: $background;
+      line-height: 36px;
+    }
   }
 
   .itinerary_close_mobile {
     display: flex;
     align-items: center;
     cursor: pointer;
-    text-transform: uppercase;
     color: $background;
     line-height: 36px;
     position: absolute;
@@ -635,11 +634,6 @@ button.direction_shortcut {
       margin: -6px 6px 0 0;
       font-size: 22px;
     }
-  }
-
-  .itinerary_title {
-    color: $background;
-    line-height: 36px;
   }
 
   .itinerary_input {

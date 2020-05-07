@@ -22,8 +22,8 @@ const PoiPopup = ({ poi }) => {
   }
 
   return <div className="poi_popup">
-    <h1 className="poi_popup__title">{poi.name}</h1>
-    <h3 className="poi_popup__category">{poiSubClass(poi.subClassName)}</h3>
+    <h1 className="u-text--smallTitle">{poi.name}</h1>
+    <h3 className="u-firstCap u-text--subtitle">{poiSubClass(poi.subClassName)}</h3>
     <div>{displayedInfo}</div>
   </div>;
 };

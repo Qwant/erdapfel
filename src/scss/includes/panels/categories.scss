@@ -8,8 +8,6 @@
   &_title {
     font-weight: normal;
     color: #353c52;
-    font-size: 12px;
-    text-transform: uppercase;
     background: url('../images/pagesjaunes.svg') no-repeat left center;
     background-size: 18px;
     padding-left: 24px;
@@ -52,12 +50,6 @@
   }
 }
 
-.category__panel__name {
-  font-weight: bold;
-  font-size: 16px;
-  color: #353c52;
-}
-
 .category__panel__type {
   text-transform: capitalize;
 }
@@ -73,9 +65,7 @@
 
 .category__panel__phone {
   color: $secondary_text;
-  font-size: 12px;
   font-weight: bold;
-  text-transform: uppercase;
   margin-top: 5px;
   cursor: pointer;
 
