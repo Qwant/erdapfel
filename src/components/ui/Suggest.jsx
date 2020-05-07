@@ -53,32 +53,31 @@ const Suggest = ({
       fetchItems(e.target.value);
     };
 
-    searchInputDomHandler.addEventListener('focus', handleFocus);
-    searchInputDomHandler.addEventListener('blur', handleBlur);
-    searchInputDomHandler.addEventListener('input', handleInput);
-
-    return () => {
-      searchInputDomHandler.removeEventListener('focus', handleFocus);
-      searchInputDomHandler.removeEventListener('blur', handleBlur);
-      searchInputDomHandler.removeEventListener('input', handleInput);
-    };
-  }, []);
-
-  useEffect(() => {
     const handleKeyDown = async event => {
-      if (event.key === 'Esc' || event.key === 'Escape' && searchInputDomHandler.value === '') {
-        setIsOpen(false);
+      if (event.key === 'Esc' || event.key === 'Escape') {
+        if (searchInputDomHandler.value === '') {
+          setIsOpen(false);
+        } else {
+          searchInputDomHandler.value = '';
+          fetchItems('');
+        }
       } else {
         setIsOpen(true);
       }
     };
 
+    searchInputDomHandler.addEventListener('focus', handleFocus);
+    searchInputDomHandler.addEventListener('blur', handleBlur);
+    searchInputDomHandler.addEventListener('input', handleInput);
     searchInputDomHandler.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      searchInputDomHandler.removeEventListener('focus', handleFocus);
+      searchInputDomHandler.removeEventListener('blur', handleBlur);
+      searchInputDomHandler.removeEventListener('input', handleInput);
       searchInputDomHandler.removeEventListener('keydown', handleKeyDown);
     };
-  }, [items]);
+  }, []);
 
   if (!isOpen) {
     return null;
