@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import PoiEventItemList from './PoiEventItemList';
 import EventPanelError from './EventPanelError';
-// import EventPanelHeader from './EventPanelHeader';
 import Telemetry from 'src/libs/telemetry';
 import SearchInput from 'src/ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
