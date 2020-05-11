@@ -46,6 +46,8 @@ export default class IdunnPoi extends Poi {
     case 'address':
     case 'street':
       return this.alternativeName;
+    case 'admin':
+      return this.address?.label?.split(',')[0] || this.name;
     default:
       return this.name;
     }
