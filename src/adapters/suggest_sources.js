@@ -47,7 +47,7 @@ export function suggestResults(term, {
           if (!intentions) { // no NLU activated
             intentionsOrCategories = CategoryService.getMatchingCategories(term);
           } else {
-            intentionsOrCategories = intentions.filter(intention => intention.category);
+            intentionsOrCategories = intentions;
           }
         }
         const keptFavorites = favorites.slice(0, maxFavorites);
