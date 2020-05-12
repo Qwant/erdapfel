@@ -50,7 +50,8 @@ export default class PanelManager extends React.Component {
     const { ActivePanel, options } = this.state;
 
     if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
-      if (ActivePanel !== PoiPanel || !options.poiFilters || !options.poiFilters.category) {
+      if (ActivePanel !== CategoryPanel
+        && (ActivePanel !== PoiPanel || !options.poiFilters || !options.poiFilters.category)) {
         fire('remove_category_markers');
         fire('remove_event_markers');
       }
