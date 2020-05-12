@@ -31,7 +31,6 @@ input:valid:focus ~ .itinerary__field__clear {
 
 .itinerary_fields {
   background: $background;
-  @include card_shadow();
   margin: 0 18px;
   position: relative;
   border-radius: 3px;
@@ -634,6 +633,10 @@ button.direction_shortcut {
       margin: -6px 6px 0 0;
       font-size: 22px;
     }
+  }
+
+  .itinerary_fields {
+    @include card_shadow();
   }
 
   .itinerary_input {
