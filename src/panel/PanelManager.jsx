@@ -12,6 +12,7 @@ import classnames from 'classnames';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
+import { isNullOrEmpty } from 'src/libs/object';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const categoryEnabled = nconf.get().category.enabled;
@@ -51,7 +52,7 @@ export default class PanelManager extends React.Component {
 
     if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
       if (ActivePanel !== CategoryPanel
-        && (ActivePanel !== PoiPanel || !options.poiFilters || !options.poiFilters.category)) {
+        && (ActivePanel !== PoiPanel || isNullOrEmpty(options.poiFilters))) {
         fire('remove_category_markers');
         fire('remove_event_markers');
       }
