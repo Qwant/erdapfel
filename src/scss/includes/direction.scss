@@ -40,6 +40,10 @@ input:valid:focus ~ .itinerary__field__clear {
   position: relative;
 }
 
+.itinerary_form {
+  margin-bottom: 16px;
+}
+
 .itinerary_container--preview .itinerary_form {
   display: none;
 }
@@ -114,7 +118,8 @@ input:valid:focus ~ .itinerary__field__clear {
 .itinerary_vehicles {
   display: flex;
   justify-content: center;
-  padding: 15px;
+  margin: 0px 32px;
+  padding: 0px 32px 16px;
 }
 
 .itinerary_vehicle_button {
@@ -633,6 +638,10 @@ button.direction_shortcut {
       margin: -6px 6px 0 0;
       font-size: 22px;
     }
+  }
+
+  .itinerary_form {
+    margin-bottom: 0;
   }
 
   .itinerary_fields {
