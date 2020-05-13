@@ -302,8 +302,10 @@ input[type="search"] {
 
   .autocomplete_suggestions {
     position: fixed;
-    max-height: calc(100vh - 120px);
-    margin-top: -1px;
+    top: 0;
+    height: 100%;
+    max-height: none;
+    mrgin: 0;
   }
 
   .search_form__logo {
