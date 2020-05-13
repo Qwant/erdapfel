@@ -599,6 +599,14 @@ button.direction_shortcut {
   color: #5c6f84;
 }
 
+#itinerary_autocomplete_suggestions .autocomplete_suggestions {
+  position: relative;
+  display: block;
+  margin: 0;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
 /* Mobile */
 
 @media (max-width: 640px){
