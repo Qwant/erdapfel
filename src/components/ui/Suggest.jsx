@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
@@ -7,21 +8,22 @@ import { fetchSuggests, selectItem, modifyList } from 'src/libs/suggest';
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
 const Suggest = ({
-  tagSelector,
+  inputNode,
+  outputNode,
   withCategories,
   withGeoloc,
   onSelect = selectItem,
+  className,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
-  const searchInputDomHandler = document.getElementById(tagSelector);
   let currentQuery = null;
 
   useEffect(() => {
     const handleFocus = () => {
       setIsOpen(true);
-      fetchItems(searchInputDomHandler.value);
+      fetchItems(inputNode.value);
     };
 
     const handleBlur = () => {
@@ -55,10 +57,10 @@ const Suggest = ({
 
     const handleKeyDown = async event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
-        if (searchInputDomHandler.value === '') {
+        if (inputNode.value === '') {
           setIsOpen(false);
         } else {
-          searchInputDomHandler.value = '';
+          inputNode.value = '';
           fetchItems('');
         }
       } else {
@@ -66,16 +68,16 @@ const Suggest = ({
       }
     };
 
-    searchInputDomHandler.addEventListener('focus', handleFocus);
-    searchInputDomHandler.addEventListener('blur', handleBlur);
-    searchInputDomHandler.addEventListener('input', handleInput);
-    searchInputDomHandler.addEventListener('keydown', handleKeyDown);
+    inputNode.addEventListener('focus', handleFocus);
+    inputNode.addEventListener('blur', handleBlur);
+    inputNode.addEventListener('input', handleInput);
+    inputNode.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      searchInputDomHandler.removeEventListener('focus', handleFocus);
-      searchInputDomHandler.removeEventListener('blur', handleBlur);
-      searchInputDomHandler.removeEventListener('input', handleInput);
-      searchInputDomHandler.removeEventListener('keydown', handleKeyDown);
+      inputNode.removeEventListener('focus', handleFocus);
+      inputNode.removeEventListener('blur', handleBlur);
+      inputNode.removeEventListener('input', handleInput);
+      inputNode.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -83,24 +85,29 @@ const Suggest = ({
     return null;
   }
 
-  return (
+  const SuggestsDropdownElement = () =>
     <SuggestsDropdown
-      inputId={tagSelector}
+      className={className}
+      inputNode={inputNode}
+      outputNode={outputNode}
       suggestItems={items}
       onHighlight={item => {
         if (!item) {
-          searchInputDomHandler.value = lastQuery;
+          inputNode.value = lastQuery;
         } else {
-          searchInputDomHandler.value = item.name;
+          inputNode.value = item.name;
         }
       }}
       onSelect={item => {
-        searchInputDomHandler.value = item.name;
+        inputNode.value = item.name;
         setIsOpen(false);
         onSelect(item);
       }}
-    />
-  );
+    />;
+
+  return outputNode
+    ? ReactDOM.createPortal(<SuggestsDropdownElement />, outputNode)
+    : <SuggestsDropdownElement />;
 };
 
 export default Suggest;

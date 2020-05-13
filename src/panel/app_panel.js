@@ -23,6 +23,7 @@ export default class App {
     this.initMap();
 
     SearchInput.initSearchInput('#search');
+    const inputNode = document.getElementById('search');
 
     Telemetry.add(Telemetry.APP_START, null, null, {
       'language': window.getLang(),
@@ -43,7 +44,7 @@ export default class App {
         <PanelManager router={this.router} />
         {burgerMenuEnabled && <Menu />}
         <Suggest
-          tagSelector="search"
+          inputNode={inputNode}
           withCategories
         />
       </Fragment>,

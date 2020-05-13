@@ -332,6 +332,7 @@ export default class DirectionPanel extends React.Component {
           className="direction_panel"
         >
           {form}
+          <div id="itinerary_autocomplete_suggestions" />
           {result}
         </Panel>
       }

@@ -5,26 +5,32 @@ import { object, func, string, arrayOf } from 'prop-types';
 import SuggestItem from './SuggestItem';
 
 const SuggestsDropdown = ({
+  inputNode,
+  outputNode,
   className = '',
   suggestItems,
   onSelect,
   onHighlight,
-  inputId,
 }) => {
   const [highlighted, setHighlighted] = useState(null);
-  const inputElement = document.getElementById(inputId);
-  const boundingRect = inputElement.getBoundingClientRect();
-  const style = {
-    top: boundingRect.bottom,
-    left: boundingRect.left,
-    width: boundingRect.width,
-  };
+  const style = outputNode
+    ? {}
+    : (() => {
+      // In case no output node is specified,
+      // suggestions are render just below inputNode
+      const boundingRect = inputNode.getBoundingClientRect();
+      return {
+        top: boundingRect.bottom,
+        left: boundingRect.left,
+        width: boundingRect.width,
+      };
+    })();
 
   useEffect(() => {
     const keyDownHandler = e => {
       const { key } = e;
 
-      if (document.activeElement.getAttribute('id') !== inputId) {
+      if (document.activeElement.getAttribute('id') !== inputNode.id) {
         document.removeEventListener('keydown', keyDownHandler);
         return;
       }
@@ -108,7 +114,8 @@ SuggestsDropdown.propTypes = {
   onHighlight: func.isRequired,
   onSelect: func.isRequired,
   className: string,
-  inputId: string.isRequired,
+  inputNode: object.isRequired,
+  outputNode: object,
 };
 
 export default SuggestsDropdown;

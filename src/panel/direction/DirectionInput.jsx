@@ -7,6 +7,7 @@ import Suggest from 'src/components/ui/Suggest';
 import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
+import { isMobileDevice } from 'src/libs/device';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -80,6 +81,7 @@ class DirectionInput extends React.Component {
   render() {
     const { pointType, inputRef, isLoading } = this.props;
     const { mounted, readOnly } = this.state;
+    const isMobile = isMobileDevice();
 
     return <div className="itinerary_field" >
       <input
@@ -101,7 +103,10 @@ class DirectionInput extends React.Component {
       />
       {mounted &&
         <Suggest
-          tagSelector={`itinerary_input_${pointType}`}
+          inputNode={inputRef.current}
+          outputNode={!isMobile
+            ? document.getElementById('itinerary_autocomplete_suggestions')
+            : null}
           withGeoloc
           onSelect={this.selectItem}
         />
