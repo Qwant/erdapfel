@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
+import { bool, string, func, object } from 'prop-types';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, selectItem, modifyList } from 'src/libs/suggest';
@@ -108,6 +109,15 @@ const Suggest = ({
   return outputNode
     ? ReactDOM.createPortal(<SuggestsDropdownElement />, outputNode)
     : <SuggestsDropdownElement />;
+};
+
+Suggest.propTypes = {
+  inputNode: object.isRequired,
+  outputNode: object,
+  withCategories: bool,
+  withGeoloc: bool,
+  onSelect: func,
+  className: string,
 };
 
 export default Suggest;
