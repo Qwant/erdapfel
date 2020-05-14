@@ -51,8 +51,8 @@ export default class PanelManager extends React.Component {
     const { ActivePanel, options } = this.state;
 
     if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
-      if (ActivePanel !== CategoryPanel
-        && (ActivePanel !== PoiPanel || isNullOrEmpty(options.poiFilters))) {
+      // poiFilters indicate we are in a "list of POI" context, where markers should be persistent
+      if (isNullOrEmpty(options?.poiFilters)) {
         fire('remove_category_markers');
         fire('remove_event_markers');
       }
