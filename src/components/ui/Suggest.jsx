@@ -57,7 +57,10 @@ const Suggest = ({
     }, SUGGEST_DEBOUNCE_WAIT);
 
     const handleInput = e => {
-      fetchItems(e.target.value);
+      const { value } = e.target;
+      if (value !== lastQuery) {
+        fetchItems(e.target.value);
+      }
     };
 
     const handleKeyDown = async event => {
