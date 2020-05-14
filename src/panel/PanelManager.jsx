@@ -12,6 +12,7 @@ import classnames from 'classnames';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
+import { isNullOrEmpty } from 'src/libs/object';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const categoryEnabled = nconf.get().category.enabled;
@@ -50,7 +51,8 @@ export default class PanelManager extends React.Component {
     const { ActivePanel, options } = this.state;
 
     if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
-      if (ActivePanel !== PoiPanel || !options.poiFilters || !options.poiFilters.category) {
+      // poiFilters indicate we are in a "list of POI" context, where markers should be persistent
+      if (isNullOrEmpty(options?.poiFilters)) {
         fire('remove_category_markers');
         fire('remove_event_markers');
       }
