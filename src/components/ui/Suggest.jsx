@@ -23,8 +23,12 @@ const Suggest = ({
 
   useEffect(() => {
     const handleFocus = () => {
-      setIsOpen(true);
-      fetchItems(inputNode.value);
+      if (inputNode.value === '') {
+        setIsOpen(true);
+        fetchItems('');
+      } else {
+        inputNode.select();
+      }
     };
 
     const handleBlur = () => {
