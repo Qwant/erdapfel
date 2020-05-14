@@ -60,6 +60,7 @@ const Suggest = ({
       const { value } = e.target;
       if (value !== lastQuery) {
         fetchItems(e.target.value);
+        setIsOpen(true);
       }
     };
 
@@ -71,8 +72,6 @@ const Suggest = ({
           inputNode.value = '';
           fetchItems('');
         }
-      } else {
-        setIsOpen(true);
       }
     };
 
