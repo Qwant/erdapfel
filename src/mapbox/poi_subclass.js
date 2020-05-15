@@ -157,6 +157,7 @@ const subClasses = {
   pub: () => _('pub'),
   public_building: () => _('public building'),
   rc_car: () => _('rc car'),
+  recycling: () => _('recycling'),
   reservoir: () => _('reservoir'),
   restaurant: () => _('restaurant'),
   rowing: () => _('rowing'),
