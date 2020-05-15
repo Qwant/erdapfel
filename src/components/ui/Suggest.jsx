@@ -51,7 +51,6 @@ const Suggest = ({
       });
 
       currentQuery = query;
-      setLastQuery(value);
 
       query
         .then(suggestions => modifyList(suggestions, withGeoloc))
@@ -64,10 +63,9 @@ const Suggest = ({
 
     const handleInput = e => {
       const { value } = e.target;
-      if (value !== lastQuery) {
-        fetchItems(value);
-        setIsOpen(true);
-      }
+      fetchItems(value);
+      setIsOpen(true);
+      setLastQuery(value);
     };
 
     const handleKeyDown = async event => {
