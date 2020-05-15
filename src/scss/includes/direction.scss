@@ -42,6 +42,8 @@ input:valid:focus ~ .itinerary__field__clear {
 
 .itinerary_form {
   margin-bottom: 16px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .itinerary_container--preview .itinerary_form {
@@ -650,6 +652,7 @@ button.direction_shortcut {
 
   .itinerary_form {
     margin-bottom: 0;
+    flex-direction: column;
   }
 
   .itinerary_fields {
