@@ -1002,17 +1002,17 @@ msgstr ""
 "Veuillez respecter les restrictions mises en place par les autorités "
 "locales."
 
-msgid "Open during lockdown"
-msgstr "Ouvert durant le confinement"
+msgid "Open during the sanitary crisis"
+msgstr "Ouvert durant la crise sanitaire"
 
-msgid "Potentially open during lockdown"
-msgstr "Potentiellement ouvert durant le confinement"
+msgid "Potentially open during the sanitary crisis"
+msgstr "Potentiellement ouvert durant la crise sanitaire"
 
-msgid "Closed during lockdown"
-msgstr "Fermé durant le confinement"
+msgid "Closed during the sanitary crisis"
+msgstr "Fermé durant la crise sanitaire"
 
-msgid "No information on opening during lockdown"
-msgstr "Pas d'information sur l'ouverture durant le confinement"
+msgid "No information on opening during the sanitary crisis"
+msgstr "Pas d'information sur l'ouverture durant la crise sanitaire"
 
 msgid "Report a change"
 msgstr "Signaler un changement"
