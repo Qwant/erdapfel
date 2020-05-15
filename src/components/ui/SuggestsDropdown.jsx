@@ -30,11 +30,6 @@ const SuggestsDropdown = ({
     const keyDownHandler = e => {
       const { key } = e;
 
-      if (document.activeElement.getAttribute('id') !== inputNode.id) {
-        document.removeEventListener('keydown', keyDownHandler);
-        return;
-      }
-
       if (key === 'ArrowDown') {
         let h = highlighted === null ? - 1 : highlighted;
 
