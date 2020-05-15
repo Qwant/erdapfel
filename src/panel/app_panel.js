@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
@@ -6,10 +6,8 @@ import Telemetry from '../libs/telemetry';
 import Router from 'src/proxies/app_router';
 import { parseMapHash, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 import { isMobileDevice } from 'src/libs/device';
-import Menu from 'src/panel/Menu';
-import PanelManager from 'src/panel/PanelManager';
 import { listen } from 'src/libs/customEvents';
-import Suggest from 'src/components/ui/Suggest';
+import RootComponent from './RootComponent';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const burgerMenuEnabled = nconf.get().burgerMenu.enabled;
@@ -23,7 +21,6 @@ export default class App {
     this.initMap();
 
     SearchInput.initSearchInput('#search');
-    const inputNode = document.getElementById('search');
 
     Telemetry.add(Telemetry.APP_START, null, null, {
       'language': window.getLang(),
@@ -40,14 +37,11 @@ export default class App {
     };
 
     ReactDOM.render(
-      <Fragment>
-        <PanelManager router={this.router} />
-        {burgerMenuEnabled && <Menu />}
-        <Suggest
-          inputNode={inputNode}
-          withCategories
-        />
-      </Fragment>,
+      <RootComponent
+        router={this.router}
+        searchBarInputNode={document.getElementById('search')}
+        burgerMenuEnabled={burgerMenuEnabled}
+      />,
       document.querySelector('#react_root')
     );
   }

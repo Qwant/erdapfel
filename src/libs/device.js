@@ -6,4 +6,4 @@ export function isMobileDevice() {
   return mobileDeviceMediaQuery.matches;
 }
 
-export const DeviceContext = React.createContext({ isMobile: isMobileDevice() });
+export const DeviceContext = React.createContext(isMobileDevice());
