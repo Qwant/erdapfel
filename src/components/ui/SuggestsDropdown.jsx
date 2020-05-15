@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { object, func, string, arrayOf } from 'prop-types';
+import { object, func, string, arrayOf, bool } from 'prop-types';
 
 import SuggestItem from './SuggestItem';
 
 const SuggestsDropdown = ({
   inputNode,
-  outputNode,
+  isAttachedToInput,
   className = '',
   suggestItems,
   onSelect,
   onHighlight,
 }) => {
   const [highlighted, setHighlighted] = useState(null);
-  const style = outputNode
+  const style = !isAttachedToInput
     ? {}
     : (() => {
       // In case no output node is specified,
@@ -115,7 +115,7 @@ SuggestsDropdown.propTypes = {
   onSelect: func.isRequired,
   className: string,
   inputNode: object.isRequired,
-  outputNode: object,
+  isAttachedToInput: bool,
 };
 
 export default SuggestsDropdown;
