@@ -7,7 +7,7 @@ import Suggest from 'src/components/ui/Suggest';
 import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
-import { isMobileDevice } from 'src/libs/device';
+import { DeviceContext } from 'src/libs/device';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -81,44 +81,47 @@ class DirectionInput extends React.Component {
   render() {
     const { pointType, inputRef, isLoading } = this.props;
     const { mounted, readOnly } = this.state;
-    const isMobile = isMobileDevice();
 
-    return <div className="itinerary_field" >
-      <input
-        ref={inputRef}
-        id={`itinerary_input_${pointType}`}
-        className="itinerary_input"
-        type="search"
-        required
-        autoComplete="off"
-        spellCheck="false"
-        placeholder={pointType === 'origin'
-          ? _('Start point', 'direction')
-          : _('End point', 'direction')}
-        value={this.props.value}
-        onChange={this.onChange}
-        onKeyPress={this.onKeyPress}
-        disabled={isLoading}
-        readOnly={readOnly}
-      />
-      {mounted &&
-        <Suggest
-          inputNode={inputRef.current}
-          outputNode={!isMobile
-            ? document.getElementById('itinerary_autocomplete_suggestions')
-            : null}
-          withGeoloc
-          onSelect={this.selectItem}
-        />
+    return <DeviceContext.Consumer>
+      {isMobile =>
+        <div className="itinerary_field" >
+          <input
+            ref={inputRef}
+            id={`itinerary_input_${pointType}`}
+            className="itinerary_input"
+            type="search"
+            required
+            autoComplete="off"
+            spellCheck="false"
+            placeholder={pointType === 'origin'
+              ? _('Start point', 'direction')
+              : _('End point', 'direction')}
+            value={this.props.value}
+            onChange={this.onChange}
+            onKeyPress={this.onKeyPress}
+            disabled={isLoading}
+            readOnly={readOnly}
+          />
+          {mounted &&
+            <Suggest
+              inputNode={inputRef.current}
+              outputNode={!isMobile
+                ? document.getElementById('itinerary_autocomplete_suggestions')
+                : null}
+              withGeoloc
+              onSelect={this.selectItem}
+            />
+          }
+          <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
+          <div className="itinerary_field_return">
+            <span className="icon-arrow-left"/>
+          </div>
+          <div className="itinerary_field_icon">
+            <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
+          </div>
+        </div>
       }
-      <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
-      <div className="itinerary_field_return">
-        <span className="icon-arrow-left"/>
-      </div>
-      <div className="itinerary_field_icon">
-        <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
-      </div>
-    </div>;
+    </DeviceContext.Consumer>;
   }
 }
 
