@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, selectItem, modifyList } from 'src/libs/suggest';
+import { DeviceContext } from 'src/libs/device';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -19,6 +20,7 @@ const Suggest = ({
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
+  const isMobile = useContext(DeviceContext);
   let currentQuery = null;
 
   useEffect(() => {
@@ -28,6 +30,10 @@ const Suggest = ({
         fetchItems('');
       } else {
         inputNode.select();
+        if (isMobile) {
+          setIsOpen(true);
+          fetchItems(inputNode.value);
+        }
       }
     };
 
@@ -66,7 +72,7 @@ const Suggest = ({
 
     const handleKeyDown = async event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
-        if (inputNode.value === '') {
+        if (inputNode.value === '' && !isMobile) {
           setIsOpen(false);
         } else {
           inputNode.value = '';
