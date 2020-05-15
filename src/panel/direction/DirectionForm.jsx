@@ -56,17 +56,7 @@ export default class DirectionForm extends React.Component {
       destinationInputText,
     } = this.props;
 
-    const isMobile = isMobileDevice();
-
-    const VehicleSelectorComponent = props => <VehicleSelector
-      vehicles={vehicles}
-      activeVehicle={activeVehicle}
-      onSelectVehicle={onSelectVehicle}
-      {...props}
-    />;
-
     return <div className="itinerary_form">
-      {!isMobile && <VehicleSelectorComponent />}
       <div className="itinerary_fields">
         <form noValidate>
           <DirectionInput
@@ -91,7 +81,11 @@ export default class DirectionForm extends React.Component {
           />
         </form>
       </div>
-      {isMobile && <VehicleSelectorComponent />}
+      <VehicleSelector
+        vehicles={vehicles}
+        activeVehicle={activeVehicle}
+        onSelectVehicle={onSelectVehicle}
+      />
     </div>
     ;
   }
