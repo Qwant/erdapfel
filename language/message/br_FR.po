@@ -993,16 +993,16 @@ msgstr ""
 msgid "Please comply with government travel restrictions."
 msgstr ""
 
-msgid "Open during lockdown"
+msgid "Open during the sanitary crisis"
 msgstr ""
 
-msgid "Potentially open during lockdown"
+msgid "Potentially open during the sanitary crisis"
 msgstr ""
 
-msgid "Closed during lockdown"
+msgid "Closed during the sanitary crisis"
 msgstr ""
 
-msgid "No information on opening during lockdown"
+msgid "No information on opening during the sanitary crisis"
 msgstr ""
 
 msgid "Report a change"

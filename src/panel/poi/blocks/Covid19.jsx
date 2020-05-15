@@ -71,30 +71,17 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 };
 
 /* eslint-disable */
-const LocalizedWarning = ({ countryCode }) => {
-  const warnings = {
-    'FR': (
-      <div>
-        <p>
-          {_('During the entire period of lockdown, moving to this location is only permitted with a derogatory certificate.', 'covid19')}
-        </p>
-        <p>
-          {_('More information at', 'covid19')}
-          {' '}<a rel="noopener noreferrer" href={covidConf.frInformationUrl}>interieur.gouv.fr</a>
-        </p>
-      </div>
-    ),
-    'default': (
-      <div>
-        <p>
-          {_('Please comply with government travel restrictions.', 'covid19')}
-        </p>
-      </div>
-    )
-  };
-
-  return warnings[countryCode] || warnings['default']
-}
+const LocalizedWarning = ({ countryCode }) => (
+  <div>
+    <p>
+      {_('Please comply with government travel restrictions.', 'covid19')}
+    </p>
+    {countryCode === 'FR' && <p>
+      {_('More information at', 'covid19')}
+      {' '}<a rel="noopener noreferrer" href={covidConf.frInformationUrl}>gouvernement.fr/info-coronavirus</a>
+    </p>}
+  </div>
+)
 
 const LegalWarning = ({ countryCode }) => (
   <div className="covid19-legalWarning">
@@ -105,11 +92,11 @@ const LegalWarning = ({ countryCode }) => (
 
 const Status = ({ status }) => {
   const statusMessages = {
-    open: _('Open during lockdown', 'covid19'),
-    open_as_usual: _('Open during lockdown', 'covid19'),
-    maybe_open: _('Potentially open during lockdown', 'covid19'),
-    closed: _('Closed during lockdown', 'covid19'),
-    unknown: _('No information on opening during lockdown', 'covid19'),
+    open: _('Open during the sanitary crisis', 'covid19'),
+    open_as_usual: _('Open during the sanitary crisis', 'covid19'),
+    maybe_open: _('Potentially open during the sanitary crisis', 'covid19'),
+    closed: _('Closed during the sanitary crisis', 'covid19'),
+    unknown: _('No information on opening during the sanitary crisis', 'covid19'),
   };
 
   return (
