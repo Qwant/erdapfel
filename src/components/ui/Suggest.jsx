@@ -59,7 +59,7 @@ const Suggest = ({
     const handleInput = e => {
       const { value } = e.target;
       if (value !== lastQuery) {
-        fetchItems(e.target.value);
+        fetchItems(value);
         setIsOpen(true);
       }
     };
@@ -93,7 +93,7 @@ const Suggest = ({
     <SuggestsDropdown
       className={className}
       inputNode={inputNode}
-      outputNode={outputNode}
+      isAttachedToInput={!outputNode}
       suggestItems={items}
       onHighlight={item => {
         if (!item) {
