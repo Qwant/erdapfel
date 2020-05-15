@@ -66,9 +66,13 @@ const Suggest = ({
 
     const handleKeyDown = async event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
-        inputNode.value = '';
-        fetchItems('');
-        setIsOpen(true);
+        if (inputNode.value === '') {
+          setIsOpen(false);
+        } else {
+          inputNode.value = '';
+          fetchItems('');
+          setIsOpen(true);
+        }
       }
     };
 
