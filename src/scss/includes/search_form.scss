@@ -303,7 +303,7 @@ input[type="search"] {
   .autocomplete_suggestions {
     position: fixed;
     top: 0;
-    height: calc(100vh - 69px);
+    bottom: 0;
     max-height: none;
     margin-top: -1px;
     overflow: auto;
