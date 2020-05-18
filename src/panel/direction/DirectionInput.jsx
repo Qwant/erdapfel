@@ -39,6 +39,7 @@ class DirectionInput extends React.Component {
       const items = await fetchSuggests(this.props.value);
       if (items && items.length > 0) {
         const firstPoi = items[0];
+        this.props.inputRef.current.blur();
         this.selectItem(firstPoi);
       }
     }
@@ -56,7 +57,7 @@ class DirectionInput extends React.Component {
         } else {
           Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error);
         }
-        this.inputRef.current.value = '';
+        this.props.inputRef.current.value = '';
       }
 
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
