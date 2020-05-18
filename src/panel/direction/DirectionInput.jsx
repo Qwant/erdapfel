@@ -110,6 +110,7 @@ class DirectionInput extends React.Component {
                 : null}
               withGeoloc
               onSelect={this.selectItem}
+              onClear={this.clear}
             />
           }
           <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
