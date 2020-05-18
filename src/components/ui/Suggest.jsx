@@ -15,6 +15,7 @@ const Suggest = ({
   withCategories,
   withGeoloc,
   onSelect = selectItem,
+  onClear,
   className,
 }) => {
   const [items, setItems] = useState([]);
@@ -77,6 +78,10 @@ const Suggest = ({
           fetchItems('');
           setIsOpen(true);
         }
+
+        if (onClear) {
+          onClear();
+        }
       }
     };
 
@@ -113,8 +118,11 @@ const Suggest = ({
       onSelect={item => {
         inputNode.value = item.name;
         setIsOpen(false);
-        onSelect(item);
+        if (onSelect) {
+          onSelect(item);
+        }
       }}
+      onClear={onClear}
     />;
 
   return outputNode
@@ -128,6 +136,7 @@ Suggest.propTypes = {
   withCategories: bool,
   withGeoloc: bool,
   onSelect: func,
+  onClear: func,
   className: string,
 };
 
