@@ -100,8 +100,7 @@ class DirectionInput extends React.Component {
             value={this.props.value}
             onChange={this.onChange}
             onKeyPress={this.onKeyPress}
-            disabled={isLoading}
-            readOnly={readOnly}
+            readOnly={readOnly || isLoading}
           />
           {mounted &&
             <Suggest
