@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 14:24+0000\n"
+"POT-Creation-Date: 2020-05-15 10:52+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -160,6 +160,18 @@ msgstr "Cerca Qwant Maps"
 
 msgid "write"
 msgstr ""
+
+msgid "Open"
+msgstr "Obert"
+
+msgid "Closed"
+msgstr "Tancat"
+
+msgid "Open 24/7"
+msgstr "Obert 24/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "fins {nextTransitionTime}"
 
 msgid "accessories shop"
 msgstr "botia d'accessoris"
@@ -614,6 +626,9 @@ msgstr "edifici públic"
 msgid "rc car"
 msgstr ""
 
+msgid "recycling"
+msgstr ""
+
 msgid "reservoir"
 msgstr ""
 
@@ -770,18 +785,6 @@ msgstr "adreça"
 msgid "street"
 msgstr "carrer"
 
-msgid "Open"
-msgstr "Obert"
-
-msgid "Closed"
-msgstr "Tancat"
-
-msgid "Open 24/7"
-msgstr "Obert 24/7"
-
-msgid "until {nextTransitionTime}"
-msgstr "fins {nextTransitionTime}"
-
 msgid "review"
 msgid_plural "reviews"
 msgstr[0] ""
@@ -823,6 +826,9 @@ msgstr ""
 "Qwant Maps no pot determinar la vostra posició. Comproveu que els serveis de"
 " geolocalització estan habilitats en el sistema."
 
+msgid "Your position"
+msgstr "La vostra posició"
+
 msgid "Patience, Masq is activating..."
 msgstr "Paciència, s'està activant Masq..."
 
@@ -849,20 +855,8 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr ""
 
-msgid "Your position"
-msgstr "La vostra posició"
-
 msgid "category"
 msgstr "categoria"
-
-msgid "Close to"
-msgstr ""
-
-msgid "Search around this place"
-msgstr "Cerca prop d'aquest lloc"
-
-msgid "Favorites"
-msgstr "Preferits"
 
 msgid "Activate Masq"
 msgstr "Activa Masq"
@@ -881,6 +875,9 @@ msgstr "Cerca"
 
 msgid "Directions"
 msgstr "Indicacions"
+
+msgid "Favorites"
+msgstr "Preferits"
 
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
@@ -922,6 +919,9 @@ msgstr "Preferits"
 
 msgid "Show favorites"
 msgstr "Mostra els preferits"
+
+msgid "Close to"
+msgstr ""
 
 msgid "See more"
 msgstr "Més informació"
@@ -974,15 +974,10 @@ msgstr "WiFi"
 msgid "Services & information"
 msgstr "Serveis i informació"
 
-msgid ""
-"During the entire period of lockdown, moving to this location is only "
-"permitted with a derogatory certificate."
+msgid "Please comply with government travel restrictions."
 msgstr ""
 
 msgid "More information at"
-msgstr ""
-
-msgid "Please comply with government travel restrictions."
 msgstr ""
 
 msgid "Open during the sanitary crisis"
@@ -1037,6 +1032,9 @@ msgstr "Torna a la llista"
 
 msgid "Back"
 msgstr "Enrere"
+
+msgid "Search around this place"
+msgstr "Cerca prop d'aquest lloc"
 
 msgid "Good plans"
 msgstr ""

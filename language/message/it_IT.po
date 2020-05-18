@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 14:24+0000\n"
+"POT-Creation-Date: 2020-05-15 10:52+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
@@ -162,6 +162,18 @@ msgstr "Cerca con Qwant Maps"
 
 msgid "write"
 msgstr ""
+
+msgid "Open"
+msgstr "Aperto"
+
+msgid "Closed"
+msgstr "Chiuso"
+
+msgid "Open 24/7"
+msgstr "Aperto 24/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "fino a {nextTransitionTime}"
 
 msgid "accessories shop"
 msgstr "negozio di accessori"
@@ -616,6 +628,9 @@ msgstr "struttura pubblica"
 msgid "rc car"
 msgstr "macchina radiocomandata"
 
+msgid "recycling"
+msgstr ""
+
 msgid "reservoir"
 msgstr "serbatoio"
 
@@ -772,18 +787,6 @@ msgstr "Indirizzo"
 msgid "street"
 msgstr "Strada"
 
-msgid "Open"
-msgstr "Aperto"
-
-msgid "Closed"
-msgstr "Chiuso"
-
-msgid "Open 24/7"
-msgstr "Aperto 24/7"
-
-msgid "until {nextTransitionTime}"
-msgstr "fino a {nextTransitionTime}"
-
 msgid "review"
 msgid_plural "reviews"
 msgstr[0] "recensione"
@@ -826,6 +829,9 @@ msgstr ""
 "Qwant Maps non può determinare la tua posizione. Verifica che i servizi di "
 "localizzazione siano abilitati sul sistema."
 
+msgid "Your position"
+msgstr "La tua posizione"
+
 msgid "Patience, Masq is activating..."
 msgstr "Aspetta, Masq si sta attivando"
 
@@ -854,20 +860,8 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "Impossibile connettersi a Masq"
 
-msgid "Your position"
-msgstr "La tua posizione"
-
 msgid "category"
 msgstr "categoria"
-
-msgid "Close to"
-msgstr ""
-
-msgid "Search around this place"
-msgstr "Cerca nei dintorni di questo luogo"
-
-msgid "Favorites"
-msgstr "Preferiti"
 
 msgid "Activate Masq"
 msgstr "Attiva Masq"
@@ -886,6 +880,9 @@ msgstr "Cerca"
 
 msgid "Directions"
 msgstr "Itinerario"
+
+msgid "Favorites"
+msgstr "Preferiti"
 
 msgid "How to contribute"
 msgstr "Come contribuire"
@@ -928,6 +925,9 @@ msgstr "I miei preferiti"
 
 msgid "Show favorites"
 msgstr "Mostra favoriti"
+
+msgid "Close to"
+msgstr ""
 
 msgid "See more"
 msgstr "Altre info"
@@ -980,15 +980,10 @@ msgstr "WiFi"
 msgid "Services & information"
 msgstr "Servizi e informazioni"
 
-msgid ""
-"During the entire period of lockdown, moving to this location is only "
-"permitted with a derogatory certificate."
+msgid "Please comply with government travel restrictions."
 msgstr ""
 
 msgid "More information at"
-msgstr ""
-
-msgid "Please comply with government travel restrictions."
 msgstr ""
 
 msgid "Open during the sanitary crisis"
@@ -1045,6 +1040,9 @@ msgstr "Torna alla lista"
 
 msgid "Back"
 msgstr "Indietro"
+
+msgid "Search around this place"
+msgstr "Cerca nei dintorni di questo luogo"
 
 msgid "Good plans"
 msgstr ""

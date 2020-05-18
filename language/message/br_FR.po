@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 14:24+0000\n"
+"POT-Creation-Date: 2020-05-15 10:52+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -161,6 +161,18 @@ msgstr "Klask gant Qwant Maps"
 
 msgid "write"
 msgstr "skrivañ"
+
+msgid "Open"
+msgstr "Digor"
+
+msgid "Closed"
+msgstr "Serret"
+
+msgid "Open 24/7"
+msgstr "Digor 24/7"
+
+msgid "until {nextTransitionTime}"
+msgstr "betek {nextTransitionTime}"
 
 msgid "accessories shop"
 msgstr "stal rikoù"
@@ -615,6 +627,9 @@ msgstr "savadur foran"
 msgid "rc car"
 msgstr "karr pellurzhiet"
 
+msgid "recycling"
+msgstr ""
+
 msgid "reservoir"
 msgstr "beol"
 
@@ -771,18 +786,6 @@ msgstr "chomlec'h"
 msgid "street"
 msgstr "straed"
 
-msgid "Open"
-msgstr "Digor"
-
-msgid "Closed"
-msgstr "Serret"
-
-msgid "Open 24/7"
-msgstr "Digor 24/7"
-
-msgid "until {nextTransitionTime}"
-msgstr "betek {nextTransitionTime}"
-
 msgid "review"
 msgid_plural "reviews"
 msgstr[0] "ali"
@@ -828,6 +831,9 @@ msgstr ""
 "Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
 "enaouet ar servijoù douarlec'hiañ en ho sistem."
 
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
+
 msgid "Patience, Masq is activating..."
 msgstr "Gortozit, war enaouiñ emañ Masq..."
 
@@ -856,20 +862,8 @@ msgstr ""
 msgid "Could not connect to Masq"
 msgstr "N'heller ket kevreañ ouzh Masq"
 
-msgid "Your position"
-msgstr "Ho touarlec'hiañ"
-
 msgid "category"
 msgstr "rummad"
-
-msgid "Close to"
-msgstr "Da gichen"
-
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
-
-msgid "Favorites"
-msgstr "Sinedoù"
 
 msgid "Activate Masq"
 msgstr "Enaouiñ Masq"
@@ -888,6 +882,9 @@ msgstr "Klask"
 
 msgid "Directions"
 msgstr "Tuadurioù"
+
+msgid "Favorites"
+msgstr "Sinedoù"
 
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
@@ -930,6 +927,9 @@ msgstr "Ma sinedoù"
 
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
+
+msgid "Close to"
+msgstr "Da gichen"
 
 msgid "See more"
 msgstr "Gwelet muioc'h"
@@ -982,15 +982,10 @@ msgstr "WiFi"
 msgid "Services & information"
 msgstr "Servijoù & Titouroù"
 
-msgid ""
-"During the entire period of lockdown, moving to this location is only "
-"permitted with a derogatory certificate."
+msgid "Please comply with government travel restrictions."
 msgstr ""
 
 msgid "More information at"
-msgstr ""
-
-msgid "Please comply with government travel restrictions."
 msgstr ""
 
 msgid "Open during the sanitary crisis"
@@ -1047,6 +1042,9 @@ msgstr "Distreiñ d'al listenn"
 
 msgid "Back"
 msgstr "Distreiñ"
+
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
 
 msgid "Good plans"
 msgstr "Planioù mat"
