@@ -49,7 +49,6 @@ class DirectionInput extends React.Component {
       const items = await fetchSuggests(this.props.value);
       if (items && items.length > 0) {
         const firstPoi = items[0];
-        this.props.inputRef.current.blur();
         this.selectItem(firstPoi);
       }
     }
