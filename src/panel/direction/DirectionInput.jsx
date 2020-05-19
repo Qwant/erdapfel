@@ -24,9 +24,19 @@ class DirectionInput extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.isLoading) {
+      this.props.inputRef.current.blur();
+    }
+
     this.setState({
       mounted: true,
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isLoading && this.props.isLoading) {
+      this.props.inputRef.current.blur();
+    }
   }
 
   onChange = event => {
