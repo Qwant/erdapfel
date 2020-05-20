@@ -30,10 +30,12 @@ export default class DirectionForm extends React.Component {
     if (isMobileDevice() || this.props.isInitializing) {
       return;
     }
-    const { origin, destination, originInputText, destinationInputText } = this.props;
-    if (!originInputText && (prevProps.destination !== destination || prevProps.isInitializing)) {
+
+    const { origin, destination } = this.props;
+
+    if (!origin && destination && (prevProps.destination !== destination || prevProps.isInitializing)) {
       this.originRef.current.focus();
-    } else if (!destinationInputText && prevProps.origin !== origin) {
+    } else if (origin && !destination && prevProps.origin !== origin) {
       this.destinationRef.current.focus();
     }
   }
