@@ -1,7 +1,8 @@
 /* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import Button from 'src/components/ui/Button';
 
 export default class ActionButtons extends React.Component {
   static propTypes = {
@@ -16,47 +17,45 @@ export default class ActionButtons extends React.Component {
   }
 
   renderPhone() {
-    if (!this.props.isPhoneNumberVisible) {
-      return <button className="poi_panel__action icon-icon_phone poi_phone_container_hidden"
-        onClick={this.props.showPhoneNumber}
-      >
-        <div>{_('Show number', 'poi')}</div>
-      </button>;
-    }
-    return <a className="poi_panel__action icon-icon_phone poi_phone_container_revealed"
+    const { isPhoneNumberVisible, showPhoneNumber, poi } = this.props;
+    return <Button
+      className="poi_panel__action__button poi_panel__action__phone"
+      onClick={showPhoneNumber}
+      icon="icon_phone"
+      href={isPhoneNumberVisible ? poi.blocksByType.phone.url : null}
       rel="noopener noreferrer external"
-      href={this.props.poi.blocksByType.phone.url}
     >
-      <div>{this.props.poi.blocksByType.phone.local_format}</div>
-    </a>;
+      {isPhoneNumberVisible && poi.blocksByType.phone.local_format}
+    </Button>;
   }
 
   render() {
     const shouldRenderPhone = this.props.poi.blocksByType && this.props.poi.blocksByType.phone;
 
     return <div className="poi_panel__actions">
-      <button className={classnames(
-        'poi_panel__action',
-        'poi_panel__actions__icon__store',
-        {
-          'icon-icon_star-filled': this.props.isPoiInFavorite,
-          'icon-icon_star': !this.props.isPoiInFavorite,
-        })
-      }
-      onClick={this.props.toggleStorePoi}
-      >
-        <div>{this.props.isPoiInFavorite ? _('Saved', 'poi') : _('Favorites', 'poi')}</div>
-      </button>
-      <button className="poi_panel__action icon-share-2" onClick={this.props.openShare}>
-        <div>{_('Share', 'poi')}</div>
-      </button>
       {this.props.isDirectionActive &&
-        <button className="poi_panel__action icon-corner-up-right"
-          onClick={this.props.openDirection}>
-          <div>{_('Directions', 'poi')}</div>
-        </button>
+        <Button
+          className="button--noBorder poi_panel__action__direction"
+          variant="invert"
+          onClick={this.props.openDirection}
+        >
+          { _('Directions', 'poi panel') }
+        </Button>
       }
+
       {shouldRenderPhone && this.renderPhone()}
+
+      <Button
+        className="poi_panel__action__button poi_panel__action__favorite"
+        onClick={this.props.toggleStorePoi}
+        icon={this.props.isPoiInFavorite ? 'icon_star-filled' : 'star'}
+      />
+
+      <Button
+        className="poi_panel__action__button poi_panel__action__share"
+        onClick={this.props.openShare}
+        icon="share-2"
+      />
     </div>;
   }
 }

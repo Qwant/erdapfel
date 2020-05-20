@@ -54,7 +54,7 @@ test('load a poi from url', async () => {
 test('load a poi from url and click on directions', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poi_panel__title');
-  await page.click('.poi_panel__actions button.icon-corner-up-right'); // Click on directions button
+  await page.click('.poi_panel__actions .poi_panel__action__direction'); // Click on directions button
   await page.waitForSelector('#itinerary_input_destination');
   const destinationValue = await page.$eval('#itinerary_input_destination', el => el.value);
   expect(destinationValue).toEqual("Musée d'Orsay");
@@ -182,7 +182,7 @@ test('display details about the poi on a poi click', async () => {
       contact: document.querySelector('.poi_panel__info__contact').innerText,
       contactUrl: document.querySelector('.poi_panel__info__contact').href,
       hours: document.querySelector('.poi_panel .timetable-status').innerText,
-      phone: document.querySelector('.poi_phone_container_revealed').innerText,
+      phone: document.querySelector('.poi_panel__action__phone').innerText,
       website: document.querySelector('.poi_panel__info__link').innerText,
     };
   });
@@ -265,7 +265,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   await clickPoi(page);
   let poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
-  await page.click('.poi_panel__actions .poi_panel__actions__icon__store');
+  await page.click('.poi_panel__actions .poi_panel__action__favorite');
   await page.click('.poi_panel .panel-close');
   // we check that the first favorite item is our poi
   await toggleFavoritePanel(page);
@@ -280,7 +280,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   poiPanel = await page.waitForSelector('.poi_panel__title');
   expect(poiPanel).not.toBeFalsy();
 
-  await page.click('.poi_panel__actions .poi_panel__actions__icon__store');
+  await page.click('.poi_panel__actions .poi_panel__action__favorite');
   await page.click('.poi_panel .panel-close');
   // it should disappear from the favorites
   await toggleFavoritePanel(page);

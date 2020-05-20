@@ -131,6 +131,21 @@ $HEADER_SIZE: 40px;
 .poi_panel__actions {
   display: flex;
   margin-bottom: 12px;
+
+  :not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .poi_panel__action__direction {
+    font-size: 14px;
+    background-color: $action-blue-base;
+    flex-grow: 1;
+  }
+
+  .poi_panel__action__button {
+    border-color: $action-blue-base;
+    color: $action-blue-base;
+  }
 }
 
 .poi_panel__action {
