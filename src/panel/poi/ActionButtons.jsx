@@ -7,7 +7,6 @@ import Button from 'src/components/ui/Button';
 export default class ActionButtons extends React.Component {
   static propTypes = {
     poi: PropTypes.object.isRequired,
-    isMobile: PropTypes.bool.isRequired,
     isDirectionActive: PropTypes.bool,
     openDirection: PropTypes.func,
     openShare: PropTypes.func,
@@ -17,16 +16,14 @@ export default class ActionButtons extends React.Component {
   }
 
   renderPhone() {
-    const { onClickPhoneNumber, poi, isMobile } = this.props;
+    const { onClickPhoneNumber, poi } = this.props;
     return <Button
       className="poi_panel__action__button poi_panel__action__phone"
       onClick={onClickPhoneNumber}
       icon="icon_phone"
       href={poi.blocksByType.phone.url}
       rel="noopener noreferrer external"
-    >
-      {!isMobile && poi.blocksByType.phone.local_format}
-    </Button>;
+    />;
   }
 
   render() {
