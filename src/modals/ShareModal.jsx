@@ -81,8 +81,17 @@ function close() {
 }
 
 export function openShareModal(url) {
-  ReactDOM.render(
-    <ShareModal url={url} onClose={close} />,
-    document.querySelector('.react_modal__container')
-  );
+  if (navigator.share) {
+    // Native share modal (on mobile and Safari Mac)
+    navigator.share({
+      title: document.title,
+      url,
+    });
+  } else {
+    // Fallback share modal (on desktop)
+    ReactDOM.render(
+      <ShareModal url={url} onClose={close} />,
+      document.querySelector('.react_modal__container')
+    );
+  }
 }
