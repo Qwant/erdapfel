@@ -244,7 +244,7 @@ export default class PoiPanel extends React.Component {
   }
 
 
-  renderFull = (poi, isMobile) => {
+  renderFull = poi => {
     const { poiFilters, isFromFavorite } = this.props;
 
     let backAction = null;
@@ -299,7 +299,6 @@ export default class PoiPanel extends React.Component {
         </div>
         <ActionButtons
           poi={poi}
-          isMobile={isMobile}
           isDirectionActive={this.isDirectionActive}
           openDirection={this.openDirection}
           openShare={this.openShare}
@@ -337,7 +336,7 @@ export default class PoiPanel extends React.Component {
             covid19Enabled={covid19Enabled}
           />;
         }
-        return this.renderFull(poi, isMobile);
+        return this.renderFull(poi);
       }}
     </DeviceContext.Consumer>;
   }
