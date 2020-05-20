@@ -55,7 +55,6 @@ export default class PoiPanel extends React.Component {
       showDetails: false,
       fullPoi: null,
       isPoiInFavorite: false,
-      isPhoneNumberVisible: false,
     };
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
@@ -123,7 +122,6 @@ export default class PoiPanel extends React.Component {
     } else {
       this.setState({
         fullPoi: poi,
-        isPhoneNumberVisible: !isFromPagesJaunes(poi),
       });
       isPoiFavorite(poi).then(isPoiInFavorite => {
         this.setState({ isPoiInFavorite });
@@ -211,7 +209,7 @@ export default class PoiPanel extends React.Component {
     this.setState({ showDetails: false });
   }
 
-  showPhoneNumber = () => {
+  onClickPhoneNumber = () => {
     const poi = this.getBestPoi();
     const source = poi.meta && poi.meta.source;
     if (source) {
@@ -225,7 +223,6 @@ export default class PoiPanel extends React.Component {
         })
       );
     }
-    this.setState({ isPhoneNumberVisible: true });
   }
 
   toggleStorePoi = async () => {
@@ -247,7 +244,7 @@ export default class PoiPanel extends React.Component {
   }
 
 
-  renderFull = poi => {
+  renderFull = (poi, isMobile) => {
     const { poiFilters, isFromFavorite } = this.props;
 
     let backAction = null;
@@ -302,11 +299,11 @@ export default class PoiPanel extends React.Component {
         </div>
         <ActionButtons
           poi={poi}
+          isMobile={isMobile}
           isDirectionActive={this.isDirectionActive}
           openDirection={this.openDirection}
           openShare={this.openShare}
-          isPhoneNumberVisible={this.state.isPhoneNumberVisible}
-          showPhoneNumber={this.showPhoneNumber}
+          onClickPhoneNumber={this.onClickPhoneNumber}
           isPoiInFavorite={this.state.isPoiInFavorite}
           toggleStorePoi={this.toggleStorePoi}
         />
@@ -340,7 +337,7 @@ export default class PoiPanel extends React.Component {
             covid19Enabled={covid19Enabled}
           />;
         }
-        return this.renderFull(poi);
+        return this.renderFull(poi, isMobile);
       }}
     </DeviceContext.Consumer>;
   }
