@@ -317,6 +317,10 @@ input[type="search"] {
     background-size: 34px 34px;
   }
 
+  .main_field_return {
+    display: none;
+  }
+
   .top_bar--search_focus {
 
     .search_form:before {
@@ -354,11 +358,16 @@ input[type="search"] {
     }
 
     .search_form__logo {
-      width: 26px;
-      height: 26px;
-      background-size: 26px;
-      top: 15px;
-      left: 16px;
+      display: none;
+    }
+
+    .main_field_return {
+      display: block;
+      left: 10px;
+      top: 20px;
+      font-size: 25px;
+      color: #353C52;
+      position: fixed;
     }
   }
 }
