@@ -31,13 +31,15 @@ export default class DirectionForm extends React.Component {
       return;
     }
 
-    const { origin, destination } = this.props;
+    const { origin, destination, originInputText, destinationInputText } = this.props;
 
-    if (!origin && destination &&
-        (prevProps.destination !== destination || prevProps.isInitializing)) {
+    if (!originInputText && !destinationInputText && prevProps.isInitializing) {
+      // If both text fields are empty, focus on origin
+      this.originRef.current.focus();
+    } else if (!origin && destination) {
       // a destination is set, origin is empty, so let's focus on origin
       this.originRef.current.focus();
-    } else if (origin && !destination && prevProps.origin !== origin) {
+    } else if (origin && !destination) {
       // an origin is set, destination is empty, so let's focus on destination
       this.destinationRef.current.focus();
     }
