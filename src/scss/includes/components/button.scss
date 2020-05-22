@@ -41,6 +41,11 @@
   &-icon + &-content {
     margin-left: 6px;
   }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
 }
 
 a.button {
