@@ -30,12 +30,23 @@ export default class DirectionForm extends React.Component {
     if (isMobileDevice() || this.props.isInitializing) {
       return;
     }
-    const { origin, destination, originInputText, destinationInputText } = this.props;
-    if (!originInputText && (prevProps.destination !== destination || prevProps.isInitializing)) {
-      this.originRef.current.focus();
-    } else if (!destinationInputText && prevProps.origin !== origin) {
-      this.destinationRef.current.focus();
+
+    const { origin, destination } = this.props;
+
+    if (!origin && !destination && prevProps.isInitializing) {
+      // If both text fields are empty, focus on origin
+      this.focus(this.originRef.current);
+    } else if (!origin && destination) {
+      // a destination is set, origin is empty, so let's focus on origin
+      this.focus(this.originRef.current);
+    } else if (origin && !destination) {
+      // an origin is set, destination is empty, so let's focus on destination
+      this.focus(this.destinationRef.current);
     }
+  }
+
+  focus(node) {
+    setTimeout(() => { node.focus(); }, 0);
   }
 
   onChangePoint = (which, value, point) => {
