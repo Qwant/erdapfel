@@ -31,9 +31,9 @@ export default class DirectionForm extends React.Component {
       return;
     }
 
-    const { origin, destination, originInputText, destinationInputText } = this.props;
+    const { origin, destination } = this.props;
 
-    if (!originInputText && !destinationInputText && prevProps.isInitializing) {
+    if (!origin && !destination && prevProps.isInitializing) {
       // If both text fields are empty, focus on origin
       this.focus(this.originRef.current);
     } else if (!origin && destination) {
