@@ -508,13 +508,16 @@ $HEADER_SIZE: 40px;
     width: 120px;
   }
 
-  &__action__direction {
+  .poi_card__action__direction {
     margin-bottom: 9px;
-    text-transform: uppercase;
+    font-size: 14px;
+    background-color: $action-blue-base;
   }
 
-  &__action__see-more {
-    text-transform: uppercase;
+  .poi_card__action__see-more {
+    font-size: 14px;
+    color: $action-blue-base;
+    border-color: $action-blue-base;
   }
 }
 
