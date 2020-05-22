@@ -6,7 +6,7 @@ const PhoneBlock = ({ block }) =>
     <div className="poi_panel__info__section__description">
       <div className="icon-icon_phone poi_panel__block__symbol"></div>
       <div className="poi_panel__block__content">
-        {block.local_format}
+        <a href={block.url}>{block.local_format}</a>
       </div>
     </div>
   </div>
