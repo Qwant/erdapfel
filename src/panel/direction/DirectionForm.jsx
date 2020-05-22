@@ -35,14 +35,18 @@ export default class DirectionForm extends React.Component {
 
     if (!originInputText && !destinationInputText && prevProps.isInitializing) {
       // If both text fields are empty, focus on origin
-      this.originRef.current.focus();
+      this.focus(this.originRef.current);
     } else if (!origin && destination) {
       // a destination is set, origin is empty, so let's focus on origin
-      this.originRef.current.focus();
+      this.focus(this.originRef.current);
     } else if (origin && !destination) {
       // an origin is set, destination is empty, so let's focus on destination
-      this.destinationRef.current.focus();
+      this.focus(this.destinationRef.current);
     }
+  }
+
+  focus(node) {
+    setTimeout(() => { node.focus(); }, 0);
   }
 
   onChangePoint = (which, value, point) => {
