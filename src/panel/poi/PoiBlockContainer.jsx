@@ -21,8 +21,8 @@ export default class PoiBlockContainer extends React.Component {
     const blocks = this.props.poi.blocks;
     const hourBlock = blocks.find(b => b.type === 'opening_hours');
     const informationBlock = blocks.find(b => b.type === 'information');
-    const websiteBlock = blocks.find(b => b.type === 'website');
     const phoneBlock = blocks.find(b => b.type === 'phone');
+    const websiteBlock = blocks.find(b => b.type === 'website');
     const contactBlock = blocks.find(b => b.type === 'contact');
     const imagesBlock = blocks.find(b => b.type === 'images');
     const covidBlock = blocks.find(b => b.type === 'covid19');
@@ -34,8 +34,8 @@ export default class PoiBlockContainer extends React.Component {
       }
       {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
       {informationBlock && <InformationBlock block={informationBlock} />}
-      {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
       {phoneBlock && <PhoneBlock block={phoneBlock} />}
+      {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
       {contactBlock && <ContactBlock block={contactBlock} />}
       {imagesBlock && <ImagesBlock block={imagesBlock} poi={this.props.poi} />}
     </div>;
