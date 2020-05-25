@@ -47,6 +47,10 @@ PoiPopup.prototype.addListener = function(layer) {
     }, WAIT_BEFORE_DISPLAY);
   });
 
+  this.map.on('move', () => {
+    this.close();
+  });
+
   this.map.on('mouseleave', layer, async () => {
     this.close();
     clearTimeout(this.timeOutHandler);
