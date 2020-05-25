@@ -5,7 +5,6 @@ import nconf from '@qwant/nconf-getter';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './service/ServicePanel';
-import EventListPanel from './event/EventListPanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import classnames from 'classnames';
@@ -15,7 +14,6 @@ import { isNullOrEmpty } from 'src/libs/object';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const categoryEnabled = nconf.get().category.enabled;
-const eventEnabled = nconf.get().events.enabled;
 const directionConf = nconf.get().direction;
 
 export default class PanelManager extends React.Component {
@@ -76,16 +74,6 @@ export default class PanelManager extends React.Component {
             },
             ...otherOptions,
           },
-        });
-      });
-    }
-
-    if (eventEnabled) {
-      router.addRoute('EventListPanel', '/events/(.*)', eventsParams => {
-        const { type: eventName, ...otherOptions } = parseQueryString(eventsParams);
-        this.setState({
-          ActivePanel: EventListPanel,
-          options: { eventName, ...otherOptions },
         });
       });
     }

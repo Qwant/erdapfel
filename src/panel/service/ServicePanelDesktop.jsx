@@ -1,8 +1,7 @@
 /* global _ */
-import React, { Fragment } from 'react';
+import React from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
-import EventTypeList from './EventTypeList';
 import Action from 'src/components/ui/MainActionButton';
 import nconf from '@qwant/nconf-getter';
 
@@ -16,11 +15,6 @@ class ServicePanelDesktop extends React.Component {
       white
     >
       <CategoryList className="service_panel__categories" />
-
-      {nconf.get().events.enabled && <Fragment>
-        <hr />
-        <EventTypeList />
-      </Fragment>}
 
       <hr/>
 

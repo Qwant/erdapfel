@@ -1,7 +1,6 @@
 import Category from './category';
 import nconf from '@qwant/nconf-getter';
 import categories from 'config/categories.yml';
-import events from 'config/events.yml';
 import ExtendedString from '../libs/string';
 
 export default class CategoryService {
@@ -35,17 +34,5 @@ export default class CategoryService {
     }
 
     return matchedCategories;
-  }
-
-  static getEvents() {
-    if (!nconf.get().events.enabled) {
-      return [];
-    }
-
-    if (!window.__eventsCache) {
-      window.__eventsCache = events.map(event => Category.create(event));
-    }
-
-    return window.__eventsCache;
   }
 }

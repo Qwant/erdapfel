@@ -10,7 +10,6 @@ import LocalStore from '../libs/local_store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
-import SceneEvent from './scene_event';
 import { createIcon } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import { isMobileDevice } from 'src/libs/device';
@@ -101,7 +100,6 @@ Scene.prototype.initMapBox = function() {
     this.onHashChange();
     new SceneDirection(this.mb);
     new SceneCategory(this.mb);
-    new SceneEvent(this.mb);
 
     this.mb.addControl(new ExtendedControl(), 'bottom-right');
     this.mb.addControl(new MobileCompassControl(), 'top-right');

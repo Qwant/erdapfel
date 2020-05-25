@@ -2,7 +2,6 @@
 import React, { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
-import EventTypeList from './EventTypeList';
 import Action from 'src/components/ui/MainActionButton';
 import nconf from '@qwant/nconf-getter';
 
@@ -61,11 +60,6 @@ class ServicePanelMobile extends React.Component {
       <h3 className="u-text--smallTitle u-center">{_('Services nearby', 'service panel')}</h3>
 
       <CategoryList className="service_panel__categories" />
-
-      {nconf.get().events.enabled && <Fragment>
-        <hr />
-        <EventTypeList />
-      </Fragment>}
     </Panel>;
   }
 }
