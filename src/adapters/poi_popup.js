@@ -51,6 +51,10 @@ PoiPopup.prototype.addListener = function(layer) {
     this.close();
   });
 
+  this.map.on('click', () => {
+    this.close();
+  });
+
   this.map.on('mouseleave', layer, async () => {
     this.close();
     clearTimeout(this.timeOutHandler);
@@ -76,7 +80,6 @@ PoiPopup.prototype.showPopup = function(poi, event) {
   const popupOptions = {
     className: 'poi_popup__container',
     closeButton: false,
-    closeOnClick: true,
     maxWidth: 'none',
     offset: 18, //px,
     anchor: this.getPopupAnchor(event),
