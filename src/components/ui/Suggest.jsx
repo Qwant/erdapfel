@@ -24,6 +24,11 @@ const Suggest = ({
   const isMobile = useContext(DeviceContext);
   let currentQuery = null;
 
+  const close = () => {
+    setIsOpen(false);
+    setItems([]);
+  };
+
   useEffect(() => {
     const handleFocus = () => {
       if (inputNode.value === '') {
@@ -39,7 +44,7 @@ const Suggest = ({
     };
 
     const handleBlur = () => {
-      setIsOpen(false);
+      close();
     };
 
     const fetchItems = debounce(value => {
@@ -72,7 +77,7 @@ const Suggest = ({
     const handleKeyDown = async event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
         if (inputNode.value === '' && !isMobile) {
-          setIsOpen(false);
+          close();
         } else {
           inputNode.value = '';
           fetchItems('');
@@ -117,7 +122,7 @@ const Suggest = ({
       }}
       onSelect={item => {
         inputNode.value = item.name;
-        setIsOpen(false);
+        close();
         if (onSelect) {
           onSelect(item);
         }
