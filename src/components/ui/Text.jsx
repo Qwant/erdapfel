@@ -1,10 +1,22 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import Flex from './Flex';
 
-const Text = ({ children, level, inline, icon, className }) => {
-  const TagName = inline ? 'span' : 'div';
-  return <TagName className={classnames({ [`u-text--${level}`]: level }, className)}>
+const Text = ({ children, level, inline, icon, className, ...rest }) => {
+  let TagName;
+  const props = { ...rest };
+  if (icon) {
+    TagName = Flex;
+    props.inline = inline;
+    props.alignCenter = true;
+  } else {
+    TagName = inline ? 'span' : 'div';
+  }
+  return <TagName
+    className={classnames({ [`u-text--${level}`]: level }, className)}
+    {...props}
+  >
     {icon && <i className={`u-mr-4 icon-${icon}`} />}
     {children}
   </TagName>;
