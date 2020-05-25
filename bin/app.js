@@ -143,10 +143,24 @@ function App(config) {
 
 App.prototype.start = function(port) {
   return new Promise(resolve => {
-    this.handler = app.listen(port, () => {
+    let server;
+
+    if (process.env.HTTPS) {
+      const selfsigned = require('selfsigned');
+      const pems = selfsigned.generate();
+      server = require('https').createServer({
+        key: pems.private,
+        cert: pems.cert,
+      }, app);
+    } else {
+      server = require('http').createServer({}, app);
+    }
+
+    this.handler = server.listen(port, () => {
       this.logger.info(`Server listening on PORT : ${port}`);
       resolve();
     });
+
   });
 };
 
