@@ -86,6 +86,10 @@ input[type="search"] {
   color: #888;
 }
 
+.main_field_return {
+  display: none;
+}
+
 .search_form__action {
   position: absolute;
   width: 30px;
@@ -317,10 +321,6 @@ input[type="search"] {
     background-size: 34px 34px;
   }
 
-  .main_field_return {
-    display: none;
-  }
-
   .top_bar--search_focus {
 
     .search_form:before {
@@ -366,7 +366,7 @@ input[type="search"] {
       left: 10px;
       top: 20px;
       font-size: 25px;
-      color: #353C52;
+      color: $primary_text;
       position: fixed;
     }
   }
