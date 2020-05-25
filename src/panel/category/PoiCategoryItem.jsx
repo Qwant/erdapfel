@@ -6,6 +6,7 @@ import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import nconf from '@qwant/nconf-getter';
+import { getInputValue } from 'src/libs/pois';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -19,7 +20,7 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
   return <div className="category__panel__item">
     <PoiTitleImage poi={poi} />
 
-    <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
+    <h3 className="u-text--smallTitle">{getInputValue(poi)}</h3>
 
     {poi.subClassName && <p className="category__panel__type u-text--subtitle">
       {poiSubClass(poi.subClassName)}
