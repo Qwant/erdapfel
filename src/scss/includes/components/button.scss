@@ -5,18 +5,22 @@
   height: 36px;
   padding: 0 9px;
   border-radius: 18px;
-  border: 1px solid $action-blue-base;
   font-size: 14px;
   color: $action-blue-base;
   pointer-events: all;
   cursor: pointer;
 
+  &--outline {
+    border: 1px solid $action-blue-base;
+  }
+
   &--noBorder {
     border-color: transparent;
-    padding: 0;
+    padding: 0px;
   }
 
   &--primary {
+    border: 1px solid $action-blue-base;
     background-color: $action-blue-base;
     color: white;
     font-weight: bold;

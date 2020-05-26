@@ -32,7 +32,7 @@ export default class ActionButtons extends React.Component {
     return <div className="poi_panel__actions">
       {this.props.isDirectionActive &&
         <Button
-          className="button--noBorder poi_panel__action__direction"
+          className="poi_panel__action__direction"
           variant="primary"
           onClick={this.props.openDirection}
         >
