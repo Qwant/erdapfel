@@ -9,7 +9,19 @@ export function toUrl(poi) {
   if (poi.id === 'geolocalisation' || poi.type === 'latlon') {
     return `latlon:${poi.latLon.lat.toFixed(5)}:${poi.latLon.lng.toFixed(5)}`;
   }
-  return `${poi.id}@${ExtendedString.slug(poi.name)}`;
+  return poi.name ? `${poi.id}@${ExtendedString.slug(poi.name)}` : poi.id;
+}
+
+export async function getInputValue(poi) {
+  if (poi.type === 'latlon' || !poi.name) {
+    return await fetchAddressLabel(poi);
+  }
+  return poi.getInputValue();
+}
+
+async function fetchAddressLabel(poi) {
+  const address = await IdunnPoi.poiApiLoad(poi);
+  return address.alternativeName || address.name;
 }
 
 export function toAbsoluteUrl(poi) {
