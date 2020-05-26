@@ -6,12 +6,13 @@ import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
-import { toUrl as poiToUrl, fromUrl as poiFromUrl, getInputValue } from 'src/libs/pois';
+import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 
 export default class DirectionPanel extends React.Component {
@@ -77,15 +78,31 @@ export default class DirectionPanel extends React.Component {
     document.body.classList.remove('directions-open');
   }
 
-  async setTextInput(which, poi) {
-    const inputValue = poi ? await getInputValue(poi) : '';
-    this.setState({ [which + 'InputText']: inputValue });
+  setTextInput(which, poi) {
+    if (poi) {
+      if (poi.type === 'latlon') {
+        this.getAddress(which, poi);
+      } else {
+        this.setState({ [which + 'InputText']: poi.getInputValue() || '' });
+      }
+    } else {
+      this.setState({ [which + 'InputText']: '' });
+    }
+  }
+
+  async getAddress(which, poi) {
+    const address = await IdunnPoi.poiApiLoad(poi);
+    this.setState({ [which + 'InputText']: address.alternativeName || address.name });
   }
 
   restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
     const poiRestorePromises = [
-      originUrlValue ? poiFromUrl(originUrlValue) : this.state.origin,
-      destinationUrlValue ? poiFromUrl(destinationUrlValue) : this.state.destination,
+      originUrlValue
+        ? poiFromUrl(originUrlValue)
+        : Promise.resolve(this.state.origin),
+      destinationUrlValue
+        ? poiFromUrl(destinationUrlValue)
+        : Promise.resolve(this.state.destination),
     ];
     Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
       // Set markers
