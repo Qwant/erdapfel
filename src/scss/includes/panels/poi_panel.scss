@@ -137,14 +137,7 @@ $HEADER_SIZE: 40px;
   }
 
   .poi_panel__action__direction {
-    font-size: 14px;
-    background-color: $action-blue-base;
     flex-grow: 1;
-  }
-
-  .poi_panel__action__button {
-    border-color: $action-blue-base;
-    color: $action-blue-base;
   }
 }
 
@@ -510,14 +503,6 @@ $HEADER_SIZE: 40px;
 
   .poi_card__action__direction {
     margin-bottom: 9px;
-    font-size: 14px;
-    background-color: $action-blue-base;
-  }
-
-  .poi_card__action__see-more {
-    font-size: 14px;
-    color: $action-blue-base;
-    border-color: $action-blue-base;
   }
 }
 

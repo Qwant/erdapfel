@@ -1,31 +1,30 @@
 .button {
-  background-color: white;
   display: inline-flex;
   align-items: center;
   height: 36px;
   padding: 0 9px;
   border-radius: 18px;
-  border: 1px solid $primary_clear;
-  font-size: 12px;
-  font-weight: bold;
-  color: $primary_text;
+  font-size: 14px;
   pointer-events: all;
   cursor: pointer;
 
-  &--invert {
-    background-color: $primary_text;
-    border-color: $primary_text;
-    color: white;
+  &--outline {
+    background-color: white;
+    border: 1px solid $action-blue-base;
+    color: $action-blue-base;
   }
 
-  &--noBorder {
-    border-color: transparent;
-    padding: 0;
+  &--primary {
+    background-color: $action-blue-base;
+    border: 1px solid $action-blue-base;
+    color: white;
+    font-weight: bold;
   }
 
   &-content {
     flex-grow: 1;
     text-align: center;
+    padding: 0 3px;
     /* secure long content */
     white-space: nowrap;
     overflow: hidden;
@@ -33,7 +32,6 @@
   }
 
   &-icon {
-    vertical-align: middle;
     font-size: 16px;
     width: 16px;
   }

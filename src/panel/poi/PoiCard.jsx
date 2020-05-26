@@ -44,8 +44,8 @@ class PoiCard extends React.Component {
         </div>
         { !!openDirection &&
           <Button
-            className="button--noBorder poi_card__action__direction"
-            variant="invert"
+            className="poi_card__action__direction"
+            variant="primary"
             onClick={openDirection}
           >
             { _('Directions', 'poi panel') }

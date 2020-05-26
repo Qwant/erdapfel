@@ -59,20 +59,13 @@
     color: $secondary_text;
     margin-top: 6px;
 
-    a {
+    a:not(.covid19-contributeLink) {
       color: $secondary_text;
     }
   }
 
   &-contributeLink {
-    text-transform: uppercase;
-    font-weight: normal !important;
-    transition: background-color 0.25s;
     margin-top: 20px;
-
-    &:hover {
-      background-color: $background_hover;
-    }
   }
 
   &-changeWarning {
