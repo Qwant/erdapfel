@@ -14,12 +14,12 @@ export function toUrl(poi) {
 
 export async function getInputValue(poi) {
   if (poi.type === 'latlon' || !poi.name) {
-    return await reverseGeocode(poi);
+    return await fetchAddressLabel(poi);
   }
   return poi.getInputValue();
 }
 
-async function reverseGeocode(poi) {
+async function fetchAddressLabel(poi) {
   const address = await IdunnPoi.poiApiLoad(poi);
   return address.alternativeName || address.name;
 }
