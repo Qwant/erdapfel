@@ -86,6 +86,10 @@ input[type="search"] {
   color: #888;
 }
 
+.main_field_return {
+  display: none;
+}
+
 .search_form__action {
   position: absolute;
   width: 30px;
@@ -302,8 +306,11 @@ input[type="search"] {
 
   .autocomplete_suggestions {
     position: fixed;
-    max-height: calc(100vh - 120px);
+    top: 0;
+    bottom: 0;
+    max-height: none;
     margin-top: -1px;
+    overflow: auto;
   }
 
   .search_form__logo {
@@ -351,11 +358,16 @@ input[type="search"] {
     }
 
     .search_form__logo {
-      width: 26px;
-      height: 26px;
-      background-size: 26px;
-      top: 15px;
-      left: 16px;
+      display: none;
+    }
+
+    .main_field_return {
+      display: block;
+      left: 10px;
+      top: 20px;
+      font-size: 25px;
+      color: $primary_text;
+      position: fixed;
     }
   }
 }
