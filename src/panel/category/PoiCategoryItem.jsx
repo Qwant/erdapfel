@@ -19,6 +19,7 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
   return <div className="category__panel__item">
     <PoiTitleImage poi={poi} />
 
+    {/* @TODO: use a better-named fonction that returns the best 'name' */}
     <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
 
     {poi.subClassName && <p className="category__panel__type u-text--subtitle">
