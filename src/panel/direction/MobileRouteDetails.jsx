@@ -39,7 +39,6 @@ const MobileRouteDetails =
       <div className="u-bold">{_('Details', 'direction')}</div>
       {vehicle !== 'publicTransport' && <Button
         onClick={() => { openPreview(id); }}
-        variant="noBorder"
         icon="chevrons-right"
       >
         {_('Preview', 'direction')}

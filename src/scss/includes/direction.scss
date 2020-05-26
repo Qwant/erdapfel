@@ -924,8 +924,9 @@ button.direction_shortcut {
       font-size: 14px;
       text-transform: uppercase;
 
-      & .button-content {
-        text-transform: uppercase;
+      & .button {
+        border: none;
+        padding: 0;
       }
     }
 

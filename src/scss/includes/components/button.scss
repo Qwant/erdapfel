@@ -1,27 +1,22 @@
 .button {
-  background-color: white;
   display: inline-flex;
   align-items: center;
   height: 36px;
   padding: 0 9px;
   border-radius: 18px;
   font-size: 14px;
-  color: $action-blue-base;
   pointer-events: all;
   cursor: pointer;
 
   &--outline {
+    background-color: white;
     border: 1px solid $action-blue-base;
-  }
-
-  &--noBorder {
-    border-color: transparent;
-    padding: 0px;
+    color: $action-blue-base;
   }
 
   &--primary {
-    border: 1px solid $action-blue-base;
     background-color: $action-blue-base;
+    border: 1px solid $action-blue-base;
     color: white;
     font-weight: bold;
   }
