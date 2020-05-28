@@ -19,6 +19,7 @@
   user-select: none;
   color: transparent;
   background-color: #e0e1e6;
+  border: none;
   border-radius: 3px;
   animation: placeholderPulse 0.8s ease-in-out alternate infinite;
 
@@ -26,6 +27,10 @@
     margin: 4px 0 3px;
     height: 13px;
     display: inline-block;
+  }
+
+  &--round {
+    border-radius: 50px;
   }
 }
 
@@ -58,4 +63,9 @@
 
 .u-mb-8 {
   margin-bottom: 8px;
+}
+
+.u-text--label {
+  font-size: 12px;
+  color: $primary_text;
 }

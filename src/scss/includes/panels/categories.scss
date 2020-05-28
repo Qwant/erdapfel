@@ -7,27 +7,29 @@
 
   &_title {
     font-weight: normal;
-    color: #353c52;
+    color: $primary_text;
     background: url('../images/pagesjaunes.svg') no-repeat left center;
     background-size: 18px;
     padding-left: 24px;
   }
 
   &_partnership {
-    font-size: 11px;
-    color: #c8cbd3;
+    font-size: 12px;
+    color: $secondary_text;
 
-    &::after {
+    &::before {
       content: "i";
-      width: 16px;
-      height: 16px;
+      line-height: 16px;
+      width: 12px;
+      height: 12px;
+      font-size: 10px;
       display: inline-block;
-      border: 2px solid #c8cbd3;
-      color: #c8cbd3;
+      border: 2px solid $secondary_text;
       border-radius: 50%;
       text-align: center;
+      vertical-align: middle;
       font-weight: bold;
-      margin-left: 6px;
+      margin-right: 6px;
     }
   }
 }
@@ -36,37 +38,8 @@
   animation: appear 600ms forwards;
 }
 
-.category__panel__item {
-  padding: 15px 20px;
-  cursor: pointer;
-
-  .poiTitleImage {
-    float: right;
-    width: 65px;
-    height: 65px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.category__panel__type {
-  text-transform: capitalize;
-}
-
-.category__panel__address {
-  color: #353c52;
-  margin-top: 5px;
-  text-overflow: ellipsis;
-  max-width: 210px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .category__panel__phone {
-  color: $secondary_text;
-  font-weight: bold;
-  margin-top: 5px;
+  color: $action-blue-base;
   cursor: pointer;
 
   span {
@@ -74,7 +47,7 @@
   }
 
   a {
-    color: $secondary_text;
+    color: $action-blue-base;
   }
 
   .icon-icon_phone {
@@ -111,11 +84,9 @@
     padding-top: 0;
   }
 
-  .category__panel__item {
-    padding: 14px 10px 14px 16px;
-  }
 
   .category__panel__phone {
     display: none;
   }
+
 }

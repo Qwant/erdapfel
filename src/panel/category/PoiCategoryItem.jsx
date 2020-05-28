@@ -5,36 +5,73 @@ import ReviewScore from 'src/components/ReviewScore';
 import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
-import nconf from '@qwant/nconf-getter';
-
-const covid19Enabled = (nconf.get().covid19 || {}).enabled;
+import Button from 'src/components//ui/Button';
 
 const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
   const reviews = poi.blocksByType.grades;
   const phoneBlock = poi.blocksByType.phone;
   const address = poi.address || {};
 
-  const hideOpeningHour = covid19Enabled && poi.blocksByType.covid19;
+  const Subclass = () =>
+    poi.subClassName
+      ? <p className="u-text--subtitle u-firstCap">{poiSubClass(poi.subClassName)}</p>
+      : <br/>
+  ;
 
-  return <div className="category__panel__item">
-    <PoiTitleImage poi={poi} />
+  const Address = () =>
+    address.label
+      ? <p className="u-text--subtitle poiCategoryItem-address">{address.label}</p>
+      : <br />
+  ;
 
-    {/* @TODO: use a better-named fonction that returns the best 'name' */}
-    <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
+  const Reviews = () =>
+    reviews
+      ? <div className="poiCategoryItem-reviews">
+        <ReviewScore reviews={reviews} poi={poi} inList />
+        <OpeningHour
+          schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
+          showNextOpenOnly={true} />
+      </div>
+      : null
+  ;
 
-    {poi.subClassName && <p className="category__panel__type u-text--subtitle">
-      {poiSubClass(poi.subClassName)}
-    </p>}
-
-    {address.label && <p className="category__panel__address">{address.label}</p>}
-
-    {reviews && <ReviewScore reviews={reviews} poi={poi} inList />}
-
-    {!hideOpeningHour && <OpeningHour schedule={new OsmSchedule(poi.blocksByType.opening_hours)} />}
-
-    {phoneBlock && <PhoneNumber
+  const Phone = () =>
+    phoneBlock && <PhoneNumber
       phoneBlock={phoneBlock}
-      onReveal={() => { onShowPhoneNumber(poi); }} />}
+      onReveal={() => { onShowPhoneNumber(poi); }} />
+  ;
+
+  const Actions = () =>
+    <div className="poiCategoryItem-actions">
+      <Button
+        icon="icon_phone"
+        href={poi.blocksByType.phone?.url}
+        onClick={e => e.stopPropagation()}
+      />
+      <Button
+        icon="corner-up-right"
+        onClick={e => {
+          e.stopPropagation();
+          window.app.navigateTo('/routes/', { poi });
+        }}
+      />
+    </div>
+  ;
+
+  return <div className="poiCategoryItem">
+    <div>
+      {/* @TODO: use a better-named fonction that returns the best 'name' */}
+      <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
+      <Subclass />
+      <Address />
+      <Reviews />
+      <Phone />
+    </div>
+
+    <div className="poiCategoryItem-right">
+      <PoiTitleImage poi={poi} />
+      <Actions />
+    </div>
   </div>;
 };
 
