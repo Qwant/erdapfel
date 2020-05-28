@@ -1,4 +1,4 @@
-# 
+#
 # Translators:
 # Boo Teille <booteille@tutanota.com>, 2019
 # Florent Thouvenin <github@eldar.fr>, 2019
@@ -10,7 +10,7 @@
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Louis Bedat <louisbedat33@gmail.com>, 2020
 # Adrien Matissart, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -940,7 +940,7 @@ msgid "See more"
 msgstr "Voir plus"
 
 msgid "Show number"
-msgstr "Voir le n°"
+msgstr "Voir le numéro"
 
 msgid "Saved"
 msgstr "Enregistré"

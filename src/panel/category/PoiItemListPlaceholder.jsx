@@ -3,12 +3,21 @@ import { ItemList, Item } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
 
 const PoiItemPlaceholder = () =>
-  <div className="category__panel__item">
-    <div className="poiTitleImage u-placeholder" />
-    <PlaceholderText length={25} tagName="h3" className="u-text--smallTitle"/>
-    <PlaceholderText length={15} tagName="p" className="category__panel__type u-text--subtitle" />
-    <PlaceholderText length={25} tagName="p" className="category__panel__address" />
-    <div className="openingHour"><PlaceholderText length={15} /></div>
+  <div className="poiCategoryItem">
+    <div>
+      <PlaceholderText length={25} tagName="h3" className="u-text--smallTitle"/>
+      <PlaceholderText length={15} tagName="p" className="u-text--subtitle" />
+      <PlaceholderText length={25} tagName="p" className="poiCategoryItem-address" />
+      <div className="openingHour"><PlaceholderText length={15} /></div>
+    </div>
+    <div className="poiCategoryItem-right">
+      <div className="poiTitleImage u-placeholder" />
+      <div
+        className="poiCategoryItem-actions">
+        <div className="u-placeholder u-placeholder--round" style={{ width: 36, height: 36 }}/>
+        <div className="u-placeholder u-placeholder--round" style={{ width: 36, height: 36 }}/>
+      </div>
+    </div>
   </div>;
 
 const PoiItemListPlaceholder = ({ nbItems = 6 }) =>

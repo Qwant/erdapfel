@@ -1,11 +1,12 @@
 .openingHour {
   margin: 0;
+  display: inline-flex;
+  align-items: center;
 
   &-circle {
-    width: 6px;
-    height: 6px;
-    display: inline-block;
-    margin: 3px 1px;
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
     border-radius: 50%;
   }
 }
