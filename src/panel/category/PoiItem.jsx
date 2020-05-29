@@ -2,13 +2,11 @@ import React from 'react';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
-import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 
-const PoiItem = ({ poi, onShowPhoneNumber }) => {
+const PoiItem = ({ poi }) => {
   const reviews = poi.blocksByType.grades;
-  const phoneBlock = poi.blocksByType.phone;
   const address = poi.address || {};
 
   const Subclass = () =>
@@ -34,14 +32,6 @@ const PoiItem = ({ poi, onShowPhoneNumber }) => {
       : null
   ;
 
-  const Phone = () =>
-    phoneBlock
-      ? <PhoneNumber
-        phoneBlock={phoneBlock}
-        onReveal={() => { onShowPhoneNumber(poi); }} />
-      : null
-  ;
-
   return <div className="PoiItem">
     <div>
       {/* @TODO: use a better-named fonction that returns the best 'name' */}
@@ -49,7 +39,6 @@ const PoiItem = ({ poi, onShowPhoneNumber }) => {
       <Subclass />
       <Address />
       <Reviews />
-      <Phone />
     </div>
 
     <div className="PoiItem-right">

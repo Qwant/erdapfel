@@ -25,11 +25,6 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-
-    @media (max-width: 640px) {
-      margin: 0;
-    }
   }
 
   &-right {

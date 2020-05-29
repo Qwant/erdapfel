@@ -6,7 +6,6 @@ const PoiItems = ({
   pois,
   selectPoi,
   highlightMarker,
-  onShowPhoneNumber,
 }) =>
   <ItemList hover className="category__panel__items">
     {pois.map(poi => <Item key={poi.id}
@@ -14,7 +13,7 @@ const PoiItems = ({
       onMouseOver={() => { highlightMarker(poi, true); }}
       onMouseOut={() => { highlightMarker(poi, false); }}
     >
-      <PoiItem poi={poi} onShowPhoneNumber={onShowPhoneNumber} />
+      <PoiItem poi={poi} />
     </Item>)}
   </ItemList>;
 
