@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
-import PoiCategoryItemList from './PoiCategoryItemList';
+import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
 import CategoryPanelHeader from './CategoryPanelHeader';
@@ -175,7 +175,7 @@ export default class CategoryPanel extends React.Component {
       if (hasError) {
         panelContent = <CategoryPanelError zoomIn={zoomIn} />;
       } else {
-        panelContent = <PoiCategoryItemList
+        panelContent = <PoiItemList
           pois={pois}
           selectPoi={this.selectPoi}
           highlightMarker={this.highlightPoiMarker}

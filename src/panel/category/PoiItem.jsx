@@ -5,9 +5,9 @@ import ReviewScore from 'src/components/ReviewScore';
 import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
-import Button from 'src/components//ui/Button';
+import Button from 'src/components/ui/Button';
 
-const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
+const PoiItem = ({ poi, onShowPhoneNumber }) => {
   const reviews = poi.blocksByType.grades;
   const phoneBlock = poi.blocksByType.phone;
   const address = poi.address || {};
@@ -20,13 +20,13 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
 
   const Address = () =>
     address.label
-      ? <p className="u-text--subtitle poiCategoryItem-address">{address.label}</p>
+      ? <p className="u-text--subtitle PoiItem-address">{address.label}</p>
       : <br />
   ;
 
   const Reviews = () =>
     reviews
-      ? <div className="poiCategoryItem-reviews">
+      ? <div className="PoiItem-reviews">
         <ReviewScore reviews={reviews} poi={poi} inList />
         <OpeningHour
           schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
@@ -36,13 +36,15 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
   ;
 
   const Phone = () =>
-    phoneBlock && <PhoneNumber
-      phoneBlock={phoneBlock}
-      onReveal={() => { onShowPhoneNumber(poi); }} />
+    phoneBlock
+      ? <PhoneNumber
+        phoneBlock={phoneBlock}
+        onReveal={() => { onShowPhoneNumber(poi); }} />
+      : null
   ;
 
   const Actions = () =>
-    <div className="poiCategoryItem-actions">
+    <div className="PoiItem-actions">
       <Button
         icon="icon_phone"
         href={poi.blocksByType.phone?.url}
@@ -58,7 +60,7 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
     </div>
   ;
 
-  return <div className="poiCategoryItem">
+  return <div className="PoiItem">
     <div>
       {/* @TODO: use a better-named fonction that returns the best 'name' */}
       <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
@@ -68,11 +70,11 @@ const PoiCategoryItem = ({ poi, onShowPhoneNumber }) => {
       <Phone />
     </div>
 
-    <div className="poiCategoryItem-right">
+    <div className="PoiItem-right">
       <PoiTitleImage poi={poi} />
       <Actions />
     </div>
   </div>;
 };
 
-export default PoiCategoryItem;
+export default PoiItem;

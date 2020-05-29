@@ -1,8 +1,8 @@
 import React from 'react';
 import { ItemList, Item } from 'src/components/ui/ItemList';
-import PoiCategoryItem from './PoiCategoryItem';
+import PoiItem from './PoiItem';
 
-const PoiCategoryItems = ({
+const PoiItems = ({
   pois,
   selectPoi,
   highlightMarker,
@@ -14,8 +14,8 @@ const PoiCategoryItems = ({
       onMouseOver={() => { highlightMarker(poi, true); }}
       onMouseOut={() => { highlightMarker(poi, false); }}
     >
-      <PoiCategoryItem poi={poi} onShowPhoneNumber={onShowPhoneNumber} />
+      <PoiItem poi={poi} onShowPhoneNumber={onShowPhoneNumber} />
     </Item>)}
   </ItemList>;
 
-export default PoiCategoryItems;
+export default PoiItems;
