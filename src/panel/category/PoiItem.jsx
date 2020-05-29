@@ -5,7 +5,6 @@ import ReviewScore from 'src/components/ReviewScore';
 import PhoneNumber from './PhoneNumber';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
-import Button from 'src/components/ui/Button';
 
 const PoiItem = ({ poi, onShowPhoneNumber }) => {
   const reviews = poi.blocksByType.grades;
@@ -43,23 +42,6 @@ const PoiItem = ({ poi, onShowPhoneNumber }) => {
       : null
   ;
 
-  const Actions = () =>
-    <div className="PoiItem-actions">
-      <Button
-        icon="icon_phone"
-        href={poi.blocksByType.phone?.url}
-        onClick={e => e.stopPropagation()}
-      />
-      <Button
-        icon="corner-up-right"
-        onClick={e => {
-          e.stopPropagation();
-          window.app.navigateTo('/routes/', { poi });
-        }}
-      />
-    </div>
-  ;
-
   return <div className="PoiItem">
     <div>
       {/* @TODO: use a better-named fonction that returns the best 'name' */}
@@ -72,7 +54,6 @@ const PoiItem = ({ poi, onShowPhoneNumber }) => {
 
     <div className="PoiItem-right">
       <PoiTitleImage poi={poi} />
-      <Actions />
     </div>
   </div>;
 };
