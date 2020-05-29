@@ -23,14 +23,16 @@ const PoiItem = ({ poi }) => {
 
   const Reviews = () =>
     reviews
-      ? <div className="PoiItem-reviews">
+      ? <span className="PoiItem-reviews">
         <ReviewScore reviews={reviews} poi={poi} inList />
-        <OpeningHour
-          schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
-          showNextOpenOnly={true} />
-      </div>
+      </span>
       : null
   ;
+
+  const OpenStatus = () =>
+    <OpeningHour
+      schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
+      showNextOpenOnly={true} />;
 
   return <div className="PoiItem">
     <div>
@@ -39,6 +41,7 @@ const PoiItem = ({ poi }) => {
       <Subclass />
       <Address />
       <Reviews />
+      <OpenStatus />
     </div>
 
     <div className="PoiItem-right">
