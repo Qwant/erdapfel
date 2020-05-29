@@ -12,11 +12,6 @@ const PoiItemPlaceholder = () =>
     </div>
     <div className="PoiItem-right">
       <div className="poiTitleImage u-placeholder" />
-      <div
-        className="PoiItem-actions">
-        <div className="u-placeholder u-placeholder--round" style={{ width: 36, height: 36 }}/>
-        <div className="u-placeholder u-placeholder--round" style={{ width: 36, height: 36 }}/>
-      </div>
     </div>
   </div>;
 
