@@ -1,12 +1,11 @@
 .reviewScore {
   color: $secondary_text;
-  margin-right: 8px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 
   &-stars {
-    display: inline-block;
+    display: inline-flex;
 
     span {
       padding-right: 3px;

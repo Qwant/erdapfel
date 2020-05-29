@@ -8,7 +8,8 @@ const PoiItemPlaceholder = () =>
       <PlaceholderText length={25} tagName="h3" className="u-text--smallTitle"/>
       <PlaceholderText length={15} tagName="p" className="u-text--subtitle" />
       <PlaceholderText length={25} tagName="p" className="PoiItem-address" />
-      <div className="openingHour"><PlaceholderText length={15} /></div>
+      <div className="PoiItem-reviews"><PlaceholderText length={15} /></div>
+      <div className="openingHour"><PlaceholderText length={10} /></div>
     </div>
     <div className="PoiItem-right">
       <div className="poiTitleImage u-placeholder" />
