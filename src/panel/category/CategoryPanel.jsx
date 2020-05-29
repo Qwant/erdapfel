@@ -133,21 +133,6 @@ export default class CategoryPanel extends React.Component {
     fire('save_location');
   };
 
-  onShowPhoneNumber = poi => {
-    if (poi.meta && poi.meta.source) {
-      Telemetry.add('phone', 'poi', poi.meta.source,
-        Telemetry.buildInteractionData({
-          id: poi.id,
-          source: poi.meta.source,
-          template: 'multiple',
-          zone: 'list',
-          element: 'phone',
-          category: this.props.poiFilters.category,
-        })
-      );
-    }
-  }
-
   close = () => {
     window.app.navigateTo('/');
   }
@@ -179,7 +164,6 @@ export default class CategoryPanel extends React.Component {
           pois={pois}
           selectPoi={this.selectPoi}
           highlightMarker={this.highlightPoiMarker}
-          onShowPhoneNumber={this.onShowPhoneNumber}
         />;
       }
     }
