@@ -37,11 +37,8 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false }) => {
 
   return <div className="openingHour u-text--label">
     {label}
-    {!showNextOpenOnly && nextTransition &&
-      ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
-    }
-
-    {showNextOpenOnly && status === 'closed' &&
+    {((showNextOpenOnly && status === 'closed') ||
+      (!showNextOpenOnly && nextTransition)) &&
       ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
     }
     {' '}
