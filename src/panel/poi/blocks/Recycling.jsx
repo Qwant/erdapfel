@@ -10,7 +10,7 @@ const RED = '#ff3b4a';
 const containerTypes = type => {
   return {
     glass: _('Glass'),
-    paper: _('Paper, carton'),
+    recyclable: _('Recyclable'),
   }[type] || _('Unknown');
 };
 
