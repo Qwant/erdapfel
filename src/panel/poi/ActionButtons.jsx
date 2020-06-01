@@ -23,6 +23,7 @@ export default class ActionButtons extends React.Component {
       icon="icon_phone"
       href={poi.blocksByType.phone.url}
       rel="noopener noreferrer external"
+      title={_('Call', 'poi panel')}
     />;
   }
 
@@ -35,6 +36,7 @@ export default class ActionButtons extends React.Component {
           className="poi_panel__action__direction"
           variant="primary"
           onClick={this.props.openDirection}
+          title={_('Directions', 'poi panel')}
         >
           { _('Directions', 'poi panel') }
         </Button>
@@ -46,12 +48,14 @@ export default class ActionButtons extends React.Component {
         className="poi_panel__action__button poi_panel__action__favorite"
         onClick={this.props.toggleStorePoi}
         icon={this.props.isPoiInFavorite ? 'icon_star-filled' : 'star'}
+        title={_('Favorites', 'poi panel')}
       />
 
       <Button
         className="poi_panel__action__button poi_panel__action__share"
         onClick={this.props.openShare}
         icon="share-2"
+        title={_('Share', 'poi panel')}
       />
     </div>;
   }

@@ -55,7 +55,10 @@ export default class RouteSummary extends React.Component {
           {formatDistance(route.distance)}
         </div>
       </div>
-      <div className="itinerary_panel__item__share" onClick={this.onClickShare}>
+      <div
+        className="itinerary_panel__item__share"
+        onClick={this.onClickShare}
+        title={_('Share', 'direction')}>
         <i className="icon-share-2" />
       </div>
       <div className="itinerary_leg_mobileActions">

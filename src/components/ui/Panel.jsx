@@ -1,3 +1,4 @@
+/* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -177,7 +178,7 @@ export default class Panel extends React.Component {
       ref={panel => this.panelDOMElement = panel}
       onTransitionEnd={() => this.updateMobileMapUI()}
     >
-      {close && <div className="panel-close" onClick={() => { close(); }}>
+      {close && <div className="panel-close" title={_('Close')} onClick={close} >
         <i className="icon-x" />
       </div>}
       <div

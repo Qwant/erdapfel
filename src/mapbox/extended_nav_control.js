@@ -10,11 +10,19 @@ export default class ExtendedControl {
     this.bottomButtonGroup = document.createElement('div');
 
     const buttonClass = 'icon-plus map_control_group__button__zoom';
-    this._zoomInButton = this._createButton(buttonClass, 'Zoom In', () => this._map.zoomIn());
+
+    this._zoomInButton = this._createButton(
+      buttonClass,
+      'Zoom In',
+      () => this._map.zoomIn(),
+      'Zoom +'
+    );
+
     this._zoomOutButton = this._createButton(
       'icon-minus map_control_group__button__zoom',
       'Zoom Out',
       () => this._map.zoomOut(),
+      'Zoom -'
     );
 
     const compassClass = 'map_control_group__button__compass';
@@ -92,10 +100,13 @@ export default class ExtendedControl {
     this._map = undefined;
   }
 
-  _createButton(className, ariaLabel, fn) {
+  _createButton(className, ariaLabel, fn, title) {
     const a = document.createElement('button');
     a.setAttribute('class', className);
     a.setAttribute('aria-label', ariaLabel);
+    if (title) {
+      a.setAttribute('title', title);
+    }
     a.addEventListener('click', fn);
     return a;
   }
