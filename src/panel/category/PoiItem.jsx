@@ -12,13 +12,13 @@ const PoiItem = ({ poi }) => {
   const Subclass = () =>
     poi.subClassName
       ? <p className="u-text--subtitle u-firstCap">{poiSubClass(poi.subClassName)}</p>
-      : <br/>
+      : null
   ;
 
   const Address = () =>
     address.label
       ? <p className="u-text--subtitle poiItem-address">{address.label}</p>
-      : <br />
+      : null
   ;
 
   const Reviews = () =>
@@ -30,9 +30,11 @@ const PoiItem = ({ poi }) => {
   ;
 
   const OpenStatus = () =>
-    <OpeningHour
-      schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
-      showNextOpenOnly={true} />;
+    poi?.blocksByType?.opening_hours
+      ? <OpeningHour
+        schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
+        showNextOpenOnly={true} />
+      : null;
 
   return <div className="poiItem">
     <div>
