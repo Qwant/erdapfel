@@ -22,7 +22,7 @@ const VehicleSelector = ({ vehicles, activeVehicle, onSelectVehicle }) =>
         { 'itinerary_vehicle_button--active': vehicle === activeVehicle }
       )}
       onClick={() => onSelectVehicle(vehicle)}
-      aria-label={vehicle}
+      aria-label={getLocalizedTitle(vehicle)}
       title={getLocalizedTitle(vehicle)}
     >
       {vehicle === 'publicTransport' && <span className="testLabel">{_('Test')}</span>}
