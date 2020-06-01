@@ -3,15 +3,15 @@ import { ItemList, Item } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
 
 const PoiItemPlaceholder = () =>
-  <div className="PoiItem">
+  <div className="poiItem">
     <div>
       <PlaceholderText length={25} tagName="h3" className="u-text--smallTitle"/>
       <PlaceholderText length={15} tagName="p" className="u-text--subtitle" />
-      <PlaceholderText length={25} tagName="p" className="PoiItem-address" />
-      <div className="PoiItem-reviews"><PlaceholderText length={15} /></div>
+      <PlaceholderText length={25} tagName="p" className="poiItem-address" />
+      <div className="poiItem-reviews"><PlaceholderText length={15} /></div>
       <div className="openingHour"><PlaceholderText length={10} /></div>
     </div>
-    <div className="PoiItem-right">
+    <div className="poiItem-right">
       <div className="poiTitleImage u-placeholder" />
     </div>
   </div>;

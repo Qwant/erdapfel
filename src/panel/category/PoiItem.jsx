@@ -17,13 +17,13 @@ const PoiItem = ({ poi }) => {
 
   const Address = () =>
     address.label
-      ? <p className="u-text--subtitle PoiItem-address">{address.label}</p>
+      ? <p className="u-text--subtitle poiItem-address">{address.label}</p>
       : <br />
   ;
 
   const Reviews = () =>
     reviews
-      ? <span className="PoiItem-reviews">
+      ? <span className="poiItem-reviews">
         <ReviewScore reviews={reviews} poi={poi} inList />
       </span>
       : null
@@ -34,7 +34,7 @@ const PoiItem = ({ poi }) => {
       schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
       showNextOpenOnly={true} />;
 
-  return <div className="PoiItem">
+  return <div className="poiItem">
     <div>
       {/* @TODO: use a better-named fonction that returns the best 'name' */}
       <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
@@ -44,7 +44,7 @@ const PoiItem = ({ poi }) => {
       <OpenStatus />
     </div>
 
-    <div className="PoiItem-right">
+    <div className="poiItem-right">
       <PoiTitleImage poi={poi} />
     </div>
   </div>;
