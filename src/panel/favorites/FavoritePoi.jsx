@@ -36,7 +36,6 @@ export default class FavoritePoi extends React.Component {
   render() {
     const { poi } = this.props;
     const icon = IconManager.get(poi);
-    console.log(poi);
     return <div className="favorite_panel__item">
       <div
         className={`favorite_panel__item__image icon icon-${icon && icon.iconClass}`}
@@ -55,7 +54,7 @@ export default class FavoritePoi extends React.Component {
         </p>
       </div>
       <div className="favorite_panel__item__share" title={_('Share')}>
-        <ShareMenu/>
+        <ShareMenu url={toAbsoluteUrl(this.props.poi)}/>
       </div>
       <div className="favorite_panel__item__delete" title={_('Delete')} onClick={this.onDelete}>
         <span className="icon-trash"></span>

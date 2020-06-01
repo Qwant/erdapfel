@@ -6,7 +6,7 @@ const facebookShareUrl = location => {
 }
 
 const twitterShareUrl = location => {
-  return `https://twitter.com/home?status=${ encodeURIComponent(location) }`;
+  return `https://twitter.com/intent/tweet?url=${ encodeURIComponent(location) }`;
 }
 
 const menu_height = 3 * 32;
@@ -16,7 +16,6 @@ export default class ShareMenu extends React.Component {
 
   static propTypes = {
     url: PropTypes.string.isRequired,
-    parentNode: PropTypes.object.isRequired,
   }
 
   state = {
@@ -37,7 +36,6 @@ export default class ShareMenu extends React.Component {
     const targetBoundingRect = e.target.getBoundingClientRect();
     const top = targetBoundingRect.top;
     const left = targetBoundingRect.left;
-    //console.log(targetBoundingRect, top, left);
     e.stopPropagation();
     this.setState({
       open: true,
@@ -69,6 +67,7 @@ export default class ShareMenu extends React.Component {
   }
 
   render() {
+    const { url } = this.props;
     return <div className="shareMenu">
       <div className="shareMenu-button" onClick={this.open} >
         <i className="icon-share-2" />
