@@ -9,9 +9,9 @@ const RED = '#ff3b4a';
 
 const containerTypes = type => {
   return {
-    glass: _('Glass'),
-    recyclable: _('Recyclable'),
-  }[type] || _('Unknown');
+    glass: _('Glass', 'recycling'),
+    recyclable: _('Recyclable', 'recycling'),
+  }[type] || _('Unknown', 'recycling');
 };
 
 const Container = ({ type, filling_level, updated_at }) =>
