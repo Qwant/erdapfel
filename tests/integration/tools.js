@@ -38,3 +38,7 @@ export const clearStore = async function(page) {
     localStorage.clear()
   );
 };
+
+import LatLngPoi from 'src/adapters/poi/latlon_poi';
+
+export { LatLngPoi };
