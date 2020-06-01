@@ -3,11 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'src/components/ui/Modal';
 
-const facebookShareUrl = location =>
-  `https://www.facebook.com/sharer/sharer.php?u=${ encodeURIComponent(location) }`;
 
-const twitterShareUrl = location =>
-  `https://twitter.com/home?status=${ encodeURIComponent(location) }`;
 
 export default class ShareModal extends React.Component {
   state = {

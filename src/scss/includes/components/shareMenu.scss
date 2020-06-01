@@ -1,37 +1,31 @@
-.contextMenu {
+.shareMenu {
   position: relative;
-  z-index: 3;
+  overflow: visible;
 
   &-button {
     height: 30px;
     width: 30px;
     display: block;
-    border-radius: 50%;
     text-align: center;
     line-height: 30px;
-    color: $primary_clear;
-
-    &:hover {
-      background: $separator_color;
-      color: $primary_alternative_text;
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 
   &-menu {
-    position: absolute;
-    right: 36px;
-    top: -15px;
-    padding: 6px 9px;
+    position: fixed;
+    z-index: 4;
+    margin-left: -170px;
+    margin-top: 5px;
     background: $background;
     color: $primary_text;
     font-size: 13px;
     border-radius: 3px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+    width: 200px;
   }
 
   &-menuItem {
-    padding: 4px 6px;
+    padding: 7px 12px;
     cursor: pointer;
     
     &:hover {
@@ -41,5 +35,9 @@
     i {
       padding-right: 9px;
     }
+  }
+
+  &-menuItem--copy {
+    border-bottom: 1px solid #d9d9e0;
   }
 }
