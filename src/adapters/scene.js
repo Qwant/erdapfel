@@ -18,6 +18,7 @@ import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
+import locale from '../mapbox/locale';
 
 const baseUrl = nconf.get().system.baseUrl;
 
@@ -68,6 +69,7 @@ Scene.prototype.initMapBox = function() {
     center: this.center,
     hash: false,
     maxZoom: 20,
+    locale,
   });
 
   this.popup.init(this.mb);
