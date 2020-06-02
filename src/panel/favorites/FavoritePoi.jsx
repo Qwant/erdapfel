@@ -53,7 +53,7 @@ export default class FavoritePoi extends React.Component {
         </p>
       </div>
       <div className="favorite_panel__item__share" title={_('Share')}>
-        <ShareMenu url={toAbsoluteUrl(this.props.poi)}/>
+        <ShareMenu url={toAbsoluteUrl(this.props.poi)} scrollableParent=".panel-content"/>
       </div>
       <div className="favorite_panel__item__delete" title={_('Delete')} onClick={this.onDelete}>
         <span className="icon-trash"></span>

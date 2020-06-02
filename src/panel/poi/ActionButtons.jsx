@@ -54,7 +54,7 @@ export default class ActionButtons extends React.Component {
 
       <Button className="poi_panel__action__button poi_panel__action__share"
         title={_('Share', 'poi panel')}>
-        <ShareMenu url={window.location.toString()}/>
+        <ShareMenu url={window.location.toString()} scrollableParent=".panel-content"/>
       </Button>
 
     </div>;

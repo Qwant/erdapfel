@@ -17,6 +17,7 @@ export default class ShareMenu extends React.Component {
 
   static propTypes = {
     url: PropTypes.string.isRequired,
+    scrollableParent: PropTypes.string.isRequired,
   }
 
   state = {
@@ -44,13 +45,13 @@ export default class ShareMenu extends React.Component {
       left,
     });
     document.addEventListener('click', this.close);
-    document.addEventListener('wheel', this.close);
+    document.querySelector(this.props.scrollableParent).addEventListener('scroll', this.close);
     Telemetry.add(Telemetry.ITINERARY_SHARE);
   }
 
   close = () => {
     document.removeEventListener('click', this.close);
-    document.removeEventListener('wheel', this.close);
+    document.querySelector(this.props.scrollableParent).removeEventListener('scroll', this.close);
     if (this._isMounted) {
       this.setState({ open: false });
     }

@@ -57,7 +57,7 @@ export default class RouteSummary extends React.Component {
         <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">
           {_('Details', 'direction')}
         </Button>
-        <Button onClick={this.onClickShare} icon="share-2" />
+        <ShareMenu url={window.location.toString()} scrollableParent=".itinerary_result"/>
       </div>
     </div>;
   }
