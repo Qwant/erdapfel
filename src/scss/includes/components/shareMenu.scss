@@ -1,6 +1,7 @@
 .shareMenu {
   position: relative;
   overflow: visible;
+  text-align: left;
 
   &-button {
     height: 30px;
@@ -14,18 +15,19 @@
   &-menu {
     position: fixed;
     z-index: 4;
-    margin-left: -170px;
-    margin-top: 5px;
+    margin-left: -120px;
+    margin-top: 10px;
     background: $background;
     color: $primary_text;
     font-size: 13px;
     border-radius: 3px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
-    width: 200px;
+    width: 150px;
   }
 
   &-menuItem {
     padding: 7px 12px;
+    height: 32px;
     cursor: pointer;
     
     &:hover {
@@ -34,6 +36,13 @@
    
     i {
       padding-right: 9px;
+      font-size: 18px;
+      float: left;
+    }
+
+    .icon-copy {
+      float: right;
+      padding: 0;
     }
   }
 

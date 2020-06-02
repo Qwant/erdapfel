@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Telemetry from '../../libs/telemetry';
 
 const facebookShareUrl = location => {
   return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location)}`;
@@ -39,14 +40,17 @@ export default class ShareMenu extends React.Component {
     e.stopPropagation();
     this.setState({
       open: true,
-      top: top + 30 + menu_height < innerHeight ? top + 20 : top - 20 - menu_height,
-      left: left - 10,
+      top: top + 30 + menu_height < innerHeight ? top + 20 : top - 15 - menu_height,
+      left,
     });
     document.addEventListener('click', this.close);
+    document.addEventListener('wheel', this.close);
+    Telemetry.add(Telemetry.ITINERARY_SHARE);
   }
 
   close = () => {
     document.removeEventListener('click', this.close);
+    document.removeEventListener('wheel', this.close);
     if (this._isMounted) {
       this.setState({ open: false });
     }
@@ -61,6 +65,7 @@ export default class ShareMenu extends React.Component {
     const el = document.createElement('textarea');
     el.value = url;
     document.body.appendChild(el);
+    el.focus();
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
@@ -77,29 +82,29 @@ export default class ShareMenu extends React.Component {
 
         <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
           e.stopPropagation();
+          this.copy(url);
           this.close();
-          this.copy();
         }}>
           <i className="icon-copy" />
-          {_('Copy', 'share')}
-        </div>
-
-        <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={e => {
-          e.stopPropagation();
-          this.close();
-          this.openPopup(twitterShareUrl(url));
-        }}>
-          <i className="icon-twitter" />
-          {_('Share on Twitter', 'share')}
+          {_('Copy link', 'share')}
         </div>
 
         <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={e => {
           e.stopPropagation();
-          this.close();
           this.openPopup(facebookShareUrl(url));
+          this.close();
         }}>
           <i className="icon-facebook" />
-          {_('Share on Facebook', 'share')}
+          {_('Facebook', 'share')}
+        </div>
+
+        <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={e => {
+          e.stopPropagation();
+          this.openPopup(twitterShareUrl(url));
+          this.close();
+        }}>
+          <i className="icon-twitter" />
+          {_('Twitter', 'share')}
         </div>
 
       </div>}

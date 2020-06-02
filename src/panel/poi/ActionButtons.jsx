@@ -1,6 +1,7 @@
 /* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
+import ShareMenu from 'src/components/ui/ShareMenu';
 
 import Button from 'src/components/ui/Button';
 
@@ -51,12 +52,11 @@ export default class ActionButtons extends React.Component {
         title={_('Favorites', 'poi panel')}
       />
 
-      <Button
-        className="poi_panel__action__button poi_panel__action__share"
-        onClick={this.props.openShare}
-        icon="share-2"
-        title={_('Share', 'poi panel')}
-      />
+      <Button className="poi_panel__action__button poi_panel__action__share"
+        title={_('Share', 'poi panel')}>
+        <ShareMenu url={window.location.toString()}/>
+      </Button>
+
     </div>;
   }
 }

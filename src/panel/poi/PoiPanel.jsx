@@ -12,7 +12,6 @@ import PoiBlockContainer from './PoiBlockContainer';
 import Panel from 'src/components/ui/Panel';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
-import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';

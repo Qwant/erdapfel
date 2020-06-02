@@ -6,7 +6,6 @@ import ExtendedString from 'src/libs/string';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import Telemetry from 'src/libs/telemetry';
 import ShareMenu from 'src/components/ui/ShareMenu';
-import { openShareModal } from 'src/modals/ShareModal';
 import { toAbsoluteUrl, toUrl } from 'src/libs/pois';
 
 export default class FavoritePoi extends React.Component {
