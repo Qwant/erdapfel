@@ -8,6 +8,7 @@ import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import { DeviceContext } from 'src/libs/device';
+import { getInputValue } from 'src/libs/pois';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -70,12 +71,12 @@ class DirectionInput extends React.Component {
       }
 
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
-        this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
+        this.props.onChangePoint(await getInputValue(selectedPoi), selectedPoi);
       }
 
       this.setState({ readOnly: false });
     } else {
-      this.props.onChangePoint(selectedPoi.getInputValue(), selectedPoi);
+      this.props.onChangePoint(await getInputValue(selectedPoi), selectedPoi);
     }
   }
 
