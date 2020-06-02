@@ -11,11 +11,15 @@
 }
 
 .itemList--hover .itemList-item {
-  border-left: 4px solid $background;
+  position: relative;
 
-  &:hover {
-    background: $surface;
-    border-left: 4px solid #FF3B4A;
+  &:hover:before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      background: $surface;
+      background-color: #FF3B4A;
   }
 }
 
