@@ -1,14 +1,6 @@
 .flex {
   display: flex;
 
-  &--spaceBetween {
-    justify-content: space-between;
-  }
-
-  &--alignCenter {
-    align-items: center;
-  }
-
   &--inline {
     display: inline-flex;
   }
