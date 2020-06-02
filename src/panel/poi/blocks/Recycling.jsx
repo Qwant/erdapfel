@@ -20,10 +20,9 @@ const Container = ({ type, filling_level, updated_at }) =>
       {_(
         'Updated {datetime}',
         'recycling', {
-          datetime: Intl.DateTimeFormat(window.getLang(), {
+          datetime: Intl.DateTimeFormat(window.getLang().locale.replace('_', '-'), {
             year: 'numeric', month: 'numeric', day: 'numeric',
-            hour: 'numeric', minute: 'numeric', second: 'numeric',
-            hour12: false,
+            hour: 'numeric', minute: 'numeric',
           }).format(new Date(updated_at)),
         }
       )}
