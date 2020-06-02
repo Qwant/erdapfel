@@ -1,5 +1,6 @@
 /* globals puppeteerArguments */
 import puppeteer from 'puppeteer';
+import LatLngPoi from 'src/adapters/poi/latlon_poi';
 
 export const getText = async function(page, selector) {
   return await page.evaluate(selector => {
@@ -39,6 +40,15 @@ export const clearStore = async function(page) {
   );
 };
 
-import LatLngPoi from 'src/adapters/poi/latlon_poi';
+export async function simulateClickOnMap(page, latLng) {
+  return await page.evaluate(poi => {
+    // this is a copy of 'fire' from customEvents.js
+    function fireEvent(name, ...params) {
+      const event = document.createEvent('CustomEvent');
+      event.initCustomEvent(name, false, false, { params });
+      document.dispatchEvent(event);
+    }
 
-export { LatLngPoi };
+    return fireEvent('set_direction_point', poi);
+  }, new LatLngPoi(latLng));
+}

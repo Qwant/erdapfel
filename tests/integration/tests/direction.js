@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, LatLngPoi } from '../tools';
+import { initBrowser, simulateClickOnMap } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
@@ -50,10 +50,7 @@ test('Start/end inputs are correctly filled', async () => {
   expect(directionStartInput).toEqual(mockAutocomplete.features[0].properties.geocoding.name);
 
   responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp('latlon:43.70324:7.25997'));
-  // simulate a click on the map
-  await page.evaluate(poi => {
-    window._fire('set_direction_point', poi);
-  }, new LatLngPoi({ lat: 43.70324, lng: 7.25997 }));
+  await simulateClickOnMap(page, { lat: 43.70324, lng: 7.25997 });
   const directionEndInput = await page.evaluate(() =>
     document.getElementById('itinerary_input_destination').value
   );

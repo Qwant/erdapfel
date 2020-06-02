@@ -23,6 +23,3 @@ function eventHandler(cb) {
 }
 
 export { fire, listen, unListen };
-
-// @HACK: expose the function globally for easy re-use in integration tests
-window._fire = fire;
