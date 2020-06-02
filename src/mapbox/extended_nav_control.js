@@ -10,10 +10,16 @@ export default class ExtendedControl {
     this.bottomButtonGroup = document.createElement('div');
 
     const buttonClass = 'icon-plus map_control_group__button__zoom';
-    this._zoomInButton = this._createButton(buttonClass, 'Zoom In', () => this._map.zoomIn());
+
+    this._zoomInButton = this._createButton(
+      buttonClass,
+      'Zoom +',
+      () => this._map.zoomIn()
+    );
+
     this._zoomOutButton = this._createButton(
       'icon-minus map_control_group__button__zoom',
-      'Zoom Out',
+      'Zoom -',
       () => this._map.zoomOut(),
     );
 
@@ -96,6 +102,7 @@ export default class ExtendedControl {
     const a = document.createElement('button');
     a.setAttribute('class', className);
     a.setAttribute('aria-label', ariaLabel);
+    a.setAttribute('title', ariaLabel);
     a.addEventListener('click', fn);
     return a;
   }

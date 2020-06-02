@@ -26,6 +26,7 @@ class ServicePanelDesktop extends React.Component {
             className="service_panel__item__direction"
             icon="corner-up-right"
             label={_('Directions', 'service panel')}
+            title={_('Directions', 'service panel')}
           />
         }
         <Action
@@ -34,6 +35,7 @@ class ServicePanelDesktop extends React.Component {
           className="service_panel__item__fav"
           icon="icon_star"
           label={_('Favorites', 'service panel')}
+          title={_('My favorites', 'service panel')}
         />
       </div>
     </Panel>;
