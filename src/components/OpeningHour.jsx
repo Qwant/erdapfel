@@ -37,9 +37,9 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false }) => {
 
   return <div className="openingHour u-text--label">
     {label}
-    {((showNextOpenOnly && status === 'closed') ||
-      (!showNextOpenOnly && nextTransition)) &&
-      ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
+    {(nextTransition &&
+     (!showNextOpenOnly || showNextOpenOnly && status === 'closed')) &&
+    ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
     }
     {' '}
     <div className="openingHour-circle" style={{ background: color }} />
