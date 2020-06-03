@@ -37,7 +37,7 @@ const PoiItem = ({ poi }) => {
       : null;
 
   return <div className="poiItem">
-    <div>
+    <div className="poiItem-left">
       {/* @TODO: use a better-named fonction that returns the best 'name' */}
       <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
       <Subclass />
