@@ -12,7 +12,7 @@ import PoiBlockContainer from './PoiBlockContainer';
 import Panel from 'src/components/ui/Panel';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
-import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
+import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
