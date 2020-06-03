@@ -51,7 +51,7 @@ export default class RouteSummary extends React.Component {
       </div>
       <div className="itinerary_panel__item__share"
         title={_('Share', 'direction')}>
-        <ShareMenu url={window.location.toString()}/>
+        <ShareMenu url={window.location.toString()} scrollableParent=".itinerary_result"/>
       </div>
       <div className="itinerary_leg_mobileActions">
         <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">

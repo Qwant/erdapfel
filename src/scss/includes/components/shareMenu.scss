@@ -23,6 +23,7 @@
     border-radius: 3px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
     width: 150px;
+    padding-bottom: 4px;
   }
 
   &-menuItem {
@@ -31,7 +32,8 @@
     cursor: pointer;
     
     &:hover {
-      color: $secondary_text;
+      color: $grey-black;
+      background: $action-lighter;
     }
    
     i {

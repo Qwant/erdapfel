@@ -142,6 +142,11 @@ $HEADER_SIZE: 40px;
 
   .poi_panel__action__share {
     padding: 0;
+    width: 36px;
+
+    .button-content {
+      padding: 0 2px;
+    }
   }
 }
 

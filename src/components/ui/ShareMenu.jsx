@@ -14,7 +14,6 @@ const twitterShareUrl = location => {
 const menu_height = 3 * 32;
 
 export default class ShareMenu extends React.Component {
-  _isMounted = false;
 
   static propTypes = {
     url: PropTypes.string.isRequired,
@@ -27,12 +26,8 @@ export default class ShareMenu extends React.Component {
     left: 0,
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-  }
-
   componentWillUnmount() {
-    this._isMounted = false;
+    this.close();
   }
 
   open = e => {
@@ -53,7 +48,7 @@ export default class ShareMenu extends React.Component {
   close = () => {
     document.removeEventListener('click', this.close);
     document.querySelector(this.props.scrollableParent).removeEventListener('scroll', this.close);
-    if (this._isMounted) {
+    if (this.state.open) {
       this.setState({ open: false });
     }
   }
