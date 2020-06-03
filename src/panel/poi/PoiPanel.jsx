@@ -166,12 +166,6 @@ export default class PoiPanel extends React.Component {
     fire('fit_map', poi);
   }
 
-  openShare = () => {
-    const poi = this.getBestPoi();
-    Telemetry.add('share', 'poi', poi.meta && poi.meta.source);
-    openShareModal(toAbsoluteUrl(poi));
-  }
-
   openDirection = () => {
     window.app.navigateTo('/routes/', { poi: this.getBestPoi() });
   }

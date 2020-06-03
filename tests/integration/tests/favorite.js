@@ -53,9 +53,8 @@ test('remove favorite using favorite panel', async () => {
   expect(items).not.toBeNull();
 
   /* remove it */
-  await page.waitForSelector('.contextMenu-button');
-  await page.click('.contextMenu-button');
-  await page.click('.contextMenu-menuItem:nth-child(2)');
+  await page.waitForSelector('.favorite_panel__item__delete');
+  await page.click('.favorite_panel__item__delete');
 
   items = await page.waitForSelector('.favorite_panel__container__empty');
   expect(items).not.toBeNull();

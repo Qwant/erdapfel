@@ -1,14 +1,15 @@
+/* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from '../../libs/telemetry';
 
 const facebookShareUrl = location => {
   return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location)}`;
-}
+};
 
 const twitterShareUrl = location => {
   return `https://twitter.com/intent/tweet?url=${ encodeURIComponent(location) }`;
-}
+};
 
 const menu_height = 3 * 32;
 

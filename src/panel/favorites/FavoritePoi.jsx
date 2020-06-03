@@ -23,11 +23,6 @@ export default class FavoritePoi extends React.Component {
     });
   }
 
-  onShare = () => {
-    Telemetry.add(Telemetry.FAVORITE_SHARE);
-    //openShareModal(toAbsoluteUrl(this.props.poi));
-  };
-
   onDelete = () => {
     this.props.removeFavorite(this.props.poi);
   };
