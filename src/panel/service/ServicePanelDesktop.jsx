@@ -1,24 +1,26 @@
 /* global _ */
-import React from 'react';
+import React, { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
 import Action from 'src/components/ui/MainActionButton';
 import nconf from '@qwant/nconf-getter';
 
+const directionConf = nconf.get().direction;
+
 class ServicePanelDesktop extends React.Component {
   render() {
     return <Panel
       className="service_panel"
-      title={<div className="u-text--smallTitle u-center">
-        {_('Qwant Maps services', 'service panel')}
-      </div>}
       white
     >
-      <CategoryList className="service_panel__categories" />
-
-      <hr/>
-
       <div className="service_panel__actions">
+
+        <h3 className="u-text--smallTitle u-center">{_('Qwant Maps Services', 'service panel')}</h3>
+
+        <CategoryList className="service_panel__categories" />
+
+        <hr/>
+
         {
           nconf.get().direction.enabled && <Action
             onClick={() => { window.app.navigateTo('/routes/'); }}
@@ -38,6 +40,7 @@ class ServicePanelDesktop extends React.Component {
           title={_('My favorites', 'service panel')}
         />
       </div>
+
     </Panel>;
   }
 }
