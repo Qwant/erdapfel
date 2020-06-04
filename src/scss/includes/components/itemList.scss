@@ -13,13 +13,16 @@
 .itemList--hover .itemList-item {
   position: relative;
 
-  &:hover:before {
+  &:hover {
+    background: $surface;
+
+    &:before {
       content: '';
       position: absolute;
       width: 4px;
       height: 100%;
-      background: $surface;
       background-color: #FF3B4A;
+    }
   }
 }
 
