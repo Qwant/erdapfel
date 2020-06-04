@@ -10,7 +10,6 @@ export default class ActionButtons extends React.Component {
     poi: PropTypes.object.isRequired,
     isDirectionActive: PropTypes.bool,
     openDirection: PropTypes.func,
-    openShare: PropTypes.func,
     onClickPhoneNumber: PropTypes.func,
     isPoiInFavorite: PropTypes.bool,
     toggleStorePoi: PropTypes.func.isRequired,

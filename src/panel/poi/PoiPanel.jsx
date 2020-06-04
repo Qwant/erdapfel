@@ -294,7 +294,6 @@ export default class PoiPanel extends React.Component {
           poi={poi}
           isDirectionActive={this.isDirectionActive}
           openDirection={this.openDirection}
-          openShare={this.openShare}
           onClickPhoneNumber={this.onClickPhoneNumber}
           isPoiInFavorite={this.state.isPoiInFavorite}
           toggleStorePoi={this.toggleStorePoi}
