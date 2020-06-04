@@ -1,0 +1,16 @@
+.meter {
+  width: 100%;
+  height: 4px;
+  margin: 7px 0;
+  background-color: $surface;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+
+  .meter-valueBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+  }
+}
