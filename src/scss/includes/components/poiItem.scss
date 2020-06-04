@@ -15,18 +15,18 @@
 
   &-left {
     min-width: 0;
+  }
 
-    &-address {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      margin-bottom: 4px;
-    }
+  &-address {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
 
-    &-reviews {
-      display: inline-flex;
-      margin-bottom: 4px;
-    }
+  &-reviews {
+    display: inline-flex;
+    margin-bottom: 4px;
   }
 
   &-right {
