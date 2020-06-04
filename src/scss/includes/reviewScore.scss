@@ -3,6 +3,11 @@
   display: inline-flex;
   align-items: center;
 
+  &:hover {
+    // Only review count should be underline
+    text-decoration: none;
+  }
+
   &-stars {
     display: inline-flex;
 
@@ -17,5 +22,9 @@
 
   &-count {
     margin-left: 3px;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
