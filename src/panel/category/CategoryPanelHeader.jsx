@@ -17,6 +17,7 @@ const CategoryPanelHeader = ({ loading, dataSource }) => {
         {_('Pages Jaunes', 'categories')}
       </div>
       <div className="category__panel__pj_partnership">
+        <i className="icon-icon_info" />
         {_('Partnership', 'categories')}
       </div>
     </div>;
