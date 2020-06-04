@@ -132,21 +132,12 @@ $HEADER_SIZE: 40px;
   display: flex;
   margin-bottom: 12px;
 
-  & > :not(:last-child) {
-    margin-right: 8px;
+  .button + .button {
+    margin-left: 8px;
   }
 
   .poi_panel__action__direction {
     flex-grow: 1;
-  }
-
-  .poi_panel__action__share {
-    padding: 0;
-    width: 36px;
-
-    .button-content {
-      padding: 0 2px;
-    }
   }
 }
 

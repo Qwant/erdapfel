@@ -1,5 +1,5 @@
 /* global _ */
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from '../../libs/telemetry';
 
@@ -14,10 +14,10 @@ const twitterShareUrl = location => {
 const menu_height = 3 * 32;
 
 export default class ShareMenu extends React.Component {
-
   static propTypes = {
     url: PropTypes.string.isRequired,
     scrollableParent: PropTypes.string.isRequired,
+    children: PropTypes.func.isRequired,
   }
 
   state = {
@@ -69,11 +69,10 @@ export default class ShareMenu extends React.Component {
   }
 
   render() {
-    const { url } = this.props;
-    return <div className="shareMenu">
-      <div className="shareMenu-button" onClick={this.open} >
-        <i className="icon-share-2" />
-      </div>
+    const { url, children } = this.props;
+
+    return <Fragment>
+      {children(this.open)}
       {this.state.open && <div className="shareMenu-menu"
         style={{ left: this.state.left + 'px', top: this.state.top + 'px' }}>
 
@@ -103,8 +102,7 @@ export default class ShareMenu extends React.Component {
           <i className="icon-twitter" />
           {_('Twitter', 'share')}
         </div>
-
       </div>}
-    </div>;
+    </Fragment>;
   }
 }

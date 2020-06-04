@@ -1,17 +1,4 @@
 .shareMenu {
-  position: relative;
-  overflow: visible;
-  text-align: left;
-
-  &-button {
-    height: 30px;
-    width: 30px;
-    display: block;
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
-  }
-
   &-menu {
     position: fixed;
     z-index: 4;

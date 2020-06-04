@@ -37,10 +37,16 @@ const ActionButtons = ({
       title={_('Favorites', 'poi panel')}
     />
 
-    <Button className="poi_panel__action__button poi_panel__action__share"
-      title={_('Share', 'poi panel')}>
-      <ShareMenu url={window.location.toString()} scrollableParent=".panel-content"/>
-    </Button>
+    <ShareMenu
+      url={window.location.toString()}
+      scrollableParent=".panel-content"
+    >
+      {openMenu => <Button className="poi_panel__action__button poi_panel__action__share"
+        title={_('Share', 'poi panel')}
+        icon="share-2"
+        onClick={openMenu}
+      />}
+    </ShareMenu>
   </div>;
 };
 

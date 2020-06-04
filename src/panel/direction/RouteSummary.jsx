@@ -49,15 +49,22 @@ export default class RouteSummary extends React.Component {
           {formatDistance(route.distance)}
         </div>
       </div>
-      <div className="itinerary_panel__item__share"
-        title={_('Share', 'direction')}>
-        <ShareMenu url={window.location.toString()} scrollableParent=".itinerary_result"/>
-      </div>
+      <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
+        {openMenu => <div
+          className="itinerary_panel__item__share"
+          title={_('Share', 'direction')}
+          onClick={openMenu}
+        >
+          <i className="icon-share-2" />
+        </div>}
+      </ShareMenu>
       <div className="itinerary_leg_mobileActions">
         <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">
           {_('Details', 'direction')}
         </Button>
-        <ShareMenu url={window.location.toString()} scrollableParent=".itinerary_result"/>
+        <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
+          {openMenu => <Button title={_('Share', 'direction')} onClick={openMenu} icon="share-2" />}
+        </ShareMenu>
       </div>
     </div>;
   }
