@@ -31,6 +31,14 @@ export default class ShareMenu extends React.Component {
   }
 
   open = e => {
+    if (navigator.share) {
+      // Native share modal (on mobile and Safari Mac)
+      navigator.share({
+        title: document.title,
+        url: this.props.url,
+      });
+      return;
+    }
     const targetBoundingRect = e.target.getBoundingClientRect();
     const top = targetBoundingRect.top;
     const left = targetBoundingRect.left;
