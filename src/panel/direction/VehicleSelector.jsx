@@ -4,10 +4,10 @@ import classnames from 'classnames';
 import { getVehicleIcon } from 'src/libs/route_utils';
 
 const getLocalizedTitle = vehicle => {
-  if (vehicle === 'driving') { return _('By car', 'direction'); }
-  if (vehicle === 'publicTransport') {return _('By public transport', 'direction'); }
-  if (vehicle === 'walking') { return _('By foot', 'direction'); }
-  if (vehicle === 'cycling') { return _('By bike', 'direction'); }
+  if (vehicle === 'driving') { return _('by car', 'direction'); }
+  if (vehicle === 'publicTransport') {return _('transit', 'direction'); }
+  if (vehicle === 'walking') { return _('on foot', 'direction'); }
+  if (vehicle === 'cycling') { return _('by bike', 'direction'); }
   return _(vehicle); // this can not be parsed by our i18n scripts
 };
 
