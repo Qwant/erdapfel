@@ -104,8 +104,6 @@ export default class Panel extends React.Component {
   }
 
   holdResizer = event => {
-    event.preventDefault();
-
     this.startHeight = this.panelDOMElement.offsetHeight;
     this.startClientY = getEventClientY(event.nativeEvent);
     this.interactionStarted = event.timeStamp;
@@ -138,8 +136,6 @@ export default class Panel extends React.Component {
    * @param {MouseEvent|TouchEvent} event
    */
   stopResize = event => {
-    event.preventDefault();
-
     document.removeEventListener('mousemove', this.moveCallback);
     document.removeEventListener('touchmove', this.moveCallback);
 
@@ -188,7 +184,10 @@ export default class Panel extends React.Component {
       >
         {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
       </div>
-      <div className="panel-content">
+      <div className="panel-content"
+        style={(size === 'default' ? { overflow: 'hidden' } : {})}
+        {... (size === 'default' ? resizeHandlers : {})}
+      >
         {children}
       </div>
     </div>;
