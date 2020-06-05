@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, simulateClickOnMap, getInputValue } from '../tools';
+import { initBrowser, simulateClickOnMap, getInputValue, getMapView } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
@@ -170,10 +170,7 @@ test('select itinerary step', async () => {
   await page.click('.itinerary_leg_via_details');
   await page.click('.itinerary_roadmap_item:nth-of-type(2)');
 
-  const center = await page.evaluate(() => {
-    return window.MAP_MOCK.getCenter();
-  });
-
+  const { center } = await getMapView(page);
   expect(center).toEqual({ 'lat': 48.823566, 'lng': 2.290454 });
 });
 

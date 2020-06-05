@@ -1,4 +1,4 @@
-import { initBrowser, clearStore } from '../tools';
+import { initBrowser, clearStore, getMapView } from '../tools';
 import { toggleFavoritePanel, storePoi } from '../favorites_tools';
 
 let browser;
@@ -71,7 +71,7 @@ test('center map after a favorite poi click', async () => {
   await toggleFavoritePanel(page);
   await page.waitForSelector('.favorite_panel__item__title');
   await page.click('.favorite_panel__item__title');
-  const center = await page.evaluate(() => window.MAP_MOCK.getCenter());
+  const { center } = await getMapView(page);
   expect(center).toEqual(favoritePoiCoordinates);
 });
 

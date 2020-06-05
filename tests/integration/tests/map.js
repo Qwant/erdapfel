@@ -1,4 +1,4 @@
-import { initBrowser, store, clearStore } from '../tools';
+import { initBrowser, store, clearStore, getMapView } from '../tools';
 let browser;
 let page;
 
@@ -17,10 +17,8 @@ test('priority order with url & local-storage', async () => {
   await page.goto(`${APP_URL}/#map=2.00/${center.lat}/${center.lng}`);
   await page.reload(); // force reload
 
-  const pageCenter = await page.evaluate(() => {
-    return window.MAP_MOCK.center;
-  });
-  expect(pageCenter).toEqual(center);
+  const { center: mapCenter } = await getMapView(page);
+  expect(mapCenter).toEqual(center);
 });
 
 test('test local storage map center', async () => {
@@ -32,10 +30,8 @@ test('test local storage map center', async () => {
   await page.goto(APP_URL);
   await page.reload(); // force reload
 
-  const pageCenter = await page.evaluate(() => {
-    return window.MAP_MOCK.center;
-  });
-  expect(pageCenter).toEqual(center);
+  const { center: mapCenter } = await getMapView(page);
+  expect(mapCenter).toEqual(center);
 });
 
 afterEach(async () => {
