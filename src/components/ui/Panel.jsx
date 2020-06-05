@@ -59,6 +59,7 @@ export default class Panel extends React.Component {
   constructor(props) {
     super(props);
     this.moveCallback = e => this.move(e);
+    this.panelContentRef = React.createRef();
     this.state = {
       holding: false,
       size: props.initialSize,
@@ -113,7 +114,6 @@ export default class Panel extends React.Component {
 
     this.setState(previousState => ({
       currentHeight: this.startHeight,
-      size: 'default',
       previousSize: previousState.size,
       holding: true,
     }));
@@ -124,20 +124,41 @@ export default class Panel extends React.Component {
   * @param {MouseEvent|TouchEvent} e event
   */
   move = event => {
-    event.preventDefault();
-
     const clientY = getEventClientY(event);
     const currentHeight = this.startHeight + (this.startClientY - clientY);
-    this.setState({ currentHeight });
+
+    if (this.state.size === 'maximized' && this.panelContentRef.current.scrollTop > 0) {
+      /* User is scrolling inside the panel content,
+         update startClientY to ignore current swipe gesture */
+      this.startClientY = clientY;
+      return;
+    }
+
+    if (this.state.size === 'maximized' &&
+        this.panelContentRef.current.scrollTop === 0 &&
+        currentHeight >= this.state.currentHeight) {
+      // User is starting to scroll content area from bottom to top, do nothing
+      return;
+    }
+
+    this.setState({
+      currentHeight,
+      size: 'default',
+    });
   }
 
   /**
    * Triggered on mouse up of the panel resizer
    * @param {MouseEvent|TouchEvent} event
    */
-  stopResize = event => {
+  stopResize = _ => {
     document.removeEventListener('mousemove', this.moveCallback);
     document.removeEventListener('touchmove', this.moveCallback);
+
+    if (this.state.size === 'maximized' && this.panelContentRef.current.scrollTop >= 0) {
+      // User is scrolling inside the panel content
+      return;
+    }
 
     const newSize = getTargetSize(
       this.state.previousSize,
@@ -157,7 +178,6 @@ export default class Panel extends React.Component {
   render() {
     const { children, title, minimizedTitle, resizable, close, className, white } = this.props;
     const { size, currentHeight, holding } = this.state;
-
     const resizeHandlers = resizable ? {
       onMouseDown: this.holdResizer,
       onTouchStart: this.holdResizer,
@@ -173,20 +193,20 @@ export default class Panel extends React.Component {
       style={{ height: currentHeight && `${currentHeight}px` }}
       ref={panel => this.panelDOMElement = panel}
       onTransitionEnd={() => this.updateMobileMapUI()}
+      {...resizeHandlers}
     >
       {close && <div className="panel-close" title={_('Close')} onClick={close} >
         <i className="icon-x" />
       </div>}
       <div
         className={classnames('panel-header', { 'panel-resizeHandle': resizable })}
-        {...resizeHandlers}
         ref={element => this.handleElement = element}
       >
         {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
       </div>
       <div className="panel-content"
-        style={(size === 'default' ? { overflow: 'hidden' } : {})}
-        {... (size === 'default' ? resizeHandlers : {})}
+        ref={this.panelContentRef}
+        style={({ overflow: size === 'maximized' ? 'auto' : 'hidden' })}
       >
         {children}
       </div>
