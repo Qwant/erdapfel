@@ -16,7 +16,7 @@ const menu_height = 3 * 32;
 export default class ShareMenu extends React.Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
-    scrollableParent: PropTypes.string.isRequired,
+    scrollableParent: PropTypes.string,
     children: PropTypes.func.isRequired,
   }
 
@@ -49,13 +49,15 @@ export default class ShareMenu extends React.Component {
       left,
     });
     document.addEventListener('click', this.close);
-    document.querySelector(this.props.scrollableParent).addEventListener('scroll', this.close);
+    (document.querySelector(this.props.scrollableParent) || document.body)
+      .addEventListener('scroll', this.close);
     Telemetry.add(Telemetry.ITINERARY_SHARE);
   }
 
   close = () => {
     document.removeEventListener('click', this.close);
-    document.querySelector(this.props.scrollableParent).removeEventListener('scroll', this.close);
+    (document.querySelector(this.props.scrollableParent) || document.body)
+      .removeEventListener('scroll', this.close);
     if (this.state.open) {
       this.setState({ open: false });
     }
