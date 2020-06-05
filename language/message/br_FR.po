@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 10:52+0000\n"
+"POT-Creation-Date: 2020-06-05 15:25+0200\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -27,765 +27,194 @@ msgstr ""
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "Qwant Maps"
-msgstr "Qwant Maps"
-
+#: bin/middlewares/og_meta.js:50 views/index.ejs:8
 msgid "The map that respects your privacy"
 msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
-msgid "Search on Qwant Maps"
-msgstr "Klask war Qwant Maps"
+#: bin/middlewares/opensearch/index.js:10 views/index.ejs:5
+msgid "Qwant Maps"
+msgstr "Qwant Maps"
 
-msgid "JavaScript is required to view this application."
-msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
-
-msgid "hotel"
-msgstr "leti"
-
-msgid "restaurant"
-msgstr "predti"
-
-msgid "leisure"
-msgstr "dudioù"
-
-msgid "bar"
-msgstr "tavarn"
-
-msgid "supermarket"
-msgstr "gourmarc'had"
-
-msgid "bank"
-msgstr "ti-bank"
-
-msgid "pharmacy"
-msgstr "apotikerezh"
-
-msgid "education"
-msgstr "deskadurezh"
-
-msgid "museum"
-msgstr "mirdi"
-
-msgid "service"
-msgstr "servij"
-
-msgid "sport"
-msgstr "sport"
-
-msgid "health"
-msgstr "yec'hed"
-
-msgid "Qwant is also"
-msgstr "Qwant a zo ivez"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Sonerezh"
-
-msgid "Qwant Boards"
-msgstr "Taolennoù Qwant"
-
-msgid "Qwant on Android"
-msgstr "Qwant war Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant war iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Junior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Skañv"
-
-msgid "About Qwant"
-msgstr "Diwar-benn Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Kazetennerezh"
-
-msgid "Jobs"
-msgstr "Implijoù"
-
-msgid "F.A.Q."
-msgstr "F.A.G"
-
-msgid "Maps legal notices"
-msgstr "Notisoù lezennel Maps"
-
-msgid "Terms of Service"
-msgstr "Divizoù Implijout"
-
-msgid "About us"
-msgstr "Diwar hon fenn"
-
-msgid "Privacy"
-msgstr "Prevezded"
-
-msgid "Results ranking"
-msgstr "Rummadur an disoc'hoù"
-
-msgid "Contact us"
-msgstr "Dont e darempred ganeomp"
-
-msgid "Share Qwant"
-msgstr "Rannañ Qwant"
-
-msgid "on Twitter"
-msgstr "war Twitter"
-
-msgid "on Facebook"
-msgstr "war Facebook"
-
-msgid "concert"
-msgstr "sonadeg"
-
-msgid "show"
-msgstr "arvest"
-
-msgid "exhibition"
-msgstr "diskouezadeg"
-
-msgid "event"
-msgstr "darvoud"
-
-msgid "animation"
-msgstr "luskadurioù"
-
+#: bin/middlewares/opensearch/index.js:11
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
 
-msgid "write"
-msgstr "skrivañ"
+#: config/categories.yml:2 src/mapbox/poi_subclass.js:110
+#: src/mapbox/poi_subclass.js:121
+msgid "hotel"
+msgstr "leti"
 
+#: config/categories.yml:8 src/mapbox/poi_subclass.js:162
+msgid "restaurant"
+msgstr "predti"
+
+#: config/categories.yml:14
+msgid "leisure"
+msgstr "dudioù"
+
+#: config/categories.yml:20 src/mapbox/poi_subclass.js:17
+msgid "bar"
+msgstr "tavarn"
+
+#: config/categories.yml:26 src/mapbox/poi_subclass.js:182
+msgid "supermarket"
+msgstr "gourmarc'had"
+
+#: config/categories.yml:32 src/mapbox/poi_subclass.js:16
+msgid "bank"
+msgstr "ti-bank"
+
+#: config/categories.yml:38 src/mapbox/poi_subclass.js:150
+msgid "pharmacy"
+msgstr "apotikerezh"
+
+#: config/categories.yml:44
+msgid "education"
+msgstr "deskadurezh"
+
+#: config/categories.yml:50 src/mapbox/poi_subclass.js:136
+msgid "museum"
+msgstr "mirdi"
+
+#: config/categories.yml:56
+msgid "service"
+msgstr "servij"
+
+#: config/categories.yml:62
+msgid "sport"
+msgstr "sport"
+
+#: config/categories.yml:68
+msgid "health"
+msgstr "yec'hed"
+
+#: config/constants.yml:46
+msgid "Qwant is also"
+msgstr "Qwant a zo ivez"
+
+#: config/constants.yml:49
+msgid "Qwant.com"
+msgstr "Qwant.com"
+
+#: config/constants.yml:51
+msgid "Qwant Music"
+msgstr "Qwant Sonerezh"
+
+#: config/constants.yml:53
+msgid "Qwant Boards"
+msgstr "Taolennoù Qwant"
+
+#: config/constants.yml:55
+msgid "Qwant on Android"
+msgstr "Qwant war Android"
+
+#: config/constants.yml:57
+msgid "Qwant on iOS"
+msgstr "Qwant war iOS"
+
+#: config/constants.yml:59
+msgid "Qwant Junior"
+msgstr "Qwant Junior"
+
+#: config/constants.yml:61
+msgid "Qwant Lite"
+msgstr "Qwant Skañv"
+
+#: config/constants.yml:63
+msgid "About Qwant"
+msgstr "Diwar-benn Qwant"
+
+#: config/constants.yml:66
+msgid "Blog"
+msgstr "Blog"
+
+#: config/constants.yml:68
+msgid "Press"
+msgstr "Kazetennerezh"
+
+#: config/constants.yml:70
+msgid "Jobs"
+msgstr "Implijoù"
+
+#: config/constants.yml:72
+msgid "F.A.Q."
+msgstr "F.A.G"
+
+#: config/constants.yml:74
+msgid "Maps legal notices"
+msgstr "Notisoù lezennel Maps"
+
+#: config/constants.yml:76
+msgid "Terms of Service"
+msgstr "Divizoù Implijout"
+
+#: config/constants.yml:78
+msgid "About us"
+msgstr "Diwar hon fenn"
+
+#: config/constants.yml:80
+msgid "Privacy"
+msgstr "Prevezded"
+
+#: config/constants.yml:82
+msgid "Results ranking"
+msgstr "Rummadur an disoc'hoù"
+
+#: config/constants.yml:84
+msgid "Contact us"
+msgstr "Dont e darempred ganeomp"
+
+#: config/constants.yml:87
+msgid "Share Qwant"
+msgstr "Rannañ Qwant"
+
+#: config/constants.yml:91
+msgid "on Twitter"
+msgstr "war Twitter"
+
+#: config/constants.yml:93
+msgid "on Facebook"
+msgstr "war Facebook"
+
+#: src/adapters/category.js:21
+msgid "category"
+msgstr "rummad"
+
+#: src/adapters/poi/specials/navigator_geolocalisation_poi.js:15
+#: src/components/ui/SuggestItem.jsx:17
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
+
+#: src/components/OpeningHour.jsx:7
 msgid "Open"
 msgstr "Digor"
 
+#: src/components/OpeningHour.jsx:14 src/panel/poi/blocks/TimeTable.jsx:12
 msgid "Closed"
 msgstr "Serret"
 
+#: src/components/OpeningHour.jsx:32
 msgid "Open 24/7"
 msgstr "Digor 24/7"
 
+#: src/components/OpeningHour.jsx:42
+#, python-brace-format
 msgid "until {nextTransitionTime}"
 msgstr "betek {nextTransitionTime}"
 
-msgid "accessories shop"
-msgstr "stal rikoù"
-
-msgid "airport"
-msgstr "aerborzh"
-
-msgid "liquor store"
-msgstr "stal likorioù"
-
-msgid "alpine hut"
-msgstr "lojell alpinek"
-
-msgid "antiques shop"
-msgstr "stal an traoù kozh"
-
-msgid "aquarium"
-msgstr "akwariom"
-
-msgid "archery"
-msgstr "gwaregva"
-
-msgid "art shop"
-msgstr "stal oberennoù arzel"
-
-msgid "arts centre"
-msgstr "kreizenn an arzoù"
-
-msgid "athletics"
-msgstr "atleterezhioù"
-
-msgid "attraction"
-msgstr "diduañs"
-
-msgid "bag shop"
-msgstr "stal seier"
-
-msgid "bakery"
-msgstr "bouloñjerezh"
-
-msgid "basin"
-msgstr "poull"
-
-msgid "basketball"
-msgstr "basketball"
-
-msgid "bbq"
-msgstr "bbq"
-
-msgid "beauty salon"
-msgstr "saloñs braventez"
-
-msgid "bed shop"
-msgstr "stal gweleoù"
-
-msgid "bed and breakfast"
-msgstr "kambr ostizien"
-
-msgid "beverages shop"
-msgstr "stal evajoù"
-
-msgid "bicycle shop"
-msgstr "stal beloioù"
-
-msgid "biergarten"
-msgstr "stal bier"
-
-msgid "billiards"
-msgstr "bilhiardoù"
-
-msgid "bmx"
-msgstr "bmx"
-
-msgid "books shop"
-msgstr "stal levrioù"
-
-msgid "border control"
-msgstr "kontroll an harzoù"
-
-msgid "boules"
-msgstr "bouloù"
-
-msgid "boutique"
-msgstr "boutik"
-
-msgid "bowls"
-msgstr "bouloù"
-
-msgid "brownfield"
-msgstr " fraost industriel"
-
-msgid "bus station"
-msgstr "harz bus"
-
-msgid "butcher"
-msgstr "boser"
-
-msgid "cafe"
-msgstr "kafedi"
-
-msgid "camp site"
-msgstr "tachenn gampiñ"
-
-msgid "canoe"
-msgstr "kanoe"
-
-msgid "car shop"
-msgstr "stal kirri"
-
-msgid "car repair"
-msgstr "stal kempenn kirri"
-
-msgid "caravan site"
-msgstr "tachenn garavan"
-
-msgid "carpet shop"
-msgstr "stal tapisoù"
-
-msgid "castle"
-msgstr "kastell"
-
-msgid "cemetery"
-msgstr "bered"
-
-msgid "chalet"
-msgstr "ti-koad"
-
-msgid "charity store"
-msgstr "stal an aluzon"
-
-msgid "chemist"
-msgstr "lezapotikerezh"
-
-msgid "chess"
-msgstr "c'hoari echedoù"
-
-msgid "chocolate shop"
-msgstr "stal chokolad"
-
-msgid "cinema"
-msgstr "sinema"
-
-msgid "climbing"
-msgstr "krimpadenn"
-
-msgid "climbing adventure"
-msgstr "avantur krimpadenn"
-
-msgid "clinic"
-msgstr "klinik"
-
-msgid "clothes shop"
-msgstr "stal dilhad"
-
-msgid "coffee shop"
-msgstr "stal kafe"
-
-msgid "college"
-msgstr "skolaj"
-
-msgid "community centre"
-msgstr "kreizenn gumuniezh"
-
-msgid "computer shop"
-msgstr "stal urzhiataerezh"
-
-msgid "confectionery shop"
-msgstr "stal koñfizerezh"
-
-msgid "convenience store"
-msgstr "ispisiri"
-
-msgid "copyshop"
-msgstr "stal liestennañ"
-
-msgid "cosmetics shop"
-msgstr "stal kosmetekerezh"
-
-msgid "courthouse"
-msgstr "lez-varn"
-
-msgid "cricket"
-msgstr "kriket"
-
-msgid "cycling"
-msgstr "kezeg-houarn"
-
-msgid "deli"
-msgstr "deli"
-
-msgid "dentist"
-msgstr "dentour"
-
-msgid "department store"
-msgstr "stal bras"
-
-msgid "dock"
-msgstr "kae"
-
-msgid "doctors office"
-msgstr "stal an doktor"
-
-msgid "dog park"
-msgstr "park chas"
-
-msgid "dog racing"
-msgstr "redadegoù chas"
-
-msgid "doityourself store"
-msgstr "stal bitellat"
-
-msgid "dry cleaning"
-msgstr "naetaerezh"
-
-msgid "electronics shop"
-msgstr "stal traoù elektronik"
-
-msgid "embassy"
-msgstr "kannati"
-
-msgid "equestrian"
-msgstr "kreizenn varc'hegezh"
-
-msgid "erotic shop"
-msgstr "stal traoù erotek"
-
-msgid "escape game"
-msgstr "c'hoari achapiñ"
-
-msgid "fabric"
-msgstr "labouradeg"
-
-msgid "farm shop"
-msgstr ""
-
-msgid "fast food"
-msgstr "pretierezh prim"
-
-msgid "fire station"
-msgstr "ti ar bomperien"
-
-msgid "florist"
-msgstr "stal bleunioù"
-
-msgid "food court"
-msgstr "takad debriñ"
-
-msgid "free flying"
-msgstr "free flying"
-
-msgid "fuel station"
-msgstr "stal dour-tan"
-
-msgid "furniture shop"
-msgstr "stal arrebeuri"
-
-msgid "gallery"
-msgstr "diskouezva"
-
-msgid "garden"
-msgstr "liorzh"
-
-msgid "garden centre"
-msgstr "kreizenn liorzhaouiñ"
-
-msgid "general store"
-msgstr "magazenn hollek"
-
-msgid "gift shop"
-msgstr "stal profoù"
-
-msgid "golf"
-msgstr "golf"
-
-msgid "golf course"
-msgstr "tachenn golf"
-
-msgid "grave yard"
-msgstr "bered"
-
-msgid "greengrocer"
-msgstr "stal legumaj"
-
-msgid "guest house"
-msgstr "ti ostizien"
-
-msgid "gymnastics"
-msgstr "ti-jiminas"
-
-msgid "hackerspace"
-msgstr "hackerspace"
-
-msgid "hairdresser"
-msgstr "ficher-blev"
-
-msgid "halt"
-msgstr "harz"
-
-msgid "hardware shop"
-msgstr "kinkailherezh"
-
-msgid "hearing aids shop"
-msgstr "stal benvegoù selaou"
-
-msgid "hifi shop"
-msgstr "stal hifi"
-
-msgid "horse racing"
-msgstr "redadegoù kezeg"
-
-msgid "hospital"
-msgstr "ospital"
-
-msgid "hostel"
-msgstr "ti ar re yaouank"
-
-msgid "ice cream"
-msgstr "stal diennoù-skorn"
-
-msgid "ice rink"
-msgstr "poull-rinklañ"
-
-msgid "interior decoration shop"
-msgstr "stal kinkladurioù diabarzh"
-
-msgid "jewelry shop"
-msgstr "bravigerezh"
-
-msgid "karting"
-msgstr "karrigoù-tan"
-
-msgid "kindergarten or preschool"
-msgstr "liorzh bugale pe rak-skol"
-
-msgid "kiosk"
-msgstr "kiosk"
-
-msgid "lamps shop"
-msgstr "stal lampoù"
-
-msgid "laundry"
-msgstr " ti-kannañ dilhad"
-
-msgid "library"
-msgstr "levraoueg"
-
-msgid "long jump"
-msgstr "lamm hir"
-
-msgid "mall"
-msgstr "kreizenn genwerzh"
-
-msgid "marina"
-msgstr "marina"
-
-msgid "marketplace"
-msgstr "marc'had"
-
-msgid "massage shop"
-msgstr "stal dorloerezh"
-
-msgid "miniature golf"
-msgstr "golfig"
-
-msgid "mobile phone shop"
-msgstr "stal hezougelloù"
-
-msgid "model aerodrome"
-msgstr "nijva evit gobarioù"
-
-msgid "monument"
-msgstr "monumant"
-
-msgid "motel"
-msgstr "motel"
-
-msgid "motocross"
-msgstr "marc'hoù-tan kros"
-
-msgid "motor"
-msgstr "keflusker"
-
-msgid "motorcycle shop"
-msgstr "stal marc'hoù-tan"
-
-msgid "multi"
-msgstr "multi"
-
-msgid "music shop"
-msgstr "stal sonerezh"
-
-msgid "musical instrument shop"
-msgstr "stal binviji sonerezh"
-
-msgid "newsagent shop"
-msgstr "stal kazetennerezh"
-
-msgid "nightclub"
-msgstr "boest-noz"
-
-msgid "nursing home"
-msgstr "ti ar re gozh"
-
-msgid "optician"
-msgstr "luneder"
-
-msgid "orienteering"
-msgstr "redadegoù-reteriñ"
-
-msgid "outdoor"
-msgstr "stal sportoù war ar maez"
-
-msgid "paragliding"
-msgstr "bolc'haskell"
-
-msgid "park"
-msgstr "park"
-
-msgid "car park"
-msgstr "park kiri"
-
-msgid "perfumery"
-msgstr "porfumerezh"
-
-msgid "pet store"
-msgstr "stal-loened"
-
-msgid "photo shop"
-msgstr "stal fotoioù"
-
-msgid "picnic site"
-msgstr "tachenn biknik"
-
-msgid "place of worship"
-msgstr "lec'h azeulerezh"
-
-msgid "police"
-msgstr "komiserdi"
-
-msgid "post office"
-msgstr "ti-post"
-
-msgid "prison"
-msgstr "toull-bac'h"
-
-msgid "pub"
-msgstr "bruderezh"
-
-msgid "public building"
-msgstr "savadur foran"
-
-msgid "rc car"
-msgstr "karr pellurzhiet"
-
-msgid "recycling"
-msgstr ""
-
-msgid "reservoir"
-msgstr "beol"
-
-msgid "rowing"
-msgstr "roeñverezh"
-
-msgid "ruins"
-msgstr "dismantroù"
-
-msgid "running"
-msgstr "redadeg war-droad"
-
-msgid "sailing"
-msgstr "bageal"
-
-msgid "school"
-msgstr "skol"
-
-msgid "scuba diving"
-msgstr "splujerezh danvor"
-
-msgid "resale shop"
-msgstr "stal adwerzhañ"
-
-msgid "shoes"
-msgstr "botoù"
-
-msgid "shooting"
-msgstr "tennañ"
-
-msgid "skateboard"
-msgstr "skateboard"
-
-msgid "skating"
-msgstr "skating"
-
-msgid "skiing"
-msgstr "skiañ"
-
-msgid "soccer"
-msgstr "mell-droad"
-
-msgid "sports shop"
-msgstr "stal sport"
-
-msgid "sports centre"
-msgstr "kreizenn sport"
-
-msgid "stadium"
-msgstr "stad"
-
-msgid "station"
-msgstr "savlec'h"
-
-msgid "stationery shop"
-msgstr "stal paperaerezh"
-
-msgid "subway"
-msgstr "tren-buzhug"
-
-msgid "swimming"
-msgstr "poull-neuial"
-
-msgid "swimming area"
-msgstr "zonenn neuial"
-
-msgid "swimming pool"
-msgstr "poull-neuial"
-
-msgid "table tennis"
-msgstr "taol dennis"
-
-msgid "tailor"
-msgstr "tailher"
-
-msgid "tattoo salon"
-msgstr "saloñs tatou"
-
-msgid "tennis"
-msgstr "tennis"
-
-msgid "theatre"
-msgstr "c'hoariva"
-
-msgid "theme park"
-msgstr "park gant un tem"
-
-msgid "ticket shop"
-msgstr "bilhederezh"
-
-msgid "tobacco shop"
-msgstr "stal butun"
-
-msgid "toll booth"
-msgstr "treizhaj"
-
-msgid "townhall"
-msgstr "ti-kêr"
-
-msgid "toys shop"
-msgstr "stal c'hoarioù"
-
-msgid "tram stop"
-msgstr "arsav tram"
-
-msgid "travel agency"
-msgstr "ajañs-veaj"
-
-msgid "university"
-msgstr "skol-veur"
-
-msgid "veterinary"
-msgstr "mezeg-loened"
-
-msgid "videos shop"
-msgstr "stal videoioù"
-
-msgid "video games shop"
-msgstr "stal c'hoarioù-video"
-
-msgid "viewpoint"
-msgstr "gweledva"
-
-msgid "watches shop"
-msgstr "stal eurieroù"
-
-msgid "water park"
-msgstr "park dour"
-
-msgid "weapons shop"
-msgstr "stal armoù"
-
-msgid "warehouse club"
-msgstr "braswerzher"
-
-msgid "wine shop"
-msgstr "stal gwin"
-
-msgid "yoga"
-msgstr "yoga"
-
-msgid "zoo"
-msgstr "zoo"
-
-msgid "city"
-msgstr "kêr"
-
-msgid "country"
-msgstr "bro"
-
-msgid "address"
-msgstr "chomlec'h"
-
-msgid "street"
-msgstr "straed"
-
+#: src/components/OsmContribution.jsx:13
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
+
+#: src/components/OsmContribution.jsx:18
+msgid "View"
+msgstr "Gwelet"
+
+#: src/components/OsmContribution.jsx:23
+msgid "Edit"
+msgstr "Aozañ"
+
+#: src/components/ReviewScore.jsx:33
 msgid "review"
 msgid_plural "reviews"
 msgstr[0] "ali"
@@ -794,9 +223,863 @@ msgstr[2] "ali"
 msgstr[3] "ali"
 msgstr[4] "ali"
 
+#: src/components/ui/Panel.jsx:181 src/modals/MasqActivatingModal.jsx:37
+#: src/modals/MasqActivatingModal.jsx:46 views/index.ejs:50
+msgid "Close"
+msgstr "Serriñ"
+
+#: src/components/ui/SuggestItem.jsx:23 src/panel/poi/PoiHeader.jsx:13
+msgid "Close to"
+msgstr "Da gichen"
+
+#: src/components/ui/SuggestItem.jsx:24 src/panel/poi/PoiPanel.jsx:312
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
+
+#: src/libs/masq.js:98
+msgid ""
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
+msgstr ""
+"C'hwitet en deus ar c'hevreañ etre Qwant Maps hag an arload Masq. "
+"(Danevelliñ ar gudenn)"
+
+#: src/libs/masq.js:102
+msgid "Could not connect to Masq"
+msgstr "N'heller ket kevreañ ouzh Masq"
+
+#: src/libs/suggest.js:45 src/panel/Menu.jsx:99
+#: src/panel/poi/ActionButtons.jsx:51
+#: src/panel/service/ServicePanelDesktop.jsx:37
+msgid "Favorites"
+msgstr "Sinedoù"
+
+#: src/mapbox/locale.js:4
+msgid "My location"
+msgstr ""
+
+#: src/mapbox/poi_subclass.js:3
+msgid "accessories shop"
+msgstr "stal rikoù"
+
+#: src/mapbox/poi_subclass.js:4
+msgid "airport"
+msgstr "aerborzh"
+
+#: src/mapbox/poi_subclass.js:5
+msgid "liquor store"
+msgstr "stal likorioù"
+
+#: src/mapbox/poi_subclass.js:6
+msgid "alpine hut"
+msgstr "lojell alpinek"
+
+#: src/mapbox/poi_subclass.js:7
+msgid "antiques shop"
+msgstr "stal an traoù kozh"
+
+#: src/mapbox/poi_subclass.js:8
+msgid "aquarium"
+msgstr "akwariom"
+
+#: src/mapbox/poi_subclass.js:9
+msgid "archery"
+msgstr "gwaregva"
+
+#: src/mapbox/poi_subclass.js:10
+msgid "art shop"
+msgstr "stal oberennoù arzel"
+
+#: src/mapbox/poi_subclass.js:11
+msgid "arts centre"
+msgstr "kreizenn an arzoù"
+
+#: src/mapbox/poi_subclass.js:12
+msgid "athletics"
+msgstr "atleterezhioù"
+
+#: src/mapbox/poi_subclass.js:13
+msgid "attraction"
+msgstr "diduañs"
+
+#: src/mapbox/poi_subclass.js:14
+msgid "bag shop"
+msgstr "stal seier"
+
+#: src/mapbox/poi_subclass.js:15
+msgid "bakery"
+msgstr "bouloñjerezh"
+
+#: src/mapbox/poi_subclass.js:18
+msgid "basin"
+msgstr "poull"
+
+#: src/mapbox/poi_subclass.js:19
+msgid "basketball"
+msgstr "basketball"
+
+#: src/mapbox/poi_subclass.js:20
+msgid "bbq"
+msgstr "bbq"
+
+#: src/mapbox/poi_subclass.js:21
+msgid "beauty salon"
+msgstr "saloñs braventez"
+
+#: src/mapbox/poi_subclass.js:22
+msgid "bed shop"
+msgstr "stal gweleoù"
+
+#: src/mapbox/poi_subclass.js:23
+msgid "bed and breakfast"
+msgstr "kambr ostizien"
+
+#: src/mapbox/poi_subclass.js:24
+msgid "beverages shop"
+msgstr "stal evajoù"
+
+#: src/mapbox/poi_subclass.js:25
+msgid "bicycle shop"
+msgstr "stal beloioù"
+
+#: src/mapbox/poi_subclass.js:26
+msgid "biergarten"
+msgstr "stal bier"
+
+#: src/mapbox/poi_subclass.js:27
+msgid "billiards"
+msgstr "bilhiardoù"
+
+#: src/mapbox/poi_subclass.js:28
+msgid "bmx"
+msgstr "bmx"
+
+#: src/mapbox/poi_subclass.js:29
+msgid "books shop"
+msgstr "stal levrioù"
+
+#: src/mapbox/poi_subclass.js:30
+msgid "border control"
+msgstr "kontroll an harzoù"
+
+#: src/mapbox/poi_subclass.js:31
+msgid "boules"
+msgstr "bouloù"
+
+#: src/mapbox/poi_subclass.js:32
+msgid "boutique"
+msgstr "boutik"
+
+#: src/mapbox/poi_subclass.js:33
+msgid "bowls"
+msgstr "bouloù"
+
+#: src/mapbox/poi_subclass.js:34
+msgid "brownfield"
+msgstr " fraost industriel"
+
+#: src/mapbox/poi_subclass.js:35
+msgid "bus station"
+msgstr "harz bus"
+
+#: src/mapbox/poi_subclass.js:36
+msgid "butcher"
+msgstr "boser"
+
+#: src/mapbox/poi_subclass.js:37
+msgid "cafe"
+msgstr "kafedi"
+
+#: src/mapbox/poi_subclass.js:38
+msgid "camp site"
+msgstr "tachenn gampiñ"
+
+#: src/mapbox/poi_subclass.js:39
+msgid "canoe"
+msgstr "kanoe"
+
+#: src/mapbox/poi_subclass.js:40
+msgid "car shop"
+msgstr "stal kirri"
+
+#: src/mapbox/poi_subclass.js:41
+msgid "car repair"
+msgstr "stal kempenn kirri"
+
+#: src/mapbox/poi_subclass.js:42
+msgid "caravan site"
+msgstr "tachenn garavan"
+
+#: src/mapbox/poi_subclass.js:43
+msgid "carpet shop"
+msgstr "stal tapisoù"
+
+#: src/mapbox/poi_subclass.js:44
+msgid "castle"
+msgstr "kastell"
+
+#: src/mapbox/poi_subclass.js:45
+msgid "cemetery"
+msgstr "bered"
+
+#: src/mapbox/poi_subclass.js:46
+msgid "chalet"
+msgstr "ti-koad"
+
+#: src/mapbox/poi_subclass.js:47
+msgid "charity store"
+msgstr "stal an aluzon"
+
+#: src/mapbox/poi_subclass.js:48
+msgid "chemist"
+msgstr "lezapotikerezh"
+
+#: src/mapbox/poi_subclass.js:49
+msgid "chess"
+msgstr "c'hoari echedoù"
+
+#: src/mapbox/poi_subclass.js:50
+msgid "chocolate shop"
+msgstr "stal chokolad"
+
+#: src/mapbox/poi_subclass.js:51
+msgid "cinema"
+msgstr "sinema"
+
+#: src/mapbox/poi_subclass.js:52
+msgid "climbing"
+msgstr "krimpadenn"
+
+#: src/mapbox/poi_subclass.js:53
+msgid "climbing adventure"
+msgstr "avantur krimpadenn"
+
+#: src/mapbox/poi_subclass.js:54
+msgid "clinic"
+msgstr "klinik"
+
+#: src/mapbox/poi_subclass.js:55
+msgid "clothes shop"
+msgstr "stal dilhad"
+
+#: src/mapbox/poi_subclass.js:56
+msgid "coffee shop"
+msgstr "stal kafe"
+
+#: src/mapbox/poi_subclass.js:57
+msgid "college"
+msgstr "skolaj"
+
+#: src/mapbox/poi_subclass.js:58
+msgid "community centre"
+msgstr "kreizenn gumuniezh"
+
+#: src/mapbox/poi_subclass.js:59
+msgid "computer shop"
+msgstr "stal urzhiataerezh"
+
+#: src/mapbox/poi_subclass.js:60
+msgid "confectionery shop"
+msgstr "stal koñfizerezh"
+
+#: src/mapbox/poi_subclass.js:61
+msgid "convenience store"
+msgstr "ispisiri"
+
+#: src/mapbox/poi_subclass.js:62
+msgid "copyshop"
+msgstr "stal liestennañ"
+
+#: src/mapbox/poi_subclass.js:63
+msgid "cosmetics shop"
+msgstr "stal kosmetekerezh"
+
+#: src/mapbox/poi_subclass.js:64
+msgid "courthouse"
+msgstr "lez-varn"
+
+#: src/mapbox/poi_subclass.js:65
+msgid "cricket"
+msgstr "kriket"
+
+#: src/mapbox/poi_subclass.js:66
+msgid "cycling"
+msgstr "kezeg-houarn"
+
+#: src/mapbox/poi_subclass.js:67
+msgid "deli"
+msgstr "deli"
+
+#: src/mapbox/poi_subclass.js:68
+msgid "dentist"
+msgstr "dentour"
+
+#: src/mapbox/poi_subclass.js:69
+msgid "department store"
+msgstr "stal bras"
+
+#: src/mapbox/poi_subclass.js:70
+msgid "dock"
+msgstr "kae"
+
+#: src/mapbox/poi_subclass.js:71
+msgid "doctors office"
+msgstr "stal an doktor"
+
+#: src/mapbox/poi_subclass.js:72
+msgid "dog park"
+msgstr "park chas"
+
+#: src/mapbox/poi_subclass.js:73
+msgid "dog racing"
+msgstr "redadegoù chas"
+
+#: src/mapbox/poi_subclass.js:74
+msgid "doityourself store"
+msgstr "stal bitellat"
+
+#: src/mapbox/poi_subclass.js:75
+msgid "dry cleaning"
+msgstr "naetaerezh"
+
+#: src/mapbox/poi_subclass.js:76
+msgid "electronics shop"
+msgstr "stal traoù elektronik"
+
+#: src/mapbox/poi_subclass.js:77
+msgid "embassy"
+msgstr "kannati"
+
+#: src/mapbox/poi_subclass.js:78
+msgid "equestrian"
+msgstr "kreizenn varc'hegezh"
+
+#: src/mapbox/poi_subclass.js:79
+msgid "erotic shop"
+msgstr "stal traoù erotek"
+
+#: src/mapbox/poi_subclass.js:80
+msgid "escape game"
+msgstr "c'hoari achapiñ"
+
+#: src/mapbox/poi_subclass.js:81
+msgid "fabric"
+msgstr "labouradeg"
+
+#: src/mapbox/poi_subclass.js:82
+msgid "farm shop"
+msgstr ""
+
+#: src/mapbox/poi_subclass.js:83
+msgid "fast food"
+msgstr "pretierezh prim"
+
+#: src/mapbox/poi_subclass.js:84
+msgid "fire station"
+msgstr "ti ar bomperien"
+
+#: src/mapbox/poi_subclass.js:85
+msgid "florist"
+msgstr "stal bleunioù"
+
+#: src/mapbox/poi_subclass.js:86
+msgid "food court"
+msgstr "takad debriñ"
+
+#: src/mapbox/poi_subclass.js:87
+msgid "free flying"
+msgstr "free flying"
+
+#: src/mapbox/poi_subclass.js:88
+msgid "fuel station"
+msgstr "stal dour-tan"
+
+#: src/mapbox/poi_subclass.js:89
+msgid "furniture shop"
+msgstr "stal arrebeuri"
+
+#: src/mapbox/poi_subclass.js:90
+msgid "gallery"
+msgstr "diskouezva"
+
+#: src/mapbox/poi_subclass.js:91
+msgid "garden"
+msgstr "liorzh"
+
+#: src/mapbox/poi_subclass.js:92
+msgid "garden centre"
+msgstr "kreizenn liorzhaouiñ"
+
+#: src/mapbox/poi_subclass.js:93
+msgid "general store"
+msgstr "magazenn hollek"
+
+#: src/mapbox/poi_subclass.js:94
+msgid "gift shop"
+msgstr "stal profoù"
+
+#: src/mapbox/poi_subclass.js:95
+msgid "golf"
+msgstr "golf"
+
+#: src/mapbox/poi_subclass.js:96
+msgid "golf course"
+msgstr "tachenn golf"
+
+#: src/mapbox/poi_subclass.js:97
+msgid "grave yard"
+msgstr "bered"
+
+#: src/mapbox/poi_subclass.js:98
+msgid "greengrocer"
+msgstr "stal legumaj"
+
+#: src/mapbox/poi_subclass.js:99
+msgid "guest house"
+msgstr "ti ostizien"
+
+#: src/mapbox/poi_subclass.js:100
+msgid "gymnastics"
+msgstr "ti-jiminas"
+
+#: src/mapbox/poi_subclass.js:101
+msgid "hackerspace"
+msgstr "hackerspace"
+
+#: src/mapbox/poi_subclass.js:102
+msgid "hairdresser"
+msgstr "ficher-blev"
+
+#: src/mapbox/poi_subclass.js:103
+msgid "halt"
+msgstr "harz"
+
+#: src/mapbox/poi_subclass.js:104
+msgid "hardware shop"
+msgstr "kinkailherezh"
+
+#: src/mapbox/poi_subclass.js:105
+msgid "hearing aids shop"
+msgstr "stal benvegoù selaou"
+
+#: src/mapbox/poi_subclass.js:106
+msgid "hifi shop"
+msgstr "stal hifi"
+
+#: src/mapbox/poi_subclass.js:107
+msgid "horse racing"
+msgstr "redadegoù kezeg"
+
+#: src/mapbox/poi_subclass.js:108
+msgid "hospital"
+msgstr "ospital"
+
+#: src/mapbox/poi_subclass.js:109
+msgid "hostel"
+msgstr "ti ar re yaouank"
+
+#: src/mapbox/poi_subclass.js:111
+msgid "ice cream"
+msgstr "stal diennoù-skorn"
+
+#: src/mapbox/poi_subclass.js:112
+msgid "ice rink"
+msgstr "poull-rinklañ"
+
+#: src/mapbox/poi_subclass.js:113
+msgid "interior decoration shop"
+msgstr "stal kinkladurioù diabarzh"
+
+#: src/mapbox/poi_subclass.js:114
+msgid "jewelry shop"
+msgstr "bravigerezh"
+
+#: src/mapbox/poi_subclass.js:115
+msgid "karting"
+msgstr "karrigoù-tan"
+
+#: src/mapbox/poi_subclass.js:116
+msgid "kindergarten or preschool"
+msgstr "liorzh bugale pe rak-skol"
+
+#: src/mapbox/poi_subclass.js:117
+msgid "kiosk"
+msgstr "kiosk"
+
+#: src/mapbox/poi_subclass.js:118
+msgid "lamps shop"
+msgstr "stal lampoù"
+
+#: src/mapbox/poi_subclass.js:119
+msgid "laundry"
+msgstr " ti-kannañ dilhad"
+
+#: src/mapbox/poi_subclass.js:120
+msgid "library"
+msgstr "levraoueg"
+
+#: src/mapbox/poi_subclass.js:122
+msgid "long jump"
+msgstr "lamm hir"
+
+#: src/mapbox/poi_subclass.js:123
+msgid "mall"
+msgstr "kreizenn genwerzh"
+
+#: src/mapbox/poi_subclass.js:124
+msgid "marina"
+msgstr "marina"
+
+#: src/mapbox/poi_subclass.js:125
+msgid "marketplace"
+msgstr "marc'had"
+
+#: src/mapbox/poi_subclass.js:126
+msgid "massage shop"
+msgstr "stal dorloerezh"
+
+#: src/mapbox/poi_subclass.js:127
+msgid "miniature golf"
+msgstr "golfig"
+
+#: src/mapbox/poi_subclass.js:128
+msgid "mobile phone shop"
+msgstr "stal hezougelloù"
+
+#: src/mapbox/poi_subclass.js:129
+msgid "model aerodrome"
+msgstr "nijva evit gobarioù"
+
+#: src/mapbox/poi_subclass.js:130
+msgid "monument"
+msgstr "monumant"
+
+#: src/mapbox/poi_subclass.js:131
+msgid "motel"
+msgstr "motel"
+
+#: src/mapbox/poi_subclass.js:132
+msgid "motocross"
+msgstr "marc'hoù-tan kros"
+
+#: src/mapbox/poi_subclass.js:133
+msgid "motor"
+msgstr "keflusker"
+
+#: src/mapbox/poi_subclass.js:134
+msgid "motorcycle shop"
+msgstr "stal marc'hoù-tan"
+
+#: src/mapbox/poi_subclass.js:135
+msgid "multi"
+msgstr "multi"
+
+#: src/mapbox/poi_subclass.js:137
+msgid "music shop"
+msgstr "stal sonerezh"
+
+#: src/mapbox/poi_subclass.js:138
+msgid "musical instrument shop"
+msgstr "stal binviji sonerezh"
+
+#: src/mapbox/poi_subclass.js:139
+msgid "newsagent shop"
+msgstr "stal kazetennerezh"
+
+#: src/mapbox/poi_subclass.js:140
+msgid "nightclub"
+msgstr "boest-noz"
+
+#: src/mapbox/poi_subclass.js:141
+msgid "nursing home"
+msgstr "ti ar re gozh"
+
+#: src/mapbox/poi_subclass.js:142
+msgid "optician"
+msgstr "luneder"
+
+#: src/mapbox/poi_subclass.js:143
+msgid "orienteering"
+msgstr "redadegoù-reteriñ"
+
+#: src/mapbox/poi_subclass.js:144
+msgid "outdoor"
+msgstr "stal sportoù war ar maez"
+
+#: src/mapbox/poi_subclass.js:145
+msgid "paragliding"
+msgstr "bolc'haskell"
+
+#: src/mapbox/poi_subclass.js:146
+msgid "park"
+msgstr "park"
+
+#: src/mapbox/poi_subclass.js:147
+msgid "car park"
+msgstr "park kiri"
+
+#: src/mapbox/poi_subclass.js:148
+msgid "perfumery"
+msgstr "porfumerezh"
+
+#: src/mapbox/poi_subclass.js:149
+msgid "pet store"
+msgstr "stal-loened"
+
+#: src/mapbox/poi_subclass.js:151
+msgid "photo shop"
+msgstr "stal fotoioù"
+
+#: src/mapbox/poi_subclass.js:152
+msgid "picnic site"
+msgstr "tachenn biknik"
+
+#: src/mapbox/poi_subclass.js:153
+msgid "place of worship"
+msgstr "lec'h azeulerezh"
+
+#: src/mapbox/poi_subclass.js:154
+msgid "police"
+msgstr "komiserdi"
+
+#: src/mapbox/poi_subclass.js:155
+msgid "post office"
+msgstr "ti-post"
+
+#: src/mapbox/poi_subclass.js:156
+msgid "prison"
+msgstr "toull-bac'h"
+
+#: src/mapbox/poi_subclass.js:157
+msgid "pub"
+msgstr "bruderezh"
+
+#: src/mapbox/poi_subclass.js:158
+msgid "public building"
+msgstr "savadur foran"
+
+#: src/mapbox/poi_subclass.js:159
+msgid "rc car"
+msgstr "karr pellurzhiet"
+
+#: src/mapbox/poi_subclass.js:160
+msgid "recycling"
+msgstr ""
+
+#: src/mapbox/poi_subclass.js:161
+msgid "reservoir"
+msgstr "beol"
+
+#: src/mapbox/poi_subclass.js:163
+msgid "rowing"
+msgstr "roeñverezh"
+
+#: src/mapbox/poi_subclass.js:164
+msgid "ruins"
+msgstr "dismantroù"
+
+#: src/mapbox/poi_subclass.js:165
+msgid "running"
+msgstr "redadeg war-droad"
+
+#: src/mapbox/poi_subclass.js:166
+msgid "sailing"
+msgstr "bageal"
+
+#: src/mapbox/poi_subclass.js:167
+msgid "school"
+msgstr "skol"
+
+#: src/mapbox/poi_subclass.js:168
+msgid "scuba diving"
+msgstr "splujerezh danvor"
+
+#: src/mapbox/poi_subclass.js:169
+msgid "resale shop"
+msgstr "stal adwerzhañ"
+
+#: src/mapbox/poi_subclass.js:170
+msgid "shoes"
+msgstr "botoù"
+
+#: src/mapbox/poi_subclass.js:171
+msgid "shooting"
+msgstr "tennañ"
+
+#: src/mapbox/poi_subclass.js:172
+msgid "skateboard"
+msgstr "skateboard"
+
+#: src/mapbox/poi_subclass.js:173
+msgid "skating"
+msgstr "skating"
+
+#: src/mapbox/poi_subclass.js:174
+msgid "skiing"
+msgstr "skiañ"
+
+#: src/mapbox/poi_subclass.js:175
+msgid "soccer"
+msgstr "mell-droad"
+
+#: src/mapbox/poi_subclass.js:176
+msgid "sports shop"
+msgstr "stal sport"
+
+#: src/mapbox/poi_subclass.js:177
+msgid "sports centre"
+msgstr "kreizenn sport"
+
+#: src/mapbox/poi_subclass.js:178
+msgid "stadium"
+msgstr "stad"
+
+#: src/mapbox/poi_subclass.js:179
+msgid "station"
+msgstr "savlec'h"
+
+#: src/mapbox/poi_subclass.js:180
+msgid "stationery shop"
+msgstr "stal paperaerezh"
+
+#: src/mapbox/poi_subclass.js:181
+msgid "subway"
+msgstr "tren-buzhug"
+
+#: src/mapbox/poi_subclass.js:183
+msgid "swimming"
+msgstr "poull-neuial"
+
+#: src/mapbox/poi_subclass.js:184
+msgid "swimming area"
+msgstr "zonenn neuial"
+
+#: src/mapbox/poi_subclass.js:185
+msgid "swimming pool"
+msgstr "poull-neuial"
+
+#: src/mapbox/poi_subclass.js:186
+msgid "table tennis"
+msgstr "taol dennis"
+
+#: src/mapbox/poi_subclass.js:187
+msgid "tailor"
+msgstr "tailher"
+
+#: src/mapbox/poi_subclass.js:188
+msgid "tattoo salon"
+msgstr "saloñs tatou"
+
+#: src/mapbox/poi_subclass.js:189
+msgid "tennis"
+msgstr "tennis"
+
+#: src/mapbox/poi_subclass.js:190
+msgid "theatre"
+msgstr "c'hoariva"
+
+#: src/mapbox/poi_subclass.js:191
+msgid "theme park"
+msgstr "park gant un tem"
+
+#: src/mapbox/poi_subclass.js:192
+msgid "ticket shop"
+msgstr "bilhederezh"
+
+#: src/mapbox/poi_subclass.js:193
+msgid "tobacco shop"
+msgstr "stal butun"
+
+#: src/mapbox/poi_subclass.js:194
+msgid "toll booth"
+msgstr "treizhaj"
+
+#: src/mapbox/poi_subclass.js:195
+msgid "townhall"
+msgstr "ti-kêr"
+
+#: src/mapbox/poi_subclass.js:196
+msgid "toys shop"
+msgstr "stal c'hoarioù"
+
+#: src/mapbox/poi_subclass.js:197
+msgid "tram stop"
+msgstr "arsav tram"
+
+#: src/mapbox/poi_subclass.js:198
+msgid "travel agency"
+msgstr "ajañs-veaj"
+
+#: src/mapbox/poi_subclass.js:199
+msgid "university"
+msgstr "skol-veur"
+
+#: src/mapbox/poi_subclass.js:200
+msgid "veterinary"
+msgstr "mezeg-loened"
+
+#: src/mapbox/poi_subclass.js:201
+msgid "videos shop"
+msgstr "stal videoioù"
+
+#: src/mapbox/poi_subclass.js:202
+msgid "video games shop"
+msgstr "stal c'hoarioù-video"
+
+#: src/mapbox/poi_subclass.js:203
+msgid "viewpoint"
+msgstr "gweledva"
+
+#: src/mapbox/poi_subclass.js:204
+msgid "watches shop"
+msgstr "stal eurieroù"
+
+#: src/mapbox/poi_subclass.js:205
+msgid "water park"
+msgstr "park dour"
+
+#: src/mapbox/poi_subclass.js:206
+msgid "weapons shop"
+msgstr "stal armoù"
+
+#: src/mapbox/poi_subclass.js:207
+msgid "warehouse club"
+msgstr "braswerzher"
+
+#: src/mapbox/poi_subclass.js:208
+msgid "wine shop"
+msgstr "stal gwin"
+
+#: src/mapbox/poi_subclass.js:209
+msgid "yoga"
+msgstr "yoga"
+
+#: src/mapbox/poi_subclass.js:210
+msgid "zoo"
+msgstr "zoo"
+
+#: src/mapbox/poi_subclass.js:211
+msgid "city"
+msgstr "kêr"
+
+#: src/mapbox/poi_subclass.js:212
+msgid "country"
+msgstr "bro"
+
+#: src/mapbox/poi_subclass.js:213
+msgid "address"
+msgstr "chomlec'h"
+
+#: src/mapbox/poi_subclass.js:214
+msgid "street"
+msgstr "straed"
+
+#: src/modals/GeolocationModal.jsx:11
 msgid "Geolocation with privacy!"
 msgstr "Douarlec'hiañ ha prevezded!"
 
+#: src/modals/GeolocationModal.jsx:12
+#, python-brace-format
 msgid ""
 "You need to know where you are? Please allow your application to access your"
 " location so that it can tell you. As stated in our {privacyPolicyLink} "
@@ -809,21 +1092,26 @@ msgstr ""
 "na stoko ket ho titouroù douarlec'hiañ. N'hallimp ket gouzout e pelec'h "
 "emaoc'h."
 
+#: src/modals/GeolocationModal.jsx:18
 msgid "Ok, I've got it."
 msgstr "Mat eo, deuet eo ganin."
 
+#: src/modals/GeolocationModal.jsx:21 src/modals/GeolocationModal.jsx:26
 msgid "Geolocation not available."
 msgstr "Douarlec'hiañ dihegerz"
 
+#: src/modals/GeolocationModal.jsx:22
 msgid ""
 "You have not allowed Qwant Maps (or your device) to access your location."
 msgstr ""
 "N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho"
 " touarlec'hiañ"
 
+#: src/modals/GeolocationModal.jsx:23 src/modals/GeolocationModal.jsx:28
 msgid "Ok"
 msgstr "Mat eo"
 
+#: src/modals/GeolocationModal.jsx:27
 msgid ""
 "Qwant Maps cannot determine your position. Check that location services are "
 "enabled on your system."
@@ -831,190 +1119,27 @@ msgstr ""
 "Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
 "enaouet ar servijoù douarlec'hiañ en ho sistem."
 
-msgid "Your position"
-msgstr "Ho touarlec'hiañ"
-
+#: src/modals/MasqActivatingModal.jsx:20
 msgid "Patience, Masq is activating..."
 msgstr "Gortozit, war enaouiñ emañ Masq..."
 
+#: src/modals/MasqActivatingModal.jsx:24
 msgid "Cancel"
 msgstr "Nullañ"
 
+#: src/modals/MasqActivatingModal.jsx:31
 msgid "Well done, Masq is activated !"
 msgstr "Ma, mat-kaer enaouet emañ Masq!"
 
+#: src/modals/MasqActivatingModal.jsx:31
 msgid "Your data is now secured, enjoy !"
 msgstr "Suraet eo bremañ ho roadennoù, profitit!"
 
-msgid "Close"
-msgstr "Serriñ"
-
+#: src/modals/MasqActivatingModal.jsx:42
 msgid "Masq activation failed"
 msgstr "Enaouadur Masq c'hwitet"
 
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-"C'hwitet en deus ar c'hevreañ etre Qwant Maps hag an arload Masq. "
-"(Danevelliñ ar gudenn)"
-
-msgid "Could not connect to Masq"
-msgstr "N'heller ket kevreañ ouzh Masq"
-
-msgid "category"
-msgstr "rummad"
-
-msgid "Activate Masq"
-msgstr "Enaouiñ Masq"
-
-msgid "Deactivate"
-msgstr "Lazhañ"
-
-msgid "Activate"
-msgstr "Enaouiñ"
-
-msgid "How does it work ?"
-msgstr "Penaos ez a en-dro?"
-
-msgid "Search"
-msgstr "Klask"
-
-msgid "Directions"
-msgstr "Tuadurioù"
-
-msgid "Favorites"
-msgstr "Sinedoù"
-
-msgid "How to contribute"
-msgstr "Penaos kemer-perzh"
-
-msgid "Share link"
-msgstr "Rannañ al liamm"
-
-msgid "Copied !"
-msgstr "Eilet!"
-
-msgid "Share on Facebook"
-msgstr "Rannañ war Facebook"
-
-msgid "Share on Twitter"
-msgstr "Rannañ war Twitter"
-
-msgid "Share"
-msgstr "Rannañ"
-
-msgid "Delete"
-msgstr "Dilemel"
-
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-"N'ho peus lec'h karetañ ebet. <br> Gellout a rit ouzhpennañ unan en ur "
-"glikañ war ur blasenn"
-
-msgid "Use"
-msgstr "Implijit"
-
-msgid "to secure your favorites on all your devices"
-msgstr "evit skoriñ hoc'h arventennoù war hollad hoc'h aparailhoù"
-
-msgid "Favorite places"
-msgstr "Lec'hioù karetañ"
-
-msgid "My favorites"
-msgstr "Ma sinedoù"
-
-msgid "Show favorites"
-msgstr "Diskouez ar c'haretañ"
-
-msgid "Close to"
-msgstr "Da gichen"
-
-msgid "See more"
-msgstr "Gwelet muioc'h"
-
-msgid "Show number"
-msgstr "Gwelet an niver"
-
-msgid "Saved"
-msgstr "Enrollet"
-
-msgid "See the usual opening hours"
-msgstr ""
-
-msgid "Photos"
-msgstr "Fotoioù"
-
-msgid "Wikipedia"
-msgstr "Wikipedia"
-
-msgid "Wheelchair accessible"
-msgstr "Aezet evit ar c'hadorioù-ruilh"
-
-msgid "Partially wheelchair accessible"
-msgstr "Aezet a-zarn evit ar c'hadorioù-ruilh"
-
-msgid "Not wheelchair accessible"
-msgstr "Diaezet evit ar c'hadorioù-ruilh"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Privezioù aezet a-zarn d'ar c'hadorioù-ruilh"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Privez ebet aezet d'ar c'hadorioù-ruilh"
-
-msgid "Accessibility"
-msgstr "Monedusted"
-
-msgid "Beers"
-msgstr "Bieroù"
-
-msgid "Internet access"
-msgstr "Moned internet"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "Services & information"
-msgstr "Servijoù & Titouroù"
-
-msgid "Please comply with government travel restrictions."
-msgstr ""
-
-msgid "More information at"
-msgstr ""
-
-msgid "Open during the sanitary crisis"
-msgstr ""
-
-msgid "Potentially open during the sanitary crisis"
-msgstr ""
-
-msgid "Closed during the sanitary crisis"
-msgstr ""
-
-msgid "No information on opening during the sanitary crisis"
-msgstr ""
-
-msgid "Report a change"
-msgstr ""
-
-msgid "Opening hours subject to change"
-msgstr ""
-
-msgid "Qwant Maps uses OpenStreetMap data."
-msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
-
-msgid "View"
-msgstr "Gwelet"
-
-msgid "Edit"
-msgstr "Aozañ"
-
+#: src/modals/MasqFavoriteModal.jsx:62
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
 "privacy!"
@@ -1022,121 +1147,360 @@ msgstr ""
 "Qwant Maps + Masq a zo an diskoulm gwellañ evit ur servij kartennaouiñ "
 "doujus d'ar vuhez brevez!"
 
+#: src/modals/MasqFavoriteModal.jsx:68
 msgid "More Details"
 msgstr "Muioc'h a vunudoù"
 
+#: src/modals/MasqFavoriteModal.jsx:73
 msgid "Do you want to synchronize your favorites with Masq ?"
 msgstr "C'hoant ho peus da sinkronelaat ho karetañ gant Masq?"
 
+#: src/modals/MasqFavoriteModal.jsx:78 src/modals/MasqOnboardingModal.jsx:117
+msgid "Activate Masq"
+msgstr "Enaouiñ Masq"
+
+#: src/modals/MasqFavoriteModal.jsx:84
 msgid "No thanks"
 msgstr "Nann avat"
 
+#: src/modals/MasqFavoriteModal.jsx:92
 msgid "Do not ask again"
 msgstr "Na goulenn ken ouzhin"
 
-msgid "Back to favorite"
-msgstr "Distreiñ d'ar sinedoù"
+#: src/modals/ShareModal.jsx:37
+msgid "Share link"
+msgstr "Rannañ al liamm"
 
-msgid "Back to list"
-msgstr "Distreiñ d'al listenn"
+#: src/modals/ShareModal.jsx:51
+msgid "Copied !"
+msgstr "Eilet!"
 
-msgid "Back"
-msgstr "Distreiñ"
+#: src/modals/ShareModal.jsx:65
+msgid "Share on Facebook"
+msgstr "Rannañ war Facebook"
 
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
+#: src/modals/ShareModal.jsx:72
+msgid "Share on Twitter"
+msgstr "Rannañ war Twitter"
 
-msgid "Good plans"
-msgstr "Planioù mat"
+#: src/panel/Menu.jsx:89 views/index.ejs:45
+msgid "Search"
+msgstr "Klask"
 
-msgid "Qwant Maps services"
-msgstr "Servijoù Qwant Maps"
+#: src/panel/Menu.jsx:94 src/panel/direction/DirectionPanel.jsx:267
+#: src/panel/poi/ActionButtons.jsx:39 src/panel/poi/ActionButtons.jsx:41
+#: src/panel/poi/PoiCard.jsx:51 src/panel/service/ServicePanelDesktop.jsx:28
+#: src/panel/service/ServicePanelDesktop.jsx:29
+#: src/panel/service/ServicePanelMobile.jsx:20
+msgid "Directions"
+msgstr "Tuadurioù"
 
-msgid "Unfold to see quick actions"
-msgstr ""
+#: src/panel/Menu.jsx:107
+msgid "How to contribute"
+msgstr "Penaos kemer-perzh"
 
-msgid "by car"
-msgstr ""
-
-msgid "transit"
-msgstr ""
-
-msgid "on foot"
-msgstr ""
-
-msgid "by bike"
-msgstr ""
-
-msgid "Services nearby"
-msgstr ""
-
-msgid "on {date}"
-msgstr "d'an/ar {date}"
-
-msgid "from {date1} to {date2}"
-msgstr "eus an/ar {deiziad1} d'an/ar {date2}"
-
-msgid "Please zoom in the map to see the results for this event."
-msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit an darvoud-mañ."
-
-msgid "No results found. Please zoom out of the map."
-msgstr "N'eus bet kavet disoc'h ebet. Dizoumit ar gartenn mar plij."
-
-msgid "Search around my position"
-msgstr "Klask tro-dro din"
-
-msgid "Please zoom in the map to see the results for this category."
-msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
-
-msgid "Pages Jaunes"
-msgstr "Pajennoù Melen"
-
-msgid "Partnership"
-msgstr "Kevelerezh"
-
+#: src/panel/category/CategoryPanel.jsx:174
 msgid "Show results"
 msgstr "Diskouez an disoc'hoù"
 
-msgid "Start point"
-msgstr "poent loc'hañ"
+#: src/panel/category/CategoryPanelError.jsx:12
+msgid "Please zoom in the map to see the results for this category."
+msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
 
-msgid "End point"
-msgstr "poent fin"
+#: src/panel/category/CategoryPanelError.jsx:13
+msgid "No results found. Please zoom out of the map."
+msgstr "N'eus bet kavet disoc'h ebet. Dizoumit ar gartenn mar plij."
 
-msgid "Test"
-msgstr ""
+#: src/panel/category/CategoryPanelError.jsx:17
+msgid "Search around my position"
+msgstr "Klask tro-dro din"
 
+#: src/panel/category/CategoryPanelHeader.jsx:17
+msgid "Pages Jaunes"
+msgstr "Pajennoù Melen"
+
+#: src/panel/category/CategoryPanelHeader.jsx:21
+msgid "Partnership"
+msgstr "Kevelerezh"
+
+#: src/panel/direction/DirectionForm.jsx:91
 msgid "Invert start and end"
 msgstr "eilpennañ fin ha loc'hañ"
 
-msgid "Via"
-msgstr "Dre"
+#: src/panel/direction/DirectionInput.jsx:108
+msgid "Start point"
+msgstr "poent loc'hañ"
 
-msgid "Walk on {walkDistance}"
-msgstr "Kerzhit e-pad {walkDistance}"
+#: src/panel/direction/DirectionInput.jsx:109
+msgid "End point"
+msgstr "poent fin"
 
-msgid "Start"
-msgstr "Loc'hañ"
+#: src/panel/direction/DirectionPanel.jsx:300
+msgid "return"
+msgstr "distreiñ"
 
-msgid "Arrival"
-msgstr "Poent-degouezhout"
-
+#: src/panel/direction/MobileRouteDetails.jsx:39
+#: src/panel/direction/RouteSummary.jsx:47
+#: src/panel/direction/RouteSummary.jsx:66
 msgid "Details"
 msgstr "Munudoù"
 
+#: src/panel/direction/MobileRouteDetails.jsx:44
 msgid "Preview"
 msgstr "Rakwel"
 
+#: src/panel/direction/PublicTransportRoadMap.jsx:22
+#: src/panel/direction/RoadMap.jsx:16
+msgid "Start"
+msgstr "Loc'hañ"
+
+#: src/panel/direction/PublicTransportRoadMap.jsx:26
+msgid "Arrival"
+msgstr "Poent-degouezhout"
+
+#: src/panel/direction/RouteResult.jsx:80
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
 
+#: src/panel/direction/RouteResult.jsx:81
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Ne vez kavet disoc'h ebet evit an hentad-mañ."
 
+#: src/panel/direction/RouteResult.jsx:87
 msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr ""
 
-msgid "return"
-msgstr "distreiñ"
+#: src/panel/direction/RouteSummary.jsx:61
+#: src/panel/favorites/FavoritePoi.jsx:42 src/panel/poi/ActionButtons.jsx:58
+msgid "Share"
+msgstr "Rannañ"
+
+#: src/panel/direction/RouteVia.jsx:8
+msgid "Via"
+msgstr "Dre"
+
+#: src/panel/direction/VehicleSelector.jsx:7
+#: src/panel/service/ServicePanelMobile.jsx:29
+msgid "by car"
+msgstr ""
+
+#: src/panel/direction/VehicleSelector.jsx:8
+#: src/panel/service/ServicePanelMobile.jsx:38
+msgid "transit"
+msgstr ""
+
+#: src/panel/direction/VehicleSelector.jsx:9
+#: src/panel/service/ServicePanelMobile.jsx:45
+msgid "on foot"
+msgstr ""
+
+#: src/panel/direction/VehicleSelector.jsx:10
+#: src/panel/service/ServicePanelMobile.jsx:51
+msgid "by bike"
+msgstr ""
+
+#: src/panel/direction/VehicleSelector.jsx:28
+msgid "Test"
+msgstr ""
+
+#: src/panel/direction/WalkLeg.jsx:10
+#, python-brace-format
+msgid "Walk on {walkDistance}"
+msgstr "Kerzhit e-pad {walkDistance}"
+
+#: src/panel/favorites/FavoriteItems.jsx:11
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+"N'ho peus lec'h karetañ ebet. <br> Gellout a rit ouzhpennañ unan en ur "
+"glikañ war ur blasenn"
+
+#: src/panel/favorites/FavoriteMasqFooter.jsx:7
+msgid "Use"
+msgstr "Implijit"
+
+#: src/panel/favorites/FavoriteMasqFooter.jsx:9
+msgid "to secure your favorites on all your devices"
+msgstr "evit skoriñ hoc'h arventennoù war hollad hoc'h aparailhoù"
+
+#: src/panel/favorites/FavoritePoi.jsx:47
+msgid "Delete"
+msgstr "Dilemel"
+
+#: src/panel/favorites/FavoritesPanel.jsx:74
+msgid "Favorite places"
+msgstr "Lec'hioù karetañ"
+
+#: src/panel/favorites/FavoritesPanel.jsx:75
+#: src/panel/service/ServicePanelDesktop.jsx:38
+msgid "My favorites"
+msgstr "Ma sinedoù"
+
+#: src/panel/favorites/FavoritesPanel.jsx:82
+msgid "Show favorites"
+msgstr "Diskouez ar c'haretañ"
+
+#: src/panel/menu/MasqStatus.jsx:56
+msgid "Deactivate"
+msgstr "Lazhañ"
+
+#: src/panel/menu/MasqStatus.jsx:66
+msgid "Activate"
+msgstr "Enaouiñ"
+
+#: src/panel/menu/MasqStatus.jsx:73
+msgid "How does it work ?"
+msgstr "Penaos ez a en-dro?"
+
+#: src/panel/menu/MenuButton.jsx:11
+msgid "Menu"
+msgstr ""
+
+#: src/panel/poi/ActionButtons.jsx:26
+msgid "Call"
+msgstr ""
+
+#: src/panel/poi/PoiCard.jsx:58
+msgid "See more"
+msgstr "Gwelet muioc'h"
+
+#: src/panel/poi/PoiPanel.jsx:254
+msgid "Back to favorite"
+msgstr "Distreiñ d'ar sinedoù"
+
+#: src/panel/poi/PoiPanel.jsx:260
+msgid "Back to list"
+msgstr "Distreiñ d'al listenn"
+
+#: src/panel/poi/PoiPanel.jsx:266
+msgid "Back"
+msgstr "Distreiñ"
+
+#: src/panel/poi/blocks/Accessibility.jsx:10
+msgid "Wheelchair accessible"
+msgstr "Aezet evit ar c'hadorioù-ruilh"
+
+#: src/panel/poi/blocks/Accessibility.jsx:11
+msgid "Partially wheelchair accessible"
+msgstr "Aezet a-zarn evit ar c'hadorioù-ruilh"
+
+#: src/panel/poi/blocks/Accessibility.jsx:12
+msgid "Not wheelchair accessible"
+msgstr "Diaezet evit ar c'hadorioù-ruilh"
+
+#: src/panel/poi/blocks/Accessibility.jsx:15
+msgid "Wheelchair accessible toilets"
+msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
+
+#: src/panel/poi/blocks/Accessibility.jsx:16
+msgid "Partial wheelchair accessible toilets"
+msgstr "Privezioù aezet a-zarn d'ar c'hadorioù-ruilh"
+
+#: src/panel/poi/blocks/Accessibility.jsx:17
+msgid "No wheelchair accessible toilets"
+msgstr "Privez ebet aezet d'ar c'hadorioù-ruilh"
+
+#: src/panel/poi/blocks/Accessibility.jsx:29
+msgid "Accessibility"
+msgstr "Monedusted"
+
+#: src/panel/poi/blocks/Brewery.jsx:10 src/panel/poi/blocks/Brewery.jsx:14
+msgid "Beers"
+msgstr "Bieroù"
+
+#: src/panel/poi/blocks/Covid19.jsx:34
+msgid "Report a change"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:52
+msgid "Opening hours subject to change"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:77
+msgid "Please comply with government travel restrictions."
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:80
+msgid "More information at"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:95 src/panel/poi/blocks/Covid19.jsx:96
+msgid "Open during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:97
+msgid "Potentially open during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:98
+msgid "Closed during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:99
+msgid "No information on opening during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Hour.jsx:25
+msgid "See the usual opening hours"
+msgstr ""
+
+#: src/panel/poi/blocks/Images.jsx:17
+msgid "Photos"
+msgstr "Fotoioù"
+
+#: src/panel/poi/blocks/InternetAccess.jsx:11
+#: src/panel/poi/blocks/InternetAccess.jsx:15
+msgid "Internet access"
+msgstr "Moned internet"
+
+#: src/panel/poi/blocks/InternetAccess.jsx:11
+#: src/panel/poi/blocks/InternetAccess.jsx:19
+msgid "WiFi"
+msgstr "WiFi"
+
+#: src/panel/poi/blocks/Recycling.jsx:12
+msgid "Glass"
+msgstr ""
+
+#: src/panel/poi/blocks/Recycling.jsx:13
+msgid "Recyclable"
+msgstr ""
+
+#: src/panel/poi/blocks/Recycling.jsx:14
+msgid "Unknown"
+msgstr ""
+
+#: src/panel/poi/blocks/Recycling.jsx:21
+#, python-brace-format
+msgid "Updated {datetime}"
+msgstr ""
+
+#: src/panel/poi/blocks/Services.jsx:29
+msgid "Services & information"
+msgstr "Servijoù & Titouroù"
+
+#: src/panel/poi/blocks/Wiki.jsx:19
+msgid "Wikipedia"
+msgstr "Wikipedia"
+
+#: src/panel/service/ServicePanelDesktop.jsx:13
+msgid "Qwant Maps services"
+msgstr "Servijoù Qwant Maps"
+
+#: src/panel/service/ServicePanelMobile.jsx:14
+msgid "Unfold to see quick actions"
+msgstr ""
+
+#: src/panel/service/ServicePanelMobile.jsx:60
+msgid "Services nearby"
+msgstr ""
+
+#: views/index.ejs:44
+msgid "Search on Qwant Maps"
+msgstr "Klask war Qwant Maps"
+
+#: views/index.ejs:58
+msgid "JavaScript is required to view this application."
+msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 10:52+0000\n"
+"POT-Creation-Date: 2020-06-05 15:25+0200\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -34,773 +34,1056 @@ msgstr ""
 "X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "Qwant Maps"
-msgstr "Qwant Maps"
-
+#: bin/middlewares/og_meta.js:50 views/index.ejs:8
 msgid "The map that respects your privacy"
 msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
-msgid "Search on Qwant Maps"
-msgstr "Auf Qwant Maps suchen"
+#: bin/middlewares/opensearch/index.js:10 views/index.ejs:5
+msgid "Qwant Maps"
+msgstr "Qwant Maps"
 
-msgid "JavaScript is required to view this application."
-msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
-
-msgid "hotel"
-msgstr "Hotel"
-
-msgid "restaurant"
-msgstr "Restaurant"
-
-msgid "leisure"
-msgstr "Freizeit"
-
-msgid "bar"
-msgstr "Bar"
-
-msgid "supermarket"
-msgstr "Supermarkt"
-
-msgid "bank"
-msgstr "Bank"
-
-msgid "pharmacy"
-msgstr "Apotheke"
-
-msgid "education"
-msgstr "Bildung"
-
-msgid "museum"
-msgstr "Museum"
-
-msgid "service"
-msgstr "Service"
-
-msgid "sport"
-msgstr "Sport"
-
-msgid "health"
-msgstr "Gesundheit"
-
-msgid "Qwant is also"
-msgstr "Qwant ist außerdem"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Music"
-
-msgid "Qwant Boards"
-msgstr "Qwant Notizhefte"
-
-msgid "Qwant on Android"
-msgstr "Qwant für Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant für iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Junior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Lite"
-
-msgid "About Qwant"
-msgstr "Über Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Presse"
-
-msgid "Jobs"
-msgstr "Jobs"
-
-msgid "F.A.Q."
-msgstr "F.A.Q."
-
-msgid "Maps legal notices"
-msgstr "Maps Impressum"
-
-msgid "Terms of Service"
-msgstr "Nutzungsbedingungen"
-
-msgid "About us"
-msgstr "Über uns"
-
-msgid "Privacy"
-msgstr "Privatsphäre"
-
-msgid "Results ranking"
-msgstr "Ergebnissortierung"
-
-msgid "Contact us"
-msgstr "Kontaktieren Sie uns"
-
-msgid "Share Qwant"
-msgstr "Teile Qwant"
-
-msgid "on Twitter"
-msgstr "auf Twitter"
-
-msgid "on Facebook"
-msgstr "auf Facebook"
-
-msgid "concert"
-msgstr "Konzert"
-
-msgid "show"
-msgstr ""
-
-msgid "exhibition"
-msgstr "Ausstellung"
-
-msgid "event"
-msgstr "Veranstaltung"
-
-msgid "animation"
-msgstr "Animation"
-
+#: bin/middlewares/opensearch/index.js:11
 msgid "Search with Qwant Maps"
 msgstr "Suche mit Qwant Maps"
 
-msgid "write"
-msgstr "schreiben"
+#: config/categories.yml:2 src/mapbox/poi_subclass.js:110
+#: src/mapbox/poi_subclass.js:121
+msgid "hotel"
+msgstr "Hotel"
 
+#: config/categories.yml:8 src/mapbox/poi_subclass.js:162
+msgid "restaurant"
+msgstr "Restaurant"
+
+#: config/categories.yml:14
+msgid "leisure"
+msgstr "Freizeit"
+
+#: config/categories.yml:20 src/mapbox/poi_subclass.js:17
+msgid "bar"
+msgstr "Bar"
+
+#: config/categories.yml:26 src/mapbox/poi_subclass.js:182
+msgid "supermarket"
+msgstr "Supermarkt"
+
+#: config/categories.yml:32 src/mapbox/poi_subclass.js:16
+msgid "bank"
+msgstr "Bank"
+
+#: config/categories.yml:38 src/mapbox/poi_subclass.js:150
+msgid "pharmacy"
+msgstr "Apotheke"
+
+#: config/categories.yml:44
+msgid "education"
+msgstr "Bildung"
+
+#: config/categories.yml:50 src/mapbox/poi_subclass.js:136
+msgid "museum"
+msgstr "Museum"
+
+#: config/categories.yml:56
+msgid "service"
+msgstr "Service"
+
+#: config/categories.yml:62
+msgid "sport"
+msgstr "Sport"
+
+#: config/categories.yml:68
+msgid "health"
+msgstr "Gesundheit"
+
+#: config/constants.yml:46
+msgid "Qwant is also"
+msgstr "Qwant ist außerdem"
+
+#: config/constants.yml:49
+msgid "Qwant.com"
+msgstr "Qwant.com"
+
+#: config/constants.yml:51
+msgid "Qwant Music"
+msgstr "Qwant Music"
+
+#: config/constants.yml:53
+msgid "Qwant Boards"
+msgstr "Qwant Notizhefte"
+
+#: config/constants.yml:55
+msgid "Qwant on Android"
+msgstr "Qwant für Android"
+
+#: config/constants.yml:57
+msgid "Qwant on iOS"
+msgstr "Qwant für iOS"
+
+#: config/constants.yml:59
+msgid "Qwant Junior"
+msgstr "Qwant Junior"
+
+#: config/constants.yml:61
+msgid "Qwant Lite"
+msgstr "Qwant Lite"
+
+#: config/constants.yml:63
+msgid "About Qwant"
+msgstr "Über Qwant"
+
+#: config/constants.yml:66
+msgid "Blog"
+msgstr "Blog"
+
+#: config/constants.yml:68
+msgid "Press"
+msgstr "Presse"
+
+#: config/constants.yml:70
+msgid "Jobs"
+msgstr "Jobs"
+
+#: config/constants.yml:72
+msgid "F.A.Q."
+msgstr "F.A.Q."
+
+#: config/constants.yml:74
+msgid "Maps legal notices"
+msgstr "Maps Impressum"
+
+#: config/constants.yml:76
+msgid "Terms of Service"
+msgstr "Nutzungsbedingungen"
+
+#: config/constants.yml:78
+msgid "About us"
+msgstr "Über uns"
+
+#: config/constants.yml:80
+msgid "Privacy"
+msgstr "Privatsphäre"
+
+#: config/constants.yml:82
+msgid "Results ranking"
+msgstr "Ergebnissortierung"
+
+#: config/constants.yml:84
+msgid "Contact us"
+msgstr "Kontaktieren Sie uns"
+
+#: config/constants.yml:87
+msgid "Share Qwant"
+msgstr "Teile Qwant"
+
+#: config/constants.yml:91
+msgid "on Twitter"
+msgstr "auf Twitter"
+
+#: config/constants.yml:93
+msgid "on Facebook"
+msgstr "auf Facebook"
+
+#: src/adapters/category.js:21
+msgid "category"
+msgstr "Kategorie"
+
+#: src/adapters/poi/specials/navigator_geolocalisation_poi.js:15
+#: src/components/ui/SuggestItem.jsx:17
+msgid "Your position"
+msgstr "Deine Position"
+
+#: src/components/OpeningHour.jsx:7
 msgid "Open"
 msgstr "Offen"
 
+#: src/components/OpeningHour.jsx:14 src/panel/poi/blocks/TimeTable.jsx:12
 msgid "Closed"
 msgstr "Geschlossen"
 
+#: src/components/OpeningHour.jsx:32
 msgid "Open 24/7"
 msgstr "24/7 geöffnet"
 
+#: src/components/OpeningHour.jsx:42
+#, python-brace-format
 msgid "until {nextTransitionTime}"
 msgstr "bis {nextTransitionTime}"
 
-msgid "accessories shop"
-msgstr "Zubehörshop "
-
-msgid "airport"
-msgstr "Flughafen"
-
-msgid "liquor store"
-msgstr "Spirituosengeschäft"
-
-msgid "alpine hut"
-msgstr "Berghütte"
-
-msgid "antiques shop"
-msgstr "Antiquitätengeschäft "
-
-msgid "aquarium"
-msgstr "Aquarium"
-
-msgid "archery"
-msgstr "Bogenschießen"
-
-msgid "art shop"
-msgstr "Kunstgeschäft"
-
-msgid "arts centre"
-msgstr "Kunstzentrum"
-
-msgid "athletics"
-msgstr "Leichtathletik "
-
-msgid "attraction"
-msgstr "Attraktion"
-
-msgid "bag shop"
-msgstr "Taschengeschäft"
-
-msgid "bakery"
-msgstr "Bäckerei"
-
-msgid "basin"
-msgstr "Becken"
-
-msgid "basketball"
-msgstr "Basketball"
-
-msgid "bbq"
-msgstr "BBQ"
-
-msgid "beauty salon"
-msgstr "Schönheitssalon"
-
-msgid "bed shop"
-msgstr "Bettengeschäft"
-
-msgid "bed and breakfast"
-msgstr "Übernachtung mit Frühstück"
-
-msgid "beverages shop"
-msgstr "Getränkeladen"
-
-msgid "bicycle shop"
-msgstr "Fahrradladen"
-
-msgid "biergarten"
-msgstr "Biergarten"
-
-msgid "billiards"
-msgstr "Billard"
-
-msgid "bmx"
-msgstr "BMX"
-
-msgid "books shop"
-msgstr "Buchladen"
-
-msgid "border control"
-msgstr "Grenzkontrolle"
-
-msgid "boules"
-msgstr "Boule"
-
-msgid "boutique"
-msgstr "Boutique"
-
-msgid "bowls"
-msgstr "Bowlen"
-
-msgid "brownfield"
-msgstr "Brachfläche"
-
-msgid "bus station"
-msgstr "Busbahnhof"
-
-msgid "butcher"
-msgstr "Metzger"
-
-msgid "cafe"
-msgstr "Café"
-
-msgid "camp site"
-msgstr "Campingplatz"
-
-msgid "canoe"
-msgstr "Kanu"
-
-msgid "car shop"
-msgstr "KFZ-Werkstatt"
-
-msgid "car repair"
-msgstr "Autoreparatur"
-
-msgid "caravan site"
-msgstr "Campingplatz"
-
-msgid "carpet shop"
-msgstr "Teppichhandel"
-
-msgid "castle"
-msgstr "Burg"
-
-msgid "cemetery"
-msgstr "Friedhof"
-
-msgid "chalet"
-msgstr "Chalet"
-
-msgid "charity store"
-msgstr "Wohltätigkeitsladen"
-
-msgid "chemist"
-msgstr "Drogerie"
-
-msgid "chess"
-msgstr "Schach"
-
-msgid "chocolate shop"
-msgstr "Schokoladengeschäft"
-
-msgid "cinema"
-msgstr "Kino"
-
-msgid "climbing"
-msgstr "Klettern"
-
-msgid "climbing adventure"
-msgstr "Kletterabenteuer"
-
-msgid "clinic"
-msgstr "Klinik"
-
-msgid "clothes shop"
-msgstr "Kleidergeschäft"
-
-msgid "coffee shop"
-msgstr "Café"
-
-msgid "college"
-msgstr "College"
-
-msgid "community centre"
-msgstr "Gemeindezentrum"
-
-msgid "computer shop"
-msgstr "Computergeschäft"
-
-msgid "confectionery shop"
-msgstr "Süßwarenladen"
-
-msgid "convenience store"
-msgstr "Kleiner Lebensmittelladen"
-
-msgid "copyshop"
-msgstr "Copyshop"
-
-msgid "cosmetics shop"
-msgstr "Kosmetikgeschäft"
-
-msgid "courthouse"
-msgstr "Gerichtsgebäude"
-
-msgid "cricket"
-msgstr "Kricket"
-
-msgid "cycling"
-msgstr "Rad fahren "
-
-msgid "deli"
-msgstr "Feinkostladen"
-
-msgid "dentist"
-msgstr "Zahnarzt"
-
-msgid "department store"
-msgstr "Kaufhaus"
-
-msgid "dock"
-msgstr "Kai"
-
-msgid "doctors office"
-msgstr "Arztpraxis"
-
-msgid "dog park"
-msgstr "Hundepark"
-
-msgid "dog racing"
-msgstr "Hunderennen"
-
-msgid "doityourself store"
-msgstr "Heimwerkermarkt"
-
-msgid "dry cleaning"
-msgstr "Reinigung"
-
-msgid "electronics shop"
-msgstr "Elektronikgeschäft"
-
-msgid "embassy"
-msgstr "Botschaft"
-
-msgid "equestrian"
-msgstr "Reitsport"
-
-msgid "erotic shop"
-msgstr "Erotikshop"
-
-msgid "escape game"
-msgstr "Escape Game"
-
-msgid "fabric"
-msgstr "Bau"
-
-msgid "farm shop"
-msgstr "Hofladen"
-
-msgid "fast food"
-msgstr "Fast Food"
-
-msgid "fire station"
-msgstr "Feuerwache"
-
-msgid "florist"
-msgstr "Blumenhändler"
-
-msgid "food court"
-msgstr "Gastronomiebereich"
-
-msgid "free flying"
-msgstr "Gratis Flug"
-
-msgid "fuel station"
-msgstr "Tankstelle"
-
-msgid "furniture shop"
-msgstr "Möbelgeschäft"
-
-msgid "gallery"
-msgstr "Galerie"
-
-msgid "garden"
-msgstr "Garten"
-
-msgid "garden centre"
-msgstr "Gartenmarkt"
-
-msgid "general store"
-msgstr "Gemischtwarenladen"
-
-msgid "gift shop"
-msgstr "Geschenkartikelladen"
-
-msgid "golf"
-msgstr "Golf"
-
-msgid "golf course"
-msgstr "Golfplatz"
-
-msgid "grave yard"
-msgstr "Friedhof"
-
-msgid "greengrocer"
-msgstr "Gemüsehändler"
-
-msgid "guest house"
-msgstr "Gästehaus"
-
-msgid "gymnastics"
-msgstr "Turnen"
-
-msgid "hackerspace"
-msgstr "Hackerspace"
-
-msgid "hairdresser"
-msgstr "Friseur"
-
-msgid "halt"
-msgstr "Halt"
-
-msgid "hardware shop"
-msgstr "Eisenwarenhandlung"
-
-msgid "hearing aids shop"
-msgstr "Geschäft für Hörgeräte"
-
-msgid "hifi shop"
-msgstr "HiFi-Fachgeschäft"
-
-msgid "horse racing"
-msgstr "Pferderennen"
-
-msgid "hospital"
-msgstr "Krankenhaus"
-
-msgid "hostel"
-msgstr "Jugendherberge"
-
-msgid "ice cream"
-msgstr "Eiscreme"
-
-msgid "ice rink"
-msgstr "Eisbahn"
-
-msgid "interior decoration shop"
-msgstr "Geschäft für Innenausstattung"
-
-msgid "jewelry shop"
-msgstr "Juweliergeschäft"
-
-msgid "karting"
-msgstr "Kartsport"
-
-msgid "kindergarten or preschool"
-msgstr "Kindergarten oder Vorschule"
-
-msgid "kiosk"
-msgstr "Kiosk"
-
-msgid "lamps shop"
-msgstr "Lampengeschäft"
-
-msgid "laundry"
-msgstr "Wäscherei"
-
-msgid "library"
-msgstr "Bücherei"
-
-msgid "long jump"
-msgstr "Weitsprung"
-
-msgid "mall"
-msgstr "Einkaufszentrum"
-
-msgid "marina"
-msgstr "Yachthafen"
-
-msgid "marketplace"
-msgstr "Marktplatz"
-
-msgid "massage shop"
-msgstr "Massagesalon"
-
-msgid "miniature golf"
-msgstr "Minigolf"
-
-msgid "mobile phone shop"
-msgstr "Handyshop"
-
-msgid "model aerodrome"
-msgstr "Modellflugplatz"
-
-msgid "monument"
-msgstr "Denkmal"
-
-msgid "motel"
-msgstr "Motel"
-
-msgid "motocross"
-msgstr "Motocross"
-
-msgid "motor"
-msgstr "Motor"
-
-msgid "motorcycle shop"
-msgstr "Motorradhändler"
-
-msgid "multi"
-msgstr "multi"
-
-msgid "music shop"
-msgstr "Musikgeschäft"
-
-msgid "musical instrument shop"
-msgstr "Musikalienhandlung"
-
-msgid "newsagent shop"
-msgstr "Zeitungshändler"
-
-msgid "nightclub"
-msgstr "Nachtclub"
-
-msgid "nursing home"
-msgstr "Pflegeheim"
-
-msgid "optician"
-msgstr "Optiker"
-
-msgid "orienteering"
-msgstr "Orientierungslauf"
-
-msgid "outdoor"
-msgstr "im Freien"
-
-msgid "paragliding"
-msgstr "Paragleiten"
-
-msgid "park"
-msgstr "Park"
-
-msgid "car park"
-msgstr "Parkplatz"
-
-msgid "perfumery"
-msgstr "Parfümerie"
-
-msgid "pet store"
-msgstr " Tierhandlung"
-
-msgid "photo shop"
-msgstr "Fotoladen"
-
-msgid "picnic site"
-msgstr "Picknickplatz"
-
-msgid "place of worship"
-msgstr "Gotteshaus"
-
-msgid "police"
-msgstr "Polizei"
-
-msgid "post office"
-msgstr "Postamt"
-
-msgid "prison"
-msgstr "Gefängnis"
-
-msgid "pub"
-msgstr "Pub"
-
-msgid "public building"
-msgstr "Öffentliches Gebäude"
-
-msgid "rc car"
-msgstr "RC-Car"
-
-msgid "recycling"
-msgstr ""
-
-msgid "reservoir"
-msgstr "Reservoir"
-
-msgid "rowing"
-msgstr "Rudern"
-
-msgid "ruins"
-msgstr "Ruinen"
-
-msgid "running"
-msgstr "Rennen"
-
-msgid "sailing"
-msgstr "Segeln"
-
-msgid "school"
-msgstr "Schule"
-
-msgid "scuba diving"
-msgstr "Sporttauchen"
-
-msgid "resale shop"
-msgstr "Wiederverkäufer"
-
-msgid "shoes"
-msgstr "Schuhe"
-
-msgid "shooting"
-msgstr "Schießen"
-
-msgid "skateboard"
-msgstr "Skateboard"
-
-msgid "skating"
-msgstr "Skaten"
-
-msgid "skiing"
-msgstr "Skifahren"
-
-msgid "soccer"
-msgstr "Fußball"
-
-msgid "sports shop"
-msgstr "Sportgeschäft"
-
-msgid "sports centre"
-msgstr "Sportzentrum"
-
-msgid "stadium"
-msgstr "Stadion"
-
-msgid "station"
-msgstr "Bahnhof"
-
-msgid "stationery shop"
-msgstr "Schreibwarengeschäft"
-
-msgid "subway"
-msgstr "Untergrundbahn"
-
-msgid "swimming"
-msgstr "Schwimmen"
-
-msgid "swimming area"
-msgstr "Badebereich"
-
-msgid "swimming pool"
-msgstr "Schwimmbad"
-
-msgid "table tennis"
-msgstr "Tischtennis"
-
-msgid "tailor"
-msgstr "Schneider"
-
-msgid "tattoo salon"
-msgstr "Tätowierstudio "
-
-msgid "tennis"
-msgstr "Tennis"
-
-msgid "theatre"
-msgstr "Theater"
-
-msgid "theme park"
-msgstr "Freizeitpark"
-
-msgid "ticket shop"
-msgstr "Ticketshop"
-
-msgid "tobacco shop"
-msgstr "Tabakgeschäft"
-
-msgid "toll booth"
-msgstr "Mautstation"
-
-msgid "townhall"
-msgstr "Rathaus"
-
-msgid "toys shop"
-msgstr "Spielzeuggeschäft"
-
-msgid "tram stop"
-msgstr "Straßenbahnhaltestelle"
-
-msgid "travel agency"
-msgstr "Reiseagentur"
-
-msgid "university"
-msgstr "Universität"
-
-msgid "veterinary"
-msgstr "Tierarzt"
-
-msgid "videos shop"
-msgstr "Videothek"
-
-msgid "video games shop"
-msgstr "Geschäft für Computerspiele"
-
-msgid "viewpoint"
-msgstr "Aussichtspunkt"
-
-msgid "watches shop"
-msgstr "Uhrengeschäft"
-
-msgid "water park"
-msgstr "Erlebnisbad"
-
-msgid "weapons shop"
-msgstr "Waffengeschäft"
-
-msgid "warehouse club"
-msgstr "Lagerhausclub"
-
-msgid "wine shop"
-msgstr "Weingeschäft"
-
-msgid "yoga"
-msgstr "Yoga"
-
-msgid "zoo"
-msgstr "Zoo"
-
-msgid "city"
-msgstr "Stadt"
-
-msgid "country"
-msgstr "Land"
-
-msgid "address"
-msgstr "Adresse"
-
-msgid "street"
-msgstr "Straße"
-
+#: src/components/OsmContribution.jsx:13
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
+
+#: src/components/OsmContribution.jsx:18
+msgid "View"
+msgstr "Ansicht"
+
+#: src/components/OsmContribution.jsx:23
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: src/components/ReviewScore.jsx:33
 msgid "review"
 msgid_plural "reviews"
 msgstr[0] "Bewertungen"
 msgstr[1] "Bewertungen"
 
+#: src/components/ui/Panel.jsx:181 src/modals/MasqActivatingModal.jsx:37
+#: src/modals/MasqActivatingModal.jsx:46 views/index.ejs:50
+msgid "Close"
+msgstr "Schließen"
+
+#: src/components/ui/SuggestItem.jsx:23 src/panel/poi/PoiHeader.jsx:13
+msgid "Close to"
+msgstr "Neben"
+
+#: src/components/ui/SuggestItem.jsx:24 src/panel/poi/PoiPanel.jsx:312
+msgid "Search around this place"
+msgstr "Um diesen Ort herum suchen"
+
+#: src/libs/masq.js:98
+msgid ""
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
+msgstr ""
+"Die Verbindung zwischen Qwant Maps und Masq ist fehlgeschlagen "
+"(Signalisierungsfehler)"
+
+#: src/libs/masq.js:102
+msgid "Could not connect to Masq"
+msgstr "Keine Verbindung zu Masq"
+
+#: src/libs/suggest.js:45 src/panel/Menu.jsx:99
+#: src/panel/poi/ActionButtons.jsx:51
+#: src/panel/service/ServicePanelDesktop.jsx:37
+msgid "Favorites"
+msgstr "Favoriten"
+
+#: src/mapbox/locale.js:4
+msgid "My location"
+msgstr ""
+
+#: src/mapbox/poi_subclass.js:3
+msgid "accessories shop"
+msgstr "Zubehörshop "
+
+#: src/mapbox/poi_subclass.js:4
+msgid "airport"
+msgstr "Flughafen"
+
+#: src/mapbox/poi_subclass.js:5
+msgid "liquor store"
+msgstr "Spirituosengeschäft"
+
+#: src/mapbox/poi_subclass.js:6
+msgid "alpine hut"
+msgstr "Berghütte"
+
+#: src/mapbox/poi_subclass.js:7
+msgid "antiques shop"
+msgstr "Antiquitätengeschäft "
+
+#: src/mapbox/poi_subclass.js:8
+msgid "aquarium"
+msgstr "Aquarium"
+
+#: src/mapbox/poi_subclass.js:9
+msgid "archery"
+msgstr "Bogenschießen"
+
+#: src/mapbox/poi_subclass.js:10
+msgid "art shop"
+msgstr "Kunstgeschäft"
+
+#: src/mapbox/poi_subclass.js:11
+msgid "arts centre"
+msgstr "Kunstzentrum"
+
+#: src/mapbox/poi_subclass.js:12
+msgid "athletics"
+msgstr "Leichtathletik "
+
+#: src/mapbox/poi_subclass.js:13
+msgid "attraction"
+msgstr "Attraktion"
+
+#: src/mapbox/poi_subclass.js:14
+msgid "bag shop"
+msgstr "Taschengeschäft"
+
+#: src/mapbox/poi_subclass.js:15
+msgid "bakery"
+msgstr "Bäckerei"
+
+#: src/mapbox/poi_subclass.js:18
+msgid "basin"
+msgstr "Becken"
+
+#: src/mapbox/poi_subclass.js:19
+msgid "basketball"
+msgstr "Basketball"
+
+#: src/mapbox/poi_subclass.js:20
+msgid "bbq"
+msgstr "BBQ"
+
+#: src/mapbox/poi_subclass.js:21
+msgid "beauty salon"
+msgstr "Schönheitssalon"
+
+#: src/mapbox/poi_subclass.js:22
+msgid "bed shop"
+msgstr "Bettengeschäft"
+
+#: src/mapbox/poi_subclass.js:23
+msgid "bed and breakfast"
+msgstr "Übernachtung mit Frühstück"
+
+#: src/mapbox/poi_subclass.js:24
+msgid "beverages shop"
+msgstr "Getränkeladen"
+
+#: src/mapbox/poi_subclass.js:25
+msgid "bicycle shop"
+msgstr "Fahrradladen"
+
+#: src/mapbox/poi_subclass.js:26
+msgid "biergarten"
+msgstr "Biergarten"
+
+#: src/mapbox/poi_subclass.js:27
+msgid "billiards"
+msgstr "Billard"
+
+#: src/mapbox/poi_subclass.js:28
+msgid "bmx"
+msgstr "BMX"
+
+#: src/mapbox/poi_subclass.js:29
+msgid "books shop"
+msgstr "Buchladen"
+
+#: src/mapbox/poi_subclass.js:30
+msgid "border control"
+msgstr "Grenzkontrolle"
+
+#: src/mapbox/poi_subclass.js:31
+msgid "boules"
+msgstr "Boule"
+
+#: src/mapbox/poi_subclass.js:32
+msgid "boutique"
+msgstr "Boutique"
+
+#: src/mapbox/poi_subclass.js:33
+msgid "bowls"
+msgstr "Bowlen"
+
+#: src/mapbox/poi_subclass.js:34
+msgid "brownfield"
+msgstr "Brachfläche"
+
+#: src/mapbox/poi_subclass.js:35
+msgid "bus station"
+msgstr "Busbahnhof"
+
+#: src/mapbox/poi_subclass.js:36
+msgid "butcher"
+msgstr "Metzger"
+
+#: src/mapbox/poi_subclass.js:37
+msgid "cafe"
+msgstr "Café"
+
+#: src/mapbox/poi_subclass.js:38
+msgid "camp site"
+msgstr "Campingplatz"
+
+#: src/mapbox/poi_subclass.js:39
+msgid "canoe"
+msgstr "Kanu"
+
+#: src/mapbox/poi_subclass.js:40
+msgid "car shop"
+msgstr "KFZ-Werkstatt"
+
+#: src/mapbox/poi_subclass.js:41
+msgid "car repair"
+msgstr "Autoreparatur"
+
+#: src/mapbox/poi_subclass.js:42
+msgid "caravan site"
+msgstr "Campingplatz"
+
+#: src/mapbox/poi_subclass.js:43
+msgid "carpet shop"
+msgstr "Teppichhandel"
+
+#: src/mapbox/poi_subclass.js:44
+msgid "castle"
+msgstr "Burg"
+
+#: src/mapbox/poi_subclass.js:45
+msgid "cemetery"
+msgstr "Friedhof"
+
+#: src/mapbox/poi_subclass.js:46
+msgid "chalet"
+msgstr "Chalet"
+
+#: src/mapbox/poi_subclass.js:47
+msgid "charity store"
+msgstr "Wohltätigkeitsladen"
+
+#: src/mapbox/poi_subclass.js:48
+msgid "chemist"
+msgstr "Drogerie"
+
+#: src/mapbox/poi_subclass.js:49
+msgid "chess"
+msgstr "Schach"
+
+#: src/mapbox/poi_subclass.js:50
+msgid "chocolate shop"
+msgstr "Schokoladengeschäft"
+
+#: src/mapbox/poi_subclass.js:51
+msgid "cinema"
+msgstr "Kino"
+
+#: src/mapbox/poi_subclass.js:52
+msgid "climbing"
+msgstr "Klettern"
+
+#: src/mapbox/poi_subclass.js:53
+msgid "climbing adventure"
+msgstr "Kletterabenteuer"
+
+#: src/mapbox/poi_subclass.js:54
+msgid "clinic"
+msgstr "Klinik"
+
+#: src/mapbox/poi_subclass.js:55
+msgid "clothes shop"
+msgstr "Kleidergeschäft"
+
+#: src/mapbox/poi_subclass.js:56
+msgid "coffee shop"
+msgstr "Café"
+
+#: src/mapbox/poi_subclass.js:57
+msgid "college"
+msgstr "College"
+
+#: src/mapbox/poi_subclass.js:58
+msgid "community centre"
+msgstr "Gemeindezentrum"
+
+#: src/mapbox/poi_subclass.js:59
+msgid "computer shop"
+msgstr "Computergeschäft"
+
+#: src/mapbox/poi_subclass.js:60
+msgid "confectionery shop"
+msgstr "Süßwarenladen"
+
+#: src/mapbox/poi_subclass.js:61
+msgid "convenience store"
+msgstr "Kleiner Lebensmittelladen"
+
+#: src/mapbox/poi_subclass.js:62
+msgid "copyshop"
+msgstr "Copyshop"
+
+#: src/mapbox/poi_subclass.js:63
+msgid "cosmetics shop"
+msgstr "Kosmetikgeschäft"
+
+#: src/mapbox/poi_subclass.js:64
+msgid "courthouse"
+msgstr "Gerichtsgebäude"
+
+#: src/mapbox/poi_subclass.js:65
+msgid "cricket"
+msgstr "Kricket"
+
+#: src/mapbox/poi_subclass.js:66
+msgid "cycling"
+msgstr "Rad fahren "
+
+#: src/mapbox/poi_subclass.js:67
+msgid "deli"
+msgstr "Feinkostladen"
+
+#: src/mapbox/poi_subclass.js:68
+msgid "dentist"
+msgstr "Zahnarzt"
+
+#: src/mapbox/poi_subclass.js:69
+msgid "department store"
+msgstr "Kaufhaus"
+
+#: src/mapbox/poi_subclass.js:70
+msgid "dock"
+msgstr "Kai"
+
+#: src/mapbox/poi_subclass.js:71
+msgid "doctors office"
+msgstr "Arztpraxis"
+
+#: src/mapbox/poi_subclass.js:72
+msgid "dog park"
+msgstr "Hundepark"
+
+#: src/mapbox/poi_subclass.js:73
+msgid "dog racing"
+msgstr "Hunderennen"
+
+#: src/mapbox/poi_subclass.js:74
+msgid "doityourself store"
+msgstr "Heimwerkermarkt"
+
+#: src/mapbox/poi_subclass.js:75
+msgid "dry cleaning"
+msgstr "Reinigung"
+
+#: src/mapbox/poi_subclass.js:76
+msgid "electronics shop"
+msgstr "Elektronikgeschäft"
+
+#: src/mapbox/poi_subclass.js:77
+msgid "embassy"
+msgstr "Botschaft"
+
+#: src/mapbox/poi_subclass.js:78
+msgid "equestrian"
+msgstr "Reitsport"
+
+#: src/mapbox/poi_subclass.js:79
+msgid "erotic shop"
+msgstr "Erotikshop"
+
+#: src/mapbox/poi_subclass.js:80
+msgid "escape game"
+msgstr "Escape Game"
+
+#: src/mapbox/poi_subclass.js:81
+msgid "fabric"
+msgstr "Bau"
+
+#: src/mapbox/poi_subclass.js:82
+msgid "farm shop"
+msgstr "Hofladen"
+
+#: src/mapbox/poi_subclass.js:83
+msgid "fast food"
+msgstr "Fast Food"
+
+#: src/mapbox/poi_subclass.js:84
+msgid "fire station"
+msgstr "Feuerwache"
+
+#: src/mapbox/poi_subclass.js:85
+msgid "florist"
+msgstr "Blumenhändler"
+
+#: src/mapbox/poi_subclass.js:86
+msgid "food court"
+msgstr "Gastronomiebereich"
+
+#: src/mapbox/poi_subclass.js:87
+msgid "free flying"
+msgstr "Gratis Flug"
+
+#: src/mapbox/poi_subclass.js:88
+msgid "fuel station"
+msgstr "Tankstelle"
+
+#: src/mapbox/poi_subclass.js:89
+msgid "furniture shop"
+msgstr "Möbelgeschäft"
+
+#: src/mapbox/poi_subclass.js:90
+msgid "gallery"
+msgstr "Galerie"
+
+#: src/mapbox/poi_subclass.js:91
+msgid "garden"
+msgstr "Garten"
+
+#: src/mapbox/poi_subclass.js:92
+msgid "garden centre"
+msgstr "Gartenmarkt"
+
+#: src/mapbox/poi_subclass.js:93
+msgid "general store"
+msgstr "Gemischtwarenladen"
+
+#: src/mapbox/poi_subclass.js:94
+msgid "gift shop"
+msgstr "Geschenkartikelladen"
+
+#: src/mapbox/poi_subclass.js:95
+msgid "golf"
+msgstr "Golf"
+
+#: src/mapbox/poi_subclass.js:96
+msgid "golf course"
+msgstr "Golfplatz"
+
+#: src/mapbox/poi_subclass.js:97
+msgid "grave yard"
+msgstr "Friedhof"
+
+#: src/mapbox/poi_subclass.js:98
+msgid "greengrocer"
+msgstr "Gemüsehändler"
+
+#: src/mapbox/poi_subclass.js:99
+msgid "guest house"
+msgstr "Gästehaus"
+
+#: src/mapbox/poi_subclass.js:100
+msgid "gymnastics"
+msgstr "Turnen"
+
+#: src/mapbox/poi_subclass.js:101
+msgid "hackerspace"
+msgstr "Hackerspace"
+
+#: src/mapbox/poi_subclass.js:102
+msgid "hairdresser"
+msgstr "Friseur"
+
+#: src/mapbox/poi_subclass.js:103
+msgid "halt"
+msgstr "Halt"
+
+#: src/mapbox/poi_subclass.js:104
+msgid "hardware shop"
+msgstr "Eisenwarenhandlung"
+
+#: src/mapbox/poi_subclass.js:105
+msgid "hearing aids shop"
+msgstr "Geschäft für Hörgeräte"
+
+#: src/mapbox/poi_subclass.js:106
+msgid "hifi shop"
+msgstr "HiFi-Fachgeschäft"
+
+#: src/mapbox/poi_subclass.js:107
+msgid "horse racing"
+msgstr "Pferderennen"
+
+#: src/mapbox/poi_subclass.js:108
+msgid "hospital"
+msgstr "Krankenhaus"
+
+#: src/mapbox/poi_subclass.js:109
+msgid "hostel"
+msgstr "Jugendherberge"
+
+#: src/mapbox/poi_subclass.js:111
+msgid "ice cream"
+msgstr "Eiscreme"
+
+#: src/mapbox/poi_subclass.js:112
+msgid "ice rink"
+msgstr "Eisbahn"
+
+#: src/mapbox/poi_subclass.js:113
+msgid "interior decoration shop"
+msgstr "Geschäft für Innenausstattung"
+
+#: src/mapbox/poi_subclass.js:114
+msgid "jewelry shop"
+msgstr "Juweliergeschäft"
+
+#: src/mapbox/poi_subclass.js:115
+msgid "karting"
+msgstr "Kartsport"
+
+#: src/mapbox/poi_subclass.js:116
+msgid "kindergarten or preschool"
+msgstr "Kindergarten oder Vorschule"
+
+#: src/mapbox/poi_subclass.js:117
+msgid "kiosk"
+msgstr "Kiosk"
+
+#: src/mapbox/poi_subclass.js:118
+msgid "lamps shop"
+msgstr "Lampengeschäft"
+
+#: src/mapbox/poi_subclass.js:119
+msgid "laundry"
+msgstr "Wäscherei"
+
+#: src/mapbox/poi_subclass.js:120
+msgid "library"
+msgstr "Bücherei"
+
+#: src/mapbox/poi_subclass.js:122
+msgid "long jump"
+msgstr "Weitsprung"
+
+#: src/mapbox/poi_subclass.js:123
+msgid "mall"
+msgstr "Einkaufszentrum"
+
+#: src/mapbox/poi_subclass.js:124
+msgid "marina"
+msgstr "Yachthafen"
+
+#: src/mapbox/poi_subclass.js:125
+msgid "marketplace"
+msgstr "Marktplatz"
+
+#: src/mapbox/poi_subclass.js:126
+msgid "massage shop"
+msgstr "Massagesalon"
+
+#: src/mapbox/poi_subclass.js:127
+msgid "miniature golf"
+msgstr "Minigolf"
+
+#: src/mapbox/poi_subclass.js:128
+msgid "mobile phone shop"
+msgstr "Handyshop"
+
+#: src/mapbox/poi_subclass.js:129
+msgid "model aerodrome"
+msgstr "Modellflugplatz"
+
+#: src/mapbox/poi_subclass.js:130
+msgid "monument"
+msgstr "Denkmal"
+
+#: src/mapbox/poi_subclass.js:131
+msgid "motel"
+msgstr "Motel"
+
+#: src/mapbox/poi_subclass.js:132
+msgid "motocross"
+msgstr "Motocross"
+
+#: src/mapbox/poi_subclass.js:133
+msgid "motor"
+msgstr "Motor"
+
+#: src/mapbox/poi_subclass.js:134
+msgid "motorcycle shop"
+msgstr "Motorradhändler"
+
+#: src/mapbox/poi_subclass.js:135
+msgid "multi"
+msgstr "multi"
+
+#: src/mapbox/poi_subclass.js:137
+msgid "music shop"
+msgstr "Musikgeschäft"
+
+#: src/mapbox/poi_subclass.js:138
+msgid "musical instrument shop"
+msgstr "Musikalienhandlung"
+
+#: src/mapbox/poi_subclass.js:139
+msgid "newsagent shop"
+msgstr "Zeitungshändler"
+
+#: src/mapbox/poi_subclass.js:140
+msgid "nightclub"
+msgstr "Nachtclub"
+
+#: src/mapbox/poi_subclass.js:141
+msgid "nursing home"
+msgstr "Pflegeheim"
+
+#: src/mapbox/poi_subclass.js:142
+msgid "optician"
+msgstr "Optiker"
+
+#: src/mapbox/poi_subclass.js:143
+msgid "orienteering"
+msgstr "Orientierungslauf"
+
+#: src/mapbox/poi_subclass.js:144
+msgid "outdoor"
+msgstr "im Freien"
+
+#: src/mapbox/poi_subclass.js:145
+msgid "paragliding"
+msgstr "Paragleiten"
+
+#: src/mapbox/poi_subclass.js:146
+msgid "park"
+msgstr "Park"
+
+#: src/mapbox/poi_subclass.js:147
+msgid "car park"
+msgstr "Parkplatz"
+
+#: src/mapbox/poi_subclass.js:148
+msgid "perfumery"
+msgstr "Parfümerie"
+
+#: src/mapbox/poi_subclass.js:149
+msgid "pet store"
+msgstr " Tierhandlung"
+
+#: src/mapbox/poi_subclass.js:151
+msgid "photo shop"
+msgstr "Fotoladen"
+
+#: src/mapbox/poi_subclass.js:152
+msgid "picnic site"
+msgstr "Picknickplatz"
+
+#: src/mapbox/poi_subclass.js:153
+msgid "place of worship"
+msgstr "Gotteshaus"
+
+#: src/mapbox/poi_subclass.js:154
+msgid "police"
+msgstr "Polizei"
+
+#: src/mapbox/poi_subclass.js:155
+msgid "post office"
+msgstr "Postamt"
+
+#: src/mapbox/poi_subclass.js:156
+msgid "prison"
+msgstr "Gefängnis"
+
+#: src/mapbox/poi_subclass.js:157
+msgid "pub"
+msgstr "Pub"
+
+#: src/mapbox/poi_subclass.js:158
+msgid "public building"
+msgstr "Öffentliches Gebäude"
+
+#: src/mapbox/poi_subclass.js:159
+msgid "rc car"
+msgstr "RC-Car"
+
+#: src/mapbox/poi_subclass.js:160
+msgid "recycling"
+msgstr ""
+
+#: src/mapbox/poi_subclass.js:161
+msgid "reservoir"
+msgstr "Reservoir"
+
+#: src/mapbox/poi_subclass.js:163
+msgid "rowing"
+msgstr "Rudern"
+
+#: src/mapbox/poi_subclass.js:164
+msgid "ruins"
+msgstr "Ruinen"
+
+#: src/mapbox/poi_subclass.js:165
+msgid "running"
+msgstr "Rennen"
+
+#: src/mapbox/poi_subclass.js:166
+msgid "sailing"
+msgstr "Segeln"
+
+#: src/mapbox/poi_subclass.js:167
+msgid "school"
+msgstr "Schule"
+
+#: src/mapbox/poi_subclass.js:168
+msgid "scuba diving"
+msgstr "Sporttauchen"
+
+#: src/mapbox/poi_subclass.js:169
+msgid "resale shop"
+msgstr "Wiederverkäufer"
+
+#: src/mapbox/poi_subclass.js:170
+msgid "shoes"
+msgstr "Schuhe"
+
+#: src/mapbox/poi_subclass.js:171
+msgid "shooting"
+msgstr "Schießen"
+
+#: src/mapbox/poi_subclass.js:172
+msgid "skateboard"
+msgstr "Skateboard"
+
+#: src/mapbox/poi_subclass.js:173
+msgid "skating"
+msgstr "Skaten"
+
+#: src/mapbox/poi_subclass.js:174
+msgid "skiing"
+msgstr "Skifahren"
+
+#: src/mapbox/poi_subclass.js:175
+msgid "soccer"
+msgstr "Fußball"
+
+#: src/mapbox/poi_subclass.js:176
+msgid "sports shop"
+msgstr "Sportgeschäft"
+
+#: src/mapbox/poi_subclass.js:177
+msgid "sports centre"
+msgstr "Sportzentrum"
+
+#: src/mapbox/poi_subclass.js:178
+msgid "stadium"
+msgstr "Stadion"
+
+#: src/mapbox/poi_subclass.js:179
+msgid "station"
+msgstr "Bahnhof"
+
+#: src/mapbox/poi_subclass.js:180
+msgid "stationery shop"
+msgstr "Schreibwarengeschäft"
+
+#: src/mapbox/poi_subclass.js:181
+msgid "subway"
+msgstr "Untergrundbahn"
+
+#: src/mapbox/poi_subclass.js:183
+msgid "swimming"
+msgstr "Schwimmen"
+
+#: src/mapbox/poi_subclass.js:184
+msgid "swimming area"
+msgstr "Badebereich"
+
+#: src/mapbox/poi_subclass.js:185
+msgid "swimming pool"
+msgstr "Schwimmbad"
+
+#: src/mapbox/poi_subclass.js:186
+msgid "table tennis"
+msgstr "Tischtennis"
+
+#: src/mapbox/poi_subclass.js:187
+msgid "tailor"
+msgstr "Schneider"
+
+#: src/mapbox/poi_subclass.js:188
+msgid "tattoo salon"
+msgstr "Tätowierstudio "
+
+#: src/mapbox/poi_subclass.js:189
+msgid "tennis"
+msgstr "Tennis"
+
+#: src/mapbox/poi_subclass.js:190
+msgid "theatre"
+msgstr "Theater"
+
+#: src/mapbox/poi_subclass.js:191
+msgid "theme park"
+msgstr "Freizeitpark"
+
+#: src/mapbox/poi_subclass.js:192
+msgid "ticket shop"
+msgstr "Ticketshop"
+
+#: src/mapbox/poi_subclass.js:193
+msgid "tobacco shop"
+msgstr "Tabakgeschäft"
+
+#: src/mapbox/poi_subclass.js:194
+msgid "toll booth"
+msgstr "Mautstation"
+
+#: src/mapbox/poi_subclass.js:195
+msgid "townhall"
+msgstr "Rathaus"
+
+#: src/mapbox/poi_subclass.js:196
+msgid "toys shop"
+msgstr "Spielzeuggeschäft"
+
+#: src/mapbox/poi_subclass.js:197
+msgid "tram stop"
+msgstr "Straßenbahnhaltestelle"
+
+#: src/mapbox/poi_subclass.js:198
+msgid "travel agency"
+msgstr "Reiseagentur"
+
+#: src/mapbox/poi_subclass.js:199
+msgid "university"
+msgstr "Universität"
+
+#: src/mapbox/poi_subclass.js:200
+msgid "veterinary"
+msgstr "Tierarzt"
+
+#: src/mapbox/poi_subclass.js:201
+msgid "videos shop"
+msgstr "Videothek"
+
+#: src/mapbox/poi_subclass.js:202
+msgid "video games shop"
+msgstr "Geschäft für Computerspiele"
+
+#: src/mapbox/poi_subclass.js:203
+msgid "viewpoint"
+msgstr "Aussichtspunkt"
+
+#: src/mapbox/poi_subclass.js:204
+msgid "watches shop"
+msgstr "Uhrengeschäft"
+
+#: src/mapbox/poi_subclass.js:205
+msgid "water park"
+msgstr "Erlebnisbad"
+
+#: src/mapbox/poi_subclass.js:206
+msgid "weapons shop"
+msgstr "Waffengeschäft"
+
+#: src/mapbox/poi_subclass.js:207
+msgid "warehouse club"
+msgstr "Lagerhausclub"
+
+#: src/mapbox/poi_subclass.js:208
+msgid "wine shop"
+msgstr "Weingeschäft"
+
+#: src/mapbox/poi_subclass.js:209
+msgid "yoga"
+msgstr "Yoga"
+
+#: src/mapbox/poi_subclass.js:210
+msgid "zoo"
+msgstr "Zoo"
+
+#: src/mapbox/poi_subclass.js:211
+msgid "city"
+msgstr "Stadt"
+
+#: src/mapbox/poi_subclass.js:212
+msgid "country"
+msgstr "Land"
+
+#: src/mapbox/poi_subclass.js:213
+msgid "address"
+msgstr "Adresse"
+
+#: src/mapbox/poi_subclass.js:214
+msgid "street"
+msgstr "Straße"
+
+#: src/modals/GeolocationModal.jsx:11
 msgid "Geolocation with privacy!"
 msgstr "Geolokalisierung mit Privatsphäre!"
 
+#: src/modals/GeolocationModal.jsx:12
+#, python-brace-format
 msgid ""
 "You need to know where you are? Please allow your application to access your"
 " location so that it can tell you. As stated in our {privacyPolicyLink} "
@@ -810,20 +1093,25 @@ msgstr ""
 "Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standort, damit wir Sie orten können. \n"
 "Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant Ihre Standortdaten nicht. Wir wollen nicht wissen, wo Sie sich befinden."
 
+#: src/modals/GeolocationModal.jsx:18
 msgid "Ok, I've got it."
 msgstr "Okay, ich habe es verstanden."
 
+#: src/modals/GeolocationModal.jsx:21 src/modals/GeolocationModal.jsx:26
 msgid "Geolocation not available."
 msgstr "Standortbestimmung nicht verfügbar."
 
+#: src/modals/GeolocationModal.jsx:22
 msgid ""
 "You have not allowed Qwant Maps (or your device) to access your location."
 msgstr ""
 "Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
 
+#: src/modals/GeolocationModal.jsx:23 src/modals/GeolocationModal.jsx:28
 msgid "Ok"
 msgstr "O.k."
 
+#: src/modals/GeolocationModal.jsx:27
 msgid ""
 "Qwant Maps cannot determine your position. Check that location services are "
 "enabled on your system."
@@ -831,190 +1119,27 @@ msgstr ""
 "Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
 "Standortbestimmung auf Ihrem System aktiviert ist."
 
-msgid "Your position"
-msgstr "Deine Position"
-
+#: src/modals/MasqActivatingModal.jsx:20
 msgid "Patience, Masq is activating..."
 msgstr "Moment, Masq wird aktiviert..."
 
+#: src/modals/MasqActivatingModal.jsx:24
 msgid "Cancel"
 msgstr "Abbrechen"
 
+#: src/modals/MasqActivatingModal.jsx:31
 msgid "Well done, Masq is activated !"
 msgstr "Gut gemacht, Masq wurde aktiviert!"
 
+#: src/modals/MasqActivatingModal.jsx:31
 msgid "Your data is now secured, enjoy !"
 msgstr "Ihre Daten sind nun sicher, viel Vergnügen!"
 
-msgid "Close"
-msgstr "Schließen"
-
+#: src/modals/MasqActivatingModal.jsx:42
 msgid "Masq activation failed"
 msgstr "Masq Aktivierung fehlgeschlagen"
 
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-"Die Verbindung zwischen Qwant Maps und Masq ist fehlgeschlagen "
-"(Signalisierungsfehler)"
-
-msgid "Could not connect to Masq"
-msgstr "Keine Verbindung zu Masq"
-
-msgid "category"
-msgstr "Kategorie"
-
-msgid "Activate Masq"
-msgstr "Aktiviere Masq"
-
-msgid "Deactivate"
-msgstr "Deaktivieren"
-
-msgid "Activate"
-msgstr "Aktivieren"
-
-msgid "How does it work ?"
-msgstr "Wie funktioniert das?"
-
-msgid "Search"
-msgstr "Suchen"
-
-msgid "Directions"
-msgstr "Wegbeschreibung"
-
-msgid "Favorites"
-msgstr "Favoriten"
-
-msgid "How to contribute"
-msgstr "Wie man mitmacht"
-
-msgid "Share link"
-msgstr "Link teilen"
-
-msgid "Copied !"
-msgstr "Kopiert !"
-
-msgid "Share on Facebook"
-msgstr "Auf Facebook teilen"
-
-msgid "Share on Twitter"
-msgstr "Auf Twitter teilen"
-
-msgid "Share"
-msgstr "Teilen"
-
-msgid "Delete"
-msgstr "Löschen"
-
-msgid ""
-"You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-"Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
-"auf einen Ort klicken."
-
-msgid "Use"
-msgstr "Verwende"
-
-msgid "to secure your favorites on all your devices"
-msgstr "um deine Favoriten auf all deinen Geräten zu sichern"
-
-msgid "Favorite places"
-msgstr "Lieblingsorte"
-
-msgid "My favorites"
-msgstr "Meine Favoriten"
-
-msgid "Show favorites"
-msgstr "Favoriten anzeigen"
-
-msgid "Close to"
-msgstr "Neben"
-
-msgid "See more"
-msgstr "Zeige mehr"
-
-msgid "Show number"
-msgstr "Nummer anzeigen"
-
-msgid "Saved"
-msgstr "Gespeichert"
-
-msgid "See the usual opening hours"
-msgstr ""
-
-msgid "Photos"
-msgstr "Fotos"
-
-msgid "Wikipedia"
-msgstr "Wikipedia"
-
-msgid "Wheelchair accessible"
-msgstr "Rollstuhlgerecht"
-
-msgid "Partially wheelchair accessible"
-msgstr " Teilweise rollstuhlgerecht"
-
-msgid "Not wheelchair accessible"
-msgstr "Nicht rollstuhlgerecht"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Rollstuhlgerechte Toiletten"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
-
-msgid "Accessibility"
-msgstr "Barrierefreiheit"
-
-msgid "Beers"
-msgstr "Bier"
-
-msgid "Internet access"
-msgstr "Internetzugang"
-
-msgid "WiFi"
-msgstr "Wi-Fi"
-
-msgid "Services & information"
-msgstr "Dienstleistungen und Information"
-
-msgid "Please comply with government travel restrictions."
-msgstr ""
-
-msgid "More information at"
-msgstr ""
-
-msgid "Open during the sanitary crisis"
-msgstr ""
-
-msgid "Potentially open during the sanitary crisis"
-msgstr ""
-
-msgid "Closed during the sanitary crisis"
-msgstr ""
-
-msgid "No information on opening during the sanitary crisis"
-msgstr ""
-
-msgid "Report a change"
-msgstr ""
-
-msgid "Opening hours subject to change"
-msgstr ""
-
-msgid "Qwant Maps uses OpenStreetMap data."
-msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
-
-msgid "View"
-msgstr "Ansicht"
-
-msgid "Edit"
-msgstr "Bearbeiten"
-
+#: src/modals/MasqFavoriteModal.jsx:62
 msgid ""
 "Qwant Maps + Masq is the solution for a web mapping service respecting your "
 "privacy!"
@@ -1022,123 +1147,361 @@ msgstr ""
 "Qwant Maps + Masq ergeben gemeinsam die Lösung für einen Privatsphäre "
 "respektierenden Kartenservice!"
 
+#: src/modals/MasqFavoriteModal.jsx:68
 msgid "More Details"
 msgstr "Mehr Details"
 
+#: src/modals/MasqFavoriteModal.jsx:73
 msgid "Do you want to synchronize your favorites with Masq ?"
 msgstr "Möchten Sie Ihre Favoriten mit Masq synchronisieren?"
 
+#: src/modals/MasqFavoriteModal.jsx:78 src/modals/MasqOnboardingModal.jsx:117
+msgid "Activate Masq"
+msgstr "Aktiviere Masq"
+
+#: src/modals/MasqFavoriteModal.jsx:84
 msgid "No thanks"
 msgstr "Nein danke"
 
+#: src/modals/MasqFavoriteModal.jsx:92
 msgid "Do not ask again"
 msgstr "Nicht erneut fragen"
 
-msgid "Back to favorite"
-msgstr "Zurück zu Favoriten"
+#: src/modals/ShareModal.jsx:37
+msgid "Share link"
+msgstr "Link teilen"
 
-msgid "Back to list"
-msgstr "Zurück zur Liste"
+#: src/modals/ShareModal.jsx:51
+msgid "Copied !"
+msgstr "Kopiert !"
 
-msgid "Back"
-msgstr "Zurück"
+#: src/modals/ShareModal.jsx:65
+msgid "Share on Facebook"
+msgstr "Auf Facebook teilen"
 
-msgid "Search around this place"
-msgstr "Um diesen Ort herum suchen"
+#: src/modals/ShareModal.jsx:72
+msgid "Share on Twitter"
+msgstr "Auf Twitter teilen"
 
-msgid "Good plans"
-msgstr "Gute Pläne"
+#: src/panel/Menu.jsx:89 views/index.ejs:45
+msgid "Search"
+msgstr "Suchen"
 
-msgid "Qwant Maps services"
-msgstr "Qwant Maps-Dienste"
+#: src/panel/Menu.jsx:94 src/panel/direction/DirectionPanel.jsx:267
+#: src/panel/poi/ActionButtons.jsx:39 src/panel/poi/ActionButtons.jsx:41
+#: src/panel/poi/PoiCard.jsx:51 src/panel/service/ServicePanelDesktop.jsx:28
+#: src/panel/service/ServicePanelDesktop.jsx:29
+#: src/panel/service/ServicePanelMobile.jsx:20
+msgid "Directions"
+msgstr "Wegbeschreibung"
 
-msgid "Unfold to see quick actions"
-msgstr ""
+#: src/panel/Menu.jsx:107
+msgid "How to contribute"
+msgstr "Wie man mitmacht"
 
-msgid "by car"
-msgstr "mit dem Auto"
+#: src/panel/category/CategoryPanel.jsx:174
+msgid "Show results"
+msgstr "Ergebnisse anzeigen"
 
-msgid "transit"
-msgstr "Linienverkehr"
-
-msgid "on foot"
-msgstr "zu Fuß"
-
-msgid "by bike"
-msgstr "mit dem Rad"
-
-msgid "Services nearby"
-msgstr ""
-
-msgid "on {date}"
-msgstr ""
-
-msgid "from {date1} to {date2}"
-msgstr ""
-
-msgid "Please zoom in the map to see the results for this event."
-msgstr ""
-"Bitte vergrößere die Karte um die Ergebnisse für dises Ereigniss zu sehen."
-
-msgid "No results found. Please zoom out of the map."
-msgstr "Keine Ergebnisse gefunden. Bitte aus der Karte herauszoomen."
-
-msgid "Search around my position"
-msgstr "Um meinen Standort herum suchen"
-
+#: src/panel/category/CategoryPanelError.jsx:12
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 "Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
 
+#: src/panel/category/CategoryPanelError.jsx:13
+msgid "No results found. Please zoom out of the map."
+msgstr "Keine Ergebnisse gefunden. Bitte aus der Karte herauszoomen."
+
+#: src/panel/category/CategoryPanelError.jsx:17
+msgid "Search around my position"
+msgstr "Um meinen Standort herum suchen"
+
+#: src/panel/category/CategoryPanelHeader.jsx:17
 msgid "Pages Jaunes"
 msgstr "Pages Jaunes"
 
+#: src/panel/category/CategoryPanelHeader.jsx:21
 msgid "Partnership"
 msgstr "Partnerschaft"
 
-msgid "Show results"
-msgstr "Ergebnisse anzeigen"
-
-msgid "Start point"
-msgstr "Startpunkt"
-
-msgid "End point"
-msgstr "Zielpunkt"
-
-msgid "Test"
-msgstr "Test"
-
+#: src/panel/direction/DirectionForm.jsx:91
 msgid "Invert start and end"
 msgstr "Start und Ziel tauschen"
 
-msgid "Via"
-msgstr "Über"
+#: src/panel/direction/DirectionInput.jsx:108
+msgid "Start point"
+msgstr "Startpunkt"
 
-msgid "Walk on {walkDistance}"
-msgstr "Lauf über {walkDistance}"
+#: src/panel/direction/DirectionInput.jsx:109
+msgid "End point"
+msgstr "Zielpunkt"
 
-msgid "Start"
-msgstr "Start"
+#: src/panel/direction/DirectionPanel.jsx:300
+msgid "return"
+msgstr "zurück"
 
-msgid "Arrival"
-msgstr "Ankunft"
-
+#: src/panel/direction/MobileRouteDetails.jsx:39
+#: src/panel/direction/RouteSummary.jsx:47
+#: src/panel/direction/RouteSummary.jsx:66
 msgid "Details"
 msgstr "Details"
 
+#: src/panel/direction/MobileRouteDetails.jsx:44
 msgid "Preview"
 msgstr "Vorschau"
 
+#: src/panel/direction/PublicTransportRoadMap.jsx:22
+#: src/panel/direction/RoadMap.jsx:16
+msgid "Start"
+msgstr "Start"
+
+#: src/panel/direction/PublicTransportRoadMap.jsx:26
+msgid "Arrival"
+msgstr "Ankunft"
+
+#: src/panel/direction/RouteResult.jsx:80
 msgid "The service is temporarily unavailable, please try again later."
 msgstr "Das Qwant Dienst ist derzeit nicht verfügbar, bitte versuche später."
 
+#: src/panel/direction/RouteResult.jsx:81
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps konnte keine Ergebnisse für diese Reiseroute finden."
 
+#: src/panel/direction/RouteResult.jsx:87
 msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr "Wir testen gerade ein öffentliches Verkehrsmode in einpaar Städten."
 
-msgid "return"
-msgstr "zurück"
+#: src/panel/direction/RouteSummary.jsx:61
+#: src/panel/favorites/FavoritePoi.jsx:42 src/panel/poi/ActionButtons.jsx:58
+msgid "Share"
+msgstr "Teilen"
+
+#: src/panel/direction/RouteVia.jsx:8
+msgid "Via"
+msgstr "Über"
+
+#: src/panel/direction/VehicleSelector.jsx:7
+#: src/panel/service/ServicePanelMobile.jsx:29
+msgid "by car"
+msgstr "mit dem Auto"
+
+#: src/panel/direction/VehicleSelector.jsx:8
+#: src/panel/service/ServicePanelMobile.jsx:38
+msgid "transit"
+msgstr "Linienverkehr"
+
+#: src/panel/direction/VehicleSelector.jsx:9
+#: src/panel/service/ServicePanelMobile.jsx:45
+msgid "on foot"
+msgstr "zu Fuß"
+
+#: src/panel/direction/VehicleSelector.jsx:10
+#: src/panel/service/ServicePanelMobile.jsx:51
+msgid "by bike"
+msgstr "mit dem Rad"
+
+#: src/panel/direction/VehicleSelector.jsx:28
+msgid "Test"
+msgstr "Test"
+
+#: src/panel/direction/WalkLeg.jsx:10
+#, python-brace-format
+msgid "Walk on {walkDistance}"
+msgstr "Lauf über {walkDistance}"
+
+#: src/panel/favorites/FavoriteItems.jsx:11
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+"Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
+"auf einen Ort klicken."
+
+#: src/panel/favorites/FavoriteMasqFooter.jsx:7
+msgid "Use"
+msgstr "Verwende"
+
+#: src/panel/favorites/FavoriteMasqFooter.jsx:9
+msgid "to secure your favorites on all your devices"
+msgstr "um deine Favoriten auf all deinen Geräten zu sichern"
+
+#: src/panel/favorites/FavoritePoi.jsx:47
+msgid "Delete"
+msgstr "Löschen"
+
+#: src/panel/favorites/FavoritesPanel.jsx:74
+msgid "Favorite places"
+msgstr "Lieblingsorte"
+
+#: src/panel/favorites/FavoritesPanel.jsx:75
+#: src/panel/service/ServicePanelDesktop.jsx:38
+msgid "My favorites"
+msgstr "Meine Favoriten"
+
+#: src/panel/favorites/FavoritesPanel.jsx:82
+msgid "Show favorites"
+msgstr "Favoriten anzeigen"
+
+#: src/panel/menu/MasqStatus.jsx:56
+msgid "Deactivate"
+msgstr "Deaktivieren"
+
+#: src/panel/menu/MasqStatus.jsx:66
+msgid "Activate"
+msgstr "Aktivieren"
+
+#: src/panel/menu/MasqStatus.jsx:73
+msgid "How does it work ?"
+msgstr "Wie funktioniert das?"
+
+#: src/panel/menu/MenuButton.jsx:11
+msgid "Menu"
+msgstr ""
+
+#: src/panel/poi/ActionButtons.jsx:26
+msgid "Call"
+msgstr ""
+
+#: src/panel/poi/PoiCard.jsx:58
+msgid "See more"
+msgstr "Zeige mehr"
+
+#: src/panel/poi/PoiPanel.jsx:254
+msgid "Back to favorite"
+msgstr "Zurück zu Favoriten"
+
+#: src/panel/poi/PoiPanel.jsx:260
+msgid "Back to list"
+msgstr "Zurück zur Liste"
+
+#: src/panel/poi/PoiPanel.jsx:266
+msgid "Back"
+msgstr "Zurück"
+
+#: src/panel/poi/blocks/Accessibility.jsx:10
+msgid "Wheelchair accessible"
+msgstr "Rollstuhlgerecht"
+
+#: src/panel/poi/blocks/Accessibility.jsx:11
+msgid "Partially wheelchair accessible"
+msgstr " Teilweise rollstuhlgerecht"
+
+#: src/panel/poi/blocks/Accessibility.jsx:12
+msgid "Not wheelchair accessible"
+msgstr "Nicht rollstuhlgerecht"
+
+#: src/panel/poi/blocks/Accessibility.jsx:15
+msgid "Wheelchair accessible toilets"
+msgstr "Rollstuhlgerechte Toiletten"
+
+#: src/panel/poi/blocks/Accessibility.jsx:16
+msgid "Partial wheelchair accessible toilets"
+msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
+
+#: src/panel/poi/blocks/Accessibility.jsx:17
+msgid "No wheelchair accessible toilets"
+msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
+
+#: src/panel/poi/blocks/Accessibility.jsx:29
+msgid "Accessibility"
+msgstr "Barrierefreiheit"
+
+#: src/panel/poi/blocks/Brewery.jsx:10 src/panel/poi/blocks/Brewery.jsx:14
+msgid "Beers"
+msgstr "Bier"
+
+#: src/panel/poi/blocks/Covid19.jsx:34
+msgid "Report a change"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:52
+msgid "Opening hours subject to change"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:77
+msgid "Please comply with government travel restrictions."
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:80
+msgid "More information at"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:95 src/panel/poi/blocks/Covid19.jsx:96
+msgid "Open during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:97
+msgid "Potentially open during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:98
+msgid "Closed during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Covid19.jsx:99
+msgid "No information on opening during the sanitary crisis"
+msgstr ""
+
+#: src/panel/poi/blocks/Hour.jsx:25
+msgid "See the usual opening hours"
+msgstr ""
+
+#: src/panel/poi/blocks/Images.jsx:17
+msgid "Photos"
+msgstr "Fotos"
+
+#: src/panel/poi/blocks/InternetAccess.jsx:11
+#: src/panel/poi/blocks/InternetAccess.jsx:15
+msgid "Internet access"
+msgstr "Internetzugang"
+
+#: src/panel/poi/blocks/InternetAccess.jsx:11
+#: src/panel/poi/blocks/InternetAccess.jsx:19
+msgid "WiFi"
+msgstr "Wi-Fi"
+
+#: src/panel/poi/blocks/Recycling.jsx:12
+msgid "Glass"
+msgstr ""
+
+#: src/panel/poi/blocks/Recycling.jsx:13
+msgid "Recyclable"
+msgstr ""
+
+#: src/panel/poi/blocks/Recycling.jsx:14
+msgid "Unknown"
+msgstr ""
+
+#: src/panel/poi/blocks/Recycling.jsx:21
+#, python-brace-format
+msgid "Updated {datetime}"
+msgstr ""
+
+#: src/panel/poi/blocks/Services.jsx:29
+msgid "Services & information"
+msgstr "Dienstleistungen und Information"
+
+#: src/panel/poi/blocks/Wiki.jsx:19
+msgid "Wikipedia"
+msgstr "Wikipedia"
+
+#: src/panel/service/ServicePanelDesktop.jsx:13
+msgid "Qwant Maps services"
+msgstr "Qwant Maps-Dienste"
+
+#: src/panel/service/ServicePanelMobile.jsx:14
+msgid "Unfold to see quick actions"
+msgstr ""
+
+#: src/panel/service/ServicePanelMobile.jsx:60
+msgid "Services nearby"
+msgstr ""
+
+#: views/index.ejs:44
+msgid "Search on Qwant Maps"
+msgstr "Auf Qwant Maps suchen"
+
+#: views/index.ejs:58
+msgid "JavaScript is required to view this application."
+msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
