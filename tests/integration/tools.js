@@ -52,3 +52,7 @@ export async function simulateClickOnMap(page, latLng) {
     return fireEvent('set_direction_point', poi);
   }, new LatLngPoi(latLng));
 }
+
+export async function getInputValue(page, selector) {
+  return await page.evaluate(s => document.querySelector(s)?.value, selector);
+}

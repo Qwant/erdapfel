@@ -1,7 +1,7 @@
 const poiMock = require('../../__data__/poi.json');
 
 import ResponseHandler from '../helpers/response_handler';
-import { initBrowser, getText, clearStore } from '../tools';
+import { initBrowser, getText, clearStore, getInputValue } from '../tools';
 import { getFavorites, toggleFavoritePanel, storePoi } from '../favorites_tools';
 import { languages } from '../../../config/constants.yml';
 
@@ -56,7 +56,7 @@ test('load a poi from url and click on directions', async () => {
   await page.waitForSelector('.poi_panel__title');
   await page.click('.poi_panel__actions .poi_panel__action__direction'); // Click on directions button
   await page.waitForSelector('#itinerary_input_destination');
-  const destinationValue = await page.$eval('#itinerary_input_destination', el => el.value);
+  const destinationValue = await getInputValue(page, '#itinerary_input_destination');
   expect(destinationValue).toEqual("Musée d'Orsay");
 });
 

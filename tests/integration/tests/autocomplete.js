@@ -1,4 +1,4 @@
-import { clearStore, initBrowser } from '../tools';
+import { clearStore, initBrowser, getInputValue } from '../tools';
 import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
@@ -316,9 +316,7 @@ test('Search Query', async () => {
 
   const searchQuery = 'test';
   await page.goto(`${APP_URL}/?q=${searchQuery}`);
-  const searchValue = await page.evaluate(() => {
-    return document.querySelector('#search').value;
-  });
+  const searchValue = await getInputValue(page, '#search');
 
   // search input is filled with query
   expect(searchValue).toEqual(searchQuery);
