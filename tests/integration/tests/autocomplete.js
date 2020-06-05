@@ -28,7 +28,6 @@ beforeEach(async () => {
 });
 
 test('search and clear', async () => {
-  expect.assertions(4);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/);
   await page.goto(APP_URL);
@@ -164,7 +163,6 @@ test('mouse navigation', async () => {
 });
 
 test('move to on click', async () => {
-  expect.assertions(2);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   const { center: map_position_before } = await getMapView(page);
@@ -178,7 +176,6 @@ test('move to on click', async () => {
 });
 
 test('center on select', async () => {
-  expect.assertions(2);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
@@ -203,7 +200,6 @@ test('center on select', async () => {
 });
 
 test('favorite search', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await storePoi(page, { title: 'hello' });
@@ -257,7 +253,6 @@ test('suggestions should not reappear after fast submit', async () => {
 
 
 test('check template', async () => {
-  expect.assertions(8);
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/);
   await page.goto(APP_URL);
   await page.keyboard.type('type');

@@ -23,7 +23,6 @@ beforeEach(async () => {
 });
 
 test('check "My position" label', async () => {
-  expect.assertions(1);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
   // wait for autocomplete library starting-up
@@ -35,7 +34,6 @@ test('check "My position" label', async () => {
 });
 
 test('Start/end inputs are correctly filled', async () => {
-  expect.assertions(2);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
   await page.waitForSelector('#itinerary_input_origin');
 
@@ -54,7 +52,6 @@ test('Start/end inputs are correctly filled', async () => {
 });
 
 test('switch start end', async () => {
-  expect.assertions(1);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
   await page.waitForSelector('#itinerary_input_origin');
   await page.type('#itinerary_input_origin', 'start');
@@ -68,7 +65,6 @@ test('switch start end', async () => {
 });
 
 test('simple search', async () => {
-  expect.assertions(1);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
   responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
@@ -79,12 +75,10 @@ test('simple search', async () => {
   await page.keyboard.press('Enter');
 
   const leg0 = await page.waitForSelector('.itinerary_leg');
-
   expect(leg0).not.toBeNull();
 });
 
 test('route flag', async () => {
-  expect.assertions(3);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
   await page.waitForSelector('#itinerary_input_origin');
@@ -101,7 +95,6 @@ test('route flag', async () => {
 test('destination', async () => {
   responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
 
-  expect.assertions(2);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?destination=${mockPoi1.id}`);
   await page.waitForSelector('#itinerary_input_origin');
 
@@ -116,7 +109,6 @@ test('origin & destination', async () => {
   responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
   responseHandler.addPreparedResponse(mockPoi2, new RegExp(`places/${mockPoi2.id}`));
 
-  expect.assertions(2);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockPoi2.id}`);
   await page.waitForSelector('#itinerary_input_origin');
 
@@ -131,7 +123,6 @@ test('origin & latlon destination & mode', async () => {
   responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
   responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp(`places/${mockLatlonPoi.id}`));
 
-  expect.assertions(3);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockLatlonPoi.id}&mode=walking`);
   await page.waitForSelector('#itinerary_input_origin');
 
@@ -150,7 +141,6 @@ test('origin & latlon destination & mode', async () => {
 // There is no current way with the MapBox-GL-mock to test changes of state or style
 // on a feature. Let's disable this test it until we improve our map testing tools.
 // test('select itinerary leg', async () => {
-//   expect.assertions(1);
 //   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.0000000,6\.6000000/);
 //   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.0`);
 //   await page.waitForSelector('#itinerary_leg_0');
@@ -161,7 +151,6 @@ test('origin & latlon destination & mode', async () => {
 // });
 
 test('select itinerary step', async () => {
-  expect.assertions(1);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
 
@@ -198,7 +187,6 @@ test('show itinerary roadmap on mobile', async () => {
 });
 
 test('api error handling', async () => {
-  expect.assertions(1);
   /* prepare "error" response */
   responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, { status: 422 });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`);
@@ -207,7 +195,6 @@ test('api error handling', async () => {
 });
 
 test('api wait effect', async () => {
-  expect.assertions(2);
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/, { delay: 1000 });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
   const placeholderHandler = await page.waitForSelector('.itinerary_leg--placeholder');

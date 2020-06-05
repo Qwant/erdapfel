@@ -11,7 +11,6 @@ beforeAll(async () => {
 });
 
 test('toggle favorite panel', async () => {
-  expect.assertions(2);
   await page.goto(APP_URL);
   await page.waitForSelector('.panel_container', { visible: true });
   expect(await page.evaluate(() => {
@@ -23,7 +22,6 @@ test('toggle favorite panel', async () => {
 });
 
 test('favorite added is present in favorite panel', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
   await storePoi(page, { title: 'some poi' });
   await toggleFavoritePanel(page);
@@ -32,7 +30,6 @@ test('favorite added is present in favorite panel', async () => {
 });
 
 test('restore favorite from localStorage', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
   const testTitle = 'demo_fav';
   await storePoi(page, { title: testTitle });
@@ -45,7 +42,6 @@ test('restore favorite from localStorage', async () => {
 });
 
 test('remove favorite using favorite panel', async () => {
-  expect.assertions(2);
   await page.goto(APP_URL);
   await storePoi(page, { title: 'some poi i will remove' });
   await toggleFavoritePanel(page);

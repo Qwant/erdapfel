@@ -15,7 +15,6 @@ beforeAll(async () => {
 
 
 test('test menu toggling', async () => {
-  expect.assertions(3);
   await page.goto(APP_URL);
   page.waitForSelector('.menu__button');
   let panel = await page.waitForSelector('.menu__panel', { hidden: true });
@@ -31,7 +30,6 @@ test('test menu toggling', async () => {
 });
 
 test('menu open favorite', async () => {
-  expect.assertions(2);
   await page.goto(APP_URL);
   page.waitForSelector('.menu__button');
 
@@ -51,7 +49,6 @@ test('menu open favorite', async () => {
 });
 
 test('close service panel when opening direction', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
   await page.click('.service_panel__item__direction');
   const servicePanelClose = await page.waitForSelector('.service_panel', { hidden: true });
