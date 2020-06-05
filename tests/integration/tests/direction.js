@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, simulateClickOnMap } from '../tools';
+import { initBrowser, simulateClickOnMap, getInputValue, getMapView } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
@@ -44,16 +44,12 @@ test('Start/end inputs are correctly filled', async () => {
   await page.waitForSelector('.autocomplete_suggestions');
   await page.keyboard.press('Enter');
 
-  const directionStartInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_origin').value
-  );
+  const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
   expect(directionStartInput).toEqual(mockAutocomplete.features[0].properties.geocoding.name);
 
   responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp('latlon:43.70324:7.25997'));
   await simulateClickOnMap(page, { lat: 43.70324, lng: 7.25997 });
-  const directionEndInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_destination').value
-  );
+  const directionEndInput = await getInputValue(page, '#itinerary_input_destination');
   expect(directionEndInput).toEqual(mockLatlonPoi.address.label);
 });
 
@@ -64,10 +60,10 @@ test('switch start end', async () => {
   await page.type('#itinerary_input_origin', 'start');
   await page.type('#itinerary_input_destination', 'end');
   await page.click('.itinerary_invert_origin_destination');
-  const inputValues = await page.evaluate(() => {
-    return { startInput: document.querySelector('#itinerary_input_origin').value, endInput: document.querySelector('#itinerary_input_destination').value };
-  });
-
+  const inputValues = {
+    startInput: await getInputValue(page, '#itinerary_input_origin'),
+    endInput: await getInputValue(page, '#itinerary_input_destination'),
+  };
   expect(inputValues).toEqual({ startInput: 'end', endInput: 'start' });
 });
 
@@ -93,15 +89,12 @@ test('route flag', async () => {
 
   await page.waitForSelector('#itinerary_input_origin');
   const smallToolBar = await page.waitForSelector('.top_bar--small');
-
   expect(smallToolBar).not.toBeNull();
-  const directionStartInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_origin').value
-  );
+
+  const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
   expect(directionStartInput).toEqual('');
-  const directionEndInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_destination').value
-  );
+
+  const directionEndInput = await getInputValue(page, '#itinerary_input_destination');
   expect(directionEndInput).toEqual('');
 });
 
@@ -112,14 +105,10 @@ test('destination', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?destination=${mockPoi1.id}`);
   await page.waitForSelector('#itinerary_input_origin');
 
-  const directionStartInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_origin').value
-  );
+  const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
   expect(directionStartInput).toEqual('');
 
-  const directionEndInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_destination').value
-  );
+  const directionEndInput = await getInputValue(page, '#itinerary_input_destination');
   expect(directionEndInput).toEqual(mockPoi1.name);
 });
 
@@ -131,14 +120,10 @@ test('origin & destination', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockPoi2.id}`);
   await page.waitForSelector('#itinerary_input_origin');
 
-  const directionStartInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_origin').value
-  );
+  const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
   expect(directionStartInput).toEqual(mockPoi1.name);
 
-  const directionEndInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_destination').value
-  );
+  const directionEndInput = await getInputValue(page, '#itinerary_input_destination');
   expect(directionEndInput).toEqual(mockPoi2.name);
 });
 
@@ -150,14 +135,10 @@ test('origin & latlon destination & mode', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockLatlonPoi.id}&mode=walking`);
   await page.waitForSelector('#itinerary_input_origin');
 
-  const directionStartInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_origin').value
-  );
+  const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
   expect(directionStartInput).toEqual(mockPoi1.name);
 
-  const directionEndInput = await page.evaluate(() =>
-    document.getElementById('itinerary_input_destination').value
-  );
+  const directionEndInput = await getInputValue(page, '#itinerary_input_destination');
   expect(directionEndInput).toEqual(mockLatlonPoi.address.label);
 
   const activeLabel = await page.evaluate(() => {
@@ -189,10 +170,7 @@ test('select itinerary step', async () => {
   await page.click('.itinerary_leg_via_details');
   await page.click('.itinerary_roadmap_item:nth-of-type(2)');
 
-  const center = await page.evaluate(() => {
-    return window.MAP_MOCK.getCenter();
-  });
-
+  const { center } = await getMapView(page);
   expect(center).toEqual({ 'lat': 48.823566, 'lng': 2.290454 });
 });
 

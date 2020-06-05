@@ -1,4 +1,4 @@
-import { clearStore, initBrowser } from '../tools';
+import { clearStore, initBrowser, getInputValue, getMapView } from '../tools';
 import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
@@ -167,15 +167,11 @@ test('move to on click', async () => {
   expect.assertions(2);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
-  const map_position_before = await page.evaluate(() => {
-    return window.MAP_MOCK.center;
-  });
+  const { center: map_position_before } = await getMapView(page);
   await autocompleteHelper.typeAndWait('Hello');
   await page.waitForSelector('.autocomplete_suggestions');
   await page.click('.autocomplete_suggestions li:nth-child(3)');
-  const map_position_after = await page.evaluate(() => {
-    return window.MAP_MOCK.center;
-  });
+  const { center: map_position_after } = await getMapView(page);
   expect(map_position_before).not.toEqual(map_position_after);
   const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates;
   expect(map_position_after).toEqual({ lat: expectedLat, lng: expectedLng });
@@ -188,9 +184,7 @@ test('center on select', async () => {
   await autocompleteHelper.typeAndWait('Hello');
   await page.waitForSelector('.autocomplete_suggestions');
   await page.click('.autocomplete_suggestion:nth-child(1)');
-  const { center, zoom } = await page.evaluate(() => {
-    return { center: window.MAP_MOCK.getCenter(), zoom: window.MAP_MOCK.getZoom() };
-  });
+  const { center, zoom } = await getMapView(page);
   expect(center).toEqual({ lat: 5, lng: 30 });
   expect(zoom).toEqual(16.5);
 
@@ -228,9 +222,7 @@ test('submit key', async () => {
   await page.keyboard.press('Enter');
   await page.waitForSelector('.autocomplete_suggestions', { hidden: true });
 
-  let center = await page.evaluate(() =>
-    window.MAP_MOCK.getCenter()
-  );
+  const { center } = await getMapView(page);
 
   let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates;
   expect(center).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
@@ -244,12 +236,9 @@ test('submit key', async () => {
 
   await page.waitFor(300);
 
-  center = await page.evaluate(() =>
-    window.MAP_MOCK.getCenter()
-  );
-
+  const { center: newCenter } = await getMapView(page);
   firstFeatureCenter = mockAutocompleteAllTypes.features[0].geometry.coordinates;
-  expect(center).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
+  expect(newCenter).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
 });
 
 
@@ -316,9 +305,7 @@ test('Search Query', async () => {
 
   const searchQuery = 'test';
   await page.goto(`${APP_URL}/?q=${searchQuery}`);
-  const searchValue = await page.evaluate(() => {
-    return document.querySelector('#search').value;
-  });
+  const searchValue = await getInputValue(page, '#search');
 
   // search input is filled with query
   expect(searchValue).toEqual(searchQuery);

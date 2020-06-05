@@ -1,6 +1,7 @@
 const SUGGEST_SELECTOR = '.autocomplete_suggestions li';
 const CLEAR_BUTTON_SELECTOR = '#clear_button';
 const SEARCH_INPUT_SELECTOR = '#search';
+import { getInputValue } from '../tools';
 
 export default class AutocompleteHelper {
   constructor(page) {
@@ -51,10 +52,6 @@ export default class AutocompleteHelper {
   }
 
   async getSearchInputValue() {
-    return this.page.evaluate(SEARCH_INPUT_SELECTOR => {
-      return document.querySelector(SEARCH_INPUT_SELECTOR).value;
-    }, SEARCH_INPUT_SELECTOR);
+    return getInputValue(this.page, SEARCH_INPUT_SELECTOR);
   }
-
-
 }
