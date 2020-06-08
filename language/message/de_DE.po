@@ -5,18 +5,18 @@
 # Nils Hahmann <nhahmann@me.com>, 2019
 # Ettore Atalan <atalanttore@googlemail.com>, 2019
 # Isolator70 <henrik.heinsch@online.de>, 2019
-# Acrylic Boy, 2019
 # ENT8R <info.ent8r@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Edouard Aubert Jurgens <edou.aubert@gmail.com>, 2020
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
+# Acrylic Boy, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 10:52+0000\n"
+"POT-Creation-Date: 2020-06-08 12:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -42,6 +42,12 @@ msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
 msgid "Search on Qwant Maps"
 msgstr "Auf Qwant Maps suchen"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Close"
+msgstr "Schließen"
 
 msgid "JavaScript is required to view this application."
 msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
@@ -148,23 +154,11 @@ msgstr "auf Twitter"
 msgid "on Facebook"
 msgstr "auf Facebook"
 
-msgid "concert"
-msgstr "Konzert"
-
-msgid "show"
-msgstr ""
-
-msgid "exhibition"
-msgstr "Ausstellung"
-
-msgid "event"
-msgstr "Veranstaltung"
-
-msgid "animation"
-msgstr "Animation"
-
 msgid "Search with Qwant Maps"
 msgstr "Suche mit Qwant Maps"
+
+msgid "My location"
+msgstr ""
 
 msgid "write"
 msgstr "schreiben"
@@ -177,6 +171,9 @@ msgstr "Geschlossen"
 
 msgid "Open 24/7"
 msgstr "24/7 geöffnet"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr " öffnet um {nextTransitionTime}"
 
 msgid "until {nextTransitionTime}"
 msgstr "bis {nextTransitionTime}"
@@ -846,9 +843,6 @@ msgstr "Gut gemacht, Masq wurde aktiviert!"
 msgid "Your data is now secured, enjoy !"
 msgstr "Ihre Daten sind nun sicher, viel Vergnügen!"
 
-msgid "Close"
-msgstr "Schließen"
-
 msgid "Masq activation failed"
 msgstr "Masq Aktivierung fehlgeschlagen"
 
@@ -865,6 +859,9 @@ msgstr "Keine Verbindung zu Masq"
 msgid "category"
 msgstr "Kategorie"
 
+msgid "Menu"
+msgstr ""
+
 msgid "Activate Masq"
 msgstr "Aktiviere Masq"
 
@@ -876,9 +873,6 @@ msgstr "Aktivieren"
 
 msgid "How does it work ?"
 msgstr "Wie funktioniert das?"
-
-msgid "Search"
-msgstr "Suchen"
 
 msgid "Directions"
 msgstr "Wegbeschreibung"
@@ -934,11 +928,8 @@ msgstr "Neben"
 msgid "See more"
 msgstr "Zeige mehr"
 
-msgid "Show number"
-msgstr "Nummer anzeigen"
-
-msgid "Saved"
-msgstr "Gespeichert"
+msgid "Call"
+msgstr "Anruf"
 
 msgid "See the usual opening hours"
 msgstr ""
@@ -1006,6 +997,21 @@ msgstr ""
 msgid "Opening hours subject to change"
 msgstr ""
 
+msgid "Search around this place"
+msgstr "Um diesen Ort herum suchen"
+
+msgid "Updated {datetime}"
+msgstr ""
+
+msgid "Glass"
+msgstr ""
+
+msgid "Recyclable"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
 
@@ -1043,12 +1049,6 @@ msgstr "Zurück zur Liste"
 msgid "Back"
 msgstr "Zurück"
 
-msgid "Search around this place"
-msgstr "Um diesen Ort herum suchen"
-
-msgid "Good plans"
-msgstr "Gute Pläne"
-
 msgid "Qwant Maps services"
 msgstr "Qwant Maps-Dienste"
 
@@ -1070,25 +1070,15 @@ msgstr "mit dem Rad"
 msgid "Services nearby"
 msgstr ""
 
-msgid "on {date}"
+msgid "Please zoom in the map to see the results for this category."
 msgstr ""
-
-msgid "from {date1} to {date2}"
-msgstr ""
-
-msgid "Please zoom in the map to see the results for this event."
-msgstr ""
-"Bitte vergrößere die Karte um die Ergebnisse für dises Ereigniss zu sehen."
+"Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
 
 msgid "No results found. Please zoom out of the map."
 msgstr "Keine Ergebnisse gefunden. Bitte aus der Karte herauszoomen."
 
 msgid "Search around my position"
 msgstr "Um meinen Standort herum suchen"
-
-msgid "Please zoom in the map to see the results for this category."
-msgstr ""
-"Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
 
 msgid "Pages Jaunes"
 msgstr "Pages Jaunes"
