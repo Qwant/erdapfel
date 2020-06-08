@@ -35,12 +35,23 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false }) => {
     </div>;
   }
 
+  const NextTransition = () => {
+    if (!nextTransition || showNextOpenOnly && status !== 'closed') {
+      return null;
+    }
+
+    const options = { nextTransitionTime: nextTransition };
+
+    const text = status === 'closed'
+      ? ` - ${_('reopening at {nextTransitionTime}', 'hour panel', options)}`
+      : ` - ${_('until {nextTransitionTime}', 'hour panel', options)}`;
+
+    return text;
+  };
+
   return <div className="openingHour u-text--label">
     {label}
-    {(nextTransition &&
-     (!showNextOpenOnly || showNextOpenOnly && status === 'closed')) &&
-    ` - ${_('until {nextTransitionTime}', 'hour panel', { nextTransitionTime: nextTransition })}`
-    }
+    <NextTransition />
     {' '}
     <div className="openingHour-circle" style={{ background: color }} />
   </div>;
