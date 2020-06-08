@@ -28,7 +28,7 @@
     justify-content: center;
     color: $secondary_text;
     z-index: 1;
-  
+
     &:hover {
       background: $background_hover;
       color: $primary_text;
@@ -95,6 +95,10 @@
       &.panel--white::before {
         background-color: white;
       }
+
+      .panel-content {
+        overflow: auto;
+      }
     }
 
     &.minimized {
@@ -108,6 +112,7 @@
     &-content {
       max-height: none;
       height: calc(100% - 50px);
+      overflow: hidden;
     }
 
     .panel-resizeHandle {

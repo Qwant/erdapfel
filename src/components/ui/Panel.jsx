@@ -219,10 +219,7 @@ export default class Panel extends React.Component {
       >
         {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
       </div>
-      <div className="panel-content"
-        ref={this.panelContentRef}
-        style={({ overflow: size === 'maximized' ? 'auto' : 'hidden' })}
-      >
+      <div className="panel-content" ref={this.panelContentRef}>
         {children}
       </div>
     </div>;
