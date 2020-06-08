@@ -12,18 +12,13 @@ const getEventClientY = event => event.changedTouches
 const SWIPE_THRESHOLD_PX = 50;
 // Pixel threshold from the bottom or top of the viewport to span to min or max
 const MIN_MAX_THRESHOLD_PX = 75;
-// Delay below which a mouseDown/mouseUp interaction
-// will be considered a as single click instead of a draggin action
-const CLICK_RESIZE_TIMEOUT_MS = 150;
 
 function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSize) {
   let size = previousSize;
   const heightDelta = startHeight - endHeight;
   if (Math.abs(heightDelta) < SWIPE_THRESHOLD_PX) {
-    if (moveDuration < CLICK_RESIZE_TIMEOUT_MS) {
-      // the resize handler was only clicked, provide 'smart' resize
-      size = previousSize === 'default' ? 'minimized' : 'default';
-    }
+    // ignore move
+    return size;
   } else if (endHeight < MIN_MAX_THRESHOLD_PX) {
     size = 'minimized';
   } else if (endHeight > maxSize - MIN_MAX_THRESHOLD_PX) {
@@ -35,6 +30,7 @@ function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSi
     // swipe towards the bottom
     size = previousSize === 'default' ? 'minimized' : 'default';
   }
+
   return size;
 }
 
@@ -105,12 +101,16 @@ export default class Panel extends React.Component {
   }
 
   holdResizer = event => {
+    event.stopPropagation();
     this.startHeight = this.panelDOMElement.offsetHeight;
     this.startClientY = getEventClientY(event.nativeEvent);
     this.interactionStarted = event.timeStamp;
 
-    document.addEventListener('mousemove', this.moveCallback);
-    document.addEventListener('touchmove', this.moveCallback);
+    if (event.type === 'touchstart') {
+      document.addEventListener('touchmove', this.moveCallback);
+    } else {
+      document.addEventListener('mousemove', this.moveCallback);
+    }
 
     this.setState(previousState => ({
       currentHeight: this.startHeight,
@@ -124,6 +124,7 @@ export default class Panel extends React.Component {
   * @param {MouseEvent|TouchEvent} e event
   */
   move = event => {
+    event.stopPropagation();
     const clientY = getEventClientY(event);
     const currentHeight = this.startHeight + (this.startClientY - clientY);
 
@@ -152,10 +153,15 @@ export default class Panel extends React.Component {
    * @param {MouseEvent|TouchEvent} event
    */
   stopResize = _ => {
-    document.removeEventListener('mousemove', this.moveCallback);
-    document.removeEventListener('touchmove', this.moveCallback);
+    event.stopPropagation();
 
-    if (this.state.size === 'maximized' && this.panelContentRef.current.scrollTop >= 0) {
+    if (event.type === 'touchend') {
+      document.removeEventListener('touchmove', this.moveCallback);
+    } else {
+      document.removeEventListener('mousemove', this.moveCallback);
+    }
+
+    if (this.state.size === 'maximized' && this.panelContentRef.current.scrollTop > 0) {
       // User is scrolling inside the panel content
       return;
     }
@@ -171,6 +177,14 @@ export default class Panel extends React.Component {
     this.setState({
       holding: false,
       size: newSize,
+      currentHeight: null,
+    });
+  }
+
+  handleHeaderClick() {
+    const size = this.state.size === 'default' ? 'minimized' : 'default';
+    this.setState({
+      size,
       currentHeight: null,
     });
   }
@@ -201,6 +215,7 @@ export default class Panel extends React.Component {
       <div
         className={classnames('panel-header', { 'panel-resizeHandle': resizable })}
         ref={element => this.handleElement = element}
+        onClick={() => this.handleHeaderClick()}
       >
         {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
       </div>
