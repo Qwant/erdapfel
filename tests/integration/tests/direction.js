@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, simulateClickOnMap, getInputValue, getMapView } from '../tools';
+import { initBrowser, simulateClickOnMap, getInputValue, getMapView, exists } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
@@ -29,8 +29,7 @@ test('check "My position" label', async () => {
   await page.click('#itinerary_input_origin');
   await page.waitForSelector('.autocomplete_suggestions');
 
-  const yourPositionItem = await page.waitForSelector('.autocomplete_suggestion--geoloc', { visible: true });
-  expect(yourPositionItem).not.toBeNull();
+  expect(await exists(page, '.autocomplete_suggestion--geoloc')).toBeTruthy();
 });
 
 test('Start/end inputs are correctly filled', async () => {
@@ -73,17 +72,14 @@ test('simple search', async () => {
   await page.keyboard.press('Enter');
   await page.type('#itinerary_input_destination', 'direction');
   await page.keyboard.press('Enter');
-
-  const leg0 = await page.waitForSelector('.itinerary_leg');
-  expect(leg0).not.toBeNull();
+  expect(await exists(page, '.itinerary_leg')).toBeTruthy();
 });
 
 test('route flag', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
   await page.waitForSelector('#itinerary_input_origin');
-  const smallToolBar = await page.waitForSelector('.top_bar--small');
-  expect(smallToolBar).not.toBeNull();
+  expect(await exists(page, '.top_bar--small')).toBeTruthy();
 
   const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
   expect(directionStartInput).toEqual('');
@@ -190,17 +186,14 @@ test('api error handling', async () => {
   /* prepare "error" response */
   responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, { status: 422 });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`);
-  const errorMessageHandler = await page.waitForSelector('.itinerary_no-result');
-  expect(errorMessageHandler).not.toBeNull();
+  expect(await exists(page, '.itinerary_no-result')).toBeTruthy();
 });
 
 test('api wait effect', async () => {
   responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/, { delay: 1000 });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
-  const placeholderHandler = await page.waitForSelector('.itinerary_leg--placeholder');
-  expect(placeholderHandler).not.toBeNull();
-  const firstLeg = await page.waitForSelector('.itinerary_leg:not(.itinerary_leg--placeholder)');
-  expect(firstLeg).not.toBeNull();
+  expect(await exists(page, '.itinerary_leg--placeholder')).toBeTruthy();
+  expect(await exists(page, '.itinerary_leg:not(.itinerary_leg--placeholder)')).toBeTruthy();
 });
 
 afterAll(async () => {

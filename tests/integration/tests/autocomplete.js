@@ -1,4 +1,4 @@
-import { clearStore, initBrowser, getInputValue, getMapView } from '../tools';
+import { clearStore, initBrowser, getInputValue, getMapView, exists } from '../tools';
 import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
@@ -32,17 +32,15 @@ test('search and clear', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
-  const cleanHandle = await autocompleteHelper.getClearFieldButton();
-  expect(cleanHandle).not.toBeNull();
+  expect(await exists(page, '#clear_button')).toBeTruthy();
 
   const autocompleteItems = await autocompleteHelper.getSuggestList();
   expect(autocompleteItems.length).toEqual(SUGGEST_MAX_ITEMS);
 
-
   const searchValue = await autocompleteHelper.getSearchInputValue();
   expect(searchValue).toEqual('Hello');
 
-  await autocompleteHelper.clearField();
+  await page.click('#clear_button');
   const searchValueAfterClear = await autocompleteHelper.getSearchInputValue();
   expect(searchValueAfterClear).toEqual('');
 });
@@ -204,8 +202,7 @@ test('favorite search', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await storePoi(page, { title: 'hello' });
   await page.keyboard.type('Hello');
-  const favTitle = await page.waitForSelector('.autocomplete_separator_label');
-  expect(favTitle).not.toBeNull();
+  expect(await exists(page, '.autocomplete_separator_label')).toBeTruthy();
 });
 
 

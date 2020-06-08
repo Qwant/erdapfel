@@ -1,7 +1,7 @@
 const poiMock = require('../../__data__/poi.json');
 
 import ResponseHandler from '../helpers/response_handler';
-import { initBrowser, getText, clearStore, getInputValue } from '../tools';
+import { initBrowser, getText, clearStore, getInputValue, exists } from '../tools';
 import { getFavorites, toggleFavoritePanel, storePoi } from '../favorites_tools';
 import { languages } from '../../../config/constants.yml';
 
@@ -30,8 +30,7 @@ beforeEach(async () => {
 test('click on a poi', async () => {
   await page.goto(APP_URL);
   await clickPoi(page);
-  const poiPanel = await page.waitForSelector('.poi_panel__title');
-  expect(poiPanel).not.toBeFalsy();
+  expect(await exists(page, '.poi_panel__title')).toBeTruthy();
   const translatedSubClass = await getText(page, '.poi_panel__description');
   expect(translatedSubClass).toEqual('musée');
 });
@@ -94,8 +93,7 @@ test('load a poi already in my favorite from url', async () => {
   await page.goto(APP_URL);
   await storePoi(page, { id: 'osm:way:63178753' });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  const plainStar = await page.waitForSelector('.icon-icon_star-filled');
-  expect(plainStar).not.toBeFalsy();
+  expect(await exists(page, '.icon-icon_star-filled')).toBeTruthy();
 });
 
 test('update url after a poi click', async () => {
@@ -131,9 +129,8 @@ test('open poi from autocomplete selection', async () => {
 
   // url is updated
   expect(location.href).toMatch(/osm:way:63178753@Mus%C3%A9e_dOrsay/);
-
   // poi panel is visible
-  expect(await page.$('.poi_panel.poi_panel--hidden')).toBeFalsy();
+  expect(await exists(page, '.poi_panel')).toBeTruthy();
 });
 
 test('center the map to the poi on a poi click', async () => {
@@ -182,9 +179,7 @@ test('display details about the poi on a poi click', async () => {
   expect(website).toMatch('www.musee-orsay.fr');
   expect(contactUrl).toMatch('mailto:admin@orsay.fr');
   expect(contact).toMatch('admin@orsay.fr');
-
-  const wiki_block = await page.waitForSelector('.poi_panel__info__wiki');
-  expect(wiki_block).not.toBeFalsy();
+  expect(await exists(page, '.poi_panel__info__wiki')).toBeTruthy();
 });
 
 test('Poi name i18n', async () => {
@@ -250,8 +245,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 
   // we select a poi and 'star' it
   await clickPoi(page);
-  let poiPanel = await page.waitForSelector('.poi_panel__title');
-  expect(poiPanel).not.toBeFalsy();
+  expect(await exists(page, '.poi_panel')).toBeTruthy();
   await page.click('.poi_panel__actions .poi_panel__action__favorite');
   await page.click('.poi_panel .panel-close');
   // we check that the first favorite item is our poi
@@ -264,8 +258,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 
   // we then reopen the poi panel and 'unstar' the poi.
   await page.click('.favorite_panel__item');
-  poiPanel = await page.waitForSelector('.poi_panel__title');
-  expect(poiPanel).not.toBeFalsy();
+  expect(await exists(page, '.poi_panel')).toBeTruthy();
 
   await page.click('.poi_panel__actions .poi_panel__action__favorite');
   await page.click('.poi_panel .panel-close');

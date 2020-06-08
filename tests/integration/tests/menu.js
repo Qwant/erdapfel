@@ -1,4 +1,4 @@
-import { clearStore, initBrowser } from '../tools';
+import { clearStore, initBrowser, exists, isHidden } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 
 let browser;
@@ -13,20 +13,16 @@ beforeAll(async () => {
   await responseHandler.prepareResponse();
 });
 
-
 test('test menu toggling', async () => {
   await page.goto(APP_URL);
   page.waitForSelector('.menu__button');
-  let panel = await page.waitForSelector('.menu__panel', { hidden: true });
-  expect(panel).toBeNull();
+  expect(await isHidden(page, '.menu__panel')).toBeTruthy();
 
   await page.click('.menu__button');
-  panel = await page.waitForSelector('.menu__panel', { visible: true });
-  expect(panel).not.toBeNull();
+  expect(await exists(page, '.menu__panel')).toBeTruthy();
 
   await page.click('.menu__panel__top__close');
-  panel = await page.waitForSelector('.menu__panel', { hidden: true });
-  expect(panel).toBeNull();
+  expect(await isHidden(page, '.menu_panel')).toBeTruthy();
 });
 
 test('menu open favorite', async () => {
@@ -37,22 +33,19 @@ test('menu open favorite', async () => {
   await page.waitForSelector('.menu__panel');
   page.click('.menu__panel__action:nth-child(2)');
 
-  const itinerary = await page.waitForSelector('.direction_panel');
-  expect(itinerary).not.toBeNull();
+  expect(await exists(page, '.direction_panel')).toBeTruthy();
 
   page.click('.menu__button');
   await page.waitForSelector('.menu__panel__action');
   page.click('.menu__panel__action:nth-child(3)');
 
-  const favorites = await page.waitForSelector('.favorite_panel');
-  expect(favorites).not.toBeNull();
+  expect(await exists(page, '.favorite_panel')).toBeTruthy();
 });
 
 test('close service panel when opening direction', async () => {
   await page.goto(APP_URL);
   await page.click('.service_panel__item__direction');
-  const servicePanelClose = await page.waitForSelector('.service_panel', { hidden: true });
-  expect(servicePanelClose).toBeNull();
+  expect(await isHidden(page, '.service_panel')).toBeTruthy();
 });
 
 afterEach(async () => {

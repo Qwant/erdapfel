@@ -63,3 +63,21 @@ export async function getMapView(page) {
     zoom: window.MAP_MOCK.getZoom(),
   }));
 }
+
+export async function exists(page, selector) {
+  try {
+    const result = await page.waitForSelector(selector);
+    return !!result;
+  } catch {
+    return false;
+  }
+}
+
+export async function isHidden(page, selector) {
+  try {
+    const result = await page.waitForSelector(selector, { hidden: true });
+    return result === null;
+  } catch {
+    return false;
+  }
+}

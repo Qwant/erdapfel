@@ -1,5 +1,4 @@
 const SUGGEST_SELECTOR = '.autocomplete_suggestions li';
-const CLEAR_BUTTON_SELECTOR = '#clear_button';
 const SEARCH_INPUT_SELECTOR = '#search';
 import { getInputValue } from '../tools';
 
@@ -32,14 +31,6 @@ export default class AutocompleteHelper {
         return cssClass.trim() === 'selected';
       });
     });
-  }
-
-  async getClearFieldButton() {
-    await this.page.waitForSelector(CLEAR_BUTTON_SELECTOR);
-  }
-
-  async clearField() {
-    return await this.page.click(CLEAR_BUTTON_SELECTOR);
   }
 
   async getSuggestList() {
