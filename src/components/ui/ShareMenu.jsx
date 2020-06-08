@@ -22,6 +22,7 @@ export default class ShareMenu extends React.Component {
 
   state = {
     open: false,
+    copied: false,
     top: 0,
     left: 0,
   }
@@ -45,6 +46,7 @@ export default class ShareMenu extends React.Component {
     e.stopPropagation();
     this.setState({
       open: true,
+      copied: false,
       top: top + 30 + menu_height < innerHeight ? top + 20 : top - 15 - menu_height,
       left,
     });
@@ -76,6 +78,7 @@ export default class ShareMenu extends React.Component {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
+    this.setState({ copied: true });
   }
 
   render() {
@@ -87,27 +90,30 @@ export default class ShareMenu extends React.Component {
         style={{ left: this.state.left + 'px', top: this.state.top + 'px' }}>
 
         <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
+          e.preventDefault();
           e.stopPropagation();
+          e.nativeEvent.stopImmediatePropagation();
           this.copy(url);
-          this.close();
         }}>
           <i className="icon-copy" />
-          {_('Copy link', 'share')}
+          {
+            this.state.copied
+              ? <span className="shareMenu-menuItem--copied">
+                { _('Copied!') }
+              </span>
+              : _('Copy link', 'share')
+          }
         </div>
 
         <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={e => {
-          e.stopPropagation();
           this.openPopup(facebookShareUrl(url));
-          this.close();
         }}>
           <i className="icon-facebook" />
           {_('Facebook', 'share')}
         </div>
 
         <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={e => {
-          e.stopPropagation();
           this.openPopup(twitterShareUrl(url));
-          this.close();
         }}>
           <i className="icon-twitter" />
           {_('Twitter', 'share')}
