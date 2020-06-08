@@ -3,14 +3,15 @@
 # T S <tsalaba2004@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
+# manueljlin <manueljlin@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 10:52+0000\n"
+"POT-Creation-Date: 2020-06-08 12:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
+"Last-Translator: manueljlin <manueljlin@gmail.com>, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,6 +35,12 @@ msgstr "El mapa que respeta tu privacidad"
 
 msgid "Search on Qwant Maps"
 msgstr "Buscar en Qwant Maps"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Close"
+msgstr "Cerrar"
 
 msgid "JavaScript is required to view this application."
 msgstr "Es necesario activar JavaScript para ver esta aplicación"
@@ -66,13 +73,13 @@ msgid "museum"
 msgstr "museo"
 
 msgid "service"
-msgstr ""
+msgstr "servicio"
 
 msgid "sport"
-msgstr ""
+msgstr "deporte"
 
 msgid "health"
-msgstr ""
+msgstr "salud"
 
 msgid "Qwant is also"
 msgstr "Qwant es también"
@@ -117,7 +124,7 @@ msgid "Maps legal notices"
 msgstr "Información legal sobre Qwant Maps"
 
 msgid "Terms of Service"
-msgstr "Términos de Servico"
+msgstr "Términos de Servicio"
 
 msgid "About us"
 msgstr "Sobre nosotros"
@@ -140,26 +147,14 @@ msgstr "en Twitter"
 msgid "on Facebook"
 msgstr "en Facebook"
 
-msgid "concert"
-msgstr ""
-
-msgid "show"
-msgstr ""
-
-msgid "exhibition"
-msgstr ""
-
-msgid "event"
-msgstr ""
-
-msgid "animation"
-msgstr ""
-
 msgid "Search with Qwant Maps"
 msgstr "Busca con Qwant Maps"
 
-msgid "write"
+msgid "My location"
 msgstr ""
+
+msgid "write"
+msgstr "escribir"
 
 msgid "Open"
 msgstr "Abierto"
@@ -169,6 +164,9 @@ msgstr "Cerrado"
 
 msgid "Open 24/7"
 msgstr "Abierto 24/7"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr ""
 
 msgid "until {nextTransitionTime}"
 msgstr "hasta {nextTransitionTime}"
@@ -591,7 +589,7 @@ msgid "park"
 msgstr "parque"
 
 msgid "car park"
-msgstr ""
+msgstr "aparcamiento"
 
 msgid "perfumery"
 msgstr "perfumería"
@@ -841,9 +839,6 @@ msgstr "¡Muy bien, Masq se ha activado!"
 msgid "Your data is now secured, enjoy !"
 msgstr "Tus datos están protegidos ahora, ¡disfruta!"
 
-msgid "Close"
-msgstr "Cerrar"
-
 msgid "Masq activation failed"
 msgstr "Hubo un error al activar Masq."
 
@@ -859,6 +854,9 @@ msgstr "No se ha podido conectar a Masq"
 msgid "category"
 msgstr "categoría"
 
+msgid "Menu"
+msgstr ""
+
 msgid "Activate Masq"
 msgstr "Activar Masq"
 
@@ -870,9 +868,6 @@ msgstr "Activar"
 
 msgid "How does it work ?"
 msgstr "¿Cómo funciona?"
-
-msgid "Search"
-msgstr "Buscar"
 
 msgid "Directions"
 msgstr "Indicaciones"
@@ -923,19 +918,16 @@ msgid "Show favorites"
 msgstr "Mostrar favoritos"
 
 msgid "Close to"
-msgstr ""
+msgstr "Cerca de"
 
 msgid "See more"
 msgstr "Ver Más"
 
-msgid "Show number"
-msgstr "Mostrar Número"
-
-msgid "Saved"
-msgstr "Guardado"
+msgid "Call"
+msgstr ""
 
 msgid "See the usual opening hours"
-msgstr ""
+msgstr "Mirar las horas de apertura cotidianas"
 
 msgid "Photos"
 msgstr "Fotos"
@@ -977,27 +969,42 @@ msgid "Services & information"
 msgstr "Servicios e información"
 
 msgid "Please comply with government travel restrictions."
-msgstr ""
+msgstr "Por favor, siga las restricciones de movimiento de su gobierno"
 
 msgid "More information at"
-msgstr ""
+msgstr "Más información en "
 
 msgid "Open during the sanitary crisis"
-msgstr ""
+msgstr "Abierto durante la crisis sanitaria"
 
 msgid "Potentially open during the sanitary crisis"
-msgstr ""
+msgstr "Posiblemente abierto durante la crisis sanitaria"
 
 msgid "Closed during the sanitary crisis"
-msgstr ""
+msgstr "Cerrado durante la crisis sanitaria"
 
 msgid "No information on opening during the sanitary crisis"
-msgstr ""
+msgstr "Sin información de apertura durante la crisis sanitaria"
 
 msgid "Report a change"
-msgstr ""
+msgstr "Reportar un cambio"
 
 msgid "Opening hours subject to change"
+msgstr "Las horas de apertura pueden cambiar"
+
+msgid "Search around this place"
+msgstr "Buscar por esta zona"
+
+msgid "Updated {datetime}"
+msgstr ""
+
+msgid "Glass"
+msgstr ""
+
+msgid "Recyclable"
+msgstr ""
+
+msgid "Unknown"
 msgstr ""
 
 msgid "Qwant Maps uses OpenStreetMap data."
@@ -1037,50 +1044,35 @@ msgstr "Volver a la lista"
 msgid "Back"
 msgstr "Volver"
 
-msgid "Search around this place"
-msgstr "Buscar por esta zona"
-
-msgid "Good plans"
-msgstr ""
-
 msgid "Qwant Maps services"
 msgstr "Servicios de Qwant Maps"
 
 msgid "Unfold to see quick actions"
-msgstr ""
+msgstr "Abre para ver las acciones rápidas"
 
 msgid "by car"
-msgstr ""
+msgstr "en coche"
 
 msgid "transit"
 msgstr ""
 
 msgid "on foot"
-msgstr ""
+msgstr "a pié"
 
 msgid "by bike"
-msgstr ""
+msgstr "en bicicleta"
 
 msgid "Services nearby"
-msgstr ""
+msgstr "Servicios cercanos"
 
-msgid "on {date}"
-msgstr ""
-
-msgid "from {date1} to {date2}"
-msgstr ""
-
-msgid "Please zoom in the map to see the results for this event."
-msgstr ""
+msgid "Please zoom in the map to see the results for this category."
+msgstr "Por favor, amplia el mapa para ver los resultados de esta categoría."
 
 msgid "No results found. Please zoom out of the map."
 msgstr "No se han encontrado resultados. Por favor aleja el mapa."
 
 msgid "Search around my position"
 msgstr "Buscar cerca de mi localización"
-
-msgid "Please zoom in the map to see the results for this category."
-msgstr "Por favor amplia el mapa para ver los resultados de esta categoría."
 
 msgid "Pages Jaunes"
 msgstr "Páginas Amarillas"
@@ -1098,7 +1090,7 @@ msgid "End point"
 msgstr "Punto de destino"
 
 msgid "Test"
-msgstr ""
+msgstr "Prueba"
 
 msgid "Invert start and end"
 msgstr "Invertir origen y destino"
@@ -1107,13 +1099,13 @@ msgid "Via"
 msgstr "Por"
 
 msgid "Walk on {walkDistance}"
-msgstr ""
+msgstr "Camina {walkDistance}"
 
 msgid "Start"
 msgstr "Comenzar"
 
 msgid "Arrival"
-msgstr ""
+msgstr "Llegada"
 
 msgid "Details"
 msgstr "Detalles"
@@ -1123,6 +1115,8 @@ msgstr "Muestra"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
+"El servicio está temporalmente no disponible. Por favor, inténtelo más "
+"tarde."
 
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps no ha encontrado una ruta."

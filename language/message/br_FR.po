@@ -2,16 +2,16 @@
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Gwenn M <tornoz@laposte.net>, 2019
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 10:52+0000\n"
+"POT-Creation-Date: 2020-06-08 12:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: MaximeEuziere <maxime.euziere@gmail.com>, 2020\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,6 +35,12 @@ msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
 msgid "Search on Qwant Maps"
 msgstr "Klask war Qwant Maps"
+
+msgid "Search"
+msgstr "Klask"
+
+msgid "Close"
+msgstr "Serriñ"
 
 msgid "JavaScript is required to view this application."
 msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
@@ -141,23 +147,11 @@ msgstr "war Twitter"
 msgid "on Facebook"
 msgstr "war Facebook"
 
-msgid "concert"
-msgstr "sonadeg"
-
-msgid "show"
-msgstr "arvest"
-
-msgid "exhibition"
-msgstr "diskouezadeg"
-
-msgid "event"
-msgstr "darvoud"
-
-msgid "animation"
-msgstr "luskadurioù"
-
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
+
+msgid "My location"
+msgstr ""
 
 msgid "write"
 msgstr "skrivañ"
@@ -170,6 +164,9 @@ msgstr "Serret"
 
 msgid "Open 24/7"
 msgstr "Digor 24/7"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr ""
 
 msgid "until {nextTransitionTime}"
 msgstr "betek {nextTransitionTime}"
@@ -846,9 +843,6 @@ msgstr "Ma, mat-kaer enaouet emañ Masq!"
 msgid "Your data is now secured, enjoy !"
 msgstr "Suraet eo bremañ ho roadennoù, profitit!"
 
-msgid "Close"
-msgstr "Serriñ"
-
 msgid "Masq activation failed"
 msgstr "Enaouadur Masq c'hwitet"
 
@@ -865,6 +859,9 @@ msgstr "N'heller ket kevreañ ouzh Masq"
 msgid "category"
 msgstr "rummad"
 
+msgid "Menu"
+msgstr ""
+
 msgid "Activate Masq"
 msgstr "Enaouiñ Masq"
 
@@ -876,9 +873,6 @@ msgstr "Enaouiñ"
 
 msgid "How does it work ?"
 msgstr "Penaos ez a en-dro?"
-
-msgid "Search"
-msgstr "Klask"
 
 msgid "Directions"
 msgstr "Tuadurioù"
@@ -934,11 +928,8 @@ msgstr "Da gichen"
 msgid "See more"
 msgstr "Gwelet muioc'h"
 
-msgid "Show number"
-msgstr "Gwelet an niver"
-
-msgid "Saved"
-msgstr "Enrollet"
+msgid "Call"
+msgstr ""
 
 msgid "See the usual opening hours"
 msgstr ""
@@ -1006,6 +997,21 @@ msgstr ""
 msgid "Opening hours subject to change"
 msgstr ""
 
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
+
+msgid "Updated {datetime}"
+msgstr ""
+
+msgid "Glass"
+msgstr ""
+
+msgid "Recyclable"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
 
@@ -1043,12 +1049,6 @@ msgstr "Distreiñ d'al listenn"
 msgid "Back"
 msgstr "Distreiñ"
 
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
-
-msgid "Good plans"
-msgstr "Planioù mat"
-
 msgid "Qwant Maps services"
 msgstr "Servijoù Qwant Maps"
 
@@ -1070,23 +1070,14 @@ msgstr ""
 msgid "Services nearby"
 msgstr ""
 
-msgid "on {date}"
-msgstr "d'an/ar {date}"
-
-msgid "from {date1} to {date2}"
-msgstr "eus an/ar {deiziad1} d'an/ar {date2}"
-
-msgid "Please zoom in the map to see the results for this event."
-msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit an darvoud-mañ."
+msgid "Please zoom in the map to see the results for this category."
+msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
 
 msgid "No results found. Please zoom out of the map."
 msgstr "N'eus bet kavet disoc'h ebet. Dizoumit ar gartenn mar plij."
 
 msgid "Search around my position"
 msgstr "Klask tro-dro din"
-
-msgid "Please zoom in the map to see the results for this category."
-msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
 
 msgid "Pages Jaunes"
 msgstr "Pajennoù Melen"

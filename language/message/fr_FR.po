@@ -1,4 +1,4 @@
-#
+# 
 # Translators:
 # Boo Teille <booteille@tutanota.com>, 2019
 # Florent Thouvenin <github@eldar.fr>, 2019
@@ -10,12 +10,12 @@
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Louis Bedat <louisbedat33@gmail.com>, 2020
 # Adrien Matissart, 2020
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 10:52+0000\n"
+"POT-Creation-Date: 2020-06-08 12:58+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -41,6 +41,12 @@ msgstr "La carte qui respecte votre vie privée"
 
 msgid "Search on Qwant Maps"
 msgstr "Rechercher dans Qwant Maps"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Close"
+msgstr "Fermer"
 
 msgid "JavaScript is required to view this application."
 msgstr ""
@@ -149,23 +155,11 @@ msgstr "sur Twitter"
 msgid "on Facebook"
 msgstr "sur Facebook"
 
-msgid "concert"
-msgstr "concert"
-
-msgid "show"
-msgstr "spectacle"
-
-msgid "exhibition"
-msgstr "exposition"
-
-msgid "event"
-msgstr "événement"
-
-msgid "animation"
-msgstr "animation"
-
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
+
+msgid "My location"
+msgstr "Ma position"
 
 msgid "write"
 msgstr " "
@@ -178,6 +172,9 @@ msgstr "Fermé"
 
 msgid "Open 24/7"
 msgstr "Ouvert 24h/24 et 7j/7"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr "réouverture à {nextTransitionTime}"
 
 msgid "until {nextTransitionTime}"
 msgstr "jusqu’à {nextTransitionTime}"
@@ -851,9 +848,6 @@ msgstr "Bien, Masq est activé !"
 msgid "Your data is now secured, enjoy !"
 msgstr "Vos données sont maintenant sécurisées, profitez !"
 
-msgid "Close"
-msgstr "Fermer"
-
 msgid "Masq activation failed"
 msgstr "Activation de Masq échouée"
 
@@ -870,6 +864,9 @@ msgstr "Impossible de se connecter à Masq"
 msgid "category"
 msgstr "catégorie"
 
+msgid "Menu"
+msgstr "Menu"
+
 msgid "Activate Masq"
 msgstr "Activer Masq"
 
@@ -881,9 +878,6 @@ msgstr "Activer"
 
 msgid "How does it work ?"
 msgstr "Comment ça marche ?"
-
-msgid "Search"
-msgstr "Rechercher"
 
 msgid "Directions"
 msgstr "Itinéraire"
@@ -939,11 +933,8 @@ msgstr "À proximité de"
 msgid "See more"
 msgstr "Voir plus"
 
-msgid "Show number"
-msgstr "Voir le numéro"
-
-msgid "Saved"
-msgstr "Enregistré"
+msgid "Call"
+msgstr "Appeler"
 
 msgid "See the usual opening hours"
 msgstr "Voir les horaires habituels"
@@ -1013,6 +1004,21 @@ msgstr "Signaler un changement"
 msgid "Opening hours subject to change"
 msgstr "Horaires susceptibles d'être adaptés"
 
+msgid "Search around this place"
+msgstr "Rechercher à proximité"
+
+msgid "Updated {datetime}"
+msgstr "Dernière mise à jour: {datetime}"
+
+msgid "Glass"
+msgstr "Verre"
+
+msgid "Recyclable"
+msgstr "Recyclable"
+
+msgid "Unknown"
+msgstr "Inconnu"
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps utilise les données OpenStreetMap."
 
@@ -1050,12 +1056,6 @@ msgstr "Retour à la liste"
 msgid "Back"
 msgstr "Retour"
 
-msgid "Search around this place"
-msgstr "Rechercher à proximité"
-
-msgid "Good plans"
-msgstr "Bons plans"
-
 msgid "Qwant Maps services"
 msgstr "Services Qwant Maps"
 
@@ -1077,13 +1077,7 @@ msgstr "à vélo"
 msgid "Services nearby"
 msgstr "Services à proximité"
 
-msgid "on {date}"
-msgstr "le {date}"
-
-msgid "from {date1} to {date2}"
-msgstr "du {date1} au {date2}"
-
-msgid "Please zoom in the map to see the results for this event."
+msgid "Please zoom in the map to see the results for this category."
 msgstr "Veuillez zoomer sur la zone pour voir des résultats."
 
 msgid "No results found. Please zoom out of the map."
@@ -1091,9 +1085,6 @@ msgstr "Aucun résultat trouvé. Veuillez agrandir la zone de recherche."
 
 msgid "Search around my position"
 msgstr "Rechercher autour de moi"
-
-msgid "Please zoom in the map to see the results for this category."
-msgstr "Veuillez zoomer sur la zone pour voir des résultats."
 
 msgid "Pages Jaunes"
 msgstr "Pages Jaunes"
