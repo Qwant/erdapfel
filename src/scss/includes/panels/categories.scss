@@ -30,24 +30,6 @@
   animation: appear 600ms forwards;
 }
 
-.category__panel__phone {
-  color: $action-blue-base;
-  cursor: pointer;
-
-  span {
-    vertical-align: middle;
-  }
-
-  a {
-    color: $action-blue-base;
-  }
-
-  .icon-icon_phone {
-    font-size: 16px;
-    margin: 0 5px 0 0;
-  }
-}
-
 .category__panel__error {
   padding: 30px 40px 50px;
   color: $primary_text;
@@ -75,10 +57,4 @@
   .category__panel__error {
     padding-top: 0;
   }
-
-
-  .category__panel__phone {
-    display: none;
-  }
-
 }
