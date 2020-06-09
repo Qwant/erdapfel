@@ -1,7 +1,7 @@
-import { compareIgnoreCase, normalize, slug, htmlEncode } from '../../src/libs/string';
+import { findIndexIgnoreCase, normalize, slug, htmlEncode } from '../../src/libs/string';
 
 describe('String utils', () => {
-  test('compareIgnoreCase', () => {
+  test('findIndexIgnoreCase', () => {
     const cases = [
       { haystack: '', needle: '', index: 0 },
       { haystack: 'Tomato', needle: '', index: 0 },
@@ -11,7 +11,7 @@ describe('String utils', () => {
       { haystack: 'Épinard', needle: 'ePî', index: 0 },
     ];
     cases.forEach(({ haystack, needle, index }) => {
-      expect(compareIgnoreCase(haystack, needle)).toEqual(index);
+      expect(findIndexIgnoreCase(haystack, needle)).toEqual(index);
     });
   });
 

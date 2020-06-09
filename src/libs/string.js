@@ -4,7 +4,7 @@
  * @param needle
  * @returns {number}
  */
-export function compareIgnoreCase(haystack, needle) {
+export function findIndexIgnoreCase(haystack, needle) {
   haystack = normalize(haystack);
   needle = normalize(needle);
   return haystack.toUpperCase().indexOf(needle.toUpperCase());
