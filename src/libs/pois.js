@@ -1,5 +1,5 @@
 import { version, sources } from 'config/constants.yml';
-import ExtendedString from 'src/libs/string';
+import { slug, htmlEncode } from 'src/libs/string';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import LatLonPoi from 'src/adapters/poi/latlon_poi';
 
@@ -9,7 +9,7 @@ export function toUrl(poi) {
   if (poi.id === 'geolocalisation' || poi.type === 'latlon') {
     return `latlon:${poi.latLon.lat.toFixed(5)}:${poi.latLon.lng.toFixed(5)}`;
   }
-  return poi.name ? `${poi.id}@${ExtendedString.slug(poi.name)}` : poi.id;
+  return poi.name ? `${poi.id}@${slug(poi.name)}` : poi.id;
 }
 
 export async function getInputValue(poi) {
@@ -44,7 +44,7 @@ export function fromUrl(urlParam) {
     const [ _, lat, lng, label ] = urlData;
     const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
     return Promise.resolve(
-      new LatLonPoi(latLng, label ? ExtendedString.htmlEncode(label) : null)
+      new LatLonPoi(latLng, label ? htmlEncode(label) : null)
     );
   }
   urlData = urlParam.match(/^(.*?)(@(.*))?$/);

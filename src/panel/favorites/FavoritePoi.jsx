@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconManager from 'src/adapters/icon_manager';
-import ExtendedString from 'src/libs/string';
+import { htmlEncode } from 'src/libs/string';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import Telemetry from 'src/libs/telemetry';
 import ShareMenu from 'src/components/ui/ShareMenu';
@@ -39,7 +39,7 @@ export default class FavoritePoi extends React.Component {
         <p
           className="favorite_panel__item__title"
           dangerouslySetInnerHTML={{ __html: poi.name
-            ? ExtendedString.htmlEncode(poi.name)
+            ? htmlEncode(poi.name)
             : 'default',
           }}
         />

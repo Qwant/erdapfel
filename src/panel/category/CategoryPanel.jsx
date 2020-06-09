@@ -13,6 +13,7 @@ import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import CategoryService from 'src/adapters/category_service';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
+import { capitalizeFirst } from 'src/libs/string';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -66,7 +67,7 @@ export default class CategoryPanel extends React.Component {
     if (category) {
       Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
       const { label } = CategoryService.getCategoryByName(category);
-      SearchInput.setInputValue(label.charAt(0).toUpperCase() + label.slice(1));
+      SearchInput.setInputValue(capitalizeFirst(label));
     } else if (query) {
       SearchInput.setInputValue(query);
     }

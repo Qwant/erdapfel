@@ -65,9 +65,9 @@ Which will result in the other tests in the file to be skipped:
 
 ```
 PASS  tests/units/string.js
-  ExtendedString
+  String utils
     ✓ htmlEncode (5ms)
-    ○ skipped compareIgnoreCase
+    ○ skipped findIndexIgnoreCase
     ○ skipped normalize
     ○ skipped slug
 ```

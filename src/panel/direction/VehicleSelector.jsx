@@ -2,6 +2,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { getVehicleIcon } from 'src/libs/route_utils';
+import { capitalizeFirst } from 'src/libs/string';
 
 const getLocalizedTitle = vehicle => {
   if (vehicle === 'driving') { return _('by car', 'direction'); }
@@ -22,8 +23,8 @@ const VehicleSelector = ({ vehicles, activeVehicle, onSelectVehicle }) =>
         { 'itinerary_vehicle_button--active': vehicle === activeVehicle }
       )}
       onClick={() => onSelectVehicle(vehicle)}
-      aria-label={getLocalizedTitle(vehicle)}
-      title={getLocalizedTitle(vehicle)}
+      aria-label={capitalizeFirst(getLocalizedTitle(vehicle))}
+      title={capitalizeFirst(getLocalizedTitle(vehicle))}
     >
       {vehicle === 'publicTransport' && <span className="testLabel">{_('Test')}</span>}
     </button>)}
