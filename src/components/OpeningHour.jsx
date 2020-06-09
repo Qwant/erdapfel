@@ -1,5 +1,6 @@
 /* global _ */
 import React from 'react';
+import classnames from 'classnames';
 
 const getStatusMessage = status => {
   if (status === 'open') {
@@ -19,7 +20,7 @@ const getStatusMessage = status => {
   return { label: '', color: '#fff' };
 };
 
-const OpeningHour = ({ schedule, showNextOpenOnly = false }) => {
+const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
   if (!schedule) {
     return null;
   }
@@ -49,7 +50,7 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false }) => {
     return text;
   };
 
-  return <div className="openingHour u-text--label">
+  return <div className={classnames('openingHour', className)}>
     {label}
     <NextTransition />
     {' '}

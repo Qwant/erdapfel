@@ -35,7 +35,10 @@ class PoiCard extends React.Component {
         <PoiTitleImage poi={poi} iconOnly={true} />
         <div>
           <PoiHeader poi={poi} />
-          {!hideOpeningHour && <OpeningHour schedule={new OsmSchedule(openingHours)} />}
+          {!hideOpeningHour && <OpeningHour
+            schedule={new OsmSchedule(openingHours)}
+            className="u-text--label"
+          />}
         </div>
       </div>
       <div className="poi_card__action_container">

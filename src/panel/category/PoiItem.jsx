@@ -27,7 +27,9 @@ const PoiItem = ({ poi }) => {
     poi?.blocksByType?.opening_hours
       ? <OpeningHour
         schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
-        showNextOpenOnly={true} />
+        showNextOpenOnly={true}
+        className="u-text--label"
+      />
       : null;
 
   return <div className="poiItem">

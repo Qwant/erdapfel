@@ -16,7 +16,10 @@ const PoiPopup = ({ poi }) => {
   if (reviews) {
     displayedInfo = <ReviewScore reviews={reviews} poi={poi} />;
   } else if (openingHours && !covid19Enabled) {
-    displayedInfo = <OpeningHour schedule={new OsmSchedule(openingHours)} />;
+    displayedInfo = <OpeningHour
+      schedule={new OsmSchedule(openingHours)}
+      className="u-text--label"
+    />;
   } else if (address) {
     displayedInfo = <span className="poi_popup__address">{address}</span>;
   }
