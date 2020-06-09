@@ -90,8 +90,6 @@ export default class ShareMenu extends React.Component {
         style={{ left: this.state.left + 'px', top: this.state.top + 'px' }}>
 
         <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
-          e.preventDefault();
-          e.stopPropagation();
           e.nativeEvent.stopImmediatePropagation();
           this.copy(url);
         }}>
@@ -105,14 +103,14 @@ export default class ShareMenu extends React.Component {
           }
         </div>
 
-        <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={e => {
+        <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={() => {
           this.openPopup(facebookShareUrl(url));
         }}>
           <i className="icon-facebook" />
           {_('Facebook', 'share')}
         </div>
 
-        <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={e => {
+        <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={() => {
           this.openPopup(twitterShareUrl(url));
         }}>
           <i className="icon-twitter" />
