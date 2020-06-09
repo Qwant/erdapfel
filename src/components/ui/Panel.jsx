@@ -74,8 +74,7 @@ export default class Panel extends React.Component {
 
   componentWillUnmount() {
     this.updateMobileMapUI(0);
-    document.removeEventListener('mousemove', this.moveHandler);
-    document.removeEventListener('touchmove', this.moveHandler);
+    this.removeListeners();
   }
 
   updateMobileMapUI = (height = this.panelDOMElement.offsetHeight) => {
@@ -100,10 +99,22 @@ export default class Panel extends React.Component {
     }
   }
 
+  removeListeners() {
+    if (!this.moveHandler) {
+      return;
+    }
+    document.removeEventListener('touchmove', this.moveHandler);
+    document.removeEventListener('mousemove', this.moveHandler);
+    this.moveHandler = null;
+  }
+
   holdResizer = (event, forceResize = false) => {
+    // event.preventDefault();
     this.startHeight = this.panelDOMElement.offsetHeight;
     this.startClientY = getEventClientY(event.nativeEvent);
     this.interactionStarted = event.timeStamp;
+
+    this.removeListeners();
 
     this.moveHandler = event => this.move(event, forceResize);
     if (event.type === 'touchstart') {
@@ -155,12 +166,7 @@ export default class Panel extends React.Component {
    * @param {MouseEvent|TouchEvent} event
    */
   stopResize = (event, forceResize = false) => {
-    if (event.type === 'touchend') {
-      document.removeEventListener('touchmove', this.moveHandler);
-    } else {
-      document.removeEventListener('mousemove', this.moveHandler);
-    }
-    this.moveHandler = null;
+    this.removeListeners();
 
     if (!forceResize &&
         this.state.size === 'maximized' &&
