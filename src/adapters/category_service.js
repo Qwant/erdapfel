@@ -1,7 +1,7 @@
 import Category from './category';
 import nconf from '@qwant/nconf-getter';
 import categories from 'config/categories.yml';
-import ExtendedString from '../libs/string';
+import { normalize } from '../libs/string';
 
 export default class CategoryService {
 
@@ -25,7 +25,7 @@ export default class CategoryService {
     const matchedCategories = [];
 
     const loadedCategories = CategoryService.getCategories();
-    const cleanedTerm = ExtendedString.normalize(term);
+    const cleanedTerm = normalize(term);
 
     for (const category of loadedCategories) {
       if (category.isMatching(cleanedTerm)) {

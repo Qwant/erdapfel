@@ -1,7 +1,7 @@
 import nconf from '@qwant/nconf-getter';
 import Error from '../adapters/error';
 import { version } from '../../config/constants.yml';
-import ExtendedString from '../libs/string';
+import { compareIgnoreCase } from '../libs/string';
 import LocalStore from '../libs/local_store';
 import MasqStore from '../libs/masq';
 import { getKey } from 'src/libs/pois';
@@ -178,7 +178,7 @@ export default class Store {
     await this.checkInit();
     const storedItems = await this.abstractStore.getAllPois();
     return storedItems.filter(storedItem => {
-      return ExtendedString.compareIgnoreCase(storedItem.name, term) !== -1;
+      return compareIgnoreCase(storedItem.name, term) !== -1;
     });
   }
 

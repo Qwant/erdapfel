@@ -1,6 +1,6 @@
-import ExtendedString from '../../src/libs/string';
+import { compareIgnoreCase, normalize, slug, htmlEncode } from '../../src/libs/string';
 
-describe('ExtendedString', () => {
+describe('String utils', () => {
   test('compareIgnoreCase', () => {
     const cases = [
       { haystack: '', needle: '', index: 0 },
@@ -11,7 +11,7 @@ describe('ExtendedString', () => {
       { haystack: 'Épinard', needle: 'ePî', index: 0 },
     ];
     cases.forEach(({ haystack, needle, index }) => {
-      expect(ExtendedString.compareIgnoreCase(haystack, needle)).toEqual(index);
+      expect(compareIgnoreCase(haystack, needle)).toEqual(index);
     });
   });
 
@@ -22,18 +22,18 @@ describe('ExtendedString', () => {
       { input: 'ÅàÉÇî', normalized: 'AaECi' },
     ];
     cases.forEach(({ input, normalized }) => {
-      expect(ExtendedString.normalize(input)).toEqual(normalized);
+      expect(normalize(input)).toEqual(normalized);
     });
   });
 
   test('slug', () => {
     const cases = [
-      { input: '', slug: '' },
-      { input: 'Tomato', slug: 'Tomato' },
-      { input: 'To$🗺️|-ma*_tÔ', slug: 'To-ma_tÔ' },
+      { input: '', asSlug: '' },
+      { input: 'Tomato', asSlug: 'Tomato' },
+      { input: 'To$🗺️|-ma*_tÔ', asSlug: 'To-ma_tÔ' },
     ];
-    cases.forEach(({ input, slug }) => {
-      expect(ExtendedString.slug(input)).toEqual(slug);
+    cases.forEach(({ input, asSlug }) => {
+      expect(slug(input)).toEqual(asSlug);
     });
   });
 
@@ -44,7 +44,7 @@ describe('ExtendedString', () => {
       { input: '<TomatÔ>!', encoded: '&#60;Tomat&#212;&#62;!' },
     ];
     cases.forEach(({ input, encoded }) => {
-      expect(ExtendedString.htmlEncode(input)).toEqual(encoded);
+      expect(htmlEncode(input)).toEqual(encoded);
     });
   });
 });
