@@ -1,19 +1,13 @@
 import React from 'react';
+import PoiTitle from 'src/components/PoiTitle';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
-import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 
 const PoiItem = ({ poi }) => {
   const reviews = poi.blocksByType.grades;
   const address = poi.address || {};
-
-  const Subclass = () =>
-    poi.subClassName
-      ? <p className="u-text--subtitle u-firstCap">{poiSubClass(poi.subClassName)}</p>
-      : null
-  ;
 
   const Address = () =>
     address.label
@@ -38,9 +32,7 @@ const PoiItem = ({ poi }) => {
 
   return <div className="poiItem">
     <div className="poiItem-left">
-      {/* @TODO: use a better-named fonction that returns the best 'name' */}
-      <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
-      <Subclass />
+      <PoiTitle poi={poi} />
       <Address />
       <Reviews />
       <OpenStatus />
