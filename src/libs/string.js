@@ -29,3 +29,7 @@ export function htmlEncode(str) {
     return '&#' + i.charCodeAt(0) + ';';
   });
 }
+
+export function capitalizeFirst(str = '') {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

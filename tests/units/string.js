@@ -1,4 +1,10 @@
-import { findIndexIgnoreCase, normalize, slug, htmlEncode } from '../../src/libs/string';
+import {
+  findIndexIgnoreCase,
+  normalize,
+  slug,
+  htmlEncode,
+  capitalizeFirst,
+} from '../../src/libs/string';
 
 describe('String utils', () => {
   test('findIndexIgnoreCase', () => {
@@ -45,6 +51,18 @@ describe('String utils', () => {
     ];
     cases.forEach(({ input, encoded }) => {
       expect(htmlEncode(input)).toEqual(encoded);
+    });
+  });
+
+  test('capitalizeFirst', () => {
+    const cases = [
+      { input: '', result: '' },
+      { input: 'Tomato', result: 'Tomato' },
+      { input: 'tomato', result: 'Tomato' },
+      { input: 'épinard', result: 'Épinard' },
+    ];
+    cases.forEach(({ input, result }) => {
+      expect(capitalizeFirst(input)).toEqual(result);
     });
   });
 });
