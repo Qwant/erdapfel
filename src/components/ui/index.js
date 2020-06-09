@@ -1,5 +1,5 @@
 import Button from './Button';
-import ContextMenu from './ContextMenu';
+import ShareMenu from './ShareMenu';
 import Flex from './Flex';
 import { ItemList, Item } from './ItemList';
 import MainActionButton from './MainActionButton';
@@ -12,7 +12,7 @@ import Text from './Text';
 
 export {
   Button,
-  ContextMenu,
+  ShareMenu,
   Flex,
   ItemList,
   Item,

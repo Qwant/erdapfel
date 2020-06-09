@@ -53,11 +53,19 @@ $MASQ_BANNER_HEIGHT: 93px;
 .favorite_panel__item__title {
   max-width: 230px;
   font-size: 16px;
+  line-height: 22px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: $primary_text;
   font-weight: bold;
+}
+
+.favorite_panel__item__share,
+.favorite_panel__item__delete {
+  width: 30px;
+  font-size: 16px;
+  color: $grey-semi-darkness;
 }
 
 .favorite_panel__masq_footer {

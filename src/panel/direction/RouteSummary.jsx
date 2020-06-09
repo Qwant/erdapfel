@@ -1,11 +1,10 @@
 /* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Telemetry from '../../libs/telemetry';
-import { openShareModal } from 'src/modals/ShareModal';
 import { formatDuration, formatDistance, getVehicleIcon } from 'src/libs/route_utils';
 import RouteVia from './RouteVia';
 import Button from 'src/components/ui/Button';
+import ShareMenu from 'src/components/ui/ShareMenu';
 
 export default class RouteSummary extends React.Component {
   static propTypes = {
@@ -24,11 +23,6 @@ export default class RouteSummary extends React.Component {
   onClickDetails = event => {
     event.stopPropagation();
     this.props.toggleDetails(this.props.id);
-  }
-
-  onClickShare = () => {
-    Telemetry.add(Telemetry.ITINERARY_SHARE);
-    openShareModal(window.location);
   }
 
   onClickPreview = () => {
@@ -55,17 +49,22 @@ export default class RouteSummary extends React.Component {
           {formatDistance(route.distance)}
         </div>
       </div>
-      <div
-        className="itinerary_panel__item__share"
-        onClick={this.onClickShare}
-        title={_('Share', 'direction')}>
-        <i className="icon-share-2" />
-      </div>
+      <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
+        {openMenu => <div
+          className="itinerary_panel__item__share"
+          title={_('Share', 'direction')}
+          onClick={openMenu}
+        >
+          <i className="icon-share-2" />
+        </div>}
+      </ShareMenu>
       <div className="itinerary_leg_mobileActions">
         <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">
           {_('Details', 'direction')}
         </Button>
-        <Button onClick={this.onClickShare} icon="share-2" />
+        <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
+          {openMenu => <Button title={_('Share', 'direction')} onClick={openMenu} icon="share-2" />}
+        </ShareMenu>
       </div>
     </div>;
   }

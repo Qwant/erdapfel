@@ -12,8 +12,7 @@ import PoiBlockContainer from './PoiBlockContainer';
 import Panel from 'src/components/ui/Panel';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
-import { openShareModal } from 'src/modals/ShareModal';
-import { toAbsoluteUrl, isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
+import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
@@ -167,12 +166,6 @@ export default class PoiPanel extends React.Component {
     fire('fit_map', poi);
   }
 
-  openShare = () => {
-    const poi = this.getBestPoi();
-    Telemetry.add('share', 'poi', poi.meta && poi.meta.source);
-    openShareModal(toAbsoluteUrl(poi));
-  }
-
   openDirection = () => {
     window.app.navigateTo('/routes/', { poi: this.getBestPoi() });
   }
@@ -301,7 +294,6 @@ export default class PoiPanel extends React.Component {
           poi={poi}
           isDirectionActive={this.isDirectionActive}
           openDirection={this.openDirection}
-          openShare={this.openShare}
           onClickPhoneNumber={this.onClickPhoneNumber}
           isPoiInFavorite={this.state.isPoiInFavorite}
           toggleStorePoi={this.toggleStorePoi}

@@ -132,8 +132,8 @@ $HEADER_SIZE: 40px;
   display: flex;
   margin-bottom: 12px;
 
-  :not(:last-child) {
-    margin-right: 8px;
+  .button + .button {
+    margin-left: 8px;
   }
 
   .poi_panel__action__direction {
