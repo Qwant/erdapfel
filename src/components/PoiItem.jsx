@@ -6,7 +6,13 @@ import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import classnames from 'classnames';
 
-const PoiItem = ({ poi, withOpeningHours, withImage = true, className, ...rest }) => {
+const PoiItem = ({ poi,
+  withOpeningHours,
+  withImage = true,
+  withAlternativeName,
+  className,
+  ...rest
+}) => {
   const reviews = poi.blocksByType?.grades;
   const address = poi.address || {};
 
@@ -35,7 +41,7 @@ const PoiItem = ({ poi, withOpeningHours, withImage = true, className, ...rest }
 
   return <div className={classnames('poiItem', className)} {...rest}>
     <div className="poiItem-left">
-      <PoiTitle poi={poi} />
+      <PoiTitle poi={poi} withAlternativeName={withAlternativeName} />
       <Address />
       <Reviews />
       <OpenStatus />

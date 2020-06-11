@@ -285,7 +285,7 @@ export default class PoiPanel extends React.Component {
       initialSize="maximized"
     >
       <div className="poi_panel__content">
-        <PoiItem poi={poi} className="u-mb-24" onClick={this.center} />
+        <PoiItem poi={poi} withAlternativeName className="u-mb-24" onClick={this.center} />
         <ActionButtons
           poi={poi}
           isDirectionActive={this.isDirectionActive}
