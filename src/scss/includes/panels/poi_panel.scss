@@ -116,43 +116,12 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__actions {
-  display: flex;
-  margin-bottom: 12px;
-
   .button + .button {
     margin-left: 8px;
   }
 
   .poi_panel__action__direction {
     flex-grow: 1;
-  }
-}
-
-.poi_panel__action {
-  font-size: 22px;
-  color: $secondary_text;
-  cursor: pointer;
-  height: auto;
-  text-align: center;
-
-  div {
-    margin: 9px 0;
-    font-family: $font_system;
-    font-size: 11px;
-    text-transform: uppercase;
-  }
-
-  &:hover {
-    color: $primary_text;
-    text-decoration: none;
-  }
-
-  &:not(:last-child){
-    margin-right: 15px;
-  }
-
-  &:not(:first-child){
-    min-width: 20%
   }
 }
 
