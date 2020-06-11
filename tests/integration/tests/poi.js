@@ -139,7 +139,7 @@ test('center the map to the poi on a poi click', async () => {
   await page.evaluate(() => {
     window.MAP_MOCK.flyTo({ center: { lat: 0, lng: 0 }, zoom: 10 });
   });
-  await page.click('.poi_panel__content .poi_panel__description_container');
+  await page.click('.poi_panel__content .poiItem');
   const center = await page.evaluate(() => {
     return window.MAP_MOCK.getCenter();
   });
@@ -153,7 +153,7 @@ test('display details about the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/48.8605833/2.3261037`);
   await page.waitForSelector('.poiTitle');
 
-  await page.click('.poi_panel__content .poi_panel__description_container');
+  await page.click('.poi_panel__content .poiItem');
   let infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText;
   });

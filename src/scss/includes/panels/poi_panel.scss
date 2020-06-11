@@ -16,7 +16,7 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 15px 24px;
+  padding: 16px 30px;
   position: relative;
 }
 
@@ -51,13 +51,6 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__back_to_list:hover {
   color: $secondary_text;
-}
-
-.poi_panel__description_container {
-  margin-bottom: 25px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
 }
 
 /* wrap it into an element and then put padding on this new element instead */
