@@ -1,10 +1,7 @@
 /* global _ */
 import React from 'react';
-import PoiHeader from './PoiHeader';
-import PoiTitleImage from './PoiTitleImage';
-import OpeningHour from 'src/components/OpeningHour';
-import OsmSchedule from 'src/adapters/osm_schedule';
-import Button from 'src/components/ui/Button';
+import PoiItem from 'src/components/PoiItem';
+import { Button, Flex } from 'src/components/ui';
 import { fire } from 'src/libs/customEvents';
 
 class PoiCard extends React.Component {
@@ -28,38 +25,29 @@ class PoiCard extends React.Component {
     const hideOpeningHour = covid19Enabled
       && poi.blocks && poi.blocks.find(b => b.type === 'covid19');
 
-    const openingHours = poi.blocksByType && poi.blocksByType.opening_hours;
-
     return <div className="poi_card" ref={this.cardRef}>
-      <div className="poi_card__description_container">
-        <PoiTitleImage poi={poi} iconOnly={true} />
-        <div>
-          <PoiHeader poi={poi} />
-          {!hideOpeningHour && <OpeningHour
-            schedule={new OsmSchedule(openingHours)}
-            className="u-text--label"
-          />}
-        </div>
-      </div>
-      <div className="poi_card__action_container">
-        <div className="poi_card__close" onClick={closeAction}>
-          <i className="icon-x" />
-        </div>
-        { !!openDirection &&
+      <Flex justifyContent="space-between">
+        <PoiItem poi={poi} withOpeningHours={!hideOpeningHour} withImage={false} />
+        <div className="poi_card__action_container">
+          { !!openDirection &&
+            <Button
+              className="poi_card__action__direction"
+              variant="primary"
+              onClick={openDirection}
+            >
+              { _('Directions', 'poi panel') }
+            </Button>
+          }
           <Button
-            className="poi_card__action__direction"
-            variant="primary"
-            onClick={openDirection}
+            className="poi_card__action__see-more"
+            onClick={showDetails}
           >
-            { _('Directions', 'poi panel') }
+            { _('See more', 'poi panel') }
           </Button>
-        }
-        <Button
-          className="poi_card__action__see-more"
-          onClick={showDetails}
-        >
-          { _('See more', 'poi panel') }
-        </Button>
+        </div>
+      </Flex>
+      <div className="poi_card__close" onClick={closeAction}>
+        <i className="icon-x" />
       </div>
     </div>;
   }

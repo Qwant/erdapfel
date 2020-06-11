@@ -413,39 +413,28 @@ $HEADER_SIZE: 40px;
   bottom: 8px;
   max-height: calc(100vh - 200px);
   position: fixed;
-  min-height: 125px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 9px 15px;
-
-  &__description_container {
-    flex-grow: 1;
-    display: flex;
-    margin-top: 18px;
-  }
-
-  .poiTitleImage {
-    margin: -6px 0 0 -3px;
-  }
+  padding: 16px;
 
   &__action_container {
+    margin-top: 12px;
     margin-left: 6px;
     display: flex;
     flex-direction: column;
   }
 
   &__close {
-    align-self: flex-end;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     transition: background-color .1s;
     border-radius: 50%;
     font-size: 18px;
     transform: none;
-    line-height: 40px;
+    line-height: 32px;
     text-align: center;
-    margin-right: -9px;
+    position: absolute;
+    top: 0;
+    right: 0;
 
     &:hover {
       background: $background_hover;

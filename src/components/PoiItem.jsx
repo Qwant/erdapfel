@@ -6,7 +6,7 @@ import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import classnames from 'classnames';
 
-const PoiItem = ({ poi, withOpeningHours, className, ...rest }) => {
+const PoiItem = ({ poi, withOpeningHours, withImage = true, className, ...rest }) => {
   const reviews = poi.blocksByType?.grades;
   const address = poi.address || {};
 
@@ -41,9 +41,9 @@ const PoiItem = ({ poi, withOpeningHours, className, ...rest }) => {
       <OpenStatus />
     </div>
 
-    <div className="poiItem-right">
+    {withImage && <div className="poiItem-right">
       <PoiTitleImage poi={poi} />
-    </div>
+    </div>}
   </div>;
 };
 
