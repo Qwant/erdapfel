@@ -4,9 +4,10 @@ import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
+import classnames from 'classnames';
 
-const PoiItem = ({ poi }) => {
-  const reviews = poi.blocksByType.grades;
+const PoiItem = ({ poi, withOpeningHours, className, ...rest }) => {
+  const reviews = poi.blocksByType?.grades;
   const address = poi.address || {};
 
   const Address = () =>
@@ -24,7 +25,7 @@ const PoiItem = ({ poi }) => {
   ;
 
   const OpenStatus = () =>
-    poi?.blocksByType?.opening_hours
+    withOpeningHours && poi?.blocksByType?.opening_hours
       ? <OpeningHour
         schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
         showNextOpenOnly={true}
@@ -32,7 +33,7 @@ const PoiItem = ({ poi }) => {
       />
       : null;
 
-  return <div className="poiItem">
+  return <div className={classnames('poiItem', className)} {...rest}>
     <div className="poiItem-left">
       <PoiTitle poi={poi} />
       <Address />

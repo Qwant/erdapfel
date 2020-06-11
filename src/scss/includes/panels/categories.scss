@@ -1,3 +1,9 @@
+.category__panel {
+  .poiItem {
+    padding: 16px 30px;
+  }
+}
+
 .category__panel__pj {
   width: 100%;
   display: flex;
@@ -51,6 +57,10 @@
 
     .panel-close {
       display: none;
+    }
+
+    .poiItem {
+      padding: 12px 16px;
     }
   }
 

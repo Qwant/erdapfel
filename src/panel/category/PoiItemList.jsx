@@ -1,6 +1,6 @@
 import React from 'react';
 import { ItemList, Item } from 'src/components/ui/ItemList';
-import PoiItem from './PoiItem';
+import PoiItem from 'src/components/PoiItem';
 
 const PoiItems = ({
   pois,
@@ -13,7 +13,7 @@ const PoiItems = ({
       onMouseOver={() => { highlightMarker(poi, true); }}
       onMouseOut={() => { highlightMarker(poi, false); }}
     >
-      <PoiItem poi={poi} />
+      <PoiItem poi={poi} withOpeningHours />
     </Item>)}
   </ItemList>;
 
