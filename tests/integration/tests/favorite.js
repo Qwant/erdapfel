@@ -1,4 +1,4 @@
-import { initBrowser, clearStore, getMapView } from '../tools';
+import { initBrowser, clearStore, getMapView, exists } from '../tools';
 import { toggleFavoritePanel, storePoi } from '../favorites_tools';
 
 let browser;
@@ -11,7 +11,6 @@ beforeAll(async () => {
 });
 
 test('toggle favorite panel', async () => {
-  expect.assertions(2);
   await page.goto(APP_URL);
   await page.waitForSelector('.panel_container', { visible: true });
   expect(await page.evaluate(() => {
@@ -23,16 +22,13 @@ test('toggle favorite panel', async () => {
 });
 
 test('favorite added is present in favorite panel', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
   await storePoi(page, { title: 'some poi' });
   await toggleFavoritePanel(page);
-  const items = await page.waitForSelector('.favorite_panel__items');
-  expect(items).not.toBeNull();
+  expect(await exists(page, '.favorite_panel__items')).toBeTruthy();
 });
 
 test('restore favorite from localStorage', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
   const testTitle = 'demo_fav';
   await storePoi(page, { title: testTitle });
@@ -45,19 +41,16 @@ test('restore favorite from localStorage', async () => {
 });
 
 test('remove favorite using favorite panel', async () => {
-  expect.assertions(2);
   await page.goto(APP_URL);
   await storePoi(page, { title: 'some poi i will remove' });
   await toggleFavoritePanel(page);
-  let items = await page.waitForSelector('.favorite_panel__items');
-  expect(items).not.toBeNull();
+  expect(await exists(page, '.favorite_panel__items')).toBeTruthy();
 
   /* remove it */
   await page.waitForSelector('.favorite_panel__item__delete');
   await page.click('.favorite_panel__item__delete');
 
-  items = await page.waitForSelector('.favorite_panel__container__empty');
-  expect(items).not.toBeNull();
+  expect(await exists(page, '.favorite_panel__container__empty')).toBeTruthy();
 });
 
 test('center map after a favorite poi click', async () => {

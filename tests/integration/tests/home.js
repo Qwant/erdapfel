@@ -1,4 +1,4 @@
-import { initBrowser } from '../tools';
+import { initBrowser, exists } from '../tools';
 let browser;
 let page;
 
@@ -9,24 +9,18 @@ beforeAll(async () => {
 });
 
 test('is dom loaded', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
-  const sceneContent = await page.waitForSelector('#scene_container');
-  expect(sceneContent).not.toBeFalsy();
+  expect(await exists(page, '#scene_container')).toBeTruthy();
 });
 
 test('is panels loaded', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
-  const sceneContent = await page.waitForSelector('.service_panel');
-  expect(sceneContent).not.toBeFalsy();
+  expect(await exists(page, '.service_panel')).toBeTruthy();
 });
 
 test('is map loaded', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
-  const sceneContent = await page.waitForSelector('.mapboxgl-canvas');
-  expect(sceneContent).not.toBeFalsy();
+  expect(await exists(page, '.mapboxgl-canvas')).toBeTruthy();
 });
 
 afterAll(async () => {

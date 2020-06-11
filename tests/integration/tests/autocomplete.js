@@ -1,4 +1,4 @@
-import { clearStore, initBrowser, getInputValue, getMapView } from '../tools';
+import { clearStore, initBrowser, getInputValue, getMapView, exists } from '../tools';
 import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
@@ -28,22 +28,19 @@ beforeEach(async () => {
 });
 
 test('search and clear', async () => {
-  expect.assertions(4);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
-  const cleanHandle = await autocompleteHelper.getClearFieldButton();
-  expect(cleanHandle).not.toBeNull();
+  expect(await exists(page, '#clear_button')).toBeTruthy();
 
   const autocompleteItems = await autocompleteHelper.getSuggestList();
   expect(autocompleteItems.length).toEqual(SUGGEST_MAX_ITEMS);
 
-
   const searchValue = await autocompleteHelper.getSearchInputValue();
   expect(searchValue).toEqual('Hello');
 
-  await autocompleteHelper.clearField();
+  await page.click('#clear_button');
   const searchValueAfterClear = await autocompleteHelper.getSearchInputValue();
   expect(searchValueAfterClear).toEqual('');
 });
@@ -164,7 +161,6 @@ test('mouse navigation', async () => {
 });
 
 test('move to on click', async () => {
-  expect.assertions(2);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   const { center: map_position_before } = await getMapView(page);
@@ -178,7 +174,6 @@ test('move to on click', async () => {
 });
 
 test('center on select', async () => {
-  expect.assertions(2);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
@@ -203,13 +198,11 @@ test('center on select', async () => {
 });
 
 test('favorite search', async () => {
-  expect.assertions(1);
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await storePoi(page, { title: 'hello' });
   await page.keyboard.type('Hello');
-  const favTitle = await page.waitForSelector('.autocomplete_separator_label');
-  expect(favTitle).not.toBeNull();
+  expect(await exists(page, '.autocomplete_separator_label')).toBeTruthy();
 });
 
 
@@ -257,7 +250,6 @@ test('suggestions should not reappear after fast submit', async () => {
 
 
 test('check template', async () => {
-  expect.assertions(8);
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/);
   await page.goto(APP_URL);
   await page.keyboard.type('type');
