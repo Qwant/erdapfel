@@ -11,8 +11,8 @@ const PoiItem = ({ poi, withOpeningHours, withImage = true, className, ...rest }
   const address = poi.address || {};
 
   const Address = () =>
-    address.label
-      ? <p className="u-text--subtitle poiItem-address">{address.label}</p>
+    poi.subClassName !== 'latlon' && address.label
+      ? <div className="u-text--subtitle poiItem-address">{address.label}</div>
       : null
   ;
 

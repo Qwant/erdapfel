@@ -1,9 +1,26 @@
+/* global _ */
 import React from 'react';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
 
 const PoiTitle = ({ poi, withAlternativeName }) => {
-  const { name, localName, subClassName } = poi;
+  const { name, localName, subClassName, address } = poi;
+
+  if (subClassName === 'latlon') {
+    const latLon = name;
+    if (address?.label) {
+      return <div className="poiTitle">
+        <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
+        <h2 className="poiTitle-main u-text--smallTitle u-mb-4">{address?.label}</h2>
+        <div className="poiTitle-position">{latLon}</div>
+      </div>;
+    }
+
+    return <div className="poiTitle">
+      <h2 className="poiTitle-main poiTitle-position u-text--smallTitle">{latLon}</h2>
+    </div>;
+  }
+
   const title = name || localName;
   const alternative = (withAlternativeName && name && localName && localName !== name) && localName;
   const subclass = capitalizeFirst(poiSubClass(subClassName));

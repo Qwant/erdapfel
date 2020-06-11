@@ -41,7 +41,7 @@ test('load a poi from url', async () => {
   const { title, address } = await page.evaluate(() => {
     return {
       title: document.querySelector('.poiTitle').innerText,
-      address: document.querySelector('.poi_panel__address').innerText,
+      address: document.querySelector('.poiItem-address').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
@@ -63,7 +63,7 @@ test('load a poi from url with simple id', async () => {
   const { title, address } = await page.evaluate(() => {
     return {
       title: document.querySelector('.poiTitle').innerText,
-      address: document.querySelector('.poi_panel__address').innerText,
+      address: document.querySelector('.poiItem-address').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
@@ -80,7 +80,7 @@ test('load a poi from url on mobile', async () => {
   const { title, address, hours } = await page.evaluate(() => {
     return {
       title: document.querySelector('.poi_card .poiTitle').innerText,
-      address: document.querySelector('.poi_card .poi_panel__address').innerText,
+      address: document.querySelector('.poi_card .poiItem-address').innerText,
       hours: document.querySelector('.poi_card .openingHour').innerText,
     };
   });

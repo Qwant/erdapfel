@@ -53,13 +53,6 @@ $HEADER_SIZE: 40px;
   color: $secondary_text;
 }
 
-/* wrap it into an element and then put padding on this new element instead */
-.poi_panel__pre_title {
-  margin: 0 0 3px;
-  font-style: italic;
-  color: $secondary_text;
-}
-
 .poi_panel__info__section__title {
   color: $secondary_text;
   font-weight: normal;
@@ -73,10 +66,6 @@ $HEADER_SIZE: 40px;
   height: 1px;
   margin-top: 8px;
   background: $separator_color;
-}
-
-.poi_panel__address {
-  padding: 8px 0 0 0;
 }
 
 .poi_panel__info__section__description  {
