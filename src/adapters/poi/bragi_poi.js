@@ -3,7 +3,7 @@ import Poi from './poi';
 export default class BragiPoi extends Poi {
   constructor(feature, queryContext) {
     const geocodingProps = feature.properties.geocoding;
-    const { id, type, label, address, city, administrative_regions } = geocodingProps;
+    const { id, type, label } = geocodingProps;
 
     let poiClassText = '';
     let poiSubclassText = '';
@@ -22,24 +22,14 @@ export default class BragiPoi extends Poi {
 
     /* generate name corresponding to poi type */
     let name = '';
-    let alternativeName = '';
-
-    const postcode = geocodingProps.postcode && geocodingProps.postcode.split(';')[0];
-    const cityObj = administrative_regions.find(region => region.zone_type === 'city');
-    const country = administrative_regions.find(region => region.zone_type === 'country');
-    const countryName = country && country.name;
 
     switch (type) {
     case 'poi':
       name = geocodingProps.name;
-      alternativeName = (address && address.label)
-        || (cityObj && cityObj.label)
-        || [postcode, city, countryName].filter(zone => zone).join(', ');
       break;
     case 'house':
     case 'street':
       name = geocodingProps.name;
-      alternativeName = [postcode, city, countryName].filter(zone => zone).join(', ');
       break;
     default: {
       /* admin */
@@ -48,19 +38,59 @@ export default class BragiPoi extends Poi {
         name = label;
       } else {
         name = label.slice(0, splitPosition);
-        alternativeName = label.slice(splitPosition + 1);
       }
     }
     }
 
-    super(id, name, alternativeName, type, {
+    super(id, name, type, {
       lat: feature.geometry.coordinates[1],
       lng: feature.geometry.coordinates[0],
     }, poiClassText, poiSubclassText, geocodingProps.bbox);
 
     this.value = label;
-
     this.queryContext = queryContext;
+    this.geocoding = geocodingProps;
+  }
+
+  _findAdmin(name) {
+    if (!this.geocoding || !this.geocoding.administrative_regions) {
+      return undefined;
+    }
+
+    return Object
+      .values(this.geocoding.administrative_regions)
+      .find(a => a.zone_type === name);
+  }
+
+  // @override
+  getName() {
+    if (this.type === 'zone') {
+      const { label } = this.geocoding;
+      const splitPosition = label.indexOf(',');
+      if (splitPosition === -1) {
+        return label;
+      } else {
+        return label.slice(0, splitPosition);
+      }
+    }
+
+    return this.geocoding.name;
+  }
+
+  // @override
+  getCity() {
+    return this.geocoding.city;
+  }
+
+  // @override
+  getCountry() {
+    const country = this._findAdmin('country');
+    return country ? country.name : undefined;
+  }
+
+  // @override
+  getAddress() {
+    return this.geocoding.name;
   }
 
   getInputValue() {

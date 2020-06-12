@@ -48,7 +48,7 @@ test('menu open favorite', async () => {
 
   const favorites = await page.waitForSelector('.favorite_panel');
   expect(favorites).not.toBeNull();
-});
+}, 10000);
 
 test('close service panel when opening direction', async () => {
   expect.assertions(1);

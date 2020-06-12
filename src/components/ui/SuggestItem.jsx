@@ -48,8 +48,12 @@ const CategoryItem = ({ category }) => {
 };
 
 const PoiItem = ({ poi }) => {
-  const { name, className, subClassName, type, alternativeName } = poi;
+  const { className, subClassName, type } = poi;
   const icon = IconManager.get({ className, subClassName, type });
+  const name = poi.getName();
+  const fullAddress = [poi.getAddress(), poi.getCity(), poi.getCountry()]
+    .filter(i => i) // Filter out any undefined results
+    .join(', ');
 
   return (
     <div className="autocomplete_suggestion">
@@ -57,7 +61,7 @@ const PoiItem = ({ poi }) => {
         style={{ color: icon ? icon.color : '' }}
         className={`autocomplete-icon icon icon-${icon.iconClass}`}
       />
-      <ItemLabels firstLabel={name} secondLabel={alternativeName} />
+      <ItemLabels firstLabel={name} secondLabel={fullAddress} />
     </div>
   );
 };

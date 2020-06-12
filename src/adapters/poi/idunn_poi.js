@@ -11,23 +11,15 @@ const LAT_INDEX = 1;
 
 export default class IdunnPoi extends Poi {
   constructor(rawPoi) {
-    let alternativeName = '';
-    if (rawPoi.address) {
-      if (rawPoi.address.label) {
-        alternativeName = rawPoi.address.label;
-      } else if (rawPoi.address.street && rawPoi.address.street.label) {
-        alternativeName = rawPoi.address.street.label;
-      }
-    }
     const latLng = {
       lat: rawPoi.geometry.coordinates[LAT_INDEX],
       lng: rawPoi.geometry.coordinates[LNG_INDEX],
     };
-    super(rawPoi.id, rawPoi.name, alternativeName, rawPoi.type, latLng, rawPoi.class_name,
+    super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name,
       rawPoi.subclass_name);
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
-    this.address = IdunnPoi.getAddress(rawPoi);
+    this.address = rawPoi.address;
     this.bbox = rawPoi.geometry.bbox;
     this.meta = rawPoi.meta || {};
 
@@ -52,6 +44,7 @@ export default class IdunnPoi extends Poi {
       return this.name;
     }
   }
+
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
   static async poiCategoryLoad(bbox, size, category, query) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
@@ -111,21 +104,45 @@ export default class IdunnPoi extends Poi {
     }
   }
 
-  static getAddress(rawPoi) {
-    switch (rawPoi.type) {
-    case 'admin':
-      return { label: rawPoi.address.admin.label };
-    case 'address':
-    case 'street': {
-      const postcode = (rawPoi.address.postcode || '').split(';', 1)[0];
-      const city = rawPoi.address.admins.find(a => a.class_name === 'city') || {};
-      const country = rawPoi.address.admins.find(a => a.class_name === 'country') || {};
-      const label = [postcode, city.name, country.name]
-        .filter(x => x).join(', ');
-      return { label };
+  _findAdmin(name) {
+    if (!this.address || !this.address.admins) {
+      return undefined;
     }
-    default:
-      return rawPoi.address;
+
+    return Object
+      .values(this.address.admins)
+      .find(a => a.class_name === name);
+  }
+
+  // @override
+  getName() {
+    if (this.type === 'zone') {
+      const { label } = this.geocoding;
+      const splitPosition = label.indexOf(',');
+      if (splitPosition === -1) {
+        return label;
+      } else {
+        return label.slice(0, splitPosition);
+      }
     }
+
+    return this.geocoding.name;
+  }
+
+  // @override
+  getCity() {
+    const city = this._findAdmin('city');
+    return city ? city.name : undefined;
+  }
+
+  // @override
+  getCountry() {
+    const country = this._findAdmin('country');
+    return country ? country.name : undefined;
+  }
+
+  // @override
+  getAddress() {
+    return this.address.name;
   }
 }

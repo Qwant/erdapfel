@@ -50,7 +50,7 @@ test('Start/end inputs are correctly filled', async () => {
   responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp('latlon:43.70324:7.25997'));
   await simulateClickOnMap(page, { lat: 43.70324, lng: 7.25997 });
   const directionEndInput = await getInputValue(page, '#itinerary_input_destination');
-  expect(directionEndInput).toEqual(mockLatlonPoi.address.label);
+  expect(directionEndInput).toEqual('16 Avenue Thiers, Nice, France');
 });
 
 test('switch start end', async () => {
@@ -139,7 +139,7 @@ test('origin & latlon destination & mode', async () => {
   expect(directionStartInput).toEqual(mockPoi1.name);
 
   const directionEndInput = await getInputValue(page, '#itinerary_input_destination');
-  expect(directionEndInput).toEqual(mockLatlonPoi.address.label);
+  expect(directionEndInput).toEqual('16 Avenue Thiers, Nice, France');
 
   const activeLabel = await page.evaluate(() => {
     return Array.from(document.querySelector('.itinerary_vehicle_button--active').classList).join(',');

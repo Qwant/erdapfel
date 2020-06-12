@@ -20,8 +20,12 @@ export async function getInputValue(poi) {
 }
 
 async function fetchAddressLabel(poi) {
-  const address = await IdunnPoi.poiApiLoad(poi);
-  return address.alternativeName || address.name;
+  const idunnPoi = await IdunnPoi.poiApiLoad(poi);
+  const fullAddress = [idunnPoi.getAddress(), idunnPoi.getCity(), idunnPoi.getCountry()]
+    .filter(i => i) // Filter out any undefined results
+    .join(', ');
+
+  return fullAddress;
 }
 
 export function toAbsoluteUrl(poi) {

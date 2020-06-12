@@ -5,6 +5,39 @@ import Telemetry from '../../libs/telemetry';
 
 const store = new Store();
 export default class PoiStore extends Poi {
+
+  _findAdminInAddress(name) {
+    if (!this.address || !this.address.admins) {
+      return undefined;
+    }
+
+    return Object
+      .values(this.address.admins)
+      .find(a => a.class_name === name);
+  }
+
+  // @Override
+  getName() {
+    return this.name || this.address.name;
+  }
+
+  // @override
+  getCity() {
+    const city = this._findAdminInAddress('city');
+    return city ? city.name : undefined;
+  }
+
+  // @override
+  getCountry() {
+    const country = this._findAdminInAddress('country');
+    return country ? country.name : undefined;
+  }
+
+  // @override
+  getAddress() {
+    return this.address ? this.address.name : undefined;
+  }
+
   static async get(term) {
     try {
       const matches = await store.getMatches(term);

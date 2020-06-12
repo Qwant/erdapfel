@@ -10,6 +10,6 @@ export default class MapPoi extends Poi {
       name,
     } = feature.properties;
     const ll = LngLat.convert(feature.geometry.coordinates);
-    super(id, name, null, POI_TYPE, ll, className, subClassName);
+    super(id, name, POI_TYPE, ll, className, subClassName);
   }
 }
