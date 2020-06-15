@@ -845,6 +845,12 @@ button.direction_shortcut {
     font-size: 25px;
     opacity: 1;
     transition: opacity .2s;
+    background: $action-blue-base;
+
+    &:not(:disabled):hover {
+      background: $action-blue-base;
+      color: #fff;
+    }
 
     /* Attempt to fix rare layout bug on iOS */
     transform: translate3d(0,0,0);

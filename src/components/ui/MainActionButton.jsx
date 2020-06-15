@@ -11,7 +11,7 @@ const ServicePanelAction = ({ variant, label, onClick, icon, iconStyle, classNam
     {...rest}
   >
     <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle}/>
-    <div className="mainActionButton-label">{label}</div>
+    <div className="mainActionButton-label">{capitalizeFirst(label)}</div>
   </button>;
 
 export default ServicePanelAction;

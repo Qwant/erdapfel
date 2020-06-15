@@ -1,6 +1,7 @@
 .service_panel {
   position: relative;
   background: url('../images/panel_top.svg') white repeat-x;
+  padding-top: 5px;
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
@@ -16,11 +17,6 @@
 
   .panel-header {
     display: none;
-  }
-
-  .service_panel__categories {
-    height: 80px;
-    overflow: hidden;
   }
 }
 
@@ -46,6 +42,7 @@
   .panel.service_panel {
     height: 220px;
     background: #fff;
+    padding-top: 0;
 
     hr {
       margin-bottom: 16px;
