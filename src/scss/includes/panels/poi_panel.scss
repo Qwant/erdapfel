@@ -404,6 +404,11 @@ $HEADER_SIZE: 40px;
   position: fixed;
   padding: 16px;
 
+  .poiItem {
+    min-width: 0;
+    flex: 1;
+  }
+
   &__action_container {
     margin-top: 12px;
     margin-left: 6px;
