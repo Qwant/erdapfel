@@ -828,7 +828,7 @@ button.direction_shortcut {
     justify-content: center;
     align-items: center;
 
-    &:read-only {
+    &:disabled {
       color: $primary_clear;
     }
   }
