@@ -13,15 +13,23 @@ export function toUrl(poi) {
 }
 
 export async function getInputValue(poi) {
-  if (poi.type === 'latlon' || !poi.name) {
+  if (poi.type === 'latlon' || !poi.address) {
     return await fetchAddressLabel(poi);
   }
-  return poi.getInputValue();
+  return getFullAddress(poi);
+}
+
+export function getFullAddress(poi) {
+  const fullAddress = [poi.address?.name, poi.address?.city, poi.address?.country]
+    .filter(i => i) // Filter out any undefined results
+    .join(', ');
+
+  return fullAddress;
 }
 
 async function fetchAddressLabel(poi) {
-  const address = await IdunnPoi.poiApiLoad(poi);
-  return address.alternativeName || address.name;
+  const idunnPoi = await IdunnPoi.poiApiLoad(poi);
+  return getFullAddress(idunnPoi);
 }
 
 export function toAbsoluteUrl(poi) {

@@ -10,7 +10,7 @@ const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 const PoiPopup = ({ poi }) => {
   const reviews = poi.blocksByType && poi.blocksByType.grades;
   const openingHours = poi.blocksByType && poi.blocksByType.opening_hours;
-  const address = poi.address && poi.address.label;
+  const address = poi.address && poi.address.name;
 
   let displayedInfo = null;
   if (reviews) {

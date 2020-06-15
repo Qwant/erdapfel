@@ -264,14 +264,14 @@ test('check template', async () => {
     });
   });
   /* street */
-  const stretAddress = ['0000', 'Ferriere', 'Italia'].filter(zone => zone).join(', ');
+  const stretAddress = ['037', 'Ferriere', 'Italia'].filter(zone => zone).join(', ');
   expect(lines[0][0]).toEqualCaseInsensitive(
     mockAutocompleteAllTypes.features[0].properties.geocoding.name
   );
   expect(lines[0][1]).toEqualCaseInsensitive(stretAddress);
 
   /* house */
-  const houseAddress = ['30000', 'Nîmes', 'France'].filter(zone => zone).join(', ');
+  const houseAddress = ['37 Rue Robert', 'Nîmes', 'France'].filter(zone => zone).join(', ');
   expect(lines[1][0]).toEqualCaseInsensitive(
     mockAutocompleteAllTypes.features[1].properties.geocoding.name
   );
@@ -281,13 +281,12 @@ test('check template', async () => {
   expect(lines[2][0]).toEqualCaseInsensitive(
     mockAutocompleteAllTypes.features[2].properties.geocoding.name);
   expect(lines[2][1]).toEqualCaseInsensitive(
-    mockAutocompleteAllTypes.features[2].properties.geocoding.address.label
+    'maga, Handlová, Slovensko'
   );
 
   /* admin */
-  const labelFragments = mockAutocompleteAllTypes.features[3].properties.geocoding.label.split(',');
-  expect(lines[3][0]).toEqualCaseInsensitive(labelFragments[0]);
-  expect(lines[3][1]).toEqualCaseInsensitive(labelFragments.slice(1).join(',').trim());
+  expect(lines[3][0]).toEqualCaseInsensitive('Le Cannet (06110)');
+  expect(lines[3][1]).toEqualCaseInsensitive('Le Cannet');
 });
 
 
