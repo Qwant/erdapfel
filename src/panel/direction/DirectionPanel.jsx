@@ -228,6 +228,7 @@ export default class DirectionPanel extends React.Component {
       [which]: point,
       isDirty: true,
       [which + 'InputText']: value || '',
+      activePreviewRoute: null,
     }, () => {
       this.update();
       // Retrieve addresses
