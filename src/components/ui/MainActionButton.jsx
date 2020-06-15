@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { capitalizeFirst } from 'src/libs/string';
 
 const ServicePanelAction = ({ variant, label, onClick, icon, iconStyle, className, ...rest }) =>
   <button
