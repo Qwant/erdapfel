@@ -1,7 +1,7 @@
 /* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ShareMenu, Button } from 'src/components/ui';
+import { Flex, ShareMenu, Button } from 'src/components/ui';
 
 const ActionButtons = ({
   poi,
@@ -11,7 +11,7 @@ const ActionButtons = ({
   isPoiInFavorite,
   toggleStorePoi,
 }) => {
-  return <div className="poi_panel__actions">
+  return <Flex className="u-mb-24 poi_panel__actions">
     {isDirectionActive && <Button
       className="poi_panel__action__direction"
       variant="primary"
@@ -22,7 +22,7 @@ const ActionButtons = ({
     </Button>}
 
     {poi?.blocksByType?.phone && <Button
-      className="poi_panel__action__button poi_panel__action__phone"
+      className="poi_panel__action__phone"
       onClick={onClickPhoneNumber}
       icon="icon_phone"
       href={poi.blocksByType.phone.url}
@@ -31,7 +31,7 @@ const ActionButtons = ({
     />}
 
     <Button
-      className="poi_panel__action__button poi_panel__action__favorite"
+      className="poi_panel__action__favorite"
       onClick={toggleStorePoi}
       icon={isPoiInFavorite ? 'icon_star-filled' : 'star'}
       title={_('Favorites', 'poi panel')}
@@ -41,13 +41,13 @@ const ActionButtons = ({
       url={window.location.toString()}
       scrollableParent=".panel-content"
     >
-      {openMenu => <Button className="poi_panel__action__button poi_panel__action__share"
+      {openMenu => <Button className="poi_panel__action__share"
         title={_('Share', 'poi panel')}
         icon="share-2"
         onClick={openMenu}
       />}
     </ShareMenu>
-  </div>;
+  </Flex>;
 };
 
 ActionButtons.propTypes = {

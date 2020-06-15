@@ -2,6 +2,10 @@
   font-weight: bold;
 }
 
+.u-italic {
+  font-style: italic;
+}
+
 .u-center {
   text-align: center;
 }
@@ -61,8 +65,16 @@
   margin-right: 4px;
 }
 
+.u-mb-4 {
+  margin-bottom: 4px;
+}
+
 .u-mb-8 {
   margin-bottom: 8px;
+}
+
+.u-mb-24 {
+  margin-bottom: 24px;
 }
 
 .u-text--label {

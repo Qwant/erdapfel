@@ -1,23 +1,24 @@
 import React from 'react';
+import PoiTitle from 'src/components/PoiTitle';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
-import poiSubClass from 'src/mapbox/poi_subclass';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
+import classnames from 'classnames';
 
-const PoiItem = ({ poi }) => {
-  const reviews = poi.blocksByType.grades;
+const PoiItem = ({ poi,
+  withOpeningHours,
+  withImage = true,
+  withAlternativeName,
+  className,
+  ...rest
+}) => {
+  const reviews = poi.blocksByType?.grades;
   const address = poi.address || {};
 
-  const Subclass = () =>
-    poi.subClassName
-      ? <p className="u-text--subtitle u-firstCap">{poiSubClass(poi.subClassName)}</p>
-      : null
-  ;
-
   const Address = () =>
-    address.label
-      ? <p className="u-text--subtitle poiItem-address">{address.label}</p>
+    poi.subClassName !== 'latlon' && address.label
+      ? <div className="u-text--subtitle poiItem-address">{address.label}</div>
       : null
   ;
 
@@ -30,25 +31,25 @@ const PoiItem = ({ poi }) => {
   ;
 
   const OpenStatus = () =>
-    poi?.blocksByType?.opening_hours
+    withOpeningHours && poi?.blocksByType?.opening_hours
       ? <OpeningHour
         schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
-        showNextOpenOnly={true} />
+        showNextOpenOnly={true}
+        className="u-text--label"
+      />
       : null;
 
-  return <div className="poiItem">
+  return <div className={classnames('poiItem', className)} {...rest}>
     <div className="poiItem-left">
-      {/* @TODO: use a better-named fonction that returns the best 'name' */}
-      <h3 className="u-text--smallTitle">{poi.getInputValue()}</h3>
-      <Subclass />
+      <PoiTitle poi={poi} withAlternativeName={withAlternativeName} />
       <Address />
       <Reviews />
       <OpenStatus />
     </div>
 
-    <div className="poiItem-right">
+    {withImage && <div className="poiItem-right">
       <PoiTitleImage poi={poi} />
-    </div>
+    </div>}
   </div>;
 };
 

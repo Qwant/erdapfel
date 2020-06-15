@@ -2,8 +2,8 @@ import React from 'react';
 import ReviewScore from 'src/components/ReviewScore';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
-import poiSubClass from '../mapbox/poi_subclass';
 import nconf from '@qwant/nconf-getter';
+import PoiTitle from 'src/components/PoiTitle';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -16,14 +16,16 @@ const PoiPopup = ({ poi }) => {
   if (reviews) {
     displayedInfo = <ReviewScore reviews={reviews} poi={poi} />;
   } else if (openingHours && !covid19Enabled) {
-    displayedInfo = <OpeningHour schedule={new OsmSchedule(openingHours)} />;
+    displayedInfo = <OpeningHour
+      schedule={new OsmSchedule(openingHours)}
+      className="u-text--label"
+    />;
   } else if (address) {
     displayedInfo = <span className="poi_popup__address">{address}</span>;
   }
 
   return <div className="poi_popup">
-    <h1 className="u-text--smallTitle">{poi.name}</h1>
-    <h3 className="u-firstCap u-text--subtitle">{poiSubClass(poi.subClassName)}</h3>
+    <PoiTitle poi={poi} />
     <div>{displayedInfo}</div>
   </div>;
 };

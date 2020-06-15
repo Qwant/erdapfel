@@ -6,8 +6,6 @@ import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import PoiCard from './PoiCard';
 import ActionButtons from './ActionButtons';
-import PoiHeader from './PoiHeader';
-import PoiTitleImage from './PoiTitleImage';
 import PoiBlockContainer from './PoiBlockContainer';
 import Panel from 'src/components/ui/Panel';
 import OsmContribution from 'src/components/OsmContribution';
@@ -22,6 +20,7 @@ import { fire, listen, unListen } from 'src/libs/customEvents';
 import Store from '../../adapters/store';
 import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
   from 'src/modals/MasqFavoriteModal';
+import PoiItem from 'src/components/PoiItem';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -286,10 +285,7 @@ export default class PoiPanel extends React.Component {
       initialSize="maximized"
     >
       <div className="poi_panel__content">
-        <div className="poi_panel__description_container" onClick={this.center}>
-          <PoiHeader poi={poi} />
-          <PoiTitleImage poi={poi} iconOnly={false} />
-        </div>
+        <PoiItem poi={poi} withAlternativeName className="u-mb-24" onClick={this.center} />
         <ActionButtons
           poi={poi}
           isDirectionActive={this.isDirectionActive}

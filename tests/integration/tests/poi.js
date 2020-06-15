@@ -30,18 +30,18 @@ beforeEach(async () => {
 test('click on a poi', async () => {
   await page.goto(APP_URL);
   await clickPoi(page);
-  expect(await exists(page, '.poi_panel__title')).toBeTruthy();
-  const translatedSubClass = await getText(page, '.poi_panel__description');
-  expect(translatedSubClass).toEqual('musée');
+  expect(await exists(page, '.poiTitle')).toBeTruthy();
+  const translatedSubClass = await getText(page, '.poiTitle-subclass');
+  expect(translatedSubClass).toEqual('Musée');
 });
 
 test('load a poi from url', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
   const { title, address } = await page.evaluate(() => {
     return {
-      title: document.querySelector('.poi_panel__title').innerText,
-      address: document.querySelector('.poi_panel__address').innerText,
+      title: document.querySelector('.poiTitle').innerText,
+      address: document.querySelector('.poiItem-address').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
@@ -50,7 +50,7 @@ test('load a poi from url', async () => {
 
 test('load a poi from url and click on directions', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
   await page.click('.poi_panel__actions .poi_panel__action__direction'); // Click on directions button
   await page.waitForSelector('#itinerary_input_destination');
   const destinationValue = await getInputValue(page, '#itinerary_input_destination');
@@ -59,11 +59,11 @@ test('load a poi from url and click on directions', async () => {
 
 test('load a poi from url with simple id', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753`);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
   const { title, address } = await page.evaluate(() => {
     return {
-      title: document.querySelector('.poi_panel__title').innerText,
-      address: document.querySelector('.poi_panel__address').innerText,
+      title: document.querySelector('.poiTitle').innerText,
+      address: document.querySelector('.poiItem-address').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
@@ -76,11 +76,11 @@ test('load a poi from url on mobile', async () => {
     height: 800,
   });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
   const { title, address, hours } = await page.evaluate(() => {
     return {
-      title: document.querySelector('.poi_card .poi_panel__title').innerText,
-      address: document.querySelector('.poi_card .poi_panel__address').innerText,
+      title: document.querySelector('.poi_card .poiTitle').innerText,
+      address: document.querySelector('.poi_card .poiItem-address').innerText,
       hours: document.querySelector('.poi_card .openingHour').innerText,
     };
   });
@@ -135,11 +135,11 @@ test('open poi from autocomplete selection', async () => {
 
 test('center the map to the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
   await page.evaluate(() => {
     window.MAP_MOCK.flyTo({ center: { lat: 0, lng: 0 }, zoom: 10 });
   });
-  await page.click('.poi_panel__content .poi_panel__description_container');
+  await page.click('.poi_panel__content .poiItem');
   const center = await page.evaluate(() => {
     return window.MAP_MOCK.getCenter();
   });
@@ -151,9 +151,9 @@ test('center the map to the poi on a poi click', async () => {
 
 test('display details about the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/48.8605833/2.3261037`);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
 
-  await page.click('.poi_panel__content .poi_panel__description_container');
+  await page.click('.poi_panel__content .poiItem');
   let infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText;
   });
@@ -184,7 +184,7 @@ test('display details about the poi on a poi click', async () => {
 
 test('Poi name i18n', async () => {
   await page.goto(`${APP_URL}/place/osm:way:453203@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
 
   const title = await getTitle(page);
   expect(title.main).toMatch('Musée d\'Orsay');
@@ -207,7 +207,7 @@ test('Test 24/7', async () => {
 
   await page.goto(APP_URL);
   await clickPoi(page);
-  await page.waitForSelector('.poi_panel__title');
+  await page.waitForSelector('.poiTitle');
 
   const hours = await page.evaluate(() => {
     return document.querySelector('.poi_panel__info__hours__24_7').innerText.trim();
@@ -245,7 +245,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 
   // we select a poi and 'star' it
   await clickPoi(page);
-  expect(await exists(page, '.poi_panel')).toBeTruthy();
+  expect(await exists(page, '.poiTitle')).toBeTruthy();
   await page.click('.poi_panel__actions .poi_panel__action__favorite');
   await page.click('.poi_panel .panel-close');
   // we check that the first favorite item is our poi
@@ -258,7 +258,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
 
   // we then reopen the poi panel and 'unstar' the poi.
   await page.click('.favorite_panel__item');
-  expect(await exists(page, '.poi_panel')).toBeTruthy();
+  expect(await exists(page, '.poiTitle')).toBeTruthy();
 
   await page.click('.poi_panel__actions .poi_panel__action__favorite');
   await page.click('.poi_panel .panel-close');
@@ -311,11 +311,11 @@ afterAll(async () => {
 
 async function getTitle(page) {
   return await page.evaluate(() => {
-    let main = document.querySelector('.poi_panel__title__main');
+    let main = document.querySelector('.poiTitle-main');
     if (main) {
       main = main.innerText.trim();
     }
-    let alternative = document.querySelector('.poi_panel__title__alternative');
+    let alternative = document.querySelector('.poiTitle-alternative');
     if (alternative) {
       alternative = alternative.innerText.trim();
     }
