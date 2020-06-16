@@ -8,7 +8,7 @@
 
   hr {
     border-top: 1px solid #e0e1e6;
-    margin: 0 29px 13px;
+    margin: 0 29px;
   }
 
   h3 {
@@ -24,7 +24,7 @@
 .service_panel__events,
 .service_panel__actions {
   margin: 0;
-  padding: 0 12px 10px 12px;
+  padding: 0 6px 10px;
   display: block;
 
   .mainActionButton {
@@ -53,7 +53,7 @@
     }
 
     .panel-header {
-      padding: 7px 0 0;
+      padding: 8px 0 0;
       border: none;
       display: block;
       min-height: 50px;
