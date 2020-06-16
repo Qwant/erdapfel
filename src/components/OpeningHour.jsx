@@ -55,7 +55,7 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
     return separator + text;
   };
 
-  return <div className={classnames('openingHour', className)}>
+  return <div className={classnames('openingHour', `openingHour--${status}`, className)}>
     <span className="u-firstCap">
       <Label />
       <NextTransition />
