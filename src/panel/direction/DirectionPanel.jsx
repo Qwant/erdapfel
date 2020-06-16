@@ -6,7 +6,7 @@ import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
-import { toUrl as poiToUrl, fromUrl as poiFromUrl, getInputValue } from 'src/libs/pois';
+import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
@@ -80,7 +80,6 @@ export default class DirectionPanel extends React.Component {
 
   async setTextInput(which, poi) {
     const inputValue = poi ? await getNameAddress(poi) : '';
-    console.log('setTextInput', inputValue);
     this.setState({ [which + 'InputText']: inputValue });
   }
 
