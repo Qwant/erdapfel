@@ -40,7 +40,7 @@ test('menu open favorite', async () => {
   page.click('.menu__panel__action:nth-child(3)');
 
   expect(await exists(page, '.favorite_panel')).toBeTruthy();
-}, 10000);
+});
 
 test('close service panel when opening direction', async () => {
   await page.goto(APP_URL);
