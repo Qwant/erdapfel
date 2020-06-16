@@ -41,7 +41,7 @@ export default class IdunnPoi extends Poi {
 
   _findAdmin(address, name) {
     return Object
-      .values(address.admins || {})
+      .values(address?.admins || {})
       .find(a => a.class_name === name);
   }
 
