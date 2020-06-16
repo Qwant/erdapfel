@@ -13,6 +13,7 @@ import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
+import { getNameAddress } from '../../libs/pois';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -78,7 +79,8 @@ export default class DirectionPanel extends React.Component {
   }
 
   async setTextInput(which, poi) {
-    const inputValue = poi ? await getInputValue(poi) : '';
+    const inputValue = poi ? await getNameAddress(poi) : '';
+    console.log('setTextInput', inputValue);
     this.setState({ [which + 'InputText']: inputValue });
   }
 

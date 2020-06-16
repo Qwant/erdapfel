@@ -12,24 +12,32 @@ export function toUrl(poi) {
   return poi.name ? `${poi.id}@${slug(poi.name)}` : poi.id;
 }
 
-export async function getInputValue(poi) {
-  if (poi.type === 'latlon' || !poi.address) {
-    return await fetchAddressLabel(poi);
-  }
-  return getFullAddress(poi);
-}
-
-export function getFullAddress(poi) {
-  const fullAddress = [poi.address?.name, poi.address?.city, poi.address?.country]
-    .filter(i => i) // Filter out any undefined results
+function formatAddress(name, city, country) {
+  return [name, city, country]
+    .filter(i => i) // Filter out any undefined value
     .join(', ');
-
-  return fullAddress;
 }
 
-async function fetchAddressLabel(poi) {
-  const idunnPoi = await IdunnPoi.poiApiLoad(poi);
-  return getFullAddress(idunnPoi);
+export async function getNameAddress(poi) {
+  if (poi.type === 'latlon') {
+    // latlon poi do not have human readable name,
+    // so return street address instead
+    return getStreetAddress(poi);
+  }
+
+  poi = await fetchAddress(poi);
+  return formatAddress(poi.name, poi.address?.city, poi.address?.country);
+}
+
+export async function getStreetAddress(poi) {
+  poi = await fetchAddress(poi);
+  return formatAddress(poi.address?.name, poi.address?.city, poi.address?.country);
+}
+
+async function fetchAddress(poi) {
+  return poi.address
+    ? poi
+    : IdunnPoi.poiApiLoad(poi);
 }
 
 export function toAbsoluteUrl(poi) {

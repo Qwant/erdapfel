@@ -45,18 +45,6 @@ export default class IdunnPoi extends Poi {
       .find(a => a.class_name === name);
   }
 
-  getInputValue() {
-    switch (this.type) {
-    case 'address':
-    case 'street':
-      return this.alternativeName;
-    case 'admin':
-      return this.address?.label?.split(',')[0] || this.name;
-    default:
-      return this.name;
-    }
-  }
-
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
   static async poiCategoryLoad(bbox, size, category, query) {
     const url = `${serviceConfig.idunn.url}/v1/places`;

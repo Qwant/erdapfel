@@ -62,14 +62,4 @@ export default class BragiPoi extends Poi {
       .values(geocoding.administrative_regions)
       .find(a => a.zone_type === name);
   }
-
-  getInputValue() {
-    switch (this.type) {
-    case 'house':
-    case 'street':
-      return this.value;
-    default:
-      return this.name;
-    }
-  }
 }

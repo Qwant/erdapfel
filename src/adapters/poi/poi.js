@@ -15,10 +15,6 @@ export default class Poi {
     this.bbox = bbox;
   }
 
-  getInputValue() {
-    return this.name;
-  }
-
   static deserialize(raw) {
     const { id, name, type, latLon, className, subClassName, bbox } = raw;
     return new Poi(id, name, type, latLon, className, subClassName, bbox);

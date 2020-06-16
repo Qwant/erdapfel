@@ -1,10 +1,10 @@
 /* global _ */
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import IconManager from '../../adapters/icon_manager';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
-import { getFullAddress } from '../../libs/pois';
+import { getStreetAddress } from '../../libs/pois';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
   <div className="autocomplete_suggestion__labels">
@@ -51,7 +51,14 @@ const CategoryItem = ({ category }) => {
 const PoiItem = ({ poi }) => {
   const { name, className, subClassName, type } = poi;
   const icon = IconManager.get({ className, subClassName, type });
-  const fullAddress = getFullAddress(poi);
+  const [streetAddress, setStreetAddress] = React.useState(null);
+
+  useLayoutEffect(() => {
+    (async () => {
+      const streetAddress = await getStreetAddress(poi);
+      setStreetAddress(streetAddress);
+    })();
+  }, []);
 
   return (
     <div className="autocomplete_suggestion">
@@ -59,7 +66,7 @@ const PoiItem = ({ poi }) => {
         style={{ color: icon ? icon.color : '' }}
         className={`autocomplete-icon icon icon-${icon.iconClass}`}
       />
-      <ItemLabels firstLabel={name} secondLabel={fullAddress} />
+      <ItemLabels firstLabel={name} secondLabel={streetAddress} />
     </div>
   );
 };

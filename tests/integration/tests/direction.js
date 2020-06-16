@@ -42,7 +42,7 @@ test('Start/end inputs are correctly filled', async () => {
   await page.keyboard.press('Enter');
 
   const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
-  expect(directionStartInput).toEqual('Басейна вулиця, Україна');
+  expect(directionStartInput).toEqual('test result 1, Україна');
 
   responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp('latlon:43.70324:7.25997'));
   await simulateClickOnMap(page, { lat: 43.70324, lng: 7.25997 });
