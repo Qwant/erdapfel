@@ -77,16 +77,15 @@ test('load a poi from url on mobile', async () => {
   });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poiTitle');
-  const { title, address, hours } = await page.evaluate(() => {
+  const { title, address } = await page.evaluate(() => {
     return {
       title: document.querySelector('.poi_card .poiTitle').innerText,
       address: document.querySelector('.poi_card .poiItem-address').innerText,
-      hours: document.querySelector('.poi_card .openingHour').innerText,
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
   expect(address).toMatch(/1 Rue de la Légion d'Honneur \(Paris\)/);
-  expect(hours).toMatch(/Fermé/);
+  expect(await exists(page, '.poi_card .openingHour--closed')).toBeTruthy();
 });
 
 test('load a poi already in my favorite from url', async () => {
@@ -165,16 +164,15 @@ test('display details about the poi on a poi click', async () => {
   });
   expect(infoTitle.trim()).toEqual('Services & informations');
 
-  const { contact, contactUrl, hours, phone, website } = await page.evaluate(() => {
+  const { contact, contactUrl, phone, website } = await page.evaluate(() => {
     return {
       contact: document.querySelector('.poi_panel__info__contact').innerText,
       contactUrl: document.querySelector('.poi_panel__info__contact').href,
-      hours: document.querySelector('.poi_panel .timetable-status').innerText,
       phone: document.querySelector('.poi_panel__info__section--phone').innerText,
       website: document.querySelector('.poi_panel__info__link').innerText,
     };
   });
-  expect(hours.trim()).toMatch('Fermé');
+  expect(await exists(page, '.poi_panel .openingHour--closed')).toBeTruthy();
   expect(phone).toMatch('01 40 49 48 14');
   expect(website).toMatch('www.musee-orsay.fr');
   expect(contactUrl).toMatch('mailto:admin@orsay.fr');

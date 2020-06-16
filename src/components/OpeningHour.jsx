@@ -32,29 +32,35 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
     return <div className="openingHour poi_panel__info__hours__24_7">
       {_('Open 24/7', 'hour block')}
       {' '}
-      <div className="openingHour-circle" style={{ background: color }} />
+      <div className="openingHour-circle u-ml-4" style={{ background: color }} />
     </div>;
   }
 
+  const Label = () => {
+    const displayedLabel = showNextOpenOnly && status === 'closed' ? '' : `${label}`;
+    return displayedLabel;
+  };
+
   const NextTransition = () => {
-    if (!nextTransition || showNextOpenOnly && status !== 'closed') {
+    if (!nextTransition || showNextOpenOnly && status === 'open') {
       return null;
     }
 
+    const separator = showNextOpenOnly && status === 'closed' ? '' : ' - ';
     const options = { nextTransitionTime: nextTransition };
-
     const text = status === 'closed'
-      ? ` - ${_('reopening at {nextTransitionTime}', 'hour panel', options)}`
-      : ` - ${_('until {nextTransitionTime}', 'hour panel', options)}`;
+      ? `${_('reopening at {nextTransitionTime}', 'hour panel', options)}`
+      : `${_('until {nextTransitionTime}', 'hour panel', options)}`;
 
-    return text;
+    return separator + text;
   };
 
-  return <div className={classnames('openingHour', className)}>
-    {label}
-    <NextTransition />
-    {' '}
-    <div className="openingHour-circle" style={{ background: color }} />
+  return <div className={classnames('openingHour', `openingHour--${status}`, className)}>
+    <span className="u-firstCap">
+      <Label />
+      <NextTransition />
+    </span>
+    <div className="openingHour-circle u-ml-4" style={{ background: color }} />
   </div>;
 };
 
