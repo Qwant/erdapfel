@@ -1,5 +1,6 @@
 
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
+import { isMobileDevice } from 'src/libs/device';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
@@ -11,6 +12,8 @@ const MAPBOX_RESERVED_KEYS = [
   '=', // =
 ];
 
+const SEARCH_INPUT_ID = 'search';
+
 export default class SearchInput {
 
   constructor(tagSelector) {
@@ -21,24 +24,29 @@ export default class SearchInput {
 
   /* Singleton */
   static initSearchInput(tagSelector) {
-    if (! window.__searchInput) {
-      window.__searchInput = new SearchInput(tagSelector);
-
-      window.clearSearch = () => {
-        window.__searchInput.searchInputHandle.value = '';
-        window.app.navigateTo('/');
-        setTimeout(() => {
-          document.getElementById('search').focus();
-        }, 0);
-
-      };
-
-      window.submitSearch = () => {
-        if (window.__searchInput.searchInputHandle.value.length > 0) {
-          this.executeSearch(window.__searchInput.searchInputHandle.value);
-        }
-      };
+    if (window.__searchInput) {
+      return window.__searchInput;
     }
+
+    window.__searchInput = new SearchInput(tagSelector);
+
+    window.clearSearch = () => {
+      const isMobile = isMobileDevice();
+      window.__searchInput.searchInputHandle.value = '';
+      window.app.navigateTo('/');
+      if (!isMobile || isMobile && document.activeElement.id === SEARCH_INPUT_ID) {
+        setTimeout(() => {
+          document.getElementById(SEARCH_INPUT_ID).focus();
+        }, 0);
+      }
+    };
+
+    window.submitSearch = () => {
+      if (window.__searchInput.searchInputHandle.value.length > 0) {
+        this.executeSearch(window.__searchInput.searchInputHandle.value);
+      }
+    };
+
     return window.__searchInput;
   }
 
@@ -74,7 +82,7 @@ export default class SearchInput {
         if (document.activeElement
           && document.activeElement.tagName !== 'INPUT'
           && window.__searchInput.isEnabled) {
-          document.getElementById('search').focus();
+          document.getElementById(SEARCH_INPUT_ID).focus();
         }
       }
     };
