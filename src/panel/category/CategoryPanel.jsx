@@ -57,41 +57,41 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
       SearchInput.setInputValue(query);
     }
 
-    window.execOnMapLoaded(() => { fitMapAndFetch(); });
+    window.execOnMapLoaded(fitMap);
 
     return function unmount() {
       SearchInput.setInputValue('');
     };
   }, [poiFilters, bbox]);
 
-  function fitMapAndFetch() {
+  function fitMap() {
+    const map = window.map.mb;
     const rawBbox = bbox.split(',');
     const mapBbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
     if (mapBbox) {
-      window.map.mb.fitBounds(bbox, { animate: false });
+      map.fitBounds(mapBbox, { animate: false });
+      return;
     }
 
-    if (window.map.mb.isMoving()) {
-      /*
-        Do not trigger API search and zoom change when the map
-        is already moving, to avoid flickering.
-        The search will be triggered on moveend.
-      */
+    if (map.isMoving()) {
+      // If the map is already moving, let it finish its transition.
+      // The data loading will be triggered on moveend.
       return;
     }
 
     // Apply correct zoom when opening a category
-    const currentZoom = window.map.mb.getZoom();
+    const currentZoom = map.getZoom();
 
     // Zoom < 5: focus on Paris
     if (currentZoom < 5) {
-      window.map.mb.flyTo({ center: [2.35, 48.85], zoom: 12 });
+      map.flyTo({ center: [2.35, 48.85], zoom: 12 });
     } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
-      window.map.mb.flyTo({ zoom: 12 });
+      map.flyTo({ zoom: 12 });
     } else if (currentZoom > 16) { // Zoom > 16: dezoom to zoom 16
-      window.map.mb.flyTo({ zoom: 16 });
+      map.flyTo({ zoom: 16 });
     } else {
-      fetchData();
+      // setting the same view still triggers the moveend event
+      map.jumpTo({ zoom: currentZoom, center: map.getCenter() });
     }
   }
 
