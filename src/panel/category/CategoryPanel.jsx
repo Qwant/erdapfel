@@ -1,5 +1,5 @@
 /* global _ */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import PoiItemList from './PoiItemList';
@@ -18,52 +18,37 @@ import { capitalizeFirst } from 'src/libs/string';
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
 
-export default class CategoryPanel extends React.Component {
-  static propTypes = {
-    poiFilters: PropTypes.object,
-    bbox: PropTypes.string,
-  }
+const Result = ({ pois, poiFilters }) => {
+  const hasError = !pois || pois.length === 0;
+  return hasError
+    ? <CategoryPanelError zoomIn={!pois} />
+    : <PoiItemList
+      pois={pois}
+      selectPoi={poi => { fire('click_category_poi', poi, poiFilters); }}
+      highlightMarker={(poi, highlight) => { fire('highlight_category_marker', poi, highlight); }}
+    />;
+};
 
-  static defaultProps = {
-    poiFilters: {},
-  }
+const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
+  const [pois, setPois] = useState([]);
+  const [dataSource, setDataSource] = useState('');
+  const [initialLoading, setInitialLoading] = useState(true);
 
-  state = {
-    pois: [],
-    dataSource: '',
-    initialLoading: true,
-  }
+  useEffect(() => {
+    const mapMoveHandler = listen('map_moveend', fetchData);
 
-  componentDidMount() {
-    this.updateSearchBarContent();
-    this.mapMoveHandler = listen('map_moveend', this.fetchData);
-    window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
-  }
+    return function unmount() {
+      unListen(mapMoveHandler);
+    };
+  });
 
-  componentDidUpdate(prevProps) {
-    this.updateSearchBarContent();
-    const { bbox, poiFilters } = this.props;
-
+  useEffect(() => {
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
       panelContent.scrollTop = 0;
     }
 
-    // Check for a new, or changed poiFilter
-    for (const key in poiFilters) {
-      if (poiFilters[key] !== prevProps.poiFilters[key]) {
-        this.fetchData();
-        break;
-      }
-    }
-
-    if (bbox && bbox !== prevProps.bbox) {
-      window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
-    }
-  }
-
-  updateSearchBarContent() {
-    const { category, query } = this.props.poiFilters;
+    const { category, query } = poiFilters;
     if (category) {
       Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
       const { label } = CategoryService.getCategoryByName(category);
@@ -71,17 +56,18 @@ export default class CategoryPanel extends React.Component {
     } else if (query) {
       SearchInput.setInputValue(query);
     }
-  }
 
-  componentWillUnmount() {
-    SearchInput.setInputValue('');
-    unListen(this.mapMoveHandler);
-  }
+    window.execOnMapLoaded(() => { fitMapAndFetch(); });
 
-  fitMapAndFetch() {
-    const rawBbox = (this.props.bbox || '').split(',');
-    const bbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
-    if (bbox) {
+    return function unmount() {
+      SearchInput.setInputValue('');
+    };
+  }, [poiFilters, bbox]);
+
+  function fitMapAndFetch() {
+    const rawBbox = bbox.split(',');
+    const mapBbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
+    if (mapBbox) {
       window.map.mb.fitBounds(bbox, { animate: false });
     }
 
@@ -105,12 +91,12 @@ export default class CategoryPanel extends React.Component {
     } else if (currentZoom > 16) { // Zoom > 16: dezoom to zoom 16
       window.map.mb.flyTo({ zoom: 16 });
     } else {
-      this.fetchData();
+      fetchData();
     }
   }
 
-  fetchData = async () => {
-    const { category, query } = this.props.poiFilters;
+  const fetchData = async () => {
+    const { category, query } = poiFilters;
     const bbox = getVisibleBbox(window.map.mb);
 
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
@@ -124,59 +110,30 @@ export default class CategoryPanel extends React.Component {
       query
     );
 
-    this.setState({
-      pois: places,
-      dataSource: source,
-      initialLoading: false,
-    });
+    setPois(places);
+    setDataSource(source);
+    setInitialLoading(false);
 
-    fire('add_category_markers', places, this.props.poiFilters);
+    fire('add_category_markers', places, poiFilters);
     fire('save_location');
   };
 
-  close = () => {
-    window.app.navigateTo('/');
-  }
+  return <Panel
+    resizable
+    title={<CategoryPanelHeader dataSource={dataSource} loading={initialLoading} />}
+    minimizedTitle={_('Show results', 'categories')}
+    close={() => { window.app.navigateTo('/'); }}
+    className="category__panel"
+  >
+    {initialLoading
+      ? <PoiItemListPlaceholder />
+      : <Result pois={pois} poiFilters={poiFilters} />}
+  </Panel>;
+};
 
-  selectPoi = poi => {
-    const { poiFilters } = this.props;
-    fire('click_category_poi', poi, poiFilters);
-  }
+CategoryPanel.propTypes = {
+  poiFilters: PropTypes.object,
+  bbox: PropTypes.string,
+};
 
-  highlightPoiMarker = (poi, highlight) => {
-    fire('highlight_category_marker', poi, highlight);
-  }
-
-  render() {
-    const { initialLoading, pois, dataSource } = this.state;
-
-    let panelContent;
-
-    if (initialLoading) {
-      panelContent = <PoiItemListPlaceholder />;
-    } else {
-      const hasError = !pois || pois.length === 0;
-      const zoomIn = !pois;
-
-      if (hasError) {
-        panelContent = <CategoryPanelError zoomIn={zoomIn} />;
-      } else {
-        panelContent = <PoiItemList
-          pois={pois}
-          selectPoi={this.selectPoi}
-          highlightMarker={this.highlightPoiMarker}
-        />;
-      }
-    }
-
-    return <Panel
-      resizable
-      title={<CategoryPanelHeader dataSource={dataSource} loading={initialLoading} />}
-      minimizedTitle={_('Show results', 'categories')}
-      close={this.close}
-      className="category__panel"
-    >
-      {panelContent}
-    </Panel>;
-  }
-}
+export default CategoryPanel;
