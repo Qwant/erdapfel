@@ -265,7 +265,7 @@ test('check template', async () => {
   });
   /* street */
   expect(lines[0][0]).toEqualCaseInsensitive('037');
-  expect(lines[0][1]).toEqualCaseInsensitive('Ferriere, Italia');
+  expect(lines[0][1]).toEqualCaseInsensitive('037, Ferriere, Italia');
 
   /* house */
   expect(lines[1][0]).toEqualCaseInsensitive('37 Rue Robert');
@@ -273,11 +273,11 @@ test('check template', async () => {
 
   /* poi */
   expect(lines[2][0]).toEqualCaseInsensitive('maga');
-  expect(lines[2][1]).toEqualCaseInsensitive('Handlová, Slovensko');
+  expect(lines[2][1]).toEqualCaseInsensitive('maga, Handlová, Slovensko');
 
   /* admin */
   expect(lines[3][0]).toEqualCaseInsensitive('Le Cannet (06110)');
-  expect(lines[3][1]).toEqualCaseInsensitive('France');
+  expect(lines[3][1]).toEqualCaseInsensitive('Le Cannet, France');
 });
 
 

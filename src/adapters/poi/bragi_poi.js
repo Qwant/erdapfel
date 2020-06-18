@@ -1,5 +1,5 @@
 import Poi from './poi';
-import { normalizeAddress } from '../../libs/address';
+import { normalize as normalizeAddress } from '../../libs/address';
 
 export default class BragiPoi extends Poi {
   constructor(feature, queryContext) {
@@ -51,6 +51,6 @@ export default class BragiPoi extends Poi {
     this.value = label;
     this.queryContext = queryContext;
 
-    this.address = normalizeAddress('bragi', feature.properties.geocoding);
+    this.address = normalizeAddress('bragi', feature.properties);
   }
 }

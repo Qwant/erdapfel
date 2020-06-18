@@ -2,8 +2,8 @@ import Poi from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
-import QueryContext from 'src/adapters/query_context';
-import { normalizeAddress } from '../../libs/address';
+import QueryContext from '../../adapters/query_context';
+import { normalize as normalizeAddress } from '../../libs/address';
 
 const serviceConfig = nconf.get().services;
 const LNG_INDEX = 0;

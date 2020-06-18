@@ -4,7 +4,7 @@ import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geo
 import IconManager from '../../adapters/icon_manager';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
-import { getStreetAddress } from '../../libs/address';
+import { format as formatAddress } from '../../libs/address';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
   <div className="autocomplete_suggestion__labels">
@@ -51,7 +51,7 @@ const CategoryItem = ({ category }) => {
 const PoiItem = ({ poi }) => {
   const { name, className, subClassName, type } = poi;
   const icon = IconManager.get({ className, subClassName, type });
-  const streetAddress = getStreetAddress(poi);
+  const streetAddress = poi.address ? formatAddress(poi.address) : '';
 
   return (
     <div className="autocomplete_suggestion">
