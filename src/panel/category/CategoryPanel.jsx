@@ -40,7 +40,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
     return function unmount() {
       unListen(mapMoveHandler);
     };
-  });
+  }, []);
 
   useEffect(() => {
     const panelContent = document.querySelector('.panel-content');
