@@ -29,15 +29,11 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
   const { isTwentyFourSeven, status, nextTransition } = schedule;
   const { label, color } = getStatusMessage(status);
 
-  if (isTwentyFourSeven && !showNextOpenOnly) {
-    return <div className="openingHour poi_panel__info__hours__24_7">
-      {_('Open 24/7', 'hour block')}
-      {' '}
-      <div className="openingHour-circle u-ml-4" style={{ background: color }} />
-    </div>;
-  }
-
   const getDescription = () => {
+    if (isTwentyFourSeven && !showNextOpenOnly) {
+      return _('Open 24/7', 'hour block');
+    }
+
     const parts = [];
 
     if (!nextTransition || status !== 'closed' || !showNextOpenOnly) {
@@ -54,7 +50,10 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
     return capitalizeFirst(parts.join(' - '));
   };
 
-  return <div className={classnames('openingHour', `openingHour--${status}`, className)}>
+  return <div className={classnames('openingHour', {
+    [`openingHour--${status}`]: status,
+    'openingHour--24-7': isTwentyFourSeven,
+  }, className)}>
     <div>{getDescription()}</div>
     <div className="openingHour-circle u-ml-4" style={{ background: color }} />
   </div>;

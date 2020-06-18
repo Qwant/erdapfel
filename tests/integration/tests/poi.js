@@ -208,7 +208,7 @@ test('Test 24/7', async () => {
   await page.waitForSelector('.poiTitle');
 
   const hours = await page.evaluate(() => {
-    return document.querySelector('.poi_panel__info__hours__24_7').innerText.trim();
+    return document.querySelector('.openingHour--24-7').innerText.trim();
   });
 
   expect(hours).toEqual('Ouvert 24h/24 et 7j/7');
