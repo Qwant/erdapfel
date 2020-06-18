@@ -57,7 +57,6 @@ export default class BragiPoi extends Poi {
     }
 
     this.address = {
-      name: geocodingProps?.name,
       street,
       city: this._findAdmin(geocodingProps, 'city')?.name,
       country: this._findAdmin(geocodingProps, 'country')?.name,
