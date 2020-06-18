@@ -1,6 +1,7 @@
 /* global _ */
 import React from 'react';
 import classnames from 'classnames';
+import { capitalizeFirst } from 'src/libs/string';
 
 const getStatusMessage = status => {
   if (status === 'open') {
@@ -36,30 +37,25 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
     </div>;
   }
 
-  const Label = () => {
-    const displayedLabel = showNextOpenOnly && status === 'closed' ? '' : `${label}`;
-    return displayedLabel;
-  };
+  const getDescription = () => {
+    const parts = [];
 
-  const NextTransition = () => {
-    if (!nextTransition || showNextOpenOnly && status === 'open') {
-      return null;
+    if (!nextTransition || status !== 'closed' || !showNextOpenOnly) {
+      parts.push(label);
     }
 
-    const separator = showNextOpenOnly && status === 'closed' ? '' : ' - ';
-    const options = { nextTransitionTime: nextTransition };
-    const text = status === 'closed'
-      ? `${_('reopening at {nextTransitionTime}', 'hour panel', options)}`
-      : `${_('until {nextTransitionTime}', 'hour panel', options)}`;
+    if (nextTransition && (status === 'closed' || !showNextOpenOnly)) {
+      const options = { nextTransitionTime: nextTransition };
+      parts.push(status === 'closed'
+        ? _('reopening at {nextTransitionTime}', 'hour panel', options)
+        : _('until {nextTransitionTime}', 'hour panel', options));
+    }
 
-    return separator + text;
+    return capitalizeFirst(parts.join(' - '));
   };
 
   return <div className={classnames('openingHour', `openingHour--${status}`, className)}>
-    <span className="u-firstCap">
-      <Label />
-      <NextTransition />
-    </span>
+    <div>{getDescription()}</div>
     <div className="openingHour-circle u-ml-4" style={{ background: color }} />
   </div>;
 };
