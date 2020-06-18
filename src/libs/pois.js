@@ -25,19 +25,17 @@ export async function getNameAddress(poi) {
     return getStreetAddress(poi);
   }
 
-  poi = await fetchAddress(poi);
-  return formatAddress(poi.name, poi.address?.city, poi.address?.country);
+  const address = await fetchAddress(poi);
+  return formatAddress(poi.name, address?.city, address?.country);
 }
 
 export async function getStreetAddress(poi) {
-  poi = await fetchAddress(poi);
-  return formatAddress(poi.address?.name, poi.address?.city, poi.address?.country);
+  const address = await fetchAddress(poi);
+  return formatAddress(address?.name, address?.city, address?.country);
 }
 
 async function fetchAddress(poi) {
-  return poi.address
-    ? poi
-    : IdunnPoi.poiApiLoad(poi);
+  return poi.address || (await IdunnPoi.poiApiLoad(poi)).address;
 }
 
 export function toAbsoluteUrl(poi) {
