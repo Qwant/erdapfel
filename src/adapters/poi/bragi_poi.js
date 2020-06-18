@@ -1,4 +1,5 @@
 import Poi from './poi';
+import { normalizeAddress } from '../../libs/address';
 
 export default class BragiPoi extends Poi {
   constructor(feature, queryContext) {
@@ -50,23 +51,6 @@ export default class BragiPoi extends Poi {
     this.value = label;
     this.queryContext = queryContext;
 
-    let street = geocodingProps?.address?.name;
-    if (geocodingProps.type === 'house') {
-      // Street address is received in the name field
-      street = geocodingProps?.name;
-    }
-
-    this.address = {
-      street,
-      city: this._findAdmin(geocodingProps, 'city')?.name,
-      country: this._findAdmin(geocodingProps, 'country')?.name,
-      label: geocodingProps.label,
-    };
-  }
-
-  _findAdmin(geocoding, name) {
-    return Object
-      .values(geocoding.administrative_regions)
-      .find(a => a.zone_type === name);
+    this.address = normalizeAddress('bragi', feature.properties.geocoding);
   }
 }

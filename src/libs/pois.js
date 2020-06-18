@@ -12,32 +12,6 @@ export function toUrl(poi) {
   return poi.name ? `${poi.id}@${slug(poi.name)}` : poi.id;
 }
 
-function formatAddress(name, city, country) {
-  return [name, city, country]
-    .filter(i => i) // Filter out any undefined value
-    .join(', ');
-}
-
-export async function getNameAddress(poi) {
-  if (poi.type === 'latlon') {
-    // latlon poi do not have human readable name,
-    // so return street address instead
-    return getStreetAddress(poi);
-  }
-
-  const address = await fetchAddress(poi);
-  return formatAddress(poi.name, address?.city, address?.country);
-}
-
-export async function getStreetAddress(poi) {
-  const address = await fetchAddress(poi);
-  return formatAddress(address?.street, address?.city, address?.country);
-}
-
-async function fetchAddress(poi) {
-  return poi.address || (await IdunnPoi.poiApiLoad(poi)).address;
-}
-
 export function toAbsoluteUrl(poi) {
   const { protocol, host } = window.location;
   const baseUrl = window.baseUrl;

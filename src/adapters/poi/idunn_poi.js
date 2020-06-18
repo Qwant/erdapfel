@@ -3,6 +3,7 @@ import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import QueryContext from 'src/adapters/query_context';
+import { normalizeAddress } from '../../libs/address';
 
 const serviceConfig = nconf.get().services;
 const LNG_INDEX = 0;
@@ -31,18 +32,7 @@ export default class IdunnPoi extends Poi {
       }
     }
 
-    this.address = {
-      street: rawPoi.address?.name,
-      city: this._findAdmin(rawPoi.address, 'city')?.name,
-      country: this._findAdmin(rawPoi.address, 'country')?.name,
-      label: rawPoi.address?.label || rawPoi.address?.admin?.label,
-    };
-  }
-
-  _findAdmin(address, name) {
-    return Object
-      .values(address?.admins || {})
-      .find(a => a.class_name === name);
+    this.address = normalizeAddress('idunn', rawPoi);
   }
 
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */

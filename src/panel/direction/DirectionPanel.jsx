@@ -13,7 +13,7 @@ import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import { getNameAddress } from '../../libs/pois';
+import { getAddress, fetchAddress } from '../../libs/address';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -79,7 +79,10 @@ export default class DirectionPanel extends React.Component {
   }
 
   async setTextInput(which, poi) {
-    const inputValue = poi ? await getNameAddress(poi) : '';
+    if (poi.type === 'latlon') {
+      poi.address = await fetchAddress(poi);
+    }
+    const inputValue = poi ? getAddress(poi) : '';
     this.setState({ [which + 'InputText']: inputValue });
   }
 
