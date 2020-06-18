@@ -32,7 +32,8 @@ export default class IdunnPoi extends Poi {
     }
 
     this.address = {
-      name: rawPoi.address?.name || rawPoi.name,
+      name: rawPoi.name,
+      street: rawPoi.address?.name,
       city: this._findAdmin(rawPoi.address, 'city')?.name,
       country: this._findAdmin(rawPoi.address, 'country')?.name,
       label: rawPoi.address?.label || rawPoi.address?.admin?.label,

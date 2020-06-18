@@ -264,29 +264,20 @@ test('check template', async () => {
     });
   });
   /* street */
-  const stretAddress = ['037', 'Ferriere', 'Italia'].filter(zone => zone).join(', ');
-  expect(lines[0][0]).toEqualCaseInsensitive(
-    mockAutocompleteAllTypes.features[0].properties.geocoding.name
-  );
-  expect(lines[0][1]).toEqualCaseInsensitive(stretAddress);
+  expect(lines[0][0]).toEqualCaseInsensitive('037');
+  expect(lines[0][1]).toEqualCaseInsensitive('Ferriere, Italia');
 
   /* house */
-  const houseAddress = ['37 Rue Robert', 'Nîmes', 'France'].filter(zone => zone).join(', ');
-  expect(lines[1][0]).toEqualCaseInsensitive(
-    mockAutocompleteAllTypes.features[1].properties.geocoding.name
-  );
-  expect(lines[1][1]).toEqualCaseInsensitive(houseAddress);
+  expect(lines[1][0]).toEqualCaseInsensitive('37 Rue Robert');
+  expect(lines[1][1]).toEqualCaseInsensitive('37 Rue Robert, Nîmes, France');
 
   /* poi */
-  expect(lines[2][0]).toEqualCaseInsensitive(
-    mockAutocompleteAllTypes.features[2].properties.geocoding.name);
-  expect(lines[2][1]).toEqualCaseInsensitive(
-    'maga, Handlová, Slovensko'
-  );
+  expect(lines[2][0]).toEqualCaseInsensitive('maga');
+  expect(lines[2][1]).toEqualCaseInsensitive('Handlová, Slovensko');
 
   /* admin */
   expect(lines[3][0]).toEqualCaseInsensitive('Le Cannet (06110)');
-  expect(lines[3][1]).toEqualCaseInsensitive('Le Cannet');
+  expect(lines[3][1]).toEqualCaseInsensitive('France');
 });
 
 

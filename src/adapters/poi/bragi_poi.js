@@ -49,8 +49,16 @@ export default class BragiPoi extends Poi {
 
     this.value = label;
     this.queryContext = queryContext;
+
+    let street = geocodingProps?.address?.name;
+    if (geocodingProps.type === 'house') {
+      // Street address is received in the name field
+      street = geocodingProps?.name;
+    }
+
     this.address = {
-      name: geocodingProps.address?.name || geocodingProps?.name,
+      name: geocodingProps?.name,
+      street,
       city: this._findAdmin(geocodingProps, 'city')?.name,
       country: this._findAdmin(geocodingProps, 'country')?.name,
       label: geocodingProps.label,

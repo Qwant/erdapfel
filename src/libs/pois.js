@@ -31,7 +31,7 @@ export async function getNameAddress(poi) {
 
 export async function getStreetAddress(poi) {
   const address = await fetchAddress(poi);
-  return formatAddress(address?.name, address?.city, address?.country);
+  return formatAddress(address?.street, address?.city, address?.country);
 }
 
 async function fetchAddress(poi) {
