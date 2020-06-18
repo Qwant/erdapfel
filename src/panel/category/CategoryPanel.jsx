@@ -66,6 +66,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
 
   function fitMap() {
     const map = window.map.mb;
+    // @TODO: put bbox parsing in a dedicated lib
     const rawBbox = bbox.split(',');
     const mapBbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
     if (mapBbox) {
@@ -97,8 +98,8 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
 
   const fetchData = async () => {
     const { category, query } = poiFilters;
+    // @TODO: put bbox => string in a dedicated lib
     const bbox = getVisibleBbox(window.map.mb);
-
     const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
       .map(cardinal => cardinal.toFixed(7))
       .join(',');
