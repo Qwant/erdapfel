@@ -1,5 +1,6 @@
 
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
+import { isMobileDevice } from 'src/libs/device';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
@@ -21,24 +22,30 @@ export default class SearchInput {
 
   /* Singleton */
   static initSearchInput(tagSelector) {
-    if (! window.__searchInput) {
-      window.__searchInput = new SearchInput(tagSelector);
-
-      window.clearSearch = () => {
-        window.__searchInput.searchInputHandle.value = '';
-        window.app.navigateTo('/');
-        setTimeout(() => {
-          document.getElementById('search').focus();
-        }, 0);
-
-      };
-
-      window.submitSearch = () => {
-        if (window.__searchInput.searchInputHandle.value.length > 0) {
-          this.executeSearch(window.__searchInput.searchInputHandle.value);
-        }
-      };
+    if (window.__searchInput) {
+      return window.__searchInput;
     }
+
+    window.__searchInput = new SearchInput(tagSelector);
+
+    window.clearSearch = () => {
+      const isMobile = isMobileDevice();
+      const isActive = document.activeElement.id === window.__searchInput.searchInputHandle.id;
+      window.__searchInput.searchInputHandle.value = '';
+      window.app.navigateTo('/');
+      if (!isMobile || isMobile && isActive) {
+        setTimeout(() => {
+          document.querySelector(tagSelector).focus();
+        }, 0);
+      }
+    };
+
+    window.submitSearch = () => {
+      if (window.__searchInput.searchInputHandle.value.length > 0) {
+        this.executeSearch(window.__searchInput.searchInputHandle.value);
+      }
+    };
+
     return window.__searchInput;
   }
 
@@ -66,7 +73,7 @@ export default class SearchInput {
   }
 
   handleKeyboard() {
-    document.onkeydown = function(e) {
+    document.onkeydown = e => {
       if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
         return;
       }
@@ -74,7 +81,7 @@ export default class SearchInput {
         if (document.activeElement
           && document.activeElement.tagName !== 'INPUT'
           && window.__searchInput.isEnabled) {
-          document.getElementById('search').focus();
+          this.searchInputHandle.focus();
         }
       }
     };
