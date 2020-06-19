@@ -38,7 +38,7 @@ export function normalize(type, raw) {
       street,
       city: findAdminBragi(raw, 'city')?.name,
       country: findAdminBragi(raw, 'country')?.name,
-      label: raw.label,
+      label: raw.geocoding.address?.label,
     };
   }
 
