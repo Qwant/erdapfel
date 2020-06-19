@@ -6,7 +6,9 @@ import IdunnPoi from '../adapters/poi/idunn_poi';
  * @param {*} city
  * @param {*} country
  */
-export function format({ street, city, country }) {
+export function format(address) {
+  if (!address) {return '';}
+  const { street, city, country } = address;
   return [street, city, country]
     .filter(i => i) // Filter out any undefined value
     .join(', ');

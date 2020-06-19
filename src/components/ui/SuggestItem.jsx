@@ -51,7 +51,9 @@ const CategoryItem = ({ category }) => {
 const PoiItem = ({ poi }) => {
   const { name, className, subClassName, type } = poi;
   const icon = IconManager.get({ className, subClassName, type });
-  const streetAddress = poi.address ? formatAddress(poi.address) : '';
+  const streetAddress = poi.alternativeName // fallback to alternativeName for older favorites
+    ? poi.alternativeName
+    : formatAddress(poi.address);
 
   return (
     <div className="autocomplete_suggestion">
