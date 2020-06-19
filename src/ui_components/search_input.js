@@ -12,8 +12,6 @@ const MAPBOX_RESERVED_KEYS = [
   '=', // =
 ];
 
-const SEARCH_INPUT_ID = 'search';
-
 export default class SearchInput {
 
   constructor(tagSelector) {
@@ -32,11 +30,12 @@ export default class SearchInput {
 
     window.clearSearch = () => {
       const isMobile = isMobileDevice();
+      const isActive = document.activeElement.id === window.__searchInput.searchInputHandle.id;
       window.__searchInput.searchInputHandle.value = '';
       window.app.navigateTo('/');
-      if (!isMobile || isMobile && document.activeElement.id === SEARCH_INPUT_ID) {
+      if (!isMobile || isMobile && isActive) {
         setTimeout(() => {
-          document.getElementById(SEARCH_INPUT_ID).focus();
+          document.querySelector(tagSelector).focus();
         }, 0);
       }
     };
@@ -74,7 +73,7 @@ export default class SearchInput {
   }
 
   handleKeyboard() {
-    document.onkeydown = function(e) {
+    document.onkeydown = e => {
       if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
         return;
       }
@@ -82,7 +81,7 @@ export default class SearchInput {
         if (document.activeElement
           && document.activeElement.tagName !== 'INPUT'
           && window.__searchInput.isEnabled) {
-          document.getElementById(SEARCH_INPUT_ID).focus();
+          this.searchInputHandle.focus();
         }
       }
     };
