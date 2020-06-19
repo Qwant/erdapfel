@@ -1,6 +1,6 @@
 /* global _ */
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { checkPropTypes } from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
@@ -14,6 +14,7 @@ import CategoryService from 'src/adapters/category_service';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { capitalizeFirst } from 'src/libs/string';
+import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -33,22 +34,17 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
   const [pois, setPois] = useState([]);
   const [dataSource, setDataSource] = useState('');
   const [initialLoading, setInitialLoading] = useState(true);
+  const { category, query } = poiFilters;
 
   useEffect(() => {
     const mapMoveHandler = listen('map_moveend', fetchData);
-
-    return function unmount() {
+    window.execOnMapLoaded(() => { fitMap(); } );
+    return () => {
       unListen(mapMoveHandler);
     };
-  }, []);
+  }, [category, query, bbox, initialLoading]);
 
   useEffect(() => {
-    const panelContent = document.querySelector('.panel-content');
-    if (panelContent) {
-      panelContent.scrollTop = 0;
-    }
-
-    const { category, query } = poiFilters;
     if (category) {
       Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
       const { label } = CategoryService.getCategoryByName(category);
@@ -57,20 +53,24 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
       SearchInput.setInputValue(query);
     }
 
-    window.execOnMapLoaded(fitMap);
+    setInitialLoading(true);
 
-    return function unmount() {
+    return () => {
       SearchInput.setInputValue('');
     };
-  }, [poiFilters, bbox]);
+  }, [category, query]);
+
+  useEffect(() => {
+    const panelContent = document.querySelector('.panel-content');
+    if (panelContent) {
+      panelContent.scrollTop = 0;
+    }
+  }, [pois]);
 
   function fitMap() {
     const map = window.map.mb;
-    // @TODO: put bbox parsing in a dedicated lib
-    const rawBbox = bbox.split(',');
-    const mapBbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
-    if (mapBbox) {
-      map.fitBounds(mapBbox, { animate: false });
+    if (bbox) {
+      map.fitBounds(parseBboxString(bbox), { animate: false });
       return;
     }
 
@@ -88,8 +88,6 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
       map.flyTo({ center: [2.35, 48.85], zoom: 12 });
     } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
       map.flyTo({ zoom: 12 });
-    } else if (currentZoom > 16) { // Zoom > 16: dezoom to zoom 16
-      map.flyTo({ zoom: 16 });
     } else {
       // setting the same view still triggers the moveend event
       map.jumpTo({ zoom: currentZoom, center: map.getCenter() });
@@ -97,23 +95,25 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
   }
 
   const fetchData = async () => {
-    const { category, query } = poiFilters;
-    // @TODO: put bbox => string in a dedicated lib
-    const bbox = getVisibleBbox(window.map.mb);
-    const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
-      .map(cardinal => cardinal.toFixed(7))
-      .join(',');
+    const currentBounds = getVisibleBbox(window.map.mb);
 
-    const { places, source } = await IdunnPoi.poiCategoryLoad(
-      urlBBox,
+    const { places, source, bbox: contentBBox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
+      boundsToString(currentBounds),
       MAX_PLACES,
       category,
-      query
+      query,
+      initialLoading
     );
 
     setPois(places);
     setDataSource(source);
     setInitialLoading(false);
+
+    if (bbox_extended) {
+      // The returned bbox is sure to contain at least one POI.
+      // Extend the current one to include it.
+      window.map.mb.fitBounds(currentBounds.extend(boundsFromFlatArray(contentBBox)));
+    }
 
     fire('add_category_markers', places, poiFilters);
     fire('save_location');
