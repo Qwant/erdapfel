@@ -6,6 +6,6 @@ export const parseBboxString = bboxString =>
 
 export const boundsToString = llBounds =>
   llBounds.toArray()
-    .flat()
+    .reduce((flatArray, current) => flatArray.concat(current), []) // flatten
     .map(coord => coord.toFixed(7))
     .join(',');
