@@ -31,7 +31,9 @@ export const selectItem = (selectedItem, replaceUrl = false) => {
       null,
       {
         useNlu: geocoderConfig.useNlu,
-        isCategory: !!selectedItem.category,
+        category: selectedItem.category ? selectedItem.category.name : null,
+        hasFullTextQuery: !!selectedItem.fullTextQuery,
+        hasPlace: !!selectedItem.place,
       }
     );
     window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
