@@ -1,10 +1,8 @@
 import IdunnPoi from '../adapters/poi/idunn_poi';
 
 /**
- * Format an address given an address object (name, city, and country)
- * @param {*} street
- * @param {*} city
- * @param {*} country
+ * Format an address given an address object (name, city, country, and label)
+ * @param {*} address - an address object
  */
 export function format(address) {
   if (!address) {return '';}
