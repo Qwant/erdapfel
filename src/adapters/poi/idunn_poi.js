@@ -36,9 +36,9 @@ export default class IdunnPoi extends Poi {
   }
 
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
-  static async poiCategoryLoad(bbox, size, category, query) {
+  static async poiCategoryLoad(bbox, size, category, query, extendBBox) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
-    const requestParams = { bbox, size };
+    const requestParams = { bbox, size, extend_bbox: !!extendBBox };
     if (category) {
       requestParams['category'] = category;
     }

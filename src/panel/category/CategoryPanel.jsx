@@ -14,6 +14,7 @@ import CategoryService from 'src/adapters/category_service';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { capitalizeFirst } from 'src/libs/string';
+import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -37,28 +38,22 @@ export default class CategoryPanel extends React.Component {
   componentDidMount() {
     this.updateSearchBarContent();
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
-    window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
+    window.execOnMapLoaded(() => { this.fitMap(); });
   }
 
   componentDidUpdate(prevProps) {
     this.updateSearchBarContent(prevProps);
-    const { bbox, poiFilters } = this.props;
 
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
       panelContent.scrollTop = 0;
     }
 
-    // Check for a new, or changed poiFilter
-    for (const key in poiFilters) {
-      if (poiFilters[key] !== prevProps.poiFilters[key]) {
-        this.fetchData();
-        break;
-      }
-    }
-
-    if (bbox && bbox !== prevProps.bbox) {
-      window.execOnMapLoaded(() => { this.fitMapAndFetch(); });
+    if (JSON.stringify(prevProps.poiFilters) !== JSON.stringify(this.props.poiFilters)
+     || prevProps.bbox !== this.props.bbox) {
+      this.setState({ initialLoading: true }, () => {
+        window.execOnMapLoaded(() => { this.fitMap(); });
+      });
     }
   }
 
@@ -80,11 +75,10 @@ export default class CategoryPanel extends React.Component {
     unListen(this.mapMoveHandler);
   }
 
-  fitMapAndFetch() {
-    const rawBbox = (this.props.bbox || '').split(',');
-    const bbox = rawBbox.length === 4 && [[rawBbox[0], rawBbox[1]], [rawBbox[2], rawBbox[3]]];
-    if (bbox) {
-      window.map.mb.fitBounds(bbox, { animate: false });
+  fitMap() {
+    if (this.props.bbox) {
+      window.map.mb.fitBounds(parseBboxString(this.props.bbox), { animate: false });
+      return;
     }
 
     if (window.map.mb.isMoving()) {
@@ -104,26 +98,23 @@ export default class CategoryPanel extends React.Component {
       window.map.mb.flyTo({ center: [2.35, 48.85], zoom: 12 });
     } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
       window.map.mb.flyTo({ zoom: 12 });
-    } else if (currentZoom > 16) { // Zoom > 16: dezoom to zoom 16
-      window.map.mb.flyTo({ zoom: 16 });
     } else {
-      this.fetchData();
+      // setting the same view still triggers the moveend event
+      window.map.mb.jumpTo({ zoom: currentZoom, center: window.map.mb.getCenter() });
     }
   }
 
   fetchData = async () => {
     const { category, query } = this.props.poiFilters;
-    const bbox = getVisibleBbox(window.map.mb);
+    const currentBounds = getVisibleBbox(window.map.mb);
 
-    const urlBBox = [bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]
-      .map(cardinal => cardinal.toFixed(7))
-      .join(',');
-
-    const { places, source } = await IdunnPoi.poiCategoryLoad(
-      urlBBox,
+    const extendBBox = this.state.initialLoading;
+    const { places, source, bbox: contentBBox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
+      boundsToString(currentBounds),
       MAX_PLACES,
       category,
-      query
+      query,
+      extendBBox
     );
 
     this.setState({
@@ -131,6 +122,12 @@ export default class CategoryPanel extends React.Component {
       dataSource: source,
       initialLoading: false,
     });
+
+    if (bbox_extended) {
+      // The returned bbox is sure to contain at least one POI.
+      // Extend the current one to include it.
+      window.map.mb.fitBounds(currentBounds.extend(boundsFromFlatArray(contentBBox)));
+    }
 
     fire('add_category_markers', places, this.props.poiFilters);
     fire('save_location');
