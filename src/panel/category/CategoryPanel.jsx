@@ -108,13 +108,13 @@ export default class CategoryPanel extends React.Component {
     const { category, query } = this.props.poiFilters;
     const currentBounds = getVisibleBbox(window.map.mb);
 
-    const extendBBox = this.state.initialLoading;
-    const { places, source, bbox: contentBBox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
+    const extendBbox = this.state.initialLoading;
+    const { places, source, bbox: contentBbox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
       boundsToString(currentBounds),
       MAX_PLACES,
       category,
       query,
-      extendBBox
+      extendBbox
     );
 
     this.setState({
@@ -126,7 +126,7 @@ export default class CategoryPanel extends React.Component {
     if (bbox_extended) {
       // The returned bbox is sure to contain at least one POI.
       // Extend the current one to include it.
-      window.map.mb.fitBounds(currentBounds.extend(boundsFromFlatArray(contentBBox)));
+      window.map.mb.fitBounds(currentBounds.extend(boundsFromFlatArray(contentBbox)));
     }
 
     fire('add_category_markers', places, this.props.poiFilters);
