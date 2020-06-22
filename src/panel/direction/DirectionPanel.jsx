@@ -6,13 +6,14 @@ import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
-import { toUrl as poiToUrl, fromUrl as poiFromUrl, getInputValue } from 'src/libs/pois';
+import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
+import * as address from '../../libs/address';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -78,7 +79,11 @@ export default class DirectionPanel extends React.Component {
   }
 
   async setTextInput(which, poi) {
-    const inputValue = poi ? await getInputValue(poi) : '';
+    if (poi.type === 'latlon') {
+      poi.address = await address.fetch(poi);
+    }
+
+    const inputValue = poi.type === 'latlon' ? poi.address.street : poi.name;
     this.setState({ [which + 'InputText']: inputValue });
   }
 

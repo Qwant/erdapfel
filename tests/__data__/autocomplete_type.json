@@ -491,7 +491,18 @@
           "city": null,
           "citycode": "6030",
           "level": 8,
-          "administrative_regions": [],
+          "administrative_regions": [
+            {
+              "id": "admin:osm:relation:2202162",
+              "insee": "",
+              "label": "France",
+              "level": 2,
+              "name": "France",
+              "parent_id": null,
+              "zip_codes": [],
+              "zone_type": "country"
+            }
+          ],
           "bbox": [
             6.9643258,
             43.5605157,

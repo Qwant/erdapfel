@@ -12,18 +12,6 @@ export function toUrl(poi) {
   return poi.name ? `${poi.id}@${slug(poi.name)}` : poi.id;
 }
 
-export async function getInputValue(poi) {
-  if (poi.type === 'latlon' || !poi.name) {
-    return await fetchAddressLabel(poi);
-  }
-  return poi.getInputValue();
-}
-
-async function fetchAddressLabel(poi) {
-  const address = await IdunnPoi.poiApiLoad(poi);
-  return address.alternativeName || address.name;
-}
-
 export function toAbsoluteUrl(poi) {
   const { protocol, host } = window.location;
   const baseUrl = window.baseUrl;

@@ -34,7 +34,7 @@ export async function storePoi(
   page,
   { id = 'A', title = 'poi', coords = { lat: 43, lng: 2 } } = {}
 ) {
-  const poi = new Poi(id, title, 'second line', 'poi', coords, '', '');
+  const poi = new Poi(id, title, 'poi', coords, '', '');
   await page.evaluate((storageKey, serializedPoi) => {
     window.localStorage.setItem(storageKey, serializedPoi);
   }, getKey(poi), JSON.stringify(poi));
