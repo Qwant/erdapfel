@@ -8,15 +8,23 @@ class PoiCard extends React.Component {
   constructor(props) {
     super(props);
     this.cardRef = React.createRef();
+    this.handleResize = this.handleResize.bind(this);
   }
 
   componentDidMount() {
-    window.execOnMapLoaded(() => {
-      fire(
-        'move_mobile_bottom_ui',
-        this.cardRef.current.offsetHeight + 10
-      );
-    });
+    window.execOnMapLoaded(this.handleResize);
+    addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize() {
+    fire(
+      'move_mobile_bottom_ui',
+      this.cardRef.current.offsetHeight + 10
+    );
   }
 
   render() {
