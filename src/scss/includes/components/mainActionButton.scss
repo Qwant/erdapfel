@@ -2,10 +2,9 @@
   cursor: pointer;
 
   &-label {
-    font-size: 11px;
+    font-size: 14px;
     color: #5c6f84;
     line-height: 16px;
-    text-transform: uppercase;
     margin: 5px 0 0;
   }
 
@@ -36,8 +35,8 @@
 
 .mainActionButton--feature {
   .mainActionButton-icon {
-    border: 1px solid #c8cbd3;
-    color: #5c6f84;
+    border: 1px solid $action-blue-base;
+    color: $action-blue-base;
     font-size: 22px;
     line-height: 36px;
   }

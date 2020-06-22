@@ -20,7 +20,7 @@ class ServicePanelMobile extends React.Component {
         <h3 className="u-text--smallTitle u-center">{_('Directions', 'service panel')}</h3>
 
         {
-          nconf.get().direction.enabled &&
+          directionConf.enabled &&
           <Fragment>
             <Action
               onClick={() => { window.app.navigateTo('/routes/?mode=driving'); }}

@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { capitalizeFirst } from 'src/libs/string';
 
 const ServicePanelAction = ({ variant, label, onClick, icon, iconStyle, className, ...rest }) =>
   <button
@@ -11,7 +12,7 @@ const ServicePanelAction = ({ variant, label, onClick, icon, iconStyle, classNam
     {...rest}
   >
     <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle}/>
-    <div className="mainActionButton-label">{label}</div>
+    <div className="mainActionButton-label">{capitalizeFirst(label)}</div>
   </button>;
 
 export default ServicePanelAction;
