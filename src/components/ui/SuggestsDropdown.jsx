@@ -100,6 +100,13 @@ const SuggestsDropdown = ({
           <SuggestItem item={suggest} />
         </li>
       )}
+      {suggestItems.length === 0 && inputNode.value !== '' &&
+        <li>
+          <div className="autocomplete_suggestion autocomplete_suggestion--no-result">
+            {_('No result found', 'suggest')}
+          </div>
+        </li>
+      }
     </ul>
   );
 };
