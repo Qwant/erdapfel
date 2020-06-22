@@ -97,12 +97,13 @@ const CategoryPanel = ({ poiFilters = {}, bbox = '' }) => {
   const fetchData = async () => {
     const currentBounds = getVisibleBbox(window.map.mb);
 
+    const extendBBox = initialLoading;
     const { places, source, bbox: contentBBox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
       boundsToString(currentBounds),
       MAX_PLACES,
       category,
       query,
-      initialLoading
+      extendBBox
     );
 
     setPois(places);
