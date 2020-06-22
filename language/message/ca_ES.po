@@ -3,14 +3,15 @@
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # jmontane, 2020
+# Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-08 12:58+0000\n"
+"POT-Creation-Date: 2020-06-22 08:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: jmontane, 2020\n"
+"Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -782,11 +783,6 @@ msgstr "adreça"
 msgid "street"
 msgstr "carrer"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Geolocation with privacy!"
 msgstr "Geolocalització amb privadesa!"
 
@@ -822,6 +818,14 @@ msgid ""
 msgstr ""
 "Qwant Maps no pot determinar la vostra posició. Comproveu que els serveis de"
 " geolocalització estan habilitats en el sistema."
+
+msgid "Close to"
+msgstr ""
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Your position"
 msgstr "La vostra posició"
@@ -876,17 +880,17 @@ msgstr "Preferits"
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
 
-msgid "Share link"
-msgstr "Comparteix l'enllaç"
+msgid "Copied!"
+msgstr ""
 
-msgid "Copied !"
-msgstr "Copiat!"
+msgid "Copy link"
+msgstr ""
 
-msgid "Share on Facebook"
-msgstr "Comparteix al Facebook"
+msgid "Facebook"
+msgstr ""
 
-msgid "Share on Twitter"
-msgstr "Comparteix al Twitter"
+msgid "Twitter"
+msgstr ""
 
 msgid "Share"
 msgstr "Comparteix"
@@ -914,8 +918,8 @@ msgstr "Preferits"
 msgid "Show favorites"
 msgstr "Mostra els preferits"
 
-msgid "Close to"
-msgstr ""
+msgid "Search around this place"
+msgstr "Cerca prop d'aquest lloc"
 
 msgid "See more"
 msgstr "Més informació"
@@ -989,9 +993,6 @@ msgstr "Informa d'un canvi"
 msgid "Opening hours subject to change"
 msgstr "Els horaris d'obertura estan subjectes a canvis"
 
-msgid "Search around this place"
-msgstr "Cerca prop d'aquest lloc"
-
 msgid "Updated {datetime}"
 msgstr ""
 
@@ -1041,7 +1042,7 @@ msgstr "Torna a la llista"
 msgid "Back"
 msgstr "Enrere"
 
-msgid "Qwant Maps services"
+msgid "Qwant Maps Services"
 msgstr "Serveis Qwant Maps"
 
 msgid "Unfold to see quick actions"

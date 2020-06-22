@@ -4,14 +4,15 @@
 # Gwenn M <tornoz@laposte.net>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
+# Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-08 12:58+0000\n"
+"POT-Creation-Date: 2020-06-22 08:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2020\n"
+"Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -783,14 +784,6 @@ msgstr "chomlec'h"
 msgid "street"
 msgstr "straed"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "ali"
-msgstr[1] "ali"
-msgstr[2] "ali"
-msgstr[3] "ali"
-msgstr[4] "ali"
-
 msgid "Geolocation with privacy!"
 msgstr "Douarlec'hiañ ha prevezded!"
 
@@ -827,6 +820,17 @@ msgid ""
 msgstr ""
 "Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
 "enaouet ar servijoù douarlec'hiañ en ho sistem."
+
+msgid "Close to"
+msgstr "Da gichen"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "ali"
+msgstr[1] "ali"
+msgstr[2] "ali"
+msgstr[3] "ali"
+msgstr[4] "ali"
 
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
@@ -883,17 +887,17 @@ msgstr "Sinedoù"
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
 
-msgid "Share link"
-msgstr "Rannañ al liamm"
+msgid "Copied!"
+msgstr ""
 
-msgid "Copied !"
-msgstr "Eilet!"
+msgid "Copy link"
+msgstr ""
 
-msgid "Share on Facebook"
-msgstr "Rannañ war Facebook"
+msgid "Facebook"
+msgstr ""
 
-msgid "Share on Twitter"
-msgstr "Rannañ war Twitter"
+msgid "Twitter"
+msgstr ""
 
 msgid "Share"
 msgstr "Rannañ"
@@ -922,8 +926,8 @@ msgstr "Ma sinedoù"
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
 
-msgid "Close to"
-msgstr "Da gichen"
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
 
 msgid "See more"
 msgstr "Gwelet muioc'h"
@@ -997,9 +1001,6 @@ msgstr ""
 msgid "Opening hours subject to change"
 msgstr ""
 
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
-
 msgid "Updated {datetime}"
 msgstr ""
 
@@ -1049,7 +1050,7 @@ msgstr "Distreiñ d'al listenn"
 msgid "Back"
 msgstr "Distreiñ"
 
-msgid "Qwant Maps services"
+msgid "Qwant Maps Services"
 msgstr "Servijoù Qwant Maps"
 
 msgid "Unfold to see quick actions"
