@@ -162,8 +162,8 @@ Scene.prototype.initMapBox = function() {
     fire('map_loaded');
   });
 
-  listen('fit_map', (item, zoom) => {
-    this.fitMap(item, this.getCurrentPaddings(), zoom);
+  listen('fit_map', (item, forceAnimate) => {
+    this.fitMap(item, this.getCurrentPaddings(), forceAnimate);
   });
 
   listen('map_mark_poi', (poi, options) => {
@@ -265,7 +265,10 @@ Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
       || viewport.contains(bbox.getSouthWest());
 };
 
-Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, bottom: 0 }) {
+Scene.prototype.fitBbox = function(bbox,
+  padding = { left: 0, top: 0, right: 0, bottom: 0 },
+  forceAnimate
+) {
   // normalise bbox
   if (bbox instanceof Array) {
     bbox = new LngLatBounds(bbox);
@@ -273,26 +276,23 @@ Scene.prototype.fitBbox = function(bbox, padding = { left: 0, top: 0, right: 0, 
 
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in
   // the extended viewport.
-  const animate = this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox);
+  const animate = forceAnimate || (this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox));
   this.mb.fitBounds(bbox, { padding, animate });
 };
 
 // Move the map to focus on an item
-// Options:
-// - padding: {left, right, top, bottom} (optional)
-// - zoom: true/false (optional)
-Scene.prototype.fitMap = function(item, padding, allowZoom = true) {
+Scene.prototype.fitMap = function(item, padding, forceAnimate) {
 
   // BBox
   if (item._ne && item._sw) {
-    this.fitBbox(item, padding);
+    this.fitBbox(item, padding, forceAnimate);
   } else { // PoI
     if (item.bbox) { // poi Bbox
-      this.fitBbox(item.bbox, padding);
+      this.fitBbox(item.bbox, padding, forceAnimate);
     } else { // poi center
       const flyOptions = {
         center: item.latLon,
-        zoom: allowZoom ? getBestZoom(item) : this.mb.getZoom(),
+        zoom: getBestZoom(item),
         screenSpeed: 1.5,
         animate: false,
       };
@@ -304,7 +304,7 @@ Scene.prototype.fitMap = function(item, padding, allowZoom = true) {
         ];
       }
 
-      if (this.mb.getZoom() > 10 && this.isWindowedPoi(item)) {
+      if (forceAnimate || (this.mb.getZoom() > 10 && this.isWindowedPoi(item))) {
         flyOptions.animate = true;
       }
       this.mb.flyTo(flyOptions);

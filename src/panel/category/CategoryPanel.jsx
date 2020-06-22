@@ -77,7 +77,7 @@ export default class CategoryPanel extends React.Component {
 
   fitMap() {
     if (this.props.bbox) {
-      window.map.mb.fitBounds(parseBboxString(this.props.bbox), { animate: false });
+      fire('fit_map', parseBboxString(this.props.bbox), true);
       return;
     }
 
@@ -126,7 +126,7 @@ export default class CategoryPanel extends React.Component {
     if (bbox_extended) {
       // The returned bbox is sure to contain at least one POI.
       // Extend the current one to include it.
-      window.map.mb.fitBounds(currentBounds.extend(boundsFromFlatArray(contentBbox)));
+      fire('fit_map', currentBounds.extend(boundsFromFlatArray(contentBbox)), true);
     }
 
     fire('add_category_markers', places, this.props.poiFilters);
