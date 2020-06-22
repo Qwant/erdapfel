@@ -1,6 +1,6 @@
 /* global _ */
 import React, { useState, useEffect } from 'react';
-import PropTypes, { checkPropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
