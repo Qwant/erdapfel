@@ -80,7 +80,7 @@ export const modifyList = (items, withGeoloc) => {
   }
 
   if (items.length === 0 || items.length === 1 && withGeoloc) {
-    items.push({ simpleLabel: _('No result found', 'suggest').toUpperCase() });
+    items.push({ errorLabel: _('No result found', 'suggest') });
   }
 
   return items;

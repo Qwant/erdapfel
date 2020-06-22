@@ -71,9 +71,18 @@ const SeparatorLabel = ({ label }) =>
     {label}
   </h3>;
 
+const ErrorLabel = ({ label }) =>
+  <div className="autocomplete_error">
+    {label}
+  </div>;
+
 const SuggestItem = ({ item }) => {
   if (item.simpleLabel) {
     return <SeparatorLabel label={item.simpleLabel} />;
+  }
+
+  if (item.errorLabel) {
+    return <ErrorLabel label={item.errorLabel} />;
   }
 
   if (item instanceof NavigatorGeolocalisationPoi) {

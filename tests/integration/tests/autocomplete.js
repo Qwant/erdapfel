@@ -50,9 +50,9 @@ test('search with no suggest', async () => {
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Goodbye');
   const title = await page.evaluate(() => {
-    return document.querySelector('.autocomplete_separator_label').innerText;
+    return document.querySelector('.autocomplete_error').innerText;
   });
-  expect(title).toEqual('NO RESULT FOUND');
+  expect(title).toEqual('No result found');
 });
 
 test('search has lang in query', async () => {
