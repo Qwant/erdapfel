@@ -4,14 +4,15 @@
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # manueljlin <manueljlin@gmail.com>, 2020
+# Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-08 12:58+0000\n"
+"POT-Creation-Date: 2020-06-22 08:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: manueljlin <manueljlin@gmail.com>, 2020\n"
+"Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -783,11 +784,6 @@ msgstr "dirección"
 msgid "street"
 msgstr "calle"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "opinión"
-msgstr[1] "opiniones"
-
 msgid "Geolocation with privacy!"
 msgstr "¡Geolocalización con privacidad!"
 
@@ -823,6 +819,14 @@ msgid ""
 msgstr ""
 "Qwant Maps no pudo determinar tu localización. Por favor, comprueba si los "
 "servicios de localizaciñon están activados en tu sistema."
+
+msgid "Close to"
+msgstr "Cerca de"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "opinión"
+msgstr[1] "opiniones"
 
 msgid "Your position"
 msgstr "Tu localización"
@@ -878,17 +882,17 @@ msgstr "Favoritos"
 msgid "How to contribute"
 msgstr "Cómo contribuir"
 
-msgid "Share link"
-msgstr "Compartir enlace"
+msgid "Copied!"
+msgstr ""
 
-msgid "Copied !"
-msgstr "¡Enlace copiado!"
+msgid "Copy link"
+msgstr ""
 
-msgid "Share on Facebook"
-msgstr "Compartir en Facebook"
+msgid "Facebook"
+msgstr ""
 
-msgid "Share on Twitter"
-msgstr "Compartir en Twitter"
+msgid "Twitter"
+msgstr ""
 
 msgid "Share"
 msgstr "Compartir"
@@ -917,8 +921,8 @@ msgstr "Mis Favoritos"
 msgid "Show favorites"
 msgstr "Mostrar favoritos"
 
-msgid "Close to"
-msgstr "Cerca de"
+msgid "Search around this place"
+msgstr "Buscar por esta zona"
 
 msgid "See more"
 msgstr "Ver Más"
@@ -992,9 +996,6 @@ msgstr "Reportar un cambio"
 msgid "Opening hours subject to change"
 msgstr "Las horas de apertura pueden cambiar"
 
-msgid "Search around this place"
-msgstr "Buscar por esta zona"
-
 msgid "Updated {datetime}"
 msgstr ""
 
@@ -1044,7 +1045,7 @@ msgstr "Volver a la lista"
 msgid "Back"
 msgstr "Volver"
 
-msgid "Qwant Maps services"
+msgid "Qwant Maps Services"
 msgstr "Servicios de Qwant Maps"
 
 msgid "Unfold to see quick actions"

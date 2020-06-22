@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-08 12:58+0000\n"
+"POT-Creation-Date: 2020-06-22 08:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -791,11 +791,6 @@ msgstr "adresse"
 msgid "street"
 msgstr "rue"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "avis"
-msgstr[1] "avis"
-
 msgid "Geolocation with privacy!"
 msgstr "La géolocalisation respectueuse de votre vie privée !"
 
@@ -832,6 +827,14 @@ msgid ""
 msgstr ""
 "Qwant Maps ne peut pas déterminer votre position. Veuillez vérifier que les "
 "services de localisation sont activés sur votre système."
+
+msgid "Close to"
+msgstr "À proximité de"
+
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] "avis"
+msgstr[1] "avis"
 
 msgid "Your position"
 msgstr "Votre position"
@@ -888,17 +891,17 @@ msgstr "Favoris"
 msgid "How to contribute"
 msgstr "Comment contribuer"
 
-msgid "Share link"
-msgstr "Lien de partage"
-
-msgid "Copied !"
+msgid "Copied!"
 msgstr "Copié !"
 
-msgid "Share on Facebook"
-msgstr "Partager sur Facebook"
+msgid "Copy link"
+msgstr "Copier le lien"
 
-msgid "Share on Twitter"
-msgstr "Partager sur Twitter"
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
 
 msgid "Share"
 msgstr "Partager"
@@ -927,8 +930,8 @@ msgstr "Mes favoris"
 msgid "Show favorites"
 msgstr "Afficher les favoris"
 
-msgid "Close to"
-msgstr "À proximité de"
+msgid "Search around this place"
+msgstr "Rechercher à proximité"
 
 msgid "See more"
 msgstr "Voir plus"
@@ -1004,9 +1007,6 @@ msgstr "Signaler un changement"
 msgid "Opening hours subject to change"
 msgstr "Horaires susceptibles d'être adaptés"
 
-msgid "Search around this place"
-msgstr "Rechercher à proximité"
-
 msgid "Updated {datetime}"
 msgstr "Dernière mise à jour: {datetime}"
 
@@ -1056,7 +1056,7 @@ msgstr "Retour à la liste"
 msgid "Back"
 msgstr "Retour"
 
-msgid "Qwant Maps services"
+msgid "Qwant Maps Services"
 msgstr "Services Qwant Maps"
 
 msgid "Unfold to see quick actions"
