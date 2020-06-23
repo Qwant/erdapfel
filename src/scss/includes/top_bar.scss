@@ -8,6 +8,14 @@
   position: absolute;
 }
 
+.directions-open .top_bar {
+  visibility: hidden;
+
+  #react_menu__container {
+    visibility: visible;
+  }
+}
+
 @media (max-width: 640px) {
   .top_bar {
     top: 0;

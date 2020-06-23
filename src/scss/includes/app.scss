@@ -17,6 +17,10 @@ noscript {
   max-height: calc(100vh - 75px);
 }
 
+.directions-open .panel_container {
+  top: 18px;
+}
+
 .map_container {
   position: absolute;
   top: 0;
