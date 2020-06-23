@@ -284,7 +284,7 @@ Scene.prototype.fitBbox = function(bbox,
 Scene.prototype.fitMap = function(item, padding, forceAnimate) {
 
   // BBox
-  if (item._ne && item._sw) {
+  if (item instanceof LngLatBounds || Array.isArray(item)) {
     this.fitBbox(item, padding, forceAnimate);
   } else { // PoI
     if (item.bbox) { // poi Bbox
