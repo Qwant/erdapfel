@@ -41,7 +41,7 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    this.updateSearchBarContent();
+    this.updateSearchBarContent(prevProps);
     const { bbox, poiFilters } = this.props;
 
     const panelContent = document.querySelector('.panel-content');
@@ -62,10 +62,12 @@ export default class CategoryPanel extends React.Component {
     }
   }
 
-  updateSearchBarContent() {
+  updateSearchBarContent(prevProps) {
     const { category, query } = this.props.poiFilters;
     if (category) {
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
+      if (category !== prevProps?.poiFilters?.category) {
+        Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
+      }
       const { label } = CategoryService.getCategoryByName(category);
       SearchInput.setInputValue(capitalizeFirst(label));
     } else if (query) {
