@@ -1,3 +1,4 @@
+/* global _ */
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { object, func, string, arrayOf, bool } from 'prop-types';
