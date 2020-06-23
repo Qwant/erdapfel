@@ -41,11 +41,12 @@
         <% if(config.app.versionFlag) { %>
           data-flag-text="<%= config.app.versionFlag %>"
         <% } %> >
-        <input id="search" type="search" class="search_form__input" spellcheck="false" required placeholder="<%= _('Search on Qwant Maps') %>" autocomplete="off">
-        <input type="submit" value="" class="search_form__action" onclick="submitSearch()" title="<%= _('Search') %>">
-        <button id="clear_button" class="search_form__clear icon-x" type="button" onmousedown="clearSearch(event)"></button>
         <span class="search_form__logo"></span>
-        <div class="main_field_return"><span class="icon-arrow-left"></span></div>
+        <div class="search_form__wrapper">
+          <input id="search" type="search" class="search_form__input" spellcheck="false" required placeholder="<%= _('Search on Qwant Maps') %>" autocomplete="off">
+          <button id="clear_button" class="search_form__clear icon-x" type="button" onmousedown="clearSearch(event)"></button>
+          <input type="submit" value="" class="search_form__action" onclick="submitSearch()" title="<%= _('Search') %>">
+        </div>
       </form>
     </div>
     <% if(config.performance.enabled) { %>

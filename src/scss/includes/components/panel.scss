@@ -1,8 +1,8 @@
 .panel {
-  @include card_shadow();
-  @include card_radius();
+  @include long_shadow();
+  @include panel_radius();
   background-color: white;
-  width: 400px;
+  width: $panel_width;
 
   &-header {
     padding: 0 40px 0 15px;

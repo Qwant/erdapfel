@@ -1,10 +1,9 @@
 .top_bar {
-  width: 100%;
+  width: $panel_width;
+  left: 18px;
+  top: 18px;
   position: absolute;
-  background: url('../images/backgrounds/top_desktop.svg') no-repeat;
-  background-size: 820px;
   pointer-events: none;
-  transition: background-size .3s;
 }
 
 @media (max-width: 640px) {
@@ -12,8 +11,5 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: url('../images/backgrounds/top_mobile.svg') no-repeat;
-    background-size: 100%;
-    transition: background-size 0s;
   }
 }
