@@ -7,17 +7,14 @@ import IconManager from '../adapters/icon_manager';
 import { findIndexIgnoreCase } from '../libs/string';
 import { CATEGORY_TYPE } from '../../config/constants.yml';
 
-const DEFAULT_ICON_COLOR = '#ffffff';
-
 export default class Category {
-  constructor(name, label, iconName, backgroundColor, matcher) {
+  constructor(name, label, iconName, color, backgroundColor, matcher) {
     this.name = name;
     this.label = _(label);
     this.iconName = iconName;
+    this.color = color;
     this.backgroundColor = backgroundColor;
     this.matcher = matcher;
-
-    this.color = DEFAULT_ICON_COLOR;
     this.alternativeName = _('category');
     this.type = CATEGORY_TYPE;
     this.id = `category:${name}`;
@@ -58,7 +55,7 @@ export default class Category {
     });
   }
 
-  static create({ name, label, icon, color, matcher }) {
-    return new Category(name, label, icon, color, matcher);
+  static create({ name, label, icon, color, backgroundColor, matcher }) {
+    return new Category(name, label, icon, color, backgroundColor, matcher);
   }
 }

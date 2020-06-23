@@ -2,30 +2,6 @@
 
 $panel_width : 400px;
 
-/* text */
-$primary_text: #0c0c0e;
-$primary_alternative_text: #ffffff;
-$primary_clear: #c8cbd3;
-$secondary_text : #59595f;
-$secondary_text_clear: #697496;
-$secondary_variant_text : #018475; /* link */
-$grey-black: #0c0c0e;
-$grey-semi-darkness: #59595f;
-
-/* actions */
-$action-blue-base: #1a6aff;
-$action-lighter: #e5eeff;
-
-/* background */
-$background : #ffffff;
-$background_hover : #F4F6FA;
-$background_active: #F4F6FA;
-$background_alternate: #039BE5;
-$surface : #f4f6fa;
-
-/* separator */
-$separator_color : #e0e1e6;
-
 /* card */
 @mixin card_radius() {
   border-radius: 3px;
