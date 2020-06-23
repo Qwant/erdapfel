@@ -98,6 +98,8 @@ export default class CategoryPanel extends React.Component {
       window.map.mb.flyTo({ center: [2.35, 48.85], zoom: 12 });
     } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
       window.map.mb.flyTo({ zoom: 12 });
+    } else if (currentZoom > 18) { // Zoom > 18: dezoom to zoom 18
+      window.map.mb.flyTo({ zoom: 18 });
     } else {
       // setting the same view still triggers the moveend event
       window.map.mb.jumpTo({ zoom: currentZoom, center: window.map.mb.getCenter() });
