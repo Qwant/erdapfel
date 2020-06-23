@@ -15,10 +15,6 @@ noscript {
   left: 18px;
   transition: transform 0.3s;
   max-height: calc(100vh - 75px);
-
-  &--hidden {
-    transform: translateX(-450px);
-  }
 }
 
 .map_container {
