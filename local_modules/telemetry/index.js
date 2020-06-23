@@ -2,6 +2,8 @@ module.exports = {
   events : [
     /* App */
     'app_start',
+    /* Suggest*/
+    'suggest_click',
     /* Favorite */
     'favorite_open',
     'favorite_close',

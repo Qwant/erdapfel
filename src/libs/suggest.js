@@ -7,6 +7,7 @@ import PoiStore from 'src/adapters/poi/poi_store';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
 import { toUrl } from 'src/libs/pois';
+import Telemetry from 'src/libs/telemetry';
 import { suggestResults } from 'src/adapters/suggest_sources';
 
 const geocoderConfig = nconf.get().services.geocoder;
@@ -24,6 +25,17 @@ export const selectItem = (selectedItem, replaceUrl = false) => {
     window.app.navigateTo(`/places/?type=${selectedItem.name}`,
       {}, { replace: replaceUrl });
   } else if (selectedItem instanceof Intention) {
+    Telemetry.add(
+      Telemetry.SUGGEST_CLICK,
+      null,
+      null,
+      {
+        useNlu: geocoderConfig.useNlu,
+        category: selectedItem.category ? selectedItem.category.name : null,
+        hasFullTextQuery: !!selectedItem.fullTextQuery,
+        hasPlace: !!selectedItem.place,
+      }
+    );
     window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
       {}, { replace: replaceUrl });
   }
