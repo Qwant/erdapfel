@@ -125,7 +125,7 @@ export default class CategoryPanel extends React.Component {
       initialLoading: false,
     });
 
-    if (bbox_extended) {
+    if (bbox_extended && contentBbox) {
       // The returned bbox is sure to contain at least one POI.
       // Extend the current one to include it.
       fire('fit_map', currentBounds.extend(boundsFromFlatArray(contentBbox)), true);
