@@ -77,7 +77,7 @@ export default class CategoryPanel extends React.Component {
 
   fitMap() {
     if (this.props.bbox) {
-      fire('fit_map', parseBboxString(this.props.bbox), true);
+      fire('fit_map', parseBboxString(this.props.bbox));
       return;
     }
 
