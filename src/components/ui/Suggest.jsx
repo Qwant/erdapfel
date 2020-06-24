@@ -22,6 +22,7 @@ const Suggest = ({
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
   const isMobile = useContext(DeviceContext);
+  let isLoading = false;
   let currentQuery = null;
 
   const close = () => {
@@ -52,6 +53,7 @@ const Suggest = ({
         currentQuery.abort();
       }
 
+      isLoading = true;
       const query = fetchSuggests(value, {
         withCategories,
       });
@@ -63,6 +65,7 @@ const Suggest = ({
         .then(items => {
           setItems(items);
           currentQuery = null;
+          isLoading = false;
         })
         .catch(() => { /* Query aborted. Just ignore silently */ });
     }, SUGGEST_DEBOUNCE_WAIT);
@@ -113,6 +116,7 @@ const Suggest = ({
       inputNode={inputNode}
       isAttachedToInput={!outputNode}
       suggestItems={items}
+      isLoading={isLoading}
       onHighlight={item => {
         if (!item) {
           inputNode.value = lastQuery;

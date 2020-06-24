@@ -10,6 +10,7 @@ const SuggestsDropdown = ({
   isAttachedToInput,
   className = '',
   suggestItems,
+  isLoading,
   onSelect,
   onHighlight,
 }) => {
@@ -102,6 +103,7 @@ const SuggestsDropdown = ({
         </li>
       )}
       {inputNode.value !== ''
+      && !isLoading
       && (
         suggestItems.length === 0
         || (suggestItems.length === 1 && suggestItems[0].id === 'geolocalisation')
