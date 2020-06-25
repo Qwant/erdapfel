@@ -241,6 +241,10 @@ input[type="search"] {
   .search_form {
     left: 0;
     top: 0;
+    border-radius: 0;
+    box-shadow:
+      0 1px 4px 0 rgba(12, 12, 14, 0.2),
+      0 0 2px 0 rgba(12, 12, 14, 0.12);
   }
 
   .search_form__input:invalid {
