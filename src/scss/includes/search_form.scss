@@ -9,10 +9,6 @@
   background: #fff;
   pointer-events: auto;
   padding: 8px 14px;
-
-  .no-burger & {
-    width: calc(100% - 68px);
-  }
 }
 
 .search_form__wrapper {
@@ -23,6 +19,7 @@
   border: none;
   background-color: $surface;
   border-radius: 24px;
+  margin: 1px;
   display: flex;
   align-items: center;
   position: relative;
@@ -227,13 +224,8 @@ input[type="search"] {
 
 @media (max-width: 640px) {
   .search_form {
-    width: calc(100vw - 72px);
     left: 0;
     top: 0;
-
-    .no-burger & {
-      width: calc(100% - 16px);
-    }
   }
 
   .search_form__input:invalid {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 import Suggest from 'src/components/ui/Suggest';
@@ -29,7 +30,8 @@ const RootComponent = ({
 
   return <DeviceContext.Provider value={isMobile}>
     <PanelManager router={router} />
-    {burgerMenuEnabled && <Menu />}
+    {burgerMenuEnabled
+      && ReactDOM.createPortal(<Menu />, document.querySelector('#react_menu__container'))}
     <Suggest
       inputNode={searchBarInputNode}
       withCategories
