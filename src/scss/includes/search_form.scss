@@ -247,16 +247,6 @@ input[type="search"] {
   }
 }
 
-@media (max-width: 380px) {
-  .search_form__input {
-    letter-spacing: -.5px;
-  }
-
-  &::placeholder {
-    font-size: 14px;
-  }
-}
-
 @media (max-width: 340px) {
   .search_form__input {
     &::placeholder {
