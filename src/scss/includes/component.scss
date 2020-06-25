@@ -2,7 +2,11 @@
 
 $panel_width : 400px;
 
-/* card */
+@mixin panel_radius() {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 @mixin card_radius() {
   border-radius: 3px;
 }

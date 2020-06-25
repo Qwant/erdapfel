@@ -34,6 +34,7 @@ const RootComponent = ({
       && ReactDOM.createPortal(<Menu />, document.querySelector('#react_menu__container'))}
     <Suggest
       inputNode={searchBarInputNode}
+      outputNode={document.querySelector('.search_form__result')}
       withCategories
     />
   </DeviceContext.Provider>;

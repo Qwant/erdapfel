@@ -1,9 +1,11 @@
 .top_bar {
+  @include long_shadow();
+  @include panel_radius();
+  background: #fff;
   width: $panel_width;
   left: 18px;
   top: 18px;
   position: absolute;
-  pointer-events: none;
 }
 
 @media (max-width: 640px) {
@@ -11,5 +13,9 @@
     top: 0;
     left: 0;
     width: 100%;
+    border-radius: 0;
+    box-shadow:
+      0 1px 4px 0 rgba(12, 12, 14, 0.2),
+      0 0 2px 0 rgba(12, 12, 14, 0.12);
   }
 }

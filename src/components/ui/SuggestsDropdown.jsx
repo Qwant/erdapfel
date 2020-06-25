@@ -22,6 +22,7 @@ const SuggestsDropdown = ({
       // suggestions are render just below inputNode
       const boundingRect = inputNode.getBoundingClientRect();
       return {
+        position: 'fixed',
         top: boundingRect.bottom,
         left: boundingRect.left,
         width: boundingRect.width,
