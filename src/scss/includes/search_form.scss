@@ -9,6 +9,21 @@
   background: #fff;
   pointer-events: auto;
   padding: 8px 14px;
+
+  &[data-flag-text]:before {
+    font-weight: bold;
+    content: attr(data-flag-text);
+    background: $secondary_text;
+    color: #d9d9e0;
+    position: absolute;
+    left: 28px;
+    top: 10px;
+    font-size: 10px;
+    line-height: 14px;
+    padding: 1px 3px;
+    border-radius: 6px;
+    border: 2px solid white;
+  }
 }
 
 .search_form__wrapper {
