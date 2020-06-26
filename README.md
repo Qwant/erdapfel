@@ -27,7 +27,9 @@ system:
   timeout: 5
 ```
 
-is overriden by `TILEVIEW_system_timeout=3`
+**Loading .env file**
+
+You can define your environment variables within a `.env` file, at the root directory of the project. Define you env variables inside this file, they will be loaded when starting erdapfel.
 
 
 ### Run from sources
