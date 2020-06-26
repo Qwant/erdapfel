@@ -26,11 +26,6 @@ $surface : #f4f6fa;
 /* separator */
 $separator_color : #e0e1e6;
 
-/* error  */
-$error_background : #f8d7da;
-$error_border : #f5c6cb;
-$error_text : #721c24;
-
 /* card */
 @mixin card_radius() {
   border-radius: 3px;
