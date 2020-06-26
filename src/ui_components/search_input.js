@@ -28,16 +28,19 @@ export default class SearchInput {
 
     window.__searchInput = new SearchInput(tagSelector);
 
-    window.clearSearch = () => {
+    window.clearSearch = e => {
+      e.preventDefault(); // Prevent losing focus
+      const inputElement = document.querySelector(tagSelector);
       const isMobile = isMobileDevice();
-      const isActive = document.activeElement.id === window.__searchInput.searchInputHandle.id;
-      window.__searchInput.searchInputHandle.value = '';
-      window.app.navigateTo('/');
+      const isActive = document.activeElement.id === inputElement.id;
+      inputElement.value = '';
+
       if (!isMobile || isMobile && isActive) {
-        setTimeout(() => {
-          document.querySelector(tagSelector).focus();
-        }, 0);
+        // Trigger an input event to refresh Suggest's state
+        inputElement.dispatchEvent(new Event('input'));
       }
+
+      window.app.navigateTo('/');
     };
 
     window.submitSearch = () => {
