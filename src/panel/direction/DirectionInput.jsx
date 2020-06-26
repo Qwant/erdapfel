@@ -81,13 +81,12 @@ class DirectionInput extends React.Component {
     }
   }
 
-  focus = () => {
-    setTimeout(() => { this.props.inputRef.current.focus(); }, 0);
-  }
-
-  clear = () => {
+  clear = e => {
+    e.preventDefault(); // prevent losing focus
     this.props.onChangePoint('', null);
-    this.focus();
+    this.props.inputRef.current.value = '';
+    // Trigger an input event to refresh Suggest's state
+    this.props.inputRef.current.dispatchEvent(new Event('input'));
   }
 
   render() {
