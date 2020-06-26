@@ -1,3 +1,7 @@
+.suggestions-open .panel:not(.direction_panel) {
+  display: none;
+}
+
 .panel {
   @include long_shadow();
   @include panel_radius();

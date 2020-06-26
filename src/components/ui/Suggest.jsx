@@ -31,6 +31,14 @@ const Suggest = ({
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('suggestions-open');
+    } else {
+      document.body.classList.remove('suggestions-open');
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleFocus = () => {
       if (inputNode.value === '') {
         setIsOpen(true);
