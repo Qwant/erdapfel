@@ -5,6 +5,8 @@ import { formatDuration, formatDistance, getVehicleIcon } from 'src/libs/route_u
 import RouteVia from './RouteVia';
 import Button from 'src/components/ui/Button';
 import ShareMenu from 'src/components/ui/ShareMenu';
+import Telemetry from 'src/libs/telemetry';
+
 
 export default class RouteSummary extends React.Component {
   static propTypes = {
@@ -27,6 +29,11 @@ export default class RouteSummary extends React.Component {
 
   onClickPreview = () => {
     this.props.openPreview(this.props.id);
+  }
+
+  onShareClick = (e, handler) => {
+    Telemetry.add(Telemetry.ITINERARY_SHARE);
+    return handler(e);
   }
 
   render() {
@@ -53,7 +60,7 @@ export default class RouteSummary extends React.Component {
         {openMenu => <div
           className="itinerary_panel__item__share"
           title={_('Share', 'direction')}
-          onClick={openMenu}
+          onClick={e => this.onShareClick(e, openMenu)}
         >
           <i className="icon-share-2" />
         </div>}
@@ -63,7 +70,11 @@ export default class RouteSummary extends React.Component {
           {_('Details', 'direction')}
         </Button>
         <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
-          {openMenu => <Button title={_('Share', 'direction')} onClick={openMenu} icon="share-2" />}
+          {openMenu => <Button
+            title={_('Share', 'direction')}
+            onClick={e => this.onShareClick(e, openMenu)}
+            icon="share-2"
+          />}
         </ShareMenu>
       </div>
     </div>;

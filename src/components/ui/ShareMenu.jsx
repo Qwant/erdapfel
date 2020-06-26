@@ -1,7 +1,6 @@
 /* global _ */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Telemetry from '../../libs/telemetry';
 
 const facebookShareUrl = location => {
   return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location)}`;
@@ -53,7 +52,6 @@ export default class ShareMenu extends React.Component {
     document.addEventListener('click', this.close);
     (document.querySelector(this.props.scrollableParent) || document.body)
       .addEventListener('scroll', this.close);
-    Telemetry.add(Telemetry.ITINERARY_SHARE);
   }
 
   close = () => {
