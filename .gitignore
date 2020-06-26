@@ -26,3 +26,6 @@ bench/report.json
 bench/results.har
 
 stats.json
+
+.env
+.env.*
