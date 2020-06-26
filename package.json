@@ -88,6 +88,7 @@
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "compression": "^1.7.3",
+    "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-static-gzip": "^1.1.3",
