@@ -17,7 +17,6 @@ import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
-import { isNullOrEmpty } from 'src/libs/object';
 import locale from '../mapbox/locale';
 
 const baseUrl = nconf.get().system.baseUrl;
@@ -168,11 +167,7 @@ Scene.prototype.initMapBox = function() {
 
   listen('map_mark_poi', (poi, options) => {
     this.ensureMarkerIsVisible(poi, options);
-    // The presence of poiFilters mean we are in the context of a list of POIs
-    // where we don't need to create a new icon as it already exists
-    if (isNullOrEmpty(options.poiFilters)) {
-      this.addMarker(poi, options);
-    }
+    this.addMarker(poi, options);
   });
 
   listen('clean_marker', () => {
@@ -333,6 +328,15 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
 };
 
 Scene.prototype.addMarker = function(poi) {
+  if (this.currentMarker) {
+    // Prevent setting the same poi multiple times
+    const currentLngLat = this.currentMarker.getLngLat();
+    if (currentLngLat.lat === poi.latLon.lat &&
+        currentLngLat.lon === poi.latLon.lon) {
+      return;
+    }
+  }
+
   const type = poi.type;
 
   // Create a default marker (white circle on red background) when the PoI is clicked.
@@ -357,6 +361,7 @@ Scene.prototype.addMarker = function(poi) {
 Scene.prototype.cleanMarker = async function() {
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
+    this.currentMarker = null;
   }
 };
 
