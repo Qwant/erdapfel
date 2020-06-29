@@ -208,10 +208,6 @@ export default class DirectionPanel extends React.Component {
   onClose = () => {
     if (this.state.activePreviewRoute) {
       this.setState({ activePreviewRoute: null });
-    } else if (this.props.poi) {
-      // indicates we come from a POI panel,
-      // let's just trust the router to restore it
-      window.history.back();
     } else {
       window.app.navigateTo('/');
     }
