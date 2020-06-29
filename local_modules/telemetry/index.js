@@ -7,12 +7,9 @@ module.exports = {
     /* Favorite */
     'favorite_open',
     'favorite_close',
-    'favorite_url_restore',
     'favorite_go',
     'favorite_share',
-    'favorite_save',
     'favorite_delete',
-    'favorite_open_more',
     'favorite_error_load_all', //error
     /* Itinerary */
     'itinerary_open',
@@ -25,25 +22,21 @@ module.exports = {
     'itinerary_mode_publictransport',
     /* Poi */
     'poi_category_open',
-    'poi_event_open',
     'poi_backtofavorite',
     'poi_backtolist',
     'poi_restore',
-    'poi_hour_extend',
-    'poi_information_extend',
-    'poi_error_load', // error
     'poi_see_more',
     /* OSM */
     'poi_osm_open',
     'poi_osm_go',
-    'poi_osm_favorite',
+    'poi_osm_favorite', // Favorite toggle
     'poi_osm_share',
     'poi_osm_phone',
     'poi_osm_website',
     /* Pages Jaunes Poi */
     'poi_pages_jaunes_open',
     'poi_pages_jaunes_go',
-    'poi_pages_jaunes_favorite',
+    'poi_pages_jaunes_favorite', // Favorite toggle
     'poi_pages_jaunes_share',
     'poi_pages_jaunes_phone',
     'poi_pages_jaunes_website',

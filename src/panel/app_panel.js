@@ -19,7 +19,6 @@ if (!burgerMenuEnabled) {
 export default class App {
   constructor() {
     this.initMap();
-
     SearchInput.initSearchInput('#search');
 
     Telemetry.add(Telemetry.APP_START, null, null, {

@@ -33,17 +33,17 @@ test('responds to events and update metrics', done => {
     .expect(200)
     .then(response => {
       const currentFavSaveCount =
-        parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
+        parseInt(response.text.match(/\nerdapfel_favorite_open_count (\d*)/)[1]);
       server
         .post('/events')
         .set('Content-Type', 'application/json')
-        .send('{"type":"favorite_save"}')
+        .send('{"type":"favorite_open"}')
         .expect(204, () => {
           server.get('/metrics')
             .expect(200)
             .then(response => {
               const newSaveCount =
-                parseInt(response.text.match(/\nerdapfel_favorite_save_count (\d*)/)[1]);
+                parseInt(response.text.match(/\nerdapfel_favorite_open_count (\d*)/)[1]);
               expect(newSaveCount).toBeGreaterThan(currentFavSaveCount);
             })
             .then(done);
