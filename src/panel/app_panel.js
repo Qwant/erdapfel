@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
-import Telemetry from '../libs/telemetry';
 import Router from 'src/proxies/app_router';
 import { parseMapHash, joinPath, getCurrentUrl } from 'src/libs/url_utils';
-import { isMobileDevice } from 'src/libs/device';
 import { listen } from 'src/libs/customEvents';
 import RootComponent from './RootComponent';
 
@@ -21,11 +19,6 @@ export default class App {
     this.initMap();
 
     SearchInput.initSearchInput('#search');
-
-    Telemetry.add(Telemetry.APP_START, null, null, {
-      'language': window.getLang(),
-      'is_mobile': isMobileDevice(),
-    });
     if (performanceEnabled) {
       listen('map_loaded', () => { window.times.mapLoaded = Date.now(); });
     }

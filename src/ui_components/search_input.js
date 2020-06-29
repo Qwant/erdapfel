@@ -90,12 +90,12 @@ export default class SearchInput {
     };
   }
 
-  static async executeSearch(query) {
+  static async executeSearch(query, { fromQueryParams } = {}) {
     window.__searchInput.searchInputHandle.value = query;
     const results = await fetchSuggests(query, { withCategories: true });
     if (results && results.length > 0) {
       const firstResult = results[0];
-      selectItem(firstResult, true);
+      selectItem(firstResult, { replaceUrl: true, fromQueryParams });
       window.__searchInput.searchInputHandle.blur();
     }
   }

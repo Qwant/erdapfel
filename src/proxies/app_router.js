@@ -35,5 +35,6 @@ export default class Router {
       return;
     }
     applyRoute(routeDef, urlWithoutHash, state);
+    return routeDef;
   }
 }

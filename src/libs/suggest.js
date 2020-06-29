@@ -15,7 +15,7 @@ const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
 const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
 const SUGGEST_FOCUS_MIN_ZOOM = 11;
 
-export const selectItem = (selectedItem, replaceUrl = false) => {
+export const selectItem = (selectedItem, { replaceUrl = false, fromQueryParams } = {}) => {
   if (selectedItem instanceof Poi) {
     window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
       poi: selectedItem,
@@ -26,14 +26,16 @@ export const selectItem = (selectedItem, replaceUrl = false) => {
       {}, { replace: replaceUrl });
   } else if (selectedItem instanceof Intention) {
     Telemetry.add(
-      Telemetry.SUGGEST_CLICK,
+      Telemetry.SUGGEST_SELECTION,
       null,
       null,
       {
-        useNlu: geocoderConfig.useNlu,
+        item: 'intention',
         category: selectedItem.category ? selectedItem.category.name : null,
-        hasFullTextQuery: !!selectedItem.fullTextQuery,
-        hasPlace: !!selectedItem.place,
+        has_full_text_query: !!selectedItem.fullTextQuery,
+        has_place: !!selectedItem.place,
+        from_url_query: !!fromQueryParams?.q,
+        url_client: fromQueryParams?.client || null,
       }
     );
     window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
