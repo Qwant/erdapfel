@@ -165,8 +165,8 @@
   }
 
   .menu__button {
-    width: 68px;
-    height: 68px;
+    width: $top_bar_height;
+    height: $top_bar_height;
     border-radius: 50%;
     @include long_shadow();
 
