@@ -34,6 +34,7 @@ test('search and clear', async () => {
   await autocompleteHelper.typeAndWait('Hello');
   expect(await exists(page, '#clear_button')).toBeTruthy();
 
+  await page.waitForSelector('.autocomplete_suggestion--no-result', { hidden: true, timeout: 100 });
   const autocompleteItems = await autocompleteHelper.getSuggestList();
   expect(autocompleteItems.length).toEqual(SUGGEST_MAX_ITEMS);
 
