@@ -47,9 +47,7 @@ test('search and clear', async () => {
 test('search with no suggest', async () => {
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('No result');
-
-  const autocompleteItems = await autocompleteHelper.getSuggestList();
-  expect(autocompleteItems.length).toEqual(0);
+  await page.waitForSelector('.autocomplete_suggestion--no-result');
 });
 
 test('search has lang in query', async () => {
