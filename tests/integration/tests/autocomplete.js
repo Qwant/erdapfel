@@ -44,6 +44,12 @@ test('search and clear', async () => {
   expect(searchValueAfterClear).toEqual('');
 });
 
+test('search with no suggest', async () => {
+  await page.goto(APP_URL);
+  await autocompleteHelper.typeAndWait('No result');
+  await page.waitForSelector('.autocomplete_suggestion--no-result');
+});
+
 test('search has lang in query', async () => {
   const langPage = await browser.newPage();
   await langPage.setDefaultTimeout(2000); // to raise Puppeteer timeout early on fail
