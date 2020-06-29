@@ -13,6 +13,7 @@ let autocompleteHelper;
 let responseHandler;
 const mockAutocomplete = require('../../__data__/autocomplete.json');
 const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type.json');
+const mockAutocompleteEmpty = require('../../__data__/autocomplete_empty.json');
 const mockPoi = require('../../__data__/poi.json');
 
 beforeAll(async () => {
@@ -45,8 +46,9 @@ test('search and clear', async () => {
 });
 
 test('search with no suggest', async () => {
+  responseHandler.addPreparedResponse(mockAutocompleteEmpty, /autocomplete\?q=Goodbye/);
   await page.goto(APP_URL);
-  await autocompleteHelper.typeAndWait('No result');
+  await autocompleteHelper.typeAndWait('Goodbye');
   await page.waitForSelector('.autocomplete_suggestion--no-result');
 });
 
