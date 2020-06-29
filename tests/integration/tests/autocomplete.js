@@ -29,7 +29,6 @@ beforeEach(async () => {
 
 test('search and clear', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
   expect(await exists(page, '#clear_button')).toBeTruthy();
