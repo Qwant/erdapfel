@@ -12,8 +12,8 @@ const CategoryList = ({ className }) =>
         label={category.label}
         icon={category.iconName}
         iconStyle={{
-          color: `var(--${category.color})`,
-          backgroundColor: `var(--${category.backgroundColor})`,
+          color: category.color,
+          backgroundColor: category.backgroundColor,
         }}
       />)
     }
