@@ -13,6 +13,7 @@ let autocompleteHelper;
 let responseHandler;
 const mockAutocomplete = require('../../__data__/autocomplete.json');
 const mockAutocompleteAllTypes = require('../../__data__/autocomplete_type.json');
+const mockAutocompleteEmpty = require('../../__data__/autocomplete_empty.json');
 const mockPoi = require('../../__data__/poi.json');
 
 beforeAll(async () => {
@@ -29,7 +30,6 @@ beforeEach(async () => {
 
 test('search and clear', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Helloa/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
   expect(await exists(page, '#clear_button')).toBeTruthy();
@@ -43,6 +43,13 @@ test('search and clear', async () => {
   await page.click('#clear_button');
   const searchValueAfterClear = await autocompleteHelper.getSearchInputValue();
   expect(searchValueAfterClear).toEqual('');
+});
+
+test('search with no suggest', async () => {
+  responseHandler.addPreparedResponse(mockAutocompleteEmpty, /autocomplete\?q=Goodbye/);
+  await page.goto(APP_URL);
+  await autocompleteHelper.typeAndWait('Goodbye');
+  expect(await exists(page, '.autocomplete_suggestion--no-result')).toBeTruthy();
 });
 
 test('search has lang in query', async () => {

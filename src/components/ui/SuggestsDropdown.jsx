@@ -1,3 +1,4 @@
+/* global _ */
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { object, func, string, arrayOf, bool } from 'prop-types';
@@ -9,6 +10,7 @@ const SuggestsDropdown = ({
   isAttachedToInput,
   className = '',
   suggestItems,
+  isLoading,
   onSelect,
   onHighlight,
 }) => {
@@ -100,6 +102,18 @@ const SuggestsDropdown = ({
           <SuggestItem item={suggest} />
         </li>
       )}
+      {inputNode.value !== ''
+      && !isLoading
+      && (
+        suggestItems.length === 0
+        || (suggestItems.length === 1 && suggestItems[0].id === 'geolocalisation')
+      )
+      && <li>
+        <div className="autocomplete_suggestion autocomplete_suggestion--no-result">
+          {_('No result found', 'suggest')}
+        </div>
+      </li>
+      }
     </ul>
   );
 };
