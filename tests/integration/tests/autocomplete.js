@@ -49,7 +49,7 @@ test('search with no suggest', async () => {
   responseHandler.addPreparedResponse(mockAutocompleteEmpty, /autocomplete\?q=Goodbye/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Goodbye');
-  await page.waitForSelector('.autocomplete_suggestion--no-result');
+  expect(await exists(page, '.autocomplete_suggestion--no-result')).toBeTruthy();
 });
 
 test('search has lang in query', async () => {
