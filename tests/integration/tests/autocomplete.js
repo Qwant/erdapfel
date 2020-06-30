@@ -252,8 +252,7 @@ test('suggestions should not reappear after fast submit', async () => {
   await page.keyboard.type('paris');
   await page.keyboard.press('Enter');
   await page.waitFor(600);
-  await page.waitForSelector('.autocomplete_suggestions', { hidden: true });
-  expect(await exists(page, '.autocomplete_suggestions')).toBeFalsy();
+  expect(await page.waitForSelector('.autocomplete_suggestions', { hidden: true })).toBeTruthy();
 });
 
 
