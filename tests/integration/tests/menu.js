@@ -4,6 +4,7 @@ import ResponseHandler from '../helpers/response_handler';
 let browser;
 let page;
 let responseHandler;
+const PANEL_ANIMATION_DELAY_MS = 300;
 
 beforeAll(async () => {
   const browserPage = await initBrowser();
@@ -15,29 +16,32 @@ beforeAll(async () => {
 
 test('test menu toggling', async () => {
   await page.goto(APP_URL);
-  page.waitForSelector('.menu__button');
+  await page.waitForSelector('.menu__button');
   expect(await isHidden(page, '.menu__panel')).toBeTruthy();
 
   await page.click('.menu__button');
   expect(await exists(page, '.menu__panel')).toBeTruthy();
 
+  await page.waitFor(PANEL_ANIMATION_DELAY_MS);
   await page.click('.menu__panel__top__close');
   expect(await isHidden(page, '.menu_panel')).toBeTruthy();
 });
 
 test('menu open favorite', async () => {
   await page.goto(APP_URL);
-  page.waitForSelector('.menu__button');
+  await page.waitForSelector('.menu__button');
 
-  page.click('.menu__button');
+  await page.click('.menu__button');
   await page.waitForSelector('.menu__panel');
-  page.click('.menu__panel__action:nth-child(2)');
+  await page.waitFor(PANEL_ANIMATION_DELAY_MS);
+  await page.click('.menu__panel__action:nth-child(2)');
 
   expect(await exists(page, '.direction_panel')).toBeTruthy();
 
-  page.click('.menu__button');
+  await page.click('.menu__button');
   await page.waitForSelector('.menu__panel__action');
-  page.click('.menu__panel__action:nth-child(3)');
+  await page.waitFor(PANEL_ANIMATION_DELAY_MS);
+  await page.click('.menu__panel__action:nth-child(3)');
 
   expect(await exists(page, '.favorite_panel')).toBeTruthy();
 });
