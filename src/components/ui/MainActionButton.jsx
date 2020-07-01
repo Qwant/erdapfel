@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
 
-const ServicePanelAction = ({ variant, label, onClick, icon, iconStyle, className, ...rest }) =>
+const MainActionButton = ({ variant, label, onClick, icon, iconStyle, className, ...rest }) =>
   <button
     type="button"
     onClick={onClick}
@@ -15,4 +15,4 @@ const ServicePanelAction = ({ variant, label, onClick, icon, iconStyle, classNam
     <div className="mainActionButton-label">{capitalizeFirst(label)}</div>
   </button>;
 
-export default ServicePanelAction;
+export default MainActionButton;

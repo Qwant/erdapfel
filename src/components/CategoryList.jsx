@@ -11,7 +11,10 @@ const CategoryList = ({ className }) =>
         variant="category"
         label={category.label}
         icon={category.iconName}
-        iconStyle={{ backgroundColor: category.backgroundColor }}
+        iconStyle={{
+          color: category.color,
+          backgroundColor: category.backgroundColor,
+        }}
       />)
     }
   </div>;
