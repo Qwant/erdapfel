@@ -1,9 +1,9 @@
 /* globals module */
 
 module.exports = function() {
-  const bbox = [1234, 5678];
+  const position = [7.2, 43.7];
   return function(req, res, next) {
-    res.locals.bbox = bbox;
+    res.locals.position = position;
     next();
   };
 };

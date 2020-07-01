@@ -35,7 +35,7 @@ languages:
 
 # Map
 map:
-  zoom: 2
+  zoom: 8
   center:
     lng: 2.52
     lat: 52.41

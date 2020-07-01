@@ -27,7 +27,7 @@ function Scene() {
   this.currentMarker = null;
   this.popup = new PoiPopup();
   this.zoom = map.zoom;
-  this.center = [map.center.lng, map.center.lat];
+  this.center = window.position;
   this.savedLocation = null;
 }
 
