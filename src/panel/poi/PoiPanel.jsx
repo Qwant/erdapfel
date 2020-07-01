@@ -243,7 +243,7 @@ export default class PoiPanel extends React.Component {
     if (isFromFavorite) {
       backAction = {
         callback: this.backToFavorite,
-        text: _('Back to favorite'),
+        text: _('Back to favorites'),
         className: 'poi_panel__back_to_list',
       };
     } else if (poiFilters.category || poiFilters.query) {
