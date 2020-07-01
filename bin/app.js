@@ -46,6 +46,10 @@ function App(config) {
   const userLanguage = require('./middlewares/user_language')(languages);
   app.use(userLanguage);
 
+  /* Set in res the approximative bbox */
+  const bbox = require('./middlewares/bbox')();
+  app.use(bbox);
+
   /* Trust local proxies, to get the correct requested 'host' */
   app.set('trust proxy', ['loopback', 'uniquelocal']);
 
