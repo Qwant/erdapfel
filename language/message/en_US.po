@@ -979,7 +979,7 @@ msgstr ""
 msgid "Do not ask again"
 msgstr ""
 
-msgid "Back to favorite"
+msgid "Back to favorites"
 msgstr ""
 
 msgid "Back to list"

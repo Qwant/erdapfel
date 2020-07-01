@@ -1,10 +1,10 @@
-# 
+#
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # jmontane, 2020
 # Adrien Matissart, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -1033,7 +1033,7 @@ msgstr "No, gràcies"
 msgid "Do not ask again"
 msgstr "No m'ho tornis a demanar"
 
-msgid "Back to favorite"
+msgid "Back to favorites"
 msgstr "Torna als preferits"
 
 msgid "Back to list"

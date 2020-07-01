@@ -1,4 +1,4 @@
-# 
+#
 # Translators:
 # Boo Teille <booteille@tutanota.com>, 2019
 # Florent Thouvenin <github@eldar.fr>, 2019
@@ -10,7 +10,7 @@
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Louis Bedat <louisbedat33@gmail.com>, 2020
 # Adrien Matissart, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -1047,7 +1047,7 @@ msgstr "Non merci"
 msgid "Do not ask again"
 msgstr "Ne plus me demander"
 
-msgid "Back to favorite"
+msgid "Back to favorites"
 msgstr "Retour aux favoris"
 
 msgid "Back to list"

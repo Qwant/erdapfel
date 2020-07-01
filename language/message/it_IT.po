@@ -1,4 +1,4 @@
-# 
+#
 # Translators:
 # Luca Elle <ikol89891@fastmail.com>, 2019
 # Davide Donati <davide.donati@gmail.com>, 2019
@@ -6,7 +6,7 @@
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Adrien Matissart, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -1039,7 +1039,7 @@ msgstr "No grazie"
 msgid "Do not ask again"
 msgstr "Non chiederlo più"
 
-msgid "Back to favorite"
+msgid "Back to favorites"
 msgstr "Torna ai preferiti"
 
 msgid "Back to list"
