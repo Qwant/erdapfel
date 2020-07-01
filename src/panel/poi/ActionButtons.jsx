@@ -1,6 +1,7 @@
 /* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
 
 const ActionButtons = ({
@@ -11,6 +12,11 @@ const ActionButtons = ({
   isPoiInFavorite,
   toggleStorePoi,
 }) => {
+  const onShareClick = (e, handler) => {
+    Telemetry.add(Telemetry.POI_SHARE);
+    return handler(e);
+  };
+
   return <Flex className="u-mb-24 poi_panel__actions">
     {isDirectionActive && <Button
       className="poi_panel__action__direction"
@@ -44,7 +50,7 @@ const ActionButtons = ({
       {openMenu => <Button className="poi_panel__action__share"
         title={_('Share', 'poi panel')}
         icon="share-2"
-        onClick={openMenu}
+        onClick={e => onShareClick(e, openMenu)}
       />}
     </ShareMenu>
   </Flex>;
