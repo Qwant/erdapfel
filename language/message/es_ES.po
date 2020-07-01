@@ -1,11 +1,11 @@
-# 
+#
 # Translators:
 # T S <tsalaba2004@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # manueljlin <manueljlin@gmail.com>, 2020
 # Adrien Matissart, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -1036,7 +1036,7 @@ msgstr "No, gracias"
 msgid "Do not ask again"
 msgstr "No volver a preguntar"
 
-msgid "Back to favorite"
+msgid "Back to favorites"
 msgstr "Volver al favorito"
 
 msgid "Back to list"

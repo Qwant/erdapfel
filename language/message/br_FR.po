@@ -1,11 +1,11 @@
-# 
+#
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Gwenn M <tornoz@laposte.net>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # Adrien Matissart, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -1041,7 +1041,7 @@ msgstr "Nann avat"
 msgid "Do not ask again"
 msgstr "Na goulenn ken ouzhin"
 
-msgid "Back to favorite"
+msgid "Back to favorites"
 msgstr "Distreiñ d'ar sinedoù"
 
 msgid "Back to list"

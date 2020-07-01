@@ -1,4 +1,4 @@
-# 
+#
 # Translators:
 # Jannik Vieten <me@exploide.net>, 2019
 # raphty m <mail+transfix@raphty.com>, 2019
@@ -11,7 +11,7 @@
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Acrylic Boy, 2020
 # Adrien Matissart, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -1040,7 +1040,7 @@ msgstr "Nein danke"
 msgid "Do not ask again"
 msgstr "Nicht erneut fragen"
 
-msgid "Back to favorite"
+msgid "Back to favorites"
 msgstr "Zurück zu Favoriten"
 
 msgid "Back to list"
