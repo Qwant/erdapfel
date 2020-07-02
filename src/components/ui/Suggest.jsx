@@ -6,6 +6,7 @@ import { bool, string, func, object } from 'prop-types';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, selectItem, modifyList } from 'src/libs/suggest';
 import { DeviceContext } from 'src/libs/device';
+import { togglePanelVisibility } from 'src/libs/panel';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -31,11 +32,7 @@ const Suggest = ({
   };
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('suggestions-open');
-    } else {
-      document.body.classList.remove('suggestions-open');
-    }
+    togglePanelVisibility(!isOpen);
   }, [isOpen]);
 
   useEffect(() => {
