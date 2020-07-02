@@ -8,13 +8,17 @@ import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import classnames from 'classnames';
+import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { fire } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
+import { isMobileDevice } from 'src/libs/device';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const categoryEnabled = nconf.get().category.enabled;
 const directionConf = nconf.get().direction;
+
+const directSearchRouteName = 'Direct search query';
 
 export default class PanelManager extends React.Component {
   static propTypes = {
@@ -31,8 +35,19 @@ export default class PanelManager extends React.Component {
   }
 
   componentDidMount() {
-    this.initRouter();
+    const initialUrlPathName = window.location.pathname;
+    const initialQueryParams = parseQueryString(window.location.search);
+    const initialRoute = this.initRouter();
     this.initTopBar();
+
+    Telemetry.add(Telemetry.APP_START, null, null, {
+      'language': window.getLang(),
+      'is_mobile': isMobileDevice(),
+      'url_pathname': initialUrlPathName,
+      'direct_search': initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
+      'url_client': initialQueryParams['client'] || null,
+    });
+
     if (performanceEnabled) {
       window.times.appRendered = Date.now();
     }
@@ -106,10 +121,10 @@ export default class PanelManager extends React.Component {
       });
     }
 
-    router.addRoute('Direct search query', '/([?].*)', queryString => {
+    router.addRoute(directSearchRouteName, '/([?].*)', queryString => {
       const params = parseQueryString(queryString);
       if (params.q) {
-        SearchInput.executeSearch(params.q);
+        SearchInput.executeSearch(params.q, { fromQueryParams: params });
       } else {
         router.routeUrl('/');
       }
@@ -124,7 +139,7 @@ export default class PanelManager extends React.Component {
     });
 
     // Route the initial URL
-    router.routeUrl(getCurrentUrl());
+    return router.routeUrl(getCurrentUrl());
   }
 
   toggleMinify = () => {

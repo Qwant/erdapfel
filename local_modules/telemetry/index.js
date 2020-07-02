@@ -3,7 +3,7 @@ module.exports = {
     /* App */
     'app_start',
     /* Suggest*/
-    'suggest_click',
+    'suggest_selection',
     /* Favorite */
     'favorite_open',
     'favorite_close',
