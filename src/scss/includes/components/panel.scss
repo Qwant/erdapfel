@@ -58,7 +58,7 @@
     display: flex;
     flex-direction: column;
     background: #f4f6fa;
-    border-radius: 0;
+    border-radius: 12px 12px 0 0;
     bottom: 0;
 
     &--white {
@@ -82,6 +82,7 @@
     }
 
     &.maximized {
+      border-radius: 0;
       height: calc(100% - #{$top_bar_height});
 
       // a "fake" background area added above the panel itself,

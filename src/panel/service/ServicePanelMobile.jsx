@@ -15,49 +15,46 @@ class ServicePanelMobile extends React.Component {
       className="service_panel"
       white
     >
-      <div className="service_panel__actions">
-
-        <h3 className="u-text--smallTitle u-center">{_('Directions', 'service panel')}</h3>
-
-        {
-          directionConf.enabled &&
-          <Fragment>
-            <Action
-              onClick={() => { window.app.navigateTo('/routes/?mode=driving'); }}
+      {directionConf.enabled && <Fragment>
+        <h3 className="u-text--smallTitle u-center u-mb-12">
+          {_('Directions', 'service panel')}
+        </h3>
+        <div className="service_panel__actions">
+          <Action
+            onClick={() => { window.app.navigateTo('/routes/?mode=driving'); }}
+            variant="directionMode"
+            icon="drive"
+            label={_('by car', 'service panel')}
+          />
+          {
+            directionConf.publicTransport
+            && directionConf.publicTransport.enabled
+            && <Action
+              onClick={() => { window.app.navigateTo('/routes/?mode=publicTransport'); }}
               variant="directionMode"
-              icon="drive"
-              label={_('by car', 'service panel')}
+              icon="public-transport"
+              label={_('transit', 'service panel')}
             />
-            {
-              directionConf.publicTransport
-              && directionConf.publicTransport.enabled
-              && <Action
-                onClick={() => { window.app.navigateTo('/routes/?mode=publicTransport'); }}
-                variant="directionMode"
-                icon="public-transport"
-                label={_('transit', 'service panel')}
-              />
-            }
-            <Action
-              onClick={() => { window.app.navigateTo('/routes/?mode=walking'); }}
-              variant="directionMode"
-              icon="foot"
-              label={_('on foot', 'service panel')}
-            />
-            <Action
-              onClick={() => { window.app.navigateTo('/routes/?mode=cycling'); }}
-              variant="directionMode"
-              icon="bike"
-              label={_('by bike', 'service panel')}
-            />
-          </Fragment>
-        }
+          }
+          <Action
+            onClick={() => { window.app.navigateTo('/routes/?mode=walking'); }}
+            variant="directionMode"
+            icon="foot"
+            label={_('on foot', 'service panel')}
+          />
+          <Action
+            onClick={() => { window.app.navigateTo('/routes/?mode=cycling'); }}
+            variant="directionMode"
+            icon="bike"
+            label={_('by bike', 'service panel')}
+          />
+        </div>
+        <hr/>
+      </Fragment>}
 
-      </div>
-
-      <hr/>
-
-      <h3 className="u-text--smallTitle u-center">{_('Services nearby', 'service panel')}</h3>
+      <h3 className="u-text--smallTitle u-center u-mb-12">
+        {_('Services nearby', 'service panel')}
+      </h3>
 
       <CategoryList className="service_panel__categories" />
     </Panel>;
