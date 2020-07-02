@@ -1,5 +1,6 @@
 /* globals _ */
 import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import { menu as menuItems } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MenuItem from './menu/MenuItem';
@@ -22,6 +23,14 @@ export default class Menu extends React.Component {
       this.store = new Store();
       this.store.onToggleStore(this.onStoreChange);
       this.onStoreChange();
+    }
+    this.menuContainer = document.createElement('div');
+    document.body.appendChild(this.menuContainer);
+  }
+
+  componentWillUnmount = () => {
+    if (this.menuContainer) {
+      this.menuContainer.remove();
     }
   }
 
@@ -64,7 +73,7 @@ export default class Menu extends React.Component {
     return <Fragment>
       <MenuButton masqUser={this.state.masqUser} onClick={this.open} />
 
-      {this.state.isOpen && <div className="menu">
+      {this.state.isOpen && ReactDOM.createPortal(<div className="menu">
         <div className="menu__overlay" onClick={this.close} />
 
         <div className="menu__panel">
@@ -111,7 +120,7 @@ export default class Menu extends React.Component {
             {menuItems.map(menuItem => <MenuItem key={menuItem.sectionName} menuItem={menuItem} />)}
           </div>
         </div>
-      </div>}
+      </div>, this.menuContainer)}
     </Fragment>;
   }
 }
