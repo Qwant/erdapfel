@@ -139,7 +139,7 @@ export default class PanelManager extends React.Component {
     });
 
     // Route the initial URL
-    return router.routeUrl(getCurrentUrl());
+    return router.routeUrl(getCurrentUrl(), window.history.state || {});
   }
 
   toggleMinify = () => {
