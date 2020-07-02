@@ -27,6 +27,11 @@ export default class FavoritePoi extends React.Component {
     this.props.removeFavorite(this.props.poi);
   };
 
+  onShareClick = (e, handler) => {
+    Telemetry.add(Telemetry.FAVORITE_SHARE);
+    return handler(e);
+  }
+
   render() {
     const { poi } = this.props;
     const icon = IconManager.get(poi);
@@ -49,7 +54,11 @@ export default class FavoritePoi extends React.Component {
       </div>
       <ShareMenu url={toAbsoluteUrl(this.props.poi)} scrollableParent=".panel-content">
         {openMenu =>
-          <div className="favorite_panel__item__share" title={_('Share')} onClick={openMenu}>
+          <div
+            className="favorite_panel__item__share"
+            title={_('Share')}
+            onClick={e => this.onShareClick(e, openMenu)}
+          >
             <i className="icon-share-2" />
           </div>}
       </ShareMenu>

@@ -26,18 +26,17 @@ module.exports = {
     'poi_backtolist',
     'poi_restore',
     'poi_see_more',
+    'poi_share',
     /* OSM */
     'poi_osm_open',
     'poi_osm_go',
     'poi_osm_favorite', // Favorite toggle
-    'poi_osm_share',
     'poi_osm_phone',
     'poi_osm_website',
     /* Pages Jaunes Poi */
     'poi_pages_jaunes_open',
     'poi_pages_jaunes_go',
     'poi_pages_jaunes_favorite', // Favorite toggle
-    'poi_pages_jaunes_share',
     'poi_pages_jaunes_phone',
     'poi_pages_jaunes_website',
     'poi_pages_jaunes_reviews',
