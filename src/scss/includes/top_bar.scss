@@ -3,8 +3,8 @@
   @include panel_radius();
   background: #fff;
   width: $panel_width;
-  left: 18px;
-  top: 18px;
+  left: $ui_margin;
+  top: $ui_margin;
   position: absolute;
 }
 

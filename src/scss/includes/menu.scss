@@ -163,8 +163,8 @@
 
   .menu__button {
     position: fixed;
-    right: 16px;
-    top: 18px;
+    right: $ui_margin;
+    top: $ui_margin;
     width: $top_bar_height;
     height: $top_bar_height;
     border-radius: 50%;
