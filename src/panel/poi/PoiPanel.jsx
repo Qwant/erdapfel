@@ -93,10 +93,10 @@ export default class PoiPanel extends React.Component {
   }
 
   loadPois = () => {
-    const { poi, poiFilters, pois } = this.props;
+    const { poi } = this.props;
     window.execOnMapLoaded(() => {
       fire('add_category_markers', this.props.pois, this.props.poiFilters);
-      fire('click_category_poi', { poi, poiFilters, pois });
+      fire('highlight_category_marker', poi, true);
     });
   }
 
