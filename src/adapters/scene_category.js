@@ -60,7 +60,7 @@ export default class SceneCategory {
         poi.marker_id = `marker_${id}`;
         marker.onclick = function(e) {
           e.stopPropagation();
-          fire('click_category_poi', { poi, poiFilters });
+          fire('click_category_poi', { poi, poiFilters, pois });
         };
         marker.onmouseover = function(e) {
           fire('open_popup', poi, e);
