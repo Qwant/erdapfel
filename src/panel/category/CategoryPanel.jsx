@@ -141,7 +141,8 @@ export default class CategoryPanel extends React.Component {
 
   selectPoi = poi => {
     const { poiFilters } = this.props;
-    fire('click_category_poi', poi, poiFilters);
+    const { pois } = this.state;
+    fire('click_category_poi', { poi, poiFilters, pois });
   }
 
   highlightPoiMarker = (poi, highlight) => {

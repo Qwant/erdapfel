@@ -60,7 +60,10 @@ export default class PoiPanel extends React.Component {
 
   componentDidMount() {
     fire('mobile_direction_button_visibility', false);
-    this.loadPoi();
+
+    // Load poi or pois
+    !this.props.pois ? this.loadPoi() : this.loadPois();
+
     this.storeAddHandler = listen('poi_added_to_favs', poi => {
       if (poi === this.state.fullPoi) {
         this.setState({ isPoiInFavorite: true });
@@ -87,6 +90,14 @@ export default class PoiPanel extends React.Component {
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);
     SearchInput.setInputValue('');
+  }
+
+  loadPois = () => {
+    const { poi } = this.props;
+    window.execOnMapLoaded(() => {
+      fire('add_category_markers', this.props.pois, this.props.poiFilters);
+      fire('highlight_category_marker', poi, true);
+    });
   }
 
   loadPoi = async () => {
@@ -131,7 +142,7 @@ export default class PoiPanel extends React.Component {
   }
 
   _updateMapPoi(poi, options = {}) {
-    window.execOnMapLoaded(function() {
+    window.execOnMapLoaded(() => {
       fire('map_mark_poi', poi, options);
     });
   }

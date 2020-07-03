@@ -357,6 +357,7 @@ Scene.prototype.addMarker = function(poi) {
 Scene.prototype.cleanMarker = async function() {
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
+    this.currentMarker = null;
   }
 };
 
