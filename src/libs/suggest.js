@@ -43,6 +43,22 @@ export const selectItem = (selectedItem, { replaceUrl = false, fromQueryParams }
   }
 };
 
+export const getInputValue = item => {
+  if (item instanceof Poi) {
+    return item.name;
+  }
+  if (item instanceof Category) {
+    return item.getInputValue();
+  }
+  if (item instanceof Intention) {
+    if (item.category) {
+      return item.category.getInputValue();
+    }
+    return item.fullTextQuery;
+  }
+  return '';
+};
+
 export const fetchSuggests = (query, options = {}) =>
   suggestResults(query, {
     withCategories: options.withCategories || false,

@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
-import { fetchSuggests, selectItem, modifyList } from 'src/libs/suggest';
+import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/suggest';
 import { DeviceContext } from 'src/libs/device';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
@@ -121,11 +121,11 @@ const Suggest = ({
         if (!item) {
           inputNode.value = lastQuery;
         } else {
-          inputNode.value = item.name;
+          inputNode.value = getInputValue(item);
         }
       }}
       onSelect={item => {
-        inputNode.value = item.name;
+        inputNode.value = getInputValue(item);
         close();
         if (onSelect) {
           onSelect(item);
