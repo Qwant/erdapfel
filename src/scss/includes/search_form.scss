@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   pointer-events: auto;
-  padding: 8px 12px;
+  padding: 8px 0 8px 12px;
 
   &[data-flag-text]:before {
     font-weight: bold;
@@ -153,6 +153,19 @@ input[type="search"] {
   display: none;
 }
 
+.search_form__direction_shortcut {
+  width: 48px;
+  height: 48px;
+  background: url(../images/direction-line.svg) center no-repeat;
+  background-size: 24px 24px;
+  cursor: pointer;
+  transition: filter .1s;
+
+  &:hover {
+    filter: brightness(80%);
+  }
+}
+
 .autocomplete_suggestions {
   max-height: calc(100vh - #{$top_bar_height});
   background: $background;
@@ -255,12 +268,20 @@ input[type="search"] {
 }
 
 @media (max-width: 640px) {
+  .search_form {
+    padding-right: 12px;
+  }
+
   .search_form__wrapper {
     padding: 0 9px 0 12px;
   }
 
   .search_form__action {
     width: 20px;
+  }
+
+  .search_form__direction_shortcut {
+    display: none;
   }
 
   .top_bar .autocomplete_suggestions {

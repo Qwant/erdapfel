@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>A7F33146-4AEC-48FE-AAB6-48DBB34C5794</title>
+    <g id="🗺-Qwant-Maps-x-Design-System-2.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Qwant_Maps/Desktop" transform="translate(-374.000000, -32.000000)">
+            <g id="Screens/POI/Default/Desktop/Extend" transform="translate(12.000000, 12.000000)">
+                <g id="Components/SearchBar/Desktop/Normal" transform="translate(14.000000, 8.000000)">
+                    <g id="Components/Icons/Direction_Line" transform="translate(348.000000, 12.000000)">
+                        <g id="direction-line">
+                            <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                            <path d="M12,3.515 L3.515,12 L12,20.485 L20.485,12 L12,3.515 Z M12.707,1.393 L22.607,11.293 C22.9973819,11.6834999 22.9973819,12.3165001 22.607,12.707 L12.707,22.607 C12.3165001,22.9973819 11.6834999,22.9973819 11.293,22.607 L1.393,12.707 C1.00261806,12.3165001 1.00261806,11.6834999 1.393,11.293 L11.293,1.393 C11.6834999,1.00261806 12.3165001,1.00261806 12.707,1.393 Z M13,10 L13,7.5 L16.5,11 L13,14.5 L13,12 L10,12 L10,15 L8,15 L8,11 C8,10.4477153 8.44771525,10 9,10 L13,10 Z" id="Shape" fill="#1A6AFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

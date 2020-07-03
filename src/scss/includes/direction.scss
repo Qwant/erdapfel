@@ -841,7 +841,7 @@ button.direction_shortcut {
     font-size: 25px;
     opacity: 1;
     transition: opacity .2s;
-    background: $action-blue-base;
+    background: $action-blue-base url(../images/direction.svg) center no-repeat;
 
     &:not(:disabled):hover {
       background: $action-blue-base;
