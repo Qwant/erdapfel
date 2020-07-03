@@ -27,7 +27,8 @@ function Scene() {
   this.currentMarker = null;
   this.popup = new PoiPopup();
   this.zoom = map.zoom;
-  this.center = window.position;
+  this.center = [map.center.lng, map.center.lat];
+  this.initialBbox = null;
   this.savedLocation = null;
 }
 
@@ -45,6 +46,8 @@ Scene.prototype.setupInitialPosition = async function(locationHash) {
     if (lastLocation) {
       this.center = [lastLocation.lng, lastLocation.lat];
       this.zoom = lastLocation.zoom;
+    } else if (window.initialBbox) {
+      this.initialBbox = window.initialBbox;
     }
   }
 };
@@ -62,16 +65,26 @@ Scene.prototype.initMapBox = function() {
     /* lazy */ true
   );
 
-  this.mb = new Map({
+  const mapOptions = {
     attributionControl: false,
     container: 'scene_container',
     style: getStyle(),
-    zoom: this.zoom,
-    center: this.center,
     hash: false,
     maxZoom: 20,
     locale,
-  });
+  };
+
+  if (this.initialBbox) {
+    mapOptions.bounds = this.initialBbox;
+    mapOptions.fitBoundsOptions = {
+      padding: this.getCurrentPaddings(),
+      maxZoom: 9,
+    };
+  } else {
+    mapOptions.zoom = this.zoom;
+    mapOptions.center = this.center;
+  }
+  this.mb = new Map(mapOptions);
 
   this.popup.init(this.mb);
 

@@ -30,7 +30,7 @@
   <script>
     window.baseUrl = "<%= config.system.baseUrl %>";
     window.preferedLanguage = <%- JSON.stringify(language) %>;
-    window.position = <%- JSON.stringify(position) %>;
+    window.initialBbox = <%- JSON.stringify(initialBbox) %>;
     <%- `window.__config = ${JSON.stringify(config,
       (k,v) => k==='server' ? undefined : v)};` %>
   </script>

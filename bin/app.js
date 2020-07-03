@@ -47,8 +47,8 @@ function App(config) {
   app.use(userLanguage);
 
   /* Set in res the approximative bbox */
-  const position = require('./middlewares/position')();
-  app.use(position);
+  const initialPosition = require('./middlewares/initial_position');
+  app.use(initialPosition);
 
   /* Trust local proxies, to get the correct requested 'host' */
   app.set('trust proxy', ['loopback', 'uniquelocal']);
