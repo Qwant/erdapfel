@@ -49,7 +49,10 @@ test('search with no suggest', async () => {
   responseHandler.addPreparedResponse(mockAutocompleteEmpty, /autocomplete\?q=Goodbye/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Goodbye');
-  expect(await exists(page, '.autocomplete_suggestion--no-result')).toBeTruthy();
+  const title = await page.evaluate(() => {
+    return document.querySelector('.autocomplete_separator_label').innerText;
+  });
+  expect(title).toEqual('NO RESULT FOUND');
 });
 
 test('search has lang in query', async () => {
