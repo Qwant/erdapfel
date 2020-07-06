@@ -6,6 +6,11 @@ import Suggest from 'src/components/ui/Suggest';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
 
+const MenuComponent = ({ isMobile }) =>
+  isMobile
+    ? ReactDOM.createPortal(<Menu />, document.querySelector('#react_menu__container'))
+    : <Menu />;
+
 const RootComponent = ({
   burgerMenuEnabled,
   searchBarInputNode,
@@ -30,8 +35,7 @@ const RootComponent = ({
 
   return <DeviceContext.Provider value={isMobile}>
     <PanelManager router={router} />
-    {burgerMenuEnabled
-      && ReactDOM.createPortal(<Menu />, document.querySelector('#react_menu__container'))}
+    {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
     <Suggest
       inputNode={searchBarInputNode}
       outputNode={document.querySelector('.search_form__result')}

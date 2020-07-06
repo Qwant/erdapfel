@@ -158,13 +158,13 @@
 
 @media (min-width: 641px) {
   #react_menu__container {
-    position: fixed;
-    right: 16px;
-    top: 18px;
-    width: auto;
+    display: none;
   }
 
   .menu__button {
+    position: fixed;
+    right: 16px;
+    top: 18px;
     width: $top_bar_height;
     height: $top_bar_height;
     border-radius: 50%;
