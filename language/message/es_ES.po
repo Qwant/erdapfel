@@ -1,16 +1,16 @@
-#
+# 
 # Translators:
 # T S <tsalaba2004@gmail.com>, 2019
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # manueljlin <manueljlin@gmail.com>, 2020
 # Adrien Matissart, 2020
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-22 08:07+0000\n"
+"POT-Creation-Date: 2020-07-03 13:46+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
@@ -924,6 +924,9 @@ msgstr "Mostrar favoritos"
 msgid "Search around this place"
 msgstr "Buscar por esta zona"
 
+msgid "No result found"
+msgstr "No se encontraron resultados"
+
 msgid "See more"
 msgstr "Ver Más"
 
@@ -1037,7 +1040,7 @@ msgid "Do not ask again"
 msgstr "No volver a preguntar"
 
 msgid "Back to favorites"
-msgstr "Volver al favorito"
+msgstr ""
 
 msgid "Back to list"
 msgstr "Volver a la lista"

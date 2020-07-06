@@ -1,4 +1,4 @@
-#
+# 
 # Translators:
 # Jannik Vieten <me@exploide.net>, 2019
 # raphty m <mail+transfix@raphty.com>, 2019
@@ -11,12 +11,12 @@
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Acrylic Boy, 2020
 # Adrien Matissart, 2020
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-22 08:07+0000\n"
+"POT-Creation-Date: 2020-07-03 13:46+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -893,10 +893,10 @@ msgid "Copy link"
 msgstr ""
 
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "Share"
 msgstr "Teilen"
@@ -927,6 +927,9 @@ msgstr "Favoriten anzeigen"
 
 msgid "Search around this place"
 msgstr "Um diesen Ort herum suchen"
+
+msgid "No result found"
+msgstr "Keine Ergebnisse gefunden"
 
 msgid "See more"
 msgstr "Zeige mehr"
