@@ -79,7 +79,6 @@ test('route flag', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
   await page.waitForSelector('#itinerary_input_origin');
-  expect(await exists(page, '.top_bar--small')).toBeTruthy();
 
   const directionStartInput = await getInputValue(page, '#itinerary_input_origin');
   expect(directionStartInput).toEqual('');

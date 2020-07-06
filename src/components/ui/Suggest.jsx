@@ -6,6 +6,7 @@ import { bool, string, func, object } from 'prop-types';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/suggest';
 import { DeviceContext } from 'src/libs/device';
+import { togglePanelVisibility } from 'src/libs/panel';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -29,6 +30,10 @@ const Suggest = ({
     setIsOpen(false);
     setItems([]);
   };
+
+  useEffect(() => {
+    togglePanelVisibility(!isOpen);
+  }, [isOpen]);
 
   useEffect(() => {
     const handleFocus = () => {

@@ -601,12 +601,8 @@ button.direction_shortcut {
   color: #5c6f84;
 }
 
-#itinerary_autocomplete_suggestions .autocomplete_suggestions {
-  position: relative;
-  display: block;
-  margin: 0;
-  border-radius: 0px;
-  box-shadow: none;
+.direction_panel_mobile .autocomplete_suggestions {
+  @include long_shadow();
 }
 
 /* Mobile */

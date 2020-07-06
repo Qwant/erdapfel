@@ -1,8 +1,12 @@
+.panel-hidden .panel:not(.direction_panel) {
+  display: none;
+}
+
 .panel {
-  @include card_shadow();
-  @include card_radius();
+  @include long_shadow();
+  @include panel_radius();
   background-color: white;
-  width: 400px;
+  width: $panel_width;
 
   &-header {
     padding: 0 40px 0 15px;
@@ -78,7 +82,7 @@
     }
 
     &.maximized {
-      height: calc(100% - 68px);
+      height: calc(100% - #{$top_bar_height});
 
       // a "fake" background area added above the panel itself,
       // allowing height transitions without changing paddings and preventing "jumps"
@@ -86,10 +90,10 @@
         content: '';
         display: block;
         width: 100%;
-        height: 68px;
+        height: $top_bar_height;
         background-color: #f4f6fa;
         position: absolute;
-        top: -68px;
+        top: -$top_bar_height;
       }
 
       &.panel--white::before {

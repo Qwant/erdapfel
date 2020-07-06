@@ -1,10 +1,9 @@
 import { isMobileDevice } from '../libs/device';
 
 const DESKTOP_PANEL_WIDTH = 400;
-const DESKTOP_TOP_BAR_HEIGHT = 100;
 const ADDITIONAL_PADDING = 50;
 const DESKTOP_SIDE_PANEL = {
-  top: DESKTOP_TOP_BAR_HEIGHT + ADDITIONAL_PADDING,
+  top: ADDITIONAL_PADDING,
   left: DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING,
   right: 60,
   bottom: 45,
@@ -38,9 +37,8 @@ export function getVisibleBbox(mb) {
     // On mobile, compute a bbox that excludes the header's height
     ne_canvas.y += 65;
   } else {
-    // On desktop, compute a bbox that excludes the left panel's width and the header's height
+    // On desktop, compute a bbox that excludes the left panel's width
     sw_canvas.x += DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING / 2;
-    ne_canvas.y += DESKTOP_TOP_BAR_HEIGHT;
   }
 
   ne = mb.unproject(ne_canvas);
@@ -58,6 +56,6 @@ export function isPositionUnderUI({ x, y }, { isMobile }) {
   return !isMobile && (
     x < (DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING)
     ||
-    y < (DESKTOP_TOP_BAR_HEIGHT + ADDITIONAL_PADDING)
+    y < ADDITIONAL_PADDING
   );
 }

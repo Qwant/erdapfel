@@ -7,7 +7,6 @@ import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
-import classnames from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { fire } from 'src/libs/customEvents';
@@ -28,7 +27,6 @@ export default class PanelManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isMinified: false,
       ActivePanel: ServicePanel,
       options: {},
     };
@@ -61,15 +59,6 @@ export default class PanelManager extends React.Component {
       if (isNullOrEmpty(options?.poiFilters)) {
         fire('remove_category_markers');
         fire('remove_event_markers');
-      }
-
-      if (ActivePanel === DirectionPanel) {
-        SearchInput.minify();
-      } else {
-        SearchInput.unminify();
-        if (this.state.isMinified) {
-          this.setState({ isMinified: false });
-        }
       }
     }
   }
@@ -142,20 +131,6 @@ export default class PanelManager extends React.Component {
     return router.routeUrl(getCurrentUrl(), window.history.state || {});
   }
 
-  toggleMinify = () => {
-    if (this.state.isMinified) {
-      SearchInput.unminify();
-      this.setState({ isMinified: false });
-    } else {
-      if (this.state.ActivePanel === DirectionPanel && SearchInput.isMinified()) {
-        SearchInput.unminify();
-        return;
-      }
-      SearchInput.minify();
-      this.setState({ isMinified: true });
-    }
-  }
-
   initTopBar() {
     const searchInput = document.querySelector('#search');
     const topBarHandle = document.querySelector('.top_bar');
@@ -167,19 +142,12 @@ export default class PanelManager extends React.Component {
     searchInput.onblur = () => {
       topBarHandle.classList.remove('top_bar--search_focus');
     };
-
-    const minifierButton = document.querySelector('.top_bar .minifier');
-    if (minifierButton) {
-      minifierButton.onclick = this.toggleMinify;
-    }
   }
 
   render() {
-    const { ActivePanel, options, isMinified } = this.state;
+    const { ActivePanel, options } = this.state;
 
-    return <div className={classnames('panel_container',
-      { 'panel_container--hidden': isMinified }
-    )}>
+    return <div className="panel_container">
       <ActivePanel {...options} />
     </div>;
   }

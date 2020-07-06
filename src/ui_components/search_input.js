@@ -52,27 +52,12 @@ export default class SearchInput {
     return window.__searchInput;
   }
 
-  static minify() {
-    document.querySelector('.top_bar').classList.add('top_bar--small');
-    window.__searchInput.isEnabled = false;
-    window.__searchInput.searchInputHandle.blur();
-  }
-
   static select() {
     window.__searchInput.searchInputHandle.select();
   }
 
   static setInputValue(value) {
     window.__searchInput.searchInputHandle.value = value;
-  }
-
-  static unminify() {
-    document.querySelector('.top_bar').classList.remove('top_bar--small');
-    window.__searchInput.isEnabled = true;
-  }
-
-  static isMinified() {
-    return !window.__searchInput.isEnabled;
   }
 
   handleKeyboard() {
