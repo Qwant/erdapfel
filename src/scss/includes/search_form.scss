@@ -179,10 +179,6 @@ input[type="search"] {
   line-height: 1.2;
   border-left: transparent solid 4px;
 
-  &--no-result {
-    padding: 15px 10px;
-  }
-
   .selected & {
     border-left-color: #FF3B4A;
     background-color: $background_active;

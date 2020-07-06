@@ -71,12 +71,16 @@ export const fetchSuggests = (query, options = {}) =>
 export const modifyList = (items, withGeoloc) => {
   const firstFav = items.findIndex(item => item instanceof PoiStore);
 
-  if (firstFav !== -1) {
+  if (firstFav > -1) {
     items.splice(firstFav, 0, { simpleLabel: _('Favorites', 'autocomplete').toUpperCase() });
   }
 
   if (withGeoloc) {
     items.splice(0, 0, NavigatorGeolocalisationPoi.getInstance());
+  }
+
+  if (items.length === 0 || items.length === 1 && withGeoloc) {
+    items.push({ simpleLabel: _('No result found', 'suggest').toUpperCase() });
   }
 
   return items;
