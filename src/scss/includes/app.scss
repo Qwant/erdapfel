@@ -14,7 +14,6 @@ noscript {
   top: calc(#{$top_bar_height} + #{$ui_margin} + 16px);
   left: $ui_margin;
   transition: transform 0.3s;
-  max-height: calc(100vh - 75px);
 }
 
 .directions-open .panel_container {

@@ -40,7 +40,8 @@
   }
 
   &-content {
-    max-height: calc(100vh - 130px);
+    // 172 = top UI margin + top bar height + top bar margin + panel header + bottom UI margin 
+    max-height: calc(100vh - 172px);
     overflow-y: auto;
     scrollbar-width: thin;
   }
