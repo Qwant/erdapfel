@@ -13,7 +13,6 @@ import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import CategoryService from 'src/adapters/category_service';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import { capitalizeFirst } from 'src/libs/string';
 import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
 
 const categoryConfig = nconf.get().category;
@@ -63,8 +62,10 @@ export default class CategoryPanel extends React.Component {
       if (category !== prevProps?.poiFilters?.category) {
         Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
       }
-      const { label } = CategoryService.getCategoryByName(category);
-      SearchInput.setInputValue(capitalizeFirst(label));
+      const value = CategoryService.getCategoryByName(category)?.getInputValue();
+      if (value) {
+        SearchInput.setInputValue(value);
+      }
     } else if (query) {
       SearchInput.setInputValue(query);
     }

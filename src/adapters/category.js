@@ -4,7 +4,7 @@
  * Simple Category helper
  */
 import IconManager from '../adapters/icon_manager';
-import { findIndexIgnoreCase } from '../libs/string';
+import { findIndexIgnoreCase, capitalizeFirst } from '../libs/string';
 import { CATEGORY_TYPE } from '../../config/constants.yml';
 
 export default class Category {
@@ -21,7 +21,7 @@ export default class Category {
   }
 
   getInputValue() {
-    return this.label;
+    return capitalizeFirst(this.label);
   }
 
   isMatching(term) {
