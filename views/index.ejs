@@ -41,7 +41,8 @@
         <% if(config.app.versionFlag) { %>
           data-flag-text="<%= config.app.versionFlag %>"
         <% } %> >
-        <span class="search_form__logo"></span>
+        <div class="search_form__logo"></div>
+        <div class="search_form__return icon-arrow-left"></div>
         <div class="search_form__wrapper">
           <input id="search" type="search" class="search_form__input" spellcheck="false" required placeholder="<%= _('Search on Qwant Maps') %>" autocomplete="off">
           <button id="clear_button" class="search_form__clear icon-x" type="button" onmousedown="clearSearch(event)"></button>

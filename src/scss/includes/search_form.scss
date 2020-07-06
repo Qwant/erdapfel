@@ -38,6 +38,18 @@
 }
 
 .top_bar--search_focus {
+  .search_form__logo {
+    display: none;
+  }
+
+  .search_form__return {
+    display: block;
+  }
+
+  .search_form:before {
+    display: none;
+  }
+
   .search_form__wrapper {
     background-color: white;
 
@@ -96,12 +108,26 @@ input[type="search"] {
 
 .search_form__logo {
   flex-shrink: 0;
-  display: block;
   width: 36px;
   height: 36px;
   background: url(../images/qwant-logo.svg) no-repeat;
   background-size: cover;
   margin-right: 12px;
+}
+
+.search_form__return {
+  flex-shrink: 0;
+  display: none;
+  width: 36px;
+  font-size: 32px;
+  text-align: center;
+  color: $grey-black;
+  margin-right: 12px;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary_text;
+  }
 }
 
 .search_form__action {
@@ -248,6 +274,10 @@ input[type="search"] {
   .search_form__logo {
     width: 34px;
     height: 34px;
+  }
+
+  .search_form__return {
+    width: 34px;
   }
 }
 
