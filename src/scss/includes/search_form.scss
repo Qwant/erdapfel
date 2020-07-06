@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   pointer-events: auto;
-  padding: 8px 14px;
+  padding: 8px 12px;
 
   &[data-flag-text]:before {
     font-weight: bold;
@@ -106,7 +106,6 @@ input[type="search"] {
 
 .search_form__action {
   width: 24px;
-  height: 32px;
   background: url(../images/magnifier.svg) center no-repeat;
   background-size: 16px 16px;
   cursor: pointer;
@@ -234,8 +233,12 @@ input[type="search"] {
 }
 
 @media (max-width: 640px) {
-  .search_form__input:invalid {
-    padding-right: 8px;
+  .search_form__wrapper {
+    padding: 0 9px 0 12px;
+  }
+
+  .search_form__action {
+    width: 20px;
   }
 
   .top_bar .autocomplete_suggestions {
@@ -248,7 +251,7 @@ input[type="search"] {
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 359px) {
   .search_form__input {
     &::placeholder {
       color: transparent;
