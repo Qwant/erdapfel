@@ -1,16 +1,16 @@
-#
+# 
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Gwenn M <tornoz@laposte.net>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # Adrien Matissart, 2020
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-22 08:07+0000\n"
+"POT-Creation-Date: 2020-07-03 13:46+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -928,6 +928,9 @@ msgstr "Diskouez ar c'haretañ"
 
 msgid "Search around this place"
 msgstr "Klask tro-dro al lec'h-mañ"
+
+msgid "No result found"
+msgstr ""
 
 msgid "See more"
 msgstr "Gwelet muioc'h"

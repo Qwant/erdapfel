@@ -1,15 +1,15 @@
-#
+# 
 # Translators:
 # Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # jmontane, 2020
 # Adrien Matissart, 2020
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-22 08:07+0000\n"
+"POT-Creation-Date: 2020-07-03 13:46+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -920,6 +920,9 @@ msgstr "Mostra els preferits"
 
 msgid "Search around this place"
 msgstr "Cerca prop d'aquest lloc"
+
+msgid "No result found"
+msgstr ""
 
 msgid "See more"
 msgstr "Més informació"
