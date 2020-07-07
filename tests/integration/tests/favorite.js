@@ -32,7 +32,7 @@ test('restore favorite from localStorage', async () => {
   await page.goto(APP_URL);
   const testTitle = 'demo_fav';
   await storePoi(page, { title: testTitle });
-  await page.click('.service_panel__item__fav');
+  await toggleFavoritePanel(page);
   await page.waitForSelector('.favorite_panel__item__title');
   const title = await page.evaluate(() => {
     return document.querySelector('.favorite_panel__item__title').innerText;

@@ -1,5 +1,7 @@
+/* global PANEL_ANIMATION_DELAY_MS */
 import Poi from 'src/adapters/poi/poi';
 import { getKey } from 'src/libs/pois';
+import { exists } from './tools';
 
 /**
  * Prerequisite : Favorite Panel Must be open
@@ -26,8 +28,12 @@ export async function getFavorites(page) {
  * promise is resolved after animation
  */
 export async function toggleFavoritePanel(page) {
-  await page.click('.service_panel__item__fav');
-  await page.waitForSelector('.favorite_panel', { visible: true, timeOut: 300 });
+  await page.waitForSelector('.menu__button');
+  await page.click('.menu__button');
+  expect(await exists(page, '.menu__panel')).toBeTruthy();
+  await page.waitFor(PANEL_ANIMATION_DELAY_MS);
+  await page.click('.menu__panel__action:nth-child(3)');
+  await page.waitForSelector('.favorite_panel', { visible: true });
 }
 
 export async function storePoi(

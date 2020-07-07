@@ -1,10 +1,10 @@
+/* global PANEL_ANIMATION_DELAY_MS */
 import { clearStore, initBrowser, exists, isHidden } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 
 let browser;
 let page;
 let responseHandler;
-const PANEL_ANIMATION_DELAY_MS = 300;
 
 beforeAll(async () => {
   const browserPage = await initBrowser();
@@ -48,7 +48,7 @@ test('menu open favorite', async () => {
 
 test('close service panel when opening direction', async () => {
   await page.goto(APP_URL);
-  await page.click('.service_panel__item__direction');
+  await page.click('.search_form__direction_shortcut');
   expect(await isHidden(page, '.service_panel')).toBeTruthy();
 });
 
