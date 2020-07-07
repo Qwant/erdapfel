@@ -17,6 +17,7 @@ const Suggest = ({
   withGeoloc,
   onSelect = selectItem,
   onClear,
+  hidePanelOnOpen,
   className,
 }) => {
   const [items, setItems] = useState([]);
@@ -32,7 +33,9 @@ const Suggest = ({
   };
 
   useEffect(() => {
-    togglePanelVisibility(!isOpen);
+    if (hidePanelOnOpen) {
+      togglePanelVisibility(!isOpen);
+    }
   }, [isOpen]);
 
   useEffect(() => {
@@ -151,6 +154,7 @@ Suggest.propTypes = {
   withGeoloc: bool,
   onSelect: func,
   onClear: func,
+  hidePanelOnOpen: bool,
   className: string,
 };
 
