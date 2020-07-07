@@ -14,7 +14,6 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 
 const performanceEnabled = nconf.get().performance.enabled;
-const categoryEnabled = nconf.get().category.enabled;
 const directionConf = nconf.get().direction;
 
 const directSearchRouteName = 'Direct search query';
@@ -66,21 +65,19 @@ export default class PanelManager extends React.Component {
   initRouter() {
     const router = this.props.router;
 
-    if (categoryEnabled) {
-      router.addRoute('Category', '/places/(.*)', placesParams => {
-        const { type: category, q: query, ...otherOptions } = parseQueryString(placesParams);
-        this.setState({
-          ActivePanel: CategoryPanel,
-          options: {
-            poiFilters: {
-              category,
-              query,
-            },
-            ...otherOptions,
+    router.addRoute('Category', '/places/(.*)', placesParams => {
+      const { type: category, q: query, ...otherOptions } = parseQueryString(placesParams);
+      this.setState({
+        ActivePanel: CategoryPanel,
+        options: {
+          poiFilters: {
+            category,
+            query,
           },
-        });
+          ...otherOptions,
+        },
       });
-    }
+    });
 
     router.addRoute('POI', '/place/(.*)', async (poiUrl, options = {}) => {
       const poiId = poiUrl.split('@')[0];
