@@ -40,6 +40,7 @@ const RootComponent = ({
       inputNode={searchBarInputNode}
       outputNode={document.querySelector('.search_form__result')}
       withCategories
+      hidePanelOnOpen
     />
   </DeviceContext.Provider>;
 };
