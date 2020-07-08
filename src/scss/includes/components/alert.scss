@@ -1,0 +1,75 @@
+.alert {
+  position: fixed;
+  z-index: 99999;
+  top: 8px;
+  left: 8px;
+  width: calc(100vw - 16px);
+  min-height: 40px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+
+  &-content {
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .closeBtn {
+    color: $grey-semi-darkness;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    padding: 0 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &--error {
+    border-color: $red-base;
+    background-color: $red-lighter;
+    .alert-icon {
+      color: $red-base;
+    }
+  }
+
+  &--warning {
+    border-color: $orange-base;
+    background-color: $orange-lighter;
+    .alert-icon {
+      color: $orange-base;
+    }
+  }
+
+  &--info {
+    border-color: $action-blue-base;
+    background-color: $action-blue-lighter;
+    .alert-icon {
+      color: $action-blue-base;
+    }
+  }
+
+  &--success {
+    border-color: $green-base;
+    background-color: $green-lighter;
+    .alert-icon {
+      color: $green-base;
+    }
+  }
+}
+
