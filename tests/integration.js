@@ -16,7 +16,6 @@ module.exports = {
   globals: {
     puppeteerArguments: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     APP_URL: 'http://localhost:3000/maps',
-    PANEL_ANIMATION_DELAY_MS: 300,
     __config: config,
   },
   moduleNameMapper: {

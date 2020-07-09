@@ -81,3 +81,14 @@ export async function isHidden(page, selector) {
     return false;
   }
 }
+
+export async function waitForAnimationEnd(page, selector) {
+  await page.evaluate(elementSelector => new Promise(resolve => {
+    const transition = document.querySelector(elementSelector);
+    function onEnd() {
+      transition.removeEventListener('animationend', onEnd);
+      resolve();
+    }
+    transition.addEventListener('animationend', onEnd, false);
+  }), selector);
+}
