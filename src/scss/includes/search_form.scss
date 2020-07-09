@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   pointer-events: auto;
-  padding: 8px 0 8px 12px;
+  padding: 8px 12px;
 
   &[data-flag-text]:before {
     font-weight: bold;
@@ -154,6 +154,7 @@ input[type="search"] {
 }
 
 .search_form__direction_shortcut {
+  margin-right: -12px;
   width: 48px;
   height: 48px;
   background: url(../images/direction-line.svg) center no-repeat;

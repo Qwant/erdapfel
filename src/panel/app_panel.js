@@ -28,8 +28,10 @@ export default class App {
       this.router.routeUrl(getCurrentUrl(), state);
     };
 
-    document.querySelector('.search_form__direction_shortcut')
-      .addEventListener('click', () => { this.navigateTo('/routes'); });
+    const directionShortcut = document.querySelector('.search_form__direction_shortcut');
+    if (directionShortcut) {
+      directionShortcut.addEventListener('click', () => { this.navigateTo('/routes'); });
+    }
 
     ReactDOM.render(
       <RootComponent
