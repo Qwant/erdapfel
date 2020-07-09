@@ -1,15 +1,22 @@
 .alert {
   position: fixed;
-  z-index: 99999;
-  top: 8px;
-  left: 8px;
-  width: calc(100vw - 16px);
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  max-width: calc(100% - 96px);
   min-height: 40px;
+  max-height: 40px;
   border: 1px solid;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 3px;
+
+  @media (max-width: 640px) {
+    top: calc(64px + 16px);
+    max-width: calc(100% - 32px);
+  }
 
   &-content {
     width: 100%;
