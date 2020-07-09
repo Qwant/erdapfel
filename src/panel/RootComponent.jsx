@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 import Suggest from 'src/components/ui/Suggest';
+import MasqAlert from 'src/components/ui/MasqAlert';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
 
@@ -36,6 +37,7 @@ const RootComponent = ({
   return <DeviceContext.Provider value={isMobile}>
     <PanelManager router={router} />
     {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
+    <MasqAlert />
     <Suggest
       inputNode={searchBarInputNode}
       outputNode={document.querySelector('.search_form__result')}
