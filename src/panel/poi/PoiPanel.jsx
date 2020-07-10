@@ -21,6 +21,7 @@ import Store from '../../adapters/store';
 import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
   from 'src/modals/MasqFavoriteModal';
 import PoiItem from 'src/components/PoiItem';
+import { isNullOrEmpty } from 'src/libs/object';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -93,24 +94,23 @@ export default class PoiPanel extends React.Component {
   }
 
   loadPois = () => {
-    const { poi, poiFilters } = this.props;
+    const { poi, centerMap } = this.props;
     window.execOnMapLoaded(() => {
-      fire('add_category_markers', this.props.pois, poiFilters);
-      fire('highlight_category_marker', poi, true);
-      fire('map_mark_poi', poi, { centerMap: true, poiFilters });
+      fire('add_category_markers', this.props.pois, this.props.poiFilters);
     });
+    this.updateMapPoi(poi, { centerMap });
   }
 
   loadPoi = async () => {
-    const { poiId, centerMap, poiFilters } = this.props;
-    const mapOptions = { centerMap, poiFilters };
+    const { poiId, centerMap } = this.props;
+    const mapOptions = { centerMap };
 
     // If a POI object is provided before fetching full data,
     // we can update the map immediately for UX responsiveness
     const shallowPoi = this.props.poi && Poi.deserialize(this.props.poi);
     const updateMapEarly = !!shallowPoi;
     if (updateMapEarly) {
-      this._updateMapPoi(shallowPoi, mapOptions);
+      this.updateMapPoi(shallowPoi, mapOptions);
     }
 
     let poi;
@@ -137,14 +137,19 @@ export default class PoiPanel extends React.Component {
         this.setState({ isPoiInFavorite });
       });
       if (!updateMapEarly) {
-        this._updateMapPoi(poi, mapOptions);
+        this.updateMapPoi(poi, mapOptions);
       }
     }
   }
 
-  _updateMapPoi(poi, options = {}) {
+  updateMapPoi(poi, options = {}) {
     window.execOnMapLoaded(() => {
-      fire('map_mark_poi', poi, options);
+      if (isNullOrEmpty(this.props.poiFilters)) {
+        fire('create_poi_marker', poi);
+      } else {
+        fire('highlight_category_marker', poi, true);
+      }
+      fire('ensure_poi_visible', poi, options);
     });
   }
 
