@@ -1,21 +1,30 @@
 .alert {
   position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  max-width: calc(100% - 96px);
-  min-height: 40px;
-  max-height: 40px;
-  border: 1px solid;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
+  bottom: 32px;
+  left: 50%;
+  width: 800px;
+  max-width: calc(100% - 96px);
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  transform: translateX(-50%);
+  color: white;
+  background-color: $grey-darker;
 
   @media (max-width: 640px) {
     top: calc(64px + 16px);
+    bottom: unset;
     max-width: calc(100% - 32px);
+  }
+
+  &-title {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.29;
+    color: $grey-bright;
   }
 
   &-content {
@@ -28,55 +37,38 @@
 
   &-icon {
     font-size: 18px;
-    margin-right: 8px;
+    margin-right: 16px;
   }
 
   .closeBtn {
-    color: $grey-semi-darkness;
-    position: absolute;
+    color: $grey-semi-lightness;
     height: 100%;
     right: 0;
-    padding: 0 8px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
+    margin-left: 8px;
 
     svg {
       width: 12px;
       height: 12px;
     }
   }
+}
 
-  &--error {
-    border-color: $red-base;
-    background-color: $red-lighter;
-    .alert-icon {
-      color: $red-base;
-    }
-  }
+.icon-error {
+  color: $red-base;
+}
 
-  &--warning {
-    border-color: $orange-base;
-    background-color: $orange-lighter;
-    .alert-icon {
-      color: $orange-base;
-    }
-  }
+.icon-warning {
+  color: $orange-base;
+}
 
-  &--info {
-    border-color: $action-blue-base;
-    background-color: $action-blue-lighter;
-    .alert-icon {
-      color: $action-blue-base;
-    }
-  }
+.icon-info {
+  color: $action-blue-light;
+}
 
-  &--success {
-    border-color: $green-base;
-    background-color: $green-lighter;
-    .alert-icon {
-      color: $green-base;
-    }
-  }
+.icon-success {
+  color: $green-base;
 }
 

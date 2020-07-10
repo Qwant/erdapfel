@@ -5,8 +5,10 @@ $primary_clear: #c8cbd3;
 $secondary_text : #59595f;
 $secondary_text_clear: #697496;
 $secondary_variant_text : #018475; /* link */
+$grey-darker: #29292f;
 $grey-black: #4d4d4c;
 $grey-semi-darkness: #59595f;
+$grey-semi-lightness: #c4c4cc;
 $grey-light: #d9d9e0;
 $grey-bright: #f5f5f7;
 
@@ -27,13 +29,9 @@ $error_text : #721c24;
 
 /* actions */
 $action-blue-base: #1a6aff;
+$action-blue-light: #80acff;
 $action-blue-lighter: #e5eeff;
 
 $red-base: #ff1d3c;
-$red-lighter: #ffd4da;
-
 $green-base: #83c458;
-$green-lighter: #eef9eb;
-
 $orange-base: #ff851e;
-$orange-lighter: #ffe8d5;

@@ -10,18 +10,18 @@ const AlertIcon = {
 };
 
 const Alert = ({ className = '', title, type = 'warning', onClose, closeButtonLabel }) =>
-  <div className={cs('alert', { [`alert--${type}`]: type }, className)}>
+  <div className={cs('alert', className)}>
     <div className="alert-content">
-      <i className={`alert-icon icon-${AlertIcon[type]}`}></i>
-      <span role="alert">{title}</span>
-      <button
-        className={'closeBtn'}
-        onClick={onClose}
-        aria-label={closeButtonLabel}
-      >
-        <i className="icon-x" />
-      </button>
+      <i className={`alert-icon icon-${AlertIcon[type]} icon-${type}`}></i>
+      <span role="alert" className="alert-title">{title}</span>
     </div>
+    <button
+      className={'closeBtn'}
+      onClick={onClose}
+      aria-label={closeButtonLabel}
+    >
+      <i className="icon-x" />
+    </button>
   </div>
 ;
 
