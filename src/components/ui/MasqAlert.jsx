@@ -1,3 +1,4 @@
+/* global _ */
 import React, { useState } from 'react';
 import nconf from '@qwant/nconf-getter';
 import Alert from 'src/components/ui/Alert';
@@ -18,7 +19,11 @@ const MasqAlert = () => {
   };
 
   return <Alert
-    title={`Masq by Qwant will be disabled starting from ${masqAlertDate}. Learn more`}
+    title={_(
+      'Masq by Qwant will be disabled starting from {masqAlertDate}. Learn more',
+      'masq',
+      { masqAlertDate }
+    )}
     type="info"
     onClose={dismiss}
     closeButtonLabel="close"
