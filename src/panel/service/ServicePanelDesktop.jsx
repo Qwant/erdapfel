@@ -18,7 +18,8 @@ const ServicePanelDesktop = () => {
     </Panel>
     <div className="u-center">
       <Button
-        variant="shadow"
+        className="service_panel__category_toggle"
+        variant="tertiary"
         icon={collapsed ? 'icon_chevron-down' : 'icon_chevron-up'}
         onClick={() => setCollapsed(!collapsed)}
       >

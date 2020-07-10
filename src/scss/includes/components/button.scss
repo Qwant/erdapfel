@@ -8,23 +8,22 @@
   pointer-events: all;
   cursor: pointer;
 
-  &--outline {
-    background-color: white;
-    border: 1px solid $action-blue-base;
-    color: $action-blue-base;
-  }
-
-  &--shadow {
-    background-color: white;
-    color: $action-blue-base;
-    box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
-  }
-
   &--primary {
     background-color: $action-blue-base;
     border: 1px solid $action-blue-base;
     color: white;
     font-weight: bold;
+  }
+
+  &--secondary {
+    background-color: white;
+    border: 1px solid $action-blue-base;
+    color: $action-blue-base;
+  }
+
+  &--tertiary {
+    background-color: white;
+    color: $action-blue-base;
   }
 
   &-content {
