@@ -14,6 +14,12 @@
     color: $action-blue-base;
   }
 
+  &--shadow {
+    background-color: white;
+    color: $action-blue-base;
+    box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+  }
+
   &--primary {
     background-color: $action-blue-base;
     border: 1px solid $action-blue-base;
@@ -37,13 +43,16 @@
   }
 
   &-icon + &-content {
-    margin-left: 6px;
+    margin-left: 4px;
   }
 
   &::-moz-focus-inner {
     border: 0;
   }
 
+  &:not(.button--primary):hover {
+    background: $action-lighter;
+  }
 }
 
 a.button {

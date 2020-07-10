@@ -23,7 +23,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.string,
-  variant: PropTypes.oneOf(['outline', 'primary']),
+  variant: PropTypes.oneOf(['outline', 'primary', 'shadow']),
   type: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
