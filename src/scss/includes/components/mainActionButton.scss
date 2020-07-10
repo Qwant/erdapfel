@@ -1,44 +1,33 @@
 .mainActionButton {
   cursor: pointer;
+  padding: 8px;
 
   &-label {
-    font-size: 14px;
+    font-size: 12px;
     color: #5c6f84;
     line-height: 16px;
-    margin: 5px 0 0;
   }
 
   &-icon {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
     margin: auto;
     border-radius: 50%;
-    transition: transform .1s ease-in;
+    margin-bottom: 4px;
   }
 
   &:hover {
-    .mainActionButton-icon {
-      transform: scale3d(1.1, 1.1, 1.1);
-    }
+    background-color: $grey-bright;
+    border-radius: 8px;
   }
 }
 
-.mainActionButton--category,
-.mainActionButton--event {
+.mainActionButton--category {
   .mainActionButton-icon {
     font-family: iconfont !important;
     color: #fff;
     font-size: 40px;
-    line-height: 40px;
-  }
-}
-
-.mainActionButton--feature {
-  .mainActionButton-icon {
-    border: 1px solid $action-blue-base;
-    color: $action-blue-base;
-    font-size: 22px;
-    line-height: 36px;
   }
 }
 
@@ -48,6 +37,5 @@
     border: none;
     color: #fff;
     font-size: 20px;
-    line-height: 40px;
   }
 }

@@ -1,19 +1,10 @@
 .service_panel {
   position: relative;
-  background: url('../images/panel_top.svg') white repeat-x;
-  padding-top: 5px;
+  background: white;
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
-
-  hr {
-    border-top: 1px solid #e0e1e6;
-    margin: 0 29px;
-  }
-
-  h3 {
-    margin-bottom: 18px;
-  }
+  padding: 20px 14px 12px;
 
   .panel-header {
     display: none;
@@ -21,35 +12,26 @@
 }
 
 .service_panel__categories,
-.service_panel__events,
 .service_panel__actions {
-  margin: 0;
-  padding: 0 6px 10px;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
   .mainActionButton {
-    width: 25%;
-    margin: 5px 0 15px 0;
+    width: 84px;
+    margin-bottom: 8px;
   }
-}
-
-.service_panel__events,
-.service_panel__actions {
-  padding-top: 15px;
 }
 
 @media (max-width: 640px){
   .panel.service_panel {
-    height: 220px;
+    height: 260px;
     background: #fff;
-    padding-top: 0;
+    padding: 0;
 
     hr {
-      margin-bottom: 16px;
-    }
-
-    h3 {
-      margin-bottom: 6px;
+      border-top: 1px solid #e0e1e6;
+      margin-bottom: 20px;
     }
 
     .panel-header {
@@ -58,10 +40,6 @@
       display: block;
       min-height: 50px;
       color: $grey-semi-darkness;
-    }
-
-    .service_panel__categories {
-      height: auto;
     }
   }
 
@@ -80,9 +58,13 @@
     padding: 10px 16px 5px;
   }
 
-  .service_panel__events,
+  .service_panel__categories,
   .service_panel__actions {
-    padding-top: 5px;
-    text-align: center;
+    margin: 0 auto;
+    display: block;
+
+    .mainActionButton {
+      width: 25%;
+    }
   }
 }

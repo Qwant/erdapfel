@@ -11,14 +11,13 @@ noscript {
 
 .panel_container {
   position: absolute;
-  top: 104px;
-  left: 18px;
+  top: calc(#{$top_bar_height} + #{$ui_margin} + 16px);
+  left: $ui_margin;
   transition: transform 0.3s;
-  max-height: calc(100vh - 75px);
 }
 
 .directions-open .panel_container {
-  top: 18px;
+  top: $ui_margin;
 }
 
 .map_container {

@@ -28,7 +28,7 @@ export default class ExtendedControl {
       this._resetNorthAndTilt();
     });
     this._direction = this._createButton(
-      'direction_shortcut icon-corner-up-right hidden',
+      'direction_shortcut hidden',
       'direction',
       () => {
         window.app.navigateTo('/routes');

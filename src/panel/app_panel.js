@@ -28,6 +28,11 @@ export default class App {
       this.router.routeUrl(getCurrentUrl(), state);
     };
 
+    const directionShortcut = document.querySelector('.search_form__direction_shortcut');
+    if (directionShortcut) {
+      directionShortcut.addEventListener('click', () => { this.navigateTo('/routes'); });
+    }
+
     ReactDOM.render(
       <RootComponent
         router={this.router}

@@ -1,10 +1,9 @@
-import { clearStore, initBrowser, exists, isHidden } from '../tools';
+import { clearStore, initBrowser, exists, isHidden, waitForAnimationEnd } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 
 let browser;
 let page;
 let responseHandler;
-const PANEL_ANIMATION_DELAY_MS = 300;
 
 beforeAll(async () => {
   const browserPage = await initBrowser();
@@ -22,7 +21,7 @@ test('test menu toggling', async () => {
   await page.click('.menu__button');
   expect(await exists(page, '.menu__panel')).toBeTruthy();
 
-  await page.waitFor(PANEL_ANIMATION_DELAY_MS);
+  await waitForAnimationEnd(page, '.menu__panel');
   await page.click('.menu__panel__top__close');
   expect(await isHidden(page, '.menu_panel')).toBeTruthy();
 });
@@ -33,14 +32,14 @@ test('menu open favorite', async () => {
 
   await page.click('.menu__button');
   await page.waitForSelector('.menu__panel');
-  await page.waitFor(PANEL_ANIMATION_DELAY_MS);
+  await waitForAnimationEnd(page, '.menu__panel');
   await page.click('.menu__panel__action:nth-child(2)');
 
   expect(await exists(page, '.direction_panel')).toBeTruthy();
 
   await page.click('.menu__button');
   await page.waitForSelector('.menu__panel__action');
-  await page.waitFor(PANEL_ANIMATION_DELAY_MS);
+  await waitForAnimationEnd(page, '.menu__panel');
   await page.click('.menu__panel__action:nth-child(3)');
 
   expect(await exists(page, '.favorite_panel')).toBeTruthy();
@@ -48,7 +47,7 @@ test('menu open favorite', async () => {
 
 test('close service panel when opening direction', async () => {
   await page.goto(APP_URL);
-  await page.click('.service_panel__item__direction');
+  await page.click('.search_form__direction_shortcut');
   expect(await isHidden(page, '.service_panel')).toBeTruthy();
 });
 
