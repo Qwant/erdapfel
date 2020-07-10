@@ -23,7 +23,7 @@ const ServicePanelDesktop = () => {
         icon={collapsed ? 'icon_chevron-down' : 'icon_chevron-up'}
         onClick={() => setCollapsed(!collapsed)}
       >
-        {collapsed ? _('Display more proximity services') : _('Reduce')}
+        {collapsed ? _('See more nearby services') : _('Reduce')}
       </Button>
     </div>
   </Fragment>;
