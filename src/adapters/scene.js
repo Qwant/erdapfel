@@ -17,7 +17,6 @@ import { parseMapHash, getMapHash } from 'src/libs/url_utils';
 import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
-import { isNullOrEmpty } from 'src/libs/object';
 import locale from '../mapbox/locale';
 
 const baseUrl = nconf.get().system.baseUrl;
@@ -166,13 +165,12 @@ Scene.prototype.initMapBox = function() {
     this.fitMap(item, this.getCurrentPaddings(), forceAnimate);
   });
 
-  listen('map_mark_poi', (poi, options) => {
+  listen('ensure_poi_visible', (poi, options) => {
     this.ensureMarkerIsVisible(poi, options);
-    // The presence of poiFilters mean we are in the context of a list of POIs
-    // where we don't need to create a new icon as it already exists
-    if (isNullOrEmpty(options.poiFilters)) {
-      this.addMarker(poi, options);
-    }
+  });
+
+  listen('create_poi_marker', poi => {
+    this.addMarker(poi);
   });
 
   listen('clean_marker', () => {
