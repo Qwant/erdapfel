@@ -1,7 +1,7 @@
 .alert {
   position: fixed;
   top: 92px;
-  width: 284px;
+  width: 400px;
   right: 12px;
   padding: 16px;
   border-radius: 12px;
@@ -11,10 +11,9 @@
 
   @media (max-width: 640px) {
     top: calc(64px + 16px);
-    left: 50%;
-    transform: translateX(-50%);
     bottom: unset;
-    width: calc(100vw - 32px);
+    right: 12px;
+    max-width: calc(100vw - 24px);
   }
 
   &-title {
