@@ -1,6 +1,6 @@
 import React from 'react';
 import cs from 'classnames';
-import { string, oneOf, func } from 'prop-types';
+import { string, oneOf, func, node, oneOfType } from 'prop-types';
 
 const AlertIcon = {
   success: 'check-circle',
@@ -40,7 +40,7 @@ const Alert = ({
 Alert.propTypes = {
   className: string,
   title: string.isRequired,
-  description: string.isRequired,
+  description: oneOfType([string, node]).isRequired,
   type: oneOf(Object.keys(AlertIcon)),
   onClose: func.isRequired,
   closeButtonLabel: string.isRequired,
