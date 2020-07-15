@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 const Button = ({
-  children, icon, variant = 'outline', type = 'button',
+  children, icon, variant = 'secondary', type = 'button',
   href, onClick, className, ...rest
 }) => {
   const Tag = href ? 'a' : 'button';
@@ -23,7 +23,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.string,
-  variant: PropTypes.oneOf(['outline', 'primary']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   type: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
