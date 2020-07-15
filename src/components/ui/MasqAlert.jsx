@@ -19,7 +19,8 @@ const MasqAlert = () => {
   };
 
   return <Alert
-    title={_(
+    title={_('Masq will be disabled', 'masq')}
+    description={_(
       'Masq by Qwant will be disabled starting from {masqAlertDate}. Learn more',
       'masq',
       { masqAlertDate }

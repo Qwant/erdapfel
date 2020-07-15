@@ -9,25 +9,38 @@ const AlertIcon = {
   error: 'alert-octagon',
 };
 
-const Alert = ({ className = '', title, type = 'warning', onClose, closeButtonLabel }) =>
+const Alert = ({
+  className = '',
+  title,
+  description,
+  type = 'warning',
+  onClose,
+  closeButtonLabel,
+}) =>
   <div className={cs('alert', className)}>
+    <span className="alert-title">
+      <span>
+        <i className={`alert-icon icon-${AlertIcon[type]} icon-${type}`}></i>
+        <span role="alert">{title}</span>
+      </span>
+      <button
+        className={'closeBtn'}
+        onClick={onClose}
+        aria-label={closeButtonLabel}
+      >
+        <i className="icon-x" />
+      </button>
+    </span>
     <div className="alert-content">
-      <i className={`alert-icon icon-${AlertIcon[type]} icon-${type}`}></i>
-      <span role="alert" className="alert-title">{title}</span>
+      <span role="alert">{description}</span>
     </div>
-    <button
-      className={'closeBtn'}
-      onClick={onClose}
-      aria-label={closeButtonLabel}
-    >
-      <i className="icon-x" />
-    </button>
   </div>
 ;
 
 Alert.propTypes = {
   className: string,
   title: string.isRequired,
+  description: string.isRequired,
   type: oneOf(Object.keys(AlertIcon)),
   onClose: func.isRequired,
   closeButtonLabel: string.isRequired,

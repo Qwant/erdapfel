@@ -1,53 +1,54 @@
 .alert {
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  bottom: 32px;
-  left: 50%;
-  width: 800px;
-  max-width: calc(100% - 96px);
-  min-height: 40px;
-  padding: 8px 16px;
+  top: 92px;
+  width: 284px;
+  right: 12px;
+  padding: 16px;
   border-radius: 12px;
-  transform: translateX(-50%);
-  color: white;
-  background-color: $grey-darker;
+  color: $grey-semi-darkness;
+  background-color: $background;
+  box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
 
   @media (max-width: 640px) {
     top: calc(64px + 16px);
+    left: 50%;
+    transform: translateX(-50%);
     bottom: unset;
-    max-width: calc(100% - 32px);
+    width: calc(100vw - 32px);
   }
 
   &-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 16px;
     font-size: 14px;
     font-weight: bold;
-    line-height: 1.29;
-    color: $grey-bright;
+    line-height: 18px;
+    color: $grey-black;
+
+    > span {
+      display: inline-flex;
+      align-items: center;
+    }
   }
 
   &-content {
-    width: 100%;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
+    color: $grey-semi-darkness;
+    font-size: 14px;
+    line-height: 18px;
   }
 
   &-icon {
-    font-size: 18px;
-    margin-right: 16px;
+    font-size: 22px;
+    margin-right: 8px;
   }
 
   .closeBtn {
-    color: $grey-semi-lightness;
-    height: 100%;
-    right: 0;
+    color: $grey-grey;
+    align-self: start;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    margin-left: 8px;
 
     svg {
       width: 12px;
@@ -65,7 +66,7 @@
 }
 
 .icon-info {
-  color: $action-blue-light;
+  color: $action-blue-base;
 }
 
 .icon-success {
