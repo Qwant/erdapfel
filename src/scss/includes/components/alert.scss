@@ -1,7 +1,7 @@
 .alert {
   position: fixed;
   top: 92px;
-  width: 400px;
+  width: 320px;
   right: 12px;
   padding: 16px;
   border-radius: 12px;
@@ -9,7 +9,12 @@
   background-color: $background;
   box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
 
+  @media (max-width: 760px) {
+    width: 200px;
+  }
+
   @media (max-width: 640px) {
+    width: 320px;
     top: calc(64px + 16px);
     bottom: unset;
     right: 12px;
