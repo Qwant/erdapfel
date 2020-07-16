@@ -1,5 +1,10 @@
-.panel-hidden .panel:not(.direction_panel) {
-  display: none;
+.panel-hidden {
+  .panel:not(.direction_panel) {
+    display: none;
+  }
+  .service_panel__category_toggle {
+    display: none;
+  }
 }
 
 .panel {
