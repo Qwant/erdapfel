@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-03 13:46+0000\n"
+"POT-Creation-Date: 2020-07-15 11:51+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -39,47 +39,47 @@ msgstr "Cerca a Qwant Maps"
 msgid "Search"
 msgstr "Cerca"
 
-msgid "Close"
-msgstr "Tanca"
+msgid "Directions"
+msgstr "Indicacions"
 
 msgid "JavaScript is required to view this application."
 msgstr "El JavaScript és necessari per a veure aquesta aplicació."
 
-msgid "hotel"
-msgstr "hotel"
-
 msgid "restaurant"
 msgstr "restaurant"
 
-msgid "leisure"
-msgstr "lleure"
-
-msgid "bar"
-msgstr "bar de copes"
+msgid "hotel"
+msgstr "hotel"
 
 msgid "supermarket"
 msgstr "supermercat"
 
-msgid "bank"
-msgstr "banc"
+msgid "bar"
+msgstr "bar de copes"
 
 msgid "pharmacy"
 msgstr "farmàcia"
 
-msgid "education"
-msgstr "educació"
-
-msgid "museum"
-msgstr "museu"
+msgid "leisure"
+msgstr "lleure"
 
 msgid "service"
 msgstr "servei"
 
-msgid "sport"
-msgstr "esport"
-
 msgid "health"
 msgstr "salut"
+
+msgid "education"
+msgstr "educació"
+
+msgid "bank"
+msgstr "banc"
+
+msgid "museum"
+msgstr "museu"
+
+msgid "sport"
+msgstr "esport"
 
 msgid "Qwant is also"
 msgstr "Qwant també és"
@@ -842,6 +842,9 @@ msgstr "Ben fet, s'ha activat Masq!"
 msgid "Your data is now secured, enjoy !"
 msgstr "Les dades ara s'han assegurat, gaudiu-ne!"
 
+msgid "Close"
+msgstr "Tanca"
+
 msgid "Masq activation failed"
 msgstr ""
 
@@ -870,9 +873,6 @@ msgstr "Activa"
 
 msgid "How does it work ?"
 msgstr "Com funciona?"
-
-msgid "Directions"
-msgstr "Indicacions"
 
 msgid "Favorites"
 msgstr "Preferits"
@@ -1045,8 +1045,11 @@ msgstr "Torna a la llista"
 msgid "Back"
 msgstr "Enrere"
 
-msgid "Qwant Maps Services"
-msgstr "Serveis Qwant Maps"
+msgid "See more nearby services"
+msgstr ""
+
+msgid "Reduce"
+msgstr ""
 
 msgid "Unfold to see quick actions"
 msgstr ""

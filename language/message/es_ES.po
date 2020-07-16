@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-03 13:46+0000\n"
+"POT-Creation-Date: 2020-07-15 11:51+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
@@ -40,47 +40,47 @@ msgstr "Buscar en Qwant Maps"
 msgid "Search"
 msgstr "Buscar"
 
-msgid "Close"
-msgstr "Cerrar"
+msgid "Directions"
+msgstr "Indicaciones"
 
 msgid "JavaScript is required to view this application."
 msgstr "Es necesario activar JavaScript para ver esta aplicación"
 
-msgid "hotel"
-msgstr "hotel"
-
 msgid "restaurant"
 msgstr "restaurante"
 
-msgid "leisure"
-msgstr "ocio"
-
-msgid "bar"
-msgstr "bar"
+msgid "hotel"
+msgstr "hotel"
 
 msgid "supermarket"
 msgstr "supermercado"
 
-msgid "bank"
-msgstr "banco"
+msgid "bar"
+msgstr "bar"
 
 msgid "pharmacy"
 msgstr "farmacia"
 
-msgid "education"
-msgstr "Educación"
-
-msgid "museum"
-msgstr "museo"
+msgid "leisure"
+msgstr "ocio"
 
 msgid "service"
 msgstr "servicio"
 
-msgid "sport"
-msgstr "deporte"
-
 msgid "health"
 msgstr "salud"
+
+msgid "education"
+msgstr "Educación"
+
+msgid "bank"
+msgstr "banco"
+
+msgid "museum"
+msgstr "museo"
+
+msgid "sport"
+msgstr "deporte"
 
 msgid "Qwant is also"
 msgstr "Qwant es también"
@@ -843,6 +843,9 @@ msgstr "¡Muy bien, Masq se ha activado!"
 msgid "Your data is now secured, enjoy !"
 msgstr "Tus datos están protegidos ahora, ¡disfruta!"
 
+msgid "Close"
+msgstr "Cerrar"
+
 msgid "Masq activation failed"
 msgstr "Hubo un error al activar Masq."
 
@@ -872,9 +875,6 @@ msgstr "Activar"
 
 msgid "How does it work ?"
 msgstr "¿Cómo funciona?"
-
-msgid "Directions"
-msgstr "Indicaciones"
 
 msgid "Favorites"
 msgstr "Favoritos"
@@ -1040,7 +1040,7 @@ msgid "Do not ask again"
 msgstr "No volver a preguntar"
 
 msgid "Back to favorites"
-msgstr ""
+msgstr "Volver al favorito"
 
 msgid "Back to list"
 msgstr "Volver a la lista"
@@ -1048,8 +1048,11 @@ msgstr "Volver a la lista"
 msgid "Back"
 msgstr "Volver"
 
-msgid "Qwant Maps Services"
-msgstr "Servicios de Qwant Maps"
+msgid "See more nearby services"
+msgstr ""
+
+msgid "Reduce"
+msgstr ""
 
 msgid "Unfold to see quick actions"
 msgstr "Abre para ver las acciones rápidas"
