@@ -20,7 +20,8 @@ const computeStyle = (isAttachedToInput, inputNode, suggestItems) => {
     };
   }
 
-  if (suggestItems.length > 0 && suggestItems[suggestItems.length - 1].simpleLabel) {
+  if (suggestItems.length === 0 ||
+      suggestItems.length > 0 && suggestItems[suggestItems.length - 1].simpleLabel) {
     // Revove bottom padding if last item is a simple label (no results)
     style = {
       ...style,
