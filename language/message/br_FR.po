@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-03 13:46+0000\n"
+"POT-Creation-Date: 2020-07-15 11:51+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -40,47 +40,47 @@ msgstr "Klask war Qwant Maps"
 msgid "Search"
 msgstr "Klask"
 
-msgid "Close"
-msgstr "Serriñ"
+msgid "Directions"
+msgstr "Tuadurioù"
 
 msgid "JavaScript is required to view this application."
 msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
 
-msgid "hotel"
-msgstr "leti"
-
 msgid "restaurant"
 msgstr "predti"
 
-msgid "leisure"
-msgstr "dudioù"
-
-msgid "bar"
-msgstr "tavarn"
+msgid "hotel"
+msgstr "leti"
 
 msgid "supermarket"
 msgstr "gourmarc'had"
 
-msgid "bank"
-msgstr "ti-bank"
+msgid "bar"
+msgstr "tavarn"
 
 msgid "pharmacy"
 msgstr "apotikerezh"
 
-msgid "education"
-msgstr "deskadurezh"
-
-msgid "museum"
-msgstr "mirdi"
+msgid "leisure"
+msgstr "dudioù"
 
 msgid "service"
 msgstr "servij"
 
-msgid "sport"
-msgstr "sport"
-
 msgid "health"
 msgstr "yec'hed"
+
+msgid "education"
+msgstr "deskadurezh"
+
+msgid "bank"
+msgstr "ti-bank"
+
+msgid "museum"
+msgstr "mirdi"
+
+msgid "sport"
+msgstr "sport"
 
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
@@ -847,6 +847,9 @@ msgstr "Ma, mat-kaer enaouet emañ Masq!"
 msgid "Your data is now secured, enjoy !"
 msgstr "Suraet eo bremañ ho roadennoù, profitit!"
 
+msgid "Close"
+msgstr "Serriñ"
+
 msgid "Masq activation failed"
 msgstr "Enaouadur Masq c'hwitet"
 
@@ -877,9 +880,6 @@ msgstr "Enaouiñ"
 
 msgid "How does it work ?"
 msgstr "Penaos ez a en-dro?"
-
-msgid "Directions"
-msgstr "Tuadurioù"
 
 msgid "Favorites"
 msgstr "Sinedoù"
@@ -1053,8 +1053,11 @@ msgstr "Distreiñ d'al listenn"
 msgid "Back"
 msgstr "Distreiñ"
 
-msgid "Qwant Maps Services"
-msgstr "Servijoù Qwant Maps"
+msgid "See more nearby services"
+msgstr ""
+
+msgid "Reduce"
+msgstr ""
 
 msgid "Unfold to see quick actions"
 msgstr ""

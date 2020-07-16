@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-03 13:46+0000\n"
+"POT-Creation-Date: 2020-07-15 11:51+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -46,47 +46,47 @@ msgstr "Auf Qwant Maps suchen"
 msgid "Search"
 msgstr "Suchen"
 
-msgid "Close"
-msgstr "Schließen"
+msgid "Directions"
+msgstr "Wegbeschreibung"
 
 msgid "JavaScript is required to view this application."
 msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
 
-msgid "hotel"
-msgstr "Hotel"
-
 msgid "restaurant"
 msgstr "Restaurant"
 
-msgid "leisure"
-msgstr "Freizeit"
-
-msgid "bar"
-msgstr "Bar"
+msgid "hotel"
+msgstr "Hotel"
 
 msgid "supermarket"
 msgstr "Supermarkt"
 
-msgid "bank"
-msgstr "Bank"
+msgid "bar"
+msgstr "Bar"
 
 msgid "pharmacy"
 msgstr "Apotheke"
 
-msgid "education"
-msgstr "Bildung"
-
-msgid "museum"
-msgstr "Museum"
+msgid "leisure"
+msgstr "Freizeit"
 
 msgid "service"
 msgstr "Service"
 
-msgid "sport"
-msgstr "Sport"
-
 msgid "health"
 msgstr "Gesundheit"
+
+msgid "education"
+msgstr "Bildung"
+
+msgid "bank"
+msgstr "Bank"
+
+msgid "museum"
+msgstr "Museum"
+
+msgid "sport"
+msgstr "Sport"
 
 msgid "Qwant is also"
 msgstr "Qwant ist außerdem"
@@ -846,6 +846,9 @@ msgstr "Gut gemacht, Masq wurde aktiviert!"
 msgid "Your data is now secured, enjoy !"
 msgstr "Ihre Daten sind nun sicher, viel Vergnügen!"
 
+msgid "Close"
+msgstr "Schließen"
+
 msgid "Masq activation failed"
 msgstr "Masq Aktivierung fehlgeschlagen"
 
@@ -876,9 +879,6 @@ msgstr "Aktivieren"
 
 msgid "How does it work ?"
 msgstr "Wie funktioniert das?"
-
-msgid "Directions"
-msgstr "Wegbeschreibung"
 
 msgid "Favorites"
 msgstr "Favoriten"
@@ -1052,8 +1052,11 @@ msgstr "Zurück zur Liste"
 msgid "Back"
 msgstr "Zurück"
 
-msgid "Qwant Maps Services"
-msgstr "Qwant Maps-Dienste"
+msgid "See more nearby services"
+msgstr ""
+
+msgid "Reduce"
+msgstr ""
 
 msgid "Unfold to see quick actions"
 msgstr ""

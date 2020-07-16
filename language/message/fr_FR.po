@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-03 13:46+0000\n"
+"POT-Creation-Date: 2020-07-15 11:51+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -45,49 +45,49 @@ msgstr "Rechercher dans Qwant Maps"
 msgid "Search"
 msgstr "Rechercher"
 
-msgid "Close"
-msgstr "Fermer"
+msgid "Directions"
+msgstr "Itinéraire"
 
 msgid "JavaScript is required to view this application."
 msgstr ""
 "Il est nécessaire que JavaScript soit activé pour afficher cette "
 "application."
 
-msgid "hotel"
-msgstr "hôtel"
-
 msgid "restaurant"
 msgstr "restaurant"
 
-msgid "leisure"
-msgstr "loisirs"
-
-msgid "bar"
-msgstr "bar"
+msgid "hotel"
+msgstr "hôtel"
 
 msgid "supermarket"
 msgstr "supermarché"
 
-msgid "bank"
-msgstr "banque"
+msgid "bar"
+msgstr "bar"
 
 msgid "pharmacy"
 msgstr "pharmacie"
 
-msgid "education"
-msgstr "éducation"
-
-msgid "museum"
-msgstr "musée"
+msgid "leisure"
+msgstr "loisirs"
 
 msgid "service"
 msgstr "services"
 
-msgid "sport"
-msgstr "sport"
-
 msgid "health"
 msgstr "santé"
+
+msgid "education"
+msgstr "éducation"
+
+msgid "bank"
+msgstr "banque"
+
+msgid "museum"
+msgstr "musée"
+
+msgid "sport"
+msgstr "sport"
 
 msgid "Qwant is also"
 msgstr "Qwant c'est aussi"
@@ -851,6 +851,9 @@ msgstr "Bien, Masq est activé !"
 msgid "Your data is now secured, enjoy !"
 msgstr "Vos données sont maintenant sécurisées, profitez !"
 
+msgid "Close"
+msgstr "Fermer"
+
 msgid "Masq activation failed"
 msgstr "Activation de Masq échouée"
 
@@ -881,9 +884,6 @@ msgstr "Activer"
 
 msgid "How does it work ?"
 msgstr "Comment ça marche ?"
-
-msgid "Directions"
-msgstr "Itinéraire"
 
 msgid "Favorites"
 msgstr "Favoris"
@@ -1059,8 +1059,11 @@ msgstr "Retour à la liste"
 msgid "Back"
 msgstr "Retour"
 
-msgid "Qwant Maps Services"
-msgstr "Services Qwant Maps"
+msgid "See more nearby services"
+msgstr "Afficher plus de services à proximité"
+
+msgid "Reduce"
+msgstr "Réduire"
 
 msgid "Unfold to see quick actions"
 msgstr "Déplier pour afficher les actions rapides"
