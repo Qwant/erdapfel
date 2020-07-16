@@ -1,7 +1,7 @@
 .alert {
   position: fixed;
   top: 92px;
-  width: 320px;
+  width: 360px;
   right: 12px;
   padding: 16px;
   border-radius: 12px;
@@ -14,7 +14,7 @@
   }
 
   @media (max-width: 640px) {
-    width: 320px;
+    width: 360px;
     top: calc(64px + 16px);
     bottom: unset;
     right: 12px;
