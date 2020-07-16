@@ -68,7 +68,7 @@ export const fetchSuggests = (query, options = {}) =>
     maxFavorites: options.maxFavorites || !query ? 5 : 2,
   });
 
-export const modifyList = (items, withGeoloc) => {
+export const modifyList = (items, withGeoloc, query) => {
   const firstFav = items.findIndex(item => item instanceof PoiStore);
 
   if (firstFav > -1) {
@@ -79,7 +79,7 @@ export const modifyList = (items, withGeoloc) => {
     items.splice(0, 0, NavigatorGeolocalisationPoi.getInstance());
   }
 
-  if (items.length === 0 || items.length === 1 && withGeoloc) {
+  if (query.length > 0 && (items.length === 0 || items.length === 1 && withGeoloc)) {
     items.push({ errorLabel: _('No result found', 'suggest') });
   }
 
