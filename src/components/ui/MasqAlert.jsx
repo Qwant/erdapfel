@@ -7,29 +7,23 @@ const masqAlertEnabled = nconf.get().masq.alertEnabled;
 const masqLink = nconf.get().masq.link;
 
 const MasqAlert = () => {
-  if (!masqAlertEnabled) {
-    return null;
-  }
-
+  const [masqAlertDate, setMasqAlertDate] = useState('');
   let masqDismissed = false;
   try {
     masqDismissed = window.localStorage.getItem('masq_alert_dismissed');
   } catch (e) {
     console.error(e);
   }
-
-  const [masqAlertDate, setMasqAlertDate] = useState('');
   const [isVisible, setIsVisible] = useState(masqAlertEnabled && masqDismissed !== 'true');
-  if (!isVisible) {
-    return null;
-  }
 
   useEffect(() => {
     setMasqAlertDate(Intl
-      .DateTimeFormat(window.getLang().locale.replace('_', '-'))
+      .DateTimeFormat(
+        window.getLang().locale.replace('_', '-'),
+        { day: 'numeric', month: 'long', year: 'numeric' })
       .format(new Date(nconf.get().masq.alertDate))
     );
-  });
+  }, []);
 
   const dismiss = () => {
     setIsVisible(false);
@@ -40,6 +34,10 @@ const MasqAlert = () => {
     }
   };
 
+  if (!isVisible) {
+    return null;
+  }
+
   return <Alert
     title={_('Masq will be disabled', 'masq')}
     description={
@@ -48,8 +46,9 @@ const MasqAlert = () => {
         'masq',
         { masqAlertDate }
       )}
+      {' '}
       <a href={ masqLink } rel="noopener noreferrer">
-        {` ${_('Learn more', 'masq')}`}
+        {`${_('Learn more', 'masq')}`}
       </a>
       </span>
     }
