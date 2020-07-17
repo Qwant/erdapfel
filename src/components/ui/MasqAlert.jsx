@@ -7,6 +7,10 @@ const masqAlertEnabled = nconf.get().masq.alertEnabled;
 const masqLink = nconf.get().masq.link;
 
 const MasqAlert = () => {
+  if (!masqAlertEnabled) {
+    return null;
+  }
+
   const masqDismissed = window.localStorage.getItem('masq_alert_dismissed');
   const [masqAlertDate, setMasqAlertDate] = useState('');
   const [isVisible, setIsVisible] = useState(masqAlertEnabled && masqDismissed !== 'true');
