@@ -1,18 +1,25 @@
 /* global _ */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import nconf from '@qwant/nconf-getter';
 import Alert from 'src/components/ui/Alert';
 
 const masqAlertEnabled = nconf.get().masq.alertEnabled;
 const masqLink = nconf.get().masq.link;
-const masqAlertDate = (new Date(nconf.get().masq.alertDate)).toDateString();
 
 const MasqAlert = () => {
   const masqDismissed = window.localStorage.getItem('masq_alert_dismissed');
+  const [masqAlertDate, setMasqAlertDate] = useState('');
   const [isVisible, setIsVisible] = useState(masqAlertEnabled && masqDismissed !== 'true');
   if (!isVisible) {
     return null;
   }
+
+  useEffect(() => {
+    setMasqAlertDate(Intl
+      .DateTimeFormat(window.getLang().locale.replace('_', '-'))
+      .format(new Date(nconf.get().masq.alertDate))
+    );
+  });
 
   const dismiss = () => {
     setIsVisible(false);
