@@ -1,12 +1,15 @@
 import IdunnPoi from '../adapters/poi/idunn_poi';
 
 /**
- * Format an address given an address object (name, city, country, and label)
+ * Format an address given an address object (name, city, country, parentAdmins and label)
  * @param {*} address - an address object
  */
 export function format(address) {
   if (!address) {return '';}
-  const { street, city, country } = address;
+  const { street, city, country, parentAdmins } = address;
+  if (!street && parentAdmins) {
+    return parentAdmins;
+  }
   return [street, city, country]
     .filter(i => i) // Filter out any undefined value
     .join(', ');
@@ -28,8 +31,8 @@ export async function fetch(poi) {
  */
 export function normalize(type, raw) {
   if (type === 'bragi') {
-    let street = raw.geocoding.address?.name || raw.geocoding.name;
-    if (raw.type === 'house') {
+    let street = raw.geocoding.address?.name;
+    if (raw.geocoding.type === 'house' || raw.geocoding.type === 'street') {
       // Street address is received in the name field
       street = raw.geocoding.name;
     }
@@ -39,6 +42,7 @@ export function normalize(type, raw) {
       city: findAdminBragi(raw, 'city')?.name,
       country: findAdminBragi(raw, 'country')?.name,
       label: raw.geocoding.address?.label,
+      parentAdmins: extractParentAdmins(raw),
     };
   }
 
@@ -48,6 +52,7 @@ export function normalize(type, raw) {
       city: findAdminIdunn(raw, 'city')?.name,
       country: findAdminIdunn(raw, 'country')?.name,
       label: raw.address?.label || raw.address?.admin?.label,
+      parentAdmins: extractParentAdmins(raw),
     };
   }
 
@@ -74,4 +79,15 @@ function findAdminIdunn(raw, name) {
   return Object
     .values(raw.address?.admins || {})
     .find(a => a.class_name === name);
+}
+
+/**
+ * Format administrative hierarchy where a poi (from Idunn or Bragi) is located
+ * @param {*} raw - the raw poi object
+ */
+function extractParentAdmins(raw) {
+  const admins = raw.geocoding?.administrative_regions || raw.address?.admins || [];
+  return admins.map(a => a.name)
+    .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]) // remove consecutive duplicated name
+    .join(', ');
 }

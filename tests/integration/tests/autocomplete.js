@@ -283,11 +283,11 @@ test('check template', async () => {
 
   /* poi */
   expect(lines[2][0]).toEqualCaseInsensitive('maga');
-  expect(lines[2][1]).toEqualCaseInsensitive('maga, Handlová, Slovensko');
+  expect(lines[2][1]).toEqualCaseInsensitive('SNP 44/2, Handlová, Slovensko');
 
   /* admin */
   expect(lines[3][0]).toEqualCaseInsensitive('Le Cannet (06110)');
-  expect(lines[3][1]).toEqualCaseInsensitive('Le Cannet, France');
+  expect(lines[3][1]).toEqualCaseInsensitive("Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France");
 });
 
 

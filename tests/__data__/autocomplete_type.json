@@ -369,105 +369,194 @@
             }
           ],
           "address": {
-            "id": "27997953",
-            "type": "street",
-            "label": "Námestie baníkov (Handlová)",
-            "name": "",
-            "street": "",
-            "postcode": null,
+            "id": "addr:18.759006;48.728257:44-2",
+            "type": "house",
+            "label": "SNP 44/2 (Handlová)",
+            "name": "SNP 44/2",
+            "housenumber": "44/2",
+            "street": "SNP",
+            "postcode": "",
             "city": "Handlová",
             "citycode": "",
             "administrative_regions": [
               {
-                "id": "admin:osm:relation:388235",
-                "insee": "",
-                "level": 8,
-                "label": "okres Prievidza, Trenčiansky kraj, Západné Slovensko, Slovensko",
-                "name": "okres Prievidza",
-                "zip_codes": [],
-                "weight": 0.00035442394186035753,
-                "coord": {
-                  "lon": 18.6234916,
-                  "lat": 48.7718361
-                },
-                "admin_type": "Unknown",
-                "zone_type": "state_district"
-              },
-              {
-                "id": "admin:osm:relation:388267",
-                "insee": "",
-                "level": 4,
-                "label": "Trenčiansky kraj, Západné Slovensko, Slovensko",
-                "name": "Trenčiansky kraj",
-                "zip_codes": [],
-                "weight": 0.0003950735190410659,
-                "coord": {
-                  "lon": 18.0393715,
-                  "lat": 48.8923583
-                },
-                "admin_type": "Unknown",
-                "zone_type": "state"
-              },
-              {
-                "id": "admin:osm:relation:14296",
-                "insee": "",
-                "level": 2,
-                "label": "Slovensko",
-                "name": "Slovensko",
-                "zip_codes": [],
-                "weight": 0.0030125304201006426,
-                "coord": {
-                  "lon": 17.1093063,
-                  "lat": 48.1516988
-                },
-                "admin_type": "Unknown",
-                "zone_type": "country"
-              },
-              {
                 "id": "admin:osm:relation:2187738",
                 "insee": "",
                 "level": 10,
-                "label": "Handlová, okres Prievidza, Trenčiansky kraj, Západné Slovensko, Slovensko",
+                "label": "Handlová, okres Prievidza, Région de Trenčín, Západné Slovensko, Slovaquie",
                 "name": "Handlová",
                 "zip_codes": [],
-                "weight": 0.00012311810294047415,
                 "coord": {
                   "lon": 18.7626944,
-                  "lat": 48.7314317
+                  "lat": 48.731431699999995
                 },
-                "admin_type": "City",
-                "zone_type": "city"
+                "bbox": [
+                  18.689894,
+                  48.6844075,
+                  18.82382,
+                  48.758088
+                ],
+                "zone_type": "suburb",
+                "parent_id": "admin:osm:relation:2187795",
+                "codes": []
               },
               {
                 "id": "admin:osm:relation:2187795",
                 "insee": "",
                 "level": 9,
-                "label": "Handlová, okres Prievidza, Trenčiansky kraj, Západné Slovensko, Slovensko",
+                "label": "Handlová, okres Prievidza, Région de Trenčín, Západné Slovensko, Slovaquie",
                 "name": "Handlová",
                 "zip_codes": [],
-                "weight": 0.00012311810294047415,
                 "coord": {
                   "lon": 18.7626944,
-                  "lat": 48.7314317
+                  "lat": 48.731431699999995
                 },
-                "admin_type": "City",
-                "zone_type": "city"
+                "bbox": [
+                  18.656502,
+                  48.626355,
+                  18.82382,
+                  48.7641341
+                ],
+                "zone_type": "city",
+                "parent_id": "admin:osm:relation:388235",
+                "codes": [
+                  {
+                    "name": "wikidata",
+                    "value": "Q842011"
+                  }
+                ]
+              },
+              {
+                "id": "admin:osm:relation:388235",
+                "insee": "",
+                "level": 8,
+                "label": "okres Prievidza, Région de Trenčín, Západné Slovensko, Slovaquie",
+                "name": "okres Prievidza",
+                "zip_codes": [],
+                "coord": {
+                  "lon": 18.6234916,
+                  "lat": 48.771836099999994
+                },
+                "bbox": [
+                  18.324418,
+                  48.561325,
+                  18.826867999999997,
+                  48.97148
+                ],
+                "zone_type": "state_district",
+                "parent_id": "admin:osm:relation:388267",
+                "codes": [
+                  {
+                    "name": "wikidata",
+                    "value": "Q614140"
+                  }
+                ]
+              },
+              {
+                "id": "admin:osm:relation:388267",
+                "insee": "",
+                "level": 4,
+                "label": "Région de Trenčín, Západné Slovensko, Slovaquie",
+                "name": "Région de Trenčín",
+                "zip_codes": [],
+                "coord": {
+                  "lon": 18.0393715,
+                  "lat": 48.8923583
+                },
+                "bbox": [
+                  17.3530357,
+                  48.485682999999995,
+                  18.826867999999997,
+                  49.319705
+                ],
+                "zone_type": "state",
+                "parent_id": "admin:osm:relation:946157",
+                "codes": [
+                  {
+                    "name": "ISO3166-2",
+                    "value": "SK-TC"
+                  },
+                  {
+                    "name": "wikidata",
+                    "value": "Q183139"
+                  }
+                ]
               },
               {
                 "id": "admin:osm:relation:946157",
                 "insee": "",
                 "level": 3,
-                "label": "Západné Slovensko, Slovensko",
+                "label": "Západné Slovensko, Slovaquie",
                 "name": "Západné Slovensko",
                 "zip_codes": [],
-                "weight": 0,
                 "coord": {
-                  "lon": 18.066965721861818,
-                  "lat": 48.41735718433606
+                  "lon": 18.066965213048313,
+                  "lat": 48.41735717128792
                 },
-                "admin_type": "Unknown",
-                "zone_type": "country_region"
+                "bbox": [
+                  16.933595,
+                  47.7314286,
+                  19.072129,
+                  49.319705
+                ],
+                "zone_type": "country_region",
+                "parent_id": "admin:osm:relation:14296",
+                "codes": [
+                  {
+                    "name": "ISO3166-2",
+                    "value": "SK-02"
+                  },
+                  {
+                    "name": "wikidata",
+                    "value": "Q696333"
+                  }
+                ]
+              },
+              {
+                "id": "admin:osm:relation:14296",
+                "insee": "",
+                "level": 2,
+                "label": "Slovaquie",
+                "name": "Slovaquie",
+                "zip_codes": [],
+                "coord": {
+                  "lon": 17.1093063,
+                  "lat": 48.1516988
+                },
+                "bbox": [
+                  16.8331891,
+                  47.7314286,
+                  22.56571,
+                  49.613816199999995
+                ],
+                "zone_type": "country",
+                "parent_id": null,
+                "codes": [
+                  {
+                    "name": "ISO3166-1",
+                    "value": "SK"
+                  },
+                  {
+                    "name": "ISO3166-1:alpha2",
+                    "value": "SK"
+                  },
+                  {
+                    "name": "ISO3166-1:alpha3",
+                    "value": "SVK"
+                  },
+                  {
+                    "name": "ISO3166-1:numeric",
+                    "value": "703"
+                  },
+                  {
+                    "name": "wikidata",
+                    "value": "Q214"
+                  }
+                ]
               }
+            ],
+            "country_codes": [
+              "SK"
             ]
           }
         }
@@ -493,14 +582,122 @@
           "level": 8,
           "administrative_regions": [
             {
+              "id": "admin:osm:relation:7385",
+              "insee": "6",
+              "level": 6,
+              "label": "Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France",
+              "name": "Alpes-Maritimes",
+              "zip_codes": [],
+              "coord": {
+                "lon": 7.2683912,
+                "lat": 43.7009358
+              },
+              "bbox": [
+                6.6352025999999995,
+                43.4800526,
+                7.7184776,
+                44.3625081
+              ],
+              "zone_type": "state_district",
+              "parent_id": "admin:osm:relation:8654",
+              "codes": [
+                {
+                  "name": "ISO3166-2",
+                  "value": "FR-06"
+                },
+                {
+                  "name": "ref:INSEE",
+                  "value": "06"
+                },
+                {
+                  "name": "ref:NUTS",
+                  "value": "FR823"
+                },
+                {
+                  "name": "wikidata",
+                  "value": "Q3139"
+                }
+              ]
+            },
+            {
+              "id": "admin:osm:relation:8654",
+              "insee": "93",
+              "level": 4,
+              "label": "Provence-Alpes-Côte d'Azur, France",
+              "name": "Provence-Alpes-Côte d'Azur",
+              "zip_codes": [],
+              "coord": {
+                "lon": 5.3699525,
+                "lat": 43.2961743
+              },
+              "bbox": [
+                4.2301364,
+                42.9820137,
+                7.7184776,
+                45.1266002
+              ],
+              "zone_type": "state",
+              "parent_id": "admin:osm:relation:2202162",
+              "codes": [
+                {
+                  "name": "ISO3166-2",
+                  "value": "FR-PAC"
+                },
+                {
+                  "name": "ref:INSEE",
+                  "value": "93"
+                },
+                {
+                  "name": "ref:NUTS",
+                  "value": "FR82"
+                },
+                {
+                  "name": "wikidata",
+                  "value": "Q15104"
+                }
+              ]
+            },
+            {
               "id": "admin:osm:relation:2202162",
               "insee": "",
-              "label": "France",
               "level": 2,
+              "label": "France",
               "name": "France",
-              "parent_id": null,
               "zip_codes": [],
-              "zone_type": "country"
+              "coord": {
+                "lon": 2.3514616,
+                "lat": 48.8566969
+              },
+              "bbox": [
+                -178.3873749,
+                -50.2187169,
+                172.30571519999998,
+                51.3055721
+              ],
+              "zone_type": "country",
+              "parent_id": null,
+              "codes": [
+                {
+                  "name": "ISO3166-1",
+                  "value": "FR"
+                },
+                {
+                  "name": "ISO3166-1:alpha2",
+                  "value": "FR"
+                },
+                {
+                  "name": "ISO3166-1:alpha3",
+                  "value": "FRA"
+                },
+                {
+                  "name": "ISO3166-1:numeric",
+                  "value": "250"
+                },
+                {
+                  "name": "wikidata",
+                  "value": "Q142"
+                }
+              ]
             }
           ],
           "bbox": [
