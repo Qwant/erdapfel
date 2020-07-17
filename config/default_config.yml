@@ -48,6 +48,9 @@ masq:
   baseMasqAppUrl: override_by_environment
   stun:
   turn:
+  alertEnabled: false
+  alertDate: '2020-07-31'
+  link: 'https://qwant.com/maps'
 
 # Map style
 mapStyle:
