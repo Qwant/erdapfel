@@ -11,7 +11,13 @@ const MasqAlert = () => {
     return null;
   }
 
-  const masqDismissed = window.localStorage.getItem('masq_alert_dismissed');
+  let masqDismissed = false;
+  try {
+    masqDismissed = window.localStorage.getItem('masq_alert_dismissed');
+  } catch (e) {
+    console.error(e);
+  }
+
   const [masqAlertDate, setMasqAlertDate] = useState('');
   const [isVisible, setIsVisible] = useState(masqAlertEnabled && masqDismissed !== 'true');
   if (!isVisible) {
@@ -27,7 +33,11 @@ const MasqAlert = () => {
 
   const dismiss = () => {
     setIsVisible(false);
-    window.localStorage.setItem('masq_alert_dismissed', 'true');
+    try {
+      window.localStorage.setItem('masq_alert_dismissed', 'true');
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return <Alert
