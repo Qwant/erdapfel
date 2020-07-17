@@ -11,13 +11,6 @@ public/build/
 #map style
 public/mapstyle/
 
-#documentation
-/docs/*
-
-!/docs/images
-!/docs/src/
-!/docs/DEV.md
-
 #generated i18n messages
 public/message
 
