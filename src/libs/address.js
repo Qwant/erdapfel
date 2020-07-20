@@ -1,13 +1,28 @@
 import IdunnPoi from '../adapters/poi/idunn_poi';
 
 /**
- * Format an address given an address object (name, city, country, and label)
+ * Format an address given an address object (name, city, country, label, and other regions)
  * @param {*} address - an address object
  */
 export function format(address) {
   if (!address) {return '';}
-  const { street, city, country } = address;
-  return [street, city, country]
+
+  if (!address.street) {
+    return [
+      address.suburb,
+      address.cityDistrict,
+      address.city,
+      address.stateDistrict,
+      address.state,
+      address.countryRegion,
+      address.country,
+    ]
+      .filter(i => i)
+      .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]) // remove consecutive duplicated name
+      .join(', ');
+  }
+
+  return [address.street, address.city, address.country]
     .filter(i => i) // Filter out any undefined value
     .join(', ');
 }
@@ -28,15 +43,20 @@ export async function fetch(poi) {
  */
 export function normalize(type, raw) {
   if (type === 'bragi') {
-    let street = raw.geocoding.address?.name || raw.geocoding.name;
-    if (raw.type === 'house') {
+    let street = raw.geocoding.address?.name;
+    if (raw.geocoding.type === 'house' || raw.geocoding.type === 'street') {
       // Street address is received in the name field
       street = raw.geocoding.name;
     }
 
     return {
       street,
+      suburb: findAdminBragi(raw, 'suburb')?.name,
+      cityDistrict: findAdminBragi(raw, 'city_district')?.name,
       city: findAdminBragi(raw, 'city')?.name,
+      stateDistrict: findAdminBragi(raw, 'state_district')?.name,
+      state: findAdminBragi(raw, 'state')?.name,
+      countryRegion: findAdminBragi(raw, 'country_region')?.name,
       country: findAdminBragi(raw, 'country')?.name,
       label: raw.geocoding.address?.label,
     };
@@ -45,7 +65,12 @@ export function normalize(type, raw) {
   if (type === 'idunn') {
     return {
       street: raw.address?.name,
+      suburb: findAdminIdunn(raw, 'suburb')?.name,
+      cityDistrict: findAdminIdunn(raw, 'city_district')?.name,
       city: findAdminIdunn(raw, 'city')?.name,
+      stateDistrict: findAdminIdunn(raw, 'state_district')?.name,
+      state: findAdminIdunn(raw, 'state')?.name,
+      countryRegion: findAdminIdunn(raw, 'country_region')?.name,
       country: findAdminIdunn(raw, 'country')?.name,
       label: raw.address?.label || raw.address?.admin?.label,
     };
