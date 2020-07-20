@@ -1,0 +1,79 @@
+.alert {
+  position: fixed;
+  top: 92px;
+  width: 360px;
+  right: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  color: $grey-semi-darkness;
+  background-color: $background;
+  box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+
+  @media (max-width: 760px) {
+    width: 200px;
+  }
+
+  @media (max-width: 640px) {
+    width: 360px;
+    top: calc(64px + 16px);
+    bottom: unset;
+    right: 12px;
+    max-width: calc(100vw - 24px);
+  }
+
+  &-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+    color: $grey-black;
+
+    > span {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  &-content {
+    color: $grey-semi-darkness;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  &-icon {
+    font-size: 22px;
+    margin-right: 8px;
+  }
+
+  .closeBtn {
+    color: $grey-grey;
+    align-self: start;
+    cursor: pointer;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+.icon-error {
+  color: $red-base;
+}
+
+.icon-warning {
+  color: $orange-base;
+}
+
+.icon-info {
+  color: $action-blue-base;
+}
+
+.icon-success {
+  color: $green-base;
+}
+
