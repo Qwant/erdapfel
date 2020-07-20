@@ -1,16 +1,28 @@
 import IdunnPoi from '../adapters/poi/idunn_poi';
 
 /**
- * Format an address given an address object (name, city, country, parentAdmins and label)
+ * Format an address given an address object (name, city, country, label, and other regions)
  * @param {*} address - an address object
  */
 export function format(address) {
   if (!address) {return '';}
-  const { street, city, country, parentAdmins } = address;
-  if (!street && parentAdmins) {
-    return parentAdmins;
+
+  if (!address.street) {
+    return [
+      address.suburb,
+      address.cityDistrict,
+      address.city,
+      address.stateDistrict,
+      address.state,
+      address.countryRegion,
+      address.country,
+    ]
+      .filter(i => i)
+      .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]) // remove consecutive duplicated name
+      .join(', ');
   }
-  return [street, city, country]
+
+  return [address.street, address.city, address.country]
     .filter(i => i) // Filter out any undefined value
     .join(', ');
 }
@@ -39,20 +51,28 @@ export function normalize(type, raw) {
 
     return {
       street,
+      suburb: findAdminBragi(raw, 'suburb')?.name,
+      cityDistrict: findAdminBragi(raw, 'city_district')?.name,
       city: findAdminBragi(raw, 'city')?.name,
+      stateDistrict: findAdminBragi(raw, 'state_district')?.name,
+      state: findAdminBragi(raw, 'state')?.name,
+      countryRegion: findAdminBragi(raw, 'country_region')?.name,
       country: findAdminBragi(raw, 'country')?.name,
       label: raw.geocoding.address?.label,
-      parentAdmins: extractParentAdmins(raw),
     };
   }
 
   if (type === 'idunn') {
     return {
       street: raw.address?.name,
+      suburb: findAdminIdunn(raw, 'suburb')?.name,
+      cityDistrict: findAdminIdunn(raw, 'city_district')?.name,
       city: findAdminIdunn(raw, 'city')?.name,
+      stateDistrict: findAdminIdunn(raw, 'state_district')?.name,
+      state: findAdminIdunn(raw, 'state')?.name,
+      countryRegion: findAdminIdunn(raw, 'country_region')?.name,
       country: findAdminIdunn(raw, 'country')?.name,
       label: raw.address?.label || raw.address?.admin?.label,
-      parentAdmins: extractParentAdmins(raw),
     };
   }
 
@@ -79,15 +99,4 @@ function findAdminIdunn(raw, name) {
   return Object
     .values(raw.address?.admins || {})
     .find(a => a.class_name === name);
-}
-
-/**
- * Format administrative hierarchy where a poi (from Idunn or Bragi) is located
- * @param {*} raw - the raw poi object
- */
-function extractParentAdmins(raw) {
-  const admins = raw.geocoding?.administrative_regions || raw.address?.admins || [];
-  return admins.map(a => a.name)
-    .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]) // remove consecutive duplicated name
-    .join(', ');
 }
