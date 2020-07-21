@@ -5,16 +5,23 @@ const nameToClass = iconName => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
 export default class IconManager {
   static get({ className, subClassName, type }) {
 
+    // Get the category icon of a PoI
     if (type === 'poi' || type === 'category') {
       const icons = styleIcons.mappings;
+
+      // Matching class and subclass
       let icon = icons.find(iconProperty => {
         return iconProperty.subclass === subClassName && iconProperty.class === className;
       });
+
+      // Or: no class and matching subclass
       if (!icon) {
         icon = icons.find(iconProperty => {
           return iconProperty.subclass === subClassName && !iconProperty.class;
         });
       }
+
+      // Or: matching class and no subclass
       if (!icon) {
         icon = icons.find(iconProperty => {
           return iconProperty.class === className && !iconProperty.subclass;
@@ -32,17 +39,24 @@ export default class IconManager {
         iconClass: nameToClass(styleIcons.defaultIcon),
         color: styleIcons.defaultColor,
       };
+
+    // Get the icon of a location / area that is not a PoI:
+    // Exact address
     } else if (type === 'house' || type === 'address') {
       return {
         iconClass: nameToClass(styleIcons.defaultAddressIcon),
         color: styleIcons.defaultAddressColor,
       };
+
+    // Road / street without house number
     } else if (type === 'street') {
       return {
         iconClass: nameToClass(styleIcons.defaultStreetIcon),
         color: styleIcons.defaultStreetColor,
       };
-    } else { // administrative zones
+
+    // administrative zones (city, area, country)
+    } else {
       return {
         iconClass: nameToClass(styleIcons.defaultAdministrativeIcon),
         color: styleIcons.defaultAdministrativeColor,

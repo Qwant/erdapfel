@@ -6,8 +6,11 @@ import { capitalizeFirst } from 'src/libs/string';
 const PoiTitle = ({ poi, withAlternativeName }) => {
   const { name, localName, subClassName, address } = poi;
 
+  // LatLon PoI
   if (subClassName === 'latlon') {
     const latLon = name;
+
+    // Close to (address) + GPS coordinates
     if (address?.label) {
       return <div className="poiTitle">
         <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
@@ -16,8 +19,12 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
       </div>;
     }
 
+    // GPS coordinates only
     return <div className="poiTitle">
-      <h2 className="poiTitle-main poiTitle-position u-text--smallTitle">{latLon}</h2>
+      <h2 className="poiTitle-main u-text--smallTitle u-mb-4">
+        { _('Geographic coordinates', 'poi')}
+      </h2>
+      <div className="poiTitle-position">{latLon}</div>
     </div>;
   }
 

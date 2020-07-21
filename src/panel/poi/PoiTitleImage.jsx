@@ -2,7 +2,7 @@ import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { toCssUrl } from 'src/libs/url_utils';
 
-const defaultIcon = { iconClass: 'location', color: '#444648' };
+const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
 const PoiTitleImage = ({ poi, iconOnly }) => {
   if (poi.topImageUrl && !iconOnly) {
