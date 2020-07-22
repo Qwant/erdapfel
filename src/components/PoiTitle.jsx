@@ -2,6 +2,7 @@
 import React from 'react';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
+import { filter } from 'src/libs/address';
 
 const PoiTitle = ({ poi, withAlternativeName }) => {
   const { name, localName, subClassName, address } = poi;
@@ -11,10 +12,12 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
     const latLon = name;
 
     // Close to (address) + GPS coordinates
-    if (address?.label) {
+    if (address) {
       return <div className="poiTitle">
         <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
-        <h2 className="poiTitle-main u-text--smallTitle u-mb-4">{address?.label}</h2>
+        <h2 className="poiTitle-main u-text--smallTitle u-mb-4">{
+          filter(address).map(item => <div key={item}>{item}</div>)
+        }</h2>
         <div className="poiTitle-position">{latLon}</div>
       </div>;
     }
@@ -32,10 +35,11 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
   const alternative = (withAlternativeName && name && localName && localName !== name) && localName;
   const subclass = capitalizeFirst(poiSubClass(subClassName));
 
+  // Location / address
   return <div className="poiTitle">
     <h2 className="poiTitle-main u-text--smallTitle">{title || subclass}</h2>
     {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
-      {alternative}
+      { filter(address).map(item => <div key={item}>{item}</div>) }
     </div>}
     {title && <div className="poiTitle-subclass u-text--subtitle">{subclass}</div>}
   </div>;
