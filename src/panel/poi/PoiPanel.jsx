@@ -298,6 +298,7 @@ export default class PoiPanel extends React.Component {
 
     return <Panel
       defaultHeight={240}
+      minimizedHeight={100}
       title={header}
       resizable
       close={this.closeAction}
