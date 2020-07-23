@@ -1,3 +1,4 @@
+/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import URI from '@qwant/uri';
@@ -33,7 +34,7 @@ export default class WebsiteBlock extends React.Component {
         <div className="icon-icon_globe poi_panel__block__symbol" />
         <div className="poi_panel__block__content">
           <span className="poi_panel__block__content__title">
-            Site web
+            {_('Website')}
           </span>
           <a className="poi_panel__block__content__paragraph"
             href={URI.externalise(this.props.block.url)}

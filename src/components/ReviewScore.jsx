@@ -36,7 +36,7 @@ const ReviewScore = ({
       )}
     </span>
     <span className="u-text--caption reviewScore-count">
-      ({total_grades_count}) {_('On Page Jaunes')}
+      ({total_grades_count}) {_('From Page Jaunes')}
     </span>
   </a>;
 
