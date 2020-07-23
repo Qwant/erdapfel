@@ -1,7 +1,7 @@
 @import "../osm_contribute";
 
 $BLOCK_PADDING: 24px;
-$BLOCK_ICON_FONT_SIZE: 16px;
+$BLOCK_ICON_FONT_SIZE: 24px;
 $HEADER_SIZE: 40px;
 
 .poi_panel--empty-header {
@@ -12,6 +12,14 @@ $HEADER_SIZE: 40px;
   .poi_panel__content {
     padding-top: 0;
   }
+}
+
+.poiTitle {
+  margin-bottom: 8px;
+}
+
+.poiTitle-subclass {
+  margin-bottom: 8px;
 }
 
 .poi_panel__content {
@@ -27,7 +35,17 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__info__section {
   position: relative;
-  margin-bottom: 20px;
+  padding: 10px 0;
+
+  &--information {
+    padding-top: 10px;
+  }
+
+  &--website {
+    a {
+      color: $action-blue-base;
+    }
+  }
 }
 
 .poi_panel__info__section__phone {
@@ -59,17 +77,10 @@ $HEADER_SIZE: 40px;
   margin: 20px 0 0 20px;
 }
 
-.poi_panel__info__section:before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 1px;
-  margin-top: 8px;
-  background: $separator_color;
-}
-
 .poi_panel__info__section__description  {
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .poi_panel__info__link,
@@ -90,11 +101,6 @@ $HEADER_SIZE: 40px;
   border-radius: 50%;
 }
 
-.poi_panel__description__ellipsis {
-  margin-top: 13px;
-  padding-right: 45px;
-}
-
 .poi_panel__info__item {
   font-size: 13px;
   color: $primary_text;
@@ -105,6 +111,7 @@ $HEADER_SIZE: 40px;
 }
 
 .poi_panel__actions {
+  margin-bottom: 10px;
   .button + .button {
     margin-left: 8px;
   }
@@ -122,24 +129,6 @@ $HEADER_SIZE: 40px;
   margin-bottom: 20px;
 }
 
-.poi_panel__pictures_title {
-  border-top: 1px solid #e0e1e6;
-  padding: 15px 0;
-  font-size: 14px;
-  color: #495063;
-  font-weight: normal;
-  position: relative;
-  padding-left: 24px;
-}
-
-.poi_panel__pictures_title .icon-icon_camera {
-  color: #c8cbd3;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .poi_panel__pictures_block {
   width: calc(50% - 7px);
   padding-bottom: calc(50% - 7px);
@@ -150,6 +139,7 @@ $HEADER_SIZE: 40px;
   position: relative;
   width: 100%;
   height: 165px;
+  margin-top: 20px;
 
   .poi_panel__pictures_tile {
     position: absolute;
@@ -199,29 +189,27 @@ $HEADER_SIZE: 40px;
 
 /* symbols */
 .poi_panel__block__symbol {
-  position: absolute;
-  top: 20px;
   font-size: $BLOCK_ICON_FONT_SIZE;
-  color: $primary_clear;
-  width: 20px;
-  height: 18px;
-}
-
-.poi_panel__block__symbol.icon-icon_phone {
-  top: 20px;
-}
-.poi_panel__block__symbol.icon-icon_clock {
-  top: 24px;
+  color: $action-blue-base;
 }
 
 .poi_panel__block__content {
-  margin-top: 18px;
-  margin-bottom: 20px;
-  padding-left: $BLOCK_PADDING;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-  a {
-    color: #5c6f84;
-  }
+.poi_panel__block__content__title {
+  font-size: 12px;
+  line-height: 1.33;
+  color: $grey-semi-darkness;
+}
+
+.poi_panel__block__content__paragraph {
+  font-size: 14px;
+  line-height: 1.29;
+  color: $primary_text;
 }
 
 .poi_panel__service_information__container {
@@ -254,6 +242,9 @@ $HEADER_SIZE: 40px;
   transform: rotate(180deg);
 }
 
+.poi_panel-reviews {
+  margin-bottom: 8px;
+}
 
 .poi_panel__sub__sub_block__title {
   font-size: 13px;
@@ -278,27 +269,16 @@ $HEADER_SIZE: 40px;
   padding-left: $BLOCK_PADDING;
 }
 
-.poi_panel__info__wiki {
-  margin-top: 15px;
-  padding-left: $BLOCK_PADDING;
-}
-
 .poi_panel__info__wiki__link {
-  font-size: 12px;
-  color: $secondary_text;
-  position: relative;
-
-  .icon-chevrons-right {
-    position: absolute;
-    top: 1px;
-  }
-  span {
-    margin-left: 15px;
-  }
+  font-size: 14px;
+  line-height: 18px;
+  width: 100%;
+  color: $action-blue-base;
+  text-align: center;
 }
 
 .poi_panel__info__wiki__link:hover {
-  color: $primary_text;
+  color: $action-blue-base;
   text-decoration: none;
 }
 
@@ -363,7 +343,7 @@ $HEADER_SIZE: 40px;
   .poi_panel {
     .panel-header {
       height: auto;
-      background-color: $surface;
+      background-color: white;
       padding-bottom: 0;
       padding-left: 6px;
       margin-bottom: 0;
@@ -377,7 +357,7 @@ $HEADER_SIZE: 40px;
 
   .poi_panel__content,
   .poi_panel--empty-header .poi_panel__content {
-    padding: 15px;
+    padding: 12px;
   }
 
   .poi_panel__sub_block__title {

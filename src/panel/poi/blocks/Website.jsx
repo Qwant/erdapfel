@@ -32,7 +32,10 @@ export default class WebsiteBlock extends React.Component {
       <div className="poi_panel__info__section__description">
         <div className="icon-icon_globe poi_panel__block__symbol" />
         <div className="poi_panel__block__content">
-          <a className="poi_panel__info__link"
+          <span className="poi_panel__block__content__title">
+            Site web
+          </span>
+          <a className="poi_panel__block__content__paragraph"
             href={URI.externalise(this.props.block.url)}
             rel="noopener noreferrer nofollow"
             target="_blank"

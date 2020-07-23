@@ -3,6 +3,14 @@
   display: flex;
   align-items: center;
 
+  span {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 1.29;
+    white-space: pre;
+  }
+
   &-circle {
     width: 8px;
     height: 8px;

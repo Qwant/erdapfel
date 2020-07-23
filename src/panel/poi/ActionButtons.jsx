@@ -17,7 +17,7 @@ const ActionButtons = ({
     return handler(e);
   };
 
-  return <Flex className="u-mb-24 poi_panel__actions">
+  return <Flex className="poi_panel__actions">
     {isDirectionActive && <Button
       className="poi_panel__action__direction"
       variant="primary"

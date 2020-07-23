@@ -1,6 +1,7 @@
 /* global _ */
 import React from 'react';
 import { toCssUrl } from 'src/libs/url_utils';
+import Separator from 'src/components/ui/Separator';
 
 const ImagesBlock = ({
   block,
@@ -12,8 +13,8 @@ const ImagesBlock = ({
   }
 
   return <div className="poi_panel__pictures">
-    <h5 className="poi_panel__pictures_title">
-      <i className="icon-icon_camera"></i>
+    <Separator />
+    <h5 className="u-text--smallTitle">
       { _('Photos') }
     </h5>
     <div className="poi_panel__pictures_tiles">

@@ -1,3 +1,4 @@
+/* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import HourBlock from './blocks/Hour';
@@ -8,6 +9,8 @@ import InformationBlock from './blocks/Information';
 import CovidBlock from './blocks/Covid19';
 import PhoneBlock from './blocks/Phone';
 import RecyclingBlock from './blocks/Recycling';
+import AddressBlock from './blocks/Address';
+import Separator from '../../components/ui/Separator';
 
 export default class PoiBlockContainer extends React.Component {
   static propTypes = {
@@ -31,15 +34,21 @@ export default class PoiBlockContainer extends React.Component {
     const displayCovidInfo = this.props.covid19Enabled && blocks.find(b => b.type === 'covid19');
 
     return <div className="poi_panel__info">
+      {informationBlock && <InformationBlock block={informationBlock} />}
+      <Separator />
+
+      <h5 className="u-text--smallTitle">
+        { _('About') }
+      </h5>
       {displayCovidInfo &&
         <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />
       }
-      {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
-      {informationBlock && <InformationBlock block={informationBlock} />}
-      {phoneBlock && <PhoneBlock block={phoneBlock} />}
-      {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
       {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
+      {phoneBlock && <PhoneBlock block={phoneBlock} />}
+      {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
+      {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
       {contactBlock && <ContactBlock block={contactBlock} />}
+      {this.props.poi.address && <AddressBlock address={this.props.poi.address} />}
       {imagesBlock && <ImagesBlock block={imagesBlock} poi={this.props.poi} />}
     </div>;
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import WikiBlock from './Wiki';
-import Services from './Services';
+// import Services from './Services';
 
 function findBlock(blocks, toFind) {
   for (let i = 0; i < blocks.length; ++i) {
@@ -32,9 +32,8 @@ const InformationBlock = ({ block }) => {
   }
 
   return <div className="poi_panel__info__section poi_panel__info__section--information">
-    <div className="icon-icon_info poi_panel__block__symbol" />
     {wikipedia && <WikiBlock block={wikipedia} />}
-    {hasServices && <Services {...services} />}
+    {/* {hasServices && <Services {...services} />} */}
   </div>;
 };
 

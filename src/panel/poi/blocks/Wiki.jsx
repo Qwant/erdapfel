@@ -1,5 +1,6 @@
 /* global _ */
 import React from 'react';
+import Flex from 'src/components/ui/Flex';
 
 const WikiBlock = ({
   block,
@@ -10,14 +11,16 @@ const WikiBlock = ({
         { block.description }
       </p> }
     <br/>
-    { block.url &&
-      <a
-        className="poi_panel__info__wiki__link"
-        rel="noopener noreferrer"
-        target="_blank"
-        href={ block.url } >
-        <i className="icon-chevrons-right"/><span>{ _('Wikipedia') }</span>
-      </a> }
+    <Flex inline style={{ width: '100%' }}>
+      { block.url &&
+        <a
+          className="poi_panel__info__wiki__link"
+          rel="noopener noreferrer"
+          target="_blank"
+          href={ block.url } >
+          <span>{ _('Read more on Wikipedia') }</span>
+        </a> }
+    </Flex>
   </div>;
 };
 

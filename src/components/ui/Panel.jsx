@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
+import { isMobileDevice } from 'src/libs/device';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
@@ -34,6 +35,17 @@ function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSi
   return size;
 }
 
+function getCurrentHeight(size, {
+  defaultHeight,
+  minimizedHeight,
+}) {
+  if (!isMobileDevice()) {return '100%';}
+  if (size === 'default') {return defaultHeight || '50%';}
+  if (size === 'minimized') {return minimizedHeight || '50px';}
+  if (size === 'maximized') {return 'calc(100% - 64px)';}
+  return null;
+}
+
 export default class Panel extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -59,7 +71,7 @@ export default class Panel extends React.Component {
     this.state = {
       holding: false,
       size: props.initialSize,
-      currentHeight: null,
+      currentHeight: getCurrentHeight('default', {}),
     };
   }
 
@@ -186,7 +198,10 @@ export default class Panel extends React.Component {
     this.setState({
       holding: false,
       size: newSize,
-      currentHeight: null,
+      currentHeight: getCurrentHeight(newSize, {
+        defaultHeight: this.props.defaultHeight,
+        minimizedHeight: this.props.minimizedHeight,
+      }),
     });
   }
 
@@ -194,7 +209,10 @@ export default class Panel extends React.Component {
     const size = this.state.size === 'default' ? 'minimized' : 'default';
     this.setState({
       size,
-      currentHeight: null,
+      currentHeight: getCurrentHeight(size, {
+        defaultHeight: this.props.defaultHeight,
+        minimizedHeight: this.props.minimizedHeight,
+      }),
     });
   }
 
@@ -210,15 +228,15 @@ export default class Panel extends React.Component {
   render() {
     const { children, title, minimizedTitle, resizable, close, className, white } = this.props;
     const { size, currentHeight, holding } = this.state;
-    const resizeHandlers = resizable ? this.getEventHandlers(false) : {};
-    const forceResizeleHandlers = resizable ? this.getEventHandlers(true) : {};
+    const resizeHandlers = resizable && isMobileDevice() ? this.getEventHandlers(false) : {};
+    const forceResizeleHandlers = resizable && isMobileDevice() ? this.getEventHandlers(true) : {};
 
     return <div
       className={classnames('panel', size, className, {
         'panel--white': white,
         'panel--holding': holding,
       })}
-      style={{ height: currentHeight && `${currentHeight}px` }}
+      style={{ height: currentHeight }}
       ref={panel => this.panelDOMElement = panel}
       onTransitionEnd={() => this.updateMobileMapUI()}
     >

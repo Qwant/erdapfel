@@ -1,6 +1,7 @@
-/* global _n */
+/* global _ */
 import React from 'react';
 import Telemetry from 'src/libs/telemetry';
+import classNames from 'classnames';
 
 function logGradesClick(poi, inList) {
   const grades = poi.blocksByType.grades;
@@ -17,8 +18,13 @@ function logGradesClick(poi, inList) {
   }
 }
 
-const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, inList }) =>
-  <a className="reviewScore" rel="noopener noreferrer" href={url}
+const ReviewScore = ({
+  poi,
+  reviews: { global_grade, total_grades_count, url },
+  inList,
+  className,
+}) =>
+  <a className={classNames('reviewScore', className)} rel="noopener noreferrer" href={url}
     onClick={e => {
       e.stopPropagation();
       logGradesClick(poi, inList);
@@ -30,7 +36,7 @@ const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, 
       )}
     </span>
     <span className="u-text--caption reviewScore-count">
-      {total_grades_count} {_n('review', 'reviews', total_grades_count)}
+      ({total_grades_count}) {_('On Page Jaunes')}
     </span>
   </a>;
 

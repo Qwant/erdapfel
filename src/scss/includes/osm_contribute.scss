@@ -34,7 +34,6 @@
 
 .osm_contribute__link:hover {
   text-decoration: none;
-  color: $primary_text;
 }
 
 .osm_contribute__icon {
@@ -47,4 +46,6 @@
   display: inline-block;
   line-height: 22px;
   vertical-align: middle;
+  color: $action-blue-base;
+  margin-right: 24px;
 }

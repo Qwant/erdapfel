@@ -45,21 +45,16 @@
   }
 
   &-content {
-    // 172 = top UI margin + top bar height + top bar margin + panel header + bottom UI margin 
+    // 172 = top UI margin + top bar height + top bar margin + panel header + bottom UI margin
     max-height: calc(100vh - 172px);
     overflow-y: auto;
     scrollbar-width: thin;
-  }
-
-  .panel-resizeHandle {
-    pointer-events: none;
   }
 }
 
 @media (max-width: 640px) {
   .panel {
     width: 100vw;
-    height: 50%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -89,7 +84,6 @@
 
     &.maximized {
       border-radius: 0;
-      height: calc(100% - #{$top_bar_height});
 
       // a "fake" background area added above the panel itself,
       // allowing height transitions without changing paddings and preventing "jumps"
@@ -113,8 +107,6 @@
     }
 
     &.minimized {
-      height: 50px;
-
       .panel-header {
         text-align: center;
       }

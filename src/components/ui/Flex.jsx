@@ -2,13 +2,17 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Flex = ({ children, inline, className,
+const Flex = ({
+  style,
+  children,
+  inline,
+  className,
   justifyContent,
   alignItems = 'center',
 }) => {
-  const style = { justifyContent, alignItems };
+  const flexStyle = { justifyContent, alignItems, ...style };
   return <div
-    style={style}
+    style={flexStyle}
     className={classnames('flex', { 'flex--inline': inline }, className)}>
     {children}
   </div>;

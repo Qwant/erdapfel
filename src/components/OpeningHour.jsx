@@ -7,7 +7,7 @@ const getStatusMessage = status => {
   if (status === 'open') {
     return {
       label: _('Open'),
-      color: '#60ad51',
+      color: '#5d9836',
     };
   }
 
@@ -54,8 +54,7 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
     [`openingHour--${status}`]: status,
     'openingHour--24-7': isTwentyFourSeven,
   }, className)}>
-    <div>{getDescription()}</div>
-    <div className="openingHour-circle u-ml-4" style={{ background: color }} />
+    <span style={{ color }}><i className="icon-icon_clock"/>{` ${getDescription()}`}</span>
   </div>;
 };
 
