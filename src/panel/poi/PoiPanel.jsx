@@ -254,7 +254,7 @@ export default class PoiPanel extends React.Component {
 
   renderFull = poi => {
     const { poiFilters, isFromFavorite } = this.props;
-    const { name, localName, subClassName } = this.props.poi;
+    const { name, localName, subClassName } = poi;
     const title = name || localName;
     const reviews = poi.blocksByType?.grades;
     // const alternative = (withAlternativeName && name && localName && localName !== name) && localName;
