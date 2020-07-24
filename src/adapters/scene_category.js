@@ -5,6 +5,10 @@ import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
 
+function getMarkerId(poi) {
+  return `marker_${poi.id}`;
+}
+
 export default class SceneCategory {
   constructor(map) {
     this.map = map;
@@ -55,9 +59,8 @@ export default class SceneCategory {
     this.setOsmPoisVisibility(false);
     if (pois) {
       pois.forEach(poi => {
-        const { id, name, className, subClassName, type, latLon } = poi;
+        const { name, className, subClassName, type, latLon } = poi;
         const marker = createIcon({ className, subClassName, type }, name, true);
-        poi.marker_id = `marker_${id}`;
         marker.onclick = function(e) {
           e.stopPropagation();
           fire('click_category_poi', { poi, poiFilters, pois });
@@ -68,7 +71,7 @@ export default class SceneCategory {
         marker.onmouseout = function() {
           fire('close_popup');
         };
-        marker.id = poi.marker_id;
+        marker.id = getMarkerId(poi);
         this.markers.push(
           new Marker({ element: marker })
             .setLngLat(latLon)
@@ -96,7 +99,7 @@ export default class SceneCategory {
   }
 
   highlightPoiMarker = (poi, highlight) => {
-    const marker = document.getElementById(poi.marker_id);
+    const marker = document.getElementById(getMarkerId(poi));
     if (marker) {
       if (highlight) {
         marker.classList.add('active');
