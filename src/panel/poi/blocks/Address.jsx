@@ -8,7 +8,7 @@ const AddressBlock = poi =>
       <div className="icon-map-pin poi_panel__block__symbol"></div>
       <div className="poi_panel__block__content">
         <span className="poi_panel__block__content__title">{_('Address')}</span>
-        <span className="poi_panel__block__content__paragraph">
+        <span className="poiItem-address poi_panel__block__content__paragraph">
           {poi.address.label}
         </span>
       </div>

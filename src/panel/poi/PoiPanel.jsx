@@ -280,11 +280,11 @@ export default class PoiPanel extends React.Component {
         <div className={backAction.className} onClick={backAction.callback}>
           <i className="poi_panel__back icon-arrow-left" />
           <span className="poi_panel__back_text">{backAction.text}</span>
+          {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
+            src="./statics/images/pagesjaunes.svg"
+            alt="PagesJaunes" />
+          }
         </div>
-      }
-      {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
-        src="./statics/images/pagesjaunes.svg"
-        alt="PagesJaunes" />
       }
     </div>;
 
@@ -313,7 +313,7 @@ export default class PoiPanel extends React.Component {
       <div className="poi_panel__content">
 
         {/* Basic info */}
-        <div style={{ marginBottom: 20 }}>
+        <div className="poiTitle--container" onClick={this.center}>
           <h2 className="poiTitle u-text--title">{title || subclass}</h2>
           {reviews &&
             <ReviewScore className="poi_panel-reviews" reviews={reviews} poi={poi} inList />
