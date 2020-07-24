@@ -5,6 +5,7 @@ import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
 
 const ActionButtons = ({
+  id,
   poi,
   isDirectionActive,
   openDirection,
@@ -17,7 +18,7 @@ const ActionButtons = ({
     return handler(e);
   };
 
-  return <Flex className="poi_panel__actions">
+  return <Flex className="poi_panel__actions" id={id}>
     {isDirectionActive && <Button
       className="poi_panel__action__direction"
       variant="primary"
@@ -57,6 +58,7 @@ const ActionButtons = ({
 };
 
 ActionButtons.propTypes = {
+  id: PropTypes.string,
   poi: PropTypes.object.isRequired,
   isDirectionActive: PropTypes.bool,
   openDirection: PropTypes.func,

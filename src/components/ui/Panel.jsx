@@ -35,17 +35,6 @@ function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSi
   return size;
 }
 
-function getCurrentHeight(size, {
-  defaultHeight,
-  minimizedHeight,
-}) {
-  if (!isMobileDevice()) {return '100%';}
-  if (size === 'default') {return defaultHeight || '50%';}
-  if (size === 'minimized') {return minimizedHeight || '50px';}
-  if (size === 'maximized') {return 'calc(100% - 64px)';}
-  return null;
-}
-
 export default class Panel extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -69,24 +58,57 @@ export default class Panel extends React.Component {
     this.moveHandler = null;
     this.panelContentRef = React.createRef();
     this.state = {
+      style: {},
       holding: false,
       size: props.initialSize,
-      currentHeight: getCurrentHeight('default', {}),
+      currentHeight: 0, //this.getCurrentHeight('default', {}),
     };
   }
 
   componentDidMount() {
     this.updateMobileMapUI();
-    this.defaultHeight = this.panelDOMElement.offsetHeight;
+    this.setState({
+      currentHeight: this.getCurrentHeight('default', {
+        defaultHeight: this.props.defaultHeight,
+        minimizedHeight: this.props.minimizedHeight,
+      }),
+    });
+    // this.defaultHeight = this.panelDOMElement.offsetHeight;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (this.props.poiId !== prevProps.poiId) {
+      this.setState({
+        currentHeight: this.getCurrentHeight('default', {
+          defaultHeight: this.props.defaultHeight,
+          minimizedHeight: this.props.minimizedHeight,
+        }),
+      });
+    }
     this.updateMobileMapUI();
   }
 
   componentWillUnmount() {
     this.updateMobileMapUI(0);
     this.removeListeners();
+  }
+
+  getCurrentHeight(size, {
+    defaultHeight,
+    minimizedHeight,
+  }) {
+
+    if (!isMobileDevice()) {return '100%';}
+    if (size === 'default') {
+      if (!defaultHeight) {return '50%';}
+
+      const elem = document.getElementById(defaultHeight);
+      const rect = elem.getBoundingClientRect();
+      return rect.top - this.panelDOMElement.getBoundingClientRect().top + rect.height + 20;
+    }
+    if (size === 'minimized') {return minimizedHeight || '50px';}
+    if (size === 'maximized') {return 'calc(100% - 64px)';}
+    return null;
   }
 
   updateMobileMapUI = (height = this.panelDOMElement.offsetHeight) => {
@@ -198,7 +220,7 @@ export default class Panel extends React.Component {
     this.setState({
       holding: false,
       size: newSize,
-      currentHeight: getCurrentHeight(newSize, {
+      currentHeight: this.getCurrentHeight(newSize, {
         defaultHeight: this.props.defaultHeight,
         minimizedHeight: this.props.minimizedHeight,
       }),
@@ -209,7 +231,7 @@ export default class Panel extends React.Component {
     const size = this.state.size === 'default' ? 'minimized' : 'default';
     this.setState({
       size,
-      currentHeight: getCurrentHeight(size, {
+      currentHeight: this.getCurrentHeight(size, {
         defaultHeight: this.props.defaultHeight,
         minimizedHeight: this.props.minimizedHeight,
       }),
@@ -236,7 +258,7 @@ export default class Panel extends React.Component {
         'panel--white': white,
         'panel--holding': holding,
       })}
-      style={{ height: currentHeight }}
+      style={{ height: currentHeight, ...this.state.style }}
       ref={panel => this.panelDOMElement = panel}
       onTransitionEnd={() => this.updateMobileMapUI()}
     >

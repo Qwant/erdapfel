@@ -297,7 +297,8 @@ export default class PoiPanel extends React.Component {
         : null;
 
     return <Panel
-      defaultHeight={240}
+      poiId={poi.id}
+      defaultHeight={'action-buttons'}
       minimizedHeight={100}
       title={header}
       resizable
@@ -324,6 +325,7 @@ export default class PoiPanel extends React.Component {
 
         {/* Actions buttons */}
         <ActionButtons
+          id="action-buttons"
           poi={poi}
           isDirectionActive={this.isDirectionActive}
           openDirection={this.openDirection}
@@ -331,6 +333,7 @@ export default class PoiPanel extends React.Component {
           isPoiInFavorite={this.state.isPoiInFavorite}
           toggleStorePoi={this.toggleStorePoi}
         />
+
 
         {/* About */}
         <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
