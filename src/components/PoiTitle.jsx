@@ -2,7 +2,7 @@
 import React from 'react';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
-import { filter } from 'src/libs/address';
+import MultilineAddress from 'src/components/ui/MultilineAddress';
 
 const PoiTitle = ({ poi, withAlternativeName }) => {
   const { name, localName, subClassName, address } = poi;
@@ -15,9 +15,9 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
     if (address) {
       return <div className="poiTitle">
         <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
-        <h2 className="poiTitle-main u-text--smallTitle u-mb-4">{
-          filter(address).map((item, index) => <div key={index}>{item}</div>)
-        }</h2>
+        <h2 className="poiTitle-main u-text--smallTitle u-mb-4">
+          <MultilineAddress address={address}/>
+        </h2>
         <div className="poiTitle-position">{latLon}</div>
       </div>;
     }
@@ -39,7 +39,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
   return <div className="poiTitle">
     <h2 className="poiTitle-main u-text--smallTitle">{title || subclass}</h2>
     {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
-      { filter(address).map((item, index) => <div key={index}>{item}</div>) }
+      <MultilineAddress address={address}/>
     </div>}
     {title && <div className="poiTitle-subclass u-text--subtitle">{subclass}</div>}
   </div>;

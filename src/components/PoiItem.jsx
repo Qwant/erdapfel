@@ -5,7 +5,7 @@ import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import classnames from 'classnames';
-import { toArray } from '../libs/address';
+import MultilineAddress from 'src/components/ui/MultilineAddress';
 
 const PoiItem = ({ poi,
   withOpeningHours,
@@ -20,7 +20,7 @@ const PoiItem = ({ poi,
   const Address = () =>
     poi.subClassName !== 'latlon' && address.label
       ? <div className="u-text--subtitle poiItem-address">
-        { toArray(address).map((item, index) => <div key={index}>{item}</div>) }
+        <MultilineAddress address={address}/>
       </div>
       : null
   ;
