@@ -16,7 +16,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
       return <div className="poiTitle">
         <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
         <h2 className="poiTitle-main u-text--smallTitle u-mb-4">{
-          filter(address).map(item => <div key={item}>{item}</div>)
+          filter(address).map((item, index) => <div key={index}>{item}</div>)
         }</h2>
         <div className="poiTitle-position">{latLon}</div>
       </div>;
@@ -39,7 +39,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
   return <div className="poiTitle">
     <h2 className="poiTitle-main u-text--smallTitle">{title || subclass}</h2>
     {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
-      { filter(address).map(item => <div key={item}>{item}</div>) }
+      { filter(address).map((item, index) => <div key={index}>{item}</div>) }
     </div>}
     {title && <div className="poiTitle-subclass u-text--subtitle">{subclass}</div>}
   </div>;

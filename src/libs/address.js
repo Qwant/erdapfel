@@ -4,11 +4,11 @@ import IdunnPoi from '../adapters/poi/idunn_poi';
  * Filter an address and return an array with the relevant items
  * @param {*} address - an address object
  */
-export function filter(address) {
+export function toArray(address) {
 
   if (!address) {return [];}
 
-  const city = address.postcode && address.city
+  const cityAndPostcode = address.postcode && address.city
     ? address.postcode + ' ' + address.city
     : address.city;
 
@@ -16,7 +16,7 @@ export function filter(address) {
     return [
       address.suburb,
       address.cityDistrict,
-      city,
+      address.city,
       address.stateDistrict,
       address.state,
       address.countryRegion,
@@ -26,7 +26,7 @@ export function filter(address) {
       .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
   }
 
-  return [address.street, city, address.country]
+  return [address.street, cityAndPostcode, address.country]
     .filter(i => i); // Filter out any undefined value
 }
 /**
@@ -35,7 +35,7 @@ export function filter(address) {
  * @param string separator - how items are joined
  */
 export function format(address, separator = ', ') {
-  return filter(address).join(separator);
+  return toArray(address).join(separator);
 }
 
 /**
@@ -73,7 +73,7 @@ export function normalize(type, raw) {
     };
   }
 
-  if (type === 'idunn' || type === 'latlon') {
+  if (type === 'idunn') {
     return {
       street: raw.address?.name,
       suburb: findAdminIdunn(raw, 'suburb')?.name,
