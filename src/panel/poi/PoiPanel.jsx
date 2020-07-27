@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
-import PoiCard from './PoiCard';
 import ActionButtons from './ActionButtons';
 import PoiBlockContainer from './PoiBlockContainer';
 import Panel from 'src/components/ui/Panel';
@@ -15,7 +14,6 @@ import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import SearchInput from 'src/ui_components/search_input';
-import { DeviceContext } from 'src/libs/device';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import Store from '../../adapters/store';
 import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
@@ -51,7 +49,6 @@ export default class PoiPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDetails: false,
       fullPoi: null,
       isPoiInFavorite: false,
     };
@@ -157,20 +154,6 @@ export default class PoiPanel extends React.Component {
     window.app.navigateTo('/favs');
   }
 
-  showDetails = () => {
-    const poi = this.getBestPoi();
-    Telemetry.add(Telemetry.POI_SEE_MORE, null, null,
-      Telemetry.buildInteractionData({
-        id: poi.id,
-        source: poi.meta && poi.meta.source,
-        template: 'single',
-        zone: 'detail',
-        element: 'more',
-      })
-    );
-    this.setState({ showDetails: true });
-  }
-
   getBestPoi() {
     return this.state.fullPoi || this.props.poi;
   }
@@ -213,10 +196,6 @@ export default class PoiPanel extends React.Component {
     window.app.navigateTo(uri);
   }
 
-  backToSmall = () => {
-    this.setState({ showDetails: false });
-  }
-
   onClickPhoneNumber = () => {
     const poi = this.getBestPoi();
     const source = poi.meta && poi.meta.source;
@@ -251,9 +230,14 @@ export default class PoiPanel extends React.Component {
     }
   }
 
-
-  renderFull = poi => {
+  render() {
     const { poiFilters, isFromFavorite } = this.props;
+    const poi = this.getBestPoi();
+
+    if (!poi) {
+      // @TODO: we could implement a loading indicator instead
+      return null;
+    }
 
     let backAction = null;
     if (isFromFavorite) {
@@ -267,12 +251,6 @@ export default class PoiPanel extends React.Component {
         callback: this.backToList,
         text: _('Back to list'),
         className: 'poi_panel__back_to_list',
-      };
-    } else {
-      backAction = {
-        callback: this.backToSmall,
-        text: _('Back'),
-        className: 'poi_panel__back_mobile',
       };
     }
 
@@ -320,28 +298,5 @@ export default class PoiPanel extends React.Component {
         {isFromOSM(poi) && <OsmContribution poi={poi} />}
       </div>
     </Panel>;
-  }
-
-  render() {
-    const poi = this.getBestPoi();
-    if (!poi) {
-      // @TODO: we could implement a loading indicator instead
-      return null;
-    }
-
-    return <DeviceContext.Consumer>
-      {isMobile => {
-        if (isMobile && !this.state.showDetails) {
-          return <PoiCard
-            poi={poi}
-            closeAction={this.closeAction}
-            openDirection={this.isDirectionActive && this.openDirection}
-            showDetails={this.showDetails}
-            covid19Enabled={covid19Enabled}
-          />;
-        }
-        return this.renderFull(poi);
-      }}
-    </DeviceContext.Consumer>;
   }
 }
