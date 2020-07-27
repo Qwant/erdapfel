@@ -94,11 +94,10 @@ export default class PoiPanel extends React.Component {
   }
 
   loadPois = () => {
-    const { poi, centerMap } = this.props;
     window.execOnMapLoaded(() => {
       fire('add_category_markers', this.props.pois, this.props.poiFilters);
     });
-    this.updateMapPoi(poi, { centerMap });
+    this.loadPoi();
   }
 
   loadPoi = async () => {
