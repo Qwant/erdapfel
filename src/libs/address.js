@@ -1,11 +1,12 @@
 import IdunnPoi from '../adapters/poi/idunn_poi';
 
 /**
- * Format an address given an address object (name, city, country, label, and other regions)
+ * Filter an address and return an array with the relevant items
  * @param {*} address - an address object
  */
-export function format(address) {
-  if (!address) {return '';}
+export function toArray(address) {
+
+  if (!address) {return [];}
 
   if (!address.street) {
     return [
@@ -18,13 +19,23 @@ export function format(address) {
       address.country,
     ]
       .filter(i => i)
-      .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]) // remove consecutive duplicated name
-      .join(', ');
+      .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
   }
 
-  return [address.street, address.city, address.country]
-    .filter(i => i) // Filter out any undefined value
-    .join(', ');
+  const cityAndPostcode = address.postcode && address.city
+    ? address.postcode + ' ' + address.city
+    : address.city;
+
+  return [address.street, cityAndPostcode, address.country]
+    .filter(i => i); // Filter out any undefined value
+}
+/**
+ * Format an address given an address object (name, city, country, label, and other regions)
+ * @param {*} address - an address object
+ * @param string separator - how items are joined
+ */
+export function format(address, separator = ', ') {
+  return toArray(address).join(separator);
 }
 
 /**
@@ -48,12 +59,12 @@ export function normalize(type, raw) {
       // Street address is received in the name field
       street = raw.geocoding.name;
     }
-
     return {
       street,
       suburb: findAdminBragi(raw, 'suburb')?.name,
       cityDistrict: findAdminBragi(raw, 'city_district')?.name,
       city: findAdminBragi(raw, 'city')?.name,
+      postcode: raw.geocoding.address?.street?.postcode,
       stateDistrict: findAdminBragi(raw, 'state_district')?.name,
       state: findAdminBragi(raw, 'state')?.name,
       countryRegion: findAdminBragi(raw, 'country_region')?.name,
@@ -68,6 +79,7 @@ export function normalize(type, raw) {
       suburb: findAdminIdunn(raw, 'suburb')?.name,
       cityDistrict: findAdminIdunn(raw, 'city_district')?.name,
       city: findAdminIdunn(raw, 'city')?.name,
+      postcode: raw.address?.postcode,
       stateDistrict: findAdminIdunn(raw, 'state_district')?.name,
       state: findAdminIdunn(raw, 'state')?.name,
       countryRegion: findAdminIdunn(raw, 'country_region')?.name,

@@ -4,7 +4,7 @@
         "source": "osm"
     },
     "name": "Musée d'Orsay",
-    "local_name": "Musée d'Orsay",
+    "local_name": "Orsay museum",
     "class_name": "museum",
     "subclass_name": "museum",
     "type" : "poi",
@@ -13,7 +13,92 @@
         "type": "Point"
     },
     "address": {
-        "label": "1 Rue de la Légion d'Honneur (Paris)"
+        "id": "addr_poi:osm:way:63178753",
+        "name": "1 Rue de la Légion d'Honneur",
+        "label": "1 Rue de la Légion d'Honneur (Paris)",
+        "housenumber": "1",
+        "street": {
+            "id": "street_poi:osm:way:63178753",
+            "name": "Rue de la Légion d'Honneur",
+            "label": "Rue de la Légion d'Honneur (Paris)",
+            "postcodes": [
+                "75007"
+            ]
+        },
+        "postcode": "75007",
+        "admins": [
+            {
+                "id": "admin:osm:relation:2188567",
+                "name": "Quartier Saint-Thomas-d'Aquin",
+                "label": "Quartier Saint-Thomas-d'Aquin (75007), Paris 7e Arrondissement, Paris, Île-de-France, France",
+                "class_name": "suburb",
+                "postcodes": [
+                    "75007"
+                ]
+            },
+            {
+                "id": "admin:osm:relation:9521",
+                "name": "Paris 7e Arrondissement",
+                "label": "Paris 7e Arrondissement (75007), Paris, Île-de-France, France",
+                "class_name": "city_district",
+                "postcodes": [
+                    "75007"
+                ]
+            },
+            {
+                "id": "admin:osm:relation:7444",
+                "name": "Paris",
+                "label": "Paris (75000-75116), Île-de-France, France",
+                "class_name": "city",
+                "postcodes": [
+                    "75000",
+                    "75001",
+                    "75002",
+                    "75003",
+                    "75004",
+                    "75005",
+                    "75006",
+                    "75007",
+                    "75008",
+                    "75009",
+                    "75010",
+                    "75011",
+                    "75012",
+                    "75013",
+                    "75014",
+                    "75015",
+                    "75016",
+                    "75017",
+                    "75018",
+                    "75019",
+                    "75020",
+                    "75116"
+                ]
+            },
+            {
+                "id": "admin:osm:relation:71525",
+                "name": "Paris",
+                "label": "Paris, Île-de-France, France",
+                "class_name": "state_district",
+                "postcodes": []
+            },
+            {
+                "id": "admin:osm:relation:8649",
+                "name": "Île-de-France",
+                "label": "Île-de-France, France",
+                "class_name": "state",
+                "postcodes": []
+            },
+            {
+                "id": "admin:osm:relation:2202162",
+                "name": "France",
+                "label": "France",
+                "class_name": "country",
+                "postcodes": []
+            }
+        ],
+        "admin": null,
+        "country_code": "FR"
     },
     "blocks": [{
         "type": "opening_hours",
