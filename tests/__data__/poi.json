@@ -4,7 +4,7 @@
         "source": "osm"
     },
     "name": "Musée d'Orsay",
-    "local_name": "Musée d'Orsay",
+    "local_name": "Orsay museum",
     "class_name": "museum",
     "subclass_name": "museum",
     "type" : "poi",
