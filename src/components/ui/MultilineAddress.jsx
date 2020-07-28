@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toArray } from '../../libs/address';
+import { toArray } from 'src/libs/address';
 
-const MultilineAddress = address =>
-  <div className={'multiline-address'}>
-    { toArray(address).map((item, index) => <div key={index}>{item}</div>) }
+const MultilineAddress = ({ address }) =>
+  <div>
+    {toArray(address).map((item, index) => <div key={index}>{item}</div>)}
   </div>;
 
 MultilineAddress.propTypes = {
