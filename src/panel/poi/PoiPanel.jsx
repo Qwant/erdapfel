@@ -268,6 +268,9 @@ export default class PoiPanel extends React.Component {
     </div>;
 
     return <Panel
+      white
+      resizable
+      initialSize="default"
       title={header}
       close={this.closeAction}
       className={classnames('poi_panel', {
@@ -276,7 +279,6 @@ export default class PoiPanel extends React.Component {
           !isFromFavorite &&
           (!poiFilters || !poiFilters.category),
       } )}
-      initialSize="maximized"
     >
       <div className="poi_panel__content">
         <PoiItem poi={poi} withAlternativeName className="u-mb-24" onClick={this.center} />
