@@ -2,7 +2,6 @@
 
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
-$HEADER_SIZE: 40px;
 
 .poi_panel--empty-header {
   .panel-header {
@@ -16,7 +15,7 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 16px 30px;
+  padding: 8px 30px;
   position: relative;
 }
 
@@ -42,11 +41,12 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__back_text {
   padding-left: 5px;
+  margin-right: 8px;
 }
 
 .poi_panel__back.icon-arrow-left {
   font-size: 22px;
-  vertical-align: -5px;
+  margin-top: -2px;
 }
 
 .poi_panel__back_to_list:hover {
@@ -333,45 +333,20 @@ $HEADER_SIZE: 40px;
   top: -15px;
 }
 
-.poi_panel__back_mobile {
-  display: none;
-}
-
-.poi_panel__back_to_list, .poi_panel__back_mobile {
-  height: $HEADER_SIZE;
-  line-height: $HEADER_SIZE;
+.poi_panel__back_to_list {
   cursor: pointer;
-  margin-right: 6px;
-}
-
-.poi_panel__header {
+  display: inline-flex;
+  align-items: center;
   color: $secondary_text;
-  display: flex;
-  margin-left: -6px;
+  &:hover {
+    color: $primary_text;
+  }
 }
 
 @media (max-width: 640px) {
-  .poi_panel__header {
-    margin-left: 0;
-  }
-
-  .poi_panel__back_mobile, .poi_panel__back_to_list {
-    display: block;
-    color: $primary_text;
-  }
-
-  .poi_panel {
-    .panel-header {
-      height: auto;
-      padding-bottom: 0;
-      padding-left: 6px;
-      margin-bottom: 0;
-    }
-  }
-
   .poi_panel__content,
   .poi_panel--empty-header .poi_panel__content {
-    padding: 15px;
+    padding: 8px 15px;
   }
 
   .poi_panel__sub_block__title {

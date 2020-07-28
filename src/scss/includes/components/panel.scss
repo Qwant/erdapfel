@@ -14,18 +14,18 @@
   width: $panel_width;
 
   &-header {
-    padding: 0 40px 0 15px;
+    padding: 0 15px;
     min-height: 40px;
     color: #5c6f84;
-    border-bottom: 1px solid #f4f6fa;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    span {
+      width: 100%;
+    }
   }
 
   &-close {
-    position: absolute;
-    right: 6px;
-    top: 8px;
     cursor: pointer;
     transition: background-color .1s;
     border-radius: 50%;
@@ -36,7 +36,6 @@
     align-items: center;
     justify-content: center;
     color: $secondary_text;
-    z-index: 1;
 
     &:hover {
       background: $background_hover;
@@ -45,14 +44,10 @@
   }
 
   &-content {
-    // 172 = top UI margin + top bar height + top bar margin + panel header + bottom UI margin 
+    // 172 = top UI margin + top bar height + top bar margin + panel header + bottom UI margin
     max-height: calc(100vh - 172px);
     overflow-y: auto;
     scrollbar-width: thin;
-  }
-
-  .panel-resizeHandle {
-    pointer-events: none;
   }
 }
 
@@ -69,18 +64,6 @@
 
     &--white {
       background: white;
-    }
-
-    &-header {
-      border-bottom: 0;
-      padding: 9px 15px;
-      display: block;
-    }
-
-    &-close {
-      top: 0;
-      right: 0;
-      padding: 21px;
     }
 
     &:not(.panel--holding) {
@@ -113,7 +96,7 @@
     }
 
     &.minimized {
-      height: 50px;
+      // height: 50px;
 
       .panel-header {
         text-align: center;
@@ -140,12 +123,14 @@
 
       &:before {
         content: '';
-        display: block;
-        border-radius: 2.5px;
-        background-color: #e0e1e6;
+        position: absolute;
+        top: 8px;
+        left: 50%;
         width: 40px;
         height: 5px;
-        margin: 0 auto 8px;
+        transform: translateX(-50%);
+        border-radius: 2.5px;
+        background-color: #e0e1e6;
       }
     }
   }

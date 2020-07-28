@@ -254,18 +254,15 @@ export default class PoiPanel extends React.Component {
       };
     }
 
-    const header = <div className="poi_panel__header">
-      {backAction &&
-        <div className={backAction.className} onClick={backAction.callback}>
-          <i className="poi_panel__back icon-arrow-left" />
-          <span className="poi_panel__back_text">{backAction.text}</span>
-        </div>
-      }
-      {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
-        src="./statics/images/pagesjaunes.svg"
-        alt="PagesJaunes" />
-      }
-    </div>;
+    const header = backAction &&
+      <div className={backAction.className} onClick={backAction.callback}>
+        <i className="poi_panel__back icon-arrow-left" />
+        <span className="poi_panel__back_text">{backAction.text}</span>
+        {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
+          src="./statics/images/pagesjaunes.svg"
+          alt="PagesJaunes" />
+        }
+      </div>;
 
     return <Panel
       white
