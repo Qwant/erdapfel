@@ -267,7 +267,6 @@ export default class PoiPanel extends React.Component {
     return <Panel
       white
       resizable
-      initialSize="default"
       title={header}
       close={this.closeAction}
       className={classnames('poi_panel', {
