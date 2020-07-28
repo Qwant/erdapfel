@@ -39,7 +39,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
   return <div className="poiTitle">
     <h2 className="poiTitle-main u-text--smallTitle">{title || subclass}</h2>
     {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
-      <MultilineAddress address={address}/>
+      {alternative}
     </div>}
     {title && <div className="poiTitle-subclass u-text--subtitle">{subclass}</div>}
   </div>;

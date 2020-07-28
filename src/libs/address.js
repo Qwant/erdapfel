@@ -8,10 +8,6 @@ export function toArray(address) {
 
   if (!address) {return [];}
 
-  const cityAndPostcode = address.postcode && address.city
-    ? address.postcode + ' ' + address.city
-    : address.city;
-
   if (!address.street) {
     return [
       address.suburb,
@@ -25,6 +21,10 @@ export function toArray(address) {
       .filter(i => i)
       .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
   }
+
+  const cityAndPostcode = address.postcode && address.city
+    ? address.postcode + ' ' + address.city
+    : address.city;
 
   return [address.street, cityAndPostcode, address.country]
     .filter(i => i); // Filter out any undefined value
