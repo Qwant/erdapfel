@@ -159,11 +159,10 @@ Suggest.propTypes = {
 export default Suggest;
 
 // Blur the focused field and close the suggest list when clicking outside of a field
-window.onclick = e => {
-  if (e.target.tagName !== 'INPUT') {
-    fire('close_suggest');
-    if (document.activeElement.tagName === 'INPUT') {
-      document.activeElement.blur();
+if (!window.onclick) {
+  window.onclick = e => {
+    if (e.target.tagName !== 'INPUT') {
+      fire('close_suggest');
     }
-  }
-}
+  };
+};
