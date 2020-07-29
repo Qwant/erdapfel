@@ -20,6 +20,7 @@ import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
   from 'src/modals/MasqFavoriteModal';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
+import Flex from 'src/components/ui/Flex';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -255,14 +256,14 @@ export default class PoiPanel extends React.Component {
     }
 
     const header = backAction &&
-      <div className={backAction.className} onClick={backAction.callback}>
+      <Flex inline className={backAction.className} onClick={backAction.callback}>
         <i className="poi_panel__back icon-arrow-left" />
         <span className="poi_panel__back_text">{backAction.text}</span>
         {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
           src="./statics/images/pagesjaunes.svg"
           alt="PagesJaunes" />
         }
-      </div>;
+      </Flex>;
 
     return <Panel
       white

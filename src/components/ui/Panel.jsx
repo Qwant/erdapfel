@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
+import Flex from 'src/components/ui/Flex';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
@@ -226,7 +227,8 @@ export default class Panel extends React.Component {
             ref={panel => this.panelDOMElement = panel}
             onTransitionEnd={() => this.updateMobileMapUI()}
           >
-            <div
+            <Flex
+              justifyContent="space-between"
               className={classnames(
                 'panel-header',
                 { 'panel-resizeHandle': resizable && isMobile }
@@ -235,11 +237,14 @@ export default class Panel extends React.Component {
               onClick={() => this.handleHeaderClick()}
               {...(isMobile && forceResizeHandlers)}
             >
-              {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
-              {close && <div className="panel-close" title={_('Close')} onClick={close} >
+              <span>
+                {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
+              </span>
+              {close &&
+              <Flex className="panel-close" title={_('Close')} onClick={close} >
                 <i className="icon-x" />
-              </div>}
-            </div>
+              </Flex>}
+            </Flex>
             <div
               className="panel-content"
               ref={this.panelContentRef}

@@ -335,8 +335,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__back_to_list {
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
   color: $secondary_text;
   &:hover {
     color: $primary_text;
