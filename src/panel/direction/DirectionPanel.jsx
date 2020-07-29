@@ -7,7 +7,7 @@ import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
-import { DeviceContext } from 'src/libs/device';
+import { DeviceContext, isMobileDevice } from 'src/libs/device';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
@@ -213,6 +213,13 @@ export default class DirectionPanel extends React.Component {
     }
   }
 
+  blurFields = () => {
+    if (isMobileDevice()) {
+      document.querySelector('#itinerary_input_origin').blur();
+      document.querySelector('#itinerary_input_destination').blur();
+    }
+  }
+
   reversePoints = () => {
     Telemetry.add(Telemetry.ITINERARY_INVERT);
     this.setState(previousState => ({
@@ -317,7 +324,8 @@ export default class DirectionPanel extends React.Component {
           className="direction_panel"
         >
           {form}
-          <div id="itinerary_autocomplete_suggestions" />
+          <div id="itinerary_autocomplete_suggestions"
+            onScroll={this.blurFields}/>
           {result}
         </Panel>
       }

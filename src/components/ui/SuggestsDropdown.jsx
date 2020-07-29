@@ -3,6 +3,13 @@ import classnames from 'classnames';
 import { object, func, string, arrayOf, bool } from 'prop-types';
 
 import SuggestItem from './SuggestItem';
+import { isMobileDevice } from '../../libs/device';
+
+const blurField = () => {
+  if (isMobileDevice()) {
+    document.querySelector('#search').blur();
+  }
+};
 
 const computeStyle = (isAttachedToInput, inputNode, suggestItems) => {
   let style = {};
@@ -100,6 +107,7 @@ const SuggestsDropdown = ({
     <ul
       className={classnames('autocomplete_suggestions', className)}
       style={style}
+      onScroll={blurField}
     >
       {suggestItems.map((suggest, index) =>
         <li

@@ -7,6 +7,7 @@ import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/suggest';
 import { DeviceContext } from 'src/libs/device';
 import { togglePanelVisibility } from 'src/libs/panel';
+import { fire, listen } from '../../libs/customEvents';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -50,10 +51,6 @@ const Suggest = ({
           fetchItems(inputNode.value);
         }
       }
-    };
-
-    const handleBlur = () => {
-      close();
     };
 
     const fetchItems = debounce(value => {
@@ -101,17 +98,18 @@ const Suggest = ({
       }
     };
 
+    listen('close_suggest', close);
+
     inputNode.addEventListener('focus', handleFocus);
-    inputNode.addEventListener('blur', handleBlur);
     inputNode.addEventListener('input', handleInput);
     inputNode.addEventListener('keydown', handleKeyDown);
 
     return () => {
       inputNode.removeEventListener('focus', handleFocus);
-      inputNode.removeEventListener('blur', handleBlur);
       inputNode.removeEventListener('input', handleInput);
       inputNode.removeEventListener('keydown', handleKeyDown);
     };
+
   }, []);
 
   if (!isOpen) {
@@ -159,3 +157,13 @@ Suggest.propTypes = {
 };
 
 export default Suggest;
+
+// Blur the focused field and close the suggest list when clicking outside of a field
+window.onclick = e => {
+  if (e.target.tagName !== 'INPUT') {
+    fire('close_suggest');
+    if (document.activeElement.tagName === 'INPUT') {
+      document.activeElement.blur();
+    }
+  }
+}
