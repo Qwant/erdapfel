@@ -603,6 +603,7 @@ button.direction_shortcut {
 
 .direction_panel_mobile .autocomplete_suggestions {
   @include long_shadow();
+  height: 100vh;
 }
 
 /* Mobile */
