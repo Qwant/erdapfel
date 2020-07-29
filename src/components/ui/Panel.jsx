@@ -237,7 +237,7 @@ export default class Panel extends React.Component {
               onClick={() => this.handleHeaderClick()}
               {...(isMobile && forceResizeHandlers)}
             >
-              <span>
+              <span className={minimizedTitle && 'minimizedTitle'}>
                 {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
               </span>
               {close &&
