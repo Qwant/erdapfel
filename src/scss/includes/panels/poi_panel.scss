@@ -342,8 +342,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__pj_logo {
-  height: 18px;
-  width: 18px;
+  min-height: 18px;
 }
 
 @media (max-width: 640px) {
