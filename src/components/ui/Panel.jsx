@@ -237,9 +237,9 @@ export default class Panel extends React.Component {
               onClick={() => this.handleHeaderClick()}
               {...(isMobile && forceResizeHandlers)}
             >
-              <span className={minimizedTitle && 'minimizedTitle'}>
-                {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
-              </span>
+              {resizable && size === 'minimized' && minimizedTitle
+                ? <span className="minimizedTitle">{minimizedTitle}</span>
+                : title}
               {close &&
               <Flex className="panel-close" title={_('Close')} onClick={close} >
                 <i className="icon-x" />
