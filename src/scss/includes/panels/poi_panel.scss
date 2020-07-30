@@ -341,6 +341,11 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   }
 }
 
+.poi_panel__pj_logo {
+  height: 18px;
+  width: 18px;
+}
+
 @media (max-width: 640px) {
   .poi_panel__content,
   .poi_panel--empty-header .poi_panel__content {
