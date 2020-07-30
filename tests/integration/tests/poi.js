@@ -77,15 +77,13 @@ test('load a poi from url on mobile', async () => {
   });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poiTitle');
-  const { title, address } = await page.evaluate(() => {
-    return {
-      title: document.querySelector('.poi_card .poiTitle').innerText,
-      address: document.querySelector('.poi_card .poiItem-address').innerText,
-    };
-  });
+  const { title, address } = await page.evaluate(() => ({
+    title: document.querySelector('.poiTitle').innerText,
+    address: document.querySelector('.poiItem-address').innerText,
+  }));
   expect(title).toMatch(/Musée d'Orsay/);
   expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris\nFrance/);
-  expect(await exists(page, '.poi_card .openingHour--closed')).toBeTruthy();
+  expect(await exists(page, '.openingHour--closed')).toBeTruthy();
 });
 
 test('load a poi already in my favorite from url', async () => {

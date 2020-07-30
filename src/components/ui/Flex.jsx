@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Flex = ({ children, inline, className,
+const Flex = forwardRef(({
+  children,
+  inline,
+  className,
   justifyContent,
   alignItems = 'center',
-}) => {
-  const style = { justifyContent, alignItems };
-  return <div
-    style={style}
-    className={classnames('flex', { 'flex--inline': inline }, className)}>
+  ...rest
+}, ref) =>
+  <div
+    className={classnames('flex', { 'flex--inline': inline }, className)}
+    ref={ref}
+    style={{
+      justifyContent,
+      alignItems,
+    }}
+    {...rest}
+  >
     {children}
-  </div>;
-};
+  </div>
+);
 
+Flex.displayName = 'Flex';
 Flex.propTypes = {
-  justifyContent: PropTypes.oneOf(['space-between']),
+  justifyContent: PropTypes.oneOf(['center', 'space-between']),
   alignItems: PropTypes.oneOf(['center']),
 };
 

@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
+import { DeviceContext } from 'src/libs/device';
+import Flex from 'src/components/ui/Flex';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
@@ -211,31 +213,53 @@ export default class Panel extends React.Component {
     const { children, title, minimizedTitle, resizable, close, className, white } = this.props;
     const { size, currentHeight, holding } = this.state;
     const resizeHandlers = resizable ? this.getEventHandlers(false) : {};
-    const forceResizeleHandlers = resizable ? this.getEventHandlers(true) : {};
+    const forceResizeHandlers = resizable ? this.getEventHandlers(true) : {};
 
-    return <div
-      className={classnames('panel', size, className, {
-        'panel--white': white,
-        'panel--holding': holding,
-      })}
-      style={{ height: currentHeight && `${currentHeight}px` }}
-      ref={panel => this.panelDOMElement = panel}
-      onTransitionEnd={() => this.updateMobileMapUI()}
-    >
-      {close && <div className="panel-close" title={_('Close')} onClick={close} >
-        <i className="icon-x" />
-      </div>}
-      <div
-        className={classnames('panel-header', { 'panel-resizeHandle': resizable })}
-        ref={element => this.handleElement = element}
-        onClick={() => this.handleHeaderClick()}
-        {...forceResizeleHandlers}
-      >
-        {resizable && size === 'minimized' && minimizedTitle ? minimizedTitle : title}
-      </div>
-      <div className="panel-content" ref={this.panelContentRef} {...resizeHandlers}>
-        {children}
-      </div>
-    </div>;
+    return (
+      <DeviceContext.Consumer>
+        {isMobile =>
+          <div
+            className={classnames('panel', size, className, {
+              'panel--white': white,
+              'panel--holding': holding,
+            })}
+            style={{ height: currentHeight && `${currentHeight}px` }}
+            ref={panel => this.panelDOMElement = panel}
+            onTransitionEnd={() => this.updateMobileMapUI()}
+          >
+            <Flex
+              justifyContent="space-between"
+              className={classnames(
+                'panel-header',
+                { 'panel-resizeHandle': resizable && isMobile }
+              )}
+              ref={element => this.handleElement = element}
+              onClick={() => this.handleHeaderClick()}
+              {...(isMobile && forceResizeHandlers)}
+            >
+              {resizable && size === 'minimized' && minimizedTitle
+                ? <span className="minimizedTitle">{minimizedTitle}</span>
+                : title}
+              {close &&
+              <Flex
+                justifyContent="center"
+                className="panel-close"
+                title={_('Close')}
+                onClick={close}
+              >
+                <i className="icon-x" />
+              </Flex>}
+            </Flex>
+            <div
+              className="panel-content"
+              ref={this.panelContentRef}
+              {...(isMobile && resizeHandlers)}
+            >
+              {children}
+            </div>
+          </div>
+        }
+      </DeviceContext.Consumer>
+    );
   }
 }

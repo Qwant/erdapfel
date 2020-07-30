@@ -1,5 +1,5 @@
 module.exports = {
-  events : [
+  events: [
     /* App */
     'app_start',
     /* Suggest*/
@@ -25,7 +25,6 @@ module.exports = {
     'poi_backtofavorite',
     'poi_backtolist',
     'poi_restore',
-    'poi_see_more',
     'poi_share',
     /* OSM */
     'poi_osm_open',
@@ -58,5 +57,5 @@ module.exports = {
     /* Covid-19 */
     'covid_caresteouvert_link',
     'covid_caresteouvert_contribute',
-  ]
-}
+  ],
+};

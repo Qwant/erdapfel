@@ -2,7 +2,6 @@
 
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
-$HEADER_SIZE: 40px;
 
 .poi_panel--empty-header {
   .panel-header {
@@ -16,7 +15,7 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 16px 30px;
+  padding: 8px 30px;
   position: relative;
 }
 
@@ -42,11 +41,12 @@ $HEADER_SIZE: 40px;
 
 .poi_panel__back_text {
   padding-left: 5px;
+  margin-right: 6px;
 }
 
 .poi_panel__back.icon-arrow-left {
   font-size: 22px;
-  vertical-align: -5px;
+  margin-top: -2px;
 }
 
 .poi_panel__back_to_list:hover {
@@ -333,51 +333,22 @@ $HEADER_SIZE: 40px;
   top: -15px;
 }
 
-.poi_panel__back_mobile {
-  display: none;
-}
-
-.poi_panel__back_to_list, .poi_panel__back_mobile {
-  height: $HEADER_SIZE;
-  line-height: $HEADER_SIZE;
+.poi_panel__back_to_list {
   cursor: pointer;
-  margin-right: 6px;
+  color: $secondary_text;
+  &:hover {
+    color: $primary_text;
+  }
 }
 
-.poi_panel__header {
-  color: $secondary_text;
-  display: flex;
-  margin-left: -6px;
+.poi_panel__pj_logo {
+  min-height: 18px;
 }
 
 @media (max-width: 640px) {
-  .poi_panel__header {
-    margin-left: 0;
-  }
-
-  .poi_panel__back_mobile, .poi_panel__back_to_list {
-    display: block;
-    color: $primary_text;
-  }
-
-  .poi_panel {
-    .panel-header {
-      height: auto;
-      background-color: $surface;
-      padding-bottom: 0;
-      padding-left: 6px;
-      margin-bottom: 0;
-    }
-
-    .panel-content {
-      box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 6px;
-      background: white;
-    }
-  }
-
   .poi_panel__content,
   .poi_panel--empty-header .poi_panel__content {
-    padding: 15px;
+    padding: 8px 15px;
   }
 
   .poi_panel__sub_block__title {
@@ -390,58 +361,6 @@ $HEADER_SIZE: 40px;
 
   .poi_panel__description__ellipsis {
     width: 100%;
-  }
-}
-
-
-.poi_card {
-  background: white;
-  @include card_shadow();
-  width: calc(100vw - 16px);
-  left: 8px;
-  bottom: 8px;
-  max-height: calc(100vh - 200px);
-  position: fixed;
-  padding: 16px;
-
-  .poiItem {
-    min-width: 0;
-    flex: 1;
-  }
-
-  &__action_container {
-    margin-top: 12px;
-    margin-left: 6px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__close {
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    transition: background-color .1s;
-    border-radius: 50%;
-    font-size: 18px;
-    transform: none;
-    line-height: 32px;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    &:hover {
-      background: $background_hover;
-      color: $primary_text;
-    }
-  }
-
-  .button {
-    width: 120px;
-  }
-
-  .poi_card__action__direction {
-    margin-bottom: 9px;
   }
 }
 
