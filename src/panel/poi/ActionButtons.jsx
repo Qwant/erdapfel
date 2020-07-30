@@ -1,23 +1,23 @@
 /* globals _ */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
 
-const ActionButtons = ({
+const ActionButtons = forwardRef(({
   poi,
   isDirectionActive,
   openDirection,
   onClickPhoneNumber,
   isPoiInFavorite,
   toggleStorePoi,
-}) => {
+}, ref) => {
   const onShareClick = (e, handler) => {
     Telemetry.add(Telemetry.POI_SHARE);
     return handler(e);
   };
 
-  return <Flex className="u-mb-24 poi_panel__actions">
+  return <Flex className="u-mb-24 poi_panel__actions" ref={ref}>
     {isDirectionActive && <Button
       className="poi_panel__action__direction"
       variant="primary"
@@ -54,7 +54,9 @@ const ActionButtons = ({
       />}
     </ShareMenu>
   </Flex>;
-};
+});
+
+ActionButtons.displayName = 'ActionButtons';
 
 ActionButtons.propTypes = {
   poi: PropTypes.object.isRequired,

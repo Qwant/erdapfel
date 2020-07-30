@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
+import { isMobileDevice } from 'src/libs/device';
 import Flex from 'src/components/ui/Flex';
 
 const getEventClientY = event => event.changedTouches
@@ -14,6 +15,9 @@ const getEventClientY = event => event.changedTouches
 const SWIPE_THRESHOLD_PX = 50;
 // Pixel threshold from the bottom or top of the viewport to span to min or max
 const MIN_MAX_THRESHOLD_PX = 75;
+const MOBILE_DEFAULT_SIZE = '50%';
+const MOBILE_MINIMIZED_SIZE = '50px';
+const MOBILE_MAXIMIZED_SIZE = 'calc(100% - 64px)';
 
 function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSize) {
   let size = previousSize;
@@ -47,6 +51,9 @@ export default class Panel extends React.Component {
     close: PropTypes.func,
     className: PropTypes.string,
     white: PropTypes.bool,
+    /* Default panel height will be computed
+       to display no more than this ref + a margin */
+    defaultSizeTargetRef: PropTypes.object,
   }
 
   static defaultProps = {
@@ -61,22 +68,83 @@ export default class Panel extends React.Component {
     this.state = {
       holding: false,
       size: props.initialSize,
-      currentHeight: null,
+      // Animation, if any, will start from this currentHeight
+      currentHeight: this.getInitialHeight(),
     };
   }
 
   componentDidMount() {
     this.updateMobileMapUI();
     this.defaultHeight = this.panelDOMElement.offsetHeight;
+    window.addEventListener('load', this.loadHandler);
   }
 
   componentDidUpdate() {
     this.updateMobileMapUI();
+
+    if (this.state.holding) {
+      return;
+    }
+
+    /* Update height if needed */
+    const height = this.getCurrentHeight();
+    if (height !== this.state.currentHeight) {
+      this.setState({
+        currentHeight: height,
+      });
+    }
   }
 
   componentWillUnmount() {
     this.updateMobileMapUI(0);
     this.removeListeners();
+    window.removeEventListener('load', this.loadHandler);
+  }
+
+  loadHandler = () => {
+    /* Recalculate panel's size once all assets has been loaded. */
+    const height = this.getCurrentHeight();
+    this.setState({
+      currentHeight: height,
+    });
+  }
+
+  getInitialHeight() {
+    if (!isMobileDevice()) {
+      return '100%';
+    }
+
+    return this.props.defaultSizeTargetRef
+      ? 0
+      : MOBILE_DEFAULT_SIZE;
+  }
+
+  getCurrentHeight() {
+    /* Extra margin after defaultSizeTarget */
+    const marginBottom = 20;
+    const { size } = this.state;
+    const { defaultSizeTargetRef } = this.props;
+
+    if (!isMobileDevice()) {
+      // Desktop
+      return '100%';
+    }
+
+    const sizes = {
+      minimized: MOBILE_MINIMIZED_SIZE,
+      maximized: MOBILE_MAXIMIZED_SIZE,
+      default: (() => {
+        if (!defaultSizeTargetRef || !defaultSizeTargetRef.current) {
+          return MOBILE_DEFAULT_SIZE;
+        }
+
+        const targetRect = defaultSizeTargetRef.current.getBoundingClientRect();
+        const panelRect = this.panelDOMElement.getBoundingClientRect();
+        return targetRect.bottom - panelRect.top + marginBottom;
+      })(),
+    };
+
+    return sizes[size] || MOBILE_DEFAULT_SIZE;
   }
 
   updateMobileMapUI = (height = this.panelDOMElement.offsetHeight) => {
@@ -188,7 +256,6 @@ export default class Panel extends React.Component {
     this.setState({
       holding: false,
       size: newSize,
-      currentHeight: null,
     });
   }
 
@@ -196,7 +263,6 @@ export default class Panel extends React.Component {
     const size = this.state.size === 'default' ? 'minimized' : 'default';
     this.setState({
       size,
-      currentHeight: null,
     });
   }
 
@@ -223,7 +289,7 @@ export default class Panel extends React.Component {
               'panel--white': white,
               'panel--holding': holding,
             })}
-            style={{ height: currentHeight && `${currentHeight}px` }}
+            style={{ height: currentHeight }}
             ref={panel => this.panelDOMElement = panel}
             onTransitionEnd={() => this.updateMobileMapUI()}
           >

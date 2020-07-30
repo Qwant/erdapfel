@@ -55,6 +55,7 @@ export default class PoiPanel extends React.Component {
     };
     this.isDirectionActive = nconf.get().direction.enabled;
     this.isMasqEnabled = nconf.get().masq.enabled;
+    this.defaultSizeTargetRef = React.createRef();
   }
 
   componentDidMount() {
@@ -268,6 +269,7 @@ export default class PoiPanel extends React.Component {
       resizable
       title={header}
       close={this.closeAction}
+      defaultSizeTargetRef={this.defaultSizeTargetRef}
       className={classnames('poi_panel', {
         'poi_panel--empty-header':
           !isFromPagesJaunes(poi) &&
@@ -278,6 +280,7 @@ export default class PoiPanel extends React.Component {
       <div className="poi_panel__content">
         <PoiItem poi={poi} withAlternativeName className="u-mb-24" onClick={this.center} />
         <ActionButtons
+          ref={this.defaultSizeTargetRef}
           poi={poi}
           isDirectionActive={this.isDirectionActive}
           openDirection={this.openDirection}
