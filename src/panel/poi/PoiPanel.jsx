@@ -245,18 +245,16 @@ export default class PoiPanel extends React.Component {
       backAction = {
         callback: this.backToFavorite,
         text: _('Back to favorites'),
-        className: 'poi_panel__back_to_list',
       };
     } else if (poiFilters.category || poiFilters.query) {
       backAction = {
         callback: this.backToList,
         text: _('Back to list'),
-        className: 'poi_panel__back_to_list',
       };
     }
 
     const header = backAction &&
-      <Flex inline className={backAction.className} onClick={backAction.callback}>
+      <Flex inline className="poi_panel__back_to_list" onClick={backAction.callback}>
         <i className="poi_panel__back icon-arrow-left" />
         <span className="poi_panel__back_text">{backAction.text}</span>
         {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
