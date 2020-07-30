@@ -241,7 +241,7 @@ export default class Panel extends React.Component {
                 ? <span className="minimizedTitle">{minimizedTitle}</span>
                 : title}
               {close &&
-              <Flex className="panel-close" title={_('Close')} onClick={close} >
+              <Flex justifyContent="center" className="panel-close" title={_('Close')} onClick={close} >
                 <i className="icon-x" />
               </Flex>}
             </Flex>
