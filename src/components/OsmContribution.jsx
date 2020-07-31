@@ -14,12 +14,10 @@ const OsmContribution = ({ poi }) => {
       </p>
       <a className="u-text--caption osm_contribute__link" href={viewUrl} rel="noopener noreferrer"
         target="_blank">
-        <i className="icon-chevrons-right osm_contribute__icon" />
         <span className="osm_contribute__about">{_('View')}</span>
       </a>
       <a className="u-text--caption osm_contribute__link" href={editUrl} rel="noopener noreferrer"
         target="_blank">
-        <i className="icon-chevrons-right osm_contribute__icon edit" />
         <span className="osm_contribute__about">{_('Edit')}</span>
       </a>
     </div>
