@@ -8,6 +8,7 @@ const Flex = forwardRef(({
   className,
   justifyContent,
   alignItems = 'center',
+  style,
   ...rest
 }, ref) =>
   <div
@@ -16,6 +17,7 @@ const Flex = forwardRef(({
     style={{
       justifyContent,
       alignItems,
+      ...style,
     }}
     {...rest}
   >
