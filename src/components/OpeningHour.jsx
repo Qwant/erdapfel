@@ -7,21 +7,21 @@ const getStatusMessage = status => {
   if (status === 'open') {
     return {
       label: _('Open'),
-      color: '#60ad51',
+      color: '#5d9836',
     };
   }
 
   if (status === 'closed') {
     return {
       label: _('Closed'),
-      color: '#8c0212',
+      color: '#900014',
     };
   }
 
   return { label: '', color: '#fff' };
 };
 
-const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
+const OpeningHour = ({ schedule, showNextOpenOnly = false, withIcon, className }) => {
   if (!schedule) {
     return null;
   }
@@ -50,13 +50,20 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
     return capitalizeFirst(parts.join(' - '));
   };
 
-  return <div className={classnames('openingHour', {
-    [`openingHour--${status}`]: status,
-    'openingHour--24-7': isTwentyFourSeven,
-  }, className)}>
-    <div>{getDescription()}</div>
-    <div className="openingHour-circle u-ml-4" style={{ background: color }} />
-  </div>;
+  return <span
+    className={classnames(
+      'openingHour',
+      'u-text--subtitle',
+      {
+        [`openingHour--${status}`]: status,
+        'openingHour--24-7': isTwentyFourSeven,
+      }, className
+    )}
+    style={{ color }}
+  >
+    {withIcon && <i className="icon-icon_clock u-mr-4"/>}
+    {getDescription()}
+  </span>;
 };
 
 export default OpeningHour;

@@ -36,9 +36,9 @@ const PoiItem = ({ poi,
   const OpenStatus = () =>
     withOpeningHours && poi?.blocksByType?.opening_hours
       ? <OpeningHour
+        withIcon
         schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
         showNextOpenOnly={true}
-        className="u-text--label"
       />
       : null;
 
