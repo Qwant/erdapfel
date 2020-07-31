@@ -7,7 +7,6 @@ import { parseMapHash, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 import { listen } from 'src/libs/customEvents';
 import RootComponent from './RootComponent';
 
-const performanceEnabled = nconf.get().performance.enabled;
 const burgerMenuEnabled = nconf.get().burgerMenu.enabled;
 
 if (!burgerMenuEnabled) {
@@ -18,9 +17,7 @@ export default class App {
   constructor() {
     this.initMap();
     SearchInput.initSearchInput('#search');
-    if (performanceEnabled) {
-      listen('map_loaded', () => { window.times.mapLoaded = Date.now(); });
-    }
+    listen('map_loaded', () => { window.times.mapLoaded = Date.now(); });
 
     this.router = new Router(window.baseUrl);
 
