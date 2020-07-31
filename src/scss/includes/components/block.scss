@@ -1,0 +1,16 @@
+.block {
+  display: flex;
+  padding: 10px 0;
+  width: 100%;
+
+  &-icon {
+    font-size: 24px;
+    margin-top: 8px;
+    margin-right: 12px;
+    color: $action-blue-base;
+  }
+
+  &-content {
+    width: 100%;
+  }
+}
