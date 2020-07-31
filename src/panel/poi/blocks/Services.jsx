@@ -48,10 +48,14 @@ export default class Services extends React.Component {
     return <Fragment>
       <div className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
         <h4 className="poi_panel__sub_block__title__text">{this.getTitle()}</h4>
-        <div className={
-          classnames('poi_panel__block__collapse', 'icon-icon_chevron-down', {
-            'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
-          })} />
+        <div
+          className={classnames(
+            'poi_panel__block__collapse',
+            'icon-icon_chevron-down', {
+              'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
+            }
+          )}
+        />
       </div>
       {!this.state.isCollapsed && <div className="poi_panel__service_information__container">
         {accessibility && <AccessibilityBlock block={accessibility} />}
