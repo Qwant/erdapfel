@@ -1,8 +1,8 @@
 /* globals _ */
 import React, { Fragment } from 'react';
 import nconf from '@qwant/nconf-getter';
-import TimeTable from './TimeTable';
 
+import TimeTable from './TimeTable';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
 import Button from 'src/components/ui/Button';
