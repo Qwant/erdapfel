@@ -26,7 +26,7 @@ const AccessibilityBlock = ({
     return availableAccessibilities.join('. ');
   }
   return <div>
-    <h6 className="u-text--caption">{ _('Accessibility', 'poi') }</h6>
+    <h6 className="u-text--caption u-mb-8">{ _('Accessibility', 'poi') }</h6>
     <ul className="poi_panel__info__accessibilities">
       { availableAccessibilities.map((el, index) => <li key={index}>{el}</li>) }
     </ul>
