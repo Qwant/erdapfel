@@ -4,7 +4,7 @@ import OsmSchedule from 'src/adapters/osm_schedule';
 import TimeTable from './TimeTable';
 import PropTypes from 'prop-types';
 
-import Block from 'src/components/ui/Block';
+import Block from 'src/panel/poi/blocks/Block';
 
 export default class HourBlock extends React.Component {
   static propTypes = {

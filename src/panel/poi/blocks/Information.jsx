@@ -2,7 +2,7 @@
 import React from 'react';
 import Services from './Services';
 
-import Block from 'src/components/ui/Block';
+import Block from 'src/panel/poi/blocks/Block';
 
 function findBlock(blocks, toFind) {
   for (let i = 0; i < blocks.length; ++i) {

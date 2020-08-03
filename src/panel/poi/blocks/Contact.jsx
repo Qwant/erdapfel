@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Block from 'src/components/ui/Block';
+import Block from 'src/panel/poi/blocks/Block';
 
 const ContactBlock = ({
   block,

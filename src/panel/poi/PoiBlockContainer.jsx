@@ -10,7 +10,7 @@ import CovidBlock from './blocks/Covid19';
 import PhoneBlock from './blocks/Phone';
 import RecyclingBlock from './blocks/Recycling';
 import WikiBlock from './blocks/Wiki';
-import Block from 'src/components/ui/Block';
+import Block from 'src/panel/poi/blocks/Block';
 import Divider from 'src/components/ui/Divider';
 
 export default class PoiBlockContainer extends React.Component {
