@@ -15,7 +15,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 8px 30px;
+  padding: 0 30px 10px 30px;
   position: relative;
 }
 
@@ -249,7 +249,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 @media (max-width: 640px) {
   .poi_panel__content,
   .poi_panel--empty-header .poi_panel__content {
-    padding: 8px 12px;
+    padding: 0 12px 10px 12px;
   }
 
   .poi_panel__description__ellipsis {
