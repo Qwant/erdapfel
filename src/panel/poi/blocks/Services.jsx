@@ -1,4 +1,3 @@
-/* global _ */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -26,8 +25,9 @@ export default class Services extends React.Component {
 
   getTitle() {
     if (!this.state.isCollapsed) {
-      return _('Services & information');
+      return '';
     }
+
     const { accessibility, internetAccess, brewery } = this.props;
     return <div>
       {accessibility && <AccessibilityBlock block={accessibility} asString/>}
@@ -48,12 +48,11 @@ export default class Services extends React.Component {
     return <Fragment>
       <div className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
         <h4 className="poi_panel__sub_block__title__text">{this.getTitle()}</h4>
-        <div
+        <i
           className={classnames(
+            'icon-icon_chevron-down',
             'poi_panel__block__collapse',
-            'icon-icon_chevron-down', {
-              'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
-            }
+            { 'poi_panel__block__collapse--reversed': !this.state.isCollapsed }
           )}
         />
       </div>

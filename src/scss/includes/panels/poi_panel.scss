@@ -162,24 +162,23 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__service_information__container {
-  position: relative;
   padding-left: $BLOCK_PADDING;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .poi_panel__block__collapse {
-  position: absolute;
-  top: 0;
-  right: 0;
   cursor: pointer;
   transition: transform .2s;
   font-size: 24px;
   color: $secondary_text;
+  margin-left: auto;
 }
 
 .poi_panel__block__collapse--reversed {
   transform: rotate(180deg);
 }
-
 
 .poi_panel__sub__sub_block__title {
   font-size: 12px;
@@ -191,11 +190,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 .poi_panel__sub_block__title {
   width: 100%;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .poi_panel__sub_block__title__text {
-  width: 285px;
+  max-width: 285px;
   color: $secondary_text;
   font-weight: bold;
   overflow: hidden;

@@ -160,7 +160,7 @@ test('display details about the poi on a poi click', async () => {
   infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText;
   });
-  expect(infoTitle.trim()).toEqual('Services & informations');
+  expect(infoTitle.trim()).toEqual('');
 
   const { contact, contactUrl, phone, website } = await page.evaluate(() => {
     return {
