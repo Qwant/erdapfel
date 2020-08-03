@@ -12,10 +12,9 @@ const ImagesBlock = ({
   }
 
   return <div className="poi_panel__pictures">
-    <h5 className="poi_panel__pictures_title">
-      <i className="icon-icon_camera"></i>
+    <div className="u-text--smallTitle" style={{ marginBottom: 20 }}>
       { _('Photos') }
-    </h5>
+    </div>
     <div className="poi_panel__pictures_tiles">
       {
         images.map(i =>

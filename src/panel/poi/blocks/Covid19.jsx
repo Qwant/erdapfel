@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react';
 import nconf from '@qwant/nconf-getter';
 import TimeTable from './TimeTable';
+
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
 import Button from 'src/components/ui/Button';
@@ -108,7 +109,7 @@ const Status = ({ status }) => {
 }
 
 const Covid19 = ({ block, countryCode }) => {
-  return <div className="poi_panel__info__section covid19">
+  return <div className="covid19">
     <Status status={block.status} />
     {getContent(block)}
     <LegalWarning countryCode={countryCode} />

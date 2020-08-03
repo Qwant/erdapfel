@@ -1,7 +1,10 @@
+/* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import URI from '@qwant/uri';
+
 import Telemetry from 'src/libs/telemetry';
+import Block from 'src/components/ui/Block';
 
 export default class WebsiteBlock extends React.Component {
   static propTypes = {
@@ -28,20 +31,15 @@ export default class WebsiteBlock extends React.Component {
   }
 
   render() {
-    return <div className="poi_panel__info__section poi_panel__info__section--website">
-      <div className="poi_panel__info__section__description">
-        <div className="icon-icon_globe poi_panel__block__symbol" />
-        <div className="poi_panel__block__content">
-          <a className="poi_panel__info__link"
-            href={URI.externalise(this.props.block.url)}
-            rel="noopener noreferrer nofollow"
-            target="_blank"
-            onClick={this.clickWebsite}
-          >
-            { URI.extractDomain(this.props.block.url) }
-          </a>
-        </div>
-      </div>
-    </div>;
+    return <Block className="block-website" icon="icon_globe" title={_('Website')}>
+      <a className="poi_panel__external_link"
+        href={URI.externalise(this.props.block.url)}
+        rel="noopener noreferrer nofollow"
+        target="_blank"
+        onClick={this.clickWebsite}
+      >
+        { URI.extractDomain(this.props.block.url) }
+      </a>
+    </Block>;
   }
 }

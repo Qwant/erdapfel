@@ -30,7 +30,7 @@ const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, 
       )}
     </span>
     <span className="u-text--caption reviewScore-count">
-      ({total_grades_count}) {_('With Page Jaunes')}
+      ({total_grades_count}) {_('With Page Jaunes', 'reviews')}
     </span>
   </a>;
 
