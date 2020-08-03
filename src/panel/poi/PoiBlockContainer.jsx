@@ -54,7 +54,7 @@ export default class PoiBlockContainer extends React.Component {
       {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
       {contactBlock && <ContactBlock block={contactBlock} />}
       <Block icon="map-pin" title={_('Address')}>{this.props.poi.address.label}</Block>
-      {imagesBlock &&
+      {imagesBlock && imagesBlock.images.length > 1 &&
         <>
           <Divider />
           <ImagesBlock block={imagesBlock} poi={this.props.poi} />
