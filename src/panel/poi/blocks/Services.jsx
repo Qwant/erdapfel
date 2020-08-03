@@ -29,13 +29,13 @@ export default class Services extends React.Component {
     }
 
     const { accessibility, internetAccess, brewery } = this.props;
-    return <div>
+    return <span>
       {accessibility && <AccessibilityBlock block={accessibility} asString/>}
       {accessibility && internetAccess && ' - '}
       {internetAccess && <InternetAccessBlock block={internetAccess} asString/>}
       {internetAccess && brewery && ' - '}
       {brewery && <BreweryBlock block={brewery} asString/>}
-    </div>;
+    </span>;
   }
 
   render() {
@@ -46,8 +46,8 @@ export default class Services extends React.Component {
     }
 
     return <Fragment>
-      <div className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
-        <h4 className="poi_panel__sub_block__title__text">{this.getTitle()}</h4>
+      <span className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
+        {this.getTitle()}
         <i
           className={classnames(
             'icon-icon_chevron-down',
@@ -55,7 +55,7 @@ export default class Services extends React.Component {
             { 'poi_panel__block__collapse--reversed': !this.state.isCollapsed }
           )}
         />
-      </div>
+      </span>
       {!this.state.isCollapsed && <div className="poi_panel__service_information__container">
         {accessibility && <AccessibilityBlock block={accessibility} />}
         {internetAccess && <InternetAccessBlock block={internetAccess} />}

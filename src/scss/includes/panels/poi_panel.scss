@@ -185,15 +185,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-}
 
-.poi_panel__sub_block__title__text {
-  max-width: 285px;
-  color: $secondary_text;
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .marker .icon-marker::before {
