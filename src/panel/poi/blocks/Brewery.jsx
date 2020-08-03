@@ -11,7 +11,7 @@ const BreweryBlock = ({
   }
 
   return <div>
-    <h6 className="poi_panel__sub__sub_block__title">{ _('Beers', 'poi') }</h6>
+    <h6 className="u-text--caption">{ _('Beers', 'poi') }</h6>
     <ul>
       {beers.map((beer, index) =>
         <li className="poi_panel__info__item poi_panel__info__item--beer" key={index}>

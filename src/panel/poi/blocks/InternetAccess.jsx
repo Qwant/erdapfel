@@ -11,7 +11,7 @@ const InternetAccessBlock = ({
     return `${_('Internet access', 'poi')} : ${_('WiFi', 'poi')}`;
   }
   return <div>
-    <h6 className="poi_panel__sub__sub_block__title">
+    <h6 className="u-text--caption">
       { _('Internet access', 'poi') }
     </h6>
     <ul>
