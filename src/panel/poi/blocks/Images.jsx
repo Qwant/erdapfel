@@ -12,7 +12,7 @@ const ImagesBlock = ({
   }
 
   return <div className="poi_panel__pictures">
-    <div className="u-text--smallTitle" style={{ marginBottom: 20 }}>
+    <div className="u-text--smallTitle u-mb-20">
       { _('Photos') }
     </div>
     <div className="poi_panel__pictures_tiles">
