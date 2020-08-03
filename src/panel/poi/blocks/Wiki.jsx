@@ -11,7 +11,7 @@ const WikiBlock = ({
         { block.description }
       </p> }
     <br/>
-    { block.url && <Flex inline justifyContent="center" style={{ width: '100%' }}>
+    { block.url && <Flex justifyContent="center">
       <a
         className="poi_panel__external_link"
         rel="noopener noreferrer"
