@@ -44,7 +44,7 @@ const RecyclingBlock = ({ block }) => {
     return null;
   }
 
-  return <div className="poi_panel__info__section recycling">
+  return <div className="recycling">
     {containers.map((container, index) => <Container key={index} {...container} />)}
   </div>;
 };

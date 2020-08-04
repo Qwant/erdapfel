@@ -1,6 +1,8 @@
+/* global _ */
 import React from 'react';
-import WikiBlock from './Wiki';
 import Services from './Services';
+
+import Block from 'src/panel/poi/blocks/Block';
 
 function findBlock(blocks, toFind) {
   for (let i = 0; i < blocks.length; ++i) {
@@ -17,8 +19,6 @@ function findBlock(blocks, toFind) {
 }
 
 const InformationBlock = ({ block }) => {
-  const wikipedia = block.blocks.find(b => b.type === 'wikipedia');
-
   const services = {
     accessibility: findBlock(block.blocks, 'accessibility'),
     internetAccess: findBlock(block.blocks, 'internet_access'),
@@ -27,15 +27,13 @@ const InformationBlock = ({ block }) => {
 
   const hasServices = Object.values(services).some(service => service);
 
-  if (!wikipedia && !hasServices) {
+  if (!hasServices) {
     return null;
   }
 
-  return <div className="poi_panel__info__section poi_panel__info__section--information">
-    <div className="icon-icon_info poi_panel__block__symbol" />
-    {wikipedia && <WikiBlock block={wikipedia} />}
+  return <Block icon="icon_info" title={_('services & information')}>
     {hasServices && <Services {...services} />}
-  </div>;
+  </Block>;
 };
 
 export default InformationBlock;

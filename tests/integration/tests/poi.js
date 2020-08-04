@@ -160,14 +160,14 @@ test('display details about the poi on a poi click', async () => {
   infoTitle = await page.evaluate(() => {
     return document.querySelector('.poi_panel__sub_block__title').innerText;
   });
-  expect(infoTitle.trim()).toEqual('Services & informations');
+  expect(infoTitle.trim()).toEqual('');
 
   const { contact, contactUrl, phone, website } = await page.evaluate(() => {
     return {
-      contact: document.querySelector('.poi_panel__info__contact').innerText,
-      contactUrl: document.querySelector('.poi_panel__info__contact').href,
-      phone: document.querySelector('.poi_panel__info__section--phone').innerText,
-      website: document.querySelector('.poi_panel__info__link').innerText,
+      contact: document.querySelector('.block-contact-link').innerText,
+      contactUrl: document.querySelector('.block-contact-link').href,
+      phone: document.querySelector('.block-phone').innerText,
+      website: document.querySelector('.block-website').innerText,
     };
   });
   expect(await exists(page, '.poi_panel .openingHour--closed')).toBeTruthy();

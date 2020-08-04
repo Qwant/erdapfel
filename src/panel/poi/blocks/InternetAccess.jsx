@@ -10,8 +10,8 @@ const InternetAccessBlock = ({
   } else if (asString) {
     return `${_('Internet access', 'poi')} : ${_('WiFi', 'poi')}`;
   }
-  return <div>
-    <h6 className="poi_panel__sub__sub_block__title">
+  return <div className="u-mb-12">
+    <h6 className="u-text--caption u-mb-4">
       { _('Internet access', 'poi') }
     </h6>
     <ul>

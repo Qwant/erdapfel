@@ -1,4 +1,4 @@
-/* global _n */
+/* global _ */
 import React from 'react';
 import Telemetry from 'src/libs/telemetry';
 
@@ -30,7 +30,7 @@ const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, 
       )}
     </span>
     <span className="u-text--caption reviewScore-count">
-      {total_grades_count} {_n('review', 'reviews', total_grades_count)}
+      ({total_grades_count}) {_('on PagesJaunes', 'reviews')}
     </span>
   </a>;
 

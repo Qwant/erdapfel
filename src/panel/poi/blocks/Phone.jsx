@@ -1,15 +1,13 @@
+/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Block from 'src/panel/poi/blocks/Block';
+
 const PhoneBlock = ({ block }) =>
-  <div className="poi_panel__info__section poi_panel__info__section--phone">
-    <div className="poi_panel__info__section__description">
-      <div className="icon-icon_phone poi_panel__block__symbol"></div>
-      <div className="poi_panel__block__content">
-        <a href={block.url}>{block.local_format}</a>
-      </div>
-    </div>
-  </div>
+  <Block className="block-phone" icon="icon_phone" title={_('phone')}>
+    <a style={{ color: 'inherit' }} href={block.url}>{block.local_format}</a>
+  </Block>
 ;
 
 PhoneBlock.propTypes = {

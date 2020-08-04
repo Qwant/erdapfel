@@ -1,5 +1,7 @@
 
 .timetable {
+  width: 100%;
+
   &-table {
     transition: max-height 0.3s;
     overflow: hidden;
@@ -7,8 +9,7 @@
   }
 
   table {
-    width: calc(100% - 20px);
-    margin-top: 8px;
+    width: 100%;
   }
 
   .day {
@@ -19,7 +20,7 @@
     text-align: right;
     padding: 4px 10px;
   }
-  
+
   .currentDay {
     font-weight: bold;
   }

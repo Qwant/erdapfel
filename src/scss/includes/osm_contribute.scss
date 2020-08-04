@@ -3,8 +3,9 @@
   align-items: center;
   width: 100%;
   border: solid 1px $separator_color;
-  @include card_radius();
-  margin-bottom: 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+  background-color: $grey-bright;
 }
 
 .osm_contribute__logo {
@@ -23,24 +24,8 @@
 
 .osm_contribute__link {
   display: inline-block;
-  .icon-chevrons-right {
-    font-size: 18px;
-  }
-
-  .osm_contribute__icon.edit {
-    margin-left: 10px;
-  }
-}
-
-.osm_contribute__link:hover {
-  text-decoration: none;
-  color: $primary_text;
-}
-
-.osm_contribute__icon {
-  display: inline-block;
-  line-height: 22px;
-  vertical-align: middle;
+  color: $action-blue-base !important;
+  margin-right: 24px;
 }
 
 .osm_contribute__about {

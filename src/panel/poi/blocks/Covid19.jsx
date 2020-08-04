@@ -1,6 +1,7 @@
 /* globals _ */
 import React, { Fragment } from 'react';
 import nconf from '@qwant/nconf-getter';
+
 import TimeTable from './TimeTable';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
@@ -102,13 +103,13 @@ const Status = ({ status }) => {
   return (
     <h4 className="poi_panel__sub_block__title">
       <span className="covid19-tag">Covid-19</span>
-      {statusMessages[status] || statusMessages['unknown']}
+      <span>{statusMessages[status] || statusMessages['unknown']}</span>
     </h4>
   )
 }
 
 const Covid19 = ({ block, countryCode }) => {
-  return <div className="poi_panel__info__section covid19">
+  return <div className="covid19">
     <Status status={block.status} />
     {getContent(block)}
     <LegalWarning countryCode={countryCode} />

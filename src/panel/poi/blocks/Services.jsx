@@ -1,4 +1,3 @@
-/* global _ */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -26,16 +25,17 @@ export default class Services extends React.Component {
 
   getTitle() {
     if (!this.state.isCollapsed) {
-      return _('Services & information');
+      return '';
     }
+
     const { accessibility, internetAccess, brewery } = this.props;
-    return <div>
+    return <span>
       {accessibility && <AccessibilityBlock block={accessibility} asString/>}
       {accessibility && internetAccess && ' - '}
       {internetAccess && <InternetAccessBlock block={internetAccess} asString/>}
       {internetAccess && brewery && ' - '}
       {brewery && <BreweryBlock block={brewery} asString/>}
-    </div>;
+    </span>;
   }
 
   render() {
@@ -46,13 +46,16 @@ export default class Services extends React.Component {
     }
 
     return <Fragment>
-      <div className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
-        <h4 className="poi_panel__sub_block__title__text">{this.getTitle()}</h4>
-        <div className={
-          classnames('poi_panel__block__collapse', 'icon-icon_chevron-down', {
-            'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
-          })} />
-      </div>
+      <span className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
+        {this.getTitle()}
+        <i
+          className={classnames(
+            'icon-icon_chevron-down',
+            'poi_panel__block__collapse',
+            { 'poi_panel__block__collapse--reversed': !this.state.isCollapsed }
+          )}
+        />
+      </span>
       {!this.state.isCollapsed && <div className="poi_panel__service_information__container">
         {accessibility && <AccessibilityBlock block={accessibility} />}
         {internetAccess && <InternetAccessBlock block={internetAccess} />}
