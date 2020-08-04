@@ -1,44 +1,6 @@
 import IdunnPoi from '../adapters/poi/idunn_poi';
 
 /**
- * Filter an address and return an array with the relevant items
- * @param {*} address - an address object
- */
-export function toArray(address) {
-
-  if (!address) {return [];}
-
-  if (!address.street) {
-    return [
-      address.suburb,
-      address.cityDistrict,
-      address.city,
-      address.stateDistrict,
-      address.state,
-      address.countryRegion,
-      address.country,
-    ]
-      .filter(i => i)
-      .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
-  }
-
-  const cityAndPostcode = address.postcode && address.city
-    ? address.postcode + ' ' + address.city
-    : address.city;
-
-  return [address.street, cityAndPostcode, address.country]
-    .filter(i => i); // Filter out any undefined value
-}
-/**
- * Format an address given an address object (name, city, country, label, and other regions)
- * @param {*} address - an address object
- * @param string separator - how items are joined
- */
-export function format(address, separator = ', ') {
-  return toArray(address).join(separator);
-}
-
-/**
  * Fetch an address from idunn given a raw poi
  * @param {*} poi - the poi to fetch address for
  */
