@@ -289,8 +289,8 @@ export default class PoiPanel extends React.Component {
         <Divider paddingBottom={10}/>
         <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
         {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
-          <h3 className="service_panel__categories_title">
-            <span className="icon-icon_compass" />{_('Search around this place', 'poi')}
+          <h3 className="u-text--smallTitle">
+            {_('Search around this place', 'poi')}
           </h3>
           <CategoryList />
         </div>}
