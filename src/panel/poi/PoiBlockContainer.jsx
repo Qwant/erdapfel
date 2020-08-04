@@ -20,7 +20,7 @@ export default class PoiBlockContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.poi || !this.props.poi.blocks) {
+    if (!this.props.poi || !this.props.poi.blocks || this.props.poi.blocks.length === 0) {
       return null;
     }
     const blocks = this.props.poi.blocks;
