@@ -103,7 +103,7 @@ const Status = ({ status }) => {
   return (
     <h4 className="poi_panel__sub_block__title">
       <span className="covid19-tag">Covid-19</span>
-      {statusMessages[status] || statusMessages['unknown']}
+      <span>{statusMessages[status] || statusMessages['unknown']}</span>
     </h4>
   )
 }
