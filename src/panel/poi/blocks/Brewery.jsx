@@ -10,8 +10,8 @@ const BreweryBlock = ({
     return `${_('Beers')} : ${beers.map(beer => beer.name).join(' - ')}`;
   }
 
-  return <div>
-    <h6 className="u-text--caption u-mb-8">{ _('Beers', 'poi') }</h6>
+  return <div className="u-mb-12">
+    <h6 className="u-text--caption u-mb-4">{ _('Beers', 'poi') }</h6>
     <ul>
       {beers.map((beer, index) =>
         <li className="poi_panel__info__item poi_panel__info__item--beer" key={index}>
