@@ -12,6 +12,7 @@ import RecyclingBlock from './blocks/Recycling';
 import WikiBlock from './blocks/Wiki';
 import Block from 'src/panel/poi/blocks/Block';
 import Divider from 'src/components/ui/Divider';
+import Address from 'src/components/ui/Address';
 
 export default class PoiBlockContainer extends React.Component {
   static propTypes = {
@@ -56,7 +57,7 @@ export default class PoiBlockContainer extends React.Component {
           icon="map-pin"
           title={_('address')}
         >
-          {this.props.poi.address.label}
+          <Address inline address={this.props.poi.address} />
         </Block>
       }
       {imagesBlock && imagesBlock.images.length > 1 &&
