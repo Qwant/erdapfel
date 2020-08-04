@@ -12,13 +12,13 @@ const OsmContribution = ({ poi }) => {
       <p className="u-text--caption">
         {_('Qwant Maps uses OpenStreetMap data.')}
       </p>
-      <a className="u-text--caption osm_contribute__link" href={viewUrl} rel="noopener noreferrer"
+      <a className="osm_contribute__link u-text--caption" href={viewUrl} rel="noopener noreferrer"
         target="_blank">
-        <span className="osm_contribute__about">{_('View')}</span>
+        {_('View')}
       </a>
       <a className="u-text--caption osm_contribute__link" href={editUrl} rel="noopener noreferrer"
         target="_blank">
-        <span className="osm_contribute__about">{_('Edit')}</span>
+        {_('Edit')}
       </a>
     </div>
   </div>;
