@@ -36,7 +36,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
   const subclass = capitalizeFirst(poiSubClass(subClassName));
 
   // Location / address
-  return <div className="poiTitle">
+  return <div className="poiTitle u-mb-8">
     <h2 className="poiTitle-main u-text--smallTitle">{title || subclass}</h2>
     {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
       {alternative}
