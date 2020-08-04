@@ -39,7 +39,6 @@ export default class PoiBlockContainer extends React.Component {
 
     return <div className="poi_panel__info">
       {wikipedia && <WikiBlock block={wikipedia} />}
-      <Divider paddingBottom={10}/>
       {displayCovidInfo &&
         <>
           <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />
