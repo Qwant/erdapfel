@@ -13,7 +13,6 @@ const WikiBlock = ({
     <br/>
     { block.url && <Flex justifyContent="center">
       <a
-        className="poi_panel__external_link"
         rel="noopener noreferrer"
         target="_blank"
         href={ block.url }
