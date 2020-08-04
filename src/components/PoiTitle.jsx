@@ -16,7 +16,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
       return <div className="poiTitle">
         <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
         <h2 className="poiTitle-main u-text--smallTitle u-mb-4">
-          <Address address={address}/>
+          <Address address={address} omitCountry />
         </h2>
         <div className="poiTitle-position">{latLon}</div>
       </div>;

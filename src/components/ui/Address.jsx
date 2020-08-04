@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
  * Filter an address and return an array with the relevant items
  * @param {*} address - an address object
  */
-function toArray(address, omitStreet) {
+function toArray(address, { omitStreet, omitCountry } = {}) {
   if (!address.street) {
     return [
       address.suburb,
@@ -14,7 +14,7 @@ function toArray(address, omitStreet) {
       address.stateDistrict,
       address.state,
       address.countryRegion,
-      address.country,
+      !omitCountry && address.country,
     ]
       .filter(i => i)
       .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
@@ -24,16 +24,16 @@ function toArray(address, omitStreet) {
     ? address.postcode + ' ' + address.city
     : address.city;
 
-  return [!omitStreet && address.street, cityAndPostcode, address.country]
+  return [!omitStreet && address.street, cityAndPostcode, !omitCountry && address.country]
     .filter(i => i); // Filter out any undefined value
 }
 
-const Address = ({ address, inline, omitStreet }) => {
-  const parts = toArray(address, omitStreet);
+const Address = ({ address, inline, omitStreet, omitCountry }) => {
+  const parts = toArray(address, { omitStreet, omitCountry });
   return inline
     ? parts.join(', ')
     : <div>
-      {toArray(address).map((item, index) => <div key={index}>{item}</div>)}
+      {parts.map((item, index) => <div key={index}>{item}</div>)}
     </div>;
 };
 
@@ -41,6 +41,7 @@ Address.propTypes = {
   address: PropTypes.object.isRequired,
   inline: PropTypes.bool,
   omitStreet: PropTypes.bool,
+  omitCountry: PropTypes.bool,
 };
 
 export default Address;
