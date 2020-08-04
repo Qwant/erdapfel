@@ -18,7 +18,7 @@ export default class HourBlock extends React.Component {
       return null;
     }
 
-    return <Block icon="icon_clock" title={_('Opening hours')}>
+    return <Block icon="icon_clock" title={_('opening hours')}>
       <TimeTable
         schedule={schedule}
         title={this.props.covid19enabled && _('See the usual opening hours', 'covid19')}

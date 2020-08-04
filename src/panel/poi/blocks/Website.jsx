@@ -31,7 +31,7 @@ export default class WebsiteBlock extends React.Component {
   }
 
   render() {
-    return <Block className="block-website" icon="icon_globe" title={_('Website')}>
+    return <Block className="block-website" icon="icon_globe" title={_('website')}>
       <a className="poi_panel__external_link"
         href={URI.externalise(this.props.block.url)}
         rel="noopener noreferrer nofollow"

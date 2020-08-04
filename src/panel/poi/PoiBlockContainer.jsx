@@ -54,7 +54,7 @@ export default class PoiBlockContainer extends React.Component {
       {this.props.poi.address.label &&
         <Block
           icon="map-pin"
-          title={_('Address')}
+          title={_('address')}
         >
           {this.props.poi.address.label}
         </Block>

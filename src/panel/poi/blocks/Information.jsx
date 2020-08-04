@@ -31,7 +31,7 @@ const InformationBlock = ({ block }) => {
     return null;
   }
 
-  return <Block icon="icon_info" title={_('Services & information')}>
+  return <Block icon="icon_info" title={_('services & information')}>
     {hasServices && <Services {...services} />}
   </Block>;
 };
