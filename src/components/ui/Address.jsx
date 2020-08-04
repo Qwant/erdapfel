@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { toArray } from 'src/libs/address';
 
-const MultilineAddress = ({ address }) =>
+const Address = ({ address }) =>
   <div>
     {toArray(address).map((item, index) => <div key={index}>{item}</div>)}
   </div>;
 
-MultilineAddress.propTypes = {
+Address.propTypes = {
   address: PropTypes.object.isRequired,
 };
 
-export default MultilineAddress;
+export default Address;

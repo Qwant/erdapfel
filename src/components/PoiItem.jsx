@@ -5,7 +5,7 @@ import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import classnames from 'classnames';
-import MultilineAddress from 'src/components/ui/MultilineAddress';
+import MultilineAddress from 'src/components/ui/Address';
 
 const PoiItem = ({ poi,
   withOpeningHours,
