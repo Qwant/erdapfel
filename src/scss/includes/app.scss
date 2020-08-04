@@ -2,6 +2,10 @@ BODY {
   background: url("../images/backgrounds/grid.png");
 }
 
+a {
+  color: $action-blue-base;
+}
+
 noscript {
   height: 100vh;
   display: flex;
