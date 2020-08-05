@@ -16,8 +16,6 @@ import Poi from 'src/adapters/poi/poi.js';
 import SearchInput from 'src/ui_components/search_input';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import Store from '../../adapters/store';
-import { openAndWaitForClose as openMasqFavModalAndWaitForClose }
-  from 'src/modals/MasqFavoriteModal';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import Flex from 'src/components/ui/Flex';
@@ -55,7 +53,6 @@ export default class PoiPanel extends React.Component {
       isPoiInFavorite: false,
     };
     this.isDirectionActive = nconf.get().direction.enabled;
-    this.isMasqEnabled = nconf.get().masq.enabled;
   }
 
   componentDidMount() {
@@ -222,12 +219,6 @@ export default class PoiPanel extends React.Component {
     if (this.state.isPoiInFavorite) {
       store.del(poi);
     } else {
-      if (this.isMasqEnabled) {
-        const isLoggedIn = await store.isLoggedIn();
-        if (!isLoggedIn) {
-          await openMasqFavModalAndWaitForClose();
-        }
-      }
       store.add(poi);
     }
   }

@@ -135,13 +135,4 @@ export function open(closeCallback) {
   );
 }
 
-export async function openAndWaitForClose() {
-  return new Promise(resolve => {
-    open(() => {
-      close();
-      resolve();
-    });
-  });
-}
-
 export default MasqOnboardingModal;
