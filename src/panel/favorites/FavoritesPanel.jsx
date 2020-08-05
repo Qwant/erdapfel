@@ -3,21 +3,14 @@ import React from 'react';
 import Telemetry from 'src/libs/telemetry';
 import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
-import FavoriteMasqFooter from './FavoriteMasqFooter';
-import { version } from 'config/constants.yml';
-import { open as openMasqOnboarding } from 'src/modals/MasqOnboardingModal';
 import Store from 'src/adapters/store';
 import PoiStore from 'src/adapters/poi/poi_store';
-import nconf from '@qwant/nconf-getter';
-
-const isMasqEnabled = nconf.get().masq.enabled;
 
 export default class FavoritesPanel extends React.Component {
   state = {
     isLoggedIn: false,
     favoritePois: [],
     isReady: false,
-    masqFooterClosed: localStorage.getItem(`qmaps_v${version}_favorite_masq_footer`) === 'false',
   };
 
   componentDidMount() {
@@ -37,16 +30,6 @@ export default class FavoritesPanel extends React.Component {
     });
   }
 
-  openMasq = () => {
-    Telemetry.add(Telemetry.MASQ_BANNER_CLICK);
-    openMasqOnboarding();
-  }
-
-  closeMasqFooter = () => {
-    Telemetry.add(Telemetry.MASQ_BANNER_CLOSE);
-    localStorage.setItem(`qmaps_v${version}_favorite_masq_footer`, false);
-    this.setState({ masqFooterClosed: true });
-  }
 
   removeFav = async poi => {
     Telemetry.add(Telemetry.FAVORITE_DELETE);
@@ -66,8 +49,7 @@ export default class FavoritesPanel extends React.Component {
       return null;
     }
 
-    const { favoritePois, isLoggedIn, masqFooterClosed } = this.state;
-    const displayMasqFooter = isMasqEnabled && !isLoggedIn && !masqFooterClosed;
+    const { favoritePois, isLoggedIn } = this.state;
 
     const header = <React.Fragment>
       {favoritePois.length === 0
@@ -84,10 +66,6 @@ export default class FavoritesPanel extends React.Component {
       className="favorite_panel"
     >
       <FavoriteItems favorites={favoritePois} removeFavorite={this.removeFav} />
-      {displayMasqFooter && <FavoriteMasqFooter
-        onOpenMasq={this.openMasq}
-        onClose={this.closeMasqFooter}
-      />}
     </Panel>;
   }
 }
