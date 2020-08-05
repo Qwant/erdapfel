@@ -15,7 +15,6 @@ $MASQ_BANNER_HEIGHT: 93px;
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;
-
 }
 
 .favorite_panel__item {
@@ -27,7 +26,7 @@ $MASQ_BANNER_HEIGHT: 93px;
   &:hover .contextMenu-button {
     color: $primary_text;
   }
-  
+
   &:hover .contextMenu-button:hover {
     color: $primary_alternative_text;
   }
@@ -66,60 +65,4 @@ $MASQ_BANNER_HEIGHT: 93px;
   width: 30px;
   font-size: 16px;
   color: $grey-semi-darkness;
-}
-
-.favorite_panel__masq_footer {
-  height: $MASQ_BANNER_HEIGHT;
-  border-radius: 0 0 3px 3px;
-  background-color: #252a39;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.favorites_panel__masq_footer_close {
-  font-size: 20px;
-  margin-right: 5px;
-  margin-top: 5px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.favorite_panel__masq_footer_text {
-  color: #c8cbd3;
-  display: block;
-  padding: 12px 10px 13px 18px;
-  align-items: center;
-}
-
-.favorite_panel__masq_footer_text .span {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.favorite_panel__masq_footer_icon {
-  height: 30px;
-  width: 60px;
-  margin: 0 5px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.favorite_panel__masq_footer_image {
-  background-image: url(../images/masq/masq-box.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 75px;
-  min-width: 100px;
-  position: relative;
-  bottom: 5px;
-  margin-right: 10px;
-}
-
-@media (max-width: 640px) {
-  .favorite_panel__masq_footer {
-    display: none;
-  }
 }
