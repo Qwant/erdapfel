@@ -13,7 +13,7 @@ Ajax.post = (url, data, options, headers = {}) => {
   return query(url, data, 'POST', options, headers);
 };
 
-Ajax.getLang = async (url, data = {}, options = {}, headers = {}) => {
+Ajax.getLang = (url, data = {}, options = {}, headers = {}) => {
   data.lang = window.getLang().code;
   return Ajax.get(url, data, options, headers);
 };

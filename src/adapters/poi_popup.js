@@ -55,7 +55,7 @@ PoiPopup.prototype.addListener = function(layer) {
     this.close();
   });
 
-  this.map.on('mouseleave', layer, async () => {
+  this.map.on('mouseleave', layer, () => {
     this.close();
     clearTimeout(this.timeOutHandler);
   });

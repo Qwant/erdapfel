@@ -42,7 +42,7 @@ export default class AutocompleteHelper {
     }, SUGGEST_SELECTOR);
   }
 
-  async getSearchInputValue() {
+  getSearchInputValue() {
     return getInputValue(this.page, SEARCH_INPUT_SELECTOR);
   }
 }

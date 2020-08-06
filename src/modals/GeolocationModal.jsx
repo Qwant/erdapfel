@@ -56,7 +56,7 @@ listen('open_geolocate_not_activated_modal', () => open('NOT_ACTIVATED', close))
 
 listen('open_geolocate_denied_modal', () => open('DENIED', close));
 
-export async function openAndWaitForClose() {
+export function openAndWaitForClose() {
   return new Promise(resolve => {
     open('PENDING', () => {
       close();

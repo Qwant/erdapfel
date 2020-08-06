@@ -33,7 +33,7 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
   }
   /* ajax */
   let suggestsPromise;
-  const queryPromise = new Promise(async (resolve, reject) => {
+  const queryPromise = new Promise((resolve, reject) => {
     const query = {
       'q': term,
       'limit': geocoderConfig.maxItems,

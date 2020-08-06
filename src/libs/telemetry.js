@@ -29,7 +29,7 @@ export default class Telemetry {
     }
   }
 
-  static async send(event, extra_data) {
+  static send(event, extra_data) {
     if (!telemetry.enabled) {
       return;
     } else if (typeof event === 'undefined') {

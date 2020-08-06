@@ -79,7 +79,7 @@ export default class PanelManager extends React.Component {
       });
     });
 
-    router.addRoute('POI', '/place/(.*)', async (poiUrl, options = {}) => {
+    router.addRoute('POI', '/place/(.*)', (poiUrl, options = {}) => {
       const poiId = poiUrl.split('@')[0];
       this.setState({
         ActivePanel: PoiPanel,

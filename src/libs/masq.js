@@ -184,7 +184,7 @@ export default class MasqStore {
     }
   }
 
-  async clear() {
+  clear() {
     handleError('clear', 'masq storage doesn\'t support clear method');
   }
 

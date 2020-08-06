@@ -51,13 +51,13 @@ export default class Store {
       this.abstractStore = this.masqStore;
     }
 
-    this.masqStore.masq.eventTarget.addEventListener('logged_in', async () => {
+    this.masqStore.masq.eventTarget.addEventListener('logged_in', () => {
       // login was successful, use masqStore as abstractStore until signout
       this.abstractStore = this.masqStore;
       this.masqEventTarget.dispatchEvent(new Event('store_logged_in'));
     });
 
-    this.masqStore.masq.eventTarget.addEventListener('signed_out', async () => {
+    this.masqStore.masq.eventTarget.addEventListener('signed_out', () => {
       // signout was successful, use localStore as abstractStore until login
       this.abstractStore = this.localStore;
       this.masqEventTarget.dispatchEvent(new Event('store_logged_out'));

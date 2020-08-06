@@ -8,7 +8,7 @@ export default class LocalStore {
     this.storeName = 'local_store';
   }
 
-  async getAllPois() {
+  getAllPois() {
     let localStorageKeys = [];
     try {
       localStorageKeys = Object.keys(localStorage);
@@ -38,11 +38,11 @@ export default class LocalStore {
     return this.set(`qmaps_v${version}_last_location`, loc);
   }
 
-  async has(k) {
-    return Boolean(await this.get(k));
+  has(k) {
+    return Boolean(this.get(k));
   }
 
-  async get(k) {
+  get(k) {
     try {
       return JSON.parse(localStorage.getItem(k));
     } catch (e) {
@@ -51,7 +51,7 @@ export default class LocalStore {
     }
   }
 
-  async set(k, v) {
+  set(k, v) {
     try {
       localStorage.setItem(k, JSON.stringify(v));
     } catch (e) {
@@ -59,7 +59,7 @@ export default class LocalStore {
     }
   }
 
-  async clear() {
+  clear() {
     try {
       localStorage.clear();
     } catch (e) {
@@ -67,7 +67,7 @@ export default class LocalStore {
     }
   }
 
-  async del(k) {
+  del(k) {
     try {
       localStorage.removeItem(k);
     } catch (e) {

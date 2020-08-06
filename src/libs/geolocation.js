@@ -8,7 +8,7 @@ const geolocationPermissions = {
 };
 
 export default class GeolocationCheck {
-  static async checkPrompt(successCallback = () => {}) {
+  static checkPrompt(successCallback = () => {}) {
     if (!window.navigator.permissions) {
       // Some browsers (Safari, etc) do not implement Permissions API
       return successCallback();

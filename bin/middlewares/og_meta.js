@@ -11,7 +11,7 @@ module.exports = function(config) {
     );
   }
 
-  async function getPoi(poiId, locale) {
+  function getPoi(poiId, locale) {
     let id = poiId;
     const atPos = poiId.indexOf('@');
     if (atPos !== -1) {

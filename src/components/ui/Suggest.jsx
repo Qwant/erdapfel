@@ -85,7 +85,7 @@ const Suggest = ({
       setLastQuery(value);
     };
 
-    const handleKeyDown = async event => {
+    const handleKeyDown = event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
         if (inputNode.value === '' && !isMobile) {
           close();

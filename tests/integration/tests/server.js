@@ -2,7 +2,7 @@ import request from 'supertest';
 
 let server;
 
-beforeAll(async () => {
+beforeAll(() => {
   server = request(APP_URL);
 });
 
