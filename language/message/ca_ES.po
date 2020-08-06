@@ -1,17 +1,17 @@
 # 
 # Translators:
-# Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # jmontane, 2020
 # Adrien Matissart, 2020
+# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-15 11:51+0000\n"
+"POT-Creation-Date: 2020-08-06 09:27+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2020\n"
+"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,6 +153,9 @@ msgstr "Cerca Qwant Maps"
 msgid "My location"
 msgstr ""
 
+msgid "chunk"
+msgstr ""
+
 msgid "write"
 msgstr ""
 
@@ -199,6 +202,9 @@ msgid "arts centre"
 msgstr "centre d'arts"
 
 msgid "athletics"
+msgstr ""
+
+msgid "ATM"
 msgstr ""
 
 msgid "attraction"
@@ -258,11 +264,17 @@ msgstr ""
 msgid "bowls"
 msgstr ""
 
+msgid "brewery"
+msgstr ""
+
 msgid "brownfield"
 msgstr ""
 
 msgid "bus station"
 msgstr "estació de busos"
+
+msgid "bus stop"
+msgstr ""
 
 msgid "butcher"
 msgstr "carnisseria"
@@ -279,11 +291,23 @@ msgstr "canoa"
 msgid "car shop"
 msgstr "botiga de cotxes"
 
+msgid "car parts shop"
+msgstr ""
+
 msgid "car repair"
 msgstr "reparació de cotxes"
 
+msgid "car rental"
+msgstr ""
+
+msgid "car wash station"
+msgstr ""
+
 msgid "caravan site"
 msgstr "lloc de caravanes"
+
+msgid "carpenter"
+msgstr ""
 
 msgid "carpet shop"
 msgstr "botiga de catifes"
@@ -291,11 +315,17 @@ msgstr "botiga de catifes"
 msgid "castle"
 msgstr "castell"
 
+msgid "catering"
+msgstr ""
+
 msgid "cemetery"
 msgstr "cementiri"
 
-msgid "chalet"
-msgstr "xalet"
+msgid "holiday cottage"
+msgstr ""
+
+msgid "charging station"
+msgstr ""
 
 msgid "charity store"
 msgstr "botiga de caritat"
@@ -303,8 +333,14 @@ msgstr "botiga de caritat"
 msgid "chemist"
 msgstr "adrogueria"
 
+msgid "cheese shop"
+msgstr ""
+
 msgid "chess"
 msgstr "escacs"
+
+msgid "childcare centre"
+msgstr ""
 
 msgid "chocolate shop"
 msgstr "botiga de xocolata"
@@ -351,6 +387,9 @@ msgstr ""
 msgid "courthouse"
 msgstr "jutjat"
 
+msgid "coworking space"
+msgstr ""
+
 msgid "cricket"
 msgstr "criquet"
 
@@ -381,6 +420,9 @@ msgstr ""
 msgid "doityourself store"
 msgstr ""
 
+msgid "driving school"
+msgstr ""
+
 msgid "dry cleaning"
 msgstr ""
 
@@ -399,6 +441,9 @@ msgstr "botiga eròtica"
 msgid "escape game"
 msgstr "joc d'escapada"
 
+msgid "estate agent"
+msgstr ""
+
 msgid "fabric"
 msgstr "fàbrica"
 
@@ -411,6 +456,9 @@ msgstr "menjar ràpid"
 msgid "fire station"
 msgstr "parc de bombers"
 
+msgid "fitness centre"
+msgstr ""
+
 msgid "florist"
 msgstr "floristeria"
 
@@ -420,8 +468,14 @@ msgstr ""
 msgid "free flying"
 msgstr ""
 
+msgid "frozen food"
+msgstr ""
+
 msgid "fuel station"
 msgstr "benzinera"
+
+msgid "funeral home"
+msgstr ""
 
 msgid "furniture shop"
 msgstr "botiga de mobles"
@@ -486,6 +540,9 @@ msgstr "hospital"
 msgid "hostel"
 msgstr "alberg"
 
+msgid "houseware shop"
+msgstr ""
+
 msgid "ice cream"
 msgstr "gelat"
 
@@ -506,6 +563,9 @@ msgstr "llar d'infants"
 
 msgid "kiosk"
 msgstr "quiosc"
+
+msgid "kitchen manufacturer"
+msgstr ""
 
 msgid "lamps shop"
 msgstr "botiga de llums"
@@ -561,6 +621,9 @@ msgstr ""
 msgid "music shop"
 msgstr ""
 
+msgid "music school"
+msgstr ""
+
 msgid "musical instrument shop"
 msgstr "botiga d'instruments musicals"
 
@@ -591,6 +654,9 @@ msgstr "parc"
 msgid "car park"
 msgstr "aparcament"
 
+msgid "pastry shop"
+msgstr ""
+
 msgid "perfumery"
 msgstr "perfumeria"
 
@@ -606,8 +672,14 @@ msgstr "lloc de pícnic"
 msgid "place of worship"
 msgstr "lloc de pregària"
 
+msgid "plumber"
+msgstr ""
+
 msgid "police"
 msgstr "policia"
+
+msgid "polling station"
+msgstr ""
 
 msgid "post office"
 msgstr "oficina postal"
@@ -648,7 +720,16 @@ msgstr "escola"
 msgid "scuba diving"
 msgstr "submarinisme"
 
+msgid "fishmonger"
+msgstr ""
+
 msgid "resale shop"
+msgstr ""
+
+msgid "shelter"
+msgstr ""
+
+msgid "shoemaker"
 msgstr ""
 
 msgid "shoes"
@@ -687,14 +768,14 @@ msgstr ""
 msgid "subway"
 msgstr "metro"
 
-msgid "swimming"
-msgstr "natació"
+msgid "swimming pool"
+msgstr "piscina"
 
 msgid "swimming area"
 msgstr "àrea de natació"
 
-msgid "swimming pool"
-msgstr "piscina"
+msgid "swimming pool equipment"
+msgstr ""
 
 msgid "table tennis"
 msgstr "tennis taula"
@@ -738,6 +819,12 @@ msgstr "agència de viatges"
 msgid "university"
 msgstr "univeristat"
 
+msgid "variety store"
+msgstr ""
+
+msgid "vehicle inspection"
+msgstr ""
+
 msgid "veterinary"
 msgstr "veterinari"
 
@@ -764,6 +851,9 @@ msgstr ""
 
 msgid "wine shop"
 msgstr "celler"
+
+msgid "winery"
+msgstr ""
 
 msgid "yoga"
 msgstr "ioga"
@@ -822,10 +912,11 @@ msgstr ""
 msgid "Close to"
 msgstr ""
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Geographic coordinates"
+msgstr ""
+
+msgid "on PagesJaunes"
+msgstr ""
 
 msgid "Your position"
 msgstr "La vostra posició"
@@ -903,12 +994,6 @@ msgid ""
 msgstr ""
 "No teniu cap lloc preferit. <br>Podeu afegir-ne un fent clic en algun lloc"
 
-msgid "Use"
-msgstr "Usa"
-
-msgid "to secure your favorites on all your devices"
-msgstr ""
-
 msgid "Favorite places"
 msgstr "Llocs preferits"
 
@@ -924,20 +1009,23 @@ msgstr "Cerca prop d'aquest lloc"
 msgid "No result found"
 msgstr ""
 
-msgid "See more"
-msgstr "Més informació"
-
 msgid "Call"
+msgstr ""
+
+msgid "opening hours"
 msgstr ""
 
 msgid "See the usual opening hours"
 msgstr "Mostra l'horari d'obertura habitual"
 
+msgid "contact"
+msgstr ""
+
 msgid "Photos"
 msgstr "Fotos"
 
-msgid "Wikipedia"
-msgstr "Viquipèdia"
+msgid "website"
+msgstr ""
 
 msgid "Wheelchair accessible"
 msgstr "Accessible amb cadira de rodes"
@@ -969,8 +1057,8 @@ msgstr "Accés a internet"
 msgid "WiFi"
 msgstr "WiFi"
 
-msgid "Services & information"
-msgstr "Serveis i informació"
+msgid "services & information"
+msgstr ""
 
 msgid "Please comply with government travel restrictions."
 msgstr "Compliu amb les restriccions del govern per a viatjar."
@@ -996,6 +1084,9 @@ msgstr "Informa d'un canvi"
 msgid "Opening hours subject to change"
 msgstr "Els horaris d'obertura estan subjectes a canvis"
 
+msgid "phone"
+msgstr ""
+
 msgid "Updated {datetime}"
 msgstr ""
 
@@ -1007,6 +1098,9 @@ msgstr ""
 
 msgid "Unknown"
 msgstr ""
+
+msgid "Read more on Wikipedia"
+msgstr "Més informació a la Viquipèdia"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa dades de l'OpenStreetMap."
@@ -1041,9 +1135,6 @@ msgstr "Torna als preferits"
 
 msgid "Back to list"
 msgstr "Torna a la llista"
-
-msgid "Back"
-msgstr "Enrere"
 
 msgid "See more nearby services"
 msgstr ""
@@ -1129,4 +1220,13 @@ msgid ""
 msgstr ""
 
 msgid "return"
+msgstr ""
+
+msgid "Masq will be disabled"
+msgstr ""
+
+msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
+msgstr ""
+
+msgid "Learn more"
 msgstr ""

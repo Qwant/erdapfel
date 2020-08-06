@@ -3,17 +3,17 @@
 # Luca Elle <ikol89891@fastmail.com>, 2019
 # Davide Donati <davide.donati@gmail.com>, 2019
 # Federico Montemaro <montemarostore@gmail.com>, 2019
-# Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Adrien Matissart, 2020
+# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-15 11:51+0000\n"
+"POT-Creation-Date: 2020-08-06 09:27+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2020\n"
+"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,6 +155,9 @@ msgstr "Cerca con Qwant Maps"
 msgid "My location"
 msgstr ""
 
+msgid "chunk"
+msgstr ""
+
 msgid "write"
 msgstr ""
 
@@ -202,6 +205,9 @@ msgstr "belle arti"
 
 msgid "athletics"
 msgstr "atletica"
+
+msgid "ATM"
+msgstr ""
 
 msgid "attraction"
 msgstr "attrazione"
@@ -260,11 +266,17 @@ msgstr "boutique"
 msgid "bowls"
 msgstr "bocce"
 
+msgid "brewery"
+msgstr ""
+
 msgid "brownfield"
 msgstr "area dismessa"
 
 msgid "bus station"
 msgstr "stazione degli autobus"
+
+msgid "bus stop"
+msgstr ""
 
 msgid "butcher"
 msgstr "macellaio"
@@ -281,11 +293,23 @@ msgstr "canoa"
 msgid "car shop"
 msgstr "Concessionario"
 
+msgid "car parts shop"
+msgstr ""
+
 msgid "car repair"
 msgstr "meccanico"
 
+msgid "car rental"
+msgstr ""
+
+msgid "car wash station"
+msgstr ""
+
 msgid "caravan site"
 msgstr "campeggio"
+
+msgid "carpenter"
+msgstr ""
 
 msgid "carpet shop"
 msgstr "negozio di tappeti"
@@ -293,11 +317,17 @@ msgstr "negozio di tappeti"
 msgid "castle"
 msgstr "castello"
 
+msgid "catering"
+msgstr ""
+
 msgid "cemetery"
 msgstr "cimitero"
 
-msgid "chalet"
-msgstr "chalet"
+msgid "holiday cottage"
+msgstr ""
+
+msgid "charging station"
+msgstr ""
 
 msgid "charity store"
 msgstr "negozio di beneficenza"
@@ -305,8 +335,14 @@ msgstr "negozio di beneficenza"
 msgid "chemist"
 msgstr "farmacia"
 
+msgid "cheese shop"
+msgstr ""
+
 msgid "chess"
 msgstr "scacchi"
+
+msgid "childcare centre"
+msgstr ""
 
 msgid "chocolate shop"
 msgstr "negozio di cioccolato"
@@ -353,6 +389,9 @@ msgstr "negozio di cosmetici"
 msgid "courthouse"
 msgstr "tribunale"
 
+msgid "coworking space"
+msgstr ""
+
 msgid "cricket"
 msgstr "cricket"
 
@@ -383,6 +422,9 @@ msgstr "corse di cani"
 msgid "doityourself store"
 msgstr "negozio del fai-da-te"
 
+msgid "driving school"
+msgstr ""
+
 msgid "dry cleaning"
 msgstr "lavaggio a secco"
 
@@ -401,6 +443,9 @@ msgstr "negozio di articoli erotici"
 msgid "escape game"
 msgstr "gioco di evasione"
 
+msgid "estate agent"
+msgstr ""
+
 msgid "fabric"
 msgstr "tessuto"
 
@@ -413,6 +458,9 @@ msgstr "fast food"
 msgid "fire station"
 msgstr "caserma dei vigili del fuoco"
 
+msgid "fitness centre"
+msgstr ""
+
 msgid "florist"
 msgstr "fioraio"
 
@@ -422,8 +470,14 @@ msgstr "area ristorazione"
 msgid "free flying"
 msgstr "volo libero"
 
+msgid "frozen food"
+msgstr ""
+
 msgid "fuel station"
 msgstr "stazione di rifornimento"
+
+msgid "funeral home"
+msgstr ""
 
 msgid "furniture shop"
 msgstr "negozio di mobili"
@@ -488,6 +542,9 @@ msgstr "ospedale"
 msgid "hostel"
 msgstr "ostello"
 
+msgid "houseware shop"
+msgstr ""
+
 msgid "ice cream"
 msgstr "gelato"
 
@@ -508,6 +565,9 @@ msgstr "asilo nido o scuola materna"
 
 msgid "kiosk"
 msgstr "edicola"
+
+msgid "kitchen manufacturer"
+msgstr ""
 
 msgid "lamps shop"
 msgstr "negozio di lampade"
@@ -563,6 +623,9 @@ msgstr "multi"
 msgid "music shop"
 msgstr "negozio musicale"
 
+msgid "music school"
+msgstr ""
+
 msgid "musical instrument shop"
 msgstr "negozio di strumenti musicali"
 
@@ -593,6 +656,9 @@ msgstr "parco"
 msgid "car park"
 msgstr ""
 
+msgid "pastry shop"
+msgstr ""
+
 msgid "perfumery"
 msgstr "profumeria"
 
@@ -608,8 +674,14 @@ msgstr "zona picnic"
 msgid "place of worship"
 msgstr "luogo di preghiera"
 
+msgid "plumber"
+msgstr ""
+
 msgid "police"
 msgstr "polizia"
+
+msgid "polling station"
+msgstr ""
 
 msgid "post office"
 msgstr "ufficio postale"
@@ -650,8 +722,17 @@ msgstr "scuola"
 msgid "scuba diving"
 msgstr "immersione"
 
+msgid "fishmonger"
+msgstr ""
+
 msgid "resale shop"
 msgstr "rivendita"
+
+msgid "shelter"
+msgstr ""
+
+msgid "shoemaker"
+msgstr ""
 
 msgid "shoes"
 msgstr "scarpe"
@@ -689,14 +770,14 @@ msgstr "negozio di cancelleria"
 msgid "subway"
 msgstr "metropolitana"
 
-msgid "swimming"
-msgstr "nuoto"
+msgid "swimming pool"
+msgstr "piscina"
 
 msgid "swimming area"
 msgstr "piscina"
 
-msgid "swimming pool"
-msgstr "piscina"
+msgid "swimming pool equipment"
+msgstr ""
 
 msgid "table tennis"
 msgstr "tennis da tavolo"
@@ -740,6 +821,12 @@ msgstr "agenzia di viaggi"
 msgid "university"
 msgstr "università"
 
+msgid "variety store"
+msgstr ""
+
+msgid "vehicle inspection"
+msgstr ""
+
 msgid "veterinary"
 msgstr "veterinario"
 
@@ -766,6 +853,9 @@ msgstr "magazzino"
 
 msgid "wine shop"
 msgstr "enoteca"
+
+msgid "winery"
+msgstr ""
 
 msgid "yoga"
 msgstr "yoga"
@@ -825,10 +915,11 @@ msgstr ""
 msgid "Close to"
 msgstr ""
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "recensione"
-msgstr[1] "recensioni"
+msgid "Geographic coordinates"
+msgstr ""
+
+msgid "on PagesJaunes"
+msgstr ""
 
 msgid "Your position"
 msgstr "La tua posizione"
@@ -909,12 +1000,6 @@ msgstr ""
 "Non hai alcun luogo tra i preferiti. <br>Puoi aggiungerne uno cliccando su "
 "un luogo"
 
-msgid "Use"
-msgstr "Usa"
-
-msgid "to secure your favorites on all your devices"
-msgstr "per proteggere i tuoi preferiti su tutti i tuoi dispositivi"
-
 msgid "Favorite places"
 msgstr "Luoghi preferiti"
 
@@ -930,20 +1015,23 @@ msgstr "Cerca nei dintorni di questo luogo"
 msgid "No result found"
 msgstr "Nessun risultato trovato"
 
-msgid "See more"
-msgstr "Altre info"
-
 msgid "Call"
+msgstr ""
+
+msgid "opening hours"
 msgstr ""
 
 msgid "See the usual opening hours"
 msgstr ""
 
+msgid "contact"
+msgstr ""
+
 msgid "Photos"
 msgstr "Foto"
 
-msgid "Wikipedia"
-msgstr "Wikipedia"
+msgid "website"
+msgstr ""
 
 msgid "Wheelchair accessible"
 msgstr "Accessibile con sedia a rotelle"
@@ -975,8 +1063,8 @@ msgstr "Accesso internet"
 msgid "WiFi"
 msgstr "WiFi"
 
-msgid "Services & information"
-msgstr "Servizi e informazioni"
+msgid "services & information"
+msgstr ""
 
 msgid "Please comply with government travel restrictions."
 msgstr ""
@@ -1002,6 +1090,9 @@ msgstr ""
 msgid "Opening hours subject to change"
 msgstr ""
 
+msgid "phone"
+msgstr ""
+
 msgid "Updated {datetime}"
 msgstr ""
 
@@ -1013,6 +1104,9 @@ msgstr ""
 
 msgid "Unknown"
 msgstr ""
+
+msgid "Read more on Wikipedia"
+msgstr "Leggi altro su Wikipedia"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa i dati di OpenStreetMap"
@@ -1047,9 +1141,6 @@ msgstr "Torna ai preferiti"
 
 msgid "Back to list"
 msgstr "Torna alla lista"
-
-msgid "Back"
-msgstr "Indietro"
 
 msgid "See more nearby services"
 msgstr ""
@@ -1137,3 +1228,12 @@ msgstr ""
 
 msgid "return"
 msgstr "ritorna"
+
+msgid "Masq will be disabled"
+msgstr ""
+
+msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
+msgstr ""
+
+msgid "Learn more"
+msgstr ""

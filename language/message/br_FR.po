@@ -1,18 +1,18 @@
 # 
 # Translators:
-# Noémie Lehuby <n.lehuby@qwant.com>, 2019
 # Gwenn M <tornoz@laposte.net>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # Adrien Matissart, 2020
+# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-15 11:51+0000\n"
+"POT-Creation-Date: 2020-08-06 09:27+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2020\n"
+"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,6 +154,9 @@ msgstr "Klask gant Qwant Maps"
 msgid "My location"
 msgstr ""
 
+msgid "chunk"
+msgstr ""
+
 msgid "write"
 msgstr "skrivañ"
 
@@ -201,6 +204,9 @@ msgstr "kreizenn an arzoù"
 
 msgid "athletics"
 msgstr "atleterezhioù"
+
+msgid "ATM"
+msgstr ""
 
 msgid "attraction"
 msgstr "diduañs"
@@ -259,11 +265,17 @@ msgstr "boutik"
 msgid "bowls"
 msgstr "bouloù"
 
+msgid "brewery"
+msgstr ""
+
 msgid "brownfield"
 msgstr " fraost industriel"
 
 msgid "bus station"
 msgstr "harz bus"
+
+msgid "bus stop"
+msgstr ""
 
 msgid "butcher"
 msgstr "boser"
@@ -280,11 +292,23 @@ msgstr "kanoe"
 msgid "car shop"
 msgstr "stal kirri"
 
+msgid "car parts shop"
+msgstr ""
+
 msgid "car repair"
 msgstr "stal kempenn kirri"
 
+msgid "car rental"
+msgstr ""
+
+msgid "car wash station"
+msgstr ""
+
 msgid "caravan site"
 msgstr "tachenn garavan"
+
+msgid "carpenter"
+msgstr ""
 
 msgid "carpet shop"
 msgstr "stal tapisoù"
@@ -292,11 +316,17 @@ msgstr "stal tapisoù"
 msgid "castle"
 msgstr "kastell"
 
+msgid "catering"
+msgstr ""
+
 msgid "cemetery"
 msgstr "bered"
 
-msgid "chalet"
-msgstr "ti-koad"
+msgid "holiday cottage"
+msgstr ""
+
+msgid "charging station"
+msgstr ""
 
 msgid "charity store"
 msgstr "stal an aluzon"
@@ -304,8 +334,14 @@ msgstr "stal an aluzon"
 msgid "chemist"
 msgstr "lezapotikerezh"
 
+msgid "cheese shop"
+msgstr ""
+
 msgid "chess"
 msgstr "c'hoari echedoù"
+
+msgid "childcare centre"
+msgstr ""
 
 msgid "chocolate shop"
 msgstr "stal chokolad"
@@ -352,6 +388,9 @@ msgstr "stal kosmetekerezh"
 msgid "courthouse"
 msgstr "lez-varn"
 
+msgid "coworking space"
+msgstr ""
+
 msgid "cricket"
 msgstr "kriket"
 
@@ -382,6 +421,9 @@ msgstr "redadegoù chas"
 msgid "doityourself store"
 msgstr "stal bitellat"
 
+msgid "driving school"
+msgstr ""
+
 msgid "dry cleaning"
 msgstr "naetaerezh"
 
@@ -400,6 +442,9 @@ msgstr "stal traoù erotek"
 msgid "escape game"
 msgstr "c'hoari achapiñ"
 
+msgid "estate agent"
+msgstr ""
+
 msgid "fabric"
 msgstr "labouradeg"
 
@@ -412,6 +457,9 @@ msgstr "pretierezh prim"
 msgid "fire station"
 msgstr "ti ar bomperien"
 
+msgid "fitness centre"
+msgstr ""
+
 msgid "florist"
 msgstr "stal bleunioù"
 
@@ -421,8 +469,14 @@ msgstr "takad debriñ"
 msgid "free flying"
 msgstr "free flying"
 
+msgid "frozen food"
+msgstr ""
+
 msgid "fuel station"
 msgstr "stal dour-tan"
+
+msgid "funeral home"
+msgstr ""
 
 msgid "furniture shop"
 msgstr "stal arrebeuri"
@@ -487,6 +541,9 @@ msgstr "ospital"
 msgid "hostel"
 msgstr "ti ar re yaouank"
 
+msgid "houseware shop"
+msgstr ""
+
 msgid "ice cream"
 msgstr "stal diennoù-skorn"
 
@@ -507,6 +564,9 @@ msgstr "liorzh bugale pe rak-skol"
 
 msgid "kiosk"
 msgstr "kiosk"
+
+msgid "kitchen manufacturer"
+msgstr ""
 
 msgid "lamps shop"
 msgstr "stal lampoù"
@@ -562,6 +622,9 @@ msgstr "multi"
 msgid "music shop"
 msgstr "stal sonerezh"
 
+msgid "music school"
+msgstr ""
+
 msgid "musical instrument shop"
 msgstr "stal binviji sonerezh"
 
@@ -592,6 +655,9 @@ msgstr "park"
 msgid "car park"
 msgstr "park kiri"
 
+msgid "pastry shop"
+msgstr ""
+
 msgid "perfumery"
 msgstr "porfumerezh"
 
@@ -607,8 +673,14 @@ msgstr "tachenn biknik"
 msgid "place of worship"
 msgstr "lec'h azeulerezh"
 
+msgid "plumber"
+msgstr ""
+
 msgid "police"
 msgstr "komiserdi"
+
+msgid "polling station"
+msgstr ""
 
 msgid "post office"
 msgstr "ti-post"
@@ -649,8 +721,17 @@ msgstr "skol"
 msgid "scuba diving"
 msgstr "splujerezh danvor"
 
+msgid "fishmonger"
+msgstr ""
+
 msgid "resale shop"
 msgstr "stal adwerzhañ"
+
+msgid "shelter"
+msgstr ""
+
+msgid "shoemaker"
+msgstr ""
 
 msgid "shoes"
 msgstr "botoù"
@@ -688,14 +769,14 @@ msgstr "stal paperaerezh"
 msgid "subway"
 msgstr "tren-buzhug"
 
-msgid "swimming"
+msgid "swimming pool"
 msgstr "poull-neuial"
 
 msgid "swimming area"
 msgstr "zonenn neuial"
 
-msgid "swimming pool"
-msgstr "poull-neuial"
+msgid "swimming pool equipment"
+msgstr ""
 
 msgid "table tennis"
 msgstr "taol dennis"
@@ -739,6 +820,12 @@ msgstr "ajañs-veaj"
 msgid "university"
 msgstr "skol-veur"
 
+msgid "variety store"
+msgstr ""
+
+msgid "vehicle inspection"
+msgstr ""
+
 msgid "veterinary"
 msgstr "mezeg-loened"
 
@@ -765,6 +852,9 @@ msgstr "braswerzher"
 
 msgid "wine shop"
 msgstr "stal gwin"
+
+msgid "winery"
+msgstr ""
 
 msgid "yoga"
 msgstr "yoga"
@@ -824,13 +914,11 @@ msgstr ""
 msgid "Close to"
 msgstr "Da gichen"
 
-msgid "review"
-msgid_plural "reviews"
-msgstr[0] "ali"
-msgstr[1] "ali"
-msgstr[2] "ali"
-msgstr[3] "ali"
-msgstr[4] "ali"
+msgid "Geographic coordinates"
+msgstr ""
+
+msgid "on PagesJaunes"
+msgstr ""
 
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
@@ -911,12 +999,6 @@ msgstr ""
 "N'ho peus lec'h karetañ ebet. <br> Gellout a rit ouzhpennañ unan en ur "
 "glikañ war ur blasenn"
 
-msgid "Use"
-msgstr "Implijit"
-
-msgid "to secure your favorites on all your devices"
-msgstr "evit skoriñ hoc'h arventennoù war hollad hoc'h aparailhoù"
-
 msgid "Favorite places"
 msgstr "Lec'hioù karetañ"
 
@@ -932,20 +1014,23 @@ msgstr "Klask tro-dro al lec'h-mañ"
 msgid "No result found"
 msgstr ""
 
-msgid "See more"
-msgstr "Gwelet muioc'h"
-
 msgid "Call"
+msgstr ""
+
+msgid "opening hours"
 msgstr ""
 
 msgid "See the usual opening hours"
 msgstr ""
 
+msgid "contact"
+msgstr ""
+
 msgid "Photos"
 msgstr "Fotoioù"
 
-msgid "Wikipedia"
-msgstr "Wikipedia"
+msgid "website"
+msgstr ""
 
 msgid "Wheelchair accessible"
 msgstr "Aezet evit ar c'hadorioù-ruilh"
@@ -977,8 +1062,8 @@ msgstr "Moned internet"
 msgid "WiFi"
 msgstr "WiFi"
 
-msgid "Services & information"
-msgstr "Servijoù & Titouroù"
+msgid "services & information"
+msgstr ""
 
 msgid "Please comply with government travel restrictions."
 msgstr ""
@@ -1004,6 +1089,9 @@ msgstr ""
 msgid "Opening hours subject to change"
 msgstr ""
 
+msgid "phone"
+msgstr ""
+
 msgid "Updated {datetime}"
 msgstr ""
 
@@ -1015,6 +1103,9 @@ msgstr ""
 
 msgid "Unknown"
 msgstr ""
+
+msgid "Read more on Wikipedia"
+msgstr "Lenn muioc'h war Wikipedia"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
@@ -1049,9 +1140,6 @@ msgstr "Distreiñ d'ar sinedoù"
 
 msgid "Back to list"
 msgstr "Distreiñ d'al listenn"
-
-msgid "Back"
-msgstr "Distreiñ"
 
 msgid "See more nearby services"
 msgstr ""
@@ -1138,3 +1226,12 @@ msgstr ""
 
 msgid "return"
 msgstr "distreiñ"
+
+msgid "Masq will be disabled"
+msgstr ""
+
+msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
+msgstr ""
+
+msgid "Learn more"
+msgstr ""
