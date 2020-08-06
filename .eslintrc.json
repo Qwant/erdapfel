@@ -95,7 +95,8 @@
         "object-curly-spacing": ["error", "always"],
         "object-shorthand": "error",
         "react/prop-types": 0,
-        "jsx-quotes": ["error", "prefer-double"]
+        "jsx-quotes": ["error", "prefer-double"],
+        "require-await": "error"
     },
     "overrides": [
         {
