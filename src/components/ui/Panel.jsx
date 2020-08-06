@@ -38,7 +38,7 @@ function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSi
 
 export default class Panel extends React.Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
     title: PropTypes.node,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
@@ -252,7 +252,7 @@ export default class Panel extends React.Component {
               ref={this.panelContentRef}
               {...(isMobile && resizeHandlers)}
             >
-              {children}
+              {typeof children === 'function' ? children(size) : children}
             </div>
           </div>
         }

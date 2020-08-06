@@ -267,26 +267,31 @@ export default class PoiPanel extends React.Component {
           (!poiFilters || !poiFilters.category),
       } )}
     >
-      <div className="poi_panel__content">
-        <PoiItem poi={poi} withAlternativeName className="u-mb-24" onClick={this.center} />
-        <ActionButtons
-          poi={poi}
-          isDirectionActive={this.isDirectionActive}
-          openDirection={this.openDirection}
-          onClickPhoneNumber={this.onClickPhoneNumber}
-          isPoiInFavorite={this.state.isPoiInFavorite}
-          toggleStorePoi={this.toggleStorePoi}
-        />
-        <Divider paddingBottom={10}/>
-        <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
-        {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
-          <h3 className="u-text--smallTitle">
-            {_('Search around this place', 'poi')}
-          </h3>
-          <CategoryList />
-        </div>}
-        {isFromOSM(poi) && <OsmContribution poi={poi} />}
-      </div>
+      {panelSize =>
+        <div className="poi_panel__content">
+          <PoiItem poi={poi} withAlternativeName className="u-mb-24" onClick={this.center} />
+          <ActionButtons
+            poi={poi}
+            isDirectionActive={this.isDirectionActive}
+            openDirection={this.openDirection}
+            onClickPhoneNumber={this.onClickPhoneNumber}
+            isPoiInFavorite={this.state.isPoiInFavorite}
+            toggleStorePoi={this.toggleStorePoi}
+          />
+          {panelSize === 'maximized' && <>
+            <Divider paddingBottom={10}/>
+            <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
+            {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
+              <h3 className="u-text--smallTitle">
+                {_('Search around this place', 'poi')}
+              </h3>
+              <CategoryList />
+            </div>}
+            {isFromOSM(poi) && <OsmContribution poi={poi} />}
+            </>
+          }
+        </div>
+      }
     </Panel>;
   }
 }
