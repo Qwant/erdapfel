@@ -211,7 +211,7 @@ export default class PoiPanel extends React.Component {
     }
   }
 
-  toggleStorePoi = async () => {
+  toggleStorePoi = () => {
     const poi = this.state.fullPoi;
     if (poi.meta && poi.meta.source) {
       Telemetry.add('favorite', 'poi', poi.meta.source);
