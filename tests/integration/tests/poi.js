@@ -45,7 +45,7 @@ test('load a poi from url', async () => {
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris\nFrance/);
+  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris/);
 });
 
 test('load a poi from url and click on directions', async () => {
@@ -67,7 +67,7 @@ test('load a poi from url with simple id', async () => {
     };
   });
   expect(title).toMatch(/Musée d'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris\nFrance/);
+  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris/);
 });
 
 test('load a poi from url on mobile', async () => {
@@ -82,7 +82,7 @@ test('load a poi from url on mobile', async () => {
     address: document.querySelector('.poiItem-address').innerText,
   }));
   expect(title).toMatch(/Musée d'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris\nFrance/);
+  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris/);
   expect(await exists(page, '.openingHour--closed')).toBeTruthy();
 });
 
