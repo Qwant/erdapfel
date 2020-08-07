@@ -28,7 +28,7 @@ function toArray(address, { omitStreet, omitCountry } = {}) {
     .filter(i => i); // Filter out any undefined value
 }
 
-const Address = ({ address, inline, omitStreet, omitCountry }) => {
+const Address = ({ address = {}, inline, omitStreet, omitCountry }) => {
   const parts = toArray(address, { omitStreet, omitCountry });
   return inline
     ? parts.join(', ')
