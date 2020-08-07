@@ -1,30 +1,6 @@
-import {
-  format,
-  normalize,
-} from '../../src/libs/address';
+import { normalize } from '../../src/libs/address';
 
 describe('Address utils', () => {
-  test('format', () => {
-    const cases = [
-      {
-        address: { street: 'street', city: 'city', country: 'country' },
-        expected: 'street, city, country',
-      },
-      {
-        address: { country: 'city' },
-        expected: 'city',
-      },
-      {
-        address: { country: 'country' },
-        expected: 'country',
-      },
-    ];
-
-    cases.forEach(({ address, expected }) => {
-      expect(format(address)).toEqual(expected);
-    });
-  });
-
   test('normalize', () => {
     const casesIdunn = [
       {
