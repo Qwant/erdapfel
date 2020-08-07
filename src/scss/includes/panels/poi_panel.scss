@@ -224,6 +224,16 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .poi_panel__description__ellipsis {
     width: 100%;
   }
+
+  .poi_panel.panel {
+    &.default, &.minimized {
+      height: auto;
+    }
+  }
+
+  .poi_panel__fullContent {
+    animation: appear 600ms;
+  }
 }
 
 @import "./covid";

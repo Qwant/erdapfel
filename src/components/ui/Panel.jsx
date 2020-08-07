@@ -252,7 +252,7 @@ export default class Panel extends React.Component {
               ref={this.panelContentRef}
               {...(isMobile && resizeHandlers)}
             >
-              {typeof children === 'function' ? children(size) : children}
+              {typeof children === 'function' ? children(size, isMobile) : children}
             </div>
           </div>
         }
