@@ -275,11 +275,11 @@ test('check template', async () => {
   });
   /* street */
   expect(lines[0][0]).toEqualCaseInsensitive('037');
-  expect(lines[0][1]).toEqualCaseInsensitive('037, Ferriere, Italia');
+  expect(lines[0][1]).toEqualCaseInsensitive('Ferriere, Italia');
 
   /* house */
   expect(lines[1][0]).toEqualCaseInsensitive('37 Rue Robert');
-  expect(lines[1][1]).toEqualCaseInsensitive('37 Rue Robert, Nîmes, France');
+  expect(lines[1][1]).toEqualCaseInsensitive('Nîmes, France');
 
   /* poi */
   expect(lines[2][0]).toEqualCaseInsensitive('maga');

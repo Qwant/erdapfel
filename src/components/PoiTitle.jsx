@@ -2,7 +2,7 @@
 import React from 'react';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
-import MultilineAddress from 'src/components/ui/MultilineAddress';
+import Address from 'src/components/ui/Address';
 
 const PoiTitle = ({ poi, withAlternativeName }) => {
   const { name, localName, subClassName, address } = poi;
@@ -16,7 +16,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
       return <div className="poiTitle">
         <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
         <h2 className="poiTitle-main u-text--smallTitle u-mb-4">
-          <MultilineAddress address={address}/>
+          <Address address={address} omitCountry />
         </h2>
         <div className="poiTitle-position">{latLon}</div>
       </div>;
