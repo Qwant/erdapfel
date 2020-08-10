@@ -18,7 +18,7 @@ const PoiItem = ({ poi,
   const address = poi.address || {};
 
   const Address = () =>
-    poi.subClassName !== 'latlon' && address.label
+    poi.subClassName !== 'latlon'
       ? <div className="u-text--subtitle poiItem-address">
         <MultilineAddress address={address} omitCountry={poi.type !== 'admin'} />
       </div>
