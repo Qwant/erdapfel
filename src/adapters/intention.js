@@ -9,6 +9,8 @@ export default class Intention {
     this.place = description.place;
   }
 
+  isValid = () => this.category || this.fullTextQuery;
+
   toQueryString = () => buildQueryString({
     q: this.fullTextQuery,
     type: this.category?.name,
