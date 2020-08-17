@@ -83,7 +83,6 @@ test('load a poi from url on mobile', async () => {
   }));
   expect(title).toMatch(/Musée d'Orsay/);
   expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris/);
-  expect(await exists(page, '.openingHour--closed')).toBeTruthy();
 });
 
 test('load a poi already in my favorite from url', async () => {
