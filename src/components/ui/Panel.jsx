@@ -157,10 +157,7 @@ export default class Panel extends React.Component {
       return;
     }
 
-    this.setState({
-      currentHeight,
-      size: 'default',
-    });
+    this.setState({ currentHeight });
   }
 
   /**
