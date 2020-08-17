@@ -57,7 +57,6 @@ export default class Panel extends React.Component {
   constructor(props) {
     super(props);
     this.moveHandler = null;
-    this.moveTarget = null;
     this.panelContentRef = React.createRef();
     this.state = {
       holding: false,
@@ -103,13 +102,12 @@ export default class Panel extends React.Component {
   }
 
   removeListeners() {
-    if (!this.moveHandler || !this.moveTarget) {
+    if (!this.moveHandler) {
       return;
     }
-    this.moveTarget.removeEventListener('touchmove', this.moveHandler);
-    this.moveTarget.removeEventListener('mousemove', this.moveHandler);
+    document.removeEventListener('touchmove', this.moveHandler);
+    document.removeEventListener('mousemove', this.moveHandler);
     this.moveHandler = null;
-    this.moveTarget = null;
   }
 
   holdResizer = (event, forceResize = false) => {
@@ -121,13 +119,10 @@ export default class Panel extends React.Component {
     this.removeListeners();
 
     this.moveHandler = event => this.move(event, forceResize);
-    this.moveTarget = event.target;
-    // It is important to attach the move handler to the current target (instead of `document`)
-    // in order to keep receiving the events, even if the target is removed from the DOM.
     if (event.type === 'touchstart') {
-      this.moveTarget.addEventListener('touchmove', this.moveHandler);
+      document.addEventListener('touchmove', this.moveHandler);
     } else {
-      this.moveTarget.addEventListener('mousemove', this.moveHandler);
+      document.addEventListener('mousemove', this.moveHandler);
     }
 
     this.setState(previousState => ({
@@ -162,10 +157,7 @@ export default class Panel extends React.Component {
       return;
     }
 
-    this.setState({
-      currentHeight,
-      size: 'default',
-    });
+    this.setState({ currentHeight });
   }
 
   /**
