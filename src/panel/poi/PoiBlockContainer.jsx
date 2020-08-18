@@ -41,7 +41,7 @@ export default class PoiBlockContainer extends React.Component {
     return <div className="poi_panel__info">
       {wikipedia && <WikiBlock block={wikipedia} />}
       {this.props.poi.address && this.props.poi.subClassName !== 'latlon' &&
-        <Block icon="map-pin" title={_('address')}>
+        <Block className="block-address" icon="map-pin" title={_('address')}>
           <Address inline address={this.props.poi.address} omitCountry />
         </Block>
       }
