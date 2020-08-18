@@ -8,7 +8,7 @@ import classnames from 'classnames';
 
 const PoiItem = ({ poi,
   withOpeningHours,
-  withImage = true,
+  withImage,
   withAlternativeName,
   className,
   ...rest
@@ -28,13 +28,14 @@ const PoiItem = ({ poi,
       ? <OpeningHour
         withIcon
         schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
-        showNextOpenOnly={true}
       />
       : null;
 
   return <div className={classnames('poiItem', className)} {...rest}>
     <div className="poiItem-left">
-      <PoiTitle poi={poi} withAlternativeName={withAlternativeName} />
+      <div className="u-mb-4">
+        <PoiTitle poi={poi} withAlternativeName={withAlternativeName} />
+      </div>
       <Reviews />
       <OpenStatus />
     </div>

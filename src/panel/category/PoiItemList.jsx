@@ -13,7 +13,7 @@ const PoiItems = ({
       onMouseOver={() => { highlightMarker(poi, true); }}
       onMouseOut={() => { highlightMarker(poi, false); }}
     >
-      <PoiItem poi={poi} withOpeningHours />
+      <PoiItem poi={poi} withOpeningHours withImage />
     </Item>)}
   </ItemList>;
 
