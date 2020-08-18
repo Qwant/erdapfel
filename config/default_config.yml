@@ -29,6 +29,7 @@ services:
     maxItems: 7
     useFocus: true
     focusPrecision: '0.1' # lat/lon degrees
+    focusZoomPrecision: '1.0'
     useNlu: false
   idunn:
     url: override_by_environment

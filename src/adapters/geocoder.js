@@ -7,6 +7,7 @@ import Intention from './intention';
 const serviceConfigs = nconf.get().services;
 const geocoderConfig = serviceConfigs.geocoder;
 const geocoderFocusPrecision = geocoderConfig.focusPrecision;
+const geocoderFocusZoomPrecision = geocoderConfig.focusZoomPrecision;
 
 const bragiCache = {};
 
@@ -17,11 +18,12 @@ function roundWithPrecision(value, precision, digits = 3) {
 
 export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}) {
   let cacheKey = term;
-  let { lat, lon } = focus;
+  let { lat, lon, zoom } = focus;
   if (lat !== undefined && lon !== undefined) {
     lat = roundWithPrecision(lat, geocoderFocusPrecision);
     lon = roundWithPrecision(lon, geocoderFocusPrecision);
-    cacheKey += `;${lat};${lon}`;
+    zoom = roundWithPrecision(zoom, geocoderFocusZoomPrecision);
+    cacheKey += `;${lat};${lon};${zoom}`;
   }
   /* cache */
   if (cacheKey in bragiCache) {
@@ -41,6 +43,7 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
     if (lat !== undefined && lon !== undefined) {
       query.lat = lat;
       query.lon = lon;
+      query.zoom = zoom;
     }
     if (geocoderConfig.useLang) {
       query.lang = window.getLang().code;
@@ -55,7 +58,7 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
           term,
           index + 1, // ranking
           query.lang,
-          { lat, lon, zoom: focus.zoom }
+          { lat, lon, zoom }
         );
         return new BragiPoi(feature, queryContext);
       });
