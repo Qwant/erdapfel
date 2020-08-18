@@ -69,22 +69,6 @@
       border-radius: 0;
       height: calc(100% - #{$top_bar_height});
 
-      // a "fake" background area added above the panel itself,
-      // allowing height transitions without changing paddings and preventing "jumps"
-      &::before {
-        content: '';
-        display: block;
-        width: 100%;
-        height: $top_bar_height;
-        background-color: #f4f6fa;
-        position: absolute;
-        top: -$top_bar_height;
-      }
-
-      &.panel--white::before {
-        background-color: white;
-      }
-
       .panel-content {
         overflow: auto;
       }
