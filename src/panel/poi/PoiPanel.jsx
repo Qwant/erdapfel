@@ -224,7 +224,7 @@ export default class PoiPanel extends React.Component {
     }
   }
 
-  renderContent = (poi, panelSize, isMobile) => {
+  renderContent = (poi, { size: panelSize, isMobile }) => {
     if (isMobile && panelSize === 'minimized') {
       return <div className="poi_panel__content">
         <PoiTitle poi={poi} withAlternativeName />
@@ -299,7 +299,7 @@ export default class PoiPanel extends React.Component {
           (!poiFilters || !poiFilters.category),
       } )}
     >
-      {(panelSize, isMobile) => this.renderContent(poi, panelSize, isMobile)}
+      {panelOptions => this.renderContent(poi, panelOptions)}
     </Panel>;
   }
 }
