@@ -279,6 +279,10 @@ input[type="search"] {
     padding-right: 12px;
   }
 
+  .search_form__input::placeholder {
+    font-size: 14px;
+  }
+
   .search_form__wrapper {
     padding: 0 9px 0 12px;
   }
@@ -302,23 +306,5 @@ input[type="search"] {
 
   .search_form__return {
     width: 34px;
-  }
-}
-
-@media (max-width: 359px) {
-  .search_form__input {
-    &::placeholder {
-      color: transparent;
-    }
-
-    &::-webkit-input-placeholder {
-      color:transparent;
-    }
-    &::-moz-placeholder {
-      color:transparent;
-    }
-    &:-ms-input-placeholder {
-      color:transparent;
-    }
   }
 }
