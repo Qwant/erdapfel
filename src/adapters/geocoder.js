@@ -61,7 +61,9 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
       });
       const bragiResponse = { pois };
       if (intentions) {
-        bragiResponse.intentions = intentions.map(intention => new Intention(intention));
+        bragiResponse.intentions = intentions
+          .map(intention => new Intention(intention))
+          .filter(intention => intention.isValid());
       }
       bragiCache[cacheKey] = bragiResponse;
       resolve(bragiResponse);
