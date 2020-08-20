@@ -6,6 +6,7 @@ import Router from 'src/proxies/app_router';
 import { parseMapHash, joinPath, getCurrentUrl } from 'src/libs/url_utils';
 import { listen } from 'src/libs/customEvents';
 import RootComponent from './RootComponent';
+import Telemetry from 'src/libs/telemetry';
 
 const burgerMenuEnabled = nconf.get().burgerMenu.enabled;
 
@@ -17,7 +18,13 @@ export default class App {
   constructor() {
     this.initMap();
     SearchInput.initSearchInput('#search');
-    listen('map_loaded', () => { window.times.mapLoaded = Date.now(); });
+    listen('map_loaded', () => {
+      window.times.mapLoaded = Date.now();
+      Telemetry.add(Telemetry.PERF_MAP_FIRST_RENDER, null, null, {
+        mapbox_init: window.times.initMapBox - window.times.init,
+        map_first_render: window.times.mapLoaded - window.times.initMapBox,
+      });
+    });
 
     this.router = new Router(window.baseUrl);
 

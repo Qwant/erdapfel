@@ -57,5 +57,7 @@ module.exports = {
     /* Covid-19 */
     'covid_caresteouvert_link',
     'covid_caresteouvert_contribute',
+    /* Perfs */
+    'perf_map_first_render',
   ],
 };
