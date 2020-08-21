@@ -12,6 +12,7 @@ import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { fire } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
+import { PanelContext } from 'src/libs/panelContext.js';
 
 const performanceEnabled = nconf.get().performance.enabled;
 const directionConf = nconf.get().direction;
@@ -28,6 +29,7 @@ export default class PanelManager extends React.Component {
     this.state = {
       ActivePanel: ServicePanel,
       options: {},
+      panelSize: 'default',
     };
   }
 
@@ -141,11 +143,17 @@ export default class PanelManager extends React.Component {
     };
   }
 
-  render() {
-    const { ActivePanel, options } = this.state;
+  setPanelSize = panelSize => {
+    this.setState({ panelSize });
+  }
 
-    return <div className="panel_container">
-      <ActivePanel {...options} />
-    </div>;
+  render() {
+    const { ActivePanel, options, panelSize } = this.state;
+
+    return <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
+      <div className="panel_container">
+        <ActivePanel {...options} />
+      </div>
+    </PanelContext.Provider>;
   }
 }
