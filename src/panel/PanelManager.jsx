@@ -78,6 +78,7 @@ export default class PanelManager extends React.Component {
           },
           ...otherOptions,
         },
+        panelSize: 'default',
       });
     });
 
@@ -86,6 +87,7 @@ export default class PanelManager extends React.Component {
       this.setState({
         ActivePanel: PoiPanel,
         options: { ...options, poiId },
+        panelSize: 'default',
       });
     });
 
@@ -93,6 +95,7 @@ export default class PanelManager extends React.Component {
       this.setState({
         ActivePanel: FavoritesPanel,
         options: {},
+        panelSize: 'default',
       });
     });
 
@@ -105,6 +108,7 @@ export default class PanelManager extends React.Component {
         this.setState({
           ActivePanel: DirectionPanel,
           options: { ...parseQueryString(routeParams), ...options, isPublicTransportActive },
+          panelSize: 'default',
         });
       });
     }
@@ -120,7 +124,11 @@ export default class PanelManager extends React.Component {
 
     // Default matching route
     router.addRoute('Services', '/?', (_, options) => {
-      this.setState({ ActivePanel: ServicePanel, options });
+      this.setState({
+        ActivePanel: ServicePanel,
+        options,
+        panelSize: 'default',
+      });
       if (options?.focusSearch) {
         SearchInput.select();
       }
