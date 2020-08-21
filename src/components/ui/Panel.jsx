@@ -202,7 +202,9 @@ class Panel extends React.Component {
   }
 
   render() {
-    const { children, title, minimizedTitle, resizable, close, className, white, size } = this.props;
+    const {
+      children, title, minimizedTitle,
+      resizable, close, className, white, size } = this.props;
     const { currentHeight, holding } = this.state;
     const resizeHandlers = resizable ? this.getEventHandlers(false) : {};
     const forceResizeHandlers = resizable ? this.getEventHandlers(true) : {};
@@ -237,7 +239,7 @@ class Panel extends React.Component {
                 justifyContent="center"
                 className="panel-close"
                 title={_('Close')}
-                onClick={close}
+                onClick={e => {e.stopPropagation(); close(e);}}
               >
                 <i className="icon-x" />
               </Flex>}
