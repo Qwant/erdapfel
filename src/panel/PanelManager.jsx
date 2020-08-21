@@ -9,7 +9,7 @@ import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
-import { fire } from 'src/libs/customEvents';
+import { fire, listen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
@@ -50,6 +50,12 @@ export default class PanelManager extends React.Component {
     if (performanceEnabled) {
       window.times.appRendered = Date.now();
     }
+
+    listen('map_user_interaction', () => {
+      if (this.state.ActivePanel === PoiPanel) {
+        this.setState({ panelSize: 'minimized' });
+      }
+    });
   }
 
   componentDidUpdate(_prevProps, prevState) {
