@@ -65,7 +65,9 @@ export default class SearchInput {
       if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
         return;
       }
-      if (!e.shiftKey && !e.ctrlKey && e.key !== 'Enter' && !e.altKey) {
+      // KeyboardEvent.key is either the printed character representation or a standard value for specials keys
+      // See https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key/Key_Values
+      if (e.key.length === 1) {
         if (document.activeElement
           && document.activeElement.tagName !== 'INPUT'
           && window.__searchInput.isEnabled) {
