@@ -19,7 +19,6 @@ import Store from '../../adapters/store';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import Flex from 'src/components/ui/Flex';
-import Divider from 'src/components/ui/Divider';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -249,7 +248,6 @@ export default class PoiPanel extends React.Component {
         />
       </div>
       {(!isMobile || panelSize === 'maximized') && <div className="poi_panel__fullContent">
-        <Divider paddingTop={12} paddingBottom={10} />
         <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
         {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
           <h3 className="u-text--smallTitle">
