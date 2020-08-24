@@ -8,6 +8,7 @@ import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Telemetry from 'src/libs/telemetry';
+import CategoryService from 'src/adapters/category_service';
 import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
 import { fire } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
@@ -59,6 +60,19 @@ export default class PanelManager extends React.Component {
         fire('remove_category_markers');
         fire('remove_event_markers');
       }
+    }
+
+    this.updateSearchBarContent(options);
+  }
+
+  updateSearchBarContent({ poiFilters = {} }) {
+    const { category, query } = poiFilters;
+    if (category) {
+      SearchInput.setInputValue(CategoryService.getCategoryByName(category)?.getInputValue());
+    } else if (query) {
+      SearchInput.setInputValue(query);
+    } else {
+      SearchInput.setInputValue('');
     }
   }
 
