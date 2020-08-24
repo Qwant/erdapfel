@@ -84,16 +84,4 @@ export function createIcon(iconOptions, name, hoverEffect = false) {
   return element.firstElementChild;
 }
 
-export function createEventIcon(iconOptions, name, hoverEffect = false) {
-  const element = document.createElement('div');
-  element.innerHTML = `
-    <div class="marker">
-      <div class="marker-container${hoverEffect ? ' poi-hoverable' : ''}">
-        <i class="icon icon-${iconOptions.eventIcon}"></i>
-      </div>
-    </div>
-  `;
-  return element.firstElementChild;
-}
-
 window.IconManager = IconManager;
