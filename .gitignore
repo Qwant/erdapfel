@@ -2,6 +2,7 @@ tmp/
 *.log
 .vscode
 .DS_Store
+.idea
 
 node_modules/
 
@@ -22,4 +23,3 @@ stats.json
 
 .env
 .env.*
-/.idea/
