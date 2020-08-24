@@ -1,9 +1,10 @@
 /* global _ */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
+import { PanelContext } from 'src/libs/panelContext';
 import Flex from 'src/components/ui/Flex';
 
 const getEventClientY = event => event.changedTouches
@@ -36,13 +37,14 @@ function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSi
   return size;
 }
 
-export default class Panel extends React.Component {
+class Panel extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
     title: PropTypes.node,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
-    initialSize: PropTypes.oneOf(['default', 'minimized', 'maximized']),
+    size: PropTypes.string,
+    setSize: PropTypes.func,
     marginTop: PropTypes.number,
     close: PropTypes.func,
     className: PropTypes.string,
@@ -50,7 +52,7 @@ export default class Panel extends React.Component {
   }
 
   static defaultProps = {
-    initialSize: 'default',
+    size: 'default',
     marginTop: 50, // default top bar size
   }
 
@@ -60,7 +62,6 @@ export default class Panel extends React.Component {
     this.panelContentRef = React.createRef();
     this.state = {
       holding: false,
-      size: props.initialSize,
       currentHeight: null,
     };
   }
@@ -89,7 +90,7 @@ export default class Panel extends React.Component {
         // Transition to maximized
         fire('mobile_geolocation_button_visibility', false);
         fire('mobile_direction_button_visibility', false);
-      } else if (this.state.size === 'minimized' || height < 40) {
+      } else if (this.props.size === 'minimized' || height < 40) {
         // Transition to minimized
         fire('mobile_geolocation_button_visibility', true);
         fire('mobile_direction_button_visibility', true);
@@ -125,11 +126,10 @@ export default class Panel extends React.Component {
       document.addEventListener('mousemove', this.moveHandler);
     }
 
-    this.setState(previousState => ({
+    this.setState({
       currentHeight: this.startHeight,
-      previousSize: previousState.size,
       holding: true,
-    }));
+    });
   }
 
   /**
@@ -141,7 +141,7 @@ export default class Panel extends React.Component {
     const currentHeight = this.startHeight + (this.startClientY - clientY);
 
     if (!forceResize &&
-        this.state.size === 'maximized' &&
+        this.props.size === 'maximized' &&
         this.panelContentRef.current.scrollTop > 0) {
       /* User is scrolling inside the panel content,
          update startClientY to ignore current swipe gesture */
@@ -150,7 +150,7 @@ export default class Panel extends React.Component {
     }
 
     if (!forceResize &&
-        this.state.size === 'maximized' &&
+        this.props.size === 'maximized' &&
         this.panelContentRef.current.scrollTop === 0 &&
         currentHeight >= this.state.currentHeight) {
       // User is starting to scroll content area from bottom to top, do nothing
@@ -168,33 +168,28 @@ export default class Panel extends React.Component {
     this.removeListeners();
 
     if (!forceResize &&
-        this.state.size === 'maximized' &&
+        this.props.size === 'maximized' &&
         this.panelContentRef.current.scrollTop > 0) {
       // User is scrolling inside the panel content
       return;
     }
 
     const newSize = getTargetSize(
-      this.state.previousSize,
+      this.props.size,
       event.timeStamp - this.interactionStarted,
       this.startHeight,
       this.state.currentHeight,
       window.innerHeight - this.props.marginTop,
     );
 
-    this.setState({
-      holding: false,
-      size: newSize,
-      currentHeight: null,
-    });
+    this.props.setSize(newSize);
+    this.setState({ holding: false, currentHeight: null });
   }
 
   handleHeaderClick() {
-    const size = this.state.size === 'default' ? 'minimized' : 'default';
-    this.setState({
-      size,
-      currentHeight: null,
-    });
+    const size = this.props.size === 'default' ? 'minimized' : 'default';
+    this.props.setSize(size);
+    this.setState({ currentHeight: null });
   }
 
   getEventHandlers(forceResize = false) {
@@ -207,8 +202,10 @@ export default class Panel extends React.Component {
   }
 
   render() {
-    const { children, title, minimizedTitle, resizable, close, className, white } = this.props;
-    const { size, currentHeight, holding } = this.state;
+    const {
+      children, title, minimizedTitle,
+      resizable, close, className, white, size } = this.props;
+    const { currentHeight, holding } = this.state;
     const resizeHandlers = resizable ? this.getEventHandlers(false) : {};
     const forceResizeHandlers = resizable ? this.getEventHandlers(true) : {};
 
@@ -242,7 +239,7 @@ export default class Panel extends React.Component {
                 justifyContent="center"
                 className="panel-close"
                 title={_('Close')}
-                onClick={close}
+                onClick={e => {e.stopPropagation(); close(e);}}
               >
                 <i className="icon-x" />
               </Flex>}
@@ -260,3 +257,10 @@ export default class Panel extends React.Component {
     );
   }
 }
+
+const PanelWrapper = props => {
+  const { size, setSize } = useContext(PanelContext);
+  return <Panel {...props} size={size} setSize={setSize} />;
+};
+
+export default PanelWrapper;
