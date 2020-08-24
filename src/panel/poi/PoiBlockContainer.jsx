@@ -40,16 +40,13 @@ export default class PoiBlockContainer extends React.Component {
 
     return <div className="poi_panel__info">
       {wikipedia && <WikiBlock block={wikipedia} />}
+      {displayCovidInfo &&
+        <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />}
+      <Divider />
       {this.props.poi.address && this.props.poi.subClassName !== 'latlon' &&
         <Block className="block-address" icon="map-pin" title={_('address')}>
           <Address inline address={this.props.poi.address} omitCountry />
         </Block>
-      }
-      {displayCovidInfo &&
-        <>
-          <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />
-          <Divider />
-        </>
       }
       {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
       {informationBlock && <InformationBlock block={informationBlock} />}
