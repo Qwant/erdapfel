@@ -20,7 +20,6 @@ import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import Flex from 'src/components/ui/Flex';
 import Divider from 'src/components/ui/Divider';
-import PoiTitle from 'src/components/PoiTitle';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -227,22 +226,30 @@ export default class PoiPanel extends React.Component {
   renderContent = (poi, { size: panelSize, isMobile }) => {
     if (isMobile && panelSize === 'minimized') {
       return <div className="poi_panel__content">
-        <PoiTitle poi={poi} withAlternativeName />
+        <PoiItem poi={poi} withAlternativeName />
       </div>;
     }
 
     return <div className="poi_panel__content">
-      <PoiItem poi={poi} withAlternativeName className="u-mb-24" onClick={this.center} />
-      <ActionButtons
+      <PoiItem
         poi={poi}
-        isDirectionActive={this.isDirectionActive}
-        openDirection={this.openDirection}
-        onClickPhoneNumber={this.onClickPhoneNumber}
-        isPoiInFavorite={this.state.isPoiInFavorite}
-        toggleStorePoi={this.toggleStorePoi}
+        withAlternativeName
+        withOpeningHours
+        className="u-mb-20"
+        onClick={this.center}
       />
+      <div className="u-mb-8">
+        <ActionButtons
+          poi={poi}
+          isDirectionActive={this.isDirectionActive}
+          openDirection={this.openDirection}
+          onClickPhoneNumber={this.onClickPhoneNumber}
+          isPoiInFavorite={this.state.isPoiInFavorite}
+          toggleStorePoi={this.toggleStorePoi}
+        />
+      </div>
       {(!isMobile || panelSize === 'maximized') && <div className="poi_panel__fullContent">
-        <Divider paddingBottom={10}/>
+        <Divider paddingTop={12} paddingBottom={10} />
         <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
         {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
           <h3 className="u-text--smallTitle">

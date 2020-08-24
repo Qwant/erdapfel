@@ -21,10 +21,10 @@ export default class PoiBlockContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.poi || !this.props.poi.blocks || this.props.poi.blocks.length === 0) {
+    if (!this.props.poi) {
       return null;
     }
-    const blocks = this.props.poi.blocks;
+    const blocks = this.props.poi.blocks || [];
     const hourBlock = blocks.find(b => b.type === 'opening_hours');
     const informationBlock = blocks.find(b => b.type === 'information');
     const phoneBlock = blocks.find(b => b.type === 'phone');
@@ -40,6 +40,11 @@ export default class PoiBlockContainer extends React.Component {
 
     return <div className="poi_panel__info">
       {wikipedia && <WikiBlock block={wikipedia} />}
+      {this.props.poi.address && this.props.poi.subClassName !== 'latlon' &&
+        <Block className="block-address" icon="map-pin" title={_('address')}>
+          <Address inline address={this.props.poi.address} omitCountry />
+        </Block>
+      }
       {displayCovidInfo &&
         <>
           <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />
@@ -52,14 +57,6 @@ export default class PoiBlockContainer extends React.Component {
       {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
       {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
       {contactBlock && <ContactBlock block={contactBlock} />}
-      {this.props.poi.address.label &&
-        <Block
-          icon="map-pin"
-          title={_('address')}
-        >
-          <Address inline address={this.props.poi.address} />
-        </Block>
-      }
       {imagesBlock && imagesBlock.images.length > 1 &&
         <>
           <Divider />

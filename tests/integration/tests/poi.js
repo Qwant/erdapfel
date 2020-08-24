@@ -38,14 +38,8 @@ test('click on a poi', async () => {
 test('load a poi from url', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poiTitle');
-  const { title, address } = await page.evaluate(() => {
-    return {
-      title: document.querySelector('.poiTitle').innerText,
-      address: document.querySelector('.poiItem-address').innerText,
-    };
-  });
+  const title = await page.evaluate(() => document.querySelector('.poiTitle').innerText);
   expect(title).toMatch(/Musée d'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris/);
 });
 
 test('load a poi from url and click on directions', async () => {
@@ -60,14 +54,8 @@ test('load a poi from url and click on directions', async () => {
 test('load a poi from url with simple id', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753`);
   await page.waitForSelector('.poiTitle');
-  const { title, address } = await page.evaluate(() => {
-    return {
-      title: document.querySelector('.poiTitle').innerText,
-      address: document.querySelector('.poiItem-address').innerText,
-    };
-  });
+  const title = await page.evaluate(() => document.querySelector('.poiTitle').innerText);
   expect(title).toMatch(/Musée d'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris/);
 });
 
 test('load a poi from url on mobile', async () => {
@@ -77,12 +65,8 @@ test('load a poi from url on mobile', async () => {
   });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poiTitle');
-  const { title, address } = await page.evaluate(() => ({
-    title: document.querySelector('.poiTitle').innerText,
-    address: document.querySelector('.poiItem-address').innerText,
-  }));
+  const title = await page.evaluate(() => document.querySelector('.poiTitle').innerText);
   expect(title).toMatch(/Musée d'Orsay/);
-  expect(address).toMatch(/1 Rue de la Légion d'Honneur\n75007 Paris/);
 });
 
 test('load a poi already in my favorite from url', async () => {
@@ -161,14 +145,16 @@ test('display details about the poi on a poi click', async () => {
   });
   expect(infoTitle.trim()).toEqual('');
 
-  const { contact, contactUrl, phone, website } = await page.evaluate(() => {
+  const { address, contact, contactUrl, phone, website } = await page.evaluate(() => {
     return {
+      address: document.querySelector('.block-address .block-value').innerText,
       contact: document.querySelector('.block-contact-link').innerText,
       contactUrl: document.querySelector('.block-contact-link').href,
       phone: document.querySelector('.block-phone').innerText,
       website: document.querySelector('.block-website').innerText,
     };
   });
+  expect(address).toEqual('1 Rue de la Légion d\'Honneur, 75007 Paris');
   expect(await exists(page, '.poi_panel .openingHour--closed')).toBeTruthy();
   expect(phone).toMatch('01 40 49 48 14');
   expect(website).toMatch('www.musee-orsay.fr');

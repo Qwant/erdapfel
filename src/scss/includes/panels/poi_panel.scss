@@ -216,9 +216,8 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 @media (max-width: 640px) {
-  .poi_panel__content,
-  .poi_panel--empty-header .poi_panel__content {
-    padding: 0 12px 10px 12px;
+  .poi_panel__content {
+    padding: 0 12px 12px;
   }
 
   .poi_panel__description__ellipsis {

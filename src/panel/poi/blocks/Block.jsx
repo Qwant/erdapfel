@@ -6,7 +6,7 @@ const Block = ({ icon, title, children, className }) =>
     <i className={`block-icon icon-${icon}`}/>
     <div className="block-content">
       <div className="u-firstCap u-text--caption u-mb-2">{title}</div>
-      {children}
+      <div className="block-value">{children}</div>
     </div>
   </div>;
 
