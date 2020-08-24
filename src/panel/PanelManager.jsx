@@ -57,7 +57,6 @@ export default class PanelManager extends React.Component {
       // poiFilters indicate we are in a "list of POI" context, where markers should be persistent
       if (isNullOrEmpty(options?.poiFilters)) {
         fire('remove_category_markers');
-        fire('remove_event_markers');
       }
     }
   }
