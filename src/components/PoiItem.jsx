@@ -11,6 +11,7 @@ const PoiItem = ({ poi,
   withImage,
   withAlternativeName,
   className,
+  inList,
   ...rest
 }) => {
   const reviews = poi.blocksByType?.grades;
@@ -18,7 +19,7 @@ const PoiItem = ({ poi,
   const Reviews = () =>
     reviews
       ? <span className="poiItem-reviews">
-        <ReviewScore reviews={reviews} poi={poi} inList />
+        <ReviewScore reviews={reviews} poi={poi} inList={inList} />
       </span>
       : null
   ;
