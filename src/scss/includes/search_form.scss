@@ -3,7 +3,6 @@
   width: 100%;
   height: $top_bar_height;
   position: relative;
-  display: flex;
   align-items: center;
   pointer-events: auto;
   padding: 8px 12px;
@@ -26,28 +25,28 @@
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused
 .search_form__wrapper {
-  flex-grow: 1;
-  flex-shrink: 1;
   height: 48px;
   padding: 0 16px;
   border: none;
   background-color: $surface;
   border-radius: 24px;
   margin: 1px;
-  display: flex;
   align-items: center;
-  position: relative;
+  position: absolute;
+  width: calc(100% - 110px);
+  top: 8px;
+  left: 63px;
 }
 
 // Input
 .search_form__input {
   min-width: 0;
-  width: 100%;
+  width: calc(100% - 30px);
+  height: 48px;
   font-size: 16px;
   font-weight: normal;
   color: #353c52;
   box-shadow: none;
-  align-self: stretch;
 
   &::placeholder {
     color: $secondary_text;
@@ -83,17 +82,15 @@ input[type="search"] {
 
 // Logo
 .search_form__logo {
-  flex-shrink: 0;
   width: 36px;
   height: 36px;
   background: url(../images/qwant-logo.svg) no-repeat;
   background-size: cover;
-  margin-right: 12px;
+  margin-top: 7px;
 }
 
 // Return arrow
 .search_form__return {
-  flex-shrink: 0;
   display: none;
   width: 20px;
   font-size: 20px;
@@ -110,7 +107,7 @@ input[type="search"] {
 // Magnifying glass
 .search_form__action {
   width: 24px;
-  background: url(../images/magnifier.svg) center no-repeat;
+  background: url(../images/magnifier-light.svg) center no-repeat;
   background-size: 16px 16px;
   cursor: pointer;
 }
@@ -190,7 +187,7 @@ input[type="search"] {
 .autocomplete_suggestion--intention {
   .autocomplete-icon {
     height: 30px;
-    background: url(../images/magnifier.svg) center no-repeat;
+    background: url(../images/magnifier-light.svg) center no-repeat;
     color: #353c52;
   }
 }
@@ -235,13 +232,16 @@ input[type="search"] {
 
 // Directions icon
 .search_form__direction_shortcut {
-  margin-right: -12px;
   width: 48px;
   height: 48px;
   background: url(../images/direction-line.svg) center no-repeat;
   background-size: 24px 24px;
   cursor: pointer;
   transition: filter .1s;
+  position: absolute;
+  right: 2px;
+  top: 10px;
+
 
   &:hover {
     filter: brightness(80%);
@@ -268,7 +268,7 @@ input[type="search"] {
   }
 }
 
-// When the search field is focused and filled (focused or not)
+// When the search field is filled (focused or not)
 .top_bar--search_filled {
 
   // Hide directions icon
@@ -281,9 +281,20 @@ input[type="search"] {
     width: 48px;
     height: 48px;
     bagkground-position: 10px center;
-    margin-right: -12px;
     display: block;
+    position: absolute;
+    right: 2px;
+    top: 10px;
+    &:hover::before {
+      color: $grey-black;
+    }
   }
+
+  .search_form__action:hover {
+    background: url(../images/magnifier-blue.svg) center no-repeat;
+    background-size: 16px 16px;
+  }
+
 }
 
 // When the search field is focused and filled
@@ -293,6 +304,8 @@ input[type="search"] {
     background-size: 16px 16px;
   }
 }
+
+
 
 // Mobile
 @media (max-width: 640px) {
