@@ -319,6 +319,19 @@ input[type="search"] {
 
   .search_form__wrapper {
     padding: 0 9px 0 12px;
+    width: calc(100% - 100px);
+    left: 60px;
+    transition: width .25s, left .25s;
+    position: absolute;
+  }
+
+  .search_form__return {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    transition: opacity .25s;
   }
 
   .search_form__action {
@@ -338,6 +351,12 @@ input[type="search"] {
     height: 34px;
   }
 
+  #react_menu__container {
+    opacity: 1;
+    transition: opacity .25s;
+    z-index: -1;
+  }
+
   // When the search field is filled
   .top_bar--search_filled {
 
@@ -352,12 +371,12 @@ input[type="search"] {
 
     // Hide the logo
     .search_form__logo {
-      display: none;
+      //display: none;
     }
 
     // Show return arrow
     .search_form__return {
-      display: block;
+      opacity: 1;
     }
 
     // Hide magnifying glass
@@ -372,12 +391,19 @@ input[type="search"] {
 
     // Hide mobile burger menu
     #react_menu__container {
-      display: none;
+      opacity: 0;
     }
 
     // Hide desktop clear X icon
     #clear_button_desktop {
       display: none;
+    }
+
+    // Make the wrapper full-width and overlap the rest
+    .search_form__wrapper {
+      left: 10px;
+      width: calc(100% - 20px);
+      padding: 0 0 0 40px;
     }
   }
 }
