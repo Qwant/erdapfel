@@ -1,3 +1,4 @@
+// Form
 .search_form {
   width: 100%;
   height: $top_bar_height;
@@ -23,6 +24,7 @@
   }
 }
 
+// Wrapper around the field and some icons, gets a colored border when the field is focused
 .search_form__wrapper {
   flex-grow: 1;
   flex-shrink: 1;
@@ -37,27 +39,7 @@
   position: relative;
 }
 
-.top_bar--search_focus {
-  .search_form:before {
-    display: none;
-  }
-
-  .search_form__wrapper {
-    background-color: white;
-
-    // Trick to display a gradient border
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
-      z-index: -1;
-      margin: -1px;
-      border-radius: inherit;
-      background: linear-gradient(to right, #216fff, #af27cc);
-    }
-  }
-}
-
+// Input
 .search_form__input {
   min-width: 0;
   width: 100%;
@@ -77,6 +59,7 @@
   }
 }
 
+// Hover
 .search_form__wrapper:hover {
   .search_form__input:not(:focus)::placeholder {
     opacity: 1;
@@ -98,6 +81,7 @@ input[type="search"] {
   }
 }
 
+// Logo
 .search_form__logo {
   flex-shrink: 0;
   width: 36px;
@@ -107,6 +91,7 @@ input[type="search"] {
   margin-right: 12px;
 }
 
+// Return arrow
 .search_form__return {
   flex-shrink: 0;
   display: none;
@@ -122,6 +107,7 @@ input[type="search"] {
   }
 }
 
+// Magnifying glass
 .search_form__action {
   width: 24px;
   background: url(../images/magnifier.svg) center no-repeat;
@@ -129,61 +115,17 @@ input[type="search"] {
   cursor: pointer;
 }
 
-.top_bar--search_focus.top_bar--search_filled {
-  .search_form__action {
-    background: url(../images/magnifier-blue.svg) center no-repeat;
-    background-size: 16px 16px;
-  }
-}
-
+// Clear X icon
 .search_form__clear {
   height: 60px;
   width: 30px;
   color: $secondary_text;
   cursor: pointer;
   font-size: 16px;
-}
-
-.search_form__clear {
   display: none;
 }
 
-.top_bar--search_filled #clear_button_desktop {
-  display: block;
-}
-
-/*.top_bar--search_focus.top_bar--search_filled .search_form__action {
-  color: $action-blue-base;
-}*/
-
-.search_form__direction_shortcut {
-  margin-right: -12px;
-  width: 48px;
-  height: 48px;
-  background: url(../images/direction-line.svg) center no-repeat;
-  background-size: 24px 24px;
-  cursor: pointer;
-  transition: filter .1s;
-
-  &:hover {
-    filter: brightness(80%);
-  }
-}
-
-.top_bar--search_filled {
-  .search_form__direction_shortcut {
-    display: none;
-  }
-
-  #clear_button_desktop {
-    width: 48px;
-    height: 48px;
-    bagkground-position: 10px center;
-    margin-right: -12px;
-  }
-
-}
-
+// Autocomplete
 .autocomplete_suggestions {
   max-height: calc(100vh - #{$top_bar_height});
   background: $background;
@@ -291,6 +233,68 @@ input[type="search"] {
   cursor: default;
 }
 
+// Directions icon
+.search_form__direction_shortcut {
+  margin-right: -12px;
+  width: 48px;
+  height: 48px;
+  background: url(../images/direction-line.svg) center no-repeat;
+  background-size: 24px 24px;
+  cursor: pointer;
+  transition: filter .1s;
+
+  &:hover {
+    filter: brightness(80%);
+  }
+}
+
+// When the search field is focused (empty or not)
+.top_bar--search_focus {
+
+  // White background
+  .search_form__wrapper {
+    background-color: white;
+
+    // Gradient border trick
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      z-index: -1;
+      margin: -1px;
+      border-radius: inherit;
+      background: linear-gradient(to right, #216fff, #af27cc);
+    }
+  }
+}
+
+// When the search field is focused and filled (focused or not)
+.top_bar--search_filled {
+
+  // Hide directions icon
+  .search_form__direction_shortcut {
+    display: none;
+  }
+
+  // Show desktop clear X icon
+  #clear_button_desktop {
+    width: 48px;
+    height: 48px;
+    bagkground-position: 10px center;
+    margin-right: -12px;
+    display: block;
+  }
+}
+
+// When the search field is focused and filled
+.top_bar--search_focus.top_bar--search_filled {
+  .search_form__action {
+    background: url(../images/magnifier-blue.svg) center no-repeat;
+    background-size: 16px 16px;
+  }
+}
+
+// Mobile
 @media (max-width: 640px) {
   .search_form {
     padding-right: 12px;
@@ -321,32 +325,44 @@ input[type="search"] {
     height: 34px;
   }
 
+  // When the search field is filled
   .top_bar--search_filled {
+
+    // Show mobile clear X button
     #clear_button_mobile {
       display: block;
     }
   }
 
+  // When the search field is focused
   .top_bar--search_focus {
+
+    // Hide the logo
     .search_form__logo {
       display: none;
     }
 
+    // Show return arrow
     .search_form__return {
       display: block;
     }
 
+    // Hide magnifying glass
     .search_form__action {
       display: none;
     }
   }
 
+  // When the field is filled and/or focused
   .top_bar--search_filled,
   .top_bar--search_focus {
+
+    // Hide mobile burger menu
     #react_menu__container {
       display: none;
     }
 
+    // Hide desktop clear X icon
     #clear_button_desktop {
       display: none;
     }
