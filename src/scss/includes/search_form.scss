@@ -38,14 +38,6 @@
 }
 
 .top_bar--search_focus {
-  .search_form__logo {
-    display: none;
-  }
-
-  .search_form__return {
-    display: block;
-  }
-
   .search_form:before {
     display: none;
   }
@@ -118,11 +110,11 @@ input[type="search"] {
 .search_form__return {
   flex-shrink: 0;
   display: none;
-  width: 36px;
-  font-size: 32px;
+  width: 20px;
+  font-size: 20px;
   text-align: center;
   color: $grey-black;
-  margin-right: 12px;
+  margin-right: 8px;
   cursor: pointer;
 
   &:hover {
@@ -137,6 +129,13 @@ input[type="search"] {
   cursor: pointer;
 }
 
+.top_bar--search_focus.top_bar--search_filled {
+  .search_form__action {
+    background: url(../images/magnifier-blue.svg) center no-repeat;
+    background-size: 16px 16px;
+  }
+}
+
 .search_form__clear {
   height: 60px;
   width: 30px;
@@ -145,13 +144,17 @@ input[type="search"] {
   font-size: 16px;
 }
 
-.search_form__input:valid ~ .search_form__clear {
+.search_form__clear {
+  display: none;
+}
+
+.top_bar--search_filled #clear_button_desktop {
   display: block;
 }
 
-.search_form__input:invalid ~ .search_form__clear {
-  display: none;
-}
+/*.top_bar--search_focus.top_bar--search_filled .search_form__action {
+  color: $action-blue-base;
+}*/
 
 .search_form__direction_shortcut {
   margin-right: -12px;
@@ -165,6 +168,20 @@ input[type="search"] {
   &:hover {
     filter: brightness(80%);
   }
+}
+
+.top_bar--search_filled {
+  .search_form__direction_shortcut {
+    display: none;
+  }
+
+  #clear_button_desktop {
+    width: 48px;
+    height: 48px;
+    bagkground-position: 10px center;
+    margin-right: -12px;
+  }
+
 }
 
 .autocomplete_suggestions {
@@ -304,7 +321,34 @@ input[type="search"] {
     height: 34px;
   }
 
-  .search_form__return {
-    width: 34px;
+  .top_bar--search_filled {
+    #clear_button_mobile {
+      display: block;
+    }
+  }
+
+  .top_bar--search_focus {
+    .search_form__logo {
+      display: none;
+    }
+
+    .search_form__return {
+      display: block;
+    }
+
+    .search_form__action {
+      display: none;
+    }
+  }
+
+  .top_bar--search_filled,
+  .top_bar--search_focus {
+    #react_menu__container {
+      display: none;
+    }
+
+    #clear_button_desktop {
+      display: none;
+    }
   }
 }
