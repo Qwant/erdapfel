@@ -58,7 +58,6 @@ class Panel extends React.Component {
 
   constructor(props) {
     super(props);
-    this.moveHandler = null;
     this.panelContentRef = React.createRef();
     this.state = {
       holding: false,
@@ -103,44 +102,32 @@ class Panel extends React.Component {
   }
 
   removeListeners() {
-    if (!this.moveHandler) {
-      return;
-    }
-    document.removeEventListener('touchmove', this.moveHandler);
-    document.removeEventListener('mousemove', this.moveHandler);
-    this.moveHandler = null;
+    document.removeEventListener('touchmove', this.move);
+    document.removeEventListener('mousemove', this.move);
   }
 
-  holdResizer = (event, forceResize = false) => {
-    // event.preventDefault();
+  holdResizer = event => {
     this.startHeight = this.panelDOMElement.offsetHeight;
     this.startClientY = getEventClientY(event.nativeEvent);
 
     this.removeListeners();
 
-    this.moveHandler = event => this.move(event, forceResize);
     if (event.type === 'touchstart') {
-      document.addEventListener('touchmove', this.moveHandler);
+      document.addEventListener('touchmove', this.move);
     } else {
-      document.addEventListener('mousemove', this.moveHandler);
+      document.addEventListener('mousemove', this.move);
     }
-
-    this.setState({
-      currentHeight: this.startHeight,
-      holding: true,
-    });
   }
 
   /**
   * Triggered on mouse move on the panel resizer
   * @param {MouseEvent|TouchEvent} e event
   */
-  move = (event, forceResize = false) => {
+  move = event => {
     const clientY = getEventClientY(event);
     const currentHeight = this.startHeight + (this.startClientY - clientY);
 
-    if (!forceResize &&
-        this.props.size === 'maximized' &&
+    if (this.props.size === 'maximized' &&
         this.panelContentRef.current.scrollTop > 0) {
       /* User is scrolling inside the panel content,
          update startClientY to ignore current swipe gesture */
@@ -148,26 +135,26 @@ class Panel extends React.Component {
       return;
     }
 
-    if (!forceResize &&
-        this.props.size === 'maximized' &&
+    if (this.props.size === 'maximized' &&
         this.panelContentRef.current.scrollTop === 0 &&
         currentHeight >= this.state.currentHeight) {
       // User is starting to scroll content area from bottom to top, do nothing
       return;
     }
 
-    this.setState({ currentHeight });
+    this.setState({ currentHeight, holding: true });
   }
 
   /**
    * Triggered on mouse up of the panel resizer
    * @param {MouseEvent|TouchEvent} event
    */
-  stopResize = (event, forceResize = false) => {
+  stopResize = event => {
     this.removeListeners();
+    const clientY = getEventClientY(event);
+    const currentHeight = this.startHeight + (this.startClientY - clientY);
 
-    if (!forceResize &&
-        this.props.size === 'maximized' &&
+    if (this.props.size === 'maximized' &&
         this.panelContentRef.current.scrollTop > 0) {
       // User is scrolling inside the panel content
       return;
@@ -176,14 +163,16 @@ class Panel extends React.Component {
     const newSize = getTargetSize(
       this.props.size,
       this.startHeight,
-      this.state.currentHeight,
+      currentHeight,
       window.innerHeight - this.props.marginTop,
     );
 
     if (newSize !== this.props.size) {
       this.props.setSize(newSize);
     }
-    this.setState({ holding: false, currentHeight: null });
+    if (this.state.holding || this.state.currentHeight) {
+      this.setState({ holding: false, currentHeight: null });
+    }
   }
 
   handleHeaderClick() {
@@ -192,12 +181,12 @@ class Panel extends React.Component {
     this.setState({ currentHeight: null });
   }
 
-  getEventHandlers(forceResize = false) {
+  getEventHandlers() {
     return {
-      onMouseDown: event => this.holdResizer(event, forceResize),
-      onTouchStart: event => this.holdResizer(event, forceResize),
-      onMouseUp: event => this.stopResize(event, forceResize),
-      onTouchEnd: event => this.stopResize(event, forceResize),
+      onMouseDown: this.holdResizer,
+      onTouchStart: this.holdResizer,
+      onMouseUp: this.stopResize,
+      onTouchEnd: this.stopResize,
     };
   }
 
@@ -206,8 +195,6 @@ class Panel extends React.Component {
       children, title, minimizedTitle,
       resizable, close, className, white, size } = this.props;
     const { currentHeight, holding } = this.state;
-    const resizeHandlers = resizable ? this.getEventHandlers(false) : {};
-    const forceResizeHandlers = resizable ? this.getEventHandlers(true) : {};
 
     return (
       <DeviceContext.Consumer>
@@ -220,6 +207,7 @@ class Panel extends React.Component {
             style={{ height: currentHeight && `${currentHeight}px` }}
             ref={panel => this.panelDOMElement = panel}
             onTransitionEnd={() => this.updateMobileMapUI()}
+            {...(isMobile && resizable && this.getEventHandlers())}
           >
             <Flex
               justifyContent="space-between"
@@ -229,7 +217,6 @@ class Panel extends React.Component {
               )}
               ref={element => this.handleElement = element}
               onClick={() => isMobile && this.handleHeaderClick()}
-              {...(isMobile && forceResizeHandlers)}
             >
               {resizable && isMobile && size === 'minimized' && minimizedTitle
                 ? <span className="minimizedTitle">{minimizedTitle}</span>
@@ -247,7 +234,6 @@ class Panel extends React.Component {
             <div
               className="panel-content"
               ref={this.panelContentRef}
-              {...(isMobile && resizeHandlers)}
             >
               {typeof children === 'function' ? children({ size, isMobile }) : children}
             </div>
