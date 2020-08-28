@@ -17,7 +17,12 @@ function logGradesClick(poi, inList) {
   }
 }
 
-const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, inList }) =>
+const ReviewScore = ({
+  poi,
+  reviews: { global_grade, total_grades_count, url },
+  inList,
+  compact,
+}) =>
   <a className="reviewScore" rel="noopener noreferrer" href={url}
     onClick={e => {
       e.stopPropagation();
@@ -25,12 +30,16 @@ const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, 
     }}
   >
     <span className="reviewScore-stars">
-      {[1, 2, 3, 4, 5].map(k =>
-        <span key={k} className={k > global_grade ? 'icon-icon_star' : 'icon-icon_star-filled'} />
-      )}
+      {compact
+        ? <span className="icon-icon_star-filled" />
+        : [1, 2, 3, 4, 5].map(k =>
+          <span key={k} className={k > global_grade ? 'icon-icon_star' : 'icon-icon_star-filled'} />
+        )}
     </span>
+    <span className="reviewScore-score">{global_grade}</span>
     <span className="reviewScore-count">
-      ({total_grades_count}) {_('on PagesJaunes', 'reviews')}
+      ({total_grades_count})
+      {!compact && ' ' + _('on PagesJaunes', 'reviews')}
     </span>
   </a>;
 

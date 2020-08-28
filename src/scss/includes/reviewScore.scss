@@ -16,7 +16,8 @@
     }
   }
 
-  .icon-icon_star-filled {
+  .icon-icon_star-filled,
+  &-score {
     color: $action-blue-base;
   }
 
