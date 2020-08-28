@@ -182,7 +182,9 @@ class Panel extends React.Component {
       window.innerHeight - this.props.marginTop,
     );
 
-    this.props.setSize(newSize);
+    if (newSize !== this.props.size) {
+      this.props.setSize(newSize);
+    }
     this.setState({ holding: false, currentHeight: null });
   }
 
