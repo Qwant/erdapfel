@@ -83,7 +83,6 @@ const SuggestsDropdown = ({
 
       if (key === 'Enter') {
         if (highlighted !== null) {
-          e.preventDefault();
           onSelect(suggestItems[highlighted]);
         }
       }
