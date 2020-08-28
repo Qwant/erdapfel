@@ -65,10 +65,12 @@ export default class PanelManager extends React.Component {
     this.updateSearchBarContent(options);
   }
 
-  updateSearchBarContent({ poiFilters = {} }) {
-    const { category, query } = poiFilters;
-    if (category) {
-      SearchInput.setInputValue(CategoryService.getCategoryByName(category)?.getInputValue());
+  updateSearchBarContent({ poiFilters = {}, query }) {
+    if (poiFilters.category) {
+      const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
+      SearchInput.setInputValue(categoryLabel);
+    } else if (poiFilters.query) {
+      SearchInput.setInputValue(poiFilters.query);
     } else if (query) {
       SearchInput.setInputValue(query);
     } else {

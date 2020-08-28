@@ -15,11 +15,12 @@ const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
 const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
 const SUGGEST_FOCUS_MIN_ZOOM = 11;
 
-export const selectItem = (selectedItem, { replaceUrl = false, fromQueryParams } = {}) => {
+export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryParams } = {}) => {
   if (selectedItem instanceof Poi) {
     window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
       poi: selectedItem,
       centerMap: true,
+      query,
     }, { replace: replaceUrl });
   } else if (selectedItem instanceof Category) {
     window.app.navigateTo(`/places/?type=${selectedItem.name}`,
