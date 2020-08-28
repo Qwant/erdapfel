@@ -16,7 +16,7 @@ const SWIPE_THRESHOLD_PX = 50;
 // Pixel threshold from the bottom or top of the viewport to span to min or max
 const MIN_MAX_THRESHOLD_PX = 75;
 
-function getTargetSize(previousSize, moveDuration, startHeight, endHeight, maxSize) {
+function getTargetSize(previousSize, startHeight, endHeight, maxSize) {
   let size = previousSize;
   const heightDelta = startHeight - endHeight;
   if (Math.abs(heightDelta) < SWIPE_THRESHOLD_PX) {
@@ -115,7 +115,6 @@ class Panel extends React.Component {
     // event.preventDefault();
     this.startHeight = this.panelDOMElement.offsetHeight;
     this.startClientY = getEventClientY(event.nativeEvent);
-    this.interactionStarted = event.timeStamp;
 
     this.removeListeners();
 
@@ -176,7 +175,6 @@ class Panel extends React.Component {
 
     const newSize = getTargetSize(
       this.props.size,
-      event.timeStamp - this.interactionStarted,
       this.startHeight,
       this.state.currentHeight,
       window.innerHeight - this.props.marginTop,
