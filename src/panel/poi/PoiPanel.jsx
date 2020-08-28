@@ -147,7 +147,8 @@ export default class PoiPanel extends React.Component {
     });
   }
 
-  backToFavorite = () => {
+  backToFavorite = e => {
+    e.stopPropagation();
     Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
     window.app.navigateTo('/favs');
   }
@@ -170,7 +171,8 @@ export default class PoiPanel extends React.Component {
     window.app.navigateTo('/');
   }
 
-  backToList = () => {
+  backToList = e => {
+    e.stopPropagation();
     const { poiFilters } = this.props;
     const queryObject = {};
     const mappingParams = {
