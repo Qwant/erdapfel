@@ -215,7 +215,6 @@ class Panel extends React.Component {
                 'panel-header',
                 { 'panel-resizeHandle': resizable && isMobile }
               )}
-              ref={element => this.handleElement = element}
               onClick={() => isMobile && this.handleHeaderClick()}
             >
               {resizable && isMobile && size === 'minimized' && minimizedTitle
