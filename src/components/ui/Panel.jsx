@@ -106,7 +106,7 @@ class Panel extends React.Component {
     document.removeEventListener('mousemove', this.move);
   }
 
-  holdResizer = event => {
+  startResize = event => {
     this.startHeight = this.panelDOMElement.offsetHeight;
     this.startClientY = getEventClientY(event.nativeEvent);
 
@@ -183,8 +183,8 @@ class Panel extends React.Component {
 
   getEventHandlers() {
     return {
-      onMouseDown: this.holdResizer,
-      onTouchStart: this.holdResizer,
+      onMouseDown: this.startResize,
+      onTouchStart: this.startResize,
       onMouseUp: this.stopResize,
       onTouchEnd: this.stopResize,
     };
