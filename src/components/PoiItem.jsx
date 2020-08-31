@@ -19,7 +19,7 @@ const PoiItem = ({ poi,
   const Reviews = () =>
     reviews
       ? <span className="poiItem-reviews">
-        <ReviewScore reviews={reviews} poi={poi} inList={inList} />
+        <ReviewScore reviews={reviews} poi={poi} inList={inList} compact={inList} />
       </span>
       : null
   ;
