@@ -55,9 +55,7 @@
       </form>
       <div class="search_form__result"></div>
     </div>
-    <% if(config.performance.enabled) { %>
-      <script>window.times = {init : Date.now()}</script>
-    <% } %>
+    <script>window.times = {init : Date.now()}</script>
     <script src="./statics/build/javascript/bundle.js"></script>
     <noscript><%= _('JavaScript is required to view this application.') %></noscript>
   </body>

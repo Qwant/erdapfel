@@ -15,7 +15,6 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 
-const performanceEnabled = nconf.get().performance.enabled;
 const directionConf = nconf.get().direction;
 
 const directSearchRouteName = 'Direct search query';
@@ -48,9 +47,7 @@ export default class PanelManager extends React.Component {
       'url_client': initialQueryParams['client'] || null,
     });
 
-    if (performanceEnabled) {
-      window.times.appRendered = Date.now();
-    }
+    window.times.appRendered = Date.now();
 
     listen('map_user_interaction', () => {
       if (this.state.ActivePanel === PoiPanel) {

@@ -50,6 +50,8 @@ Scene.prototype.setupInitialPosition = async function(locationHash) {
 };
 
 Scene.prototype.initMapBox = function() {
+  window.times.initMapBox = Date.now();
+
   setRTLTextPlugin(
     `${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`,
     error => {
