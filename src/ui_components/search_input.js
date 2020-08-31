@@ -34,8 +34,6 @@ export default class SearchInput {
       const isMobile = isMobileDevice();
       const isActive = document.activeElement.id === inputElement.id;
       inputElement.value = '';
-      const topBarHandle = document.querySelector('.top_bar');
-      topBarHandle.classList.remove('top_bar--search_filled');
 
       if (blur) {
         inputElement.blur();

@@ -83,13 +83,6 @@ const Suggest = ({
       fetchItems(value);
       setIsOpen(true);
       setLastQuery(value);
-      const topBarHandle = document.querySelector('.top_bar');
-      if (value.length > 0) {
-        topBarHandle.classList.add('top_bar--search_filled');
-      }
-      else {
-        topBarHandle.classList.remove('top_bar--search_filled');
-      }
     };
 
     const handleKeyDown = async event => {
