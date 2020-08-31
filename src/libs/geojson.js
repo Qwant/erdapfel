@@ -14,3 +14,21 @@ export const normalizeToFeatureCollection = geoJson => {
     features: [ feature ],
   };
 };
+
+export const poiToGeoJSON = poi => ({
+  type: 'Feature',
+  geometry: {
+    type: 'Point',
+    coordinates: [ poi.latLon.lng, poi.latLon.lat ],
+  },
+  properties: {
+    id: poi.id,
+    name: poi.name,
+    subclass: poi.subClassName,
+  },
+});
+
+export const poisToGeoJSON = pois => ({
+  type: 'FeatureCollection',
+  features: pois.map(poiToGeoJSON),
+});
