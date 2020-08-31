@@ -28,7 +28,7 @@ export default class SearchInput {
 
     window.__searchInput = new SearchInput(tagSelector);
 
-    window.clearSearch = e => {
+    window.clearSearch = (e, blur = false) => {
       e.preventDefault(); // Prevent losing focus
       const inputElement = document.querySelector(tagSelector);
       const isMobile = isMobileDevice();
@@ -37,11 +37,13 @@ export default class SearchInput {
       const topBarHandle = document.querySelector('.top_bar');
       topBarHandle.classList.remove('top_bar--search_filled');
 
+      if (blur) {
+        inputElement.blur();
+      }
       if (!isMobile || isMobile && isActive) {
         // Trigger an input event to refresh Suggest's state
         inputElement.dispatchEvent(new Event('input'));
       }
-
       window.app.navigateTo('/');
     };
 

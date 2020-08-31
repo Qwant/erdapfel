@@ -42,7 +42,7 @@
 .search_form__input {
   min-width: 0;
   width: calc(100% - 30px);
-  height: 48px;
+  height: 46px;
   font-size: 16px;
   font-weight: normal;
   color: #353c52;
@@ -92,16 +92,6 @@ input[type="search"] {
 // Return arrow
 .search_form__return {
   display: none;
-  width: 20px;
-  font-size: 20px;
-  text-align: center;
-  color: $grey-black;
-  margin-right: 8px;
-  cursor: pointer;
-
-  &:hover {
-    color: $primary_text;
-  }
 }
 
 // Magnifying glass
@@ -242,7 +232,6 @@ input[type="search"] {
   right: 2px;
   top: 10px;
 
-
   &:hover {
     filter: brightness(80%);
   }
@@ -313,25 +302,43 @@ input[type="search"] {
     padding-right: 12px;
   }
 
+  .search_form__input {
+    width: calc(100% - 35px);
+    padding: 0 0 0 12px;
+  }
+
   .search_form__input::placeholder {
     font-size: 14px;
   }
 
   .search_form__wrapper {
-    padding: 0 9px 0 12px;
+    padding: 0;
     width: calc(100% - 100px);
     left: 60px;
-    transition: width .25s, left .25s;
+    transition: width .15s, left .15s;
     position: absolute;
   }
 
   .search_form__return {
+    font-size: 20px;
+    text-align: center;
+    color: #0c0c0e;
+    margin-right: 8px;
+    cursor: pointer;
+
     display: block;
     opacity: 0;
     position: absolute;
-    top: 15px;
-    left: 12px;
-    transition: opacity .25s;
+    transition: opacity .15s;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 60px;
+    padding: 13px 0 0 12px;
+
+    &:hover {
+      color: $primary_text;
+    }
   }
 
   .search_form__action {
@@ -363,25 +370,19 @@ input[type="search"] {
     // Show mobile clear X button
     #clear_button_mobile {
       display: block;
+      position: absolute;
+      right: 15px;
+      top: 0;
+      height: 50px;
     }
   }
 
-  // When the search field is focused
+  // When the search field is focused (empty or not)
   .top_bar--search_focus {
 
-    // Hide the logo
-    .search_form__logo {
-      //display: none;
-    }
-
-    // Show return arrow
-    .search_form__return {
+    .search_form__input::placeholder {
+      color: $grey-semi-darkness;
       opacity: 1;
-    }
-
-    // Hide magnifying glass
-    .search_form__action {
-      display: none;
     }
   }
 
@@ -403,7 +404,17 @@ input[type="search"] {
     .search_form__wrapper {
       left: 10px;
       width: calc(100% - 20px);
-      padding: 0 0 0 40px;
+      padding: 0 0 0 30px;
+    }
+
+    // Show return arrow
+    .search_form__return {
+      opacity: 1;
+    }
+
+    // Hide magnifying glass
+    .search_form__action {
+      display: none;
     }
   }
 }
