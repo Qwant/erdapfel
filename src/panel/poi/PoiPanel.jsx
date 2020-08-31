@@ -13,7 +13,6 @@ import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
-import SearchInput from 'src/ui_components/search_input';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import Store from '../../adapters/store';
 import PoiItem from 'src/components/PoiItem';
@@ -85,7 +84,6 @@ export default class PoiPanel extends React.Component {
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);
-    SearchInput.setInputValue('');
   }
 
   loadPois = () => {

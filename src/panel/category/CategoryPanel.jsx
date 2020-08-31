@@ -7,10 +7,8 @@ import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
 import CategoryPanelHeader from './CategoryPanelHeader';
 import Telemetry from 'src/libs/telemetry';
-import SearchInput from 'src/ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
-import CategoryService from 'src/adapters/category_service';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
@@ -35,13 +33,13 @@ export default class CategoryPanel extends React.Component {
   }
 
   componentDidMount() {
-    this.updateSearchBarContent();
+    this.sendTelemetry();
     this.mapMoveHandler = listen('map_moveend', this.fetchData);
     window.execOnMapLoaded(() => { this.fitMap(); });
   }
 
   componentDidUpdate(prevProps) {
-    this.updateSearchBarContent(prevProps);
+    this.sendTelemetry(prevProps);
 
     const panelContent = document.querySelector('.panel-content');
     if (panelContent) {
@@ -56,23 +54,14 @@ export default class CategoryPanel extends React.Component {
     }
   }
 
-  updateSearchBarContent(prevProps) {
-    const { category, query } = this.props.poiFilters;
-    if (category) {
-      if (category !== prevProps?.poiFilters?.category) {
-        Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
-      }
-      const value = CategoryService.getCategoryByName(category)?.getInputValue();
-      if (value) {
-        SearchInput.setInputValue(value);
-      }
-    } else if (query) {
-      SearchInput.setInputValue(query);
+  sendTelemetry(prevProps) {
+    const { category } = this.props.poiFilters;
+    if (category && category !== prevProps?.poiFilters?.category) {
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
     }
   }
 
   componentWillUnmount() {
-    SearchInput.setInputValue('');
     unListen(this.mapMoveHandler);
   }
 

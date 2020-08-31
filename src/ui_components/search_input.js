@@ -82,7 +82,7 @@ export default class SearchInput {
     const results = await fetchSuggests(query, { withCategories: true });
     if (results && results.length > 0) {
       const firstResult = results[0];
-      selectItem(firstResult, { replaceUrl: true, fromQueryParams });
+      selectItem(firstResult, { query, replaceUrl: true, fromQueryParams });
       window.__searchInput.searchInputHandle.blur();
     }
   }
