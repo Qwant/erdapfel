@@ -234,7 +234,9 @@ class Panel extends React.Component {
               className="panel-content"
               ref={this.panelContentRef}
             >
-              {typeof children === 'function' ? children({ size, isMobile }) : children}
+              <PanelContent size={size} isMobile={isMobile}>
+                {children}
+              </PanelContent>
             </div>
           </div>
         }
@@ -242,6 +244,15 @@ class Panel extends React.Component {
     );
   }
 }
+
+// Use React.memo to skip re-renders
+// and keep the same inner DOM during the panel manual resizes
+const PanelContent = React.memo(({ children, size, isMobile }) =>
+  typeof children === 'function'
+    ? children({ size, isMobile })
+    : children
+);
+PanelContent.displayName = 'PanelContent';
 
 const PanelWrapper = props => {
   const { size, setSize } = useContext(PanelContext);
