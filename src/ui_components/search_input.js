@@ -35,12 +35,13 @@ export default class SearchInput {
       const isActive = document.activeElement.id === inputElement.id;
       inputElement.value = '';
 
-      if (blur) {
-        inputElement.blur();
-      }
       if (!isMobile || isMobile && isActive) {
         // Trigger an input event to refresh Suggest's state
         inputElement.dispatchEvent(new Event('input'));
+      }
+
+      if (blur) {
+        inputElement.blur();
       }
       window.app.navigateTo('/');
     };

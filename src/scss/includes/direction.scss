@@ -844,8 +844,7 @@ button.direction_shortcut {
     background: $action-blue-base url(../images/direction.svg) center no-repeat;
 
     &:not(:disabled):hover {
-      background: $action-blue-base;
-      color: #fff;
+      background: $action-blue-base url(../images/direction.svg) center no-repeat;
     }
 
     /* Attempt to fix rare layout bug on iOS */
