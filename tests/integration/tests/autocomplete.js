@@ -32,7 +32,7 @@ test('search and clear', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
-  expect(await exists(page, '#clear_button')).toBeTruthy();
+  expect(await exists(page, '#clear_button_desktop')).toBeTruthy();
 
   const autocompleteItems = await autocompleteHelper.getSuggestList();
   expect(autocompleteItems.length).toEqual(SUGGEST_MAX_ITEMS);
@@ -40,7 +40,7 @@ test('search and clear', async () => {
   const searchValue = await autocompleteHelper.getSearchInputValue();
   expect(searchValue).toEqual('Hello');
 
-  await page.click('#clear_button');
+  await page.click('#clear_button_desktop');
   const searchValueAfterClear = await autocompleteHelper.getSearchInputValue();
   expect(searchValueAfterClear).toEqual('');
 });
@@ -229,7 +229,7 @@ test('submit key', async () => {
 
   let firstFeatureCenter = mockAutocomplete.features[0].geometry.coordinates;
   expect(center).toEqual({ lat: firstFeatureCenter[1], lng: firstFeatureCenter[0] });
-  await page.click('#clear_button');
+  await page.click('#clear_button_desktop');
 
   /* force specific query */
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=paris/);
