@@ -117,6 +117,8 @@ class Panel extends React.Component {
     } else {
       document.addEventListener('mousemove', this.move);
     }
+
+    this.setState({ currentHeight: this.startHeight });
   }
 
   /**
