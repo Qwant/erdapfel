@@ -70,15 +70,20 @@ export default class PanelManager extends React.Component {
   }
 
   updateSearchBarContent({ poiFilters = {}, query }) {
+    const topBarHandle = document.querySelector('.top_bar');
     if (poiFilters.category) {
       const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
       SearchInput.setInputValue(categoryLabel);
+      topBarHandle.classList.add('top_bar--search_filled');
     } else if (poiFilters.query) {
       SearchInput.setInputValue(poiFilters.query);
+      topBarHandle.classList.add('top_bar--search_filled');
     } else if (query) {
       SearchInput.setInputValue(query);
+      topBarHandle.classList.add('top_bar--search_filled');
     } else {
       SearchInput.setInputValue('');
+      topBarHandle.classList.remove('top_bar--search_filled');
     }
   }
 

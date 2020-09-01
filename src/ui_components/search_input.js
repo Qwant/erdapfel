@@ -34,6 +34,7 @@ export default class SearchInput {
       const isMobile = isMobileDevice();
       const isActive = document.activeElement.id === inputElement.id;
       inputElement.value = '';
+      const topBarHandle = document.querySelector('.top_bar');
 
       if (!isMobile || isMobile && isActive) {
         // Trigger an input event to refresh Suggest's state
@@ -42,7 +43,10 @@ export default class SearchInput {
 
       if (blur) {
         inputElement.blur();
+        topBarHandle.classList.remove('top_bar--search_focus');
       }
+
+      topBarHandle.classList.remove('top_bar--search_filled');
       window.app.navigateTo('/');
     };
 
