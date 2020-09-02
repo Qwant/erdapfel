@@ -48,10 +48,10 @@ export default class PoiBlockContainer extends React.Component {
           <Address inline address={this.props.poi.address} omitCountry />
         </Block>
       }
+      {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
+      {phoneBlock && <PhoneBlock block={phoneBlock} />}
       {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
       {informationBlock && <InformationBlock block={informationBlock} />}
-      {phoneBlock && <PhoneBlock block={phoneBlock} />}
-      {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
       {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
       {contactBlock && <ContactBlock block={contactBlock} />}
       {imagesBlock && imagesBlock.images.length > 1 &&
