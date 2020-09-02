@@ -97,9 +97,13 @@ input[type="search"] {
 // Magnifying glass
 .search_form__action {
   width: 24px;
+  height: 48px;
   background: url(../images/magnifier-light.svg) center no-repeat;
   background-size: 16px 16px;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 12px;
 }
 
 // Clear X icon
