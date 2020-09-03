@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-06 09:27+0000\n"
+"POT-Creation-Date: 2020-09-03 12:25+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -856,6 +856,9 @@ msgstr "stal gwin"
 msgid "winery"
 msgstr ""
 
+msgid "winter sports resort"
+msgstr ""
+
 msgid "yoga"
 msgstr "yoga"
 
@@ -1107,6 +1110,9 @@ msgstr ""
 msgid "Read more on Wikipedia"
 msgstr "Lenn muioc'h war Wikipedia"
 
+msgid "Information"
+msgstr ""
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
 
@@ -1115,25 +1121,6 @@ msgstr "Gwelet"
 
 msgid "Edit"
 msgstr "Aozañ"
-
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-"Qwant Maps + Masq a zo an diskoulm gwellañ evit ur servij kartennaouiñ "
-"doujus d'ar vuhez brevez!"
-
-msgid "More Details"
-msgstr "Muioc'h a vunudoù"
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr "C'hoant ho peus da sinkronelaat ho karetañ gant Masq?"
-
-msgid "No thanks"
-msgstr "Nann avat"
-
-msgid "Do not ask again"
-msgstr "Na goulenn ken ouzhin"
 
 msgid "Back to favorites"
 msgstr "Distreiñ d'ar sinedoù"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-06 09:27+0000\n"
+"POT-Creation-Date: 2020-09-03 12:25+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
@@ -856,6 +856,9 @@ msgstr "tienda de vinos"
 msgid "winery"
 msgstr ""
 
+msgid "winter sports resort"
+msgstr ""
+
 msgid "yoga"
 msgstr "yoga"
 
@@ -1105,6 +1108,9 @@ msgstr ""
 msgid "Read more on Wikipedia"
 msgstr "Lee más en Wikipedia"
 
+msgid "Information"
+msgstr ""
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa datos de OpenStreetMaps."
 
@@ -1113,25 +1119,6 @@ msgstr "Ver"
 
 msgid "Edit"
 msgstr "Editar"
-
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-"¡Qwant Maps + Masq es la solución para un servicio de mapas web que respete "
-"tu privacidad!"
-
-msgid "More Details"
-msgstr "Más detalles"
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr "¿Quieres sincronizar tus favoritos con Masq?"
-
-msgid "No thanks"
-msgstr "No, gracias"
-
-msgid "Do not ask again"
-msgstr "No volver a preguntar"
 
 msgid "Back to favorites"
 msgstr "Volver al favorito"
