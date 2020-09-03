@@ -83,6 +83,7 @@ const SuggestsDropdown = ({
 
       if (key === 'Enter') {
         if (highlighted !== null) {
+          e.preventDefault(); // prevent search input submit with its current content (highlighted POI name)
           onSelect(suggestItems[highlighted]);
         }
       }

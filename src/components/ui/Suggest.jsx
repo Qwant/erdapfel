@@ -134,6 +134,7 @@ const Suggest = ({
       }}
       onSelect={item => {
         inputNode.value = getInputValue(item);
+        inputNode.blur();
         close();
         if (onSelect) {
           onSelect(item, { query: inputNode.value });
