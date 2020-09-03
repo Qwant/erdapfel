@@ -235,6 +235,7 @@ const subClasses = {
   wholesale: () => _('warehouse club'),
   wine: () => _('wine shop'),
   winery: () => _('winery'),
+  winter_sports: () => _('winter sports resort'),
   yoga: () => _('yoga'),
   zoo: () => _('zoo'),
 
