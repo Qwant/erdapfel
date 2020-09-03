@@ -1,6 +1,5 @@
 
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
-import { isMobileDevice } from 'src/libs/device';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
@@ -31,19 +30,18 @@ export default class SearchInput {
     window.clearSearch = (e, blur = false) => {
       e.preventDefault(); // Prevent losing focus
       const inputElement = document.querySelector(tagSelector);
-      const isMobile = isMobileDevice();
-      const isActive = document.activeElement.id === inputElement.id;
+      const isInputFocused = document.activeElement === inputElement;
       inputElement.value = '';
       const topBarHandle = document.querySelector('.top_bar');
 
-      if (!isMobile || isMobile && isActive) {
+      if (isInputFocused) {
         // Trigger an input event to refresh Suggest's state
         inputElement.dispatchEvent(new Event('input'));
-      }
 
-      if (blur) {
-        inputElement.blur();
-        topBarHandle.classList.remove('top_bar--search_focus');
+        if (blur) {
+          inputElement.blur();
+          topBarHandle.classList.remove('top_bar--search_focus');
+        }
       }
 
       topBarHandle.classList.remove('top_bar--search_filled');
