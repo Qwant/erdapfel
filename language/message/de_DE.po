@@ -1,7 +1,6 @@
 # 
 # Translators:
 # Jannik Vieten <me@exploide.net>, 2019
-# raphty m <mail+transfix@raphty.com>, 2019
 # Nils Hahmann <nhahmann@me.com>, 2019
 # Ettore Atalan <atalanttore@googlemail.com>, 2019
 # Isolator70 <henrik.heinsch@online.de>, 2019
@@ -16,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-06 09:27+0000\n"
+"POT-Creation-Date: 2020-09-03 12:25+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
@@ -862,6 +861,9 @@ msgstr "Weingeschäft"
 msgid "winery"
 msgstr ""
 
+msgid "winter sports resort"
+msgstr ""
+
 msgid "yoga"
 msgstr "Yoga"
 
@@ -1109,6 +1111,9 @@ msgstr ""
 msgid "Read more on Wikipedia"
 msgstr "Auf Wikipedia weiterlesen"
 
+msgid "Information"
+msgstr "Informationen"
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
 
@@ -1117,25 +1122,6 @@ msgstr "Ansicht"
 
 msgid "Edit"
 msgstr "Bearbeiten"
-
-msgid ""
-"Qwant Maps + Masq is the solution for a web mapping service respecting your "
-"privacy!"
-msgstr ""
-"Qwant Maps + Masq ergeben gemeinsam die Lösung für einen Privatsphäre "
-"respektierenden Kartenservice!"
-
-msgid "More Details"
-msgstr "Mehr Details"
-
-msgid "Do you want to synchronize your favorites with Masq ?"
-msgstr "Möchten Sie Ihre Favoriten mit Masq synchronisieren?"
-
-msgid "No thanks"
-msgstr "Nein danke"
-
-msgid "Do not ask again"
-msgstr "Nicht erneut fragen"
 
 msgid "Back to favorites"
 msgstr "Zurück zu Favoriten"
