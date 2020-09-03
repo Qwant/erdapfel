@@ -1,8 +1,10 @@
 
 #react_menu__container {
   align-self: stretch;
-  width: 42px;
-  margin-right: -12px;
+  width: 40px;
+  position: absolute;
+  right: 0;
+  top: 24px;
 }
 
 .no-burger #react_menu__container {

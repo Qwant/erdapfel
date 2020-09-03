@@ -30,7 +30,6 @@ export default class FavoritesPanel extends React.Component {
     });
   }
 
-
   removeFav = async poi => {
     Telemetry.add(Telemetry.FAVORITE_DELETE);
     this.setState(prevState => ({

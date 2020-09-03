@@ -70,15 +70,20 @@ export default class PanelManager extends React.Component {
   }
 
   updateSearchBarContent({ poiFilters = {}, query }) {
+    const topBarHandle = document.querySelector('.top_bar');
     if (poiFilters.category) {
       const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
       SearchInput.setInputValue(categoryLabel);
+      topBarHandle.classList.add('top_bar--search_filled');
     } else if (poiFilters.query) {
       SearchInput.setInputValue(poiFilters.query);
+      topBarHandle.classList.add('top_bar--search_filled');
     } else if (query) {
       SearchInput.setInputValue(query);
+      topBarHandle.classList.add('top_bar--search_filled');
     } else {
       SearchInput.setInputValue('');
+      topBarHandle.classList.remove('top_bar--search_filled');
     }
   }
 
@@ -160,13 +165,22 @@ export default class PanelManager extends React.Component {
     const searchInput = document.querySelector('#search');
     const topBarHandle = document.querySelector('.top_bar');
 
-    searchInput.onfocus = () => {
+    searchInput.addEventListener('focus', () => {
       topBarHandle.classList.add('top_bar--search_focus');
-    };
+    });
 
-    searchInput.onblur = () => {
+    searchInput.addEventListener('blur', () => {
       topBarHandle.classList.remove('top_bar--search_focus');
-    };
+    });
+
+    searchInput.addEventListener('input', () => {
+      const value = searchInput.value;
+      if (value.length > 0) {
+        topBarHandle.classList.add('top_bar--search_filled');
+      } else {
+        topBarHandle.classList.remove('top_bar--search_filled');
+      }
+    });
   }
 
   setPanelSize = panelSize => {

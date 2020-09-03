@@ -13,7 +13,7 @@
                     <mask id="mask-2" fill="white">
                         <use xlink:href="#path-1"></use>
                     </mask>
-                    <use id="Mask" fill="#5C6F84" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <use id="Mask" fill="#898991" fill-rule="nonzero" xlink:href="#path-1"></use>
                 </g>
             </g>
         </g>
