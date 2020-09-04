@@ -5,10 +5,10 @@ import { toCssUrl } from 'src/libs/url_utils';
 const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
 const PoiTitleImage = ({ poi, iconOnly }) => {
-  if (poi.topImageUrl && !iconOnly) {
+  if (poi.titleImageUrl && !iconOnly) {
     return <div
       className="poiTitleImage poiTitleImage--image"
-      style={{ backgroundImage: toCssUrl(poi.topImageUrl) }}
+      style={{ backgroundImage: toCssUrl(poi.titleImageUrl) }}
     />;
   }
 
