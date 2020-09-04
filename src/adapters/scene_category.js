@@ -1,21 +1,49 @@
-import { Marker } from 'mapbox-gl--ENV';
 import constants from '../../config/constants.yml';
-import { createIcon } from '../adapters/icon_manager';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
+import { poisToGeoJSON } from 'src/libs/geojson';
+import { filteredPoisStyle } from 'src/adapters/pois_styles';
 
-function getMarkerId(poi) {
-  return `marker_${poi.id}`;
-}
+const DYNAMIC_POIS_LAYER = 'poi-filtered';
 
 export default class SceneCategory {
   constructor(map) {
     this.map = map;
-    this.markers = [];
+
+    this.map.addSource(DYNAMIC_POIS_LAYER, {
+      type: 'geojson',
+      data: null,
+      promoteId: 'id', // tells MapBox-GL to use this property as internal feature identifier
+    });
+    this.map.addLayer({
+      ...filteredPoisStyle,
+      source: DYNAMIC_POIS_LAYER,
+      id: DYNAMIC_POIS_LAYER,
+    });
+    this.map.on('click', DYNAMIC_POIS_LAYER, e => {
+      e.cancelMapClick = true; // Hack as MapBox events don't have stopPropagation
+      const poi = this.getPointedPoi(e);
+      this.selectPoi({
+        poi,
+        pois: this.pois,
+        poiFilters: this.poiFilters,
+      });
+    });
+    this.map.on('mouseenter', DYNAMIC_POIS_LAYER, e => {
+      this.map.getCanvas().style.cursor = 'pointer';
+      const poi = this.getPointedPoi(e);
+      this.highlightPoiMarker(poi, true);
+      fire('open_popup', this.getPointedPoi(e), e.originalEvent);
+    });
+    this.map.on('mouseleave', DYNAMIC_POIS_LAYER, e => {
+      this.map.getCanvas().style.cursor = '';
+      const poi = this.getPointedPoi(e);
+      this.highlightPoiMarker(poi, false);
+      fire('close_popup');
+    });
 
     listen('add_category_markers', (pois, poiFilters) => {
-      this.resetMarkers();
       this.addCategoryMarkers(pois, poiFilters);
     });
     listen('remove_category_markers', () => {
@@ -29,11 +57,12 @@ export default class SceneCategory {
     });
   }
 
+  getPointedPoi = mapMouseEvent => {
+    const feature = this.map.queryRenderedFeatures(mapMouseEvent.point)[0];
+    return feature && this.pois.find(p => p.id === feature.id);
+  }
+
   selectPoi = ({ poi, poiFilters, pois }) => {
-    const previousMarker = document.querySelector('.mapboxgl-marker.active');
-    if (previousMarker) {
-      previousMarker.classList.remove('active');
-    }
     if (poi.meta && poi.meta.source) {
       Telemetry.add('open', 'poi', poi.meta.source,
         Telemetry.buildInteractionData({
@@ -55,40 +84,16 @@ export default class SceneCategory {
     this.highlightPoiMarker(poi, true);
   }
 
-  addCategoryMarkers(pois, poiFilters) {
+  addCategoryMarkers(pois = [], poiFilters) {
+    this.pois = pois;
+    this.poiFilters = poiFilters;
     this.setOsmPoisVisibility(false);
-    if (pois) {
-      pois.forEach(poi => {
-        const { name, className, subClassName, type, latLon } = poi;
-        const marker = createIcon({ className, subClassName, type }, name, true);
-        marker.onclick = function(e) {
-          e.stopPropagation();
-          fire('click_category_poi', { poi, poiFilters, pois });
-        };
-        marker.onmouseover = function(e) {
-          fire('open_popup', poi, e);
-        };
-        marker.onmouseout = function() {
-          fire('close_popup');
-        };
-        marker.id = getMarkerId(poi);
-        this.markers.push(
-          new Marker({ element: marker })
-            .setLngLat(latLon)
-            .addTo(this.map)
-        );
-      }
-      );
-    }
-  }
-
-  resetMarkers() {
-    this.markers.map(mark => mark.remove());
-    this.markers = [];
+    this.map.getSource(DYNAMIC_POIS_LAYER).setData(poisToGeoJSON(pois));
+    this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'visible');
   }
 
   removeCategoryMarkers() {
-    this.resetMarkers();
+    this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'none');
     this.setOsmPoisVisibility(true);
   }
 
@@ -98,14 +103,8 @@ export default class SceneCategory {
     });
   }
 
-  highlightPoiMarker = (poi, highlight) => {
-    const marker = document.getElementById(getMarkerId(poi));
-    if (marker) {
-      if (highlight) {
-        marker.classList.add('active');
-      } else {
-        marker.classList.remove('active');
-      }
-    }
+  highlightPoiMarker = (/*poi, highlight*/) => {
+    // @TODO Find a way to make the icon bigger…
+    // but layout properties can't be changed with feature-state :((((
   }
 }
