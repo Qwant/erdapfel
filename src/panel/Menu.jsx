@@ -93,7 +93,7 @@ export default class Menu extends React.Component {
               >
                 <img
                   className="menu__panel__action__icon"
-                  src="./statics/images/magnifier.svg" alt=""
+                  src="./statics/images/magnifier-dark.svg" alt=""
                 />
                 <span>{_('Search', 'menu')}</span>
               </button>
