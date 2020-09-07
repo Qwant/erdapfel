@@ -4,9 +4,8 @@ import { toCssUrl } from 'src/libs/url_utils';
 
 const ImagesBlock = ({
   block,
-  poi,
 }) => {
-  const images = block.images.filter(img => img.url !== poi.topImageUrl).slice(0, 3);
+  const images = block.images.slice(0, 3);
   if (!images || images.length === 0) {
     return null;
   }

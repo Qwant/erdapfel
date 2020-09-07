@@ -28,7 +28,7 @@ export default class IdunnPoi extends Poi {
       this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({ [b.type]: b })));
       const imagesBlock = this.blocksByType.images;
       if (imagesBlock && imagesBlock.images.length > 0) {
-        this.topImageUrl = imagesBlock.images[0].url;
+        this.titleImageUrl = imagesBlock.images[0].url;
       }
     }
 

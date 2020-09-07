@@ -65,10 +65,10 @@ export default class PoiBlockContainer extends React.Component {
       {informationBlock && <InformationBlock block={informationBlock} />}
       {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
       {contactBlock && <ContactBlock block={contactBlock} />}
-      {imagesBlock && imagesBlock.images.length > 1 &&
+      {imagesBlock &&
         <>
           <Divider />
-          <ImagesBlock block={imagesBlock} poi={this.props.poi} />
+          <ImagesBlock block={imagesBlock} />
         </>
       }
     </div>;
