@@ -3,10 +3,11 @@ import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
 import { poisToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
-import { filteredPoisStyle } from 'src/adapters/pois_styles';
+import { filteredPoisStyle, hoveredPoiStyle } from 'src/adapters/pois_styles';
 import { createDefaultMapIcon } from 'src/adapters/icon_manager';
 
 const DYNAMIC_POIS_LAYER = 'poi-filtered';
+const ACTIVE_POIS_LAYER = 'poi-active';
 
 export default class SceneCategory {
   constructor(map) {
@@ -48,6 +49,17 @@ export default class SceneCategory {
       fire('close_popup');
     });
 
+    this.map.addSource(ACTIVE_POIS_LAYER, {
+      type: 'geojson',
+      data: emptyFeatureCollection,
+      promoteId: 'id',
+    });
+    this.map.addLayer({
+      ...hoveredPoiStyle,
+      source: ACTIVE_POIS_LAYER,
+      id: ACTIVE_POIS_LAYER,
+    });
+
     listen('add_category_markers', (pois, poiFilters) => {
       this.addCategoryMarkers(pois, poiFilters);
     });
@@ -59,6 +71,9 @@ export default class SceneCategory {
     });
     listen('click_category_poi', state => {
       this.selectPoi(state);
+    });
+    listen('clean_marker', () => {
+      this.selectPoiMarker(null);
     });
   }
 
@@ -86,7 +101,7 @@ export default class SceneCategory {
       pois,
       centerMap: true,
     });
-    this.highlightPoiMarker(poi, true);
+    this.selectPoiMarker(poi);
   }
 
   addCategoryMarkers(pois = [], poiFilters) {
@@ -95,10 +110,12 @@ export default class SceneCategory {
     this.setOsmPoisVisibility(false);
     this.map.getSource(DYNAMIC_POIS_LAYER).setData(poisToGeoJSON(pois));
     this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'visible');
+    this.map.setLayoutProperty(ACTIVE_POIS_LAYER, 'visibility', 'visible');
   }
 
   removeCategoryMarkers() {
     this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'none');
+    this.map.setLayoutProperty(ACTIVE_POIS_LAYER, 'visibility', 'none');
     this.setOsmPoisVisibility(true);
   }
 
@@ -108,8 +125,17 @@ export default class SceneCategory {
     });
   }
 
-  highlightPoiMarker = (/*poi, highlight*/) => {
-    // @TODO Find a way to make the icon bigger…
-    // but layout properties can't be changed with feature-state :((((
+  highlightPoiMarker = (poi, highlight) => {
+    const pois = this.selectedPoi ? [this.selectedPoi] : [];
+    if (highlight && poi !== this.selectedPoi) {
+      pois.push(poi);
+    }
+    this.map.getSource(ACTIVE_POIS_LAYER).setData(poisToGeoJSON(pois));
+  }
+
+  selectPoiMarker = poi => {
+    this.selectedPoi = poi;
+    const data = poi ? poisToGeoJSON([ poi ]) : emptyFeatureCollection;
+    this.map.getSource(ACTIVE_POIS_LAYER).setData(data);
   }
 }
