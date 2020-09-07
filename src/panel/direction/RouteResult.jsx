@@ -116,7 +116,7 @@ export default class RouteResult extends React.Component {
       </div>;
     }
 
-    return <div>
+    return <>
       <div className={classnames('itinerary_result', {
         'itinerary_result--publicTransport': this.props.vehicle === 'publicTransport',
       })}>
@@ -145,6 +145,6 @@ export default class RouteResult extends React.Component {
           Combigo
         </a>
       </div>}
-    </div>;
+    </>;
   }
 }

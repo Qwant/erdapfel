@@ -3,6 +3,8 @@
   background-size: 100% 5px;
 
   .panel-content {
+    display: flex;
+    flex-direction: column;
     overflow-y: visible;
   }
 }
@@ -213,11 +215,6 @@ input:valid:focus ~ .itinerary__field__clear {
 
 .itinerary_result {
   overflow: auto;
-  max-height: calc(100vh - 290px);
-
-  &--publicTransport {
-    max-height: calc(100vh - 330px);
-  }
 }
 
 .itinerary_leg {
