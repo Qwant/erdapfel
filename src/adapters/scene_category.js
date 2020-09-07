@@ -4,12 +4,17 @@ import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
 import { poisToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
 import { filteredPoisStyle } from 'src/adapters/pois_styles';
+import { createDefaultMapIcon } from 'src/adapters/icon_manager';
 
 const DYNAMIC_POIS_LAYER = 'poi-filtered';
 
 export default class SceneCategory {
   constructor(map) {
     this.map = map;
+
+    createDefaultMapIcon().then(imageData => {
+      this.map.addImage('pin_with_dot', imageData);
+    });
 
     this.map.addSource(DYNAMIC_POIS_LAYER, {
       type: 'geojson',
