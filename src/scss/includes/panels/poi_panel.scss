@@ -60,6 +60,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   color: #90750b;
 }
 
+.poi_panel__info-partnership {
+  font-size: 12px;
+  line-height: 16px;
+  color: $grey-semi-darkness;
+}
+
 .poi_panel__actions {
   .button + .button {
     margin-left: 8px;

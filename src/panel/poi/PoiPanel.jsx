@@ -249,6 +249,12 @@ export default class PoiPanel extends React.Component {
       </div>
       {(!isMobile || panelSize === 'maximized') && <div className="poi_panel__fullContent">
         <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
+        {isFromPagesJaunes(poi) &&
+          <div className="poi_panel__info-partnership">
+            {_('In partnership with ')}
+            <img src="./statics/images/pj.png" alt="Pages Jaunes" width="80" height="16" />
+          </div>
+        }
         {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
           <h3 className="u-text--smallTitle">
             {_('Search around this place', 'poi')}
@@ -286,10 +292,6 @@ export default class PoiPanel extends React.Component {
       <Flex inline className="poi_panel__back_to_list" onClick={backAction.callback}>
         <i className="poi_panel__back icon-arrow-left" />
         <span className="poi_panel__back_text">{backAction.text}</span>
-        {isFromPagesJaunes(poi) && <img className="poi_panel__pj_logo"
-          src="./statics/images/pagesjaunes.svg"
-          alt="PagesJaunes" />
-        }
       </Flex>;
 
     return <Panel
