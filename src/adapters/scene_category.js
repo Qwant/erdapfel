@@ -2,7 +2,7 @@ import constants from '../../config/constants.yml';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
-import { poisToGeoJSON } from 'src/libs/geojson';
+import { poisToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
 import { filteredPoisStyle } from 'src/adapters/pois_styles';
 
 const DYNAMIC_POIS_LAYER = 'poi-filtered';
@@ -13,7 +13,7 @@ export default class SceneCategory {
 
     this.map.addSource(DYNAMIC_POIS_LAYER, {
       type: 'geojson',
-      data: null,
+      data: emptyFeatureCollection,
       promoteId: 'id', // tells MapBox-GL to use this property as internal feature identifier
     });
     this.map.addLayer({

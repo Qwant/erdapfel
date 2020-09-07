@@ -32,3 +32,5 @@ export const poisToGeoJSON = pois => ({
   type: 'FeatureCollection',
   features: pois.map(poiToGeoJSON),
 });
+
+export const emptyFeatureCollection = poisToGeoJSON([]);
