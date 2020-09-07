@@ -84,4 +84,13 @@ export function createIcon(iconOptions, name, hoverEffect = false) {
   return element.firstElementChild;
 }
 
+export function createDefaultMapIcon() {
+  return new Promise((resolve, reject) => {
+    const img = new Image(50, 60);
+    img.onload = () => { resolve(img); };
+    img.onerror = reject;
+    img.src = './statics/images/map/pin_map_dot.svg';
+  });
+}
+
 window.IconManager = IconManager;
