@@ -250,8 +250,8 @@ export default class PoiPanel extends React.Component {
       {(!isMobile || panelSize === 'maximized') && <div className="poi_panel__fullContent">
         <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
         {isFromPagesJaunes(poi) &&
-          <div className="poi_panel__info-partnership">
-            {_('In partnership with ')}
+          <div className="poi_panel__info-partnership u-text--caption">
+            {_('In partnership with')}
             <img src="./statics/images/pj.png" alt="Pages Jaunes" width="80" height="16" />
           </div>
         }

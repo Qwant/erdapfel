@@ -61,9 +61,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__info-partnership {
-  font-size: 12px;
-  line-height: 16px;
-  color: $grey-semi-darkness;
+  display: inline-flex;
+  align-items: center;
+
+  img {
+    margin-left: 5px;
+  }
 }
 
 .poi_panel__actions {
