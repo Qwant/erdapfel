@@ -18,6 +18,7 @@ import Store from '../../adapters/store';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import Flex from 'src/components/ui/Flex';
+import { DeviceContext } from 'src/libs/device';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -286,27 +287,36 @@ export default class PoiPanel extends React.Component {
         callback: this.backToList,
         text: _('Back to list'),
       };
+    } else {
+      backAction = {
+        callback: this.closeAction,
+        text: '',
+      };
     }
 
-    const header = backAction &&
+    const header = backAction && backAction.text.length > 0 &&
       <Flex inline className="poi_panel__back_to_list" onClick={backAction.callback}>
         <i className="poi_panel__back icon-arrow-left" />
         <span className="poi_panel__back_text">{backAction.text}</span>
       </Flex>;
 
-    return <Panel
-      white
-      resizable
-      title={header}
-      close={this.closeAction}
-      className={classnames('poi_panel', {
-        'poi_panel--empty-header':
-          !isFromPagesJaunes(poi) &&
-          !isFromFavorite &&
-          (!poiFilters || !poiFilters.category),
-      } )}
-    >
-      {panelOptions => this.renderContent(poi, panelOptions)}
-    </Panel>;
+    return <DeviceContext.Consumer>
+      {isMobile =>
+        <Panel
+          white
+          resizable
+          title={!isMobile ? header : null}
+          close={isMobile ? backAction.callback : this.closeAction}
+          className={classnames('poi_panel', {
+            'poi_panel--empty-header':
+            !isFromPagesJaunes(poi) &&
+            !isFromFavorite &&
+            (!poiFilters || !poiFilters.category),
+          } )}
+        >
+          {panelOptions => this.renderContent(poi, panelOptions)}
+        </Panel>
+      }
+    </DeviceContext.Consumer>;
   }
 }
