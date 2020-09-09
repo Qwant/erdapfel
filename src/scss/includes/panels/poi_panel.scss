@@ -78,6 +78,11 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .poi_panel__action__direction {
     flex-grow: 1;
   }
+
+  .minimized:not(.panel--holding) & {
+    height: 0;
+    overflow: hidden;
+  }
 }
 
 .poi_panel__store_status__toggle:after {
@@ -234,6 +239,16 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   min-height: 18px;
 }
 
+.poi_panel__fullContent {
+  height: 0;
+  overflow: hidden;
+
+  .maximized &,
+  .panel--holding & {
+    height: auto;
+  }
+}
+
 @media (max-width: 640px) {
   .poi_panel__content {
     padding: 0 12px 12px;
@@ -243,10 +258,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
     &.default, &.minimized {
       height: auto;
     }
-  }
-
-  .poi_panel__fullContent {
-    animation: appear 600ms;
   }
 }
 

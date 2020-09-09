@@ -224,20 +224,22 @@ export default class PoiPanel extends React.Component {
   }
 
   renderContent = (poi, { size: panelSize, isMobile }) => {
-    if (isMobile && panelSize === 'minimized') {
-      return <div className="poi_panel__content">
-        <PoiItem poi={poi} withAlternativeName />
-      </div>;
-    }
-
     return <div className="poi_panel__content">
-      <PoiItem
-        poi={poi}
-        withAlternativeName
-        withOpeningHours
-        className="u-mb-20"
-        onClick={this.center}
-      />
+      {isMobile && panelSize === 'minimized' ?
+        <PoiItem
+          poi={poi}
+          withAlternativeName
+          className="u-mb-20"
+        />
+        :
+        <PoiItem
+          poi={poi}
+          withAlternativeName
+          withOpeningHours
+          className="u-mb-20"
+          onClick={this.center}
+        />
+      }
       <div className="u-mb-8">
         <ActionButtons
           poi={poi}
@@ -248,7 +250,7 @@ export default class PoiPanel extends React.Component {
           toggleStorePoi={this.toggleStorePoi}
         />
       </div>
-      {(!isMobile || panelSize === 'maximized') && <div className="poi_panel__fullContent">
+      <div className="poi_panel__fullContent">
         <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
         {isFromPagesJaunes(poi) &&
           <div className="poi_panel__info-partnership u-text--caption">
@@ -263,7 +265,7 @@ export default class PoiPanel extends React.Component {
           <CategoryList />
         </div>}
         {isFromOSM(poi) && <OsmContribution poi={poi} />}
-      </div>}
+      </div>
     </div>;
   }
 
