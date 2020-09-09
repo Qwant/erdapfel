@@ -145,6 +145,11 @@ class Panel extends React.Component {
     }
 
     this.setState({ currentHeight, holding: true });
+
+    // Show top_bar shadows when holding
+    const topBar = document.querySelector('.top_bar');
+    topBar.classList.remove('top_bar--no-shadow');
+
   }
 
   /**
@@ -171,6 +176,14 @@ class Panel extends React.Component {
 
     if (newSize !== this.props.size) {
       this.props.setSize(newSize);
+
+      // Hide top_bar shadows when maximized
+      const topBar = document.querySelector('.top_bar');
+      if (newSize === 'maximized') {
+        topBar.classList.add('top_bar--no-shadow');
+      } else {
+        topBar.classList.remove('top_bar--no-shadow');
+      }
     }
     if (this.state.holding || this.state.currentHeight) {
       this.setState({ holding: false, currentHeight: null });
