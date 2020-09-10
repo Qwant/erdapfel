@@ -84,12 +84,12 @@ export function createIcon(iconOptions, name, hoverEffect = false) {
   return element.firstElementChild;
 }
 
-export function createDefaultMapIcon() {
+export function createMapIcon(imageFile, width, height) {
   return new Promise((resolve, reject) => {
-    const img = new Image(50, 60);
+    const img = new Image(width, height);
     img.onload = () => { resolve(img); };
     img.onerror = reject;
-    img.src = './statics/images/map/pin_map_dot.svg';
+    img.src = imageFile;
   });
 }
 
