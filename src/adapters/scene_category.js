@@ -42,10 +42,9 @@ export default class SceneCategory {
       this.highlightPoiMarker(poi, true);
       fire('open_popup', this.getPointedPoi(e), e.originalEvent);
     });
-    this.map.on('mouseleave', DYNAMIC_POIS_LAYER, e => {
+    this.map.on('mouseleave', DYNAMIC_POIS_LAYER, () => {
       this.map.getCanvas().style.cursor = '';
-      const poi = this.getPointedPoi(e);
-      this.highlightPoiMarker(poi, false);
+      this.highlightPoiMarker(null, false);
       fire('close_popup');
     });
 
@@ -78,7 +77,7 @@ export default class SceneCategory {
   }
 
   getPointedPoi = mapMouseEvent => {
-    const feature = this.map.queryRenderedFeatures(mapMouseEvent.point)[0];
+    const feature = mapMouseEvent.features[0];
     return feature && this.pois.find(p => p.id === feature.id);
   }
 
