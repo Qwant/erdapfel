@@ -123,7 +123,7 @@ Scene.prototype.initMapBox = function() {
     // which are thrown *after* two separate click events are thrown
     this.clickDelayHandler = null;
     this.mb.on('click', e => {
-      if (e.cancelMapClick) {
+      if (e.originalEvent.cancelBubble) {
         return;
       }
       // cancel the previous click handler if it's still pending

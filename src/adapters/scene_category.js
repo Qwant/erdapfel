@@ -28,7 +28,7 @@ export default class SceneCategory {
       id: DYNAMIC_POIS_LAYER,
     });
     this.map.on('click', DYNAMIC_POIS_LAYER, e => {
-      e.cancelMapClick = true; // Hack as MapBox events don't have stopPropagation
+      e.originalEvent.stopPropagation();
       const poi = this.getPointedPoi(e);
       this.selectPoi({
         poi,
