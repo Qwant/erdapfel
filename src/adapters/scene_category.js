@@ -126,10 +126,10 @@ export default class SceneCategory {
   }
 
   highlightPoiMarker = (poi, highlight) => {
-    const pois = this.selectedPoi ? [this.selectedPoi] : [];
-    if (highlight && poi !== this.selectedPoi) {
-      pois.push(poi);
-    }
+    const pois = [
+      this.selectedPoi,
+      this.selectedPoi !== highlight && poi,
+    ].filter(p => p);
     this.map.getSource(ACTIVE_POIS_LAYER).setData(poisToGeoJSON(pois));
   }
 
