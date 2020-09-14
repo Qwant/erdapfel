@@ -37,15 +37,7 @@
 }
 
 .category__panel__error {
-  padding: 30px 40px 50px;
-  color: $primary_text;
-
-  button {
-    color: #5c6f84;
-    margin: 10px 0 0;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
+  padding: 16px 16px 32px 16px
 }
 
 @media (max-width: 640px) {
