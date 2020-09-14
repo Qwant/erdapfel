@@ -31,7 +31,6 @@ export default class PanelManager extends React.Component {
       ActivePanel: ServicePanel,
       options: {},
       panelSize: 'default',
-      topBarShadow: true,
     };
   }
 
@@ -53,7 +52,7 @@ export default class PanelManager extends React.Component {
 
     listen('map_user_interaction', () => {
       if (this.state.ActivePanel === PoiPanel) {
-        this.setState({ panelSize: 'minimized', topBarShadow: true });
+        this.setState({ panelSize: 'minimized'});
       }
     });
   }
@@ -104,7 +103,6 @@ export default class PanelManager extends React.Component {
           ...otherOptions,
         },
         panelSize: 'default',
-        topBarShadow: true,
       });
     });
 
@@ -122,7 +120,6 @@ export default class PanelManager extends React.Component {
         ActivePanel: PoiPanel,
         options: { ...options, poiId },
         panelSize: 'default',
-        topBarShadow: true,
       });
     });
 
@@ -131,7 +128,6 @@ export default class PanelManager extends React.Component {
         ActivePanel: FavoritesPanel,
         options: {},
         panelSize: 'default',
-        topBarShadow: true,
       });
     });
 
@@ -145,7 +141,6 @@ export default class PanelManager extends React.Component {
           ActivePanel: DirectionPanel,
           options: { ...parseQueryString(routeParams), ...options, isPublicTransportActive },
           panelSize: 'default',
-          topBarShadow: true,
         });
       });
     }
@@ -165,7 +160,6 @@ export default class PanelManager extends React.Component {
         ActivePanel: ServicePanel,
         options,
         panelSize: 'default',
-        topBarShadow: true,
       });
       if (options?.focusSearch) {
         SearchInput.select();
