@@ -52,7 +52,7 @@ export default class PanelManager extends React.Component {
 
     listen('map_user_interaction', () => {
       if (this.state.ActivePanel === PoiPanel) {
-        this.setState({ panelSize: 'minimized'});
+        this.setState({ panelSize: 'minimized' });
       }
     });
   }
