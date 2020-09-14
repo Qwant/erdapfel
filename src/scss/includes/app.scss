@@ -87,43 +87,8 @@ noscript {
   text-shadow: 0 1px 0 #ffffff;
 }
 
-.map_container .marker-container.poi-hoverable {
-  width: 24px;
-  height: 29px;
-}
-
-.map_container .marker.active .marker-container.poi-hoverable,
-.map_container .marker:hover .marker-container.poi-hoverable {
-  width: 30px;
-  height: 35px;
-  margin: -5px 0 0;
-}
-
 .map_container .marker-container i {
   font-size: 30px;
   color: white;
   margin-top: calc(-25% + 3px);
-}
-
-.map_container .marker-container.poi-hoverable:hover,
-.map_container .marker.active .marker-container.poi-hoverable {
-  z-index: 1;
-}
-
-.map_container .marker-container.poi-hoverable i {
-  font-size: 20px;
-}
-
-.map_container .marker.active .marker-container.poi-hoverable i,
-.map_container .marker:hover .marker-container.poi-hoverable i {
-  font-size: 25px;
-}
-
-.map_container .marker-container.poi-hoverable img {
-  width: 24px;
-}
-
-.map_container .marker.active .marker-container.poi-hoverable img,
-.map_container .marker-container.poi-hoverable:hover img {
-  width: 30px;
 }

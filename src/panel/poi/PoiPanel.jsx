@@ -140,7 +140,7 @@ export default class PoiPanel extends React.Component {
       if (isNullOrEmpty(this.props.poiFilters)) {
         fire('create_poi_marker', poi);
       } else {
-        fire('highlight_category_marker', poi, true);
+        fire('click_category_marker', poi);
       }
       fire('ensure_poi_visible', poi, options);
     });
