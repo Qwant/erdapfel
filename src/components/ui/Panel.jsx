@@ -87,7 +87,6 @@ class Panel extends React.Component {
 
       if (height > this.defaultHeight) {
         // Transition to maximized
-
         fire('mobile_geolocation_button_visibility', false);
         fire('mobile_direction_button_visibility', false);
       } else if (this.props.size === 'minimized' || height < 40) {
