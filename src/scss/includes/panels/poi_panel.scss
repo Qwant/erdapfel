@@ -238,15 +238,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   min-height: 18px;
 }
 
-.poi_panel__fullContent {
-  display: none;
-
-  .maximized &,
-  .panel--holding & {
-    display: block;
-  }
-}
-
 @media (max-width: 640px) {
   .poi_panel__content {
     padding: 0 12px 12px;
@@ -257,6 +248,16 @@ $BLOCK_ICON_FONT_SIZE: 16px;
       height: auto;
     }
   }
+
+  .poi_panel__fullContent {
+    display: none;
+
+    .maximized &,
+    .panel--holding & {
+      display: block;
+    }
+  }
+
 }
 
 @import "./covid";
