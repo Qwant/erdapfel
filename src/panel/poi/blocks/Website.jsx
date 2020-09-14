@@ -16,7 +16,7 @@ export default class WebsiteBlock extends React.Component {
     super(props);
 
     this.clickWebsite = () => {
-      Telemetry.add('website', 'poi', this.props.poi.meta.source,
+      Telemetry.sendPoiEvent(this.props.poi, 'website',
         Telemetry.buildInteractionData(
           {
             'id': this.props.poi.id,

@@ -39,7 +39,7 @@ export default class PanelManager extends React.Component {
     const initialRoute = this.initRouter();
     this.initTopBar();
 
-    Telemetry.add(Telemetry.APP_START, null, null, {
+    Telemetry.add(Telemetry.APP_START, {
       'language': window.getLang(),
       'is_mobile': isMobileDevice(),
       'url_pathname': initialUrlPathName,

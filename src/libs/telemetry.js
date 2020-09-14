@@ -18,19 +18,6 @@ telemetryModule.events.forEach(event => {
   events[event.toUpperCase()] = event;
 });
 
-function add(event, type, source, data) {
-  if (event) {
-    if (type && source) {
-      const event_const_name = `${(type + '_' + source + '_' + event).toUpperCase()}`;
-      event = events[event_const_name];
-    }
-
-    return send(event, data);
-  }
-
-  Error.send('telemetry', 'add', 'telemetry event mismatch configuration', {});
-}
-
 function addOnce(event) {
   if (uniqEventList.indexOf(event) === -1) {
     uniqEventList.push(event);
@@ -38,7 +25,7 @@ function addOnce(event) {
   }
 }
 
-function send(event, extra_data) {
+function add(event, extra_data) {
   if (!telemetry.enabled) {
     return;
   }
@@ -76,9 +63,15 @@ function buildInteractionData({ source, template, id, zone, element, category })
   };
 }
 
+function sendPoiEvent(poi, event, data) {
+  const eventName = `poi_${poi.meta?.source}_${event}`.toUpperCase();
+  return add(events[eventName], data);
+}
+
 export default {
   add,
   addOnce,
   buildInteractionData,
+  sendPoiEvent,
   ...events,
 };
