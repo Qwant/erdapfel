@@ -223,14 +223,14 @@ export default class PoiPanel extends React.Component {
     }
   }
 
-  renderContent = (poi, { size: panelSize }) => {
+  renderContent = poi => {
     return <div className="poi_panel__content">
       <PoiItem
         poi={poi}
         className="u-mb-20"
         withAlternativeName
         withOpeningHours
-        onClick={panelSize === 'minimized' ? this.center : null}
+        onClick={this.center}
       />
       <div className="u-mb-8">
         <ActionButtons
