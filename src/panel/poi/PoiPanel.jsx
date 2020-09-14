@@ -224,7 +224,6 @@ export default class PoiPanel extends React.Component {
   }
 
   renderContent = (poi, { size: panelSize }) => {
-    console.log(1,panelSize)
     return <div className="poi_panel__content">
       <PoiItem
         poi={poi}
