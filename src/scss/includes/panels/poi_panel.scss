@@ -80,8 +80,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   }
 
   .minimized:not(.panel--holding) & {
-    height: 0;
-    overflow: hidden;
+    display: none;
   }
 }
 
@@ -240,12 +239,11 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__fullContent {
-  height: 0;
-  overflow: hidden;
+  display: none;
 
   .maximized &,
   .panel--holding & {
-    height: auto;
+    display: block;
   }
 }
 

@@ -87,13 +87,17 @@ class Panel extends React.Component {
 
       if (height > this.defaultHeight) {
         // Transition to maximized
+        console.log(">default");
+
         fire('mobile_geolocation_button_visibility', false);
         fire('mobile_direction_button_visibility', false);
       } else if (this.props.size === 'minimized' || height < 40) {
+        console.log("<default");
         // Transition to minimized
         fire('mobile_geolocation_button_visibility', true);
         fire('mobile_direction_button_visibility', true);
       } else {
+        console.log("default");
         // Transition to default
         fire('mobile_geolocation_button_visibility', true);
         fire('mobile_direction_button_visibility', false);
