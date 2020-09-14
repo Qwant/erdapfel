@@ -20,7 +20,7 @@ export default class App {
     SearchInput.initSearchInput('#search');
     listen('map_loaded', () => {
       window.times.mapLoaded = Date.now();
-      Telemetry.add(Telemetry.PERF_MAP_FIRST_RENDER, null, null, {
+      Telemetry.add(Telemetry.PERF_MAP_FIRST_RENDER, {
         app_render: window.times.appRendered - window.times.init,
         mapbox_init: window.times.initMapBox - window.times.init,
         map_first_render: window.times.mapLoaded - window.times.initMapBox,

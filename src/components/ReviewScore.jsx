@@ -5,7 +5,7 @@ import Telemetry from 'src/libs/telemetry';
 function logGradesClick(poi, inList) {
   const grades = poi.blocksByType.grades;
   if (grades && grades.url) {
-    Telemetry.add('reviews', 'poi', poi.meta.source,
+    Telemetry.sendPoiEvent(poi, 'reviews',
       Telemetry.buildInteractionData({
         id: poi.id,
         source: poi.meta.source,

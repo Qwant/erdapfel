@@ -28,8 +28,6 @@ export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryP
   } else if (selectedItem instanceof Intention) {
     Telemetry.add(
       Telemetry.SUGGEST_SELECTION,
-      null,
-      null,
       {
         item: 'intention',
         category: selectedItem.category ? selectedItem.category.name : null,

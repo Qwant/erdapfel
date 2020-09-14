@@ -27,7 +27,7 @@ export default class DirectionPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    Telemetry.add(Telemetry.ITINERARY_OPEN, null, null,
+    Telemetry.add(Telemetry.ITINERARY_OPEN,
       props.poi && Telemetry.buildInteractionData({
         id: props.poi.id,
         source: props.poi.meta ? props.poi.meta.source : props.poi.name,

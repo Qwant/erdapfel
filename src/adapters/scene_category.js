@@ -35,7 +35,7 @@ export default class SceneCategory {
       previousMarker.classList.remove('active');
     }
     if (poi.meta && poi.meta.source) {
-      Telemetry.add('open', 'poi', poi.meta.source,
+      Telemetry.sendPoiEvent(poi, 'open',
         Telemetry.buildInteractionData({
           id: poi.id,
           source: poi.meta.source,

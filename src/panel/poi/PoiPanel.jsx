@@ -158,7 +158,7 @@ export default class PoiPanel extends React.Component {
 
   center = () => {
     const poi = this.getBestPoi();
-    Telemetry.add('go', 'poi', poi.meta && poi.meta.source);
+    Telemetry.sendPoiEvent(poi, 'go');
     fire('fit_map', poi);
   }
 
@@ -199,7 +199,7 @@ export default class PoiPanel extends React.Component {
     const poi = this.getBestPoi();
     const source = poi.meta && poi.meta.source;
     if (source) {
-      Telemetry.add('phone', 'poi', source,
+      Telemetry.sendPoiEvent(poi, 'phone',
         Telemetry.buildInteractionData({
           id: poi.id,
           source,
@@ -213,9 +213,7 @@ export default class PoiPanel extends React.Component {
 
   toggleStorePoi = () => {
     const poi = this.state.fullPoi;
-    if (poi.meta && poi.meta.source) {
-      Telemetry.add('favorite', 'poi', poi.meta.source);
-    }
+    Telemetry.sendPoiEvent(poi, 'favorite');
     if (this.state.isPoiInFavorite) {
       store.del(poi);
     } else {

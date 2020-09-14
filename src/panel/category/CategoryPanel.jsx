@@ -57,7 +57,7 @@ export default class CategoryPanel extends React.Component {
   sendTelemetry(prevProps) {
     const { category } = this.props.poiFilters;
     if (category && category !== prevProps?.poiFilters?.category) {
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, null, null, { category });
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, { category });
     }
   }
 
