@@ -85,10 +85,15 @@ export default class SearchInput {
   static async executeSearch(query, { fromQueryParams } = {}) {
     window.__searchInput.searchInputHandle.value = query;
     const results = await fetchSuggests(query, { withCategories: true });
-    if (results && results.length > 0) {
-      const firstResult = results[0];
-      selectItem(firstResult, { query, replaceUrl: true, fromQueryParams });
-      window.__searchInput.searchInputHandle.blur();
-    }
+
+    selectItem(
+      results[0] || null,
+      {
+        query,
+        replaceUrl: true,
+        fromQueryParams,
+      },
+    );
+    window.__searchInput.searchInputHandle.blur();
   }
 }

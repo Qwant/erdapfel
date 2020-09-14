@@ -41,6 +41,9 @@ export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryP
     );
     window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
       {}, { replace: replaceUrl });
+  } else if (!selectedItem) {
+    // No result
+    window.app.navigateTo('/noresult', { query }, { replace: replaceUrl });
   }
 };
 
