@@ -14,6 +14,7 @@ import { fire, listen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
+import NoResultPanel from 'src/panel/NoResultPanel';
 
 const directionConf = nconf.get().direction;
 
@@ -102,6 +103,14 @@ export default class PanelManager extends React.Component {
           ...otherOptions,
         },
         panelSize: 'default',
+      });
+    });
+
+    router.addRoute('noresult', '/noresult', (_, options) => {
+      this.setState({
+        ActivePanel: NoResultPanel,
+        panelSize: 'default',
+        options: { ...options },
       });
     });
 
