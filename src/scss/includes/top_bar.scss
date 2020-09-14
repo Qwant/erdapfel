@@ -6,10 +6,6 @@
   left: $ui_margin;
   top: $ui_margin;
   position: absolute;
-
-  &.top_bar--no-shadow {
-    box-shadow: none;
-  }
 }
 
 .directions-open .top_bar {

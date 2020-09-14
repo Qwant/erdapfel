@@ -70,6 +70,10 @@
 
     &:not(.panel--holding) {
       transition: height 0.2s ease-in-out;
+
+      &.maximized {
+        box-shadow: none;
+      }
     }
 
     &.maximized {
