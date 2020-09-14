@@ -223,44 +223,6 @@ export default class PoiPanel extends React.Component {
     }
   }
 
-  renderContent = poi => {
-    return <div className="poi_panel__content">
-      <PoiItem
-        poi={poi}
-        className="u-mb-20"
-        withAlternativeName
-        withOpeningHours
-        onClick={this.center}
-      />
-      <div className="u-mb-8">
-        <ActionButtons
-          poi={poi}
-          isDirectionActive={this.isDirectionActive}
-          openDirection={this.openDirection}
-          onClickPhoneNumber={this.onClickPhoneNumber}
-          isPoiInFavorite={this.state.isPoiInFavorite}
-          toggleStorePoi={this.toggleStorePoi}
-        />
-      </div>
-      <div className="poi_panel__fullContent">
-        <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
-        {isFromPagesJaunes(poi) &&
-          <div className="poi_panel__info-partnership u-text--caption">
-            {_('In partnership with')}
-            <img src="./statics/images/pj.svg" alt="Pages Jaunes" width="80" height="16" />
-          </div>
-        }
-        {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
-          <h3 className="u-text--smallTitle">
-            {_('Search around this place', 'poi')}
-          </h3>
-          <CategoryList />
-        </div>}
-        {isFromOSM(poi) && <OsmContribution poi={poi} />}
-      </div>
-    </div>;
-  }
-
   render() {
     const { poiFilters, isFromFavorite } = this.props;
     const poi = this.getBestPoi();
@@ -308,7 +270,41 @@ export default class PoiPanel extends React.Component {
             (!poiFilters || !poiFilters.category),
           } )}
         >
-          {panelOptions => this.renderContent(poi, panelOptions)}
+          <div className="poi_panel__content">
+            <PoiItem
+              poi={poi}
+              className="u-mb-20"
+              withAlternativeName
+              withOpeningHours
+              onClick={this.center}
+            />
+            <div className="u-mb-8">
+              <ActionButtons
+                poi={poi}
+                isDirectionActive={this.isDirectionActive}
+                openDirection={this.openDirection}
+                onClickPhoneNumber={this.onClickPhoneNumber}
+                isPoiInFavorite={this.state.isPoiInFavorite}
+                toggleStorePoi={this.toggleStorePoi}
+              />
+            </div>
+            <div className="poi_panel__fullContent">
+              <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
+              {isFromPagesJaunes(poi) &&
+              <div className="poi_panel__info-partnership u-text--caption">
+                {_('In partnership with')}
+                <img src="./statics/images/pj.svg" alt="Pages Jaunes" width="80" height="16" />
+              </div>
+              }
+              {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
+                <h3 className="u-text--smallTitle">
+                  {_('Search around this place', 'poi')}
+                </h3>
+                <CategoryList />
+              </div>}
+              {isFromOSM(poi) && <OsmContribution poi={poi} />}
+            </div>
+          </div>
         </Panel>
       }
     </DeviceContext.Consumer>;
