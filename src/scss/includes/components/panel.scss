@@ -13,10 +13,6 @@
   background-color: white;
   width: $panel_width;
 
-  &.panel--no-shadow {
-    box-shadow: none;
-  }
-
   &-header {
     padding: 0 15px;
     min-height: 40px;
