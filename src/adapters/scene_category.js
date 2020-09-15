@@ -109,7 +109,7 @@ export default class SceneCategory {
 
   handleLayerMarkerMouseLeave = () => {
     this.map.getCanvas().style.cursor = '';
-    this.hoveredPoi === null;
+    this.hoveredPoi = null;
     this.highlightPoiMarker(null, false);
     fire('close_popup');
   }
