@@ -14,7 +14,7 @@ function toArray(address, { omitStreet, omitCountry } = {}) {
       address.stateDistrict,
       address.state,
       address.countryRegion,
-      !omitCountry && address.country,
+      address.country,
     ]
       .filter(i => i)
       .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
