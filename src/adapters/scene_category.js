@@ -27,11 +27,11 @@ export default class SceneCategory {
   initActiveStateMarkers = () => {
     this.hoveredPoi = null;
     this.hoveredMarker = new Marker({
-      element: createIcon({ disablePointerEvents: true }),
+      element: createIcon({ disablePointerEvents: true, className: 'marker--category' }),
       anchor: 'bottom',
     });
     this.selectedMarker = new Marker({
-      element: createIcon({}),
+      element: createIcon({ className: 'marker--category' }),
       anchor: 'bottom',
     });
   }

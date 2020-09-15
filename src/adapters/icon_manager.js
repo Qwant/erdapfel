@@ -75,7 +75,10 @@ export function createIcon(iconOptions) {
 
   const element = document.createElement('div');
   element.innerHTML = `
-    <div class="marker" ${iconOptions.disablePointerEvents && 'style="pointer-events:none;"'}>
+    <div
+      class="marker ${iconOptions.className || ''}"
+      ${iconOptions.disablePointerEvents && 'style="pointer-events:none;"'}
+    >
       <div class="marker-container">
         <i class="icon icon-${icon.iconClass}"></i>
       </div>

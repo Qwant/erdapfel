@@ -81,7 +81,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
     className: 'poi_popup__container',
     closeButton: false,
     maxWidth: 'none',
-    offset: 28, //px,
+    offset: 18, //px,
     anchor: this.getPopupAnchor(event),
   };
 
