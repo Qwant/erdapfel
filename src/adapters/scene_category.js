@@ -12,6 +12,19 @@ const DYNAMIC_POIS_LAYER = 'poi-filtered';
 export default class SceneCategory {
   constructor(map) {
     this.map = map;
+
+    this.initActiveStateMarkers();
+    this.initDynamicPoiLayer();
+
+    listen('add_category_markers', this.addCategoryMarkers);
+    listen('remove_category_markers', this.removeCategoryMarkers);
+    listen('highlight_category_marker', this.highlightPoiMarker);
+    listen('click_category_marker', this.selectPoiMarker);
+    listen('click_category_poi', this.selectPoi);
+    listen('clean_marker', () => this.selectPoiMarker(null));
+  }
+
+  initActiveStateMarkers = () => {
     this.hoveredPoi = null;
     this.hoveredMarker = new Marker({
       element: createIcon({ disablePointerEvents: true }),
@@ -21,65 +34,30 @@ export default class SceneCategory {
       element: createIcon({}),
       anchor: 'bottom',
     });
+  }
 
+  initDynamicPoiLayer = () => {
+    // Declare a new image in MapBox-GL rasters so it can be used in the layer style
     createMapGLIcon('./statics/images/map/pin_map_dot.svg', 50, 60)
       .then(imageData => {
         this.map.addImage('pin_with_dot', imageData);
       });
 
-    this.map.addSource(DYNAMIC_POIS_LAYER, {
-      type: 'geojson',
-      data: emptyFeatureCollection,
-      promoteId: 'id', // tells MapBox-GL to use this property as internal feature identifier
-    });
-    this.map.addLayer({
-      ...filteredPoisStyle,
-      source: DYNAMIC_POIS_LAYER,
-      id: DYNAMIC_POIS_LAYER,
-    });
-    this.map.on('click', DYNAMIC_POIS_LAYER, e => {
-      e.originalEvent.stopPropagation();
-      const poi = this.getPointedPoi(e);
-      this.selectPoi({
-        poi,
-        pois: this.pois,
-        poiFilters: this.poiFilters,
-      });
-    });
-    this.map.on('mousemove', DYNAMIC_POIS_LAYER, e => {
-      this.map.getCanvas().style.cursor = 'pointer';
-      const poi = this.getPointedPoi(e);
-      if (this.hoveredPoi !== poi) {
-        this.hoveredPoi = poi;
-        this.highlightPoiMarker(poi, true);
-        fire('open_popup', this.getPointedPoi(e), e.originalEvent);
-      }
-    });
-    this.map.on('mouseleave', DYNAMIC_POIS_LAYER, () => {
-      this.map.getCanvas().style.cursor = '';
-      this.hoveredPoi === null;
-      this.highlightPoiMarker(null, false);
-      fire('close_popup');
-    });
-
-    listen('add_category_markers', (pois, poiFilters) => {
-      this.addCategoryMarkers(pois, poiFilters);
-    });
-    listen('remove_category_markers', () => {
-      this.removeCategoryMarkers();
-    });
-    listen('highlight_category_marker', (poi, highlight) => {
-      this.highlightPoiMarker(poi, highlight);
-    });
-    listen('click_category_marker', poi => {
-      this.selectPoiMarker(poi);
-    });
-    listen('click_category_poi', state => {
-      this.selectPoi(state);
-    });
-    listen('clean_marker', () => {
-      this.selectPoiMarker(null);
-    });
+    this.map
+      .addSource(DYNAMIC_POIS_LAYER, {
+        type: 'geojson',
+        data: emptyFeatureCollection,
+        // tells MapBox-GL to use this property as internal feature identifier
+        promoteId: 'id',
+      })
+      .addLayer({
+        ...filteredPoisStyle,
+        source: DYNAMIC_POIS_LAYER,
+        id: DYNAMIC_POIS_LAYER,
+      })
+      .on('click', DYNAMIC_POIS_LAYER, this.handleLayerMarkerClick)
+      .on('mousemove', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseMove)
+      .on('mouseleave', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseLeave);
   }
 
   getPointedPoi = mapMouseEvent => {
@@ -109,7 +87,34 @@ export default class SceneCategory {
     this.selectPoiMarker(poi);
   }
 
-  addCategoryMarkers(pois = [], poiFilters) {
+  handleLayerMarkerClick = e => {
+    e.originalEvent.stopPropagation();
+    const poi = this.getPointedPoi(e);
+    this.selectPoi({
+      poi,
+      pois: this.pois,
+      poiFilters: this.poiFilters,
+    });
+  }
+
+  handleLayerMarkerMouseMove = e => {
+    this.map.getCanvas().style.cursor = 'pointer';
+    const poi = this.getPointedPoi(e);
+    if (this.hoveredPoi !== poi) {
+      this.hoveredPoi = poi;
+      this.highlightPoiMarker(poi, true);
+      fire('open_popup', this.getPointedPoi(e), e.originalEvent);
+    }
+  }
+
+  handleLayerMarkerMouseLeave = () => {
+    this.map.getCanvas().style.cursor = '';
+    this.hoveredPoi === null;
+    this.highlightPoiMarker(null, false);
+    fire('close_popup');
+  }
+
+  addCategoryMarkers = (pois = [], poiFilters) => {
     this.pois = pois;
     this.poiFilters = poiFilters;
     this.setOsmPoisVisibility(false);
@@ -117,14 +122,14 @@ export default class SceneCategory {
     this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'visible');
   }
 
-  removeCategoryMarkers() {
+  removeCategoryMarkers = () => {
     this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'none');
     this.hoveredMarker.remove();
     this.selectedMarker.remove();
     this.setOsmPoisVisibility(true);
   }
 
-  setOsmPoisVisibility(displayed) {
+  setOsmPoisVisibility = displayed => {
     constants.map.pois_layers.map(poi => {
       this.map.setLayoutProperty(poi, 'visibility', displayed ? 'visible' : 'none');
     });
