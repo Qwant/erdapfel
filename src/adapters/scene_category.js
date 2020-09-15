@@ -12,6 +12,7 @@ const DYNAMIC_POIS_LAYER = 'poi-filtered';
 export default class SceneCategory {
   constructor(map) {
     this.map = map;
+    this.hoveredPoi = null;
     this.hoveredMarker = new Marker({
       element: createIcon({ disablePointerEvents: true }),
       anchor: 'bottom',
@@ -45,14 +46,18 @@ export default class SceneCategory {
         poiFilters: this.poiFilters,
       });
     });
-    this.map.on('mouseenter', DYNAMIC_POIS_LAYER, e => {
+    this.map.on('mousemove', DYNAMIC_POIS_LAYER, e => {
       this.map.getCanvas().style.cursor = 'pointer';
       const poi = this.getPointedPoi(e);
-      this.highlightPoiMarker(poi, true);
-      fire('open_popup', this.getPointedPoi(e), e.originalEvent);
+      if (this.hoveredPoi !== poi) {
+        this.hoveredPoi = poi;
+        this.highlightPoiMarker(poi, true);
+        fire('open_popup', this.getPointedPoi(e), e.originalEvent);
+      }
     });
     this.map.on('mouseleave', DYNAMIC_POIS_LAYER, () => {
       this.map.getCanvas().style.cursor = '';
+      this.hoveredPoi === null;
       this.highlightPoiMarker(null, false);
       fire('close_popup');
     });
