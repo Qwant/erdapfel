@@ -43,21 +43,20 @@ export default class SceneCategory {
         this.map.addImage('pin_with_dot', imageData);
       });
 
-    this.map
-      .addSource(DYNAMIC_POIS_LAYER, {
-        type: 'geojson',
-        data: emptyFeatureCollection,
-        // tells MapBox-GL to use this property as internal feature identifier
-        promoteId: 'id',
-      })
-      .addLayer({
-        ...filteredPoisStyle,
-        source: DYNAMIC_POIS_LAYER,
-        id: DYNAMIC_POIS_LAYER,
-      })
-      .on('click', DYNAMIC_POIS_LAYER, this.handleLayerMarkerClick)
-      .on('mousemove', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseMove)
-      .on('mouseleave', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseLeave);
+    this.map.addSource(DYNAMIC_POIS_LAYER, {
+      type: 'geojson',
+      data: emptyFeatureCollection,
+      // tells MapBox-GL to use this property as internal feature identifier
+      promoteId: 'id',
+    });
+    this.map.addLayer({
+      ...filteredPoisStyle,
+      source: DYNAMIC_POIS_LAYER,
+      id: DYNAMIC_POIS_LAYER,
+    });
+    this.map.on('click', DYNAMIC_POIS_LAYER, this.handleLayerMarkerClick);
+    this.map.on('mousemove', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseMove);
+    this.map.on('mouseleave', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseLeave);
   }
 
   getPointedPoi = mapMouseEvent => {
