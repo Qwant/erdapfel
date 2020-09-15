@@ -78,6 +78,10 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .poi_panel__action__direction {
     flex-grow: 1;
   }
+
+  .minimized:not(.panel--holding) & {
+    display: none;
+  }
 }
 
 .poi_panel__store_status__toggle:after {
@@ -246,8 +250,14 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   }
 
   .poi_panel__fullContent {
-    animation: appear 600ms;
+    display: none;
+
+    .maximized &,
+    .panel--holding & {
+      display: block;
+    }
   }
+
 }
 
 @import "./covid";
