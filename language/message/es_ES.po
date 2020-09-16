@@ -3,16 +3,16 @@
 # T S <tsalaba2004@gmail.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
 # manueljlin <manueljlin@gmail.com>, 2020
-# Adrien Matissart, 2020
 # Noémie Lehuby <n.lehuby@qwant.com>, 2020
+# Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 12:25+0000\n"
+"POT-Creation-Date: 2020-09-15 07:31+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
+"Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/qwant-1/teams/89416/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1126,6 +1126,9 @@ msgstr "Volver al favorito"
 msgid "Back to list"
 msgstr "Volver a la lista"
 
+msgid "In partnership with"
+msgstr ""
+
 msgid "See more nearby services"
 msgstr ""
 
@@ -1150,11 +1153,14 @@ msgstr "en bicicleta"
 msgid "Services nearby"
 msgstr "Servicios cercanos"
 
+msgid "No results found."
+msgstr "No se encontraron resultados."
+
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Por favor, amplia el mapa para ver los resultados de esta categoría."
 
-msgid "No results found. Please zoom out of the map."
-msgstr "No se han encontrado resultados. Por favor aleja el mapa."
+msgid "Please zoom out of the map."
+msgstr "Por favor aleja el mapa."
 
 msgid "Search around my position"
 msgstr "Buscar cerca de mi localización"
@@ -1213,6 +1219,14 @@ msgstr ""
 
 msgid "return"
 msgstr "volver"
+
+msgid ""
+"Check the spelling of your search or add more details, such as city or "
+"country."
+msgstr ""
+
+msgid "Try a new search query"
+msgstr ""
 
 msgid "Masq will be disabled"
 msgstr ""

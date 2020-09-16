@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 12:25+0000\n"
+"POT-Creation-Date: 2020-09-15 07:31+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
 "Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
@@ -1128,6 +1128,9 @@ msgstr "Distreiñ d'ar sinedoù"
 msgid "Back to list"
 msgstr "Distreiñ d'al listenn"
 
+msgid "In partnership with"
+msgstr ""
+
 msgid "See more nearby services"
 msgstr ""
 
@@ -1152,11 +1155,14 @@ msgstr ""
 msgid "Services nearby"
 msgstr ""
 
+msgid "No results found."
+msgstr ""
+
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
 
-msgid "No results found. Please zoom out of the map."
-msgstr "N'eus bet kavet disoc'h ebet. Dizoumit ar gartenn mar plij."
+msgid "Please zoom out of the map."
+msgstr ""
 
 msgid "Search around my position"
 msgstr "Klask tro-dro din"
@@ -1213,6 +1219,14 @@ msgstr ""
 
 msgid "return"
 msgstr "distreiñ"
+
+msgid ""
+"Check the spelling of your search or add more details, such as city or "
+"country."
+msgstr ""
+
+msgid "Try a new search query"
+msgstr ""
 
 msgid "Masq will be disabled"
 msgstr ""
