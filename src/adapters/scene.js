@@ -23,6 +23,8 @@ const baseUrl = nconf.get().system.baseUrl;
 
 const store = new LocalStore();
 
+let longTouchTimeout = null;
+
 function Scene() {
   this.currentMarker = null;
   this.popup = new PoiPopup();
@@ -145,10 +147,29 @@ Scene.prototype.initMapBox = function() {
       }, this.DOUBLE_TAP_DELAY_MS);
     });
 
+    // Long touch on mobile (500ms)
+    // Custom implementation because the contextmenu event isn't supported by MapBox.
+    // Long touch is initiated with a touchstart event
+    // It is canceled if many fingers touch the map, or if one of these events is initiated:
+    // touchmove, touchcancel, touchend, pointerdrag, pointermove, moveend, gesturestart, gesturechange, gestureend
     if (isMobileDevice()) {
-      this.mb.on('contextmenu', e => {
-        this.clickOnMap(e.lngLat, null, { longTouch: true });
+      this.mb.on('touchstart', e => {
+        if (e.originalEvent.touches.length === 1) {
+          longTouchTimeout = setTimeout(() => {
+            this.clickOnMap(e.lngLat, null, { longTouch: true });
+          }, 500);
+        }
       });
+
+      this.mb.on('touchend', this.cancelLongTouch);
+      this.mb.on('touchcancel', this.cancelLongTouch);
+      this.mb.on('touchmove', this.cancelLongTouch);
+      this.mb.on('pointerdrag', this.cancelLongTouch);
+      this.mb.on('pointermove', this.cancelLongTouch);
+      this.mb.on('moveend', this.cancelLongTouch);
+      this.mb.on('gesturestart', this.cancelLongTouch);
+      this.mb.on('gesturechange', this.cancelLongTouch);
+      this.mb.on('gestureend', this.cancelLongTouch);
     }
 
     this.mb.on('dragstart', () => { fire('map_user_interaction'); });
@@ -429,6 +450,10 @@ Scene.prototype.mobileButtonVisibility = function(selector, visible) {
       item.classList.add('hidden');
     }
   }
+};
+
+Scene.prototype.cancelLongTouch = () => {
+  clearTimeout(longTouchTimeout);
 };
 
 export default Scene;
