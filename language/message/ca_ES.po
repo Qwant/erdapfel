@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 12:25+0000\n"
+"POT-Creation-Date: 2020-09-15 07:31+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
@@ -1123,6 +1123,9 @@ msgstr "Torna als preferits"
 msgid "Back to list"
 msgstr "Torna a la llista"
 
+msgid "In partnership with"
+msgstr ""
+
 msgid "See more nearby services"
 msgstr ""
 
@@ -1147,10 +1150,13 @@ msgstr "en bici"
 msgid "Services nearby"
 msgstr "Serveis propers"
 
+msgid "No results found."
+msgstr ""
+
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 
-msgid "No results found. Please zoom out of the map."
+msgid "Please zoom out of the map."
 msgstr ""
 
 msgid "Search around my position"
@@ -1207,6 +1213,14 @@ msgid ""
 msgstr ""
 
 msgid "return"
+msgstr ""
+
+msgid ""
+"Check the spelling of your search or add more details, such as city or "
+"country."
+msgstr ""
+
+msgid "Try a new search query"
 msgstr ""
 
 msgid "Masq will be disabled"

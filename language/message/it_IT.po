@@ -4,16 +4,16 @@
 # Davide Donati <davide.donati@gmail.com>, 2019
 # Federico Montemaro <montemarostore@gmail.com>, 2019
 # MaximeEuziere <maxime.euziere@gmail.com>, 2020
-# Adrien Matissart, 2020
 # Noémie Lehuby <n.lehuby@qwant.com>, 2020
+# Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 12:25+0000\n"
+"POT-Creation-Date: 2020-09-15 07:31+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
+"Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1129,6 +1129,9 @@ msgstr "Torna ai preferiti"
 msgid "Back to list"
 msgstr "Torna alla lista"
 
+msgid "In partnership with"
+msgstr ""
+
 msgid "See more nearby services"
 msgstr ""
 
@@ -1153,12 +1156,15 @@ msgstr ""
 msgid "Services nearby"
 msgstr ""
 
+msgid "No results found."
+msgstr "Nessun risultato trovato."
+
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 "Si prega di ingrandire la mappa per vedere i risultati per questa categoria."
 
-msgid "No results found. Please zoom out of the map."
-msgstr "Nessun risultato trovato. Si prega di restringere la mappa."
+msgid "Please zoom out of the map."
+msgstr "Si prega di restringere la mappa."
 
 msgid "Search around my position"
 msgstr "Cerca intorno a me"
@@ -1215,6 +1221,14 @@ msgstr ""
 
 msgid "return"
 msgstr "ritorna"
+
+msgid ""
+"Check the spelling of your search or add more details, such as city or "
+"country."
+msgstr ""
+
+msgid "Try a new search query"
+msgstr ""
 
 msgid "Masq will be disabled"
 msgstr ""

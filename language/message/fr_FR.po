@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 12:25+0000\n"
+"POT-Creation-Date: 2020-09-15 07:31+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
@@ -1137,6 +1137,9 @@ msgstr "Retour aux favoris"
 msgid "Back to list"
 msgstr "Retour à la liste"
 
+msgid "In partnership with"
+msgstr "En partenariat avec"
+
 msgid "See more nearby services"
 msgstr "Afficher plus de services à proximité"
 
@@ -1161,11 +1164,14 @@ msgstr "à vélo"
 msgid "Services nearby"
 msgstr "Services à proximité"
 
+msgid "No results found."
+msgstr "Aucun résultat trouvé."
+
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Veuillez zoomer sur la zone pour voir des résultats."
 
-msgid "No results found. Please zoom out of the map."
-msgstr "Aucun résultat trouvé. Veuillez agrandir la zone de recherche."
+msgid "Please zoom out of the map."
+msgstr "Veuillez agrandir la zone de recherche."
 
 msgid "Search around my position"
 msgstr "Rechercher autour de moi"
@@ -1225,6 +1231,16 @@ msgstr ""
 
 msgid "return"
 msgstr "retour"
+
+msgid ""
+"Check the spelling of your search or add more details, such as city or "
+"country."
+msgstr ""
+"Vérifiez l’orthographe de votre recherche ou ajoutez plus de détails, tels "
+"que la ville ou le pays."
+
+msgid "Try a new search query"
+msgstr "Effectuer une nouvelle recherche"
 
 msgid "Masq will be disabled"
 msgstr "Masq sera bientôt désactivé"
