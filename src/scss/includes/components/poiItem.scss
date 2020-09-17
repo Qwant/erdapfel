@@ -30,8 +30,4 @@
     display: flex;
     align-items: center;
   }
-
-  .minimized:not(.panel--holding) & {
-    margin-bottom: 0;
-  }
 }
