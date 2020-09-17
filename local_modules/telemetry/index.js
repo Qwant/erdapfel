@@ -32,6 +32,7 @@ module.exports = {
     'poi_osm_favorite', // Favorite toggle
     'poi_osm_phone',
     'poi_osm_website',
+    'poi_osm_itinerary',
     /* Pages Jaunes Poi */
     'poi_pages_jaunes_open',
     'poi_pages_jaunes_go',
@@ -39,6 +40,7 @@ module.exports = {
     'poi_pages_jaunes_phone',
     'poi_pages_jaunes_website',
     'poi_pages_jaunes_reviews',
+    'poi_pages_jaunes_itinerary',
     /* Map */
     'localise_trigger',
     /* Covid-19 */

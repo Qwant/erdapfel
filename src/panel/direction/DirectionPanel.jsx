@@ -27,15 +27,7 @@ export default class DirectionPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    Telemetry.add(Telemetry.ITINERARY_OPEN,
-      props.poi && Telemetry.buildInteractionData({
-        id: props.poi.id,
-        source: props.poi.meta ? props.poi.meta.source : props.poi.name,
-        template: 'simple',
-        zone: 'detail',
-        element: 'itinerary',
-      })
-    );
+    Telemetry.add(Telemetry.ITINERARY_OPEN);
 
     this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
     if (this.props.isPublicTransportActive) {
