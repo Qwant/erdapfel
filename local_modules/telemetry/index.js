@@ -33,6 +33,8 @@ module.exports = {
     'poi_osm_phone',
     'poi_osm_website',
     'poi_osm_itinerary',
+    'poi_osm_osm_view',
+    'poi_osm_osm_edit',
     /* Pages Jaunes Poi */
     'poi_pages_jaunes_open',
     'poi_pages_jaunes_go',
