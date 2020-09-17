@@ -78,10 +78,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .poi_panel__action__direction {
     flex-grow: 1;
   }
-
-  .minimized:not(.panel--holding) & {
-    display: none;
-  }
 }
 
 .poi_panel__store_status__toggle:after {
@@ -258,6 +254,19 @@ $BLOCK_ICON_FONT_SIZE: 16px;
     }
   }
 
+  .poi_panel.minimized:not(.panel--holding) {
+    .poiItem {
+      margin-bottom: 0;
+
+      .openingHour {
+        display: none;
+      }
+    }
+
+    .poi_panel__actions {
+      display: none;
+    }
+  }
 }
 
 @import "./covid";
