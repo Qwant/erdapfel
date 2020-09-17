@@ -1,4 +1,3 @@
-/* global _ */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -46,7 +45,6 @@ class Panel extends React.Component {
     size: PropTypes.string,
     setSize: PropTypes.func,
     marginTop: PropTypes.number,
-    close: PropTypes.func,
     className: PropTypes.string,
     white: PropTypes.bool,
   }
@@ -195,7 +193,7 @@ class Panel extends React.Component {
   render() {
     const {
       children, title, minimizedTitle,
-      resizable, close, className, white, size } = this.props;
+      resizable, className, white, size, renderNav } = this.props;
     const { currentHeight, holding } = this.state;
 
     return (
@@ -211,27 +209,19 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            <Flex
+            {(isMobile || title) && <Flex
               justifyContent="space-between"
               className={classnames(
                 'panel-header',
                 { 'panel-resizeHandle': resizable && isMobile }
               )}
-              onClick={() => isMobile && this.handleHeaderClick()}
+              onClick={this.handleHeaderClick}
             >
               {resizable && isMobile && size === 'minimized' && minimizedTitle
                 ? <span className="minimizedTitle">{minimizedTitle}</span>
                 : title}
-              {close &&
-              <Flex
-                justifyContent="center"
-                className="panel-close"
-                title={_('Close')}
-                onClick={e => {e.stopPropagation(); close(e);}}
-              >
-                <i className="icon-x" />
-              </Flex>}
-            </Flex>
+            </Flex>}
+            {renderNav}
             <div
               className="panel-content"
               ref={this.panelContentRef}

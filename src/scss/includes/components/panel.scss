@@ -15,7 +15,7 @@
 
   &-header {
     padding: 0 15px;
-    min-height: 40px;
+    min-height: 30px;
     color: #5c6f84;
     span {
       width: 100%;
@@ -91,7 +91,7 @@
 
     &-content {
       max-height: none;
-      height: calc(100% - 50px);
+      height: 100%;
       overflow: hidden;
     }
 
@@ -101,14 +101,13 @@
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      min-height: 50px;
       width: 100%;
       cursor: -webkit-grab;
       cursor: grab;
       position: relative;
 
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         top: 8px;
         left: 50%;
