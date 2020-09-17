@@ -14,12 +14,14 @@
   width: $panel_width;
 
   &-header {
-    padding: 0 15px;
-    min-height: 30px;
-    color: #5c6f84;
-    span {
-      width: 100%;
-    }
+    pointer-events: all;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: -webkit-grab;
+    cursor: grab;
+    text-align: center;
   }
 
   &-close {
@@ -35,13 +37,6 @@
     &:hover {
       color: $primary_text;
     }
-  }
-
-  &-content {
-    // 172 = top UI margin + top bar height + top bar margin + panel header + bottom UI margin
-    max-height: calc(100vh - 172px);
-    overflow-y: auto;
-    scrollbar-width: thin;
   }
 }
 
@@ -83,40 +78,17 @@
 
     &.minimized {
       height: 50px;
-
-      .minimizedTitle {
-        text-align: center;
+      .panel-header {
+        min-height: 50px;
       }
-    }
-
-    &-content {
-      max-height: none;
-      height: 100%;
-      overflow: hidden;
     }
 
     .panel-resizeHandle {
-      pointer-events: all;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      width: 100%;
-      cursor: -webkit-grab;
-      cursor: grab;
-      position: relative;
-
-      &:before {
-        content: "";
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        width: 40px;
-        height: 5px;
-        transform: translateX(-50%);
-        border-radius: 2.5px;
-        background-color: #e0e1e6;
-      }
+      width: 40px;
+      height: 5px;
+      margin: 4px auto;
+      border-radius: 2.5px;
+      background-color: #e0e1e6;
     }
   }
 }

@@ -246,7 +246,7 @@ export default class PoiPanel extends React.Component {
             !isFromFavorite &&
             (!poiFilters || !poiFilters.category),
           })}
-          renderNav={!isMobile && backAction !== this.closeAction &&
+          renderHeader={!isMobile && backAction !== this.closeAction &&
             <PanelNav
               isMobile={isMobile}
               onGoBack={backAction}

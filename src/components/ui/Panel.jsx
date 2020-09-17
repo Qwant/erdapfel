@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
-import Flex from 'src/components/ui/Flex';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
@@ -39,7 +38,6 @@ function getTargetSize(previousSize, startHeight, endHeight, maxSize) {
 class Panel extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-    title: PropTypes.node,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
     size: PropTypes.string,
@@ -192,8 +190,8 @@ class Panel extends React.Component {
 
   render() {
     const {
-      children, title, minimizedTitle,
-      resizable, className, white, size, renderNav } = this.props;
+      children, minimizedTitle,
+      resizable, className, white, size, renderHeader } = this.props;
     const { currentHeight, holding } = this.state;
 
     return (
@@ -209,19 +207,17 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            {(isMobile || title) && <Flex
-              justifyContent="space-between"
-              className={classnames(
-                'panel-header',
-                { 'panel-resizeHandle': resizable && isMobile }
-              )}
-              onClick={this.handleHeaderClick}
-            >
-              {resizable && isMobile && size === 'minimized' && minimizedTitle
-                ? <span className="minimizedTitle">{minimizedTitle}</span>
-                : title}
-            </Flex>}
-            {renderNav}
+            {isMobile &&
+              <div
+                className="panel-header"
+                onClick={() => this.handleHeaderClick()}
+              >
+                {resizable && isMobile && <div className="panel-resizeHandle"/>}
+                {resizable && isMobile && size === 'minimized' && minimizedTitle
+                && <span className="minimizedTitle u-text--subtitle">{minimizedTitle}</span>}
+              </div>
+            }
+            {size !== 'minimized' && renderHeader}
             <div
               className="panel-content"
               ref={this.panelContentRef}

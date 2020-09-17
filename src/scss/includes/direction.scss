@@ -12,6 +12,7 @@
 .itinerary_title {
   text-align: center;
   width: 100%;
+  padding: 8px 0;
 }
 
 .itinerary__field__clear {
@@ -700,21 +701,15 @@ button.direction_shortcut {
       max-height: 50%;
     }
 
-    .panel-header {
-      min-height: 24px;
-    }
-
     &.maximized {
       height: calc(100% - 160px);
       max-height: none;
 
       .panel-header {
         padding-top: 9px;
-        height: auto;
       }
     }
   }
-
 
   .itinerary_result .itemList-item {
     overflow: hidden;

@@ -5,10 +5,6 @@
   @include card_shadow();
   @include card_radius();
   padding: 20px 14px 12px;
-
-  .panel-header {
-    display: none;
-  }
 }
 
 .service_panel__categories,
@@ -36,23 +32,6 @@
     hr {
       border-top: 1px solid #e0e1e6;
       margin-bottom: 20px;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: center;
-      color: $grey-semi-darkness;
-    }
-  }
-
-  .service_panel:not(.minimized) {
-    .panel-resizeHandle {
-      height: 30px;
-      min-height: auto;
-    }
-
-    .panel-content {
-      height: calc(100% - 30px);
     }
   }
 
