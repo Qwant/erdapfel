@@ -11,6 +11,7 @@ const fakePbf = require('./middlewares/fake_pbf/index');
 const compression = require('compression');
 const mapStyle = require('./middlewares/map_style');
 const getReqSerializer = require('./serializers/request');
+const reactSSR = require('./SSR/reactSSR');
 
 const app = express();
 const promRegistry = new promClient.Registry();
@@ -116,7 +117,14 @@ function App(config) {
       appConfig = JSON.parse(JSON.stringify(config));
       appConfig.burgerMenu.enabled = false;
     }
-    res.render('index', { config: appConfig });
+    res.render('index', { config: appConfig }, (_err, html) => {
+      res.send(reactSSR(html, {
+        config: appConfig,
+        i18n: {
+          _: res.locals._,
+        },
+      }));
+    });
   });
 
   if (config.server.acceptPostedLogs) {
