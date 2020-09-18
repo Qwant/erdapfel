@@ -26,6 +26,7 @@ module.exports = {
     'poi_backtolist',
     'poi_restore',
     'poi_share',
+    'poi_share_to',
     /* OSM */
     'poi_osm_open',
     'poi_osm_go',

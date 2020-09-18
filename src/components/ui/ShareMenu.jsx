@@ -17,6 +17,11 @@ export default class ShareMenu extends React.Component {
     url: PropTypes.string.isRequired,
     scrollableParent: PropTypes.string,
     children: PropTypes.func.isRequired,
+    onShare: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onShare: () => {},
   }
 
   state = {
@@ -90,6 +95,7 @@ export default class ShareMenu extends React.Component {
         <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
           e.nativeEvent.stopImmediatePropagation();
           this.copy(url);
+          this.props.onShare('copy');
         }}>
           <i className="icon-copy" />
           {
@@ -103,6 +109,7 @@ export default class ShareMenu extends React.Component {
 
         <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={() => {
           this.openPopup(facebookShareUrl(url));
+          this.props.onShare('facebook');
         }}>
           <i className="icon-facebook" />
           {_('Facebook', 'share')}
@@ -110,6 +117,7 @@ export default class ShareMenu extends React.Component {
 
         <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={() => {
           this.openPopup(twitterShareUrl(url));
+          this.props.onShare('twitter');
         }}>
           <i className="icon-twitter" />
           {_('Twitter', 'share')}
