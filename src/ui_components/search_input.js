@@ -50,7 +50,8 @@ export default class SearchInput {
       window.app.navigateTo('/');
     };
 
-    window.submitSearch = () => {
+    window.submitSearch = e => {
+      e.preventDefault();
       Telemetry.add(Telemetry.SUGGEST_SUBMIT);
       if (window.__searchInput.searchInputHandle.value.length > 0) {
         this.executeSearch(window.__searchInput.searchInputHandle.value);

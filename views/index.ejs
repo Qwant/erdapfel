@@ -38,7 +38,14 @@
     <div id="react_root"></div>
     <div class="react_modal__container"></div>
     <div class="top_bar"></div>
-    <script>window.times = {init : Date.now()}</script>
+    <script>
+      window.times = { init : Date.now() };
+      // Temp: global functions attached to SSRed TopBar, until we use hydration
+      document.querySelector('.search_form__return').onmousedown = event => clearSearch(event, true);
+      document.querySelector('#clear_button_desktop').onmousedown = event => clearSearch(event);
+      document.querySelector('#clear_button_mobile').onmousedown = event => clearSearch(event);
+      document.querySelector('.search_form__action').onclick = event => submitSearch(event);
+    </script>
     <script src="./statics/build/javascript/bundle.js"></script>
     <noscript><%= _('JavaScript is required to view this application.') %></noscript>
   </body>

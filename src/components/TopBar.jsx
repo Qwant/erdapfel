@@ -10,23 +10,25 @@ const TopBar = ({ i18n, config }) => {
       <div className="search_form__logo" />
       <div id="react_menu__container" />
       <div className="search_form__wrapper empty">
-        <div
-          className="search_form__return icon-arrow-left"
-          onMouseDown="clearSearch(event, true)"
-        />
+        <div className="search_form__return icon-arrow-left" />
         <input
-          id="search" className="search_form__input"
-          type="search" spellCheck="false" required autoComplete="off"
+          id="search"
+          className="search_form__input"
+          type="search"
+          spellCheck="false"
+          required
+          autoComplete="off"
           placeholder={_('Search on Qwant Maps')}
         />
         <button
-          id="clear_button_mobile" className="search_form__clear icon-x"
-          type="button"
-          onMouseDown="clearSearch(event)" />
+          id="clear_button_mobile"
+          className="search_form__clear icon-x"
+          type="button" />
         <input
           className="search_form__action"
-          type="submit" value="" title={_('Search')}
-          onClick="submitSearch()"
+          type="submit"
+          value=""
+          title={_('Search')}
         />
       </div>
       {config.direction.enabled && <>
@@ -36,7 +38,7 @@ const TopBar = ({ i18n, config }) => {
         <button
           id="clear_button_desktop" className="search_form__clear icon-x"
           type="button"
-          onMouseDown="clearSearch(event)" />
+        />
       </>}
     </form>
     <div className="search_form__result" />
