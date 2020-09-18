@@ -209,10 +209,10 @@ class Panel extends React.Component {
           >
             {isMobile &&
               <div
-                className="panel-header"
+                className="panel-drawer"
                 onClick={() => this.handleHeaderClick()}
               >
-                {resizable && isMobile && <div className="panel-resizeHandle"/>}
+                {resizable && isMobile && <div className="panel-handle"/>}
                 {resizable && isMobile && size === 'minimized' && minimizedTitle
                 && <span className="minimizedTitle u-text--subtitle">{minimizedTitle}</span>}
               </div>

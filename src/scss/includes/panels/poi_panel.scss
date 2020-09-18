@@ -219,7 +219,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .poi_panel.panel {
     &.default, &.minimized {
       height: auto;
-      .panel-header {
+      .panel-drawer {
         min-height: inherit;
       }
     }
