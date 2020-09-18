@@ -1,3 +1,6 @@
+require('@babel/register');
+require('@babel/polyfill');
+
 const config = require('./integration/test_config');
 
 module.exports = {
