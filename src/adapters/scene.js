@@ -20,8 +20,8 @@ import { fire, listen } from 'src/libs/customEvents';
 import locale from '../mapbox/locale';
 
 const baseUrl = nconf.get().system.baseUrl;
-
 const store = new LocalStore();
+const LONG_TOUCH_DELAY_MS = 500;
 
 function Scene() {
   this.currentMarker = null;
@@ -145,11 +145,41 @@ Scene.prototype.initMapBox = function() {
       }, this.DOUBLE_TAP_DELAY_MS);
     });
 
-    if (isMobileDevice()) {
-      this.mb.on('contextmenu', e => {
-        this.clickOnMap(e.lngLat, null, { longTouch: true });
-      });
-    }
+    // Long touch polyfill (for mobile devices and touch screens)
+    // Custom implementation because the contextmenu event isn't supported by MapBox.
+    // Long touch is initiated on touchstart event, and canceled if a move, gesture or touchend occurs before 500ms.
+    // Sources:
+    // https://stackoverflow.com/a/1943768 (explanation of 500ms delay)
+    // https://stackoverflow.com/a/54746189 (polyfill implementation also using the 500ms delay)
+
+    let longTouchTimeout = null;
+    this.mb.on('touchstart', e => {
+      if (e.originalEvent.touches.length === 1) {
+        longTouchTimeout = setTimeout(() => {
+          this.clickOnMap(e.lngLat, null, { longTouch: true });
+        }, LONG_TOUCH_DELAY_MS);
+      }
+    });
+
+    const longTouchCancellingEvents = [
+      'touchend',
+      'touchcancel',
+      'touchmove',
+      'pointerdrag',
+      'pointermove',
+      'moveend',
+      'gesturestart',
+      'gesturechange',
+      'gestureend',
+    ];
+
+    const cancelLongTouch = () => {
+      clearTimeout(longTouchTimeout);
+    };
+
+    longTouchCancellingEvents.forEach(event => {
+      this.mb.on(event, cancelLongTouch);
+    });
 
     this.mb.on('dragstart', () => { fire('map_user_interaction'); });
     this.mb.on('pitchstart', () => { fire('map_user_interaction'); });
