@@ -207,13 +207,13 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            {isMobile &&
+            {isMobile && resizable &&
               <div
                 className="panel-drawer"
                 onClick={() => this.handleHeaderClick()}
               >
-                {resizable && isMobile && <div className="panel-handle"/>}
-                {resizable && isMobile && size === 'minimized' && minimizedTitle
+                {<div className="panel-handle"/>}
+                {size === 'minimized' && minimizedTitle
                 && <span className="minimizedTitle u-text--subtitle">{minimizedTitle}</span>}
               </div>
             }
