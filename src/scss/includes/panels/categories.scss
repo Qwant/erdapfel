@@ -43,6 +43,10 @@
 }
 
 @media (max-width: 640px) {
+  .category__panel__pj {
+    height: 20px;
+  }
+
   .category__panel {
     position: absolute;
     width: 100vw;
