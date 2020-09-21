@@ -212,7 +212,7 @@ class Panel extends React.Component {
                 className="panel-drawer"
                 onClick={() => this.handleHeaderClick()}
               >
-                {<div className="panel-handle"/>}
+                <div className="panel-handle"/>
                 {size === 'minimized' && minimizedTitle
                 && <span className="minimizedTitle u-text--subtitle">{minimizedTitle}</span>}
               </div>
