@@ -18,6 +18,7 @@ $bottom-margin: 40;
   flex-direction: column;
 
   &-drawer {
+    height: 20px;
     pointer-events: all;
     -moz-user-select: none;
     -webkit-user-select: none;
