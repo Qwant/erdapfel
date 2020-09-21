@@ -50,16 +50,16 @@ export default class FavoritesPanel extends React.Component {
 
     const { favoritePois, isLoggedIn } = this.state;
 
-    const header = <React.Fragment>
+    const header = <div className="u-text--smallTitle u-mt-8 u-center">
       {favoritePois.length === 0
         ? _('Favorite places', 'favorite panel')
         : _('My favorites', 'favorite panel')}
       {isLoggedIn && <div className="icon-masq_dark favorite_panel__masq_icon" />}
-    </React.Fragment>;
+    </div>;
 
     return <Panel
       resizable
-      title={header}
+      renderHeader={header}
       minimizedTitle={_('Show favorites', 'favorite panel')}
       close={this.close}
       className="favorite_panel"
