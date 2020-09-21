@@ -12,7 +12,6 @@
 .itinerary_title {
   text-align: center;
   width: 100%;
-  padding: 8px 0;
 }
 
 .itinerary__field__clear {
@@ -601,6 +600,12 @@ button.direction_shortcut {
 
 .direction_panel_mobile .autocomplete_suggestions {
   @include long_shadow();
+}
+
+@media (min-width: 641px) {
+  .itinerary_title {
+    margin-top: 8px;
+  }
 }
 
 /* Mobile */

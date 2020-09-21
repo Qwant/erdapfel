@@ -50,7 +50,7 @@ export default class FavoritesPanel extends React.Component {
 
     const { favoritePois, isLoggedIn } = this.state;
 
-    const header = <div className="u-text--smallTitle u-mt-8 u-center">
+    const header = <div className="favorite-header u-text--smallTitle u-center">
       {favoritePois.length === 0
         ? _('Favorite places', 'favorite panel')
         : _('My favorites', 'favorite panel')}

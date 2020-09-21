@@ -1,5 +1,12 @@
 $MASQ_BANNER_HEIGHT: 93px;
 
+
+@media (min-width: 641px){
+  .favorite-header {
+    margin: 8px 0;
+  }
+}
+
 .favorite_panel__show_list {
   display: none;
 }
