@@ -1,3 +1,5 @@
+$bottom-margin: 40;
+
 .panel-hidden {
   .panel:not(.direction_panel) {
     display: none;
@@ -12,6 +14,8 @@
   @include panel_radius();
   background-color: white;
   width: $panel_width;
+  display: flex;
+  flex-direction: column;
 
   &-drawer {
     pointer-events: all;
@@ -40,13 +44,26 @@
   }
 }
 
+@media (min-width: 641px) {
+  .panel {
+    max-height: calc(100vh - (92px + 40px)); // 92px is panel.getBoundingClientRect().top
+
+    &-header {
+      flex-shrink: 0;
+    }
+
+    &-content {
+      overflow-y: auto;
+    }
+  }
+
+}
+
 @media (max-width: 640px) {
   .panel {
     width: 100vw;
     height: 50%;
     position: absolute;
-    display: flex;
-    flex-direction: column;
     background: #f4f6fa;
     border-radius: 12px 12px 0 0;
     bottom: 0;

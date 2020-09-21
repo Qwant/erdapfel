@@ -217,7 +217,7 @@ class Panel extends React.Component {
                 && <span className="minimizedTitle u-text--subtitle">{minimizedTitle}</span>}
               </div>
             }
-            {size !== 'minimized' && renderHeader}
+            {size !== 'minimized' && <div className="panel-header">{renderHeader}</div>}
             <div
               className="panel-content"
               ref={this.panelContentRef}
