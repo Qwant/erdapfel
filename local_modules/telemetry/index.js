@@ -22,6 +22,8 @@ module.exports = {
     'itinerary_mode_walking',
     'itinerary_mode_cycling',
     'itinerary_mode_publictransport',
+    'itinerary_route_select',
+    'itinerary_route_toggle_details',
     /* Poi */
     'poi_category_open',
     'poi_backtofavorite',
