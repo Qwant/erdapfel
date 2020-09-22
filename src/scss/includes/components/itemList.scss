@@ -1,13 +1,5 @@
 .itemList-item {
   background: $background;
-
-  &:not(:last-child):after {
-    display: block;
-    content: '';
-    height: 1px;
-    margin: 0 30px;
-    background-color: $separator_color;
-  }
 }
 
 .itemList--hover .itemList-item {
@@ -27,16 +19,17 @@
 }
 
 @media (max-width: 640px) {
+  .panel--pj .itemList {
+    padding-bottom: 36px;
+  }
+
   .itemList {
     padding-bottom: 12px;
-    margin: 0 15px;
+    margin: 0;
   }
 
   .itemList-item {
-    margin: 8px 0;
-    @include card_shadow();
-    @include card_radius();
-
+    margin: 0;
     &:not(:last-child):after {
       display: none;
     }

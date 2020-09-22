@@ -52,6 +52,11 @@ $bottom-margin: 40px;
   .panel {
     max-height: calc(100vh - (92px + #{$bottom-margin})); // 92px is panel.getBoundingClientRect().top
 
+    &.panel--pj {
+      max-height: calc(100vh - (92px + 40px + 36px));
+      border-radius: 12px 12px 0 0;
+    }
+
     &-header {
       flex-shrink: 0;
     }

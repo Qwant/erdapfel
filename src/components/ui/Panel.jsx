@@ -50,6 +50,7 @@ class Panel extends React.Component {
     marginTop: PropTypes.number,
     className: PropTypes.string,
     white: PropTypes.bool,
+    dataSource: PropTypes.string,
   }
 
   static defaultProps = {
@@ -258,6 +259,7 @@ class Panel extends React.Component {
             className={classnames('panel', size, className, {
               'panel--white': white,
               'panel--holding': holding,
+              'panel--pj': dataSource === 'pages_jaunes',
             })}
             style={isMobile ?
               {

@@ -159,9 +159,10 @@ export default class CategoryPanel extends React.Component {
 
     return <Panel
       resizable
-      renderHeader={<CategoryPanelHeader dataSource={dataSource} loading={initialLoading} />}
+      renderHeader=""
       minimizedTitle={_('Unfold to show the results', 'categories')}
       className="category__panel"
+      dataSource={dataSource}
     >
       {panelContent}
 
