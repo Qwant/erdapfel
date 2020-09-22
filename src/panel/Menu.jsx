@@ -5,6 +5,7 @@ import { menu as menuItems } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MenuItem from './menu/MenuItem';
 import MenuButton from './menu/MenuButton';
+import Telemetry from 'src/libs/telemetry';
 
 const isDirectionActive = nconf.get().direction.enabled;
 
@@ -25,6 +26,7 @@ export default class Menu extends React.Component {
   }
 
   open = () => {
+    Telemetry.add(Telemetry.MENU_CLICK);
     this.setState({ isOpen: true });
   }
 
@@ -65,12 +67,18 @@ export default class Menu extends React.Component {
                 <span>{_('Search', 'menu')}</span>
               </button>
               {isDirectionActive &&
-                <button className="menu__panel__action" onClick={() => { this.navTo('/routes/'); }}>
+                <button className="menu__panel__action" onClick={() => {
+                  Telemetry.add(Telemetry.MENU_ITINERARY);
+                  this.navTo('/routes/');
+                }}>
                   <i className="menu__panel__action__icon icon-corner-up-right" />
                   <span>{_('Directions', 'menu')}</span>
                 </button>
               }
-              <button className="menu__panel__action" onClick={() => { this.navTo('/favs/'); }}>
+              <button className="menu__panel__action" onClick={() => {
+                Telemetry.add(Telemetry.MENU_FAVORITE);
+                this.navTo('/favs/');
+              }}>
                 <i className="menu__panel__action__icon icon-icon_star" />
                 <span>{_('Favorites', 'menu')}</span>
               </button>

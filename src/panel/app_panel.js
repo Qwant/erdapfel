@@ -35,7 +35,10 @@ export default class App {
 
     const directionShortcut = document.querySelector('.search_form__direction_shortcut');
     if (directionShortcut) {
-      directionShortcut.addEventListener('click', () => { this.navigateTo('/routes'); });
+      directionShortcut.addEventListener('click', () => {
+        Telemetry.add(Telemetry.HOME_ITINERARY);
+        this.navigateTo('/routes');
+      });
     }
 
     ReactDOM.render(
