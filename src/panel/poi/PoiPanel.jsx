@@ -163,13 +163,7 @@ export default class PoiPanel extends React.Component {
 
   openDirection = () => {
     const poi = this.getBestPoi();
-    Telemetry.sendPoiEvent(poi, 'itinerary', Telemetry.buildInteractionData({
-      id: poi.id,
-      source: poi.meta?.source,
-      template: 'single',
-      zone: 'detail',
-      element: 'itinerary',
-    }));
+    Telemetry.sendPoiEvent(poi, 'itinerary');
     window.app.navigateTo('/routes/', { poi });
   }
 
