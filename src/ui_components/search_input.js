@@ -1,5 +1,6 @@
 
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
+import Telemetry from 'src/libs/telemetry';
 
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
@@ -29,6 +30,7 @@ export default class SearchInput {
 
     window.clearSearch = (e, blur = false) => {
       e.preventDefault(); // Prevent losing focus
+      Telemetry.add(Telemetry.SUGGEST_CLEAR);
       const inputElement = document.querySelector(tagSelector);
       const isInputFocused = document.activeElement === inputElement;
       inputElement.value = '';
@@ -49,6 +51,7 @@ export default class SearchInput {
     };
 
     window.submitSearch = () => {
+      Telemetry.add(Telemetry.SUGGEST_SUBMIT);
       if (window.__searchInput.searchInputHandle.value.length > 0) {
         this.executeSearch(window.__searchInput.searchInputHandle.value);
       }

@@ -1,7 +1,7 @@
 import ExtendedScaleControl from './extended_scale_control';
 import ExtendedAttributionControl from './extended_attribution_control';
-
 import GeolocControl from './extended_geolocate_control';
+import Telemetry from 'src/libs/telemetry';
 
 export default class ExtendedControl {
   constructor() {
@@ -14,13 +14,19 @@ export default class ExtendedControl {
     this._zoomInButton = this._createButton(
       buttonClass,
       'Zoom +',
-      () => this._map.zoomIn()
+      () => {
+        Telemetry.add(Telemetry.MAP_ZOOM_IN);
+        this._map.zoomIn();
+      }
     );
 
     this._zoomOutButton = this._createButton(
       'icon-minus map_control_group__button__zoom',
       'Zoom -',
-      () => this._map.zoomOut(),
+      () => {
+        Telemetry.add(Telemetry.MAP_ZOOM_OUT);
+        this._map.zoomOut();
+      },
     );
 
     const compassClass = 'map_control_group__button__compass';
@@ -31,6 +37,7 @@ export default class ExtendedControl {
       'direction_shortcut hidden',
       'direction',
       () => {
+        Telemetry.add(Telemetry.MAP_ITINERARY);
         window.app.navigateTo('/routes');
       }
     );

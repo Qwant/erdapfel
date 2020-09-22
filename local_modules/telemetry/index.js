@@ -4,6 +4,8 @@ module.exports = {
     'app_start',
     /* Suggest*/
     'suggest_selection',
+    'suggest_submit',
+    'suggest_clear',
     /* Favorite */
     'favorite_open',
     'favorite_close',
@@ -46,5 +48,16 @@ module.exports = {
     'covid_caresteouvert_contribute',
     /* Perfs */
     'perf_map_first_render',
+    /* map actions buttons */
+    'map_zoom_in',
+    'map_zoom_out',
+    'map_itinerary',
+    /* Menu and sidebar */
+    'menu_click',
+    'menu_itinerary',
+    'menu_favorite',
+    /* Homepage */
+    'home_itinerary',
+    'home_category',
   ],
 };
