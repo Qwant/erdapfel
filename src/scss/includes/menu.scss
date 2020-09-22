@@ -147,10 +147,6 @@
   width: 100%;
   height: 100%;
 
-  .masqAvatar-letter {
-    font-size: 35px;
-  }
-
   &__line {
     width: 18px;
     height: 2px;
@@ -172,10 +168,6 @@
     height: $top_bar_height;
     border-radius: 50%;
     @include long_shadow();
-
-    .masqAvatar-letter {
-      font-size: 55px;
-    }
 
     &__line {
       margin: 2px auto;
