@@ -41,19 +41,6 @@ module.exports = {
     'poi_pages_jaunes_reviews',
     /* Map */
     'localise_trigger',
-    /* Masq */
-    'masq_activated',
-    'masq_banner_click',
-    'masq_banner_close',
-    'masq_menu_activate',
-    'masq_menu_desactivate',
-    'masq_menu_onboarding',
-    'masq_menu_open',
-    'masq_onboarding_activate',
-    'masq_add_poi_modal_activate',
-    'masq_add_poi_modal_onboarding',
-    'masq_put',
-    'masq_del',
     /* Covid-19 */
     'covid_caresteouvert_link',
     'covid_caresteouvert_contribute',
