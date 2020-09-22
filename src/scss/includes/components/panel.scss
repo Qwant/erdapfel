@@ -66,8 +66,7 @@ $bottom-margin: 40px;
 @media (max-width: 640px) {
   .panel {
     width: 100vw;
-    height: 50%;
-    position: absolute;
+    position: fixed;
     background: #f4f6fa;
     border-radius: 12px 12px 0 0;
     bottom: 0;
@@ -81,7 +80,7 @@ $bottom-margin: 40px;
     }
 
     &:not(.panel--holding) {
-      transition: height 0.2s ease-in-out;
+      transition: transform 0.2s ease-in-out;
 
       &.maximized {
         box-shadow: none;
@@ -90,15 +89,12 @@ $bottom-margin: 40px;
 
     &.maximized {
       border-radius: 0;
-      height: calc(100% - #{$top_bar_height});
-
       .panel-content {
         overflow: auto;
       }
     }
 
     &.minimized {
-      height: 50px;
       .panel-drawer {
         min-height: 50px;
       }

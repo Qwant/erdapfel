@@ -699,23 +699,6 @@ button.direction_shortcut {
     background-color: transparent;
   }
 
-  .panel.directionResult_panel {
-    height: auto;
-
-    &:not(.panel--holding) {
-      max-height: 50%;
-    }
-
-    &.maximized {
-      height: calc(100% - 160px);
-      max-height: none;
-
-      .panel-drawer {
-        padding-top: 9px;
-      }
-    }
-  }
-
   .itinerary_result .itemList-item {
     overflow: hidden;
   }
