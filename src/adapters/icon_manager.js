@@ -65,7 +65,7 @@ export default class IconManager {
   }
 }
 
-export function createIcon(iconOptions, name, hoverEffect = false) {
+export function createIcon(iconOptions) {
   const icon = IconManager.get(iconOptions);
 
   // Show a white circle instead of marker2 in map markers of PoI that have no class or subclass.
@@ -75,8 +75,11 @@ export function createIcon(iconOptions, name, hoverEffect = false) {
 
   const element = document.createElement('div');
   element.innerHTML = `
-    <div class="marker">
-      <div class="marker-container${hoverEffect ? ' poi-hoverable' : ''}">
+    <div
+      class="marker ${iconOptions.className || ''}"
+      ${iconOptions.disablePointerEvents && 'style="pointer-events:none;"'}
+    >
+      <div class="marker-container">
         <i class="icon icon-${icon.iconClass}"></i>
       </div>
     </div>
@@ -84,4 +87,11 @@ export function createIcon(iconOptions, name, hoverEffect = false) {
   return element.firstElementChild;
 }
 
-window.IconManager = IconManager;
+export function createMapGLIcon(imageFile, width, height) {
+  return new Promise((resolve, reject) => {
+    const img = new Image(width, height);
+    img.onload = () => { resolve(img); };
+    img.onerror = reject;
+    img.src = imageFile;
+  });
+}

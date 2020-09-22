@@ -123,6 +123,9 @@ Scene.prototype.initMapBox = function() {
     // which are thrown *after* two separate click events are thrown
     this.clickDelayHandler = null;
     this.mb.on('click', e => {
+      if (e.originalEvent.cancelBubble) {
+        return;
+      }
       // cancel the previous click handler if it's still pending
       clearTimeout(this.clickDelayHandler);
       // if this is a real mouse double-click, we can simply return here
