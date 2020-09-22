@@ -242,6 +242,7 @@ export default class PoiPanel extends React.Component {
         <Panel
           white
           resizable
+          fitContent
           className={classnames('poi_panel', {
             'poi_panel--empty-header':
             !isFromPagesJaunes(poi) &&

@@ -14,6 +14,9 @@ const getEventClientY = event => event.changedTouches
 const SWIPE_THRESHOLD_PX = 50;
 // Pixel threshold from the bottom or top of the viewport to span to min or max
 const MIN_MAX_THRESHOLD_PX = 75;
+const DEFAULT_SIZE = 250;
+const DEFAULT_MINIMIZED_SIZE = 50;
+const FIT_CONTENT_PADDING = 20;
 
 function getTargetSize(previousSize, startHeight, endHeight, maxSize) {
   let size = previousSize;
@@ -41,6 +44,7 @@ class Panel extends React.Component {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
+    fitContent: PropTypes.bool,
     size: PropTypes.string,
     setSize: PropTypes.func,
     marginTop: PropTypes.number,
@@ -50,30 +54,54 @@ class Panel extends React.Component {
 
   static defaultProps = {
     size: 'default',
-    marginTop: 50, // default top bar size
+    marginTop: 64, // default top bar size,
   }
 
   constructor(props) {
     super(props);
+    const { marginTop } = this.props;
+
+    this.startClientY = 0; // Y coordinate where finger started to touch panel
+    this.startClientYOffset = 0; // offset between finger and top of panel
+    this.startHeight = 0; // panel height when finger touches panel area
+    this.stopHeight = 0; // panel height when finger releases
     this.panelContentRef = React.createRef();
     this.state = {
       holding: false,
-      currentHeight: null,
+      height: window.innerHeight - marginTop,
+      translateY: window.innerHeight - marginTop - DEFAULT_SIZE,
     };
   }
 
   componentDidMount() {
     this.updateMobileMapUI();
     this.defaultHeight = this.panelDOMElement.offsetHeight;
+    window.addEventListener('resize', this.handleViewportResize);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(_, prevState) {
+    const { fitContent, size } = this.props;
+    const { holding } = this.state;
     this.updateMobileMapUI();
+
+    if (fitContent && !holding && size !== 'maximized' ||
+        this.state.height !== prevState.height) {
+      // Resize panel according to content height
+      const translateY = this.getTranslateY(size);
+      if (translateY !== this.state.translateY) {
+        this.setState({ translateY });
+      }
+    }
   }
 
   componentWillUnmount() {
     this.updateMobileMapUI(0);
     this.removeListeners();
+    window.removeEventListener('resize', this.handleViewportResize);
+  }
+
+  handleViewportResize = () => {
+    this.setState({ height: window.innerHeight - this.props.marginTop });
   }
 
   updateMobileMapUI = (height = this.panelDOMElement.offsetHeight) => {
@@ -104,18 +132,21 @@ class Panel extends React.Component {
   }
 
   startResize = event => {
-    this.startHeight = this.panelDOMElement.offsetHeight;
+    const rect = this.panelDOMElement.getBoundingClientRect();
     this.startClientY = getEventClientY(event.nativeEvent);
+    this.startClientYOffset = this.startClientY - rect.top;
+    this.startHeight = window.innerHeight - rect.top;
 
     this.removeListeners();
 
     if (event.type === 'touchstart') {
-      document.addEventListener('touchmove', this.move);
+      // Workaround for https://bugs.chromium.org/p/chromium/issues/detail?id=1123304
+      document.addEventListener('touchmove', this.move, { passive: false });
     } else {
       document.addEventListener('mousemove', this.move);
     }
 
-    this.setState({ currentHeight: this.startHeight });
+    this.setState({ holding: true });
   }
 
   /**
@@ -124,60 +155,86 @@ class Panel extends React.Component {
   */
   move = event => {
     const clientY = getEventClientY(event);
-    const currentHeight = this.startHeight + (this.startClientY - clientY);
+    const visibleHeight = Math.ceil(window.innerHeight - clientY + this.startClientYOffset);
+    const { scrollTop } = this.panelContentRef.current;
 
-    if (this.props.size === 'maximized' &&
-        this.panelContentRef.current.scrollTop > 0) {
-      /* User is scrolling inside the panel content,
-         update startClientY to ignore current swipe gesture */
+    if (this.state.translateY === 0 &&
+        this.props.size === 'maximized' &&
+        scrollTop === 0 &&
+        visibleHeight >= this.startHeight) {
+      /* User is starting to scroll content area from bottom to top
+       * Do not prevent default */
+      return;
+    }
+
+    if (this.state.translateY === 0 &&
+        this.props.size === 'maximized' && scrollTop > 0) {
+      /* User is already scrolling inside the panel content.
+       * Update startClientY to ignore current swipe gesture */
+      const rect = this.panelDOMElement.getBoundingClientRect();
       this.startClientY = clientY;
+      this.stopHeight = window.innerHeight - rect.top;
+      this.startClientYOffset = clientY - rect.top;
       return;
     }
 
-    if (this.props.size === 'maximized' &&
-        this.panelContentRef.current.scrollTop === 0 &&
-        currentHeight >= this.state.currentHeight) {
-      // User is starting to scroll content area from bottom to top, do nothing
-      return;
-    }
+    event.preventDefault();
 
-    this.setState({ currentHeight, holding: true });
+    const translateY = visibleHeight >= this.state.height
+      ? 0 // Prevent panel to be moved above the top bar
+      : this.state.height - visibleHeight;
+
+    this.setState({ translateY });
+  }
+
+  getTranslateY(size) {
+    const { fitContent } = this.props;
+    const { height } = this.state;
+    const panelHeight = this.panelContentRef.current.offsetHeight;
+    const values = {
+      'default': height - (fitContent
+        ? panelHeight + FIT_CONTENT_PADDING
+        : DEFAULT_SIZE),
+      'minimized': height - (fitContent
+        ? panelHeight + FIT_CONTENT_PADDING
+        : DEFAULT_MINIMIZED_SIZE),
+      'maximized': 0,
+    };
+
+    return values[size];
   }
 
   /**
    * Triggered on mouse up of the panel resizer
    * @param {MouseEvent|TouchEvent} event
    */
-  stopResize = event => {
+  stopResize = _ => {
     this.removeListeners();
-    const clientY = getEventClientY(event);
-    const currentHeight = this.startHeight + (this.startClientY - clientY);
-
-    if (this.props.size === 'maximized' &&
-        this.panelContentRef.current.scrollTop > 0) {
-      // User is scrolling inside the panel content
-      return;
-    }
+    const rect = this.panelDOMElement.getBoundingClientRect();
+    this.stopHeight = window.innerHeight - rect.top;
 
     const newSize = getTargetSize(
       this.props.size,
       this.startHeight,
-      currentHeight,
+      this.stopHeight,
       window.innerHeight - this.props.marginTop,
     );
 
     if (newSize !== this.props.size) {
       this.props.setSize(newSize);
     }
-    if (this.state.holding || this.state.currentHeight) {
-      this.setState({ holding: false, currentHeight: null });
-    }
+
+    this.setState({
+      holding: false,
+      translateY: this.getTranslateY(newSize),
+    });
   }
 
   handleHeaderClick() {
     const size = this.props.size === 'default' ? 'minimized' : 'default';
+    const translateY = this.getTranslateY(size);
     this.props.setSize(size);
-    this.setState({ currentHeight: null });
+    this.setState({ translateY });
   }
 
   getEventHandlers() {
@@ -193,7 +250,7 @@ class Panel extends React.Component {
     const {
       children, minimizedTitle,
       resizable, className, white, size, renderHeader, onClose } = this.props;
-    const { currentHeight, holding } = this.state;
+    const { translateY, holding } = this.state;
 
     return (
       <DeviceContext.Consumer>
@@ -203,7 +260,13 @@ class Panel extends React.Component {
               'panel--white': white,
               'panel--holding': holding,
             })}
-            style={{ height: currentHeight && `${currentHeight}px` }}
+            style={isMobile ?
+              {
+                height: this.state.height,
+                transform: `translate3d(0px, ${translateY}px, 0px)`,
+              }
+              : {}
+            }
             ref={panel => this.panelDOMElement = panel}
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
