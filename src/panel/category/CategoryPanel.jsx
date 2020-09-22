@@ -5,13 +5,13 @@ import Panel from 'src/components/ui/Panel';
 import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
-import CategoryPanelHeader from './CategoryPanelHeader';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
+import { sources } from '../../../config/constants.yml';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -160,10 +160,17 @@ export default class CategoryPanel extends React.Component {
     return <Panel
       resizable
       renderHeader={<CategoryPanelHeader dataSource={dataSource} loading={initialLoading} />}
-      minimizedTitle={_('Show results', 'categories')}
+      minimizedTitle={_('Unfold to show the results', 'categories')}
       className="category__panel"
     >
       {panelContent}
+
+      {dataSource === sources.pagesjaunes &&
+      <div className="category__panel__pj">
+        {_('Results in partnership with Pages Jaunes', 'categories')}
+      </div>
+      }
+
     </Panel>;
   }
 }
