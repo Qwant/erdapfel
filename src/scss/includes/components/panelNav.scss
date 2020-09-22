@@ -1,0 +1,10 @@
+.panelNav {
+  background-color: $background;
+  height: 50px;
+  width: 100%;
+
+  &-content {
+    padding: 0 20px;
+    height: 100%;
+  }
+}

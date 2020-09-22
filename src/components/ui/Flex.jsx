@@ -28,7 +28,7 @@ const Flex = forwardRef(({
 Flex.displayName = 'Flex';
 Flex.propTypes = {
   justifyContent: PropTypes.oneOf(['center', 'space-between']),
-  alignItems: PropTypes.oneOf(['center']),
+  alignItems: PropTypes.oneOf(['center', 'flex-start']),
 };
 
 export default Flex;

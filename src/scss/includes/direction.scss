@@ -602,6 +602,12 @@ button.direction_shortcut {
   @include long_shadow();
 }
 
+@media (min-width: 641px) {
+  .itinerary_title {
+    margin-top: 8px;
+  }
+}
+
 /* Mobile */
 
 @media (max-width: 640px){
@@ -700,21 +706,15 @@ button.direction_shortcut {
       max-height: 50%;
     }
 
-    .panel-header {
-      min-height: 24px;
-    }
-
     &.maximized {
       height: calc(100% - 160px);
       max-height: none;
 
-      .panel-header {
+      .panel-drawer {
         padding-top: 9px;
-        height: auto;
       }
     }
   }
-
 
   .itinerary_result .itemList-item {
     overflow: hidden;

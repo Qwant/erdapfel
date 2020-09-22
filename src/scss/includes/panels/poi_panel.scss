@@ -3,19 +3,28 @@
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
 
-.poi_panel--empty-header {
-  .panel-header {
-    border-bottom: none;
+.poi-panel {
+  overflow-y: hidden;
+
+  &-poiItem {
+    flex-grow: 1;
   }
 
-  .poi_panel__content {
-    padding-top: 0;
+  &-close {
+    height: 35px;
+    width: 35px;
+    margin-left: auto;
+    font-size: 22px;
+    cursor: pointer;
+    position: relative;
+    top: -5px;
+    right: -5px;
   }
 }
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 0 30px 10px 30px;
+  padding: 20px 30px 10px 30px;
   position: relative;
 }
 
@@ -24,25 +33,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   100% {opacity: 1; }
 }
 
-.poi_panel__back {
-  display: inline-block;
-  width: 20px;
-  color: $primary_text;
-}
-
-.poi_panel__back_text {
-  padding-left: 5px;
-  margin-right: 6px;
-}
-
-.poi_panel__back.icon-arrow-left {
-  font-size: 22px;
-  margin-top: -2px;
-}
-
-.poi_panel__back_to_list:hover {
-  color: $secondary_text;
-}
 .poi_panel__info__hour__circle {
   width: 6px;
   height: 6px;
@@ -222,19 +212,16 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   top: -15px;
 }
 
-.poi_panel__back_to_list {
-  cursor: pointer;
-  color: $secondary_text;
-  &:hover {
-    color: $primary_text;
-  }
-}
-
 .poi_panel__pj_logo {
   min-height: 18px;
 }
 
 @media (max-width: 640px) {
+
+  .poi-panel-close {
+    right: 0;
+  }
+
   .poi_panel__content {
     padding: 0 12px 12px;
   }
@@ -242,6 +229,9 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .poi_panel.panel {
     &.default, &.minimized {
       height: auto;
+      .panel-drawer {
+        min-height: inherit;
+      }
     }
   }
 

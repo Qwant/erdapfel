@@ -1,11 +1,10 @@
-/* global _ */
+/* globals _ */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
-import Flex from 'src/components/ui/Flex';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
@@ -40,13 +39,11 @@ function getTargetSize(previousSize, startHeight, endHeight, maxSize) {
 class Panel extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-    title: PropTypes.node,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
     size: PropTypes.string,
     setSize: PropTypes.func,
     marginTop: PropTypes.number,
-    close: PropTypes.func,
     className: PropTypes.string,
     white: PropTypes.bool,
   }
@@ -194,8 +191,8 @@ class Panel extends React.Component {
 
   render() {
     const {
-      children, title, minimizedTitle,
-      resizable, close, className, white, size } = this.props;
+      children, minimizedTitle,
+      resizable, className, white, size, renderHeader, onClose } = this.props;
     const { currentHeight, holding } = this.state;
 
     return (
@@ -211,27 +208,26 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            <Flex
-              justifyContent="space-between"
-              className={classnames(
-                'panel-header',
-                { 'panel-resizeHandle': resizable && isMobile }
-              )}
-              onClick={() => isMobile && this.handleHeaderClick()}
-            >
-              {resizable && isMobile && size === 'minimized' && minimizedTitle
-                ? <span className="minimizedTitle">{minimizedTitle}</span>
-                : title}
-              {close &&
-              <Flex
-                justifyContent="center"
+            {onClose &&
+              <button
                 className="panel-close"
                 title={_('Close')}
-                onClick={e => {e.stopPropagation(); close(e);}}
+                onClick={onClose}
               >
                 <i className="icon-x" />
-              </Flex>}
-            </Flex>
+              </button>
+            }
+            {isMobile && resizable &&
+              <div
+                className="panel-drawer"
+                onClick={() => this.handleHeaderClick()}
+              >
+                <div className="panel-handle"/>
+                {size === 'minimized' && minimizedTitle
+                && <span className="minimizedTitle u-text--subtitle">{minimizedTitle}</span>}
+              </div>
+            }
+            {size !== 'minimized' && <div className="panel-header">{renderHeader}</div>}
             <div
               className="panel-content"
               ref={this.panelContentRef}

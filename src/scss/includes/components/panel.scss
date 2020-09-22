@@ -1,3 +1,5 @@
+$bottom-margin: 40;
+
 .panel-hidden {
   .panel:not(.direction_panel) {
     display: none;
@@ -12,37 +14,53 @@
   @include panel_radius();
   background-color: white;
   width: $panel_width;
+  display: flex;
+  flex-direction: column;
 
-  &-header {
-    padding: 0 15px;
-    min-height: 40px;
-    color: #5c6f84;
-    span {
-      width: 100%;
-    }
+  &-drawer {
+    min-height: 20px;
+    height: 20px;
+    pointer-events: all;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: -webkit-grab;
+    cursor: grab;
+    text-align: center;
   }
 
   &-close {
-    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 16px;
     transition: background-color .1s;
     border-radius: 50%;
     font-size: 20px;
     height: 24px;
     width: 24px;
     color: $secondary_text;
-    margin-left: auto;
+    cursor: pointer;
 
     &:hover {
       color: $primary_text;
     }
   }
+}
 
-  &-content {
-    // 172 = top UI margin + top bar height + top bar margin + panel header + bottom UI margin
-    max-height: calc(100vh - 172px);
-    overflow-y: auto;
-    scrollbar-width: thin;
+@media (min-width: 641px) {
+  .panel {
+    max-height: calc(100vh - (92px + 40px)); // 92px is panel.getBoundingClientRect().top
+
+    &-header {
+      flex-shrink: 0;
+    }
+
+    &-content {
+      overflow-y: auto;
+    }
   }
+
 }
 
 @media (max-width: 640px) {
@@ -50,8 +68,6 @@
     width: 100vw;
     height: 50%;
     position: absolute;
-    display: flex;
-    flex-direction: column;
     background: #f4f6fa;
     border-radius: 12px 12px 0 0;
     bottom: 0;
@@ -83,41 +99,17 @@
 
     &.minimized {
       height: 50px;
-
-      .minimizedTitle {
-        text-align: center;
+      .panel-drawer {
+        min-height: 50px;
       }
     }
 
-    &-content {
-      max-height: none;
-      height: calc(100% - 50px);
-      overflow: hidden;
-    }
-
-    .panel-resizeHandle {
-      pointer-events: all;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      min-height: 50px;
-      width: 100%;
-      cursor: -webkit-grab;
-      cursor: grab;
-      position: relative;
-
-      &:before {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        width: 40px;
-        height: 5px;
-        transform: translateX(-50%);
-        border-radius: 2.5px;
-        background-color: #e0e1e6;
-      }
+    .panel-handle {
+      width: 40px;
+      height: 5px;
+      margin: 4px auto;
+      border-radius: 2.5px;
+      background-color: #e0e1e6;
     }
   }
 }

@@ -6,7 +6,6 @@ import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import ActionButtons from './ActionButtons';
 import PoiBlockContainer from './PoiBlockContainer';
-import Panel from 'src/components/ui/Panel';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
@@ -17,8 +16,8 @@ import { fire, listen, unListen } from 'src/libs/customEvents';
 import Store from '../../adapters/store';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
-import Flex from 'src/components/ui/Flex';
 import { DeviceContext } from 'src/libs/device';
+import { Flex, Panel, PanelNav } from 'src/components/ui';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -230,52 +229,49 @@ export default class PoiPanel extends React.Component {
       return null;
     }
 
-    let backAction = null;
-    if (isFromFavorite) {
-      backAction = {
-        callback: this.backToFavorite,
-        text: _('Back to favorites'),
-      };
-    } else if (poiFilters.category || poiFilters.query) {
-      backAction = {
-        callback: this.backToList,
-        text: _('Back to list'),
-      };
-    } else {
-      backAction = {
-        callback: this.closeAction,
-        text: '',
-      };
-    }
-
-    const header = backAction && backAction.text.length > 0 &&
-      <Flex inline className="poi_panel__back_to_list" onClick={backAction.callback}>
-        <i className="poi_panel__back icon-arrow-left" />
-        <span className="poi_panel__back_text">{backAction.text}</span>
-      </Flex>;
+    const backAction = poiFilters.category || poiFilters.query
+      ? this.backToList
+      : isFromFavorite
+        ? this.backToFavorite
+        : this.closeAction;
 
     return <DeviceContext.Consumer>
       {isMobile =>
         <Panel
           white
           resizable
-          title={!isMobile ? header : null}
-          close={isMobile ? backAction.callback : this.closeAction}
           className={classnames('poi_panel', {
             'poi_panel--empty-header':
             !isFromPagesJaunes(poi) &&
             !isFromFavorite &&
             (!poiFilters || !poiFilters.category),
-          } )}
+          })}
+          renderHeader={!isMobile && backAction !== this.closeAction &&
+            <PanelNav
+              isMobile={isMobile}
+              onGoBack={backAction}
+              goBackText={_('Display all results')}
+            />
+          }
         >
           <div className="poi_panel__content">
-            <PoiItem
-              poi={poi}
-              className="u-mb-20"
-              withAlternativeName
-              withOpeningHours
-              onClick={this.center}
-            />
+            <Flex alignItems="flex-start">
+              <PoiItem
+                poi={poi}
+                className="u-mb-20 poi-panel-poiItem"
+                withAlternativeName
+                withOpeningHours
+                onClick={this.center}
+              />
+
+              <button
+                className="poi-panel-close"
+                title={_('Close')}
+                onClick={isMobile ? backAction : this.closeAction}
+              >
+                <i className="icon-x" />
+              </button>
+            </Flex>
             <div className="u-mb-8">
               <ActionButtons
                 poi={poi}
