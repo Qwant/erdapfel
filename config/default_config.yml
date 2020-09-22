@@ -37,21 +37,6 @@ system:
   baseUrl: / # path prefix used in the application URLs (ends with '/')
   timeout: 3
 
-# Store
-masq:
-  enabled: false
-  enabledOnMobile: true
-  title: Qwant Maps
-  desc: Maps application developed by Qwant
-  icon: /statics/images/masq/maps-app.png
-  signalhubUrl: override_by_environment
-  baseMasqAppUrl: override_by_environment
-  stun:
-  turn:
-  alertEnabled: false
-  alertDate: '2020-07-31'
-  link: 'https://qwant.com/maps'
-
 # Map style
 mapStyle:
   baseMapUrl: override_by_environment

@@ -8,7 +8,6 @@ import PoiStore from 'src/adapters/poi/poi_store';
 
 export default class FavoritesPanel extends React.Component {
   state = {
-    isLoggedIn: false,
     favoritePois: [],
     isReady: false,
   };
@@ -16,15 +15,12 @@ export default class FavoritesPanel extends React.Component {
   componentDidMount() {
     Telemetry.add(Telemetry.FAVORITE_OPEN);
     this.store = new Store();
-    this.store.onToggleStore(this.loadData);
     this.loadData();
   }
 
   loadData = async () => {
-    const isLoggedIn = await this.store.isLoggedIn();
     const favoritePois = await PoiStore.getAll();
     this.setState({
-      isLoggedIn,
       favoritePois,
       isReady: true,
     });
@@ -48,13 +44,12 @@ export default class FavoritesPanel extends React.Component {
       return null;
     }
 
-    const { favoritePois, isLoggedIn } = this.state;
+    const { favoritePois } = this.state;
 
     const header = <div className="favorite-header u-text--smallTitle u-center">
       {favoritePois.length === 0
         ? _('Favorite places', 'favorite panel')
         : _('My favorites', 'favorite panel')}
-      {isLoggedIn && <div className="icon-masq_dark favorite_panel__masq_icon" />}
     </div>;
 
     return <Panel

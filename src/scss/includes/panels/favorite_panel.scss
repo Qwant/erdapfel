@@ -1,5 +1,3 @@
-$MASQ_BANNER_HEIGHT: 93px;
-
 
 @media (min-width: 641px){
   .favorite-header {
@@ -14,14 +12,6 @@ $MASQ_BANNER_HEIGHT: 93px;
 .favorite_panel__container__empty {
   color: $secondary_text;
   padding: 20px;
-}
-
-.favorite_panel__masq_icon {
-  height: 27px;
-  width: 57px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 5px;
 }
 
 .favorite_panel__item {

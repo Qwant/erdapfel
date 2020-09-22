@@ -5,25 +5,15 @@ import { menu as menuItems } from '../../config/constants.yml';
 import nconf from '@qwant/nconf-getter';
 import MenuItem from './menu/MenuItem';
 import MenuButton from './menu/MenuButton';
-import MasqStatus from './menu/MasqStatus';
-import Store from '../adapters/store';
 
 const isDirectionActive = nconf.get().direction.enabled;
-const isMasqEnabled = nconf.get().masq.enabled;
 
 export default class Menu extends React.Component {
   state = {
     isOpen: false,
-    isInitialized: isMasqEnabled ? false : true,
-    masqUser: null,
   };
 
   componentDidMount = () => {
-    if (isMasqEnabled) {
-      this.store = new Store();
-      this.store.onToggleStore(this.onStoreChange);
-      this.onStoreChange();
-    }
     this.menuContainer = document.createElement('div');
     document.body.appendChild(this.menuContainer);
   }
@@ -32,24 +22,6 @@ export default class Menu extends React.Component {
     if (this.menuContainer) {
       this.menuContainer.remove();
     }
-  }
-
-  onStoreChange = () => {
-    this.store.isLoggedIn().then(isLoggedIn => {
-      if (!isLoggedIn) {
-        this.setState({
-          isInitialized: true,
-          masqUser: null,
-        });
-      } else {
-        this.store.getUserInfo().then(masqUser => {
-          this.setState({
-            isInitialized: true,
-            masqUser,
-          });
-        });
-      }
-    });
   }
 
   open = () => {
@@ -66,12 +38,8 @@ export default class Menu extends React.Component {
   }
 
   render() {
-    if (!this.state.isInitialized) {
-      return null;
-    }
-
     return <Fragment>
-      <MenuButton masqUser={this.state.masqUser} onClick={this.open} />
+      <MenuButton onClick={this.open} />
 
       {this.state.isOpen && ReactDOM.createPortal(<div className="menu">
         <div className="menu__overlay" onClick={this.close} />
@@ -83,7 +51,6 @@ export default class Menu extends React.Component {
               <span>Qwant Maps</span>
               <i className="icon-x menu__panel__top__close" onClick={this.close} />
             </h2>
-            {isMasqEnabled && <MasqStatus user={this.state.masqUser} store={this.store} />}
           </div>
 
           <div className="menu__panel__items_container">

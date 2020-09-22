@@ -109,7 +109,6 @@ function App(config) {
     if (disableMenuRule && userAgent && userAgent.match(disableMenuRule)) {
       appConfig = JSON.parse(JSON.stringify(config));
       appConfig.burgerMenu.enabled = false;
-      appConfig.masq.enabled = false;
     }
     res.render('index', { config: appConfig });
   });
