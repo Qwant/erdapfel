@@ -18,7 +18,7 @@ const ActionButtons = ({
   };
 
   const onShare = target => {
-    Telemetry.add(Telemetry.POI_SHARE_TO, { target, id: poi.id });
+    Telemetry.add(Telemetry.POI_SHARE_TO, { target });
   };
 
   return <Flex className="poi_panel__actions">

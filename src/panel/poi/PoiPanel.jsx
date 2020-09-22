@@ -220,7 +220,7 @@ export default class PoiPanel extends React.Component {
 
   toggleStorePoi = () => {
     const poi = this.state.fullPoi;
-    Telemetry.sendPoiEvent(poi, 'favorite', { id: poi.id, stored: !this.state.isPoiInFavorite });
+    Telemetry.sendPoiEvent(poi, 'favorite', { stored: !this.state.isPoiInFavorite });
     if (this.state.isPoiInFavorite) {
       store.del(poi);
     } else {

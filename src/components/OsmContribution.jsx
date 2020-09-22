@@ -7,7 +7,7 @@ const OsmContribution = ({ poi }) => {
   const viewUrl = `https://www.openstreetmap.org/${itemKind}/${itemId}`;
   const editUrl = `https://www.openstreetmap.org/edit?editor=id&${itemKind}=${itemId}`;
 
-  const sendTelemetryEvent = event => () => Telemetry.sendPoiEvent(poi, event, { id: poi.id });
+  const sendTelemetryEvent = event => () => Telemetry.sendPoiEvent(poi, event);
 
   return <div className="osm_contribute">
     <div className="osm_contribute__logo" />
