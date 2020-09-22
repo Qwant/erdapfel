@@ -31,14 +31,16 @@ $bottom-margin: 40;
   }
 
   &-close {
-    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 16px;
     transition: background-color .1s;
     border-radius: 50%;
     font-size: 20px;
     height: 24px;
     width: 24px;
     color: $secondary_text;
-    margin-left: auto;
+    cursor: pointer;
 
     &:hover {
       color: $primary_text;

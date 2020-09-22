@@ -1,3 +1,4 @@
+/* globals _ */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -191,7 +192,7 @@ class Panel extends React.Component {
   render() {
     const {
       children, minimizedTitle,
-      resizable, className, white, size, renderHeader } = this.props;
+      resizable, className, white, size, renderHeader, onClose } = this.props;
     const { currentHeight, holding } = this.state;
 
     return (
@@ -207,6 +208,15 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
+            {onClose &&
+              <button
+                className="panel-close"
+                title={_('Close')}
+                onClick={onClose}
+              >
+                <i className="icon-x" />
+              </button>
+            }
             {isMobile && resizable &&
               <div
                 className="panel-drawer"

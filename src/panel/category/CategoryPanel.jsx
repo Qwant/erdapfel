@@ -125,10 +125,6 @@ export default class CategoryPanel extends React.Component {
     fire('save_location');
   };
 
-  close = () => {
-    window.app.navigateTo('/');
-  }
-
   selectPoi = poi => {
     const { poiFilters } = this.props;
     const { pois } = this.state;
@@ -165,7 +161,6 @@ export default class CategoryPanel extends React.Component {
       resizable
       renderHeader={<CategoryPanelHeader dataSource={dataSource} loading={initialLoading} />}
       minimizedTitle={_('Show results', 'categories')}
-      close={this.close}
       className="category__panel"
     >
       {panelContent}

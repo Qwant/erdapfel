@@ -61,7 +61,7 @@ export default class FavoritesPanel extends React.Component {
       resizable
       renderHeader={header}
       minimizedTitle={_('Show favorites', 'favorite panel')}
-      close={this.close}
+      onClose={this.close}
       className="favorite_panel"
     >
       <FavoriteItems favorites={favoritePois} removeFavorite={this.removeFav} />
