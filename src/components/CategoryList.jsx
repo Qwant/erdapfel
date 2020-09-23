@@ -20,8 +20,8 @@ const CategoryList = ({ className, limit = Number.MAX_VALUE }) =>
         label={category.label}
         icon={category.iconName}
         iconStyle={{
-          color: category.color,
-          backgroundColor: category.backgroundColor,
+          color: category.color, // RGB icon color
+          backgroundColor: category.color + '28', // RGBA background color equal to the icon color + 0.157 alpha
         }}
       />)
     }

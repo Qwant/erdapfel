@@ -13,8 +13,11 @@ const PoiTitleImage = ({ poi, iconOnly }) => {
   }
 
   const icon = IconManager.get(poi) || defaultIcon;
-  return <div className="poiTitleImage">
-    <div className={`icon icon-${icon.iconClass}`} style={{ color: icon.color }} />
+  return <div className="poiTitleImage" style={{
+    color: icon.color, // RGB icon color
+    backgroundColor: icon.color + '28', // RGBA background color equal to the icon color + 0.157 alpha
+  }}>
+    <div className={`icon icon-${icon.iconClass}`}/>
   </div>;
 };
 

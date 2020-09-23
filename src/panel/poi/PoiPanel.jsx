@@ -290,7 +290,7 @@ export default class PoiPanel extends React.Component {
               {isFromPagesJaunes(poi) &&
               <div className="poi_panel__info-partnership u-text--caption">
                 {_('In partnership with')}
-                <img src="./statics/images/pj.svg" alt="Pages Jaunes" width="80" height="16" />
+                <img src="./statics/images/pj.svg" alt="PagesJaunes" width="80" height="16" />
               </div>
               }
               {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">

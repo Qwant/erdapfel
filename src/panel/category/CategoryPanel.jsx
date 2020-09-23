@@ -168,7 +168,7 @@ export default class CategoryPanel extends React.Component {
 
       {dataSource === sources.pagesjaunes &&
       <div className="category__panel__pj">
-        {_('Results in partnership with Pages Jaunes', 'categories')}
+        {_('Results in partnership with PagesJaunes', 'categories')}
       </div>
       }
 
