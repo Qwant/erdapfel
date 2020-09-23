@@ -38,7 +38,7 @@
     border-radius: 0;
   }
 
-  .minimized .category__panel__pj {
+  .minimized:not(.panel--holding) .category__panel__pj {
     display: none;
   }
 

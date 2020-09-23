@@ -15,7 +15,7 @@
     padding-bottom: 36px;
   }
 
-  .minimized .panel--pj .itemList {
+  .minimized:not(.panel--holding) .panel--pj .itemList {
     padding-bottom: 0;
   }
 
