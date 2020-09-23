@@ -7,20 +7,16 @@
 
   &:hover {
     background: $surface;
-
-    &:before {
-      content: '';
-      position: absolute;
-      width: 4px;
-      height: 100%;
-      background-color: #FF3B4A;
-    }
   }
 }
 
 @media (max-width: 640px) {
   .panel--pj .itemList {
     padding-bottom: 36px;
+  }
+
+  .minimized .panel--pj .itemList {
+    padding-bottom: 0;
   }
 
   .itemList {

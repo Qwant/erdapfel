@@ -23,7 +23,11 @@
 }
 
 .category__panel__error {
-  padding: 16px 16px 32px 16px
+  padding: 16px 16px 32px 16px;
+
+  & ~ .category__panel__pj {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -32,6 +36,10 @@
     bottom: 0;
     height: 36px;
     border-radius: 0;
+  }
+
+  .minimized .category__panel__pj {
+    display: none;
   }
 
   .category__panel {

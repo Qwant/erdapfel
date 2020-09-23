@@ -31,7 +31,7 @@ const IntentionItem = ({ intention }) => {
 };
 
 const CategoryItem = ({ category }) => {
-  const { id, label, alternativeName, color, backgroundColor } = category;
+  const { id, label, alternativeName, color } = category;
   const icon = category.getIcon();
 
   return (
@@ -40,7 +40,7 @@ const CategoryItem = ({ category }) => {
       data-id={id}
     >
       <div
-        style={{ color, backgroundColor }}
+        style={{ color }}
         className={`autocomplete-icon icon icon-${icon.iconClass}`}
       />
       <ItemLabels firstLabel={label} secondLabel={alternativeName} />
