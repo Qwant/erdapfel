@@ -8,6 +8,7 @@ import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import { DeviceContext } from 'src/libs/device';
+import Telemetry from 'src/libs/telemetry';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -56,6 +57,8 @@ class DirectionInput extends React.Component {
 
   selectItem = async selectedPoi => {
     if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
+      Telemetry.add(Telemetry.ITINERARY_POINT_GEOLOCATION);
+
       this.setState({ readOnly: true });
 
       try {
