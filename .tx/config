@@ -4,6 +4,6 @@ host = https://www.transifex.com
 [qwant-maps.config]
 file_filter = language/message/<lang>.po
 minimum_perc = 0
-source_file = language/message/en_GB.po
-source_lang = en_GB
+source_file = language/message/en.po
+source_lang = en
 type = PO

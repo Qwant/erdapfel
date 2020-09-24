@@ -1,0 +1,1240 @@
+# 
+# Translators:
+# Jannik Vieten <me@exploide.net>, 2019
+# Nils Hahmann <nhahmann@me.com>, 2019
+# Ettore Atalan <atalanttore@googlemail.com>, 2019
+# Isolator70 <henrik.heinsch@online.de>, 2019
+# ENT8R <info.ent8r@gmail.com>, 2019
+# Edouard Aubert Jurgens <edou.aubert@gmail.com>, 2020
+# MaximeEuziere <maxime.euziere@gmail.com>, 2020
+# Acrylic Boy, 2020
+# Noémie Lehuby <n.lehuby@qwant.com>, 2020
+# Adrien Matissart, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-15 07:31+0000\n"
+"PO-Revision-Date: 2018-08-27 07:45+0000\n"
+"Last-Translator: Adrien Matissart, 2020\n"
+"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: ;_;_n:1,2\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: views\n"
+"X-Poedit-SearchPath-2: public/build/javascript/bundle.js\n"
+"X-Poedit-SearchPath-3: public/build/javascript/map.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Qwant Maps"
+msgstr "Qwant Maps"
+
+msgid "The map that respects your privacy"
+msgstr "Die Karte, die Ihre Privatsphäre respektiert"
+
+msgid "Search on Qwant Maps"
+msgstr "Auf Qwant Maps suchen"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Directions"
+msgstr "Wegbeschreibung"
+
+msgid "JavaScript is required to view this application."
+msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
+
+msgid "restaurant"
+msgstr "Restaurant"
+
+msgid "hotel"
+msgstr "Hotel"
+
+msgid "supermarket"
+msgstr "Supermarkt"
+
+msgid "bar"
+msgstr "Bar"
+
+msgid "pharmacy"
+msgstr "Apotheke"
+
+msgid "leisure"
+msgstr "Freizeit"
+
+msgid "service"
+msgstr "Service"
+
+msgid "health"
+msgstr "Gesundheit"
+
+msgid "education"
+msgstr "Bildung"
+
+msgid "bank"
+msgstr "Bank"
+
+msgid "museum"
+msgstr "Museum"
+
+msgid "sport"
+msgstr "Sport"
+
+msgid "Qwant is also"
+msgstr "Qwant ist außerdem"
+
+msgid "Qwant.com"
+msgstr "Qwant.com"
+
+msgid "Qwant Music"
+msgstr "Qwant Music"
+
+msgid "Qwant Boards"
+msgstr "Qwant Notizhefte"
+
+msgid "Qwant on Android"
+msgstr "Qwant für Android"
+
+msgid "Qwant on iOS"
+msgstr "Qwant für iOS"
+
+msgid "Qwant Junior"
+msgstr "Qwant Junior"
+
+msgid "Qwant Lite"
+msgstr "Qwant Lite"
+
+msgid "About Qwant"
+msgstr "Über Qwant"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Press"
+msgstr "Presse"
+
+msgid "Jobs"
+msgstr "Jobs"
+
+msgid "F.A.Q."
+msgstr "F.A.Q."
+
+msgid "Maps legal notices"
+msgstr "Maps Impressum"
+
+msgid "Terms of Service"
+msgstr "Nutzungsbedingungen"
+
+msgid "About us"
+msgstr "Über uns"
+
+msgid "Privacy"
+msgstr "Privatsphäre"
+
+msgid "Results ranking"
+msgstr "Ergebnissortierung"
+
+msgid "Contact us"
+msgstr "Kontaktieren Sie uns"
+
+msgid "Share Qwant"
+msgstr "Teile Qwant"
+
+msgid "on Twitter"
+msgstr "auf Twitter"
+
+msgid "on Facebook"
+msgstr "auf Facebook"
+
+msgid "Search with Qwant Maps"
+msgstr "Suche mit Qwant Maps"
+
+msgid "My location"
+msgstr "Mein Standort"
+
+msgid "chunk"
+msgstr ""
+
+msgid "write"
+msgstr "schreiben"
+
+msgid "Open"
+msgstr "Offen"
+
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgid "Open 24/7"
+msgstr "24/7 geöffnet"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr " öffnet um {nextTransitionTime}"
+
+msgid "until {nextTransitionTime}"
+msgstr "bis {nextTransitionTime}"
+
+msgid "accessories shop"
+msgstr "Zubehörshop "
+
+msgid "airport"
+msgstr "Flughafen"
+
+msgid "liquor store"
+msgstr "Spirituosengeschäft"
+
+msgid "alpine hut"
+msgstr "Berghütte"
+
+msgid "antiques shop"
+msgstr "Antiquitätengeschäft "
+
+msgid "aquarium"
+msgstr "Aquarium"
+
+msgid "archery"
+msgstr "Bogenschießen"
+
+msgid "art shop"
+msgstr "Kunstgeschäft"
+
+msgid "arts centre"
+msgstr "Kunstzentrum"
+
+msgid "athletics"
+msgstr "Leichtathletik "
+
+msgid "ATM"
+msgstr ""
+
+msgid "attraction"
+msgstr "Attraktion"
+
+msgid "bag shop"
+msgstr "Taschengeschäft"
+
+msgid "bakery"
+msgstr "Bäckerei"
+
+msgid "basin"
+msgstr "Becken"
+
+msgid "basketball"
+msgstr "Basketball"
+
+msgid "bbq"
+msgstr "BBQ"
+
+msgid "beauty salon"
+msgstr "Schönheitssalon"
+
+msgid "bed shop"
+msgstr "Bettengeschäft"
+
+msgid "bed and breakfast"
+msgstr "Übernachtung mit Frühstück"
+
+msgid "beverages shop"
+msgstr "Getränkeladen"
+
+msgid "bicycle shop"
+msgstr "Fahrradladen"
+
+msgid "biergarten"
+msgstr "Biergarten"
+
+msgid "billiards"
+msgstr "Billard"
+
+msgid "bmx"
+msgstr "BMX"
+
+msgid "books shop"
+msgstr "Buchladen"
+
+msgid "border control"
+msgstr "Grenzkontrolle"
+
+msgid "boules"
+msgstr "Boule"
+
+msgid "boutique"
+msgstr "Boutique"
+
+msgid "bowls"
+msgstr "Bowlen"
+
+msgid "brewery"
+msgstr ""
+
+msgid "brownfield"
+msgstr "Brachfläche"
+
+msgid "bus station"
+msgstr "Busbahnhof"
+
+msgid "bus stop"
+msgstr ""
+
+msgid "butcher"
+msgstr "Metzger"
+
+msgid "cafe"
+msgstr "Café"
+
+msgid "camp site"
+msgstr "Campingplatz"
+
+msgid "canoe"
+msgstr "Kanu"
+
+msgid "car shop"
+msgstr "KFZ-Werkstatt"
+
+msgid "car parts shop"
+msgstr ""
+
+msgid "car repair"
+msgstr "Autoreparatur"
+
+msgid "car rental"
+msgstr ""
+
+msgid "car wash station"
+msgstr ""
+
+msgid "caravan site"
+msgstr "Campingplatz"
+
+msgid "carpenter"
+msgstr ""
+
+msgid "carpet shop"
+msgstr "Teppichhandel"
+
+msgid "castle"
+msgstr "Burg"
+
+msgid "catering"
+msgstr ""
+
+msgid "cemetery"
+msgstr "Friedhof"
+
+msgid "holiday cottage"
+msgstr ""
+
+msgid "charging station"
+msgstr ""
+
+msgid "charity store"
+msgstr "Wohltätigkeitsladen"
+
+msgid "chemist"
+msgstr "Drogerie"
+
+msgid "cheese shop"
+msgstr ""
+
+msgid "chess"
+msgstr "Schach"
+
+msgid "childcare centre"
+msgstr ""
+
+msgid "chocolate shop"
+msgstr "Schokoladengeschäft"
+
+msgid "cinema"
+msgstr "Kino"
+
+msgid "climbing"
+msgstr "Klettern"
+
+msgid "climbing adventure"
+msgstr "Kletterabenteuer"
+
+msgid "clinic"
+msgstr "Klinik"
+
+msgid "clothes shop"
+msgstr "Kleidergeschäft"
+
+msgid "coffee shop"
+msgstr "Café"
+
+msgid "college"
+msgstr "College"
+
+msgid "community centre"
+msgstr "Gemeindezentrum"
+
+msgid "computer shop"
+msgstr "Computergeschäft"
+
+msgid "confectionery shop"
+msgstr "Süßwarenladen"
+
+msgid "convenience store"
+msgstr "Kleiner Lebensmittelladen"
+
+msgid "copyshop"
+msgstr "Copyshop"
+
+msgid "cosmetics shop"
+msgstr "Kosmetikgeschäft"
+
+msgid "courthouse"
+msgstr "Gerichtsgebäude"
+
+msgid "coworking space"
+msgstr ""
+
+msgid "cricket"
+msgstr "Kricket"
+
+msgid "cycling"
+msgstr "Rad fahren "
+
+msgid "deli"
+msgstr "Feinkostladen"
+
+msgid "dentist"
+msgstr "Zahnarzt"
+
+msgid "department store"
+msgstr "Kaufhaus"
+
+msgid "dock"
+msgstr "Kai"
+
+msgid "doctors office"
+msgstr "Arztpraxis"
+
+msgid "dog park"
+msgstr "Hundepark"
+
+msgid "dog racing"
+msgstr "Hunderennen"
+
+msgid "doityourself store"
+msgstr "Heimwerkermarkt"
+
+msgid "driving school"
+msgstr ""
+
+msgid "dry cleaning"
+msgstr "Reinigung"
+
+msgid "electronics shop"
+msgstr "Elektronikgeschäft"
+
+msgid "embassy"
+msgstr "Botschaft"
+
+msgid "equestrian"
+msgstr "Reitsport"
+
+msgid "erotic shop"
+msgstr "Erotikshop"
+
+msgid "escape game"
+msgstr "Escape Game"
+
+msgid "estate agent"
+msgstr ""
+
+msgid "fabric"
+msgstr "Bau"
+
+msgid "farm shop"
+msgstr "Hofladen"
+
+msgid "fast food"
+msgstr "Fast Food"
+
+msgid "fire station"
+msgstr "Feuerwache"
+
+msgid "fitness centre"
+msgstr ""
+
+msgid "florist"
+msgstr "Blumenhändler"
+
+msgid "food court"
+msgstr "Gastronomiebereich"
+
+msgid "free flying"
+msgstr "Gratis Flug"
+
+msgid "frozen food"
+msgstr ""
+
+msgid "fuel station"
+msgstr "Tankstelle"
+
+msgid "funeral home"
+msgstr ""
+
+msgid "furniture shop"
+msgstr "Möbelgeschäft"
+
+msgid "gallery"
+msgstr "Galerie"
+
+msgid "garden"
+msgstr "Garten"
+
+msgid "garden centre"
+msgstr "Gartenmarkt"
+
+msgid "general store"
+msgstr "Gemischtwarenladen"
+
+msgid "gift shop"
+msgstr "Geschenkartikelladen"
+
+msgid "golf"
+msgstr "Golf"
+
+msgid "golf course"
+msgstr "Golfplatz"
+
+msgid "grave yard"
+msgstr "Friedhof"
+
+msgid "greengrocer"
+msgstr "Gemüsehändler"
+
+msgid "guest house"
+msgstr "Gästehaus"
+
+msgid "gymnastics"
+msgstr "Turnen"
+
+msgid "hackerspace"
+msgstr "Hackerspace"
+
+msgid "hairdresser"
+msgstr "Friseur"
+
+msgid "halt"
+msgstr "Halt"
+
+msgid "hardware shop"
+msgstr "Eisenwarenhandlung"
+
+msgid "hearing aids shop"
+msgstr "Geschäft für Hörgeräte"
+
+msgid "hifi shop"
+msgstr "HiFi-Fachgeschäft"
+
+msgid "horse racing"
+msgstr "Pferderennen"
+
+msgid "hospital"
+msgstr "Krankenhaus"
+
+msgid "hostel"
+msgstr "Jugendherberge"
+
+msgid "houseware shop"
+msgstr ""
+
+msgid "ice cream"
+msgstr "Eiscreme"
+
+msgid "ice rink"
+msgstr "Eisbahn"
+
+msgid "interior decoration shop"
+msgstr "Geschäft für Innenausstattung"
+
+msgid "jewelry shop"
+msgstr "Juweliergeschäft"
+
+msgid "karting"
+msgstr "Kartsport"
+
+msgid "kindergarten or preschool"
+msgstr "Kindergarten oder Vorschule"
+
+msgid "kiosk"
+msgstr "Kiosk"
+
+msgid "kitchen manufacturer"
+msgstr ""
+
+msgid "lamps shop"
+msgstr "Lampengeschäft"
+
+msgid "laundry"
+msgstr "Wäscherei"
+
+msgid "library"
+msgstr "Bücherei"
+
+msgid "long jump"
+msgstr "Weitsprung"
+
+msgid "mall"
+msgstr "Einkaufszentrum"
+
+msgid "marina"
+msgstr "Yachthafen"
+
+msgid "marketplace"
+msgstr "Marktplatz"
+
+msgid "massage shop"
+msgstr "Massagesalon"
+
+msgid "miniature golf"
+msgstr "Minigolf"
+
+msgid "mobile phone shop"
+msgstr "Handyshop"
+
+msgid "model aerodrome"
+msgstr "Modellflugplatz"
+
+msgid "monument"
+msgstr "Denkmal"
+
+msgid "motel"
+msgstr "Motel"
+
+msgid "motocross"
+msgstr "Motocross"
+
+msgid "motor"
+msgstr "Motor"
+
+msgid "motorcycle shop"
+msgstr "Motorradhändler"
+
+msgid "multi"
+msgstr "multi"
+
+msgid "music shop"
+msgstr "Musikgeschäft"
+
+msgid "music school"
+msgstr ""
+
+msgid "musical instrument shop"
+msgstr "Musikalienhandlung"
+
+msgid "newsagent shop"
+msgstr "Zeitungshändler"
+
+msgid "nightclub"
+msgstr "Nachtclub"
+
+msgid "nursing home"
+msgstr "Pflegeheim"
+
+msgid "optician"
+msgstr "Optiker"
+
+msgid "orienteering"
+msgstr "Orientierungslauf"
+
+msgid "outdoor"
+msgstr "im Freien"
+
+msgid "paragliding"
+msgstr "Paragleiten"
+
+msgid "park"
+msgstr "Park"
+
+msgid "car park"
+msgstr "Parkplatz"
+
+msgid "pastry shop"
+msgstr ""
+
+msgid "perfumery"
+msgstr "Parfümerie"
+
+msgid "pet store"
+msgstr " Tierhandlung"
+
+msgid "photo shop"
+msgstr "Fotoladen"
+
+msgid "picnic site"
+msgstr "Picknickplatz"
+
+msgid "place of worship"
+msgstr "Gotteshaus"
+
+msgid "plumber"
+msgstr ""
+
+msgid "police"
+msgstr "Polizei"
+
+msgid "polling station"
+msgstr ""
+
+msgid "post office"
+msgstr "Postamt"
+
+msgid "prison"
+msgstr "Gefängnis"
+
+msgid "pub"
+msgstr "Pub"
+
+msgid "public building"
+msgstr "Öffentliches Gebäude"
+
+msgid "rc car"
+msgstr "RC-Car"
+
+msgid "recycling"
+msgstr ""
+
+msgid "reservoir"
+msgstr "Reservoir"
+
+msgid "rowing"
+msgstr "Rudern"
+
+msgid "ruins"
+msgstr "Ruinen"
+
+msgid "running"
+msgstr "Rennen"
+
+msgid "sailing"
+msgstr "Segeln"
+
+msgid "school"
+msgstr "Schule"
+
+msgid "scuba diving"
+msgstr "Sporttauchen"
+
+msgid "fishmonger"
+msgstr ""
+
+msgid "resale shop"
+msgstr "Wiederverkäufer"
+
+msgid "shelter"
+msgstr ""
+
+msgid "shoemaker"
+msgstr ""
+
+msgid "shoes"
+msgstr "Schuhe"
+
+msgid "shooting"
+msgstr "Schießen"
+
+msgid "skateboard"
+msgstr "Skateboard"
+
+msgid "skating"
+msgstr "Skaten"
+
+msgid "skiing"
+msgstr "Skifahren"
+
+msgid "soccer"
+msgstr "Fußball"
+
+msgid "sports shop"
+msgstr "Sportgeschäft"
+
+msgid "sports centre"
+msgstr "Sportzentrum"
+
+msgid "stadium"
+msgstr "Stadion"
+
+msgid "station"
+msgstr "Bahnhof"
+
+msgid "stationery shop"
+msgstr "Schreibwarengeschäft"
+
+msgid "subway"
+msgstr "Untergrundbahn"
+
+msgid "swimming pool"
+msgstr "Schwimmbad"
+
+msgid "swimming area"
+msgstr "Badebereich"
+
+msgid "swimming pool equipment"
+msgstr ""
+
+msgid "table tennis"
+msgstr "Tischtennis"
+
+msgid "tailor"
+msgstr "Schneider"
+
+msgid "tattoo salon"
+msgstr "Tätowierstudio "
+
+msgid "tennis"
+msgstr "Tennis"
+
+msgid "theatre"
+msgstr "Theater"
+
+msgid "theme park"
+msgstr "Freizeitpark"
+
+msgid "ticket shop"
+msgstr "Ticketshop"
+
+msgid "tobacco shop"
+msgstr "Tabakgeschäft"
+
+msgid "toll booth"
+msgstr "Mautstation"
+
+msgid "townhall"
+msgstr "Rathaus"
+
+msgid "toys shop"
+msgstr "Spielzeuggeschäft"
+
+msgid "tram stop"
+msgstr "Straßenbahnhaltestelle"
+
+msgid "travel agency"
+msgstr "Reiseagentur"
+
+msgid "university"
+msgstr "Universität"
+
+msgid "variety store"
+msgstr ""
+
+msgid "vehicle inspection"
+msgstr ""
+
+msgid "veterinary"
+msgstr "Tierarzt"
+
+msgid "videos shop"
+msgstr "Videothek"
+
+msgid "video games shop"
+msgstr "Geschäft für Computerspiele"
+
+msgid "viewpoint"
+msgstr "Aussichtspunkt"
+
+msgid "watches shop"
+msgstr "Uhrengeschäft"
+
+msgid "water park"
+msgstr "Erlebnisbad"
+
+msgid "weapons shop"
+msgstr "Waffengeschäft"
+
+msgid "warehouse club"
+msgstr "Lagerhausclub"
+
+msgid "wine shop"
+msgstr "Weingeschäft"
+
+msgid "winery"
+msgstr ""
+
+msgid "winter sports resort"
+msgstr ""
+
+msgid "yoga"
+msgstr "Yoga"
+
+msgid "zoo"
+msgstr "Zoo"
+
+msgid "city"
+msgstr "Stadt"
+
+msgid "country"
+msgstr "Land"
+
+msgid "address"
+msgstr "Adresse"
+
+msgid "street"
+msgstr "Straße"
+
+msgid "Geolocation with privacy!"
+msgstr "Geolokalisierung mit Privatsphäre!"
+
+msgid ""
+"You need to know where you are? Please allow your application to access your"
+" location so that it can tell you. As stated in our {privacyPolicyLink} "
+"privacy policy {closeTag}, Qwant will not store your geolocation "
+"information. We don't want to know your whereabouts."
+msgstr ""
+"Sie möchten wissen, wo Sie sich befinden? Bitte erlauben Sie Ihrer App den Zugriff auf Ihren Standort, damit wir Sie orten können. \n"
+"Wie in unseren {privacyPolicyLink}Datenschutzbestimmungen {closeTag}angegeben, speichert Qwant Ihre Standortdaten nicht. Wir wollen nicht wissen, wo Sie sich befinden."
+
+msgid "Ok, I've got it."
+msgstr "Okay, ich habe es verstanden."
+
+msgid "Geolocation not available."
+msgstr "Standortbestimmung nicht verfügbar."
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
+
+msgid "Ok"
+msgstr "O.k."
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
+"Standortbestimmung auf Ihrem System aktiviert ist."
+
+msgid "Close to"
+msgstr "Neben"
+
+msgid "Geographic coordinates"
+msgstr ""
+
+msgid "on PagesJaunes"
+msgstr "auf PagesJaunes"
+
+msgid "Your position"
+msgstr "Ihr Standort"
+
+msgid "Patience, Masq is activating..."
+msgstr "Moment, Masq wird aktiviert..."
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Well done, Masq is activated !"
+msgstr "Gut gemacht, Masq wurde aktiviert!"
+
+msgid "Your data is now secured, enjoy !"
+msgstr "Ihre Daten sind nun sicher, viel Vergnügen!"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Masq activation failed"
+msgstr "Masq Aktivierung fehlgeschlagen"
+
+msgid ""
+"The connection failed between Qwant Maps and the Masq"
+"                                            application (Signalling error)"
+msgstr ""
+"Die Verbindung zwischen Qwant Maps und Masq ist fehlgeschlagen "
+"(Signalisierungsfehler)"
+
+msgid "Could not connect to Masq"
+msgstr "Keine Verbindung zu Masq"
+
+msgid "category"
+msgstr "Kategorie"
+
+msgid "Menu"
+msgstr ""
+
+msgid "Activate Masq"
+msgstr "Aktiviere Masq"
+
+msgid "Deactivate"
+msgstr "Deaktivieren"
+
+msgid "Activate"
+msgstr "Aktivieren"
+
+msgid "How does it work ?"
+msgstr "Wie funktioniert das?"
+
+msgid "Favorites"
+msgstr "Favoriten"
+
+msgid "How to contribute"
+msgstr "Wie man mitmacht"
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Copy link"
+msgstr ""
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Share"
+msgstr "Teilen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
+msgstr ""
+"Sie haben keine Lieblingsorte. <br>Sie können einen hinzufügen, indem Sie "
+"auf einen Ort klicken."
+
+msgid "Favorite places"
+msgstr "Lieblingsorte"
+
+msgid "My favorites"
+msgstr "Meine Favoriten"
+
+msgid "Show favorites"
+msgstr "Favoriten anzeigen"
+
+msgid "Search around this place"
+msgstr "Um diesen Ort herum suchen"
+
+msgid "No result found"
+msgstr "Keine Ergebnisse gefunden"
+
+msgid "Call"
+msgstr "Anruf"
+
+msgid "opening hours"
+msgstr "Öffnungszeiten"
+
+msgid "See the usual opening hours"
+msgstr ""
+
+msgid "contact"
+msgstr "Kontakt"
+
+msgid "Photos"
+msgstr "Fotos"
+
+msgid "website"
+msgstr "Website"
+
+msgid "Wheelchair accessible"
+msgstr "Rollstuhlgerecht"
+
+msgid "Partially wheelchair accessible"
+msgstr " Teilweise rollstuhlgerecht"
+
+msgid "Not wheelchair accessible"
+msgstr "Nicht rollstuhlgerecht"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Rollstuhlgerechte Toiletten"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
+
+msgid "Accessibility"
+msgstr "Barrierefreiheit"
+
+msgid "Beers"
+msgstr "Bier"
+
+msgid "Internet access"
+msgstr "Internetzugang"
+
+msgid "WiFi"
+msgstr "Wi-Fi"
+
+msgid "services & information"
+msgstr "Dienstleistungen und Information"
+
+msgid "Please comply with government travel restrictions."
+msgstr ""
+
+msgid "More information at"
+msgstr ""
+
+msgid "Open during the sanitary crisis"
+msgstr ""
+
+msgid "Potentially open during the sanitary crisis"
+msgstr ""
+
+msgid "Closed during the sanitary crisis"
+msgstr ""
+
+msgid "No information on opening during the sanitary crisis"
+msgstr ""
+
+msgid "Report a change"
+msgstr ""
+
+msgid "Opening hours subject to change"
+msgstr ""
+
+msgid "phone"
+msgstr "Telefon"
+
+msgid "Updated {datetime}"
+msgstr ""
+
+msgid "Glass"
+msgstr ""
+
+msgid "Recyclable"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Read more on Wikipedia"
+msgstr "Auf Wikipedia weiterlesen"
+
+msgid "Information"
+msgstr "Informationen"
+
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
+
+msgid "View"
+msgstr "Ansicht"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Back to favorites"
+msgstr "Zurück zu Favoriten"
+
+msgid "Back to list"
+msgstr "Zurück zur Liste"
+
+msgid "In partnership with"
+msgstr ""
+
+msgid "See more nearby services"
+msgstr ""
+
+msgid "Reduce"
+msgstr ""
+
+msgid "Unfold to see quick actions"
+msgstr ""
+
+msgid "by car"
+msgstr "mit dem Auto"
+
+msgid "transit"
+msgstr "Linienverkehr"
+
+msgid "on foot"
+msgstr "zu Fuß"
+
+msgid "by bike"
+msgstr "mit dem Rad"
+
+msgid "Services nearby"
+msgstr ""
+
+msgid "No results found."
+msgstr "Keine Ergebnisse gefunden."
+
+msgid "Please zoom in the map to see the results for this category."
+msgstr ""
+"Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
+
+msgid "Please zoom out of the map."
+msgstr "Bitte aus der Karte herauszoomen."
+
+msgid "Search around my position"
+msgstr "Um meinen Standort herum suchen"
+
+msgid "Pages Jaunes"
+msgstr "Pages Jaunes"
+
+msgid "Partnership"
+msgstr "Partnerschaft"
+
+msgid "Show results"
+msgstr "Ergebnisse anzeigen"
+
+msgid "Start point"
+msgstr "Startpunkt"
+
+msgid "End point"
+msgstr "Zielpunkt"
+
+msgid "Test"
+msgstr "Test"
+
+msgid "Invert start and end"
+msgstr "Start und Ziel tauschen"
+
+msgid "Via"
+msgstr "Über"
+
+msgid "Walk on {walkDistance}"
+msgstr "Lauf über {walkDistance}"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Arrival"
+msgstr "Ankunft"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "The service is temporarily unavailable, please try again later."
+msgstr "Das Qwant Dienst ist derzeit nicht verfügbar, bitte versuche später."
+
+msgid "Qwant Maps found no results for this itinerary."
+msgstr "Qwant Maps konnte keine Ergebnisse für diese Reiseroute finden."
+
+msgid ""
+"We are currently testing public transport mode in a restricted set of "
+"cities."
+msgstr "Wir testen gerade ein öffentliches Verkehrsmode in einpaar Städten."
+
+msgid "return"
+msgstr "zurück"
+
+msgid ""
+"Check the spelling of your search or add more details, such as city or "
+"country."
+msgstr ""
+
+msgid "Try a new search query"
+msgstr ""
+
+msgid "Masq will be disabled"
+msgstr ""
+
+msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
+msgstr ""
+
+msgid "Learn more"
+msgstr ""
