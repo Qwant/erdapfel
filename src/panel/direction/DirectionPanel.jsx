@@ -27,16 +27,6 @@ export default class DirectionPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    Telemetry.add(Telemetry.ITINERARY_OPEN,
-      props.poi && Telemetry.buildInteractionData({
-        id: props.poi.id,
-        source: props.poi.meta ? props.poi.meta.source : props.poi.name,
-        template: 'simple',
-        zone: 'detail',
-        element: 'itinerary',
-      })
-    );
-
     this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
     if (this.props.isPublicTransportActive) {
       this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
@@ -66,6 +56,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   componentDidMount() {
+    Telemetry.add(Telemetry.ITINERARY_OPEN);
     document.body.classList.add('directions-open');
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);

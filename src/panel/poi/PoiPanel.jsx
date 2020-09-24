@@ -162,7 +162,9 @@ export default class PoiPanel extends React.Component {
   }
 
   openDirection = () => {
-    window.app.navigateTo('/routes/', { poi: this.getBestPoi() });
+    const poi = this.getBestPoi();
+    Telemetry.sendPoiEvent(poi, 'itinerary');
+    window.app.navigateTo('/routes/', { poi });
   }
 
   closeAction = () => {
@@ -212,7 +214,7 @@ export default class PoiPanel extends React.Component {
 
   toggleStorePoi = () => {
     const poi = this.state.fullPoi;
-    Telemetry.sendPoiEvent(poi, 'favorite');
+    Telemetry.sendPoiEvent(poi, 'favorite', { stored: !this.state.isPoiInFavorite });
     if (this.state.isPoiInFavorite) {
       store.del(poi);
     } else {

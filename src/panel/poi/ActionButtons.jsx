@@ -17,6 +17,10 @@ const ActionButtons = ({
     return handler(e);
   };
 
+  const onShare = target => {
+    Telemetry.add(Telemetry.POI_SHARE_TO, { target });
+  };
+
   return <Flex className="poi_panel__actions">
     {isDirectionActive && <Button
       className="poi_panel__action__direction"
@@ -46,6 +50,7 @@ const ActionButtons = ({
     <ShareMenu
       url={window.location.toString()}
       scrollableParent=".panel-content"
+      onShare={onShare}
     >
       {openMenu => <Button className="poi_panel__action__share"
         title={_('Share', 'poi panel')}

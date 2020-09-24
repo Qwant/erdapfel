@@ -30,12 +30,16 @@ module.exports = {
     'poi_backtolist',
     'poi_restore',
     'poi_share',
+    'poi_share_to',
     /* OSM */
     'poi_osm_open',
     'poi_osm_go',
     'poi_osm_favorite', // Favorite toggle
     'poi_osm_phone',
     'poi_osm_website',
+    'poi_osm_itinerary',
+    'poi_osm_osm_view',
+    'poi_osm_osm_edit',
     /* Pages Jaunes Poi */
     'poi_pages_jaunes_open',
     'poi_pages_jaunes_go',
@@ -43,6 +47,7 @@ module.exports = {
     'poi_pages_jaunes_phone',
     'poi_pages_jaunes_website',
     'poi_pages_jaunes_reviews',
+    'poi_pages_jaunes_itinerary',
     /* Map */
     'localise_trigger',
     /* Covid-19 */
