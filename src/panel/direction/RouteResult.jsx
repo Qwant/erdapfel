@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
 import { fire, listen } from 'src/libs/customEvents';
+import Telemetry from 'src/libs/telemetry';
 
 export default class RouteResult extends React.Component {
   static propTypes = {
@@ -44,6 +45,7 @@ export default class RouteResult extends React.Component {
     if (routeId === this.state.activeRouteId) {
       return;
     }
+    Telemetry.add(Telemetry.ITINERARY_ROUTE_SELECT);
     fire('set_main_route', { routeId, fitView: true });
     this.setState({ activeRouteId: routeId });
   }
@@ -56,6 +58,7 @@ export default class RouteResult extends React.Component {
   }
 
   toggleRouteDetails = routeId => {
+    Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
     if (this.state.activeRouteId === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
     } else {

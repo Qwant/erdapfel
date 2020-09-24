@@ -209,6 +209,7 @@ export default class DirectionPanel extends React.Component {
     if (this.state.activePreviewRoute) {
       this.setState({ activePreviewRoute: null });
     } else {
+      Telemetry.add(Telemetry.ITINERARY_CLOSE);
       window.app.navigateTo('/');
     }
   }
