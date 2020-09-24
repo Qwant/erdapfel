@@ -11,6 +11,7 @@ const handleCategoryClick = category => {
 const CategoryList = ({ className, limit = Number.MAX_VALUE }) =>
   <div className={className}>
     {CategoryService.getCategories()
+      .filter(c => c.iconName) // ignore categories used on detected intention only
       .slice(0, limit)
       .map(category => <MainActionButton
         key={category.name}

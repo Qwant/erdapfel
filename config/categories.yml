@@ -83,3 +83,13 @@
   matcher:
     regex: "fitness|muscu(lation)?|salle de muscu(lation)?"
   icon: basketball
+
+# Only categories with 'icon' are visible as action buttons.
+# Below are the categories that are only accessible
+# via queries (with detected intention) or URL
+- label: _('recycling')
+  name: recycling
+- label: _('station')
+  name: station
+- label: _('parking lot')
+  name: parking
