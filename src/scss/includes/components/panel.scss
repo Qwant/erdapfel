@@ -1,4 +1,4 @@
-$bottom-margin: 40;
+$bottom-margin: 40px;
 
 .panel-hidden {
   .panel:not(.direction_panel) {
@@ -50,7 +50,7 @@ $bottom-margin: 40;
 
 @media (min-width: 641px) {
   .panel {
-    max-height: calc(100vh - (92px + 40px)); // 92px is panel.getBoundingClientRect().top
+    max-height: calc(100vh - (92px + #{$bottom-margin})); // 92px is panel.getBoundingClientRect().top
 
     &-header {
       flex-shrink: 0;
