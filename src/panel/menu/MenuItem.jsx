@@ -19,7 +19,7 @@ const MenuItem = ({ menuItem: { uri, sectionName, links, icon } }) => <div>
       className="menu__panel__link"
       href={link.uri} rel="noopener noreferrer" target="_blank"
     >
-      {link.name}
+      {_(link.name)}
     </a>)}
   </div>}
 </div>;
