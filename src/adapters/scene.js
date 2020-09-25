@@ -122,8 +122,15 @@ Scene.prototype.initMapBox = function() {
     // we have to delay click event resolution to make time for possible double click events,
     // which are thrown *after* two separate click events are thrown
     this.clickDelayHandler = null;
+    // switch used to prevent 'click' events to have an effect
+    // after a touch interaction has been considered a longtouch
+    this.cancelClickAfterLongTouch = false;
     this.mb.on('click', e => {
       if (e.originalEvent.cancelBubble) {
+        return;
+      }
+      if (this.cancelClickAfterLongTouch) {
+        this.cancelClickAfterLongTouch = false;
         return;
       }
       // cancel the previous click handler if it's still pending
@@ -159,6 +166,8 @@ Scene.prototype.initMapBox = function() {
     this.mb.on('touchstart', e => {
       if (e.originalEvent.touches.length === 1) {
         longTouchTimeout = setTimeout(() => {
+          longTouchTimeout = null;
+          this.cancelClickAfterLongTouch = true;
           this.clickOnMap(e.lngLat, null, { longTouch: true });
         }, LONG_TOUCH_DELAY_MS);
       }
@@ -177,7 +186,12 @@ Scene.prototype.initMapBox = function() {
     ];
 
     const cancelLongTouch = () => {
-      clearTimeout(longTouchTimeout);
+      if (longTouchTimeout) {
+        clearTimeout(longTouchTimeout);
+        longTouchTimeout = null;
+        // ensure it's the "normal" case if no longtouch is triggered by this touch interaction
+        this.cancelClickAfterLongTouch = false;
+      }
     };
 
     longTouchCancellingEvents.forEach(event => {
