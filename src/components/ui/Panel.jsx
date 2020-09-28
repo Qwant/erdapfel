@@ -74,9 +74,8 @@ class Panel extends React.Component {
   }
 
   componentDidMount() {
-    this.updateMobileMapUI();
-    this.defaultHeight = this.panelDOMElement.offsetHeight;
     window.addEventListener('resize', this.handleViewportResize);
+    this.updateMobileMapUI();
   }
 
   componentDidUpdate(_, prevState) {
@@ -95,7 +94,7 @@ class Panel extends React.Component {
   }
 
   componentWillUnmount() {
-    this.updateMobileMapUI(0);
+    this.updateMobileMapUI();
     this.removeListeners();
     window.removeEventListener('resize', this.handleViewportResize);
   }
@@ -104,17 +103,19 @@ class Panel extends React.Component {
     this.setState({ height: window.innerHeight - this.props.marginTop });
   }
 
-  updateMobileMapUI = (height = this.panelDOMElement.offsetHeight) => {
+  updateMobileMapUI = () => {
     if (this.props.resizable) {
+      const heightFromBottom = this.state.height - this.state.translateY;
+
       window.execOnMapLoaded(() => {
-        fire('move_mobile_bottom_ui', height);
+        fire('move_mobile_bottom_ui', heightFromBottom);
       });
 
-      if (height > this.defaultHeight) {
+      if (heightFromBottom > DEFAULT_SIZE) {
         // Transition to maximized
         fire('mobile_geolocation_button_visibility', false);
         fire('mobile_direction_button_visibility', false);
-      } else if (this.props.size === 'minimized' || height < 40) {
+      } else if (this.props.size === 'minimized' || heightFromBottom < DEFAULT_MINIMIZED_SIZE) {
         // Transition to minimized
         fire('mobile_geolocation_button_visibility', true);
         fire('mobile_direction_button_visibility', true);
