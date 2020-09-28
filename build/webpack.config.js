@@ -164,7 +164,7 @@ const webpackChunks = buildMode => {
 
   webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(language => {
     return {
-      entry: path.join(__dirname, '..', 'language', 'message', language.locale + '.po'),
+      entry: path.join(__dirname, '..', 'language', 'message', language.code + '.po'),
       module: {
         rules: [
           {
@@ -176,7 +176,6 @@ const webpackChunks = buildMode => {
             options: {
               fallbackList: language.fallback,
               messagePath: path.join(__dirname, '..', 'language', 'message'),
-              locale: language.locale,
             },
           }],
       },

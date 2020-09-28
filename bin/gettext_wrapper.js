@@ -32,7 +32,7 @@ module.exports = function(app, languages) {
   const messagePath = path.resolve(path.join(__dirname, '..', 'language', 'message'));
   languages.forEach(language => {
     const poData = getPoData(
-      `${__dirname}/../language/message/${language.locale}.po`,
+      `${__dirname}/../language/message/${language.code}.po`,
       language.fallback, messagePath,
     );
     const plural = Function('n', `return ${poData.options.plural}`);
