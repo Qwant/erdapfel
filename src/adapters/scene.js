@@ -160,6 +160,7 @@ Scene.prototype.initMapBox = function() {
       if (e.originalEvent.touches.length === 1) {
         longTouchTimeout = setTimeout(() => {
           this.clickOnMap(e.lngLat, null, { longTouch: true });
+          this.cancelClickAfterLongTouch = true;
         }, LONG_TOUCH_DELAY_MS);
       }
     });
@@ -176,8 +177,16 @@ Scene.prototype.initMapBox = function() {
       'gestureend',
     ];
 
-    const cancelLongTouch = () => {
-      clearTimeout(longTouchTimeout);
+    const cancelLongTouch = e => {
+      if (longTouchTimeout) {
+        clearTimeout(longTouchTimeout);
+        longTouchTimeout = null;
+      }
+
+      if (this.cancelClickAfterLongTouch) {
+        e.originalEvent.preventDefault();
+        this.cancelClickAfterLongTouch = false;
+      }
     };
 
     longTouchCancellingEvents.forEach(event => {
