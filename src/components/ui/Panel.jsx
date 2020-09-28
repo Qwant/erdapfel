@@ -137,8 +137,6 @@ class Panel extends React.Component {
     this.startClientYOffset = this.startClientY - rect.top;
     this.startHeight = window.innerHeight - rect.top;
 
-    this.removeListeners();
-
     if (event.type === 'touchstart') {
       // Workaround for https://bugs.chromium.org/p/chromium/issues/detail?id=1123304
       document.addEventListener('touchmove', this.move, { passive: false });
