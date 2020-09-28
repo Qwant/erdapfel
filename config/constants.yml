@@ -25,12 +25,12 @@ languages:
       locale: br_FR
       code: br
       fallback:
-        - fr_FR
+        - fr
     -
       locale: ca_ES
       code: ca
       fallback:
-        - es_ES
+        - es
   defaultLanguage: *default
 
 # Map
