@@ -30,6 +30,7 @@ export default class SceneCategory {
       element: createIcon({ disablePointerEvents: true, className: 'marker--category' }),
       anchor: 'bottom',
     });
+    this.selectedPoi = null;
     this.selectedMarker = new Marker({
       element: createIcon({ className: 'marker--category' }),
       anchor: 'bottom',
@@ -122,9 +123,9 @@ export default class SceneCategory {
   }
 
   removeCategoryMarkers = () => {
+    this.selectPoiMarker(null);
     this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'none');
     this.hoveredMarker.remove();
-    this.selectedMarker.remove();
     this.setOsmPoisVisibility(true);
   }
 
@@ -145,12 +146,25 @@ export default class SceneCategory {
   }
 
   selectPoiMarker = poi => {
+    if (this.selectedPoi === poi) {
+      return;
+    }
+    if (this.selectedPoi) {
+      this.map.setFeatureState(
+        { id: this.selectedPoi.id, source: DYNAMIC_POIS_LAYER },
+        { selected: false });
+    }
     if (poi) {
+      this.selectedPoi = poi;
       this.selectedMarker
         .setLngLat(poi.latLon)
         .addTo(this.map);
+      this.map.setFeatureState(
+        { id: poi.id, source: DYNAMIC_POIS_LAYER },
+        { selected: true });
     } else {
       this.selectedMarker.remove();
+      this.selectedPoi = null;
     }
   }
 }
