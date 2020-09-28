@@ -100,6 +100,10 @@ $bottom-margin: 40px;
       }
     }
 
+    .panel-drawer {
+      flex-shrink: 0;
+    }
+
     .panel-handle {
       width: 40px;
       height: 5px;
