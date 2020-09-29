@@ -11,13 +11,6 @@
 }
 
 @media (max-width: 640px) {
-  .panel--pj .itemList {
-    padding-bottom: 36px;
-  }
-
-  .minimized:not(.panel--holding) .panel--pj .itemList {
-    padding-bottom: 0;
-  }
 
   .itemList {
     padding-bottom: 12px;

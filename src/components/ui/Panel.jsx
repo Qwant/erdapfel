@@ -259,7 +259,6 @@ class Panel extends React.Component {
             className={classnames('panel', size, className, {
               'panel--white': white,
               'panel--holding': holding,
-              'panel--pj': dataSource === 'pages_jaunes',
             })}
             style={isMobile ?
               {
