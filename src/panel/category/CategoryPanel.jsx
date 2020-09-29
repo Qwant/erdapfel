@@ -12,7 +12,7 @@ import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
 import classnames from 'classnames';
-import { sources } from '../../../config/constants.yml';
+import { sources } from 'config/constants.yml';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -170,7 +170,7 @@ export default class CategoryPanel extends React.Component {
       white
       resizable
       minimizedTitle={_('Unfold to show the results', 'categories')}
-      className={classnames('category__panel', { 'panel--pj': dataSource === 'pages_jaunes' })}
+      className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}
     >
       {panelContent}
     </Panel>;

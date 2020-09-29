@@ -14,11 +14,9 @@
 
   .itemList {
     padding-bottom: 12px;
-    margin: 0;
   }
 
   .itemList-item {
-    margin: 0;
     &:not(:last-child):after {
       display: none;
     }
