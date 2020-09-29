@@ -1,28 +1,19 @@
 # 
 # Translators:
-# Jannik Vieten <me@exploide.net>, 2019
-# Nils Hahmann <nhahmann@me.com>, 2019
-# Ettore Atalan <atalanttore@googlemail.com>, 2019
-# Isolator70 <henrik.heinsch@online.de>, 2019
-# ENT8R <info.ent8r@gmail.com>, 2019
-# Edouard Aubert Jurgens <edou.aubert@gmail.com>, 2020
-# MaximeEuziere <maxime.euziere@gmail.com>, 2020
-# Acrylic Boy, 2020
-# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-15 07:31+0000\n"
+"POT-Creation-Date: 2020-09-29 06:48+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
-"Language-Team: German (Germany) (https://www.transifex.com/qwant-1/teams/89416/de_DE/)\n"
+"Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -86,6 +77,15 @@ msgstr "Museum"
 
 msgid "sport"
 msgstr "Sport"
+
+msgid "recycling"
+msgstr ""
+
+msgid "station"
+msgstr "Bahnhof"
+
+msgid "parking lot"
+msgstr ""
 
 msgid "Qwant is also"
 msgstr "Qwant ist außerdem"
@@ -158,12 +158,6 @@ msgstr "Suche mit Qwant Maps"
 
 msgid "My location"
 msgstr "Mein Standort"
-
-msgid "chunk"
-msgstr ""
-
-msgid "write"
-msgstr "schreiben"
 
 msgid "Open"
 msgstr "Offen"
@@ -702,9 +696,6 @@ msgstr "Öffentliches Gebäude"
 msgid "rc car"
 msgstr "RC-Car"
 
-msgid "recycling"
-msgstr ""
-
 msgid "reservoir"
 msgstr "Reservoir"
 
@@ -764,9 +755,6 @@ msgstr "Sportzentrum"
 
 msgid "stadium"
 msgstr "Stadion"
-
-msgid "station"
-msgstr "Bahnhof"
 
 msgid "stationery shop"
 msgstr "Schreibwarengeschäft"
@@ -927,57 +915,20 @@ msgstr "auf PagesJaunes"
 msgid "Your position"
 msgstr "Ihr Standort"
 
-msgid "Patience, Masq is activating..."
-msgstr "Moment, Masq wird aktiviert..."
-
-msgid "Cancel"
-msgstr "Abbrechen"
-
-msgid "Well done, Masq is activated !"
-msgstr "Gut gemacht, Masq wurde aktiviert!"
-
-msgid "Your data is now secured, enjoy !"
-msgstr "Ihre Daten sind nun sicher, viel Vergnügen!"
-
-msgid "Close"
-msgstr "Schließen"
-
-msgid "Masq activation failed"
-msgstr "Masq Aktivierung fehlgeschlagen"
-
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-"Die Verbindung zwischen Qwant Maps und Masq ist fehlgeschlagen "
-"(Signalisierungsfehler)"
-
-msgid "Could not connect to Masq"
-msgstr "Keine Verbindung zu Masq"
-
 msgid "category"
 msgstr "Kategorie"
 
 msgid "Menu"
 msgstr ""
 
-msgid "Activate Masq"
-msgstr "Aktiviere Masq"
-
-msgid "Deactivate"
-msgstr "Deaktivieren"
-
-msgid "Activate"
-msgstr "Aktivieren"
-
-msgid "How does it work ?"
-msgstr "Wie funktioniert das?"
-
 msgid "Favorites"
 msgstr "Favoriten"
 
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
+
+msgid "Close"
+msgstr "Schließen"
 
 msgid "Copied!"
 msgstr ""
@@ -1123,11 +1074,8 @@ msgstr "Ansicht"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-msgid "Back to favorites"
-msgstr "Zurück zu Favoriten"
-
-msgid "Back to list"
-msgstr "Zurück zur Liste"
+msgid "Display all results"
+msgstr ""
 
 msgid "In partnership with"
 msgstr ""
@@ -1228,13 +1176,4 @@ msgid ""
 msgstr ""
 
 msgid "Try a new search query"
-msgstr ""
-
-msgid "Masq will be disabled"
-msgstr ""
-
-msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
-msgstr ""
-
-msgid "Learn more"
 msgstr ""

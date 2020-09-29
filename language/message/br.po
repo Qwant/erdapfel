@@ -1,23 +1,19 @@
 # 
 # Translators:
-# Gwenn M <tornoz@laposte.net>, 2019
-# MaximeEuziere <maxime.euziere@gmail.com>, 2020
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # Adrien Matissart, 2020
-# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-15 07:31+0000\n"
+"POT-Creation-Date: 2020-09-29 06:48+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
-"Language-Team: Breton (France) (https://www.transifex.com/qwant-1/teams/89416/br_FR/)\n"
+"Last-Translator: Adrien Matissart, 2020\n"
+"Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: br_FR\n"
+"Language: br\n"
 "Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -81,6 +77,15 @@ msgstr "mirdi"
 
 msgid "sport"
 msgstr "sport"
+
+msgid "recycling"
+msgstr ""
+
+msgid "station"
+msgstr "savlec'h"
+
+msgid "parking lot"
+msgstr ""
 
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
@@ -153,12 +158,6 @@ msgstr "Klask gant Qwant Maps"
 
 msgid "My location"
 msgstr ""
-
-msgid "chunk"
-msgstr ""
-
-msgid "write"
-msgstr "skrivañ"
 
 msgid "Open"
 msgstr "Digor"
@@ -697,9 +696,6 @@ msgstr "savadur foran"
 msgid "rc car"
 msgstr "karr pellurzhiet"
 
-msgid "recycling"
-msgstr ""
-
 msgid "reservoir"
 msgstr "beol"
 
@@ -759,9 +755,6 @@ msgstr "kreizenn sport"
 
 msgid "stadium"
 msgstr "stad"
-
-msgid "station"
-msgstr "savlec'h"
 
 msgid "stationery shop"
 msgstr "stal paperaerezh"
@@ -926,57 +919,20 @@ msgstr ""
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
 
-msgid "Patience, Masq is activating..."
-msgstr "Gortozit, war enaouiñ emañ Masq..."
-
-msgid "Cancel"
-msgstr "Nullañ"
-
-msgid "Well done, Masq is activated !"
-msgstr "Ma, mat-kaer enaouet emañ Masq!"
-
-msgid "Your data is now secured, enjoy !"
-msgstr "Suraet eo bremañ ho roadennoù, profitit!"
-
-msgid "Close"
-msgstr "Serriñ"
-
-msgid "Masq activation failed"
-msgstr "Enaouadur Masq c'hwitet"
-
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-"C'hwitet en deus ar c'hevreañ etre Qwant Maps hag an arload Masq. "
-"(Danevelliñ ar gudenn)"
-
-msgid "Could not connect to Masq"
-msgstr "N'heller ket kevreañ ouzh Masq"
-
 msgid "category"
 msgstr "rummad"
 
 msgid "Menu"
 msgstr ""
 
-msgid "Activate Masq"
-msgstr "Enaouiñ Masq"
-
-msgid "Deactivate"
-msgstr "Lazhañ"
-
-msgid "Activate"
-msgstr "Enaouiñ"
-
-msgid "How does it work ?"
-msgstr "Penaos ez a en-dro?"
-
 msgid "Favorites"
 msgstr "Sinedoù"
 
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
+
+msgid "Close"
+msgstr "Serriñ"
 
 msgid "Copied!"
 msgstr ""
@@ -1122,11 +1078,8 @@ msgstr "Gwelet"
 msgid "Edit"
 msgstr "Aozañ"
 
-msgid "Back to favorites"
-msgstr "Distreiñ d'ar sinedoù"
-
-msgid "Back to list"
-msgstr "Distreiñ d'al listenn"
+msgid "Display all results"
+msgstr ""
 
 msgid "In partnership with"
 msgstr ""
@@ -1226,13 +1179,4 @@ msgid ""
 msgstr ""
 
 msgid "Try a new search query"
-msgstr ""
-
-msgid "Masq will be disabled"
-msgstr ""
-
-msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
-msgstr ""
-
-msgid "Learn more"
 msgstr ""
