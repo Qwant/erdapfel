@@ -151,7 +151,7 @@ export default class CategoryPanel extends React.Component {
         panelContent = <CategoryPanelError zoomIn={zoomIn} />;
       } else {
         panelContent =
-        <div>
+        <>
           <PoiItemList
             pois={pois}
             selectPoi={this.selectPoi}
@@ -162,7 +162,7 @@ export default class CategoryPanel extends React.Component {
           <div className="category__panel__pj">
             {_('Results in partnership with PagesJaunes', 'categories')}
           </div>}
-        </div>;
+        </>;
       }
     }
 
