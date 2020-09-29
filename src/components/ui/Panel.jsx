@@ -50,7 +50,6 @@ class Panel extends React.Component {
     marginTop: PropTypes.number,
     className: PropTypes.string,
     white: PropTypes.bool,
-    dataSource: PropTypes.string,
   }
 
   static defaultProps = {
