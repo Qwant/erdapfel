@@ -151,12 +151,18 @@ export default class CategoryPanel extends React.Component {
         panelContent = <CategoryPanelError zoomIn={zoomIn} />;
       } else {
         panelContent =
-        <PoiItemList
-          pois={pois}
-          selectPoi={this.selectPoi}
-          highlightMarker={this.highlightPoiMarker}
-          dataSource={dataSource}
-        />;
+        <div>
+          <PoiItemList
+            pois={pois}
+            selectPoi={this.selectPoi}
+            highlightMarker={this.highlightPoiMarker}
+            dataSource={dataSource}
+          />
+          {dataSource === sources.pagesjaunes &&
+          <div className="category__panel__pj">
+            {_('Results in partnership with PagesJaunes', 'categories')}
+          </div>}
+        </div>;
       }
     }
 
