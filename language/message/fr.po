@@ -1,28 +1,19 @@
 # 
 # Translators:
-# Boo Teille <booteille@tutanota.com>, 2019
-# Florent Thouvenin <github@eldar.fr>, 2019
-# Etienne Bacher <etienne.bacher@orange.fr>, 2019
-# K T <kzn.tengwar@email.com>, 2019
-# v k <vitaalis@hotmail.com>, 2019
-# PoorPockets McNewHold <poorpocketsmcnewhold@protonmail.ch>, 2020
-# MaximeEuziere <maxime.euziere@gmail.com>, 2020
-# Louis Bedat <louisbedat33@gmail.com>, 2020
-# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-15 07:31+0000\n"
+"POT-Creation-Date: 2020-09-29 06:48+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
-"Language-Team: French (France) (https://www.transifex.com/qwant-1/teams/89416/fr_FR/)\n"
+"Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr_FR\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -89,6 +80,15 @@ msgstr "musée"
 msgid "sport"
 msgstr "sport"
 
+msgid "recycling"
+msgstr "recyclage"
+
+msgid "station"
+msgstr "gare"
+
+msgid "parking lot"
+msgstr "parking"
+
 msgid "Qwant is also"
 msgstr "Qwant c'est aussi"
 
@@ -129,7 +129,7 @@ msgid "F.A.Q."
 msgstr "F.A.Q."
 
 msgid "Maps legal notices"
-msgstr "Carte Mentions légales"
+msgstr "Mentions légales Maps"
 
 msgid "Terms of Service"
 msgstr "Conditions d'utilisation"
@@ -160,12 +160,6 @@ msgstr "Chercher avec Qwant Maps"
 
 msgid "My location"
 msgstr "Ma position"
-
-msgid "chunk"
-msgstr " "
-
-msgid "write"
-msgstr " "
 
 msgid "Open"
 msgstr "Ouvert"
@@ -704,9 +698,6 @@ msgstr "bâtiment public"
 msgid "rc car"
 msgstr "voiture radio commandée"
 
-msgid "recycling"
-msgstr "recyclage"
-
 msgid "reservoir"
 msgstr "réservoir"
 
@@ -766,9 +757,6 @@ msgstr "complexe sportif"
 
 msgid "stadium"
 msgstr "stade"
-
-msgid "station"
-msgstr "station"
 
 msgid "stationery shop"
 msgstr "papeterie"
@@ -933,57 +921,20 @@ msgstr "sur PagesJaunes"
 msgid "Your position"
 msgstr "Votre position"
 
-msgid "Patience, Masq is activating..."
-msgstr "Patientez, Masq est en cours d'activation…"
-
-msgid "Cancel"
-msgstr "Annulez"
-
-msgid "Well done, Masq is activated !"
-msgstr "Bien, Masq est activé !"
-
-msgid "Your data is now secured, enjoy !"
-msgstr "Vos données sont maintenant sécurisées, profitez !"
-
-msgid "Close"
-msgstr "Fermer"
-
-msgid "Masq activation failed"
-msgstr "Activation de Masq échouée"
-
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-"La connexion entre Qwant Maps et l'application Masq a échoué. (Signalling "
-"error)"
-
-msgid "Could not connect to Masq"
-msgstr "Impossible de se connecter à Masq"
-
 msgid "category"
 msgstr "catégorie"
 
 msgid "Menu"
 msgstr "Menu"
 
-msgid "Activate Masq"
-msgstr "Activer Masq"
-
-msgid "Deactivate"
-msgstr "Désactiver"
-
-msgid "Activate"
-msgstr "Activer"
-
-msgid "How does it work ?"
-msgstr "Comment ça marche ?"
-
 msgid "Favorites"
 msgstr "Favoris"
 
 msgid "How to contribute"
 msgstr "Comment contribuer"
+
+msgid "Close"
+msgstr "Fermer"
 
 msgid "Copied!"
 msgstr "Copié !"
@@ -1131,11 +1082,8 @@ msgstr "Voir"
 msgid "Edit"
 msgstr "Modifier"
 
-msgid "Back to favorites"
-msgstr "Retour aux favoris"
-
-msgid "Back to list"
-msgstr "Retour à la liste"
+msgid "Display all results"
+msgstr "Afficher tous les résultats"
 
 msgid "In partnership with"
 msgstr "En partenariat avec"
@@ -1241,12 +1189,3 @@ msgstr ""
 
 msgid "Try a new search query"
 msgstr "Effectuer une nouvelle recherche"
-
-msgid "Masq will be disabled"
-msgstr "Masq sera bientôt désactivé"
-
-msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
-msgstr "Masq by Qwant sera désactivé à partir du {masqAlertDate}."
-
-msgid "Learn more"
-msgstr "En savoir plus"

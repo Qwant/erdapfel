@@ -1,22 +1,19 @@
 # 
 # Translators:
-# MaximeEuziere <maxime.euziere@gmail.com>, 2020
-# jmontane, 2020
 # Adrien Matissart, 2020
-# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-15 07:31+0000\n"
+"POT-Creation-Date: 2020-09-29 06:48+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Noémie Lehuby <n.lehuby@qwant.com>, 2020\n"
-"Language-Team: Catalan (Spain) (https://www.transifex.com/qwant-1/teams/89416/ca_ES/)\n"
+"Last-Translator: Adrien Matissart, 2020\n"
+"Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ca_ES\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -80,6 +77,15 @@ msgstr "museu"
 
 msgid "sport"
 msgstr "esport"
+
+msgid "recycling"
+msgstr "reciclatge"
+
+msgid "station"
+msgstr "estació"
+
+msgid "parking lot"
+msgstr ""
 
 msgid "Qwant is also"
 msgstr "Qwant també és"
@@ -151,12 +157,6 @@ msgid "Search with Qwant Maps"
 msgstr "Cerca Qwant Maps"
 
 msgid "My location"
-msgstr ""
-
-msgid "chunk"
-msgstr ""
-
-msgid "write"
 msgstr ""
 
 msgid "Open"
@@ -696,9 +696,6 @@ msgstr "edifici públic"
 msgid "rc car"
 msgstr ""
 
-msgid "recycling"
-msgstr "reciclatge"
-
 msgid "reservoir"
 msgstr ""
 
@@ -758,9 +755,6 @@ msgstr "centre esportiu"
 
 msgid "stadium"
 msgstr "estadi"
-
-msgid "station"
-msgstr "estació"
 
 msgid "stationery shop"
 msgstr ""
@@ -924,55 +918,20 @@ msgstr ""
 msgid "Your position"
 msgstr "La vostra posició"
 
-msgid "Patience, Masq is activating..."
-msgstr "Paciència, s'està activant Masq..."
-
-msgid "Cancel"
-msgstr "Cancel·la"
-
-msgid "Well done, Masq is activated !"
-msgstr "Ben fet, s'ha activat Masq!"
-
-msgid "Your data is now secured, enjoy !"
-msgstr "Les dades ara s'han assegurat, gaudiu-ne!"
-
-msgid "Close"
-msgstr "Tanca"
-
-msgid "Masq activation failed"
-msgstr ""
-
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-
-msgid "Could not connect to Masq"
-msgstr "No es pot connectar a Masq"
-
 msgid "category"
 msgstr "categoria"
 
 msgid "Menu"
 msgstr ""
 
-msgid "Activate Masq"
-msgstr "Activa Masq"
-
-msgid "Deactivate"
-msgstr "Desactiva"
-
-msgid "Activate"
-msgstr "Activa"
-
-msgid "How does it work ?"
-msgstr "Com funciona?"
-
 msgid "Favorites"
 msgstr "Preferits"
 
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
+
+msgid "Close"
+msgstr "Tanca"
 
 msgid "Copied!"
 msgstr ""
@@ -1117,11 +1076,8 @@ msgstr "Mostra"
 msgid "Edit"
 msgstr "Edita"
 
-msgid "Back to favorites"
-msgstr "Torna als preferits"
-
-msgid "Back to list"
-msgstr "Torna a la llista"
+msgid "Display all results"
+msgstr ""
 
 msgid "In partnership with"
 msgstr ""
@@ -1221,13 +1177,4 @@ msgid ""
 msgstr ""
 
 msgid "Try a new search query"
-msgstr ""
-
-msgid "Masq will be disabled"
-msgstr ""
-
-msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
-msgstr ""
-
-msgid "Learn more"
 msgstr ""

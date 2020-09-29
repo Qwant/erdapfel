@@ -1,24 +1,19 @@
 # 
 # Translators:
-# Luca Elle <ikol89891@fastmail.com>, 2019
-# Davide Donati <davide.donati@gmail.com>, 2019
-# Federico Montemaro <montemarostore@gmail.com>, 2019
-# MaximeEuziere <maxime.euziere@gmail.com>, 2020
-# Noémie Lehuby <n.lehuby@qwant.com>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-15 07:31+0000\n"
+"POT-Creation-Date: 2020-09-29 06:48+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
-"Language-Team: Italian (Italy) (https://www.transifex.com/qwant-1/teams/89416/it_IT/)\n"
+"Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it_IT\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../..\n"
@@ -82,6 +77,15 @@ msgstr "museo"
 
 msgid "sport"
 msgstr "Sport"
+
+msgid "recycling"
+msgstr ""
+
+msgid "station"
+msgstr "stazione"
+
+msgid "parking lot"
+msgstr ""
 
 msgid "Qwant is also"
 msgstr "Qwant è anche"
@@ -153,12 +157,6 @@ msgid "Search with Qwant Maps"
 msgstr "Cerca con Qwant Maps"
 
 msgid "My location"
-msgstr ""
-
-msgid "chunk"
-msgstr ""
-
-msgid "write"
 msgstr ""
 
 msgid "Open"
@@ -698,9 +696,6 @@ msgstr "struttura pubblica"
 msgid "rc car"
 msgstr "macchina radiocomandata"
 
-msgid "recycling"
-msgstr ""
-
 msgid "reservoir"
 msgstr "serbatoio"
 
@@ -760,9 +755,6 @@ msgstr "centro sportivo"
 
 msgid "stadium"
 msgstr "stadio"
-
-msgid "station"
-msgstr "stazione"
 
 msgid "stationery shop"
 msgstr "negozio di cancelleria"
@@ -927,57 +919,20 @@ msgstr ""
 msgid "Your position"
 msgstr "La tua posizione"
 
-msgid "Patience, Masq is activating..."
-msgstr "Aspetta, Masq si sta attivando"
-
-msgid "Cancel"
-msgstr "Annulla"
-
-msgid "Well done, Masq is activated !"
-msgstr "Ben fatto, Masq è attivo!"
-
-msgid "Your data is now secured, enjoy !"
-msgstr "I tuoi dati ora sono al sicuro, goditelo!"
-
-msgid "Close"
-msgstr "Chiudi"
-
-msgid "Masq activation failed"
-msgstr "Errore di attivazione di Masq"
-
-msgid ""
-"The connection failed between Qwant Maps and the Masq"
-"                                            application (Signalling error)"
-msgstr ""
-"La connessione tra Qwant Maps e l'applicazione Masq (Signalling error) è "
-"fallita."
-
-msgid "Could not connect to Masq"
-msgstr "Impossibile connettersi a Masq"
-
 msgid "category"
 msgstr "categoria"
 
 msgid "Menu"
 msgstr ""
 
-msgid "Activate Masq"
-msgstr "Attiva Masq"
-
-msgid "Deactivate"
-msgstr "Disattiva"
-
-msgid "Activate"
-msgstr "Attiva"
-
-msgid "How does it work ?"
-msgstr "Come funziona?"
-
 msgid "Favorites"
 msgstr "Preferiti"
 
 msgid "How to contribute"
 msgstr "Come contribuire"
+
+msgid "Close"
+msgstr "Chiudi"
 
 msgid "Copied!"
 msgstr ""
@@ -1123,11 +1078,8 @@ msgstr "Vedi"
 msgid "Edit"
 msgstr "Modifica"
 
-msgid "Back to favorites"
-msgstr "Torna ai preferiti"
-
-msgid "Back to list"
-msgstr "Torna alla lista"
+msgid "Display all results"
+msgstr ""
 
 msgid "In partnership with"
 msgstr ""
@@ -1228,13 +1180,4 @@ msgid ""
 msgstr ""
 
 msgid "Try a new search query"
-msgstr ""
-
-msgid "Masq will be disabled"
-msgstr ""
-
-msgid "Masq by Qwant will be disabled starting from {masqAlertDate}."
-msgstr ""
-
-msgid "Learn more"
 msgstr ""
