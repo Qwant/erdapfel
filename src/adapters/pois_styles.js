@@ -10,7 +10,7 @@ export const filteredPoisStyle = {
 
     'text-font': [ 'Noto Sans Bold' ],
     'text-size': 10,
-    'text-field': '{name}',
+    'text-field': ['get', 'name'],
     'text-allow-overlap': false,
     'text-ignore-placement': false,
     'text-optional': true,
