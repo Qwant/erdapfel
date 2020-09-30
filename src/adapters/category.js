@@ -8,12 +8,11 @@ import { findIndexIgnoreCase, capitalizeFirst } from '../libs/string';
 import { CATEGORY_TYPE } from '../../config/constants.yml';
 
 export default class Category {
-  constructor(name, label, iconName, color, backgroundColor, matcher) {
+  constructor(name, label, iconName, color, matcher) {
     this.name = name;
     this.label = _(label);
     this.iconName = iconName;
     this.color = color;
-    this.backgroundColor = backgroundColor;
     this.matcher = matcher;
     this.alternativeName = _('category');
     this.type = CATEGORY_TYPE;
@@ -55,7 +54,7 @@ export default class Category {
     });
   }
 
-  static create({ name, label, icon, color, backgroundColor, matcher }) {
-    return new Category(name, label, icon, color, backgroundColor, matcher);
+  static create({ name, label, icon, color, matcher }) {
+    return new Category(name, label, icon, color, matcher);
   }
 }

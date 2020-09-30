@@ -1,13 +1,5 @@
 .itemList-item {
   background: $background;
-
-  &:not(:last-child):after {
-    display: block;
-    content: '';
-    height: 1px;
-    margin: 0 30px;
-    background-color: $separator_color;
-  }
 }
 
 .itemList--hover .itemList-item {
@@ -15,28 +7,16 @@
 
   &:hover {
     background: $surface;
-
-    &:before {
-      content: '';
-      position: absolute;
-      width: 4px;
-      height: 100%;
-      background-color: #FF3B4A;
-    }
   }
 }
 
 @media (max-width: 640px) {
+
   .itemList {
     padding-bottom: 12px;
-    margin: 0 15px;
   }
 
   .itemList-item {
-    margin: 8px 0;
-    @include card_shadow();
-    @include card_radius();
-
     &:not(:last-child):after {
       display: none;
     }

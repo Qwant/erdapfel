@@ -5,13 +5,14 @@ import Panel from 'src/components/ui/Panel';
 import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
-import CategoryPanelHeader from './CategoryPanelHeader';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
+import classnames from 'classnames';
+import { sources } from 'config/constants.yml';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -149,19 +150,27 @@ export default class CategoryPanel extends React.Component {
       if (hasError) {
         panelContent = <CategoryPanelError zoomIn={zoomIn} />;
       } else {
-        panelContent = <PoiItemList
-          pois={pois}
-          selectPoi={this.selectPoi}
-          highlightMarker={this.highlightPoiMarker}
-        />;
+        panelContent =
+        <>
+          <PoiItemList
+            pois={pois}
+            selectPoi={this.selectPoi}
+            highlightMarker={this.highlightPoiMarker}
+            dataSource={dataSource}
+          />
+          {dataSource === sources.pagesjaunes &&
+          <div className="category__panel__pj">
+            {_('Results in partnership with PagesJaunes', 'categories')}
+          </div>}
+        </>;
       }
     }
 
     return <Panel
+      white
       resizable
-      renderHeader={<CategoryPanelHeader dataSource={dataSource} loading={initialLoading} />}
-      minimizedTitle={_('Show results', 'categories')}
-      className="category__panel"
+      minimizedTitle={_('Unfold to show the results', 'categories')}
+      className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}
     >
       {panelContent}
     </Panel>;

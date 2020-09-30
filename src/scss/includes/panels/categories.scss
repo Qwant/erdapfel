@@ -6,32 +6,15 @@
 
 .category__panel__pj {
   width: 100%;
-  height: 50px;
-  padding: 0 20px;
-  display: flex;
-  line-height: 18px;
-  align-items: center;
-  justify-content: space-between;
-
-  &_title {
-    font-weight: normal;
-    color: $primary_text;
-    background: url('../images/pagesjaunes.svg') no-repeat left center;
-    background-size: 18px;
-    padding-left: 24px;
-  }
-
-  &_partnership {
-    display: inline-flex;
-    align-items: center;
-    font-size: 12px;
-    color: $secondary_text;
-
-    .icon-icon_info {
-      font-size: 16px;
-      margin-right: 4px;
-    }
-  }
+  height: 36px;
+  bottom: 0;
+  border-top: 1px solid $grey-light;
+  background: $background;
+  line-height: 36px;
+  text-align: center;
+  font-size: 14px;
+  color: $grey-semi-darkness;
+  border-radius: 0 0 12px 12px;
 }
 
 .category__panel__items {
@@ -39,14 +22,27 @@
 }
 
 .category__panel__error {
-  padding: 16px 16px 32px 16px
+  padding: 16px 16px 32px 16px;
+}
+
+@media (min-width: 641px) {
+  .category__panel {
+
+    &.panel--pj {
+      .panel-content {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .category__panel__items {
+        overflow-y: auto;
+      }
+    }
+  }
 }
 
 @media (max-width: 640px) {
-  .category__panel__pj {
-    height: 20px;
-  }
-
   .category__panel {
     position: absolute;
     width: 100vw;
@@ -60,6 +56,23 @@
     .poiItem {
       padding: 12px 16px;
       pointer-events: none;
+    }
+
+    &.panel--pj {
+      padding: 0 0 36px;
+    }
+  }
+
+  .category__panel__pj {
+    position: fixed;
+    bottom: 0;
+    height: 36px;
+    border-radius: 0;
+  }
+
+  .minimized:not(.panel--holding) {
+    .category__panel__pj {
+      display: none;
     }
   }
 

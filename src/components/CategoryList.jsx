@@ -2,6 +2,7 @@ import React from 'react';
 import CategoryService from 'src/adapters/category_service';
 import MainActionButton from 'src/components/ui/MainActionButton';
 import Telemetry from 'src/libs/telemetry';
+import { getLightBackground } from 'src/libs/colors';
 
 const handleCategoryClick = category => {
   Telemetry.add(Telemetry.HOME_CATEGORY, { category: category.name });
@@ -21,7 +22,7 @@ const CategoryList = ({ className, limit = Number.MAX_VALUE }) =>
         icon={category.iconName}
         iconStyle={{
           color: category.color,
-          backgroundColor: category.backgroundColor,
+          backgroundColor: getLightBackground(category.color),
         }}
       />)
     }
