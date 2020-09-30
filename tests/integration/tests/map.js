@@ -32,6 +32,19 @@ test('test local storage map center', async () => {
   expect(mapCenter).toEqual(center);
 });
 
+test('initial map position determined by geoip region', async () => {
+  const page = await browser.newPage();
+  await page.setExtraHTTPHeaders({
+    'x-geoip-country-code': 'FR', // France
+    'x-geoip-region-code': 'BRE', // Brittany
+  });
+  await page.goto(APP_URL);
+  const bounds = await page.evaluate(() =>
+    window.MAP_MOCK.options.bounds
+  );
+  expect(bounds).toEqual([-5.1440329, 47.2777959, -1.01569, 48.908645899999996]);
+});
+
 afterEach(async () => {
   await clearStore(page);
 });
