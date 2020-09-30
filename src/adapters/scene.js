@@ -26,33 +26,39 @@ const LONG_TOUCH_DELAY_MS = 500;
 function Scene() {
   this.currentMarker = null;
   this.popup = new PoiPopup();
-  this.zoom = map.zoom;
-  this.center = [map.center.lng, map.center.lat];
-  this.initialBbox = null;
   this.savedLocation = null;
 }
 
-Scene.prototype.initScene = async function(locationHash) {
-  await this.setupInitialPosition(locationHash);
-  this.initMapBox();
-};
-
-Scene.prototype.setupInitialPosition = async function(locationHash) {
+Scene.prototype.getMapInitOptions = async function(locationHash) {
   if (locationHash) {
-    this.zoom = locationHash.zoom;
-    this.center = [locationHash.lng, locationHash.lat];
-  } else {
-    const lastLocation = await store.getLastLocation();
-    if (lastLocation) {
-      this.center = [lastLocation.lng, lastLocation.lat];
-      this.zoom = lastLocation.zoom;
-    } else if (window.initialBbox) {
-      this.initialBbox = window.initialBbox;
-    }
+    return {
+      zoom: locationHash.zoom,
+      center: [locationHash.lng, locationHash.lat],
+    };
   }
+  const lastLocation = await store.getLastLocation();
+  if (lastLocation) {
+    return {
+      zoom: lastLocation.zoom,
+      center: [lastLocation.lng, lastLocation.lat],
+    };
+  }
+  if (window.initialBbox) {
+    return {
+      bounds: window.initialBbox,
+      fitBoundsOptions: {
+        padding: this.getCurrentPaddings(),
+        maxZoom: 9,
+      },
+    };
+  }
+  return {
+    zoom: map.zoom,
+    center: [map.center.lng, map.center.lat],
+  };
 };
 
-Scene.prototype.initMapBox = function() {
+Scene.prototype.initMapBox = async function(locationHash) {
   window.times.initMapBox = Date.now();
 
   setRTLTextPlugin(
@@ -72,18 +78,8 @@ Scene.prototype.initMapBox = function() {
     hash: false,
     maxZoom: 20,
     locale,
+    ...await this.getMapInitOptions(locationHash),
   };
-
-  if (this.initialBbox) {
-    mapOptions.bounds = this.initialBbox;
-    mapOptions.fitBoundsOptions = {
-      padding: this.getCurrentPaddings(),
-      maxZoom: 9,
-    };
-  } else {
-    mapOptions.zoom = this.zoom;
-    mapOptions.center = this.center;
-  }
   this.mb = new Map(mapOptions);
 
   this.popup.init(this.mb);
