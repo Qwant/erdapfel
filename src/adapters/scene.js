@@ -71,7 +71,7 @@ Scene.prototype.initMapBox = async function(locationHash) {
     /* lazy */ true
   );
 
-  const mapOptions = {
+  this.mb = new Map({
     attributionControl: false,
     container: 'scene_container',
     style: getStyle(),
@@ -79,8 +79,7 @@ Scene.prototype.initMapBox = async function(locationHash) {
     maxZoom: 20,
     locale,
     ...await this.getMapInitOptions(locationHash),
-  };
-  this.mb = new Map(mapOptions);
+  });
 
   this.popup.init(this.mb);
 
