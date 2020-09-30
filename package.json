@@ -11,6 +11,7 @@
     "start": "node bin/index.js",
     "build": "webpack --config build/webpack.config.js",
     "i18n": "./i18n.sh",
+    "i18n-pull": "tx pull --all --force",
     "watch": "webpack --config build/webpack.config.js -w --mode=development",
     "msgmerge": "node local_modules/merge-po/index",
     "prepare": "node build/before_build.js",
