@@ -257,9 +257,7 @@ export default class DirectionPanel extends React.Component {
       isLoading, isDirty, isInitializing,
       originInputText, destinationInputText,
     } = this.state;
-    const title = <h3 className="itinerary_title u-text--smallTitle u-center">
-      {_('Directions', 'direction')}
-    </h3>;
+
     const form = <DirectionForm
       isLoading={isLoading}
       origin={origin}
@@ -275,6 +273,7 @@ export default class DirectionPanel extends React.Component {
       activeVehicle={vehicle}
       isInitializing={isInitializing}
     />;
+
     const result = <RouteResult
       isLoading={isLoading || routes.length > 0 && isDirty}
       vehicle={vehicle}
@@ -285,37 +284,38 @@ export default class DirectionPanel extends React.Component {
       openMobilePreview={this.openMobilePreview}
     />;
 
+    const header =
+      <div className="direction">
+        <span className="direction-title">
+          <span className="u-text--title u-firstCap">
+          calculer un itinéraire
+          </span>
+          <button
+            className="direction-close"
+            title={_('Close')}
+            onClick={this.onClose}
+          >
+            <i className="icon-x" />
+          </button>
+        </span>
+        {/* {title} */}
+        {!activePreviewRoute && form}
+      </div>
+    ;
+
     return <DeviceContext.Consumer>
-      {isMobile => isMobile
-        ? <Fragment>
-          <div className="direction_panel_mobile">
-            <div className="itinerary_close_mobile" onClick={this.onClose}>
-              <span className="icon-chevron-left" />
-              <span className="u-firstCap">{_('return', 'direction')}</span>
-            </div>
-            {title}
-            {!activePreviewRoute && form}
-          </div>
-          {!activePreviewRoute && origin && destination &&
-            <Panel resizable marginTop={160} >
-              {result}
-            </Panel>}
+      {isMobile =>
+        <Fragment>
+          {/* {!activePreviewRoute && origin && destination && */}
+          <Panel resizable marginTop={160}
+            renderHeader={header}
+          >
+            {!isMobile && <div id="itinerary_autocomplete_suggestions" />}
+            {result}
+          </Panel>
           {activePreviewRoute &&
             <MobileRoadMapPreview steps={getAllSteps(activePreviewRoute)} />}
         </Fragment>
-        : <Panel
-          onClose={this.onClose}
-          renderHeader={(
-            <div>
-              {title}
-            </div>
-          )}
-          className="direction_panel"
-        >
-          {form}
-          <div id="itinerary_autocomplete_suggestions" />
-          {result}
-        </Panel>
       }
     </DeviceContext.Consumer>;
   }

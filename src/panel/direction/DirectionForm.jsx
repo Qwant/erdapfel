@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
 import { isMobileDevice } from 'src/libs/device';
+import { Divider } from 'src/components/ui';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {
@@ -67,30 +68,38 @@ export default class DirectionForm extends React.Component {
       destinationInputText,
     } = this.props;
 
-    return <div className="itinerary_form">
-      <div className="itinerary_fields">
-        <form noValidate>
-          <DirectionInput
-            isLoading={isLoading}
-            value={originInputText}
-            pointType="origin"
-            onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
-            ref={this.originRef}
-          />
-          <div className="itinerary__form__separator" />
-          <DirectionInput
-            isLoading={isLoading}
-            value={destinationInputText}
-            pointType="destination"
-            onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
-            ref={this.destinationRef}
-          />
-          <div
-            className="itinerary_invert_origin_destination icon-reverse"
+    return <div className="direction-form">
+      <div className="direction-form-fields">
+        <div className="direction-form-inputs">
+          <div className="direction-form-icons">
+            <img src="./statics/images/focus.svg" alt="" />
+            <img src="./statics/images/pin-2.svg" alt="" />
+          </div>
+
+          <form noValidate style={{ width: '100%' }}>
+            <DirectionInput
+              isLoading={isLoading}
+              value={originInputText}
+              pointType="origin"
+              onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
+              ref={this.originRef}
+            />
+            <Divider paddingTop={0} paddingBottom={0} />
+            <DirectionInput
+              isLoading={isLoading}
+              value={destinationInputText}
+              pointType="destination"
+              onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
+              ref={this.destinationRef}
+            />
+          </form>
+
+          <button
+            className="direction-form-reverse-button icon-reverse"
             onClick={this.onReverse}
             title={_('Invert start and end', 'direction')}
           />
-        </form>
+        </div>
       </div>
       <VehicleSelector
         vehicles={vehicles}

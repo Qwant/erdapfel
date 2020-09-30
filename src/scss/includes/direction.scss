@@ -1,28 +1,153 @@
-.direction_panel {
-  background: url("../images/panel_top.svg") #f4f6fa repeat-x !important;
-  background-size: 100% 5px;
+.direction {
+  padding: 20px 12px 12px 12px;
+  background: $background;
+  z-index: 3;
+  margin: 0;
+  @include long_shadow();
+  @include panel_radius();
 
-  .panel-content {
-    display: flex;
-    flex-direction: column;
-    overflow-y: visible;
+  @media (max-width: 640px) {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .itinerary_title {
+    color: $background;
+    line-height: 36px;
+  }
+
+  &-title {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &-close {
+    // FIXME merge into a shared component
+    color: $primary_text;
+
+    transition: background-color .1s;
+    border-radius: 50%;
+    font-size: 20px;
+    height: 24px;
+    width: 24px;
+    color: $secondary_text;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary_text;
+    }
   }
 }
 
-.itinerary_title {
-  text-align: center;
+.direction-form {
+  display: flex;
+  flex-direction: column-reverse;
+
+  @media (max-width: 640px) {
+    margin-bottom: 0;
+    flex-direction: column;
+  }
+
+  &-fields {
+    background: $background;
+    position: relative;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-width: 100%;
+  }
+
+  &-inputs {
+    border-radius: 8px;
+    border: solid 1px $grey-light;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 100%;
+  }
+
+  &-icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 16px 20px;
+  }
+
+  &-reverse-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+    margin: 0 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: $grey-lighter;
+    color: $grey-grey;
+    font-size: 20px;
+  }
+}
+
+.direction-input {
+  font-size: 14px;
+  line-height: 18px;
+  height: 48px;
   width: 100%;
+  color: $grey-semi-darkness;
+  position: relative;
+
+  &::placeholder {
+    color: $grey-grey;
+  }
+
+  // &:focus {
+  //   position: fixed;
+  // }
+
+  // @media (max-width: 640px) {
+  //   margin-bottom: 0;
+  //   flex-direction: column;
+  //   &:focus {
+  //     position: fixed;
+  //   }
+  //   z-index: 1;
+  //   top: 5px;
+  //   left: 0;
+  //   width: 100%;
+  //   background: $background;
+  //   padding-right: 60px;
+  //   padding-left: 50px;
+  //   height: 56px;
+  //   line-height: 56px;
+  //   box-shadow: 0 14px 0 10px #fff;
+  // }
+  // &-input {
+  //   // height: 40px;
+  //   // font-size: 14px;
+  //   // line-height: 18px;
+  //   color: blue;
+
+  //   &:read-only{
+  //     color: #dddddd;
+  //   }
 }
 
 .itinerary__field__clear {
   opacity: 0;
   position: absolute;
-  right: 32px;
-  top: 1px;
+  right: 64px;
+  top: 6px;
   padding: 10px;
   color: $secondary_text;
   font-size: 16px;
-  pointer-events: none;
+  // pointer-events: none;
+  cursor: pointer;
 }
 
 input:valid:focus ~ .itinerary__field__clear {
@@ -31,31 +156,11 @@ input:valid:focus ~ .itinerary__field__clear {
   pointer-events: all;
 }
 
-.itinerary_fields {
-  background: $background;
-  margin: 0 18px;
-  position: relative;
-  border-radius: 3px;
-}
-
-.itinerary_field {
-  position: relative;
-}
-
-.itinerary_form {
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column-reverse;
-}
-
 .itinerary_container--preview .itinerary_form {
   display: none;
 }
 
 .itinerary_icon {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 36px;
   height: 38px;
 }
@@ -67,56 +172,6 @@ input:valid:focus ~ .itinerary__field__clear {
   border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
-}
-
-.itinerary_icon_origin {
-  @include icon_origin;
-  margin: 15px 11px;
-}
-
-.itinerary_icon_destination {
-  background-image: url('../images/direction_icons/pin.png');
-  background-size: cover;
-  width: 14px;
-  height: 17px;
-  margin: 10px 12px 0 12px;
-}
-
-.itinerary_input {
-  position: relative;
-  width: 100%;
-  height: 40px;
-  padding: 0 60px 0 44px;
-  border: none;
-  font-size: 16px;
-  color: $primary_text;
-
-  &:read-only{
-    color: #dddddd;
-  }
-
-  &::placeholder {
-    font-style: italic;
-    color: #c8cbd3;
-    font-size: 16px;
-  }
-}
-
-.itinerary__form__separator {
-  border-top: 1px solid #c8cbd3;
-  margin: 0 37px;
-}
-
-.itinerary_invert_origin_destination {
-  color: $secondary_text;
-  background-size: 15px;
-  position: absolute;
-  width: 20px;
-  height: 16px;
-  right: 8px;
-  top: 30px;
-  cursor: pointer;
-  font-size: 20px;
 }
 
 .itinerary_vehicles {
@@ -582,10 +637,6 @@ input:valid:focus ~ .itinerary__field__clear {
   }
 }
 
-.itinerary_close_mobile {
-  display: none;
-}
-
 button.direction_shortcut {
   display: none;
   cursor: pointer;
@@ -603,85 +654,20 @@ button.direction_shortcut {
 }
 
 @media (min-width: 641px) {
-  .itinerary_title {
-    margin-top: 8px;
-  }
+  // .itinerary_title {
+  //   margin-top: 8px;
+  // }
 }
 
 /* Mobile */
 
 @media (max-width: 640px){
-  .direction_panel_mobile {
-    @include card_shadow();
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: url("../images/backgrounds/top_mobile.svg") #f4f6fa no-repeat center top;
-    background-size: 640px auto;
-    position: fixed;
-    z-index: 3;
-    min-height: 42px;
-
-    .itinerary_title {
-      color: $background;
-      line-height: 36px;
-    }
-  }
-
-  .itinerary_close_mobile {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: $background;
-    line-height: 36px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: bold;
-    padding-left: 6px;
-
-    .icon-chevron-left {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      margin: -6px 6px 0 0;
-      font-size: 22px;
-    }
-  }
-
-  .itinerary_form {
-    margin-bottom: 0;
-    flex-direction: column;
-  }
-
-  .itinerary_fields {
-    @include card_shadow();
-  }
-
-  .itinerary_input {
-    font-size: 14px;
-
-    &:focus {
-      position: fixed;
-      z-index: 1;
-      top: 5px;
-      left: 0;
-      width: 100%;
-      background: $background;
-      padding-right: 60px;
-      padding-left: 50px;
-      height: 56px;
-      line-height: 56px;
-      box-shadow: 0 14px 0 10px #fff;
-    }
-  }
-
-  .itinerary__field__clear {
-    position: fixed;
-    z-index: 2;
-    right: 12px;
-    top: 15px;
-  }
+  // .itinerary__field__clear {
+  //   position: fixed;
+  //   z-index: 2;
+  //   right: 12px;
+  //   top: 15px;
+  // }
 
   .direction_suggestions {
     position: fixed;
@@ -966,7 +952,7 @@ button.direction_shortcut {
     }
   }
 
-  input:valid:focus ~ .itinerary__field__clear {
-    right: 30px;
-  }
+  // input:valid:focus ~ .itinerary__field__clear {
+  //   right: 30px;
+  // }
 }

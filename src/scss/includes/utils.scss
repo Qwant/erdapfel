@@ -40,6 +40,14 @@
 
 /* Temporary typo classes, until we use real components */
 
+.u-text--title {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.17;
+  letter-spacing: -0.6px;
+  color: var(--grey-black);
+}
+
 .u-text--heading6 {
   font-size: 18px;
   font-weight: bold;

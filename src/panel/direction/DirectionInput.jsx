@@ -98,11 +98,11 @@ class DirectionInput extends React.Component {
 
     return <DeviceContext.Consumer>
       {isMobile =>
-        <div className="itinerary_field" >
+        <div>
           <input
             ref={inputRef}
             id={`itinerary_input_${pointType}`}
-            className="itinerary_input"
+            className="direction-input"
             type="search"
             required
             autoComplete="off"
@@ -127,12 +127,6 @@ class DirectionInput extends React.Component {
             />
           }
           <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
-          <div className="itinerary_field_return">
-            <span className="icon-arrow-left"/>
-          </div>
-          <div className="itinerary_field_icon">
-            <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
-          </div>
         </div>
       }
     </DeviceContext.Consumer>;
