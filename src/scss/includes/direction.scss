@@ -54,10 +54,10 @@ input:valid:focus ~ .itinerary__field__clear {
 
 .itinerary_icon {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 36px;
-  height: 38px;
+  left: 12px;
+  top: 12px;
+  width: 16px;
+  height: 16px;
 }
 
 @mixin icon_origin {
@@ -69,17 +69,38 @@ input:valid:focus ~ .itinerary__field__clear {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
 }
 
-.itinerary_icon_origin {
-  @include icon_origin;
-  margin: 15px 11px;
+.itinerary_field_icon {
+  .itinerary_icon_origin {
+    background-image: url('../images/direction_icons/origin.svg');
+  }
+
+  .itinerary_icon_destination {
+    background-image: url('../images/direction_icons/pin.svg');
+  }
 }
 
-.itinerary_icon_destination {
-  background-image: url('../images/direction_icons/pin.png');
-  background-size: cover;
-  width: 14px;
-  height: 17px;
-  margin: 10px 12px 0 12px;
+input {
+  color: blue;
+
+  &:focus {
+    ~ .itinerary_field_icon .itinerary_icon_origin {
+      background-image: url('../images/direction_icons/origin-active.svg');
+    }
+
+    ~ .itinerary_field_icon .itinerary_icon_destination {
+      background-image: url('../images/direction_icons/pin-active.svg');
+    }
+  }
+
+  &:valid {
+    ~ .itinerary_field_icon .itinerary_icon_origin {
+      background-image: url('../images/direction_icons/origin-active.svg');
+    }
+
+    ~ .itinerary_field_icon .itinerary_icon_destination {
+      background-image: url('../images/direction_icons/pin-active.svg');
+    }
+  }
 }
 
 .itinerary_input {
@@ -959,11 +980,7 @@ button.direction_shortcut {
 
   input:focus ~ .itinerary_field_icon {
     right: 42px;
-    top: 11px;
-
-    & .itinerary_icon_destination {
-      top: 3px;
-    }
+    top: 12px;
   }
 
   input:valid:focus ~ .itinerary__field__clear {
