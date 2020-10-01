@@ -46,6 +46,12 @@ function App(config) {
   const userLanguage = require('./middlewares/user_language')(languages);
   app.use(userLanguage);
 
+  if (config.server.useGeoipForInitialPosition) {
+    /* Set in res the approximate bbox */
+    const initialPosition = require('./middlewares/initial_position');
+    app.use(initialPosition);
+  }
+
   /* Trust local proxies, to get the correct requested 'host' */
   app.set('trust proxy', ['loopback', 'uniquelocal']);
 

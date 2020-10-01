@@ -14,8 +14,9 @@ server:
     headersWhitelistEnabled: true
   disableBurgerMenu:
     userAgentRule: '' # regex, ignored if empty
-  routerBaseUrl: / # path prefix expected by the express server
   # NB: `routerBaseUrl` may be different from `system.baseUrl` if a proxy is responsible for rewriting URLs
+  routerBaseUrl: / # path prefix expected by the express server
+  useGeoipForInitialPosition: true
 
 app:
   versionFlag: Beta

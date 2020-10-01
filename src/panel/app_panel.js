@@ -56,7 +56,7 @@ export default class App {
     import(/* webpackChunkName: "map" */ '../adapters/scene')
       .then(({ default: Scene }) => {
         const scene = new Scene();
-        scene.initScene(mapHash);
+        scene.initMapBox(mapHash);
       });
   }
 

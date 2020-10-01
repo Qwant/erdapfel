@@ -2,7 +2,7 @@ import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
-import { map } from 'config/constants.yml';
+import { map as mapConfig } from 'config/constants.yml';
 import { getMapPaddings, getMapCenterOffset, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
@@ -26,30 +26,39 @@ const LONG_TOUCH_DELAY_MS = 500;
 function Scene() {
   this.currentMarker = null;
   this.popup = new PoiPopup();
-  this.zoom = map.zoom;
-  this.center = [map.center.lng, map.center.lat];
   this.savedLocation = null;
 }
 
-Scene.prototype.initScene = async function(locationHash) {
-  await this.setupInitialPosition(locationHash);
-  this.initMapBox();
-};
-
-Scene.prototype.setupInitialPosition = async function(locationHash) {
+Scene.prototype.getMapInitOptions = async function(locationHash) {
   if (locationHash) {
-    this.zoom = locationHash.zoom;
-    this.center = [locationHash.lng, locationHash.lat];
-  } else {
-    const lastLocation = await store.getLastLocation();
-    if (lastLocation) {
-      this.center = [lastLocation.lng, lastLocation.lat];
-      this.zoom = lastLocation.zoom;
-    }
+    return {
+      zoom: locationHash.zoom,
+      center: [locationHash.lng, locationHash.lat],
+    };
   }
+  const lastLocation = await store.getLastLocation();
+  if (lastLocation) {
+    return {
+      zoom: lastLocation.zoom,
+      center: [lastLocation.lng, lastLocation.lat],
+    };
+  }
+  if (window.initialBbox) {
+    return {
+      bounds: window.initialBbox,
+      fitBoundsOptions: {
+        padding: this.getCurrentPaddings(),
+        maxZoom: 9,
+      },
+    };
+  }
+  return {
+    zoom: mapConfig.zoom,
+    center: [mapConfig.center.lng, mapConfig.center.lat],
+  };
 };
 
-Scene.prototype.initMapBox = function() {
+Scene.prototype.initMapBox = async function(locationHash) {
   window.times.initMapBox = Date.now();
 
   setRTLTextPlugin(
@@ -66,11 +75,10 @@ Scene.prototype.initMapBox = function() {
     attributionControl: false,
     container: 'scene_container',
     style: getStyle(),
-    zoom: this.zoom,
-    center: this.center,
     hash: false,
     maxZoom: 20,
     locale,
+    ...await this.getMapInitOptions(locationHash),
   });
 
   this.popup.init(this.mb);
