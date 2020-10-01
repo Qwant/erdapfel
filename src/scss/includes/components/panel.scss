@@ -67,16 +67,11 @@ $bottom-margin: 40px;
   .panel {
     width: 100vw;
     position: fixed;
-    background: #f4f6fa;
     border-radius: 12px 12px 0 0;
     bottom: 0;
 
     &-close {
       color: $primary_text;
-    }
-
-    &--white {
-      background: white;
     }
 
     &:not(.panel--holding) {

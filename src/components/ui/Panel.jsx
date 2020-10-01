@@ -49,7 +49,6 @@ class Panel extends React.Component {
     setSize: PropTypes.func,
     marginTop: PropTypes.number,
     className: PropTypes.string,
-    white: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -248,7 +247,7 @@ class Panel extends React.Component {
   render() {
     const {
       children, minimizedTitle,
-      resizable, className, white, size, renderHeader, onClose } = this.props;
+      resizable, className, size, renderHeader, onClose } = this.props;
     const { translateY, holding } = this.state;
 
     return (
@@ -256,7 +255,6 @@ class Panel extends React.Component {
         {isMobile =>
           <div
             className={classnames('panel', size, className, {
-              'panel--white': white,
               'panel--holding': holding,
             })}
             style={isMobile ?

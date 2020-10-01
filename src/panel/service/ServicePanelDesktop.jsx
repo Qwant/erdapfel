@@ -7,7 +7,7 @@ const ServicePanelDesktop = () => {
   const [ collapsed, setCollapsed ] = useState(true);
 
   return <Fragment>
-    <Panel className="service_panel u-mb-8" white>
+    <Panel className="service_panel u-mb-8">
       <h3 className="u-text--smallTitle u-mb-12">
         {_('Search around this place', 'service panel')}
       </h3>

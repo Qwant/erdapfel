@@ -240,7 +240,6 @@ export default class PoiPanel extends React.Component {
     return <DeviceContext.Consumer>
       {isMobile =>
         <Panel
-          white
           resizable
           fitContent
           className={classnames('poi_panel', {

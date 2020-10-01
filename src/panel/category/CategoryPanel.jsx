@@ -167,7 +167,6 @@ export default class CategoryPanel extends React.Component {
     }
 
     return <Panel
-      white
       resizable
       minimizedTitle={_('Unfold to show the results', 'categories')}
       className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}

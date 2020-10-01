@@ -15,10 +15,7 @@ const handleSearchClick = e => {
 
 const NoResultPanel = () => {
   return (
-    <Panel
-      white
-      close={close}
-    >
+    <Panel close={close}>
       <div
         style={{ padding: '0 16px 32px 16px' }}
       >
