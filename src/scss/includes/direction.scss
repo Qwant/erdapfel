@@ -1,5 +1,5 @@
 .direction_panel {
-  background: url("../images/panel_top.svg") #f4f6fa repeat-x !important;
+  background-color: $background;
   background-size: 100% 5px;
 
   .panel-content {
@@ -632,18 +632,18 @@ button.direction_shortcut {
 
 @media (max-width: 640px){
   .direction_panel_mobile {
+    background-color: $background;
     @include card_shadow();
     top: 0;
     left: 0;
     width: 100%;
-    background: url("../images/backgrounds/top_mobile.svg") #f4f6fa no-repeat center top;
     background-size: 640px auto;
     position: fixed;
     z-index: 3;
     min-height: 42px;
 
     .itinerary_title {
-      color: $background;
+      color: $primary_text;
       line-height: 36px;
     }
   }
@@ -652,7 +652,7 @@ button.direction_shortcut {
     display: flex;
     align-items: center;
     cursor: pointer;
-    color: $background;
+    color: $primary_text;
     line-height: 36px;
     position: absolute;
     left: 0;
