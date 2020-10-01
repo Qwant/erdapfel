@@ -79,19 +79,7 @@ input:valid:focus ~ .itinerary__field__clear {
 }
 
 input {
-  color: blue;
-
-  &:focus {
-    ~ .itinerary_field_icon .itinerary_icon_origin {
-      background-image: url('../images/direction_icons/origin-active.svg');
-    }
-
-    ~ .itinerary_field_icon .itinerary_icon_destination {
-      background-image: url('../images/direction_icons/pin-active.svg');
-    }
-  }
-
-  &:valid {
+  &:focus, &:valid {
     ~ .itinerary_field_icon .itinerary_icon_origin {
       background-image: url('../images/direction_icons/origin-active.svg');
     }
