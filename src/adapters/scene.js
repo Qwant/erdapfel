@@ -2,7 +2,7 @@ import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
-import { map } from 'config/constants.yml';
+import { map as mapConfig } from 'config/constants.yml';
 import { getMapPaddings, getMapCenterOffset, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
@@ -53,8 +53,8 @@ Scene.prototype.getMapInitOptions = async function(locationHash) {
     };
   }
   return {
-    zoom: map.zoom,
-    center: [map.center.lng, map.center.lat],
+    zoom: mapConfig.zoom,
+    center: [mapConfig.center.lng, mapConfig.center.lat],
   };
 };
 
