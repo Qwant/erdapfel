@@ -1,6 +1,5 @@
 .service_panel {
   position: relative;
-  background: white;
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();

@@ -14,7 +14,6 @@ class ServicePanelMobile extends React.Component {
       resizable
       minimizedTitle={_('Unfold to see quick actions', 'service panel')}
       className="service_panel"
-      white
     >
       {directionConf.enabled && <Fragment>
         <h3 className="u-text--smallTitle u-center u-mb-12">
