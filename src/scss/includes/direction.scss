@@ -1,26 +1,11 @@
 .direction-panel {
-  background-color: $background;
-  @include card_shadow();
-  width: 400px;
-
-  position: absolute;
-
-  @media (min-width: 641px) {
-    @include panel_radius();
-  }
-
   @media (max-width: 640px) {
+    background-color: $background;
+    @include card_shadow();
     position: fixed;
-    min-height: 42px;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 3;
-
-    .itinerary_title {
-      color: $primary_text;
-      line-height: 36px;
-    }
   }
 
   .itinerary_title {
@@ -31,16 +16,8 @@
   .panel-content {
     display: flex;
     flex-direction: column;
+    z-index: 0;
   }
-}
-
-.panel-content {
-  z-index: 0;
-}
-
-.itinerary_title {
-  text-align: center;
-  width: 100%;
 }
 
 .itinerary__field__clear {
@@ -77,7 +54,7 @@ input:valid:focus ~ .itinerary__field__clear {
 
   &:focus-within {
     &::before {
-      background: $gradient;
+      background: $focus-gradient;
     }
   }
 }
@@ -651,12 +628,6 @@ button.direction_shortcut {
   color: #5c6f84;
 }
 
-@media (min-width: 641px) {
-  .itinerary_title {
-    margin-top: 8px;
-  }
-}
-
 /* Mobile */
 
 @media (max-width: 640px){
@@ -975,8 +946,7 @@ button.direction_shortcut {
     }
   }
 
-  input:focus ~ .itinerary_field_return,
-  input:focus ~ .itinerary_field_icon {
+  input:focus ~ .itinerary_field_return {
     display: block;
     position: fixed;
     z-index: 2;
@@ -987,11 +957,6 @@ button.direction_shortcut {
     top: 20px;
     font-size: 25px;
     color: #353C52;
-  }
-
-  input:focus ~ .itinerary_field_icon {
-    right: 42px;
-    top: 12px;
   }
 
   input:valid:focus ~ .itinerary__field__clear {
