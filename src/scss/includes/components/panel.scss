@@ -32,21 +32,12 @@ $bottom-margin: 40px;
     align-self: center;
   }
 
-  &-close {
+  .panel-close {
     position: absolute;
-    top: 8px;
-    right: 16px;
     transition: background-color .1s;
     border-radius: 50%;
-    font-size: 20px;
-    height: 24px;
-    width: 24px;
-    color: $secondary_text;
-    cursor: pointer;
-
-    &:hover {
-      color: $primary_text;
-    }
+    top: 9px;
+    right: 18px;
   }
 }
 
@@ -72,8 +63,8 @@ $bottom-margin: 40px;
     border-radius: 12px 12px 0 0;
     bottom: 0;
 
-    &-close {
-      color: $primary_text;
+    .panel-close {
+      top: 18px;
     }
 
     &:not(.panel--holding) {
