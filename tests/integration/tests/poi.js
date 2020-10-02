@@ -229,7 +229,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(await exists(page, '.poiTitle')).toBeTruthy();
   expect(await exists(page, '.poi_panel')).toBeTruthy();
   await page.click('.poi_panel__actions .poi_panel__action__favorite');
-  await page.click('.poi-panel-close');
+  await page.click('.poi_panel .closeButton');
   // we check that the first favorite item is our poi
   await toggleFavoritePanel(page);
   let fav = await getFavorites(page);
@@ -244,7 +244,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   expect(await exists(page, '.poi_panel')).toBeTruthy();
 
   await page.click('.poi_panel__actions .poi_panel__action__favorite');
-  await page.click('.poi-panel-close');
+  await page.click('.poi_panel .closeButton');
   // it should disappear from the favorites
   await toggleFavoritePanel(page);
   fav = await getFavorites(page);

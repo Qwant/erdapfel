@@ -17,7 +17,7 @@ import Store from '../../adapters/store';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
-import { Flex, Panel, PanelNav } from 'src/components/ui';
+import { Flex, Panel, PanelNav, CloseButton } from 'src/components/ui';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -257,7 +257,7 @@ export default class PoiPanel extends React.Component {
           }
         >
           <div className="poi_panel__content">
-            <Flex alignItems="flex-start">
+            <Flex alignItems="flex-start" justifyContent="space-between">
               <PoiItem
                 poi={poi}
                 className="u-mb-20 poi-panel-poiItem"
@@ -265,14 +265,7 @@ export default class PoiPanel extends React.Component {
                 withOpeningHours
                 onClick={this.center}
               />
-
-              <button
-                className="poi-panel-close"
-                title={_('Close')}
-                onClick={isMobile ? backAction : this.closeAction}
-              >
-                <i className="icon-x" />
-              </button>
+              <CloseButton onClick={isMobile ? backAction : this.closeAction} />
             </Flex>
             <div className="u-mb-8">
               <ActionButtons

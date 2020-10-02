@@ -9,17 +9,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   &-poiItem {
     flex-grow: 1;
   }
-
-  &-close {
-    height: 35px;
-    width: 35px;
-    margin-left: auto;
-    font-size: 22px;
-    cursor: pointer;
-    position: relative;
-    top: -5px;
-    right: -5px;
-  }
 }
 
 .poi_panel__content {
@@ -217,11 +206,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 @media (max-width: 640px) {
-
-  .poi-panel-close {
-    right: 0;
-  }
-
   .poi_panel__content {
     padding: 0 12px 12px;
   }
