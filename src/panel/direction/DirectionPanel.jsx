@@ -295,8 +295,10 @@ export default class DirectionPanel extends React.Component {
             </div>
             {title}
             {!activePreviewRoute && form}
-            {!isMobile && <div id="itinerary_autocomplete_suggestions" />}
-            {!isMobile && result}
+            {<div
+              id="itinerary_autocomplete_suggestions"
+              className="itinerary_autocomplete_suggestions"
+            />}
           </div>
           {!activePreviewRoute && origin && destination &&
             <Panel resizable marginTop={160} >

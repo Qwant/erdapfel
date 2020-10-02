@@ -7,7 +7,6 @@ import Suggest from 'src/components/ui/Suggest';
 import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
-import { DeviceContext } from 'src/libs/device';
 import Telemetry from 'src/libs/telemetry';
 
 class DirectionInput extends React.Component {
@@ -96,13 +95,12 @@ class DirectionInput extends React.Component {
     const { pointType, inputRef, isLoading } = this.props;
     const { mounted, readOnly } = this.state;
 
-    return <DeviceContext.Consumer>
-      {isMobile =>
-        <div className="itinerary_field" >
+    return (
+      <div className="itinerary_field" >
+        <div id="itinerary_input" className="itinerary_input">
           <input
             ref={inputRef}
             id={`itinerary_input_${pointType}`}
-            className="itinerary_input"
             type="search"
             required
             autoComplete="off"
@@ -115,27 +113,25 @@ class DirectionInput extends React.Component {
             onKeyPress={this.onKeyPress}
             readOnly={readOnly || isLoading}
           />
-          {mounted &&
+          <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
+        </div>
+        {mounted &&
             <Suggest
               inputNode={inputRef.current}
-              outputNode={!isMobile
-                ? document.getElementById('itinerary_autocomplete_suggestions')
-                : null}
+              outputNode={document.getElementById('itinerary_autocomplete_suggestions')}
               withGeoloc
               onSelect={this.selectItem}
               onClear={this.clear}
             />
-          }
-          <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
-          <div className="itinerary_field_return">
-            <span className="icon-arrow-left"/>
-          </div>
-          <div className="itinerary_field_icon">
-            <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
-          </div>
+        }
+        <div className="itinerary_field_return">
+          <span className="icon-arrow-left"/>
         </div>
-      }
-    </DeviceContext.Consumer>;
+        <div className="itinerary_field_icon">
+          <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
+        </div>
+      </div>
+    );
   }
 }
 
