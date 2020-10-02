@@ -68,30 +68,28 @@ export default class DirectionForm extends React.Component {
     } = this.props;
 
     return <div className="itinerary_form">
-      <div className="itinerary_fields">
-        <form noValidate>
-          <DirectionInput
-            isLoading={isLoading}
-            value={originInputText}
-            pointType="origin"
-            onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
-            ref={this.originRef}
-          />
-          <div className="itinerary__form__separator" />
-          <DirectionInput
-            isLoading={isLoading}
-            value={destinationInputText}
-            pointType="destination"
-            onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
-            ref={this.destinationRef}
-          />
-          <div
-            className="itinerary_invert_origin_destination icon-reverse"
-            onClick={this.onReverse}
-            title={_('Invert start and end', 'direction')}
-          />
-        </form>
-      </div>
+      <form className="itinerary_fields" noValidate>
+        <DirectionInput
+          isLoading={isLoading}
+          value={originInputText}
+          pointType="origin"
+          onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
+          ref={this.originRef}
+        />
+        <div className="itinerary__form__separator" />
+        <DirectionInput
+          isLoading={isLoading}
+          value={destinationInputText}
+          pointType="destination"
+          onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
+          ref={this.destinationRef}
+        />
+        <div
+          className="itinerary_invert_origin_destination icon-reverse"
+          onClick={this.onReverse}
+          title={_('Invert start and end', 'direction')}
+        />
+      </form>
       <VehicleSelector
         vehicles={vehicles}
         activeVehicle={activeVehicle}

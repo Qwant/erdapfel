@@ -1,11 +1,41 @@
-.direction_panel {
+.direction-panel {
   background-color: $background;
-  background-size: 100% 5px;
+  @include card_shadow();
+  width: 400px;
+
+  position: absolute;
+
+  @media (min-width: 641px) {
+    @include panel_radius();
+  }
+
+  @media (max-width: 640px) {
+    position: fixed;
+    min-height: 42px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    .itinerary_title {
+      color: $primary_text;
+      line-height: 36px;
+    }
+  }
+
+  .itinerary_title {
+    color: $primary_text;
+    line-height: 36px;
+  }
 
   .panel-content {
     display: flex;
     flex-direction: column;
   }
+}
+
+.panel-content {
+  z-index: 0;
 }
 
 .itinerary_title {
@@ -34,7 +64,22 @@ input:valid:focus ~ .itinerary__field__clear {
   background: $background;
   margin: 0 18px;
   position: relative;
-  border-radius: 3px;
+  border-radius: 8px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: -1px;
+    border-radius: inherit;
+    z-index: -1;
+    background: $grey-light;
+  }
+
+  &:focus-within {
+    &::before {
+      background: $gradient;
+    }
+  }
 }
 
 .itinerary_field {
@@ -606,10 +651,6 @@ button.direction_shortcut {
   color: #5c6f84;
 }
 
-.direction_panel_mobile .autocomplete_suggestions {
-  @include long_shadow();
-}
-
 @media (min-width: 641px) {
   .itinerary_title {
     margin-top: 8px;
@@ -619,23 +660,6 @@ button.direction_shortcut {
 /* Mobile */
 
 @media (max-width: 640px){
-  .direction_panel_mobile {
-    background-color: $background;
-    @include card_shadow();
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-size: 640px auto;
-    position: fixed;
-    z-index: 3;
-    min-height: 42px;
-
-    .itinerary_title {
-      color: $primary_text;
-      line-height: 36px;
-    }
-  }
-
   .itinerary_close_mobile {
     display: flex;
     align-items: center;
@@ -657,13 +681,13 @@ button.direction_shortcut {
     }
   }
 
+  .direction-panel .autocomplete_suggestions {
+    @include long_shadow();
+  }
+
   .itinerary_form {
     margin-bottom: 0;
     flex-direction: column;
-  }
-
-  .itinerary_fields {
-    @include card_shadow();
   }
 
   .itinerary_input {

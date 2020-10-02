@@ -178,7 +178,7 @@ test('show itinerary roadmap on mobile', async () => {
   */
   await page.evaluate('window.app.navigateTo("/")');
   // Itinerary container should be disabled.
-  await page.waitForSelector('.direction_panel', { hidden: true, timeout: 1000 });
+  await page.waitForSelector('.direction-panel', { hidden: true, timeout: 1000 });
 });
 
 test('api error handling', async () => {

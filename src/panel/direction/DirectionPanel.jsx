@@ -1,7 +1,7 @@
 /* globals _ */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'src/components/ui/Panel';
+import { Panel } from 'src/components/ui';
 import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
@@ -288,13 +288,15 @@ export default class DirectionPanel extends React.Component {
     return <DeviceContext.Consumer>
       {isMobile => isMobile
         ? <Fragment>
-          <div className="direction_panel_mobile">
+          <div className="direction-panel">
             <div className="itinerary_close_mobile" onClick={this.onClose}>
               <span className="icon-chevron-left" />
               <span className="u-firstCap">{_('return', 'direction')}</span>
             </div>
             {title}
             {!activePreviewRoute && form}
+            {!isMobile && <div id="itinerary_autocomplete_suggestions" />}
+            {!isMobile && result}
           </div>
           {!activePreviewRoute && origin && destination &&
             <Panel resizable marginTop={160} >
@@ -310,13 +312,12 @@ export default class DirectionPanel extends React.Component {
               {title}
             </div>
           )}
-          className="direction_panel"
+          className="direction-panel"
         >
           {form}
           <div id="itinerary_autocomplete_suggestions" />
           {result}
-        </Panel>
-      }
+        </Panel>}
     </DeviceContext.Consumer>;
   }
 }
