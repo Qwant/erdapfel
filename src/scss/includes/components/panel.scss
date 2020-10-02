@@ -1,7 +1,7 @@
 $bottom-margin: 40px;
 
 .panel-hidden {
-  .panel:not(.direction_panel) {
+  .panel:not(.direction-panel) {
     display: none;
   }
   .service_panel__category_toggle {
