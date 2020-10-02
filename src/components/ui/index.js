@@ -11,6 +11,7 @@ import PlaceholderText from './PlaceholderText';
 import Suggest from './Suggest';
 import Text from './Text';
 import PanelNav from './PanelNav';
+import CloseButton from './CloseButton';
 
 export {
   Button,
@@ -27,4 +28,5 @@ export {
   Suggest,
   Text,
   PanelNav,
+  CloseButton,
 };
