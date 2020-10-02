@@ -32,10 +32,8 @@ $bottom-margin: 40px;
     align-self: center;
   }
 
-  .panel-close {
+  &-close {
     position: absolute;
-    transition: background-color .1s;
-    border-radius: 50%;
     top: 9px;
     right: 18px;
   }
