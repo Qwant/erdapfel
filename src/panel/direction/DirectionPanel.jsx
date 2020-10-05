@@ -257,7 +257,7 @@ export default class DirectionPanel extends React.Component {
       isLoading, isDirty, isInitializing,
       originInputText, destinationInputText,
     } = this.state;
-    const title = <h3 className="itinerary_title u-text--smallTitle u-center">
+    const title = <h3 className="direction-title u-text--smallTitle u-center">
       {_('Directions', 'direction')}
     </h3>;
     const form = <DirectionForm
@@ -289,15 +289,15 @@ export default class DirectionPanel extends React.Component {
       {isMobile => isMobile
         ? <Fragment>
           <div className="direction-panel">
-            <div className="itinerary_close_mobile" onClick={this.onClose}>
+            <div className="direction-close" onClick={this.onClose}>
               <span className="icon-chevron-left" />
               <span className="u-firstCap">{_('return', 'direction')}</span>
             </div>
             {title}
             {!activePreviewRoute && form}
             {<div
-              id="itinerary_autocomplete_suggestions"
-              className="itinerary_autocomplete_suggestions"
+              id="direction-autocomplete_suggestions"
+              className="direction-autocomplete_suggestions"
             />}
           </div>
           {!activePreviewRoute && origin && destination &&
@@ -317,7 +317,7 @@ export default class DirectionPanel extends React.Component {
           className="direction-panel"
         >
           {form}
-          <div id="itinerary_autocomplete_suggestions" />
+          <div id="direction-autocomplete_suggestions" />
           {result}
         </Panel>}
     </DeviceContext.Consumer>;

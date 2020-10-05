@@ -46,8 +46,8 @@ test('load a poi from url and click on directions', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poiTitle');
   await page.click('.poi_panel__actions .poi_panel__action__direction'); // Click on directions button
-  await page.waitForSelector('#itinerary_input_destination');
-  const destinationValue = await getInputValue(page, '#itinerary_input_destination');
+  await page.waitForSelector('#direction-input_destination');
+  const destinationValue = await getInputValue(page, '#direction-input_destination');
   expect(destinationValue).toEqual("Musée d'Orsay");
 });
 
