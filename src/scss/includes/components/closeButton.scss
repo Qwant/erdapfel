@@ -6,9 +6,12 @@
   justify-content: center;
   font-size: 22px;
   cursor: pointer;
-  margin-top: -9px;
-  margin-right: -9px;
   color: $primary_text;
+
+  &--topRight {
+    margin-top: -9px;
+    margin-right: -9px;
+  }
 
   @media (min-width: 641px) {
     color: $secondary_text;

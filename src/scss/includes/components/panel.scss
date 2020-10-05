@@ -34,8 +34,7 @@ $bottom-margin: 40px;
 
   &-close {
     position: absolute;
-    top: 9px;
-    right: 18px;
+    right: 9px;
   }
 }
 
@@ -62,7 +61,7 @@ $bottom-margin: 40px;
     bottom: 0;
 
     .panel-close {
-      top: 18px;
+      top: 9px;
     }
 
     &:not(.panel--holding) {

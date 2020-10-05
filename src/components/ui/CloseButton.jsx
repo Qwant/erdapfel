@@ -2,9 +2,9 @@
 import React from 'react';
 import cx from 'classnames';
 
-const CloseButton = ({ className, onClick }) =>
+const CloseButton = ({ className, position, onClick }) =>
   <button
-    className={cx('closeButton', className)}
+    className={cx('closeButton', { [`closeButton--${position}`]: position }, className)}
     title={_('Close')}
     onClick={onClick}
   >

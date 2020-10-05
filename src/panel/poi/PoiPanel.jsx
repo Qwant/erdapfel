@@ -265,7 +265,7 @@ export default class PoiPanel extends React.Component {
                 withOpeningHours
                 onClick={this.center}
               />
-              <CloseButton onClick={isMobile ? backAction : this.closeAction} />
+              <CloseButton onClick={isMobile ? backAction : this.closeAction} position="topRight" />
             </Flex>
             <div className="u-mb-8">
               <ActionButtons
