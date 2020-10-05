@@ -13,14 +13,14 @@ const getLocalizedTitle = vehicle => {
 };
 
 const VehicleSelector = ({ vehicles, activeVehicle, onSelectVehicle }) =>
-  <div className={classnames('itinerary_vehicles',
-    { 'itinerary_vehicles--withPublicTransport': vehicles.length > 3 }
+  <div className={classnames('vehicleSelector',
+    { 'vehicleSelector--withPublicTransport': vehicles.length > 3 }
   )}>
     {vehicles.map(vehicle => <button
       type="button"
       key={vehicle}
-      className={classnames(`itinerary_vehicle_button ${getVehicleIcon(vehicle)}`,
-        { 'itinerary_vehicle_button--active': vehicle === activeVehicle }
+      className={classnames(`vehicleSelector-button ${getVehicleIcon(vehicle)}`,
+        { 'vehicleSelector-button--active': vehicle === activeVehicle }
       )}
       onClick={() => onSelectVehicle(vehicle)}
       aria-label={capitalizeFirst(getLocalizedTitle(vehicle))}

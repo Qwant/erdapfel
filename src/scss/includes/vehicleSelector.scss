@@ -1,11 +1,11 @@
-.itinerary_vehicles {
+.vehicleSelector {
   display: flex;
   justify-content: center;
   margin: 0px 32px;
   padding: 0px 32px 16px;
 }
 
-.itinerary_vehicle_button {
+.vehicleSelector-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,7 +49,7 @@
   }
 }
 
-.itinerary_vehicles--withPublicTransport {
+.vehicleSelector--withPublicTransport {
   margin: 0 18px;
   justify-content: space-between;
 
@@ -59,7 +59,7 @@
 }
 
 @media (max-width: 640px){
-  .itinerary_vehicles {
+  .vehicleSelector {
     padding: 9px 0 6px;
   }
 }
