@@ -24,7 +24,7 @@ const Alert = ({
         <span role="alert">{title}</span>
       </span>
       <button
-        className={'closeBtn'}
+        className="closeBtn"
         onClick={onClose}
         aria-label={closeButtonLabel}
       >
