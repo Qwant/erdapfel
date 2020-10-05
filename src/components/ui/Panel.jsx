@@ -93,7 +93,7 @@ class Panel extends React.Component {
   }
 
   componentWillUnmount() {
-    this.updateMobileMapUI();
+    this.updateMobileMapUI({ closing: true });
     this.removeListeners();
     window.removeEventListener('resize', this.handleViewportResize);
   }
@@ -102,9 +102,9 @@ class Panel extends React.Component {
     this.setState({ height: window.innerHeight - this.props.marginTop });
   }
 
-  updateMobileMapUI = () => {
+  updateMobileMapUI = ({ closing } = {}) => {
     if (this.props.resizable) {
-      const heightFromBottom = this.state.height - this.state.translateY;
+      const heightFromBottom = closing ? 0 : this.state.height - this.state.translateY;
 
       window.execOnMapLoaded(() => {
         fire('move_mobile_bottom_ui', heightFromBottom);
