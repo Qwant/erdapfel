@@ -1,6 +1,7 @@
 import React from 'react';
 import cs from 'classnames';
 import { string, oneOf, func, node, oneOfType } from 'prop-types';
+import { CloseButton } from 'src/components/ui';
 
 const AlertIcon = {
   success: 'check-circle',
@@ -15,7 +16,6 @@ const Alert = ({
   description,
   type = 'warning',
   onClose,
-  closeButtonLabel,
 }) =>
   <div className={cs('alert', className)}>
     <span className="alert-title">
@@ -23,13 +23,7 @@ const Alert = ({
         <i className={`alert-icon icon-${AlertIcon[type]} icon-${type}`}></i>
         <span role="alert">{title}</span>
       </span>
-      <button
-        className="closeBtn"
-        onClick={onClose}
-        aria-label={closeButtonLabel}
-      >
-        <i className="icon-x" />
-      </button>
+      <CloseButton onClick={onClose} position="topRight" />
     </span>
     <div className="alert-content">
       <span role="alert">{description}</span>
