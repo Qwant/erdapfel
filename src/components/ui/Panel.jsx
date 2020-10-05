@@ -1,10 +1,10 @@
-/* globals _ */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
+import { CloseButton } from 'src/components/ui';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
@@ -268,15 +268,7 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            {onClose &&
-              <button
-                className="panel-close"
-                title={_('Close')}
-                onClick={onClose}
-              >
-                <i className="icon-x" />
-              </button>
-            }
+            {onClose && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable &&
               <div
                 className="panel-drawer"
