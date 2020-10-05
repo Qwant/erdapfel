@@ -96,11 +96,11 @@ class DirectionInput extends React.Component {
     const { mounted, readOnly } = this.state;
 
     return (
-      <div className="itinerary_field" >
-        <div id="itinerary_input" className="itinerary_input">
+      <div className="direction-field" >
+        <div id="direction-input" className="direction-input">
           <input
             ref={inputRef}
-            id={`itinerary_input_${pointType}`}
+            id={`direction-input_${pointType}`}
             type="search"
             required
             autoComplete="off"
@@ -113,23 +113,23 @@ class DirectionInput extends React.Component {
             onKeyPress={this.onKeyPress}
             readOnly={readOnly || isLoading}
           />
-          <div className="icon-x itinerary__field__clear" onMouseDown={this.clear} />
+          <div className="direction-field-icon">
+            <div className={`direction-icon direction-icon-${pointType}`}/>
+          </div>
+          <div className="icon-x direction-field-clear" onMouseDown={this.clear} />
+        </div>
+        <div className="direction-field-return">
+          <span className="icon-arrow-left"/>
         </div>
         {mounted &&
             <Suggest
               inputNode={inputRef.current}
-              outputNode={document.getElementById('itinerary_autocomplete_suggestions')}
+              outputNode={document.getElementById('direction-autocomplete_suggestions')}
               withGeoloc
               onSelect={this.selectItem}
               onClear={this.clear}
             />
         }
-        <div className="itinerary_field_return">
-          <span className="icon-arrow-left"/>
-        </div>
-        <div className="itinerary_field_icon">
-          <div className={`itinerary_icon itinerary_icon_${pointType}`}/>
-        </div>
       </div>
     );
   }

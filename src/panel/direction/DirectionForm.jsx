@@ -67,8 +67,8 @@ export default class DirectionForm extends React.Component {
       destinationInputText,
     } = this.props;
 
-    return <div className="itinerary_form">
-      <form className="itinerary_fields" noValidate>
+    return <div className="direction-form">
+      <form className="direction-fields" noValidate>
         <DirectionInput
           isLoading={isLoading}
           value={originInputText}
@@ -76,7 +76,7 @@ export default class DirectionForm extends React.Component {
           onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
           ref={this.originRef}
         />
-        <div className="itinerary__form__separator" />
+        <div className="direction-form-separator" />
         <DirectionInput
           isLoading={isLoading}
           value={destinationInputText}
@@ -85,7 +85,7 @@ export default class DirectionForm extends React.Component {
           ref={this.destinationRef}
         />
         <div
-          className="itinerary_invert_origin_destination icon-reverse"
+          className="direction-invert-origin-destination icon-reverse"
           onClick={this.onReverse}
           title={_('Invert start and end', 'direction')}
         />
