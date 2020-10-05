@@ -1,0 +1,48 @@
+.direction-panel {
+  @media (max-width: 640px) {
+    background-color: $background;
+    @include card_shadow();
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .direction-close {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: $primary_text;
+      line-height: 36px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: bold;
+      padding-left: 6px;
+
+      .icon-chevron-left {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin: -6px 6px 0 0;
+        font-size: 22px;
+      }
+    }
+
+    .direction-autocomplete_suggestions {
+      position: fixed;
+      top: 64px;
+      width: 100vw;
+    }
+  }
+
+  .direction-title {
+    color: $primary_text;
+    line-height: 36px;
+  }
+
+  .panel-content {
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+  }
+}
