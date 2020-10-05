@@ -1,0 +1,50 @@
+.direction-form {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column-reverse;
+
+  .direction-fields {
+    background: $background;
+    margin: 0 18px;
+    position: relative;
+    border-radius: 8px;
+
+    @media (min-width: 641px) {
+      margin-bottom: 0;
+      flex-direction: column;
+
+      &:focus-within {
+        &::before {
+          background: $focus-gradient;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      margin: -1px;
+      border-radius: inherit;
+      z-index: -1;
+      background: $grey-light;
+    }
+
+    .direction-form-separator {
+      border-top: 1px solid #c8cbd3;
+      margin: 0 37px;
+    }
+
+    .direction-invert-origin-destination {
+      color: $secondary_text;
+      background-size: 15px;
+      position: absolute;
+      width: 20px;
+      height: 16px;
+      right: 8px;
+      top: 30px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+}

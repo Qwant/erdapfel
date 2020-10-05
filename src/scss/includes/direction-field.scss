@@ -1,0 +1,143 @@
+.direction-field {
+  position: relative;
+
+  .direction-field-return {
+    display: none;
+  }
+
+  .direction-input {
+    position: relative;
+
+    @media (max-width: 640px) {
+      font-size: 14px;
+
+      &:focus-within {
+        position: fixed;
+        z-index: 1;
+        top: 5px;
+        left: 0;
+        width: 100%;
+        height: 64px;
+        line-height: 56px;
+        background-color: $background;
+
+        /* START Focus-gradient effect */
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0; right: 10px; bottom: 0; left: 10px;
+          z-index: -1;
+          margin: -1px;
+          height: 56px;
+          border-radius: 50px;
+          background: $focus-gradient;
+        }
+
+        &::after {
+          // cover the ::before pseudo-elem
+          content: '';
+          position: absolute;
+          top: 0; right: 10px; bottom: 0; left: 10px;
+          z-index: -1;
+          height: 54px;
+          border-radius: 50px;
+          background: $background;
+        }
+        /* END Focus-gradient effect */
+
+        ~ .direction-field-return {
+          display: block;
+          position: fixed;
+          z-index: 2;
+          left: 15px;
+          top: 20px;
+          font-size: 25px;
+          color: #353C52;
+        }
+
+        input:valid ~ .direction-field-clear {
+          position: fixed;
+          right: 30px;
+          display: block;
+          top: 15px;
+          pointer-events: all;
+          opacity: 1;
+        }
+      }
+    }
+
+    .direction-field-icon {
+      .direction-icon {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 16px;
+        height: 16px;
+      }
+
+      .direction-icon-origin {
+        background-image: url('../images/direction_icons/origin.svg');
+      }
+
+      .direction-icon-destination {
+        background-image: url('../images/direction_icons/pin.svg');
+      }
+    }
+
+    @media (max-width: 640px) {
+      input:focus {
+        ~ .direction-field-icon {
+          display: none;
+        }
+      }
+    }
+
+    input:focus, input:valid {
+      ~ .direction-field-icon {
+        .direction-icon-origin {
+          background-image: url('../images/direction_icons/origin-active.svg');
+        }
+
+        .direction-icon-destination {
+          background-image: url('../images/direction_icons/pin-active.svg');
+        }
+      }
+    }
+
+    .direction-field-clear {
+      opacity: 0;
+      position: absolute;
+      right: 32px;
+      top: 1px;
+      padding: 10px;
+      color: $secondary_text;
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 0 60px 0 44px;
+      border: none;
+      font-size: 16px;
+      color: $primary_text;
+    }
+
+    input:read-only {
+      color: #dddddd;
+    }
+
+    input::placeholder {
+      font-style: italic;
+      color: #c8cbd3;
+      font-size: 16px;
+    }
+
+    input:valid:focus ~ .direction-field-clear {
+      opacity: 1;
+      cursor: pointer;
+      pointer-events: all;
+    }
+  }
+}
