@@ -18,8 +18,10 @@ const VehicleSelectorButton = ({ vehicle, isActive, onClick }) => {
     type="button"
     className={classnames('vehicleSelector-button', { 'vehicleSelector-button--active': isActive })}
     onClick={onClick}
-    aria-label={label}
     title={label}
+    role="radio"
+    aria-label={label}
+    aria-checked={isActive}
   >
     <div className={classnames('vehicleSelector-buttonIcon', getVehicleIcon(vehicle))} />
     <div className="vehicleSelector-buttonLabel">{label}</div>
@@ -27,9 +29,12 @@ const VehicleSelectorButton = ({ vehicle, isActive, onClick }) => {
 };
 
 const VehicleSelector = ({ vehicles, activeVehicle, onSelectVehicle }) =>
-  <div className={classnames('vehicleSelector',
-    { 'vehicleSelector--withPublicTransport': vehicles.length > 3 }
-  )}>
+  <div
+    className={classnames('vehicleSelector',
+      { 'vehicleSelector--withPublicTransport': vehicles.length > 3 }
+    )}
+    role="radiogroup"
+  >
     {vehicles.map(vehicle => <VehicleSelectorButton
       key={vehicle}
       vehicle={vehicle}
