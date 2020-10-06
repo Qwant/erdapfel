@@ -84,11 +84,12 @@ export default class DirectionForm extends React.Component {
           onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
           ref={this.destinationRef}
         />
-        <div
-          className="direction-invert-origin-destination icon-reverse"
+        <button
+          className="direction-invert-origin-destination"
           onClick={this.onReverse}
-          title={_('Invert start and end', 'direction')}
-        />
+          title={_('Invert start and end', 'direction')}>
+          <i className="icon-reverse" />
+        </button>
       </form>
       <VehicleSelector
         vehicles={vehicles}
