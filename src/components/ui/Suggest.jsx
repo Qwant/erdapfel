@@ -53,7 +53,7 @@ const Suggest = ({
     };
 
     const handleBlur = () => {
-      //close();
+      close();
     };
 
     const fetchItems = debounce(value => {
