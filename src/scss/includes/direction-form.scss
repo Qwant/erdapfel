@@ -32,19 +32,23 @@
 
     .direction-form-separator {
       border-top: 1px solid #c8cbd3;
-      margin: 0 37px;
+      margin: 0 52px 0 44px;
     }
 
     .direction-invert-origin-destination {
-      color: $secondary_text;
-      background-size: 15px;
       position: absolute;
-      width: 20px;
-      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
       right: 8px;
-      top: 30px;
+      top: 24px;
       cursor: pointer;
       font-size: 20px;
+      border-radius: 50px;
+      color: $secondary_text;
+      background-color: $grey-lighter;
     }
   }
 }
