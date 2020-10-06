@@ -1,11 +1,22 @@
+@import "./vehicleSelector.scss";
+
 .direction-form {
-  margin-bottom: 16px;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  padding: 0 18px 0;
+
+  @media (min-width: 641px) {
+    flex-direction: column-reverse;
+    padding-bottom: 16px;
+
+    .vehicleSelector {
+      margin-left: -4px;
+    }
+  }
 
   .direction-fields {
     background: $background;
-    margin: 0 18px;
+    margin: 12px 0 4px;
     position: relative;
     border-radius: 8px;
 

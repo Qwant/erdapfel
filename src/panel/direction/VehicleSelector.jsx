@@ -12,22 +12,35 @@ const getLocalizedTitle = vehicle => {
   return _(vehicle); // this can not be parsed by our i18n scripts
 };
 
+const VehicleSelectorButton = ({ vehicle, isActive, onClick }) => {
+  const label = capitalizeFirst(getLocalizedTitle(vehicle));
+  return <button
+    type="button"
+    className={classnames('vehicleSelector-button', { 'vehicleSelector-button--active': isActive })}
+    onClick={onClick}
+    title={label}
+    role="radio"
+    aria-label={label}
+    aria-checked={isActive}
+  >
+    <div className={classnames('vehicleSelector-buttonIcon', getVehicleIcon(vehicle))} />
+    <div className="vehicleSelector-buttonLabel">{label}</div>
+  </button>;
+};
+
 const VehicleSelector = ({ vehicles, activeVehicle, onSelectVehicle }) =>
-  <div className={classnames('itinerary_vehicles',
-    { 'itinerary_vehicles--withPublicTransport': vehicles.length > 3 }
-  )}>
-    {vehicles.map(vehicle => <button
-      type="button"
+  <div
+    className={classnames('vehicleSelector',
+      { 'vehicleSelector--withPublicTransport': vehicles.length > 3 }
+    )}
+    role="radiogroup"
+  >
+    {vehicles.map(vehicle => <VehicleSelectorButton
       key={vehicle}
-      className={classnames(`itinerary_vehicle_button ${getVehicleIcon(vehicle)}`,
-        { 'itinerary_vehicle_button--active': vehicle === activeVehicle }
-      )}
+      vehicle={vehicle}
+      isActive={vehicle === activeVehicle}
       onClick={() => onSelectVehicle(vehicle)}
-      aria-label={capitalizeFirst(getLocalizedTitle(vehicle))}
-      title={capitalizeFirst(getLocalizedTitle(vehicle))}
-    >
-      {vehicle === 'publicTransport' && <span className="testLabel">{_('Test')}</span>}
-    </button>)}
+    />)}
   </div>;
 
 export default VehicleSelector;

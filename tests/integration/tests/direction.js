@@ -128,7 +128,7 @@ test('origin & latlon destination & mode', async () => {
   expect(directionEndInput).toEqual('16 Avenue Thiers');
 
   const activeLabel = await page.evaluate(() => {
-    return Array.from(document.querySelector('.itinerary_vehicle_button--active').classList).join(',');
+    return Array.from(document.querySelector('.vehicleSelector-button--active .vehicleSelector-buttonIcon').classList).join(',');
   });
   expect(activeLabel).toContain('icon-foot');
 });
