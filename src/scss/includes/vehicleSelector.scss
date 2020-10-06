@@ -1,65 +1,77 @@
 .vehicleSelector {
   display: flex;
-  justify-content: center;
-  margin: 0px 32px;
-  padding: 0px 32px 16px;
 }
 
 .vehicleSelector-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 50px;
-  height: 28px;
-  border-radius: 14px;
-  color: $secondary_text;
   cursor: pointer;
-  font-size: 18px;
-  margin: 0 18px;
-  border: 1px solid transparent;
+  color: $grey-semi-darkness;
+
+  &--active {
+    color: $action-blue-base;
+  }
 
   &::-moz-focus-inner {
     border: 0;
   }
-
-  &:focus {
-    border-color: $secondary_text;
-  }
-
-  &.icon-public-transport {
-    padding: 0 6px 0 9px;
-  }
-
-  &--active {
-    background: $secondary_text;
-    color: $background;
-  }
-
-  .testLabel {
-    font-family: $font_system;
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: bold;
-    color: white;
-    background-color: red;
-    border-radius: 20px;
-    padding: 1px 6px;
-    margin-left: 6px;
-    text-transform: uppercase;
-  }
 }
 
-.vehicleSelector--withPublicTransport {
-  margin: 0 18px;
-  justify-content: space-between;
+@media (min-width: 641px){
+  .vehicleSelector {
+    padding: 4px;
+  }
 
-  .itinerary_vehicle_button {
-    margin: 0;
+  .vehicleSelector-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 12px;
+    font-size: 20px;
+
+    &:focus, &:hover {
+      color: $action-blue-base;
+      background-color: $action-blue-lighter;
+    }
+
+    &--active {
+      background-color: $action-blue-lighter;
+      border: 1px solid $action-blue-base;
+      box-shadow: 0 0 0 4px $action-blue-lighter;
+    }
+  }
+
+  .vehicleSelector-buttonLabel {
+    display: none;
   }
 }
 
 @media (max-width: 640px){
   .vehicleSelector {
-    padding: 9px 0 6px;
+    justify-content: space-between;
+  }
+
+  .vehicleSelector-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+    min-width: 80px;
+
+    .vehicleSelector-buttonLabel {
+      margin: 2px 0 8px;
+    }
+
+    &--active {
+      .vehicleSelector-buttonLabel {
+        color: $primary_text;
+      }
+
+      &:after{
+        content:'';
+        width: 100%;
+        height: 4px;
+        background: $focus-gradient;
+        border-radius: 4px 4px 0 0;
+      }
+    }
   }
 }

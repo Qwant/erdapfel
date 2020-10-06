@@ -12,22 +12,30 @@ const getLocalizedTitle = vehicle => {
   return _(vehicle); // this can not be parsed by our i18n scripts
 };
 
+const VehicleSelectorButton = ({ vehicle, isActive, onClick }) => {
+  const label = capitalizeFirst(getLocalizedTitle(vehicle));
+  return <button
+    type="button"
+    className={classnames('vehicleSelector-button', { 'vehicleSelector-button--active': isActive })}
+    onClick={onClick}
+    aria-label={label}
+    title={label}
+  >
+    <div className={classnames('vehicleSelector-buttonIcon', getVehicleIcon(vehicle))} />
+    <div className="vehicleSelector-buttonLabel">{label}</div>
+  </button>;
+};
+
 const VehicleSelector = ({ vehicles, activeVehicle, onSelectVehicle }) =>
   <div className={classnames('vehicleSelector',
     { 'vehicleSelector--withPublicTransport': vehicles.length > 3 }
   )}>
-    {vehicles.map(vehicle => <button
-      type="button"
+    {vehicles.map(vehicle => <VehicleSelectorButton
       key={vehicle}
-      className={classnames(`vehicleSelector-button ${getVehicleIcon(vehicle)}`,
-        { 'vehicleSelector-button--active': vehicle === activeVehicle }
-      )}
+      vehicle={vehicle}
+      isActive={vehicle === activeVehicle}
       onClick={() => onSelectVehicle(vehicle)}
-      aria-label={capitalizeFirst(getLocalizedTitle(vehicle))}
-      title={capitalizeFirst(getLocalizedTitle(vehicle))}
-    >
-      {vehicle === 'publicTransport' && <span className="testLabel">{_('Test')}</span>}
-    </button>)}
+    />)}
   </div>;
 
 export default VehicleSelector;
