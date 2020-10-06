@@ -85,6 +85,7 @@ export default class DirectionForm extends React.Component {
           ref={this.destinationRef}
         />
         <button
+          type="button"
           className="direction-invert-origin-destination"
           onClick={this.onReverse}
           title={_('Invert start and end', 'direction')}>
