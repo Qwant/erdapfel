@@ -120,18 +120,17 @@
       height: 40px;
       padding: 0 60px 0 44px;
       border: none;
-      font-size: 16px;
       color: $primary_text;
+      font-size: 16px;
     }
 
     input:read-only {
+      font-size: 14px;
       color: #dddddd;
     }
 
     input::placeholder {
-      font-style: italic;
-      color: #c8cbd3;
-      font-size: 16px;
+      color: $grey-grey;
     }
 
     input:valid:focus ~ .direction-field-clear {
