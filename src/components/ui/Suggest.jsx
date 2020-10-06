@@ -53,7 +53,7 @@ const Suggest = ({
     };
 
     const handleBlur = () => {
-      close();
+      //close();
     };
 
     const fetchItems = debounce(value => {
@@ -69,7 +69,7 @@ const Suggest = ({
       currentQuery = query;
 
       query
-        .then(suggestions => modifyList(suggestions, withGeoloc, value))
+        .then(suggestions => modifyList(suggestions, withGeoloc && value === '', value))
         .then(items => {
           setItems(items);
           currentQuery = null;

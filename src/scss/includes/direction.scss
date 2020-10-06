@@ -740,4 +740,8 @@ button.direction_shortcut {
       }
     }
   }
+
+  .autocomplete_suggestions {
+    height: calc(100vh - 64px);
+  }
 }
