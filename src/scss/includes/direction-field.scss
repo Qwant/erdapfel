@@ -66,41 +66,37 @@
       }
     }
 
-    .direction-field-icon {
-      .direction-icon {
-        position: absolute;
-        left: 12px;
-        top: 12px;
-        width: 16px;
-        height: 16px;
-      }
+    .direction-icon {
+      position: absolute;
+      left: 24px;
+      top: 12px;
+      width: 16px;
+      height: 16px;
+    }
 
-      .direction-icon-origin {
-        background-image: url('../images/direction_icons/origin.svg');
-      }
+    .direction-icon-origin {
+      background-image: url('../images/direction_icons/origin.svg');
+    }
 
-      .direction-icon-destination {
-        background-image: url('../images/direction_icons/pin.svg');
-      }
+    .direction-icon-destination {
+      background-image: url('../images/direction_icons/pin.svg');
     }
 
     @media (max-width: 640px) {
       input:focus {
-        ~ .direction-field-icon {
+        ~ .direction-icon {
           display: none;
         }
       }
     }
 
     input:focus, input:valid {
-      ~ .direction-field-icon {
-        .direction-icon-origin {
-          background-image: url('../images/direction_icons/origin-active.svg');
-        }
+      ~ .direction-icon-origin {
+        background-image: url('../images/direction_icons/origin-active.svg');
+      }
 
-        .direction-icon-destination {
-          background-image: url('../images/direction_icons/pin-active.svg');
-        }
+      ~ .direction-icon-destination {
+        background-image: url('../images/direction_icons/pin-active.svg');
       }
     }
 
@@ -118,7 +114,7 @@
     input {
       width: 100%;
       height: 40px;
-      padding: 0 60px 0 44px;
+      padding-left: 64px;
       border: none;
       color: $primary_text;
       font-size: 16px;
