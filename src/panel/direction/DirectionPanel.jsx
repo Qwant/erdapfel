@@ -14,6 +14,7 @@ import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from '../../libs/address';
+import { CloseButton, Flex } from '../../components/ui';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -257,8 +258,8 @@ export default class DirectionPanel extends React.Component {
       isLoading, isDirty, isInitializing,
       originInputText, destinationInputText,
     } = this.state;
-    const title = <h3 className="direction-title u-text--smallTitle u-center">
-      {_('Directions', 'direction')}
+    const title = <h3 className="direction-title u-text--title u-firstCap">
+      {_('calculate an itinerary', 'direction')}
     </h3>;
     const form = <DirectionForm
       isLoading={isLoading}
@@ -289,11 +290,13 @@ export default class DirectionPanel extends React.Component {
       {isMobile => isMobile
         ? <Fragment>
           <div className="direction-panel">
-            <div className="direction-close" onClick={this.onClose}>
-              <span className="icon-chevron-left" />
-              <span className="u-firstCap">{_('return', 'direction')}</span>
-            </div>
-            {title}
+            <Flex
+              className="direction-panel-header"
+              alignItems="center"
+              justifyContent="space-between">
+              {title}
+              <CloseButton onClick={this.onClose} />
+            </Flex>
             {!activePreviewRoute && form}
             {<div
               id="direction-autocomplete_suggestions"
@@ -310,11 +313,6 @@ export default class DirectionPanel extends React.Component {
         : <Panel
           className="direction-panel"
           onClose={this.onClose}
-          renderHeader={(
-            <div>
-              {title}
-            </div>
-          )}
         >
           {form}
           <div id="direction-autocomplete_suggestions" />

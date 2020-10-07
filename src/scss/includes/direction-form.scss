@@ -11,12 +11,13 @@
 
     .vehicleSelector {
       margin-left: -4px;
+      margin-bottom: 12px;
     }
   }
 
   .direction-fields {
     background: $background;
-    margin: 12px 0 4px;
+    margin: 0 0 4px;
     position: relative;
     border-radius: 8px;
     display: flex;
