@@ -91,17 +91,29 @@
       }
     }
 
-    input:focus, input:valid {
-      ~ .direction-icon-block {
-        .direction-icon-origin {
-          background-image: url('../images/direction_icons/origin-active.svg');
-        }
+    input {
+      &:valid {
+        ~ .direction-icon-block {
+          .direction-icon-origin {
+            background-image: url('../images/direction_icons/origin-active.svg');
+          }
 
-        .direction-icon-destination {
-          background-image: url('../images/direction_icons/pin-active.svg');
+          .direction-icon-destination {
+            background-image: url('../images/direction_icons/pin-active.svg');
+          }
         }
       }
+      &:focus {
+        ~ .direction-icon-block {
+          .direction-icon-origin {
+            background-image: url('../images/direction_icons/origin-focus.svg');
+          }
 
+          .direction-icon-destination {
+            background-image: url('../images/direction_icons/pin-focus.svg');
+          }
+        }
+      }
     }
 
     @media (max-width: 640px) {
