@@ -308,13 +308,13 @@ export default class DirectionPanel extends React.Component {
             <MobileRoadMapPreview steps={getAllSteps(activePreviewRoute)} />}
         </Fragment>
         : <Panel
+          className="direction-panel"
           onClose={this.onClose}
           renderHeader={(
             <div>
               {title}
             </div>
           )}
-          className="direction-panel"
         >
           {form}
           <div id="direction-autocomplete_suggestions" />

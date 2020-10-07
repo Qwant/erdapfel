@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
 import { isMobileDevice } from 'src/libs/device';
+import { Divider } from 'src/components/ui';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {
@@ -69,24 +70,27 @@ export default class DirectionForm extends React.Component {
 
     return <div className="direction-form">
       <form className="direction-fields" noValidate>
-        <DirectionInput
-          isLoading={isLoading}
-          value={originInputText}
-          pointType="origin"
-          onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
-          ref={this.originRef}
-        />
-        <div className="direction-form-separator" />
-        <DirectionInput
-          isLoading={isLoading}
-          value={destinationInputText}
-          pointType="destination"
-          onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
-          ref={this.destinationRef}
-        />
+        <div className="direction-fields-block">
+          <DirectionInput
+            isLoading={isLoading}
+            value={originInputText}
+            pointType="origin"
+            onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
+            ref={this.originRef}
+          />
+          <Divider paddingTop={0} paddingBottom={0} marginLeft={64}/>
+          <DirectionInput
+            isLoading={isLoading}
+            value={destinationInputText}
+            pointType="destination"
+            onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
+            ref={this.destinationRef}
+          />
+        </div>
+
         <button
           type="button"
-          className="direction-invert-origin-destination"
+          className="direction-invert-button"
           onClick={this.onReverse}
           title={_('Invert start and end', 'direction')}>
           <i className="icon-reverse" />

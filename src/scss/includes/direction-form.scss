@@ -19,10 +19,12 @@
     margin: 12px 0 4px;
     position: relative;
     border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     @media (min-width: 641px) {
       margin-bottom: 0;
-      flex-direction: column;
 
       &:focus-within {
         &::before {
@@ -46,20 +48,20 @@
       margin: 0 52px 0 44px;
     }
 
-    .direction-invert-origin-destination {
-      position: absolute;
+    .direction-invert-button {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
-      right: 8px;
-      top: 22px;
-      cursor: pointer;
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin: 0 14px;
       font-size: 20px;
       border-radius: 50px;
       color: $secondary_text;
       background-color: $grey-lighter;
+      cursor: pointer;
 
       i {
         color: #5c6f84;
@@ -84,6 +86,10 @@
           @include hover-effect();
         }
       }
+    }
+
+    .direction-fields-block {
+      width: 100%;
     }
   }
 }

@@ -97,7 +97,7 @@ class DirectionInput extends React.Component {
 
     return (
       <div className="direction-field" >
-        <div id="direction-input" className="direction-input">
+        <div className="direction-input">
           <input
             ref={inputRef}
             id={`direction-input_${pointType}`}
@@ -113,7 +113,7 @@ class DirectionInput extends React.Component {
             onKeyPress={this.onKeyPress}
             readOnly={readOnly || isLoading}
           />
-          <div className="direction-field-icon">
+          <div className="direction-icon-block">
             <div className={`direction-icon direction-icon-${pointType}`}/>
           </div>
           <div className="icon-x direction-field-clear" onMouseDown={this.clear} />

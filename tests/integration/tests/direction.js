@@ -55,7 +55,7 @@ test('switch start end', async () => {
   await page.waitForSelector('#direction-input_origin');
   await page.type('#direction-input_origin', 'start');
   await page.type('#direction-input_destination', 'end');
-  await page.click('.direction-invert-origin-destination');
+  await page.click('.direction-invert-button');
   const inputValues = {
     startInput: await getInputValue(page, '#direction-input_origin'),
     endInput: await getInputValue(page, '#direction-input_destination'),
