@@ -313,8 +313,8 @@ export default class DirectionPanel extends React.Component {
         : <Panel
           className="direction-panel"
           onClose={this.onClose}
+          renderHeader={form}
         >
-          {form}
           <div id="direction-autocomplete_suggestions" />
           {result}
         </Panel>}

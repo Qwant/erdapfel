@@ -43,6 +43,7 @@ $bottom-margin: 40px;
     max-height: calc(100vh - (92px + #{$bottom-margin})); // 92px is panel.getBoundingClientRect().top
 
     &-header {
+      z-index: 0;
       flex-shrink: 0;
     }
 
