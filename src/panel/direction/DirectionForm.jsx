@@ -89,6 +89,7 @@ export default class DirectionForm extends React.Component {
         </div>
 
         <button
+          disabled={originInputText === '' && destinationInputText === ''}
           type="button"
           className="direction-invert-button"
           onClick={this.onReverse}
