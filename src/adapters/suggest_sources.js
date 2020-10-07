@@ -3,10 +3,10 @@ import { getGeocoderSuggestions } from 'src/adapters/geocoder';
 import CategoryService from './category_service';
 
 // @TODO: Improvement: don't access directly to window.map
-function getFocus(focusMinZoom) {
-  const zoom = window.map && window.map.mb && window.map.mb.getZoom();
-  if (zoom >= focusMinZoom) {
+function getFocus() {
+  if (window?.map?.mb) {
     const { lat, lng: lon } = window.map.mb.getCenter();
+    const zoom = window.map.mb.getZoom();
     return { lat, lon, zoom };
   }
   return {};
@@ -15,7 +15,6 @@ function getFocus(focusMinZoom) {
 export function suggestResults(term, {
   withCategories,
   useFocus,
-  focusMinZoom = 11,
   maxFavorites = 2,
   maxItems = 10,
 } = {}) {
@@ -27,7 +26,7 @@ export function suggestResults(term, {
   } else {
     promise = new Promise(async (resolve, reject) => {
       geocoderPromise = getGeocoderSuggestions(term, {
-        focus: useFocus ? getFocus(focusMinZoom) : {},
+        focus: useFocus ? getFocus() : {},
         useNlu: withCategories,
       });
       const favoritePromise = PoiStore.get(term);

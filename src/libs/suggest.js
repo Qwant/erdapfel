@@ -12,8 +12,6 @@ import { suggestResults } from 'src/adapters/suggest_sources';
 
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
-const SUGGEST_USE_FOCUS = geocoderConfig.useFocus;
-const SUGGEST_FOCUS_MIN_ZOOM = 11;
 
 export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryParams } = {}) => {
   if (selectedItem instanceof Poi) {
@@ -63,11 +61,10 @@ export const getInputValue = item => {
 
 export const fetchSuggests = (query, options = {}) =>
   suggestResults(query, {
-    withCategories: options.withCategories || false,
-    useFocus: options.useFocus || SUGGEST_USE_FOCUS,
-    focusMinZoom: options.focusMinZoom || SUGGEST_FOCUS_MIN_ZOOM,
-    maxItems: options.maxItems || SUGGEST_MAX_ITEMS,
-    maxFavorites: options.maxFavorites || !query ? 5 : 2,
+    withCategories: options.withCategories ?? false,
+    useFocus: options.useFocus ?? true,
+    maxItems: options.maxItems ?? SUGGEST_MAX_ITEMS,
+    maxFavorites: options.maxFavorites ?? (!query ? 5 : 2),
   });
 
 export const modifyList = (items, withGeoloc, query) => {

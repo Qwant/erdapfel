@@ -87,7 +87,10 @@ export default class SearchInput {
 
   static async executeSearch(query, { fromQueryParams } = {}) {
     window.__searchInput.searchInputHandle.value = query;
-    const results = await fetchSuggests(query, { withCategories: true });
+    const results = await fetchSuggests(query, {
+      withCategories: true,
+      useFocus: !fromQueryParams, // Ignore map position for a query passed in URL
+    });
 
     selectItem(
       results[0] || null,

@@ -5,9 +5,16 @@ import BragiPoi from 'src/adapters/poi/bragi_poi';
 import Intention from './intention';
 
 const serviceConfigs = nconf.get().services;
-const geocoderConfig = serviceConfigs.geocoder;
-const geocoderFocusPrecision = geocoderConfig.focusPrecision;
-const geocoderFocusZoomPrecision = geocoderConfig.focusZoomPrecision;
+const {
+  focusMinZoom,
+  focusPrecision,
+  focusZoomPrecision,
+  maxItems,
+  useFocus,
+  useLang,
+  useNlu: geocoderUseNlu,
+  url: geocoderUrl,
+} = serviceConfigs.geocoder;
 
 const bragiCache = {};
 
@@ -16,13 +23,28 @@ function roundWithPrecision(value, precision, digits = 3) {
   return rounded.toFixed(digits);
 }
 
+function getFocusParams({ lat, lon, zoom }) {
+  if (!useFocus) {
+    return null;
+  }
+  if (lat === undefined || lon === undefined || zoom === undefined) {
+    return null;
+  }
+  if (zoom < Number(focusMinZoom)) {
+    return null;
+  }
+  return {
+    lat: roundWithPrecision(lat, focusPrecision),
+    lon: roundWithPrecision(lon, focusPrecision),
+    zoom: roundWithPrecision(zoom, focusZoomPrecision),
+  };
+}
+
 export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}) {
   let cacheKey = term;
-  let { lat, lon, zoom } = focus;
-  if (lat !== undefined && lon !== undefined) {
-    lat = roundWithPrecision(lat, geocoderFocusPrecision);
-    lon = roundWithPrecision(lon, geocoderFocusPrecision);
-    zoom = roundWithPrecision(zoom, geocoderFocusZoomPrecision);
+  const focusParams = getFocusParams(focus);
+  if (focusParams) {
+    const { lat, lon, zoom } = focusParams;
     cacheKey += `;${lat};${lon};${zoom}`;
   }
   /* cache */
@@ -38,27 +60,23 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
   const queryPromise = new Promise(async (resolve, reject) => {
     const query = {
       'q': term,
-      'limit': geocoderConfig.maxItems,
+      'limit': maxItems,
+      ...focusParams,
     };
-    if (lat !== undefined && lon !== undefined) {
-      query.lat = lat;
-      query.lon = lon;
-      query.zoom = zoom;
-    }
-    if (geocoderConfig.useLang) {
+    if (useLang) {
       query.lang = window.getLang().code;
     }
-    if (geocoderConfig.useNlu && useNlu) {
+    if (geocoderUseNlu && useNlu) {
       query.nlu = 'true';
     }
-    suggestsPromise = ajax.get(geocoderConfig.url, query);
+    suggestsPromise = ajax.get(geocoderUrl, query);
     suggestsPromise.then(({ features, intentions }) => {
       const pois = features.map((feature, index) => {
         const queryContext = new QueryContext(
           term,
           index + 1, // ranking
           query.lang,
-          { lat, lon, zoom }
+          focusParams,
         );
         return new BragiPoi(feature, queryContext);
       });

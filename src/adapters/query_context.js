@@ -11,7 +11,7 @@ export default class QueryContext {
     this.ranking = ranking;
     this.lang = lang;
     // `position` field is supposed to contain `lon`, `lat` and `zoom`.
-    this.position = position;
+    this.position = position || {};
   }
 
   static toHeaders(queryContext) {
