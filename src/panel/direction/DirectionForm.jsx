@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
 import { isMobileDevice } from 'src/libs/device';
-import { Divider, Flex } from 'src/components/ui';
+import { Divider } from 'src/components/ui';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {

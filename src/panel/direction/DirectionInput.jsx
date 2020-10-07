@@ -113,7 +113,9 @@ class DirectionInput extends React.Component {
             onKeyPress={this.onKeyPress}
             readOnly={readOnly || isLoading}
           />
-          <span className={`direction-icon direction-icon-${pointType}`}/>
+          <div className="direction-icon-block">
+            <div className={`direction-icon direction-icon-${pointType}`}/>
+          </div>
           <div className="icon-x direction-field-clear" onMouseDown={this.clear} />
         </div>
         <div className="direction-field-return">
