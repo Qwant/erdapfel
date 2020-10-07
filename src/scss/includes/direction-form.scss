@@ -62,13 +62,9 @@
       border-radius: 50px;
       color: $secondary_text;
       background-color: $grey-lighter;
-      cursor: pointer;
 
-      i {
-        color: #5c6f84;
-      }
-
-      @mixin hover-effect {
+      &:not(:disabled) {
+        cursor: pointer;
         border: 1px solid $action-blue-base;
         background: $background;
         i {
@@ -76,16 +72,8 @@
         }
       }
 
-      @media (min-width: 641px) {
-        &:hover {
-          @include hover-effect();
-        }
-      }
-
-      @media (max-width: 640px) {
-        &:active {
-          @include hover-effect();
-        }
+      i {
+        color: #5c6f84;
       }
     }
 
