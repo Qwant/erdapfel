@@ -1,4 +1,6 @@
 .direction-panel {
+  padding-top: 12px;
+
   @media (max-width: 640px) {
     background-color: $background;
     @include card_shadow();
@@ -6,6 +8,7 @@
     width: 100%;
     top: 0;
     left: 0;
+    padding-top: 20px;
 
     .direction-close {
       display: flex;
@@ -35,9 +38,8 @@
     }
   }
 
-  .direction-title {
-    color: $primary_text;
-    line-height: 36px;
+  &-header {
+    margin: 0 14px 20px 14px;
   }
 
   .panel-content {
