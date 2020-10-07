@@ -17,6 +17,7 @@ import * as address from '../../libs/address';
 import { CloseButton, Flex } from '../../components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
+import { openAndWaitForClose } from 'src/modals/GeolocationModal';
 import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
 
@@ -59,6 +60,8 @@ export default class DirectionPanel extends React.Component {
     };
 
     this.restorePoints(props);
+
+    openAndWaitForClose();
   }
 
   async componentDidMount() {
