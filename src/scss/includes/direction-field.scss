@@ -141,6 +141,10 @@
       color: $grey-grey;
     }
 
+    input:focus::placeholder {
+      color: $grey-semi-darkness;
+    }
+
     input:valid:focus ~ .direction-field-clear {
       opacity: 1;
       cursor: pointer;
