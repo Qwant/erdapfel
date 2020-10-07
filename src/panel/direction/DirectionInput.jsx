@@ -106,8 +106,8 @@ class DirectionInput extends React.Component {
             autoComplete="off"
             spellCheck="false"
             placeholder={pointType === 'origin'
-              ? _('Start point', 'direction')
-              : _('End point', 'direction')}
+              ? _('Enter a starting point', 'direction')
+              : _('Enter an end point', 'direction')}
             value={this.props.value}
             onChange={this.onChange}
             onKeyPress={this.onKeyPress}
