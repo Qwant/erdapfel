@@ -4,13 +4,19 @@ import PropTypes from 'prop-types';
 
 const Button = ({
   children, icon, variant = 'secondary', type = 'button',
-  href, onClick, className, ...rest
+  disabled, href, onClick, className, ...rest
 }) => {
   const Tag = href ? 'a' : 'button';
 
   return <Tag
     type={type}
-    className={classnames('button', { [`button--${variant}`]: variant }, className)}
+    disabled={disabled}
+    className={classnames(
+      'button',
+      { [`button--${variant}`]: variant },
+      { ['button--disabled']: disabled },
+      className
+    )}
     onClick={onClick}
     href={href}
     {...rest}
@@ -28,6 +34,7 @@ Button.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Button;
