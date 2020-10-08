@@ -14,7 +14,6 @@ const Button = ({
     className={classnames(
       'button',
       { [`button--${variant}`]: variant },
-      { ['button--disabled']: disabled },
       className
     )}
     onClick={onClick}
