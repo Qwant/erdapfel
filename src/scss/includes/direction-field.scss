@@ -77,6 +77,10 @@
       width: 64px;
       flex-shrink: 0;
 
+      @media (max-width: 640px) {
+        width: 48px;
+      }
+
       .direction-icon {
         width: 16px;
         height: 16px;
