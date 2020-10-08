@@ -26,7 +26,7 @@
     color: $action-blue-base;
   }
 
-  &--disabled {
+  &:disabled {
     background-color: $grey-lighter;
     border-color: $grey-lighter;
     color: $secondary_text;
@@ -56,7 +56,7 @@
     border: 0;
   }
 
-  &:not(.button--primary):not(.button--disabled):hover {
+  &:not(.button--primary):not(:disabled):hover {
     background: $action-blue-lighter;
   }
 }
