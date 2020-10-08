@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
 import { isMobileDevice } from 'src/libs/device';
-import { Divider } from 'src/components/ui';
+import { Button, Divider } from 'src/components/ui';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {
@@ -88,14 +88,13 @@ export default class DirectionForm extends React.Component {
           />
         </div>
 
-        <button
+        <Button
           disabled={originInputText === '' && destinationInputText === ''}
-          type="button"
           className="direction-invert-button"
           onClick={this.onReverse}
-          title={_('Invert start and end', 'direction')}>
-          <i className="icon-reverse" />
-        </button>
+          title={_('Invert start and end', 'direction')}
+          icon="reverse">
+        </Button>
       </form>
       <VehicleSelector
         vehicles={vehicles}
