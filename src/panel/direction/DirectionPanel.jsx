@@ -263,6 +263,7 @@ export default class DirectionPanel extends React.Component {
     </h3>;
     const form = <DirectionForm
       isLoading={isLoading}
+      isDirty={isDirty}
       origin={origin}
       destination={destination}
       originInputText = {originInputText}

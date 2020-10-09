@@ -8,6 +8,7 @@ import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
+import { isMobileDevice } from 'src/libs/device';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -33,9 +34,24 @@ class DirectionInput extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps) {
     if (!prevProps.isLoading && this.props.isLoading) {
       this.props.inputRef.current.blur();
+    }
+
+    if (prevProps.isDirty && !this.props.isDirty &&
+       this.props.value === '' &&
+       this.props.pointType === 'origin' &&
+       isMobileDevice()
+    ) {
+      if (!window.navigator.permissions) {
+        const permission = await navigator.permissions.query({ name: 'geolocation' });
+        if (permission.state === 'granted') {
+          return;
+        }
+      }
+
+      this.selectItem(new NavigatorGeolocalisationPoi());
     }
   }
 
@@ -125,7 +141,6 @@ class DirectionInput extends React.Component {
             <Suggest
               inputNode={inputRef.current}
               outputNode={document.getElementById('direction-autocomplete_suggestions')}
-              withGeoloc
               onSelect={this.selectItem}
               onClear={this.clear}
             />
