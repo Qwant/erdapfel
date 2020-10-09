@@ -92,12 +92,14 @@ export default class DirectionPanel extends React.Component {
     this.setState({ [which + 'InputText']: inputValue });
   }
 
-  restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
+  async restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
     const poiRestorePromises = [
       originUrlValue ? poiFromUrl(originUrlValue) : this.state.origin,
       destinationUrlValue ? poiFromUrl(destinationUrlValue) : this.state.destination,
     ];
-    Promise.all(poiRestorePromises).then(([ origin, destination ]) => {
+
+    try {
+      const [ origin, destination ] = await Promise.all(poiRestorePromises);
       // Set markers
       if (origin) {
         window.execOnMapLoaded(() => {
@@ -108,6 +110,7 @@ export default class DirectionPanel extends React.Component {
         });
         this.setTextInput('origin', origin);
       }
+
       if (destination) {
         window.execOnMapLoaded(() => {
           fire('set_destination', destination);
@@ -123,14 +126,14 @@ export default class DirectionPanel extends React.Component {
         destination,
         isInitializing: false,
       }, this.update);
-    }).catch(err => {
+    } catch (e) {
       Error.sendOnce(
         'direction_panel',
         'restoreUrl',
         `Error restoring Poi from Url ${originUrlValue} / ${destinationUrlValue}`,
-        err,
+        e,
       );
-    });
+    }
   }
 
   computeRoutes = async () => {
