@@ -1,5 +1,6 @@
 .direction-field {
   position: relative;
+  // height: 100%;
 
   .direction-field-return {
     display: none;
@@ -10,6 +11,21 @@
     display: flex;
     // reverse to handle icon active style with css
     flex-direction: row-reverse;
+
+    &.geoloc input {
+      margin-top: 8px;
+      margin-bottom: -8px;
+    }
+
+    &.geoloc label {
+      position: absolute;
+      top: 0;
+      left: 64px;
+
+      @media (max-width: 640px) {
+        left: 48px;
+      }
+    }
 
     @media (max-width: 640px) {
       font-size: 14px;
@@ -66,6 +82,10 @@
           top: 15px;
           pointer-events: all;
           opacity: 1;
+        }
+
+        .geoloc label {
+          display: none;
         }
       }
     }
@@ -149,7 +169,6 @@
     }
 
     input:read-only {
-      font-size: 14px;
       color: #dddddd;
     }
 
@@ -166,5 +185,6 @@
       cursor: pointer;
       pointer-events: all;
     }
+
   }
 }

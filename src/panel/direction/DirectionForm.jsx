@@ -66,6 +66,7 @@ export default class DirectionForm extends React.Component {
       onSelectVehicle,
       originInputText,
       destinationInputText,
+      isDirty,
     } = this.props;
 
     return <div className="direction-form">
@@ -73,7 +74,9 @@ export default class DirectionForm extends React.Component {
         <div className="direction-fields-block">
           <DirectionInput
             isLoading={isLoading}
+            isDirty={isDirty}
             value={originInputText}
+            rawValue={this.props.origin}
             pointType="origin"
             onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
             ref={this.originRef}
@@ -81,8 +84,10 @@ export default class DirectionForm extends React.Component {
           <Divider paddingTop={0} paddingBottom={0} marginLeft={64}/>
           <DirectionInput
             isLoading={isLoading}
+            isDirty={isDirty}
             value={destinationInputText}
             pointType="destination"
+            rawValue={this.props.destination}
             onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
             ref={this.destinationRef}
           />

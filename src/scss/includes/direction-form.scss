@@ -23,6 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 96px;
 
     @media (min-width: 641px) {
       margin-bottom: 0;
@@ -57,6 +58,10 @@
     }
 
     .direction-fields-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
       width: 100%;
     }
   }

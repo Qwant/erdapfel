@@ -8,6 +8,8 @@ import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
+import { isMobileDevice } from 'src/libs/device';
+import classNames from 'classnames';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -21,6 +23,7 @@ class DirectionInput extends React.Component {
   state = {
     mounted: false,
     readOnly: false,
+    geoloc: false,
   }
 
   componentDidMount() {
@@ -31,11 +34,46 @@ class DirectionInput extends React.Component {
     this.setState({
       mounted: true,
     });
+
+    // if (!this.props.isLoading && this.props.value === '' && this.props.pointType === 'origin') {
+    //   console.log('geoloc!', this.props);
+    //   this.selectItem(new NavigatorGeolocalisationPoi());
+    // }
   }
 
-  componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps) {
     if (!prevProps.isLoading && this.props.isLoading) {
       this.props.inputRef.current.blur();
+    }
+
+    if (this.props.pointType === 'origin') {
+      console.log('update', this.props);
+    }
+
+    if (this.props.rawValue !== prevProps.rawValue) {
+      if (this.props.rawValue instanceof NavigatorGeolocalisationPoi) {
+        this.setState({ geoloc: true });
+      } else {
+        this.setState({ geoloc: false });
+      }
+    }
+
+    if (prevProps.isDirty && !this.props.isDirty &&
+       this.props.value === '' &&
+       this.props.pointType === 'origin' &&
+       !this.state.geoloc &&
+       isMobileDevice()
+    ) {
+      if (!window.navigator.permissions) {
+        const permission = await navigator.permissions.query({ name: 'geolocation' });
+        if (permission.state === 'granted') {
+          return;
+        }
+      }
+
+      // TODO/ check geoloc auth and mobile only
+      this.selectItem(new NavigatorGeolocalisationPoi());
+      this.setState({ geoloc: true });
     }
   }
 
@@ -93,11 +131,19 @@ class DirectionInput extends React.Component {
 
   render() {
     const { pointType, inputRef, isLoading } = this.props;
-    const { mounted, readOnly } = this.state;
+    const { mounted, readOnly, geoloc } = this.state;
 
     return (
       <div className="direction-field" >
-        <div className="direction-input">
+        <div className={classNames('direction-input', { geoloc })}>
+          {geoloc &&
+          <label
+            className="u-text--subtitle"
+            htmlFor={`direction-input_${pointType}`}
+          >
+            Votre position
+          </label>
+          }
           <input
             ref={inputRef}
             id={`direction-input_${pointType}`}
