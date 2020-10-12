@@ -17,7 +17,7 @@ export async function showGeolocationModalIfNeeded() {
 
   const p = await window.navigator.permissions.query({ name: 'geolocation' });
   if (p.state !== geolocationPermissions.PROMPT) {
-    // allowed on denied
+    // allowed or denied
     return;
   }
 
