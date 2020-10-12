@@ -17,7 +17,7 @@ import * as address from '../../libs/address';
 import { CloseButton, Flex } from '../../components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import * as GeolocationCheck from 'src/libs/geolocation';
+import * as Geolocation from 'src/libs/geolocation';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -67,7 +67,7 @@ export default class DirectionPanel extends React.Component {
 
     if (!this.props.origin && isMobileDevice()) {
       // If authorized, set origin to current position on mobile
-      await GeolocationCheck.showGeolocationModalIfNeeded();
+      await Geolocation.showGeolocationModalIfNeeded();
       const origin = new NavigatorGeolocalisationPoi();
       try {
         await origin.geolocate({ displayErrorModal: false });

@@ -1,4 +1,4 @@
-import * as GeolocationCheck from '../libs/geolocation';
+import * as Geolocation from '../libs/geolocation';
 import Telemetry from '../libs/telemetry';
 
 import { GeolocateControl } from 'mapbox-gl--ENV';
@@ -27,7 +27,7 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   async trigger() {
-    await GeolocationCheck.showGeolocationModalIfNeeded();
+    await Geolocation.showGeolocationModalIfNeeded();
     super.trigger();
   }
 
@@ -37,7 +37,7 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   _onError(error) {
-    GeolocationCheck.handleError(error);
+    Geolocation.handleError(error);
     super._onError(error);
   }
 }

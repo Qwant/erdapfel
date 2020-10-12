@@ -1,7 +1,7 @@
 /* global _ */
 
 import Poi from '../poi';
-import * as GeolocationCheck from 'src/libs/geolocation';
+import * as Geolocation from 'src/libs/geolocation';
 
 export const navigatorGeolocationStatus = {
   PENDING: 'pending',
@@ -24,7 +24,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   }
 
   async geolocate(options = { displayErrorModal: true }) {
-    await GeolocationCheck.showGeolocationModalIfNeeded();
+    await Geolocation.showGeolocationModalIfNeeded();
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
       navigator.geolocation.getCurrentPosition(position => {
@@ -36,7 +36,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
         }
 
         if (options.displayErrorModal) {
-          GeolocationCheck.handleError(error);
+          Geolocation.handleError(error);
         }
 
         reject(error);
