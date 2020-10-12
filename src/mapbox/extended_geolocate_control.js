@@ -1,4 +1,4 @@
-import GeolocationCheck from '../libs/geolocation';
+import * as GeolocationCheck from '../libs/geolocation';
 import Telemetry from '../libs/telemetry';
 
 import { GeolocateControl } from 'mapbox-gl--ENV';
