@@ -18,11 +18,11 @@
         position: fixed;
         display: block;
         z-index: 1;
-        top: 5px;
+        top: 8px;
         left: 0;
         width: 100%;
-        height: 64px;
-        line-height: 56px;
+        height: 48px;
+        line-height: 50px;
         background-color: $background;
 
         /* START Focus-gradient effect */
@@ -32,7 +32,7 @@
           top: 0; right: 10px; bottom: 0; left: 10px;
           z-index: -1;
           margin: -1px;
-          height: 56px;
+          height: 50px;
           border-radius: 50px;
           background: $focus-gradient;
         }
@@ -43,7 +43,7 @@
           position: absolute;
           top: 0; right: 10px; bottom: 0; left: 10px;
           z-index: -1;
-          height: 54px;
+          height: 48px;
           border-radius: 50px;
           background: $background;
         }
@@ -53,9 +53,9 @@
           display: block;
           position: fixed;
           z-index: 2;
-          left: 15px;
-          top: 20px;
-          font-size: 25px;
+          left: 24px;
+          top: 22px;
+          font-size: 20px;
           color: #353C52;
         }
 
