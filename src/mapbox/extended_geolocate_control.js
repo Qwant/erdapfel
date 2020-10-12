@@ -26,8 +26,9 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
     this._onReady = cb;
   }
 
-  trigger() {
-    GeolocationCheck.checkPrompt(() => super.trigger());
+  async trigger() {
+    await GeolocationCheck.checkPrompt();
+    super.trigger();
   }
 
   _setupUI(supported) {

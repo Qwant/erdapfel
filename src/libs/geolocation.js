@@ -7,21 +7,23 @@ const geolocationPermissions = {
   DENIED: 'denied',
 };
 
-export async function checkPrompt(successCallback = () => {}) {
+let hasPermissionModalOpenedOnce = false;
+
+export async function checkPrompt() {
   if (!window.navigator.permissions) {
     // Some browsers (Safari, etc) do not implement Permissions API
-    return successCallback();
+    return;
   }
 
-  return window.navigator.permissions.query({ name: 'geolocation' }).then(async p => {
-    if (p.state === geolocationPermissions.PROMPT) {
-      if (window._GEO_QUESTION_ASKED !== true) {
-        window._GEO_QUESTION_ASKED = true;
-        await openAndWaitForClose();
-      }
-    }
-    return successCallback();
-  });
+  const p = await window.navigator.permissions.query({ name: 'geolocation' });
+  if (p.state !== geolocationPermissions.PROMPT) {
+    // allowed on denied
+    return;
+  }
+
+  if (hasPermissionModalOpenedOnce === true) {return;}
+  hasPermissionModalOpenedOnce = true;
+  await openAndWaitForClose();
 }
 
 export function handleError(error) {
