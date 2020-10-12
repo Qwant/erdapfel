@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 06:48+0000\n"
+"POT-Creation-Date: 2020-10-12 13:02+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/qwant-1/teams/89416/es/)\n"
@@ -32,6 +32,9 @@ msgstr "El mapa que respeta tu privacidad"
 
 msgid "Search on Qwant Maps"
 msgstr "Buscar en Qwant Maps"
+
+msgid "Clear"
+msgstr ""
 
 msgid "Search"
 msgstr "Buscar"
@@ -930,9 +933,6 @@ msgstr "Favoritos"
 msgid "How to contribute"
 msgstr "Cómo contribuir"
 
-msgid "Close"
-msgstr "Cerrar"
-
 msgid "Copied!"
 msgstr ""
 
@@ -944,6 +944,15 @@ msgstr ""
 
 msgid "Twitter"
 msgstr ""
+
+msgid "Search around this place"
+msgstr "Buscar por esta zona"
+
+msgid "No result found"
+msgstr "No se encontraron resultados"
+
+msgid "Close"
+msgstr "Cerrar"
 
 msgid "Share"
 msgstr "Compartir"
@@ -965,12 +974,6 @@ msgstr "Mis Favoritos"
 
 msgid "Show favorites"
 msgstr "Mostrar favoritos"
-
-msgid "Search around this place"
-msgstr "Buscar por esta zona"
-
-msgid "No result found"
-msgstr "No se encontraron resultados"
 
 msgid "Call"
 msgstr ""
@@ -1119,23 +1122,17 @@ msgstr "Por favor aleja el mapa."
 msgid "Search around my position"
 msgstr "Buscar cerca de mi localización"
 
-msgid "Pages Jaunes"
-msgstr "Páginas Amarillas"
+msgid "Results in partnership with PagesJaunes"
+msgstr ""
 
-msgid "Partnership"
-msgstr "Colaboración"
+msgid "Unfold to show the results"
+msgstr ""
 
-msgid "Show results"
-msgstr "Mostrar resultados"
+msgid "Enter a starting point"
+msgstr ""
 
-msgid "Start point"
-msgstr "Punto de origen"
-
-msgid "End point"
-msgstr "Punto de destino"
-
-msgid "Test"
-msgstr "Prueba"
+msgid "Enter an end point"
+msgstr ""
 
 msgid "Invert start and end"
 msgstr "Invertir origen y destino"
@@ -1171,8 +1168,8 @@ msgid ""
 "cities."
 msgstr ""
 
-msgid "return"
-msgstr "volver"
+msgid "calculate an itinerary"
+msgstr ""
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "

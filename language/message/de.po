@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Matthias Kaup-Antons <makanto@posteo.de>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 06:48+0000\n"
+"POT-Creation-Date: 2020-10-12 13:02+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -32,6 +33,9 @@ msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
 msgid "Search on Qwant Maps"
 msgstr "Auf Qwant Maps suchen"
+
+msgid "Clear"
+msgstr "Zurücksetzen"
 
 msgid "Search"
 msgstr "Suchen"
@@ -79,13 +83,13 @@ msgid "sport"
 msgstr "Sport"
 
 msgid "recycling"
-msgstr ""
+msgstr "Recycling"
 
 msgid "station"
 msgstr "Bahnhof"
 
 msgid "parking lot"
-msgstr ""
+msgstr "Parkplatz"
 
 msgid "Qwant is also"
 msgstr "Qwant ist außerdem"
@@ -205,7 +209,7 @@ msgid "athletics"
 msgstr "Leichtathletik "
 
 msgid "ATM"
-msgstr ""
+msgstr "Bankautomat"
 
 msgid "attraction"
 msgstr "Attraktion"
@@ -265,7 +269,7 @@ msgid "bowls"
 msgstr "Bowlen"
 
 msgid "brewery"
-msgstr ""
+msgstr "Brauerei"
 
 msgid "brownfield"
 msgstr "Brachfläche"
@@ -274,7 +278,7 @@ msgid "bus station"
 msgstr "Busbahnhof"
 
 msgid "bus stop"
-msgstr ""
+msgstr "Bushaltestelle"
 
 msgid "butcher"
 msgstr "Metzger"
@@ -292,22 +296,22 @@ msgid "car shop"
 msgstr "KFZ-Werkstatt"
 
 msgid "car parts shop"
-msgstr ""
+msgstr "Geschäft für Autozubehör"
 
 msgid "car repair"
 msgstr "Autoreparatur"
 
 msgid "car rental"
-msgstr ""
+msgstr "Autovermietung"
 
 msgid "car wash station"
-msgstr ""
+msgstr "Waschstraße"
 
 msgid "caravan site"
 msgstr "Campingplatz"
 
 msgid "carpenter"
-msgstr ""
+msgstr "Tischler"
 
 msgid "carpet shop"
 msgstr "Teppichhandel"
@@ -316,16 +320,16 @@ msgid "castle"
 msgstr "Burg"
 
 msgid "catering"
-msgstr ""
+msgstr "Catering"
 
 msgid "cemetery"
 msgstr "Friedhof"
 
 msgid "holiday cottage"
-msgstr ""
+msgstr "Ferienhaus"
 
 msgid "charging station"
-msgstr ""
+msgstr "Ladestation"
 
 msgid "charity store"
 msgstr "Wohltätigkeitsladen"
@@ -334,7 +338,7 @@ msgid "chemist"
 msgstr "Drogerie"
 
 msgid "cheese shop"
-msgstr ""
+msgstr "Käseladen"
 
 msgid "chess"
 msgstr "Schach"
@@ -388,7 +392,7 @@ msgid "courthouse"
 msgstr "Gerichtsgebäude"
 
 msgid "coworking space"
-msgstr ""
+msgstr "Coworking-Space"
 
 msgid "cricket"
 msgstr "Kricket"
@@ -421,7 +425,7 @@ msgid "doityourself store"
 msgstr "Heimwerkermarkt"
 
 msgid "driving school"
-msgstr ""
+msgstr "Fahrschule"
 
 msgid "dry cleaning"
 msgstr "Reinigung"
@@ -442,7 +446,7 @@ msgid "escape game"
 msgstr "Escape Game"
 
 msgid "estate agent"
-msgstr ""
+msgstr "Immobilienmakler"
 
 msgid "fabric"
 msgstr "Bau"
@@ -457,7 +461,7 @@ msgid "fire station"
 msgstr "Feuerwache"
 
 msgid "fitness centre"
-msgstr ""
+msgstr "Fitnessstudio"
 
 msgid "florist"
 msgstr "Blumenhändler"
@@ -469,13 +473,13 @@ msgid "free flying"
 msgstr "Gratis Flug"
 
 msgid "frozen food"
-msgstr ""
+msgstr "Tiefkühlkost"
 
 msgid "fuel station"
 msgstr "Tankstelle"
 
 msgid "funeral home"
-msgstr ""
+msgstr "Bestattungsinstitut"
 
 msgid "furniture shop"
 msgstr "Möbelgeschäft"
@@ -541,7 +545,7 @@ msgid "hostel"
 msgstr "Jugendherberge"
 
 msgid "houseware shop"
-msgstr ""
+msgstr "Haushaltswarenladen"
 
 msgid "ice cream"
 msgstr "Eiscreme"
@@ -565,7 +569,7 @@ msgid "kiosk"
 msgstr "Kiosk"
 
 msgid "kitchen manufacturer"
-msgstr ""
+msgstr "Küchenhersteller"
 
 msgid "lamps shop"
 msgstr "Lampengeschäft"
@@ -622,7 +626,7 @@ msgid "music shop"
 msgstr "Musikgeschäft"
 
 msgid "music school"
-msgstr ""
+msgstr "Musikschule"
 
 msgid "musical instrument shop"
 msgstr "Musikalienhandlung"
@@ -655,7 +659,7 @@ msgid "car park"
 msgstr "Parkplatz"
 
 msgid "pastry shop"
-msgstr ""
+msgstr "Konditorei"
 
 msgid "perfumery"
 msgstr "Parfümerie"
@@ -673,13 +677,13 @@ msgid "place of worship"
 msgstr "Gotteshaus"
 
 msgid "plumber"
-msgstr ""
+msgstr "Klempner"
 
 msgid "police"
 msgstr "Polizei"
 
 msgid "polling station"
-msgstr ""
+msgstr "Wahllokal"
 
 msgid "post office"
 msgstr "Postamt"
@@ -718,7 +722,7 @@ msgid "scuba diving"
 msgstr "Sporttauchen"
 
 msgid "fishmonger"
-msgstr ""
+msgstr "Fischhändler"
 
 msgid "resale shop"
 msgstr "Wiederverkäufer"
@@ -727,7 +731,7 @@ msgid "shelter"
 msgstr ""
 
 msgid "shoemaker"
-msgstr ""
+msgstr "Schuster"
 
 msgid "shoes"
 msgstr "Schuhe"
@@ -817,7 +821,7 @@ msgid "variety store"
 msgstr ""
 
 msgid "vehicle inspection"
-msgstr ""
+msgstr "Fahrzeuginspektion"
 
 msgid "veterinary"
 msgstr "Tierarzt"
@@ -847,10 +851,10 @@ msgid "wine shop"
 msgstr "Weingeschäft"
 
 msgid "winery"
-msgstr ""
+msgstr "Weinladen"
 
 msgid "winter sports resort"
-msgstr ""
+msgstr "Wintersportort"
 
 msgid "yoga"
 msgstr "Yoga"
@@ -907,7 +911,7 @@ msgid "Close to"
 msgstr "Neben"
 
 msgid "Geographic coordinates"
-msgstr ""
+msgstr "Geographische Koordinaten"
 
 msgid "on PagesJaunes"
 msgstr "auf PagesJaunes"
@@ -919,7 +923,7 @@ msgid "category"
 msgstr "Kategorie"
 
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 msgid "Favorites"
 msgstr "Favoriten"
@@ -927,20 +931,26 @@ msgstr "Favoriten"
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
 
-msgid "Close"
-msgstr "Schließen"
-
 msgid "Copied!"
-msgstr ""
+msgstr "Kopiert!"
 
 msgid "Copy link"
-msgstr ""
+msgstr "Kopierlink"
 
 msgid "Facebook"
 msgstr "Facebook"
 
 msgid "Twitter"
 msgstr "Twitter"
+
+msgid "Search around this place"
+msgstr "Um diesen Ort herum suchen"
+
+msgid "No result found"
+msgstr "Keine Ergebnisse gefunden"
+
+msgid "Close"
+msgstr "Schließen"
 
 msgid "Share"
 msgstr "Teilen"
@@ -962,12 +972,6 @@ msgstr "Meine Favoriten"
 
 msgid "Show favorites"
 msgstr "Favoriten anzeigen"
-
-msgid "Search around this place"
-msgstr "Um diesen Ort herum suchen"
-
-msgid "No result found"
-msgstr "Keine Ergebnisse gefunden"
 
 msgid "Call"
 msgstr "Anruf"
@@ -1024,7 +1028,7 @@ msgid "Please comply with government travel restrictions."
 msgstr ""
 
 msgid "More information at"
-msgstr ""
+msgstr "Mehr Informationen unter"
 
 msgid "Open during the sanitary crisis"
 msgstr ""
@@ -1039,25 +1043,25 @@ msgid "No information on opening during the sanitary crisis"
 msgstr ""
 
 msgid "Report a change"
-msgstr ""
+msgstr "Melde eine Veränderung"
 
 msgid "Opening hours subject to change"
-msgstr ""
+msgstr "Die Öffungszeiten können sich ändern."
 
 msgid "phone"
 msgstr "Telefon"
 
 msgid "Updated {datetime}"
-msgstr ""
+msgstr "Aktualisiert: {datetime}"
 
 msgid "Glass"
-msgstr ""
+msgstr "Glas"
 
 msgid "Recyclable"
-msgstr ""
+msgstr "Recyclebar"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 msgid "Read more on Wikipedia"
 msgstr "Auf Wikipedia weiterlesen"
@@ -1075,16 +1079,16 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 msgid "Display all results"
-msgstr ""
+msgstr "Alle Ergebnisse anzeigen"
 
 msgid "In partnership with"
-msgstr ""
+msgstr "In Zusammenarbeit mit"
 
 msgid "See more nearby services"
-msgstr ""
+msgstr "Weitere Angebote in der Nähe anzeigen"
 
 msgid "Reduce"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 msgid "Unfold to see quick actions"
 msgstr ""
@@ -1102,7 +1106,7 @@ msgid "by bike"
 msgstr "mit dem Rad"
 
 msgid "Services nearby"
-msgstr ""
+msgstr "Angebote in der Nähe"
 
 msgid "No results found."
 msgstr "Keine Ergebnisse gefunden."
@@ -1117,23 +1121,17 @@ msgstr "Bitte aus der Karte herauszoomen."
 msgid "Search around my position"
 msgstr "Um meinen Standort herum suchen"
 
-msgid "Pages Jaunes"
-msgstr "Pages Jaunes"
+msgid "Results in partnership with PagesJaunes"
+msgstr ""
 
-msgid "Partnership"
-msgstr "Partnerschaft"
+msgid "Unfold to show the results"
+msgstr "Aufklappen, um Ergebnisse anzuzeigen"
 
-msgid "Show results"
-msgstr "Ergebnisse anzeigen"
+msgid "Enter a starting point"
+msgstr "Gib einen Startpunkt ein"
 
-msgid "Start point"
-msgstr "Startpunkt"
-
-msgid "End point"
-msgstr "Zielpunkt"
-
-msgid "Test"
-msgstr "Test"
+msgid "Enter an end point"
+msgstr "Gib einen Zielpunkt ein"
 
 msgid "Invert start and end"
 msgstr "Start und Ziel tauschen"
@@ -1167,13 +1165,15 @@ msgid ""
 "cities."
 msgstr "Wir testen gerade ein öffentliches Verkehrsmode in einpaar Städten."
 
-msgid "return"
-msgstr "zurück"
+msgid "calculate an itinerary"
+msgstr "eine Route berechnen"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "
 "country."
 msgstr ""
+"Überprüfe die Rechtschreibung deiner Suche oder füge mehr Details wie Stadt "
+"oder Land hinzu."
 
 msgid "Try a new search query"
-msgstr ""
+msgstr "Eine neue Suchanfrage versuchen."

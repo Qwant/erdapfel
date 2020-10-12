@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Alberto Cozzani <a.cozzani6@studenti.unipi.it>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 06:48+0000\n"
+"POT-Creation-Date: 2020-10-12 13:02+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
@@ -32,6 +33,9 @@ msgstr "La mappa che rispetta la tua privacy"
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca su Qwant Maps"
+
+msgid "Clear"
+msgstr "Chiaro"
 
 msgid "Search"
 msgstr "Cerca"
@@ -79,13 +83,13 @@ msgid "sport"
 msgstr "Sport"
 
 msgid "recycling"
-msgstr ""
+msgstr "riciclaggio"
 
 msgid "station"
 msgstr "stazione"
 
 msgid "parking lot"
-msgstr ""
+msgstr "Parcheggio"
 
 msgid "Qwant is also"
 msgstr "Qwant è anche"
@@ -157,7 +161,7 @@ msgid "Search with Qwant Maps"
 msgstr "Cerca con Qwant Maps"
 
 msgid "My location"
-msgstr ""
+msgstr "La mia posizione"
 
 msgid "Open"
 msgstr "Aperto"
@@ -169,7 +173,7 @@ msgid "Open 24/7"
 msgstr "Aperto 24/7"
 
 msgid "reopening at {nextTransitionTime}"
-msgstr ""
+msgstr "riapre alle {nextTransitionTime}"
 
 msgid "until {nextTransitionTime}"
 msgstr "fino a {nextTransitionTime}"
@@ -205,7 +209,7 @@ msgid "athletics"
 msgstr "atletica"
 
 msgid "ATM"
-msgstr ""
+msgstr "Bancomat"
 
 msgid "attraction"
 msgstr "attrazione"
@@ -274,7 +278,7 @@ msgid "bus station"
 msgstr "stazione degli autobus"
 
 msgid "bus stop"
-msgstr ""
+msgstr "Fermata dell'autobus"
 
 msgid "butcher"
 msgstr "macellaio"
@@ -298,16 +302,16 @@ msgid "car repair"
 msgstr "meccanico"
 
 msgid "car rental"
-msgstr ""
+msgstr "Autonoleggio"
 
 msgid "car wash station"
-msgstr ""
+msgstr "auto lavaggio"
 
 msgid "caravan site"
 msgstr "campeggio"
 
 msgid "carpenter"
-msgstr ""
+msgstr "carpentiere"
 
 msgid "carpet shop"
 msgstr "negozio di tappeti"
@@ -316,7 +320,7 @@ msgid "castle"
 msgstr "castello"
 
 msgid "catering"
-msgstr ""
+msgstr "catering"
 
 msgid "cemetery"
 msgstr "cimitero"
@@ -334,7 +338,7 @@ msgid "chemist"
 msgstr "farmacia"
 
 msgid "cheese shop"
-msgstr ""
+msgstr "Latteria"
 
 msgid "chess"
 msgstr "scacchi"
@@ -421,7 +425,7 @@ msgid "doityourself store"
 msgstr "negozio del fai-da-te"
 
 msgid "driving school"
-msgstr ""
+msgstr "scuola guida"
 
 msgid "dry cleaning"
 msgstr "lavaggio a secco"
@@ -457,7 +461,7 @@ msgid "fire station"
 msgstr "caserma dei vigili del fuoco"
 
 msgid "fitness centre"
-msgstr ""
+msgstr "centro fitness"
 
 msgid "florist"
 msgstr "fioraio"
@@ -469,7 +473,7 @@ msgid "free flying"
 msgstr "volo libero"
 
 msgid "frozen food"
-msgstr ""
+msgstr "cibo surgelato"
 
 msgid "fuel station"
 msgstr "stazione di rifornimento"
@@ -541,7 +545,7 @@ msgid "hostel"
 msgstr "ostello"
 
 msgid "houseware shop"
-msgstr ""
+msgstr "Negozio di articoli per la casa"
 
 msgid "ice cream"
 msgstr "gelato"
@@ -622,7 +626,7 @@ msgid "music shop"
 msgstr "negozio musicale"
 
 msgid "music school"
-msgstr ""
+msgstr "Scuola di musica"
 
 msgid "musical instrument shop"
 msgstr "negozio di strumenti musicali"
@@ -652,10 +656,10 @@ msgid "park"
 msgstr "parco"
 
 msgid "car park"
-msgstr ""
+msgstr "Parcheggio"
 
 msgid "pastry shop"
-msgstr ""
+msgstr "Pasticceria"
 
 msgid "perfumery"
 msgstr "profumeria"
@@ -724,10 +728,10 @@ msgid "resale shop"
 msgstr "rivendita"
 
 msgid "shelter"
-msgstr ""
+msgstr "rifugio"
 
 msgid "shoemaker"
-msgstr ""
+msgstr "Calzolaio"
 
 msgid "shoes"
 msgstr "scarpe"
@@ -769,7 +773,7 @@ msgid "swimming area"
 msgstr "piscina"
 
 msgid "swimming pool equipment"
-msgstr ""
+msgstr "accessori per piscina"
 
 msgid "table tennis"
 msgstr "tennis da tavolo"
@@ -847,7 +851,7 @@ msgid "wine shop"
 msgstr "enoteca"
 
 msgid "winery"
-msgstr ""
+msgstr "enoteca"
 
 msgid "winter sports resort"
 msgstr ""
@@ -908,13 +912,13 @@ msgstr ""
 "localizzazione siano abilitati sul sistema."
 
 msgid "Close to"
-msgstr ""
+msgstr "vicino a"
 
 msgid "Geographic coordinates"
-msgstr ""
+msgstr "coordinate geografiche"
 
 msgid "on PagesJaunes"
-msgstr ""
+msgstr "su PagesJaunes"
 
 msgid "Your position"
 msgstr "La tua posizione"
@@ -923,7 +927,7 @@ msgid "category"
 msgstr "categoria"
 
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 msgid "Favorites"
 msgstr "Preferiti"
@@ -931,20 +935,26 @@ msgstr "Preferiti"
 msgid "How to contribute"
 msgstr "Come contribuire"
 
-msgid "Close"
-msgstr "Chiudi"
-
 msgid "Copied!"
-msgstr ""
+msgstr "Copiato"
 
 msgid "Copy link"
-msgstr ""
+msgstr "Copia link"
 
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
+
+msgid "Search around this place"
+msgstr "Cerca nei dintorni di questo luogo"
+
+msgid "No result found"
+msgstr "Nessun risultato trovato"
+
+msgid "Close"
+msgstr "Chiudi"
 
 msgid "Share"
 msgstr "Condividi"
@@ -967,17 +977,11 @@ msgstr "I miei preferiti"
 msgid "Show favorites"
 msgstr "Mostra favoriti"
 
-msgid "Search around this place"
-msgstr "Cerca nei dintorni di questo luogo"
-
-msgid "No result found"
-msgstr "Nessun risultato trovato"
-
 msgid "Call"
-msgstr ""
+msgstr "Chiama"
 
 msgid "opening hours"
-msgstr ""
+msgstr "Orari di apertura"
 
 msgid "See the usual opening hours"
 msgstr ""
@@ -989,7 +993,7 @@ msgid "Photos"
 msgstr "Foto"
 
 msgid "website"
-msgstr ""
+msgstr "sito web"
 
 msgid "Wheelchair accessible"
 msgstr "Accessibile con sedia a rotelle"
@@ -1022,52 +1026,52 @@ msgid "WiFi"
 msgstr "WiFi"
 
 msgid "services & information"
-msgstr ""
+msgstr "Servizi e informazioni"
 
 msgid "Please comply with government travel restrictions."
-msgstr ""
+msgstr "Per favore, attenersi alle restrizioni governative sugli spostamenti"
 
 msgid "More information at"
-msgstr ""
+msgstr "Più informazioni su"
 
 msgid "Open during the sanitary crisis"
-msgstr ""
+msgstr "Aperto durante l'emergenza sanitaria"
 
 msgid "Potentially open during the sanitary crisis"
-msgstr ""
+msgstr "Potenzialmente aperto durante l'emergenza sanitaria"
 
 msgid "Closed during the sanitary crisis"
-msgstr ""
+msgstr "Chiuso durante l'emergenza sanitaria"
 
 msgid "No information on opening during the sanitary crisis"
-msgstr ""
+msgstr "Nessuna informazione sulle aperture durante l'emergenza sanitaria"
 
 msgid "Report a change"
 msgstr ""
 
 msgid "Opening hours subject to change"
-msgstr ""
+msgstr "Orari di apertura soggetti a variazioni"
 
 msgid "phone"
-msgstr ""
+msgstr "telefono"
 
 msgid "Updated {datetime}"
 msgstr ""
 
 msgid "Glass"
-msgstr ""
+msgstr "Vetro"
 
 msgid "Recyclable"
-msgstr ""
+msgstr "Riciclabile"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Sconosciuto"
 
 msgid "Read more on Wikipedia"
 msgstr "Leggi altro su Wikipedia"
 
 msgid "Information"
-msgstr ""
+msgstr "informazione"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa i dati di OpenStreetMap"
@@ -1079,13 +1083,13 @@ msgid "Edit"
 msgstr "Modifica"
 
 msgid "Display all results"
-msgstr ""
+msgstr "Mostra tutti i risultati"
 
 msgid "In partnership with"
-msgstr ""
+msgstr "In collaborazione con"
 
 msgid "See more nearby services"
-msgstr ""
+msgstr "Visualizza altri servizi in zona"
 
 msgid "Reduce"
 msgstr ""
@@ -1094,19 +1098,19 @@ msgid "Unfold to see quick actions"
 msgstr ""
 
 msgid "by car"
-msgstr ""
+msgstr "In automobile"
 
 msgid "transit"
-msgstr ""
+msgstr "transito"
 
 msgid "on foot"
-msgstr ""
+msgstr "A piedi"
 
 msgid "by bike"
-msgstr ""
+msgstr "In bici"
 
 msgid "Services nearby"
-msgstr ""
+msgstr "Servizi vicino a te"
 
 msgid "No results found."
 msgstr "Nessun risultato trovato."
@@ -1121,23 +1125,17 @@ msgstr "Si prega di restringere la mappa."
 msgid "Search around my position"
 msgstr "Cerca intorno a me"
 
-msgid "Pages Jaunes"
-msgstr "Pagine Gialle"
-
-msgid "Partnership"
-msgstr "Partnership"
-
-msgid "Show results"
-msgstr "Mostra soluzioni"
-
-msgid "Start point"
-msgstr "Punto di partenza"
-
-msgid "End point"
-msgstr "Punto di arrivo"
-
-msgid "Test"
+msgid "Results in partnership with PagesJaunes"
 msgstr ""
+
+msgid "Unfold to show the results"
+msgstr ""
+
+msgid "Enter a starting point"
+msgstr "Inserisci un punto di partenza"
+
+msgid "Enter an end point"
+msgstr "Inserisci un punto di arrivo"
 
 msgid "Invert start and end"
 msgstr "Inverti partenza e destinazione"
@@ -1162,6 +1160,8 @@ msgstr "Preview"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
+"Il servizio è temporaneamente non disponibile, per favore riprovare più "
+"tardi."
 
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Qwant Maps non ha trovato soluzioni per questo itinerario"
@@ -1171,13 +1171,15 @@ msgid ""
 "cities."
 msgstr ""
 
-msgid "return"
-msgstr "ritorna"
+msgid "calculate an itinerary"
+msgstr "Calcola un itinerario"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "
 "country."
 msgstr ""
+"Controlla lo spelling della tua ricerca o aggiungi più dettagli, come la "
+"città o lo Stato."
 
 msgid "Try a new search query"
 msgstr ""
