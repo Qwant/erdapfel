@@ -23,7 +23,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     return window.__navigatorGeolocalisationPoi;
   }
 
-  async geolocate() {
+  async geolocate(options = { displayErrorModal: true }) {
     await GeolocationCheck.checkPrompt();
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
@@ -34,7 +34,11 @@ export default class NavigatorGeolocalisationPoi extends Poi {
         if (error.code === 1) {
           this.status = navigatorGeolocationStatus.FORBIDDEN;
         }
-        GeolocationCheck.handleError(error);
+
+        if (options.displayErrorModal) {
+          GeolocationCheck.handleError(error);
+        }
+
         reject(error);
       });
     });
