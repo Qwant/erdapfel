@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 06:48+0000\n"
+"POT-Creation-Date: 2020-10-12 15:04+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
@@ -32,6 +32,9 @@ msgstr "El mapa que respecta la vostra privadesa"
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca a Qwant Maps"
+
+msgid "Clear"
+msgstr ""
 
 msgid "Search"
 msgstr "Cerca"
@@ -930,9 +933,6 @@ msgstr "Preferits"
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
 
-msgid "Close"
-msgstr "Tanca"
-
 msgid "Copied!"
 msgstr ""
 
@@ -944,6 +944,15 @@ msgstr ""
 
 msgid "Twitter"
 msgstr ""
+
+msgid "Search around this place"
+msgstr "Cerca prop d'aquest lloc"
+
+msgid "No result found"
+msgstr ""
+
+msgid "Close"
+msgstr "Tanca"
 
 msgid "Share"
 msgstr "Comparteix"
@@ -964,12 +973,6 @@ msgstr "Preferits"
 
 msgid "Show favorites"
 msgstr "Mostra els preferits"
-
-msgid "Search around this place"
-msgstr "Cerca prop d'aquest lloc"
-
-msgid "No result found"
-msgstr ""
 
 msgid "Call"
 msgstr ""
@@ -1118,23 +1121,17 @@ msgstr ""
 msgid "Search around my position"
 msgstr "Cerca al voltant de la meva posició"
 
-msgid "Pages Jaunes"
-msgstr "Pàgines Grogues"
-
-msgid "Partnership"
+msgid "Results in partnership with PagesJaunes"
 msgstr ""
 
-msgid "Show results"
-msgstr "Mostra els resultats"
+msgid "Unfold to show the results"
+msgstr ""
 
-msgid "Start point"
-msgstr "Punt d'inici"
+msgid "Enter a starting point"
+msgstr ""
 
-msgid "End point"
-msgstr "Punt final"
-
-msgid "Test"
-msgstr "Prova"
+msgid "Enter an end point"
+msgstr ""
 
 msgid "Invert start and end"
 msgstr "Inverteix l'inici i el final"
@@ -1168,7 +1165,7 @@ msgid ""
 "cities."
 msgstr ""
 
-msgid "return"
+msgid "calculate an itinerary"
 msgstr ""
 
 msgid ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 06:48+0000\n"
+"POT-Creation-Date: 2020-10-12 15:04+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -32,6 +32,9 @@ msgstr "La carte qui respecte votre vie privée"
 
 msgid "Search on Qwant Maps"
 msgstr "Rechercher dans Qwant Maps"
+
+msgid "Clear"
+msgstr "Effacer"
 
 msgid "Search"
 msgstr "Rechercher"
@@ -933,9 +936,6 @@ msgstr "Favoris"
 msgid "How to contribute"
 msgstr "Comment contribuer"
 
-msgid "Close"
-msgstr "Fermer"
-
 msgid "Copied!"
 msgstr "Copié !"
 
@@ -947,6 +947,15 @@ msgstr "Facebook"
 
 msgid "Twitter"
 msgstr "Twitter"
+
+msgid "Search around this place"
+msgstr "Rechercher à proximité"
+
+msgid "No result found"
+msgstr "Aucun résultat trouvé"
+
+msgid "Close"
+msgstr "Fermer"
 
 msgid "Share"
 msgstr "Partager"
@@ -968,12 +977,6 @@ msgstr "Mes favoris"
 
 msgid "Show favorites"
 msgstr "Afficher les favoris"
-
-msgid "Search around this place"
-msgstr "Rechercher à proximité"
-
-msgid "No result found"
-msgstr "Aucun résultat trouvé"
 
 msgid "Call"
 msgstr "Appeler"
@@ -1098,7 +1101,7 @@ msgid "Unfold to see quick actions"
 msgstr "Déplier pour afficher les actions rapides"
 
 msgid "by car"
-msgstr "voiture"
+msgstr "en voiture"
 
 msgid "transit"
 msgstr "transport"
@@ -1124,23 +1127,17 @@ msgstr "Veuillez agrandir la zone de recherche."
 msgid "Search around my position"
 msgstr "Rechercher autour de moi"
 
-msgid "Pages Jaunes"
-msgstr "Pages Jaunes"
+msgid "Results in partnership with PagesJaunes"
+msgstr "Résultats en partenariat avec PagesJaunes"
 
-msgid "Partnership"
-msgstr "Partenariat"
+msgid "Unfold to show the results"
+msgstr "Déplier pour afficher les résultats"
 
-msgid "Show results"
-msgstr "Afficher les résultats"
+msgid "Enter a starting point"
+msgstr "Saisissez un point de départ"
 
-msgid "Start point"
-msgstr "Départ"
-
-msgid "End point"
-msgstr "Arrivée"
-
-msgid "Test"
-msgstr "Test"
+msgid "Enter an end point"
+msgstr "Saisissez un point d'arrivée"
 
 msgid "Invert start and end"
 msgstr "Inverser Départ et Arrivée"
@@ -1177,8 +1174,8 @@ msgid ""
 msgstr ""
 "Ce mode d'itinéraire est actuellement en version test pour quelques villes."
 
-msgid "return"
-msgstr "retour"
+msgid "calculate an itinerary"
+msgstr "calculer un itinéraire"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "

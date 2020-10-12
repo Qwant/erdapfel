@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 06:48+0000\n"
+"POT-Creation-Date: 2020-10-12 15:04+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -32,6 +32,9 @@ msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
 msgid "Search on Qwant Maps"
 msgstr "Klask war Qwant Maps"
+
+msgid "Clear"
+msgstr ""
 
 msgid "Search"
 msgstr "Klask"
@@ -931,9 +934,6 @@ msgstr "Sinedoù"
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
 
-msgid "Close"
-msgstr "Serriñ"
-
 msgid "Copied!"
 msgstr ""
 
@@ -945,6 +945,15 @@ msgstr ""
 
 msgid "Twitter"
 msgstr ""
+
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
+
+msgid "No result found"
+msgstr ""
+
+msgid "Close"
+msgstr "Serriñ"
 
 msgid "Share"
 msgstr "Rannañ"
@@ -966,12 +975,6 @@ msgstr "Ma sinedoù"
 
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
-
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
-
-msgid "No result found"
-msgstr ""
 
 msgid "Call"
 msgstr ""
@@ -1120,22 +1123,16 @@ msgstr ""
 msgid "Search around my position"
 msgstr "Klask tro-dro din"
 
-msgid "Pages Jaunes"
-msgstr "Pajennoù Melen"
+msgid "Results in partnership with PagesJaunes"
+msgstr ""
 
-msgid "Partnership"
-msgstr "Kevelerezh"
+msgid "Unfold to show the results"
+msgstr ""
 
-msgid "Show results"
-msgstr "Diskouez an disoc'hoù"
+msgid "Enter a starting point"
+msgstr ""
 
-msgid "Start point"
-msgstr "poent loc'hañ"
-
-msgid "End point"
-msgstr "poent fin"
-
-msgid "Test"
+msgid "Enter an end point"
 msgstr ""
 
 msgid "Invert start and end"
@@ -1170,8 +1167,8 @@ msgid ""
 "cities."
 msgstr ""
 
-msgid "return"
-msgstr "distreiñ"
+msgid "calculate an itinerary"
+msgstr ""
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "
