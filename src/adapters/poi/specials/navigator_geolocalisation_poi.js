@@ -1,7 +1,7 @@
 /* global _ */
 
 import Poi from '../poi';
-import GeolocationCheck from 'src/libs/geolocation';
+import * as GeolocationCheck from 'src/libs/geolocation';
 
 export const navigatorGeolocationStatus = {
   PENDING: 'pending',
