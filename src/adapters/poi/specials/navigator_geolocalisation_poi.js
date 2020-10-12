@@ -24,7 +24,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   }
 
   async geolocate(options = { displayErrorModal: true }) {
-    await GeolocationCheck.checkPrompt();
+    await GeolocationCheck.showGeolocationModalIfNeeded();
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
       navigator.geolocation.getCurrentPosition(position => {

@@ -27,7 +27,7 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   async trigger() {
-    await GeolocationCheck.checkPrompt();
+    await GeolocationCheck.showGeolocationModalIfNeeded();
     super.trigger();
   }
 

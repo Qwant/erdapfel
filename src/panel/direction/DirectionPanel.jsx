@@ -67,7 +67,7 @@ export default class DirectionPanel extends React.Component {
 
     if (!this.props.origin && isMobileDevice()) {
       // If authorized, set origin to current position on mobile
-      await GeolocationCheck.checkPrompt();
+      await GeolocationCheck.showGeolocationModalIfNeeded();
       const origin = new NavigatorGeolocalisationPoi();
       try {
         await origin.geolocate({ displayErrorModal: false });

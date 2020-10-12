@@ -9,7 +9,7 @@ const geolocationPermissions = {
 
 let hasPermissionModalOpenedOnce = false;
 
-export async function checkPrompt() {
+export async function showGeolocationModalIfNeeded() {
   if (!window.navigator.permissions) {
     // Some browsers (Safari, etc) do not implement Permissions API
     return;
