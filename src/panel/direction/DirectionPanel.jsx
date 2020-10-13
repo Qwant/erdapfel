@@ -329,8 +329,8 @@ export default class DirectionPanel extends React.Component {
           {!activePreviewRoute && origin && destination &&
             <Panel
               resizable
-              fitContent={['default']} 
-              marginTop={this.mobileFormRef.current.offsetHeight}
+              fitContent={['default']}
+              marginTop={this.mobileFormRef.current?.offsetHeight}
             >
               {result}
             </Panel>}
