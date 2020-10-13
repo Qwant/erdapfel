@@ -78,7 +78,7 @@ export default class DirectionForm extends React.Component {
             onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
             ref={this.originRef}
           />
-          <Divider paddingTop={0} paddingBottom={0} marginLeft={64}/>
+          <Divider paddingTop={0} paddingBottom={0} />
           <DirectionInput
             isLoading={isLoading}
             value={destinationInputText}
