@@ -41,6 +41,8 @@ export default class DirectionPanel extends React.Component {
 
     this.lastQueryId = 0;
 
+    this.mobileFormRef = React.createRef();
+
     this.state = {
       vehicle: activeVehicle,
       origin: null,
@@ -310,7 +312,7 @@ export default class DirectionPanel extends React.Component {
     return <DeviceContext.Consumer>
       {isMobile => isMobile
         ? <Fragment>
-          {!activePreviewRoute && <div className="direction-panel">
+          {!activePreviewRoute && <div className="direction-panel" ref={this.mobileFormRef}>
             <Flex
               className="direction-panel-header"
               alignItems="center"
@@ -325,7 +327,11 @@ export default class DirectionPanel extends React.Component {
             />}
           </div>}
           {!activePreviewRoute && origin && destination &&
-            <Panel resizable marginTop={160} fitContent={['default']}>
+            <Panel
+              resizable
+              fitContent={['default']} 
+              marginTop={this.mobileFormRef.current.offsetHeight}
+            >
               {result}
             </Panel>}
           {activePreviewRoute && <MobileRoadMapPreview
