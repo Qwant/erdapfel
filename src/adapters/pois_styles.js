@@ -19,6 +19,11 @@ export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
     'text-justify': 'auto',
   },
   paint: {
+    'icon-opacity': ['case',
+      ['==', ['feature-state', 'selected'], true], 0,
+      ['==', ['feature-state', 'hovered'], true], 0,
+      1,
+    ],
     'text-color': ['case', ['==', ['feature-state', 'selected'], true], '#900014', '#0c0c0e'],
     'text-halo-color': 'white',
     'text-halo-width': 1,

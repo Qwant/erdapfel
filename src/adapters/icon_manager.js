@@ -95,3 +95,14 @@ export function createMapGLIcon(imageFile, width, height) {
     img.src = imageFile;
   });
 }
+
+export function createPinIcon(iconOptions) {
+  const element = document.createElement('div');
+  element.innerHTML = `
+    <div
+      class="marker ${iconOptions.className || ''}"
+      ${iconOptions.disablePointerEvents && 'style="pointer-events:none;"'}
+    ></div>
+  `;
+  return element.firstElementChild;
+}
