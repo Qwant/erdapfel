@@ -58,6 +58,22 @@
 
     .direction-fields-block {
       width: 100%;
+      position: relative;
+
+      &:after {
+        content: '•••';
+        position: absolute;
+        color: $grey-grey;
+        top: 50%;
+        left: 23px;
+        transform: translateY(-50%) rotate(90deg);
+        letter-spacing: 2px;
+        font-size: 12px;
+
+        @media (max-width: 640px) {
+          left: 15px;
+        }
+      }
     }
   }
 
