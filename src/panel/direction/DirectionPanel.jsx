@@ -17,6 +17,7 @@ import * as address from '../../libs/address';
 import { CloseButton, Flex } from '../../components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
+import { PanelContext } from 'src/libs/panelContext.js';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -209,6 +210,7 @@ export default class DirectionPanel extends React.Component {
   update() {
     this.updateUrl();
     this.computeRoutes();
+    this.context.setSize('default');
   }
 
   onSelectVehicle = vehicle => {
@@ -340,3 +342,5 @@ export default class DirectionPanel extends React.Component {
     </DeviceContext.Consumer>;
   }
 }
+
+DirectionPanel.contextType = PanelContext;
