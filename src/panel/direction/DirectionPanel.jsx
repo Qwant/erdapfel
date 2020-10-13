@@ -69,7 +69,10 @@ export default class DirectionPanel extends React.Component {
       const origin = new NavigatorGeolocalisationPoi();
       try {
         await origin.geolocate({ displayErrorModal: false });
-        this.setState({ origin, originInputText: origin.name });
+        this.setState(
+          { origin, originInputText: origin.name },
+          this.update
+        );
       } catch (e) {
         // ignore possible error
       }
