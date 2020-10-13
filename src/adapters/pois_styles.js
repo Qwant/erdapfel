@@ -4,7 +4,8 @@ export const filteredPoisStyle = {
   layout: {
     'icon-image': 'pin_with_dot',
     'icon-allow-overlap': true,
-    'icon-ignore-placement': true,
+    'icon-ignore-placement': false,
+    'icon-padding': 0,
     'icon-size': 0.5,
     'icon-anchor': 'bottom',
 
