@@ -77,13 +77,14 @@ class Panel extends React.Component {
     this.updateMobileMapUI();
   }
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const { fitContent, size } = this.props;
     const { holding } = this.state;
     this.updateMobileMapUI();
 
     if (fitContent && !holding && size !== 'maximized' ||
-        this.state.height !== prevState.height) {
+        this.state.height !== prevState.height ||
+        this.props.size !== prevProps.size) {
       // Resize panel according to content height
       const translateY = this.getTranslateY(size);
       if (translateY !== this.state.translateY) {
