@@ -1,16 +1,17 @@
 
-export const filteredPoisStyle = {
+export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
   type: 'symbol',
   layout: {
     'icon-image': 'pin_with_dot',
     'icon-allow-overlap': true,
-    'icon-ignore-placement': true,
+    'icon-ignore-placement': false,
+    'icon-padding': 0,
     'icon-size': 0.5,
     'icon-anchor': 'bottom',
 
     'text-font': [ 'Noto Sans Bold' ],
     'text-size': 10,
-    'text-field': ['get', 'name'],
+    'text-field': withName ? ['get', 'name'] : '',
     'text-allow-overlap': false,
     'text-ignore-placement': false,
     'text-optional': true,
@@ -24,4 +25,4 @@ export const filteredPoisStyle = {
     'text-halo-width': 1,
     'text-translate': [0, -2],
   },
-};
+});
