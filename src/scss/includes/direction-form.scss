@@ -58,6 +58,17 @@
 
     .direction-fields-block {
       width: 100%;
+      background-image:
+        radial-gradient($grey-grey 100%, transparent 100%),
+        radial-gradient($grey-grey 100%, transparent 100%),
+        radial-gradient($grey-grey 100%, transparent 100%);
+      background-position: 23px calc(50% - 8px), 23px calc(50% - 1px), 23px calc(50% + 6px);
+      background-size: 2px 2px;
+      background-repeat: no-repeat;
+
+      @media (min-width: 641px) {
+        background-position: 31px calc(50% - 8px), 31px calc(50% - 1px), 31px calc(50% + 6px);
+      }
     }
   }
 
