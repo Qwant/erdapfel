@@ -1,5 +1,5 @@
 
-export const filteredPoisStyle = {
+export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
   type: 'symbol',
   layout: {
     'icon-image': 'pin_with_dot',
@@ -11,7 +11,7 @@ export const filteredPoisStyle = {
 
     'text-font': [ 'Noto Sans Bold' ],
     'text-size': 10,
-    'text-field': ['get', 'name'],
+    'text-field': withName ? ['get', 'name'] : '',
     'text-allow-overlap': false,
     'text-ignore-placement': false,
     'text-optional': true,
@@ -25,4 +25,4 @@ export const filteredPoisStyle = {
     'text-halo-width': 1,
     'text-translate': [0, -2],
   },
-};
+});

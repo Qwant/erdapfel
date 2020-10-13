@@ -47,6 +47,7 @@ mapStyle:
   spritesUrl: /mapstyle/
   fontsUrl: /mapstyle/font/
   maxAge: '15m' # string accepted by the ms module, or milliseconds
+  showNamesWithPins: true
 
 mapPlugins:
   maxAge: '60s' # string accepted by the ms module, or milliseconds

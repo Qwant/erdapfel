@@ -1,13 +1,15 @@
+import nconf from '@qwant/nconf-getter';
 import { Marker } from 'mapbox-gl--ENV';
 import constants from '../../config/constants.yml';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
 import { poisToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
-import { filteredPoisStyle } from 'src/adapters/pois_styles';
+import { getFilteredPoisStyle } from 'src/adapters/pois_styles';
 import { createMapGLIcon, createIcon } from 'src/adapters/icon_manager';
 
 const DYNAMIC_POIS_LAYER = 'poi-filtered';
+const mapStyleConfig = nconf.get().mapStyle;
 
 export default class SceneCategory {
   constructor(map) {
@@ -51,7 +53,7 @@ export default class SceneCategory {
       promoteId: 'id',
     });
     this.map.addLayer({
-      ...filteredPoisStyle,
+      ...getFilteredPoisStyle({ withName: mapStyleConfig.showNamesWithPins }),
       source: DYNAMIC_POIS_LAYER,
       id: DYNAMIC_POIS_LAYER,
     });
