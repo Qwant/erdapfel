@@ -1,5 +1,6 @@
 import { openAndWaitForClose } from 'src/modals/GeolocationModal';
 import { fire } from 'src/libs/customEvents';
+import { isMobileDevice } from 'src/libs/device';
 
 const geolocationPermissions = {
   PROMPT: 'prompt',
@@ -10,6 +11,10 @@ const geolocationPermissions = {
 let hasPermissionModalOpenedOnce = false;
 
 export async function showGeolocationModalIfNeeded() {
+  if (!isMobileDevice()) {
+    return;
+  }
+
   if (!window.navigator.permissions) {
     // Some browsers (Safari, etc) do not implement Permissions API
     return;
@@ -23,7 +28,7 @@ export async function showGeolocationModalIfNeeded() {
 
   if (hasPermissionModalOpenedOnce === true) {return;}
   hasPermissionModalOpenedOnce = true;
-  await openAndWaitForClose();
+  openAndWaitForClose();
 }
 
 export function handleError(error) {
