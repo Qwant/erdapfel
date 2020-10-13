@@ -2,11 +2,10 @@
 export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
   type: 'symbol',
   layout: {
-    'icon-image': 'pin_with_dot',
+    'icon-image': ['concat', 'pin-', ['get', 'subclass']],
     'icon-allow-overlap': true,
     'icon-ignore-placement': false,
     'icon-padding': 0,
-    'icon-size': 0.5,
     'icon-anchor': 'bottom',
 
     'text-font': [ 'Noto Sans Bold' ],
