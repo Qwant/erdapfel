@@ -192,11 +192,11 @@ class Panel extends React.Component {
     const panelHeight = this.panelContentRef.current.offsetHeight;
     const values = {
       'default': height -
-        (fitContent.includes('default') &&
+        (fitContent.indexOf('default') >= 0 &&
         (panelHeight + FIT_CONTENT_PADDING <= DEFAULT_SIZE)
           ? panelHeight + FIT_CONTENT_PADDING
           : DEFAULT_SIZE),
-      'minimized': height - (fitContent.includes('minimized')
+      'minimized': height - (fitContent.indexOf('minimized') >= 0
         ? panelHeight + FIT_CONTENT_PADDING
         : DEFAULT_MINIMIZED_SIZE),
       'maximized': 0,
