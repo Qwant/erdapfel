@@ -59,9 +59,9 @@ function open(status, onClose, onClick) {
   );
 }
 
-listen('open_geolocate_not_activated_modal', () => open('NOT_ACTIVATED', close));
+listen('open_geolocate_not_activated_modal', () => open('NOT_ACTIVATED', close, close));
 
-listen('open_geolocate_denied_modal', () => open('DENIED', close));
+listen('open_geolocate_denied_modal', () => open('DENIED', close, close));
 
 export async function openAndWaitForClose() {
   return new Promise(resolve => {
