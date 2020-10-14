@@ -325,7 +325,7 @@ export default class DirectionPanel extends React.Component {
             />}
           </div>
           {!activePreviewRoute && origin && destination &&
-            <Panel resizable marginTop={160} >
+            <Panel resizable marginTop={160} fitContent={['default']}>
               {result}
             </Panel>}
           {activePreviewRoute &&
