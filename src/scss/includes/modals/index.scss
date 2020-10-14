@@ -6,7 +6,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: $modal_background;
+  background: rgba($grey-black, 0.4);
   justify-content: center;
   align-items: center;
 }
@@ -17,13 +17,14 @@
   overflow: auto;
   background: $background;
   box-shadow: 0 8px 64px 0 rgba(12, 12, 14, .12);
+  text-align: center;
+  width: 305px;
+  padding: 35px 0 20px;
 }
 
-.modal__maps {
-  width: 305px;
+.modal__maps__pending {
   padding: 272px 0 20px;
   background: url('../images/direction_icons/popup.svg') no-repeat center 12px;
-  text-align: center;
 }
 
 .modal__maps__content {
@@ -34,14 +35,10 @@
   display: flex;
 }
 
-.modal__close {
+.modal__maps .closeButton {
   position: absolute;
-  padding: 16px 10px;
   right: 0;
   top: 0;
-  color: $secondary_text;
-  font-size: 18px;
-  cursor: pointer;
 }
 
 .modal__title {
@@ -77,4 +74,11 @@
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media (max-height: 450px) {
+  .modal__maps {
+    padding: 32px 0 20px;
+    background: none;
+  }
 }
