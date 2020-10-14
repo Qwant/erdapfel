@@ -69,13 +69,14 @@ export async function openAndWaitForClose() {
       'PENDING',
       () => {
         close();
-        resolve();
+        resolve(false); // close: prevent native grolocation popup
       },
       () => {
         close();
-        resolve();
-      });
-  });
+        resolve(true); // click "OK": allow native geolocation popup
+      }
+    )
+  })
 }
 
 export default GeolocationModal;

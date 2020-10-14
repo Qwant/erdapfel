@@ -28,7 +28,7 @@ export async function showGeolocationModalIfNeeded() {
 
   if (hasPermissionModalOpenedOnce === true) {return;}
   hasPermissionModalOpenedOnce = true;
-  openAndWaitForClose();
+  return await openAndWaitForClose();
 }
 
 export function handleError(error) {

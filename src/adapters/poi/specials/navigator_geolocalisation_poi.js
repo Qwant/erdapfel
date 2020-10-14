@@ -24,25 +24,27 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   }
 
   async geolocate(options = { displayErrorModal: true, displayDirectionModalIfNeeded: false }) {
+    let requestPosition = true;
     if (options.displayDirectionModalIfNeeded) {
-      await Geolocation.showGeolocationModalIfNeeded();
+      requestPosition = await Geolocation.showGeolocationModalIfNeeded();
     }
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
-      navigator.geolocation.getCurrentPosition(position => {
-        this.setPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
-        resolve();
-      }, error => {
-        if (error.code === 1) {
-          this.status = navigatorGeolocationStatus.FORBIDDEN;
-        }
+      if(requestPosition){
+        navigator.geolocation.getCurrentPosition(position => {
+          this.setPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
+          resolve();
+        }, error => {
+          if (error.code === 1) {
+            this.status = navigatorGeolocationStatus.FORBIDDEN;
+          }
 
-        if (options.displayErrorModal) {
-          Geolocation.handleError(error);
-        }
-
-        reject(error);
-      });
+          if (options.displayErrorModal) {
+            Geolocation.handleError(error);
+          }
+          reject(error);
+        });
+      }
     });
   }
 
