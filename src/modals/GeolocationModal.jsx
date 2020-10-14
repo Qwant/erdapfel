@@ -3,10 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'src/components/ui/Modal';
 import { listen } from 'src/libs/customEvents';
-import { CloseButton } from 'src/components/ui';
+import { Button, CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
 
-const GeolocationModal = ({ status, onClose }) => {
+const GeolocationModal = ({ status, onClose, onClick }) => {
   /* eslint-disable max-len */
   const statuses = {
     PENDING: {
@@ -42,7 +42,7 @@ const GeolocationModal = ({ status, onClose }) => {
       <div className="modal__maps__content">
         <h2 className="modal__title">{title}</h2>
         <div className="modal__subtitle" dangerouslySetInnerHTML={{ __html: text }} />
-        <button className="modal__button" onClick={onClose}>{button}</button>
+        <Button className="modal__button" variant="primary" onClick={onClick}>{button}</Button>
       </div>
     </div>
   </Modal>;
@@ -52,9 +52,9 @@ function close() {
   ReactDOM.unmountComponentAtNode(document.querySelector('.react_modal__container'));
 }
 
-function open(status, onClose) {
+function open(status, onClose, onClick) {
   ReactDOM.render(
-    <GeolocationModal status={status} onClose={onClose} />,
+    <GeolocationModal status={status} onClose={onClose} onClick={onClick} />,
     document.querySelector('.react_modal__container')
   );
 }
@@ -65,10 +65,16 @@ listen('open_geolocate_denied_modal', () => open('DENIED', close));
 
 export async function openAndWaitForClose() {
   return new Promise(resolve => {
-    open('PENDING', () => {
-      close();
-      resolve();
-    });
+    open(
+      'PENDING',
+      () => {
+        close();
+        resolve();
+      },
+      () => {
+        close();
+        resolve();
+      });
   });
 }
 
