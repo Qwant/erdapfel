@@ -15,10 +15,8 @@ import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from 'src/libs/address';
 import { CloseButton, Flex } from 'src/components/ui';
-import { showGeolocationModalIfNeeded } from 'src/libs/geolocation';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import { openAndWaitForClose } from 'src/modals/GeolocationModal';
 import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
 
@@ -69,9 +67,26 @@ export default class DirectionPanel extends React.Component {
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
-    if (!this.state.origin && !this.state.destination
-      && !this.props.origin && !this.props.destination) {
-      showGeolocationModalIfNeeded();
+    if (
+      !this.state.origin
+      && !this.state.destination
+      && !this.props.origin
+      && !this.props.destination
+      && isMobileDevice()
+    ) {
+      const origin = new NavigatorGeolocalisationPoi();
+      try {
+        await origin.geolocate({
+          displayErrorModal: false,
+          displayDirectionModalIfNeeded: true,
+        });
+        this.setState(
+          { origin, originInputText: origin.name },
+          this.update
+        );
+      } catch (e) {
+        // ignore possible error
+      }
     }
   }
 
