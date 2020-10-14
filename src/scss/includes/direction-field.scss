@@ -141,7 +141,7 @@
     }
 
     input {
-      width: 100%;
+      width: calc(100% - 45px);
       height: 40px;
       border: none;
       color: $primary_text;
