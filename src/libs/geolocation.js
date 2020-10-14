@@ -12,18 +12,18 @@ let hasPermissionModalOpenedOnce = false;
 
 export async function showGeolocationModalIfNeeded() {
   if (!isMobileDevice()) {
-    return;
+    return false;
   }
 
+  // Some browsers (Safari, etc) do not implement Permissions API
   if (!window.navigator.permissions) {
-    // Some browsers (Safari, etc) do not implement Permissions API
-    return;
+    return false;
   }
 
+  // granted or denied
   const p = await window.navigator.permissions.query({ name: 'geolocation' });
   if (p.state !== geolocationPermissions.PROMPT) {
-    // allowed or denied
-    return;
+    return p.state === geolocationPermissions.GRANTED;
   }
 
   if (hasPermissionModalOpenedOnce === true) {return;}
