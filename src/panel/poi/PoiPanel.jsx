@@ -241,7 +241,7 @@ export default class PoiPanel extends React.Component {
       {isMobile =>
         <Panel
           resizable
-          fitContent
+          fitContent={['default', 'minimized']}
           className={classnames('poi_panel', {
             'poi_panel--empty-header':
             !isFromPagesJaunes(poi) &&
