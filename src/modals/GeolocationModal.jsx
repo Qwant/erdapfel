@@ -75,8 +75,8 @@ export async function openAndWaitForClose() {
         close();
         resolve(true); // click "OK": allow native geolocation popup
       }
-    )
-  })
+    );
+  });
 }
 
 export default GeolocationModal;
