@@ -21,6 +21,7 @@ const MobileRouteDetails =
   });
 
   return <div
+    onTouchStart={e => e.stopPropagation()}
     ref={panelElement}
     className={classnames('itinerary_legDetails', {
       ['itinerary_legDetails__scrolled']: scrolledDown,
