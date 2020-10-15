@@ -1,0 +1,15 @@
+$height: 20px;
+
+.badge {
+  display: inline-block;
+  height: $height;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: $grey-lighter;
+
+  /* font */
+  font-size: 14px;
+  font-weight: bold;
+  line-height: $height;
+  color: $grey-black;
+}
