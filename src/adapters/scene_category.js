@@ -138,17 +138,20 @@ export default class SceneCategory {
     });
   }
 
+  setPoiFeatureState = (id, state) => {
+    this.map.setFeatureState({ id, source: DYNAMIC_POIS_LAYER }, state);
+  }
+
   highlightPoiMarker = (poi, highlight) => {
-    if (poi) {
-      this.map.setFeatureState(
-        { id: poi.id, source: DYNAMIC_POIS_LAYER },
-        { hovered: highlight });
+    if (this.hoveredPoi) {
+      this.setPoiFeatureState(this.hoveredPoi.id, { hovered: false });
     }
     if (highlight) {
       this.hoveredPoi = poi;
       this.hoveredMarker
         .setLngLat(poi.latLon)
         .addTo(this.map);
+      this.setPoiFeatureState(this.hoveredPoi.id, { hovered: true });
     } else {
       this.hoveredMarker.remove();
       this.hoveredPoi = null;
@@ -160,18 +163,14 @@ export default class SceneCategory {
       return;
     }
     if (this.selectedPoi) {
-      this.map.setFeatureState(
-        { id: this.selectedPoi.id, source: DYNAMIC_POIS_LAYER },
-        { selected: false });
+      this.setPoiFeatureState(this.selectedPoi.id, { selected: false });
     }
     if (poi) {
       this.selectedPoi = poi;
       this.selectedMarker
         .setLngLat(poi.latLon)
         .addTo(this.map);
-      this.map.setFeatureState(
-        { id: poi.id, source: DYNAMIC_POIS_LAYER },
-        { selected: true });
+      this.setPoiFeatureState(this.selectedPoi.id, { selected: true });
     } else {
       this.selectedMarker.remove();
       this.selectedPoi = null;
