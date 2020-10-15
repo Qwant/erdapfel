@@ -1,3 +1,4 @@
+import Badge from './Badge';
 import Button from './Button';
 import Divider from './Divider';
 import ShareMenu from './ShareMenu';
@@ -14,6 +15,7 @@ import PanelNav from './PanelNav';
 import CloseButton from './CloseButton';
 
 export {
+  Badge,
   Button,
   Divider,
   ShareMenu,
