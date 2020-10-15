@@ -276,11 +276,14 @@ class Panel extends React.Component {
                 onClick={() => this.handleHeaderClick()}
               >
                 <div className="panel-handle"/>
-                {size === 'minimized' && minimizedTitle
-                && <span className="minimizedTitle u-text--subtitle">{minimizedTitle}</span>}
               </div>
             }
             {size !== 'minimized' && <div className="panel-header">{renderHeader}</div>}
+            {size === 'minimized' && minimizedTitle &&
+              <div className="minimizedTitle u-text--subtitle u-center">
+                {minimizedTitle}
+              </div>
+            }
             <div
               className="panel-content"
               ref={this.panelContentRef}
