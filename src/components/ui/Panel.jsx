@@ -52,6 +52,7 @@ class Panel extends React.Component {
   }
 
   static defaultProps = {
+    fitContent: [],
     size: 'default',
     marginTop: 64, // default top bar size,
   }
