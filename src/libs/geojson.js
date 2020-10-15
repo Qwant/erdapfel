@@ -1,3 +1,4 @@
+import IconManager from 'src/adapters/icon_manager';
 
 const geoJsonGeometryToFeature = geometry => ({
   type: 'Feature',
@@ -25,6 +26,7 @@ export const poiToGeoJSON = poi => ({
     id: poi.id,
     name: poi.name,
     subclass: poi.subClassName,
+    iconName: IconManager.get(poi).iconClass,
   },
 });
 
