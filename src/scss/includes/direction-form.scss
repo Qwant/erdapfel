@@ -59,15 +59,15 @@
     .direction-fields-block {
       width: 100%;
       background-image:
-        radial-gradient($grey-grey 100%, transparent 100%),
-        radial-gradient($grey-grey 100%, transparent 100%),
-        radial-gradient($grey-grey 100%, transparent 100%);
-      background-position: 23px calc(50% - 8px), 23px calc(50% - 1px), 23px calc(50% + 6px);
-      background-size: 2px 2px;
+        radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
+        radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
+        radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px);
+      background-position: 22px calc(50% - 7px), 22px calc(50%), 22px calc(50% + 7px);
+      background-size: 4px 4px;
       background-repeat: no-repeat;
 
       @media (min-width: 641px) {
-        background-position: 31px calc(50% - 8px), 31px calc(50% - 1px), 31px calc(50% + 6px);
+        background-position: 30px calc(50% - 7px), 30px calc(50%), 30px calc(50% + 7px);
       }
     }
   }
