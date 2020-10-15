@@ -1,20 +1,17 @@
 .category__panel {
   .poiItem {
-    padding: 16px 30px;
+    padding: 16px 14px;
   }
 }
 
 .category__panel__pj {
   width: 100%;
-  height: 36px;
-  bottom: 0;
+  height: 32px;
   border-top: 1px solid $grey-light;
-  background: $background;
-  line-height: 36px;
-  text-align: center;
-  font-size: 14px;
+  line-height: 32px;
+  font-size: 12px;
+  padding: 0 14px;
   color: $grey-semi-darkness;
-  border-radius: 0 0 12px 12px;
 }
 
 .category__panel__items {
@@ -64,9 +61,12 @@
   }
 
   .category__panel__pj {
+    text-align: center;
     position: fixed;
     bottom: 0;
     height: 36px;
+    line-height: 36px;
+    font-size: 14px;
     border-radius: 0;
   }
 
