@@ -169,7 +169,7 @@ test('show itinerary roadmap on mobile', async () => {
 
   await page.waitForSelector('.itinerary_leg');
   await page.click('.itinerary_leg .itinerary_leg_detailsBtn');
-  await page.waitForSelector('.itinerary_legDetails');
+  await page.waitForSelector('.mobile-route-details');
 
   /*
     This simulates a user action that will close

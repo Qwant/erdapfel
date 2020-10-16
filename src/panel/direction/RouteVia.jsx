@@ -1,14 +1,15 @@
 /* global _ */
 import React from 'react';
+import classNames from 'classnames';
 import PublicTransportLine from './PublicTransportLine';
 
-const RouteVia = ({ route, vehicle }) => {
+const RouteVia = ({ route, vehicle, className }) => {
   if (vehicle !== 'publicTransport') {
-    return <div className="routeVia">
+    return <div className={classNames('routeVia u-text--subtitle', className)}>
       {_('Via', 'direction')} {route.legs[0].summary.replace(/^(.*), (.*)$/, '$1')}
     </div>;
   }
-  return <div className="routeVia">
+  return <div className={classNames('routeVia u-text--subtitle', className)}>
     {route.summary
       .filter(summaryPart => summaryPart.mode !== 'WAIT')
       .filter(summaryPart => summaryPart.mode !== 'WALK' || summaryPart.distance > 100)
