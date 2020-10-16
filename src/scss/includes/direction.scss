@@ -485,6 +485,12 @@ button.direction_shortcut {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     user-select: none;
 
+    .closeButton {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
     .itinerary_roadmap_item {
       border-left: 0;
       padding: 12px;

@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RoadMapStep from './RoadMapStep';
 import { fire } from 'src/libs/customEvents';
+import { CloseButton } from 'src/components/ui';
 
 export default class MobileRoadMapPreview extends React.Component {
   static propTypes = {
     steps: PropTypes.array.isRequired,
+    onClose: PropTypes.func.isRequired,
   }
 
   state = {
@@ -40,6 +42,7 @@ export default class MobileRoadMapPreview extends React.Component {
 
     return <React.Fragment>
       <div className="itinerary_mobile_step">
+        <CloseButton onClick={this.props.onClose} />
         <RoadMapStep step={currentStep} />
       </div>
 

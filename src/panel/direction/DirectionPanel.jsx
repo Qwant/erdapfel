@@ -328,8 +328,10 @@ export default class DirectionPanel extends React.Component {
             <Panel resizable marginTop={160} fitContent={['default']}>
               {result}
             </Panel>}
-          {activePreviewRoute &&
-            <MobileRoadMapPreview steps={getAllSteps(activePreviewRoute)} />}
+          {activePreviewRoute && <MobileRoadMapPreview
+            steps={getAllSteps(activePreviewRoute)}
+            onClose={this.onClose}
+          />}
         </Fragment>
         : <Panel
           className="direction-panel"
