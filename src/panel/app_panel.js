@@ -30,7 +30,7 @@ export default class App {
     this.router = new Router(window.baseUrl);
 
     window.onpopstate = ({ state }) => {
-      this.router.routeUrl(getCurrentUrl(), state);
+      this.router.routeUrl(getCurrentUrl(), state || {});
     };
 
     const directionShortcut = document.querySelector('.search_form__direction_shortcut');
