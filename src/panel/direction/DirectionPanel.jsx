@@ -40,6 +40,7 @@ export default class DirectionPanel extends React.Component {
       ? props.mode : modes.DRIVING;
 
     this.lastQueryId = 0;
+    this.marginTop = 0;
 
     this.state = {
       vehicle: activeVehicle,
@@ -272,6 +273,11 @@ export default class DirectionPanel extends React.Component {
     this.setState({ activePreviewRoute: route });
   }
 
+  setMarginTop = el => {
+    this.marginTop = el ? el.offsetHeight : 0;
+    this.forceUpdate();
+  }
+
   render() {
     const {
       origin, destination, vehicle,
@@ -310,7 +316,7 @@ export default class DirectionPanel extends React.Component {
     return <DeviceContext.Consumer>
       {isMobile => isMobile
         ? <Fragment>
-          {!activePreviewRoute && <div className="direction-panel">
+          {!activePreviewRoute && <div className="direction-panel" ref={this.setMarginTop}>
             <Flex
               className="direction-panel-header"
               alignItems="center"
@@ -325,7 +331,11 @@ export default class DirectionPanel extends React.Component {
             />}
           </div>}
           {!activePreviewRoute && origin && destination &&
-            <Panel resizable marginTop={160} fitContent={['default']}>
+            <Panel
+              resizable
+              fitContent={['default']}
+              marginTop={this.marginTop}
+            >
               {result}
             </Panel>}
           {activePreviewRoute && <MobileRoadMapPreview
