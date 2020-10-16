@@ -1,56 +1,58 @@
 /* global _ */
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import RouteVia from './RouteVia';
 import RoadMap from './RoadMap';
-import Button from 'src/components/ui/Button';
-import { formatDuration } from 'src/libs/route_utils';
+import { Badge, Button, CloseButton, Divider, Flex } from 'src/components/ui';
+import { formatDuration, formatDistance } from 'src/libs/route_utils';
 import classnames from 'classnames';
-import throttle from 'lodash.throttle';
 
 const MobileRouteDetails =
 ({ id, route, origin, destination, vehicle, toggleDetails, openPreview }) => {
   const panelElement = useRef(null);
-  const [scrolledDown, setScrolledDown] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = throttle(() => {
-      setScrolledDown(panelElement.current.scrollTop > 0);
-    }, 100, { leading: true, trailing: true });
-    panelElement.current.addEventListener('scroll', handleScroll, { passive: true });
-    return () => panelElement.current.removeEventListener('scroll', handleScroll);
-  });
+  const isPublicTransport = vehicle !== 'publicTransport';
 
   return <div
     onTouchStart={e => e.stopPropagation()}
     ref={panelElement}
-    className={classnames('itinerary_legDetails', {
-      ['itinerary_legDetails__scrolled']: scrolledDown,
-    })}
+    className={classnames('mobile-route-details')}
   >
-    <div className="itinerary_legDetails_header">
-      <button className="itinerary_legDetails_back" onClick={() => { toggleDetails(id); }}>
-        <i className="icon-arrow-left" />
-      </button>
-      <RouteVia route={route} vehicle={vehicle} />
-      <div className="itinerary_leg_duration">
-        {formatDuration(route.duration)}
+    <div className="mobile-route-details-header">
+      <div className="mobile-route-details-header-content">
+        <Flex alignItems="center" justifyContent="space-between" className="u-text--title">
+          {formatDuration(route.duration)}
+          <CloseButton onClick={() => { toggleDetails(id); }} />
+        </Flex>
+
+        <RouteVia className="u-mb-8" route={route} vehicle={vehicle} />
+        <Badge className={isPublicTransport ? 'u-mb-20' : ''}>
+          {formatDistance(route.distance)}
+        </Badge>
+
+        {isPublicTransport &&
+          <Button
+            className="u-firstCap"
+            onClick={() => { openPreview(id); }}
+            variant="primary"
+            style={{ width: '100%' }}
+          >
+            <Flex alignItems="center" justifyContent="center">
+              <img className="u-mr-4" src="/statics/images/direction_icons/guide.svg" />
+              <span className="u-firstCap">{_('step by step', 'direction')}</span>
+            </Flex>
+          </Button>
+        }
       </div>
+
+      <Divider paddingTop={0} paddingBottom={0}/>
     </div>
-    <div className="itinerary_legDetails_title">
-      <div className="u-bold">{_('Details', 'direction')}</div>
-      {vehicle !== 'publicTransport' && <Button
-        onClick={() => { openPreview(id); }}
-        icon="chevrons-right"
-      >
-        {_('Preview', 'direction')}
-      </Button>}
-    </div>
+
+
     <RoadMap
       route={route}
       origin={origin}
       destination={destination}
       vehicle={vehicle} />
-    {vehicle === 'publicTransport' && <div className="itinerary_legDetails_source">
+    {vehicle === 'publicTransport' && <div className="mobile-route-details-source">
       <a href="https://combigo.com/">
         <img src="./statics/images/direction_icons/logo_combigo.svg" alt="" />
         Combigo

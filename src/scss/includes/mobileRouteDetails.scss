@@ -3,7 +3,7 @@
   100% { opacity: 1; }
 }
 
-.itinerary_legDetails {
+.mobile-route-details {
   background-color: white;
   position: fixed;
   top: 0;
@@ -14,55 +14,16 @@
   z-index: 3;
   animation: fullscreenLegDetails 0.3s forwards;
 
-  &_header {
+  &-header {
     position: sticky;
     top: 0;
-    display: flex;
-    align-items: center;
-    padding: 12px 18px;
-    background-color: $background_active;
     z-index: 1;
-    transition: all .2s ease-out;
     font-size: 16px;
+    transition: all .2s ease-out;
+    background-color: $background;
 
-    .icon-arrow-left {
-      font-size: 24px;
-      padding-right: 18px;
-    }
-
-    .routeVia {
-      flex-grow: 1;
-    }
-
-    .itinerary_leg_duration {
-      margin: 0 0 0 12px;
-    }
-
-    .itinerary_legDetails__scrolled & {
-      @include card_shadow();
-      background-color: $primary_text;
-      color: white;
-      transition: all .2s ease-in;
-
-      .itinerary_leg_duration,
-      .itinerary_legDetails_back {
-        color: white;
-        transition: all .2s ease-in;
-      }
-    }
-  }
-
-  &_title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 18px;
-    font-size: 14px;
-    text-transform: uppercase;
-
-    & .button {
-      border: none;
-      padding: 0;
+    &-content {
+      padding: 20px 12px;
     }
   }
 
@@ -79,7 +40,7 @@
     left: 27px;
   }
 
-  &_source {
+  &-source {
     padding: 9px 18px 18px;
     font-size: 12px;
 
