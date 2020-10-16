@@ -316,7 +316,7 @@ export default class DirectionPanel extends React.Component {
     return <DeviceContext.Consumer>
       {isMobile => isMobile
         ? <Fragment>
-          <div className="direction-panel" ref={this.setMarginTop}>
+          {!activePreviewRoute && <div className="direction-panel" ref={this.setMarginTop}>
             <Flex
               className="direction-panel-header"
               alignItems="center"
@@ -324,12 +324,12 @@ export default class DirectionPanel extends React.Component {
               {title}
               <CloseButton onClick={this.onClose} />
             </Flex>
-            {!activePreviewRoute && form}
+            {form}
             {<div
               id="direction-autocomplete_suggestions"
               className="direction-autocomplete_suggestions"
             />}
-          </div>
+          </div>}
           {!activePreviewRoute && origin && destination &&
             <Panel
               resizable
@@ -338,8 +338,10 @@ export default class DirectionPanel extends React.Component {
             >
               {result}
             </Panel>}
-          {activePreviewRoute &&
-            <MobileRoadMapPreview steps={getAllSteps(activePreviewRoute)} />}
+          {activePreviewRoute && <MobileRoadMapPreview
+            steps={getAllSteps(activePreviewRoute)}
+            onClose={this.onClose}
+          />}
         </Fragment>
         : <Panel
           className="direction-panel"

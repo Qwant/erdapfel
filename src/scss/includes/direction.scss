@@ -477,14 +477,19 @@ button.direction_shortcut {
 
   .itinerary_mobile_step {
     position: fixed;
-    top: 36px;
+    top: 12px;
+    left: 12px;
+    right: 12px;
     background: $background;
-    margin: 0 15px;
     border-radius: 3px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
-    width: calc(100% - 30px);
     user-select: none;
-    z-index: 3;
+
+    .closeButton {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
 
     .itinerary_roadmap_item {
       border-left: 0;
