@@ -59,7 +59,6 @@ class Panel extends React.Component {
 
   constructor(props) {
     super(props);
-    const { marginTop } = this.props;
 
     this.startClientY = 0; // Y coordinate where finger started to touch panel
     this.startClientYOffset = 0; // offset between finger and top of panel
@@ -68,8 +67,8 @@ class Panel extends React.Component {
     this.panelContentRef = React.createRef();
     this.state = {
       holding: false,
-      height: window.innerHeight - marginTop,
-      translateY: window.innerHeight - marginTop - DEFAULT_SIZE,
+      height: this.getHeight(),
+      translateY: this.getInitialTranslateY(),
     };
   }
 
@@ -79,7 +78,7 @@ class Panel extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { fitContent, size } = this.props;
+    const { fitContent, size, marginTop } = this.props;
     const { holding } = this.state;
     this.updateMobileMapUI();
 
@@ -92,6 +91,13 @@ class Panel extends React.Component {
         this.setState({ translateY });
       }
     }
+
+    if (marginTop !== prevProps.marginTop) {
+      this.setState({
+        height: this.getHeight(),
+        translateY: this.getInitialTranslateY(),
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -101,7 +107,7 @@ class Panel extends React.Component {
   }
 
   handleViewportResize = () => {
-    this.setState({ height: window.innerHeight - this.props.marginTop });
+    this.setState({ height: this.getHeight() });
   }
 
   updateMobileMapUI = ({ closing } = {}) => {
@@ -126,6 +132,14 @@ class Panel extends React.Component {
         fire('mobile_direction_button_visibility', false);
       }
     }
+  }
+
+  getHeight() {
+    return window.innerHeight - this.props.marginTop;
+  }
+
+  getInitialTranslateY() {
+    return window.innerHeight - this.props.marginTop - DEFAULT_SIZE;
   }
 
   removeListeners() {
@@ -219,7 +233,7 @@ class Panel extends React.Component {
       this.props.size,
       this.startHeight,
       this.stopHeight,
-      window.innerHeight - this.props.marginTop,
+      this.getHeight(),
     );
 
     if (newSize !== this.props.size) {
