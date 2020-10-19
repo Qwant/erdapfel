@@ -46,7 +46,6 @@ const MobileRouteDetails =
       <Divider paddingTop={0} paddingBottom={0}/>
     </div>
 
-
     <RoadMap
       route={route}
       origin={origin}
