@@ -1,4 +1,5 @@
 import styleIcons from '@qwant/qwant-basic-gl-style/icons.yml';
+import classnames from 'classnames';
 
 const nameToClass = iconName => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
 
@@ -96,13 +97,11 @@ export function createMapGLIcon(imageFile, width, height) {
   });
 }
 
-export function createPinIcon(iconOptions) {
+export function createPinIcon({ className, disablePointerEvents }) {
   const element = document.createElement('div');
-  element.innerHTML = `
-    <div
-      class="marker ${iconOptions.className || ''}"
-      ${iconOptions.disablePointerEvents && 'style="pointer-events:none;"'}
-    ></div>
-  `;
-  return element.firstElementChild;
+  element.className = classnames('marker', className);
+  if (disablePointerEvents) {
+    element.style = 'pointer-events:none;';
+  }
+  return element;
 }
