@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 15:04+0000\n"
+"POT-Creation-Date: 2020-10-19 09:31+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -1154,11 +1154,11 @@ msgstr "Départ"
 msgid "Arrival"
 msgstr "Arrivée"
 
+msgid "step by step"
+msgstr "trajet pas à pas"
+
 msgid "Details"
 msgstr "Détails"
-
-msgid "Preview"
-msgstr "Aperçu"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
