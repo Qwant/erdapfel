@@ -74,7 +74,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.0",
     "@qwant/gettext": "file:local_modules/gettext",
-    "@qwant/map-style-builder": "git+https://github.com/QwantResearch/map-style-builder.git#d02b433",
+    "@qwant/map-style-builder": "git+https://github.com/QwantResearch/map-style-builder.git#e27cbfb",
     "@qwant/mapbox_style_configure": "file:local_modules/mapbox_style_configure",
     "@qwant/merge-po": "file:local_modules/merge-po",
     "@qwant/nconf-builder": "file:local_modules/nconf_builder",
