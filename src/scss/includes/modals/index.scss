@@ -19,12 +19,16 @@
   box-shadow: 0 8px 64px 0 rgba(12, 12, 14, .12);
   text-align: center;
   width: 305px;
-  padding: 35px 0 20px;
+  padding: 0;
 }
 
 .modal__maps__pending {
-  padding: 272px 0 0;
+  padding: 272px 0 20px;
   background: url('../images/direction_icons/popup.svg') no-repeat center 12px;
+}
+
+.modal__maps__denied, .modal__maps__not-activated {
+  padding: 20px 0;
 }
 
 .modal__maps__content {
@@ -42,18 +46,10 @@
 }
 
 .modal__title {
-  font-size: 16px;
-  line-height: 20px;
-  color: $grey-black;
-  font-weight: bold;
   margin-bottom: 8px;
 }
 
 .modal__subtitle {
-  display: block;
-  font-size: 14px;
-  line-height: 18px;
-  color: $grey-semi-darkness;
   margin-bottom: 16px;
 }
 
@@ -66,14 +62,6 @@
 
 .modal__button {
   width: 100%;
-  height: 35px;
-  border-radius: 50px;
-  background-color: $action-blue-base;
-  text-transform: uppercase;
-  color: $primary_alternative_text;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 @media (max-height: 450px) {

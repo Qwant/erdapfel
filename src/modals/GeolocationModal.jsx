@@ -40,8 +40,8 @@ const GeolocationModal = ({ status, onClose, onClick }) => {
     <div className={classnames('modal__maps', className)}>
       <CloseButton onClick={onClose} />
       <div className="modal__maps__content">
-        <h2 className="modal__title">{title}</h2>
-        <div className="modal__subtitle" dangerouslySetInnerHTML={{ __html: text }} />
+        <h2 className="modal__title u-text--smallTitle">{title}</h2>
+        <div className="modal__subtitle u-text--subtitle" dangerouslySetInnerHTML={{ __html: text }} />
         <Button className="modal__button" variant="primary" onClick={onClick}>{button}</Button>
       </div>
     </div>
