@@ -36,7 +36,7 @@ const MobileRouteDetails =
             style={{ width: '100%' }}
           >
             <Flex alignItems="center" justifyContent="center">
-              <img className="u-mr-4" src="/statics/images/direction_icons/guide.svg" />
+              <img className="u-mr-4" src="./statics/images/direction_icons/guide.svg" />
               <span className="u-firstCap">{_('step by step', 'direction')}</span>
             </Flex>
           </Button>
