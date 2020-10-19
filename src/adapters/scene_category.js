@@ -4,13 +4,25 @@ import constants from '../../config/constants.yml';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
-import { poisToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
+import { poiToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
 import { getFilteredPoisStyle } from 'src/adapters/pois_styles';
 import { isMobileDevice } from 'src/libs/device';
 import { createMapGLIcon, createPinIcon } from 'src/adapters/icon_manager';
+import IconManager from 'src/adapters/icon_manager';
 
 const DYNAMIC_POIS_LAYER = 'poi-filtered';
 const mapStyleConfig = nconf.get().mapStyle;
+
+const poisToGeoJSON = pois => {
+  return {
+    type: 'FeatureCollection',
+    features: pois.map(poi => {
+      const poiFeature = poiToGeoJSON(poi);
+      poiFeature.properties.iconName = IconManager.get(poi).iconClass;
+      return poiFeature;
+    }),
+  };
+};
 
 export default class SceneCategory {
   constructor(map) {
