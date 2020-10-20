@@ -118,9 +118,10 @@ class DirectionInput extends React.Component {
           </div>
           <div className="icon-x direction-field-clear" onMouseDown={this.clear} />
         </div>
-        <div className="direction-field-return">
+        <button type="button" className="direction-field-return">
+          {/* The only purpose of this button is to unfocus the input */}
           <span className="icon-arrow-left"/>
-        </div>
+        </button>
         {mounted &&
             <Suggest
               inputNode={inputRef.current}
