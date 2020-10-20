@@ -101,36 +101,6 @@
   font-size: 16px;
 }
 
-.itinerary_leg_via_details {
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-right: 8px;
-}
-
-.itinerary_leg_via_details:hover {
-  text-decoration: underline;
-}
-
-.itinerary_leg_via_details_icon {
-  display: inline-block;
-  background: url('../images/direction_icons/arrow-right.svg') no-repeat center center;
-  width: 15px;
-  height: 15px;
-  margin: 0 5px 0 0;
-  background-size: 100%;
-  vertical-align: middle;
-  transition: transform .2s;
-}
-
-.itinerary_leg_via_details_icon.open {
-  transform: rotate(90deg);
-}
-
-.itinerary_leg_mobileActions {
-  display: none;
-}
-
 .itinerary_marker_origin {
   @include icon_origin;
   cursor: pointer;
@@ -415,24 +385,17 @@ button.direction_shortcut {
     padding: 15px 18px;
   }
 
+  .itinerary_leg_details-buttons {
+    margin-top: 12px;
+  }
+
   .itinerary_leg_icon,
-  .itinerary_leg_via_details,
   .itinerary_panel__item__share {
     display: none;
   }
 
   .itinerary_leg_via {
     grid-area: via;
-  }
-
-  .itinerary_leg_mobileActions {
-    display: flex;
-    grid-area: actions;
-    margin-top: 9px;
-
-    button {
-      margin-right: 6px;
-    }
   }
 
   .itinerary_mobile_step {
