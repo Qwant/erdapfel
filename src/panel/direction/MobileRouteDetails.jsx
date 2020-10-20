@@ -1,7 +1,7 @@
 /* global _ */
 import React, { useRef } from 'react';
 import RoadMap from './RoadMap';
-import { Button, Divider, Flex } from 'src/components/ui';
+import { Button, CloseButton, Divider, Flex } from 'src/components/ui';
 import classnames from 'classnames';
 
 import RouteSummaryInfo from './RouteSummaryInfo';
@@ -18,11 +18,13 @@ const MobileRouteDetails =
   >
     <div className="mobile-route-details-header">
       <div className="mobile-route-details-header-content">
-        <RouteSummaryInfo
-          route={route}
-          vehicle={vehicle}
-          onClose={() => toggleDetails(id)}
-        />
+        <Flex alignItems="flex-start" justifyContent="space-between">
+          <RouteSummaryInfo
+            route={route}
+            vehicle={vehicle}
+          />
+          <CloseButton onClick={() => toggleDetails(id)} />
+        </Flex>
 
         {isPublicTransport &&
           <Button
