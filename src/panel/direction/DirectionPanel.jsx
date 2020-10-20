@@ -68,7 +68,6 @@ export default class DirectionPanel extends React.Component {
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
-    console.log(1 );
     // This flag determines if the user's position needs to be requested when opening the direction panel
     let requestPosition = false;
 
