@@ -75,7 +75,7 @@ export default class SearchInput {
       }
       // KeyboardEvent.key is either the printed character representation or a standard value for specials keys
       // See https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key/Key_Values
-      if (e.key.length === 1 && !e.ctrlKey) {
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
         if (document.activeElement
           && document.activeElement.tagName !== 'INPUT'
           && window.__searchInput.isEnabled) {
