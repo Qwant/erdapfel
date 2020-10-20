@@ -178,10 +178,30 @@
 
 .itinerary_roadmap_item-block {
   padding: 10px 0;
+
+  &:hover {
+    background-color: $grey-bright;
+    cursor: pointer;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 0;
+      width: 4px;
+      height: calc(100% - 24px);
+      border-radius: 0 4px 4px 0;
+      background-image: $active-gradient-vertical;
+    }
+  }
 }
 
 .itinerary_roadmap {
-  padding: 0 12px;
+
+  .divider {
+    margin: 0 12px;
+  }
 
   .itinerary_roadmap_item:last-child {
     .divider {
