@@ -49,20 +49,22 @@ export default class RouteSummary extends React.Component {
         />
       </Flex>
 
-      <div className="itinerary_leg_via_details" onClick={this.onClickDetails}>
-        <i className="itinerary_leg_via_details_icon" />
-        {_('Details', 'direction')}
-      </div>
+      <Flex>
+        <div className="itinerary_leg_via_details" onClick={this.onClickDetails}>
+          <i className="itinerary_leg_via_details_icon" />
+          {_('Details', 'direction')}
+        </div>
 
-      <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
-        {openMenu => <div
-          className="itinerary_panel__item__share"
-          title={_('Share', 'direction')}
-          onClick={e => this.onShareClick(e, openMenu)}
-        >
-          <i className="icon-share-2" />
-        </div>}
-      </ShareMenu>
+        <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
+          {openMenu => <div
+            className="itinerary_panel__item__share"
+            title={_('Share', 'direction')}
+            onClick={e => this.onShareClick(e, openMenu)}
+          >
+            <i className="icon-share-2" />
+          </div>}
+        </ShareMenu>
+      </Flex>
 
       <div className="itinerary_leg_mobileActions">
         <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">
