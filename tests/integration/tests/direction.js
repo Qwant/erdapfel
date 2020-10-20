@@ -151,7 +151,7 @@ test('select itinerary step', async () => {
 
   await page.waitForSelector('.itinerary_leg');
 
-  await page.click('.itinerary_leg_via_details');
+  await page.click('.itinerary_leg_detailsBtn');
   await page.click('.itinerary_roadmap_item:nth-of-type(2)');
 
   const { center } = await getMapView(page);
