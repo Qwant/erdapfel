@@ -44,7 +44,6 @@ const Suggest = ({
         setIsOpen(true);
         fetchItems('');
       } else {
-        inputNode.select();
         if (isMobile) {
           setIsOpen(true);
           fetchItems(inputNode.value);
