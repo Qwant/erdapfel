@@ -1,12 +1,12 @@
 /* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatDuration, formatDistance, getVehicleIcon } from 'src/libs/route_utils';
-import RouteVia from './RouteVia';
-import Button from 'src/components/ui/Button';
+import { getVehicleIcon } from 'src/libs/route_utils';
+import { Button, Flex } from 'src/components/ui';
 import ShareMenu from 'src/components/ui/ShareMenu';
 import Telemetry from 'src/libs/telemetry';
 
+import RouteSummaryInfo from './RouteSummaryInfo';
 
 export default class RouteSummary extends React.Component {
   static propTypes = {
@@ -40,22 +40,20 @@ export default class RouteSummary extends React.Component {
     const { route, vehicle } = this.props;
 
     return <div className="itinerary_leg_summary" onClick={this.onClick}>
-      <div className={`itinerary_leg_icon ${getVehicleIcon(vehicle)}`} />
-      <div className="itinerary_leg_via">
-        <RouteVia route={route} vehicle={vehicle} />
-        <div className="itinerary_leg_via_details" onClick={this.onClickDetails}>
-          <i className="itinerary_leg_via_details_icon" />
-          {_('Details', 'direction')}
-        </div>
+
+      <Flex>
+        <div className={`itinerary_leg_icon ${getVehicleIcon(vehicle)}`} />
+        <RouteSummaryInfo
+          route={route}
+          vehicle={vehicle}
+        />
+      </Flex>
+
+      <div className="itinerary_leg_via_details" onClick={this.onClickDetails}>
+        <i className="itinerary_leg_via_details_icon" />
+        {_('Details', 'direction')}
       </div>
-      <div className="itinerary_leg_info">
-        <div className="itinerary_leg_duration">
-          {formatDuration(route.duration)}
-        </div>
-        <div className="itinerary_leg_distance">
-          {formatDistance(route.distance)}
-        </div>
-      </div>
+
       <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
         {openMenu => <div
           className="itinerary_panel__item__share"
@@ -65,6 +63,7 @@ export default class RouteSummary extends React.Component {
           <i className="icon-share-2" />
         </div>}
       </ShareMenu>
+
       <div className="itinerary_leg_mobileActions">
         <Button className="itinerary_leg_detailsBtn" onClick={this.onClickDetails} icon="icon_list">
           {_('Details', 'direction')}

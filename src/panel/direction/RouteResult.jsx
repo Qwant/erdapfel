@@ -108,9 +108,9 @@ export default class RouteResult extends React.Component {
                   </div>
                   <PlaceholderText length={10} className="itinerary_leg_via_details"/>
                 </div>
-                <div className="itinerary_leg_info">
-                  <PlaceholderText length={5} className="itinerary_leg_duration" />
-                  <PlaceholderText length={7} className="itinerary_leg_distance" />
+                <div>
+                  <PlaceholderText length={5} />
+                  <PlaceholderText length={7} />
                 </div>
               </div>
             </div>
