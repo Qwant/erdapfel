@@ -3,6 +3,17 @@
 @import "./direction-field.scss";
 @import "./mobileRouteDetails.scss";
 
+@mixin active-border-gradient {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 4px;
+  height: calc(100% - 24px);
+  border-radius: 0 4px 4px 0;
+  background-image: $active-gradient-vertical;
+}
+
 @mixin icon_origin {
   width: 16px;
   height: 16px;
@@ -65,9 +76,18 @@
 .itinerary_leg {
   position: relative;
 
-  &--active .itinerary_leg_summary,
   &:hover .itinerary_leg_summary {
-    border-left: 4px solid #ff3b4a;
+    background-color: $grey-bright;
+  }
+
+  &--active .itinerary_leg_summary {
+    &:before {
+      @include active-border-gradient;
+    }
+
+    .route-summary-info-duration {
+      color: $action-blue-base;
+    }
   }
 }
 
@@ -185,14 +205,7 @@
     position: relative;
 
     &:before {
-      content: '';
-      position: absolute;
-      top: 12px;
-      left: 0;
-      width: 4px;
-      height: calc(100% - 24px);
-      border-radius: 0 4px 4px 0;
-      background-image: $active-gradient-vertical;
+      @include active-border-gradient;
     }
   }
 }
