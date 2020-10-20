@@ -1,14 +1,14 @@
 import React from 'react';
 
 import RouteVia from './RouteVia';
-import { Badge, Flex } from 'src/components/ui';
+import { Badge } from 'src/components/ui';
 import { formatDuration, formatDistance } from 'src/libs/route_utils';
 
 const RouteSummaryInfo = ({ route, vehicle }) =>
   <div>
-    <Flex alignItems="center" justifyContent="space-between" className="u-text--title">
+    <div className="u-text--title">
       {formatDuration(route.duration)}
-    </Flex>
+    </div>
 
     <RouteVia className="u-mb-8" route={route} vehicle={vehicle} />
     <Badge>
