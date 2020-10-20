@@ -23,14 +23,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
     return window.__navigatorGeolocalisationPoi;
   }
 
-  async geolocate(options = { displayErrorModal: true, displayDirectionModalIfNeeded: false }) {
-    let requestPosition = true;
-    if (options.displayDirectionModalIfNeeded) {
-      requestPosition = await Geolocation.showGeolocationModalIfNeeded();
-      if (!requestPosition) {
-        reject();
-      }
-    }
+  async geolocate(options = { displayErrorModal: true }) {
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
       navigator.geolocation.getCurrentPosition(position => {

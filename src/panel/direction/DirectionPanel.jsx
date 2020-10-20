@@ -19,6 +19,7 @@ import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
+import * as Geolocation from '../../libs/geolocation';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -67,6 +68,11 @@ export default class DirectionPanel extends React.Component {
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
+    console.log(1 );
+    // This flag determines if the user's position needs to be requested when opening the direction panel
+    let requestPosition = false;
+
+    // On mobile, and if both origin and destination are empty, check the browser's permissions
     if (
       !this.state.origin
       && !this.state.destination
@@ -74,11 +80,15 @@ export default class DirectionPanel extends React.Component {
       && !this.props.destination
       && isMobileDevice()
     ) {
+      requestPosition = await Geolocation.showGeolocationModalIfNeeded();
+    }
+
+    // If the user's position can be requested, put it in the origin field
+    if (requestPosition) {
       const origin = new NavigatorGeolocalisationPoi();
       try {
         await origin.geolocate({
           displayErrorModal: false,
-          displayDirectionModalIfNeeded: true,
         });
         this.setState(
           { origin, originInputText: origin.name },
