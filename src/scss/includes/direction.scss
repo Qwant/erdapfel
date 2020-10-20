@@ -74,6 +74,8 @@
 .itinerary_leg_summary {
   border-left: 4px solid $background;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
   align-items: center;
   cursor: pointer;
@@ -89,7 +91,7 @@
 }
 
 .itinerary_leg_via {
-  align-self: flex-start;
+  align-self: flex-end;
   flex-grow: 1;
   margin-right: 9px;
   color: $primary_text;
@@ -102,7 +104,6 @@
 .itinerary_leg_via_details {
   font-size: 12px;
   font-weight: bold;
-  margin: 10px 0 0;
   text-transform: uppercase;
 }
 
@@ -123,24 +124,6 @@
 
 .itinerary_leg_via_details_icon.open {
   transform: rotate(90deg);
-}
-
-.itinerary_leg_info {
-  text-align: right;
-  align-self: flex-start;
-  margin-right: 15px;
-  font-size: 16px;
-}
-
-.itinerary_leg_duration {
-  font-weight: bold;
-  color: #ff3b4a;
-  margin-bottom: 6px;
-  white-space: nowrap;
-}
-
-.itinerary_leg_distance {
-  color: $primary_text;
 }
 
 .itinerary_leg_mobileActions {
@@ -417,19 +400,8 @@ button.direction_shortcut {
     display: none;
   }
 
-  .itinerary_leg_info {
-    text-align: left;
-    grid-area: info;
-  }
-
   .itinerary_leg_via {
     grid-area: via;
-  }
-
-  .itinerary_leg_duration,
-  .itinerary_leg_distance {
-    display: inline-block;
-    margin-right: 6px;
   }
 
   .itinerary_leg_mobileActions {
