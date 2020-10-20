@@ -23,7 +23,7 @@ const MobileRouteDetails =
             route={route}
             vehicle={vehicle}
           />
-          <CloseButton onClick={() => toggleDetails(id)} />
+          <CloseButton position="topRight" onClick={() => toggleDetails(id)} />
         </Flex>
 
         {isPublicTransport &&
