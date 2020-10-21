@@ -132,6 +132,7 @@ export default class RouteResult extends React.Component {
               destination={this.props.destination}
               vehicle={this.props.vehicle}
               isActive={this.state.activeRouteId === index}
+              isActiveDetails={this.state.activeRouteId === index && this.state.activeDetails}
               showDetails={this.state.activeRouteId === index && this.state.activeDetails}
               toggleDetails={this.toggleRouteDetails}
               openPreview={this.openPreview}

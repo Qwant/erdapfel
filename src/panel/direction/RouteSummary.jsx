@@ -16,6 +16,7 @@ export default class RouteSummary extends React.Component {
     toggleDetails: PropTypes.func.isRequired,
     openPreview: PropTypes.func.isRequired,
     selectRoute: PropTypes.func.isRequired,
+    isActiveDetails: PropTypes.bool.isRequired,
   }
 
   onClick = () => {
@@ -37,7 +38,7 @@ export default class RouteSummary extends React.Component {
   }
 
   render() {
-    const { route, vehicle } = this.props;
+    const { route, vehicle, isActiveDetails } = this.props;
 
     return <div className="itinerary_leg_summary" onClick={this.onClick}>
 
@@ -51,11 +52,15 @@ export default class RouteSummary extends React.Component {
 
       <Flex className="itinerary_leg_details-buttons">
         <Button
-          className="itinerary_leg_detailsBtn u-mr-8"
+          className="itinerary_leg_detailsBtn u-mr-8 u-firstCap"
           onClick={this.onClickDetails}
-          icon="icon_list"
+          icon={isActiveDetails ? null : 'icon_list'}
+          variant={isActiveDetails ? 'tertiary' : 'secondary'}
         >
-          {_('Details', 'direction')}
+          {isActiveDetails
+            ? _('See less', 'direction')
+            : _('Details', 'direction')
+          }
         </Button>
 
         <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">

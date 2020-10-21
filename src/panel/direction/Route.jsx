@@ -7,7 +7,7 @@ import { DeviceContext } from 'src/libs/device';
 
 const Route = ({
   id, route, vehicle, showDetails, origin, destination, isActive,
-  toggleDetails, openPreview, selectRoute, hoverRoute,
+  isActiveDetails, toggleDetails, openPreview, selectRoute, hoverRoute,
 }) => {
   const isMobile = useContext(DeviceContext);
   const portalContainer = document.createElement('div');
@@ -26,7 +26,10 @@ const Route = ({
       onMouseEnter={() => { hoverRoute(id, true); }}
       onMouseLeave={() => { hoverRoute(id, false); }}
     >
-      <RouteSummary id={id} route={route}
+      <RouteSummary
+        id={id}
+        route={route}
+        isActiveDetails={isActiveDetails}
         toggleDetails={toggleDetails}
         openPreview={openPreview}
         selectRoute={selectRoute}
