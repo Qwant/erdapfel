@@ -6,6 +6,8 @@ import { listen } from 'src/libs/customEvents';
 import { Button, CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
 
+let hasPermissionModalOpenedOnce = false;
+
 const GeolocationModal = ({ status, onClose, onAccept }) => {
   /* eslint-disable max-len */
   const statuses = {
@@ -66,7 +68,11 @@ listen('open_geolocate_not_activated_modal', () => open('NOT_ACTIVATED', close, 
 
 listen('open_geolocate_denied_modal', () => open('DENIED', close, close));
 
-export async function openAndWaitForClose() {
+export async function openPendingDirectionModal() {
+  if (hasPermissionModalOpenedOnce === true) {
+    return;
+  }
+  hasPermissionModalOpenedOnce = true;
   return new Promise(resolve => {
     open(
       'PENDING',
