@@ -16,7 +16,8 @@ export default class RouteSummary extends React.Component {
     toggleDetails: PropTypes.func.isRequired,
     openPreview: PropTypes.func.isRequired,
     selectRoute: PropTypes.func.isRequired,
-    isActiveDetails: PropTypes.bool.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    showDetails: PropTypes.bool.isRequired,
   }
 
   onClick = () => {
@@ -38,7 +39,7 @@ export default class RouteSummary extends React.Component {
   }
 
   render() {
-    const { route, vehicle, isActiveDetails } = this.props;
+    const { route, vehicle, isActive, showDetails } = this.props;
 
     return <div className="itinerary_leg_summary" onClick={this.onClick}>
 
@@ -50,27 +51,29 @@ export default class RouteSummary extends React.Component {
         />
       </Flex>
 
-      <Flex className="itinerary_leg_details-buttons">
-        <Button
-          className="itinerary_leg_detailsBtn u-mr-8 u-firstCap"
-          onClick={this.onClickDetails}
-          icon={isActiveDetails ? null : 'icon_list'}
-          variant={isActiveDetails ? 'tertiary' : 'secondary'}
-        >
-          {isActiveDetails
-            ? _('See less', 'direction')
-            : _('Details', 'direction')
-          }
-        </Button>
+      {isActive &&
+        <Flex className="itinerary_leg_details-buttons">
+          <Button
+            className="itinerary_leg_detailsBtn u-mr-8 u-firstCap"
+            onClick={this.onClickDetails}
+            icon={showDetails ? null : 'icon_list'}
+            variant={showDetails ? 'tertiary' : 'secondary'}
+          >
+            {showDetails
+              ? _('See less', 'direction')
+              : _('Details', 'direction')
+            }
+          </Button>
 
-        <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
-          {openMenu => <Button
-            title={_('Share', 'direction')}
-            onClick={e => this.onShareClick(e, openMenu)}
-            icon="share-2"
-          />}
-        </ShareMenu>
-      </Flex>
+          <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
+            {openMenu => <Button
+              title={_('Share', 'direction')}
+              onClick={e => this.onShareClick(e, openMenu)}
+              icon="share-2"
+            />}
+          </ShareMenu>
+        </Flex>
+      }
     </div>;
   }
 }
