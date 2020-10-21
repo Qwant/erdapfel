@@ -224,7 +224,9 @@ export default class DirectionPanel extends React.Component {
       this.setState({ activePreviewRoute: null });
     } else {
       Telemetry.add(Telemetry.ITINERARY_CLOSE);
-      window.app.navigateTo('/');
+      this.props.poi
+        ? window.history.back() // Go back to the poi panel
+        : window.app.navigateTo('/');
     }
   }
 
