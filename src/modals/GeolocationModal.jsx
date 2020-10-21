@@ -6,7 +6,7 @@ import { listen } from 'src/libs/customEvents';
 import { Button, CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
 
-const GeolocationModal = ({ status, onClose, onClick }) => {
+const GeolocationModal = ({ status, onClose, onAccept }) => {
   /* eslint-disable max-len */
   const statuses = {
     PENDING: {
@@ -45,7 +45,7 @@ const GeolocationModal = ({ status, onClose, onClick }) => {
           className="modal__subtitle u-text--subtitle"
           dangerouslySetInnerHTML={{ __html: text }}
         />
-        <Button className="modal__button" variant="primary" onClick={onClick}>{button}</Button>
+        <Button className="modal__button" variant="primary" onClick={onAccept}>{button}</Button>
       </div>
     </div>
   </Modal>;
@@ -55,9 +55,9 @@ function close() {
   ReactDOM.unmountComponentAtNode(document.querySelector('.react_modal__container'));
 }
 
-function open(status, onClose, onClick) {
+function open(status, onClose, onAccept) {
   ReactDOM.render(
-    <GeolocationModal status={status} onClose={onClose} onClick={onClick} />,
+    <GeolocationModal status={status} onClose={onClose} onAccept={onAccept} />,
     document.querySelector('.react_modal__container')
   );
 }
@@ -72,7 +72,7 @@ export async function openAndWaitForClose() {
       'PENDING',
       () => {
         close();
-        resolve(false); // close: prevent native grolocation popup
+        resolve(false); // close: prevent native geolocation popup
       },
       () => {
         close();

@@ -37,7 +37,9 @@ export default class NavigatorGeolocalisationPoi extends Poi {
           Geolocation.handleError(error);
         }
         reject(error);
-      });
+      },
+      { maximumAge: 10000 },
+      );
     });
   }
 

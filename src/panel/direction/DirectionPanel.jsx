@@ -79,7 +79,7 @@ export default class DirectionPanel extends React.Component {
       && !this.props.destination
       && isMobileDevice()
     ) {
-      requestPosition = await Geolocation.showGeolocationModalIfNeeded();
+      requestPosition = await Geolocation.directionModalOnFirstVisit();
     }
 
     // If the user's position can be requested, put it in the origin field

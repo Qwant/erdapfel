@@ -1,6 +1,5 @@
 import { openAndWaitForClose } from 'src/modals/GeolocationModal';
 import { fire } from 'src/libs/customEvents';
-import { isMobileDevice } from 'src/libs/device';
 
 const geolocationPermissions = {
   PROMPT: 'prompt',
@@ -10,10 +9,9 @@ const geolocationPermissions = {
 
 let hasPermissionModalOpenedOnce = false;
 
-export async function showGeolocationModalIfNeeded() {
-  if (!isMobileDevice()) {
-    return false;
-  }
+// Show custom Modal when opening the Directions panel for the first time
+// and if the browser's geolocation permission hasn't been granted yet
+export async function directionModalOnFirstVisit() {
 
   // Some browsers (Safari, etc) do not implement Permissions API
   if (!window.navigator.permissions) {

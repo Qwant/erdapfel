@@ -35,7 +35,10 @@ export default class MobileCompassControl {
   _geolocate() {
     navigator.geolocation.getCurrentPosition(position => {
       this._map.flyTo({ center: [position.coords.longitude, position.coords.latitude] });
-    });
+    },
+    () => { },
+    { maximumAge: 10000 }
+    );
   }
 
   _createButton(className, ariaLabel, fn) {
