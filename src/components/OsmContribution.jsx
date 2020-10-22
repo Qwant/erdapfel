@@ -4,8 +4,9 @@ import Telemetry from 'src/libs/telemetry';
 
 const OsmContribution = ({ poi }) => {
   const [_osmKey, itemKind, itemId] = poi.id.split(':');
+  const editParams = `editor=id&${itemKind}=${itemId}&hashtags=QwantMaps`;
   const viewUrl = `https://www.openstreetmap.org/${itemKind}/${itemId}`;
-  const editUrl = `https://www.openstreetmap.org/edit?editor=id&${itemKind}=${itemId}`;
+  const editUrl = `https://www.openstreetmap.org/edit?${editParams}`;
 
   const sendTelemetryEvent = event => () => Telemetry.sendPoiEvent(poi, event);
 
