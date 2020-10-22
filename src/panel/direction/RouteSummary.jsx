@@ -1,7 +1,6 @@
 /* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getVehicleIcon } from 'src/libs/route_utils';
 import { Button, Flex } from 'src/components/ui';
 import ShareMenu from 'src/components/ui/ShareMenu';
 import Telemetry from 'src/libs/telemetry';
@@ -39,17 +38,14 @@ export default class RouteSummary extends React.Component {
   }
 
   render() {
-    const { route, vehicle, isActive, showDetails } = this.props;
+    const { route, isActive, showDetails, vehicle } = this.props;
 
     return <div className="itinerary_leg_summary" onClick={this.onClick}>
 
-      <Flex>
-        <div className={`itinerary_leg_icon ${getVehicleIcon(vehicle)}`} />
-        <RouteSummaryInfo
-          route={route}
-          vehicle={vehicle}
-        />
-      </Flex>
+      <RouteSummaryInfo
+        route={route}
+        vehicle={vehicle}
+      />
 
       {isActive &&
         <Flex className="itinerary_leg_details-buttons">
