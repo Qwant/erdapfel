@@ -13,12 +13,14 @@ import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import * as address from '../../libs/address';
-import { CloseButton, Flex } from '../../components/ui';
+import * as address from 'src/libs/address';
+import { CloseButton, Flex } from 'src/components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
+import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
+import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -67,17 +69,32 @@ export default class DirectionPanel extends React.Component {
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
-    if (!this.props.origin && isMobileDevice()) {
-      // If authorized, set origin to current position on mobile
-      const origin = new NavigatorGeolocalisationPoi();
-      try {
-        await origin.geolocate({ displayErrorModal: false });
-        this.setState(
-          { origin, originInputText: origin.name },
-          this.update
-        );
-      } catch (e) {
-        // ignore possible error
+
+    // on mobile, when no origin is specified, try auto-geoloc
+    if (isMobileDevice() && !this.state.origin && !this.props.origin) {
+      const geolocationPermission = await getGeolocationPermission();
+      let modalAccepted = false;
+
+      // on an empty form, if the user's position permission hasn't been asked yet, show modal
+      if (!this.state.destination && !this.props.destination
+        && geolocationPermission === geolocationPermissions.PROMPT) {
+        modalAccepted = await openPendingDirectionModal();
+      }
+
+      // If the user's position can be requested, put it in the origin field
+      if (geolocationPermission === geolocationPermissions.GRANTED || modalAccepted) {
+        const origin = new NavigatorGeolocalisationPoi();
+        try {
+          await origin.geolocate({
+            displayErrorModal: false,
+          });
+          this.setState(
+            { origin, originInputText: origin.name },
+            this.update
+          );
+        } catch (e) {
+          // ignore possible error
+        }
       }
     }
   }

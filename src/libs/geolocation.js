@@ -1,29 +1,21 @@
-import { openAndWaitForClose } from 'src/modals/GeolocationModal';
 import { fire } from 'src/libs/customEvents';
 
-const geolocationPermissions = {
+export const geolocationPermissions = {
   PROMPT: 'prompt',
   GRANTED: 'granted',
   DENIED: 'denied',
+  UNSUPPORTED: 'unsupported',
 };
 
-let hasPermissionModalOpenedOnce = false;
-
-export async function showGeolocationModalIfNeeded() {
+export async function getGeolocationPermission() {
+  // Some browsers (Safari, etc) do not implement Permissions API
   if (!window.navigator.permissions) {
-    // Some browsers (Safari, etc) do not implement Permissions API
-    return;
+    return geolocationPermissions.UNSUPPORTED;
   }
 
+  // granted or denied
   const p = await window.navigator.permissions.query({ name: 'geolocation' });
-  if (p.state !== geolocationPermissions.PROMPT) {
-    // allowed or denied
-    return;
-  }
-
-  if (hasPermissionModalOpenedOnce === true) {return;}
-  hasPermissionModalOpenedOnce = true;
-  await openAndWaitForClose();
+  return p.state;
 }
 
 export function handleError(error) {

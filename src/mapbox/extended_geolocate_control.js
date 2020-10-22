@@ -27,7 +27,6 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   async trigger() {
-    await Geolocation.showGeolocationModalIfNeeded();
     super.trigger();
   }
 

@@ -24,7 +24,6 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   }
 
   async geolocate(options = { displayErrorModal: true }) {
-    await Geolocation.showGeolocationModalIfNeeded();
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
       navigator.geolocation.getCurrentPosition(position => {
@@ -34,13 +33,13 @@ export default class NavigatorGeolocalisationPoi extends Poi {
         if (error.code === 1) {
           this.status = navigatorGeolocationStatus.FORBIDDEN;
         }
-
         if (options.displayErrorModal) {
           Geolocation.handleError(error);
         }
-
         reject(error);
-      });
+      },
+      { maximumAge: 10000 },
+      );
     });
   }
 
