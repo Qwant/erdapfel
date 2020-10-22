@@ -19,14 +19,8 @@ import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
-import * as Geolocation from 'src/libs/geolocation';
+import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
-
-const geolocationPermissions = {
-  PROMPT: 'prompt',
-  GRANTED: 'granted',
-  DENIED: 'denied',
-};
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -78,17 +72,17 @@ export default class DirectionPanel extends React.Component {
 
     // on mobile, when no origin is specified, try auto-geoloc
     if (isMobileDevice() && !this.state.origin && !this.props.origin) {
-      const isPositionAvailable = await Geolocation.isLocationAvailable();
+      const geolocationPermission = await getGeolocationPermission();
       let modalAccepted = false;
 
-      // on an empty from, if the user's position permission hasn't been asked yet, show modal
+      // on an empty form, if the user's position permission hasn't been asked yet, show modal
       if (!this.state.destination && !this.props.destination
-        && isPositionAvailable === geolocationPermissions.PROMPT) {
+        && geolocationPermission === geolocationPermissions.PROMPT) {
         modalAccepted = await openPendingDirectionModal();
       }
 
       // If the user's position can be requested, put it in the origin field
-      if (isPositionAvailable === geolocationPermissions.GRANTED || modalAccepted) {
+      if (geolocationPermission === geolocationPermissions.GRANTED || modalAccepted) {
         const origin = new NavigatorGeolocalisationPoi();
         try {
           await origin.geolocate({

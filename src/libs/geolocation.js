@@ -1,12 +1,16 @@
 import { fire } from 'src/libs/customEvents';
 
-// Show custom Modal when opening the Directions panel for the first time
-// and if the browser's geolocation permission hasn't been granted yet
-export async function isLocationAvailable() {
+export const geolocationPermissions = {
+  PROMPT: 'prompt',
+  GRANTED: 'granted',
+  DENIED: 'denied',
+  UNSUPPORTED: 'unsupported',
+};
 
+export async function getGeolocationPermission() {
   // Some browsers (Safari, etc) do not implement Permissions API
   if (!window.navigator.permissions) {
-    return false;
+    return geolocationPermissions.UNSUPPORTED;
   }
 
   // granted or denied
