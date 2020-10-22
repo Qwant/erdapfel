@@ -180,11 +180,10 @@ export default class DirectionPanel extends React.Component {
       }
       if (directionResponse && directionResponse.error === 0) {
         // Valid, non-empty response
-        const routes = directionResponse.data.routes.map((route, i) => ({
-          ...route,
-          isActive: i === 0,
-          id: i,
-        }));
+        const routes = directionResponse.data.routes
+          .sort((routeA, routeB) => routeA.duration - routeB.duration)
+          .map((route, i) => ({ ...route, isActive: i === 0, id: i }));
+
         this.setState({ isLoading: false, error: 0, routes });
         window.execOnMapLoaded(() => {
           fire('set_routes', { routes, vehicle });
