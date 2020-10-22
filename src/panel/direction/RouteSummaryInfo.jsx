@@ -1,19 +1,23 @@
+/* globals _ */
 import React from 'react';
 
 import RouteVia from './RouteVia';
 import { Badge } from 'src/components/ui';
 import { formatDuration, formatDistance } from 'src/libs/route_utils';
 
-const RouteSummaryInfo = ({ route, vehicle }) =>
+const RouteSummaryInfo = ({ isFastest, route, vehicle }) =>
   <div>
     <div className="u-text--title route-summary-info-duration">
       {formatDuration(route.duration)}
     </div>
 
     <RouteVia className="u-mb-8" route={route} vehicle={vehicle} />
-    <Badge>
+
+    <Badge className="u-mr-8">
       {formatDistance(route.distance)}
     </Badge>
+
+    {isFastest && <span className="u-text--subtitle">{_('Fastest route')}</span>}
   </div>
 ;
 
