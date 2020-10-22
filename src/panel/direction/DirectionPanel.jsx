@@ -18,6 +18,7 @@ import { CloseButton, Flex } from '../../components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
+import { getInputValue } from 'src/libs/suggest';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -92,9 +93,7 @@ export default class DirectionPanel extends React.Component {
     if (poi.type === 'latlon') {
       poi.address = await address.fetch(poi);
     }
-
-    const inputValue = poi.type === 'latlon' ? poi.address.street : poi.name;
-    this.setState({ [which + 'InputText']: inputValue });
+    this.setState({ [which + 'InputText']: getInputValue(poi) });
   }
 
   async restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {

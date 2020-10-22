@@ -44,9 +44,6 @@ export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryP
 };
 
 export const getInputValue = item => {
-  if (item instanceof Poi) {
-    return item.name;
-  }
   if (item instanceof Category) {
     return item.getInputValue();
   }
@@ -55,6 +52,12 @@ export const getInputValue = item => {
       return item.category.getInputValue();
     }
     return item.fullTextQuery;
+  }
+  if (item.type === 'latlon' && item.address?.street) {
+    return item.address.street;
+  }
+  if (item.name) {
+    return item.name;
   }
   return '';
 };
