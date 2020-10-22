@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Route from './Route';
-import { getVehicleIcon } from 'src/libs/route_utils';
 import classnames from 'classnames';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
@@ -101,7 +100,6 @@ export default class RouteResult extends React.Component {
           <Item>
             <div className="itinerary_leg itinerary_leg--placeholder">
               <div className="itinerary_leg_summary">
-                <div className={`itinerary_leg_icon ${getVehicleIcon(this.props.vehicle)}`} />
                 <div className="itinerary_leg_via">
                   <div className="routeVia">
                     <PlaceholderText length={17} />

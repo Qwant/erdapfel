@@ -100,15 +100,6 @@
   cursor: pointer;
 }
 
-.itinerary_leg_icon {
-  width: 20px;
-  height: 20px;
-  margin: 0 18px 0 9px;
-  font-size: 18px;
-  color: $primary_text;
-  flex-shrink: 0;
-}
-
 .itinerary_leg_via {
   align-self: flex-end;
   flex-grow: 1;
@@ -399,11 +390,6 @@ button.direction_shortcut {
 
   .itinerary_leg_details-buttons {
     margin-top: 12px;
-  }
-
-  .itinerary_leg_icon,
-  .itinerary_panel__item__share {
-    display: none;
   }
 
   .itinerary_leg_via {
