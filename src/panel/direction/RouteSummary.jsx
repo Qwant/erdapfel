@@ -38,11 +38,12 @@ export default class RouteSummary extends React.Component {
   }
 
   render() {
-    const { route, isActive, showDetails, vehicle } = this.props;
+    const { id, route, isActive, showDetails, vehicle } = this.props;
 
     return <div className="itinerary_leg_summary" onClick={this.onClick}>
 
       <RouteSummaryInfo
+        isFastest={id === 0}
         route={route}
         vehicle={vehicle}
       />
