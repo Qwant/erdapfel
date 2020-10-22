@@ -75,38 +75,32 @@ export default class DirectionPanel extends React.Component {
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
-    let isPositionAvailable = false;
-    let modalAccepted = false;
 
-    // On mobile, and if both origin and destination are empty, check the browser's permissions
-    if (
-      !this.state.origin
-      && !this.state.destination
-      && !this.props.origin
-      && !this.props.destination
-      && isMobileDevice()
-    ) {
-      isPositionAvailable = await Geolocation.isLocationAvailable();
+    // on mobile, when no origin is specified, try auto-geoloc
+    if (isMobileDevice() && !this.state.origin && !this.props.origin) {
+      const isPositionAvailable = await Geolocation.isLocationAvailable();
+      let modalAccepted = false;
 
-      // If the user's position permission hasn't been asked yet, show modal
-      if (isPositionAvailable === geolocationPermissions.PROMPT) {
+      // on an empty from, if the user's position permission hasn't been asked yet, show modal
+      if (!this.state.destination && !this.props.destination
+        && isPositionAvailable === geolocationPermissions.PROMPT) {
         modalAccepted = await openPendingDirectionModal();
       }
-    }
 
-    // If the user's position can be requested, put it in the origin field
-    if (isPositionAvailable === geolocationPermissions.GRANTED || modalAccepted) {
-      const origin = new NavigatorGeolocalisationPoi();
-      try {
-        await origin.geolocate({
-          displayErrorModal: false,
-        });
-        this.setState(
-          { origin, originInputText: origin.name },
-          this.update
-        );
-      } catch (e) {
-        // ignore possible error
+      // If the user's position can be requested, put it in the origin field
+      if (isPositionAvailable === geolocationPermissions.GRANTED || modalAccepted) {
+        const origin = new NavigatorGeolocalisationPoi();
+        try {
+          await origin.geolocate({
+            displayErrorModal: false,
+          });
+          this.setState(
+            { origin, originInputText: origin.name },
+            this.update
+          );
+        } catch (e) {
+          // ignore possible error
+        }
       }
     }
   }
