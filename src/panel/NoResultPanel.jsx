@@ -17,7 +17,7 @@ const NoResultPanel = () => {
   return (
     <Panel close={close}>
       <div
-        style={{ padding: '0 16px 32px 16px' }}
+        style={{ padding: '16px 16px 32px 16px' }}
       >
         <p className="u-mb-8 u-text--smallTitle">{_('No results found.')}</p>
         <p className="u-text--subtitle u-mb-20">
