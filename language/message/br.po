@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # Adrien Matissart, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-19 09:31+0000\n"
+"POT-Creation-Date: 2020-10-23 14:42+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -34,7 +35,7 @@ msgid "Search on Qwant Maps"
 msgstr "Klask war Qwant Maps"
 
 msgid "Clear"
-msgstr ""
+msgstr "Skarzhañ"
 
 msgid "Search"
 msgstr "Klask"
@@ -82,13 +83,13 @@ msgid "sport"
 msgstr "sport"
 
 msgid "recycling"
-msgstr ""
+msgstr "adaozañ"
 
 msgid "station"
 msgstr "savlec'h"
 
 msgid "parking lot"
-msgstr ""
+msgstr "parkva"
 
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
@@ -160,7 +161,7 @@ msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
 
 msgid "My location"
-msgstr ""
+msgstr "Ma lec'hiadur"
 
 msgid "Open"
 msgstr "Digor"
@@ -172,7 +173,7 @@ msgid "Open 24/7"
 msgstr "Digor 24/7"
 
 msgid "reopening at {nextTransitionTime}"
-msgstr ""
+msgstr "addigoret da {nextTransitionTime}"
 
 msgid "until {nextTransitionTime}"
 msgstr "betek {nextTransitionTime}"
@@ -208,7 +209,7 @@ msgid "athletics"
 msgstr "atleterezhioù"
 
 msgid "ATM"
-msgstr ""
+msgstr "Mekanik bilhedoù"
 
 msgid "attraction"
 msgstr "diduañs"
@@ -268,7 +269,7 @@ msgid "bowls"
 msgstr "bouloù"
 
 msgid "brewery"
-msgstr ""
+msgstr "braserezh artizanel"
 
 msgid "brownfield"
 msgstr " fraost industriel"
@@ -277,7 +278,7 @@ msgid "bus station"
 msgstr "harz bus"
 
 msgid "bus stop"
-msgstr ""
+msgstr "harz bus"
 
 msgid "butcher"
 msgstr "boser"
@@ -295,22 +296,22 @@ msgid "car shop"
 msgstr "stal kirri"
 
 msgid "car parts shop"
-msgstr ""
+msgstr "stal pezhioù kirri"
 
 msgid "car repair"
 msgstr "stal kempenn kirri"
 
 msgid "car rental"
-msgstr ""
+msgstr "stal feurmiñ kirri"
 
 msgid "car wash station"
-msgstr ""
+msgstr "porzh gwalc'hiñ"
 
 msgid "caravan site"
 msgstr "tachenn garavan"
 
 msgid "carpenter"
-msgstr ""
+msgstr "kalvez"
 
 msgid "carpet shop"
 msgstr "stal tapisoù"
@@ -319,16 +320,16 @@ msgid "castle"
 msgstr "kastell"
 
 msgid "catering"
-msgstr ""
+msgstr "tineller"
 
 msgid "cemetery"
 msgstr "bered"
 
 msgid "holiday cottage"
-msgstr ""
+msgstr " ti-vakañsoù"
 
 msgid "charging station"
-msgstr ""
+msgstr "porzh adkargañ"
 
 msgid "charity store"
 msgstr "stal an aluzon"
@@ -337,13 +338,13 @@ msgid "chemist"
 msgstr "lezapotikerezh"
 
 msgid "cheese shop"
-msgstr ""
+msgstr "fourmajer"
 
 msgid "chess"
 msgstr "c'hoari echedoù"
 
 msgid "childcare centre"
-msgstr ""
+msgstr "magouri"
 
 msgid "chocolate shop"
 msgstr "stal chokolad"
@@ -391,7 +392,7 @@ msgid "courthouse"
 msgstr "lez-varn"
 
 msgid "coworking space"
-msgstr ""
+msgstr "spas-labourat boutin"
 
 msgid "cricket"
 msgstr "kriket"
@@ -424,7 +425,7 @@ msgid "doityourself store"
 msgstr "stal bitellat"
 
 msgid "driving school"
-msgstr ""
+msgstr "skol-vleniañ"
 
 msgid "dry cleaning"
 msgstr "naetaerezh"
@@ -445,13 +446,13 @@ msgid "escape game"
 msgstr "c'hoari achapiñ"
 
 msgid "estate agent"
-msgstr ""
+msgstr "ajañs-tiez"
 
 msgid "fabric"
 msgstr "labouradeg"
 
 msgid "farm shop"
-msgstr ""
+msgstr "produioù ar feurm"
 
 msgid "fast food"
 msgstr "pretierezh prim"
@@ -460,7 +461,7 @@ msgid "fire station"
 msgstr "ti ar bomperien"
 
 msgid "fitness centre"
-msgstr ""
+msgstr "ti-jiminas yac'haat"
 
 msgid "florist"
 msgstr "stal bleunioù"
@@ -472,13 +473,13 @@ msgid "free flying"
 msgstr "free flying"
 
 msgid "frozen food"
-msgstr ""
+msgstr "boued gourskornet"
 
 msgid "fuel station"
 msgstr "stal dour-tan"
 
 msgid "funeral home"
-msgstr ""
+msgstr "liderezh-kañv"
 
 msgid "furniture shop"
 msgstr "stal arrebeuri"
@@ -544,7 +545,7 @@ msgid "hostel"
 msgstr "ti ar re yaouank"
 
 msgid "houseware shop"
-msgstr ""
+msgstr "reizhoù al lastez-ti"
 
 msgid "ice cream"
 msgstr "stal diennoù-skorn"
@@ -568,7 +569,7 @@ msgid "kiosk"
 msgstr "kiosk"
 
 msgid "kitchen manufacturer"
-msgstr ""
+msgstr "gwerzher keginoù"
 
 msgid "lamps shop"
 msgstr "stal lampoù"
@@ -625,7 +626,7 @@ msgid "music shop"
 msgstr "stal sonerezh"
 
 msgid "music school"
-msgstr ""
+msgstr "skol sonerezh"
 
 msgid "musical instrument shop"
 msgstr "stal binviji sonerezh"
@@ -658,7 +659,7 @@ msgid "car park"
 msgstr "park kiri"
 
 msgid "pastry shop"
-msgstr ""
+msgstr "stal pastezerezh"
 
 msgid "perfumery"
 msgstr "porfumerezh"
@@ -676,13 +677,13 @@ msgid "place of worship"
 msgstr "lec'h azeulerezh"
 
 msgid "plumber"
-msgstr ""
+msgstr "plomer"
 
 msgid "police"
 msgstr "komiserdi"
 
 msgid "polling station"
-msgstr ""
+msgstr "burev votiñ"
 
 msgid "post office"
 msgstr "ti-post"
@@ -721,16 +722,16 @@ msgid "scuba diving"
 msgstr "splujerezh danvor"
 
 msgid "fishmonger"
-msgstr ""
+msgstr "stal gwerzhañ pesked"
 
 msgid "resale shop"
 msgstr "stal adwerzhañ"
 
 msgid "shelter"
-msgstr ""
+msgstr "gwasked"
 
 msgid "shoemaker"
-msgstr ""
+msgstr "kere"
 
 msgid "shoes"
 msgstr "botoù"
@@ -772,7 +773,7 @@ msgid "swimming area"
 msgstr "zonenn neuial"
 
 msgid "swimming pool equipment"
-msgstr ""
+msgstr "stal gwerzhañ poulloù-neuial"
 
 msgid "table tennis"
 msgstr "taol dennis"
@@ -817,10 +818,10 @@ msgid "university"
 msgstr "skol-veur"
 
 msgid "variety store"
-msgstr ""
+msgstr "stal ur priz"
 
 msgid "vehicle inspection"
-msgstr ""
+msgstr "kontroll teknikel"
 
 msgid "veterinary"
 msgstr "mezeg-loened"
@@ -850,10 +851,10 @@ msgid "wine shop"
 msgstr "stal gwin"
 
 msgid "winery"
-msgstr ""
+msgstr "etrepaouez gwin"
 
 msgid "winter sports resort"
-msgstr ""
+msgstr " kreizenn sportoù ar goañv"
 
 msgid "yoga"
 msgstr "yoga"
@@ -873,51 +874,14 @@ msgstr "chomlec'h"
 msgid "street"
 msgstr "straed"
 
-msgid "Geolocation with privacy!"
-msgstr "Douarlec'hiañ ha prevezded!"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"C'hoant ho peus da c'houzout e pelec'h emaoc'h? Roit an aotre d'hoc'h arload"
-" da dizhout al lec'h m'emaoc'h evit ma c'hallfe lavaret deoc'h. Evel ma vez "
-"lavaret en hon {privacyPolicyLink} folitikerezh prevezded {closeTag}, Qwant "
-"na stoko ket ho titouroù douarlec'hiañ. N'hallimp ket gouzout e pelec'h "
-"emaoc'h."
-
-msgid "Ok, I've got it."
-msgstr "Mat eo, deuet eo ganin."
-
-msgid "Geolocation not available."
-msgstr "Douarlec'hiañ dihegerz"
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho"
-" touarlec'hiañ"
-
-msgid "Ok"
-msgstr "Mat eo"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
-"enaouet ar servijoù douarlec'hiañ en ho sistem."
-
 msgid "Close to"
 msgstr "Da gichen"
 
 msgid "Geographic coordinates"
-msgstr ""
+msgstr "Daveennoù douaroniel"
 
 msgid "on PagesJaunes"
-msgstr ""
+msgstr "war PagesJaunes"
 
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
@@ -926,7 +890,7 @@ msgid "category"
 msgstr "rummad"
 
 msgid "Menu"
-msgstr ""
+msgstr "Lañser"
 
 msgid "Favorites"
 msgstr "Sinedoù"
@@ -935,22 +899,22 @@ msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
 
 msgid "Copied!"
-msgstr ""
+msgstr "Eilet!"
 
 msgid "Copy link"
-msgstr ""
+msgstr "Eilañ al liamm"
 
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "Search around this place"
 msgstr "Klask tro-dro al lec'h-mañ"
 
 msgid "No result found"
-msgstr ""
+msgstr "Disoc'h ebet kavet"
 
 msgid "Close"
 msgstr "Serriñ"
@@ -977,22 +941,22 @@ msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
 
 msgid "Call"
-msgstr ""
+msgstr "Gervel"
 
 msgid "opening hours"
-msgstr ""
+msgstr "Eurvezhioù digeriñ"
 
 msgid "See the usual opening hours"
-msgstr ""
+msgstr "Gwelet an eurvezhioù digeriñ"
 
 msgid "contact"
-msgstr ""
+msgstr "darempred"
 
 msgid "Photos"
 msgstr "Fotoioù"
 
 msgid "website"
-msgstr ""
+msgstr "lec'hienn web"
 
 msgid "Wheelchair accessible"
 msgstr "Aezet evit ar c'hadorioù-ruilh"
@@ -1025,52 +989,54 @@ msgid "WiFi"
 msgstr "WiFi"
 
 msgid "services & information"
-msgstr ""
+msgstr "servijoù & titouroù"
 
 msgid "Please comply with government travel restrictions."
-msgstr ""
+msgstr "Doujit mar plij ouzh strishadurioù ar pennadurezhioù lelc'hel."
 
 msgid "More information at"
-msgstr ""
+msgstr "Muioc'h a ditouroù war"
 
 msgid "Open during the sanitary crisis"
-msgstr ""
+msgstr "Digor e-pad an enkadenn yec'hedel"
 
 msgid "Potentially open during the sanitary crisis"
-msgstr ""
+msgstr "Gellout a ra bezañ digor e-pad an enkadenn yec'hedel"
 
 msgid "Closed during the sanitary crisis"
-msgstr ""
+msgstr "Serret e-pad an enkadenn yec'hedel"
 
 msgid "No information on opening during the sanitary crisis"
 msgstr ""
+"Pezh titour ebet roet diwar-benn an eurvezhioù digeriñ e-pad an enkadenn "
+"yec'hedel"
 
 msgid "Report a change"
-msgstr ""
+msgstr "Danevelliñ ur cheñchamant"
 
 msgid "Opening hours subject to change"
-msgstr ""
+msgstr "Eurvezhioù digeriñ hag a c'hall bezañ hizivaet"
 
 msgid "phone"
-msgstr ""
+msgstr "pellgomz"
 
 msgid "Updated {datetime}"
-msgstr ""
+msgstr "Hizivaet {datetime}"
 
 msgid "Glass"
-msgstr ""
+msgstr "Gwer"
 
 msgid "Recyclable"
-msgstr ""
+msgstr "Adaozadus"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Dizanv"
 
 msgid "Read more on Wikipedia"
 msgstr "Lenn muioc'h war Wikipedia"
 
 msgid "Information"
-msgstr ""
+msgstr "Titouroù"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
@@ -1082,64 +1048,61 @@ msgid "Edit"
 msgstr "Aozañ"
 
 msgid "Display all results"
-msgstr ""
+msgstr "Diskouez an holl zisoc'hoù"
 
 msgid "In partnership with"
-msgstr ""
+msgstr "E kevelerezh gant"
 
 msgid "See more nearby services"
-msgstr ""
+msgstr "Diskouez muioc'h a servijoù nes"
 
 msgid "Reduce"
-msgstr ""
+msgstr "Bihanaat"
 
 msgid "Unfold to see quick actions"
-msgstr ""
+msgstr "Diblegañ evit diskouez an oberoù prim"
 
 msgid "by car"
-msgstr ""
+msgstr "gant ur c'harr"
 
 msgid "transit"
-msgstr ""
+msgstr "treuzdougen"
 
 msgid "on foot"
-msgstr ""
+msgstr "war droad"
 
 msgid "by bike"
-msgstr ""
+msgstr "war velo"
 
 msgid "Services nearby"
-msgstr ""
+msgstr "Servijoù nes"
 
 msgid "No results found."
-msgstr ""
+msgstr "Disoc'h ebet kavet."
 
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Zoumit war ar gartenn da welet an disoc'hoù evit ar rummad-mañ."
 
 msgid "Please zoom out of the map."
-msgstr ""
+msgstr "Dizoumit ar gartenn mar plij."
 
 msgid "Search around my position"
 msgstr "Klask tro-dro din"
 
 msgid "Results in partnership with PagesJaunes"
-msgstr ""
+msgstr "Disoc'hoù e kevelerezh gant PagesJaunes"
 
 msgid "Unfold to show the results"
-msgstr ""
+msgstr "Diblegañ evit diskouez an disoc'hoù"
 
 msgid "Enter a starting point"
-msgstr ""
+msgstr "Ebarzhit ur poent loc'hañ"
 
 msgid "Enter an end point"
-msgstr ""
+msgstr "Ebarzhit ur poent fin"
 
 msgid "Invert start and end"
 msgstr "eilpennañ fin ha loc'hañ"
-
-msgid "Via"
-msgstr "Dre"
 
 msgid "Walk on {walkDistance}"
 msgstr "Kerzhit e-pad {walkDistance}"
@@ -1150,14 +1113,23 @@ msgstr "Loc'hañ"
 msgid "Arrival"
 msgstr "Poent-degouezhout"
 
+msgid "Via"
+msgstr "Dre"
+
+msgid "Fastest route"
+msgstr ""
+
 msgid "step by step"
+msgstr "Hent kammed-ha-kammed"
+
+msgid "See less"
 msgstr ""
 
 msgid "Details"
 msgstr "Munudoù"
 
 msgid "The service is temporarily unavailable, please try again later."
-msgstr ""
+msgstr "Ar servij a zo dihegerz evit ar mare, klaskit en-dro diwezhatoc'h."
 
 msgid "Qwant Maps found no results for this itinerary."
 msgstr "Ne vez kavet disoc'h ebet evit an hentad-mañ."
@@ -1166,14 +1138,48 @@ msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr ""
+"Er mare-mañ e testomp ar mod trañsportoù publik evit un nebeut kêrioù."
+
+msgid "Enable your geolocation for better directions"
+msgstr ""
+
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
+
+msgid "Ok, I've got it"
+msgstr ""
+
+msgid "Geolocation not available."
+msgstr "Douarlec'hiañ dihegerz"
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho"
+" touarlec'hiañ"
+
+msgid "Ok"
+msgstr "Mat eo"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
+"enaouet ar servijoù douarlec'hiañ en ho sistem."
 
 msgid "calculate an itinerary"
-msgstr ""
+msgstr "jediñ un hent"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "
 "country."
 msgstr ""
+"Gwiriit skritur hoc'h enklask pe ouzhpennit muioc'h a vunudoù, evel da "
+"skouer ar gêr pe ar vro."
 
 msgid "Try a new search query"
-msgstr ""
+msgstr "Kas da benn un enklask nevez"

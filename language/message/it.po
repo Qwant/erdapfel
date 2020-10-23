@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-19 09:31+0000\n"
+"POT-Creation-Date: 2020-10-23 14:42+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
@@ -874,43 +874,6 @@ msgstr "Indirizzo"
 msgid "street"
 msgstr "Strada"
 
-msgid "Geolocation with privacy!"
-msgstr "Geolocalizzazione con privacy!"
-
-msgid ""
-"You need to know where you are? Please allow your application to access your"
-" location so that it can tell you. As stated in our {privacyPolicyLink} "
-"privacy policy {closeTag}, Qwant will not store your geolocation "
-"information. We don't want to know your whereabouts."
-msgstr ""
-"Vuoi sapere dove ti trovi? Dai il permesso alla tua applicazione di accedere"
-" alla tua posizione in modo che te lo possa dire. Come specificato nella "
-"nostra {privacyPolicyLink} informativa sulla privacy {closeTag}, Qwant non "
-"tratterrà le informazioni sulla tua geolocalizzazione. Non vogliamo sapere "
-"la tua posizione. "
-
-msgid "Ok, I've got it."
-msgstr "Ok, ho capito."
-
-msgid "Geolocation not available."
-msgstr "Geolocalizzazione non disponibile"
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"Non hai permesso a Qwant Maps (o al tuo dispositivo) di accedere alla tua "
-"posizione."
-
-msgid "Ok"
-msgstr "Ok"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps non può determinare la tua posizione. Verifica che i servizi di "
-"localizzazione siano abilitati sul sistema."
-
 msgid "Close to"
 msgstr "vicino a"
 
@@ -1140,9 +1103,6 @@ msgstr "Inserisci un punto di arrivo"
 msgid "Invert start and end"
 msgstr "Inverti partenza e destinazione"
 
-msgid "Via"
-msgstr "via"
-
 msgid "Walk on {walkDistance}"
 msgstr ""
 
@@ -1152,7 +1112,16 @@ msgstr "Inizia"
 msgid "Arrival"
 msgstr ""
 
+msgid "Via"
+msgstr "via"
+
+msgid "Fastest route"
+msgstr ""
+
 msgid "step by step"
+msgstr ""
+
+msgid "See less"
 msgstr ""
 
 msgid "Details"
@@ -1170,6 +1139,37 @@ msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
 msgstr ""
+
+msgid "Enable your geolocation for better directions"
+msgstr ""
+
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
+
+msgid "Ok, I've got it"
+msgstr ""
+
+msgid "Geolocation not available."
+msgstr "Geolocalizzazione non disponibile"
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"Non hai permesso a Qwant Maps (o al tuo dispositivo) di accedere alla tua "
+"posizione."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps non può determinare la tua posizione. Verifica che i servizi di "
+"localizzazione siano abilitati sul sistema."
 
 msgid "calculate an itinerary"
 msgstr "Calcola un itinerario"
