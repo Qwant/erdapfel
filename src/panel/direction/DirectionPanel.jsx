@@ -330,29 +330,34 @@ export default class DirectionPanel extends React.Component {
       openMobilePreview={this.openMobilePreview}
     />;
 
+    const isFormCompleted = origin && destination;
+    const isResultDisplayed = !activePreviewRoute && isFormCompleted;
+
     return <DeviceContext.Consumer>
       {isMobile => isMobile
         ? <Fragment>
           {!activePreviewRoute && <div className="direction-panel" ref={this.setMarginTop}>
-            <Flex
+            {!isFormCompleted && <Flex
               className="direction-panel-header"
               alignItems="center"
               justifyContent="space-between">
               {title}
               <CloseButton onClick={this.onClose} />
             </Flex>
+            }
             {form}
             {<div
               id="direction-autocomplete_suggestions"
               className="direction-autocomplete_suggestions"
             />}
           </div>}
-          {!activePreviewRoute && origin && destination &&
+          {isResultDisplayed &&
             <Panel
               resizable
               fitContent={['default']}
               marginTop={this.marginTop}
               minimizedTitle={_('Unfold to show the results', 'direction')}
+              onClose={this.onClose}
             >
               {result}
             </Panel>}
