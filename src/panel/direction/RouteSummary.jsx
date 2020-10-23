@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Flex } from 'src/components/ui';
-import ShareMenu from 'src/components/ui/ShareMenu';
 import Telemetry from 'src/libs/telemetry';
 
 import RouteSummaryInfo from './RouteSummaryInfo';
@@ -61,14 +60,6 @@ export default class RouteSummary extends React.Component {
               : _('Details', 'direction')
             }
           </Button>
-
-          <ShareMenu url={window.location.toString()} scrollableParent=".panel-content">
-            {openMenu => <Button
-              title={_('Share', 'direction')}
-              onClick={e => this.onShareClick(e, openMenu)}
-              icon="share-2"
-            />}
-          </ShareMenu>
         </Flex>
       }
     </div>;
