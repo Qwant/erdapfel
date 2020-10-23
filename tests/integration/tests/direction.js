@@ -152,7 +152,8 @@ test('select itinerary step', async () => {
   await page.waitForSelector('.itinerary_leg');
 
   await page.click('.itinerary_leg_detailsBtn');
-  await page.click('.itinerary_roadmap_item:nth-of-type(2)');
+  // click the second item of the roadmap
+  await page.click('.itinerary_roadmap_item + .divider + .itinerary_roadmap_item');
 
   const { center } = await getMapView(page);
   expect(center).toEqual({ 'lat': 48.823566, 'lng': 2.290454 });
