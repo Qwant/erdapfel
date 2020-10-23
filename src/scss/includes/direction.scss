@@ -74,8 +74,6 @@
 }
 
 .itinerary_leg {
-  position: relative;
-
   &:hover .itinerary_leg_summary {
     background-color: $grey-bright;
   }
@@ -98,6 +96,7 @@
   padding: 20px;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
 .itinerary_leg_via {
@@ -174,6 +173,10 @@
 
   .divider {
     margin: 0 12px;
+  }
+
+  .itinerary_roadmap_item {
+    position: relative;
   }
 
   .itinerary_roadmap_item:last-child {
