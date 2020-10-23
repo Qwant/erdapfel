@@ -352,6 +352,7 @@ export default class DirectionPanel extends React.Component {
               resizable
               fitContent={['default']}
               marginTop={this.marginTop}
+              minimizedTitle={_('Unfold to show the results', 'direction')}
             >
               {result}
             </Panel>}
