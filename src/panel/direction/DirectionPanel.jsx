@@ -298,13 +298,11 @@ export default class DirectionPanel extends React.Component {
   render() {
     const {
       origin, destination, vehicle,
-      routes, error, activePreviewRoute,
-      isLoading, isDirty, isInitializing,
-      originInputText, destinationInputText,
+      routes, error, isLoading, isDirty,
+      isInitializing, originInputText, destinationInputText,
+      activePreviewRoute,
     } = this.state;
-    const title = <h3 className="direction-title u-text--title u-firstCap">
-      {_('calculate an itinerary', 'direction')}
-    </h3>;
+
     const form = <DirectionForm
       isLoading={isLoading}
       origin={origin}
@@ -320,6 +318,7 @@ export default class DirectionPanel extends React.Component {
       activeVehicle={vehicle}
       isInitializing={isInitializing}
     />;
+
     const result = <RouteResult
       isLoading={isLoading || routes.length > 0 && isDirty}
       vehicle={vehicle}
@@ -332,47 +331,87 @@ export default class DirectionPanel extends React.Component {
 
     return <DeviceContext.Consumer>
       {isMobile => isMobile
-        ? <Fragment>
-          {!activePreviewRoute && <div className="direction-panel" ref={this.setMarginTop}>
-            {(routes.length === 0 && !isLoading) && <Flex
-              className="direction-panel-header"
-              alignItems="center"
-              justifyContent="space-between">
-              {title}
-              <CloseButton onClick={this.onClose} />
-            </Flex>
-            }
-            {form}
-            {<div
-              id="direction-autocomplete_suggestions"
-              className="direction-autocomplete_suggestions"
-            />}
-          </div>}
-          {!activePreviewRoute && origin && destination &&
-            <Panel
-              resizable
-              fitContent={['default']}
-              marginTop={this.marginTop}
-              minimizedTitle={_('Unfold to show the results', 'direction')}
-              onClose={this.onClose}
-            >
-              {result}
-            </Panel>}
-          {activePreviewRoute && <MobileRoadMapPreview
-            steps={getAllSteps(activePreviewRoute)}
-            onClose={this.onClose}
-          />}
-        </Fragment>
-        : <Panel
-          className="direction-panel"
+        ? <DirectionPanelMobile
+          ref={this.setMarginTop}
+          origin={origin}
+          destination={destination}
+          routes={routes}
+          activePreviewRoute={activePreviewRoute}
+          isLoading={isLoading}
+          form={form}
+          result={result}
           onClose={this.onClose}
-          renderHeader={form}
-        >
-          <div id="direction-autocomplete_suggestions" />
-          {result}
-        </Panel>}
+          marginTop={this.marginTop} />
+        : <DirectionPanelDesktop
+          form={form}
+          result={result}
+          onClose={this.onClose} />}
     </DeviceContext.Consumer>;
   }
 }
 
 DirectionPanel.contextType = PanelContext;
+
+const DirectionPanelDesktop = ({ form, result, onClose }) =>
+  <Panel
+    className="direction-panel"
+    onClose={onClose}
+    renderHeader={form}
+  >
+    <div id="direction-autocomplete_suggestions" />
+    {result}
+  </Panel>
+;
+
+
+const DirectionPanelMobile = React.forwardRef(({
+  origin,
+  destination,
+  routes,
+  activePreviewRoute,
+  isLoading,
+  form,
+  result,
+  onClose,
+  marginTop,
+}, ref) => {
+  const title = <h3 className="direction-title u-text--title u-firstCap">
+    {_('calculate an itinerary', 'direction')}
+  </h3>;
+
+  return (
+    <Fragment>
+      {!activePreviewRoute && <div className="direction-panel" ref={ref}>
+        {(routes.length === 0 && !isLoading) && <Flex
+          className="direction-panel-header"
+          alignItems="center"
+          justifyContent="space-between">
+          {title}
+          <CloseButton onClick={onClose} />
+        </Flex>
+        }
+        {form}
+        {<div
+          id="direction-autocomplete_suggestions"
+          className="direction-autocomplete_suggestions"
+        />}
+      </div>}
+      {!activePreviewRoute && origin && destination &&
+        <Panel
+          resizable
+          fitContent={['default']}
+          marginTop={marginTop}
+          minimizedTitle={_('Unfold to show the results', 'direction')}
+          onClose={onClose}
+        >
+          {result}
+        </Panel>}
+      {activePreviewRoute && <MobileRoadMapPreview
+        steps={getAllSteps(activePreviewRoute)}
+        onClose={onClose}
+      />}
+    </Fragment>
+  );
+});
+
+DirectionPanelMobile.displayName = 'DirectionPanelMobile';
