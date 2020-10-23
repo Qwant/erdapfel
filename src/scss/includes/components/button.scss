@@ -56,8 +56,10 @@
     border: 0;
   }
 
-  &:not(.button--primary):not(:disabled):hover {
-    background: $action-blue-lighter;
+  @media (min-width: 641px) {
+    &:not(.button--primary):not(:disabled):hover {
+      background: $action-blue-lighter;
+    }
   }
 }
 

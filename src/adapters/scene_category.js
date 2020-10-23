@@ -7,6 +7,7 @@ import { fire, listen } from 'src/libs/customEvents';
 import { poisToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
 import { getFilteredPoisStyle } from 'src/adapters/pois_styles';
 import { createMapGLIcon, createIcon } from 'src/adapters/icon_manager';
+import { isMobileDevice } from 'src/libs/device';
 
 const DYNAMIC_POIS_LAYER = 'poi-filtered';
 const mapStyleConfig = nconf.get().mapStyle;
@@ -58,8 +59,10 @@ export default class SceneCategory {
       id: DYNAMIC_POIS_LAYER,
     });
     this.map.on('click', DYNAMIC_POIS_LAYER, this.handleLayerMarkerClick);
-    this.map.on('mousemove', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseMove);
-    this.map.on('mouseleave', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseLeave);
+    if (!isMobileDevice()) {
+      this.map.on('mousemove', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseMove);
+      this.map.on('mouseleave', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseLeave);
+    }
   }
 
   getPointedPoi = mapMouseEvent => {

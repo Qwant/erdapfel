@@ -23,8 +23,8 @@ const Route = ({
 
   return <Fragment>
     <div className={`itinerary_leg ${isActive ? 'itinerary_leg--active' : ''}`}
-      onMouseEnter={() => { hoverRoute(id, true); }}
-      onMouseLeave={() => { hoverRoute(id, false); }}
+      onMouseEnter={() => { !isMobile && hoverRoute(id, true); }}
+      onMouseLeave={() => { !isMobile && hoverRoute(id, false); }}
     >
       <RouteSummary
         id={id}
