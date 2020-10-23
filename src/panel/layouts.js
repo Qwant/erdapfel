@@ -1,4 +1,5 @@
 import { isMobileDevice } from '../libs/device';
+import { listen } from 'src/libs/customEvents';
 
 const DESKTOP_PANEL_WIDTH = 400;
 const ADDITIONAL_PADDING = 50;
@@ -8,21 +9,26 @@ const DESKTOP_SIDE_PANEL = {
   right: 60,
   bottom: 45,
 };
-const MOBILE_CARD = { top: 80, right: 70, bottom: 130, left: 20 };
-const MOBILE_FULL_SCREEN_PANEL = { top: 184, right: 70, bottom: 130, left: 20 };
+
+let mobileBottomPanelHeight = 0;
+listen('move_mobile_bottom_ui', height => {
+  mobileBottomPanelHeight = height;
+});
 
 export function getMapPaddings({ isMobile, isDirectionsActive }) {
   if (!isMobile) {
     return DESKTOP_SIDE_PANEL;
   }
-  if (isDirectionsActive) {
-    const resultPanel = document.querySelector('.directionResult_panel');
-    const bottomPadding = resultPanel
-      ? resultPanel.clientHeight + (ADDITIONAL_PADDING / 2)
-      : MOBILE_FULL_SCREEN_PANEL.bottom;
-    return { ...MOBILE_FULL_SCREEN_PANEL, bottom: bottomPadding };
-  }
-  return MOBILE_CARD;
+  const topUIElement = isDirectionsActive
+    ? '.direction-panel'
+    : '.top_bar';
+  const topUIHeight = document.querySelector(topUIElement)?.clientHeight || 0;
+  return {
+    bottom: mobileBottomPanelHeight + ADDITIONAL_PADDING / 2,
+    top: topUIHeight + ADDITIONAL_PADDING / 2,
+    right: 70,
+    left: 20,
+  };
 }
 
 export function getVisibleBbox(mb) {
