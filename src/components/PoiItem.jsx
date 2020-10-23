@@ -6,7 +6,7 @@ import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import classnames from 'classnames';
 
-const PoiItem = ({ poi,
+const PoiItem = React.memo(({ poi,
   withOpeningHours,
   withImage,
   withAlternativeName,
@@ -45,6 +45,7 @@ const PoiItem = ({ poi,
       <PoiTitleImage poi={poi} />
     </div>}
   </div>;
-};
+});
+PoiItem.displayName = 'PoiItem';
 
 export default PoiItem;
