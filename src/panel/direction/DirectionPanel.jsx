@@ -334,13 +334,14 @@ export default class DirectionPanel extends React.Component {
       {isMobile => isMobile
         ? <Fragment>
           {!activePreviewRoute && <div className="direction-panel" ref={this.setMarginTop}>
-            <Flex
+            {(routes.length === 0 && !isLoading) && <Flex
               className="direction-panel-header"
               alignItems="center"
               justifyContent="space-between">
               {title}
               <CloseButton onClick={this.onClose} />
             </Flex>
+            }
             {form}
             {<div
               id="direction-autocomplete_suggestions"
@@ -353,6 +354,7 @@ export default class DirectionPanel extends React.Component {
               fitContent={['default']}
               marginTop={this.marginTop}
               minimizedTitle={_('Unfold to show the results', 'direction')}
+              onClose={this.onClose}
             >
               {result}
             </Panel>}
