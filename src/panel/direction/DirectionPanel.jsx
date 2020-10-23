@@ -14,13 +14,14 @@ import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from 'src/libs/address';
-import { CloseButton, Flex } from 'src/components/ui';
+import { Button, CloseButton, Flex } from 'src/components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
+import ShareMenu from 'src/components/ui/ShareMenu';
 
 export default class DirectionPanel extends React.Component {
   static propTypes = {
@@ -295,6 +296,11 @@ export default class DirectionPanel extends React.Component {
     this.forceUpdate();
   }
 
+  handleShareClick = (e, handler) => {
+    Telemetry.add(Telemetry.ITINERARY_SHARE);
+    return handler(e);
+  }
+
   render() {
     const {
       origin, destination, vehicle,
@@ -372,6 +378,17 @@ export default class DirectionPanel extends React.Component {
           renderHeader={form}
         >
           <div id="direction-autocomplete_suggestions" />
+          <ShareMenu url={window.location.toString()}>
+            {openMenu => <Button
+              className="u-ml-auto u-flex-shrink-0"
+              variant="tertiary"
+              title={_('Share itinerary', 'direction')}
+              onClick={e => this.handleShareClick(e, openMenu)}
+              icon="share-2"
+            >
+              {_('Share itinerary', 'direction')}
+            </Button>}
+          </ShareMenu>
           {result}
         </Panel>}
     </DeviceContext.Consumer>;
