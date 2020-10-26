@@ -1,47 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { object, func, string, arrayOf, bool } from 'prop-types';
+import { object, func, string, arrayOf } from 'prop-types';
 
 import SuggestItem from './SuggestItem';
 
-const computeStyle = (isAttachedToInput, inputNode, suggestItems) => {
-  let style = {};
-
-  if (isAttachedToInput) {
-    // In case no output node is specified,
-    // suggestions are rendered just below inputNode
-    const boundingRect = inputNode.getBoundingClientRect();
-    style = {
-      ...style,
-      position: 'fixed',
-      top: boundingRect.bottom,
-      left: boundingRect.left,
-      width: boundingRect.width,
-    };
-  }
-
-  if (suggestItems.length === 0 ||
-      suggestItems.length > 0 && suggestItems[suggestItems.length - 1].simpleLabel) {
-    // Revove bottom padding if last item is a simple label (no results)
-    style = {
-      ...style,
-      paddingBottom: 0,
-    };
-  }
-
-  return style;
-};
-
 const SuggestsDropdown = ({
-  inputNode,
-  isAttachedToInput,
   className = '',
   suggestItems,
   onSelect,
   onHighlight,
 }) => {
   const [highlighted, setHighlighted] = useState(null);
-  const style = computeStyle(isAttachedToInput, inputNode, suggestItems);
 
   useEffect(() => {
     const keyDownHandler = e => {
@@ -97,10 +66,7 @@ const SuggestsDropdown = ({
   });
 
   return (
-    <ul
-      className={classnames('autocomplete_suggestions', className)}
-      style={style}
-    >
+    <ul className={classnames('autocomplete_suggestions', className)}>
       {suggestItems.map((suggest, index) =>
         <li
           key={index}
@@ -126,8 +92,6 @@ SuggestsDropdown.propTypes = {
   onHighlight: func.isRequired,
   onSelect: func.isRequired,
   className: string,
-  inputNode: object.isRequired,
-  isAttachedToInput: bool,
 };
 
 export default SuggestsDropdown;
