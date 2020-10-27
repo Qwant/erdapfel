@@ -120,8 +120,6 @@ const Suggest = ({
   const SuggestsDropdownElement = () =>
     <SuggestsDropdown
       className={className}
-      inputNode={inputNode}
-      isAttachedToInput={!outputNode}
       suggestItems={items}
       isLoading={isLoading}
       onHighlight={item => {
@@ -142,14 +140,12 @@ const Suggest = ({
       onClear={onClear}
     />;
 
-  return outputNode
-    ? ReactDOM.createPortal(<SuggestsDropdownElement />, outputNode)
-    : <SuggestsDropdownElement />;
+  return ReactDOM.createPortal(<SuggestsDropdownElement />, outputNode);
 };
 
 Suggest.propTypes = {
   inputNode: object.isRequired,
-  outputNode: object,
+  outputNode: object.isRequired,
   withCategories: bool,
   withGeoloc: bool,
   onSelect: func,
