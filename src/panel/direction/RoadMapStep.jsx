@@ -4,7 +4,7 @@ import RoadMapItem from './RoadMapItem';
 
 const RoadMapStep = ({ step, ...rest }) =>
   <RoadMapItem
-    icon={getStepIcon(step)}
+    iconClass={getStepIcon(step)}
     distance={step.distance ? formatDistance(step.distance) : null}
     {...rest}
   >

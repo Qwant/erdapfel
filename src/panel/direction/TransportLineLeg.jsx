@@ -9,7 +9,7 @@ const TransportLineLeg = ({ leg }) => {
   const { mode, info = {}, stops = [], from, to, duration } = leg;
 
   return <RoadMapItem
-    icon={getTransportTypeIcon(leg)}
+    iconClass={getTransportTypeIcon(leg)}
     className="itinerary_roadmap_item--transportLine"
     line={<LegLine info={info} mode={mode} />}
     distance={formatDuration(duration)}

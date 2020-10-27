@@ -16,7 +16,7 @@ const RoadMap = ({ route, origin, destination, vehicle }) => {
   routeSteps.pop();
 
   return <div className="itinerary_roadmap">
-    <RoadMapPoint point={origin} icon="origin" />
+    <RoadMapPoint point={origin} />
     {routeSteps.map((step, index) => <RoadMapStep
       key={index}
       step={step}
@@ -24,7 +24,7 @@ const RoadMap = ({ route, origin, destination, vehicle }) => {
       onMouseOut={() => { fire('unhighlight_step', index); }}
       onClick={() => { fire('zoom_step', step); }}
     />)}
-    <RoadMapPoint point={destination} icon="arrive" />
+    <RoadMapPoint point={destination} />
   </div>;
 };
 

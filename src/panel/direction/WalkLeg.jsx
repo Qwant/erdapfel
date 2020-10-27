@@ -13,7 +13,7 @@ const WalkLeg = ({ leg }) => {
   const hasSteps = leg.steps.length > 1;
 
   return <RoadMapItem
-    icon="walk"
+    iconClass="walk"
     className="itinerary_roadmap_item--walk"
     line={<LegLine mode="WALK" />}
     distance={formatDuration(leg.duration)}

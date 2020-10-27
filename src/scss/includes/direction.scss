@@ -148,6 +148,8 @@
   background-position: center center;
   background-repeat: no-repeat;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .itinerary_roadmap_icon_origin {

@@ -17,9 +17,9 @@ const Leg = ({ leg }) => {
 
 const PublicTransportRoadMap = ({ route, origin, destination }) => {
   return <div className="itinerary_roadmap itinerary_roadmap--publicTransport">
-    <RoadMapPoint point={origin} icon="origin" line={<LegLine mode="WALK" />} />
+    <RoadMapPoint point={origin} line={<LegLine mode="WALK" />} />
     {route.legs.map((leg, index) => <Leg key={index} leg={leg} />)}
-    <RoadMapPoint point={destination} icon="arrive" />
+    <RoadMapPoint point={destination} />
   </div>;
 };
 
