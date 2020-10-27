@@ -12,7 +12,7 @@ export const navigatorGeolocationStatus = {
 
 export default class NavigatorGeolocalisationPoi extends Poi {
   constructor() {
-    super('geolocalisation', _('Your position', 'direction'));
+    super('geolocalisation', _('Your position', 'direction'), 'geoloc');
     this.status = navigatorGeolocationStatus.UNKNOWN;
   }
 

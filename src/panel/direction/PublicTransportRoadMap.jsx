@@ -1,10 +1,8 @@
-/* global _ */
 import React from 'react';
 import WalkLeg from './WalkLeg';
 import TransportLineLeg from './TransportLineLeg';
-import RoadMapItem from './RoadMapItem';
+import RoadMapPoint from './RoadMapPoint';
 import LegLine from './LegLine';
-import { getInputValue } from 'src/libs/suggest';
 
 const Leg = ({ leg }) => {
   // @TODO: decide what to do with waiting parts. For now just ignore.
@@ -19,13 +17,9 @@ const Leg = ({ leg }) => {
 
 const PublicTransportRoadMap = ({ route, origin, destination }) => {
   return <div className="itinerary_roadmap itinerary_roadmap--publicTransport">
-    <RoadMapItem icon="origin" line={<LegLine mode="WALK" />}>
-      {`${_('Start')} ${getInputValue(origin)}`}
-    </RoadMapItem>
+    <RoadMapPoint point={origin} icon="origin" line={<LegLine mode="WALK" />} />
     {route.legs.map((leg, index) => <Leg key={index} leg={leg} />)}
-    <RoadMapItem icon="arrive">
-      {`${_('Arrival')} ${getInputValue(destination)}`}
-    </RoadMapItem>
+    <RoadMapPoint point={destination} icon="arrive" />
   </div>;
 };
 
