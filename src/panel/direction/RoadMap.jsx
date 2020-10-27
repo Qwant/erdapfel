@@ -10,15 +10,21 @@ const RoadMap = ({ route, origin, destination, vehicle }) => {
     return <PublicTransportRoadMap route={route} origin={origin} destination={destination} />;
   }
 
+  const routeSteps = getAllSteps(route);
+  // Mapbox roadmaps include the destination point as the last maneuver,
+  // but we want a custom format for it, so let's ignore it.
+  routeSteps.pop();
+
   return <div className="itinerary_roadmap">
     <RoadMapPoint point={origin} icon="origin" />
-    {getAllSteps(route).map((step, index) => <RoadMapStep
+    {routeSteps.map((step, index) => <RoadMapStep
       key={index}
       step={step}
       onMouseOver={() => { fire('highlight_step', index); }}
       onMouseOut={() => { fire('unhighlight_step', index); }}
       onClick={() => { fire('zoom_step', step); }}
     />)}
+    <RoadMapPoint point={destination} icon="arrive" />
   </div>;
 };
 
