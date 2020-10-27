@@ -38,7 +38,7 @@ export default class NavigatorGeolocalisationPoi extends Poi {
         }
         reject(error);
       },
-      { maximumAge: 10000 },
+      { timeout: 3000 },
       );
     });
   }
