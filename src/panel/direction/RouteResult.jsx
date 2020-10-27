@@ -11,8 +11,8 @@ import Telemetry from 'src/libs/telemetry';
 export default class RouteResult extends React.Component {
   static propTypes = {
     routes: PropTypes.array,
-    origin: PropTypes.string,
-    destination: PropTypes.string,
+    origin: PropTypes.object,
+    destination: PropTypes.object,
     vehicle: PropTypes.string,
     isLoading: PropTypes.bool,
     error: PropTypes.number,
