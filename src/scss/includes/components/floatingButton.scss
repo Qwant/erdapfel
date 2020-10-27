@@ -1,0 +1,17 @@
+.floatingButton {
+  height: 48px;
+  width: 48px;
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $background;
+  box-shadow: $shadow;
+
+  i {
+    font-size: 24px;
+    color: $grey-semi-darkness;
+  }
+}
