@@ -23,6 +23,8 @@ import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolo
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import ShareMenu from 'src/components/ui/ShareMenu';
 
+const MARGIN_TOP_OFFSET = 128; // reserve space to display map
+
 export default class DirectionPanel extends React.Component {
   static propTypes = {
     origin: PropTypes.string,
@@ -103,7 +105,7 @@ export default class DirectionPanel extends React.Component {
 
   componentDidUpdate() {
     const marginTop = this.directionPanelRef.current
-      ? this.directionPanelRef.current.offsetHeight
+      ? this.directionPanelRef.current.offsetHeight + MARGIN_TOP_OFFSET
       : 0;
 
     if (marginTop !== this.state.marginTop) {
