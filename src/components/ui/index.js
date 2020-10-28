@@ -13,6 +13,8 @@ import Suggest from './Suggest';
 import Text from './Text';
 import PanelNav from './PanelNav';
 import CloseButton from './CloseButton';
+import FloatingButton from './FloatingButton';
+import FloatingItems from './FloatingItems';
 
 export {
   Badge,
@@ -31,4 +33,6 @@ export {
   Text,
   PanelNav,
   CloseButton,
+  FloatingButton,
+  FloatingItems,
 };

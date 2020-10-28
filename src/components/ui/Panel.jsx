@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
-import { CloseButton } from 'src/components/ui';
+import { CloseButton, FloatingItems } from 'src/components/ui';
 
 const getEventClientY = event => event.changedTouches
   ? event.changedTouches[0].clientY
@@ -49,12 +49,14 @@ class Panel extends React.Component {
     setSize: PropTypes.func,
     marginTop: PropTypes.number,
     className: PropTypes.string,
+    updateMobileMapUI: PropTypes.bool,
   }
 
   static defaultProps = {
     fitContent: [],
     size: 'default',
     marginTop: 64, // default top bar size,
+    updateMobileMapUI: true,
   }
 
   constructor(props) {
@@ -111,6 +113,8 @@ class Panel extends React.Component {
   }
 
   updateMobileMapUI = ({ closing } = {}) => {
+    if (!this.props.updateMobileMapUI) {return;}
+
     if (this.props.resizable) {
       const heightFromBottom = closing ? 0 : this.state.height - this.state.translateY;
 
@@ -265,7 +269,7 @@ class Panel extends React.Component {
   render() {
     const {
       children, minimizedTitle,
-      resizable, className, size, renderHeader, onClose } = this.props;
+      resizable, className, size, renderHeader, onClose, floatingItems } = this.props;
     const { translateY, holding } = this.state;
 
     return (
@@ -286,6 +290,7 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
+            {floatingItems && <FloatingItems items={floatingItems} />}
             {onClose && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable &&
               <div
