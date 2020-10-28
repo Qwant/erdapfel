@@ -77,21 +77,12 @@ Scene.prototype.initMapBox = async function(locationHash) {
     style: getStyle(),
     hash: false,
     maxZoom: 20,
+    interactive: window.no_ui ? false : true,
     locale,
     ...await this.getMapInitOptions(locationHash),
   });
 
   this.popup.init(this.mb);
-
-  // iframe: no interactions
-  if (window.no_ui) {
-    this.mb['scrollZoom'].disable();
-    this.mb['dragPan'].disable();
-    this.mb['doubleClickZoom'].disable();
-    this.mb['dragRotate'].disable();
-    this.mb['touchZoomRotate'].disable();
-  }
-
   window.map = this;
 
   const interactiveLayers = [
@@ -460,7 +451,7 @@ Scene.prototype.translateUIControl = function(selector, bottom) {
 
 Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
   if (window.no_ui) {
-    bottom = 0;
+    return;
   }
   if (!isMobileDevice() && bottom > 0) {
     return;

@@ -94,16 +94,18 @@ export default class SceneCategory {
 
   handleLayerMarkerClick = e => {
     // iframe: markers are not clickable
-    if (!window.no_ui) {
-      e.originalEvent.stopPropagation();
-
-      const poi = this.getPointedPoi(e);
-      this.selectPoi({
-        poi,
-        pois: this.pois,
-        poiFilters: this.poiFilters,
-      });
+    if (window.no_ui) {
+      return;
     }
+
+    e.originalEvent.stopPropagation();
+    const poi = this.getPointedPoi(e);
+
+    this.selectPoi({
+      poi,
+      pois: this.pois,
+      poiFilters: this.poiFilters,
+    });
   }
 
   handleLayerMarkerMouseMove = e => {
