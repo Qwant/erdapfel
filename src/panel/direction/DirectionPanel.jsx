@@ -35,6 +35,7 @@ export default class DirectionPanel extends React.Component {
   constructor(props) {
     super(props);
 
+    this.directionPanelRef = React.createRef();
     this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
     if (this.props.isPublicTransportActive) {
       this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
@@ -44,7 +45,6 @@ export default class DirectionPanel extends React.Component {
       ? props.mode : modes.DRIVING;
 
     this.lastQueryId = 0;
-    this.marginTop = 0;
 
     this.state = {
       vehicle: activeVehicle,
@@ -59,6 +59,7 @@ export default class DirectionPanel extends React.Component {
       isInitializing: true,
       originInputText: '',
       destinationInputText: '',
+      marginTop: 0,
     };
 
     this.restorePoints(props);
@@ -97,6 +98,18 @@ export default class DirectionPanel extends React.Component {
           // ignore possible error
         }
       }
+    }
+  }
+
+  componentDidUpdate() {
+    const marginTop = this.directionPanelRef.current
+      ? this.directionPanelRef.current.offsetHeight
+      : 0;
+
+    if (marginTop !== this.state.marginTop) {
+      this.setState({
+        marginTop,
+      });
     }
   }
 
@@ -291,11 +304,6 @@ export default class DirectionPanel extends React.Component {
     this.setState({ activePreviewRoute: route });
   }
 
-  setMarginTop = el => {
-    this.marginTop = el ? el.offsetHeight : 0;
-    this.forceUpdate();
-  }
-
   handleShareClick = (e, handler) => {
     Telemetry.add(Telemetry.ITINERARY_SHARE);
     return handler(e);
@@ -307,6 +315,7 @@ export default class DirectionPanel extends React.Component {
       routes, error, activePreviewRoute,
       isLoading, isDirty, isInitializing,
       originInputText, destinationInputText,
+      marginTop,
     } = this.state;
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
@@ -342,7 +351,7 @@ export default class DirectionPanel extends React.Component {
     return <DeviceContext.Consumer>
       {isMobile => isMobile
         ? <Fragment>
-          {!activePreviewRoute && <div className="direction-panel" ref={this.setMarginTop}>
+          {!activePreviewRoute && <div className="direction-panel" ref={this.directionPanelRef}>
             {!isFormCompleted && <Flex
               className="direction-panel-header"
               alignItems="center"
@@ -361,7 +370,7 @@ export default class DirectionPanel extends React.Component {
             <Panel
               resizable
               fitContent={['default']}
-              marginTop={this.marginTop}
+              marginTop={marginTop}
               minimizedTitle={_('Unfold to show the results', 'direction')}
               onClose={this.onClose}
             >
