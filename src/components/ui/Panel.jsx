@@ -50,6 +50,7 @@ class Panel extends React.Component {
     marginTop: PropTypes.number,
     className: PropTypes.string,
     updateMobileMapUI: PropTypes.bool,
+    floatingItems: PropTypes.arrayOf(PropTypes.object),
   }
 
   static defaultProps = {
