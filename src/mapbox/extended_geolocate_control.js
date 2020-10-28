@@ -1,5 +1,6 @@
 import * as Geolocation from '../libs/geolocation';
 import Telemetry from '../libs/telemetry';
+import { openPendingGeolocateModal } from 'src/modals/GeolocationModal';
 
 import { GeolocateControl } from 'mapbox-gl--ENV';
 
@@ -27,6 +28,13 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   }
 
   async trigger() {
+    const state = await Geolocation.getGeolocationPermission();
+    if ( state === Geolocation.geolocationPermissions.PROMPT ) {
+      const isModalAccepted = await openPendingGeolocateModal();
+      if (!isModalAccepted) {
+        return;
+      }
+    }
     super.trigger();
   }
 

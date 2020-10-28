@@ -10,15 +10,24 @@ let hasPermissionModalOpenedOnce = false;
 
 const GeolocationModal = ({ status, onClose, onAccept }) => {
   /* eslint-disable max-len */
+
+  const pendingStatusText = _('Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don\'t store your information because we don\'t want to know your whereabouts.',
+    'geolocation', {
+      privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
+      closeTag: '</a>',
+    }
+  );
+
   const statuses = {
     PENDING: {
+      title: _('Geolocation with privacy!', 'geolocation'),
+      text: pendingStatusText,
+      button: _('Ok, I\'ve got it', 'geolocation'),
+      className: 'modal__maps__pending',
+    },
+    PENDING_ON_DIRECTIONS: {
       title: _('Enable your geolocation for better directions', 'geolocation'),
-      text: _('Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don\'t store your information because we don\'t want to know your whereabouts.',
-        'geolocation', {
-          privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
-          closeTag: '</a>',
-        }
-      ),
+      text: pendingStatusText,
       button: _('Ok, I\'ve got it', 'geolocation'),
       className: 'modal__maps__pending',
     },
@@ -75,7 +84,7 @@ export async function openPendingDirectionModal() {
   hasPermissionModalOpenedOnce = true;
   return new Promise(resolve => {
     open(
-      'PENDING',
+      'PENDING_ON_DIRECTIONS',
       () => {
         close();
         resolve(false); // close: prevent native geolocation popup
@@ -83,6 +92,22 @@ export async function openPendingDirectionModal() {
       () => {
         close();
         resolve(true); // click "OK": allow native geolocation popup
+      }
+    );
+  });
+}
+
+export async function openPendingGeolocateModal() {
+  return new Promise(resolve => {
+    open(
+      'PENDING',
+      () => {
+        close();
+        resolve(false);
+      },
+      () => {
+        close();
+        resolve(true);
       }
     );
   });
