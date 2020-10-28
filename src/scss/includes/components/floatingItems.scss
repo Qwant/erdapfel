@@ -1,0 +1,7 @@
+.floatingItems {
+  position: absolute;
+  display: grid;
+  right: 12px;
+  gap: 8px;
+  transform: translateY(calc(-100% - 12px));
+}
