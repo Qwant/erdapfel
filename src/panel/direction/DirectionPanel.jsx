@@ -14,7 +14,7 @@ import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from 'src/libs/address';
-import { Button, CloseButton, Divider, Flex } from 'src/components/ui';
+import { Button, CloseButton, Divider, Flex, FloatingButton } from 'src/components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
@@ -375,6 +375,17 @@ export default class DirectionPanel extends React.Component {
               marginTop={marginTop}
               minimizedTitle={_('Unfold to show the results', 'direction')}
               onClose={this.onClose}
+              updateMobileMapUI={false}
+              floatingItems={[
+                <ShareMenu key="action-share" url={window.location.toString()}>
+                  {openMenu =>
+                    <FloatingButton
+                      onClick={e => this.handleShareClick(e, openMenu)}
+                      icon="share-2"
+                    />
+                  }
+                </ShareMenu>,
+              ]}
             >
               {result}
             </Panel>}
