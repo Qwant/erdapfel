@@ -83,6 +83,15 @@ Scene.prototype.initMapBox = async function(locationHash) {
 
   this.popup.init(this.mb);
 
+  // iframe: no interactions
+  if (window.no_ui) {
+    this.mb['scrollZoom'].disable();
+    this.mb['dragPan'].disable();
+    this.mb['doubleClickZoom'].disable();
+    this.mb['dragRotate'].disable();
+    this.mb['touchZoomRotate'].disable();
+  }
+
   window.map = this;
 
   const interactiveLayers = [
@@ -131,6 +140,10 @@ Scene.prototype.initMapBox = async function(locationHash) {
     // which are thrown *after* two separate click events are thrown
     this.clickDelayHandler = null;
     this.mb.on('click', e => {
+      // iframe: disable clicks
+      if (window.no_ui) {
+        return;
+      }
       if (e.originalEvent.cancelBubble) {
         return;
       }
@@ -446,6 +459,9 @@ Scene.prototype.translateUIControl = function(selector, bottom) {
 };
 
 Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
+  if (window.no_ui) {
+    bottom = 0;
+  }
   if (!isMobileDevice() && bottom > 0) {
     return;
   }

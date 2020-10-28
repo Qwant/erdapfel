@@ -57,7 +57,15 @@
       </form>
       <div class="search_form__result"></div>
     </div>
-    <script>window.times = {init : Date.now()}</script>
+    <script>
+        window.times = {init : Date.now()}
+
+        // iframe: hide UI immediately to avoid content flashing while the JS bundle loads
+        if (location.search.includes('ui=0')) {
+            window.no_ui = true;
+            document.body.classList.add('no_ui');
+        }
+    </script>
     <script src="./statics/build/javascript/bundle.js"></script>
     <noscript><%= _('JavaScript is required to view this application.') %></noscript>
   </body>

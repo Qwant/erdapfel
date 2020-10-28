@@ -16,6 +16,9 @@ listen('move_mobile_bottom_ui', height => {
 });
 
 export function getMapPaddings({ isMobile, isDirectionsActive }) {
+  if (window.no_ui) {
+    return { bottom: 0, top: 0, left: 0, right: 0 };
+  }
   if (!isMobile) {
     return DESKTOP_SIDE_PANEL;
   }
@@ -39,12 +42,15 @@ export function getVisibleBbox(mb) {
   const ne_canvas = mb.project(ne);
   const sw_canvas = mb.project(sw);
 
-  if (isMobileDevice()) {
-    // On mobile, compute a bbox that excludes the header's height
-    ne_canvas.y += 65;
-  } else {
-    // On desktop, compute a bbox that excludes the left panel's width
-    sw_canvas.x += DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING / 2;
+  // iframe: no offset
+  if (!window.no_ui) {
+    if (isMobileDevice()) {
+      // On mobile, compute a bbox that excludes the header's height
+      ne_canvas.y += 65;
+    } else {
+      // On desktop, compute a bbox that excludes the left panel's width
+      sw_canvas.x += DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING / 2;
+    }
   }
 
   ne = mb.unproject(ne_canvas);
