@@ -93,11 +93,9 @@ noscript {
   margin-top: calc(-25% + 3px);
 }
 
-.marker--category .marker-container {
-  width: 30px;
-  height: 35px;
-
-  i {
-    font-size: 24px;
-  }
+.marker--category {
+  width: 26px;
+  height: 49px;
+  margin-top: 6px;
+  background-image: url('../images/map/pin-maxi.svg');
 }

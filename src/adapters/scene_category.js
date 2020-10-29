@@ -4,13 +4,25 @@ import constants from '../../config/constants.yml';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
-import { poisToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
+import { poiToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
 import { getFilteredPoisStyle } from 'src/adapters/pois_styles';
-import { createMapGLIcon, createIcon } from 'src/adapters/icon_manager';
 import { isMobileDevice } from 'src/libs/device';
+import { createMapGLIcon, createPinIcon } from 'src/adapters/icon_manager';
+import IconManager from 'src/adapters/icon_manager';
 
 const DYNAMIC_POIS_LAYER = 'poi-filtered';
 const mapStyleConfig = nconf.get().mapStyle;
+
+const poisToGeoJSON = pois => {
+  return {
+    type: 'FeatureCollection',
+    features: pois.map(poi => {
+      const poiFeature = poiToGeoJSON(poi);
+      poiFeature.properties.iconName = IconManager.get(poi).iconClass;
+      return poiFeature;
+    }),
+  };
+};
 
 export default class SceneCategory {
   constructor(map) {
@@ -30,12 +42,12 @@ export default class SceneCategory {
   initActiveStateMarkers = () => {
     this.hoveredPoi = null;
     this.hoveredMarker = new Marker({
-      element: createIcon({ disablePointerEvents: true, className: 'marker--category' }),
+      element: createPinIcon({ disablePointerEvents: true, className: 'marker--category' }),
       anchor: 'bottom',
     });
     this.selectedPoi = null;
     this.selectedMarker = new Marker({
-      element: createIcon({ className: 'marker--category' }),
+      element: createPinIcon({ className: 'marker--category' }),
       anchor: 'bottom',
     });
   }
@@ -105,8 +117,7 @@ export default class SceneCategory {
   handleLayerMarkerMouseMove = e => {
     this.map.getCanvas().style.cursor = 'pointer';
     const poi = this.getPointedPoi(e);
-    if (this.hoveredPoi !== poi) {
-      this.hoveredPoi = poi;
+    if (this.selectedPoi?.id !== poi.id) {
       this.highlightPoiMarker(poi, true);
       fire('open_popup', this.getPointedPoi(e), e.originalEvent);
     }
@@ -114,8 +125,7 @@ export default class SceneCategory {
 
   handleLayerMarkerMouseLeave = () => {
     this.map.getCanvas().style.cursor = '';
-    this.hoveredPoi = null;
-    this.highlightPoiMarker(null, false);
+    this.highlightPoiMarker(this.hoveredPoi, false);
     fire('close_popup');
   }
 
@@ -129,8 +139,8 @@ export default class SceneCategory {
 
   removeCategoryMarkers = () => {
     this.selectPoiMarker(null);
+    this.highlightPoiMarker(this.hoveredPoi, false);
     this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'none');
-    this.hoveredMarker.remove();
     this.setOsmPoisVisibility(true);
   }
 
@@ -140,13 +150,23 @@ export default class SceneCategory {
     });
   }
 
+  setPoiFeatureState = (id, state) => {
+    this.map.setFeatureState({ id, source: DYNAMIC_POIS_LAYER }, state);
+  }
+
   highlightPoiMarker = (poi, highlight) => {
+    if (this.hoveredPoi) {
+      this.setPoiFeatureState(this.hoveredPoi.id, { hovered: false });
+    }
     if (highlight) {
+      this.hoveredPoi = poi;
       this.hoveredMarker
         .setLngLat(poi.latLon)
         .addTo(this.map);
+      this.setPoiFeatureState(this.hoveredPoi.id, { hovered: true });
     } else {
       this.hoveredMarker.remove();
+      this.hoveredPoi = null;
     }
   }
 
@@ -155,18 +175,14 @@ export default class SceneCategory {
       return;
     }
     if (this.selectedPoi) {
-      this.map.setFeatureState(
-        { id: this.selectedPoi.id, source: DYNAMIC_POIS_LAYER },
-        { selected: false });
+      this.setPoiFeatureState(this.selectedPoi.id, { selected: false });
     }
     if (poi) {
       this.selectedPoi = poi;
       this.selectedMarker
         .setLngLat(poi.latLon)
         .addTo(this.map);
-      this.map.setFeatureState(
-        { id: poi.id, source: DYNAMIC_POIS_LAYER },
-        { selected: true });
+      this.setPoiFeatureState(this.selectedPoi.id, { selected: true });
     } else {
       this.selectedMarker.remove();
       this.selectedPoi = null;

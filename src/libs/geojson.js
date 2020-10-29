@@ -1,4 +1,3 @@
-
 const geoJsonGeometryToFeature = geometry => ({
   type: 'Feature',
   geometry,

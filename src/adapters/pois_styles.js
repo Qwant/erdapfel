@@ -2,11 +2,10 @@
 export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
   type: 'symbol',
   layout: {
-    'icon-image': 'pin_with_dot',
+    'icon-image': ['concat', 'pin-', ['get', 'iconName']],
     'icon-allow-overlap': true,
     'icon-ignore-placement': false,
     'icon-padding': 0,
-    'icon-size': 0.5,
     'icon-anchor': 'bottom',
 
     'text-font': [ 'Noto Sans Bold' ],
@@ -20,6 +19,11 @@ export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
     'text-justify': 'auto',
   },
   paint: {
+    'icon-opacity': ['case',
+      ['==', ['feature-state', 'selected'], true], 0,
+      ['==', ['feature-state', 'hovered'], true], 0,
+      1,
+    ],
     'text-color': ['case', ['==', ['feature-state', 'selected'], true], '#900014', '#0c0c0e'],
     'text-halo-color': 'white',
     'text-halo-width': 1,

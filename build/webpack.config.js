@@ -107,6 +107,7 @@ const mainJsChunkConfig = buildMode => {
               output: 'production', // 'debug' | 'production' | 'omt'
               outPath: __dirname + '/../public/mapstyle',
               i18n: true,
+              pins: true,
               icons: true,
               pixelRatios: [1, 2],
             },
