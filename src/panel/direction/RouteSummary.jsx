@@ -1,7 +1,7 @@
 /* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Flex } from 'src/components/ui';
+import { Button } from 'src/components/ui';
 import Telemetry from 'src/libs/telemetry';
 
 import RouteSummaryInfo from './RouteSummaryInfo';
