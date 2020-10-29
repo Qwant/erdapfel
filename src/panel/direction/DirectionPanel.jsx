@@ -403,7 +403,7 @@ export default class DirectionPanel extends React.Component {
           <div id="direction-autocomplete_suggestions" />
           <ShareMenu url={window.location.toString()}>
             {openMenu => <Button
-              className="u-ml-auto u-flex-shrink-0"
+              className="u-ml-auto u-flex-shrink-0 u-mr-16"
               variant="tertiary"
               title={_('Share itinerary', 'direction')}
               onClick={e => this.handleShareClick(e, openMenu)}
