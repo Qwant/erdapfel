@@ -121,7 +121,7 @@ class Panel extends React.Component {
         fire('move_mobile_bottom_ui', heightFromBottom);
       });
 
-      if (!this.props.isMobileBottomUIDisplayed) {
+      if (!this.props.isMapBottomUIDisplayed) {
         // Hide buttons except scale
         window.execOnMapLoaded(() => {
           fire('mobile_geolocation_button_visibility', false);
