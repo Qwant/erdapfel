@@ -49,7 +49,7 @@ class Panel extends React.Component {
     setSize: PropTypes.func,
     marginTop: PropTypes.number,
     className: PropTypes.string,
-    updateMobileMapUI: PropTypes.bool,
+    isMapBottomUIDisplayed: PropTypes.bool,
     floatingItems: PropTypes.arrayOf(PropTypes.object),
   }
 
@@ -57,7 +57,7 @@ class Panel extends React.Component {
     fitContent: [],
     size: 'default',
     marginTop: 64, // default top bar size,
-    updateMobileMapUI: true,
+    isMapBottomUIDisplayed: true,
   }
 
   constructor(props) {
@@ -114,14 +114,22 @@ class Panel extends React.Component {
   }
 
   updateMobileMapUI = ({ closing } = {}) => {
-    if (!this.props.updateMobileMapUI) {return;}
-
     if (this.props.resizable) {
       const heightFromBottom = closing ? 0 : this.state.height - this.state.translateY;
 
       window.execOnMapLoaded(() => {
         fire('move_mobile_bottom_ui', heightFromBottom);
       });
+
+      if (!this.props.isMobileBottomUIDisplayed) {
+        // Hide buttons except scale
+        window.execOnMapLoaded(() => {
+          fire('mobile_geolocation_button_visibility', false);
+          fire('mobile_direction_button_visibility', false);
+        });
+
+        return;
+      }
 
       if (heightFromBottom > DEFAULT_SIZE) {
         // Transition to maximized

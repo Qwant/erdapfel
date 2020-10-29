@@ -375,7 +375,7 @@ export default class DirectionPanel extends React.Component {
               marginTop={marginTop}
               minimizedTitle={_('Unfold to show the results', 'direction')}
               onClose={this.onClose}
-              updateMobileMapUI={false}
+              isMobileBottomUIDisplayed={false}
               floatingItems={[
                 <ShareMenu key="action-share" url={window.location.toString()}>
                   {openMenu =>
