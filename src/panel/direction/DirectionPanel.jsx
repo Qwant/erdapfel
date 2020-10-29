@@ -380,6 +380,7 @@ export default class DirectionPanel extends React.Component {
                 <ShareMenu key="action-share" url={window.location.toString()}>
                   {openMenu =>
                     <FloatingButton
+                      title={_('Share itinerary', 'direction')}
                       onClick={e => this.handleShareClick(e, openMenu)}
                       icon="share-2"
                     />
