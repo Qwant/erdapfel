@@ -35,6 +35,10 @@
   }
 }
 
+.itinerary_leg_detailsBtn {
+  margin-top: 12px;
+}
+
 .itinerary_no-result {
   text-align: center;
   padding: 25px 50px;
@@ -90,11 +94,7 @@
 }
 
 .itinerary_leg_summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 20px;
-  align-items: center;
   cursor: pointer;
   position: relative;
 }
@@ -389,16 +389,6 @@ button.direction_shortcut {
 
   .itinerary_result .itemList-item {
     overflow: hidden;
-  }
-
-  .itinerary_leg_summary {
-    display: grid;
-    grid-template-areas: "info" "via" "actions";
-    padding: 15px 18px;
-  }
-
-  .itinerary_leg_details-buttons {
-    margin-top: 12px;
   }
 
   .itinerary_leg_via {

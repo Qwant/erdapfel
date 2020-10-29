@@ -48,19 +48,17 @@ export default class RouteSummary extends React.Component {
       />
 
       {isActive &&
-        <Flex className="itinerary_leg_details-buttons">
-          <Button
-            className="itinerary_leg_detailsBtn u-mr-8 u-firstCap"
-            onClick={this.onClickDetails}
-            icon={showDetails ? null : 'icon_list'}
-            variant={showDetails ? 'tertiary' : 'secondary'}
-          >
-            {showDetails
-              ? _('See less', 'direction')
-              : _('Details', 'direction')
-            }
-          </Button>
-        </Flex>
+        <Button
+          className="itinerary_leg_detailsBtn u-mr-8 u-firstCap"
+          onClick={this.onClickDetails}
+          icon={showDetails ? null : 'icon_list'}
+          variant={showDetails ? 'tertiary' : 'secondary'}
+        >
+          {showDetails
+            ? _('See less', 'direction')
+            : _('Details', 'direction')
+          }
+        </Button>
       }
     </div>;
   }
