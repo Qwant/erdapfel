@@ -1,0 +1,97 @@
+.roadmapIcon {
+  width: 24px;
+  height: 24px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &--slight-left {
+    background-image: url(../images/direction_icons/arrow-up-left.svg);
+  }
+  
+  &--slight-right {
+    background-image: url(../images/direction_icons/arrow-up-right.svg);
+  }
+  
+  &--straight {
+    background-image: url(../images/direction_icons/arrow-up.svg);
+  }
+  
+  &--depart {
+    background-image: url(../images/direction_icons/arrow-up.svg);
+  }
+  
+  &--roundabout {
+    background-image: url(../images/direction_icons/roundabout.svg);
+  }
+  
+  &--error {
+    background-image:url(../images/direction_icons/alert-triangle.svg);
+  }
+  
+  &--reverse {
+    background-image:url(../images/direction_icons/reverse.svg);
+  }
+  
+  &--sharp-left {
+    background-image:url(../images/direction_icons/sharp-left.svg);
+  }
+  
+  &--sharp-right {
+    background-image:url(../images/direction_icons/sharp-right.svg);
+  }
+  
+  &--left {
+    background-image:url(../images/direction_icons/corner-up-left.svg);
+  }
+  
+  &--right {
+    background-image:url(../images/direction_icons/corner-up-right.svg);
+  }
+  
+  &--uturn {
+    background-image:url(../images/direction_icons/u-turn.svg);
+  }
+  
+  &--waypoint {
+    background-image: url('../images/direction_icons/pin.png');
+  }
+  
+  &--bus {
+    background-image:url(../images/direction_icons/bus.svg);
+    background-size: 20px;
+  }
+  
+  &--metro {
+    background-image:url(../images/direction_icons/metro.svg);
+    background-size: 20px;
+  }
+  
+  &--train {
+    background-image:url(../images/direction_icons/train.svg);
+    background-size: 20px;
+  }
+  
+  &--tram {
+    background-image:url(../images/direction_icons/tram.svg);
+    background-size: 20px;
+  }
+  
+  &--walk {
+    background-image:url(../images/direction_icons/walk.svg);
+    background-size: 20px;
+  }
+  
+  &--stop {
+    text-align: center;
+  
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $primary_text;
+    }
+  }  
+}
