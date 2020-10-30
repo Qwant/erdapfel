@@ -1,0 +1,67 @@
+.routeLabel {
+  background-color: $grey-lighter;
+  color: $grey-semi-darkness;
+  border-radius: 6px;
+  padding: 6px 9px;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: $shadow;
+
+  &-duration {
+    font-size: 18px;
+    font-weight: bold;
+    color: $grey-black;
+
+    .active & {
+      color: $action-blue-base;
+    }
+  }
+
+  &-distance {
+    font-size: 14px;
+  }
+
+  &.active {
+    background-color: white;
+    z-index: 2;
+  }
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  &--bottom {
+    top: -6px;
+
+    &::after {
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid $grey-lighter;
+      bottom: -6px;
+      left: calc(50% - 6px);
+    }
+
+    &.active::after {
+      border-top-color: white;
+    }
+  }
+
+  &--left {
+    left: 6px;
+
+    &::after {
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 6px solid $grey-lighter;
+      left: -6px;
+      top: calc(50% - 6px);
+    }
+
+    &.active::after {
+      border-right: 6px solid white;
+    }
+  }
+}
