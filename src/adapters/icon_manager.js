@@ -56,7 +56,15 @@ export default class IconManager {
         color: styleIcons.defaultStreetColor,
       };
 
-    // administrative zones (city, area, country)
+    // user geolocation "poi"
+    } else if (type === 'geoloc') {
+      return {
+        iconClass: 'pin_geoloc',
+        color: '#1050c5', // action-blue-dark
+        icomoon: true,
+      };
+
+      // administrative zones (city, area, country)
     } else {
       return {
         iconClass: nameToClass(styleIcons.defaultAdministrativeIcon),

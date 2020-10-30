@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { formatDistance, formatDuration, getStepIcon } from 'src/libs/route_utils';
 import RoadMapItem from './RoadMapItem';
+import RoadMapIcon from './RoadMapIcon';
 import LegLine from './LegLine';
 import classnames from 'classnames';
 
@@ -13,7 +14,7 @@ const WalkLeg = ({ leg }) => {
   const hasSteps = leg.steps.length > 1;
 
   return <RoadMapItem
-    icon="walk"
+    icon={<RoadMapIcon iconClass="walk" />}
     className="itinerary_roadmap_item--walk"
     line={<LegLine mode="WALK" />}
     distance={formatDuration(leg.duration)}
@@ -29,7 +30,7 @@ const WalkLeg = ({ leg }) => {
     </div>
     {detailsOpen && <div className="itinerary_roadmap_substeps">
       {leg.steps.map((step, index) => <div key={index} className="itinerary_roadmap_substep">
-        <div className={`itinerary_roadmap_icon itinerary_roadmap_icon_${getStepIcon(step)}`} />
+        <RoadMapIcon iconClass={getStepIcon(step)} />
         <div>{step.maneuver.instruction}</div>
       </div>)}
     </div>}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RoadMapItem from './RoadMapItem';
+import RoadMapIcon from './RoadMapIcon';
 import PublicTransportLine from './PublicTransportLine';
 import LegLine from './LegLine';
 import { getTransportTypeIcon, formatDuration } from 'src/libs/route_utils';
@@ -9,7 +10,7 @@ const TransportLineLeg = ({ leg }) => {
   const { mode, info = {}, stops = [], from, to, duration } = leg;
 
   return <RoadMapItem
-    icon={getTransportTypeIcon(leg)}
+    icon={<RoadMapIcon iconClass={getTransportTypeIcon(leg)} />}
     className="itinerary_roadmap_item--transportLine"
     line={<LegLine info={info} mode={mode} />}
     distance={formatDuration(duration)}
