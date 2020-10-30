@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, simulateClickOnMap, getInputValue, getMapView, exists } from '../tools';
+import { initBrowser, simulateClickOnMap, getInputValue, getMapView, exists, isHidden } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
@@ -67,11 +67,13 @@ test('simple search', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
   responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
+  expect(await isHidden(page, '.direction-panel-share-button')).toBeTruthy();
   await page.waitForSelector('#direction-input_origin');
   await page.type('#direction-input_origin', 'direction');
   await page.keyboard.press('Enter');
   await page.type('#direction-input_destination', 'direction');
   await page.keyboard.press('Enter');
+  expect(await page.waitForSelector('.direction-panel-share-button', { visible: true })).toBeTruthy();
   expect(await exists(page, '.itinerary_leg')).toBeTruthy();
 });
 
