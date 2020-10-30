@@ -72,12 +72,21 @@ class Panel extends React.Component {
       holding: false,
       height: this.getHeight(),
       translateY: this.getInitialTranslateY(),
+      isFloatingBlockVisible: true,
     };
   }
 
   componentDidMount() {
     window.addEventListener('resize', this.handleViewportResize);
     this.updateMobileMapUI();
+
+    if (!this.props.isMapBottomUIDisplayed) {
+      // Hide buttons except scale
+      window.execOnMapLoaded(() => {
+        fire('mobile_geolocation_button_visibility', false);
+        fire('mobile_direction_button_visibility', false);
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -114,35 +123,42 @@ class Panel extends React.Component {
   }
 
   updateMobileMapUI = ({ closing } = {}) => {
-    if (this.props.resizable) {
-      const heightFromBottom = closing ? 0 : this.state.height - this.state.translateY;
+    const { floatingItems, isMapBottomUIDisplayed, resizable, size } = this.props;
+    const { isFloatingBlockVisible } = this.state;
 
-      window.execOnMapLoaded(() => {
-        fire('move_mobile_bottom_ui', heightFromBottom);
-      });
+    if (!resizable) { return;}
 
-      if (!this.props.isMapBottomUIDisplayed) {
-        // Hide buttons except scale
-        window.execOnMapLoaded(() => {
-          fire('mobile_geolocation_button_visibility', false);
-          fire('mobile_direction_button_visibility', false);
-        });
+    const heightFromBottom = closing ? 0 : this.state.height - this.state.translateY;
 
-        return;
-      }
+    window.execOnMapLoaded(() => {
+      fire('move_mobile_bottom_ui', heightFromBottom);
+    });
 
-      if (heightFromBottom > DEFAULT_SIZE) {
-        // Transition to maximized
+    if (heightFromBottom > DEFAULT_SIZE) {
+      // Transition to maximized
+      if (isMapBottomUIDisplayed) {
         fire('mobile_geolocation_button_visibility', false);
         fire('mobile_direction_button_visibility', false);
-      } else if (this.props.size === 'minimized' || heightFromBottom < DEFAULT_MINIMIZED_SIZE) {
-        // Transition to minimized
+      }
+
+      if (floatingItems && isFloatingBlockVisible) {
+        this.setState({ isFloatingBlockVisible: false });
+      }
+    } else if (size === 'minimized' || heightFromBottom < DEFAULT_MINIMIZED_SIZE) {
+      // Transition to minimized
+      if (isMapBottomUIDisplayed) {
         fire('mobile_geolocation_button_visibility', true);
         fire('mobile_direction_button_visibility', true);
-      } else {
-        // Transition to default
+      }
+    } else {
+      // Transition to default
+      if (isMapBottomUIDisplayed) {
         fire('mobile_geolocation_button_visibility', true);
         fire('mobile_direction_button_visibility', false);
+      }
+
+      if (floatingItems && !isFloatingBlockVisible) {
+        this.setState({ isFloatingBlockVisible: true });
       }
     }
   }
@@ -279,7 +295,7 @@ class Panel extends React.Component {
     const {
       children, minimizedTitle,
       resizable, className, size, renderHeader, onClose, floatingItems } = this.props;
-    const { translateY, holding } = this.state;
+    const { translateY, holding, isFloatingBlockVisible } = this.state;
 
     return (
       <DeviceContext.Consumer>
@@ -299,7 +315,12 @@ class Panel extends React.Component {
             onTransitionEnd={() => this.updateMobileMapUI()}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            {floatingItems && <FloatingItems items={floatingItems} />}
+            {floatingItems &&
+              <FloatingItems
+                className={!isFloatingBlockVisible ? 'floatingItems--hidden' : ''}
+                items={floatingItems}
+              />
+            }
             {onClose && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable &&
               <div

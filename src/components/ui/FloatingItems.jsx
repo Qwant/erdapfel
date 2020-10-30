@@ -1,7 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const FloatingItems = ({ items }) =>
-  <div className="floatingItems">
+const FloatingItems = ({ className, items }) =>
+  <div className={classNames('floatingItems', className)}>
     {items}
   </div>
 ;
