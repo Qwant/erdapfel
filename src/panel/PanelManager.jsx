@@ -70,7 +70,7 @@ export default class PanelManager extends React.Component {
     this.updateSearchBarContent(options);
   }
 
-  updateSearchBarContent({ poiFilters = {}, query }) {
+  updateSearchBarContent({ poiFilters = {}, query } = {}) {
     const topBarHandle = document.querySelector('.top_bar');
     if (poiFilters.category) {
       const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
@@ -155,7 +155,7 @@ export default class PanelManager extends React.Component {
     });
 
     // Default matching route
-    router.addRoute('Services', '/?', (_, options) => {
+    router.addRoute('Services', '/?', (_, options = {}) => {
       this.setState({
         ActivePanel: ServicePanel,
         options,
