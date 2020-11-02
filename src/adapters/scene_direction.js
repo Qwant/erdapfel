@@ -10,6 +10,7 @@ import {
   originDestinationCoords,
   formatDuration,
   formatDistance,
+  getVehicleIcon,
 } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
@@ -22,11 +23,14 @@ const createMarker = (lngLat, className = '', options = {}) => {
   return new Marker({ ...options, element }).setLngLat(lngLat);
 };
 
-const createRouteLabel = (route, { lngLat, anchor }) => {
+const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   const element = document.createElement('div');
   element.innerHTML = `
-    <div class="routeLabel-duration">${formatDuration(route.duration)}</div>
-    <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
+    <div class="routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}"></div>
+    <div>
+      <div class="routeLabel-duration">${formatDuration(route.duration)}</div>
+      <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
+    </div>
   `;
   element.className = `routeLabel routeLabel--${anchor}`;
   element.dataset.id = route.id;
@@ -176,17 +180,17 @@ export default class SceneDirection {
       this.routes.forEach(route => {
         this.mapFeaturesByRoute[route.id] = this.addRouteFeatures(route);
       });
-      this.displayLabels(this.routes);
+      this.displayLabels(this.routes, this.vehicle);
       const mainRoute = this.routes.find(route => route.isActive);
       this.setMainRoute(mainRoute.id, true);
     }
   }
 
-  displayLabels(routes) {
+  displayLabels(routes, vehicle) {
     const labelPositions = getLabelPositions(routes.map(route => route.geometry));
 
     this.routeLabels = labelPositions.map(({ lngLat, anchor }, index) =>
-      createRouteLabel(routes[index], { lngLat, anchor })
+      createRouteLabel(routes[index], vehicle, { lngLat, anchor })
         .addTo(this.map)
     );
   }
