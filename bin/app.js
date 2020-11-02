@@ -116,7 +116,7 @@ function App(config) {
       appConfig = JSON.parse(JSON.stringify(config));
       appConfig.burgerMenu.enabled = false;
     }
-    res.render('index', { config: appConfig });
+    res.render('index', { config: appConfig, noUi: req.query.no_ui === '1' });
   });
 
   if (config.server.acceptPostedLogs) {

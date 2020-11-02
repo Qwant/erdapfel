@@ -70,7 +70,10 @@ export default class SceneCategory {
       source: DYNAMIC_POIS_LAYER,
       id: DYNAMIC_POIS_LAYER,
     });
-    this.map.on('click', DYNAMIC_POIS_LAYER, this.handleLayerMarkerClick);
+    // iframe: disable clicks on markers
+    if (!window.no_ui) {
+      this.map.on('click', DYNAMIC_POIS_LAYER, this.handleLayerMarkerClick);
+    }
     if (!isMobileDevice()) {
       this.map.on('mousemove', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseMove);
       this.map.on('mouseleave', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseLeave);
@@ -105,8 +108,10 @@ export default class SceneCategory {
   }
 
   handleLayerMarkerClick = e => {
+
     e.originalEvent.stopPropagation();
     const poi = this.getPointedPoi(e);
+
     this.selectPoi({
       poi,
       pois: this.pois,
