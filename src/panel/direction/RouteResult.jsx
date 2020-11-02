@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
 import { fire, listen } from 'src/libs/customEvents';
+import { buildQueryString, parseQueryString, updateRoute } from 'src/libs/url_utils';
 import Telemetry from 'src/libs/telemetry';
 
 export default class RouteResult extends React.Component {
@@ -29,15 +30,65 @@ export default class RouteResult extends React.Component {
   }
 
   componentDidMount() {
-    listen('select_road_map', routeId => {
-      this.selectRoute(routeId);
-    });
+    // listen('select_road_map', routeId => {
+    //   this.selectRoute(routeId);
+    // });
+
+    const { selected } = parseQueryString(window.location.search);
+    if (selected) {
+      const selectedIndex = selected ? parseInt(selected) : 0;
+      const activeRouteId = selectedIndex < this.props.routes.length ? selectedIndex : 0;
+      this.selectRoute(activeRouteId);
+      this.toggleRouteDetails(activeRouteId);
+      // this.setState({
+      //   activeRouteId,
+      //   activeDetails: true,
+      // });
+    }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.routes.length !== prevProps.routes.length) {
-      this.setState({ activeRouteId: 0 });
-    }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate');
+    // if (this.props.routes.length !== prevProps.routes.length) {
+    //   this.setState({ activeRouteId: 0 });
+    // }
+    // if (this.props.routes.length !== prevProps.routes.length) {
+    //   this.setState({ activeRouteId: 0 });
+    // }
+    // if (this.props.routes.length !== prevProps.routes.length) {
+    //   this.setState({ activeRouteId: 0 });
+    // }
+
+    // if (this.state.activeDetails !== prevState.activeDetails) {
+    //   if (this.state.activeDetails) {
+    //     const queryObject = {
+    //       ...parseQueryString(window.location.search),
+    //       selected: this.state.activeRouteId,
+    //     };
+
+    //     const search = buildQueryString(queryObject);
+    //     console.log('search', search);
+    //     const route = updateRoute({ search });
+    //     console.log('route', route);
+    //     window.app.navigateTo(route, {}, {
+    //       replace: false,
+    //       routeUrl: false,
+    //     });
+    //   } else {
+    //     const queryObject = {
+    //       ...parseQueryString(window.location.search),
+    //     };
+    //     delete queryObject.selected;
+
+    //     const search = buildQueryString(queryObject);
+    //     const route = updateRoute({ search });
+    //     console.log('route', route);
+    //     window.app.navigateTo(route, {}, {
+    //       replace: false,
+    //       routeUrl: false,
+    //     });
+    //   }
+    // }
   }
 
   selectRoute = routeId => {
@@ -57,10 +108,13 @@ export default class RouteResult extends React.Component {
   }
 
   toggleRouteDetails = routeId => {
+    console.log('toggleRouteDetails');
     Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
     if (this.state.activeRouteId === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
+      console.log('okok', !this.state.activeDetails);
     } else {
+      console.log('set_main_route');
       fire('set_main_route', { routeId, fitView: true });
       this.setState({
         activeRouteId: routeId,
@@ -74,6 +128,7 @@ export default class RouteResult extends React.Component {
   }
 
   render() {
+    console.log('render', this.state);
     if (this.props.error !== 0) {
       return <div className="itinerary_no-result">
         <span className="icon-alert-triangle" />

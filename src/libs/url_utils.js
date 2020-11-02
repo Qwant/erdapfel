@@ -63,5 +63,12 @@ const removeNullEntries = obj =>
 
 export function buildQueryString(queriesObject) {
   const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();
-  return params ? `?${params}` : '';
+  return params ? decodeURIComponent(`?${params}`) : '';
+}
+
+export function updateRoute({
+  pathname = window.location.pathname,
+  search = window.location.search,
+}) {
+  return joinPath([pathname, search]);
 }
