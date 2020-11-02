@@ -61,9 +61,8 @@ export function getVisibleBbox(mb, isIframe) {
   return bbox;
 }
 
-// Disable offset on mobile and in iframe mode
-export function getMapCenterOffset({ disableOffset }) {
-  return disableOffset ? [0, 0] : [(DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING) / 2, 0];
+export function getMapCenterOffset({ isMobile, isIframe }) {
+  return isMobile || isIframe ? [0, 0] : [(DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING) / 2, 0];
 }
 
 export function isPositionUnderUI({ x, y }, { isMobile }) {

@@ -385,7 +385,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
   this.mb.flyTo({
     center: poi.latLon,
     zoom: getBestZoom(poi),
-    offset: getMapCenterOffset({ disableOffset: isMobile || window.no_ui }),
+    offset: getMapCenterOffset({ isMobile, isIframe: window.no_ui }),
     maxDuration: 1200,
   });
 };
