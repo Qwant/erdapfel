@@ -31,6 +31,9 @@ $font_system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetic
 // z-index
 @import "includes/z_index";
 
+// iframe mode
+@import "includes/no_ui";
+
 
 @import "includes/ui_components";
 @import "includes/reviewScore";

@@ -16,6 +16,7 @@ listen('move_mobile_bottom_ui', height => {
 });
 
 export function getMapPaddings({ isMobile, isDirectionsActive }) {
+  // iframe: no paddings
   if (window.no_ui) {
     return { bottom: 0, top: 0, left: 0, right: 0 };
   }

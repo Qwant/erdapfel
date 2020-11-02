@@ -1,0 +1,18 @@
+// Iframe mode: hide all UI elements except map, markers and attribution
+.no_ui {
+  .top_bar {
+    visibility: hidden;
+  }
+
+  .menu__button {
+    visibility: hidden;
+  }
+
+  .panel_container {
+    visibility: hidden;
+  }
+
+  .map_control_group {
+    visibility: hidden;
+  }
+}
