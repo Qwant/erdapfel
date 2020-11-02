@@ -65,3 +65,10 @@ export function buildQueryString(queriesObject) {
   const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();
   return params ? `?${params}` : '';
 }
+
+export function buildRelativeUrl({
+  pathname = window.location.pathname,
+  search = window.location.search,
+}) {
+  return joinPath([pathname, search]);
+}
