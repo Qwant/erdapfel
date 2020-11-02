@@ -99,7 +99,7 @@ export default class CategoryPanel extends React.Component {
 
   fetchData = async () => {
     const { category, query } = this.props.poiFilters;
-    const currentBounds = getVisibleBbox(window.map.mb);
+    const currentBounds = getVisibleBbox(window.map.mb, window.no_ui);
 
     const extendBbox = this.state.initialLoading;
     const { places, source, bbox: contentBbox, bbox_extended } = await IdunnPoi.poiCategoryLoad(

@@ -15,9 +15,9 @@ listen('move_mobile_bottom_ui', height => {
   mobileBottomPanelHeight = height;
 });
 
-export function getMapPaddings({ isMobile, isDirectionsActive }) {
+export function getMapPaddings({ isMobile, isDirectionsActive, isIframe }) {
   // iframe: no paddings
-  if (window.no_ui) {
+  if (isIframe) {
     return { bottom: 0, top: 0, left: 0, right: 0 };
   }
   if (!isMobile) {
@@ -35,7 +35,7 @@ export function getMapPaddings({ isMobile, isDirectionsActive }) {
   };
 }
 
-export function getVisibleBbox(mb) {
+export function getVisibleBbox(mb, isIframe) {
 
   const bbox = mb.getBounds();
   let ne = bbox.getNorthEast();
@@ -44,7 +44,7 @@ export function getVisibleBbox(mb) {
   const sw_canvas = mb.project(sw);
 
   // iframe: no offset
-  if (!window.no_ui) {
+  if (!isIframe) {
     if (isMobileDevice()) {
       // On mobile, compute a bbox that excludes the header's height
       ne_canvas.y += 65;

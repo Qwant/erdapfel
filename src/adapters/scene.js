@@ -264,6 +264,7 @@ Scene.prototype.initMapBox = async function(locationHash) {
 Scene.prototype.getCurrentPaddings = () => getMapPaddings({
   isMobile: isMobileDevice(),
   isDirectionsActive: !!document.querySelector('.directions-open'),
+  isIframe: window.no_ui,
 });
 
 Scene.prototype.clickOnMap = function(lngLat, clickedFeature, { longTouch = false } = {}) {
