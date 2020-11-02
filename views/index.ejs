@@ -63,10 +63,8 @@
     <% if (noUi) { %>
     <script>
       // iframe: hide UI immediately to avoid content flashing while the JS bundle loads
-      if (location.search.indexOf('&no_ui=1') != -1) {
-        window.no_ui = true;
-        document.body.classList.add('no_ui');
-      }
+      window.no_ui = true;
+      document.body.classList.add('no_ui');
     </script>
     <% } %>
     <script src="./statics/build/javascript/bundle.js"></script>
