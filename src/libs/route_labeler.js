@@ -27,7 +27,7 @@ function getAxis(ls) {
   return 'horizontal';
 }
 
-const asKey = coord => `${coord[0]},${coord[1]}`;
+const asKey = coord => `${coord[0].toFixed(6)},${coord[1].toFixed(6)}`;
 
 function distinctSegment(coordinates, coordCounts) {
   let start = 0;
@@ -40,7 +40,7 @@ function distinctSegment(coordinates, coordCounts) {
     if (start === 0 && coordCounts.get(asKey(coord)) === 1) {
       start = index;
     }
-    if (start !== 0 && end === coordinates.length - 1 && coordCounts.get(asKey(coord)) !== 1) {
+    if (start !== 0 && coordCounts.get(asKey(coord)) !== 1) {
       end = index;
       break;
     }
@@ -67,7 +67,10 @@ export function findDistinctSegments(linestrings) {
 
 const toSimpleLinestring = geoJson => lineString(coordAll(geoJson));
 
-const coordEquals = (c1 = [], c2 = []) => c1[0] === c2[0] && c1[1] === c2[1];
+const TOLERANCE = 0.000001;
+const floatEquals = (f1, f2) => Math.abs(f1 - f2) < TOLERANCE;
+
+const coordEquals = (c1 = [], c2 = []) => floatEquals(c1[0], c2[0]) && floatEquals(c1[1], c2[1]);
 
 function dropRepeatedCoords(list) {
   const result = [];
