@@ -14,8 +14,8 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
     // Close to (address) + GPS coordinates
     if (address) {
       return <div className="poiTitle">
-        <div className="u-text--subtitle u-italic u-mb-4">{ _('Close to', 'poi')}</div>
-        <h2 className="poiTitle-main u-text--smallTitle u-mb-4">
+        <div className="u-text--subtitle u-italic u-mb-xxs">{ _('Close to', 'poi')}</div>
+        <h2 className="poiTitle-main u-text--smallTitle u-mb-xxs">
           <Address address={address} omitCountry />
         </h2>
         <div className="poiTitle-position">{latLon}</div>
@@ -24,7 +24,7 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
 
     // GPS coordinates only
     return <div className="poiTitle">
-      <h2 className="poiTitle-main u-text--smallTitle u-mb-4">
+      <h2 className="poiTitle-main u-text--smallTitle u-mb-xxs">
         { _('Geographic coordinates', 'poi')}
       </h2>
       <div className="poiTitle-position">{latLon}</div>

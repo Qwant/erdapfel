@@ -17,7 +17,7 @@ const Text = ({ children, level, inline, icon, className, ...rest }) => {
     className={classnames({ [`u-text--${level}`]: level }, className)}
     {...props}
   >
-    {icon && <i className={`u-mr-4 icon-${icon}`} />}
+    {icon && <i className={`u-mr-xxs icon-${icon}`} />}
     {children}
   </TagName>;
 };

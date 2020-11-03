@@ -16,7 +16,7 @@ const containerTypes = type => {
 
 const Container = ({ type, filling_level, updated_at }) =>
   <div className="recycling-container">
-    <Text level="caption" icon="icon_clock" className="u-mb-8">
+    <Text level="caption" icon="icon_clock" className="u-mb-xs">
       {_(
         'Updated {datetime}',
         'recycling', {

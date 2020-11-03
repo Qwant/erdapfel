@@ -11,9 +11,9 @@ const RouteSummaryInfo = ({ isFastest, route, vehicle }) =>
       {formatDuration(route.duration)}
     </div>
 
-    <RouteVia className="u-mb-8" route={route} vehicle={vehicle} />
+    <RouteVia className="u-mb-xs" route={route} vehicle={vehicle} />
 
-    <Badge className="u-mr-8">
+    <Badge className="u-mr-xs">
       {formatDistance(route.distance)}
     </Badge>
 

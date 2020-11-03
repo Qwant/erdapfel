@@ -11,7 +11,7 @@ const ImagesBlock = ({
   }
 
   return <div className="poi_panel__pictures">
-    <h3 className="u-text--smallTitle u-mb-20">
+    <h3 className="u-text--smallTitle u-mb-l">
       { _('Photos') }
     </h3>
     <div className="poi_panel__pictures_tiles">

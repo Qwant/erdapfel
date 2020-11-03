@@ -260,14 +260,14 @@ export default class PoiPanel extends React.Component {
             <Flex alignItems="flex-start" justifyContent="space-between">
               <PoiItem
                 poi={poi}
-                className="u-mb-20 poi-panel-poiItem"
+                className="u-mb-l poi-panel-poiItem"
                 withAlternativeName
                 withOpeningHours
                 onClick={this.center}
               />
               <CloseButton onClick={isMobile ? backAction : this.closeAction} position="topRight" />
             </Flex>
-            <div className="u-mb-8">
+            <div className="u-mb-xs">
               <ActionButtons
                 poi={poi}
                 isDirectionActive={this.isDirectionActive}

@@ -9,8 +9,8 @@ const geoloc = e => {
 const CategoryPanelError = ({ zoomIn }) => {
   return (
     <div className="category__panel__error">
-      <p className="u-mb-8 u-text--smallTitle">{_('No results found.')}</p>
-      <p className="u-mb-20">
+      <p className="u-mb-xs u-text--smallTitle">{_('No results found.')}</p>
+      <p className="u-mb-l">
         {zoomIn
           ? _('Please zoom in the map to see the results for this category.', 'categories')
           : _('Please zoom out of the map.', 'categories')

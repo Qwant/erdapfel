@@ -19,8 +19,8 @@ const NoResultPanel = () => {
       <div
         style={{ padding: '16px 16px 32px 16px' }}
       >
-        <p className="u-mb-8 u-text--smallTitle">{_('No results found.')}</p>
-        <p className="u-text--subtitle u-mb-20">
+        <p className="u-mb-xs u-text--smallTitle">{_('No results found.')}</p>
+        <p className="u-text--subtitle u-mb-l">
           {_('Check the spelling of your search or add more details, such as city or country.')}
         </p>
         <a onClick={handleSearchClick} href="#">
