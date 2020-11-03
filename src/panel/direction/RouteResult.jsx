@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
 import { fire, listen } from 'src/libs/customEvents';
+import { updateQueryString } from 'src/libs/url_utils';
 import Telemetry from 'src/libs/telemetry';
 
 export default class RouteResult extends React.Component {
@@ -24,7 +25,6 @@ export default class RouteResult extends React.Component {
   }
 
   state = {
-    activeRouteId: 0,
     activeDetails: false,
   }
 
@@ -34,36 +34,32 @@ export default class RouteResult extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.routes.length !== prevProps.routes.length) {
-      this.setState({ activeRouteId: 0 });
-    }
-  }
-
   selectRoute = routeId => {
-    if (routeId === this.state.activeRouteId) {
+    if (routeId === this.props.selected) {
       return;
     }
+
     Telemetry.add(Telemetry.ITINERARY_ROUTE_SELECT);
     fire('set_main_route', { routeId, fitView: true });
-    this.setState({ activeRouteId: routeId });
+
+    const search = updateQueryString({ selected: routeId });
+    window.app.navigateTo('routes/' + search, {}, { replace: true });
   }
 
   hoverRoute = (routeId, highlightMapRoute) => {
-    if (routeId === this.state.activeRouteId) {
+    if (routeId === this.props.selected) {
       return;
     }
-    fire('set_main_route', { routeId: highlightMapRoute ? routeId : this.state.activeRouteId });
+    fire('set_main_route', { routeId: highlightMapRoute ? routeId : this.props.selected });
   }
 
   toggleRouteDetails = routeId => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
-    if (this.state.activeRouteId === routeId) {
+    if (this.props.selected === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
     } else {
       fire('set_main_route', { routeId, fitView: true });
       this.setState({
-        activeRouteId: routeId,
         activeDetails: true,
       });
     }
@@ -129,8 +125,8 @@ export default class RouteResult extends React.Component {
               origin={this.props.origin}
               destination={this.props.destination}
               vehicle={this.props.vehicle}
-              isActive={this.state.activeRouteId === index}
-              showDetails={this.state.activeRouteId === index && this.state.activeDetails}
+              isActive={this.props.selected === index}
+              showDetails={this.props.selected === index && this.state.activeDetails}
               toggleDetails={this.toggleRouteDetails}
               openPreview={this.openPreview}
               selectRoute={this.selectRoute}

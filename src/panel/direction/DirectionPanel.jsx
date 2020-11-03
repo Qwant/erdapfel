@@ -311,6 +311,15 @@ export default class DirectionPanel extends React.Component {
     return handler(e);
   }
 
+  sanitizeSelected() {
+    const selectedParsed = parseInt(this.props.selected);
+    const isSelectedValid =
+      typeof selectedParsed === 'number' &&
+      selectedParsed < this.state.routes.length;
+
+    return isSelectedValid ? selectedParsed : 0;
+  }
+
   render() {
     const {
       origin, destination, vehicle,
@@ -338,6 +347,7 @@ export default class DirectionPanel extends React.Component {
       isInitializing={isInitializing}
     />;
     const result = <RouteResult
+      selected={this.sanitizeSelected()}
       isLoading={isLoading || routes.length > 0 && isDirty}
       vehicle={vehicle}
       error={error}
