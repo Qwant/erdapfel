@@ -66,18 +66,15 @@ export default class App {
   * @param {Object} state - State object to associate with the history entry.
   * @param {Object} options
   * @param {boolean} options.replace - If true, the new state/url will replace the current state in browser history
-  * @param {boolean} options.routeUrl- If true, the new URL will be evaluated by the router.
   */
-  navigateTo(url, state = {}, { replace = false, routeUrl = true } = {}) {
+  navigateTo(url, state = {}, { replace = false } = {}) {
     const urlWithCurrentHash = joinPath([window.baseUrl, url]) + location.hash;
     if (replace) {
       window.history.replaceState(state, null, urlWithCurrentHash);
     } else {
       window.history.pushState(state, null, urlWithCurrentHash);
     }
-    if (routeUrl) {
-      this.router.routeUrl(urlWithCurrentHash, state);
-    }
+    this.router.routeUrl(urlWithCurrentHash, state);
   }
 
   updateHash(hash) {

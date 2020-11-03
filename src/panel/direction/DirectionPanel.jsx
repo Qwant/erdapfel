@@ -235,7 +235,6 @@ export default class DirectionPanel extends React.Component {
     }
     window.app.navigateTo(`/routes/?${routeParams.join('&')}`, {}, {
       replace: true,
-      routeUrl: false,
     });
   }
 
