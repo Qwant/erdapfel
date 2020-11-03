@@ -5,18 +5,17 @@ import along from '@turf/along';
 import lineLength from '@turf/length';
 import lineSliceAlong from '@turf/line-slice-along';
 import bearing from '@turf/bearing';
+import distance from '@turf/distance';
 
 // find the point at the given distance ratio on the linestring
 function project(ratio, ls) {
   const length = lineLength(ls);
   const lngLat = getCoord(along(ls, length * ratio));
-  // compute the local "axis" of the line (horizontal or vertical)
-  // around the label position to optimize its direction
-  const axis = getAxis(lineSliceAlong(ls, length * (ratio - 0.01), length * (ratio + 0.01)));
-  const anchor = axis === 'horizontal' ? 'bottom' : 'left';
-  // @TODO: optimize label anchor wrt. each other, to reduce risk of collisions
+  // compute the approximate "axis" of the line (horizontal or vertical)
+  // around the label position to chose an anchor minimizing the portion of line covered.
+  const axis = getAxis(lineSliceAlong(ls, length * (ratio - 0.1), length * (ratio + 0.1)));
 
-  return { lngLat, anchor };
+  return { lngLat, axis };
 }
 
 function getAxis(ls) {
@@ -80,8 +79,50 @@ function dropRepeatedCoords(list) {
   return result;
 }
 
+// Reduce possibilities of collision by chosing anchors so that labels repulse each other
+function optimizeAnchors(positions) {
+  return positions.map((position, index) => {
+    const others = positions.slice();
+    others.splice(index, 1);
+    const othersBearing = getBearingFromOtherPoints(position, others);
+    return {
+      lngLat: position.lngLat,
+      anchor: getAnchor(position.axis, othersBearing),
+    };
+  });
+}
+
+function getBearingFromOtherPoints(position, others) {
+  if (others.length === 0) {
+    return 0;
+  }
+  return others
+    .map(other => ({
+      bearing: bearing(other.lngLat, position.lngLat),
+      distance: distance(other.lngLat, position.lngLat),
+    }))
+    // only consider the bearing from the closest point
+    // but we could be smarter (weighted average?)
+    .reduce((closest, current) => {
+      if (!closest || current.distance < closest.distance) {
+        return current;
+      }
+      return closest;
+    }, null)
+    .bearing;
+}
+
+function getAnchor(axis, otherBearing) {
+  if (axis === 'vertical') {
+    return otherBearing > 0 ? 'left' : 'right';
+  }
+  return Math.abs(otherBearing) < 90 ? 'bottom' : 'top';
+}
+
 export function getLabelPositions(features) {
   const lineStrings = features.map(toSimpleLinestring);
   const distinctSegments = findDistinctSegments(lineStrings);
-  return distinctSegments.map(branchCoords => project(0.5, branchCoords));
+  const positions = distinctSegments.map(branchCoords => project(0.5, branchCoords));
+  const optimizedPositions = optimizeAnchors(positions);
+  return optimizedPositions;
 }

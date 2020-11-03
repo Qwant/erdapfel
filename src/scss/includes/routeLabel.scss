@@ -80,7 +80,39 @@
     }
 
     &.active::after {
-      border-right: 6px solid white;
+      border-right-color: white;
+    }
+  }
+
+  &--top {
+    top: 6px;
+
+    &::after {
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid $grey-lighter;
+      top: -6px;
+      left: calc(50% - 6px);
+    }
+
+    &.active::after {
+      border-bottom-color: white;
+    }
+  }
+
+  &--right {
+    left: -6px;
+
+    &::after {
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid $grey-lighter;
+      right: -6px;
+      top: calc(50% - 6px);
+    }
+
+    &.active::after {
+      border-left-color: white;
     }
   }
 }

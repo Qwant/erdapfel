@@ -85,6 +85,7 @@
     "@turf/along": "^6.0.1",
     "@turf/bbox": "^6.0.1",
     "@turf/bearing": "^6.0.1",
+    "@turf/distance": "^6.0.1",
     "@turf/helpers": "^6.1.4",
     "@turf/invariant": "^6.1.2",
     "@turf/length": "^6.0.2",
