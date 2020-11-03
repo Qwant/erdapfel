@@ -80,6 +80,15 @@
   margin-left: auto;
 }
 
+@each $spacingName, $spacingValue in $spacings {
+  .u-mb-#{$spacingName} {
+    margin-bottom: $spacingValue;
+  }
+  .u-mr-#{$spacingName} {
+    margin-right: $spacingValue;
+  }
+}
+
 .u-ml-4 {
   margin-left: 4px;
 }
