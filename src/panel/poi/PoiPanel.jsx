@@ -192,7 +192,9 @@ export default class PoiPanel extends React.Component {
     const uri = `/places/${params}`;
 
     Telemetry.add(Telemetry.POI_BACKTOLIST);
-    fire('restore_location');
+    if (!window.no_ui) {
+      fire('restore_location');
+    }
     window.app.navigateTo(uri);
   }
 
