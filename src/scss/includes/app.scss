@@ -1,4 +1,4 @@
-BODY {
+body {
   background: url("../images/backgrounds/grid.png");
 }
 
@@ -28,6 +28,13 @@ noscript {
 }
 
 @media (max-width: 640px) {
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   .directions-open {
     .menu__button,
     .direction_shortcut,
