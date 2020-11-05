@@ -6,7 +6,7 @@ import { map as mapConfig } from 'config/constants.yml';
 import { getMapPaddings, getMapCenterOffset, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
-import LocalStore from '../libs/local_store';
+import Store from 'src/adapters/store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
@@ -20,7 +20,7 @@ import { fire, listen } from 'src/libs/customEvents';
 import locale from '../mapbox/locale';
 
 const baseUrl = nconf.get().system.baseUrl;
-const store = new LocalStore();
+const store = new Store();
 const LONG_TOUCH_DELAY_MS = 500;
 
 function Scene() {
