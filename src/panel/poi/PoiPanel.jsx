@@ -13,15 +13,13 @@ import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import Store from '../../adapters/store';
+import store from 'src/adapters/store';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
 import { Flex, Panel, PanelNav, CloseButton } from 'src/components/ui';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
-
-const store = new Store();
 
 async function isPoiFavorite(poi) {
   try {

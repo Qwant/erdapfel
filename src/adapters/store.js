@@ -5,16 +5,7 @@ import { getKey } from 'src/libs/pois';
 import { fire } from 'src/libs/customEvents';
 import { isPoiCompliantKey } from 'src/libs/pois';
 
-export default class Store {
-  constructor() {
-    // get store from window if already initialized
-    if (window.__store) {
-      return window.__store;
-    }
-    // if store not initialized, use this
-    window.__store = this;
-  }
-
+class Store {
   async getAllPois() {
     let localStorageKeys = [];
     try {
@@ -113,3 +104,8 @@ export default class Store {
     }
   }
 }
+
+const storeSingleton = new Store();
+Object.freeze(storeSingleton);
+
+export default storeSingleton;

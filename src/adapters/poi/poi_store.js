@@ -1,10 +1,9 @@
 import Poi from './poi';
-import Store from '../../adapters/store';
+import store from 'src/adapters/store';
 import Error from '../error';
 import Telemetry from '../../libs/telemetry';
 import { normalize as normalizeAddress } from 'src/libs/address';
 
-const store = new Store();
 export default class PoiStore extends Poi {
   static new(rawStorePoi) {
     const poi = Object.assign(new PoiStore(), rawStorePoi);
