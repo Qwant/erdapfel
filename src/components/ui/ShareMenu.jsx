@@ -1,5 +1,6 @@
 /* global _ */
 import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 const facebookShareUrl = location => {
@@ -31,7 +32,15 @@ export default class ShareMenu extends React.Component {
     left: 0,
   }
 
+  componentDidMount() {
+    this.portalContainer = document.createElement('div');
+    document.body.appendChild(this.portalContainer);
+  }
+
   componentWillUnmount() {
+    if (this.portalContainer) {
+      this.portalContainer.remove();
+    }
     this.close();
   }
 
@@ -89,7 +98,7 @@ export default class ShareMenu extends React.Component {
 
     return <Fragment>
       {children(this.open)}
-      {this.state.open && <div className="shareMenu-menu"
+      {this.state.open && ReactDOM.createPortal(<div className="shareMenu-menu"
         style={{ left: this.state.left + 'px', top: this.state.top + 'px' }}>
 
         <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
@@ -122,7 +131,7 @@ export default class ShareMenu extends React.Component {
           <i className="icon-twitter" />
           {_('Twitter', 'share')}
         </div>
-      </div>}
+      </div>, this.portalContainer)}
     </Fragment>;
   }
 }
