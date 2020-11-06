@@ -18,6 +18,7 @@ export default class RouteResult extends React.Component {
     isLoading: PropTypes.bool,
     error: PropTypes.number,
     openMobilePreview: PropTypes.func.isRequired,
+    activeRouteId: PropTypes.number.isRequired,
   }
 
   static defaultProps = {
@@ -35,7 +36,7 @@ export default class RouteResult extends React.Component {
   }
 
   selectRoute = routeId => {
-    if (routeId === this.props.selected) {
+    if (routeId === this.props.activeRouteId) {
       return;
     }
 
@@ -47,15 +48,15 @@ export default class RouteResult extends React.Component {
   }
 
   hoverRoute = (routeId, highlightMapRoute) => {
-    if (routeId === this.props.selected) {
+    if (routeId === this.props.activeRouteId) {
       return;
     }
-    fire('set_main_route', { routeId: highlightMapRoute ? routeId : this.props.selected });
+    fire('set_main_route', { routeId: highlightMapRoute ? routeId : this.props.activeRouteId });
   }
 
   toggleRouteDetails = routeId => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
-    if (this.props.selected === routeId) {
+    if (this.props.activeRouteId === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
     } else {
       fire('set_main_route', { routeId, fitView: true });
@@ -125,8 +126,8 @@ export default class RouteResult extends React.Component {
               origin={this.props.origin}
               destination={this.props.destination}
               vehicle={this.props.vehicle}
-              isActive={this.props.selected === index}
-              showDetails={this.props.selected === index && this.state.activeDetails}
+              isActive={this.props.activeRouteId === index}
+              showDetails={this.props.activeRouteId === index && this.state.activeDetails}
               toggleDetails={this.toggleRouteDetails}
               openPreview={this.openPreview}
               selectRoute={this.selectRoute}

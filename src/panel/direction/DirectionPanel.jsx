@@ -347,7 +347,7 @@ export default class DirectionPanel extends React.Component {
       isInitializing={isInitializing}
     />;
     const result = <RouteResult
-      selected={this.sanitizeSelected()}
+      activeRouteId={this.sanitizeSelected()}
       isLoading={isLoading || routes.length > 0 && isDirty}
       vehicle={vehicle}
       error={error}
