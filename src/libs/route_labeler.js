@@ -30,21 +30,12 @@ function getAxis(ls) {
 const asKey = coord => `${coord[0].toFixed(6)},${coord[1].toFixed(6)}`;
 
 function distinctSegment(coordinates, coordCounts) {
-  let start = 0;
-  let end = coordinates.length - 1;
-
   // a distinct segment is a part of a line where coordinates
   // appear only once accross all the features
-  for (let index = 0; index < coordinates.length; index++) {
-    const coord = coordinates[index];
-    if (start === 0 && coordCounts.get(asKey(coord)) === 1) {
-      start = index;
-    }
-    if (start !== 0 && coordCounts.get(asKey(coord)) !== 1) {
-      end = index;
-      break;
-    }
-  }
+  const start = coordinates.findIndex(coord => coordCounts.get(asKey(coord)) === 1);
+  const end = start + coordinates
+    .slice(start)
+    .findIndex(coord => coordCounts.get(asKey(coord)) !== 1);
 
   return lineString(coordinates.slice(start, end));
 }
@@ -85,8 +76,10 @@ function dropRepeatedCoords(list) {
 // Reduce possibilities of collision by chosing anchors so that labels repulse each other
 function optimizeAnchors(positions) {
   return positions.map((position, index) => {
-    const others = positions.slice();
-    others.splice(index, 1);
+    const others = [
+      ...positions.slice(0, index),
+      ...positions.slice(index + 1),
+    ];
     const othersBearing = getBearingFromOtherPoints(position, others);
     return {
       lngLat: position.lngLat,
