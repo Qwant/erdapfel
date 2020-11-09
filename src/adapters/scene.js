@@ -37,7 +37,7 @@ Scene.prototype.getMapInitOptions = async function(locationHash) {
     };
   }
   const lastLocation = await store.getLastLocation();
-  if (lastLocation) {
+  if (lastLocation && !window.no_ui) {
     return {
       zoom: lastLocation.zoom,
       center: [lastLocation.lng, lastLocation.lat],
@@ -211,7 +211,9 @@ Scene.prototype.initMapBox = async function(locationHash) {
     this.mb.on('moveend', () => {
       const { lng, lat } = this.mb.getCenter();
       const zoom = this.mb.getZoom();
-      store.setLastLocation({ lng, lat, zoom });
+      if (!window.no_ui) {
+        store.setLastLocation({ lng, lat, zoom });
+      }
       window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
     });
