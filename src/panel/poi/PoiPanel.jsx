@@ -13,7 +13,7 @@ import { buildQueryString } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import store from 'src/adapters/store';
+import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters/store';
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
@@ -23,7 +23,7 @@ const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
 async function isPoiFavorite(poi) {
   try {
-    const storePoi = await store.has(poi);
+    const storePoi = await isInFavorites(poi);
     return !!storePoi;
   } catch (e) {
     return false;
@@ -214,9 +214,9 @@ export default class PoiPanel extends React.Component {
     const poi = this.state.fullPoi;
     Telemetry.sendPoiEvent(poi, 'favorite', { stored: !this.state.isPoiInFavorite });
     if (this.state.isPoiInFavorite) {
-      store.del(poi);
+      removeFromFavorites(poi);
     } else {
-      store.add(poi);
+      addToFavorites(poi);
     }
   }
 

@@ -3,7 +3,7 @@ import React from 'react';
 import Telemetry from 'src/libs/telemetry';
 import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
-import store from 'src/adapters/store';
+import { removeFromFavorites } from 'src/adapters/store';
 import PoiStore from 'src/adapters/poi/poi_store';
 
 export default class FavoritesPanel extends React.Component {
@@ -30,7 +30,7 @@ export default class FavoritesPanel extends React.Component {
     this.setState(prevState => ({
       favoritePois: prevState.favoritePois.filter(favorite => favorite !== poi),
     }));
-    await store.del(poi);
+    await removeFromFavorites(poi);
   };
 
   close = () => {

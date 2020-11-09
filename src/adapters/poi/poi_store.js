@@ -1,5 +1,5 @@
 import Poi from './poi';
-import store from 'src/adapters/store';
+import { getAllFavorites, getFavoritesMatching } from 'src/adapters/store';
 import Error from '../error';
 import Telemetry from '../../libs/telemetry';
 import { normalize as normalizeAddress } from 'src/libs/address';
@@ -17,7 +17,7 @@ export default class PoiStore extends Poi {
 
   static async get(term) {
     try {
-      const matches = await store.getMatches(term);
+      const matches = await getFavoritesMatching(term);
       return matches.map(match => PoiStore.new(match));
     } catch (e) {
       Error.sendOnce('poi_store', 'get', 'error getting matching favorites', e);
@@ -28,7 +28,7 @@ export default class PoiStore extends Poi {
   static async getAll() {
     let storedData = [];
     try {
-      storedData = await store.getAllPois();
+      storedData = await getAllFavorites();
     } catch (e) {
       Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL);
       Error.sendOnce('poi_store', 'getAll', 'error getting pois', e);
