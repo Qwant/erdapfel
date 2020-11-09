@@ -10,8 +10,8 @@ const InternetAccessBlock = ({
   } else if (asString) {
     return `${_('Internet access', 'poi')} : ${_('WiFi', 'poi')}`;
   }
-  return <div className="u-mb-12">
-    <h6 className="u-text--caption u-mb-4">
+  return <div className="u-mb-s">
+    <h6 className="u-text--caption u-mb-xxs">
       { _('Internet access', 'poi') }
     </h6>
     <ul>

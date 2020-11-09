@@ -34,7 +34,7 @@ const PoiItem = React.memo(({ poi,
 
   return <div className={classnames('poiItem', className)} {...rest}>
     <div className="poiItem-left">
-      <div className="u-mb-4">
+      <div className="u-mb-xxs">
         <PoiTitle poi={poi} withAlternativeName={withAlternativeName} />
       </div>
       <Reviews />

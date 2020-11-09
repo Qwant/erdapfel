@@ -1,0 +1,31 @@
+// Standard spacings from the design system
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-s: 12px;
+$spacing-m: 16px;
+$spacing-l: 20px;
+$spacing-xl: 24px;
+$spacing-xl-2: 32px;
+$spacing-xxl-3: 40px;
+$spacing-xxl-4: 48px;
+$spacing-xxl-5: 56px;
+$spacing-xxl-6: 64px;
+$spacing-xxl-7: 80px;
+$spacing-xxl-8: 96px;
+
+// Sass map for easy iteration
+$spacings: (
+  xxs: $spacing-xxs,
+  xs: $spacing-xs,
+  s: $spacing-s,
+  m: $spacing-m,
+  l: $spacing-l,
+  xl: $spacing-xl,
+  xl-2: $spacing-xl-2,
+  xxl-3: $spacing-xxl-3,
+  xxl-4: $spacing-xxl-4,
+  xxl-5: $spacing-xxl-5,
+  xxl-6: $spacing-xxl-6,
+  xxl-7: $spacing-xxl-7,
+  xxl-8: $spacing-xxl-8
+);

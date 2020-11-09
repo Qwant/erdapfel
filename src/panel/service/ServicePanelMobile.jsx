@@ -16,7 +16,7 @@ class ServicePanelMobile extends React.Component {
       className="service_panel"
     >
       {directionConf.enabled && <Fragment>
-        <h3 className="u-text--smallTitle u-center u-mb-12">
+        <h3 className="u-text--smallTitle u-center u-mb-s">
           {_('Directions', 'service panel')}
         </h3>
         <div className="service_panel__actions">
@@ -64,7 +64,7 @@ class ServicePanelMobile extends React.Component {
         <hr/>
       </Fragment>}
 
-      <h3 className="u-text--smallTitle u-center u-mb-12">
+      <h3 className="u-text--smallTitle u-center u-mb-s">
         {_('Services nearby', 'service panel')}
       </h3>
 

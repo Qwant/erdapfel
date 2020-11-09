@@ -404,7 +404,7 @@ export default class DirectionPanel extends React.Component {
           {isResultDisplayed &&
             <ShareMenu url={window.location.toString()}>
               {openMenu => <Button
-                className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-16"
+                className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
                 variant="tertiary"
                 title={_('Share itinerary', 'direction')}
                 onClick={e => this.handleShareClick(e, openMenu)}

@@ -80,40 +80,17 @@
   margin-left: auto;
 }
 
-.u-ml-4 {
-  margin-left: 4px;
-}
-
-.u-mr-4 {
-  margin-right: 4px;
-}
-
-.u-mr-8 {
-  margin-right: 8px;
-}
-
-.u-mr-16 {
-  margin-right: 16px;
+@each $spacingName, $spacingValue in $spacings {
+  .u-mb-#{$spacingName} {
+    margin-bottom: $spacingValue;
+  }
+  .u-mr-#{$spacingName} {
+    margin-right: $spacingValue;
+  }
 }
 
 .u-mb-2 {
   margin-bottom: 2px;
-}
-
-.u-mb-4 {
-  margin-bottom: 4px;
-}
-
-.u-mb-8 {
-  margin-bottom: 8px;
-}
-
-.u-mb-12 {
-  margin-bottom: 12px;
-}
-
-.u-mb-20 {
-  margin-bottom: 20px;
 }
 
 .u-flex-shrink-0 {
