@@ -208,15 +208,15 @@ Scene.prototype.initMapBox = async function(locationHash) {
     this.mb.on('dragstart', () => { fire('map_user_interaction'); });
     this.mb.on('pitchstart', () => { fire('map_user_interaction'); });
 
-    if (!window.no_ui) {
-      this.mb.on('moveend', () => {
-        const { lng, lat } = this.mb.getCenter();
-        const zoom = this.mb.getZoom();
+    this.mb.on('moveend', () => {
+      const { lng, lat } = this.mb.getCenter();
+      const zoom = this.mb.getZoom();
+      if (!window.no_ui) {
         store.setLastLocation({ lng, lat, zoom });
-        window.app.updateHash(this.getLocationHash());
-        fire('map_moveend');
-      });
-    }
+      }
+      window.app.updateHash(this.getLocationHash());
+      fire('map_moveend');
+    });
 
     window.execOnMapLoaded = f => f();
     fire('map_loaded');
