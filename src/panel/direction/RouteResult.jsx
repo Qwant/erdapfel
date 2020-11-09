@@ -18,7 +18,7 @@ export default class RouteResult extends React.Component {
     isLoading: PropTypes.bool,
     error: PropTypes.number,
     openMobilePreview: PropTypes.func.isRequired,
-    activeRouteId: PropTypes.number.isRequired,
+    activeRouteId: PropTypes.number,
   }
 
   static defaultProps = {
@@ -35,6 +35,12 @@ export default class RouteResult extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.routes.length !== prevProps.routes.length) {
+      this.updateUrl({ selected: this.props.activeRouteId });
+    }
+  }
+
   selectRoute = routeId => {
     if (routeId === this.props.activeRouteId) {
       return;
@@ -43,7 +49,11 @@ export default class RouteResult extends React.Component {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_SELECT);
     fire('set_main_route', { routeId, fitView: true });
 
-    const search = updateQueryString({ selected: routeId });
+    this.updateUrl({ selected: routeId });
+  }
+
+  updateUrl = queryObject => {
+    const search = updateQueryString(queryObject);
     window.app.navigateTo('routes/' + search, {}, { replace: true });
   }
 
