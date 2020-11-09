@@ -4,10 +4,18 @@ import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { prepareRouteColor, getRouteStyle, setActiveRouteStyle } from './route_styles';
-import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
+import {
+  getAllSteps,
+  getAllStops,
+  originDestinationCoords,
+  formatDuration,
+  formatDistance,
+  getVehicleIcon,
+} from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 import { fire, listen } from 'src/libs/customEvents';
+import { getLabelPositions } from 'src/libs/route_labeler';
 
 const createMarker = (lngLat, className = '', options = {}) => {
   const element = document.createElement('div');
@@ -15,11 +23,27 @@ const createMarker = (lngLat, className = '', options = {}) => {
   return new Marker({ ...options, element }).setLngLat(lngLat);
 };
 
+const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
+  const element = document.createElement('div');
+  element.innerHTML = `
+    <div class="routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}"></div>
+    <div>
+      <div class="routeLabel-duration">${formatDuration(route.duration)}</div>
+      <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
+    </div>
+  `;
+  element.className = `routeLabel routeLabel--${anchor}`;
+  element.dataset.id = route.id;
+  element.onclick = () => { fire('select_road_map', route.id); };
+  return new Marker({ element, anchor }).setLngLat(lngLat);
+};
+
 export default class SceneDirection {
   constructor(map) {
     this.map = map;
     this.routes = [];
     this.routeMarkers = [];
+    this.routeLabels = [];
     this.mapFeaturesByRoute = {};
 
     const iconsBaseUrl = nconf.get().system.baseUrl + 'statics/images/direction_icons';
@@ -128,6 +152,7 @@ export default class SceneDirection {
       });
     });
     this.updateMarkers(mainRoute);
+    this.updateRouteLabels(mainRoute);
     if (fitView) {
       fire('fit_map', this.computeBBox(mainRoute));
     }
@@ -155,9 +180,29 @@ export default class SceneDirection {
       this.routes.forEach(route => {
         this.mapFeaturesByRoute[route.id] = this.addRouteFeatures(route);
       });
+      this.displayLabels(this.routes, this.vehicle);
       const mainRoute = this.routes.find(route => route.isActive);
       this.setMainRoute(mainRoute.id, true);
     }
+  }
+
+  displayLabels(routes, vehicle) {
+    const labelPositions = getLabelPositions(routes.map(route => route.geometry));
+
+    this.routeLabels = labelPositions.map(({ lngLat, anchor }, index) =>
+      createRouteLabel(routes[index], vehicle, { lngLat, anchor })
+        .addTo(this.map)
+    );
+  }
+
+  updateRouteLabels({ id: activeRouteId }) {
+    document.querySelectorAll('.routeLabel').forEach(routeLabel => {
+      if (routeLabel.dataset.id === activeRouteId.toString()) {
+        routeLabel.classList.add('active');
+      } else {
+        routeLabel.classList.remove('active');
+      }
+    });
   }
 
   refreshDirection(type, lngLat) {
@@ -177,8 +222,9 @@ export default class SceneDirection {
     });
     this.routes = [];
 
-    this.routeMarkers.forEach(step => { step.remove(); });
+    this.routeMarkers.concat(this.routeLabels).forEach(marker => { marker.remove(); });
     this.routeMarkers = [];
+    this.routeLabels = [];
   }
 
   getDataSources(route) {
