@@ -6,7 +6,7 @@ import { map as mapConfig } from 'config/constants.yml';
 import { getMapPaddings, getMapCenterOffset, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
-import LocalStore from '../libs/local_store';
+import { getLastLocation, setLastLocation } from 'src/adapters/store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
@@ -20,7 +20,6 @@ import { fire, listen } from 'src/libs/customEvents';
 import locale from '../mapbox/locale';
 
 const baseUrl = nconf.get().system.baseUrl;
-const store = new LocalStore();
 const LONG_TOUCH_DELAY_MS = 500;
 
 function Scene() {
@@ -36,7 +35,7 @@ Scene.prototype.getMapInitOptions = async function(locationHash) {
       center: [locationHash.lng, locationHash.lat],
     };
   }
-  const lastLocation = await store.getLastLocation();
+  const lastLocation = await getLastLocation();
   if (lastLocation && !window.no_ui) {
     return {
       zoom: lastLocation.zoom,
@@ -212,7 +211,7 @@ Scene.prototype.initMapBox = async function(locationHash) {
       const { lng, lat } = this.mb.getCenter();
       const zoom = this.mb.getZoom();
       if (!window.no_ui) {
-        store.setLastLocation({ lng, lat, zoom });
+        setLastLocation({ lng, lat, zoom });
       }
       window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
