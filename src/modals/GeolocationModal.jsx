@@ -11,23 +11,29 @@ let hasPermissionModalOpenedOnce = false;
 const GeolocationModal = ({ status, onClose, onAccept }) => {
   /* eslint-disable max-len */
 
-  const pendingStatusText = _('Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don\'t store your information because we don\'t want to know your whereabouts.',
+  const pendingOnDirectionsText = _('Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don\'t store your information because we don\'t want to know your whereabouts.',
     'geolocation', {
       privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
       closeTag: '</a>',
     }
   );
 
+  const pendingText = _('We look at your location to show you where you are, and that\'s it! (See our {privacyPolicyLink}our privacy policy{closeTag})',
+    'geolocation', {
+      privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
+      closeTag: '</a>',
+    });
+
   const statuses = {
     PENDING: {
-      title: _('Geolocation with privacy!', 'geolocation'),
-      text: pendingStatusText,
-      button: _('Ok, I\'ve got it', 'geolocation'),
+      title: _('At Qwant, your travels are your private life', 'geolocation'),
+      text: pendingText,
+      button: _('Continue', 'geolocation'),
       className: 'modal__maps__pending',
     },
     PENDING_ON_DIRECTIONS: {
       title: _('Enable your geolocation for better directions', 'geolocation'),
-      text: pendingStatusText,
+      text: pendingOnDirectionsText,
       button: _('Ok, I\'ve got it', 'geolocation'),
       className: 'modal__maps__pending',
     },
