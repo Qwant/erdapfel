@@ -5,6 +5,7 @@ import Panel from 'src/components/ui/Panel';
 import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
+import PJPartnershipFooter from './PJPartnershipFooter';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
@@ -150,7 +151,7 @@ export default class CategoryPanel extends React.Component {
       if (hasError) {
         panelContent = <CategoryPanelError zoomIn={zoomIn} />;
       } else {
-        panelContent =
+        panelContent = ({ size: panelSize, isMobile }) =>
         <>
           <PoiItemList
             pois={pois}
@@ -158,10 +159,9 @@ export default class CategoryPanel extends React.Component {
             highlightMarker={this.highlightPoiMarker}
             dataSource={dataSource}
           />
-          {dataSource === sources.pagesjaunes &&
-          <div className="category__panel__pj">
-            {_('Results in partnership with PagesJaunes', 'categories')}
-          </div>}
+          {dataSource === sources.pagesjaunes
+            && panelSize !== 'minimized'
+            && <PJPartnershipFooter isMobile={isMobile} />}
         </>;
       }
     }
