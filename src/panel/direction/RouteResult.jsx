@@ -57,13 +57,6 @@ export default class RouteResult extends React.Component {
     window.app.navigateTo('routes/' + search, {}, { replace: true });
   }
 
-  hoverRoute = (routeId, highlightMapRoute) => {
-    if (routeId === this.props.activeRouteId) {
-      return;
-    }
-    fire('set_main_route', { routeId: highlightMapRoute ? routeId : this.props.activeRouteId });
-  }
-
   toggleRouteDetails = routeId => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
     if (this.props.activeRouteId === routeId) {
@@ -141,7 +134,6 @@ export default class RouteResult extends React.Component {
               toggleDetails={this.toggleRouteDetails}
               openPreview={this.openPreview}
               selectRoute={this.selectRoute}
-              hoverRoute={this.hoverRoute}
             />
           </Item>)}
         </ItemList>
