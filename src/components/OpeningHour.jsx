@@ -61,7 +61,7 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, withIcon, className }
     )}
     style={{ color }}
   >
-    {withIcon && <i className="icon-icon_clock u-mr-4"/>}
+    {withIcon && <i className="icon-icon_clock u-mr-xxs"/>}
     {getDescription()}
   </span>;
 };
