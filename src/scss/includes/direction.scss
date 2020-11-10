@@ -76,10 +76,6 @@
 }
 
 .itinerary_leg {
-  &:hover .itinerary_leg_summary {
-    background-color: $grey-bright;
-  }
-
   &--active .itinerary_leg_summary {
     &:before {
       @include active-border-gradient;
@@ -95,6 +91,10 @@
   padding: 20px;
   cursor: pointer;
   position: relative;
+
+  &:hover {
+    background-color: $grey-bright;
+  }
 }
 
 .itinerary_leg_via {
