@@ -68,12 +68,8 @@
     line-height: 36px;
     font-size: 14px;
     border-radius: 0;
-  }
-
-  .minimized:not(.panel--holding) {
-    .category__panel__pj {
-      display: none;
-    }
+    background-color: white;
+    z-index: 3;
   }
 
   .category__panel__error {
