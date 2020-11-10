@@ -29,11 +29,8 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
 
   async trigger() {
     const state = await Geolocation.getGeolocationPermission();
-    if ( state === Geolocation.geolocationPermissions.PROMPT ) {
-      const isModalAccepted = await openPendingGeolocateModal();
-      if (!isModalAccepted) {
-        return;
-      }
+    if (state === Geolocation.geolocationPermissions.PROMPT) {
+      await openPendingGeolocateModal();
     }
     super.trigger();
   }
