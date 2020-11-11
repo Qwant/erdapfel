@@ -14,6 +14,12 @@
   text-transform: uppercase;
 }
 
+.u-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 @keyframes placeholderPulse {
   from { opacity: 0.6; }
   to { opacity: 1; }
