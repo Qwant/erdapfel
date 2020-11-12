@@ -5,7 +5,7 @@ import { getKey } from 'src/libs/pois';
 import { fire } from 'src/libs/customEvents';
 import { isPoiCompliantKey } from 'src/libs/pois';
 
-async function get(k) {
+function get(k) {
   try {
     return JSON.parse(localStorage.getItem(k));
   } catch (e) {
@@ -14,7 +14,7 @@ async function get(k) {
   }
 }
 
-async function set(k, v) {
+function set(k, v) {
   try {
     localStorage.setItem(k, JSON.stringify(v));
   } catch (e) {
@@ -53,7 +53,7 @@ export async function getFavoritesMatching(term) {
 
 export async function isInFavorites(poi) {
   try {
-    return Boolean(await get(getKey(poi)));
+    return Boolean(get(getKey(poi)));
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e);
   }
@@ -61,7 +61,7 @@ export async function isInFavorites(poi) {
 
 export async function addToFavorites(poi) {
   try {
-    await set(getKey(poi), poi);
+    set(getKey(poi), poi);
     fire('poi_added_to_favs', poi);
   } catch (e) {
     Error.sendOnce('store', 'add', 'error adding poi', e);
