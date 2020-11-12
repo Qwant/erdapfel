@@ -1,6 +1,7 @@
 import Poi from 'src/adapters/poi/poi';
 import { getKey } from 'src/libs/pois';
 import { exists, waitForAnimationEnd } from './tools';
+import { version } from 'config/constants.yml';
 
 /**
  * Prerequisite : Favorite Panel Must be open
@@ -42,5 +43,5 @@ export async function storePoi(
   const poi = new Poi(id, title, 'poi', coords, '', '');
   await page.evaluate((storageKey, serializedPoi) => {
     window.localStorage.setItem(storageKey, serializedPoi);
-  }, getKey(poi), JSON.stringify(poi));
+  }, `qmaps_v${version}_${getKey(poi)}`, JSON.stringify(poi));
 }

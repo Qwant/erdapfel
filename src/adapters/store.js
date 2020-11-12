@@ -1,7 +1,7 @@
 import Error from '../adapters/error';
 import { version } from '../../config/constants.yml';
 import { findIndexIgnoreCase } from '../libs/string';
-import { getKeyWithoutVersion } from 'src/libs/pois';
+import { getKey } from 'src/libs/pois';
 import { fire } from 'src/libs/customEvents';
 import { isPoiCompliantKey } from 'src/libs/pois';
 
@@ -77,7 +77,7 @@ export async function getFavoritesMatching(term) {
 
 export async function isInFavorites(poi) {
   try {
-    return Boolean(get(getKeyWithoutVersion(poi)));
+    return Boolean(get(getKey(poi)));
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e);
   }
@@ -85,7 +85,7 @@ export async function isInFavorites(poi) {
 
 export async function addToFavorites(poi) {
   try {
-    set(getKeyWithoutVersion(poi), poi);
+    set(getKey(poi), poi);
     fire('poi_added_to_favs', poi);
   } catch (e) {
     Error.sendOnce('store', 'add', 'error adding poi', e);
@@ -94,7 +94,7 @@ export async function addToFavorites(poi) {
 
 export async function removeFromFavorites(poi) {
   try {
-    del(getKeyWithoutVersion(poi));
+    del(getKey(poi));
     fire('poi_removed_from_favs', poi);
   } catch (e) {
     Error.sendOnce('store', 'del', 'error removing item', e);
