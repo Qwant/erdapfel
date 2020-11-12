@@ -26,7 +26,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
 
   const statuses = {
     PENDING: {
-      title: _('At Qwant, your travels are your private life', 'geolocation'),
+      title: _('At Qwant, your whereabouts are part of your privacy', 'geolocation'),
       text: pendingText,
       button: _('Continue', 'geolocation'),
       className: 'modal__maps__pending',
