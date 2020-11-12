@@ -1,10 +1,11 @@
 /* global _ */
 import React from 'react';
+import classnames from 'classnames';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
 import Address from 'src/components/ui/Address';
 
-const PoiTitle = ({ poi, withAlternativeName }) => {
+const PoiTitle = ({ poi, withAlternativeName, inList }) => {
   const { name, localName, subClassName, address } = poi;
 
   // LatLon PoI
@@ -37,7 +38,9 @@ const PoiTitle = ({ poi, withAlternativeName }) => {
 
   // Location / address
   return <div className="poiTitle">
-    <h2 className="poiTitle-main u-text--heading6">{title || subclass}</h2>
+    <h2 className={classnames('poiTitle-main u-text--heading6', { 'u-ellipsis': inList })}>
+      {title || subclass}
+    </h2>
     {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
       {alternative}
     </div>}
