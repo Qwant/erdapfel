@@ -38,12 +38,8 @@ function del(k) {
 function listKeys() {
   return Object
     .keys(localStorage || {})
-    .reduce((acc, k) => {
-      const parts = k.split(prefix);
-      return parts.length === 2
-        ? [...acc, parts[1]]
-        : acc;
-    }, []);
+    .filter(k => k.indexOf(prefix) === 0)
+    .map(k => k.substring(prefix.length, k.length));
 }
 
 export async function getAllFavorites() {
