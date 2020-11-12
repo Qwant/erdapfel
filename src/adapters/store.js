@@ -1,7 +1,7 @@
 import Error from '../adapters/error';
 import { version } from '../../config/constants.yml';
 import { findIndexIgnoreCase } from '../libs/string';
-import { getKey, getKeyWithoutVersion } from 'src/libs/pois';
+import { getKeyWithoutVersion } from 'src/libs/pois';
 import { fire } from 'src/libs/customEvents';
 import { isPoiCompliantKey } from 'src/libs/pois';
 
@@ -24,6 +24,11 @@ function set(k, v) {
   } catch (e) {
     Error.sendOnce('local_store', 'set', 'error setting item', e);
   }
+}
+
+function del(k) {
+  const prefixedKey = `${prefix}${k}`;
+  localStorage.removeItem(prefixedKey);
 }
 
 export async function getAllFavorites() {
@@ -74,7 +79,7 @@ export async function addToFavorites(poi) {
 
 export async function removeFromFavorites(poi) {
   try {
-    localStorage.removeItem(getKey(poi));
+    del(getKeyWithoutVersion(poi));
     fire('poi_removed_from_favs', poi);
   } catch (e) {
     Error.sendOnce('store', 'del', 'error removing item', e);
