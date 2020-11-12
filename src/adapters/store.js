@@ -31,18 +31,33 @@ function del(k) {
   localStorage.removeItem(prefixedKey);
 }
 
+/**
+ * List keys without prefix.
+ * In case some keys are not prefixed, we don't return them
+ */
+function listKeys() {
+  return Object
+    .keys(localStorage || {})
+    .reduce((acc, k) => {
+      const parts = k.split(prefix);
+      return parts.length === 2
+        ? [...acc, parts[1]]
+        : acc;
+    }, []);
+}
+
 export async function getAllFavorites() {
-  let localStorageKeys = [];
+  let keys = [];
   try {
-    localStorageKeys = Object.keys(localStorage);
+    keys = listKeys();
   } catch (e) {
     Error.sendOnce('local_store', 'getAllPois', 'error getting pois keys', e);
     return [];
   }
-  const items = localStorageKeys.reduce((filtered, k) => {
+  const items = keys.reduce((filtered, k) => {
     if (isPoiCompliantKey(k)) {
       try {
-        const poi = JSON.parse(localStorage.getItem(k));
+        const poi = get(k);
         filtered.push(poi);
       } catch (e) {
         Error.sendOnce('local_store', 'getAllPois', 'error getting pois', e);
