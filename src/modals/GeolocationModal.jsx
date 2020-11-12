@@ -18,7 +18,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
     }
   );
 
-  const pendingText = _('We look at your location to show you where you are, and that\'s it! (See our {privacyPolicyLink}our privacy policy{closeTag})',
+  const pendingText = _('We look at your location to show you where you are, and that\'s it! (See our {privacyPolicyLink}privacy policy{closeTag})',
     'geolocation', {
       privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
       closeTag: '</a>',
