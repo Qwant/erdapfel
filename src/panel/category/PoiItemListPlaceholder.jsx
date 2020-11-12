@@ -5,11 +5,10 @@ import PlaceholderText from 'src/components/ui/PlaceholderText';
 const PoiItemPlaceholder = () =>
   <div className="poiItem">
     <div>
-      <PlaceholderText length={25} tagName="h3" className="u-text--smallTitle"/>
+      <PlaceholderText length={25} tagName="h3" className="u-text--heading6 u-mb-xxs"/>
       <PlaceholderText length={15} tagName="p" className="u-text--subtitle" />
-      <PlaceholderText length={25} tagName="p" className="poiItem-address" />
-      <div className="poiItem-reviews"><PlaceholderText length={15} /></div>
-      <div className="openingHour"><PlaceholderText length={10} /></div>
+      <PlaceholderText length={25} tagName="p" className="u-text--subtitle" />
+      <PlaceholderText length={20} tagName="p" className="u-text--subtitle" />
     </div>
     <div className="poiItem-right">
       <div className="poiTitleImage u-placeholder" />
