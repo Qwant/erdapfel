@@ -48,6 +48,7 @@ export function fromUrl(urlParam) {
 const storeKeyPrefix = `qmaps_v${version}_favorite_place_`;
 
 export const getKey = poi => `${storeKeyPrefix}${poi.id}`;
+export const getKeyWithoutVersion = poi => `favorite_place_${poi.id}`;
 export const isPoiCompliantKey = key => key.indexOf(storeKeyPrefix) === 0;
 
 // POI source functions

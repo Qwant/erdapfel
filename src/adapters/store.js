@@ -1,13 +1,16 @@
 import Error from '../adapters/error';
 import { version } from '../../config/constants.yml';
 import { findIndexIgnoreCase } from '../libs/string';
-import { getKey } from 'src/libs/pois';
+import { getKey, getKeyWithoutVersion } from 'src/libs/pois';
 import { fire } from 'src/libs/customEvents';
 import { isPoiCompliantKey } from 'src/libs/pois';
 
+const prefix = `qmaps_v${version}_`;
+
 function get(k) {
   try {
-    return JSON.parse(localStorage.getItem(k));
+    const prefixedKey = `${prefix}${k}`;
+    return JSON.parse(localStorage.getItem(prefixedKey));
   } catch (e) {
     Error.sendOnce('local_store', 'get', `error parsing item with key ${k}`, e);
     return null;
@@ -16,7 +19,8 @@ function get(k) {
 
 function set(k, v) {
   try {
-    localStorage.setItem(k, JSON.stringify(v));
+    const prefixedKey = `${prefix}${k}`;
+    localStorage.setItem(prefixedKey, JSON.stringify(v));
   } catch (e) {
     Error.sendOnce('local_store', 'set', 'error setting item', e);
   }
@@ -53,7 +57,7 @@ export async function getFavoritesMatching(term) {
 
 export async function isInFavorites(poi) {
   try {
-    return Boolean(get(getKey(poi)));
+    return Boolean(get(getKeyWithoutVersion(poi)));
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e);
   }
@@ -61,7 +65,7 @@ export async function isInFavorites(poi) {
 
 export async function addToFavorites(poi) {
   try {
-    set(getKey(poi), poi);
+    set(getKeyWithoutVersion(poi), poi);
     fire('poi_added_to_favs', poi);
   } catch (e) {
     Error.sendOnce('store', 'add', 'error adding poi', e);
@@ -79,7 +83,7 @@ export async function removeFromFavorites(poi) {
 
 export async function getLastLocation() {
   try {
-    return get(`qmaps_v${version}_last_location`);
+    return get('last_location');
   } catch (e) {
     Error.sendOnce('store', 'getLastLocation', 'error getting last location', e);
     return null;
@@ -88,7 +92,7 @@ export async function getLastLocation() {
 
 export async function setLastLocation(loc) {
   try {
-    return set(`qmaps_v${version}_last_location`, loc);
+    return set('last_location', loc);
   } catch (e) {
     Error.sendOnce('store', 'setLastLocation', 'error setting location', e);
     throw e;
