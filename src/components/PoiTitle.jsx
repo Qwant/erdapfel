@@ -44,7 +44,6 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
     {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
       {alternative}
     </div>}
-    {title && <div className="poiTitle-subclass u-text--subtitle">{subclass}</div>}
   </div>;
 };
 

@@ -21,7 +21,7 @@ const getStatusMessage = status => {
   return { label: '', color: '#fff' };
 };
 
-const OpeningHour = ({ schedule, showNextOpenOnly = false, withIcon, className }) => {
+const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
   if (!schedule) {
     return null;
   }
@@ -61,7 +61,6 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, withIcon, className }
     )}
     style={{ color }}
   >
-    {withIcon && <i className="icon-icon_clock u-mr-xxs"/>}
     {getDescription()}
   </span>;
 };

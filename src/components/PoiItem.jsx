@@ -5,6 +5,8 @@ import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import classnames from 'classnames';
+import poiSubClass from 'src/mapbox/poi_subclass';
+import { capitalizeFirst } from 'src/libs/string';
 
 const PoiItem = React.memo(({ poi,
   withOpeningHours,
@@ -16,29 +18,25 @@ const PoiItem = React.memo(({ poi,
 }) => {
   const reviews = poi.blocksByType?.grades;
 
-  const Reviews = () =>
-    reviews
-      ? <span className="poiItem-reviews">
-        <ReviewScore reviews={reviews} poi={poi} inList={inList} compact={inList} />
-      </span>
-      : null
-  ;
+  const subclass = capitalizeFirst(poiSubClass(poi.subClassName));
 
-  const OpenStatus = () =>
-    withOpeningHours && poi?.blocksByType?.opening_hours
-      ? <OpeningHour
-        withIcon
-        schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
-      />
-      : null;
+  const openingHours = withOpeningHours && poi?.blocksByType?.opening_hours;
 
   return <div className={classnames('poiItem', className)} {...rest}>
     <div className="poiItem-left">
       <div className="u-mb-xxs">
         <PoiTitle poi={poi} withAlternativeName={withAlternativeName} inList={inList} />
       </div>
-      <Reviews />
-      <OpenStatus />
+      {reviews && <div className="poiItem-reviews">
+        <ReviewScore reviews={reviews} poi={poi} inList={inList} />
+      </div>}
+      <div className="poiItem-subclassAndHours">
+        <div className="poiItem-subclass u-text--subtitle">{subclass}</div>
+        {inList && openingHours && '\u00A0⋅\u00A0'}
+        {openingHours && <div className="poiItem-openingHour">
+          <OpeningHour schedule={new OsmSchedule(poi.blocksByType.opening_hours)} />
+        </div>}
+      </div>
     </div>
 
     {withImage && <div className="poiItem-right">

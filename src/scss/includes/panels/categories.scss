@@ -2,6 +2,11 @@
   .poiItem {
     padding: 16px 14px;
   }
+
+  .poiItem-subclassAndHours {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .category__panel__pj {

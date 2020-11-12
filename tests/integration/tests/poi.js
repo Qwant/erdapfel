@@ -30,8 +30,8 @@ beforeEach(async () => {
 test('click on a poi', async () => {
   await page.goto(APP_URL);
   await clickPoi(page);
-  expect(await exists(page, '.poiTitle')).toBeTruthy();
-  const translatedSubClass = await getText(page, '.poiTitle-subclass');
+  expect(await exists(page, '.poiItem')).toBeTruthy();
+  const translatedSubClass = await getText(page, '.poiItem-subclass');
   expect(translatedSubClass).toEqual('Musée');
 });
 
