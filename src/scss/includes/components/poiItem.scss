@@ -13,13 +13,6 @@
     flex: 1;
   }
 
-  &-address {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    margin-bottom: 4px;
-  }
-
   &-right {
     margin-left: 16px;
     display: flex;
