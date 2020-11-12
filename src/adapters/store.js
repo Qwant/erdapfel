@@ -7,7 +7,7 @@ import { isPoiCompliantKey } from 'src/libs/pois';
 
 const prefix = `qmaps_v${version}_`;
 
-function get(k) {
+export function get(k) {
   try {
     const prefixedKey = `${prefix}${k}`;
     return JSON.parse(localStorage.getItem(prefixedKey));
@@ -17,7 +17,7 @@ function get(k) {
   }
 }
 
-function set(k, v) {
+export function set(k, v) {
   try {
     const prefixedKey = `${prefix}${k}`;
     localStorage.setItem(prefixedKey, JSON.stringify(v));
@@ -26,7 +26,7 @@ function set(k, v) {
   }
 }
 
-function del(k) {
+export function del(k) {
   try {
     const prefixedKey = `${prefix}${k}`;
     localStorage.removeItem(prefixedKey);
