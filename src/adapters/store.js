@@ -27,8 +27,12 @@ function set(k, v) {
 }
 
 function del(k) {
-  const prefixedKey = `${prefix}${k}`;
-  localStorage.removeItem(prefixedKey);
+  try {
+    const prefixedKey = `${prefix}${k}`;
+    localStorage.removeItem(prefixedKey);
+  } catch (e) {
+    Error.sendOnce('local_store', 'del', 'error deleting item', e);
+  }
 }
 
 /**
