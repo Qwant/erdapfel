@@ -1,4 +1,4 @@
-import { version, sources } from 'config/constants.yml';
+import { sources } from 'config/constants.yml';
 import { slug, htmlEncode } from 'src/libs/string';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import LatLonPoi from 'src/adapters/poi/latlon_poi';
@@ -45,10 +45,9 @@ export function fromUrl(urlParam) {
 
 // POI fav storage functions
 
-const storeKeyPrefix = `qmaps_v${version}_favorite_place_`;
-
-export const getKey = poi => `${storeKeyPrefix}${poi.id}`;
-export const isPoiCompliantKey = key => key.indexOf(storeKeyPrefix) === 0;
+const prefix = 'favorite_place_';
+export const getKey = poi => `${prefix}${poi.id}`;
+export const isPoiCompliantKey = key => key.indexOf(prefix) === 0;
 
 // POI source functions
 

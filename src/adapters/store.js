@@ -5,35 +5,59 @@ import { getKey } from 'src/libs/pois';
 import { fire } from 'src/libs/customEvents';
 import { isPoiCompliantKey } from 'src/libs/pois';
 
-async function get(k) {
+const prefix = `qmaps_v${version}_`;
+
+function get(k) {
   try {
-    return JSON.parse(localStorage.getItem(k));
+    const prefixedKey = `${prefix}${k}`;
+    return JSON.parse(localStorage.getItem(prefixedKey));
   } catch (e) {
     Error.sendOnce('local_store', 'get', `error parsing item with key ${k}`, e);
     return null;
   }
 }
 
-async function set(k, v) {
+function set(k, v) {
   try {
-    localStorage.setItem(k, JSON.stringify(v));
+    const prefixedKey = `${prefix}${k}`;
+    localStorage.setItem(prefixedKey, JSON.stringify(v));
   } catch (e) {
     Error.sendOnce('local_store', 'set', 'error setting item', e);
   }
 }
 
-export async function getAllFavorites() {
-  let localStorageKeys = [];
+function del(k) {
   try {
-    localStorageKeys = Object.keys(localStorage);
+    const prefixedKey = `${prefix}${k}`;
+    localStorage.removeItem(prefixedKey);
+  } catch (e) {
+    Error.sendOnce('local_store', 'del', 'error deleting item', e);
+  }
+}
+
+/**
+ * List keys without prefix.
+ * In case some keys are not prefixed, we don't return them
+ */
+function listKeys() {
+  return Object
+    .keys(localStorage || {})
+    .filter(k => k.indexOf(prefix) === 0)
+    .map(k => k.substring(prefix.length, k.length));
+}
+
+export async function getAllFavorites() {
+  let keys = [];
+  try {
+    keys = listKeys();
   } catch (e) {
     Error.sendOnce('local_store', 'getAllPois', 'error getting pois keys', e);
     return [];
   }
-  const items = localStorageKeys.reduce((filtered, k) => {
+  const items = keys.reduce((filtered, k) => {
     if (isPoiCompliantKey(k)) {
       try {
-        const poi = JSON.parse(localStorage.getItem(k));
+        const poi = get(k);
         filtered.push(poi);
       } catch (e) {
         Error.sendOnce('local_store', 'getAllPois', 'error getting pois', e);
@@ -53,7 +77,7 @@ export async function getFavoritesMatching(term) {
 
 export async function isInFavorites(poi) {
   try {
-    return Boolean(await get(getKey(poi)));
+    return Boolean(get(getKey(poi)));
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e);
   }
@@ -61,7 +85,7 @@ export async function isInFavorites(poi) {
 
 export async function addToFavorites(poi) {
   try {
-    await set(getKey(poi), poi);
+    set(getKey(poi), poi);
     fire('poi_added_to_favs', poi);
   } catch (e) {
     Error.sendOnce('store', 'add', 'error adding poi', e);
@@ -70,7 +94,7 @@ export async function addToFavorites(poi) {
 
 export async function removeFromFavorites(poi) {
   try {
-    localStorage.removeItem(getKey(poi));
+    del(getKey(poi));
     fire('poi_removed_from_favs', poi);
   } catch (e) {
     Error.sendOnce('store', 'del', 'error removing item', e);
@@ -79,7 +103,7 @@ export async function removeFromFavorites(poi) {
 
 export async function getLastLocation() {
   try {
-    return get(`qmaps_v${version}_last_location`);
+    return get('last_location');
   } catch (e) {
     Error.sendOnce('store', 'getLastLocation', 'error getting last location', e);
     return null;
@@ -88,7 +112,7 @@ export async function getLastLocation() {
 
 export async function setLastLocation(loc) {
   try {
-    return set(`qmaps_v${version}_last_location`, loc);
+    return set('last_location', loc);
   } catch (e) {
     Error.sendOnce('store', 'setLastLocation', 'error setting location', e);
     throw e;
