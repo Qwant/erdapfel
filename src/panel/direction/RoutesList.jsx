@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { DeviceContext } from 'src/libs/device';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
 import Route from './Route';
@@ -17,10 +18,15 @@ const RoutesList = ({
   isLoading,
 }) => {
 
+  const isMobile = useContext(DeviceContext);
+  const orderedRoutes = isMobile
+    ? moveRouteToTop(routes, activeRouteId)
+    : routes;
+
   return isLoading
     ? <Placeholder />
     : <ItemList>
-      {routes.map(route =>
+      {orderedRoutes.map(route =>
         <Item
           key={route.id}>
           <Route
@@ -61,6 +67,19 @@ const Placeholder = () => {
       </Item>
     </ItemList>
   );
+};
+
+const moveRouteToTop = (routes, id) => {
+  if (!id) {
+    return routes;
+  }
+
+  return routes
+    .slice() // clone the array as sort operates on-place
+    .sort((a, b) => a.id === id
+      ? -1
+      : b.id === id ? 1 : 0
+    );
 };
 
 export default RoutesList;
