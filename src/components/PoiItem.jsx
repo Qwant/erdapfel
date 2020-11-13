@@ -4,6 +4,7 @@ import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
+import Address from 'src/components/ui/Address';
 import classnames from 'classnames';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
@@ -37,6 +38,9 @@ const PoiItem = React.memo(({ poi,
           <OpeningHour schedule={new OsmSchedule(poi.blocksByType.opening_hours)} />
         </div>}
       </div>
+      {inList && <div className="poiItem-address u-text--subtitle u-ellipsis">
+        <Address address={poi.address} inline omitCountry />
+      </div>}
     </div>
 
     {withImage && <div className="poiItem-right">
