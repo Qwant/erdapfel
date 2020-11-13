@@ -1,13 +1,12 @@
 /* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Route from './Route';
 import classnames from 'classnames';
-import { Item, ItemList } from 'src/components/ui/ItemList';
-import PlaceholderText from 'src/components/ui/PlaceholderText';
 import { fire, listen } from 'src/libs/customEvents';
 import { updateQueryString } from 'src/libs/url_utils';
 import Telemetry from 'src/libs/telemetry';
+
+import RoutesList from './RoutesList';
 
 export default class RouteResult extends React.Component {
   static propTypes = {
@@ -94,49 +93,22 @@ export default class RouteResult extends React.Component {
       </div>;
     }
 
-    if (this.props.isLoading) {
-      return <div className="itinerary_result">
-        <ItemList>
-          <Item>
-            <div className="itinerary_leg itinerary_leg--placeholder">
-              <div className="itinerary_leg_summary">
-                <div className="itinerary_leg_via">
-                  <div className="routeVia">
-                    <PlaceholderText length={17} />
-                  </div>
-                  <PlaceholderText length={10} />
-                </div>
-                <div>
-                  <PlaceholderText length={5} />
-                  <PlaceholderText length={7} />
-                </div>
-              </div>
-            </div>
-          </Item>
-        </ItemList>
-      </div>;
-    }
-
     return <>
       <div className={classnames('itinerary_result', {
         'itinerary_result--publicTransport': this.props.vehicle === 'publicTransport',
       })}>
-        <ItemList>
-          {this.props.routes.map((route, index) => <Item key={index}>
-            <Route
-              id={index}
-              route={route}
-              origin={this.props.origin}
-              destination={this.props.destination}
-              vehicle={this.props.vehicle}
-              isActive={this.props.activeRouteId === index}
-              showDetails={this.props.activeRouteId === index && this.state.activeDetails}
-              toggleDetails={this.toggleRouteDetails}
-              openPreview={this.openPreview}
-              selectRoute={this.selectRoute}
-            />
-          </Item>)}
-        </ItemList>
+        <RoutesList
+          isLoading={this.props.isLoading}
+          routes={this.props.routes}
+          activeRouteId={this.props.activeRouteId}
+          origin={this.props.origin}
+          destination={this.props.destination}
+          vehicle={this.props.vehicle}
+          activeDetails={this.state.activeDetails}
+          toggleRouteDetails={this.toggleRouteDetails}
+          openPreview={this.openPreview}
+          selectRoute={this.selectRoute}
+        />
       </div>
       {this.props.vehicle === 'publicTransport' && this.props.routes.length > 0 &&
       <div className="itinerary_source">
