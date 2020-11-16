@@ -5,12 +5,11 @@ import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
 import { poiToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
-import { getFilteredPoisStyle } from 'src/adapters/pois_styles';
+import { getFilteredPoisPinStyle, getFilteredPoisLabelStyle } from 'src/adapters/pois_styles';
 import { isMobileDevice } from 'src/libs/device';
 import { createMapGLIcon, createPinIcon } from 'src/adapters/icon_manager';
 import IconManager from 'src/adapters/icon_manager';
 
-const DYNAMIC_POIS_LAYER = 'poi-filtered';
 const mapStyleConfig = nconf.get().mapStyle;
 
 const poisToGeoJSON = pois => {
@@ -27,9 +26,11 @@ const poisToGeoJSON = pois => {
 export default class SceneCategory {
   constructor(map) {
     this.map = map;
+    this.sourceName = 'poi-filtered';
+    this.layers = [];
 
     this.initActiveStateMarkers();
-    this.initDynamicPoiLayer();
+    this.initDynamicPoiLayers();
 
     listen('add_category_markers', this.addCategoryMarkers);
     listen('remove_category_markers', this.removeCategoryMarkers);
@@ -52,32 +53,48 @@ export default class SceneCategory {
     });
   }
 
-  initDynamicPoiLayer = () => {
+  initDynamicPoiLayers = () => {
     // Declare a new image in MapBox-GL rasters so it can be used in the layer style
     createMapGLIcon('./statics/images/map/pin_map_dot.svg', 50, 60)
       .then(imageData => {
         this.map.addImage('pin_with_dot', imageData);
       });
 
-    this.map.addSource(DYNAMIC_POIS_LAYER, {
+    this.map.addSource(this.sourceName, {
       type: 'geojson',
       data: emptyFeatureCollection,
       // tells MapBox-GL to use this property as internal feature identifier
       promoteId: 'id',
     });
+
+    if (mapStyleConfig.showNamesWithPins) {
+      const labelLayerId = `${this.sourceName}_labels`;
+      this.map.addLayer({
+        ...getFilteredPoisLabelStyle(),
+        source: this.sourceName,
+        id: labelLayerId,
+      });
+      this.layers.push(labelLayerId);
+    }
+
+    const pinLayerId = `${this.sourceName}_pins`;
     this.map.addLayer({
-      ...getFilteredPoisStyle({ withName: mapStyleConfig.showNamesWithPins }),
-      source: DYNAMIC_POIS_LAYER,
-      id: DYNAMIC_POIS_LAYER,
+      ...getFilteredPoisPinStyle(),
+      source: this.sourceName,
+      id: pinLayerId,
     });
-    // iframe: disable clicks on markers
-    if (!window.no_ui) {
-      this.map.on('click', DYNAMIC_POIS_LAYER, this.handleLayerMarkerClick);
-    }
-    if (!isMobileDevice()) {
-      this.map.on('mousemove', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseMove);
-      this.map.on('mouseleave', DYNAMIC_POIS_LAYER, this.handleLayerMarkerMouseLeave);
-    }
+    this.layers.push(pinLayerId);
+
+    this.layers.forEach(layerName => {
+      // iframe: disable clicks on markers
+      if (!window.no_ui) {
+        this.map.on('click', layerName, this.handleLayerMarkerClick);
+      }
+      if (!isMobileDevice()) {
+        this.map.on('mousemove', layerName, this.handleLayerMarkerMouseMove);
+        this.map.on('mouseleave', layerName, this.handleLayerMarkerMouseLeave);
+      }
+    });
   }
 
   getPointedPoi = mapMouseEvent => {
@@ -138,14 +155,18 @@ export default class SceneCategory {
     this.pois = pois;
     this.poiFilters = poiFilters;
     this.setOsmPoisVisibility(false);
-    this.map.getSource(DYNAMIC_POIS_LAYER).setData(poisToGeoJSON(pois));
-    this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'visible');
+    this.map.getSource(this.sourceName).setData(poisToGeoJSON(pois));
+    this.layers.forEach(layerName => {
+      this.map.setLayoutProperty(layerName, 'visibility', 'visible');
+    });
   }
 
   removeCategoryMarkers = () => {
     this.selectPoiMarker(null);
     this.highlightPoiMarker(this.hoveredPoi, false);
-    this.map.setLayoutProperty(DYNAMIC_POIS_LAYER, 'visibility', 'none');
+    this.layers.forEach(layerName => {
+      this.map.setLayoutProperty(layerName, 'visibility', 'none');
+    });
     this.setOsmPoisVisibility(true);
   }
 
@@ -156,7 +177,7 @@ export default class SceneCategory {
   }
 
   setPoiFeatureState = (id, state) => {
-    this.map.setFeatureState({ id, source: DYNAMIC_POIS_LAYER }, state);
+    this.map.setFeatureState({ id, source: this.sourceName }, state);
   }
 
   highlightPoiMarker = (poi, highlight) => {
