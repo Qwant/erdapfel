@@ -1,6 +1,7 @@
 .mainActionButton {
   cursor: pointer;
   padding: 8px;
+  border-radius: 8px;
 
   &-label {
     font-size: 12px;
@@ -17,9 +18,14 @@
     margin-bottom: 4px;
   }
 
-  &:hover {
+  &:active {
     background-color: $grey-bright;
-    border-radius: 8px;
+  }
+
+  @media (min-width: 641px) {
+    &:hover {
+      background-color: $grey-bright;
+    }
   }
 }
 

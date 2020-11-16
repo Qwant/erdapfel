@@ -5,13 +5,18 @@
 .itemList--hover .itemList-item {
   position: relative;
 
-  &:hover {
+  &:active {
     background: $surface;
+  }
+
+  @media (min-width: 641px) {
+    &:hover {
+      background: $surface;
+    }
   }
 }
 
 @media (max-width: 640px) {
-
   .itemList {
     padding-bottom: 12px;
   }

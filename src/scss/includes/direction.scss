@@ -92,8 +92,10 @@
   cursor: pointer;
   position: relative;
 
-  &:hover {
-    background-color: $grey-bright;
+  @media (min-width: 641px) {
+    &:hover {
+      background-color: $grey-bright;
+    }
   }
 }
 
