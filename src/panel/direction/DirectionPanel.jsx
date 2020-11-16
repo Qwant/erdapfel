@@ -380,6 +380,7 @@ export default class DirectionPanel extends React.Component {
           </div>}
           {isResultDisplayed &&
             <Panel
+              className="direction-panel-mobile"
               resizable
               fitContent={['default']}
               marginTop={marginTop}

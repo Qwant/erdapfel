@@ -49,3 +49,18 @@
     z-index: 0;
   }
 }
+
+.direction-panel-mobile {
+  .itemList > div:not(:first-child) {
+      display: none;
+  }
+}
+
+.direction-panel-mobile {
+  &.maximized, &.panel--holding {
+    .itemList > div:not(:first-child) {
+      display: block;
+    }
+  }
+}
+
