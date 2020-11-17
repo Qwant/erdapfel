@@ -51,6 +51,7 @@ class Panel extends React.Component {
     className: PropTypes.string,
     isMapBottomUIDisplayed: PropTypes.bool,
     floatingItems: PropTypes.arrayOf(PropTypes.object),
+    onTransitionEnd: PropTypes.func,
   }
 
   static defaultProps = {
@@ -296,7 +297,12 @@ class Panel extends React.Component {
               : {}
             }
             ref={panel => this.panelDOMElement = panel}
-            onTransitionEnd={() => this.updateMobileMapUI()}
+            onTransitionEnd={() => {
+              this.updateMobileMapUI();
+              if (this.props.onTransitionEnd) {
+                this.props.onTransitionEnd();
+              }
+            }}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
             {floatingItems && <FloatingItems items={floatingItems} />}
