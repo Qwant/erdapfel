@@ -67,7 +67,9 @@
 
       &:after{
         content:'';
-        width: 100%;
+        position: absolute;
+        bottom: 0;
+        width: 80px;
         height: 4px;
         background: $active-gradient;
         border-radius: 4px 4px 0 0;
