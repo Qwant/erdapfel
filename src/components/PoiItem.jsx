@@ -33,7 +33,7 @@ const PoiItem = React.memo(({ poi,
       </div>}
       <div className="poiItem-subclassAndHours">
         <div className="poiItem-subclass u-text--subtitle">{subclass}</div>
-        {inList && openingHours && '\u00A0⋅\u00A0'}
+        {inList && subclass && openingHours && '\u00A0⋅\u00A0'}
         {openingHours && <div className="poiItem-openingHour">
           <OpeningHour schedule={new OsmSchedule(poi.blocksByType.opening_hours)} />
         </div>}
