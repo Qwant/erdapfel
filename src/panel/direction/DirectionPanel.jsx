@@ -63,6 +63,7 @@ export default class DirectionPanel extends React.Component {
       originInputText: '',
       destinationInputText: '',
       marginTop: 0,
+      activeRouteId: 0, //this.sanitizeSelected(),
     };
 
     this.restorePoints(props);
@@ -104,7 +105,7 @@ export default class DirectionPanel extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const marginTop = this.directionPanelRef.current
       ? this.directionPanelRef.current.offsetHeight + MARGIN_TOP_OFFSET
       : 0;
@@ -113,6 +114,12 @@ export default class DirectionPanel extends React.Component {
       this.setState({
         marginTop,
       });
+    }
+
+    if (this.props.selected !== prevProps.selected) {
+      const activeRouteId = this.sanitizeSelected();
+      this.setState({ activeRouteId });
+      fire('set_main_route', { routeId: activeRouteId, fitView: true });
     }
   }
 
@@ -326,7 +333,7 @@ export default class DirectionPanel extends React.Component {
       routes, error, activePreviewRoute,
       isLoading, isDirty, isInitializing,
       originInputText, destinationInputText,
-      marginTop,
+      marginTop, activeRouteId,
     } = this.state;
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
@@ -346,16 +353,20 @@ export default class DirectionPanel extends React.Component {
       activeVehicle={vehicle}
       isInitializing={isInitializing}
     />;
-    const result = <RouteResult
-      activeRouteId={this.sanitizeSelected()}
-      isLoading={isLoading || routes.length > 0 && isDirty}
-      vehicle={vehicle}
-      error={error}
-      routes={routes}
-      origin={origin}
-      destination={destination}
-      openMobilePreview={this.openMobilePreview}
-    />;
+
+    const result = activeRouteId >= 0 && this.state.routes.length >= 0
+      ?
+      <RouteResult
+        activeRouteId={activeRouteId}
+        isLoading={isLoading || routes.length > 0 && isDirty}
+        vehicle={vehicle}
+        error={error}
+        routes={routes}
+        origin={origin}
+        destination={destination}
+        openMobilePreview={this.openMobilePreview}
+      />
+      : null;
 
     const isFormCompleted = origin && destination;
     const isResultDisplayed = !activePreviewRoute && isFormCompleted;
