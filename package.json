@@ -47,6 +47,7 @@
     "babel-loader": "^8.0.4",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "2.0.0",
     "fs-extra": "^7.0.0",
     "jest": "^25.2.0",
