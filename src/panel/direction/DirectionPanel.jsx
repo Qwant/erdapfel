@@ -409,8 +409,8 @@ export default class DirectionPanel extends React.Component {
                   }
                 </ShareMenu>,
               ]}
-              onTransitionEnd={() => {
-                if (activeRouteId >= 0) {
+              onTransitionEnd={(prevSize, size) => {
+                if (prevSize === 'maximized' && size === 'default' && activeRouteId >= 0) {
                   fire('set_main_route', { routeId: activeRouteId, fitView: true });
                 }
               }}
