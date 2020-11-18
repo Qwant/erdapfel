@@ -24,7 +24,7 @@ beforeEach(async () => {
 
   const autocompleteMock = require('../../__data__/autocomplete.json');
   responseHandler.addPreparedResponse(autocompleteMock, /autocomplete/);
-  responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753(\?.*)?$/);
+  responseHandler.addPreparedResponse(poiMock, /places\/osm:way:63178753(\?[^?]*)?$/);
 });
 
 test('click on a poi', async () => {
@@ -52,7 +52,7 @@ test('load a poi from url and click on directions', async () => {
 });
 
 test('load a poi from url with simple id', async () => {
-  await page.goto(`${APP_URL}/place/osm:way:63178753`);
+  await page.goto(`${APP_URL}/place/osm:way:63178753?client=example`);
   await page.waitForSelector('.poiTitle');
   const title = await page.evaluate(() => document.querySelector('.poiTitle').innerText);
   expect(title).toMatch(/Musée d'Orsay/);
