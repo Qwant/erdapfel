@@ -154,7 +154,7 @@ export default class SceneDirection {
     this.updateMarkers(mainRoute);
     this.updateRouteLabels(mainRoute);
     if (fitView) {
-      fire('fit_map', this.computeBBox(mainRoute));
+      fire('fit_map', this.getAllRoutesBBox());
     }
   }
 
@@ -293,6 +293,12 @@ export default class SceneDirection {
   computeBBox({ geometry }) {
     const [ minX, minY, maxX, maxY ] = bbox(geometry);
     return new LngLatBounds([ minX, minY ], [ maxX, maxY ]);
+  }
+
+  getAllRoutesBBox() {
+    return this.routes.reduce((totalBBox, route) =>
+      totalBBox.extend(this.computeBBox(route))
+    , new LngLatBounds());
   }
 
   highlightStep(step) {
