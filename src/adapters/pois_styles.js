@@ -1,5 +1,5 @@
 
-export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
+export const getFilteredPoisPinStyle = () => ({
   type: 'symbol',
   layout: {
     'icon-image': ['concat', 'pin-', ['get', 'iconName']],
@@ -7,10 +7,24 @@ export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
     'icon-ignore-placement': false,
     'icon-padding': 0,
     'icon-anchor': 'bottom',
+  },
+  paint: {
+    'icon-opacity': ['case',
+      ['==', ['feature-state', 'selected'], true], 0,
+      ['==', ['feature-state', 'hovered'], true], 0,
+      1,
+    ],
+  },
+});
 
+
+
+export const getFilteredPoisLabelStyle = () => ({
+  type: 'symbol',
+  layout: {
     'text-font': [ 'Noto Sans Bold' ],
     'text-size': 10,
-    'text-field': withName ? ['get', 'name'] : '',
+    'text-field': ['get', 'name'],
     'text-allow-overlap': false,
     'text-ignore-placement': false,
     'text-optional': true,
@@ -19,11 +33,6 @@ export const getFilteredPoisStyle = ({ withName = true } = {}) => ({
     'text-justify': 'auto',
   },
   paint: {
-    'icon-opacity': ['case',
-      ['==', ['feature-state', 'selected'], true], 0,
-      ['==', ['feature-state', 'hovered'], true], 0,
-      1,
-    ],
     'text-color': ['case', ['==', ['feature-state', 'selected'], true], '#900014', '#0c0c0e'],
     'text-halo-color': 'white',
     'text-halo-width': 1,
