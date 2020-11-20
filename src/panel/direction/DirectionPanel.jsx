@@ -119,7 +119,7 @@ export default class DirectionPanel extends React.Component {
     if (this.props.selected !== prevProps.selected) {
       const activeRouteId = this.sanitizeSelected();
       this.setState({ activeRouteId });
-      fire('set_main_route', { routeId: activeRouteId, fitView: true });
+      fire('set_main_route', { routeId: activeRouteId, fitView: !isMobileDevice() });
     }
   }
 
