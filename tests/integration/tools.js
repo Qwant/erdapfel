@@ -75,8 +75,11 @@ export async function exists(page, selector) {
 
 export async function isHidden(page, selector) {
   try {
-    const result = await page.waitForSelector(selector, { hidden: true });
-    return result === null;
+    // returns null when the element is not in the DOM,
+    // or the handle if the element is in the DOM and hidden.
+    // Throws in other cases.
+    await page.waitForSelector(selector, { hidden: true });
+    return true;
   } catch {
     return false;
   }
