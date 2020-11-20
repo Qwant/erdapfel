@@ -63,7 +63,6 @@ export default class DirectionPanel extends React.Component {
       originInputText: '',
       destinationInputText: '',
       marginTop: 0,
-      activeRouteId: 0, //this.sanitizeSelected(),
     };
 
     this.restorePoints(props);
@@ -117,9 +116,7 @@ export default class DirectionPanel extends React.Component {
     }
 
     if (this.props.selected !== prevProps.selected) {
-      const activeRouteId = this.sanitizeSelected();
-      this.setState({ activeRouteId });
-      fire('set_main_route', { routeId: activeRouteId, fitView: !isMobileDevice() });
+      fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
     }
   }
 
@@ -333,7 +330,7 @@ export default class DirectionPanel extends React.Component {
       routes, error, activePreviewRoute,
       isLoading, isDirty, isInitializing,
       originInputText, destinationInputText,
-      marginTop, activeRouteId,
+      marginTop,
     } = this.state;
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
@@ -354,10 +351,10 @@ export default class DirectionPanel extends React.Component {
       isInitializing={isInitializing}
     />;
 
-    const result = activeRouteId >= 0 && this.state.routes.length >= 0
+    const result = this.sanitizeSelected() >= 0 && this.state.routes.length >= 0
       ?
       <RouteResult
-        activeRouteId={activeRouteId}
+        activeRouteId={this.sanitizeSelected()}
         isLoading={isLoading || routes.length > 0 && isDirty}
         vehicle={vehicle}
         error={error}
@@ -410,8 +407,10 @@ export default class DirectionPanel extends React.Component {
                 </ShareMenu>,
               ]}
               onTransitionEnd={(prevSize, size) => {
-                if (prevSize === 'maximized' && size === 'default' && activeRouteId >= 0) {
-                  fire('set_main_route', { routeId: activeRouteId, fitView: true });
+                if (prevSize === 'maximized'
+                    && size === 'default' &&
+                    this.sanitizeSelected() >= 0) {
+                  fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: true });
                 }
               }}
             >
