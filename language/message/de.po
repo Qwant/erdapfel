@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 14:42+0000\n"
+"POT-Creation-Date: 2020-11-20 14:32+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Matthias Kaup-Antons <makanto@posteo.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -163,20 +163,38 @@ msgstr "Suche mit Qwant Maps"
 msgid "My location"
 msgstr "Mein Standort"
 
-msgid "Open"
-msgstr "Offen"
+msgid "Close"
+msgstr "Schließen"
 
-msgid "Closed"
-msgstr "Geschlossen"
+msgid "Favorites"
+msgstr "Favoriten"
 
-msgid "Open 24/7"
-msgstr "24/7 geöffnet"
+msgid "No result found"
+msgstr "Keine Ergebnisse gefunden"
 
-msgid "reopening at {nextTransitionTime}"
-msgstr " öffnet um {nextTransitionTime}"
+msgid "Your position"
+msgstr "Ihr Standort"
 
-msgid "until {nextTransitionTime}"
-msgstr "bis {nextTransitionTime}"
+msgid "Copied!"
+msgstr "Kopiert!"
+
+msgid "Copy link"
+msgstr "Kopierlink"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "category"
+msgstr "Kategorie"
+
+msgid "Close to"
+msgstr "Neben"
+
+msgid "Search around this place"
+msgstr "Um diesen Ort herum suchen"
 
 msgid "accessories shop"
 msgstr "Zubehörshop "
@@ -773,7 +791,7 @@ msgid "swimming area"
 msgstr "Badebereich"
 
 msgid "swimming pool equipment"
-msgstr ""
+msgstr "Swimming Pool-Bedarf"
 
 msgid "table tennis"
 msgstr "Tischtennis"
@@ -874,8 +892,20 @@ msgstr "Adresse"
 msgid "street"
 msgstr "Straße"
 
-msgid "Close to"
-msgstr "Neben"
+msgid "Open"
+msgstr "Offen"
+
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgid "Open 24/7"
+msgstr "24/7 geöffnet"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr " öffnet um {nextTransitionTime}"
+
+msgid "until {nextTransitionTime}"
+msgstr "bis {nextTransitionTime}"
 
 msgid "Geographic coordinates"
 msgstr "Geographische Koordinaten"
@@ -883,41 +913,52 @@ msgstr "Geographische Koordinaten"
 msgid "on PagesJaunes"
 msgstr "auf PagesJaunes"
 
-msgid "Your position"
-msgstr "Ihr Standort"
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
 
-msgid "category"
-msgstr "Kategorie"
+msgid ""
+"We look at your location to show you where you are, and that's it!<br />(See"
+" our {privacyPolicyLink}privacy policy{closeTag})"
+msgstr ""
+
+msgid "At Qwant, your whereabouts are part of your privacy"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Enable your geolocation for better directions"
+msgstr ""
+
+msgid "Ok, I've got it"
+msgstr "Ok, verstanden!"
+
+msgid "Geolocation not available."
+msgstr "Standortbestimmung nicht verfügbar."
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
+
+msgid "Ok"
+msgstr "O.k."
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
+"Standortbestimmung auf Ihrem System aktiviert ist."
 
 msgid "Menu"
 msgstr "Menü"
 
-msgid "Favorites"
-msgstr "Favoriten"
-
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
-
-msgid "Copied!"
-msgstr "Kopiert!"
-
-msgid "Copy link"
-msgstr "Kopierlink"
-
-msgid "Facebook"
-msgstr "Facebook"
-
-msgid "Twitter"
-msgstr "Twitter"
-
-msgid "Search around this place"
-msgstr "Um diesen Ort herum suchen"
-
-msgid "No result found"
-msgstr "Keine Ergebnisse gefunden"
-
-msgid "Close"
-msgstr "Schließen"
 
 msgid "Share"
 msgstr "Teilen"
@@ -1106,23 +1147,17 @@ msgstr "Start und Ziel tauschen"
 msgid "Walk on {walkDistance}"
 msgstr "Lauf über {walkDistance}"
 
-msgid "Start"
-msgstr "Start"
-
-msgid "Arrival"
-msgstr "Ankunft"
-
 msgid "Via"
 msgstr "Über"
 
 msgid "Fastest route"
-msgstr ""
+msgstr "Schnellste Route"
 
 msgid "step by step"
-msgstr ""
+msgstr "Schritt für Schritt"
 
 msgid "See less"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 msgid "Details"
 msgstr "Details"
@@ -1138,38 +1173,11 @@ msgid ""
 "cities."
 msgstr "Wir testen gerade ein öffentliches Verkehrsmode in einpaar Städten."
 
-msgid "Enable your geolocation for better directions"
-msgstr ""
-
-msgid ""
-"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
-"privacy policy{closeTag}, we don't store your information because we don't "
-"want to know your whereabouts."
-msgstr ""
-
-msgid "Ok, I've got it"
-msgstr ""
-
-msgid "Geolocation not available."
-msgstr "Standortbestimmung nicht verfügbar."
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
-
-msgid "Ok"
-msgstr "O.k."
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
-"Standortbestimmung auf Ihrem System aktiviert ist."
-
 msgid "calculate an itinerary"
 msgstr "eine Route berechnen"
+
+msgid "Share itinerary"
+msgstr "Route teilen"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "

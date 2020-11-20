@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 14:42+0000\n"
+"POT-Creation-Date: 2020-11-20 14:32+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
@@ -162,20 +162,38 @@ msgstr "Cerca Qwant Maps"
 msgid "My location"
 msgstr ""
 
-msgid "Open"
-msgstr "Obert"
+msgid "Close"
+msgstr "Tanca"
 
-msgid "Closed"
-msgstr "Tancat"
+msgid "Favorites"
+msgstr "Preferits"
 
-msgid "Open 24/7"
-msgstr "Obert 24/7"
-
-msgid "reopening at {nextTransitionTime}"
+msgid "No result found"
 msgstr ""
 
-msgid "until {nextTransitionTime}"
-msgstr "fins {nextTransitionTime}"
+msgid "Your position"
+msgstr "La vostra posició"
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Copy link"
+msgstr ""
+
+msgid "Facebook"
+msgstr ""
+
+msgid "Twitter"
+msgstr ""
+
+msgid "category"
+msgstr "categoria"
+
+msgid "Close to"
+msgstr ""
+
+msgid "Search around this place"
+msgstr "Cerca prop d'aquest lloc"
 
 msgid "accessories shop"
 msgstr "botiga d'accessoris"
@@ -873,8 +891,20 @@ msgstr "adreça"
 msgid "street"
 msgstr "carrer"
 
-msgid "Close to"
+msgid "Open"
+msgstr "Obert"
+
+msgid "Closed"
+msgstr "Tancat"
+
+msgid "Open 24/7"
+msgstr "Obert 24/7"
+
+msgid "reopening at {nextTransitionTime}"
 msgstr ""
+
+msgid "until {nextTransitionTime}"
+msgstr "fins {nextTransitionTime}"
 
 msgid "Geographic coordinates"
 msgstr ""
@@ -882,41 +912,53 @@ msgstr ""
 msgid "on PagesJaunes"
 msgstr ""
 
-msgid "Your position"
-msgstr "La vostra posició"
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
 
-msgid "category"
-msgstr "categoria"
+msgid ""
+"We look at your location to show you where you are, and that's it!<br />(See"
+" our {privacyPolicyLink}privacy policy{closeTag})"
+msgstr ""
+
+msgid "At Qwant, your whereabouts are part of your privacy"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Enable your geolocation for better directions"
+msgstr ""
+
+msgid "Ok, I've got it"
+msgstr ""
+
+msgid "Geolocation not available."
+msgstr "La geolocalització no és disponible."
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"No heu autoritzat Qwant Maps (en el vostre aparell) per a accedir a la "
+"vostra ubicació."
+
+msgid "Ok"
+msgstr "D'acord"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps no pot determinar la vostra posició. Comproveu que els serveis de"
+" geolocalització estan habilitats en el sistema."
 
 msgid "Menu"
 msgstr ""
 
-msgid "Favorites"
-msgstr "Preferits"
-
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
-
-msgid "Copied!"
-msgstr ""
-
-msgid "Copy link"
-msgstr ""
-
-msgid "Facebook"
-msgstr ""
-
-msgid "Twitter"
-msgstr ""
-
-msgid "Search around this place"
-msgstr "Cerca prop d'aquest lloc"
-
-msgid "No result found"
-msgstr ""
-
-msgid "Close"
-msgstr "Tanca"
 
 msgid "Share"
 msgstr "Comparteix"
@@ -1103,12 +1145,6 @@ msgstr "Inverteix l'inici i el final"
 msgid "Walk on {walkDistance}"
 msgstr "Camineu {walkDistance}"
 
-msgid "Start"
-msgstr "Inici"
-
-msgid "Arrival"
-msgstr "Arribada"
-
 msgid "Via"
 msgstr "Via"
 
@@ -1135,38 +1171,10 @@ msgid ""
 "cities."
 msgstr ""
 
-msgid "Enable your geolocation for better directions"
-msgstr ""
-
-msgid ""
-"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
-"privacy policy{closeTag}, we don't store your information because we don't "
-"want to know your whereabouts."
-msgstr ""
-
-msgid "Ok, I've got it"
-msgstr ""
-
-msgid "Geolocation not available."
-msgstr "La geolocalització no és disponible."
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"No heu autoritzat Qwant Maps (en el vostre aparell) per a accedir a la "
-"vostra ubicació."
-
-msgid "Ok"
-msgstr "D'acord"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps no pot determinar la vostra posició. Comproveu que els serveis de"
-" geolocalització estan habilitats en el sistema."
-
 msgid "calculate an itinerary"
+msgstr ""
+
+msgid "Share itinerary"
 msgstr ""
 
 msgid ""

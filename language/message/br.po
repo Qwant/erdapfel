@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 14:42+0000\n"
+"POT-Creation-Date: 2020-11-20 14:32+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -163,20 +163,38 @@ msgstr "Klask gant Qwant Maps"
 msgid "My location"
 msgstr "Ma lec'hiadur"
 
-msgid "Open"
-msgstr "Digor"
+msgid "Close"
+msgstr "Serriñ"
 
-msgid "Closed"
-msgstr "Serret"
+msgid "Favorites"
+msgstr "Sinedoù"
 
-msgid "Open 24/7"
-msgstr "Digor 24/7"
+msgid "No result found"
+msgstr "Disoc'h ebet kavet"
 
-msgid "reopening at {nextTransitionTime}"
-msgstr "addigoret da {nextTransitionTime}"
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
 
-msgid "until {nextTransitionTime}"
-msgstr "betek {nextTransitionTime}"
+msgid "Copied!"
+msgstr "Eilet!"
+
+msgid "Copy link"
+msgstr "Eilañ al liamm"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "category"
+msgstr "rummad"
+
+msgid "Close to"
+msgstr "Da gichen"
+
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
 
 msgid "accessories shop"
 msgstr "stal rikoù"
@@ -874,8 +892,20 @@ msgstr "chomlec'h"
 msgid "street"
 msgstr "straed"
 
-msgid "Close to"
-msgstr "Da gichen"
+msgid "Open"
+msgstr "Digor"
+
+msgid "Closed"
+msgstr "Serret"
+
+msgid "Open 24/7"
+msgstr "Digor 24/7"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr "addigoret da {nextTransitionTime}"
+
+msgid "until {nextTransitionTime}"
+msgstr "betek {nextTransitionTime}"
 
 msgid "Geographic coordinates"
 msgstr "Daveennoù douaroniel"
@@ -883,41 +913,53 @@ msgstr "Daveennoù douaroniel"
 msgid "on PagesJaunes"
 msgstr "war PagesJaunes"
 
-msgid "Your position"
-msgstr "Ho touarlec'hiañ"
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
 
-msgid "category"
-msgstr "rummad"
+msgid ""
+"We look at your location to show you where you are, and that's it!<br />(See"
+" our {privacyPolicyLink}privacy policy{closeTag})"
+msgstr ""
+
+msgid "At Qwant, your whereabouts are part of your privacy"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Enable your geolocation for better directions"
+msgstr ""
+
+msgid "Ok, I've got it"
+msgstr ""
+
+msgid "Geolocation not available."
+msgstr "Douarlec'hiañ dihegerz"
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho"
+" touarlec'hiañ"
+
+msgid "Ok"
+msgstr "Mat eo"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
+"enaouet ar servijoù douarlec'hiañ en ho sistem."
 
 msgid "Menu"
 msgstr "Lañser"
 
-msgid "Favorites"
-msgstr "Sinedoù"
-
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
-
-msgid "Copied!"
-msgstr "Eilet!"
-
-msgid "Copy link"
-msgstr "Eilañ al liamm"
-
-msgid "Facebook"
-msgstr "Facebook"
-
-msgid "Twitter"
-msgstr "Twitter"
-
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
-
-msgid "No result found"
-msgstr "Disoc'h ebet kavet"
-
-msgid "Close"
-msgstr "Serriñ"
 
 msgid "Share"
 msgstr "Rannañ"
@@ -1107,12 +1149,6 @@ msgstr "eilpennañ fin ha loc'hañ"
 msgid "Walk on {walkDistance}"
 msgstr "Kerzhit e-pad {walkDistance}"
 
-msgid "Start"
-msgstr "Loc'hañ"
-
-msgid "Arrival"
-msgstr "Poent-degouezhout"
-
 msgid "Via"
 msgstr "Dre"
 
@@ -1140,39 +1176,11 @@ msgid ""
 msgstr ""
 "Er mare-mañ e testomp ar mod trañsportoù publik evit un nebeut kêrioù."
 
-msgid "Enable your geolocation for better directions"
-msgstr ""
-
-msgid ""
-"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
-"privacy policy{closeTag}, we don't store your information because we don't "
-"want to know your whereabouts."
-msgstr ""
-
-msgid "Ok, I've got it"
-msgstr ""
-
-msgid "Geolocation not available."
-msgstr "Douarlec'hiañ dihegerz"
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho"
-" touarlec'hiañ"
-
-msgid "Ok"
-msgstr "Mat eo"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
-"enaouet ar servijoù douarlec'hiañ en ho sistem."
-
 msgid "calculate an itinerary"
 msgstr "jediñ un hent"
+
+msgid "Share itinerary"
+msgstr ""
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "

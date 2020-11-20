@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 14:42+0000\n"
+"POT-Creation-Date: 2020-11-20 14:32+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/qwant-1/teams/89416/es/)\n"
@@ -162,20 +162,38 @@ msgstr "Busca con Qwant Maps"
 msgid "My location"
 msgstr ""
 
-msgid "Open"
-msgstr "Abierto"
+msgid "Close"
+msgstr "Cerrar"
 
-msgid "Closed"
-msgstr "Cerrado"
+msgid "Favorites"
+msgstr "Favoritos"
 
-msgid "Open 24/7"
-msgstr "Abierto 24/7"
+msgid "No result found"
+msgstr "No se encontraron resultados"
 
-msgid "reopening at {nextTransitionTime}"
+msgid "Your position"
+msgstr "Tu localización"
+
+msgid "Copied!"
 msgstr ""
 
-msgid "until {nextTransitionTime}"
-msgstr "hasta {nextTransitionTime}"
+msgid "Copy link"
+msgstr ""
+
+msgid "Facebook"
+msgstr ""
+
+msgid "Twitter"
+msgstr ""
+
+msgid "category"
+msgstr "categoría"
+
+msgid "Close to"
+msgstr "Cerca de"
+
+msgid "Search around this place"
+msgstr "Buscar por esta zona"
 
 msgid "accessories shop"
 msgstr "tienda de accesorios"
@@ -873,8 +891,20 @@ msgstr "dirección"
 msgid "street"
 msgstr "calle"
 
-msgid "Close to"
-msgstr "Cerca de"
+msgid "Open"
+msgstr "Abierto"
+
+msgid "Closed"
+msgstr "Cerrado"
+
+msgid "Open 24/7"
+msgstr "Abierto 24/7"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr ""
+
+msgid "until {nextTransitionTime}"
+msgstr "hasta {nextTransitionTime}"
 
 msgid "Geographic coordinates"
 msgstr ""
@@ -882,41 +912,53 @@ msgstr ""
 msgid "on PagesJaunes"
 msgstr ""
 
-msgid "Your position"
-msgstr "Tu localización"
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
 
-msgid "category"
-msgstr "categoría"
+msgid ""
+"We look at your location to show you where you are, and that's it!<br />(See"
+" our {privacyPolicyLink}privacy policy{closeTag})"
+msgstr ""
+
+msgid "At Qwant, your whereabouts are part of your privacy"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Enable your geolocation for better directions"
+msgstr ""
+
+msgid "Ok, I've got it"
+msgstr ""
+
+msgid "Geolocation not available."
+msgstr "Geolocalización no disponible."
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"No has permitido a Qwant Maps (o a tu dispositivo) a acceder a tu "
+"localización."
+
+msgid "Ok"
+msgstr "Vale"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps no pudo determinar tu localización. Por favor, comprueba si los "
+"servicios de localizaciñon están activados en tu sistema."
 
 msgid "Menu"
 msgstr ""
 
-msgid "Favorites"
-msgstr "Favoritos"
-
 msgid "How to contribute"
 msgstr "Cómo contribuir"
-
-msgid "Copied!"
-msgstr ""
-
-msgid "Copy link"
-msgstr ""
-
-msgid "Facebook"
-msgstr ""
-
-msgid "Twitter"
-msgstr ""
-
-msgid "Search around this place"
-msgstr "Buscar por esta zona"
-
-msgid "No result found"
-msgstr "No se encontraron resultados"
-
-msgid "Close"
-msgstr "Cerrar"
 
 msgid "Share"
 msgstr "Compartir"
@@ -1104,12 +1146,6 @@ msgstr "Invertir origen y destino"
 msgid "Walk on {walkDistance}"
 msgstr "Camina {walkDistance}"
 
-msgid "Start"
-msgstr "Comenzar"
-
-msgid "Arrival"
-msgstr "Llegada"
-
 msgid "Via"
 msgstr "Por"
 
@@ -1138,38 +1174,10 @@ msgid ""
 "cities."
 msgstr ""
 
-msgid "Enable your geolocation for better directions"
-msgstr ""
-
-msgid ""
-"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
-"privacy policy{closeTag}, we don't store your information because we don't "
-"want to know your whereabouts."
-msgstr ""
-
-msgid "Ok, I've got it"
-msgstr ""
-
-msgid "Geolocation not available."
-msgstr "Geolocalización no disponible."
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"No has permitido a Qwant Maps (o a tu dispositivo) a acceder a tu "
-"localización."
-
-msgid "Ok"
-msgstr "Vale"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps no pudo determinar tu localización. Por favor, comprueba si los "
-"servicios de localizaciñon están activados en tu sistema."
-
 msgid "calculate an itinerary"
+msgstr ""
+
+msgid "Share itinerary"
 msgstr ""
 
 msgid ""

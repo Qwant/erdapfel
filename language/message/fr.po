@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 14:42+0000\n"
+"POT-Creation-Date: 2020-11-20 14:32+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -164,20 +164,38 @@ msgstr "Chercher avec Qwant Maps"
 msgid "My location"
 msgstr "Ma position"
 
-msgid "Open"
-msgstr "Ouvert"
+msgid "Close"
+msgstr "Fermer"
 
-msgid "Closed"
-msgstr "Fermé"
+msgid "Favorites"
+msgstr "Favoris"
 
-msgid "Open 24/7"
-msgstr "Ouvert 24h/24 et 7j/7"
+msgid "No result found"
+msgstr "Aucun résultat trouvé"
 
-msgid "reopening at {nextTransitionTime}"
-msgstr "réouverture à {nextTransitionTime}"
+msgid "Your position"
+msgstr "Votre position"
 
-msgid "until {nextTransitionTime}"
-msgstr "jusqu’à {nextTransitionTime}"
+msgid "Copied!"
+msgstr "Copié !"
+
+msgid "Copy link"
+msgstr "Copier le lien"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "category"
+msgstr "catégorie"
+
+msgid "Close to"
+msgstr "À proximité de"
+
+msgid "Search around this place"
+msgstr "Rechercher à proximité"
 
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -875,8 +893,20 @@ msgstr "adresse"
 msgid "street"
 msgstr "rue"
 
-msgid "Close to"
-msgstr "À proximité de"
+msgid "Open"
+msgstr "Ouvert"
+
+msgid "Closed"
+msgstr "Fermé"
+
+msgid "Open 24/7"
+msgstr "Ouvert 24h/24 et 7j/7"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr "réouverture à {nextTransitionTime}"
+
+msgid "until {nextTransitionTime}"
+msgstr "jusqu’à {nextTransitionTime}"
 
 msgid "Geographic coordinates"
 msgstr "Coordonnées géographiques"
@@ -884,41 +914,60 @@ msgstr "Coordonnées géographiques"
 msgid "on PagesJaunes"
 msgstr "sur PagesJaunes"
 
-msgid "Your position"
-msgstr "Votre position"
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
+"Toujours dans le respect de votre vie privée.<br>Comme indiqué dans "
+"{privacyPolicyLink}notre politique de protection des données{closeTag}, nous"
+" de stockons pas vos informations car nous ne voulons pas connaître vos "
+"allées et venues."
 
-msgid "category"
-msgstr "catégorie"
+msgid ""
+"We look at your location to show you where you are, and that's it!<br />(See"
+" our {privacyPolicyLink}privacy policy{closeTag})"
+msgstr ""
+"Nous regardons votre localisation pour vous montrer où vous êtes, et c'est "
+"tout !<br />(Voir notre {privacyPolicyLink}Politique de "
+"Confidentialité{closeTag})"
+
+msgid "At Qwant, your whereabouts are part of your privacy"
+msgstr "Chez Qwant, vos déplacements c'est votre vie privée"
+
+msgid "Continue"
+msgstr "Continuer"
+
+msgid "Enable your geolocation for better directions"
+msgstr "Activez votre géolocalisation pour de meilleurs itinéraires"
+
+msgid "Ok, I've got it"
+msgstr "J'ai compris"
+
+msgid "Geolocation not available."
+msgstr "Géolocalisation impossible"
+
+msgid ""
+"You have not allowed Qwant Maps (or your device) to access your location."
+msgstr ""
+"Vous n'avez pas autorisé Qwant Maps (ou votre appareil) à accéder à votre "
+"position."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid ""
+"Qwant Maps cannot determine your position. Check that location services are "
+"enabled on your system."
+msgstr ""
+"Qwant Maps ne peut pas déterminer votre position. Veuillez vérifier que les "
+"services de localisation sont activés sur votre système."
 
 msgid "Menu"
 msgstr "Menu"
 
-msgid "Favorites"
-msgstr "Favoris"
-
 msgid "How to contribute"
 msgstr "Comment contribuer"
-
-msgid "Copied!"
-msgstr "Copié !"
-
-msgid "Copy link"
-msgstr "Copier le lien"
-
-msgid "Facebook"
-msgstr "Facebook"
-
-msgid "Twitter"
-msgstr "Twitter"
-
-msgid "Search around this place"
-msgstr "Rechercher à proximité"
-
-msgid "No result found"
-msgstr "Aucun résultat trouvé"
-
-msgid "Close"
-msgstr "Fermer"
 
 msgid "Share"
 msgstr "Partager"
@@ -1108,12 +1157,6 @@ msgstr "Inverser Départ et Arrivée"
 msgid "Walk on {walkDistance}"
 msgstr "Marchez sur {walkDistance}"
 
-msgid "Start"
-msgstr "Départ"
-
-msgid "Arrival"
-msgstr "Arrivée"
-
 msgid "Via"
 msgstr "Via"
 
@@ -1143,43 +1186,11 @@ msgid ""
 msgstr ""
 "Ce mode d'itinéraire est actuellement en version test pour quelques villes."
 
-msgid "Enable your geolocation for better directions"
-msgstr "Activez votre géolocalisation pour de meilleurs itinéraires"
-
-msgid ""
-"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
-"privacy policy{closeTag}, we don't store your information because we don't "
-"want to know your whereabouts."
-msgstr ""
-"Toujours dans le respect de votre vie privée.<br>Comme indiqué dans "
-"{privacyPolicyLink}notre politique de protection des données{closeTag}, nous"
-" de stockons pas vos informations car nous ne voulons pas connaître vos "
-"allées et venues."
-
-msgid "Ok, I've got it"
-msgstr "J'ai compris"
-
-msgid "Geolocation not available."
-msgstr "Géolocalisation impossible"
-
-msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
-msgstr ""
-"Vous n'avez pas autorisé Qwant Maps (ou votre appareil) à accéder à votre "
-"position."
-
-msgid "Ok"
-msgstr "Ok"
-
-msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
-msgstr ""
-"Qwant Maps ne peut pas déterminer votre position. Veuillez vérifier que les "
-"services de localisation sont activés sur votre système."
-
 msgid "calculate an itinerary"
 msgstr "calculer un itinéraire"
+
+msgid "Share itinerary"
+msgstr "Partager l'itinéraire"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "
