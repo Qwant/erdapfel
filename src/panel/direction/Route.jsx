@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import MobileRouteDetails from './MobileRouteDetails';
+import React, { useContext, Fragment } from 'react';
 import RouteSummary from './RouteSummary';
 import RoadMap from './RoadMap';
 import { DeviceContext } from 'src/libs/device';
@@ -10,16 +8,6 @@ const Route = ({
   toggleDetails, openPreview, selectRoute,
 }) => {
   const isMobile = useContext(DeviceContext);
-  const portalContainer = document.createElement('div');
-
-  useEffect(() => {
-    if (showDetails && isMobile) {
-      document.body.appendChild(portalContainer);
-    }
-    return function removePortalContainer() {
-      portalContainer.remove();
-    };
-  }, [isMobile, showDetails, portalContainer]);
 
   return <Fragment>
     <div className={`itinerary_leg ${isActive ? 'itinerary_leg--active' : ''}`}>
@@ -39,15 +27,6 @@ const Route = ({
         destination={destination}
         vehicle={vehicle} />}
     </div>
-    {isMobile && showDetails && ReactDOM.createPortal(<MobileRouteDetails
-      id={id}
-      route={route}
-      origin={origin}
-      destination={destination}
-      vehicle={vehicle}
-      toggleDetails={toggleDetails}
-      openPreview={openPreview}
-    />, portalContainer)}
   </Fragment>;
 };
 

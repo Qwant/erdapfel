@@ -22,7 +22,8 @@ import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import ShareMenu from 'src/components/ui/ShareMenu';
-import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
+import { parseQueryString, buildQueryString, updateQueryString } from 'src/libs/url_utils';
+import MobileRouteDetails from './MobileRouteDetails';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
@@ -117,6 +118,8 @@ export default class DirectionPanel extends React.Component {
 
     if (this.props.selected !== prevProps.selected && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
+      const search = updateQueryString({ details: false });
+      window.app.navigateTo('routes/' + search, {}, { replace: false });
     }
   }
 
@@ -322,6 +325,12 @@ export default class DirectionPanel extends React.Component {
     return handler(e);
   }
 
+  toggleDetails() {
+    const isDetailsInQuery = this.props.details === 'true';
+    const search = updateQueryString({ details: !isDetailsInQuery });
+    window.app.navigateTo('routes/' + search, {}, { replace: false });
+  }
+
   sanitizeSelected() {
     const selectedParsed = parseInt(this.props.selected);
     const isSelectedValid =
@@ -341,6 +350,7 @@ export default class DirectionPanel extends React.Component {
     } = this.state;
 
     const activeRouteId = this.sanitizeSelected();
+    const isDetailsInQuery = this.props.details === 'true';
 
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
@@ -364,13 +374,15 @@ export default class DirectionPanel extends React.Component {
     const result =
       <RouteResult
         activeRouteId={activeRouteId}
+        activeDetails={isDetailsInQuery}
         isLoading={isLoading || routes.length > 0 && isDirty}
         vehicle={vehicle}
         error={error}
         routes={routes}
         origin={origin}
         destination={destination}
-        openMobilePreview={this.openMobilePreview}
+        toggleDetails={() => this.toggleDetails()}
+        openMobilePreview={() => this.openMobilePreview(routes[activeRouteId])}
       />;
 
     const isFormCompleted = origin && destination;
@@ -424,10 +436,24 @@ export default class DirectionPanel extends React.Component {
             >
               {result}
             </Panel>}
+
           {activePreviewRoute && <MobileRoadMapPreview
             steps={getAllSteps(activePreviewRoute)}
             onClose={this.onClose}
           />}
+
+          {!activePreviewRoute && isMobile && isDetailsInQuery && activeRouteId >= 0 &&
+            this.state.routes.length > 0 &&
+            <MobileRouteDetails
+              id={activeRouteId}
+              route={routes[activeRouteId]}
+              origin={origin}
+              destination={destination}
+              vehicle={vehicle}
+              toggleDetails={() => this.toggleDetails()}
+              openPreview={() => this.openMobilePreview(routes[activeRouteId])}
+            />
+          }
         </Fragment>
         : <Panel
           className="direction-panel"

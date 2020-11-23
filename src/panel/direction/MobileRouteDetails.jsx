@@ -12,7 +12,6 @@ const MobileRouteDetails =
   const isPublicTransport = vehicle !== 'publicTransport';
 
   return <div
-    onTouchStart={e => e.stopPropagation()}
     ref={panelElement}
     className={classnames('mobile-route-details')}
   >
