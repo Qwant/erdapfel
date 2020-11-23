@@ -10,9 +10,10 @@ const PJPartnershipFooter = ({ isMobile }) => {
   const portalContainer = useRef(document.createElement('div'));
 
   useEffect(() => {
-    document.body.appendChild(portalContainer.current);
+    const current = portalContainer.current;
+    document.body.appendChild(current);
     return () => {
-      document.body.removeChild(portalContainer.current);
+      document.body.removeChild(current);
     };
   }, [isMobile]);
 

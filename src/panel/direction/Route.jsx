@@ -19,7 +19,7 @@ const Route = ({
     return function removePortalContainer() {
       portalContainer.remove();
     };
-  }, [isMobile, showDetails]);
+  }, [isMobile, showDetails, portalContainer]);
 
   return <Fragment>
     <div className={`itinerary_leg ${isActive ? 'itinerary_leg--active' : ''}`}>
