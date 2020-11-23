@@ -73,7 +73,7 @@ export default class CategoryPanel extends React.Component {
       return;
     }
 
-    if (window.map.mb.isMoving()) {
+    if (window.map.mb.isMoving && window.map.mb.isMoving()) {
       /*
         Do not trigger API search and zoom change when the map
         is already moving, to avoid flickering.
