@@ -115,7 +115,7 @@ export default class DirectionPanel extends React.Component {
       });
     }
 
-    if (this.props.selected !== prevProps.selected) {
+    if (this.props.selected !== prevProps.selected && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
     }
   }
@@ -200,6 +200,7 @@ export default class DirectionPanel extends React.Component {
         return;
       }
       if (directionResponse && directionResponse.error === 0) {
+
         // Valid, non-empty response
         const routes = directionResponse.data.routes
           .sort((routeA, routeB) => routeA.duration - routeB.duration)
