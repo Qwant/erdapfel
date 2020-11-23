@@ -25,7 +25,6 @@ const Suggest = ({
   const [lastQuery, setLastQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useContext(DeviceContext);
-  let currentQuery = null;
 
   const close = () => {
     setIsOpen(false);
@@ -36,9 +35,11 @@ const Suggest = ({
     if (hidePanelOnOpen) {
       togglePanelVisibility(!isOpen);
     }
-  }, [isOpen]);
+  }, [isOpen, hidePanelOnOpen]);
 
   useEffect(() => {
+    let currentQuery = null;
+
     const handleFocus = () => {
       if (inputNode.value === '') {
         setIsOpen(true);
@@ -111,7 +112,7 @@ const Suggest = ({
       inputNode.removeEventListener('input', handleInput);
       inputNode.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [inputNode, onClear, withCategories, withGeoloc, isMobile]);
 
   if (!isOpen) {
     return null;
