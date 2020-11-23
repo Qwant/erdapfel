@@ -207,8 +207,14 @@ export default class DirectionPanel extends React.Component {
           .map((route, i) => ({ ...route, id: i }));
 
         this.setState({ isLoading: false, error: 0, routes });
+
+        const selectedParsed = parseInt(this.props.selected) || 0;
+        const activeRouteId = selectedParsed < routes.length
+          ? selectedParsed
+          : 0;
+
         window.execOnMapLoaded(() => {
-          fire('set_routes', { routes, vehicle, activeRouteId: 0 });
+          fire('set_routes', { routes, vehicle, activeRouteId });
         });
       } else {
         // Error or empty response
