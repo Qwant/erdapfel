@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { fire, listen } from 'src/libs/customEvents';
+import { listen } from 'src/libs/customEvents';
 import { updateQueryString } from 'src/libs/url_utils';
 import Telemetry from 'src/libs/telemetry';
 
@@ -46,7 +46,6 @@ export default class RouteResult extends React.Component {
     }
 
     Telemetry.add(Telemetry.ITINERARY_ROUTE_SELECT);
-    fire('set_main_route', { routeId, fitView: true });
 
     this.updateUrl({ selected: routeId });
   }
@@ -61,7 +60,6 @@ export default class RouteResult extends React.Component {
     if (this.props.activeRouteId === routeId) {
       this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
     } else {
-      fire('set_main_route', { routeId, fitView: true });
       this.setState({
         activeDetails: true,
       });

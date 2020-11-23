@@ -104,7 +104,7 @@ export default class DirectionPanel extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const marginTop = this.directionPanelRef.current
       ? this.directionPanelRef.current.offsetHeight + MARGIN_TOP_OFFSET
       : 0;
@@ -113,6 +113,10 @@ export default class DirectionPanel extends React.Component {
       this.setState({
         marginTop,
       });
+    }
+
+    if (this.props.selected !== prevProps.selected && this.state.routes.length > 0) {
+      fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
     }
   }
 
@@ -196,14 +200,21 @@ export default class DirectionPanel extends React.Component {
         return;
       }
       if (directionResponse && directionResponse.error === 0) {
+
         // Valid, non-empty response
         const routes = directionResponse.data.routes
           .sort((routeA, routeB) => routeA.duration - routeB.duration)
           .map((route, i) => ({ ...route, id: i }));
 
         this.setState({ isLoading: false, error: 0, routes });
+
+        const selectedParsed = parseInt(this.props.selected) || 0;
+        const activeRouteId = selectedParsed < routes.length
+          ? selectedParsed
+          : 0;
+
         window.execOnMapLoaded(() => {
-          fire('set_routes', { routes, vehicle, activeRouteId: 0 });
+          fire('set_routes', { routes, vehicle, activeRouteId });
         });
       } else {
         // Error or empty response
@@ -328,6 +339,9 @@ export default class DirectionPanel extends React.Component {
       originInputText, destinationInputText,
       marginTop,
     } = this.state;
+
+    const activeRouteId = this.sanitizeSelected();
+
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
     </h3>;
@@ -346,16 +360,18 @@ export default class DirectionPanel extends React.Component {
       activeVehicle={vehicle}
       isInitializing={isInitializing}
     />;
-    const result = <RouteResult
-      activeRouteId={this.sanitizeSelected()}
-      isLoading={isLoading || routes.length > 0 && isDirty}
-      vehicle={vehicle}
-      error={error}
-      routes={routes}
-      origin={origin}
-      destination={destination}
-      openMobilePreview={this.openMobilePreview}
-    />;
+
+    const result =
+      <RouteResult
+        activeRouteId={activeRouteId}
+        isLoading={isLoading || routes.length > 0 && isDirty}
+        vehicle={vehicle}
+        error={error}
+        routes={routes}
+        origin={origin}
+        destination={destination}
+        openMobilePreview={this.openMobilePreview}
+      />;
 
     const isFormCompleted = origin && destination;
     const isResultDisplayed = !activePreviewRoute && isFormCompleted;
@@ -398,6 +414,13 @@ export default class DirectionPanel extends React.Component {
                   }
                 </ShareMenu>,
               ]}
+              onTransitionEnd={(prevSize, size) => {
+                if (prevSize === 'maximized'
+                    && size === 'default' &&
+                    activeRouteId >= 0) {
+                  fire('set_main_route', { routeId: activeRouteId, fitView: true });
+                }
+              }}
             >
               {result}
             </Panel>}

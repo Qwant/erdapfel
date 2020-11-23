@@ -133,6 +133,8 @@ export default class SceneDirection {
 
   setMainRoute(routeId, fitView) {
     let mainRoute = null;
+    if (this.routes.length === 0) {return;}
+
     this.routes.forEach(route => {
       const isActive = route.id === routeId;
       if (isActive) {
