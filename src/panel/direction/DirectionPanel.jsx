@@ -332,6 +332,9 @@ export default class DirectionPanel extends React.Component {
       originInputText, destinationInputText,
       marginTop,
     } = this.state;
+
+    const activeRouteId = this.sanitizeSelected();
+
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
     </h3>;
@@ -351,10 +354,10 @@ export default class DirectionPanel extends React.Component {
       isInitializing={isInitializing}
     />;
 
-    const result = this.sanitizeSelected() >= 0 && this.state.routes.length >= 0
+    const result = activeRouteId >= 0 && this.state.routes.length >= 0
       ?
       <RouteResult
-        activeRouteId={this.sanitizeSelected()}
+        activeRouteId={activeRouteId}
         isLoading={isLoading || routes.length > 0 && isDirty}
         vehicle={vehicle}
         error={error}
@@ -409,8 +412,8 @@ export default class DirectionPanel extends React.Component {
               onTransitionEnd={(prevSize, size) => {
                 if (prevSize === 'maximized'
                     && size === 'default' &&
-                    this.sanitizeSelected() >= 0) {
-                  fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: true });
+                    activeRouteId >= 0) {
+                  fire('set_main_route', { routeId: activeRouteId, fitView: true });
                 }
               }}
             >
