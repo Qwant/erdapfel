@@ -52,11 +52,11 @@ export default class SceneDirection {
     this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive',
       { pixelRatio: 4 });
 
-    listen('set_routes', ({ routes, vehicle }) => {
+    listen('set_routes', ({ routes, vehicle, activeRouteId = 0 }) => {
       this.reset();
       this.routes = routes;
       this.vehicle = vehicle;
-      this.displayRoute();
+      this.displayRoutes(activeRouteId);
     });
 
     listen('set_main_route', ({ routeId, fitView }) => {
@@ -174,15 +174,15 @@ export default class SceneDirection {
     this.setDestination({ latLon: { lng: destination[0], lat: destination[1] } });
   }
 
-  displayRoute() {
+  displayRoutes(activeRouteId) {
     if (this.routes && this.routes.length > 0) {
       this.mapFeaturesByRoute = {};
       this.routes.forEach(route => {
-        this.mapFeaturesByRoute[route.id] = this.addRouteFeatures(route);
+        this.mapFeaturesByRoute[route.id] =
+          this.addRouteFeatures(route, route.id === activeRouteId);
       });
       this.displayLabels(this.routes, this.vehicle);
-      const mainRoute = this.routes.find(route => route.isActive);
-      this.setMainRoute(mainRoute.id, true);
+      this.setMainRoute(activeRouteId, true);
     }
   }
 
@@ -257,7 +257,7 @@ export default class SceneDirection {
     return sources;
   }
 
-  addRouteFeatures(route) {
+  addRouteFeatures(route, isActive) {
     const sources = this.getDataSources(route);
     return sources.map((source, idx) => {
       const sourceId = `source_${route.id}_${idx}`;
@@ -265,7 +265,7 @@ export default class SceneDirection {
 
       const layerId = `route_${route.id}_${idx}`;
       const layerStyle = {
-        ...getRouteStyle(source.vehicle, route.isActive, false),
+        ...getRouteStyle(source.vehicle, isActive, false),
         id: layerId,
         source: sourceId,
       };
@@ -274,7 +274,7 @@ export default class SceneDirection {
       if (source.vehicle !== 'walking') {
         outlineLayerId = layerId + '_outline';
         const outlineLayerStyle = {
-          ...getRouteStyle(source.vehicle, route.isActive, true),
+          ...getRouteStyle(source.vehicle, isActive, true),
           id: layerId + '_outline',
           source: sourceId,
         };

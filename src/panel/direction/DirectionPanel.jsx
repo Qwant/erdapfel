@@ -199,11 +199,11 @@ export default class DirectionPanel extends React.Component {
         // Valid, non-empty response
         const routes = directionResponse.data.routes
           .sort((routeA, routeB) => routeA.duration - routeB.duration)
-          .map((route, i) => ({ ...route, isActive: i === 0, id: i }));
+          .map((route, i) => ({ ...route, id: i }));
 
         this.setState({ isLoading: false, error: 0, routes });
         window.execOnMapLoaded(() => {
-          fire('set_routes', { routes, vehicle });
+          fire('set_routes', { routes, vehicle, activeRouteId: 0 });
         });
       } else {
         // Error or empty response
