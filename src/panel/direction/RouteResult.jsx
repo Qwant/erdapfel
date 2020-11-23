@@ -24,10 +24,6 @@ export default class RouteResult extends React.Component {
     routes: [],
   }
 
-  state = {
-    activeDetails: false,
-  }
-
   componentDidMount() {
     listen('select_road_map', routeId => {
       this.selectRoute(routeId);
@@ -55,15 +51,9 @@ export default class RouteResult extends React.Component {
     window.app.navigateTo('routes/' + search, {}, { replace: true });
   }
 
-  toggleRouteDetails = routeId => {
+  toggleRouteDetails = () => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
-    if (this.props.activeRouteId === routeId) {
-      this.setState(prevState => ({ activeDetails: !prevState.activeDetails }));
-    } else {
-      this.setState({
-        activeDetails: true,
-      });
-    }
+    this.props.toggleDetails();
   }
 
   openPreview = routeId => {
@@ -102,7 +92,7 @@ export default class RouteResult extends React.Component {
           origin={this.props.origin}
           destination={this.props.destination}
           vehicle={this.props.vehicle}
-          activeDetails={this.state.activeDetails}
+          activeDetails={this.props.activeDetails}
           toggleRouteDetails={this.toggleRouteDetails}
           openPreview={this.openPreview}
           selectRoute={this.selectRoute}
