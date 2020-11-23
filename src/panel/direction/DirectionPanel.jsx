@@ -361,8 +361,7 @@ export default class DirectionPanel extends React.Component {
       isInitializing={isInitializing}
     />;
 
-    const result = activeRouteId >= 0 && this.state.routes.length >= 0
-      ?
+    const result =
       <RouteResult
         activeRouteId={activeRouteId}
         isLoading={isLoading || routes.length > 0 && isDirty}
@@ -372,8 +371,7 @@ export default class DirectionPanel extends React.Component {
         origin={origin}
         destination={destination}
         openMobilePreview={this.openMobilePreview}
-      />
-      : null;
+      />;
 
     const isFormCompleted = origin && destination;
     const isResultDisplayed = !activePreviewRoute && isFormCompleted;
