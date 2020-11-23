@@ -40,13 +40,25 @@ export default class PanelManager extends React.Component {
     const initialRoute = this.initRouter();
     this.initTopBar();
 
-    Telemetry.add(Telemetry.APP_START, {
-      'language': window.getLang(),
-      'is_mobile': isMobileDevice(),
-      'url_pathname': initialUrlPathName,
-      'direct_search': initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
-      'url_client': initialQueryParams['client'] || null,
-    });
+    if (window.no_ui) {
+      // iframe
+      Telemetry.add(Telemetry.APP_START_IFRAME, {
+        'language': window.getLang(),
+        'is_mobile': isMobileDevice(),
+        'url_pathname': initialUrlPathName,
+        'direct_search': initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
+        'url_client': initialQueryParams['client'] || null,
+      });
+    } else {
+      // no iframe
+      Telemetry.add(Telemetry.APP_START, {
+        'language': window.getLang(),
+        'is_mobile': isMobileDevice(),
+        'url_pathname': initialUrlPathName,
+        'direct_search': initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
+        'url_client': initialQueryParams['client'] || null,
+      });
+    }
 
     window.times.appRendered = Date.now();
 

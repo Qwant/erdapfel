@@ -2,6 +2,8 @@ module.exports = {
   events: [
     /* App */
     'app_start',
+    /* IA Maps iframe */
+    'app_start_iframe',
     /* Suggest*/
     'suggest_selection',
     'suggest_submit',
