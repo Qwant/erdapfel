@@ -2,14 +2,17 @@ import Color from 'color';
 
 const darkenColor = hex => Color(hex).mix(Color('black'), 0.33).hex();
 
-const ACTIVE_ROUTE_COLOR = '#4ba2ea';
+const ACTIVE_ROUTE_COLOR = '#3f81fb'; // action-blue-semi-lightness
+const ACTIVE_ROUTE_COLOR_OUTLINE = '#1050c5'; // action-blue-dark
 const INACTIVE_ROUTE_COLOR = '#c8cbd3';
 const INACTIVE_ROUTE_COLOR_OUTLINE = darkenColor(INACTIVE_ROUTE_COLOR);
 
 export function prepareRouteColor(feature) {
   const properties = { ...feature.properties };
+  properties.outlineColor = properties.lineColor
+    ? darkenColor(properties.lineColor)
+    : ACTIVE_ROUTE_COLOR_OUTLINE;
   properties.lineColor = properties.lineColor ? `#${properties.lineColor}` : ACTIVE_ROUTE_COLOR;
-  properties.outlineColor = darkenColor(properties.lineColor);
   return { ...feature, properties };
 }
 
