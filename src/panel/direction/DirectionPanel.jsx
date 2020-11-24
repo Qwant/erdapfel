@@ -245,7 +245,7 @@ export default class DirectionPanel extends React.Component {
     const search = buildQueryString(queryObject);
     const relativeUrl = 'routes/' + search;
 
-    window.app.navigateTo(relativeUrl, {}, {
+    window.app.navigateTo(relativeUrl, window.history.state, {
       replace: true,
     });
   }
