@@ -52,7 +52,7 @@ export default class RouteResult extends React.Component {
 
   updateUrl = queryObject => {
     const search = updateQueryString(queryObject);
-    window.app.navigateTo('routes/' + search, {}, { replace: true });
+    window.app.navigateTo('routes/' + search, window.history.state, { replace: true });
   }
 
   toggleRouteDetails = routeId => {
