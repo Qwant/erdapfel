@@ -16,6 +16,11 @@ class DirectionInput extends React.Component {
     onChangePoint: PropTypes.func.isRequired,
     pointType: PropTypes.oneOf(['origin', 'destination']).isRequired,
     inputRef: PropTypes.object.isRequired,
+    withGeoloc: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    withGeoloc: true,
   }
 
   state = {
@@ -92,7 +97,7 @@ class DirectionInput extends React.Component {
   }
 
   render() {
-    const { pointType, inputRef, isLoading } = this.props;
+    const { pointType, inputRef, isLoading, withGeoloc } = this.props;
     const { mounted, readOnly } = this.state;
 
     return (
@@ -126,7 +131,7 @@ class DirectionInput extends React.Component {
             <Suggest
               inputNode={inputRef.current}
               outputNode={document.getElementById('direction-autocomplete_suggestions')}
-              withGeoloc
+              withGeoloc={withGeoloc}
               onSelect={this.selectItem}
               onClear={this.clear}
             />
