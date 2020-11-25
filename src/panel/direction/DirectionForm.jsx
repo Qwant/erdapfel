@@ -66,6 +66,8 @@ export default class DirectionForm extends React.Component {
       onSelectVehicle,
       originInputText,
       destinationInputText,
+      origin,
+      destination,
     } = this.props;
 
     return <div className="direction-form">
@@ -77,6 +79,7 @@ export default class DirectionForm extends React.Component {
             pointType="origin"
             onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
             ref={this.originRef}
+            withGeoloc={destination ? destination.type !== 'geoloc' : true}
           />
           <Divider paddingTop={0} paddingBottom={0} />
           <DirectionInput
@@ -85,6 +88,7 @@ export default class DirectionForm extends React.Component {
             pointType="destination"
             onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
             ref={this.destinationRef}
+            withGeoloc={origin ? origin.type !== 'geoloc' : true}
           />
         </div>
 
