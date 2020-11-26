@@ -35,7 +35,12 @@ export default class DirectionPanel extends React.Component {
     poi: PropTypes.object,
     mode: PropTypes.string,
     isPublicTransportActive: PropTypes.bool,
+    activeRouteId: PropTypes.number,
     details: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    activeRouteId: 0,
   }
 
   constructor(props) {
@@ -118,10 +123,10 @@ export default class DirectionPanel extends React.Component {
       });
     }
 
-    if (this.props.selected !== prevProps.selected && this.state.routes.length > 0) {
+    if (this.props.activeRouteId !== prevProps.activeRouteId && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
       const search = updateQueryString({ details: null });
-      window.app.navigateTo('routes/' + search, {}, { replace: false });
+      window.app.navigateTo('routes/' + search, history.state, { replace: false });
     }
   }
 
@@ -212,15 +217,10 @@ export default class DirectionPanel extends React.Component {
           .sort((routeA, routeB) => routeA.duration - routeB.duration)
           .map((route, i) => ({ ...route, id: i }));
 
-        this.setState({ isLoading: false, error: 0, routes });
-
-        const selectedParsed = parseInt(this.props.selected) || 0;
-        const activeRouteId = selectedParsed < routes.length
-          ? selectedParsed
-          : 0;
-
-        window.execOnMapLoaded(() => {
-          fire('set_routes', { routes, vehicle, activeRouteId });
+        this.setState({ isLoading: false, error: 0, routes }, () => {
+          window.execOnMapLoaded(() => {
+            fire('set_routes', { routes, vehicle, activeRouteId: this.sanitizeSelected() });
+          });
         });
       } else {
         // Error or empty response
@@ -334,12 +334,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   sanitizeSelected() {
-    const selectedParsed = parseInt(this.props.selected);
-    const isSelectedValid =
-      typeof selectedParsed === 'number' &&
-      selectedParsed < this.state.routes.length;
-
-    return isSelectedValid ? selectedParsed : 0;
+    return this.props.activeRouteId < this.state.routes.length ? this.props.activeRouteId : 0;
   }
 
   render() {
