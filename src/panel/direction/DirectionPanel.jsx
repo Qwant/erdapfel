@@ -24,6 +24,7 @@ import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import ShareMenu from 'src/components/ui/ShareMenu';
 import { parseQueryString, buildQueryString, updateQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
+import { isNullOrEmpty } from 'src/libs/object';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
@@ -131,7 +132,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   async setTextInput(which, poi) {
-    if (!poi.address || Object.keys(poi.address).length === 0) {
+    if (isNullOrEmpty(poi.address)) {
       // fetch missing address
       poi.address = await address.fetch(poi);
     }
