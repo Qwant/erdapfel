@@ -17,7 +17,7 @@ import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
-import { Flex, Panel, PanelNav, CloseButton } from 'src/components/ui';
+import { Flex, Panel, PanelNav, CloseButton, Divider } from 'src/components/ui';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -265,7 +265,7 @@ export default class PoiPanel extends React.Component {
               />
               <CloseButton onClick={isMobile ? backAction : this.closeAction} position="topRight" />
             </Flex>
-            <div className="u-mb-xs">
+            <div className="u-mb-l">
               <ActionButtons
                 poi={poi}
                 isDirectionActive={this.isDirectionActive}
@@ -278,18 +278,17 @@ export default class PoiPanel extends React.Component {
             <div className="poi_panel__fullContent">
               <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
               {isFromPagesJaunes(poi) &&
-              <div className="poi_panel__info-partnership u-text--caption">
+              <div className="poi_panel__info-partnership u-text--caption u-mb-s">
                 {_('In partnership with')}
                 <img src="./statics/images/pj.svg" alt="PagesJaunes" width="80" height="16" />
               </div>
               }
-              {poi.id.match(/latlon:/) && <div className="service_panel__categories--poi">
-                <h3 className="u-text--smallTitle">
-                  {_('Search around this place', 'poi')}
-                </h3>
-                <CategoryList />
-              </div>}
               {isFromOSM(poi) && <OsmContribution poi={poi} />}
+              <Divider paddingTop={0} className="poi_panel__fullWidthDivider" />
+              <h3 className="u-text--smallTitle u-mb-s">
+                {_('Search around this place', 'poi')}
+              </h3>
+              <CategoryList className="poi_panel__categories u-mb-s" limit={4} />
             </div>
           </div>
         </Panel>

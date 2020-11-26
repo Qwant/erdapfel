@@ -13,8 +13,13 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 20px 30px 10px 30px;
+  padding: 20px 14px 0;
   position: relative;
+
+  .poi_panel__fullWidthDivider {
+    margin-left: -14px;
+    margin-right: -14px;
+  }
 }
 
 @keyframes appear {
@@ -188,12 +193,9 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   content: '';
 }
 
-.service_panel__categories--poi {
-  margin-bottom: 12px;
-
+.poi_panel__categories {
   .mainActionButton {
     width: 25%;
-    margin: 5px 0 15px 0;
   }
 }
 
@@ -207,7 +209,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 @media (max-width: 640px) {
   .poi_panel__content {
-    padding: 0 12px 12px;
+    padding: 0 $spacing-s;
+
+    .poi_panel__fullWidthDivider {
+      margin-left: -$spacing-s;
+      margin-right: -$spacing-s;
+    }
   }
 
   .poi_panel.panel {
