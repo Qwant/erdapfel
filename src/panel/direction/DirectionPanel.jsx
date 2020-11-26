@@ -131,7 +131,8 @@ export default class DirectionPanel extends React.Component {
   }
 
   async setTextInput(which, poi) {
-    if (poi.type === 'latlon') {
+    if (!poi.address || Object.keys(poi.address).length === 0) {
+      // fetch missing address
       poi.address = await address.fetch(poi);
     }
     this.setState({ [which + 'InputText']: getInputValue(poi) });
