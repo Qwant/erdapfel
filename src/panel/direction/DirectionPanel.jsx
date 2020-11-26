@@ -35,6 +35,7 @@ export default class DirectionPanel extends React.Component {
     poi: PropTypes.object,
     mode: PropTypes.string,
     isPublicTransportActive: PropTypes.bool,
+    details: PropTypes.bool,
   }
 
   constructor(props) {
@@ -119,7 +120,7 @@ export default class DirectionPanel extends React.Component {
 
     if (this.props.selected !== prevProps.selected && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
-      const search = updateQueryString({ details: false });
+      const search = updateQueryString({ details: null });
       window.app.navigateTo('routes/' + search, {}, { replace: false });
     }
   }
@@ -328,8 +329,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   toggleDetails() {
-    const isDetailsInQuery = this.props.details === 'true';
-    const search = updateQueryString({ details: !isDetailsInQuery });
+    const search = updateQueryString({ details: !this.props.details });
     window.app.navigateTo('routes/' + search, {}, { replace: false });
   }
 
@@ -352,7 +352,7 @@ export default class DirectionPanel extends React.Component {
     } = this.state;
 
     const activeRouteId = this.sanitizeSelected();
-    const isDetailsInQuery = this.props.details === 'true';
+    const activeDetails = this.props.details;
 
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
@@ -376,7 +376,7 @@ export default class DirectionPanel extends React.Component {
     const result =
       <RouteResult
         activeRouteId={activeRouteId}
-        activeDetails={isDetailsInQuery}
+        activeDetails={activeDetails}
         isLoading={isLoading || routes.length > 0 && isDirty}
         vehicle={vehicle}
         error={error}
@@ -444,7 +444,7 @@ export default class DirectionPanel extends React.Component {
             onClose={this.onClose}
           />}
 
-          {!activePreviewRoute && isMobile && isDetailsInQuery && activeRouteId >= 0 &&
+          {!activePreviewRoute && isMobile && activeDetails && activeRouteId >= 0 &&
             this.state.routes.length > 0 &&
             <MobileRouteDetails
               id={activeRouteId}
