@@ -218,9 +218,11 @@ export default class DirectionPanel extends React.Component {
           .map((route, i) => ({ ...route, id: i }));
 
         this.setState({ isLoading: false, error: 0, routes }, () => {
+          const activeRouteId = this.sanitizeSelected();
           window.execOnMapLoaded(() => {
-            fire('set_routes', { routes, vehicle, activeRouteId: this.sanitizeSelected() });
+            fire('set_routes', { routes, vehicle, activeRouteId });
           });
+          this.updateUrl({ selected: activeRouteId }, true);
         });
       } else {
         // Error or empty response
@@ -239,25 +241,24 @@ export default class DirectionPanel extends React.Component {
     }
   }
 
-  updateUrl() {
+  updateUrl(params = {}, replace = false) {
     const queryObject = {
       ...parseQueryString(window.location.search),
       mode: this.state.vehicle,
       origin: this.state.origin ? poiToUrl(this.state.origin) : null,
       destination: this.state.destination ? poiToUrl(this.state.destination) : null,
       pt: this.props.isPublicTransportActive ? 'true' : null,
+      ...params,
     };
 
     const search = buildQueryString(queryObject);
     const relativeUrl = 'routes/' + search;
 
-    window.app.navigateTo(relativeUrl, window.history.state, {
-      replace: true,
-    });
+    window.app.navigateTo(relativeUrl, window.history.state, { replace });
   }
 
   update() {
-    this.updateUrl();
+    this.updateUrl({}, true);
     this.computeRoutes();
     this.context.setSize('default');
   }
@@ -380,6 +381,7 @@ export default class DirectionPanel extends React.Component {
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
         openMobilePreview={() => this.openMobilePreview(routes[activeRouteId])}
+        selectRoute={routeId => this.updateUrl({ selected: routeId })}
       />;
 
     const isFormCompleted = origin && destination;

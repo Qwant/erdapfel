@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { listen } from 'src/libs/customEvents';
-import { updateQueryString } from 'src/libs/url_utils';
 import Telemetry from 'src/libs/telemetry';
 
 import RoutesList from './RoutesList';
@@ -18,6 +17,8 @@ export default class RouteResult extends React.Component {
     error: PropTypes.number,
     openMobilePreview: PropTypes.func.isRequired,
     activeRouteId: PropTypes.number,
+    selectRoute: PropTypes.func.isRequired,
+    toggleDetails: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -30,25 +31,13 @@ export default class RouteResult extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.routes.length !== prevProps.routes.length) {
-      this.updateUrl({ selected: this.props.activeRouteId });
-    }
-  }
-
   selectRoute = routeId => {
     if (routeId === this.props.activeRouteId) {
       return;
     }
 
     Telemetry.add(Telemetry.ITINERARY_ROUTE_SELECT);
-
-    this.updateUrl({ selected: routeId });
-  }
-
-  updateUrl = queryObject => {
-    const search = updateQueryString(queryObject);
-    window.app.navigateTo('routes/' + search, window.history.state, { replace: true });
+    this.props.selectRoute(routeId);
   }
 
   toggleRouteDetails = () => {
