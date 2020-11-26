@@ -198,6 +198,28 @@ test('api wait effect', async () => {
   expect(await exists(page, '.itinerary_leg:not(.itinerary_leg--placeholder)')).toBeTruthy();
 });
 
+describe('Close panel behavior', () => {
+  test('returning to home', async () => {
+    await page.goto(APP_URL);
+    const directionButton = await page.waitForSelector('.search_form__direction_shortcut');
+    await directionButton.click();
+    await page.waitForSelector('.direction-panel');
+    await page.click('.vehicleSelector-button:not(.vehicleSelector-button--active)');
+    await page.click('.direction-panel .closeButton');
+    expect(await exists(page, '.service_panel')).toBeTruthy();
+  });
+
+  test('returning to the POI', async () => {
+    await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`);
+    const directionFromPOIButton = await page.waitForSelector('.poi_panel__action__direction');
+    await directionFromPOIButton.click();
+    await page.waitForSelector('.direction-panel');
+    await page.click('.vehicleSelector-button:not(.vehicleSelector-button--active)');
+    await page.click('.direction-panel .closeButton');
+    expect(await exists(page, '.poi_panel')).toBeTruthy();
+  });
+});
+
 afterAll(async () => {
   await browser.close();
 });
