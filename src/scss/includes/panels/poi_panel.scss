@@ -13,7 +13,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: 20px 14px 0;
+  padding: $spacing-l 14px 0;
   position: relative;
 
   .poi_panel__fullWidthDivider {
