@@ -16,7 +16,7 @@ const RoadMapPoint = ({ point, ...rest }) => {
       <div className="u-text--subtitle">
         <Address
           address={address}
-          omitStreet={type === 'house' || type === 'street'}
+          omitStreet={type === 'house' || type === 'street' || type === 'latlon'}
           omitCountry
           inline
         />
