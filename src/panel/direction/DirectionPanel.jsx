@@ -124,7 +124,7 @@ export default class DirectionPanel extends React.Component {
     }
 
     if (this.props.activeRouteId !== prevProps.activeRouteId && this.state.routes.length > 0) {
-      fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
+      fire('set_main_route', { routeId: this.props.activeRouteId, fitView: !isMobileDevice() });
       this.updateUrl({ details: null });
     }
   }
@@ -217,7 +217,8 @@ export default class DirectionPanel extends React.Component {
           .map((route, i) => ({ ...route, id: i }));
 
         this.setState({ isLoading: false, error: 0, routes }, () => {
-          const activeRouteId = this.sanitizeSelected();
+          const activeRouteId = this.props.activeRouteId < this.state.routes.length
+            ? this.props.activeRouteId : 0;
           window.execOnMapLoaded(() => {
             fire('set_routes', { routes, vehicle, activeRouteId });
           });
@@ -332,10 +333,6 @@ export default class DirectionPanel extends React.Component {
     this.updateUrl({ details: this.props.details ? null : true });
   }
 
-  sanitizeSelected() {
-    return this.props.activeRouteId < this.state.routes.length ? this.props.activeRouteId : 0;
-  }
-
   render() {
     const {
       origin, destination, vehicle,
@@ -345,8 +342,7 @@ export default class DirectionPanel extends React.Component {
       marginTop,
     } = this.state;
 
-    const activeRouteId = this.sanitizeSelected();
-    const activeDetails = this.props.details;
+    const { activeRouteId, details: activeDetails } = this.props;
 
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
