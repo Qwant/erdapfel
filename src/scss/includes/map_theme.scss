@@ -1,3 +1,8 @@
+.mapboxgl-ctrl-top-left,
+.mapboxgl-ctrl-top-right,
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right  { position:absolute; pointer-events:none; }
+
 .map_control_group {
   margin: 0 10px 5px 0;
   float: right;
@@ -104,8 +109,34 @@
 }
 
 @media(max-width: 640px) {
-  .map_control__scale_attribute_container{
-    .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl.map_control__scale {
+  .map_control__scale_attribute_container {
+    .mapboxgl-ctrl-attrib {
+      position: fixed;
+      bottom: 2px;
+      left: 4px;
+
+      .mapboxgl-ctrl-attrib-button {
+        top: auto;
+        right: auto;
+        bottom: 0;
+        left: 0;
+      }
+
+      &.mapboxgl-compact-show {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2px 8px 2px 28px;
+
+        .mapboxgl-ctrl-attrib-button {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .map_control__scale {
+      position: fixed;
+      left: 32px;
+      bottom: 4px;
+      margin: 0;
       background: rgba(255, 255, 255, 0.9);
     }
   }
@@ -145,10 +176,6 @@
     }
   }
 
-  .map_control__scale_attribute_container {
-    background: none;
-  }
-
   .map_control_group {
     .map_control_group__button__zoom {
       display: none;
@@ -184,25 +211,6 @@
   .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
     float: inherit;
   }
-
-  .mapboxgl-ctrl-attrib.mapboxgl-compact{
-    margin: 0;
-    padding: 0;
-    border-radius: 12px;
-
-    &::after {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    &:hover {
-      padding: 2px 4px 2px 24px;
-    }
-  }
-
 }
 
 .compass-origin {
