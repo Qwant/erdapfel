@@ -12,11 +12,11 @@ const RoadMapPoint = ({ point, ...rest }) => {
     {...rest}
   >
     <div className="u-text--smallTitle">{getInputValue(point)}</div>
-    {type !== 'latlon' && type !== 'geoloc' &&
+    {type !== 'geoloc' &&
       <div className="u-text--subtitle">
         <Address
           address={address}
-          omitStreet={type === 'house' || type === 'street'}
+          omitStreet={type === 'house' || type === 'street' || type === 'latlon'}
           omitCountry
           inline
         />
