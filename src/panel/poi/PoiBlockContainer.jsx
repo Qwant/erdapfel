@@ -38,23 +38,24 @@ export default class PoiBlockContainer extends React.Component {
       ? informationBlock.blocks.find(b => b.type === 'wikipedia')
       : null;
 
+    const hasAddressBlock = this.props.poi.address && this.props.poi.subClassName !== 'latlon';
+    const hasDetailBlocks = hasAddressBlock
+    || websiteBlock
+    || informationBlock
+    || phoneBlock
+    || hourBlock
+    || recyclingBlock
+    || contactBlock;
+
     return <div className="poi_panel__info">
-      {wikipedia && <WikiBlock block={wikipedia} />}
+      {wikipedia && <div className="u-mb-m"><WikiBlock block={wikipedia} /></div>}
       {displayCovidInfo &&
         <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />}
-      <Divider />
-      {
-        (
-          (this.props.poi.address && this.props.poi.subClassName !== 'latlon')
-          || websiteBlock
-          || informationBlock
-          || phoneBlock
-          || hourBlock
-          || recyclingBlock
-          || contactBlock
-        ) && <h3 className="u-text--smallTitle">{_('Information')}</h3>
-      }
-      {this.props.poi.address && this.props.poi.subClassName !== 'latlon' &&
+      {hasDetailBlocks && <>
+        <Divider paddingTop={0} />
+        <h3 className="u-text--smallTitle">{_('Information')}</h3>
+      </>}
+      {hasAddressBlock &&
         <Block className="block-address" icon="map-pin" title={_('address')}>
           <Address inline address={this.props.poi.address} omitCountry />
         </Block>
