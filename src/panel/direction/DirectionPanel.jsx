@@ -22,7 +22,7 @@ import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import ShareMenu from 'src/components/ui/ShareMenu';
-import { parseQueryString, buildQueryString, updateQueryString } from 'src/libs/url_utils';
+import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
 
@@ -125,8 +125,7 @@ export default class DirectionPanel extends React.Component {
 
     if (this.props.activeRouteId !== prevProps.activeRouteId && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
-      const search = updateQueryString({ details: null });
-      window.app.navigateTo('routes/' + search, history.state, { replace: false });
+      this.updateUrl({ details: null });
     }
   }
 
@@ -330,8 +329,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   toggleDetails() {
-    const search = updateQueryString({ details: !this.props.details });
-    window.app.navigateTo('routes/' + search, {}, { replace: false });
+    this.updateUrl({ details: this.props.details ? null : true });
   }
 
   sanitizeSelected() {

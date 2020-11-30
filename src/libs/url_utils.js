@@ -65,10 +65,3 @@ export function buildQueryString(queriesObject) {
   const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();
   return params ? `?${params}` : '';
 }
-
-export function updateQueryString(queriesObject) {
-  return buildQueryString({
-    ...parseQueryString(window.location.search),
-    ...queriesObject,
-  });
-}
