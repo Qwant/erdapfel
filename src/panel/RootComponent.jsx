@@ -5,6 +5,7 @@ import PanelManager from 'src/panel/PanelManager';
 import Suggest from 'src/components/ui/Suggest';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
+import { togglePanelVisibility } from 'src/libs/panel';
 
 const MenuComponent = ({ isMobile }) =>
   isMobile
@@ -40,7 +41,7 @@ const RootComponent = ({
       inputNode={searchBarInputNode}
       outputNode={document.querySelector('.search_form__result')}
       withCategories
-      hidePanelOnOpen
+      onToggleSuggestions={suggestionsOpened => { togglePanelVisibility(!suggestionsOpened); }}
     />
   </DeviceContext.Provider>;
 };
