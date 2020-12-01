@@ -131,7 +131,6 @@
 }
 
 .itinerary_roadmap_item_icon {
-  width: 60px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -285,14 +284,76 @@ button.direction_shortcut {
     grid-area: via;
   }
 
+  .itinerary_mobile_step_by_step {
+
+    .mobile-roadmap-preview-close {
+      text-align: center;
+      padding: 7px 0 0;
+      margin: 0 0 0 11px;
+      background: $background;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12)
+    }
+
+    .divider {
+      display: none;
+    }
+
+    .mobile-roadmap-preview-steps {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      padding-bottom: 19px;
+      width: 100vw;
+      height: 99px;
+      overflow: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 35px;
+
+      .itinerary_mobile_step {
+        flex: 0 0 calc(100vw - 70px);
+        margin: 0 6px;
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        scroll-snap-align: start;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+        transition: box-shadow .3s, background .3s, border-color .3s;
+
+        &.past {
+          background-color: $grey-lighter;
+        }
+
+        &.active {
+          border: 1px solid $action-blue-dark;
+          box-shadow: 0 0 0 4px rgba(128, 172, 255, 0.2);
+        }
+
+        &:first-of-type {
+          margin-left: 35px;
+        }
+
+        // This element is added at the end of the list to scroll properly
+        &.spacer {
+          flex: 0 0 22px;
+          visibility: hidden;
+        }
+      }
+    }
+  }
+
   .itinerary_mobile_step {
     position: fixed;
-    top: 12px;
-    left: 12px;
-    right: 12px;
+    bottom: 12px;
+    left: 35px;
+    right: 35px;
+    min-height: 80px;
     background: $background;
-    border-radius: 3px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     user-select: none;
 
     .closeButton {
@@ -301,8 +362,9 @@ button.direction_shortcut {
       right: 0;
     }
     .roadmapIcon {
-      width: 48px;
-      height: 48px;
+      width: 20px;
+      height: 20px;
+      margin: 8px;
     }
 
     .itinerary_roadmap_instruction {
@@ -324,33 +386,6 @@ button.direction_shortcut {
       text-align: left;
       font-size: 16px;
       margin: 0 0 5px;
-    }
-  }
-
-  .itinerary_mobile_step_buttons {
-    width: 96px;
-    height: 48px;
-    background: $background;
-    position: fixed;
-    bottom: 8px;
-    right: 8px;
-    border-radius: 3px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  }
-
-  .itinerary_mobile_step_button {
-    width: 48px;
-    height: 48px;
-    float: left;
-    border-right: 1px solid #f4f6fa;
-    font-size: 24px;
-    padding-bottom: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:disabled {
-      color: $primary_clear;
     }
   }
 

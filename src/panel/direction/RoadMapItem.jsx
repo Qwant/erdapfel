@@ -7,7 +7,7 @@ const RoadMapItem = ({ children, icon, distance, className, line, ...rest }) =>
   <>
     <div className={classnames('itinerary_roadmap_item', className)} {...rest}>
       {line}
-      <Flex alignItems="center">
+      <Flex alignItems="flex-start">
         <div className="itinerary_roadmap_item_icon">
           {icon}
         </div>
