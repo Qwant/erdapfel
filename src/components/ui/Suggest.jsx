@@ -6,7 +6,6 @@ import { bool, string, func, object } from 'prop-types';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/suggest';
 import { DeviceContext } from 'src/libs/device';
-import { togglePanelVisibility } from 'src/libs/panel';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -17,7 +16,7 @@ const Suggest = ({
   withGeoloc,
   onSelect = selectItem,
   onClear,
-  hidePanelOnOpen,
+  onToggleSuggestions,
   className,
 }) => {
   const [items, setItems] = useState([]);
@@ -32,10 +31,10 @@ const Suggest = ({
   };
 
   useEffect(() => {
-    if (hidePanelOnOpen) {
-      togglePanelVisibility(!isOpen);
+    if (onToggleSuggestions) {
+      onToggleSuggestions(isOpen);
     }
-  }, [isOpen, hidePanelOnOpen]);
+  }, [isOpen, onToggleSuggestions]);
 
   useEffect(() => {
     let currentQuery = null;
@@ -151,7 +150,7 @@ Suggest.propTypes = {
   withGeoloc: bool,
   onSelect: func,
   onClear: func,
-  hidePanelOnOpen: bool,
+  onToggleSuggestions: func,
   className: string,
 };
 
