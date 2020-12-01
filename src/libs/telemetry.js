@@ -64,6 +64,10 @@ function buildInteractionData({ source, template, id, zone, element, category })
 }
 
 function sendPoiEvent(poi, event, data) {
+  if (!poi.meta || !poi.meta.source) {
+    return;
+  }
+
   const eventName = `poi_${poi.meta?.source}_${event}`.toUpperCase();
   return add(events[eventName], data);
 }
