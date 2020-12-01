@@ -149,9 +149,12 @@ export default class PanelManager extends React.Component {
         || parseQueryString(document.location.search)['pt'] === 'true';
 
       router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
+        const params = parseQueryString(routeParams);
+        params.details = params.details === 'true';
+        params.activeRouteId = Number(params.selected) || 0;
         this.setState({
           ActivePanel: DirectionPanel,
-          options: { ...parseQueryString(routeParams), ...options, isPublicTransportActive },
+          options: { ...params, ...options, isPublicTransportActive },
           panelSize: 'default',
         });
       });

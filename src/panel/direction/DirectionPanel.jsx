@@ -22,7 +22,7 @@ import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import ShareMenu from 'src/components/ui/ShareMenu';
-import { parseQueryString, buildQueryString, updateQueryString } from 'src/libs/url_utils';
+import { updateQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
 
@@ -35,6 +35,12 @@ export default class DirectionPanel extends React.Component {
     poi: PropTypes.object,
     mode: PropTypes.string,
     isPublicTransportActive: PropTypes.bool,
+    activeRouteId: PropTypes.number,
+    details: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    activeRouteId: 0,
   }
 
   constructor(props) {
@@ -117,10 +123,9 @@ export default class DirectionPanel extends React.Component {
       });
     }
 
-    if (this.props.selected !== prevProps.selected && this.state.routes.length > 0) {
-      fire('set_main_route', { routeId: this.sanitizeSelected(), fitView: !isMobileDevice() });
-      const search = updateQueryString({ details: false });
-      window.app.navigateTo('routes/' + search, {}, { replace: false });
+    if (this.props.activeRouteId !== prevProps.activeRouteId && this.state.routes.length > 0) {
+      fire('set_main_route', { routeId: this.props.activeRouteId, fitView: !isMobileDevice() });
+      this.updateUrl({ details: null });
     }
   }
 
@@ -211,15 +216,13 @@ export default class DirectionPanel extends React.Component {
           .sort((routeA, routeB) => routeA.duration - routeB.duration)
           .map((route, i) => ({ ...route, id: i }));
 
-        this.setState({ isLoading: false, error: 0, routes });
-
-        const selectedParsed = parseInt(this.props.selected) || 0;
-        const activeRouteId = selectedParsed < routes.length
-          ? selectedParsed
-          : 0;
-
-        window.execOnMapLoaded(() => {
-          fire('set_routes', { routes, vehicle, activeRouteId });
+        this.setState({ isLoading: false, error: 0, routes }, () => {
+          const activeRouteId = this.props.activeRouteId < this.state.routes.length
+            ? this.props.activeRouteId : 0;
+          window.execOnMapLoaded(() => {
+            fire('set_routes', { routes, vehicle, activeRouteId });
+          });
+          this.updateUrl({ selected: activeRouteId }, true);
         });
       } else {
         // Error or empty response
@@ -238,25 +241,21 @@ export default class DirectionPanel extends React.Component {
     }
   }
 
-  updateUrl() {
-    const queryObject = {
-      ...parseQueryString(window.location.search),
+  updateUrl(params = {}, replace = false) {
+    const search = updateQueryString({
       mode: this.state.vehicle,
       origin: this.state.origin ? poiToUrl(this.state.origin) : null,
       destination: this.state.destination ? poiToUrl(this.state.destination) : null,
       pt: this.props.isPublicTransportActive ? 'true' : null,
-    };
-
-    const search = buildQueryString(queryObject);
+      ...params,
+    });
     const relativeUrl = 'routes/' + search;
 
-    window.app.navigateTo(relativeUrl, window.history.state, {
-      replace: true,
-    });
+    window.app.navigateTo(relativeUrl, window.history.state, { replace });
   }
 
   update() {
-    this.updateUrl();
+    this.updateUrl({}, true);
     this.computeRoutes();
     this.context.setSize('default');
   }
@@ -328,18 +327,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   toggleDetails() {
-    const isDetailsInQuery = this.props.details === 'true';
-    const search = updateQueryString({ details: !isDetailsInQuery });
-    window.app.navigateTo('routes/' + search, {}, { replace: false });
-  }
-
-  sanitizeSelected() {
-    const selectedParsed = parseInt(this.props.selected);
-    const isSelectedValid =
-      typeof selectedParsed === 'number' &&
-      selectedParsed < this.state.routes.length;
-
-    return isSelectedValid ? selectedParsed : 0;
+    this.updateUrl({ details: this.props.details ? null : true });
   }
 
   render() {
@@ -351,8 +339,7 @@ export default class DirectionPanel extends React.Component {
       marginTop,
     } = this.state;
 
-    const activeRouteId = this.sanitizeSelected();
-    const isDetailsInQuery = this.props.details === 'true';
+    const { activeRouteId, details: activeDetails } = this.props;
 
     const title = <h3 className="direction-title u-text--title u-firstCap">
       {_('calculate an itinerary', 'direction')}
@@ -376,7 +363,7 @@ export default class DirectionPanel extends React.Component {
     const result =
       <RouteResult
         activeRouteId={activeRouteId}
-        activeDetails={isDetailsInQuery}
+        activeDetails={activeDetails}
         isLoading={isLoading || routes.length > 0 && isDirty}
         vehicle={vehicle}
         error={error}
@@ -385,6 +372,7 @@ export default class DirectionPanel extends React.Component {
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
         openMobilePreview={() => this.openMobilePreview(routes[activeRouteId])}
+        selectRoute={routeId => this.updateUrl({ selected: routeId })}
       />;
 
     const isFormCompleted = origin && destination;
@@ -444,7 +432,7 @@ export default class DirectionPanel extends React.Component {
             onClose={this.onClose}
           />}
 
-          {!activePreviewRoute && isMobile && isDetailsInQuery && activeRouteId >= 0 &&
+          {!activePreviewRoute && isMobile && activeDetails && activeRouteId >= 0 &&
             this.state.routes.length > 0 &&
             <MobileRouteDetails
               id={activeRouteId}
