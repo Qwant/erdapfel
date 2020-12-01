@@ -22,7 +22,7 @@ import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import ShareMenu from 'src/components/ui/ShareMenu';
-import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
+import { updateQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
 
@@ -242,16 +242,13 @@ export default class DirectionPanel extends React.Component {
   }
 
   updateUrl(params = {}, replace = false) {
-    const queryObject = {
-      ...parseQueryString(window.location.search),
+    const search = updateQueryString({
       mode: this.state.vehicle,
       origin: this.state.origin ? poiToUrl(this.state.origin) : null,
       destination: this.state.destination ? poiToUrl(this.state.destination) : null,
       pt: this.props.isPublicTransportActive ? 'true' : null,
       ...params,
-    };
-
-    const search = buildQueryString(queryObject);
+    });
     const relativeUrl = 'routes/' + search;
 
     window.app.navigateTo(relativeUrl, window.history.state, { replace });
