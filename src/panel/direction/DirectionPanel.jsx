@@ -327,7 +327,8 @@ export default class DirectionPanel extends React.Component {
   }
 
   toggleDetails() {
-    this.updateUrl({ details: this.props.details ? null : true });
+    const isDetailsInQuery = this.props.details;
+    this.updateUrl({ details: this.props.details ? null : true }, isDetailsInQuery);
   }
 
   render() {
