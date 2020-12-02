@@ -8,6 +8,7 @@ import Error from 'src/adapters/error';
 import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
+import { handleFocus } from 'src/libs/input';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -97,7 +98,7 @@ class DirectionInput extends React.Component {
   }
 
   render() {
-    const { pointType, inputRef, isLoading, withGeoloc } = this.props;
+    const { pointType, inputRef, isLoading, withGeoloc, value } = this.props;
     const { mounted, readOnly } = this.state;
 
     return (
@@ -113,10 +114,11 @@ class DirectionInput extends React.Component {
             placeholder={pointType === 'origin'
               ? _('Enter a starting point', 'direction')
               : _('Enter an end point', 'direction')}
-            value={this.props.value}
+            value={value}
             onChange={this.onChange}
             onKeyPress={this.onKeyPress}
             readOnly={readOnly || isLoading}
+            onFocus={handleFocus}
           />
           <div className="direction-icon-block">
             <div className={`direction-icon direction-icon-${pointType}`}/>
