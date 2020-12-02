@@ -2,6 +2,8 @@
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 
+import { handleFocus } from '../libs/input';
+
 const MAPBOX_RESERVED_KEYS = [
   'ArrowLeft', // ←
   'ArrowUp', // ↑
@@ -27,6 +29,8 @@ export default class SearchInput {
     }
 
     window.__searchInput = new SearchInput(tagSelector);
+
+    window.__searchInput.searchInputHandle.addEventListener('focus', handleFocus);
 
     window.clearSearch = (e, blur = false) => {
       e.preventDefault(); // Prevent losing focus
