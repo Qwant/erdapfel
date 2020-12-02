@@ -6,21 +6,6 @@
   align-items: center;
   pointer-events: auto;
   padding: 8px 12px;
-
-  &[data-flag-text]:before {
-    font-weight: bold;
-    content: attr(data-flag-text);
-    background: $secondary_text;
-    color: $grey-light;
-    position: absolute;
-    left: 28px;
-    top: 10px;
-    font-size: 10px;
-    line-height: 14px;
-    padding: 1px 3px;
-    border-radius: 6px;
-    border: 2px solid white;
-  }
 }
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused
@@ -81,12 +66,28 @@ input[type="search"] {
 }
 
 // Logo
-.search_form__logo {
+.search_form__logo__button {
+  cursor: pointer;
   width: 36px;
   height: 36px;
   background: url(../images/qwant-logo.svg) no-repeat;
   background-size: cover;
   margin-top: 7px;
+
+  &[data-flag-text]:before {
+    font-weight: bold;
+    content: attr(data-flag-text);
+    background: $secondary_text;
+    color: $grey-light;
+    position: absolute;
+    left: 28px;
+    top: 10px;
+    font-size: 10px;
+    line-height: 14px;
+    padding: 1px 3px;
+    border-radius: 6px;
+    border: 2px solid white;
+  }
 }
 
 // Return arrow
@@ -355,7 +356,7 @@ input[type="search"] {
     height: 100vh;
   }
 
-  .search_form__logo {
+  .search_form__logo__button {
     width: 34px;
     height: 34px;
   }

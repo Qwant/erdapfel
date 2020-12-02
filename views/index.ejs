@@ -38,11 +38,15 @@
     <div id="react_root"></div>
     <div class="react_modal__container"></div>
     <div class="top_bar">
-      <form onsubmit="return false" novalidate class="search_form"
-        <% if(config.app.versionFlag) { %>
-          data-flag-text="<%= config.app.versionFlag %>"
-        <% } %> >
-        <div class="search_form__logo"></div>
+      <form onsubmit="return false" novalidate class="search_form">
+        <button
+          type="button"
+          onclick="window.app.navigateTo('/');"
+          class="search_form__logo__button"
+          <% if(config.app.versionFlag) { %>
+            data-flag-text="<%= config.app.versionFlag %>"
+          <% } %>
+        ></button>
         <div id="react_menu__container"></div>
         <div class="search_form__wrapper empty">
           <div class="search_form__return icon-arrow-left"></div>
