@@ -91,6 +91,10 @@ class DirectionInput extends React.Component {
 
   clear = e => {
     e.preventDefault(); // prevent losing focus
+    this.removePoint();
+  }
+
+  removePoint = () => {
     this.props.onChangePoint('', null);
     this.props.inputRef.current.value = '';
     // Trigger an input event to refresh Suggest's state
@@ -135,7 +139,7 @@ class DirectionInput extends React.Component {
               outputNode={document.getElementById('direction-autocomplete_suggestions')}
               withGeoloc={withGeoloc}
               onSelect={this.selectItem}
-              onClear={this.clear}
+              onClear={this.removePoint}
             />
         }
       </div>
