@@ -30,6 +30,7 @@
       &:focus-within {
         &::before {
           background: $focus-gradient;
+          box-shadow: $shadow-focus;
         }
       }
     }

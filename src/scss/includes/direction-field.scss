@@ -35,6 +35,7 @@
           height: 50px;
           border-radius: 50px;
           background: $focus-gradient;
+          box-shadow: $shadow-focus;
         }
 
         &::after {

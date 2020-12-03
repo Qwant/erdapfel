@@ -42,4 +42,5 @@ $focus-gradient: linear-gradient(to right, #216fff, #af27cc);
 $active-gradient: linear-gradient(to right, $action-blue-base, $action-blue-light);
 $active-gradient-vertical: linear-gradient(to bottom, $action-blue-base, $action-blue-light);
 
-$shadow : 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+$shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+$shadow-focus: 0px 0px 0px 4px rgba(128, 172, 255, 0.2);
