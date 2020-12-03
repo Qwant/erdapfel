@@ -255,6 +255,7 @@ input[type="search"] {
       margin: -1px;
       border-radius: inherit;
       background: $focus-gradient;
+      box-shadow: $shadow-focus;
     }
   }
 }
