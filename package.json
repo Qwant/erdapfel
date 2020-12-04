@@ -6,7 +6,9 @@
   "scripts": {
     "bench": "node ./bench/performances.js",
     "unit-test": "jest --config=./tests/unit.js",
-    "integration-test": "jest --config=./tests/integration.js",
+    "integration-test-mobile": "TEST_DEVICE=mobile jest --config=./tests/integration.js",
+    "integration-test-desktop": "TEST_DEVICE=desktop jest --config=./tests/integration.js",
+    "integration-test": "npm run integration-test-mobile && npm run integration-test-desktop",
     "test": "npm run unit-test && npm run integration-test",
     "start": "node bin/index.js",
     "build": "webpack --config build/webpack.config.js",
