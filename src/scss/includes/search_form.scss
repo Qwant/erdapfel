@@ -323,14 +323,13 @@ input[type="search"] {
   }
 
   .search_form__return {
+    display: none;
     font-size: 20px;
     text-align: center;
     color: #0c0c0e;
     margin-right: 8px;
     cursor: pointer;
 
-    display: block;
-    opacity: 0;
     position: absolute;
     transition: opacity .15s;
     top: 0;
@@ -370,6 +369,10 @@ input[type="search"] {
   // When the search field is filled
   .top_bar--search_filled {
 
+    .search_form__wrapper {
+      padding: 0 0 0 $spacing-s;
+    }
+
     // Show mobile clear X button
     #clear_button_mobile {
       display: block;
@@ -382,10 +385,19 @@ input[type="search"] {
 
   // When the search field is focused (empty or not)
   .top_bar--search_focus {
+    .search_form__wrapper {
+      padding: 0  0 0 30px;
+    }
+
 
     .search_form__input::placeholder {
       color: $grey-semi-darkness;
       opacity: 1;
+    }
+
+    // Show return arrow
+    .search_form__return {
+      display: block;
     }
   }
 
@@ -407,12 +419,6 @@ input[type="search"] {
     .search_form__wrapper {
       left: 10px;
       width: calc(100% - 20px);
-      padding: 0 0 0 30px;
-    }
-
-    // Show return arrow
-    .search_form__return {
-      opacity: 1;
     }
 
     // Hide magnifying glass
