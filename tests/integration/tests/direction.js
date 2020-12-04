@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, simulateClickOnMap, getInputValue, getMapView, exists, isHidden } from '../tools';
+import { initBrowser, simulateClickOnMap, getInputValue, getMapView, exists } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
@@ -22,16 +22,6 @@ beforeEach(async () => {
   await responseHandler.prepareResponse();
 });
 
-test('check "My position" label', async () => {
-  await page.goto(`${APP_URL}/${ROUTES_PATH}`);
-
-  // wait for autocomplete library starting-up
-  await page.click('#direction-input_origin');
-  await page.waitForSelector('.autocomplete_suggestions');
-
-  expect(await exists(page, '.autocomplete_suggestion--geoloc')).toBeTruthy();
-});
-
 test('Start/end inputs are correctly filled', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
   await page.waitForSelector('#direction-input_origin');
@@ -48,33 +38,6 @@ test('Start/end inputs are correctly filled', async () => {
   await simulateClickOnMap(page, { lat: 43.70324, lng: 7.25997 });
   const directionEndInput = await getInputValue(page, '#direction-input_destination');
   expect(directionEndInput).toEqual('16 Avenue Thiers');
-});
-
-test('switch start end', async () => {
-  await page.goto(`${APP_URL}/${ROUTES_PATH}`);
-  await page.waitForSelector('#direction-input_origin');
-  await page.type('#direction-input_origin', 'start');
-  await page.type('#direction-input_destination', 'end');
-  await page.click('.direction-invert-button');
-  const inputValues = {
-    startInput: await getInputValue(page, '#direction-input_origin'),
-    endInput: await getInputValue(page, '#direction-input_destination'),
-  };
-  expect(inputValues).toEqual({ startInput: 'end', endInput: 'start' });
-});
-
-test('simple search', async () => {
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
-  responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
-  await page.goto(`${APP_URL}/${ROUTES_PATH}`);
-  expect(await isHidden(page, '.direction-panel-share-button')).toBeTruthy();
-  await page.waitForSelector('#direction-input_origin');
-  await page.type('#direction-input_origin', 'direction');
-  await page.keyboard.press('Enter');
-  await page.type('#direction-input_destination', 'direction');
-  await page.keyboard.press('Enter');
-  expect(await page.waitForSelector('.direction-panel-share-button', { visible: true })).toBeTruthy();
-  expect(await exists(page, '.itinerary_leg')).toBeTruthy();
 });
 
 test('route flag', async () => {
@@ -196,28 +159,6 @@ test('api wait effect', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
   expect(await exists(page, '.itinerary_leg--placeholder')).toBeTruthy();
   expect(await exists(page, '.itinerary_leg:not(.itinerary_leg--placeholder)')).toBeTruthy();
-});
-
-describe('Close panel behavior', () => {
-  test('returning to home', async () => {
-    await page.goto(APP_URL);
-    const directionButton = await page.waitForSelector('.search_form__direction_shortcut');
-    await directionButton.click();
-    await page.waitForSelector('.direction-panel');
-    await page.click('.vehicleSelector-button:not(.vehicleSelector-button--active)');
-    await page.click('.direction-panel .closeButton');
-    expect(await exists(page, '.service_panel')).toBeTruthy();
-  });
-
-  test('returning to the POI', async () => {
-    await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`);
-    const directionFromPOIButton = await page.waitForSelector('.poi_panel__action__direction');
-    await directionFromPOIButton.click();
-    await page.waitForSelector('.direction-panel');
-    await page.click('.vehicleSelector-button:not(.vehicleSelector-button--active)');
-    await page.click('.direction-panel .closeButton');
-    expect(await exists(page, '.poi_panel')).toBeTruthy();
-  });
 });
 
 afterAll(async () => {
