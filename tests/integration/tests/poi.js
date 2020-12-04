@@ -58,17 +58,6 @@ test('load a poi from url with simple id', async () => {
   expect(title).toMatch(/Musée d'Orsay/);
 });
 
-test('load a poi from url on mobile', async () => {
-  await page.setViewport({
-    width: 400,
-    height: 800,
-  });
-  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  await page.waitForSelector('.poiTitle');
-  const title = await page.evaluate(() => document.querySelector('.poiTitle').innerText);
-  expect(title).toMatch(/Musée d'Orsay/);
-});
-
 test('load a poi already in my favorite from url', async () => {
   await page.goto(APP_URL);
   await storePoi(page, { id: 'osm:way:63178753' });
