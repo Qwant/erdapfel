@@ -6,6 +6,10 @@ const viewports = {
     hasTouch: true,
     isMobile: true,
   },
+  desktop: {
+    width: 800,
+    height: 600,
+  },
 };
 
 const ignorePatterns = {
