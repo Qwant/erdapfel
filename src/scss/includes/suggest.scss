@@ -1,0 +1,105 @@
+// Autocomplete
+.autocomplete_suggestions {
+  max-height: calc(100vh - #{$top_bar_height});
+  background: $background;
+  font-size: 16px;
+  /* core styles should not be changed */
+  cursor: default;
+  overflow-y: auto;
+  padding-bottom: 12px;
+
+  .top_bar & {
+    border-top: 1px solid $grey-light;
+  }
+}
+
+.autocomplete_suggestion {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  padding-left: 0;
+  color: $secondary_text;
+  background-color: $background;
+  transition: background-color .2s;
+  cursor: pointer;
+  line-height: 1.2;
+  border-left: transparent solid 4px;
+
+  .selected & {
+    border-left-color: #FF3B4A;
+    background-color: $background_active;
+  }
+}
+
+.autocomplete-icon {
+  font-size: 32px;
+  width: 60px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.autocomplete_suggestion--geoloc {
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  .autocomplete-icon {
+    color: $primary_text;
+    font-size: 18px;
+  }
+}
+
+.autocomplete_suggestion--category {
+  .autocomplete-icon {
+    font-size: 22px;
+    width: 24px;
+    height: 24px;
+    margin: 0 32px 0 18px;
+    border-radius: 50%;
+  }
+}
+
+.autocomplete_suggestion--intention {
+  .autocomplete-icon {
+    height: 30px;
+    background: url(../images/magnifier-light.svg) center no-repeat;
+    color: #353c52;
+  }
+}
+
+.autocomplete_suggestion__labels {
+  overflow: hidden;
+  flex-grow: 1;
+
+  > div {
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &.autocomplete_suggestion__first_line {
+      color: $primary_text;
+    }
+
+    &.autocomplete_suggestion__second_line {
+      color: $secondary_text;
+      font-size: 14px;
+    }
+
+    .autocomplete_suggestion--intention &:first-letter,
+    .autocomplete_suggestion--category &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.autocomplete_separator_label {
+  font-size: 14px;
+  color : $primary_clear;
+  cursor: default;
+  padding: 9px 18px;
+}
+
+.autocomplete_error {
+  padding: 15px 10px 5px;
+  color: $primary_text;
+  cursor: default;
+}
