@@ -3,35 +3,33 @@
   width: 100%;
   height: $top_bar_height;
   position: relative;
-  align-items: center;
   pointer-events: auto;
-  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 $spacing-s;
 }
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused
 .search_form__wrapper {
-  height: 48px;
-  padding: 0 16px;
+  height: $spacing-xxl-4;
+  padding: 0 $spacing-m;
+  margin-left: $spacing-m;
+  margin-right: $spacing-xs;
   border: none;
   background-color: $surface;
   border-radius: 24px;
-  margin: 1px;
-  align-items: center;
-  position: absolute;
-  width: calc(100% - 110px);
-  top: 8px;
-  left: 63px;
+  width: 100%;
+  position: relative;
 }
 
 // Input
 .search_form__input {
   min-width: 0;
   width: calc(100% - 30px);
-  height: 46px;
+  height: $spacing-xxl-4;
   font-size: 16px;
   font-weight: normal;
-  color: #353c52;
-  box-shadow: none;
+  color: $grey-black;
 
   &::placeholder {
     color: $secondary_text;
@@ -70,9 +68,9 @@ input[type="search"] {
   cursor: pointer;
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
   background: url(../images/qwant-logo.svg) no-repeat;
   background-size: cover;
-  margin-top: 7px;
 
   &[data-flag-text]:before {
     font-weight: bold;
@@ -104,7 +102,7 @@ input[type="search"] {
   cursor: pointer;
   position: absolute;
   top: 0;
-  right: 12px;
+  right: $spacing-s;
 }
 
 // Clear X icon
@@ -125,9 +123,6 @@ input[type="search"] {
   background-size: 24px 24px;
   cursor: pointer;
   transition: filter .1s;
-  position: absolute;
-  right: 2px;
-  top: 10px;
 
   &:hover {
     filter: brightness(80%);
@@ -167,11 +162,7 @@ input[type="search"] {
   #clear_button_desktop {
     width: 48px;
     height: 48px;
-    bagkground-position: 10px center;
     display: block;
-    position: absolute;
-    right: 2px;
-    top: 10px;
     &:hover::before {
       color: $grey-black;
     }
@@ -192,37 +183,22 @@ input[type="search"] {
   }
 }
 
-
-
 // Mobile
 @media (max-width: 640px) {
-  .search_form {
-    padding-right: 12px;
-  }
-
-  .search_form__input {
-    width: calc(100% - 35px);
-    padding: 0 0 0 12px;
-  }
-
   .search_form__input::placeholder {
     font-size: 14px;
   }
 
   .search_form__wrapper {
-    padding: 0;
-    width: calc(100% - 100px);
-    left: 60px;
-    transition: width .15s, left .15s;
-    position: absolute;
+    transition: .15s;
   }
 
   .search_form__return {
     display: none;
     font-size: 20px;
     text-align: center;
-    color: #0c0c0e;
-    margin-right: 8px;
+    color: $grey-black;
+    margin-right: $spacing-xs;
     cursor: pointer;
 
     position: absolute;
@@ -231,7 +207,7 @@ input[type="search"] {
     left: 0;
     width: 30px;
     height: 60px;
-    padding: 13px 0 0 12px;
+    padding: 14px 0 0 12px;
 
     &:hover {
       color: $primary_text;
@@ -265,7 +241,7 @@ input[type="search"] {
   .top_bar--search_filled {
 
     .search_form__wrapper {
-      padding: 0 0 0 $spacing-s;
+      padding-left: $spacing-s;
     }
 
     // Show mobile clear X button
@@ -281,9 +257,8 @@ input[type="search"] {
   // When the search field is focused (empty or not)
   .top_bar--search_focus {
     .search_form__wrapper {
-      padding: 0  0 0 30px;
+      padding-left: $spacing-xxl-3;
     }
-
 
     .search_form__input::placeholder {
       color: $grey-semi-darkness;
@@ -302,7 +277,7 @@ input[type="search"] {
 
     // Hide mobile burger menu
     #react_menu__container {
-      opacity: 0;
+      display: none;
     }
 
     // Hide desktop clear X icon
@@ -310,10 +285,13 @@ input[type="search"] {
       display: none;
     }
 
-    // Make the wrapper full-width and overlap the rest
+
+    // Make the wrapper full-width
     .search_form__wrapper {
-      left: 10px;
-      width: calc(100% - 20px);
+      margin: 0;
+    }
+    .search_form__logo__button {
+      display: none;
     }
 
     // Hide magnifying glass

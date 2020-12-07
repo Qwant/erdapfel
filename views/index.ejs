@@ -48,13 +48,13 @@
             data-flag-text="<%= config.app.versionFlag %>"
           <% } %>
         ></button>
-        <div id="react_menu__container"></div>
         <div class="search_form__wrapper empty">
           <div class="search_form__return icon-arrow-left"></div>
           <input id="search" type="search" class="search_form__input" spellcheck="false" required placeholder="<%= _('Search on Qwant Maps') %>" autocomplete="off">
           <button id="clear_button_mobile" class="search_form__clear icon-x" type="button" onmousedown="clearSearch(event)" title="<%= _('Clear', 'search bar') %>"></button>
           <input type="submit" value="" class="search_form__action" onclick="submitSearch()" title="<%= _('Search') %>">
         </div>
+        <div id="react_menu__container"></div>
         <% if(config.direction.enabled) { %>
         <button class="search_form__direction_shortcut" title="<%= _('Directions', 'top bar') %>"></button>
         <button id="clear_button_desktop" class="search_form__clear icon-x" type="button" onmousedown="clearSearch(event)" title="<%= _('Clear', 'search bar') %>"></button>
