@@ -194,9 +194,9 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__categories {
-  .mainActionButton {
-    width: 25%;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: $spacing-s;
 }
 
 .marker-anywhere {
