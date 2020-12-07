@@ -5,7 +5,7 @@
 
   &-label {
     font-size: 12px;
-    color: #5c6f84;
+    color: $grey-semi-darkness;
     line-height: 16px;
   }
 
@@ -15,7 +15,7 @@
     line-height: 48px;
     margin: auto;
     border-radius: 50%;
-    margin-bottom: 4px;
+    margin-bottom: $spacing-xs;
   }
 
   &:active {
