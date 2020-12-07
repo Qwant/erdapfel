@@ -4,6 +4,7 @@ const viewports = {
     width: 400,
     height: 800,
     hasTouch: true,
+    isMobile: true,
   },
 };
 
