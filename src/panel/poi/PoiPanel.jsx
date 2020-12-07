@@ -21,15 +21,6 @@ import { Flex, Panel, PanelNav, CloseButton, Divider } from 'src/components/ui';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
-async function isPoiFavorite(poi) {
-  try {
-    const storePoi = await isInFavorites(poi);
-    return !!storePoi;
-  } catch (e) {
-    return false;
-  }
-}
-
 export default class PoiPanel extends React.Component {
   static propTypes = {
     poiId: PropTypes.string.isRequired,
@@ -122,9 +113,7 @@ export default class PoiPanel extends React.Component {
     } else {
       this.setState({
         fullPoi: poi,
-      });
-      isPoiFavorite(poi).then(isPoiInFavorite => {
-        this.setState({ isPoiInFavorite });
+        isPoiInFavorite: isInFavorites(poi),
       });
       if (!updateMapEarly) {
         this.updateMapPoi(poi, mapOptions);

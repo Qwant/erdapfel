@@ -75,11 +75,12 @@ export async function getFavoritesMatching(term) {
   });
 }
 
-export async function isInFavorites(poi) {
+export function isInFavorites(poi) {
   try {
     return Boolean(get(getKey(poi)));
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e);
+    return false;
   }
 }
 
