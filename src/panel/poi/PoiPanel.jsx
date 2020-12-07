@@ -48,15 +48,9 @@ export default class PoiPanel extends React.Component {
     // Load poi or pois
     !this.props.pois ? this.loadPoi() : this.loadPois();
 
-    this.storeAddHandler = listen('poi_added_to_favs', poi => {
+    this.storeAddRemoveHandler = listen('poi_favorite_state_changed', (poi, isPoiInFavorite) => {
       if (poi === this.state.fullPoi) {
-        this.setState({ isPoiInFavorite: true });
-      }
-    });
-
-    this.storeRemoveHandler = listen('poi_removed_from_favs', poi => {
-      if (poi === this.state.fullPoi) {
-        this.setState({ isPoiInFavorite: false });
+        this.setState({ isPoiInFavorite });
       }
     });
   }
@@ -68,8 +62,7 @@ export default class PoiPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    unListen(this.storeAddHandler);
-    unListen(this.storeRemoveHandler);
+    unListen(this.storeAddRemoveHandler);
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);
