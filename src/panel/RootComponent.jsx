@@ -19,6 +19,8 @@ const RootComponent = ({
 }) => {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
 
+  console.log(searchBarInputNode);
+
   useEffect(() => {
     const deviceChanged = ({ matches: isMobile }) => {
       setIsMobile(isMobile);

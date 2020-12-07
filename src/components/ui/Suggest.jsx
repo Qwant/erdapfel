@@ -25,6 +25,8 @@ const Suggest = ({
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useContext(DeviceContext);
 
+  console.log('Suggest', inputNode, outputNode);
+
   const close = () => {
     setIsOpen(false);
     setItems([]);
