@@ -104,7 +104,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
     right: 0;
     bottom: 0;
     padding-left: 48px;
-    background: linear-gradient(to right, transparent 0, white 48px, white 100%);
+    background: linear-gradient(to right, rgba(255,255,255,0) 0, white 48px, white 100%);
   }
 }
 
