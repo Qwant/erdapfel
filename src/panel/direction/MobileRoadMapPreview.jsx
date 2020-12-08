@@ -2,78 +2,79 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RoadMapStep from './RoadMapStep';
 import { fire } from 'src/libs/customEvents';
+import classnames from 'classnames';
+import { Button } from '../../components/ui';
 
 export default class MobileRoadMapPreview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.stepsRef = React.createRef();
+  }
+
   static propTypes = {
     steps: PropTypes.array.isRequired,
     onClose: PropTypes.func.isRequired,
   };
 
-  state = { };
+  state = {
+    currentStep: 0,
+    expanded: false,
+  };
 
   componentDidMount() {
-    this.steps = document.querySelector('.mobile-roadmap-preview-steps');
-    this.stepList = document.querySelectorAll('.itinerary_mobile_step');
-    this.currentStep = 0;
     fire('move_mobile_bottom_ui', 105);
-    this.highlightCurrentStep();
+    fire('zoom_step', this.props.steps[this.state.currentStep]);
   }
-
-  highlightCurrentStep = () => {
-    fire('zoom_step', this.props.steps[this.currentStep]);
-    this.stepList.forEach((item, index) => {
-
-      // Reset the style of all the steps
-      item.classList.remove('active');
-      item.classList.remove('past');
-
-      // Show previous steps as "past"
-      if (index < this.currentStep) {
-        item.classList.add('past');
-      }
-    });
-
-    // Show current step as "active"
-    this.stepList[this.currentStep].classList.add('active');
-  };
 
   scroll = () => {
 
     const currentStep = Math.floor(
       // Divide the step container's scrollLeft up to the middle of the screen with the size of a step
       // to determine which step is present at the middle of the screen
-      (this.steps.scrollLeft + window.innerWidth / 2) / (window.innerWidth - 70 + 12)
+      (this.stepsRef.current.scrollLeft + window.innerWidth / 2) / (window.innerWidth - 70 + 12)
     );
 
     // If it has changed, save it and highlight it as the current step
-    if (this.currentStep !== currentStep) {
-      this.currentStep = currentStep;
-      this.highlightCurrentStep();
+    if (this.state.currentStep !== currentStep) {
+      this.setState({ currentStep });
+      fire('zoom_step', this.props.steps[currentStep]);
     }
   };
 
   toggleSize = () => {
-    this.steps.classList.toggle('expanded');
-    fire('move_mobile_bottom_ui', this.steps.offsetHeight);
+    this.setState( { expanded: !this.state.expanded } );
+    fire('move_mobile_bottom_ui', this.stepsRef.current.offsetHeight);
   };
 
   render() {
     return <div className="itinerary_mobile_step_by_step">
-      <div className="mobile-roadmap-preview-close" onClick={this.props.onClose}>
-        <i className="icon-arrow-left"/>
-      </div>
+      <Button
+        className="mobile-roadmap-preview-close"
+        onClick={this.props.onClose}
+        icon="arrow-left"
+      />
       <div
-        className="mobile-roadmap-preview-steps"
+        ref={this.stepsRef}
+        className={classnames('mobile-roadmap-preview-steps', { expanded: this.state.expanded })}
         onScroll={this.scroll}
         onClick={this.toggleSize}
       >
         {
           this.props.steps.map((step, index) =>
-            <div key={index} className="itinerary_mobile_step">
+            <div
+              key={index}
+              className={
+                classnames(
+                  'itinerary_mobile_step',
+                  {
+                    past: index < this.state.currentStep,
+                    active: index === this.state.currentStep,
+                  }
+                )
+              }>
               <RoadMapStep step={step}/>
             </div>)
         }
-        <div className="itinerary_mobile_step spacer"></div>
       </div>
     </div>;
   }

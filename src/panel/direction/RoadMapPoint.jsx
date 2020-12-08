@@ -9,6 +9,7 @@ const RoadMapPoint = ({ point, ...rest }) => {
 
   return <RoadMapItem
     icon={<PlaceIcon place={point} withBackground />}
+    flex="center"
     {...rest}
   >
     <div className="u-text--smallTitle">{getInputValue(point)}</div>

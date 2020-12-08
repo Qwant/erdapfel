@@ -285,48 +285,6 @@ button.direction_shortcut {
     grid-area: via;
   }
 
-  .itinerary_mobile_step {
-    position: fixed;
-    bottom: 12px;
-    left: 35px;
-    right: 35px;
-    min-height: 80px;
-    background: $background;
-    user-select: none;
-
-    .closeButton {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-    .roadmapIcon {
-      width: 20px;
-      height: 20px;
-      margin: 8px;
-    }
-
-    .itinerary_roadmap_instruction {
-      grid-area: instruction;
-      padding: 0;
-      border: none;
-    }
-
-    .itinerary_roadmap_item {
-      border-left: 0;
-      padding: 12px;
-      .divider {
-        display: none;
-      }
-    }
-
-    .itinerary_roadmap_distance {
-      grid-area: distance;
-      text-align: left;
-      font-size: 16px;
-      margin: 0 0 5px;
-    }
-  }
-
   .itinerary_roadmap_instruction {
     font-weight: normal !important;
     padding: 14px 0;
@@ -376,14 +334,15 @@ button.direction_shortcut {
   .itinerary_mobile_step_by_step {
 
     .mobile-roadmap-preview-close {
-      text-align: center;
-      padding: 7px 0 0;
+      border: none;
+      padding: 0 0 0 8px;
       margin: 0 0 0 11px;
       background: $background;
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12)
+      box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+      color: $grey-black;
     }
 
     .divider {
@@ -401,13 +360,21 @@ button.direction_shortcut {
       display: flex;
       position: fixed;
       bottom: 0;
-      padding-bottom: 19px;
+      padding: 5px 0 19px 0;
       width: 100vw;
       height: auto;
-      min-height: 99px;
+      min-height: 105px;
       overflow: auto;
       scroll-snap-type: x mandatory;
       scroll-padding: 0 35px;
+      color: red;
+
+      // Add spacing after the last step
+      &:after {
+        content: '';
+        flex: 0 0 22px;
+        visibility: hidden;
+      }
 
       &.expanded {
         .itinerary_mobile_step .itinerary_roadmap_instruction {
@@ -417,9 +384,14 @@ button.direction_shortcut {
       }
 
       .itinerary_mobile_step {
+        bottom: 12px;
+        left: 35px;
+        right: 35px;
+        min-height: 80px;
+        background: $background;
+        user-select: none;
         flex: 0 0 calc(100vw - 70px);
         margin: 0 6px;
-        position: static;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -445,22 +417,25 @@ button.direction_shortcut {
           margin-left: 35px;
         }
 
-        // This element is added at the end of the list to scroll properly
-        &.spacer {
-          flex: 0 0 22px;
-          visibility: hidden;
+        .roadmapIcon {
+          width: 20px;
+          height: 20px;
+          margin: 8px;
         }
 
         .itinerary_roadmap_item {
+          border-left: 0;
           width: 100%;
           height: 100%;
           padding: 10px;
         }
 
         .itinerary_roadmap_instruction {
-          max-height: 48px;
+          grid-area: instruction;
+          border: none;
+          max-height: 44px;
           line-height: 16px;
-          padding-bottom: 6px;
+          padding: 0 0 8px 0;
           overflow: hidden;
           display: block;
           position: relative;
@@ -475,8 +450,14 @@ button.direction_shortcut {
             left: 0;
           }
         }
+
+        .itinerary_roadmap_distance {
+          grid-area: distance;
+          text-align: left;
+          font-size: 16px;
+          margin: 0 0 5px;
+        }
       }
     }
   }
-
 }

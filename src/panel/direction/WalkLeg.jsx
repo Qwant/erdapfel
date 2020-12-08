@@ -18,6 +18,7 @@ const WalkLeg = ({ leg }) => {
     className="itinerary_roadmap_item--walk"
     line={<LegLine mode="WALK" />}
     distance={formatDuration(leg.duration)}
+    flex="center"
   >
     <div
       className={classnames('itinerary_roadmap_item_summary', {
