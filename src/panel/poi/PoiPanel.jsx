@@ -21,15 +21,6 @@ import { Flex, Panel, PanelNav, CloseButton, Divider } from 'src/components/ui';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
-async function isPoiFavorite(poi) {
-  try {
-    const storePoi = await isInFavorites(poi);
-    return !!storePoi;
-  } catch (e) {
-    return false;
-  }
-}
-
 export default class PoiPanel extends React.Component {
   static propTypes = {
     poiId: PropTypes.string.isRequired,
@@ -57,15 +48,9 @@ export default class PoiPanel extends React.Component {
     // Load poi or pois
     !this.props.pois ? this.loadPoi() : this.loadPois();
 
-    this.storeAddHandler = listen('poi_added_to_favs', poi => {
+    this.storePoiChangeHandler = listen('poi_favorite_state_changed', (poi, isPoiInFavorite) => {
       if (poi === this.state.fullPoi) {
-        this.setState({ isPoiInFavorite: true });
-      }
-    });
-
-    this.storeRemoveHandler = listen('poi_removed_from_favs', poi => {
-      if (poi === this.state.fullPoi) {
-        this.setState({ isPoiInFavorite: false });
+        this.setState({ isPoiInFavorite });
       }
     });
   }
@@ -77,8 +62,7 @@ export default class PoiPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    unListen(this.storeAddHandler);
-    unListen(this.storeRemoveHandler);
+    unListen(this.storePoiChangeHandler);
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);
@@ -122,9 +106,7 @@ export default class PoiPanel extends React.Component {
     } else {
       this.setState({
         fullPoi: poi,
-      });
-      isPoiFavorite(poi).then(isPoiInFavorite => {
-        this.setState({ isPoiInFavorite });
+        isPoiInFavorite: isInFavorites(poi),
       });
       if (!updateMapEarly) {
         this.updateMapPoi(poi, mapOptions);

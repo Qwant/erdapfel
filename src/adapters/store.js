@@ -75,18 +75,19 @@ export async function getFavoritesMatching(term) {
   });
 }
 
-export async function isInFavorites(poi) {
+export function isInFavorites(poi) {
   try {
     return Boolean(get(getKey(poi)));
   } catch (e) {
     Error.sendOnce('store', 'has', 'error checking existing key', e);
+    return false;
   }
 }
 
 export async function addToFavorites(poi) {
   try {
     set(getKey(poi), poi);
-    fire('poi_added_to_favs', poi);
+    fire('poi_favorite_state_changed', poi, true);
   } catch (e) {
     Error.sendOnce('store', 'add', 'error adding poi', e);
   }
@@ -95,7 +96,7 @@ export async function addToFavorites(poi) {
 export async function removeFromFavorites(poi) {
   try {
     del(getKey(poi));
-    fire('poi_removed_from_favs', poi);
+    fire('poi_favorite_state_changed', poi, false);
   } catch (e) {
     Error.sendOnce('store', 'del', 'error removing item', e);
   }
