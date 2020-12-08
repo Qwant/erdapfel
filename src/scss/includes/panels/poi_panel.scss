@@ -99,6 +99,10 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   margin-top: 20px;
   position: relative;
 
+  p {
+    @include lineClamp(4);
+  }
+
   a {
     position: absolute;
     right: 0;
