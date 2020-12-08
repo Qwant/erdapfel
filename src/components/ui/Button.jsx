@@ -20,20 +20,30 @@ const Button = ({
     href={href}
     {...rest}
   >
-    {icon && <span className={`button-icon icon-${icon}`} />}
+    <Icon icon={icon} />
     {children && <div className="button-content">{children}</div>}
   </Tag>;
 };
 
 Button.propTypes = {
   children: PropTypes.node,
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
   variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   type: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+};
+
+const Icon = ({ icon }) => {
+  if (!icon) {
+    return null;
+  }
+
+  return typeof icon === 'string'
+    ? <span className={`button-icon icon-${icon}`} />
+    : icon;
 };
 
 export default Button;
