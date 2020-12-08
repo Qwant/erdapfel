@@ -124,6 +124,18 @@ const mainJsChunkConfig = buildMode => {
         exclude: [
           /\/node_modules/,
         ],
+      }, {
+        test: /\.svg$/,
+        use: [{
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              plugins: {
+                removeViewBox: false,
+              },
+            },
+          },
+        }],
       }],
     },
     devtool: buildMode === 'production' ? false : 'source-map',

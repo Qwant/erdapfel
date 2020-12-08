@@ -41,6 +41,7 @@
     "@qwant/merge-po-loader": "file:local_modules/merge-po-loader",
     "@qwant/nconf-getter": "file:local_modules/nconf_getter",
     "@qwant/po-js-loader": "file:local_modules/po-js-loader",
+    "@svgr/webpack": "^5.5.0",
     "autoprefixer": "^9.7.5",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^25.2.0",
