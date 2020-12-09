@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
+import debounce from 'lodash.debounce';
+
 import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
@@ -17,6 +19,7 @@ import { sources } from 'config/constants.yml';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
+const DEBOUNCE_WAIT = 500;
 
 export default class CategoryPanel extends React.Component {
   static propTypes = {
@@ -98,7 +101,7 @@ export default class CategoryPanel extends React.Component {
     }
   }
 
-  fetchData = async () => {
+  fetchData = debounce(async () => {
     const { category, query } = this.props.poiFilters;
     const currentBounds = getVisibleBbox(window.map.mb, window.no_ui);
 
@@ -125,7 +128,7 @@ export default class CategoryPanel extends React.Component {
 
     fire('add_category_markers', places, this.props.poiFilters);
     fire('save_location');
-  };
+  }, DEBOUNCE_WAIT)
 
   selectPoi = poi => {
     const { poiFilters } = this.props;
