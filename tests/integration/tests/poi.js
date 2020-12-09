@@ -73,7 +73,7 @@ test('load a poi already in my favorite from url', async () => {
   await page.goto(APP_URL);
   await storePoi(page, { id: 'osm:way:63178753' });
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
-  expect(await exists(page, '.icon-icon_star-filled')).toBeTruthy();
+  expect(await exists(page, '.poi_panel__action__favorite[data-active=true]')).toBeTruthy();
 });
 
 test('update url after a poi click', async () => {
