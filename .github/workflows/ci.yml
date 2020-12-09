@@ -12,7 +12,7 @@ jobs:
       run: |
         sudo apt-get update 
         sudo apt-get install -yq libstdc++6 gettext
-        sudo apt-get install -yq python3.5 python3-pip python3-setuptools
+        sudo apt-get install -yq python3-pip python3-setuptools python3-wheel
 
     - uses: actions/checkout@v2
 
