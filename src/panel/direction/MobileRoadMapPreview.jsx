@@ -24,30 +24,19 @@ const MobileRoadMapPreview = ({
     // If it has changed, save it and highlight it as the current step
     if (currentStep !== newStep) {
       setCurrentStep(newStep);
-      fire('zoom_step', steps[newStep]);
     }
   };
 
   const toggleSize = () => {
     setExpanded(!expanded);
-    fire('move_mobile_bottom_ui', stepsRef.current.offsetHeight);
   };
-
-  // On load, zoom on step 0, unexpanded
-  useEffect(
-    () => {
-      fire('move_mobile_bottom_ui', 105);
-      fire('zoom_step', steps[0]);
-    },
-    []
-  );
 
   // When expanded is modified, move the map's bottom UI
   useEffect(
     () => {
       fire('move_mobile_bottom_ui', stepsRef.current.offsetHeight);
     },
-    [expanded]
+    [expanded, stepsRef]
   );
 
   // When currentStep is modified, zoom on it
@@ -55,7 +44,7 @@ const MobileRoadMapPreview = ({
     () => {
       fire('zoom_step', steps[currentStep]);
     },
-    [currentStep]
+    [currentStep, steps]
   );
 
   return <div className="itinerary_mobile_step_by_step">
