@@ -3,6 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
+import { Heart } from 'src/components/ui/Icons';
+
+const activeFavoriteColor = '#cd1690';
 
 const ActionButtons = ({
   poi,
@@ -20,6 +23,8 @@ const ActionButtons = ({
   const onShare = target => {
     Telemetry.add(Telemetry.POI_SHARE_TO, { target });
   };
+
+  const favoriteColor = isPoiInFavorite ? activeFavoriteColor : null;
 
   return <Flex className="poi_panel__actions">
     {isDirectionActive && <Button
@@ -42,9 +47,17 @@ const ActionButtons = ({
 
     <Button
       className="poi_panel__action__favorite"
-      onClick={toggleStorePoi}
-      icon={isPoiInFavorite ? 'icon_star-filled' : 'star'}
+      data-active={isPoiInFavorite}
       title={_('Favorites', 'poi panel')}
+      onClick={toggleStorePoi}
+      style={{ borderColor: favoriteColor }}
+      icon={
+        <Heart
+          width={16}
+          color={favoriteColor}
+          fill={favoriteColor || 'white'}
+        />
+      }
     />
 
     <ShareMenu
