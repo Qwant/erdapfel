@@ -8,8 +8,10 @@
   overflow-y: auto;
   padding-bottom: 12px;
 
-  .top_bar & {
-    border-top: 1px solid $grey-light;
+  @media (min-width: 641px) {
+    .top_bar & {
+      border-top: 1px solid $grey-light;
+    }
   }
 }
 
