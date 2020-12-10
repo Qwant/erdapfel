@@ -401,7 +401,7 @@ export default class DirectionPanel extends React.Component {
             <Panel
               className="direction-panel-mobile"
               resizable
-              fitContent={['default']}
+              fitContent={['default', 'maximized']}
               marginTop={marginTop}
               minimizedTitle={_('Unfold to show the results', 'direction')}
               onClose={this.onClose}
