@@ -128,7 +128,7 @@ export default class CategoryPanel extends React.Component {
 
     fire('add_category_markers', places, this.props.poiFilters);
     fire('save_location');
-  }, DEBOUNCE_WAIT)
+  }, DEBOUNCE_WAIT, { leading: true })
 
   selectPoi = poi => {
     const { poiFilters } = this.props;
