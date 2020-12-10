@@ -44,7 +44,7 @@ class Panel extends React.Component {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
     minimizedTitle: PropTypes.node,
     resizable: PropTypes.bool,
-    fitContent: PropTypes.arrayOf(PropTypes.oneOf(['default', 'minimized'])),
+    fitContent: PropTypes.arrayOf(PropTypes.oneOf(['default', 'minimized', 'maximized'])),
     size: PropTypes.string,
     setSize: PropTypes.func,
     marginTop: PropTypes.number,
@@ -229,7 +229,9 @@ class Panel extends React.Component {
       'minimized': height - (fitContent.indexOf('minimized') >= 0
         ? panelHeight + FIT_CONTENT_PADDING
         : DEFAULT_MINIMIZED_SIZE),
-      'maximized': 0,
+      'maximized': fitContent.indexOf('maximized') >= 0
+        ? height - panelHeight - FIT_CONTENT_PADDING
+        : 0,
     };
 
     return values[size];
