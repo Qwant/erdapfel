@@ -34,6 +34,16 @@ const RootComponent = ({
     };
   });
 
+  const searchFormElement = document.querySelector('.search_form');
+
+  const onScrollSuggest = scrollPosition => {
+    if (scrollPosition > 0) {
+      searchFormElement.classList.add('shadow');
+    } else {
+      searchFormElement.classList.remove('shadow');
+    }
+  };
+
   return <DeviceContext.Provider value={isMobile}>
     <PanelManager router={router} />
     {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
@@ -42,6 +52,7 @@ const RootComponent = ({
       outputNode={document.querySelector('.search_form__result')}
       withCategories
       onToggleSuggestions={suggestionsOpened => { togglePanelVisibility(!suggestionsOpened); }}
+      onScroll={onScrollSuggest}
     />
   </DeviceContext.Provider>;
 };

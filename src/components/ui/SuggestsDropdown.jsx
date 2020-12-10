@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { object, func, string, arrayOf } from 'prop-types';
-
+import useScrollWatcher from 'src/hooks/useScrollWatcher';
 import SuggestItem from './SuggestItem';
 
 const SuggestsDropdown = ({
@@ -9,8 +9,12 @@ const SuggestsDropdown = ({
   suggestItems,
   onSelect,
   onHighlight,
+  onScroll,
 }) => {
   const [highlighted, setHighlighted] = useState(null);
+  const dropdownElt = useRef(null);
+
+  useScrollWatcher(dropdownElt, onScroll);
 
   useEffect(() => {
     const keyDownHandler = e => {
@@ -66,7 +70,7 @@ const SuggestsDropdown = ({
   });
 
   return (
-    <ul className={classnames('autocomplete_suggestions', className)}>
+    <ul className={classnames('autocomplete_suggestions', className)} ref={dropdownElt}>
       {suggestItems.map((suggest, index) =>
         <li
           key={index}
@@ -91,6 +95,7 @@ SuggestsDropdown.propTypes = {
   suggestItems: arrayOf(object).isRequired,
   onHighlight: func.isRequired,
   onSelect: func.isRequired,
+  onScroll: func,
   className: string,
 };
 

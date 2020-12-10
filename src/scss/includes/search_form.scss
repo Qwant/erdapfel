@@ -6,6 +6,11 @@
   pointer-events: auto;
   display: flex;
   align-items: center;
+  transition: box-shadow 0.2s;
+
+  &.shadow {
+    box-shadow: $shadow-scroll;
+  }
 }
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused

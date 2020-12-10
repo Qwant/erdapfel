@@ -18,6 +18,7 @@ const Suggest = ({
   onClear,
   onToggleSuggestions,
   className,
+  onScroll,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -138,6 +139,7 @@ const Suggest = ({
         }
       }}
       onClear={onClear}
+      onScroll={onScroll}
     />;
 
   return ReactDOM.createPortal(<SuggestsDropdownElement />, outputNode);
@@ -152,6 +154,7 @@ Suggest.propTypes = {
   onClear: func,
   onToggleSuggestions: func,
   className: string,
+  onScroll: func,
 };
 
 export default Suggest;
