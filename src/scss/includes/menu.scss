@@ -1,6 +1,8 @@
 
 #react_menu__container {
-  width: 40px;
+  width: $spacing-xxl-4;
+  height: $spacing-xxl-4;
+  flex-shrink: 0;
 }
 
 .no-burger #react_menu__container {

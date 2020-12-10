@@ -6,7 +6,7 @@
   pointer-events: auto;
   display: flex;
   align-items: center;
-  padding: 0 $spacing-s;
+  padding-left: $spacing-s;
 }
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused
@@ -14,7 +14,6 @@
   height: $spacing-xxl-4;
   padding: 0 $spacing-m;
   margin-left: $spacing-m;
-  margin-right: $spacing-xs;
   border: none;
   background-color: $surface;
   border-radius: 24px;
@@ -117,8 +116,9 @@ input[type="search"] {
 
 // Directions icon
 .search_form__direction_shortcut {
-  width: 48px;
-  height: 48px;
+  width: $spacing-xxl-4;
+  height: $spacing-xxl-4;
+  flex-shrink: 0;
   background: url(../images/direction-line.svg) center no-repeat;
   background-size: 24px 24px;
   cursor: pointer;
@@ -160,8 +160,9 @@ input[type="search"] {
 
   // Show desktop clear X icon
   #clear_button_desktop {
-    width: 48px;
-    height: 48px;
+    width: $spacing-xxl-4;
+    height: $spacing-xxl-4;
+    flex-shrink: 0;
     display: block;
     &:hover::before {
       color: $grey-black;
@@ -240,6 +241,10 @@ input[type="search"] {
   // When the search field is filled
   .top_bar--search_filled {
 
+    .search_form {
+      padding-right: $spacing-s;
+    }
+
     .search_form__wrapper {
       padding-left: $spacing-s;
     }
@@ -256,6 +261,10 @@ input[type="search"] {
 
   // When the search field is focused (empty or not)
   .top_bar--search_focus {
+    .search_form {
+      padding-right: $spacing-s;
+    }
+
     .search_form__wrapper {
       padding-left: $spacing-xxl-3;
     }
