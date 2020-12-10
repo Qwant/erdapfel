@@ -19,7 +19,7 @@ import { sources } from 'config/constants.yml';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
-const DEBOUNCE_WAIT = 500;
+const DEBOUNCE_WAIT = 100;
 
 export default class CategoryPanel extends React.Component {
   static propTypes = {
