@@ -55,7 +55,7 @@ const ActionButtons = ({
         <Heart
           width={16}
           color={favoriteColor}
-          fill={favoriteColor || 'white'}
+          fill={favoriteColor || 'transparent'}
         />
       }
     />
