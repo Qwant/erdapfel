@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
-import { Heart } from 'src/components/ui/Icons';
+import { Heart } from 'src/components/ui/icons';
 
 const activeFavoriteColor = '#cd1690';
 
