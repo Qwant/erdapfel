@@ -4,6 +4,7 @@
     <meta charset='utf-8'>
     <title><%= _('Qwant Maps') %>
       <% if(config.app.versionFlag) { %> - <%= config.app.versionFlag %><% } %>
+      <% if(config.envName) { %> - <%= config.envName %><% } %>
     </title>
     <meta name="description" content="<%= _('The map that respects your privacy') %>">
     <base href="<%= config.system.baseUrl %>" target="_blank">
