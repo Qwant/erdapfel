@@ -6,14 +6,12 @@
   pointer-events: auto;
   display: flex;
   align-items: center;
-  padding-left: $spacing-s;
 }
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused
 .search_form__wrapper {
   height: $spacing-xxl-4;
   padding: 0 $spacing-m;
-  margin-left: $spacing-m;
   border: none;
   background-color: $surface;
   border-radius: 24px;
@@ -70,6 +68,7 @@ input[type="search"] {
   flex-shrink: 0;
   background: url(../images/qwant-logo.svg) no-repeat;
   background-size: cover;
+  margin: 0 $spacing-m 0 $spacing-s;
 
   &[data-flag-text]:before {
     font-weight: bold;
@@ -190,10 +189,6 @@ input[type="search"] {
     font-size: 14px;
   }
 
-  .search_form__wrapper {
-    transition: .15s;
-  }
-
   .search_form__return {
     display: none;
     font-size: 20px;
@@ -203,7 +198,7 @@ input[type="search"] {
     cursor: pointer;
 
     position: absolute;
-    transition: opacity .15s;
+    transition: opacity .2s;
     top: 0;
     left: 0;
     width: 30px;
@@ -227,24 +222,25 @@ input[type="search"] {
     height: 100vh;
   }
 
-  .search_form__logo__button {
-    width: 34px;
-    height: 34px;
+  $formWidthTransitionDuration: .3s;
+
+  // Prepare transition of search field
+  .search_form__wrapper {
+    transition: margin $formWidthTransitionDuration;
   }
 
+  .search_form__logo__button,
   #react_menu__container {
     opacity: 1;
-    transition: opacity .25s;
-    z-index: -1;
+    transition: opacity $formWidthTransitionDuration;
+  }
+
+  .menu__button {
+    background-color: transparent;
   }
 
   // When the search field is filled
   .top_bar--search_filled {
-
-    .search_form {
-      padding-right: $spacing-s;
-    }
-
     .search_form__wrapper {
       padding-left: $spacing-s;
     }
@@ -261,14 +257,6 @@ input[type="search"] {
 
   // When the search field is focused (empty or not)
   .top_bar--search_focus {
-    .search_form {
-      padding-right: $spacing-s;
-    }
-
-    .search_form__wrapper {
-      padding-left: $spacing-xxl-3;
-    }
-
     .search_form__input::placeholder {
       color: $grey-semi-darkness;
       opacity: 1;
@@ -278,15 +266,19 @@ input[type="search"] {
     .search_form__return {
       display: block;
     }
+
+    // ... and make room for it
+    .search_form__wrapper {
+      padding-left: $spacing-xxl-3;
+    }
   }
 
   // When the field is filled and/or focused
   .top_bar--search_filled,
   .top_bar--search_focus {
-
-    // Hide mobile burger menu
-    #react_menu__container {
-      display: none;
+    .search_form__wrapper {
+      margin-left: -54px;
+      margin-right: -38px;
     }
 
     // Hide desktop clear X icon
@@ -294,13 +286,10 @@ input[type="search"] {
       display: none;
     }
 
-
-    // Make the wrapper full-width
-    .search_form__wrapper {
-      margin: 0;
-    }
+    #react_menu__container,
     .search_form__logo__button {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
     }
 
     // Hide magnifying glass
