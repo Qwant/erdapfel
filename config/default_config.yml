@@ -1,5 +1,7 @@
 PORT: 3000
 
+envName: # optional environment name (ex: 'Local', 'Dev') displayed in the page title. Keep empty for production.
+
 # Server
 server:
   maxBodySize: '5KB' # max request body size on POST
