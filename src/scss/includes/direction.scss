@@ -76,7 +76,7 @@
 }
 
 .itinerary_leg_summary {
-  padding: 20px;
+  padding: $spacing-l;
   cursor: pointer;
   position: relative;
 
@@ -139,7 +139,7 @@
 
 .itinerary_roadmap {
   .divider {
-    margin: 0 12px;
+    margin: 0 $spacing-s;
 
     &:last-child {
       display: none;
@@ -180,7 +180,7 @@
 }
 
 .itinerary_roadmap_step_description {
-  padding-right: 12px;
+  padding-right: $spacing-s;
   flex-grow: 1;
 }
 
@@ -335,13 +335,13 @@ button.direction_shortcut {
 
     .mobile-roadmap-preview-close {
       border: none;
-      padding: 0 0 0 8px;
+      padding: 0 0 0 $spacing-xs;
       margin: 0 0 0 11px;
       background: $background;
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+      box-shadow: $shadow;
       color: $grey-black;
     }
 
@@ -352,7 +352,7 @@ button.direction_shortcut {
     .itinerary_roadmap_item_icon {
       width: 36px;
       .roadmapIcon {
-        margin: 8px 0;
+        margin: $spacing-xs 0;
       }
     }
 
@@ -398,7 +398,7 @@ button.direction_shortcut {
         scroll-snap-align: start;
         border: none;
         border-radius: 12px;
-        box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
+        box-shadow: $shadow;
 
         &.past {
           background-color: $grey-lighter;
@@ -410,7 +410,7 @@ button.direction_shortcut {
 
         &.active {
           border: 1px solid $action-blue-dark;
-          box-shadow: 0 0 0 4px rgba(128, 172, 255, 0.2);
+          box-shadow: $shadow-focus;
         }
 
         &:first-of-type {
@@ -420,7 +420,7 @@ button.direction_shortcut {
         .roadmapIcon {
           width: 20px;
           height: 20px;
-          margin: 8px;
+          margin: $spacing-xs;
         }
 
         .itinerary_roadmap_item {
@@ -435,7 +435,7 @@ button.direction_shortcut {
           border: none;
           max-height: 44px;
           line-height: 16px;
-          padding: 0 0 8px 0;
+          padding: 0 0 $spacing-xs 0;
           overflow: hidden;
           display: block;
           position: relative;

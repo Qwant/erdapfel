@@ -7,7 +7,7 @@ const RoadMapStep = ({ step, ...rest }) =>
   <RoadMapItem
     icon={<RoadMapIcon iconClass={getStepIcon(step)} />}
     distance={step.distance ? formatDistance(step.distance) : null}
-    flex="flex-start"
+    alignItems="flex-start"
     {...rest}
   >
     {step.maneuver.instruction}

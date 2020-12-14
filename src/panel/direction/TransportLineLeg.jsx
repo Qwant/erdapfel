@@ -14,7 +14,6 @@ const TransportLineLeg = ({ leg }) => {
     className="itinerary_roadmap_item--transportLine"
     line={<LegLine info={info} mode={mode} />}
     distance={formatDuration(duration)}
-    flex="center"
   >
     <div
       className="itinerary_roadmap_item_summary itinerary_roadmap_item_summary--openable"
