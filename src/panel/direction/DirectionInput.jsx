@@ -101,6 +101,18 @@ class DirectionInput extends React.Component {
     this.props.inputRef.current.dispatchEvent(new Event('input'));
   }
 
+  onScrollSuggest = scrollPosition => {
+    const topBarElement = this.props.inputRef?.current?.parentNode;
+    if (!topBarElement) {
+      return;
+    }
+    if (scrollPosition > 0) {
+      topBarElement.classList.add('shadow');
+    } else {
+      topBarElement.classList.remove('shadow');
+    }
+  }
+
   render() {
     const { pointType, inputRef, isLoading, withGeoloc, value } = this.props;
     const { mounted, readOnly } = this.state;
@@ -140,6 +152,7 @@ class DirectionInput extends React.Component {
               withGeoloc={withGeoloc}
               onSelect={this.selectItem}
               onClear={this.removePoint}
+              onScroll={this.onScrollSuggest}
             />
         }
       </div>

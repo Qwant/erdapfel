@@ -13,6 +13,11 @@
 
     @media (max-width: 640px) {
       font-size: 14px;
+      transition: box-shadow 0.2s;
+
+      &.shadow {
+        box-shadow: $shadow-scroll;
+      }
 
       &:focus-within {
         position: fixed;
