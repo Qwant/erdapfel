@@ -3,7 +3,6 @@
 /**
  * Simple Category helper
  */
-import IconManager from '../adapters/icon_manager';
 import { findIndexIgnoreCase, capitalizeFirst } from '../libs/string';
 import { CATEGORY_TYPE } from '../../config/constants.yml';
 
@@ -44,14 +43,6 @@ export default class Category {
     }
 
     return matched;
-  }
-
-  getIcon() {
-    return IconManager.get({
-      className: this.iconName,
-      subClassName: this.iconName,
-      type: 'category',
-    });
   }
 
   static create({ name, label, icon, color, matcher }) {

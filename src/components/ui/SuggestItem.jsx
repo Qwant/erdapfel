@@ -1,10 +1,10 @@
 /* global _ */
 import React from 'react';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import IconManager from '../../adapters/icon_manager';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
 import Address from 'src/components/ui/Address';
+import PlaceIcon from 'src/components/PlaceIcon';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
   <div className="autocomplete_suggestion__labels">
@@ -12,9 +12,9 @@ const ItemLabels = ({ firstLabel, secondLabel }) =>
     {secondLabel && <div className="autocomplete_suggestion__second_line">{secondLabel}</div>}
   </div>;
 
-const GeolocationItem = () =>
+const GeolocationItem = ({ geolocPoi }) =>
   <div className="autocomplete_suggestion autocomplete_suggestion--geoloc">
-    <div className="autocomplete-icon icon-pin_geoloc" />
+    <PlaceIcon className="autocomplete_suggestion_icon" place={geolocPoi} withBackground />
     <ItemLabels firstLabel={_('Your position', 'direction')} />
   </div>;
 
@@ -31,17 +31,18 @@ const IntentionItem = ({ intention }) => {
 };
 
 const CategoryItem = ({ category }) => {
-  const { id, label, alternativeName, color } = category;
-  const icon = category.getIcon();
+  const { id, label, alternativeName } = category;
 
   return (
     <div
       className="autocomplete_suggestion autocomplete_suggestion--category"
       data-id={id}
     >
-      <div
-        style={{ color }}
-        className={`autocomplete-icon icon icon-${icon.iconClass}`}
+      <PlaceIcon
+        className="autocomplete_suggestion_icon"
+        iconClass={category.iconName}
+        color={category.color}
+        withBackground
       />
       <ItemLabels firstLabel={label} secondLabel={alternativeName} />
     </div>
@@ -49,8 +50,7 @@ const CategoryItem = ({ category }) => {
 };
 
 const PoiItem = ({ poi }) => {
-  const { name, className, subClassName, type } = poi;
-  const icon = IconManager.get({ className, subClassName, type });
+  const { name, type } = poi;
   const streetAddress = poi.alternativeName // fallback to alternativeName for older favorites
     ? poi.alternativeName
     : <Address
@@ -61,10 +61,7 @@ const PoiItem = ({ poi }) => {
 
   return (
     <div className="autocomplete_suggestion">
-      <div
-        style={{ color: icon ? icon.color : '' }}
-        className={`autocomplete-icon icon icon-${icon.iconClass}`}
-      />
+      <PlaceIcon className="autocomplete_suggestion_icon" place={poi} />
       <ItemLabels firstLabel={name} secondLabel={streetAddress} />
     </div>
   );
@@ -90,7 +87,7 @@ const SuggestItem = ({ item }) => {
   }
 
   if (item instanceof NavigatorGeolocalisationPoi) {
-    return <GeolocationItem />;
+    return <GeolocationItem geolocPoi={item} />;
   }
 
   if (item instanceof Category) {

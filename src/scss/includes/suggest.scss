@@ -31,38 +31,15 @@
   }
 }
 
-.autocomplete-icon {
-  font-size: 32px;
-  width: 60px;
-  flex-shrink: 0;
-  text-align: center;
-}
-
-.autocomplete_suggestion--geoloc {
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  .autocomplete-icon {
-    color: $primary_text;
-    font-size: 18px;
-  }
-}
-
-.autocomplete_suggestion--category {
-  .autocomplete-icon {
-    font-size: 22px;
-    width: 24px;
-    height: 24px;
-    margin: 0 32px 0 18px;
-    border-radius: 50%;
-  }
-}
-
 .autocomplete_suggestion--intention {
   .autocomplete-icon {
     height: 30px;
     background: url(../images/magnifier-light.svg) center no-repeat;
     color: #353c52;
+    font-size: 32px;
+    width: 60px;
+    flex-shrink: 0;
+    text-align: center;
   }
 }
 
@@ -102,4 +79,14 @@
   padding: 15px 10px 5px;
   color: $primary_text;
   cursor: default;
+}
+
+.autocomplete_suggestion_icon {
+  margin: 0 28px 0 14px;
+}
+
+@media (max-width: 640px) {
+  .autocomplete_suggestion_icon {
+    margin: 0 12px 0 8px;
+  }
 }
