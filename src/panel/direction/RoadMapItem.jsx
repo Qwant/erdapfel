@@ -3,11 +3,11 @@ import classnames from 'classnames';
 
 import { Divider, Flex } from 'src/components/ui';
 
-const RoadMapItem = ({ children, icon, distance, className, line, ...rest }) =>
+const RoadMapItem = ({ children, icon, distance, className, line, alignItems, ...rest }) =>
   <>
     <div className={classnames('itinerary_roadmap_item', className)} {...rest}>
       {line}
-      <Flex alignItems="center">
+      <Flex alignItems={alignItems || 'center'}>
         <div className="itinerary_roadmap_item_icon">
           {icon}
         </div>

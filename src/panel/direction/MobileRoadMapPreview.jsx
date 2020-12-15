@@ -1,68 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import RoadMapStep from './RoadMapStep';
 import { fire } from 'src/libs/customEvents';
-import { CloseButton } from 'src/components/ui';
+import classnames from 'classnames';
+import { Button } from '../../components/ui';
 
-export default class MobileRoadMapPreview extends React.Component {
-  static propTypes = {
-    steps: PropTypes.array.isRequired,
-    onClose: PropTypes.func.isRequired,
-  }
+const MobileRoadMapPreview = ({
+  steps,
+  onClose,
+}) => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const stepsRef = React.createRef();
 
-  state = {
-    currentStep: 0,
-  }
+  const scroll = () => {
 
-  componentDidMount() {
-    this.zoomToCurrentStep();
-    fire('move_mobile_geolocation_button', 65);
-    document.body.classList.add('directions-stepByStep');
-  }
-
-  componentWillUnmount() {
-    document.body.classList.remove('directions-stepByStep');
-  }
-
-  zoomToCurrentStep = () => {
-    fire('zoom_step', this.props.steps[this.state.currentStep]);
-  }
-
-  previous = () => {
-    this.setState(
-      prevState => ({ currentStep: Math.max(prevState.currentStep - 1, 0) }),
-      this.zoomToCurrentStep
+    const newStep = Math.floor(
+      // Divide the step container's scrollLeft up to the middle of the screen with the size of a step
+      // to determine which step is present at the middle of the screen
+      (stepsRef.current.scrollLeft + window.innerWidth / 2) / (window.innerWidth - 70 + 12)
     );
-  }
 
-  next = () => {
-    this.setState(
-      prevState => ({ currentStep: Math.min(prevState.currentStep + 1, this.props.steps.length) }),
-      this.zoomToCurrentStep
-    );
-  }
+    // If it has changed, save it and highlight it as the current step
+    if (currentStep !== newStep) {
+      setCurrentStep(newStep);
+    }
+  };
 
-  render() {
-    const currentStep = this.props.steps[this.state.currentStep];
+  const toggleSize = () => {
+    setExpanded(!expanded);
+  };
 
-    return <React.Fragment>
-      <div className="itinerary_mobile_step">
-        <CloseButton onClick={this.props.onClose} />
-        <RoadMapStep step={currentStep} />
-      </div>
+  // When expanded is modified, move the map's bottom UI
+  useEffect(
+    () => {
+      fire('move_mobile_bottom_ui', stepsRef.current.offsetHeight);
+    },
+    [expanded, stepsRef]
+  );
 
-      <div className="itinerary_mobile_step_buttons">
-        <button
-          className="itinerary_mobile_step_button icon-chevron-left"
-          disabled={this.state.currentStep === 0}
-          onClick={this.previous}
-        />
-        <button
-          className="itinerary_mobile_step_button icon-chevron-right"
-          disabled={this.state.currentStep === this.props.steps.length - 1}
-          onClick={this.next}
-        />
-      </div>
-    </React.Fragment>;
-  }
-}
+  // When currentStep is modified, zoom on it
+  useEffect(
+    () => {
+      fire('zoom_step', steps[currentStep]);
+    },
+    [currentStep, steps]
+  );
+
+  return <div className="itinerary_mobile_step_by_step">
+    <Button
+      className="mobile-roadmap-preview-close"
+      onClick={onClose}
+      icon="arrow-left"
+    />
+    <div
+      ref={stepsRef}
+      className={classnames('mobile-roadmap-preview-steps', { expanded })}
+      onScroll={scroll}
+      onClick={toggleSize}
+    >
+      {
+        steps.map((step, index) =>
+          <div
+            key={index}
+            className={
+              classnames(
+                'itinerary_mobile_step',
+                {
+                  past: index < currentStep,
+                  active: index === currentStep,
+                }
+              )
+            }>
+            <RoadMapStep step={step}/>
+          </div>)
+      }
+    </div>
+  </div>;
+};
+
+MobileRoadMapPreview.propTypes = {
+  steps: PropTypes.array.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default MobileRoadMapPreview;
