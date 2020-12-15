@@ -32,14 +32,14 @@
 }
 
 .autocomplete_suggestion--intention {
-  .autocomplete-icon {
-    height: 30px;
-    background: url(../images/magnifier-light.svg) center no-repeat;
-    color: #353c52;
-    font-size: 32px;
-    width: 60px;
-    flex-shrink: 0;
-    text-align: center;
+  .autocomplete_suggestion_icon_background {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $grey-lighter;
+      height: 36px;
+      width: 36px;
+      border-radius: 50%;
   }
 }
 

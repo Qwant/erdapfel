@@ -5,6 +5,7 @@ import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
 import Address from 'src/components/ui/Address';
 import PlaceIcon from 'src/components/PlaceIcon';
+import { Magnifier } from 'src/components/ui/icons';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
   <div className="autocomplete_suggestion__labels">
@@ -25,7 +26,19 @@ const IntentionItem = ({ intention }) => {
     : _('Search around this place');
 
   return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
-    <div className="autocomplete-icon" />
+    {category && <PlaceIcon
+      className="autocomplete_suggestion_icon"
+      iconClass={category.iconName}
+      color={category.color}
+      withBackground
+    />}
+
+    {fullTextQuery &&
+      <div className="autocomplete_suggestion_icon_background autocomplete_suggestion_icon">
+        <Magnifier width={20} />
+      </div>
+    }
+
     <ItemLabels firstLabel={category?.label || fullTextQuery} secondLabel={placeString} />
   </div>;
 };
