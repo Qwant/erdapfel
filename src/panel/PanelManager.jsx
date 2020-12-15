@@ -63,7 +63,7 @@ export default class PanelManager extends React.Component {
     window.times.appRendered = Date.now();
 
     listen('map_user_interaction', () => {
-      if (isMobileDevice()) {
+      if (isMobileDevice() && this.state.panelSize !== 'minimized') {
         this.setState({ panelSize: 'minimized' });
       }
     });

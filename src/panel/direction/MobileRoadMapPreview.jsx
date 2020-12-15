@@ -44,7 +44,10 @@ const MobileRoadMapPreview = ({
     () => {
       fire('zoom_step', steps[currentStep]);
     },
-    [currentStep, steps]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentStep]
+    // don't declare steps as dependency as it's dynamically recomputed on each render by DirectionPanel,
+    // causing the ref to change even if the content is the same.
   );
 
   return <div className="itinerary_mobile_step_by_step">
