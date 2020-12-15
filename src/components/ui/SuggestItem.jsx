@@ -6,6 +6,7 @@ import Intention from 'src/adapters/intention';
 import Address from 'src/components/ui/Address';
 import PlaceIcon from 'src/components/PlaceIcon';
 import { Magnifier } from 'src/components/ui/icons';
+import PoiStore from 'src/adapters/poi/poi_store';
 
 const ItemLabels = ({ firstLabel, secondLabel }) =>
   <div className="autocomplete_suggestion__labels">
@@ -74,7 +75,11 @@ const PoiItem = ({ poi }) => {
 
   return (
     <div className="autocomplete_suggestion">
-      <PlaceIcon className="autocomplete_suggestion_icon" place={poi} />
+      <PlaceIcon
+        className="autocomplete_suggestion_icon"
+        place={poi}
+        isFavorite={poi instanceof PoiStore}
+      />
       <ItemLabels firstLabel={name} secondLabel={streetAddress} />
     </div>
   );

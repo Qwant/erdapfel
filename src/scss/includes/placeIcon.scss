@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 
   // indicates it's using the icomoon font
   &:not(.icon) {
