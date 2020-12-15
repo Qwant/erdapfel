@@ -23,7 +23,7 @@ const IntentionItem = ({ intention }) => {
   const { category, place, fullTextQuery } = intention;
   const placeString = place
     ? `${_('Close to')} ${place.properties.geocoding.name}`
-    : _('Search around this place');
+    : _('nearby');
 
   return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
     {category && <PlaceIcon
