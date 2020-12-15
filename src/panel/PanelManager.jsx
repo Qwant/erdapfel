@@ -1,3 +1,4 @@
+/* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchInput from '../ui_components/search_input';
@@ -15,10 +16,12 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
+import Alert from 'src/components/ui/Alert';
+import { getBetaPopupClosed, setBetaPopupClosed } from 'src/adapters/store';
 
 const directionConf = nconf.get().direction;
-
 const directSearchRouteName = 'Direct search query';
+const initialQueryParams = parseQueryString(window.location.search);
 
 export default class PanelManager extends React.Component {
   static propTypes = {
@@ -31,13 +34,16 @@ export default class PanelManager extends React.Component {
       ActivePanel: ServicePanel,
       options: {},
       panelSize: 'default',
+      betaPopupClosed: getBetaPopupClosed(),
+      client: initialQueryParams['client'],
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const initialUrlPathName = window.location.pathname;
-    const initialQueryParams = parseQueryString(window.location.search);
+
     const initialRoute = this.initRouter();
+
     this.initTopBar();
 
     if (window.no_ui) {
@@ -211,13 +217,35 @@ export default class PanelManager extends React.Component {
     this.setState({ panelSize });
   }
 
+  closeBetaPopup = () => {
+    setBetaPopupClosed();
+    this.setState({ betaPopupClosed: true });
+  }
+
   render() {
-    const { ActivePanel, options, panelSize } = this.state;
+    const { ActivePanel, options, panelSize, betaPopupClosed, client } = this.state;
 
     return <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
       <div className="panel_container">
         <ActivePanel {...options} />
       </div>
+
+      {
+        // Show beta popup if browser language is not french, if popup hasn't already been closed, and if the user comes from an IA
+        !navigator.language.includes('fr')
+        && !betaPopupClosed
+        && client === 'search-ia-local'
+        &&
+        <Alert
+          className=""
+          title="Qwant Maps is in Beta!"
+          /* eslint-disable max-len */
+          description={_('This means that this version may have some bugs. We work very hard to improve Qwant Maps every day, while keeping your travels private.')}
+          /* eslint-enable max-len */
+          type="info"
+          onClose={ this.closeBetaPopup }
+        />
+      }
     </PanelContext.Provider>;
   }
 }

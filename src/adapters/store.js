@@ -119,3 +119,21 @@ export async function setLastLocation(loc) {
     throw e;
   }
 }
+
+export function getBetaPopupClosed() {
+  try {
+    return get('beta_popup_closed');
+  } catch (e) {
+    Error.sendOnce('store', 'getBetaPopupClosed', 'error getting beta popup closed', e);
+    return null;
+  }
+}
+
+export function setBetaPopupClosed() {
+  try {
+    return set('beta_popup_closed', 1);
+  } catch (e) {
+    Error.sendOnce('store', 'setBetaPopupClosed', 'error setting beta popup closed', e);
+    throw e;
+  }
+}

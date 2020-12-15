@@ -1,3 +1,4 @@
+/* global _ */
 import React from 'react';
 import cs from 'classnames';
 import { string, oneOf, func, node, oneOfType } from 'prop-types';
@@ -27,6 +28,11 @@ const Alert = ({
     </span>
     <div className="alert-content">
       <span role="alert">{description}</span>
+    </div>
+    <div className="alert-link">
+      <a onClick={onClose}>
+        { _('Do not display this message again') }
+      </a>
     </div>
   </div>
 ;
