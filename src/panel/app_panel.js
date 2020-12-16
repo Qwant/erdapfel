@@ -81,6 +81,20 @@ export default class App {
     const urlWithoutHash = window.location.href.split('#')[0];
     window.history.replaceState(window.history.state, null, `${urlWithoutHash}#${hash}`);
   }
+
+  /**
+   * Go to the previous application state using history.back()
+   * If no previous state is available, use replaceState as a fallback.
+   * @param {Object} fallback
+   * @param {Object} fallback.relativeUrl - The relativeUrl to fallback to if history.back is unavailable
+   * @param {Object} fallback.state - The state to fallback to if history.back is unavailable
+   */
+  back({ relativeUrl = '/', state = {} }) {
+    if (history.state !== null) {
+      window.history.back();
+    } else {
+      // Fallback to search params
+      this.navigateTo(relativeUrl, state, { replaceState: true });
+    }
+  }
 }
-
-
