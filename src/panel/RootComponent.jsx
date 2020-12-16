@@ -6,6 +6,7 @@ import Suggest from 'src/components/ui/Suggest';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
 import { togglePanelVisibility } from 'src/libs/panel';
+import BetaInfoBox from 'src/components/BetaInfoBox';
 
 const MenuComponent = ({ isMobile }) =>
   isMobile
@@ -43,6 +44,7 @@ const RootComponent = ({
       withCategories
       onToggleSuggestions={suggestionsOpened => { togglePanelVisibility(!suggestionsOpened); }}
     />
+    <BetaInfoBox/>
   </DeviceContext.Provider>;
 };
 
