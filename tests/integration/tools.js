@@ -1,6 +1,7 @@
 /* globals puppeteerArguments */
 import puppeteer from 'puppeteer';
 import LatLngPoi from 'src/adapters/poi/latlon_poi';
+import { getPupeeterViewport } from './device';
 
 export const getText = async function(page, selector) {
   return await page.evaluate(selector => {
@@ -11,8 +12,11 @@ export const getText = async function(page, selector) {
 export const initBrowser = async function() {
   const headless = process.env.headless !== 'false';
 
-
-  const browser = await puppeteer.launch({ args: puppeteerArguments, headless });
+  const browser = await puppeteer.launch({
+    args: puppeteerArguments,
+    headless,
+    defaultViewport: getPupeeterViewport(process.env.TEST_DEVICE),
+  });
   const page = await browser.newPage();
   await page.setExtraHTTPHeaders({
     'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */

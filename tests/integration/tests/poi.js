@@ -2,7 +2,7 @@ const poiMock = require('../../__data__/poi.json');
 
 import ResponseHandler from '../helpers/response_handler';
 import { initBrowser, getText, clearStore, getInputValue, exists } from '../tools';
-import { getFavorites, toggleFavoritePanel, storePoi } from '../favorites_tools';
+import { toggleFavoritePanel, storePoi } from '../favorites_tools';
 import { languages } from '../../../config/constants.yml';
 
 let browser;
@@ -53,17 +53,6 @@ test('load a poi from url and click on directions', async () => {
 
 test('load a poi from url with simple id', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753?client=example`);
-  await page.waitForSelector('.poiTitle');
-  const title = await page.evaluate(() => document.querySelector('.poiTitle').innerText);
-  expect(title).toMatch(/Musée d'Orsay/);
-});
-
-test('load a poi from url on mobile', async () => {
-  await page.setViewport({
-    width: 400,
-    height: 800,
-  });
-  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/2.3261037/48.8605833`);
   await page.waitForSelector('.poiTitle');
   const title = await page.evaluate(() => document.querySelector('.poiTitle').innerText);
   expect(title).toMatch(/Musée d'Orsay/);
@@ -129,40 +118,6 @@ test('center the map to the poi on a poi click', async () => {
   });
 });
 
-test('display details about the poi on a poi click', async () => {
-  await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/48.8605833/2.3261037`);
-  await page.waitForSelector('.poiTitle');
-
-  await page.click('.poi_panel__content .poiItem');
-  let infoTitle = await page.evaluate(() => {
-    return document.querySelector('.poi_panel__sub_block__title').innerText;
-  });
-  expect(infoTitle.trim()).toEqual('Accessible en fauteuil roulant.');
-  await page.click('.poi_panel__block__collapse');
-
-  infoTitle = await page.evaluate(() => {
-    return document.querySelector('.poi_panel__sub_block__title').innerText;
-  });
-  expect(infoTitle.trim()).toEqual('');
-
-  const { address, contact, contactUrl, phone, website } = await page.evaluate(() => {
-    return {
-      address: document.querySelector('.block-address .block-value').innerText,
-      contact: document.querySelector('.block-contact-link').innerText,
-      contactUrl: document.querySelector('.block-contact-link').href,
-      phone: document.querySelector('.block-phone').innerText,
-      website: document.querySelector('.block-website').innerText,
-    };
-  });
-  expect(address).toEqual('1 Rue de la Légion d\'Honneur, 75007 Paris');
-  expect(await exists(page, '.poi_panel .openingHour--closed')).toBeTruthy();
-  expect(phone).toMatch('01 40 49 48 14');
-  expect(website).toMatch('www.musee-orsay.fr');
-  expect(contactUrl).toMatch('mailto:admin@orsay.fr');
-  expect(contact).toMatch('admin@orsay.fr');
-  expect(await exists(page, '.poi_panel__info__wiki')).toBeTruthy();
-});
-
 test('Poi name i18n', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`);
   await page.waitForSelector('.poiTitle');
@@ -220,37 +175,6 @@ async function clickPoi(page) {
   // Click on the top-left corner
   await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);
 }
-
-test('add a poi as favorite and find it back in the favorite menu', async () => {
-  await page.goto(APP_URL);
-
-  // we select a poi and 'star' it
-  await clickPoi(page);
-  expect(await exists(page, '.poiTitle')).toBeTruthy();
-  expect(await exists(page, '.poi_panel')).toBeTruthy();
-  await page.click('.poi_panel__actions .poi_panel__action__favorite');
-  await page.click('.poi_panel .closeButton');
-  // we check that the first favorite item is our poi
-  await toggleFavoritePanel(page);
-  let fav = await getFavorites(page);
-  expect(fav).toHaveLength(1);
-  expect(fav[0].title).toEqual('Musée d\'Orsay');
-  expect(fav[0].desc).toEqual('Musée');
-  expect(fav[0].icons).toContainEqual('icon-museum');
-
-  // we then reopen the poi panel and 'unstar' the poi.
-  await page.click('.favorite_panel__item');
-  expect(await exists(page, '.poiTitle')).toBeTruthy();
-  expect(await exists(page, '.poi_panel')).toBeTruthy();
-
-  await page.click('.poi_panel__actions .poi_panel__action__favorite');
-  await page.click('.poi_panel .closeButton');
-  // it should disappear from the favorites
-  await toggleFavoritePanel(page);
-  fav = await getFavorites(page);
-  expect(fav).toEqual([]);
-});
-
 
 describe('Poi hour i18n', () => {
   languages.supportedLanguages.forEach(language => {
