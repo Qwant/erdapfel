@@ -89,7 +89,7 @@ export default class App {
    * @param {Object} fallback.relativeUrl - The relativeUrl to fallback to if history.back is unavailable
    * @param {Object} fallback.state - The state to fallback to if history.back is unavailable
    */
-  back({ relativeUrl = '/', state = {} }) {
+  navigateBack({ relativeUrl = '/', state = {} }) {
     if (history.state !== null) {
       window.history.back();
     } else {
