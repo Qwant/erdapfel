@@ -84,9 +84,9 @@ export default class App {
 
   /**
    * Go to the previous application state using history.back()
-   * If no previous state is available, use replaceState as a fallback.
+   * If we determine history.back would exit the application, use replaceState as a fallback.
    * @param {Object} fallback
-   * @param {Object} fallback.relativeUrl - The relativeUrl to fallback to if history.back is unavailable
+   * @param {String} fallback.relativeUrl - The relativeUrl to fallback to if history.back is unavailable
    * @param {Object} fallback.state - The state to fallback to if history.back is unavailable
    */
   navigateBack({ relativeUrl = '/', state = {} }) {
