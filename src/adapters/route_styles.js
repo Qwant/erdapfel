@@ -1,6 +1,7 @@
 import Color from 'color';
 
 const darkenColor = hex => Color(hex).mix(Color('black'), 0.33).hex();
+const safeHexColor = hex => hex.charAt(0) === '#' ? hex : `#${hex}`;
 
 const ACTIVE_ROUTE_COLOR = '#3f81fb'; // action-blue-semi-lightness
 const ACTIVE_ROUTE_COLOR_OUTLINE = '#1050c5'; // action-blue-dark
@@ -8,12 +9,15 @@ const INACTIVE_ROUTE_COLOR = '#c8cbd3';
 const INACTIVE_ROUTE_COLOR_OUTLINE = darkenColor(INACTIVE_ROUTE_COLOR);
 
 export function prepareRouteColor(feature) {
-  const properties = { ...feature.properties };
-  properties.outlineColor = properties.lineColor
-    ? darkenColor(properties.lineColor)
-    : ACTIVE_ROUTE_COLOR_OUTLINE;
-  properties.lineColor = properties.lineColor ? `#${properties.lineColor}` : ACTIVE_ROUTE_COLOR;
-  return { ...feature, properties };
+  const lineColor = feature.properties?.lineColor;
+  return {
+    ...feature,
+    properties: {
+      ...feature.properties,
+      lineColor: lineColor ? safeHexColor(lineColor) : ACTIVE_ROUTE_COLOR,
+      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : ACTIVE_ROUTE_COLOR_OUTLINE,
+    },
+  };
 }
 
 function getColorExpression(isActive, isOutline) {
