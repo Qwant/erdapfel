@@ -9,10 +9,10 @@ const INACTIVE_ROUTE_COLOR_OUTLINE = darkenColor(INACTIVE_ROUTE_COLOR);
 
 export function prepareRouteColor(feature) {
   const properties = { ...feature.properties };
+  properties.lineColor = properties.lineColor ? `#${properties.lineColor}` : ACTIVE_ROUTE_COLOR;
   properties.outlineColor = properties.lineColor
     ? darkenColor(properties.lineColor)
     : ACTIVE_ROUTE_COLOR_OUTLINE;
-  properties.lineColor = properties.lineColor ? `#${properties.lineColor}` : ACTIVE_ROUTE_COLOR;
   return { ...feature, properties };
 }
 
