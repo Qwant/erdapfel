@@ -14,8 +14,8 @@ function useScrollWatcher(ref, cb, throttlingTimeout = 0) {
     scrollingElement.addEventListener('scroll', onScroll);
 
     return () => {
-      cb(0);
       scrollingElement.removeEventListener('scroll', onScroll);
+      cb(0);
     };
   }, [ref, cb, throttlingTimeout]);
 }
