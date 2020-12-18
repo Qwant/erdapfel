@@ -328,7 +328,13 @@ export default class DirectionPanel extends React.Component {
   }
 
   toggleDetails() {
-    this.updateUrl({ details: this.props.details ? null : true });
+    if (this.props.details) {
+      window.app.navigateBack({
+        relativeUrl: 'routes/' + updateQueryString({ details: false }),
+      });
+    } else {
+      this.updateUrl({ details: true });
+    }
   }
 
   render() {
