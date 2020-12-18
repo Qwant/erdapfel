@@ -6,10 +6,20 @@ import { Heart } from 'src/components/ui/icons';
 
 const favoriteColor = '#cd1690';
 
-const PlaceIcon = ({ place, withBackground, className, isFavorite = false, ...rest }) => {
-  const { iconClass, color, icomoon } = place // Place should be a poi
-    ? IconManager.get(place)
-    : rest;
+const PlaceIcon = ({ place, category, withBackground, className, isFavorite = false }) => {
+  let iconClass = '', color = '', icomoon = false;
+
+  if (place) {
+    const icon = IconManager.get(place);
+    iconClass = icon.iconClass;
+    color = icon.color;
+    icomoon = icon.icomoon;
+  }
+
+  if (category) {
+    iconClass = category.iconName;
+    color = category.color;
+  }
 
   if (isFavorite) {
     return <FavoriteIcon className={className} />;

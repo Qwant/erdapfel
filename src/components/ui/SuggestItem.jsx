@@ -29,8 +29,7 @@ const IntentionItem = ({ intention }) => {
   return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
     {category && <PlaceIcon
       className="autocomplete_suggestion_icon"
-      iconClass={category.iconName}
-      color={category.color}
+      category={category}
       withBackground
     />}
 
@@ -54,8 +53,7 @@ const CategoryItem = ({ category }) => {
     >
       <PlaceIcon
         className="autocomplete_suggestion_icon"
-        iconClass={category.iconName}
-        color={category.color}
+        category={category}
         withBackground
       />
       <ItemLabels firstLabel={label} secondLabel={alternativeName} />
