@@ -125,7 +125,7 @@ export default class DirectionPanel extends React.Component {
 
     if (this.props.activeRouteId !== prevProps.activeRouteId && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.props.activeRouteId, fitView: !isMobileDevice() });
-      this.updateUrl({ details: null });
+      this.updateUrl({ params: { details: null } });
       this.setState({ activePreviewRoute: null });
     }
   }
@@ -223,7 +223,7 @@ export default class DirectionPanel extends React.Component {
           window.execOnMapLoaded(() => {
             fire('set_routes', { routes, vehicle, activeRouteId });
           });
-          this.updateUrl({ selected: activeRouteId }, true);
+          this.updateUrl({ params: { selected: activeRouteId }, replace: true });
         });
       } else {
         // Error or empty response
@@ -242,7 +242,7 @@ export default class DirectionPanel extends React.Component {
     }
   }
 
-  updateUrl(params = {}, replace = false) {
+  updateUrl({ params = {}, replace = false } = {}) {
     const search = updateQueryString({
       mode: this.state.vehicle,
       origin: this.state.origin ? poiToUrl(this.state.origin) : null,
@@ -256,7 +256,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   update() {
-    this.updateUrl({}, true);
+    this.updateUrl({ replace: true });
     this.computeRoutes();
     this.context.setSize('default');
   }
@@ -333,7 +333,7 @@ export default class DirectionPanel extends React.Component {
         relativeUrl: 'routes/' + updateQueryString({ details: false }),
       });
     } else {
-      this.updateUrl({ details: true });
+      this.updateUrl({ params: { details: true } });
     }
   }
 
@@ -379,7 +379,7 @@ export default class DirectionPanel extends React.Component {
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
         openMobilePreview={() => this.openMobilePreview(routes[activeRouteId])}
-        selectRoute={routeId => this.updateUrl({ selected: routeId })}
+        selectRoute={routeId => this.updateUrl({ params: { selected: routeId } })}
       />;
 
     const isFormCompleted = origin && destination;
