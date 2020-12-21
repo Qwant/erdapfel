@@ -9,7 +9,7 @@ const initialQueryParams = parseQueryString(window.location.search);
 
 const BetaInfoBox = () => {
   const [closed, setClosed] = useState(get('beta_popup_closed'));
-  const [client] = useState(initialQueryParams['client']);
+  const client = initialQueryParams['client'];
   const closeBetaPopup = () => {
     set('beta_popup_closed', 1);
     setClosed(true);
