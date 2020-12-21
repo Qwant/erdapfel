@@ -15,7 +15,6 @@ export default class RouteResult extends React.Component {
     vehicle: PropTypes.string,
     isLoading: PropTypes.bool,
     error: PropTypes.number,
-    openMobilePreview: PropTypes.func.isRequired,
     activeRouteId: PropTypes.number,
     selectRoute: PropTypes.func.isRequired,
     toggleDetails: PropTypes.func.isRequired,
@@ -43,10 +42,6 @@ export default class RouteResult extends React.Component {
   toggleRouteDetails = () => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
     this.props.toggleDetails();
-  }
-
-  openPreview = routeId => {
-    this.props.openMobilePreview(this.props.routes[routeId]);
   }
 
   render() {
@@ -83,7 +78,6 @@ export default class RouteResult extends React.Component {
           vehicle={this.props.vehicle}
           activeDetails={this.props.activeDetails}
           toggleRouteDetails={this.toggleRouteDetails}
-          openPreview={this.openPreview}
           selectRoute={this.selectRoute}
         />
       </div>

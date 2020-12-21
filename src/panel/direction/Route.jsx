@@ -5,7 +5,7 @@ import { DeviceContext } from 'src/libs/device';
 
 const Route = ({
   id, route, vehicle, showDetails, origin, destination, isActive,
-  toggleDetails, openPreview, selectRoute,
+  toggleDetails, selectRoute,
 }) => {
   const isMobile = useContext(DeviceContext);
 
@@ -17,7 +17,6 @@ const Route = ({
         isActive={isActive}
         showDetails={showDetails}
         toggleDetails={toggleDetails}
-        openPreview={openPreview}
         selectRoute={selectRoute}
         vehicle={vehicle}
       />

@@ -13,7 +13,6 @@ const RoutesList = ({
   destination,
   vehicle,
   toggleRouteDetails,
-  openPreview,
   selectRoute,
   isLoading,
 }) => {
@@ -38,7 +37,6 @@ const RoutesList = ({
             isActive={route.id === activeRouteId}
             showDetails={route.id === activeRouteId && activeDetails}
             toggleDetails={toggleRouteDetails}
-            openPreview={openPreview}
             selectRoute={selectRoute}
           />
         </Item>

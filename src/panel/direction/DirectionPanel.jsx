@@ -386,7 +386,6 @@ export default class DirectionPanel extends React.Component {
         origin={origin}
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
-        openMobilePreview={() => this.openMobilePreview(routes[activeRouteId])}
         selectRoute={this.selectRoute}
       />;
 
