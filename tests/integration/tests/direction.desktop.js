@@ -3,6 +3,7 @@ import { initBrowser, getInputValue, exists, isHidden } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
+const mockPoi = require('../../__data__/poi.json');
 const mockMapBox = require('../../__data__/mapbox.json');
 
 let browser;
@@ -57,7 +58,7 @@ test('simple search', async () => {
 });
 
 describe('Close panel behavior', () => {
-  test('returning to home', async () => {
+  test('returning to home if not coming from a POI', async () => {
     await page.goto(APP_URL);
     const directionButton = await page.waitForSelector('.search_form__direction_shortcut');
     await directionButton.click();
@@ -67,13 +68,33 @@ describe('Close panel behavior', () => {
     expect(await exists(page, '.service_panel')).toBeTruthy();
   });
 
-  test('returning to the POI', async () => {
+  test('returning to the POI Panel if coming from the "Directions" button of a POI', async () => {
     await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`);
     const directionFromPOIButton = await page.waitForSelector('.poi_panel__action__direction');
     await directionFromPOIButton.click();
     await page.waitForSelector('.direction-panel');
     await page.click('.vehicleSelector-button:not(.vehicleSelector-button--active)');
     await page.click('.direction-panel .closeButton');
+    expect(await exists(page, '.poi_panel')).toBeTruthy();
+  });
+
+  test('navigating back after manipulating results directly exits the direction panel', async () => {
+    responseHandler.addPreparedResponse(mockPoi, new RegExp(`places/${mockPoi.id}`));
+    await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`);
+    const directionFromPOIButton = await page.waitForSelector('.poi_panel__action__direction');
+    await directionFromPOIButton.click();
+    await page.waitForSelector('.direction-panel');
+
+    responseHandler.addPreparedResponse(mockMapBox, /directions/);
+    responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
+    await page.type('#direction-input_origin', 'direction');
+    await page.keyboard.press('Enter');
+
+    await page.waitForSelector('.itinerary_leg');
+    await page.click('.itinerary_leg_detailsBtn');
+    await page.waitForSelector('.itinerary_roadmap');
+
+    await page.evaluate('window.history.back()');
     expect(await exists(page, '.poi_panel')).toBeTruthy();
   });
 });
