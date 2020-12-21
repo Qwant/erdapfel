@@ -17,8 +17,8 @@ import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
 
 const directionConf = nconf.get().direction;
+
 const directSearchRouteName = 'Direct search query';
-const initialQueryParams = parseQueryString(window.location.search);
 
 export default class PanelManager extends React.Component {
   static propTypes = {
@@ -36,8 +36,10 @@ export default class PanelManager extends React.Component {
 
   componentDidMount() {
     const initialUrlPathName = window.location.pathname;
+    const initialQueryParams = parseQueryString(window.location.search);
     const initialRoute = this.initRouter();
     this.initTopBar();
+
     if (window.no_ui) {
       // iframe
       Telemetry.add(Telemetry.APP_START_IFRAME, {

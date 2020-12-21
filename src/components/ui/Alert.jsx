@@ -39,7 +39,6 @@ Alert.propTypes = {
   description: oneOfType([string, node]).isRequired,
   type: oneOf(Object.keys(AlertIcon)),
   onClose: func.isRequired,
-  closeButtonLabel: string.isRequired,
 };
 
 export default Alert;
