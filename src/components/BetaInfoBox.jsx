@@ -10,6 +10,7 @@ const initialQueryParams = parseQueryString(window.location.search);
 const BetaInfoBox = () => {
   const [closed, setClosed] = useState(get('beta_popup_closed'));
   const client = initialQueryParams['client'];
+  const isUserFromSearch = client?.slice(0, 6) === 'search' || !!initialQueryParams['q'];
   const closeBetaPopup = () => {
     set('beta_popup_closed', 1);
     setClosed(true);
@@ -19,7 +20,7 @@ const BetaInfoBox = () => {
     // Show beta popup if browser language is not french, if popup hasn't already been closed, and if the user comes from an IA
     window.getLang().code.indexOf('fr') === -1
     && !closed
-    && client === 'search-ia-local'
+    && isUserFromSearch
     &&
     <Alert
       title={_('Qwant Maps is in Beta!')}
