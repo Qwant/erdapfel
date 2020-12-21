@@ -125,7 +125,7 @@ export default class DirectionPanel extends React.Component {
 
     if (this.props.activeRouteId !== prevProps.activeRouteId && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.props.activeRouteId, fitView: !isMobileDevice() });
-      this.updateUrl({ params: { details: null } });
+      this.updateUrl({ params: { details: null }, replace: true });
       this.setState({ activePreviewRoute: null });
     }
   }
@@ -327,6 +327,10 @@ export default class DirectionPanel extends React.Component {
     return handler(e);
   }
 
+  selectRoute = routeId => {
+    this.updateUrl({ params: { selected: routeId }, replace: true });
+  }
+
   toggleDetails() {
     if (this.props.details) {
       window.app.navigateBack({
@@ -379,7 +383,7 @@ export default class DirectionPanel extends React.Component {
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
         openMobilePreview={() => this.openMobilePreview(routes[activeRouteId])}
-        selectRoute={routeId => this.updateUrl({ params: { selected: routeId } })}
+        selectRoute={this.selecteRoute}
       />;
 
     const isFormCompleted = origin && destination;
