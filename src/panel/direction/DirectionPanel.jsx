@@ -332,12 +332,16 @@ export default class DirectionPanel extends React.Component {
   }
 
   toggleDetails() {
-    if (this.props.details) {
-      window.app.navigateBack({
-        relativeUrl: 'routes/' + updateQueryString({ details: false }),
-      });
+    if (isMobileDevice()) {
+      if (this.props.details) {
+        window.app.navigateBack({
+          relativeUrl: 'routes/' + updateQueryString({ details: false }),
+        });
+      } else {
+        this.updateUrl({ params: { details: true }, replace: false });
+      }
     } else {
-      this.updateUrl({ params: { details: true } });
+      this.updateUrl({ params: { details: !this.props.details }, replace: true });
     }
   }
 
@@ -383,7 +387,7 @@ export default class DirectionPanel extends React.Component {
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
         openMobilePreview={() => this.openMobilePreview(routes[activeRouteId])}
-        selectRoute={this.selecteRoute}
+        selectRoute={this.selectRoute}
       />;
 
     const isFormCompleted = origin && destination;
