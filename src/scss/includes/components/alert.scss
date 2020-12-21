@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: $spacing-xs;
     font-size: 14px;
     font-weight: bold;
     line-height: 18px;
@@ -47,6 +47,11 @@
   &-icon {
     font-size: 22px;
     margin-right: 8px;
+  }
+
+  &-link {
+    margin: $spacing-xs 0;
+    cursor: pointer;
   }
 }
 

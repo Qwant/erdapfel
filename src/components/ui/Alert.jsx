@@ -16,6 +16,7 @@ const Alert = ({
   description,
   type = 'warning',
   onClose,
+  footer,
 }) =>
   <div className={cs('alert', className)}>
     <span className="alert-title">
@@ -28,6 +29,7 @@ const Alert = ({
     <div className="alert-content">
       <span role="alert">{description}</span>
     </div>
+    { footer }
   </div>
 ;
 
@@ -37,7 +39,6 @@ Alert.propTypes = {
   description: oneOfType([string, node]).isRequired,
   type: oneOf(Object.keys(AlertIcon)),
   onClose: func.isRequired,
-  closeButtonLabel: string.isRequired,
 };
 
 export default Alert;
