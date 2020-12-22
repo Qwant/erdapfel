@@ -17,14 +17,9 @@ const SuggestsDropdown = ({
       const { key } = e;
 
       if (key === 'ArrowDown') {
-        let h = highlighted === null ? - 1 : highlighted;
+        const h = highlighted === null ? - 1 : highlighted;
 
         if (h < suggestItems.length - 1) {
-          // Jump label
-          if (suggestItems[h + 1] && suggestItems[h + 1].simpleLabel) {
-            h++;
-          }
-
           setHighlighted(h + 1);
           onHighlight(suggestItems[h + 1]);
         } else {
@@ -35,11 +30,7 @@ const SuggestsDropdown = ({
 
       if (key === 'ArrowUp') {
         e.preventDefault(); // prevent cursor returning at beggining
-        let h = highlighted === null ? suggestItems.length : highlighted;
-        // Jump label
-        if (suggestItems[h - 1] && suggestItems[h - 1].simpleLabel) {
-          h--;
-        }
+        const h = highlighted === null ? suggestItems.length : highlighted;
 
         if (h > 0) {
           setHighlighted(h - 1);
@@ -70,14 +61,8 @@ const SuggestsDropdown = ({
       {suggestItems.map((suggest, index) =>
         <li
           key={index}
-          onMouseDown={e => suggestItems[index].simpleLabel
-            ? e.preventDefault()
-            : onSelect(suggestItems[index])
-          }
-          onMouseEnter={() => suggestItems[index].simpleLabel
-            ? setHighlighted(null)
-            : setHighlighted(index)
-          }
+          onMouseDown={() => { onSelect(suggestItems[index]); }}
+          onMouseEnter={() => { setHighlighted(index); }}
           className={classnames({ 'selected': highlighted === index })}
         >
           <SuggestItem item={suggest} />

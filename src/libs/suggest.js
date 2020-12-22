@@ -3,7 +3,6 @@ import nconf from '@qwant/nconf-getter';
 
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Poi from 'src/adapters/poi/poi';
-import PoiStore from 'src/adapters/poi/poi_store';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
 import { toUrl } from 'src/libs/pois';
@@ -71,12 +70,6 @@ export const fetchSuggests = (query, options = {}) =>
   });
 
 export const modifyList = (items, withGeoloc, query) => {
-  const firstFav = items.findIndex(item => item instanceof PoiStore);
-
-  if (firstFav > -1) {
-    items.splice(firstFav, 0, { simpleLabel: _('Favorites', 'autocomplete').toUpperCase() });
-  }
-
   if (withGeoloc) {
     items.splice(0, 0, NavigatorGeolocalisationPoi.getInstance());
   }

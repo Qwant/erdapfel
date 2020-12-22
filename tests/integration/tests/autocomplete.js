@@ -195,7 +195,7 @@ test('favorite search', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await storePoi(page, { title: 'hello' });
   await page.keyboard.type('Hello');
-  expect(await exists(page, '.autocomplete_separator_label')).toBeTruthy();
+  expect(await exists(page, '.autocomplete_suggestion--favorite')).toBeTruthy();
 });
 
 test('suggestions should not reappear after fast submit', async () => {
