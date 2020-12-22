@@ -26,19 +26,15 @@ const IntentionItem = ({ intention }) => {
     ? `${_('Close to')} ${place.properties.geocoding.name}`
     : _('nearby');
 
+  const intentionIcon = category && category.iconName
+    ? <PlaceIcon className="autocomplete_suggestion_icon" category={category} withBackground />
+    :
+    <div className="autocomplete_suggestion_icon_background autocomplete_suggestion_icon">
+      <Magnifier width={20} />
+    </div>;
+
   return <div className="autocomplete_suggestion autocomplete_suggestion--intention">
-    {category && <PlaceIcon
-      className="autocomplete_suggestion_icon"
-      category={category}
-      withBackground
-    />}
-
-    {fullTextQuery &&
-      <div className="autocomplete_suggestion_icon_background autocomplete_suggestion_icon">
-        <Magnifier width={20} />
-      </div>
-    }
-
+    {intentionIcon}
     <ItemLabels firstLabel={category?.label || fullTextQuery} secondLabel={placeString} />
   </div>;
 };
