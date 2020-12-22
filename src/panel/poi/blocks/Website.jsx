@@ -6,47 +6,40 @@ import URI from '@qwant/uri';
 import Telemetry from 'src/libs/telemetry';
 import Block from 'src/panel/poi/blocks/Block';
 
-export default class WebsiteBlock extends React.Component {
-  static propTypes = {
-    block: PropTypes.object,
-    poi: PropTypes.object,
-  }
+const WebsiteBlock = ({ block, poi }) => {
+  const onClickWebsite = () => {
+    Telemetry.sendPoiEvent(poi, 'website',
+      Telemetry.buildInteractionData(
+        {
+          'id': poi.id,
+          'source': poi.meta.source,
+          'template': 'single',
+          'zone': 'detail',
+          'element': 'website',
+        }
+      )
+    );
+  };
 
-  constructor(props) {
-    super(props);
+  const getWebsiteLabel = () => {
+    return block.label || URI.extractDomain(block.url);
+  };
 
-    this.clickWebsite = () => {
-      Telemetry.sendPoiEvent(this.props.poi, 'website',
-        Telemetry.buildInteractionData(
-          {
-            'id': this.props.poi.id,
-            'source': this.props.poi.meta.source,
-            'template': 'single',
-            'zone': 'detail',
-            'element': 'website',
-          }
-        )
-      );
-    };
-  }
+  return <Block className="block-website" icon="icon_globe" title={_('website')}>
+    <a
+      href={URI.externalise(block.url)}
+      rel="noopener noreferrer nofollow"
+      target="_blank"
+      onClick={onClickWebsite}
+    >
+      {getWebsiteLabel()}
+    </a>
+  </Block>;
+};
 
-  getWebsiteLabel() {
-    if (this.props.block.label) {
-      return this.props.block.label;
-    }
-    return URI.extractDomain(this.props.block.url);
-  }
+WebsiteBlock.propTypes = {
+  block: PropTypes.object,
+  poi: PropTypes.object,
+};
 
-  render() {
-    return <Block className="block-website" icon="icon_globe" title={_('website')}>
-      <a
-        href={URI.externalise(this.props.block.url)}
-        rel="noopener noreferrer nofollow"
-        target="_blank"
-        onClick={this.clickWebsite}
-      >
-        { this.getWebsiteLabel() }
-      </a>
-    </Block>;
-  }
-}
+export default WebsiteBlock;
