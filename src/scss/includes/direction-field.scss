@@ -55,14 +55,14 @@
           position: fixed;
           z-index: 2;
           left: 24px;
-          top: 22px;
+          top: 20px;
           font-size: 20px;
           color: #353C52;
         }
 
         input:valid ~ .direction-field-clear {
           position: fixed;
-          right: 30px;
+          right: 15px;
           display: block;
           top: 15px;
           pointer-events: all;
@@ -75,7 +75,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 64px;
+      width: 56px;
       flex-shrink: 0;
 
       @media (max-width: 640px) {
@@ -123,7 +123,9 @@
 
     @media (max-width: 640px) {
       input:focus {
-        padding-left: 64px;
+        padding-left: 56px;
+        width: calc(100% - 24px);
+
         ~ .direction-icon-block {
           display: none;
         }
@@ -147,6 +149,7 @@
       border: none;
       color: $primary_text;
       font-size: 16px;
+      padding: 0 30px 3px 0;
     }
 
     input:read-only {
