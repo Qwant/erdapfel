@@ -123,7 +123,7 @@
 
     @media (max-width: 640px) {
       input:focus {
-        padding-left: 56px;
+        padding-left: 54px;
         width: calc(100% - 24px);
 
         ~ .direction-icon-block {
@@ -139,7 +139,7 @@
       top: 1px;
       padding: 10px;
       color: $secondary_text;
-      font-size: 16px;
+      font-size: 18px;
       pointer-events: none;
     }
 
