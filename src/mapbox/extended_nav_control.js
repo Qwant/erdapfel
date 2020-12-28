@@ -38,7 +38,8 @@ export default class ExtendedControl {
       'direction',
       () => {
         Telemetry.add(Telemetry.MAP_ITINERARY);
-        window.app.navigateTo('/routes');
+        const poi = window.history.state.poi;
+        window.app.navigateTo('/routes', poi ? { poi } : {});
       }
     );
 
