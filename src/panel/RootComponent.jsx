@@ -42,7 +42,7 @@ const RootComponent = ({
       inputNode={searchBarInputNode}
       outputNode={document.querySelector('.search_form__result')}
       withCategories
-      onToggleSuggestions={suggestionsOpened => { togglePanelVisibility(!suggestionsOpened); }}
+      onChange={query => togglePanelVisibility(query.length === 0)}
     />
     <BetaInfoBox/>
   </DeviceContext.Provider>;
