@@ -10,9 +10,9 @@ noscript {
 }
 
 .panel_container {
-  position: absolute;
-  top: calc(#{$top_bar_height} + #{$ui_margin} + 16px);
+  position: relative;
   left: $ui_margin;
+  top: 24px;
   transition: transform 0.3s;
 }
 

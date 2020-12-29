@@ -36,8 +36,6 @@
       (k,v) => k==='server' ? undefined : v)};` %>
   </script>
     <div id="scene_container" class="map_container"></div>
-    <div id="react_root"></div>
-    <div class="react_modal__container"></div>
     <div class="top_bar">
       <form onsubmit="return false" novalidate class="search_form">
         <button
@@ -63,6 +61,8 @@
       </form>
       <div class="search_form__result"></div>
     </div>
+    <div id="react_root"></div>
+    <div class="react_modal__container"></div>
     <script>
       window.times = {init : Date.now()}
     </script>

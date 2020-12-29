@@ -16,7 +16,7 @@ const ServicePanelDesktop = () => {
         limit={collapsed ? 4 : undefined}
       />
     </Panel>
-    <div className="u-center">
+    <div className="u-center" style={{ width: 400 }}>
       <Button
         className="service_panel__category_toggle"
         variant="tertiary"
