@@ -23,7 +23,7 @@
 .search_form__input {
   min-width: 0;
   width: calc(100% - 30px);
-  height: 46px;
+  height: $spacing-xxl-4;
   font-size: 16px;
   font-weight: normal;
   color: $grey-black;
