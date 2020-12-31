@@ -19,6 +19,8 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
 import { Flex, Panel, PanelNav, CloseButton, Divider } from 'src/components/ui';
 
+import { setBackButtonVisibility, registerBackButtonEvent } from 'src/libs/search_form';
+
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
 export default class PoiPanel extends React.Component {
@@ -45,6 +47,17 @@ export default class PoiPanel extends React.Component {
   componentDidMount() {
     fire('mobile_direction_button_visibility', false);
 
+    if (this.props.poi) {
+      console.log('did mount', window.history.state);
+      setBackButtonVisibility(true);
+      registerBackButtonEvent(this.getBackAction());
+    }
+
+    // if (!this.props.pois && !window.history.state.poiFilters) {
+    //   // consult directly one specific poi
+    //   window.__searchInput.searchInputHandle.value = 'okok';
+    // }
+
     // Load poi or pois
     !this.props.pois ? this.loadPoi() : this.loadPois();
 
@@ -59,13 +72,27 @@ export default class PoiPanel extends React.Component {
     if (this.props.poiId !== prevProps.poiId) {
       this.loadPoi();
     }
+
+    console.log('update', this.props);
+    if (this.props.poi) {
+      console.log('did mount', window.history.state);
+      setBackButtonVisibility(true);
+      registerBackButtonEvent(this.getBackAction());
+    } else {
+      setBackButtonVisibility(false);
+    }
   }
 
   componentWillUnmount() {
+    console.log('unmount');
     unListen(this.storePoiChangeHandler);
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);
+
+    if (this.props.poi) {
+      setBackButtonVisibility(false);
+    }
   }
 
   loadPois = () => {
@@ -202,6 +229,17 @@ export default class PoiPanel extends React.Component {
     }
   }
 
+  getBackAction = () => {
+    const { poiFilters, isFromFavorite } = this.props;
+
+    return poiFilters.category || poiFilters.query
+      ? this.backToList
+      : isFromFavorite
+        ? this.backToFavorite
+        : this.closeAction;
+  }
+
+
   render() {
     const { poiFilters, isFromFavorite } = this.props;
     const poi = this.getBestPoi();
@@ -211,11 +249,7 @@ export default class PoiPanel extends React.Component {
       return null;
     }
 
-    const backAction = poiFilters.category || poiFilters.query
-      ? this.backToList
-      : isFromFavorite
-        ? this.backToFavorite
-        : this.closeAction;
+    const backAction = this.getBackAction();
 
     return <DeviceContext.Consumer>
       {isMobile =>
@@ -245,7 +279,7 @@ export default class PoiPanel extends React.Component {
                 withOpeningHours
                 onClick={this.center}
               />
-              <CloseButton onClick={isMobile ? backAction : this.closeAction} position="topRight" />
+              {/* <CloseButton onClick={isMobile ? backAction : this.closeAction} position="topRight" /> */}
             </Flex>
             <div className="u-mb-l">
               <ActionButtons
