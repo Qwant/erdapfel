@@ -109,7 +109,7 @@ input[type="search"] {
   width: 30px;
   color: $secondary_text;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   display: none;
 }
 
@@ -159,7 +159,7 @@ input[type="search"] {
 
   // Show desktop clear X icon
   #clear_button_desktop {
-    width: $spacing-xxl-4;
+    width: 42px;
     height: $spacing-xxl-4;
     flex-shrink: 0;
     display: block;
@@ -172,7 +172,6 @@ input[type="search"] {
     background: url(../images/magnifier-blue.svg) center no-repeat;
     background-size: 16px 16px;
   }
-
 }
 
 // When the search field is focused and filled
@@ -180,6 +179,9 @@ input[type="search"] {
   .search_form__action {
     background: url(../images/magnifier-blue.svg) center no-repeat;
     background-size: 16px 16px;
+  }
+  .search_form__clear {
+    color: $primary_text;
   }
 }
 
@@ -249,7 +251,7 @@ input[type="search"] {
     #clear_button_mobile {
       display: block;
       position: absolute;
-      right: 15px;
+      right: 10px;
       top: 0;
       height: 50px;
     }
@@ -278,7 +280,7 @@ input[type="search"] {
   .top_bar--search_focus {
     .search_form__wrapper {
       margin-left: -54px;
-      margin-right: -38px;
+      margin-right: -33px;
     }
 
     // Hide desktop clear X icon
