@@ -39,7 +39,8 @@ export default class ShareMenu extends React.Component {
 
   componentWillUnmount() {
     if (this.portalContainer) {
-      this.portalContainer.remove();
+      // @IE11: replace with this.portalContainer.remove()
+      this.portalContainer.parent?.removeChild(this.portalContainer);
     }
     this.close();
   }
