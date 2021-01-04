@@ -109,7 +109,7 @@ export function createPinIcon({ className, disablePointerEvents }) {
   const element = document.createElement('div');
   element.className = classnames('marker', className);
   if (disablePointerEvents) {
-    element.style = 'pointer-events:none;';
+    element.style.pointerEvents = 'none';
   }
   return element;
 }
