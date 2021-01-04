@@ -198,7 +198,8 @@ export default class SceneDirection {
   }
 
   updateRouteLabels({ id: activeRouteId }) {
-    document.querySelectorAll('.routeLabel').forEach(routeLabel => {
+    // @IE11: array spread to convert NodeList to an array
+    [...document.querySelectorAll('.routeLabel')].forEach(routeLabel => {
       if (routeLabel.dataset.id === activeRouteId.toString()) {
         routeLabel.classList.add('active');
       } else {
