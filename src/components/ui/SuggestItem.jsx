@@ -1,5 +1,6 @@
 /* global _ */
 import React from 'react';
+import classnames from 'classnames';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
@@ -66,23 +67,21 @@ const PoiItem = ({ poi }) => {
       omitStreet={type === 'house' || type === 'street'}
       inline
     />;
+  const isFavorite = poi instanceof PoiStore;
 
   return (
-    <div className="autocomplete_suggestion">
+    <div className={classnames('autocomplete_suggestion', {
+      'autocomplete_suggestion--favorite': isFavorite,
+    })}>
       <PlaceIcon
         className="autocomplete_suggestion_icon"
         place={poi}
-        isFavorite={poi instanceof PoiStore}
+        isFavorite={isFavorite}
       />
       <ItemLabels firstLabel={name} secondLabel={streetAddress} />
     </div>
   );
 };
-
-const SeparatorLabel = ({ label }) =>
-  <h3 className="autocomplete_separator_label">
-    {label}
-  </h3>;
 
 const ErrorLabel = ({ label }) =>
   <div className="autocomplete_error">
@@ -90,10 +89,6 @@ const ErrorLabel = ({ label }) =>
   </div>;
 
 const SuggestItem = ({ item }) => {
-  if (item.simpleLabel) {
-    return <SeparatorLabel label={item.simpleLabel} />;
-  }
-
   if (item.errorLabel) {
     return <ErrorLabel label={item.errorLabel} />;
   }
