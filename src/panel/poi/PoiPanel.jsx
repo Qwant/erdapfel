@@ -17,7 +17,8 @@ import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
-import { Flex, Panel, PanelNav, CloseButton, Divider } from 'src/components/ui';
+import { Flex, Panel, PanelNav, CloseButton, Divider, FloatingButton } from 'src/components/ui';
+import { Direction } from 'src/components/ui/icons';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -43,6 +44,7 @@ export default class PoiPanel extends React.Component {
   }
 
   componentDidMount() {
+    document.body.classList.add('poi-panel-open');
     fire('mobile_direction_button_visibility', false);
 
     // Load poi or pois
@@ -66,6 +68,7 @@ export default class PoiPanel extends React.Component {
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);
+    document.body.classList.remove('poi-panel-open');
   }
 
   loadPois = () => {
@@ -235,6 +238,27 @@ export default class PoiPanel extends React.Component {
               goBackText={_('Display all results')}
             />
           }
+          floatingItems={[
+            <FloatingButton
+              className="direction_shortcut"
+              key="direction"
+              title={_('Direction', 'direction')}
+              icon={<Direction />}
+              onClick={() => {
+                this.openDirection();
+              }}
+            />,
+            <FloatingButton
+              className="mapboxgl-ctrl-geolocate"
+              key="location"
+              title={_('Geolocate', 'direction')}
+              icon="pin_geoloc"
+              onClick={() => {
+                const buttons = document.getElementsByClassName('mapboxgl-ctrl-geolocate');
+                buttons[0].click();
+              }}
+            />,
+          ]}
         >
           <div className="poi_panel__content">
             <Flex alignItems="flex-start" justifyContent="space-between">
