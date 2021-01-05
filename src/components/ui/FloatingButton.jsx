@@ -1,12 +1,15 @@
 import React from 'react';
+import cx from 'classnames';
 
-const FloatingButton = ({ title, onClick, icon }) =>
+const FloatingButton = ({ title, onClick, icon, style, className }) =>
   <button
     title={title}
-    className="floatingButton"
+    className={cx('floatingButton', className)}
     onClick={onClick}
+    style={style}
   >
-    <i className={`icon-${icon}`} />
+    {typeof icon === 'string' && <i className={`icon-${icon}`} />}
+    {typeof icon !== 'string' && icon}
   </button>
 ;
 
