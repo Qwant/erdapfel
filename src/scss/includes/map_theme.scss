@@ -180,6 +180,18 @@
     .map_control_group__button__zoom {
       display: none;
     }
+
+    .mapboxgl-ctrl-geolocate {
+      font-size: 24px;
+      position: relative;
+      bottom: 10px;
+      opacity: 1;
+      transition: opacity .2s;
+
+      &.hidden {
+        opacity: 0;
+      }
+    }
   }
 
   .map_control_group__button__compass {
@@ -194,18 +206,6 @@
     width: 48px;
     height: 48px;
     background-size: 12px;
-  }
-
-  .mapboxgl-ctrl-geolocate {
-    font-size: 24px;
-    position: relative;
-    bottom: 10px;
-    opacity: 1;
-    transition: opacity .2s;
-
-    &.hidden {
-      opacity: 0;
-    }
   }
 
   .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
