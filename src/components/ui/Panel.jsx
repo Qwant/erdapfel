@@ -309,7 +309,7 @@ class Panel extends React.Component {
             }}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            {floatingItems && <FloatingItems items={floatingItems} />}
+            {floatingItems && isMobile && <FloatingItems items={floatingItems} />}
             {onClose && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable &&
               <div
