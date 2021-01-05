@@ -480,14 +480,14 @@ Scene.prototype.mobileButtonVisibility = function(selector, visible) {
   if (!isMobileDevice()) {
     return;
   }
-  const item = document.querySelector(selector);
-  if (item) {
+  const items = document.querySelectorAll(selector);
+  items.forEach(item => {
     if (visible) {
       item.classList.remove('hidden');
     } else {
       item.classList.add('hidden');
     }
-  }
+  });
 };
 
 export default Scene;
