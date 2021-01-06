@@ -43,7 +43,9 @@ export default class PoiPanel extends React.Component {
   }
 
   componentDidMount() {
+    // direction shortcut will be visible in minimized state
     fire('mobile_direction_button_visibility', false);
+    fire('set_direction_shortcut_callback', this.openDirection);
 
     // Load poi or pois
     !this.props.pois ? this.loadPoi() : this.loadPois();
@@ -66,6 +68,8 @@ export default class PoiPanel extends React.Component {
     fire('move_mobile_bottom_ui', 0);
     fire('clean_marker');
     fire('mobile_direction_button_visibility', true);
+    // Clear direction shortcut cb to reset default action
+    fire('set_direction_shortcut_callback', null);
   }
 
   loadPois = () => {
