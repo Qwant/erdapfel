@@ -26,8 +26,8 @@ const MobileRoadMapPreview = ({
       // Save it and highlight it as the current step
       setCurrentStep(newStep);
 
+      // Stop scroll inertia (except when going to previous step, which happens at the start of the scroll)
       if ((currentStep - 1) !== newStep) {
-        // Stop scroll inertia
         stepsRef.current.style.overflow = 'hidden';
         stepsRef.current.scrollLeft = stepsRef.current.scrollLeft;
         setTimeout(() => {
