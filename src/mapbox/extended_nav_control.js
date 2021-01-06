@@ -2,12 +2,19 @@ import ExtendedScaleControl from './extended_scale_control';
 import ExtendedAttributionControl from './extended_attribution_control';
 import GeolocControl from './extended_geolocate_control';
 import Telemetry from 'src/libs/telemetry';
+import { listen, unListen } from '../libs/customEvents';
 
 export default class ExtendedControl {
   constructor() {
     this._container = document.createElement('div');
     this.topButtonGroup = document.createElement('div');
     this.bottomButtonGroup = document.createElement('div');
+
+    // Store a callback to trigger when direction shortcut is clicked.
+    // if no callback is registered, then the default action will be executed
+    // (navigate to /routes)
+    this.directionShortcutCallback = null;
+    listen('set_direction_shortcut_callback', cb => this.directionShortcutCallback = cb);
 
     const buttonClass = 'icon-plus map_control_group__button__zoom';
 
@@ -38,7 +45,9 @@ export default class ExtendedControl {
       'direction',
       () => {
         Telemetry.add(Telemetry.MAP_ITINERARY);
-        window.app.navigateTo('/routes');
+        this.directionShortcutCallback
+          ? this.directionShortcutCallback()
+          : window.app.navigateTo('/routes'); // default action, if no cb has been set
       }
     );
 
@@ -103,6 +112,7 @@ export default class ExtendedControl {
   onRemove() {
     this._container.parentNode.removeChild(this._container);
     this._map = undefined;
+    unListen('set_direction_shortcut_callback');
   }
 
   _createButton(className, ariaLabel, fn) {
