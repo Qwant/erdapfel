@@ -43,6 +43,7 @@ const RootComponent = ({
       outputNode={document.querySelector('.search_form__result')}
       withCategories
       onChange={query => togglePanelVisibility(query.length === 0)}
+      onClose={() => togglePanelVisibility(true)}
     />
     <BetaInfoBox/>
   </DeviceContext.Provider>;

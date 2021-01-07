@@ -18,6 +18,7 @@ const Suggest = ({
   onClear,
   onChange,
   className,
+  onClose,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,12 @@ const Suggest = ({
     setIsOpen(false);
     setItems([]);
   };
+
+  useEffect(() => {
+    if (onClose && !isOpen) {
+      onClose();
+    }
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     let currentQuery = null;
@@ -148,6 +155,8 @@ Suggest.propTypes = {
   withGeoloc: bool,
   onSelect: func,
   onClear: func,
+  onClose: func,
+  onChange: func,
   className: string,
 };
 
