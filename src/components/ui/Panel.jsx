@@ -79,7 +79,9 @@ class Panel extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleViewportResize);
-    this.updateMobileMapUI();
+
+    // A rerender may be required to fit the panel height to its content
+    this.forceUpdate();
   }
 
   componentDidUpdate(prevProps, prevState) {
