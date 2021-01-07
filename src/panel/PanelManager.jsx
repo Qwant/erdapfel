@@ -77,9 +77,9 @@ export default class PanelManager extends React.Component {
       if (isNullOrEmpty(options?.poiFilters)) {
         fire('remove_category_markers');
       }
-    }
 
-    this.updateSearchBarContent(options);
+      this.updateSearchBarContent(options);
+    }
   }
 
   updateSearchBarContent({ poiFilters = {}, query } = {}) {
