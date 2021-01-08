@@ -33,7 +33,11 @@ const RootComponent = ({
   });
 
   return <DeviceContext.Provider value={isMobile}>
-    <PanelManager router={router} searchBarInputNode={document.getElementById('search')}/>
+    <PanelManager
+      router={router}
+      searchBarInputNode={document.getElementById('search')}
+      searchBarOutputNode={document.querySelector('.search_form__result')}
+    />
     {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
     <BetaInfoBox/>
   </DeviceContext.Provider>;
