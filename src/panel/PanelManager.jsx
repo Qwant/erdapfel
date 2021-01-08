@@ -15,6 +15,8 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
+import Suggest from 'src/components/ui/Suggest';
+import { togglePanelVisibility } from 'src/libs/panel';
 
 const directionConf = nconf.get().direction;
 
@@ -214,10 +216,25 @@ export default class PanelManager extends React.Component {
   render() {
     const { ActivePanel, options, panelSize } = this.state;
 
-    return <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
-      <div className="panel_container">
-        <ActivePanel {...options} />
-      </div>
-    </PanelContext.Provider>;
+    return <div>
+      <Suggest
+        inputNode={this.props.searchBarInputNode}
+        outputNode={document.querySelector('.search_form__result')}
+        withCategories
+        onChange={query => {
+          if (ActivePanel === ServicePanel) {
+            togglePanelVisibility(query.length === 0);
+          } else {
+            togglePanelVisibility(false);
+          }
+        }}
+        onClose={() => togglePanelVisibility(true)}
+      />
+      <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
+        <div className="panel_container">
+          <ActivePanel {...options} />
+        </div>
+      </PanelContext.Provider>
+    </div>;
   }
 }
