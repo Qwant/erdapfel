@@ -226,11 +226,13 @@ export default class PanelManager extends React.Component {
         withCategories
         onChange={query => {
           const shouldPanelBeVisible = ActivePanel === ServicePanel && query.length === 0;
-          if (isPanelVisible !== shouldPanelBeVisible) {
-            this.setState({
-              isPanelVisible: shouldPanelBeVisible,
-            });
-          }
+          this.setState(prevState => {
+            if (prevState.isPanelVisible !== shouldPanelBeVisible) {
+              return {
+                isPanelVisible: shouldPanelBeVisible,
+              };
+            }
+          });
         }}
         onOpen={() => {
           if (isPanelVisible && ActivePanel !== ServicePanel) {
