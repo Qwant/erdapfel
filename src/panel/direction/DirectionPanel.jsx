@@ -319,6 +319,7 @@ export default class DirectionPanel extends React.Component {
   }
 
   openMobilePreview = route => {
+    Telemetry.add(Telemetry.ITINERARY_ROUTE_PREVIEW_OPEN);
     this.setState({ activePreviewRoute: route });
   }
 
