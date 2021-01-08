@@ -1,14 +1,5 @@
 $bottom-margin: 40px;
 
-.panel-hidden {
-  .panel:not(.direction-panel) {
-    display: none;
-  }
-  .service_panel__category_toggle {
-    display: none;
-  }
-}
-
 .panel {
   @include long_shadow();
   @include panel_radius();

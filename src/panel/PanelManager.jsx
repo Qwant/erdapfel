@@ -215,6 +215,18 @@ export default class PanelManager extends React.Component {
     this.setState({ panelSize });
   }
 
+  onSuggestChange = query => {
+    this.setState(prevState => {
+      const { ActivePanel, isPanelVisible } = prevState;
+      const shouldPanelBeVisible = ActivePanel === ServicePanel && query.length === 0;
+      if (isPanelVisible !== shouldPanelBeVisible) {
+        return {
+          isPanelVisible: shouldPanelBeVisible,
+        };
+      }
+    });
+  }
+
   render() {
     const { ActivePanel, options, panelSize, isPanelVisible } = this.state;
     const { searchBarInputNode, searchBarOutputNode } = this.props;
@@ -224,16 +236,7 @@ export default class PanelManager extends React.Component {
         inputNode={searchBarInputNode}
         outputNode={searchBarOutputNode}
         withCategories
-        onChange={query => {
-          const shouldPanelBeVisible = ActivePanel === ServicePanel && query.length === 0;
-          this.setState(prevState => {
-            if (prevState.isPanelVisible !== shouldPanelBeVisible) {
-              return {
-                isPanelVisible: shouldPanelBeVisible,
-              };
-            }
-          });
-        }}
+        onChange={this.onSuggestChange}
         onOpen={() => {
           if (isPanelVisible && ActivePanel !== ServicePanel) {
             this.setState({ isPanelVisible: false });
@@ -247,12 +250,11 @@ export default class PanelManager extends React.Component {
       />
 
       {
-        isPanelVisible &&
-          <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
-            <div className="panel_container">
-              <ActivePanel {...options} />
-            </div>
-          </PanelContext.Provider>
+        <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
+          <div className="panel_container" style={{ 'display': !isPanelVisible ? 'none' : null }} >
+            <ActivePanel {...options} />
+          </div>
+        </PanelContext.Provider>
       }
     </div>;
   }
