@@ -183,7 +183,8 @@
         }]
     }, {
         "type": "website",
-        "url": "http://www.musee-orsay.fr"
+        "url": "http://redirect.test?u=www.musee-orsay.fr",
+        "label": "www.musee-orsay.fr"
     }, {
       "type": "contact",
       "url": "mailto:admin@orsay.fr"
