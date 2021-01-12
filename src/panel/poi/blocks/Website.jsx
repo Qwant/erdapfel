@@ -30,6 +30,13 @@ export default class WebsiteBlock extends React.Component {
     };
   }
 
+  getWebsiteLabel() {
+    if (this.props.block.label) {
+      return this.props.block.label;
+    }
+    return URI.extractDomain(this.props.block.url);
+  }
+
   render() {
     return <Block className="block-website" icon="icon_globe" title={_('website')}>
       <a
@@ -38,7 +45,7 @@ export default class WebsiteBlock extends React.Component {
         target="_blank"
         onClick={this.clickWebsite}
       >
-        { URI.extractDomain(this.props.block.url) }
+        { this.getWebsiteLabel() }
       </a>
     </Block>;
   }
