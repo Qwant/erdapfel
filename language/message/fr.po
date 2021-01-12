@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-20 14:32+0000\n"
+"POT-Creation-Date: 2021-01-12 15:52+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -30,6 +30,9 @@ msgstr "Qwant Maps"
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
 
+msgid "Qwant Maps Home"
+msgstr "Accueil de Qwant Maps"
+
 msgid "Search on Qwant Maps"
 msgstr "Rechercher dans Qwant Maps"
 
@@ -46,51 +49,6 @@ msgid "JavaScript is required to view this application."
 msgstr ""
 "Il est nécessaire que JavaScript soit activé pour afficher cette "
 "application."
-
-msgid "restaurant"
-msgstr "restaurant"
-
-msgid "hotel"
-msgstr "hôtel"
-
-msgid "supermarket"
-msgstr "supermarché"
-
-msgid "bar"
-msgstr "bar"
-
-msgid "pharmacy"
-msgstr "pharmacie"
-
-msgid "leisure"
-msgstr "loisirs"
-
-msgid "service"
-msgstr "services"
-
-msgid "health"
-msgstr "santé"
-
-msgid "education"
-msgstr "éducation"
-
-msgid "bank"
-msgstr "banque"
-
-msgid "museum"
-msgstr "musée"
-
-msgid "sport"
-msgstr "sport"
-
-msgid "recycling"
-msgstr "recyclage"
-
-msgid "station"
-msgstr "gare"
-
-msgid "parking lot"
-msgstr "parking"
 
 msgid "Qwant is also"
 msgstr "Qwant c'est aussi"
@@ -158,6 +116,51 @@ msgstr "sur Twitter"
 msgid "on Facebook"
 msgstr "sur Facebook"
 
+msgid "restaurant"
+msgstr "restaurant"
+
+msgid "hotel"
+msgstr "hôtel"
+
+msgid "supermarket"
+msgstr "supermarché"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "pharmacy"
+msgstr "pharmacie"
+
+msgid "leisure"
+msgstr "loisirs"
+
+msgid "service"
+msgstr "services"
+
+msgid "health"
+msgstr "santé"
+
+msgid "education"
+msgstr "éducation"
+
+msgid "bank"
+msgstr "banque"
+
+msgid "museum"
+msgstr "musée"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "recycling"
+msgstr "recyclage"
+
+msgid "station"
+msgstr "gare"
+
+msgid "parking lot"
+msgstr "parking"
+
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
 
@@ -166,9 +169,6 @@ msgstr "Ma position"
 
 msgid "Close"
 msgstr "Fermer"
-
-msgid "Favorites"
-msgstr "Favoris"
 
 msgid "No result found"
 msgstr "Aucun résultat trouvé"
@@ -194,8 +194,8 @@ msgstr "catégorie"
 msgid "Close to"
 msgstr "À proximité de"
 
-msgid "Search around this place"
-msgstr "Rechercher à proximité"
+msgid "nearby"
+msgstr "à proximité"
 
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -966,6 +966,9 @@ msgstr ""
 msgid "Menu"
 msgstr "Menu"
 
+msgid "Favorites"
+msgstr "Favoris"
+
 msgid "How to contribute"
 msgstr "Comment contribuer"
 
@@ -1103,6 +1106,9 @@ msgstr "Afficher tous les résultats"
 msgid "In partnership with"
 msgstr "En partenariat avec"
 
+msgid "Search around this place"
+msgstr "Rechercher à proximité"
+
 msgid "See more nearby services"
 msgstr "Afficher plus de services à proximité"
 
@@ -1154,23 +1160,20 @@ msgstr "Saisissez un point d'arrivée"
 msgid "Invert start and end"
 msgstr "Inverser Départ et Arrivée"
 
-msgid "Walk on {walkDistance}"
-msgstr "Marchez sur {walkDistance}"
-
 msgid "Via"
 msgstr "Via"
 
 msgid "Fastest route"
 msgstr "Itinéraire le plus rapide"
 
-msgid "step by step"
-msgstr "trajet pas à pas"
-
 msgid "See less"
 msgstr "Voir moins"
 
 msgid "Details"
 msgstr "Détails"
+
+msgid "Walk on {walkDistance}"
+msgstr "Marchez sur {walkDistance}"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
@@ -1185,6 +1188,9 @@ msgid ""
 "cities."
 msgstr ""
 "Ce mode d'itinéraire est actuellement en version test pour quelques villes."
+
+msgid "step by step"
+msgstr "trajet pas à pas"
 
 msgid "calculate an itinerary"
 msgstr "calculer un itinéraire"
@@ -1201,3 +1207,17 @@ msgstr ""
 
 msgid "Try a new search query"
 msgstr "Effectuer une nouvelle recherche"
+
+msgid "Qwant Maps is in Beta!"
+msgstr "Qwant Maps est en beta !"
+
+msgid ""
+"This means that this version may have some bugs. We work very hard to "
+"improve Qwant Maps every day, while keeping your travels private."
+msgstr ""
+"Cela signifie que cette version peut comporter quelques bugs. Sachez que "
+"nous travaillons d’arrache-pied pour vous proposer un meilleur Qwant Maps de"
+" jour en jour, tout en gardant vos déplacements privés."
+
+msgid "Do not display this message again"
+msgstr "Ne plus afficher ce message"
