@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-20 14:32+0000\n"
+"POT-Creation-Date: 2021-01-12 15:52+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/qwant-1/teams/89416/es/)\n"
@@ -30,6 +30,9 @@ msgstr "Qwant Maps"
 msgid "The map that respects your privacy"
 msgstr "El mapa que respeta tu privacidad"
 
+msgid "Qwant Maps Home"
+msgstr ""
+
 msgid "Search on Qwant Maps"
 msgstr "Buscar en Qwant Maps"
 
@@ -44,51 +47,6 @@ msgstr "Indicaciones"
 
 msgid "JavaScript is required to view this application."
 msgstr "Es necesario activar JavaScript para ver esta aplicación"
-
-msgid "restaurant"
-msgstr "restaurante"
-
-msgid "hotel"
-msgstr "hotel"
-
-msgid "supermarket"
-msgstr "supermercado"
-
-msgid "bar"
-msgstr "bar"
-
-msgid "pharmacy"
-msgstr "farmacia"
-
-msgid "leisure"
-msgstr "ocio"
-
-msgid "service"
-msgstr "servicio"
-
-msgid "health"
-msgstr "salud"
-
-msgid "education"
-msgstr "Educación"
-
-msgid "bank"
-msgstr "banco"
-
-msgid "museum"
-msgstr "museo"
-
-msgid "sport"
-msgstr "deporte"
-
-msgid "recycling"
-msgstr ""
-
-msgid "station"
-msgstr "estación"
-
-msgid "parking lot"
-msgstr ""
 
 msgid "Qwant is also"
 msgstr "Qwant es también"
@@ -156,6 +114,51 @@ msgstr "en Twitter"
 msgid "on Facebook"
 msgstr "en Facebook"
 
+msgid "restaurant"
+msgstr "restaurante"
+
+msgid "hotel"
+msgstr "hotel"
+
+msgid "supermarket"
+msgstr "supermercado"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "pharmacy"
+msgstr "farmacia"
+
+msgid "leisure"
+msgstr "ocio"
+
+msgid "service"
+msgstr "servicio"
+
+msgid "health"
+msgstr "salud"
+
+msgid "education"
+msgstr "Educación"
+
+msgid "bank"
+msgstr "banco"
+
+msgid "museum"
+msgstr "museo"
+
+msgid "sport"
+msgstr "deporte"
+
+msgid "recycling"
+msgstr ""
+
+msgid "station"
+msgstr "estación"
+
+msgid "parking lot"
+msgstr ""
+
 msgid "Search with Qwant Maps"
 msgstr "Busca con Qwant Maps"
 
@@ -164,9 +167,6 @@ msgstr ""
 
 msgid "Close"
 msgstr "Cerrar"
-
-msgid "Favorites"
-msgstr "Favoritos"
 
 msgid "No result found"
 msgstr "No se encontraron resultados"
@@ -192,8 +192,8 @@ msgstr "categoría"
 msgid "Close to"
 msgstr "Cerca de"
 
-msgid "Search around this place"
-msgstr "Buscar por esta zona"
+msgid "nearby"
+msgstr ""
 
 msgid "accessories shop"
 msgstr "tienda de accesorios"
@@ -957,6 +957,9 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
+msgid "Favorites"
+msgstr "Favoritos"
+
 msgid "How to contribute"
 msgstr "Cómo contribuir"
 
@@ -1092,6 +1095,9 @@ msgstr ""
 msgid "In partnership with"
 msgstr ""
 
+msgid "Search around this place"
+msgstr "Buscar por esta zona"
+
 msgid "See more nearby services"
 msgstr ""
 
@@ -1143,16 +1149,10 @@ msgstr ""
 msgid "Invert start and end"
 msgstr "Invertir origen y destino"
 
-msgid "Walk on {walkDistance}"
-msgstr "Camina {walkDistance}"
-
 msgid "Via"
 msgstr "Por"
 
 msgid "Fastest route"
-msgstr ""
-
-msgid "step by step"
 msgstr ""
 
 msgid "See less"
@@ -1160,6 +1160,9 @@ msgstr ""
 
 msgid "Details"
 msgstr "Detalles"
+
+msgid "Walk on {walkDistance}"
+msgstr "Camina {walkDistance}"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
@@ -1174,6 +1177,9 @@ msgid ""
 "cities."
 msgstr ""
 
+msgid "step by step"
+msgstr ""
+
 msgid "calculate an itinerary"
 msgstr ""
 
@@ -1186,4 +1192,15 @@ msgid ""
 msgstr ""
 
 msgid "Try a new search query"
+msgstr ""
+
+msgid "Qwant Maps is in Beta!"
+msgstr ""
+
+msgid ""
+"This means that this version may have some bugs. We work very hard to "
+"improve Qwant Maps every day, while keeping your travels private."
+msgstr ""
+
+msgid "Do not display this message again"
 msgstr ""

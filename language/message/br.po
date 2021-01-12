@@ -1,15 +1,15 @@
 # 
 # Translators:
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2020
 # Adrien Matissart, 2020
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-20 14:32+0000\n"
+"POT-Creation-Date: 2021-01-12 15:52+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2020\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +31,9 @@ msgstr "Qwant Maps"
 msgid "The map that respects your privacy"
 msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
+msgid "Qwant Maps Home"
+msgstr "Degemer Qwant Maps"
+
 msgid "Search on Qwant Maps"
 msgstr "Klask war Qwant Maps"
 
@@ -45,51 +48,6 @@ msgstr "Tuadurioù"
 
 msgid "JavaScript is required to view this application."
 msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
-
-msgid "restaurant"
-msgstr "predti"
-
-msgid "hotel"
-msgstr "leti"
-
-msgid "supermarket"
-msgstr "gourmarc'had"
-
-msgid "bar"
-msgstr "tavarn"
-
-msgid "pharmacy"
-msgstr "apotikerezh"
-
-msgid "leisure"
-msgstr "dudioù"
-
-msgid "service"
-msgstr "servij"
-
-msgid "health"
-msgstr "yec'hed"
-
-msgid "education"
-msgstr "deskadurezh"
-
-msgid "bank"
-msgstr "ti-bank"
-
-msgid "museum"
-msgstr "mirdi"
-
-msgid "sport"
-msgstr "sport"
-
-msgid "recycling"
-msgstr "adaozañ"
-
-msgid "station"
-msgstr "savlec'h"
-
-msgid "parking lot"
-msgstr "parkva"
 
 msgid "Qwant is also"
 msgstr "Qwant a zo ivez"
@@ -157,6 +115,51 @@ msgstr "war Twitter"
 msgid "on Facebook"
 msgstr "war Facebook"
 
+msgid "restaurant"
+msgstr "predti"
+
+msgid "hotel"
+msgstr "leti"
+
+msgid "supermarket"
+msgstr "gourmarc'had"
+
+msgid "bar"
+msgstr "tavarn"
+
+msgid "pharmacy"
+msgstr "apotikerezh"
+
+msgid "leisure"
+msgstr "dudioù"
+
+msgid "service"
+msgstr "servij"
+
+msgid "health"
+msgstr "yec'hed"
+
+msgid "education"
+msgstr "deskadurezh"
+
+msgid "bank"
+msgstr "ti-bank"
+
+msgid "museum"
+msgstr "mirdi"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "recycling"
+msgstr "adaozañ"
+
+msgid "station"
+msgstr "savlec'h"
+
+msgid "parking lot"
+msgstr "parkva"
+
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
 
@@ -165,9 +168,6 @@ msgstr "Ma lec'hiadur"
 
 msgid "Close"
 msgstr "Serriñ"
-
-msgid "Favorites"
-msgstr "Sinedoù"
 
 msgid "No result found"
 msgstr "Disoc'h ebet kavet"
@@ -193,8 +193,8 @@ msgstr "rummad"
 msgid "Close to"
 msgstr "Da gichen"
 
-msgid "Search around this place"
-msgstr "Klask tro-dro al lec'h-mañ"
+msgid "nearby"
+msgstr "e-kichen"
 
 msgid "accessories shop"
 msgstr "stal rikoù"
@@ -918,23 +918,29 @@ msgid ""
 "privacy policy{closeTag}, we don't store your information because we don't "
 "want to know your whereabouts."
 msgstr ""
+"Doujañ a reomp bepred ouzh ho puhez prevez <br> Evel m'eo skrivet e-barzh "
+"hon {privacyPolicyLink} folitikerezh prevezded{closeTag}, ne stokomp ket ho "
+"titouroù douarlec'hiañ rak ne fell deomp gouzout e pelec'h emaoc'h."
 
 msgid ""
 "We look at your location to show you where you are, and that's it!<br />(See"
 " our {privacyPolicyLink}privacy policy{closeTag})"
 msgstr ""
+"Sellout a reomp ouzh ho touarlec'hiañ da ziskouez deoc'h e pelec'h emaoc'h, "
+"ha setu tout! <br />(Kit da welet hon {privacyPolicyLink}folitikerezh "
+"prevezded{closeTag})"
 
 msgid "At Qwant, your whereabouts are part of your privacy"
-msgstr ""
+msgstr "E ti Qwant, ho fiñvadennoù a zo ho puhez prevez"
 
 msgid "Continue"
-msgstr ""
+msgstr "Kenderc'hel"
 
 msgid "Enable your geolocation for better directions"
-msgstr ""
+msgstr "Enaouit ho touarlec'hiañ evit kaout tuadurioù gwelloc'h"
 
 msgid "Ok, I've got it"
-msgstr ""
+msgstr "Mat eo, deuet eo ganin"
 
 msgid "Geolocation not available."
 msgstr "Douarlec'hiañ dihegerz"
@@ -957,6 +963,9 @@ msgstr ""
 
 msgid "Menu"
 msgstr "Lañser"
+
+msgid "Favorites"
+msgstr "Sinedoù"
 
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
@@ -1095,6 +1104,9 @@ msgstr "Diskouez an holl zisoc'hoù"
 msgid "In partnership with"
 msgstr "E kevelerezh gant"
 
+msgid "Search around this place"
+msgstr "Klask tro-dro al lec'h-mañ"
+
 msgid "See more nearby services"
 msgstr "Diskouez muioc'h a servijoù nes"
 
@@ -1146,23 +1158,20 @@ msgstr "Ebarzhit ur poent fin"
 msgid "Invert start and end"
 msgstr "eilpennañ fin ha loc'hañ"
 
-msgid "Walk on {walkDistance}"
-msgstr "Kerzhit e-pad {walkDistance}"
-
 msgid "Via"
 msgstr "Dre"
 
 msgid "Fastest route"
-msgstr ""
-
-msgid "step by step"
-msgstr "Hent kammed-ha-kammed"
+msgstr "Hent herrekañ"
 
 msgid "See less"
-msgstr ""
+msgstr "Gwelout nebeutoc'h"
 
 msgid "Details"
 msgstr "Munudoù"
+
+msgid "Walk on {walkDistance}"
+msgstr "Kerzhit e-pad {walkDistance}"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr "Ar servij a zo dihegerz evit ar mare, klaskit en-dro diwezhatoc'h."
@@ -1176,11 +1185,14 @@ msgid ""
 msgstr ""
 "Er mare-mañ e testomp ar mod trañsportoù publik evit un nebeut kêrioù."
 
+msgid "step by step"
+msgstr "Hent kammed-ha-kammed"
+
 msgid "calculate an itinerary"
 msgstr "jediñ un hent"
 
 msgid "Share itinerary"
-msgstr ""
+msgstr "Diskouez an hent"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "
@@ -1191,3 +1203,17 @@ msgstr ""
 
 msgid "Try a new search query"
 msgstr "Kas da benn un enklask nevez"
+
+msgid "Qwant Maps is in Beta!"
+msgstr "En ur stumm Beta emañ Qwant Maps!"
+
+msgid ""
+"This means that this version may have some bugs. We work very hard to "
+"improve Qwant Maps every day, while keeping your travels private."
+msgstr ""
+"An dra-se a dalvez eo posupl e vefe beugoù 'zo gant ar stumm-mañ. Labourat a"
+" reomp bemdez a lazh-korf evit gwellaat Qwant Maps en ur virout ho peajoù "
+"prevez."
+
+msgid "Do not display this message again"
+msgstr "Na ziskouez ken ar gemennadenn-mañ ken"
