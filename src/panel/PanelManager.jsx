@@ -251,6 +251,11 @@ export default class PanelManager extends React.Component {
 
       {
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
+          {/*
+            The panel container is made hidden using "display: none;" to avoid unnecessary
+            mounts and unmounts of the ActivePanel, that would have inappropriate side effects
+            on map markers, requests to server, etc.
+          */}
           <div className="panel_container" style={{ 'display': !isPanelVisible ? 'none' : null }} >
             <ActivePanel {...options} />
           </div>
