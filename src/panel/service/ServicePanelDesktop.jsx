@@ -16,12 +16,12 @@ const ServicePanelDesktop = () => {
         limit={collapsed ? 4 : undefined}
       />
     </Panel>
-    <div className="u-center">
+    <div className="u-center" style={{ width: 400 }}>
       <Button
         className="service_panel__category_toggle"
         variant="tertiary"
         icon={collapsed ? 'icon_chevron-down' : 'icon_chevron-up'}
-        onClick={() => setCollapsed(!collapsed)}
+        onMouseDown={() => setCollapsed(!collapsed)}
       >
         {collapsed ? _('See more nearby services') : _('Reduce')}
       </Button>

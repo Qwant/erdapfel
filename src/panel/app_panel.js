@@ -44,7 +44,6 @@ export default class App {
     ReactDOM.render(
       <RootComponent
         router={this.router}
-        searchBarInputNode={document.getElementById('search')}
         burgerMenuEnabled={burgerMenuEnabled}
       />,
       document.querySelector('#react_root')

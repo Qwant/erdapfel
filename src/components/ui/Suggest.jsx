@@ -16,8 +16,10 @@ const Suggest = ({
   withGeoloc,
   onSelect = selectItem,
   onClear,
-  onToggleSuggestions,
+  onChange,
   className,
+  onClose,
+  onOpen,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -31,10 +33,14 @@ const Suggest = ({
   };
 
   useEffect(() => {
-    if (onToggleSuggestions) {
-      onToggleSuggestions(isOpen);
+    if (onClose && !isOpen) {
+      onClose();
     }
-  }, [isOpen, onToggleSuggestions]);
+
+    if (onOpen && isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onClose, onOpen]);
 
   useEffect(() => {
     let currentQuery = null;
@@ -82,6 +88,10 @@ const Suggest = ({
       fetchItems(value);
       setIsOpen(true);
       setLastQuery(value);
+
+      if (onChange) {
+        onChange(value);
+      }
     };
 
     const handleKeyDown = async event => {
@@ -111,7 +121,7 @@ const Suggest = ({
       inputNode.removeEventListener('input', handleInput);
       inputNode.removeEventListener('keydown', handleKeyDown);
     };
-  }, [inputNode, onClear, withCategories, withGeoloc, isMobile]);
+  }, [inputNode, onClear, withCategories, withGeoloc, isMobile, onChange]);
 
   if (!isOpen) {
     return null;
@@ -150,7 +160,9 @@ Suggest.propTypes = {
   withGeoloc: bool,
   onSelect: func,
   onClear: func,
-  onToggleSuggestions: func,
+  onOpen: func,
+  onClose: func,
+  onChange: func,
   className: string,
 };
 

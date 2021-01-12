@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
-import Suggest from 'src/components/ui/Suggest';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
-import { togglePanelVisibility } from 'src/libs/panel';
 import BetaInfoBox from 'src/components/BetaInfoBox';
 
 const MenuComponent = ({ isMobile }) =>
@@ -15,7 +13,6 @@ const MenuComponent = ({ isMobile }) =>
 
 const RootComponent = ({
   burgerMenuEnabled,
-  searchBarInputNode,
   router,
 }) => {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
@@ -36,14 +33,12 @@ const RootComponent = ({
   });
 
   return <DeviceContext.Provider value={isMobile}>
-    <PanelManager router={router} />
-    {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
-    <Suggest
-      inputNode={searchBarInputNode}
-      outputNode={document.querySelector('.search_form__result')}
-      withCategories
-      onToggleSuggestions={suggestionsOpened => { togglePanelVisibility(!suggestionsOpened); }}
+    <PanelManager
+      router={router}
+      searchBarInputNode={document.getElementById('search')}
+      searchBarOutputNode={document.querySelector('.search_form__result')}
     />
+    {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
     <BetaInfoBox/>
   </DeviceContext.Provider>;
 };

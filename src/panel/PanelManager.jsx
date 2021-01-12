@@ -15,6 +15,7 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
+import Suggest from 'src/components/ui/Suggest';
 
 const directionConf = nconf.get().direction;
 
@@ -23,6 +24,8 @@ const directSearchRouteName = 'Direct search query';
 export default class PanelManager extends React.Component {
   static propTypes = {
     router: PropTypes.object.isRequired,
+    searchBarInputNode: PropTypes.object.isRequired,
+    searchBarOutputNode: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -31,6 +34,7 @@ export default class PanelManager extends React.Component {
       ActivePanel: ServicePanel,
       options: {},
       panelSize: 'default',
+      isPanelVisible: true,
     };
   }
 
@@ -211,13 +215,52 @@ export default class PanelManager extends React.Component {
     this.setState({ panelSize });
   }
 
-  render() {
-    const { ActivePanel, options, panelSize } = this.state;
+  onSuggestChange = query => {
+    this.setState(prevState => {
+      const { ActivePanel, isPanelVisible } = prevState;
+      const shouldPanelBeVisible = ActivePanel === ServicePanel && query.length === 0;
+      if (isPanelVisible !== shouldPanelBeVisible) {
+        return {
+          isPanelVisible: shouldPanelBeVisible,
+        };
+      }
+    });
+  }
 
-    return <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
-      <div className="panel_container">
-        <ActivePanel {...options} />
-      </div>
-    </PanelContext.Provider>;
+  render() {
+    const { ActivePanel, options, panelSize, isPanelVisible } = this.state;
+    const { searchBarInputNode, searchBarOutputNode } = this.props;
+
+    return <div>
+      <Suggest
+        inputNode={searchBarInputNode}
+        outputNode={searchBarOutputNode}
+        withCategories
+        onChange={this.onSuggestChange}
+        onOpen={() => {
+          if (isPanelVisible && ActivePanel !== ServicePanel) {
+            this.setState({ isPanelVisible: false });
+          }
+        }}
+        onClose={() => {
+          if (!isPanelVisible) {
+            this.setState({ isPanelVisible: true });
+          }
+        }}
+      />
+
+      {
+        <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
+          {/*
+            The panel container is made hidden using "display: none;" to avoid unnecessary
+            mounts and unmounts of the ActivePanel, that would have inappropriate side effects
+            on map markers, requests to server, etc.
+          */}
+          <div className="panel_container" style={{ 'display': !isPanelVisible ? 'none' : null }} >
+            <ActivePanel {...options} />
+          </div>
+        </PanelContext.Provider>
+      }
+    </div>;
   }
 }

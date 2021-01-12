@@ -5,11 +5,11 @@
   width: $panel_width;
   left: $ui_margin;
   top: $ui_margin;
-  position: absolute;
+  position: relative;
 }
 
 .directions-open .top_bar {
-  visibility: hidden;
+  display: none;
 
   #react_menu__container {
     visibility: visible;
