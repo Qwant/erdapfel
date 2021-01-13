@@ -335,14 +335,19 @@ button.direction_shortcut {
 
     .mobile-roadmap-preview-close {
       border: none;
-      padding: 0 0 0 $spacing-xs;
-      margin: 0 0 0 11px;
+      padding: 0 0 0 $spacing-s;
+      margin: 0 0 0 $spacing-s;
       background: $background;
-      width: 32px;
-      height: 32px;
+      width: $spacing-xxl-4;
+      height: $spacing-xxl-4;
       border-radius: 50%;
       box-shadow: $shadow;
       color: $grey-black;
+
+      .button-icon {
+        font-size: $spacing-xl;
+        width: $spacing-xl;
+      }
     }
 
     .divider {
