@@ -37,6 +37,7 @@ export default class RouteSummary extends React.Component {
     return <Flex
       className="itinerary_leg_summary"
       justifyContent="space-between"
+      alignItems="flex-end"
       onClick={this.onClick}
     >
       <RouteSummaryInfo
@@ -47,7 +48,7 @@ export default class RouteSummary extends React.Component {
 
       {isActive &&
         <Button
-          className="itinerary_leg_detailsBtn u-mr-xs u-firstCap"
+          className="itinerary_leg_detailsBtn u-firstCap"
           onClick={this.onClickDetails}
           icon={showDetails ? null : 'icon_list'}
           variant={showDetails ? 'tertiary' : 'secondary'}

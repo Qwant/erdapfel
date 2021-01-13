@@ -54,13 +54,16 @@
   .itemList > div:not(:first-child) {
       display: none;
   }
-}
 
-.direction-panel-mobile {
   &.maximized, &.panel--holding {
     .itemList > div:not(:first-child) {
       display: block;
+      margin-top: 12px;
     }
+  }
+
+  .panel-close {
+    top: 15px;
   }
 }
 
