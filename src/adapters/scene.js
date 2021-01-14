@@ -18,6 +18,7 @@ import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
 import locale from '../mapbox/locale';
+import { setPoiHoverStyle } from 'src/adapters/pois_styles';
 
 const baseUrl = nconf.get().system.baseUrl;
 const LONG_TOUCH_DELAY_MS = 500;
@@ -91,6 +92,7 @@ Scene.prototype.initMapBox = async function(locationHash) {
     'poi-level-public-transports-1',
     'poi-level-public-transports-2',
   ];
+  this.hoveredPoi = null;
 
   // Max time between two touch to be considered a single "double click" event
   // This is the value Mapbox-GL uses, in src/ui/handler/dblclick_zoom.js
@@ -115,11 +117,21 @@ Scene.prototype.initMapBox = async function(locationHash) {
     this.mb.addControl(new MobileCompassControl(), 'top-right');
 
     interactiveLayers.forEach(interactiveLayer => {
-      this.mb.on('mouseenter', interactiveLayer, () => {
+      setPoiHoverStyle(this.mb, interactiveLayer);
+
+      this.mb.on('mouseenter', interactiveLayer, e => {
+        if (e.features.length > 0) {
+          this.hoveredPoi = e.features[0];
+          this.mb.setFeatureState(this.hoveredPoi, { hover: true });
+        }
         this.mb.getCanvas().style.cursor = 'pointer';
       });
 
       this.mb.on('mouseleave', interactiveLayer, () => {
+        if (this.hoveredPoi) {
+          this.mb.setFeatureState(this.hoveredPoi, { hover: false });
+          this.hoveredPoi = null;
+        }
         this.mb.getCanvas().style.cursor = '';
       });
 
