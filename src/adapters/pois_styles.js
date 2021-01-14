@@ -41,6 +41,10 @@ export const getFilteredPoisLabelStyle = () => ({
 const COLOR_ACTION_BLUE_BASE = '#1a6aff';
 
 export const setPoiHoverStyle = (map, poiLayer) => {
+  if (!map.getPaintProperty) {
+    // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
+    return;
+  }
   const textColorProperty = map.getPaintProperty(poiLayer, 'text-color');
   map.setPaintProperty(poiLayer, 'text-color',
     ['case', ['to-boolean', ['feature-state', 'hover']], COLOR_ACTION_BLUE_BASE, textColorProperty],
