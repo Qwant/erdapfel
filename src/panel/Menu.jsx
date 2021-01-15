@@ -92,6 +92,6 @@ const Menu = () => {
       </div>
     </div>, menuContainer.current)}
   </Fragment>;
-}
+};
 
 export default Menu;
