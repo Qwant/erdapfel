@@ -116,27 +116,29 @@ Scene.prototype.initMapBox = async function(locationHash) {
     this.mb.addControl(new ExtendedControl(), 'bottom-right');
     this.mb.addControl(new MobileCompassControl(), 'top-right');
 
-    interactiveLayers.forEach(interactiveLayer => {
-      setPoiHoverStyle(this.mb, interactiveLayer);
+    if (!isMobileDevice()) {
+      interactiveLayers.forEach(interactiveLayer => {
+        setPoiHoverStyle(this.mb, interactiveLayer);
 
-      this.mb.on('mouseenter', interactiveLayer, e => {
-        if (e.features.length > 0) {
-          this.hoveredPoi = e.features[0];
-          this.mb.setFeatureState(this.hoveredPoi, { hover: true });
-        }
-        this.mb.getCanvas().style.cursor = 'pointer';
+        this.mb.on('mouseenter', interactiveLayer, e => {
+          if (e.features.length > 0) {
+            this.hoveredPoi = e.features[0];
+            this.mb.setFeatureState(this.hoveredPoi, { hover: true });
+          }
+          this.mb.getCanvas().style.cursor = 'pointer';
+        });
+
+        this.mb.on('mouseleave', interactiveLayer, () => {
+          if (this.hoveredPoi) {
+            this.mb.setFeatureState(this.hoveredPoi, { hover: false });
+            this.hoveredPoi = null;
+          }
+          this.mb.getCanvas().style.cursor = '';
+        });
+
+        this.popup.addListener(interactiveLayer);
       });
-
-      this.mb.on('mouseleave', interactiveLayer, () => {
-        if (this.hoveredPoi) {
-          this.mb.setFeatureState(this.hoveredPoi, { hover: false });
-          this.hoveredPoi = null;
-        }
-        this.mb.getCanvas().style.cursor = '';
-      });
-
-      this.popup.addListener(interactiveLayer);
-    });
+    }
 
     // we have to delay click event resolution to make time for possible double click events,
     // which are thrown *after* two separate click events are thrown
