@@ -1,3 +1,4 @@
+import { ACTION_BLUE_BASE, RED_DARKER, GREY_BLACK } from 'src/libs/colors';
 
 export const getFilteredPoisPinStyle = () => ({
   type: 'symbol',
@@ -31,14 +32,12 @@ export const getFilteredPoisLabelStyle = () => ({
     'text-justify': 'auto',
   },
   paint: {
-    'text-color': ['case', ['==', ['feature-state', 'selected'], true], '#900014', '#0c0c0e'],
+    'text-color': ['case', ['==', ['feature-state', 'selected'], true], RED_DARKER, GREY_BLACK],
     'text-halo-color': 'white',
     'text-halo-width': 1,
     'text-translate': [0, -2],
   },
 });
-
-const COLOR_ACTION_BLUE_BASE = '#1a6aff';
 
 export const setPoiHoverStyle = (map, poiLayer) => {
   if (!map.getPaintProperty) {
@@ -47,7 +46,7 @@ export const setPoiHoverStyle = (map, poiLayer) => {
   }
   const textColorProperty = map.getPaintProperty(poiLayer, 'text-color');
   map.setPaintProperty(poiLayer, 'text-color',
-    ['case', ['to-boolean', ['feature-state', 'hover']], COLOR_ACTION_BLUE_BASE, textColorProperty],
+    ['case', ['to-boolean', ['feature-state', 'hover']], ACTION_BLUE_BASE, textColorProperty],
     { validate: false },
   );
 };

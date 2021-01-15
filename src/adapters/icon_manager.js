@@ -1,5 +1,6 @@
 import styleIcons from '@qwant/qwant-basic-gl-style/icons.yml';
 import classnames from 'classnames';
+import { ACTION_BLUE_DARK } from 'src/libs/colors';
 
 const nameToClass = iconName => iconName.match(/^(.*?)-[0-9]{1,2}$/)[1];
 
@@ -60,7 +61,7 @@ export default class IconManager {
     } else if (type === 'geoloc') {
       return {
         iconClass: 'pin_geoloc',
-        color: '#1050c5', // action-blue-dark
+        color: ACTION_BLUE_DARK,
         icomoon: true,
       };
 

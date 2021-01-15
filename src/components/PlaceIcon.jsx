@@ -3,8 +3,7 @@ import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import classnames from 'classnames';
 import { Heart } from 'src/components/ui/icons';
-
-const favoriteColor = '#cd1690';
+import { PINK_DARK, PINK_LIGHTER } from 'src/libs/colors';
 
 const PlaceIcon = ({ place, category, withBackground, className, isFavorite = false }) => {
   let iconClass = '', color = '', icomoon = false;
@@ -39,12 +38,12 @@ const FavoriteIcon = ({ className }) => {
     <div
       className={classnames('placeIcon', className)}
       style={{
-        color: favoriteColor,
-        backgroundColor: getLightBackground(favoriteColor),
+        color: PINK_DARK,
+        backgroundColor: PINK_LIGHTER,
       }}
     >
       <Heart
-        color={favoriteColor}
+        color={PINK_DARK}
         width={20}
       />
     </div>

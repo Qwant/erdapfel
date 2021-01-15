@@ -2,19 +2,20 @@
 import React from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
+import { GREEN_DARK, RED_DARKER } from 'src/libs/colors';
 
 const getStatusMessage = status => {
   if (status === 'open') {
     return {
       label: _('Open'),
-      color: '#5d9836',
+      color: GREEN_DARK,
     };
   }
 
   if (status === 'closed') {
     return {
       label: _('Closed'),
-      color: '#900014',
+      color: RED_DARKER,
     };
   }
 
