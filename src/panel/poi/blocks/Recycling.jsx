@@ -2,10 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Text, Meter } from 'src/components/ui';
-
-const GREEN = '#87c966';
-const YELLOW = '#ffda12';
-const RED = '#ff3b4a';
+import { GREEN_BASE, ORANGE_BASE, RED_BASE } from 'src/libs/colors';
 
 const containerTypes = type => {
   return {
@@ -32,9 +29,9 @@ const Container = ({ type, filling_level, updated_at }) =>
       <Text>{filling_level} %</Text>
     </Flex>
     <Meter value={filling_level} colors={[
-      { min: 0, color: GREEN },
-      { min: 50, color: YELLOW },
-      { min: 75, color: RED },
+      { min: 0, color: GREEN_BASE },
+      { min: 50, color: ORANGE_BASE },
+      { min: 75, color: RED_BASE },
     ]} />
   </div>;
 

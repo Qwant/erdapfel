@@ -1,12 +1,13 @@
 import Color from 'color';
+import {
+  ACTION_BLUE_SEMI_LIGHTNESS,
+  ACTION_BLUE_DARK,
+  GREY_GREY,
+  GREY_SEMI_LIGHTNESS,
+} from 'src/libs/colors';
 
 const darkenColor = hex => Color(hex).mix(Color('black'), 0.33).hex();
 const safeHexColor = hex => hex.charAt(0) === '#' ? hex : `#${hex}`;
-
-const ACTIVE_ROUTE_COLOR = '#3f81fb'; // action-blue-semi-lightness
-const ACTIVE_ROUTE_COLOR_OUTLINE = '#1050c5'; // action-blue-dark
-const INACTIVE_ROUTE_COLOR = '#c8cbd3';
-const INACTIVE_ROUTE_COLOR_OUTLINE = darkenColor(INACTIVE_ROUTE_COLOR);
 
 export function prepareRouteColor(feature) {
   const lineColor = feature.properties?.lineColor;
@@ -14,8 +15,8 @@ export function prepareRouteColor(feature) {
     ...feature,
     properties: {
       ...feature.properties,
-      lineColor: lineColor ? safeHexColor(lineColor) : ACTIVE_ROUTE_COLOR,
-      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : ACTIVE_ROUTE_COLOR_OUTLINE,
+      lineColor: lineColor ? safeHexColor(lineColor) : ACTION_BLUE_SEMI_LIGHTNESS,
+      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : ACTION_BLUE_DARK,
     },
   };
 }
@@ -24,7 +25,7 @@ function getColorExpression(isActive, isOutline) {
   if (isActive) {
     return isOutline ? ['get', 'outlineColor'] : ['get', 'lineColor'];
   }
-  return isOutline ? INACTIVE_ROUTE_COLOR_OUTLINE : INACTIVE_ROUTE_COLOR;
+  return isOutline ? GREY_GREY : GREY_SEMI_LIGHTNESS;
 }
 
 export function getRouteStyle(vehicle, isActive, isOutline) {
