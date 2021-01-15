@@ -16,6 +16,7 @@ import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 import { fire, listen } from 'src/libs/customEvents';
 import { getLabelPositions } from 'src/libs/route_labeler';
+import { isMobileDevice } from 'src/libs/device';
 
 const createMarker = (lngLat, className = '', options = {}) => {
   const element = document.createElement('div');
@@ -38,11 +39,39 @@ const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   return new Marker({ element, anchor }).setLngLat(lngLat);
 };
 
+const getLabelsBbbox = (labelPositions, routesBbox) => {
+  const smallScreen = isMobileDevice();
+  const shift = {
+    latShift: (routesBbox.getNorth() - routesBbox.getSouth()) / (smallScreen ? 5 : 10),
+    lngShift: (routesBbox.getEast() - routesBbox.getWest()) / (smallScreen ? 3 : 10),
+  };
+  const labelsBbbox = new LngLatBounds();
+  labelPositions
+    .map(shiftLabelPosition(shift))
+    .forEach(labelPosition => { labelsBbbox.extend(labelPosition); });
+  return labelsBbbox;
+};
+
+const shiftLabelPosition = ({ lngShift, latShift }) => ({ lngLat, anchor }) => {
+  let [ lng, lat] = lngLat;
+  if (anchor === 'top') {
+    lat -= latShift;
+  } else if (anchor === 'bottom') {
+    lat += latShift;
+  } else if (anchor === 'left') {
+    lng += lngShift;
+  } else if (anchor === 'right') {
+    lng -= lngShift;
+  }
+  return [lng, lat];
+};
+
 export default class SceneDirection {
   constructor(map) {
     this.map = map;
     this.routes = [];
     this.routeMarkers = [];
+    this.labelPositions = [];
     this.routeLabels = [];
     this.mapFeaturesByRoute = {};
 
@@ -189,9 +218,9 @@ export default class SceneDirection {
   }
 
   displayLabels(routes, vehicle) {
-    const labelPositions = getLabelPositions(routes.map(route => route.geometry));
+    this.labelPositions = getLabelPositions(routes.map(route => route.geometry));
 
-    this.routeLabels = labelPositions.map(({ lngLat, anchor }, index) =>
+    this.routeLabels = this.labelPositions.map(({ lngLat, anchor }, index) =>
       createRouteLabel(routes[index], vehicle, { lngLat, anchor })
         .addTo(this.map)
     );
@@ -228,6 +257,7 @@ export default class SceneDirection {
     this.routeMarkers.concat(this.routeLabels).forEach(marker => { marker.remove(); });
     this.routeMarkers = [];
     this.routeLabels = [];
+    this.labelPositions = [];
   }
 
   getDataSources(route) {
@@ -299,9 +329,10 @@ export default class SceneDirection {
   }
 
   getAllRoutesBBox() {
-    return this.routes.reduce((totalBBox, route) =>
-      totalBBox.extend(this.computeBBox(route))
-    , new LngLatBounds());
+    const routesBbox = new LngLatBounds();
+    this.routes.forEach(route => { routesBbox.extend(this.computeBBox(route)); });
+
+    return routesBbox.extend(getLabelsBbbox(this.labelPositions, routesBbox));
   }
 
   highlightStep(step) {
