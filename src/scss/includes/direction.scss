@@ -333,21 +333,8 @@ button.direction_shortcut {
   // Step by step mobile view
   .itinerary_mobile_step_by_step {
 
-    .mobile-roadmap-preview-close {
-      border: none;
-      padding: 0 0 0 $spacing-s;
-      margin: 0 0 0 $spacing-s;
-      background: $background;
-      width: $spacing-xxl-4;
-      height: $spacing-xxl-4;
-      border-radius: 50%;
-      box-shadow: $shadow;
-      color: $grey-black;
-
-      .button-icon {
-        font-size: $spacing-xl;
-        width: $spacing-xl;
-      }
+    .floatingButton {
+      margin-left: 11px;
     }
 
     .divider {

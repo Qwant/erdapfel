@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RoadMapStep from './RoadMapStep';
 import { fire } from 'src/libs/customEvents';
 import classnames from 'classnames';
-import { Button } from '../../components/ui';
+import { FloatingButton } from '../../components/ui';
 
 const MobileRoadMapPreview = ({
   steps,
@@ -51,8 +51,7 @@ const MobileRoadMapPreview = ({
   );
 
   return <div className="itinerary_mobile_step_by_step">
-    <Button
-      className="mobile-roadmap-preview-close"
+    <FloatingButton
       onClick={onClose}
       icon="arrow-left"
     />
