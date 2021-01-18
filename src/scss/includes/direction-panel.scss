@@ -50,20 +50,22 @@
   }
 }
 
-.direction-panel-mobile {
-  .itemList > div:not(:first-child) {
-      display: none;
-  }
-
-  &.maximized, &.panel--holding {
-    .itemList > div:not(:first-child) {
-      display: block;
-      margin-top: 12px;
+@media (max-width: 640px) {
+  .panel.direction-panel-mobile {
+    .panel-close {
+      top: 15px;
     }
-  }
 
-  .panel-close {
-    top: 15px;
+    .itemList > div:not(:first-child) {
+      display: none;
+    }
+
+    &.maximized, &.panel--holding {
+      .itemList > div:not(:first-child) {
+        display: block;
+        margin-top: 12px;
+      }
+    }
   }
 }
 
