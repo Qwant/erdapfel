@@ -1,93 +1,89 @@
 /* globals _ */
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { listen } from 'src/libs/customEvents';
+import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 
 import RoutesList from './RoutesList';
 
-export default class RouteResult extends React.Component {
-  static propTypes = {
-    routes: PropTypes.array,
-    origin: PropTypes.object,
-    destination: PropTypes.object,
-    vehicle: PropTypes.string,
-    isLoading: PropTypes.bool,
-    error: PropTypes.number,
-    activeRouteId: PropTypes.number,
-    selectRoute: PropTypes.func.isRequired,
-    toggleDetails: PropTypes.func.isRequired,
-  }
+const RouteResult = ({
+  origin, destination, vehicle,
+  routes = [], isLoading, error,
+  activeRouteId, activeDetails,
+  selectRoute, toggleDetails,
+}) => {
+  useEffect(() => {
+    const routeSelectedOnMapHandler = listen('select_road_map', onSelectRoute);
+    return () => { unListen(routeSelectedOnMapHandler); };
+  }, [onSelectRoute]);
 
-  static defaultProps = {
-    routes: [],
-  }
-
-  componentDidMount() {
-    listen('select_road_map', routeId => {
-      this.selectRoute(routeId);
-    });
-  }
-
-  selectRoute = routeId => {
-    if (routeId === this.props.activeRouteId) {
-      return;
-    }
-
+  const onSelectRoute = useCallback(routeId => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_SELECT);
-    this.props.selectRoute(routeId);
-  }
+    selectRoute(routeId);
+  }, [selectRoute]);
 
-  toggleRouteDetails = () => {
+  const toggleRouteDetails = () => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_TOGGLE_DETAILS);
-    this.props.toggleDetails();
-  }
+    toggleDetails();
+  };
 
-  render() {
-    if (this.props.error !== 0) {
-      return <div className="itinerary_no-result">
-        <span className="icon-alert-triangle" />
+  if (error !== 0) {
+    return <div className="itinerary_no-result">
+      <span className="icon-alert-triangle" />
+      <div>{
+        error >= 500 && error < 600
+          ? _('The service is temporarily unavailable, please try again later.', 'direction')
+          : _('Qwant Maps found no results for this itinerary.', 'direction')
+      }</div>
+      {
+        vehicle === 'publicTransport' &&
         <div>{
-          this.props.error >= 500 && this.props.error < 600
-            ? _('The service is temporarily unavailable, please try again later.', 'direction')
-            : _('Qwant Maps found no results for this itinerary.', 'direction')
+          _(
+            'We are currently testing public transport mode in a restricted set of cities.',
+            'direction'
+          )
         }</div>
-        {
-          this.props.vehicle === 'publicTransport' &&
-          <div>{
-            _(
-              'We are currently testing public transport mode in a restricted set of cities.',
-              'direction'
-            )
-          }</div>
-        }
-      </div>;
-    }
-
-    return <>
-      <div className={classnames('itinerary_result', {
-        'itinerary_result--publicTransport': this.props.vehicle === 'publicTransport',
-      })}>
-        <RoutesList
-          isLoading={this.props.isLoading}
-          routes={this.props.routes}
-          activeRouteId={this.props.activeRouteId}
-          origin={this.props.origin}
-          destination={this.props.destination}
-          vehicle={this.props.vehicle}
-          activeDetails={this.props.activeDetails}
-          toggleRouteDetails={this.toggleRouteDetails}
-          selectRoute={this.selectRoute}
-        />
-      </div>
-      {this.props.vehicle === 'publicTransport' && this.props.routes.length > 0 &&
-      <div className="itinerary_source">
-        <a href="https://combigo.com/">
-          <img src="./statics/images/direction_icons/logo_combigo.svg" alt="" />
-          Combigo
-        </a>
-      </div>}
-    </>;
+      }
+    </div>;
   }
-}
+
+  return <>
+    <div className={classnames('itinerary_result', {
+      'itinerary_result--publicTransport': vehicle === 'publicTransport',
+    })}>
+      <RoutesList
+        isLoading={isLoading}
+        routes={routes}
+        activeRouteId={activeRouteId}
+        origin={origin}
+        destination={destination}
+        vehicle={vehicle}
+        activeDetails={activeDetails}
+        toggleRouteDetails={toggleRouteDetails}
+        selectRoute={onSelectRoute}
+      />
+    </div>
+    {vehicle === 'publicTransport' && routes.length > 0 &&
+    <div className="itinerary_source">
+      <a href="https://combigo.com/">
+        <img src="./statics/images/direction_icons/logo_combigo.svg" alt="" />
+        Combigo
+      </a>
+    </div>}
+  </>;
+};
+
+RouteResult.propTypes = {
+  routes: PropTypes.array,
+  origin: PropTypes.object,
+  destination: PropTypes.object,
+  vehicle: PropTypes.string,
+  isLoading: PropTypes.bool,
+  error: PropTypes.number,
+  activeRouteId: PropTypes.number,
+  selectRoute: PropTypes.func.isRequired,
+  toggleDetails: PropTypes.func.isRequired,
+};
+
+export default RouteResult;
