@@ -45,7 +45,7 @@ function listKeys() {
     .map(k => k.substring(prefix.length, k.length));
 }
 
-export async function getAllFavorites() {
+export function getAllFavorites() {
   let keys = [];
   try {
     keys = listKeys();
@@ -67,9 +67,8 @@ export async function getAllFavorites() {
   return items;
 }
 
-export async function getFavoritesMatching(term) {
-  const storedItems = await getAllFavorites();
-  return storedItems.filter(storedItem => {
+export function getFavoritesMatching(term) {
+  return getAllFavorites().filter(storedItem => {
     return findIndexIgnoreCase(storedItem.name, term) !== -1;
   });
 }
@@ -83,7 +82,7 @@ export function isInFavorites(poi) {
   }
 }
 
-export async function addToFavorites(poi) {
+export function addToFavorites(poi) {
   try {
     set(getKey(poi), poi);
     fire('poi_favorite_state_changed', poi, true);
@@ -92,7 +91,7 @@ export async function addToFavorites(poi) {
   }
 }
 
-export async function removeFromFavorites(poi) {
+export function removeFromFavorites(poi) {
   try {
     del(getKey(poi));
     fire('poi_favorite_state_changed', poi, false);
@@ -101,7 +100,7 @@ export async function removeFromFavorites(poi) {
   }
 }
 
-export async function getLastLocation() {
+export function getLastLocation() {
   try {
     return get('last_location');
   } catch (e) {
@@ -110,7 +109,7 @@ export async function getLastLocation() {
   }
 }
 
-export async function setLastLocation(loc) {
+export function setLastLocation(loc) {
   try {
     return set('last_location', loc);
   } catch (e) {
