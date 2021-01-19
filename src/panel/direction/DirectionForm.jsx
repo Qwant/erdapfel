@@ -76,6 +76,7 @@ export default class DirectionForm extends React.Component {
           <DirectionInput
             isLoading={isLoading}
             value={originInputText}
+            point={origin}
             pointType="origin"
             onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
             ref={this.originRef}
@@ -85,6 +86,7 @@ export default class DirectionForm extends React.Component {
           <DirectionInput
             isLoading={isLoading}
             value={destinationInputText}
+            point={destination}
             pointType="destination"
             onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
             ref={this.destinationRef}
