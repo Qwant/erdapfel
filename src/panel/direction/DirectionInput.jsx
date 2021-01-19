@@ -9,6 +9,7 @@ import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
+import { isMobileDevice } from 'src/libs/device';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -102,7 +103,7 @@ class DirectionInput extends React.Component {
   }
 
   render() {
-    const { pointType, inputRef, isLoading, withGeoloc, value } = this.props;
+    const { pointType, inputRef, isLoading, withGeoloc, value, point, onChangePoint } = this.props;
     const { mounted, readOnly } = this.state;
 
     return (
@@ -122,7 +123,14 @@ class DirectionInput extends React.Component {
             onChange={this.onChange}
             onKeyPress={this.onKeyPress}
             readOnly={readOnly || isLoading}
-            onFocus={handleFocus}
+            onFocus={e => {
+              if (point && point.type === 'geoloc' && isMobileDevice()) {
+                // Clear Input to avoid fetching unwanted suggestions
+                onChangePoint('');
+              } else {
+                handleFocus(e);
+              }
+            }}
           />
           <div className="direction-icon-block">
             <div className={`direction-icon direction-icon-${pointType}`}/>
