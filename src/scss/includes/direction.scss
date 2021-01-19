@@ -66,7 +66,9 @@
 .itinerary_leg {
   &--active .itinerary_leg_summary {
     &:before {
-      @include active-border-gradient;
+      @media (min-width: 640px) {
+        @include active-border-gradient;
+      }
     }
 
     .route-summary-info-duration {
@@ -76,11 +78,12 @@
 }
 
 .itinerary_leg_summary {
-  padding: $spacing-l;
+  padding: 0 $spacing-s $spacing-s;
   cursor: pointer;
   position: relative;
 
   @media (min-width: 641px) {
+    padding: $spacing-l;
     &:hover {
       background-color: $grey-bright;
     }

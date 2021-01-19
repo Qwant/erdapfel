@@ -50,16 +50,21 @@
   }
 }
 
-.direction-panel-mobile {
-  .itemList > div:not(:first-child) {
-      display: none;
-  }
-}
+@media (max-width: 640px) {
+  .panel.direction-panel-mobile {
+    .panel-close {
+      top: 15px;
+    }
 
-.direction-panel-mobile {
-  &.maximized, &.panel--holding {
     .itemList > div:not(:first-child) {
-      display: block;
+      display: none;
+    }
+
+    &.maximized, &.panel--holding {
+      .itemList > div:not(:first-child) {
+        display: block;
+        margin-top: 12px;
+      }
     }
   }
 }
