@@ -71,8 +71,8 @@ export default class SceneDirection {
     this.map = map;
     this.routes = [];
     this.routeMarkers = [];
-    this.labelPositions = [];
     this.routeLabels = [];
+    this.fullBbox = null;
     this.mapFeaturesByRoute = {};
 
     const iconsBaseUrl = nconf.get().system.baseUrl + 'statics/images/direction_icons';
@@ -184,8 +184,8 @@ export default class SceneDirection {
     });
     this.updateMarkers(mainRoute);
     this.updateRouteLabels(mainRoute);
-    if (fitView) {
-      fire('fit_map', this.getAllRoutesBBox());
+    if (fitView && this.fullBbox) {
+      fire('fit_map', this.fullBbox);
     }
   }
 
@@ -207,23 +207,25 @@ export default class SceneDirection {
 
   displayRoutes(activeRouteId) {
     if (this.routes && this.routes.length > 0) {
+      // route lines
       this.mapFeaturesByRoute = {};
       this.routes.forEach(route => {
         this.mapFeaturesByRoute[route.id] =
           this.addRouteFeatures(route, route.id === activeRouteId);
       });
-      this.displayLabels(this.routes, this.vehicle);
+      // route labels
+      const labelPositions = getLabelPositions(this.routes.map(route => route.geometry));
+      this.routeLabels = labelPositions.map(({ lngLat, anchor }, index) =>
+        createRouteLabel(this.routes[index], this.vehicle, { lngLat, anchor })
+          .addTo(this.map)
+      );
+      // compute and store the best bbox
+      const routesBbox = new LngLatBounds();
+      this.routes.forEach(route => { routesBbox.extend(this.computeBBox(route)); });
+      this.fullBbox = routesBbox.extend(getLabelsBbbox(labelPositions, routesBbox));
+
       this.setMainRoute(activeRouteId, true);
     }
-  }
-
-  displayLabels(routes, vehicle) {
-    this.labelPositions = getLabelPositions(routes.map(route => route.geometry));
-
-    this.routeLabels = this.labelPositions.map(({ lngLat, anchor }, index) =>
-      createRouteLabel(routes[index], vehicle, { lngLat, anchor })
-        .addTo(this.map)
-    );
   }
 
   updateRouteLabels({ id: activeRouteId }) {
@@ -257,7 +259,7 @@ export default class SceneDirection {
     this.routeMarkers.concat(this.routeLabels).forEach(marker => { marker.remove(); });
     this.routeMarkers = [];
     this.routeLabels = [];
-    this.labelPositions = [];
+    this.fullBbox = null;
   }
 
   getDataSources(route) {
@@ -326,13 +328,6 @@ export default class SceneDirection {
   computeBBox({ geometry }) {
     const [ minX, minY, maxX, maxY ] = bbox(geometry);
     return new LngLatBounds([ minX, minY ], [ maxX, maxY ]);
-  }
-
-  getAllRoutesBBox() {
-    const routesBbox = new LngLatBounds();
-    this.routes.forEach(route => { routesBbox.extend(this.computeBBox(route)); });
-
-    return routesBbox.extend(getLabelsBbbox(this.labelPositions, routesBbox));
   }
 
   highlightStep(step) {
