@@ -102,7 +102,9 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   }, [poiFilters]);
 
   useEffect(() => {
-    Telemetry.add(Telemetry.POI_CATEGORY_OPEN, { category: poiFilters.category });
+    if (poiFilters.category) {
+      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, { category: poiFilters.category });
+    }
   }, [poiFilters.category]);
 
   const selectPoi = poi => {
