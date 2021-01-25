@@ -10,7 +10,7 @@ import { getLastLocation, setLastLocation } from 'src/adapters/store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
-import { createIcon } from '../adapters/icon_manager';
+import { createDefaultPin } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import { isMobileDevice } from 'src/libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
@@ -406,11 +406,7 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
 };
 
 Scene.prototype.addMarker = function(poi) {
-  const type = poi.type;
-
-  // Create a default marker (white circle on red background) when the PoI is clicked.
-  // To do so, we don't define class and subclass when we call createIcon.
-  const element = createIcon({ class: '', subclass: '', type });
+  const element = createDefaultPin();
   element.onclick = function(e) {
     // click event should not be propagated to the map itself;
     e.stopPropagation();
