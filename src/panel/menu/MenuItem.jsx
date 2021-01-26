@@ -1,12 +1,11 @@
 import React from 'react';
-import cx from 'classnames';
 import { Flex } from 'src/components/ui';
 import { IconExternalLink } from 'src/components/ui/icons';
 import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
 const MenuItem = ({ icon, children, href, onClick, outsideLink }) =>
   <a
-    className={cx('menu-item', { 'menu-item--outsideLink': outsideLink })}
+    className="menu-item"
     href={href || '#'}
     onClick={onClick}
     {...(outsideLink ? {
