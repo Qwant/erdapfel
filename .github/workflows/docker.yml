@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v*'
+
+env:
+  DOCKER_IMAGE_BASENAME: qwantresearch/erdapfel
+
+jobs:
+  build_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Get image name
+        run: |
+          VERSION=${GITHUB_REF#refs/*/}
+          if [ "$VERSION" == "master" ]; then
+            IMAGE_TAG=latest
+          else
+            IMAGE_TAG=$VERSION
+          fi
+          echo "DOCKER_IMAGE=$DOCKER_IMAGE_BASENAME:$IMAGE_TAG" >> $GITHUB_ENV
+
+      - run: docker build --label "org.label-schema.vcs-ref=$GITHUB_SHA" -t $DOCKER_IMAGE .
+
+      - if:  github.event_name == 'push'
+        run: docker push $DOCKER_IMAGE
