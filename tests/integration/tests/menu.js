@@ -18,7 +18,7 @@ test('test menu toggling', async () => {
   expect(await exists(page, '.menu__panel')).toBeTruthy();
 
   await waitForAnimationEnd(page, '.menu__panel');
-  await page.click('.menu__panel__top__close');
+  await page.click('.menu__panel .closeButton');
   expect(await isHidden(page, '.menu_panel')).toBeTruthy();
 });
 
