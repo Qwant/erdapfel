@@ -1,13 +1,12 @@
 /* globals _ */
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { menu as menuItems } from '../../config/constants.yml';
-import nconf from '@qwant/nconf-getter';
+import cx from 'classnames';
 import MenuItem from './menu/MenuItem';
-import MenuButton from './menu/MenuButton';
 import Telemetry from 'src/libs/telemetry';
-
-const isDirectionActive = nconf.get().direction.enabled;
+import { CloseButton, Flex } from 'src/components/ui';
+import { Heart, IconLightbulb, IconEdit, IconMenu } from 'src/components/ui/icons';
+import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +20,11 @@ const Menu = () => {
     };
   }, []);
 
-  const open = () => {
-    Telemetry.add(Telemetry.MENU_CLICK);
-    setIsOpen(true);
+  const toggle = () => {
+    if (!isOpen) {
+      Telemetry.add(Telemetry.MENU_CLICK);
+    }
+    setIsOpen(!isOpen);
   };
 
   const close = () => {
@@ -36,58 +37,47 @@ const Menu = () => {
   };
 
   return <Fragment>
-    <MenuButton onClick={open} />
+    <button
+      type="button"
+      className={cx('menu__button', { 'menu__button--active': isOpen })}
+      onClick={toggle}
+      title={_('Menu')}
+    >
+      <IconMenu />
+    </button>
 
     {isOpen && ReactDOM.createPortal(<div className="menu">
       <div className="menu__overlay" onClick={close} />
 
       <div className="menu__panel">
-        <div className="menu__panel__top">
-          <h2 className="menu__panel__top__title">
-            <i className="menu__panel__top__icon icon-map" />
-            <span>Qwant Maps</span>
-            <i className="icon-x menu__panel__top__close" onClick={close} />
-          </h2>
-        </div>
-
-        <div className="menu__panel__items_container">
-          <div className="menu__panel__section menu__panel__section-internal">
-            <button className="menu__panel__action"
-              onClick={() => { navTo('/', { focusSearch: true }); }}
-            >
-              <img
-                className="menu__panel__action__icon"
-                src="./statics/images/magnifier-dark.svg" alt=""
-              />
-              <span>{_('Search', 'menu')}</span>
-            </button>
-            {isDirectionActive &&
-              <button className="menu__panel__action" onClick={() => {
-                Telemetry.add(Telemetry.MENU_ITINERARY);
-                navTo('/routes/');
-              }}>
-                <i className="menu__panel__action__icon icon-corner-up-right" />
-                <span>{_('Directions', 'menu')}</span>
-              </button>
-            }
-            <button className="menu__panel__action" onClick={() => {
+        <Flex className="menu-top u-mb-l">
+          <CloseButton circle onClick={close} />
+        </Flex>
+        <div className="menu-items">
+          <MenuItem
+            onClick={e => {
+              e.preventDefault();
               Telemetry.add(Telemetry.MENU_FAVORITE);
               navTo('/favs/');
-            }}>
-              <i className="menu__panel__action__icon icon-icon_star" />
-              <span>{_('Favorites', 'menu')}</span>
-            </button>
-            <a className="menu__panel__action menu__panel__section_title__link"
-              href="https://github.com/QwantResearch/qwantmaps/blob/master/contributing.md"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <i className="menu__panel__action__icon icon-zap" />
-              <span>{_('How to contribute', 'menu')}</span>
-            </a>
-          </div>
-
-          {menuItems.map(menuItem => <MenuItem key={menuItem.sectionName} menuItem={menuItem} />)}
+            }}
+            icon={<Heart width={16} color={PINK_DARK} />}
+          >
+            {_('Favorites', 'menu')}
+          </MenuItem>
+          <MenuItem
+            href="https://about.qwant.com/legal/terms-of-service/qwant-maps/"
+            outsideLink
+            icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
+          >
+            {_('About Qwant Maps', 'menu')}
+          </MenuItem>
+          <MenuItem
+            href="https://github.com/QwantResearch/qwantmaps/blob/master/contributing.md"
+            outsideLink
+            icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
+          >
+            {_('How to contribute', 'menu')}
+          </MenuItem>
         </div>
       </div>
     </div>, menuContainer.current)}
