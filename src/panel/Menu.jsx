@@ -62,7 +62,7 @@ const Menu = () => {
             }}
             icon={<Heart width={16} color={PINK_DARK} />}
           >
-            {_('Favorites', 'menu')}
+            {_('My favorites', 'menu')}
           </MenuItem>
           <MenuItem
             href="https://about.qwant.com/legal/terms-of-service/qwant-maps/"
