@@ -9,7 +9,7 @@
 
 ```
 sudo apt install git
-git clone https://github.com/QwantResearch/erdapfel.git
+git clone https://github.com/Qwant/erdapfel.git
 ```
 
 - Open a Ubuntu bash in this folder (shift + right-click > Open Linux CLI here)

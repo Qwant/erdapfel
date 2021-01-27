@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/QwantResearch/erdapfel.git"
+    "url": "https://github.com/Qwant/erdapfel.git"
   },
   "author": "Qwant Research",
   "license": "Apache-2.0",
@@ -57,7 +57,7 @@
     "jest-extended": "^0.11.2",
     "json-loader": "0.5.7",
     "mapbox-gl": "^1.13.0",
-    "mapbox-gl-js-mock": "https://github.com/QwantResearch/mapbox-gl-js-mock.git#7eaee7b",
+    "mapbox-gl-js-mock": "https://github.com/Qwant/mapbox-gl-js-mock.git#72d1f4b",
     "node-sass": "^4.14.1",
     "postcss-import": "12.0.0",
     "postcss-loader": "2.0.9",
@@ -78,7 +78,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.0",
     "@qwant/gettext": "file:local_modules/gettext",
-    "@qwant/map-style-builder": "git+https://github.com/QwantResearch/map-style-builder.git#e27cbfb",
+    "@qwant/map-style-builder": "git+https://github.com/Qwant/map-style-builder.git#9808391",
     "@qwant/mapbox_style_configure": "file:local_modules/mapbox_style_configure",
     "@qwant/merge-po": "file:local_modules/merge-po",
     "@qwant/nconf-builder": "file:local_modules/nconf_builder",
