@@ -65,7 +65,6 @@ module.exports = {
     'map_itinerary',
     /* Menu and sidebar */
     'menu_click',
-    'menu_itinerary',
     'menu_favorite',
     /* Homepage */
     'home_itinerary',
