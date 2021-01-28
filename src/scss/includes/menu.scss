@@ -64,6 +64,7 @@ $menuPanelWidth: 300px;
   justify-content: center;
   width: 100%;
   height: 100%;
+  color: $grey-semi-darkness;
 }
 
 @media (min-width: 641px) {
@@ -79,7 +80,6 @@ $menuPanelWidth: 300px;
     height: 40px;
     border-radius: 8px;
     box-shadow: $shadow;
-    color: $grey-semi-darkness;
 
     &:hover {
       color: $grey-black;
