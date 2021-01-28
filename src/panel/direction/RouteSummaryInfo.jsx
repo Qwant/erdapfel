@@ -7,7 +7,7 @@ import { formatDuration, formatDistance } from 'src/libs/route_utils';
 
 const RouteSummaryInfo = ({ isFastest, route, vehicle }) =>
   <div>
-    <div className="u-text--title route-summary-info-duration">
+    <div className="u-text--title u-mb-2 route-summary-info-duration">
       {formatDuration(route.duration)}
     </div>
 
