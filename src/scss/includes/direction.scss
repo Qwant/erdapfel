@@ -375,10 +375,9 @@ button.direction_shortcut {
         visibility: hidden;
       }
 
-      &.expanded {
+      &:not(.expanded) {
         .itinerary_mobile_step .itinerary_roadmap_instruction {
-          max-height: 30vh;
-          overflow: auto;
+          @include lineClamp(2);
         }
       }
 
@@ -435,13 +434,11 @@ button.direction_shortcut {
 
         .itinerary_roadmap_instruction {
           grid-area: instruction;
-          border: none;
-          max-height: 40px;
           padding: 0;
           margin-bottom: 2px;
-          overflow: hidden;
           display: block;
-          position: relative;
+          max-height: 30vh;
+          overflow: auto;
         }
 
         .itinerary_roadmap_distance {
