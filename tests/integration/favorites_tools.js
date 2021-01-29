@@ -32,7 +32,7 @@ export async function toggleFavoritePanel(page) {
   await page.click('.menu__button');
   expect(await exists(page, '.menu__panel')).toBeTruthy();
   await waitForAnimationEnd(page, '.menu__panel');
-  await page.click('.menu__panel__action:nth-child(3)');
+  await page.click('.menu-item:nth-child(1)');
   await page.waitForSelector('.favorite_panel', { visible: true });
 }
 

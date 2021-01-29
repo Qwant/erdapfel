@@ -1,27 +1,23 @@
-/* globals _ */
 import React from 'react';
+import { Flex } from 'src/components/ui';
+import { IconExternalLink } from 'src/components/ui/icons';
+import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
-const MenuItem = ({ menuItem: { uri, sectionName, links, icon } }) => <div>
-  <h2 className="menu__panel__section_title">
-    <i className={`menu__panel__section__icon icon-${icon}`} />
-    {uri ?
-      <a href={uri} className="menu__panel__section_title__link"
-        rel="noopener noreferrer" target="_blank"
-      >
-        {_(sectionName)}
-      </a>
-      : _(sectionName)
-    }
-  </h2>
-  {links && links.length > 0 && <div className="menu__panel__section">
-    {links.map(link => <a
-      key={link.uri}
-      className="menu__panel__link"
-      href={link.uri} rel="noopener noreferrer" target="_blank"
-    >
-      {_(link.name)}
-    </a>)}
-  </div>}
-</div>;
+const MenuItem = ({ icon, children, href, onClick, outsideLink }) =>
+  <a
+    className="menu-item"
+    href={href || '#'}
+    onClick={onClick}
+    {...(outsideLink ? {
+      rel: 'noopener noreferrer',
+      target: '_blank',
+    } : {})}
+  >
+    <Flex>
+      {icon && <Flex className="u-mr-s">{icon}</Flex>}
+      <div style={{ flexGrow: 1 }}>{children}</div>
+      {outsideLink && <IconExternalLink width={16} fill={GREY_SEMI_DARKNESS} />}
+    </Flex>
+  </a>;
 
 export default MenuItem;

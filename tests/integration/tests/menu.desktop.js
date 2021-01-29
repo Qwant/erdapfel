@@ -16,14 +16,7 @@ test('menu open favorite', async () => {
   await page.click('.menu__button');
   await page.waitForSelector('.menu__panel');
   await waitForAnimationEnd(page, '.menu__panel');
-  await page.click('.menu__panel__action:nth-child(2)');
-
-  expect(await exists(page, '.direction-panel')).toBeTruthy();
-
-  await page.click('.menu__button');
-  await page.waitForSelector('.menu__panel__action');
-  await waitForAnimationEnd(page, '.menu__panel');
-  await page.click('.menu__panel__action:nth-child(3)');
+  await page.click('.menu-item:nth-child(1)');
 
   expect(await exists(page, '.favorite_panel')).toBeTruthy();
 });
