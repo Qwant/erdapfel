@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 15:52+0000\n"
+"POT-Creation-Date: 2021-02-01 11:00+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Albert mb <arnicamontana363@gmail.com>, 2021\n"
 "Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
@@ -48,72 +48,6 @@ msgstr "Indicacions"
 
 msgid "JavaScript is required to view this application."
 msgstr "El JavaScript és necessari per a veure aquesta aplicació."
-
-msgid "Qwant is also"
-msgstr "Qwant també és"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Music"
-
-msgid "Qwant Boards"
-msgstr "Qwant Boards"
-
-msgid "Qwant on Android"
-msgstr "Qwant a l'Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant a l'iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Júnior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Lite"
-
-msgid "About Qwant"
-msgstr "Quant a Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Premsa"
-
-msgid "Jobs"
-msgstr "Treballar-hi"
-
-msgid "F.A.Q."
-msgstr "PMF"
-
-msgid "Maps legal notices"
-msgstr "Notes legals del Maps"
-
-msgid "Terms of Service"
-msgstr "Condicions del servei"
-
-msgid "About us"
-msgstr "Quant a nosaltres"
-
-msgid "Privacy"
-msgstr "Privadesa"
-
-msgid "Results ranking"
-msgstr "Rànquing dels resultats"
-
-msgid "Contact us"
-msgstr "Contacte"
-
-msgid "Share Qwant"
-msgstr "Comparteix Qwant"
-
-msgid "on Twitter"
-msgstr "a Twitter"
-
-msgid "on Facebook"
-msgstr "a Facebook"
 
 msgid "restaurant"
 msgstr "restaurant"
@@ -162,9 +96,6 @@ msgstr ""
 
 msgid "Search with Qwant Maps"
 msgstr "Cerca Qwant Maps"
-
-msgid "My location"
-msgstr ""
 
 msgid "Close"
 msgstr "Tanca"
@@ -958,8 +889,11 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-msgid "Favorites"
+msgid "My favorites"
 msgstr "Preferits"
+
+msgid "About Qwant Maps"
+msgstr ""
 
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
@@ -978,14 +912,14 @@ msgstr ""
 msgid "Favorite places"
 msgstr "Llocs preferits"
 
-msgid "My favorites"
-msgstr "Preferits"
-
 msgid "Show favorites"
 msgstr "Mostra els preferits"
 
 msgid "Call"
 msgstr ""
+
+msgid "Favorites"
+msgstr "Preferits"
 
 msgid "opening hours"
 msgstr ""
@@ -1204,3 +1138,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "No mostrar aquest missatge"
+
+msgid "My location"
+msgstr ""

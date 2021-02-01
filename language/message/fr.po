@@ -1,14 +1,14 @@
 # 
 # Translators:
-# Adrien Matissart, 2020
+# Adrien Matissart, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 15:52+0000\n"
+"POT-Creation-Date: 2021-02-01 11:00+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2020\n"
+"Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,72 +49,6 @@ msgid "JavaScript is required to view this application."
 msgstr ""
 "Il est nécessaire que JavaScript soit activé pour afficher cette "
 "application."
-
-msgid "Qwant is also"
-msgstr "Qwant c'est aussi"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Music"
-
-msgid "Qwant Boards"
-msgstr "Qwant Boards"
-
-msgid "Qwant on Android"
-msgstr "Qwant sur Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant sur iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Junior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Lite"
-
-msgid "About Qwant"
-msgstr "À propos de Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Presse"
-
-msgid "Jobs"
-msgstr "Jobs"
-
-msgid "F.A.Q."
-msgstr "F.A.Q."
-
-msgid "Maps legal notices"
-msgstr "Mentions légales Maps"
-
-msgid "Terms of Service"
-msgstr "Conditions d'utilisation"
-
-msgid "About us"
-msgstr "À propos de nous"
-
-msgid "Privacy"
-msgstr "Confidentialité"
-
-msgid "Results ranking"
-msgstr "Classements de résultats"
-
-msgid "Contact us"
-msgstr "Nous contacter"
-
-msgid "Share Qwant"
-msgstr "Partager sur Qwant"
-
-msgid "on Twitter"
-msgstr "sur Twitter"
-
-msgid "on Facebook"
-msgstr "sur Facebook"
 
 msgid "restaurant"
 msgstr "restaurant"
@@ -163,9 +97,6 @@ msgstr "parking"
 
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
-
-msgid "My location"
-msgstr "Ma position"
 
 msgid "Close"
 msgstr "Fermer"
@@ -966,8 +897,11 @@ msgstr ""
 msgid "Menu"
 msgstr "Menu"
 
-msgid "Favorites"
-msgstr "Favoris"
+msgid "My favorites"
+msgstr "Mes favoris"
+
+msgid "About Qwant Maps"
+msgstr "À propos de Qwant Maps"
 
 msgid "How to contribute"
 msgstr "Comment contribuer"
@@ -987,14 +921,14 @@ msgstr ""
 msgid "Favorite places"
 msgstr "Lieux favoris"
 
-msgid "My favorites"
-msgstr "Mes favoris"
-
 msgid "Show favorites"
 msgstr "Afficher les favoris"
 
 msgid "Call"
 msgstr "Appeler"
+
+msgid "Favorites"
+msgstr "Favoris"
 
 msgid "opening hours"
 msgstr "horaires d'ouverture"
@@ -1221,3 +1155,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "Ne plus afficher ce message"
+
+msgid "My location"
+msgstr "Ma position"
