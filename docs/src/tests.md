@@ -32,7 +32,7 @@ $ npm run integration-test
 Here are some notable tools used in our test suites:
  - [Jest](https://jestjs.io/en/) is our test framework. It provides tools to write tests (lifecycle functions, mocking, assertions, etc.) and run them. It is used for both unit and integration tests.
  - [Puppeteer](https://pptr.dev/) is an API to control programmaticaly a real browser (currently Chrome/-ium). It is used in integration tests to make sure the tests behave like real-life scenarios. By default the browser runs in headless mode.
- - [MapBox-GL-JS-mock](https://github.com/mapbox/mapbox-gl-js-mock), a rather limited mock which is injected in place of the MapBox-GL lib for integration tests. We actually use [our own Qwant fork](https://github.com/QwantResearch/mapbox-gl-js-mock) which adds some missing stuff.
+ - [MapBox-GL-JS-mock](https://github.com/mapbox/mapbox-gl-js-mock), a rather limited mock which is injected in place of the MapBox-GL lib for integration tests. We actually use [our own Qwant fork](https://github.com/Qwant/mapbox-gl-js-mock) which adds some missing stuff.
 
 
 ## Test running tips

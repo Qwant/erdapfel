@@ -2,9 +2,9 @@
 
 Erdapfel is [Qwant Maps](https://www.qwant.com/maps/) front end application. It is a javascript single page app that allows to browse the map, search for places, see your position on the map, etc
 
-![Qwant Maps screenshot](https://raw.githubusercontent.com/QwantResearch/qwantmaps/master/screenshot.png)
+![Qwant Maps screenshot](https://raw.githubusercontent.com/Qwant/qwantmaps/master/screenshot.png)
 
-For a global overview of Qwant Maps and more details about each component, check out [QwantMaps](https://github.com/QwantResearch/qwantmaps/) repo.
+For a global overview of Qwant Maps and more details about each component, check out [QwantMaps](https://github.com/Qwant/qwantmaps/) repo.
 
 ## Run
 
@@ -12,7 +12,7 @@ For a global overview of Qwant Maps and more details about each component, check
 
 As Qwant Maps front end app, Erdapfel relies on a bunch of other services and needs some config to define how to interact with these components.
 
-A default config file is provided [here](https://github.com/QwantResearch/erdapfel/blob/master/config/default_config.yml). You will need to update it to set some services url, for instance:
+A default config file is provided [here](./config/default_config.yml). You will need to update it to set some services url, for instance:
 * the tile server: to display the map
 * the geocoder: to search for places
 * the place API: to display some details about the places
@@ -49,7 +49,7 @@ Then you can build and run Erdapfel with the following commands:
 > npm start
 ```
 
-(see also: [Windows setup guide](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/windows.md)
+(see also: [Windows setup guide](./docs/src/windows.md)
 
 ### Run with docker
 
@@ -58,12 +58,12 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 
 ## Develop
 
-* [Project structure](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/project_structure.md)
-* [Project internationalisation](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/i18n.md)
-* [Code convention](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/code_convention.md)
-* [Tests](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/tests.md)
+* [Project structure](./docs/src/project_structure.md)
+* [Project internationalisation](./docs/src/i18n.md)
+* [Code convention](./docs/src/code_convention.md)
+* [Tests](./docs/src/tests.md)
 
-[![Travis Build](https://travis-ci.org/QwantResearch/erdapfel.svg?branch=master)](https://travis-ci.org/QwantResearch/erdapfel)
+[![Travis Build](https://github.com/Qwant/erdapfel/workflows/Erdapfel%20CI/badge.svg)](https://github.com/Qwant/erdapfel/actions?query=workflow%3A%22Erdapfel+CI%22)
 
 ## Using your own map tiles server
 
@@ -112,7 +112,7 @@ Run unit tests only with `npm run unit-test`
 #### Integration tests
 Run integration tests only with `npm run integration-test`
 
-*For extended information about tests, refer to the [dedicated page](https://github.com/QwantResearch/erdapfel/blob/master/docs/src/tests.md).*
+*For extended information about tests, refer to the [dedicated page](./docs/src/tests.md).*
 
 ### Benchmark
 
@@ -124,7 +124,7 @@ Run integration tests only with `npm run integration-test`
 #### Style
  ` /style.json  ` gives access to prebuilt style with (optional) language.
 
-A [small script](https://github.com/QwantResearch/map-style-builder) is used behind the scene to build the style of the map and to ease the usage of the icons for the front end. The fonts used for the text displayed on the map are also built using an [OpenMapTiles script](https://github.com/QwantResearch/fonts).
+A [small script](https://github.com/Qwant/map-style-builder) is used behind the scene to build the style of the map and to ease the usage of the icons for the front end. The fonts used for the text displayed on the map are also built using an [OpenMapTiles script](https://github.com/Qwant/qwant-maps-fonts).
 
 Parameters:
 
@@ -142,7 +142,7 @@ If you want to see all the information provided by an item you're currently seei
 
 ```js
 let objs = window.map.mb.queryRenderedFeatures();
-# objs is an array, just look each entry to find the one you're looking for!
+// objs is an array, just look each entry to find the one you're looking for!
 ```
 
 A note on `window.map.mb`: it is the mapbox-gl object. You might be interested into looking to [mapbox-gl](https://docs.mapbox.com/mapbox-gl-js/api) documentation for more features. You can find the `queryRenderedFeatures`'s documentation [here](https://docs.mapbox.com/mapbox-gl-js/api/#map#queryrenderedfeatures).
@@ -152,13 +152,13 @@ A note on `window.map.mb`: it is the mapbox-gl object. You might be interested i
 It can be useful in case you want to debug an object in an area with a lot of items, even at the current maximum zoom:
 
 ```js
-# in your web browser development console:
+// in your web browser development console:
 window.map.mb.setMaxZoom(25); # default maximum zoom is 20
 ```
 
 ## License
 
-[![GitHub license](https://img.shields.io/github/license/QwantResearch/erdapfel.svg)](https://github.com/QwantResearch/erdapfel/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Qwant/erdapfel.svg)](https://github.com/Qwant/erdapfel/blob/master/LICENSE)
 
 This project is licensed under the Apache License 2.0.
 
