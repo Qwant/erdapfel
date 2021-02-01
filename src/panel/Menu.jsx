@@ -72,7 +72,7 @@ const Menu = () => {
             {_('About Qwant Maps', 'menu')}
           </MenuItem>
           <MenuItem
-            href="https://github.com/QwantResearch/qwantmaps/blob/master/contributing.md"
+            href="https://github.com/Qwant/qwantmaps/blob/master/contributing.md"
             outsideLink
             icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
           >
