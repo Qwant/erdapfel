@@ -1,15 +1,16 @@
 # 
 # Translators:
 # Alberto Cozzani <a.cozzani6@studenti.unipi.it>, 2020
-# Adrien Matissart, 2020
+# Guglielmo Kaldewey <g.kaldewey@gmail.com>, 2021
+# Adrien Matissart, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 15:52+0000\n"
+"POT-Creation-Date: 2021-02-01 11:00+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2020\n"
+"Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgid "The map that respects your privacy"
 msgstr "La mappa che rispetta la tua privacy"
 
 msgid "Qwant Maps Home"
-msgstr ""
+msgstr "Quant Maps Home"
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca su Qwant Maps"
@@ -48,72 +49,6 @@ msgstr "Itinerario"
 
 msgid "JavaScript is required to view this application."
 msgstr "Per vedere questa applicazione è richiesto JavaScript"
-
-msgid "Qwant is also"
-msgstr "Qwant è anche"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Music"
-
-msgid "Qwant Boards"
-msgstr ""
-
-msgid "Qwant on Android"
-msgstr "Qwant per Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant per iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Junior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Lite"
-
-msgid "About Qwant"
-msgstr "A proposito di Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Stampa"
-
-msgid "Jobs"
-msgstr "Lavora con noi"
-
-msgid "F.A.Q."
-msgstr "Domande frequenti"
-
-msgid "Maps legal notices"
-msgstr "Avvisi legali di Maps"
-
-msgid "Terms of Service"
-msgstr "Termini di servizio"
-
-msgid "About us"
-msgstr "Su di noi"
-
-msgid "Privacy"
-msgstr "Privacy"
-
-msgid "Results ranking"
-msgstr "Classificazione dei risultati"
-
-msgid "Contact us"
-msgstr "Contattaci"
-
-msgid "Share Qwant"
-msgstr "Condividi Qwant"
-
-msgid "on Twitter"
-msgstr "su Twitter"
-
-msgid "on Facebook"
-msgstr "su Facebook"
 
 msgid "restaurant"
 msgstr "ristorante"
@@ -163,9 +98,6 @@ msgstr "Parcheggio"
 msgid "Search with Qwant Maps"
 msgstr "Cerca con Qwant Maps"
 
-msgid "My location"
-msgstr "La mia posizione"
-
 msgid "Close"
 msgstr "Chiudi"
 
@@ -194,7 +126,7 @@ msgid "Close to"
 msgstr "vicino a"
 
 msgid "nearby"
-msgstr ""
+msgstr "nei dintorni"
 
 msgid "accessories shop"
 msgstr "negozio di accessori"
@@ -287,7 +219,7 @@ msgid "bowls"
 msgstr "bocce"
 
 msgid "brewery"
-msgstr ""
+msgstr "Birreria"
 
 msgid "brownfield"
 msgstr "area dismessa"
@@ -314,7 +246,7 @@ msgid "car shop"
 msgstr "Concessionario"
 
 msgid "car parts shop"
-msgstr ""
+msgstr "Accessori auto"
 
 msgid "car repair"
 msgstr "meccanico"
@@ -344,10 +276,10 @@ msgid "cemetery"
 msgstr "cimitero"
 
 msgid "holiday cottage"
-msgstr ""
+msgstr "Casa per vacanze"
 
 msgid "charging station"
-msgstr ""
+msgstr "Punto di ricarica"
 
 msgid "charity store"
 msgstr "negozio di beneficenza"
@@ -362,7 +294,7 @@ msgid "chess"
 msgstr "scacchi"
 
 msgid "childcare centre"
-msgstr ""
+msgstr "Centro di assistenza per l'infanzia"
 
 msgid "chocolate shop"
 msgstr "negozio di cioccolato"
@@ -410,7 +342,7 @@ msgid "courthouse"
 msgstr "tribunale"
 
 msgid "coworking space"
-msgstr ""
+msgstr "spazio per coworking"
 
 msgid "cricket"
 msgstr "cricket"
@@ -464,13 +396,13 @@ msgid "escape game"
 msgstr "gioco di evasione"
 
 msgid "estate agent"
-msgstr ""
+msgstr "agente immobiliare"
 
 msgid "fabric"
 msgstr "tessuto"
 
 msgid "farm shop"
-msgstr ""
+msgstr "spaccio aziendale"
 
 msgid "fast food"
 msgstr "fast food"
@@ -497,7 +429,7 @@ msgid "fuel station"
 msgstr "stazione di rifornimento"
 
 msgid "funeral home"
-msgstr ""
+msgstr "pompe funebri"
 
 msgid "furniture shop"
 msgstr "negozio di mobili"
@@ -587,7 +519,7 @@ msgid "kiosk"
 msgstr "edicola"
 
 msgid "kitchen manufacturer"
-msgstr ""
+msgstr "produzione cucine"
 
 msgid "lamps shop"
 msgstr "negozio di lampade"
@@ -695,13 +627,13 @@ msgid "place of worship"
 msgstr "luogo di preghiera"
 
 msgid "plumber"
-msgstr ""
+msgstr "Idraulico"
 
 msgid "police"
 msgstr "polizia"
 
 msgid "polling station"
-msgstr ""
+msgstr "ufficio elettorale"
 
 msgid "post office"
 msgstr "ufficio postale"
@@ -740,7 +672,7 @@ msgid "scuba diving"
 msgstr "immersione"
 
 msgid "fishmonger"
-msgstr ""
+msgstr "pescheria"
 
 msgid "resale shop"
 msgstr "rivendita"
@@ -836,10 +768,10 @@ msgid "university"
 msgstr "università"
 
 msgid "variety store"
-msgstr ""
+msgstr "emporio"
 
 msgid "vehicle inspection"
-msgstr ""
+msgstr "centro revisioni"
 
 msgid "veterinary"
 msgstr "veterinario"
@@ -872,7 +804,7 @@ msgid "winery"
 msgstr "enoteca"
 
 msgid "winter sports resort"
-msgstr ""
+msgstr "villaggio turistico invernale"
 
 msgid "yoga"
 msgstr "yoga"
@@ -918,23 +850,29 @@ msgid ""
 "privacy policy{closeTag}, we don't store your information because we don't "
 "want to know your whereabouts."
 msgstr ""
+"Rispettiamo sempre la tua privacy.<br>Come indicato nella  "
+"{privacyPolicyLink}nostra politica sulla privacy{closeTag}, non memorizziamo"
+" le tue informazioni perché non vogliamo sapere dove ti trovi."
 
 msgid ""
 "We look at your location to show you where you are, and that's it!<br />(See"
 " our {privacyPolicyLink}privacy policy{closeTag})"
 msgstr ""
+"Usiamo la tua posizione soltanto per mostrarti dove ti trovi!<br />(Consulta"
+" la nostra {privacy Policy Link}informativa sulla privacy{closeTag})"
 
 msgid "At Qwant, your whereabouts are part of your privacy"
 msgstr ""
+"Con Qwant i tuoi spostamenti sono privati come parte della tua Privacy"
 
 msgid "Continue"
-msgstr ""
+msgstr "Continua"
 
 msgid "Enable your geolocation for better directions"
-msgstr ""
+msgstr "Abilita la geolocalizzazione per avere migliori indicazioni"
 
 msgid "Ok, I've got it"
-msgstr ""
+msgstr "Ok, capito."
 
 msgid "Geolocation not available."
 msgstr "Geolocalizzazione non disponibile"
@@ -958,8 +896,11 @@ msgstr ""
 msgid "Menu"
 msgstr "Menu"
 
-msgid "Favorites"
-msgstr "Preferiti"
+msgid "My favorites"
+msgstr "I miei preferiti"
+
+msgid "About Qwant Maps"
+msgstr ""
 
 msgid "How to contribute"
 msgstr "Come contribuire"
@@ -979,23 +920,23 @@ msgstr ""
 msgid "Favorite places"
 msgstr "Luoghi preferiti"
 
-msgid "My favorites"
-msgstr "I miei preferiti"
-
 msgid "Show favorites"
 msgstr "Mostra favoriti"
 
 msgid "Call"
 msgstr "Chiama"
 
+msgid "Favorites"
+msgstr "Preferiti"
+
 msgid "opening hours"
 msgstr "Orari di apertura"
 
 msgid "See the usual opening hours"
-msgstr ""
+msgstr "Guarda gli orari di apertura"
 
 msgid "contact"
-msgstr ""
+msgstr "Contatto"
 
 msgid "Photos"
 msgstr "Foto"
@@ -1055,7 +996,7 @@ msgid "No information on opening during the sanitary crisis"
 msgstr "Nessuna informazione sulle aperture durante l'emergenza sanitaria"
 
 msgid "Report a change"
-msgstr ""
+msgstr "Comunica un cambiamento"
 
 msgid "Opening hours subject to change"
 msgstr "Orari di apertura soggetti a variazioni"
@@ -1064,7 +1005,7 @@ msgid "phone"
 msgstr "telefono"
 
 msgid "Updated {datetime}"
-msgstr ""
+msgstr "Aggiornato {adesso}"
 
 msgid "Glass"
 msgstr "Vetro"
@@ -1103,10 +1044,10 @@ msgid "See more nearby services"
 msgstr "Visualizza altri servizi in zona"
 
 msgid "Reduce"
-msgstr ""
+msgstr "Riduci"
 
 msgid "Unfold to see quick actions"
-msgstr ""
+msgstr "Apri per vedere le azioni rapide"
 
 msgid "by car"
 msgstr "In automobile"
@@ -1137,10 +1078,10 @@ msgid "Search around my position"
 msgstr "Cerca intorno a me"
 
 msgid "Results in partnership with PagesJaunes"
-msgstr ""
+msgstr "Risultati in collaborazione con Pagine Gialle"
 
 msgid "Unfold to show the results"
-msgstr ""
+msgstr "Aprire per vedere i risultati"
 
 msgid "Enter a starting point"
 msgstr "Inserisci un punto di partenza"
@@ -1155,16 +1096,16 @@ msgid "Via"
 msgstr "via"
 
 msgid "Fastest route"
-msgstr ""
+msgstr "Strada più veloce"
 
 msgid "See less"
-msgstr ""
+msgstr "Mostra di meno"
 
 msgid "Details"
 msgstr "Dettagli"
 
 msgid "Walk on {walkDistance}"
-msgstr ""
+msgstr "Cammina {distanza a piedi}"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
@@ -1177,16 +1118,16 @@ msgstr "Qwant Maps non ha trovato soluzioni per questo itinerario"
 msgid ""
 "We are currently testing public transport mode in a restricted set of "
 "cities."
-msgstr ""
+msgstr "Stiamo testando la modalità di trasporto pubblico in alcune città"
 
 msgid "step by step"
-msgstr ""
+msgstr "passo passo"
 
 msgid "calculate an itinerary"
 msgstr "Calcola un itinerario"
 
 msgid "Share itinerary"
-msgstr ""
+msgstr "Condividi l'itinerario"
 
 msgid ""
 "Check the spelling of your search or add more details, such as city or "
@@ -1196,15 +1137,21 @@ msgstr ""
 "città o lo Stato."
 
 msgid "Try a new search query"
-msgstr ""
+msgstr "Prova una nuova ricerca"
 
 msgid "Qwant Maps is in Beta!"
-msgstr ""
+msgstr "Quant Maps è in versione Beta"
 
 msgid ""
 "This means that this version may have some bugs. We work very hard to "
 "improve Qwant Maps every day, while keeping your travels private."
 msgstr ""
+"Questo significa che questa versione può avere qualche difetto. Lavoriamo "
+"duramente ogni giorno per migliorare Qwant Maps, nel frattempo rispettiamo "
+"la privacy dei tuoi viaggi."
 
 msgid "Do not display this message again"
-msgstr ""
+msgstr "Non mostrare ancora questo messaggio"
+
+msgid "My location"
+msgstr "La mia posizione"

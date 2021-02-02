@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 15:52+0000\n"
+"POT-Creation-Date: 2021-02-01 11:00+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -48,72 +48,6 @@ msgstr "Tuadurioù"
 
 msgid "JavaScript is required to view this application."
 msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
-
-msgid "Qwant is also"
-msgstr "Qwant a zo ivez"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Sonerezh"
-
-msgid "Qwant Boards"
-msgstr "Taolennoù Qwant"
-
-msgid "Qwant on Android"
-msgstr "Qwant war Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant war iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Junior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Skañv"
-
-msgid "About Qwant"
-msgstr "Diwar-benn Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Kazetennerezh"
-
-msgid "Jobs"
-msgstr "Implijoù"
-
-msgid "F.A.Q."
-msgstr "F.A.G"
-
-msgid "Maps legal notices"
-msgstr "Notisoù lezennel Maps"
-
-msgid "Terms of Service"
-msgstr "Divizoù Implijout"
-
-msgid "About us"
-msgstr "Diwar hon fenn"
-
-msgid "Privacy"
-msgstr "Prevezded"
-
-msgid "Results ranking"
-msgstr "Rummadur an disoc'hoù"
-
-msgid "Contact us"
-msgstr "Dont e darempred ganeomp"
-
-msgid "Share Qwant"
-msgstr "Rannañ Qwant"
-
-msgid "on Twitter"
-msgstr "war Twitter"
-
-msgid "on Facebook"
-msgstr "war Facebook"
 
 msgid "restaurant"
 msgstr "predti"
@@ -162,9 +96,6 @@ msgstr "parkva"
 
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
-
-msgid "My location"
-msgstr "Ma lec'hiadur"
 
 msgid "Close"
 msgstr "Serriñ"
@@ -964,8 +895,11 @@ msgstr ""
 msgid "Menu"
 msgstr "Lañser"
 
-msgid "Favorites"
-msgstr "Sinedoù"
+msgid "My favorites"
+msgstr "Ma sinedoù"
+
+msgid "About Qwant Maps"
+msgstr ""
 
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
@@ -985,14 +919,14 @@ msgstr ""
 msgid "Favorite places"
 msgstr "Lec'hioù karetañ"
 
-msgid "My favorites"
-msgstr "Ma sinedoù"
-
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
 
 msgid "Call"
 msgstr "Gervel"
+
+msgid "Favorites"
+msgstr "Sinedoù"
 
 msgid "opening hours"
 msgstr "Eurvezhioù digeriñ"
@@ -1217,3 +1151,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "Na ziskouez ken ar gemennadenn-mañ ken"
+
+msgid "My location"
+msgstr "Ma lec'hiadur"

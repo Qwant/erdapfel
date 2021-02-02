@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 15:52+0000\n"
+"POT-Creation-Date: 2021-02-01 11:00+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -48,72 +48,6 @@ msgstr "Wegbeschreibung"
 
 msgid "JavaScript is required to view this application."
 msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
-
-msgid "Qwant is also"
-msgstr "Qwant ist außerdem"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Music"
-
-msgid "Qwant Boards"
-msgstr "Qwant Notizhefte"
-
-msgid "Qwant on Android"
-msgstr "Qwant für Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant für iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Junior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Lite"
-
-msgid "About Qwant"
-msgstr "Über Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Presse"
-
-msgid "Jobs"
-msgstr "Jobs"
-
-msgid "F.A.Q."
-msgstr "F.A.Q."
-
-msgid "Maps legal notices"
-msgstr "Maps Impressum"
-
-msgid "Terms of Service"
-msgstr "Nutzungsbedingungen"
-
-msgid "About us"
-msgstr "Über uns"
-
-msgid "Privacy"
-msgstr "Privatsphäre"
-
-msgid "Results ranking"
-msgstr "Ergebnissortierung"
-
-msgid "Contact us"
-msgstr "Kontaktieren Sie uns"
-
-msgid "Share Qwant"
-msgstr "Teile Qwant"
-
-msgid "on Twitter"
-msgstr "auf Twitter"
-
-msgid "on Facebook"
-msgstr "auf Facebook"
 
 msgid "restaurant"
 msgstr "Restaurant"
@@ -162,9 +96,6 @@ msgstr "Parkplatz"
 
 msgid "Search with Qwant Maps"
 msgstr "Suche mit Qwant Maps"
-
-msgid "My location"
-msgstr "Mein Standort"
 
 msgid "Close"
 msgstr "Schließen"
@@ -530,7 +461,7 @@ msgid "greengrocer"
 msgstr "Gemüsehändler"
 
 msgid "guest house"
-msgstr "Gästehaus"
+msgstr "Pension"
 
 msgid "gymnastics"
 msgstr "Turnen"
@@ -957,8 +888,11 @@ msgstr ""
 msgid "Menu"
 msgstr "Menü"
 
-msgid "Favorites"
-msgstr "Favoriten"
+msgid "My favorites"
+msgstr "Meine Favoriten"
+
+msgid "About Qwant Maps"
+msgstr ""
 
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
@@ -978,14 +912,14 @@ msgstr ""
 msgid "Favorite places"
 msgstr "Lieblingsorte"
 
-msgid "My favorites"
-msgstr "Meine Favoriten"
-
 msgid "Show favorites"
 msgstr "Favoriten anzeigen"
 
 msgid "Call"
 msgstr "Anruf"
+
+msgid "Favorites"
+msgstr "Favoriten"
 
 msgid "opening hours"
 msgstr "Öffnungszeiten"
@@ -1205,3 +1139,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr ""
+
+msgid "My location"
+msgstr "Mein Standort"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 15:52+0000\n"
+"POT-Creation-Date: 2021-02-01 11:00+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/qwant-1/teams/89416/es/)\n"
@@ -47,72 +47,6 @@ msgstr "Indicaciones"
 
 msgid "JavaScript is required to view this application."
 msgstr "Es necesario activar JavaScript para ver esta aplicación"
-
-msgid "Qwant is also"
-msgstr "Qwant es también"
-
-msgid "Qwant.com"
-msgstr "Qwant.com"
-
-msgid "Qwant Music"
-msgstr "Qwant Music"
-
-msgid "Qwant Boards"
-msgstr "Qwant Boards"
-
-msgid "Qwant on Android"
-msgstr "Qwant en Android"
-
-msgid "Qwant on iOS"
-msgstr "Qwant en iOS"
-
-msgid "Qwant Junior"
-msgstr "Qwant Junior"
-
-msgid "Qwant Lite"
-msgstr "Qwant Junior"
-
-msgid "About Qwant"
-msgstr "Sobre Qwant"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Press"
-msgstr "Prensa"
-
-msgid "Jobs"
-msgstr "Trabajos"
-
-msgid "F.A.Q."
-msgstr "Preguntas frequentes"
-
-msgid "Maps legal notices"
-msgstr "Información legal sobre Qwant Maps"
-
-msgid "Terms of Service"
-msgstr "Términos de Servicio"
-
-msgid "About us"
-msgstr "Sobre nosotros"
-
-msgid "Privacy"
-msgstr "Privacidad"
-
-msgid "Results ranking"
-msgstr "Ranking de resultados"
-
-msgid "Contact us"
-msgstr "Contáctanos"
-
-msgid "Share Qwant"
-msgstr "Comparte Qwant"
-
-msgid "on Twitter"
-msgstr "en Twitter"
-
-msgid "on Facebook"
-msgstr "en Facebook"
 
 msgid "restaurant"
 msgstr "restaurante"
@@ -161,9 +95,6 @@ msgstr ""
 
 msgid "Search with Qwant Maps"
 msgstr "Busca con Qwant Maps"
-
-msgid "My location"
-msgstr ""
 
 msgid "Close"
 msgstr "Cerrar"
@@ -957,8 +888,11 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-msgid "Favorites"
-msgstr "Favoritos"
+msgid "My favorites"
+msgstr "Mis Favoritos"
+
+msgid "About Qwant Maps"
+msgstr ""
 
 msgid "How to contribute"
 msgstr "Cómo contribuir"
@@ -978,14 +912,14 @@ msgstr ""
 msgid "Favorite places"
 msgstr "Lugares favoritos"
 
-msgid "My favorites"
-msgstr "Mis Favoritos"
-
 msgid "Show favorites"
 msgstr "Mostrar favoritos"
 
 msgid "Call"
 msgstr ""
+
+msgid "Favorites"
+msgstr "Favoritos"
 
 msgid "opening hours"
 msgstr ""
@@ -1203,4 +1137,7 @@ msgid ""
 msgstr ""
 
 msgid "Do not display this message again"
+msgstr ""
+
+msgid "My location"
 msgstr ""
