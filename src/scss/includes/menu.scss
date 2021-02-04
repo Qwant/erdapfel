@@ -83,11 +83,12 @@ $menuPanelWidth: 300px;
 
     &:hover {
       color: $grey-black;
-      background-color: $action-blue-lighter;
+      background-color: $grey-lighter;
     }
 
     &--active {
       box-shadow: none;
+      color: $grey-black;
       background-color: $grey-lighter;
     }
   }
