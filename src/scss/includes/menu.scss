@@ -54,6 +54,16 @@ $menuPanelWidth: 300px;
   display: block;
   padding: $spacing-m $spacing-xl-2;
   color: $grey-black;
+
+  &:hover, &:active {
+    text-decoration: none;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: $grey-bright;
+    }
+  }
 }
 
 .menu__button {
