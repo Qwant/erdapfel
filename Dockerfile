@@ -6,7 +6,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     gettext git python3 build-essential ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm i npm@latest -g
+RUN npm i npm@latest-6 -g
 RUN mkdir -p $PROJECT_DIR
 RUN chown node $PROJECT_DIR
 
