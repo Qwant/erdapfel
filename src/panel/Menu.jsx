@@ -1,5 +1,5 @@
 /* globals _ */
-import React, { Fragment, useEffect, useState, useRef } from 'react';
+import React, { Fragment, useEffect, useState, useRef, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import MenuItem from './menu/MenuItem';
@@ -7,10 +7,12 @@ import Telemetry from 'src/libs/telemetry';
 import { CloseButton, Flex } from 'src/components/ui';
 import { Heart, IconLightbulb, IconEdit, IconMenu } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
+import { DeviceContext } from 'src/libs/device';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuContainer = useRef(document.createElement('div'));
+  const isMobile = useContext(DeviceContext);
 
   useEffect(() => {
     const current = menuContainer.current;
@@ -43,7 +45,7 @@ const Menu = () => {
       onClick={toggle}
       title={_('Menu')}
     >
-      <IconMenu />
+      {isMobile ? <IconMenu /> : <IconMenu width={16} height={16} />}
     </button>
 
     {isOpen && ReactDOM.createPortal(<div className="menu">
