@@ -94,7 +94,8 @@ function App(config) {
 
   router.use('/style.json',
     compression(),
-    new mapStyle(config, languages));
+    ...new mapStyle(config, constants)
+  );
 
   if (config.server.enablePrometheus) {
     router.get('/metrics', (req, res) => {

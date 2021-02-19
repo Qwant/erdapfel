@@ -66,3 +66,63 @@ test('refuses array in telemetry type', done => {
     .send('{"type":["localise_trigger"]}')
     .expect(400, done);
 });
+
+
+describe('get style.json', () => {
+  test('without parameter', done => {
+    server
+      .get('/style.json')
+      .expect(200, /name:en/)
+      .then(response => {
+        expect(response.body.layers.map(l => l.id)).toContain('poi-level-1');
+        done();
+      });
+  });
+
+  test('with nopoi layers', done => {
+    server
+      .get('/style.json?layers=nopoi')
+      .expect(200, /name:en/)
+      .then(response => {
+        expect(response.body.layers.map(l => l.id)).not.toContain('poi-level-1');
+        done();
+      });
+  });
+
+
+  test('with lang=fr', done => {
+    server
+      .get('/style.json?lang=fr')
+      .expect(200, /name:fr/)
+      .then(response => {
+        expect(response.body.layers.map(l => l.id)).toContain('poi-level-1');
+        done();
+      });
+  });
+
+  test('with unknown lang, fallback to en', done => {
+    server
+      .get('/style.json?lang=abc')
+      .expect(200, /name:en/)
+      .then(response => {
+        expect(response.body.layers.map(l => l.id)).toContain('poi-level-1');
+        done();
+      });
+  });
+
+  test('with explicit layers and lang', done => {
+    server
+      .get('/style.json?layers=nopoi&lang=fr')
+      .expect(200, /name:fr/)
+      .then(response => {
+        expect(response.body.layers.map(l => l.id)).not.toContain('poi-level-1');
+        done();
+      });
+  });
+
+  test('invalid value for layers leads to 400', done => {
+    server
+      .get('/style.json?layers=invalid')
+      .expect(400, done);
+  });
+});

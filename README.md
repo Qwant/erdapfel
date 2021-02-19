@@ -119,18 +119,20 @@ Run integration tests only with `npm run integration-test`
 `npm run bench ` will build a production bundle and return size and js execution time metrics to compare evolution of application performance along the project life time.
 
 
-## EntryPoints
+### EntryPoints
 
 #### Style
- ` /style.json  ` gives access to prebuilt style with (optional) language.
 
-A [small script](https://github.com/Qwant/map-style-builder) is used behind the scene to build the style of the map and to ease the usage of the icons for the front end. The fonts used for the text displayed on the map are also built using an [OpenMapTiles script](https://github.com/Qwant/qwant-maps-fonts).
+**GET** `/style.json` provides a ready-to-use mapbox-gl style, with optional query parameters.
 
 Parameters:
 
-  |method |name |value       |optional |default |
-  |-------|-----|------------|---------|--------|
-  |get    |lang |en, gb ...  |true     |en      |
+  |name     |value             |default   |  |
+  |---------|------------------|----------|--|
+  |`lang`   |`en`, `fr`, `it`..|`en`      | Invalid or unsupported languages fallback to "en" |
+  |`layers` |`all`, `nopoi`    |`all`     | "nopoi" excludes layers with Points of Interests not related to public transport |
+
+  A [style builder](https://github.com/Qwant/map-style-builder) is used behind the scene to build the style of the map and to ease the usage of the icons for the front end. The fonts used for the text displayed on the map are also built using an [OpenMapTiles script](https://github.com/Qwant/qwant-maps-fonts).
 
 ### Development tips
 
