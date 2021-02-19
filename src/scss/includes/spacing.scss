@@ -1,4 +1,5 @@
 // Standard spacings from the design system
+$spacing-xxxs: 2px;
 $spacing-xxs: 4px;
 $spacing-xs: 8px;
 $spacing-s: 12px;
@@ -15,6 +16,7 @@ $spacing-xxl-8: 96px;
 
 // Sass map for easy iteration
 $spacings: (
+  xxxs: $spacing-xxxs,
   xxs: $spacing-xxs,
   xs: $spacing-xs,
   s: $spacing-s,
