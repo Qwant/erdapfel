@@ -7,3 +7,10 @@ minimum_perc = 0
 source_file = language/message/en.po
 source_lang = en
 type = PO
+
+[qwant-maps.common]
+file_filter = local_modules/qwant-maps-common/i18n/<lang>/resource.json
+minimum_perc = 0
+source_file = local_modules/qwant-maps-common/i18n/en/resource.json
+source_lang = en
+type = KEYVALUEJSON
