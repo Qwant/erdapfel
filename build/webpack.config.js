@@ -61,6 +61,49 @@ const sassChunkConfig = () => {
 };
 
 
+const unsupportedSassChunkConfig = () => {
+  return {
+    entry: path.join(__dirname, '..', 'src', 'scss', 'unsupported.scss'),
+    output: {
+      path: path.join(__dirname, '..'),
+      filename: 'tmp/css_unsupported.js',
+    },
+    module: {
+      rules: [{
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'public/css/unsupported.css',
+          },
+        },
+      }, {
+        test: /\.scss$/,
+        use: [{
+          loader: 'postcss-loader',
+          options: {
+            plugins: [
+              require('autoprefixer')(),
+              require('postcss-import')(),
+            ],
+          },
+        }],
+      }, {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          publicPath: '/',
+          name: '[name].[ext]',
+          outputPath: 'images/',
+        },
+      }, {
+        test: /\.scss$/,
+        loader: 'sass-loader',
+      }],
+    },
+  };
+};
+
+
 const mainJsChunkConfig = buildMode => {
   return {
     entry: [path.join(__dirname, '..', 'src', 'main.js')],
@@ -172,6 +215,7 @@ const webpackChunks = buildMode => {
     mainJsChunkConfig(buildMode),
     copyPluginConfig(),
     sassChunkConfig(buildMode),
+    unsupportedSassChunkConfig(),
   ];
   const constants = yaml.readSync('../config/constants.yml');
 
