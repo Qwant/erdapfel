@@ -3,10 +3,7 @@ import React from 'react';
 import Telemetry from 'src/libs/telemetry';
 
 const OsmContribution = ({ poi }) => {
-  const [_osmKey, itemKind, itemId] = poi.id.split(':');
-  const editParams = `editor=id&${itemKind}=${itemId}&hashtags=QwantMaps`;
-  const viewUrl = `https://www.openstreetmap.org/${itemKind}/${itemId}`;
-  const editUrl = `https://www.openstreetmap.org/edit?${editParams}`;
+  const { source_url, contribute_url } = poi.meta;
 
   const sendTelemetryEvent = event => () => Telemetry.sendPoiEvent(poi, event);
 
@@ -16,13 +13,15 @@ const OsmContribution = ({ poi }) => {
       <p className="u-text--caption">
         {_('Qwant Maps uses OpenStreetMap data.')}
       </p>
-      <a className="osm_contribute__link u-text--caption" href={viewUrl} rel="noopener noreferrer"
+      <a className="osm_contribute__link u-text--caption" href={source_url}
+        rel="noopener noreferrer"
         target="_blank"
         onClick={sendTelemetryEvent('osm_view')}
       >
         {_('View')}
       </a>
-      <a className="u-text--caption osm_contribute__link" href={editUrl} rel="noopener noreferrer"
+      <a className="u-text--caption osm_contribute__link" href={contribute_url}
+        rel="noopener noreferrer"
         target="_blank"
         onClick={sendTelemetryEvent('osm_edit')}
       >
