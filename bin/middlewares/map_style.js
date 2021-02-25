@@ -5,9 +5,15 @@ const styleConfigure = require('@qwant/mapbox_style_configure');
 const qwantStyle = require('@qwant/qwant-basic-gl-style/style.json');
 const path = require('path');
 const Uri = require('@qwant/uri');
+const { query, validationResult } = require('express-validator');
 
 
-module.exports = function(config, languages) {
+const LayersEnum = Object.freeze({
+  ALL: 'all',
+  NOPOI: 'nopoi',
+});
+
+module.exports = function(config, constants) {
 
   /* pre-build style on server start */
   const options = {
@@ -30,25 +36,16 @@ module.exports = function(config, languages) {
 
   const builtStyle = styleBuilder(qwantStyle, options);
 
-  return function(req, res) {
-    /* get lang routine */
-    const langParameter = req.query.lang;
-    let matchedLanguage = languages.defaultLanguage;
-    if (langParameter) {
-      matchedLanguage = languages.supportedLanguages.find(supportedLanguage => {
-        return supportedLanguage.code === langParameter;
-      });
-      if (!matchedLanguage) {
-        res.status(400);
-        res.send({ error: `Unsupported language code : ${langParameter}` });
-        return;
-      }
-    } else {
-      matchedLanguage = languages.defaultLanguage;
+  const styleCache = {};
+
+  const getStyle = function({ host, lang, nopoi }) {
+    const cacheKey = `${host};${lang};${nopoi}`;
+    const cachedStyle = styleCache[cacheKey];
+    if (cachedStyle) {
+      return cachedStyle;
     }
 
     /* config rewriting */
-    const host = req.get('host');
     const spritesUrl = Uri.toAbsoluteUrl(
       `https://${host}`,
       config.system.baseUrl,
@@ -64,9 +61,51 @@ module.exports = function(config, languages) {
       fontsUrl,
     };
     const mapStyle = Object.assign({}, config.mapStyle, urls);
+    const configuredStyle = styleConfigure(builtStyle, mapStyle, lang);
 
-    /* json render */
-    res.set('Content-Type', 'application/json');
-    res.send(styleConfigure(builtStyle, mapStyle, matchedLanguage.code));
+    if (nopoi) {
+      configuredStyle.layers = configuredStyle.layers
+        .filter(layer => !constants.map.pois_layers.includes(layer.id));
+    }
+
+    styleCache[cacheKey] = configuredStyle;
+    return configuredStyle;
   };
+
+  const languages = constants.languages;
+
+  return [
+    query('lang')
+      .default(languages.defaultLanguage.code)
+      .customSanitizer(lang => {
+        const langValue = lang.split(/-|_/)[0];
+        const matchedLanguage = languages.supportedLanguages.find(supportedLanguage => {
+          return supportedLanguage.code === langValue;
+        });
+        if (!matchedLanguage) {
+          return languages.defaultLanguage.code;
+        }
+        return matchedLanguage.code;
+      }),
+    query('layers')
+      .default(LayersEnum.ALL)
+      .custom(layers => {
+        if (!Object.values(LayersEnum).includes(layers)) {
+          throw Error('Unknown value for "layers"');
+        }
+        return true;
+      }),
+    function(req, res) {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      res.set('Content-Type', 'application/json');
+      res.send(getStyle({
+        host: req.get('host'),
+        lang: req.query.lang,
+        nopoi: req.query.layers === LayersEnum.NOPOI,
+      }));
+    },
+  ];
 };

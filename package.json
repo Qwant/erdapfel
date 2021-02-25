@@ -103,7 +103,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-static-gzip": "^1.1.3",
-    "express-validator": "^6.1.1",
+    "express-validator": "^6.9.2",
     "finalhandler": "^1.1.2",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
