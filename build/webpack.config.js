@@ -20,17 +20,20 @@ const getBuildMode = function(argv) {
 
 const sassChunkConfig = () => {
   return {
-    entry: path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
+    entry: [
+      path.join(__dirname, '..', 'src', 'scss', 'app.scss'),
+      path.join(__dirname, '..', 'src', 'scss', 'unsupported.scss'),
+    ],
     output: {
       path: path.join(__dirname, '..'),
-      filename: 'tmp/css.js',
+      filename: 'tmp/[name].js',
     },
     module: {
       rules: [{
         use: {
           loader: 'file-loader',
           options: {
-            name: 'public/css/app.css',
+            name: 'public/css/[name].css',
           },
         },
       }, {
@@ -59,50 +62,6 @@ const sassChunkConfig = () => {
     },
   };
 };
-
-
-const unsupportedSassChunkConfig = () => {
-  return {
-    entry: path.join(__dirname, '..', 'src', 'scss', 'unsupported.scss'),
-    output: {
-      path: path.join(__dirname, '..'),
-      filename: 'tmp/css_unsupported.js',
-    },
-    module: {
-      rules: [{
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'public/css/unsupported.css',
-          },
-        },
-      }, {
-        test: /\.scss$/,
-        use: [{
-          loader: 'postcss-loader',
-          options: {
-            plugins: [
-              require('autoprefixer')(),
-              require('postcss-import')(),
-            ],
-          },
-        }],
-      }, {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          publicPath: '/',
-          name: '[name].[ext]',
-          outputPath: 'images/',
-        },
-      }, {
-        test: /\.scss$/,
-        loader: 'sass-loader',
-      }],
-    },
-  };
-};
-
 
 const mainJsChunkConfig = buildMode => {
   return {
@@ -215,7 +174,6 @@ const webpackChunks = buildMode => {
     mainJsChunkConfig(buildMode),
     copyPluginConfig(),
     sassChunkConfig(buildMode),
-    unsupportedSassChunkConfig(),
   ];
   const constants = yaml.readSync('../config/constants.yml');
 
