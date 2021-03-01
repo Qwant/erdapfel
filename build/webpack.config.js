@@ -20,17 +20,20 @@ const getBuildMode = function(argv) {
 
 const sassChunkConfig = () => {
   return {
-    entry: path.join(__dirname, '..', 'src', 'scss', 'main.scss'),
+    entry: [
+      path.join(__dirname, '..', 'src', 'scss', 'app.scss'),
+      path.join(__dirname, '..', 'src', 'scss', 'unsupported.scss'),
+    ],
     output: {
       path: path.join(__dirname, '..'),
-      filename: 'tmp/css.js',
+      filename: 'tmp/[name].js',
     },
     module: {
       rules: [{
         use: {
           loader: 'file-loader',
           options: {
-            name: 'public/css/app.css',
+            name: 'public/css/[name].css',
           },
         },
       }, {
@@ -59,7 +62,6 @@ const sassChunkConfig = () => {
     },
   };
 };
-
 
 const mainJsChunkConfig = buildMode => {
   return {

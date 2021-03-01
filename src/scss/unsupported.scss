@@ -1,0 +1,87 @@
+
+$font_system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+@import "includes/font";
+@import "includes/colors";
+@import "includes/spacing";
+@import "includes/reset";
+
+html {
+  height: 100%;
+}
+
+.unsupported {
+  width: 100%;
+  height: 100%;
+  background: url('../images/backgrounds/unsupported.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $grey-black;
+
+  &-dialog {
+    background: $background;
+    max-width: 360px;
+    margin: 0 $spacing-xl-2;
+    border-radius: 12px;
+    box-shadow:
+      0 8px 64px 0 rgba(12, 12, 14, 0.2),
+      0 16px 32px 0 rgba(12, 12, 14, 0.12);
+  }
+
+  &-header {
+    padding: $spacing-l $spacing-l 0;
+
+    h1 {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.2;
+      letter-spacing: -0.4px;
+      margin-bottom: $spacing-xs;
+    }
+
+    p {
+      color: $grey-semi-darkness;
+    }
+  }
+
+  &-browserList {
+    margin: $spacing-s 0;
+  }
+
+  &-browserLink {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 $spacing-xxl-5 0 $spacing-xxl-7;
+    color: $grey-black;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1.25;
+    background-repeat: no-repeat;
+    background-position: $spacing-l center, right $spacing-l center;
+    background-size: 36px, 20px;
+
+    &.brave {
+      background-image: url('../images/logos/brave.png'), url('../images/remix/external-link-line.svg');
+    }
+    &.chrome {
+      background-image: url('../images/logos/chrome.png'), url('../images/remix/external-link-line.svg');
+    }
+    &.edge {
+      background-image: url('../images/logos/edge.png'), url('../images/remix/external-link-line.svg');
+    }
+    &.firefox {
+      background-image: url('../images/logos/firefox.png'), url('../images/remix/external-link-line.svg');
+    }
+    &.safari {
+      background-image: url('../images/logos/safari.png'), url('../images/remix/external-link-line.svg');
+    }
+
+    &:hover {
+      background-color: $grey-bright;
+      text-decoration: none;
+    }
+  }
+}

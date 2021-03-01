@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="<%= language.code %>">
+  <head>
+    <meta charset="utf-8">
+    <title><%= _('Qwant Maps') %> - <%= _('Unsupported browser', 'unsupported') %></title>
+    <meta name="description" content="<%= _('The map that respects your privacy') %>">
+    <meta name='viewport' content="width=device-width,initial-scale=1"/>
+    <link href='./statics/css/unsupported.css' rel='stylesheet'/>
+  </head>
+  <body class="unsupported">
+    <div class="unsupported-dialog">
+      <div class="unsupported-header">
+        <h1><%= _('Your browser is not supported anymore.', 'unsupported') %></h1>
+        <p><%= _('Install one of these browsers to use Qwant Maps.', 'unsupported') %></p>
+      </div>
+      <div class="unsupported-browserList">
+        <a class="unsupported-browserLink brave" href="https://brave.com/download/">Brave</a>
+        <a class="unsupported-browserLink chrome" href="https://www.google.com/chrome/">Google Chrome</a>
+        <a class="unsupported-browserLink edge" href="https://www.microsoft.com/edge">Microsoft Edge</a>
+        <a class="unsupported-browserLink firefox" href="https://getfirefox.com">Mozilla Firefox</a>
+        <a class="unsupported-browserLink safari" href="https://www.apple.com/safari/">Safari</a>
+      </form>
+    </div>
+  </body>
+</html>
