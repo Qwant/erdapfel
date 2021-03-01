@@ -11,7 +11,6 @@ const fakePbf = require('./middlewares/fake_pbf/index');
 const compression = require('compression');
 const mapStyle = require('./middlewares/map_style');
 const getReqSerializer = require('./serializers/request');
-const redirectUnsupported = require('./middlewares/unsupported_browser');
 
 const app = express();
 const promRegistry = new promClient.Registry();
@@ -109,11 +108,12 @@ function App(config) {
     });
   }
 
-  const ogMeta = new require('./middlewares/og_meta')(config);
-
   router.get('/unsupported', (req, res) => {
     res.render('unsupported', { config });
   });
+
+  const ogMeta = new require('./middlewares/og_meta')(config);
+  const redirectUnsupported = new require('./middlewares/unsupported_browser')(config);
 
   router.get('/*', redirectUnsupported, ogMeta, (req, res) => {
     const userAgent = req.headers['user-agent'];
