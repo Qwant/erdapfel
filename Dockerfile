@@ -41,7 +41,8 @@ ENV NODE_ENV=production
 COPY local_modules $PROJECT_DIR/local_modules
 COPY package*.json $PROJECT_DIR
 
-RUN npm ci --production
+# As all static files will be copied from the previous step, 'prepare' script is not needed
+RUN IGNORE_PREPARE=true npm ci --production
 
 COPY config $PROJECT_DIR/config
 COPY language $PROJECT_DIR/language

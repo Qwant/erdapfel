@@ -16,7 +16,7 @@
     "i18n-pull": "tx pull --all --force",
     "watch": "webpack --config build/webpack.config.js -w --mode=development",
     "msgmerge": "node local_modules/merge-po/index",
-    "prepare": "if [ \"$NODE_ENV\" != production ]; then node build/before_build.js; fi",
+    "prepare": "if [ \"$IGNORE_PREPARE\" != true ]; then node build/before_build.js; fi",
     "lint": "eslint src bin build tests --ext '.js,.jsx'",
     "lint-fix": "eslint --fix src bin build tests --ext '.js,.jsx'",
     "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript"
