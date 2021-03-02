@@ -123,9 +123,6 @@ const mainJsChunkConfig = buildMode => {
             options: babelConf(buildMode),
           },
         ],
-        exclude: [
-          /\/node_modules/,
-        ],
       }, {
         test: /\.svg$/,
         use: [{

@@ -38,9 +38,9 @@ module.exports = function(mode) {
   const conf = mode === 'production' ? production : development;
 
   return {
-    'presets': conf.presets.concat([ '@babel/preset-react' ]),
-    'ignore': [
-      'node_modules',
+    presets: conf.presets.concat([ '@babel/preset-react' ]),
+    ignore: [
+      /node_modules\/(?!@qwant\/qwant-basic-gl-style)/,
     ],
     plugins,
   };
