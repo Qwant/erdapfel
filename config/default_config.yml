@@ -19,6 +19,8 @@ server:
   # NB: `routerBaseUrl` may be different from `system.baseUrl` if a proxy is responsible for rewriting URLs
   routerBaseUrl: / # path prefix expected by the express server
   useGeoipForInitialPosition: true
+  unsupportedBrowsers:
+    redirect: false
 
 app:
   versionFlag: Beta

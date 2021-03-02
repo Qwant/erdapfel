@@ -108,13 +108,14 @@ function App(config) {
     });
   }
 
-  const ogMeta = new require('./middlewares/og_meta')(config);
-
   router.get('/unsupported', (req, res) => {
     res.render('unsupported', { config });
   });
 
-  router.get('/*', ogMeta, (req, res) => {
+  const ogMeta = new require('./middlewares/og_meta')(config);
+  const redirectUnsupported = new require('./middlewares/unsupported_browser')(config);
+
+  router.get('/*', redirectUnsupported, ogMeta, (req, res) => {
     const userAgent = req.headers['user-agent'];
     const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
     let appConfig = config;

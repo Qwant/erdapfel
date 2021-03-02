@@ -11,5 +11,6 @@ config.direction.service.api = 'mapbox'; // Directions fixtures use mapbox forma
 config.events.enabled = true;
 config.system.baseUrl = '/maps/';
 config.server.routerBaseUrl = '/maps/';
+config.server.unsupportedBrowsers.redirect = true;
 
 module.exports = config;
