@@ -9,7 +9,7 @@ module.exports = function(config) {
 
   return function(req, res, next) {
     if (redirect && isUnsupported(req.headers['user-agent'])) {
-      res.redirect(302, req.baseUrl + '/unsupported');
+      res.redirect(302, config.system.baseUrl + 'unsupported');
     } else {
       next();
     }
