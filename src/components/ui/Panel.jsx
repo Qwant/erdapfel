@@ -284,7 +284,10 @@ class Panel extends React.Component {
   render() {
     const {
       children, minimizedTitle,
-      resizable, className, size, renderHeader, onClose, floatingItems } = this.props;
+      resizable, className, size,
+      renderHeader, onClose,
+      floatingItemsLeft, floatingItemsRight,
+    } = this.props;
     const { translateY, holding } = this.state;
 
     return (
@@ -311,7 +314,10 @@ class Panel extends React.Component {
             }}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            {floatingItems && <FloatingItems items={floatingItems} />}
+            {floatingItemsLeft && size !== 'maximized' &&
+              <FloatingItems position="left" items={floatingItemsLeft} />
+            }
+            {floatingItemsRight && <FloatingItems position="right" items={floatingItemsRight} />}
             {onClose && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable &&
               <div

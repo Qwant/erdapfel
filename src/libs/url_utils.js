@@ -72,3 +72,8 @@ export function updateQueryString(queriesObject) {
     ...queriesObject,
   });
 }
+
+export function isFromQwant() {
+  const params = parseQueryString(window.location.search);
+  return params.isFromQwant === 'true';
+}

@@ -18,6 +18,9 @@ import classnames from 'classnames';
 import { sources } from 'config/constants.yml';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
+import { BackToQwantButton } from 'src/components/BackToQwantButton';
+import { isFromQwant } from 'src/libs/url_utils';
+import { PanelNav } from 'src/components/ui';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -134,10 +137,28 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     </>;
   }
 
+  const NavHeader = () => {
+    if (isMobile) {return null;}
+
+    if (isFromQwant()) {
+      return (
+        <PanelNav>
+          <BackToQwantButton style={{}} key="back-to-qwant" />
+        </PanelNav>
+      );
+    }
+
+    return null;
+  };
+
   return <Panel
     resizable
+    renderHeader={<NavHeader isMobile={isMobile} />}
     minimizedTitle={_('Unfold to show the results', 'categories')}
     className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}
+    floatingItemsLeft={[
+      isMobile && <BackToQwantButton key="back-to-qwant" />,
+    ]}
   >
     {panelContent}
   </Panel>;

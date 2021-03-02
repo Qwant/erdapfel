@@ -9,7 +9,7 @@ import PoiBlockContainer from './PoiBlockContainer';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
-import { buildQueryString } from 'src/libs/url_utils';
+import { buildQueryString, isFromQwant } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import { fire, listen, unListen } from 'src/libs/customEvents';
@@ -17,7 +17,8 @@ import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
-import { Flex, Panel, PanelNav, CloseButton, Divider } from 'src/components/ui';
+import { Flex, Panel, PanelNav, CloseButton, Divider, Button } from 'src/components/ui';
+import { BackToQwantButton } from 'src/components/BackToQwantButton';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -221,6 +222,34 @@ export default class PoiPanel extends React.Component {
         ? this.backToFavorite
         : this.closeAction;
 
+    const NavHeader = ({ isMobile }) => {
+      if (isMobile) {return null;}
+
+      if (isFromQwant()) {
+        return (
+          <PanelNav>
+            <BackToQwantButton style={{}} key="back-to-qwant" />
+          </PanelNav>
+        );
+      }
+
+      if (backAction !== this.closeAction) {
+        return (
+          <PanelNav>
+            <Button
+              icon="arrow-left"
+              variant="tertiary"
+              onClick={backAction}
+            >
+              {_('Display all results')}
+            </Button>
+          </PanelNav>
+        );
+      }
+
+      return null;
+    };
+
     return <DeviceContext.Consumer>
       {isMobile =>
         <Panel
@@ -232,13 +261,10 @@ export default class PoiPanel extends React.Component {
             !isFromFavorite &&
             (!poiFilters || !poiFilters.category),
           })}
-          renderHeader={!isMobile && backAction !== this.closeAction &&
-            <PanelNav
-              isMobile={isMobile}
-              onGoBack={backAction}
-              goBackText={_('Display all results')}
-            />
-          }
+          renderHeader={<NavHeader isMobile={isMobile} />}
+          floatingItemsLeft={isMobile && [
+            <BackToQwantButton key="back-to-qwant" />,
+          ]}
         >
           <div className="poi_panel__content">
             <Flex alignItems="flex-start" justifyContent="space-between">
