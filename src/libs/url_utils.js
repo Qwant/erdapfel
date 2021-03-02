@@ -75,5 +75,6 @@ export function updateQueryString(queriesObject) {
 
 export function isFromQwant() {
   const params = parseQueryString(window.location.search);
-  return params.isFromQwant === 'true';
+  const qwantClients = ['search-ia-local', 'search-ia-multi', 'search-ia-address'];
+  return params.client && qwantClients.includes(params.client);
 }
