@@ -16,7 +16,7 @@
     "i18n-pull": "tx pull --all --force",
     "watch": "webpack --config build/webpack.config.js -w --mode=development",
     "msgmerge": "node local_modules/merge-po/index",
-    "prepare": "node build/before_build.js",
+    "prepare": "if [ \"$IGNORE_PREPARE\" != true ]; then node build/before_build.js; fi",
     "lint": "eslint src bin build tests --ext '.js,.jsx'",
     "lint-fix": "eslint --fix src bin build tests --ext '.js,.jsx'",
     "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript"
@@ -38,11 +38,6 @@
     "@babel/preset-react": "^7.9.0",
     "@babel/runtime": "^7.9.0",
     "@mapbox/mapbox-gl-rtl-text": "^0.2.3",
-    "@qwant/config-sanitizer-loader": "file:local_modules/config-sanitizer-loader",
-    "@qwant/map-style-loader": "file:local_modules/map-style-loader",
-    "@qwant/merge-po-loader": "file:local_modules/merge-po-loader",
-    "@qwant/nconf-getter": "file:local_modules/nconf_getter",
-    "@qwant/po-js-loader": "file:local_modules/po-js-loader",
     "@svgr/webpack": "^5.5.0",
     "autoprefixer": "^9.7.5",
     "babel-eslint": "^10.0.2",
@@ -57,7 +52,7 @@
     "jest-extended": "^0.11.2",
     "json-loader": "0.5.7",
     "mapbox-gl": "^1.13.0",
-    "mapbox-gl-js-mock": "https://github.com/Qwant/mapbox-gl-js-mock.git#72d1f4b",
+    "mapbox-gl-js-mock": "github:Qwant/mapbox-gl-js-mock#72d1f4b",
     "node-sass": "^4.14.1",
     "postcss-import": "12.0.0",
     "postcss-loader": "2.0.9",
@@ -77,15 +72,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.0",
-    "@qwant/gettext": "file:local_modules/gettext",
-    "@qwant/map-style-builder": "git+https://github.com/Qwant/map-style-builder.git#9808391",
-    "@qwant/mapbox_style_configure": "file:local_modules/mapbox_style_configure",
-    "@qwant/merge-po": "file:local_modules/merge-po",
-    "@qwant/nconf-builder": "file:local_modules/nconf_builder",
-    "@qwant/po-js": "file:local_modules/po-js",
+    "@qwant/map-style-builder": "github:Qwant/map-style-builder#9808391",
     "@qwant/qwant-basic-gl-style": "^1.1.0",
-    "@qwant/telemetry": "file:local_modules/telemetry",
-    "@qwant/uri": "file:local_modules/uri",
     "@turf/along": "^6.0.1",
     "@turf/bbox": "^6.0.1",
     "@turf/bearing": "^6.0.1",
@@ -116,5 +104,8 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "request": "^2.88.0"
-  }
+  },
+  "workspaces": [
+    "./local_modules/*"
+  ]
 }

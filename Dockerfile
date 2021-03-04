@@ -6,7 +6,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     gettext git python3 build-essential ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm i npm@latest-6 -g
+RUN npm i npm@7 -g
 RUN mkdir -p $PROJECT_DIR
 RUN chown node $PROJECT_DIR
 
@@ -22,7 +22,7 @@ COPY --chown=node local_modules $PROJECT_DIR/local_modules
 
 # Install with dev and build dependencies
 # 'npm prepare' is called after install
-RUN npm install
+RUN npm ci
 
 COPY --chown=node . $PROJECT_DIR
 
@@ -41,7 +41,8 @@ ENV NODE_ENV=production
 COPY local_modules $PROJECT_DIR/local_modules
 COPY package*.json $PROJECT_DIR
 
-RUN npm install --production
+# As all static files will be copied from the previous step, 'prepare' script is not needed
+RUN IGNORE_PREPARE=true npm ci --production
 
 COPY config $PROJECT_DIR/config
 COPY language $PROJECT_DIR/language
