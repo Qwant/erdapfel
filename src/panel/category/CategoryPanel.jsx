@@ -157,7 +157,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     minimizedTitle={_('Unfold to show the results', 'categories')}
     className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}
     floatingItemsLeft={[
-      isMobile && <BackToQwantButton key="back-to-qwant" />,
+      isMobile && shouldShowBackToQwant && <BackToQwantButton key="back-to-qwant" />,
     ]}
   >
     {panelContent}

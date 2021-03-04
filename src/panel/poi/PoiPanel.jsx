@@ -262,7 +262,7 @@ export default class PoiPanel extends React.Component {
             (!poiFilters || !poiFilters.category),
           })}
           renderHeader={<NavHeader isMobile={isMobile} />}
-          floatingItemsLeft={isMobile && [
+          floatingItemsLeft={isMobile && shouldShowBackToQwant && [
             <BackToQwantButton key="back-to-qwant" />,
           ]}
         >
