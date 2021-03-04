@@ -73,8 +73,7 @@ export function updateQueryString(queriesObject) {
   });
 }
 
-export function isFromQwant() {
+export function shouldShowBackToQwant() {
   const params = parseQueryString(window.location.search);
-  const qwantClients = ['search-ia-local', 'search-ia-multi', 'search-ia-address'];
-  return params.client && qwantClients.includes(params.client);
+  return params.client && params.client === 'search-ia-maps-multi';
 }

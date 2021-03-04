@@ -19,7 +19,7 @@ import { sources } from 'config/constants.yml';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
-import { isFromQwant } from 'src/libs/url_utils';
+import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import { PanelNav } from 'src/components/ui';
 
 const categoryConfig = nconf.get().category;
@@ -140,7 +140,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const NavHeader = () => {
     if (isMobile) {return null;}
 
-    if (isFromQwant()) {
+    if (shouldShowBackToQwant()) {
       return (
         <PanelNav>
           <BackToQwantButton style={{}} key="back-to-qwant" />

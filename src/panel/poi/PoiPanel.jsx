@@ -9,7 +9,7 @@ import PoiBlockContainer from './PoiBlockContainer';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
-import { buildQueryString, isFromQwant } from 'src/libs/url_utils';
+import { buildQueryString, shouldShowBackToQwant } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import { fire, listen, unListen } from 'src/libs/customEvents';
@@ -225,7 +225,7 @@ export default class PoiPanel extends React.Component {
     const NavHeader = ({ isMobile }) => {
       if (isMobile) {return null;}
 
-      if (isFromQwant()) {
+      if (shouldShowBackToQwant()) {
         return (
           <PanelNav>
             <BackToQwantButton style={{}} key="back-to-qwant" />
