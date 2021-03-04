@@ -138,17 +138,15 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   }
 
   const NavHeader = () => {
-    if (isMobile) {return null;}
-
-    if (shouldShowBackToQwant()) {
-      return (
-        <PanelNav>
-          <BackToQwantButton />
-        </PanelNav>
-      );
+    if (isMobile || !shouldShowBackToQwant()) {
+      return null;
     }
 
-    return null;
+    return (
+      <PanelNav>
+        <BackToQwantButton />
+      </PanelNav>
+    );
   };
 
   return <Panel
