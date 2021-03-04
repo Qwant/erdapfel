@@ -143,7 +143,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     if (shouldShowBackToQwant()) {
       return (
         <PanelNav>
-          <BackToQwantButton style={{}}/>
+          <BackToQwantButton />
         </PanelNav>
       );
     }

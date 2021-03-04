@@ -228,7 +228,7 @@ export default class PoiPanel extends React.Component {
       if (shouldShowBackToQwant()) {
         return (
           <PanelNav>
-            <BackToQwantButton style={{}} />
+            <BackToQwantButton />
           </PanelNav>
         );
       }
