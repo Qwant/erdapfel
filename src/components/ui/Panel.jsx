@@ -317,7 +317,8 @@ class Panel extends React.Component {
             {floatingItemsLeft && size !== 'maximized' &&
               <FloatingItems position="left" items={floatingItemsLeft} />
             }
-            {floatingItemsRight && <FloatingItems position="right" items={floatingItemsRight} />}
+            {floatingItemsRight && size !== 'maximized' &&
+              <FloatingItems position="right" items={floatingItemsRight} />}
             {onClose && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable &&
               <div
