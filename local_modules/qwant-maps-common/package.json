@@ -1,0 +1,23 @@
+{
+  "name": "@qwant/qwant-maps-common",
+  "version": "0.1.0",
+  "description": "Common utilities for Qwant Maps, Instant Answers, etc.",
+  "main": "dist/index.js",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && rollup -c",
+    "prepare": "npm run build",
+    "i18n-scan": "i18next-scanner 'src/*.js'"
+  },
+  "author": "Qwant",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-dynamic-import-vars": "^1.1.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "i18next-scanner": "^3.0.0",
+    "rollup": "^2.39.1"
+  }
+}
