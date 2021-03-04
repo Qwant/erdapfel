@@ -6,7 +6,6 @@ export const BackToQwantButton = ({ ...props }) => {
 
   return (
     <Button
-      key="back-to-qwant"
       icon="arrow-left"
       variant="tertiary"
       onClick={() => window.history.back()}
