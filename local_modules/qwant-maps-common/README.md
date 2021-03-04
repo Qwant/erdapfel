@@ -33,6 +33,11 @@ All languages files in `./i18n` are updated with the translations keys that appe
 npm run build
 ```
 
+or from the project root folder:
+```
+npm rebuild @qwant/qwant-maps-common
+```
+
 Output files are generated in `./dist/`.
 
 
@@ -40,5 +45,5 @@ Output files are generated in `./dist/`.
 
 After you applied your modifications, and translations are up-to-date, you may publish a new release.
 
-* Update the version number in "package.json"
+* Update the version number in "package.json" (or use [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version))
 * Run `npm publish`
