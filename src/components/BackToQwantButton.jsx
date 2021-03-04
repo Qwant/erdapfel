@@ -1,3 +1,4 @@
+/* globals _ */
 import React from 'react';
 
 import { Button } from 'src/components/ui';
@@ -12,7 +13,7 @@ export const BackToQwantButton = ({ ...props }) => {
       onClick={() => window.history.back()}
       {...props}
     >
-      Retour sur Qwant
+      {_('Back to Qwant.com')}
     </Button>
   );
 };
