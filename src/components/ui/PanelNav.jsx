@@ -1,16 +1,10 @@
 import React from 'react';
-import { Button, Flex, Divider } from '.';
+import { Flex, Divider } from '.';
 
-const PanelNav = ({ onGoBack, goBackText }) =>
+const PanelNav = ({ children }) =>
   <div className="panelNav">
     <Flex className="panelNav-content" justifyContent="space-between">
-      <Button
-        icon="arrow-left"
-        variant="tertiary"
-        onClick={onGoBack}
-      >
-        {goBackText}
-      </Button>
+      {children}
     </Flex>
 
     <Divider
