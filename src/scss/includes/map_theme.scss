@@ -103,6 +103,12 @@
   }
 }
 
+.map_control__scale_attribute_container--hidden {
+  .map_control__scale_attribute_container {
+    visibility: hidden;
+  }
+}
+
 .map_control__scale_attribute_container .mapboxgl-ctrl.map_control__scale {
   margin: 4px 5px;
   float: left;

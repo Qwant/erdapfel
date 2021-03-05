@@ -3,26 +3,16 @@ import React, { useEffect } from 'react';
 
 import { Button } from 'src/components/ui';
 
+const hiddenAttributeClassName = 'map_control__scale_attribute_container--hidden';
+
 export const BackToQwantButton = ({ isMobile }) => {
 
   useEffect(() => {
-    let mapScaleElement;
+    if (!isMobile) {return;}
 
-    window.execOnMapLoaded(() => {
-      if (!isMobile) {return;}
-      // Hide scale while the button is mounted as it would overlap
-      const elems = document.getElementsByClassName('map_control__scale_attribute_container');
-      if (elems.length > 0) {
-        mapScaleElement = elems[0];
-        mapScaleElement.style.visibility = 'hidden';
-      }
-    });
-
-    return () => {
-      if (mapScaleElement) {
-        mapScaleElement.style.visibility = 'visible';
-      }
-    };
+    // Hide scale while the button is mounted as it would overlap
+    document.body.classList.add(hiddenAttributeClassName);
+    return () => document.body.classList.remove(hiddenAttributeClassName);
   }, [isMobile]);
 
   return (
