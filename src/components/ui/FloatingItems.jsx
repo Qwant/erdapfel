@@ -4,7 +4,7 @@ const FloatingItems = ({ items, position }) =>
   <div
     className="floatingItems"
     style={position === 'left'
-      ? { paddingLeft: 12, transform: 'translateY(calc(-100% - 32px))' }
+      ? { paddingLeft: 12 }
       : { paddingRight: 12 }}>
     {items}
   </div>
