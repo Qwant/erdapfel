@@ -1,5 +1,5 @@
 /* global _ */
-import React, { Fragment } from 'react';
+import React, { useState, useRef, Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
@@ -13,126 +13,114 @@ const twitterShareUrl = location => {
 
 const menu_height = 3 * 32;
 
-export default class ShareMenu extends React.Component {
-  static propTypes = {
-    url: PropTypes.string.isRequired,
-    scrollableParent: PropTypes.string,
-    children: PropTypes.func.isRequired,
-    onShare: PropTypes.func,
-  }
+const copyToClipboard = value => {
+  const el = document.createElement('textarea');
+  el.value = value;
+  document.body.appendChild(el);
+  el.focus();
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+};
 
-  static defaultProps = {
-    onShare: () => {},
-  }
+const openPopup = url => {
+  const style = 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600';
+  window.open(url, '', style);
+};
 
-  state = {
-    open: false,
-    copied: false,
-    top: 0,
-    left: 0,
-  }
+const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, children }) => {
+  const [opened, setOpened] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [top, setTop] = useState(0);
+  const [left, setLeft] = useState(0);
+  const portalContainer = useRef(document.createElement('div'));
 
-  componentDidMount() {
-    this.portalContainer = document.createElement('div');
-    document.body.appendChild(this.portalContainer);
-  }
+  useEffect(() => {
+    const current = portalContainer.current;
+    document.body.appendChild(current);
 
-  componentWillUnmount() {
-    if (this.portalContainer) {
-      // @IE11: replace with this.portalContainer.remove()
-      this.portalContainer.parent?.removeChild(this.portalContainer);
+    return () => {
+      document.body.removeChild(current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const close = () => { setOpened(false); };
+
+    if (opened) {
+      document.addEventListener('click', close);
+      document.querySelector(scrollableParent).addEventListener('scroll', close);
     }
-    this.close();
-  }
 
-  open = e => {
+    return () => {
+      document.removeEventListener('click', close);
+      document.querySelector(scrollableParent).removeEventListener('scroll', close);
+    };
+  }, [scrollableParent, opened]);
+
+  const onOpen = e => {
     if (navigator.share) {
       // Native share modal (on mobile and Safari Mac)
-      navigator.share({
-        title: document.title,
-        url: this.props.url,
-      });
+      navigator.share({ title: document.title, url });
       return;
     }
-    const targetBoundingRect = e.target.getBoundingClientRect();
-    const top = targetBoundingRect.top;
-    const left = targetBoundingRect.left;
+    const { top: topPos, left: leftPos } = e.target.getBoundingClientRect();
     e.stopPropagation();
-    this.setState({
-      open: true,
-      copied: false,
-      top: top + 30 + menu_height < innerHeight ? top + 20 : top - 15 - menu_height,
-      left,
-    });
-    document.addEventListener('click', this.close);
-    (document.querySelector(this.props.scrollableParent) || document.body)
-      .addEventListener('scroll', this.close);
-  }
+    setOpened(true);
+    setCopied(false);
+    setTop(topPos + 30 + menu_height < innerHeight ? topPos + 20 : topPos - 15 - menu_height);
+    setLeft(leftPos);
+  };
 
-  close = () => {
-    document.removeEventListener('click', this.close);
-    (document.querySelector(this.props.scrollableParent) || document.body)
-      .removeEventListener('scroll', this.close);
-    if (this.state.open) {
-      this.setState({ open: false });
-    }
-  }
+  const onCopyUrl = () => {
+    copyToClipboard(url);
+    setCopied(true);
+  };
 
-  openPopup = href => {
-    const style = 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600';
-    window.open(href, '', style);
-  }
+  return <Fragment>
+    {children(onOpen)}
+    {opened && ReactDOM.createPortal(<div className="shareMenu-menu"
+      style={{ left: left + 'px', top: top + 'px' }}>
 
-  copy(url) {
-    const el = document.createElement('textarea');
-    el.value = url;
-    document.body.appendChild(el);
-    el.focus();
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    this.setState({ copied: true });
-  }
+      <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
+        e.nativeEvent.stopImmediatePropagation();
+        onCopyUrl();
+        onShare('copy');
+      }}>
+        <i className="icon-copy" />
+        {
+          copied
+            ? <span className="shareMenu-menuItem--copied">
+              { _('Copied!') }
+            </span>
+            : _('Copy link', 'share')
+        }
+      </div>
 
-  render() {
-    const { url, children } = this.props;
+      <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={() => {
+        openPopup(facebookShareUrl(url));
+        onShare('facebook');
+      }}>
+        <i className="icon-facebook" />
+        {_('Facebook', 'share')}
+      </div>
 
-    return <Fragment>
-      {children(this.open)}
-      {this.state.open && ReactDOM.createPortal(<div className="shareMenu-menu"
-        style={{ left: this.state.left + 'px', top: this.state.top + 'px' }}>
+      <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={() => {
+        openPopup(twitterShareUrl(url));
+        onShare('twitter');
+      }}>
+        <i className="icon-twitter" />
+        {_('Twitter', 'share')}
+      </div>
+    </div>, portalContainer.current)}
+  </Fragment>;
+};
 
-        <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
-          e.nativeEvent.stopImmediatePropagation();
-          this.copy(url);
-          this.props.onShare('copy');
-        }}>
-          <i className="icon-copy" />
-          {
-            this.state.copied
-              ? <span className="shareMenu-menuItem--copied">
-                { _('Copied!') }
-              </span>
-              : _('Copy link', 'share')
-          }
-        </div>
+ShareMenu.propTypes = {
+  url: PropTypes.string.isRequired,
+  scrollableParent: PropTypes.string,
+  children: PropTypes.func.isRequired,
+  onShare: PropTypes.func,
+};
 
-        <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={() => {
-          this.openPopup(facebookShareUrl(url));
-          this.props.onShare('facebook');
-        }}>
-          <i className="icon-facebook" />
-          {_('Facebook', 'share')}
-        </div>
-
-        <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={() => {
-          this.openPopup(twitterShareUrl(url));
-          this.props.onShare('twitter');
-        }}>
-          <i className="icon-twitter" />
-          {_('Twitter', 'share')}
-        </div>
-      </div>, this.portalContainer)}
-    </Fragment>;
-  }
-}
+export default ShareMenu;
