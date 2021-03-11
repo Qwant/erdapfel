@@ -29,33 +29,15 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "linebreak-style": ["error", "unix"],
-    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
-    "curly": "error",
-    "keyword-spacing": ["error", { "before": true, "after": true }],
-    "comma-spacing": ["error", { "before": false, "after": true }],
-    "arrow-spacing": ["error", { "before": true, "after": true }],
-    "key-spacing": [
-      "error",
-      { "beforeColon": false, "afterColon": true, "mode": "strict" }
-    ],
-    "func-call-spacing": ["error", "never"],
-    "space-infix-ops": "error",
-    "space-before-function-paren": [
-      "error",
-      {
-        "anonymous": "never",
-        "named": "never",
-        "asyncArrow": "always"
-      }
-    ],
-    "space-before-blocks": "error",
     "no-console": ["error", { "allow": ["warn", "error"] }],
-    "comma-dangle": ["error", "always-multiline"],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "never"
+    }],
     "comma-style": ["error", "last"],
-    "eol-last": ["error", "always"],
-    "no-extra-parens": ["error", "all", { "nestedBinaryExpressions": false }],
-    "arrow-parens": ["error", "as-needed"],
     "no-unused-vars": [
       "error",
       {
@@ -66,7 +48,6 @@
     "prefer-const": ["error"],
     "no-var": "error",
     "eqeqeq": "error",
-    "object-curly-spacing": ["error", "always"],
     "object-shorthand": "error",
     "react/prop-types": 0,
     "react/jsx-curly-brace-presence": ["error", "never"],
