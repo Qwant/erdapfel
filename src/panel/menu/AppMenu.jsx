@@ -1,12 +1,16 @@
 /* globals _ */
-import React from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
-import { CloseButton, Flex } from 'src/components/ui';
-import { Heart, IconLightbulb, IconEdit } from 'src/components/ui/icons';
+import { CloseButton, Flex, Divider } from 'src/components/ui';
+import { Heart, IconLightbulb, IconEdit, IconApps } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
+import { DeviceContext } from 'src/libs/device';
 
-const MenuPanel = ({ close }) => {
+const AppMenu = ({ close, openProducts }) => {
+  const isMobile = useContext(DeviceContext);
+
   const navTo = (url, options) => {
     close();
     window.app.navigateTo(url, options);
@@ -44,9 +48,26 @@ const MenuPanel = ({ close }) => {
         >
           {_('How to contribute', 'menu')}
         </MenuItem>
+        {isMobile && <>
+          <Divider />
+          <MenuItem
+            onClick={e => {
+              e.preventDefault();
+              openProducts();
+            }}
+            icon={<IconApps width={16} fill={ACTION_BLUE_BASE} />}
+          >
+            {_('Products', 'menu')}
+          </MenuItem>
+        </>}
       </div>
     </div>
   </div>;
 };
 
-export default MenuPanel;
+AppMenu.propTypes = {
+  close: PropTypes.func.isRequired,
+  openProducts: PropTypes.func.isRequired,
+};
+
+export default AppMenu;

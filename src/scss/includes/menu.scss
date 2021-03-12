@@ -88,12 +88,15 @@ $menuPanelWidth: 300px;
     display: none;
   }
 
-  .menu__button {
+  .menu__button-container {
     position: fixed;
     right: $spacing-s;
     top: $spacing-xl;
-    width: 40px;
-    height: 40px;
+    flex-direction: row-reverse;
+  }
+
+  .menu__button {
+    padding: $spacing-s;
     border-radius: 8px;
     box-shadow: $shadow;
 
@@ -106,6 +109,10 @@ $menuPanelWidth: 300px;
       box-shadow: none;
       color: $grey-black;
       background-color: $grey-lighter;
+    }
+
+    &--noShadow {
+      box-shadow: none;
     }
   }
 

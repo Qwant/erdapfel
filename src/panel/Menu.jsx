@@ -2,13 +2,15 @@
 import React, { Fragment, useEffect, useState, useRef, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
-import MenuPanel from './menu/MenuPanel';
+import AppMenu from './menu/AppMenu';
+import ProductsPanel from './menu/ProductsPanel';
 import Telemetry from 'src/libs/telemetry';
-import { IconMenu } from 'src/components/ui/icons';
+import { Flex } from 'src/components/ui';
+import { IconMenu, IconApps } from 'src/components/ui/icons';
 import { DeviceContext } from 'src/libs/device';
 
 const Menu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
   const isMobile = useContext(DeviceContext);
 
@@ -20,29 +22,64 @@ const Menu = () => {
     };
   }, []);
 
-  const toggle = () => {
-    if (!isOpen) {
+  useEffect(() => {
+    if (openedMenu === 'app') {
       Telemetry.add(Telemetry.MENU_CLICK);
     }
-    setIsOpen(!isOpen);
-  };
+  }, [openedMenu]);
 
   const close = () => {
-    setIsOpen(false);
+    setOpenedMenu(null);
   };
 
   return (
     <Fragment>
-      <button
-        type="button"
-        className={cx('menu__button', { 'menu__button--active': isOpen })}
-        onClick={toggle}
-        title={_('Menu')}
-      >
-        {isMobile ? <IconMenu /> : <IconMenu width={16} height={16} />}
-      </button>
+      <Flex className="menu__button-container">
+        <button
+          type="button"
+          className={cx('menu__button', {
+            'menu__button--active': openedMenu === 'app',
+            'menu__button--noShadow': openedMenu && openedMenu !== 'app',
+          })}
+          onClick={() => {
+            setOpenedMenu('app');
+          }}
+          title={_('Menu')}
+        >
+          {isMobile ? <IconMenu /> : <IconMenu width={16} height={16} />}
+        </button>
 
-      {isOpen && ReactDOM.createPortal(<MenuPanel close={close} />, menuContainer.current)}
+        {!isMobile && (
+          <button
+            type="button"
+            className={cx('u-mr-xs', 'menu__button', {
+              'menu__button--active': openedMenu === 'products',
+              'menu__button--noShadow': openedMenu && openedMenu !== 'products',
+            })}
+            onClick={() => {
+              setOpenedMenu('products');
+            }}
+          >
+            <IconApps className="u-mr-xxs" />
+            {_('Products', 'menu')}
+          </button>
+        )}
+      </Flex>
+
+      {openedMenu &&
+        ReactDOM.createPortal(
+          openedMenu === 'app' ? (
+            <AppMenu
+              close={close}
+              openProducts={() => {
+                setOpenedMenu('products');
+              }}
+            />
+          ) : (
+            <ProductsPanel close={close} />
+          ),
+          menuContainer.current
+        )}
     </Fragment>
   );
 };

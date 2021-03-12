@@ -237,6 +237,10 @@ input[type="search"] {
     transition: opacity $formWidthTransitionDuration;
   }
 
+  .menu__button-container {
+    height: 100%;
+  }
+
   .menu__button {
     background-color: transparent;
   }
