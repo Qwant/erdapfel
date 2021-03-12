@@ -71,7 +71,8 @@ const Menu = () => {
             outsideLink
             icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
           >
-            {_('About Qwant Maps', 'menu')}
+            <span dangerouslySetInnerHTML={{
+              __html: _('Terms of service Qwant&nbsp;Maps', 'menu') }} />
           </MenuItem>
           <MenuItem
             href="https://github.com/Qwant/qwantmaps/blob/master/contributing.md"

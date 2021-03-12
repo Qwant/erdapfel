@@ -13,9 +13,9 @@ const MenuItem = ({ icon, children, href, onClick, outsideLink }) =>
       target: '_blank',
     } : {})}
   >
-    <Flex>
-      {icon && <Flex className="u-mr-s">{icon}</Flex>}
-      <div style={{ flexGrow: 1 }}>{children}</div>
+    <Flex alignItems="flex-start">
+      {icon && <div className="u-mr-s">{icon}</div>}
+      <div className="u-mr-s" style={{ flexGrow: 1 }}>{children}</div>
       {outsideLink && <IconExternalLink width={16} fill={GREY_SEMI_DARKNESS} />}
     </Flex>
   </a>;

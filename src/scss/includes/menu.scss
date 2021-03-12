@@ -54,6 +54,12 @@ $menuPanelWidth: 300px;
   display: block;
   padding: $spacing-m $spacing-xl-2;
   color: $grey-black;
+  
+  // Needed to ensure icons are visually aligned with the first line of text
+  svg {
+    height: 16px;
+    flex-shrink: 0;
+  }
 
   &:hover, &:active {
     text-decoration: none;
