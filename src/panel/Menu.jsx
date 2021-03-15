@@ -5,7 +5,7 @@ import cx from 'classnames';
 import AppMenu from './menu/AppMenu';
 import ProductsDrawer from './menu/ProductsDrawer';
 import Telemetry from 'src/libs/telemetry';
-import { Flex } from 'src/components/ui';
+import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps } from 'src/components/ui/icons';
 import { DeviceContext } from 'src/libs/device';
 
@@ -67,9 +67,20 @@ const Menu = () => {
       </Flex>
 
     {openedMenu && ReactDOM.createPortal(
-      openedMenu === 'app'
-        ? <AppMenu close={close} openProducts={() => { setOpenedMenu('products'); }}/>
-        : <ProductsDrawer close={close} />,
+      <div className={cx('menu', { productsDrawer: openedMenu === 'products' })}>
+        <div className="menu__overlay" onClick={close} />
+
+        <div className="menu__panel">
+          <Flex className="menu-top">
+            <CloseButton circle onClick={close} />
+          </Flex>
+          <div className="menu-content">
+            {openedMenu === 'app'
+              ? <AppMenu close={close} openProducts={() => { setOpenedMenu('products'); }}/>
+              : <ProductsDrawer />}
+          </div>
+        </div>
+      </div>,
       menuContainer.current,
     )}
   </Fragment>
