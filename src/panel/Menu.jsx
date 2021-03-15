@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState, useRef, useContext } from 'react'
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import AppMenu from './menu/AppMenu';
-import ProductsPanel from './menu/ProductsPanel';
+import ProductsDrawer from './menu/ProductsDrawer';
 import Telemetry from 'src/libs/telemetry';
 import { Flex } from 'src/components/ui';
 import { IconMenu, IconApps } from 'src/components/ui/icons';
@@ -66,22 +66,13 @@ const Menu = () => {
         )}
       </Flex>
 
-      {openedMenu &&
-        ReactDOM.createPortal(
-          openedMenu === 'app' ? (
-            <AppMenu
-              close={close}
-              openProducts={() => {
-                setOpenedMenu('products');
-              }}
-            />
-          ) : (
-            <ProductsPanel close={close} />
-          ),
-          menuContainer.current
-        )}
-    </Fragment>
-  );
-};
+    {openedMenu && ReactDOM.createPortal(
+      openedMenu === 'app'
+        ? <AppMenu close={close} openProducts={() => { setOpenedMenu('products'); }}/>
+        : <ProductsDrawer close={close} />,
+      menuContainer.current,
+    )}
+  </Fragment>
+}
 
-export default Menu;
+export default Menu

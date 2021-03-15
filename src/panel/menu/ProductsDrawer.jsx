@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CloseButton, Flex } from 'src/components/ui';
 
-const ProductsPanel = ({ close }) => {
+const ProductsDrawer = ({ close }) => {
   return <div className="menu">
     <div className="menu__overlay" onClick={close} />
 
@@ -30,9 +30,9 @@ const ProductsPanel = ({ close }) => {
   </div>;
 };
 
-ProductsPanel.propTypes = {
+ProductsDrawer.propTypes = {
   close: PropTypes.func.isRequired,
   openProducts: PropTypes.func.isRequired,
 };
 
-export default ProductsPanel;
+export default ProductsDrawer;
