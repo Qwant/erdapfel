@@ -74,6 +74,12 @@ $productDrawerWidth: 744px;
   }
 }
 
+.menu {
+  .divider {
+    padding: $spacing-l;
+  }
+}
+
 .menu__button {
   background: $background;
   cursor: pointer;
