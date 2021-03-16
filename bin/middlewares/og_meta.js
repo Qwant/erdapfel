@@ -75,7 +75,7 @@ module.exports = function(config) {
   }
 
   return function(req, res, next) {
-    const placeUrlMatch = req.originalUrl.match(/place\/(.*)/);
+    const placeUrlMatch = req.originalUrl.split('?')[0].match(/place\/(.*)/);
     const locale = res.locals.language;
     let poiId;
     if (placeUrlMatch && placeUrlMatch.length > 0) {
