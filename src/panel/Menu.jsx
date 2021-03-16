@@ -8,6 +8,9 @@ import Telemetry from 'src/libs/telemetry';
 import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps } from 'src/components/ui/icons';
 import { DeviceContext } from 'src/libs/device';
+import nconf from '@qwant/nconf-getter';
+
+const displayProducts = nconf.get().burgerMenu?.products;
 
 const Menu = () => {
   const [openedMenu, setOpenedMenu] = useState(null);
@@ -32,6 +35,14 @@ const Menu = () => {
     setOpenedMenu(null);
   };
 
+  const toggleOpen = menu => {
+    if (openedMenu === menu) {
+      close();
+    } else {
+      setOpenedMenu(menu);
+    }
+  };
+
   return (
     <Fragment>
       <Flex className="menu__button-container">
@@ -42,14 +53,14 @@ const Menu = () => {
             'menu__button--noShadow': openedMenu && openedMenu !== 'app',
           })}
           onClick={() => {
-            setOpenedMenu('app');
+            toggleOpen('app');
           }}
           title={_('Menu')}
         >
           {isMobile ? <IconMenu /> : <IconMenu width={16} height={16} />}
         </button>
 
-        {!isMobile && (
+        {!isMobile && displayProducts && (
           <button
             type="button"
             className={cx('u-mr-xs', 'menu__button', {
@@ -57,7 +68,7 @@ const Menu = () => {
               'menu__button--noShadow': openedMenu && openedMenu !== 'products',
             })}
             onClick={() => {
-              setOpenedMenu('products');
+              toggleOpen('products');
             }}
           >
             <IconApps className="u-mr-xxs" />
@@ -66,24 +77,37 @@ const Menu = () => {
         )}
       </Flex>
 
-    {openedMenu && ReactDOM.createPortal(
-      <div className={cx('menu', { productsDrawer: openedMenu === 'products' })}>
-        <div className="menu__overlay" onClick={close} />
+      {openedMenu &&
+        ReactDOM.createPortal(
+          <div className={cx('menu', { productsDrawer: openedMenu === 'products' })}>
+            <div className="menu__overlay" onClick={close} />
 
-        <div className="menu__panel">
-          <Flex className="menu-top">
-            <CloseButton circle onClick={close} />
-          </Flex>
-          <div className="menu-content">
-            {openedMenu === 'app'
-              ? <AppMenu close={close} openProducts={() => { setOpenedMenu('products'); }}/>
-              : <ProductsDrawer />}
-          </div>
-        </div>
-      </div>,
-      menuContainer.current,
-    )}
-  </Fragment>
-}
+            <div className="menu__panel">
+              <Flex className="menu-top">
+                <CloseButton circle onClick={close} />
+              </Flex>
+              <div className="menu-content">
+                {openedMenu === 'app' ? (
+                  <AppMenu
+                    close={close}
+                    openProducts={
+                      isMobile && displayProducts
+                        ? () => {
+                            setOpenedMenu('products');
+                          }
+                        : null
+                    }
+                  />
+                ) : (
+                  <ProductsDrawer />
+                )}
+              </div>
+            </div>
+          </div>,
+          menuContainer.current
+        )}
+    </Fragment>
+  );
+};
 
-export default Menu
+export default Menu;

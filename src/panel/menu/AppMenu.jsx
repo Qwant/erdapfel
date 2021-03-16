@@ -1,16 +1,13 @@
 /* globals _ */
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
 import { Heart, IconLightbulb, IconEdit, IconApps } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
-import { DeviceContext } from 'src/libs/device';
 
 const AppMenu = ({ close, openProducts }) => {
-  const isMobile = useContext(DeviceContext);
-
   const navTo = (url, options) => {
     close();
     window.app.navigateTo(url, options);
@@ -42,7 +39,7 @@ const AppMenu = ({ close, openProducts }) => {
     >
       {_('How to contribute', 'menu')}
     </MenuItem>
-    {isMobile && <>
+    {openProducts && <>
       <Divider />
       <MenuItem
         onClick={e => {
