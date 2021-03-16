@@ -5,12 +5,11 @@
     "jest": true,
     "node": true
   },
-  "plugins": ["prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "settings": {
     "react": {
@@ -28,7 +27,6 @@
     "ecmaFeatures": { "jsx": true }
   },
   "rules": {
-    "prettier/prettier": "error",
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "comma-dangle": ["error", {
       "arrays": "always-multiline",
