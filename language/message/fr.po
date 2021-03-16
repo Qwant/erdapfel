@@ -1,14 +1,15 @@
 # 
 # Translators:
-# Adrien Matissart, 2021
+# Adrien Matissart, 2020
+# Benjamin Becquet <b.becquet@qwant.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-01 11:00+0000\n"
+"POT-Creation-Date: 2021-03-16 13:06+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2021\n"
+"Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,8 +28,17 @@ msgstr ""
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
 
+msgid "Unsupported browser"
+msgstr "Navigateur non pris en charge"
+
 msgid "The map that respects your privacy"
 msgstr "La carte qui respecte votre vie privée"
+
+msgid "Your browser is not supported anymore."
+msgstr "Votre navigateur n'est plus pris en charge."
+
+msgid "Install one of these browsers to use Qwant Maps."
+msgstr "Installez l'un des navigateurs suivants pour utiliser Qwant Maps."
 
 msgid "Qwant Maps Home"
 msgstr "Accueil de Qwant Maps"
@@ -98,6 +108,9 @@ msgstr "parking"
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
 
+msgid "My location"
+msgstr "Ma position"
+
 msgid "Close"
 msgstr "Fermer"
 
@@ -128,702 +141,6 @@ msgstr "À proximité de"
 msgid "nearby"
 msgstr "à proximité"
 
-msgid "accessories shop"
-msgstr "magasin d'accessoires"
-
-msgid "airport"
-msgstr "aéroport"
-
-msgid "liquor store"
-msgstr "magasin d'alcool"
-
-msgid "alpine hut"
-msgstr "refuge alpin"
-
-msgid "antiques shop"
-msgstr "antiquaire"
-
-msgid "aquarium"
-msgstr "aquarium"
-
-msgid "archery"
-msgstr "tir à l'arc"
-
-msgid "art shop"
-msgstr "magasin d'art"
-
-msgid "arts centre"
-msgstr "centre culturel"
-
-msgid "athletics"
-msgstr "athlétisme"
-
-msgid "ATM"
-msgstr "distributeur de billets"
-
-msgid "attraction"
-msgstr "attraction"
-
-msgid "bag shop"
-msgstr "magasin de sac et bagage"
-
-msgid "bakery"
-msgstr "boulangerie"
-
-msgid "basin"
-msgstr "bassin de rétention d'eau"
-
-msgid "basketball"
-msgstr "basketball"
-
-msgid "bbq"
-msgstr "barbecue"
-
-msgid "beauty salon"
-msgstr "salon de beauté"
-
-msgid "bed shop"
-msgstr "magasin de literie"
-
-msgid "bed and breakfast"
-msgstr "chambre d'hôte"
-
-msgid "beverages shop"
-msgstr "magasin de boissons"
-
-msgid "bicycle shop"
-msgstr "magasin de vélo"
-
-msgid "biergarten"
-msgstr "vente de bières en plein air"
-
-msgid "billiards"
-msgstr "billiards"
-
-msgid "bmx"
-msgstr "vtt"
-
-msgid "books shop"
-msgstr "librairie"
-
-msgid "border control"
-msgstr "contrôle frontalier"
-
-msgid "boules"
-msgstr "pétanque"
-
-msgid "boutique"
-msgstr "magasin de haute couture"
-
-msgid "bowls"
-msgstr "boulingrin"
-
-msgid "brewery"
-msgstr "brasserie artisanale"
-
-msgid "brownfield"
-msgstr "friche industrielle"
-
-msgid "bus station"
-msgstr "gare routière"
-
-msgid "bus stop"
-msgstr "arrêt de bus"
-
-msgid "butcher"
-msgstr "boucherie"
-
-msgid "cafe"
-msgstr "café"
-
-msgid "camp site"
-msgstr "camping"
-
-msgid "canoe"
-msgstr "canoë"
-
-msgid "car shop"
-msgstr "concessionaire automobile"
-
-msgid "car parts shop"
-msgstr "pièces automobiles"
-
-msgid "car repair"
-msgstr "garage automobile"
-
-msgid "car rental"
-msgstr "location de voitures"
-
-msgid "car wash station"
-msgstr "station de lavage"
-
-msgid "caravan site"
-msgstr "camping pour caravanes"
-
-msgid "carpenter"
-msgstr "charpentier"
-
-msgid "carpet shop"
-msgstr "magasin de tapis"
-
-msgid "castle"
-msgstr "chateau"
-
-msgid "catering"
-msgstr "traiteur"
-
-msgid "cemetery"
-msgstr "cimetière"
-
-msgid "holiday cottage"
-msgstr "maison de vacances"
-
-msgid "charging station"
-msgstr "station de recharge"
-
-msgid "charity store"
-msgstr "magasin caritatif"
-
-msgid "chemist"
-msgstr "parapharmacie"
-
-msgid "cheese shop"
-msgstr "fromager"
-
-msgid "chess"
-msgstr "échecs"
-
-msgid "childcare centre"
-msgstr "crèche"
-
-msgid "chocolate shop"
-msgstr "chocolaterie"
-
-msgid "cinema"
-msgstr "cinéma"
-
-msgid "climbing"
-msgstr "escalade"
-
-msgid "climbing adventure"
-msgstr "accrobranche"
-
-msgid "clinic"
-msgstr "clinique"
-
-msgid "clothes shop"
-msgstr "magasin de vêtements"
-
-msgid "coffee shop"
-msgstr "magasin de café"
-
-msgid "college"
-msgstr "enseignement supérieur"
-
-msgid "community centre"
-msgstr "centre social"
-
-msgid "computer shop"
-msgstr "magasin d'informatique"
-
-msgid "confectionery shop"
-msgstr "confiserie"
-
-msgid "convenience store"
-msgstr "supérette"
-
-msgid "copyshop"
-msgstr "service de photocopies"
-
-msgid "cosmetics shop"
-msgstr "magasin de cosmétique"
-
-msgid "courthouse"
-msgstr "palais de justice"
-
-msgid "coworking space"
-msgstr "espace de coworking"
-
-msgid "cricket"
-msgstr "cricket"
-
-msgid "cycling"
-msgstr "cyclisme"
-
-msgid "deli"
-msgstr "épicerie"
-
-msgid "dentist"
-msgstr "cabinet dentaire"
-
-msgid "department store"
-msgstr "grand magasin"
-
-msgid "dock"
-msgstr "dock"
-
-msgid "doctors office"
-msgstr "cabinet médical"
-
-msgid "dog park"
-msgstr "parc canin"
-
-msgid "dog racing"
-msgstr "courses de chiens"
-
-msgid "doityourself store"
-msgstr "magasin de bricolage"
-
-msgid "driving school"
-msgstr "auto-école"
-
-msgid "dry cleaning"
-msgstr "pressing"
-
-msgid "electronics shop"
-msgstr "magasin de matériel électronique"
-
-msgid "embassy"
-msgstr "ambassade"
-
-msgid "equestrian"
-msgstr "équestre"
-
-msgid "erotic shop"
-msgstr "sex shop"
-
-msgid "escape game"
-msgstr "jeu d'évasion"
-
-msgid "estate agent"
-msgstr "agence immobilière"
-
-msgid "fabric"
-msgstr "magasin de tissus"
-
-msgid "farm shop"
-msgstr "produits de la ferme"
-
-msgid "fast food"
-msgstr "restauration rapide"
-
-msgid "fire station"
-msgstr "caserne de pompier"
-
-msgid "fitness centre"
-msgstr "centre de fitness"
-
-msgid "florist"
-msgstr "fleuriste"
-
-msgid "food court"
-msgstr "aire de restauration"
-
-msgid "free flying"
-msgstr "parapente"
-
-msgid "frozen food"
-msgstr "surgelés"
-
-msgid "fuel station"
-msgstr "station essence"
-
-msgid "funeral home"
-msgstr "pompes funèbres"
-
-msgid "furniture shop"
-msgstr "magasin de meubles"
-
-msgid "gallery"
-msgstr "galerie d'art"
-
-msgid "garden"
-msgstr "jardin"
-
-msgid "garden centre"
-msgstr "jardinerie"
-
-msgid "general store"
-msgstr "magasin"
-
-msgid "gift shop"
-msgstr "magasin de souvenirs"
-
-msgid "golf"
-msgstr "golf"
-
-msgid "golf course"
-msgstr "parcours de golf"
-
-msgid "grave yard"
-msgstr "cimetière"
-
-msgid "greengrocer"
-msgstr "primeur"
-
-msgid "guest house"
-msgstr "chambre d'hôte"
-
-msgid "gymnastics"
-msgstr "gymnastique"
-
-msgid "hackerspace"
-msgstr "transformatoire"
-
-msgid "hairdresser"
-msgstr "coiffeur"
-
-msgid "halt"
-msgstr "gare"
-
-msgid "hardware shop"
-msgstr "magasin de matériel informatique"
-
-msgid "hearing aids shop"
-msgstr "audiologue"
-
-msgid "hifi shop"
-msgstr "magasin d'électroménager"
-
-msgid "horse racing"
-msgstr "hippodrome"
-
-msgid "hospital"
-msgstr "hôpital"
-
-msgid "hostel"
-msgstr "auberge de jeunesse"
-
-msgid "houseware shop"
-msgstr "articles ménagers"
-
-msgid "ice cream"
-msgstr "glacier"
-
-msgid "ice rink"
-msgstr "patinoire"
-
-msgid "interior decoration shop"
-msgstr "magasin de décoration"
-
-msgid "jewelry shop"
-msgstr "bijouterie"
-
-msgid "karting"
-msgstr "karting"
-
-msgid "kindergarten or preschool"
-msgstr "crèche ou école maternelle"
-
-msgid "kiosk"
-msgstr "kiosque"
-
-msgid "kitchen manufacturer"
-msgstr "cuisiniste"
-
-msgid "lamps shop"
-msgstr "magasin de luminaire"
-
-msgid "laundry"
-msgstr "laverie blanchisserie"
-
-msgid "library"
-msgstr "bibliothèque"
-
-msgid "long jump"
-msgstr "piste de saut en longueur"
-
-msgid "mall"
-msgstr "centre commercial"
-
-msgid "marina"
-msgstr "marina"
-
-msgid "marketplace"
-msgstr "marché"
-
-msgid "massage shop"
-msgstr "salon de massage"
-
-msgid "miniature golf"
-msgstr "mini-golf"
-
-msgid "mobile phone shop"
-msgstr "magasin de téléphonie"
-
-msgid "model aerodrome"
-msgstr "aérodrome pour modèles réduits d'avions"
-
-msgid "monument"
-msgstr "monument"
-
-msgid "motel"
-msgstr "motel"
-
-msgid "motocross"
-msgstr "motocross"
-
-msgid "motor"
-msgstr "moteur"
-
-msgid "motorcycle shop"
-msgstr "magasin de moto"
-
-msgid "multi"
-msgstr "multi"
-
-msgid "music shop"
-msgstr "magasin de musique"
-
-msgid "music school"
-msgstr "école de musique"
-
-msgid "musical instrument shop"
-msgstr "magasin d'instrument de musique"
-
-msgid "newsagent shop"
-msgstr "marchand de journaux"
-
-msgid "nightclub"
-msgstr "boite de nuit"
-
-msgid "nursing home"
-msgstr "maison médicalisée"
-
-msgid "optician"
-msgstr "opticien"
-
-msgid "orienteering"
-msgstr "course d'orientation"
-
-msgid "outdoor"
-msgstr "magasin de sports de plein air"
-
-msgid "paragliding"
-msgstr "parapente"
-
-msgid "park"
-msgstr "parc"
-
-msgid "car park"
-msgstr "parking"
-
-msgid "pastry shop"
-msgstr "patisserie"
-
-msgid "perfumery"
-msgstr "parfumerie"
-
-msgid "pet store"
-msgstr "animalerie"
-
-msgid "photo shop"
-msgstr "magasin de photo"
-
-msgid "picnic site"
-msgstr "aire de pique-nique"
-
-msgid "place of worship"
-msgstr "lieu de culte"
-
-msgid "plumber"
-msgstr "plombier"
-
-msgid "police"
-msgstr "commissariat"
-
-msgid "polling station"
-msgstr "bureau de vote"
-
-msgid "post office"
-msgstr "bureau de poste"
-
-msgid "prison"
-msgstr "prison"
-
-msgid "pub"
-msgstr "pub"
-
-msgid "public building"
-msgstr "bâtiment public"
-
-msgid "rc car"
-msgstr "voiture radio commandée"
-
-msgid "reservoir"
-msgstr "réservoir"
-
-msgid "rowing"
-msgstr "aviron"
-
-msgid "ruins"
-msgstr "ruines"
-
-msgid "running"
-msgstr "course à pied"
-
-msgid "sailing"
-msgstr "voile"
-
-msgid "school"
-msgstr "école"
-
-msgid "scuba diving"
-msgstr "plongée sous-marine"
-
-msgid "fishmonger"
-msgstr "poissonier"
-
-msgid "resale shop"
-msgstr "vente d'occasion"
-
-msgid "shelter"
-msgstr "abri"
-
-msgid "shoemaker"
-msgstr "cordonnier"
-
-msgid "shoes"
-msgstr "magasin de chaussures"
-
-msgid "shooting"
-msgstr "tir"
-
-msgid "skateboard"
-msgstr "skateboard"
-
-msgid "skating"
-msgstr "piste de ski de fond"
-
-msgid "skiing"
-msgstr "piste de ski"
-
-msgid "soccer"
-msgstr "football"
-
-msgid "sports shop"
-msgstr "magasin de sport"
-
-msgid "sports centre"
-msgstr "complexe sportif"
-
-msgid "stadium"
-msgstr "stade"
-
-msgid "stationery shop"
-msgstr "papeterie"
-
-msgid "subway"
-msgstr "arrêt de métro"
-
-msgid "swimming pool"
-msgstr "piscine"
-
-msgid "swimming area"
-msgstr "piscine"
-
-msgid "swimming pool equipment"
-msgstr "pisciniste"
-
-msgid "table tennis"
-msgstr "table de ping pong"
-
-msgid "tailor"
-msgstr "tailleur"
-
-msgid "tattoo salon"
-msgstr "salon de tatouage"
-
-msgid "tennis"
-msgstr "tennis"
-
-msgid "theatre"
-msgstr "théâtre"
-
-msgid "theme park"
-msgstr "parc à thème"
-
-msgid "ticket shop"
-msgstr "billetterie"
-
-msgid "tobacco shop"
-msgstr "buraliste"
-
-msgid "toll booth"
-msgstr "péage"
-
-msgid "townhall"
-msgstr "mairie"
-
-msgid "toys shop"
-msgstr "magasin de jouets"
-
-msgid "tram stop"
-msgstr "arrêt de tramway"
-
-msgid "travel agency"
-msgstr "agence de voyages"
-
-msgid "university"
-msgstr "université"
-
-msgid "variety store"
-msgstr "magasin à prix unique"
-
-msgid "vehicle inspection"
-msgstr "contrôle technique"
-
-msgid "veterinary"
-msgstr "cabinet vétérinaire"
-
-msgid "videos shop"
-msgstr "magasin de vidéo"
-
-msgid "video games shop"
-msgstr "magasin de jeux vidéo"
-
-msgid "viewpoint"
-msgstr "belvédère"
-
-msgid "watches shop"
-msgstr "horloger"
-
-msgid "water park"
-msgstr "parc aquatique"
-
-msgid "weapons shop"
-msgstr "armurerie"
-
-msgid "warehouse club"
-msgstr "grossiste"
-
-msgid "wine shop"
-msgstr "magasin de vins"
-
-msgid "winery"
-msgstr "chai"
-
-msgid "winter sports resort"
-msgstr "station de sports d'hiver"
-
-msgid "yoga"
-msgstr "yoga"
-
-msgid "zoo"
-msgstr "parc zoologique"
-
-msgid "city"
-msgstr "ville"
-
-msgid "country"
-msgstr "pays"
-
-msgid "address"
-msgstr "adresse"
-
-msgid "street"
-msgstr "rue"
-
 msgid "Open"
 msgstr "Ouvert"
 
@@ -838,6 +155,24 @@ msgstr "réouverture à {nextTransitionTime}"
 
 msgid "until {nextTransitionTime}"
 msgstr "jusqu’à {nextTransitionTime}"
+
+msgid "entries"
+msgstr ""
+
+msgid "values"
+msgstr ""
+
+msgid "keys"
+msgstr ""
+
+msgid "Wrong index!"
+msgstr ""
+
+msgid "Wrong offset!"
+msgstr ""
+
+msgid "Wrong length!"
+msgstr ""
 
 msgid "Geographic coordinates"
 msgstr "Coordonnées géographiques"
@@ -900,8 +235,8 @@ msgstr "Menu"
 msgid "My favorites"
 msgstr "Mes favoris"
 
-msgid "About Qwant Maps"
-msgstr "À propos de Qwant Maps"
+msgid "Terms of service Qwant&nbsp;Maps"
+msgstr "Conditions d'utilisation Qwant&nbsp;Maps"
 
 msgid "How to contribute"
 msgstr "Comment contribuer"
@@ -1025,6 +360,9 @@ msgstr "Lire la suite sur Wikipédia"
 msgid "Information"
 msgstr "Informations"
 
+msgid "address"
+msgstr "adresse"
+
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps utilise les données OpenStreetMap."
 
@@ -1033,6 +371,9 @@ msgstr "Voir"
 
 msgid "Edit"
 msgstr "Modifier"
+
+msgid "Back to Qwant.com"
+msgstr "Retour à Qwant.com"
 
 msgid "Display all results"
 msgstr "Afficher tous les résultats"
@@ -1155,6 +496,3 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "Ne plus afficher ce message"
-
-msgid "My location"
-msgstr "Ma position"
