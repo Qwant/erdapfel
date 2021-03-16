@@ -12,6 +12,6 @@ config.events.enabled = true;
 config.system.baseUrl = '/maps/';
 config.server.routerBaseUrl = '/maps/';
 config.server.unsupportedBrowsers.redirect = true;
-config.server.burgerMenu.products = true;
+config.burgerMenu.products = true;
 
 module.exports = config;

@@ -48,7 +48,6 @@ $productDrawerWidth: 744px;
 .menu-top {
   height: $top_bar_height;
   padding: 0 $spacing-l;
-  justify-content: flex-end;
   flex-shrink: 0;
 }
 
@@ -91,9 +90,19 @@ $productDrawerWidth: 744px;
   color: $grey-semi-darkness;
 }
 
-.menu-content {
-  overflow-y: auto;
-  padding: $spacing-xl $spacing-s;
+@media (max-width: 640px) {
+  .menu-content {
+    overflow-y: auto;
+    padding: $spacing-xl 0;
+  }
+
+  .closeButton {
+    margin-left: auto;
+  }
+
+  .productsDrawer .menu-top {
+    box-shadow: $shadow-hover;
+  }
 }
 
 .productsDrawer .menu__panel {
@@ -117,6 +126,12 @@ $productDrawerWidth: 744px;
     margin-bottom: $spacing-s;
   }
 
+  @media (max-width: 640px) {
+    .menu-content {
+      padding: $spacing-xxl-3 $spacing-s;
+    }
+  }
+
   @media (min-width: 641px) {
     width: auto;
     max-width: $productDrawerWidth;
@@ -132,13 +147,12 @@ $productDrawerWidth: 744px;
       margin-bottom: 0;
     }
 
-    .menu-content  {
+    .menu-content {
       padding-left: $spacing-xl-2;
       padding-right: $spacing-xl-2;
     }
   }
 }
-
 
 @media (min-width: 641px) {
   #react_menu__container {
@@ -175,7 +189,6 @@ $productDrawerWidth: 744px;
 
   .menu-top {
     height: 88px;
-    justify-content: unset;
   }
 
   .menu__panel {
