@@ -18,7 +18,7 @@ export default class PoiBlockContainer extends React.Component {
   static propTypes = {
     poi: PropTypes.object,
     covid19Enabled: PropTypes.bool,
-  }
+  };
 
   render() {
     if (!this.props.poi) {
@@ -39,39 +39,49 @@ export default class PoiBlockContainer extends React.Component {
       : null;
 
     const hasAddressBlock = this.props.poi.address && this.props.poi.subClassName !== 'latlon';
-    const hasDetailBlocks = hasAddressBlock
-    || websiteBlock
-    || informationBlock
-    || phoneBlock
-    || hourBlock
-    || recyclingBlock
-    || contactBlock;
+    const hasDetailBlocks =
+      hasAddressBlock ||
+      websiteBlock ||
+      informationBlock ||
+      phoneBlock ||
+      hourBlock ||
+      recyclingBlock ||
+      contactBlock;
 
-    return <div className="poi_panel__info">
-      {wikipedia && <div className="u-mb-m"><WikiBlock block={wikipedia} /></div>}
-      {displayCovidInfo &&
-        <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />}
-      {hasDetailBlocks && <>
-        <Divider paddingTop={0} />
-        <h3 className="u-text--smallTitle">{_('Information')}</h3>
-      </>}
-      {hasAddressBlock &&
-        <Block className="block-address" icon="map-pin" title={_('address')}>
-          <Address inline address={this.props.poi.address} omitCountry />
-        </Block>
-      }
-      {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
-      {phoneBlock && <PhoneBlock block={phoneBlock} />}
-      {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
-      {informationBlock && <InformationBlock block={informationBlock} />}
-      {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
-      {contactBlock && <ContactBlock block={contactBlock} />}
-      {imagesBlock &&
-        <>
-          <Divider />
-          <ImagesBlock block={imagesBlock} />
-        </>
-      }
-    </div>;
+    return (
+      <div className="poi_panel__info">
+        {wikipedia && (
+          <div className="u-mb-m">
+            <WikiBlock block={wikipedia} />
+          </div>
+        )}
+        {displayCovidInfo && (
+          <CovidBlock block={covidBlock} countryCode={this.props.poi.address.country_code} />
+        )}
+        {hasDetailBlocks && (
+          <>
+            <Divider paddingTop={0} />
+            <h3 className="u-text--smallTitle">{_('Information')}</h3>
+          </>
+        )}
+        {hasAddressBlock && (
+          <Block className="block-address" icon="map-pin" title={_('address')}>
+            <Address inline address={this.props.poi.address} omitCountry />
+          </Block>
+        )}
+        {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
+        {phoneBlock && <PhoneBlock block={phoneBlock} />}
+        {websiteBlock && <WebsiteBlock block={websiteBlock} poi={this.props.poi} />}
+        {informationBlock && <InformationBlock block={informationBlock} />}
+        {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
+        {contactBlock && <ContactBlock block={contactBlock} />}
+        {imagesBlock && (
+          <>
+            <Divider />
+            <ImagesBlock block={imagesBlock} />
+          </>
+        )}
+      </div>
+    );
   }
 }

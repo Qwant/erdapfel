@@ -1,9 +1,7 @@
-/* globals require, module, __dirname */
-
 const path = require('path');
 
-module.exports = function(config) {
-  return function(req, res) {
+module.exports = function (config) {
+  return function (req, res) {
     res.set('Content-Type', 'text/xml');
 
     res.render(path.join(__dirname, 'os.ejs'), {

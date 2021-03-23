@@ -14,28 +14,27 @@ const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
 
 export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryParams } = {}) => {
   if (selectedItem instanceof Poi) {
-    window.app.navigateTo(`/place/${toUrl(selectedItem)}`, {
-      poi: selectedItem,
-      centerMap: true,
-      query,
-    }, { replace: replaceUrl });
-  } else if (selectedItem instanceof Category) {
-    window.app.navigateTo(`/places/?type=${selectedItem.name}`,
-      {}, { replace: replaceUrl });
-  } else if (selectedItem instanceof Intention) {
-    Telemetry.add(
-      Telemetry.SUGGEST_SELECTION,
+    window.app.navigateTo(
+      `/place/${toUrl(selectedItem)}`,
       {
-        item: 'intention',
-        category: selectedItem.category ? selectedItem.category.name : null,
-        has_full_text_query: !!selectedItem.fullTextQuery,
-        has_place: !!selectedItem.place,
-        from_url_query: !!fromQueryParams?.q,
-        url_client: fromQueryParams?.client || null,
-      }
+        poi: selectedItem,
+        centerMap: true,
+        query,
+      },
+      { replace: replaceUrl }
     );
-    window.app.navigateTo(`/places/${selectedItem.toQueryString()}`,
-      {}, { replace: replaceUrl });
+  } else if (selectedItem instanceof Category) {
+    window.app.navigateTo(`/places/?type=${selectedItem.name}`, {}, { replace: replaceUrl });
+  } else if (selectedItem instanceof Intention) {
+    Telemetry.add(Telemetry.SUGGEST_SELECTION, {
+      item: 'intention',
+      category: selectedItem.category ? selectedItem.category.name : null,
+      has_full_text_query: !!selectedItem.fullTextQuery,
+      has_place: !!selectedItem.place,
+      from_url_query: !!fromQueryParams?.q,
+      url_client: fromQueryParams?.client || null,
+    });
+    window.app.navigateTo(`/places/${selectedItem.toQueryString()}`, {}, { replace: replaceUrl });
   } else if (!selectedItem) {
     // No result
     window.app.navigateTo('/noresult', { query }, { replace: replaceUrl });
@@ -74,7 +73,7 @@ export const modifyList = (items, withGeoloc, query) => {
     items.splice(0, 0, NavigatorGeolocalisationPoi.getInstance());
   }
 
-  if (query.length > 0 && (items.length === 0 || items.length === 1 && withGeoloc)) {
+  if (query.length > 0 && (items.length === 0 || (items.length === 1 && withGeoloc))) {
     items.push({ errorLabel: _('No result found', 'suggest') });
   }
 

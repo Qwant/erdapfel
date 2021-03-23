@@ -6,9 +6,8 @@ import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
 import { CloseButton, FloatingItems } from 'src/components/ui';
 
-const getEventClientY = event => event.changedTouches
-  ? event.changedTouches[0].clientY
-  : event.clientY;
+const getEventClientY = event =>
+  event.changedTouches ? event.changedTouches[0].clientY : event.clientY;
 
 // Pixel threshold to consider vertical swipes
 const SWIPE_THRESHOLD_PX = 50;
@@ -52,14 +51,14 @@ class Panel extends React.Component {
     isMapBottomUIDisplayed: PropTypes.bool,
     floatingItems: PropTypes.arrayOf(PropTypes.object),
     onTransitionEnd: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     fitContent: [],
     size: 'default',
     marginTop: 64, // default top bar size,
     isMapBottomUIDisplayed: true,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -89,9 +88,11 @@ class Panel extends React.Component {
     const { holding } = this.state;
     this.updateMobileMapUI();
 
-    if (fitContent && !holding && size !== 'maximized' ||
-        this.state.height !== prevState.height ||
-        this.props.size !== prevProps.size) {
+    if (
+      (fitContent && !holding && size !== 'maximized') ||
+      this.state.height !== prevState.height ||
+      this.props.size !== prevProps.size
+    ) {
       // Resize panel according to content height
       const translateY = this.getTranslateY(size);
       if (translateY !== this.state.translateY) {
@@ -115,7 +116,7 @@ class Panel extends React.Component {
 
   handleViewportResize = () => {
     this.setState({ height: this.getHeight() });
-  }
+  };
 
   updateMobileMapUI = ({ closing } = {}) => {
     if (this.props.resizable) {
@@ -149,7 +150,7 @@ class Panel extends React.Component {
         fire('mobile_direction_button_visibility', false);
       }
     }
-  }
+  };
 
   getHeight() {
     return window.innerHeight - this.props.marginTop;
@@ -178,28 +179,29 @@ class Panel extends React.Component {
     }
 
     this.setState({ holding: true });
-  }
+  };
 
   /**
-  * Triggered on mouse move on the panel resizer
-  * @param {MouseEvent|TouchEvent} e event
-  */
+   * Triggered on mouse move on the panel resizer
+   * @param {MouseEvent|TouchEvent} e event
+   */
   move = event => {
     const clientY = getEventClientY(event);
     const visibleHeight = Math.ceil(window.innerHeight - clientY + this.startClientYOffset);
     const { scrollTop } = this.panelContentRef.current;
 
-    if (this.state.translateY === 0 &&
-        this.props.size === 'maximized' &&
-        scrollTop === 0 &&
-        visibleHeight >= this.startHeight) {
+    if (
+      this.state.translateY === 0 &&
+      this.props.size === 'maximized' &&
+      scrollTop === 0 &&
+      visibleHeight >= this.startHeight
+    ) {
       /* User is starting to scroll content area from bottom to top
        * Do not prevent default */
       return;
     }
 
-    if (this.state.translateY === 0 &&
-        this.props.size === 'maximized' && scrollTop > 0) {
+    if (this.state.translateY === 0 && this.props.size === 'maximized' && scrollTop > 0) {
       /* User is already scrolling inside the panel content.
        * Update startClientY to ignore current swipe gesture */
       const rect = this.panelDOMElement.getBoundingClientRect();
@@ -211,29 +213,31 @@ class Panel extends React.Component {
 
     event.preventDefault();
 
-    const translateY = visibleHeight >= this.state.height
-      ? 0 // Prevent panel to be moved above the top bar
-      : this.state.height - visibleHeight;
+    const translateY =
+      visibleHeight >= this.state.height
+        ? 0 // Prevent panel to be moved above the top bar
+        : this.state.height - visibleHeight;
 
     this.setState({ translateY });
-  }
+  };
 
   getTranslateY(size) {
     const { fitContent } = this.props;
     const { height } = this.state;
     const panelHeight = this.panelContentRef.current.offsetHeight;
     const values = {
-      'default': height -
-        (fitContent.indexOf('default') >= 0 &&
-        (panelHeight + FIT_CONTENT_PADDING <= DEFAULT_SIZE)
+      default:
+        height -
+        (fitContent.indexOf('default') >= 0 && panelHeight + FIT_CONTENT_PADDING <= DEFAULT_SIZE
           ? panelHeight + FIT_CONTENT_PADDING
           : DEFAULT_SIZE),
-      'minimized': height - (fitContent.indexOf('minimized') >= 0
-        ? panelHeight + FIT_CONTENT_PADDING
-        : DEFAULT_MINIMIZED_SIZE),
-      'maximized': fitContent.indexOf('maximized') >= 0
-        ? height - panelHeight - FIT_CONTENT_PADDING
-        : 0,
+      minimized:
+        height -
+        (fitContent.indexOf('minimized') >= 0
+          ? panelHeight + FIT_CONTENT_PADDING
+          : DEFAULT_MINIMIZED_SIZE),
+      maximized:
+        fitContent.indexOf('maximized') >= 0 ? height - panelHeight - FIT_CONTENT_PADDING : 0,
     };
 
     return values[size];
@@ -252,7 +256,7 @@ class Panel extends React.Component {
       this.props.size,
       this.startHeight,
       this.stopHeight,
-      this.getHeight(),
+      this.getHeight()
     );
 
     if (newSize !== this.props.size) {
@@ -263,7 +267,7 @@ class Panel extends React.Component {
       holding: false,
       translateY: this.getTranslateY(newSize),
     });
-  }
+  };
 
   handleHeaderClick() {
     const size = this.props.size === 'default' ? 'minimized' : 'default';
@@ -283,28 +287,34 @@ class Panel extends React.Component {
 
   render() {
     const {
-      children, minimizedTitle,
-      resizable, className, size,
-      renderHeader, onClose,
-      floatingItemsLeft, floatingItemsRight,
+      children,
+      minimizedTitle,
+      resizable,
+      className,
+      size,
+      renderHeader,
+      onClose,
+      floatingItemsLeft,
+      floatingItemsRight,
     } = this.props;
     const { translateY, holding } = this.state;
 
     return (
       <DeviceContext.Consumer>
-        {isMobile =>
+        {isMobile => (
           <div
             className={classnames('panel', size, className, {
               'panel--holding': holding,
             })}
-            style={isMobile ?
-              {
-                height: this.state.height,
-                transform: `translate3d(0px, ${translateY}px, 0px)`,
-              }
-              : {}
+            style={
+              isMobile
+                ? {
+                    height: this.state.height,
+                    transform: `translate3d(0px, ${translateY}px, 0px)`,
+                  }
+                : {}
             }
-            ref={panel => this.panelDOMElement = panel}
+            ref={panel => (this.panelDOMElement = panel)}
             onTransitionEnd={() => {
               this.updateMobileMapUI();
               if (this.props.onTransitionEnd) {
@@ -314,36 +324,29 @@ class Panel extends React.Component {
             }}
             {...(isMobile && resizable && this.getEventHandlers())}
           >
-            {floatingItemsLeft && size !== 'maximized' &&
+            {floatingItemsLeft && size !== 'maximized' && (
               <FloatingItems position="left" items={floatingItemsLeft} />
-            }
-            {floatingItemsRight && size !== 'maximized' &&
-              <FloatingItems position="right" items={floatingItemsRight} />}
+            )}
+            {floatingItemsRight && size !== 'maximized' && (
+              <FloatingItems position="right" items={floatingItemsRight} />
+            )}
             {onClose && <CloseButton onClick={onClose} className="panel-close" />}
-            {isMobile && resizable &&
-              <div
-                className="panel-drawer"
-                onClick={() => this.handleHeaderClick()}
-              >
-                <div className="panel-handle"/>
+            {isMobile && resizable && (
+              <div className="panel-drawer" onClick={() => this.handleHeaderClick()}>
+                <div className="panel-handle" />
               </div>
-            }
+            )}
             {size !== 'minimized' && <div className="panel-header">{renderHeader}</div>}
-            {size === 'minimized' && minimizedTitle &&
-              <div className="minimizedTitle u-text--subtitle u-center">
-                {minimizedTitle}
-              </div>
-            }
-            <div
-              className="panel-content"
-              ref={this.panelContentRef}
-            >
+            {size === 'minimized' && minimizedTitle && (
+              <div className="minimizedTitle u-text--subtitle u-center">{minimizedTitle}</div>
+            )}
+            <div className="panel-content" ref={this.panelContentRef}>
               <PanelContent size={size} isMobile={isMobile}>
                 {children}
               </PanelContent>
             </div>
           </div>
-        }
+        )}
       </DeviceContext.Consumer>
     );
   }
@@ -352,9 +355,7 @@ class Panel extends React.Component {
 // Use React.memo to skip re-renders
 // and keep the same inner DOM during the panel manual resizes
 const PanelContent = React.memo(({ children, size, isMobile }) =>
-  typeof children === 'function'
-    ? children({ size, isMobile })
-    : children
+  typeof children === 'function' ? children({ size, isMobile }) : children
 );
 PanelContent.displayName = 'PanelContent';
 

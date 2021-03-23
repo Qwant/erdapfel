@@ -8,7 +8,7 @@ const facebookShareUrl = location => {
 };
 
 const twitterShareUrl = location => {
-  return `https://twitter.com/intent/tweet?url=${ encodeURIComponent(location) }`;
+  return `https://twitter.com/intent/tweet?url=${encodeURIComponent(location)}`;
 };
 
 const menu_height = 3 * 32;
@@ -45,7 +45,9 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
   }, []);
 
   useEffect(() => {
-    const close = () => { setOpened(false); };
+    const close = () => {
+      setOpened(false);
+    };
 
     if (opened) {
       document.addEventListener('click', close);
@@ -77,43 +79,54 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
     setCopied(true);
   };
 
-  return <Fragment>
-    {children(onOpen)}
-    {opened && ReactDOM.createPortal(<div className="shareMenu-menu"
-      style={{ left: left + 'px', top: top + 'px' }}>
+  return (
+    <Fragment>
+      {children(onOpen)}
+      {opened &&
+        ReactDOM.createPortal(
+          <div className="shareMenu-menu" style={{ left: left + 'px', top: top + 'px' }}>
+            <div
+              className="shareMenu-menuItem shareMenu-menuItem--copy"
+              onClick={e => {
+                e.nativeEvent.stopImmediatePropagation();
+                onCopyUrl();
+                onShare('copy');
+              }}
+            >
+              <i className="icon-copy" />
+              {copied ? (
+                <span className="shareMenu-menuItem--copied">{_('Copied!')}</span>
+              ) : (
+                _('Copy link', 'share')
+              )}
+            </div>
 
-      <div className="shareMenu-menuItem shareMenu-menuItem--copy" onClick={e => {
-        e.nativeEvent.stopImmediatePropagation();
-        onCopyUrl();
-        onShare('copy');
-      }}>
-        <i className="icon-copy" />
-        {
-          copied
-            ? <span className="shareMenu-menuItem--copied">
-              { _('Copied!') }
-            </span>
-            : _('Copy link', 'share')
-        }
-      </div>
+            <div
+              className="shareMenu-menuItem shareMenu-menuItem--facebook"
+              onClick={() => {
+                openPopup(facebookShareUrl(url));
+                onShare('facebook');
+              }}
+            >
+              <i className="icon-facebook" />
+              {_('Facebook', 'share')}
+            </div>
 
-      <div className="shareMenu-menuItem shareMenu-menuItem--facebook" onClick={() => {
-        openPopup(facebookShareUrl(url));
-        onShare('facebook');
-      }}>
-        <i className="icon-facebook" />
-        {_('Facebook', 'share')}
-      </div>
-
-      <div className="shareMenu-menuItem shareMenu-menuItem--twitter" onClick={() => {
-        openPopup(twitterShareUrl(url));
-        onShare('twitter');
-      }}>
-        <i className="icon-twitter" />
-        {_('Twitter', 'share')}
-      </div>
-    </div>, portalContainer.current)}
-  </Fragment>;
+            <div
+              className="shareMenu-menuItem shareMenu-menuItem--twitter"
+              onClick={() => {
+                openPopup(twitterShareUrl(url));
+                onShare('twitter');
+              }}
+            >
+              <i className="icon-twitter" />
+              {_('Twitter', 'share')}
+            </div>
+          </div>,
+          portalContainer.current
+        )}
+    </Fragment>
+  );
 };
 
 ShareMenu.propTypes = {

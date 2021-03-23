@@ -8,16 +8,16 @@ import Block from 'src/panel/poi/blocks/Block';
 
 const WebsiteBlock = ({ block, poi }) => {
   const onClickWebsite = () => {
-    Telemetry.sendPoiEvent(poi, 'website',
-      Telemetry.buildInteractionData(
-        {
-          'id': poi.id,
-          'source': poi.meta.source,
-          'template': 'single',
-          'zone': 'detail',
-          'element': 'website',
-        }
-      )
+    Telemetry.sendPoiEvent(
+      poi,
+      'website',
+      Telemetry.buildInteractionData({
+        id: poi.id,
+        source: poi.meta.source,
+        template: 'single',
+        zone: 'detail',
+        element: 'website',
+      })
     );
   };
 
@@ -25,16 +25,18 @@ const WebsiteBlock = ({ block, poi }) => {
     return block.label || URI.extractDomain(block.url);
   };
 
-  return <Block className="block-website" icon="icon_globe" title={_('website')}>
-    <a
-      href={URI.externalise(block.url)}
-      rel="noopener noreferrer nofollow"
-      target="_blank"
-      onClick={onClickWebsite}
-    >
-      {getWebsiteLabel()}
-    </a>
-  </Block>;
+  return (
+    <Block className="block-website" icon="icon_globe" title={_('website')}>
+      <a
+        href={URI.externalise(block.url)}
+        rel="noopener noreferrer nofollow"
+        target="_blank"
+        onClick={onClickWebsite}
+      >
+        {getWebsiteLabel()}
+      </a>
+    </Block>
+  );
 };
 
 WebsiteBlock.propTypes = {

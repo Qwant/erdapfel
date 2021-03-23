@@ -37,11 +37,11 @@ export default class DirectionPanel extends React.Component {
     isPublicTransportActive: PropTypes.bool,
     activeRouteId: PropTypes.number,
     details: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     activeRouteId: 0,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -52,16 +52,14 @@ export default class DirectionPanel extends React.Component {
       this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
     }
 
-    const activeVehicle = this.vehicles.indexOf(props.mode) !== -1
-      ? props.mode : modes.DRIVING;
+    const activeVehicle = this.vehicles.indexOf(props.mode) !== -1 ? props.mode : modes.DRIVING;
 
     this.lastQueryId = 0;
 
     this.state = {
       vehicle: activeVehicle,
       origin: null,
-      destination:
-        (props.poi && Poi.deserialize(props.poi)) || null,
+      destination: (props.poi && Poi.deserialize(props.poi)) || null,
       isLoading: false,
       isDirty: true, // useful to track intermediary states, when API update call is not made yet
       error: 0,
@@ -82,15 +80,17 @@ export default class DirectionPanel extends React.Component {
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
-
     // on mobile, when no origin is specified, try auto-geoloc
     if (isMobileDevice() && !this.state.origin && !this.props.origin) {
       const geolocationPermission = await getGeolocationPermission();
       let modalAccepted = false;
 
       // on an empty form, if the user's position permission hasn't been asked yet, show modal
-      if (!this.state.destination && !this.props.destination
-        && geolocationPermission === geolocationPermissions.PROMPT) {
+      if (
+        !this.state.destination &&
+        !this.props.destination &&
+        geolocationPermission === geolocationPermissions.PROMPT
+      ) {
         modalAccepted = await openPendingDirectionModal();
       }
 
@@ -101,10 +101,7 @@ export default class DirectionPanel extends React.Component {
           await origin.geolocate({
             displayErrorModal: false,
           });
-          this.setState(
-            { origin, originInputText: origin.name },
-            this.update
-          );
+          this.setState({ origin, originInputText: origin.name }, this.update);
         } catch (e) {
           // ignore possible error
         }
@@ -152,7 +149,7 @@ export default class DirectionPanel extends React.Component {
     ];
 
     try {
-      const [ origin, destination ] = await Promise.all(poiRestorePromises);
+      const [origin, destination] = await Promise.all(poiRestorePromises);
       // Set markers
       if (origin) {
         window.execOnMapLoaded(() => {
@@ -174,17 +171,20 @@ export default class DirectionPanel extends React.Component {
         this.setTextInput('destination', destination);
       }
 
-      this.setState({
-        origin,
-        destination,
-        isInitializing: false,
-      }, this.update);
+      this.setState(
+        {
+          origin,
+          destination,
+          isInitializing: false,
+        },
+        this.update
+      );
     } catch (e) {
       Error.sendOnce(
         'direction_panel',
         'restoreUrl',
         `Error restoring Poi from Url ${originUrlValue} / ${destinationUrlValue}`,
-        e,
+        e
       );
     }
   }
@@ -201,25 +201,20 @@ export default class DirectionPanel extends React.Component {
       const currentQueryId = ++this.lastQueryId;
       fire('set_origin', origin);
       fire('set_destination', destination);
-      const directionResponse = await DirectionApi.search(
-        origin,
-        destination,
-        vehicle,
-      );
+      const directionResponse = await DirectionApi.search(origin, destination, vehicle);
       // A more recent query was done in the meantime, ignore this result silently
       if (currentQueryId !== this.lastQueryId) {
         return;
       }
       if (directionResponse && directionResponse.error === 0) {
-
         // Valid, non-empty response
         const routes = directionResponse.data.routes
           .sort((routeA, routeB) => routeA.duration - routeB.duration)
           .map((route, i) => ({ ...route, id: i }));
 
         this.setState({ isLoading: false, error: 0, routes }, () => {
-          const activeRouteId = this.props.activeRouteId < this.state.routes.length
-            ? this.props.activeRouteId : 0;
+          const activeRouteId =
+            this.props.activeRouteId < this.state.routes.length ? this.props.activeRouteId : 0;
           window.execOnMapLoaded(() => {
             fire('set_routes', { routes, vehicle, activeRouteId });
           });
@@ -240,7 +235,7 @@ export default class DirectionPanel extends React.Component {
         fire('set_destination', destination);
       }
     }
-  }
+  };
 
   updateUrl({ params = {}, replace = false } = {}) {
     const search = updateQueryString({
@@ -264,7 +259,7 @@ export default class DirectionPanel extends React.Component {
   onSelectVehicle = vehicle => {
     Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
     this.setState({ vehicle, isDirty: true }, this.update);
-  }
+  };
 
   onClose = () => {
     if (this.state.activePreviewRoute) {
@@ -275,33 +270,39 @@ export default class DirectionPanel extends React.Component {
         ? window.history.back() // Go back to the poi panel
         : window.app.navigateTo('/');
     }
-  }
+  };
 
   reversePoints = () => {
     Telemetry.add(Telemetry.ITINERARY_INVERT);
-    this.setState(previousState => ({
-      origin: previousState.destination,
-      destination: previousState.origin,
-      originInputText: previousState.destinationInputText,
-      destinationInputText: previousState.originInputText,
-      isDirty: true,
-    }), this.update);
-  }
+    this.setState(
+      previousState => ({
+        origin: previousState.destination,
+        destination: previousState.origin,
+        originInputText: previousState.destinationInputText,
+        destinationInputText: previousState.originInputText,
+        isDirty: true,
+      }),
+      this.update
+    );
+  };
 
   changeDirectionPoint = (which, value, point) => {
-    this.setState({
-      [which]: point,
-      isDirty: true,
-      [which + 'InputText']: value || '',
-      activePreviewRoute: null,
-    }, () => {
-      this.update();
-      // Retrieve addresses
-      if (point && point.type === 'latlon') {
-        this.setTextInput(which, this.state[which]);
+    this.setState(
+      {
+        [which]: point,
+        isDirty: true,
+        [which + 'InputText']: value || '',
+        activePreviewRoute: null,
+      },
+      () => {
+        this.update();
+        // Retrieve addresses
+        if (point && point.type === 'latlon') {
+          this.setTextInput(which, this.state[which]);
+        }
       }
-    });
-  }
+    );
+  };
 
   setDirectionPoint = poi => {
     if (this.state.origin && this.state.destination) {
@@ -312,25 +313,28 @@ export default class DirectionPanel extends React.Component {
 
     // Update state
     // (Call update() that will perform a search and redraw the UI if both fields are set)
-    this.setState({
-      [which]: poi,
-      isDirty: true,
-    }, this.update);
-  }
+    this.setState(
+      {
+        [which]: poi,
+        isDirty: true,
+      },
+      this.update
+    );
+  };
 
   openMobilePreview = route => {
     Telemetry.add(Telemetry.ITINERARY_ROUTE_PREVIEW_OPEN);
     this.setState({ activePreviewRoute: route });
-  }
+  };
 
   handleShareClick = (e, handler) => {
     Telemetry.add(Telemetry.ITINERARY_SHARE);
     return handler(e);
-  }
+  };
 
   selectRoute = routeId => {
     this.updateUrl({ params: { selected: routeId }, replace: true });
-  }
+  };
 
   toggleDetails() {
     if (isMobileDevice()) {
@@ -348,39 +352,50 @@ export default class DirectionPanel extends React.Component {
 
   render() {
     const {
-      origin, destination, vehicle,
-      routes, error, activePreviewRoute,
-      isLoading, isDirty, isInitializing,
-      originInputText, destinationInputText,
+      origin,
+      destination,
+      vehicle,
+      routes,
+      error,
+      activePreviewRoute,
+      isLoading,
+      isDirty,
+      isInitializing,
+      originInputText,
+      destinationInputText,
       marginTop,
     } = this.state;
 
     const { activeRouteId, details: activeDetails } = this.props;
 
-    const title = <h3 className="direction-title u-text--title u-firstCap">
-      {_('calculate an itinerary', 'direction')}
-    </h3>;
-    const form = <DirectionForm
-      isLoading={isLoading}
-      origin={origin}
-      destination={destination}
-      originInputText = {originInputText}
-      destinationInputText = {destinationInputText}
-      onChangeDirectionPoint={this.changeDirectionPoint}
-      onReversePoints={this.reversePoints}
-      onEmptyOrigin={this.emptyOrigin}
-      onEmptyDestination={this.emptyDestination}
-      vehicles={this.vehicles}
-      onSelectVehicle={this.onSelectVehicle}
-      activeVehicle={vehicle}
-      isInitializing={isInitializing}
-    />;
+    const title = (
+      <h3 className="direction-title u-text--title u-firstCap">
+        {_('calculate an itinerary', 'direction')}
+      </h3>
+    );
+    const form = (
+      <DirectionForm
+        isLoading={isLoading}
+        origin={origin}
+        destination={destination}
+        originInputText={originInputText}
+        destinationInputText={destinationInputText}
+        onChangeDirectionPoint={this.changeDirectionPoint}
+        onReversePoints={this.reversePoints}
+        onEmptyOrigin={this.emptyOrigin}
+        onEmptyDestination={this.emptyDestination}
+        vehicles={this.vehicles}
+        onSelectVehicle={this.onSelectVehicle}
+        activeVehicle={vehicle}
+        isInitializing={isInitializing}
+      />
+    );
 
-    const result =
+    const result = (
       <RouteResult
         activeRouteId={activeRouteId}
         activeDetails={activeDetails}
-        isLoading={isLoading || routes.length > 0 && isDirty}
+        isLoading={isLoading || (routes.length > 0 && isDirty)}
         vehicle={vehicle}
         error={error}
         routes={routes}
@@ -388,101 +403,116 @@ export default class DirectionPanel extends React.Component {
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
         selectRoute={this.selectRoute}
-      />;
+      />
+    );
 
     const isFormCompleted = origin && destination;
     const isResultDisplayed = !activePreviewRoute && isFormCompleted;
 
-    return <DeviceContext.Consumer>
-      {isMobile => isMobile
-        ? <Fragment>
-          {!activePreviewRoute && <div className="direction-panel" ref={this.directionPanelRef}>
-            {!isFormCompleted && <Flex
-              className="direction-panel-header"
-              alignItems="center"
-              justifyContent="space-between">
-              {title}
-              <CloseButton onClick={this.onClose} />
-            </Flex>
-            }
-            {form}
-            {<div
-              id="direction-autocomplete_suggestions"
-              className="direction-autocomplete_suggestions"
-            />}
-          </div>}
-          {isResultDisplayed &&
-            <Panel
-              className="direction-panel-mobile"
-              resizable
-              fitContent={['default', 'maximized']}
-              marginTop={marginTop}
-              minimizedTitle={_('Unfold to show the results', 'direction')}
-              onClose={this.onClose}
-              isMapBottomUIDisplayed={false}
-              floatingItemsRight={[
-                <ShareMenu key="action-share" url={window.location.toString()}>
-                  {openMenu =>
-                    <FloatingButton
+    return (
+      <DeviceContext.Consumer>
+        {isMobile =>
+          isMobile ? (
+            <Fragment>
+              {!activePreviewRoute && (
+                <div className="direction-panel" ref={this.directionPanelRef}>
+                  {!isFormCompleted && (
+                    <Flex
+                      className="direction-panel-header"
+                      alignItems="center"
+                      justifyContent="space-between"
+                    >
+                      {title}
+                      <CloseButton onClick={this.onClose} />
+                    </Flex>
+                  )}
+                  {form}
+                  {
+                    <div
+                      id="direction-autocomplete_suggestions"
+                      className="direction-autocomplete_suggestions"
+                    />
+                  }
+                </div>
+              )}
+              {isResultDisplayed && (
+                <Panel
+                  className="direction-panel-mobile"
+                  resizable
+                  fitContent={['default', 'maximized']}
+                  marginTop={marginTop}
+                  minimizedTitle={_('Unfold to show the results', 'direction')}
+                  onClose={this.onClose}
+                  isMapBottomUIDisplayed={false}
+                  floatingItemsRight={[
+                    <ShareMenu key="action-share" url={window.location.toString()}>
+                      {openMenu => (
+                        <FloatingButton
+                          title={_('Share itinerary', 'direction')}
+                          onClick={e => this.handleShareClick(e, openMenu)}
+                          icon="share-2"
+                        />
+                      )}
+                    </ShareMenu>,
+                  ]}
+                  onTransitionEnd={(prevSize, size) => {
+                    if (prevSize === 'maximized' && size === 'default' && activeRouteId >= 0) {
+                      fire('set_main_route', { routeId: activeRouteId, fitView: true });
+                    }
+                  }}
+                >
+                  {result}
+                </Panel>
+              )}
+
+              {activePreviewRoute && (
+                <MobileRoadMapPreview
+                  steps={getAllSteps(activePreviewRoute)}
+                  onClose={this.onClose}
+                />
+              )}
+
+              {!activePreviewRoute &&
+                isMobile &&
+                activeDetails &&
+                activeRouteId >= 0 &&
+                this.state.routes.length > 0 && (
+                  <MobileRouteDetails
+                    id={activeRouteId}
+                    route={routes[activeRouteId]}
+                    origin={origin}
+                    destination={destination}
+                    vehicle={vehicle}
+                    toggleDetails={() => this.toggleDetails()}
+                    openPreview={() => this.openMobilePreview(routes[activeRouteId])}
+                  />
+                )}
+            </Fragment>
+          ) : (
+            <Panel className="direction-panel" onClose={this.onClose} renderHeader={form}>
+              <div id="direction-autocomplete_suggestions" />
+              {isResultDisplayed && (
+                <ShareMenu url={window.location.toString()}>
+                  {openMenu => (
+                    <Button
+                      className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
+                      variant="tertiary"
                       title={_('Share itinerary', 'direction')}
                       onClick={e => this.handleShareClick(e, openMenu)}
                       icon="share-2"
-                    />
-                  }
-                </ShareMenu>,
-              ]}
-              onTransitionEnd={(prevSize, size) => {
-                if (prevSize === 'maximized'
-                    && size === 'default' &&
-                    activeRouteId >= 0) {
-                  fire('set_main_route', { routeId: activeRouteId, fitView: true });
-                }
-              }}
-            >
+                    >
+                      {_('Share itinerary', 'direction')}
+                    </Button>
+                  )}
+                </ShareMenu>
+              )}
+              <Divider paddingTop={8} paddingBottom={0} />
               {result}
-            </Panel>}
-
-          {activePreviewRoute && <MobileRoadMapPreview
-            steps={getAllSteps(activePreviewRoute)}
-            onClose={this.onClose}
-          />}
-
-          {!activePreviewRoute && isMobile && activeDetails && activeRouteId >= 0 &&
-            this.state.routes.length > 0 &&
-            <MobileRouteDetails
-              id={activeRouteId}
-              route={routes[activeRouteId]}
-              origin={origin}
-              destination={destination}
-              vehicle={vehicle}
-              toggleDetails={() => this.toggleDetails()}
-              openPreview={() => this.openMobilePreview(routes[activeRouteId])}
-            />
-          }
-        </Fragment>
-        : <Panel
-          className="direction-panel"
-          onClose={this.onClose}
-          renderHeader={form}
-        >
-          <div id="direction-autocomplete_suggestions" />
-          {isResultDisplayed &&
-            <ShareMenu url={window.location.toString()}>
-              {openMenu => <Button
-                className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
-                variant="tertiary"
-                title={_('Share itinerary', 'direction')}
-                onClick={e => this.handleShareClick(e, openMenu)}
-                icon="share-2"
-              >
-                {_('Share itinerary', 'direction')}
-              </Button>}
-            </ShareMenu>
-          }
-          <Divider paddingTop={8} paddingBottom={0} />
-          {result}
-        </Panel>}
-    </DeviceContext.Consumer>;
+            </Panel>
+          )
+        }
+      </DeviceContext.Consumer>
+    );
   }
 }
 

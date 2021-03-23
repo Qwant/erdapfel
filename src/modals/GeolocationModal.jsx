@@ -11,18 +11,25 @@ let hasPermissionModalOpenedOnce = false;
 const GeolocationModal = ({ status, onClose, onAccept }) => {
   /* eslint-disable max-len */
 
-  const pendingOnDirectionsText = _('Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don\'t store your information because we don\'t want to know your whereabouts.',
-    'geolocation', {
-      privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
+  const pendingOnDirectionsText = _(
+    "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don't store your information because we don't want to know your whereabouts.",
+    'geolocation',
+    {
+      privacyPolicyLink:
+        '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
       closeTag: '</a>',
     }
   );
 
-  const pendingText = _('We look at your location to show you where you are, and that\'s it!<br />(See our {privacyPolicyLink}privacy policy{closeTag})',
-    'geolocation', {
-      privacyPolicyLink: '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
+  const pendingText = _(
+    "We look at your location to show you where you are, and that's it!<br />(See our {privacyPolicyLink}privacy policy{closeTag})",
+    'geolocation',
+    {
+      privacyPolicyLink:
+        '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
       closeTag: '</a>',
-    });
+    }
+  );
 
   const statuses = {
     PENDING: {
@@ -34,18 +41,23 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
     PENDING_ON_DIRECTIONS: {
       title: _('Enable your geolocation for better directions', 'geolocation'),
       text: pendingOnDirectionsText,
-      button: _('Ok, I\'ve got it', 'geolocation'),
+      button: _("Ok, I've got it", 'geolocation'),
       className: 'modal__maps__pending',
     },
     DENIED: {
       title: _('Geolocation not available.', 'geolocation'),
-      text: _('You have not allowed Qwant Maps (or your device) to access your location.', 'geolocation'),
+      text: _(
+        'You have not allowed Qwant Maps (or your device) to access your location.',
+        'geolocation'
+      ),
       button: _('Ok', 'geolocation'),
       className: 'modal__maps__denied',
     },
     NOT_ACTIVATED: {
       title: _('Geolocation not available.', 'geolocation'),
-      text: _('Qwant Maps cannot determine your position. Check that location services are enabled on your system.'),
+      text: _(
+        'Qwant Maps cannot determine your position. Check that location services are enabled on your system.'
+      ),
       button: _('Ok', 'geolocation'),
       className: 'modal__maps__not-activated',
     },
@@ -53,19 +65,23 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
   /* eslint-enable max-len */
 
   const { title, text, button, className } = statuses[status];
-  return <Modal onClose={onClose}>
-    <div className={classnames('modal__maps', className)}>
-      <CloseButton onClick={onClose} />
-      <div className="modal__maps__content">
-        <h2 className="modal__title u-text--smallTitle">{title}</h2>
-        <div
-          className="modal__subtitle u-text--subtitle"
-          dangerouslySetInnerHTML={{ __html: text }}
-        />
-        <Button className="modal__button" variant="primary" onClick={onAccept}>{button}</Button>
+  return (
+    <Modal onClose={onClose}>
+      <div className={classnames('modal__maps', className)}>
+        <CloseButton onClick={onClose} />
+        <div className="modal__maps__content">
+          <h2 className="modal__title u-text--smallTitle">{title}</h2>
+          <div
+            className="modal__subtitle u-text--subtitle"
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
+          <Button className="modal__button" variant="primary" onClick={onAccept}>
+            {button}
+          </Button>
+        </div>
       </div>
-    </div>
-  </Modal>;
+    </Modal>
+  );
 };
 
 function close() {

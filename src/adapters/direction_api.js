@@ -5,9 +5,29 @@ const directionConfig = nconf.get().direction.service;
 const timeout = nconf.get().direction.timeout;
 const OVERVIEW_SETTING = 'full';
 const ACCEPTED_LANGUAGES = [
-  'da', 'de', 'en', 'eo', 'es', 'fi', 'fr', 'he', 'id', 'it',
-  'ko', 'my', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sv', 'tr',
-  'uk', 'vi', 'zh',
+  'da',
+  'de',
+  'en',
+  'eo',
+  'es',
+  'fi',
+  'fr',
+  'he',
+  'id',
+  'it',
+  'ko',
+  'my',
+  'nl',
+  'no',
+  'pl',
+  'pt',
+  'ro',
+  'ru',
+  'sv',
+  'tr',
+  'uk',
+  'vi',
+  'zh',
 ];
 
 const geometries = 'geojson';
@@ -27,7 +47,6 @@ const modeToProfile = {
 };
 
 export default class DirectionApi {
-
   static async search(start, end, mode) {
     if (mode === modes.CYCLING) {
       // Fetch routes without ferry in priority
@@ -49,12 +68,15 @@ export default class DirectionApi {
     } else {
       language = (userLang.fallback || [])[0] || 'en';
     }
-    const directionsParams = mode === modes.PUBLIC_TRANSPORT ? {} : {
-      geometries,
-      steps: true,
-      alternatives: true,
-      overview: OVERVIEW_SETTING,
-    };
+    const directionsParams =
+      mode === modes.PUBLIC_TRANSPORT
+        ? {}
+        : {
+            geometries,
+            steps: true,
+            alternatives: true,
+            overview: OVERVIEW_SETTING,
+          };
     directionsParams.language = language;
 
     if (exclude) {
@@ -85,10 +107,10 @@ export default class DirectionApi {
 
     // Valid response
     if (
-      directionConfig.api === 'qwant'
-      && response.data
-      && response.data.routes
-      && response.data.routes.length > 0
+      directionConfig.api === 'qwant' &&
+      response.data &&
+      response.data.routes &&
+      response.data.routes.length > 0
     ) {
       return { data: response.data, error: 0 };
     }

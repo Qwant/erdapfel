@@ -1,5 +1,3 @@
-/* globals require, module, __dirname */
-
 const fs = require('fs');
 const path = require('path');
 const poJs = require('@qwant/po-js');
@@ -28,12 +26,13 @@ function getPoData(baseLangPath, fallbackList, messagePath) {
  * @param app
  * @param languages workaround avoiding parsing yaml on every request
  */
-module.exports = function(app, languages) {
+module.exports = function (app, languages) {
   const messagePath = path.resolve(path.join(__dirname, '..', 'language', 'message'));
   languages.forEach(language => {
     const poData = getPoData(
       `${__dirname}/../language/message/${language.code}.po`,
-      language.fallback, messagePath,
+      language.fallback,
+      messagePath
     );
     const plural = Function('n', `return ${poData.options.plural}`);
     langMessages[language.code] = {
@@ -44,7 +43,7 @@ module.exports = function(app, languages) {
     };
   });
 
-  return function(req, res, next) {
+  return function (req, res, next) {
     const poData = langMessages[res.locals.language.code];
     const gettext = new Gettext();
     gettext.setMessage(poData.messages);
@@ -53,7 +52,7 @@ module.exports = function(app, languages) {
       return gettext._(key, context, placeholders);
     };
 
-    res.locals._n = function(singularMessage = '', pluralMessage, arity, context, placeholders) {
+    res.locals._n = function (singularMessage = '', pluralMessage, arity, context, placeholders) {
       return gettext._n(singularMessage, pluralMessage, arity, context, placeholders);
     };
     next();

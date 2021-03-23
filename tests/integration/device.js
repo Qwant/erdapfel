@@ -1,4 +1,3 @@
-
 const viewports = {
   mobile: {
     width: 400,

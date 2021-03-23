@@ -10,7 +10,7 @@ function getMatchingRouteDefinition(routeDefs, url) {
 }
 
 function applyRoute(routeDef, url, state) {
-  const [ , arg ] = new RegExp(routeDef.match).exec(url);
+  const [, arg] = new RegExp(routeDef.match).exec(url);
   routeDef.render(arg, state);
 }
 

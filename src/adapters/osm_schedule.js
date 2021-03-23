@@ -1,4 +1,3 @@
-
 function OsmSchedule(scheduleResponse) {
   if (!scheduleResponse) {
     return null;
@@ -8,7 +7,7 @@ function OsmSchedule(scheduleResponse) {
   this.displayHours = translateSchedule(this.days);
   this.nextTransition = nextTransitionTime(
     scheduleResponse.seconds_before_next_transition,
-    scheduleResponse.next_transition_datetime,
+    scheduleResponse.next_transition_datetime
   );
   this.status = scheduleResponse.status;
 }
@@ -60,7 +59,6 @@ function toLocaleOpeningHours(hours) {
   }
   return [];
 }
-
 
 function translateSchedule(days) {
   const dayNameFormatter = Intl.DateTimeFormat(getIntlLocales(), { weekday: 'long' });

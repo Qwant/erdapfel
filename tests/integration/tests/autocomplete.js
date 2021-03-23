@@ -64,7 +64,8 @@ test('search with focus on current map position', async () => {
 
   const query = 'townhall';
   responseHandler.addPreparedResponse(
-    mockAutocomplete, /autocomplete\?q=townhall(.*)&lat=45(.*)&lon=5/
+    mockAutocomplete,
+    /autocomplete\?q=townhall(.*)&lat=45(.*)&lon=5/
   );
 
   await page.goto(APP_URL);
@@ -199,18 +200,15 @@ test('favorite search', async () => {
 });
 
 test('suggestions should not reappear after fast submit', async () => {
-  responseHandler.addPreparedResponse(
-    mockAutocompleteAllTypes,
-    /autocomplete\?q=paris/,
-    { delay: 300 }
-  );
+  responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=paris/, {
+    delay: 300,
+  });
   await page.goto(APP_URL);
   await page.keyboard.type('paris');
   await page.keyboard.press('Enter');
   await page.waitFor(600);
   await page.waitForSelector('.autocomplete_suggestions', { hidden: true });
 });
-
 
 test('check template', async () => {
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/);
@@ -243,7 +241,6 @@ test('check template', async () => {
   expect(lines[3][1]).toEqualCaseInsensitive("Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France");
 });
 
-
 test('Search Query', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto('about:blank');
@@ -261,7 +258,6 @@ test('Search Query', async () => {
   // "go back" navigates to previous page
   await page.goBack({ waitUntil: 'networkidle0' }); // wait for potential requests to API
   expect(page.url()).toEqual('about:blank');
-
 });
 
 test('Retrieve restaurant category when we search "restau"', async () => {

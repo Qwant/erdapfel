@@ -38,9 +38,8 @@ function distinctSegment(coordinates, coordCounts) {
   if (start === -1) {
     return lineString(coordinates);
   }
-  const end = start + coordinates
-    .slice(start)
-    .findIndex(coord => coordCounts.get(asKey(coord)) !== 1);
+  const end =
+    start + coordinates.slice(start).findIndex(coord => coordCounts.get(asKey(coord)) !== 1);
 
   return lineString(coordinates.slice(start, end));
 }
@@ -81,10 +80,7 @@ function dropRepeatedCoords(list) {
 // Reduce possibilities of collision by chosing anchors so that labels repulse each other
 function optimizeAnchors(positions) {
   return positions.map((position, index) => {
-    const others = [
-      ...positions.slice(0, index),
-      ...positions.slice(index + 1),
-    ];
+    const others = [...positions.slice(0, index), ...positions.slice(index + 1)];
     const othersBearing = getBearingFromOtherPoints(position, others);
     return {
       lngLat: position.lngLat,
@@ -97,20 +93,21 @@ function getBearingFromOtherPoints(position, others) {
   if (others.length === 0) {
     return 0;
   }
-  return others
-    .map(other => ({
-      bearing: bearing(other.lngLat, position.lngLat),
-      distance: distance(other.lngLat, position.lngLat),
-    }))
-    // only consider the bearing from the closest point
-    // but we could be smarter (weighted average?)
-    .reduce((closest, current) => {
-      if (!closest || current.distance < closest.distance) {
-        return current;
-      }
-      return closest;
-    }, null)
-    .bearing;
+  return (
+    others
+      .map(other => ({
+        bearing: bearing(other.lngLat, position.lngLat),
+        distance: distance(other.lngLat, position.lngLat),
+      }))
+      // only consider the bearing from the closest point
+      // but we could be smarter (weighted average?)
+      .reduce((closest, current) => {
+        if (!closest || current.distance < closest.distance) {
+          return current;
+        }
+        return closest;
+      }, null).bearing
+  );
 }
 
 function getAnchor(axis, otherBearing) {

@@ -10,9 +10,12 @@ export const getFilteredPoisPinStyle = () => ({
     'icon-anchor': 'bottom',
   },
   paint: {
-    'icon-opacity': ['case',
-      ['==', ['feature-state', 'selected'], true], 0,
-      ['==', ['feature-state', 'hovered'], true], 0,
+    'icon-opacity': [
+      'case',
+      ['==', ['feature-state', 'selected'], true],
+      0,
+      ['==', ['feature-state', 'hovered'], true],
+      0,
       1,
     ],
   },
@@ -21,7 +24,7 @@ export const getFilteredPoisPinStyle = () => ({
 export const getFilteredPoisLabelStyle = () => ({
   type: 'symbol',
   layout: {
-    'text-font': [ 'Noto Sans Bold' ],
+    'text-font': ['Noto Sans Bold'],
     'text-size': 10,
     'text-field': ['get', 'name'],
     'text-allow-overlap': false,
@@ -45,8 +48,10 @@ export const setPoiHoverStyle = (map, poiLayer) => {
     return;
   }
   const textColorProperty = map.getPaintProperty(poiLayer, 'text-color');
-  map.setPaintProperty(poiLayer, 'text-color',
+  map.setPaintProperty(
+    poiLayer,
+    'text-color',
     ['case', ['to-boolean', ['feature-state', 'hover']], ACTION_BLUE_BASE, textColorProperty],
-    { validate: false },
+    { validate: false }
   );
 };

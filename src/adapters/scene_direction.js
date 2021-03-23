@@ -35,7 +35,9 @@ const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   `;
   element.className = `routeLabel routeLabel--${anchor}`;
   element.dataset.id = route.id;
-  element.onclick = () => { fire('select_road_map', route.id); };
+  element.onclick = () => {
+    fire('select_road_map', route.id);
+  };
   return new Marker({ element, anchor }).setLngLat(lngLat);
 };
 
@@ -46,14 +48,14 @@ const getLabelsBbbox = (labelPositions, routesBbox) => {
     lngShift: (routesBbox.getEast() - routesBbox.getWest()) / (smallScreen ? 3 : 10),
   };
   const labelsBbbox = new LngLatBounds();
-  labelPositions
-    .map(shiftLabelPosition(shift))
-    .forEach(labelPosition => { labelsBbbox.extend(labelPosition); });
+  labelPositions.map(shiftLabelPosition(shift)).forEach(labelPosition => {
+    labelsBbbox.extend(labelPosition);
+  });
   return labelsBbbox;
 };
 
 const shiftLabelPosition = ({ lngShift, latShift }) => ({ lngLat, anchor }) => {
-  let [ lng, lat] = lngLat;
+  let [lng, lat] = lngLat;
   if (anchor === 'top') {
     lat -= latShift;
   } else if (anchor === 'bottom') {
@@ -76,10 +78,12 @@ export default class SceneDirection {
     this.mapFeaturesByRoute = {};
 
     const iconsBaseUrl = nconf.get().system.baseUrl + 'statics/images/direction_icons';
-    this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active',
-      { pixelRatio: 4 });
-    this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive',
-      { pixelRatio: 4 });
+    this.addMapImage(`${iconsBaseUrl}/walking_bullet_active.png`, 'walking_bullet_active', {
+      pixelRatio: 4,
+    });
+    this.addMapImage(`${iconsBaseUrl}/walking_bullet_inactive.png`, 'walking_bullet_inactive', {
+      pixelRatio: 4,
+    });
 
     listen('set_routes', ({ routes, vehicle, activeRouteId = 0 }) => {
       this.reset();
@@ -118,28 +122,25 @@ export default class SceneDirection {
   }
 
   setOrigin = poi => {
-    const originMarker = createMarker(
-      poi.latLon,
-      'itinerary_marker_origin', { draggable: true }
-    )
+    const originMarker = createMarker(poi.latLon, 'itinerary_marker_origin', { draggable: true })
       .addTo(this.map)
       .on('dragend', event => {
         this.refreshDirection('origin', event.target.getLngLat());
       });
     this.routeMarkers.push(originMarker);
-  }
+  };
 
   setDestination = poi => {
-    const destinationMarker = createMarker(
-      poi.latLon,
-      'itinerary_marker_destination', { draggable: true, anchor: 'bottom' }
-    )
+    const destinationMarker = createMarker(poi.latLon, 'itinerary_marker_destination', {
+      draggable: true,
+      anchor: 'bottom',
+    })
       .addTo(this.map)
       .on('dragend', event => {
         this.refreshDirection('destination', event.target.getLngLat());
       });
     this.routeMarkers.push(destinationMarker);
-  }
+  };
 
   addMarkerSteps(route) {
     if (this.vehicle !== 'walking' && this.vehicle !== 'publicTransport') {
@@ -162,7 +163,9 @@ export default class SceneDirection {
 
   setMainRoute(routeId, fitView) {
     let mainRoute = null;
-    if (this.routes.length === 0) {return;}
+    if (this.routes.length === 0) {
+      return;
+    }
 
     this.routes.forEach(route => {
       const isActive = route.id === routeId;
@@ -194,7 +197,9 @@ export default class SceneDirection {
       return;
     }
 
-    this.routeMarkers.forEach(marker => { marker.remove(); });
+    this.routeMarkers.forEach(marker => {
+      marker.remove();
+    });
     this.routeMarkers = [];
 
     this.addMarkerSteps(mainRoute);
@@ -210,18 +215,21 @@ export default class SceneDirection {
       // route lines
       this.mapFeaturesByRoute = {};
       this.routes.forEach(route => {
-        this.mapFeaturesByRoute[route.id] =
-          this.addRouteFeatures(route, route.id === activeRouteId);
+        this.mapFeaturesByRoute[route.id] = this.addRouteFeatures(
+          route,
+          route.id === activeRouteId
+        );
       });
       // route labels
       const labelPositions = getLabelPositions(this.routes.map(route => route.geometry));
       this.routeLabels = labelPositions.map(({ lngLat, anchor }, index) =>
-        createRouteLabel(this.routes[index], this.vehicle, { lngLat, anchor })
-          .addTo(this.map)
+        createRouteLabel(this.routes[index], this.vehicle, { lngLat, anchor }).addTo(this.map)
       );
       // compute and store the best bbox
       const routesBbox = new LngLatBounds();
-      this.routes.forEach(route => { routesBbox.extend(this.computeBBox(route)); });
+      this.routes.forEach(route => {
+        routesBbox.extend(this.computeBBox(route));
+      });
       this.fullBbox = routesBbox.extend(getLabelsBbbox(labelPositions, routesBbox));
 
       this.setMainRoute(activeRouteId, true);
@@ -256,7 +264,9 @@ export default class SceneDirection {
     });
     this.routes = [];
 
-    this.routeMarkers.concat(this.routeLabels).forEach(marker => { marker.remove(); });
+    this.routeMarkers.concat(this.routeLabels).forEach(marker => {
+      marker.remove();
+    });
     this.routeMarkers = [];
     this.routeLabels = [];
     this.fullBbox = null;
@@ -265,10 +275,13 @@ export default class SceneDirection {
   getDataSources(route) {
     const featureCollection = normalizeToFeatureCollection(route.geometry);
     const sources = [];
-    const walkFeatures = [], nonWalkFeatures = [];
+    const walkFeatures = [],
+      nonWalkFeatures = [];
     featureCollection.features.forEach(feature => {
-      if (this.vehicle === 'walking'
-      || (this.vehicle === 'publicTransport' && feature.properties.mode === 'WALK')) {
+      if (
+        this.vehicle === 'walking' ||
+        (this.vehicle === 'publicTransport' && feature.properties.mode === 'WALK')
+      ) {
         walkFeatures.push(feature);
       } else {
         nonWalkFeatures.push(prepareRouteColor(feature));
@@ -316,18 +329,25 @@ export default class SceneDirection {
         this.map.addLayer(outlineLayerStyle, map.routes_layer);
       }
 
-      this.map.addLayer(layerStyle, map.routes_layer)
-        .on('click', layerId, () => { fire('select_road_map', route.id); })
-        .on('mouseenter', layerId, () => { this.map.getCanvas().style.cursor = 'pointer'; })
-        .on('mouseleave', layerId, () => { this.map.getCanvas().style.cursor = ''; });
+      this.map
+        .addLayer(layerStyle, map.routes_layer)
+        .on('click', layerId, () => {
+          fire('select_road_map', route.id);
+        })
+        .on('mouseenter', layerId, () => {
+          this.map.getCanvas().style.cursor = 'pointer';
+        })
+        .on('mouseleave', layerId, () => {
+          this.map.getCanvas().style.cursor = '';
+        });
 
       return { sourceId, layerId, outlineLayerId, vehicle: source.vehicle };
     });
   }
 
   computeBBox({ geometry }) {
-    const [ minX, minY, maxX, maxY ] = bbox(geometry);
-    return new LngLatBounds([ minX, minY ], [ maxX, maxY ]);
+    const [minX, minY, maxX, maxY] = bbox(geometry);
+    return new LngLatBounds([minX, minY], [maxX, maxY]);
   }
 
   highlightStep(step) {

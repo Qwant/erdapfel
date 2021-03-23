@@ -6,7 +6,9 @@ import { Heart } from 'src/components/ui/icons';
 import { PINK_DARK, PINK_LIGHTER } from 'src/libs/colors';
 
 const PlaceIcon = ({ place, category, withBackground, className, isFavorite = false }) => {
-  let iconClass = '', color = '', icomoon = false;
+  let iconClass = '',
+    color = '',
+    icomoon = false;
 
   if (place) {
     const icon = IconManager.get(place);
@@ -24,13 +26,15 @@ const PlaceIcon = ({ place, category, withBackground, className, isFavorite = fa
     return <FavoriteIcon className={className} />;
   }
 
-  return <div
-    className={classnames('placeIcon', `icon-${iconClass}`, { icon: !icomoon }, className)}
-    style={{
-      color,
-      backgroundColor: withBackground ? getLightBackground(color) : null,
-    }}
-  />;
+  return (
+    <div
+      className={classnames('placeIcon', `icon-${iconClass}`, { icon: !icomoon }, className)}
+      style={{
+        color,
+        backgroundColor: withBackground ? getLightBackground(color) : null,
+      }}
+    />
+  );
 };
 
 const FavoriteIcon = ({ className }) => {
@@ -42,10 +46,7 @@ const FavoriteIcon = ({ className }) => {
         backgroundColor: PINK_LIGHTER,
       }}
     >
-      <Heart
-        color={PINK_DARK}
-        width={20}
-      />
+      <Heart color={PINK_DARK} width={20} />
     </div>
   );
 };

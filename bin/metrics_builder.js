@@ -1,5 +1,3 @@
-/* globals require, module */
-
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const promClient = require('prom-client');
@@ -15,7 +13,8 @@ module.exports = (router, config, registry) => {
     });
   });
 
-  router.post('/events',
+  router.post(
+    '/events',
     express.json({ strict: true, limit: config.server.maxBodySize }),
     [
       body('type')
@@ -26,7 +25,8 @@ module.exports = (router, config, registry) => {
           }
           return true;
         }),
-    ], (req, res) => {
+    ],
+    (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });

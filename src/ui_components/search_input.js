@@ -1,4 +1,3 @@
-
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 
@@ -15,7 +14,6 @@ const MAPBOX_RESERVED_KEYS = [
 ];
 
 export default class SearchInput {
-
   constructor(tagSelector) {
     this.searchInputHandle = document.querySelector(tagSelector);
     this.handleKeyboard();
@@ -80,9 +78,11 @@ export default class SearchInput {
       // KeyboardEvent.key is either the printed character representation or a standard value for specials keys
       // See https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key/Key_Values
       if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
-        if (document.activeElement
-          && document.activeElement.tagName !== 'INPUT'
-          && window.__searchInput.isEnabled) {
+        if (
+          document.activeElement &&
+          document.activeElement.tagName !== 'INPUT' &&
+          window.__searchInput.isEnabled
+        ) {
           this.searchInputHandle.focus();
         }
       }
@@ -96,14 +96,11 @@ export default class SearchInput {
       useFocus: !fromQueryParams, // Ignore map position for a query passed in URL
     });
 
-    selectItem(
-      results[0] || null,
-      {
-        query,
-        replaceUrl: true,
-        fromQueryParams,
-      },
-    );
+    selectItem(results[0] || null, {
+      query,
+      replaceUrl: true,
+      fromQueryParams,
+    });
     window.__searchInput.searchInputHandle.blur();
   }
 }

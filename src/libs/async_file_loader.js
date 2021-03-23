@@ -1,4 +1,3 @@
-
 async function AsyncFileLoader(uri) {
   return new Promise(resolve => {
     const sc = document.createElement('script');

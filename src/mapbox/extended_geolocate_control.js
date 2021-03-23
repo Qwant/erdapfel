@@ -6,8 +6,8 @@ import * as store from 'src/adapters/store';
 import { GeolocateControl } from 'mapbox-gl--ENV';
 
 /**
-* Override default GeolocateControl
-*/
+ * Override default GeolocateControl
+ */
 
 export default class ExtendedGeolocateControl extends GeolocateControl {
   constructor(options, container) {
@@ -30,8 +30,10 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
 
   async trigger() {
     const state = await Geolocation.getGeolocationPermission();
-    if (state === Geolocation.geolocationPermissions.PROMPT &&
-        !store.get('has_geolocate_modal_opened_once')) {
+    if (
+      state === Geolocation.geolocationPermissions.PROMPT &&
+      !store.get('has_geolocate_modal_opened_once')
+    ) {
       await openPendingGeolocateModal();
       store.set('has_geolocate_modal_opened_once', true);
     }

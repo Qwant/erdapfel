@@ -5,8 +5,8 @@ import { listen } from 'src/libs/customEvents';
  after mapbox Map is loaded.
  It will be overriden on mapbox 'load' event
 */
-window.execOnMapLoaded = function(f) {
-  listen('map_loaded', function() {
+window.execOnMapLoaded = function (f) {
+  listen('map_loaded', function () {
     f.call();
   });
 };

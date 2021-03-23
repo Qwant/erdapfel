@@ -18,8 +18,12 @@ export default class Error {
   }
 
   equal(e) {
-    return e.file === this.file && e.method === this.method && e.message === this.message &&
-      e.exception.toString() === this.exception.toString();
+    return (
+      e.file === this.file &&
+      e.method === this.method &&
+      e.message === this.message &&
+      e.exception.toString() === this.exception.toString()
+    );
   }
 
   log() {

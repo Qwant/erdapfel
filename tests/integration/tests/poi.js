@@ -17,7 +17,7 @@ beforeEach(async () => {
   page = await browser.newPage();
   page.setDefaultTimeout(3000);
   await page.setExtraHTTPHeaders({
-    'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */
+    'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */,
   });
   responseHandler = new ResponseHandler(page);
   await responseHandler.prepareResponse();
@@ -123,10 +123,9 @@ test('Poi name i18n', async () => {
   await page.waitForSelector('.poiTitle');
 
   const title = await getTitle(page);
-  expect(title.main).toMatch('Musée d\'Orsay');
+  expect(title.main).toMatch("Musée d'Orsay");
   expect(title.alternative).toMatch('Orsay museum');
 });
-
 
 test('Test 24/7', async () => {
   const poi = { ...poiMock };
@@ -229,7 +228,6 @@ async function getTitle(page) {
     return { main, alternative };
   });
 }
-
 
 async function getHours(page) {
   return await page.evaluate(() => {

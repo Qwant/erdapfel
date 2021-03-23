@@ -23,7 +23,7 @@ export default class FavoritesPanel extends React.Component {
       favoritePois,
       isReady: true,
     });
-  }
+  };
 
   removeFav = async poi => {
     Telemetry.add(Telemetry.FAVORITE_DELETE);
@@ -45,20 +45,24 @@ export default class FavoritesPanel extends React.Component {
 
     const { favoritePois } = this.state;
 
-    const header = <div className="favorite-header u-text--smallTitle u-center">
-      {favoritePois.length === 0
-        ? _('Favorite places', 'favorite panel')
-        : _('My favorites', 'favorite panel')}
-    </div>;
+    const header = (
+      <div className="favorite-header u-text--smallTitle u-center">
+        {favoritePois.length === 0
+          ? _('Favorite places', 'favorite panel')
+          : _('My favorites', 'favorite panel')}
+      </div>
+    );
 
-    return <Panel
-      resizable
-      renderHeader={header}
-      minimizedTitle={_('Show favorites', 'favorite panel')}
-      onClose={this.close}
-      className="favorite_panel"
-    >
-      <FavoriteItems favorites={favoritePois} removeFavorite={this.removeFav} />
-    </Panel>;
+    return (
+      <Panel
+        resizable
+        renderHeader={header}
+        minimizedTitle={_('Show favorites', 'favorite panel')}
+        onClose={this.close}
+        className="favorite_panel"
+      >
+        <FavoriteItems favorites={favoritePois} removeFavorite={this.removeFav} />
+      </Panel>
+    );
   }
 }

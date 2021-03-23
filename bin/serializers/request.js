@@ -1,5 +1,3 @@
-/* globals require, module, Buffer */
-
 const bunyan = require('bunyan');
 const allowedHeaders = [
   'accept',
@@ -16,13 +14,9 @@ const allowedHeaders = [
   'x-uniq-id',
 ];
 
-const allowedHeadersRules = [
-  /^x-forwarded-([^.]*)$/,
-  /^x-geoip-([^.]*)$/,
-  /^x-qwantmaps-([^.]*)$/,
-];
+const allowedHeadersRules = [/^x-forwarded-([^.]*)$/, /^x-geoip-([^.]*)$/, /^x-qwantmaps-([^.]*)$/];
 
-module.exports = function(config) {
+module.exports = function (config) {
   return req => {
     const reqObject = bunyan.stdSerializers.req(req);
     // Shallow copy headers to avoid mutating `req`
@@ -35,10 +29,7 @@ module.exports = function(config) {
       }
 
       if (config.server.logger.headersWhitelistEnabled) {
-        if (
-          !allowedHeaders.includes(k) &&
-          !allowedHeadersRules.some(rule => rule.test(k))
-        ) {
+        if (!allowedHeaders.includes(k) && !allowedHeadersRules.some(rule => rule.test(k))) {
           delete headers[k];
         }
       }

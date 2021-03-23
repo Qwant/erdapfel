@@ -29,7 +29,7 @@ function Scene() {
   this.savedLocation = null;
 }
 
-Scene.prototype.getMapInitOptions = async function(locationHash) {
+Scene.prototype.getMapInitOptions = async function (locationHash) {
   if (locationHash) {
     return {
       zoom: locationHash.zoom,
@@ -58,7 +58,7 @@ Scene.prototype.getMapInitOptions = async function(locationHash) {
   };
 };
 
-Scene.prototype.initMapBox = async function(locationHash) {
+Scene.prototype.initMapBox = async function (locationHash) {
   window.times.initMapBox = Date.now();
 
   setRTLTextPlugin(
@@ -79,7 +79,7 @@ Scene.prototype.initMapBox = async function(locationHash) {
     maxZoom: 20,
     interactive: window.no_ui ? false : true,
     locale,
-    ...await this.getMapInitOptions(locationHash),
+    ...(await this.getMapInitOptions(locationHash)),
   });
 
   this.popup.init(this.mb);
@@ -218,8 +218,12 @@ Scene.prototype.initMapBox = async function(locationHash) {
       this.mb.on(event, cancelLongTouch);
     });
 
-    this.mb.on('dragstart', () => { fire('map_user_interaction'); });
-    this.mb.on('pitchstart', () => { fire('map_user_interaction'); });
+    this.mb.on('dragstart', () => {
+      fire('map_user_interaction');
+    });
+    this.mb.on('pitchstart', () => {
+      fire('map_user_interaction');
+    });
 
     this.mb.on('moveend', () => {
       const { lng, lat } = this.mb.getCenter();
@@ -276,13 +280,14 @@ Scene.prototype.initMapBox = async function(locationHash) {
   });
 };
 
-Scene.prototype.getCurrentPaddings = () => getMapPaddings({
-  isMobile: isMobileDevice(),
-  isDirectionsActive: !!document.querySelector('.directions-open'),
-  isIframe: window.no_ui,
-});
+Scene.prototype.getCurrentPaddings = () =>
+  getMapPaddings({
+    isMobile: isMobileDevice(),
+    isDirectionsActive: !!document.querySelector('.directions-open'),
+    isIframe: window.no_ui,
+  });
 
-Scene.prototype.clickOnMap = function(lngLat, clickedFeature, { longTouch = false } = {}) {
+Scene.prototype.clickOnMap = function (lngLat, clickedFeature, { longTouch = false } = {}) {
   // Instantiate the place clicked as a PoI
   const poi = clickedFeature ? new MapPoi(clickedFeature) : new LatLonPoi(lngLat);
 
@@ -298,15 +303,15 @@ Scene.prototype.clickOnMap = function(lngLat, clickedFeature, { longTouch = fals
   }
 };
 
-Scene.prototype.saveLocation = function() {
+Scene.prototype.saveLocation = function () {
   this.savedLocation = this.getLocationHash();
 };
 
-Scene.prototype.restoreLocation = function() {
+Scene.prototype.restoreLocation = function () {
   if (this.savedLocation) {
     const { zoom, lat, lng } = parseMapHash(this.savedLocation);
     const flyOptions = {
-      center: [ lng, lat ],
+      center: [lng, lat],
       zoom,
       animate: true,
       screenSpeed: 2,
@@ -317,28 +322,31 @@ Scene.prototype.restoreLocation = function() {
 
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
-Scene.prototype.isBBoxInExtendedViewport = function(bbox) {
+Scene.prototype.isBBoxInExtendedViewport = function (bbox) {
   const viewport = this.mb.getBounds();
 
   const width = viewport.getEast() - viewport.getWest();
   const height = viewport.getNorth() - viewport.getSouth();
 
   // Compute extended viewport, with lats between -85 and 85
-  viewport.setNorthEast(new LngLat(
-    viewport.getEast() + width,
-    clamp(-85, 85, viewport.getNorth() + height)).wrap());
-  viewport.setSouthWest(new LngLat(
-    viewport.getWest() - width,
-    clamp(-85, 85, viewport.getSouth() - height)).wrap());
+  viewport.setNorthEast(
+    new LngLat(viewport.getEast() + width, clamp(-85, 85, viewport.getNorth() + height)).wrap()
+  );
+  viewport.setSouthWest(
+    new LngLat(viewport.getWest() - width, clamp(-85, 85, viewport.getSouth() - height)).wrap()
+  );
 
   // Check if the bbox overlaps the viewport
-  return viewport.contains(bbox.getNorthWest())
-      || viewport.contains(bbox.getNorthEast())
-      || viewport.contains(bbox.getSouthEast())
-      || viewport.contains(bbox.getSouthWest());
+  return (
+    viewport.contains(bbox.getNorthWest()) ||
+    viewport.contains(bbox.getNorthEast()) ||
+    viewport.contains(bbox.getSouthEast()) ||
+    viewport.contains(bbox.getSouthWest())
+  );
 };
 
-Scene.prototype.fitBbox = function(bbox,
+Scene.prototype.fitBbox = function (
+  bbox,
   padding = { left: 0, top: 0, right: 0, bottom: 0 },
   forceAnimate
 ) {
@@ -354,15 +362,17 @@ Scene.prototype.fitBbox = function(bbox,
 };
 
 // Move the map to focus on an item
-Scene.prototype.fitMap = function(item, padding, forceAnimate) {
-
+Scene.prototype.fitMap = function (item, padding, forceAnimate) {
   // BBox
   if (item instanceof LngLatBounds || Array.isArray(item)) {
     this.fitBbox(item, padding, forceAnimate);
-  } else { // PoI
-    if (item.bbox) { // poi Bbox
+  } else {
+    // PoI
+    if (item.bbox) {
+      // poi Bbox
       this.fitBbox(item.bbox, padding, forceAnimate);
-    } else { // poi center
+    } else {
+      // poi center
       const flyOptions = {
         center: item.latLon,
         zoom: getBestZoom(item),
@@ -385,7 +395,7 @@ Scene.prototype.fitMap = function(item, padding, forceAnimate) {
   }
 };
 
-Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
+Scene.prototype.ensureMarkerIsVisible = function (poi, options) {
   if (poi.bbox) {
     this.fitBbox(poi.bbox, options.padding || this.getCurrentPaddings());
     return;
@@ -405,9 +415,9 @@ Scene.prototype.ensureMarkerIsVisible = function(poi, options) {
   });
 };
 
-Scene.prototype.addMarker = function(poi) {
+Scene.prototype.addMarker = function (poi) {
   const element = createDefaultPin();
-  element.onclick = function(e) {
+  element.onclick = function (e) {
     // click event should not be propagated to the map itself;
     e.stopPropagation();
   };
@@ -423,45 +433,45 @@ Scene.prototype.addMarker = function(poi) {
   return marker;
 };
 
-Scene.prototype.cleanMarker = async function() {
+Scene.prototype.cleanMarker = async function () {
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
     this.currentMarker = null;
   }
 };
 
-Scene.prototype.isWindowedPoi = function(poi) {
+Scene.prototype.isWindowedPoi = function (poi) {
   return this.mb.getBounds().contains(new LngLat(poi.latLon.lng, poi.latLon.lat));
 };
 
-Scene.prototype.getLocationHash = function() {
+Scene.prototype.getLocationHash = function () {
   const { lat, lng } = this.mb.getCenter();
   return getMapHash(this.mb.getZoom(), lat, lng);
 };
 
-Scene.prototype.restoreFromHash = function(hash, options = {}) {
+Scene.prototype.restoreFromHash = function (hash, options = {}) {
   const zll = parseMapHash(hash);
   if (!zll) {
     return;
   }
   const { zoom, lat, lng } = zll;
-  this.mb.flyTo({ zoom, center: [ lng, lat ], ...options });
+  this.mb.flyTo({ zoom, center: [lng, lat], ...options });
 };
 
-Scene.prototype.onHashChange = function() {
+Scene.prototype.onHashChange = function () {
   window.onhashchange = () => {
     this.restoreFromHash(window.location.hash, { animate: false });
   };
 };
 
-Scene.prototype.translateUIControl = function(selector, bottom) {
+Scene.prototype.translateUIControl = function (selector, bottom) {
   const item = document.querySelector(selector);
   if (item) {
-    item.style.transform = `translateY(${-bottom}px)` ;
+    item.style.transform = `translateY(${-bottom}px)`;
   }
 };
 
-Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
+Scene.prototype.moveMobileBottomUI = function (bottom = 0) {
   if (window.no_ui) {
     return;
   }
@@ -479,14 +489,14 @@ Scene.prototype.moveMobileBottomUI = function(bottom = 0) {
   });
 };
 
-Scene.prototype.moveMobileGeolocationButton = function(bottom = 0) {
+Scene.prototype.moveMobileGeolocationButton = function (bottom = 0) {
   if (!isMobileDevice() && bottom > 0) {
     return;
   }
   this.translateUIControl('.mapboxgl-ctrl-geolocate', bottom);
 };
 
-Scene.prototype.mobileButtonVisibility = function(selector, visible) {
+Scene.prototype.mobileButtonVisibility = function (selector, visible) {
   if (!isMobileDevice()) {
     return;
   }

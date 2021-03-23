@@ -47,9 +47,11 @@ function fitMap(bbox) {
   // Zoom < 5: focus on Paris
   if (currentZoom < 5) {
     mapboxMap.flyTo({ center: [2.35, 48.85], zoom: 12 });
-  } else if (currentZoom < 12) { // Zoom < 12: zoom up to zoom 12
+  } else if (currentZoom < 12) {
+    // Zoom < 12: zoom up to zoom 12
     mapboxMap.flyTo({ zoom: 12 });
-  } else if (currentZoom > 18) { // Zoom > 18: dezoom to zoom 18
+  } else if (currentZoom > 18) {
+    // Zoom > 18: dezoom to zoom 18
     mapboxMap.flyTo({ zoom: 18 });
   } else {
     // setting the same view still triggers the moveend event
@@ -65,39 +67,47 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const { size: panelSize } = useContext(PanelContext);
 
   useEffect(() => {
-    const fetchData = debounce(async () => {
-      const { category, query } = poiFilters;
-      const currentBounds = getVisibleBbox(window.map.mb, window.no_ui);
+    const fetchData = debounce(
+      async () => {
+        const { category, query } = poiFilters;
+        const currentBounds = getVisibleBbox(window.map.mb, window.no_ui);
 
-      const extendBbox = initialLoading;
-      const { places, source, bbox: contentBbox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
-        boundsToString(currentBounds),
-        MAX_PLACES,
-        category,
-        query,
-        extendBbox
-      );
+        const extendBbox = initialLoading;
+        const { places, source, bbox: contentBbox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
+          boundsToString(currentBounds),
+          MAX_PLACES,
+          category,
+          query,
+          extendBbox
+        );
 
-      setPois(places);
-      setDataSource(source);
-      setInitialLoading(false);
+        setPois(places);
+        setDataSource(source);
+        setInitialLoading(false);
 
-      if (bbox_extended && contentBbox) {
-        // The returned bbox is sure to contain at least one POI.
-        // Extend the current one to include it.
-        fire('fit_map', currentBounds.extend(boundsFromFlatArray(contentBbox)), true);
-      }
+        if (bbox_extended && contentBbox) {
+          // The returned bbox is sure to contain at least one POI.
+          // Extend the current one to include it.
+          fire('fit_map', currentBounds.extend(boundsFromFlatArray(contentBbox)), true);
+        }
 
-      fire('add_category_markers', places, poiFilters);
-      fire('save_location');
-    }, DEBOUNCE_WAIT, { leading: true });
+        fire('add_category_markers', places, poiFilters);
+        fire('save_location');
+      },
+      DEBOUNCE_WAIT,
+      { leading: true }
+    );
 
     const mapMoveHandler = listen('map_moveend', fetchData);
-    return () => { unListen(mapMoveHandler); };
+    return () => {
+      unListen(mapMoveHandler);
+    };
   }, [poiFilters, initialLoading]);
 
   useEffect(() => {
-    window.execOnMapLoaded(() => { fitMap(bbox); });
+    window.execOnMapLoaded(() => {
+      fitMap(bbox);
+    });
   }, [bbox, poiFilters]);
 
   useEffect(() => {
@@ -125,16 +135,14 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   } else if (!pois || pois.length === 0) {
     panelContent = <CategoryPanelError zoomIn={!pois} />;
   } else {
-    panelContent = <>
-      <PoiItemList
-        pois={pois}
-        selectPoi={selectPoi}
-        highlightMarker={highlightPoiMarker}
-      />
-      {dataSource === sources.pagesjaunes
-        && panelSize !== 'minimized'
-        && <PJPartnershipFooter isMobile={isMobile} />}
-    </>;
+    panelContent = (
+      <>
+        <PoiItemList pois={pois} selectPoi={selectPoi} highlightMarker={highlightPoiMarker} />
+        {dataSource === sources.pagesjaunes && panelSize !== 'minimized' && (
+          <PJPartnershipFooter isMobile={isMobile} />
+        )}
+      </>
+    );
   }
 
   const NavHeader = () => {
@@ -149,17 +157,19 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     );
   };
 
-  return <Panel
-    resizable
-    renderHeader={<NavHeader isMobile={isMobile} />}
-    minimizedTitle={_('Unfold to show the results', 'categories')}
-    className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}
-    floatingItemsLeft={[
-      isMobile && shouldShowBackToQwant() && <BackToQwantButton key="back-to-qwant" isMobile />,
-    ]}
-  >
-    {panelContent}
-  </Panel>;
+  return (
+    <Panel
+      resizable
+      renderHeader={<NavHeader isMobile={isMobile} />}
+      minimizedTitle={_('Unfold to show the results', 'categories')}
+      className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}
+      floatingItemsLeft={[
+        isMobile && shouldShowBackToQwant() && <BackToQwantButton key="back-to-qwant" isMobile />,
+      ]}
+    >
+      {panelContent}
+    </Panel>
+  );
 };
 
 CategoryPanel.propTypes = {

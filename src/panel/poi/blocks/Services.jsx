@@ -10,7 +10,7 @@ export default class Services extends React.Component {
     accessibility: PropTypes.object,
     internetAccess: PropTypes.object,
     brewery: PropTypes.object,
-  }
+  };
 
   state = {
     isCollapsed: true,
@@ -22,20 +22,21 @@ export default class Services extends React.Component {
     }));
   };
 
-
   getTitle() {
     if (!this.state.isCollapsed) {
       return '';
     }
 
     const { accessibility, internetAccess, brewery } = this.props;
-    return <span>
-      {accessibility && <AccessibilityBlock block={accessibility} asString/>}
-      {accessibility && internetAccess && ' - '}
-      {internetAccess && <InternetAccessBlock block={internetAccess} asString/>}
-      {internetAccess && brewery && ' - '}
-      {brewery && <BreweryBlock block={brewery} asString/>}
-    </span>;
+    return (
+      <span>
+        {accessibility && <AccessibilityBlock block={accessibility} asString />}
+        {accessibility && internetAccess && ' - '}
+        {internetAccess && <InternetAccessBlock block={internetAccess} asString />}
+        {internetAccess && brewery && ' - '}
+        {brewery && <BreweryBlock block={brewery} asString />}
+      </span>
+    );
   }
 
   render() {
@@ -45,22 +46,24 @@ export default class Services extends React.Component {
       return null;
     }
 
-    return <Fragment>
-      <span className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
-        {this.getTitle()}
-        <i
-          className={classnames(
-            'icon-icon_chevron-down',
-            'poi_panel__block__collapse',
-            { 'poi_panel__block__collapse--reversed': !this.state.isCollapsed }
-          )}
-        />
-      </span>
-      {!this.state.isCollapsed && <div className="poi_panel__service_information__container">
-        {accessibility && <AccessibilityBlock block={accessibility} />}
-        {internetAccess && <InternetAccessBlock block={internetAccess} />}
-        {brewery && <BreweryBlock block={brewery} />}
-      </div>}
-    </Fragment>;
+    return (
+      <Fragment>
+        <span className="poi_panel__sub_block__title" onClick={this.expandCollapse}>
+          {this.getTitle()}
+          <i
+            className={classnames('icon-icon_chevron-down', 'poi_panel__block__collapse', {
+              'poi_panel__block__collapse--reversed': !this.state.isCollapsed,
+            })}
+          />
+        </span>
+        {!this.state.isCollapsed && (
+          <div className="poi_panel__service_information__container">
+            {accessibility && <AccessibilityBlock block={accessibility} />}
+            {internetAccess && <InternetAccessBlock block={internetAccess} />}
+            {brewery && <BreweryBlock block={brewery} />}
+          </div>
+        )}
+      </Fragment>
+    );
   }
 }

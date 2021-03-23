@@ -43,27 +43,32 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
 
     if (nextTransition && (status === 'closed' || !showNextOpenOnly)) {
       const options = { nextTransitionTime: nextTransition };
-      parts.push(status === 'closed'
-        ? _('reopening at {nextTransitionTime}', 'hour panel', options)
-        : _('until {nextTransitionTime}', 'hour panel', options));
+      parts.push(
+        status === 'closed'
+          ? _('reopening at {nextTransitionTime}', 'hour panel', options)
+          : _('until {nextTransitionTime}', 'hour panel', options)
+      );
     }
 
     return capitalizeFirst(parts.join(' - '));
   };
 
-  return <span
-    className={classnames(
-      'openingHour',
-      'u-text--subtitle',
-      {
-        [`openingHour--${status}`]: status,
-        'openingHour--24-7': isTwentyFourSeven,
-      }, className
-    )}
-    style={{ color }}
-  >
-    {getDescription()}
-  </span>;
+  return (
+    <span
+      className={classnames(
+        'openingHour',
+        'u-text--subtitle',
+        {
+          [`openingHour--${status}`]: status,
+          'openingHour--24-7': isTwentyFourSeven,
+        },
+        className
+      )}
+      style={{ color }}
+    >
+      {getDescription()}
+    </span>
+  );
 };
 
 export default OpeningHour;

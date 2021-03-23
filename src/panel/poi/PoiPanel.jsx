@@ -28,11 +28,11 @@ export default class PoiPanel extends React.Component {
     poi: PropTypes.object,
     poiFilters: PropTypes.object,
     centerMap: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     poiFilters: {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -78,7 +78,7 @@ export default class PoiPanel extends React.Component {
       fire('add_category_markers', this.props.pois, this.props.poiFilters);
     });
     this.loadPoi();
-  }
+  };
 
   loadPoi = async () => {
     const { poiId, centerMap } = this.props;
@@ -117,7 +117,7 @@ export default class PoiPanel extends React.Component {
         this.updateMapPoi(poi, mapOptions);
       }
     }
-  }
+  };
 
   updateMapPoi(poi, options = {}) {
     window.execOnMapLoaded(() => {
@@ -134,7 +134,7 @@ export default class PoiPanel extends React.Component {
     e.stopPropagation();
     Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
     window.app.navigateTo('/favs');
-  }
+  };
 
   getBestPoi() {
     return this.state.fullPoi || this.props.poi;
@@ -144,17 +144,17 @@ export default class PoiPanel extends React.Component {
     const poi = this.getBestPoi();
     Telemetry.sendPoiEvent(poi, 'go');
     fire('fit_map', poi);
-  }
+  };
 
   openDirection = () => {
     const poi = this.getBestPoi();
     Telemetry.sendPoiEvent(poi, 'itinerary');
     window.app.navigateTo('/routes/', { poi });
-  }
+  };
 
   closeAction = () => {
     window.app.navigateTo('/');
-  }
+  };
 
   backToList = e => {
     e.stopPropagation();
@@ -179,13 +179,15 @@ export default class PoiPanel extends React.Component {
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
     window.app.navigateTo(uri);
-  }
+  };
 
   onClickPhoneNumber = () => {
     const poi = this.getBestPoi();
     const source = poi.meta && poi.meta.source;
     if (source) {
-      Telemetry.sendPoiEvent(poi, 'phone',
+      Telemetry.sendPoiEvent(
+        poi,
+        'phone',
         Telemetry.buildInteractionData({
           id: poi.id,
           source,
@@ -195,7 +197,7 @@ export default class PoiPanel extends React.Component {
         })
       );
     }
-  }
+  };
 
   toggleStorePoi = () => {
     const poi = this.state.fullPoi;
@@ -205,7 +207,7 @@ export default class PoiPanel extends React.Component {
     } else {
       addToFavorites(poi);
     }
-  }
+  };
 
   render() {
     const { poiFilters, isFromFavorite } = this.props;
@@ -216,14 +218,17 @@ export default class PoiPanel extends React.Component {
       return null;
     }
 
-    const backAction = poiFilters.category || poiFilters.query
-      ? this.backToList
-      : isFromFavorite
+    const backAction =
+      poiFilters.category || poiFilters.query
+        ? this.backToList
+        : isFromFavorite
         ? this.backToFavorite
         : this.closeAction;
 
     const NavHeader = ({ isMobile }) => {
-      if (isMobile) {return null;}
+      if (isMobile) {
+        return null;
+      }
 
       if (shouldShowBackToQwant()) {
         return (
@@ -236,11 +241,7 @@ export default class PoiPanel extends React.Component {
       if (backAction !== this.closeAction) {
         return (
           <PanelNav>
-            <Button
-              icon="arrow-left"
-              variant="tertiary"
-              onClick={backAction}
-            >
+            <Button icon="arrow-left" variant="tertiary" onClick={backAction}>
               {_('Display all results')}
             </Button>
           </PanelNav>
@@ -250,61 +251,65 @@ export default class PoiPanel extends React.Component {
       return null;
     };
 
-    return <DeviceContext.Consumer>
-      {isMobile =>
-        <Panel
-          resizable
-          fitContent={['default', 'minimized']}
-          className={classnames('poi_panel', {
-            'poi_panel--empty-header':
-            !isFromPagesJaunes(poi) &&
-            !isFromFavorite &&
-            (!poiFilters || !poiFilters.category),
-          })}
-          renderHeader={<NavHeader isMobile={isMobile} />}
-          floatingItemsLeft={isMobile && shouldShowBackToQwant() && [
-            <BackToQwantButton key="back-to-qwant" isMobile />,
-          ]}
-        >
-          <div className="poi_panel__content">
-            <Flex alignItems="flex-start" justifyContent="space-between">
-              <PoiItem
-                poi={poi}
-                className="u-mb-l poi-panel-poiItem"
-                withAlternativeName
-                withOpeningHours
-                onClick={this.center}
-              />
-              <CloseButton onClick={isMobile ? backAction : this.closeAction} position="topRight" />
-            </Flex>
-            <div className="u-mb-l">
-              <ActionButtons
-                poi={poi}
-                isDirectionActive={this.isDirectionActive}
-                openDirection={this.openDirection}
-                onClickPhoneNumber={this.onClickPhoneNumber}
-                isPoiInFavorite={this.state.isPoiInFavorite}
-                toggleStorePoi={this.toggleStorePoi}
-              />
-            </div>
-            <div className="poi_panel__fullContent">
-              <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
-              {isFromPagesJaunes(poi) &&
-              <div className="poi_panel__info-partnership u-text--caption u-mb-s">
-                {_('In partnership with')}
-                <img src="./statics/images/pj.svg" alt="PagesJaunes" width="80" height="16" />
+    return (
+      <DeviceContext.Consumer>
+        {isMobile => (
+          <Panel
+            resizable
+            fitContent={['default', 'minimized']}
+            className={classnames('poi_panel', {
+              'poi_panel--empty-header':
+                !isFromPagesJaunes(poi) && !isFromFavorite && (!poiFilters || !poiFilters.category),
+            })}
+            renderHeader={<NavHeader isMobile={isMobile} />}
+            floatingItemsLeft={
+              isMobile &&
+              shouldShowBackToQwant() && [<BackToQwantButton key="back-to-qwant" isMobile />]
+            }
+          >
+            <div className="poi_panel__content">
+              <Flex alignItems="flex-start" justifyContent="space-between">
+                <PoiItem
+                  poi={poi}
+                  className="u-mb-l poi-panel-poiItem"
+                  withAlternativeName
+                  withOpeningHours
+                  onClick={this.center}
+                />
+                <CloseButton
+                  onClick={isMobile ? backAction : this.closeAction}
+                  position="topRight"
+                />
+              </Flex>
+              <div className="u-mb-l">
+                <ActionButtons
+                  poi={poi}
+                  isDirectionActive={this.isDirectionActive}
+                  openDirection={this.openDirection}
+                  onClickPhoneNumber={this.onClickPhoneNumber}
+                  isPoiInFavorite={this.state.isPoiInFavorite}
+                  toggleStorePoi={this.toggleStorePoi}
+                />
               </div>
-              }
-              {isFromOSM(poi) && <OsmContribution poi={poi} />}
-              <Divider paddingTop={0} className="poi_panel__fullWidthDivider" />
-              <h3 className="u-text--smallTitle u-mb-s">
-                {_('Search around this place', 'poi')}
-              </h3>
-              <CategoryList className="poi_panel__categories u-mb-s" limit={4} />
+              <div className="poi_panel__fullContent">
+                <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
+                {isFromPagesJaunes(poi) && (
+                  <div className="poi_panel__info-partnership u-text--caption u-mb-s">
+                    {_('In partnership with')}
+                    <img src="./statics/images/pj.svg" alt="PagesJaunes" width="80" height="16" />
+                  </div>
+                )}
+                {isFromOSM(poi) && <OsmContribution poi={poi} />}
+                <Divider paddingTop={0} className="poi_panel__fullWidthDivider" />
+                <h3 className="u-text--smallTitle u-mb-s">
+                  {_('Search around this place', 'poi')}
+                </h3>
+                <CategoryList className="poi_panel__categories u-mb-s" limit={4} />
+              </div>
             </div>
-          </div>
-        </Panel>
-      }
-    </DeviceContext.Consumer>;
+          </Panel>
+        )}
+      </DeviceContext.Consumer>
+    );
   }
 }

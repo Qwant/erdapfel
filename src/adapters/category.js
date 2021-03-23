@@ -36,9 +36,7 @@ export default class Category {
         // check if first word in term is label
         matched = findIndexIgnoreCase(term, `${this.label} `) === 0;
       } else {
-        matched = findIndexIgnoreCase(
-          term, this.label.substring(0, term.length)
-        ) === 0;
+        matched = findIndexIgnoreCase(term, this.label.substring(0, term.length)) === 0;
       }
     }
 

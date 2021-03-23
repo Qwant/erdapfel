@@ -9,15 +9,13 @@ const serviceConfig = nconf.get().services;
 const LNG_INDEX = 0;
 const LAT_INDEX = 1;
 
-
 export default class IdunnPoi extends Poi {
   constructor(rawPoi) {
     const latLng = {
       lat: rawPoi.geometry.coordinates[LAT_INDEX],
       lng: rawPoi.geometry.coordinates[LNG_INDEX],
     };
-    super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name,
-      rawPoi.subclass_name);
+    super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name);
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
     this.bbox = rawPoi.geometry.bbox;
@@ -56,7 +54,8 @@ export default class IdunnPoi extends Poi {
       } else {
         const s_requestParams = JSON.stringify(requestParams);
         Error.sendOnce(
-          'idunn_poi', 'poiCategoryLoad',
+          'idunn_poi',
+          'poiCategoryLoad',
           `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
           err
         );
@@ -81,13 +80,14 @@ export default class IdunnPoi extends Poi {
         return;
       } else if (err === 0 && obj.queryContext !== undefined) {
         // When the OPTIONS request is rejected, the error is 0 and not 405
-        console.warn('Headers aren\'t allowed, sending query without them...');
+        console.warn("Headers aren't allowed, sending query without them...");
         obj.queryContext = undefined;
         return this.poiApiLoad(obj);
       }
       const s_requestParams = JSON.stringify(requestParams);
       Error.sendOnce(
-        'idunn_poi', 'poiApiLoad',
+        'idunn_poi',
+        'poiApiLoad',
         `unknown error getting idunn poi reaching ${url} with options ${s_requestParams}`,
         err
       );

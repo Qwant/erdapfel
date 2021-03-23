@@ -83,7 +83,9 @@ test('origin & latlon destination & mode', async () => {
   responseHandler.addPreparedResponse(mockPoi1, new RegExp(`places/${mockPoi1.id}`));
   responseHandler.addPreparedResponse(mockLatlonPoi, new RegExp(`places/${mockLatlonPoi.id}`));
 
-  await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockLatlonPoi.id}&mode=walking`);
+  await page.goto(
+    `${APP_URL}/${ROUTES_PATH}/?origin=${mockPoi1.id}&destination=${mockLatlonPoi.id}&mode=walking`
+  );
   await page.waitForSelector('#direction-input_origin');
 
   const directionStartInput = await getInputValue(page, '#direction-input_origin');
@@ -93,7 +95,10 @@ test('origin & latlon destination & mode', async () => {
   expect(directionEndInput).toEqual('16 Avenue Thiers');
 
   const activeLabel = await page.evaluate(() => {
-    return Array.from(document.querySelector('.vehicleSelector-button--active .vehicleSelector-buttonIcon').classList).join(',');
+    return Array.from(
+      document.querySelector('.vehicleSelector-button--active .vehicleSelector-buttonIcon')
+        .classList
+    ).join(',');
   });
   expect(activeLabel).toContain('icon-foot');
 });
@@ -111,7 +116,10 @@ test('origin & latlon destination & mode', async () => {
 // });
 
 test('select itinerary step', async () => {
-  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
+  responseHandler.addPreparedResponse(
+    mockMapBox,
+    /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/
+  );
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
 
   await page.waitForSelector('.itinerary_leg');
@@ -121,18 +129,24 @@ test('select itinerary step', async () => {
   await page.click('.itinerary_roadmap_item + .divider + .itinerary_roadmap_item');
 
   const { center } = await getMapView(page);
-  expect(center).toEqual({ 'lat': 48.823566, 'lng': 2.290454 });
+  expect(center).toEqual({ lat: 48.823566, lng: 2.290454 });
 });
 
 test('api error handling', async () => {
   /* prepare "error" response */
-  responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, { status: 422 });
+  responseHandler.addPreparedResponse({}, /\/7\.5000000,47\.4000000;6\.6000000,6\.6000000/, {
+    status: 422,
+  });
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.6`);
   expect(await exists(page, '.itinerary_no-result')).toBeTruthy();
 });
 
 test('api wait effect', async () => {
-  responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/, { delay: 1000 });
+  responseHandler.addPreparedResponse(
+    mockMapBox,
+    /\/7\.5000000,47\.4000000;6\.7000000,6\.6000000/,
+    { delay: 1000 }
+  );
   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
   expect(await exists(page, '.itinerary_leg--placeholder')).toBeTruthy();
   expect(await exists(page, '.itinerary_leg:not(.itinerary_leg--placeholder)')).toBeTruthy();

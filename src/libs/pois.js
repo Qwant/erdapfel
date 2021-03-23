@@ -29,11 +29,9 @@ export function fromUrl(urlParam) {
   const latLonUrlRegex = /^latlon:(-?\d*\.\d*):(-?\d*\.\d*)(?:@(.*))?/;
   let urlData = urlParam.match(latLonUrlRegex);
   if (urlData) {
-    const [ _, lat, lng, label ] = urlData;
+    const [_, lat, lng, label] = urlData;
     const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-    return Promise.resolve(
-      new LatLonPoi(latLng, label ? htmlEncode(label) : null)
-    );
+    return Promise.resolve(new LatLonPoi(latLng, label ? htmlEncode(label) : null));
   }
   urlData = urlParam.match(/^(.*?)(@(.*))?$/);
   if (urlData) {

@@ -3,13 +3,13 @@ import puppeteer from 'puppeteer';
 import LatLngPoi from 'src/adapters/poi/latlon_poi';
 import { getPupeeterViewport } from './device';
 
-export const getText = async function(page, selector) {
+export const getText = async function (page, selector) {
   return await page.evaluate(selector => {
     return document.querySelector(selector).textContent;
   }, selector);
 };
 
-export const initBrowser = async function() {
+export const initBrowser = async function () {
   const headless = process.env.headless !== 'false';
 
   const browser = await puppeteer.launch({
@@ -19,7 +19,7 @@ export const initBrowser = async function() {
   });
   const page = await browser.newPage();
   await page.setExtraHTTPHeaders({
-    'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */
+    'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */,
   });
 
   page.on('console', msg => {
@@ -30,18 +30,20 @@ export const initBrowser = async function() {
 };
 
 export async function store(page, soreKey, data) {
-  await page.evaluate((favorite, key) => {
-    localStorage.setItem(key, JSON.stringify(favorite));
-  }, data, soreKey);
+  await page.evaluate(
+    (favorite, key) => {
+      localStorage.setItem(key, JSON.stringify(favorite));
+    },
+    data,
+    soreKey
+  );
 }
 
-export const clearStore = async function(page) {
+export const clearStore = async function (page) {
   if (page.url() === 'about:blank') {
     return;
   }
-  await page.evaluate(() =>
-    localStorage.clear()
-  );
+  await page.evaluate(() => localStorage.clear());
 };
 
 export async function simulateClickOnMap(page, latLng) {
@@ -90,12 +92,16 @@ export async function isHidden(page, selector) {
 }
 
 export async function waitForAnimationEnd(page, selector) {
-  await page.evaluate(elementSelector => new Promise(resolve => {
-    const transition = document.querySelector(elementSelector);
-    function onEnd() {
-      transition.removeEventListener('animationend', onEnd);
-      resolve();
-    }
-    transition.addEventListener('animationend', onEnd, false);
-  }), selector);
+  await page.evaluate(
+    elementSelector =>
+      new Promise(resolve => {
+        const transition = document.querySelector(elementSelector);
+        function onEnd() {
+          transition.removeEventListener('animationend', onEnd);
+          resolve();
+        }
+        transition.addEventListener('animationend', onEnd, false);
+      }),
+    selector
+  );
 }

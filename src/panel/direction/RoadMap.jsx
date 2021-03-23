@@ -15,25 +15,29 @@ const RoadMap = ({ route, origin, destination, vehicle }) => {
   // but we want a custom format for it, so let's ignore it.
   routeSteps.pop();
 
-  return <div className="itinerary_roadmap">
-    <RoadMapPoint
-      point={origin}
-      onClick={() => fire('fit_map', origin)}
-    />
+  return (
+    <div className="itinerary_roadmap">
+      <RoadMapPoint point={origin} onClick={() => fire('fit_map', origin)} />
 
-    {routeSteps.map((step, index) => <RoadMapStep
-      key={index}
-      step={step}
-      onMouseOver={() => { fire('highlight_step', index); }}
-      onMouseOut={() => { fire('unhighlight_step', index); }}
-      onClick={() => { fire('zoom_step', step); }}
-    />)}
+      {routeSteps.map((step, index) => (
+        <RoadMapStep
+          key={index}
+          step={step}
+          onMouseOver={() => {
+            fire('highlight_step', index);
+          }}
+          onMouseOut={() => {
+            fire('unhighlight_step', index);
+          }}
+          onClick={() => {
+            fire('zoom_step', step);
+          }}
+        />
+      ))}
 
-    <RoadMapPoint
-      point={destination}
-      onClick={() => fire('fit_map', destination)}
-    />
-  </div>;
+      <RoadMapPoint point={destination} onClick={() => fire('fit_map', destination)} />
+    </div>
+  );
 };
 
 export default RoadMap;

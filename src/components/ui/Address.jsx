@@ -20,21 +20,25 @@ function toArray(address, { omitStreet, omitCountry } = {}) {
       .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
   }
 
-  const cityAndPostcode = address.postcode && address.city
-    ? address.postcode + ' ' + address.city
-    : address.city;
+  const cityAndPostcode =
+    address.postcode && address.city ? address.postcode + ' ' + address.city : address.city;
 
-  return [!omitStreet && address.street, cityAndPostcode, !omitCountry && address.country]
-    .filter(i => i); // Filter out any undefined value
+  return [!omitStreet && address.street, cityAndPostcode, !omitCountry && address.country].filter(
+    i => i
+  ); // Filter out any undefined value
 }
 
 const Address = ({ address = {}, inline, omitStreet, omitCountry }) => {
   const parts = toArray(address, { omitStreet, omitCountry });
-  return inline
-    ? parts.join(', ')
-    : <div>
-      {parts.map((item, index) => <div key={index}>{item}</div>)}
-    </div>;
+  return inline ? (
+    parts.join(', ')
+  ) : (
+    <div>
+      {parts.map((item, index) => (
+        <div key={index}>{item}</div>
+      ))}
+    </div>
+  );
 };
 
 Address.propTypes = {

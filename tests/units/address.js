@@ -7,15 +7,19 @@ describe('Address utils', () => {
         poi: {
           name: 'Museum',
           address: {
-            admins: [{
-              class_name: 'city',
-              name: 'city',
-            }, {
-              class_name: 'country',
-              name: 'country',
-            }],
+            admins: [
+              {
+                class_name: 'city',
+                name: 'city',
+              },
+              {
+                class_name: 'country',
+                name: 'country',
+              },
+            ],
           },
-        }, expected: {
+        },
+        expected: {
           street: undefined,
           city: 'city',
           country: 'country',
@@ -64,13 +68,16 @@ describe('Address utils', () => {
         poi: {
           name: 'Museum',
           geocoding: {
-            administrative_regions: [{
-              zone_type: 'city',
-              name: 'city',
-            }, {
-              zone_type: 'country',
-              name: 'country',
-            }],
+            administrative_regions: [
+              {
+                zone_type: 'city',
+                name: 'city',
+              },
+              {
+                zone_type: 'country',
+                name: 'country',
+              },
+            ],
           },
         },
         expected: {
@@ -87,11 +94,12 @@ describe('Address utils', () => {
               id: 'addr:2.230565;48.641182:10',
               type: 'house',
               label: '10 Impasse Jean-Jacques Rousseau (Marcoussis)',
-              name: '10 Impasse Jean-Jacques Rousseau', housenumber: '10',
+              name: '10 Impasse Jean-Jacques Rousseau',
+              housenumber: '10',
             },
             administrative_regions: [
               {
-                bbox: 4 [1.9144582, 48.2845851, 2.5853029, 48.7761285],
+                bbox: (4)[(1.9144582, 48.2845851, 2.5853029, 48.7761285)],
                 // codes: (4) [{…}, {…}, {…}, {…}],
                 coord: { lon: 2.4289666999999997, lat: 48.6241665 },
                 id: 'admin:osm:relation:7401',
@@ -101,9 +109,10 @@ describe('Address utils', () => {
                 name: 'Essonne',
                 parent_id: 'admin:osm:relation:8649',
                 zip_codes: [],
-                zone_type: 'state_district' },
+                zone_type: 'state_district',
+              },
               {
-                bbox: 4 [1.4462445, 48.1201456, 3.5592208, 49.241431],
+                bbox: (4)[(1.4462445, 48.1201456, 3.5592208, 49.241431)],
                 // codes: (4) [{…}, {…}, {…}, {…}],
                 coord: { lon: 2.3514616, lat: 48.8566969 },
                 id: 'admin:osm:relation:8649',
@@ -113,9 +122,10 @@ describe('Address utils', () => {
                 name: 'Île-de-France',
                 parent_id: 'admin:osm:relation:2202162',
                 zip_codes: [],
-                zone_type: 'state' },
+                zone_type: 'state',
+              },
               {
-                bbox: 4 [-5.4517733, 41.261115499999995, 9.8282225, 51.3055721],
+                bbox: (4)[(-5.4517733, 41.261115499999995, 9.8282225, 51.3055721)],
                 // codes: (5) [{…}, {…}, {…}, {…}, {…}],
                 coord: { lon: 2.3514616, lat: 48.8566969 },
                 id: 'admin:osm:relation:2202162',
@@ -125,9 +135,10 @@ describe('Address utils', () => {
                 name: 'France',
                 parent_id: null,
                 zip_codes: [],
-                zone_type: 'country' },
+                zone_type: 'country',
+              },
               {
-                bbox: 4 [2.1622162, 48.6283879, 2.2533546, 48.6697281],
+                bbox: (4)[(2.1622162, 48.6283879, 2.2533546, 48.6697281)],
                 // codes: (2) [{…}, {…}],
                 coord: { lon: 2.2310497, lat: 48.6432483 },
                 id: 'admin:osm:relation:34076',

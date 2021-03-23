@@ -10,14 +10,7 @@ const AlertIcon = {
   error: 'alert-octagon',
 };
 
-const Alert = ({
-  className = '',
-  title,
-  description,
-  type = 'warning',
-  onClose,
-  footer,
-}) =>
+const Alert = ({ className = '', title, description, type = 'warning', onClose, footer }) => (
   <div className={cs('alert', className)}>
     <span className="alert-title">
       <span>
@@ -29,10 +22,9 @@ const Alert = ({
     <div className="alert-content">
       <span role="alert">{description}</span>
     </div>
-    { footer }
+    {footer}
   </div>
-;
-
+);
 Alert.propTypes = {
   className: string,
   title: string.isRequired,

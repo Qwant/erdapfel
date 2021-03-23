@@ -13,13 +13,12 @@ const Text = ({ children, level, inline, icon, className, ...rest }) => {
   } else {
     TagName = inline ? 'span' : 'div';
   }
-  return <TagName
-    className={classnames({ [`u-text--${level}`]: level }, className)}
-    {...props}
-  >
-    {icon && <i className={`u-mr-xxs icon-${icon}`} />}
-    {children}
-  </TagName>;
+  return (
+    <TagName className={classnames({ [`u-text--${level}`]: level }, className)} {...props}>
+      {icon && <i className={`u-mr-xxs icon-${icon}`} />}
+      {children}
+    </TagName>
+  );
 };
 
 Text.propTypes = {

@@ -1,8 +1,7 @@
-/* globals require, module */
 const yaml = require('node-yaml');
 const regions = yaml.readSync('../../config/regions.yaml');
 
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
   const countryCode = req.get('x-geoip-country-code');
   const regionCode = req.get('x-geoip-region-code');
   let region;

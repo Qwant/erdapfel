@@ -22,7 +22,7 @@ describe('request serializer', () => {
   describe('allowed headers', () => {
     const cases = [
       { 'accept-encoding': 'value' },
-      { 'host': 'value' },
+      { host: 'value' },
       { 'user-agent': 'value' },
       { 'x-geoip-region': 'value' },
       { 'x-qwantmaps-query': 'value' },

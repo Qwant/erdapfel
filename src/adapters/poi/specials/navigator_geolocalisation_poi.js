@@ -26,19 +26,21 @@ export default class NavigatorGeolocalisationPoi extends Poi {
   async geolocate(options = { displayErrorModal: true }) {
     return new Promise((resolve, reject) => {
       this.status = navigatorGeolocationStatus.PENDING;
-      navigator.geolocation.getCurrentPosition(position => {
-        this.setPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
-        resolve();
-      }, error => {
-        if (error.code === 1) {
-          this.status = navigatorGeolocationStatus.FORBIDDEN;
-        }
-        if (options.displayErrorModal) {
-          Geolocation.handleError(error);
-        }
-        reject(error);
-      },
-      { timeout: 3000 },
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          this.setPosition({ lat: position.coords.latitude, lng: position.coords.longitude });
+          resolve();
+        },
+        error => {
+          if (error.code === 1) {
+            this.status = navigatorGeolocationStatus.FORBIDDEN;
+          }
+          if (options.displayErrorModal) {
+            Geolocation.handleError(error);
+          }
+          reject(error);
+        },
+        { timeout: 3000 }
       );
     });
   }

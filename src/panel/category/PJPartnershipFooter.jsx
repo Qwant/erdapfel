@@ -2,9 +2,11 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
-const FooterContent = () => <div className="category__panel__pj">
-  {_('Results in partnership with PagesJaunes', 'categories')}
-</div>;
+const FooterContent = () => (
+  <div className="category__panel__pj">
+    {_('Results in partnership with PagesJaunes', 'categories')}
+  </div>
+);
 
 const PJPartnershipFooter = ({ isMobile }) => {
   const portalContainer = useRef(document.createElement('div'));
@@ -17,9 +19,11 @@ const PJPartnershipFooter = ({ isMobile }) => {
     };
   }, [isMobile]);
 
-  return isMobile
-    ? ReactDOM.createPortal(<FooterContent />, portalContainer.current)
-    : <FooterContent />;
+  return isMobile ? (
+    ReactDOM.createPortal(<FooterContent />, portalContainer.current)
+  ) : (
+    <FooterContent />
+  );
 };
 
 export default PJPartnershipFooter;

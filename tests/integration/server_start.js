@@ -1,4 +1,4 @@
-const App = require( './../../bin/app');
+const App = require('./../../bin/app');
 const nock = require('nock');
 const config = require('./test_config');
 
@@ -29,10 +29,9 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404);
 
-
 global.appServer = new App(config);
 
-module.exports = async function() {
+module.exports = async function () {
   /* eslint-disable no-console */
   console.log(`Start test on PORT : ${config.PORT}`);
   await global.appServer.start(config.PORT);

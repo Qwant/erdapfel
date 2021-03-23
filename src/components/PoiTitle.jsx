@@ -14,37 +14,43 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
 
     // Close to (address) + GPS coordinates
     if (address) {
-      return <div className="poiTitle">
-        <div className="u-text--subtitle u-italic u-mb-xxs">{ _('Close to', 'poi')}</div>
-        <h2 className="poiTitle-main u-text--smallTitle u-mb-xxs">
-          <Address address={address} omitCountry />
-        </h2>
-        <div className="poiTitle-position">{latLon}</div>
-      </div>;
+      return (
+        <div className="poiTitle">
+          <div className="u-text--subtitle u-italic u-mb-xxs">{_('Close to', 'poi')}</div>
+          <h2 className="poiTitle-main u-text--smallTitle u-mb-xxs">
+            <Address address={address} omitCountry />
+          </h2>
+          <div className="poiTitle-position">{latLon}</div>
+        </div>
+      );
     }
 
     // GPS coordinates only
-    return <div className="poiTitle">
-      <h2 className="poiTitle-main u-text--smallTitle u-mb-xxs">
-        { _('Geographic coordinates', 'poi')}
-      </h2>
-      <div className="poiTitle-position">{latLon}</div>
-    </div>;
+    return (
+      <div className="poiTitle">
+        <h2 className="poiTitle-main u-text--smallTitle u-mb-xxs">
+          {_('Geographic coordinates', 'poi')}
+        </h2>
+        <div className="poiTitle-position">{latLon}</div>
+      </div>
+    );
   }
 
   const title = name || localName;
-  const alternative = (withAlternativeName && name && localName && localName !== name) && localName;
+  const alternative = withAlternativeName && name && localName && localName !== name && localName;
   const subclass = capitalizeFirst(poiSubClass(subClassName));
 
   // Location / address
-  return <div className="poiTitle">
-    <h2 className={classnames('poiTitle-main u-text--heading6', { 'u-ellipsis': inList })}>
-      {title || subclass}
-    </h2>
-    {alternative && <div className="poiTitle-alternative u-text--subtitle u-italic">
-      {alternative}
-    </div>}
-  </div>;
+  return (
+    <div className="poiTitle">
+      <h2 className={classnames('poiTitle-main u-text--heading6', { 'u-ellipsis': inList })}>
+        {title || subclass}
+      </h2>
+      {alternative && (
+        <div className="poiTitle-alternative u-text--subtitle u-italic">{alternative}</div>
+      )}
+    </div>
+  );
 };
 
 export default PoiTitle;

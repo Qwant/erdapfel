@@ -29,37 +29,37 @@ const FavoritePoi = ({ poi, removeFavorite }) => {
 
   const icon = IconManager.get(poi);
 
-  return <div className="favorite_panel__item">
-    <div
-      className={`favorite_panel__item__image icon icon-${icon && icon.iconClass}`}
-      style={{ color: icon && icon.color || '#444648' }}
-    />
-    <div className="favorite_panel__item__info" onClick={onClick}>
-      <p
-        className="favorite_panel__item__title"
-        dangerouslySetInnerHTML={{ __html: poi.name
-          ? htmlEncode(poi.name)
-          : 'default',
-        }}
+  return (
+    <div className="favorite_panel__item">
+      <div
+        className={`favorite_panel__item__image icon icon-${icon && icon.iconClass}`}
+        style={{ color: (icon && icon.color) || '#444648' }}
       />
-      <p className="favorite_panel__item__desc u-text--subtitle u-firstCap">
-        {poi.subClassName ? poiSubClass(poi.subClassName) : ''}
-      </p>
+      <div className="favorite_panel__item__info" onClick={onClick}>
+        <p
+          className="favorite_panel__item__title"
+          dangerouslySetInnerHTML={{ __html: poi.name ? htmlEncode(poi.name) : 'default' }}
+        />
+        <p className="favorite_panel__item__desc u-text--subtitle u-firstCap">
+          {poi.subClassName ? poiSubClass(poi.subClassName) : ''}
+        </p>
+      </div>
+      <ShareMenu url={toAbsoluteUrl(poi)} scrollableParent=".panel-content">
+        {openMenu => (
+          <div
+            className="favorite_panel__item__share"
+            title={_('Share')}
+            onClick={e => onShareClick(e, openMenu)}
+          >
+            <i className="icon-share-2" />
+          </div>
+        )}
+      </ShareMenu>
+      <div className="favorite_panel__item__delete" title={_('Delete')} onClick={onDelete}>
+        <span className="icon-trash" />
+      </div>
     </div>
-    <ShareMenu url={toAbsoluteUrl(poi)} scrollableParent=".panel-content">
-      {openMenu =>
-        <div
-          className="favorite_panel__item__share"
-          title={_('Share')}
-          onClick={e => onShareClick(e, openMenu)}
-        >
-          <i className="icon-share-2" />
-        </div>}
-    </ShareMenu>
-    <div className="favorite_panel__item__delete" title={_('Delete')} onClick={onDelete}>
-      <span className="icon-trash" />
-    </div>
-  </div>;
+  );
 };
 
 FavoritePoi.propTypes = {

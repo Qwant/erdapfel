@@ -1,11 +1,9 @@
-/* globals require, process, __dirname, module */
-
 const path = require('path');
 const yaml = require('node-yaml');
 const webpack = require('webpack');
 const babelConf = require('./babel.config');
 
-const getBuildMode = function(argv) {
+const getBuildMode = function (argv) {
   const isTestMode = process.env.TEST === 'true';
 
   const argvMode = argv.mode;
@@ -16,7 +14,6 @@ const getBuildMode = function(argv) {
   }
   return 'production';
 };
-
 
 const sassChunkConfig = () => {
   return {
@@ -29,36 +26,40 @@ const sassChunkConfig = () => {
       filename: 'tmp/[name].js',
     },
     module: {
-      rules: [{
-        use: {
+      rules: [
+        {
+          use: {
+            loader: 'file-loader',
+            options: {
+              name: 'public/css/[name].css',
+            },
+          },
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')(), require('postcss-import')()],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/,
           loader: 'file-loader',
           options: {
-            name: 'public/css/[name].css',
+            publicPath: '/',
+            name: '[name].[ext]',
+            outputPath: 'images/',
           },
         },
-      }, {
-        test: /\.scss$/,
-        use: [{
-          loader: 'postcss-loader',
-          options: {
-            plugins: [
-              require('autoprefixer')(),
-              require('postcss-import')(),
-            ],
-          },
-        }],
-      }, {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          publicPath: '/',
-          name: '[name].[ext]',
-          outputPath: 'images/',
+        {
+          test: /\.scss$/,
+          loader: 'sass-loader',
         },
-      }, {
-        test: /\.scss$/,
-        loader: 'sass-loader',
-      }],
+      ],
     },
   };
 };
@@ -80,7 +81,7 @@ const mainJsChunkConfig = buildMode => {
       extensions: ['.js', '.jsx'],
     },
     plugins: [
-      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function(resource) {
+      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function (resource) {
         if (buildMode === 'test') {
           resource.request = resource.request.replace('--ENV', '-js-mock');
         } else {
@@ -89,53 +90,60 @@ const mainJsChunkConfig = buildMode => {
       }),
     ],
     module: {
-      rules: [{
-        test: /\.yml$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: babelConf(buildMode),
-          },
-          { loader: '@qwant/config-sanitizer-loader' },
-          { loader: 'json-loader' },
-          { loader: 'yaml-loader' },
-        ],
-      }, {
-        test: /style\.json$/,
-        use: [
-          {
-            loader: '@qwant/map-style-loader',
-            options: {
-              output: 'production', // 'debug' | 'production' | 'omt'
-              outPath: __dirname + '/../public/mapstyle',
-              i18n: true,
-              pins: true,
-              icons: true,
-              pixelRatios: [1, 2],
+      rules: [
+        {
+          test: /\.yml$/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: babelConf(buildMode),
             },
-          },
-        ],
-      }, {
-        test: /\.(js|jsx)$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: babelConf(buildMode),
-          },
-        ],
-      }, {
-        test: /\.svg$/,
-        use: [{
-          loader: '@svgr/webpack',
-          options: {
-            svgoConfig: {
-              plugins: {
-                removeViewBox: false,
+            { loader: '@qwant/config-sanitizer-loader' },
+            { loader: 'json-loader' },
+            { loader: 'yaml-loader' },
+          ],
+        },
+        {
+          test: /style\.json$/,
+          use: [
+            {
+              loader: '@qwant/map-style-loader',
+              options: {
+                output: 'production', // 'debug' | 'production' | 'omt'
+                outPath: __dirname + '/../public/mapstyle',
+                i18n: true,
+                pins: true,
+                icons: true,
+                pixelRatios: [1, 2],
               },
             },
-          },
-        }],
-      }],
+          ],
+        },
+        {
+          test: /\.(js|jsx)$/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: babelConf(buildMode),
+            },
+          ],
+        },
+        {
+          test: /\.svg$/,
+          use: [
+            {
+              loader: '@svgr/webpack',
+              options: {
+                svgoConfig: {
+                  plugins: {
+                    removeViewBox: false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      ],
     },
     devtool: buildMode === 'production' ? false : 'source-map',
     node: {
@@ -146,22 +154,22 @@ const mainJsChunkConfig = buildMode => {
 
 const copyPluginConfig = () => {
   return {
-    entry: [
-      path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.min.js'),
-    ],
+    entry: [path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.min.js')],
     output: {
       path: path.join(__dirname, '..'),
       filename: 'tmp/mapbox-gl-rtl-text.min.js',
     },
     module: {
-      rules: [{
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: './public/build/javascript/map_plugins/mapbox-gl-rtl-text.js',
+      rules: [
+        {
+          use: {
+            loader: 'file-loader',
+            options: {
+              name: './public/build/javascript/map_plugins/mapbox-gl-rtl-text.js',
+            },
           },
         },
-      }],
+      ],
     },
   };
 };
@@ -174,29 +182,32 @@ const webpackChunks = buildMode => {
   ];
   const constants = yaml.readSync('../config/constants.yml');
 
-  webpackChunks = webpackChunks.concat(constants.languages.supportedLanguages.map(language => {
-    return {
-      entry: path.join(__dirname, '..', 'language', 'message', language.code + '.po'),
-      module: {
-        rules: [
-          {
-            loader: '@qwant/po-js-loader',
-          },
-          {
-            test: /\.po$/,
-            loader: '@qwant/merge-po-loader',
-            options: {
-              fallbackList: language.fallback,
-              messagePath: path.join(__dirname, '..', 'language', 'message'),
+  webpackChunks = webpackChunks.concat(
+    constants.languages.supportedLanguages.map(language => {
+      return {
+        entry: path.join(__dirname, '..', 'language', 'message', language.code + '.po'),
+        module: {
+          rules: [
+            {
+              loader: '@qwant/po-js-loader',
             },
-          }],
-      },
-      output: {
-        path: path.join(__dirname, '..'),
-        filename: `./public/build/javascript/message/${language.locale}.js`,
-      },
-    };
-  }));
+            {
+              test: /\.po$/,
+              loader: '@qwant/merge-po-loader',
+              options: {
+                fallbackList: language.fallback,
+                messagePath: path.join(__dirname, '..', 'language', 'message'),
+              },
+            },
+          ],
+        },
+        output: {
+          path: path.join(__dirname, '..'),
+          filename: `./public/build/javascript/message/${language.locale}.js`,
+        },
+      };
+    })
+  );
   return webpackChunks;
 };
 

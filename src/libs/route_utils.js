@@ -30,14 +30,14 @@ export function formatDistance(m) {
 
 export function getVehicleIcon(vehicle) {
   switch (vehicle) {
-  case 'driving':
-    return 'icon-drive';
-  case 'walking':
-    return 'icon-foot';
-  case 'cycling':
-    return 'icon-bike';
-  default:
-    return 'icon-public-transport';
+    case 'driving':
+      return 'icon-drive';
+    case 'walking':
+      return 'icon-foot';
+    case 'cycling':
+      return 'icon-bike';
+    default:
+      return 'icon-public-transport';
   }
 }
 

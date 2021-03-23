@@ -1,5 +1,3 @@
-/* globals require, __dirname */
-
 const webfont = require('@qwant/map-style-builder/task/webfont/index');
 const fs = require('fs-extra');
 const path = require('path');
@@ -10,12 +8,10 @@ const styleDir = path.join(__dirname, '../node_modules/@qwant/qwant-basic-gl-sty
 webfont({
   styleDir,
   webfont: true,
-}).then(() => {
-  fs.copy(
-    path.join(styleDir, 'build/font'),
-    path.join(__dirname, '../public/mapstyle/iconfont')
-  );
 })
+  .then(() => {
+    fs.copy(path.join(styleDir, 'build/font'), path.join(__dirname, '../public/mapstyle/iconfont'));
+  })
   .catch(err => {
     console.error(err);
   });

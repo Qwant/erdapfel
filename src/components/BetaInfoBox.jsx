@@ -18,27 +18,28 @@ const BetaInfoBox = () => {
 
   return (
     // Show beta popup if browser language is not french, if popup hasn't already been closed, and if the user comes from an IA
-    window.getLang().code.indexOf('fr') === -1
-    && !closed
-    && isUserFromSearch
-    &&
-    <Alert
-      title={_('Qwant Maps is in Beta!')}
-      /* eslint-disable max-len */
-      description={_('This means that this version may have some bugs. We work very hard to improve Qwant Maps every day, while keeping your travels private.')}
-      /* eslint-enable max-len */
-      type="info"
-      onClose={closeBetaPopup}
-      footer={
-        <div className="alert-link">
-          <Button variant="tertiary" onClick={closeBetaPopup}>
-            {_('Do not display this message again')}
-          </Button>
-        </div>
-      }
-    />
+    window.getLang().code.indexOf('fr') === -1 &&
+    !closed &&
+    isUserFromSearch && (
+      <Alert
+        title={_('Qwant Maps is in Beta!')}
+        /* eslint-disable max-len */
+        description={_(
+          'This means that this version may have some bugs. We work very hard to improve Qwant Maps every day, while keeping your travels private.'
+        )}
+        /* eslint-enable max-len */
+        type="info"
+        onClose={closeBetaPopup}
+        footer={
+          <div className="alert-link">
+            <Button variant="tertiary" onClick={closeBetaPopup}>
+              {_('Do not display this message again')}
+            </Button>
+          </div>
+        }
+      />
+    )
   );
 };
 
 export default BetaInfoBox;
-
