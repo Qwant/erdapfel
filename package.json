@@ -19,6 +19,8 @@
     "prepare": "if [ \"$IGNORE_PREPARE\" != true ]; then node build/before_build.js && npm rebuild @qwant/qwant-maps-common; fi",
     "lint": "eslint src bin build tests --ext '.js,.jsx'",
     "lint-fix": "eslint --fix src bin build tests --ext '.js,.jsx'",
+    "prettier:check": "prettier --check '{src,bin,build,tests}/**/*.{js,jsx}'",
+    "prettier:write": "prettier --write '{src,bin,build,tests}/**/*.{js,jsx}'",
     "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript"
   },
   "repository": {
