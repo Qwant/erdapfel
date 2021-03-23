@@ -6,27 +6,29 @@ import ProductCard from './ProductCard';
 const ProductsDrawer = () => {
   return <>
     <h3 className="u-text--heading3 u-mb-xl-2 u-center">
-      {_('Products for everyday life', 'menu')}
+      {_('Products for everyday life.', 'menu')}
     </h3>
     <div className="products">
+      {/* @HACK: the space characters in title string help create a distinct PO entry,
+      as "Search"/"Rechercher" already existed and the context is ignored in our implementation.*/}
       <ProductCard
+        title={_('   Search   ', 'products').trim()}
         logo="./statics/images/products/qwant-search.svg"
-        title={_('Search', 'products')}
-        desc={_('Responsible research that respects your privacy.', 'products')}
+        desc={_('Responsible search that respects your privacy.', 'products')}
         link={_('Open Search', 'products')}
         href="https://qwant.com"
       />
       <ProductCard
-        logo="./statics/images/products/qwant-maps.svg"
         title={_('Maps', 'products')}
-        desc={_('The map department that doesn\'t track you.', 'products')}
+        logo="./statics/images/products/qwant-maps.svg"
+        desc={_('The map that does not track you.', 'products')}
         link={_('Open Maps', 'products')}
         href="https://qwant.com/maps"
       />
       <ProductCard
-        logo="./statics/images/products/qwant-junior.svg"
         title={_('Junior', 'products')}
-        desc={_('Responsible research adapted to the 6-12 ans.', 'products')}
+        logo="./statics/images/products/qwant-junior.svg"
+        desc={_('Responsible search adapted to 6-12 year olds.', 'products')}
         link={_('Open Junior', 'products')}
         href="https://junior.qwant.com"
       />
@@ -42,9 +44,9 @@ const ProductsDrawer = () => {
         </div>
         <div>
           <div className="u-color--primary u-text--heading5 u-mb-s">
-            {_('We believe in another model', 'products')}
+            {_('We believe in an alternate model', 'products')}
           </div>
-          <div className="card-link">{_('Learn more', 'products')}</div>
+          <div className="card-link">{_('Read more', 'products')}</div>
         </div>
       </Flex>
     </a>
