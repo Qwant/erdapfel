@@ -124,6 +124,7 @@ $productDrawerWidth: 744px;
   .productCard {
     text-align: center;
     margin-bottom: $spacing-s;
+    padding: $spacing-xxl-3 $spacing-l;
   }
 
   @media (max-width: 640px) {
@@ -145,6 +146,10 @@ $productDrawerWidth: 744px;
 
     .productCard {
       margin-bottom: 0;
+
+      .card-desc {
+        min-height: 60px;
+      }
     }
 
     .menu-content {
