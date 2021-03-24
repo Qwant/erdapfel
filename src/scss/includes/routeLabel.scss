@@ -115,6 +115,10 @@
       border-left-color: white;
     }
   }
+
+  &--single-line .routeLabel-duration {
+    padding-top: 10px;
+  }
 }
 
 .directions-stepByStep .routeLabel {

@@ -19,16 +19,18 @@ const RouteSummary = ({
     toggleDetails(id);
   };
 
-  return (
-    <Flex
-      className="itinerary_leg_summary"
-      justifyContent="space-between"
-      alignItems="flex-end"
-      onClick={() => {
-        selectRoute(id);
-      }}
-    >
-      <RouteSummaryInfo isFastest={id === 0} route={route} vehicle={vehicle} />
+  return <Flex
+    className="itinerary_leg_summary"
+    justifyContent="space-between"
+    alignItems="flex-end"
+    onClick={() => { selectRoute(id); }}
+  >
+    <RouteSummaryInfo
+      isFastest={id === 0}
+      route={route}
+      vehicle={vehicle}
+      showDistance={vehicle !== 'publicTransport'}
+    />
 
       {isActive && (
         <Button
