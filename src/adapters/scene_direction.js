@@ -33,21 +33,13 @@ const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
       ${
   vehicle === 'publicTransport'
     ? ''
-    : '<div class="routeLabel-distance">' + formatDistance(route.distance) + '</div>'
+    : ('<div class="routeLabel-distance">' + formatDistance(route.distance) + '</div>')
 }
-      ${
-        vehicle === 'publicTransport'
-          ? ''
-          : ('<div class="routeLabel-distance">' + formatDistance(route.distance) + '</div>')
-      }
     </div>
   `;
   element.className = `routeLabel routeLabel--${anchor}`;
-  if (vehicle === 'publicTransport') {
+  if (vehicle === 'publicTransport'){
     element.className += ' routeLabel--single-line';
-  }
-  if(vehicle === 'publicTransport'){
-    element.className += ` routeLabel--single-line`;
   }
   element.dataset.id = route.id;
   element.onclick = () => {
