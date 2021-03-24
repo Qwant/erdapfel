@@ -1,8 +1,9 @@
+/* global _ */
 import React from 'react';
 import Color from 'color';
 import classnames from 'classnames';
 
-const PublicTransportLine = ({ mode, info }) => {
+const PublicTransportLine = ({ mode, info, showDirection = false }) => {
   // @TODO: translate
   // @TODO: use network-specific iconography where possible
   let type = 'ligne';
@@ -20,7 +21,7 @@ const PublicTransportLine = ({ mode, info }) => {
     }
   }
   const lineColor = info.lineColor ? Color('#' + info.lineColor) : Color('white');
-  return (
+  return <>
     <span
       className={classnames('routePtLine', { 'routePtLine--dark': lineColor.isDark() })}
       style={{
@@ -30,7 +31,10 @@ const PublicTransportLine = ({ mode, info }) => {
     >
       {type} {info.num}
     </span>
-  );
+    {showDirection && <span className={classnames('routePtLine-direction', 'u-text--subtitle')}>
+      {_('Towards', 'direction')} {info.direction}
+    </span>}
+  </>
 };
 
 export default PublicTransportLine;

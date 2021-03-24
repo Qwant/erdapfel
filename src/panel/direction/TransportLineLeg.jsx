@@ -21,7 +21,7 @@ const TransportLineLeg = ({ leg }) => {
         onClick={() => setDetailsOpen(!detailsOpen)}
       >
         <div>
-          <PublicTransportLine mode={mode} info={info} />
+          <PublicTransportLine mode={mode} info={info} showDirection />
           {!detailsOpen && from.name && to.name && (
             <div>
               {from.name} <i className="icon-chevrons-right" /> {to.name}
