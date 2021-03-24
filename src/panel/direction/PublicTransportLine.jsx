@@ -34,7 +34,7 @@ const PublicTransportLine = ({ mode, info, showDirection = false }) => {
     {showDirection && <span className={classnames('routePtLine-direction', 'u-text--subtitle')}>
       {_('Towards', 'direction')} {info.direction}
     </span>}
-  </>
+  </>;
 };
 
 export default PublicTransportLine;
