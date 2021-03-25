@@ -2,15 +2,18 @@
 import React, { Fragment, useEffect, useState, useRef, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
-import MenuItem from './menu/MenuItem';
+import AppMenu from './menu/AppMenu';
+import ProductsDrawer from './menu/ProductsDrawer';
 import Telemetry from 'src/libs/telemetry';
-import { CloseButton, Flex } from 'src/components/ui';
-import { Heart, IconLightbulb, IconEdit, IconMenu } from 'src/components/ui/icons';
-import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
+import { Flex, CloseButton } from 'src/components/ui';
+import { IconMenu, IconApps } from 'src/components/ui/icons';
 import { DeviceContext } from 'src/libs/device';
+import nconf from '@qwant/nconf-getter';
+
+const displayProducts = nconf.get().burgerMenu?.products;
 
 const Menu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
   const isMobile = useContext(DeviceContext);
 
@@ -22,71 +25,85 @@ const Menu = () => {
     };
   }, []);
 
-  const toggle = () => {
-    if (!isOpen) {
+  useEffect(() => {
+    if (openedMenu === 'app') {
       Telemetry.add(Telemetry.MENU_CLICK);
     }
-    setIsOpen(!isOpen);
-  };
+  }, [openedMenu]);
 
   const close = () => {
-    setIsOpen(false);
+    setOpenedMenu(null);
   };
 
-  const navTo = (url, options) => {
-    close();
-    window.app.navigateTo(url, options);
+  const toggleOpen = menu => {
+    if (openedMenu === menu) {
+      close();
+    } else {
+      setOpenedMenu(menu);
+    }
   };
 
   return (
     <Fragment>
-      <button
-        type="button"
-        className={cx('menu__button', { 'menu__button--active': isOpen })}
-        onClick={toggle}
-        title={_('Menu')}
-      >
-        {isMobile ? <IconMenu /> : <IconMenu width={16} height={16} />}
-      </button>
+      <Flex className="menu__button-container">
+        <button
+          type="button"
+          className={cx('menu__button', {
+            'menu__button--active': openedMenu === 'app',
+            'menu__button--noShadow': openedMenu && openedMenu !== 'app',
+          })}
+          onClick={() => {
+            toggleOpen('app');
+          }}
+          title={_('Menu')}
+        >
+          {isMobile ? <IconMenu /> : <IconMenu width={16} height={16} />}
+        </button>
 
-      {isOpen &&
+        {!isMobile && displayProducts && (
+          <button
+            type="button"
+            className={cx('u-mr-xs', 'menu__button', {
+              'menu__button--active': openedMenu === 'products',
+              'menu__button--noShadow': openedMenu && openedMenu !== 'products',
+            })}
+            onClick={() => {
+              toggleOpen('products');
+            }}
+          >
+            <IconApps className="u-mr-xxs" />
+            {_('Products', 'menu')}
+          </button>
+        )}
+      </Flex>
+
+      {openedMenu &&
         ReactDOM.createPortal(
-          <div className="menu">
+          <div className={cx('menu', { productsDrawer: openedMenu === 'products' })}>
             <div className="menu__overlay" onClick={close} />
 
             <div className="menu__panel">
-              <Flex className="menu-top u-mb-l">
+              <Flex className="menu-top">
+                {isMobile && openedMenu === 'products' && (
+                  <div className="u-text--heading5">{_('Products', 'menu')}</div>
+                )}
                 <CloseButton circle onClick={close} />
               </Flex>
-              <div className="menu-items">
-                <MenuItem
-                  onClick={e => {
-                    e.preventDefault();
-                    Telemetry.add(Telemetry.MENU_FAVORITE);
-                    navTo('/favs/');
-                  }}
-                  icon={<Heart width={16} color={PINK_DARK} />}
-                >
-                  {_('My favorites', 'menu')}
-                </MenuItem>
-                <MenuItem
-                  href="https://about.qwant.com/legal/terms-of-service/qwant-maps/"
-                  outsideLink
-                  icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
-                >
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: _('Terms of service Qwant&nbsp;Maps', 'menu'),
-                    }}
+              <div className="menu-content">
+                {openedMenu === 'app' ? (
+                  <AppMenu
+                    close={close}
+                    openProducts={
+                      isMobile && displayProducts
+                        ? () => {
+                            setOpenedMenu('products');
+                          }
+                        : null
+                    }
                   />
-                </MenuItem>
-                <MenuItem
-                  href="https://github.com/Qwant/qwantmaps/blob/master/contributing.md"
-                  outsideLink
-                  icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
-                >
-                  {_('How to contribute', 'menu')}
-                </MenuItem>
+                ) : (
+                  <ProductsDrawer />
+                )}
               </div>
             </div>
           </div>,

@@ -10,6 +10,7 @@
 }
 
 $menuPanelWidth: 300px;
+$productDrawerWidth: 744px;
 
 @keyframes appearMenu {
   0% { transform: translateX($menuPanelWidth); }
@@ -47,7 +48,7 @@ $menuPanelWidth: 300px;
 .menu-top {
   height: $top_bar_height;
   padding: 0 $spacing-l;
-  justify-content: flex-end;
+  flex-shrink: 0;
 }
 
 .menu-item {
@@ -72,6 +73,12 @@ $menuPanelWidth: 300px;
   }
 }
 
+.menu {
+  .divider {
+    padding: $spacing-l;
+  }
+}
+
 .menu__button {
   background: $background;
   cursor: pointer;
@@ -83,17 +90,89 @@ $menuPanelWidth: 300px;
   color: $grey-semi-darkness;
 }
 
+@media (max-width: 640px) {
+  .menu-content {
+    overflow-y: auto;
+    padding: $spacing-xl 0;
+  }
+
+  .closeButton {
+    margin-left: auto;
+  }
+
+  .productsDrawer .menu-top {
+    box-shadow: $shadow-hover;
+  }
+}
+
+.productsDrawer .menu__panel {
+  .card {
+    display: block;
+    padding: $spacing-l;
+    border-radius: 12px;
+    box-shadow: $shadow;
+    transition: box-shadow 0.3s;
+    text-decoration: none;
+
+    &:hover {
+      .card-link {
+         text-decoration: underline;
+      }
+    }
+  }
+    
+  .productCard {
+    text-align: center;
+    margin-bottom: $spacing-s;
+    padding: $spacing-xxl-3 $spacing-l;
+  }
+
+  @media (max-width: 640px) {
+    .menu-content {
+      padding: $spacing-xxl-3 $spacing-s;
+    }
+  }
+
+  @media (min-width: 641px) {
+    width: auto;
+    max-width: $productDrawerWidth;
+
+    .products {
+      display: grid;
+      grid-gap: $spacing-s;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-bottom: $spacing-xl-2;
+    }
+
+    .productCard {
+      margin-bottom: 0;
+
+      .card-desc {
+        min-height: 60px;
+      }
+    }
+
+    .menu-content {
+      padding-left: $spacing-xl-2;
+      padding-right: $spacing-xl-2;
+    }
+  }
+}
+
 @media (min-width: 641px) {
   #react_menu__container {
     display: none;
   }
 
-  .menu__button {
+  .menu__button-container {
     position: fixed;
     right: $spacing-s;
     top: $spacing-xl;
-    width: 40px;
-    height: 40px;
+    flex-direction: row-reverse;
+  }
+
+  .menu__button {
+    padding: $spacing-s;
     border-radius: 8px;
     box-shadow: $shadow;
 
@@ -107,15 +186,22 @@ $menuPanelWidth: 300px;
       color: $grey-black;
       background-color: $grey-lighter;
     }
+
+    &--noShadow {
+      box-shadow: none;
+    }
   }
 
   .menu-top {
     height: 88px;
-    justify-content: unset;
   }
 
   .menu__panel {
     width: $menuPanelWidth;
+  }
+
+  .menu-content {
+    padding: $spacing-xl-2 0;
   }
 }
 
