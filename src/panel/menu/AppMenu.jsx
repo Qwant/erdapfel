@@ -6,6 +6,9 @@ import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
 import { Heart, IconLightbulb, IconEdit, IconApps } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
+import nconf from '@qwant/nconf-getter';
+
+const { baseUrl } = nconf.get().system;
 
 const AppMenu = ({ close, openProducts }) => {
   const navTo = (url, options) => {
@@ -15,6 +18,7 @@ const AppMenu = ({ close, openProducts }) => {
 
   return <div className="menu-items">
     <MenuItem
+      href={baseUrl + 'favs/'}
       onClick={e => {
         e.preventDefault();
         Telemetry.add(Telemetry.MENU_FAVORITE);
