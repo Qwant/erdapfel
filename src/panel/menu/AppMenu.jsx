@@ -56,7 +56,7 @@ const AppMenu = ({ close, openProducts }) => {
 
 AppMenu.propTypes = {
   close: PropTypes.func.isRequired,
-  openProducts: PropTypes.func.isRequired,
+  openProducts: PropTypes.func,
 };
 
 export default AppMenu;
