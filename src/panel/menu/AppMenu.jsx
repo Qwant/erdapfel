@@ -16,46 +16,53 @@ const AppMenu = ({ close, openProducts }) => {
     window.app.navigateTo(url, options);
   };
 
-  return <div className="menu-items">
-    <MenuItem
-      href={baseUrl + 'favs/'}
-      onClick={e => {
-        e.preventDefault();
-        Telemetry.add(Telemetry.MENU_FAVORITE);
-        navTo('/favs/');
-      }}
-      icon={<Heart width={16} color={PINK_DARK} />}
-    >
-      {_('My favorites', 'menu')}
-    </MenuItem>
-    <MenuItem
-      href="https://about.qwant.com/legal/terms-of-service/qwant-maps/"
-      outsideLink
-      icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
-    >
-      <span dangerouslySetInnerHTML={{
-        __html: _('Terms of service Qwant&nbsp;Maps', 'menu') }} />
-    </MenuItem>
-    <MenuItem
-      href="https://github.com/Qwant/qwantmaps/blob/master/contributing.md"
-      outsideLink
-      icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
-    >
-      {_('How to contribute', 'menu')}
-    </MenuItem>
-    {openProducts && <>
-      <Divider />
+  return (
+    <div className="menu-items">
       <MenuItem
+        href={baseUrl + 'favs/'}
         onClick={e => {
           e.preventDefault();
-          openProducts();
+          Telemetry.add(Telemetry.MENU_FAVORITE);
+          navTo('/favs/');
         }}
-        icon={<IconApps width={16} fill={ACTION_BLUE_BASE} />}
+        icon={<Heart width={16} color={PINK_DARK} />}
       >
-        {_('Products', 'menu')}
+        {_('My favorites', 'menu')}
       </MenuItem>
-    </>}
-  </div>;
+      <MenuItem
+        href="https://about.qwant.com/legal/terms-of-service/qwant-maps/"
+        outsideLink
+        icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
+      >
+        <span
+          dangerouslySetInnerHTML={{
+            __html: _('Terms of service Qwant&nbsp;Maps', 'menu'),
+          }}
+        />
+      </MenuItem>
+      <MenuItem
+        href="https://github.com/Qwant/qwantmaps/blob/master/contributing.md"
+        outsideLink
+        icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
+      >
+        {_('How to contribute', 'menu')}
+      </MenuItem>
+      {openProducts && (
+        <>
+          <Divider />
+          <MenuItem
+            onClick={e => {
+              e.preventDefault();
+              openProducts();
+            }}
+            icon={<IconApps width={16} fill={ACTION_BLUE_BASE} />}
+          >
+            {_('Products', 'menu')}
+          </MenuItem>
+        </>
+      )}
+    </div>
+  );
 };
 
 AppMenu.propTypes = {

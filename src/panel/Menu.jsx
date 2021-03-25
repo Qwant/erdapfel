@@ -82,27 +82,35 @@ const Menu = () => {
           <div className={cx('menu', { productsDrawer: openedMenu === 'products' })}>
             <div className="menu__overlay" onClick={close} />
 
-        <div className="menu__panel">
-          <Flex className="menu-top">
-            {isMobile && openedMenu === 'products' &&
-              <div className="u-text--heading5">{_('Products', 'menu')}</div>}
-            <CloseButton circle onClick={close} />
-          </Flex>
-          <div className="menu-content">
-            {openedMenu === 'app'
-              ? <AppMenu
-                close={close}
-                openProducts={isMobile && displayProducts
-                  ? () => { setOpenedMenu('products'); }
-                  : null
-                }/>
-              : <ProductsDrawer />}
-          </div>
-        </div>
-      </div>,
-      menuContainer.current,
-    )}
-  </Fragment>;
+            <div className="menu__panel">
+              <Flex className="menu-top">
+                {isMobile && openedMenu === 'products' && (
+                  <div className="u-text--heading5">{_('Products', 'menu')}</div>
+                )}
+                <CloseButton circle onClick={close} />
+              </Flex>
+              <div className="menu-content">
+                {openedMenu === 'app' ? (
+                  <AppMenu
+                    close={close}
+                    openProducts={
+                      isMobile && displayProducts
+                        ? () => {
+                            setOpenedMenu('products');
+                          }
+                        : null
+                    }
+                  />
+                ) : (
+                  <ProductsDrawer />
+                )}
+              </div>
+            </div>
+          </div>,
+          menuContainer.current
+        )}
+    </Fragment>
+  );
 };
 
 export default Menu;
