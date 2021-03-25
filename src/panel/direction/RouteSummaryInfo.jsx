@@ -5,7 +5,7 @@ import RouteVia from './RouteVia';
 import { Badge } from 'src/components/ui';
 import { formatDuration, formatDistance } from 'src/libs/route_utils';
 
-const RouteSummaryInfo = ({ isFastest, route, vehicle }) =>
+const RouteSummaryInfo = ({ isFastest, route, vehicle, showDistance = false }) => (
   <div>
     <div className="u-text--title u-mb-xxxs route-summary-info-duration">
       {formatDuration(route.duration)}
