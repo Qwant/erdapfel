@@ -51,14 +51,13 @@ export default class SceneCategory {
       element: createPinIcon({ className: 'marker--category' }),
       anchor: 'bottom',
     });
-  }
+  };
 
   initDynamicPoiLayers = () => {
     // Declare a new image in MapBox-GL rasters so it can be used in the layer style
-    createMapGLIcon('./statics/images/map/pin_map_dot.svg', 50, 60)
-      .then(imageData => {
-        this.map.addImage('pin_with_dot', imageData);
-      });
+    createMapGLIcon('./statics/images/map/pin_map_dot.svg', 50, 60).then(imageData => {
+      this.map.addImage('pin_with_dot', imageData);
+    });
 
     this.map.addSource(this.sourceName, {
       type: 'geojson',
@@ -95,16 +94,18 @@ export default class SceneCategory {
         this.map.on('mouseleave', layerName, this.handleLayerMarkerMouseLeave);
       }
     });
-  }
+  };
 
   getPointedPoi = mapMouseEvent => {
     const feature = mapMouseEvent.features[0];
     return feature && this.pois.find(p => p.id === feature.id);
-  }
+  };
 
   selectPoi = ({ poi, poiFilters, pois }) => {
     if (poi.meta && poi.meta.source) {
-      Telemetry.sendPoiEvent(poi, 'open',
+      Telemetry.sendPoiEvent(
+        poi,
+        'open',
         Telemetry.buildInteractionData({
           id: poi.id,
           source: poi.meta.source,
@@ -122,10 +123,9 @@ export default class SceneCategory {
       centerMap: true,
     });
     this.selectPoiMarker(poi);
-  }
+  };
 
   handleLayerMarkerClick = e => {
-
     e.originalEvent.stopPropagation();
     const poi = this.getPointedPoi(e);
 
@@ -134,7 +134,7 @@ export default class SceneCategory {
       pois: this.pois,
       poiFilters: this.poiFilters,
     });
-  }
+  };
 
   handleLayerMarkerMouseMove = e => {
     this.map.getCanvas().style.cursor = 'pointer';
@@ -143,13 +143,13 @@ export default class SceneCategory {
       this.highlightPoiMarker(poi, true);
       fire('open_popup', this.getPointedPoi(e), e.originalEvent);
     }
-  }
+  };
 
   handleLayerMarkerMouseLeave = () => {
     this.map.getCanvas().style.cursor = '';
     this.highlightPoiMarker(this.hoveredPoi, false);
     fire('close_popup');
-  }
+  };
 
   addCategoryMarkers = (pois = [], poiFilters) => {
     this.pois = pois;
@@ -159,7 +159,7 @@ export default class SceneCategory {
     this.layers.forEach(layerName => {
       this.map.setLayoutProperty(layerName, 'visibility', 'visible');
     });
-  }
+  };
 
   removeCategoryMarkers = () => {
     this.selectPoiMarker(null);
@@ -168,17 +168,17 @@ export default class SceneCategory {
       this.map.setLayoutProperty(layerName, 'visibility', 'none');
     });
     this.setOsmPoisVisibility(true);
-  }
+  };
 
   setOsmPoisVisibility = displayed => {
     constants.map.pois_layers.map(poi => {
       this.map.setLayoutProperty(poi, 'visibility', displayed ? 'visible' : 'none');
     });
-  }
+  };
 
   setPoiFeatureState = (id, state) => {
     this.map.setFeatureState({ id, source: this.sourceName }, state);
-  }
+  };
 
   highlightPoiMarker = (poi, highlight) => {
     if (this.hoveredPoi) {
@@ -186,15 +186,13 @@ export default class SceneCategory {
     }
     if (highlight) {
       this.hoveredPoi = poi;
-      this.hoveredMarker
-        .setLngLat(poi.latLon)
-        .addTo(this.map);
+      this.hoveredMarker.setLngLat(poi.latLon).addTo(this.map);
       this.setPoiFeatureState(this.hoveredPoi.id, { hovered: true });
     } else {
       this.hoveredMarker.remove();
       this.hoveredPoi = null;
     }
-  }
+  };
 
   selectPoiMarker = poi => {
     if (this.selectedPoi === poi) {
@@ -205,13 +203,11 @@ export default class SceneCategory {
     }
     if (poi) {
       this.selectedPoi = poi;
-      this.selectedMarker
-        .setLngLat(poi.latLon)
-        .addTo(this.map);
+      this.selectedMarker.setLngLat(poi.latLon).addTo(this.map);
       this.setPoiFeatureState(this.selectedPoi.id, { selected: true });
     } else {
       this.selectedMarker.remove();
       this.selectedPoi = null;
     }
-  }
+  };
 }

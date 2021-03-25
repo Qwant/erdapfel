@@ -10,17 +10,19 @@ const Leg = ({ leg }) => {
     return null;
   }
 
-  return leg.mode === 'WALK'
-    ? <WalkLeg leg={leg} />
-    : <TransportLineLeg leg={leg} />;
+  return leg.mode === 'WALK' ? <WalkLeg leg={leg} /> : <TransportLineLeg leg={leg} />;
 };
 
 const PublicTransportRoadMap = ({ route, origin, destination }) => {
-  return <div className="itinerary_roadmap itinerary_roadmap--publicTransport">
-    <RoadMapPoint point={origin} line={<LegLine mode="WALK" />} />
-    {route.legs.map((leg, index) => <Leg key={index} leg={leg} />)}
-    <RoadMapPoint point={destination} />
-  </div>;
+  return (
+    <div className="itinerary_roadmap itinerary_roadmap--publicTransport">
+      <RoadMapPoint point={origin} line={<LegLine mode="WALK" />} />
+      {route.legs.map((leg, index) => (
+        <Leg key={index} leg={leg} />
+      ))}
+      <RoadMapPoint point={destination} />
+    </div>
+  );
 };
 
 export default PublicTransportRoadMap;

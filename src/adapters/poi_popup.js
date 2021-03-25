@@ -10,7 +10,7 @@ const WAIT_BEFORE_DISPLAY = 350;
 
 function PoiPopup() {}
 
-PoiPopup.prototype.init = function(map) {
+PoiPopup.prototype.init = function (map) {
   this.map = map;
   this.popupHandle = null;
   this.timeOutHandler = null;
@@ -33,7 +33,7 @@ PoiPopup.prototype.init = function(map) {
   });
 };
 
-PoiPopup.prototype.addListener = function(layer) {
+PoiPopup.prototype.addListener = function (layer) {
   this.map.on('mouseenter', layer, e => {
     if (isMobileDevice() || isTouchEvent(e)) {
       return;
@@ -61,20 +61,20 @@ PoiPopup.prototype.addListener = function(layer) {
   });
 };
 
-PoiPopup.prototype.createOSMPopup = async function(layerPoi, event) {
-  const poi = await ApiPoi.poiApiLoad({ 'id': layerPoi.properties.global_id }, { simple: true });
+PoiPopup.prototype.createOSMPopup = async function (layerPoi, event) {
+  const poi = await ApiPoi.poiApiLoad({ id: layerPoi.properties.global_id }, { simple: true });
   if (poi) {
     this.showPopup(poi, event);
   }
 };
 
-PoiPopup.prototype.createPJPopup = function(poi, event) {
+PoiPopup.prototype.createPJPopup = function (poi, event) {
   if (poi) {
     this.showPopup(poi, event);
   }
 };
 
-PoiPopup.prototype.showPopup = function(poi, event) {
+PoiPopup.prototype.showPopup = function (poi, event) {
   this.close();
 
   const popupOptions = {
@@ -91,7 +91,7 @@ PoiPopup.prototype.showPopup = function(poi, event) {
     .addTo(this.map);
 };
 
-PoiPopup.prototype.getPopupAnchor = function(event) {
+PoiPopup.prototype.getPopupAnchor = function (event) {
   const VERTICAL_OFFSET = 250;
   const HORIZONTAL_OFFSET = 300;
   const canvasWidth = window.innerWidth;
@@ -117,7 +117,7 @@ PoiPopup.prototype.getPopupAnchor = function(event) {
   return anchorFragments.join('-');
 };
 
-PoiPopup.prototype.close = function() {
+PoiPopup.prototype.close = function () {
   if (this.popupHandle) {
     this.popupHandle.remove();
     this.popupHandle = null;

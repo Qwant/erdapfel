@@ -57,10 +57,10 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
   }
   /* ajax */
   let suggestsPromise;
-  const queryPromise = new Promise(async (resolve, reject) => {
+  const queryPromise = new Promise((resolve, reject) => {
     const query = {
-      'q': term,
-      'limit': maxItems,
+      q: term,
+      limit: maxItems,
       ...focusParams,
     };
     if (useLang) {
@@ -70,31 +70,34 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
       query.nlu = 'true';
     }
     suggestsPromise = ajax.get(geocoderUrl, query);
-    suggestsPromise.then(({ features, intentions }) => {
-      const pois = features.map((feature, index) => {
-        const queryContext = new QueryContext(
-          term,
-          index + 1, // ranking
-          query.lang,
-          focusParams,
-        );
-        return new BragiPoi(feature, queryContext);
+    suggestsPromise
+      .then(({ features, intentions }) => {
+        const pois = features.map((feature, index) => {
+          const queryContext = new QueryContext(
+            term,
+            index + 1, // ranking
+            query.lang,
+            focusParams
+          );
+          return new BragiPoi(feature, queryContext);
+        });
+        const bragiResponse = { pois };
+        if (intentions) {
+          bragiResponse.intentions = intentions
+            .map(intention => new Intention(intention))
+            .filter(intention => intention.isValid());
+        }
+        bragiCache[cacheKey] = bragiResponse;
+        resolve(bragiResponse);
+      })
+      .catch(error => {
+        if (error === 0) {
+          /* abort */
+          resolve(null);
+        } else {
+          reject(error);
+        }
       });
-      const bragiResponse = { pois };
-      if (intentions) {
-        bragiResponse.intentions = intentions
-          .map(intention => new Intention(intention))
-          .filter(intention => intention.isValid());
-      }
-      bragiCache[cacheKey] = bragiResponse;
-      resolve(bragiResponse);
-    }).catch(error => {
-      if (error === 0) { /* abort */
-        resolve(null);
-      } else {
-        reject(error);
-      }
-    });
   });
   queryPromise.abort = () => {
     suggestsPromise.abort();

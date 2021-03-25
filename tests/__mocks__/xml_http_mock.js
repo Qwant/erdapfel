@@ -5,7 +5,6 @@ const xhrMockClass = () => ({
     this.onload();
   },
   setRequestHeader: jest.fn(),
-
 });
 
 window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);

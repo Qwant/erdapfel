@@ -23,7 +23,7 @@ function setHeaders(xhr, headers) {
     return;
   }
   for (const key in headers) {
-    if (!headers.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(headers, key)) {
       continue;
     }
     xhr.setRequestHeader(key, headers[key]);
@@ -46,15 +46,19 @@ const query = (url, data, method = 'GET', options = {}, headers = {}) => {
       reject(`Timeout calling ${url}`);
     }, timeout * 1000);
 
-    xhr.onload = function() {
+    xhr.onload = function () {
       if (xhrStatus !== 204) {
         try {
           jsonResponse = JSON.parse(this.response);
         } catch (e) {
           clearTimeout(timeOutHandler);
           const resp = this.response.substr(0, 100);
-          Error.sendOnce('ajax', 'query',
-            `response parse error. url ${url}. response ${resp}...`, e);
+          Error.sendOnce(
+            'ajax',
+            'query',
+            `response parse error. url ${url}. response ${resp}...`,
+            e
+          );
           reject(e);
           return;
         }
@@ -84,7 +88,6 @@ const query = (url, data, method = 'GET', options = {}, headers = {}) => {
       }
       xhr.send(JSON.stringify(data));
     }
-
   });
   ajaxPromise.abort = () => {
     xhr.abort();

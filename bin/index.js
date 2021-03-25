@@ -1,5 +1,3 @@
-/* globals require */
-
 require('dotenv').config();
 const configBuilt = require('@qwant/nconf-builder');
 const App = require('./app');

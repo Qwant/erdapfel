@@ -5,16 +5,12 @@ import { fire } from 'src/libs/customEvents';
 import classnames from 'classnames';
 import { FloatingButton } from '../../components/ui';
 
-const MobileRoadMapPreview = ({
-  steps,
-  onClose,
-}) => {
+const MobileRoadMapPreview = ({ steps, onClose }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const stepsRef = React.createRef();
 
   const scroll = () => {
-
     const newStep = Math.floor(
       // Divide the step container's scrollLeft up to the middle of the screen with the size of a step
       // to determine which step is present at the middle of the screen
@@ -32,12 +28,9 @@ const MobileRoadMapPreview = ({
   };
 
   // When expanded is modified, move the map's bottom UI
-  useEffect(
-    () => {
-      fire('move_mobile_bottom_ui', stepsRef.current.offsetHeight);
-    },
-    [expanded, stepsRef]
-  );
+  useEffect(() => {
+    fire('move_mobile_bottom_ui', stepsRef.current.offsetHeight);
+  }, [expanded, stepsRef]);
 
   // When currentStep is modified, zoom on it
   useEffect(
@@ -50,35 +43,29 @@ const MobileRoadMapPreview = ({
     // causing the ref to change even if the content is the same.
   );
 
-  return <div className="itinerary_mobile_step_by_step">
-    <FloatingButton
-      onClick={onClose}
-      icon="arrow-left"
-    />
-    <div
-      ref={stepsRef}
-      className={classnames('mobile-roadmap-preview-steps', { expanded })}
-      onScroll={scroll}
-      onClick={toggleSize}
-    >
-      {
-        steps.map((step, index) =>
+  return (
+    <div className="itinerary_mobile_step_by_step">
+      <FloatingButton onClick={onClose} icon="arrow-left" />
+      <div
+        ref={stepsRef}
+        className={classnames('mobile-roadmap-preview-steps', { expanded })}
+        onScroll={scroll}
+        onClick={toggleSize}
+      >
+        {steps.map((step, index) => (
           <div
             key={index}
-            className={
-              classnames(
-                'itinerary_mobile_step',
-                {
-                  past: index < currentStep,
-                  active: index === currentStep,
-                }
-              )
-            }>
-            <RoadMapStep step={step}/>
-          </div>)
-      }
+            className={classnames('itinerary_mobile_step', {
+              past: index < currentStep,
+              active: index === currentStep,
+            })}
+          >
+            <RoadMapStep step={step} />
+          </div>
+        ))}
+      </div>
     </div>
-  </div>;
+  );
 };
 
 MobileRoadMapPreview.propTypes = {

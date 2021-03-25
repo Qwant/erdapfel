@@ -20,15 +20,17 @@ const PublicTransportLine = ({ mode, info }) => {
     }
   }
   const lineColor = info.lineColor ? Color('#' + info.lineColor) : Color('white');
-  return <span
-    className={classnames('routePtLine', { 'routePtLine--dark': lineColor.isDark() })}
-    style={{
-      backgroundColor: lineColor.hex(),
-      borderColor: lineColor.rgbNumber() === 0xffffff ? 'black' : lineColor.hex(),
-    }}
-  >
-    {type} {info.num}
-  </span>;
+  return (
+    <span
+      className={classnames('routePtLine', { 'routePtLine--dark': lineColor.isDark() })}
+      style={{
+        backgroundColor: lineColor.hex(),
+        borderColor: lineColor.rgbNumber() === 0xffffff ? 'black' : lineColor.hex(),
+      }}
+    >
+      {type} {info.num}
+    </span>
+  );
 };
 
 export default PublicTransportLine;

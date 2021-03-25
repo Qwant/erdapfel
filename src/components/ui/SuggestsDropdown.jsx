@@ -4,12 +4,7 @@ import { object, func, string, arrayOf } from 'prop-types';
 
 import SuggestItem from './SuggestItem';
 
-const SuggestsDropdown = ({
-  className = '',
-  suggestItems,
-  onSelect,
-  onHighlight,
-}) => {
+const SuggestsDropdown = ({ className = '', suggestItems, onSelect, onHighlight }) => {
   const [highlighted, setHighlighted] = useState(null);
 
   useEffect(() => {
@@ -17,7 +12,7 @@ const SuggestsDropdown = ({
       const { key } = e;
 
       if (key === 'ArrowDown') {
-        const h = highlighted === null ? - 1 : highlighted;
+        const h = highlighted === null ? -1 : highlighted;
 
         if (h < suggestItems.length - 1) {
           setHighlighted(h + 1);
@@ -58,16 +53,20 @@ const SuggestsDropdown = ({
 
   return (
     <ul className={classnames('autocomplete_suggestions', className)}>
-      {suggestItems.map((suggest, index) =>
+      {suggestItems.map((suggest, index) => (
         <li
           key={index}
-          onMouseDown={() => { onSelect(suggestItems[index]); }}
-          onMouseEnter={() => { setHighlighted(index); }}
-          className={classnames({ 'selected': highlighted === index })}
+          onMouseDown={() => {
+            onSelect(suggestItems[index]);
+          }}
+          onMouseEnter={() => {
+            setHighlighted(index);
+          }}
+          className={classnames({ selected: highlighted === index })}
         >
           <SuggestItem item={suggest} />
         </li>
-      )}
+      ))}
     </ul>
   );
 };

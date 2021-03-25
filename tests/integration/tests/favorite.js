@@ -13,9 +13,11 @@ beforeAll(async () => {
 test('toggle favorite panel', async () => {
   await page.goto(APP_URL);
   await page.waitForSelector('.panel_container', { visible: true });
-  expect(await page.evaluate(() => {
-    return document.getElementsByClassName('.favorite_panel').length;
-  })).toEqual(0);
+  expect(
+    await page.evaluate(() => {
+      return document.getElementsByClassName('.favorite_panel').length;
+    })
+  ).toEqual(0);
   await toggleFavoritePanel(page);
   const favPanel = await page.waitForSelector('.favorite_panel', { visible: true });
   expect(favPanel).toBeTruthy();

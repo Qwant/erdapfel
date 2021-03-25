@@ -59,7 +59,7 @@ function buildInteractionData({ source, template, id, zone, element, category })
   };
 
   return {
-    'front_search_user_interaction_data': data,
+    front_search_user_interaction_data: data,
   };
 }
 

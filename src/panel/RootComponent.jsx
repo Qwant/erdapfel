@@ -7,21 +7,22 @@ import { fire } from 'src/libs/customEvents';
 import BetaInfoBox from 'src/components/BetaInfoBox';
 
 const MenuComponent = ({ isMobile }) =>
-  isMobile
-    ? ReactDOM.createPortal(<Menu />, document.querySelector('#react_menu__container'))
-    : <Menu />;
+  isMobile ? (
+    ReactDOM.createPortal(<Menu />, document.querySelector('#react_menu__container'))
+  ) : (
+    <Menu />
+  );
 
-const RootComponent = ({
-  burgerMenuEnabled,
-  router,
-}) => {
+const RootComponent = ({ burgerMenuEnabled, router }) => {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
 
   useEffect(() => {
     const deviceChanged = ({ matches: isMobile }) => {
       setIsMobile(isMobile);
       if (!isMobile) {
-        window.execOnMapLoaded(() => { fire('move_mobile_bottom_ui', 0); });
+        window.execOnMapLoaded(() => {
+          fire('move_mobile_bottom_ui', 0);
+        });
       }
     };
 
@@ -32,15 +33,17 @@ const RootComponent = ({
     };
   });
 
-  return <DeviceContext.Provider value={isMobile}>
-    <PanelManager
-      router={router}
-      searchBarInputNode={document.getElementById('search')}
-      searchBarOutputNode={document.querySelector('.search_form__result')}
-    />
-    {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
-    <BetaInfoBox/>
-  </DeviceContext.Provider>;
+  return (
+    <DeviceContext.Provider value={isMobile}>
+      <PanelManager
+        router={router}
+        searchBarInputNode={document.getElementById('search')}
+        searchBarOutputNode={document.querySelector('.search_form__result')}
+      />
+      {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
+      <BetaInfoBox />
+    </DeviceContext.Provider>
+  );
 };
 
 export default RootComponent;

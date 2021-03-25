@@ -7,9 +7,7 @@ beforeAll(async () => {
 });
 
 test('responds to /', done => {
-  server
-    .get('/')
-    .expect(200, done);
+  server.get('/').expect(200, done);
 });
 
 test('responds to /statics', done => {
@@ -32,18 +30,21 @@ test('responds to events and update metrics', done => {
     .get('/metrics')
     .expect(200)
     .then(response => {
-      const currentFavSaveCount =
-        parseInt(response.text.match(/\nerdapfel_favorite_open_count (\d*)/)[1]);
+      const currentFavSaveCount = parseInt(
+        response.text.match(/\nerdapfel_favorite_open_count (\d*)/)[1]
+      );
       server
         .post('/events')
         .set('Content-Type', 'application/json')
         .send('{"type":"favorite_open"}')
         .expect(204, () => {
-          server.get('/metrics')
+          server
+            .get('/metrics')
             .expect(200)
             .then(response => {
-              const newSaveCount =
-                parseInt(response.text.match(/\nerdapfel_favorite_open_count (\d*)/)[1]);
+              const newSaveCount = parseInt(
+                response.text.match(/\nerdapfel_favorite_open_count (\d*)/)[1]
+              );
               expect(newSaveCount).toBeGreaterThan(currentFavSaveCount);
             })
             .then(done);
@@ -67,7 +68,6 @@ test('refuses array in telemetry type', done => {
     .expect(400, done);
 });
 
-
 describe('get style.json', () => {
   test('without parameter', done => {
     server
@@ -88,7 +88,6 @@ describe('get style.json', () => {
         done();
       });
   });
-
 
   test('with lang=fr', done => {
     server
@@ -121,8 +120,6 @@ describe('get style.json', () => {
   });
 
   test('invalid value for layers leads to 400', done => {
-    server
-      .get('/style.json?layers=invalid')
-      .expect(400, done);
+    server.get('/style.json?layers=invalid').expect(400, done);
   });
 });

@@ -20,12 +20,11 @@ export default class QueryContext {
     }
     const headers = {};
     const { term, ranking, lang, position } = queryContext;
-    if (position.lon !== undefined &&
-        position.lat !== undefined &&
-        position.zoom !== undefined) {
+    if (position.lon !== undefined && position.lat !== undefined && position.zoom !== undefined) {
       const { lon, lat, zoom } = position;
-      headers['X-QwantMaps-FocusPosition'] =
-        `${Number(lon).toFixed(4)};${Number(lat).toFixed(4)};${Number(zoom).toFixed(1)}`;
+      headers['X-QwantMaps-FocusPosition'] = `${Number(lon).toFixed(4)};${Number(lat).toFixed(
+        4
+      )};${Number(zoom).toFixed(1)}`;
     }
     headers['X-QwantMaps-Query'] = encodeURIComponent(term);
     headers['X-QwantMaps-SuggestionRank'] = ranking;

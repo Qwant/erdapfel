@@ -16,18 +16,15 @@ const RoutesList = ({
   selectRoute,
   isLoading,
 }) => {
-
   const isMobile = useContext(DeviceContext);
-  const orderedRoutes = isMobile
-    ? moveRouteToTop(routes, activeRouteId)
-    : routes;
+  const orderedRoutes = isMobile ? moveRouteToTop(routes, activeRouteId) : routes;
 
-  return isLoading
-    ? <Placeholder />
-    : <ItemList>
-      {orderedRoutes.map(route =>
-        <Item
-          key={route.id}>
+  return isLoading ? (
+    <Placeholder />
+  ) : (
+    <ItemList>
+      {orderedRoutes.map(route => (
+        <Item key={route.id}>
           <Route
             id={route.id}
             route={route}
@@ -40,8 +37,9 @@ const RoutesList = ({
             selectRoute={selectRoute}
           />
         </Item>
-      )}
-    </ItemList>;
+      ))}
+    </ItemList>
+  );
 };
 
 const Placeholder = () => {
@@ -74,10 +72,7 @@ const moveRouteToTop = (routes, id) => {
 
   return routes
     .slice() // clone the array as sort operates on-place
-    .sort((a, b) => a.id === id
-      ? -1
-      : b.id === id ? 1 : 0
-    );
+    .sort((a, b) => (a.id === id ? -1 : b.id === id ? 1 : 0));
 };
 
 export default RoutesList;

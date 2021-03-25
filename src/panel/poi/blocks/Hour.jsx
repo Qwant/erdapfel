@@ -12,12 +12,14 @@ const HourBlock = ({ block, covid19enabled }) => {
     return null;
   }
 
-  return <Block icon="icon_clock" title={_('opening hours')}>
-    <TimeTable
-      schedule={schedule}
-      title={covid19enabled && _('See the usual opening hours', 'covid19')}
-    />
-  </Block>;
+  return (
+    <Block icon="icon_clock" title={_('opening hours')}>
+      <TimeTable
+        schedule={schedule}
+        title={covid19enabled && _('See the usual opening hours', 'covid19')}
+      />
+    </Block>
+  );
 };
 
 HourBlock.propTypes = {

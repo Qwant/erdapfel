@@ -31,7 +31,9 @@ export function createDefaultPin() {
 export function createMapGLIcon(imageFile, width, height) {
   return new Promise((resolve, reject) => {
     const img = new Image(width, height);
-    img.onload = () => { resolve(img); };
+    img.onload = () => {
+      resolve(img);
+    };
     img.onerror = reject;
     img.src = imageFile;
   });

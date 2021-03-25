@@ -1,13 +1,11 @@
-/* globals module */
-
 /**
  *
  * @param languageConfig set of language config (list of available config & default lang
  * set res.locals.language with the user config subset or default config subset
  */
-module.exports = function(languageConfig) {
+module.exports = function (languageConfig) {
   const supportedLanguages = languageConfig.supportedLanguages;
-  return function(req, res, next) {
+  return function (req, res, next) {
     const langHeaders = req.acceptsLanguages();
     if (langHeaders) {
       langHeaders.some(acceptedLocale => {

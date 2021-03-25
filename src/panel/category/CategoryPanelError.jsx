@@ -13,8 +13,7 @@ const CategoryPanelError = ({ zoomIn }) => {
       <p className="u-mb-l">
         {zoomIn
           ? _('Please zoom in the map to see the results for this category.', 'categories')
-          : _('Please zoom out of the map.', 'categories')
-        }
+          : _('Please zoom out of the map.', 'categories')}
       </p>
       <a onClick={geoloc} href="#">
         <span className="icon-pin_geoloc" /> {_('Search around my position', 'categories')}

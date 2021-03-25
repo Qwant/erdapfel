@@ -1,6 +1,4 @@
-
 export default class ResponseHandler {
-
   constructor(page) {
     this.preparedResponses = [];
     this.page = page;
@@ -41,7 +39,7 @@ export default class ResponseHandler {
             status = preparedResponse.options.status;
           }
           if (preparedResponse.options.delay) {
-            await new Promise(function(resolve) {
+            await new Promise(function (resolve) {
               setTimeout(resolve, preparedResponse.options.delay);
             });
           }

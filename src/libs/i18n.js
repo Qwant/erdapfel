@@ -16,13 +16,17 @@ function I18n() {
   window.getBaseLang = this.getBaseLang.bind(this);
 }
 
-I18n.prototype.setLang = async function() {
+I18n.prototype.setLang = async function () {
   this.language = window.preferedLanguage;
   try {
     await AsyncFileLoader(`statics/build/javascript/message/${this.language.locale}.js`);
   } catch (e) {
-    Error.send('i18n', 'setLang',
-      `error getting downloading language file : ${this.language.locale}`, e);
+    Error.send(
+      'i18n',
+      'setLang',
+      `error getting downloading language file : ${this.language.locale}`,
+      e
+    );
   }
   this.gettext.setMessage(window.i18nData.message);
 
@@ -30,12 +34,12 @@ I18n.prototype.setLang = async function() {
 };
 
 /* return user language  */
-I18n.prototype.getLang = function() {
+I18n.prototype.getLang = function () {
   return this.language;
 };
 
 /* return a supported user language   */
-I18n.prototype.getBaseLang = function() {
+I18n.prototype.getBaseLang = function () {
   return this.language;
 };
 

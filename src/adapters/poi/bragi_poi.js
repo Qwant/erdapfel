@@ -14,8 +14,9 @@ export default class BragiPoi extends Poi {
       if (poiClass) {
         poiClassText = poiClass.value;
       }
-      const poiSubclass = geocodingProps.properties.find(property =>
-        property.key === 'poi_subclass');
+      const poiSubclass = geocodingProps.properties.find(
+        property => property.key === 'poi_subclass'
+      );
       if (poiSubclass) {
         poiSubclassText = poiSubclass.value;
       }
@@ -25,28 +26,36 @@ export default class BragiPoi extends Poi {
     let name = '';
 
     switch (type) {
-    case 'poi':
-      name = geocodingProps.name;
-      break;
-    case 'house':
-    case 'street':
-      name = geocodingProps.name;
-      break;
-    default: {
-      /* admin */
-      const splitPosition = label.indexOf(',');
-      if (splitPosition === -1) {
-        name = label;
-      } else {
-        name = label.slice(0, splitPosition);
+      case 'poi':
+        name = geocodingProps.name;
+        break;
+      case 'house':
+      case 'street':
+        name = geocodingProps.name;
+        break;
+      default: {
+        /* admin */
+        const splitPosition = label.indexOf(',');
+        if (splitPosition === -1) {
+          name = label;
+        } else {
+          name = label.slice(0, splitPosition);
+        }
       }
     }
-    }
 
-    super(id, name, type, {
-      lat: feature.geometry.coordinates[1],
-      lng: feature.geometry.coordinates[0],
-    }, poiClassText, poiSubclassText, geocodingProps.bbox);
+    super(
+      id,
+      name,
+      type,
+      {
+        lat: feature.geometry.coordinates[1],
+        lng: feature.geometry.coordinates[0],
+      },
+      poiClassText,
+      poiSubclassText,
+      geocodingProps.bbox
+    );
 
     this.value = label;
     this.queryContext = queryContext;

@@ -23,9 +23,7 @@ export function getMapPaddings({ isMobile, isDirectionsActive, isIframe }) {
   if (!isMobile) {
     return DESKTOP_SIDE_PANEL;
   }
-  const topUIElement = isDirectionsActive
-    ? '.direction-panel'
-    : '.top_bar';
+  const topUIElement = isDirectionsActive ? '.direction-panel' : '.top_bar';
   const topUIHeight = document.querySelector(topUIElement)?.clientHeight || 0;
   return {
     bottom: mobileBottomPanelHeight + ADDITIONAL_PADDING / 2,
@@ -36,7 +34,6 @@ export function getMapPaddings({ isMobile, isDirectionsActive, isIframe }) {
 }
 
 export function getVisibleBbox(mb, isIframe) {
-
   const bbox = mb.getBounds();
   let ne = bbox.getNorthEast();
   let sw = bbox.getSouthWest();
@@ -66,9 +63,5 @@ export function getMapCenterOffset({ isMobile, isIframe }) {
 }
 
 export function isPositionUnderUI({ x, y }, { isMobile }) {
-  return !isMobile && (
-    x < (DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING)
-    ||
-    y < ADDITIONAL_PADDING
-  );
+  return !isMobile && (x < DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING || y < ADDITIONAL_PADDING);
 }

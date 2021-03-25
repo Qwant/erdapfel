@@ -1,4 +1,3 @@
-
 function fire(name, ...params) {
   const event = document.createEvent('CustomEvent');
   event.initCustomEvent(name, false, false, { params });

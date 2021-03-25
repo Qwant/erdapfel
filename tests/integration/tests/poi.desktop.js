@@ -16,7 +16,7 @@ beforeEach(async () => {
   page = await browser.newPage();
   page.setDefaultTimeout(3000);
   await page.setExtraHTTPHeaders({
-    'accept-language': 'fr_FR,fr,en;q=0.8', /* force fr header */
+    'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */,
   });
   responseHandler = new ResponseHandler(page);
   await responseHandler.prepareResponse();
@@ -51,7 +51,7 @@ test('display details about the poi on a poi click', async () => {
       website: document.querySelector('.block-website').innerText,
     };
   });
-  expect(address).toEqual('1 Rue de la Légion d\'Honneur, 75007 Paris');
+  expect(address).toEqual("1 Rue de la Légion d'Honneur, 75007 Paris");
   expect(await exists(page, '.poi_panel .openingHour--closed')).toBeTruthy();
   expect(phone).toMatch('01 40 49 48 14');
   expect(website).toMatch('www.musee-orsay.fr');
@@ -89,7 +89,7 @@ test('add a poi as favorite and find it back in the favorite menu', async () => 
   await toggleFavoritePanel(page);
   let fav = await getFavorites(page);
   expect(fav).toHaveLength(1);
-  expect(fav[0].title).toEqual('Musée d\'Orsay');
+  expect(fav[0].title).toEqual("Musée d'Orsay");
   expect(fav[0].desc).toEqual('Musée');
   expect(fav[0].icons).toContainEqual('icon-museum');
 
@@ -117,4 +117,3 @@ afterEach(async () => {
 afterAll(async () => {
   await browser.close();
 });
-

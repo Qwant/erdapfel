@@ -11,9 +11,10 @@ export default class Intention {
 
   isValid = () => this.category || this.fullTextQuery;
 
-  toQueryString = () => buildQueryString({
-    q: this.fullTextQuery,
-    type: this.category?.name,
-    bbox: this.bbox?.join(','),
-  });
+  toQueryString = () =>
+    buildQueryString({
+      q: this.fullTextQuery,
+      type: this.category?.name,
+      bbox: this.bbox?.join(','),
+    });
 }

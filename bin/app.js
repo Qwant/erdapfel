@@ -1,5 +1,3 @@
-/* globals require, process, __dirname, module */
-
 const express = require('express');
 const yaml = require('node-yaml');
 const path = require('path');
@@ -35,7 +33,6 @@ function App(config) {
   app.locals.rmWhitespace = true;
   app.set('views', path.join(__dirname, '..', 'views'));
 
-
   /* Define child logger in req */
   app.use((req, res, next) => {
     req.logger = this.logger.child({ req });
@@ -62,18 +59,21 @@ function App(config) {
 
   const publicDir = path.join(__dirname, '..', 'public');
 
-  router.use('/statics/build/javascript/map_plugins', expressStaticGzip(
-    path.join(publicDir, 'build', 'javascript', 'map_plugins'),
-    {
+  router.use(
+    '/statics/build/javascript/map_plugins',
+    expressStaticGzip(path.join(publicDir, 'build', 'javascript', 'map_plugins'), {
       fallthrough: false,
       maxAge: config.mapPlugins.maxAge,
-    },
-  ));
+    })
+  );
 
-  router.use('/mapstyle', expressStaticGzip(path.join(publicDir, 'mapstyle'), {
-    fallthrough: false,
-    maxAge: config.mapStyle.maxAge,
-  }));
+  router.use(
+    '/mapstyle',
+    expressStaticGzip(path.join(publicDir, 'mapstyle'), {
+      fallthrough: false,
+      maxAge: config.mapStyle.maxAge,
+    })
+  );
 
   router.use('/opensearch.xml', openSearch);
 
@@ -81,21 +81,21 @@ function App(config) {
     router.get('/fake_pbf/:z/:x/:y.pbf', fakePbf);
   }
 
-  router.use('/statics', expressStaticGzip(path.join(publicDir), {
-    fallthrough: false,
-    maxAge: config.statics.maxAge,
-    setHeaders: (res, path, _stat) => {
-      if (path.endsWith('/favicon.png') || path.match(/logo_\d+.png$/)) {
-        /* Chrome Mobile reloads favicon on each map move */
-        res.set('Cache-Control', 'public, max-age=300');
-      }
-    },
-  }));
-
-  router.use('/style.json',
-    compression(),
-    ...new mapStyle(config, constants)
+  router.use(
+    '/statics',
+    expressStaticGzip(path.join(publicDir), {
+      fallthrough: false,
+      maxAge: config.statics.maxAge,
+      setHeaders: (res, path, _stat) => {
+        if (path.endsWith('/favicon.png') || path.match(/logo_\d+.png$/)) {
+          /* Chrome Mobile reloads favicon on each map move */
+          res.set('Cache-Control', 'public, max-age=300');
+        }
+      },
+    })
   );
+
+  router.use('/style.json', compression(), ...new mapStyle(config, constants));
 
   if (config.server.enablePrometheus) {
     router.get('/metrics', (req, res) => {
@@ -127,7 +127,8 @@ function App(config) {
   });
 
   if (config.server.acceptPostedLogs) {
-    router.post('/logs',
+    router.post(
+      '/logs',
       express.json({ strict: true, limit: config.server.maxBodySize }),
       (req, res) => {
         if (Object.keys(req.body).length === 0) {
@@ -136,7 +137,8 @@ function App(config) {
           res.sendStatus(204);
           req.logger.info({ body: req.body }, 'Received client log');
         }
-      });
+      }
+    );
 
     if (config.server.acceptPostedEvents) {
       const metricsBuilder = require('./metrics_builder');
@@ -153,17 +155,20 @@ function App(config) {
   });
 }
 
-App.prototype.start = function(port) {
+App.prototype.start = function (port) {
   return new Promise(resolve => {
     let server;
 
     if (process.env.HTTPS) {
       const selfsigned = require('selfsigned');
       const pems = selfsigned.generate();
-      server = require('https').createServer({
-        key: pems.private,
-        cert: pems.cert,
-      }, app);
+      server = require('https').createServer(
+        {
+          key: pems.private,
+          cert: pems.cert,
+        },
+        app
+      );
     } else {
       server = require('http').createServer({}, app);
     }
@@ -172,16 +177,15 @@ App.prototype.start = function(port) {
       this.logger.info(`Server listening on PORT : ${port}`);
       resolve();
     });
-
   });
 };
 
-App.prototype.close = function() {
+App.prototype.close = function () {
   if (this.handler) {
     this.handler.close();
     this.handler = null;
   } else {
-    this.logger.error('App handler does\'nt handle anything : can\'t stop');
+    this.logger.error("App handler does'nt handle anything : can't stop");
   }
 };
 

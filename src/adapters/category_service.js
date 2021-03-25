@@ -3,7 +3,6 @@ import categories from 'config/categories.yml';
 import { normalize } from '../libs/string';
 
 export default class CategoryService {
-
   static getCategories() {
     if (!window.__categoriesCache) {
       window.__categoriesCache = categories.map(categ => Category.create(categ));

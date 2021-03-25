@@ -12,7 +12,7 @@ describe('geojson', () => {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [ poi.latLon.lng, poi.latLon.lat ],
+          coordinates: [poi.latLon.lng, poi.latLon.lat],
         },
       });
     });

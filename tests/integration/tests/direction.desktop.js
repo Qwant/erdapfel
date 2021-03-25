@@ -45,7 +45,10 @@ test('switch start end', async () => {
 
 test('simple search', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=direction/);
-  responseHandler.addPreparedResponse(mockMapBox, /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/);
+  responseHandler.addPreparedResponse(
+    mockMapBox,
+    /\/30\.0000000,5\.0000000;30\.0000000,5\.0000000/
+  );
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
   expect(await isHidden(page, '.direction-panel-share-button')).toBeTruthy();
   await page.waitForSelector('#direction-input_origin');
@@ -53,7 +56,9 @@ test('simple search', async () => {
   await page.keyboard.press('Enter');
   await page.type('#direction-input_destination', 'direction');
   await page.keyboard.press('Enter');
-  expect(await page.waitForSelector('.direction-panel-share-button', { visible: true })).toBeTruthy();
+  expect(
+    await page.waitForSelector('.direction-panel-share-button', { visible: true })
+  ).toBeTruthy();
   expect(await exists(page, '.itinerary_leg')).toBeTruthy();
 });
 
@@ -69,7 +74,9 @@ describe('Close panel behavior', () => {
   });
 
   test('returning to the POI Panel if coming from the "Directions" button of a POI', async () => {
-    await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`);
+    await page.goto(
+      `${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`
+    );
     const directionFromPOIButton = await page.waitForSelector('.poi_panel__action__direction');
     await directionFromPOIButton.click();
     await page.waitForSelector('.direction-panel');
@@ -80,7 +87,9 @@ describe('Close panel behavior', () => {
 
   test('navigating back after manipulating results directly exits the direction panel', async () => {
     responseHandler.addPreparedResponse(mockPoi, new RegExp(`places/${mockPoi.id}`));
-    await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`);
+    await page.goto(
+      `${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=16.50/48.8602571/2.3262281`
+    );
     const directionFromPOIButton = await page.waitForSelector('.poi_panel__action__direction');
     await directionFromPOIButton.click();
     await page.waitForSelector('.direction-panel');

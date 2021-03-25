@@ -47,20 +47,20 @@ export default class PanelManager extends React.Component {
     if (window.no_ui) {
       // iframe
       Telemetry.add(Telemetry.APP_START_IFRAME, {
-        'language': window.getLang(),
-        'is_mobile': isMobileDevice(),
-        'url_pathname': initialUrlPathName,
-        'direct_search': initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
-        'url_client': initialQueryParams['client'] || null,
+        language: window.getLang(),
+        is_mobile: isMobileDevice(),
+        url_pathname: initialUrlPathName,
+        direct_search: initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
+        url_client: initialQueryParams['client'] || null,
       });
     } else {
       // no iframe
       Telemetry.add(Telemetry.APP_START, {
-        'language': window.getLang(),
-        'is_mobile': isMobileDevice(),
-        'url_pathname': initialUrlPathName,
-        'direct_search': initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
-        'url_client': initialQueryParams['client'] || null,
+        language: window.getLang(),
+        is_mobile: isMobileDevice(),
+        url_pathname: initialUrlPathName,
+        direct_search: initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
+        url_client: initialQueryParams['client'] || null,
       });
     }
 
@@ -149,8 +149,8 @@ export default class PanelManager extends React.Component {
 
     if (directionConf.enabled) {
       const isPublicTransportActive =
-        (directionConf.publicTransport && directionConf.publicTransport.enabled)
-        || parseQueryString(document.location.search)['pt'] === 'true';
+        (directionConf.publicTransport && directionConf.publicTransport.enabled) ||
+        parseQueryString(document.location.search)['pt'] === 'true';
 
       router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
         const params = parseQueryString(routeParams);
@@ -213,7 +213,7 @@ export default class PanelManager extends React.Component {
 
   setPanelSize = panelSize => {
     this.setState({ panelSize });
-  }
+  };
 
   onSuggestChange = query => {
     this.setState(prevState => {
@@ -225,40 +225,42 @@ export default class PanelManager extends React.Component {
         };
       }
     });
-  }
+  };
 
   render() {
     const { ActivePanel, options, panelSize, isPanelVisible } = this.state;
     const { searchBarInputNode, searchBarOutputNode } = this.props;
 
-    return <div>
-      <Suggest
-        inputNode={searchBarInputNode}
-        outputNode={searchBarOutputNode}
-        withCategories
-        onChange={this.onSuggestChange}
-        onOpen={() => {
-          if (isPanelVisible && ActivePanel !== ServicePanel) {
-            this.setState({ isPanelVisible: false });
-          }
-        }}
-        onClose={() => {
-          if (!isPanelVisible) {
-            this.setState({ isPanelVisible: true });
-          }
-        }}
-      />
+    return (
+      <div>
+        <Suggest
+          inputNode={searchBarInputNode}
+          outputNode={searchBarOutputNode}
+          withCategories
+          onChange={this.onSuggestChange}
+          onOpen={() => {
+            if (isPanelVisible && ActivePanel !== ServicePanel) {
+              this.setState({ isPanelVisible: false });
+            }
+          }}
+          onClose={() => {
+            if (!isPanelVisible) {
+              this.setState({ isPanelVisible: true });
+            }
+          }}
+        />
 
-      <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }} >
-        {/*
+        <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
+          {/*
             The panel container is made hidden using "display: none;" to avoid unnecessary
             mounts and unmounts of the ActivePanel, that would have inappropriate side effects
             on map markers, requests to server, etc.
           */}
-        <div className="panel_container" style={{ 'display': !isPanelVisible ? 'none' : null }} >
-          <ActivePanel {...options} />
-        </div>
-      </PanelContext.Provider>
-    </div>;
+          <div className="panel_container" style={{ display: !isPanelVisible ? 'none' : null }}>
+            <ActivePanel {...options} />
+          </div>
+        </PanelContext.Provider>
+      </div>
+    );
   }
 }

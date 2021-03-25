@@ -10,18 +10,22 @@ import Button from 'src/components/ui/Button';
 const covidConf = nconf.get().covid19;
 
 const getContent = ({ status, opening_hours, note, contribute_url }) => {
-  const additionalInfo = note &&
+  const additionalInfo = note && (
     <div className="covid19-note">
       <i className="icon-icon_info" />
       <p>{note}</p>
-    </div>;
+    </div>
+  );
 
-  const source = contribute_url &&
+  const source = contribute_url && (
     <div className="covid19-source">
-      Source&nbsp;:&nbsp;<a
+      Source&nbsp;:&nbsp;
+      <a
         rel="noopener noreferrer"
         href="https://caresteouvert.fr"
-        onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK); }}
+        onClick={() => {
+          Telemetry.add(Telemetry.COVID_CARESTEOUVERT_LINK);
+        }}
       >
         caresteouvert.fr
       </a>
@@ -30,42 +34,51 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
           className="covid19-contributeLink"
           rel="noopener noreferrer"
           href={contribute_url}
-          onClick={() => { Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE); }}
+          onClick={() => {
+            Telemetry.add(Telemetry.COVID_CARESTEOUVERT_CONTRIBUTE);
+          }}
         >
           {_('Report a change', 'covid19')}
         </Button>
       </div>
-    </div>;
+    </div>
+  );
 
   let content;
   let schedule;
   switch (status) {
-  case 'open':
-  case 'open_as_usual':
-    schedule = opening_hours && new OsmSchedule(opening_hours);
-    content = <Fragment>
-      {schedule && <div className="covid19-timeTableContainer">
-        <i className="icon-icon_clock" />
-        <TimeTable schedule={schedule} />
-      </div>}
-      {!schedule &&
-        <div className="covid19-changeWarning">
-          {_('Opening hours subject to change', 'covid19')}
-        </div>
-      }
-      {additionalInfo}
-      {source}
-    </Fragment>;
-    break;
-  case 'maybe_open':
-    content = <Fragment>
-      {additionalInfo}
-      {source}
-    </Fragment>;
-    break;
-  case 'closed':
-  default:
-    content = source;
+    case 'open':
+    case 'open_as_usual':
+      schedule = opening_hours && new OsmSchedule(opening_hours);
+      content = (
+        <Fragment>
+          {schedule && (
+            <div className="covid19-timeTableContainer">
+              <i className="icon-icon_clock" />
+              <TimeTable schedule={schedule} />
+            </div>
+          )}
+          {!schedule && (
+            <div className="covid19-changeWarning">
+              {_('Opening hours subject to change', 'covid19')}
+            </div>
+          )}
+          {additionalInfo}
+          {source}
+        </Fragment>
+      );
+      break;
+    case 'maybe_open':
+      content = (
+        <Fragment>
+          {additionalInfo}
+          {source}
+        </Fragment>
+      );
+      break;
+    case 'closed':
+    default:
+      content = source;
   }
 
   return content;
@@ -74,22 +87,24 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 /* eslint-disable */
 const LocalizedWarning = ({ countryCode }) => (
   <div>
-    <p>
-      {_('Please comply with government travel restrictions.', 'covid19')}
-    </p>
-    {countryCode === 'FR' && <p>
-      {_('More information at', 'covid19')}
-      {' '}<a rel="noopener noreferrer" href={covidConf.frInformationUrl}>gouvernement.fr/info-coronavirus</a>
-    </p>}
+    <p>{_('Please comply with government travel restrictions.', 'covid19')}</p>
+    {countryCode === 'FR' && (
+      <p>
+        {_('More information at', 'covid19')}{' '}
+        <a rel="noopener noreferrer" href={covidConf.frInformationUrl}>
+          gouvernement.fr/info-coronavirus
+        </a>
+      </p>
+    )}
   </div>
-)
+);
 
 const LegalWarning = ({ countryCode }) => (
   <div className="covid19-legalWarning">
     <i className="icon-alert-triangle" />
     <LocalizedWarning countryCode={countryCode} />
   </div>
-)
+);
 
 const Status = ({ status }) => {
   const statusMessages = {
@@ -105,15 +120,17 @@ const Status = ({ status }) => {
       <span className="covid19-tag">Covid-19</span>
       <span>{statusMessages[status] || statusMessages['unknown']}</span>
     </h4>
-  )
-}
+  );
+};
 
 const Covid19 = ({ block, countryCode }) => {
-  return <div className="covid19">
-    <Status status={block.status} />
-    {getContent(block)}
-    <LegalWarning countryCode={countryCode} />
-  </div>;
+  return (
+    <div className="covid19">
+      <Status status={block.status} />
+      {getContent(block)}
+      <LegalWarning countryCode={countryCode} />
+    </div>
+  );
 };
 /* eslint-enable */
 

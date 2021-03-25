@@ -42,30 +42,26 @@ export default class App {
     }
 
     ReactDOM.render(
-      <RootComponent
-        router={this.router}
-        burgerMenuEnabled={burgerMenuEnabled}
-      />,
+      <RootComponent router={this.router} burgerMenuEnabled={burgerMenuEnabled} />,
       document.querySelector('#react_root')
     );
   }
 
   initMap() {
     const mapHash = parseMapHash(window.location.hash);
-    import(/* webpackChunkName: "map" */ '../adapters/scene')
-      .then(({ default: Scene }) => {
-        const scene = new Scene();
-        scene.initMapBox(mapHash);
-      });
+    import(/* webpackChunkName: "map" */ '../adapters/scene').then(({ default: Scene }) => {
+      const scene = new Scene();
+      scene.initMapBox(mapHash);
+    });
   }
 
   // @TODO: move that outside so we don't need to call window.app.navigateTo
   /**
-  * @param {string} url - The URL to navigate to.
-  * @param {Object} state - State object to associate with the history entry.
-  * @param {Object} options
-  * @param {boolean} options.replace - If true, the new state/url will replace the current state in browser history
-  */
+   * @param {string} url - The URL to navigate to.
+   * @param {Object} state - State object to associate with the history entry.
+   * @param {Object} options
+   * @param {boolean} options.replace - If true, the new state/url will replace the current state in browser history
+   */
   navigateTo(url, state = {}, { replace = false } = {}) {
     const urlWithCurrentHash = joinPath([window.baseUrl, url]) + location.hash;
     if (replace) {

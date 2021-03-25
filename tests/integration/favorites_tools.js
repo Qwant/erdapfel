@@ -41,7 +41,11 @@ export async function storePoi(
   { id = 'A', title = 'poi', coords = { lat: 43, lng: 2 } } = {}
 ) {
   const poi = new Poi(id, title, 'poi', coords, '', '');
-  await page.evaluate((storageKey, serializedPoi) => {
-    window.localStorage.setItem(storageKey, serializedPoi);
-  }, `qmaps_v${version}_${getKey(poi)}`, JSON.stringify(poi));
+  await page.evaluate(
+    (storageKey, serializedPoi) => {
+      window.localStorage.setItem(storageKey, serializedPoi);
+    },
+    `qmaps_v${version}_${getKey(poi)}`,
+    JSON.stringify(poi)
+  );
 }

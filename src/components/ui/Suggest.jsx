@@ -80,7 +80,9 @@ const Suggest = ({
           currentQuery = null;
           setIsLoading(false);
         })
-        .catch(() => { /* Query aborted. Just ignore silently */ });
+        .catch(() => {
+          /* Query aborted. Just ignore silently */
+        });
     }, SUGGEST_DEBOUNCE_WAIT);
 
     const handleInput = e => {
@@ -127,7 +129,7 @@ const Suggest = ({
     return null;
   }
 
-  const SuggestsDropdownElement = () =>
+  const SuggestsDropdownElement = () => (
     <SuggestsDropdown
       className={className}
       suggestItems={items}
@@ -148,7 +150,8 @@ const Suggest = ({
         }
       }}
       onClear={onClear}
-    />;
+    />
+  );
 
   return ReactDOM.createPortal(<SuggestsDropdownElement />, outputNode);
 };

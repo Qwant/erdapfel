@@ -25,52 +25,55 @@ const ActionButtons = ({
 
   const favoriteColor = isPoiInFavorite ? PINK_DARK : null;
 
-  return <Flex className="poi_panel__actions">
-    {isDirectionActive && <Button
-      className="poi_panel__action__direction"
-      variant="primary"
-      onClick={openDirection}
-      title={_('Directions', 'poi panel')}
-    >
-      { _('Directions', 'poi panel') }
-    </Button>}
+  return (
+    <Flex className="poi_panel__actions">
+      {isDirectionActive && (
+        <Button
+          className="poi_panel__action__direction"
+          variant="primary"
+          onClick={openDirection}
+          title={_('Directions', 'poi panel')}
+        >
+          {_('Directions', 'poi panel')}
+        </Button>
+      )}
 
-    {poi?.blocksByType?.phone && <Button
-      className="poi_panel__action__phone"
-      onClick={onClickPhoneNumber}
-      icon="icon_phone"
-      href={poi.blocksByType.phone.url}
-      rel="noopener noreferrer external"
-      title={_('Call', 'poi panel')}
-    />}
-
-    <Button
-      className="poi_panel__action__favorite"
-      data-active={isPoiInFavorite}
-      title={_('Favorites', 'poi panel')}
-      onClick={toggleStorePoi}
-      style={{ borderColor: favoriteColor }}
-      icon={
-        <Heart
-          width={16}
-          color={favoriteColor}
-          fill={favoriteColor || 'transparent'}
+      {poi?.blocksByType?.phone && (
+        <Button
+          className="poi_panel__action__phone"
+          onClick={onClickPhoneNumber}
+          icon="icon_phone"
+          href={poi.blocksByType.phone.url}
+          rel="noopener noreferrer external"
+          title={_('Call', 'poi panel')}
         />
-      }
-    />
+      )}
 
-    <ShareMenu
-      url={window.location.toString()}
-      scrollableParent=".panel-content"
-      onShare={onShare}
-    >
-      {openMenu => <Button className="poi_panel__action__share"
-        title={_('Share', 'poi panel')}
-        icon="share-2"
-        onClick={e => onShareClick(e, openMenu)}
-      />}
-    </ShareMenu>
-  </Flex>;
+      <Button
+        className="poi_panel__action__favorite"
+        data-active={isPoiInFavorite}
+        title={_('Favorites', 'poi panel')}
+        onClick={toggleStorePoi}
+        style={{ borderColor: favoriteColor }}
+        icon={<Heart width={16} color={favoriteColor} fill={favoriteColor || 'transparent'} />}
+      />
+
+      <ShareMenu
+        url={window.location.toString()}
+        scrollableParent=".panel-content"
+        onShare={onShare}
+      >
+        {openMenu => (
+          <Button
+            className="poi_panel__action__share"
+            title={_('Share', 'poi panel')}
+            icon="share-2"
+            onClick={e => onShareClick(e, openMenu)}
+          />
+        )}
+      </ShareMenu>
+    </Flex>
+  );
 };
 
 ActionButtons.propTypes = {

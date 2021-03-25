@@ -1,5 +1,4 @@
 export default class MobileCompassControl {
-
   constructor() {
     this._container = document.createElement('div');
     const compassClass = 'map_control_group__button__compass--mobile';
@@ -33,11 +32,12 @@ export default class MobileCompassControl {
   }
 
   _geolocate() {
-    navigator.geolocation.getCurrentPosition(position => {
-      this._map.flyTo({ center: [position.coords.longitude, position.coords.latitude] });
-    },
-    () => { },
-    { maximumAge: 10000 }
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this._map.flyTo({ center: [position.coords.longitude, position.coords.latitude] });
+      },
+      () => {},
+      { maximumAge: 10000 }
     );
   }
 

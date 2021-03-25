@@ -40,8 +40,7 @@ export function del(k) {
  * In case some keys are not prefixed, we don't return them
  */
 function listKeys() {
-  return Object
-    .keys(localStorage || {})
+  return Object.keys(localStorage || {})
     .filter(k => k.indexOf(prefix) === 0)
     .map(k => k.substring(prefix.length, k.length));
 }

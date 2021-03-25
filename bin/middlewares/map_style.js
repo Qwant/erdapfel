@@ -1,5 +1,3 @@
-/* globals require, module, __dirname */
-
 const styleBuilder = require('@qwant/map-style-builder');
 const styleConfigure = require('@qwant/mapbox_style_configure');
 const qwantStyle = require('@qwant/qwant-basic-gl-style/style.json');
@@ -7,14 +5,12 @@ const path = require('path');
 const Uri = require('@qwant/uri');
 const { query, validationResult } = require('express-validator');
 
-
 const LayersEnum = Object.freeze({
   ALL: 'all',
   NOPOI: 'nopoi',
 });
 
-module.exports = function(config, constants) {
-
+module.exports = function (config, constants) {
   /* pre-build style on server start */
   const options = {
     output: 'production', // 'debug' | 'production' | 'omt'
@@ -23,7 +19,7 @@ module.exports = function(config, constants) {
     icons: true,
     pixelRatios: [1, 2],
     styleDir: path.resolve(
-      path.join(__dirname, '..', '..', 'node_modules', '@qwant', 'qwant-basic-gl-style'),
+      path.join(__dirname, '..', '..', 'node_modules', '@qwant', 'qwant-basic-gl-style')
     ),
     conf: {
       tileserver_base: '{tileserver_base}',
@@ -38,7 +34,7 @@ module.exports = function(config, constants) {
 
   const styleCache = {};
 
-  const getStyle = function({ host, lang, nopoi }) {
+  const getStyle = function ({ host, lang, nopoi }) {
     const cacheKey = `${host};${lang};${nopoi}`;
     const cachedStyle = styleCache[cacheKey];
     if (cachedStyle) {
@@ -49,12 +45,12 @@ module.exports = function(config, constants) {
     const spritesUrl = Uri.toAbsoluteUrl(
       `https://${host}`,
       config.system.baseUrl,
-      config.mapStyle.spritesUrl,
+      config.mapStyle.spritesUrl
     );
     const fontsUrl = Uri.toAbsoluteUrl(
       `https://${host}`,
       config.system.baseUrl,
-      config.mapStyle.fontsUrl,
+      config.mapStyle.fontsUrl
     );
     const urls = {
       spritesUrl,
@@ -64,8 +60,9 @@ module.exports = function(config, constants) {
     const configuredStyle = styleConfigure(builtStyle, mapStyle, lang);
 
     if (nopoi) {
-      configuredStyle.layers = configuredStyle.layers
-        .filter(layer => !constants.map.pois_layers.includes(layer.id));
+      configuredStyle.layers = configuredStyle.layers.filter(
+        layer => !constants.map.pois_layers.includes(layer.id)
+      );
     }
 
     styleCache[cacheKey] = configuredStyle;
@@ -95,17 +92,19 @@ module.exports = function(config, constants) {
         }
         return true;
       }),
-    function(req, res) {
+    function (req, res) {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
       res.set('Content-Type', 'application/json');
-      res.send(getStyle({
-        host: req.get('host'),
-        lang: req.query.lang,
-        nopoi: req.query.layers === LayersEnum.NOPOI,
-      }));
+      res.send(
+        getStyle({
+          host: req.get('host'),
+          lang: req.query.lang,
+          nopoi: req.query.layers === LayersEnum.NOPOI,
+        })
+      );
     },
   ];
 };

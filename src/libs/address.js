@@ -59,9 +59,7 @@ export function normalize(type, raw) {
  * @param {*} name - the administrative field to find
  */
 function findAdminBragi(raw, name) {
-  return Object
-    .values(raw.geocoding.administrative_regions)
-    .find(a => a.zone_type === name);
+  return Object.values(raw.geocoding.administrative_regions).find(a => a.zone_type === name);
 }
 
 /**
@@ -70,7 +68,5 @@ function findAdminBragi(raw, name) {
  * @param {*} name - the administrative field to find
  */
 function findAdminIdunn(raw, name) {
-  return Object
-    .values(raw.address?.admins || {})
-    .find(a => a.class_name === name);
+  return Object.values(raw.address?.admins || {}).find(a => a.class_name === name);
 }

@@ -6,9 +6,10 @@ import { Button } from 'src/components/ui';
 const hiddenAttributeClassName = 'map_control__scale_attribute_container--hidden';
 
 export const BackToQwantButton = ({ isMobile }) => {
-
   useEffect(() => {
-    if (!isMobile) {return;}
+    if (!isMobile) {
+      return;
+    }
 
     // Hide scale while the button is mounted as it would overlap
     document.body.classList.add(hiddenAttributeClassName);

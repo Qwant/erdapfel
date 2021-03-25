@@ -16,17 +16,17 @@ const PoiPopup = ({ poi }) => {
   if (reviews) {
     displayedInfo = <ReviewScore reviews={reviews} poi={poi} />;
   } else if (openingHours && !covid19Enabled) {
-    displayedInfo = <OpeningHour
-      schedule={new OsmSchedule(openingHours)}
-    />;
+    displayedInfo = <OpeningHour schedule={new OsmSchedule(openingHours)} />;
   } else if (poi.address) {
     displayedInfo = <Address address={poi.address} inline omitCountry />;
   }
 
-  return <div className="poi_popup">
-    <PoiTitle poi={poi} />
-    <div>{displayedInfo}</div>
-  </div>;
+  return (
+    <div className="poi_popup">
+      <PoiTitle poi={poi} />
+      <div>{displayedInfo}</div>
+    </div>
+  );
 };
 
 export default PoiPopup;

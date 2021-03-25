@@ -1,4 +1,3 @@
-/* globals require, __dirname */
 /* eslint no-console: off, max-len: off */
 const puppeteer = require('puppeteer');
 const PuppeteerHar = require('puppeteer-har');
@@ -9,7 +8,6 @@ const childProcess = require('child_process');
 const webpackConfig = require('../build/webpack.config');
 const PORT = 3010;
 const HOST_URI = `http://localhost:${PORT}`;
-
 
 (async () => {
   /* production build */
@@ -26,7 +24,6 @@ const HOST_URI = `http://localhost:${PORT}`;
   await page.tracing.start({ screenshots: true, path: path.join(__dirname, './trace.json') });
   const har = new PuppeteerHar(page);
   await har.start({ path: path.join(__dirname, 'results.har') });
-
 
   /* connect to homepage for performance test */
   await page.goto(HOST_URI);
@@ -77,9 +74,19 @@ function writeReport(reportData) {
 }
 
 function printReport(report) {
-  console.log(`\n\nApp bundle size: ${(report.size.app / 1024).toFixed(1)}ko\tMap bundle size: ${(report.size.map / 1024).toFixed(1)}ko`);
-  console.log(`Script duration: ${(report.times.script * 1000).toFixed(1)}ms\tBuild duration: ${(report.times.build / 1000).toFixed(1)}s`);
-  console.log(`App load duration: ${report.times.appRender}ms\tMap load duration: ${report.times.mapLoad}ms\n\n`);
+  console.log(
+    `\n\nApp bundle size: ${(report.size.app / 1024).toFixed(1)}ko\tMap bundle size: ${(
+      report.size.map / 1024
+    ).toFixed(1)}ko`
+  );
+  console.log(
+    `Script duration: ${(report.times.script * 1000).toFixed(1)}ms\tBuild duration: ${(
+      report.times.build / 1000
+    ).toFixed(1)}s`
+  );
+  console.log(
+    `App load duration: ${report.times.appRender}ms\tMap load duration: ${report.times.mapLoad}ms\n\n`
+  );
 }
 
 async function buildProd() {
@@ -89,15 +96,17 @@ async function buildProd() {
     return prodConfigChunk;
   });
   return new Promise(resolve => {
-    webpack(prodConfig, function(error, chunkStats) {
+    webpack(prodConfig, function (error, chunkStats) {
       if (error) {
         resolve(-1);
         console.error(error);
       }
       /* compute total build time (ms) */
-      resolve(chunkStats.stats.reduce((totalTime, chunkStat) => {
-        return totalTime + (chunkStat.endTime - chunkStat.startTime);
-      }, 0));
+      resolve(
+        chunkStats.stats.reduce((totalTime, chunkStat) => {
+          return totalTime + (chunkStat.endTime - chunkStat.startTime);
+        }, 0)
+      );
     });
   });
 }
@@ -127,7 +136,7 @@ async function serverStart() {
 
 async function getCommit() {
   return new Promise(resolve => {
-    childProcess.exec('git rev-parse HEAD', function(err, stdout) {
+    childProcess.exec('git rev-parse HEAD', function (err, stdout) {
       resolve(stdout.trim());
     });
   });

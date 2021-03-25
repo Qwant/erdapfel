@@ -14,18 +14,14 @@ export default class ExtendedControl {
     // if no callback is registered, then the default action will be executed
     // (navigate to /routes)
     this.directionShortcutCallback = null;
-    listen('set_direction_shortcut_callback', cb => this.directionShortcutCallback = cb);
+    listen('set_direction_shortcut_callback', cb => (this.directionShortcutCallback = cb));
 
     const buttonClass = 'icon-plus map_control_group__button__zoom';
 
-    this._zoomInButton = this._createButton(
-      buttonClass,
-      'Zoom +',
-      () => {
-        Telemetry.add(Telemetry.MAP_ZOOM_IN);
-        this._map.zoomIn();
-      }
-    );
+    this._zoomInButton = this._createButton(buttonClass, 'Zoom +', () => {
+      Telemetry.add(Telemetry.MAP_ZOOM_IN);
+      this._map.zoomIn();
+    });
 
     this._zoomOutButton = this._createButton(
       'icon-minus map_control_group__button__zoom',
@@ -33,23 +29,19 @@ export default class ExtendedControl {
       () => {
         Telemetry.add(Telemetry.MAP_ZOOM_OUT);
         this._map.zoomOut();
-      },
+      }
     );
 
     const compassClass = 'map_control_group__button__compass';
     this._compass = this._createButton(compassClass, 'Reset North', () => {
       this._resetNorthAndTilt();
     });
-    this._direction = this._createButton(
-      'direction_shortcut hidden',
-      'direction',
-      () => {
-        Telemetry.add(Telemetry.MAP_ITINERARY);
-        this.directionShortcutCallback
-          ? this.directionShortcutCallback()
-          : window.app.navigateTo('/routes'); // default action, if no cb has been set
-      }
-    );
+    this._direction = this._createButton('direction_shortcut hidden', 'direction', () => {
+      Telemetry.add(Telemetry.MAP_ITINERARY);
+      this.directionShortcutCallback
+        ? this.directionShortcutCallback()
+        : window.app.navigateTo('/routes'); // default action, if no cb has been set
+    });
 
     this._compassIndicator = this._createIcon('map_control__compass__icon');
     this._compass.appendChild(this._compassIndicator);
@@ -62,13 +54,16 @@ export default class ExtendedControl {
     this.bottomButtonGroup.className = 'map_control_group map_bottom_button_group mapboxgl-ctrl';
     this.bottomButtonGroup.textContent = '';
 
-    const geolocControl = new GeolocControl({
-      positionOptions: {
-        enableHighAccuracy: true,
+    const geolocControl = new GeolocControl(
+      {
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+        showAccuracyCircle: false,
       },
-      trackUserLocation: true,
-      showAccuracyCircle: false,
-    }, this.bottomButtonGroup);
+      this.bottomButtonGroup
+    );
 
     this.topButtonGroup.appendChild(this._compass);
     this.topButtonGroup.appendChild(this._direction);
@@ -91,17 +86,19 @@ export default class ExtendedControl {
     this.scaleAttributionContainer.className = 'map_control__scale_attribute_container';
     this._container.appendChild(this.scaleAttributionContainer);
 
-    const extendedScaleControl = new ExtendedScaleControl({
-      unit: 'metric',
-    }, this.scaleAttributionContainer);
+    const extendedScaleControl = new ExtendedScaleControl(
+      {
+        unit: 'metric',
+      },
+      this.scaleAttributionContainer
+    );
 
     const extendedAttributionControl = new ExtendedAttributionControl(
       {},
-      this.scaleAttributionContainer,
+      this.scaleAttributionContainer
     );
     this._container.appendChild(this.topButtonGroup);
     this._container.appendChild(this.bottomButtonGroup);
-
 
     this._container.appendChild(this.scaleAttributionContainer);
     this._map.addControl(extendedScaleControl, 'bottom-right');

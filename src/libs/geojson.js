@@ -10,7 +10,7 @@ export const normalizeToFeatureCollection = geoJson => {
   const feature = geoJson.type === 'Feature' ? geoJson : geoJsonGeometryToFeature(geoJson);
   return {
     type: 'FeatureCollection',
-    features: [ feature ],
+    features: [feature],
   };
 };
 
@@ -18,7 +18,7 @@ export const poiToGeoJSON = poi => ({
   type: 'Feature',
   geometry: {
     type: 'Point',
-    coordinates: [ poi.latLon.lng, poi.latLon.lat ],
+    coordinates: [poi.latLon.lng, poi.latLon.lat],
   },
   properties: {
     id: poi.id,

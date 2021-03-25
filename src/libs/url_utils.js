@@ -10,7 +10,7 @@ export function parseMapHash(hash) {
   if (!zoomLatLng || zoomLatLng.length < 3) {
     return;
   }
-  const [ zoom, lat, lng ] = zoomLatLng;
+  const [zoom, lat, lng] = zoomLatLng;
   return { zoom, lat, lng };
 }
 
@@ -57,9 +57,9 @@ export function toCssUrl(url) {
 
 const removeNullEntries = obj =>
   Object.keys(obj) // Object.entries is not supported by IE :(
-    .map(key => [ key, obj[key] ])
-    .filter(([ _key, value ]) => value !== null && value !== undefined)
-    .reduce((result, [ key, value ]) => ({ ...result, [key]: value }), {});
+    .map(key => [key, obj[key]])
+    .filter(([_key, value]) => value !== null && value !== undefined)
+    .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
 
 export function buildQueryString(queriesObject) {
   const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();

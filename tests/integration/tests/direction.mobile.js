@@ -20,8 +20,13 @@ beforeEach(async () => {
 
 describe('Mobile itinerary details', () => {
   test('show/hide itinerary roadmap on mobile', async () => {
-    responseHandler.addPreparedResponse(mockMapBox, /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/);
-    await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`);
+    responseHandler.addPreparedResponse(
+      mockMapBox,
+      /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/
+    );
+    await page.goto(
+      `${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:47.4:6.1`
+    );
 
     await page.waitForSelector('.itinerary_leg');
     await page.click('.itinerary_leg .itinerary_leg_detailsBtn');

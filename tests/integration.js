@@ -7,10 +7,10 @@ module.exports = {
   globalSetup: `${__dirname}/integration/server_start.js`,
   globalTeardown: `${__dirname}/integration/server_close.js`,
   testPathIgnorePatterns: ['/node_modules/'].concat(getIgnorePatterns(process.env.TEST_DEVICE)),
-  'rootDir': __dirname + '/../',
-  'verbose': true,
-  'collectCoverage': false,
-  'transform': {
+  rootDir: __dirname + '/../',
+  verbose: true,
+  collectCoverage: false,
+  transform: {
     '\\.yml$': 'yaml-jest',
     '\\.js?$': 'babel-jest',
   },

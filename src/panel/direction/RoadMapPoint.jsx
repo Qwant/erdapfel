@@ -7,21 +7,21 @@ import PlaceIcon from 'src/components/PlaceIcon';
 const RoadMapPoint = ({ point, ...rest }) => {
   const { address, type } = point;
 
-  return <RoadMapItem
-    icon={<PlaceIcon place={point} withBackground />}
-    {...rest}
-  >
-    <div className="u-text--smallTitle">{getInputValue(point)}</div>
-    {type !== 'geoloc' &&
-      <div className="u-text--subtitle">
-        <Address
-          address={address}
-          omitStreet={type === 'house' || type === 'street' || type === 'latlon'}
-          omitCountry
-          inline
-        />
-      </div>}
-  </RoadMapItem>;
+  return (
+    <RoadMapItem icon={<PlaceIcon place={point} withBackground />} {...rest}>
+      <div className="u-text--smallTitle">{getInputValue(point)}</div>
+      {type !== 'geoloc' && (
+        <div className="u-text--subtitle">
+          <Address
+            address={address}
+            omitStreet={type === 'house' || type === 'street' || type === 'latlon'}
+            omitCountry
+            inline
+          />
+        </div>
+      )}
+    </RoadMapItem>
+  );
 };
 
 export default RoadMapPoint;

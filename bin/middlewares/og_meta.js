@@ -1,13 +1,12 @@
-/* globals require, module */
 const request = require('request');
 
-module.exports = function(config) {
+module.exports = function (config) {
   // Use url from server config if defined
   const idunnBaseUrl = config.server.services.idunn.url || config.services.idunn.url;
   const idunnTimeout = Number(config.server.services.idunn.timeout);
   if (isNaN(idunnTimeout)) {
     throw new Error(
-      `Invalid config: idunn timeout is set to "${config.server.services.idunn.timeout}"`,
+      `Invalid config: idunn timeout is set to "${config.server.services.idunn.timeout}"`
     );
   }
 
@@ -20,19 +19,22 @@ module.exports = function(config) {
 
     return new Promise((resolve, reject) => {
       const idunnUrl = `${idunnBaseUrl}/v1/places/${id}?lang=${locale.code}`;
-      request({
-        url: idunnUrl,
-        timeout: idunnTimeout,
-        json: true,
-      }, (error, response, body) => {
-        if (error) {
-          reject(error);
-        } else if (response.statusCode === 404) {
-          resolve(null);
-        } else {
-          resolve(body);
+      request(
+        {
+          url: idunnUrl,
+          timeout: idunnTimeout,
+          json: true,
+        },
+        (error, response, body) => {
+          if (error) {
+            reject(error);
+          } else if (response.statusCode === 404) {
+            resolve(null);
+          } else {
+            resolve(body);
+          }
         }
-      });
+      );
     });
   }
 
@@ -74,7 +76,7 @@ module.exports = function(config) {
     return `https://${req.get('host')}${config.system.baseUrl}${poiPath}`;
   }
 
-  return function(req, res, next) {
+  return function (req, res, next) {
     const placeUrlMatch = req.originalUrl.split('?')[0].match(/place\/(.*)/);
     const locale = res.locals.language;
     let poiId;
@@ -82,16 +84,18 @@ module.exports = function(config) {
       poiId = placeUrlMatch[1];
     }
     if (poiId) {
-      getPoi(poiId, locale).then(poi => {
-        if (poi) {
-          poiMeta(poi, locale, req, res, next);
-        } else {
-          res.redirect(307, config.system.baseUrl);
-        }
-      }).catch(error => {
-        req.logger.error({ err: error });
-        homeMeta(locale, req, res, next);
-      });
+      getPoi(poiId, locale)
+        .then(poi => {
+          if (poi) {
+            poiMeta(poi, locale, req, res, next);
+          } else {
+            res.redirect(307, config.system.baseUrl);
+          }
+        })
+        .catch(error => {
+          req.logger.error({ err: error });
+          homeMeta(locale, req, res, next);
+        });
     } else {
       homeMeta(locale, req, res, next);
     }
