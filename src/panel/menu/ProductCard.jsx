@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductCard = ({ logo, title, desc, link, href }) => {
   return (
-    <a className="card productCard" href={href}>
+    <a className="card productCard" href={href} target="_self">
       <div className="u-mb-s">
         <img src={logo} width="48" height="48" alt="" />
       </div>
