@@ -106,6 +106,10 @@ $productDrawerWidth: 744px;
 }
 
 .productsDrawer .menu__panel {
+  .card-wrapper {
+    position: relative;
+  }
+
   .card {
     display: block;
     padding: $spacing-l;
@@ -120,6 +124,20 @@ $productDrawerWidth: 744px;
       .card-link {
          text-decoration: underline;
       }
+    }
+
+    &-apps {
+      position: absolute;
+      bottom: $spacing-m; 
+      right: $spacing-l; 
+    }
+
+    &-appButton {
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      width: 24px;
+      height: 24px;
     }
   }
     
@@ -148,6 +166,7 @@ $productDrawerWidth: 744px;
 
     .productCard {
       margin-bottom: 0;
+      padding-bottom: $spacing-xxl-5;
 
       .card-desc {
         min-height: 60px;
