@@ -115,6 +115,8 @@ $productDrawerWidth: 744px;
     text-decoration: none;
 
     &:hover {
+      box-shadow: $shadow-hover;
+
       .card-link {
          text-decoration: underline;
       }
