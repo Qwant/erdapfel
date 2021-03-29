@@ -85,7 +85,15 @@ const Menu = () => {
             <div className="menu__panel">
               <Flex className="menu-top">
                 {isMobile && openedMenu === 'products' && (
-                  <div className="u-text--heading5">{_('Products', 'menu')}</div>
+                  <>
+                    <button
+                      className="menu-back icon-arrow-left u-mr-s"
+                      type="button"
+                      onClick={() => setOpenedMenu('app')}
+                      aria-label={_('Go back')}
+                    />
+                    <div className="u-text--heading5">{_('Products', 'menu')}</div>
+                  </>
                 )}
                 <CloseButton circle onClick={close} />
               </Flex>
