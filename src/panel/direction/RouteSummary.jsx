@@ -32,18 +32,17 @@ const RouteSummary = ({
       showDistance={vehicle !== 'publicTransport'}
     />
 
-      {isActive && (
-        <Button
-          className="itinerary_leg_detailsBtn u-firstCap"
-          onClick={onClickDetails}
-          icon={showDetails ? null : 'icon_list'}
-          variant={showDetails ? 'tertiary' : 'secondary'}
-        >
-          {showDetails ? _('See less', 'direction') : _('Details', 'direction')}
-        </Button>
-      )}
-    </Flex>
-  );
+    {isActive && (
+      <Button
+        className="itinerary_leg_detailsBtn u-firstCap"
+        onClick={onClickDetails}
+        icon={showDetails ? null : 'icon_list'}
+        variant={showDetails ? 'tertiary' : 'secondary'}
+      >
+        {showDetails ? _('See less', 'direction') : _('Details', 'direction')}
+      </Button>
+    )}
+  </Flex>
 };
 
 RouteSummary.propTypes = {

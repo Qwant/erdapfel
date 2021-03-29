@@ -128,8 +128,10 @@
 }
 
 .routeLabel.active {
-  .routeLabel-duration {
-    padding-top: 10px;
+  .routeLabel--public-transport {
+    .routeLabel-duration {
+      padding-top: 10px;
+    }
   }
 }
 
