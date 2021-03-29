@@ -28,7 +28,7 @@ const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   const element = document.createElement('div');
   element.innerHTML = `
     <div class="routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}"></div>
-    <div class="${vehicle === 'publicTransport' ? 'routeLabel--public-transport' : ''}">
+    <div>
       <div class="routeLabel-duration">${formatDuration(route.duration)}</div>
       <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
     </div>

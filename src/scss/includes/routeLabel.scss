@@ -117,21 +117,17 @@
   }
 }
 
-.routeLabel--public-transport {
+.routeLabel--single-line {
   .routeLabel-duration {
     padding-top: 2px;
   }
 
+  &.active .routeLabel-duration {
+    padding-top: 10px;
+  }
+
   .routeLabel-distance {
     display: none;
-  }
-}
-
-.routeLabel.active {
-  .routeLabel--public-transport {
-    .routeLabel-duration {
-      padding-top: 10px;
-    }
   }
 }
 
