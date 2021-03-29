@@ -18,6 +18,10 @@ const ProductsDrawer = () => {
           desc={_('Responsible search that respects your privacy.', 'products')}
           link={_('Open Search', 'products')}
           href="https://qwant.com"
+          mobileApps={{
+            android: 'https://play.google.com/store/apps/details?id=com.qwant.liberty',
+            ios: 'https://itunes.apple.com/app/qwant/id924470452',
+          }}
         />
         <ProductCard
           title={_('Maps', 'products')}
@@ -32,6 +36,10 @@ const ProductsDrawer = () => {
           desc={_('Responsible search adapted to 6-12 year olds.', 'products')}
           link={_('Open Junior', 'products')}
           href="https://junior.qwant.com"
+          mobileApps={{
+            android: 'https://play.google.com/store/apps/details?id=com.qwantjunior.mobile',
+            ios: 'https://apps.apple.com/app/qwant-junior/id1318660239',
+          }}
         />
       </div>
       <a
