@@ -34,7 +34,7 @@ const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
     </div>
   `;
   element.className = `routeLabel routeLabel--${anchor}`;
-  if (vehicle === 'publicTransport'){
+  if (vehicle === 'publicTransport') {
     element.className += ' routeLabel--single-line';
   }
   element.dataset.id = route.id;
