@@ -19,30 +19,34 @@ const RouteSummary = ({
     toggleDetails(id);
   };
 
-  return <Flex
-    className="itinerary_leg_summary"
-    justifyContent="space-between"
-    alignItems="flex-end"
-    onClick={() => { selectRoute(id); }}
-  >
-    <RouteSummaryInfo
-      isFastest={id === 0}
-      route={route}
-      vehicle={vehicle}
-      showDistance={vehicle !== 'publicTransport'}
-    />
+  return (
+    <Flex
+      className="itinerary_leg_summary"
+      justifyContent="space-between"
+      alignItems="flex-end"
+      onClick={() => {
+        selectRoute(id);
+      }}
+    >
+      <RouteSummaryInfo
+        isFastest={id === 0}
+        route={route}
+        vehicle={vehicle}
+        showDistance={vehicle !== 'publicTransport'}
+      />
 
-    {isActive && (
-      <Button
-        className="itinerary_leg_detailsBtn u-firstCap"
-        onClick={onClickDetails}
-        icon={showDetails ? null : 'icon_list'}
-        variant={showDetails ? 'tertiary' : 'secondary'}
-      >
-        {showDetails ? _('See less', 'direction') : _('Details', 'direction')}
-      </Button>
-    )}
-  </Flex>
+      {isActive && (
+        <Button
+          className="itinerary_leg_detailsBtn u-firstCap"
+          onClick={onClickDetails}
+          icon={showDetails ? null : 'icon_list'}
+          variant={showDetails ? 'tertiary' : 'secondary'}
+        >
+          {showDetails ? _('See less', 'direction') : _('Details', 'direction')}
+        </Button>
+      )}
+    </Flex>
+  );
 };
 
 RouteSummary.propTypes = {
