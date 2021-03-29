@@ -115,8 +115,20 @@
       border-left-color: white;
     }
   }
+}
 
-  &--single-line .routeLabel-duration {
+.routeLabel--public-transport {
+  .routeLabel-duration {
+    padding-top: 2px;
+  }
+
+  .routeLabel-distance {
+    display: none;
+  }
+}
+
+.routeLabel.active {
+  .routeLabel-duration {
     padding-top: 10px;
   }
 }
