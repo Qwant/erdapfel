@@ -21,20 +21,24 @@ const PublicTransportLine = ({ mode, info, showDirection = false }) => {
     }
   }
   const lineColor = info.lineColor ? Color('#' + info.lineColor) : Color('white');
-  return <>
-    <span
-      className={classnames('routePtLine', { 'routePtLine--dark': lineColor.isDark() })}
-      style={{
-        backgroundColor: lineColor.hex(),
-        borderColor: lineColor.rgbNumber() === 0xffffff ? 'black' : lineColor.hex(),
-      }}
-    >
-      {type} {info.num}
-    </span>
-    {showDirection && <span className={classnames('routePtLine-direction', 'u-text--subtitle')}>
-      {_('Towards {direction}', 'direction', { direction: info.direction })}
-    </span>}
-  </>;
+  return (
+    <>
+      <span
+        className={classnames('routePtLine', { 'routePtLine--dark': lineColor.isDark() })}
+        style={{
+          backgroundColor: lineColor.hex(),
+          borderColor: lineColor.rgbNumber() === 0xffffff ? 'black' : lineColor.hex(),
+        }}
+      >
+        {type} {info.num}
+      </span>
+      {showDirection && (
+        <span className={classnames('routePtLine-direction', 'u-text--subtitle')}>
+          {_('Towards {direction}', 'direction', { direction: info.direction })}
+        </span>
+      )}
+    </>
+  );
 };
 
 export default PublicTransportLine;
