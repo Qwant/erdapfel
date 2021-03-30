@@ -28,7 +28,12 @@ const RouteSummary = ({
         selectRoute(id);
       }}
     >
-      <RouteSummaryInfo isFastest={id === 0} route={route} vehicle={vehicle} />
+      <RouteSummaryInfo
+        isFastest={id === 0}
+        route={route}
+        vehicle={vehicle}
+        showDistance={vehicle !== 'publicTransport'}
+      />
 
       {isActive && (
         <Button

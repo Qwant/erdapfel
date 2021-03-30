@@ -117,6 +117,20 @@
   }
 }
 
+.routeLabel--publicTransport {
+  .routeLabel-duration {
+    padding-top: 2px;
+  }
+
+  &.active .routeLabel-duration {
+    padding-top: 10px;
+  }
+
+  .routeLabel-distance {
+    display: none;
+  }
+}
+
 .directions-stepByStep .routeLabel {
   display: none;
 }
