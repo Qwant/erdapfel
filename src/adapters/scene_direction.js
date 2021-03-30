@@ -122,7 +122,9 @@ export default class SceneDirection {
   }
 
   setOrigin = poi => {
-    const originMarker = createMarker(poi.latLon, 'itinerary_marker_origin', { draggable: true })
+    const originMarker = createMarker(poi.latLon, 'itinerary_marker_origin', {
+      draggable: !isMobileDevice(),
+    })
       .addTo(this.map)
       .on('dragend', event => {
         this.refreshDirection('origin', event.target.getLngLat());
@@ -132,7 +134,7 @@ export default class SceneDirection {
 
   setDestination = poi => {
     const destinationMarker = createMarker(poi.latLon, 'itinerary_marker_destination', {
-      draggable: true,
+      draggable: !isMobileDevice(),
       anchor: 'bottom',
     })
       .addTo(this.map)
