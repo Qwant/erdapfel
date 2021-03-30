@@ -33,10 +33,7 @@ const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
       <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
     </div>
   `;
-  element.className = `routeLabel routeLabel--${anchor}`;
-  if (vehicle === 'publicTransport') {
-    element.className += ' routeLabel--single-line';
-  }
+  element.className = `routeLabel routeLabel--${anchor} routeLabel--${vehicle}`;
   element.dataset.id = route.id;
   element.onclick = () => {
     fire('select_road_map', route.id);
