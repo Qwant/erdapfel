@@ -17,7 +17,7 @@ import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
-import { Flex, Panel, PanelNav, CloseButton, Divider, Button } from 'src/components/ui';
+import { Flex, Panel, PanelNav, Divider, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
@@ -275,10 +275,6 @@ export default class PoiPanel extends React.Component {
                   withAlternativeName
                   withOpeningHours
                   onClick={this.center}
-                />
-                <CloseButton
-                  onClick={isMobile ? backAction : this.closeAction}
-                  position="topRight"
                 />
               </Flex>
               <div className="u-mb-l">
