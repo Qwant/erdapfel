@@ -5,6 +5,7 @@ import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 
 import RoutesList from './RoutesList';
+import { CloseButton } from '../../components/ui';
 import { SourceFooter } from 'src/components/ui';
 
 const RouteResult = ({
@@ -18,6 +19,7 @@ const RouteResult = ({
   activeDetails,
   selectRoute,
   toggleDetails,
+  onClose,
 }) => {
   useEffect(() => {
     const routeSelectedOnMapHandler = listen('select_road_map', onSelectRoute);
@@ -63,6 +65,7 @@ const RouteResult = ({
   return (
     <>
       <div className={`itinerary_result itinerary_result--${vehicle}`}>
+        <CloseButton onClick={onClose} className="panel-close" />
         <RoutesList
           isLoading={isLoading}
           routes={routes}
