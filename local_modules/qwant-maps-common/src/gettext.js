@@ -1,15 +1,14 @@
-import { options as i18nOptions } from "../i18next-scanner.config.js";
+import { options as i18nOptions } from '../i18next-scanner.config.js';
 
 const supportedLanguages = i18nOptions.lngs;
 const defaultLanguage = i18nOptions.defaultLng;
 const messages = {};
 supportedLanguages.forEach(lang =>
-  import(`../i18n/${lang}/resource.json`)
-    .then(resource => messages[lang] = resource)
+  import(`../i18n/${lang}/resource.json`).then(resource => (messages[lang] = resource.default))
 );
 
 class Gettext {
-  constructor(lang = defaultLanguage){
+  constructor(lang = defaultLanguage) {
     this.lang = lang;
   }
 
@@ -20,8 +19,7 @@ class Gettext {
   setLang(lang) {
     if (supportedLanguages.indexOf(lang) > -1) {
       this.lang = lang;
-    }
-    else {
+    } else {
       this.lang = defaultLanguage;
     }
   }

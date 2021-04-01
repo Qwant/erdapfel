@@ -1,6 +1,6 @@
 {
   "name": "@qwant/qwant-maps-common",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Common utilities for Qwant Maps, Instant Answers, etc.",
   "main": "dist/index.js",
   "files": [
