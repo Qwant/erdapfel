@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 13:06+0000\n"
+"POT-Creation-Date: 2021-04-01 16:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Matthias Kaup-Antons <makanto@posteo.de>, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -106,9 +106,6 @@ msgstr "Parkplatz"
 
 msgid "Search with Qwant Maps"
 msgstr "Suche mit Qwant Maps"
-
-msgid "My location"
-msgstr "Mein Standort"
 
 msgid "Close"
 msgstr "Schließen"
@@ -229,9 +226,6 @@ msgstr ""
 "Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
 "Standortbestimmung auf Ihrem System aktiviert ist."
 
-msgid "Menu"
-msgstr "Menü"
-
 msgid "My favorites"
 msgstr "Meine Favoriten"
 
@@ -240,6 +234,51 @@ msgstr ""
 
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
+
+msgid "Products"
+msgstr ""
+
+msgid "Products for everyday life."
+msgstr ""
+
+msgid "   Search   "
+msgstr ""
+
+msgid "Responsible search that respects your privacy."
+msgstr ""
+
+msgid "Open Search"
+msgstr ""
+
+msgid "Maps"
+msgstr ""
+
+msgid "The map that does not track you."
+msgstr ""
+
+msgid "Open Maps"
+msgstr ""
+
+msgid "Junior"
+msgstr ""
+
+msgid "Responsible search adapted to 6-12 year olds."
+msgstr ""
+
+msgid "Open Junior"
+msgstr ""
+
+msgid "We believe in an alternate model"
+msgstr ""
+
+msgid "Read more"
+msgstr ""
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Go back"
+msgstr ""
 
 msgid "Share"
 msgstr "Teilen"
@@ -435,6 +474,9 @@ msgstr "Gib einen Zielpunkt ein"
 msgid "Invert start and end"
 msgstr "Start und Ziel tauschen"
 
+msgid "Towards {direction}"
+msgstr ""
+
 msgid "Via"
 msgstr "Über"
 
@@ -493,3 +535,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "Diese Nachricht nicht noch einmal anzeigen"
+
+msgid "My location"
+msgstr "Mein Standort"
