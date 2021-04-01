@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 13:06+0000\n"
+"POT-Creation-Date: 2021-04-01 16:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -105,9 +105,6 @@ msgstr "parkva"
 
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
-
-msgid "My location"
-msgstr "Ma lec'hiadur"
 
 msgid "Close"
 msgstr "Serriñ"
@@ -226,9 +223,6 @@ msgstr ""
 "Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
 "enaouet ar servijoù douarlec'hiañ en ho sistem."
 
-msgid "Menu"
-msgstr "Lañser"
-
 msgid "My favorites"
 msgstr "Ma sinedoù"
 
@@ -237,6 +231,51 @@ msgstr ""
 
 msgid "How to contribute"
 msgstr "Penaos kemer-perzh"
+
+msgid "Products"
+msgstr ""
+
+msgid "Products for everyday life."
+msgstr ""
+
+msgid "   Search   "
+msgstr ""
+
+msgid "Responsible search that respects your privacy."
+msgstr ""
+
+msgid "Open Search"
+msgstr ""
+
+msgid "Maps"
+msgstr ""
+
+msgid "The map that does not track you."
+msgstr ""
+
+msgid "Open Maps"
+msgstr ""
+
+msgid "Junior"
+msgstr ""
+
+msgid "Responsible search adapted to 6-12 year olds."
+msgstr ""
+
+msgid "Open Junior"
+msgstr ""
+
+msgid "We believe in an alternate model"
+msgstr ""
+
+msgid "Read more"
+msgstr ""
+
+msgid "Menu"
+msgstr "Lañser"
+
+msgid "Go back"
+msgstr ""
 
 msgid "Share"
 msgstr "Rannañ"
@@ -432,6 +471,9 @@ msgstr "Ebarzhit ur poent fin"
 msgid "Invert start and end"
 msgstr "eilpennañ fin ha loc'hañ"
 
+msgid "Towards {direction}"
+msgstr ""
+
 msgid "Via"
 msgstr "Dre"
 
@@ -491,3 +533,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "Na ziskouez ken ar gemennadenn-mañ ken"
+
+msgid "My location"
+msgstr "Ma lec'hiadur"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 13:06+0000\n"
+"POT-Creation-Date: 2021-04-01 16:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -107,9 +107,6 @@ msgstr "parking"
 
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
-
-msgid "My location"
-msgstr "Ma position"
 
 msgid "Close"
 msgstr "Fermer"
@@ -229,9 +226,6 @@ msgstr ""
 "Qwant Maps ne peut pas déterminer votre position. Veuillez vérifier que les "
 "services de localisation sont activés sur votre système."
 
-msgid "Menu"
-msgstr "Menu"
-
 msgid "My favorites"
 msgstr "Mes favoris"
 
@@ -240,6 +234,51 @@ msgstr "Conditions d'utilisation Qwant&nbsp;Maps"
 
 msgid "How to contribute"
 msgstr "Comment contribuer"
+
+msgid "Products"
+msgstr "Produits"
+
+msgid "Products for everyday life."
+msgstr "Des produits pour la vie de tous les jours."
+
+msgid "   Search   "
+msgstr " Search  "
+
+msgid "Responsible search that respects your privacy."
+msgstr "La recherche responsable qui respecte votre vie privée."
+
+msgid "Open Search"
+msgstr "Ouvrir Search"
+
+msgid "Maps"
+msgstr "Maps"
+
+msgid "The map that does not track you."
+msgstr "Le service de cartographie qui ne vous suit pas à la trace."
+
+msgid "Open Maps"
+msgstr "Ouvrir Maps"
+
+msgid "Junior"
+msgstr "Junior"
+
+msgid "Responsible search adapted to 6-12 year olds."
+msgstr "La recherche responsable adaptée aux 6-12 ans."
+
+msgid "Open Junior"
+msgstr "Ouvrir Junior"
+
+msgid "We believe in an alternate model"
+msgstr "Nous croyons en un autre modèle"
+
+msgid "Read more"
+msgstr "En savoir plus"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Go back"
+msgstr "Retour"
 
 msgid "Share"
 msgstr "Partager"
@@ -435,6 +474,9 @@ msgstr "Saisissez un point d'arrivée"
 msgid "Invert start and end"
 msgstr "Inverser Départ et Arrivée"
 
+msgid "Towards {direction}"
+msgstr "Direction {direction}"
+
 msgid "Via"
 msgstr "Via"
 
@@ -496,3 +538,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "Ne plus afficher ce message"
+
+msgid "My location"
+msgstr "Ma position"

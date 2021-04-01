@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 13:06+0000\n"
+"POT-Creation-Date: 2021-04-01 16:07+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
@@ -106,9 +106,6 @@ msgstr "aparcament"
 
 msgid "Search with Qwant Maps"
 msgstr "Cerca Qwant Maps"
-
-msgid "My location"
-msgstr "La meva ubicació"
 
 msgid "Close"
 msgstr "Tanca"
@@ -226,9 +223,6 @@ msgstr ""
 "Qwant Maps no pot determinar la vostra posició. Comproveu que els serveis de"
 " geolocalització estan habilitats en el sistema."
 
-msgid "Menu"
-msgstr "Menú"
-
 msgid "My favorites"
 msgstr "Preferits"
 
@@ -237,6 +231,51 @@ msgstr ""
 
 msgid "How to contribute"
 msgstr "Com contribuir-hi"
+
+msgid "Products"
+msgstr ""
+
+msgid "Products for everyday life."
+msgstr ""
+
+msgid "   Search   "
+msgstr ""
+
+msgid "Responsible search that respects your privacy."
+msgstr ""
+
+msgid "Open Search"
+msgstr ""
+
+msgid "Maps"
+msgstr ""
+
+msgid "The map that does not track you."
+msgstr ""
+
+msgid "Open Maps"
+msgstr ""
+
+msgid "Junior"
+msgstr ""
+
+msgid "Responsible search adapted to 6-12 year olds."
+msgstr ""
+
+msgid "Open Junior"
+msgstr ""
+
+msgid "We believe in an alternate model"
+msgstr ""
+
+msgid "Read more"
+msgstr ""
+
+msgid "Menu"
+msgstr "Menú"
+
+msgid "Go back"
+msgstr ""
 
 msgid "Share"
 msgstr "Comparteix"
@@ -429,6 +468,9 @@ msgstr "Introdueix un punt final"
 msgid "Invert start and end"
 msgstr "Inverteix l'inici i el final"
 
+msgid "Towards {direction}"
+msgstr ""
+
 msgid "Via"
 msgstr "Via"
 
@@ -491,3 +533,6 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "No mostrar aquest missatge"
+
+msgid "My location"
+msgstr "La meva ubicació"
