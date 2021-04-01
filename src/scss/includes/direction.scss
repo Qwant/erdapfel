@@ -40,25 +40,6 @@
   display: inline-block;
 }
 
-.itinerary_source {
-  background: $background;
-  border-top: 1px solid #e0e1e6;
-  padding: 9px 18px;
-  font-size: 12px;
-
-  a {
-    display: flex;
-    align-items: center;
-    color: $primary_text;
-    text-transform: uppercase;
-  }
-
-  img {
-    height: 18px;
-    margin-right: 9px;
-  }
-}
-
 .itinerary_result {
   overflow: auto;
 }
@@ -83,7 +64,7 @@
   position: relative;
 
   @media (min-width: 641px) {
-    padding: $spacing-l;
+    padding: $spacing-m;
     &:hover {
       background-color: $grey-bright;
     }
@@ -274,6 +255,10 @@ button.direction_shortcut {
 @media (max-width: 640px){
   .itinerary_result {
     max-height: none;
+
+    &--publicTransport {
+      padding-bottom: 32px;
+    }
   }
 
   .itinerary_no-result {
@@ -323,10 +308,6 @@ button.direction_shortcut {
     &.hidden {
       opacity: 0;
     }
-  }
-
-  .itinerary_source {
-    display: none;
   }
 
   .autocomplete_suggestions {

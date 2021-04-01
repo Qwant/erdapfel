@@ -7,6 +7,10 @@
   font-size: 12px;
   padding: 0 14px;
   color: $grey-semi-darkness;
+
+  a {
+    color: $grey-semi-darkness;
+  }
 }
 
 @media (max-width: 640px) {

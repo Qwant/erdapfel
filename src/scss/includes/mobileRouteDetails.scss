@@ -28,24 +28,6 @@
     }
   }
 
-  &-source {
-    padding: 9px 18px 18px;
-    font-size: 12px;
-
-    a {
-      display: flex;
-      align-items: center;
-      color: $primary_text;
-      text-transform: uppercase;
-      justify-content: flex-end;
-    }
-
-    img {
-      height: 18px;
-      margin-right: 9px;
-    }
-  }
-
   .itinerary_roadmap {
     overflow: auto;
   }

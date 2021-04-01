@@ -1,11 +1,11 @@
 /* globals _ */
 import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 
 import RoutesList from './RoutesList';
+import { SourceFooter } from 'src/components/ui';
 
 const RouteResult = ({
   origin,
@@ -62,11 +62,7 @@ const RouteResult = ({
 
   return (
     <>
-      <div
-        className={classnames('itinerary_result', {
-          'itinerary_result--publicTransport': vehicle === 'publicTransport',
-        })}
-      >
+      <div className={`itinerary_result itinerary_result--${vehicle}`}>
         <RoutesList
           isLoading={isLoading}
           routes={routes}
@@ -80,12 +76,9 @@ const RouteResult = ({
         />
       </div>
       {vehicle === 'publicTransport' && routes.length > 0 && (
-        <div className="itinerary_source">
-          <a href="https://combigo.com/">
-            <img src="./statics/images/direction_icons/logo_combigo.svg" alt="" />
-            Combigo
-          </a>
-        </div>
+        <SourceFooter>
+          <a href="https://combigo.com/">{_('Results in partnership with Combigo')}</a>
+        </SourceFooter>
       )}
     </>
   );
