@@ -29,14 +29,14 @@ function Scene() {
   this.savedLocation = null;
 }
 
-Scene.prototype.getMapInitOptions = async function (locationHash) {
+Scene.prototype.getMapInitOptions = function (locationHash) {
   if (locationHash) {
     return {
       zoom: locationHash.zoom,
       center: [locationHash.lng, locationHash.lat],
     };
   }
-  const lastLocation = await getLastLocation();
+  const lastLocation = getLastLocation();
   if (lastLocation && !window.no_ui) {
     return {
       zoom: lastLocation.zoom,
