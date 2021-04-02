@@ -29,7 +29,16 @@ function Scene() {
   this.savedLocation = null;
 }
 
+const getPoiView = poi => ({
+  center: poi.geometry.center,
+  zoom: getBestZoom(poi),
+  bounds: poi.geometry.bbox,
+});
+
 Scene.prototype.getMapInitOptions = function (locationHash) {
+  if (window.hotLoadPoi) {
+    return getPoiView(window.hotLoadPoi);
+  }
   if (locationHash) {
     return {
       zoom: locationHash.zoom,
