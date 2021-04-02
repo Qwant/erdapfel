@@ -408,7 +408,6 @@ export default class DirectionPanel extends React.Component {
         destination={destination}
         toggleDetails={() => this.toggleDetails()}
         selectRoute={this.selectRoute}
-        onClose={this.onClose}
       />
     );
 

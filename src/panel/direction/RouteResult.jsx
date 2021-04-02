@@ -5,7 +5,6 @@ import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 
 import RoutesList from './RoutesList';
-import { CloseButton } from '../../components/ui';
 import { SourceFooter } from 'src/components/ui';
 
 const RouteResult = ({
@@ -19,7 +18,6 @@ const RouteResult = ({
   activeDetails,
   selectRoute,
   toggleDetails,
-  onClose,
 }) => {
   useEffect(() => {
     const routeSelectedOnMapHandler = listen('select_road_map', onSelectRoute);

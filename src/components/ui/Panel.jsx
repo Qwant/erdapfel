@@ -51,6 +51,7 @@ class Panel extends React.Component {
     isMapBottomUIDisplayed: PropTypes.bool,
     floatingItems: PropTypes.arrayOf(PropTypes.object),
     onTransitionEnd: PropTypes.func,
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
@@ -330,7 +331,7 @@ class Panel extends React.Component {
             {floatingItemsRight && size !== 'maximized' && (
               <FloatingItems position="right" items={floatingItemsRight} />
             )}
-            {onClose && !isMobile && <CloseButton onClick={onClose} className="panel-close" />}
+            {onClose && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable && (
               <div className="panel-drawer" onClick={() => this.handleHeaderClick()}>
                 <div className="panel-handle" />
