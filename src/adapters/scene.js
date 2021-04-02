@@ -89,6 +89,8 @@ Scene.prototype.initMapBox = async function (locationHash) {
     locale,
     ...(await this.getMapInitOptions(locationHash)),
   });
+  // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
+  this.mb.setPadding = this.mb.setPadding || (() => {});
   this.mb.setPadding(getCurrentMapPaddings());
 
   this.popup.init(this.mb);
