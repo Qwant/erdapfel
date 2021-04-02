@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire } from 'src/libs/customEvents';
-import { DeviceContext, isMobileDevice } from 'src/libs/device';
+import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
 import { CloseButton, FloatingItems } from 'src/components/ui';
 
@@ -330,9 +330,7 @@ class Panel extends React.Component {
             {floatingItemsRight && size !== 'maximized' && (
               <FloatingItems position="right" items={floatingItemsRight} />
             )}
-            {onClose && !isMobileDevice() && (
-              <CloseButton onClick={onClose} className="panel-close" />
-            )}
+            {onClose && !isMobile && <CloseButton onClick={onClose} className="panel-close" />}
             {isMobile && resizable && (
               <div className="panel-drawer" onClick={() => this.handleHeaderClick()}>
                 <div className="panel-handle" />
