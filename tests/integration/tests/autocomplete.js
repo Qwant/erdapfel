@@ -150,7 +150,7 @@ test('mouse navigation', async () => {
 
   await autocompleteHelper.clickResult(1);
   const selectedSearchValue = await autocompleteHelper.getSearchInputValue();
-  expect(selectedSearchValue).toEqual("test result 1");
+  expect(selectedSearchValue).toEqual('test result 1');
 });
 
 test('move to on click', async () => {
