@@ -150,7 +150,7 @@ test('mouse navigation', async () => {
 
   await autocompleteHelper.clickResult(1);
   const selectedSearchValue = await autocompleteHelper.getSearchInputValue();
-  expect(selectedSearchValue).toEqual("Musée d'Orsay");
+  expect(selectedSearchValue).toEqual("test result 1");
 });
 
 test('move to on click', async () => {
@@ -244,7 +244,7 @@ test('Search Query', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto('about:blank');
 
-  const searchQuery = 'test';
+  const searchQuery = "Musée d'Orsay";
   await page.goto(`${APP_URL}/?q=${searchQuery}`);
   const searchValue = await getInputValue(page, '#search');
 

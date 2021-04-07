@@ -219,6 +219,11 @@ export default class PoiPanel extends React.Component {
       return null;
     }
 
+    // Show PoI name in search field
+    SearchInput.setInputValue(poi.name);
+    const topBarHandle = document.querySelector('.top_bar');
+    topBarHandle.classList.add('top_bar--search_filled');
+
     const backAction =
       poiFilters.category || poiFilters.query
         ? this.backToList
@@ -248,13 +253,6 @@ export default class PoiPanel extends React.Component {
             </Button>
           </PanelNav>
         );
-      }
-
-      // Else: show PoI name in search field
-      else {
-        SearchInput.setInputValue(poi.name);
-        const topBarHandle = document.querySelector('.top_bar');
-        topBarHandle.classList.add('top_bar--search_filled');
       }
 
       return null;
