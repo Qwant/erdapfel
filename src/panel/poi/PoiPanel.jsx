@@ -19,6 +19,7 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
 import { Flex, Panel, PanelNav, Divider, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
+import SearchInput from '../../ui_components/search_input';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
@@ -238,6 +239,7 @@ export default class PoiPanel extends React.Component {
         );
       }
 
+      // If source is a PoI list: show a button to return to the list (only visible on desktop)
       if (backAction !== this.closeAction) {
         return (
           <PanelNav>
@@ -246,6 +248,13 @@ export default class PoiPanel extends React.Component {
             </Button>
           </PanelNav>
         );
+      }
+
+      // Else: show PoI name in search field
+      else {
+        SearchInput.setInputValue(poi.name);
+        const topBarHandle = document.querySelector('.top_bar');
+        topBarHandle.classList.add('top_bar--search_filled');
       }
 
       return null;
