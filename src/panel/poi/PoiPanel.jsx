@@ -57,6 +57,13 @@ export default class PoiPanel extends React.Component {
         this.setState({ isPoiInFavorite });
       }
     });
+
+    // Show return arrow on mobile if user comes from PoI / favorites list
+    const { poiFilters, isFromFavorite } = this.props;
+    if (poiFilters.category || poiFilters.query || isFromFavorite) {
+      const topBarHandle = document.querySelector('.top_bar');
+      topBarHandle.classList.add('top_bar--poi-from-list');
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -72,6 +79,10 @@ export default class PoiPanel extends React.Component {
     fire('mobile_direction_button_visibility', true);
     // Clear direction shortcut cb to reset default action
     fire('set_direction_shortcut_callback', null);
+
+    // Hide return arrow on mobile
+    const topBarHandle = document.querySelector('.top_bar');
+    topBarHandle.classList.remove('top_bar--poi-from-list');
   }
 
   loadPois = () => {
@@ -244,7 +255,7 @@ export default class PoiPanel extends React.Component {
         );
       }
 
-      // If source is a PoI list: show a button to return to the list (only visible on desktop)
+      // If source is a PoI list: show a button to return to the list
       if (backAction !== this.closeAction) {
         return (
           <PanelNav>
