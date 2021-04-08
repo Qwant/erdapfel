@@ -37,7 +37,7 @@ You can define your environment variables within a `.env` file, at the root dire
 You will need
 
 - npm 7
-- Node.js 10
+- Node.js 12
 
 Then you can build and run Erdapfel with the following commands:
 
