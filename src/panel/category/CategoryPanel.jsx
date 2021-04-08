@@ -7,7 +7,6 @@ import debounce from 'lodash.debounce';
 import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
-import PJPartnershipFooter from './PJPartnershipFooter';
 import Telemetry from 'src/libs/telemetry';
 import nconf from '@qwant/nconf-getter';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
@@ -17,10 +16,9 @@ import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/b
 import classnames from 'classnames';
 import { sources } from 'config/constants.yml';
 import { DeviceContext } from 'src/libs/device';
-import { PanelContext } from 'src/libs/panelContext';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
-import { PanelNav } from 'src/components/ui';
+import { PanelNav, SourceFooter } from 'src/components/ui';
 
 const categoryConfig = nconf.get().category;
 const MAX_PLACES = Number(categoryConfig.maxPlaces);
@@ -64,7 +62,6 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const [dataSource, setDataSource] = useState('');
   const [initialLoading, setInitialLoading] = useState(true);
   const isMobile = useContext(DeviceContext);
-  const { size: panelSize } = useContext(PanelContext);
 
   useEffect(() => {
     const fetchData = debounce(
@@ -138,8 +135,8 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     panelContent = (
       <>
         <PoiItemList pois={pois} selectPoi={selectPoi} highlightMarker={highlightPoiMarker} />
-        {dataSource === sources.pagesjaunes && panelSize !== 'minimized' && (
-          <PJPartnershipFooter isMobile={isMobile} />
+        {dataSource === sources.pagesjaunes && (
+          <SourceFooter>{_('Results in partnership with PagesJaunes', 'categories')}</SourceFooter>
         )}
       </>
     );

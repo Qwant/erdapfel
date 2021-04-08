@@ -15,6 +15,7 @@ import PanelNav from './PanelNav';
 import CloseButton from './CloseButton';
 import FloatingButton from './FloatingButton';
 import FloatingItems from './FloatingItems';
+import SourceFooter from './SourceFooter';
 
 export {
   Badge,
@@ -35,4 +36,5 @@ export {
   CloseButton,
   FloatingButton,
   FloatingItems,
+  SourceFooter,
 };

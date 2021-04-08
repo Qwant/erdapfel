@@ -48,14 +48,6 @@ const MobileRouteDetails = ({
       </div>
 
       <RoadMap route={route} origin={origin} destination={destination} vehicle={vehicle} />
-      {vehicle === 'publicTransport' && (
-        <div className="mobile-route-details-source">
-          <a href="https://combigo.com/">
-            <img src="./statics/images/direction_icons/logo_combigo.svg" alt="" />
-            Combigo
-          </a>
-        </div>
-      )}
     </div>
   );
 };
