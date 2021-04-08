@@ -125,5 +125,9 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "engines": {
+    "node": "^12",
+    "npm": ">=7"
   }
 }
