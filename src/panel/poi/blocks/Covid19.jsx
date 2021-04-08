@@ -1,13 +1,10 @@
 /* globals _ */
 import React, { Fragment } from 'react';
-import nconf from '@qwant/nconf-getter';
-
+import { useConfig } from 'src/hooks';
 import TimeTable from './TimeTable';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
 import Button from 'src/components/ui/Button';
-
-const covidConf = nconf.get().covid19;
 
 const getContent = ({ status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note && (
@@ -85,19 +82,21 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 };
 
 /* eslint-disable */
-const LocalizedWarning = ({ countryCode }) => (
-  <div>
+const LocalizedWarning = ({ countryCode }) => {
+  const { frInformationUrl } = useConfig('covid19');
+
+  return <div>
     <p>{_('Please comply with government travel restrictions.', 'covid19')}</p>
     {countryCode === 'FR' && (
       <p>
         {_('More information at', 'covid19')}{' '}
-        <a rel="noopener noreferrer" href={covidConf.frInformationUrl}>
+        <a rel="noopener noreferrer" href={frInformationUrl}>
           gouvernement.fr/info-coronavirus
         </a>
       </p>
     )}
   </div>
-);
+};
 
 const LegalWarning = ({ countryCode }) => (
   <div className="covid19-legalWarning">

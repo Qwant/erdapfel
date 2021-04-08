@@ -2,13 +2,13 @@ import React from 'react';
 import ReviewScore from 'src/components/ReviewScore';
 import OpeningHour from 'src/components/OpeningHour';
 import OsmSchedule from 'src/adapters/osm_schedule';
-import nconf from '@qwant/nconf-getter';
 import PoiTitle from 'src/components/PoiTitle';
 import Address from 'src/components/ui/Address';
-
-const covid19Enabled = (nconf.get().covid19 || {}).enabled;
+import { useConfig } from 'src/hooks';
 
 const PoiPopup = ({ poi }) => {
+  const { enabled: covid19Enabled } = useConfig('covid19');
+
   const reviews = poi.blocksByType && poi.blocksByType.grades;
   const openingHours = poi.blocksByType && poi.blocksByType.opening_hours;
 

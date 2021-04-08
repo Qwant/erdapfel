@@ -8,14 +8,13 @@ import Telemetry from 'src/libs/telemetry';
 import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps } from 'src/components/ui/icons';
 import { DeviceContext } from 'src/libs/device';
-import nconf from '@qwant/nconf-getter';
-
-const displayProducts = nconf.get().burgerMenu?.products;
+import { useConfig } from 'src/hooks';
 
 const Menu = () => {
   const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
   const isMobile = useContext(DeviceContext);
+  const displayProducts = useConfig('burgerMenu');
 
   useEffect(() => {
     const current = menuContainer.current;

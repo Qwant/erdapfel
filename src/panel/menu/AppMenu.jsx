@@ -6,11 +6,11 @@ import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
 import { Heart, IconLightbulb, IconEdit, IconApps } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
-import nconf from '@qwant/nconf-getter';
-
-const { baseUrl } = nconf.get().system;
+import { useConfig } from 'src/hooks';
 
 const AppMenu = ({ close, openProducts }) => {
+  const { baseUrl } = useConfig('system');
+
   const navTo = (url, options) => {
     close();
     window.app.navigateTo(url, options);
