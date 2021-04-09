@@ -25,7 +25,7 @@ const Suggest = ({
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
 
   const close = () => {
     setIsOpen(false);

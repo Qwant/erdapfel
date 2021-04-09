@@ -5,7 +5,7 @@ import { PanelContext } from 'src/libs/panelContext';
 
 const SourceFooter = ({ children }) => {
   const portalContainer = useRef(document.createElement('div'));
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
   const { size: panelSize } = useContext(PanelContext);
 
   useEffect(() => {

@@ -13,7 +13,7 @@ import { useConfig } from 'src/hooks';
 const Menu = () => {
   const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
   const displayProducts = useConfig('burgerMenu').products;
 
   useEffect(() => {

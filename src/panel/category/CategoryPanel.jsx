@@ -59,7 +59,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const [pois, setPois] = useState([]);
   const [dataSource, setDataSource] = useState('');
   const [initialLoading, setInitialLoading] = useState(true);
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
   const { maxPlaces } = useConfig('category');
 
   useEffect(() => {

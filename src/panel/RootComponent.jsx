@@ -34,7 +34,7 @@ const RootComponent = ({ burgerMenuEnabled, router }) => {
   });
 
   return (
-    <DeviceContext.Provider value={isMobile}>
+    <DeviceContext.Provider value={{ isMobile }}>
       <PanelManager
         router={router}
         searchBarInputNode={document.getElementById('search')}

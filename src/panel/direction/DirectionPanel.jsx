@@ -411,7 +411,7 @@ export default class DirectionPanel extends React.Component {
 
     return (
       <DeviceContext.Consumer>
-        {isMobile =>
+        {({ isMobile }) =>
           isMobile ? (
             <Fragment>
               {!activePreviewRoute && (

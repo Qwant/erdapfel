@@ -16,7 +16,7 @@ const RoutesList = ({
   selectRoute,
   isLoading,
 }) => {
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
   const orderedRoutes = isMobile ? moveRouteToTop(routes, activeRouteId) : routes;
 
   return isLoading ? (

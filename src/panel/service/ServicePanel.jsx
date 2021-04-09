@@ -4,7 +4,7 @@ import ServicePanelMobile from './ServicePanelMobile';
 import { DeviceContext } from 'src/libs/device';
 
 const ServicePanel = () => {
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
   return isMobile ? <ServicePanelMobile /> : <ServicePanelDesktop />;
 };
 

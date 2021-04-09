@@ -4,7 +4,7 @@ import PoiItem from 'src/components/PoiItem';
 import { DeviceContext } from 'src/libs/device';
 
 const PoiItems = ({ pois, selectPoi, highlightMarker }) => {
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
 
   return (
     <ItemList hover className="category__panel__items">

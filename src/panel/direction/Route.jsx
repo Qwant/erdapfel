@@ -14,7 +14,7 @@ const Route = ({
   toggleDetails,
   selectRoute,
 }) => {
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
 
   return (
     <Fragment>

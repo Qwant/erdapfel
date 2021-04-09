@@ -5,7 +5,7 @@ import { IconAndroid, IconApple } from 'src/components/ui/icons';
 import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
 const ProductCard = ({ logo, title, desc, link, href, mobileApps }) => {
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
 
   return (
     <div className="card-wrapper">
