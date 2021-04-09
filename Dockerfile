@@ -1,4 +1,4 @@
-FROM node:10-stretch-slim as base
+FROM node:12-stretch-slim as base
 
 ENV PROJECT_DIR=/srv/maps-tileview/
 
