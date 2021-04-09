@@ -1,68 +1,48 @@
 /* globals _ */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Telemetry from 'src/libs/telemetry';
 import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
 import { removeFromFavorites } from 'src/adapters/store';
 import PoiStore from 'src/adapters/poi/poi_store';
 
-export default class FavoritesPanel extends React.Component {
-  state = {
-    favoritePois: [],
-    isReady: false,
-  };
+const FavoritesPanel = () => {
+  const [favs, setFavs] = useState(PoiStore.getAll());
 
-  componentDidMount() {
+  useEffect(() => {
     Telemetry.add(Telemetry.FAVORITE_OPEN);
-    this.loadData();
-  }
+  }, []);
 
-  loadData = async () => {
-    const favoritePois = await PoiStore.getAll();
-    this.setState({
-      favoritePois,
-      isReady: true,
-    });
-  };
-
-  removeFav = async poi => {
+  const removeFav = poi => {
     Telemetry.add(Telemetry.FAVORITE_DELETE);
-    this.setState(prevState => ({
-      favoritePois: prevState.favoritePois.filter(favorite => favorite !== poi),
-    }));
-    await removeFromFavorites(poi);
+    removeFromFavorites(poi);
+    // @TODO: manage favorites as an upstream state to avoid this duplication
+    // It could be a context or a dedicated hook.
+    setFavs(favs.filter(favorite => favorite !== poi));
   };
 
-  close = () => {
+  const close = () => {
     Telemetry.add(Telemetry.FAVORITE_CLOSE);
     window.app.navigateTo('/');
   };
 
-  render() {
-    if (!this.state.isReady) {
-      return null;
-    }
+  return (
+    <Panel
+      resizable
+      renderHeader={
+        <div className="favorite-header u-text--smallTitle u-center">
+          {favs.length === 0
+            ? _('Favorite places', 'favorite panel')
+            : _('My favorites', 'favorite panel')}
+        </div>
+      }
+      minimizedTitle={_('Show favorites', 'favorite panel')}
+      onClose={close}
+      className="favorite_panel"
+    >
+      <FavoriteItems favorites={favs} removeFavorite={removeFav} />
+    </Panel>
+  );
+};
 
-    const { favoritePois } = this.state;
-
-    const header = (
-      <div className="favorite-header u-text--smallTitle u-center">
-        {favoritePois.length === 0
-          ? _('Favorite places', 'favorite panel')
-          : _('My favorites', 'favorite panel')}
-      </div>
-    );
-
-    return (
-      <Panel
-        resizable
-        renderHeader={header}
-        minimizedTitle={_('Show favorites', 'favorite panel')}
-        onClose={this.close}
-        className="favorite_panel"
-      >
-        <FavoriteItems favorites={favoritePois} removeFavorite={this.removeFav} />
-      </Panel>
-    );
-  }
-}
+export default FavoritesPanel;

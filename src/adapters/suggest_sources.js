@@ -20,7 +20,7 @@ export function suggestResults(
   let promise;
   if (term === '') {
     // Prerender Favorites on focus in empty field
-    promise = PoiStore.getAll().then(favorites => favorites.slice(0, maxFavorites));
+    promise = Promise.resolve(PoiStore.getAll().slice(0, maxFavorites));
   } else {
     // eslint-disable-next-line no-async-promise-executor
     promise = new Promise(async (resolve, reject) => {

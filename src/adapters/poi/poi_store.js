@@ -15,25 +15,22 @@ export default class PoiStore extends Poi {
     return poi;
   }
 
-  static async get(term) {
+  static get(term) {
     try {
-      const matches = await getFavoritesMatching(term);
-      return matches.map(match => PoiStore.new(match));
+      return getFavoritesMatching(term).map(match => PoiStore.new(match));
     } catch (e) {
       Error.sendOnce('poi_store', 'get', 'error getting matching favorites', e);
       return [];
     }
   }
 
-  static async getAll() {
-    let storedData = [];
+  static getAll() {
     try {
-      storedData = await getAllFavorites();
+      return getAllFavorites().map(poi => PoiStore.new(poi));
     } catch (e) {
       Telemetry.add(Telemetry.FAVORITE_ERROR_LOAD_ALL);
       Error.sendOnce('poi_store', 'getAll', 'error getting pois', e);
       return [];
     }
-    return storedData.map(poi => PoiStore.new(poi));
   }
 }
