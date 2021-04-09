@@ -3,12 +3,12 @@ import React, { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
 import Action from 'src/components/ui/MainActionButton';
-import nconf from '@qwant/nconf-getter';
+import { useConfig } from 'src/hooks';
 import Telemetry from 'src/libs/telemetry';
 
-const directionConf = nconf.get().direction;
-
 const ServicePanelMobile = () => {
+  const directionConf = useConfig('direction');
+
   return (
     <Panel
       resizable

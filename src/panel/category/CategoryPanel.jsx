@@ -8,7 +8,7 @@ import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
 import Telemetry from 'src/libs/telemetry';
-import nconf from '@qwant/nconf-getter';
+import { useConfig } from 'src/hooks';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
@@ -20,8 +20,6 @@ import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import { PanelNav, SourceFooter } from 'src/components/ui';
 
-const categoryConfig = nconf.get().category;
-const MAX_PLACES = Number(categoryConfig.maxPlaces);
 const DEBOUNCE_WAIT = 100;
 
 function fitMap(bbox) {
@@ -62,6 +60,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const [dataSource, setDataSource] = useState('');
   const [initialLoading, setInitialLoading] = useState(true);
   const isMobile = useContext(DeviceContext);
+  const { maxPlaces } = useConfig('category');
 
   useEffect(() => {
     const fetchData = debounce(
@@ -72,7 +71,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
         const extendBbox = initialLoading;
         const { places, source, bbox: contentBbox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
           boundsToString(currentBounds),
-          MAX_PLACES,
+          maxPlaces,
           category,
           query,
           extendBbox
@@ -99,7 +98,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     return () => {
       unListen(mapMoveHandler);
     };
-  }, [poiFilters, initialLoading]);
+  }, [poiFilters, initialLoading, maxPlaces]);
 
   useEffect(() => {
     window.execOnMapLoaded(() => {
