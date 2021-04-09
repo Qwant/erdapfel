@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { ItemList, Item } from 'src/components/ui/ItemList';
 import PoiItem from 'src/components/PoiItem';
-import { DeviceContext } from 'src/libs/device';
+import { useDevice } from 'src/hooks';
 
 const PoiItems = ({ pois, selectPoi, highlightMarker }) => {
-  const { isMobile } = useContext(DeviceContext);
+  const { isMobile } = useDevice();
 
   return (
     <ItemList hover className="category__panel__items">

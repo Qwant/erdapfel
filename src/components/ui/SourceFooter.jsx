@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import { DeviceContext } from 'src/libs/device';
+import { useDevice } from 'src/hooks';
 import { PanelContext } from 'src/libs/panelContext';
 
 const SourceFooter = ({ children }) => {
   const portalContainer = useRef(document.createElement('div'));
-  const { isMobile } = useContext(DeviceContext);
+  const { isMobile } = useDevice();
   const { size: panelSize } = useContext(PanelContext);
 
   useEffect(() => {

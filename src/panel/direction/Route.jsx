@@ -1,7 +1,7 @@
-import React, { useContext, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import RouteSummary from './RouteSummary';
 import RoadMap from './RoadMap';
-import { DeviceContext } from 'src/libs/device';
+import { useDevice } from 'src/hooks';
 
 const Route = ({
   id,
@@ -14,7 +14,7 @@ const Route = ({
   toggleDetails,
   selectRoute,
 }) => {
-  const { isMobile } = useContext(DeviceContext);
+  const { isMobile } = useDevice();
 
   return (
     <Fragment>

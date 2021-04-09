@@ -1,5 +1,5 @@
 /* globals _ */
-import React, { Fragment, useEffect, useState, useRef, useContext } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import AppMenu from './menu/AppMenu';
@@ -7,13 +7,12 @@ import ProductsDrawer from './menu/ProductsDrawer';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps } from 'src/components/ui/icons';
-import { DeviceContext } from 'src/libs/device';
-import { useConfig } from 'src/hooks';
+import { useConfig, useDevice } from 'src/hooks';
 
 const Menu = () => {
   const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
-  const { isMobile } = useContext(DeviceContext);
+  const { isMobile } = useDevice();
   const displayProducts = useConfig('burgerMenu').products;
 
   useEffect(() => {

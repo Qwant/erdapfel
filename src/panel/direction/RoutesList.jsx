@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-
-import { DeviceContext } from 'src/libs/device';
+import React from 'react';
+import { useDevice } from 'src/hooks';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import PlaceholderText from 'src/components/ui/PlaceholderText';
 import Route from './Route';
@@ -16,7 +15,7 @@ const RoutesList = ({
   selectRoute,
   isLoading,
 }) => {
-  const { isMobile } = useContext(DeviceContext);
+  const { isMobile } = useDevice();
   const orderedRoutes = isMobile ? moveRouteToTop(routes, activeRouteId) : routes;
 
   return isLoading ? (
