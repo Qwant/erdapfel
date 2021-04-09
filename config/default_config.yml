@@ -90,3 +90,10 @@ events:
 covid19:
   enabled: false
   frInformationUrl:  https://www.gouvernement.fr/info-coronavirus
+
+externalUrls:
+  about:
+    home: https://about.qwant.com
+    privacy: https://about.qwant.com/legal/privacy
+    mapsToS: https://about.qwant.com/legal/terms-of-service/qwant-maps/
+  contributing: https://github.com/Qwant/qwantmaps/blob/master/contributing.md

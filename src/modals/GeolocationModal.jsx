@@ -5,18 +5,19 @@ import Modal from 'src/components/ui/Modal';
 import { listen } from 'src/libs/customEvents';
 import { Button, CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
+import { useConfig } from 'src/hooks';
 
 let hasPermissionModalOpenedOnce = false;
 
 const GeolocationModal = ({ status, onClose, onAccept }) => {
-  /* eslint-disable max-len */
+  const aboutPrivacyUrl = useConfig('externalUrls').about.privacy;
 
+  /* eslint-disable max-len */
   const pendingOnDirectionsText = _(
     "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don't store your information because we don't want to know your whereabouts.",
     'geolocation',
     {
-      privacyPolicyLink:
-        '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
+      privacyPolicyLink: `<a target="_blank" rel="noopener noreferrer" href="${aboutPrivacyUrl}">`,
       closeTag: '</a>',
     }
   );
@@ -25,8 +26,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
     "We look at your location to show you where you are, and that's it!<br />(See our {privacyPolicyLink}privacy policy{closeTag})",
     'geolocation',
     {
-      privacyPolicyLink:
-        '<a target="_blank" rel="noopener noreferrer" href="https://about.qwant.com/legal/privacy">',
+      privacyPolicyLink: `<a target="_blank" rel="noopener noreferrer" href="${aboutPrivacyUrl}">`,
       closeTag: '</a>',
     }
   );
