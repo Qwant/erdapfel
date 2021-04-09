@@ -98,7 +98,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     return () => {
       unListen(mapMoveHandler);
     };
-  }, [poiFilters, initialLoading]);
+  }, [poiFilters, initialLoading, maxPlaces]);
 
   useEffect(() => {
     window.execOnMapLoaded(() => {
