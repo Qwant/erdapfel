@@ -14,7 +14,7 @@ const Menu = () => {
   const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
   const isMobile = useContext(DeviceContext);
-  const displayProducts = useConfig('burgerMenu');
+  const displayProducts = useConfig('burgerMenu').products;
 
   useEffect(() => {
     const current = menuContainer.current;
