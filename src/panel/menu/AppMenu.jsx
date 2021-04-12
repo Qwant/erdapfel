@@ -10,6 +10,10 @@ import { useConfig } from 'src/hooks';
 
 const AppMenu = ({ close, openProducts }) => {
   const { baseUrl } = useConfig('system');
+  const {
+    contributing,
+    about: { mapsToS },
+  } = useConfig('externalUrls');
 
   const navTo = (url, options) => {
     close();
@@ -30,7 +34,7 @@ const AppMenu = ({ close, openProducts }) => {
         {_('My favorites', 'menu')}
       </MenuItem>
       <MenuItem
-        href="https://about.qwant.com/legal/terms-of-service/qwant-maps/"
+        href={mapsToS}
         outsideLink
         icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
       >
@@ -41,7 +45,7 @@ const AppMenu = ({ close, openProducts }) => {
         />
       </MenuItem>
       <MenuItem
-        href="https://github.com/Qwant/qwantmaps/blob/master/contributing.md"
+        href={contributing}
         outsideLink
         icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
       >

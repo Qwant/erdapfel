@@ -1,9 +1,12 @@
 /* globals _ */
 import React from 'react';
 import { Flex } from 'src/components/ui';
+import { useConfig } from 'src/hooks/useConfig';
 import ProductCard from './ProductCard';
 
 const ProductsDrawer = () => {
+  const aboutQwantUrl = useConfig('externalUrls').about.home;
+
   return (
     <>
       <h3 className="u-text--heading3 u-mb-xl-2 u-center">
@@ -42,12 +45,7 @@ const ProductsDrawer = () => {
           }}
         />
       </div>
-      <a
-        href="https://qwant.com/?drawer=awareness"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="card u-mb-l"
-      >
+      <a href={aboutQwantUrl} target="_blank" rel="noopener noreferrer" className="card u-mb-l">
         <Flex>
           <div className="u-mr-l">
             <img width="100" height="100" src="./statics/images/products/web-internaute.svg" />
