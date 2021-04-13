@@ -9,7 +9,7 @@ import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Telemetry from 'src/libs/telemetry';
 import CategoryService from 'src/adapters/category_service';
-import { parseQueryString, getCurrentUrl } from 'src/libs/url_utils';
+import { parseQueryString, getCurrentUrl, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
@@ -77,12 +77,17 @@ export default class PanelManager extends React.Component {
     const { ActivePanel, options } = this.state;
 
     if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
-      // poiFilters indicate we are in a "list of POI" context, where markers should be persistent
+      // Not in a "list of PoI" context (options.poiFilters is null)
       if (isNullOrEmpty(options?.poiFilters)) {
+        // Markers are not persistent
         fire('remove_category_markers');
       }
 
+      // Handle search bar's style and text content
       this.updateSearchBarContent(options);
+
+      // Handle top bar's return button
+      this.updateTopBarReturnButton(options);
     }
   }
 
@@ -102,6 +107,45 @@ export default class PanelManager extends React.Component {
       SearchInput.setInputValue('');
       topBarHandle.classList.remove('top_bar--search_filled');
     }
+  }
+
+  updateTopBarReturnButton({ poiFilters = {} } = {}) {
+    const topBarReturnButton = document.querySelector('.search_form__return-to-list');
+    const backAction =
+      poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
+    topBarReturnButton.onclick = e => {
+      backAction(e, poiFilters);
+    };
+  }
+
+  backToList(e, poiFilters) {
+    e.stopPropagation();
+    const queryObject = {};
+    const mappingParams = {
+      query: 'q',
+      category: 'type',
+    };
+
+    for (const name in poiFilters) {
+      if (!poiFilters[name]) {
+        continue;
+      }
+      const key = mappingParams[name];
+      queryObject[key || name] = poiFilters[name];
+    }
+
+    const params = buildQueryString(queryObject);
+    const uri = `/places/${params}`;
+
+    Telemetry.add(Telemetry.POI_BACKTOLIST);
+    fire('restore_location');
+    window.app.navigateTo(uri);
+  }
+
+  backToFavorite(e) {
+    e.stopPropagation();
+    Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
+    window.app.navigateTo('/favs');
   }
 
   initRouter() {
@@ -134,7 +178,12 @@ export default class PanelManager extends React.Component {
       const poiId = poiUrl.split('@')[0];
       this.setState({
         ActivePanel: PoiPanel,
-        options: { ...options, poiId },
+        options: {
+          ...options,
+          poiId,
+          backToList: this.backToList,
+          backToFavorite: this.backToFavorite,
+        },
         panelSize: 'default',
       });
     });

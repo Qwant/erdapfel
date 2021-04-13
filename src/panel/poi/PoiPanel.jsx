@@ -29,6 +29,8 @@ export default class PoiPanel extends React.Component {
     poi: PropTypes.object,
     poiFilters: PropTypes.object,
     centerMap: PropTypes.bool,
+    backToList: PropTypes.func,
+    backToFavorite: PropTypes.func,
   };
 
   static defaultProps = {
@@ -142,12 +144,6 @@ export default class PoiPanel extends React.Component {
     });
   }
 
-  backToFavorite = e => {
-    e.stopPropagation();
-    Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-    window.app.navigateTo('/favs');
-  };
-
   getBestPoi() {
     return this.state.fullPoi || this.props.poi;
   }
@@ -166,31 +162,6 @@ export default class PoiPanel extends React.Component {
 
   closeAction = () => {
     window.app.navigateTo('/');
-  };
-
-  backToList = e => {
-    e.stopPropagation();
-    const { poiFilters } = this.props;
-    const queryObject = {};
-    const mappingParams = {
-      query: 'q',
-      category: 'type',
-    };
-
-    for (const name in poiFilters) {
-      if (!poiFilters[name]) {
-        continue;
-      }
-      const key = mappingParams[name];
-      queryObject[key || name] = poiFilters[name];
-    }
-
-    const params = buildQueryString(queryObject);
-    const uri = `/places/${params}`;
-
-    Telemetry.add(Telemetry.POI_BACKTOLIST);
-    fire('restore_location');
-    window.app.navigateTo(uri);
   };
 
   onClickPhoneNumber = () => {
@@ -237,9 +208,9 @@ export default class PoiPanel extends React.Component {
 
     const backAction =
       poiFilters.category || poiFilters.query
-        ? this.backToList
+        ? this.props.backToList
         : isFromFavorite
-        ? this.backToFavorite
+        ? this.props.backToFavorite
         : this.closeAction;
 
     const NavHeader = ({ isMobile }) => {
@@ -259,7 +230,13 @@ export default class PoiPanel extends React.Component {
       if (backAction !== this.closeAction) {
         return (
           <PanelNav>
-            <Button icon="arrow-left" variant="tertiary" onClick={backAction}>
+            <Button
+              icon="arrow-left"
+              variant="tertiary"
+              onClick={e => {
+                backAction(e, poiFilters);
+              }}
+            >
               {_('Display all results')}
             </Button>
           </PanelNav>
