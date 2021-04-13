@@ -38,7 +38,11 @@ const getPoiView = poi => ({
 
 Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
   if (bbox) {
-    return { bounds: parseBboxString(bbox) };
+    try {
+      return { bounds: parseBboxString(bbox) };
+    } catch (e) {
+      console.error(e);
+    }
   }
   if (window.hotLoadPoi) {
     return getPoiView(window.hotLoadPoi);
