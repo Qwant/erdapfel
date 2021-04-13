@@ -14,6 +14,7 @@ import { createDefaultPin } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import { isMobileDevice } from 'src/libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
+import { parseBboxString } from 'src/libs/bounds';
 import { toUrl, getBestZoom } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
@@ -35,7 +36,10 @@ const getPoiView = poi => ({
   bounds: poi.geometry.bbox,
 });
 
-Scene.prototype.getMapInitOptions = function (locationHash) {
+Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
+  if (bbox) {
+    return { bounds: parseBboxString(bbox) };
+  }
   if (window.hotLoadPoi) {
     return getPoiView(window.hotLoadPoi);
   }
@@ -66,7 +70,7 @@ Scene.prototype.getMapInitOptions = function (locationHash) {
   };
 };
 
-Scene.prototype.initMapBox = async function (locationHash) {
+Scene.prototype.initMapBox = async function ({ locationHash, bbox }) {
   window.times.initMapBox = Date.now();
 
   setRTLTextPlugin(
@@ -87,7 +91,7 @@ Scene.prototype.initMapBox = async function (locationHash) {
     maxZoom: 20,
     interactive: window.no_ui ? false : true,
     locale,
-    ...(await this.getMapInitOptions(locationHash)),
+    ...(await this.getMapInitOptions({ locationHash, bbox })),
   });
   // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
   this.mb.setPadding = this.mb.setPadding || (() => {});
