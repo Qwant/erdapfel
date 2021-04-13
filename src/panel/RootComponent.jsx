@@ -24,6 +24,7 @@ const RootComponent = ({ burgerMenuEnabled, router }) => {
           fire('move_mobile_bottom_ui', 0);
         });
       }
+      fire('update_map_paddings');
     };
 
     mobileDeviceMediaQuery.addListener(deviceChanged);

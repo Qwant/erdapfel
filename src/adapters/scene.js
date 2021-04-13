@@ -3,7 +3,7 @@ import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
 import { map as mapConfig } from 'config/constants.yml';
-import { getMapPaddings, getMapCenterOffset, isPositionUnderUI } from 'src/panel/layouts';
+import { getCurrentMapPaddings, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
 import { getLastLocation, setLastLocation } from 'src/adapters/store';
@@ -29,7 +29,16 @@ function Scene() {
   this.savedLocation = null;
 }
 
+const getPoiView = poi => ({
+  center: poi.geometry.center,
+  zoom: getBestZoom(poi),
+  bounds: poi.geometry.bbox,
+});
+
 Scene.prototype.getMapInitOptions = function (locationHash) {
+  if (window.hotLoadPoi) {
+    return getPoiView(window.hotLoadPoi);
+  }
   if (locationHash) {
     return {
       zoom: locationHash.zoom,
@@ -47,7 +56,6 @@ Scene.prototype.getMapInitOptions = function (locationHash) {
     return {
       bounds: window.initialBbox,
       fitBoundsOptions: {
-        padding: this.getCurrentPaddings(),
         maxZoom: 9,
       },
     };
@@ -81,6 +89,9 @@ Scene.prototype.initMapBox = async function (locationHash) {
     locale,
     ...(await this.getMapInitOptions(locationHash)),
   });
+  // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
+  this.mb.setPadding = this.mb.setPadding || (() => {});
+  this.mb.setPadding(getCurrentMapPaddings());
 
   this.popup.init(this.mb);
   window.map = this;
@@ -240,7 +251,7 @@ Scene.prototype.initMapBox = async function (locationHash) {
   });
 
   listen('fit_map', (item, forceAnimate) => {
-    this.fitMap(item, this.getCurrentPaddings(), forceAnimate);
+    this.fitMap(item, forceAnimate);
   });
 
   listen('ensure_poi_visible', (poi, options) => {
@@ -278,14 +289,11 @@ Scene.prototype.initMapBox = async function (locationHash) {
   listen('mobile_direction_button_visibility', visible => {
     this.mobileButtonVisibility('.direction_shortcut', visible);
   });
-};
 
-Scene.prototype.getCurrentPaddings = () =>
-  getMapPaddings({
-    isMobile: isMobileDevice(),
-    isDirectionsActive: !!document.querySelector('.directions-open'),
-    isIframe: window.no_ui,
+  listen('update_map_paddings', () => {
+    this.mb.setPadding(getCurrentMapPaddings());
   });
+};
 
 Scene.prototype.clickOnMap = function (lngLat, clickedFeature, { longTouch = false } = {}) {
   // Instantiate the place clicked as a PoI
@@ -345,11 +353,7 @@ Scene.prototype.isBBoxInExtendedViewport = function (bbox) {
   );
 };
 
-Scene.prototype.fitBbox = function (
-  bbox,
-  padding = { left: 0, top: 0, right: 0, bottom: 0 },
-  forceAnimate
-) {
+Scene.prototype.fitBbox = function (bbox, forceAnimate) {
   // normalise bbox
   if (bbox instanceof Array) {
     bbox = new LngLatBounds(bbox);
@@ -358,19 +362,19 @@ Scene.prototype.fitBbox = function (
   // Animate if the zoom is big enough and if the BBox is (partially or fully) in
   // the extended viewport.
   const animate = forceAnimate || (this.mb.getZoom() > 10 && this.isBBoxInExtendedViewport(bbox));
-  this.mb.fitBounds(bbox, { padding, animate });
+  this.mb.fitBounds(bbox, { animate });
 };
 
 // Move the map to focus on an item
-Scene.prototype.fitMap = function (item, padding, forceAnimate) {
+Scene.prototype.fitMap = function (item, forceAnimate) {
   // BBox
   if (item instanceof LngLatBounds || Array.isArray(item)) {
-    this.fitBbox(item, padding, forceAnimate);
+    this.fitBbox(item, forceAnimate);
   } else {
     // PoI
     if (item.bbox) {
       // poi Bbox
-      this.fitBbox(item.bbox, padding, forceAnimate);
+      this.fitBbox(item.bbox, forceAnimate);
     } else {
       // poi center
       const flyOptions = {
@@ -379,13 +383,6 @@ Scene.prototype.fitMap = function (item, padding, forceAnimate) {
         screenSpeed: 1.5,
         animate: false,
       };
-
-      if (padding) {
-        flyOptions.offset = [
-          (padding.left - padding.right) / 2,
-          (padding.top - padding.bottom) / 2,
-        ];
-      }
 
       if (forceAnimate || (this.mb.getZoom() > 10 && this.isWindowedPoi(item))) {
         flyOptions.animate = true;
@@ -397,7 +394,7 @@ Scene.prototype.fitMap = function (item, padding, forceAnimate) {
 
 Scene.prototype.ensureMarkerIsVisible = function (poi, options) {
   if (poi.bbox) {
-    this.fitBbox(poi.bbox, options.padding || this.getCurrentPaddings());
+    this.fitBbox(poi.bbox);
     return;
   }
   const isMobile = isMobileDevice();
@@ -410,7 +407,6 @@ Scene.prototype.ensureMarkerIsVisible = function (poi, options) {
   this.mb.flyTo({
     center: poi.latLon,
     zoom: getBestZoom(poi),
-    offset: getMapCenterOffset({ isMobile, isIframe: window.no_ui }),
     maxDuration: 1200,
   });
 };

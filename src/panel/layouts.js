@@ -1,7 +1,7 @@
 import { isMobileDevice } from '../libs/device';
-import { listen } from 'src/libs/customEvents';
 
 const DESKTOP_PANEL_WIDTH = 400;
+const MOBILE_BOTTOM_PADDING = 180;
 const ADDITIONAL_PADDING = 50;
 const DESKTOP_SIDE_PANEL = {
   top: ADDITIONAL_PADDING,
@@ -10,12 +10,7 @@ const DESKTOP_SIDE_PANEL = {
   bottom: 45,
 };
 
-let mobileBottomPanelHeight = 0;
-listen('move_mobile_bottom_ui', height => {
-  mobileBottomPanelHeight = height;
-});
-
-export function getMapPaddings({ isMobile, isDirectionsActive, isIframe }) {
+function computeMapPaddings({ isMobile, isDirectionsActive, isIframe }) {
   // iframe: no paddings
   if (isIframe) {
     return { bottom: 0, top: 0, left: 0, right: 0 };
@@ -26,12 +21,19 @@ export function getMapPaddings({ isMobile, isDirectionsActive, isIframe }) {
   const topUIElement = isDirectionsActive ? '.direction-panel' : '.top_bar';
   const topUIHeight = document.querySelector(topUIElement)?.clientHeight || 0;
   return {
-    bottom: mobileBottomPanelHeight + ADDITIONAL_PADDING / 2,
+    bottom: MOBILE_BOTTOM_PADDING,
     top: topUIHeight + ADDITIONAL_PADDING / 2,
-    right: 70,
+    right: 20,
     left: 20,
   };
 }
+
+export const getCurrentMapPaddings = () =>
+  computeMapPaddings({
+    isMobile: isMobileDevice(),
+    isDirectionsActive: !!document.querySelector('.directions-open'),
+    isIframe: window.no_ui,
+  });
 
 export function getVisibleBbox(mb, isIframe) {
   const bbox = mb.getBounds();
@@ -56,10 +58,6 @@ export function getVisibleBbox(mb, isIframe) {
   bbox.setNorthEast(ne);
   bbox.setSouthWest(sw);
   return bbox;
-}
-
-export function getMapCenterOffset({ isMobile, isIframe }) {
-  return isMobile || isIframe ? [0, 0] : [(DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING) / 2, 0];
 }
 
 export function isPositionUnderUI({ x, y }, { isMobile }) {

@@ -109,7 +109,7 @@ export default class DirectionPanel extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const marginTop = this.directionPanelRef.current
       ? this.directionPanelRef.current.offsetHeight + MARGIN_TOP_OFFSET
       : 0;
@@ -125,6 +125,10 @@ export default class DirectionPanel extends React.Component {
       this.updateUrl({ params: { details: null }, replace: true });
       this.setState({ activePreviewRoute: null });
     }
+
+    if (this.state.routes.length !== 0 && prevState.routes.length === 0) {
+      fire('update_map_paddings');
+    }
   }
 
   componentWillUnmount() {
@@ -132,6 +136,7 @@ export default class DirectionPanel extends React.Component {
     unListen(this.dragPointHandler);
     unListen(this.setPointHandler);
     document.body.classList.remove('directions-open');
+    fire('update_map_paddings');
   }
 
   async setTextInput(which, poi) {
