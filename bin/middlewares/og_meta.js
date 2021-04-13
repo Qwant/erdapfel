@@ -1,4 +1,4 @@
-const request = require('request');
+const axios = require('axios');
 
 module.exports = function (config) {
   // Use url from server config if defined
@@ -17,25 +17,17 @@ module.exports = function (config) {
       id = poiId.slice(0, atPos);
     }
 
-    return new Promise((resolve, reject) => {
-      const idunnUrl = `${idunnBaseUrl}/v1/places/${id}?lang=${locale.code}`;
-      request(
-        {
-          url: idunnUrl,
-          timeout: idunnTimeout,
-          json: true,
-        },
-        (error, response, body) => {
-          if (error) {
-            reject(error);
-          } else if (response.statusCode === 404) {
-            resolve(null);
-          } else {
-            resolve(body);
-          }
-        }
-      );
-    });
+    try {
+      const response = await axios.get(`${idunnBaseUrl}/v1/places/${id}?lang=${locale.code}`, {
+        timeout: idunnTimeout,
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        return null;
+      }
+      throw error;
+    }
   }
 
   function commonMeta(locale, req, res) {
