@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ServicePanelDesktop from './ServicePanelDesktop';
 import ServicePanelMobile from './ServicePanelMobile';
-import { DeviceContext } from 'src/libs/device';
+import { useDevice } from 'src/hooks';
 
 const ServicePanel = () => {
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useDevice();
   return isMobile ? <ServicePanelMobile /> : <ServicePanelDesktop />;
 };
 

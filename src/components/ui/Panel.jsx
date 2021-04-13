@@ -301,7 +301,7 @@ class Panel extends React.Component {
 
     return (
       <DeviceContext.Consumer>
-        {isMobile => (
+        {({ isMobile }) => (
           <div
             className={classnames('panel', size, className, {
               'panel--holding': holding,

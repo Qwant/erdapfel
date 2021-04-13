@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { DeviceContext } from 'src/libs/device';
+import React from 'react';
+import { useDevice } from 'src/hooks';
 import { Button } from 'src/components/ui';
 import { IconAndroid, IconApple } from 'src/components/ui/icons';
 import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
 const ProductCard = ({ logo, title, desc, link, href, mobileApps }) => {
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useDevice();
 
   return (
     <div className="card-wrapper">

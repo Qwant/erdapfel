@@ -253,7 +253,7 @@ export default class PoiPanel extends React.Component {
 
     return (
       <DeviceContext.Consumer>
-        {isMobile => (
+        {({ isMobile }) => (
           <Panel
             resizable
             fitContent={['default', 'minimized']}

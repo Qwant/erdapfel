@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/suggest';
-import { DeviceContext } from 'src/libs/device';
+import { useDevice } from 'src/hooks';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -25,7 +25,7 @@ const Suggest = ({
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useDevice();
 
   const close = () => {
     setIsOpen(false);

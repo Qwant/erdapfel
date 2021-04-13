@@ -1,5 +1,5 @@
 /* global _ */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'src/components/ui/Panel';
 import debounce from 'lodash.debounce';
@@ -8,14 +8,13 @@ import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
 import Telemetry from 'src/libs/telemetry';
-import { useConfig } from 'src/hooks';
+import { useConfig, useDevice } from 'src/hooks';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/bounds';
 import classnames from 'classnames';
 import { sources } from 'config/constants.yml';
-import { DeviceContext } from 'src/libs/device';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import { PanelNav, SourceFooter } from 'src/components/ui';
@@ -59,7 +58,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const [pois, setPois] = useState([]);
   const [dataSource, setDataSource] = useState('');
   const [initialLoading, setInitialLoading] = useState(true);
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useDevice();
   const { maxPlaces } = useConfig('category');
 
   useEffect(() => {
