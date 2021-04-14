@@ -62,7 +62,6 @@ const RouteResult = ({
   return (
     <>
       <div className={`itinerary_result itinerary_result--${vehicle}`}>
-        <CloseButton onClick={onClose} className="panel-close" />
         <RoutesList
           isLoading={isLoading}
           routes={routes}
