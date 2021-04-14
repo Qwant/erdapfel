@@ -1,3 +1,4 @@
+/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchInput from '../ui_components/search_input';
