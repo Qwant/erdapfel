@@ -9,7 +9,7 @@ import PoiBlockContainer from './PoiBlockContainer';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
-import { buildQueryString, shouldShowBackToQwant } from 'src/libs/url_utils';
+import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import { fire, listen, unListen } from 'src/libs/customEvents';
@@ -59,13 +59,6 @@ export default class PoiPanel extends React.Component {
         this.setState({ isPoiInFavorite });
       }
     });
-
-    // Show return arrow on mobile if user comes from PoI / favorites list
-    const { poiFilters, isFromFavorite } = this.props;
-    if (poiFilters.category || poiFilters.query || isFromFavorite) {
-      const topBarHandle = document.querySelector('.top_bar');
-      topBarHandle.classList.add('top_bar--poi-from-list');
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -81,10 +74,6 @@ export default class PoiPanel extends React.Component {
     fire('mobile_direction_button_visibility', true);
     // Clear direction shortcut cb to reset default action
     fire('set_direction_shortcut_callback', null);
-
-    // Hide return arrow on mobile
-    const topBarHandle = document.querySelector('.top_bar');
-    topBarHandle.classList.remove('top_bar--poi-from-list');
   }
 
   loadPois = () => {
@@ -201,7 +190,7 @@ export default class PoiPanel extends React.Component {
       return null;
     }
 
-    // Show PoI name in search field
+    // Ensure PoI name is present in search field
     SearchInput.setInputValue(poi.name);
     const topBarHandle = document.querySelector('.top_bar');
     topBarHandle.classList.add('top_bar--search_filled');
