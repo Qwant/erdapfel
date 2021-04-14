@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 import RoutesList from './RoutesList';
-import { SourceFooter, CloseButton } from 'src/components/ui';
+import { SourceFooter } from 'src/components/ui';
 
 const RouteResult = ({
   origin,
