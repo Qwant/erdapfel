@@ -1,5 +1,5 @@
 export const boundsFromFlatArray = (coords = []) => {
-  if (coords.length < 4 || coords.some(coord => typeof coord !== 'number')) {
+  if (coords.length !== 4 || coords.some(coord => typeof coord !== 'number' || isNaN(coord))) {
     throw new Error(`Malformed bounds array: ${JSON.stringify(coords)}`);
   }
   return [
