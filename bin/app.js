@@ -112,10 +112,11 @@ function App(config) {
     res.render('unsupported', { config });
   });
 
-  const ogMeta = new require('./middlewares/og_meta')(config);
   const redirectUnsupported = new require('./middlewares/unsupported_browser')(config);
+  const preFetchPoi = new require('./middlewares/prefetch_poi')(config);
+  const ogMeta = new require('./middlewares/og_meta')(config);
 
-  router.get('/*', redirectUnsupported, ogMeta, (req, res) => {
+  router.get('/*', redirectUnsupported, preFetchPoi, ogMeta, (req, res) => {
     const userAgent = req.headers['user-agent'];
     const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
     let appConfig = config;
