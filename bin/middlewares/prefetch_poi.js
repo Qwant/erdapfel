@@ -43,13 +43,14 @@ module.exports = function (config) {
       .then(poi => {
         if (poi) {
           res.locals.poi = poi;
+          next();
         } else {
           res.redirect(307, config.system.baseUrl);
         }
       })
       .catch(error => {
         req.logger.error({ err: error });
-      })
-      .finally(next);
+        next();
+      });
   };
 };
