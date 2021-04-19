@@ -113,11 +113,11 @@ function App(config) {
   });
 
   const redirectUnsupported = new require('./middlewares/unsupported_browser')(config);
-  const queryBbox = new require('./middlewares/query_bbox')(config);
+  const fullTextQuery = new require('./middlewares/fullText_query')(config);
   const preFetchPoi = new require('./middlewares/prefetch_poi')(config);
   const ogMeta = new require('./middlewares/og_meta')(config);
 
-  router.get('/*', redirectUnsupported, queryBbox, preFetchPoi, ogMeta, (req, res) => {
+  router.get('/*', redirectUnsupported, fullTextQuery, preFetchPoi, ogMeta, (req, res) => {
     const userAgent = req.headers['user-agent'];
     const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
     let appConfig = config;

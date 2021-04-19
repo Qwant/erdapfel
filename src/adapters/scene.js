@@ -44,11 +44,6 @@ Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
       console.error(e);
     }
   }
-  if (window.queryBbox) {
-    return {
-      bounds: window.queryBbox,
-    };
-  }
   if (window.hotLoadPoi) {
     return getPoiView(window.hotLoadPoi);
   }
