@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import Router from 'src/proxies/app_router';
-import { parseMapHash, joinPath, getCurrentUrl } from 'src/libs/url_utils';
+import { parseMapHash, joinPath, getCurrentUrl, parseQueryString } from 'src/libs/url_utils';
 import { listen } from 'src/libs/customEvents';
 import RootComponent from './RootComponent';
 import Telemetry from 'src/libs/telemetry';
@@ -49,9 +49,13 @@ export default class App {
 
   initMap() {
     const mapHash = parseMapHash(window.location.hash);
+    const { bbox } = parseQueryString(window.location.search);
     import(/* webpackChunkName: "map" */ '../adapters/scene').then(({ default: Scene }) => {
       const scene = new Scene();
-      scene.initMapBox(mapHash);
+      scene.initMapBox({
+        locationHash: mapHash,
+        bbox,
+      });
     });
   }
 

@@ -23,8 +23,12 @@ const DEBOUNCE_WAIT = 100;
 
 function fitMap(bbox) {
   if (bbox) {
-    fire('fit_map', parseBboxString(bbox));
-    return;
+    try {
+      fire('fit_map', parseBboxString(bbox));
+      return;
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   const mapboxMap = window.map.mb;
