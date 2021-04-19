@@ -79,7 +79,7 @@ Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
   };
 };
 
-Scene.prototype.initMapBox = async function ({ locationHash, bbox }) {
+Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   window.times.initMapBox = Date.now();
 
   setRTLTextPlugin(
@@ -99,7 +99,7 @@ Scene.prototype.initMapBox = async function ({ locationHash, bbox }) {
     hash: false,
     maxZoom: 20,
     locale,
-    ...(await this.getMapInitOptions({ locationHash, bbox })),
+    ...this.getMapInitOptions({ locationHash, bbox }),
   });
   // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
   this.mb.setPadding = this.mb.setPadding || (() => {});
