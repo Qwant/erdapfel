@@ -2,6 +2,7 @@ const axios = require('axios');
 
 module.exports = function (config) {
   const geocoderUrl = config.services.geocoder.url;
+  const useNlu = config.services.geocoder.useNlu;
   const idunnTimeout = Number(config.server.services.idunn.timeout);
   if (isNaN(idunnTimeout)) {
     throw new Error(
@@ -14,7 +15,7 @@ module.exports = function (config) {
       const response = await axios.get(geocoderUrl, {
         params: {
           lang: langCode,
-          nlu: 'true',
+          nlu: useNlu ? 'true' : undefined,
           q: query,
         },
         timeout: idunnTimeout,
