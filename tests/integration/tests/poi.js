@@ -97,7 +97,7 @@ test('open poi from autocomplete selection', async () => {
   });
 
   // url is updated
-  expect(location.href).toMatch(/osm:way:63178753@test/);
+  expect(location.href).toMatch(/osm:way:63178753@Mus%C3%A9e_dOrsay/);
   // poi panel is visible
   expect(await exists(page, '.poi_panel')).toBeTruthy();
 });
