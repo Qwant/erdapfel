@@ -33,8 +33,7 @@ module.exports = function (config) {
   }
 
   return function (req, res, next) {
-    const absoluteUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-    const fullTextQuery = new URL(absoluteUrl).searchParams.get('q');
+    const fullTextQuery = req.query.q;
 
     if (!fullTextQuery) {
       next();
