@@ -1,14 +1,19 @@
 const axios = require('axios');
-
-const removeNullEntries = obj =>
-  Object.entries(obj)
-    .filter(([_key, value]) => value !== null && value !== undefined)
-    .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
+const yaml = require('node-yaml');
 
 module.exports = function (config) {
   const geocoderUrl = config.services.geocoder.url;
   const useNlu = config.services.geocoder.useNlu;
   const idunnTimeout = Number(config.server.services.idunn.timeout);
+
+  const categories = yaml.readSync('../../config/categories.yml');
+  const isCategoryValid = type => categories.find(category => category.name === type);
+
+  const removeNullEntries = obj =>
+    Object.entries(obj)
+      .filter(([_key, value]) => value !== null && value !== undefined)
+      .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
+
   if (isNaN(idunnTimeout)) {
     throw new Error(
       `Invalid config: idunn timeout is set to "${config.server.services.idunn.timeout}"`
@@ -27,13 +32,12 @@ module.exports = function (config) {
       });
       const intention = (response.data.intentions || [])[0];
       if (intention && intention.filter) {
-        // @TODO: re-use client code from `src/adapter/intentions.js`
         const { q, bbox, category } = intention.filter;
         const params = new URLSearchParams(
           removeNullEntries({
             q,
             bbox: bbox && bbox.join(','),
-            type: category,
+            type: isCategoryValid(category) ? category : null,
           })
         );
 
