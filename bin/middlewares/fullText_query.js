@@ -2,7 +2,8 @@ const axios = require('axios');
 const yaml = require('node-yaml');
 
 module.exports = function (config) {
-  const geocoderUrl = config.services.geocoder.url;
+  const idunnBaseUrl = config.server.services.idunn.url || config.services.idunn.url;
+  const geocoderUrl = idunnBaseUrl + '/v1/autocomplete';
   const useNlu = config.services.geocoder.useNlu;
   const idunnTimeout = Number(config.server.services.idunn.timeout);
 
