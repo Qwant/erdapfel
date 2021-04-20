@@ -46,10 +46,10 @@ module.exports = function (config) {
 
     const firstPoi = (response.data.features || [])[0];
     if (firstPoi) {
-      return `${config.system.baseUrl}place/${firstPoi.properties.geocoding.id}`;
+      return `${config.system.baseUrl}place/${firstPoi.properties.geocoding.id}?q=${query}`;
     }
 
-    return `${config.system.baseUrl}noresult`;
+    return `${config.system.baseUrl}noresult?q=${query}`;
   }
 
   return function (req, res, next) {
