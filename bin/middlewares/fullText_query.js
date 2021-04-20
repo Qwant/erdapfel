@@ -22,40 +22,34 @@ module.exports = function (config) {
   }
 
   async function getRedirectUrl(query, res) {
-    try {
-      const response = await axios.get(geocoderUrl, {
-        params: {
-          lang: res.locals.language.code,
-          nlu: useNlu ? 'true' : undefined,
-          q: query,
-        },
-        timeout: idunnTimeout,
-      });
-      const intention = (response.data.intentions || [])[0];
-      if (intention && intention.filter) {
-        const { q, bbox, category } = intention.filter;
-        const params = new URLSearchParams(
-          removeNullEntries({
-            q,
-            bbox: bbox && bbox.join(','),
-            type: isCategoryValid(category) ? category : null,
-          })
-        );
+    const response = await axios.get(geocoderUrl, {
+      params: {
+        lang: res.locals.language.code,
+        nlu: useNlu ? 'true' : undefined,
+        q: query,
+      },
+      timeout: idunnTimeout,
+    });
+    const intention = (response.data.intentions || [])[0];
+    if (intention && intention.filter) {
+      const { q, bbox, category } = intention.filter;
+      const params = new URLSearchParams(
+        removeNullEntries({
+          q,
+          bbox: bbox && bbox.join(','),
+          type: isCategoryValid(category) ? category : null,
+        })
+      );
 
-        return `${config.system.baseUrl}places/?${params.toString()}`;
-      }
-
-      const firstPoi = (response.data.features || [])[0];
-      if (firstPoi) {
-        return `${config.system.baseUrl}place/${firstPoi.properties.geocoding.id}`;
-      }
-      return null;
-    } catch (error) {
-      if (error.response && error.response.status === 404) {
-        return null;
-      }
-      throw error;
+      return `${config.system.baseUrl}places/?${params.toString()}`;
     }
+
+    const firstPoi = (response.data.features || [])[0];
+    if (firstPoi) {
+      return `${config.system.baseUrl}place/${firstPoi.properties.geocoding.id}`;
+    }
+
+    return `${config.system.baseUrl}noresult`;
   }
 
   return function (req, res, next) {
@@ -67,11 +61,7 @@ module.exports = function (config) {
 
     getRedirectUrl(req.query.q, res)
       .then(redirectUrl => {
-        if (redirectUrl) {
-          res.redirect(307, redirectUrl);
-        } else {
-          next();
-        }
+        res.redirect(307, redirectUrl);
       })
       .catch(error => {
         req.logger.error({ err: error });
