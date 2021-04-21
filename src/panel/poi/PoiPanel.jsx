@@ -190,11 +190,6 @@ export default class PoiPanel extends React.Component {
       return null;
     }
 
-    // Ensure PoI name is present in search field
-    SearchInput.setInputValue(poi.name);
-    const topBarHandle = document.querySelector('.top_bar');
-    topBarHandle.classList.add('top_bar--search_filled');
-
     const backAction =
       poiFilters.category || poiFilters.query
         ? this.props.backToList

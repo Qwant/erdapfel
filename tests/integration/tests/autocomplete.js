@@ -149,9 +149,9 @@ test('mouse navigation', async () => {
   expect(searchValue.trim()).toEqual(TypedSearch);
 
   await autocompleteHelper.clickResult(1);
-  //const selectedSearchValue = await autocompleteHelper.getSearchInputValue();
-  //const expectedLabelName = mockAutocomplete.features[0].properties.geocoding.name;
-  //expect(selectedSearchValue).toEqual(expectedLabelName);
+  const selectedSearchValue = await autocompleteHelper.getSearchInputValue();
+  const expectedLabelName = mockAutocomplete.features[0].properties.geocoding.name;
+  expect(selectedSearchValue).toEqual(expectedLabelName);
 });
 
 test('move to on click', async () => {
@@ -250,7 +250,7 @@ test('Search Query', async () => {
   const searchValue = await getInputValue(page, '#search');
 
   // search input is filled with query
-  expect(searchValue).toEqual("Musée d'Orsay");
+  expect(searchValue).toEqual(searchQuery);
 
   // app navigates to first result from autocomplete
   expect(page.url()).toEqual(`${APP_URL}/place/osm:node:4872758213@test_result_1`);

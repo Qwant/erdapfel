@@ -1,4 +1,3 @@
-/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchInput from '../ui_components/search_input';
@@ -92,9 +91,12 @@ export default class PanelManager extends React.Component {
     }
   }
 
-  updateSearchBarContent({ poiFilters = {}, query } = {}) {
+  updateSearchBarContent({ poiFilters = {}, poi = {}, query } = {}) {
     const topBarHandle = document.querySelector('.top_bar');
-    if (poiFilters.category) {
+    if (poi.name) {
+      SearchInput.setInputValue(poi.name);
+      topBarHandle.classList.add('top_bar--search_filled');
+    } else if (poiFilters.category) {
       const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
       SearchInput.setInputValue(categoryLabel);
       topBarHandle.classList.add('top_bar--search_filled');
@@ -110,10 +112,14 @@ export default class PanelManager extends React.Component {
     }
   }
 
-  updateTopBarReturnButton({ poiFilters = {} } = {}) {
+  updateTopBarReturnButton({ poiFilters = {}, isFromFavorite } = {}) {
     const topBarReturnButton = document.querySelector('.search_form__return-to-list');
     const backAction =
-      poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
+      poiFilters.category || poiFilters.query
+        ? this.backToList
+        : isFromFavorite
+        ? this.backToFavorite
+        : () => {};
     topBarReturnButton.onclick = e => {
       backAction(e, poiFilters);
     };
@@ -202,11 +208,6 @@ export default class PanelManager extends React.Component {
         const topBarHandle = document.querySelector('.top_bar');
         topBarHandle.classList.add('top_bar--poi-from-list');
       }
-
-      // Show PoI name in search field
-      SearchInput.setInputValue(options.poi.name);
-      const topBarHandle = document.querySelector('.top_bar');
-      topBarHandle.classList.add('top_bar--search_filled');
     });
 
     router.addRoute('Favorites', '/favs', () => {
@@ -215,8 +216,6 @@ export default class PanelManager extends React.Component {
         options: {},
         panelSize: 'default',
       });
-
-      SearchInput.setInputValue(_('Favorites', 'search bar'));
     });
 
     if (directionConf.enabled) {
