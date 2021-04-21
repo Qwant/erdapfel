@@ -19,7 +19,6 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
 import { Flex, Panel, PanelNav, Divider, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
-import SearchInput from '../../ui_components/search_input';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
 
