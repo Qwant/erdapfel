@@ -249,7 +249,7 @@ test('Search Query', async () => {
   await page.goto(`${APP_URL}/?q=${searchQuery}`);
   const searchValue = await getInputValue(page, '#search');
 
-  // search input is filled with query
+  // search input is filled with PoI name (not the query)
   expect(searchValue).toEqual('test result 1');
 
   // app navigates to first result from autocomplete
