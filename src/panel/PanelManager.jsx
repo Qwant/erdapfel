@@ -112,7 +112,7 @@ export default class PanelManager extends React.Component {
     }
   }
 
-  updateTopBarReturnButton({ poiFilters = {}, isFromFavorite } = {}) {
+  updateTopBarReturnButton({ poiFilters = {}, isFromFavorite, poi = {} } = {}) {
     const topBarReturnButton = document.querySelector('.search_form__return-to-list');
     const backAction =
       poiFilters.category || poiFilters.query
@@ -123,12 +123,18 @@ export default class PanelManager extends React.Component {
     topBarReturnButton.onclick = e => {
       backAction(e, poiFilters);
     };
-  }
 
-  // Hide return arrow on mobile
-  hideReturnButton() {
     const topBarHandle = document.querySelector('.top_bar');
-    topBarHandle.classList.remove('top_bar--poi-from-list');
+
+    // Show return arrow (on mobile) if user comes from PoI / favorites list
+    if (poi.name && (poiFilters.category || poiFilters.query || isFromFavorite)) {
+      topBarHandle.classList.add('top_bar--poi-from-list');
+    }
+    // Hide return button when not on a POI anymore
+    else {
+      const topBarHandle = document.querySelector('.top_bar');
+      topBarHandle.classList.remove('top_bar--poi-from-list');
+    }
   }
 
   backToList(e, poiFilters) {
@@ -177,7 +183,6 @@ export default class PanelManager extends React.Component {
         },
         panelSize: 'default',
       });
-      this.hideReturnButton();
     });
 
     router.addRoute('noresult', '/noresult', (_, options) => {
@@ -186,7 +191,6 @@ export default class PanelManager extends React.Component {
         panelSize: 'default',
         options: { ...options },
       });
-      this.hideReturnButton();
     });
 
     router.addRoute('POI', '/place/([^?]+)', async (poiUrl, options = {}) => {
@@ -201,13 +205,6 @@ export default class PanelManager extends React.Component {
         },
         panelSize: 'default',
       });
-
-      // Show return arrow (on mobile) if user comes from PoI / favorites list
-      const { poiFilters = {}, isFromFavorite } = options;
-      if (poiFilters.category || poiFilters.query || isFromFavorite) {
-        const topBarHandle = document.querySelector('.top_bar');
-        topBarHandle.classList.add('top_bar--poi-from-list');
-      }
     });
 
     router.addRoute('Favorites', '/favs', () => {
@@ -232,7 +229,6 @@ export default class PanelManager extends React.Component {
           options: { ...params, ...options, isPublicTransportActive },
           panelSize: 'default',
         });
-        this.hideReturnButton();
       });
     }
 
@@ -243,7 +239,6 @@ export default class PanelManager extends React.Component {
       } else {
         router.routeUrl('/');
       }
-      this.hideReturnButton();
     });
 
     // Default matching route
@@ -256,7 +251,6 @@ export default class PanelManager extends React.Component {
       if (options?.focusSearch) {
         SearchInput.select();
       }
-      this.hideReturnButton();
     });
 
     // Route the initial URL
