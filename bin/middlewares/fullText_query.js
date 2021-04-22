@@ -16,6 +16,7 @@ module.exports = function (config) {
   const categories = yaml.readSync('../../config/categories.yml');
   const isCategoryValid = type => categories.find(category => category.name === type);
 
+  // @TODO: import it from client lib src/libs/url_utils.js when possible
   const removeNullEntries = obj =>
     Object.entries(obj)
       .filter(([_key, value]) => value !== null && value !== undefined)
