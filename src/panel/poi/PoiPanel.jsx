@@ -9,7 +9,7 @@ import PoiBlockContainer from './PoiBlockContainer';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
-import { buildQueryString, shouldShowBackToQwant } from 'src/libs/url_utils';
+import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import { fire, listen, unListen } from 'src/libs/customEvents';
@@ -17,7 +17,7 @@ import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters
 import PoiItem from 'src/components/PoiItem';
 import { isNullOrEmpty } from 'src/libs/object';
 import { DeviceContext } from 'src/libs/device';
-import { Flex, Panel, PanelNav, CloseButton, Divider, Button } from 'src/components/ui';
+import { Flex, Panel, PanelNav, Divider, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 
 const covid19Enabled = (nconf.get().covid19 || {}).enabled;
@@ -28,6 +28,8 @@ export default class PoiPanel extends React.Component {
     poi: PropTypes.object,
     poiFilters: PropTypes.object,
     centerMap: PropTypes.bool,
+    backToList: PropTypes.func,
+    backToFavorite: PropTypes.func,
   };
 
   static defaultProps = {
@@ -130,12 +132,6 @@ export default class PoiPanel extends React.Component {
     });
   }
 
-  backToFavorite = e => {
-    e.stopPropagation();
-    Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-    window.app.navigateTo('/favs');
-  };
-
   getBestPoi() {
     return this.state.fullPoi || this.props.poi;
   }
@@ -154,31 +150,6 @@ export default class PoiPanel extends React.Component {
 
   closeAction = () => {
     window.app.navigateTo('/');
-  };
-
-  backToList = e => {
-    e.stopPropagation();
-    const { poiFilters } = this.props;
-    const queryObject = {};
-    const mappingParams = {
-      query: 'q',
-      category: 'type',
-    };
-
-    for (const name in poiFilters) {
-      if (!poiFilters[name]) {
-        continue;
-      }
-      const key = mappingParams[name];
-      queryObject[key || name] = poiFilters[name];
-    }
-
-    const params = buildQueryString(queryObject);
-    const uri = `/places/${params}`;
-
-    Telemetry.add(Telemetry.POI_BACKTOLIST);
-    fire('restore_location');
-    window.app.navigateTo(uri);
   };
 
   onClickPhoneNumber = () => {
@@ -220,9 +191,9 @@ export default class PoiPanel extends React.Component {
 
     const backAction =
       poiFilters.category || poiFilters.query
-        ? this.backToList
+        ? this.props.backToList
         : isFromFavorite
-        ? this.backToFavorite
+        ? this.props.backToFavorite
         : this.closeAction;
 
     const NavHeader = ({ isMobile }) => {
@@ -238,10 +209,17 @@ export default class PoiPanel extends React.Component {
         );
       }
 
+      // If source is a PoI list: show a button to return to the list
       if (backAction !== this.closeAction) {
         return (
           <PanelNav>
-            <Button icon="arrow-left" variant="tertiary" onClick={backAction}>
+            <Button
+              icon="arrow-left"
+              variant="tertiary"
+              onClick={e => {
+                backAction(e, poiFilters);
+              }}
+            >
               {_('Display all results')}
             </Button>
           </PanelNav>
@@ -275,10 +253,6 @@ export default class PoiPanel extends React.Component {
                   withAlternativeName
                   withOpeningHours
                   onClick={this.center}
-                />
-                <CloseButton
-                  onClick={isMobile ? backAction : this.closeAction}
-                  position="topRight"
                 />
               </Flex>
               <div className="u-mb-l">

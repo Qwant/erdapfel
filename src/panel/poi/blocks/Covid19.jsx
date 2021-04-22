@@ -85,17 +85,19 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
 const LocalizedWarning = ({ countryCode }) => {
   const { frInformationUrl } = useConfig('covid19');
 
-  return <div>
-    <p>{_('Please comply with government travel restrictions.', 'covid19')}</p>
-    {countryCode === 'FR' && (
-      <p>
-        {_('More information at', 'covid19')}{' '}
-        <a rel="noopener noreferrer" href={frInformationUrl}>
-          gouvernement.fr/info-coronavirus
-        </a>
-      </p>
-    )}
-  </div>
+  return (
+    <div>
+      <p>{_('Please comply with government travel restrictions.', 'covid19')}</p>
+      {countryCode === 'FR' && (
+        <p>
+          {_('More information at', 'covid19')}{' '}
+          <a rel="noopener noreferrer" href={frInformationUrl}>
+            gouvernement.fr/info-coronavirus
+          </a>
+        </p>
+      )}
+    </div>
+  );
 };
 
 const LegalWarning = ({ countryCode }) => (

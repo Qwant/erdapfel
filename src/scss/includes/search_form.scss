@@ -86,8 +86,9 @@ input[type="search"] {
   }
 }
 
-// Return arrow
-.search_form__return {
+// Return arrows
+.search_form__return,
+.search_form__return-to-list {
   display: none;
 }
 
@@ -191,7 +192,8 @@ input[type="search"] {
     font-size: 14px;
   }
 
-  .search_form__return {
+  .search_form__return,
+  .search_form__return-to-list {
     display: none;
     font-size: 20px;
     text-align: center;
@@ -301,6 +303,27 @@ input[type="search"] {
     // Hide magnifying glass
     .search_form__action {
       display: none;
+    }
+  }
+
+  // When a PoI Panel is displayed
+  .top_bar--poi-from-list {
+
+    // Show the return arrow
+    .search_form__return-to-list {
+      display: block;
+    }
+
+    // If the search field is focused, hide it
+    &.top_bar--search_focus {
+      .search_form__return-to-list {
+        display: none;
+      }
+    }
+
+    // Make room for it on the left of the field
+    .search_form__wrapper {
+      padding-left: $spacing-xxl-3;
     }
   }
 }

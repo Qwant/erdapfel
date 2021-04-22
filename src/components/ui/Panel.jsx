@@ -51,6 +51,7 @@ class Panel extends React.Component {
     isMapBottomUIDisplayed: PropTypes.bool,
     floatingItems: PropTypes.arrayOf(PropTypes.object),
     onTransitionEnd: PropTypes.func,
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
