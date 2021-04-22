@@ -38,10 +38,10 @@ function distinctSegment(coordinates, coordCounts) {
   if (start === -1) {
     return lineString(coordinates);
   }
-  const end =
-    start + coordinates.slice(start).findIndex(coord => coordCounts.get(asKey(coord)) !== 1);
-
-  return lineString(coordinates.slice(start, end));
+  const end = coordinates.findIndex((coord, i) => i > start && coordCounts.get(asKey(coord)) !== 1);
+  return lineString(
+    coordinates.slice(start === 0 ? start : start - 1, end === -1 ? coordinates.length : end + 1)
+  );
 }
 
 // extract the first segment of each linestring
