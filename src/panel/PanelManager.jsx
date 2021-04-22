@@ -113,25 +113,17 @@ export default class PanelManager extends React.Component {
   }
 
   updateTopBarReturnButton({ poiFilters = {}, isFromFavorite, poi = {} } = {}) {
-    const topBarReturnButton = document.querySelector('.search_form__return-to-list');
-    const backAction =
-      poiFilters.category || poiFilters.query
-        ? this.backToList
-        : isFromFavorite
-        ? this.backToFavorite
-        : () => {};
-    topBarReturnButton.onclick = e => {
-      backAction(e, poiFilters);
-    };
-
     const topBarHandle = document.querySelector('.top_bar');
-
-    // Show return arrow (on mobile) if user comes from PoI / favorites list
+    const topBarReturnButton = document.querySelector('.search_form__return');
     if (poi.name && (poiFilters.category || poiFilters.query || isFromFavorite)) {
+      const backAction =
+        poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
+      topBarReturnButton.onclick = e => {
+        backAction(e, poiFilters);
+      };
       topBarHandle.classList.add('top_bar--poi-from-list');
-    }
-    // Hide return button when not on a POI anymore
-    else {
+    } else {
+      topBarReturnButton.removeAttribute('onclick');
       topBarHandle.classList.remove('top_bar--poi-from-list');
     }
   }

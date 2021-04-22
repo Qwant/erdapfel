@@ -87,8 +87,7 @@ input[type="search"] {
 }
 
 // Return arrows
-.search_form__return,
-.search_form__return-to-list {
+.search_form__return {
   display: none;
 }
 
@@ -192,8 +191,7 @@ input[type="search"] {
     font-size: 14px;
   }
 
-  .search_form__return,
-  .search_form__return-to-list {
+  .search_form__return {
     display: none;
     font-size: 20px;
     text-align: center;
@@ -264,13 +262,10 @@ input[type="search"] {
   }
 
   // When the search field is focused (empty or not)
-  .top_bar--search_focus {
-    .search_form__input::placeholder {
-      color: $grey-semi-darkness;
-      opacity: 1;
-    }
-
-    // Show return arrow
+  .top_bar--search_focus,
+  // or we are on a POI panel coming from a list (category or favs)
+  .top_bar--poi-from-list {
+    // Show the return arrow
     .search_form__return {
       display: block;
     }
@@ -278,6 +273,13 @@ input[type="search"] {
     // ... and make room for it
     .search_form__wrapper {
       padding-left: $spacing-xxl-3;
+    }
+  }
+
+  .top_bar--search_focus {
+    .search_form__input::placeholder {
+      color: $grey-semi-darkness;
+      opacity: 1;
     }
   }
 
@@ -303,27 +305,6 @@ input[type="search"] {
     // Hide magnifying glass
     .search_form__action {
       display: none;
-    }
-  }
-
-  // When a PoI Panel is displayed
-  .top_bar--poi-from-list {
-
-    // Show the return arrow
-    .search_form__return-to-list {
-      display: block;
-    }
-
-    // If the search field is focused, hide it
-    &.top_bar--search_focus {
-      .search_form__return-to-list {
-        display: none;
-      }
-    }
-
-    // Make room for it on the left of the field
-    .search_form__wrapper {
-      padding-left: $spacing-xxl-3;
     }
   }
 }
