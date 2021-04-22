@@ -132,7 +132,6 @@ export default class PanelManager extends React.Component {
     }
     // Hide return button when not on a POI anymore
     else {
-      const topBarHandle = document.querySelector('.top_bar');
       topBarHandle.classList.remove('top_bar--poi-from-list');
     }
   }
