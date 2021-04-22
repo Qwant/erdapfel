@@ -34,7 +34,8 @@ export default class PanelManager extends React.Component {
       ActivePanel: ServicePanel,
       options: {},
       panelSize: 'default',
-      isPanelVisible: true,
+      isSuggestOpen: false,
+      searchQuery: '',
     };
   }
 
@@ -274,21 +275,17 @@ export default class PanelManager extends React.Component {
     this.setState({ panelSize });
   };
 
-  onSuggestChange = query => {
-    this.setState(prevState => {
-      const { ActivePanel, isPanelVisible } = prevState;
-      const shouldPanelBeVisible = ActivePanel === ServicePanel && query.length === 0;
-      if (isPanelVisible !== shouldPanelBeVisible) {
-        return {
-          isPanelVisible: shouldPanelBeVisible,
-        };
-      }
-    });
+  setSuggestOpen = isOpen => {
+    if (this.state.isSuggestOpen !== isOpen) {
+      this.setState({ isSuggestOpen: isOpen });
+    }
   };
 
   render() {
-    const { ActivePanel, options, panelSize, isPanelVisible } = this.state;
+    const { ActivePanel, options, panelSize, isSuggestOpen, searchQuery } = this.state;
     const { searchBarInputNode, searchBarOutputNode } = this.props;
+
+    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && searchQuery === '');
 
     return (
       <div>
@@ -296,17 +293,9 @@ export default class PanelManager extends React.Component {
           inputNode={searchBarInputNode}
           outputNode={searchBarOutputNode}
           withCategories
-          onChange={this.onSuggestChange}
-          onOpen={() => {
-            if (isPanelVisible && ActivePanel !== ServicePanel) {
-              this.setState({ isPanelVisible: false });
-            }
-          }}
-          onClose={() => {
-            if (!isPanelVisible) {
-              this.setState({ isPanelVisible: true });
-            }
-          }}
+          onChange={searchQuery => this.setState({ searchQuery })}
+          onOpen={() => this.setSuggestOpen(true)}
+          onClose={() => this.setSuggestOpen(false)}
         />
 
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
