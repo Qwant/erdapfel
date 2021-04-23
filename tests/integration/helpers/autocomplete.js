@@ -7,7 +7,14 @@ export default class AutocompleteHelper {
     this.page = page;
   }
 
+  async typeAndSubmit(word) {
+    await this.page.focus(SEARCH_INPUT_SELECTOR);
+    await this.page.keyboard.type(word);
+    await this.page.keyboard.press('Enter');
+  }
+
   async typeAndWait(word) {
+    await this.page.focus(SEARCH_INPUT_SELECTOR);
     await this.page.keyboard.type(word);
     await this.page.waitForSelector(SUGGEST_SELECTOR);
   }

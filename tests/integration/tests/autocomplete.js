@@ -32,10 +32,7 @@ test('search with no suggest', async () => {
   responseHandler.addPreparedResponse(mockAutocompleteEmpty, /autocomplete\?q=Goodbye/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Goodbye');
-  const title = await page.evaluate(() => {
-    return document.querySelector('.autocomplete_error').innerText;
-  });
-  expect(title).toEqual('No result found');
+  expect(await exists(page, '.autocomplete_error')).toBeTruthy();
 });
 
 test('search has lang in query', async () => {
@@ -82,7 +79,6 @@ test('keyboard navigation', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait(TypedSearch);
-  await page.waitForSelector('.autocomplete_suggestions');
   await page.waitFor(100);
   await autocompleteHelper.pressDown();
   await page.waitFor(100);
@@ -159,7 +155,6 @@ test('move to on click', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   const { center: map_position_before } = await getMapView(page);
   await autocompleteHelper.typeAndWait('Hello');
-  await page.waitForSelector('.autocomplete_suggestions');
   await page.click('.autocomplete_suggestions li:nth-child(3)');
   const { center: map_position_after } = await getMapView(page);
   expect(map_position_before).not.toEqual(map_position_after);
@@ -171,7 +166,6 @@ test('center on select', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait('Hello');
-  await page.waitForSelector('.autocomplete_suggestions');
   await page.click('.autocomplete_suggestion:nth-child(1)');
   const { center, zoom } = await getMapView(page);
   expect(center).toEqual({ lat: 5, lng: 30 });
@@ -195,7 +189,7 @@ test('favorite search', async () => {
   await page.goto(APP_URL);
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await storePoi(page, { title: 'hello' });
-  await page.keyboard.type('Hello');
+  await autocompleteHelper.typeAndWait('Hello');
   expect(await exists(page, '.autocomplete_suggestion--favorite')).toBeTruthy();
 });
 
@@ -204,8 +198,7 @@ test('suggestions should not reappear after fast submit', async () => {
     delay: 300,
   });
   await page.goto(APP_URL);
-  await page.keyboard.type('paris');
-  await page.keyboard.press('Enter');
+  await autocompleteHelper.typeAndSubmit('paris');
   await page.waitFor(600);
   await page.waitForSelector('.autocomplete_suggestions', { hidden: true });
 });
@@ -213,8 +206,7 @@ test('suggestions should not reappear after fast submit', async () => {
 test('check template', async () => {
   responseHandler.addPreparedResponse(mockAutocompleteAllTypes, /autocomplete\?q=type/);
   await page.goto(APP_URL);
-  await page.keyboard.type('type');
-  await page.waitForSelector('.autocomplete_suggestion');
+  await autocompleteHelper.typeAndWait('type');
 
   const lines = await page.evaluate(() => {
     return Array.from(document.querySelectorAll('.autocomplete_suggestion')).map(rawSuggest => {
@@ -266,8 +258,7 @@ test('Retrieve restaurant category when we search "restau"', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=restau/);
 
   await page.goto(APP_URL);
-  await page.keyboard.type(searchQuery);
-  await page.waitForSelector('.autocomplete_suggestion');
+  await autocompleteHelper.typeAndWait(searchQuery);
 
   const [firstLine, suggestionId] = await page.evaluate(() => {
     return [
@@ -288,8 +279,7 @@ test('Retrieve no category when we search "barcelona", not even "bar"', async ()
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=barcelona/);
 
   await page.goto(APP_URL);
-  await page.keyboard.type(searchQuery);
-  await page.waitForSelector('.autocomplete_suggestion');
+  await autocompleteHelper.typeAndWait(searchQuery);
 
   const firstLine = await page.evaluate(() => {
     return document.querySelector(
