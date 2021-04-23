@@ -75,9 +75,13 @@ export default class PanelManager extends React.Component {
   }
 
   componentDidUpdate(_prevProps, prevState) {
-    const { ActivePanel, options } = this.state;
+    const { ActivePanel, options, isSuggestOpen } = this.state;
 
-    if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
+    if (
+      prevState.ActivePanel !== ActivePanel ||
+      prevState.options !== options ||
+      prevState.isSuggestOpen !== isSuggestOpen
+    ) {
       // Not in a "list of PoI" context (options.poiFilters is null)
       if (isNullOrEmpty(options?.poiFilters)) {
         // Markers are not persistent
@@ -119,12 +123,16 @@ export default class PanelManager extends React.Component {
     if (poi.name && (poiFilters.category || poiFilters.query || isFromFavorite)) {
       const backAction =
         poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
-      topBarReturnButton.onclick = e => {
+      // use the mousedown event so it's triggered before the blur event on the suggest
+      topBarReturnButton.onmousedown = e => {
+        if (this.state.isSuggestOpen) {
+          return;
+        }
         backAction(e, poiFilters);
       };
       topBarHandle.classList.add('top_bar--poi-from-list');
     } else {
-      topBarReturnButton.removeAttribute('onclick');
+      topBarReturnButton.removeAttribute('onmousedown');
       topBarHandle.classList.remove('top_bar--poi-from-list');
     }
   }
