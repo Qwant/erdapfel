@@ -69,7 +69,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     const fetchData = debounce(
       async () => {
         const { category, query } = poiFilters;
-        const currentBounds = getVisibleBbox(window.map.mb, window.no_ui);
+        const currentBounds = getVisibleBbox(window.map.mb);
 
         const extendBbox = initialLoading;
         const { places, source, bbox: contentBbox, bbox_extended } = await IdunnPoi.poiCategoryLoad(

@@ -85,10 +85,7 @@ export default class SceneCategory {
     this.layers.push(pinLayerId);
 
     this.layers.forEach(layerName => {
-      // iframe: disable clicks on markers
-      if (!window.no_ui) {
-        this.map.on('click', layerName, this.handleLayerMarkerClick);
-      }
+      this.map.on('click', layerName, this.handleLayerMarkerClick);
       if (!isMobileDevice()) {
         this.map.on('mousemove', layerName, this.handleLayerMarkerMouseMove);
         this.map.on('mouseleave', layerName, this.handleLayerMarkerMouseLeave);

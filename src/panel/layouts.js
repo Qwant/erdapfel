@@ -10,11 +10,7 @@ const DESKTOP_SIDE_PANEL = {
   bottom: 45,
 };
 
-function computeMapPaddings({ isMobile, isDirectionsActive, isIframe }) {
-  // iframe: no paddings
-  if (isIframe) {
-    return { bottom: 0, top: 0, left: 0, right: 0 };
-  }
+function computeMapPaddings({ isMobile, isDirectionsActive }) {
   if (!isMobile) {
     return DESKTOP_SIDE_PANEL;
   }
@@ -32,25 +28,21 @@ export const getCurrentMapPaddings = () =>
   computeMapPaddings({
     isMobile: isMobileDevice(),
     isDirectionsActive: !!document.querySelector('.directions-open'),
-    isIframe: window.no_ui,
   });
 
-export function getVisibleBbox(mb, isIframe) {
+export function getVisibleBbox(mb) {
   const bbox = mb.getBounds();
   let ne = bbox.getNorthEast();
   let sw = bbox.getSouthWest();
   const ne_canvas = mb.project(ne);
   const sw_canvas = mb.project(sw);
 
-  // iframe: no offset
-  if (!isIframe) {
-    if (isMobileDevice()) {
-      // On mobile, compute a bbox that excludes the header's height
-      ne_canvas.y += 65;
-    } else {
-      // On desktop, compute a bbox that excludes the left panel's width
-      sw_canvas.x += DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING / 2;
-    }
+  if (isMobileDevice()) {
+    // On mobile, compute a bbox that excludes the header's height
+    ne_canvas.y += 65;
+  } else {
+    // On desktop, compute a bbox that excludes the left panel's width
+    sw_canvas.x += DESKTOP_PANEL_WIDTH + ADDITIONAL_PADDING / 2;
   }
 
   ne = mb.unproject(ne_canvas);

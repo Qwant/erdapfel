@@ -54,7 +54,7 @@ Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
     };
   }
   const lastLocation = getLastLocation();
-  if (lastLocation && !window.no_ui) {
+  if (lastLocation) {
     return {
       zoom: lastLocation.zoom,
       center: [lastLocation.lng, lastLocation.lat],
@@ -93,7 +93,6 @@ Scene.prototype.initMapBox = async function ({ locationHash, bbox }) {
     style: getStyle(),
     hash: false,
     maxZoom: 20,
-    interactive: window.no_ui ? false : true,
     locale,
     ...(await this.getMapInitOptions({ locationHash, bbox })),
   });
@@ -163,34 +162,31 @@ Scene.prototype.initMapBox = async function ({ locationHash, bbox }) {
     // which are thrown *after* two separate click events are thrown
     this.clickDelayHandler = null;
 
-    // iframe: disable clicks on map
-    if (!window.no_ui) {
-      this.mb.on('click', e => {
-        if (e.originalEvent.cancelBubble) {
+    this.mb.on('click', e => {
+      if (e.originalEvent.cancelBubble) {
+        return;
+      }
+      // cancel the previous click handler if it's still pending
+      clearTimeout(this.clickDelayHandler);
+      // if this is a real mouse double-click, we can simply return here
+      if (e.originalEvent.detail >= 2) {
+        return;
+      }
+      const pois = this.mb.queryRenderedFeatures(e.point, { layers: interactiveLayers });
+      // when clicking on a POI, just trigger the action without delay,
+      // as a subsequent double click isn't a problem
+      if (pois[0]) {
+        this.clickOnMap(e.lngLat, pois[0]);
+        return;
+      }
+      this.clickDelayHandler = setTimeout(() => {
+        // for touch UX we have to make sure a double tap zoom hasn't been made in the meantime
+        if (Date.now() - this.lastDoubleTapTimeStamp < this.DOUBLE_TAP_DELAY_MS) {
           return;
         }
-        // cancel the previous click handler if it's still pending
-        clearTimeout(this.clickDelayHandler);
-        // if this is a real mouse double-click, we can simply return here
-        if (e.originalEvent.detail >= 2) {
-          return;
-        }
-        const pois = this.mb.queryRenderedFeatures(e.point, { layers: interactiveLayers });
-        // when clicking on a POI, just trigger the action without delay,
-        // as a subsequent double click isn't a problem
-        if (pois[0]) {
-          this.clickOnMap(e.lngLat, pois[0]);
-          return;
-        }
-        this.clickDelayHandler = setTimeout(() => {
-          // for touch UX we have to make sure a double tap zoom hasn't been made in the meantime
-          if (Date.now() - this.lastDoubleTapTimeStamp < this.DOUBLE_TAP_DELAY_MS) {
-            return;
-          }
-          this.clickOnMap(e.lngLat, null);
-        }, this.DOUBLE_TAP_DELAY_MS);
-      });
-    }
+        this.clickOnMap(e.lngLat, null);
+      }, this.DOUBLE_TAP_DELAY_MS);
+    });
 
     // Long touch polyfill (for mobile devices and touch screens)
     // Custom implementation because the contextmenu event isn't supported by MapBox.
@@ -247,9 +243,7 @@ Scene.prototype.initMapBox = async function ({ locationHash, bbox }) {
     this.mb.on('moveend', () => {
       const { lng, lat } = this.mb.getCenter();
       const zoom = this.mb.getZoom();
-      if (!window.no_ui) {
-        setLastLocation({ lng, lat, zoom });
-      }
+      setLastLocation({ lng, lat, zoom });
       window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
     });
@@ -476,9 +470,6 @@ Scene.prototype.translateUIControl = function (selector, bottom) {
 };
 
 Scene.prototype.moveMobileBottomUI = function (bottom = 0) {
-  if (window.no_ui) {
-    return;
-  }
   if (!isMobileDevice() && bottom > 0) {
     return;
   }
