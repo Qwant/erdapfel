@@ -34,7 +34,8 @@ export default class PanelManager extends React.Component {
       ActivePanel: ServicePanel,
       options: {},
       panelSize: 'default',
-      isPanelVisible: true,
+      isSuggestOpen: false,
+      searchQuery: '',
     };
   }
 
@@ -62,9 +63,13 @@ export default class PanelManager extends React.Component {
   }
 
   componentDidUpdate(_prevProps, prevState) {
-    const { ActivePanel, options } = this.state;
+    const { ActivePanel, options, isSuggestOpen } = this.state;
 
-    if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
+    if (
+      prevState.ActivePanel !== ActivePanel ||
+      prevState.options !== options ||
+      prevState.isSuggestOpen !== isSuggestOpen
+    ) {
       // Not in a "list of PoI" context (options.poiFilters is null)
       if (isNullOrEmpty(options?.poiFilters)) {
         // Markers are not persistent
@@ -101,26 +106,21 @@ export default class PanelManager extends React.Component {
   }
 
   updateTopBarReturnButton({ poiFilters = {}, isFromFavorite, poi = {} } = {}) {
-    const topBarReturnButton = document.querySelector('.search_form__return-to-list');
-    const backAction =
-      poiFilters.category || poiFilters.query
-        ? this.backToList
-        : isFromFavorite
-        ? this.backToFavorite
-        : () => {};
-    topBarReturnButton.onclick = e => {
-      backAction(e, poiFilters);
-    };
-
     const topBarHandle = document.querySelector('.top_bar');
-
-    // Show return arrow (on mobile) if user comes from PoI / favorites list
+    const topBarReturnButton = document.querySelector('.search_form__return');
     if (poi.name && (poiFilters.category || poiFilters.query || isFromFavorite)) {
+      const backAction =
+        poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
+      // use the mousedown event so it's triggered before the blur event on the suggest
+      topBarReturnButton.onmousedown = e => {
+        if (this.state.isSuggestOpen) {
+          return;
+        }
+        backAction(e, poiFilters);
+      };
       topBarHandle.classList.add('top_bar--poi-from-list');
-    }
-    // Hide return button when not on a POI anymore
-    else {
-      const topBarHandle = document.querySelector('.top_bar');
+    } else {
+      topBarReturnButton.removeAttribute('onmousedown');
       topBarHandle.classList.remove('top_bar--poi-from-list');
     }
   }
@@ -271,21 +271,17 @@ export default class PanelManager extends React.Component {
     this.setState({ panelSize });
   };
 
-  onSuggestChange = query => {
-    this.setState(prevState => {
-      const { ActivePanel, isPanelVisible } = prevState;
-      const shouldPanelBeVisible = ActivePanel === ServicePanel && query.length === 0;
-      if (isPanelVisible !== shouldPanelBeVisible) {
-        return {
-          isPanelVisible: shouldPanelBeVisible,
-        };
-      }
-    });
+  setSuggestOpen = isOpen => {
+    if (this.state.isSuggestOpen !== isOpen) {
+      this.setState({ isSuggestOpen: isOpen });
+    }
   };
 
   render() {
-    const { ActivePanel, options, panelSize, isPanelVisible } = this.state;
+    const { ActivePanel, options, panelSize, isSuggestOpen, searchQuery } = this.state;
     const { searchBarInputNode, searchBarOutputNode } = this.props;
+
+    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && searchQuery === '');
 
     return (
       <div>
@@ -293,17 +289,9 @@ export default class PanelManager extends React.Component {
           inputNode={searchBarInputNode}
           outputNode={searchBarOutputNode}
           withCategories
-          onChange={this.onSuggestChange}
-          onOpen={() => {
-            if (isPanelVisible && ActivePanel !== ServicePanel) {
-              this.setState({ isPanelVisible: false });
-            }
-          }}
-          onClose={() => {
-            if (!isPanelVisible) {
-              this.setState({ isPanelVisible: true });
-            }
-          }}
+          onChange={searchQuery => this.setState({ searchQuery })}
+          onOpen={() => this.setSuggestOpen(true)}
+          onClose={() => this.setSuggestOpen(false)}
         />
 
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
