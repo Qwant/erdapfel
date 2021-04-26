@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './poi/PoiPanel';
@@ -15,15 +14,14 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
-import Suggest from 'src/components/ui/Suggest';
+import TopBar from 'src/components/TopBar';
+import { selectItem, fetchSuggests } from 'src/libs/suggest';
 
 const directionConf = nconf.get().direction;
 
 export default class PanelManager extends React.Component {
   static propTypes = {
     router: PropTypes.object.isRequired,
-    searchBarInputNode: PropTypes.object.isRequired,
-    searchBarOutputNode: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -35,13 +33,14 @@ export default class PanelManager extends React.Component {
       isSuggestOpen: false,
       searchQuery: '',
     };
+
+    this.mainSearchInputRef = React.createRef();
   }
 
   componentDidMount() {
     const initialUrlPathName = window.location.pathname;
     const initialQueryParams = parseQueryString(window.location.search);
     this.initRouter();
-    this.initTopBar();
 
     Telemetry.add(Telemetry.APP_START, {
       language: window.getLang(),
@@ -71,50 +70,43 @@ export default class PanelManager extends React.Component {
 
       // Handle search bar's style and text content
       this.updateSearchBarContent(options);
-
-      // Handle top bar's return button
-      this.updateTopBarReturnButton(options);
     }
   }
+
+  clearSearch = () => {
+    Telemetry.add(Telemetry.SUGGEST_CLEAR);
+    window.app.navigateTo('/');
+  };
+
+  executeSearch = async (query, { fromQueryParams } = {}) => {
+    const results = await fetchSuggests(query, {
+      withCategories: true,
+      useFocus: !fromQueryParams, // Ignore map position for a query passed in URL
+    });
+
+    selectItem(results[0] || null, {
+      query,
+      replaceUrl: true,
+      fromQueryParams,
+    });
+  };
 
   updateSearchBarContent({ poiFilters = {}, poi = {}, query } = {}) {
-    const topBarHandle = document.querySelector('.top_bar');
+    let searchQuery = '';
     if (poi.name) {
-      SearchInput.setInputValue(poi.name);
-      topBarHandle.classList.add('top_bar--search_filled');
+      searchQuery = poi.name;
     } else if (poiFilters.category) {
       const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
-      SearchInput.setInputValue(categoryLabel);
-      topBarHandle.classList.add('top_bar--search_filled');
+      searchQuery = categoryLabel;
     } else if (poiFilters.query) {
-      SearchInput.setInputValue(poiFilters.query);
-      topBarHandle.classList.add('top_bar--search_filled');
+      searchQuery = poiFilters.query;
     } else if (query) {
-      SearchInput.setInputValue(query);
-      topBarHandle.classList.add('top_bar--search_filled');
+      searchQuery = query;
     } else {
-      SearchInput.setInputValue('');
-      topBarHandle.classList.remove('top_bar--search_filled');
+      searchQuery = '';
     }
-  }
-
-  updateTopBarReturnButton({ poiFilters = {}, isFromFavorite, poi = {} } = {}) {
-    const topBarHandle = document.querySelector('.top_bar');
-    const topBarReturnButton = document.querySelector('.search_form__return');
-    if (poi.name && (poiFilters.category || poiFilters.query || isFromFavorite)) {
-      const backAction =
-        poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
-      // use the mousedown event so it's triggered before the blur event on the suggest
-      topBarReturnButton.onmousedown = e => {
-        if (this.state.isSuggestOpen) {
-          return;
-        }
-        backAction(e, poiFilters);
-      };
-      topBarHandle.classList.add('top_bar--poi-from-list');
-    } else {
-      topBarReturnButton.removeAttribute('onmousedown');
-      topBarHandle.classList.remove('top_bar--poi-from-list');
+    if (searchQuery !== this.state.searchQuery) {
+      this.setState({ searchQuery });
     }
   }
 
@@ -170,7 +162,13 @@ export default class PanelManager extends React.Component {
       this.setState({
         ActivePanel: NoResultPanel,
         panelSize: 'default',
-        options: { ...options },
+        options: {
+          ...options,
+          resetInput: () => {
+            this.setState({ searchQuery: '' });
+            this.mainSearchInputRef.current.select();
+          },
+        },
       });
     });
 
@@ -221,36 +219,12 @@ export default class PanelManager extends React.Component {
         panelSize: 'default',
       });
       if (options?.focusSearch) {
-        SearchInput.select();
+        this.mainSearchInputRef.current.select();
       }
     });
 
     // Route the initial URL
     return router.routeUrl(getCurrentUrl(), window.history.state || {});
-  }
-
-  initTopBar() {
-    const searchInput = document.querySelector('#search');
-    const topBarHandle = document.querySelector('.top_bar');
-
-    searchInput.addEventListener('focus', () => {
-      topBarHandle.classList.add('top_bar--search_focus');
-    });
-
-    searchInput.addEventListener('blur', () => {
-      topBarHandle.classList.remove('top_bar--search_focus');
-    });
-
-    searchInput.addEventListener('input', () => {
-      const value = searchInput.value;
-      if (value.length > 0) {
-        topBarHandle.classList.add('top_bar--search_filled');
-      } else {
-        topBarHandle.classList.remove('top_bar--search_filled');
-      }
-
-      this.setState({ searchQuery: value });
-    });
   }
 
   setPanelSize = panelSize => {
@@ -263,21 +237,42 @@ export default class PanelManager extends React.Component {
     }
   };
 
+  setSearchQuery = searchQuery => {
+    this.setState({ searchQuery });
+  };
+
+  getTopBarReturnAction = () => {
+    const { poi, poiFilters = {}, isFromFavorite } = this.state.options;
+    if (poi?.name && (poiFilters?.category || poiFilters?.query || isFromFavorite)) {
+      const backAction =
+        poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
+      // use the mousedown event so it's triggered before the blur event on the suggest
+      return event => {
+        if (this.state.isSuggestOpen) {
+          return;
+        }
+        backAction(event, poiFilters);
+      };
+    }
+    return null;
+  };
+
   render() {
     const { ActivePanel, options, panelSize, isSuggestOpen, searchQuery } = this.state;
-    const { searchBarInputNode, searchBarOutputNode } = this.props;
 
     const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && searchQuery === '');
 
     return (
       <div>
-        <Suggest
-          inputNode={searchBarInputNode}
-          outputNode={searchBarOutputNode}
-          withCategories
-          onToggle={this.setSuggestOpen}
+        <TopBar
+          inputValue={searchQuery}
+          onClearInput={this.clearSearch}
+          onSubmitSearch={this.executeSearch}
+          ref={this.mainSearchInputRef}
+          onInputChange={this.setSearchQuery}
+          onSuggestToggle={this.setSuggestOpen}
+          backButtonAction={this.getTopBarReturnAction()}
         />
-
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
           {/*
             The panel container is made hidden using "display: none;" to avoid unnecessary

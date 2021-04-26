@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
 import BetaInfoBox from 'src/components/BetaInfoBox';
+import { useConfig } from 'src/hooks';
 
-const MenuComponent = ({ isMobile }) =>
-  isMobile ? (
-    ReactDOM.createPortal(<Menu />, document.querySelector('#react_menu__container'))
-  ) : (
-    <Menu />
-  );
-
-const RootComponent = ({ burgerMenuEnabled, router }) => {
+const RootComponent = ({ router }) => {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
+  const { enabled: isBurgerMenuEnabled } = useConfig('burgerMenu');
 
   useEffect(() => {
     const deviceChanged = ({ matches: isMobile }) => {
@@ -36,12 +30,8 @@ const RootComponent = ({ burgerMenuEnabled, router }) => {
 
   return (
     <DeviceContext.Provider value={{ isMobile }}>
-      <PanelManager
-        router={router}
-        searchBarInputNode={document.getElementById('search')}
-        searchBarOutputNode={document.querySelector('.search_form__result')}
-      />
-      {burgerMenuEnabled && <MenuComponent isMobile={isMobile} />}
+      <PanelManager router={router} />
+      {!isMobile && isBurgerMenuEnabled && <Menu />}
       <BetaInfoBox />
     </DeviceContext.Provider>
   );

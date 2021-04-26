@@ -264,7 +264,7 @@ input[type="search"] {
   // When the search field is focused (empty or not)
   .top_bar--search_focus,
   // or we are on a POI panel coming from a list (category or favs)
-  .top_bar--poi-from-list {
+  .top_bar--back_action {
     // Show the return arrow
     .search_form__return {
       display: block;
