@@ -45,12 +45,13 @@ module.exports = function (config) {
       return `${config.system.baseUrl}places/?${params.toString()}`;
     }
 
+    const encodedQuery = encodeURIComponent(query);
     const firstPoi = (response.data.features || [])[0];
     if (firstPoi) {
-      return `${config.system.baseUrl}place/${firstPoi.properties.geocoding.id}?q=${query}`;
+      return `${config.system.baseUrl}place/${firstPoi.properties.geocoding.id}?q=${encodedQuery}`;
     }
 
-    return `${config.system.baseUrl}noresult?q=${query}`;
+    return `${config.system.baseUrl}noresult?q=${encodedQuery}`;
   }
 
   return function (req, res, next) {
