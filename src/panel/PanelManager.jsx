@@ -19,8 +19,6 @@ import Suggest from 'src/components/ui/Suggest';
 
 const directionConf = nconf.get().direction;
 
-const directSearchRouteName = 'Direct search query';
-
 export default class PanelManager extends React.Component {
   static propTypes = {
     router: PropTypes.object.isRequired,
@@ -42,14 +40,13 @@ export default class PanelManager extends React.Component {
   componentDidMount() {
     const initialUrlPathName = window.location.pathname;
     const initialQueryParams = parseQueryString(window.location.search);
-    const initialRoute = this.initRouter();
+    this.initRouter();
     this.initTopBar();
 
     Telemetry.add(Telemetry.APP_START, {
       language: window.getLang(),
       is_mobile: isMobileDevice(),
       url_pathname: initialUrlPathName,
-      direct_search: initialRoute.name === directSearchRouteName && !!initialQueryParams['q'],
       url_client: initialQueryParams['client'] || null,
     });
 
@@ -220,7 +217,7 @@ export default class PanelManager extends React.Component {
       });
     }
 
-    router.addRoute(directSearchRouteName, '/([?].*)', queryString => {
+    router.addRoute('Direct search query', '/([?].*)', queryString => {
       const params = parseQueryString(queryString);
       if (params.q) {
         SearchInput.executeSearch(params.q, { fromQueryParams: params });
