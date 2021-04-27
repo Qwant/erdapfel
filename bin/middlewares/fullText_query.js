@@ -22,7 +22,8 @@ module.exports = function (config) {
       .filter(([_key, value]) => value !== null && value !== undefined)
       .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
 
-  async function getRedirectUrl(query, res) {
+  async function getRedirectUrl(req, res) {
+    const { q: query, client = 'direct-search' } = req.query;
     const response = await axios.get(geocoderUrl, {
       params: {
         lang: res.locals.language.code,
@@ -39,19 +40,26 @@ module.exports = function (config) {
           q,
           bbox: bbox && bbox.join(','),
           type: isCategoryValid(category) ? category : null,
+          client,
         })
       );
 
       return `${config.system.baseUrl}places/?${params.toString()}`;
     }
 
-    const encodedQuery = encodeURIComponent(query);
+    const params = new URLSearchParams({
+      q: query,
+      client,
+    });
+
     const firstPoi = (response.data.features || [])[0];
     if (firstPoi) {
-      return `${config.system.baseUrl}place/${firstPoi.properties.geocoding.id}?q=${encodedQuery}`;
+      return `${config.system.baseUrl}place/${
+        firstPoi.properties.geocoding.id
+      }?${params.toString()}`;
     }
 
-    return `${config.system.baseUrl}noresult?q=${encodedQuery}`;
+    return `${config.system.baseUrl}noresult?${params.toString()}`;
   }
 
   return function (req, res, next) {
@@ -61,7 +69,7 @@ module.exports = function (config) {
       return;
     }
 
-    getRedirectUrl(req.query.q, res)
+    getRedirectUrl(req, res)
       .then(redirectUrl => {
         res.redirect(307, redirectUrl);
       })
