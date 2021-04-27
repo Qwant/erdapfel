@@ -217,15 +217,6 @@ export default class PanelManager extends React.Component {
       });
     }
 
-    router.addRoute('Direct search query', '/([?].*)', queryString => {
-      const params = parseQueryString(queryString);
-      if (params.q) {
-        SearchInput.executeSearch(params.q, { fromQueryParams: params });
-      } else {
-        router.routeUrl('/');
-      }
-    });
-
     // Default matching route
     router.addRoute('Services', '/?', (_, options = {}) => {
       this.setState({
