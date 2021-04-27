@@ -26,13 +26,35 @@ const createMarker = (lngLat, className = '', options = {}) => {
 
 const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   const element = document.createElement('div');
-  element.innerHTML = `
-    <div class="routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}"></div>
+  let html = ``;
+  if (vehicle === 'publicTransport') {
+    let nbIcons = 0;
+    let summaryItem;
+    let vehicle;
+    html += `<div>`;
+    for (summaryItem of route.summary) {
+      if (summaryItem.mode !== 'WALK' && nbIcons < 3) {
+        vehicle = {
+          TRAIN: 'train',
+          SUBWAY: 'metro',
+          BUS_CITY: 'bus',
+          TRAM: 'tram"',
+        }[summaryItem.mode];
+        html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${vehicle}"></div>`;
+        nbIcons++;
+      }
+    }
+    html += `</div>`;
+  } else {
+    html += `<div class="routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}"></div>`;
+  }
+  html += `
     <div>
       <div class="routeLabel-duration">${formatDuration(route.duration)}</div>
       <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
     </div>
   `;
+  element.innerHTML = html;
   element.className = `routeLabel routeLabel--${anchor} routeLabel--${vehicle}`;
   element.dataset.id = route.id;
   element.onclick = () => {

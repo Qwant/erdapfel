@@ -35,3 +35,17 @@
     }
   }
 }
+
+.publicTransportLabelItem {
+
+  display: inline-block;
+  vertical-align: top;
+  width: 30px;
+
+  &:not(:last-child):after {
+    content: '›';
+    padding: 0 0 0 27px;
+    font-size: 24px;
+    color: $grey-grey;
+  }
+}
