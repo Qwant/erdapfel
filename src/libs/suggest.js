@@ -12,7 +12,7 @@ import { suggestResults } from 'src/adapters/suggest_sources';
 const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
 
-export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryParams } = {}) => {
+export const selectItem = (selectedItem, { query, replaceUrl = false } = {}) => {
   if (selectedItem instanceof Poi) {
     window.app.navigateTo(
       `/place/${toUrl(selectedItem)}`,
@@ -31,8 +31,6 @@ export const selectItem = (selectedItem, { query, replaceUrl = false, fromQueryP
       category: selectedItem.category ? selectedItem.category.name : null,
       has_full_text_query: !!selectedItem.fullTextQuery,
       has_place: !!selectedItem.place,
-      from_url_query: !!fromQueryParams?.q,
-      url_client: fromQueryParams?.client || null,
     });
     window.app.navigateTo(`/places/${selectedItem.toQueryString()}`, {}, { replace: replaceUrl });
   } else if (!selectedItem) {
