@@ -130,3 +130,13 @@
 .directions-stepByStep .routeLabel {
   display: none;
 }
+
+@media (max-width: 640px) {
+  .routeLabel {
+    display: block;
+
+    div {
+      text-align: center;
+    }
+  }
+}
