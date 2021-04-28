@@ -1,3 +1,5 @@
+import React from 'react';
+import classnames from 'classnames';
 import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
 import { normalizeToFeatureCollection } from 'src/libs/geojson';
@@ -17,6 +19,7 @@ import nconf from '@qwant/nconf-getter';
 import { fire, listen } from 'src/libs/customEvents';
 import { getLabelPositions } from 'src/libs/route_labeler';
 import { isMobileDevice } from 'src/libs/device';
+import renderStaticReact from 'src/libs/renderStaticReact';
 
 const VEHICLES = {
   TRAIN: 'train',
@@ -33,41 +36,59 @@ const createMarker = (lngLat, className = '', options = {}) => {
 
 const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   const element = document.createElement('div');
-  let html = ``;
+  let content;
   if (vehicle === 'publicTransport') {
-    html += `<div>`;
-    let nbIcons = 0;
     const summaryItems = route.summary.filter(item => item.mode !== 'WALK');
     if (summaryItems.length > 3) {
-      html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${
-        VEHICLES[summaryItems[0].mode]
-      }"></div>`;
-      html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--ellipsis"></div>`;
-      html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${
-        VEHICLES[summaryItems[summaryItems.length - 1].mode]
-      }"></div>`;
+      content = (
+        <div>
+          <div
+            className={classnames(
+              'publicTransportLabelItem',
+              'roadmapIcon',
+              'roadmapIcon--' + VEHICLES[summaryItems[0].mode]
+            )}
+          ></div>
+          <div className="publicTransportLabelItem roadmapIcon roadmapIcon--ellipsis"></div>
+          <div
+            className={classnames(
+              'publicTransportLabelItem',
+              'roadmapIcon',
+              'roadmapIcon--' + VEHICLES[summaryItems[summaryItems.length - 1].mode]
+            )}
+          ></div>
+        </div>
+      );
     } else {
-      let summaryItem;
-      let vehicle;
-      for (summaryItem of summaryItems) {
-        if (summaryItem.mode !== 'WALK' && nbIcons < 3) {
-          vehicle = VEHICLES[summaryItem.mode];
-          html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${vehicle}"></div>`;
-          nbIcons++;
-        }
-      }
+      content = (
+        <div>
+          {summaryItems.map(item => {
+            if (item.mode !== 'WALK') {
+              const stepVehicle = VEHICLES[item.mode];
+              return (
+                <div
+                  className={classnames(
+                    'publicTransportLabelItem',
+                    'roadmapIcon',
+                    'roadmapIcon--' + stepVehicle
+                  )}
+                ></div>
+              );
+            }
+          })}
+        </div>
+      );
     }
-    html += `</div>`;
   } else {
-    html += `<div class="routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}"></div>`;
+    content = <div className={classnames('routeLabel-vehicleIcon', getVehicleIcon(vehicle))}></div>;
   }
-  html += `
+  const durationAndDistance = (
     <div>
-      <div class="routeLabel-duration">${formatDuration(route.duration)}</div>
-      <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
+      <div className="routeLabel-duration">{formatDuration(route.duration)}</div>
+      <div className="routeLabel-distance">{formatDistance(route.distance)}</div>
     </div>
-  `;
-  element.innerHTML = html;
+  );
+  element.innerHTML = renderStaticReact(content) + renderStaticReact(durationAndDistance);
   element.className = `routeLabel routeLabel--${anchor} routeLabel--${vehicle}`;
   element.dataset.id = route.id;
   element.onclick = () => {
