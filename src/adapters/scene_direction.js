@@ -18,6 +18,13 @@ import { fire, listen } from 'src/libs/customEvents';
 import { getLabelPositions } from 'src/libs/route_labeler';
 import { isMobileDevice } from 'src/libs/device';
 
+const VEHICLES = {
+  TRAIN: 'train',
+  SUBWAY: 'metro',
+  BUS_CITY: 'bus',
+  TRAM: 'tram"',
+};
+
 const createMarker = (lngLat, className = '', options = {}) => {
   const element = document.createElement('div');
   element.className = className;
@@ -28,20 +35,26 @@ const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   const element = document.createElement('div');
   let html = ``;
   if (vehicle === 'publicTransport') {
-    let nbIcons = 0;
-    let summaryItem;
-    let vehicle;
     html += `<div>`;
-    for (summaryItem of route.summary) {
-      if (summaryItem.mode !== 'WALK' && nbIcons < 3) {
-        vehicle = {
-          TRAIN: 'train',
-          SUBWAY: 'metro',
-          BUS_CITY: 'bus',
-          TRAM: 'tram"',
-        }[summaryItem.mode];
-        html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${vehicle}"></div>`;
-        nbIcons++;
+    let nbIcons = 0;
+    const summaryItems = route.summary.filter(item => item.mode !== 'WALK');
+    if (summaryItems.length > 3) {
+      html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${
+        VEHICLES[summaryItems[0].mode]
+      }"></div>`;
+      html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--ellipsis"></div>`;
+      html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${
+        VEHICLES[summaryItems[summaryItems.length - 1].mode]
+      }"></div>`;
+    } else {
+      let summaryItem;
+      let vehicle;
+      for (summaryItem of summaryItems) {
+        if (summaryItem.mode !== 'WALK' && nbIcons < 3) {
+          vehicle = VEHICLES[summaryItem.mode];
+          html += `<div class="publicTransportLabelItem roadmapIcon roadmapIcon--${vehicle}"></div>`;
+          nbIcons++;
+        }
       }
     }
     html += `</div>`;
