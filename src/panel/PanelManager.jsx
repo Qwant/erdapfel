@@ -265,6 +265,10 @@ export default class PanelManager extends React.Component {
     }
   };
 
+  setSearchQuery = searchQuery => {
+    this.setState({ searchQuery });
+  };
+
   render() {
     const { ActivePanel, options, panelSize, isSuggestOpen, searchQuery } = this.state;
     const { searchBarInputNode, searchBarOutputNode } = this.props;
@@ -277,7 +281,7 @@ export default class PanelManager extends React.Component {
           inputNode={searchBarInputNode}
           outputNode={searchBarOutputNode}
           withCategories
-          onChange={searchQuery => this.setState({ searchQuery })}
+          onChange={this.setSearchQuery}
           onOpen={() => this.setSuggestOpen(true)}
           onClose={() => this.setSuggestOpen(false)}
         />
