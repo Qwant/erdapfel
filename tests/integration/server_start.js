@@ -36,7 +36,7 @@ nock(/idunn_test\.test/)
   .query(params => params.q === 'gibberish')
   .reply(200, JSON.stringify(noResultAutocomplete));
 
-const intentionAutocomplete = require('../__data__/autocomplete.json');
+const intentionAutocomplete = require('../__data__/autocomplete_nlu.json');
 nock(/idunn_test\.test/)
   .persist(true)
   .get('/v1/autocomplete')

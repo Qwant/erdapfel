@@ -1,0 +1,113 @@
+{
+  "type": "FeatureCollection",
+  "geocoding": {"version": "0.1.0", "query": ""},
+  "intentions": [
+    {
+      "filter": {
+        "bbox": [7.0, 43.5, 7.5, 44.0],
+        "category": "restaurant"
+      }
+    }
+  ],
+  "features": [{
+    "type": "Feature",
+    "geometry": {"coordinates": [30, 5], "type": "Point"},
+    "properties": {
+      "geocoding": {
+        "id": "osm:node:4872758213",
+        "type": "poi",
+        "label": "test result 1",
+        "name": "test result 1",
+        "postcode": null,
+        "city": null,
+        "citycode": null,
+        "administrative_regions": [{
+          "id": "admin:osm:relation:421866",
+          "insee": "",
+          "level": 4,
+          "label": "Київ, Україна",
+          "name": "Київ",
+          "zip_codes": [],
+          "weight": 0.02024299523736607,
+          "coord": {"lon": 30.5240501, "lat": 50.4501071},
+          "admin_type": "Unknown",
+          "zone_type": "state"
+        }, {
+          "id": "admin:osm:relation:1755013",
+          "insee": "",
+          "level": 7,
+          "label": "Печерський район, Київ, Україна",
+          "name": "Печерський район",
+          "zip_codes": [],
+          "weight": 0.0,
+          "coord": {"lon": 30.54803619877768, "lat": 50.4271602204523},
+          "admin_type": "Unknown",
+          "zone_type": "city_district"
+        }, {
+          "id": "admin:osm:relation:60199",
+          "insee": "",
+          "level": 2,
+          "label": "Україна",
+          "name": "Україна",
+          "zip_codes": [],
+          "weight": 0.0,
+          "coord": {"lon": 30.5240501, "lat": 50.4501071},
+          "admin_type": "Unknown",
+          "zone_type": "country"
+        }],
+        "poi_types": [{"id": "shop", "name": "shop"}],
+        "properties": [{"key": "name", "value": "Dsquared2"}, {
+          "key": "name_int",
+          "value": "Dsquared2"
+        }, {"key": "name:latin", "value": "Dsquared2"}, {"key": "shop", "value": "boutique"}, {
+          "key": "poi_subclass",
+          "value": "boutique"
+        }, {"key": "poi_class", "value": "shop"}],
+        "address": {
+          "id": "23567113",
+          "type": "street",
+          "label": "Басейна вулиця",
+          "name": "Басейна вулиця",
+          "street": "Басейна вулиця",
+          "postcode": null,
+          "city": null,
+          "citycode": null,
+          "administrative_regions": [{
+            "id": "admin:osm:relation:421866",
+            "insee": "",
+            "level": 4,
+            "label": "Київ, Україна",
+            "name": "Київ",
+            "zip_codes": [],
+            "weight": 0.001477283270562542,
+            "coord": {"lon": 30.5240501, "lat": 50.4501071},
+            "admin_type": "Unknown",
+            "zone_type": "state"
+          }, {
+            "id": "admin:osm:relation:1755013",
+            "insee": "",
+            "level": 7,
+            "label": "Печерський район, Київ, Україна",
+            "name": "Печерський район",
+            "zip_codes": [],
+            "weight": 0.00012098323285593304,
+            "coord": {"lon": 30.54803619877768, "lat": 50.4271602204523},
+            "admin_type": "Unknown",
+            "zone_type": "city_district"
+          }, {
+            "id": "admin:osm:relation:60199",
+            "insee": "",
+            "level": 2,
+            "label": "Україна",
+            "name": "Україна",
+            "zip_codes": [],
+            "weight": 0.05005734322235657,
+            "coord": {"lon": 30.5240501, "lat": 50.4501071},
+            "admin_type": "Unknown",
+            "zone_type": "country"
+          }]
+        }
+      }
+    }
+  }]
+}
