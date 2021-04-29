@@ -1,32 +1,18 @@
 import React from 'react';
-import classnames from 'classnames';
+import RouteLabel from 'src/panel/direction/RouteLabel';
 import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
 import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { prepareRouteColor, getRouteStyle, setActiveRouteStyle } from './route_styles';
-import {
-  getAllSteps,
-  getAllStops,
-  originDestinationCoords,
-  formatDuration,
-  formatDistance,
-  getVehicleIcon,
-} from 'src/libs/route_utils';
+import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 import { fire, listen } from 'src/libs/customEvents';
 import { getLabelPositions } from 'src/libs/route_labeler';
 import { isMobileDevice } from 'src/libs/device';
 import renderStaticReact from 'src/libs/renderStaticReact';
-
-const VEHICLES = {
-  TRAIN: 'train',
-  SUBWAY: 'metro',
-  BUS_CITY: 'bus',
-  TRAM: 'tram"',
-};
 
 const createMarker = (lngLat, className = '', options = {}) => {
   const element = document.createElement('div');
@@ -36,61 +22,10 @@ const createMarker = (lngLat, className = '', options = {}) => {
 
 const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   const element = document.createElement('div');
-  let content;
-  if (vehicle === 'publicTransport') {
-    const summaryItems = route.summary.filter(item => item.mode !== 'WALK');
-    if (summaryItems.length > 3) {
-      content = (
-        <div>
-          <div
-            className={classnames(
-              'publicTransportLabelItem',
-              'roadmapIcon',
-              'roadmapIcon--' + VEHICLES[summaryItems[0].mode]
-            )}
-          ></div>
-          <div className="publicTransportLabelItem roadmapIcon roadmapIcon--ellipsis"></div>
-          <div
-            className={classnames(
-              'publicTransportLabelItem',
-              'roadmapIcon',
-              'roadmapIcon--' + VEHICLES[summaryItems[summaryItems.length - 1].mode]
-            )}
-          ></div>
-        </div>
-      );
-    } else {
-      content = (
-        <div>
-          {summaryItems.map(item => {
-            if (item.mode !== 'WALK') {
-              const stepVehicle = VEHICLES[item.mode];
-              return (
-                <div
-                  className={classnames(
-                    'publicTransportLabelItem',
-                    'roadmapIcon',
-                    'roadmapIcon--' + stepVehicle
-                  )}
-                ></div>
-              );
-            }
-          })}
-        </div>
-      );
-    }
-  } else {
-    content = <div className={classnames('routeLabel-vehicleIcon', getVehicleIcon(vehicle))}></div>;
-  }
-  const durationAndDistance = (
-    <div>
-      <div className="routeLabel-duration">{formatDuration(route.duration)}</div>
-      <div className="routeLabel-distance">{formatDistance(route.distance)}</div>
-    </div>
+  element.innerHTML = renderStaticReact(
+    <RouteLabel route={route} vehicle={vehicle} anchor={anchor} />
   );
-  element.innerHTML = renderStaticReact(content) + renderStaticReact(durationAndDistance);
-  element.className = `routeLabel routeLabel--${anchor} routeLabel--${vehicle}`;
-  element.dataset.id = route.id;
+  element.className = 'routeLabel-marker';
   element.onclick = () => {
     fire('select_road_map', route.id);
   };

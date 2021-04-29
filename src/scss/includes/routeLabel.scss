@@ -1,12 +1,16 @@
+.routeLabel-marker {
+  z-index: 1;
+}
+
 .routeLabel {
   background-color: $grey-lighter;
   color: $grey-semi-darkness;
   border-radius: 6px;
   padding: 4px 8px;
-  z-index: 1;
   cursor: pointer;
   box-shadow: $shadow;
   display: flex;
+  align-items: center;
 
   &-vehicleIcon {
     display: none;
@@ -114,16 +118,6 @@
     &.active::after {
       border-left-color: white;
     }
-  }
-}
-
-.routeLabel--publicTransport {
-  .routeLabel-duration {
-    padding-top: 2px;
-  }
-
-  .routeLabel-distance {
-    display: none;
   }
 }
 
