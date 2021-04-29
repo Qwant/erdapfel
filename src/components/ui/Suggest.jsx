@@ -61,6 +61,9 @@ const Suggest = ({
       close();
     };
 
+    // @WARNING: don't use anonymous functions as onClear/onChange props,
+    // otherwise this side-effect will be re-run at each render,
+    // recreating this each time so queries won't be properly debounced
     const fetchItems = debounce(value => {
       if (currentQuery) {
         currentQuery.abort();
