@@ -1,4 +1,4 @@
-import { clearStore, initBrowser, getInputValue, getMapView, exists } from '../tools';
+import { clearStore, initBrowser, getMapView, exists } from '../tools';
 import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
@@ -231,25 +231,6 @@ test('check template', async () => {
   /* admin */
   expect(lines[3][0]).toEqualCaseInsensitive('Le Cannet (06110)');
   expect(lines[3][1]).toEqualCaseInsensitive("Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France");
-});
-
-test('Search Query', async () => {
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
-  await page.goto('about:blank');
-
-  const searchQuery = 'test';
-  await page.goto(`${APP_URL}/?q=${searchQuery}`);
-  const searchValue = await getInputValue(page, '#search');
-
-  // search input is filled with PoI name (not the query)
-  expect(searchValue).toEqual('test result 1');
-
-  // app navigates to first result from autocomplete
-  expect(page.url()).toEqual(`${APP_URL}/place/osm:node:4872758213@test_result_1`);
-
-  // "go back" navigates to previous page
-  await page.goBack({ waitUntil: 'networkidle0' }); // wait for potential requests to API
-  expect(page.url()).toEqual('about:blank');
 });
 
 test('Retrieve restaurant category when we search "restau"', async () => {

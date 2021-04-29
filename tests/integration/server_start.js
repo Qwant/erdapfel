@@ -29,6 +29,27 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404);
 
+const noResultAutocomplete = require('../__data__/autocomplete_empty.json');
+nock(/idunn_test\.test/)
+  .persist(true)
+  .get('/v1/autocomplete')
+  .query(params => params.q === 'gibberish')
+  .reply(200, JSON.stringify(noResultAutocomplete));
+
+const intentionAutocomplete = require('../__data__/autocomplete_nlu.json');
+nock(/idunn_test\.test/)
+  .persist(true)
+  .get('/v1/autocomplete')
+  .query(params => params.q === 'restonice')
+  .reply(200, JSON.stringify(intentionAutocomplete));
+
+const noIntentionAutocomplete = require('../__data__/autocomplete_type.json');
+nock(/idunn_test\.test/)
+  .persist(true)
+  .get('/v1/autocomplete')
+  .query(params => params.q === 'single')
+  .reply(200, JSON.stringify(noIntentionAutocomplete));
+
 global.appServer = new App(config);
 
 module.exports = async function () {

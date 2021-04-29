@@ -89,17 +89,16 @@ export default class SearchInput {
     };
   }
 
-  static async executeSearch(query, { fromQueryParams } = {}) {
+  static async executeSearch(query) {
     window.__searchInput.searchInputHandle.value = query;
     const results = await fetchSuggests(query, {
       withCategories: true,
-      useFocus: !fromQueryParams, // Ignore map position for a query passed in URL
+      useFocus: true,
     });
 
     selectItem(results[0] || null, {
       query,
       replaceUrl: true,
-      fromQueryParams,
     });
     window.__searchInput.searchInputHandle.blur();
   }
