@@ -75,9 +75,157 @@
 # Only categories with 'icon' are visible as action buttons.
 # Below are the categories that are only accessible
 # via queries (with detected intention) or URL
-- label: _('recycling')
-  name: recycling
-- label: _('station')
-  name: station
+- label: _('french food')
+  name: food_french
+- label: _('pizzeria')
+  name: food_pizza
+- label: _('burger')
+  name: food_burger
+- label: _('italian food')
+  name: food_italian
+- label: _('kebab')
+  name: food_kebab
+- label: _('sandwich')
+  name: food_sandwich
+- label: _('asian food')
+  name: food_asian
+- label: _('japanese food')
+  name: food_japanese
+- label: _('chinese food')
+  name: food_chinese
+- label: _('crepe')
+  name: food_crepe
+- label: _('indian food')
+  name: food_indian
+- label: _('thai food')
+  name: food_thai
+- label: _('vietnamese food')
+  name: food_vietnamese
+- label: _('lebanese food')
+  name: food_lebanese
 - label: _('parking lot')
   name: parking
+- label: _('pitch')
+  name: pitch
+- label: _('place of worship')
+  name: place_of_worship
+- label: _('recycling')
+  name: recycling
+- label: _('bicycle parking')
+  name: bicycle_parking
+- label: _('school')
+  name: school
+- label: _('park')
+  name: park
+- label: _('bakery')
+  name: shop_bakery
+- label: _('clothes shop')
+  name: shop_clothes
+- label: _('toilets')
+  name: toilets
+- label: _('sports centre')
+  name: sports_centre
+- label: _('hairdresser')
+  name: shop_hairdresser
+- label: _('supermarket')
+  name: shop_supermarket
+- label: _('fast food')
+  name: fast_food
+- label: _('historic')
+  name: historic
+- label: _('post office')
+  name: post_office
+- label: _('fuel station')
+  name: fuel
+- label: _('community centre')
+  name: community_centre
+- label: _('convenience store')
+  name: shop_convenience
+- label: _('car shop')
+  name: shop_car
+- label: _('kindergarten or preschool')
+  name: kindergarten
+- label: _('camp site')
+  name: camp_site
+- label: _('station')
+  name: station
+- label: _('butcher')
+  name: shop_butcher
+- label: _('attraction')
+  name: attraction
+- label: _('hospital')
+  name: health_hospital
+- label: _('doctors')
+  name: health_doctors
+- label: _('dentist')
+  name: health_dentist
+- label: _('physiotherapist')
+  name: health_physiotherapist
+- label: _('pharmacy')
+  name: health_pharmacy
+- label: _('psychotherapist')
+  name: health_psychotherapist
+- label: _('health')
+  name: health_other
+- label: _('library')
+  name: library
+- label: _('police')
+  name: police
+- label: _('optician')
+  name: shop_optician
+- label: _('grave yard')
+  name: grave_yard
+- label: _('beauty salon')
+  name: shop_beauty
+- label: _('florist')
+  name: shop_florist
+- label: _('fire station')
+  name: fire_station
+- label: _('shoes shop')
+  name: shop_shoes
+- label: _('doityourself store')
+  name: shop_doityourself
+- label: _('bicycle rental')
+  name: bicycle_rental
+- label: _('jewelry shop')
+  name: shop_jewelry
+- label: _('newsagent')
+  name: shop_newsagent
+- label: _('swimming')
+  name: swimming
+- label: _('furniture shop')
+  name: shop_furniture
+- label: _('books shop')
+  name: shop_books
+- label: _('laundry')
+  name: shop_laundry
+- label: _('sports shop')
+  name: shop_sports
+- label: _('theatre')
+  name: theatre
+- label: _('veterinary')
+  name: veterinary
+- label: _('greengrocer')
+  name: shop_greengrocer
+- label: _('garden centre')
+  name: shop_garden_centre
+- label: _('arts centre')
+  name: arts_centre
+- label: _('electronics shop')
+  name: shop_electronics
+- label: _('cinema')
+  name: cinema
+- label: _('university')
+  name: university
+- label: _('travel agency')
+  name: shop_travel_agency
+- label: _('sport')
+  name: sport_other
+- label: _('administrative')
+  name: administrative
+- label: _('post box')
+  name: post_box
+- label: _('playground')
+  name: playground
+- label: _('marketplace')
+  name: marketplace
