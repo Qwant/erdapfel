@@ -8,3 +8,7 @@ function getIntlLocales() {
 export function getTimeFormatter(format = {}) {
   return Intl.DateTimeFormat(getIntlLocales(), format);
 }
+
+export function stripTimeZone(utcString) {
+  return utcString.substring(0, 19);
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { getTimeFormatter } from 'src/libs/time';
+import { stripTimeZone, getTimeFormatter } from 'src/libs/time';
 
 const RouteStartEndTimes = ({ start, end, className }) => {
   if (!start || !end) {
@@ -12,7 +12,9 @@ const RouteStartEndTimes = ({ start, end, className }) => {
 
   return (
     <div className={cx('u-bold', className)}>
-      {timeFormatter.format(new Date(start))} - {timeFormatter.format(new Date(end))}
+      {timeFormatter.format(new Date(stripTimeZone(start)))}
+      {' - '}
+      {timeFormatter.format(new Date(stripTimeZone(end)))}
     </div>
   );
 };
