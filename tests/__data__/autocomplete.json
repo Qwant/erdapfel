@@ -1,6 +1,14 @@
 {
   "type": "FeatureCollection",
   "geocoding": {"version": "0.1.0", "query": ""},
+  "intentions": [
+    {
+      "filter": {
+        "bbox": [7.0, 43.5, 7.5, 44.0],
+        "category": "restaurant"
+      }
+    }
+  ],
   "features": [{
     "type": "Feature",
     "geometry": {"coordinates": [30, 5], "type": "Point"},

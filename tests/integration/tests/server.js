@@ -123,3 +123,48 @@ describe('get style.json', () => {
     server.get('/style.json?layers=invalid').expect(400, done);
   });
 });
+
+describe('Full text queries (?q= param)', () => {
+  function getSearchParams(url = '') {
+    return new URLSearchParams((url.split('?')[1] || '').split('#')[0]);
+  }
+
+  // Server-side calls to Idunn autocomplete are mocked in ../server_start.js
+
+  test('can redirect to the no result state', done => {
+    server
+      .get('/?q=gibberish')
+      .expect(307)
+      .expect('Location', /\/noresult/, done);
+  });
+
+  test('Intention: redirect to a multiple result with bbox and type', done => {
+    server
+      .get('/?q=restonice')
+      .expect(307)
+      .expect('Location', /\/places\//)
+      .expect(res => {
+        const redirectUrl = res.get('Location');
+        const params = getSearchParams(redirectUrl);
+        if (!params.has('type') || params.get('type') !== 'restaurant') {
+          throw new Error(`Bad "type" param ${redirectUrl}`);
+        }
+        if (!params.has('bbox') || params.get('bbox') !== [7.0, 43.5, 7.5, 44.0].join(',')) {
+          throw new Error(`Bad "bbox" param ${redirectUrl}`);
+        }
+      })
+      .end(done);
+  });
+
+  test('No intention: redirect to the first matching POI', done => {
+    server
+      .get('/?q=single')
+      .expect(307)
+      .expect(res => {
+        const redirectUrl = res.get('Location');
+        const [_, poiID] = /\/place\/([^?]*)/.exec(redirectUrl) || [];
+        if (poiID !== '110401125') throw new Error(`Bad POI redirection ${redirectUrl}`);
+      })
+      .end(done);
+  });
+});
