@@ -1,3 +1,5 @@
+import { getTimeFormatter } from 'src/libs/time';
+
 function OsmSchedule(scheduleResponse) {
   if (!scheduleResponse) {
     return null;
@@ -10,17 +12,6 @@ function OsmSchedule(scheduleResponse) {
     scheduleResponse.next_transition_datetime
   );
   this.status = scheduleResponse.status;
-}
-
-function getIntlLocales() {
-  const lang = window.getLang();
-  const locales = [lang.locale].concat(lang.fallback || []);
-  // Intl expects '-' in locales, such as "en-GB"
-  return locales.map(l => l.replace(/_/g, '-'));
-}
-
-function getTimeFormatter() {
-  return Intl.DateTimeFormat(getIntlLocales(), { hour: '2-digit', minute: '2-digit' });
 }
 
 /**
@@ -50,7 +41,7 @@ function toLocaleOpeningHours(hours) {
     return hours.map(hour => {
       const beginningHour = hourToDate(hour.beginning);
       const endHour = hourToDate(hour.end);
-      const timeFormatter = getTimeFormatter();
+      const timeFormatter = getTimeFormatter({ hour: '2-digit', minute: '2-digit' });
       return {
         beginning: timeFormatter.format(beginningHour),
         end: timeFormatter.format(endHour),
@@ -61,7 +52,7 @@ function toLocaleOpeningHours(hours) {
 }
 
 function translateSchedule(days) {
-  const dayNameFormatter = Intl.DateTimeFormat(getIntlLocales(), { weekday: 'long' });
+  const dayNameFormatter = getTimeFormatter({ weekday: 'long' });
   const getDayName = dow => {
     /* 2018-01-01 is a Monday */
     return dayNameFormatter.format(new Date(2018, 0, dow));
