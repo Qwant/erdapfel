@@ -1,5 +1,5 @@
 import { clearStore, initBrowser, getMapView, exists } from '../tools';
-import AutocompleteHelper from '../helpers/autocomplete';
+import AutocompleteHelper, { SEARCH_INPUT_SELECTOR } from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
 const configBuilder = require('@qwant/nconf-builder');
 const config = configBuilder.get_without_check();
@@ -24,6 +24,24 @@ beforeEach(async () => {
   responseHandler = new ResponseHandler(page);
   await responseHandler.prepareResponse();
   responseHandler.addPreparedResponse(mockPoi, /places\/*/);
+});
+
+test('autofocus the field when typing anywhere', async () => {
+  await page.goto(APP_URL);
+  let isSearchFocused = await page.evaluate(
+    selector => document.activeElement.matches(selector),
+    SEARCH_INPUT_SELECTOR
+  );
+  expect(isSearchFocused).toEqual(false);
+
+  await page.keyboard.type('abcdefgh');
+  isSearchFocused = await page.evaluate(
+    selector => document.activeElement.matches(selector),
+    SEARCH_INPUT_SELECTOR
+  );
+  expect(isSearchFocused).toEqual(true);
+  const searchValue = await autocompleteHelper.getSearchInputValue();
+  expect(searchValue).toEqual('abcdefgh');
 });
 
 test('search and clear', async () => {

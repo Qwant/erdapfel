@@ -1,5 +1,5 @@
 const SUGGEST_SELECTOR = '.autocomplete_suggestions li';
-const SEARCH_INPUT_SELECTOR = '#search';
+export const SEARCH_INPUT_SELECTOR = '#search';
 import { getInputValue } from '../tools';
 
 export default class AutocompleteHelper {
