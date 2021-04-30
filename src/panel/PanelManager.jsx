@@ -60,13 +60,9 @@ export default class PanelManager extends React.Component {
   }
 
   componentDidUpdate(_prevProps, prevState) {
-    const { ActivePanel, options, isSuggestOpen } = this.state;
+    const { ActivePanel, options } = this.state;
 
-    if (
-      prevState.ActivePanel !== ActivePanel ||
-      prevState.options !== options ||
-      prevState.isSuggestOpen !== isSuggestOpen
-    ) {
+    if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
       // Not in a "list of PoI" context (options.poiFilters is null)
       if (isNullOrEmpty(options?.poiFilters)) {
         // Markers are not persistent
