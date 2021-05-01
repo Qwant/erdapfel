@@ -24,7 +24,6 @@ const Suggest = ({
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
   const { isMobile } = useDevice();
 
   const close = () => {
@@ -64,7 +63,6 @@ const Suggest = ({
         currentQuery.abort();
       }
 
-      setIsLoading(true);
       const query = fetchSuggests(value, {
         withCategories,
       });
@@ -76,7 +74,6 @@ const Suggest = ({
         .then(items => {
           setItems(items);
           currentQuery = null;
-          setIsLoading(false);
         })
         .catch(() => {
           /* Query aborted. Just ignore silently */
@@ -131,7 +128,6 @@ const Suggest = ({
     <SuggestsDropdown
       className={className}
       suggestItems={items}
-      isLoading={isLoading}
       onHighlight={item => {
         if (!item) {
           inputNode.value = lastQuery;
@@ -147,7 +143,6 @@ const Suggest = ({
           onSelect(item, { query: inputNode.value });
         }
       }}
-      onClear={onClear}
     />
   );
 
