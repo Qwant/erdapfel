@@ -96,7 +96,7 @@ const Suggest = ({
 
     const handleKeyDown = async event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
-        if (inputNode.value === '' && !isMobile) {
+        if (inputNode.value === '') {
           close();
         } else {
           inputNode.value = '';
