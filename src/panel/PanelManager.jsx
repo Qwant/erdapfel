@@ -278,8 +278,7 @@ export default class PanelManager extends React.Component {
           outputNode={searchBarOutputNode}
           withCategories
           onChange={this.setSearchQuery}
-          onOpen={() => this.setSuggestOpen(true)}
-          onClose={() => this.setSuggestOpen(false)}
+          onToggle={this.setSuggestOpen}
         />
 
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
