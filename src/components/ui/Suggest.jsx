@@ -102,10 +102,10 @@ const Suggest = ({
           inputNode.value = '';
           fetchItems('');
           setIsOpen(true);
-        }
 
-        if (onClear) {
-          onClear();
+          if (onClear) {
+            onClear();
+          }
         }
       }
     };
