@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
@@ -8,6 +8,8 @@ import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/s
 import { useDevice } from 'src/hooks';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
+
+let currentQuery = null;
 
 const Suggest = ({
   inputNode,
@@ -36,24 +38,8 @@ const Suggest = ({
     }
   }, [isOpen, onToggle]);
 
-  useEffect(() => {
-    let currentQuery = null;
-
-    const handleFocus = () => {
-      if (inputNode.value === '' || isMobile) {
-        setIsOpen(true);
-        fetchItems(inputNode.value);
-      }
-    };
-
-    const handleBlur = () => {
-      close();
-    };
-
-    // @WARNING: don't use anonymous functions as onClear/onChange props,
-    // otherwise this side-effect will be re-run at each render,
-    // recreating this each time so queries won't be properly debounced
-    const fetchItems = debounce(value => {
+  const fetchItems = useCallback(
+    debounce(value => {
       if (currentQuery) {
         currentQuery.abort();
       }
@@ -73,7 +59,21 @@ const Suggest = ({
         .catch(() => {
           /* Query aborted. Just ignore silently */
         });
-    }, SUGGEST_DEBOUNCE_WAIT);
+    }, SUGGEST_DEBOUNCE_WAIT),
+    [withCategories, withGeoloc]
+  );
+
+  useEffect(() => {
+    const handleFocus = () => {
+      if (inputNode.value === '' || isMobile) {
+        setIsOpen(true);
+        fetchItems(inputNode.value);
+      }
+    };
+
+    const handleBlur = () => {
+      close();
+    };
 
     const handleInput = e => {
       const { value } = e.target;
@@ -113,7 +113,7 @@ const Suggest = ({
       inputNode.removeEventListener('input', handleInput);
       inputNode.removeEventListener('keydown', handleKeyDown);
     };
-  }, [inputNode, onClear, withCategories, withGeoloc, isMobile, onChange]);
+  }, [inputNode, onClear, isMobile, onChange, fetchItems]);
 
   if (!isOpen) {
     return null;
