@@ -46,14 +46,9 @@ const Suggest = ({
     let currentQuery = null;
 
     const handleFocus = () => {
-      if (inputNode.value === '') {
+      if (inputNode.value === '' || isMobile) {
         setIsOpen(true);
-        fetchItems('');
-      } else {
-        if (isMobile) {
-          setIsOpen(true);
-          fetchItems(inputNode.value);
-        }
+        fetchItems(inputNode.value);
       }
     };
 
