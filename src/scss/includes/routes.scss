@@ -35,29 +35,3 @@
     }
   }
 }
-
-.publicTransportLabelItem {
-
-  display: inline-block;
-  vertical-align: top;
-  width: 30px;
-
-  &:not(:last-child):after {
-    content: '›';
-    padding: 0 0 0 27px;
-    font-size: 24px;
-    color: $grey-grey;
-  }
-
-  &.roadmapIcon--ellipsis {
-    &:before {
-      content: '...';
-      padding: 0 4px 0 8px;
-      font-size: 16px;
-      color: $grey-grey;
-    }
-    &:after {
-      padding: 0;
-    }
-  }
-}
