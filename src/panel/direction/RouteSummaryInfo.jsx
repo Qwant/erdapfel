@@ -6,6 +6,19 @@ import RouteStartEndTimes from './RouteStartEndTimes';
 import { Badge } from 'src/components/ui';
 import { formatDuration, formatDistance } from 'src/libs/route_utils';
 
+const RouteWalkingTime = ({ route }) => {
+  const walkingTime = route.legs
+    .filter(leg => leg.mode === 'WALK')
+    .reduce((sum, leg) => sum + leg.duration, 0);
+
+  return (
+    <span className="u-text--subtitle u-mr-s">
+      <i className="icon-foot u-mr-xxs" style={{ fontSize: 11 }} />
+      {formatDuration(walkingTime)}
+    </span>
+  );
+};
+
 const RouteSummaryInfo = ({ isFastest, route, vehicle }) => (
   <div>
     <div className="u-text--title u-mb-xxxs route-summary-info-duration">
@@ -21,6 +34,8 @@ const RouteSummaryInfo = ({ isFastest, route, vehicle }) => (
     {vehicle !== 'publicTransport' && (
       <Badge className="u-mr-xs">{formatDistance(route.distance)}</Badge>
     )}
+
+    {vehicle === 'publicTransport' && <RouteWalkingTime route={route} />}
 
     {isFastest && <span className="u-text--subtitle">{_('Fastest route')}</span>}
   </div>
