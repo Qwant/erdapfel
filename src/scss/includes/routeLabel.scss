@@ -138,15 +138,25 @@
     color: $grey-grey;
   }
 
-  &.roadmapIcon--ellipsis {
-    &:before {
-      content: '...';
-      padding: 0 4px 0 8px;
-      font-size: 16px;
-      color: $grey-grey;
+  &.roadmapIcon--inbetween {
+    line-height: 20px;
+    width: 36px;
+
+    div {
+      background: $grey-bright;
+      display: inline-block;
+      height: 18px;
+      line-height: 18px;
+      width: 20px;
+      text-align: center;
+      border-radius: 1px;
+      position: absolute;
+      margin-left: 8px;
+      margin-top: 3px;
     }
+
     &:after {
-      padding: 0;
+      padding-left: 32px;
     }
   }
 }

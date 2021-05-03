@@ -5,7 +5,7 @@ const VEHICLES = {
   TRAIN: 'train',
   SUBWAY: 'metro',
   BUS_CITY: 'bus',
-  TRAM: 'tram"',
+  TRAM: 'tram',
 };
 
 const PublicTransportIcon = ({ mode }) => (
@@ -28,7 +28,9 @@ const PublicTransportStepIcons = ({ route }) => {
   return (
     <div>
       <PublicTransportIcon mode={nonWalkLegs[0].mode} />
-      <div className="publicTransportLabelItem roadmapIcon roadmapIcon--ellipsis" />
+      <div className="publicTransportLabelItem roadmapIcon u-text--caption roadmapIcon--inbetween">
+        <div>+{nonWalkLegs.length - 2}</div>
+      </div>
       <PublicTransportIcon mode={nonWalkLegs[nonWalkLegs.length - 1].mode} />
     </div>
   );
