@@ -9,6 +9,6 @@ export function getTimeFormatter(format = {}) {
   return Intl.DateTimeFormat(getIntlLocales(), format);
 }
 
-export function stripTimeZone(utcString) {
-  return utcString.substring(0, 19);
+export function stripTimeZone(isoString) {
+  return isoString.substring(0, 19);
 }
