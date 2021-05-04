@@ -29,7 +29,9 @@ const SuggestsDropdown = ({ className = '', suggestItems, onSelect, onHighlight 
 
       if (key === 'ArrowUp') {
         e.preventDefault(); // prevent cursor returning at beggining
-        newHighlighted = suggestItems[suggestItems.indexOf(highlighted) - 1] || null;
+        newHighlighted = !highlighted
+          ? suggestItems[suggestItems.length - 1]
+          : suggestItems[suggestItems.indexOf(highlighted) - 1] || null;
       }
 
       setHighlighted(newHighlighted);
