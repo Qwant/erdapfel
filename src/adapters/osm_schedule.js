@@ -27,7 +27,7 @@ function nextTransitionTime(seconds, nextTransitionDate) {
        "2019-05-12T18:00:00+02:00" => "18:00:00"
     */
     const nextTransition = hourToDate(nextTransitionDate.slice(11, 19));
-    return getTimeFormatter().format(nextTransition);
+    return getTimeFormatter({ hour: '2-digit', minute: '2-digit' }).format(nextTransition);
   }
   return false;
 }
