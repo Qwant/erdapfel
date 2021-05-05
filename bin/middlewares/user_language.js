@@ -7,7 +7,14 @@ module.exports = function (languageConfig) {
   const supportedLanguages = languageConfig.supportedLanguages;
   return function (req, res, next) {
     const langHeaders = req.acceptsLanguages();
-    if (langHeaders) {
+
+    // If cookie "l" is set and corresponds to a supported language, use it
+    if (req.cookies && req.cookies.l) {
+      res.locals.language = supportedLanguages.find(lang => lang.code === req.cookies.l);
+    }
+
+    // Else, fallback to the first accepted language in the headers
+    else if (langHeaders) {
       langHeaders.some(acceptedLocale => {
         let language = supportedLanguages.find(lang => {
           const supportedLocale = lang.locale.replace(/_/g, '-');
@@ -25,9 +32,11 @@ module.exports = function (languageConfig) {
         }
       });
     }
-    /* no supported language -> set default language */
+
+    // Else, use default language
     if (!res.locals.language) {
       res.locals.language = languageConfig.defaultLanguage;
+      console.log(1, res.locals.language);
     }
     next();
   };
