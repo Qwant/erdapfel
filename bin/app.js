@@ -9,6 +9,7 @@ const fakePbf = require('./middlewares/fake_pbf/index');
 const compression = require('compression');
 const mapStyle = require('./middlewares/map_style');
 const getReqSerializer = require('./serializers/request');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const promRegistry = new promClient.Registry();
@@ -155,6 +156,8 @@ function App(config) {
       onerror: req.logger.error({ err }),
     })(err);
   });
+
+  app.use(cookieParser());
 }
 
 App.prototype.start = function (port) {

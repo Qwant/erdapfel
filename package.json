@@ -95,6 +95,7 @@
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "compression": "^1.7.3",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
