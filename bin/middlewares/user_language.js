@@ -36,7 +36,6 @@ module.exports = function (languageConfig) {
     // Else, use default language
     if (!res.locals.language) {
       res.locals.language = languageConfig.defaultLanguage;
-      console.log(1, res.locals.language);
     }
     next();
   };
