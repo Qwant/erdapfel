@@ -17,7 +17,6 @@ const Suggest = ({
   withCategories,
   withGeoloc,
   onSelect = selectItem,
-  onClear,
   onChange,
   className,
   onToggle,
@@ -88,17 +87,7 @@ const Suggest = ({
 
     const handleKeyDown = event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
-        if (inputNode.value === '') {
-          close();
-        } else {
-          inputNode.value = '';
-          fetchItems('');
-          setIsOpen(true);
-
-          if (onClear) {
-            onClear();
-          }
-        }
+        close();
       }
     };
 
@@ -113,7 +102,7 @@ const Suggest = ({
       inputNode.removeEventListener('input', handleInput);
       inputNode.removeEventListener('keydown', handleKeyDown);
     };
-  }, [inputNode, onClear, isMobile, onChange, fetchItems]);
+  }, [inputNode, isMobile, onChange, fetchItems]);
 
   if (!isOpen) {
     return null;
@@ -150,7 +139,6 @@ Suggest.propTypes = {
   withCategories: bool,
   withGeoloc: bool,
   onSelect: func,
-  onClear: func,
   onToggle: func,
   onChange: func,
   className: string,
