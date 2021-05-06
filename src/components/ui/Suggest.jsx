@@ -17,7 +17,6 @@ const Suggest = ({
   withCategories,
   withGeoloc,
   onSelect = selectItem,
-  onChange,
   className,
   onToggle,
 }) => {
@@ -79,10 +78,6 @@ const Suggest = ({
       fetchItems(value);
       setIsOpen(true);
       setLastQuery(value);
-
-      if (onChange) {
-        onChange(value);
-      }
     };
 
     const handleKeyDown = event => {
@@ -102,7 +97,7 @@ const Suggest = ({
       inputNode.removeEventListener('input', handleInput);
       inputNode.removeEventListener('keydown', handleKeyDown);
     };
-  }, [inputNode, isMobile, onChange, fetchItems]);
+  }, [inputNode, isMobile, fetchItems]);
 
   if (!isOpen) {
     return null;
@@ -140,7 +135,6 @@ Suggest.propTypes = {
   withGeoloc: bool,
   onSelect: func,
   onToggle: func,
-  onChange: func,
   className: string,
 };
 
