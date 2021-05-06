@@ -86,7 +86,7 @@ const Suggest = ({
       }
     };
 
-    const handleKeyDown = async event => {
+    const handleKeyDown = event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
         if (inputNode.value === '') {
           close();
