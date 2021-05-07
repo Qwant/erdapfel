@@ -36,6 +36,7 @@ const Suggest = ({
     }
   }, [isOpen, onToggle]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchItems = useCallback(
     debounce(value => {
       if (currentQuery) {
