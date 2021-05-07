@@ -15,7 +15,6 @@ import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar';
-import { selectItem, fetchSuggests } from 'src/libs/suggest';
 
 const directionConf = nconf.get().direction;
 
@@ -76,19 +75,6 @@ export default class PanelManager extends React.Component {
   clearSearch = () => {
     Telemetry.add(Telemetry.SUGGEST_CLEAR);
     window.app.navigateTo('/');
-  };
-
-  executeSearch = async (query, { fromQueryParams } = {}) => {
-    const results = await fetchSuggests(query, {
-      withCategories: true,
-      useFocus: !fromQueryParams, // Ignore map position for a query passed in URL
-    });
-
-    selectItem(results[0] || null, {
-      query,
-      replaceUrl: true,
-      fromQueryParams,
-    });
   };
 
   updateSearchBarContent({ poiFilters = {}, poi = {}, query } = {}) {
@@ -267,7 +253,6 @@ export default class PanelManager extends React.Component {
         <TopBar
           inputValue={searchQuery}
           onClearInput={this.clearSearch}
-          onSubmitSearch={this.executeSearch}
           ref={this.mainSearchInputRef}
           onInputChange={this.setSearchQuery}
           onSuggestToggle={this.setSuggestOpen}

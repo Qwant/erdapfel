@@ -6,14 +6,26 @@ import Suggest from 'src/components/ui/Suggest';
 import Menu from 'src/panel/Menu';
 import { useConfig, useDevice } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
+import { selectItem, fetchSuggests } from 'src/libs/suggest';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
+
+const executeSearch = async query => {
+  const results = await fetchSuggests(query, {
+    withCategories: true,
+    useFocus: true,
+  });
+
+  selectItem(results[0] || null, {
+    query,
+    replaceUrl: true,
+  });
+};
 
 const TopBar = ({
   inputValue,
   onClearInput,
   onInputChange,
-  onSubmitSearch,
   inputRef,
   onSuggestToggle,
   backButtonAction,
@@ -71,7 +83,7 @@ const TopBar = ({
   const onSubmit = e => {
     e.preventDefault();
     Telemetry.add(Telemetry.SUGGEST_SUBMIT);
-    onSubmitSearch(inputValue);
+    executeSearch(inputValue);
     inputRef.current.blur();
   };
 
