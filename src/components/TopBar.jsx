@@ -165,6 +165,7 @@ const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButt
           outputNode={suggestElement.current}
           withCategories
           onToggle={onSuggestToggle}
+          onSelect={selectItem}
         />
       )}
     </div>

@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
-import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/suggest';
+import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { useDevice } from 'src/hooks';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
@@ -16,7 +16,7 @@ const Suggest = ({
   outputNode,
   withCategories,
   withGeoloc,
-  onSelect = selectItem,
+  onSelect,
   className,
   onToggle,
 }) => {
@@ -134,7 +134,7 @@ Suggest.propTypes = {
   outputNode: object.isRequired,
   withCategories: bool,
   withGeoloc: bool,
-  onSelect: func,
+  onSelect: func.isRequired,
   onToggle: func,
   className: string,
 };
