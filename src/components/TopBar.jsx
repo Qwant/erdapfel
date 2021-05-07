@@ -22,14 +22,7 @@ const executeSearch = async query => {
   });
 };
 
-const TopBar = ({
-  inputValue,
-  onClearInput,
-  onInputChange,
-  inputRef,
-  onSuggestToggle,
-  backButtonAction,
-}) => {
+const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButtonAction }) => {
   const suggestElement = useRef(null);
   const [focused, setFocused] = useState(false);
   const { isMobile } = useDevice();
@@ -89,7 +82,8 @@ const TopBar = ({
 
   const onClear = e => {
     e.preventDefault(); // Prevent losing focus on input
-    onClearInput();
+    Telemetry.add(Telemetry.SUGGEST_CLEAR);
+    window.app.navigateTo('/');
   };
 
   return (

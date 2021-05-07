@@ -72,11 +72,6 @@ export default class PanelManager extends React.Component {
     }
   }
 
-  clearSearch = () => {
-    Telemetry.add(Telemetry.SUGGEST_CLEAR);
-    window.app.navigateTo('/');
-  };
-
   updateSearchBarContent({ poiFilters = {}, poi = {}, query } = {}) {
     let searchQuery = '';
     if (poi.name) {
@@ -252,7 +247,6 @@ export default class PanelManager extends React.Component {
       <div>
         <TopBar
           inputValue={searchQuery}
-          onClearInput={this.clearSearch}
           ref={this.mainSearchInputRef}
           onInputChange={this.setSearchQuery}
           onSuggestToggle={this.setSuggestOpen}
