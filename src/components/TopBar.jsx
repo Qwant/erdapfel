@@ -15,8 +15,7 @@ const TopBar = ({
   onInputChange,
   onSubmitSearch,
   inputRef,
-  onSuggestOpen,
-  onSuggestClose,
+  onSuggestToggle,
   backButtonAction,
 }) => {
   const suggestElement = useRef(null);
@@ -159,8 +158,7 @@ const TopBar = ({
           inputNode={inputRef.current}
           outputNode={suggestElement.current}
           withCategories
-          onOpen={onSuggestOpen}
-          onClose={onSuggestClose}
+          onToggle={onSuggestToggle}
         />
       )}
     </div>
