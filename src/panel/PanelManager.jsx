@@ -248,6 +248,8 @@ export default class PanelManager extends React.Component {
       } else {
         topBarHandle.classList.remove('top_bar--search_filled');
       }
+
+      this.setState({ searchQuery: value });
     });
   }
 
@@ -259,10 +261,6 @@ export default class PanelManager extends React.Component {
     if (this.state.isSuggestOpen !== isOpen) {
       this.setState({ isSuggestOpen: isOpen });
     }
-  };
-
-  setSearchQuery = searchQuery => {
-    this.setState({ searchQuery });
   };
 
   render() {
@@ -277,9 +275,7 @@ export default class PanelManager extends React.Component {
           inputNode={searchBarInputNode}
           outputNode={searchBarOutputNode}
           withCategories
-          onChange={this.setSearchQuery}
-          onOpen={() => this.setSuggestOpen(true)}
-          onClose={() => this.setSuggestOpen(false)}
+          onToggle={this.setSuggestOpen}
         />
 
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>

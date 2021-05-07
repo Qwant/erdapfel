@@ -150,7 +150,6 @@ class DirectionInput extends React.Component {
             outputNode={document.getElementById('direction-autocomplete_suggestions')}
             withGeoloc={withGeoloc}
             onSelect={this.selectItem}
-            onClear={this.removePoint}
           />
         )}
       </div>

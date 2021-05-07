@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
@@ -9,22 +9,20 @@ import { useDevice } from 'src/hooks';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
+let currentQuery = null;
+
 const Suggest = ({
   inputNode,
   outputNode,
   withCategories,
   withGeoloc,
   onSelect = selectItem,
-  onClear,
-  onChange,
   className,
-  onClose,
-  onOpen,
+  onToggle,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
   const { isMobile } = useDevice();
 
   const close = () => {
@@ -33,43 +31,18 @@ const Suggest = ({
   };
 
   useEffect(() => {
-    if (onClose && !isOpen) {
-      onClose();
+    if (onToggle) {
+      onToggle(isOpen);
     }
+  }, [isOpen, onToggle]);
 
-    if (onOpen && isOpen) {
-      onOpen();
-    }
-  }, [isOpen, onClose, onOpen]);
-
-  useEffect(() => {
-    let currentQuery = null;
-
-    const handleFocus = () => {
-      if (inputNode.value === '') {
-        setIsOpen(true);
-        fetchItems('');
-      } else {
-        if (isMobile) {
-          setIsOpen(true);
-          fetchItems(inputNode.value);
-        }
-      }
-    };
-
-    const handleBlur = () => {
-      close();
-    };
-
-    // @WARNING: don't use anonymous functions as onClear/onChange props,
-    // otherwise this side-effect will be re-run at each render,
-    // recreating this each time so queries won't be properly debounced
-    const fetchItems = debounce(value => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fetchItems = useCallback(
+    debounce(value => {
       if (currentQuery) {
         currentQuery.abort();
       }
 
-      setIsLoading(true);
       const query = fetchSuggests(value, {
         withCategories,
       });
@@ -81,37 +54,36 @@ const Suggest = ({
         .then(items => {
           setItems(items);
           currentQuery = null;
-          setIsLoading(false);
         })
         .catch(() => {
           /* Query aborted. Just ignore silently */
         });
-    }, SUGGEST_DEBOUNCE_WAIT);
+    }, SUGGEST_DEBOUNCE_WAIT),
+    [withCategories, withGeoloc]
+  );
+
+  useEffect(() => {
+    const handleFocus = () => {
+      if (inputNode.value === '' || isMobile) {
+        setIsOpen(true);
+        fetchItems(inputNode.value);
+      }
+    };
+
+    const handleBlur = () => {
+      close();
+    };
 
     const handleInput = e => {
       const { value } = e.target;
       fetchItems(value);
       setIsOpen(true);
       setLastQuery(value);
-
-      if (onChange) {
-        onChange(value);
-      }
     };
 
-    const handleKeyDown = async event => {
+    const handleKeyDown = event => {
       if (event.key === 'Esc' || event.key === 'Escape') {
-        if (inputNode.value === '' && !isMobile) {
-          close();
-        } else {
-          inputNode.value = '';
-          fetchItems('');
-          setIsOpen(true);
-        }
-
-        if (onClear) {
-          onClear();
-        }
+        close();
       }
     };
 
@@ -126,7 +98,7 @@ const Suggest = ({
       inputNode.removeEventListener('input', handleInput);
       inputNode.removeEventListener('keydown', handleKeyDown);
     };
-  }, [inputNode, onClear, withCategories, withGeoloc, isMobile, onChange]);
+  }, [inputNode, isMobile, fetchItems]);
 
   if (!isOpen) {
     return null;
@@ -136,7 +108,6 @@ const Suggest = ({
     <SuggestsDropdown
       className={className}
       suggestItems={items}
-      isLoading={isLoading}
       onHighlight={item => {
         if (!item) {
           inputNode.value = lastQuery;
@@ -152,7 +123,6 @@ const Suggest = ({
           onSelect(item, { query: inputNode.value });
         }
       }}
-      onClear={onClear}
     />
   );
 
@@ -165,10 +135,7 @@ Suggest.propTypes = {
   withCategories: bool,
   withGeoloc: bool,
   onSelect: func,
-  onClear: func,
-  onOpen: func,
-  onClose: func,
-  onChange: func,
+  onToggle: func,
   className: string,
 };
 

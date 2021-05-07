@@ -11,37 +11,31 @@ const SuggestsDropdown = ({ className = '', suggestItems, onSelect, onHighlight 
     const keyDownHandler = e => {
       const { key } = e;
 
-      if (key === 'ArrowDown') {
-        const h = highlighted === null ? -1 : highlighted;
-
-        if (h < suggestItems.length - 1) {
-          setHighlighted(h + 1);
-          onHighlight(suggestItems[h + 1]);
-        } else {
-          setHighlighted(null);
-          onHighlight(null);
+      if (key === 'Enter') {
+        if (highlighted !== null) {
+          e.preventDefault(); // prevent search input submit with its current content (highlighted POI name)
+          onSelect(highlighted);
         }
+      }
+
+      if (key !== 'ArrowDown' && key !== 'ArrowUp') {
+        return;
+      }
+
+      let newHighlighted;
+      if (key === 'ArrowDown') {
+        newHighlighted = suggestItems[suggestItems.indexOf(highlighted) + 1] || null;
       }
 
       if (key === 'ArrowUp') {
         e.preventDefault(); // prevent cursor returning at beggining
-        const h = highlighted === null ? suggestItems.length : highlighted;
-
-        if (h > 0) {
-          setHighlighted(h - 1);
-          onHighlight(suggestItems[h - 1]);
-        } else {
-          setHighlighted(null);
-          onHighlight(null);
-        }
+        newHighlighted = !highlighted
+          ? suggestItems[suggestItems.length - 1]
+          : suggestItems[suggestItems.indexOf(highlighted) - 1] || null;
       }
 
-      if (key === 'Enter') {
-        if (highlighted !== null) {
-          e.preventDefault(); // prevent search input submit with its current content (highlighted POI name)
-          onSelect(suggestItems[highlighted]);
-        }
-      }
+      setHighlighted(newHighlighted);
+      onHighlight(newHighlighted);
     };
 
     document.addEventListener('keydown', keyDownHandler);
@@ -53,18 +47,18 @@ const SuggestsDropdown = ({ className = '', suggestItems, onSelect, onHighlight 
 
   return (
     <ul className={classnames('autocomplete_suggestions', className)}>
-      {suggestItems.map((suggest, index) => (
+      {suggestItems.map((suggestItem, index) => (
         <li
           key={index}
           onMouseDown={() => {
-            onSelect(suggestItems[index]);
+            onSelect(suggestItem);
           }}
           onMouseEnter={() => {
-            setHighlighted(index);
+            setHighlighted(suggestItem);
           }}
-          className={classnames({ selected: highlighted === index })}
+          className={classnames({ selected: highlighted === suggestItem })}
         >
-          <SuggestItem item={suggest} />
+          <SuggestItem item={suggestItem} />
         </li>
       ))}
     </ul>
