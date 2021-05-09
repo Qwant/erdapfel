@@ -52,13 +52,6 @@ const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButt
     };
   }, [inputRef]);
 
-  useEffect(() => {
-    if (inputValue === '') {
-      // needed to trigger an update on Suggest
-      inputRef.current.dispatchEvent(new Event('input'));
-    }
-  }, [inputRef, inputValue]);
-
   const onClickDirections = () => {
     Telemetry.add(Telemetry.HOME_ITINERARY);
     window.app.navigateTo('/routes');
