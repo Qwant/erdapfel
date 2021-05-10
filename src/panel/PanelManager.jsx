@@ -30,7 +30,7 @@ export default class PanelManager extends React.Component {
       options: {},
       panelSize: 'default',
       isSuggestOpen: false,
-      searchQuery: '',
+      appInputValue: '',
     };
 
     this.mainSearchInputRef = React.createRef();
@@ -73,21 +73,21 @@ export default class PanelManager extends React.Component {
   }
 
   updateSearchBarContent({ poiFilters = {}, poi = {}, query } = {}) {
-    let searchQuery = '';
+    let appInputValue = '';
     if (poi.name) {
-      searchQuery = poi.name;
+      appInputValue = poi.name;
     } else if (poiFilters.category) {
       const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
-      searchQuery = categoryLabel;
+      appInputValue = categoryLabel;
     } else if (poiFilters.query) {
-      searchQuery = poiFilters.query;
+      appInputValue = poiFilters.query;
     } else if (query) {
-      searchQuery = query;
+      appInputValue = query;
     } else {
-      searchQuery = '';
+      appInputValue = '';
     }
-    if (searchQuery !== this.state.searchQuery) {
-      this.setState({ searchQuery });
+    if (appInputValue !== this.state.appInputValue) {
+      this.setState({ appInputValue });
     }
   }
 
@@ -146,7 +146,7 @@ export default class PanelManager extends React.Component {
         options: {
           ...options,
           resetInput: () => {
-            this.setState({ searchQuery: '' });
+            this.setState({ appInputValue: '' });
             this.mainSearchInputRef.current.select();
           },
         },
@@ -218,10 +218,6 @@ export default class PanelManager extends React.Component {
     }
   };
 
-  setSearchQuery = searchQuery => {
-    this.setState({ searchQuery });
-  };
-
   getTopBarReturnAction = () => {
     const { poi, poiFilters = {}, isFromFavorite } = this.state.options;
     if (poi?.name && (poiFilters?.category || poiFilters?.query || isFromFavorite)) {
@@ -239,16 +235,15 @@ export default class PanelManager extends React.Component {
   };
 
   render() {
-    const { ActivePanel, options, panelSize, isSuggestOpen, searchQuery } = this.state;
+    const { ActivePanel, options, panelSize, isSuggestOpen, appInputValue } = this.state;
 
-    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && searchQuery === '');
+    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && appInputValue === '');
 
     return (
       <div>
         <TopBar
-          inputValue={searchQuery}
+          appInputValue={appInputValue}
           ref={this.mainSearchInputRef}
-          onInputChange={this.setSearchQuery}
           onSuggestToggle={this.setSuggestOpen}
           backButtonAction={this.getTopBarReturnAction()}
         />

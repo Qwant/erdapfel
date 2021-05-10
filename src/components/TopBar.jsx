@@ -10,24 +10,19 @@ import { selectItem, fetchSuggests } from 'src/libs/suggest';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
-const executeSearch = async query => {
-  const results = await fetchSuggests(query, {
-    withCategories: true,
-    useFocus: true,
-  });
-
-  selectItem(results[0] || null, {
-    query,
-    replaceUrl: true,
-  });
-};
-
-const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButtonAction }) => {
+const TopBar = ({ appInputValue, inputRef, onSuggestToggle, backButtonAction }) => {
   const suggestElement = useRef(null);
   const [focused, setFocused] = useState(false);
+  const [userInputValue, setUserInputValue] = useState(null);
   const { isMobile } = useDevice();
   const config = useConfig();
 
+  // override user input when the app itself changes the field content
+  useEffect(() => {
+    setUserInputValue(null);
+  }, [appInputValue]);
+
+  // give keyboard focus to the field when typing anywhere
   useEffect(() => {
     const globalKeyHandler = e => {
       if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
@@ -57,25 +52,29 @@ const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButt
     window.app.navigateTo('/routes');
   };
 
-  const onFocus = e => {
-    handleFocus(e);
-    setFocused(true);
+  const onSelectSuggestion = (item, query) => {
+    selectItem(item, { query });
+    inputRef.current.blur();
   };
 
-  const onBlur = () => {
-    setFocused(false);
-  };
-
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     Telemetry.add(Telemetry.SUGGEST_SUBMIT);
-    executeSearch(inputValue);
-    inputRef.current.blur();
+    const query = inputRef.current.value;
+    const results = await fetchSuggests(query, {
+      withCategories: true,
+      useFocus: true,
+    });
+    onSelectSuggestion(results[0], {
+      query,
+      replaceUrl: true,
+    });
   };
 
   const onClear = e => {
     e.preventDefault(); // Prevent losing focus on input
     Telemetry.add(Telemetry.SUGGEST_CLEAR);
+    setUserInputValue('');
     window.app.navigateTo('/');
   };
 
@@ -83,7 +82,7 @@ const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButt
     <div
       className={cx('top_bar', {
         ['top_bar--search_focus']: focused,
-        ['top_bar--search_filled']: inputValue,
+        ['top_bar--search_filled']: appInputValue || userInputValue,
         ['top_bar--back_action']: !!backButtonAction,
       })}
     >
@@ -99,22 +98,42 @@ const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButt
         />
         <div className="search_form__wrapper">
           <div className="search_form__return icon-arrow-left" onMouseDown={backButtonAction} />
-          <input
-            ref={inputRef}
-            id="search"
-            className="search_form__input"
-            type="search"
-            spellCheck="false"
-            required
-            autoComplete="off"
-            placeholder={_('Search on Qwant Maps')}
-            value={inputValue}
-            onChange={e => {
-              onInputChange(e.target.value);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-          />
+          <Suggest
+            value={userInputValue}
+            outputNode={suggestElement.current}
+            withCategories
+            onToggle={onSuggestToggle}
+            onSelect={onSelectSuggestion}
+          >
+            {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
+              <input
+                ref={inputRef}
+                id="search"
+                className="search_form__input"
+                type="search"
+                spellCheck="false"
+                required
+                autoComplete="off"
+                placeholder={_('Search on Qwant Maps')}
+                value={
+                  highlightedValue || (userInputValue !== null ? userInputValue : appInputValue)
+                }
+                onChange={e => {
+                  setUserInputValue(e.target.value);
+                }}
+                onFocus={e => {
+                  handleFocus(e);
+                  setFocused(true);
+                  onFocus();
+                }}
+                onBlur={() => {
+                  setFocused(false);
+                  onBlur();
+                }}
+                onKeyDown={onKeyDown}
+              />
+            )}
+          </Suggest>
           <button
             id="clear_button_mobile"
             className="search_form__clear icon-x"
@@ -152,15 +171,6 @@ const TopBar = ({ inputValue, onInputChange, inputRef, onSuggestToggle, backButt
         )}
       </form>
       <div ref={suggestElement} className="search_form__result" />
-      {inputRef.current && suggestElement.current && (
-        <Suggest
-          inputNode={inputRef.current}
-          outputNode={suggestElement.current}
-          withCategories
-          onToggle={onSuggestToggle}
-          onSelect={selectItem}
-        />
-      )}
     </div>
   );
 };
