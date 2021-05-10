@@ -1,12 +1,16 @@
+.routeLabel-marker {
+  z-index: 1;
+}
+
 .routeLabel {
   background-color: $grey-lighter;
   color: $grey-semi-darkness;
   border-radius: 6px;
   padding: 4px 8px;
-  z-index: 1;
   cursor: pointer;
   box-shadow: $shadow;
   display: flex;
+  align-items: center;
 
   &-vehicleIcon {
     display: none;
@@ -117,20 +121,62 @@
   }
 }
 
-.routeLabel--publicTransport {
-  .routeLabel-duration {
-    padding-top: 2px;
+.directions-stepByStep .routeLabel {
+  display: none;
+}
+
+.publicTransportLabelItem {
+
+  display: inline-block;
+  vertical-align: top;
+  width: 30px;
+
+  &:not(:last-child):after {
+    content: '›';
+    padding: 0 0 0 27px;
+    font-size: 24px;
+    color: $grey-grey;
   }
 
-  &.active .routeLabel-duration {
-    padding-top: 10px;
-  }
+  &.roadmapIcon--inbetween {
+    line-height: 20px;
+    width: 36px;
 
-  .routeLabel-distance {
-    display: none;
+    div {
+      background: $grey-light;
+      display: inline-block;
+      height: 18px;
+      line-height: 18px;
+      width: 20px;
+      text-align: center;
+      border-radius: 1px;
+      position: absolute;
+      margin-left: 8px;
+      margin-top: 3px;
+    }
+
+    &:after {
+      padding-left: 32px;
+    }
   }
 }
 
-.directions-stepByStep .routeLabel {
-  display: none;
+.routeLabel.active {
+  .publicTransportLabelItem {
+    &.roadmapIcon--inbetween {
+      div {
+        background: $grey-bright;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .routeLabel--publicTransport {
+    display: block;
+
+    div {
+      text-align: center;
+    }
+  }
 }

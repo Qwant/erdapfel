@@ -1,22 +1,18 @@
+import React from 'react';
+import RouteLabel from 'src/panel/direction/RouteLabel';
 import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
 import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
 import LatLonPoi from '../adapters/poi/latlon_poi';
 import { prepareRouteColor, getRouteStyle, setActiveRouteStyle } from './route_styles';
-import {
-  getAllSteps,
-  getAllStops,
-  originDestinationCoords,
-  formatDuration,
-  formatDistance,
-  getVehicleIcon,
-} from 'src/libs/route_utils';
+import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/route_utils';
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 import { fire, listen } from 'src/libs/customEvents';
 import { getLabelPositions } from 'src/libs/route_labeler';
 import { isMobileDevice } from 'src/libs/device';
+import renderStaticReact from 'src/libs/renderStaticReact';
 
 const createMarker = (lngLat, className = '', options = {}) => {
   const element = document.createElement('div');
@@ -26,15 +22,10 @@ const createMarker = (lngLat, className = '', options = {}) => {
 
 const createRouteLabel = (route, vehicle, { lngLat, anchor }) => {
   const element = document.createElement('div');
-  element.innerHTML = `
-    <div class="routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}"></div>
-    <div>
-      <div class="routeLabel-duration">${formatDuration(route.duration)}</div>
-      <div class="routeLabel-distance">${formatDistance(route.distance)}</div>
-    </div>
-  `;
-  element.className = `routeLabel routeLabel--${anchor} routeLabel--${vehicle}`;
-  element.dataset.id = route.id;
+  element.innerHTML = renderStaticReact(
+    <RouteLabel route={route} vehicle={vehicle} anchor={anchor} />
+  );
+  element.className = 'routeLabel-marker';
   element.onclick = () => {
     fire('select_road_map', route.id);
   };

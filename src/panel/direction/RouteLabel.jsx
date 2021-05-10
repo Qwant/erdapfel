@@ -1,0 +1,58 @@
+import React from 'react';
+import { formatDistance, formatDuration, getVehicleIcon } from 'src/libs/route_utils';
+
+const VEHICLES = {
+  TRAIN: 'train',
+  SUBWAY: 'metro',
+  BUS_CITY: 'bus',
+  TRAM: 'tram',
+};
+
+const PublicTransportIcon = ({ mode }) => (
+  <div className={`publicTransportLabelItem roadmapIcon roadmapIcon--${VEHICLES[mode]}`} />
+);
+
+const PublicTransportStepIcons = ({ route }) => {
+  const nonWalkLegs = route.legs.filter(leg => leg.mode !== 'WALK');
+
+  if (nonWalkLegs.length <= 3) {
+    return (
+      <div>
+        {nonWalkLegs.map((leg, index) => (
+          <PublicTransportIcon key={index} mode={leg.mode} />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <PublicTransportIcon mode={nonWalkLegs[0].mode} />
+      <div className="publicTransportLabelItem roadmapIcon u-text--caption roadmapIcon--inbetween">
+        <div>+{nonWalkLegs.length - 2}</div>
+      </div>
+      <PublicTransportIcon mode={nonWalkLegs[nonWalkLegs.length - 1].mode} />
+    </div>
+  );
+};
+
+const RouteLabel = ({ route, vehicle, anchor }) => {
+  const isPublicTransport = vehicle === 'publicTransport';
+  return (
+    <div data-id={route.id} className={`routeLabel routeLabel--${anchor} routeLabel--${vehicle}`}>
+      {isPublicTransport ? (
+        <PublicTransportStepIcons route={route} />
+      ) : (
+        <div className={`routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}`} />
+      )}
+      <div>
+        <div className="routeLabel-duration">{formatDuration(route.duration)}</div>
+        {!isPublicTransport && (
+          <div className="routeLabel-distance">{formatDistance(route.distance)}</div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default RouteLabel;
