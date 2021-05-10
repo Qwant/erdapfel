@@ -12,7 +12,7 @@ module.exports = function (languageConfig) {
     // If cookie "l" is set and corresponds to a supported language, use it
     if (req.cookies && req.cookies.l) {
       language = supportedLanguages.find(lang => lang.code === req.cookies.l);
-      if(language){
+      if (language) {
         res.locals.language = language;
       }
     }
