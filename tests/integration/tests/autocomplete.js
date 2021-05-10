@@ -131,9 +131,6 @@ test('mouse navigation', async () => {
   await autocompleteHelper.typeAndWait(TypedSearch);
   await autocompleteHelper.hoverResult(1);
 
-  const selectElemPosition = await autocompleteHelper.getSelectedElementPos();
-  expect(selectElemPosition).toEqual(0);
-
   const searchValue = await autocompleteHelper.getSearchInputValue();
   expect(searchValue.trim()).toEqual(TypedSearch);
 
