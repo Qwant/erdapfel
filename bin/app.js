@@ -12,6 +12,8 @@ const getReqSerializer = require('./serializers/request');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+app.use(cookieParser());
+
 const promRegistry = new promClient.Registry();
 
 function App(config) {
@@ -156,8 +158,6 @@ function App(config) {
       onerror: req.logger.error({ err }),
     })(err);
   });
-
-  app.use(cookieParser());
 }
 
 App.prototype.start = function (port) {
