@@ -37,9 +37,7 @@ test('Use FR language setting from Qwant Search cookie', async () => {
   await page.goto(APP_URL);
   await page.setCookie({ name: 'l', value: 'fr' });
   await page.reload();
-  const preferedLanguage = page.evaluate(() => {
-    return preferedLanguage;
-  });
+  const preferedLanguage = await page.evaluate('window.preferedLanguage');
   expect(preferedLanguage.code).toEqual('fr');
 });
 
@@ -47,9 +45,7 @@ test('Use default language setting when Qwant Search cookie is not supported', a
   await page.goto(APP_URL);
   await page.setCookie({ name: 'l', value: 'ko' });
   await page.reload();
-  const preferedLanguage = page.evaluate(() => {
-    return preferedLanguage;
-  });
+  const preferedLanguage = await page.evaluate('window.preferedLanguage');
   expect(preferedLanguage.code).toEqual('en');
 });
 
@@ -57,9 +53,7 @@ test('Use default language when no Qwant Search cookie is set', async () => {
   await page.goto(APP_URL);
   await page.deleteCookie({ name: 'l' });
   await page.reload();
-  const preferedLanguage = page.evaluate(() => {
-    return preferedLanguage;
-  });
+  const preferedLanguage = await page.evaluate('window.preferedLanguage');
   expect(preferedLanguage.code).toEqual('en');
 });
 
