@@ -9,8 +9,11 @@ const fakePbf = require('./middlewares/fake_pbf/index');
 const compression = require('compression');
 const mapStyle = require('./middlewares/map_style');
 const getReqSerializer = require('./serializers/request');
+const cookieParser = require('cookie-parser');
 
 const app = express();
+app.use(cookieParser());
+
 const promRegistry = new promClient.Registry();
 
 function App(config) {
