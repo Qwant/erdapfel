@@ -9,6 +9,7 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   page = await browser.newPage();
+  page.setExtraHTTPHeaders({ 'Accept-Language': 'en' });
 });
 
 test('redirect unsupported browsers to dedicated page', async () => {
