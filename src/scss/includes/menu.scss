@@ -63,7 +63,7 @@ $productDrawerWidth: 744px;
   display: block;
   padding: $spacing-m $spacing-xl-2;
   color: $grey-black;
-  
+
   // Needed to ensure icons are visually aligned with the first line of text
   svg {
     height: 16px;
@@ -136,8 +136,8 @@ $productDrawerWidth: 744px;
 
     &-apps {
       position: absolute;
-      bottom: $spacing-m; 
-      right: $spacing-l; 
+      bottom: $spacing-m;
+      right: $spacing-l;
     }
 
     &-appButton {
@@ -148,7 +148,7 @@ $productDrawerWidth: 744px;
       height: 24px;
     }
   }
-    
+
   .productCard {
     text-align: center;
     margin-bottom: $spacing-s;
@@ -195,7 +195,7 @@ $productDrawerWidth: 744px;
 
   .menu__button-container {
     position: fixed;
-    right: $spacing-s;
+    right: $spacing-m;
     top: $spacing-xl;
     flex-direction: row-reverse;
   }

@@ -1,7 +1,10 @@
 .mapboxgl-ctrl-top-left,
 .mapboxgl-ctrl-top-right,
 .mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right  { position:absolute; pointer-events:none; }
+.mapboxgl-ctrl-bottom-right  {
+  position:absolute;
+  pointer-events:none;
+}
 
 .map_control_group {
   margin: 0 10px 5px 0;
@@ -51,6 +54,10 @@
   }
 }
 
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+  margin: 0 16px 10px 0;
+}
+
 .mapboxgl-ctrl-geolocate::-moz-focus-inner { /* ff rotating outline fix */
   border: 0;
 }
@@ -80,20 +87,26 @@
 }
 
 .mapboxgl-ctrl-scale {
-  height: 15px;
   margin-left: 2px;
-  border: solid 1px #353c52;
+  border: solid 2px #353c52;
   border-top: none;
   color: #353c52;
-  line-height: 16px;
   background-color: rgba(255, 255, 255, 0.5);
+  height: 12px;
+  line-height: 10px;
 }
 
 .map_control__scale_attribute_container {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   width: 100%;
   float: right;
   text-align: right;
+  margin: 0 16px 8px 0;
+  border-radius: 12px;
+  padding: 0 6px;
+  font-size: 12px;
+  height: 20px;
+  line-height: 18px;
 
   .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
     background: none;
@@ -116,16 +129,36 @@
 
 @media(max-width: 640px) {
   .map_control__scale_attribute_container {
-    .mapboxgl-ctrl-attrib {
+
+    position: fixed;
+    left: 40px;
+    bottom: 4px;
+    width: auto;
+
+    .mapboxgl-ctrl.map_control__scale {
+      left: 32px;
+      bottom: 4px;
+      background: rgba(255, 255, 255, 0.9);
+      float: right;
+      margin: 4px 5px 2px 5px;
+      line-height: 10px;
+      height: 13px;
+    }
+
+    .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+      width: calc(100vw - 95px);
+      text-align: left;
       position: fixed;
-      bottom: 2px;
-      left: 4px;
+      margin: 0;
+      bottom: -2px;
+      left: -35px;
 
       .mapboxgl-ctrl-attrib-button {
         top: auto;
         right: auto;
         bottom: 0;
         left: 0;
+        background: url('../images/feather/info.svg') no-repeat center center rgba(255,255,255,0.8);
       }
 
       &.mapboxgl-compact-show {
@@ -136,14 +169,6 @@
           background-color: transparent;
         }
       }
-    }
-
-    .map_control__scale {
-      position: fixed;
-      left: 32px;
-      bottom: 4px;
-      margin: 0;
-      background: rgba(255, 255, 255, 0.9);
     }
   }
 
@@ -214,8 +239,12 @@
     }
   }
 
-  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
     float: inherit;
+  }
+
+  .mapboxgl-ctrl-bottom-right  {
+    height: 55px;
   }
 }
 

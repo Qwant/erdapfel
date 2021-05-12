@@ -474,8 +474,7 @@ Scene.prototype.moveMobileBottomUI = function (bottom = 0) {
     return;
   }
   const uiControls = [
-    '.mapboxgl-ctrl-attrib',
-    '.map_control__scale',
+    '.map_control__scale_attribute_container',
     '.mapboxgl-ctrl-geolocate',
     '.direction_shortcut',
   ];
