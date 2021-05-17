@@ -31,6 +31,7 @@ export default class PanelManager extends React.Component {
       panelSize: 'default',
       isSuggestOpen: false,
       appInputValue: '',
+      userInputValue: null,
     };
 
     this.mainSearchInputRef = React.createRef();
@@ -86,10 +87,12 @@ export default class PanelManager extends React.Component {
     } else {
       appInputValue = '';
     }
-    if (appInputValue !== this.state.appInputValue) {
-      this.setState({ appInputValue });
-    }
+    this.setState({ appInputValue, userInputValue: null });
   }
+
+  setUserInputValue = value => {
+    this.setState({ userInputValue: value });
+  };
 
   backToList(e, poiFilters) {
     e.stopPropagation();
@@ -235,14 +238,23 @@ export default class PanelManager extends React.Component {
   };
 
   render() {
-    const { ActivePanel, options, panelSize, isSuggestOpen, appInputValue } = this.state;
+    const {
+      ActivePanel,
+      options,
+      panelSize,
+      isSuggestOpen,
+      appInputValue,
+      userInputValue,
+    } = this.state;
 
-    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && appInputValue === '');
+    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && !userInputValue);
 
     return (
       <div>
         <TopBar
           appInputValue={appInputValue}
+          userInputValue={userInputValue}
+          setUserInputValue={this.setUserInputValue}
           ref={this.mainSearchInputRef}
           onSuggestToggle={this.setSuggestOpen}
           backButtonAction={this.getTopBarReturnAction()}

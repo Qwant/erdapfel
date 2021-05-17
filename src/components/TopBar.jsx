@@ -10,17 +10,18 @@ import { selectItem, fetchSuggests } from 'src/libs/suggest';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
-const TopBar = ({ appInputValue, inputRef, onSuggestToggle, backButtonAction }) => {
+const TopBar = ({
+  appInputValue,
+  userInputValue,
+  setUserInputValue,
+  inputRef,
+  onSuggestToggle,
+  backButtonAction,
+}) => {
   const suggestElement = useRef(null);
   const [focused, setFocused] = useState(false);
-  const [userInputValue, setUserInputValue] = useState(null);
   const { isMobile } = useDevice();
   const config = useConfig();
-
-  // override user input when the app itself changes the field content
-  useEffect(() => {
-    setUserInputValue(null);
-  }, [appInputValue]);
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {
