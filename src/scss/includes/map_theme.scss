@@ -129,29 +129,60 @@
 
 @media(max-width: 640px) {
   .map_control__scale_attribute_container {
-
+    background: none;
     position: fixed;
-    left: 40px;
+    left: 0px;
     bottom: 4px;
     width: auto;
+    z-index: 1;
 
     .mapboxgl-ctrl.map_control__scale {
-      left: 32px;
-      bottom: 4px;
-      background: rgba(255, 255, 255, 0.9);
+      background: none;
       float: right;
-      margin: 4px 5px 2px 5px;
+      margin: 4px 5px 2px 45px;
       line-height: 10px;
       height: 13px;
+      position: relative;
+      border: none;
+
+      &.fadeOut {
+        transition: opacity 2s;
+        opacity: 0;
+      }
+
+      &:before {
+        content: '';
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        height: 20px;
+        width: calc(100% + 20px);
+        left: -8px;
+        top: -3px;
+        z-index: -1;
+        position: absolute;
+      }
+
+      &:after {
+        content: '';
+        width: 100%;
+        height: 11px;
+        position: absolute;
+        left: 0;
+        border: solid 2px #353c52;
+        border-top: none;
+      }
     }
 
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
-      width: calc(100vw - 95px);
       text-align: left;
       position: fixed;
       margin: 0;
       bottom: -2px;
-      left: -35px;
+      left: 13px;
+
+      &.mapboxgl-compact-show {
+        width: calc(100vw - 95px);
+      }
 
       .mapboxgl-ctrl-attrib-button {
         top: auto;
