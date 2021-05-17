@@ -26,6 +26,7 @@ const Suggest = ({
   const { isMobile } = useDevice();
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
+  const dropdownVisible = hasFocus && isOpen && outputNode;
 
   const close = () => {
     setIsOpen(false);
@@ -34,9 +35,9 @@ const Suggest = ({
 
   useEffect(() => {
     if (onToggle) {
-      onToggle(isOpen);
+      onToggle(dropdownVisible);
     }
-  }, [isOpen, onToggle]);
+  }, [dropdownVisible, onToggle]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchItems = useCallback(
@@ -102,8 +103,6 @@ const Suggest = ({
         );
     }
   };
-
-  const dropdownVisible = hasFocus && isOpen && outputNode;
 
   return (
     <>
