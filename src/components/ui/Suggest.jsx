@@ -5,7 +5,6 @@ import { bool, string, func, object } from 'prop-types';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
-import { useDevice } from 'src/hooks';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -23,7 +22,6 @@ const Suggest = ({
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const { isMobile } = useDevice();
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
   const dropdownVisible = hasFocus && isOpen && outputNode;
@@ -68,18 +66,17 @@ const Suggest = ({
   useEffect(() => {
     if (!hasFocus) {
       close();
-    } else if (isMobile) {
-      setIsOpen(true);
-    }
-  }, [hasFocus, isMobile]);
-
-  useEffect(() => {
-    setHighlighted(null);
-    if (value !== null) {
+    } else {
+      setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
     }
-  }, [fetchItems, value]);
+  }, [hasFocus, fetchItems, value]);
+
+  const selectItem = item => {
+    onSelect(item, { query: value });
+    setHighlighted(null);
+  };
 
   const onKeyDown = e => {
     switch (e.key) {
@@ -90,7 +87,7 @@ const Suggest = ({
       case 'Enter':
         if (highlighted !== null) {
           e.preventDefault(); // prevent search input submit with its current content (highlighted POI name)
-          onSelect(highlighted);
+          selectItem(highlighted);
         }
         break;
       case 'ArrowDown':
@@ -122,12 +119,7 @@ const Suggest = ({
             className={className}
             suggestItems={items}
             highlighted={highlighted}
-            onSelect={item => {
-              close();
-              if (onSelect) {
-                onSelect(item, { query: value });
-              }
-            }}
+            onSelect={selectItem}
           />,
           outputNode
         )}

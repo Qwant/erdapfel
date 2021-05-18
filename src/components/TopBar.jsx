@@ -10,14 +10,7 @@ import { selectItem, fetchSuggests } from 'src/libs/suggest';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
-const TopBar = ({
-  appInputValue,
-  userInputValue,
-  setUserInputValue,
-  inputRef,
-  onSuggestToggle,
-  backButtonAction,
-}) => {
+const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButtonAction }) => {
   const suggestElement = useRef(null);
   const [focused, setFocused] = useState(false);
   const { isMobile } = useDevice();
@@ -37,6 +30,7 @@ const TopBar = ({
         !e.metaKey &&
         document.activeElement?.tagName !== 'INPUT'
       ) {
+        setUserInputValue(inputRef.current.value + e.key);
         inputRef.current.focus();
       }
     };
@@ -46,7 +40,7 @@ const TopBar = ({
     return () => {
       document.removeEventListener('keydown', globalKeyHandler);
     };
-  }, [inputRef]);
+  }, [setUserInputValue, inputRef]);
 
   const onClickDirections = () => {
     Telemetry.add(Telemetry.HOME_ITINERARY);
@@ -83,7 +77,7 @@ const TopBar = ({
     <div
       className={cx('top_bar', {
         ['top_bar--search_focus']: focused,
-        ['top_bar--search_filled']: appInputValue || userInputValue,
+        ['top_bar--search_filled']: value,
         ['top_bar--back_action']: !!backButtonAction,
       })}
     >
@@ -100,7 +94,7 @@ const TopBar = ({
         <div className="search_form__wrapper">
           <div className="search_form__return icon-arrow-left" onMouseDown={backButtonAction} />
           <Suggest
-            value={userInputValue}
+            value={value}
             outputNode={suggestElement.current}
             withCategories
             onToggle={onSuggestToggle}
@@ -116,9 +110,7 @@ const TopBar = ({
                 required
                 autoComplete="off"
                 placeholder={_('Search on Qwant Maps')}
-                value={
-                  highlightedValue || (userInputValue !== null ? userInputValue : appInputValue)
-                }
+                value={highlightedValue || value}
                 onChange={e => {
                   setUserInputValue(e.target.value);
                 }}

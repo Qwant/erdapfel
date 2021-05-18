@@ -31,7 +31,7 @@ export default class PanelManager extends React.Component {
       panelSize: 'default',
       isSuggestOpen: false,
       appInputValue: '',
-      userInputValue: null,
+      userInputValue: '',
     };
 
     this.mainSearchInputRef = React.createRef();
@@ -87,11 +87,11 @@ export default class PanelManager extends React.Component {
     } else {
       appInputValue = '';
     }
-    this.setState({ appInputValue, userInputValue: null });
+    this.setState({ appInputValue, userInputValue: '' });
   }
 
   setUserInputValue = value => {
-    this.setState({ userInputValue: value });
+    this.setState({ userInputValue: value, appInputValue: '' });
   };
 
   backToList(e, poiFilters) {
@@ -252,8 +252,7 @@ export default class PanelManager extends React.Component {
     return (
       <div>
         <TopBar
-          appInputValue={appInputValue}
-          userInputValue={userInputValue}
+          value={appInputValue || userInputValue}
           setUserInputValue={this.setUserInputValue}
           ref={this.mainSearchInputRef}
           onSuggestToggle={this.setSuggestOpen}
