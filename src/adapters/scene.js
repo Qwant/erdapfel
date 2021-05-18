@@ -38,6 +38,20 @@ const getPoiView = poi => ({
   bounds: poi.geometry.bbox,
 });
 
+const hideMobileScale = function () {
+  const item = document.querySelector('.map_control__scale');
+  if (item) {
+    item.classList.add('fadeOut');
+  }
+};
+
+const showMobileScale = function () {
+  const item = document.querySelector('.map_control__scale');
+  if (item) {
+    item.classList.remove('fadeOut');
+  }
+};
+
 Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
   if (bbox) {
     try {
@@ -120,11 +134,6 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   this.lastDoubleTapTimeStamp = 0;
   this.lastTouchEndTimeStamp = 0;
   this.mb.on('touchend', _e => {
-    // Start a new 2s idle timeout
-    MOBILE_IDLE_TIMEOUT = setTimeout(() => {
-      this.hideMobileScale();
-    }, MOBILE_IDLE_DELAY_MS);
-
     const timeStamp = Date.now();
     // maybe we should also check the distance between the two touch events…
     if (timeStamp - this.lastTouchEndTimeStamp < this.DOUBLE_TAP_DELAY_MS) {
@@ -134,11 +143,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   });
 
   this.mb.on('load', () => {
-    // Start 2s idle timeout
-    MOBILE_IDLE_TIMEOUT = setTimeout(() => {
-      this.hideMobileScale();
-    }, MOBILE_IDLE_DELAY_MS);
-
+    fire('restart_idle_timeout');
     this.onHashChange();
     new SceneDirection(this.mb);
     new SceneCategory(this.mb);
@@ -175,15 +180,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     this.clickDelayHandler = null;
 
     this.mb.on('click', e => {
-      // Cancel idle status
-      this.showMobileScale();
-      clearTimeout(MOBILE_IDLE_TIMEOUT);
-
-      // Start a new 2s idle timeout
-      MOBILE_IDLE_TIMEOUT = setTimeout(() => {
-        this.hideMobileScale();
-      }, MOBILE_IDLE_DELAY_MS);
-
+      fire('restart_idle_timeout');
       if (e.originalEvent.cancelBubble) {
         return;
       }
@@ -218,10 +215,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
 
     let longTouchTimeout = null;
     this.mb.on('touchstart', e => {
-      // Cancel idle status
-      this.showMobileScale();
-      clearTimeout(MOBILE_IDLE_TIMEOUT);
-
+      fire('restart_idle_timeout');
       if (e.originalEvent.touches.length === 1) {
         longTouchTimeout = setTimeout(() => {
           this.clickOnMap(e.lngLat, null, { longTouch: true });
@@ -271,11 +265,6 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
       setLastLocation({ lng, lat, zoom });
       window.app.updateHash(this.getLocationHash());
       fire('map_moveend');
-
-      // Start a new 2s idle timeout
-      MOBILE_IDLE_TIMEOUT = setTimeout(() => {
-        this.hideMobileScale();
-      }, MOBILE_IDLE_DELAY_MS);
     });
 
     window.execOnMapLoaded = f => f();
@@ -534,18 +523,15 @@ Scene.prototype.mobileButtonVisibility = function (selector, visible) {
   }
 };
 
-Scene.prototype.hideMobileScale = function () {
-  const item = document.querySelector('.map_control__scale');
-  if (item) {
-    item.classList.add('fadeOut');
-  }
-};
+listen('restart_idle_timeout', () => {
+  // Cancel idle status
+  showMobileScale();
+  clearTimeout(MOBILE_IDLE_TIMEOUT);
 
-Scene.prototype.showMobileScale = function () {
-  const item = document.querySelector('.map_control__scale');
-  if (item) {
-    item.classList.remove('fadeOut');
-  }
-};
+  // Start a new 2s idle timeout
+  MOBILE_IDLE_TIMEOUT = setTimeout(() => {
+    hideMobileScale();
+  }, MOBILE_IDLE_DELAY_MS);
+});
 
 export default Scene;
