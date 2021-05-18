@@ -130,7 +130,7 @@ $productDrawerWidth: 744px;
       box-shadow: $shadow-hover;
 
       .card-link {
-         text-decoration: underline;
+        text-decoration: underline;
       }
     }
 
@@ -195,7 +195,7 @@ $productDrawerWidth: 744px;
 
   .menu__button-container {
     position: fixed;
-    right: $spacing-m;
+    right: $spacing-s;
     top: $spacing-xl;
     flex-direction: row-reverse;
   }
@@ -233,4 +233,3 @@ $productDrawerWidth: 744px;
     padding: $spacing-xl-2 0;
   }
 }
-
