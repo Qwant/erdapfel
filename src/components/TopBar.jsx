@@ -47,8 +47,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     window.app.navigateTo('/routes');
   };
 
-  const onSelectSuggestion = (item, query) => {
-    selectItem(item, { query });
+  const onSelectSuggestion = (item, options) => {
+    selectItem(item, options);
     inputRef.current.blur();
   };
 
