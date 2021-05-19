@@ -14,7 +14,7 @@ const Suggest = ({
   outputNode,
   withCategories,
   withGeoloc,
-  onSelect,
+  onSelect = selectItem,
   className,
   onToggle,
   children: renderInput,
@@ -51,7 +51,7 @@ const Suggest = ({
       currentQuery = query;
 
       query
-        .then(suggestions => modifyList(suggestions, withGeoloc && value === '', value))
+        .then(suggestions => modifyList(suggestions, withGeoloc && value === '', value, source))
         .then(items => {
           setItems(items);
           currentQuery = null;
@@ -134,6 +134,7 @@ Suggest.propTypes = {
   onSelect: func.isRequired,
   onToggle: func,
   className: string,
+  source: string,
 };
 
 export default Suggest;

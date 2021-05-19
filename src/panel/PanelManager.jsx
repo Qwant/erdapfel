@@ -257,12 +257,11 @@ export default class PanelManager extends React.Component {
 
     return (
       <div>
-        <TopBar
-          value={appInputValue || userInputValue}
-          setUserInputValue={this.setUserInputValue}
-          ref={this.mainSearchInputRef}
-          onSuggestToggle={this.setSuggestOpen}
-          backButtonAction={this.getTopBarReturnAction()}
+        <Suggest
+          inputNode={searchBarInputNode}
+          outputNode={searchBarOutputNode}
+          withCategories
+          onToggle={this.setSuggestOpen}
         />
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
           {/*

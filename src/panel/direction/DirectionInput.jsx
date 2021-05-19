@@ -145,6 +145,14 @@ class DirectionInput extends React.Component {
           {/* The only purpose of this button is to unfocus the input */}
           <span className="icon-arrow-left" />
         </button>
+        {mounted && (
+          <Suggest
+            inputNode={inputRef.current}
+            outputNode={document.getElementById('direction-autocomplete_suggestions')}
+            withGeoloc={withGeoloc}
+            onSelect={this.selectItem}
+          />
+        )}
       </div>
     );
   }

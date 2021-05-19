@@ -76,7 +76,20 @@ const PoiItem = ({ poi }) => {
   );
 };
 
-const ErrorLabel = ({ label }) => <div className="autocomplete_error">{label}</div>;
+const ErrorLabel = ({ label }) => (
+  <div className="autocomplete_error">
+    <div className="autocomplete_error_title">{label}</div>
+    <div className="autocomplete_error_description">
+      {_(
+        'Please try to correct your query or rewrite it with more details about the location (city, country, ...)',
+        'suggest'
+      )}
+    </div>
+    <a className="autocomplete_error_link" href="#">
+      {_('Add a missing place on the map', 'suggest')}
+    </a>
+  </div>
+);
 
 const SuggestItem = ({ item }) => {
   if (item.errorLabel) {
