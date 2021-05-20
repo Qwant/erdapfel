@@ -45,6 +45,7 @@ const PanelManager = ({ router }) => {
 
   const mainSearchInputRef = useRef(null);
 
+  // Telemetry
   useEffect(() => {
     window.times.appRendered = Date.now();
 
@@ -62,6 +63,7 @@ const PanelManager = ({ router }) => {
   // Disable ESlint plugin so we don't need to add 'isMobile' as effect dependency,
   // to prevent sending the event again if the user resizes the app
 
+  // Panel auto-minimization on mobile
   useEffect(() => {
     if (isMobile) {
       const minimizePanelOnMapInteraction = listen('map_user_interaction', () => {
@@ -76,6 +78,7 @@ const PanelManager = ({ router }) => {
     }
   }, [isMobile, panelOptions.panelSize, setPanelSize]);
 
+  // Definition of url routes to panels
   useEffect(() => {
     router.addRoute('Category', '/places/(.*)', placesParams => {
       const { type: category, q: query, ...otherOptions } = parseQueryString(placesParams);
@@ -162,9 +165,11 @@ const PanelManager = ({ router }) => {
       }
     });
 
+    // Route the initial URL
     router.routeUrl(getCurrentUrl(), window.history.state || {});
   }, [router, directionConf]);
 
+  // Effects on panel change
   useEffect(() => {
     setTopBarValue(getTopBarAppValue(panelOptions.options));
 
