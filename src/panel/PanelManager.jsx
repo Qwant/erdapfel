@@ -177,26 +177,16 @@ const PanelManager = ({ router }) => {
 
   const backToList = (e, poiFilters) => {
     e.stopPropagation();
-    const queryObject = {};
-    const mappingParams = {
-      query: 'q',
-      category: 'type',
+    const { query, category, ...rest } = poiFilters;
+    const queryObject = {
+      q: query,
+      type: category,
+      ...rest,
     };
-
-    for (const name in poiFilters) {
-      if (!poiFilters[name]) {
-        continue;
-      }
-      const key = mappingParams[name];
-      queryObject[key || name] = poiFilters[name];
-    }
-
-    const params = buildQueryString(queryObject);
-    const uri = `/places/${params}`;
 
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
-    window.app.navigateTo(uri);
+    window.app.navigateTo(`/places/${buildQueryString(queryObject)}`);
   };
 
   const backToFavorite = e => {
