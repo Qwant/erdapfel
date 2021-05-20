@@ -79,9 +79,7 @@ test('keyboard navigation', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait(TypedSearch);
-  await page.waitFor(100);
   await autocompleteHelper.pressDown();
-  await page.waitFor(100);
   await autocompleteHelper.pressDown();
 
   let selectElemPosition = await autocompleteHelper.getSelectedElementPos();
@@ -97,10 +95,8 @@ test('keyboard navigation', async () => {
 
   /* got to last item */
   for (let i = 0; i < SUGGEST_MAX_ITEMS - 2; i++) {
-    await page.waitFor(100);
     await autocompleteHelper.pressDown();
   }
-  await page.waitFor(100);
   /* one step more */
   await autocompleteHelper.pressDown();
 
@@ -113,10 +109,8 @@ test('keyboard navigation', async () => {
   const originalSearchValue = await autocompleteHelper.getSearchInputValue();
   expect(originalSearchValue.trim()).toEqual(TypedSearch);
 
-  await page.waitFor(100);
   await autocompleteHelper.pressDown();
-  await page.waitFor(100);
-  /* fist element is selected */
+  /* first element is selected */
   selectElemPosition = await autocompleteHelper.getSelectedElementPos();
   expect(selectElemPosition).toEqual(0);
 
@@ -125,8 +119,7 @@ test('keyboard navigation', async () => {
   await page.waitForSelector('div.autocomplete_suggestions', { hidden: true });
 
   /* type another char */
-  await autocompleteHelper.typeAndWait('a');
-  await page.waitFor(100);
+  await page.keyboard.press('a');
   selectElemPosition = await autocompleteHelper.getSelectedElementPos();
   expect(selectElemPosition).toEqual(-1);
 });
@@ -137,9 +130,6 @@ test('mouse navigation', async () => {
   await page.goto(APP_URL);
   await autocompleteHelper.typeAndWait(TypedSearch);
   await autocompleteHelper.hoverResult(1);
-
-  const selectElemPosition = await autocompleteHelper.getSelectedElementPos();
-  expect(selectElemPosition).toEqual(0);
 
   const searchValue = await autocompleteHelper.getSearchInputValue();
   expect(searchValue.trim()).toEqual(TypedSearch);

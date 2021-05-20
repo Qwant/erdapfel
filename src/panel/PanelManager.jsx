@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchInput from '../ui_components/search_input';
 import nconf from '@qwant/nconf-getter';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './poi/PoiPanel';
@@ -15,15 +14,13 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
-import Suggest from 'src/components/ui/Suggest';
+import TopBar from 'src/components/TopBar';
 
 const directionConf = nconf.get().direction;
 
 export default class PanelManager extends React.Component {
   static propTypes = {
     router: PropTypes.object.isRequired,
-    searchBarInputNode: PropTypes.object.isRequired,
-    searchBarOutputNode: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -33,15 +30,17 @@ export default class PanelManager extends React.Component {
       options: {},
       panelSize: 'default',
       isSuggestOpen: false,
-      searchQuery: '',
+      appInputValue: '',
+      userInputValue: '',
     };
+
+    this.mainSearchInputRef = React.createRef();
   }
 
   componentDidMount() {
     const initialUrlPathName = window.location.pathname;
     const initialQueryParams = parseQueryString(window.location.search);
     this.initRouter();
-    this.initTopBar();
 
     Telemetry.add(Telemetry.APP_START, {
       language: window.getLang(),
@@ -71,52 +70,29 @@ export default class PanelManager extends React.Component {
 
       // Handle search bar's style and text content
       this.updateSearchBarContent(options);
-
-      // Handle top bar's return button
-      this.updateTopBarReturnButton(options);
     }
   }
 
   updateSearchBarContent({ poiFilters = {}, poi = {}, query } = {}) {
-    const topBarHandle = document.querySelector('.top_bar');
+    let appInputValue = '';
     if (poi.name) {
-      SearchInput.setInputValue(poi.name);
-      topBarHandle.classList.add('top_bar--search_filled');
+      appInputValue = poi.name;
     } else if (poiFilters.category) {
       const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
-      SearchInput.setInputValue(categoryLabel);
-      topBarHandle.classList.add('top_bar--search_filled');
+      appInputValue = categoryLabel;
     } else if (poiFilters.query) {
-      SearchInput.setInputValue(poiFilters.query);
-      topBarHandle.classList.add('top_bar--search_filled');
+      appInputValue = poiFilters.query;
     } else if (query) {
-      SearchInput.setInputValue(query);
-      topBarHandle.classList.add('top_bar--search_filled');
+      appInputValue = query;
     } else {
-      SearchInput.setInputValue('');
-      topBarHandle.classList.remove('top_bar--search_filled');
+      appInputValue = '';
     }
+    this.setState({ appInputValue, userInputValue: '' });
   }
 
-  updateTopBarReturnButton({ poiFilters = {}, isFromFavorite, poi = {} } = {}) {
-    const topBarHandle = document.querySelector('.top_bar');
-    const topBarReturnButton = document.querySelector('.search_form__return');
-    if (poi.name && (poiFilters.category || poiFilters.query || isFromFavorite)) {
-      const backAction =
-        poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
-      // use the mousedown event so it's triggered before the blur event on the suggest
-      topBarReturnButton.onmousedown = e => {
-        if (this.state.isSuggestOpen) {
-          return;
-        }
-        backAction(e, poiFilters);
-      };
-      topBarHandle.classList.add('top_bar--poi-from-list');
-    } else {
-      topBarReturnButton.removeAttribute('onmousedown');
-      topBarHandle.classList.remove('top_bar--poi-from-list');
-    }
-  }
+  setUserInputValue = value => {
+    this.setState({ userInputValue: value, appInputValue: '' });
+  };
 
   backToList(e, poiFilters) {
     e.stopPropagation();
@@ -170,7 +146,13 @@ export default class PanelManager extends React.Component {
       this.setState({
         ActivePanel: NoResultPanel,
         panelSize: 'default',
-        options: { ...options },
+        options: {
+          ...options,
+          resetInput: () => {
+            this.setState({ appInputValue: '' });
+            this.mainSearchInputRef.current.select();
+          },
+        },
       });
     });
 
@@ -221,36 +203,12 @@ export default class PanelManager extends React.Component {
         panelSize: 'default',
       });
       if (options?.focusSearch) {
-        SearchInput.select();
+        this.mainSearchInputRef.current.select();
       }
     });
 
     // Route the initial URL
     return router.routeUrl(getCurrentUrl(), window.history.state || {});
-  }
-
-  initTopBar() {
-    const searchInput = document.querySelector('#search');
-    const topBarHandle = document.querySelector('.top_bar');
-
-    searchInput.addEventListener('focus', () => {
-      topBarHandle.classList.add('top_bar--search_focus');
-    });
-
-    searchInput.addEventListener('blur', () => {
-      topBarHandle.classList.remove('top_bar--search_focus');
-    });
-
-    searchInput.addEventListener('input', () => {
-      const value = searchInput.value;
-      if (value.length > 0) {
-        topBarHandle.classList.add('top_bar--search_filled');
-      } else {
-        topBarHandle.classList.remove('top_bar--search_filled');
-      }
-
-      this.setState({ searchQuery: value });
-    });
   }
 
   setPanelSize = panelSize => {
@@ -263,21 +221,43 @@ export default class PanelManager extends React.Component {
     }
   };
 
-  render() {
-    const { ActivePanel, options, panelSize, isSuggestOpen, searchQuery } = this.state;
-    const { searchBarInputNode, searchBarOutputNode } = this.props;
+  getTopBarReturnAction = () => {
+    const { poi, poiFilters = {}, isFromFavorite } = this.state.options;
+    if (poi?.name && (poiFilters?.category || poiFilters?.query || isFromFavorite)) {
+      const backAction =
+        poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
+      // use the mousedown event so it's triggered before the blur event on the suggest
+      return event => {
+        if (this.state.isSuggestOpen) {
+          return;
+        }
+        backAction(event, poiFilters);
+      };
+    }
+    return null;
+  };
 
-    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && searchQuery === '');
+  render() {
+    const {
+      ActivePanel,
+      options,
+      panelSize,
+      isSuggestOpen,
+      appInputValue,
+      userInputValue,
+    } = this.state;
+
+    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && !userInputValue);
 
     return (
       <div>
-        <Suggest
-          inputNode={searchBarInputNode}
-          outputNode={searchBarOutputNode}
-          withCategories
-          onToggle={this.setSuggestOpen}
+        <TopBar
+          value={appInputValue || userInputValue}
+          setUserInputValue={this.setUserInputValue}
+          ref={this.mainSearchInputRef}
+          onSuggestToggle={this.setSuggestOpen}
+          backButtonAction={this.getTopBarReturnAction()}
         />
-
         <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
           {/*
             The panel container is made hidden using "display: none;" to avoid unnecessary

@@ -29,6 +29,13 @@
     border-left-color: #FF3B4A;
     background-color: $background_active;
   }
+
+  @media (hover: hover) {
+    li:hover & {
+      border-left-color: #FF3B4A;
+      background-color: $background_active;
+    }
+  }
 }
 
 .autocomplete_suggestion--intention {

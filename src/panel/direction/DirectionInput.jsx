@@ -27,7 +27,6 @@ class DirectionInput extends React.Component {
   };
 
   state = {
-    mounted: false,
     readOnly: false,
   };
 
@@ -35,10 +34,6 @@ class DirectionInput extends React.Component {
     if (this.props.isLoading) {
       this.props.inputRef.current.blur();
     }
-
-    this.setState({
-      mounted: true,
-    });
   }
 
   componentDidUpdate(prevProps) {
@@ -52,13 +47,10 @@ class DirectionInput extends React.Component {
     this.props.onChangePoint(value, null);
   };
 
-  onKeyPress = async event => {
-    if (event.key === 'Enter' && this.props.value !== '') {
-      const items = await fetchSuggests(this.props.value);
-      if (items && items.length > 0) {
-        const firstPoi = items[0];
-        this.selectItem(firstPoi);
-      }
+  submitSearch = async () => {
+    const items = await fetchSuggests(this.props.value);
+    if (items && items.length > 0) {
+      this.selectItem(items[0]);
     }
   };
 
@@ -93,48 +85,57 @@ class DirectionInput extends React.Component {
 
   clear = e => {
     e.preventDefault(); // prevent losing focus
-    this.removePoint();
-  };
-
-  removePoint = () => {
     this.props.onChangePoint('', null);
-    this.props.inputRef.current.value = '';
-    // Trigger an input event to refresh Suggest's state
-    this.props.inputRef.current.dispatchEvent(new Event('input'));
   };
 
   render() {
     const { pointType, inputRef, isLoading, withGeoloc, value, point, onChangePoint } = this.props;
-    const { mounted, readOnly } = this.state;
+    const { readOnly } = this.state;
 
     return (
       <div className="direction-field">
         <div className="direction-input">
-          <input
-            ref={inputRef}
-            id={`direction-input_${pointType}`}
-            type="search"
-            required
-            autoComplete="off"
-            spellCheck="false"
-            placeholder={
-              pointType === 'origin'
-                ? _('Enter a starting point', 'direction')
-                : _('Enter an end point', 'direction')
-            }
+          <Suggest
             value={value}
-            onChange={this.onChange}
-            onKeyPress={this.onKeyPress}
-            readOnly={readOnly || isLoading}
-            onFocus={e => {
-              if (point && point.type === 'geoloc' && isMobileDevice()) {
-                // Clear Input to avoid fetching unwanted suggestions
-                onChangePoint('');
-              } else {
-                handleFocus(e);
-              }
-            }}
-          />
+            outputNode={document.getElementById('direction-autocomplete_suggestions')}
+            withGeoloc={withGeoloc}
+            onSelect={this.selectItem}
+          >
+            {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
+              <input
+                ref={inputRef}
+                id={`direction-input_${pointType}`}
+                type="search"
+                required
+                autoComplete="off"
+                spellCheck="false"
+                placeholder={
+                  pointType === 'origin'
+                    ? _('Enter a starting point', 'direction')
+                    : _('Enter an end point', 'direction')
+                }
+                value={highlightedValue || value}
+                onChange={this.onChange}
+                onKeyDown={e => {
+                  if (e.key === 'Enter' && this.props.value !== '') {
+                    this.submitSearch();
+                  }
+                  onKeyDown(e);
+                }}
+                readOnly={readOnly || isLoading}
+                onFocus={e => {
+                  if (point && point.type === 'geoloc' && isMobileDevice()) {
+                    // Clear Input to avoid fetching unwanted suggestions
+                    onChangePoint('');
+                  } else {
+                    handleFocus(e);
+                  }
+                  onFocus();
+                }}
+                onBlur={onBlur}
+              />
+            )}
+          </Suggest>
           <div className="direction-icon-block">
             <div className={`direction-icon direction-icon-${pointType}`} />
           </div>
@@ -144,14 +145,6 @@ class DirectionInput extends React.Component {
           {/* The only purpose of this button is to unfocus the input */}
           <span className="icon-arrow-left" />
         </button>
-        {mounted && (
-          <Suggest
-            inputNode={inputRef.current}
-            outputNode={document.getElementById('direction-autocomplete_suggestions')}
-            withGeoloc={withGeoloc}
-            onSelect={this.selectItem}
-          />
-        )}
       </div>
     );
   }

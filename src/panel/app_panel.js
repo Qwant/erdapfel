@@ -1,23 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchInput from '../ui_components/search_input';
-import nconf from '@qwant/nconf-getter';
 import Router from 'src/proxies/app_router';
 import { parseMapHash, joinPath, getCurrentUrl, parseQueryString } from 'src/libs/url_utils';
 import { listen } from 'src/libs/customEvents';
 import RootComponent from './RootComponent';
 import Telemetry from 'src/libs/telemetry';
 
-const burgerMenuEnabled = nconf.get().burgerMenu.enabled;
-
-if (!burgerMenuEnabled) {
-  document.body.classList.add('no-burger');
-}
-
 export default class App {
   constructor() {
     this.initMap();
-    SearchInput.initSearchInput('#search');
+
     listen('map_loaded', () => {
       window.times.mapLoaded = Date.now();
       Telemetry.add(Telemetry.PERF_MAP_FIRST_RENDER, {
@@ -33,18 +25,7 @@ export default class App {
       this.router.routeUrl(getCurrentUrl(), state || {});
     };
 
-    const directionShortcut = document.querySelector('.search_form__direction_shortcut');
-    if (directionShortcut) {
-      directionShortcut.addEventListener('click', () => {
-        Telemetry.add(Telemetry.HOME_ITINERARY);
-        this.navigateTo('/routes');
-      });
-    }
-
-    ReactDOM.render(
-      <RootComponent router={this.router} burgerMenuEnabled={burgerMenuEnabled} />,
-      document.querySelector('#react_root')
-    );
+    ReactDOM.render(<RootComponent router={this.router} />, document.querySelector('#react_root'));
   }
 
   initMap() {

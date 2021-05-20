@@ -4,26 +4,27 @@ import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
 
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
-import { fetchSuggests, getInputValue, selectItem, modifyList } from 'src/libs/suggest';
-import { useDevice } from 'src/hooks';
+import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
 let currentQuery = null;
 
 const Suggest = ({
-  inputNode,
   outputNode,
   withCategories,
   withGeoloc,
-  onSelect = selectItem,
+  onSelect,
   className,
   onToggle,
+  children: renderInput,
+  value,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [lastQuery, setLastQuery] = useState('');
-  const { isMobile } = useDevice();
+  const [highlighted, setHighlighted] = useState(null);
+  const [hasFocus, setHasFocus] = useState(false);
+  const dropdownVisible = hasFocus && isOpen && outputNode;
 
   const close = () => {
     setIsOpen(false);
@@ -32,9 +33,9 @@ const Suggest = ({
 
   useEffect(() => {
     if (onToggle) {
-      onToggle(isOpen);
+      onToggle(dropdownVisible);
     }
-  }, [isOpen, onToggle]);
+  }, [dropdownVisible, onToggle]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchItems = useCallback(
@@ -63,78 +64,74 @@ const Suggest = ({
   );
 
   useEffect(() => {
-    const handleFocus = () => {
-      if (inputNode.value === '' || isMobile) {
-        setIsOpen(true);
-        fetchItems(inputNode.value);
-      }
-    };
-
-    const handleBlur = () => {
+    if (!hasFocus) {
       close();
-    };
-
-    const handleInput = e => {
-      const { value } = e.target;
+    } else {
+      setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
-      setLastQuery(value);
-    };
+    }
+  }, [hasFocus, fetchItems, value]);
 
-    const handleKeyDown = event => {
-      if (event.key === 'Esc' || event.key === 'Escape') {
+  const selectItem = item => {
+    onSelect(item, { query: value });
+    setHighlighted(null);
+  };
+
+  const onKeyDown = e => {
+    switch (e.key) {
+      case 'Esc':
+      case 'Escape':
         close();
-      }
-    };
-
-    inputNode.addEventListener('focus', handleFocus);
-    inputNode.addEventListener('blur', handleBlur);
-    inputNode.addEventListener('input', handleInput);
-    inputNode.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      inputNode.removeEventListener('focus', handleFocus);
-      inputNode.removeEventListener('blur', handleBlur);
-      inputNode.removeEventListener('input', handleInput);
-      inputNode.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [inputNode, isMobile, fetchItems]);
-
-  if (!isOpen) {
-    return null;
-  }
-
-  const SuggestsDropdownElement = () => (
-    <SuggestsDropdown
-      className={className}
-      suggestItems={items}
-      onHighlight={item => {
-        if (!item) {
-          inputNode.value = lastQuery;
-        } else {
-          inputNode.value = getInputValue(item);
+        break;
+      case 'Enter':
+        if (highlighted !== null) {
+          e.preventDefault(); // prevent search input submit with its current content (highlighted POI name)
+          selectItem(highlighted);
         }
-      }}
-      onSelect={item => {
-        inputNode.value = getInputValue(item);
-        inputNode.blur();
-        close();
-        if (onSelect) {
-          onSelect(item, { query: inputNode.value });
-        }
-      }}
-    />
+        break;
+      case 'ArrowDown':
+        setHighlighted(items[items.indexOf(highlighted) + 1] || null);
+        break;
+      case 'ArrowUp':
+        e.preventDefault(); // prevent cursor returning at beggining
+        setHighlighted(
+          !highlighted ? items[items.length - 1] : items[items.indexOf(highlighted) - 1] || null
+        );
+    }
+  };
+
+  return (
+    <>
+      {renderInput({
+        onKeyDown,
+        onFocus: () => {
+          setHasFocus(true);
+        },
+        onBlur: () => {
+          setHasFocus(false);
+        },
+        highlightedValue: highlighted ? getInputValue(highlighted) : null,
+      })}
+      {dropdownVisible &&
+        ReactDOM.createPortal(
+          <SuggestsDropdown
+            className={className}
+            suggestItems={items}
+            highlighted={highlighted}
+            onSelect={selectItem}
+          />,
+          outputNode
+        )}
+    </>
   );
-
-  return ReactDOM.createPortal(<SuggestsDropdownElement />, outputNode);
 };
 
 Suggest.propTypes = {
-  inputNode: object.isRequired,
-  outputNode: object.isRequired,
+  outputNode: object,
   withCategories: bool,
   withGeoloc: bool,
-  onSelect: func,
+  onSelect: func.isRequired,
   onToggle: func,
   className: string,
 };
