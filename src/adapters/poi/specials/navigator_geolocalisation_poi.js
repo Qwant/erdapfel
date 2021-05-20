@@ -9,7 +9,6 @@ export const navigatorGeolocationStatus = {
   UNKNOWN: 'unknown',
   FORBIDDEN: 'forbidden',
 };
-
 export default class NavigatorGeolocalisationPoi extends Poi {
   constructor() {
     super('geolocalisation', _('Your position', 'direction'), 'geoloc');
@@ -40,7 +39,11 @@ export default class NavigatorGeolocalisationPoi extends Poi {
           }
           reject(error);
         },
-        { timeout: 3000 }
+        {
+          timeout: 3000,
+          maximumAge: 300000, // five minutes
+          enableHighAccuracy: true,
+        }
       );
     });
   }
