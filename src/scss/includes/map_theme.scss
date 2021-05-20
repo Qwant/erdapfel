@@ -54,8 +54,8 @@
   }
 }
 
-.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
-  margin: 0 $spacing-m 10px 0;
+.mapboxgl-ctrl-bottom-right .map_control_group {
+  margin: 0 $spacing-m $spacing-s 0;
 }
 
 .mapboxgl-ctrl-geolocate::-moz-focus-inner { /* ff rotating outline fix */
@@ -271,12 +271,7 @@
   }
 
   .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
-    float: inherit;
     margin-right: 10px;
-  }
-
-  .mapboxgl-ctrl-bottom-right  {
-    height: 55px;
   }
 }
 
