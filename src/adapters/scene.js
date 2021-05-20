@@ -23,6 +23,8 @@ import { setPoiHoverStyle } from 'src/adapters/pois_styles';
 
 const baseUrl = nconf.get().system.baseUrl;
 const LONG_TOUCH_DELAY_MS = 500;
+const MOBILE_IDLE_DELAY_MS = 2000;
+let MOBILE_IDLE_TIMEOUT;
 
 function Scene() {
   this.currentMarker = null;
@@ -35,6 +37,20 @@ const getPoiView = poi => ({
   zoom: getBestZoom(poi),
   bounds: poi.geometry.bbox,
 });
+
+const hideMobileScale = function () {
+  const item = document.querySelector('.map_control__scale');
+  if (item) {
+    item.classList.add('fadeOut');
+  }
+};
+
+const showMobileScale = function () {
+  const item = document.querySelector('.map_control__scale');
+  if (item) {
+    item.classList.remove('fadeOut');
+  }
+};
 
 Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
   if (bbox) {
@@ -127,6 +143,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   });
 
   this.mb.on('load', () => {
+    fire('restart_idle_timeout');
     this.onHashChange();
     new SceneDirection(this.mb);
     new SceneCategory(this.mb);
@@ -163,6 +180,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     this.clickDelayHandler = null;
 
     this.mb.on('click', e => {
+      fire('restart_idle_timeout');
       if (e.originalEvent.cancelBubble) {
         return;
       }
@@ -197,6 +215,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
 
     let longTouchTimeout = null;
     this.mb.on('touchstart', e => {
+      fire('restart_idle_timeout');
       if (e.originalEvent.touches.length === 1) {
         longTouchTimeout = setTimeout(() => {
           this.clickOnMap(e.lngLat, null, { longTouch: true });
@@ -474,8 +493,7 @@ Scene.prototype.moveMobileBottomUI = function (bottom = 0) {
     return;
   }
   const uiControls = [
-    '.mapboxgl-ctrl-attrib',
-    '.map_control__scale',
+    '.map_control__scale_attribute_container',
     '.mapboxgl-ctrl-geolocate',
     '.direction_shortcut',
   ];
@@ -504,5 +522,16 @@ Scene.prototype.mobileButtonVisibility = function (selector, visible) {
     }
   }
 };
+
+listen('restart_idle_timeout', () => {
+  // Cancel idle status
+  showMobileScale();
+  clearTimeout(MOBILE_IDLE_TIMEOUT);
+
+  // Start a new 2s idle timeout
+  MOBILE_IDLE_TIMEOUT = setTimeout(() => {
+    hideMobileScale();
+  }, MOBILE_IDLE_DELAY_MS);
+});
 
 export default Scene;

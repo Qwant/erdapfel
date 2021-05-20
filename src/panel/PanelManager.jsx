@@ -55,6 +55,7 @@ export default class PanelManager extends React.Component {
       if (isMobileDevice() && this.state.panelSize !== 'minimized') {
         this.setState({ panelSize: 'minimized' });
       }
+      fire('restart_idle_timeout');
     });
   }
 
