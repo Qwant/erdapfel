@@ -45,18 +45,18 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
       className: 'modal__maps__pending',
     },
     DENIED: {
-      title: _('Geolocation not available.', 'geolocation'),
+      title: _('Houston,<br/> we have a (geolocation) problem&nbsp;🛰', 'geolocation'),
       text: _(
-        'You have not allowed Qwant Maps (or your device) to access your location.',
+        'Allow Qwant Maps to access your position so we can better help you find your way…',
         'geolocation'
       ),
       button: _('Ok', 'geolocation'),
       className: 'modal__maps__denied',
     },
     NOT_ACTIVATED: {
-      title: _('Geolocation not available.', 'geolocation'),
+      title: _('Houston,<br/> we have a (geolocation) problem&nbsp;🛰', 'geolocation'),
       text: _(
-        'Qwant Maps cannot determine your position. Check that location services are enabled on your system.'
+        "We can't access your position.<br/> Please check that your geolocation services are enabled."
       ),
       button: _('Ok', 'geolocation'),
       className: 'modal__maps__not-activated',
@@ -70,7 +70,10 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
       <div className={classnames('modal__maps', className)}>
         <CloseButton onClick={onClose} />
         <div className="modal__maps__content">
-          <h2 className="modal__title u-text--smallTitle">{title}</h2>
+          <h2
+            className="modal__title u-text--smallTitle"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
           <div
             className="modal__subtitle u-text--subtitle"
             dangerouslySetInnerHTML={{ __html: text }}

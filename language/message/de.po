@@ -208,11 +208,11 @@ msgstr ""
 msgid "Ok, I've got it"
 msgstr "Ok, verstanden!"
 
-msgid "Geolocation not available."
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰"
 msgstr "Standortbestimmung nicht verfügbar."
 
 msgid ""
-"You have not allowed Qwant Maps (or your device) to access your location."
+"Allow Qwant Maps to access your position so we can better help you find your way…"
 msgstr ""
 "Sie (oder Ihr Gerät) haben Qwant Maps den Standortzugriff nicht erlaubt."
 
@@ -220,8 +220,7 @@ msgid "Ok"
 msgstr "O.k."
 
 msgid ""
-"Qwant Maps cannot determine your position. Check that location services are "
-"enabled on your system."
+"We can't access your position.<br/> Please check that your geolocation services are enabled."
 msgstr ""
 "Qwant Maps kann Ihren Standort nicht bestimmen. Prüfen Sie ob die "
 "Standortbestimmung auf Ihrem System aktiviert ist."
