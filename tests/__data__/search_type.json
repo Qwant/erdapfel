@@ -1,0 +1,118 @@
+{
+  "type": "FeatureCollection",
+  "geocoding": {"version": "0.1.0", "query": ""},
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          4.359352,
+          43.84274
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "geocoding": {
+          "id": "addr:4.359352;43.84274",
+          "type": "house",
+          "label": "37 Rue Robert (Nîmes)",
+          "name": "37 Rue Robert",
+          "housenumber": "37",
+          "street": "Rue Robert",
+          "postcode": "30000",
+          "city": "Nîmes",
+          "citycode": "30189",
+          "administrative_regions": [
+            {
+              "id": "admin:osm:relation:2202162",
+              "insee": "",
+              "level": 2,
+              "label": "France",
+              "name": "France",
+              "zip_codes": [],
+              "weight": 0.015618298409952112,
+              "coord": {
+                "lon": 2.3514992,
+                "lat": 48.8566101
+              },
+              "bbox": [
+                -5.4534286,
+                41.2632185,
+                9.8678344,
+                51.268318
+              ],
+              "admin_type": "Unknown",
+              "zone_type": "country"
+            },
+            {
+              "id": "admin:osm:relation:3792883",
+              "insee": "76",
+              "level": 4,
+              "label": "Occitanie, France",
+              "name": "Occitanie",
+              "zip_codes": [],
+              "weight": 0.0030751822769848129,
+              "coord": {
+                "lon": 1.4442469,
+                "lat": 43.6044622
+              },
+              "bbox": [
+                -0.3272334,
+                42.3327551,
+                4.8455335,
+                45.0466382
+              ],
+              "admin_type": "Unknown",
+              "zone_type": "state"
+            },
+            {
+              "id": "admin:osm:relation:7461",
+              "insee": "30",
+              "level": 6,
+              "label": "Gard, Occitanie, France",
+              "name": "Gard",
+              "zip_codes": [],
+              "weight": 0.000989824164894286,
+              "coord": {
+                "lon": 4.3600687,
+                "lat": 43.8374249
+              },
+              "bbox": [
+                3.2618961,
+                43.460197,
+                4.8455335,
+                44.4596601
+              ],
+              "admin_type": "Unknown",
+              "zone_type": "state_district"
+            },
+            {
+              "id": "admin:osm:relation:378685",
+              "insee": "30189",
+              "level": 8,
+              "label": "Nîmes (30000-30900), Gard, Occitanie, France",
+              "name": "Nîmes",
+              "zip_codes": [
+                "30000",
+                "30900"
+              ],
+              "weight": 0.000989824164894286,
+              "coord": {
+                "lon": 4.3600687,
+                "lat": 43.8374249
+              },
+              "bbox": [
+                4.235670799999999,
+                43.7412659,
+                4.4496605,
+                43.9230177
+              ],
+              "admin_type": "City",
+              "zone_type": "city"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

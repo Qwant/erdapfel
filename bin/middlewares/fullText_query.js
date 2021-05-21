@@ -10,7 +10,7 @@ module.exports = function (config) {
   }
 
   const idunnBaseUrl = config.server.services.idunn.url || config.services.idunn.url;
-  const geocoderUrl = idunnBaseUrl + '/v1/autocomplete';
+  const geocoderUrl = idunnBaseUrl + '/v1/search';
   const useNlu = config.services.geocoder.useNlu;
 
   const categories = yaml.readSync('../../config/categories.yml');

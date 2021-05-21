@@ -29,26 +29,26 @@ nock(/idunn_test\.test/)
   .get(/osm:way:2403/)
   .reply(404);
 
-const noResultAutocomplete = require('../__data__/autocomplete_empty.json');
+const noResultSearch = require('../__data__/autocomplete_empty.json');
 nock(/idunn_test\.test/)
   .persist(true)
-  .get('/v1/autocomplete')
+  .get('/v1/search')
   .query(params => params.q === 'gibberish')
-  .reply(200, JSON.stringify(noResultAutocomplete));
+  .reply(200, JSON.stringify(noResultSearch));
 
-const intentionAutocomplete = require('../__data__/autocomplete_nlu.json');
+const intentionSearch = require('../__data__/autocomplete_nlu.json');
 nock(/idunn_test\.test/)
   .persist(true)
-  .get('/v1/autocomplete')
+  .get('/v1/search')
   .query(params => params.q === 'restonice')
-  .reply(200, JSON.stringify(intentionAutocomplete));
+  .reply(200, JSON.stringify(intentionSearch));
 
-const noIntentionAutocomplete = require('../__data__/autocomplete_type.json');
+const noIntentionSearch = require('../__data__/search_type.json');
 nock(/idunn_test\.test/)
   .persist(true)
-  .get('/v1/autocomplete')
+  .get('/v1/search')
   .query(params => params.q === 'single')
-  .reply(200, JSON.stringify(noIntentionAutocomplete));
+  .reply(200, JSON.stringify(noIntentionSearch));
 
 global.appServer = new App(config);
 
