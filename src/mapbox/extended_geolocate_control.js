@@ -48,5 +48,9 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
   _onError(error) {
     Geolocation.handleError(error);
     super._onError(error);
+    // MapboxGL implementation disables the button after an error,
+    // but we won't the user to always have feedback with relevant links
+    // so override this behavior
+    this._geolocateButton.disabled = false;
   }
 }
