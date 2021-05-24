@@ -109,8 +109,20 @@ const Suggest = ({
       // Giving a fixed height to the container makes the content scrollable
       outputNode.style.height = window.visualViewport.height - TOP_BAR_HEIGHT + 'px';
 
+      const suggestions = document.querySelector('.autocomplete_suggestions');
+      const cancelTouchScrollIfNotOverflow = e => {
+        const hasOverflow =
+          suggestions &&
+          suggestions.getBoundingClientRect().height > outputNode.getBoundingClientRect().height;
+        if (!hasOverflow) {
+          e.preventDefault();
+        }
+      };
+      outputNode.addEventListener('touchmove', cancelTouchScrollIfNotOverflow);
+
       return () => {
         outputNode.style.height = 'auto';
+        outputNode.removeEventListener('touchmove', cancelTouchScrollIfNotOverflow);
       };
     }
   }, [isMobile, items, dropdownVisible, outputNode]);
