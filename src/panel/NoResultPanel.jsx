@@ -1,16 +1,11 @@
 /* globals _ */
 import React from 'react';
 import { Panel } from 'src/components/ui';
+import NoResultMessage from './NoResultMessage';
 
 const close = () => window.app.navigateTo('/');
 
-const NoResultPanel = ({ resetInput }) => {
-  const tryNewSearch = e => {
-    e.preventDefault();
-    close();
-    resetInput();
-  };
-
+const NoResultPanel = () => {
   return (
     <Panel close={close}>
       <div style={{ padding: '16px 16px 32px 16px' }}>

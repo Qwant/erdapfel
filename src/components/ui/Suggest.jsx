@@ -14,7 +14,7 @@ const Suggest = ({
   outputNode,
   withCategories,
   withGeoloc,
-  onSelect = selectItem,
+  onSelect,
   className,
   onToggle,
   children: renderInput,

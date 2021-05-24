@@ -8,6 +8,7 @@ import Address from 'src/components/ui/Address';
 import PlaceIcon from 'src/components/PlaceIcon';
 import { Magnifier } from 'src/components/ui/icons';
 import PoiStore from 'src/adapters/poi/poi_store';
+import NoResultMessage from '../../panel/NoResultMessage';
 
 const ItemLabels = ({ firstLabel, secondLabel }) => (
   <div className="autocomplete_suggestion__labels">
@@ -76,22 +77,15 @@ const PoiItem = ({ poi }) => {
   );
 };
 
-const ErrorLabel = ({ label }) => (
+const ErrorLabel = () => (
   <div className="autocomplete_error">
-    <p className="u-mb-xs u-text--smallTitle">{label}</p>
-    <p className="u-text--subtitle u-mb-l">
-      {_(
-        'Please try to correct your query or rewrite it with more details about the location (city, country, ...)',
-        'suggest'
-      )}
-    </p>
-    <a href="#">{_('Try a new search query', 'suggest')}</a>
+    <NoResultMessage />
   </div>
 );
 
 const SuggestItem = ({ item }) => {
   if (item.errorLabel) {
-    return <ErrorLabel label={item.errorLabel} />;
+    return <ErrorLabel />;
   }
 
   if (item instanceof NavigatorGeolocalisationPoi) {
