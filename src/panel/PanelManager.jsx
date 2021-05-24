@@ -20,7 +20,7 @@ function getTopBarAppValue({ poiFilters = {}, poi = {}, query } = {}) {
     return poi.name;
   }
   if (poiFilters.category) {
-    return CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
+    return CategoryService.getCategoryByName(poiFilters.category)?.getInputValue() || '';
   }
   return poiFilters.query || query || '';
 }
