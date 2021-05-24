@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
-
+import { useDevice } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 
@@ -25,6 +25,7 @@ const Suggest = ({
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
   const dropdownVisible = hasFocus && isOpen && outputNode;
+  const { isMobile } = useDevice();
 
   const close = () => {
     setIsOpen(false);
@@ -100,6 +101,19 @@ const Suggest = ({
         );
     }
   };
+
+  useEffect(() => {
+    if (isMobile && dropdownVisible && window.visualViewport) {
+      const TOP_BAR_HEIGHT = 60;
+      // visualViewport.height is the real visible height, not including the virtual keyboard.
+      // Giving a fixed height to the container makes the content scrollable
+      outputNode.style.height = window.visualViewport.height - TOP_BAR_HEIGHT + 'px';
+
+      return () => {
+        outputNode.style.height = 'auto';
+      };
+    }
+  }, [isMobile, items, dropdownVisible, outputNode]);
 
   return (
     <>
