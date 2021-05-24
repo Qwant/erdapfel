@@ -1,16 +1,16 @@
-/* global _ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'src/components/ui/Modal';
 import { listen } from 'src/libs/customEvents';
 import { Button, CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
-import { useConfig } from 'src/hooks';
+import { useI18n } from 'src/hooks';
 
 let hasPermissionModalOpenedOnce = false;
 
 const GeolocationModal = ({ status, onClose, onAccept }) => {
-  const aboutPrivacyUrl = useConfig('externalUrls').about.privacy;
+  const { getLocalizedUrl, _ } = useI18n();
+  const aboutPrivacyUrl = getLocalizedUrl('aboutPrivacy');
 
   /* eslint-disable max-len */
   const pendingOnDirectionsText = _(

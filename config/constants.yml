@@ -33,6 +33,13 @@ languages:
         - es
   defaultLanguage: *default
 
+localizedUrls:
+  en:
+    aboutHome: https://about.qwant.com
+    aboutPrivacy: https://about.qwant.com/legal/privacy
+    aboutMapsToS: https://about.qwant.com/legal/terms-of-service/qwant-maps/
+    contributing: https://github.com/Qwant/qwantmaps/blob/master/contributing.md
+
 # Map
 map:
   zoom: 2
