@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import nconf from '@qwant/nconf-getter';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './service/ServicePanel';
@@ -9,128 +8,81 @@ import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Telemetry from 'src/libs/telemetry';
 import CategoryService from 'src/adapters/category_service';
 import { parseQueryString, getCurrentUrl, buildQueryString } from 'src/libs/url_utils';
-import { fire, listen } from 'src/libs/customEvents';
+import { fire, listen, unListen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
-import { isMobileDevice } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar';
+import { useConfig, useDevice } from 'src/hooks';
 
-const directionConf = nconf.get().direction;
-
-export default class PanelManager extends React.Component {
-  static propTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      ActivePanel: ServicePanel,
-      options: {},
-      panelSize: 'default',
-      isSuggestOpen: false,
-      appInputValue: '',
-      userInputValue: '',
-    };
-
-    this.mainSearchInputRef = React.createRef();
+function getTopBarAppValue({ poiFilters = {}, poi = {}, query } = {}) {
+  if (poi.name) {
+    return poi.name;
   }
+  if (poiFilters.category) {
+    return CategoryService.getCategoryByName(poiFilters.category)?.getInputValue() || '';
+  }
+  return poiFilters.query || query || '';
+}
 
-  componentDidMount() {
+const PanelManager = ({ router }) => {
+  const directionConf = useConfig('direction');
+  const { isMobile } = useDevice();
+
+  const [panelOptions, setPanelOptions] = useState({
+    ActivePanel: ServicePanel,
+    options: {},
+    panelSize: 'default',
+  });
+  const [isSuggestOpen, setIsSuggestOpen] = useState(false);
+  const [topBarValue, setTopBarValue] = useState('');
+  const setPanelSize = useCallback(
+    panelSize => {
+      setPanelOptions({ ...panelOptions, panelSize });
+    },
+    [panelOptions]
+  );
+
+  const mainSearchInputRef = useRef(null);
+
+  // Telemetry
+  useEffect(() => {
+    window.times.appRendered = Date.now();
+
     const initialUrlPathName = window.location.pathname;
     const initialQueryParams = parseQueryString(window.location.search);
-    this.initRouter();
 
     Telemetry.add(Telemetry.APP_START, {
       language: window.getLang(),
-      is_mobile: isMobileDevice(),
+      is_mobile: isMobile,
       url_pathname: initialUrlPathName,
       url_client: initialQueryParams['client'] || null,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // Disable ESlint plugin so we don't need to add 'isMobile' as effect dependency,
+  // to prevent sending the event again if the user resizes the app
 
-    window.times.appRendered = Date.now();
-
-    listen('map_user_interaction', () => {
-      if (isMobileDevice() && this.state.panelSize !== 'minimized') {
-        this.setState({ panelSize: 'minimized' });
-      }
-      fire('restart_idle_timeout');
-    });
-  }
-
-  componentDidUpdate(_prevProps, prevState) {
-    const { ActivePanel, options } = this.state;
-
-    if (prevState.ActivePanel !== ActivePanel || prevState.options !== options) {
-      // Not in a "list of PoI" context (options.poiFilters is null)
-      if (isNullOrEmpty(options?.poiFilters)) {
-        // Markers are not persistent
-        fire('remove_category_markers');
-      }
-
-      // Handle search bar's style and text content
-      this.updateSearchBarContent(options);
+  // Panel auto-minimization on mobile
+  useEffect(() => {
+    if (isMobile) {
+      const minimizePanelOnMapInteraction = listen('map_user_interaction', () => {
+        if (panelOptions.panelSize !== 'minimized') {
+          setPanelSize('minimized');
+        }
+        fire('restart_idle_timeout');
+      });
+      return () => {
+        unListen(minimizePanelOnMapInteraction);
+      };
     }
-  }
+  }, [isMobile, panelOptions.panelSize, setPanelSize]);
 
-  updateSearchBarContent({ poiFilters = {}, poi = {}, query } = {}) {
-    let appInputValue = '';
-    if (poi.name) {
-      appInputValue = poi.name;
-    } else if (poiFilters.category) {
-      const categoryLabel = CategoryService.getCategoryByName(poiFilters.category)?.getInputValue();
-      appInputValue = categoryLabel;
-    } else if (poiFilters.query) {
-      appInputValue = poiFilters.query;
-    } else if (query) {
-      appInputValue = query;
-    } else {
-      appInputValue = '';
-    }
-    this.setState({ appInputValue, userInputValue: '' });
-  }
-
-  setUserInputValue = value => {
-    this.setState({ userInputValue: value, appInputValue: '' });
-  };
-
-  backToList(e, poiFilters) {
-    e.stopPropagation();
-    const queryObject = {};
-    const mappingParams = {
-      query: 'q',
-      category: 'type',
-    };
-
-    for (const name in poiFilters) {
-      if (!poiFilters[name]) {
-        continue;
-      }
-      const key = mappingParams[name];
-      queryObject[key || name] = poiFilters[name];
-    }
-
-    const params = buildQueryString(queryObject);
-    const uri = `/places/${params}`;
-
-    Telemetry.add(Telemetry.POI_BACKTOLIST);
-    fire('restore_location');
-    window.app.navigateTo(uri);
-  }
-
-  backToFavorite(e) {
-    e.stopPropagation();
-    Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-    window.app.navigateTo('/favs');
-  }
-
-  initRouter() {
-    const router = this.props.router;
-
+  // Definition of url routes to panels
+  useEffect(() => {
     router.addRoute('Category', '/places/(.*)', placesParams => {
       const { type: category, q: query, ...otherOptions } = parseQueryString(placesParams);
-      this.setState({
+      setPanelOptions({
         ActivePanel: CategoryPanel,
         options: {
           poiFilters: {
@@ -143,17 +95,17 @@ export default class PanelManager extends React.Component {
       });
     });
 
-    router.addRoute('noresult', '/noresult(?:/?)(.*)', (routeParams, options) => {
+    router.addRoute('noresult', '/noresult', (routeParams, options) => {
       const { q: query } = parseQueryString(routeParams);
-      this.setState({
+      setPanelOptions({
         ActivePanel: NoResultPanel,
         panelSize: 'default',
         options: {
           ...options,
           query,
           resetInput: () => {
-            this.setState({ appInputValue: '' });
-            this.mainSearchInputRef.current.select();
+            setTopBarValue('');
+            mainSearchInputRef.current.select();
           },
         },
       });
@@ -163,21 +115,21 @@ export default class PanelManager extends React.Component {
       const [poi, params] = urlPart.split('?');
       const { q: query } = parseQueryString(params);
       const poiId = poi.split('@')[0];
-      this.setState({
+      setPanelOptions({
         ActivePanel: PoiPanel,
         options: {
           ...options,
           query,
           poiId,
-          backToList: this.backToList,
-          backToFavorite: this.backToFavorite,
+          backToList,
+          backToFavorite,
         },
         panelSize: 'default',
       });
     });
 
     router.addRoute('Favorites', '/favs', () => {
-      this.setState({
+      setPanelOptions({
         ActivePanel: FavoritesPanel,
         options: {},
         panelSize: 'default',
@@ -193,7 +145,7 @@ export default class PanelManager extends React.Component {
         const params = parseQueryString(routeParams);
         params.details = params.details === 'true';
         params.activeRouteId = Number(params.selected) || 0;
-        this.setState({
+        setPanelOptions({
           ActivePanel: DirectionPanel,
           options: { ...params, ...options, isPublicTransportActive },
           panelSize: 'default',
@@ -203,38 +155,58 @@ export default class PanelManager extends React.Component {
 
     // Default matching route
     router.addRoute('Services', '/?', (_, options = {}) => {
-      this.setState({
+      setPanelOptions({
         ActivePanel: ServicePanel,
         options,
         panelSize: 'default',
       });
       if (options?.focusSearch) {
-        this.mainSearchInputRef.current.select();
+        mainSearchInputRef.current.select();
       }
     });
 
     // Route the initial URL
-    return router.routeUrl(getCurrentUrl(), window.history.state || {});
-  }
+    router.routeUrl(getCurrentUrl(), window.history.state || {});
+  }, [router, directionConf]);
 
-  setPanelSize = panelSize => {
-    this.setState({ panelSize });
-  };
+  // Effects on panel change
+  useEffect(() => {
+    setTopBarValue(getTopBarAppValue(panelOptions.options));
 
-  setSuggestOpen = isOpen => {
-    if (this.state.isSuggestOpen !== isOpen) {
-      this.setState({ isSuggestOpen: isOpen });
+    // Not in a "list of PoI" context (options.poiFilters is null)
+    if (isNullOrEmpty(panelOptions.options?.poiFilters)) {
+      // Markers are not persistent
+      fire('remove_category_markers');
     }
+  }, [panelOptions.ActivePanel, panelOptions.options]);
+
+  const backToList = (e, poiFilters) => {
+    e.stopPropagation();
+    const { query, category, ...rest } = poiFilters;
+    const queryObject = {
+      q: query,
+      type: category,
+      ...rest,
+    };
+
+    Telemetry.add(Telemetry.POI_BACKTOLIST);
+    fire('restore_location');
+    window.app.navigateTo(`/places/${buildQueryString(queryObject)}`);
   };
 
-  getTopBarReturnAction = () => {
-    const { poi, poiFilters = {}, isFromFavorite } = this.state.options;
+  const backToFavorite = e => {
+    e.stopPropagation();
+    Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
+    window.app.navigateTo('/favs');
+  };
+
+  const getTopBarReturnAction = () => {
+    const { poi, poiFilters = {}, isFromFavorite } = panelOptions.options;
     if (poi?.name && (poiFilters?.category || poiFilters?.query || isFromFavorite)) {
-      const backAction =
-        poiFilters.category || poiFilters.query ? this.backToList : this.backToFavorite;
+      const backAction = poiFilters.category || poiFilters.query ? backToList : backToFavorite;
       // use the mousedown event so it's triggered before the blur event on the suggest
       return event => {
-        if (this.state.isSuggestOpen) {
+        if (isSuggestOpen) {
           return;
         }
         backAction(event, poiFilters);
@@ -243,38 +215,34 @@ export default class PanelManager extends React.Component {
     return null;
   };
 
-  render() {
-    const {
-      ActivePanel,
-      options,
-      panelSize,
-      isSuggestOpen,
-      appInputValue,
-      userInputValue,
-    } = this.state;
+  const { ActivePanel, options, panelSize } = panelOptions;
+  const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && !topBarValue);
 
-    const isPanelVisible = !isSuggestOpen || (ActivePanel === ServicePanel && !userInputValue);
+  return (
+    <div>
+      <TopBar
+        value={topBarValue}
+        setUserInputValue={setTopBarValue}
+        ref={mainSearchInputRef}
+        onSuggestToggle={setIsSuggestOpen}
+        backButtonAction={getTopBarReturnAction()}
+      />
+      <PanelContext.Provider value={{ size: panelSize, setSize: setPanelSize }}>
+        {/*
+          The panel container is made hidden using "display: none;" to avoid unnecessary
+          mounts and unmounts of the ActivePanel, that would have inappropriate side effects
+          on map markers, requests to server, etc.
+        */}
+        <div className="panel_container" style={{ display: !isPanelVisible ? 'none' : null }}>
+          <ActivePanel {...options} />
+        </div>
+      </PanelContext.Provider>
+    </div>
+  );
+};
 
-    return (
-      <div>
-        <TopBar
-          value={appInputValue || userInputValue}
-          setUserInputValue={this.setUserInputValue}
-          ref={this.mainSearchInputRef}
-          onSuggestToggle={this.setSuggestOpen}
-          backButtonAction={this.getTopBarReturnAction()}
-        />
-        <PanelContext.Provider value={{ size: panelSize, setSize: this.setPanelSize }}>
-          {/*
-            The panel container is made hidden using "display: none;" to avoid unnecessary
-            mounts and unmounts of the ActivePanel, that would have inappropriate side effects
-            on map markers, requests to server, etc.
-          */}
-          <div className="panel_container" style={{ display: !isPanelVisible ? 'none' : null }}>
-            <ActivePanel {...options} />
-          </div>
-        </PanelContext.Provider>
-      </div>
-    );
-  }
-}
+PanelManager.propTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+export default PanelManager;
