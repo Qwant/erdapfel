@@ -1,45 +1,49 @@
-/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Text, Meter } from 'src/components/ui';
 import { GREEN_BASE, ORANGE_BASE, RED_BASE } from 'src/libs/colors';
+import { useI18n } from 'src/hooks';
 
-const containerTypes = type => {
+const Container = ({ type, filling_level, updated_at }) => {
+  const { locale, _ } = useI18n();
+
+  const containerTypes = type => {
+    return (
+      {
+        glass: _('Glass', 'recycling'),
+        recyclable: _('Recyclable', 'recycling'),
+      }[type] || _('Unknown', 'recycling')
+    );
+  };
+
   return (
-    {
-      glass: _('Glass', 'recycling'),
-      recyclable: _('Recyclable', 'recycling'),
-    }[type] || _('Unknown', 'recycling')
+    <div className="recycling-container">
+      <Text level="caption" icon="icon_clock" className="u-mb-xs">
+        {_('Updated {datetime}', 'recycling', {
+          datetime: Intl.DateTimeFormat(locale.replace('_', '-'), {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+          }).format(new Date(updated_at)),
+        })}
+      </Text>
+      <Flex justifyContent="space-between">
+        <Text level="smallTitle">{containerTypes(type)}</Text>
+        <Text>{filling_level} %</Text>
+      </Flex>
+      <Meter
+        value={filling_level}
+        colors={[
+          { min: 0, color: GREEN_BASE },
+          { min: 50, color: ORANGE_BASE },
+          { min: 75, color: RED_BASE },
+        ]}
+      />
+    </div>
   );
 };
-
-const Container = ({ type, filling_level, updated_at }) => (
-  <div className="recycling-container">
-    <Text level="caption" icon="icon_clock" className="u-mb-xs">
-      {_('Updated {datetime}', 'recycling', {
-        datetime: Intl.DateTimeFormat(window.getLang().locale.replace('_', '-'), {
-          year: 'numeric',
-          month: 'numeric',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-        }).format(new Date(updated_at)),
-      })}
-    </Text>
-    <Flex justifyContent="space-between">
-      <Text level="smallTitle">{containerTypes(type)}</Text>
-      <Text>{filling_level} %</Text>
-    </Flex>
-    <Meter
-      value={filling_level}
-      colors={[
-        { min: 0, color: GREEN_BASE },
-        { min: 50, color: ORANGE_BASE },
-        { min: 75, color: RED_BASE },
-      ]}
-    />
-  </div>
-);
 
 const RecyclingBlock = ({ block }) => {
   const containers = block?.containers;
