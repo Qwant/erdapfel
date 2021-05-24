@@ -51,7 +51,7 @@ const Suggest = ({
       currentQuery = query;
 
       query
-        .then(suggestions => modifyList(suggestions, withGeoloc && value === '', value, source))
+        .then(suggestions => modifyList(suggestions, withGeoloc && value === '', value))
         .then(items => {
           setItems(items);
           currentQuery = null;
