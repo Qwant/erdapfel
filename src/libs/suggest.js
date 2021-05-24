@@ -35,7 +35,7 @@ export const selectItem = (selectedItem, { query, replaceUrl = false } = {}) => 
     window.app.navigateTo(`/places/${selectedItem.toQueryString()}`, {}, { replace: replaceUrl });
   } else if (!selectedItem) {
     // No result
-    window.app.navigateTo('/noresult', { query }, { replace: replaceUrl });
+    window.app.navigateTo(`/noresult/?q=${query}`, {}, { replace: replaceUrl });
   }
 };
 

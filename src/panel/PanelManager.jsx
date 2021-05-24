@@ -143,12 +143,14 @@ export default class PanelManager extends React.Component {
       });
     });
 
-    router.addRoute('noresult', '/noresult', (_, options) => {
+    router.addRoute('noresult', '/noresult(?:/?)(.*)', (routeParams, options) => {
+      const { q: query } = parseQueryString(routeParams);
       this.setState({
         ActivePanel: NoResultPanel,
         panelSize: 'default',
         options: {
           ...options,
+          query,
           resetInput: () => {
             this.setState({ appInputValue: '' });
             this.mainSearchInputRef.current.select();
@@ -157,12 +159,15 @@ export default class PanelManager extends React.Component {
       });
     });
 
-    router.addRoute('POI', '/place/([^?]+)', async (poiUrl, options = {}) => {
-      const poiId = poiUrl.split('@')[0];
+    router.addRoute('POI', '/place/(.*)', async (urlPart, options = {}) => {
+      const [poi, params] = urlPart.split('?');
+      const { q: query } = parseQueryString(params);
+      const poiId = poi.split('@')[0];
       this.setState({
         ActivePanel: PoiPanel,
         options: {
           ...options,
+          query,
           poiId,
           backToList: this.backToList,
           backToFavorite: this.backToFavorite,
