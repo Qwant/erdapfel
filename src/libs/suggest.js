@@ -66,19 +66,14 @@ export const fetchSuggests = (query, options = {}) =>
     maxFavorites: options.maxFavorites ?? (!query ? 5 : 2),
   });
 
-export const modifyList = (items, withGeoloc, query, source) => {
+export const modifyList = (items, withGeoloc, query) => {
   if (withGeoloc) {
     items.splice(0, 0, NavigatorGeolocalisationPoi.getInstance());
   }
 
   if (query.length > 0 && (items.length === 0 || (items.length === 1 && withGeoloc))) {
     items.push({
-      errorLabel: _(
-        source === 'direction'
-          ? 'Oops, we lost the path 🧭'
-          : 'Sorry, we could not find this place 🏝',
-        'suggest'
-      ),
+      errorLabel: _('Sorry, we could not find this place 🏝', 'suggest'),
     });
   }
 

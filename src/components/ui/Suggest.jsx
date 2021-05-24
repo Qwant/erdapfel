@@ -134,7 +134,6 @@ Suggest.propTypes = {
   onSelect: func.isRequired,
   onToggle: func,
   className: string,
-  source: string,
 };
 
 export default Suggest;

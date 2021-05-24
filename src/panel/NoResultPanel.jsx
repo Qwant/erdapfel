@@ -14,13 +14,8 @@ const NoResultPanel = ({ resetInput }) => {
   return (
     <Panel close={close}>
       <div style={{ padding: '16px 16px 32px 16px' }}>
-        <p className="u-mb-xs u-text--smallTitle">{_('No results found.')}</p>
-        <p className="u-text--subtitle u-mb-l">
-          {_('Check the spelling of your search or add more details, such as city or country.')}
-        </p>
-        <a onClick={tryNewSearch} href="#">
-          {_('Try a new search query')}
-        </a>
+        <NoResultMessage />
+        <a href="#">{_('Add a missing place on the map', 'suggest')}</a>
       </div>
     </Panel>
   );

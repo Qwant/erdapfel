@@ -78,16 +78,14 @@ const PoiItem = ({ poi }) => {
 
 const ErrorLabel = ({ label }) => (
   <div className="autocomplete_error">
-    <div className="autocomplete_error_title">{label}</div>
-    <div className="autocomplete_error_description">
+    <p className="u-mb-xs u-text--smallTitle">{label}</p>
+    <p className="u-text--subtitle u-mb-l">
       {_(
         'Please try to correct your query or rewrite it with more details about the location (city, country, ...)',
         'suggest'
       )}
-    </div>
-    <a className="autocomplete_error_link" href="#">
-      {_('Add a missing place on the map', 'suggest')}
-    </a>
+    </p>
+    <a href="#">{_('Try a new search query', 'suggest')}</a>
   </div>
 );
 
