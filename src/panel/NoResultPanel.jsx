@@ -10,7 +10,9 @@ const NoResultPanel = () => {
     <Panel close={close}>
       <div style={{ padding: '16px 16px 32px 16px' }}>
         <NoResultMessage />
-        <a href="#">{_('Add a missing place on the map', 'suggest')}</a>
+        <p className="u-center">
+          <a href="#">{_('Add a missing place on the map', 'suggest')}</a>
+        </p>
       </div>
     </Panel>
   );
