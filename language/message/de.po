@@ -208,7 +208,7 @@ msgstr ""
 msgid "Ok, I've got it"
 msgstr "Ok, verstanden!"
 
-msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰"
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr "Standortbestimmung nicht verfügbar."
 
 msgid ""

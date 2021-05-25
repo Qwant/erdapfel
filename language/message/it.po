@@ -205,7 +205,7 @@ msgstr "Abilita la geolocalizzazione per avere migliori indicazioni"
 msgid "Ok, I've got it"
 msgstr "Ok, capito."
 
-msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰"
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr "Geolocalizzazione non disponibile"
 
 msgid ""

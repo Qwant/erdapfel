@@ -204,7 +204,7 @@ msgstr "Enaouit ho touarlec'hiañ evit kaout tuadurioù gwelloc'h"
 msgid "Ok, I've got it"
 msgstr "Mat eo, deuet eo ganin"
 
-msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰"
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr "Douarlec'hiañ dihegerz"
 
 msgid ""

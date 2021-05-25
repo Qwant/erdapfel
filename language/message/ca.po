@@ -204,7 +204,7 @@ msgstr "Activa la teva geolocalització per obtenir millors indicacions"
 msgid "Ok, I've got it"
 msgstr "D'acord, ho tinc"
 
-msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰"
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr "La geolocalització no és disponible."
 
 msgid ""

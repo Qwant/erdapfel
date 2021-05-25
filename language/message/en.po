@@ -880,7 +880,7 @@ msgstr ""
 msgid "Ok, I've got it."
 msgstr ""
 
-msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰"
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr ""
 
 msgid ""

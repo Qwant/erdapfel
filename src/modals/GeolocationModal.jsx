@@ -45,7 +45,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
       className: 'modal__maps__pending',
     },
     DENIED: {
-      title: _('Houston,<br/> we have a (geolocation) problem&nbsp;🛰', 'geolocation'),
+      title: _('Houston,<br/> we have a (geolocation) problem&nbsp;🛰️', 'geolocation'),
       text: _(
         'Allow Qwant Maps to access your position so we can better help you find your way…',
         'geolocation'
@@ -54,7 +54,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
       className: 'modal__maps__denied',
     },
     NOT_ACTIVATED: {
-      title: _('Houston,<br/> we have a (geolocation) problem&nbsp;🛰', 'geolocation'),
+      title: _('Houston,<br/> we have a (geolocation) problem&nbsp;🛰️', 'geolocation'),
       text: _(
         "We can't access your position.<br/> Please check that your geolocation services are enabled."
       ),

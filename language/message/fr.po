@@ -207,8 +207,8 @@ msgstr "Activez votre géolocalisation pour de meilleurs itinéraires"
 msgid "Ok, I've got it"
 msgstr "J'ai compris"
 
-msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰"
-msgstr "Houston,<br/> on a un souci de géolocalisation&nbsp;🛰"
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
+msgstr "Houston,<br/> on a un souci de géolocalisation&nbsp;🛰️"
 
 msgid ""
 "Allow Qwant Maps to access your position so we can better help you find your way…"
