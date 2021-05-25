@@ -41,20 +41,12 @@ const RouteResult = ({
   if (error !== 0) {
     return (
       <div className="itinerary_no-result">
-        <span className="icon-alert-triangle" />
-        <div>
+        <p className="u-mb-xs u-text--smallTitle u-center">{_("Ouch, we've lost the north 🧭")}</p>
+        <p className="u-text--subtitle u-mb-l u-center">
           {error >= 500 && error < 600
             ? _('The service is temporarily unavailable, please try again later.', 'direction')
-            : _('Qwant Maps found no results for this itinerary.', 'direction')}
-        </div>
-        {vehicle === 'publicTransport' && (
-          <div>
-            {_(
-              'We are currently testing public transport mode in a restricted set of cities.',
-              'direction'
-            )}
-          </div>
-        )}
+            : _("We couldn't find any itinerary, we are really sorry.", 'direction')}
+        </p>
       </div>
     );
   }
