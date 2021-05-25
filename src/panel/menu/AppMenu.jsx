@@ -1,4 +1,3 @@
-/* globals _ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
@@ -6,14 +5,11 @@ import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
 import { Heart, IconLightbulb, IconEdit, IconApps } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
-import { useConfig } from 'src/hooks';
+import { useConfig, useI18n } from 'src/hooks';
 
 const AppMenu = ({ close, openProducts }) => {
   const { baseUrl } = useConfig('system');
-  const {
-    contributing,
-    about: { mapsToS },
-  } = useConfig('externalUrls');
+  const { getLocalizedUrl, _ } = useI18n();
 
   const navTo = (url, options) => {
     close();
@@ -34,7 +30,7 @@ const AppMenu = ({ close, openProducts }) => {
         {_('My favorites', 'menu')}
       </MenuItem>
       <MenuItem
-        href={mapsToS}
+        href={getLocalizedUrl('aboutMapsToS')}
         outsideLink
         icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
       >
@@ -45,7 +41,7 @@ const AppMenu = ({ close, openProducts }) => {
         />
       </MenuItem>
       <MenuItem
-        href={contributing}
+        href={getLocalizedUrl('contributing')}
         outsideLink
         icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
       >

@@ -1,9 +1,9 @@
-/* global _ */
 import React, { useState } from 'react';
 import Alert from './ui/Alert';
 import { Button } from './ui';
 import { get, set } from 'src/adapters/store';
 import { parseQueryString } from '../libs/url_utils';
+import { useI18n } from 'src/hooks';
 
 const initialQueryParams = parseQueryString(window.location.search);
 
@@ -15,10 +15,11 @@ const BetaInfoBox = () => {
     set('beta_popup_closed', 1);
     setClosed(true);
   };
+  const { lang, _ } = useI18n();
 
   return (
     // Show beta popup if browser language is not french, if popup hasn't already been closed, and if the user comes from an IA
-    window.getLang().code.indexOf('fr') === -1 &&
+    lang !== 'fr' &&
     !closed &&
     isUserFromSearch && (
       <Alert

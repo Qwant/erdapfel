@@ -1,11 +1,10 @@
-/* globals _ */
 import React from 'react';
 import { Flex } from 'src/components/ui';
-import { useConfig } from 'src/hooks/useConfig';
+import { useI18n } from 'src/hooks';
 import ProductCard from './ProductCard';
 
 const ProductsDrawer = () => {
-  const aboutQwantUrl = useConfig('externalUrls').about.home;
+  const { getLocalizedUrl, _ } = useI18n();
 
   return (
     <>
@@ -45,7 +44,12 @@ const ProductsDrawer = () => {
           }}
         />
       </div>
-      <a href={aboutQwantUrl} target="_blank" rel="noopener noreferrer" className="card u-mb-l">
+      <a
+        href={getLocalizedUrl('aboutHome')}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card u-mb-l"
+      >
         <Flex>
           <div className="u-mr-l">
             <img width="100" height="100" src="./statics/images/products/web-internaute.svg" />
