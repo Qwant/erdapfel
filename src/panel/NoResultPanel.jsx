@@ -14,9 +14,9 @@ const NoResultPanel = ({ resetInput }) => {
 
   return (
     <Panel close={close}>
-      <div style={{ padding: '16px 16px 32px 16px' }}>
+      <div style={{ padding: '20px 34px' }}>
         <NoResultMessage />
-        <p className="u-center">
+        <p className="u-center u-mt-s">
           <a onClick={tryNewSearch} href="#">
             {_('Try a new search query')}
           </a>

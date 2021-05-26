@@ -112,6 +112,9 @@
 }
 
 @each $spacingName, $spacingValue in $spacings {
+  .u-mt-#{$spacingName} {
+    margin-top: $spacingValue;
+  }
   .u-mb-#{$spacingName} {
     margin-bottom: $spacingValue;
   }

@@ -5,7 +5,7 @@ const NoResultMessage = () => {
   return (
     <>
       <p className="u-center u-mb-xs u-text--smallTitle">
-        {_('Sorry, we could not find this place🏝️', 'suggest')}
+        {_('Sorry, we could not find this place 🏝️', 'suggest')}
       </p>
       <p className="u-center u-text--subtitle">
         {_(
