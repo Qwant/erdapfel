@@ -1,3 +1,5 @@
+import { removeNullEntries } from './object';
+
 export function parseMapHash(hash) {
   const mapHash = hash.replace(/^#/, '');
   if (!mapHash.startsWith('map=')) {
@@ -58,12 +60,6 @@ export function toCssUrl(url) {
   const escapedUrl = url.replace(/'/g, "\\'");
   return `url('${escapedUrl}')`;
 }
-
-const removeNullEntries = obj =>
-  Object.keys(obj) // Object.entries is not supported by IE :(
-    .map(key => [key, obj[key]])
-    .filter(([_key, value]) => value !== null && value !== undefined)
-    .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
 
 export function buildQueryString(queriesObject) {
   const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();

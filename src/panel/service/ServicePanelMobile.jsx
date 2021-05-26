@@ -1,5 +1,6 @@
 /* global _ */
 import React, { Fragment } from 'react';
+import { history } from 'src/proxies/app_router';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
 import Action from 'src/components/ui/MainActionButton';
@@ -23,7 +24,7 @@ const ServicePanelMobile = () => {
             <Action
               onClick={() => {
                 Telemetry.add(Telemetry.ITINERARY_MODE_DRIVING);
-                window.app.navigateTo('/routes/?mode=driving');
+                history.push('/routes/?mode=driving');
               }}
               variant="directionMode"
               icon={<VehicleIcon vehicle="driving" fill="currentColor" />}
@@ -33,7 +34,7 @@ const ServicePanelMobile = () => {
               <Action
                 onClick={() => {
                   Telemetry.add(Telemetry.ITINERARY_MODE_PUBLICTRANSPORT);
-                  window.app.navigateTo('/routes/?mode=publicTransport');
+                  history.push('/routes/?mode=publicTransport');
                 }}
                 variant="directionMode"
                 icon={<VehicleIcon vehicle="publicTransport" fill="currentColor" />}
@@ -43,7 +44,7 @@ const ServicePanelMobile = () => {
             <Action
               onClick={() => {
                 Telemetry.add(Telemetry.ITINERARY_MODE_WALKING);
-                window.app.navigateTo('/routes/?mode=walking');
+                history.push('/routes/?mode=walking');
               }}
               variant="directionMode"
               icon={<VehicleIcon vehicle="walking" fill="currentColor" />}
@@ -52,7 +53,7 @@ const ServicePanelMobile = () => {
             <Action
               onClick={() => {
                 Telemetry.add(Telemetry.ITINERARY_MODE_CYCLING);
-                window.app.navigateTo('/routes/?mode=cycling');
+                history.push('/routes/?mode=cycling');
               }}
               variant="directionMode"
               icon={<VehicleIcon vehicle="cycling" fill="currentColor" />}

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { history } from 'src/proxies/app_router';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
@@ -11,11 +12,6 @@ const AppMenu = ({ close, openProducts }) => {
   const { baseUrl } = useConfig('system');
   const { getLocalizedUrl, _ } = useI18n();
 
-  const navTo = (url, options) => {
-    close();
-    window.app.navigateTo(url, options);
-  };
-
   return (
     <div className="menu-items">
       <MenuItem
@@ -23,7 +19,8 @@ const AppMenu = ({ close, openProducts }) => {
         onClick={e => {
           e.preventDefault();
           Telemetry.add(Telemetry.MENU_FAVORITE);
-          navTo('/favs/');
+          close();
+          history.push('/favs/');
         }}
         icon={<IconHeart width={16} fill={PINK_DARK} />}
       >

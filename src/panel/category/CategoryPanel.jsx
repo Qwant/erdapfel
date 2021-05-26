@@ -1,5 +1,6 @@
 /* global _ */
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 
@@ -15,7 +16,7 @@ import { boundsFromFlatArray, parseBboxString, boundsToString } from 'src/libs/b
 import classnames from 'classnames';
 import { sources } from 'config/constants.yml';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
-import { shouldShowBackToQwant } from 'src/libs/url_utils';
+import { shouldShowBackToQwant, parseQueryString } from 'src/libs/url_utils';
 import { Panel, PanelNav, SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
 import { getListDescription } from 'src/libs/poiList';
 
@@ -187,4 +188,10 @@ CategoryPanel.propTypes = {
   bbox: PropTypes.string,
 };
 
-export default CategoryPanel;
+const CategoryPanelWithRouteParams = () => {
+  const { search } = useLocation();
+  const { type, bbox, q } = parseQueryString(search);
+  return <CategoryPanel poiFilters={{ category: type, query: q }} bbox={bbox} />;
+};
+
+export default CategoryPanelWithRouteParams;

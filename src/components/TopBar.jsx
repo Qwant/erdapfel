@@ -1,5 +1,6 @@
 /* global _ */
 import React, { useEffect, useState, useRef } from 'react';
+import { history } from 'src/proxies/app_router';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest, Flex } from 'src/components/ui';
@@ -47,7 +48,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
 
   const onClickDirections = () => {
     Telemetry.add(Telemetry.HOME_ITINERARY);
-    window.app.navigateTo('/routes');
+    history.push('/routes');
   };
 
   const onSelectSuggestion = (item, options) => {
@@ -73,7 +74,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     e.preventDefault(); // Prevent losing focus on input
     Telemetry.add(Telemetry.SUGGEST_CLEAR);
     setUserInputValue('');
-    window.app.navigateTo('/');
+    history.push('/');
   };
 
   // this insures the top bar cannot trigger a whole body scroll on iOS
@@ -100,7 +101,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
         <button
           type="button"
           onClick={() => {
-            window.app.navigateTo('/');
+            history.push('/');
           }}
           className="search_form__logo__button"
           title={_('Qwant Maps Home', 'search bar')}

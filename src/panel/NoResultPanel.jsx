@@ -1,9 +1,10 @@
 /* globals _ */
 import React from 'react';
+import { history } from 'src/proxies/app_router';
 import { Panel } from 'src/components/ui';
 import NoResultMessage from './NoResultMessage';
 
-const close = () => window.app.navigateTo('/');
+const close = () => history.push('/');
 
 const NoResultPanel = ({ resetInput }) => {
   const tryNewSearch = e => {

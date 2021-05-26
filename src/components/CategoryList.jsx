@@ -1,4 +1,5 @@
 import React from 'react';
+import { history } from 'src/proxies/app_router';
 import CategoryService from 'src/adapters/category_service';
 import MainActionButton from 'src/components/ui/MainActionButton';
 import Telemetry from 'src/libs/telemetry';
@@ -6,7 +7,7 @@ import { getLightBackground } from 'src/libs/colors';
 
 const handleCategoryClick = category => {
   Telemetry.add(Telemetry.HOME_CATEGORY, { category: category.name });
-  window.app.navigateTo(`/places/?type=${category.name}`);
+  history.push(`/places/?type=${category.name}`);
 };
 
 const CategoryList = ({ className, limit = Number.MAX_VALUE }) => (

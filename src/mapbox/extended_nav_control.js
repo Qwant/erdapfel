@@ -6,6 +6,7 @@ import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from '../libs/customEvents';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import { IconPlus, IconMinus } from 'src/components/ui/icons';
+import { history } from 'src/proxies/app_router';
 
 export default class ExtendedControl {
   constructor() {
@@ -45,9 +46,7 @@ export default class ExtendedControl {
     });
     this._direction = this._createButton('direction_shortcut hidden', 'direction', () => {
       Telemetry.add(Telemetry.MAP_ITINERARY);
-      this.directionShortcutCallback
-        ? this.directionShortcutCallback()
-        : window.app.navigateTo('/routes'); // default action, if no cb has been set
+      this.directionShortcutCallback ? this.directionShortcutCallback() : history.push('/routes'); // default action, if no cb has been set
     });
 
     this._compassIndicator = this._createIcon('map_control__compass__icon');

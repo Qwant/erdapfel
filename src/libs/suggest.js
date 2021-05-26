@@ -1,5 +1,5 @@
 import nconf from '@qwant/nconf-getter';
-
+import { history } from 'src/proxies/app_router';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Poi from 'src/adapters/poi/poi';
 import Category from 'src/adapters/category';
@@ -12,18 +12,15 @@ const geocoderConfig = nconf.get().services.geocoder;
 const SUGGEST_MAX_ITEMS = geocoderConfig.maxItems;
 
 export const selectItem = (selectedItem, { query, replaceUrl = false } = {}) => {
+  const navTo = replaceUrl ? history.replace : history.push;
   if (selectedItem instanceof Poi) {
-    window.app.navigateTo(
-      `/place/${toUrl(selectedItem)}`,
-      {
-        poi: selectedItem,
-        centerMap: true,
-        query,
-      },
-      { replace: replaceUrl }
-    );
+    navTo(`/place/${toUrl(selectedItem)}`, {
+      poi: selectedItem,
+      centerMap: true,
+      query,
+    });
   } else if (selectedItem instanceof Category) {
-    window.app.navigateTo(`/places/?type=${selectedItem.name}`, {}, { replace: replaceUrl });
+    navTo(`/places/?type=${selectedItem.name}`, {});
   } else if (selectedItem instanceof Intention) {
     Telemetry.add(Telemetry.SUGGEST_SELECTION, {
       item: 'intention',
@@ -31,10 +28,9 @@ export const selectItem = (selectedItem, { query, replaceUrl = false } = {}) => 
       has_full_text_query: !!selectedItem.fullTextQuery,
       has_place: !!selectedItem.place,
     });
-    window.app.navigateTo(`/places/${selectedItem.toQueryString()}`, {}, { replace: replaceUrl });
+    navTo(`/places/${selectedItem.toQueryString()}`, {});
   } else if (!selectedItem) {
-    // No result
-    window.app.navigateTo(`/noresult/?q=${query}`, {}, { replace: replaceUrl });
+    navTo(`/noresult/?q=${query}`);
   }
 };
 

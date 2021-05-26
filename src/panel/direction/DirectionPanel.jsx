@@ -1,5 +1,7 @@
 /* globals _ */
 import React, { Fragment } from 'react';
+import { useLocation } from 'react-router-dom';
+import { history, navigateBack } from 'src/proxies/app_router';
 import PropTypes from 'prop-types';
 import { Panel } from 'src/components/ui';
 import DirectionForm from './DirectionForm';
@@ -22,7 +24,7 @@ import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import ShareMenu from 'src/components/ui/ShareMenu';
-import { updateQueryString } from 'src/libs/url_utils';
+import { updateQueryString, parseQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
 import { usePageTitle } from 'src/hooks';
@@ -252,9 +254,9 @@ class DirectionPanel extends React.Component {
       pt: this.props.isPublicTransportActive ? 'true' : null,
       ...params,
     });
-    const relativeUrl = 'routes/' + search;
-
-    window.app.navigateTo(relativeUrl, window.history.state, { replace });
+    const relativeUrl = '/routes/' + search;
+    const navTo = replace ? history.replace : history.push;
+    navTo(relativeUrl, history.state, { replace });
   }
 
   update() {
@@ -274,8 +276,8 @@ class DirectionPanel extends React.Component {
     } else {
       Telemetry.add(Telemetry.ITINERARY_CLOSE);
       this.props.poi
-        ? window.history.back() // Go back to the poi panel
-        : window.app.navigateTo('/');
+        ? history.goBack() // Go back to the poi panel
+        : history.push('/');
     }
   };
 
@@ -346,7 +348,7 @@ class DirectionPanel extends React.Component {
   toggleDetails() {
     if (isMobileDevice()) {
       if (this.props.details) {
-        window.app.navigateBack({
+        navigateBack({
           relativeUrl: 'routes/' + updateQueryString({ details: false }),
         });
       } else {
@@ -523,9 +525,14 @@ class DirectionPanel extends React.Component {
 
 DirectionPanel.contextType = PanelContext;
 
-const DirectionPanelFunc = props => {
+const DirectionPanelWithRouteParams = () => {
   usePageTitle(_('Directions'));
+  const { search, state } = useLocation();
+  const params = parseQueryString(search);
+  params.details = params.details === 'true';
+  params.activeRouteId = Number(params.selected) || 0;
+  const props = { ...params, ...state };
   return <DirectionPanel {...props} />;
 };
 
-export default DirectionPanelFunc;
+export default DirectionPanelWithRouteParams;

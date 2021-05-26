@@ -1,4 +1,6 @@
 import React, { useEffect, useContext } from 'react';
+import { history } from 'src/proxies/app_router';
+import { useLocation, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
@@ -81,8 +83,14 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
     loadPoi();
   }, [poi, poiId, setActivePoi]);
 
+  const openDirection = () => {
+    const poi = this.getBestPoi();
+    Telemetry.sendPoiEvent(poi, 'itinerary');
+    history.push('/routes/', { poi });
+  };
+
   const closeAction = () => {
-    window.app.navigateTo('/');
+    history.push('/');
   };
 
   const onBack = backAction || closeAction;
@@ -137,4 +145,17 @@ PoiPanel.propTypes = {
   centerMap: PropTypes.bool,
 };
 
-export default PoiPanel;
+const PoiPanelWithRouteParams = ({ backToList, backToFavorite }) => {
+  const { state } = useLocation();
+  const { poiId } = useParams();
+  const options = {
+    ...state,
+    poiId,
+    backToList,
+    backToFavorite,
+  };
+
+  return <PoiPanel {...options} />;
+};
+
+export default PoiPanelWithRouteParams;
