@@ -1,4 +1,3 @@
-/* global _ */
 import nconf from '@qwant/nconf-getter';
 
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
@@ -72,7 +71,9 @@ export const modifyList = (items, withGeoloc, query) => {
   }
 
   if (query.length > 0 && (items.length === 0 || (items.length === 1 && withGeoloc))) {
-    items.push({ errorLabel: _('No result found', 'suggest') });
+    items.push({
+      errorLabel: true,
+    });
   }
 
   return items;
