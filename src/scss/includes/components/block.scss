@@ -1,12 +1,12 @@
 .block {
   display: flex;
-  padding: 10px 12px;
+  padding: $spacing-xs $spacing-s;
   width: 100%;
 
   &-icon {
     font-size: 20px;
-    margin-top: 8px;
-    margin-right: 12px;
+    margin-top: $spacing-xs;
+    margin-right: $spacing-s;
     color: $action-blue-base;
   }
 
@@ -25,6 +25,6 @@
   }
 
   @media (min-width: 641px) {
-    padding: 10px 14px;
+    padding: $spacing-xs $spacing-m;
   }
 }
