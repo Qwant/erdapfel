@@ -42,11 +42,10 @@ test('display details about the poi on a poi click', async () => {
   });
   expect(infoTitle.trim()).toEqual('');
 
-  const { address, contact, contactUrl, phone, website } = await page.evaluate(() => {
+  const { address, contact, phone, website } = await page.evaluate(() => {
     return {
       address: document.querySelector('.block-address .block-value').innerText,
-      contact: document.querySelector('.block-contact-link').innerText,
-      contactUrl: document.querySelector('.block-contact-link').href,
+      contact: document.querySelector('.block-contact').innerText,
       phone: document.querySelector('.block-phone').innerText,
       website: document.querySelector('.block-website').innerText,
     };
@@ -55,7 +54,6 @@ test('display details about the poi on a poi click', async () => {
   expect(await exists(page, '.poi_panel .openingHour--closed')).toBeTruthy();
   expect(phone).toMatch('01 40 49 48 14');
   expect(website).toMatch('www.musee-orsay.fr');
-  expect(contactUrl).toMatch('mailto:admin@orsay.fr');
   expect(contact).toMatch('admin@orsay.fr');
   expect(await exists(page, '.poi_panel__info__wiki')).toBeTruthy();
 });
