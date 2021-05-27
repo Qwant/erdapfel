@@ -1,6 +1,6 @@
 .block {
   display: flex;
-  padding: 10px 0;
+  padding: 10px 12px;
   width: 100%;
 
   &-icon {
@@ -13,5 +13,18 @@
   &-content {
     width: 100%;
     min-width: 0;
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $grey-bright;
+      text-decoration: none;
+    }
+  }
+
+  @media (min-width: 641px) {
+    padding: 10px 14px;
   }
 }

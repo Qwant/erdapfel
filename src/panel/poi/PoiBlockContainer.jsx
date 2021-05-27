@@ -57,17 +57,19 @@ const PoiBlockContainer = ({ poi, covid19Enabled }) => {
           <h3 className="u-text--smallTitle">{_('Information')}</h3>
         </>
       )}
-      {hasAddressBlock && (
-        <Block className="block-address" icon="map-pin" title={_('address')}>
-          <Address inline address={poi.address} omitCountry />
-        </Block>
-      )}
-      {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
-      {phoneBlock && <PhoneBlock block={phoneBlock} />}
-      {websiteBlock && <WebsiteBlock block={websiteBlock} poi={poi} />}
-      {informationBlock && <InformationBlock block={informationBlock} />}
-      {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
-      {contactBlock && <ContactBlock block={contactBlock} />}
+      <div className="poi_panel__fullWidth">
+        {hasAddressBlock && (
+          <Block className="block-address" icon="map-pin" title={_('address')}>
+            <Address inline address={poi.address} omitCountry />
+          </Block>
+        )}
+        {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
+        {phoneBlock && <PhoneBlock block={phoneBlock} poi={poi} />}
+        {websiteBlock && <WebsiteBlock block={websiteBlock} poi={poi} />}
+        {informationBlock && <InformationBlock block={informationBlock} />}
+        {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
+        {contactBlock && <ContactBlock block={contactBlock} />}
+      </div>
       {imagesBlock && (
         <>
           <Divider />

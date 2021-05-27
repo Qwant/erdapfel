@@ -16,7 +16,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   padding: $spacing-l 14px 0;
   position: relative;
 
-  .poi_panel__fullWidthDivider {
+  .poi_panel__fullWidth {
     margin-left: -14px;
     margin-right: -14px;
   }
@@ -211,7 +211,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .poi_panel__content {
     padding: 0 $spacing-s;
 
-    .poi_panel__fullWidthDivider {
+    .poi_panel__fullWidth {
       margin-left: -$spacing-s;
       margin-right: -$spacing-s;
     }

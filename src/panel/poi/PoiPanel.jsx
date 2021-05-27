@@ -274,7 +274,7 @@ export default class PoiPanel extends React.Component {
                   </div>
                 )}
                 {isFromOSM(poi) && <OsmContribution poi={poi} />}
-                <Divider paddingTop={0} className="poi_panel__fullWidthDivider" />
+                <Divider paddingTop={0} className="poi_panel__fullWidth" />
                 <h3 className="u-text--smallTitle u-mb-s">
                   {_('Search around this place', 'poi')}
                 </h3>
