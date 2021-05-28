@@ -103,6 +103,9 @@ const Suggest = ({
   };
 
   useEffect(() => {
+    // If available we use the Visual Viewport API, which informs about the visible page area,
+    // in particular taking the virtual keyboard into account.
+    // See https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API
     if (isMobile && dropdownVisible && window.visualViewport) {
       const TOP_BAR_HEIGHT = 60;
       // visualViewport.height is the real visible height, not including the virtual keyboard.
