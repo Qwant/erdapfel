@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
-import { Heart, IconLightbulb, IconEdit, IconApps } from 'src/components/ui/icons';
+import { Heart, IconLightbulb, IconEdit, IconApps, IconBug } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
 import { useConfig, useI18n } from 'src/hooks';
 
@@ -47,6 +47,14 @@ const AppMenu = ({ close, openProducts }) => {
       >
         {_('How to contribute', 'menu')}
       </MenuItem>
+      <MenuItem
+        href={getLocalizedUrl('reportBug')}
+        outsideLink
+        icon={<IconBug width={16} fill={ACTION_BLUE_BASE} />}
+      >
+        {_('Report a bug', 'menu')}
+      </MenuItem>
+
       {openProducts && (
         <>
           <Divider />

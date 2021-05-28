@@ -12,6 +12,7 @@ export { default as IconThumbUp } from '../../../public/images/remix/thumb-up-li
 export { default as IconThumbDown } from '../../../public/images/remix/thumb-down-line.svg';
 export { default as IconCalendar } from '../../../public/images/remix/calendar-2-line.svg';
 export { default as IconFileList } from '../../../public/images/remix/file-list-2-line.svg';
+export { default as IconBug } from '../../../public/images/remix/bug-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';
