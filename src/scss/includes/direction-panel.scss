@@ -36,6 +36,8 @@
       position: fixed;
       top: 64px;
       width: 100vw;
+      background-color: $background;
+      overflow-y: auto;
     }
   }
 

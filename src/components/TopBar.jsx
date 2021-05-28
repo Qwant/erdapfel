@@ -11,6 +11,7 @@ import { selectItem, fetchSuggests } from 'src/libs/suggest';
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
 const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButtonAction }) => {
+  const barElement = useRef(null);
   const suggestElement = useRef(null);
   const [focused, setFocused] = useState(false);
   const { isMobile } = useDevice();
@@ -73,6 +74,18 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     window.app.navigateTo('/');
   };
 
+  // this insures the top bar cannot trigger a whole body scroll on iOS
+  useEffect(() => {
+    if (isMobile) {
+      const bar = barElement.current;
+      const cancelTouchScroll = e => e.preventDefault();
+      bar.addEventListener('touchmove', cancelTouchScroll);
+      return () => {
+        bar.removeEventListener('touchmove', cancelTouchScroll);
+      };
+    }
+  }, [isMobile, barElement]);
+
   return (
     <div
       className={cx('top_bar', {
@@ -81,7 +94,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
         ['top_bar--back_action']: !!backButtonAction,
       })}
     >
-      <form onSubmit={() => false} noValidate className="search_form">
+      <form onSubmit={() => false} noValidate className="search_form" ref={barElement}>
         <button
           type="button"
           onClick={() => {

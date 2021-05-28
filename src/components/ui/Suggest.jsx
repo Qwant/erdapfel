@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
-
+import { useDevice } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 
@@ -25,6 +25,7 @@ const Suggest = ({
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
   const dropdownVisible = hasFocus && isOpen && outputNode;
+  const { isMobile } = useDevice();
 
   const close = () => {
     setIsOpen(false);
@@ -100,6 +101,39 @@ const Suggest = ({
         );
     }
   };
+
+  useEffect(() => {
+    // If available we use the Visual Viewport API, which informs about the visible page area,
+    // in particular taking the virtual keyboard into account.
+    // See https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API
+    if (isMobile && dropdownVisible && window.visualViewport) {
+      const setDropdownFixedHeight = () => {
+        const TOP_BAR_HEIGHT = 60;
+        // visualViewport.height is the real visible height, not including the virtual keyboard.
+        // Giving a fixed height to the container makes the content scrollable
+        outputNode.style.height = window.visualViewport.height - TOP_BAR_HEIGHT + 'px';
+      };
+      setDropdownFixedHeight();
+      visualViewport.addEventListener('resize', setDropdownFixedHeight);
+
+      const suggestions = document.querySelector('.autocomplete_suggestions');
+      const cancelTouchScrollIfNotOverflow = e => {
+        const hasOverflow =
+          suggestions &&
+          suggestions.getBoundingClientRect().height > outputNode.getBoundingClientRect().height;
+        if (!hasOverflow) {
+          e.preventDefault();
+        }
+      };
+      outputNode.addEventListener('touchmove', cancelTouchScrollIfNotOverflow);
+
+      return () => {
+        outputNode.style.height = 'auto';
+        visualViewport.removeEventListener('resize', setDropdownFixedHeight);
+        outputNode.removeEventListener('touchmove', cancelTouchScrollIfNotOverflow);
+      };
+    }
+  }, [isMobile, items, dropdownVisible, outputNode]);
 
   return (
     <>
