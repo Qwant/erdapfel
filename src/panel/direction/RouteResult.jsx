@@ -41,7 +41,10 @@ const RouteResult = ({
   if (error !== 0) {
     return (
       <div className="itinerary_no-result">
-        <p className="u-mb-xs u-text--smallTitle u-center">{_("Ouch, we've lost the north 🧭")}</p>
+        <p
+          className="u-mb-xs u-text--smallTitle u-center"
+          dangerouslySetInnerHTML={{ __html: _("Ouch, we've lost the north&nbsp;🧭") }}
+        />
         <p className="u-text--subtitle u-mb-l u-center">
           {error >= 500 && error < 600
             ? _('The service is temporarily unavailable, please try again later.', 'direction')
