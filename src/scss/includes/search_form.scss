@@ -222,7 +222,7 @@ input[type="search"] {
 
   .search_form__result {
     background-color: $background;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   $formWidthTransitionDuration: .3s;
