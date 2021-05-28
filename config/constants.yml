@@ -39,9 +39,15 @@ localizedUrls:
     aboutPrivacy: https://about.qwant.com/legal/privacy
     aboutMapsToS: https://about.qwant.com/legal/terms-of-service/qwant-maps/
     contributing: https://github.com/Qwant/qwantmaps/blob/master/contributing.md
+    helpGeolocation: https://help.wp-cc.qwant.plive/en/docs/maps/activation-of-geolocation-after-denied-access/
     reportBug: https://about.qwant.com/en/contact#contact
   fr:
+    helpGeolocation: https://help.wp-cc.qwant.plive/docs/maps/activation-de-la-geolocalisation-apres-refus/
     reportBug: https://about.qwant.com/fr/contact#contact
+  de:
+    helpGeolocation: https://help.wp-cc.qwant.plive/de/docs/maps/aktivierung-der-standorterfassung-nach-ablehnung/
+  it:
+    helpGeolocation: https://help.wp-cc.qwant.plive/it/docs/maps/attivazione-della-geolocalizzazione-dopo-il-rifiuto/
 
 # Map
 map:
