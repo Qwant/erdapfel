@@ -2,6 +2,7 @@ const path = require('path');
 const yaml = require('node-yaml');
 const webpack = require('webpack');
 const babelConf = require('./babel.config');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const getBuildMode = function (argv) {
   const isTestMode = process.env.TEST === 'true';
@@ -89,6 +90,18 @@ const mainJsChunkConfig = buildMode => {
         }
       }),
     ],
+    optimization: {
+      minimize: buildMode === 'production',
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            // make sure the `_` translation function keeps its name in the minimized bundle
+            // as it's used by gettext to extract translation keys
+            mangle: { reserved: ['_'] },
+          },
+        }),
+      ],
+    },
     module: {
       rules: [
         {
