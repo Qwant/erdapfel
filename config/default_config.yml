@@ -90,3 +90,6 @@ events:
 covid19:
   enabled: false
   frInformationUrl:  https://www.gouvernement.fr/info-coronavirus
+
+userFeedback:
+  enabled: false
