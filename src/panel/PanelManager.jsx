@@ -37,7 +37,7 @@ const PanelManager = () => {
   const directionConf = useConfig('direction');
   const { isMobile } = useDevice();
   const { activePoi } = useContext(PoiContext);
-  const { history } = useHistory();
+  const history = useHistory();
   const location = useLocation();
   const historyState = getAggregatedHistoryState(location);
 
