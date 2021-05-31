@@ -1,15 +1,15 @@
 # 
 # Translators:
-# Adrien Matissart, 2020
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2021
+# Adrien Matissart, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-01 16:07+0000\n"
+"POT-Creation-Date: 2021-05-28 13:25+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2021\n"
+"Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,35 +28,20 @@ msgstr ""
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
 
-msgid "Unsupported browser"
-msgstr ""
-
 msgid "The map that respects your privacy"
 msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
+
+msgid "JavaScript is required to view this application."
+msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
+
+msgid "Unsupported browser"
+msgstr ""
 
 msgid "Your browser is not supported anymore."
 msgstr ""
 
 msgid "Install one of these browsers to use Qwant Maps."
 msgstr ""
-
-msgid "Qwant Maps Home"
-msgstr "Degemer Qwant Maps"
-
-msgid "Search on Qwant Maps"
-msgstr "Klask war Qwant Maps"
-
-msgid "Clear"
-msgstr "Skarzhañ"
-
-msgid "Search"
-msgstr "Klask"
-
-msgid "Directions"
-msgstr "Tuadurioù"
-
-msgid "JavaScript is required to view this application."
-msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
 
 msgid "restaurant"
 msgstr "predti"
@@ -94,23 +79,233 @@ msgstr "mirdi"
 msgid "sport"
 msgstr "sport"
 
-msgid "recycling"
-msgstr "adaozañ"
+msgid "french food"
+msgstr ""
 
-msgid "station"
-msgstr "savlec'h"
+msgid "pizzeria"
+msgstr ""
+
+msgid "burger"
+msgstr ""
+
+msgid "italian food"
+msgstr ""
+
+msgid "kebab"
+msgstr ""
+
+msgid "sandwich"
+msgstr ""
+
+msgid "asian food"
+msgstr ""
+
+msgid "japanese food"
+msgstr ""
+
+msgid "chinese food"
+msgstr ""
+
+msgid "crepe"
+msgstr ""
+
+msgid "indian food"
+msgstr ""
+
+msgid "thai food"
+msgstr ""
+
+msgid "vietnamese food"
+msgstr ""
+
+msgid "lebanese food"
+msgstr ""
 
 msgid "parking lot"
 msgstr "parkva"
 
+msgid "pitch"
+msgstr ""
+
+msgid "place of worship"
+msgstr "lec'h azeulerezh"
+
+msgid "recycling"
+msgstr "adaozañ"
+
+msgid "bicycle parking"
+msgstr ""
+
+msgid "school"
+msgstr "skol"
+
+msgid "park"
+msgstr "park"
+
+msgid "bakery"
+msgstr "bouloñjerezh"
+
+msgid "clothes shop"
+msgstr "stal dilhad"
+
+msgid "toilets"
+msgstr ""
+
+msgid "sports centre"
+msgstr "kreizenn sport"
+
+msgid "hairdresser"
+msgstr "ficher-blev"
+
+msgid "fast food"
+msgstr "pretierezh prim"
+
+msgid "historic"
+msgstr ""
+
+msgid "post office"
+msgstr "ti-post"
+
+msgid "fuel station"
+msgstr "stal dour-tan"
+
+msgid "community centre"
+msgstr "kreizenn gumuniezh"
+
+msgid "convenience store"
+msgstr "ispisiri"
+
+msgid "car shop"
+msgstr "stal kirri"
+
+msgid "kindergarten or preschool"
+msgstr "liorzh bugale pe rak-skol"
+
+msgid "camp site"
+msgstr "tachenn gampiñ"
+
+msgid "station"
+msgstr "savlec'h"
+
+msgid "butcher"
+msgstr "boser"
+
+msgid "attraction"
+msgstr "diduañs"
+
+msgid "hospital"
+msgstr "ospital"
+
+msgid "doctors"
+msgstr ""
+
+msgid "dentist"
+msgstr "dentour"
+
+msgid "physiotherapist"
+msgstr ""
+
+msgid "psychotherapist"
+msgstr ""
+
+msgid "library"
+msgstr "levraoueg"
+
+msgid "police"
+msgstr "komiserdi"
+
+msgid "optician"
+msgstr "luneder"
+
+msgid "grave yard"
+msgstr "bered"
+
+msgid "beauty salon"
+msgstr "saloñs braventez"
+
+msgid "florist"
+msgstr "stal bleunioù"
+
+msgid "fire station"
+msgstr "ti ar bomperien"
+
+msgid "shoes shop"
+msgstr ""
+
+msgid "doityourself store"
+msgstr "stal bitellat"
+
+msgid "bicycle rental"
+msgstr ""
+
+msgid "jewelry shop"
+msgstr "bravigerezh"
+
+msgid "newsagent"
+msgstr ""
+
+msgid "swimming"
+msgstr ""
+
+msgid "furniture shop"
+msgstr "stal arrebeuri"
+
+msgid "books shop"
+msgstr "stal levrioù"
+
+msgid "laundry"
+msgstr " ti-kannañ dilhad"
+
+msgid "sports shop"
+msgstr "stal sport"
+
+msgid "theatre"
+msgstr "c'hoariva"
+
+msgid "veterinary"
+msgstr "mezeg-loened"
+
+msgid "greengrocer"
+msgstr "stal legumaj"
+
+msgid "garden centre"
+msgstr "kreizenn liorzhaouiñ"
+
+msgid "arts centre"
+msgstr "kreizenn an arzoù"
+
+msgid "electronics shop"
+msgstr "stal traoù elektronik"
+
+msgid "cinema"
+msgstr "sinema"
+
+msgid "university"
+msgstr "skol-veur"
+
+msgid "travel agency"
+msgstr "ajañs-veaj"
+
+msgid "administrative"
+msgstr ""
+
+msgid "post box"
+msgstr ""
+
+msgid "playground"
+msgstr ""
+
+msgid "marketplace"
+msgstr "marc'had"
+
 msgid "Search with Qwant Maps"
 msgstr "Klask gant Qwant Maps"
 
+msgid "My location"
+msgstr "Ma lec'hiadur"
+
 msgid "Close"
 msgstr "Serriñ"
-
-msgid "No result found"
-msgstr "Disoc'h ebet kavet"
 
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
@@ -151,22 +346,12 @@ msgstr "addigoret da {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "betek {nextTransitionTime}"
 
-msgid "entries"
+msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
 
-msgid "values"
-msgstr ""
-
-msgid "keys"
-msgstr ""
-
-msgid "Wrong index!"
-msgstr ""
-
-msgid "Wrong offset!"
-msgstr ""
-
-msgid "Wrong length!"
+msgid ""
+"Please try to correct your query or rewrite it with more details about the "
+"location (city, country, …)"
 msgstr ""
 
 msgid "Geographic coordinates"
@@ -205,22 +390,590 @@ msgid "Ok, I've got it"
 msgstr "Mat eo, deuet eo ganin"
 
 msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
-msgstr "Douarlec'hiañ dihegerz"
+msgstr ""
 
 msgid ""
-"Allow Qwant Maps to access your position so we can better help you find your way…"
+"Allow Qwant Maps to access your position so we can better help you find your"
+" way…"
 msgstr ""
-"N'ho peus ket roet an aotre da gQwant Maps (pe hoc'h aparailh) da dizhout ho"
-" touarlec'hiañ"
 
 msgid "Ok"
 msgstr "Mat eo"
 
 msgid ""
-"We can't access your position.<br/> Please check that your geolocation services are enabled."
+"We can't access your position.<br/> Please check that your geolocation "
+"services are enabled."
 msgstr ""
-"Ne c'hall ket Qwant Maps termeniñ ho touarlec'hiañ. Kit da sellet hag-eñ eo "
-"enaouet ar servijoù douarlec'hiañ en ho sistem."
+
+msgid "accessories shop"
+msgstr "stal rikoù"
+
+msgid "airport"
+msgstr "aerborzh"
+
+msgid "liquor store"
+msgstr "stal likorioù"
+
+msgid "alpine hut"
+msgstr "lojell alpinek"
+
+msgid "antiques shop"
+msgstr "stal an traoù kozh"
+
+msgid "aquarium"
+msgstr "akwariom"
+
+msgid "archery"
+msgstr "gwaregva"
+
+msgid "art shop"
+msgstr "stal oberennoù arzel"
+
+msgid "athletics"
+msgstr "atleterezhioù"
+
+msgid "ATM"
+msgstr "Mekanik bilhedoù"
+
+msgid "bag shop"
+msgstr "stal seier"
+
+msgid "basin"
+msgstr "poull"
+
+msgid "basketball"
+msgstr "basketball"
+
+msgid "bbq"
+msgstr "bbq"
+
+msgid "bed shop"
+msgstr "stal gweleoù"
+
+msgid "bed and breakfast"
+msgstr "kambr ostizien"
+
+msgid "beverages shop"
+msgstr "stal evajoù"
+
+msgid "bicycle shop"
+msgstr "stal beloioù"
+
+msgid "biergarten"
+msgstr "stal bier"
+
+msgid "billiards"
+msgstr "bilhiardoù"
+
+msgid "bmx"
+msgstr "bmx"
+
+msgid "border control"
+msgstr "kontroll an harzoù"
+
+msgid "boules"
+msgstr "bouloù"
+
+msgid "boutique"
+msgstr "boutik"
+
+msgid "bowls"
+msgstr "bouloù"
+
+msgid "brewery"
+msgstr "braserezh artizanel"
+
+msgid "brownfield"
+msgstr " fraost industriel"
+
+msgid "bus station"
+msgstr "harz bus"
+
+msgid "bus stop"
+msgstr "harz bus"
+
+msgid "cafe"
+msgstr "kafedi"
+
+msgid "canoe"
+msgstr "kanoe"
+
+msgid "car parts shop"
+msgstr "stal pezhioù kirri"
+
+msgid "car repair"
+msgstr "stal kempenn kirri"
+
+msgid "car rental"
+msgstr "stal feurmiñ kirri"
+
+msgid "car wash station"
+msgstr "porzh gwalc'hiñ"
+
+msgid "caravan site"
+msgstr "tachenn garavan"
+
+msgid "carpenter"
+msgstr "kalvez"
+
+msgid "carpet shop"
+msgstr "stal tapisoù"
+
+msgid "castle"
+msgstr "kastell"
+
+msgid "catering"
+msgstr "tineller"
+
+msgid "cemetery"
+msgstr "bered"
+
+msgid "holiday cottage"
+msgstr " ti-vakañsoù"
+
+msgid "charging station"
+msgstr "porzh adkargañ"
+
+msgid "charity store"
+msgstr "stal an aluzon"
+
+msgid "chemist"
+msgstr "lezapotikerezh"
+
+msgid "cheese shop"
+msgstr "fourmajer"
+
+msgid "chess"
+msgstr "c'hoari echedoù"
+
+msgid "childcare centre"
+msgstr "magouri"
+
+msgid "chocolate shop"
+msgstr "stal chokolad"
+
+msgid "climbing"
+msgstr "krimpadenn"
+
+msgid "climbing adventure"
+msgstr "avantur krimpadenn"
+
+msgid "clinic"
+msgstr "klinik"
+
+msgid "coffee shop"
+msgstr "stal kafe"
+
+msgid "college"
+msgstr "skolaj"
+
+msgid "computer shop"
+msgstr "stal urzhiataerezh"
+
+msgid "confectionery shop"
+msgstr "stal koñfizerezh"
+
+msgid "copyshop"
+msgstr "stal liestennañ"
+
+msgid "cosmetics shop"
+msgstr "stal kosmetekerezh"
+
+msgid "courthouse"
+msgstr "lez-varn"
+
+msgid "coworking space"
+msgstr "spas-labourat boutin"
+
+msgid "cricket"
+msgstr "kriket"
+
+msgid "cycling"
+msgstr "kezeg-houarn"
+
+msgid "deli"
+msgstr "deli"
+
+msgid "department store"
+msgstr "stal bras"
+
+msgid "dock"
+msgstr "kae"
+
+msgid "doctors office"
+msgstr "stal an doktor"
+
+msgid "dog park"
+msgstr "park chas"
+
+msgid "dog racing"
+msgstr "redadegoù chas"
+
+msgid "driving school"
+msgstr "skol-vleniañ"
+
+msgid "dry cleaning"
+msgstr "naetaerezh"
+
+msgid "embassy"
+msgstr "kannati"
+
+msgid "equestrian"
+msgstr "kreizenn varc'hegezh"
+
+msgid "erotic shop"
+msgstr "stal traoù erotek"
+
+msgid "escape game"
+msgstr "c'hoari achapiñ"
+
+msgid "estate agent"
+msgstr "ajañs-tiez"
+
+msgid "fabric"
+msgstr "labouradeg"
+
+msgid "farm shop"
+msgstr "produioù ar feurm"
+
+msgid "fitness centre"
+msgstr "ti-jiminas yac'haat"
+
+msgid "food court"
+msgstr "takad debriñ"
+
+msgid "free flying"
+msgstr "free flying"
+
+msgid "frozen food"
+msgstr "boued gourskornet"
+
+msgid "funeral home"
+msgstr "liderezh-kañv"
+
+msgid "gallery"
+msgstr "diskouezva"
+
+msgid "garden"
+msgstr "liorzh"
+
+msgid "general store"
+msgstr "magazenn hollek"
+
+msgid "gift shop"
+msgstr "stal profoù"
+
+msgid "golf"
+msgstr "golf"
+
+msgid "golf course"
+msgstr "tachenn golf"
+
+msgid "guest house"
+msgstr "ti ostizien"
+
+msgid "gymnastics"
+msgstr "ti-jiminas"
+
+msgid "hackerspace"
+msgstr "hackerspace"
+
+msgid "halt"
+msgstr "harz"
+
+msgid "hardware shop"
+msgstr "kinkailherezh"
+
+msgid "hearing aids shop"
+msgstr "stal benvegoù selaou"
+
+msgid "hifi shop"
+msgstr "stal hifi"
+
+msgid "horse racing"
+msgstr "redadegoù kezeg"
+
+msgid "hostel"
+msgstr "ti ar re yaouank"
+
+msgid "houseware shop"
+msgstr "reizhoù al lastez-ti"
+
+msgid "ice cream"
+msgstr "stal diennoù-skorn"
+
+msgid "ice rink"
+msgstr "poull-rinklañ"
+
+msgid "interior decoration shop"
+msgstr "stal kinkladurioù diabarzh"
+
+msgid "karting"
+msgstr "karrigoù-tan"
+
+msgid "kiosk"
+msgstr "kiosk"
+
+msgid "kitchen manufacturer"
+msgstr "gwerzher keginoù"
+
+msgid "lamps shop"
+msgstr "stal lampoù"
+
+msgid "long jump"
+msgstr "lamm hir"
+
+msgid "mall"
+msgstr "kreizenn genwerzh"
+
+msgid "marina"
+msgstr "marina"
+
+msgid "massage shop"
+msgstr "stal dorloerezh"
+
+msgid "miniature golf"
+msgstr "golfig"
+
+msgid "mobile phone shop"
+msgstr "stal hezougelloù"
+
+msgid "model aerodrome"
+msgstr "nijva evit gobarioù"
+
+msgid "monument"
+msgstr "monumant"
+
+msgid "motel"
+msgstr "motel"
+
+msgid "motocross"
+msgstr "marc'hoù-tan kros"
+
+msgid "motor"
+msgstr "keflusker"
+
+msgid "motorcycle shop"
+msgstr "stal marc'hoù-tan"
+
+msgid "multi"
+msgstr "multi"
+
+msgid "music shop"
+msgstr "stal sonerezh"
+
+msgid "music school"
+msgstr "skol sonerezh"
+
+msgid "musical instrument shop"
+msgstr "stal binviji sonerezh"
+
+msgid "newsagent shop"
+msgstr "stal kazetennerezh"
+
+msgid "nightclub"
+msgstr "boest-noz"
+
+msgid "nursing home"
+msgstr "ti ar re gozh"
+
+msgid "orienteering"
+msgstr "redadegoù-reteriñ"
+
+msgid "outdoor"
+msgstr "stal sportoù war ar maez"
+
+msgid "paragliding"
+msgstr "bolc'haskell"
+
+msgid "car park"
+msgstr "park kiri"
+
+msgid "pastry shop"
+msgstr "stal pastezerezh"
+
+msgid "perfumery"
+msgstr "porfumerezh"
+
+msgid "pet store"
+msgstr "stal-loened"
+
+msgid "photo shop"
+msgstr "stal fotoioù"
+
+msgid "picnic site"
+msgstr "tachenn biknik"
+
+msgid "plumber"
+msgstr "plomer"
+
+msgid "polling station"
+msgstr "burev votiñ"
+
+msgid "prison"
+msgstr "toull-bac'h"
+
+msgid "pub"
+msgstr "bruderezh"
+
+msgid "public building"
+msgstr "savadur foran"
+
+msgid "rc car"
+msgstr "karr pellurzhiet"
+
+msgid "reservoir"
+msgstr "beol"
+
+msgid "rowing"
+msgstr "roeñverezh"
+
+msgid "ruins"
+msgstr "dismantroù"
+
+msgid "running"
+msgstr "redadeg war-droad"
+
+msgid "sailing"
+msgstr "bageal"
+
+msgid "scuba diving"
+msgstr "splujerezh danvor"
+
+msgid "fishmonger"
+msgstr "stal gwerzhañ pesked"
+
+msgid "resale shop"
+msgstr "stal adwerzhañ"
+
+msgid "shelter"
+msgstr "gwasked"
+
+msgid "shoemaker"
+msgstr "kere"
+
+msgid "shoes"
+msgstr "botoù"
+
+msgid "shooting"
+msgstr "tennañ"
+
+msgid "skateboard"
+msgstr "skateboard"
+
+msgid "skating"
+msgstr "skating"
+
+msgid "skiing"
+msgstr "skiañ"
+
+msgid "soccer"
+msgstr "mell-droad"
+
+msgid "stadium"
+msgstr "stad"
+
+msgid "stationery shop"
+msgstr "stal paperaerezh"
+
+msgid "subway"
+msgstr "tren-buzhug"
+
+msgid "swimming pool"
+msgstr "poull-neuial"
+
+msgid "swimming area"
+msgstr "zonenn neuial"
+
+msgid "swimming pool equipment"
+msgstr "stal gwerzhañ poulloù-neuial"
+
+msgid "table tennis"
+msgstr "taol dennis"
+
+msgid "tailor"
+msgstr "tailher"
+
+msgid "tattoo salon"
+msgstr "saloñs tatou"
+
+msgid "tennis"
+msgstr "tennis"
+
+msgid "theme park"
+msgstr "park gant un tem"
+
+msgid "ticket shop"
+msgstr "bilhederezh"
+
+msgid "tobacco shop"
+msgstr "stal butun"
+
+msgid "toll booth"
+msgstr "treizhaj"
+
+msgid "townhall"
+msgstr "ti-kêr"
+
+msgid "toys shop"
+msgstr "stal c'hoarioù"
+
+msgid "tram stop"
+msgstr "arsav tram"
+
+msgid "variety store"
+msgstr "stal ur priz"
+
+msgid "vehicle inspection"
+msgstr "kontroll teknikel"
+
+msgid "videos shop"
+msgstr "stal videoioù"
+
+msgid "video games shop"
+msgstr "stal c'hoarioù-video"
+
+msgid "viewpoint"
+msgstr "gweledva"
+
+msgid "watches shop"
+msgstr "stal eurieroù"
+
+msgid "water park"
+msgstr "park dour"
+
+msgid "weapons shop"
+msgstr "stal armoù"
+
+msgid "warehouse club"
+msgstr "braswerzher"
+
+msgid "wine shop"
+msgstr "stal gwin"
+
+msgid "winery"
+msgstr "etrepaouez gwin"
+
+msgid "winter sports resort"
+msgstr " kreizenn sportoù ar goañv"
+
+msgid "yoga"
+msgstr "yoga"
+
+msgid "zoo"
+msgstr "zoo"
+
+msgid "city"
+msgstr "kêr"
+
+msgid "country"
+msgstr "bro"
+
+msgid "address"
+msgstr "chomlec'h"
+
+msgid "street"
+msgstr "straed"
 
 msgid "My favorites"
 msgstr "Ma sinedoù"
@@ -293,6 +1046,9 @@ msgstr "Lec'hioù karetañ"
 
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
+
+msgid "Directions"
+msgstr "Tuadurioù"
 
 msgid "Call"
 msgstr "Gervel"
@@ -395,9 +1151,6 @@ msgstr "Lenn muioc'h war Wikipedia"
 msgid "Information"
 msgstr "Titouroù"
 
-msgid "address"
-msgstr "chomlec'h"
-
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
 
@@ -488,17 +1241,17 @@ msgstr "Munudoù"
 msgid "Walk on {walkDistance}"
 msgstr "Kerzhit e-pad {walkDistance}"
 
+msgid "Ouch, we've lost the north&nbsp;🧭"
+msgstr ""
+
 msgid "The service is temporarily unavailable, please try again later."
 msgstr "Ar servij a zo dihegerz evit ar mare, klaskit en-dro diwezhatoc'h."
 
-msgid "Qwant Maps found no results for this itinerary."
-msgstr "Ne vez kavet disoc'h ebet evit an hentad-mañ."
-
-msgid ""
-"We are currently testing public transport mode in a restricted set of "
-"cities."
+msgid "We couldn't find any itinerary, we are really sorry."
 msgstr ""
-"Er mare-mañ e testomp ar mod trañsportoù publik evit un nebeut kêrioù."
+
+msgid "Results in partnership with Combigo"
+msgstr ""
 
 msgid "step by step"
 msgstr "Hent kammed-ha-kammed"
@@ -509,15 +1262,17 @@ msgstr "jediñ un hent"
 msgid "Share itinerary"
 msgstr "Diskouez an hent"
 
-msgid ""
-"Check the spelling of your search or add more details, such as city or "
-"country."
-msgstr ""
-"Gwiriit skritur hoc'h enklask pe ouzhpennit muioc'h a vunudoù, evel da "
-"skouer ar gêr pe ar vro."
-
 msgid "Try a new search query"
 msgstr "Kas da benn un enklask nevez"
+
+msgid "Qwant Maps Home"
+msgstr "Degemer Qwant Maps"
+
+msgid "Search on Qwant Maps"
+msgstr "Klask war Qwant Maps"
+
+msgid "Search"
+msgstr "Klask"
 
 msgid "Qwant Maps is in Beta!"
 msgstr "En ur stumm Beta emañ Qwant Maps!"
@@ -532,6 +1287,3 @@ msgstr ""
 
 msgid "Do not display this message again"
 msgstr "Na ziskouez ken ar gemennadenn-mañ ken"
-
-msgid "My location"
-msgstr "Ma lec'hiadur"
