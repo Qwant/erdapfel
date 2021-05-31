@@ -261,6 +261,13 @@ test('Retrieve no category when we search "barcelona", not even "bar"', async ()
   expect(firstLine).toEqual('test result 1');
 });
 
+test('Search input is filled with the query on no result panel', async () => {
+  const noResultQuery = 'gibberish';
+  await page.goto(`${APP_URL}/noresult?q=${noResultQuery}`);
+  const searchValue = await autocompleteHelper.getSearchInputValue();
+  expect(searchValue.trim()).toEqual(noResultQuery);
+});
+
 afterEach(async () => {
   await clearStore(page);
   responseHandler.reset();
