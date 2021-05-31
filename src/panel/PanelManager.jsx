@@ -95,7 +95,7 @@ const PanelManager = ({ router }) => {
       });
     });
 
-    router.addRoute('noresult', '/noresult', (routeParams, options) => {
+    router.addRoute('noresult', '/noresult(?:/?)(.*)', (routeParams, options) => {
       const { q: query } = parseQueryString(routeParams);
       setPanelOptions({
         ActivePanel: NoResultPanel,
