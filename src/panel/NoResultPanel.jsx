@@ -13,7 +13,7 @@ const NoResultPanel = ({ resetInput }) => {
   };
 
   return (
-    <Panel close={close}>
+    <Panel close={close} fitContent="default">
       <div style={{ padding: '20px 34px' }}>
         <NoResultMessage />
         <p className="u-center u-mt-s">
