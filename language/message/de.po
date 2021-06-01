@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-28 13:25+0000\n"
+"POT-Creation-Date: 2021-06-01 15:59+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Charlotte Ziegler <c.ziegler@qwant.com>, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -1206,11 +1206,17 @@ msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 "Bitte in die Karte hinein zoomen, um Ergebnisse für diese Kategorie zu sehen"
 
-msgid "Please zoom out of the map."
-msgstr "Bitte aus der Karte herauszoomen."
-
 msgid "Search around my position"
 msgstr "Um meinen Standort herum suchen"
+
+msgid "Hmm, looks like a no-man's land 🏜️"
+msgstr ""
+
+msgid "We found no place matching your query in this area."
+msgstr ""
+
+msgid "Get some height"
+msgstr ""
 
 msgid "Results in partnership with PagesJaunes"
 msgstr "Ergebnisse in Kollaboration mit PagesJaunes"

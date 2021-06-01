@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-28 13:25+0000\n"
+"POT-Creation-Date: 2021-06-01 15:59+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Guglielmo Kaldewey <g.kaldewey@gmail.com>, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
@@ -1202,11 +1202,17 @@ msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 "Si prega di ingrandire la mappa per vedere i risultati per questa categoria."
 
-msgid "Please zoom out of the map."
-msgstr "Si prega di restringere la mappa."
-
 msgid "Search around my position"
 msgstr "Cerca intorno a me"
+
+msgid "Hmm, looks like a no-man's land 🏜️"
+msgstr ""
+
+msgid "We found no place matching your query in this area."
+msgstr ""
+
+msgid "Get some height"
+msgstr ""
 
 msgid "Results in partnership with PagesJaunes"
 msgstr "Risultati in collaborazione con Pagine Gialle"
