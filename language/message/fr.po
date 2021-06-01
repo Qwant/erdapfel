@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-28 13:25+0000\n"
+"POT-Creation-Date: 2021-06-01 15:59+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -1211,11 +1211,18 @@ msgstr "Aucun résultat trouvé."
 msgid "Please zoom in the map to see the results for this category."
 msgstr "Veuillez zoomer sur la zone pour voir des résultats."
 
-msgid "Please zoom out of the map."
-msgstr "Veuillez agrandir la zone de recherche."
-
 msgid "Search around my position"
 msgstr "Rechercher autour de moi"
+
+msgid "Hmm, looks like a no-man's land 🏜️"
+msgstr "Hum, il n’y a pas un chat ici 🐱"
+
+msgid "We found no place matching your query in this area."
+msgstr ""
+"Nous ne trouvons aucun lieu correspondant à votre recherche dans cette zone."
+
+msgid "Get some height"
+msgstr "Prendre un peu de hauteur"
 
 msgid "Results in partnership with PagesJaunes"
 msgstr "Résultats en partenariat avec PagesJaunes"
@@ -1263,7 +1270,7 @@ msgstr ""
 "Nous n'avons aucun itinéraire à vous proposer, nous sommes vraiment confus."
 
 msgid "Results in partnership with Combigo"
-msgstr ""
+msgstr "Résultats en partenariat avec Combigo"
 
 msgid "step by step"
 msgstr "trajet pas à pas"
