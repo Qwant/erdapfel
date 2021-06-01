@@ -165,7 +165,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
       floatingItemsLeft={[
         isMobile && shouldShowBackToQwant() && <BackToQwantButton key="back-to-qwant" isMobile />,
       ]}
-      fitContent={!pois || pois.length === 0 ? 'default' : 'minimized'}
+      fitContent={!pois || pois.length === 0 ? ['default'] : []}
     >
       {panelContent}
     </Panel>
