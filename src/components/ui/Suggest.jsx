@@ -154,6 +154,7 @@ const Suggest = ({
             suggestItems={items}
             highlighted={highlighted}
             onSelect={selectItem}
+            value={value}
           />,
           outputNode
         )}
