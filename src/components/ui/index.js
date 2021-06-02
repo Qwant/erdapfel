@@ -16,6 +16,8 @@ import CloseButton from './CloseButton';
 import FloatingButton from './FloatingButton';
 import FloatingItems from './FloatingItems';
 import SourceFooter from './SourceFooter';
+import UserFeedbackQuestion from './UserFeedbackQuestion';
+import UserFeedbackYesNo from './UserFeedbackYesNo';
 
 export {
   Badge,
@@ -37,4 +39,6 @@ export {
   FloatingButton,
   FloatingItems,
   SourceFooter,
+  UserFeedbackQuestion,
+  UserFeedbackYesNo,
 };

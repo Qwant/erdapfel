@@ -1,7 +1,6 @@
 /* global _ */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'src/components/ui/Panel';
 import debounce from 'lodash.debounce';
 
 import PoiItemList from './PoiItemList';
@@ -17,7 +16,7 @@ import classnames from 'classnames';
 import { sources } from 'config/constants.yml';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
-import { PanelNav, SourceFooter } from 'src/components/ui';
+import { Panel, PanelNav, SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
 
 const DEBOUNCE_WAIT = 100;
 
@@ -137,6 +136,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     panelContent = (
       <>
         <PoiItemList pois={pois} selectPoi={selectPoi} highlightMarker={highlightPoiMarker} />
+        <UserFeedbackYesNo question={_('Do these results match your query?')} />
         {dataSource === sources.pagesjaunes && (
           <SourceFooter>{_('Results in partnership with PagesJaunes', 'categories')}</SourceFooter>
         )}
