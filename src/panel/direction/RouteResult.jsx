@@ -69,7 +69,9 @@ const RouteResult = ({
           selectRoute={onSelectRoute}
         />
       </div>
-      <UserFeedbackYesNo question={_('Do these results match your query?')} />
+      {routes.length > 0 && (
+        <UserFeedbackYesNo question={_('Do these results match your query?')} />
+      )}
       {vehicle === 'publicTransport' && routes.length > 0 && (
         <SourceFooter>
           <a href="https://combigo.com/">{_('Results in partnership with Combigo')}</a>
