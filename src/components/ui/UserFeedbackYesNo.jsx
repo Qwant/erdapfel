@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { UserFeedbackQuestion } from './index';
 import { useConfig, useI18n } from 'src/hooks';
+import { IconThumbUp, IconThumbDown } from './icons';
+import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 const UserFeedbackYesNo = ({ question }) => {
   const { enabled: userFeedBackEnabled } = useConfig('userFeedback');
@@ -33,10 +35,15 @@ const UserFeedbackYesNo = ({ question }) => {
       question={question}
       options={[
         {
-          label: `👍 ${_('Yes')}`,
+          label: `${_('Yes')}`,
+          icon: <IconThumbUp fill={ACTION_BLUE_BASE} width={16} />,
           callback: onAnswer('yes'),
         },
-        { label: `👎 ${_('No')}`, callback: onAnswer('no') },
+        {
+          label: `${_('No')}`,
+          icon: <IconThumbDown fill={ACTION_BLUE_BASE} width={16} />,
+          callback: onAnswer('no'),
+        },
       ]}
     />
   );

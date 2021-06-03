@@ -2,15 +2,7 @@
   border-top: 1px solid $grey-light;
   padding: $spacing-s $spacing-m;
 
-  &-button {
-    padding: $spacing-xs $spacing-s;
-    background-color: $grey-bright;
-    cursor: pointer;
-    border-radius: 16px;
-    margin-right: $spacing-xs;
-
-    &:hover {
-      background-color: $grey-lighter;
-    }
+  .closeButton {
+    align-self: flex-start;
   }
 }
