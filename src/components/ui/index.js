@@ -18,6 +18,7 @@ import FloatingItems from './FloatingItems';
 import SourceFooter from './SourceFooter';
 import UserFeedbackQuestion from './UserFeedbackQuestion';
 import UserFeedbackYesNo from './UserFeedbackYesNo';
+import Notification from './Notification';
 
 export {
   Badge,
@@ -41,4 +42,5 @@ export {
   SourceFooter,
   UserFeedbackQuestion,
   UserFeedbackYesNo,
+  Notification,
 };

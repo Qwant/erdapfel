@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Alert from './ui/Alert';
-import { Button } from './ui';
+import { Button, Notification } from './ui';
 import { get, set } from 'src/adapters/store';
 import { parseQueryString } from '../libs/url_utils';
 import { useI18n } from 'src/hooks';
@@ -22,7 +21,7 @@ const BetaInfoBox = () => {
     lang !== 'fr' &&
     !closed &&
     isUserFromSearch && (
-      <Alert
+      <Notification
         title={_('Qwant Maps is in Beta!')}
         /* eslint-disable max-len */
         description={_(
@@ -32,7 +31,7 @@ const BetaInfoBox = () => {
         type="info"
         onClose={closeBetaPopup}
         footer={
-          <div className="alert-link">
+          <div className="notification-link">
             <Button variant="tertiary" onClick={closeBetaPopup}>
               {_('Do not display this message again')}
             </Button>
