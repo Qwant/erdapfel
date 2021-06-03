@@ -19,6 +19,7 @@ import SourceFooter from './SourceFooter';
 import UserFeedbackQuestion from './UserFeedbackQuestion';
 import UserFeedbackYesNo from './UserFeedbackYesNo';
 import Notification from './Notification';
+import Alert from './Alert';
 
 export {
   Badge,
@@ -43,4 +44,5 @@ export {
   UserFeedbackQuestion,
   UserFeedbackYesNo,
   Notification,
+  Alert,
 };
