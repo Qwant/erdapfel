@@ -1,10 +1,12 @@
 /* globals _ */
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 import RoutesList from './RoutesList';
 import { SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
+import { useDevice } from 'src/hooks';
+import { PanelContext } from 'src/libs/panelContext';
 
 const RouteResult = ({
   origin,
@@ -18,6 +20,9 @@ const RouteResult = ({
   selectRoute,
   toggleDetails,
 }) => {
+  const { isMobile } = useDevice();
+  const { size: panelSize } = useContext(PanelContext);
+
   useEffect(() => {
     const routeSelectedOnMapHandler = listen('select_road_map', onSelectRoute);
     return () => {
@@ -69,7 +74,7 @@ const RouteResult = ({
           selectRoute={onSelectRoute}
         />
       </div>
-      {routes.length > 0 && (
+      {routes.length > 0 && (!isMobile || panelSize === 'maximized') && (
         <UserFeedbackYesNo question={_('Do these results match your query?')} />
       )}
       {vehicle === 'publicTransport' && routes.length > 0 && (
