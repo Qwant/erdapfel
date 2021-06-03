@@ -7,7 +7,8 @@ export { default as IconExternalLink } from '../../../public/images/remix/extern
 export { default as IconCloseCircle } from '../../../public/images/remix/close-circle-line.svg';
 export { default as IconMenu } from '../../../public/images/remix/menu-line.svg';
 export { default as IconApps } from '../../../public/images/remix/apps-line.svg';
-export { default as IconQuestion } from '../../../public/images/remix/question-line.svg';
+export { default as IconThumbUp } from '../../../public/images/remix/thumb-up-line.svg';
+export { default as IconThumbDown } from '../../../public/images/remix/thumb-down-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';

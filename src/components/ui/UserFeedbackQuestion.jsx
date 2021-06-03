@@ -1,30 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, CloseButton } from './index';
-import { useI18n } from 'src/hooks';
-import { IconQuestion } from './icons';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
+import { Flex, CloseButton, Button } from './index';
 
 const UserFeedbackQuestion = ({ question, options, onClose }) => {
-  const { _ } = useI18n();
-
   return (
-    <div className="feedback">
-      <Flex justifyContent="space-between" className="u-mb-xs">
-        <Flex>
-          <IconQuestion width={24} fill={ACTION_BLUE_BASE} className="u-mr-xs" />
-          <div className="u-bold">{question}</div>
-        </Flex>
-        <CloseButton position="topRight" onClick={onClose} />
-      </Flex>
+    <Flex className="feedback">
+      <div className="u-mr-s">{question}</div>
       <Flex>
-        {options.map(({ label, callback }) => (
-          <button key={label} className="feedback-button" type="button" onClick={callback}>
+        {options.map(({ label, icon, callback }) => (
+          <Button
+            icon={icon}
+            variant="tertiary"
+            key={label}
+            type="button"
+            onClick={callback}
+            className="u-mr-xs"
+          >
             {label}
-          </button>
-        ))}{' '}
+          </Button>
+        ))}
       </Flex>
-    </div>
+      <CloseButton position="topRight" onClick={onClose} />
+    </Flex>
   );
 };
 
