@@ -75,7 +75,11 @@ const RouteResult = ({
         />
       </div>
       {routes.length > 0 && (!isMobile || panelSize === 'maximized') && (
-        <UserFeedbackYesNo question={_('Do these results match your query?')} />
+        <UserFeedbackYesNo
+          questionId="routes"
+          context={document.location.href}
+          question={_('Do these results match your query?')}
+        />
       )}
       {vehicle === 'publicTransport' && routes.length > 0 && (
         <SourceFooter>
