@@ -4,23 +4,23 @@ import { UserFeedbackQuestion } from './index';
 import { useConfig, useI18n } from 'src/hooks';
 import { IconThumbUp, IconThumbDown } from './icons';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
+import { sendAnswer } from 'src/libs/userFeedback';
 
-const UserFeedbackYesNo = ({ question }) => {
+const UserFeedbackYesNo = ({ questionId, context, question }) => {
   const { enabled: userFeedBackEnabled } = useConfig('userFeedback');
   const { _ } = useI18n();
   // @TODO: replace by the real conditions
   const [isClosed, setClosed] = useState();
 
   const closeQuestion = () => {
+    sendAnswer(questionId, 'dismiss', { context });
     setClosed(true);
   };
 
   const onAnswer = answer => () => {
-    // eslint-disable-next-line no-console
-    console.log(answer);
+    sendAnswer(questionId, answer, { context });
     setClosed(true);
     // @TODO:
-    // - send telemetry event
     // - hide question and remember it
     // - display thank you message
   };
@@ -50,8 +50,9 @@ const UserFeedbackYesNo = ({ question }) => {
 };
 
 UserFeedbackYesNo.propTypes = {
-  question: PropTypes.node,
-  featureId: PropTypes.string,
+  question: PropTypes.node.isRequired,
+  questionId: PropTypes.string.isRequired,
+  context: PropTypes.string,
 };
 
 export default UserFeedbackYesNo;

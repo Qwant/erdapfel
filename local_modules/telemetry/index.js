@@ -69,5 +69,7 @@ module.exports = {
     /* Homepage */
     'home_itinerary',
     'home_category',
+    /* User feedback */
+    'user_feedback_answer',
   ],
 };
