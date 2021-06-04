@@ -136,7 +136,11 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     panelContent = (
       <>
         <PoiItemList pois={pois} selectPoi={selectPoi} highlightMarker={highlightPoiMarker} />
-        <UserFeedbackYesNo question={_('Do these results match your query?')} />
+        <UserFeedbackYesNo
+          questionId="poi-list"
+          context={document.location.href}
+          question={_('Do these results match your query?')}
+        />
         {dataSource === sources.pagesjaunes && (
           <SourceFooter>{_('Results in partnership with PagesJaunes', 'categories')}</SourceFooter>
         )}
