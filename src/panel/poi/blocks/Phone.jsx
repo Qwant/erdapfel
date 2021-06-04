@@ -1,11 +1,11 @@
-/* globals _ */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Block from 'src/panel/poi/blocks/Block';
 import { isFromPagesJaunes } from 'src/libs/pois';
-import { useDevice } from 'src/hooks';
+import { useDevice, useI18n } from 'src/hooks';
 
 const PhoneBlock = ({ block, poi }) => {
+  const { _ } = useI18n();
   const { isMobile } = useDevice();
   const [isHidden, setHidden] = useState(true);
 
