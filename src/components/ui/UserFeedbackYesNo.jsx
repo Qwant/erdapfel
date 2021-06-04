@@ -4,28 +4,28 @@ import { UserFeedbackQuestion } from './index';
 import { useConfig, useI18n } from 'src/hooks';
 import { IconThumbUp, IconThumbDown } from './icons';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
-import { sendAnswer } from 'src/libs/userFeedback';
+import { sendAnswer, rememberAnswer, shouldBeDisplayed } from 'src/libs/userFeedback';
 
 const UserFeedbackYesNo = ({ questionId, context, question }) => {
-  const { enabled: userFeedBackEnabled } = useConfig('userFeedback');
+  const { enabled: userFeedBackEnabled, dismissDurationDays } = useConfig('userFeedback');
   const { _ } = useI18n();
-  // @TODO: replace by the real conditions
   const [isClosed, setClosed] = useState();
+  const display = shouldBeDisplayed(questionId, dismissDurationDays);
 
   const closeQuestion = () => {
     sendAnswer(questionId, 'dismiss', { context });
+    rememberAnswer(questionId, 'dismiss');
     setClosed(true);
   };
 
   const onAnswer = answer => () => {
     sendAnswer(questionId, answer, { context });
+    rememberAnswer(questionId, answer);
     setClosed(true);
-    // @TODO:
-    // - hide question and remember it
-    // - display thank you message
+    // @TODO: - display thank you message
   };
 
-  if (!userFeedBackEnabled || isClosed) {
+  if (!userFeedBackEnabled || !display || isClosed) {
     return null;
   }
 
