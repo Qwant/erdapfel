@@ -22,4 +22,15 @@
       color: $primary_text;
     }
   }
+
+  &--small {
+    height: 24px;
+    width: 24px;
+    font-size: 16px;
+
+    &.closeButton--topRight {
+      margin-top: -6px;
+      margin-right: -6px
+    }
+  }
 }

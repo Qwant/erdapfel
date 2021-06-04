@@ -20,7 +20,7 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
           </Button>
         ))}
       </Flex>
-      <CloseButton position="topRight" onClick={onClose} />
+      <CloseButton position="topRight" variant="small" onClick={onClose} />
     </Flex>
   );
 };

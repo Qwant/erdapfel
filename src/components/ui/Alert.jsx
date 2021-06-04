@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import cs from 'classnames';
 import { string, node } from 'prop-types';
+import { CloseButton } from './index';
 
 const Alert = ({ className = '', children, type }) => {
   const [hidden, setHidden] = useState(false);
@@ -30,6 +31,7 @@ const Alert = ({ className = '', children, type }) => {
         {type === 'success' && <i className="alert-icon icon-check-circle u-mr-xs" />}
         {children}
       </div>
+      <CloseButton position="topRight" variant="small" onClick={() => setHidden(true)} />
     </div>
   );
 };
