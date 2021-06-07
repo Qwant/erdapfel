@@ -22,7 +22,7 @@ const SuggestsDropdown = ({ className = '', suggestItems, onSelect, highlighted,
           </li>
         ))}
       </ul>
-      {value.length > 0 && suggestItems.length > 0 && !suggestItems[0].errorLabel && (
+      {value.length && suggestItems.length > 0 && !suggestItems[0].errorLabel && (
         <UserFeedbackYesNo question={_('Do these results match your query?')} />
       )}
     </>
