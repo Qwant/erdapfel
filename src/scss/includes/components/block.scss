@@ -1,5 +1,6 @@
 .block {
   display: flex;
+  align-items: center;
   padding: $spacing-xs $spacing-s;
   width: 100%;
 
@@ -15,12 +16,23 @@
     min-width: 0;
   }
 
+  &-action {
+    color: $grey-semi-darkness;
+    width: 24px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
   &--clickable {
     cursor: pointer;
 
     &:hover {
       background-color: $grey-bright;
       text-decoration: none;
+
+      .block-action {
+        color: $grey-black;
+      }
     }
   }
 
