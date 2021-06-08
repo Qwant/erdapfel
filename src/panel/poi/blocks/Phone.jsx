@@ -8,7 +8,7 @@ import { useDevice, useI18n } from 'src/hooks';
 const PhoneBlock = ({ block, poi }) => {
   const { _ } = useI18n();
   const { isMobile } = useDevice();
-  const [isHidden, setHidden] = useState(true);
+  const [isHidden, setHidden] = useState(!isMobile && isFromPagesJaunes(poi));
 
   useEffect(() => {
     setHidden(!isMobile && isFromPagesJaunes(poi));
