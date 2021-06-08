@@ -6,3 +6,13 @@
     align-self: flex-start;
   }
 }
+
+.feedback-success {
+  position: relative;
+
+  .alert {
+    position: absolute;
+    margin: $spacing-s $spacing-m;
+    bottom: 0;
+  }
+}

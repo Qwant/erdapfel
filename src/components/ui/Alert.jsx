@@ -1,36 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import cs from 'classnames';
-import { string, oneOf, func, node, oneOfType } from 'prop-types';
-import { CloseButton } from 'src/components/ui';
+import { string, node } from 'prop-types';
+import { CloseButton } from './index';
 
-const AlertIcon = {
-  success: 'check-circle',
-  info: 'icon_info',
-  warning: 'alert-triangle',
-  error: 'alert-octagon',
+const Alert = ({ className = '', children, type }) => {
+  const [hidden, setHidden] = useState(false);
+  const alertRef = useRef();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Animate is not supported on old iOS
+      if (alertRef.current && alertRef.current.animate) {
+        alertRef.current.animate([{ opacity: 1 }, { opacity: 0 }], 300).onfinish = () => {
+          setHidden(true);
+        };
+      } else {
+        setHidden(true);
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [alertRef]);
+
+  if (hidden) {
+    return null;
+  }
+
+  return (
+    <div className={cs('alert', `alert--${type}`, className)} ref={alertRef}>
+      <div className="u-center">
+        {type === 'success' && <i className="alert-icon icon-check-circle u-mr-xs" />}
+        {children}
+      </div>
+      <CloseButton position="topRight" variant="small" onClick={() => setHidden(true)} />
+    </div>
+  );
 };
 
-const Alert = ({ className = '', title, description, type = 'warning', onClose, footer }) => (
-  <div className={cs('alert', className)}>
-    <span className="alert-title">
-      <span>
-        <i className={`alert-icon icon-${AlertIcon[type]} icon-${type}`}></i>
-        <span role="alert">{title}</span>
-      </span>
-      <CloseButton onClick={onClose} position="topRight" />
-    </span>
-    <div className="alert-content">
-      <span role="alert">{description}</span>
-    </div>
-    {footer}
-  </div>
-);
 Alert.propTypes = {
   className: string,
-  title: string.isRequired,
-  description: oneOfType([string, node]).isRequired,
-  type: oneOf(Object.keys(AlertIcon)),
-  onClose: func.isRequired,
+  children: node.isRequired,
+  type: string,
 };
 
 export default Alert;

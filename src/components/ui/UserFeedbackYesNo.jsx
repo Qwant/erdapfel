@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { UserFeedbackQuestion } from './index';
+import { UserFeedbackQuestion, Alert } from './index';
 import { useConfig, useI18n } from 'src/hooks';
 import { IconThumbUp, IconThumbDown } from './icons';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
@@ -9,24 +9,33 @@ import { sendAnswer } from 'src/libs/userFeedback';
 const UserFeedbackYesNo = ({ questionId, context, question }) => {
   const { enabled: userFeedBackEnabled } = useConfig('userFeedback');
   const { _ } = useI18n();
-  // @TODO: replace by the real conditions
-  const [isClosed, setClosed] = useState();
+  const [isAnswered, setAnswered] = useState(false);
+  const [isDismissed, setDismissed] = useState(false);
 
   const closeQuestion = () => {
     sendAnswer(questionId, 'dismiss', { context });
-    setClosed(true);
+    setDismissed(true);
   };
 
   const onAnswer = answer => () => {
     sendAnswer(questionId, answer, { context });
-    setClosed(true);
+    setAnswered(true);
     // @TODO:
     // - hide question and remember it
-    // - display thank you message
   };
 
-  if (!userFeedBackEnabled || isClosed) {
+  if (!userFeedBackEnabled || isDismissed) {
     return null;
+  }
+
+  if (isAnswered) {
+    return (
+      <div className="feedback-success">
+        <Alert type="success">
+          {_("Thanks for your feedback, it's important for helping us improve our products.")}
+        </Alert>
+      </div>
+    );
   }
 
   return (
