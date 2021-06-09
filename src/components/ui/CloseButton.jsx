@@ -4,7 +4,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { IconCloseCircle } from 'src/components/ui/icons';
 
-const CloseButton = ({ className, position, onClick, circle, variant }) => (
+const CloseButton = ({ className, position, onClick, onMouseDown, circle, variant }) => (
   <button
     className={cx(
       'closeButton',
@@ -13,6 +13,7 @@ const CloseButton = ({ className, position, onClick, circle, variant }) => (
     )}
     title={_('Close')}
     onClick={onClick}
+    onMouseDown={onMouseDown}
   >
     {circle ? <IconCloseCircle width={20} /> : <i className="icon-x" />}
   </button>
@@ -21,7 +22,8 @@ const CloseButton = ({ className, position, onClick, circle, variant }) => (
 CloseButton.propTypes = {
   className: PropTypes.string,
   position: PropTypes.oneOf(['topRight']),
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  onMouseDown: PropTypes.func,
   variant: PropTypes.oneOf(['small']),
 };
 

@@ -19,6 +19,7 @@ const Suggest = ({
   onToggle,
   children: renderInput,
   value,
+  withFeedback,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -155,6 +156,7 @@ const Suggest = ({
             highlighted={highlighted}
             onSelect={selectItem}
             value={value}
+            withFeedback={withFeedback}
           />,
           outputNode
         )}
@@ -169,6 +171,8 @@ Suggest.propTypes = {
   onSelect: func.isRequired,
   onToggle: func,
   className: string,
+  value: string,
+  withFeedback: bool,
 };
 
 export default Suggest;

@@ -1,12 +1,19 @@
 /* global _ */
 import React from 'react';
 import classnames from 'classnames';
-import { object, func, string, arrayOf } from 'prop-types';
+import { bool, object, func, string, arrayOf } from 'prop-types';
 
 import SuggestItem from './SuggestItem';
 import { UserFeedbackYesNo } from './index';
 
-const SuggestsDropdown = ({ className = '', suggestItems, onSelect, highlighted, value }) => {
+const SuggestsDropdown = ({
+  className = '',
+  suggestItems,
+  onSelect,
+  highlighted,
+  value,
+  withFeedback,
+}) => {
   return (
     <>
       <ul className={classnames('autocomplete_suggestions', className)}>
@@ -22,8 +29,12 @@ const SuggestsDropdown = ({ className = '', suggestItems, onSelect, highlighted,
           </li>
         ))}
       </ul>
-      {value.length && suggestItems.length > 0 && !suggestItems[0].errorLabel && (
-        <UserFeedbackYesNo question={_('Do these results match your query?')} />
+      {withFeedback && value && suggestItems.length > 0 && !suggestItems[0].errorLabel && (
+        <UserFeedbackYesNo
+          questionId="suggest"
+          context={encodeURIComponent(value) + document.location.hash}
+          question={_('Do these results match your query?')}
+        />
       )}
     </>
   );
@@ -35,6 +46,7 @@ SuggestsDropdown.propTypes = {
   onSelect: func.isRequired,
   className: string,
   value: string,
+  withFeedback: bool,
 };
 
 export default SuggestsDropdown;
