@@ -28,6 +28,7 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
         position="topRight"
         variant="small"
         onMouseDown={e => {
+          e.preventDefault();
           e.stopPropagation();
           onClose();
         }}
