@@ -147,13 +147,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             type="button"
             onMouseDown={onClear}
           />
-          <input
-            className="search_form__action"
-            type="submit"
-            value=""
-            title={_('Search')}
-            onClick={onSubmit}
-          />
+          <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>
         {isMobile && config.burgerMenu.enabled && (
           <div id="react_menu__container">
