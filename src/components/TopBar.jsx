@@ -94,7 +94,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
         ['top_bar--back_action']: !!backButtonAction,
       })}
     >
-      <form onSubmit={() => false} noValidate className="search_form" ref={barElement}>
+      <form onSubmit={onSubmit} noValidate className="search_form" ref={barElement}>
         <button
           type="button"
           onClick={() => {
