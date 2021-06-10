@@ -15,7 +15,6 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
             type="button"
             onMouseDown={e => {
               e.preventDefault();
-              e.stopPropagation();
               callback();
             }}
             className="u-mr-xs"
@@ -29,7 +28,6 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
         variant="small"
         onMouseDown={e => {
           e.preventDefault();
-          e.stopPropagation();
           onClose();
         }}
       />
