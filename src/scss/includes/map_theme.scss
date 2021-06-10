@@ -98,7 +98,7 @@
   color: #353c52;
   background-color: transparent;
   height: 12px;
-  line-height: 10px;
+  line-height: 7px;
 }
 
 .map_control__scale_attribute_container {
@@ -132,14 +132,17 @@
   .map_control__scale_attribute_container {
     background: none;
     position: fixed;
-    left: 0px;
-    bottom: 4px;
+    left: 0;
+    bottom: 0;
     width: auto;
+    height: 48px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     z-index: 1;
 
     .mapboxgl-ctrl.map_control__scale {
       background: none;
-      margin: 4px 5px 5px 45px;
       line-height: 10px;
       height: 13px;
       position: relative;
@@ -152,7 +155,7 @@
 
       &:before {
         content: '';
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.8);
         border-radius: 10px;
         height: 20px;
         width: calc(100% + 20px);
@@ -168,33 +171,38 @@
         height: 11px;
         position: absolute;
         left: 0;
-        border: solid 2px #353c52;
+        border: solid 2px $grey-semi-darkness;
         border-top: none;
       }
     }
 
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
       text-align: left;
-      position: fixed;
-      margin: 0;
-      bottom: -2px;
-      left: 13px;
+
+      &.mapboxgl-compact {
+        margin: 0 $spacing-s 0 0;
+      }
 
       &.mapboxgl-compact-show {
-        width: calc(100vw - 95px);
+        max-width: calc(100vw - 95px);
+        font-size: 10px;
+        line-height: 14px;
+        align-self: flex-end;
       }
 
       .mapboxgl-ctrl-attrib-button {
         top: auto;
         right: auto;
-        bottom: 0;
+        height: 20px;
+        width: 20px;
+        top: 0;
         left: 0;
-        background: url('../images/feather/info.svg') no-repeat center center rgba(255,255,255,0.8);
+        background: url('../images/feather/info.svg') no-repeat center center rgba(255,255,255,0.9);
       }
 
       &.mapboxgl-compact-show {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 2px 8px 2px 28px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 3px 8px 3px 24px;
 
         .mapboxgl-ctrl-attrib-button {
           background-color: transparent;
