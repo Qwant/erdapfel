@@ -1,11 +1,7 @@
-// Autocomplete
 .autocomplete_suggestions {
-  max-height: calc(100vh - #{$top_bar_height});
-  background: $background;
   font-size: 16px;
   /* core styles should not be changed */
   cursor: default;
-  overflow-y: auto;
   padding-bottom: 12px;
 
   .top_bar & {
