@@ -13,14 +13,24 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
             variant="tertiary"
             key={label}
             type="button"
-            onClick={callback}
+            onMouseDown={e => {
+              e.preventDefault();
+              callback();
+            }}
             className="u-mr-xs"
           >
             {label}
           </Button>
         ))}
       </Flex>
-      <CloseButton position="topRight" variant="small" onClick={onClose} />
+      <CloseButton
+        position="topRight"
+        variant="small"
+        onMouseDown={e => {
+          e.preventDefault();
+          onClose();
+        }}
+      />
     </Flex>
   );
 };

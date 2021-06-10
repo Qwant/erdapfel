@@ -185,6 +185,10 @@ input[type="search"] {
   }
 }
 
+.search_form__result {
+  max-height: calc(100vh - #{$top_bar_height});
+}
+
 // Mobile
 @media (max-width: 640px) {
   .search_form__input::placeholder {
@@ -221,6 +225,10 @@ input[type="search"] {
   }
 
   .search_form__result {
+    position: fixed;
+    max-height: none;
+    top: $top_bar_height;
+    width: 100vw;
     background-color: $background;
     overflow-y: auto;
   }

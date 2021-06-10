@@ -112,6 +112,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             withCategories
             onToggle={onSuggestToggle}
             onSelect={onSelectSuggestion}
+            withFeedback
           >
             {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
               <input

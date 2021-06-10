@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
-import { useDevice } from 'src/hooks';
+import { useDevice, useI18n } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
+import { UserFeedbackYesNo } from './index';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -19,6 +20,7 @@ const Suggest = ({
   onToggle,
   children: renderInput,
   value,
+  withFeedback,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +28,8 @@ const Suggest = ({
   const [hasFocus, setHasFocus] = useState(false);
   const dropdownVisible = hasFocus && isOpen && outputNode;
   const { isMobile } = useDevice();
+  const { _ } = useI18n();
+  const dropDownContent = useRef();
 
   const close = () => {
     setIsOpen(false);
@@ -116,11 +120,11 @@ const Suggest = ({
       setDropdownFixedHeight();
       visualViewport.addEventListener('resize', setDropdownFixedHeight);
 
-      const suggestions = document.querySelector('.autocomplete_suggestions');
       const cancelTouchScrollIfNotOverflow = e => {
         const hasOverflow =
-          suggestions &&
-          suggestions.getBoundingClientRect().height > outputNode.getBoundingClientRect().height;
+          dropDownContent.current &&
+          dropDownContent.current.getBoundingClientRect().height >
+            outputNode.getBoundingClientRect().height;
         if (!hasOverflow) {
           e.preventDefault();
         }
@@ -149,12 +153,21 @@ const Suggest = ({
       })}
       {dropdownVisible &&
         ReactDOM.createPortal(
-          <SuggestsDropdown
-            className={className}
-            suggestItems={items}
-            highlighted={highlighted}
-            onSelect={selectItem}
-          />,
+          <div ref={dropDownContent}>
+            <SuggestsDropdown
+              className={className}
+              suggestItems={items}
+              highlighted={highlighted}
+              onSelect={selectItem}
+            />
+            {withFeedback && value && items.length > 0 && !items[0].errorLabel && (
+              <UserFeedbackYesNo
+                questionId="suggest"
+                context={encodeURIComponent(value) + document.location.hash}
+                question={_('Do these results match your query?')}
+              />
+            )}
+          </div>,
           outputNode
         )}
     </>
@@ -168,6 +181,8 @@ Suggest.propTypes = {
   onSelect: func.isRequired,
   onToggle: func,
   className: string,
+  value: string,
+  withFeedback: bool,
 };
 
 export default Suggest;
