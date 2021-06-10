@@ -26,15 +26,16 @@ const WebsiteBlock = ({ block, poi }) => {
   };
 
   return (
-    <Block className="block-website" icon="icon_globe" title={_('website')}>
-      <a
-        href={URI.externalise(block.url)}
-        rel="noopener noreferrer nofollow"
-        target="_blank"
-        onClick={onClickWebsite}
-      >
-        {getWebsiteLabel()}
-      </a>
+    <Block
+      className="block-website"
+      icon="icon_globe"
+      title={_('website')}
+      onClick={onClickWebsite}
+      href={URI.externalise(block.url)}
+      rel="noopener noreferrer nofollow"
+      target="_blank"
+    >
+      {getWebsiteLabel()}
     </Block>
   );
 };

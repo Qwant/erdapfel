@@ -187,6 +187,7 @@
         "label": "www.musee-orsay.fr"
     }, {
       "type": "contact",
-      "url": "mailto:admin@orsay.fr"
+      "url": "mailto:admin@orsay.fr",
+      "email": "admin@orsay.fr"
     }]
 }

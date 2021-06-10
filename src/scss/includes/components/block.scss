@@ -1,17 +1,43 @@
 .block {
   display: flex;
-  padding: 10px 0;
+  align-items: center;
+  padding: $spacing-xs $spacing-s;
   width: 100%;
 
   &-icon {
     font-size: 20px;
-    margin-top: 8px;
-    margin-right: 12px;
+    margin-top: $spacing-xs;
+    margin-right: $spacing-s;
     color: $action-blue-base;
+    align-self: flex-start;
   }
 
   &-content {
     width: 100%;
     min-width: 0;
+  }
+
+  &-action {
+    color: $grey-semi-darkness;
+    width: 24px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $grey-bright;
+      text-decoration: none;
+
+      .block-action {
+        color: $grey-black;
+      }
+    }
+  }
+
+  @media (min-width: 641px) {
+    padding: $spacing-xs $spacing-m;
   }
 }
