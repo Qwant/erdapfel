@@ -25,10 +25,6 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
     setAnswered(true);
   };
 
-  if (!userFeedBackEnabled || !display || isDismissed) {
-    return null;
-  }
-
   if (isAnswered) {
     return (
       <div className="feedback-success">
@@ -37,6 +33,10 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
         </Alert>
       </div>
     );
+  }
+
+  if (!userFeedBackEnabled || !display || isDismissed) {
+    return null;
   }
 
   return (
