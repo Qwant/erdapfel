@@ -22,7 +22,12 @@ function sendAnswer(questionId, answer, { context } = {}) {
 const storagePrefix = `qmaps_v${version}_userFeedback_`;
 const dayToMs = days => days * 24 * 60 * 60 * 1000;
 
+const answeredDuringSession = [];
+
 function shouldBeDisplayed(questionId, hideForDays = 15) {
+  if (answeredDuringSession.includes(questionId)) {
+    return false;
+  }
   const previouslyAnswered = localStorage.getItem(`${storagePrefix}${questionId}`);
   if (!previouslyAnswered) {
     return true;
@@ -36,6 +41,7 @@ function shouldBeDisplayed(questionId, hideForDays = 15) {
 }
 
 function rememberAnswer(questionId, answer) {
+  answeredDuringSession.push(questionId);
   localStorage.setItem(
     `${storagePrefix}${questionId}`,
     JSON.stringify({ answer, date: new Date().toISOString() })
