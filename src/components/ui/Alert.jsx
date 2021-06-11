@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import cs from 'classnames';
 import { string, node } from 'prop-types';
 import { CloseButton } from './index';
+import { IconCheckboxCircle } from './icons';
+import { GREEN_DARK } from 'src/libs/colors';
 
 const Alert = ({ className = '', children, type }) => {
   const [hidden, setHidden] = useState(false);
@@ -27,11 +29,13 @@ const Alert = ({ className = '', children, type }) => {
 
   return (
     <div className={cs('alert', `alert--${type}`, className)} ref={alertRef}>
-      <div className="u-center">
-        {type === 'success' && <i className="alert-icon icon-check-circle u-mr-xs" />}
-        {children}
+      <div className="alert-content">
+        {type === 'success' && (
+          <IconCheckboxCircle fill={GREEN_DARK} width={20} className="alert-icon u-mr-xs" />
+        )}
+        <div className="alert-text">{children}</div>
+        <CloseButton variant="small" onClick={() => setHidden(true)} />
       </div>
-      <CloseButton position="topRight" variant="small" onClick={() => setHidden(true)} />
     </div>
   );
 };

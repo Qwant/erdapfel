@@ -5,6 +5,7 @@ export { default as IconLightbulb } from '../../../public/images/remix/lightbulb
 export { default as IconEdit } from '../../../public/images/remix/edit-line.svg';
 export { default as IconExternalLink } from '../../../public/images/remix/external-link-line.svg';
 export { default as IconCloseCircle } from '../../../public/images/remix/close-circle-line.svg';
+export { default as IconCheckboxCircle } from '../../../public/images/remix/checkbox-circle-line.svg';
 export { default as IconMenu } from '../../../public/images/remix/menu-line.svg';
 export { default as IconApps } from '../../../public/images/remix/apps-line.svg';
 export { default as IconThumbUp } from '../../../public/images/remix/thumb-up-line.svg';
