@@ -94,7 +94,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
         ['top_bar--back_action']: !!backButtonAction,
       })}
     >
-      <form onSubmit={() => false} noValidate className="search_form" ref={barElement}>
+      <form onSubmit={onSubmit} noValidate className="search_form" ref={barElement}>
         <button
           type="button"
           onClick={() => {
@@ -147,13 +147,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             type="button"
             onMouseDown={onClear}
           />
-          <input
-            className="search_form__action"
-            type="submit"
-            value=""
-            title={_('Search')}
-            onClick={onSubmit}
-          />
+          <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>
         {isMobile && config.burgerMenu.enabled && (
           <div id="react_menu__container">
