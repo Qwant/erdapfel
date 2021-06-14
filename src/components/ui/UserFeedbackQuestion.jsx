@@ -17,7 +17,7 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
               e.preventDefault();
               callback();
             }}
-            className="u-mr-xs"
+            className="feedback-button u-mr-xs"
           >
             {label}
           </Button>

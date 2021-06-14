@@ -7,9 +7,9 @@
   min-height: 40px;
   border: 1px solid;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  border-radius: 3px;
+  border-radius: 4px;
   padding: $spacing-s;
   animation: appearAlert 0.3s;
 
@@ -20,5 +20,27 @@
     .alert-icon {
       color: $green-base;
     }
+  }
+
+  &-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &-icon {
+    flex-shrink: 0;
+  }
+
+  &-text {
+    padding-right: $spacing-xl;
+  }
+
+  .closeButton {
+    position: absolute;
+    height: 100%;
+    right: -$spacing-xxs;
   }
 }
