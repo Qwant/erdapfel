@@ -87,7 +87,7 @@ export default class SceneCategory {
     this.layers.forEach(layerName => {
       this.map.on('click', layerName, this.handleLayerMarkerClick);
       if (!isMobileDevice()) {
-        this.map.on('mousemove', layerName, this.handleLayerMarkerMouseMove);
+        this.map.on('mouseover', layerName, this.handleLayerMarkerMouseOver);
         this.map.on('mouseleave', layerName, this.handleLayerMarkerMouseLeave);
       }
     });
@@ -133,19 +133,25 @@ export default class SceneCategory {
     });
   };
 
-  handleLayerMarkerMouseMove = e => {
+  handleLayerMarkerMouseOver = e => {
     this.map.getCanvas().style.cursor = 'pointer';
     const poi = this.getPointedPoi(e);
+
+    // Un-highlight the previously highlighted PoI if a new one is hovered
+    if (this.hoveredPoi) {
+      this.highlightPoiMarker(this.hoveredPoi, false);
+      fire('close_popup');
+    }
+
+    // Highlight the new PoI
     if (this.selectedPoi?.id !== poi.id) {
       this.highlightPoiMarker(poi, true);
-      fire('open_popup', this.getPointedPoi(e), e.originalEvent);
+      fire('open_popup', poi, e.originalEvent);
     }
   };
 
   handleLayerMarkerMouseLeave = () => {
     this.map.getCanvas().style.cursor = '';
-    this.highlightPoiMarker(this.hoveredPoi, false);
-    fire('close_popup');
   };
 
   addCategoryMarkers = (pois = [], poiFilters) => {
@@ -159,6 +165,7 @@ export default class SceneCategory {
   };
 
   removeCategoryMarkers = () => {
+    fire('close_popup');
     this.selectPoiMarker(null);
     this.highlightPoiMarker(this.hoveredPoi, false);
     this.layers.forEach(layerName => {

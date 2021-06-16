@@ -1,5 +1,5 @@
 import React from 'react';
-import renderStaticReact from 'src/libs/renderStaticReact';
+import ReactDOM from 'react-dom';
 import { Popup } from 'mapbox-gl--ENV';
 import ApiPoi from './poi/idunn_poi';
 import { isMobileDevice } from 'src/libs/device';
@@ -47,16 +47,11 @@ PoiPopup.prototype.addListener = function (layer) {
     }, WAIT_BEFORE_DISPLAY);
   });
 
-  this.map.on('move', () => {
-    this.close();
-  });
-
   this.map.on('click', () => {
     this.close();
   });
 
   this.map.on('mouseleave', layer, async () => {
-    this.close();
     clearTimeout(this.timeOutHandler);
   });
 };
@@ -87,8 +82,13 @@ PoiPopup.prototype.showPopup = function (poi, event) {
 
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.latLon)
-    .setHTML(renderStaticReact(<ReactPoiPopup poi={poi} />))
+    .setHTML('<div class="poi_popup__wrapper"/></div>')
     .addTo(this.map);
+
+  const popup_wrapper = document.querySelector('.poi_popup__wrapper');
+  if (popup_wrapper) {
+    ReactDOM.render(<ReactPoiPopup poi={poi} />, popup_wrapper);
+  }
 };
 
 PoiPopup.prototype.getPopupAnchor = function (event) {
