@@ -1,16 +1,16 @@
 # 
 # Translators:
 # Matthias Kaup-Antons <makanto@posteo.de>, 2021
-# Adrien Matissart, 2021
 # Charlotte Ziegler <c.ziegler@qwant.com>, 2021
+# Adrien Matissart, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 15:59+0000\n"
+"POT-Creation-Date: 2021-06-16 14:18+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Charlotte Ziegler <c.ziegler@qwant.com>, 2021\n"
+"Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,47 +80,47 @@ msgstr "Museum"
 msgid "sport"
 msgstr "Sport"
 
-msgid "french food"
-msgstr "Französische Küche"
+msgid "french restaurant"
+msgstr ""
 
 msgid "pizzeria"
 msgstr "Pizzeria"
 
-msgid "burger"
-msgstr "Burger"
+msgid "burgers"
+msgstr ""
 
-msgid "italian food"
-msgstr "Italienische Küche"
+msgid "italian restaurant"
+msgstr ""
 
-msgid "kebab"
-msgstr "Kebab"
+msgid "kebab restaurant"
+msgstr ""
 
 msgid "sandwich"
 msgstr "Sandwich"
 
-msgid "asian food"
-msgstr "Asiatische Küche"
+msgid "asian restaurant"
+msgstr ""
 
-msgid "japanese food"
-msgstr "Japanische Küche"
+msgid "japanese restaurant"
+msgstr ""
 
-msgid "chinese food"
-msgstr "Chinesische Küche"
+msgid "chinese restaurant"
+msgstr ""
 
-msgid "crepe"
+msgid "creperie"
 msgstr "Crêperie"
 
-msgid "indian food"
-msgstr "Indische Küche"
+msgid "indian restaurant"
+msgstr ""
 
-msgid "thai food"
-msgstr "Thailändische Küche"
+msgid "thai restaurant"
+msgstr ""
 
-msgid "vietnamese food"
-msgstr "Vietnamesische Küche"
+msgid "vietnamese restaurant"
+msgstr ""
 
-msgid "lebanese food"
-msgstr "Libanesische Küche"
+msgid "lebanese restaurant"
+msgstr ""
 
 msgid "parking lot"
 msgstr "Parkplatz"
@@ -161,7 +161,7 @@ msgstr "Friseur"
 msgid "fast food"
 msgstr "Fast Food"
 
-msgid "historic"
+msgid "historical place"
 msgstr ""
 
 msgid "post office"
@@ -185,20 +185,20 @@ msgstr "Kindergarten oder Vorschule"
 msgid "camp site"
 msgstr "Campingplatz"
 
-msgid "station"
+msgid "train station"
 msgstr "Bahnhof"
 
 msgid "butcher"
 msgstr "Metzger"
 
-msgid "attraction"
-msgstr "Attraktion"
+msgid "tourist attraction"
+msgstr ""
 
 msgid "hospital"
 msgstr "Krankenhaus"
 
-msgid "doctors"
-msgstr ""
+msgid "doctors office"
+msgstr "Arztpraxis"
 
 msgid "dentist"
 msgstr "Zahnarzt"
@@ -218,7 +218,7 @@ msgstr "Polizei"
 msgid "optician"
 msgstr "Optiker"
 
-msgid "grave yard"
+msgid "graveyard"
 msgstr "Friedhof"
 
 msgid "beauty salon"
@@ -233,8 +233,8 @@ msgstr "Feuerwache"
 msgid "shoes shop"
 msgstr "Schuhladen"
 
-msgid "doityourself store"
-msgstr "Heimwerkermarkt"
+msgid "DIY store"
+msgstr ""
 
 msgid "bicycle rental"
 msgstr "Fahrradverleih"
@@ -245,14 +245,14 @@ msgstr "Juweliergeschäft"
 msgid "newsagent"
 msgstr "Zeitungsgeschäft"
 
-msgid "swimming"
-msgstr ""
+msgid "swimming pool"
+msgstr "Schwimmbad"
 
 msgid "furniture shop"
 msgstr "Möbelgeschäft"
 
-msgid "books shop"
-msgstr "Buchladen"
+msgid "bookshop"
+msgstr "Buchhandlung"
 
 msgid "laundry"
 msgstr "Wäscherei"
@@ -263,7 +263,7 @@ msgstr "Sportgeschäft"
 msgid "theatre"
 msgstr "Theater"
 
-msgid "veterinary"
+msgid "veterinarian"
 msgstr "Tierarzt"
 
 msgid "greengrocer"
@@ -287,7 +287,7 @@ msgstr "Universität"
 msgid "travel agency"
 msgstr "Reiseagentur"
 
-msgid "administrative"
+msgid "administration"
 msgstr ""
 
 msgid "post box"
@@ -307,6 +307,17 @@ msgstr "Mein Standort"
 
 msgid "Close"
 msgstr "Schließen"
+
+msgid ""
+"Thanks for your feedback, it's important for helping us improve our "
+"products."
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
 
 msgid "Your position"
 msgstr "Ihr Standort"
@@ -331,6 +342,9 @@ msgstr "Neben"
 
 msgid "nearby"
 msgstr "in der Nähe"
+
+msgid "Do these results match your query?"
+msgstr ""
 
 msgid "Open"
 msgstr "Offen"
@@ -439,6 +453,9 @@ msgstr "Leichtathletik "
 msgid "ATM"
 msgstr "Bankautomat"
 
+msgid "attraction"
+msgstr "Attraktion"
+
 msgid "bag shop"
 msgstr "Taschengeschäft"
 
@@ -471,6 +488,9 @@ msgstr "Billard"
 
 msgid "bmx"
 msgstr "BMX"
+
+msgid "books shop"
+msgstr "Buchladen"
 
 msgid "border control"
 msgstr "Grenzkontrolle"
@@ -604,14 +624,14 @@ msgstr "Kaufhaus"
 msgid "dock"
 msgstr "Kai"
 
-msgid "doctors office"
-msgstr "Arztpraxis"
-
 msgid "dog park"
 msgstr "Hundepark"
 
 msgid "dog racing"
 msgstr "Hunderennen"
+
+msgid "doityourself store"
+msgstr "Heimwerkermarkt"
 
 msgid "driving school"
 msgstr "Fahrschule"
@@ -672,6 +692,9 @@ msgstr "Golf"
 
 msgid "golf course"
 msgstr "Golfplatz"
+
+msgid "grave yard"
+msgstr "Friedhof"
 
 msgid "guest house"
 msgstr "Pension"
@@ -877,14 +900,14 @@ msgstr "Fußball"
 msgid "stadium"
 msgstr "Stadion"
 
+msgid "station"
+msgstr "Bahnhof"
+
 msgid "stationery shop"
 msgstr "Schreibwarengeschäft"
 
 msgid "subway"
 msgstr "Untergrundbahn"
-
-msgid "swimming pool"
-msgstr "Schwimmbad"
 
 msgid "swimming area"
 msgstr "Badebereich"
@@ -930,6 +953,9 @@ msgstr "Kramladen"
 
 msgid "vehicle inspection"
 msgstr "Fahrzeuginspektion"
+
+msgid "veterinary"
+msgstr "Tierarzt"
 
 msgid "videos shop"
 msgstr "Videothek"
@@ -995,7 +1021,7 @@ msgid "Products for everyday life."
 msgstr ""
 
 msgid "   Search   "
-msgstr ""
+msgstr "  Search"
 
 msgid "Responsible search that respects your privacy."
 msgstr ""
@@ -1004,7 +1030,7 @@ msgid "Open Search"
 msgstr ""
 
 msgid "Maps"
-msgstr ""
+msgstr "Maps"
 
 msgid "The map that does not track you."
 msgstr ""
@@ -1013,7 +1039,7 @@ msgid "Open Maps"
 msgstr ""
 
 msgid "Junior"
-msgstr ""
+msgstr "Junior"
 
 msgid "Responsible search adapted to 6-12 year olds."
 msgstr ""
@@ -1135,6 +1161,9 @@ msgstr "Die Öffungszeiten können sich ändern."
 
 msgid "phone"
 msgstr "Telefon"
+
+msgid "Show the number"
+msgstr "Nummer anzeigen"
 
 msgid "Updated {datetime}"
 msgstr "Aktualisiert: {datetime}"

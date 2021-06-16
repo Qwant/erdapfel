@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 15:59+0000\n"
+"POT-Creation-Date: 2021-06-16 14:18+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -79,46 +79,46 @@ msgstr "mirdi"
 msgid "sport"
 msgstr "sport"
 
-msgid "french food"
+msgid "french restaurant"
 msgstr ""
 
 msgid "pizzeria"
 msgstr ""
 
-msgid "burger"
+msgid "burgers"
 msgstr ""
 
-msgid "italian food"
+msgid "italian restaurant"
 msgstr ""
 
-msgid "kebab"
+msgid "kebab restaurant"
 msgstr ""
 
 msgid "sandwich"
 msgstr ""
 
-msgid "asian food"
+msgid "asian restaurant"
 msgstr ""
 
-msgid "japanese food"
+msgid "japanese restaurant"
 msgstr ""
 
-msgid "chinese food"
+msgid "chinese restaurant"
 msgstr ""
 
-msgid "crepe"
+msgid "creperie"
 msgstr ""
 
-msgid "indian food"
+msgid "indian restaurant"
 msgstr ""
 
-msgid "thai food"
+msgid "thai restaurant"
 msgstr ""
 
-msgid "vietnamese food"
+msgid "vietnamese restaurant"
 msgstr ""
 
-msgid "lebanese food"
+msgid "lebanese restaurant"
 msgstr ""
 
 msgid "parking lot"
@@ -160,7 +160,7 @@ msgstr "ficher-blev"
 msgid "fast food"
 msgstr "pretierezh prim"
 
-msgid "historic"
+msgid "historical place"
 msgstr ""
 
 msgid "post office"
@@ -184,20 +184,20 @@ msgstr "liorzh bugale pe rak-skol"
 msgid "camp site"
 msgstr "tachenn gampiñ"
 
-msgid "station"
-msgstr "savlec'h"
+msgid "train station"
+msgstr ""
 
 msgid "butcher"
 msgstr "boser"
 
-msgid "attraction"
-msgstr "diduañs"
+msgid "tourist attraction"
+msgstr ""
 
 msgid "hospital"
 msgstr "ospital"
 
-msgid "doctors"
-msgstr ""
+msgid "doctors office"
+msgstr "stal an doktor"
 
 msgid "dentist"
 msgstr "dentour"
@@ -217,8 +217,8 @@ msgstr "komiserdi"
 msgid "optician"
 msgstr "luneder"
 
-msgid "grave yard"
-msgstr "bered"
+msgid "graveyard"
+msgstr ""
 
 msgid "beauty salon"
 msgstr "saloñs braventez"
@@ -232,8 +232,8 @@ msgstr "ti ar bomperien"
 msgid "shoes shop"
 msgstr ""
 
-msgid "doityourself store"
-msgstr "stal bitellat"
+msgid "DIY store"
+msgstr ""
 
 msgid "bicycle rental"
 msgstr ""
@@ -244,14 +244,14 @@ msgstr "bravigerezh"
 msgid "newsagent"
 msgstr ""
 
-msgid "swimming"
-msgstr ""
+msgid "swimming pool"
+msgstr "poull-neuial"
 
 msgid "furniture shop"
 msgstr "stal arrebeuri"
 
-msgid "books shop"
-msgstr "stal levrioù"
+msgid "bookshop"
+msgstr ""
 
 msgid "laundry"
 msgstr " ti-kannañ dilhad"
@@ -262,8 +262,8 @@ msgstr "stal sport"
 msgid "theatre"
 msgstr "c'hoariva"
 
-msgid "veterinary"
-msgstr "mezeg-loened"
+msgid "veterinarian"
+msgstr ""
 
 msgid "greengrocer"
 msgstr "stal legumaj"
@@ -286,7 +286,7 @@ msgstr "skol-veur"
 msgid "travel agency"
 msgstr "ajañs-veaj"
 
-msgid "administrative"
+msgid "administration"
 msgstr ""
 
 msgid "post box"
@@ -306,6 +306,17 @@ msgstr "Ma lec'hiadur"
 
 msgid "Close"
 msgstr "Serriñ"
+
+msgid ""
+"Thanks for your feedback, it's important for helping us improve our "
+"products."
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
 
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
@@ -330,6 +341,9 @@ msgstr "Da gichen"
 
 msgid "nearby"
 msgstr "e-kichen"
+
+msgid "Do these results match your query?"
+msgstr ""
 
 msgid "Open"
 msgstr "Digor"
@@ -435,6 +449,9 @@ msgstr "atleterezhioù"
 msgid "ATM"
 msgstr "Mekanik bilhedoù"
 
+msgid "attraction"
+msgstr "diduañs"
+
 msgid "bag shop"
 msgstr "stal seier"
 
@@ -467,6 +484,9 @@ msgstr "bilhiardoù"
 
 msgid "bmx"
 msgstr "bmx"
+
+msgid "books shop"
+msgstr "stal levrioù"
 
 msgid "border control"
 msgstr "kontroll an harzoù"
@@ -600,14 +620,14 @@ msgstr "stal bras"
 msgid "dock"
 msgstr "kae"
 
-msgid "doctors office"
-msgstr "stal an doktor"
-
 msgid "dog park"
 msgstr "park chas"
 
 msgid "dog racing"
 msgstr "redadegoù chas"
+
+msgid "doityourself store"
+msgstr "stal bitellat"
 
 msgid "driving school"
 msgstr "skol-vleniañ"
@@ -668,6 +688,9 @@ msgstr "golf"
 
 msgid "golf course"
 msgstr "tachenn golf"
+
+msgid "grave yard"
+msgstr "bered"
 
 msgid "guest house"
 msgstr "ti ostizien"
@@ -873,14 +896,14 @@ msgstr "mell-droad"
 msgid "stadium"
 msgstr "stad"
 
+msgid "station"
+msgstr "savlec'h"
+
 msgid "stationery shop"
 msgstr "stal paperaerezh"
 
 msgid "subway"
 msgstr "tren-buzhug"
-
-msgid "swimming pool"
-msgstr "poull-neuial"
 
 msgid "swimming area"
 msgstr "zonenn neuial"
@@ -926,6 +949,9 @@ msgstr "stal ur priz"
 
 msgid "vehicle inspection"
 msgstr "kontroll teknikel"
+
+msgid "veterinary"
+msgstr "mezeg-loened"
 
 msgid "videos shop"
 msgstr "stal videoioù"
@@ -1132,6 +1158,9 @@ msgstr "Eurvezhioù digeriñ hag a c'hall bezañ hizivaet"
 
 msgid "phone"
 msgstr "pellgomz"
+
+msgid "Show the number"
+msgstr ""
 
 msgid "Updated {datetime}"
 msgstr "Hizivaet {datetime}"
