@@ -16,7 +16,7 @@ const MainActionButton = ({ variant, label, onClick, icon, iconStyle, className,
     {...rest}
   >
     <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle} />
-    <div className="mainActionButton-label">{capitalizeFirst(label)}</div>
+    <div className="mainActionButton-label u-ellipsis">{capitalizeFirst(label)}</div>
   </button>
 );
 
