@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 15:59+0000\n"
+"POT-Creation-Date: 2021-06-16 14:18+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Albert mb <arnicamontana363@gmail.com>, 2021\n"
 "Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
@@ -80,46 +80,46 @@ msgstr "museu"
 msgid "sport"
 msgstr "esport"
 
-msgid "french food"
+msgid "french restaurant"
 msgstr ""
 
 msgid "pizzeria"
 msgstr ""
 
-msgid "burger"
+msgid "burgers"
 msgstr ""
 
-msgid "italian food"
+msgid "italian restaurant"
 msgstr ""
 
-msgid "kebab"
+msgid "kebab restaurant"
 msgstr ""
 
 msgid "sandwich"
 msgstr ""
 
-msgid "asian food"
+msgid "asian restaurant"
 msgstr ""
 
-msgid "japanese food"
+msgid "japanese restaurant"
 msgstr ""
 
-msgid "chinese food"
+msgid "chinese restaurant"
 msgstr ""
 
-msgid "crepe"
+msgid "creperie"
 msgstr ""
 
-msgid "indian food"
+msgid "indian restaurant"
 msgstr ""
 
-msgid "thai food"
+msgid "thai restaurant"
 msgstr ""
 
-msgid "vietnamese food"
+msgid "vietnamese restaurant"
 msgstr ""
 
-msgid "lebanese food"
+msgid "lebanese restaurant"
 msgstr ""
 
 msgid "parking lot"
@@ -161,7 +161,7 @@ msgstr "perruqueria"
 msgid "fast food"
 msgstr "menjar ràpid"
 
-msgid "historic"
+msgid "historical place"
 msgstr ""
 
 msgid "post office"
@@ -185,20 +185,20 @@ msgstr "llar d'infants"
 msgid "camp site"
 msgstr "lloc d'acampada"
 
-msgid "station"
-msgstr "estació"
+msgid "train station"
+msgstr ""
 
 msgid "butcher"
 msgstr "carnisseria"
 
-msgid "attraction"
-msgstr "atracció"
+msgid "tourist attraction"
+msgstr ""
 
 msgid "hospital"
 msgstr "hospital"
 
-msgid "doctors"
-msgstr ""
+msgid "doctors office"
+msgstr "l'oficina del doctor"
 
 msgid "dentist"
 msgstr "dentista"
@@ -218,8 +218,8 @@ msgstr "policia"
 msgid "optician"
 msgstr "òptic"
 
-msgid "grave yard"
-msgstr "cementiri"
+msgid "graveyard"
+msgstr ""
 
 msgid "beauty salon"
 msgstr "saló de bellesa"
@@ -233,8 +233,8 @@ msgstr "parc de bombers"
 msgid "shoes shop"
 msgstr ""
 
-msgid "doityourself store"
-msgstr "botiga de bricolatge"
+msgid "DIY store"
+msgstr ""
 
 msgid "bicycle rental"
 msgstr ""
@@ -245,14 +245,14 @@ msgstr "joieria"
 msgid "newsagent"
 msgstr ""
 
-msgid "swimming"
-msgstr ""
+msgid "swimming pool"
+msgstr "piscina"
 
 msgid "furniture shop"
 msgstr "botiga de mobles"
 
-msgid "books shop"
-msgstr "llibreria"
+msgid "bookshop"
+msgstr ""
 
 msgid "laundry"
 msgstr "bugaderia"
@@ -263,8 +263,8 @@ msgstr "botiga d'esports"
 msgid "theatre"
 msgstr "teatre"
 
-msgid "veterinary"
-msgstr "veterinari"
+msgid "veterinarian"
+msgstr ""
 
 msgid "greengrocer"
 msgstr "fruiteria"
@@ -287,7 +287,7 @@ msgstr "univeristat"
 msgid "travel agency"
 msgstr "agència de viatges"
 
-msgid "administrative"
+msgid "administration"
 msgstr ""
 
 msgid "post box"
@@ -307,6 +307,17 @@ msgstr "La meva ubicació"
 
 msgid "Close"
 msgstr "Tanca"
+
+msgid ""
+"Thanks for your feedback, it's important for helping us improve our "
+"products."
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
 
 msgid "Your position"
 msgstr "La vostra posició"
@@ -331,6 +342,9 @@ msgstr "A prop de"
 
 msgid "nearby"
 msgstr "a prop"
+
+msgid "Do these results match your query?"
+msgstr ""
 
 msgid "Open"
 msgstr "Obert"
@@ -435,6 +449,9 @@ msgstr "atletisme"
 msgid "ATM"
 msgstr "caixer automàtic"
 
+msgid "attraction"
+msgstr "atracció"
+
 msgid "bag shop"
 msgstr "botiga de bosses"
 
@@ -467,6 +484,9 @@ msgstr "billars"
 
 msgid "bmx"
 msgstr "bmx"
+
+msgid "books shop"
+msgstr "llibreria"
 
 msgid "border control"
 msgstr "duana"
@@ -600,14 +620,14 @@ msgstr "grans magatzems"
 msgid "dock"
 msgstr "moll"
 
-msgid "doctors office"
-msgstr "l'oficina del doctor"
-
 msgid "dog park"
 msgstr "parc caní"
 
 msgid "dog racing"
 msgstr "carreres de gossos"
+
+msgid "doityourself store"
+msgstr "botiga de bricolatge"
 
 msgid "driving school"
 msgstr "autoescola"
@@ -668,6 +688,9 @@ msgstr "golf"
 
 msgid "golf course"
 msgstr "curs de golf"
+
+msgid "grave yard"
+msgstr "cementiri"
 
 msgid "guest house"
 msgstr "posada"
@@ -873,14 +896,14 @@ msgstr "futbol"
 msgid "stadium"
 msgstr "estadi"
 
+msgid "station"
+msgstr "estació"
+
 msgid "stationery shop"
 msgstr "papereria"
 
 msgid "subway"
 msgstr "metro"
-
-msgid "swimming pool"
-msgstr "piscina"
 
 msgid "swimming area"
 msgstr "àrea de natació"
@@ -926,6 +949,9 @@ msgstr "basar"
 
 msgid "vehicle inspection"
 msgstr "inspecció de vehicles - ITV"
+
+msgid "veterinary"
+msgstr "veterinari"
 
 msgid "videos shop"
 msgstr "videoclub"
@@ -1129,6 +1155,9 @@ msgstr "Els horaris d'obertura estan subjectes a canvis"
 
 msgid "phone"
 msgstr "telèfon"
+
+msgid "Show the number"
+msgstr ""
 
 msgid "Updated {datetime}"
 msgstr "Actualitzat {datetime}"
