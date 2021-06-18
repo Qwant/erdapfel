@@ -1,9 +1,4 @@
 module.exports = function (mode) {
-  const plugins = [
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-proposal-class-properties',
-  ];
-
   const production = {
     presets: [
       [
@@ -36,6 +31,6 @@ module.exports = function (mode) {
   return {
     presets: conf.presets.concat(['@babel/preset-react']),
     ignore: [/node_modules\/(?!@qwant\/qwant-basic-gl-style)/],
-    plugins,
+    plugins: ['@babel/plugin-syntax-dynamic-import'],
   };
 };
