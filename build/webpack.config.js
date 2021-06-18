@@ -1,7 +1,6 @@
 const path = require('path');
 const yaml = require('node-yaml');
 const webpack = require('webpack');
-const babelConf = require('./babel.config');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const getBuildMode = function (argv) {
@@ -107,10 +106,7 @@ const mainJsChunkConfig = buildMode => {
         {
           test: /\.yml$/,
           use: [
-            {
-              loader: 'babel-loader',
-              options: babelConf(buildMode),
-            },
+            { loader: 'babel-loader' },
             { loader: '@qwant/config-sanitizer-loader' },
             { loader: 'json-loader' },
             { loader: 'yaml-loader' },
@@ -134,12 +130,7 @@ const mainJsChunkConfig = buildMode => {
         },
         {
           test: /\.(js|jsx)$/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: babelConf(buildMode),
-            },
-          ],
+          use: [{ loader: 'babel-loader' }],
         },
         {
           test: /\.svg$/,
