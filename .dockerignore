@@ -10,3 +10,4 @@
 !views/
 !language/
 !package*.json
+!babel.config.js
