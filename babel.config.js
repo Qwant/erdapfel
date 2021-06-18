@@ -1,8 +1,32 @@
-module.exports = {
-  "env": {
-    "test": {
-      "presets": ["@babel/preset-env", "@babel/preset-react"],
-      "plugins": ["@babel/plugin-transform-runtime"]
-    }
-  }
-}
+module.exports = function (api) {
+  api.cache(true);
+
+  const presets = [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          browsers: ['Chrome >= 60', 'Firefox >= 44', 'Safari >= 8', 'Edge >= 17'],
+        },
+        useBuiltIns: 'entry',
+        corejs: 2,
+      },
+    ],
+    '@babel/preset-react',
+  ];
+
+  const env = {
+    test: {
+      plugins: ['@babel/plugin-transform-runtime'],
+    },
+  };
+
+  const plugins = ['@babel/plugin-syntax-dynamic-import'];
+
+  return {
+    presets,
+    env,
+    plugins,
+    ignore: [/node_modules\/(?!@qwant\/qwant-basic-gl-style)/],
+  };
+};
