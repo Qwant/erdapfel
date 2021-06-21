@@ -29,7 +29,7 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
     return (
       <div className="feedback-success">
         <Alert type="success">
-          {_("Thanks for your feedback, it's important for helping us improve our products.")}
+          {_('Thank you for your feedback, it is important to help us improve our products.')}
         </Alert>
       </div>
     );

@@ -164,7 +164,7 @@ const Suggest = ({
               <UserFeedbackYesNo
                 questionId="suggest"
                 context={encodeURIComponent(value) + document.location.hash}
-                question={_('Do these results match your query?')}
+                question={_('Satisfied with the proposed results?')}
               />
             )}
           </div>,
