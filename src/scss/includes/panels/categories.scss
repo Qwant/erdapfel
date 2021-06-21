@@ -53,6 +53,17 @@
     &.panel--pj {
       padding: 0 0 36px;
     }
+
+    &:not(.maximized) {
+      .feedback {
+        display: none;
+      }
+    }
+
+    .feedback, .feedback-success {
+      position: sticky;
+      bottom: 0;
+    }
   }
 
   .category__panel__error {
