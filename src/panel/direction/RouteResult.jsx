@@ -78,7 +78,7 @@ const RouteResult = ({
         <UserFeedbackYesNo
           questionId="routes"
           context={document.location.href}
-          question={_('Satisfied with the proposed results?')}
+          question={_('Satisfied with the results?')}
         />
       )}
       {vehicle === 'publicTransport' && routes.length > 0 && (
