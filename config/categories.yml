@@ -40,7 +40,6 @@
   color: "#a125be"
   matcher:
     regex: "service|car repair|post office|townhall|police|fire station|garage|poste|bureau de poste|gendarmerie|pompiers|caserne de pompiers"
-  icon: service
 - label: _('health')
   name: health
   color: "#1777cb"
@@ -223,6 +222,8 @@
   name: sport_other
 - label: _('administration')
   name: administrative
+  color: "#6d6d76"
+  icon: town-hall
 - label: _('post box')
   name: post_box
 - label: _('playground')
