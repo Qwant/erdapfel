@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-16 14:18+0000\n"
+"POT-Creation-Date: 2021-06-21 09:22+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -309,7 +309,7 @@ msgid "Close"
 msgstr "Schließen"
 
 msgid ""
-"Thanks for your feedback, it's important for helping us improve our "
+"Thank you for your feedback, it is important to help us improve our "
 "products."
 msgstr ""
 
@@ -343,7 +343,7 @@ msgstr "Neben"
 msgid "nearby"
 msgstr "in der Nähe"
 
-msgid "Do these results match your query?"
+msgid "Satisfied with the proposed results?"
 msgstr ""
 
 msgid "Open"
@@ -1018,7 +1018,7 @@ msgid "Products"
 msgstr "Produkte"
 
 msgid "Products for everyday life."
-msgstr ""
+msgstr "Produkte für das tägliche Leben."
 
 msgid "   Search   "
 msgstr "  Search"
@@ -1027,7 +1027,7 @@ msgid "Responsible search that respects your privacy."
 msgstr ""
 
 msgid "Open Search"
-msgstr ""
+msgstr "Search öffnen"
 
 msgid "Maps"
 msgstr "Maps"
@@ -1036,7 +1036,7 @@ msgid "The map that does not track you."
 msgstr ""
 
 msgid "Open Maps"
-msgstr ""
+msgstr "Maps öffnen"
 
 msgid "Junior"
 msgstr "Junior"
@@ -1045,7 +1045,7 @@ msgid "Responsible search adapted to 6-12 year olds."
 msgstr ""
 
 msgid "Open Junior"
-msgstr ""
+msgstr "Junior öffnen"
 
 msgid "We believe in an alternate model"
 msgstr ""
