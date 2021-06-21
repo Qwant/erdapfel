@@ -139,7 +139,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
         <UserFeedbackYesNo
           questionId="poi-list"
           context={document.location.href}
-          question={_('Do these results match your query?')}
+          question={_('Satisfied with the proposed results?')}
         />
         {dataSource === sources.pagesjaunes && (
           <SourceFooter>{_('Results in partnership with PagesJaunes', 'categories')}</SourceFooter>
