@@ -13,8 +13,13 @@ module.exports = function (config) {
   const geocoderUrl = idunnBaseUrl + '/v1/search';
   const useNlu = config.services.geocoder.useNlu;
 
+  // @TODO: share intention validation with src/adapters/intention.js
   const categories = yaml.readSync('../../config/categories.yml');
   const isCategoryValid = type => categories.find(category => category.name === type);
+  const isIntentionValid = intention =>
+    intention &&
+    intention.filter &&
+    (intention.filter.q || isCategoryValid(intention.filter.category));
 
   // @TODO: import it from client lib src/libs/url_utils.js when possible
   const removeNullEntries = obj =>
@@ -33,13 +38,13 @@ module.exports = function (config) {
       timeout: idunnTimeout,
     });
     const intention = (response.data.intentions || [])[0];
-    if (intention && intention.filter) {
+    if (isIntentionValid(intention)) {
       const { q, bbox, category } = intention.filter;
       const params = new URLSearchParams(
         removeNullEntries({
           q,
           bbox: bbox && bbox.join(','),
-          type: isCategoryValid(category) ? category : null,
+          type: category,
           client,
         })
       );
