@@ -31,7 +31,10 @@ const Container = ({ type, filling_level, updated_at }) => {
       </Text>
       <Flex justifyContent="space-between">
         <Text level="smallTitle">{containerTypes(type)}</Text>
-        <Text>{filling_level} %</Text>
+        <Text>
+          {filling_level}
+          {' %'}
+        </Text>
       </Flex>
       <Meter
         value={filling_level}

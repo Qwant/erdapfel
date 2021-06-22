@@ -432,12 +432,10 @@ export default class DirectionPanel extends React.Component {
                     </Flex>
                   )}
                   {form}
-                  {
-                    <div
-                      id="direction-autocomplete_suggestions"
-                      className="direction-autocomplete_suggestions"
-                    />
-                  }
+                  <div
+                    id="direction-autocomplete_suggestions"
+                    className="direction-autocomplete_suggestions"
+                  />
                 </div>
               )}
               {isResultDisplayed && (
