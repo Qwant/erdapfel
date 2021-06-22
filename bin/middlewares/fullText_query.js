@@ -19,7 +19,7 @@ module.exports = function (config) {
   const isIntentionValid = intention =>
     intention &&
     intention.filter &&
-    (intention.filter.q || isCategoryValid(intention.filter.category));
+    (!intention.filter.category || isCategoryValid(intention.filter.category));
 
   // @TODO: import it from client lib src/libs/url_utils.js when possible
   const removeNullEntries = obj =>
