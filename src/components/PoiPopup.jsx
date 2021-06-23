@@ -7,6 +7,9 @@ const PoiPopup = ({ poi }) => {
   return (
     <div
       className="poi_popup"
+      onMouseEnter={() => {
+        fire('stop_close_popup_timeout');
+      }}
       onMouseLeave={() => {
         fire('close_popup');
       }}

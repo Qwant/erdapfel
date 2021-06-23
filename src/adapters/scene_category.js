@@ -12,6 +12,8 @@ import IconManager from 'src/adapters/icon_manager';
 
 const mapStyleConfig = nconf.get().mapStyle;
 
+let popup_close_timeout;
+
 const poisToGeoJSON = pois => {
   return {
     type: 'FeatureCollection',
@@ -38,6 +40,12 @@ export default class SceneCategory {
     listen('click_category_marker', this.selectPoiMarker);
     listen('click_category_poi', this.selectPoi);
     listen('clean_marker', () => this.selectPoiMarker(null));
+    listen('stop_close_popup_timeout', () => clearTimeout(popup_close_timeout));
+    listen('start_close_popup_timeout', () => {
+      popup_close_timeout = setTimeout(() => {
+        fire('close_popup');
+      }, 1000);
+    });
   }
 
   initActiveStateMarkers = () => {
@@ -140,6 +148,7 @@ export default class SceneCategory {
     // Un-highlight the previously highlighted PoI if a new one is hovered
     if (this.hoveredPoi) {
       this.highlightPoiMarker(this.hoveredPoi, false);
+      fire('stop_close_popup_timeout');
       fire('close_popup');
     }
 
@@ -152,6 +161,10 @@ export default class SceneCategory {
 
   handleLayerMarkerMouseLeave = () => {
     this.map.getCanvas().style.cursor = '';
+
+    // When the mouse quits the marker, close the popup after 1s if it has not been hovered
+    fire('stop_close_popup_timeout');
+    fire('start_close_popup_timeout');
   };
 
   addCategoryMarkers = (pois = [], poiFilters) => {

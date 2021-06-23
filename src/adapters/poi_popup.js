@@ -4,7 +4,7 @@ import { Popup } from 'mapbox-gl--ENV';
 import ApiPoi from './poi/idunn_poi';
 import { isMobileDevice } from 'src/libs/device';
 import ReactPoiPopup from 'src/components/PoiPopup';
-import { listen } from 'src/libs/customEvents';
+import { fire, listen } from 'src/libs/customEvents';
 
 const WAIT_BEFORE_DISPLAY = 350;
 
@@ -53,6 +53,7 @@ PoiPopup.prototype.addListener = function (layer) {
 
   this.map.on('mouseleave', layer, async () => {
     clearTimeout(this.timeOutHandler);
+    fire('start_close_popup_timeout');
   });
 };
 
