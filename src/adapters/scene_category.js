@@ -155,6 +155,8 @@ export default class SceneCategory {
   };
 
   addCategoryMarkers = (pois = [], poiFilters) => {
+    // Close current OSM PoI popup, if it's still open
+    fire('close_popup');
     this.pois = pois;
     this.poiFilters = poiFilters;
     this.setOsmPoisVisibility(false);
@@ -165,6 +167,7 @@ export default class SceneCategory {
   };
 
   removeCategoryMarkers = () => {
+    // Close current PJ PoI popup, if it's still open
     fire('close_popup');
     this.selectPoiMarker(null);
     this.highlightPoiMarker(this.hoveredPoi, false);
