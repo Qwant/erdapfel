@@ -7,6 +7,7 @@ import ReactPoiPopup from 'src/components/PoiPopup';
 import { fire, listen } from 'src/libs/customEvents';
 
 const WAIT_BEFORE_DISPLAY = 350;
+const WAIT_BEFORE_CLOSE = 200;
 
 function PoiPopup() {}
 
@@ -15,21 +16,27 @@ PoiPopup.prototype.init = function (map) {
   this.popupHandle = null;
   this.timeOutHandler = null;
   this.activePoiId = null;
+  this.closeTimeoutHandler = null;
 
   listen('open_popup', (poi, e) => {
     if (isMobileDevice() || isTouchEvent(e)) {
       return;
     }
     this.createPJPopup(poi, e);
+    fire('stop_close_popup_timeout');
   });
   listen('close_popup', () => this.close());
-  listen('map_mark_poi', poi => {
-    this.close();
-    this.activePoiId = poi.id;
-  });
   listen('clean_marker', () => {
     this.close();
     this.activePoiId = null;
+  });
+
+  listen('stop_close_popup_timeout', () => clearTimeout(this.closeTimeoutHandler));
+  listen('start_close_popup_timeout', () => {
+    clearTimeout(this.closeTimeoutHandler);
+    this.closeTimeoutHandler = setTimeout(() => {
+      fire('close_popup');
+    }, WAIT_BEFORE_CLOSE);
   });
 };
 
@@ -86,9 +93,9 @@ PoiPopup.prototype.showPopup = function (poi, event) {
     .setHTML('<div class="poi_popup__wrapper"/></div>')
     .addTo(this.map);
 
-  const popup_wrapper = document.querySelector('.poi_popup__wrapper');
-  if (popup_wrapper) {
-    ReactDOM.render(<ReactPoiPopup poi={poi} />, popup_wrapper);
+  const popupWrapper = document.querySelector('.poi_popup__wrapper');
+  if (popupWrapper) {
+    ReactDOM.render(<ReactPoiPopup poi={poi} />, popupWrapper);
   }
 };
 
@@ -119,6 +126,7 @@ PoiPopup.prototype.getPopupAnchor = function (event) {
 };
 
 PoiPopup.prototype.close = function () {
+  fire('stop_close_popup_timeout');
   if (this.popupHandle) {
     this.popupHandle.remove();
     this.popupHandle = null;
