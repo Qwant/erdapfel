@@ -3,8 +3,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
-import { Heart } from 'src/components/ui/icons';
+import { Heart, IconCalendar, IconFileList } from 'src/components/ui/icons';
 import { PINK_DARK } from 'src/libs/colors';
+
+const TransactionalButton = ({ poi }) => {
+  const { booking_url, appointment_url, quotation_request_url } =
+    poi?.blocksByType?.transactional || {};
+
+  let icon;
+  let label;
+  let url;
+  if (booking_url) {
+    icon = <IconCalendar width={16} />;
+    url = booking_url;
+    label = _('Booking', 'poi panel');
+  } else if (appointment_url) {
+    icon = <IconCalendar width={16} />;
+    url = appointment_url;
+    label = _('Appointment', 'poi panel');
+  } else if (quotation_request_url) {
+    icon = <IconFileList width={16} />;
+    url = quotation_request_url;
+    label = _('Request for quotation', 'poi panel');
+  } else {
+    return null;
+  }
+
+  const sendTelemetryEvent = () => {
+    Telemetry.sendPoiEvent(
+      poi,
+      'transactional',
+      Telemetry.buildInteractionData({
+        id: poi.id,
+        source: poi.meta?.source,
+        template: 'single',
+        zone: 'detail',
+        element: 'transactional',
+      })
+    );
+  };
+
+  return (
+    <Button
+      icon={icon}
+      href={url}
+      rel="noopener noreferrer external"
+      title={label}
+      onClick={sendTelemetryEvent}
+    />
+  );
+};
 
 const ActionButtons = ({
   poi,
@@ -48,6 +96,8 @@ const ActionButtons = ({
           title={_('Call', 'poi panel')}
         />
       )}
+
+      <TransactionalButton poi={poi} />
 
       <Button
         className="poi_panel__action__favorite"
