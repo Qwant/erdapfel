@@ -29,7 +29,7 @@ const PoiItem = React.memo(
             </div>
           )}
           <div className="poiItem-subclassAndHours">
-            <div className="poiItem-subclass u-text--subtitle">{subclass}</div>
+            <div className="poiItem-subclass">{subclass}</div>
             {inList && subclass && openingHours && '\u00A0⋅\u00A0'}
             {openingHours && (
               <div className="poiItem-openingHour">
@@ -38,7 +38,7 @@ const PoiItem = React.memo(
             )}
           </div>
           {inList && (
-            <div className="poiItem-address u-text--subtitle u-ellipsis">
+            <div className="poiItem-address u-ellipsis">
               <Address address={poi.address} inline omitCountry />
             </div>
           )}

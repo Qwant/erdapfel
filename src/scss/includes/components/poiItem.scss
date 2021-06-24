@@ -11,6 +11,11 @@
   &-left {
     min-width: 0;
     flex: 1;
+    color: $grey-semi-darkness;
+
+    .poiTitle {
+      color: $grey-black;
+    }
   }
 
   &-right {

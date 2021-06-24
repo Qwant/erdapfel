@@ -1,5 +1,4 @@
 import React from 'react';
-import Address from 'src/components/ui/Address';
 import PoiItem from './PoiItem';
 import { fire } from 'src/libs/customEvents';
 
@@ -14,8 +13,7 @@ const PoiPopup = ({ poi }) => {
         fire('close_popup');
       }}
     >
-      <PoiItem poi={poi} className="poi-panel-poiItem" withAlternativeName withOpeningHours />
-      {poi.address && <Address address={poi.address} inline omitCountry />}
+      <PoiItem poi={poi} withOpeningHours withImage inList />
     </div>
   );
 };

@@ -14,10 +14,26 @@
 }
 
 .poi_popup {
-  min-width: 300px;
+  width: 300px;
   border-radius: 12px;
   background: $background;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow-hover;
   padding: $spacing-s;
   position: relative;
+
+  .poiItem {
+    align-items: flex-start;
+    font-size: 12px;
+    line-height: 1.33;
+  }
+
+  .poiItem-subclassAndHours {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .poiTitle-main {
+    font-size: 14px;
+    line-height: 1.29;
+  }
 }
