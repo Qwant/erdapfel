@@ -324,8 +324,8 @@ Scene.prototype.clickOnMap = function (lngLat, clickedFeature, { longTouch = fal
     // If Direction panel is open, tell it to fill its fields with this PoI
     fire('set_direction_point', poi);
   } else if (isMobileDevice() && !clickedFeature && !longTouch) {
-    // On mobile, simple clicks anywhere close the currently open panel
-    window.app.navigateTo('/');
+    // On mobile, simple clicks anywhere don't do anything
+    return;
   } else {
     // Default case: open the POI panel
     window.app.navigateTo(`/place/${toUrl(poi)}`, { poi });
