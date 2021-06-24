@@ -35,11 +35,10 @@
   matcher:
     regex: "cine|leisures?|loisirs?|cin[ée](?:ma)?s?|ugc|path[ée]|th[ée]atres?|parcs?\\s+(?:(?:d')?attractions?|(de\\s+)?loisirs?)|royal kids|laser game|escape game|goolfy|laserquest|max aventure|prizoners|get out !|recreakid|kartings?"
   icon: cinema
-- label: _('service')
-  name: service
-  color: "#a125be"
-  matcher:
-    regex: "service|car repair|post office|townhall|police|fire station|garage|poste|bureau de poste|gendarmerie|pompiers|caserne de pompiers"
+- label: _('administration')
+  name: administrative
+  color: "#6d6d76"
+  icon: town-hall
 - label: _('health')
   name: health
   color: "#1777cb"
@@ -74,6 +73,11 @@
 # Only categories with 'icon' are visible as action buttons.
 # Below are the categories that are only accessible
 # via queries (with detected intention) or URL
+- label: _('service')
+  name: service
+  color: "#a125be"
+  matcher:
+    regex: "service|car repair|post office|townhall|police|fire station|garage|poste|bureau de poste|gendarmerie|pompiers|caserne de pompiers"
 - label: _('french restaurant')
   name: food_french
 - label: _('pizzeria')
@@ -220,10 +224,6 @@
   name: shop_travel_agency
 - label: _('sport')
   name: sport_other
-- label: _('administration')
-  name: administrative
-  color: "#6d6d76"
-  icon: town-hall
 - label: _('post box')
   name: post_box
 - label: _('playground')
