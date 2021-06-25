@@ -7,7 +7,7 @@ import ReactPoiPopup from 'src/components/PoiPopup';
 import { fire, listen } from 'src/libs/customEvents';
 
 const WAIT_BEFORE_DISPLAY = 350;
-const WAIT_BEFORE_CLOSE = 200;
+const WAIT_BEFORE_CLOSE = 350;
 
 function PoiPopup() {}
 
