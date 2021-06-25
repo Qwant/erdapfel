@@ -57,7 +57,6 @@ const OpeningHour = ({ schedule, showNextOpenOnly = false, className }) => {
     <span
       className={classnames(
         'openingHour',
-        'u-text--subtitle',
         {
           [`openingHour--${status}`]: status,
           'openingHour--24-7': isTwentyFourSeven,

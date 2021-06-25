@@ -1,4 +1,4 @@
-@import "../osm_contribute";
+@import '../osm_contribute';
 
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
@@ -8,6 +8,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
   &-poiItem {
     flex-grow: 1;
+    cursor: pointer;
   }
 }
 
@@ -23,8 +24,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 @keyframes appear {
-  0% {opacity: 0;}
-  100% {opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .poi_panel__info__hour__circle {
@@ -104,7 +109,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
     right: 0;
     bottom: 0;
     padding-left: 48px;
-    background: linear-gradient(to right, rgba(255,255,255,0) 0, white 48px, white 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, white 48px, white 100%);
   }
 }
 
@@ -166,7 +171,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__block__collapse {
   cursor: pointer;
-  transition: transform .2s;
+  transition: transform 0.2s;
   font-size: 24px;
   color: $secondary_text;
   margin-left: auto;
@@ -218,7 +223,8 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   }
 
   .poi_panel.panel {
-    &.default, &.minimized {
+    &.default,
+    &.minimized {
       height: auto;
       .panel-drawer {
         min-height: inherit;
@@ -250,6 +256,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   }
 }
 
-@import "./covid";
-@import "./timetable";
-@import "./recycling";
+@import './covid';
+@import './timetable';
+@import './recycling';

@@ -1,12 +1,13 @@
 import React from 'react';
-import renderStaticReact from 'src/libs/renderStaticReact';
+import ReactDOM from 'react-dom';
 import { Popup } from 'mapbox-gl--ENV';
 import ApiPoi from './poi/idunn_poi';
 import { isMobileDevice } from 'src/libs/device';
 import ReactPoiPopup from 'src/components/PoiPopup';
-import { listen } from 'src/libs/customEvents';
+import { fire, listen } from 'src/libs/customEvents';
 
 const WAIT_BEFORE_DISPLAY = 350;
+const WAIT_BEFORE_CLOSE = 350;
 
 function PoiPopup() {}
 
@@ -15,21 +16,27 @@ PoiPopup.prototype.init = function (map) {
   this.popupHandle = null;
   this.timeOutHandler = null;
   this.activePoiId = null;
+  this.closeTimeoutHandler = null;
 
   listen('open_popup', (poi, e) => {
     if (isMobileDevice() || isTouchEvent(e)) {
       return;
     }
     this.createPJPopup(poi, e);
+    fire('stop_close_popup_timeout');
   });
   listen('close_popup', () => this.close());
-  listen('map_mark_poi', poi => {
-    this.close();
-    this.activePoiId = poi.id;
-  });
   listen('clean_marker', () => {
     this.close();
     this.activePoiId = null;
+  });
+
+  listen('stop_close_popup_timeout', () => clearTimeout(this.closeTimeoutHandler));
+  listen('start_close_popup_timeout', () => {
+    clearTimeout(this.closeTimeoutHandler);
+    this.closeTimeoutHandler = setTimeout(() => {
+      fire('close_popup');
+    }, WAIT_BEFORE_CLOSE);
   });
 };
 
@@ -47,17 +54,13 @@ PoiPopup.prototype.addListener = function (layer) {
     }, WAIT_BEFORE_DISPLAY);
   });
 
-  this.map.on('move', () => {
-    this.close();
-  });
-
   this.map.on('click', () => {
     this.close();
   });
 
   this.map.on('mouseleave', layer, async () => {
-    this.close();
     clearTimeout(this.timeOutHandler);
+    fire('start_close_popup_timeout');
   });
 };
 
@@ -87,8 +90,13 @@ PoiPopup.prototype.showPopup = function (poi, event) {
 
   this.popupHandle = new Popup(popupOptions)
     .setLngLat(poi.latLon)
-    .setHTML(renderStaticReact(<ReactPoiPopup poi={poi} />))
+    .setHTML('<div class="poi_popup__wrapper"/></div>')
     .addTo(this.map);
+
+  const popupWrapper = document.querySelector('.poi_popup__wrapper');
+  if (popupWrapper) {
+    ReactDOM.render(<ReactPoiPopup poi={poi} />, popupWrapper);
+  }
 };
 
 PoiPopup.prototype.getPopupAnchor = function (event) {
@@ -119,6 +127,7 @@ PoiPopup.prototype.getPopupAnchor = function (event) {
 
 PoiPopup.prototype.close = function () {
   if (this.popupHandle) {
+    fire('stop_close_popup_timeout');
     this.popupHandle.remove();
     this.popupHandle = null;
   }
