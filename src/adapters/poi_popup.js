@@ -126,8 +126,8 @@ PoiPopup.prototype.getPopupAnchor = function (event) {
 };
 
 PoiPopup.prototype.close = function () {
-  fire('stop_close_popup_timeout');
   if (this.popupHandle) {
+    fire('stop_close_popup_timeout');
     this.popupHandle.remove();
     this.popupHandle = null;
   }
