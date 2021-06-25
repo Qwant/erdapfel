@@ -1,6 +1,7 @@
 .category__panel {
   .poiItem {
     padding: 16px 14px;
+    cursor: pointer;
   }
 
   .poiItem-subclassAndHours {
@@ -19,7 +20,6 @@
 
 @media (min-width: 641px) {
   .category__panel {
-
     &.panel--pj {
       .panel-content {
         overflow: hidden;
@@ -60,7 +60,8 @@
       }
     }
 
-    .feedback, .feedback-success {
+    .feedback,
+    .feedback-success {
       position: sticky;
       bottom: 0;
     }
