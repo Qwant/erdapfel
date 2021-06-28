@@ -1,289 +1,118 @@
-/* globals _ */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import Telemetry from 'src/libs/telemetry';
-import nconf from '@qwant/nconf-getter';
-import ActionButtons from './ActionButtons';
-import PoiBlockContainer from './PoiBlockContainer';
-import OsmContribution from 'src/components/OsmContribution';
-import CategoryList from 'src/components/CategoryList';
-import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
-import { fire, listen, unListen } from 'src/libs/customEvents';
-import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters/store';
-import PoiItem from 'src/components/PoiItem';
-import { isNullOrEmpty } from 'src/libs/object';
-import { DeviceContext } from 'src/libs/device';
-import { Flex, Panel, PanelNav, Divider, Button } from 'src/components/ui';
+import PoiPanelContent from './PoiPanelContent';
+import { fire } from 'src/libs/customEvents';
+import { Panel, PanelNav, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
+import { useDevice, useI18n } from 'src/hooks';
 
-const covid19Enabled = (nconf.get().covid19 || {}).enabled;
+const PoiPanel = ({ poi, poiId, backAction, inList }) => {
+  const { isMobile } = useDevice();
+  const [fullPoi, setFullPoi] = useState(poi);
+  const { _ } = useI18n();
 
-export default class PoiPanel extends React.Component {
-  static propTypes = {
-    poiId: PropTypes.string.isRequired,
-    poi: PropTypes.object,
-    poiFilters: PropTypes.object,
-    centerMap: PropTypes.bool,
-    backToList: PropTypes.func,
-    backToFavorite: PropTypes.func,
-  };
-
-  static defaultProps = {
-    poiFilters: {},
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      fullPoi: null,
-      isPoiInFavorite: false,
-    };
-    this.isDirectionActive = nconf.get().direction.enabled;
-  }
-
-  componentDidMount() {
-    // direction shortcut will be visible in minimized state
-    fire('mobile_direction_button_visibility', false);
-    fire('set_direction_shortcut_callback', this.openDirection);
-
-    // Load poi or pois
-    !this.props.pois ? this.loadPoi() : this.loadPois();
-
-    this.storePoiChangeHandler = listen('poi_favorite_state_changed', (poi, isPoiInFavorite) => {
-      if (poi === this.state.fullPoi) {
-        this.setState({ isPoiInFavorite });
-      }
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.poiId !== prevProps.poiId) {
-      this.loadPoi();
-    }
-  }
-
-  componentWillUnmount() {
-    unListen(this.storePoiChangeHandler);
-    fire('move_mobile_bottom_ui', 0);
-    fire('clean_marker');
-    fire('mobile_direction_button_visibility', true);
-    // Clear direction shortcut cb to reset default action
-    fire('set_direction_shortcut_callback', null);
-  }
-
-  loadPois = () => {
-    window.execOnMapLoaded(() => {
-      fire('add_category_markers', this.props.pois, this.props.poiFilters);
-    });
-    this.loadPoi();
-  };
-
-  loadPoi = async () => {
-    const { poiId, centerMap } = this.props;
-    const mapOptions = { centerMap };
-
-    // If a POI object is provided before fetching full data,
-    // we can update the map immediately for UX responsiveness
-    const shallowPoi = this.props.poi && Poi.deserialize(this.props.poi);
-    const updateMapEarly = !!shallowPoi;
-    if (updateMapEarly) {
-      this.updateMapPoi(shallowPoi, mapOptions);
-    }
-
-    let poi;
-    if (window.hotLoadPoi && window.hotLoadPoi.id === poiId) {
-      Telemetry.add(Telemetry.POI_RESTORE);
-      poi = new IdunnPoi(window.hotLoadPoi);
-      mapOptions.centerMap = true;
-    } else {
-      poi = await IdunnPoi.poiApiLoad(this.props.poi || { id: poiId });
-    }
-
-    // fallback on the simple POI object from the map
-    // if Idunn doesn't know this POI
-    poi = poi || shallowPoi;
-
-    if (!poi) {
-      // @TODO: error message instead of close in case of unrecognized POI
-      this.closeAction();
-    } else {
-      this.setState({
-        fullPoi: poi,
-        isPoiInFavorite: isInFavorites(poi),
+  useEffect(() => {
+    if (fullPoi) {
+      window.execOnMapLoaded(() => {
+        if (inList) {
+          fire('click_category_marker', fullPoi);
+        } else {
+          fire('create_poi_marker', fullPoi);
+        }
+        fire('ensure_poi_visible', fullPoi, {});
       });
-      if (!updateMapEarly) {
-        this.updateMapPoi(poi, mapOptions);
-      }
     }
-  };
 
-  updateMapPoi(poi, options = {}) {
-    window.execOnMapLoaded(() => {
-      if (isNullOrEmpty(this.props.poiFilters)) {
-        fire('create_poi_marker', poi);
+    return () => {
+      fire('clean_marker');
+    };
+  }, [fullPoi, inList]);
+
+  useEffect(() => {
+    const loadPoi = async () => {
+      const shallowPoi = poi && Poi.deserialize(poi);
+
+      // @TODO: use a global POI context instead
+      let idunnPoi;
+      if (window.hotLoadPoi && window.hotLoadPoi.id === poiId) {
+        Telemetry.add(Telemetry.POI_RESTORE);
+        idunnPoi = new IdunnPoi(window.hotLoadPoi);
       } else {
-        fire('click_category_marker', poi);
+        idunnPoi = await IdunnPoi.poiApiLoad(poi || { id: poiId });
       }
-      fire('ensure_poi_visible', poi, options);
-    });
-  }
 
-  getBestPoi() {
-    return this.state.fullPoi || this.props.poi;
-  }
+      // fallback on the simple POI object from the map
+      // if Idunn doesn't know this POI
+      const bestPoi = idunnPoi || shallowPoi;
 
-  center = () => {
-    const poi = this.getBestPoi();
-    Telemetry.sendPoiEvent(poi, 'go');
-    fire('fit_map', poi);
-  };
+      if (!bestPoi) {
+        // @TODO: error message instead of close in case of unrecognized POI
+        closeAction();
+      } else {
+        setFullPoi(bestPoi);
+      }
+    };
 
-  openDirection = () => {
-    const poi = this.getBestPoi();
-    Telemetry.sendPoiEvent(poi, 'itinerary');
-    window.app.navigateTo('/routes/', { poi });
-  };
+    loadPoi();
+  }, [poi, poiId, inList]);
 
-  closeAction = () => {
+  const closeAction = () => {
     window.app.navigateTo('/');
   };
 
-  onClickPhoneNumber = () => {
-    const poi = this.getBestPoi();
-    const source = poi.meta && poi.meta.source;
-    if (source) {
-      Telemetry.sendPoiEvent(
-        poi,
-        'phone',
-        Telemetry.buildInteractionData({
-          id: poi.id,
-          source,
-          template: 'single',
-          zone: 'detail',
-          element: 'phone',
-        })
+  const onBack = backAction || closeAction;
+
+  const renderHeader = () => {
+    if (isMobile) {
+      return null;
+    }
+
+    if (shouldShowBackToQwant()) {
+      return (
+        <PanelNav>
+          <BackToQwantButton />
+        </PanelNav>
       );
     }
-  };
 
-  toggleStorePoi = () => {
-    const poi = this.state.fullPoi;
-    Telemetry.sendPoiEvent(poi, 'favorite', { stored: !this.state.isPoiInFavorite });
-    if (this.state.isPoiInFavorite) {
-      removeFromFavorites(poi);
-    } else {
-      addToFavorites(poi);
-    }
-  };
-
-  render() {
-    const { poiFilters, isFromFavorite } = this.props;
-    const poi = this.getBestPoi();
-
-    if (!poi) {
-      // @TODO: we could implement a loading indicator instead
-      return null;
+    // If source is a PoI list: show a button to return to the list
+    if (onBack !== closeAction) {
+      return (
+        <PanelNav>
+          <Button icon="arrow-left" variant="tertiary" onClick={onBack}>
+            {_('Display all results')}
+          </Button>
+        </PanelNav>
+      );
     }
 
-    const backAction =
-      poiFilters.category || poiFilters.query
-        ? this.props.backToList
-        : isFromFavorite
-        ? this.props.backToFavorite
-        : this.closeAction;
+    return null;
+  };
 
-    const NavHeader = ({ isMobile }) => {
-      if (isMobile) {
-        return null;
+  return (
+    <Panel
+      resizable
+      fitContent={['default', 'minimized']}
+      className="poi_panel"
+      renderHeader={renderHeader()}
+      floatingItemsLeft={
+        isMobile && shouldShowBackToQwant() && [<BackToQwantButton key="back-to-qwant" isMobile />]
       }
+    >
+      <PoiPanelContent poi={fullPoi} />
+    </Panel>
+  );
+};
 
-      if (shouldShowBackToQwant()) {
-        return (
-          <PanelNav>
-            <BackToQwantButton />
-          </PanelNav>
-        );
-      }
+PoiPanel.propTypes = {
+  poiId: PropTypes.string.isRequired,
+  poi: PropTypes.object,
+  backAction: PropTypes.func,
+  inList: PropTypes.bool,
+};
 
-      // If source is a PoI list: show a button to return to the list
-      if (backAction !== this.closeAction) {
-        return (
-          <PanelNav>
-            <Button
-              icon="arrow-left"
-              variant="tertiary"
-              onClick={e => {
-                backAction(e, poiFilters);
-              }}
-            >
-              {_('Display all results')}
-            </Button>
-          </PanelNav>
-        );
-      }
-
-      return null;
-    };
-
-    return (
-      <DeviceContext.Consumer>
-        {({ isMobile }) => (
-          <Panel
-            resizable
-            fitContent={['default', 'minimized']}
-            className={classnames('poi_panel', {
-              'poi_panel--empty-header':
-                !isFromPagesJaunes(poi) && !isFromFavorite && (!poiFilters || !poiFilters.category),
-            })}
-            renderHeader={<NavHeader isMobile={isMobile} />}
-            floatingItemsLeft={
-              isMobile &&
-              shouldShowBackToQwant() && [<BackToQwantButton key="back-to-qwant" isMobile />]
-            }
-          >
-            <div className="poi_panel__content">
-              <Flex alignItems="flex-start" justifyContent="space-between">
-                <PoiItem
-                  poi={poi}
-                  className="u-mb-l poi-panel-poiItem"
-                  withAlternativeName
-                  withOpeningHours
-                  onClick={this.center}
-                />
-              </Flex>
-              <div className="u-mb-l">
-                <ActionButtons
-                  poi={poi}
-                  isDirectionActive={this.isDirectionActive}
-                  openDirection={this.openDirection}
-                  onClickPhoneNumber={this.onClickPhoneNumber}
-                  isPoiInFavorite={this.state.isPoiInFavorite}
-                  toggleStorePoi={this.toggleStorePoi}
-                />
-              </div>
-              <div className="poi_panel__fullContent">
-                <PoiBlockContainer poi={poi} covid19Enabled={covid19Enabled} />
-                {isFromPagesJaunes(poi) && (
-                  <div className="poi_panel__info-partnership u-text--caption u-mb-s">
-                    {_('In partnership with')}
-                    <img src="./statics/images/pj.svg" alt="PagesJaunes" width="80" height="16" />
-                  </div>
-                )}
-                {isFromOSM(poi) && <OsmContribution poi={poi} />}
-                <Divider paddingTop={0} className="poi_panel__fullWidth" />
-                <h3 className="u-text--smallTitle u-mb-s">
-                  {_('Search around this place', 'poi')}
-                </h3>
-                <CategoryList className="poi_panel__categories u-mb-s" limit={4} />
-              </div>
-            </div>
-          </Panel>
-        )}
-      </DeviceContext.Consumer>
-    );
-  }
-}
+export default PoiPanel;
