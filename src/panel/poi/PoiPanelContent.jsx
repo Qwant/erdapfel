@@ -18,6 +18,10 @@ const PoiPanelContent = ({ poi }) => {
   const { enabled: isDirectionActive } = useConfig('direction');
 
   useEffect(() => {
+    setPoiInFavorite(isInFavorites(poi));
+  }, [poi]);
+
+  useEffect(() => {
     // direction shortcut will be visible in minimized state
     fire('mobile_direction_button_visibility', false);
     fire('set_direction_shortcut_callback', openDirection);
