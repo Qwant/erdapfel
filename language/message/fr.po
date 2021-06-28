@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-21 15:08+0000\n"
+"POT-Creation-Date: 2021-06-25 13:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -63,8 +63,8 @@ msgstr "pharmacie"
 msgid "leisure"
 msgstr "loisirs"
 
-msgid "service"
-msgstr "services"
+msgid "administration"
+msgstr "administration"
 
 msgid "health"
 msgstr "santé"
@@ -80,6 +80,9 @@ msgstr "musée"
 
 msgid "sport"
 msgstr "sport"
+
+msgid "service"
+msgstr "services"
 
 msgid "french restaurant"
 msgstr "restaurant français"
@@ -288,9 +291,6 @@ msgstr "université"
 msgid "travel agency"
 msgstr "agence de voyages"
 
-msgid "administration"
-msgstr "administration"
-
 msgid "post box"
 msgstr "boîte aux lettres"
 
@@ -362,6 +362,12 @@ msgstr "réouverture à {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "jusqu’à {nextTransitionTime}"
 
+msgid "Geographic coordinates"
+msgstr "Coordonnées géographiques"
+
+msgid "on PagesJaunes"
+msgstr "sur PagesJaunes"
+
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr "Oups, nous ne trouvons pas ce lieu 🏝️"
 
@@ -371,12 +377,6 @@ msgid ""
 msgstr ""
 "Essayez avec une autre orthographe ou ajoutez plus de détails à votre "
 "recherche (ville, pays, …)"
-
-msgid "Geographic coordinates"
-msgstr "Coordonnées géographiques"
-
-msgid "on PagesJaunes"
-msgstr "sur PagesJaunes"
 
 msgid ""
 "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
@@ -1081,6 +1081,15 @@ msgstr "Lieux favoris"
 
 msgid "Show favorites"
 msgstr "Afficher les favoris"
+
+msgid "Booking"
+msgstr "Réserver"
+
+msgid "Appointment"
+msgstr "Prendre RDV"
+
+msgid "Request for quotation"
+msgstr "Devis"
 
 msgid "Directions"
 msgstr "Itinéraire"
