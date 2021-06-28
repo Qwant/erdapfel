@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-21 15:08+0000\n"
+"POT-Creation-Date: 2021-06-25 13:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -61,8 +61,8 @@ msgstr "apotikerezh"
 msgid "leisure"
 msgstr "dudioù"
 
-msgid "service"
-msgstr "servij"
+msgid "administration"
+msgstr ""
 
 msgid "health"
 msgstr "yec'hed"
@@ -78,6 +78,9 @@ msgstr "mirdi"
 
 msgid "sport"
 msgstr "sport"
+
+msgid "service"
+msgstr "servij"
 
 msgid "french restaurant"
 msgstr ""
@@ -286,9 +289,6 @@ msgstr "skol-veur"
 msgid "travel agency"
 msgstr "ajañs-veaj"
 
-msgid "administration"
-msgstr ""
-
 msgid "post box"
 msgstr ""
 
@@ -358,6 +358,12 @@ msgstr "addigoret da {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "betek {nextTransitionTime}"
 
+msgid "Geographic coordinates"
+msgstr "Daveennoù douaroniel"
+
+msgid "on PagesJaunes"
+msgstr "war PagesJaunes"
+
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
 
@@ -365,12 +371,6 @@ msgid ""
 "Please try to correct your query or rewrite it with more details about the "
 "location (city, country, …)"
 msgstr ""
-
-msgid "Geographic coordinates"
-msgstr "Daveennoù douaroniel"
-
-msgid "on PagesJaunes"
-msgstr "war PagesJaunes"
 
 msgid ""
 "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
@@ -1070,6 +1070,15 @@ msgstr "Lec'hioù karetañ"
 
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
+
+msgid "Booking"
+msgstr ""
+
+msgid "Appointment"
+msgstr ""
+
+msgid "Request for quotation"
+msgstr ""
 
 msgid "Directions"
 msgstr "Tuadurioù"

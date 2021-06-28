@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-21 15:08+0000\n"
+"POT-Creation-Date: 2021-06-25 13:47+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -62,8 +62,8 @@ msgstr "Apotheke"
 msgid "leisure"
 msgstr "Freizeit"
 
-msgid "service"
-msgstr "Service"
+msgid "administration"
+msgstr ""
 
 msgid "health"
 msgstr "Gesundheit"
@@ -79,6 +79,9 @@ msgstr "Museum"
 
 msgid "sport"
 msgstr "Sport"
+
+msgid "service"
+msgstr "Service"
 
 msgid "french restaurant"
 msgstr ""
@@ -287,9 +290,6 @@ msgstr "Universität"
 msgid "travel agency"
 msgstr "Reiseagentur"
 
-msgid "administration"
-msgstr ""
-
 msgid "post box"
 msgstr "Briefkasten"
 
@@ -359,6 +359,12 @@ msgstr " öffnet um {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "bis {nextTransitionTime}"
 
+msgid "Geographic coordinates"
+msgstr "Geographische Koordinaten"
+
+msgid "on PagesJaunes"
+msgstr "auf PagesJaunes"
+
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
 
@@ -366,12 +372,6 @@ msgid ""
 "Please try to correct your query or rewrite it with more details about the "
 "location (city, country, …)"
 msgstr ""
-
-msgid "Geographic coordinates"
-msgstr "Geographische Koordinaten"
-
-msgid "on PagesJaunes"
-msgstr "auf PagesJaunes"
 
 msgid ""
 "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
@@ -1074,6 +1074,15 @@ msgstr "Lieblingsorte"
 
 msgid "Show favorites"
 msgstr "Favoriten anzeigen"
+
+msgid "Booking"
+msgstr ""
+
+msgid "Appointment"
+msgstr ""
+
+msgid "Request for quotation"
+msgstr ""
 
 msgid "Directions"
 msgstr "Wegbeschreibung"
