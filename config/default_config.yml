@@ -57,7 +57,7 @@ mapPlugins:
   maxAge: '60s' # string accepted by the ms module, or milliseconds
 
 statics:
-  maxAge: 0  # string accepted by the ms module, or milliseconds
+  maxAge: 0 # string accepted by the ms module, or milliseconds
 
 burgerMenu:
   enabled: true
@@ -89,8 +89,8 @@ events:
 
 covid19:
   enabled: false
-  frInformationUrl:  https://www.gouvernement.fr/info-coronavirus
+  frInformationUrl: https://www.gouvernement.fr/info-coronavirus
 
 userFeedback:
   enabled: false
-  dismissDurationDays: 15
+  dismissDurationDays: 30
