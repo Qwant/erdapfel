@@ -28,7 +28,9 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
   if (isAnswered) {
     return (
       <div className="feedback-success">
-        <Alert type="success">{_('Thank you for helping us to improve your experience.')}</Alert>
+        <Alert type="success" autoHideDelay={5000}>
+          {_('Thank you for helping us to improve your experience.')}
+        </Alert>
       </div>
     );
   }
