@@ -39,6 +39,9 @@ localizedUrls:
     aboutPrivacy: https://about.qwant.com/legal/privacy
     aboutMapsToS: https://about.qwant.com/legal/terms-of-service/qwant-maps/
     contributing: https://github.com/Qwant/qwantmaps/blob/master/contributing.md
+    reportBug: https://about.qwant.com/en/contact#contact
+  fr:
+    reportBug: https://about.qwant.com/fr/contact#contact
 
 # Map
 map:
