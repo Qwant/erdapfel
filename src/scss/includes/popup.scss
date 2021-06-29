@@ -36,4 +36,23 @@
     font-size: 14px;
     line-height: 1.29;
   }
+
+  // Directions button
+  .button--primary {
+    font-size: 12px;
+    font-weight: normal;
+    height: 24px;
+  }
+
+  // Call / Book / Like / Share buttons
+  .button--secondary {
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+
+    .button-icon {
+      font-size: 13px;
+    }
+  }
 }
