@@ -102,7 +102,6 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
           }}
           className="search_form__logo__button"
           title={_('Qwant Maps Home', 'search bar')}
-          data-flag-text={config.app.versionFlag}
         />
         <div className="search_form__wrapper">
           <div className="search_form__return icon-arrow-left" onMouseDown={backButtonAction} />

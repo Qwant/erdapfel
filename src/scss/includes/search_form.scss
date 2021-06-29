@@ -69,21 +69,6 @@ input[type="search"] {
   background: url(../images/qwant-logo.svg) no-repeat;
   background-size: cover;
   margin: 0 $spacing-m 0 $spacing-s;
-
-  &[data-flag-text]:before {
-    font-weight: bold;
-    content: attr(data-flag-text);
-    background: $secondary_text;
-    color: $grey-light;
-    position: absolute;
-    left: 28px;
-    top: 10px;
-    font-size: 10px;
-    line-height: 14px;
-    padding: 1px 3px;
-    border-radius: 6px;
-    border: 2px solid white;
-  }
 }
 
 // Return arrows

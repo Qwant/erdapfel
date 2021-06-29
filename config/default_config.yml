@@ -22,9 +22,6 @@ server:
   unsupportedBrowsers:
     redirect: false
 
-app:
-  versionFlag: Beta
-
 # Services
 services:
   geocoder:
