@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PoiItem from './PoiItem';
 import { fire } from 'src/libs/customEvents';
 import ActionButtons from '../panel/poi/ActionButtons';
-import nconf from '@qwant/nconf-getter';
 import Telemetry from '../libs/telemetry';
 import { addToFavorites, isInFavorites, removeFromFavorites } from '../adapters/store';
+import { useConfig } from '../hooks';
 
 const PoiPopup = ({ poi }) => {
   const [inFavorites, setInFavorites] = useState(isInFavorites(poi));
-  const isDirectionActive = nconf.get().direction.enabled;
+  const isDirectionActive = useConfig('direction').enabled;
 
   const openDirection = () => {
     Telemetry.sendPoiEvent(poi, 'itinerary');
