@@ -22,7 +22,11 @@ const Block = ({
       title={tooltip}
       {...rest}
     >
-      <i className={`block-icon icon-${icon}`} />
+      {typeof icon === 'string' ? (
+        <i className={`block-icon icon-${icon}`} />
+      ) : (
+        <div className="u-mr-s">{icon}</div>
+      )}
       <div className="block-content">
         <div className="u-firstCap u-text--caption u-mb-xxxs">{title}</div>
         <div className="block-value">{children}</div>

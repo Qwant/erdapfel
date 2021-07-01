@@ -13,6 +13,11 @@ export { default as IconThumbDown } from '../../../public/images/remix/thumb-dow
 export { default as IconCalendar } from '../../../public/images/remix/calendar-2-line.svg';
 export { default as IconFileList } from '../../../public/images/remix/file-list-2-line.svg';
 export { default as IconBug } from '../../../public/images/remix/bug-line.svg';
+export { default as IconLink } from '../../../public/images/remix/link-m.svg';
+export { default as IconFacebook } from '../../../public/images/remix/facebook-box-line.svg';
+export { default as IconInstagram } from '../../../public/images/remix/instagram-line.svg';
+export { default as IconTwitter } from '../../../public/images/remix/twitter-line.svg';
+export { default as IconYoutube } from '../../../public/images/remix/youtube-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';
