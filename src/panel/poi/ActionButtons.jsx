@@ -16,15 +16,15 @@ const TransactionalButton = ({ poi }) => {
   if (booking_url) {
     icon = <IconCalendar width={16} />;
     url = booking_url;
-    label = _('Booking', 'poi panel');
+    label = _('Make a booking', 'poi panel');
   } else if (appointment_url) {
     icon = <IconCalendar width={16} />;
     url = appointment_url;
-    label = _('Appointment', 'poi panel');
+    label = _('Make an appointment', 'poi panel');
   } else if (quotation_request_url) {
     icon = <IconFileList width={16} />;
     url = quotation_request_url;
-    label = _('Request for quotation', 'poi panel');
+    label = _('Request a quote', 'poi panel');
   } else {
     return null;
   }
