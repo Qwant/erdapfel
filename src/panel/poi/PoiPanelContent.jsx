@@ -22,8 +22,6 @@ const PoiPanelContent = ({ poi }) => {
   }, [poi]);
 
   useEffect(() => {
-    // direction shortcut will be visible in minimized state
-    fire('mobile_direction_button_visibility', false);
     fire('set_direction_shortcut_callback', openDirection);
 
     // @TODO: use a global favorite context
@@ -38,8 +36,6 @@ const PoiPanelContent = ({ poi }) => {
 
     return () => {
       unListen(storePoiChangeHandler);
-      fire('move_mobile_bottom_ui', 0);
-      fire('mobile_direction_button_visibility', true);
       // Clear direction shortcut cb to reset default action
       fire('set_direction_shortcut_callback', null);
     };

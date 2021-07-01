@@ -10,27 +10,38 @@ import { Panel, PanelNav, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { useDevice, useI18n } from 'src/hooks';
 
-const PoiPanel = ({ poi, poiId, backAction, inList }) => {
+const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
   const { isMobile } = useDevice();
   const [fullPoi, setFullPoi] = useState(poi);
   const { _ } = useI18n();
 
   useEffect(() => {
-    if (fullPoi) {
+    // direction shortcut will be visible in minimized state
+    fire('mobile_direction_button_visibility', false);
+
+    return () => {
+      fire('move_mobile_bottom_ui', 0);
+      fire('mobile_direction_button_visibility', true);
+    };
+  }, []);
+
+  useEffect(() => {
+    const mapPoi = poi || fullPoi;
+    if (mapPoi) {
       window.execOnMapLoaded(() => {
         if (inList) {
-          fire('click_category_marker', fullPoi);
+          fire('click_category_marker', mapPoi);
         } else {
-          fire('create_poi_marker', fullPoi);
+          fire('create_poi_marker', mapPoi);
         }
-        fire('ensure_poi_visible', fullPoi, {});
+        fire('ensure_poi_visible', mapPoi, { centerMap });
       });
     }
 
     return () => {
       fire('clean_marker');
     };
-  }, [fullPoi, inList]);
+  }, [poi, fullPoi, inList, centerMap]);
 
   useEffect(() => {
     const loadPoi = async () => {
@@ -113,6 +124,7 @@ PoiPanel.propTypes = {
   poi: PropTypes.object,
   backAction: PropTypes.func,
   inList: PropTypes.bool,
+  centerMap: PropTypes.bool,
 };
 
 export default PoiPanel;
