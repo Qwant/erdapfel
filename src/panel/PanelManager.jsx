@@ -115,14 +115,29 @@ const PanelManager = ({ router }) => {
       const [poi, params] = urlPart.split('?');
       const { q: query } = parseQueryString(params);
       const poiId = poi.split('@')[0];
+      const { pois, poiFilters = {}, isFromFavorite } = options;
+
+      if (pois) {
+        window.execOnMapLoaded(() => {
+          fire('add_category_markers', options.pois, poiFilters);
+        });
+      }
+
+      let backAction = null;
+      if (poiFilters.category || poiFilters.query) {
+        backAction = e => backToList(e, poiFilters);
+      } else if (isFromFavorite) {
+        backAction = backToFavorite;
+      }
+
       setPanelOptions({
         ActivePanel: PoiPanel,
         options: {
           ...options,
           query,
           poiId,
-          backToList,
-          backToFavorite,
+          backAction,
+          inList: !!pois,
         },
         panelSize: 'default',
       });
