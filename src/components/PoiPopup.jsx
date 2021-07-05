@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PoiItem from './PoiItem';
 import { fire } from 'src/libs/customEvents';
 import ActionButtons from '../panel/poi/ActionButtons';
 import Telemetry from '../libs/telemetry';
-import { addToFavorites, isInFavorites, removeFromFavorites } from '../adapters/store';
-import { useConfig } from '../hooks';
+import { useConfig, useFavorites } from '../hooks';
 
 const PoiPopup = ({ poi }) => {
-  const [inFavorites, setInFavorites] = useState(isInFavorites(poi));
+  const { isInFavorites, removeFromFavorites, addToFavorites } = useFavorites();
   const isDirectionActive = useConfig('direction').enabled;
 
   const openDirection = () => {
@@ -40,7 +39,6 @@ const PoiPopup = ({ poi }) => {
     } else {
       addToFavorites(poi);
     }
-    setInFavorites(!isFavorite);
   };
 
   return (
@@ -61,7 +59,7 @@ const PoiPopup = ({ poi }) => {
         isDirectionActive={isDirectionActive}
         openDirection={openDirection}
         onClickPhoneNumber={onClickPhoneNumber}
-        isPoiInFavorite={inFavorites}
+        isPoiInFavorite={isInFavorites(poi)}
         toggleStorePoi={toggleStorePoi}
       />
     </div>
