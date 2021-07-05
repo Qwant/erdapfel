@@ -10,6 +10,7 @@ import CovidBlock from './blocks/Covid19';
 import PhoneBlock from './blocks/Phone';
 import RecyclingBlock from './blocks/Recycling';
 import WikiBlock from './blocks/Wiki';
+import SocialNetworksBlock from './blocks/SocialNetworks';
 import Block from 'src/panel/poi/blocks/Block';
 import Divider from 'src/components/ui/Divider';
 import Address from 'src/components/ui/Address';
@@ -32,6 +33,7 @@ const PoiBlockContainer = ({ poi, covid19Enabled }) => {
   const wikipedia = informationBlock
     ? informationBlock.blocks.find(b => b.type === 'wikipedia')
     : null;
+  const socialBlock = blocks.find(b => b.type === 'social');
 
   const hasAddressBlock = poi.address && poi.subClassName !== 'latlon';
   const hasDetailBlocks =
@@ -41,7 +43,8 @@ const PoiBlockContainer = ({ poi, covid19Enabled }) => {
     phoneBlock ||
     hourBlock ||
     recyclingBlock ||
-    contactBlock;
+    contactBlock ||
+    socialBlock;
 
   return (
     <div className="poi_panel__info">
@@ -66,6 +69,7 @@ const PoiBlockContainer = ({ poi, covid19Enabled }) => {
         {hourBlock && <HourBlock block={hourBlock} covid19enabled={!!displayCovidInfo} />}
         {phoneBlock && <PhoneBlock block={phoneBlock} poi={poi} />}
         {websiteBlock && <WebsiteBlock block={websiteBlock} poi={poi} />}
+        {socialBlock && <SocialNetworksBlock block={socialBlock} />}
         {informationBlock && <InformationBlock block={informationBlock} />}
         {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
         {contactBlock && <ContactBlock block={contactBlock} />}
