@@ -226,7 +226,9 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
 
     const longTouchCancellingEvents = [
       'touchend',
-      'touchcancel',
+      // 'touchcancel', // ignore this event as it's always thrown by Firefox Android
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=1481923
+      // Doesn't seem to change the behavior for other browsers
       'touchmove',
       'pointerdrag',
       'pointermove',
