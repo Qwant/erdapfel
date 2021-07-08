@@ -1,13 +1,12 @@
 /* globals _ */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Telemetry from 'src/libs/telemetry';
 import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
-import { removeFromFavorites } from 'src/adapters/store';
-import PoiStore from 'src/adapters/poi/poi_store';
+import { useFavorites } from 'src/hooks';
 
 const FavoritesPanel = () => {
-  const [favs, setFavs] = useState(PoiStore.getAll());
+  const { favorites, removeFromFavorites } = useFavorites();
 
   useEffect(() => {
     Telemetry.add(Telemetry.FAVORITE_OPEN);
@@ -16,9 +15,6 @@ const FavoritesPanel = () => {
   const removeFav = poi => {
     Telemetry.add(Telemetry.FAVORITE_DELETE);
     removeFromFavorites(poi);
-    // @TODO: manage favorites as an upstream state to avoid this duplication
-    // It could be a context or a dedicated hook.
-    setFavs(favs.filter(favorite => favorite !== poi));
   };
 
   const close = () => {
@@ -31,7 +27,7 @@ const FavoritesPanel = () => {
       resizable
       renderHeader={
         <div className="favorite-header u-text--smallTitle u-center">
-          {favs.length === 0
+          {favorites.length === 0
             ? _('Favorite places', 'favorite panel')
             : _('My favorites', 'favorite panel')}
         </div>
@@ -40,7 +36,7 @@ const FavoritesPanel = () => {
       onClose={close}
       className="favorite_panel"
     >
-      <FavoriteItems favorites={favs} removeFavorite={removeFav} />
+      <FavoriteItems favorites={favorites} removeFavorite={removeFav} />
     </Panel>
   );
 };

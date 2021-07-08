@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import ActionButtons from './ActionButtons';
@@ -6,36 +6,20 @@ import PoiBlockContainer from './PoiBlockContainer';
 import OsmContribution from 'src/components/OsmContribution';
 import CategoryList from 'src/components/CategoryList';
 import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
-import { fire, listen, unListen } from 'src/libs/customEvents';
-import { addToFavorites, removeFromFavorites, isInFavorites } from 'src/adapters/store';
+import { fire } from 'src/libs/customEvents';
 import PoiItem from 'src/components/PoiItem';
 import { Flex, Divider } from 'src/components/ui';
-import { useConfig, useI18n } from 'src/hooks';
+import { useConfig, useI18n, useFavorites } from 'src/hooks';
 
 const PoiPanelContent = ({ poi }) => {
   const { _ } = useI18n();
-  const [isPoiInFavorite, setPoiInFavorite] = useState(isInFavorites(poi));
+  const { isInFavorites, removeFromFavorites, addToFavorites } = useFavorites();
   const { enabled: isDirectionActive } = useConfig('direction');
-
-  useEffect(() => {
-    setPoiInFavorite(isInFavorites(poi));
-  }, [poi]);
 
   useEffect(() => {
     fire('set_direction_shortcut_callback', openDirection);
 
-    // @TODO: use a global favorite context
-    const storePoiChangeHandler = listen(
-      'poi_favorite_state_changed',
-      (changedFavPoi, isPoiInFavorite) => {
-        if (changedFavPoi === poi) {
-          setPoiInFavorite(isPoiInFavorite);
-        }
-      }
-    );
-
     return () => {
-      unListen(storePoiChangeHandler);
       // Clear direction shortcut cb to reset default action
       fire('set_direction_shortcut_callback', null);
     };
@@ -69,8 +53,8 @@ const PoiPanelContent = ({ poi }) => {
   };
 
   const toggleStorePoi = () => {
-    Telemetry.sendPoiEvent(poi, 'favorite', { stored: !isPoiInFavorite });
-    if (isPoiInFavorite) {
+    Telemetry.sendPoiEvent(poi, 'favorite', { stored: !isInFavorites(poi) });
+    if (isInFavorites(poi)) {
       removeFromFavorites(poi);
     } else {
       addToFavorites(poi);
@@ -98,7 +82,7 @@ const PoiPanelContent = ({ poi }) => {
           isDirectionActive={isDirectionActive}
           openDirection={openDirection}
           onClickPhoneNumber={onClickPhoneNumber}
-          isPoiInFavorite={isPoiInFavorite}
+          isPoiInFavorite={isInFavorites(poi)}
           toggleStorePoi={toggleStorePoi}
         />
       </div>
