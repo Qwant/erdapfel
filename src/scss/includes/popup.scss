@@ -1,5 +1,4 @@
 .poi_popup__container {
-
   position: absolute;
 
   .mapboxgl-popup-content {
@@ -42,6 +41,7 @@
     font-size: 12px;
     font-weight: normal;
     height: 24px;
+    max-width: 132px;
   }
 
   // Call / Book / Like / Share buttons
