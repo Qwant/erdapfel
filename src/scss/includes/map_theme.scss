@@ -45,18 +45,35 @@
 
   &.map_bottom_button_group {
 
-    button {
-      @include card_shadow();
+    // Since there's no DIV container for the two zoom buttons,
+    // each button has a box-shadow placed at z-index: -1 using an :after pseudo attribute,
+    // so the shadow of the second button doesn't overlap the first button
+    .map_control_group__button__zoom {
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        z-index: -1;
+        @include card_shadow();
+      }
     }
 
     .map_control_group__button__zoom.icon-plus {
       border-radius: 4px 4px 0 0;
-      @include card_shadow();
+      &, &:after {
+        border-bottom: 1px solid $grey-light;
+      }
     }
 
     .map_control_group__button__zoom.icon-minus {
-      border-radius: 0 0 4px 4px;
-      @include card_shadow();
+      &, &:after {
+        border-radius: 0 0 4px 4px;
+      }
     }
   }
 
@@ -150,6 +167,7 @@
   margin-bottom: 8px;
   font-size: 17px;
   border-radius: 4px;
+  @include card_shadow();
 }
 
 @media(max-width: 640px) {
