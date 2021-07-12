@@ -69,7 +69,7 @@ export default class IdunnPoi extends Poi {
     const url = `${serviceConfig.idunn.url}/v1/places/${obj.id}`;
     let requestParams = {};
     if (options.simple) {
-      requestParams = { verbosity: 'short' };
+      requestParams = { verbosity: 'list' };
     }
     try {
       const headers = QueryContext.toHeaders(obj.queryContext);
