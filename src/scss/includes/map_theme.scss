@@ -16,33 +16,71 @@
   float: right;
   clear: both;
   pointer-events: auto;
-  overflow: hidden;
-  background: #fff;
-  @include card_shadow();
-  @include card_radius();
 
-  > * {
+  button {
     display: block;
-    padding: 0;
-    outline: none;
-    border: 0;
-    box-sizing: border-box;
-    background-color: transparent;
+    background-color: #fff;
     cursor: pointer;
     width: 32px;
     height: 32px;
     color: $secondary_text;
-    font-size: 20px;
+    font-size: 17px;
+  }
 
-    &:not(:first-child) {
-      border-top: 1px solid #ddd;
+  .map_control_group__button__compass {
+    @include card_shadow();
+    @include card_radius();
+  }
+
+  .mapboxgl-ctrl-geolocate-active {
+    .mapboxgl-ctrl-icon {
+      color: $action-blue-base;
+    }
+  }
+
+  .map_control_group__button__compass--mobile,
+  .compass-origin {
+    display: none;
+  }
+
+  &.map_bottom_button_group {
+
+    // Since there's no DIV container for the two zoom buttons,
+    // each button has a box-shadow placed at z-index: -1 using an :after pseudo attribute,
+    // so the shadow of the second button doesn't overlap the first button
+    .map_control_group__button__zoom {
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        z-index: -1;
+        @include card_shadow();
+      }
+    }
+
+    .map_control_group__button__zoom.icon-plus {
+      border-radius: 4px 4px 0 0;
+      &, &:after {
+        border-bottom: 1px solid $grey-light;
+      }
+    }
+
+    .map_control_group__button__zoom.icon-minus {
+      &, &:after {
+        border-radius: 0 0 4px 4px;
+      }
     }
   }
 
   button {
     &:not(:disabled):hover {
-      background: $primary_text;
-      color: white;
+      color: $primary_text;
+      background-color: $grey-lighter;
     }
 
     &.mapboxgl-ctrl-geolocate .mapboxgl-ctrl-icon {
@@ -81,10 +119,6 @@
 
 .map_control__compass__icon--mobile:after {
   background: url("../images/map/compass_red.svg") no-repeat center;
-}
-
-.map_control_group__button__compass--mobile {
-  display: none;
 }
 
 .mapboxgl-ctrl-top-right {
@@ -126,6 +160,14 @@
 
 .map_control__scale_attribute_container .mapboxgl-ctrl.map_control__scale {
   margin: 0 5px 0 0;
+}
+
+.mapboxgl-ctrl-geolocate {
+  background-color: #fff;
+  margin-bottom: 8px;
+  font-size: 17px;
+  border-radius: 4px;
+  @include card_shadow();
 }
 
 @media(max-width: 640px) {
@@ -244,45 +286,45 @@
     &.map_bottom_button_group {
       margin-bottom: 0px;
     }
-  }
 
-  .map_control_group {
     .map_control_group__button__zoom {
       display: none;
     }
-  }
 
-  .map_control_group__button__compass {
-    display: none;
-  }
+    .map_control_group__button__compass,
+    .map_control_group__button__compass--mobile.compass-origin {
+      display: none;
+    }
 
-  .map_control_group__button__compass--mobile {
-    display: block;
-  }
+    .map_control_group__button__compass--mobile {
+      display: block;
+    }
 
-  .map_control__compass__icon--mobile:after {
-    width: 48px;
-    height: 48px;
-    background-size: 12px;
-  }
+    .map_control__compass__icon--mobile:after {
+      width: 48px;
+      height: 48px;
+      background-size: 12px;
+    }
 
-  .mapboxgl-ctrl-geolocate {
-    font-size: 24px;
-    position: relative;
-    bottom: 10px;
-    opacity: 1;
-    transition: opacity .2s;
+    .map_control_group__button__compass {
+      background: none;
+      box-shadow: none;
+    }
 
-    &.hidden {
-      opacity: 0;
+    .mapboxgl-ctrl-geolocate {
+      font-size: 24px;
+      position: relative;
+      bottom: 10px;
+      opacity: 1;
+      transition: opacity .2s;
+
+      &.hidden {
+        opacity: 0;
+      }
     }
   }
 
   .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
     margin-right: 10px;
   }
-}
-
-.compass-origin {
-  display: none;
 }
