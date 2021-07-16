@@ -21,7 +21,7 @@ const DetailsBlock = ({ poi }) => {
   return (
     <>
       <Divider paddingTop={0} />
-      <h3 className="u-text--smallTitle">{_('Details')}</h3>
+      <h3 className="u-text--smallTitle u-mb-xs">{_('Details')}</h3>
       <div className="poi_panel__fullWidth u-mb-s">
         {accessibility && <AccessibilityBlock block={accessibility} />}
         {internetAccess && <InternetAccessBlock block={internetAccess} />}
