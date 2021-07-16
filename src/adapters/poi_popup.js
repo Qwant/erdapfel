@@ -128,6 +128,10 @@ PoiPopup.prototype.getPopupAnchor = function (event) {
 PoiPopup.prototype.close = function () {
   if (this.popupHandle) {
     fire('stop_close_popup_timeout');
+    const popupWrapper = document.querySelector('.poi_popup__wrapper');
+    if (popupWrapper) {
+      ReactDOM.unmountComponentAtNode(popupWrapper);
+    }
     this.popupHandle.remove();
     this.popupHandle = null;
   }
