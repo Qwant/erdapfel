@@ -15,6 +15,10 @@
   &-content {
     width: 100%;
     min-width: 0;
+
+    svg + & {
+      margin-left: $spacing-s;
+    }
   }
 
   &-action {
