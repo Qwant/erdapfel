@@ -1,7 +1,10 @@
 /* global _ */
 import React from 'react';
+import Block from './Block';
+import { IconWheelchair } from 'src/components/ui/icons';
+import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
-const AccessibilityBlock = ({ block: accessibilityList, asString }) => {
+const AccessibilityBlock = ({ block: accessibilityList }) => {
   const labels = {
     wheelchair: {
       yes: _('Wheelchair accessible'),
@@ -19,18 +22,10 @@ const AccessibilityBlock = ({ block: accessibilityList, asString }) => {
     availableAccessibilities.push(elems[accessibilityList[label]]);
   }
 
-  if (asString) {
-    return availableAccessibilities.join('. ');
-  }
   return (
-    <div className="u-mb-s">
-      <h6 className="u-text--caption u-mb-xxs">{_('Accessibility', 'poi')}</h6>
-      <ul className="poi_panel__info__accessibilities">
-        {availableAccessibilities.map((el, index) => (
-          <li key={index}>{el}</li>
-        ))}
-      </ul>
-    </div>
+    <Block icon={<IconWheelchair fill={ACTION_BLUE_BASE} width={20} height={20} />}>
+      {availableAccessibilities.filter(a => a).join(' ; ')}
+    </Block>
   );
 };
 
