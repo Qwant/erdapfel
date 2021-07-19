@@ -5,6 +5,7 @@ import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/
 import { fire } from 'src/libs/customEvents';
 import BetaInfoBox from 'src/components/BetaInfoBox';
 import { useConfig } from 'src/hooks';
+import { PoiProvider } from 'src/libs/poiContext';
 
 const RootComponent = ({ router }) => {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
@@ -30,7 +31,9 @@ const RootComponent = ({ router }) => {
 
   return (
     <DeviceContext.Provider value={{ isMobile }}>
-      <PanelManager router={router} />
+      <PoiProvider>
+        <PanelManager router={router} />
+      </PoiProvider>
       {!isMobile && isBurgerMenuEnabled && <Menu />}
       <BetaInfoBox />
     </DeviceContext.Provider>

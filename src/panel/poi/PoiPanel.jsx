@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
@@ -9,11 +9,13 @@ import { fire } from 'src/libs/customEvents';
 import { Panel, PanelNav, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { useDevice, useI18n } from 'src/hooks';
+import { PoiContext } from 'src/libs/poiContext';
 
 const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
   const { isMobile } = useDevice();
   const [fullPoi, setFullPoi] = useState(poi);
   const { _ } = useI18n();
+  const { _activePoi, setActivePoi } = useContext(PoiContext);
 
   useEffect(() => {
     // direction shortcut will be visible in minimized state
@@ -70,6 +72,14 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
 
     loadPoi();
   }, [poi, poiId, inList]);
+
+  useEffect(() => {
+    setActivePoi(fullPoi);
+
+    return () => {
+      setActivePoi(null);
+    };
+  }, [setActivePoi, fullPoi]);
 
   const closeAction = () => {
     window.app.navigateTo('/');
