@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
@@ -12,10 +12,15 @@ import { useDevice, useI18n } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
 
 const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
+  const { activePoi, setActivePoi } = useContext(PoiContext);
   const { isMobile } = useDevice();
-  const [fullPoi, setFullPoi] = useState(poi);
   const { _ } = useI18n();
-  const { _activePoi, setActivePoi } = useContext(PoiContext);
+
+  useEffect(() => {
+    return () => {
+      setActivePoi(null);
+    };
+  }, [setActivePoi]);
 
   useEffect(() => {
     // direction shortcut will be visible in minimized state
@@ -28,7 +33,7 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
   }, []);
 
   useEffect(() => {
-    const mapPoi = poi || fullPoi;
+    const mapPoi = poi || activePoi;
     if (mapPoi) {
       window.execOnMapLoaded(() => {
         if (inList) {
@@ -43,7 +48,7 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
     return () => {
       fire('clean_marker');
     };
-  }, [poi, fullPoi, inList, centerMap]);
+  }, [poi, activePoi, inList, centerMap]);
 
   useEffect(() => {
     const loadPoi = async () => {
@@ -66,20 +71,12 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
         // @TODO: error message instead of close in case of unrecognized POI
         closeAction();
       } else {
-        setFullPoi(bestPoi);
+        setActivePoi(bestPoi);
       }
     };
 
     loadPoi();
-  }, [poi, poiId, inList]);
-
-  useEffect(() => {
-    setActivePoi(fullPoi);
-
-    return () => {
-      setActivePoi(null);
-    };
-  }, [setActivePoi, fullPoi]);
+  }, [poi, poiId, setActivePoi]);
 
   const closeAction = () => {
     window.app.navigateTo('/');
@@ -124,7 +121,7 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
         isMobile && shouldShowBackToQwant() && [<BackToQwantButton key="back-to-qwant" isMobile />]
       }
     >
-      <PoiPanelContent poi={fullPoi} />
+      <PoiPanelContent poi={activePoi || poi} />
     </Panel>
   );
 };
