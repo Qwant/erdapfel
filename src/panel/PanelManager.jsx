@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './poi/PoiPanel';
@@ -14,10 +14,14 @@ import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar';
 import { useConfig, useDevice } from 'src/hooks';
+import { PoiContext } from 'src/libs/poiContext';
 
-function getTopBarAppValue({ poiFilters = {}, poi = {}, query } = {}) {
+function getTopBarAppValue(activePoi, { poiFilters = {}, poi = {}, query } = {}) {
   if (poi.name) {
     return poi.name;
+  }
+  if (activePoi?.name) {
+    return activePoi.name;
   }
   if (poiFilters.category) {
     return CategoryService.getCategoryByName(poiFilters.category)?.getInputValue() || '';
@@ -28,6 +32,7 @@ function getTopBarAppValue({ poiFilters = {}, poi = {}, query } = {}) {
 const PanelManager = ({ router }) => {
   const directionConf = useConfig('direction');
   const { isMobile } = useDevice();
+  const { activePoi } = useContext(PoiContext);
 
   const [panelOptions, setPanelOptions] = useState({
     ActivePanel: ServicePanel,
@@ -186,14 +191,14 @@ const PanelManager = ({ router }) => {
 
   // Effects on panel change
   useEffect(() => {
-    setTopBarValue(getTopBarAppValue(panelOptions.options));
+    setTopBarValue(getTopBarAppValue(activePoi, panelOptions.options));
 
     // Not in a "list of PoI" context (options.poiFilters is null)
     if (isNullOrEmpty(panelOptions.options?.poiFilters)) {
       // Markers are not persistent
       fire('remove_category_markers');
     }
-  }, [panelOptions.ActivePanel, panelOptions.options]);
+  }, [panelOptions.ActivePanel, panelOptions.options, activePoi]);
 
   const backToList = (e, poiFilters) => {
     e.stopPropagation();
