@@ -2,6 +2,7 @@
 
 import Poi from '../poi';
 import * as Geolocation from 'src/libs/geolocation';
+import { isMobileDevice } from 'src/libs/device';
 
 export const navigatorGeolocationStatus = {
   PENDING: 'pending',
@@ -40,9 +41,9 @@ export default class NavigatorGeolocalisationPoi extends Poi {
           reject(error);
         },
         {
-          timeout: 3000,
+          timeout: 5000,
           maximumAge: 300000, // five minutes
-          enableHighAccuracy: true,
+          enableHighAccuracy: isMobileDevice(),
         }
       );
     });
