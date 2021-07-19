@@ -23,7 +23,10 @@ const AccessibilityBlock = ({ block: accessibilityList }) => {
   }
 
   return (
-    <Block icon={<IconWheelchair fill={ACTION_BLUE_BASE} width={20} height={20} />}>
+    <Block
+      icon={<IconWheelchair fill={ACTION_BLUE_BASE} width={20} height={20} />}
+      className="block-accessibility"
+    >
       {availableAccessibilities.filter(a => a).join(' ; ')}
     </Block>
   );
