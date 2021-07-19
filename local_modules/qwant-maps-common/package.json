@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && rollup -c",
-    "prepare": "npm run build",
+    "prepare": "if [ \"$IGNORE_PREPARE\" != true ]; then npm run build; fi",
     "i18n-scan": "i18next-scanner 'src/*.js'"
   },
   "author": "Qwant",
