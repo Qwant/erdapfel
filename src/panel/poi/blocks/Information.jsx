@@ -1,40 +1,61 @@
-/* global _ */
 import React from 'react';
-import Services from './Services';
+import SocialNetworksBlock from './SocialNetworks';
+import Block from './Block';
+import { Divider } from 'src/components/ui';
+import Address from 'src/components/ui/Address';
+import PhoneBlock from './Phone';
+import RecyclingBlock from './Recycling';
+import HourBlock from './Hour';
+import ContactBlock from './Contact';
+import WebsiteBlock from './Website';
+import { findBlock } from 'src/libs/pois';
+import { useI18n } from 'src/hooks';
 
-import Block from 'src/panel/poi/blocks/Block';
+const InformationBlock = ({ poi }) => {
+  const { _ } = useI18n();
 
-function findBlock(blocks, toFind) {
-  for (let i = 0; i < blocks.length; ++i) {
-    if (blocks[i].type === toFind) {
-      return blocks[i];
-    } else if (blocks[i].blocks !== undefined) {
-      const ret = findBlock(blocks[i].blocks, toFind);
-      if (ret !== null) {
-        return ret;
-      }
-    }
-  }
-  return null;
-}
+  const blocks = poi.blocks;
+  const hourBlock = findBlock(blocks, 'opening_hours');
+  const phoneBlock = findBlock(blocks, 'phone');
+  const websiteBlock = findBlock(blocks, 'website');
+  const contactBlock = findBlock(blocks, 'contact');
+  const recyclingBlock = findBlock(blocks, 'recycling');
+  const socialBlock = findBlock(blocks, 'social');
 
-const InformationBlock = ({ block }) => {
-  const services = {
-    accessibility: findBlock(block.blocks, 'accessibility'),
-    internetAccess: findBlock(block.blocks, 'internet_access'),
-    brewery: findBlock(block.blocks, 'brewery'),
-  };
+  const hasAddressBlock = poi.address && poi.subClassName !== 'latlon';
 
-  const hasServices = Object.values(services).some(service => service);
-
-  if (!hasServices) {
+  if (
+    [
+      hasAddressBlock,
+      websiteBlock,
+      phoneBlock,
+      hourBlock,
+      recyclingBlock,
+      contactBlock,
+      socialBlock,
+    ].every(b => !b)
+  ) {
     return null;
   }
 
   return (
-    <Block icon="icon_info" title={_('services & information')}>
-      {hasServices && <Services {...services} />}
-    </Block>
+    <div>
+      <Divider paddingTop={0} />
+      <h3 className="u-text--smallTitle">{_('Information')}</h3>
+      <div className="poi_panel__fullWidth u-mb-s">
+        {hasAddressBlock && (
+          <Block className="block-address" icon="map-pin" title={_('address')}>
+            <Address inline address={poi.address} omitCountry />
+          </Block>
+        )}
+        {hourBlock && <HourBlock block={hourBlock} />}
+        {phoneBlock && <PhoneBlock block={phoneBlock} poi={poi} />}
+        {websiteBlock && <WebsiteBlock block={websiteBlock} poi={poi} />}
+        {socialBlock && <SocialNetworksBlock block={socialBlock} />}
+        {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
+        {contactBlock && <ContactBlock block={contactBlock} />}
+      </div>
+    </div>
   );
 };
 

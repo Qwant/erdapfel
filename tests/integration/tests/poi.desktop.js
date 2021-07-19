@@ -30,24 +30,13 @@ test('display details about the poi on a poi click', async () => {
   await page.goto(`${APP_URL}/place/osm:way:63178753@Musée_dOrsay#map=17.49/48.8605833/2.3261037`);
   await page.waitForSelector('.poiTitle');
 
-  await page.click('.poi_panel__content .poiItem');
-  let infoTitle = await page.evaluate(() => {
-    return document.querySelector('.poi_panel__sub_block__title').innerText;
-  });
-  expect(infoTitle.trim()).toEqual('Accessible en fauteuil roulant.');
-  await page.click('.poi_panel__block__collapse');
-
-  infoTitle = await page.evaluate(() => {
-    return document.querySelector('.poi_panel__sub_block__title').innerText;
-  });
-  expect(infoTitle.trim()).toEqual('');
-
-  const { address, contact, phone, website } = await page.evaluate(() => {
+  const { address, contact, phone, website, accessibility } = await page.evaluate(() => {
     return {
       address: document.querySelector('.block-address .block-value').innerText,
       contact: document.querySelector('.block-contact').innerText,
       phone: document.querySelector('.block-phone').innerText,
       website: document.querySelector('.block-website').innerText,
+      accessibility: document.querySelector('.block-accessibility').innerText,
     };
   });
   expect(address).toEqual("1 Rue de la Légion d'Honneur, 75007 Paris");
@@ -56,6 +45,7 @@ test('display details about the poi on a poi click', async () => {
   expect(website).toMatch('www.musee-orsay.fr');
   expect(contact).toMatch('admin@orsay.fr');
   expect(await exists(page, '.poi_panel__info__wiki')).toBeTruthy();
+  expect(accessibility).toMatch('Accessible en fauteuil roulant');
 });
 
 async function clickPoi(page) {

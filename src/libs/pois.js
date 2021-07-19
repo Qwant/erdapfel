@@ -64,3 +64,16 @@ const ZOOM_BY_POI_TYPES = {
 export function getBestZoom(poi) {
   return ZOOM_BY_POI_TYPES[poi.type] || DEFAULT_ZOOM;
 }
+
+export function findBlock(blocks = [], type) {
+  let result = null;
+  for (let i = 0; i < blocks.length && !result; i++) {
+    const block = blocks[i];
+    if (block.type === type) {
+      result = block;
+    } else {
+      result = findBlock(block.blocks, type);
+    }
+  }
+  return result;
+}
