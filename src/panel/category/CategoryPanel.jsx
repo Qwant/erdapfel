@@ -7,7 +7,7 @@ import PoiItemList from './PoiItemList';
 import PoiItemListPlaceholder from './PoiItemListPlaceholder';
 import CategoryPanelError from './CategoryPanelError';
 import Telemetry from 'src/libs/telemetry';
-import { useConfig, useDevice } from 'src/hooks';
+import { useConfig, useDevice, usePageTitle } from 'src/hooks';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import { getVisibleBbox } from 'src/panel/layouts';
 import { fire, listen, unListen } from 'src/libs/customEvents';
@@ -17,6 +17,7 @@ import { sources } from 'config/constants.yml';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import { Panel, PanelNav, SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
+import { capitalizeFirst } from 'src/libs/string';
 
 const DEBOUNCE_WAIT = 100;
 
@@ -63,6 +64,8 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const [initialLoading, setInitialLoading] = useState(true);
   const { isMobile } = useDevice();
   const { maxPlaces } = useConfig('category');
+
+  usePageTitle(capitalizeFirst(poiFilters.category || poiFilters.query));
 
   useEffect(() => {
     const fetchData = debounce(

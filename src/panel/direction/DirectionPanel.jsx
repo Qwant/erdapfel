@@ -25,10 +25,11 @@ import ShareMenu from 'src/components/ui/ShareMenu';
 import { updateQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
+import { usePageTitle } from 'src/hooks';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
-export default class DirectionPanel extends React.Component {
+class DirectionPanel extends React.Component {
   static propTypes = {
     origin: PropTypes.string,
     destination: PropTypes.string,
@@ -520,3 +521,10 @@ export default class DirectionPanel extends React.Component {
 }
 
 DirectionPanel.contextType = PanelContext;
+
+const DirectionPanelFunc = ({ props }) => {
+  usePageTitle(_('Directions'));
+  return <DirectionPanel {...props} />;
+};
+
+export default DirectionPanelFunc;
