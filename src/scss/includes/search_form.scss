@@ -63,7 +63,7 @@ input[type="search"] {
 // Logo
 .search_form__logo__button {
   cursor: pointer;
-  width: 36px;
+  width: 37px;
   height: 36px;
   flex-shrink: 0;
   background: url(../images/qwant-logo.svg) no-repeat;
@@ -261,7 +261,7 @@ input[type="search"] {
 
     // ... and make room for it
     .search_form__wrapper {
-      padding-left: $spacing-xxl-3;
+      padding-left: 46px;
     }
   }
 
