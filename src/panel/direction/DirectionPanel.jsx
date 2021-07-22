@@ -522,7 +522,7 @@ class DirectionPanel extends React.Component {
 
 DirectionPanel.contextType = PanelContext;
 
-const DirectionPanelFunc = ({ props }) => {
+const DirectionPanelFunc = props => {
   usePageTitle(_('Directions'));
   return <DirectionPanel {...props} />;
 };
