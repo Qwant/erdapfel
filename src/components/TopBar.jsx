@@ -2,7 +2,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
-import Suggest from 'src/components/ui/Suggest';
+import { Suggest, Flex } from 'src/components/ui';
+import { IconDirection } from 'src/components/ui/icons';
+import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Menu from 'src/panel/Menu';
 import { useConfig, useDevice } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
@@ -155,12 +157,17 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
         )}
         {config.direction.enabled && (
           <>
-            <button
+            <Flex
+              as="button"
+              justifyContent="center"
+              alignItems="center"
               className="search_form__direction_shortcut"
               title={_('Directions', 'top bar')}
               type="button"
               onClick={onClickDirections}
-            />
+            >
+              <IconDirection width={24} fill={ACTION_BLUE_BASE} />
+            </Flex>
             <button
               id="clear_button_desktop"
               className="search_form__clear icon-x"
