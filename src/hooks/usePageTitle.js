@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useConfig } from './useConfig';
 
 export const usePageTitle = (title, suffix = 'Qwant Maps') => {
-  const envName = useConfig('envName');
+  const { envName } = useConfig();
 
   useEffect(() => {
     const previousTitle = document.title;
