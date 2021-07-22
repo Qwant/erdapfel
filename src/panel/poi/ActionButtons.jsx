@@ -13,18 +13,22 @@ const TransactionalButton = ({ poi }) => {
   let icon;
   let label;
   let url;
+  let telemetryElement;
   if (booking_url) {
     icon = <IconCalendar width={16} />;
     url = booking_url;
     label = _('Make a booking', 'poi panel');
+    telemetryElement = 'booking';
   } else if (appointment_url) {
     icon = <IconCalendar width={16} />;
     url = appointment_url;
     label = _('Make an appointment', 'poi panel');
+    telemetryElement = 'appointment';
   } else if (quotation_request_url) {
     icon = <IconFileList width={16} />;
     url = quotation_request_url;
     label = _('Request a quote', 'poi panel');
+    telemetryElement = 'quotationRequest';
   } else {
     return null;
   }
@@ -38,7 +42,7 @@ const TransactionalButton = ({ poi }) => {
         source: poi.meta?.source,
         template: 'single',
         zone: 'detail',
-        element: 'transactional',
+        element: telemetryElement,
       })
     );
   };
