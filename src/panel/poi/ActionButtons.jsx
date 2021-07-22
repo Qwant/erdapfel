@@ -5,6 +5,7 @@ import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
 import { Heart, IconCalendar, IconFileList } from 'src/components/ui/icons';
 import { PINK_DARK } from 'src/libs/colors';
+import { IconDirection } from 'src/components/ui/icons';
 
 const TransactionalButton = ({ poi }) => {
   const { booking_url, appointment_url, quotation_request_url } =
@@ -83,6 +84,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__direction"
           variant="primary"
+          icon={<IconDirection width={15} fill="currentColor" />}
           onClick={openDirection}
           title={_('Directions', 'poi panel')}
         >
