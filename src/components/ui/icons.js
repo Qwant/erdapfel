@@ -20,6 +20,7 @@ export { default as IconTwitter } from '../../../public/images/remix/twitter-lin
 export { default as IconYoutube } from '../../../public/images/remix/youtube-line.svg';
 export { default as IconWheelchair } from '../../../public/images/remix/wheelchair-line.svg';
 export { default as IconWifi } from '../../../public/images/remix/wifi-line.svg';
+export { default as IconDirection } from '../../../public/images/remix/direction-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';
