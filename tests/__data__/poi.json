@@ -169,11 +169,6 @@
     }, {
         "type": "information",
         "blocks": [{
-            "type": "wikipedia",
-            "url": "https://fr.wikipedia.org/wiki/Musée_d'Orsay",
-            "title": "Musée d'Orsay",
-            "description": "Le musée d’Orsay est un musée national inauguré en 1986, situé dans le 7e arrondissement de Paris le long de la rive gauche de la Seine. Il est installé dans l’ancienne gare d'Orsay, construite par Victor Laloux de 1898 à 1900 et réaménagée en musée sur décision du Président de la République Valéry Giscard d'Estaing. Ses collections présentent l’art occidental de 1848 à 1914, dans toute sa diversité : peinture, sculpture, arts décoratifs, art graphique, photographie, architecture, etc. Il est l’un des plus grands musées d’Europe."
-        }, {
             "type": "services_and_information",
             "blocks": [{
                 "type": "accessibility",
@@ -189,5 +184,10 @@
       "type": "contact",
       "url": "mailto:admin@orsay.fr",
       "email": "admin@orsay.fr"
+    }, {
+        "type": "description",
+        "url": "https://fr.wikipedia.org/wiki/Musée_d'Orsay",
+        "source": "wikipedia",
+        "description": "Le musée d’Orsay est un musée national inauguré en 1986, situé dans le 7e arrondissement de Paris le long de la rive gauche de la Seine. Il est installé dans l’ancienne gare d'Orsay, construite par Victor Laloux de 1898 à 1900 et réaménagée en musée sur décision du Président de la République Valéry Giscard d'Estaing. Ses collections présentent l’art occidental de 1848 à 1914, dans toute sa diversité : peinture, sculpture, arts décoratifs, art graphique, photographie, architecture, etc. Il est l’un des plus grands musées d’Europe."
     }]
 }
