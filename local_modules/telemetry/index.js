@@ -42,6 +42,7 @@ module.exports = {
     'poi_osm_phone',
     'poi_osm_website',
     'poi_osm_itinerary',
+    'poi_osm_description',
     'poi_osm_osm_view',
     'poi_osm_osm_edit',
     /* Pages Jaunes Poi */
@@ -53,6 +54,7 @@ module.exports = {
     'poi_pages_jaunes_reviews',
     'poi_pages_jaunes_itinerary',
     'poi_pages_jaunes_transactional',
+    'poi_pages_jaunes_description',
     /* Map */
     'localise_trigger',
     /* Covid-19 */
