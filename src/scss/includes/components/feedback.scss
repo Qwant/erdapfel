@@ -7,6 +7,10 @@
     align-self: flex-start;
   }
 
+  &-question {
+    flex-grow: 1;
+  }
+
   &-button {
     svg {
       margin-right: $spacing-xxs;
