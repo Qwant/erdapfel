@@ -17,7 +17,7 @@ import { sources } from 'config/constants.yml';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import { Panel, PanelNav, SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
-import { capitalizeFirst } from 'src/libs/string';
+import { getListDescription } from 'src/libs/poiList';
 
 const DEBOUNCE_WAIT = 100;
 
@@ -65,7 +65,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const { isMobile } = useDevice();
   const { maxPlaces } = useConfig('category');
 
-  usePageTitle(capitalizeFirst(poiFilters.category || poiFilters.query));
+  usePageTitle(getListDescription(poiFilters.category, poiFilters.query));
 
   useEffect(() => {
     const fetchData = debounce(
