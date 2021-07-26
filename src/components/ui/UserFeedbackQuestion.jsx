@@ -5,7 +5,7 @@ import { Flex, CloseButton, Button } from './index';
 const UserFeedbackQuestion = ({ question, options, onClose }) => {
   return (
     <Flex className="feedback">
-      <div className="u-mr-s">{question}</div>
+      <div className="feedback-question u-mr-s">{question}</div>
       <Flex>
         {options.map(({ label, icon, callback }) => (
           <Button
