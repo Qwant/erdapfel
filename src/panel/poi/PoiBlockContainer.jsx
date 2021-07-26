@@ -3,23 +3,16 @@ import PropTypes from 'prop-types';
 import ImagesBlock from './blocks/Images';
 import InformationBlock from './blocks/Information';
 import DetailsBlock from './blocks/Details';
-import WikiBlock from './blocks/Wiki';
-import { findBlock } from 'src/libs/pois';
+import DescriptionBlock from './blocks/Description';
 
 const PoiBlockContainer = ({ poi }) => {
   if (!poi) {
     return null;
   }
 
-  const wikipedia = findBlock(poi.blocks, 'wikipedia');
-
   return (
     <div className="poi_panel__info">
-      {wikipedia && (
-        <div className="u-mb-m">
-          <WikiBlock block={wikipedia} />
-        </div>
-      )}
+      <DescriptionBlock poi={poi} />
       <InformationBlock poi={poi} />
       <ImagesBlock poi={poi} />
       <DetailsBlock poi={poi} />

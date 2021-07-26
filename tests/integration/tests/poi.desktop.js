@@ -44,7 +44,7 @@ test('display details about the poi on a poi click', async () => {
   expect(phone).toMatch('01 40 49 48 14');
   expect(website).toMatch('www.musee-orsay.fr');
   expect(contact).toMatch('admin@orsay.fr');
-  expect(await exists(page, '.poi_panel__info__wiki')).toBeTruthy();
+  expect(await exists(page, '.block-description')).toBeTruthy();
   expect(accessibility).toMatch('Accessible en fauteuil roulant');
 });
 
