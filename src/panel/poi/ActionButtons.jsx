@@ -3,9 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
-import { Heart, IconCalendar, IconFileList } from 'src/components/ui/icons';
+import {
+  Heart,
+  IconCalendar,
+  IconFileList,
+  IconPhone,
+  IconDirection,
+} from 'src/components/ui/icons';
 import { PINK_DARK } from 'src/libs/colors';
-import { IconDirection } from 'src/components/ui/icons';
 
 const TransactionalButton = ({ poi }) => {
   const { booking_url, appointment_url, quotation_request_url } =
@@ -96,7 +101,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__phone"
           onClick={onClickPhoneNumber}
-          icon="icon_phone"
+          icon={<IconPhone width={16} fill="currentColor" />}
           href={poi.blocksByType.phone.url}
           rel="noopener noreferrer external"
           title={_('Call', 'poi panel')}

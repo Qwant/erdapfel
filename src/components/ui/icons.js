@@ -22,6 +22,11 @@ export { default as IconWheelchair } from '../../../public/images/remix/wheelcha
 export { default as IconWifi } from '../../../public/images/remix/wifi-line.svg';
 export { default as IconDirection } from '../../../public/images/remix/direction-line.svg';
 export { default as IconScooter } from '../../../public/images/remix/e-bike-2-line.svg';
+export { default as IconPhone } from '../../../public/images/remix/phone-line.svg';
+export { default as IconEarth } from '../../../public/images/remix/earth-line.svg';
+export { default as IconMail } from '../../../public/images/remix/mail-line.svg';
+export { default as IconTime } from '../../../public/images/remix/time-line.svg';
+export { default as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';

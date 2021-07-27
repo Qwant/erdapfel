@@ -5,6 +5,8 @@ import URI from '@qwant/uri';
 
 import Telemetry from 'src/libs/telemetry';
 import Block from 'src/panel/poi/blocks/Block';
+import { IconEarth } from 'src/components/ui/icons';
+import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 const WebsiteBlock = ({ block, poi }) => {
   const onClickWebsite = () => {
@@ -28,7 +30,7 @@ const WebsiteBlock = ({ block, poi }) => {
   return (
     <Block
       className="block-website"
-      icon="icon_globe"
+      icon={<IconEarth width={20} fill={ACTION_BLUE_BASE} />}
       title={_('website')}
       onClick={onClickWebsite}
       href={URI.externalise(block.url)}
