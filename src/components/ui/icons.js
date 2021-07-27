@@ -27,6 +27,8 @@ export { default as IconEarth } from '../../../public/images/remix/earth-line.sv
 export { default as IconMail } from '../../../public/images/remix/mail-line.svg';
 export { default as IconTime } from '../../../public/images/remix/time-line.svg';
 export { default as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
+export { default as IconStar } from '../../../public/images/remix/star-line.svg';
+export { default as IconStarFill } from '../../../public/images/remix/star-fill.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';
