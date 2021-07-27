@@ -8,13 +8,15 @@ import PoiPanelContent from './PoiPanelContent';
 import { fire } from 'src/libs/customEvents';
 import { Panel, PanelNav, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
-import { useDevice, useI18n } from 'src/hooks';
+import { useDevice, useI18n, usePageTitle } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
 
 const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
   const { activePoi, setActivePoi } = useContext(PoiContext);
   const { isMobile } = useDevice();
   const { _ } = useI18n();
+
+  usePageTitle((activePoi || poi)?.name);
 
   useEffect(() => {
     return () => {

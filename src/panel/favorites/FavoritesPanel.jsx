@@ -3,10 +3,12 @@ import React, { useEffect } from 'react';
 import Telemetry from 'src/libs/telemetry';
 import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
-import { useFavorites } from 'src/hooks';
+import { useFavorites, usePageTitle } from 'src/hooks';
 
 const FavoritesPanel = () => {
   const { favorites, removeFromFavorites } = useFavorites();
+
+  usePageTitle(_('Favorite places', 'favorite panel'));
 
   useEffect(() => {
     Telemetry.add(Telemetry.FAVORITE_OPEN);

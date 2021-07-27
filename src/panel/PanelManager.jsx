@@ -6,7 +6,6 @@ import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Telemetry from 'src/libs/telemetry';
-import CategoryService from 'src/adapters/category_service';
 import { parseQueryString, getCurrentUrl, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
@@ -15,18 +14,15 @@ import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar';
 import { useConfig, useDevice } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
+import { getListDescription } from 'src/libs/poiList';
 
 function getTopBarAppValue(activePoi, { poiFilters = {}, poi = {}, query } = {}) {
-  if (poi.name) {
-    return poi.name;
-  }
-  if (activePoi?.name) {
-    return activePoi.name;
-  }
-  if (poiFilters.category) {
-    return CategoryService.getCategoryByName(poiFilters.category)?.getInputValue() || '';
-  }
-  return poiFilters.query || query || '';
+  return (
+    poi?.name ||
+    activePoi?.name ||
+    getListDescription(poiFilters.category, poiFilters.query || query) ||
+    ''
+  );
 }
 
 const PanelManager = ({ router }) => {
