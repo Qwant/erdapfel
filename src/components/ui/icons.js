@@ -29,6 +29,9 @@ export { default as IconTime } from '../../../public/images/remix/time-line.svg'
 export { default as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
 export { default as IconStar } from '../../../public/images/remix/star-line.svg';
 export { default as IconStarFill } from '../../../public/images/remix/star-fill.svg';
+export { default as IconShare } from '../../../public/images/remix/share-line.svg';
+export { default as IconTrash } from '../../../public/images/remix/delete-bin-line.svg';
+export { default as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';

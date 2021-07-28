@@ -13,24 +13,12 @@
   }
 
   &-menuItem {
-    padding: 7px 12px;
-    height: 32px;
+    padding: $spacing-xxs $spacing-s;
     cursor: pointer;
 
     &:hover {
       color: $primary_text;
       background: $action-blue-lighter;
-    }
-
-    i {
-      padding-right: 9px;
-      font-size: 18px;
-      float: left;
-    }
-
-    .icon-copy {
-      float: right;
-      padding: 0;
     }
   }
 

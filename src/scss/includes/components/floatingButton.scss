@@ -10,8 +10,7 @@
   background-color: $background;
   box-shadow: $shadow;
 
-  i {
-    font-size: 24px;
-    color: $grey-semi-darkness;
+  svg {
+    fill: $grey-semi-darkness;
   }
 }

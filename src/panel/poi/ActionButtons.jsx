@@ -9,6 +9,7 @@ import {
   IconFileList,
   IconPhone,
   IconDirection,
+  IconShare,
 } from 'src/components/ui/icons';
 import { PINK_DARK } from 'src/libs/colors';
 
@@ -89,7 +90,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__direction"
           variant="primary"
-          icon={<IconDirection width={15} fill="currentColor" />}
+          icon={<IconDirection width={15} />}
           onClick={openDirection}
           title={_('Directions', 'poi panel')}
         >
@@ -101,7 +102,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__phone"
           onClick={onClickPhoneNumber}
-          icon={<IconPhone width={16} fill="currentColor" />}
+          icon={<IconPhone width={16} />}
           href={poi.blocksByType.phone.url}
           rel="noopener noreferrer external"
           title={_('Call', 'poi panel')}
@@ -135,7 +136,7 @@ const ActionButtons = ({
           <Button
             className="poi_panel__action__share"
             title={_('Share', 'poi panel')}
-            icon="share-2"
+            icon={<IconShare width={16} />}
             onClick={e => onShareClick(e, openMenu)}
           />
         )}
