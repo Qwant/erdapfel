@@ -32,6 +32,10 @@ export { default as IconStarFill } from '../../../public/images/remix/star-fill.
 export { default as IconShare } from '../../../public/images/remix/share-line.svg';
 export { default as IconTrash } from '../../../public/images/remix/delete-bin-line.svg';
 export { default as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
+export { default as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
+export { default as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';
+export { default as IconHeart } from '../../../public/images/remix/heart-line.svg';
+export { default as IconHeartFill } from '../../../public/images/remix/heart-fill.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';

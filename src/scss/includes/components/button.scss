@@ -41,12 +41,11 @@
     text-overflow: ellipsis;
   }
 
-  &-icon {
-    font-size: 16px;
-    width: 16px;
+  svg {
+    fill: currentColor;
   }
 
-  &-icon + &-content {
+  svg + &-content {
     margin-left: 4px;
   }
 

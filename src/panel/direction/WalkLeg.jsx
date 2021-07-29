@@ -5,6 +5,7 @@ import RoadMapItem from './RoadMapItem';
 import RoadMapIcon from './RoadMapIcon';
 import LegLine from './LegLine';
 import classnames from 'classnames';
+import { Chevron } from 'src/components/ui';
 
 const WalkLeg = ({ leg }) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -31,7 +32,7 @@ const WalkLeg = ({ leg }) => {
         }}
       >
         <div>{summary}</div>
-        {hasSteps && <span className={`icon-icon_chevron-${detailsOpen ? 'up' : 'down'}`} />}
+        {hasSteps && <Chevron up={detailsOpen} />}
       </div>
       {detailsOpen && (
         <div className="itinerary_roadmap_substeps">

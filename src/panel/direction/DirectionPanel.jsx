@@ -504,7 +504,7 @@ class DirectionPanel extends React.Component {
                       variant="tertiary"
                       title={_('Share itinerary', 'direction')}
                       onClick={e => this.handleShareClick(e, openMenu)}
-                      icon={<IconShare />}
+                      icon={<IconShare width={20} />}
                     >
                       {_('Share itinerary', 'direction')}
                     </Button>
