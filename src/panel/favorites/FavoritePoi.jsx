@@ -56,6 +56,7 @@ const FavoritePoi = ({ poi, removeFavorite }) => {
         )}
       </ShareMenu>
       <Button
+        className="favorite_panel__item__delete"
         variant="tertiary"
         title={_('Delete')}
         onClick={onDelete}
