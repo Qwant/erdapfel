@@ -37,6 +37,10 @@ export { default as IconArrowLeft } from '../../../public/images/remix/arrow-lef
 export { default as IconArrowUpDown } from '../../../public/images/remix/arrow-up-down-line.svg';
 export { default as IconHeart } from '../../../public/images/remix/heart-line.svg';
 export { default as IconHeartFill } from '../../../public/images/remix/heart-fill.svg';
+export { default as IconCar } from '../../../public/images/remix/car-fill.svg';
+export { default as IconBus } from '../../../public/images/remix/bus-fill.svg';
+export { default as IconBicycle } from '../../../public/images/remix/riding-line.svg';
+export { default as IconWalk } from '../../../public/images/remix/walk-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';

@@ -1,31 +1,25 @@
 /* global _ */
 import React from 'react';
 import classnames from 'classnames';
-import { getVehicleIcon } from 'src/libs/route_utils';
 import { capitalizeFirst } from 'src/libs/string';
-
-const getLocalizedTitle = vehicle => {
-  if (vehicle === 'driving') {
-    return _('by car', 'direction');
-  }
-  if (vehicle === 'publicTransport') {
-    return _('transit', 'direction');
-  }
-  if (vehicle === 'walking') {
-    return _('on foot', 'direction');
-  }
-  if (vehicle === 'cycling') {
-    return _('by bike', 'direction');
-  }
-  return _(vehicle); // this can not be parsed by our i18n scripts
-};
+import VehicleIcon from './VehicleIcon';
+import { useDevice } from 'src/hooks';
 
 const VehicleSelectorButton = ({ vehicle, isActive, onClick }) => {
-  const label = capitalizeFirst(getLocalizedTitle(vehicle));
+  const { isMobile } = useDevice();
+
+  const vehicleLabels = {
+    driving: _('by car', 'direction'),
+    publicTransport: _('transit', 'direction'),
+    walking: _('on foot', 'direction'),
+    cycling: _('by bike', 'direction'),
+  };
+
+  const label = capitalizeFirst(vehicleLabels[vehicle]);
   return (
     <button
       type="button"
-      className={classnames('vehicleSelector-button', {
+      className={classnames('vehicleSelector-button', `vehicleSelector-button--${vehicle}`, {
         'vehicleSelector-button--active': isActive,
       })}
       onClick={onClick}
@@ -34,7 +28,7 @@ const VehicleSelectorButton = ({ vehicle, isActive, onClick }) => {
       aria-label={label}
       aria-checked={isActive}
     >
-      <div className={classnames('vehicleSelector-buttonIcon', getVehicleIcon(vehicle))} />
+      <VehicleIcon vehicle={vehicle} fill="currentColor" height={isMobile ? 14 : 20} />
       <div className="vehicleSelector-buttonLabel">{label}</div>
     </button>
   );
