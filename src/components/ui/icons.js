@@ -34,6 +34,7 @@ export { default as IconCopy } from '../../../public/images/remix/file-copy-line
 export { default as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
 export { default as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';
 export { default as IconArrowLeft } from '../../../public/images/remix/arrow-left-line.svg';
+export { default as IconArrowUpDown } from '../../../public/images/remix/arrow-up-down-line.svg';
 export { default as IconHeart } from '../../../public/images/remix/heart-line.svg';
 export { default as IconHeartFill } from '../../../public/images/remix/heart-fill.svg';
 

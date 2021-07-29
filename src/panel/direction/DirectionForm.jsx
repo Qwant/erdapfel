@@ -5,6 +5,7 @@ import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
 import { isMobileDevice } from 'src/libs/device';
 import { Button, Divider } from 'src/components/ui';
+import { IconArrowUpDown } from 'src/components/ui/icons';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {
@@ -102,7 +103,7 @@ export default class DirectionForm extends React.Component {
             className="direction-invert-button"
             onClick={this.onReverse}
             title={_('Invert start and end', 'direction')}
-            icon="reverse"
+            icon={<IconArrowUpDown width={16} />}
           ></Button>
         </form>
         <VehicleSelector
