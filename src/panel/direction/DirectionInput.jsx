@@ -11,6 +11,7 @@ import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
 import { isMobileDevice } from 'src/libs/device';
+import { IconArrowLeft } from 'src/components/ui/icons';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -143,7 +144,7 @@ class DirectionInput extends React.Component {
         </div>
         <button type="button" className="direction-field-return">
           {/* The only purpose of this button is to unfocus the input */}
-          <span className="icon-arrow-left" />
+          <IconArrowLeft width={20} fill="currentColor" />
         </button>
       </div>
     );

@@ -180,7 +180,6 @@ input[type="search"] {
 
   .search_form__return {
     display: none;
-    font-size: 20px;
     text-align: center;
     color: $grey-black;
     margin-right: $spacing-xs;
@@ -191,8 +190,8 @@ input[type="search"] {
     top: 0;
     left: 0;
     width: 30px;
-    height: 60px;
-    padding: 14px 0 0 12px;
+    height: 100%;
+    padding: $spacing-s 0 0 $spacing-s;
 
     &:hover {
       color: $primary_text;
