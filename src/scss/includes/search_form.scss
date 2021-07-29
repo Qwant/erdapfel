@@ -103,8 +103,6 @@ input[type="search"] {
   width: $spacing-xxl-4;
   height: $spacing-xxl-4;
   flex-shrink: 0;
-  background: url(../images/direction-line.svg) center no-repeat;
-  background-size: 24px 24px;
   cursor: pointer;
   transition: filter .1s;
 
@@ -138,7 +136,7 @@ input[type="search"] {
 .top_bar--search_filled {
 
   // Hide directions icon
-  .search_form__direction_shortcut {
+  button.search_form__direction_shortcut {
     display: none;
   }
 
@@ -205,7 +203,7 @@ input[type="search"] {
     width: 20px;
   }
 
-  .search_form__direction_shortcut {
+  button.search_form__direction_shortcut {
     display: none;
   }
 
