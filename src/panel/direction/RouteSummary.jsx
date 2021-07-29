@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Flex } from 'src/components/ui';
-
+import { IconList } from 'src/components/ui/icons';
 import RouteSummaryInfo from './RouteSummaryInfo';
 
 const RouteSummary = ({
@@ -34,7 +34,7 @@ const RouteSummary = ({
         <Button
           className="itinerary_leg_detailsBtn u-firstCap"
           onClick={onClickDetails}
-          icon={showDetails ? null : 'icon_list'}
+          icon={showDetails ? null : <IconList width={16} />}
           variant={showDetails ? 'tertiary' : 'secondary'}
         >
           {showDetails ? _('See less', 'direction') : _('Details', 'direction')}
