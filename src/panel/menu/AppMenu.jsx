@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
-import { Heart, IconLightbulb, IconEdit, IconApps, IconBug } from 'src/components/ui/icons';
+import { IconHeart, IconLightbulb, IconEdit, IconApps, IconBug } from 'src/components/ui/icons';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
 import { useConfig, useI18n } from 'src/hooks';
 
@@ -25,7 +25,7 @@ const AppMenu = ({ close, openProducts }) => {
           Telemetry.add(Telemetry.MENU_FAVORITE);
           navTo('/favs/');
         }}
-        icon={<Heart width={16} color={PINK_DARK} />}
+        icon={<IconHeart width={16} fill={PINK_DARK} />}
       >
         {_('My favorites', 'menu')}
       </MenuItem>

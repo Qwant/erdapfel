@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
 import {
-  Heart,
+  IconHeart,
+  IconHeartFill,
   IconCalendar,
   IconFileList,
   IconPhone,
@@ -118,12 +119,11 @@ const ActionButtons = ({
         onClick={toggleStorePoi}
         style={{ borderColor: favoriteColor }}
         icon={
-          <Heart
-            width={16}
-            height={16}
-            color={favoriteColor}
-            fill={favoriteColor || 'transparent'}
-          />
+          isPoiInFavorite ? (
+            <IconHeartFill width={16} height={16} color={favoriteColor} />
+          ) : (
+            <IconHeart width={16} height={16} />
+          )
         }
       />
 

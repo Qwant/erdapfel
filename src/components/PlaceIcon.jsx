@@ -2,7 +2,7 @@ import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import classnames from 'classnames';
-import { Heart } from 'src/components/ui/icons';
+import { IconHeart } from 'src/components/ui/icons';
 import { PINK_DARK, PINK_LIGHTER } from 'src/libs/colors';
 
 const PlaceIcon = ({ place, category, withBackground, className, isFavorite = false }) => {
@@ -46,7 +46,7 @@ const FavoriteIcon = ({ className }) => {
         backgroundColor: PINK_LIGHTER,
       }}
     >
-      <Heart color={PINK_DARK} width={20} />
+      <IconHeart fill={PINK_DARK} width={20} />
     </div>
   );
 };

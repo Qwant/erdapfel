@@ -1,4 +1,3 @@
-export { default as Heart } from '../../../public/images/feather/heart.svg';
 export { default as Magnifier } from '../../../public/images/magnifier-dark.svg';
 
 export { default as IconLightbulb } from '../../../public/images/remix/lightbulb-line.svg';
