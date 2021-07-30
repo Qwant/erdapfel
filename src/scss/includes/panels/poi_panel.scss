@@ -73,23 +73,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   margin-bottom: 20px;
 }
 
-.poi_panel__pictures_title {
-  padding: 15px 0;
-  font-size: 14px;
-  color: #495063;
-  font-weight: normal;
-  position: relative;
-  padding-left: 24px;
-}
-
-.poi_panel__pictures_title .icon-icon_camera {
-  color: #c8cbd3;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .poi_panel__pictures_block {
   width: calc(50% - 7px);
   padding-bottom: calc(50% - 7px);
