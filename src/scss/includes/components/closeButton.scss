@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
   cursor: pointer;
   color: $primary_text;
   flex-shrink: 0;
@@ -26,7 +25,6 @@
   &--small {
     height: 24px;
     width: 24px;
-    font-size: 16px;
 
     &.closeButton--topRight {
       margin-top: -6px;

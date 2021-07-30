@@ -11,7 +11,7 @@ import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
 import { isMobileDevice } from 'src/libs/device';
-import { IconArrowLeft } from 'src/components/ui/icons';
+import { IconArrowLeft, IconClose } from 'src/components/ui/icons';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -140,7 +140,9 @@ class DirectionInput extends React.Component {
           <div className="direction-icon-block">
             <div className={`direction-icon direction-icon-${pointType}`} />
           </div>
-          <div className="icon-x direction-field-clear" onMouseDown={this.clear} />
+          <button type="button" className="direction-field-clear" onMouseDown={this.clear}>
+            <IconClose width={20} fill="currentColor" />
+          </button>
         </div>
         <button type="button" className="direction-field-return">
           {/* The only purpose of this button is to unfocus the input */}

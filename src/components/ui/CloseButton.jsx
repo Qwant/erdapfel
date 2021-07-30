@@ -2,7 +2,7 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { IconCloseCircle } from 'src/components/ui/icons';
+import { IconCloseCircle, IconClose } from 'src/components/ui/icons';
 
 const CloseButton = ({ className, position, onClick, onMouseDown, circle, variant }) => (
   <button
@@ -15,7 +15,11 @@ const CloseButton = ({ className, position, onClick, onMouseDown, circle, varian
     onClick={onClick}
     onMouseDown={onMouseDown}
   >
-    {circle ? <IconCloseCircle width={20} /> : <i className="icon-x" />}
+    {circle ? (
+      <IconCloseCircle width={20} />
+    ) : (
+      <IconClose width={variant === 'small' ? 20 : 24} fill="currentColor" />
+    )}
   </button>
 );
 

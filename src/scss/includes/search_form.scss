@@ -94,7 +94,6 @@ input[type="search"] {
   width: 30px;
   color: $secondary_text;
   cursor: pointer;
-  font-size: 18px;
   display: none;
 }
 
@@ -142,7 +141,7 @@ input[type="search"] {
 
   // Show desktop clear X icon
   #clear_button_desktop {
-    width: 42px;
+    width: $spacing-xxl-4;
     height: $spacing-xxl-4;
     flex-shrink: 0;
     display: block;
