@@ -10,7 +10,7 @@ const geoloc = e => {
 
 const zoomOut = e => {
   e.preventDefault();
-  document.querySelector('.map_control_group__button__zoom.icon-minus').click();
+  document.querySelector('.map-button--zoomOut').click();
 };
 
 const CategoryPanelError = ({ zoomIn }) => {

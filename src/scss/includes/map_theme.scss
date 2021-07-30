@@ -50,6 +50,9 @@
     // so the shadow of the second button doesn't overlap the first button
     .map_control_group__button__zoom {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:after {
         content: '';
@@ -63,14 +66,14 @@
       }
     }
 
-    .map_control_group__button__zoom.icon-plus {
+    .map-button--zoomIn {
       border-radius: 4px 4px 0 0;
       &, &:after {
         border-bottom: 1px solid $grey-light;
       }
     }
 
-    .map_control_group__button__zoom.icon-minus {
+    .map-button--zoomOut {
       &, &:after {
         border-radius: 0 0 4px 4px;
       }

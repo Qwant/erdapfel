@@ -1,8 +1,11 @@
+import React from 'react';
 import ExtendedScaleControl from './extended_scale_control';
 import ExtendedAttributionControl from './extended_attribution_control';
 import GeolocControl from './extended_geolocate_control';
 import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from '../libs/customEvents';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import { IconPlus, IconMinus } from 'src/components/ui/icons';
 
 export default class ExtendedControl {
   constructor() {
@@ -16,21 +19,25 @@ export default class ExtendedControl {
     this.directionShortcutCallback = null;
     listen('set_direction_shortcut_callback', cb => (this.directionShortcutCallback = cb));
 
-    const buttonClass = 'icon-plus map_control_group__button__zoom';
-
-    this._zoomInButton = this._createButton(buttonClass, 'Zoom +', () => {
-      Telemetry.add(Telemetry.MAP_ZOOM_IN);
-      this._map.zoomIn();
-    });
+    this._zoomInButton = this._createButton(
+      'map_control_group__button__zoom map-button--zoomIn',
+      'Zoom +',
+      () => {
+        Telemetry.add(Telemetry.MAP_ZOOM_IN);
+        this._map.zoomIn();
+      }
+    );
+    this._zoomInButton.innerHTML = renderStaticReact(<IconPlus fill="currentColor" width={16} />);
 
     this._zoomOutButton = this._createButton(
-      'icon-minus map_control_group__button__zoom',
+      'map_control_group__button__zoom map-button--zoomOut',
       'Zoom -',
       () => {
         Telemetry.add(Telemetry.MAP_ZOOM_OUT);
         this._map.zoomOut();
       }
     );
+    this._zoomOutButton.innerHTML = renderStaticReact(<IconMinus fill="currentColor" width={16} />);
 
     const compassClass = 'map_control_group__button__compass';
     this._compass = this._createButton(compassClass, 'Reset North', () => {
