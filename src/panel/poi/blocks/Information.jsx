@@ -10,6 +10,7 @@ import ContactBlock from './Contact';
 import WebsiteBlock from './Website';
 import { findBlock } from 'src/libs/pois';
 import { useI18n } from 'src/hooks';
+import { toArray } from 'src/libs/address';
 
 const InformationBlock = ({ poi }) => {
   const { _ } = useI18n();
@@ -22,7 +23,10 @@ const InformationBlock = ({ poi }) => {
   const recyclingBlock = findBlock(blocks, 'recycling');
   const socialBlock = findBlock(blocks, 'social');
 
-  const hasAddressBlock = poi.address && poi.subClassName !== 'latlon';
+  const hasAddressBlock =
+    poi.address &&
+    poi.subClassName !== 'latlon' &&
+    toArray(poi.address, { omitCountry: true }).some(part => part);
 
   if (
     [
