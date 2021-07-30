@@ -1,32 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-/**
- * Filter an address and return an array with the relevant items
- * @param {*} address - an address object
- */
-function toArray(address, { omitStreet, omitCountry } = {}) {
-  if (!address.street) {
-    return [
-      address.suburb,
-      address.cityDistrict,
-      address.city,
-      address.stateDistrict,
-      address.state,
-      address.countryRegion,
-      !omitCountry && address.country,
-    ]
-      .filter(i => i)
-      .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
-  }
-
-  const cityAndPostcode =
-    address.postcode && address.city ? address.postcode + ' ' + address.city : address.city;
-
-  return [!omitStreet && address.street, cityAndPostcode, !omitCountry && address.country].filter(
-    i => i
-  ); // Filter out any undefined value
-}
+import { toArray } from 'src/libs/address';
 
 const Address = ({ address = {}, inline, omitStreet, omitCountry }) => {
   const parts = toArray(address, { omitStreet, omitCountry });

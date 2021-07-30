@@ -70,3 +70,30 @@ function findAdminBragi(raw, name) {
 function findAdminIdunn(raw, name) {
   return Object.values(raw.address?.admins || {}).find(a => a.class_name === name);
 }
+
+/**
+ * Filter an address and return an array with the relevant items
+ * @param {*} address - an address object
+ */
+export function toArray(address, { omitStreet, omitCountry } = {}) {
+  if (!address.street) {
+    return [
+      address.suburb,
+      address.cityDistrict,
+      address.city,
+      address.stateDistrict,
+      address.state,
+      address.countryRegion,
+      !omitCountry && address.country,
+    ]
+      .filter(i => i)
+      .filter((item, pos, arr) => pos === 0 || item !== arr[pos - 1]); // remove consecutive duplicated name
+  }
+
+  const cityAndPostcode =
+    address.postcode && address.city ? address.postcode + ' ' + address.city : address.city;
+
+  return [!omitStreet && address.street, cityAndPostcode, !omitCountry && address.country].filter(
+    i => i
+  ); // Filter out any undefined value
+}
