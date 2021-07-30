@@ -2,6 +2,7 @@ import React from 'react';
 import AccessibilityBlock from './Accessibility';
 // import BreweryBlock from './Brewery';
 import InternetAccessBlock from './InternetAccess';
+import DeliveryBlock, { hasActiveDeliveryModes } from './Delivery';
 import { Divider } from 'src/components/ui';
 import { findBlock } from 'src/libs/pois';
 import { useI18n } from 'src/hooks';
@@ -11,10 +12,11 @@ const DetailsBlock = ({ poi }) => {
 
   const accessibility = findBlock(poi.blocks, 'accessibility');
   const internetAccess = findBlock(poi.blocks, 'internet_access');
+  const delivery = findBlock(poi.blocks, 'delivery');
   // const brewery = findBlock(poi.blocks, 'brewery');
   // {brewery && <BreweryBlock block={brewery} />}
 
-  if (!accessibility && !internetAccess) {
+  if (!accessibility && !internetAccess && !hasActiveDeliveryModes(delivery)) {
     return null;
   }
 
@@ -25,6 +27,7 @@ const DetailsBlock = ({ poi }) => {
       <div className="poi_panel__fullWidth u-mb-s">
         {accessibility && <AccessibilityBlock block={accessibility} />}
         {internetAccess && <InternetAccessBlock block={internetAccess} />}
+        {hasActiveDeliveryModes(delivery) && <DeliveryBlock block={delivery} />}
       </div>
     </>
   );
