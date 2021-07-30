@@ -84,8 +84,6 @@
     }
 
     &.mapboxgl-ctrl-geolocate .mapboxgl-ctrl-icon {
-      @extend [class^="icon-"];
-      @extend .icon-pin_geoloc;
       display: flex;
       align-items: center;
       justify-content: center;

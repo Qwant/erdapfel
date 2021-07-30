@@ -1,4 +1,5 @@
 export { default as Magnifier } from '../../../public/images/magnifier-dark.svg';
+export { default as IconGeoloc } from '../../../public/images/geoloc.svg';
 
 export { default as IconLightbulb } from '../../../public/images/remix/lightbulb-line.svg';
 export { default as IconEdit } from '../../../public/images/remix/edit-line.svg';
