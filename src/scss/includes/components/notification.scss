@@ -44,29 +44,8 @@
     line-height: 18px;
   }
 
-  &-icon {
-    font-size: 22px;
-    margin-right: 8px;
-  }
-
   &-link {
     margin: $spacing-xs 0;
     cursor: pointer;
   }
-}
-
-.icon-error {
-  color: $red-base;
-}
-
-.icon-warning {
-  color: $orange-base;
-}
-
-.icon-info {
-  color: $action-blue-base;
-}
-
-.icon-success {
-  color: $green-base;
 }

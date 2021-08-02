@@ -46,6 +46,7 @@ export { default as IconWalk } from '../../../public/images/remix/walk-line.svg'
 export { default as IconList } from '../../../public/images/remix/list-unordered.svg';
 export { default as IconPlus } from '../../../public/images/remix/add-line.svg';
 export { default as IconMinus } from '../../../public/images/remix/subtract-line.svg';
+export { default as IconInformation } from '../../../public/images/remix/information-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';

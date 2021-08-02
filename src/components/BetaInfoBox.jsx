@@ -28,7 +28,6 @@ const BetaInfoBox = () => {
           'This means that this version may have some bugs. We work very hard to improve Qwant Maps every day, while keeping your travels private.'
         )}
         /* eslint-enable max-len */
-        type="info"
         onClose={closeBetaPopup}
         footer={
           <div className="notification-link">
