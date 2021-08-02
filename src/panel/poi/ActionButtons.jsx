@@ -18,22 +18,22 @@ const TransactionalButton = ({ poi }) => {
   const { booking_url, appointment_url, quotation_request_url } =
     poi?.blocksByType?.transactional || {};
 
-  let icon;
+  let Icon;
   let label;
   let url;
   let telemetryElement;
   if (booking_url) {
-    icon = <IconCalendar width={16} />;
+    Icon = IconCalendar;
     url = booking_url;
     label = _('Make a booking', 'poi panel');
     telemetryElement = 'booking';
   } else if (appointment_url) {
-    icon = <IconCalendar width={16} />;
+    Icon = IconCalendar;
     url = appointment_url;
     label = _('Make an appointment', 'poi panel');
     telemetryElement = 'appointment';
   } else if (quotation_request_url) {
-    icon = <IconFileList width={16} />;
+    Icon = IconFileList;
     url = quotation_request_url;
     label = _('Request a quote', 'poi panel');
     telemetryElement = 'quotationRequest';
@@ -57,7 +57,7 @@ const TransactionalButton = ({ poi }) => {
 
   return (
     <Button
-      icon={icon}
+      icon={<Icon width={16} height={16} />}
       href={url}
       rel="noopener noreferrer external"
       title={label}
@@ -91,7 +91,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__direction"
           variant="primary"
-          icon={<IconDirection width={15} />}
+          icon={<IconDirection width={15} height={16} />}
           onClick={openDirection}
           title={_('Directions', 'poi panel')}
         >
@@ -103,7 +103,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__phone"
           onClick={onClickPhoneNumber}
-          icon={<IconPhone width={16} />}
+          icon={<IconPhone width={16} height={16} />}
           href={poi.blocksByType.phone.url}
           rel="noopener noreferrer external"
           title={_('Call', 'poi panel')}
@@ -136,7 +136,7 @@ const ActionButtons = ({
           <Button
             className="poi_panel__action__share"
             title={_('Share', 'poi panel')}
-            icon={<IconShare width={16} />}
+            icon={<IconShare width={16} height={16} />}
             onClick={e => onShareClick(e, openMenu)}
           />
         )}
