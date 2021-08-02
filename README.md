@@ -97,10 +97,6 @@ You can overpass this error by setting `NODE_TLS_REJECT_UNAUTHORIZED=0` on the s
 
 Note that you are **NEVER** supposed to use this option for anything else than development.
 
-### A note about webfont
-
-The icon font comes from icomoon, the icomoon project is kept in `dev/erdapfel_iconmoon.json` file. You can open it by drag and drop this file on the icomoon web page.
-
 ### Test
 
 run `TEST=true npm run build` then `npm run test` to launch all tests.

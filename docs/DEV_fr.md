@@ -1,26 +1,26 @@
-##Notes générales
+## Notes générales
 
 ### Architecture du projet 
- - */bin/* le serveur applicatif
- - */build/* la config webpack
- - */config/* partagé par le serveur & par l'appli front
- - */dev/* le fichier de travail d'icomoon ainsi que script de monitoring du projet front
- - */docs/* documentation générés + config du générateur + ce fichier
- - */language/* fichier i18n (po + locales)
- - */public/* fichiers statiques
- - */src/* fichiers source de l'appli front
-  - /adapteurs/ interfaces de développement 
-  - /libs/ librairies internes spécifiques
-  - /mapbox/ surcharge de classes de composants mapbox
-  - /modals/ fenêtres modales
-  - /panel/ les panneaux mobiles (orchestrés par panel manager)
-  - /proxies/ orchestrateurs (panels & url)
-  - /scss/ style
-  - /ui_components/ surcharge de classes des autocompletes
-  - /vendors librairies externes
-  - /view/ dot files
- - */tests/* tests automatiques
- - */views/* fichiers ejs pour le serveur d'application
+ - `/bin/` le serveur applicatif Node.JS/Express
+ - `/build/` la config webpack
+ - `/config/` partagé par le serveur & par l'appli front
+ - `/dev/` scripts utilisés en phase de développement
+ - `/docs/` doc (dont ce fichier)
+ - `/language/` fichiers de traduction `.po`
+ - `/public/` fichiers statiques
+ - `/src/` fichiers source de l'appli front
+   - `adapters/` interfaces de développement
+   - `components/` composants React partagés
+   - `hooks/` hooks React
+   - `libs/` librairies internes spécifiques
+   - `mapbox/` surcharge de classes de composants mapbox
+   - `modals/` fenêtres modales
+   - `panel/` implémentation des différents panels
+   - `proxies/` orchestrateurs (panels & url)
+   - `scss/` style
+   - `vendors/` librairies externes
+ - `/tests/` tests automatiques
+ - `/views/` templates statiques `.ejs` pour le serveur d'application
 
 Il y a deux points d'entrées à l'application front, cela produit 2 bundles qui communiquent par event ou par window.
 
