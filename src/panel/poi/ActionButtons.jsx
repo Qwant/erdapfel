@@ -111,7 +111,14 @@ const ActionButtons = ({
         title={_('Favorites', 'poi panel')}
         onClick={toggleStorePoi}
         style={{ borderColor: favoriteColor }}
-        icon={<Heart width={16} color={favoriteColor} fill={favoriteColor || 'transparent'} />}
+        icon={
+          <Heart
+            width={16}
+            height={16}
+            color={favoriteColor}
+            fill={favoriteColor || 'transparent'}
+          />
+        }
       />
 
       <ShareMenu
