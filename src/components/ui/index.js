@@ -10,7 +10,6 @@ import Modal from './Modal';
 import Panel from './Panel';
 import PlaceholderText from './PlaceholderText';
 import Suggest from './Suggest';
-import Text from './Text';
 import PanelNav from './PanelNav';
 import CloseButton from './CloseButton';
 import FloatingButton from './FloatingButton';
@@ -36,7 +35,6 @@ export {
   Panel,
   PlaceholderText,
   Suggest,
-  Text,
   PanelNav,
   CloseButton,
   FloatingButton,
