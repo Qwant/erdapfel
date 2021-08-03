@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 16:12+0000\n"
+"POT-Creation-Date: 2021-08-03 07:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Albert mb <arnicamontana363@gmail.com>, 2021\n"
 "Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
@@ -29,20 +29,20 @@ msgstr ""
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
 
-msgid "The map that respects your privacy"
-msgstr "El mapa que respecta la vostra privadesa"
-
-msgid "JavaScript is required to view this application."
-msgstr "El JavaScript és necessari per a veure aquesta aplicació."
-
 msgid "Unsupported browser"
 msgstr "Navigateur non pris en charge"
+
+msgid "The map that respects your privacy"
+msgstr "El mapa que respecta la vostra privadesa"
 
 msgid "Your browser is not supported anymore."
 msgstr "Votre navigateur n'est plus pris en charge."
 
 msgid "Install one of these browsers to use Qwant Maps."
 msgstr "Installez l'un des navigateurs suivants pour utiliser Qwant Maps."
+
+msgid "JavaScript is required to view this application."
+msgstr "El JavaScript és necessari per a veure aquesta aplicació."
 
 msgid "restaurant"
 msgstr "restaurant"
@@ -332,15 +332,6 @@ msgstr "Twitter"
 msgid "category"
 msgstr "categoria"
 
-msgid "Close to"
-msgstr "A prop de"
-
-msgid "nearby"
-msgstr "a prop"
-
-msgid "Satisfied with the results?"
-msgstr ""
-
 msgid "Open"
 msgstr "Obert"
 
@@ -356,11 +347,20 @@ msgstr "reobertura a les {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "fins {nextTransitionTime}"
 
+msgid "Close to"
+msgstr "A prop de"
+
 msgid "Geographic coordinates"
 msgstr "Coordenades geogràfiques"
 
 msgid "on PagesJaunes"
 msgstr "a PagesJaunes"
+
+msgid "nearby"
+msgstr "a prop"
+
+msgid "Satisfied with the results?"
+msgstr ""
 
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
@@ -1088,77 +1088,11 @@ msgstr "Llocs preferits"
 msgid "Show favorites"
 msgstr "Mostra els preferits"
 
-msgid "opening hours"
-msgstr "horari d'obertura"
-
-msgid "See the usual opening hours"
-msgstr "Mostra l'horari d'obertura habitual"
-
-msgid "contact"
-msgstr "contacte"
-
 msgid "Photos"
 msgstr "Fotos"
 
-msgid "website"
-msgstr "lloc web"
-
-msgid "Wheelchair accessible"
-msgstr "Accessible amb cadira de rodes"
-
-msgid "Partially wheelchair accessible"
-msgstr "Accessible amb cadira de rodes parcialment"
-
-msgid "Not wheelchair accessible"
-msgstr "No és accessible amb cadira de rodes"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Serveis accessibles amb cadira de rodes"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Serveis accessibles amb cadira de rodes parcialment"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Serveis no accessibles amb cadira de rodes"
-
-msgid "Accessibility"
-msgstr "Acessibilitat"
-
-msgid "Beers"
-msgstr "Cerveses"
-
-msgid "Internet access"
-msgstr "Accés a internet"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "services & information"
-msgstr "serveis i informació"
-
-msgid "Please comply with government travel restrictions."
-msgstr "Compliu amb les restriccions del govern per a viatjar."
-
-msgid "More information at"
-msgstr "Més informació a"
-
-msgid "Open during the sanitary crisis"
-msgstr "Obre durnat la crisi sanitària"
-
-msgid "Potentially open during the sanitary crisis"
-msgstr "Potencialment obert durant la crisi sanitària"
-
-msgid "Closed during the sanitary crisis"
-msgstr "Tancat durant la crisi sanitària"
-
-msgid "No information on opening during the sanitary crisis"
-msgstr "No hi ha informació d'obertura durant la crisi sanitària"
-
-msgid "Report a change"
-msgstr "Informa d'un canvi"
-
-msgid "Opening hours subject to change"
-msgstr "Els horaris d'obertura estan subjectes a canvis"
+msgid "Social networks"
+msgstr ""
 
 msgid "phone"
 msgstr "telèfon"
@@ -1178,14 +1112,62 @@ msgstr "Reciclable"
 msgid "Unknown"
 msgstr "Desconegut"
 
-msgid "Read more on Wikipedia"
-msgstr "Més informació a la Viquipèdia"
+msgid "opening hours"
+msgstr "horari d'obertura"
 
-msgid "Social networks"
-msgstr ""
+msgid "See the usual opening hours"
+msgstr "Mostra l'horari d'obertura habitual"
+
+msgid "contact"
+msgstr "contacte"
+
+msgid "website"
+msgstr "lloc web"
 
 msgid "Information"
 msgstr "Informació"
+
+msgid "Wheelchair accessible"
+msgstr "Accessible amb cadira de rodes"
+
+msgid "Partially wheelchair accessible"
+msgstr "Accessible amb cadira de rodes parcialment"
+
+msgid "Not wheelchair accessible"
+msgstr "No és accessible amb cadira de rodes"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Serveis accessibles amb cadira de rodes"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Serveis accessibles amb cadira de rodes parcialment"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Serveis no accessibles amb cadira de rodes"
+
+msgid "Internet access"
+msgstr "Accés a internet"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Click & collect"
+msgstr ""
+
+msgid "Delivery"
+msgstr ""
+
+msgid "Take away"
+msgstr ""
+
+msgid "Details"
+msgstr "Detalls"
+
+msgid "Read more on Wikipedia"
+msgstr "Més informació a la Viquipèdia"
+
+msgid "Read more on PagesJaunes"
+msgstr ""
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa dades de l'OpenStreetMap."
@@ -1276,9 +1258,6 @@ msgstr "Ruta ràpida"
 
 msgid "See less"
 msgstr "Veure menys"
-
-msgid "Details"
-msgstr "Detalls"
 
 msgid "Walk on {walkDistance}"
 msgstr "Camineu {walkDistance}"
