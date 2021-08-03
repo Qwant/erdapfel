@@ -9,6 +9,7 @@ import Button from 'src/components/ui/Button';
 const getContent = ({ status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note && (
     <div className="covid19-note">
+      {/* @TODO: replace by SVG icon */}
       <i className="icon-icon_info" />
       <p>{note}</p>
     </div>
@@ -51,6 +52,7 @@ const getContent = ({ status, opening_hours, note, contribute_url }) => {
         <Fragment>
           {schedule && (
             <div className="covid19-timeTableContainer">
+              {/* @TODO: replace by SVG icon */}
               <i className="icon-icon_clock" />
               <TimeTable schedule={schedule} />
             </div>
@@ -102,6 +104,7 @@ const LocalizedWarning = ({ countryCode }) => {
 
 const LegalWarning = ({ countryCode }) => (
   <div className="covid19-legalWarning">
+    {/* @TODO: replace by SVG icon */}
     <i className="icon-alert-triangle" />
     <LocalizedWarning countryCode={countryCode} />
   </div>

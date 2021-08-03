@@ -25,6 +25,7 @@ const TransportLineLeg = ({ leg }) => {
           <PublicTransportLine mode={mode} info={info} showDirection />
           {!detailsOpen && from.name && to.name && (
             <div>
+              {/* TODO: replace by SVG icon */}
               {from.name} <i className="icon-chevrons-right" /> {to.name}
             </div>
           )}
