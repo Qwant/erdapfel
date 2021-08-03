@@ -6,7 +6,7 @@ import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
 import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Telemetry from 'src/libs/telemetry';
-import { parseQueryString, getCurrentUrl, buildQueryString } from 'src/libs/url_utils';
+import { parseQueryString, getAppRelativeUrl, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
 import { PanelContext } from 'src/libs/panelContext.js';
@@ -182,7 +182,7 @@ const PanelManager = ({ router }) => {
     });
 
     // Route the initial URL
-    router.routeUrl(getCurrentUrl(), window.history.state || {});
+    router.routeUrl(getAppRelativeUrl(), window.history.state || {});
   }, [router, directionConf]);
 
   // Effects on panel change

@@ -8,12 +8,24 @@ import Telemetry from 'src/libs/telemetry';
 import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps, IconArrowLeft } from 'src/components/ui/icons';
 import { useConfig, useDevice } from 'src/hooks';
+import { listen, unListen } from 'src/libs/customEvents';
+import { parseQueryString, updateQueryString, getAppRelativePathname } from 'src/libs/url_utils';
 
 const Menu = () => {
   const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
   const { isMobile } = useDevice();
   const displayProducts = useConfig('burgerMenu').products;
+
+  useEffect(() => {
+    const routeChangeHandler = listen('routeChange', url => {
+      const activeMenuDrawer = parseQueryString(url.split('?')[1])['drawer'];
+      setOpenedMenu(activeMenuDrawer);
+    });
+    return () => {
+      unListen(routeChangeHandler);
+    };
+  }, []);
 
   useEffect(() => {
     const current = menuContainer.current;
@@ -29,15 +41,21 @@ const Menu = () => {
     }
   }, [openedMenu]);
 
+  const drawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });
+
   const close = () => {
-    setOpenedMenu(null);
+    window.app.navigateTo(drawerUrl(null), window.history.state || {});
+  };
+
+  const openDrawer = menu => {
+    window.app.navigateTo(drawerUrl(menu), window.history.state || {});
   };
 
   const toggleOpen = menu => {
     if (openedMenu === menu) {
       close();
     } else {
-      setOpenedMenu(menu);
+      openDrawer(menu);
     }
   };
 
@@ -90,7 +108,7 @@ const Menu = () => {
                       alignItems="center"
                       type="button"
                       className="u-mr-s"
-                      onClick={() => setOpenedMenu('app')}
+                      onClick={() => openDrawer('app')}
                       aria-label={_('Go back')}
                     >
                       <IconArrowLeft />
@@ -104,13 +122,7 @@ const Menu = () => {
                 {openedMenu === 'app' ? (
                   <AppMenu
                     close={close}
-                    openProducts={
-                      isMobile && displayProducts
-                        ? () => {
-                            setOpenedMenu('products');
-                          }
-                        : null
-                    }
+                    openProducts={isMobile && displayProducts ? () => openDrawer('products') : null}
                   />
                 ) : (
                   <ProductsDrawer />
