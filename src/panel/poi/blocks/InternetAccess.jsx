@@ -12,7 +12,7 @@ const InternetAccessBlock = ({ block }) => {
   }
 
   return (
-    <Block icon={<IconWifi fill={ACTION_BLUE_BASE} width={20} />}>{`${_(
+    <Block simple icon={<IconWifi fill={ACTION_BLUE_BASE} width={20} />}>{`${_(
       'Internet access',
       'poi'
     )} : ${_('WiFi', 'poi')}`}</Block>
