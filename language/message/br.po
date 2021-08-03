@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 16:12+0000\n"
+"POT-Creation-Date: 2021-08-03 07:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -28,20 +28,20 @@ msgstr ""
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
 
-msgid "The map that respects your privacy"
-msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
-
-msgid "JavaScript is required to view this application."
-msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
-
 msgid "Unsupported browser"
 msgstr ""
+
+msgid "The map that respects your privacy"
+msgstr "Ar gartenn hag a zouj d'ho puhez prevez"
 
 msgid "Your browser is not supported anymore."
 msgstr ""
 
 msgid "Install one of these browsers to use Qwant Maps."
 msgstr ""
+
+msgid "JavaScript is required to view this application."
+msgstr "Ret eo kaout Javascript evit gwelet an arload-mañ."
 
 msgid "restaurant"
 msgstr "predti"
@@ -331,15 +331,6 @@ msgstr "Twitter"
 msgid "category"
 msgstr "rummad"
 
-msgid "Close to"
-msgstr "Da gichen"
-
-msgid "nearby"
-msgstr "e-kichen"
-
-msgid "Satisfied with the results?"
-msgstr ""
-
 msgid "Open"
 msgstr "Digor"
 
@@ -355,11 +346,20 @@ msgstr "addigoret da {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "betek {nextTransitionTime}"
 
+msgid "Close to"
+msgstr "Da gichen"
+
 msgid "Geographic coordinates"
 msgstr "Daveennoù douaroniel"
 
 msgid "on PagesJaunes"
 msgstr "war PagesJaunes"
+
+msgid "nearby"
+msgstr "e-kichen"
+
+msgid "Satisfied with the results?"
+msgstr ""
 
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
@@ -1089,79 +1089,11 @@ msgstr "Lec'hioù karetañ"
 msgid "Show favorites"
 msgstr "Diskouez ar c'haretañ"
 
-msgid "opening hours"
-msgstr "Eurvezhioù digeriñ"
-
-msgid "See the usual opening hours"
-msgstr "Gwelet an eurvezhioù digeriñ"
-
-msgid "contact"
-msgstr "darempred"
-
 msgid "Photos"
 msgstr "Fotoioù"
 
-msgid "website"
-msgstr "lec'hienn web"
-
-msgid "Wheelchair accessible"
-msgstr "Aezet evit ar c'hadorioù-ruilh"
-
-msgid "Partially wheelchair accessible"
-msgstr "Aezet a-zarn evit ar c'hadorioù-ruilh"
-
-msgid "Not wheelchair accessible"
-msgstr "Diaezet evit ar c'hadorioù-ruilh"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Privezioù aezet a-zarn d'ar c'hadorioù-ruilh"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Privez ebet aezet d'ar c'hadorioù-ruilh"
-
-msgid "Accessibility"
-msgstr "Monedusted"
-
-msgid "Beers"
-msgstr "Bieroù"
-
-msgid "Internet access"
-msgstr "Moned internet"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "services & information"
-msgstr "servijoù & titouroù"
-
-msgid "Please comply with government travel restrictions."
-msgstr "Doujit mar plij ouzh strishadurioù ar pennadurezhioù lelc'hel."
-
-msgid "More information at"
-msgstr "Muioc'h a ditouroù war"
-
-msgid "Open during the sanitary crisis"
-msgstr "Digor e-pad an enkadenn yec'hedel"
-
-msgid "Potentially open during the sanitary crisis"
-msgstr "Gellout a ra bezañ digor e-pad an enkadenn yec'hedel"
-
-msgid "Closed during the sanitary crisis"
-msgstr "Serret e-pad an enkadenn yec'hedel"
-
-msgid "No information on opening during the sanitary crisis"
+msgid "Social networks"
 msgstr ""
-"Pezh titour ebet roet diwar-benn an eurvezhioù digeriñ e-pad an enkadenn "
-"yec'hedel"
-
-msgid "Report a change"
-msgstr "Danevelliñ ur cheñchamant"
-
-msgid "Opening hours subject to change"
-msgstr "Eurvezhioù digeriñ hag a c'hall bezañ hizivaet"
 
 msgid "phone"
 msgstr "pellgomz"
@@ -1181,14 +1113,62 @@ msgstr "Adaozadus"
 msgid "Unknown"
 msgstr "Dizanv"
 
-msgid "Read more on Wikipedia"
-msgstr "Lenn muioc'h war Wikipedia"
+msgid "opening hours"
+msgstr "Eurvezhioù digeriñ"
 
-msgid "Social networks"
-msgstr ""
+msgid "See the usual opening hours"
+msgstr "Gwelet an eurvezhioù digeriñ"
+
+msgid "contact"
+msgstr "darempred"
+
+msgid "website"
+msgstr "lec'hienn web"
 
 msgid "Information"
 msgstr "Titouroù"
+
+msgid "Wheelchair accessible"
+msgstr "Aezet evit ar c'hadorioù-ruilh"
+
+msgid "Partially wheelchair accessible"
+msgstr "Aezet a-zarn evit ar c'hadorioù-ruilh"
+
+msgid "Not wheelchair accessible"
+msgstr "Diaezet evit ar c'hadorioù-ruilh"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Privezioù aezet evit ar c'hadorioù-ruilh"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Privezioù aezet a-zarn d'ar c'hadorioù-ruilh"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Privez ebet aezet d'ar c'hadorioù-ruilh"
+
+msgid "Internet access"
+msgstr "Moned internet"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Click & collect"
+msgstr ""
+
+msgid "Delivery"
+msgstr ""
+
+msgid "Take away"
+msgstr ""
+
+msgid "Details"
+msgstr "Munudoù"
+
+msgid "Read more on Wikipedia"
+msgstr "Lenn muioc'h war Wikipedia"
+
+msgid "Read more on PagesJaunes"
+msgstr ""
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
@@ -1279,9 +1259,6 @@ msgstr "Hent herrekañ"
 
 msgid "See less"
 msgstr "Gwelout nebeutoc'h"
-
-msgid "Details"
-msgstr "Munudoù"
 
 msgid "Walk on {walkDistance}"
 msgstr "Kerzhit e-pad {walkDistance}"

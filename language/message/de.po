@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 16:12+0000\n"
+"POT-Creation-Date: 2021-08-03 07:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -29,20 +29,20 @@ msgstr ""
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
 
-msgid "The map that respects your privacy"
-msgstr "Die Karte, die Ihre Privatsphäre respektiert"
-
-msgid "JavaScript is required to view this application."
-msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
-
 msgid "Unsupported browser"
 msgstr "Nicht unterstützter Browser"
+
+msgid "The map that respects your privacy"
+msgstr "Die Karte, die Ihre Privatsphäre respektiert"
 
 msgid "Your browser is not supported anymore."
 msgstr "Ihr Browser wird nicht mehr unterstützt."
 
 msgid "Install one of these browsers to use Qwant Maps."
 msgstr "Installieren Sie einen dieser Browser, um Qwant Maps zu nutzen."
+
+msgid "JavaScript is required to view this application."
+msgstr "Für die Darstellung dieser Anwendung ist JavaScript erforderlich."
 
 msgid "restaurant"
 msgstr "Restaurant"
@@ -332,15 +332,6 @@ msgstr "Twitter"
 msgid "category"
 msgstr "Kategorie"
 
-msgid "Close to"
-msgstr "Neben"
-
-msgid "nearby"
-msgstr "in der Nähe"
-
-msgid "Satisfied with the results?"
-msgstr ""
-
 msgid "Open"
 msgstr "Offen"
 
@@ -356,11 +347,20 @@ msgstr " öffnet um {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "bis {nextTransitionTime}"
 
+msgid "Close to"
+msgstr "Neben"
+
 msgid "Geographic coordinates"
 msgstr "Geographische Koordinaten"
 
 msgid "on PagesJaunes"
 msgstr "auf PagesJaunes"
+
+msgid "nearby"
+msgstr "in der Nähe"
+
+msgid "Satisfied with the results?"
+msgstr ""
 
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
@@ -1093,78 +1093,11 @@ msgstr "Lieblingsorte"
 msgid "Show favorites"
 msgstr "Favoriten anzeigen"
 
-msgid "opening hours"
-msgstr "Öffnungszeiten"
-
-msgid "See the usual opening hours"
-msgstr "Die üblichen Öffnungszeiten anzeigen"
-
-msgid "contact"
-msgstr "Kontakt"
-
 msgid "Photos"
 msgstr "Fotos"
 
-msgid "website"
-msgstr "Website"
-
-msgid "Wheelchair accessible"
-msgstr "Rollstuhlgerecht"
-
-msgid "Partially wheelchair accessible"
-msgstr " Teilweise rollstuhlgerecht"
-
-msgid "Not wheelchair accessible"
-msgstr "Nicht rollstuhlgerecht"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Rollstuhlgerechte Toiletten"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
-
-msgid "Accessibility"
-msgstr "Barrierefreiheit"
-
-msgid "Beers"
-msgstr "Bier"
-
-msgid "Internet access"
-msgstr "Internetzugang"
-
-msgid "WiFi"
-msgstr "Wi-Fi"
-
-msgid "services & information"
-msgstr "Dienstleistungen und Information"
-
-msgid "Please comply with government travel restrictions."
-msgstr "Halten Sie sich bitte an die staatlichen Reisebeschränkungen."
-
-msgid "More information at"
-msgstr "Mehr Informationen unter"
-
-msgid "Open during the sanitary crisis"
-msgstr "Während der Gesundheitskrise geöffnet"
-
-msgid "Potentially open during the sanitary crisis"
-msgstr "Während der Gesundheitskrise eventuell geöffnet"
-
-msgid "Closed during the sanitary crisis"
-msgstr "Während der Gesundheitskrise geschlossen"
-
-msgid "No information on opening during the sanitary crisis"
+msgid "Social networks"
 msgstr ""
-"Keine Informationen bezüglich der Öffnung während der Gesundheitskrise."
-
-msgid "Report a change"
-msgstr "Melde eine Veränderung"
-
-msgid "Opening hours subject to change"
-msgstr "Die Öffungszeiten können sich ändern."
 
 msgid "phone"
 msgstr "Telefon"
@@ -1184,14 +1117,62 @@ msgstr "Recyclebar"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-msgid "Read more on Wikipedia"
-msgstr "Auf Wikipedia weiterlesen"
+msgid "opening hours"
+msgstr "Öffnungszeiten"
 
-msgid "Social networks"
-msgstr ""
+msgid "See the usual opening hours"
+msgstr "Die üblichen Öffnungszeiten anzeigen"
+
+msgid "contact"
+msgstr "Kontakt"
+
+msgid "website"
+msgstr "Website"
 
 msgid "Information"
 msgstr "Informationen"
+
+msgid "Wheelchair accessible"
+msgstr "Rollstuhlgerecht"
+
+msgid "Partially wheelchair accessible"
+msgstr " Teilweise rollstuhlgerecht"
+
+msgid "Not wheelchair accessible"
+msgstr "Nicht rollstuhlgerecht"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Rollstuhlgerechte Toiletten"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Teilweise mit den Rollstuhl zugängliche Toiletten"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Keine mit Rollstühlen zugänglichen Toiletten"
+
+msgid "Internet access"
+msgstr "Internetzugang"
+
+msgid "WiFi"
+msgstr "Wi-Fi"
+
+msgid "Click & collect"
+msgstr ""
+
+msgid "Delivery"
+msgstr ""
+
+msgid "Take away"
+msgstr ""
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Read more on Wikipedia"
+msgstr "Auf Wikipedia weiterlesen"
+
+msgid "Read more on PagesJaunes"
+msgstr ""
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
@@ -1283,9 +1264,6 @@ msgstr "Schnellste Route"
 
 msgid "See less"
 msgstr "Weniger anzeigen"
-
-msgid "Details"
-msgstr "Details"
 
 msgid "Walk on {walkDistance}"
 msgstr "Lauf über {walkDistance}"

@@ -1,15 +1,15 @@
 # 
 # Translators:
-# Benjamin Becquet <b.becquet@qwant.com>, 2021
 # Adrien Matissart, 2021
+# Benjamin Becquet <b.becquet@qwant.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 16:12+0000\n"
+"POT-Creation-Date: 2021-08-03 07:13+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2021\n"
+"Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,22 +28,22 @@ msgstr ""
 msgid "Qwant Maps"
 msgstr "Qwant Maps"
 
-msgid "The map that respects your privacy"
-msgstr "La carte qui respecte votre vie privée"
-
-msgid "JavaScript is required to view this application."
-msgstr ""
-"Il est nécessaire que JavaScript soit activé pour afficher cette "
-"application."
-
 msgid "Unsupported browser"
 msgstr "Navigateur non pris en charge"
+
+msgid "The map that respects your privacy"
+msgstr "La carte qui respecte votre vie privée"
 
 msgid "Your browser is not supported anymore."
 msgstr "Votre navigateur n'est plus pris en charge."
 
 msgid "Install one of these browsers to use Qwant Maps."
 msgstr "Installez l'un des navigateurs suivants pour utiliser Qwant Maps."
+
+msgid "JavaScript is required to view this application."
+msgstr ""
+"Il est nécessaire que JavaScript soit activé pour afficher cette "
+"application."
 
 msgid "restaurant"
 msgstr "restaurant"
@@ -335,15 +335,6 @@ msgstr "Twitter"
 msgid "category"
 msgstr "catégorie"
 
-msgid "Close to"
-msgstr "À proximité de"
-
-msgid "nearby"
-msgstr "à proximité"
-
-msgid "Satisfied with the results?"
-msgstr "Satisfait⋅e des résultats proposés ?"
-
 msgid "Open"
 msgstr "Ouvert"
 
@@ -359,11 +350,20 @@ msgstr "réouverture à {nextTransitionTime}"
 msgid "until {nextTransitionTime}"
 msgstr "jusqu’à {nextTransitionTime}"
 
+msgid "Close to"
+msgstr "À proximité de"
+
 msgid "Geographic coordinates"
 msgstr "Coordonnées géographiques"
 
 msgid "on PagesJaunes"
 msgstr "sur PagesJaunes"
+
+msgid "nearby"
+msgstr "à proximité"
+
+msgid "Satisfied with the results?"
+msgstr "Satisfait⋅e des résultats proposés ?"
 
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr "Oups, nous ne trouvons pas ce lieu 🏝️"
@@ -1100,79 +1100,11 @@ msgstr "Lieux favoris"
 msgid "Show favorites"
 msgstr "Afficher les favoris"
 
-msgid "opening hours"
-msgstr "horaires d'ouverture"
-
-msgid "See the usual opening hours"
-msgstr "Voir les horaires habituels"
-
-msgid "contact"
-msgstr "contact"
-
 msgid "Photos"
 msgstr "Photos"
 
-msgid "website"
-msgstr "site web"
-
-msgid "Wheelchair accessible"
-msgstr "Accessible en fauteuil roulant"
-
-msgid "Partially wheelchair accessible"
-msgstr "Partiellement accessible en fauteuil roulant"
-
-msgid "Not wheelchair accessible"
-msgstr "Non accessible en fauteuil roulant"
-
-msgid "Wheelchair accessible toilets"
-msgstr "Toilettes accessibles en fauteuil roulant"
-
-msgid "Partial wheelchair accessible toilets"
-msgstr "Toilettes partiellement accessibles en fauteuil roulant"
-
-msgid "No wheelchair accessible toilets"
-msgstr "Pas de toilettes accessibles en fauteuil roulant"
-
-msgid "Accessibility"
-msgstr "Accessibilité"
-
-msgid "Beers"
-msgstr "Bières pression"
-
-msgid "Internet access"
-msgstr "Accès internet"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "services & information"
-msgstr "services & informations"
-
-msgid "Please comply with government travel restrictions."
-msgstr ""
-"Veuillez respecter les restrictions mises en place par les autorités "
-"locales."
-
-msgid "More information at"
-msgstr "Plus d'informations sur"
-
-msgid "Open during the sanitary crisis"
-msgstr "Ouvert durant la crise sanitaire"
-
-msgid "Potentially open during the sanitary crisis"
-msgstr "Potentiellement ouvert durant la crise sanitaire"
-
-msgid "Closed during the sanitary crisis"
-msgstr "Fermé durant la crise sanitaire"
-
-msgid "No information on opening during the sanitary crisis"
-msgstr "Pas d'information sur l'ouverture durant la crise sanitaire"
-
-msgid "Report a change"
-msgstr "Signaler un changement"
-
-msgid "Opening hours subject to change"
-msgstr "Horaires susceptibles d'être adaptés"
+msgid "Social networks"
+msgstr "Réseaux sociaux"
 
 msgid "phone"
 msgstr "téléphone"
@@ -1192,14 +1124,62 @@ msgstr "Recyclable"
 msgid "Unknown"
 msgstr "Inconnu"
 
-msgid "Read more on Wikipedia"
-msgstr "Lire la suite sur Wikipédia"
+msgid "opening hours"
+msgstr "horaires d'ouverture"
 
-msgid "Social networks"
-msgstr "Réseaux sociaux"
+msgid "See the usual opening hours"
+msgstr "Voir les horaires habituels"
+
+msgid "contact"
+msgstr "contact"
+
+msgid "website"
+msgstr "site web"
 
 msgid "Information"
 msgstr "Informations"
+
+msgid "Wheelchair accessible"
+msgstr "Accessible en fauteuil roulant"
+
+msgid "Partially wheelchair accessible"
+msgstr "Partiellement accessible en fauteuil roulant"
+
+msgid "Not wheelchair accessible"
+msgstr "Non accessible en fauteuil roulant"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Toilettes accessibles en fauteuil roulant"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Toilettes partiellement accessibles en fauteuil roulant"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Pas de toilettes accessibles en fauteuil roulant"
+
+msgid "Internet access"
+msgstr "Accès internet"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Click & collect"
+msgstr "Click & collect"
+
+msgid "Delivery"
+msgstr "Livraison"
+
+msgid "Take away"
+msgstr "Vente à emporter"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Read more on Wikipedia"
+msgstr "Lire la suite sur Wikipédia"
+
+msgid "Read more on PagesJaunes"
+msgstr "Lire la suite sur PagesJaunes"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps utilise les données OpenStreetMap."
@@ -1291,9 +1271,6 @@ msgstr "Itinéraire le plus rapide"
 
 msgid "See less"
 msgstr "Voir moins"
-
-msgid "Details"
-msgstr "Détails"
 
 msgid "Walk on {walkDistance}"
 msgstr "Marchez sur {walkDistance}"
