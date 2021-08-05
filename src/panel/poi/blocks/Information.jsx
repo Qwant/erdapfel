@@ -1,8 +1,7 @@
 import React from 'react';
 import SocialNetworksBlock from './SocialNetworks';
-import Block from './Block';
 import { Divider } from 'src/components/ui';
-import Address from 'src/components/ui/Address';
+import AddressBlock from './Address';
 import PhoneBlock from './Phone';
 import RecyclingBlock from './Recycling';
 import HourBlock from './Hour';
@@ -47,11 +46,7 @@ const InformationBlock = ({ poi }) => {
       <Divider paddingTop={0} />
       <h3 className="u-text--smallTitle">{_('Information')}</h3>
       <div className="poi_panel__fullWidth u-mb-s">
-        {hasAddressBlock && (
-          <Block className="block-address" icon="map-pin" title={_('address')}>
-            <Address inline address={poi.address} omitCountry />
-          </Block>
-        )}
+        {hasAddressBlock && <AddressBlock address={poi.address} />}
         {hourBlock && <HourBlock block={hourBlock} />}
         {phoneBlock && <PhoneBlock block={phoneBlock} poi={poi} />}
         {websiteBlock && <WebsiteBlock block={websiteBlock} poi={poi} />}

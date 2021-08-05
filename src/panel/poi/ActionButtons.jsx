@@ -3,30 +3,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, ShareMenu, Button } from 'src/components/ui';
-import { Heart, IconCalendar, IconFileList } from 'src/components/ui/icons';
+import {
+  IconHeart,
+  IconHeartFill,
+  IconCalendar,
+  IconFileList,
+  IconPhone,
+  IconDirection,
+  IconShare,
+} from 'src/components/ui/icons';
 import { PINK_DARK } from 'src/libs/colors';
-import { IconDirection } from 'src/components/ui/icons';
 
 const TransactionalButton = ({ poi }) => {
   const { booking_url, appointment_url, quotation_request_url } =
     poi?.blocksByType?.transactional || {};
 
-  let icon;
+  let Icon;
   let label;
   let url;
   let telemetryElement;
   if (booking_url) {
-    icon = <IconCalendar width={16} />;
+    Icon = IconCalendar;
     url = booking_url;
     label = _('Make a booking', 'poi panel');
     telemetryElement = 'booking';
   } else if (appointment_url) {
-    icon = <IconCalendar width={16} />;
+    Icon = IconCalendar;
     url = appointment_url;
     label = _('Make an appointment', 'poi panel');
     telemetryElement = 'appointment';
   } else if (quotation_request_url) {
-    icon = <IconFileList width={16} />;
+    Icon = IconFileList;
     url = quotation_request_url;
     label = _('Request a quote', 'poi panel');
     telemetryElement = 'quotationRequest';
@@ -50,7 +57,7 @@ const TransactionalButton = ({ poi }) => {
 
   return (
     <Button
-      icon={icon}
+      icon={<Icon width={16} height={16} />}
       href={url}
       rel="noopener noreferrer external"
       title={label}
@@ -84,7 +91,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__direction"
           variant="primary"
-          icon={<IconDirection width={15} fill="currentColor" />}
+          icon={<IconDirection width={15} height={16} />}
           onClick={openDirection}
           title={_('Directions', 'poi panel')}
         >
@@ -96,7 +103,7 @@ const ActionButtons = ({
         <Button
           className="poi_panel__action__phone"
           onClick={onClickPhoneNumber}
-          icon="icon_phone"
+          icon={<IconPhone width={16} height={16} />}
           href={poi.blocksByType.phone.url}
           rel="noopener noreferrer external"
           title={_('Call', 'poi panel')}
@@ -112,12 +119,11 @@ const ActionButtons = ({
         onClick={toggleStorePoi}
         style={{ borderColor: favoriteColor }}
         icon={
-          <Heart
-            width={16}
-            height={16}
-            color={favoriteColor}
-            fill={favoriteColor || 'transparent'}
-          />
+          isPoiInFavorite ? (
+            <IconHeartFill width={16} height={16} color={favoriteColor} />
+          ) : (
+            <IconHeart width={16} height={16} />
+          )
         }
       />
 
@@ -130,7 +136,7 @@ const ActionButtons = ({
           <Button
             className="poi_panel__action__share"
             title={_('Share', 'poi panel')}
-            icon="share-2"
+            icon={<IconShare width={16} height={16} />}
             onClick={e => onShareClick(e, openMenu)}
           />
         )}

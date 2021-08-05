@@ -10,6 +10,7 @@ import { Panel, PanelNav, Button } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { useDevice, useI18n, usePageTitle } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
+import { IconArrowLeft } from 'src/components/ui/icons';
 
 const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
   const { activePoi, setActivePoi } = useContext(PoiContext);
@@ -103,7 +104,7 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
     if (onBack !== closeAction) {
       return (
         <PanelNav>
-          <Button icon="arrow-left" variant="tertiary" onClick={onBack}>
+          <Button icon={<IconArrowLeft width={16} />} variant="tertiary" onClick={onBack}>
             {_('Display all results')}
           </Button>
         </PanelNav>

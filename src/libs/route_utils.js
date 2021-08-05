@@ -28,19 +28,6 @@ export function formatDistance(m) {
   return `${m.toFixed(0)} m`;
 }
 
-export function getVehicleIcon(vehicle) {
-  switch (vehicle) {
-    case 'driving':
-      return 'icon-drive';
-    case 'walking':
-      return 'icon-foot';
-    case 'cycling':
-      return 'icon-bike';
-    default:
-      return 'icon-public-transport';
-  }
-}
-
 export function getTransportTypeIcon({ mode = '' }) {
   if (mode.startsWith('WALK')) {
     return 'walk';

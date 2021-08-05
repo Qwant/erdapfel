@@ -4,6 +4,7 @@ import RoadMapStep from './RoadMapStep';
 import { fire } from 'src/libs/customEvents';
 import classnames from 'classnames';
 import { FloatingButton } from '../../components/ui';
+import { IconArrowLeft } from '../../components/ui/icons';
 
 const MobileRoadMapPreview = ({ steps, onClose }) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -45,7 +46,7 @@ const MobileRoadMapPreview = ({ steps, onClose }) => {
 
   return (
     <div className="itinerary_mobile_step_by_step">
-      <FloatingButton onClick={onClose} icon="arrow-left" />
+      <FloatingButton onClick={onClose} icon={<IconArrowLeft />} />
       <div
         ref={stepsRef}
         className={classnames('mobile-roadmap-preview-steps', { expanded })}

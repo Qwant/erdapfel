@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Text, Meter } from 'src/components/ui';
+import { Flex, Meter } from 'src/components/ui';
 import { GREEN_BASE, ORANGE_BASE, RED_BASE } from 'src/libs/colors';
 import { useI18n } from 'src/hooks';
+import { IconTime } from 'src/components/ui/icons';
 
 const Container = ({ type, filling_level, updated_at }) => {
   const { locale, _ } = useI18n();
@@ -18,23 +19,26 @@ const Container = ({ type, filling_level, updated_at }) => {
 
   return (
     <div className="recycling-container">
-      <Text level="caption" icon="icon_clock" className="u-mb-xs">
-        {_('Updated {datetime}', 'recycling', {
-          datetime: Intl.DateTimeFormat(locale.replace('_', '-'), {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-          }).format(new Date(updated_at)),
-        })}
-      </Text>
+      <Flex className="u-mb-xs">
+        <IconTime width={16} className="u-mr-xxs" fill="currentColor" />
+        <div className="u-text--caption">
+          {_('Updated {datetime}', 'recycling', {
+            datetime: Intl.DateTimeFormat(locale.replace('_', '-'), {
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+            }).format(new Date(updated_at)),
+          })}
+        </div>
+      </Flex>
       <Flex justifyContent="space-between">
-        <Text level="smallTitle">{containerTypes(type)}</Text>
-        <Text>
+        <div className="u-text--smallTitle">{containerTypes(type)}</div>
+        <div>
           {filling_level}
           {' %'}
-        </Text>
+        </div>
       </Flex>
       <Meter
         value={filling_level}

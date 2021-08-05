@@ -1,9 +1,10 @@
-export { default as Heart } from '../../../public/images/feather/heart.svg';
 export { default as Magnifier } from '../../../public/images/magnifier-dark.svg';
+export { default as IconGeoloc } from '../../../public/images/geoloc.svg';
 
 export { default as IconLightbulb } from '../../../public/images/remix/lightbulb-line.svg';
 export { default as IconEdit } from '../../../public/images/remix/edit-line.svg';
 export { default as IconExternalLink } from '../../../public/images/remix/external-link-line.svg';
+export { default as IconClose } from '../../../public/images/remix/close-line.svg';
 export { default as IconCloseCircle } from '../../../public/images/remix/close-circle-line.svg';
 export { default as IconCheckboxCircle } from '../../../public/images/remix/checkbox-circle-line.svg';
 export { default as IconMenu } from '../../../public/images/remix/menu-line.svg';
@@ -22,6 +23,30 @@ export { default as IconWheelchair } from '../../../public/images/remix/wheelcha
 export { default as IconWifi } from '../../../public/images/remix/wifi-line.svg';
 export { default as IconDirection } from '../../../public/images/remix/direction-line.svg';
 export { default as IconScooter } from '../../../public/images/remix/e-bike-2-line.svg';
+export { default as IconPhone } from '../../../public/images/remix/phone-line.svg';
+export { default as IconEarth } from '../../../public/images/remix/earth-line.svg';
+export { default as IconMail } from '../../../public/images/remix/mail-line.svg';
+export { default as IconTime } from '../../../public/images/remix/time-line.svg';
+export { default as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
+export { default as IconStar } from '../../../public/images/remix/star-line.svg';
+export { default as IconStarFill } from '../../../public/images/remix/star-fill.svg';
+export { default as IconShare } from '../../../public/images/remix/share-line.svg';
+export { default as IconTrash } from '../../../public/images/remix/delete-bin-line.svg';
+export { default as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
+export { default as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
+export { default as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';
+export { default as IconArrowLeft } from '../../../public/images/remix/arrow-left-line.svg';
+export { default as IconArrowUpDown } from '../../../public/images/remix/arrow-up-down-line.svg';
+export { default as IconHeart } from '../../../public/images/remix/heart-line.svg';
+export { default as IconHeartFill } from '../../../public/images/remix/heart-fill.svg';
+export { default as IconCar } from '../../../public/images/remix/car-fill.svg';
+export { default as IconBus } from '../../../public/images/remix/bus-fill.svg';
+export { default as IconBicycle } from '../../../public/images/remix/riding-line.svg';
+export { default as IconWalk } from '../../../public/images/remix/walk-line.svg';
+export { default as IconList } from '../../../public/images/remix/list-unordered.svg';
+export { default as IconPlus } from '../../../public/images/remix/add-line.svg';
+export { default as IconMinus } from '../../../public/images/remix/subtract-line.svg';
+export { default as IconInformation } from '../../../public/images/remix/information-line.svg';
 
 export { default as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { default as IconApple } from '../../../public/images/mobile/i-os.svg';

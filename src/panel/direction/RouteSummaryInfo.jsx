@@ -13,6 +13,7 @@ const RouteWalkingTime = ({ route }) => {
 
   return (
     <span className="u-text--subtitle u-mr-s">
+      {/* @TODO: replace by SVG icon */}
       <i className="icon-foot u-mr-xxs" style={{ fontSize: 11 }} />
       {formatDuration(walkingTime)}
     </span>

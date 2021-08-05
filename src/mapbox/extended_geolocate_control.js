@@ -1,7 +1,11 @@
+import React from 'react';
 import * as Geolocation from '../libs/geolocation';
 import Telemetry from '../libs/telemetry';
 import { openPendingGeolocateModal } from 'src/modals/GeolocationModal';
 import * as store from 'src/adapters/store';
+import renderStaticReact from 'src/libs/renderStaticReact';
+import { IconGeoloc } from 'src/components/ui/icons';
+import { isMobileDevice } from 'src/libs/device';
 
 import { GeolocateControl } from 'mapbox-gl--ENV';
 
@@ -42,6 +46,11 @@ export default class ExtendedGeolocateControl extends GeolocateControl {
 
   _setupUI(supported) {
     super._setupUI(supported);
+    if (this._geolocateButton?.firstChild) {
+      this._geolocateButton.firstChild.innerHTML = renderStaticReact(
+        <IconGeoloc fill="currentColor" width={isMobileDevice() ? 24 : 16} />
+      );
+    }
     this._onReady();
   }
 

@@ -5,8 +5,9 @@ import IconManager from 'src/adapters/icon_manager';
 import { htmlEncode } from 'src/libs/string';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import Telemetry from 'src/libs/telemetry';
-import ShareMenu from 'src/components/ui/ShareMenu';
+import { Button, ShareMenu } from 'src/components/ui';
 import { toAbsoluteUrl, toUrl } from 'src/libs/pois';
+import { IconShare, IconTrash } from 'src/components/ui/icons';
 
 const FavoritePoi = ({ poi, removeFavorite }) => {
   const onClick = () => {
@@ -46,18 +47,21 @@ const FavoritePoi = ({ poi, removeFavorite }) => {
       </div>
       <ShareMenu url={toAbsoluteUrl(poi)} scrollableParent=".panel-content">
         {openMenu => (
-          <div
-            className="favorite_panel__item__share"
+          <Button
+            variant="tertiary"
             title={_('Share')}
             onClick={e => onShareClick(e, openMenu)}
-          >
-            <i className="icon-share-2" />
-          </div>
+            icon={<IconShare width={16} />}
+          />
         )}
       </ShareMenu>
-      <div className="favorite_panel__item__delete" title={_('Delete')} onClick={onDelete}>
-        <span className="icon-trash" />
-      </div>
+      <Button
+        className="favorite_panel__item__delete"
+        variant="tertiary"
+        title={_('Delete')}
+        onClick={onDelete}
+        icon={<IconTrash width={16} />}
+      />
     </div>
   );
 };

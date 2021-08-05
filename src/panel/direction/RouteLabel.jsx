@@ -1,5 +1,6 @@
 import React from 'react';
-import { formatDistance, formatDuration, getVehicleIcon } from 'src/libs/route_utils';
+import { formatDistance, formatDuration } from 'src/libs/route_utils';
+import VehicleIcon from './VehicleIcon';
 
 const VEHICLES = {
   TRAIN: 'train',
@@ -43,7 +44,9 @@ const RouteLabel = ({ route, vehicle, anchor }) => {
       {isPublicTransport ? (
         <PublicTransportStepIcons route={route} />
       ) : (
-        <div className={`routeLabel-vehicleIcon ${getVehicleIcon(vehicle)}`} />
+        <div className="routeLabel-vehicleIcon">
+          <VehicleIcon vehicle={vehicle} fill="currentColor" width={24} />
+        </div>
       )}
       <div>
         <div className="routeLabel-duration">{formatDuration(route.duration)}</div>

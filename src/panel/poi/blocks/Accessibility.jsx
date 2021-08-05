@@ -26,6 +26,7 @@ const AccessibilityBlock = ({ block: accessibilityList }) => {
     <Block
       icon={<IconWheelchair fill={ACTION_BLUE_BASE} width={20} height={20} />}
       className="block-accessibility"
+      simple
     >
       {availableAccessibilities.filter(a => a).join(' ; ')}
     </Block>

@@ -10,7 +10,6 @@ import Modal from './Modal';
 import Panel from './Panel';
 import PlaceholderText from './PlaceholderText';
 import Suggest from './Suggest';
-import Text from './Text';
 import PanelNav from './PanelNav';
 import CloseButton from './CloseButton';
 import FloatingButton from './FloatingButton';
@@ -20,6 +19,7 @@ import UserFeedbackQuestion from './UserFeedbackQuestion';
 import UserFeedbackYesNo from './UserFeedbackYesNo';
 import Notification from './Notification';
 import Alert from './Alert';
+import Chevron from './Chevron';
 
 export {
   Badge,
@@ -35,7 +35,6 @@ export {
   Panel,
   PlaceholderText,
   Suggest,
-  Text,
   PanelNav,
   CloseButton,
   FloatingButton,
@@ -45,4 +44,5 @@ export {
   UserFeedbackYesNo,
   Notification,
   Alert,
+  Chevron,
 };

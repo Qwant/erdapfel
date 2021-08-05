@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest, Flex } from 'src/components/ui';
-import { IconDirection } from 'src/components/ui/icons';
+import { IconDirection, IconArrowLeft, IconClose } from 'src/components/ui/icons';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Menu from 'src/panel/Menu';
 import { useConfig, useDevice } from 'src/hooks';
@@ -106,7 +106,9 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
           title={_('Qwant Maps Home', 'search bar')}
         />
         <div className="search_form__wrapper">
-          <div className="search_form__return icon-arrow-left" onMouseDown={backButtonAction} />
+          <div className="search_form__return">
+            <IconArrowLeft width={20} onMouseDown={backButtonAction} fill="currentColor" />
+          </div>
           <Suggest
             value={value}
             outputNode={suggestElement.current}
@@ -144,10 +146,12 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
           </Suggest>
           <button
             id="clear_button_mobile"
-            className="search_form__clear icon-x"
+            className="search_form__clear"
             type="button"
             onMouseDown={onClear}
-          />
+          >
+            <IconClose width={24} fill="currentColor" />
+          </button>
           <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>
         {isMobile && config.burgerMenu.enabled && (
@@ -170,10 +174,12 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             </Flex>
             <button
               id="clear_button_desktop"
-              className="search_form__clear icon-x"
+              className="search_form__clear"
               type="button"
               onMouseDown={onClear}
-            />
+            >
+              <IconClose width={24} fill="currentColor" />
+            </button>
           </>
         )}
       </form>

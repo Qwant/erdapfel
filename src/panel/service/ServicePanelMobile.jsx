@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
 import Action from 'src/components/ui/MainActionButton';
+import VehicleIcon from 'src/panel/direction/VehicleIcon';
 import { useConfig } from 'src/hooks';
 import Telemetry from 'src/libs/telemetry';
 
@@ -25,7 +26,7 @@ const ServicePanelMobile = () => {
                 window.app.navigateTo('/routes/?mode=driving');
               }}
               variant="directionMode"
-              icon="drive"
+              icon={<VehicleIcon vehicle="driving" fill="currentColor" />}
               label={_('by car', 'service panel')}
             />
             {directionConf.publicTransport && directionConf.publicTransport.enabled && (
@@ -35,7 +36,7 @@ const ServicePanelMobile = () => {
                   window.app.navigateTo('/routes/?mode=publicTransport');
                 }}
                 variant="directionMode"
-                icon="public-transport"
+                icon={<VehicleIcon vehicle="publicTransport" fill="currentColor" />}
                 label={_('transit', 'service panel')}
               />
             )}
@@ -45,7 +46,7 @@ const ServicePanelMobile = () => {
                 window.app.navigateTo('/routes/?mode=walking');
               }}
               variant="directionMode"
-              icon="foot"
+              icon={<VehicleIcon vehicle="walking" fill="currentColor" />}
               label={_('on foot', 'service panel')}
             />
             <Action
@@ -54,7 +55,7 @@ const ServicePanelMobile = () => {
                 window.app.navigateTo('/routes/?mode=cycling');
               }}
               variant="directionMode"
-              icon="bike"
+              icon={<VehicleIcon vehicle="cycling" fill="currentColor" />}
               label={_('by bike', 'service panel')}
             />
           </div>

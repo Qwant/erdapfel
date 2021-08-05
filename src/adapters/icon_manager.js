@@ -1,17 +1,8 @@
 import { getPoiIcon } from '@qwant/qwant-basic-gl-style';
 import classnames from 'classnames';
-import { ACTION_BLUE_DARK } from 'src/libs/colors';
 
 export default class IconManager {
   static get({ className, subClassName, type }) {
-    if (type === 'geoloc') {
-      return {
-        iconClass: 'pin_geoloc',
-        color: ACTION_BLUE_DARK,
-        icomoon: true,
-      };
-    }
-
     return getPoiIcon({ className, subClassName, type });
   }
 }

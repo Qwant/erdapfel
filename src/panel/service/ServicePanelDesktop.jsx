@@ -2,6 +2,7 @@
 import React, { Fragment, useState } from 'react';
 import { Panel, Button } from 'src/components/ui';
 import CategoryList from 'src/components/CategoryList';
+import { IconChevronDown, IconChevronUp } from 'src/components/ui/icons';
 
 const ServicePanelDesktop = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -18,7 +19,7 @@ const ServicePanelDesktop = () => {
         <Button
           className="service_panel__category_toggle"
           variant="tertiary"
-          icon={collapsed ? 'icon_chevron-down' : 'icon_chevron-up'}
+          icon={collapsed ? <IconChevronDown width={16} /> : <IconChevronUp width={16} />}
           onMouseDown={() => setCollapsed(!collapsed)}
         >
           {collapsed ? _('See more nearby services') : _('Reduce')}

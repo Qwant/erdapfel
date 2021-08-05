@@ -21,7 +21,7 @@ const DeliveryBlock = ({ block }) => {
   };
 
   return (
-    <Block icon={<IconScooter fill={ACTION_BLUE_BASE} width={20} />}>
+    <Block simple icon={<IconScooter fill={ACTION_BLUE_BASE} width={20} />}>
       {getActiveModes(block)
         .map(([mode]) => labels[mode])
         .join(' ⋅ ')}

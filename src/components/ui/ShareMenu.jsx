@@ -2,6 +2,8 @@
 import React, { useState, useRef, Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { IconFacebook, IconTwitter, IconCopy } from 'src/components/ui/icons';
+import { Flex } from 'src/components/ui';
 
 const facebookShareUrl = location => {
   return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location)}`;
@@ -85,7 +87,8 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
       {opened &&
         ReactDOM.createPortal(
           <div className="shareMenu-menu" style={{ left: left + 'px', top: top + 'px' }}>
-            <div
+            <Flex
+              justifyContent="space-between"
               className="shareMenu-menuItem shareMenu-menuItem--copy"
               onClick={e => {
                 e.nativeEvent.stopImmediatePropagation();
@@ -93,35 +96,35 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
                 onShare('copy');
               }}
             >
-              <i className="icon-copy" />
               {copied ? (
                 <span className="shareMenu-menuItem--copied">{_('Copied!')}</span>
               ) : (
                 _('Copy link', 'share')
               )}
-            </div>
+              <IconCopy width={20} />
+            </Flex>
 
-            <div
-              className="shareMenu-menuItem shareMenu-menuItem--facebook"
+            <Flex
+              className="shareMenu-menuItem"
               onClick={() => {
                 openPopup(facebookShareUrl(url));
                 onShare('facebook');
               }}
             >
-              <i className="icon-facebook" />
+              <IconFacebook width={20} className="u-mr-xs" />
               {_('Facebook', 'share')}
-            </div>
+            </Flex>
 
-            <div
-              className="shareMenu-menuItem shareMenu-menuItem--twitter"
+            <Flex
+              className="shareMenu-menuItem"
               onClick={() => {
                 openPopup(twitterShareUrl(url));
                 onShare('twitter');
               }}
             >
-              <i className="icon-twitter" />
+              <IconTwitter width={20} className="u-mr-xs" />
               {_('Twitter', 'share')}
-            </div>
+            </Flex>
           </div>,
           portalContainer.current
         )}

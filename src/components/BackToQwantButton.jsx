@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 
 import { Button } from 'src/components/ui';
+import { IconArrowLeft } from 'src/components/ui/icons';
 
 const hiddenAttributeClassName = 'map_control__scale_attribute_container--hidden';
 
@@ -19,7 +20,7 @@ export const BackToQwantButton = ({ isMobile }) => {
   return (
     <Button
       className="backToQwantButton"
-      icon="arrow-left"
+      icon={<IconArrowLeft width={16} />}
       variant="tertiary"
       onClick={() => window.history.back()}
     >

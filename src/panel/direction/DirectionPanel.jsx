@@ -26,6 +26,7 @@ import { updateQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
 import { usePageTitle } from 'src/hooks';
+import { IconShare } from 'src/components/ui/icons';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
@@ -454,7 +455,7 @@ class DirectionPanel extends React.Component {
                         <FloatingButton
                           title={_('Share itinerary', 'direction')}
                           onClick={e => this.handleShareClick(e, openMenu)}
-                          icon="share-2"
+                          icon={<IconShare />}
                         />
                       )}
                     </ShareMenu>,
@@ -503,7 +504,7 @@ class DirectionPanel extends React.Component {
                       variant="tertiary"
                       title={_('Share itinerary', 'direction')}
                       onClick={e => this.handleShareClick(e, openMenu)}
-                      icon="share-2"
+                      icon={<IconShare width={20} />}
                     >
                       {_('Share itinerary', 'direction')}
                     </Button>

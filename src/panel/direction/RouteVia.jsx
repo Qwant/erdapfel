@@ -19,7 +19,7 @@ const RouteVia = ({ route, vehicle, className }) => {
         .map((summaryPart, idx) => (
           <span key={idx} className="routeVia-step">
             {summaryPart.mode === 'WALK' ? (
-              <i className="icon-foot" />
+              <i className="icon-foot" /> // @TODO: replace by SVG icon
             ) : (
               <PublicTransportLine mode={summaryPart.mode} info={summaryPart.info} />
             )}

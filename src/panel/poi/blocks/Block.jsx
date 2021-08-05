@@ -10,6 +10,7 @@ const Block = ({
   href,
   actionIcon,
   tooltip,
+  simple,
   ...rest
 }) => {
   const Tag = href ? 'a' : 'div';
@@ -22,7 +23,7 @@ const Block = ({
       title={tooltip}
       {...rest}
     >
-      {typeof icon === 'string' ? <i className={`block-icon icon-${icon}`} /> : icon}
+      {simple ? icon : <div className="block-icon">{icon}</div>}
       <div className="block-content">
         {title && <div className="u-firstCap u-text--caption u-mb-xxxs">{title}</div>}
         <div className="block-value">{children}</div>

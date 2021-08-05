@@ -10,14 +10,13 @@
 
   &-stars {
     display: inline-flex;
+    margin-right: $spacing-xxs;
 
-    span {
-      padding-right: 3px;
+    svg {
+      fill: $action-blue-base;
     }
   }
 
-  .icon-icon_star,
-  .icon-icon_star-filled,
   &-score {
     color: $action-blue-base;
   }

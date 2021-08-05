@@ -94,13 +94,10 @@ test('origin & latlon destination & mode', async () => {
   const directionEndInput = await getInputValue(page, '#direction-input_destination');
   expect(directionEndInput).toEqual('16 Avenue Thiers');
 
-  const activeLabel = await page.evaluate(() => {
-    return Array.from(
-      document.querySelector('.vehicleSelector-button--active .vehicleSelector-buttonIcon')
-        .classList
-    ).join(',');
-  });
-  expect(activeLabel).toContain('icon-foot');
+  const activeLabel = await page.evaluate(() =>
+    Array.from(document.querySelector('.vehicleSelector-button--active').classList).join(',')
+  );
+  expect(activeLabel).toContain('--walking');
 });
 
 // There is no current way with the MapBox-GL-mock to test changes of state or style
