@@ -17,6 +17,7 @@ import FloatingItems from './FloatingItems';
 import SourceFooter from './SourceFooter';
 import UserFeedbackQuestion from './UserFeedbackQuestion';
 import UserFeedbackYesNo from './UserFeedbackYesNo';
+import Notification from './Notification';
 import Alert from './Alert';
 import Chevron from './Chevron';
 
@@ -41,6 +42,7 @@ export {
   SourceFooter,
   UserFeedbackQuestion,
   UserFeedbackYesNo,
+  Notification,
   Alert,
   Chevron,
 };
