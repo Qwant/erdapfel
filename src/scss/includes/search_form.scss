@@ -63,12 +63,12 @@ input[type="search"] {
 // Logo
 .search_form__logo__button {
   cursor: pointer;
-  width: 36px;
+  width: 37px;
   height: 36px;
   flex-shrink: 0;
   background: url(../images/qwant-logo.svg) no-repeat;
   background-size: cover;
-  margin: 0 $spacing-m 0 $spacing-s;
+  margin: 0 $spacing-s 0 $spacing-s;
 }
 
 // Return arrows
@@ -173,8 +173,12 @@ input[type="search"] {
 
 // Mobile
 @media (max-width: 640px) {
-  .search_form__input::placeholder {
-    font-size: 14px;
+  .search_form__input {
+    margin-left: $spacing-xxs;
+
+    &::placeholder {
+      font-size: 14px;
+    }
   }
 
   .search_form__return {
@@ -261,7 +265,7 @@ input[type="search"] {
 
     // ... and make room for it
     .search_form__wrapper {
-      padding-left: $spacing-xxl-3;
+      padding-left: 46px;
     }
   }
 
@@ -276,7 +280,7 @@ input[type="search"] {
   .top_bar--search_filled,
   .top_bar--search_focus {
     .search_form__wrapper {
-      margin-left: -54px;
+      margin-left: -52px;
       margin-right: -33px;
     }
 
