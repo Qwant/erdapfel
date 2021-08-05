@@ -18,16 +18,13 @@
   transition: background-color .2s;
   cursor: pointer;
   line-height: 1.2;
-  border-left: transparent solid 4px;
 
   .selected & {
-    border-left-color: #FF3B4A;
     background-color: $background_active;
   }
 
   @media (hover: hover) {
     li:hover & {
-      border-left-color: #FF3B4A;
       background-color: $background_active;
     }
   }
