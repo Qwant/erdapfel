@@ -3,7 +3,6 @@ import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
 import { fire } from 'src/libs/customEvents';
-import BetaInfoBox from 'src/components/BetaInfoBox';
 import { useConfig } from 'src/hooks';
 import { PoiProvider } from 'src/libs/poiContext';
 
@@ -35,7 +34,6 @@ const RootComponent = ({ router }) => {
         <PanelManager router={router} />
       </PoiProvider>
       {!isMobile && isBurgerMenuEnabled && <Menu />}
-      <BetaInfoBox />
     </DeviceContext.Provider>
   );
 };
