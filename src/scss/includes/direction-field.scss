@@ -24,6 +24,7 @@
         height: 54px;
         line-height: 50px;
         background-color: $background;
+        margin-left: $spacing-xxs;
 
         /* START Focus-gradient effect */
         &::before {

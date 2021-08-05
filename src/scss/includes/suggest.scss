@@ -12,7 +12,6 @@
 .autocomplete_suggestion {
   display: flex;
   align-items: center;
-  padding: $spacing-xs 0;
   color: $secondary_text;
   background-color: $background;
   transition: background-color .2s;
@@ -74,11 +73,9 @@
 }
 
 .autocomplete_suggestion_icon {
-  margin: 0 28px 0 14px;
-}
+  margin: $spacing-s;
 
-@media (max-width: 640px) {
-  .autocomplete_suggestion_icon {
-    margin: 0 $spacing-s;
+  @media (min-width: 641px) {
+    margin-right: 30px;
   }
 }
