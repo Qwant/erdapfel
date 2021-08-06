@@ -67,6 +67,8 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
 
   usePageTitle(getListDescription(poiFilters.category, poiFilters.query));
 
+  const comparableFilters = JSON.stringify(poiFilters);
+
   useEffect(() => {
     const fetchData = debounce(
       async () => {
@@ -103,17 +105,18 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     return () => {
       unListen(mapMoveHandler);
     };
-  }, [poiFilters, initialLoading, maxPlaces]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [comparableFilters, initialLoading, maxPlaces]);
 
   useEffect(() => {
     window.execOnMapLoaded(() => {
       fitMap(bbox);
     });
-  }, [bbox, poiFilters]);
+  }, [bbox, comparableFilters]);
 
   useEffect(() => {
     setInitialLoading(true);
-  }, [poiFilters]);
+  }, [comparableFilters]);
 
   useEffect(() => {
     if (poiFilters.category) {
