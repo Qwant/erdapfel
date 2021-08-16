@@ -28,25 +28,6 @@ export function parseQueryString(queryString) {
   return params;
 }
 
-// Join parts of a path, ignoring middle '/'
-// but conserving starting and trailing ones
-export function joinPath(parts) {
-  return parts
-    .map((part, index) => {
-      if (index === 0) {
-        return part;
-      }
-      return part.replace(/^\//, '');
-    })
-    .map((part, index) => {
-      if (index === parts.length - 1) {
-        return part;
-      }
-      return part.replace(/\/$/, '');
-    })
-    .join('/');
-}
-
 export function getAppRelativePathname() {
   const appBase = (window.baseUrl || '/').replace(/\/$/, '');
   return window.location.pathname.replace(new RegExp(`^${appBase}`), '');

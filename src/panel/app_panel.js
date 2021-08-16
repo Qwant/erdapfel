@@ -32,9 +32,4 @@ export default class App {
       });
     });
   }
-
-  updateHash(hash) {
-    const urlWithoutHash = window.location.href.split('#')[0];
-    window.history.replaceState(window.history.state, null, `${urlWithoutHash}#${hash}`);
-  }
 }

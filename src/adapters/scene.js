@@ -20,7 +20,7 @@ import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
 import locale from '../mapbox/locale';
 import { setPoiHoverStyle } from 'src/adapters/pois_styles';
-import { history } from 'src/proxies/app_router';
+import { history, updateHash } from 'src/proxies/app_router';
 
 const baseUrl = nconf.get().system.baseUrl;
 const LONG_TOUCH_DELAY_MS = 500;
@@ -266,7 +266,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
       const { lng, lat } = this.mb.getCenter();
       const zoom = this.mb.getZoom();
       setLastLocation({ lng, lat, zoom });
-      window.app.updateHash(this.getLocationHash());
+      updateHash(this.getLocationHash());
       fire('map_moveend');
     });
 
