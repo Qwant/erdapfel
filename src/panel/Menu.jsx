@@ -9,7 +9,12 @@ import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps, IconArrowLeft } from 'src/components/ui/icons';
 import { useConfig, useDevice } from 'src/hooks';
 import { listen, unListen } from 'src/libs/customEvents';
-import { parseQueryString, updateQueryString, getAppRelativePathname } from 'src/libs/url_utils';
+import {
+  getQueryString,
+  parseQueryString,
+  updateQueryString,
+  getAppRelativePathname,
+} from 'src/libs/url_utils';
 
 const Menu = () => {
   const [openedMenu, setOpenedMenu] = useState(null);
@@ -17,11 +22,14 @@ const Menu = () => {
   const { isMobile } = useDevice();
   const displayProducts = useConfig('burgerMenu').products;
 
+  const openMenuFromUrl = url => {
+    const activeMenuDrawer = parseQueryString(getQueryString(url))['drawer'];
+    setOpenedMenu(activeMenuDrawer);
+  };
+
   useEffect(() => {
-    const routeChangeHandler = listen('routeChange', url => {
-      const activeMenuDrawer = parseQueryString(url.split('?')[1])['drawer'];
-      setOpenedMenu(activeMenuDrawer);
-    });
+    openMenuFromUrl(window.location.href);
+    const routeChangeHandler = listen('routeChange', openMenuFromUrl);
     return () => {
       unListen(routeChangeHandler);
     };
