@@ -4,6 +4,7 @@ Sufficient to replace the horrible "URL shard" system
 and ensure the app state is consistent.
 */
 import { joinPath } from 'src/libs/url_utils';
+import { fire } from 'src/libs/customEvents';
 
 function getMatchingRouteDefinition(routeDefs, url) {
   return routeDefs.find(route => new RegExp(route.match).test(url));
@@ -30,6 +31,7 @@ export default class Router {
 
   routeUrl(url, state) {
     const urlWithoutHash = url.split('#')[0];
+    fire('routeChange', urlWithoutHash);
     const routeDef = getMatchingRouteDefinition(this.routeDefs, urlWithoutHash);
     if (!routeDef) {
       return;

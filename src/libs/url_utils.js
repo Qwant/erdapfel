@@ -18,6 +18,10 @@ export function getMapHash(zoom, lat, lng) {
   return `map=${zoom.toFixed(2)}/${lat.toFixed(7)}/${lng.toFixed(7)}`;
 }
 
+export function getQueryString(url) {
+  return url?.split('?')[1]?.split('#')[0];
+}
+
 export function parseQueryString(queryString) {
   const params = {};
   new URLSearchParams(queryString).forEach((value, key) => {
@@ -45,9 +49,14 @@ export function joinPath(parts) {
     .join('/');
 }
 
-export function getCurrentUrl() {
-  const { pathname, search, hash } = window.location;
-  return `${pathname}${search}${hash}`;
+export function getAppRelativeUrl() {
+  const { search, hash } = window.location;
+  return `${getAppRelativePathname()}${search}${hash}`;
+}
+
+export function getAppRelativePathname() {
+  const appBase = (window.baseURL || '/').replace(/\/$/, '');
+  return window.location.pathname.replace(new RegExp(`^${appBase}`), '');
 }
 
 export function toCssUrl(url) {
