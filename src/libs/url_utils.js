@@ -49,13 +49,8 @@ export function joinPath(parts) {
     .join('/');
 }
 
-export function getAppRelativeUrl() {
-  const { search, hash } = window.location;
-  return `${getAppRelativePathname()}${search}${hash}`;
-}
-
 export function getAppRelativePathname() {
-  const appBase = (window.baseURL || '/').replace(/\/$/, '');
+  const appBase = (window.baseUrl || '/').replace(/\/$/, '');
   return window.location.pathname.replace(new RegExp(`^${appBase}`), '');
 }
 
