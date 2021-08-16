@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PoiItem from './PoiItem';
 import { fire } from 'src/libs/customEvents';
 import ActionButtons from '../panel/poi/ActionButtons';
@@ -8,10 +9,11 @@ import { useConfig, useFavorites } from '../hooks';
 const PoiPopup = ({ poi }) => {
   const { isInFavorites, removeFromFavorites, addToFavorites } = useFavorites();
   const isDirectionActive = useConfig('direction').enabled;
+  const history = useHistory();
 
   const openDirection = () => {
     Telemetry.sendPoiEvent(poi, 'itinerary');
-    window.app.navigateTo('/routes/', { poi });
+    history.push('/routes/', { poi });
   };
 
   const onClickPhoneNumber = () => {

@@ -83,12 +83,6 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
     loadPoi();
   }, [poi, poiId, setActivePoi]);
 
-  const openDirection = () => {
-    const poi = this.getBestPoi();
-    Telemetry.sendPoiEvent(poi, 'itinerary');
-    history.push('/routes/', { poi });
-  };
-
   const closeAction = () => {
     history.push('/');
   };

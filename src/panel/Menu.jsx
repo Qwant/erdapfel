@@ -1,6 +1,7 @@
 /* globals _ */
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import cx from 'classnames';
 import AppMenu from './menu/AppMenu';
 import ProductsDrawer from './menu/ProductsDrawer';
@@ -21,6 +22,7 @@ const Menu = () => {
   const menuContainer = useRef(document.createElement('div'));
   const { isMobile } = useDevice();
   const displayProducts = useConfig('burgerMenu').products;
+  const history = useHistory();
 
   const openMenuFromUrl = url => {
     const activeMenuDrawer = parseQueryString(getQueryString(url))['drawer'];
@@ -52,11 +54,11 @@ const Menu = () => {
   const drawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });
 
   const close = () => {
-    window.app.navigateTo(drawerUrl(null), window.history.state || {});
+    history.push(drawerUrl(null), window.history.state || {});
   };
 
   const openDrawer = menu => {
-    window.app.navigateTo(drawerUrl(menu), window.history.state || {});
+    history.push(drawerUrl(menu), window.history.state || {});
   };
 
   const toggleOpen = menu => {
