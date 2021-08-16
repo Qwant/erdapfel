@@ -20,10 +20,6 @@ export function getMapHash(zoom, lat, lng) {
   return `map=${zoom.toFixed(2)}/${lat.toFixed(7)}/${lng.toFixed(7)}`;
 }
 
-export function getQueryString(url) {
-  return url?.split('?')[1]?.split('#')[0];
-}
-
 export function parseQueryString(queryString) {
   const params = {};
   new URLSearchParams(queryString).forEach((value, key) => {

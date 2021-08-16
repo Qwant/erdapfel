@@ -1,7 +1,7 @@
 /* globals _ */
-import React, { Fragment, useEffect, useState, useRef } from 'react';
+import React, { Fragment, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import cx from 'classnames';
 import AppMenu from './menu/AppMenu';
 import ProductsDrawer from './menu/ProductsDrawer';
@@ -9,33 +9,15 @@ import Telemetry from 'src/libs/telemetry';
 import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps, IconArrowLeft } from 'src/components/ui/icons';
 import { useConfig, useDevice } from 'src/hooks';
-import { listen, unListen } from 'src/libs/customEvents';
-import {
-  getQueryString,
-  parseQueryString,
-  updateQueryString,
-  getAppRelativePathname,
-} from 'src/libs/url_utils';
+import { parseQueryString, updateQueryString, getAppRelativePathname } from 'src/libs/url_utils';
 
 const Menu = () => {
-  const [openedMenu, setOpenedMenu] = useState(null);
   const menuContainer = useRef(document.createElement('div'));
   const { isMobile } = useDevice();
   const displayProducts = useConfig('burgerMenu').products;
   const history = useHistory();
-
-  const openMenuFromUrl = url => {
-    const activeMenuDrawer = parseQueryString(getQueryString(url))['drawer'];
-    setOpenedMenu(activeMenuDrawer);
-  };
-
-  useEffect(() => {
-    openMenuFromUrl(window.location.href);
-    const routeChangeHandler = listen('routeChange', openMenuFromUrl);
-    return () => {
-      unListen(routeChangeHandler);
-    };
-  }, []);
+  const { search, state: historyState } = useLocation();
+  const { drawer } = parseQueryString(search);
 
   useEffect(() => {
     const current = menuContainer.current;
@@ -46,23 +28,23 @@ const Menu = () => {
   }, []);
 
   useEffect(() => {
-    if (openedMenu === 'app') {
+    if (drawer === 'app') {
       Telemetry.add(Telemetry.MENU_CLICK);
     }
-  }, [openedMenu]);
+  }, [drawer]);
 
   const drawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });
 
   const close = () => {
-    history.push(drawerUrl(null), window.history.state || {});
+    history.push(drawerUrl(null), historyState);
   };
 
   const openDrawer = menu => {
-    history.push(drawerUrl(menu), window.history.state || {});
+    history.push(drawerUrl(menu), historyState);
   };
 
   const toggleOpen = menu => {
-    if (openedMenu === menu) {
+    if (drawer === menu) {
       close();
     } else {
       openDrawer(menu);
@@ -75,8 +57,8 @@ const Menu = () => {
         <button
           type="button"
           className={cx('menu__button', {
-            'menu__button--active': openedMenu === 'app',
-            'menu__button--noShadow': openedMenu && openedMenu !== 'app',
+            'menu__button--active': drawer === 'app',
+            'menu__button--noShadow': drawer && drawer !== 'app',
           })}
           onClick={() => {
             toggleOpen('app');
@@ -90,8 +72,8 @@ const Menu = () => {
           <button
             type="button"
             className={cx('u-mr-xs', 'menu__button', {
-              'menu__button--active': openedMenu === 'products',
-              'menu__button--noShadow': openedMenu && openedMenu !== 'products',
+              'menu__button--active': drawer === 'products',
+              'menu__button--noShadow': drawer && drawer !== 'products',
             })}
             onClick={() => {
               toggleOpen('products');
@@ -103,14 +85,14 @@ const Menu = () => {
         )}
       </Flex>
 
-      {openedMenu &&
+      {drawer &&
         ReactDOM.createPortal(
-          <div className={cx('menu', { productsDrawer: openedMenu === 'products' })}>
+          <div className={cx('menu', { productsDrawer: drawer === 'products' })}>
             <div className="menu__overlay" onClick={close} />
 
             <div className="menu__panel">
               <Flex className="menu-top">
-                {isMobile && openedMenu === 'products' && (
+                {isMobile && drawer === 'products' && (
                   <>
                     <Flex
                       as="button"
@@ -129,7 +111,7 @@ const Menu = () => {
                 <CloseButton circle onClick={close} />
               </Flex>
               <div className="menu-content">
-                {openedMenu === 'app' ? (
+                {drawer === 'app' ? (
                   <AppMenu
                     close={close}
                     openProducts={isMobile && displayProducts ? () => openDrawer('products') : null}
