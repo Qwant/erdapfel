@@ -9,6 +9,7 @@ export const useI18n = () => {
 
   return {
     _: window._,
+    _n: window._n,
     locale,
     lang,
     getLocalizedUrl: getLocalizedUrl(lang),

@@ -1,5 +1,5 @@
 import React from 'react';
-import StarsBlock from './Stars';
+import StarsBlock, { hasStars } from './Stars';
 import AccessibilityBlock from './Accessibility';
 import InternetAccessBlock from './InternetAccess';
 import DeliveryBlock, { hasActiveDeliveryModes } from './Delivery';
@@ -17,11 +17,17 @@ const DetailsBlock = ({ poi }) => {
   // const stars = findBlock(poi.blocks, 'stars');
   // Example:
   const stars = {
-    has_stars: 'yes', // yes or unknown
-    nb_stars: 4, // float
+    type: 'stars',
+    ratings: [
+      {
+        has_stars: 'yes',
+        nb_stars: 0,
+        // kind: 'restaurant',
+      },
+    ],
   };
 
-  if (!accessibility && !internetAccess && !hasActiveDeliveryModes(delivery)) {
+  if (!accessibility && !internetAccess && !hasStars(stars) && !hasActiveDeliveryModes(delivery)) {
     return null;
   }
 
