@@ -147,7 +147,7 @@ const PanelManager = () => {
             <Route path="/places/">
               <CategoryPanel />
             </Route>
-            <Route path="/place/:poiId">
+            <Route path="/place/:poiDesc">
               <PoiPanel backToList={backToList} backToFavorite={backToFavorite} />
             </Route>
             {directionConf.enabled && (

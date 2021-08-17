@@ -141,7 +141,8 @@ PoiPanel.propTypes = {
 
 const PoiPanelWithRouteParams = ({ backToList, backToFavorite }) => {
   const { state } = useLocation();
-  const { poiId } = useParams();
+  const { poiDesc } = useParams();
+  const poiId = poiDesc.split('@')[0];
   const options = {
     ...state,
     poiId,
