@@ -37,5 +37,4 @@ const StarsBlock = ({ block, subclass }) => {
 
 export default StarsBlock;
 
-export const hasStars = stars =>
-  stars && stars.ratings && stars.ratings[0] && stars.ratings[0].has_stars === 'yes';
+export const hasStars = stars => stars?.ratings?.[0]?.has_stars === 'yes' || false;
