@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from 'src/proxies/app_router';
-import { parseMapHash, joinPath, getAppRelativeUrl, parseQueryString } from 'src/libs/url_utils';
+import { parseMapHash, joinPath, parseQueryString } from 'src/libs/url_utils';
 import { listen } from 'src/libs/customEvents';
 import RootComponent from './RootComponent';
 import Telemetry from 'src/libs/telemetry';
@@ -22,7 +22,10 @@ export default class App {
     this.router = new Router(window.baseUrl);
 
     window.onpopstate = ({ state }) => {
-      this.router.routeUrl(getAppRelativeUrl(), state || {});
+      this.router.routeUrl(
+        document.location.href.replace(document.location.origin, ''),
+        state || {}
+      );
     };
 
     ReactDOM.render(<RootComponent router={this.router} />, document.querySelector('#react_root'));
