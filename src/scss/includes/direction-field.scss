@@ -96,17 +96,6 @@
     }
 
     input {
-      &:valid {
-        ~ .direction-icon-block {
-          .direction-icon-origin {
-            background-image: url('../images/direction_icons/origin-active.svg');
-          }
-
-          .direction-icon-destination {
-            background-image: url('../images/direction_icons/pin-active.svg');
-          }
-        }
-      }
       &:focus {
         ~ .direction-icon-block {
           .direction-icon-origin {
@@ -115,6 +104,17 @@
 
           .direction-icon-destination {
             background-image: url('../images/direction_icons/pin-focus.svg');
+          }
+        }
+      }
+      &.valid {
+        ~ .direction-icon-block {
+          .direction-icon-origin {
+            background-image: url('../images/direction_icons/origin-active.svg');
+          }
+
+          .direction-icon-destination {
+            background-image: url('../images/direction_icons/pin-active.svg');
           }
         }
       }
