@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState, useContext, useCallback } from 'react';
-import { Switch, Route, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import React, { useEffect, useRef, useState, useContext } from 'react';
+import { Switch, Route, useLocation, useRouteMatch } from 'react-router-dom';
+import { navTo } from 'src/proxies/app_router';
 import FavoritesPanel from './favorites/FavoritesPanel';
 import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './service/ServicePanel';
@@ -37,7 +38,6 @@ const PanelManager = () => {
   const directionConf = useConfig('direction');
   const { isMobile } = useDevice();
   const { activePoi } = useContext(PoiContext);
-  const history = useHistory();
   const location = useLocation();
   const historyState = getAggregatedHistoryState(location);
 
@@ -102,17 +102,14 @@ const PanelManager = () => {
 
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
-    history.push(`/places/${buildQueryString(queryObject)}`);
+    navTo(`/places/${buildQueryString(queryObject)}`);
   };
 
-  const backToFavorite = useCallback(
-    e => {
-      e.stopPropagation();
-      Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
-      history.push('/favs');
-    },
-    [history]
-  );
+  const backToFavorite = e => {
+    e.stopPropagation();
+    Telemetry.add(Telemetry.POI_BACKTOFAVORITE);
+    navTo('/favs');
+  };
 
   let topBarReturnAction = null;
   const { poi, category, query, isFromFavorite } = historyState;

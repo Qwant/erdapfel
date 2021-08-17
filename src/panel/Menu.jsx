@@ -1,7 +1,8 @@
 /* globals _ */
 import React, { Fragment, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { navTo, getAppRelativePathname } from 'src/proxies/app_router';
 import cx from 'classnames';
 import AppMenu from './menu/AppMenu';
 import ProductsDrawer from './menu/ProductsDrawer';
@@ -9,13 +10,12 @@ import Telemetry from 'src/libs/telemetry';
 import { Flex, CloseButton } from 'src/components/ui';
 import { IconMenu, IconApps, IconArrowLeft } from 'src/components/ui/icons';
 import { useConfig, useDevice } from 'src/hooks';
-import { parseQueryString, updateQueryString, getAppRelativePathname } from 'src/libs/url_utils';
+import { parseQueryString, updateQueryString } from 'src/libs/url_utils';
 
 const Menu = () => {
   const menuContainer = useRef(document.createElement('div'));
   const { isMobile } = useDevice();
   const displayProducts = useConfig('burgerMenu').products;
-  const history = useHistory();
   const { search, state: historyState } = useLocation();
   const { drawer } = parseQueryString(search);
 
@@ -36,11 +36,11 @@ const Menu = () => {
   const drawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });
 
   const close = () => {
-    history.push(drawerUrl(null), historyState);
+    navTo(drawerUrl(null), historyState);
   };
 
   const openDrawer = menu => {
-    history.push(drawerUrl(menu), historyState);
+    navTo(drawerUrl(menu), historyState);
   };
 
   const toggleOpen = menu => {

@@ -1,6 +1,20 @@
 import { createBrowserHistory } from 'history';
 
-export const history = createBrowserHistory();
+export const basename = window.baseUrl.replace(/\/$/, '');
+
+export const history = createBrowserHistory({ basename }); // basename option is undocumented…
+
+export function getAppRelativePathname() {
+  return history.location.pathname.replace(new RegExp(`^${basename}`), '');
+}
+
+export function navTo(relativeUrl, state = {}, { replace } = {}) {
+  if (replace) {
+    history.replace(relativeUrl, state);
+  } else {
+    history.push(relativeUrl, state);
+  }
+}
 
 /**
  * Go to the previous application state using history.back()

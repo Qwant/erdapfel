@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Router } from 'react-router-dom';
-import { history } from 'src/proxies/app_router';
+import { basename, history } from 'src/proxies/app_router';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
 import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
@@ -31,7 +31,7 @@ const RootComponent = () => {
   });
 
   return (
-    <Router history={history}>
+    <Router history={history} basename={basename}>
       <DeviceContext.Provider value={{ isMobile }}>
         <PoiProvider>
           <PanelManager />

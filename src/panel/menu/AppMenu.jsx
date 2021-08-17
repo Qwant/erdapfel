@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { history } from 'src/proxies/app_router';
+import { navTo } from 'src/proxies/app_router';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
@@ -20,7 +20,7 @@ const AppMenu = ({ close, openProducts }) => {
           e.preventDefault();
           Telemetry.add(Telemetry.MENU_FAVORITE);
           close();
-          history.push('/favs/');
+          navTo('/favs/');
         }}
         icon={<IconHeart width={16} fill={PINK_DARK} />}
       >

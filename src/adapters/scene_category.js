@@ -9,7 +9,7 @@ import { getFilteredPoisPinStyle, getFilteredPoisLabelStyle } from 'src/adapters
 import { isMobileDevice } from 'src/libs/device';
 import { createMapGLIcon, createPinIcon } from 'src/adapters/icon_manager';
 import IconManager from 'src/adapters/icon_manager';
-import { history } from 'src/proxies/app_router';
+import { navTo } from 'src/proxies/app_router';
 
 const mapStyleConfig = nconf.get().mapStyle;
 
@@ -114,7 +114,7 @@ export default class SceneCategory {
         })
       );
     }
-    history.push(`/place/${toUrl(poi)}`, {
+    navTo(`/place/${toUrl(poi)}`, {
       poi,
       ...poiFilters,
       pois,

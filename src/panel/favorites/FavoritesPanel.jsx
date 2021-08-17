@@ -1,6 +1,6 @@
 /* globals _ */
 import React, { useEffect } from 'react';
-import { history } from 'src/proxies/app_router';
+import { navTo } from 'src/proxies/app_router';
 import Telemetry from 'src/libs/telemetry';
 import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
@@ -22,7 +22,7 @@ const FavoritesPanel = () => {
 
   const close = () => {
     Telemetry.add(Telemetry.FAVORITE_CLOSE);
-    history.push('/');
+    navTo('/');
   };
 
   return (

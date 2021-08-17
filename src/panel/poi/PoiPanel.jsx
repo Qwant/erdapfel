@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { history } from 'src/proxies/app_router';
+import { navTo } from 'src/proxies/app_router';
 import { useLocation, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
@@ -84,7 +84,7 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
   }, [poi, poiId, setActivePoi]);
 
   const closeAction = () => {
-    history.push('/');
+    navTo('/');
   };
 
   const onBack = backAction || closeAction;

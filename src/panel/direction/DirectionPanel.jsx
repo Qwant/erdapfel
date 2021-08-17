@@ -1,7 +1,7 @@
 /* globals _ */
 import React, { Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
-import { history, navigateBack } from 'src/proxies/app_router';
+import { navTo, history, navigateBack } from 'src/proxies/app_router';
 import PropTypes from 'prop-types';
 import { Panel } from 'src/components/ui';
 import DirectionForm from './DirectionForm';
@@ -255,7 +255,6 @@ class DirectionPanel extends React.Component {
       ...params,
     });
     const relativeUrl = '/routes/' + search;
-    const navTo = replace ? history.replace : history.push;
     navTo(relativeUrl, history.state, { replace });
   }
 
@@ -277,7 +276,7 @@ class DirectionPanel extends React.Component {
       Telemetry.add(Telemetry.ITINERARY_CLOSE);
       this.props.poi
         ? history.goBack() // Go back to the poi panel
-        : history.push('/');
+        : navTo('/');
     }
   };
 

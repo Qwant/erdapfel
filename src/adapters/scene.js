@@ -20,7 +20,7 @@ import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
 import locale from '../mapbox/locale';
 import { setPoiHoverStyle } from 'src/adapters/pois_styles';
-import { history, updateHash } from 'src/proxies/app_router';
+import { navTo, updateHash } from 'src/proxies/app_router';
 
 const baseUrl = nconf.get().system.baseUrl;
 const LONG_TOUCH_DELAY_MS = 500;
@@ -331,7 +331,7 @@ Scene.prototype.clickOnMap = function (lngLat, clickedFeature, { longTouch = fal
     return;
   } else {
     // Default case: open the POI panel
-    history.push(`/place/${toUrl(poi)}`, { poi });
+    navTo(`/place/${toUrl(poi)}`, { poi });
   }
 };
 

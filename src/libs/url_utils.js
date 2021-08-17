@@ -28,11 +28,6 @@ export function parseQueryString(queryString) {
   return params;
 }
 
-export function getAppRelativePathname() {
-  const appBase = (window.baseUrl || '/').replace(/\/$/, '');
-  return window.location.pathname.replace(new RegExp(`^${appBase}`), '');
-}
-
 export function toCssUrl(url) {
   const escapedUrl = url.replace(/'/g, "\\'");
   return `url('${escapedUrl}')`;

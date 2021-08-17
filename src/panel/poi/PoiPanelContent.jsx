@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { navTo } from 'src/proxies/app_router';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import ActionButtons from './ActionButtons';
@@ -16,7 +16,6 @@ const PoiPanelContent = ({ poi }) => {
   const { _ } = useI18n();
   const { isInFavorites, removeFromFavorites, addToFavorites } = useFavorites();
   const { enabled: isDirectionActive } = useConfig('direction');
-  const history = useHistory();
 
   useEffect(() => {
     fire('set_direction_shortcut_callback', openDirection);
@@ -34,8 +33,8 @@ const PoiPanelContent = ({ poi }) => {
 
   const openDirection = useCallback(() => {
     Telemetry.sendPoiEvent(poi, 'itinerary');
-    history.push('/routes/', { poi });
-  }, [history, poi]);
+    navTo('/routes/', { poi });
+  }, [poi]);
 
   const onClickPhoneNumber = () => {
     const source = poi.meta && poi.meta.source;

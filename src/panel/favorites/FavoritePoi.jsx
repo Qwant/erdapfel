@@ -1,6 +1,6 @@
 /* globals _ */
 import React from 'react';
-import { history } from 'src/proxies/app_router';
+import { navTo } from 'src/proxies/app_router';
 import PropTypes from 'prop-types';
 import IconManager from 'src/adapters/icon_manager';
 import { htmlEncode } from 'src/libs/string';
@@ -13,7 +13,7 @@ import { IconShare, IconTrash } from 'src/components/ui/icons';
 const FavoritePoi = ({ poi, removeFavorite }) => {
   const onClick = () => {
     Telemetry.add(Telemetry.FAVORITE_GO);
-    history.push(`/place/${toUrl(poi)}`, {
+    navTo(`/place/${toUrl(poi)}`, {
       poi,
       centerMap: true,
       isFromFavorite: true,
