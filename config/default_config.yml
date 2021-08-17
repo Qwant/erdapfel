@@ -58,7 +58,7 @@ statics:
 
 burgerMenu:
   enabled: true
-  products: true
+  products: false
 
 performance:
   enabled: false
