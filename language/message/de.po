@@ -3,14 +3,15 @@
 # Matthias Kaup-Antons <makanto@posteo.de>, 2021
 # Charlotte Ziegler <c.ziegler@qwant.com>, 2021
 # Adrien Matissart, 2021
+# Steffen Rüting <steffen.rueting@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-03 07:13+0000\n"
+"POT-Creation-Date: 2021-08-17 14:11+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Adrien Matissart, 2021\n"
+"Last-Translator: Steffen Rüting <steffen.rueting@gmail.com>, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgid "leisure"
 msgstr "Freizeit"
 
 msgid "administration"
-msgstr ""
+msgstr "Verwaltung"
 
 msgid "health"
 msgstr "Gesundheit"
@@ -84,52 +85,52 @@ msgid "service"
 msgstr "Service"
 
 msgid "french restaurant"
-msgstr ""
+msgstr "Französisches Restaurant"
 
 msgid "pizzeria"
 msgstr "Pizzeria"
 
 msgid "burgers"
-msgstr ""
+msgstr "Burger"
 
 msgid "italian restaurant"
-msgstr ""
+msgstr "Italienisches Restaurant"
 
 msgid "kebab restaurant"
-msgstr ""
+msgstr "Kebab Restaurant"
 
 msgid "sandwich"
 msgstr "Sandwich"
 
 msgid "asian restaurant"
-msgstr ""
+msgstr "Asiatisches Restaurant"
 
 msgid "japanese restaurant"
-msgstr ""
+msgstr "Japanisches Restaurant"
 
 msgid "chinese restaurant"
-msgstr ""
+msgstr "Chinesisches Restaurant"
 
 msgid "creperie"
 msgstr "Crêperie"
 
 msgid "indian restaurant"
-msgstr ""
+msgstr "Indisches Restaurant"
 
 msgid "thai restaurant"
-msgstr ""
+msgstr "Thai Restaurant"
 
 msgid "vietnamese restaurant"
-msgstr ""
+msgstr "Vietnamesisches Restaurant"
 
 msgid "lebanese restaurant"
-msgstr ""
+msgstr "Libanesisches Restaurant"
 
 msgid "parking lot"
 msgstr "Parkplatz"
 
 msgid "pitch"
-msgstr ""
+msgstr "Spielfeld"
 
 msgid "place of worship"
 msgstr "Gotteshaus"
@@ -165,7 +166,7 @@ msgid "fast food"
 msgstr "Fast Food"
 
 msgid "historical place"
-msgstr ""
+msgstr "Historischer Ort"
 
 msgid "post office"
 msgstr "Postamt"
@@ -195,7 +196,7 @@ msgid "butcher"
 msgstr "Metzger"
 
 msgid "tourist attraction"
-msgstr ""
+msgstr "Touristenattraktion"
 
 msgid "hospital"
 msgstr "Krankenhaus"
@@ -237,7 +238,7 @@ msgid "shoes shop"
 msgstr "Schuhladen"
 
 msgid "DIY store"
-msgstr ""
+msgstr "Baumarkt"
 
 msgid "bicycle rental"
 msgstr "Fahrradverleih"
@@ -306,31 +307,36 @@ msgid "Close"
 msgstr "Schließen"
 
 msgid "Thank you for helping us to improve your experience."
-msgstr ""
+msgstr "Vielen Dank, dass Sie uns helfen, Ihre Erfahrung zu verbessern."
 
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 msgid "No"
-msgstr ""
+msgstr "Nein"
+
+msgid "http://www.w3.org/2000/svg"
+msgid_plural "0 0 24 24"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Your position"
 msgstr "Ihr Standort"
+
+msgid "category"
+msgstr "Kategorie"
 
 msgid "Copied!"
 msgstr "Kopiert!"
 
 msgid "Copy link"
-msgstr "Kopierlink"
+msgstr "Link kopieren"
 
 msgid "Facebook"
 msgstr "Facebook"
 
 msgid "Twitter"
 msgstr "Twitter"
-
-msgid "category"
-msgstr "Kategorie"
 
 msgid "Open"
 msgstr "Offen"
@@ -360,24 +366,26 @@ msgid "nearby"
 msgstr "in der Nähe"
 
 msgid "Satisfied with the results?"
-msgstr ""
+msgstr "Zufrieden mit den Ergebnissen?"
 
 msgid "Sorry, we could not find this place&nbsp;🏝️"
-msgstr ""
+msgstr "Sorry, wir konnten diesen Ort nicht finden&nbsp;🏝️"
 
 msgid ""
 "Please try to correct your query or rewrite it with more details about the "
 "location (city, country, …)"
 msgstr ""
+"Bitte versuche deine Suchanfrage zu berichtigen oder schreibe sie mit mehr "
+"Details über den Ort um (Stadt, Land, …)"
 
 msgid "Make a booking"
-msgstr ""
+msgstr "Reservieren"
 
 msgid "Make an appointment"
-msgstr ""
+msgstr "Einen Termin vereinbaren"
 
 msgid "Request a quote"
-msgstr ""
+msgstr "Ein Angebot anfordern"
 
 msgid "Directions"
 msgstr "Wegbeschreibung"
@@ -407,7 +415,7 @@ msgid ""
 msgstr ""
 "Wir greifen auf Ihren Aufenthaltsort zu, um Ihnen zu zeigen, wo Sie sich "
 "befinden, und aus keinem anderen Grund!<br />(Sehen Sie unsere "
-"{privacyPolicyLink}Datenschutzrichtlinie{closeTag}) ein)"
+"{privacyPolicyLink}Datenschutzrichtlinie{closeTag} ein)"
 
 msgid "At Qwant, your whereabouts are part of your privacy"
 msgstr "Bei Qwant gehören Ihre Aufenthaltsorte zu Ihrer Privatsphäre."
@@ -424,12 +432,14 @@ msgid "Ok, I've got it"
 msgstr "Ok, verstanden!"
 
 msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
-msgstr ""
+msgstr "Houston,<br/> wir haben ein (Standort) problem&nbsp;🛰️"
 
 msgid ""
 "Allow Qwant Maps to access your position so we can better help you find your"
 " way…"
 msgstr ""
+"Erlaubt Qwant Maps deinen Standort zu erfahren, damit wir dir besser helfen "
+"können, deinen Weg zu finden..."
 
 msgid "Ok"
 msgstr "O.k."
@@ -438,6 +448,8 @@ msgid ""
 "We can't access your position.<br/> Please check that your geolocation "
 "services are enabled."
 msgstr ""
+"Wir können nicht auf deinen Standort zugreifen.<br/> Bitte überprüfe, dass "
+"deine Standortdienste eingeschaltet sind."
 
 msgid "accessories shop"
 msgstr "Zubehörshop "
@@ -1025,13 +1037,13 @@ msgid "My favorites"
 msgstr "Meine Favoriten"
 
 msgid "Terms of service Qwant&nbsp;Maps"
-msgstr ""
+msgstr "Nutzungsbedingungen Qwant&nbsp;Maps"
 
 msgid "How to contribute"
 msgstr "Wie man mitmacht"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Einen Fehler melden"
 
 msgid "Products"
 msgstr "Produkte"
@@ -1043,7 +1055,7 @@ msgid "   Search   "
 msgstr "  Search"
 
 msgid "Responsible search that respects your privacy."
-msgstr ""
+msgstr "Verantwortungsvolle Suche, die deine Privatsphäre respektiert."
 
 msgid "Open Search"
 msgstr "Search öffnen"
@@ -1052,7 +1064,7 @@ msgid "Maps"
 msgstr "Maps"
 
 msgid "The map that does not track you."
-msgstr ""
+msgstr "Die Karte, die dich nicht verfolgt."
 
 msgid "Open Maps"
 msgstr "Maps öffnen"
@@ -1061,22 +1073,22 @@ msgid "Junior"
 msgstr "Junior"
 
 msgid "Responsible search adapted to 6-12 year olds."
-msgstr ""
+msgstr "Verantwortungsvolle Suche an 6-12-Jährige angepasst."
 
 msgid "Open Junior"
 msgstr "Junior öffnen"
 
 msgid "We believe in an alternate model"
-msgstr ""
+msgstr "Wir glauben an ein alternatives Modell"
 
 msgid "Read more"
-msgstr ""
+msgstr "Mehr lesen"
 
 msgid "Menu"
 msgstr "Menü"
 
 msgid "Go back"
-msgstr ""
+msgstr "Zurück gehen"
 
 msgid "Delete"
 msgstr "Löschen"
@@ -1097,7 +1109,7 @@ msgid "Photos"
 msgstr "Fotos"
 
 msgid "Social networks"
-msgstr ""
+msgstr "Soziale Netzwerke"
 
 msgid "phone"
 msgstr "Telefon"
@@ -1157,13 +1169,13 @@ msgid "WiFi"
 msgstr "Wi-Fi"
 
 msgid "Click & collect"
-msgstr ""
+msgstr "Click & collect"
 
 msgid "Delivery"
-msgstr ""
+msgstr "Lieferung"
 
 msgid "Take away"
-msgstr ""
+msgstr "Zum Mitnehmen"
 
 msgid "Details"
 msgstr "Details"
@@ -1172,7 +1184,7 @@ msgid "Read more on Wikipedia"
 msgstr "Auf Wikipedia weiterlesen"
 
 msgid "Read more on PagesJaunes"
-msgstr ""
+msgstr "Lese mehr auf PagesJaunes"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
@@ -1230,10 +1242,12 @@ msgid "Search around my position"
 msgstr "Um meinen Standort herum suchen"
 
 msgid "Hmm, looks like a no-man's land 🏜️"
-msgstr ""
+msgstr "Hmm, sieht aus wie ein Niemandsland 🏜️"
 
 msgid "We found no place matching your query in this area."
 msgstr ""
+"Wir haben keinen Ort gefunden, der mit deiner Suchanfrage, in diesem "
+"Bereich, übereinstimmt."
 
 msgid "Get some height"
 msgstr ""
@@ -1254,7 +1268,7 @@ msgid "Invert start and end"
 msgstr "Start und Ziel tauschen"
 
 msgid "Towards {direction}"
-msgstr ""
+msgstr "Richtung {direction}"
 
 msgid "Via"
 msgstr "Über"
@@ -1269,16 +1283,16 @@ msgid "Walk on {walkDistance}"
 msgstr "Lauf über {walkDistance}"
 
 msgid "Ouch, we've lost the north&nbsp;🧭"
-msgstr ""
+msgstr "Autsch, wir haben den Norden verloren&nbsp;🧭"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr "Das Qwant Dienst ist derzeit nicht verfügbar, bitte versuche später."
 
 msgid "We couldn't find any itinerary, we are really sorry."
-msgstr ""
+msgstr "Tut uns leid, wir konnten keine Route finden."
 
 msgid "Results in partnership with Combigo"
-msgstr ""
+msgstr "Ergebnisse in Partnerschaft mit Combigo"
 
 msgid "step by step"
 msgstr "Schritt für Schritt"
@@ -1300,20 +1314,6 @@ msgstr "Auf Qwant Maps suchen"
 
 msgid "Search"
 msgstr "Suchen"
-
-msgid "Qwant Maps is in Beta!"
-msgstr "Qwant Maps ist in der Beta-Version!"
-
-msgid ""
-"This means that this version may have some bugs. We work very hard to "
-"improve Qwant Maps every day, while keeping your travels private."
-msgstr ""
-"Dies bedeutet, dass diese Version eventuell einige Fehler enthält. Wir "
-"arbeiten jeden Tag sehr beflissen daran, Quant Maps weiter zu verbessern, "
-"während wir gleichzeitig das Reisen privat halten."
-
-msgid "Do not display this message again"
-msgstr "Diese Nachricht nicht noch einmal anzeigen"
 
 msgid "My location"
 msgstr "Mein Standort"

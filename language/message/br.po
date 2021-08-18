@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-03 07:13+0000\n"
+"POT-Creation-Date: 2021-08-17 14:11+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -313,8 +313,19 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+msgid "http://www.w3.org/2000/svg"
+msgid_plural "0 0 24 24"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
 msgid "Your position"
 msgstr "Ho touarlec'hiañ"
+
+msgid "category"
+msgstr "rummad"
 
 msgid "Copied!"
 msgstr "Eilet!"
@@ -327,9 +338,6 @@ msgstr "Facebook"
 
 msgid "Twitter"
 msgstr "Twitter"
-
-msgid "category"
-msgstr "rummad"
 
 msgid "Open"
 msgstr "Digor"
@@ -1295,20 +1303,6 @@ msgstr "Klask war Qwant Maps"
 
 msgid "Search"
 msgstr "Klask"
-
-msgid "Qwant Maps is in Beta!"
-msgstr "En ur stumm Beta emañ Qwant Maps!"
-
-msgid ""
-"This means that this version may have some bugs. We work very hard to "
-"improve Qwant Maps every day, while keeping your travels private."
-msgstr ""
-"An dra-se a dalvez eo posupl e vefe beugoù 'zo gant ar stumm-mañ. Labourat a"
-" reomp bemdez a lazh-korf evit gwellaat Qwant Maps en ur virout ho peajoù "
-"prevez."
-
-msgid "Do not display this message again"
-msgstr "Na ziskouez ken ar gemennadenn-mañ ken"
 
 msgid "My location"
 msgstr "Ma lec'hiadur"
