@@ -107,7 +107,7 @@ class DirectionInput extends React.Component {
               <input
                 ref={inputRef}
                 id={`direction-input_${pointType}`}
-                className={classnames({ valid: point !== null })}
+                className={classnames({ valid: !!point })}
                 type="search"
                 required
                 autoComplete="off"
