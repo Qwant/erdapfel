@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-03 07:13+0000\n"
+"POT-Creation-Date: 2021-08-17 14:11+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Albert mb <arnicamontana363@gmail.com>, 2021\n"
 "Language-Team: Catalan (https://www.transifex.com/qwant-1/teams/89416/ca/)\n"
@@ -314,8 +314,16 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+msgid "http://www.w3.org/2000/svg"
+msgid_plural "0 0 24 24"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Your position"
 msgstr "La vostra posició"
+
+msgid "category"
+msgstr "categoria"
 
 msgid "Copied!"
 msgstr "Copiat!"
@@ -328,9 +336,6 @@ msgstr "Facebook"
 
 msgid "Twitter"
 msgstr "Twitter"
-
-msgid "category"
-msgstr "categoria"
 
 msgid "Open"
 msgstr "Obert"
@@ -1296,20 +1301,6 @@ msgstr "Cerca a Qwant Maps"
 
 msgid "Search"
 msgstr "Cerca"
-
-msgid "Qwant Maps is in Beta!"
-msgstr "Qwant Maps està en fase beta!"
-
-msgid ""
-"This means that this version may have some bugs. We work very hard to "
-"improve Qwant Maps every day, while keeping your travels private."
-msgstr ""
-"Això significa que aquesta versió pot tenir alguns errors. Treballem molt "
-"per millorar Qwant Maps cada dia, i alhora mantenir en privat els teus "
-"viatges."
-
-msgid "Do not display this message again"
-msgstr "No mostrar aquest missatge"
 
 msgid "My location"
 msgstr "La meva ubicació"

@@ -4,14 +4,15 @@
 # Adrien Matissart, 2021
 # Guglielmo Kaldewey <g.kaldewey@gmail.com>, 2021
 # Marco <marcxosm@gmail.com>, 2021
+# Michael Moroni <michaelmoroni@disroot.org>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-03 07:13+0000\n"
+"POT-Creation-Date: 2021-08-17 14:11+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Marco <marcxosm@gmail.com>, 2021\n"
+"Last-Translator: Michael Moroni <michaelmoroni@disroot.org>, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgid "Your browser is not supported anymore."
 msgstr "Il tuo browser non è più supportato."
 
 msgid "Install one of these browsers to use Qwant Maps."
-msgstr "Per usare Qwant Maps installa uno di questi browser."
+msgstr "Per usare Qwant Maps installa uno dei questi browser."
 
 msgid "JavaScript is required to view this application."
 msgstr "Per vedere questa applicazione è richiesto JavaScript"
@@ -292,7 +293,7 @@ msgid "travel agency"
 msgstr "agenzia di viaggi"
 
 msgid "post box"
-msgstr "buchetta delle lettere"
+msgstr "buca delle lettere"
 
 msgid "playground"
 msgstr "parco giochi"
@@ -315,8 +316,16 @@ msgstr "Sì"
 msgid "No"
 msgstr "No"
 
+msgid "http://www.w3.org/2000/svg"
+msgid_plural "0 0 24 24"
+msgstr[0] "http://www.w3.org/2000/svg"
+msgstr[1] "0 0 24 24"
+
 msgid "Your position"
 msgstr "La tua posizione"
+
+msgid "category"
+msgstr "categoria"
 
 msgid "Copied!"
 msgstr "Copiato!"
@@ -329,9 +338,6 @@ msgstr "Facebook"
 
 msgid "Twitter"
 msgstr "Twitter"
-
-msgid "category"
-msgstr "categoria"
 
 msgid "Open"
 msgstr "Aperto"
@@ -346,7 +352,7 @@ msgid "reopening at {nextTransitionTime}"
 msgstr "riapre alle {nextTransitionTime}"
 
 msgid "until {nextTransitionTime}"
-msgstr "fino a {nextTransitionTime}"
+msgstr "fino alle {nextTransitionTime}"
 
 msgid "Close to"
 msgstr "Vicino a"
@@ -371,7 +377,7 @@ msgid ""
 "location (city, country, …)"
 msgstr ""
 "Prova a correggere la richiesta o a riscriverla aggiungendo dei dettagli "
-"circa la posizione (città, nazione, …)"
+"sulla posizione (città, nazione, …)"
 
 msgid "Make a booking"
 msgstr "Fai una prenotazione"
@@ -412,7 +418,7 @@ msgstr ""
 
 msgid "At Qwant, your whereabouts are part of your privacy"
 msgstr ""
-"Con Qwant i tuoi spostamenti sono privati come parte della tua Privacy"
+"Con Qwant i tuoi spostamenti sono privati come parte della tua privacy"
 
 msgid "Continue"
 msgstr "Continua"
@@ -430,7 +436,7 @@ msgid ""
 "Allow Qwant Maps to access your position so we can better help you find your"
 " way…"
 msgstr ""
-"Permetti a Qwant Maps di accedere alla tua posizione così che possiamo "
+"Permetti a Qwant Maps di accedere alla tua posizione cosicché possiamo "
 "aiutarti meglio a trovare la tua strada…"
 
 msgid "Ok"
@@ -504,7 +510,7 @@ msgid "biergarten"
 msgstr "birreria all'aperto"
 
 msgid "billiards"
-msgstr "biliardi"
+msgstr "biliardo"
 
 msgid "bmx"
 msgstr "bmx"
@@ -663,7 +669,7 @@ msgid "embassy"
 msgstr "ambasciata"
 
 msgid "equestrian"
-msgstr "equestre"
+msgstr "equitazione"
 
 msgid "erotic shop"
 msgstr "negozio di articoli erotici"
@@ -1044,28 +1050,28 @@ msgid "Products for everyday life."
 msgstr "Prodotti per la vita di ogni giorno."
 
 msgid "   Search   "
-msgstr "   Search   "
+msgstr "   Ricerca   "
 
 msgid "Responsible search that respects your privacy."
 msgstr "Ricerca responsabile che rispetta la tua privacy."
 
 msgid "Open Search"
-msgstr "Apri Search"
+msgstr "Apri Ricerca"
 
 msgid "Maps"
-msgstr "Maps"
+msgstr "Mappe"
 
 msgid "The map that does not track you."
 msgstr "La mappa che non ti traccia."
 
 msgid "Open Maps"
-msgstr "Apri Maps"
+msgstr "Apri Mappe"
 
 msgid "Junior"
 msgstr "Junior"
 
 msgid "Responsible search adapted to 6-12 year olds."
-msgstr "Ricerca responsabile adattata per i bambini di 6–12 anni."
+msgstr "Ricerca responsabile adattata per i bambini di 6-12 anni."
 
 msgid "Open Junior"
 msgstr "Apri Junior"
@@ -1074,10 +1080,10 @@ msgid "We believe in an alternate model"
 msgstr "Crediamo in un modello alternativo"
 
 msgid "Read more"
-msgstr "Leggi altro"
+msgstr "Leggi di più"
 
 msgid "Menu"
-msgstr "Menu"
+msgstr "Menù"
 
 msgid "Go back"
 msgstr "Torna indietro"
@@ -1095,7 +1101,7 @@ msgid "Favorite places"
 msgstr "Luoghi preferiti"
 
 msgid "Show favorites"
-msgstr "Mostra favoriti"
+msgstr "Mostra preferiti"
 
 msgid "Photos"
 msgstr "Foto"
@@ -1110,7 +1116,7 @@ msgid "Show the number"
 msgstr "Mostra il numero"
 
 msgid "Updated {datetime}"
-msgstr "Aggiornato {datetime}"
+msgstr "Aggiornato il {datetime}"
 
 msgid "Glass"
 msgstr "Vetro"
@@ -1155,28 +1161,28 @@ msgid "No wheelchair accessible toilets"
 msgstr "Non sono presenti bagni accessibili con sedia a rotelle"
 
 msgid "Internet access"
-msgstr "Accesso internet"
+msgstr "Accesso a internet"
 
 msgid "WiFi"
 msgstr "WiFi"
 
 msgid "Click & collect"
-msgstr ""
+msgstr "Click & collect"
 
 msgid "Delivery"
-msgstr ""
+msgstr "Consegna"
 
 msgid "Take away"
-msgstr ""
+msgstr "Asporto"
 
 msgid "Details"
 msgstr "Dettagli"
 
 msgid "Read more on Wikipedia"
-msgstr "Leggi altro su Wikipedia"
+msgstr "Leggi di più su Wikipedia"
 
 msgid "Read more on PagesJaunes"
-msgstr ""
+msgstr "Leggi di più su PagesJaunes"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa i dati di OpenStreetMap."
@@ -1279,8 +1285,7 @@ msgstr "Ahia, abbiamo perso il nord&nbsp;🧭"
 
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
-"Il servizio è temporaneamente non disponibile, per favore riprovare più "
-"tardi."
+"Il servizio è temporaneamente non disponibile, per favore riprova più tardi."
 
 msgid "We couldn't find any itinerary, we are really sorry."
 msgstr "Siamo spiacenti, non è stato possibile trovare un itinerario."
@@ -1289,7 +1294,7 @@ msgid "Results in partnership with Combigo"
 msgstr "Risultati in collaborazione con Combigo"
 
 msgid "step by step"
-msgstr "passo passo"
+msgstr "passo per passo"
 
 msgid "calculate an itinerary"
 msgstr "calcola un itinerario"
@@ -1301,27 +1306,13 @@ msgid "Try a new search query"
 msgstr "Prova una nuova ricerca"
 
 msgid "Qwant Maps Home"
-msgstr "Qwant Maps Home"
+msgstr "Home di Qwant Maps"
 
 msgid "Search on Qwant Maps"
 msgstr "Cerca su Qwant Maps"
 
 msgid "Search"
 msgstr "Cerca"
-
-msgid "Qwant Maps is in Beta!"
-msgstr "Qwant Maps è in versione Beta!"
-
-msgid ""
-"This means that this version may have some bugs. We work very hard to "
-"improve Qwant Maps every day, while keeping your travels private."
-msgstr ""
-"Questo significa che questa versione può avere qualche difetto. Lavoriamo "
-"duramente ogni giorno per migliorare Qwant Maps, nel frattempo rispettiamo "
-"la privacy dei tuoi viaggi."
-
-msgid "Do not display this message again"
-msgstr "Non mostrare ancora questo messaggio"
 
 msgid "My location"
 msgstr "La mia posizione"
