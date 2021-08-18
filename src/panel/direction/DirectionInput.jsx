@@ -12,6 +12,7 @@ import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
 import { isMobileDevice } from 'src/libs/device';
 import { IconArrowLeft, IconClose } from 'src/components/ui/icons';
+import classnames from 'classnames';
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -106,6 +107,7 @@ class DirectionInput extends React.Component {
               <input
                 ref={inputRef}
                 id={`direction-input_${pointType}`}
+                className={classnames({ valid: !!point })}
                 type="search"
                 required
                 autoComplete="off"
