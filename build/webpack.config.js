@@ -94,9 +94,9 @@ const mainJsChunkConfig = buildMode => {
       minimizer: [
         new TerserPlugin({
           terserOptions: {
-            // make sure the `_` translation function keeps its name in the minimized bundle
-            // as it's used by gettext to extract translation keys
-            mangle: { reserved: ['_'] },
+            // make sure the `_` and `_n` translation functions keep their name in the minimized bundle
+            // as they are used by gettext to extract translation keys
+            mangle: { reserved: ['_', '_n'] },
           },
         }),
       ],
