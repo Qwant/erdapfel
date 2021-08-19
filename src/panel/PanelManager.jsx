@@ -17,13 +17,8 @@ import { useConfig, useDevice } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
 import { getListDescription } from 'src/libs/poiList';
 
-function getTopBarAppValue(activePoi, { poiFilters = {}, poi = {}, query } = {}) {
-  return (
-    poi?.name ||
-    activePoi?.name ||
-    getListDescription(poiFilters.category, poiFilters.query || query) ||
-    ''
-  );
+function getTopBarAppValue(activePoi, { poi = {}, category, query } = {}) {
+  return poi?.name || activePoi?.name || getListDescription(category, query) || '';
 }
 
 const getAggregatedHistoryState = ({ state, search }) => {
@@ -84,12 +79,13 @@ const PanelManager = () => {
   useEffect(() => {
     setTopBarValue(getTopBarAppValue(activePoi, historyState));
 
-    // Not in a "list of PoI" context (options.poiFilters is null)
+    // Not in a "list of PoI" context
     if (!historyState.category && !historyState.query) {
       // Markers are not persistent
       fire('remove_category_markers');
     }
-  }, [activePoi, historyState]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname, location.search, activePoi]);
 
   const backToList = (e, historyState) => {
     e.stopPropagation();
