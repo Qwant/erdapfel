@@ -116,7 +116,7 @@ export default class SceneCategory {
     }
     navTo(`/place/${toUrl(poi)}`, {
       poi,
-      ...poiFilters,
+      poiFilters,
       pois,
       centerMap: true,
     });

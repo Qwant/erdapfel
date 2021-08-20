@@ -9,7 +9,6 @@ import DirectionPanel from 'src/panel/direction/DirectionPanel';
 import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import { removeNullEntries } from 'src/libs/object';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar';
@@ -17,24 +16,17 @@ import { useConfig, useDevice } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
 import { getListDescription } from 'src/libs/poiList';
 
-function getTopBarAppValue(activePoi, { poi = {}, category, query } = {}) {
-  return poi?.name || activePoi?.name || getListDescription(category, query) || '';
+function getTopBarAppValue(poi, category, query) {
+  return poi?.name || getListDescription(category, query) || '';
 }
-
-const getAggregatedHistoryState = ({ state, search }) => {
-  const { q: query, type: category } = parseQueryString(search);
-  return {
-    ...state,
-    ...removeNullEntries({ query, category }),
-  };
-};
 
 const PanelManager = () => {
   const directionConf = useConfig('direction');
   const { isMobile } = useDevice();
   const { activePoi } = useContext(PoiContext);
-  const location = useLocation();
-  const historyState = getAggregatedHistoryState(location);
+  const { pathname, search: queryString, state: historyState = {} } = useLocation();
+  const searchParams = parseQueryString(queryString);
+  const poiFilters = historyState.poiFilters || {};
 
   const [panelSize, setPanelSize] = useState('default');
   const [isSuggestOpen, setIsSuggestOpen] = useState(false);
@@ -46,8 +38,8 @@ const PanelManager = () => {
   useEffect(() => {
     window.times.appRendered = Date.now();
 
-    const initialUrlPathName = window.location.pathname;
-    const initialQueryParams = parseQueryString(window.location.search);
+    const initialUrlPathName = pathname;
+    const initialQueryParams = searchParams;
 
     Telemetry.add(Telemetry.APP_START, {
       language: window.getLang(),
@@ -75,27 +67,34 @@ const PanelManager = () => {
     }
   }, [isMobile, panelSize, setPanelSize]);
 
-  // Effects on panel change
   useEffect(() => {
-    setTopBarValue(getTopBarAppValue(activePoi, historyState));
+    setTopBarValue(
+      getTopBarAppValue(
+        activePoi || historyState.poi,
+        poiFilters.category || searchParams.type,
+        poiFilters.query || searchParams.q
+      )
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, queryString, activePoi]);
 
+  useEffect(() => {
     // Not in a "list of PoI" context
-    if (!historyState.category && !historyState.query) {
+    if (!poiFilters.category && !poiFilters.query) {
       // Markers are not persistent
       fire('remove_category_markers');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname, location.search, activePoi]);
+  }, [pathname, queryString]);
 
-  const backToList = (e, historyState) => {
+  const backToList = (e, poiFilters) => {
     e.stopPropagation();
-    const { query, category, ...rest } = historyState;
+    const { query, category, ...rest } = poiFilters;
     const queryObject = {
       q: query,
       type: category,
       ...rest,
     };
-
     Telemetry.add(Telemetry.POI_BACKTOLIST);
     fire('restore_location');
     navTo(`/places/${buildQueryString(queryObject)}`);
@@ -107,16 +106,20 @@ const PanelManager = () => {
     navTo('/favs');
   };
 
+  let backAction = null;
+  if (poiFilters.category || poiFilters.query) {
+    backAction = e => backToList(e, poiFilters);
+  } else if (historyState.isFromFavorite) {
+    backAction = backToFavorite;
+  }
   let topBarReturnAction = null;
-  const { poi, category, query, isFromFavorite } = historyState;
-  if (poi?.name && (category || query || isFromFavorite)) {
-    const backAction = category || query ? backToList : backToFavorite;
+  if (historyState.poi?.name) {
     // use the mousedown event so it's triggered before the blur event on the suggest
     topBarReturnAction = event => {
       if (isSuggestOpen) {
         return;
       }
-      backAction(event, historyState);
+      backAction(event);
     };
   }
 
@@ -144,7 +147,7 @@ const PanelManager = () => {
               <CategoryPanel />
             </Route>
             <Route path="/place/:poiDesc">
-              <PoiPanel backToList={backToList} backToFavorite={backToFavorite} />
+              <PoiPanel backAction={backAction} />
             </Route>
             {directionConf.enabled && (
               <Route path="/routes">

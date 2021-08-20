@@ -139,15 +139,15 @@ PoiPanel.propTypes = {
   centerMap: PropTypes.bool,
 };
 
-const PoiPanelWithRouteParams = ({ backToList, backToFavorite }) => {
+const PoiPanelWithRouteParams = ({ backAction }) => {
   const { state } = useLocation();
   const { poiDesc } = useParams();
   const poiId = poiDesc.split('@')[0];
   const options = {
     ...state,
     poiId,
-    backToList,
-    backToFavorite,
+    backAction,
+    inList: !!state?.pois,
   };
 
   return <PoiPanel {...options} />;
