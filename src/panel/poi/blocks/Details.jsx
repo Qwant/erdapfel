@@ -14,18 +14,7 @@ const DetailsBlock = ({ poi }) => {
   const accessibility = findBlock(poi.blocks, 'accessibility');
   const internetAccess = findBlock(poi.blocks, 'internet_access');
   const delivery = findBlock(poi.blocks, 'delivery');
-  // const stars = findBlock(poi.blocks, 'stars');
-  // Example:
-  const stars = {
-    type: 'stars',
-    ratings: [
-      {
-        has_stars: 'yes',
-        nb_stars: 0,
-        // kind: 'restaurant',
-      },
-    ],
-  };
+  const stars = findBlock(poi.blocks, 'stars');
 
   if (!accessibility && !internetAccess && !hasStars(stars) && !hasActiveDeliveryModes(delivery)) {
     return null;
