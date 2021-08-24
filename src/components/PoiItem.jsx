@@ -8,12 +8,15 @@ import Address from 'src/components/ui/Address';
 import classnames from 'classnames';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
+import { findBlock } from 'src/libs/pois';
+import StarsSummary from 'src/panel/poi/blocks/StarsSummary';
 
 const PoiItem = React.memo(
   ({ poi, withOpeningHours, withImage, withAlternativeName, className, inList, ...rest }) => {
     const reviews = poi.blocksByType?.grades;
 
     const subclass = capitalizeFirst(poiSubClass(poi.subClassName));
+    const stars = findBlock(poi.blocks, 'stars');
 
     const openingHours = withOpeningHours && poi?.blocksByType?.opening_hours;
 
@@ -29,7 +32,8 @@ const PoiItem = React.memo(
             </div>
           )}
           <div className="poiItem-subclassAndHours">
-            <div className="poiItem-subclass">{subclass}</div>
+            <span className="poiItem-subclass">{subclass}</span>
+            {stars && <StarsSummary block={stars} />}
             {inList && subclass && openingHours && '\u00A0⋅\u00A0'}
             {openingHours && (
               <div className="poiItem-openingHour">

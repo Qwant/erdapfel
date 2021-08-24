@@ -30,7 +30,7 @@ const StarsBlock = ({ block, subclass }) => {
 
   return (
     <Block simple icon={<IconStar fill={ACTION_BLUE_BASE} width={20} />}>
-      {_('Starred {subclass}', 'poi', { subclass })}
+      {capitalizeFirst(_('Starred {subclass}', 'poi', { subclass }))}
     </Block>
   );
 };
