@@ -5,7 +5,7 @@ import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import { capitalizeFirst } from 'src/libs/string';
 import { useI18n } from 'src/hooks';
 
-const StarsBlock = ({ block, subclass }) => {
+const Stars = ({ block, subclass }) => {
   const { _, _n } = useI18n();
 
   if (!hasStars(block)) {
@@ -30,11 +30,11 @@ const StarsBlock = ({ block, subclass }) => {
 
   return (
     <Block simple icon={<IconStar fill={ACTION_BLUE_BASE} width={20} />}>
-      {_('Starred {subclass}', 'poi', { subclass })}
+      {capitalizeFirst(_('Starred {subclass}', 'poi', { subclass }))}
     </Block>
   );
 };
 
-export default StarsBlock;
+export default Stars;
 
 export const hasStars = stars => stars?.ratings?.[0]?.has_stars === 'yes' || false;
