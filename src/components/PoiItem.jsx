@@ -9,7 +9,7 @@ import classnames from 'classnames';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
 import { findBlock } from 'src/libs/pois';
-import StarsSummary from 'src/panel/poi/blocks/StarsSummary';
+import { useI18n } from 'src/hooks';
 
 const PoiItem = React.memo(
   ({ poi, withOpeningHours, withImage, withAlternativeName, className, inList, ...rest }) => {
@@ -17,8 +17,9 @@ const PoiItem = React.memo(
 
     const subclass = capitalizeFirst(poiSubClass(poi.subClassName));
     const stars = findBlock(poi.blocks, 'stars');
-
+    const hasStars = stars?.ratings?.[0]?.has_stars === 'yes';
     const openingHours = withOpeningHours && poi?.blocksByType?.opening_hours;
+    const { _, _n } = useI18n();
 
     return (
       <div className={classnames('poiItem', className)} {...rest}>
@@ -31,9 +32,16 @@ const PoiItem = React.memo(
               <ReviewScore reviews={reviews} poi={poi} inList={inList} />
             </div>
           )}
-          <div className="poiItem-subclassAndHours">
+          <div className="poiItem-subclassStarsAndHours">
             <span className="poiItem-subclass">{subclass}</span>
-            {stars && <StarsSummary block={stars} />}
+            {!inList && subclass && hasStars && '\u00A0⋅\u00A0'}
+            {!inList && hasStars && (
+              <span>
+                {stars.ratings[0].nb_stars > 0
+                  ? _n('%d star', '%d stars', stars.ratings[0].nb_stars, 'poi')
+                  : _('Starred', 'poi')}
+              </span>
+            )}
             {inList && subclass && openingHours && '\u00A0⋅\u00A0'}
             {openingHours && (
               <div className="poiItem-openingHour">
