@@ -1,5 +1,5 @@
 import React from 'react';
-import StarsBlock, { hasStars } from './StarsBlock';
+import StarsBlock, { hasStars } from './Stars';
 import AccessibilityBlock from './Accessibility';
 import InternetAccessBlock from './InternetAccess';
 import DeliveryBlock, { hasActiveDeliveryModes } from './Delivery';
