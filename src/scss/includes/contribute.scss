@@ -1,4 +1,4 @@
-.osm_contribute {
+.contribute {
   display: flex;
   align-items: center;
   width: 100%;
@@ -6,23 +6,29 @@
   border-radius: 8px;
   margin: 12px 0;
   background-color: $grey-bright;
+  padding: 7px;
+  height: 60px;
+
+  &.contribute--pj {
+    padding-left: 15px;
+  }
 }
 
-.osm_contribute__logo {
+.contribute__logo-osm {
   display: block;
   flex: none;
-  margin: 7px;
   width: 45px;
+  margin-right: 7px;
   height: 45px;
   background: url("../images/openstreetmap.png");
   background-size: 45px;
 }
 
-.osm_contribute__text_container {
+.contribute__text_container {
   margin-right: 7px;
 }
 
-.osm_contribute__link {
+.contribute__link {
   display: inline-block;
   color: $action-blue-base !important;
   margin-right: 24px;
