@@ -145,6 +145,7 @@ const mainJsChunkConfig = buildMode => {
                 },
               },
             },
+            'url-loader',
           ],
         },
       ],
