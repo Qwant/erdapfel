@@ -5,6 +5,10 @@ import { isFromPagesJaunes, isFromOSM } from 'src/libs/pois';
 import classnames from 'classnames';
 
 const Contribution = ({ poi }) => {
+  if (!poi.meta) {
+    return null;
+  }
+
   const { source_url, contribute_url } = poi.meta;
   const sendTelemetryEvent = event => () => Telemetry.sendPoiEvent(poi, event);
   return (
