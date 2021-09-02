@@ -55,6 +55,8 @@ module.exports = {
     'poi_pages_jaunes_itinerary',
     'poi_pages_jaunes_transactional',
     'poi_pages_jaunes_description',
+    'poi_pages_jaunes_pj_view',
+    'poi_pages_jaunes_pj_edit',
     /* Map */
     'localise_trigger',
     /* Covid-19 */
