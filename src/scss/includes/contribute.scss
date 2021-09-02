@@ -1,35 +1,24 @@
 .contribute {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  border: solid 1px $separator_color;
+  margin: $spacing-s 0;
+  padding: $spacing-s;
   border-radius: 8px;
-  margin: 12px 0;
   background-color: $grey-bright;
-  padding: 7px;
-  height: 60px;
+}
 
-  &.contribute--pj {
-    padding-left: 15px;
+.contribute__logo {
+  display: block;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  margin-right: $spacing-s;
+  background-size: cover;
+
+  .contribute--osm & {
+    background-image: url("../images/openstreetmap.png");
+  }
+
+  .contribute--pj & {
+    background-image: url("../images/pagesjaunes.svg");
   }
 }
 
-.contribute__logo-osm {
-  display: block;
-  flex: none;
-  width: 45px;
-  margin-right: 7px;
-  height: 45px;
-  background: url("../images/openstreetmap.png");
-  background-size: 45px;
-}
-
-.contribute__text_container {
-  margin-right: 7px;
-}
-
-.contribute__link {
-  display: inline-block;
-  color: $action-blue-base !important;
-  margin-right: 24px;
-}

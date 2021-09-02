@@ -5,7 +5,6 @@ import ActionButtons from './ActionButtons';
 import PoiBlockContainer from './PoiBlockContainer';
 import Contribution from 'src/components/Contribution';
 import CategoryList from 'src/components/CategoryList';
-import { isFromPagesJaunes } from 'src/libs/pois';
 import { fire } from 'src/libs/customEvents';
 import PoiItem from 'src/components/PoiItem';
 import { Flex, Divider } from 'src/components/ui';
@@ -88,12 +87,6 @@ const PoiPanelContent = ({ poi }) => {
       </div>
       <div className="poi_panel__fullContent">
         <PoiBlockContainer poi={poi} />
-        {isFromPagesJaunes(poi) && (
-          <div className="poi_panel__info-partnership u-text--caption u-mb-s">
-            {_('In partnership with')}
-            <img src="./statics/images/pj.svg" alt="PagesJaunes" width="80" height="16" />
-          </div>
-        )}
         <Contribution poi={poi} />
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>
