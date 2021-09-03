@@ -1,4 +1,4 @@
-@import '../osm_contribute';
+@import '../contribute';
 
 $BLOCK_PADDING: 24px;
 $BLOCK_ICON_FONT_SIZE: 16px;
@@ -47,12 +47,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__info__item--beer {
   color: #90750b;
-}
-
-.poi_panel__info-partnership {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 15px;
 }
 
 .poi_panel__actions {
