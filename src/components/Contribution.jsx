@@ -1,14 +1,14 @@
 import React from 'react';
 import Telemetry from 'src/libs/telemetry';
 import { Flex } from 'src/components/ui';
-import { isFromOSM } from 'src/libs/pois';
+import { isFromOSM, isFromPagesJaunes } from 'src/libs/pois';
 import classnames from 'classnames';
 import { useI18n } from 'src/hooks';
 
 const Contribution = ({ poi }) => {
   const { _ } = useI18n();
 
-  if (!poi.meta) {
+  if ((!isFromOSM(poi) && !isFromPagesJaunes(poi)) || !poi.meta) {
     return null;
   }
 
