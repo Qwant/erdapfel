@@ -1,5 +1,20 @@
+function iOSversion(userAgent) {
+  if (/iP(hone|od|ad)/.test(userAgent)) {
+    const v = userAgent.match(/OS (\d+)_(\d+)_?(\d+)?/);
+    return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+  }
+}
+
 function isUnsupported(userAgent = '') {
-  return userAgent.match('Trident'); // old IE detection
+  // iOS < 10 detection
+  if (iOSversion(userAgent)[0] < 10) {
+    return true;
+  }
+
+  // old IE detection
+  if (userAgent.match('Trident')) {
+    return true;
+  }
 }
 
 module.exports = function (config) {
