@@ -1,5 +1,5 @@
 function isOldIE(userAgent) {
-  return userAgent.match('Trident'); // Test for IE <= 11
+  return userAgent.match('Trident') || false; // Test for IE <= 11
 }
 
 function isOldiOS(userAgent) {
@@ -9,12 +9,11 @@ function isOldiOS(userAgent) {
       return parseInt(v[1], 10) < 10; // test if major iOS version is < 10
     }
   }
+  return false;
 }
 
 function isUnsupported(userAgent = '') {
-  if (isOldIE(userAgent) || isOldiOS(userAgent)) {
-    return true;
-  }
+  return isOldIE(userAgent) || isOldiOS(userAgent);
 }
 
 module.exports = function (config) {
