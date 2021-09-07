@@ -20,7 +20,7 @@ server:
   routerBaseUrl: / # path prefix expected by the express server
   useGeoipForInitialPosition: true
   unsupportedBrowsers:
-    redirect: true
+    redirect: false
 
 # Services
 services:
