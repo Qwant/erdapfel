@@ -6,7 +6,6 @@ export { ReactComponent as IconEdit } from '../../../public/images/remix/edit-li
 export { ReactComponent as IconExternalLink } from '../../../public/images/remix/external-link-line.svg';
 export { ReactComponent as IconClose } from '../../../public/images/remix/close-line.svg';
 export { ReactComponent as IconCloseCircle } from '../../../public/images/remix/close-circle-line.svg';
-export { ReactComponent as IconCheckboxCircle } from '../../../public/images/remix/checkbox-circle-line.svg';
 export { ReactComponent as IconMenu } from '../../../public/images/remix/menu-line.svg';
 export { ReactComponent as IconApps } from '../../../public/images/remix/apps-line.svg';
 export { ReactComponent as IconThumbUp } from '../../../public/images/remix/thumb-up-line.svg';
