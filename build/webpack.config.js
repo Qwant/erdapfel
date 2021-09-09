@@ -133,6 +133,33 @@ const mainJsChunkConfig = buildMode => {
           use: [{ loader: 'babel-loader' }],
         },
         {
+          test: /\.(css|scss)$/,
+          include: [path.resolve(__dirname, '../node_modules/@qwant/qwant-ponents/src')],
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: buildMode !== 'production',
+                importLoaders: 1,
+                modules: {
+                  auto: true,
+                  exportOnlyLocals: false,
+                  localIdentName: '[name]__[local]___[hash:base64:5]',
+                },
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: buildMode !== 'production',
+                plugins: [require('autoprefixer')(), require('postcss-import')()],
+              },
+            },
+            'sass-loader',
+          ],
+        },
+        {
           test: /\.svg$/,
           use: [
             {
