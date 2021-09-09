@@ -27,6 +27,6 @@ module.exports = function (api) {
     presets,
     env,
     plugins,
-    ignore: [/node_modules\/(?!@qwant\/qwant-basic-gl-style)/],
+    ignore: [/node_modules\/(?!@qwant\/)/],
   };
 };
