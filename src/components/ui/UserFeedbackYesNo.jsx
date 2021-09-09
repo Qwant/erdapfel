@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { UserFeedbackQuestion, Alert } from './index';
+import { UserFeedbackQuestion } from './index';
+import { Alert } from '@qwant/qwant-ponents';
 import { useConfig, useI18n } from 'src/hooks';
 import { IconThumbUp, IconThumbDown } from './icons';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
@@ -11,6 +12,7 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
   const { _ } = useI18n();
   const [isAnswered, setAnswered] = useState(false);
   const [isDismissed, setDismissed] = useState(false);
+  const [isSuccessHidden, setSuccessHidden] = useState(false);
   const display = shouldBeDisplayed(questionId, dismissDurationDays);
 
   const closeQuestion = () => {
@@ -25,17 +27,21 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
     setAnswered(true);
   };
 
-  if (isAnswered) {
+  if (isAnswered && !isSuccessHidden) {
     return (
       <div className="feedback-success">
-        <Alert type="success" autoHideDelay={5000}>
+        <Alert
+          className="feedback-success-alert"
+          type="success"
+          onClose={() => setSuccessHidden(true)}
+        >
           {_('Thank you for helping us to improve your experience.')}
         </Alert>
       </div>
     );
   }
 
-  if (!userFeedBackEnabled || !display || isDismissed) {
+  if (!userFeedBackEnabled || !display || isDismissed || isSuccessHidden) {
     return null;
   }
 
