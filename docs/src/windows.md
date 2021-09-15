@@ -18,6 +18,7 @@ sudo apt update && sudo apt install -y build-essential git libexpat1-dev libssl-
 libncurses5-dev libbz2-dev liblzma-dev \
 libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev \
 libreadline-dev tk tk-dev
+sudo apt-get install gettext
 ```
 
 - Then enter the [commands](#commands) below to build and run Erdapfel
