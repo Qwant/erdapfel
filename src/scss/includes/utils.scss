@@ -20,29 +20,6 @@
   white-space: nowrap;
 }
 
-@keyframes placeholderPulse {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
-}
-
-.u-placeholder {
-  user-select: none;
-  color: transparent;
-  background-color: #e0e1e6;
-  border: none;
-  border-radius: 3px;
-  animation: placeholderPulse 0.8s ease-in-out alternate infinite;
-
-  &--text {
-    height: 13px;
-    display: inline-block;
-  }
-
-  &--round {
-    border-radius: 50px;
-  }
-}
-
 /* Temporary typo classes, until we use real components */
 
 .u-text--heading3 {

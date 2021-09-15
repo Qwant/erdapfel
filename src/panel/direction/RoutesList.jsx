@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDevice } from 'src/hooks';
 import { Item, ItemList } from 'src/components/ui/ItemList';
-import PlaceholderText from 'src/components/ui/PlaceholderText';
+import { Stack, Ghost } from '@qwant/qwant-ponents';
 import Route from './Route';
 
 const RoutesList = ({
@@ -46,18 +46,11 @@ const Placeholder = () => {
     <ItemList>
       <Item>
         <div className="itinerary_leg itinerary_leg--placeholder">
-          <div className="itinerary_leg_summary">
-            <div className="itinerary_leg_via">
-              <div className="routeVia">
-                <PlaceholderText length={17} />
-              </div>
-              <PlaceholderText length={10} />
-            </div>
-            <div>
-              <PlaceholderText length={5} />
-              <PlaceholderText length={7} />
-            </div>
-          </div>
+          <Stack gap="xxs" className="itinerary_leg_summary">
+            <Ghost width="20%" height={24} />
+            <Ghost width="35%" height={18} />
+            <Ghost width="50%" height={18} />
+          </Stack>
         </div>
       </Item>
     </ItemList>

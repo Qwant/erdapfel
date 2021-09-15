@@ -8,7 +8,6 @@ import MainActionButton from './MainActionButton';
 import Meter from './Meter';
 import Modal from './Modal';
 import Panel from './Panel';
-import PlaceholderText from './PlaceholderText';
 import Suggest from './Suggest';
 import PanelNav from './PanelNav';
 import CloseButton from './CloseButton';
@@ -31,7 +30,6 @@ export {
   Meter,
   Modal,
   Panel,
-  PlaceholderText,
   Suggest,
   PanelNav,
   CloseButton,
