@@ -18,20 +18,6 @@ sudo apt update && sudo apt install -y build-essential git libexpat1-dev libssl-
 libncurses5-dev libbz2-dev liblzma-dev \
 libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev \
 libreadline-dev tk tk-dev
-curl https://pyenv.run | bash
-```
-
-- Edit ~/.bashrc (ex: ```nano ~/.bashrc```) and add this code at the end (replace {USERNAME} with your Ubuntu subsystem's session name):
-
-```
-export PATH="/home/{USERNAME}/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-```
-
-- Use updated .bashrc
-```
-source ~/.bashrc
 ```
 
 - Then enter the [commands](#commands) below to build and run Erdapfel
