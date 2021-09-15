@@ -1,10 +1,8 @@
-# Install and run Erdapfel on Windows 10
+# Install and run Erdapfel on Windows 10+
 
 - Install [NodeJS LTS](https://nodejs.org/en/download/)
 - Install [Python](https://www.python.org/downloads/)
-- From an Admin account, enable developer mode (Start menu > Settings > Updates & Security > For developers > check "Developer mode")
-<br>And enable WSL (Settings > Apps > Programs and features > Turn Windows features on or off > enable "Windows Subsystem for Linux")
-- Then from any account, install [Ubuntu from Microsoft Store](https://www.microsoft.com/fr-fr/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab)
+- Install [WSL2 with Ubuntu](https://docs.microsoft.com/fr-fr/windows/wsl/install-win10) (the username can only contain characters /a-z/)
 - Clone Erdapfel in the folder of your choice (ex: "C:\www\") using [Github Desktop](https://desktop.github.com/) or the terminal: 
 
 ```
@@ -13,6 +11,7 @@ git clone https://github.com/Qwant/erdapfel.git
 ```
 
 - Open a Ubuntu bash in this folder (shift + right-click > Open Linux CLI here)
+- Install [nvm](https://github.com/nvm-sh/nvm#install--update-script), then node 12 (`nvm install 12` + `nvm use 12`), then update npm (`npm install -g npm@latest`)
 - Install tools, libraries and Python installer:
 
 ```
@@ -23,12 +22,19 @@ libreadline-dev tk tk-dev
 curl https://pyenv.run | bash
 ```
 
-- Edit ~/.bashrc (ex: ```nano ~/.bashrc```) and add this code at the end (replace {USERNAME} with your Windows session name):
+- Edit ~/.bashrc (ex: ```nano ~/.bashrc```) and add this code at the end (replace {USERNAME} with your Ubuntu subsystem's session name):
 
 ```
 export PATH="/home/{USERNAME}/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+```
+
+- Use updated .bashrc and install webpack
+```
+source ~/.bashrc
+npm i webpack -g
+npm i webpack-cli -g
 ```
 
 - Install Python 3 and its libraries:
@@ -37,33 +43,16 @@ eval "$(pyenv virtualenv-init -)"
 pyenv install 3.7.2
 pyenv global 3.7.2
 pip install pip --upgrade
+sudo apt install python3-pip
 pip install pipenv
 ```
 
 - Then enter the [commands](#commands) below to build and run Erdapfel
 - You'll be able to browse your local Qwant Maps instance on [http://localhost:3000](http://localhost:3000)
 
-## Windows 7 / 8
-
-These versions on Windows are not recommended, as they don't include a Linux subsystem.
-<br>Linux is necessary to build certain resources used by the map, like WebGL fonts.
-<br>If you *really* need to build Erdapfel on these OS, you'll need to use a Linux virtual machine (for example: [VirtualBox](https://www.virtualbox.org/) + [xubuntu](http://cdimages.ubuntu.com/xubuntu/releases/18.04/release/xubuntu-18.04.1-desktop-amd64.iso) + bridge connection)
-<br>Run the [commands](#commands) below inside the VM, then get the VM's IP with `ifconfig`, and you'll be able to browse your local Qwant Maps instance on [http://IP:3000](http://IP:3000)
-
 # Commands
 
-- Install tools (you only need to do it once):
-```
-sudo apt install python3
-sudo apt install curl
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash # see https://github.com/creationix/nvm#install-script
-source ~/.bashrc
-nvm install 10
-npm i webpack -g
-npm i webpack-cli -g
-```
-
-- Add environment variables (replace "your-domain.com" urls with your own tile/poi/geocoder server and "test" with your Mapbox.com API key):
+- Add environment variables (replace "your-domain.com" urls with your own tile/poi/geocoder server and "test" with your Mapbox.com API key). Or if you're a Qwant Maps dev, use the internal .env file
 
 ```
 export TILEVIEW_services_geocoder_url="https://your-domain.com/maps/geocoder/autocomplete"
@@ -77,6 +66,7 @@ export TILEVIEW_category_enabled=true
 export TILEVIEW_events_enabled=false
 ```
 
+- Delete package-lock.json
 - Install Erdapfel's dependencies (you need to do it once, and redo it if you empty /node_modules/ or if package.json has changed):
 
 ```
