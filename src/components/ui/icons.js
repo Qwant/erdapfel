@@ -28,7 +28,6 @@ export { ReactComponent as IconMail } from '../../../public/images/remix/mail-li
 export { ReactComponent as IconTime } from '../../../public/images/remix/time-line.svg';
 export { ReactComponent as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
 export { ReactComponent as IconStar } from '../../../public/images/remix/star-line.svg';
-export { ReactComponent as IconStarFill } from '../../../public/images/remix/star-fill.svg';
 export { ReactComponent as IconShare } from '../../../public/images/remix/share-line.svg';
 export { ReactComponent as IconTrash } from '../../../public/images/remix/delete-bin-line.svg';
 export { ReactComponent as IconCopy } from '../../../public/images/remix/file-copy-line.svg';

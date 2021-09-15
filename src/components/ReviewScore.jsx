@@ -1,7 +1,7 @@
 /* global _ */
 import React from 'react';
 import Telemetry from 'src/libs/telemetry';
-import { IconStar, IconStarFill } from 'src/components/ui/icons';
+import { StarRating, Text } from '@qwant/qwant-ponents';
 
 function logGradesClick(poi, inList) {
   const grades = poi.blocksByType.grades;
@@ -30,13 +30,9 @@ const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, 
       logGradesClick(poi, inList);
     }}
   >
-    <span className="reviewScore-stars">
-      {[1, 2, 3, 4, 5].map(k => {
-        const Icon = k > global_grade ? IconStar : IconStarFill;
-        return <Icon key={k} width={12} height={12} />;
-      })}
-    </span>
-    <span className="reviewScore-score">{global_grade}</span>
+    <Text className="reviewScore-starRating" bold color="action-link" typo="body-2">
+      <StarRating showScore note={global_grade} />
+    </Text>
     <span className="reviewScore-count">
       ({total_grades_count}){!inList && ' ' + _('on PagesJaunes', 'reviews')}
     </span>
