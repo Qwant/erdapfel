@@ -1,7 +1,6 @@
 # Install and run Erdapfel on Windows 10+
 
 - Install [NodeJS LTS](https://nodejs.org/en/download/)
-- Install [Python](https://www.python.org/downloads/)
 - Install [WSL2 with Ubuntu](https://docs.microsoft.com/fr-fr/windows/wsl/install-win10) (the username can only contain characters /a-z/)
 - Clone Erdapfel in the folder of your choice (ex: "C:\www\") using [Github Desktop](https://desktop.github.com/) or the terminal: 
 
@@ -11,8 +10,8 @@ git clone https://github.com/Qwant/erdapfel.git
 ```
 
 - Open a Ubuntu bash in this folder (shift + right-click > Open Linux CLI here)
-- Install [nvm](https://github.com/nvm-sh/nvm#install--update-script), then node 12 (`nvm install 12` + `nvm use 12`), then update npm (`npm install -g npm@latest`)
-- Install tools, libraries and Python installer:
+- Install [nvm](https://github.com/nvm-sh/nvm#install--update-script), then node 12 (`nvm install 12` + `nvm use 12`), then update npm (`npm install -g npm@7`)
+- Install tools, libraries:
 
 ```
 sudo apt update && sudo apt install -y build-essential git libexpat1-dev libssl-dev zlib1g-dev \
@@ -30,21 +29,9 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 
-- Use updated .bashrc and install webpack
+- Use updated .bashrc
 ```
 source ~/.bashrc
-npm i webpack -g
-npm i webpack-cli -g
-```
-
-- Install Python 3 and its libraries:
-
-```
-pyenv install 3.7.2
-pyenv global 3.7.2
-pip install pip --upgrade
-sudo apt install python3-pip
-pip install pipenv
 ```
 
 - Then enter the [commands](#commands) below to build and run Erdapfel
@@ -66,7 +53,6 @@ export TILEVIEW_category_enabled=true
 export TILEVIEW_events_enabled=false
 ```
 
-- Delete package-lock.json
 - Install Erdapfel's dependencies (you need to do it once, and redo it if you empty /node_modules/ or if package.json has changed):
 
 ```
