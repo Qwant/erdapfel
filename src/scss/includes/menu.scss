@@ -84,6 +84,7 @@ $productDrawerWidth: 744px;
   width: 100%;
   height: 100%;
   color: $grey-semi-darkness;
+  line-height: normal;
 }
 
 @media (max-width: 640px) {
@@ -138,6 +139,9 @@ $productDrawerWidth: 744px;
   }
 
   .productCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin-bottom: $spacing-s;
     padding: $spacing-xxl-3 $spacing-l;
