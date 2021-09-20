@@ -239,5 +239,10 @@
   "city": "ciutat",
   "country": "país",
   "address": "adreça",
-  "street": "carrer"
+  "street": "carrer",
+  "bicycle parking": "",
+  "recycling container": "",
+  "left luggage": "",
+  "motorcycle parking": "",
+  "parcel pickup": ""
 }

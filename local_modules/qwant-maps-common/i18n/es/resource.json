@@ -239,5 +239,10 @@
   "city": "ciudad",
   "country": "país",
   "address": "dirección",
-  "street": "calle"
+  "street": "calle",
+  "bicycle parking": "",
+  "recycling container": "",
+  "left luggage": "",
+  "motorcycle parking": "",
+  "parcel pickup": ""
 }

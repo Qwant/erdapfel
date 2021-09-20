@@ -239,5 +239,10 @@
   "city": "città",
   "country": "nazione",
   "address": "indirizzo",
-  "street": "strada"
+  "street": "strada",
+  "bicycle parking": "",
+  "recycling container": "",
+  "left luggage": "",
+  "motorcycle parking": "",
+  "parcel pickup": ""
 }
