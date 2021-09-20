@@ -3,16 +3,16 @@
 # Alberto Cozzani <a.cozzani6@studenti.unipi.it>, 2021
 # Adrien Matissart, 2021
 # Guglielmo Kaldewey <g.kaldewey@gmail.com>, 2021
-# Marco <marcxosm@gmail.com>, 2021
 # Michael Moroni <michaelmoroni@disroot.org>, 2021
+# Marco <marcxosm@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 14:11+0000\n"
+"POT-Creation-Date: 2021-09-20 14:34+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
-"Last-Translator: Michael Moroni <michaelmoroni@disroot.org>, 2021\n"
+"Last-Translator: Marco <marcxosm@gmail.com>, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +41,7 @@ msgid "Your browser is not supported anymore."
 msgstr "Il tuo browser non è più supportato."
 
 msgid "Install one of these browsers to use Qwant Maps."
-msgstr "Per usare Qwant Maps installa uno dei questi browser."
+msgstr "Per usare Qwant Maps installa uno di questi browser."
 
 msgid "JavaScript is required to view this application."
 msgstr "Per vedere questa applicazione è richiesto JavaScript"
@@ -316,16 +316,29 @@ msgstr "Sì"
 msgid "No"
 msgstr "No"
 
-msgid "http://www.w3.org/2000/svg"
-msgid_plural "0 0 24 24"
-msgstr[0] "http://www.w3.org/2000/svg"
-msgstr[1] "0 0 24 24"
-
 msgid "Your position"
 msgstr "La tua posizione"
 
 msgid "category"
 msgstr "categoria"
+
+#, javascript-format
+msgid "%d star"
+msgid_plural "%d stars"
+msgstr[0] "%d stella"
+msgstr[1] "%d stelle"
+
+msgid "Starred"
+msgstr "Stellato"
+
+#, javascript-format
+msgid "{subclass} with %d star"
+msgid_plural "{subclass} with %d stars"
+msgstr[0] "{subclass} con %d stella"
+msgstr[1] "{subclass} con %d stelle"
+
+msgid "Starred {subclass}"
+msgstr "{subclass} stellato"
 
 msgid "Copied!"
 msgstr "Copiato!"
@@ -623,6 +636,9 @@ msgstr "negozio di informatica"
 msgid "confectionery shop"
 msgstr "negozio di dolciumi"
 
+msgid "recycling container"
+msgstr ""
+
 msgid "copyshop"
 msgstr "copisteria"
 
@@ -773,6 +789,9 @@ msgstr "produzione cucine"
 msgid "lamps shop"
 msgstr "negozio di lampade"
 
+msgid "left luggage"
+msgstr ""
+
 msgid "long jump"
 msgstr "salto in lungo"
 
@@ -808,6 +827,9 @@ msgstr "motore"
 
 msgid "motorcycle shop"
 msgstr "negozio di motociclette"
+
+msgid "motorcycle parking"
+msgstr ""
 
 msgid "multi"
 msgstr "multi"
@@ -862,6 +884,9 @@ msgstr "idraulico"
 
 msgid "polling station"
 msgstr "ufficio elettorale"
+
+msgid "parcel pickup"
+msgstr ""
 
 msgid "prison"
 msgstr "prigione"
@@ -1187,14 +1212,14 @@ msgstr "Leggi di più su PagesJaunes"
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa i dati di OpenStreetMap."
 
+msgid "In partnership with"
+msgstr "In collaborazione con"
+
 msgid "View"
 msgstr "Vedi"
 
 msgid "Edit"
 msgstr "Modifica"
-
-msgid "In partnership with"
-msgstr "In collaborazione con"
 
 msgid "Search around this place"
 msgstr "Cerca nei dintorni di questo luogo"

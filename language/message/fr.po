@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 14:11+0000\n"
+"POT-Creation-Date: 2021-09-20 14:34+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
@@ -317,16 +317,29 @@ msgstr "Oui"
 msgid "No"
 msgstr "Non"
 
-msgid "http://www.w3.org/2000/svg"
-msgid_plural "0 0 24 24"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Your position"
 msgstr "Votre position"
 
 msgid "category"
 msgstr "catégorie"
+
+#, javascript-format
+msgid "%d star"
+msgid_plural "%d stars"
+msgstr[0] "%d étoile"
+msgstr[1] "%d étoiles"
+
+msgid "Starred"
+msgstr "Étoilé"
+
+#, javascript-format
+msgid "{subclass} with %d star"
+msgid_plural "{subclass} with %d stars"
+msgstr[0] "{subclass} %d étoile"
+msgstr[1] "{subclass} %d étoiles"
+
+msgid "Starred {subclass}"
+msgstr "{subclass} étoilé"
 
 msgid "Copied!"
 msgstr "Copié !"
@@ -625,6 +638,9 @@ msgstr "magasin d'informatique"
 msgid "confectionery shop"
 msgstr "confiserie"
 
+msgid "recycling container"
+msgstr "conteneur de tri"
+
 msgid "copyshop"
 msgstr "service de photocopies"
 
@@ -775,6 +791,9 @@ msgstr "cuisiniste"
 msgid "lamps shop"
 msgstr "magasin de luminaire"
 
+msgid "left luggage"
+msgstr "consigne"
+
 msgid "long jump"
 msgstr "piste de saut en longueur"
 
@@ -810,6 +829,9 @@ msgstr "moteur"
 
 msgid "motorcycle shop"
 msgstr "magasin de moto"
+
+msgid "motorcycle parking"
+msgstr "parking deux-roues motorisés"
 
 msgid "multi"
 msgstr "multi"
@@ -864,6 +886,9 @@ msgstr "plombier"
 
 msgid "polling station"
 msgstr "bureau de vote"
+
+msgid "parcel pickup"
+msgstr "point de retrait"
 
 msgid "prison"
 msgstr "prison"
@@ -1189,14 +1214,14 @@ msgstr "Lire la suite sur PagesJaunes"
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps utilise les données OpenStreetMap."
 
+msgid "In partnership with"
+msgstr "En partenariat avec"
+
 msgid "View"
 msgstr "Voir"
 
 msgid "Edit"
 msgstr "Modifier"
-
-msgid "In partnership with"
-msgstr "En partenariat avec"
 
 msgid "Search around this place"
 msgstr "Rechercher à proximité"
