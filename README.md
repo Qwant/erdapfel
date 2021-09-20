@@ -49,7 +49,7 @@ Then you can build and run Erdapfel with the following commands:
 > npm start
 ```
 
-(see also: [Windows setup guide](./docs/src/windows.md)
+(see also: [setup guide](docs/src/install and build.md)
 
 ### Run with docker
 
