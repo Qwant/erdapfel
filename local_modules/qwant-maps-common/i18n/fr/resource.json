@@ -239,5 +239,10 @@
   "city": "ville",
   "country": "pays",
   "address": "adresse",
-  "street": "rue"
+  "street": "rue",
+  "bicycle parking": "parking à vélo",
+  "recycling container": "conteneur de tri",
+  "left luggage": "consigne",
+  "motorcycle parking": "parking deux-roues motorisés",
+  "parcel pickup": "point de retrait"
 }

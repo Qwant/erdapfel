@@ -239,5 +239,10 @@
   "city": "kêr",
   "country": "bro",
   "address": "chomlec'h",
-  "street": "straed"
+  "street": "straed",
+  "bicycle parking": "",
+  "recycling container": "",
+  "left luggage": "",
+  "motorcycle parking": "",
+  "parcel pickup": ""
 }

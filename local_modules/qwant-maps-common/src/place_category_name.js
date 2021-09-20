@@ -25,6 +25,7 @@ const subClasses = {
   bed_and_breakfast: () => _('bed and breakfast'),
   beverages: () => _('beverages shop'),
   bicycle: () => _('bicycle shop'),
+  bicycle_parking: () => _('bicycle parking'),
   biergarten: () => _('biergarten'),
   billiards: () => _('billiards'),
   bmx: () => _('bmx'),
@@ -70,6 +71,7 @@ const subClasses = {
   community_centre: () => _('community centre'),
   computer: () => _('computer shop'),
   confectionery: () => _('confectionery shop'),
+  container: () => _('recycling container'),
   convenience: () => _('convenience store'),
   copyshop: () => _('copyshop'),
   cosmetics: () => _('cosmetics shop'),
@@ -137,6 +139,7 @@ const subClasses = {
   kitchen: () => _('kitchen manufacturer'),
   lamps: () => _('lamps shop'),
   laundry: () => _('laundry'),
+  left_luggage: () => _('left luggage'),
   library: () => _('library'),
   lodging: () => _('hotel'),
   long_jump: () => _('long jump'),
@@ -152,6 +155,7 @@ const subClasses = {
   motocross: () => _('motocross'),
   motor: () => _('motor'),
   motorcycle: () => _('motorcycle shop'),
+  motorcycle_parking: () => _('motorcycle parking'),
   multi: () => _('multi'),
   museum: () => _('museum'),
   music: () => _('music shop'),
@@ -177,6 +181,7 @@ const subClasses = {
   police: () => _('police'),
   polling_station: () => _('polling station'),
   post_office: () => _('post office'),
+  post_pickup: () => _('parcel pickup'),
   prison: () => _('prison'),
   pub: () => _('pub'),
   public_building: () => _('public building'),
@@ -252,6 +257,6 @@ function getPlaceCategoryName({ subclass }, lang) {
     return subClasses[subclass]();
   }
   return '';
-};
+}
 
 export { getPlaceCategoryName };
