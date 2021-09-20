@@ -240,9 +240,9 @@
   "country": "país",
   "address": "dirección",
   "street": "calle",
-  "bicycle parking": "",
-  "recycling container": "",
-  "left luggage": "",
-  "motorcycle parking": "",
-  "parcel pickup": ""
+  "bicycle parking": "bicycle parking",
+  "recycling container": "recycling container",
+  "left luggage": "left luggage",
+  "motorcycle parking": "motorcycle parking",
+  "parcel pickup": "parcel pickup"
 }

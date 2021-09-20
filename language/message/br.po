@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 14:11+0000\n"
+"POT-Creation-Date: 2021-09-20 14:34+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Adrien Matissart, 2021\n"
 "Language-Team: Breton (https://www.transifex.com/qwant-1/teams/89416/br/)\n"
@@ -313,19 +313,35 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-msgid "http://www.w3.org/2000/svg"
-msgid_plural "0 0 24 24"
+msgid "Your position"
+msgstr "Ho touarlec'hiañ"
+
+msgid "category"
+msgstr "rummad"
+
+#, javascript-format
+msgid "%d star"
+msgid_plural "%d stars"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-msgid "Your position"
-msgstr "Ho touarlec'hiañ"
+msgid "Starred"
+msgstr ""
 
-msgid "category"
-msgstr "rummad"
+#, javascript-format
+msgid "{subclass} with %d star"
+msgid_plural "{subclass} with %d stars"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+msgid "Starred {subclass}"
+msgstr ""
 
 msgid "Copied!"
 msgstr "Eilet!"
@@ -617,6 +633,9 @@ msgstr "stal urzhiataerezh"
 msgid "confectionery shop"
 msgstr "stal koñfizerezh"
 
+msgid "recycling container"
+msgstr ""
+
 msgid "copyshop"
 msgstr "stal liestennañ"
 
@@ -767,6 +786,9 @@ msgstr "gwerzher keginoù"
 msgid "lamps shop"
 msgstr "stal lampoù"
 
+msgid "left luggage"
+msgstr ""
+
 msgid "long jump"
 msgstr "lamm hir"
 
@@ -802,6 +824,9 @@ msgstr "keflusker"
 
 msgid "motorcycle shop"
 msgstr "stal marc'hoù-tan"
+
+msgid "motorcycle parking"
+msgstr ""
 
 msgid "multi"
 msgstr "multi"
@@ -856,6 +881,9 @@ msgstr "plomer"
 
 msgid "polling station"
 msgstr "burev votiñ"
+
+msgid "parcel pickup"
+msgstr ""
 
 msgid "prison"
 msgstr "toull-bac'h"
@@ -1181,14 +1209,14 @@ msgstr ""
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps a implij roadennoù OpenStreetMap."
 
+msgid "In partnership with"
+msgstr "E kevelerezh gant"
+
 msgid "View"
 msgstr "Gwelet"
 
 msgid "Edit"
 msgstr "Aozañ"
-
-msgid "In partnership with"
-msgstr "E kevelerezh gant"
 
 msgid "Search around this place"
 msgstr "Klask tro-dro al lec'h-mañ"

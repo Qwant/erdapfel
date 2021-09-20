@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 14:11+0000\n"
+"POT-Creation-Date: 2021-09-20 14:34+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Leonardo Alcaraz <leoalcaraz130@gmail.com>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/qwant-1/teams/89416/es/)\n"
@@ -314,16 +314,29 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-msgid "http://www.w3.org/2000/svg"
-msgid_plural "0 0 24 24"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Your position"
 msgstr "Tu localización"
 
 msgid "category"
 msgstr "categoría"
+
+#, javascript-format
+msgid "%d star"
+msgid_plural "%d stars"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Starred"
+msgstr ""
+
+#, javascript-format
+msgid "{subclass} with %d star"
+msgid_plural "{subclass} with %d stars"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Starred {subclass}"
+msgstr ""
 
 msgid "Copied!"
 msgstr "Copiado"
@@ -614,6 +627,9 @@ msgstr "tienda de informática"
 msgid "confectionery shop"
 msgstr "confitería"
 
+msgid "recycling container"
+msgstr ""
+
 msgid "copyshop"
 msgstr "copistería"
 
@@ -764,6 +780,9 @@ msgstr "fabricante de cocinas"
 msgid "lamps shop"
 msgstr "tienda de lámparas"
 
+msgid "left luggage"
+msgstr ""
+
 msgid "long jump"
 msgstr "salto largo"
 
@@ -799,6 +818,9 @@ msgstr "motor"
 
 msgid "motorcycle shop"
 msgstr "taller de motocicletas"
+
+msgid "motorcycle parking"
+msgstr ""
 
 msgid "multi"
 msgstr "multi"
@@ -853,6 +875,9 @@ msgstr "fontanero"
 
 msgid "polling station"
 msgstr "centro electoral"
+
+msgid "parcel pickup"
+msgstr ""
 
 msgid "prison"
 msgstr "cárcel"
@@ -1178,14 +1203,14 @@ msgstr ""
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa datos de OpenStreetMaps."
 
+msgid "In partnership with"
+msgstr "En asociación con"
+
 msgid "View"
 msgstr "Ver"
 
 msgid "Edit"
 msgstr "Editar"
-
-msgid "In partnership with"
-msgstr "En asociación con"
 
 msgid "Search around this place"
 msgstr "Buscar por esta zona"

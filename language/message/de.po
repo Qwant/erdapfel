@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 14:11+0000\n"
+"POT-Creation-Date: 2021-09-20 14:34+0000\n"
 "PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: Steffen Rüting <steffen.rueting@gmail.com>, 2021\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
@@ -315,16 +315,29 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nein"
 
-msgid "http://www.w3.org/2000/svg"
-msgid_plural "0 0 24 24"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Your position"
 msgstr "Ihr Standort"
 
 msgid "category"
 msgstr "Kategorie"
+
+#, javascript-format
+msgid "%d star"
+msgid_plural "%d stars"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Starred"
+msgstr ""
+
+#, javascript-format
+msgid "{subclass} with %d star"
+msgid_plural "{subclass} with %d stars"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Starred {subclass}"
+msgstr ""
 
 msgid "Copied!"
 msgstr "Kopiert!"
@@ -625,6 +638,9 @@ msgstr "Computergeschäft"
 msgid "confectionery shop"
 msgstr "Süßwarenladen"
 
+msgid "recycling container"
+msgstr ""
+
 msgid "copyshop"
 msgstr "Copyshop"
 
@@ -775,6 +791,9 @@ msgstr "Küchenhersteller"
 msgid "lamps shop"
 msgstr "Lampengeschäft"
 
+msgid "left luggage"
+msgstr ""
+
 msgid "long jump"
 msgstr "Weitsprung"
 
@@ -810,6 +829,9 @@ msgstr "Motor"
 
 msgid "motorcycle shop"
 msgstr "Motorradhändler"
+
+msgid "motorcycle parking"
+msgstr ""
 
 msgid "multi"
 msgstr "multi"
@@ -864,6 +886,9 @@ msgstr "Klempner"
 
 msgid "polling station"
 msgstr "Wahllokal"
+
+msgid "parcel pickup"
+msgstr ""
 
 msgid "prison"
 msgstr "Gefängnis"
@@ -1189,14 +1214,14 @@ msgstr "Lese mehr auf PagesJaunes"
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps verwendet OpenStreetMap-Daten."
 
+msgid "In partnership with"
+msgstr "In Zusammenarbeit mit"
+
 msgid "View"
 msgstr "Ansicht"
 
 msgid "Edit"
 msgstr "Bearbeiten"
-
-msgid "In partnership with"
-msgstr "In Zusammenarbeit mit"
 
 msgid "Search around this place"
 msgstr "Um diesen Ort herum suchen"
