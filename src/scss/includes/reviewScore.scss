@@ -8,19 +8,6 @@
     text-decoration: none;
   }
 
-  &-stars {
-    display: inline-flex;
-    margin-right: $spacing-xxs;
-
-    svg {
-      fill: $action-blue-base;
-    }
-  }
-
-  &-score {
-    color: $action-blue-base;
-  }
-
   &-count {
     margin-left: 3px;
 
