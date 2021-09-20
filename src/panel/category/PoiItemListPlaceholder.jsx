@@ -1,15 +1,15 @@
 import React from 'react';
 import { ItemList, Item } from 'src/components/ui/ItemList';
-import PlaceholderText from 'src/components/ui/PlaceholderText';
+import { Stack, Ghost } from '@qwant/qwant-ponents';
 
 const PoiItemPlaceholder = () => (
   <div className="poiItem">
-    <div>
-      <PlaceholderText length={25} tagName="h3" className="u-text--heading6 u-mb-xxs" />
-      <PlaceholderText length={15} tagName="p" className="u-text--subtitle" />
-      <PlaceholderText length={25} tagName="p" className="u-text--subtitle" />
-      <PlaceholderText length={20} tagName="p" className="u-text--subtitle" />
-    </div>
+    <Stack gap="xxs" fullWidth>
+      <Ghost height={21} width="66%" className="u-mb-xxs" />
+      <Ghost height={16} width="33%" />
+      <Ghost height={16} width="100%" />
+      <Ghost height={16} width="75%" />
+    </Stack>
     <div className="poiItem-right">
       <div className="poiTitleImage u-placeholder" />
     </div>
