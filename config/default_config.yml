@@ -91,3 +91,6 @@ covid19:
 userFeedback:
   enabled: false
   dismissDurationDays: 30
+
+searchHistory:
+  enabled: false
