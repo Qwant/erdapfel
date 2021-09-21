@@ -14,7 +14,7 @@ export function save_query(q) {
 
   // Limit the list to the 100 last items
   if (search_history.length > 100) {
-    search_history.unshift();
+    search_history.shift();
   }
 
   // Serialize the list and save it in localStorage
