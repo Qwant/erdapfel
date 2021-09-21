@@ -7,6 +7,8 @@ import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
 
+
+
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
 let currentQuery = null;
