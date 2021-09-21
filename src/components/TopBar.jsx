@@ -19,9 +19,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const [focused, setFocused] = useState(false);
   const { isMobile } = useDevice();
   const config = useConfig();
-  console.log(config);
   const searchHistoryConfig = config.searchHistory;
-  console.log(searchHistoryConfig);
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {

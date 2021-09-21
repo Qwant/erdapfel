@@ -1,6 +1,6 @@
 import { get, set, del } from './store';
 
-const search_history = get('search_history') || [];
+let search_history = get('search_history') || [];
 
 // Add a query to the list
 export function save_query(q) {
@@ -19,7 +19,6 @@ export function save_query(q) {
 
   // Serialize the list and save it in localStorage
   set('search_history', search_history);
-  console.log(search_history);
 }
 
 // Delete a query from the list
@@ -30,7 +29,6 @@ export function delete_query(q) {
   }
   // Serialize the list and save it in localStorage
   set('search_history', search_history);
-  console.log(search_history);
 }
 
 // Delete the whole search history
