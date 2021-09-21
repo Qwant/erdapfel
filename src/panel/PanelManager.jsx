@@ -15,14 +15,14 @@ import TopBar from 'src/components/TopBar';
 import { useConfig, useDevice } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
 import { getListDescription } from 'src/libs/poiList';
+import poiSubClass from 'src/mapbox/poi_subclass';
 
 function getTopBarAppValue(activePoi, { poiFilters = {}, poi = {}, query } = {}) {
-  return (
-    poi?.name ||
-    activePoi?.name ||
-    getListDescription(poiFilters.category, poiFilters.query || query) ||
-    ''
-  );
+  const currentPoi = poi || activePoi;
+  if (!isNullOrEmpty(currentPoi)) {
+    return currentPoi.name || poiSubClass(currentPoi.subClassName);
+  }
+  return getListDescription(poiFilters.category, poiFilters.query || query) || '';
 }
 
 const PanelManager = ({ router }) => {
