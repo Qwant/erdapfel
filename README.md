@@ -42,14 +42,21 @@ You will need
 Then you can build and run Erdapfel with the following commands:
 
 ```
+> sudo apt-get install gettext
 > npm install
 > npm run build
 # to build in development mode:
 > npm run build -- --mode=development
-> npm start
+> npm run start
 ```
 
-(see also: [Windows setup guide](./docs/src/windows.md)
+Optional: you can auto-rebuild the project when the code changes:
+
+```
+> npm run watch
+```
+
+(On Windows 10+, install and build must be done inside a Linux VM, or through [WSL2 + Ubuntu](https://docs.microsoft.com/fr-fr/windows/wsl/install-win10))
 
 ### Run with docker
 
@@ -106,6 +113,7 @@ run `TEST=true npm run build` then `npm run test` to launch all tests.
 Run unit tests only with `npm run unit-test`
 
 #### Integration tests
+
 Run integration tests only with `npm run integration-test`
 
 *For extended information about tests, refer to the [dedicated page](./docs/src/tests.md).*
