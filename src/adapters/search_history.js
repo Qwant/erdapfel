@@ -1,38 +1,41 @@
 import { get, set, del } from './store';
 
-let search_history = get('search_history') || [];
+const SEARCH_HISTORY_KEY = 'search_history';
+const HISTORY_SIZE = 100;
 
 // Add a query to the list
 export function save_query(q) {
+  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+
   // Delete query if it's already in the list
-  if (search_history.includes(q)) {
+  if (searchHistory.includes(q)) {
     delete_query(q);
   }
 
   // Put the query at the end of the array
-  search_history.push(q);
+  searchHistory.push(q);
 
   // Limit the list to the 100 last items
-  if (search_history.length > 100) {
-    search_history.shift();
+  if (searchHistory.length > HISTORY_SIZE) {
+    searchHistory.shift();
   }
 
   // Serialize the list and save it in localStorage
-  set('search_history', search_history);
+  set(SEARCH_HISTORY_KEY, searchHistory);
 }
 
 // Delete a query from the list
 export function delete_query(q) {
-  const index = search_history.indexOf(q);
+  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  const index = searchHistory.indexOf(q);
   if (index > -1) {
-    search_history.splice(index, 1);
+    searchHistory.splice(index, 1);
   }
   // Serialize the list and save it in localStorage
-  set('search_history', search_history);
+  set(SEARCH_HISTORY_KEY, searchHistory);
 }
 
 // Delete the whole search history
 export function delete_search_history() {
-  del('queries_list');
-  search_history = [];
+  del(SEARCH_HISTORY_KEY);
 }
