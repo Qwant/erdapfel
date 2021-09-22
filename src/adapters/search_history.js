@@ -5,12 +5,11 @@ const HISTORY_SIZE = 100;
 
 // Add a query to the list
 export function save_query(q) {
-  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
-
   // Delete query if it's already in the list
-  if (searchHistory.includes(q)) {
-    delete_query(q);
-  }
+  delete_query(q);
+
+  // Retrieve the search history
+  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
 
   // Put the query at the end of the array
   searchHistory.push(q);
