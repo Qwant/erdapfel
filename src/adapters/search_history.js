@@ -14,14 +14,14 @@ export function saveQuery(item) {
   deleteQuery(item);
 
   // Retrieve the search history
-  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  let searchHistory = get(SEARCH_HISTORY_KEY) || [];
 
   // Put the query at the end of the array
   searchHistory.push(item);
 
-  // Limit the list to the 100 last items
+  // Limit the list to the last items
   if (searchHistory.length > HISTORY_SIZE) {
-    searchHistory.shift();
+    searchHistory = searchHistory.slice(-HISTORY_SIZE);
   }
 
   // Serialize the list and save it in localStorage
