@@ -4,9 +4,9 @@ const SEARCH_HISTORY_KEY = 'search_history';
 const HISTORY_SIZE = 100;
 
 // Add a query to the list
-export function save_query(q) {
+export function saveQuery(q) {
   // Delete query if it's already in the list
-  delete_query(q);
+  deleteQuery(q);
 
   // Retrieve the search history
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
@@ -24,7 +24,7 @@ export function save_query(q) {
 }
 
 // Delete a query from the list
-export function delete_query(q) {
+export function deleteQuery(q) {
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
   const index = searchHistory.indexOf(q);
   if (index > -1) {
@@ -35,6 +35,6 @@ export function delete_query(q) {
 }
 
 // Delete the whole search history
-export function delete_search_history() {
+export function deleteSearchHistory() {
   del(SEARCH_HISTORY_KEY);
 }

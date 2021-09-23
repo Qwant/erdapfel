@@ -9,7 +9,7 @@ import Menu from 'src/panel/Menu';
 import { useConfig, useDevice } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
-import { save_query } from 'src/adapters/search_history';
+import { saveQuery } from 'src/adapters/search_history';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
@@ -55,7 +55,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const onSelectSuggestion = (item, options) => {
     selectItem(item, options);
     if (item?.name && searchHistoryConfig?.enabled) {
-      save_query(item.name);
+      saveQuery(item.name);
     }
     inputRef.current.blur();
   };
