@@ -17,9 +17,9 @@ import { PoiContext } from 'src/libs/poiContext';
 import { getListDescription } from 'src/libs/poiList';
 import poiSubClass from 'src/mapbox/poi_subclass';
 
-function getTopBarAppValue(activePoi, { poiFilters = {}, poi = {}, query } = {}) {
+function getTopBarAppValue(activePoi, { poiFilters = {}, poi, query } = {}) {
   const currentPoi = poi || activePoi;
-  if (!isNullOrEmpty(currentPoi)) {
+  if (currentPoi) {
     return currentPoi.name || poiSubClass(currentPoi.subClassName);
   }
   return getListDescription(poiFilters.category, poiFilters.query || query) || '';
