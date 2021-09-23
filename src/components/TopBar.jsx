@@ -9,6 +9,7 @@ import Menu from 'src/panel/Menu';
 import { useConfig, useDevice } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
+import { saveQuery } from 'src/adapters/search_history';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
@@ -18,6 +19,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const [focused, setFocused] = useState(false);
   const { isMobile } = useDevice();
   const config = useConfig();
+  const searchHistoryConfig = config.searchHistory;
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {
@@ -52,6 +54,9 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
 
   const onSelectSuggestion = (item, options) => {
     selectItem(item, options);
+    if (item && searchHistoryConfig?.enabled) {
+      saveQuery(item);
+    }
     inputRef.current.blur();
   };
 
