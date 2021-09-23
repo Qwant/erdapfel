@@ -54,8 +54,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
 
   const onSelectSuggestion = (item, options) => {
     selectItem(item, options);
-    if (item?.name && searchHistoryConfig?.enabled) {
-      saveQuery(item.name);
+    if (item && searchHistoryConfig?.enabled) {
+      saveQuery(item);
     }
     inputRef.current.blur();
   };

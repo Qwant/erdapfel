@@ -4,15 +4,20 @@ const SEARCH_HISTORY_KEY = 'search_history';
 const HISTORY_SIZE = 100;
 
 // Add a query to the list
-export function saveQuery(q) {
+export function saveQuery(item) {
+  // ignore intention objects for now
+  if (!item.id) {
+    return;
+  }
+
   // Delete query if it's already in the list
-  deleteQuery(q);
+  deleteQuery(item);
 
   // Retrieve the search history
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
 
   // Put the query at the end of the array
-  searchHistory.push(q);
+  searchHistory.push(item);
 
   // Limit the list to the 100 last items
   if (searchHistory.length > HISTORY_SIZE) {
@@ -24,9 +29,9 @@ export function saveQuery(q) {
 }
 
 // Delete a query from the list
-export function deleteQuery(q) {
+export function deleteQuery(item) {
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
-  const index = searchHistory.indexOf(q);
+  const index = searchHistory.findIndex(storedItem => item.id === storedItem.id);
   if (index === -1) {
     return;
   }
