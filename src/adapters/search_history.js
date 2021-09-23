@@ -3,7 +3,6 @@ import { get, set, del } from './store';
 const SEARCH_HISTORY_KEY = 'search_history';
 const HISTORY_SIZE = 100;
 
-// Add a query to the list
 export function saveQuery(item) {
   // ignore intention objects for now
   if (!item.id) {
@@ -28,7 +27,6 @@ export function saveQuery(item) {
   set(SEARCH_HISTORY_KEY, searchHistory);
 }
 
-// Delete a query from the list
 export function deleteQuery(item) {
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
   const index = searchHistory.findIndex(storedItem => item.id === storedItem.id);
@@ -40,7 +38,6 @@ export function deleteQuery(item) {
   set(SEARCH_HISTORY_KEY, searchHistory);
 }
 
-// Delete the whole search history
 export function deleteSearchHistory() {
   del(SEARCH_HISTORY_KEY);
 }
