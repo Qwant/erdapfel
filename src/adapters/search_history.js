@@ -27,9 +27,10 @@ export function saveQuery(q) {
 export function deleteQuery(q) {
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
   const index = searchHistory.indexOf(q);
-  if (index > -1) {
-    searchHistory.splice(index, 1);
+  if (index === -1) {
+    return;
   }
+  searchHistory.splice(index, 1);
   // Serialize the list and save it in localStorage
   set(SEARCH_HISTORY_KEY, searchHistory);
 }
