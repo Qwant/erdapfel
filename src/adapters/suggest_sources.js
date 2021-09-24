@@ -21,7 +21,10 @@ export function suggestResults(
   let promise;
   const historyItems = getHistoryItems(term)
     .slice(0, maxHistoryItems)
-    .map(item => ({ ...item, _suggestSource: 'history' }));
+    .map(item => {
+      item._suggestSource = 'history';
+      return item;
+    });
   if (term === '') {
     promise = Promise.resolve([...historyItems, ...PoiStore.getAll().slice(0, maxFavorites)]);
   } else {

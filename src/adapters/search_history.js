@@ -1,5 +1,6 @@
 import { get, set, del } from './store';
 import { findIndexIgnoreCase } from 'src/libs/string';
+import Poi from 'src/adapters/poi/poi';
 
 const SEARCH_HISTORY_KEY = 'search_history';
 const HISTORY_SIZE = 100;
@@ -46,5 +47,7 @@ export function deleteSearchHistory() {
 export function getHistoryItems(term = '') {
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
   searchHistory.reverse();
-  return searchHistory.filter(item => findIndexIgnoreCase(item.name, term) !== -1);
+  return searchHistory
+    .filter(item => findIndexIgnoreCase(item.name, term) !== -1)
+    .map(item => Object.assign(new Poi(), item));
 }
