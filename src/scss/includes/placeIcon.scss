@@ -7,4 +7,19 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+
+  &--geoloc {
+    color: var(--action-blue-dark);
+    background-color: var(--action-blue-lighter);
+  }
+
+  &--favorite {
+    color: var(--pink-dark);
+    background-color: var(--pink-lighter);
+  }
+
+  &--history {
+    color: var(--purple-dark);
+    background-color: var(--purple-lighter);
+  }
 }

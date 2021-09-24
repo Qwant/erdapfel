@@ -3,13 +3,6 @@ import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import classnames from 'classnames';
 import { IconHeart, IconGeoloc, IconHistory } from 'src/components/ui/icons';
-import {
-  PINK_DARK,
-  PINK_LIGHTER,
-  ACTION_BLUE_DARK,
-  PURPLE_LIGHTER,
-  PURPLE_DARK,
-} from 'src/libs/colors';
 
 const PlaceIcon = ({
   place,
@@ -20,15 +13,15 @@ const PlaceIcon = ({
   isHistory = false,
 }) => {
   if (isFavorite) {
-    return <FavoriteIcon className={className} />;
+    return <VariantIcon variant="favorite" IconComponent={IconHeart} className={className} />;
   }
 
   if (isHistory) {
-    return <HistoryIcon className={className} />;
+    return <VariantIcon variant="history" IconComponent={IconHistory} className={className} />;
   }
 
   if (place?.type === 'geoloc') {
-    return <GeolocIcon className={className} />;
+    return <VariantIcon variant="geoloc" IconComponent={IconGeoloc} className={className} />;
   }
 
   let iconClass = '',
@@ -56,44 +49,10 @@ const PlaceIcon = ({
   );
 };
 
-const GeolocIcon = ({ className }) => {
+const VariantIcon = ({ variant, className, IconComponent }) => {
   return (
-    <div
-      className={classnames('placeIcon', className)}
-      style={{
-        color: ACTION_BLUE_DARK,
-        backgroundColor: getLightBackground(ACTION_BLUE_DARK),
-      }}
-    >
-      <IconGeoloc fill="currentColor" width={20} />
-    </div>
-  );
-};
-
-const FavoriteIcon = ({ className }) => {
-  return (
-    <div
-      className={classnames('placeIcon', className)}
-      style={{
-        color: PINK_DARK,
-        backgroundColor: PINK_LIGHTER,
-      }}
-    >
-      <IconHeart fill="currentColor" width={20} />
-    </div>
-  );
-};
-
-const HistoryIcon = ({ className }) => {
-  return (
-    <div
-      className={classnames('placeIcon', className)}
-      style={{
-        color: PURPLE_DARK,
-        backgroundColor: PURPLE_LIGHTER,
-      }}
-    >
-      <IconHistory fill="currentColor" width={20} />
+    <div className={classnames('placeIcon', `placeIcon--${variant}`, className)}>
+      <IconComponent fill="currentColor" width={20} />
     </div>
   );
 };
