@@ -11,8 +11,30 @@ const SUGGEST_DEBOUNCE_WAIT = 100;
 
 let currentQuery = null;
 
+const getSuggestItemLimits = ({ inputValue, withHistory, isMobile }) => {
+  if (!withHistory) {
+    return {
+      maxHistoryItems: 0,
+      maxFavorites: !inputValue ? 5 : 2,
+    };
+  }
+
+  if (!inputValue) {
+    return {
+      maxFavorites: 0,
+      maxHistoryItems: isMobile ? 7 : 3,
+    };
+  }
+
+  return {
+    maxFavorites: 1,
+    maxHistoryItems: 1,
+  };
+};
+
 const Suggest = ({
   outputNode,
+  withHistory,
   withCategories,
   withGeoloc,
   onSelect,
@@ -51,6 +73,7 @@ const Suggest = ({
 
       const query = fetchSuggests(value, {
         withCategories,
+        ...getSuggestItemLimits({ inputValue: value, withHistory, isMobile }),
       });
 
       currentQuery = query;
@@ -178,6 +201,7 @@ Suggest.propTypes = {
   outputNode: object,
   withCategories: bool,
   withGeoloc: bool,
+  withHistory: bool,
   onSelect: func.isRequired,
   onToggle: func,
   className: string,

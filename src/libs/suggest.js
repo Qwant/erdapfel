@@ -62,7 +62,8 @@ export const fetchSuggests = (query, options = {}) =>
     withCategories: options.withCategories ?? false,
     useFocus: options.useFocus ?? true,
     maxItems: options.maxItems ?? SUGGEST_MAX_ITEMS,
-    maxFavorites: options.maxFavorites ?? (!query ? 5 : 2),
+    maxFavorites: options.maxFavorites,
+    maxHistoryItems: options.maxHistoryItems,
   });
 
 export const modifyList = (items, withGeoloc, query) => {
