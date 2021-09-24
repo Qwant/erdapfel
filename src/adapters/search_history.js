@@ -1,4 +1,5 @@
 import { get, set, del } from './store';
+import { findIndexIgnoreCase } from 'src/libs/string';
 
 const SEARCH_HISTORY_KEY = 'search_history';
 const HISTORY_SIZE = 100;
@@ -40,4 +41,10 @@ export function deleteQuery(item) {
 
 export function deleteSearchHistory() {
   del(SEARCH_HISTORY_KEY);
+}
+
+export function getHistoryItems(term = '') {
+  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  searchHistory.reverse();
+  return searchHistory.filter(item => findIndexIgnoreCase(item.name, term) !== -1);
 }
