@@ -70,6 +70,7 @@ const PoiItem = ({ poi }) => {
     <div
       className={classnames('autocomplete_suggestion', {
         'autocomplete_suggestion--favorite': isFavorite,
+        'autocomplete_suggestion--history': isHistory,
       })}
     >
       <PlaceIcon
@@ -78,7 +79,11 @@ const PoiItem = ({ poi }) => {
         isFavorite={isFavorite}
         isHistory={isHistory}
       />
-      <ItemLabels firstLabel={name} secondLabel={streetAddress} />
+      {isFavorite || isHistory ? (
+        <ItemLabels firstLabel={name} />
+      ) : (
+        <ItemLabels firstLabel={name} secondLabel={streetAddress} />
+      )}
     </div>
   );
 };
