@@ -2,16 +2,26 @@ import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import classnames from 'classnames';
-import { IconHeart, IconGeoloc } from 'src/components/ui/icons';
-import { PINK_DARK, PINK_LIGHTER, ACTION_BLUE_DARK } from 'src/libs/colors';
+import { IconHeart, IconGeoloc, IconHistory } from 'src/components/ui/icons';
 
-const PlaceIcon = ({ place, category, withBackground, className, isFavorite = false }) => {
+const PlaceIcon = ({
+  place,
+  category,
+  withBackground,
+  className,
+  isFavorite = false,
+  isHistory = false,
+}) => {
   if (isFavorite) {
-    return <FavoriteIcon className={className} />;
+    return <VariantIcon variant="favorite" IconComponent={IconHeart} className={className} />;
+  }
+
+  if (isHistory) {
+    return <VariantIcon variant="history" IconComponent={IconHistory} className={className} />;
   }
 
   if (place?.type === 'geoloc') {
-    return <GeolocIcon className={className} />;
+    return <VariantIcon variant="geoloc" IconComponent={IconGeoloc} className={className} />;
   }
 
   let iconClass = '',
@@ -39,30 +49,10 @@ const PlaceIcon = ({ place, category, withBackground, className, isFavorite = fa
   );
 };
 
-const GeolocIcon = ({ className }) => {
+const VariantIcon = ({ variant, className, IconComponent }) => {
   return (
-    <div
-      className={classnames('placeIcon', className)}
-      style={{
-        color: ACTION_BLUE_DARK,
-        backgroundColor: getLightBackground(ACTION_BLUE_DARK),
-      }}
-    >
-      <IconGeoloc fill="currentColor" width={20} />
-    </div>
-  );
-};
-
-const FavoriteIcon = ({ className }) => {
-  return (
-    <div
-      className={classnames('placeIcon', className)}
-      style={{
-        color: PINK_DARK,
-        backgroundColor: PINK_LIGHTER,
-      }}
-    >
-      <IconHeart fill="currentColor" width={20} />
+    <div className={classnames('placeIcon', `placeIcon--${variant}`, className)}>
+      <IconComponent fill="currentColor" width={20} />
     </div>
   );
 };

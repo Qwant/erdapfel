@@ -1,6 +1,7 @@
 import PoiStore from './poi/poi_store';
 import { getGeocoderSuggestions } from 'src/adapters/geocoder';
 import CategoryService from './category_service';
+import { getHistoryItems } from 'src/adapters/search_history';
 
 // @TODO: Improvement: don't access directly to window.map
 function getFocus() {
@@ -14,13 +15,18 @@ function getFocus() {
 
 export function suggestResults(
   term,
-  { withCategories, useFocus, maxFavorites = 2, maxItems = 10 } = {}
+  { withCategories, useFocus, maxFavorites = 2, maxHistoryItems = 0, maxItems = 10 } = {}
 ) {
   let geocoderPromise;
   let promise;
+  const historyItems = getHistoryItems(term)
+    .slice(0, maxHistoryItems)
+    .map(item => {
+      item._suggestSource = 'history';
+      return item;
+    });
   if (term === '') {
-    // Prerender Favorites on focus in empty field
-    promise = Promise.resolve(PoiStore.getAll().slice(0, maxFavorites));
+    promise = Promise.resolve([...historyItems, ...PoiStore.getAll().slice(0, maxFavorites)]);
   } else {
     // eslint-disable-next-line no-async-promise-executor
     promise = new Promise(async (resolve, reject) => {
@@ -28,12 +34,8 @@ export function suggestResults(
         focus: useFocus ? getFocus() : {},
         useNlu: withCategories,
       });
-      const favoritePromise = PoiStore.get(term);
       try {
-        const [geocoderSuggestions, favorites] = await Promise.all([
-          geocoderPromise,
-          favoritePromise,
-        ]);
+        const geocoderSuggestions = await geocoderPromise;
 
         // This case happens when this query and the underlying XHR have been aborted.
         // resolve(null) will cause the suggest to discard this response.
@@ -51,16 +53,19 @@ export function suggestResults(
             intentionsOrCategories = intentions;
           }
         }
+        const favorites = PoiStore.get(term);
         const keptFavorites = favorites.slice(0, maxFavorites);
+
         const keptGeocoderSuggestions = pois.slice(
           0,
-          maxItems - keptFavorites.length - intentionsOrCategories.length
+          maxItems - keptFavorites.length - intentionsOrCategories.length - historyItems.length
         );
 
         const suggestList = [
+          ...historyItems,
+          ...keptFavorites,
           ...intentionsOrCategories,
           ...keptGeocoderSuggestions,
-          ...keptFavorites,
         ];
         resolve(suggestList);
       } catch (e) {

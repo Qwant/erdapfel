@@ -64,15 +64,26 @@ const PoiItem = ({ poi }) => {
     <Address address={poi.address} omitStreet={type === 'house' || type === 'street'} inline />
   );
   const isFavorite = poi instanceof PoiStore;
+  const isHistory = poi._suggestSource === 'history';
 
   return (
     <div
       className={classnames('autocomplete_suggestion', {
         'autocomplete_suggestion--favorite': isFavorite,
+        'autocomplete_suggestion--history': isHistory,
       })}
     >
-      <PlaceIcon className="autocomplete_suggestion_icon" place={poi} isFavorite={isFavorite} />
-      <ItemLabels firstLabel={name} secondLabel={streetAddress} />
+      <PlaceIcon
+        className="autocomplete_suggestion_icon"
+        place={poi}
+        isFavorite={isFavorite}
+        isHistory={isHistory}
+      />
+      {isFavorite || isHistory ? (
+        <ItemLabels firstLabel={name} />
+      ) : (
+        <ItemLabels firstLabel={name} secondLabel={streetAddress} />
+      )}
     </div>
   );
 };
