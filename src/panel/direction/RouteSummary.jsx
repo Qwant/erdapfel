@@ -1,9 +1,10 @@
 /* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Flex } from 'src/components/ui';
+import { Flex } from 'src/components/ui';
 import { IconList } from 'src/components/ui/icons';
 import RouteSummaryInfo from './RouteSummaryInfo';
+import { Button } from '@qwant/qwant-ponents';
 
 const RouteSummary = ({
   id,
@@ -32,12 +33,18 @@ const RouteSummary = ({
 
       {isActive && (
         <Button
-          className="itinerary_leg_detailsBtn u-firstCap"
+          className="itinerary_leg_detailsBtn"
           onClick={onClickDetails}
-          icon={showDetails ? null : <IconList width={16} />}
           variant={showDetails ? 'tertiary' : 'secondary'}
         >
-          {showDetails ? _('See less', 'direction') : _('Details', 'direction')}
+          {showDetails ? (
+            _('See less', 'direction')
+          ) : (
+            <>
+              <IconList width={16} />
+              {_('Details', 'direction')}
+            </>
+          )}
         </Button>
       )}
     </Flex>
