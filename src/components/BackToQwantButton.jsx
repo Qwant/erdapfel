@@ -1,12 +1,12 @@
-/* globals _ */
 import React, { useEffect } from 'react';
-
-import { Button } from 'src/components/ui';
-import { IconArrowLeft } from 'src/components/ui/icons';
+import { Button, IconArrowLeftLine } from '@qwant/qwant-ponents';
+import { useI18n } from 'src/hooks';
 
 const hiddenAttributeClassName = 'map_control__scale_attribute_container--hidden';
 
 export const BackToQwantButton = ({ isMobile }) => {
+  const { _ } = useI18n();
+
   useEffect(() => {
     if (!isMobile) {
       return;
@@ -18,12 +18,8 @@ export const BackToQwantButton = ({ isMobile }) => {
   }, [isMobile]);
 
   return (
-    <Button
-      className="backToQwantButton"
-      icon={<IconArrowLeft width={16} />}
-      variant="tertiary"
-      onClick={() => window.history.back()}
-    >
+    <Button className="backToQwantButton" variant="tertiary" onClick={() => window.history.back()}>
+      <IconArrowLeftLine />
       {_('Back to Qwant.com')}
     </Button>
   );
