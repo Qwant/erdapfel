@@ -1,7 +1,7 @@
-/* global _ */
 import React from 'react';
-import { Button } from 'src/components/ui';
+import { Button } from '@qwant/qwant-ponents';
 import { IconGeoloc } from 'src/components/ui/icons';
+import { useI18n } from 'src/hooks';
 
 const geoloc = e => {
   e.preventDefault();
@@ -14,12 +14,15 @@ const zoomOut = e => {
 };
 
 const CategoryPanelError = ({ zoomIn }) => {
+  const { _ } = useI18n();
+
   const { title, message, action } = zoomIn
     ? {
         title: _('No results found.'),
         message: _('Please zoom in the map to see the results for this category.', 'categories'),
         action: (
-          <Button onClick={geoloc} href="#" icon={<IconGeoloc width={16} fill="currentColor" />}>
+          <Button onClick={geoloc} variant="secondary">
+            <IconGeoloc fill="currentColor" />
             {_('Search around my position', 'categories')}
           </Button>
         ),
