@@ -29,7 +29,6 @@ export { ReactComponent as IconTime } from '../../../public/images/remix/time-li
 export { ReactComponent as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
 export { ReactComponent as IconStar } from '../../../public/images/remix/star-line.svg';
 export { ReactComponent as IconShare } from '../../../public/images/remix/share-line.svg';
-export { ReactComponent as IconTrash } from '../../../public/images/remix/delete-bin-line.svg';
 export { ReactComponent as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
 export { ReactComponent as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
 export { ReactComponent as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';
