@@ -14,7 +14,7 @@ import { getAllSteps } from 'src/libs/route_utils';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from 'src/libs/address';
-import { Button, CloseButton, Divider, Flex, FloatingButton } from 'src/components/ui';
+import { CloseButton, Divider, Flex, FloatingButton } from 'src/components/ui';
 import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
@@ -26,7 +26,7 @@ import { updateQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
 import { usePageTitle } from 'src/hooks';
-import { IconShare } from 'src/components/ui/icons';
+import { Button, IconShare } from '@qwant/qwant-ponents';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
@@ -455,7 +455,7 @@ class DirectionPanel extends React.Component {
                         <FloatingButton
                           title={_('Share itinerary', 'direction')}
                           onClick={e => this.handleShareClick(e, openMenu)}
-                          icon={<IconShare />}
+                          icon={<IconShare size={24} />}
                         />
                       )}
                     </ShareMenu>,
@@ -504,8 +504,8 @@ class DirectionPanel extends React.Component {
                       variant="tertiary"
                       title={_('Share itinerary', 'direction')}
                       onClick={e => this.handleShareClick(e, openMenu)}
-                      icon={<IconShare width={20} />}
                     >
+                      <IconShare />
                       {_('Share itinerary', 'direction')}
                     </Button>
                   )}
