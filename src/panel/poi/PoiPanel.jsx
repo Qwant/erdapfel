@@ -6,11 +6,11 @@ import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import Poi from 'src/adapters/poi/poi.js';
 import PoiPanelContent from './PoiPanelContent';
 import { fire } from 'src/libs/customEvents';
-import { Panel, PanelNav, Button } from 'src/components/ui';
+import { Panel, PanelNav } from 'src/components/ui';
 import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { useDevice, useI18n, usePageTitle } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
-import { IconArrowLeft } from 'src/components/ui/icons';
+import { Button, IconArrowLeftLine } from '@qwant/qwant-ponents';
 
 const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
   const { activePoi, setActivePoi } = useContext(PoiContext);
@@ -104,7 +104,8 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
     if (onBack !== closeAction) {
       return (
         <PanelNav>
-          <Button icon={<IconArrowLeft width={16} />} variant="tertiary" onClick={onBack}>
+          <Button variant="tertiary" onClick={onBack}>
+            <IconArrowLeftLine />
             {_('Display all results')}
           </Button>
         </PanelNav>
