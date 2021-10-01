@@ -16,6 +16,7 @@
   transition: background-color .2s;
   cursor: pointer;
   line-height: 1.2;
+  padding: $spacing-s;
 
   .selected & {
     background-color: $background_active;
@@ -72,7 +73,7 @@
 }
 
 .autocomplete_suggestion_icon {
-  margin: $spacing-s;
+  margin-right: $spacing-s;
 
   @media (min-width: 641px) {
     margin-right: 30px;

@@ -4,14 +4,14 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { IconCloseCircle, IconClose } from 'src/components/ui/icons';
 
-const CloseButton = ({ className, position, onClick, onMouseDown, circle, variant }) => (
+const CloseButton = ({ className, position, onClick, onMouseDown, circle, variant, title }) => (
   <button
     className={cx(
       'closeButton',
       { [`closeButton--${position}`]: position, [`closeButton--${variant}`]: variant },
       className
     )}
-    title={_('Close')}
+    title={title || _('Close')}
     onClick={onClick}
     onMouseDown={onMouseDown}
   >
