@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
 import { isMobileDevice } from 'src/libs/device';
-import { Button, Divider } from 'src/components/ui';
+import { Divider } from 'src/components/ui';
 import { IconArrowUpDown } from 'src/components/ui/icons';
+import { Button } from '@qwant/qwant-ponents';
 
 export default class DirectionForm extends React.Component {
   static propTypes = {
@@ -57,7 +58,10 @@ export default class DirectionForm extends React.Component {
     this.props.onChangeDirectionPoint(which, value, point);
   };
 
-  onReverse = () => {
+  onReverse = e => {
+    // prevent submitting the form, as for now the attribute
+    // type="button" is not properly set in qwant-ponents 'Button'
+    e.preventDefault();
     this.props.onReversePoints();
   };
 
@@ -99,12 +103,15 @@ export default class DirectionForm extends React.Component {
           </div>
 
           <Button
+            pictoButton
+            variant="secondary"
             disabled={originInputText === '' && destinationInputText === ''}
             className="direction-invert-button"
             onClick={this.onReverse}
             title={_('Invert start and end', 'direction')}
-            icon={<IconArrowUpDown width={16} />}
-          ></Button>
+          >
+            <IconArrowUpDown fill="currentColor" />
+          </Button>
         </form>
         <VehicleSelector
           vehicles={vehicles}
