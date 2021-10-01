@@ -4,7 +4,7 @@ import { useConfig } from 'src/hooks';
 import TimeTable from './TimeTable';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import Telemetry from 'src/libs/telemetry';
-import Button from 'src/components/ui/Button';
+import { Button } from '@qwant/qwant-ponents';
 
 const getContent = ({ status, opening_hours, note, contribute_url }) => {
   const additionalInfo = note && (
