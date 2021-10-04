@@ -1,5 +1,4 @@
 import Badge from './Badge';
-import Button from './Button';
 import Divider from './Divider';
 import ShareMenu from './ShareMenu';
 import Flex from './Flex';
@@ -21,7 +20,6 @@ import Address from './Address';
 
 export {
   Badge,
-  Button,
   Divider,
   ShareMenu,
   Flex,
