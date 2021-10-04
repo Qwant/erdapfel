@@ -13,6 +13,10 @@ import { handleFocus } from 'src/libs/input';
 import { isMobileDevice } from 'src/libs/device';
 import { IconArrowLeft, IconClose } from 'src/components/ui/icons';
 import classnames from 'classnames';
+import nconf from '@qwant/nconf-getter';
+import { saveQuery } from 'src/adapters/search_history';
+
+const searchHistoryConfig = nconf.get().searchHistory;
 
 class DirectionInput extends React.Component {
   static propTypes = {
@@ -82,6 +86,9 @@ class DirectionInput extends React.Component {
     } else {
       const name = selectedPoi.type === 'latlon' ? selectedPoi.address.street : selectedPoi.name;
       this.props.onChangePoint(name, selectedPoi);
+      if (searchHistoryConfig?.enabled) {
+        saveQuery(selectedPoi);
+      }
     }
   };
 
@@ -102,6 +109,7 @@ class DirectionInput extends React.Component {
             outputNode={document.getElementById('direction-autocomplete_suggestions')}
             withGeoloc={withGeoloc}
             onSelect={this.selectItem}
+            withHistory={searchHistoryConfig?.enabled}
           >
             {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
               <input
