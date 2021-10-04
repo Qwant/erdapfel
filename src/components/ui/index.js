@@ -17,6 +17,7 @@ import SourceFooter from './SourceFooter';
 import UserFeedbackQuestion from './UserFeedbackQuestion';
 import UserFeedbackYesNo from './UserFeedbackYesNo';
 import Chevron from './Chevron';
+import Address from './Address';
 
 export {
   Badge,
@@ -39,4 +40,5 @@ export {
   UserFeedbackQuestion,
   UserFeedbackYesNo,
   Chevron,
+  Address,
 };

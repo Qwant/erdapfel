@@ -1,14 +1,15 @@
 /* global _ */
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
-import Address from 'src/components/ui/Address';
+import { Address, CloseButton } from 'src/components/ui';
 import PlaceIcon from 'src/components/PlaceIcon';
 import { Magnifier } from 'src/components/ui/icons';
 import PoiStore from 'src/adapters/poi/poi_store';
 import NoResultMessage from '../../panel/NoResultMessage';
+import { deleteQuery } from 'src/adapters/search_history';
 
 const ItemLabels = ({ firstLabel, secondLabel }) => (
   <div className="autocomplete_suggestion__labels">
@@ -65,6 +66,20 @@ const PoiItem = ({ poi }) => {
   );
   const isFavorite = poi instanceof PoiStore;
   const isHistory = poi._suggestSource === 'history';
+  const [removed, setRemoved] = useState(false);
+
+  const removeFromHistory = e => {
+    // Prevent the input field from losing focus, therefore hiding the panel
+    e.preventDefault();
+    // Prevent triggering the mouse down action on the parent
+    e.stopPropagation();
+    deleteQuery(poi);
+    setRemoved(true);
+  };
+
+  if (removed) {
+    return false;
+  }
 
   return (
     <div
@@ -83,6 +98,9 @@ const PoiItem = ({ poi }) => {
         <ItemLabels firstLabel={name} />
       ) : (
         <ItemLabels firstLabel={name} secondLabel={streetAddress} />
+      )}
+      {isHistory && (
+        <CloseButton onMouseDown={removeFromHistory} variant="small" title={_('Delete')} />
       )}
     </div>
   );
