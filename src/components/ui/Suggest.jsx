@@ -43,6 +43,7 @@ const Suggest = ({
   children: renderInput,
   value,
   withFeedback,
+  hide,
 }) => {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +80,7 @@ const Suggest = ({
       currentQuery = query;
 
       query
-        .then(suggestions => modifyList(suggestions, withGeoloc && value === '', value))
+        .then(suggestions => modifyList(suggestions, withGeoloc && value === '', value, hide))
         .then(items => {
           setItems(items);
           currentQuery = null;
@@ -88,7 +89,7 @@ const Suggest = ({
           /* Query aborted. Just ignore silently */
         });
     }, SUGGEST_DEBOUNCE_WAIT),
-    [withCategories, withGeoloc]
+    [withCategories, withGeoloc, hide]
   );
 
   useEffect(() => {
