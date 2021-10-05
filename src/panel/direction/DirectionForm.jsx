@@ -58,10 +58,7 @@ export default class DirectionForm extends React.Component {
     this.props.onChangeDirectionPoint(which, value, point);
   };
 
-  onReverse = e => {
-    // prevent submitting the form, as for now the attribute
-    // type="button" is not properly set in qwant-ponents 'Button'
-    e.preventDefault();
+  onReverse = () => {
     this.props.onReversePoints();
   };
 
