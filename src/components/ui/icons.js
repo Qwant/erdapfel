@@ -10,8 +10,6 @@ export { ReactComponent as IconMenu } from '../../../public/images/remix/menu-li
 export { ReactComponent as IconApps } from '../../../public/images/remix/apps-line.svg';
 export { ReactComponent as IconThumbUp } from '../../../public/images/remix/thumb-up-line.svg';
 export { ReactComponent as IconThumbDown } from '../../../public/images/remix/thumb-down-line.svg';
-export { ReactComponent as IconCalendar } from '../../../public/images/remix/calendar-2-line.svg';
-export { ReactComponent as IconFileList } from '../../../public/images/remix/file-list-2-line.svg';
 export { ReactComponent as IconBug } from '../../../public/images/remix/bug-line.svg';
 export { ReactComponent as IconLink } from '../../../public/images/remix/link-m.svg';
 export { ReactComponent as IconFacebook } from '../../../public/images/remix/facebook-box-line.svg';
@@ -28,8 +26,6 @@ export { ReactComponent as IconMail } from '../../../public/images/remix/mail-li
 export { ReactComponent as IconTime } from '../../../public/images/remix/time-line.svg';
 export { ReactComponent as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
 export { ReactComponent as IconStar } from '../../../public/images/remix/star-line.svg';
-export { ReactComponent as IconShare } from '../../../public/images/remix/share-line.svg';
-export { ReactComponent as IconTrash } from '../../../public/images/remix/delete-bin-line.svg';
 export { ReactComponent as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
 export { ReactComponent as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
 export { ReactComponent as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';

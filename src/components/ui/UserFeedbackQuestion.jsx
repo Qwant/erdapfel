@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, CloseButton, Button } from './index';
+import { Flex, CloseButton } from './index';
+import { Button } from '@qwant/qwant-ponents';
 
 const UserFeedbackQuestion = ({ question, options, onClose }) => {
   return (
@@ -9,16 +10,15 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
       <Flex>
         {options.map(({ label, icon, callback }) => (
           <Button
-            icon={icon}
             variant="tertiary"
             key={label}
-            type="button"
             onMouseDown={e => {
               e.preventDefault();
               callback();
             }}
-            className="feedback-button u-mr-xs"
+            className="u-mr-xs"
           >
+            {icon}
             {label}
           </Button>
         ))}

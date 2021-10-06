@@ -10,16 +10,6 @@
   &-question {
     flex-grow: 1;
   }
-
-  &-button {
-    svg {
-      margin-right: $spacing-xxs;
-    }
-
-    .button-content {
-      padding-left: 0;
-    }
-  }
 }
 
 .feedback-success {

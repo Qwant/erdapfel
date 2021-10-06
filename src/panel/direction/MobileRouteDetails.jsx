@@ -1,10 +1,10 @@
-/* global _ */
 import React, { useRef } from 'react';
 import RoadMap from './RoadMap';
-import { Button, CloseButton, Divider, Flex } from 'src/components/ui';
+import { CloseButton, Divider, Flex } from 'src/components/ui';
 import classnames from 'classnames';
-
+import { Button } from '@qwant/qwant-ponents';
 import RouteSummaryInfo from './RouteSummaryInfo';
+import { useI18n } from 'src/hooks';
 
 const MobileRouteDetails = ({
   id,
@@ -16,7 +16,7 @@ const MobileRouteDetails = ({
   openPreview,
 }) => {
   const panelElement = useRef(null);
-  const isPublicTransport = vehicle !== 'publicTransport';
+  const { _ } = useI18n();
 
   return (
     <div ref={panelElement} className={classnames('mobile-route-details')}>
@@ -27,19 +27,16 @@ const MobileRouteDetails = ({
             <CloseButton position="topRight" onClick={() => toggleDetails(id)} />
           </Flex>
 
-          {isPublicTransport && (
+          {vehicle !== 'publicTransport' && (
             <Button
-              className="u-firstCap"
               onClick={() => {
                 openPreview(id);
               }}
               variant="primary"
               style={{ width: '100%', marginTop: 20 }}
             >
-              <Flex alignItems="center" justifyContent="center">
-                <img className="u-mr-xxs" src="./statics/images/direction_icons/guide.svg" />
-                <span className="u-firstCap">{_('step by step', 'direction')}</span>
-              </Flex>
+              <img className="u-mr-xxs" src="./statics/images/direction_icons/guide.svg" />
+              <span className="u-firstCap">{_('step by step', 'direction')}</span>
             </Button>
           )}
         </div>

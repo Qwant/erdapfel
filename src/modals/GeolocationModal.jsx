@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'src/components/ui/Modal';
 import { listen } from 'src/libs/customEvents';
-import { Button, CloseButton } from 'src/components/ui';
+import { CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
 import { useI18n } from 'src/hooks';
+import { Button } from '@qwant/qwant-ponents';
 
 let hasPermissionModalOpenedOnce = false;
 
@@ -78,7 +79,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
             className="modal__subtitle u-text--subtitle"
             dangerouslySetInnerHTML={{ __html: text }}
           />
-          <Button className="modal__button" variant="primary" onClick={onAccept}>
+          <Button full variant="primary" onClick={onAccept}>
             {button}
           </Button>
         </div>
