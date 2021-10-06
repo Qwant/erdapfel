@@ -1,6 +1,5 @@
 /* global _ */
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import NavigatorGeolocalisationPoi, {
   navigatorGeolocationStatus,
 } from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
@@ -13,58 +12,49 @@ import { handleFocus } from 'src/libs/input';
 import { isMobileDevice } from 'src/libs/device';
 import { IconArrowLeftLine, IconClose } from '@qwant/qwant-ponents';
 import classnames from 'classnames';
-import nconf from '@qwant/nconf-getter';
-import { saveQuery } from 'src/adapters/search_history';
+import { useConfig } from 'src/hooks';
 
-const searchHistoryConfig = nconf.get().searchHistory;
+const DirectionInput = ({
+  isLoading,
+  value,
+  point,
+  otherPoint,
+  onChangePoint,
+  pointType,
+  inputRef,
+  withGeoloc = true,
+}) => {
+  const [readOnly, setReadOnly] = useState(false);
 
-class DirectionInput extends React.Component {
-  static propTypes = {
-    isLoading: PropTypes.bool,
-    value: PropTypes.string,
-    onChangePoint: PropTypes.func.isRequired,
-    pointType: PropTypes.oneOf(['origin', 'destination']).isRequired,
-    inputRef: PropTypes.object.isRequired,
-    withGeoloc: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    withGeoloc: true,
-  };
-
-  state = {
-    readOnly: false,
-  };
-
-  componentDidMount() {
-    if (this.props.isLoading) {
-      this.props.inputRef.current.blur();
+  useEffect(() => {
+    if (isLoading) {
+      inputRef.current.blur();
     }
-  }
+  }, []);
 
-  componentDidUpdate(prevProps) {
-    if (!prevProps.isLoading && this.props.isLoading) {
-      this.props.inputRef.current.blur();
+  useEffect(() => {
+    if (isLoading) {
+      inputRef.current.blur();
     }
-  }
+  }, [isLoading]);
 
-  onChange = event => {
+  const onChange = event => {
     const value = event.target.value;
-    this.props.onChangePoint(value, null);
+    onChangePoint(value, null);
   };
 
-  submitSearch = async () => {
-    const items = await fetchSuggests(this.props.value);
+  const submitSearch = async () => {
+    const items = await fetchSuggests(value);
     if (items && items.length > 0) {
-      this.selectItem(items[0]);
+      selectItem(items[0]);
     }
   };
 
-  selectItem = async selectedPoi => {
+  const selectItem = async selectedPoi => {
     if (selectedPoi instanceof NavigatorGeolocalisationPoi) {
       Telemetry.add(Telemetry.ITINERARY_POINT_GEOLOCATION);
 
-      this.setState({ readOnly: true });
+      setReadOnly(true);
 
       try {
         await selectedPoi.geolocate();
@@ -74,103 +64,90 @@ class DirectionInput extends React.Component {
         } else {
           Error.sendOnce('direction_input', 'selectItem', 'error getting user location', error);
         }
-        this.props.inputRef.current.value = '';
+        inputRef.current.value = '';
       }
 
       if (selectedPoi.status === navigatorGeolocationStatus.FOUND) {
         const name = selectedPoi.type === 'latlon' ? selectedPoi.address.street : selectedPoi.name;
-        this.props.onChangePoint(name, selectedPoi);
+        onChangePoint(name, selectedPoi);
       }
 
-      this.setState({ readOnly: false });
+      setReadOnly(false);
     } else {
       const name = selectedPoi.type === 'latlon' ? selectedPoi.address.street : selectedPoi.name;
-      this.props.onChangePoint(name, selectedPoi);
-      if (searchHistoryConfig?.enabled) {
-        saveQuery(selectedPoi);
-      }
+      onChangePoint(name, selectedPoi);
     }
   };
 
-  clear = e => {
+  const clear = e => {
     e.preventDefault(); // prevent losing focus
-    this.props.onChangePoint('', null);
+    onChangePoint('', null);
   };
 
-  render() {
-    const {
-      pointType,
-      inputRef,
-      isLoading,
-      withGeoloc,
-      value,
-      point,
-      otherPoint,
-      onChangePoint,
-    } = this.props;
-    const { readOnly } = this.state;
-    return (
-      <div className="direction-field">
-        <div className="direction-input">
-          <Suggest
-            value={value}
-            outputNode={document.getElementById('direction-autocomplete_suggestions')}
-            withGeoloc={withGeoloc}
-            onSelect={this.selectItem}
-            withHistory={searchHistoryConfig?.enabled}
-            hide={otherPoint}
-          >
-            {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
-              <input
-                ref={inputRef}
-                id={`direction-input_${pointType}`}
-                className={classnames({ valid: !!point })}
-                type="search"
-                required
-                autoComplete="off"
-                spellCheck="false"
-                placeholder={
-                  pointType === 'origin'
-                    ? _('Enter a starting point', 'direction')
-                    : _('Enter an end point', 'direction')
+  const config = useConfig();
+  const searchHistoryConfig = config.searchHistory;
+
+  return (
+    <div className="direction-field">
+      <div className="direction-input">
+        <Suggest
+          value={value}
+          outputNode={document.getElementById('direction-autocomplete_suggestions')}
+          withGeoloc={withGeoloc}
+          onSelect={selectItem}
+          withHistory={searchHistoryConfig?.enabled}
+          hide={otherPoint}
+        >
+          {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
+            <input
+              ref={inputRef}
+              id={`direction-input_${pointType}`}
+              className={classnames({ valid: !!point })}
+              type="search"
+              required
+              autoComplete="off"
+              spellCheck="false"
+              placeholder={
+                pointType === 'origin'
+                  ? _('Enter a starting point', 'direction')
+                  : _('Enter an end point', 'direction')
+              }
+              value={highlightedValue || value}
+              onChange={onChange}
+              onKeyDown={e => {
+                if (e.key === 'Enter' && value !== '') {
+                  submitSearch();
                 }
-                value={highlightedValue || value}
-                onChange={this.onChange}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' && this.props.value !== '') {
-                    this.submitSearch();
-                  }
-                  onKeyDown(e);
-                }}
-                readOnly={readOnly || isLoading}
-                onFocus={e => {
-                  if (point && point.type === 'geoloc' && isMobileDevice()) {
-                    // Clear Input to avoid fetching unwanted suggestions
-                    onChangePoint('');
-                  } else {
-                    handleFocus(e);
-                  }
-                  onFocus();
-                }}
-                onBlur={onBlur}
-              />
-            )}
-          </Suggest>
-          <div className="direction-icon-block">
-            <div className={`direction-icon direction-icon-${pointType}`} />
-          </div>
+                onKeyDown(e);
+              }}
+              readOnly={readOnly || isLoading}
+              onFocus={e => {
+                if (point && point.type === 'geoloc' && isMobileDevice()) {
+                  // Clear Input to avoid fetching unwanted suggestions
+                  onChangePoint('');
+                } else {
+                  handleFocus(e);
+                }
+                onFocus();
+              }}
+              onBlur={onBlur}
+            />
+          )}
+        </Suggest>
+        <div className="direction-icon-block">
+          <div className={`direction-icon direction-icon-${pointType}`} />
+        </div>
           <button type="button" className="direction-field-clear" onMouseDown={this.clear}>
             <IconClose size={20} />
-          </button>
-        </div>
-        <button type="button" className="direction-field-return">
-          {/* The only purpose of this button is to unfocus the input */}
-          <IconArrowLeftLine size={20} />
         </button>
       </div>
-    );
-  }
-}
+      <button type="button" className="direction-field-return">
+        {/* The only purpose of this button is to unfocus the input */}
+          <IconArrowLeftLine size={20} />
+      </button>
+    </div>
+  );
+};
 
 const DirectionInputWithRef = React.forwardRef((props, ref) => (
   <DirectionInput {...props} inputRef={ref} />
