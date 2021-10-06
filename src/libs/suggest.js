@@ -66,9 +66,14 @@ export const fetchSuggests = (query, options = {}) =>
     maxHistoryItems: options.maxHistoryItems,
   });
 
-export const modifyList = (items, withGeoloc, query) => {
+export const modifyList = (items, withGeoloc, query, hideItem) => {
   if (withGeoloc) {
     items.splice(0, 0, NavigatorGeolocalisationPoi.getInstance());
+  }
+
+  // Direction Panel: hide (do not suggest) an item already present in the other field
+  if (hideItem) {
+    items = items.filter(item => item.id !== hideItem.id);
   }
 
   if (query.length > 0 && (items.length === 0 || (items.length === 1 && withGeoloc))) {

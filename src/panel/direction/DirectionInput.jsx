@@ -98,9 +98,17 @@ class DirectionInput extends React.Component {
   };
 
   render() {
-    const { pointType, inputRef, isLoading, withGeoloc, value, point, onChangePoint } = this.props;
+    const {
+      pointType,
+      inputRef,
+      isLoading,
+      withGeoloc,
+      value,
+      point,
+      otherPoint,
+      onChangePoint,
+    } = this.props;
     const { readOnly } = this.state;
-
     return (
       <div className="direction-field">
         <div className="direction-input">
@@ -110,6 +118,7 @@ class DirectionInput extends React.Component {
             withGeoloc={withGeoloc}
             onSelect={this.selectItem}
             withHistory={searchHistoryConfig?.enabled}
+            hide={otherPoint}
           >
             {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
               <input
