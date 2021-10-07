@@ -2,8 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest, Flex } from 'src/components/ui';
-import { IconArrowLeft } from 'src/components/ui/icons';
-import { IconDirection, IconClose } from '@qwant/qwant-ponents';
+import { IconArrowLeftLine, IconDirection, IconClose } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Menu from 'src/panel/Menu';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
@@ -112,8 +111,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
           title={_('Qwant Maps Home', 'search bar')}
         />
         <div className="search_form__wrapper">
-          <div className="search_form__return">
-            <IconArrowLeft width={20} onMouseDown={backButtonAction} fill="currentColor" />
+          <div className="search_form__return" onMouseDown={backButtonAction}>
+            <IconArrowLeftLine size={20} />
           </div>
           <Suggest
             value={value}

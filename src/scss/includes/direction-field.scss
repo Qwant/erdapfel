@@ -52,14 +52,14 @@
         /* END Focus-gradient effect */
 
         ~ .direction-field-return {
-          display: block;
           position: fixed;
           z-index: 2;
           left: 24px;
-          top: 20px;
-          font-size: 20px;
-          color: #353C52;
-        }
+          top: 8px;
+          display: flex;
+          align-items: center;
+          height: 48px;
+         }
 
         input:valid ~ .direction-field-clear {
           margin-top: $spacing-xxs;

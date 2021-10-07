@@ -188,14 +188,14 @@ input[type="search"] {
     color: $grey-black;
     margin-right: $spacing-xs;
     cursor: pointer;
-
     position: absolute;
     transition: opacity .2s;
     top: 0;
     left: 0;
     width: 30px;
     height: 100%;
-    padding: $spacing-s 0 0 $spacing-s;
+    align-items: center;
+    justify-content: flex-end;
 
     &:hover {
       color: $primary_text;
@@ -261,7 +261,7 @@ input[type="search"] {
   .top_bar--back_action {
     // Show the return arrow
     .search_form__return {
-      display: block;
+      display: flex;
     }
 
     // ... and make room for it

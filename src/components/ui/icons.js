@@ -15,7 +15,6 @@ export { ReactComponent as IconWifi } from '../../../public/images/remix/wifi-li
 export { ReactComponent as IconScooter } from '../../../public/images/remix/e-bike-2-line.svg';
 export { ReactComponent as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
 export { ReactComponent as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';
-export { ReactComponent as IconArrowLeft } from '../../../public/images/remix/arrow-left-line.svg';
 export { ReactComponent as IconArrowUpDown } from '../../../public/images/remix/arrow-up-down-line.svg';
 export { ReactComponent as IconHeart } from '../../../public/images/remix/heart-line.svg';
 export { ReactComponent as IconHeartFill } from '../../../public/images/remix/heart-fill.svg';
