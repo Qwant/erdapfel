@@ -3,7 +3,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest, Flex } from 'src/components/ui';
-import { IconDirection, IconArrowLeft, IconClose } from 'src/components/ui/icons';
+import { IconArrowLeft, IconClose } from 'src/components/ui/icons';
+import { IconDirection } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Menu from 'src/panel/Menu';
 import { useConfig, useDevice } from 'src/hooks';
@@ -176,7 +177,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               type="button"
               onClick={onClickDirections}
             >
-              <IconDirection width={24} fill={ACTION_BLUE_BASE} />
+              <IconDirection size={24} fill={ACTION_BLUE_BASE} />
             </Flex>
             <button
               id="clear_button_desktop"
