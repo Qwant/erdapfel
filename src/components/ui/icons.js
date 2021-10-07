@@ -25,7 +25,6 @@ export { ReactComponent as IconEarth } from '../../../public/images/remix/earth-
 export { ReactComponent as IconMail } from '../../../public/images/remix/mail-line.svg';
 export { ReactComponent as IconTime } from '../../../public/images/remix/time-line.svg';
 export { ReactComponent as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
-export { ReactComponent as IconStar } from '../../../public/images/remix/star-line.svg';
 export { ReactComponent as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
 export { ReactComponent as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
 export { ReactComponent as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';
