@@ -15,11 +15,6 @@ export { ReactComponent as IconYoutube } from '../../../public/images/remix/yout
 export { ReactComponent as IconWheelchair } from '../../../public/images/remix/wheelchair-line.svg';
 export { ReactComponent as IconWifi } from '../../../public/images/remix/wifi-line.svg';
 export { ReactComponent as IconScooter } from '../../../public/images/remix/e-bike-2-line.svg';
-export { ReactComponent as IconPhone } from '../../../public/images/remix/phone-line.svg';
-export { ReactComponent as IconEarth } from '../../../public/images/remix/earth-line.svg';
-export { ReactComponent as IconMail } from '../../../public/images/remix/mail-line.svg';
-export { ReactComponent as IconTime } from '../../../public/images/remix/time-line.svg';
-export { ReactComponent as IconMapPin } from '../../../public/images/remix/map-pin-line.svg';
 export { ReactComponent as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
 export { ReactComponent as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
 export { ReactComponent as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';

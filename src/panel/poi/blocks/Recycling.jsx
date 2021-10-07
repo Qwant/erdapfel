@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Flex, Meter } from 'src/components/ui';
 import { GREEN_BASE, ORANGE_BASE, RED_BASE } from 'src/libs/colors';
 import { useI18n } from 'src/hooks';
-import { IconTime } from 'src/components/ui/icons';
+import { IconTime } from '@qwant/qwant-ponents';
 
 const Container = ({ type, filling_level, updated_at }) => {
   const { locale, _ } = useI18n();
@@ -20,7 +20,7 @@ const Container = ({ type, filling_level, updated_at }) => {
   return (
     <div className="recycling-container">
       <Flex className="u-mb-xs">
-        <IconTime width={16} className="u-mr-xxs" fill="currentColor" />
+        <IconTime size={16} className="u-mr-xxs" />
         <div className="u-text--caption">
           {_('Updated {datetime}', 'recycling', {
             datetime: Intl.DateTimeFormat(locale.replace('_', '-'), {
