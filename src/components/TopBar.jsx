@@ -1,13 +1,12 @@
-/* global _ */
 import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest, Flex } from 'src/components/ui';
-import { IconArrowLeft, IconClose } from 'src/components/ui/icons';
-import { IconDirection } from '@qwant/qwant-ponents';
+import { IconArrowLeft } from 'src/components/ui/icons';
+import { IconDirection, IconClose } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Menu from 'src/panel/Menu';
-import { useConfig, useDevice } from 'src/hooks';
+import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
 import { saveQuery } from 'src/adapters/search_history';
@@ -21,6 +20,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const { isMobile } = useDevice();
   const config = useConfig();
   const searchHistoryConfig = config.searchHistory;
+  const { _ } = useI18n();
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {
@@ -157,7 +157,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             type="button"
             onMouseDown={onClear}
           >
-            <IconClose width={24} fill="currentColor" />
+            <IconClose size={24} />
           </button>
           <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>
@@ -185,7 +185,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               type="button"
               onMouseDown={onClear}
             >
-              <IconClose width={24} fill="currentColor" />
+              <IconClose size={24} />
             </button>
           </>
         )}
