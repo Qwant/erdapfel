@@ -1,10 +1,11 @@
 import React from 'react';
-import { IconChevronDown } from 'src/components/ui/icons';
+import { IconArrowDownSLine } from '@qwant/qwant-ponents';
 import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
-const Chevron = ({ up }) => (
-  <IconChevronDown
-    fill={GREY_SEMI_DARKNESS}
+const Chevron = ({ up, fill = GREY_SEMI_DARKNESS, size = 24 }) => (
+  <IconArrowDownSLine
+    size={size}
+    fill={fill}
     style={{
       transition: 'transform .2s',
       transform: `rotate(${up ? 0 : 180}deg)`,
