@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
-import { IconHeart, IconEdit, IconApps, IconBug } from 'src/components/ui/icons';
-import { IconLight } from '@qwant/qwant-ponents';
+import { IconHeart, IconEdit, IconBug } from 'src/components/ui/icons';
+import { IconLight, IconApps } from '@qwant/qwant-ponents';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
 import { useConfig, useI18n } from 'src/hooks';
 
@@ -64,7 +64,7 @@ const AppMenu = ({ close, openProducts }) => {
               e.preventDefault();
               openProducts();
             }}
-            icon={<IconApps width={16} fill={ACTION_BLUE_BASE} />}
+            icon={<IconApps size={16} fill={ACTION_BLUE_BASE} />}
           >
             {_('Products', 'menu')}
           </MenuItem>
