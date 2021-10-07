@@ -13,7 +13,6 @@ export { ReactComponent as IconYoutube } from '../../../public/images/remix/yout
 export { ReactComponent as IconWheelchair } from '../../../public/images/remix/wheelchair-line.svg';
 export { ReactComponent as IconWifi } from '../../../public/images/remix/wifi-line.svg';
 export { ReactComponent as IconScooter } from '../../../public/images/remix/e-bike-2-line.svg';
-export { ReactComponent as IconCopy } from '../../../public/images/remix/file-copy-line.svg';
 export { ReactComponent as IconChevronDown } from '../../../public/images/remix/arrow-down-s-line.svg';
 export { ReactComponent as IconChevronUp } from '../../../public/images/remix/arrow-up-s-line.svg';
 export { ReactComponent as IconArrowLeft } from '../../../public/images/remix/arrow-left-line.svg';
