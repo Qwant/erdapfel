@@ -2,7 +2,6 @@ export { ReactComponent as Magnifier } from '../../../public/images/magnifier-da
 export { ReactComponent as IconGeoloc } from '../../../public/images/geoloc.svg';
 
 export { ReactComponent as IconEdit } from '../../../public/images/remix/edit-line.svg';
-export { ReactComponent as IconExternalLink } from '../../../public/images/remix/external-link-line.svg';
 export { ReactComponent as IconClose } from '../../../public/images/remix/close-line.svg';
 export { ReactComponent as IconCloseCircle } from '../../../public/images/remix/close-circle-line.svg';
 export { ReactComponent as IconMenu } from '../../../public/images/remix/menu-line.svg';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex } from 'src/components/ui';
-import { IconExternalLink } from 'src/components/ui/icons';
+import { IconExternalLink } from '@qwant/qwant-ponents';
 import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
 const MenuItem = ({ icon, children, href, onClick, outsideLink }) => (
@@ -20,7 +20,7 @@ const MenuItem = ({ icon, children, href, onClick, outsideLink }) => (
       <div className="u-mr-s" style={{ flexGrow: 1 }}>
         {children}
       </div>
-      {outsideLink && <IconExternalLink width={16} fill={GREY_SEMI_DARKNESS} />}
+      {outsideLink && <IconExternalLink size={16} fill={GREY_SEMI_DARKNESS} />}
     </Flex>
   </a>
 );
