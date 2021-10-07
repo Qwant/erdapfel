@@ -29,7 +29,6 @@ export { ReactComponent as IconWalk } from '../../../public/images/remix/walk-li
 export { ReactComponent as IconList } from '../../../public/images/remix/list-unordered.svg';
 export { ReactComponent as IconPlus } from '../../../public/images/remix/add-line.svg';
 export { ReactComponent as IconMinus } from '../../../public/images/remix/subtract-line.svg';
-export { ReactComponent as IconInformation } from '../../../public/images/remix/information-line.svg';
 export { ReactComponent as IconHistory } from '../../../public/images/remix/history-line.svg';
 
 export { ReactComponent as IconAndroid } from '../../../public/images/mobile/android.svg';
