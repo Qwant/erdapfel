@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
-import { IconHeart, IconLightbulb, IconEdit, IconApps, IconBug } from 'src/components/ui/icons';
+import { IconHeart, IconEdit, IconApps, IconBug } from 'src/components/ui/icons';
+import { IconLight } from '@qwant/qwant-ponents';
 import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
 import { useConfig, useI18n } from 'src/hooks';
 
@@ -32,7 +33,7 @@ const AppMenu = ({ close, openProducts }) => {
       <MenuItem
         href={getLocalizedUrl('aboutMapsToS')}
         outsideLink
-        icon={<IconLightbulb width={16} fill={ACTION_BLUE_BASE} />}
+        icon={<IconLight size={16} fill={ACTION_BLUE_BASE} />}
       >
         <span
           dangerouslySetInnerHTML={{
