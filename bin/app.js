@@ -124,9 +124,8 @@ function App(config) {
   router.get('/*', redirectUnsupported, fullTextQuery, preFetchPoi, ogMeta, (req, res) => {
     const userAgent = req.headers['user-agent'];
     const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
-    let appConfig = config;
+    const { server: _droppedServerConfig, ...appConfig } = config;
     if (disableMenuRule && userAgent && userAgent.match(disableMenuRule)) {
-      appConfig = JSON.parse(JSON.stringify(config));
       appConfig.burgerMenu.enabled = false;
     }
     appConfig.testGroupPer = testGroup(config, req).testGroupPer;
