@@ -134,7 +134,7 @@ const DirectionInput = ({
         <div className="direction-icon-block">
           <div className={`direction-icon direction-icon-${pointType}`} />
         </div>
-        <button type="button" className="direction-field-clear" onMouseDown={this.clear}>
+        <button type="button" className="direction-field-clear" onMouseDown={clear}>
           <IconClose size={20} />
         </button>
       </div>
