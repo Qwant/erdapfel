@@ -1,5 +1,5 @@
-/* global _ */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import NavigatorGeolocalisationPoi, {
   navigatorGeolocationStatus,
 } from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
@@ -9,10 +9,9 @@ import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
-import { isMobileDevice } from 'src/libs/device';
 import { IconArrowLeftLine, IconClose } from '@qwant/qwant-ponents';
 import classnames from 'classnames';
-import { useConfig } from 'src/hooks';
+import { useConfig, useDevice, useI18n } from 'src/hooks';
 
 const DirectionInput = ({
   isLoading,
@@ -25,18 +24,15 @@ const DirectionInput = ({
   withGeoloc = true,
 }) => {
   const [readOnly, setReadOnly] = useState(false);
+  const { isMobile } = useDevice();
+  const searchHistoryConfig = useConfig('searchHistory');
+  const { _ } = useI18n();
 
   useEffect(() => {
     if (isLoading) {
       inputRef.current.blur();
     }
   }, []);
-
-  useEffect(() => {
-    if (isLoading) {
-      inputRef.current.blur();
-    }
-  }, [isLoading]);
 
   const onChange = event => {
     const value = event.target.value;
@@ -84,9 +80,6 @@ const DirectionInput = ({
     onChangePoint('', null);
   };
 
-  const config = useConfig();
-  const searchHistoryConfig = config.searchHistory;
-
   return (
     <div className="direction-field">
       <div className="direction-input">
@@ -122,7 +115,7 @@ const DirectionInput = ({
               }}
               readOnly={readOnly || isLoading}
               onFocus={e => {
-                if (point && point.type === 'geoloc' && isMobileDevice()) {
+                if (point && point.type === 'geoloc' && isMobile) {
                   // Clear Input to avoid fetching unwanted suggestions
                   onChangePoint('');
                 } else {
@@ -147,6 +140,15 @@ const DirectionInput = ({
       </button>
     </div>
   );
+};
+
+DirectionInput.propTypes = {
+  isLoading: PropTypes.bool,
+  value: PropTypes.string,
+  onChangePoint: PropTypes.func.isRequired,
+  pointType: PropTypes.oneOf(['origin', 'destination']).isRequired,
+  inputRef: PropTypes.object.isRequired,
+  withGeoloc: PropTypes.bool,
 };
 
 const DirectionInputWithRef = React.forwardRef((props, ref) => (
