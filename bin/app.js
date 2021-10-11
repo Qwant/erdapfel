@@ -10,6 +10,7 @@ const compression = require('compression');
 const mapStyle = require('./middlewares/map_style');
 const getReqSerializer = require('./serializers/request');
 const cookieParser = require('cookie-parser');
+const testGroup = require('./test-group');
 
 const app = express();
 app.use(cookieParser());
@@ -123,11 +124,11 @@ function App(config) {
   router.get('/*', redirectUnsupported, fullTextQuery, preFetchPoi, ogMeta, (req, res) => {
     const userAgent = req.headers['user-agent'];
     const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
-    let appConfig = config;
+    const { server: _droppedServerConfig, ...appConfig } = config;
     if (disableMenuRule && userAgent && userAgent.match(disableMenuRule)) {
-      appConfig = JSON.parse(JSON.stringify(config));
       appConfig.burgerMenu.enabled = false;
     }
+    appConfig.testGroupPer = testGroup(config, req).testGroupPer;
     res.render('index', { config: appConfig });
   });
 

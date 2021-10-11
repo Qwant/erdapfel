@@ -21,6 +21,7 @@ server:
   useGeoipForInitialPosition: true
   unsupportedBrowsers:
     redirect: false
+  clientHashFallback: override_by_environment
 
 # Services
 services:
