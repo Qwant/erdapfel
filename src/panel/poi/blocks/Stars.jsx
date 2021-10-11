@@ -1,9 +1,9 @@
 import React from 'react';
 import Block from './Block';
-import { IconStar } from 'src/components/ui/icons';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import { capitalizeFirst } from 'src/libs/string';
 import { useI18n } from 'src/hooks';
+import { IconStar } from '@qwant/qwant-ponents';
 
 const Stars = ({ block, inline, subclass }) => {
   const { _, _n } = useI18n();
@@ -22,7 +22,7 @@ const Stars = ({ block, inline, subclass }) => {
 
   if (nbStars > 0) {
     return (
-      <Block simple icon={<IconStar fill={ACTION_BLUE_BASE} width={20} />}>
+      <Block simple icon={<IconStar fill={ACTION_BLUE_BASE} size={20} />}>
         {capitalizeFirst(
           _n(
             '{subclass} with %d star',
@@ -37,7 +37,7 @@ const Stars = ({ block, inline, subclass }) => {
   }
 
   return (
-    <Block simple icon={<IconStar fill={ACTION_BLUE_BASE} width={20} />}>
+    <Block simple icon={<IconStar fill={ACTION_BLUE_BASE} size={20} />}>
       {capitalizeFirst(_('Starred {subclass}', 'poi', { subclass }))}
     </Block>
   );

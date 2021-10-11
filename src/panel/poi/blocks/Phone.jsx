@@ -4,7 +4,7 @@ import Block from 'src/panel/poi/blocks/Block';
 import Telemetry from 'src/libs/telemetry';
 import { isFromPagesJaunes } from 'src/libs/pois';
 import { useDevice, useI18n } from 'src/hooks';
-import { IconPhone } from 'src/components/ui/icons';
+import { IconPhone } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 const PhoneBlock = ({ block, poi }) => {
@@ -38,7 +38,7 @@ const PhoneBlock = ({ block, poi }) => {
   return (
     <Block
       className="block-phone"
-      icon={<IconPhone width={20} fill={ACTION_BLUE_BASE} />}
+      icon={<IconPhone size={20} fill={ACTION_BLUE_BASE} />}
       title={_('phone')}
       onClick={isHidden ? revealNumber : sendEvent}
       href={isHidden ? null : block.url}

@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import { Panel } from 'src/components/ui';
+import { Panel, Chevron } from 'src/components/ui';
 import CategoryList from 'src/components/CategoryList';
-import { IconChevronDown, IconChevronUp } from 'src/components/ui/icons';
 import { useI18n } from 'src/hooks';
 import { Flex, Button } from '@qwant/qwant-ponents';
 
@@ -22,11 +21,11 @@ const ServicePanelDesktop = () => {
           <Button variant="tertiary" onMouseDown={() => setCollapsed(!collapsed)}>
             {collapsed ? (
               <>
-                <IconChevronDown width={16} fill="currentColor" /> {_('See more nearby services')}
+                <Chevron size={16} fill="currentColor" up /> {_('See more nearby services')}
               </>
             ) : (
               <>
-                <IconChevronUp width={16} fill="currentColor" />
+                <Chevron size={16} fill="currentColor" />
                 {_('Reduce')}
               </>
             )}

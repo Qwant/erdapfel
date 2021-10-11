@@ -6,7 +6,7 @@ import AppMenu from './menu/AppMenu';
 import ProductsDrawer from './menu/ProductsDrawer';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, CloseButton } from 'src/components/ui';
-import { IconMenu, IconApps, IconArrowLeft } from 'src/components/ui/icons';
+import { IconMenu, IconApps, IconArrowLeftLine } from '@qwant/qwant-ponents';
 import { useConfig, useDevice } from 'src/hooks';
 import { listen, unListen } from 'src/libs/customEvents';
 import {
@@ -81,7 +81,7 @@ const Menu = () => {
           }}
           title={_('Menu')}
         >
-          {isMobile ? <IconMenu /> : <IconMenu width={16} height={16} />}
+          <IconMenu size={isMobile ? 24 : 16} />
         </button>
 
         {!isMobile && displayProducts && (
@@ -119,7 +119,7 @@ const Menu = () => {
                       onClick={() => openDrawer('app')}
                       aria-label={_('Go back')}
                     >
-                      <IconArrowLeft />
+                      <IconArrowLeftLine size={24} />
                     </Flex>
                     <div className="u-text--heading5">{_('Products', 'menu')}</div>
                   </>

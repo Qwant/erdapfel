@@ -1,9 +1,9 @@
-/* global _ */
 import React, { useState, useRef, Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { IconFacebook, IconTwitter, IconCopy } from 'src/components/ui/icons';
-import { Flex } from 'src/components/ui';
+import { IconFacebook, IconTwitter } from 'src/components/ui/icons';
+import { Flex, IconCopy } from '@qwant/qwant-ponents';
+import { useI18n } from 'src/hooks';
 
 const facebookShareUrl = location => {
   return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location)}`;
@@ -36,6 +36,7 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
   const portalContainer = useRef(document.createElement('div'));
+  const { _ } = useI18n();
 
   useEffect(() => {
     const current = portalContainer.current;
@@ -88,7 +89,8 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
         ReactDOM.createPortal(
           <div className="shareMenu-menu" style={{ left: left + 'px', top: top + 'px' }}>
             <Flex
-              justifyContent="space-between"
+              between
+              alignCenter
               className="shareMenu-menuItem shareMenu-menuItem--copy"
               onClick={e => {
                 e.nativeEvent.stopImmediatePropagation();
@@ -101,10 +103,11 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
               ) : (
                 _('Copy link', 'share')
               )}
-              <IconCopy width={20} />
+              <IconCopy size={20} />
             </Flex>
 
             <Flex
+              alignCenter
               className="shareMenu-menuItem"
               onClick={() => {
                 openPopup(facebookShareUrl(url));
@@ -116,6 +119,7 @@ const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, childre
             </Flex>
 
             <Flex
+              alignCenter
               className="shareMenu-menuItem"
               onClick={() => {
                 openPopup(twitterShareUrl(url));

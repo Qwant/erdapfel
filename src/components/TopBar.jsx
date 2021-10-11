@@ -1,12 +1,11 @@
-/* global _ */
 import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest, Flex } from 'src/components/ui';
-import { IconDirection, IconArrowLeft, IconClose } from 'src/components/ui/icons';
+import { IconArrowLeftLine, IconDirection, IconClose } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Menu from 'src/panel/Menu';
-import { useConfig, useDevice } from 'src/hooks';
+import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
 import { saveQuery } from 'src/adapters/search_history';
@@ -20,6 +19,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const { isMobile } = useDevice();
   const config = useConfig();
   const searchHistoryConfig = config.searchHistory;
+  const { _ } = useI18n();
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {
@@ -111,8 +111,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
           title={_('Qwant Maps Home', 'search bar')}
         />
         <div className="search_form__wrapper">
-          <div className="search_form__return">
-            <IconArrowLeft width={20} onMouseDown={backButtonAction} fill="currentColor" />
+          <div className="search_form__return" onMouseDown={backButtonAction}>
+            <IconArrowLeftLine size={20} />
           </div>
           <Suggest
             value={value}
@@ -156,7 +156,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             type="button"
             onMouseDown={onClear}
           >
-            <IconClose width={24} fill="currentColor" />
+            <IconClose size={24} />
           </button>
           <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>
@@ -176,7 +176,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               type="button"
               onClick={onClickDirections}
             >
-              <IconDirection width={24} fill={ACTION_BLUE_BASE} />
+              <IconDirection size={24} fill={ACTION_BLUE_BASE} />
             </Flex>
             <button
               id="clear_button_desktop"
@@ -184,7 +184,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               type="button"
               onMouseDown={onClear}
             >
-              <IconClose width={24} fill="currentColor" />
+              <IconClose size={24} />
             </button>
           </>
         )}
