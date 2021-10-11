@@ -12,6 +12,7 @@ import { handleFocus } from 'src/libs/input';
 import { IconArrowLeftLine, IconClose } from '@qwant/qwant-ponents';
 import classnames from 'classnames';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
+import { saveQuery } from 'src/adapters/search_history';
 
 const DirectionInput = ({
   isLoading,
@@ -72,6 +73,9 @@ const DirectionInput = ({
     } else {
       const name = selectedPoi.type === 'latlon' ? selectedPoi.address.street : selectedPoi.name;
       onChangePoint(name, selectedPoi);
+      if (searchHistoryConfig?.enabled) {
+        saveQuery(selectedPoi);
+      }
     }
   };
 
