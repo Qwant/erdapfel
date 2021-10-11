@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Router from 'src/proxies/app_router';
 import { parseMapHash, joinPath, parseQueryString } from 'src/libs/url_utils';
 import { listen } from 'src/libs/customEvents';
+import { DeviceProvider } from 'src/libs/device';
 import RootComponent from './RootComponent';
 import Telemetry from 'src/libs/telemetry';
 
@@ -28,7 +29,12 @@ export default class App {
       );
     };
 
-    ReactDOM.render(<RootComponent router={this.router} />, document.querySelector('#react_root'));
+    ReactDOM.render(
+      <DeviceProvider>
+        <RootComponent router={this.router} />
+      </DeviceProvider>,
+      document.querySelector('#react_root')
+    );
   }
 
   initMap() {

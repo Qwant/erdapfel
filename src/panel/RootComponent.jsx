@@ -1,40 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Menu from 'src/panel/Menu';
 import PanelManager from 'src/panel/PanelManager';
-import { isMobileDevice, mobileDeviceMediaQuery, DeviceContext } from 'src/libs/device';
-import { fire } from 'src/libs/customEvents';
-import { useConfig } from 'src/hooks';
 import { PoiProvider } from 'src/libs/poiContext';
+import { fire } from 'src/libs/customEvents';
+import { useConfig, useDevice } from 'src/hooks';
 
 const RootComponent = ({ router }) => {
-  const [isMobile, setIsMobile] = useState(isMobileDevice());
   const { enabled: isBurgerMenuEnabled } = useConfig('burgerMenu');
+  const { isMobile } = useDevice();
 
   useEffect(() => {
-    const deviceChanged = ({ matches: isMobile }) => {
-      setIsMobile(isMobile);
-      if (!isMobile) {
-        window.execOnMapLoaded(() => {
-          fire('move_mobile_bottom_ui', 0);
-        });
-      }
-      fire('update_map_paddings');
-    };
-
-    mobileDeviceMediaQuery.addListener(deviceChanged);
-
-    return () => {
-      mobileDeviceMediaQuery.removeListener(deviceChanged);
-    };
-  });
+    if (!isMobile) {
+      window.execOnMapLoaded(() => {
+        fire('move_mobile_bottom_ui', 0);
+      });
+    }
+    fire('update_map_paddings');
+  }, [isMobile]);
 
   return (
-    <DeviceContext.Provider value={{ isMobile }}>
+    <>
       <PoiProvider>
         <PanelManager router={router} />
       </PoiProvider>
       {!isMobile && isBurgerMenuEnabled && <Menu />}
-    </DeviceContext.Provider>
+    </>
   );
 };
 
