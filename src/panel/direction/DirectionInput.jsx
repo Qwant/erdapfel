@@ -33,7 +33,7 @@ const DirectionInput = ({
     if (isLoading) {
       inputRef.current.blur();
     }
-  }, []);
+  }, [inputRef, isLoading]);
 
   const onChange = event => {
     const value = event.target.value;
