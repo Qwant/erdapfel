@@ -134,13 +134,13 @@ const DirectionInput = ({
         <div className="direction-icon-block">
           <div className={`direction-icon direction-icon-${pointType}`} />
         </div>
-          <button type="button" className="direction-field-clear" onMouseDown={this.clear}>
-            <IconClose size={20} />
+        <button type="button" className="direction-field-clear" onMouseDown={this.clear}>
+          <IconClose size={20} />
         </button>
       </div>
       <button type="button" className="direction-field-return">
         {/* The only purpose of this button is to unfocus the input */}
-          <IconArrowLeftLine size={20} />
+        <IconArrowLeftLine size={20} />
       </button>
     </div>
   );
