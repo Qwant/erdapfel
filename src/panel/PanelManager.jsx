@@ -12,6 +12,7 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { PanelContext } from 'src/libs/panelContext.js';
 import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar';
+import Survey from 'src/components/Survey';
 import { useConfig, useDevice } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
 import { getListDescription } from 'src/libs/poiList';
@@ -256,6 +257,7 @@ const PanelManager = ({ router }) => {
           <ActivePanel {...options} />
         </div>
       </PanelContext.Provider>
+      <Survey />
     </div>
   );
 };
