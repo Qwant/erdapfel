@@ -1,123 +1,109 @@
-/* global _ */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
-import { isMobileDevice } from 'src/libs/device';
 import { Divider } from 'src/components/ui';
 import { IconArrowUpDown } from 'src/components/ui/icons';
 import { Button } from '@qwant/qwant-ponents';
+import { useI18n, useDevice } from 'src/hooks';
 
-export default class DirectionForm extends React.Component {
-  static propTypes = {
-    isLoading: PropTypes.bool,
-    origin: PropTypes.object,
-    destination: PropTypes.object,
-    onChangeDirectionPoint: PropTypes.func.isRequired,
-    onReversePoints: PropTypes.func.isRequired,
-    vehicles: PropTypes.array.isRequired,
-    onSelectVehicle: PropTypes.func.isRequired,
-    activeVehicle: PropTypes.string.isRequired,
-    isInitializing: PropTypes.bool,
-    originInputText: PropTypes.string,
-    destinationInputText: PropTypes.string,
-  };
+const DirectionForm = ({
+  isLoading,
+  origin,
+  destination,
+  onChangeDirectionPoint,
+  onReversePoints,
+  vehicles,
+  onSelectVehicle,
+  activeVehicle,
+  isInitializing,
+  originInputText,
+  destinationInputText,
+}) => {
+  const { _ } = useI18n();
+  const { isMobile } = useDevice();
+  const originRef = useRef(null);
+  const destinationRef = useRef(null);
 
-  constructor(props) {
-    super(props);
-    this.originRef = React.createRef();
-    this.destinationRef = React.createRef();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (isMobileDevice() || this.props.isInitializing) {
+  useEffect(() => {
+    if (isMobile || isInitializing) {
       return;
     }
 
-    const { origin, destination } = this.props;
-
-    if (!origin && !destination && prevProps.isInitializing) {
-      // If both text fields are empty, focus on origin
-      this.focus(this.originRef.current);
-    } else if (!origin && destination) {
-      // a destination is set, origin is empty, so let's focus on origin
-      this.focus(this.originRef.current);
-    } else if (origin && !destination) {
+    if (!origin) {
+      // If both text fields are empty or only destination is filled, focus on origin
+      focus(originRef.current);
+    } else if (!destination) {
       // an origin is set, destination is empty, so let's focus on destination
-      this.focus(this.destinationRef.current);
+      focus(destinationRef.current);
     }
-  }
+  }, [origin, destination, isMobile, isInitializing]);
 
-  focus(node) {
+  const focus = node => {
     setTimeout(() => {
       node.focus();
     }, 0);
-  }
-
-  onChangePoint = (which, value, point) => {
-    this.props.onChangeDirectionPoint(which, value, point);
   };
 
-  onReverse = () => {
-    this.props.onReversePoints();
-  };
+  return (
+    <div className="direction-form">
+      <form className="direction-fields" noValidate>
+        <div className="direction-fields-block">
+          <DirectionInput
+            isLoading={isLoading}
+            value={originInputText}
+            point={origin}
+            otherPoint={destination}
+            pointType="origin"
+            onChangePoint={(input, point) => onChangeDirectionPoint('origin', input, point)}
+            ref={originRef}
+            withGeoloc={destination ? destination.type !== 'geoloc' : true}
+          />
+          <Divider paddingTop={0} paddingBottom={0} />
+          <DirectionInput
+            isLoading={isLoading}
+            value={destinationInputText}
+            point={destination}
+            otherPoint={origin}
+            pointType="destination"
+            onChangePoint={(input, point) => onChangeDirectionPoint('destination', input, point)}
+            ref={destinationRef}
+            withGeoloc={origin ? origin.type !== 'geoloc' : true}
+          />
+        </div>
 
-  render() {
-    const {
-      isLoading,
-      vehicles,
-      activeVehicle,
-      onSelectVehicle,
-      originInputText,
-      destinationInputText,
-      origin,
-      destination,
-    } = this.props;
+        <Button
+          pictoButton
+          variant="secondary"
+          disabled={originInputText === '' && destinationInputText === ''}
+          className="direction-invert-button"
+          onClick={onReversePoints}
+          title={_('Invert start and end', 'direction')}
+        >
+          <IconArrowUpDown fill="currentColor" />
+        </Button>
+      </form>
+      <VehicleSelector
+        vehicles={vehicles}
+        activeVehicle={activeVehicle}
+        onSelectVehicle={onSelectVehicle}
+      />
+    </div>
+  );
+};
 
-    return (
-      <div className="direction-form">
-        <form className="direction-fields" noValidate>
-          <div className="direction-fields-block">
-            <DirectionInput
-              isLoading={isLoading}
-              value={originInputText}
-              point={origin}
-              otherPoint={destination}
-              pointType="origin"
-              onChangePoint={(input, point) => this.onChangePoint('origin', input, point)}
-              ref={this.originRef}
-              withGeoloc={destination ? destination.type !== 'geoloc' : true}
-            />
-            <Divider paddingTop={0} paddingBottom={0} />
-            <DirectionInput
-              isLoading={isLoading}
-              value={destinationInputText}
-              point={destination}
-              otherPoint={origin}
-              pointType="destination"
-              onChangePoint={(input, point) => this.onChangePoint('destination', input, point)}
-              ref={this.destinationRef}
-              withGeoloc={origin ? origin.type !== 'geoloc' : true}
-            />
-          </div>
+DirectionForm.propTypes = {
+  isLoading: PropTypes.bool,
+  origin: PropTypes.object,
+  destination: PropTypes.object,
+  onChangeDirectionPoint: PropTypes.func.isRequired,
+  onReversePoints: PropTypes.func.isRequired,
+  vehicles: PropTypes.array.isRequired,
+  onSelectVehicle: PropTypes.func.isRequired,
+  activeVehicle: PropTypes.string.isRequired,
+  isInitializing: PropTypes.bool,
+  originInputText: PropTypes.string,
+  destinationInputText: PropTypes.string,
+};
 
-          <Button
-            pictoButton
-            variant="secondary"
-            disabled={originInputText === '' && destinationInputText === ''}
-            className="direction-invert-button"
-            onClick={this.onReverse}
-            title={_('Invert start and end', 'direction')}
-          >
-            <IconArrowUpDown fill="currentColor" />
-          </Button>
-        </form>
-        <VehicleSelector
-          vehicles={vehicles}
-          activeVehicle={activeVehicle}
-          onSelectVehicle={onSelectVehicle}
-        />
-      </div>
-    );
-  }
-}
+export default DirectionForm;
