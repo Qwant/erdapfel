@@ -1,8 +1,9 @@
 //import useFetch from 'use-http';
-import getABTestingInfos from '/bin/test-group.js';
+//import getABTestingInfos from '/bin/test-group.js';
 
 export const useSurvey = () => {
-  const { testGroupPer } = getABTestingInfos();
+  //const { testGroupPer } = getABTestingInfos();
+  const testGroupPer = 50;
 
   const params = new URLSearchParams();
   params.set('website', 'maps');
