@@ -1,19 +1,13 @@
-//import useFetch from 'use-http';
-//import getABTestingInfos from '/bin/test-group.js';
+import { useDevice, useConfig } from 'src/hooks';
 
 export const useSurvey = () => {
-  //const { testGroupPer } = getABTestingInfos();
-  const testGroupPer = 50;
-
+  const { testGroupPer } = useConfig('testGroupPer');
+  const { isMobile } = useDevice();
+  const { surveyApiUrl } = useConfig('survey');
   const params = new URLSearchParams();
   params.set('website', 'maps');
-  params.set('tgp', testGroupPer?.toString());
-
-  //const surveyApiURL = useApiUrl('/api/ux/surveys?' + params.toString(), {
-  //  version: 2,
-  //});
-  //const { data } = useFetch(surveyApiURL, {}, []);
-  //return data?.data[0] || null;
-
-  return params;
+  params.set('locale', window.preferedLanguage.locale); // case-insensitive: the API allows 'fr_FR' or 'fr_fr' formats.
+  params.set('tgp', testGroupPer || 50); // undefined?
+  params.set('device', isMobile ? 'mobile' : 'desktop');
+  return surveyApiUrl + '?' + params.toString();
 };

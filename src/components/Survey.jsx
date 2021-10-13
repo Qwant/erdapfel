@@ -1,24 +1,22 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { Notification, Text } from '@qwant/qwant-ponents';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDevice, useSurvey } from 'src/hooks';
 
 const Survey = ({ home = false }) => {
   const [enabled, setEnabled] = useState(true);
+  const [survey, setSurvey] = useState(null);
   const { isMobile } = useDevice();
+  const surveyUrl = useSurvey();
 
-  const surveyFromAPI = useSurvey();
-  console.log(surveyFromAPI);
-
-  // temp
-  const survey = {
-    person_name: 'John Doe',
-    title: 'Survey title',
-    image: 'image',
-    url: 'http://qwant.com',
-    cta: 'answer',
-  };
+  useEffect(async () => {
+    fetch(surveyUrl)
+      .then(response => response.json())
+      .then(response => {
+        setSurvey(response.data[0]);
+      });
+  }, []);
 
   const onClose = () => {
     setEnabled(false);
