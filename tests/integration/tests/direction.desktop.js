@@ -20,6 +20,12 @@ beforeEach(async () => {
   await responseHandler.prepareResponse();
 });
 
+test('close service panel when opening direction', async () => {
+  await page.goto(APP_URL);
+  await page.click('.search_form__direction_shortcut');
+  expect(await isHidden(page, '.service_panel')).toBeTruthy();
+});
+
 test('check "My position" label', async () => {
   await page.goto(`${APP_URL}/${ROUTES_PATH}`);
 
