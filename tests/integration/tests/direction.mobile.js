@@ -2,7 +2,7 @@
 import { initBrowser, exists, isHidden } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
-const mockMapBox = require('../../__data__/mapbox.json');
+const mockDirections = require('../../__data__/directions.json');
 
 let browser;
 let page;
@@ -21,7 +21,7 @@ beforeEach(async () => {
 describe('Mobile itinerary details', () => {
   test('show/hide itinerary roadmap on mobile', async () => {
     responseHandler.addPreparedResponse(
-      mockMapBox,
+      mockDirections,
       /\/7\.5000000,47\.4000000;6\.1000000,47\.4000000/
     );
     await page.goto(
