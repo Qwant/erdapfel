@@ -19,43 +19,36 @@ test('redirect unsupported browsers to dedicated page', async () => {
   expect(page.url()).toEqual(`${APP_URL}/unsupported`);
 });
 
-test('is dom loaded', async () => {
-  await page.goto(APP_URL);
-  expect(await exists(page, '#scene_container')).toBeTruthy();
-});
-
-test('is panels loaded', async () => {
+test('UI and map load correctly', async () => {
   await page.goto(APP_URL);
   expect(await exists(page, '.service_panel')).toBeTruthy();
-});
-
-test('is map loaded', async () => {
-  await page.goto(APP_URL);
   expect(await exists(page, '.mapboxgl-canvas')).toBeTruthy();
 });
 
-test('Use FR language setting from Qwant Search cookie', async () => {
-  await page.goto(APP_URL);
-  await page.setCookie({ name: 'l', value: 'fr' });
-  await page.reload();
-  const preferedLanguage = await page.evaluate('window.preferedLanguage');
-  expect(preferedLanguage.code).toEqual('fr');
-});
+describe('Localization', () => {
+  test('Use FR language setting from Qwant Search cookie', async () => {
+    await page.goto(APP_URL);
+    await page.setCookie({ name: 'l', value: 'fr' });
+    await page.reload();
+    const preferedLanguage = await page.evaluate('window.preferedLanguage');
+    expect(preferedLanguage.code).toEqual('fr');
+  });
 
-test('Use default language setting when Qwant Search cookie is not supported', async () => {
-  await page.goto(APP_URL);
-  await page.setCookie({ name: 'l', value: 'ko' });
-  await page.reload();
-  const preferedLanguage = await page.evaluate('window.preferedLanguage');
-  expect(preferedLanguage.code).toEqual('en');
-});
+  test('Use default language setting when Qwant Search cookie is not supported', async () => {
+    await page.goto(APP_URL);
+    await page.setCookie({ name: 'l', value: 'ko' });
+    await page.reload();
+    const preferedLanguage = await page.evaluate('window.preferedLanguage');
+    expect(preferedLanguage.code).toEqual('en');
+  });
 
-test('Use default language when no Qwant Search cookie is set', async () => {
-  await page.goto(APP_URL);
-  await page.deleteCookie({ name: 'l' });
-  await page.reload();
-  const preferedLanguage = await page.evaluate('window.preferedLanguage');
-  expect(preferedLanguage.code).toEqual('en');
+  test('Use default language when no Qwant Search cookie is set', async () => {
+    await page.goto(APP_URL);
+    await page.deleteCookie({ name: 'l' });
+    await page.reload();
+    const preferedLanguage = await page.evaluate('window.preferedLanguage');
+    expect(preferedLanguage.code).toEqual('en');
+  });
 });
 
 afterEach(async () => {
