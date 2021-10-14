@@ -11,12 +11,13 @@ export default class ResponseHandler {
   }
 
   addPreparedResponse(response, query, options) {
-    const alreadySetResponse = this.preparedResponses.find(
+    const alreadySetResponse = this.preparedResponses.findIndex(
       preparedResponse => preparedResponse.query.toString() === query.toString()
     );
-    if (!alreadySetResponse) {
-      this.preparedResponses.push({ response, query, options });
+    if (alreadySetResponse !== -1) {
+      this.preparedResponses.splice(alreadySetResponse, 1);
     }
+    this.preparedResponses.push({ response, query, options });
   }
 
   reset() {

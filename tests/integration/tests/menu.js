@@ -22,6 +22,18 @@ test('test menu toggling', async () => {
   expect(await isHidden(page, '.menu_panel')).toBeTruthy();
 });
 
+test('menu open favorite', async () => {
+  await page.goto(APP_URL);
+  await page.waitForSelector('.menu__button');
+
+  await page.click('.menu__button');
+  await page.waitForSelector('.menu__panel');
+  await waitForAnimationEnd(page, '.menu__panel');
+  await page.click('.menu-item:nth-child(1)');
+
+  expect(await exists(page, '.favorite_panel')).toBeTruthy();
+});
+
 afterEach(async () => {
   await clearStore(page);
 });

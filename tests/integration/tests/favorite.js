@@ -1,13 +1,25 @@
-import { initBrowser, clearStore, getMapView, exists } from '../tools';
-import { toggleFavoritePanel, storePoi } from '../favorites_tools';
+const poiMock = require('../../__data__/poi.json');
+import ResponseHandler from '../helpers/response_handler';
+import { initBrowser, clearStore, getMapView, exists, waitForAnimationEnd } from '../tools';
+import { toggleFavoritePanel, storePoi, getFavorites } from '../favorites_tools';
 
 let browser;
 let page;
+let responseHandler;
 
 beforeAll(async () => {
-  const browserPage = await initBrowser();
-  page = browserPage.page;
-  browser = browserPage.browser;
+  browser = (await initBrowser()).browser;
+});
+
+beforeEach(async () => {
+  page = await browser.newPage();
+  page.setDefaultTimeout(3000);
+  await page.setExtraHTTPHeaders({
+    'accept-language': 'fr_FR,fr,en;q=0.8' /* force fr header */,
+  });
+  responseHandler = new ResponseHandler(page);
+  await responseHandler.prepareResponse();
+  responseHandler.addPreparedResponse(poiMock, new RegExp(`places/${poiMock.id}`));
 });
 
 test('toggle favorite panel', async () => {
@@ -25,13 +37,6 @@ test('toggle favorite panel', async () => {
 
 test('favorite added is present in favorite panel', async () => {
   await page.goto(APP_URL);
-  await storePoi(page, { title: 'some poi' });
-  await toggleFavoritePanel(page);
-  expect(await exists(page, '.favorite_panel__items')).toBeTruthy();
-});
-
-test('restore favorite from localStorage', async () => {
-  await page.goto(APP_URL);
   const testTitle = 'demo_fav';
   await storePoi(page, { title: testTitle });
   await toggleFavoritePanel(page);
@@ -40,6 +45,39 @@ test('restore favorite from localStorage', async () => {
     return document.querySelector('.favorite_panel__item__title').innerText;
   });
   expect(title.trim()).toEqual(testTitle);
+});
+
+test('add/remove a favorite from the POI panel', async () => {
+  await page.goto(`${APP_URL}/place/${poiMock.id}`);
+  await page.waitForSelector('.poi_panel__actions');
+  await page.click('.poi_panel__actions .poi_panel__action__favorite');
+
+  if (process.env.TEST_DEVICE === 'mobile') {
+    await page.click('.search_form__clear');
+    await page.waitForSelector('.service_panel');
+  }
+
+  await toggleFavoritePanel(page);
+  let fav = await getFavorites(page);
+  expect(fav).toHaveLength(1);
+  expect(fav[0].title).toEqual("Musée d'Orsay");
+  expect(fav[0].desc).toEqual('Musée');
+  expect(fav[0].icons).toContainEqual('icon-museum');
+
+  // we then reopen the poi panel and 'unstar' the poi.
+  await page.click('.favorite_panel__item');
+  await page.waitForSelector('.poi_panel__actions');
+  await waitForAnimationEnd(page, '.panel');
+  await page.click('.poi_panel__actions .poi_panel__action__favorite');
+
+  if (process.env.TEST_DEVICE === 'mobile') {
+    await page.click('.search_form__clear');
+    await page.waitForSelector('.service_panel');
+  }
+  // it should disappear from the favorites
+  await toggleFavoritePanel(page);
+  fav = await getFavorites(page);
+  expect(fav).toEqual([]);
 });
 
 test('remove favorite using favorite panel', async () => {

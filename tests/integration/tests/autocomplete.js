@@ -140,40 +140,23 @@ test('mouse navigation', async () => {
   expect(selectedSearchValue).toEqual(expectedLabelName);
 });
 
-test('move to on click', async () => {
-  await page.goto(APP_URL);
+test('move and zoom map when selecting a suggestion', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
-  const { center: map_position_before } = await getMapView(page);
+  await page.goto(APP_URL);
+  const { center: previousCenter } = await getMapView(page);
   await autocompleteHelper.typeAndWait('Hello');
   await page.click('.autocomplete_suggestions li:nth-child(3)');
-  const { center: map_position_after } = await getMapView(page);
-  expect(map_position_before).not.toEqual(map_position_after);
-  const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates;
-  expect(map_position_after).toEqual({ lat: expectedLat, lng: expectedLng });
-});
-
-test('center on select', async () => {
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete/);
-  await page.goto(APP_URL);
-  await autocompleteHelper.typeAndWait('Hello');
-  await page.click('.autocomplete_suggestion:nth-child(1)');
   const { center, zoom } = await getMapView(page);
-  expect(center).toEqual({ lat: 5, lng: 30 });
+  const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates;
+  expect(center).not.toEqual(previousCenter);
+  expect(center).toEqual({ lat: expectedLat, lng: expectedLng });
   expect(zoom).toEqual(16.5);
-
-  // @TODO: this is supposed to test that the 'bbox' parameter is used, when present,
-  // to fit the map bounds to the best view. But this test is broken because of
-  // the absent bounds implementation in the MapBox-GL mock.
-  // Restore it properly if we use the real MapBox-GL for testing in the future.
-  // await page.keyboard.type('Hello');
-  // await page.waitFor(100);
-  // await page.waitForSelector('.autocomplete_suggestion');
-  // await page.click('.autocomplete_suggestion:nth-child(2)');
-  // const newCenter = await page.evaluate(() => {
-  //   return window.MAP_MOCK.getCenter();
-  // });
-  // expect(newCenter).toEqual({ lat: 4, lng: 3 });
 });
+
+// @TODO: When a 'bbox' parameter is present in a suggestion, it's used
+// to fit the map bounds to the best view. But we can't test this behavior
+// because of the absent bounds implementation in the MapBox-GL mock.
+// Add the test if we use the real MapBox-GL for testing in the future.
 
 test('favorite search', async () => {
   await page.goto(APP_URL);

@@ -1,6 +1,6 @@
 import Poi from 'src/adapters/poi/poi';
 import { getKey } from 'src/libs/pois';
-import { exists, waitForAnimationEnd } from './tools';
+import { waitForAnimationEnd } from './tools';
 import { version } from 'config/constants.yml';
 
 /**
@@ -30,7 +30,7 @@ export async function getFavorites(page) {
 export async function toggleFavoritePanel(page) {
   await page.waitForSelector('.menu__button');
   await page.click('.menu__button');
-  expect(await exists(page, '.menu__panel')).toBeTruthy();
+  await page.waitForSelector('.menu__panel');
   await waitForAnimationEnd(page, '.menu__panel');
   await page.click('.menu-item:nth-child(1)');
   await page.waitForSelector('.favorite_panel', { visible: true });

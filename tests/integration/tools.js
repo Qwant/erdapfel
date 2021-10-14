@@ -59,6 +59,22 @@ export async function simulateClickOnMap(page, latLng) {
   }, new LatLngPoi(latLng));
 }
 
+export async function simulateClickOnMapPoi(page, poi) {
+  const mapPoiMock = {
+    properties: {
+      global_id: poi.id,
+      name: poi.name,
+    },
+    geometry: poi.geometry,
+  };
+  await page.evaluate(clickedFeature => {
+    window.map.clickOnMap({}, clickedFeature);
+  }, mapPoiMock);
+  const mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox());
+  // Click on the top-left corner
+  await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);
+}
+
 export async function getInputValue(page, selector) {
   return await page.evaluate(s => document.querySelector(s)?.value, selector);
 }
