@@ -25,13 +25,6 @@ test('toggle favorite panel', async () => {
 
 test('favorite added is present in favorite panel', async () => {
   await page.goto(APP_URL);
-  await storePoi(page, { title: 'some poi' });
-  await toggleFavoritePanel(page);
-  expect(await exists(page, '.favorite_panel__items')).toBeTruthy();
-});
-
-test('restore favorite from localStorage', async () => {
-  await page.goto(APP_URL);
   const testTitle = 'demo_fav';
   await storePoi(page, { title: testTitle });
   await toggleFavoritePanel(page);
