@@ -7,7 +7,6 @@ import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
-import { DeviceContext } from 'src/libs/device';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { getAllSteps } from 'src/libs/route_utils';
@@ -15,7 +14,6 @@ import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from 'src/libs/address';
 import { CloseButton, Divider, Flex, FloatingButton } from 'src/components/ui';
-import { isMobileDevice } from 'src/libs/device';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
@@ -25,7 +23,7 @@ import ShareMenu from 'src/components/ui/ShareMenu';
 import { updateQueryString } from 'src/libs/url_utils';
 import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
-import { usePageTitle } from 'src/hooks';
+import { usePageTitle, useDevice } from 'src/hooks';
 import { Button, IconShare } from '@qwant/qwant-ponents';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
@@ -39,6 +37,7 @@ class DirectionPanel extends React.Component {
     isPublicTransportActive: PropTypes.bool,
     activeRouteId: PropTypes.number,
     details: PropTypes.bool,
+    isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -83,7 +82,7 @@ class DirectionPanel extends React.Component {
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
     // on mobile, when no origin is specified, try auto-geoloc
-    if (isMobileDevice() && !this.state.origin && !this.props.origin) {
+    if (this.props.isMobile && !this.state.origin && !this.props.origin) {
       const geolocationPermission = await getGeolocationPermission();
       let modalAccepted = false;
 
@@ -344,7 +343,7 @@ class DirectionPanel extends React.Component {
   };
 
   toggleDetails() {
-    if (isMobileDevice()) {
+    if (this.props.isMobile) {
       if (this.props.details) {
         window.app.navigateBack({
           relativeUrl: 'routes/' + updateQueryString({ details: false }),
@@ -373,7 +372,7 @@ class DirectionPanel extends React.Component {
       marginTop,
     } = this.state;
 
-    const { activeRouteId, details: activeDetails } = this.props;
+    const { activeRouteId, details: activeDetails, isMobile } = this.props;
 
     const title = (
       <h3 className="direction-title u-text--title u-firstCap">
@@ -416,107 +415,98 @@ class DirectionPanel extends React.Component {
     const isFormCompleted = origin && destination;
     const isResultDisplayed = !activePreviewRoute && isFormCompleted;
 
-    return (
-      <DeviceContext.Consumer>
-        {({ isMobile }) =>
-          isMobile ? (
-            <Fragment>
-              {!activePreviewRoute && (
-                <div className="direction-panel" ref={this.directionPanelRef}>
-                  {!isFormCompleted && (
-                    <Flex
-                      className="direction-panel-header"
-                      alignItems="center"
-                      justifyContent="space-between"
-                    >
-                      {title}
-                      <CloseButton onClick={this.onClose} />
-                    </Flex>
-                  )}
-                  {form}
-                  <div
-                    id="direction-autocomplete_suggestions"
-                    className="direction-autocomplete_suggestions"
-                  />
-                </div>
-              )}
-              {isResultDisplayed && (
-                <Panel
-                  className="direction-panel-mobile"
-                  resizable
-                  fitContent={['default', 'maximized']}
-                  marginTop={marginTop}
-                  minimizedTitle={_('Unfold to show the results', 'direction')}
-                  onClose={this.onClose}
-                  isMapBottomUIDisplayed={false}
-                  floatingItemsRight={[
-                    <ShareMenu key="action-share" url={window.location.toString()}>
-                      {openMenu => (
-                        <FloatingButton
-                          title={_('Share itinerary', 'direction')}
-                          onClick={e => this.handleShareClick(e, openMenu)}
-                          icon={<IconShare size={24} />}
-                        />
-                      )}
-                    </ShareMenu>,
-                  ]}
-                  onTransitionEnd={(prevSize, size) => {
-                    if (prevSize === 'maximized' && size === 'default' && activeRouteId >= 0) {
-                      fire('set_main_route', { routeId: activeRouteId, fitView: true });
-                    }
-                  }}
-                >
-                  {result}
-                </Panel>
-              )}
-
-              {activePreviewRoute && (
-                <MobileRoadMapPreview
-                  steps={getAllSteps(activePreviewRoute)}
-                  onClose={this.onClose}
-                />
-              )}
-
-              {!activePreviewRoute &&
-                isMobile &&
-                activeDetails &&
-                activeRouteId >= 0 &&
-                this.state.routes.length > 0 && (
-                  <MobileRouteDetails
-                    id={activeRouteId}
-                    route={routes[activeRouteId]}
-                    origin={origin}
-                    destination={destination}
-                    vehicle={vehicle}
-                    toggleDetails={() => this.toggleDetails()}
-                    openPreview={() => this.openMobilePreview(routes[activeRouteId])}
+    return isMobile ? (
+      <Fragment>
+        {!activePreviewRoute && (
+          <div className="direction-panel" ref={this.directionPanelRef}>
+            {!isFormCompleted && (
+              <Flex
+                className="direction-panel-header"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                {title}
+                <CloseButton onClick={this.onClose} />
+              </Flex>
+            )}
+            {form}
+            <div
+              id="direction-autocomplete_suggestions"
+              className="direction-autocomplete_suggestions"
+            />
+          </div>
+        )}
+        {isResultDisplayed && (
+          <Panel
+            className="direction-panel-mobile"
+            resizable
+            fitContent={['default', 'maximized']}
+            marginTop={marginTop}
+            minimizedTitle={_('Unfold to show the results', 'direction')}
+            onClose={this.onClose}
+            isMapBottomUIDisplayed={false}
+            floatingItemsRight={[
+              <ShareMenu key="action-share" url={window.location.toString()}>
+                {openMenu => (
+                  <FloatingButton
+                    title={_('Share itinerary', 'direction')}
+                    onClick={e => this.handleShareClick(e, openMenu)}
+                    icon={<IconShare size={24} />}
                   />
                 )}
-            </Fragment>
-          ) : (
-            <Panel className="direction-panel" onClose={this.onClose} renderHeader={form}>
-              <div id="direction-autocomplete_suggestions" />
-              {isResultDisplayed && (
-                <ShareMenu url={window.location.toString()}>
-                  {openMenu => (
-                    <Button
-                      className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
-                      variant="tertiary"
-                      title={_('Share itinerary', 'direction')}
-                      onClick={e => this.handleShareClick(e, openMenu)}
-                    >
-                      <IconShare />
-                      {_('Share itinerary', 'direction')}
-                    </Button>
-                  )}
-                </ShareMenu>
-              )}
-              <Divider paddingTop={8} paddingBottom={0} />
-              {result}
-            </Panel>
-          )
-        }
-      </DeviceContext.Consumer>
+              </ShareMenu>,
+            ]}
+            onTransitionEnd={(prevSize, size) => {
+              if (prevSize === 'maximized' && size === 'default' && activeRouteId >= 0) {
+                fire('set_main_route', { routeId: activeRouteId, fitView: true });
+              }
+            }}
+          >
+            {result}
+          </Panel>
+        )}
+
+        {activePreviewRoute && (
+          <MobileRoadMapPreview steps={getAllSteps(activePreviewRoute)} onClose={this.onClose} />
+        )}
+
+        {!activePreviewRoute &&
+          isMobile &&
+          activeDetails &&
+          activeRouteId >= 0 &&
+          this.state.routes.length > 0 && (
+            <MobileRouteDetails
+              id={activeRouteId}
+              route={routes[activeRouteId]}
+              origin={origin}
+              destination={destination}
+              vehicle={vehicle}
+              toggleDetails={() => this.toggleDetails()}
+              openPreview={() => this.openMobilePreview(routes[activeRouteId])}
+            />
+          )}
+      </Fragment>
+    ) : (
+      <Panel className="direction-panel" onClose={this.onClose} renderHeader={form}>
+        <div id="direction-autocomplete_suggestions" />
+        {isResultDisplayed && (
+          <ShareMenu url={window.location.toString()}>
+            {openMenu => (
+              <Button
+                className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
+                variant="tertiary"
+                title={_('Share itinerary', 'direction')}
+                onClick={e => this.handleShareClick(e, openMenu)}
+              >
+                <IconShare />
+                {_('Share itinerary', 'direction')}
+              </Button>
+            )}
+          </ShareMenu>
+        )}
+        <Divider paddingTop={8} paddingBottom={0} />
+        {result}
+      </Panel>
     );
   }
 }
@@ -525,7 +515,8 @@ DirectionPanel.contextType = PanelContext;
 
 const DirectionPanelFunc = props => {
   usePageTitle(_('Directions'));
-  return <DirectionPanel {...props} />;
+  const { isMobile } = useDevice();
+  return <DirectionPanel isMobile={isMobile} {...props} />;
 };
 
 export default DirectionPanelFunc;
