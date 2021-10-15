@@ -40,7 +40,6 @@ class DirectionPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.directionPanelRef = React.createRef();
     this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
     if (this.props.isPublicTransportActive) {
       this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
