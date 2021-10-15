@@ -1,7 +1,9 @@
 /* globals _ */
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from 'src/components/ui';
+import { Panel, Divider, ShareMenu } from 'src/components/ui';
+import { Button, IconShare } from '@qwant/qwant-ponents';
+import MobileDirectionPanel from './MobileDirectionPanel';
 import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
@@ -9,24 +11,15 @@ import Telemetry from 'src/libs/telemetry';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
-import { getAllSteps } from 'src/libs/route_utils';
-import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from 'src/libs/address';
-import { CloseButton, Divider, Flex, FloatingButton } from 'src/components/ui';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import { PanelContext } from 'src/libs/panelContext.js';
 import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
-import ShareMenu from 'src/components/ui/ShareMenu';
 import { updateQueryString } from 'src/libs/url_utils';
-import MobileRouteDetails from './MobileRouteDetails';
 import { isNullOrEmpty } from 'src/libs/object';
 import { usePageTitle, useDevice } from 'src/hooks';
-import { Button, IconShare } from '@qwant/qwant-ponents';
-
-const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
 class DirectionPanel extends React.Component {
   static propTypes = {
@@ -65,11 +58,9 @@ class DirectionPanel extends React.Component {
       isDirty: true, // useful to track intermediary states, when API update call is not made yet
       error: 0,
       routes: [],
-      activePreviewRoute: null,
       isInitializing: true,
       originInputText: '',
       destinationInputText: '',
-      marginTop: 0,
     };
 
     this.restorePoints(props);
@@ -111,20 +102,9 @@ class DirectionPanel extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const marginTop = this.directionPanelRef.current
-      ? this.directionPanelRef.current.offsetHeight + MARGIN_TOP_OFFSET
-      : 0;
-
-    if (marginTop !== this.state.marginTop) {
-      this.setState({
-        marginTop,
-      });
-    }
-
     if (this.props.activeRouteId !== prevProps.activeRouteId && this.state.routes.length > 0) {
       fire('set_main_route', { routeId: this.props.activeRouteId, fitView: true });
       this.updateUrl({ params: { details: null }, replace: true });
-      this.setState({ activePreviewRoute: null });
     }
 
     if (this.state.routes.length !== 0 && prevState.routes.length === 0) {
@@ -259,7 +239,6 @@ class DirectionPanel extends React.Component {
   update() {
     this.updateUrl({ replace: true });
     this.computeRoutes();
-    this.context.setSize('default');
   }
 
   onSelectVehicle = vehicle => {
@@ -268,14 +247,10 @@ class DirectionPanel extends React.Component {
   };
 
   onClose = () => {
-    if (this.state.activePreviewRoute) {
-      this.setState({ activePreviewRoute: null });
-    } else {
-      Telemetry.add(Telemetry.ITINERARY_CLOSE);
-      this.props.poi
-        ? window.history.back() // Go back to the poi panel
-        : window.app.navigateTo('/');
-    }
+    Telemetry.add(Telemetry.ITINERARY_CLOSE);
+    this.props.poi
+      ? window.history.back() // Go back to the poi panel
+      : window.app.navigateTo('/');
   };
 
   reversePoints = () => {
@@ -298,7 +273,6 @@ class DirectionPanel extends React.Component {
         [which]: point,
         isDirty: true,
         [which + 'InputText']: value || '',
-        activePreviewRoute: null,
       },
       () => {
         this.update();
@@ -328,11 +302,6 @@ class DirectionPanel extends React.Component {
     );
   };
 
-  openMobilePreview = route => {
-    Telemetry.add(Telemetry.ITINERARY_ROUTE_PREVIEW_OPEN);
-    this.setState({ activePreviewRoute: route });
-  };
-
   handleShareClick = (e, handler) => {
     Telemetry.add(Telemetry.ITINERARY_SHARE);
     return handler(e);
@@ -342,7 +311,7 @@ class DirectionPanel extends React.Component {
     this.updateUrl({ params: { selected: routeId }, replace: true });
   };
 
-  toggleDetails() {
+  toggleDetails = () => {
     if (this.props.isMobile) {
       if (this.props.details) {
         window.app.navigateBack({
@@ -354,7 +323,7 @@ class DirectionPanel extends React.Component {
     } else {
       this.updateUrl({ params: { details: !this.props.details }, replace: true });
     }
-  }
+  };
 
   render() {
     const {
@@ -363,22 +332,15 @@ class DirectionPanel extends React.Component {
       vehicle,
       routes,
       error,
-      activePreviewRoute,
       isLoading,
       isDirty,
       isInitializing,
       originInputText,
       destinationInputText,
-      marginTop,
     } = this.state;
 
     const { activeRouteId, details: activeDetails, isMobile } = this.props;
 
-    const title = (
-      <h3 className="direction-title u-text--title u-firstCap">
-        {_('calculate an itinerary', 'direction')}
-      </h3>
-    );
     const form = (
       <DirectionForm
         isLoading={isLoading}
@@ -407,89 +369,28 @@ class DirectionPanel extends React.Component {
         routes={routes}
         origin={origin}
         destination={destination}
-        toggleDetails={() => this.toggleDetails()}
+        toggleDetails={this.toggleDetails}
         selectRoute={this.selectRoute}
       />
     );
 
-    const isFormCompleted = origin && destination;
-    const isResultDisplayed = !activePreviewRoute && isFormCompleted;
-
     return isMobile ? (
-      <Fragment>
-        {!activePreviewRoute && (
-          <div className="direction-panel" ref={this.directionPanelRef}>
-            {!isFormCompleted && (
-              <Flex
-                className="direction-panel-header"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                {title}
-                <CloseButton onClick={this.onClose} />
-              </Flex>
-            )}
-            {form}
-            <div
-              id="direction-autocomplete_suggestions"
-              className="direction-autocomplete_suggestions"
-            />
-          </div>
-        )}
-        {isResultDisplayed && (
-          <Panel
-            className="direction-panel-mobile"
-            resizable
-            fitContent={['default', 'maximized']}
-            marginTop={marginTop}
-            minimizedTitle={_('Unfold to show the results', 'direction')}
-            onClose={this.onClose}
-            isMapBottomUIDisplayed={false}
-            floatingItemsRight={[
-              <ShareMenu key="action-share" url={window.location.toString()}>
-                {openMenu => (
-                  <FloatingButton
-                    title={_('Share itinerary', 'direction')}
-                    onClick={e => this.handleShareClick(e, openMenu)}
-                    icon={<IconShare size={24} />}
-                  />
-                )}
-              </ShareMenu>,
-            ]}
-            onTransitionEnd={(prevSize, size) => {
-              if (prevSize === 'maximized' && size === 'default' && activeRouteId >= 0) {
-                fire('set_main_route', { routeId: activeRouteId, fitView: true });
-              }
-            }}
-          >
-            {result}
-          </Panel>
-        )}
-
-        {activePreviewRoute && (
-          <MobileRoadMapPreview steps={getAllSteps(activePreviewRoute)} onClose={this.onClose} />
-        )}
-
-        {!activePreviewRoute &&
-          isMobile &&
-          activeDetails &&
-          activeRouteId >= 0 &&
-          this.state.routes.length > 0 && (
-            <MobileRouteDetails
-              id={activeRouteId}
-              route={routes[activeRouteId]}
-              origin={origin}
-              destination={destination}
-              vehicle={vehicle}
-              toggleDetails={() => this.toggleDetails()}
-              openPreview={() => this.openMobilePreview(routes[activeRouteId])}
-            />
-          )}
-      </Fragment>
+      <MobileDirectionPanel
+        form={form}
+        result={result}
+        routes={routes}
+        origin={origin}
+        destination={destination}
+        vehicle={vehicle}
+        toggleDetails={this.toggleDetails}
+        activeDetails={activeDetails}
+        activeRouteId={activeRouteId}
+        onClose={this.onClose}
+      />
     ) : (
       <Panel className="direction-panel" onClose={this.onClose} renderHeader={form}>
-        <div id="direction-autocomplete_suggestions" />
-        {isResultDisplayed && (
+        <div className="direction-autocomplete_suggestions" />
+        {routes.length > 0 && (
           <ShareMenu url={window.location.toString()}>
             {openMenu => (
               <Button
@@ -510,8 +411,6 @@ class DirectionPanel extends React.Component {
     );
   }
 }
-
-DirectionPanel.contextType = PanelContext;
 
 const DirectionPanelFunc = props => {
   usePageTitle(_('Directions'));
