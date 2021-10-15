@@ -89,7 +89,7 @@ const DirectionInput = ({
       <div className="direction-input">
         <Suggest
           value={value}
-          outputNode={document.getElementById('direction-autocomplete_suggestions')}
+          outputNode={document.querySelector('.direction-autocomplete_suggestions')}
           withGeoloc={withGeoloc}
           onSelect={selectItem}
           withHistory={searchHistoryConfig?.enabled}
