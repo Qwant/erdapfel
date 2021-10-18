@@ -173,9 +173,8 @@ class DirectionPanel extends React.Component {
   };
 
   render() {
-    const { origin, destination, isInitializing } = this.state;
-
-    const { activeRouteId, details: activeDetails, isMobile, routes, vehicle } = this.props;
+    const { isInitializing } = this.state;
+    const { details: activeDetails, isMobile, routes } = this.props;
 
     const form = (
       <DirectionForm
@@ -198,13 +197,8 @@ class DirectionPanel extends React.Component {
       <MobileDirectionPanel
         form={form}
         result={result}
-        routes={routes}
-        origin={origin}
-        destination={destination}
-        vehicle={vehicle}
         toggleDetails={this.toggleDetails}
         activeDetails={activeDetails}
-        activeRouteId={activeRouteId}
         onClose={this.onClose}
         handleShareClick={this.handleShareClick}
       />

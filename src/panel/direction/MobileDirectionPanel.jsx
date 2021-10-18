@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Panel, ShareMenu, FloatingButton, CloseButton } from 'src/components/ui';
 import { Flex, IconShare } from '@qwant/qwant-ponents';
 import MobileRouteDetails from './MobileRouteDetails';
@@ -7,19 +7,15 @@ import { getAllSteps } from 'src/libs/route_utils';
 import { fire } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 import { useI18n } from 'src/hooks';
+import { DirectionContext } from './directionStore';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
 const MobileDirectionPanel = ({
   form,
   result,
-  routes,
-  origin,
-  destination,
-  vehicle,
   toggleDetails,
   activeDetails,
-  activeRouteId,
   onClose,
   handleShareClick,
 }) => {
@@ -27,6 +23,8 @@ const MobileDirectionPanel = ({
   const [activePreviewRoute, setActivePreviewRoute] = useState(null);
   const directionPanelRef = useRef(null);
   const { _ } = useI18n();
+  const { state } = useContext(DirectionContext);
+  const { origin, destination, vehicle, routes, activeRouteId } = state;
 
   useEffect(() => {
     setActivePreviewRoute(null);
