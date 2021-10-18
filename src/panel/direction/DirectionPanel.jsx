@@ -11,13 +11,14 @@ import Telemetry from 'src/libs/telemetry';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
-import { fire, listen, unListen } from 'src/libs/customEvents';
+import { fire } from 'src/libs/customEvents';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import { updateQueryString } from 'src/libs/url_utils';
 import { useDevice } from 'src/hooks';
 import { DirectionContext } from './directionStore';
+import DirectionMap from './DirectionMap';
 
 class DirectionPanel extends React.Component {
   static propTypes = {
@@ -268,42 +269,8 @@ const DirectionPanelFunc = props => {
 
     return () => {
       dispatch({ type: 'reset' });
-      fire('clean_routes');
-      fire('update_map_paddings');
     };
   }, [dispatch]);
-
-  // map side effects
-  useEffect(() => {
-    const dragPointHandler = listen('change_direction_point', (which, point) => {
-      dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: point });
-    });
-
-    const setPointHandler = listen('set_direction_point', point => {
-      if (origin && destination) {
-        return;
-      }
-      dispatch({ type: origin ? 'setDestination' : 'setOrigin', data: point });
-    });
-
-    return () => {
-      unListen(dragPointHandler);
-      unListen(setPointHandler);
-    };
-  }, [origin, destination, dispatch]);
-
-  useEffect(() => {
-    // @TODO: on map ready
-    fire('set_routes', {
-      routes,
-      vehicle,
-      activeRouteId,
-    });
-  }, [routes /* Omit active route ID and vehicle on purpose */]);
-
-  useEffect(() => {
-    fire('set_main_route', { routeId: activeRouteId, fitView: true });
-  }, [activeRouteId]);
 
   // url side effect
   useEffect(() => {
@@ -314,25 +281,26 @@ const DirectionPanelFunc = props => {
       selected: activeRouteId,
       // @TODO: details,
     });
-    const relativeUrl = 'routes/' + search;
-
-    console.log(relativeUrl);
+    const _relativeUrl = 'routes/' + search;
 
     // @TODO
     //window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
   }, [origin, destination, vehicle, activeRouteId]);
 
   return (
-    <DirectionPanel
-      isMobile={isMobile}
-      {...props}
-      vehicle={vehicle}
-      routes={routes}
-      activeRouteId={activeRouteId}
-      error={error}
-      isLoading={isLoading}
-      dispatch={dispatch}
-    />
+    <>
+      <DirectionPanel
+        isMobile={isMobile}
+        {...props}
+        vehicle={vehicle}
+        routes={routes}
+        activeRouteId={activeRouteId}
+        error={error}
+        isLoading={isLoading}
+        dispatch={dispatch}
+      />
+      <DirectionMap />
+    </>
   );
 };
 
