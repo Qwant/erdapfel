@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Notification, Text } from '@qwant/qwant-ponents';
 import React, { useState, useEffect } from 'react';
-import { useDevice, useSurvey } from 'src/hooks';
+import { useDevice, useSurvey, fetchSurvey } from 'src/hooks';
 
 const Survey = () => {
   const [enabled, setEnabled] = useState(true);
@@ -9,8 +9,8 @@ const Survey = () => {
   const { isMobile } = useDevice();
   const surveyUrl = useSurvey();
 
-  useEffect(async () => {
-    fetch(surveyUrl)
+  useEffect(() => {
+    fetchSurvey(surveyUrl)
       .then(response => response.json())
       .then(response => {
         setSurvey(response.data[0]);
@@ -22,7 +22,7 @@ const Survey = () => {
   };
 
   return (
-    <div>
+    <div className="survey">
       {survey && enabled && (
         <Notification
           title={survey.person_name}
