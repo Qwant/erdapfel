@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 import RoutesList from './RoutesList';
-import { SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
+import { UserFeedbackYesNo } from 'src/components/ui';
 import { useDevice, useI18n } from 'src/hooks';
 import { PanelContext } from 'src/libs/panelContext';
 import { DirectionContext } from './directionStore';
@@ -72,11 +72,6 @@ const RouteResult = ({ activeDetails, selectRoute, toggleDetails }) => {
           context={document.location.href}
           question={_('Satisfied with the results?')}
         />
-      )}
-      {vehicle === 'publicTransport' && routes.length > 0 && (
-        <SourceFooter>
-          <a href="https://combigo.com/">{_('Results in partnership with Combigo')}</a>
-        </SourceFooter>
       )}
     </>
   );
