@@ -1,21 +1,12 @@
 import PropTypes from 'prop-types';
 import { Notification, Text } from '@qwant/qwant-ponents';
-import React, { useState, useEffect } from 'react';
-import { useDevice, useSurvey, fetchSurvey } from 'src/hooks';
+import React, { useState } from 'react';
+import { useDevice, useSurvey } from 'src/hooks';
 
 const Survey = () => {
   const [enabled, setEnabled] = useState(true);
-  const [survey, setSurvey] = useState(null);
   const { isMobile } = useDevice();
-  const surveyUrl = useSurvey();
-
-  useEffect(() => {
-    fetchSurvey(surveyUrl)
-      .then(response => response.json())
-      .then(response => {
-        setSurvey(response.data[0]);
-      });
-  }, []);
+  const survey = useSurvey();
 
   const onClose = () => {
     setEnabled(false);
