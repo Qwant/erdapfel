@@ -1,9 +1,11 @@
 import React, { useReducer, useEffect } from 'react';
-import DirectionApi from 'src/adapters/direction_api';
+import DirectionApi, { modes } from 'src/adapters/direction_api';
+import { useConfig } from 'src/hooks';
 
 const initialState = {
   origin: null,
   destination: null,
+  vehicles: [],
   vehicle: 'driving',
   isLoading: false,
   routes: [],
@@ -20,7 +22,10 @@ export const directionReducer = (state, action) => {
     case 'reversePoints':
       return { ...state, destination: state.origin, origin: state.destination };
     case 'setVehicle':
-      return { ...state, vehicle: action.data };
+      return {
+        ...state,
+        vehicle: state.vehicles.includes(action.data) ? action.data : modes.DRIVING,
+      };
     case 'updating':
       return { ...state, routes: [], isLoading: true, error: 0, activeRouteId: 0 };
     case 'setRoutes':
@@ -43,7 +48,15 @@ export const DirectionContext = React.createContext(initialState);
 let lastQueryId = 0;
 
 export const DirectionProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(directionReducer, initialState);
+  const {
+    publicTransport: { enabled: ptEnabled },
+  } = useConfig('direction');
+  const vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
+  if (ptEnabled) {
+    vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
+  }
+
+  const [state, dispatch] = useReducer(directionReducer, { ...initialState, vehicles });
   const { origin, destination, vehicle } = state;
 
   useEffect(() => {

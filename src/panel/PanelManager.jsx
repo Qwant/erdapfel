@@ -154,17 +154,13 @@ const PanelManager = ({ router }) => {
     });
 
     if (directionConf.enabled) {
-      const isPublicTransportActive =
-        (directionConf.publicTransport && directionConf.publicTransport.enabled) ||
-        parseQueryString(document.location.search)['pt'] === 'true';
-
       router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
         const params = parseQueryString(routeParams);
         params.details = params.details === 'true';
         params.activeRouteId = Number(params.selected) || 0;
         setPanelOptions({
           ActivePanel: Directions,
-          options: { ...params, ...options, isPublicTransportActive },
+          options: { ...params, ...options },
           panelSize: 'default',
         });
       });

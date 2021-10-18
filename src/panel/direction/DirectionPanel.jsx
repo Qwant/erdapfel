@@ -6,7 +6,6 @@ import { Button, IconShare } from '@qwant/qwant-ponents';
 import MobileDirectionPanel from './MobileDirectionPanel';
 import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
-import { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Error from 'src/adapters/error';
@@ -26,7 +25,6 @@ class DirectionPanel extends React.Component {
     destination: PropTypes.string,
     poi: PropTypes.object,
     mode: PropTypes.string,
-    isPublicTransportActive: PropTypes.bool,
     details: PropTypes.bool,
     isMobile: PropTypes.bool,
 
@@ -39,14 +37,6 @@ class DirectionPanel extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
-    if (this.props.isPublicTransportActive) {
-      this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
-    }
-
-    // @TODO
-    // const activeVehicle = this.vehicles.indexOf(props.mode) !== -1 ? props.mode : modes.DRIVING;
 
     this.state = {
       origin: null,
@@ -199,7 +189,6 @@ class DirectionPanel extends React.Component {
       <DirectionForm
         onChangeDirectionPoint={this.changeDirectionPoint}
         onReversePoints={this.reversePoints}
-        vehicles={this.vehicles}
         onSelectVehicle={this.onSelectVehicle}
         isInitializing={isInitializing}
       />

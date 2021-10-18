@@ -14,7 +14,6 @@ import { DirectionContext } from './directionStore';
 const DirectionForm = ({
   onChangeDirectionPoint,
   onReversePoints,
-  vehicles,
   onSelectVehicle,
   isInitializing,
 }) => {
@@ -23,7 +22,7 @@ const DirectionForm = ({
   const originRef = useRef(null);
   const destinationRef = useRef(null);
   const {
-    state: { origin, destination, vehicle, isLoading },
+    state: { origin, destination, vehicles, vehicle, isLoading },
   } = useContext(DirectionContext);
   const [originInputText, setOriginInputText] = useState('');
   const [destinationInputText, setDestinationInputText] = useState('');
@@ -134,7 +133,6 @@ const DirectionForm = ({
 DirectionForm.propTypes = {
   onChangeDirectionPoint: PropTypes.func.isRequired,
   onReversePoints: PropTypes.func.isRequired,
-  vehicles: PropTypes.array.isRequired,
   onSelectVehicle: PropTypes.func.isRequired,
   isInitializing: PropTypes.bool,
 };
