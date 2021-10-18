@@ -1,4 +1,4 @@
-import { useDevice, useConfig } from 'src/hooks';
+import { useDevice, useConfig, useI18n } from 'src/hooks';
 
 export const useSurvey = () => {
   const testGroupPer = useConfig('testGroupPer');
@@ -6,9 +6,9 @@ export const useSurvey = () => {
   const { surveyApiUrl } = useConfig('survey');
   const params = new URLSearchParams();
   params.set('website', 'maps');
-  params.set('locale', window.preferedLanguage.locale); // case-insensitive: the API allows 'fr_FR' or 'fr_fr' formats.
+  params.set('locale', useI18n().locale);
   params.set('tgp', testGroupPer);
-  params.set('device', isMobile ? 'mobile' : 'desktop');
+  params.set('device', isMobile ? 'smartphone' : 'desktop');
   return surveyApiUrl + '?' + params.toString();
 };
 
