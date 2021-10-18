@@ -12,13 +12,10 @@ import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import * as address from 'src/libs/address';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
-import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import { updateQueryString } from 'src/libs/url_utils';
-import { isNullOrEmpty } from 'src/libs/object';
 import { useDevice } from 'src/hooks';
 import { DirectionContext } from './directionStore';
 
@@ -54,17 +51,12 @@ class DirectionPanel extends React.Component {
       origin: null,
       destination: (props.poi && Poi.deserialize(props.poi)) || null,
       isInitializing: true,
-      originInputText: '',
-      destinationInputText: '',
     };
 
     this.restorePoints(props);
   }
 
   async componentDidMount() {
-    this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
-    this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
-
     // on mobile, when no origin is specified, try auto-geoloc
     if (this.props.isMobile && !this.state.origin && !this.props.origin) {
       const geolocationPermission = await getGeolocationPermission();
@@ -94,28 +86,15 @@ class DirectionPanel extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(_prevProps) {
     // @TODO: details status in url
     // if (this.props.activeRouteId !== prevProps.activeRouteId && this.props.routes.length > 0) {
     //   this.updateUrl({ params: { details: null }, replace: true });
     // }
-
-    if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
-      fire('update_map_paddings');
-    }
-  }
-
-  componentWillUnmount() {
-    unListen(this.dragPointHandler);
-    unListen(this.setPointHandler);
-  }
-
-  async setTextInput(which, poi) {
-    if (isNullOrEmpty(poi.address)) {
-      // fetch missing address
-      poi.address = await address.fetch(poi);
-    }
-    this.setState({ [which + 'InputText']: getInputValue(poi) });
+    // @TODO???
+    // if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
+    //   fire('update_map_paddings');
+    // }
   }
 
   async restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
@@ -135,7 +114,6 @@ class DirectionPanel extends React.Component {
           }
         });
         this.props.dispatch({ type: 'setOrigin', data: origin });
-        this.setTextInput('origin', origin);
       }
 
       if (destination) {
@@ -146,7 +124,6 @@ class DirectionPanel extends React.Component {
           }
         });
         this.props.dispatch({ type: 'setDestination', data: destination });
-        this.setTextInput('destination', destination);
       }
 
       this.setState({ isInitializing: false });
@@ -175,37 +152,10 @@ class DirectionPanel extends React.Component {
   reversePoints = () => {
     Telemetry.add(Telemetry.ITINERARY_INVERT);
     this.props.dispatch({ type: 'reversePoints' });
-    // @TODO
-    this.setState(previousState => ({
-      originInputText: previousState.destinationInputText,
-      destinationInputText: previousState.originInputText,
-    }));
   };
 
-  changeDirectionPoint = (which, value, point) => {
+  changeDirectionPoint = (which, point) => {
     this.props.dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: point });
-
-    this.setState(
-      {
-        [which + 'InputText']: value || '',
-      },
-      () => {
-        // Retrieve addresses
-        if (point && point.type === 'latlon') {
-          this.setTextInput(which, this.state[which]);
-        }
-      }
-    );
-  };
-
-  setDirectionPoint = poi => {
-    if (this.state.origin && this.state.destination) {
-      return;
-    }
-    const which = this.state.origin ? 'destination' : 'origin';
-    this.setTextInput(which, poi);
-
-    this.props.dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: poi });
   };
 
   handleShareClick = (e, handler) => {
@@ -232,13 +182,7 @@ class DirectionPanel extends React.Component {
   };
 
   render() {
-    const {
-      origin,
-      destination,
-      isInitializing,
-      originInputText,
-      destinationInputText,
-    } = this.state;
+    const { origin, destination, isInitializing } = this.state;
 
     const {
       activeRouteId,
@@ -252,18 +196,10 @@ class DirectionPanel extends React.Component {
 
     const form = (
       <DirectionForm
-        isLoading={isLoading}
-        origin={origin}
-        destination={destination}
-        originInputText={originInputText}
-        destinationInputText={destinationInputText}
         onChangeDirectionPoint={this.changeDirectionPoint}
         onReversePoints={this.reversePoints}
-        onEmptyOrigin={this.emptyOrigin}
-        onEmptyDestination={this.emptyDestination}
         vehicles={this.vehicles}
         onSelectVehicle={this.onSelectVehicle}
-        activeVehicle={vehicle}
         isInitializing={isInitializing}
       />
     );
@@ -338,6 +274,24 @@ const DirectionPanelFunc = props => {
   }, [dispatch]);
 
   // map side effects
+  useEffect(() => {
+    const dragPointHandler = listen('change_direction_point', (which, point) => {
+      dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: point });
+    });
+
+    const setPointHandler = listen('set_direction_point', point => {
+      if (origin && destination) {
+        return;
+      }
+      dispatch({ type: origin ? 'setDestination' : 'setOrigin', data: point });
+    });
+
+    return () => {
+      unListen(dragPointHandler);
+      unListen(setPointHandler);
+    };
+  }, [origin, destination, dispatch]);
+
   useEffect(() => {
     // @TODO: on map ready
     fire('set_routes', {
