@@ -95,3 +95,6 @@ userFeedback:
 
 searchHistory:
   enabled: false
+
+survey:
+  surveyApiUrl: override_by_environment
