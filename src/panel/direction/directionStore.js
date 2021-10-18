@@ -27,12 +27,14 @@ export const directionReducer = (state, action) => {
       return { ...state, routes: action.data, isLoading: false, error: 0 };
     case 'setError':
       return { ...state, routes: [], isLoading: false, error: action.data };
+    case 'setActiveRoute':
+      return { ...state, activeRouteId: action.data };
     case 'clearRoutes':
       return { ...state, routes: [], isLoading: false, error: 0 };
-    case 'activeRouteId':
-      return { ...state, activeRouteId: action.data };
+    case 'reset':
+      return initialState;
     default:
-      throw new Error();
+      return state;
   }
 };
 

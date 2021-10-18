@@ -1,5 +1,5 @@
 /* globals _ */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Divider, ShareMenu } from 'src/components/ui';
 import { Button, IconShare } from '@qwant/qwant-ponents';
@@ -19,8 +19,8 @@ import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolo
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import { updateQueryString } from 'src/libs/url_utils';
 import { isNullOrEmpty } from 'src/libs/object';
-import { usePageTitle, useDevice } from 'src/hooks';
-import { DirectionProvider, DirectionContext } from './directionStore';
+import { useDevice } from 'src/hooks';
+import { DirectionContext } from './directionStore';
 
 class DirectionPanel extends React.Component {
   static propTypes = {
@@ -29,18 +29,14 @@ class DirectionPanel extends React.Component {
     poi: PropTypes.object,
     mode: PropTypes.string,
     isPublicTransportActive: PropTypes.bool,
-    activeRouteId: PropTypes.number,
     details: PropTypes.bool,
     isMobile: PropTypes.bool,
 
     routes: PropTypes.array,
+    activeRouteId: PropTypes.number,
+    error: PropTypes.number,
     isLoading: PropTypes.bool,
     dispatch: PropTypes.func,
-  };
-
-  static defaultProps = {
-    activeRouteId: 0,
-    routes: [],
   };
 
   constructor(props) {
@@ -51,17 +47,12 @@ class DirectionPanel extends React.Component {
       this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
     }
 
-    const activeVehicle = this.vehicles.indexOf(props.mode) !== -1 ? props.mode : modes.DRIVING;
-
-    this.lastQueryId = 0;
+    // @TODO
+    // const activeVehicle = this.vehicles.indexOf(props.mode) !== -1 ? props.mode : modes.DRIVING;
 
     this.state = {
-      vehicle: activeVehicle,
       origin: null,
       destination: (props.poi && Poi.deserialize(props.poi)) || null,
-      // @TODO
-      isDirty: false, // useful to track intermediary states, when API update call is not made yet
-      error: 0,
       isInitializing: true,
       originInputText: '',
       destinationInputText: '',
@@ -71,8 +62,6 @@ class DirectionPanel extends React.Component {
   }
 
   async componentDidMount() {
-    Telemetry.add(Telemetry.ITINERARY_OPEN);
-    document.body.classList.add('directions-open');
     this.dragPointHandler = listen('change_direction_point', this.changeDirectionPoint);
     this.setPointHandler = listen('set_direction_point', this.setDirectionPoint);
 
@@ -97,7 +86,7 @@ class DirectionPanel extends React.Component {
           await origin.geolocate({
             displayErrorModal: false,
           });
-          this.setState({ origin, originInputText: origin.name }, this.update);
+          this.setState({ origin, originInputText: origin.name });
         } catch (e) {
           // ignore possible error
         }
@@ -106,10 +95,10 @@ class DirectionPanel extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.activeRouteId !== prevProps.activeRouteId && this.props.routes.length > 0) {
-      fire('set_main_route', { routeId: this.props.activeRouteId, fitView: true });
-      this.updateUrl({ params: { details: null }, replace: true });
-    }
+    // @TODO: details status in url
+    // if (this.props.activeRouteId !== prevProps.activeRouteId && this.props.routes.length > 0) {
+    //   this.updateUrl({ params: { details: null }, replace: true });
+    // }
 
     if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
       fire('update_map_paddings');
@@ -117,11 +106,8 @@ class DirectionPanel extends React.Component {
   }
 
   componentWillUnmount() {
-    fire('clean_routes');
     unListen(this.dragPointHandler);
     unListen(this.setPointHandler);
-    document.body.classList.remove('directions-open');
-    fire('update_map_paddings');
   }
 
   async setTextInput(which, poi) {
@@ -163,7 +149,7 @@ class DirectionPanel extends React.Component {
         this.setTextInput('destination', destination);
       }
 
-      this.setState({ isInitializing: false }, this.update);
+      this.setState({ isInitializing: false });
     } catch (e) {
       Error.sendOnce(
         'direction_panel',
@@ -174,81 +160,8 @@ class DirectionPanel extends React.Component {
     }
   }
 
-  // setRoutes = routes => {
-  //   this.props.dispatch({ type: 'setRoutes', data: routes });
-  // };
-  //
-  // computeRoutes = async () => {
-  //   const { origin, destination, vehicle } = this.state;
-  //   if (origin && destination) {
-  //     this.setState({
-  //       isDirty: false,
-  //       isLoading: true,
-  //       error: 0,
-  //     });
-  //     this.setRoutes([]);
-  //     const currentQueryId = ++this.lastQueryId;
-  //     fire('set_origin', origin);
-  //     fire('set_destination', destination);
-  //     const directionResponse = await DirectionApi.search(origin, destination, vehicle);
-  //     // A more recent query was done in the meantime, ignore this result silently
-  //     if (currentQueryId !== this.lastQueryId) {
-  //       return;
-  //     }
-  //     if (directionResponse && directionResponse.error === 0) {
-  //       // Valid, non-empty response
-  //       const routes = directionResponse.data.routes
-  //         .sort((routeA, routeB) => routeA.duration - routeB.duration)
-  //         .map((route, i) => ({ ...route, id: i }));
-
-  //       this.setRoutes(routes);
-  //       this.setState({ isLoading: false, error: 0 }, () => {
-  //         const activeRouteId =
-  //           this.props.activeRouteId < this.props.routes.length ? this.props.activeRouteId : 0;
-  //         window.execOnMapLoaded(() => {
-  //           fire('set_routes', { routes, vehicle, activeRouteId });
-  //         });
-  //         this.updateUrl({ params: { selected: activeRouteId }, replace: true });
-  //       });
-  //     } else {
-  //       // Error or empty response
-  //       this.setState({ isLoading: false, error: directionResponse.error });
-  //       fire('clean_routes');
-  //     }
-  //   } else {
-  //     // When both fields are not filled yet or not filled anymore
-  //     this.setRoutes([]);
-  //     this.setState({ isLoading: false, isDirty: false, error: 0 });
-  //     fire('clean_routes');
-  //     if (origin) {
-  //       fire('set_origin', origin);
-  //     } else if (destination) {
-  //       fire('set_destination', destination);
-  //     }
-  //   }
-  // };
-
-  updateUrl({ params = {}, replace = false } = {}) {
-    const search = updateQueryString({
-      mode: this.state.vehicle,
-      origin: this.state.origin ? poiToUrl(this.state.origin) : null,
-      destination: this.state.destination ? poiToUrl(this.state.destination) : null,
-      pt: this.props.isPublicTransportActive ? 'true' : null,
-      ...params,
-    });
-    const relativeUrl = 'routes/' + search;
-
-    window.app.navigateTo(relativeUrl, window.history.state, { replace });
-  }
-
-  update() {
-    this.updateUrl({ replace: true });
-    // this.computeRoutes();
-  }
-
   onSelectVehicle = vehicle => {
     Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
-    // this.setState({ vehicle, isDirty: true }, this.update);
     this.props.dispatch({ type: 'setVehicle', data: vehicle });
   };
 
@@ -261,17 +174,12 @@ class DirectionPanel extends React.Component {
 
   reversePoints = () => {
     Telemetry.add(Telemetry.ITINERARY_INVERT);
+    this.props.dispatch({ type: 'reversePoints' });
     // @TODO
-    this.setState(
-      previousState => ({
-        origin: previousState.destination,
-        destination: previousState.origin,
-        originInputText: previousState.destinationInputText,
-        destinationInputText: previousState.originInputText,
-        // isDirty: true,
-      }),
-      this.update
-    );
+    this.setState(previousState => ({
+      originInputText: previousState.destinationInputText,
+      destinationInputText: previousState.originInputText,
+    }));
   };
 
   changeDirectionPoint = (which, value, point) => {
@@ -279,11 +187,9 @@ class DirectionPanel extends React.Component {
 
     this.setState(
       {
-        [which]: point,
         [which + 'InputText']: value || '',
       },
       () => {
-        this.update();
         // Retrieve addresses
         if (point && point.type === 'latlon') {
           this.setTextInput(which, this.state[which]);
@@ -300,15 +206,6 @@ class DirectionPanel extends React.Component {
     this.setTextInput(which, poi);
 
     this.props.dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: poi });
-    // Update state
-    // (Call update() that will perform a search and redraw the UI if both fields are set)
-    // this.setState(
-    //   {
-    //     [which]: poi,
-    //     // isDirty: true,
-    //   },
-    //   this.update
-    // );
   };
 
   handleShareClick = (e, handler) => {
@@ -317,36 +214,41 @@ class DirectionPanel extends React.Component {
   };
 
   selectRoute = routeId => {
-    this.updateUrl({ params: { selected: routeId }, replace: true });
+    this.props.dispatch({ type: 'setActiveRoute', data: routeId });
   };
 
   toggleDetails = () => {
-    if (this.props.isMobile) {
-      if (this.props.details) {
-        window.app.navigateBack({
-          relativeUrl: 'routes/' + updateQueryString({ details: false }),
-        });
-      } else {
-        this.updateUrl({ params: { details: true }, replace: false });
-      }
-    } else {
-      this.updateUrl({ params: { details: !this.props.details }, replace: true });
-    }
+    // if (this.props.isMobile) {
+    //   if (this.props.details) {
+    //     window.app.navigateBack({
+    //       relativeUrl: 'routes/' + updateQueryString({ details: false }),
+    //     });
+    //   } else {
+    //     this.updateUrl({ params: { details: true }, replace: false });
+    //   }
+    // } else {
+    //   this.updateUrl({ params: { details: !this.props.details }, replace: true });
+    // }
   };
 
   render() {
     const {
       origin,
       destination,
-      vehicle,
-      error,
-      isDirty,
       isInitializing,
       originInputText,
       destinationInputText,
     } = this.state;
 
-    const { activeRouteId, details: activeDetails, isMobile, routes, isLoading } = this.props;
+    const {
+      activeRouteId,
+      details: activeDetails,
+      isMobile,
+      routes,
+      isLoading,
+      error,
+      vehicle,
+    } = this.props;
 
     const form = (
       <DirectionForm
@@ -370,7 +272,7 @@ class DirectionPanel extends React.Component {
       <RouteResult
         activeRouteId={activeRouteId}
         activeDetails={activeDetails}
-        isLoading={isLoading || (routes.length > 0 && isDirty)}
+        isLoading={isLoading}
         vehicle={vehicle}
         error={error}
         routes={routes}
@@ -421,28 +323,63 @@ class DirectionPanel extends React.Component {
 }
 
 const DirectionPanelFunc = props => {
-  usePageTitle(_('Directions'));
   const { isMobile } = useDevice();
   const { state, dispatch } = useContext(DirectionContext);
+  const { origin, destination, vehicle, routes, activeRouteId, isLoading, error } = state;
+
+  useEffect(() => {
+    Telemetry.add(Telemetry.ITINERARY_OPEN);
+
+    return () => {
+      dispatch({ type: 'reset' });
+      fire('clean_routes');
+      fire('update_map_paddings');
+    };
+  }, [dispatch]);
+
+  // map side effects
+  useEffect(() => {
+    // @TODO: on map ready
+    fire('set_routes', {
+      routes,
+      vehicle,
+      activeRouteId,
+    });
+  }, [routes /* Omit active route ID and vehicle on purpose */]);
+
+  useEffect(() => {
+    fire('set_main_route', { routeId: activeRouteId, fitView: true });
+  }, [activeRouteId]);
+
+  // url side effect
+  useEffect(() => {
+    const search = updateQueryString({
+      mode: vehicle,
+      origin: origin ? poiToUrl(origin) : null,
+      destination: destination ? poiToUrl(destination) : null,
+      selected: activeRouteId,
+      // @TODO: details,
+    });
+    const relativeUrl = 'routes/' + search;
+
+    console.log(relativeUrl);
+
+    // @TODO
+    //window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
+  }, [origin, destination, vehicle, activeRouteId]);
 
   return (
     <DirectionPanel
       isMobile={isMobile}
       {...props}
-      routes={state.routes}
-      isLoading={state.isLoading}
+      vehicle={vehicle}
+      routes={routes}
+      activeRouteId={activeRouteId}
+      error={error}
+      isLoading={isLoading}
       dispatch={dispatch}
     />
   );
 };
 
-const DirectionContextWrapper = props => {
-  usePageTitle(_('Directions'));
-  return (
-    <DirectionProvider>
-      <DirectionPanelFunc {...props} />
-    </DirectionProvider>
-  );
-};
-
-export default DirectionContextWrapper;
+export default DirectionPanelFunc;
