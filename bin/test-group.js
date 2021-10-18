@@ -19,7 +19,7 @@ function getTgpFromHash(hash) {
   if (!hash) return 0;
   const lastByte = parseInt(hash.charAt(hash.length - 2) + hash.charAt(hash.length - 1), 16);
 
-  return Math.ceil(((lastByte + 1) / 256) * 10) * 10;
+  return Math.ceil(((lastByte + 1) / 256) * 10) * 10 || 0;
 }
 
 function getABTestingInfos(config, req) {
