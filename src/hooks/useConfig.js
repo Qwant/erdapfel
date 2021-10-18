@@ -4,7 +4,8 @@ const config = nconf.get();
 
 export const useConfig = subSet => {
   if (subSet) {
-    return config[subSet] || {};
+    const configSub = config[subSet];
+    return configSub === undefined ? {} : configSub;
   }
   return config;
 };
