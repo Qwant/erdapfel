@@ -11,18 +11,14 @@ import { isNullOrEmpty } from 'src/libs/object';
 import { useI18n, useDevice } from 'src/hooks';
 import { DirectionContext } from './directionStore';
 
-const DirectionForm = ({
-  onChangeDirectionPoint,
-  onReversePoints,
-  onSelectVehicle,
-  isInitializing,
-}) => {
+const DirectionForm = ({ onReversePoints, onSelectVehicle, isInitializing }) => {
   const { _ } = useI18n();
   const { isMobile } = useDevice();
   const originRef = useRef(null);
   const destinationRef = useRef(null);
   const {
     state: { origin, destination, vehicles, vehicle, isLoading },
+    setPoint,
   } = useContext(DirectionContext);
   const [originInputText, setOriginInputText] = useState('');
   const [destinationInputText, setDestinationInputText] = useState('');
@@ -54,7 +50,7 @@ const DirectionForm = ({
       setDestinationInputText(value);
     }
     if (point) {
-      onChangeDirectionPoint(which, point);
+      setPoint(which, point);
     }
   };
 
@@ -131,7 +127,6 @@ const DirectionForm = ({
 };
 
 DirectionForm.propTypes = {
-  onChangeDirectionPoint: PropTypes.func.isRequired,
   onReversePoints: PropTypes.func.isRequired,
   onSelectVehicle: PropTypes.func.isRequired,
   isInitializing: PropTypes.bool,

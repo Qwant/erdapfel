@@ -87,7 +87,14 @@ export const DirectionProvider = ({ children }) => {
     }
   }, [origin, destination, vehicle]);
 
+  // helper actions to avoid using dispatch directly
+  const setPoint = (which, point) => {
+    dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: point });
+  };
+
   return (
-    <DirectionContext.Provider value={{ state, dispatch }}>{children}</DirectionContext.Provider>
+    <DirectionContext.Provider value={{ state, setPoint, dispatch }}>
+      {children}
+    </DirectionContext.Provider>
   );
 };

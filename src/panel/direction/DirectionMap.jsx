@@ -3,19 +3,17 @@ import { fire, listen, unListen } from 'src/libs/customEvents';
 import { DirectionContext } from './directionStore';
 
 const DirectionMap = () => {
-  const { state, dispatch } = useContext(DirectionContext);
+  const { state, setPoint } = useContext(DirectionContext);
   const { origin, destination, vehicle, routes, activeRouteId } = state;
 
   useEffect(() => {
-    const dragPointHandler = listen('change_direction_point', (which, point) => {
-      dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: point });
-    });
-
+    const dragPointHandler = listen('change_direction_point', setPoint);
     const setPointHandler = listen('set_direction_point', point => {
       if (origin && destination) {
         return;
       }
-      dispatch({ type: origin ? 'setDestination' : 'setOrigin', data: point });
+      // if one point is already filled, fill the other
+      setPoint({ type: origin ? 'destination' : 'origin', data: point });
     });
 
     return () => {
@@ -24,7 +22,7 @@ const DirectionMap = () => {
       fire('clean_routes');
       fire('update_map_paddings');
     };
-  }, [origin, destination, dispatch]);
+  }, [origin, destination, setPoint]);
 
   useEffect(() => {
     // @TODO: on map ready

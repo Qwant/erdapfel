@@ -145,10 +145,6 @@ class DirectionPanel extends React.Component {
     this.props.dispatch({ type: 'reversePoints' });
   };
 
-  changeDirectionPoint = (which, point) => {
-    this.props.dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: point });
-  };
-
   handleShareClick = (e, handler) => {
     Telemetry.add(Telemetry.ITINERARY_SHARE);
     return handler(e);
