@@ -175,15 +175,7 @@ class DirectionPanel extends React.Component {
   render() {
     const { origin, destination, isInitializing } = this.state;
 
-    const {
-      activeRouteId,
-      details: activeDetails,
-      isMobile,
-      routes,
-      isLoading,
-      error,
-      vehicle,
-    } = this.props;
+    const { activeRouteId, details: activeDetails, isMobile, routes, vehicle } = this.props;
 
     const form = (
       <DirectionForm
@@ -196,14 +188,7 @@ class DirectionPanel extends React.Component {
 
     const result = (
       <RouteResult
-        activeRouteId={activeRouteId}
         activeDetails={activeDetails}
-        isLoading={isLoading}
-        vehicle={vehicle}
-        error={error}
-        routes={routes}
-        origin={origin}
-        destination={destination}
         toggleDetails={this.toggleDetails}
         selectRoute={this.selectRoute}
       />

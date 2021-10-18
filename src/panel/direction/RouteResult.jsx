@@ -1,27 +1,19 @@
-/* globals _ */
 import React, { useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
 import RoutesList from './RoutesList';
 import { SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
-import { useDevice } from 'src/hooks';
+import { useDevice, useI18n } from 'src/hooks';
 import { PanelContext } from 'src/libs/panelContext';
+import { DirectionContext } from './directionStore';
 
-const RouteResult = ({
-  origin,
-  destination,
-  vehicle,
-  routes = [],
-  isLoading,
-  error,
-  activeRouteId,
-  activeDetails,
-  selectRoute,
-  toggleDetails,
-}) => {
+const RouteResult = ({ activeDetails, selectRoute, toggleDetails }) => {
   const { isMobile } = useDevice();
   const { size: panelSize } = useContext(PanelContext);
+  const { state } = useContext(DirectionContext);
+  const { origin, destination, vehicle, isLoading, routes, activeRouteId, error } = state;
+  const { _ } = useI18n();
 
   useEffect(() => {
     const routeSelectedOnMapHandler = listen('select_road_map', onSelectRoute);
@@ -91,15 +83,9 @@ const RouteResult = ({
 };
 
 RouteResult.propTypes = {
-  routes: PropTypes.array,
-  origin: PropTypes.object,
-  destination: PropTypes.object,
-  vehicle: PropTypes.string,
-  isLoading: PropTypes.bool,
-  error: PropTypes.number,
-  activeRouteId: PropTypes.number,
   selectRoute: PropTypes.func.isRequired,
   toggleDetails: PropTypes.func.isRequired,
+  activeDetails: PropTypes.bool,
 };
 
 export default RouteResult;
