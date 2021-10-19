@@ -1,5 +1,4 @@
-/* globals _ */
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Divider, ShareMenu } from 'src/components/ui';
 import { Button, IconShare } from '@qwant/qwant-ponents';
@@ -15,221 +14,103 @@ import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geo
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import { updateQueryString } from 'src/libs/url_utils';
-import { useDevice } from 'src/hooks';
+import { useDevice, useI18n } from 'src/hooks';
 import { DirectionContext } from './directionStore';
 import DirectionMap from './DirectionMap';
 
-class DirectionPanel extends React.Component {
-  static propTypes = {
-    origin: PropTypes.string,
-    destination: PropTypes.string,
-    poi: PropTypes.object,
-    mode: PropTypes.string,
-    details: PropTypes.bool,
-    isMobile: PropTypes.bool,
+const DirectionPanel = ({ poi }) => {
+  // @TODO geoloc
+  // async componentDidMount() {
+  //   // on mobile, when no origin is specified, try auto-geoloc
+  //   if (this.props.isMobile && !this.state.origin && !this.props.origin) {
+  //     const geolocationPermission = await getGeolocationPermission();
+  //     let modalAccepted = false;
 
-    routes: PropTypes.array,
-    activeRouteId: PropTypes.number,
-    error: PropTypes.number,
-    isLoading: PropTypes.bool,
-    dispatch: PropTypes.func,
-  };
+  //     // on an empty form, if the user's position permission hasn't been asked yet, show modal
+  //     if (
+  //       !this.state.destination &&
+  //       !this.props.destination &&
+  //       geolocationPermission === geolocationPermissions.PROMPT
+  //     ) {
+  //       modalAccepted = await openPendingDirectionModal();
+  //     }
 
-  constructor(props) {
-    super(props);
+  //     // If the user's position can be requested, put it in the origin field
+  //     if (geolocationPermission === geolocationPermissions.GRANTED || modalAccepted) {
+  //       const origin = new NavigatorGeolocalisationPoi();
+  //       try {
+  //         await origin.geolocate({
+  //           displayErrorModal: false,
+  //         });
+  //         this.setState({ origin, originInputText: origin.name });
+  //       } catch (e) {
+  //         // ignore possible error
+  //       }
+  //     }
+  //   }
+  // }
 
-    this.state = {
-      origin: null,
-      destination: (props.poi && Poi.deserialize(props.poi)) || null,
-      isInitializing: true,
-    };
+  // componentDidUpdate(_prevProps) {
+  //   // @TODO: details status in url
+  //   // if (this.props.activeRouteId !== prevProps.activeRouteId && this.props.routes.length > 0) {
+  //   //   this.updateUrl({ params: { details: null }, replace: true });
+  //   // }
+  //   // @TODO???
+  //   // if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
+  //   //   fire('update_map_paddings');
+  //   // }
+  // }
 
-    this.restorePoints(props);
-  }
+  // async restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
+  //   const poiRestorePromises = [
+  //     originUrlValue ? poiFromUrl(originUrlValue) : this.state.origin,
+  //     destinationUrlValue ? poiFromUrl(destinationUrlValue) : this.state.destination,
+  //   ];
 
-  async componentDidMount() {
-    // on mobile, when no origin is specified, try auto-geoloc
-    if (this.props.isMobile && !this.state.origin && !this.props.origin) {
-      const geolocationPermission = await getGeolocationPermission();
-      let modalAccepted = false;
+  //   try {
+  //     const [origin, destination] = await Promise.all(poiRestorePromises);
+  //     // Set markers
+  //     if (origin) {
+  //       window.execOnMapLoaded(() => {
+  //         fire('set_origin', origin);
+  //         if (!destination) {
+  //           fire('fit_map', origin);
+  //         }
+  //       });
+  //       this.props.dispatch({ type: 'setOrigin', data: origin });
+  //     }
 
-      // on an empty form, if the user's position permission hasn't been asked yet, show modal
-      if (
-        !this.state.destination &&
-        !this.props.destination &&
-        geolocationPermission === geolocationPermissions.PROMPT
-      ) {
-        modalAccepted = await openPendingDirectionModal();
-      }
+  //     if (destination) {
+  //       window.execOnMapLoaded(() => {
+  //         fire('set_destination', destination);
+  //         if (!origin) {
+  //           fire('fit_map', destination);
+  //         }
+  //       });
+  //       this.props.dispatch({ type: 'setDestination', data: destination });
+  //     }
 
-      // If the user's position can be requested, put it in the origin field
-      if (geolocationPermission === geolocationPermissions.GRANTED || modalAccepted) {
-        const origin = new NavigatorGeolocalisationPoi();
-        try {
-          await origin.geolocate({
-            displayErrorModal: false,
-          });
-          this.setState({ origin, originInputText: origin.name });
-        } catch (e) {
-          // ignore possible error
-        }
-      }
-    }
-  }
+  //     this.setState({ isInitializing: false });
+  //   } catch (e) {
+  //     Error.sendOnce(
+  //       'direction_panel',
+  //       'restoreUrl',
+  //       `Error restoring Poi from Url ${originUrlValue} / ${destinationUrlValue}`,
+  //       e
+  //     );
+  //   }
+  // }
 
-  componentDidUpdate(_prevProps) {
-    // @TODO: details status in url
-    // if (this.props.activeRouteId !== prevProps.activeRouteId && this.props.routes.length > 0) {
-    //   this.updateUrl({ params: { details: null }, replace: true });
-    // }
-    // @TODO???
-    // if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
-    //   fire('update_map_paddings');
-    // }
-  }
-
-  async restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
-    const poiRestorePromises = [
-      originUrlValue ? poiFromUrl(originUrlValue) : this.state.origin,
-      destinationUrlValue ? poiFromUrl(destinationUrlValue) : this.state.destination,
-    ];
-
-    try {
-      const [origin, destination] = await Promise.all(poiRestorePromises);
-      // Set markers
-      if (origin) {
-        window.execOnMapLoaded(() => {
-          fire('set_origin', origin);
-          if (!destination) {
-            fire('fit_map', origin);
-          }
-        });
-        this.props.dispatch({ type: 'setOrigin', data: origin });
-      }
-
-      if (destination) {
-        window.execOnMapLoaded(() => {
-          fire('set_destination', destination);
-          if (!origin) {
-            fire('fit_map', destination);
-          }
-        });
-        this.props.dispatch({ type: 'setDestination', data: destination });
-      }
-
-      this.setState({ isInitializing: false });
-    } catch (e) {
-      Error.sendOnce(
-        'direction_panel',
-        'restoreUrl',
-        `Error restoring Poi from Url ${originUrlValue} / ${destinationUrlValue}`,
-        e
-      );
-    }
-  }
-
-  onSelectVehicle = vehicle => {
-    Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
-    this.props.dispatch({ type: 'setVehicle', data: vehicle });
-  };
-
-  onClose = () => {
-    Telemetry.add(Telemetry.ITINERARY_CLOSE);
-    this.props.poi
-      ? window.history.back() // Go back to the poi panel
-      : window.app.navigateTo('/');
-  };
-
-  reversePoints = () => {
-    Telemetry.add(Telemetry.ITINERARY_INVERT);
-    this.props.dispatch({ type: 'reversePoints' });
-  };
-
-  handleShareClick = (e, handler) => {
-    Telemetry.add(Telemetry.ITINERARY_SHARE);
-    return handler(e);
-  };
-
-  selectRoute = routeId => {
-    this.props.dispatch({ type: 'setActiveRoute', data: routeId });
-  };
-
-  toggleDetails = () => {
-    // if (this.props.isMobile) {
-    //   if (this.props.details) {
-    //     window.app.navigateBack({
-    //       relativeUrl: 'routes/' + updateQueryString({ details: false }),
-    //     });
-    //   } else {
-    //     this.updateUrl({ params: { details: true }, replace: false });
-    //   }
-    // } else {
-    //   this.updateUrl({ params: { details: !this.props.details }, replace: true });
-    // }
-  };
-
-  render() {
-    const { isInitializing } = this.state;
-    const { details: activeDetails, isMobile, routes } = this.props;
-
-    const form = (
-      <DirectionForm
-        onChangeDirectionPoint={this.changeDirectionPoint}
-        onReversePoints={this.reversePoints}
-        onSelectVehicle={this.onSelectVehicle}
-        isInitializing={isInitializing}
-      />
-    );
-
-    const result = (
-      <RouteResult
-        activeDetails={activeDetails}
-        toggleDetails={this.toggleDetails}
-        selectRoute={this.selectRoute}
-      />
-    );
-
-    return isMobile ? (
-      <MobileDirectionPanel
-        form={form}
-        result={result}
-        toggleDetails={this.toggleDetails}
-        activeDetails={activeDetails}
-        onClose={this.onClose}
-        handleShareClick={this.handleShareClick}
-      />
-    ) : (
-      <Panel className="direction-panel" onClose={this.onClose} renderHeader={form}>
-        <div className="direction-autocomplete_suggestions" />
-        {routes.length > 0 && (
-          <ShareMenu url={window.location.toString()}>
-            {openMenu => (
-              <Button
-                className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
-                variant="tertiary"
-                title={_('Share itinerary', 'direction')}
-                onClick={e => this.handleShareClick(e, openMenu)}
-              >
-                <IconShare />
-                {_('Share itinerary', 'direction')}
-              </Button>
-            )}
-          </ShareMenu>
-        )}
-        <Divider paddingTop={8} paddingBottom={0} />
-        {result}
-      </Panel>
-    );
-  }
-}
-
-const DirectionPanelFunc = props => {
+  const { state, dispatch, setPoint } = useContext(DirectionContext);
+  const { origin, destination, vehicle, routes, activeRouteId } = state;
   const { isMobile } = useDevice();
-  const { state, dispatch } = useContext(DirectionContext);
-  const { origin, destination, vehicle, routes, activeRouteId, isLoading, error } = state;
+  const { _ } = useI18n();
+  const [isInitializing, setIsInitializing] = useState(true);
+  const [activeDetails, setActiveDetails] = useState(false);
 
   useEffect(() => {
     Telemetry.add(Telemetry.ITINERARY_OPEN);
+    initialize();
 
     return () => {
       dispatch({ type: 'reset' });
@@ -251,21 +132,112 @@ const DirectionPanelFunc = props => {
     //window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
   }, [origin, destination, vehicle, activeRouteId]);
 
+  const initialize = () => {
+    async function restorePoints() {
+      if (poi) {
+        setPoint('destination', Poi.deserialize(poi));
+      }
+      setIsInitializing(false);
+    }
+    restorePoints();
+  };
+
+  const onSelectVehicle = vehicle => {
+    Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
+    dispatch({ type: 'setVehicle', data: vehicle });
+  };
+
+  const onClose = () => {
+    Telemetry.add(Telemetry.ITINERARY_CLOSE);
+    poi
+      ? window.history.back() // Go back to the poi panel
+      : window.app.navigateTo('/');
+  };
+
+  const reversePoints = () => {
+    Telemetry.add(Telemetry.ITINERARY_INVERT);
+    dispatch({ type: 'reversePoints' });
+  };
+
+  const handleShareClick = (e, handler) => {
+    Telemetry.add(Telemetry.ITINERARY_SHARE);
+    return handler(e);
+  };
+
+  const selectRoute = routeId => {
+    dispatch({ type: 'setActiveRoute', data: routeId });
+  };
+
+  const toggleDetails = () => {
+    // if (this.props.isMobile) {
+    //   if (this.props.details) {
+    //     window.app.navigateBack({
+    //       relativeUrl: 'routes/' + updateQueryString({ details: false }),
+    //     });
+    //   } else {
+    //     this.updateUrl({ params: { details: true }, replace: false });
+    //   }
+    // } else {
+    //   this.updateUrl({ params: { details: !this.props.details }, replace: true });
+    // }
+  };
+
+  const form = (
+    <DirectionForm
+      onReversePoints={reversePoints}
+      onSelectVehicle={onSelectVehicle}
+      isInitializing={isInitializing}
+    />
+  );
+
+  const result = (
+    <RouteResult
+      activeDetails={activeDetails}
+      toggleDetails={toggleDetails}
+      selectRoute={selectRoute}
+    />
+  );
+
   return (
     <>
-      <DirectionPanel
-        isMobile={isMobile}
-        {...props}
-        vehicle={vehicle}
-        routes={routes}
-        activeRouteId={activeRouteId}
-        error={error}
-        isLoading={isLoading}
-        dispatch={dispatch}
-      />
       <DirectionMap />
+      {isMobile ? (
+        <MobileDirectionPanel
+          form={form}
+          result={result}
+          toggleDetails={toggleDetails}
+          activeDetails={activeDetails}
+          onClose={onClose}
+          handleShareClick={this.handleShareClick}
+        />
+      ) : (
+        <Panel className="direction-panel" onClose={onClose} renderHeader={form}>
+          <div className="direction-autocomplete_suggestions" />
+          {routes.length > 0 && (
+            <ShareMenu url={window.location.toString()}>
+              {openMenu => (
+                <Button
+                  className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
+                  variant="tertiary"
+                  title={_('Share itinerary', 'direction')}
+                  onClick={e => handleShareClick(e, openMenu)}
+                >
+                  <IconShare />
+                  {_('Share itinerary', 'direction')}
+                </Button>
+              )}
+            </ShareMenu>
+          )}
+          <Divider paddingTop={8} paddingBottom={0} />
+          {result}
+        </Panel>
+      )}
     </>
   );
 };
 
-export default DirectionPanelFunc;
+DirectionPanel.propTypes = {
+  poi: PropTypes.object,
+};
+
+export default DirectionPanel;
