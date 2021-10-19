@@ -63,7 +63,9 @@ const DirectionForm = ({ onReversePoints, onSelectVehicle, isInitializing }) => 
     }
 
     if (point) {
-      if (isNullOrEmpty(point.address)) {
+      if (point.type === 'geoloc') {
+        setter(point.name);
+      } else if (isNullOrEmpty(point.address)) {
         fetchAddress(point);
       } else {
         setter(getInputValue(point));

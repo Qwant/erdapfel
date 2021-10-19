@@ -17,37 +17,6 @@ import { useDevice } from 'src/hooks';
 import { DirectionContext } from './directionStore';
 
 const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
-  // @TODO geoloc
-  // async componentDidMount() {
-  //   // on mobile, when no origin is specified, try auto-geoloc
-  //   if (this.props.isMobile && !this.state.origin && !this.props.origin) {
-  //     const geolocationPermission = await getGeolocationPermission();
-  //     let modalAccepted = false;
-
-  //     // on an empty form, if the user's position permission hasn't been asked yet, show modal
-  //     if (
-  //       !this.state.destination &&
-  //       !this.props.destination &&
-  //       geolocationPermission === geolocationPermissions.PROMPT
-  //     ) {
-  //       modalAccepted = await openPendingDirectionModal();
-  //     }
-
-  //     // If the user's position can be requested, put it in the origin field
-  //     if (geolocationPermission === geolocationPermissions.GRANTED || modalAccepted) {
-  //       const origin = new NavigatorGeolocalisationPoi();
-  //       try {
-  //         await origin.geolocate({
-  //           displayErrorModal: false,
-  //         });
-  //         this.setState({ origin, originInputText: origin.name });
-  //       } catch (e) {
-  //         // ignore possible error
-  //       }
-  //     }
-  //   }
-  // }
-
   const { state, dispatch } = useContext(DirectionContext);
   const { origin, destination, vehicle, activeRouteId, activeDetails } = state;
   const { isMobile } = useDevice();
@@ -56,11 +25,12 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   useEffect(() => {
     Telemetry.add(Telemetry.ITINERARY_OPEN);
     initialize();
+    autoGeoloc();
 
     return () => {
       dispatch({ type: 'reset' });
     };
-  }, [dispatch, initialize]);
+  }, [dispatch, initialize, autoGeoloc]);
 
   // url side effect
   useEffect(() => {
@@ -76,6 +46,32 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
     // @TODO
     //window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
   }, [origin, destination, vehicle, activeRouteId, activeDetails]);
+
+  const autoGeoloc = useCallback(async () => {
+    // on mobile, when no origin is specified, try auto-geoloc
+    if (isMobile && !urlOrigin) {
+      const geolocationPermission = await getGeolocationPermission();
+      let modalAccepted = false;
+
+      // on an empty form, if the user's position permission hasn't been asked yet, show modal
+      if (!urlDestination && !poi && geolocationPermission === geolocationPermissions.PROMPT) {
+        modalAccepted = await openPendingDirectionModal();
+      }
+
+      // If the user's position can be requested, put it in the origin field
+      if (geolocationPermission === geolocationPermissions.GRANTED || modalAccepted) {
+        const position = new NavigatorGeolocalisationPoi();
+        try {
+          await position.geolocate({
+            displayErrorModal: false,
+          });
+          dispatch({ type: 'setOrigin', data: position });
+        } catch (e) {
+          // ignore possible error
+        }
+      }
+    }
+  }, [urlDestination, urlOrigin, poi, isMobile, dispatch]);
 
   const initialize = useCallback(() => {
     if (!isInitializing) {
@@ -181,6 +177,12 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
       )}
     </>
   );
+};
+
+DirectionPanel.propTypes = {
+  urlOrigin: PropTypes.string,
+  urlDestination: PropTypes.string,
+  poi: PropTypes.object,
 };
 
 const DirectionPanelWrapper = ({ origin, destination, ...rest }) => {
