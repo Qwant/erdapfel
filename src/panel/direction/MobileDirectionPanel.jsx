@@ -11,20 +11,13 @@ import { DirectionContext } from './directionStore';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
-const MobileDirectionPanel = ({
-  form,
-  result,
-  toggleDetails,
-  activeDetails,
-  onClose,
-  handleShareClick,
-}) => {
+const MobileDirectionPanel = ({ form, result, toggleDetails, onClose, handleShareClick }) => {
   const [marginTop, setMarginTop] = useState(0);
   const [activePreviewRoute, setActivePreviewRoute] = useState(null);
   const directionPanelRef = useRef(null);
   const { _ } = useI18n();
   const { state } = useContext(DirectionContext);
-  const { origin, destination, vehicle, routes, activeRouteId } = state;
+  const { origin, destination, vehicle, routes, activeRouteId, activeDetails } = state;
 
   useEffect(() => {
     setActivePreviewRoute(null);

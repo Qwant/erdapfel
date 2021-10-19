@@ -8,11 +8,20 @@ import { useDevice, useI18n } from 'src/hooks';
 import { PanelContext } from 'src/libs/panelContext';
 import { DirectionContext } from './directionStore';
 
-const RouteResult = ({ activeDetails, selectRoute, toggleDetails }) => {
+const RouteResult = ({ selectRoute, toggleDetails }) => {
   const { isMobile } = useDevice();
   const { size: panelSize } = useContext(PanelContext);
   const { state } = useContext(DirectionContext);
-  const { origin, destination, vehicle, isLoading, routes, activeRouteId, error } = state;
+  const {
+    origin,
+    destination,
+    vehicle,
+    isLoading,
+    routes,
+    activeRouteId,
+    error,
+    activeDetails,
+  } = state;
   const { _ } = useI18n();
 
   useEffect(() => {
@@ -80,7 +89,6 @@ const RouteResult = ({ activeDetails, selectRoute, toggleDetails }) => {
 RouteResult.propTypes = {
   selectRoute: PropTypes.func.isRequired,
   toggleDetails: PropTypes.func.isRequired,
-  activeDetails: PropTypes.bool,
 };
 
 export default RouteResult;

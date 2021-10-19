@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useCallback } from 'react';
 import DirectionApi, { modes } from 'src/adapters/direction_api';
 import { useConfig } from 'src/hooks';
 
@@ -11,6 +11,7 @@ const initialState = {
   routes: [],
   error: 0,
   activeRouteId: 0,
+  activeDetails: false,
 };
 
 export const directionReducer = (state, action) => {
@@ -35,7 +36,9 @@ export const directionReducer = (state, action) => {
     case 'setError':
       return { ...state, routes: [], isLoading: false, error: action.data };
     case 'setActiveRoute':
-      return { ...state, activeRouteId: action.data };
+      return { ...state, activeRouteId: action.data, activeDetails: false };
+    case 'setActiveDetails':
+      return { ...state, activeDetails: action.data };
     case 'clearRoutes':
       return { ...state, routes: [], isLoading: false, error: 0 };
     case 'reset':
@@ -90,9 +93,9 @@ export const DirectionProvider = ({ children }) => {
   }, [origin, destination, vehicle]);
 
   // helper actions to avoid using dispatch directly
-  const setPoint = (which, point) => {
+  const setPoint = useCallback((which, point) => {
     dispatch({ type: which === 'origin' ? 'setOrigin' : 'setDestination', data: point });
-  };
+  }, []);
 
   return (
     <DirectionContext.Provider value={{ state, setPoint, dispatch }}>

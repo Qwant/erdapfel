@@ -51,10 +51,6 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   // }
 
   // componentDidUpdate(_prevProps) {
-  //   // @TODO: details status in url
-  //   // if (this.props.activeRouteId !== prevProps.activeRouteId && this.props.routes.length > 0) {
-  //   //   this.updateUrl({ params: { details: null }, replace: true });
-  //   // }
   //   // @TODO???
   //   // if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
   //   //   fire('update_map_paddings');
@@ -62,11 +58,10 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   // }
 
   const { state, dispatch } = useContext(DirectionContext);
-  const { origin, destination, vehicle, routes, activeRouteId } = state;
+  const { origin, destination, vehicle, routes, activeRouteId, activeDetails } = state;
   const { isMobile } = useDevice();
   const { _ } = useI18n();
   const [isInitializing, setIsInitializing] = useState(true);
-  const [activeDetails, setActiveDetails] = useState(false);
 
   useEffect(() => {
     Telemetry.add(Telemetry.ITINERARY_OPEN);
@@ -84,19 +79,20 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
       origin: origin ? poiToUrl(origin) : null,
       destination: destination ? poiToUrl(destination) : null,
       selected: activeRouteId,
-      // @TODO: details,
+      details: activeDetails,
     });
     const _relativeUrl = 'routes/' + search;
 
     // @TODO
     //window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
-  }, [origin, destination, vehicle, activeRouteId]);
+  }, [origin, destination, vehicle, activeRouteId, activeDetails]);
 
   const initialize = useCallback(() => {
     if (!isInitializing) {
       return;
     }
 
+    // deserialize origin/destination points from url or direct passing (coming from a POI)
     async function restorePoints() {
       try {
         const poiRestorePromises = [
@@ -150,6 +146,7 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   };
 
   const toggleDetails = () => {
+    dispatch({ type: 'activeDetails', data: !activeDetails });
     // if (this.props.isMobile) {
     //   if (this.props.details) {
     //     window.app.navigateBack({
@@ -171,13 +168,7 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
     />
   );
 
-  const result = (
-    <RouteResult
-      activeDetails={activeDetails}
-      toggleDetails={toggleDetails}
-      selectRoute={selectRoute}
-    />
-  );
+  const result = <RouteResult toggleDetails={toggleDetails} selectRoute={selectRoute} />;
 
   return (
     <>
@@ -187,7 +178,6 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
           form={form}
           result={result}
           toggleDetails={toggleDetails}
-          activeDetails={activeDetails}
           onClose={onClose}
           handleShareClick={this.handleShareClick}
         />
