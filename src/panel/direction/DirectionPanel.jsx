@@ -1,22 +1,20 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Panel, Divider, ShareMenu } from 'src/components/ui';
-import { Button, IconShare } from '@qwant/qwant-ponents';
 import MobileDirectionPanel from './MobileDirectionPanel';
+import DesktopDirectionPanel from './DesktopDirectionPanel';
 import DirectionForm from './DirectionForm';
 import RouteResult from './RouteResult';
+import DirectionMap from './DirectionMap';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi.js';
-import { fire } from 'src/libs/customEvents';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import { updateQueryString } from 'src/libs/url_utils';
-import { useDevice, useI18n } from 'src/hooks';
+import { useDevice } from 'src/hooks';
 import { DirectionContext } from './directionStore';
-import DirectionMap from './DirectionMap';
 
 const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   // @TODO geoloc
@@ -50,17 +48,9 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   //   }
   // }
 
-  // componentDidUpdate(_prevProps) {
-  //   // @TODO???
-  //   // if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
-  //   //   fire('update_map_paddings');
-  //   // }
-  // }
-
   const { state, dispatch } = useContext(DirectionContext);
-  const { origin, destination, vehicle, routes, activeRouteId, activeDetails } = state;
+  const { origin, destination, vehicle, activeRouteId, activeDetails } = state;
   const { isMobile } = useDevice();
-  const { _ } = useI18n();
   const [isInitializing, setIsInitializing] = useState(true);
 
   useEffect(() => {
@@ -136,7 +126,7 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
     dispatch({ type: 'reversePoints' });
   };
 
-  const handleShareClick = (e, handler) => {
+  const onShareClick = (e, handler) => {
     Telemetry.add(Telemetry.ITINERARY_SHARE);
     return handler(e);
   };
@@ -179,29 +169,15 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
           result={result}
           toggleDetails={toggleDetails}
           onClose={onClose}
-          handleShareClick={this.handleShareClick}
+          onShareClick={onShareClick}
         />
       ) : (
-        <Panel className="direction-panel" onClose={onClose} renderHeader={form}>
-          <div className="direction-autocomplete_suggestions" />
-          {routes.length > 0 && (
-            <ShareMenu url={window.location.toString()}>
-              {openMenu => (
-                <Button
-                  className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
-                  variant="tertiary"
-                  title={_('Share itinerary', 'direction')}
-                  onClick={e => handleShareClick(e, openMenu)}
-                >
-                  <IconShare />
-                  {_('Share itinerary', 'direction')}
-                </Button>
-              )}
-            </ShareMenu>
-          )}
-          <Divider paddingTop={8} paddingBottom={0} />
-          {result}
-        </Panel>
+        <DesktopDirectionPanel
+          form={form}
+          result={result}
+          onClose={onClose}
+          onShareClick={onShareClick}
+        />
       )}
     </>
   );

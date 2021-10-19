@@ -11,7 +11,7 @@ import { DirectionContext } from './directionStore';
 
 const MARGIN_TOP_OFFSET = 64; // reserve space to display map
 
-const MobileDirectionPanel = ({ form, result, toggleDetails, onClose, handleShareClick }) => {
+const MobileDirectionPanel = ({ form, result, toggleDetails, onClose, onShareClick }) => {
   const [marginTop, setMarginTop] = useState(0);
   const [activePreviewRoute, setActivePreviewRoute] = useState(null);
   const directionPanelRef = useRef(null);
@@ -69,7 +69,7 @@ const MobileDirectionPanel = ({ form, result, toggleDetails, onClose, handleShar
               {openMenu => (
                 <FloatingButton
                   title={_('Share itinerary', 'direction')}
-                  onClick={e => handleShareClick(e, openMenu)}
+                  onClick={e => onShareClick(e, openMenu)}
                   icon={<IconShare size={24} />}
                 />
               )}

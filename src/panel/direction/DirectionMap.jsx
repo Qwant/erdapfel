@@ -6,6 +6,13 @@ const DirectionMap = () => {
   const { state, setPoint } = useContext(DirectionContext);
   const { origin, destination, vehicle, routes, activeRouteId } = state;
 
+  // componentDidUpdate(_prevProps) {
+  //   // @TODO???
+  //   // if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
+  //   //   fire('update_map_paddings');
+  //   // }
+  // }
+
   useEffect(() => {
     if (origin) {
       window.execOnMapLoaded(() => {
