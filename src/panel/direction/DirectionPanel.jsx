@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Divider, ShareMenu } from 'src/components/ui';
 import { Button, IconShare } from '@qwant/qwant-ponents';
@@ -18,7 +18,7 @@ import { useDevice, useI18n } from 'src/hooks';
 import { DirectionContext } from './directionStore';
 import DirectionMap from './DirectionMap';
 
-const DirectionPanel = ({ poi }) => {
+const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   // @TODO geoloc
   // async componentDidMount() {
   //   // on mobile, when no origin is specified, try auto-geoloc
@@ -61,47 +61,7 @@ const DirectionPanel = ({ poi }) => {
   //   // }
   // }
 
-  // async restorePoints({ origin: originUrlValue, destination: destinationUrlValue }) {
-  //   const poiRestorePromises = [
-  //     originUrlValue ? poiFromUrl(originUrlValue) : this.state.origin,
-  //     destinationUrlValue ? poiFromUrl(destinationUrlValue) : this.state.destination,
-  //   ];
-
-  //   try {
-  //     const [origin, destination] = await Promise.all(poiRestorePromises);
-  //     // Set markers
-  //     if (origin) {
-  //       window.execOnMapLoaded(() => {
-  //         fire('set_origin', origin);
-  //         if (!destination) {
-  //           fire('fit_map', origin);
-  //         }
-  //       });
-  //       this.props.dispatch({ type: 'setOrigin', data: origin });
-  //     }
-
-  //     if (destination) {
-  //       window.execOnMapLoaded(() => {
-  //         fire('set_destination', destination);
-  //         if (!origin) {
-  //           fire('fit_map', destination);
-  //         }
-  //       });
-  //       this.props.dispatch({ type: 'setDestination', data: destination });
-  //     }
-
-  //     this.setState({ isInitializing: false });
-  //   } catch (e) {
-  //     Error.sendOnce(
-  //       'direction_panel',
-  //       'restoreUrl',
-  //       `Error restoring Poi from Url ${originUrlValue} / ${destinationUrlValue}`,
-  //       e
-  //     );
-  //   }
-  // }
-
-  const { state, dispatch, setPoint } = useContext(DirectionContext);
+  const { state, dispatch } = useContext(DirectionContext);
   const { origin, destination, vehicle, routes, activeRouteId } = state;
   const { isMobile } = useDevice();
   const { _ } = useI18n();
@@ -115,7 +75,7 @@ const DirectionPanel = ({ poi }) => {
     return () => {
       dispatch({ type: 'reset' });
     };
-  }, [dispatch]);
+  }, [dispatch, initialize]);
 
   // url side effect
   useEffect(() => {
@@ -132,15 +92,36 @@ const DirectionPanel = ({ poi }) => {
     //window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
   }, [origin, destination, vehicle, activeRouteId]);
 
-  const initialize = () => {
+  const initialize = useCallback(() => {
+    if (!isInitializing) {
+      return;
+    }
+
     async function restorePoints() {
-      if (poi) {
-        setPoint('destination', Poi.deserialize(poi));
+      try {
+        const poiRestorePromises = [
+          urlOrigin ? poiFromUrl(urlOrigin) : null,
+          urlDestination ? poiFromUrl(urlDestination) : poi ? Poi.deserialize(poi) : null,
+        ];
+        const [initialOrigin, initialDestination] = await Promise.all(poiRestorePromises);
+        dispatch({
+          type: 'setParams',
+          data: { origin: initialOrigin, destination: initialDestination },
+        });
+      } catch (e) {
+        Error.sendOnce(
+          'direction_panel',
+          'restoreUrl',
+          `Error restoring Poi from Url ${urlOrigin} / ${urlDestination}`,
+          e
+        );
       }
+
       setIsInitializing(false);
     }
+
     restorePoints();
-  };
+  }, [urlOrigin, urlDestination, poi, isInitializing, dispatch]);
 
   const onSelectVehicle = vehicle => {
     Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
@@ -236,8 +217,8 @@ const DirectionPanel = ({ poi }) => {
   );
 };
 
-DirectionPanel.propTypes = {
-  poi: PropTypes.object,
+const DirectionPanelWrapper = ({ origin, destination, ...rest }) => {
+  return <DirectionPanel urlOrigin={origin} urlDestination={destination} {...rest} />;
 };
 
-export default DirectionPanel;
+export default DirectionPanelWrapper;

@@ -7,6 +7,29 @@ const DirectionMap = () => {
   const { origin, destination, vehicle, routes, activeRouteId } = state;
 
   useEffect(() => {
+    if (origin) {
+      window.execOnMapLoaded(() => {
+        fire('set_origin', origin);
+        // @TODO: on init
+        // if (!destination) {
+        //   fire('fit_map', origin);
+        // }
+      });
+    }
+  }, [origin]);
+
+  useEffect(() => {
+    if (destination) {
+      window.execOnMapLoaded(() => {
+        fire('set_destination', destination);
+        // if (!destination) {
+        //   fire('fit_map', origin);
+        // }
+      });
+    }
+  }, [destination]);
+
+  useEffect(() => {
     const dragPointHandler = listen('change_direction_point', setPoint);
     const setPointHandler = listen('set_direction_point', point => {
       if (origin && destination) {
@@ -25,11 +48,12 @@ const DirectionMap = () => {
   }, [origin, destination, setPoint]);
 
   useEffect(() => {
-    // @TODO: on map ready
-    fire('set_routes', {
-      routes,
-      vehicle,
-      activeRouteId,
+    window.execOnMapLoaded(() => {
+      fire('set_routes', {
+        routes,
+        vehicle,
+        activeRouteId,
+      });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routes /* Omit activeRouteId and vehicle to prevent costly redraws */]);

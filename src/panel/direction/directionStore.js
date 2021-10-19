@@ -6,7 +6,7 @@ const initialState = {
   origin: null,
   destination: null,
   vehicles: [],
-  vehicle: 'driving',
+  vehicle: modes.DRIVING,
   isLoading: false,
   routes: [],
   error: 0,
@@ -19,6 +19,8 @@ export const directionReducer = (state, action) => {
       return { ...state, origin: action.data };
     case 'setDestination':
       return { ...state, destination: action.data };
+    case 'setParams':
+      return { ...state, ...action.data };
     case 'reversePoints':
       return { ...state, destination: state.origin, origin: state.destination };
     case 'setVehicle':
