@@ -1,6 +1,5 @@
 import React from 'react';
-import { Flex } from 'src/components/ui';
-import { IconExternalLink } from '@qwant/qwant-ponents';
+import { Flex, IconExternalLink } from '@qwant/qwant-ponents';
 import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
 const MenuItem = ({ icon, children, href, onClick, outsideLink }) => (
