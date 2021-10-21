@@ -1,13 +1,12 @@
-/* globals _ */
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import AppMenu from './menu/AppMenu';
 import ProductsDrawer from './menu/ProductsDrawer';
 import Telemetry from 'src/libs/telemetry';
-import { Flex, CloseButton } from 'src/components/ui';
-import { IconMenu, IconApps, IconArrowLeftLine } from '@qwant/qwant-ponents';
-import { useConfig, useDevice } from 'src/hooks';
+import { CloseButton } from 'src/components/ui';
+import { Flex, IconMenu, IconApps, IconArrowLeftLine } from '@qwant/qwant-ponents';
+import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { listen, unListen } from 'src/libs/customEvents';
 import {
   getQueryString,
@@ -21,6 +20,7 @@ const Menu = () => {
   const menuContainer = useRef(document.createElement('div'));
   const { isMobile } = useDevice();
   const displayProducts = useConfig('burgerMenu').products;
+  const { _ } = useI18n();
 
   const openMenuFromUrl = url => {
     const activeMenuDrawer = parseQueryString(getQueryString(url))['drawer'];
@@ -107,13 +107,13 @@ const Menu = () => {
             <div className="menu__overlay" onClick={close} />
 
             <div className="menu__panel">
-              <Flex className="menu-top">
+              <Flex alignCenter className="menu-top">
                 {isMobile && openedMenu === 'products' && (
                   <>
                     <Flex
                       as="button"
-                      justifyContent="center"
-                      alignItems="center"
+                      center
+                      alignCenter
                       type="button"
                       className="u-mr-s"
                       onClick={() => openDrawer('app')}
