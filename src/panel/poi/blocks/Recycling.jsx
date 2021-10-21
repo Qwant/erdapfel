@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Meter } from 'src/components/ui';
+import { Meter } from 'src/components/ui';
 import { GREEN_BASE, ORANGE_BASE, RED_BASE } from 'src/libs/colors';
 import { useI18n } from 'src/hooks';
-import { IconTime } from '@qwant/qwant-ponents';
+import { Flex, IconTime } from '@qwant/qwant-ponents';
 
 const Container = ({ type, filling_level, updated_at }) => {
   const { locale, _ } = useI18n();
@@ -33,7 +33,7 @@ const Container = ({ type, filling_level, updated_at }) => {
           })}
         </div>
       </Flex>
-      <Flex justifyContent="space-between">
+      <Flex between>
         <div className="u-text--smallTitle">{containerTypes(type)}</div>
         <div>
           {filling_level}
