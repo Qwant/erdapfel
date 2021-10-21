@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Notification, Text } from '@qwant/qwant-ponents';
 import React, { useState } from 'react';
 import { useDevice, useSurvey } from 'src/hooks';
+import { closeSurvey } from 'src/adapters/survey';
 
 const Survey = () => {
   const [enabled, setEnabled] = useState(true);
@@ -10,6 +11,7 @@ const Survey = () => {
 
   const onClose = () => {
     setEnabled(false);
+    closeSurvey(survey.id);
   };
 
   return (

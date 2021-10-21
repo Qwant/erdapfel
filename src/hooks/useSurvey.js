@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDevice, useConfig, useI18n } from 'src/hooks';
+import { isSurveyClosed } from 'src/adapters/survey';
 
 export const useSurvey = () => {
   const testGroupPer = useConfig('testGroupPer');
@@ -19,7 +20,9 @@ export const useSurvey = () => {
     fetch(surveyUrl)
       .then(response => response.json())
       .then(response => {
-        setSurvey(response.data[0]);
+        if (response?.data?.[0] && !isSurveyClosed(response.data[0].id)) {
+          setSurvey(response.data[0]);
+        }
       });
   }, [isMobile, locale, surveyApiUrl, testGroupPer]);
 
