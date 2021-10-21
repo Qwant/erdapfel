@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Flex, Panel, ShareMenu, FloatingButton, CloseButton } from 'src/components/ui';
+import { IconShare } from '@qwant/qwant-ponents';
 import MobileRouteDetails from './MobileRouteDetails';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { getAllSteps } from 'src/libs/route_utils';
@@ -20,6 +21,7 @@ const MobileDirectionPanel = ({
   activeDetails,
   activeRouteId,
   onClose,
+  handleShareClick,
 }) => {
   const [marginTop, setMarginTop] = useState(0);
   const [activePreviewRoute, setActivePreviewRoute] = useState(null);
@@ -80,8 +82,8 @@ const MobileDirectionPanel = ({
               {openMenu => (
                 <FloatingButton
                   title={_('Share itinerary', 'direction')}
-                  onClick={e => this.handleShareClick(e, openMenu)}
-                  icon="share-2"
+                  onClick={e => handleShareClick(e, openMenu)}
+                  icon={<IconShare size={24} />}
                 />
               )}
             </ShareMenu>,
