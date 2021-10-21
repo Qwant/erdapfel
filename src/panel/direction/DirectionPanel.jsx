@@ -132,7 +132,7 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   };
 
   const toggleDetails = () => {
-    dispatch({ type: 'activeDetails', data: !activeDetails });
+    dispatch({ type: 'setActiveDetails', data: !activeDetails });
     // if (this.props.isMobile) {
     //   if (this.props.details) {
     //     window.app.navigateBack({
