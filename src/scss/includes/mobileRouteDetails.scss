@@ -19,13 +19,8 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    font-size: 16px;
     transition: all .2s ease-out;
     background-color: $background;
-
-    &-content {
-      padding: 20px 12px;
-    }
   }
 
   .itinerary_roadmap {
