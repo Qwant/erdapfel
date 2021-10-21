@@ -385,6 +385,7 @@ class DirectionPanel extends React.Component {
         activeDetails={activeDetails}
         activeRouteId={activeRouteId}
         onClose={this.onClose}
+        handleShareClick={this.handleShareClick}
       />
     ) : (
       <Panel className="direction-panel" onClose={this.onClose} renderHeader={form}>

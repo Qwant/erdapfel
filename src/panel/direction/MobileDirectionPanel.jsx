@@ -20,6 +20,7 @@ const MobileDirectionPanel = ({
   activeDetails,
   activeRouteId,
   onClose,
+  handleShareClick,
 }) => {
   const [marginTop, setMarginTop] = useState(0);
   const [activePreviewRoute, setActivePreviewRoute] = useState(null);
@@ -80,7 +81,7 @@ const MobileDirectionPanel = ({
               {openMenu => (
                 <FloatingButton
                   title={_('Share itinerary', 'direction')}
-                  onClick={e => this.handleShareClick(e, openMenu)}
+                  onClick={e => handleShareClick(e, openMenu)}
                   icon="share-2"
                 />
               )}
