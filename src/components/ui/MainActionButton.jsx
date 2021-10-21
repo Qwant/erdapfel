@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
-import { Flex } from 'src/components/ui';
+import { Flex } from '@qwant/qwant-ponents';
 
 const MainActionButton = ({ variant, label, onClick, icon, iconStyle, className, ...rest }) => (
   <button
@@ -19,7 +19,7 @@ const MainActionButton = ({ variant, label, onClick, icon, iconStyle, className,
     {typeof icon === 'string' ? (
       <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle} />
     ) : (
-      <Flex className="mainActionButton-icon" justifyContent="center">
+      <Flex className="mainActionButton-icon" center>
         {icon}
       </Flex>
     )}
