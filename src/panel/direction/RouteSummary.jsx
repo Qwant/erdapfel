@@ -1,10 +1,9 @@
-/* global _ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex } from 'src/components/ui';
 import { IconList } from 'src/components/ui/icons';
 import RouteSummaryInfo from './RouteSummaryInfo';
-import { Button } from '@qwant/qwant-ponents';
+import { Flex, Button } from '@qwant/qwant-ponents';
+import { useI18n } from 'src/hooks';
 
 const RouteSummary = ({
   id,
@@ -15,6 +14,8 @@ const RouteSummary = ({
   isActive,
   showDetails,
 }) => {
+  const { _ } = useI18n();
+
   const onClickDetails = event => {
     event.stopPropagation();
     toggleDetails(id);
@@ -23,8 +24,7 @@ const RouteSummary = ({
   return (
     <Flex
       className="itinerary_leg_summary"
-      justifyContent="space-between"
-      alignItems="flex-end"
+      between
       onClick={() => {
         selectRoute(id);
       }}
