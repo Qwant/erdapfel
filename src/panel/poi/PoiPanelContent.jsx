@@ -7,7 +7,7 @@ import Contribution from 'src/components/Contribution';
 import CategoryList from 'src/components/CategoryList';
 import { fire } from 'src/libs/customEvents';
 import PoiItem from 'src/components/PoiItem';
-import { Flex, Divider } from 'src/components/ui';
+import { Divider } from 'src/components/ui';
 import { useConfig, useI18n, useFavorites } from 'src/hooks';
 
 const PoiPanelContent = ({ poi }) => {
@@ -66,15 +66,13 @@ const PoiPanelContent = ({ poi }) => {
 
   return (
     <div className="poi_panel__content">
-      <Flex alignItems="flex-start" justifyContent="space-between">
-        <PoiItem
-          poi={poi}
-          className="u-mb-l poi-panel-poiItem"
-          withAlternativeName
-          withOpeningHours
-          onClick={center}
-        />
-      </Flex>
+      <PoiItem
+        poi={poi}
+        className="u-mb-l poi-panel-poiItem"
+        withAlternativeName
+        withOpeningHours
+        onClick={center}
+      />
       <div className="u-mb-l">
         <ActionButtons
           poi={poi}

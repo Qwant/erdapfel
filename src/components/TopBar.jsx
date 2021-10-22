@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
-import { Suggest, Flex } from 'src/components/ui';
-import { IconArrowLeftLine, IconDirection, IconClose } from '@qwant/qwant-ponents';
+import { Suggest } from 'src/components/ui';
+import { IconArrowLeftLine, IconDirection, IconClose, Flex } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Menu from 'src/panel/Menu';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
@@ -169,8 +169,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
           <>
             <Flex
               as="button"
-              justifyContent="center"
-              alignItems="center"
+              center
+              alignCenter
               className="search_form__direction_shortcut"
               title={_('Directions', 'top bar')}
               type="button"

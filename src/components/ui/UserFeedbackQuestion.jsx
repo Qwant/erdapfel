@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, CloseButton } from './index';
-import { Button } from '@qwant/qwant-ponents';
+import { CloseButton } from './index';
+import { Flex, Button } from '@qwant/qwant-ponents';
 
 const UserFeedbackQuestion = ({ question, options, onClose }) => {
   return (
-    <Flex className="feedback">
+    <Flex className="feedback" alignCenter>
       <div className="feedback-question u-mr-s">{question}</div>
       <Flex>
         {options.map(({ label, icon, callback }) => (

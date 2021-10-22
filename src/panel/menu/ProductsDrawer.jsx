@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex } from 'src/components/ui';
+import { Flex } from '@qwant/qwant-ponents';
 import { useI18n } from 'src/hooks';
 import ProductCard from './ProductCard';
 
@@ -50,7 +50,7 @@ const ProductsDrawer = () => {
         rel="noopener noreferrer"
         className="card u-mb-l"
       >
-        <Flex>
+        <Flex alignCenter>
           <div className="u-mr-l">
             <img width="100" height="100" src="./statics/images/products/web-internaute.svg" />
           </div>

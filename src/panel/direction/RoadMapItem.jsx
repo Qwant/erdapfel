@@ -1,13 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
+import { Flex } from '@qwant/qwant-ponents';
+import { Divider } from 'src/components/ui';
 
-import { Divider, Flex } from 'src/components/ui';
-
-const RoadMapItem = ({ children, icon, distance, className, line, alignItems, ...rest }) => (
+const RoadMapItem = ({ children, icon, distance, className, line, alignTop, ...rest }) => (
   <>
     <div className={classnames('itinerary_roadmap_item', className)} {...rest}>
       {line}
-      <Flex alignItems={alignItems || 'center'}>
+      <Flex alignCenter={!alignTop}>
         <div className="itinerary_roadmap_item_icon">{icon}</div>
         <div className="itinerary_roadmap_step_description">
           <span className="itinerary_roadmap_instruction u-text--smallTitle">{children}</span>

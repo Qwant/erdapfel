@@ -1,8 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import RoadMap from './RoadMap';
-import { CloseButton, Divider, Flex } from 'src/components/ui';
-import classnames from 'classnames';
-import { Button } from '@qwant/qwant-ponents';
+import { CloseButton, Divider } from 'src/components/ui';
+import { Box, Button, Flex } from '@qwant/qwant-ponents';
 import RouteSummaryInfo from './RouteSummaryInfo';
 import { useI18n } from 'src/hooks';
 
@@ -15,14 +14,13 @@ const MobileRouteDetails = ({
   toggleDetails,
   openPreview,
 }) => {
-  const panelElement = useRef(null);
   const { _ } = useI18n();
 
   return (
-    <div ref={panelElement} className={classnames('mobile-route-details')}>
+    <div className="mobile-route-details">
       <div className="mobile-route-details-header">
-        <div className="mobile-route-details-header-content">
-          <Flex alignItems="flex-start" justifyContent="space-between">
+        <Box py="l" px="s">
+          <Flex between>
             <RouteSummaryInfo route={route} vehicle={vehicle} />
             <CloseButton position="topRight" onClick={() => toggleDetails(id)} />
           </Flex>
@@ -33,13 +31,14 @@ const MobileRouteDetails = ({
                 openPreview(id);
               }}
               variant="primary"
-              style={{ width: '100%', marginTop: 20 }}
+              full
+              mt="l"
             >
               <img className="u-mr-xxs" src="./statics/images/direction_icons/guide.svg" />
               <span className="u-firstCap">{_('step by step', 'direction')}</span>
             </Button>
           )}
-        </div>
+        </Box>
 
         <Divider paddingTop={0} paddingBottom={0} />
       </div>

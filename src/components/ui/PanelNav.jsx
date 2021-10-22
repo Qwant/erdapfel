@@ -1,12 +1,12 @@
 import React from 'react';
-import { Flex, Divider } from '.';
+import { Divider } from '.';
+import { Flex } from '@qwant/qwant-ponents';
 
 const PanelNav = ({ children }) => (
-  <div className="panelNav">
-    <Flex className="panelNav-content" justifyContent="space-between">
+  <div>
+    <Flex px="xxs" my="xs" between>
       {children}
     </Flex>
-
     <Divider paddingTop={0} paddingBottom={0} />
   </div>
 );

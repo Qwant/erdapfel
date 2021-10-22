@@ -1,7 +1,6 @@
 import Badge from './Badge';
 import Divider from './Divider';
 import ShareMenu from './ShareMenu';
-import Flex from './Flex';
 import { ItemList, Item } from './ItemList';
 import MainActionButton from './MainActionButton';
 import Meter from './Meter';
@@ -22,7 +21,6 @@ export {
   Badge,
   Divider,
   ShareMenu,
-  Flex,
   ItemList,
   Item,
   MainActionButton,

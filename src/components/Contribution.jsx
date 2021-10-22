@@ -1,6 +1,6 @@
 import React from 'react';
 import Telemetry from 'src/libs/telemetry';
-import { Flex } from 'src/components/ui';
+import { Flex } from '@qwant/qwant-ponents';
 import { isFromOSM, isFromPagesJaunes } from 'src/libs/pois';
 import classnames from 'classnames';
 import { useI18n } from 'src/hooks';
