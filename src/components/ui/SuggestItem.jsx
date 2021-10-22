@@ -92,6 +92,7 @@ const SuggestItem = ({ item }) => {
         'autocomplete_suggestion',
         variants.map(variant => `autocomplete_suggestion--${variant}`)
       )}
+      {...props}
     >
       <PlaceIcon
         className="autocomplete_suggestion_icon"
