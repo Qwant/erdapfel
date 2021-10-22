@@ -2,7 +2,7 @@ import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import classnames from 'classnames';
-import { IconHeart, IconGeoloc, IconHistory } from 'src/components/ui/icons';
+import { IconHeart, IconGeoloc, IconHistory, Magnifier } from 'src/components/ui/icons';
 
 const PlaceIcon = ({
   place,
@@ -31,11 +31,11 @@ const PlaceIcon = ({
     const icon = IconManager.get(place);
     iconClass = icon.iconClass;
     color = icon.color;
-  }
-
-  if (category) {
+  } else if (category && category.iconName) {
     iconClass = category.iconName;
     color = category.color;
+  } else {
+    return <VariantIcon variant="search" IconComponent={Magnifier} className={className} />;
   }
 
   return (
@@ -51,7 +51,7 @@ const PlaceIcon = ({
 
 const VariantIcon = ({ variant, className, IconComponent }) => {
   return (
-    <div className={classnames('placeIcon', `placeIcon--${variant}`, className)}>
+    <div className={classnames('placeIcon', { [`placeIcon--${variant}`]: variant }, className)}>
       <IconComponent fill="currentColor" width={20} />
     </div>
   );

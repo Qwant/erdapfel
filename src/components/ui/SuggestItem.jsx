@@ -1,4 +1,3 @@
-/* global _ */
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
@@ -6,130 +5,111 @@ import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
 import { Address, CloseButton } from 'src/components/ui';
 import PlaceIcon from 'src/components/PlaceIcon';
-import { Magnifier } from 'src/components/ui/icons';
 import PoiStore from 'src/adapters/poi/poi_store';
 import NoResultMessage from '../../panel/NoResultMessage';
 import { deleteQuery } from 'src/adapters/search_history';
+import { useI18n } from 'src/hooks';
 
-const ItemLabels = ({ firstLabel, secondLabel }) => (
-  <div className="autocomplete_suggestion__labels">
-    <div className="autocomplete_suggestion__first_line">{firstLabel}</div>
-    {secondLabel && <div className="autocomplete_suggestion__second_line">{secondLabel}</div>}
-  </div>
-);
+const SuggestItem = ({ item }) => {
+  const { _ } = useI18n();
+  const [removed, setRemoved] = useState(false);
 
-const GeolocationItem = ({ geolocPoi }) => (
-  <div className="autocomplete_suggestion autocomplete_suggestion--geoloc">
-    <PlaceIcon className="autocomplete_suggestion_icon" place={geolocPoi} withBackground />
-    <ItemLabels firstLabel={_('Your position', 'direction')} />
-  </div>
-);
-
-const IntentionItem = ({ intention }) => {
-  const { category, place, fullTextQuery } = intention;
-  const placeString = place ? `${_('Close to')} ${place.properties.geocoding.name}` : _('nearby');
-
-  const intentionIcon =
-    category && category.iconName ? (
-      <PlaceIcon className="autocomplete_suggestion_icon" category={category} withBackground />
-    ) : (
-      <div className="autocomplete_suggestion_icon_background autocomplete_suggestion_icon">
-        <Magnifier width={20} />
+  if (item.errorLabel) {
+    return (
+      <div className="autocomplete_error">
+        <NoResultMessage />
       </div>
     );
+  }
 
-  return (
-    <div className="autocomplete_suggestion autocomplete_suggestion--intention">
-      {intentionIcon}
-      <ItemLabels firstLabel={category?.label || fullTextQuery} secondLabel={placeString} />
-    </div>
-  );
-};
+  if (removed) {
+    return false;
+  }
 
-const CategoryItem = ({ category }) => {
-  const { id, label, alternativeName } = category;
-
-  return (
-    <div className="autocomplete_suggestion autocomplete_suggestion--category" data-id={id}>
-      <PlaceIcon className="autocomplete_suggestion_icon" category={category} withBackground />
-      <ItemLabels firstLabel={label} secondLabel={alternativeName} />
-    </div>
-  );
-};
-
-const PoiItem = ({ poi }) => {
-  const { name, type } = poi;
-  const streetAddress = poi.alternativeName ? ( // fallback to alternativeName for older favorites
-    poi.alternativeName
-  ) : (
-    <Address address={poi.address} omitStreet={type === 'house' || type === 'street'} inline />
-  );
-  const isFavorite = poi instanceof PoiStore;
-  const isHistory = poi._suggestSource === 'history';
-  const [removed, setRemoved] = useState(false);
+  let category,
+    firstLabel,
+    secondLabel,
+    place = item,
+    backgroundIcon = true;
+  const props = {};
+  const variants = [];
+  const isHistory = item._suggestSource === 'history';
+  const isFavorite = item instanceof PoiStore;
+  if (isFavorite) {
+    variants.push('favorite');
+  }
+  if (isHistory) {
+    variants.push('history');
+  }
 
   const removeFromHistory = e => {
     // Prevent the input field from losing focus, therefore hiding the panel
     e.preventDefault();
     // Prevent triggering the mouse down action on the parent
     e.stopPropagation();
-    deleteQuery(poi);
+    deleteQuery(item);
     setRemoved(true);
   };
 
-  if (removed) {
-    return false;
+  if (item instanceof NavigatorGeolocalisationPoi) {
+    firstLabel = _('Your position', 'direction');
+    variants.push('geoloc');
+  } else if (item instanceof Category) {
+    category = item;
+    place = null;
+    props['data-id'] = item.id;
+    variants.push('category');
+    firstLabel = item.label;
+    secondLabel = item.alternativeName;
+  } else if (item instanceof Intention) {
+    place = null;
+    category = item.category;
+    variants.push('intention');
+    firstLabel = item.category?.label || item.fullTextQuery;
+    secondLabel = item.place
+      ? `${_('Close to')} ${item.place.properties.geocoding.name}`
+      : _('nearby');
+  } else {
+    backgroundIcon = false;
+    const streetAddress = item.alternativeName ? ( // fallback to alternativeName for older favorites
+      item.alternativeName
+    ) : (
+      <Address
+        address={item.address}
+        omitStreet={item.type === 'house' || item.type === 'street'}
+        inline
+      />
+    );
+    firstLabel = item.name;
+    if (!isFavorite && !isHistory) {
+      secondLabel = streetAddress;
+    }
   }
 
   return (
     <div
-      className={classnames('autocomplete_suggestion', {
-        'autocomplete_suggestion--favorite': isFavorite,
-        'autocomplete_suggestion--history': isHistory,
-      })}
+      className={classnames(
+        'autocomplete_suggestion',
+        variants.map(variant => `autocomplete_suggestion--${variant}`)
+      )}
     >
       <PlaceIcon
         className="autocomplete_suggestion_icon"
-        place={poi}
+        place={place}
+        category={category}
+        withBackground={backgroundIcon}
         isFavorite={isFavorite}
         isHistory={isHistory}
       />
-      {isFavorite || isHistory ? (
-        <ItemLabels firstLabel={name} />
-      ) : (
-        <ItemLabels firstLabel={name} secondLabel={streetAddress} />
-      )}
+      <div className="autocomplete_suggestion__labels">
+        <div className="autocomplete_suggestion__first_line">{firstLabel}</div>
+        {secondLabel && <div className="autocomplete_suggestion__second_line">{secondLabel}</div>}
+      </div>
       {isHistory && (
         <CloseButton onMouseDown={removeFromHistory} variant="small" title={_('Delete')} />
       )}
     </div>
   );
-};
-
-const ErrorLabel = () => (
-  <div className="autocomplete_error">
-    <NoResultMessage />
-  </div>
-);
-
-const SuggestItem = ({ item }) => {
-  if (item.errorLabel) {
-    return <ErrorLabel />;
-  }
-
-  if (item instanceof NavigatorGeolocalisationPoi) {
-    return <GeolocationItem geolocPoi={item} />;
-  }
-
-  if (item instanceof Category) {
-    return <CategoryItem category={item} />;
-  }
-
-  if (item instanceof Intention) {
-    return <IntentionItem intention={item} />;
-  }
-
-  return <PoiItem poi={item} />;
 };
 
 export default SuggestItem;
