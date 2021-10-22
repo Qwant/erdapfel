@@ -49,7 +49,7 @@ const DirectionForm = ({ onReversePoints, onSelectVehicle, isInitializing }) => 
     } else {
       setDestinationInputText(value);
     }
-    if (point) {
+    if (point || value === '') {
       setPoint(which, point);
     }
   };
