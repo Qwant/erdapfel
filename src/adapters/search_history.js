@@ -69,10 +69,11 @@ const itemMatches = ({ type, item }, term) => {
   return matchStrings.filter(s => s).some(str => findIndexIgnoreCase(str, term) !== -1);
 };
 
-export function getHistoryItems(term = '') {
+export function getHistoryItems(term = '', { withIntentions = false } = {}) {
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
-  searchHistory.reverse();
   return searchHistory
+    .reverse() // so it's ordered with most recent items first
+    .filter(stored => withIntentions || stored.type !== 'intention')
     .filter(stored => itemMatches(stored, term))
     .map(stored => {
       if (stored.type === 'intention') {
