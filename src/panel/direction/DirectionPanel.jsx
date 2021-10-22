@@ -34,6 +34,9 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
 
   // url side effect
   useEffect(() => {
+    if (isInitializing) {
+      return;
+    }
     const search = updateQueryString({
       mode: vehicle,
       origin: origin ? poiToUrl(origin) : null,
@@ -41,11 +44,10 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
       selected: activeRouteId,
       details: activeDetails,
     });
-    const _relativeUrl = 'routes/' + search;
-
-    // @TODO
-    //window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
-  }, [origin, destination, vehicle, activeRouteId, activeDetails]);
+    const relativeUrl = 'routes/' + search;
+    // @TODO: not always replace=true
+    window.app.navigateTo(relativeUrl, window.history.state, { replace: true });
+  }, [isInitializing, origin, destination, vehicle, activeRouteId, activeDetails]);
 
   const autoGeoloc = useCallback(async () => {
     // on mobile, when no origin is specified, try auto-geoloc
