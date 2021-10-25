@@ -16,7 +16,6 @@
    - `mapbox/` surcharge de classes de composants mapbox
    - `modals/` fenêtres modales
    - `panel/` implémentation des différents panels
-   - `proxies/` orchestrateurs (panels & url)
    - `scss/` style
    - `vendors/` librairies externes
  - `/tests/` tests automatiques
