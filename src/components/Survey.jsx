@@ -3,6 +3,7 @@ import { Notification, Text } from '@qwant/qwant-ponents';
 import React, { useState } from 'react';
 import { useDevice, useSurvey } from 'src/hooks';
 import { closeSurvey } from 'src/adapters/survey';
+import Telemetry from 'src/libs/telemetry';
 
 const Survey = () => {
   const [enabled, setEnabled] = useState(true);
@@ -12,6 +13,11 @@ const Survey = () => {
   const onClose = () => {
     setEnabled(false);
     closeSurvey(survey.id);
+    Telemetry.add(Telemetry.SURVEY_CLOSE, { id: survey.id });
+  };
+
+  const onClick = () => {
+    Telemetry.add(Telemetry.SURVEY_ANSWER, { id: survey.id });
   };
 
   return (
@@ -24,6 +30,7 @@ const Survey = () => {
           url={survey.url}
           buttonLabel={survey.cta}
           onClose={onClose}
+          onClick={onClick}
           mobile={isMobile}
         >
           <Text typo="body-2" color="primary">
