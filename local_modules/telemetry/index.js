@@ -76,5 +76,9 @@ module.exports = {
     'home_category',
     /* User feedback */
     'user_feedback_answer',
+    /* Surveys */
+    'survey_display',
+    'survey_close',
+    'survey_answer',
   ],
 };
