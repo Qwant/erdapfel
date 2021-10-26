@@ -33,7 +33,7 @@ It's made of the following parts:
  * When a component wants to navigate to another part of the app, it needs to call `window.app.navigateTo` with the URL corresponding to the target state.
 
 
-## Limiations
+## Limitations
 
 The current router implementation wasn't made to last, but it did. It works fine most of the time but still has some limitations:
 
