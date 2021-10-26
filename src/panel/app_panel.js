@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from 'src/proxies/app_router';
+import Router from 'src/libs/app_router';
 import { parseMapHash, joinPath, parseQueryString } from 'src/libs/url_utils';
 import { listen } from 'src/libs/customEvents';
 import { DeviceProvider } from 'src/libs/device';
