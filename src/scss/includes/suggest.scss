@@ -33,18 +33,6 @@
   }
 }
 
-.autocomplete_suggestion--intention {
-  .autocomplete_suggestion_icon_background {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: $grey-lighter;
-      height: 36px;
-      width: 36px;
-      border-radius: 50%;
-  }
-}
-
 .autocomplete_suggestion__labels {
   overflow: hidden;
   flex-grow: 1;
