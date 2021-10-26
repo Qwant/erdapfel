@@ -10,6 +10,7 @@ const RootComponent = ({ router }) => {
   const { isMobile } = useDevice();
 
   useEffect(() => {
+    document.body.dataset.device = isMobile ? 'mobile' : 'desktop';
     if (!isMobile) {
       window.execOnMapLoaded(() => {
         fire('move_mobile_bottom_ui', 0);
