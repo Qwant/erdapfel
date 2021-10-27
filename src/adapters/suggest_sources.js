@@ -72,17 +72,13 @@ export function suggestResults(
           }
         }
 
-        const keptGeocoderSuggestions = pois.slice(
-          0,
-          maxItems - favoriteItems.length - intentionsOrCategories.length - historyItems.length
-        );
-
         const suggestList = [
           ...historyItems,
           ...favoriteItems,
           ...intentionsOrCategories,
-          ...keptGeocoderSuggestions,
-        ];
+          ...pois,
+        ].slice(0, maxItems);
+
         resolve(suggestList);
       } catch (e) {
         reject(e);
