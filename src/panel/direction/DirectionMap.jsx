@@ -6,35 +6,25 @@ const DirectionMap = () => {
   const { state, setPoint } = useContext(DirectionContext);
   const { origin, destination, vehicle, routes, activeRouteId } = state;
 
-  // componentDidUpdate(_prevProps) {
-  //   // @TODO???
-  //   // if (this.props.routes.length !== 0 && prevProps.routes.length === 0) {
-  //   //   fire('update_map_paddings');
-  //   // }
-  // }
-
   useEffect(() => {
     if (origin) {
       window.execOnMapLoaded(() => {
         fire('set_origin', origin);
-        // @TODO: on init
-        // if (!destination) {
-        //   fire('fit_map', origin);
-        // }
+        if (!destination) {
+          fire('fit_map', origin);
+        }
       });
     }
-  }, [origin]);
 
-  useEffect(() => {
     if (destination) {
       window.execOnMapLoaded(() => {
         fire('set_destination', destination);
-        // if (!destination) {
-        //   fire('fit_map', origin);
-        // }
+        if (!origin) {
+          fire('fit_map', destination);
+        }
       });
     }
-  }, [destination]);
+  }, [origin, destination]);
 
   useEffect(() => {
     const dragPointHandler = listen('change_direction_point', setPoint);
