@@ -16,7 +16,7 @@ import { updateQueryString } from 'src/libs/url_utils';
 import { useDevice } from 'src/hooks';
 import { DirectionContext } from './directionStore';
 
-const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
+const DirectionPanel = ({ poi, urlValues }) => {
   const { state, dispatch } = useContext(DirectionContext);
   const { origin, destination, vehicle, activeRouteId, activeDetails } = state;
   const { isMobile } = useDevice();
@@ -51,12 +51,16 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
 
   const autoGeoloc = useCallback(async () => {
     // on mobile, when no origin is specified, try auto-geoloc
-    if (isMobile && !urlOrigin) {
+    if (isMobile && !urlValues.origin) {
       const geolocationPermission = await getGeolocationPermission();
       let modalAccepted = false;
 
       // on an empty form, if the user's position permission hasn't been asked yet, show modal
-      if (!urlDestination && !poi && geolocationPermission === geolocationPermissions.PROMPT) {
+      if (
+        !urlValues.destination &&
+        !poi &&
+        geolocationPermission === geolocationPermissions.PROMPT
+      ) {
         modalAccepted = await openPendingDirectionModal();
       }
 
@@ -73,7 +77,7 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
         }
       }
     }
-  }, [urlDestination, urlOrigin, poi, isMobile, dispatch]);
+  }, [urlValues.origin, urlValues.destination, poi, isMobile, dispatch]);
 
   const initialize = useCallback(() => {
     if (!isInitializing) {
@@ -84,19 +88,28 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
     async function restorePoints() {
       try {
         const poiRestorePromises = [
-          urlOrigin ? poiFromUrl(urlOrigin) : null,
-          urlDestination ? poiFromUrl(urlDestination) : poi ? Poi.deserialize(poi) : null,
+          urlValues.origin ? poiFromUrl(urlValues.origin) : null,
+          urlValues.destination
+            ? poiFromUrl(urlValues.destination)
+            : poi
+            ? Poi.deserialize(poi)
+            : null,
         ];
         const [initialOrigin, initialDestination] = await Promise.all(poiRestorePromises);
         dispatch({
           type: 'setParams',
-          data: { origin: initialOrigin, destination: initialDestination },
+          data: {
+            origin: initialOrigin,
+            destination: initialDestination,
+            activeRouteId: urlValues.activeRouteId || 0,
+            activeDetails: urlValues.activeDetails,
+          },
         });
       } catch (e) {
         Error.sendOnce(
           'direction_panel',
           'restoreUrl',
-          `Error restoring Poi from Url ${urlOrigin} / ${urlDestination}`,
+          `Error restoring Poi from Url ${urlValues.origin} / ${urlValues.destination}`,
           e
         );
       }
@@ -105,7 +118,15 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
     }
 
     restorePoints();
-  }, [urlOrigin, urlDestination, poi, isInitializing, dispatch]);
+  }, [
+    urlValues.origin,
+    urlValues.destination,
+    urlValues.activeRouteId,
+    urlValues.activeDetails,
+    poi,
+    isInitializing,
+    dispatch,
+  ]);
 
   const onSelectVehicle = vehicle => {
     Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
@@ -134,18 +155,21 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
   };
 
   const toggleDetails = () => {
-    dispatch({ type: 'setActiveDetails', data: !activeDetails });
-    // if (this.props.isMobile) {
-    //   if (this.props.details) {
-    //     window.app.navigateBack({
-    //       relativeUrl: 'routes/' + updateQueryString({ details: false }),
-    //     });
-    //   } else {
-    //     this.updateUrl({ params: { details: true }, replace: false });
-    //   }
-    // } else {
-    //   this.updateUrl({ params: { details: !this.props.details }, replace: true });
-    // }
+    if (isMobile) {
+      if (activeDetails) {
+        window.app.navigateBack({
+          relativeUrl: 'routes/' + updateQueryString({ details: false }),
+        });
+      } else {
+        window.app.navigateTo(
+          'routes/' + updateQueryString({ details: true }),
+          window.history.state,
+          { replace: true }
+        );
+      }
+    } else {
+      dispatch({ type: 'setActiveDetails', data: !activeDetails });
+    }
   };
 
   const form = (
@@ -182,13 +206,14 @@ const DirectionPanel = ({ poi, urlOrigin, urlDestination }) => {
 };
 
 DirectionPanel.propTypes = {
-  urlOrigin: PropTypes.string,
-  urlDestination: PropTypes.string,
   poi: PropTypes.object,
+  urlValues: PropTypes.object,
 };
 
-const DirectionPanelWrapper = ({ origin, destination, ...rest }) => {
-  return <DirectionPanel urlOrigin={origin} urlDestination={destination} {...rest} />;
+const DirectionPanelWrapper = ({ origin, destination, activeDetails, activeRouteId, ...rest }) => {
+  return (
+    <DirectionPanel urlValues={{ origin, destination, activeDetails, activeRouteId }} {...rest} />
+  );
 };
 
 export default DirectionPanelWrapper;

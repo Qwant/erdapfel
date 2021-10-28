@@ -30,9 +30,15 @@ export const directionReducer = (state, action) => {
         vehicle: state.vehicles.includes(action.data) ? action.data : modes.DRIVING,
       };
     case 'updating':
-      return { ...state, routes: [], isLoading: true, error: 0, activeRouteId: 0 };
+      return { ...state, routes: [], isLoading: true, error: 0 };
     case 'setRoutes':
-      return { ...state, routes: action.data, isLoading: false, error: 0 };
+      return {
+        ...state,
+        routes: action.data,
+        isLoading: false,
+        error: 0,
+        activeRouteId: state.activeRouteId < action.data.length ? state.activeRouteId : 0,
+      };
     case 'setError':
       return { ...state, routes: [], isLoading: false, error: action.data };
     case 'setActiveRoute':

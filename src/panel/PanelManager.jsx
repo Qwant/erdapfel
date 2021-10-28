@@ -156,7 +156,7 @@ const PanelManager = ({ router }) => {
     if (directionConf.enabled) {
       router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
         const params = parseQueryString(routeParams);
-        params.details = params.details === 'true';
+        params.activeDetails = params.details === 'true';
         params.activeRouteId = Number(params.selected) || 0;
         setPanelOptions({
           ActivePanel: Directions,
