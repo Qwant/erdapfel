@@ -21,7 +21,7 @@ const getSuggestItemLimits = ({ inputValue, withHistory, isMobile }) => {
 
   if (!inputValue) {
     return {
-      maxFavorites: 0,
+      maxFavorites: 2, // only if no history items
       maxHistoryItems: isMobile ? 7 : 3,
     };
   }
