@@ -19,18 +19,33 @@ export function suggestResults(
 ) {
   let geocoderPromise;
   let promise;
+
+  // If favorites are enabled:
+  // - get favourites that match the query
+  const favoriteItems = maxFavorites > 0 ? PoiStore.get(term).slice(0, maxFavorites) : [];
+
+  // If history is enabled:
+  // - get all the history items
+  // - ignore the items that are already present in the favourites list
+  // - keep the N first items (where N = maxHistoryItems)
   const historyItems =
     maxHistoryItems > 0
       ? getHistoryItems(term, { withIntentions: withCategories })
+          .filter(item => item.id !== favoriteItems.find(favorite => favorite.id === item.id)?.id)
           .slice(0, maxHistoryItems)
           .map(item => {
             item._suggestSource = 'history';
             return item;
           })
       : [];
+
+  // Field focused and empty: get history + favourite items
   if (term === '') {
     promise = Promise.resolve([...historyItems, ...PoiStore.getAll().slice(0, maxFavorites)]);
-  } else {
+  }
+
+  // Field focused and not empty: get history + favourite + geocoder items
+  else {
     // eslint-disable-next-line no-async-promise-executor
     promise = new Promise(async (resolve, reject) => {
       geocoderPromise = getGeocoderSuggestions(term, {
@@ -56,20 +71,14 @@ export function suggestResults(
             intentionsOrCategories = intentions;
           }
         }
-        const favorites = PoiStore.get(term);
-        const keptFavorites = favorites.slice(0, maxFavorites);
-
-        const keptGeocoderSuggestions = pois.slice(
-          0,
-          maxItems - keptFavorites.length - intentionsOrCategories.length - historyItems.length
-        );
 
         const suggestList = [
           ...historyItems,
-          ...keptFavorites,
+          ...favoriteItems,
           ...intentionsOrCategories,
-          ...keptGeocoderSuggestions,
-        ];
+          ...pois,
+        ].slice(0, maxItems);
+
         resolve(suggestList);
       } catch (e) {
         reject(e);
