@@ -39,9 +39,12 @@ export function suggestResults(
           })
       : [];
 
-  // Field focused and empty: get history + favourite items
+  // Field focused and empty: get history + favourite items, but no favourites if history items are present
   if (term === '') {
-    promise = Promise.resolve([...historyItems, ...PoiStore.getAll().slice(0, maxFavorites)]);
+    promise = Promise.resolve([
+      ...historyItems,
+      ...PoiStore.getAll().slice(0, historyItems.length > 0 ? 0 : maxFavorites),
+    ]);
   }
 
   // Field focused and not empty: get history + favourite + geocoder items
