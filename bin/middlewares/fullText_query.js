@@ -37,6 +37,8 @@ module.exports = function (config) {
       },
       timeout: idunnTimeout,
     });
+    if(response.status === 204) // if search an empty query or an equivalent
+      return `${config.system.baseUrl}`
     const intention = (response.data.intentions || [])[0];
     if (isIntentionValid(intention)) {
       const { q, bbox, category } = intention.filter;
