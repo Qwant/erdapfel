@@ -37,9 +37,14 @@ module.exports = function (config) {
       },
       timeout: idunnTimeout,
     });
-    if (response.status === 204)
-      // if search an empty query or an equivalent
+    // Return to home if query is empty or equivalent
+    if (response.data.geocoding.query === '') {
       return `${config.system.baseUrl}`;
+    }
+    // Return noresult url if no results were found for an acceptable query
+    if (response.status === 204) {
+      return `${config.system.baseUrl}noresult?${params.toString()}`;
+    }
     const intention = (response.data.intentions || [])[0];
     if (isIntentionValid(intention)) {
       const { q, bbox, category } = intention.filter;
