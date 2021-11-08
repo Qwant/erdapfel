@@ -11,8 +11,8 @@ import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
 import { IconArrowLeftLine, IconClose } from '@qwant/qwant-ponents';
 import classnames from 'classnames';
-import { useConfig, useDevice, useI18n } from 'src/hooks';
-import { saveQuery } from 'src/adapters/search_history';
+import { useDevice, useI18n } from 'src/hooks';
+import { getHistoryEnabled, saveQuery } from 'src/adapters/search_history';
 
 const DirectionInput = ({
   isLoading,
@@ -26,7 +26,7 @@ const DirectionInput = ({
 }) => {
   const [readOnly, setReadOnly] = useState(false);
   const { isMobile } = useDevice();
-  const searchHistoryConfig = useConfig('searchHistory');
+  const searchHistoryEnabled = getHistoryEnabled();
   const { _ } = useI18n();
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const DirectionInput = ({
     } else {
       const name = selectedPoi.type === 'latlon' ? selectedPoi.address.street : selectedPoi.name;
       onChangePoint(name, selectedPoi);
-      if (searchHistoryConfig?.enabled) {
+      if (searchHistoryEnabled) {
         saveQuery(selectedPoi);
       }
     }
@@ -92,7 +92,7 @@ const DirectionInput = ({
           outputNode={document.querySelector('.direction-autocomplete_suggestions')}
           withGeoloc={withGeoloc}
           onSelect={selectItem}
-          withHistory={searchHistoryConfig?.enabled}
+          withHistory={searchHistoryEnabled}
           hide={otherPoint}
         >
           {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (

@@ -17,3 +17,4 @@ export const GREEN_DARK = '#5d9836';
 export const ORANGE_BASE = '#ff851e';
 export const RED_BASE = '#ff1d3c';
 export const RED_DARKER = '#900014';
+export const PURPLE = '#a125be';

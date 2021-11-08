@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
-import { IconHeart, IconEdit, IconBug } from 'src/components/ui/icons';
+import { IconHeart, IconHistory, IconEdit, IconBug } from 'src/components/ui/icons';
 import { IconLight, IconApps } from '@qwant/qwant-ponents';
-import { PINK_DARK, ACTION_BLUE_BASE } from 'src/libs/colors';
+import { PINK_DARK, ACTION_BLUE_BASE, PURPLE } from 'src/libs/colors';
 import { useConfig, useI18n } from 'src/hooks';
 
 const AppMenu = ({ close, openProducts }) => {
   const { baseUrl } = useConfig('system');
   const { getLocalizedUrl, _ } = useI18n();
+  const searchHistoryConfig = useConfig('searchHistory');
 
   const navTo = (url, options) => {
     close();
@@ -30,6 +31,18 @@ const AppMenu = ({ close, openProducts }) => {
       >
         {_('My favorites', 'menu')}
       </MenuItem>
+      {searchHistoryConfig?.enabled && (
+        <MenuItem
+          href={baseUrl + 'history/'}
+          onClick={e => {
+            e.preventDefault();
+            navTo('/history/');
+          }}
+          icon={<IconHistory width={16} fill={PURPLE} />}
+        >
+          {_('My search history', 'menu')}
+        </MenuItem>
+      )}
       <MenuItem
         href={getLocalizedUrl('aboutMapsToS')}
         outsideLink

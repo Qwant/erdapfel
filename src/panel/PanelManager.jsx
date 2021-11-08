@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FavoritesPanel from './favorites/FavoritesPanel';
+import HistoryPanel from './history/HistoryPanel';
 import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
@@ -148,6 +149,14 @@ const PanelManager = ({ router }) => {
     router.addRoute('Favorites', '/favs', () => {
       setPanelOptions({
         ActivePanel: FavoritesPanel,
+        options: {},
+        panelSize: 'default',
+      });
+    });
+
+    router.addRoute('History', '/history', () => {
+      setPanelOptions({
+        ActivePanel: HistoryPanel,
         options: {},
         panelSize: 'default',
       });

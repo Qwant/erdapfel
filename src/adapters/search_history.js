@@ -6,6 +6,14 @@ import Intention from 'src/adapters/intention';
 const SEARCH_HISTORY_KEY = 'search_history_v1';
 const HISTORY_SIZE = 100;
 
+export function setHistoryEnabled(value) {
+  set(SEARCH_HISTORY_KEY + '_enabled', value);
+}
+
+export function getHistoryEnabled() {
+  return get(SEARCH_HISTORY_KEY + '_enabled');
+}
+
 export function saveQuery(item) {
   // Delete query if it's already in the list
   deleteQuery(item);

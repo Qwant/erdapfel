@@ -1,0 +1,14 @@
+@media (min-width: 641px){
+  .history_panel {
+    min-height: calc(100vh - (92px + 40px));
+  }
+  .history-header {
+    margin: 8px 0;
+  }
+}
+
+.history_panel {
+  .panel-content {
+    padding: 12px;
+  }
+}
