@@ -94,3 +94,15 @@ export function getHistoryItems(term = '', { withIntentions = false } = {}) {
       }
     });
 }
+
+export function listHistoryItemsByDate(from = 0, to = Date.now()) {
+  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  return searchHistory
+    .reverse() // so it's ordered with most recent items first
+    .filter(item => item.date >= from && item.date < to);
+}
+
+export function historyLength() {
+  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  return searchHistory.length;
+}
