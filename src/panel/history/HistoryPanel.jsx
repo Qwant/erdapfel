@@ -31,11 +31,11 @@ const HistoryPanel = () => {
         <Text>
           {isChecked
             ? _(
-                'Your history is disabled. If you enable it, it will only be visible to you on this device.',
+                'Your history is enabled. It is only visible to you on this device.',
                 'history panel'
               )
             : _(
-                'Your history is enabled. It is only visible to you on this device.',
+                'Your history is disabled. If you enable it, it will only be visible to you on this device.',
                 'history panel'
               )}
           &nbsp;
