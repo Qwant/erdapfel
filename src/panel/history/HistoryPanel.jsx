@@ -1,7 +1,7 @@
 /* globals _ */
 import React, { useState } from 'react';
 import Panel from 'src/components/ui/Panel';
-import { Flex, Switch, Text } from '@qwant/qwant-ponents';
+import { Box, Flex, Switch, Text } from '@qwant/qwant-ponents';
 import { setHistoryEnabled, getHistoryEnabled } from 'src/adapters/search_history';
 
 const HistoryPanel = () => {
@@ -28,11 +28,16 @@ const HistoryPanel = () => {
       className="history_panel"
     >
       <Flex>
-        <Text typo="body-2" color="secondary" as="label">
-          {_(
-            'Your history is disabled. If you enable it, it will only be visible to you on this device',
-            'history panel'
-          )}
+        <Text>
+          {isChecked
+            ? _(
+                'Your history is disabled. If you enable it, it will only be visible to you on this device.',
+                'history panel'
+              )
+            : _(
+                'Your history is enabled. It is only visible to you on this device.',
+                'history panel'
+              )}
           &nbsp;
           <a href="#">{_('Learn more')}</a>
         </Text>
@@ -43,6 +48,11 @@ const HistoryPanel = () => {
           onChange={onChange}
         />
       </Flex>
+      <Box mt="xl">
+        {isChecked && (
+          <Text>{_('As soon as you do a search, you can find it here 👇', 'history panel')}</Text>
+        )}
+      </Box>
     </Panel>
   );
 };
