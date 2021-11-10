@@ -95,7 +95,7 @@ export function getHistoryItems(term = '', { withIntentions = false } = {}) {
     });
 }
 
-export function listHistoryItemsByDate(from = 0, to = Date.now()) {
+export function listHistoryItemsByDate(from, to) {
   const searchHistory = get(SEARCH_HISTORY_KEY) || [];
   return searchHistory
     .reverse() // so it's ordered with most recent items first
