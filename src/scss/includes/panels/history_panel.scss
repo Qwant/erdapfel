@@ -17,3 +17,18 @@
   display: block;
   width: 50%;
 }
+
+.history-list {
+  border-bottom: 1px solid;
+  margin: 15px 0;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.history-list-item {
+  padding: 5px 0;
+  min-height: 40px;
+  margin: 0 0 5px 0;
+}

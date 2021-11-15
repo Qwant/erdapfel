@@ -1,13 +1,14 @@
 /* globals _ */
 import React, { useState } from 'react';
 import Panel from 'src/components/ui/Panel';
-import { Heading, Box, Flex, Switch, Text, Button } from '@qwant/qwant-ponents';
+import { Heading, Box, Flex, Switch, Text, Button, IconEmpty } from '@qwant/qwant-ponents';
 import {
   setHistoryEnabled,
   getHistoryEnabled,
   listHistoryItemsByDate,
   historyLength,
 } from 'src/adapters/search_history';
+import PlaceIcon from '../../components/PlaceIcon';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
@@ -55,14 +56,56 @@ const HistoryPanel = () => {
   const showItem = item => {
     return item.type === 'poi' ? (
       // poi / city / address
-      <Flex key={item.item.id}>
-        {item.date} - {item.type} - {item.item.name}
+      <Flex key={item.item.id} className="history-list-item">
+        <Box>
+          <PlaceIcon className="autocomplete_suggestion_icon" place={item.item} withBackground />
+        </Box>
+        <Flex takeAvailableSpace column>
+          <Box>
+            <Text typo="body-1" color="primary">
+              {item.item.name}
+            </Text>
+          </Box>
+          <Box>
+            <Text typo="body-2" color="secondary">
+              {item.item?.address?.label ||
+                item.item?.address?.city ||
+                item.item?.address?.stateDistrict ||
+                item.item?.address?.state ||
+                item.item?.address?.country ||
+                ''}
+            </Text>
+          </Box>
+        </Flex>
+        <Text color="primary">
+          <IconEmpty />
+        </Text>
       </Flex>
     ) : (
       // intention
-      <Flex key={item.item.category.id}>
-        {item.date} - {item.type} - {item.item.category.name} -
-        {item.item.place.properties.geocoding.name}
+      <Flex key={item.item.category.id} className="history-list-item">
+        <Box>
+          <PlaceIcon
+            className="autocomplete_suggestion_icon"
+            category={item.item.category}
+            withBackground
+          />
+        </Box>
+        <Flex takeAvailableSpace column>
+          <Box>
+            <Text typo="body-1" color="primary">
+              {item.item.category.name}
+            </Text>
+          </Box>
+          <Box>
+            <Text typo="body-2" color="secondary">
+              {item.item.place.properties.geocoding.name}
+            </Text>
+          </Box>
+        </Flex>
+        <Text color="primary">
+          <IconEmpty />
+        </Text>
       </Flex>
     );
   };
@@ -107,34 +150,34 @@ const HistoryPanel = () => {
       {isChecked && (
         <Box mt="xl">
           {todayHistoryItems.length > 0 && (
-            <>
+            <Box className="history-list">
               <Heading typo="heading-6">{_('Today', 'history panel')}</Heading>
-              {todayHistoryItems.map(showItem)}
-            </>
+              <Box>{todayHistoryItems.map(showItem)}</Box>
+            </Box>
           )}
           {lastWeekHistoryItems.length > 0 && (
-            <>
+            <Box className="history-list">
               <Heading typo="heading-6">{_('Last week', 'history panel')}</Heading>
-              {lastWeekHistoryItems.map(showItem)}
-            </>
+              <Box>{lastWeekHistoryItems.map(showItem)}</Box>
+            </Box>
           )}
           {last2WeeksHistoryItems.length > 0 && (
-            <>
+            <Box className="history-list">
               <Heading typo="heading-6">{_('Last 2 weeks', 'history panel')}</Heading>
-              {last2WeeksHistoryItems.map(showItem)}
-            </>
+              <Box>{last2WeeksHistoryItems.map(showItem)}</Box>
+            </Box>
           )}
           {last3WeeksHistoryItems.length > 0 && (
-            <>
+            <Box className="history-list">
               <Heading typo="heading-6">{_('Last 3 weeks', 'history panel')}</Heading>
-              {last3WeeksHistoryItems.map(showItem)}
-            </>
+              <Box>{last3WeeksHistoryItems.map(showItem)}</Box>
+            </Box>
           )}
           {olderHistoryItems.length > 0 && (
-            <>
+            <Box className="history-list">
               <Heading typo="heading-6">{_('Older', 'history panel')}</Heading>
-              {olderHistoryItems.map(showItem)}
-            </>
+              <Box>{olderHistoryItems.map(showItem)}</Box>
+            </Box>
           )}
           {historyLength() === 0 && (
             <Text>{_('As soon as you do a search, you can find it here 👇', 'history panel')}</Text>
