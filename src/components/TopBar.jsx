@@ -8,7 +8,7 @@ import Menu from 'src/panel/Menu';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
-import { saveQuery } from 'src/adapters/search_history';
+import { getHistoryEnabled, saveQuery } from 'src/adapters/search_history';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
@@ -18,7 +18,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const [focused, setFocused] = useState(false);
   const { isMobile } = useDevice();
   const config = useConfig();
-  const searchHistoryConfig = config.searchHistory;
+  const searchHistoryEnabled = getHistoryEnabled();
   const { _ } = useI18n();
 
   // give keyboard focus to the field when typing anywhere
@@ -54,7 +54,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
 
   const onSelectSuggestion = (item, options) => {
     selectItem(item, options);
-    if (item && searchHistoryConfig?.enabled) {
+    if (item && searchHistoryEnabled) {
       saveQuery(item);
     }
     inputRef.current.blur();
@@ -121,7 +121,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             onToggle={onSuggestToggle}
             onSelect={onSelectSuggestion}
             withFeedback
-            withHistory={searchHistoryConfig?.enabled}
+            withHistory={searchHistoryEnabled}
           >
             {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
               <input
