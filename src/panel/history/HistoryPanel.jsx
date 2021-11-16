@@ -7,8 +7,10 @@ import {
   getHistoryEnabled,
   listHistoryItemsByDate,
   historyLength,
+  deleteQuery,
+  deleteSearchHistory,
 } from 'src/adapters/search_history';
-import PlaceIcon from '../../components/PlaceIcon';
+import PlaceIcon from 'src/components/PlaceIcon';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
@@ -29,6 +31,19 @@ const HistoryPanel = () => {
   const onChange = e => {
     setIsChecked(e.target.checked);
     setHistoryEnabled(e.target.checked);
+  };
+
+  const visit = item => {
+    // PoI
+    if (item.type === 'poi') {
+      window.app.navigateTo(`/place/${item.item.id}`);
+    }
+    // Intention
+    else if (item.type === 'intention') {
+      window.app.navigateTo(
+        `/places/?type=${item.item.category.name}&bbox=${item.item.bbox.join(',')}`
+      );
+    }
   };
 
   // TEMPORARY: fill history with items (poi, address, city, intention) from different dates (< 24h, < 1 week, < 2 weeks, < 3 weeks, older)
@@ -57,10 +72,20 @@ const HistoryPanel = () => {
     return item.type === 'poi' ? (
       // poi / city / address
       <Flex key={item.item.id} className="history-list-item">
-        <Box>
+        <Box
+          onClick={() => {
+            visit(item);
+          }}
+        >
           <PlaceIcon className="autocomplete_suggestion_icon" place={item.item} withBackground />
         </Box>
-        <Flex takeAvailableSpace column>
+        <Flex
+          takeAvailableSpace
+          column
+          onClick={() => {
+            visit(item);
+          }}
+        >
           <Box>
             <Text typo="body-1" color="primary">
               {item.item.name}
@@ -78,20 +103,30 @@ const HistoryPanel = () => {
           </Box>
         </Flex>
         <Text color="primary">
-          <IconEmpty />
+          <IconEmpty onClick={() => deleteQuery(item)} />
         </Text>
       </Flex>
     ) : (
       // intention
       <Flex key={item.item.category.id} className="history-list-item">
-        <Box>
+        <Box
+          onClick={() => {
+            visit(item);
+          }}
+        >
           <PlaceIcon
             className="autocomplete_suggestion_icon"
             category={item.item.category}
             withBackground
           />
         </Box>
-        <Flex takeAvailableSpace column>
+        <Flex
+          takeAvailableSpace
+          column
+          onClick={() => {
+            visit(item);
+          }}
+        >
           <Box>
             <Text typo="body-1" color="primary">
               {item.item.category.name}
@@ -104,7 +139,7 @@ const HistoryPanel = () => {
           </Box>
         </Flex>
         <Text color="primary">
-          <IconEmpty />
+          <IconEmpty onClick={() => deleteQuery(item)} />
         </Text>
       </Flex>
     );
@@ -144,7 +179,9 @@ const HistoryPanel = () => {
       </Flex>
       <Flex className="history_panel_links">
         <a href="#">{_('Learn more')}</a>
-        {isChecked && historyLength() > 0 && <a href="#">{_('Delete my history')}</a>}
+        {isChecked && historyLength() > 0 && (
+          <a onClick={deleteSearchHistory}>{_('Delete my history')}</a>
+        )}
         {isChecked && <Button onClick={demo}>DEMO</Button>}
       </Flex>
       {isChecked && (
