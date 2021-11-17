@@ -1,5 +1,5 @@
 /* globals _ */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Panel from 'src/components/ui/Panel';
 import { Heading, Box, Flex, Switch, Text, Button, IconEmpty } from '@qwant/qwant-ponents';
 import {
@@ -8,22 +8,35 @@ import {
   listHistoryItemsByDate,
   historyLength,
   deleteQuery,
+  getHistory,
   deleteSearchHistory,
 } from 'src/adapters/search_history';
 import PlaceIcon from 'src/components/PlaceIcon';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
+  const [history, setHistory] = useState(getHistory()); // Local copy of localStorage history
   const now = new Date();
   const lastMidnight = new Date().setUTCHours(0, 0, 0, 0);
   const lastWeek = new Date().setUTCDate(-7);
   const last2Weeks = new Date().setUTCDate(-14);
   const last3Weeks = new Date().setUTCDate(-21);
-  const todayHistoryItems = listHistoryItemsByDate(lastMidnight, now);
-  const lastWeekHistoryItems = listHistoryItemsByDate(lastWeek, lastMidnight);
-  const last2WeeksHistoryItems = listHistoryItemsByDate(last2Weeks, lastWeek);
-  const last3WeeksHistoryItems = listHistoryItemsByDate(last3Weeks, last2Weeks);
-  const olderHistoryItems = listHistoryItemsByDate(0, last3Weeks);
+  const [todayHistory, setTodayHistory] = useState([]);
+  const [lastWeekHistory, setLastWeekHistory] = useState([]);
+  const [last2WeeksHistory, setLast2WeeksHistory] = useState([]);
+  const [last3WeeksHistory, setLast3WeeksHistory] = useState([]);
+  const [olderHistory, setOlderHistory] = useState([]);
+
+  // Observe changes in local history
+  useEffect(() => {
+    // Update the 5 lists
+    setTodayHistory(listHistoryItemsByDate(lastMidnight, now));
+    setLastWeekHistory(listHistoryItemsByDate(lastWeek, lastMidnight));
+    setLast2WeeksHistory(listHistoryItemsByDate(last2Weeks, lastWeek));
+    setLast3WeeksHistory(listHistoryItemsByDate(last3Weeks, last2Weeks));
+    setOlderHistory(listHistoryItemsByDate(0, last3Weeks));
+  }, [history]);
+
   const close = () => {
     window.app.navigateTo('/');
   };
@@ -40,13 +53,42 @@ const HistoryPanel = () => {
     }
     // Intention
     else if (item.type === 'intention') {
-      window.app.navigateTo(
-        `/places/?type=${item.item.category.name}&bbox=${item.item.bbox.join(',')}`
-      );
+      // With category
+      if (item.item.category && item.item.category.name) {
+        window.app.navigateTo(
+          `/places/?type=${item.item.category.name}&bbox=${item.item.bbox.join(',')}`
+        );
+      }
+      // Without category (ex: macdonalds nice)
+      else {
+        window.app.navigateTo(
+          `/places/?q=${item.item.fullTextQuery}&bbox=${item.item.bbox.join(',')}`
+        );
+      }
     }
   };
 
-  // TEMPORARY: fill history with items (poi, address, city, intention) from different dates (< 24h, < 1 week, < 2 weeks, < 3 weeks, older)
+  // Remove one item from the list
+  const remove = item => {
+    // Remove the item in localStorage
+    deleteQuery(item);
+
+    // Refresh local copy of localStorage to re-render the page
+    setHistory(getHistory());
+  };
+
+  // Clear all the history
+  const clear = () => {
+    // Temp: a nice popup will appear here soon
+    if (confirm('Are you sure?')) {
+      // Clear history in localStorage
+      deleteSearchHistory();
+      // Refresh local copy of localStorage to re-render the page
+      setHistory(getHistory());
+    }
+  };
+
+  // TEMP: fill history with items (poi, address, city, intention) from different dates (< 24h, < 1 week, < 2 weeks, < 3 weeks, older)
   // prettier-ignore
   const demo = () => {
     localStorage.qmaps_v1_search_history_v1 = `[{"type":"poi","date":${
@@ -64,8 +106,8 @@ const HistoryPanel = () => {
     },"item":{"id":"osm:way:5013364","name":"Tour Eiffel","type":"poi","latLon":{"lat":48.858260156496016,"lng":2.2944990157640612},"className":"attraction","subClassName":"attraction","value":"Tour Eiffel (Paris)","queryContext":{"term":"tour eiffel","ranking":1,"lang":"fr","position":{"lat":"43.700","lon":"7.000","zoom":"17.000"}},"address":{"street":"5 Avenue Anatole France","suburb":"Quartier du Gros-Caillou","cityDistrict":"Paris 7e Arrondissement","city":"Paris","stateDistrict":"Paris","state":"Île-de-France","country":"France","label":"5 Avenue Anatole France (Paris)"}}},
     {"type":"intention","date":1636550261818,"item":{"filter":{"bbox":[7.1819535,43.6454189,7.323912,43.7607635],"category":"restaurant"},"category":{"name":"restaurant","label":"restaurant","iconName":"restaurant","color":"#d76600","matcher":{"regex":"restos?|restaus?|ma?cs?do(?:nald(?:'s)?)?|burgers+king|quick|subway|flunch|hards+rocks+cafe|kfc|pizza|brioches+doree|fives+guys|mezzos+dis+pasta|pommes+des+pain|prets+as+manger|vapiano|starbucks|bigs+fernand|sushi|memphiss+coffee|buffalos+grill|las+boucherie|hippopotamus|leon|pataterie|pizzeria|brasserie|fasts+food|restaurations+rapide|snack|creperie|kebab|sandwicherie|ils+ristorante|le kiosque a pizzas|buffalo grill|campanile|courtepaille|burger king|la pataterie|pizza hut|au bureau|poivre rouge|la croissanterie|tutti pizza|la boite a pizza|la brioche doree|leon de bruxelles|bagelstein|columbus cafe|memphis coffee|del arte|class'croute|o'tacos|sushi shop|mezzo di pasta|pomme de pain|big fernand|pizza sprint|bistro regent|l'epicurien|tablapizza|speed burger|pat a pain|pizza bonici|firmin|l'atelier gourmand|pizza time|a la bonne heure|francesca|planet sushi|speed rabbit pizza|pegast|pizza pai|best western|crep'eat|baila pizza|waffle factory|casino cafeteria|la pizza de nico|crocodile|fresh burritos|231 east street|bagel corner|coeur de ble|dubble|eat sushi|fuxia|il ristorante|les fils a maman|nooi|pitaya|jour|les burgers de papa|bchef|chez papa|cojean|le fournil de pierre|oceane|terre et mer|bistro romain|el rancho|l'alambic|le patacrepe|pizza city|cote sushi|la maison bleue|le club sandwich cafe|les 3 brasseurs|bellota-bellota|bistrot du boucher|la tagliatella|nostrum|pizza pino|point chaud|tacos avenue|exki|garden ice cafe|green is better|le paradis du fruit|les relais d'alsace|ma campagne|mamie bigoude|pasta pizza|pizza cosy|planetalis|salad&co|tommy's diner|yogurt factory|cafe leffe|dominos pizza|indiana cafe|le comptoir du malt|lina's|mythic burger|nikki sushi|alto cafe|ankka|burger bar by quick|carre bleu|esprit sushi|feel juice|five guys"},"alternativeName":"catégorie","type":"category","id":"category:restaurant"},"bbox":[7.1819535,43.6454189,7.323912,43.7607635],"place":{"type":"Feature","geometry":{"coordinates":[7.2683912,43.7009358],"type":"Point"},"properties":{"geocoding":{"type":"zone","label":"Nice (06000-06300), Alpes-Maritimes, France","name":"Nice","postcode":"06000;06100;06200;06300","city":null,"id":"admin:osm:relation:170100","zone_type":"city","citycode":"6088","level":8,"administrative_regions":[{"id":"admin:osm:relation:7385","insee":"6","level":6,"label":"Alpes-Maritimes, France","name":"Alpes-Maritimes","zip_codes":[],"coord":{"lon":7.2683912,"lat":43.7009358},"bbox":[6.6352025999999995,43.4800526,7.7184776,44.3625081],"zone_type":"state_district","parent_id":"admin:osm:relation:2202162","codes":[{"name":"ISO3166-2","value":"FR-06"},{"name":"ref:INSEE","value":"06"},{"name":"ref:nuts","value":"FRL03"},{"name":"ref:nuts:3","value":"FRL03"},{"name":"wikidata","value":"Q3139"}]},{"id":"admin:osm:relation:2202162","insee":"","level":2,"label":"France","name":"France","zip_codes":[],"coord":{"lon":2.3514616,"lat":48.8566969},"bbox":[-5.4517733,41.261115499999995,9.8282225,51.3055721],"zone_type":"country","parent_id":null,"codes":[{"name":"ISO3166-1","value":"FR"},{"name":"ISO3166-1:alpha2","value":"FR"},{"name":"ISO3166-1:alpha3","value":"FRA"},{"name":"ISO3166-1:numeric","value":"250"},{"name":"wikidata","value":"Q142"}]}],"codes":[{"name":"ref:FR:SIREN","value":"210600888"},{"name":"ref:INSEE","value":"06088"},{"name":"wikidata","value":"Q33959"}],"bbox":[7.1819535,43.6454189,7.323912,43.7607635]}}}}}]`;
 
-    // eslint-disable-next-line no-self-assign
-    location = location;
+    // Refresh local copy of history and re-render the page
+    setHistory(getHistory());
   };
 
   const showItem = item => {
@@ -102,13 +144,13 @@ const HistoryPanel = () => {
             </Text>
           </Box>
         </Flex>
-        <Text color="primary">
-          <IconEmpty onClick={() => deleteQuery(item)} />
+        <Text color="primary" onClick={() => remove(item)}>
+          <IconEmpty />
         </Text>
       </Flex>
     ) : (
       // intention
-      <Flex key={item.item.category.id} className="history-list-item">
+      <Flex key={item.item.category?.id || item.item.fullTextQuery} className="history-list-item">
         <Box
           onClick={() => {
             visit(item);
@@ -129,7 +171,7 @@ const HistoryPanel = () => {
         >
           <Box>
             <Text typo="body-1" color="primary">
-              {item.item.category.name}
+              {item.item.category?.name || item.item.fullTextQuery}
             </Text>
           </Box>
           <Box>
@@ -138,8 +180,8 @@ const HistoryPanel = () => {
             </Text>
           </Box>
         </Flex>
-        <Text color="primary">
-          <IconEmpty onClick={() => deleteQuery(item)} />
+        <Text color="primary" onClick={() => remove(item)}>
+          <IconEmpty />
         </Text>
       </Flex>
     );
@@ -179,41 +221,39 @@ const HistoryPanel = () => {
       </Flex>
       <Flex className="history_panel_links">
         <a href="#">{_('Learn more')}</a>
-        {isChecked && historyLength() > 0 && (
-          <a onClick={deleteSearchHistory}>{_('Delete my history')}</a>
-        )}
+        {isChecked && historyLength() > 0 && <a onClick={clear}>{_('Delete my history')}</a>}
         {isChecked && <Button onClick={demo}>DEMO</Button>}
       </Flex>
       {isChecked && (
         <Box mt="xl">
-          {todayHistoryItems.length > 0 && (
+          {todayHistory.length > 0 && (
             <Box className="history-list">
               <Heading typo="heading-6">{_('Today', 'history panel')}</Heading>
-              <Box>{todayHistoryItems.map(showItem)}</Box>
+              <Box>{todayHistory.map(showItem)}</Box>
             </Box>
           )}
-          {lastWeekHistoryItems.length > 0 && (
+          {lastWeekHistory.length > 0 && (
             <Box className="history-list">
               <Heading typo="heading-6">{_('Last week', 'history panel')}</Heading>
-              <Box>{lastWeekHistoryItems.map(showItem)}</Box>
+              <Box>{lastWeekHistory.map(showItem)}</Box>
             </Box>
           )}
-          {last2WeeksHistoryItems.length > 0 && (
+          {last2WeeksHistory.length > 0 && (
             <Box className="history-list">
               <Heading typo="heading-6">{_('Last 2 weeks', 'history panel')}</Heading>
-              <Box>{last2WeeksHistoryItems.map(showItem)}</Box>
+              <Box>{last2WeeksHistory.map(showItem)}</Box>
             </Box>
           )}
-          {last3WeeksHistoryItems.length > 0 && (
+          {last3WeeksHistory.length > 0 && (
             <Box className="history-list">
               <Heading typo="heading-6">{_('Last 3 weeks', 'history panel')}</Heading>
-              <Box>{last3WeeksHistoryItems.map(showItem)}</Box>
+              <Box>{last3WeeksHistory.map(showItem)}</Box>
             </Box>
           )}
-          {olderHistoryItems.length > 0 && (
+          {olderHistory.length > 0 && (
             <Box className="history-list">
               <Heading typo="heading-6">{_('Older', 'history panel')}</Heading>
-              <Box>{olderHistoryItems.map(showItem)}</Box>
+              <Box>{olderHistory.map(showItem)}</Box>
             </Box>
           )}
           {historyLength() === 0 && (
