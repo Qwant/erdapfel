@@ -40,7 +40,7 @@ const AppMenu = ({ close, openProducts }) => {
           }}
           icon={<IconHistory width={16} fill={PURPLE} />}
         >
-          {_('My search history', 'menu')}
+          {_('My history', 'menu')}
         </MenuItem>
       )}
       <MenuItem

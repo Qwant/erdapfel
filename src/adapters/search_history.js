@@ -14,12 +14,20 @@ export function getHistoryEnabled() {
   return get(SEARCH_HISTORY_KEY + '_enabled');
 }
 
+export function getHistory() {
+  return get(SEARCH_HISTORY_KEY) || [];
+}
+
+export function setHistory(searchHistory) {
+  set(SEARCH_HISTORY_KEY, searchHistory);
+}
+
 export function saveQuery(item) {
   // Delete query if it's already in the list
   deleteQuery(item);
 
   // Retrieve the search history
-  let searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  let searchHistory = getHistory();
 
   // Put the query at the end of the array
   searchHistory.push({
@@ -34,18 +42,18 @@ export function saveQuery(item) {
   }
 
   // Serialize the list and save it in localStorage
-  set(SEARCH_HISTORY_KEY, searchHistory);
+  setHistory(searchHistory);
 }
 
 export function deleteQuery(item) {
-  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  const searchHistory = getHistory();
   const index = searchHistory.findIndex(stored => itemEquals(stored, item));
   if (index === -1) {
     return;
   }
   searchHistory.splice(index, 1);
   // Serialize the list and save it in localStorage
-  set(SEARCH_HISTORY_KEY, searchHistory);
+  setHistory(searchHistory);
 }
 
 export function deleteSearchHistory() {
@@ -55,14 +63,14 @@ export function deleteSearchHistory() {
 const itemEquals = ({ type, item }, other) => {
   if (type === 'intention') {
     return (
-      other instanceof Intention &&
       item.fullTextQuery === other.fullTextQuery &&
       item.category?.name === other.category?.name &&
       item.place?.properties?.geocoding?.name === other.place?.properties?.geocoding?.name
     );
-  } else {
-    return other instanceof Poi && item.id === other.id;
+  } else if (type === 'poi') {
+    return item.id === other.id;
   }
+  return false;
 };
 
 const itemMatches = ({ type, item }, term) => {
@@ -78,7 +86,7 @@ const itemMatches = ({ type, item }, term) => {
 };
 
 export function getHistoryItems(term = '', { withIntentions = false } = {}) {
-  const searchHistory = get(SEARCH_HISTORY_KEY) || [];
+  const searchHistory = getHistory();
   return searchHistory
     .reverse() // so it's ordered with most recent items first
     .filter(stored => withIntentions || stored.type !== 'intention')
@@ -93,4 +101,15 @@ export function getHistoryItems(term = '', { withIntentions = false } = {}) {
         return Object.assign(new Poi(), stored.item);
       }
     });
+}
+
+export function listHistoryItemsByDate(from, to) {
+  return getHistory()
+    .reverse() // so it's ordered with most recent items first
+    .filter(item => item.date >= from && item.date < to); // filter by date range
+}
+
+export function historyLength() {
+  const searchHistory = getHistory();
+  return searchHistory.length;
 }
