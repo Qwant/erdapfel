@@ -79,7 +79,7 @@ const HistoryPanel = () => {
   // Remove one item from the list
   const remove = item => {
     // Remove the item in localStorage
-    deleteQuery(item);
+    deleteQuery(item.item);
 
     // Refresh lists and re-render the page
     computeHistory();

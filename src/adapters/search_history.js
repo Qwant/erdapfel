@@ -61,14 +61,14 @@ export function deleteSearchHistory() {
 }
 
 const itemEquals = ({ type, item }, other) => {
-  if (type === 'intention' && other.type === 'intention') {
+  if (type === 'intention') {
     return (
-      item.fullTextQuery === other.item.fullTextQuery &&
-      item.category?.name === other.item.category?.name &&
-      item.place?.properties?.geocoding?.name === other.item.place?.properties?.geocoding?.name
+      item.fullTextQuery === other.fullTextQuery &&
+      item.category?.name === other.category?.name &&
+      item.place?.properties?.geocoding?.name === other.place?.properties?.geocoding?.name
     );
-  } else if (type === 'poi' && other.type === 'poi') {
-    return item.id === other.item.id;
+  } else if (type === 'poi') {
+    return item.id === other.id;
   }
   return false;
 };
