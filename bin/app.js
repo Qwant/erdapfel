@@ -125,11 +125,18 @@ function App(config) {
     const userAgent = req.headers['user-agent'];
     const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
     const { server: _droppedServerConfig, ...appConfig } = config;
+    let localAppConfig = appConfig;
     if (disableMenuRule && userAgent && userAgent.match(disableMenuRule)) {
-      appConfig.burgerMenu.enabled = false;
+      localAppConfig = {
+        ...appConfig,
+        burgerMenu: {
+          ...appConfig.burgerMenu,
+          enabled: false,
+        },
+      };
     }
-    appConfig.testGroupPer = testGroup(config, req).testGroupPer;
-    res.render('index', { config: appConfig });
+    localAppConfig.testGroupPer = testGroup(config, req).testGroupPer;
+    res.render('index', { config: localAppConfig });
   });
 
   if (config.server.acceptPostedLogs) {
