@@ -1,5 +1,5 @@
 /* globals _ */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Panel from 'src/components/ui/Panel';
 import { Heading, Stack, Box, Flex, Switch, Text, Button, IconEmpty } from '@qwant/qwant-ponents';
 import {
@@ -12,6 +12,8 @@ import {
 } from 'src/adapters/search_history';
 import PlaceIcon from 'src/components/PlaceIcon';
 import { capitalizeFirst } from 'src/libs/string';
+import { listen, unListen } from 'src/libs/customEvents';
+import { openDisableHistoryModal, openClearHistoryModal } from 'src/modals/HistoryModal';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
@@ -36,13 +38,44 @@ const HistoryPanel = () => {
   );
   const [olderHistory, setOlderHistory] = useState(listHistoryItemsByDate(0, lastYear));
 
+  const disableHistory = () => {
+    setIsChecked(false);
+    setHistoryEnabled(false);
+    deleteSearchHistory();
+    computeHistory();
+  };
+
+  const clearHistory = () => {
+    deleteSearchHistory();
+    computeHistory();
+  };
+
+  useEffect(() => {
+    const disableHistoryHandler = listen('disable_history', disableHistory);
+    return () => {
+      unListen(disableHistoryHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    const clearHistoryHandler = listen('clear_history', clearHistory);
+    return () => {
+      unListen(clearHistoryHandler);
+    };
+  }, []);
+
   const close = () => {
     window.app.navigateTo('/');
   };
 
+  // Switch change
   const onChange = e => {
-    setIsChecked(e.target.checked);
-    setHistoryEnabled(e.target.checked);
+    if (e.target.checked === false) {
+      openDisableHistoryModal();
+    } else {
+      setIsChecked(true);
+      setHistoryEnabled(true);
+    }
   };
 
   const computeHistory = () => {
@@ -87,14 +120,7 @@ const HistoryPanel = () => {
 
   // Clear all the history
   const clear = () => {
-    // Temp: a nice popup will appear here soon
-    if (confirm('Are you sure?')) {
-      // Clear history in localStorage
-      deleteSearchHistory();
-
-      // Refresh lists and re-render the page
-      computeHistory();
-    }
+    openClearHistoryModal();
   };
 
   // TEMP: fill history with items (poi, address, city, intention) from different dates (< 24h, < 1 week, < 2 weeks, < 3 weeks, older)
@@ -280,5 +306,7 @@ const HistoryPanel = () => {
     </Panel>
   );
 };
+
+listen('clear_history', () => {});
 
 export default HistoryPanel;
