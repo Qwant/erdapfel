@@ -106,6 +106,10 @@ const PanelManager = ({ router }) => {
         options: {
           ...options,
           query,
+          resetInput: () => {
+            setTopBarValue('');
+            mainSearchInputRef.current.select();
+          },
         },
       });
     });
