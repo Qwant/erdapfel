@@ -5,8 +5,7 @@ import { listen } from 'src/libs/customEvents';
 import { CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
 import { useI18n } from 'src/hooks';
-import { IconExternalLink } from 'src/components/ui/icons';
-import { Button } from '@qwant/qwant-ponents';
+import { Button, IconExternalLink } from '@qwant/qwant-ponents';
 
 let hasPermissionModalOpenedOnce = false;
 
@@ -92,8 +91,8 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
             </Button>
           )}
           {link && (
-            <Button href={link.url} variant="tertiary" icon={<IconExternalLink width={16} />}>
-              {link.label}
+            <Button href={link.url} variant="tertiary" width={16}>
+              <IconExternalLink /> {link.label}
             </Button>
           )}
         </div>
