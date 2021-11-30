@@ -97,7 +97,7 @@
     "@turf/line-slice-along": "^5.1.5",
     "@turf/meta": "^6.0.2",
     "alt-route-labeller": "^0.3.1",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bunyan": "^1.8.12",
     "classnames": "^2.2.6",
     "color": "^3.1.2",
