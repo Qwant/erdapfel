@@ -39,9 +39,19 @@ localizedUrls:
     aboutPrivacy: https://about.qwant.com/legal/privacy
     aboutMapsToS: https://about.qwant.com/legal/terms-of-service/qwant-maps/
     contributing: https://github.com/Qwant/qwantmaps/blob/master/contributing.md
+    helpGeolocation: https://help.qwant.com/en/docs/maps/activation-of-geolocation-after-denied-access/
+    helpEditData: https://help.qwant.com/en/docs/maps/how-to-add-or-modify-data/
     reportBug: https://about.qwant.com/en/contact#contact
   fr:
+    helpGeolocation: https://help.qwant.com/docs/maps/activation-de-la-geolocalisation-apres-refus/
+    helpEditData: https://help.qwant.com/docs/maps/comment-ajouter-ou-modifier-des-donnees/
     reportBug: https://about.qwant.com/fr/contact#contact
+  de:
+    helpGeolocation: https://help.qwant.com/de/docs/maps/aktivierung-der-standorterfassung-nach-ablehnung/
+    helpEditData: https://help.qwant.com/de/docs/maps/wie-kann-ich-daten-hinzufuegen-oder-bearbeiten/
+  it:
+    helpGeolocation: hhttps://help.qwant.com/it/docs/maps/attivazione-della-geolocalizzazione-dopo-il-rifiuto/
+    helpEditData: https://help.qwant.com/it/docs/maps/come-aggiungere-o-modificare-dati/
 
 # Map
 map:
