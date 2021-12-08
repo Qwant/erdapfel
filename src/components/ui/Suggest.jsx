@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
-import { useDevice, useI18n } from 'src/hooks';
+import { useConfig, useDevice, useI18n } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
@@ -171,7 +171,10 @@ const Suggest = ({
           setHasFocus(true);
         },
         onBlur: () => {
-          setHasFocus(false);
+          // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
+          if (!window.mouseLeave) {
+            setHasFocus(false);
+          }
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
       })}
@@ -183,6 +186,7 @@ const Suggest = ({
               suggestItems={items}
               highlighted={highlighted}
               onSelect={selectItem}
+              value={value}
             />
             {withFeedback && value && items.length > 0 && !items[0].errorLabel && (
               <UserFeedbackYesNo
