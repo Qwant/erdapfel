@@ -19,7 +19,7 @@ const SuggestsDropdown = ({ className = '', suggestItems, onSelect, highlighted,
           {_(
             'Convenient and completely private, the history will only be visible to you on this device 🙈.',
             'history'
-          )}
+          )}{' '}
           <a href="">{_('Read more', 'history')}</a>
         </Box>
         <Box mt="l">
