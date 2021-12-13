@@ -35,6 +35,15 @@ export default class App {
       </DeviceProvider>,
       document.querySelector('#react_root')
     );
+
+    // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
+    window.mouseLeave = false;
+    window.document.documentElement.onmouseleave = () => {
+      window.mouseLeave = true;
+    };
+    window.document.documentElement.onmouseenter = () => {
+      window.mouseLeave = false;
+    };
   }
 
   initMap() {

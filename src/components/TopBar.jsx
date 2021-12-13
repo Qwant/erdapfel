@@ -143,8 +143,11 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
                   onFocus();
                 }}
                 onBlur={() => {
-                  setFocused(false);
-                  onBlur();
+                  // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
+                  if (!window.mouseLeave) {
+                    setFocused(false);
+                    onBlur();
+                  }
                 }}
                 onKeyDown={onKeyDown}
               />
