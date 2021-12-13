@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-export const mobileDeviceMediaQuery = window.matchMedia('(max-width: 640px)');
+const mobileDeviceMaxWidth = 640;
 
 export function isMobileDevice() {
-  return mobileDeviceMediaQuery.matches;
+  return window.innerWidth <= mobileDeviceMaxWidth;
 }
 
 export const DeviceContext = React.createContext({ isMobile: isMobileDevice() });
@@ -12,14 +12,14 @@ export const DeviceProvider = ({ children }) => {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
 
   useEffect(() => {
-    const deviceChanged = ({ matches: isMobile }) => {
-      setIsMobile(isMobile);
+    const deviceChanged = () => {
+      setIsMobile(window.innerWidth <= mobileDeviceMaxWidth);
     };
 
-    mobileDeviceMediaQuery.addEventListener('change', deviceChanged);
+    window.addEventListener('resize', deviceChanged);
 
     return () => {
-      mobileDeviceMediaQuery.removeEventListener('change', deviceChanged);
+      window.removeEventListener('resize', deviceChanged);
     };
   }, []);
 
