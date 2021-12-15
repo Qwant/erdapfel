@@ -13,7 +13,7 @@ const Survey = () => {
   const onClose = () => {
     setEnabled(false);
     closeSurvey(survey.id);
-    Telemetry.add(Telemetry.SURVEY_CLOSE, { id: survey.id });
+    Telemetry.add(Telemetry.SURVEY_CLOSE, { id: survey.id, device: isMobile ? "mobile" : "desktop" });
   };
 
   const onClick = () => {
