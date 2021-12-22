@@ -142,7 +142,7 @@ const Suggest = ({
             <Stack>
               <Box>
                 {_(
-                  'You can change your mind at any time and <a href="/history">manage the activation of the history</a> in the menu.',
+                  'You can change your mind at any time and manage the activation of the history in the menu.',
                   'history'
                 )}
               </Box>
