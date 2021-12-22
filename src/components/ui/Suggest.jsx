@@ -193,7 +193,7 @@ const Suggest = ({
       setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
-      if(value && answer !== null) {
+      if (value && answer !== null) {
         setAfterAnswer(true);
       }
     }
