@@ -37,6 +37,7 @@ const getSuggestItemLimits = ({ inputValue, withHistory, isMobile }) => {
 const Suggest = ({
   outputNode,
   withHistory,
+  withHistoryPrompt,
   withCategories,
   withGeoloc,
   onSelect,
@@ -54,10 +55,13 @@ const Suggest = ({
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
   const [answer, setAnswer] = useState(null);
+  const [afterAnswer, setAfterAnswer] = useState(false);
   const historyPromptVisible =
+    withHistoryPrompt &&
     isOpen &&
     searchHistoryConfig?.enabled &&
     value === '' &&
+    !afterAnswer &&
     (getHistoryPrompt() === null || answer !== null);
   const dropdownVisible = hasFocus && isOpen && outputNode;
   const { isMobile } = useDevice();
@@ -69,74 +73,83 @@ const Suggest = ({
       setIsOpen(false);
     }
     setItems([]);
+    if (answer !== null) {
+      setAfterAnswer(true);
+    }
   };
 
   const historyPrompt = () => {
-    if (answer === null) {
-      return (
-        <Box m="l">
-          <Heading as="h6">{_('History is available on Qwant Maps', 'history')}</Heading>
-          <Stack>
-            <Box>
-              {_(
-                'Convenient and completely private, the history will only be visible to you on this device 🙈.',
-                'history'
-              )}{' '}
-              <a href="">{_('Read more', 'history')}</a>
-            </Box>
-            <Box mt="l">
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  setHistoryPrompt(true);
-                  setHistoryEnabled(false);
-                  setAnswer(false);
-                }}
-              >
-                {_('No thanks', 'history')}
-              </Button>
-              <Button
-                ml="l"
-                onClick={() => {
-                  setHistoryPrompt(true);
-                  setHistoryEnabled(true);
-                  setAnswer(true);
-                }}
-              >
-                {_('Enable history', 'history')}
-              </Button>
-            </Box>
-          </Stack>
-        </Box>
-      );
-    } else if (answer === true) {
-      return (
-        <Box m="l">
-          <Heading as="h6">{_('Well done, the history is activated!', 'history')}</Heading>
-          <Stack>
-            <Box>
-              {_(
-                'You can find and manage your complete history at any time in the menu',
-                'history'
-              )}
-            </Box>
-          </Stack>
-        </Box>
-      );
-    } else if (answer === false) {
-      return (
-        <Box m="l">
-          <Heading as="h6">{_('No worries, history is disabled', 'history')}</Heading>
-          <Stack>
-            <Box>
-              {_(
-                'You can change your mind at any time and manage the activation of the history in the menu.',
-                'history'
-              )}
-            </Box>
-          </Stack>
-        </Box>
-      );
+    if (!afterAnswer) {
+      if (answer === null) {
+        return (
+          <Box m="l">
+            <Heading as="h6">{_('History is available on Qwant Maps', 'history')}</Heading>
+            <Stack>
+              <Box>
+                {_(
+                  'Convenient and completely private, the history will only be visible to you on this device 🙈.',
+                  'history'
+                )}{' '}
+                <a href="@TODO">{_('Read more', 'history')}</a>
+              </Box>
+              <Box mt="l">
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    setHistoryPrompt(true);
+                    setAnswer(false);
+                    document.querySelector('#search').focus();
+                    document.querySelector('.top_bar').classList.add('top_bar--search_focus');
+                    setHistoryEnabled(false);
+                  }}
+                >
+                  {_('No thanks', 'history')}
+                </Button>
+                <Button
+                  ml="l"
+                  onClick={() => {
+                    setHistoryPrompt(true);
+                    setAnswer(true);
+                    document.querySelector('#search').focus();
+                    document.querySelector('.top_bar').classList.add('top_bar--search_focus');
+                    setHistoryEnabled(true);
+                  }}
+                >
+                  {_('Enable history', 'history')}
+                </Button>
+              </Box>
+            </Stack>
+          </Box>
+        );
+      } else if (answer === true) {
+        return (
+          <Box m="l">
+            <Heading as="h6">{_('Well done, the history is activated!', 'history')}</Heading>
+            <Stack>
+              <Box>
+                {_(
+                  'You can find and manage your complete history at any time in the menu.',
+                  'history'
+                )}
+              </Box>
+            </Stack>
+          </Box>
+        );
+      } else if (answer === false) {
+        return (
+          <Box m="l">
+            <Heading as="h6">{_('No worries, history is disabled', 'history')}</Heading>
+            <Stack>
+              <Box>
+                {_(
+                  'You can change your mind at any time and <a href="/history">manage the activation of the history</a> in the menu.',
+                  'history'
+                )}
+              </Box>
+            </Stack>
+          </Box>
+        );
+      }
     }
   };
 
@@ -180,12 +193,18 @@ const Suggest = ({
       setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
+      if(value && answer !== null) {
+        setAfterAnswer(true);
+      }
     }
   }, [hasFocus, fetchItems, value]);
 
   const selectItem = item => {
     onSelect(item, { query: value });
     setHighlighted(null);
+    if (answer) {
+      setAfterAnswer(true);
+    }
   };
 
   const onKeyDown = e => {
@@ -204,7 +223,7 @@ const Suggest = ({
         setHighlighted(items[items.indexOf(highlighted) + 1] || null);
         break;
       case 'ArrowUp':
-        e.preventDefault(); // prevent cursor returning at beggining
+        e.preventDefault(); // prevent cursor returning at beginning
         setHighlighted(
           !highlighted ? items[items.length - 1] : items[items.indexOf(highlighted) - 1] || null
         );
@@ -292,6 +311,7 @@ Suggest.propTypes = {
   withCategories: bool,
   withGeoloc: bool,
   withHistory: bool,
+  withHistoryPrompt: bool,
   onSelect: func.isRequired,
   onToggle: func,
   className: string,

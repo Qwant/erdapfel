@@ -14,7 +14,7 @@ const MenuItem = ({ icon, children, href, onClick, outsideLink }) => (
         }
       : {})}
   >
-    <Flex alignItems="flex-start">
+    <Flex>
       {icon && <div className="u-mr-s">{icon}</div>}
       <div className="u-mr-s" style={{ flexGrow: 1 }}>
         {children}

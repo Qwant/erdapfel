@@ -122,6 +122,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             onSelect={onSelectSuggestion}
             withFeedback
             withHistory={searchHistoryEnabled}
+            withHistoryPrompt
           >
             {({ onKeyDown, onFocus, onBlur, highlightedValue }) => (
               <input
