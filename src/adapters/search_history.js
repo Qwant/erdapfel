@@ -19,7 +19,7 @@ export function setHistoryPrompt(value) {
 }
 
 export function getHistoryPrompt() {
-  return get(SEARCH_HISTORY_KEY + '_prompt');
+  return get(SEARCH_HISTORY_KEY + '_prompt'); // null by default, true if the prompt has been answered
 }
 
 export function getHistory() {

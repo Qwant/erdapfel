@@ -2,10 +2,12 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
-import { useDevice, useI18n } from 'src/hooks';
+import { useConfig, useDevice, useI18n } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
+import { getHistoryPrompt, setHistoryPrompt, setHistoryEnabled } from 'src/adapters/search_history';
+import { Box, Button, Heading, Stack } from '@qwant/qwant-ponents';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -35,6 +37,7 @@ const getSuggestItemLimits = ({ inputValue, withHistory, isMobile }) => {
 const Suggest = ({
   outputNode,
   withHistory,
+  withHistoryPrompt,
   withCategories,
   withGeoloc,
   onSelect,
@@ -45,18 +48,116 @@ const Suggest = ({
   withFeedback,
   hide,
 }) => {
+  const searchHistoryConfig = useConfig('searchHistory');
+
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
+  const [answer, setAnswer] = useState(null);
+  const [afterAnswer, setAfterAnswer] = useState(false);
+  const historyPromptVisible =
+    withHistoryPrompt &&
+    isOpen &&
+    searchHistoryConfig?.enabled &&
+    value === '' &&
+    !afterAnswer &&
+    (getHistoryPrompt() === null || answer !== null);
   const dropdownVisible = hasFocus && isOpen && outputNode;
   const { isMobile } = useDevice();
   const { _ } = useI18n();
   const dropDownContent = useRef();
 
   const close = () => {
-    setIsOpen(false);
+    if (!historyPromptVisible) {
+      setIsOpen(false);
+    }
     setItems([]);
+    if (answer !== null) {
+      setAfterAnswer(true);
+    }
+  };
+
+  const historyPrompt = () => {
+    if (!afterAnswer) {
+      if (answer === null) {
+        return (
+          <Box m="l">
+            <Heading as="h6">{_('History is available on Qwant Maps', 'history')}</Heading>
+            <Stack>
+              <Box>
+                {_(
+                  'Convenient and completely private, the history will only be visible to you on this device 🙈.',
+                  'history'
+                )}{' '}
+                <a
+                  href="@TODO"
+                  onMouseDown={e => {
+                    e.preventDefault();
+                  }}
+                >
+                  {_('Read more', 'history')}
+                </a>
+              </Box>
+              <Box mt="l">
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    setHistoryPrompt(true);
+                    setAnswer(false);
+                    document.querySelector('#search').focus();
+                    document.querySelector('.top_bar').classList.add('top_bar--search_focus');
+                    setHistoryEnabled(false);
+                  }}
+                >
+                  {_('No thanks', 'history')}
+                </Button>
+                <Button
+                  ml="l"
+                  onClick={() => {
+                    setHistoryPrompt(true);
+                    setAnswer(true);
+                    document.querySelector('#search').focus();
+                    document.querySelector('.top_bar').classList.add('top_bar--search_focus');
+                    setHistoryEnabled(true);
+                  }}
+                >
+                  {_('Enable history', 'history')}
+                </Button>
+              </Box>
+            </Stack>
+          </Box>
+        );
+      } else if (answer === true) {
+        return (
+          <Box m="l">
+            <Heading as="h6">{_('Well done, the history is activated!', 'history')}</Heading>
+            <Stack>
+              <Box>
+                {_(
+                  'You can find and manage your complete history at any time in the menu.',
+                  'history'
+                )}
+              </Box>
+            </Stack>
+          </Box>
+        );
+      } else if (answer === false) {
+        return (
+          <Box m="l">
+            <Heading as="h6">{_('No worries, history is disabled', 'history')}</Heading>
+            <Stack>
+              <Box>
+                {_(
+                  'You can change your mind at any time and manage the activation of the history in the menu.',
+                  'history'
+                )}
+              </Box>
+            </Stack>
+          </Box>
+        );
+      }
+    }
   };
 
   useEffect(() => {
@@ -99,12 +200,18 @@ const Suggest = ({
       setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
+      if (value && answer !== null) {
+        setAfterAnswer(true);
+      }
     }
   }, [hasFocus, fetchItems, value]);
 
   const selectItem = item => {
     onSelect(item, { query: value });
     setHighlighted(null);
+    if (answer) {
+      setAfterAnswer(true);
+    }
   };
 
   const onKeyDown = e => {
@@ -123,7 +230,7 @@ const Suggest = ({
         setHighlighted(items[items.indexOf(highlighted) + 1] || null);
         break;
       case 'ArrowUp':
-        e.preventDefault(); // prevent cursor returning at beggining
+        e.preventDefault(); // prevent cursor returning at beginning
         setHighlighted(
           !highlighted ? items[items.length - 1] : items[items.indexOf(highlighted) - 1] || null
         );
@@ -178,16 +285,19 @@ const Suggest = ({
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
       })}
-      {dropdownVisible &&
+      {(dropdownVisible || historyPromptVisible) &&
         ReactDOM.createPortal(
           <div ref={dropDownContent}>
-            <SuggestsDropdown
-              className={className}
-              suggestItems={items}
-              highlighted={highlighted}
-              onSelect={selectItem}
-              value={value}
-            />
+            {dropdownVisible && !historyPromptVisible && (
+              <SuggestsDropdown
+                className={className}
+                suggestItems={items}
+                highlighted={highlighted}
+                onSelect={selectItem}
+                value={value}
+              />
+            )}
+            {historyPromptVisible && historyPrompt()}
             {withFeedback && value && items.length > 0 && !items[0].errorLabel && (
               <UserFeedbackYesNo
                 questionId="suggest"
@@ -195,9 +305,27 @@ const Suggest = ({
                 question={_('Satisfied with the results?')}
               />
             )}
+            {!value && items.length > 0 && !items[0].errorLabel && (
+              <div className="suggestHistoryFooter">
+                {_(
+                  'Your history is activated. It is only visible to you on this device.',
+                  'suggest'
+                )}{' '}
+                <a
+                  href="@TODO"
+                  target="_blank"
+                  onMouseDown={e => {
+                    e.preventDefault();
+                  }}
+                >
+                  {_('Learn more', 'suggest')}
+                </a>
+              </div>
+            )}
           </div>,
           outputNode
         )}
+      {}
     </>
   );
 };
@@ -207,6 +335,7 @@ Suggest.propTypes = {
   withCategories: bool,
   withGeoloc: bool,
   withHistory: bool,
+  withHistoryPrompt: bool,
   onSelect: func.isRequired,
   onToggle: func,
   className: string,
