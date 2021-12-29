@@ -90,7 +90,14 @@ const Suggest = ({
                   'Convenient and completely private, the history will only be visible to you on this device 🙈.',
                   'history'
                 )}{' '}
-                <a href="@TODO">{_('Read more', 'history')}</a>
+                <a
+                  href="@TODO"
+                  onMouseDown={e => {
+                    e.preventDefault();
+                  }}
+                >
+                  {_('Read more', 'history')}
+                </a>
               </Box>
               <Box mt="l">
                 <Button
@@ -297,6 +304,23 @@ const Suggest = ({
                 context={encodeURIComponent(value) + document.location.hash}
                 question={_('Satisfied with the results?')}
               />
+            )}
+            {!value && items.length > 0 && !items[0].errorLabel && (
+              <div className="suggestHistoryFooter">
+                {_(
+                  'Your history is activated. It is only visible to you on this device.',
+                  'suggest'
+                )}{' '}
+                <a
+                  href="@TODO"
+                  target="_blank"
+                  onMouseDown={e => {
+                    e.preventDefault();
+                  }}
+                >
+                  {_('Learn more', 'suggest')}
+                </a>
+              </div>
             )}
           </div>,
           outputNode
