@@ -81,10 +81,24 @@
   margin-bottom: 8px;
 }
 
+.historyDisabledIcon {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  background: var(--grey-lighter);
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
 .historyText {
   color: #a125be;
 }
 
 .historyButtons {
   text-align: right;
+}
+
+.historyParagraph {
+  display: inline;
+  vertical-align: text-top;
 }

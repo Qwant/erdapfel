@@ -1,7 +1,7 @@
 /* globals _ */
 import React, { useEffect, useState } from 'react';
 import Panel from 'src/components/ui/Panel';
-import { Heading, Stack, Box, Flex, Switch, Text, Button, IconEmpty } from '@qwant/qwant-ponents';
+import { Heading, Stack, Box, Flex, Switch, Text, IconEmpty } from '@qwant/qwant-ponents';
 import {
   setHistoryEnabled,
   getHistoryEnabled,
@@ -238,7 +238,7 @@ const HistoryPanel = () => {
         {isChecked && historyLength() > 0 && <a onClick={clear}>{_('Delete my history')}</a>}
       </Flex>
       {isChecked && (
-        <Stack gap="xl">
+        <Stack gap="xl" mt="xl">
           {todayHistory.length > 0 && (
             <Box className="history-list">
               <Heading typo="heading-6">{_('Today', 'history panel')}</Heading>
