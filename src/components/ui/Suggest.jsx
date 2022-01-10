@@ -7,7 +7,9 @@ import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
 import { getHistoryPrompt, setHistoryPrompt, setHistoryEnabled } from 'src/adapters/search_history';
-import { Box, Button, Heading, Stack } from '@qwant/qwant-ponents';
+import { Box, Button, Heading, Stack, Text } from '@qwant/qwant-ponents';
+import { PURPLE } from '../../libs/colors';
+import { IconHistory } from './icons';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -83,23 +85,35 @@ const Suggest = ({
       if (answer === null) {
         return (
           <Box m="l">
-            <Heading as="h6">{_('History is available on Qwant Maps', 'history')}</Heading>
+            <IconHistory width={20} fill={PURPLE} className="historyIcon" />
+            <Text
+              typo="body-6"
+              bold
+              dangerouslySetInnerHTML={{
+                __html: _(
+                  '<span class="historyText">History</span> is available on Qwant Maps',
+                  'history'
+                ),
+              }}
+            />
             <Stack>
               <Box>
-                {_(
-                  'Convenient and completely private, the history will only be visible to you on this device 🙈.',
-                  'history'
-                )}{' '}
-                <a
-                  href="@TODO"
-                  onMouseDown={e => {
-                    e.preventDefault();
-                  }}
-                >
-                  {_('Read more', 'history')}
-                </a>
+                <Text typo="body-2">
+                  {_(
+                    'Convenient and completely private, the history will only be visible to you on this device 🙈.',
+                    'history'
+                  )}{' '}
+                  <a
+                    href="@TODO"
+                    onMouseDown={e => {
+                      e.preventDefault();
+                    }}
+                  >
+                    {_('Read more', 'history')}
+                  </a>
+                </Text>
               </Box>
-              <Box mt="l">
+              <Box mt="l" className="historyButtons">
                 <Button
                   variant="secondary"
                   onClick={() => {
@@ -131,13 +145,28 @@ const Suggest = ({
       } else if (answer === true) {
         return (
           <Box m="l">
-            <Heading as="h6">{_('Well done, the history is activated!', 'history')}</Heading>
+            <IconHistory width={20} fill={PURPLE} className="historyIcon" />
+            <Text
+              typo="body-6"
+              bold
+              dangerouslySetInnerHTML={{
+                __html: _(
+                  'Well done, the <span class="historyText">history</span> is activated',
+                  'history'
+                ),
+              }}
+            />
             <Stack>
               <Box>
-                {_(
-                  'You can find and manage your complete history at any time in the menu.',
-                  'history'
-                )}
+                <Text
+                  typo="body-2"
+                  dangerouslySetInnerHTML={{
+                    __html: _(
+                      'You can find and <a href="/history">manage your complete history</a> at any time in the menu.',
+                      'history'
+                    ),
+                  }}
+                />
               </Box>
             </Stack>
           </Box>
