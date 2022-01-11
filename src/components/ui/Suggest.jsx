@@ -7,7 +7,9 @@ import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
 import { getHistoryPrompt, setHistoryPrompt, setHistoryEnabled } from 'src/adapters/search_history';
-import { Box, Button, Heading, Stack } from '@qwant/qwant-ponents';
+import { Box, Button, Stack, Text } from '@qwant/qwant-ponents';
+import { PURPLE } from '../../libs/colors';
+import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -54,15 +56,16 @@ const Suggest = ({
   const [isOpen, setIsOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
-  const [answer, setAnswer] = useState(null);
-  const [afterAnswer, setAfterAnswer] = useState(false);
+  const [historyAnswer, setHistoryAnswer] = useState(null);
+  const [keepHistoryPromptVisible, setkeepHistoryPromptVisible] = useState(
+    getHistoryPrompt() === null
+  );
   const historyPromptVisible =
     withHistoryPrompt &&
     isOpen &&
     searchHistoryConfig?.enabled &&
     value === '' &&
-    !afterAnswer &&
-    (getHistoryPrompt() === null || answer !== null);
+    keepHistoryPromptVisible;
   const dropdownVisible = hasFocus && isOpen && outputNode;
   const { isMobile } = useDevice();
   const { _ } = useI18n();
@@ -73,90 +76,125 @@ const Suggest = ({
       setIsOpen(false);
     }
     setItems([]);
-    if (answer !== null) {
-      setAfterAnswer(true);
-    }
   };
 
   const historyPrompt = () => {
-    if (!afterAnswer) {
-      if (answer === null) {
-        return (
-          <Box m="l">
-            <Heading as="h6">{_('History is available on Qwant Maps', 'history')}</Heading>
-            <Stack>
-              <Box>
+    if (historyAnswer === null) {
+      return (
+        <Box m="l" className="historyPromptWrapper">
+          <IconHistory width={20} fill={PURPLE} className="historyIcon" />
+          <Text
+            typo="body-6"
+            bold
+            dangerouslySetInnerHTML={{
+              __html: _(
+                '<span class="historyText">History</span> is available on Qwant Maps',
+                'history'
+              ),
+            }}
+          />
+          <Stack>
+            <Box>
+              <Text typo="body-2">
                 {_(
                   'Convenient and completely private, the history will only be visible to you on this device 🙈.',
                   'history'
                 )}{' '}
                 <a
                   href="@TODO"
+                  target="_blank"
                   onMouseDown={e => {
                     e.preventDefault();
                   }}
                 >
                   {_('Read more', 'history')}
                 </a>
-              </Box>
-              <Box mt="l">
-                <Button
-                  variant="secondary"
-                  onClick={() => {
-                    setHistoryPrompt(true);
-                    setAnswer(false);
-                    document.querySelector('#search').focus();
-                    document.querySelector('.top_bar').classList.add('top_bar--search_focus');
-                    setHistoryEnabled(false);
-                  }}
-                >
-                  {_('No thanks', 'history')}
-                </Button>
-                <Button
-                  ml="l"
-                  onClick={() => {
-                    setHistoryPrompt(true);
-                    setAnswer(true);
-                    document.querySelector('#search').focus();
-                    document.querySelector('.top_bar').classList.add('top_bar--search_focus');
-                    setHistoryEnabled(true);
-                  }}
-                >
-                  {_('Enable history', 'history')}
-                </Button>
-              </Box>
-            </Stack>
-          </Box>
-        );
-      } else if (answer === true) {
-        return (
-          <Box m="l">
-            <Heading as="h6">{_('Well done, the history is activated!', 'history')}</Heading>
-            <Stack>
-              <Box>
-                {_(
-                  'You can find and manage your complete history at any time in the menu.',
-                  'history'
-                )}
-              </Box>
-            </Stack>
-          </Box>
-        );
-      } else if (answer === false) {
-        return (
-          <Box m="l">
-            <Heading as="h6">{_('No worries, history is disabled', 'history')}</Heading>
-            <Stack>
-              <Box>
-                {_(
-                  'You can change your mind at any time and manage the activation of the history in the menu.',
-                  'history'
-                )}
-              </Box>
-            </Stack>
-          </Box>
-        );
-      }
+              </Text>
+            </Box>
+            <Box mt="l" className="historyButtons">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setHistoryPrompt(true);
+                  setHistoryAnswer(false);
+                  document.querySelector('#search').focus();
+                  document.querySelector('.top_bar').classList.add('top_bar--search_focus');
+                  setHistoryEnabled(false);
+                }}
+              >
+                {_('No thanks', 'history')}
+              </Button>
+              <Button
+                ml="l"
+                onClick={() => {
+                  setHistoryPrompt(true);
+                  setHistoryAnswer(true);
+                  document.querySelector('#search').focus();
+                  document.querySelector('.top_bar').classList.add('top_bar--search_focus');
+                  setHistoryEnabled(true);
+                }}
+              >
+                {_('Enable history', 'history')}
+              </Button>
+            </Box>
+          </Stack>
+        </Box>
+      );
+    } else if (historyAnswer === true) {
+      return (
+        <Box m="l" className="historyPromptWrapper">
+          <IconHistory width={20} fill={PURPLE} className="historyIcon" />
+          <Text
+            typo="body-6"
+            bold
+            dangerouslySetInnerHTML={{
+              __html: _(
+                'Well done, the <span class="historyText">history</span> is activated',
+                'history'
+              ),
+            }}
+          />
+          <Stack>
+            <Box>
+              <Text
+                typo="body-2"
+                className="historyParagraph"
+                dangerouslySetInnerHTML={{
+                  __html: _(
+                    'You can find and <a href="/history" target="_self">manage your complete history</a> at any time in the menu.',
+                    'history'
+                  ),
+                }}
+              />{' '}
+              <IconMenu fill="currentColor" width={16} />
+            </Box>
+          </Stack>
+        </Box>
+      );
+    } else if (historyAnswer === false) {
+      return (
+        <Box m="l" className="historyPromptWrapper">
+          <IconHistoryDisabled width={20} className="historyDisabledIcon" />
+          <Text typo="body-6" bold>
+            {_('No worries, history is disabled', 'history')}
+          </Text>
+          <Stack>
+            <Box>
+              <Text
+                typo="body-2"
+                className="historyParagraph"
+                dangerouslySetInnerHTML={{
+                  __html: _(
+                    'You can change your mind at any time and <a href="/history" target="_self">manage</a> the activation of the history in the menu.',
+                    'history'
+                  ),
+                }}
+              />{' '}
+              <IconMenu fill="currentColor" width={16} />
+            </Box>
+          </Stack>
+        </Box>
+      );
     }
   };
 
@@ -200,18 +238,20 @@ const Suggest = ({
       setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
-      if (value && answer !== null) {
-        setAfterAnswer(true);
+      if (value) {
+        setkeepHistoryPromptVisible(false);
       }
+    }
+    if (!value && keepHistoryPromptVisible) {
+      document.querySelector('.top_bar').classList.add('top_bar--history-suggest');
+    } else {
+      document.querySelector('.top_bar').classList.remove('top_bar--history-suggest');
     }
   }, [hasFocus, fetchItems, value]);
 
   const selectItem = item => {
     onSelect(item, { query: value });
     setHighlighted(null);
-    if (answer) {
-      setAfterAnswer(true);
-    }
   };
 
   const onKeyDown = e => {
