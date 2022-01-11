@@ -56,7 +56,7 @@ const Suggest = ({
   const [isOpen, setIsOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(null);
   const [hasFocus, setHasFocus] = useState(false);
-  const [answer, setAnswer] = useState(null);
+  const [historyAnswer, setHistoryAnswer] = useState(null);
   const [keepHistoryPromptVisible, setkeepHistoryPromptVisible] = useState(
     getHistoryPrompt() === null
   );
@@ -79,7 +79,7 @@ const Suggest = ({
   };
 
   const historyPrompt = () => {
-    if (answer === null) {
+    if (historyAnswer === null) {
       return (
         <Box m="l" className="historyPromptWrapper">
           <IconHistory width={20} fill={PURPLE} className="historyIcon" />
@@ -116,7 +116,7 @@ const Suggest = ({
                 variant="secondary"
                 onClick={() => {
                   setHistoryPrompt(true);
-                  setAnswer(false);
+                  setHistoryAnswer(false);
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
                   setHistoryEnabled(false);
@@ -128,7 +128,7 @@ const Suggest = ({
                 ml="l"
                 onClick={() => {
                   setHistoryPrompt(true);
-                  setAnswer(true);
+                  setHistoryAnswer(true);
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
                   setHistoryEnabled(true);
@@ -140,7 +140,7 @@ const Suggest = ({
           </Stack>
         </Box>
       );
-    } else if (answer === true) {
+    } else if (historyAnswer === true) {
       return (
         <Box m="l" className="historyPromptWrapper">
           <IconHistory width={20} fill={PURPLE} className="historyIcon" />
@@ -171,7 +171,7 @@ const Suggest = ({
           </Stack>
         </Box>
       );
-    } else if (answer === false) {
+    } else if (historyAnswer === false) {
       return (
         <Box m="l" className="historyPromptWrapper">
           <IconHistoryDisabled width={20} className="historyDisabledIcon" />
