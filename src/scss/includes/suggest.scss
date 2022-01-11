@@ -102,3 +102,26 @@
   display: inline;
   vertical-align: text-top;
 }
+
+@media (min-width: 641px) {
+  .top_bar--history-suggest {
+
+    box-shadow: none;
+    overflow: visible;
+    background: none;
+
+    .search_form {
+      border-radius: 12px;
+      box-shadow: 0 2px 16px 0 rgb(12 12 14 / 20%), 0 4px 8px 0 rgb(12 12 14 / 12%);
+      background: #fff;
+    }
+
+    .historyPromptWrapper {
+      border-radius: 12px;
+      box-shadow: 0 2px 16px 0 rgb(12 12 14 / 20%), 0 4px 8px 0 rgb(12 12 14 / 12%);
+      margin: 16px 0 0;
+      padding: 20px 14px;
+      background: #fff;
+    }
+  }
+}

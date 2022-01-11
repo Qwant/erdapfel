@@ -81,7 +81,7 @@ const Suggest = ({
   const historyPrompt = () => {
     if (answer === null) {
       return (
-        <Box m="l">
+        <Box m="l" className="historyPromptWrapper">
           <IconHistory width={20} fill={PURPLE} className="historyIcon" />
           <Text
             typo="body-6"
@@ -142,7 +142,7 @@ const Suggest = ({
       );
     } else if (answer === true) {
       return (
-        <Box m="l">
+        <Box m="l" className="historyPromptWrapper">
           <IconHistory width={20} fill={PURPLE} className="historyIcon" />
           <Text
             typo="body-6"
@@ -173,7 +173,7 @@ const Suggest = ({
       );
     } else if (answer === false) {
       return (
-        <Box m="l">
+        <Box m="l" className="historyPromptWrapper">
           <IconHistoryDisabled width={20} className="historyDisabledIcon" />
           <Text typo="body-6" bold>
             {_('No worries, history is disabled', 'history')}
@@ -241,6 +241,11 @@ const Suggest = ({
       if (value) {
         setkeepHistoryPromptVisible(false);
       }
+    }
+    if (!value && keepHistoryPromptVisible) {
+      document.querySelector('.top_bar').classList.add('top_bar--history-suggest');
+    } else {
+      document.querySelector('.top_bar').classList.remove('top_bar--history-suggest');
     }
   }, [hasFocus, fetchItems, value]);
 
