@@ -205,16 +205,16 @@ const HistoryPanel = () => {
     <Panel
       resizable
       renderHeader={
-        <div className="history-header u-text--smallTitle u-center">
+        <Text bold color="primary">
           {_('My history', 'history panel')}
-        </div>
+        </Text>
       }
       minimizedTitle={_('Show history', 'history panel')}
       onClose={close}
       className="history_panel"
     >
-      <Flex>
-        <Text>
+      <Flex mt="xs">
+        <Text typo="body-2">
           {isChecked
             ? _(
                 'Your history is enabled. It is only visible to you on this device.',
@@ -234,7 +234,7 @@ const HistoryPanel = () => {
         />
       </Flex>
       <Flex className="history_panel_links">
-        <a href="#">{_('Learn more')}</a>
+        <a href="@TODO">{_('Learn more')}</a>
         {isChecked && historyLength() > 0 && <a onClick={clear}>{_('Delete my history')}</a>}
       </Flex>
       {isChecked && (
