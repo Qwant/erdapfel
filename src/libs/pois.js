@@ -51,6 +51,7 @@ export const isPoiCompliantKey = key => key.indexOf(prefix) === 0;
 
 export const isFromPagesJaunes = poi => poi.meta && poi.meta.source === sources.pagesjaunes;
 export const isFromOSM = poi => poi.meta && poi.meta.source === sources.osm;
+export const isFromTripAdvisor = poi => poi.meta && poi.meta.source === sources.tripadvisor;
 
 // POI map util functions
 

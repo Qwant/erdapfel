@@ -65,6 +65,7 @@ map:
 sources:
   osm: 'osm'
   pagesjaunes: 'pages_jaunes'
+  tripadvisor: 'tripadvisor'
 
 # Types
 CATEGORY_TYPE: 'category'

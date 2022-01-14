@@ -27,7 +27,7 @@ const PoiItem = React.memo(
           </div>
           {reviews && (
             <div className="poiItem-reviews">
-              <ReviewScore reviews={reviews} poi={poi} inList={inList} />
+              <ReviewScore reviews={reviews} poi={poi} inList={inList} source={poi?.meta?.source} />
             </div>
           )}
           <div className="poiItem-subclassStarsAndHours">
@@ -47,7 +47,6 @@ const PoiItem = React.memo(
             </div>
           )}
         </div>
-
         {withImage && (
           <div className="poiItem-right">
             <PoiTitleImage poi={poi} />
