@@ -1,7 +1,7 @@
 /* globals _ */
 import React, { useEffect, useState } from 'react';
 import Panel from 'src/components/ui/Panel';
-import { Heading, Stack, Box, Flex, Switch, Text, IconEmpty } from '@qwant/qwant-ponents';
+import { Stack, Box, Flex, Switch, Text, IconEmpty } from '@qwant/qwant-ponents';
 import {
   setHistoryEnabled,
   getHistoryEnabled,
@@ -14,6 +14,8 @@ import PlaceIcon from 'src/components/PlaceIcon';
 import { capitalizeFirst } from 'src/libs/string';
 import { listen, unListen } from 'src/libs/customEvents';
 import { openDisableHistoryModal, openClearHistoryModal } from 'src/modals/HistoryModal';
+import { PURPLE } from '../../libs/colors';
+import { IconHistory } from '../../components/ui/icons';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
@@ -158,7 +160,7 @@ const HistoryPanel = () => {
           </Box>
         </Flex>
         <Text color="primary" onClick={() => remove(item)}>
-          <IconEmpty />
+          <IconEmpty width={20} className="history_panel_trash" />
         </Text>
       </Flex>
     ) : (
@@ -194,9 +196,9 @@ const HistoryPanel = () => {
             </Text>
           </Box>
         </Flex>
-        <Text color="primary" onClick={() => remove(item)}>
-          <IconEmpty />
-        </Text>
+        <Box color="primary" onClick={() => remove(item)}>
+          <IconEmpty width={20} className="history_panel_trash" />
+        </Box>
       </Flex>
     );
   };
@@ -225,6 +227,7 @@ const HistoryPanel = () => {
                 'history panel'
               )}
           &nbsp;
+          {!isChecked && <a href="@TODO">{_('Learn more')}</a>}
         </Text>
         <Switch
           name="history_enabled"
@@ -233,50 +236,75 @@ const HistoryPanel = () => {
           onChange={onChange}
         />
       </Flex>
-      <Flex className="history_panel_links">
-        <a href="@TODO">{_('Learn more')}</a>
-        {isChecked && historyLength() > 0 && <a onClick={clear}>{_('Delete my history')}</a>}
-      </Flex>
+      {isChecked && (
+        <Box className="history_panel_links">
+          {isChecked && <a href="@TODO">{_('Learn more')}</a>}
+          {isChecked && historyLength() > 0 && <a onClick={clear}>{_('Delete my history')}</a>}
+        </Box>
+      )}
       {isChecked && (
         <Stack gap="xl" mt="xl">
           {todayHistory.length > 0 && (
             <Box className="history-list">
-              <Heading typo="heading-6">{_('Today', 'history panel')}</Heading>
+              <Text bold color="primary" typo="body-2" className="history-list-title">
+                {_('Today', 'history panel')}
+              </Text>
+              <hr />
               <Box>{todayHistory.map(showItem)}</Box>
             </Box>
           )}
           {lastWeekHistory.length > 0 && (
             <Box className="history-list">
-              <Heading typo="heading-6">{_('Last week', 'history panel')}</Heading>
+              <Text bold color="primary" typo="body-2" className="history-list-title">
+                {_('Last week', 'history panel')}
+              </Text>
+              <hr />
               <Box>{lastWeekHistory.map(showItem)}</Box>
             </Box>
           )}
           {lastMonthHistory.length > 0 && (
             <Box className="history-list">
-              <Heading typo="heading-6">{_('Last month', 'history panel')}</Heading>
+              <Text bold color="primary" typo="body-2" className="history-list-title">
+                {_('Last month', 'history panel')}
+              </Text>
+              <hr />
               <Box>{lastMonthHistory.map(showItem)}</Box>
             </Box>
           )}
           {last6MonthsHistory.length > 0 && (
             <Box className="history-list">
-              <Heading typo="heading-6">{_('Last 6 months', 'history panel')}</Heading>
+              <Text bold color="primary" typo="body-2" className="history-list-title">
+                {_('Last 6 months', 'history panel')}
+              </Text>
+              <hr />
               <Box>{last6MonthsHistory.map(showItem)}</Box>
             </Box>
           )}
           {lastYearHistory.length > 0 && (
             <Box className="history-list">
-              <Heading typo="heading-6">{_('Last year', 'history panel')}</Heading>
+              <Text bold color="primary" typo="body-2" className="history-list-title">
+                {_('Last year', 'history panel')}
+              </Text>
+              <hr />
               <Box>{lastYearHistory.map(showItem)}</Box>
             </Box>
           )}
           {olderHistory.length > 0 && (
             <Box className="history-list">
-              <Heading typo="heading-6">{_('More than one year ago', 'history panel')}</Heading>
+              <Text bold color="primary" typo="body-2" className="history-list-title">
+                {_('More than one year ago', 'history panel')}
+              </Text>
+              <hr />
               <Box>{olderHistory.map(showItem)}</Box>
             </Box>
           )}
           {historyLength() === 0 && (
-            <Text>{_('As soon as you do a search, you can find it here 👇', 'history panel')}</Text>
+            <Box className="history_panel_empty">
+              <IconHistory width={20} fill={PURPLE} className="historyIcon" />
+              <Text typo="body-2">
+                {_('As soon as you do a search, you can find it here 👇', 'history panel')}
+              </Text>
+            </Box>
           )}
         </Stack>
       )}
