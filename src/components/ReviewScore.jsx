@@ -56,7 +56,9 @@ const TripAdvisorRating = ({ grade, count }) => (
       <Flex alignCenter>
         <div className="reviewScore-TripAdvisor">
           <img
-            src={`https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/${grade}-MCID-66562.svg`}
+            src={`https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/${grade.toFixed(
+              1
+            )}-MCID-66562.svg`}
             alt=""
             width={119}
             height={20}
