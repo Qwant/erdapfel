@@ -14,7 +14,7 @@ import PlaceIcon from 'src/components/PlaceIcon';
 import { capitalizeFirst } from 'src/libs/string';
 import { listen, unListen } from 'src/libs/customEvents';
 import { openDisableHistoryModal, openClearHistoryModal } from 'src/modals/HistoryModal';
-import { PURPLE } from '../../libs/colors';
+import { GREY_SEMI_DARKNESS, PURPLE } from '../../libs/colors';
 import { IconHistory } from '../../components/ui/icons';
 
 const HistoryPanel = () => {
@@ -160,7 +160,7 @@ const HistoryPanel = () => {
           </Box>
         </Flex>
         <Text color="primary" onClick={() => remove(item)}>
-          <IconEmpty width={20} className="history_panel_trash" />
+          <IconEmpty width={20} fill={GREY_SEMI_DARKNESS} className="history_panel_trash" />
         </Text>
       </Flex>
     ) : (
@@ -197,7 +197,7 @@ const HistoryPanel = () => {
           </Box>
         </Flex>
         <Box color="primary" onClick={() => remove(item)}>
-          <IconEmpty width={20} className="history_panel_trash" />
+          <IconEmpty width={20} fill={GREY_SEMI_DARKNESS} className="history_panel_trash" />
         </Box>
       </Flex>
     );
@@ -229,12 +229,14 @@ const HistoryPanel = () => {
           &nbsp;
           {!isChecked && <a href="@TODO">{_('Learn more')}</a>}
         </Text>
-        <Switch
-          name="history_enabled"
-          id="history_enabled"
-          checked={isChecked}
-          onChange={onChange}
-        />
+        <Box className="history_panel_switch">
+          <Switch
+            name="history_enabled"
+            id="history_enabled"
+            checked={isChecked}
+            onChange={onChange}
+          />
+        </Box>
       </Flex>
       {isChecked && (
         <Box className="history_panel_links">
