@@ -84,7 +84,8 @@ const Suggest = ({
         <Box m="l" className="historyPromptWrapper">
           <IconHistory width={20} fill={PURPLE} className="historyIcon" />
           <Text
-            typo="body-6"
+            typo="body-1"
+            color="primary"
             bold
             dangerouslySetInnerHTML={{
               __html: _(
@@ -93,7 +94,7 @@ const Suggest = ({
               ),
             }}
           />
-          <Stack>
+          <Stack mt="xs">
             <Box>
               <Text typo="body-2">
                 {_(
@@ -111,7 +112,7 @@ const Suggest = ({
                 </a>
               </Text>
             </Box>
-            <Box mt="l" className="historyButtons">
+            <Box mt="xl" className="historyButtons">
               <Button
                 variant="secondary"
                 onClick={() => {
@@ -125,7 +126,7 @@ const Suggest = ({
                 {_('No thanks', 'history')}
               </Button>
               <Button
-                ml="l"
+                ml="xs"
                 onClick={() => {
                   setHistoryPrompt(true);
                   setHistoryAnswer(true);
@@ -145,7 +146,8 @@ const Suggest = ({
         <Box m="l" className="historyPromptWrapper">
           <IconHistory width={20} fill={PURPLE} className="historyIcon" />
           <Text
-            typo="body-6"
+            typo="body-1"
+            color="primary"
             bold
             dangerouslySetInnerHTML={{
               __html: _(
@@ -154,7 +156,7 @@ const Suggest = ({
               ),
             }}
           />
-          <Stack>
+          <Stack mt="xs">
             <Box>
               <Text
                 typo="body-2"
@@ -175,10 +177,10 @@ const Suggest = ({
       return (
         <Box m="l" className="historyPromptWrapper">
           <IconHistoryDisabled width={20} className="historyDisabledIcon" />
-          <Text typo="body-6" bold>
+          <Text typo="body-1" color="primary" bold>
             {_('No worries, history is disabled', 'history')}
           </Text>
-          <Stack>
+          <Stack mt="xs">
             <Box>
               <Text
                 typo="body-2"
