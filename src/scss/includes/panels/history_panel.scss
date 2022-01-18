@@ -2,27 +2,33 @@
   .history_panel {
     min-height: calc(100vh - (92px + 40px));
   }
-  .history-header {
-    margin: 8px 0;
-  }
 }
 
 .history_panel {
-  .panel-content {
-    padding: 12px;
+  padding: 20px 14px;
+  position: relative;
+
+  .closeButton {
+    top: 10px;
   }
 }
 
 .history_panel_links a {
-  display: block;
-  width: 50%;
+  display: inline-block;
+  &:first-of-type {
+    margin-right: 32px;
+  }
 }
 
 .history-list {
-  border-bottom: 1px solid;
 
-  &:last-of-type {
-    border-bottom: none;
+  hr {
+    border: none;
+    border-bottom: 1px solid var(--grey-light);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    margin-top: -14px;
   }
 }
 
@@ -31,8 +37,38 @@
   min-height: 40px;
   margin: 0 0 5px 0;
   cursor: pointer;
+
+  .placeIcon {
+    background: #f2dbf8 !important;
+    color: #a125be !important;
+  }
 }
 
 .modal__maps__history .modal {
   width: 400px;
+}
+
+.history_panel_empty {
+  width: 210px;
+  margin: 96px auto 0;
+  text-align: center;
+  .historyIcon {
+    margin-bottom: 0;
+  }
+}
+
+.history_panel_trash {
+  margin-top: 9px;
+  width: 20px;
+  height: 20px;
+}
+
+.history-list-title {
+  margin-bottom: 22px;
+}
+
+.history_panel_switch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
