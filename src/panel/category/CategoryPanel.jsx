@@ -150,6 +150,9 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
         {dataSource === sources.pagesjaunes && (
           <SourceFooter>{_('Results in partnership with PagesJaunes', 'categories')}</SourceFooter>
         )}
+        {dataSource === sources.tripadvisor && (
+          <SourceFooter>{_('Results in partnership with TripAdvisor', 'categories')}</SourceFooter>
+        )}
       </>
     );
   }

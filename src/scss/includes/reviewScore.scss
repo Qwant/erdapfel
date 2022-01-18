@@ -16,3 +16,20 @@
     }
   }
 }
+
+.reviewScore-TripAdvisor {
+  display: flex;
+  place-items: center;
+  width: 88px;
+  height: 12px;
+  overflow: hidden;
+
+  // TripAdvisor rating image has whitespace around the image
+  img {
+    max-width: none;
+    width: auto;
+    height: 16px;
+    flex: none;
+    margin-left: -6px;
+  }
+}
