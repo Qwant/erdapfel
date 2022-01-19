@@ -52,6 +52,7 @@
   width: 210px;
   margin: 96px auto 0;
   text-align: center;
+
   .historyIcon {
     margin-bottom: 0;
   }
@@ -71,4 +72,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.historyModalIcon {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  background: var(--grey-lighter);
+  border-radius: 50%;
+  margin-bottom: 4px;
 }
