@@ -4,23 +4,26 @@ import Modal from 'src/components/ui/Modal';
 import { fire } from 'src/libs/customEvents';
 import { CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
-import { useDevice, useI18n } from 'src/hooks';
-import { Button, Box, Flex } from '@qwant/qwant-ponents';
+import { useI18n } from 'src/hooks';
+import { Button, Box, Flex, IconEmpty, Heading } from '@qwant/qwant-ponents';
 import { deleteSearchHistory } from 'src/adapters/search_history';
+import { GREY_DARK } from '../libs/colors';
+import { IconHistory } from '../components/ui/icons';
 
 const HistoryModal = ({ status, onClose, onAccept }) => {
   const { _ } = useI18n();
-  const { isMobile } = useDevice();
 
   const statuses = {
     DISABLE: {
+      icon: <IconHistory width={20} fill={GREY_DARK} className="historyModalIcon" />,
       title: _('Disable Qwant Maps history', 'history'),
-      text: _('With this action all your search history will be lost.', 'history'),
+      text: _('With this action, all your search history will be lost.', 'history'),
       button1: _('Cancel', 'history'),
       button2: _('Disable my history', 'history'),
       className: 'modal__history__disable',
     },
     CLEAR: {
+      icon: <IconEmpty width={20} fill={GREY_DARK} className="historyModalIcon" />,
       title: _('Clear all my Qwant Maps history', 'history'),
       text: _('This action cannot be reversed', 'history'),
       button1: _('Cancel', 'history'),
@@ -29,22 +32,22 @@ const HistoryModal = ({ status, onClose, onAccept }) => {
     },
   };
 
-  const { title, text, button1, button2, className } = statuses[status];
+  const { icon, title, text, button1, button2, className } = statuses[status];
   return (
     <div className="modal__maps__history">
       <Modal onClose={onClose}>
         <Box m="s" className={classnames('modal__maps', className)}>
           <CloseButton onClick={onClose} />
+          <Box className="modal__maps__icon" mt="l">
+            {icon}
+          </Box>
           <div className="modal__maps__content">
-            <h2
-              className="modal__title u-text--smallTitle"
-              dangerouslySetInnerHTML={{ __html: title }}
-            />
+            <Heading typo="heading-5" bold dangerouslySetInnerHTML={{ __html: title }} />
             <div
               className="modal__subtitle u-text--subtitle"
               dangerouslySetInnerHTML={{ __html: text }}
             />
-            <Flex column={isMobile}>
+            <Flex mb="xl">
               <Button full variant="secondary" onClick={onClose} m="xxs">
                 {button1}
               </Button>
