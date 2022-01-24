@@ -161,7 +161,12 @@ const HistoryPanel = () => {
           </Box>
         </Flex>
         <Text color="primary" onClick={() => remove(item)}>
-          <IconEmpty width={20} fill={GREY_SEMI_DARKNESS} className="history_panel_trash" />
+          <IconEmpty
+            width={20}
+            fill={GREY_SEMI_DARKNESS}
+            className="history_panel_trash"
+            title={_('Delete', 'history')}
+          />
         </Text>
       </Flex>
     ) : (
@@ -198,7 +203,12 @@ const HistoryPanel = () => {
           </Box>
         </Flex>
         <Box color="primary" onClick={() => remove(item)}>
-          <IconEmpty width={20} fill={GREY_SEMI_DARKNESS} className="history_panel_trash" />
+          <IconEmpty
+            width={20}
+            fill={GREY_SEMI_DARKNESS}
+            className="history_panel_trash"
+            title={_('Delete', 'history')}
+          />
         </Box>
       </Flex>
     );
@@ -240,6 +250,7 @@ const HistoryPanel = () => {
             id="history_enabled"
             checked={isChecked}
             onChange={onChange}
+            title={isChecked ? _('Disable', 'history') : _('enable', 'history')}
           />
         </Box>
       </Flex>
