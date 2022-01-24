@@ -5,11 +5,18 @@
 }
 
 .history_panel {
-  padding: 20px 14px;
   position: relative;
 
   &.history_panel_empty {
     min-height: auto;
+  }
+
+  .panel-header {
+    padding: 20px 14px 0;
+  }
+
+  .panel-content {
+    padding: 0 14px 20px;
   }
 
   .closeButton {
@@ -29,10 +36,8 @@
   hr {
     border: none;
     border-bottom: 1px solid var(--grey-light);
-    width: 100%;
-    position: absolute;
-    left: 0;
-    margin-top: -14px;
+    width: calc(100% + 28px);
+    margin-left: -14px;
   }
 }
 
