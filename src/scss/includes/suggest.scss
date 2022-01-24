@@ -122,6 +122,10 @@
       margin: 16px 0 0;
       padding: 20px 14px;
       background: #fff;
+
+      div svg {
+        vertical-align: text-top;
+      }
     }
   }
 }
