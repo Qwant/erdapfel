@@ -221,7 +221,7 @@ const HistoryPanel = () => {
       )}
     >
       <Flex mt="xs">
-        <Text typo="body-2">
+        <Text typo="body-2" className="history_panel_switch_label">
           {isChecked
             ? _(
                 'Your history is enabled. It is only visible to you on this device.',
