@@ -63,8 +63,11 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
         Telemetry.add(Telemetry.POI_RESTORE);
         idunnPoi = new IdunnPoi(window.hotLoadPoi);
       } else {
+        console.log(poi, poiId);
         idunnPoi = await IdunnPoi.poiApiLoad(poi || { id: poiId });
       }
+
+      console.log(poiId, idunnPoi);
 
       // fallback on the simple POI object from the map
       // if Idunn doesn't know this POI

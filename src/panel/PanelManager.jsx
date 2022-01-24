@@ -118,6 +118,7 @@ const PanelManager = ({ router }) => {
       const [poi, params] = urlPart.split('?');
       const { q: query } = parseQueryString(params);
       const poiId = poi.split('@')[0];
+      console.log(poiId);
       const { pois, poiFilters = {}, isFromFavorite } = options;
 
       if (pois) {

@@ -4,15 +4,14 @@ import Modal from 'src/components/ui/Modal';
 import { fire } from 'src/libs/customEvents';
 import { CloseButton } from 'src/components/ui';
 import classnames from 'classnames';
-import { useDevice, useI18n } from 'src/hooks';
+import { useI18n } from 'src/hooks';
 import { Button, Box, Flex, IconEmpty, Heading } from '@qwant/qwant-ponents';
 import { deleteSearchHistory } from 'src/adapters/search_history';
-import { GREY_DARK, GREY_LIGHTER } from '../libs/colors';
+import { GREY_DARK } from '../libs/colors';
 import { IconHistory } from '../components/ui/icons';
 
 const HistoryModal = ({ status, onClose, onAccept }) => {
   const { _ } = useI18n();
-  const { isMobile } = useDevice();
 
   const statuses = {
     DISABLE: {
