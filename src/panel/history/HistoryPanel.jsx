@@ -16,6 +16,7 @@ import { listen, unListen } from 'src/libs/customEvents';
 import { openDisableHistoryModal, openClearHistoryModal } from 'src/modals/HistoryModal';
 import { GREY_SEMI_DARKNESS, PURPLE } from '../../libs/colors';
 import { IconHistory } from '../../components/ui/icons';
+import classnames from 'classnames';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
@@ -213,7 +214,11 @@ const HistoryPanel = () => {
       }
       minimizedTitle={_('Show history', 'history panel')}
       onClose={close}
-      className="history_panel"
+      className={classnames(
+        'history_panel',
+        historyLength() === 0 && 'history_panel_empty',
+        isChecked === false && 'history_panel_disabled'
+      )}
     >
       <Flex mt="xs">
         <Text typo="body-2">
@@ -301,7 +306,7 @@ const HistoryPanel = () => {
             </Box>
           )}
           {historyLength() === 0 && (
-            <Box className="history_panel_empty">
+            <Box className="history_panel_empty_message">
               <IconHistory width={20} fill={PURPLE} className="historyIcon" />
               <Text typo="body-2">
                 {_('As soon as you do a search, you can find it here 👇', 'history panel')}

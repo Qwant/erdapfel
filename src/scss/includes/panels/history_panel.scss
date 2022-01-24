@@ -8,6 +8,10 @@
   padding: 20px 14px;
   position: relative;
 
+  &.history_panel_empty {
+    min-height: auto;
+  }
+
   .closeButton {
     top: 10px;
   }
@@ -48,9 +52,9 @@
   width: 400px;
 }
 
-.history_panel_empty {
+.history_panel_empty_message {
   width: 210px;
-  margin: 96px auto 0;
+  margin: 8px auto 32px;
   text-align: center;
 
   .historyIcon {
