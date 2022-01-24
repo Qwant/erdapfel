@@ -32,12 +32,11 @@
 }
 
 .history-list {
-
   hr {
     border: none;
     border-bottom: 1px solid var(--grey-light);
     width: calc(100% + 28px);
-    margin-left: -14px;
+    margin: -14px 0 4px -14px;
   }
 }
 
@@ -95,4 +94,16 @@
   background: var(--grey-lighter);
   border-radius: 50%;
   margin-bottom: 4px;
+}
+
+.history_modal_buttons {
+  justify-content: center;
+}
+
+.modal__history__delete, .modal__history__disable {
+  text-align: center;
+
+  .closeButton {
+    margin: 8px;
+  }
 }
