@@ -168,7 +168,7 @@ const Suggest = ({
                 className="historyParagraph"
                 dangerouslySetInnerHTML={{
                   __html: _(
-                    'You can find and <a href="/history" target="_self">manage your complete history</a> at any time in the menu.',
+                    'You can find and <a href="history" target="_self">manage your complete history</a> at any time in the menu.',
                     'history'
                   ),
                 }}
@@ -192,7 +192,7 @@ const Suggest = ({
                 className="historyParagraph"
                 dangerouslySetInnerHTML={{
                   __html: _(
-                    'You can change your mind at any time and <a href="/history" target="_self">manage</a> the activation of the history in the menu.',
+                    'You can change your mind at any time and <a href="history" target="_self">manage</a> the activation of the history in the menu.',
                     'history'
                   ),
                 }}
