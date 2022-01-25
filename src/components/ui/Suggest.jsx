@@ -6,7 +6,12 @@ import { useConfig, useDevice, useI18n } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
-import { getHistoryPrompt, setHistoryPrompt, setHistoryEnabled } from 'src/adapters/search_history';
+import {
+  getHistoryPrompt,
+  setHistoryPrompt,
+  setHistoryEnabled,
+  getHistoryEnabled,
+} from 'src/adapters/search_history';
 import { Box, Button, Stack, Text } from '@qwant/qwant-ponents';
 import { PURPLE } from '../../libs/colors';
 import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
@@ -212,6 +217,9 @@ const Suggest = ({
       if (currentQuery) {
         currentQuery.abort();
       }
+
+      // Check if history has been enabled in the current session before fetching suggest items
+      withHistory = getHistoryEnabled();
 
       const query = fetchSuggests(value, {
         withCategories,
