@@ -8,14 +8,14 @@ import { useI18n } from 'src/hooks';
 import { Button, Box, Flex, IconEmpty, Heading } from '@qwant/qwant-ponents';
 import { deleteSearchHistory } from 'src/adapters/search_history';
 import { GREY_DARK } from '../libs/colors';
-import { IconHistory } from '../components/ui/icons';
+import { IconHistoryDisabled } from '../components/ui/icons';
 
 const HistoryModal = ({ status, onClose, onAccept }) => {
   const { _ } = useI18n();
 
   const statuses = {
     DISABLE: {
-      icon: <IconHistory width={20} fill={GREY_DARK} className="historyModalIcon" />,
+      icon: <IconHistoryDisabled width={20} fill={GREY_DARK} className="historyModalIcon" />,
       title: _('Disable Qwant Maps history', 'history'),
       text: _('With this action, all your search history will be lost.', 'history'),
       button1: _('Cancel', 'history'),
@@ -47,11 +47,11 @@ const HistoryModal = ({ status, onClose, onAccept }) => {
               className="modal__subtitle u-text--subtitle"
               dangerouslySetInnerHTML={{ __html: text }}
             />
-            <Flex mb="xl">
-              <Button full variant="secondary" onClick={onClose} m="xxs">
+            <Flex mb="xl" className="history_modal_buttons">
+              <Button variant="secondary" onClick={onClose} m="xxs">
                 {button1}
               </Button>
-              <Button full variant="primary" onClick={onAccept} m="xxs">
+              <Button variant="primary" onClick={onAccept} m="xxs">
                 {button2}
               </Button>
             </Flex>
