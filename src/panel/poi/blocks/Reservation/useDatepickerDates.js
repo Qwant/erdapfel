@@ -1,4 +1,4 @@
-import { DatePicker } from '@qwant/qwant-ponent';
+import { DatePicker } from '@qwant/qwant-ponents';
 import { useEffect, useRef, useState } from 'react';
 
 export function useDatepickerDates(initialStartDate, initialEndDate) {
