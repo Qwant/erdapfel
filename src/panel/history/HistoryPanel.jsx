@@ -257,7 +257,11 @@ const HistoryPanel = () => {
       {isChecked && (
         <Box className="history_panel_links">
           {isChecked && <a href="@TODO">{_('Learn more')}</a>}
-          {isChecked && historyLength() > 0 && <a onClick={clear}>{_('Delete my history')}</a>}
+          {isChecked && historyLength() > 0 && (
+            <a href="javascript:;" target="_self" onClick={clear}>
+              {_('Delete my history')}
+            </a>
+          )}
         </Box>
       )}
       {isChecked && (
