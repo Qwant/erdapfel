@@ -137,7 +137,7 @@ export function Reservation({ mobile, url: baseUrl }) {
               weekStart={1}
               observerId={datepickerMode}
             />
-            {mobile || (
+            {mobile ? (
               <>
                 <hr className="ReservationSeparator" />
                 <Stack horizontal gap="xs" px="xl" pt="m" end>
@@ -147,7 +147,7 @@ export function Reservation({ mobile, url: baseUrl }) {
                   <Button onClick={hideDatepicker}>{_('Ok')}</Button>
                 </Stack>
               </>
-            )}
+            ) : null}
           </ReservationDatepickerPopup>
         )}
       </ReservationDateModal>

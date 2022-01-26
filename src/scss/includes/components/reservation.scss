@@ -25,7 +25,7 @@
   padding-bottom: 0;
 }
 .ReservationDatepickerWrapperDays {
-  display: grid;
+  display: grid!important;
   width: 100%;
   grid-template-columns: repeat(7, 1fr);
   align-self: flex-start;
@@ -137,6 +137,10 @@
   padding: var(--spacing-s) var(--spacing-m);
   grid-gap: var(--spacing-m) var(--spacing-xxs);
   grid-template-columns: 1fr 120px;
+}
+
+.ReservationComposerAges select {
+  color: black!important; // Override styles applied by the component
 }
 
 .ReservationComposerClose {
