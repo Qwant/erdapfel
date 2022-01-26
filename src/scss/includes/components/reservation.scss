@@ -49,10 +49,8 @@
 .ReservationIADatePicker {
   position: absolute;
   top: var(--spacing-s);
-  z-index: 2;
-  // We want to center the datepicker popup and we know the width of 2 months
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 1001;
+  transform: translateY(var(--spacing-m));
 }
 
 .ReservationDatepickerBack {
