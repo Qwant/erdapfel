@@ -133,6 +133,7 @@ export function Reservation({ mobile, url: baseUrl }) {
               onEndChange={handleEndChange}
               onStartChange={handleStartChange}
               showDayOfWeek={!mobile}
+              onMonthVisible={() => null}
               weekStart={1}
               observerId={datepickerMode}
             />

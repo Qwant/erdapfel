@@ -13,7 +13,6 @@ import {
   Text,
 } from '@qwant/qwant-ponents';
 import React, { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useClickAway } from 'react-use';
 
 const max = {
@@ -93,7 +92,6 @@ function Line({ value, field, onChange }) {
     adults: _('18 y old and more'),
     children: _('Between 0 and 17 y old'),
   };
-  const { t } = useTranslation('ia');
   const fieldValue = value[field];
   const minValue = field === 'children' ? 0 : 1;
   const maxValue = max[field];
@@ -117,7 +115,7 @@ function Line({ value, field, onChange }) {
           </Text>
           {fieldDescriptionTranslations[field] && (
             <Text typo="caption-1" color="secondary">
-              {t(fieldDescriptionTranslations[field])}
+              {fieldDescriptionTranslations[field]}
             </Text>
           )}
         </div>
