@@ -162,6 +162,7 @@ export function Reservation({ mobile, url: baseUrl }) {
             onClick={() => setOccupantSelection(true)}
             icon={IconArrowDownSLine}
             className="ReservationOccupantField"
+            autoComplete="off"
           />
           <ReservationComposer
             visible={showOccupantSelection}

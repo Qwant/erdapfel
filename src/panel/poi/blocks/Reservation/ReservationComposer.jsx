@@ -1,4 +1,4 @@
-/* global _, _n */
+/* global _ */
 import {
   Box,
   Button,
@@ -84,9 +84,9 @@ export function ReservationComposer({ value: propsValue, onChange, mobile, visib
 
 function Line({ value, field, onChange }) {
   const fieldTranslations = {
-    rooms: count => _n('Room', 'Rooms', count),
-    adults: count => _n('Adult', 'Adults', count),
-    children: count => _n('Child', 'Children', count),
+    rooms: _('Rooms'),
+    adults: _('Adults'),
+    children: _('Children'),
   };
   const fieldDescriptionTranslations = {
     adults: _('18 y old and more'),
@@ -111,7 +111,7 @@ function Line({ value, field, onChange }) {
       <Flex alignCenter>
         <div>
           <Text typo="body-2" color="primary">
-            <Box mb="xxs">{fieldTranslations[field](fieldValue)}</Box>
+            <Box mb="xxs">{fieldTranslations[field]}</Box>
           </Text>
           {fieldDescriptionTranslations[field] && (
             <Text typo="caption-1" color="secondary">
