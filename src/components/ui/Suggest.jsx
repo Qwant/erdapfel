@@ -15,6 +15,7 @@ import {
 import { Box, Button, Stack, Text } from '@qwant/qwant-ponents';
 import { PURPLE } from '../../libs/colors';
 import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
+import Telemetry from 'src/libs/telemetry';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -121,6 +122,7 @@ const Suggest = ({
               <Button
                 variant="secondary"
                 onClick={() => {
+                  Telemetry.add(Telemetry.HISTORY_DISABLED_FROM_SUGGEST);
                   setHistoryPrompt(true);
                   setHistoryAnswer(false);
                   document.querySelector('#search').focus();
@@ -133,6 +135,7 @@ const Suggest = ({
               <Button
                 ml="xs"
                 onClick={() => {
+                  Telemetry.add(Telemetry.HISTORY_ENABLED_FROM_SUGGEST);
                   setHistoryPrompt(true);
                   setHistoryAnswer(true);
                   document.querySelector('#search').focus();
@@ -260,6 +263,9 @@ const Suggest = ({
   }, [hasFocus, fetchItems, value]);
 
   const selectItem = item => {
+    if (item._suggestSource === 'history') {
+      Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_SUGGEST);
+    }
     onSelect(item, { query: value });
     setHighlighted(null);
   };

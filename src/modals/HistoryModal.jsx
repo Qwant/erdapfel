@@ -9,6 +9,7 @@ import { Button, Box, Flex, IconEmpty, Heading } from '@qwant/qwant-ponents';
 import { deleteSearchHistory } from 'src/adapters/search_history';
 import { GREY_DARK } from '../libs/colors';
 import { IconHistoryDisabled } from '../components/ui/icons';
+import Telemetry from 'src/libs/telemetry';
 
 const HistoryModal = ({ status, onClose, onAccept }) => {
   const { _ } = useI18n();
@@ -21,6 +22,7 @@ const HistoryModal = ({ status, onClose, onAccept }) => {
       button1: _('Cancel', 'history'),
       button2: _('Disable my history', 'history'),
       className: 'modal__history__disable',
+      telemetry: Telemetry.HISTORY_DISABLED_FROM_PANEL,
     },
     CLEAR: {
       icon: <IconEmpty width={20} fill={GREY_DARK} className="historyModalIcon" />,
@@ -29,10 +31,11 @@ const HistoryModal = ({ status, onClose, onAccept }) => {
       button1: _('Cancel', 'history'),
       button2: _('Clear my history', 'history'),
       className: 'modal__history__delete',
+      telemetry: Telemetry.HISTORY_CLEARED_FROM_PANEL,
     },
   };
 
-  const { icon, title, text, button1, button2, className } = statuses[status];
+  const { icon, title, text, button1, button2, className, telemetry } = statuses[status];
   return (
     <div className="modal__maps__history">
       <Modal onClose={onClose}>
@@ -51,7 +54,14 @@ const HistoryModal = ({ status, onClose, onAccept }) => {
               <Button variant="secondary" onClick={onClose} m="xxs">
                 {button1}
               </Button>
-              <Button variant="primary" onClick={onAccept} m="xxs">
+              <Button
+                variant="primary"
+                m="xxs"
+                onClick={() => {
+                  Telemetry.add(telemetry);
+                  onAccept();
+                }}
+              >
                 {button2}
               </Button>
             </Flex>
