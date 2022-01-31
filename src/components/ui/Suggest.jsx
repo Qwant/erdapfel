@@ -355,7 +355,7 @@ const Suggest = ({
                 question={_('Satisfied with the results?')}
               />
             )}
-            {!value && items.length > 0 && !items[0].errorLabel && (
+            {!value && items.length > 0 && !items[0].errorLabel && getHistoryEnabled() && (
               <div className="suggestHistoryFooter">
                 {_(
                   'Your history is activated. It is only visible to you on this device.',
