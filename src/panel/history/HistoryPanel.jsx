@@ -250,7 +250,7 @@ const HistoryPanel = () => {
             id="history_enabled"
             checked={isChecked}
             onChange={onChange}
-            title={isChecked ? _('Disable', 'history') : _('enable', 'history')}
+            title={isChecked ? _('Disable', 'history') : _('Enable', 'history')}
           />
         </Box>
       </Flex>
@@ -258,7 +258,17 @@ const HistoryPanel = () => {
         <Box className="history_panel_links">
           {isChecked && <a href="@TODO">{_('Learn more')}</a>}
           {isChecked && historyLength() > 0 && (
-            <a href="javascript:;" target="_self" onClick={clear}>
+            <a
+              href="#"
+              target="_self"
+              onClick={e => {
+                e.preventDefault();
+                clear();
+              }}
+              onMouseDown={e => {
+                e.preventDefault();
+              }}
+            >
               {_('Delete my history')}
             </a>
           )}
