@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RoadMapStep from './RoadMapStep';
 import { fire } from 'src/libs/customEvents';
 import classnames from 'classnames';
-import { FloatingButton } from '../../components/ui';
+import { FloatingButton } from 'src/components/ui';
 import { IconArrowLeftLine } from '@qwant/qwant-ponents';
 
 const MobileRoadMapPreview = ({ steps, onClose }) => {

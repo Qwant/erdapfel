@@ -14,10 +14,10 @@ import PlaceIcon from 'src/components/PlaceIcon';
 import { capitalizeFirst } from 'src/libs/string';
 import { listen, unListen } from 'src/libs/customEvents';
 import { openDisableHistoryModal, openClearHistoryModal } from 'src/modals/HistoryModal';
-import { GREY_SEMI_DARKNESS, PURPLE } from '../../libs/colors';
-import { IconHistory } from '../../components/ui/icons';
+import { GREY_SEMI_DARKNESS, PURPLE } from 'src/libs/colors';
+import { IconHistory } from 'src/components/ui/icons';
 import classnames from 'classnames';
-import Telemetry from '../../libs/telemetry';
+import Telemetry from 'src/libs/telemetry';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());

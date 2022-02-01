@@ -6,7 +6,7 @@ import Intention from 'src/adapters/intention';
 import { Address, CloseButton } from 'src/components/ui';
 import PlaceIcon from 'src/components/PlaceIcon';
 import PoiStore from 'src/adapters/poi/poi_store';
-import NoResultMessage from '../../panel/NoResultMessage';
+import NoResultMessage from 'src/panel/NoResultMessage';
 import { deleteQuery } from 'src/adapters/search_history';
 import { useI18n } from 'src/hooks';
 
