@@ -80,5 +80,13 @@ module.exports = {
     'survey_display',
     'survey_close',
     'survey_answer',
+    /* History */
+    'history_enabled_from_suggest',
+    'history_disabled_from_suggest',
+    'history_enabled_from_panel',
+    'history_disabled_from_panel',
+    'history_cleared_from_panel',
+    'history_item_clicked_suggest',
+    'history_item_clicked_panel',
   ],
 };
