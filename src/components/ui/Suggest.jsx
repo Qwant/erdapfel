@@ -57,7 +57,6 @@ const Suggest = ({
   hide,
 }) => {
   const searchHistoryConfig = useConfig('searchHistory');
-
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(null);
@@ -247,6 +246,9 @@ const Suggest = ({
   useEffect(() => {
     if (!hasFocus) {
       close();
+      if (historyAnswer !== null) {
+        setkeepHistoryPromptVisible(false);
+      }
     } else {
       setHighlighted(null);
       fetchItems(value);
