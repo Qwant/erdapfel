@@ -13,9 +13,10 @@ import {
   getHistoryEnabled,
 } from 'src/adapters/search_history';
 import { Box, Button, Stack, Text } from '@qwant/qwant-ponents';
-import { PURPLE } from '../../libs/colors';
+import { PURPLE } from 'src/libs/colors';
 import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
 import Telemetry from 'src/libs/telemetry';
+import { listen, unListen } from 'src/libs/customEvents';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -212,6 +213,15 @@ const Suggest = ({
       onToggle(dropdownVisible);
     }
   }, [dropdownVisible, onToggle]);
+
+  useEffect(() => {
+    const disableHistoryHandler = listen('hide_history_prompt', () => {
+      setkeepHistoryPromptVisible(false);
+    });
+    return () => {
+      unListen(disableHistoryHandler);
+    };
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchItems = useCallback(
