@@ -4,6 +4,7 @@ import Telemetry from 'src/libs/telemetry';
 import Panel from 'src/components/ui/Panel';
 import FavoriteItems from './FavoriteItems';
 import { useFavorites, usePageTitle } from 'src/hooks';
+import { fire } from 'src/libs/customEvents';
 
 const FavoritesPanel = () => {
   const { favorites, removeFromFavorites } = useFavorites();
@@ -12,6 +13,7 @@ const FavoritesPanel = () => {
 
   useEffect(() => {
     Telemetry.add(Telemetry.FAVORITE_OPEN);
+    fire('hide_history_prompt');
   }, []);
 
   const removeFav = poi => {

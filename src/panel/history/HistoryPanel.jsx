@@ -12,7 +12,7 @@ import {
 } from 'src/adapters/search_history';
 import PlaceIcon from 'src/components/PlaceIcon';
 import { capitalizeFirst } from 'src/libs/string';
-import { listen, unListen } from 'src/libs/customEvents';
+import { fire, listen, unListen } from 'src/libs/customEvents';
 import { openDisableHistoryModal, openClearHistoryModal } from 'src/modals/HistoryModal';
 import { GREY_SEMI_DARKNESS, PURPLE } from 'src/libs/colors';
 import { IconHistory } from 'src/components/ui/icons';
@@ -66,6 +66,10 @@ const HistoryPanel = () => {
     return () => {
       unListen(clearHistoryHandler);
     };
+  }, []);
+
+  useEffect(() => {
+    fire('hide_history_prompt');
   }, []);
 
   const close = () => {
