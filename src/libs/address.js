@@ -78,8 +78,8 @@ function findAdminIdunn(raw, name) {
 export function toArray(address, { omitStreet, omitCountry } = {}) {
   if (!address.street) {
     // Tripadvisor POI only have a valid address in the label field
-    if(!address.cityDistrict && !address.countryRegion && !address.suburb){
-      return [address.label]
+    if (!address.cityDistrict && !address.countryRegion && !address.suburb) {
+      return [address.label];
     }
     return [
       address.suburb,
