@@ -89,8 +89,8 @@ function Line({ value, field, onChange }) {
     children: _('Children'),
   };
   const fieldDescriptionTranslations = {
-    adults: _('18 y old and more'),
-    children: _('Between 0 and 17 y old'),
+    adults: _('18 years old and more'),
+    children: _('Between 0 and 17 years old'),
   };
   const fieldValue = value[field];
   const minValue = field === 'children' ? 0 : 1;
@@ -162,7 +162,7 @@ function LineAge({ index, value, options, onChange }) {
     <>
       <Flex alignCenter>
         <Text typo="body-2" color="primary">
-          {_('Child %d age').replace('%d', index + 1)}
+          {_('Age of child %d').replace('%d', index + 1)}
         </Text>
       </Flex>
       <Field onChange={handleChange} type="select" options={options} value={age || ''} />

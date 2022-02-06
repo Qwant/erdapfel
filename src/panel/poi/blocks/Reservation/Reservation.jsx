@@ -160,6 +160,7 @@ export function Reservation({ mobile, url: baseUrl }) {
             value={formatOccupants(occupants)}
             onFocus={() => setOccupantSelection(true)}
             onClick={() => setOccupantSelection(true)}
+            spellCheck="false"
             icon={IconArrowDownSLine}
             className="ReservationOccupantField"
             autoComplete="off"
