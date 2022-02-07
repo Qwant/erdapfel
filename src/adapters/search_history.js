@@ -54,6 +54,7 @@ export function saveQuery(item) {
 }
 
 export function deleteQuery(item) {
+  console.log('delete', item, getHistory());
   const searchHistory = getHistory();
   const index = searchHistory.findIndex(stored => itemEquals(stored, item));
   if (index === -1) {
