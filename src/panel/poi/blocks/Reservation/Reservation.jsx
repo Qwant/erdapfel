@@ -104,6 +104,8 @@ export function Reservation({ mobile, url: baseUrl }) {
           <Stack gap="m" horizontal nowrap>
             <Field
               id="DatePickerFieldOut"
+              spellCheck="false"
+              autoComplete="off"
               ref={startInput}
               label={_('Check in')}
               value={dateFormatter.format(startDate)}
@@ -113,6 +115,8 @@ export function Reservation({ mobile, url: baseUrl }) {
             />
             <Field
               id="DatePickerFieldIn"
+              spellCheck="false"
+              autoComplete="off"
               ref={endInput}
               label={_('Check out')}
               value={dateFormatter.format(endDate)}
