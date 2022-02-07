@@ -151,7 +151,17 @@ export function Reservation({ mobile, url: baseUrl }) {
                   <Button onClick={hideDatepicker}>{_('Ok')}</Button>
                 </Stack>
               </>
-            ) : null}
+            ) : (
+              <>
+                <hr className="ReservationSeparator" />
+                <Stack horizontal gap="xs" px="xl" pt="m" end>
+                  <Button variant="tertiary" onClick={handleCancel}>
+                    {_('Cancel')}
+                  </Button>
+                  <Button onClick={hideDatepicker}>{_('Ok')}</Button>
+                </Stack>
+              </>
+            )}
           </ReservationDatepickerPopup>
         )}
       </ReservationDateModal>
