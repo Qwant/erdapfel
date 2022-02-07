@@ -34,7 +34,7 @@ export function saveQuery(item) {
   deleteQuery(item);
 
   // Retrieve the search history
-  let searchHistory = getHistory();
+  const searchHistory = getHistory();
 
   // Put the query at the end of the array
   searchHistory.push({
