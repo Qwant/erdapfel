@@ -8,12 +8,15 @@ import CategoryList from 'src/components/CategoryList';
 import { fire } from 'src/libs/customEvents';
 import PoiItem from 'src/components/PoiItem';
 import { Divider } from 'src/components/ui';
-import { useConfig, useI18n, useFavorites } from 'src/hooks';
+import { useConfig, useI18n, useFavorites, useDevice } from 'src/hooks';
+import { Reservation } from './blocks/Reservation/Reservation';
 
 const PoiPanelContent = ({ poi }) => {
   const { _ } = useI18n();
   const { isInFavorites, removeFromFavorites, addToFavorites } = useFavorites();
   const { enabled: isDirectionActive } = useConfig('direction');
+  const hasReservation = poi && poi.className === 'hotel' && poi.meta.source === 'tripadvisor';
+  const { isMobile } = useDevice();
 
   useEffect(() => {
     fire('set_direction_shortcut_callback', openDirection);
@@ -84,6 +87,7 @@ const PoiPanelContent = ({ poi }) => {
         />
       </div>
       <div className="poi_panel__fullContent">
+        {hasReservation && <Reservation url={poi.meta.source_url} mobile={isMobile} />}
         <PoiBlockContainer poi={poi} />
         <Contribution poi={poi} />
         <Divider paddingTop={0} className="poi_panel__fullWidth" />

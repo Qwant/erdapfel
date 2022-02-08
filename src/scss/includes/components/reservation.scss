@@ -1,0 +1,154 @@
+.Reservation2By2 > * {
+  flex: 1 100px !important;
+}
+
+.ReservationDatepickerWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  background: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.ReservationDatepickerBack {
+  width: 48px;
+  height: 48px;
+}
+.ReservationDatepickerWrapperHeader {
+  flex: none;
+  border-bottom: solid 1px var(--grey-lighter);
+  padding: var(--spacing-s);
+  padding-bottom: 0;
+}
+.ReservationDatepickerWrapperDays {
+  display: grid!important;
+  width: 100%;
+  grid-template-columns: repeat(7, 1fr);
+  align-self: flex-start;
+}
+.ReservationDatepickerWrapperBody {
+  width: 100%;
+  overflow: auto;
+}
+.ReservationDatepickerWrapperFooter {
+  height: 80px;
+  flex: none;
+  border-top: solid 1px var(--grey-lighter);
+}
+
+.ReservationDatepickerWrapper .ReservationIADatePicker {
+  position: static;
+  margin-top: var(--spacing-xl-2);
+  transform: none;
+}
+
+.ReservationIADatePicker {
+  position: absolute;
+  top: var(--spacing-s);
+  z-index: 1001;
+  transform: translateY(var(--spacing-m));
+}
+
+.ReservationDatepickerBack {
+  width: 48px;
+  height: 48px;
+}
+
+.ReservationOccupantField input {
+  padding-right: 35px;
+  text-overflow: ellipsis;
+}
+
+.ReservationSeparator {
+  background: var(--grey-lighter);
+  height: 1px;
+  border: none;
+  margin: 0;
+}
+
+.ReservationComposerTooltip,
+.ReservationComposerModal {
+  width: 275px;
+  --border: var(--grey-semi-lightness);
+  --separator: var(--grey-lighter);
+}
+
+.ReservationComposerTooltip hr,
+.ReservationComposerModal hr {
+
+  height: 1px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: var(--separator);
+}
+
+.ReservationComposerTooltip {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  z-index: 1050;
+}
+
+.ReservationComposerModal {
+  padding: 0 !important;
+}
+
+.ReservationComposerCounter {
+  display: grid;
+  padding: var(--spacing-s) var(--spacing-m);
+  grid-gap: var(--spacing-m) var(--spacing-xxs);
+  grid-template-columns: 1fr 40px 48px 40px;
+}
+
+.ReservationComposerNumber {
+  border: 1px solid var(--border);
+  width: 48px;
+  height: 40px;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  border-radius: 8px;
+}
+
+.ReservationComposerIncrement {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.ReservationComposerIncrement span {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 0 !important;
+}
+
+.ReservationComposerAges {
+  display: grid;
+  max-height: 228px;
+  overflow: auto;
+  padding: var(--spacing-s) var(--spacing-m);
+  grid-gap: var(--spacing-m) var(--spacing-xxs);
+  grid-template-columns: 1fr 120px;
+}
+
+.ReservationComposerAges select {
+  color: black!important; // Override styles applied by the component
+}
+
+.ReservationComposerClose {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.ReservationComposerClose svg {
+  display: block;
+}
