@@ -71,6 +71,7 @@ export function deleteSearchHistory() {
 
 const itemEquals = ({ type, item }, other) => {
   if (type === 'intention') {
+    console.log("equals", item, other);
     return (
       item.fullTextQuery === other.fullTextQuery &&
       item.category?.name === other.category?.name &&
