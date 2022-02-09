@@ -179,7 +179,10 @@ const HistoryPanel = () => {
       </Flex>
     ) : (
       // intention
-      <Flex key={item.item.category?.id || item.item.fullTextQuery} className="history-list-item">
+      <Flex
+        key={item.item.category?.name + '_' + item.item.place?.properties?.geocoding?.name}
+        className="history-list-item"
+      >
         <Box
           onClick={() => {
             Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_PANEL);

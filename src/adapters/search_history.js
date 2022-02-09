@@ -54,7 +54,6 @@ export function saveQuery(item) {
 }
 
 export function deleteQuery(item) {
-  console.log('delete', item, getHistory());
   const searchHistory = getHistory();
   const index = searchHistory.findIndex(stored => itemEquals(stored, item));
   if (index === -1) {
@@ -71,9 +70,7 @@ export function deleteSearchHistory() {
 
 const itemEquals = ({ type, item }, other) => {
   if (type === 'intention') {
-    console.log("equals", item, other);
     return (
-      item.fullTextQuery === other.fullTextQuery &&
       item.category?.name === other.category?.name &&
       item.place?.properties?.geocoding?.name === other.place?.properties?.geocoding?.name
     );
