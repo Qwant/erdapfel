@@ -55,11 +55,12 @@ export function saveQuery(item) {
 
 export function deleteQuery(item) {
   const searchHistory = getHistory();
-  const index = searchHistory.findIndex(stored => itemEquals(stored, item));
-  if (index === -1) {
-    return;
+  let index;
+  for (index in searchHistory) {
+    if (itemEquals(searchHistory[index], item)) {
+      searchHistory.splice(index, 1);
+    }
   }
-  searchHistory.splice(index, 1);
   // Serialize the list and save it in localStorage
   setHistory(searchHistory);
 }
