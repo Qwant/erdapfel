@@ -56,7 +56,7 @@ export function saveQuery(item) {
 export function deleteQuery(item) {
   const searchHistory = getHistory();
   let index;
-  for (index = searchHistory.length - 1; index > 0; index--) {
+  for (index = searchHistory.length - 1; index >= 0; index--) {
     if (itemEquals(searchHistory[index], item)) {
       searchHistory.splice(index, 1);
     }
