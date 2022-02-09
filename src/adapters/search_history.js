@@ -49,11 +49,12 @@ export function saveQuery(item) {
 
 export function deleteQuery(item) {
   const searchHistory = getHistory();
-  const index = searchHistory.findIndex(stored => itemEquals(stored, item));
-  if (index === -1) {
-    return;
+  let index;
+  for (index = searchHistory.length - 1; index >= 0; index--) {
+    if (itemEquals(searchHistory[index], item)) {
+      searchHistory.splice(index, 1);
+    }
   }
-  searchHistory.splice(index, 1);
   // Serialize the list and save it in localStorage
   setHistory(searchHistory);
 }
@@ -65,7 +66,6 @@ export function deleteSearchHistory() {
 const itemEquals = ({ type, item }, other) => {
   if (type === 'intention') {
     return (
-      item.fullTextQuery === other.fullTextQuery &&
       item.category?.name === other.category?.name &&
       item.place?.properties?.geocoding?.name === other.place?.properties?.geocoding?.name
     );
