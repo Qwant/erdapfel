@@ -45,6 +45,8 @@ module.exports = function (config) {
           res.locals.poi = poi;
           next();
         } else {
+          console.log("Prefetch 307 response trigger")
+          req.logger.warning("Prefetch 307 response trigger");
           res.redirect(307, config.system.baseUrl);
         }
       })
