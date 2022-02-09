@@ -84,6 +84,7 @@ module.exports = function (config) {
 
     getRedirectUrl(req, res)
       .then(redirectUrl => {
+        req.logger.error('fulltext query 307 response trigger');
         res.redirect(307, redirectUrl);
       })
       .catch(error => {
