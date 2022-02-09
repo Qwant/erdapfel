@@ -4,7 +4,6 @@ import Poi from 'src/adapters/poi/poi';
 import Intention from 'src/adapters/intention';
 
 const SEARCH_HISTORY_KEY = 'search_history_v1';
-const HISTORY_SIZE = 100;
 
 export function setHistoryEnabled(value) {
   set(SEARCH_HISTORY_KEY + '_enabled', value);
@@ -35,7 +34,7 @@ export function saveQuery(item) {
   deleteQuery(item);
 
   // Retrieve the search history
-  let searchHistory = getHistory();
+  const searchHistory = getHistory();
 
   // Put the query at the end of the array
   searchHistory.push({
@@ -43,11 +42,6 @@ export function saveQuery(item) {
     date: Date.now(),
     item,
   });
-
-  // Limit the list to the last items
-  if (searchHistory.length > HISTORY_SIZE) {
-    searchHistory = searchHistory.slice(-HISTORY_SIZE);
-  }
 
   // Serialize the list and save it in localStorage
   setHistory(searchHistory);
