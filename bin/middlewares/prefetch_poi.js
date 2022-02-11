@@ -16,9 +16,11 @@ module.exports = function (config) {
     if (atPos !== -1) {
       id = poiId.slice(0, atPos);
     }
-    req.logger.error(id);
+
     try {
-      req.logger.error(`${idunnBaseUrl}/v1/places/${id}?lang=${langCode}`);
+      req.logger.error(
+        'Request search pois url is : ' + `${idunnBaseUrl}/v1/places/${id}?lang=${langCode}`
+      );
       const response = await axios.get(`${idunnBaseUrl}/v1/places/${id}?lang=${langCode}`, {
         timeout: idunnTimeout,
       });
