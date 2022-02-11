@@ -10,7 +10,7 @@ module.exports = function (config) {
     );
   }
 
-  async function getPoi(poiId, langCode) {
+  async function getPoi(req, poiId, langCode) {
     let id = poiId;
     const atPos = poiId.indexOf('@');
     if (atPos !== -1) {
@@ -18,6 +18,9 @@ module.exports = function (config) {
     }
 
     try {
+      req.logger.error(
+        'Request search pois url is : ' + `${idunnBaseUrl}/v1/places/${id}?lang=${langCode}`
+      );
       const response = await axios.get(`${idunnBaseUrl}/v1/places/${id}?lang=${langCode}`, {
         timeout: idunnTimeout,
       });
@@ -39,7 +42,7 @@ module.exports = function (config) {
       return;
     }
 
-    getPoi(poiId, res.locals.language.code)
+    getPoi(req, poiId, res.locals.language.code)
       .then(poi => {
         if (poi) {
           res.locals.poi = poi;
