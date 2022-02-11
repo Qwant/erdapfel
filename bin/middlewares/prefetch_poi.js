@@ -10,14 +10,15 @@ module.exports = function (config) {
     );
   }
 
-  async function getPoi(poiId, langCode) {
+  async function getPoi(req, poiId, langCode) {
     let id = poiId;
     const atPos = poiId.indexOf('@');
     if (atPos !== -1) {
       id = poiId.slice(0, atPos);
     }
-
+    req.logger.error(id);
     try {
+      req.logger.error(`${idunnBaseUrl}/v1/places/${id}?lang=${langCode}`);
       const response = await axios.get(`${idunnBaseUrl}/v1/places/${id}?lang=${langCode}`, {
         timeout: idunnTimeout,
       });
@@ -39,7 +40,7 @@ module.exports = function (config) {
       return;
     }
 
-    getPoi(poiId, res.locals.language.code)
+    getPoi(req, poiId, res.locals.language.code)
       .then(poi => {
         if (poi) {
           res.locals.poi = poi;
