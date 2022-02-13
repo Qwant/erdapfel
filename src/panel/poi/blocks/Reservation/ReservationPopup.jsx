@@ -20,7 +20,7 @@ export function ReservationDatepickerPopup({ children, onHide, mobile }) {
     ['pointerdown']
   );
   useEffect(() => {
-    if (wrapperRef) {
+    if (wrapperRef && !mobile) {
       const { left, top } = wrapperRef.current.getBoundingClientRect();
       const { height } = ref.current.getBoundingClientRect();
       ref.current.style.setProperty('left', `${left}px`);
