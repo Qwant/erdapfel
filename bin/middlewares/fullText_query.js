@@ -1,5 +1,6 @@
 const axios = require('axios');
 const yaml = require('node-yaml');
+const path = require('path');
 
 module.exports = function (config) {
   const idunnTimeout = Number(config.server.services.idunn.timeout);
@@ -9,8 +10,8 @@ module.exports = function (config) {
     );
   }
 
-  const idunnBaseUrl = config.server.services.idunn.url || config.services.idunn.url;
-  const geocoderUrl = idunnBaseUrl + '/v1/search';
+  const idunnBaseUrl = config.services.idunn.url;
+  const geocoderUrl = path.join(idunnBaseUrl, 'v1/search');
   const useNlu = config.services.geocoder.useNlu;
 
   // @TODO: share intention validation with src/adapters/intention.js

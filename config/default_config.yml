@@ -10,7 +10,6 @@ server:
   enablePrometheus: true
   services:
     idunn:
-      url: # client url will be used by default
       timeout: 2000 # ms
   logger:
     headersWhitelistEnabled: true
@@ -26,7 +25,6 @@ server:
 # Services
 services:
   geocoder:
-    url: override_by_environment
     useLang: true
     maxItems: 7
     useFocus: true
