@@ -174,7 +174,10 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
       resizable
       renderHeader={<NavHeader isMobile={isMobile} />}
       minimizedTitle={_('Unfold to show the results', 'categories')}
-      className={classnames('category__panel', { 'panel--pj': dataSource === sources.pagesjaunes })}
+      className={classnames('category__panel', {
+        'panel--pj': dataSource === sources.pagesjaunes,
+        'panel--ta': dataSource === sources.tripadvisor,
+      })}
       floatingItemsLeft={[
         isMobile && shouldShowBackToQwant() && <BackToQwantButton key="back-to-qwant" isMobile />,
       ]}

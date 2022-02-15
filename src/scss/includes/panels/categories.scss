@@ -20,7 +20,8 @@
 
 @media (min-width: 641px) {
   .category__panel {
-    &.panel--pj {
+    &.panel--pj, 
+    &.panel--ta {
       .panel-content {
         overflow: hidden;
         display: flex;
@@ -50,7 +51,8 @@
       pointer-events: none;
     }
 
-    &.panel--pj {
+    &.panel--pj,
+    &.panel--ta {
       padding: 0 0 36px;
     }
 
