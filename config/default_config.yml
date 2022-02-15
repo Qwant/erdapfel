@@ -15,7 +15,7 @@ server:
   logger:
     headersWhitelistEnabled: true
   disableBurgerMenu:
-    userAgentRule: '' # regex, ignored if empty
+    clientRule: override_by_environment
   # NB: `routerBaseUrl` may be different from `system.baseUrl` if a proxy is responsible for rewriting URLs
   routerBaseUrl: / # path prefix expected by the express server
   useGeoipForInitialPosition: true

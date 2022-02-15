@@ -122,11 +122,12 @@ function App(config) {
   const ogMeta = new require('./middlewares/og_meta')(config);
 
   router.get('/*', redirectUnsupported, fullTextQuery, preFetchPoi, ogMeta, (req, res) => {
-    const userAgent = req.headers['user-agent'];
-    const disableMenuRule = config.server.disableBurgerMenu.userAgentRule;
+    const disableMenuRule = config.server.disableBurgerMenu.clientRule;
     const { server: _droppedServerConfig, ...appConfig } = config;
+    const regexpRule = new RegExp(`[?&]client=${disableMenuRule}`);
+
     let localAppConfig = appConfig;
-    if (disableMenuRule && userAgent && userAgent.match(disableMenuRule)) {
+    if (disableMenuRule && regexpRule.test(req.originalUrl)) {
       localAppConfig = {
         ...appConfig,
         burgerMenu: {
