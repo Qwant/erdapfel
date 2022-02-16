@@ -86,6 +86,14 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
 
         setPois(places);
         setDataSource(source);
+        if (initialLoading === true) {
+          if (poiFilters.category) {
+            Telemetry.add(Telemetry.POI_CATEGORY_OPEN, {
+              category: poiFilters.category,
+              source,
+            });
+          }
+        }
         setInitialLoading(false);
 
         if (bbox_extended && contentBbox) {
@@ -117,12 +125,6 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   useEffect(() => {
     setInitialLoading(true);
   }, [comparableFilters]);
-
-  useEffect(() => {
-    if (poiFilters.category) {
-      Telemetry.add(Telemetry.POI_CATEGORY_OPEN, { category: poiFilters.category });
-    }
-  }, [poiFilters.category]);
 
   const selectPoi = poi => {
     fire('click_category_poi', { poi, poiFilters, pois });
