@@ -8,11 +8,9 @@ jobs:
 
     steps:
     - name: Install system dependencies
-      # python3 dependencies needed to run transifex-client
       run: |
         sudo apt-get update 
         sudo apt-get install -yq libstdc++6 gettext
-        sudo apt-get install -yq python3-pip python3-setuptools python3-wheel
 
     - uses: actions/checkout@v2
 
@@ -32,10 +30,3 @@ jobs:
 
     - name: Run tests
       run: npm run test
-
-    - name: Push translation keys to Transifex
-      if: github.ref == 'refs/heads/master'
-      run: bash .tx/push.sh
-      env:
-        TRANSIFEX_API_USER: api
-        TRANSIFEX_API_KEY: ${{ secrets.TRANSIFEX_API_KEY }}
