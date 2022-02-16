@@ -16,10 +16,10 @@ function getTestNPercent(config, req) {
 }
 
 function getTgpFromHash(hash) {
-  if (!hash) return 0;
+  if (!hash) return 10;
   const lastByte = parseInt(hash.charAt(hash.length - 2) + hash.charAt(hash.length - 1), 16);
 
-  return Math.ceil(((lastByte + 1) / 256) * 10) * 10 || 0;
+  return Math.ceil(((lastByte + 1) / 256) * 10) * 10 || 10;
 }
 
 function getABTestingInfos(config, req) {
