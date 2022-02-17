@@ -1,5 +1,5 @@
 /* globals _ */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import Panel from 'src/components/ui/Panel';
 import { Stack, Box, Flex, Switch, Text, IconEmpty } from '@qwant/qwant-ponents';
 import {
@@ -21,7 +21,7 @@ import Telemetry from 'src/libs/telemetry';
 
 const HistoryPanel = () => {
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
-  const now = new Date();
+  const now = useMemo(() => new Date(), []);
   const lastMidnight = new Date().setUTCHours(0, 0, 0, 0);
   const lastWeek = new Date().setUTCDate(-7);
   const lastMonth = new Date().setUTCDate(-30);
@@ -42,31 +42,31 @@ const HistoryPanel = () => {
   );
   const [olderHistory, setOlderHistory] = useState(listHistoryItemsByDate(0, lastYear));
 
-  const disableHistory = () => {
+  const disableHistory = useCallback(() => {
     setIsChecked(false);
     setHistoryEnabled(false);
     deleteSearchHistory();
     computeHistory();
-  };
+  }, [computeHistory]);
 
-  const clearHistory = () => {
+  const clearHistory = useCallback(() => {
     deleteSearchHistory();
     computeHistory();
-  };
+  }, [computeHistory]);
 
   useEffect(() => {
     const disableHistoryHandler = listen('disable_history', disableHistory);
     return () => {
       unListen(disableHistoryHandler);
     };
-  }, []);
+  }, [disableHistory]);
 
   useEffect(() => {
     const clearHistoryHandler = listen('clear_history', clearHistory);
     return () => {
       unListen(clearHistoryHandler);
     };
-  }, []);
+  }, [clearHistory]);
 
   useEffect(() => {
     fire('hide_history_prompt');
@@ -77,7 +77,7 @@ const HistoryPanel = () => {
   };
 
   // Switch change
-  const onChange = e => {
+  const onChange = useCallback(e => {
     if (e.target.checked === false) {
       openDisableHistoryModal();
     } else {
@@ -85,16 +85,16 @@ const HistoryPanel = () => {
       setIsChecked(true);
       setHistoryEnabled(true);
     }
-  };
+  }, []);
 
-  const computeHistory = () => {
+  const computeHistory = useCallback(() => {
     setTodayHistory(listHistoryItemsByDate(lastMidnight, now));
     setLastWeekHistory(listHistoryItemsByDate(lastWeek, lastMidnight));
     setLastMonthHistory(listHistoryItemsByDate(lastMonth, lastWeek));
     setLast6MonthsHistory(listHistoryItemsByDate(last6Months, lastMonth));
     setLastYearHistory(listHistoryItemsByDate(lastYear, last6Months));
     setOlderHistory(listHistoryItemsByDate(0, lastYear));
-  };
+  }, [last6Months, lastMidnight, lastMonth, lastWeek, lastYear, now]);
 
   const visit = item => {
     // PoI
