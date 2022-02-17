@@ -22,7 +22,10 @@ export const useSurvey = () => {
       .then(response => response.json())
       .then(response => {
         if (response?.data?.[0] && !isSurveyClosed(response.data[0].id)) {
-          Telemetry.add(Telemetry.SURVEY_DISPLAY, { id: response.data[0].id });
+          Telemetry.add(Telemetry.SURVEY_DISPLAY, {
+            id: response.data[0].id,
+            device: isMobile ? 'mobile' : 'desktop',
+          });
           setSurvey(response.data[0]);
         }
       });

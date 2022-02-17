@@ -20,7 +20,10 @@ const Survey = () => {
   };
 
   const onClick = () => {
-    Telemetry.add(Telemetry.SURVEY_ANSWER, { id: survey.id });
+    Telemetry.add(Telemetry.SURVEY_ANSWER, {
+      id: survey.id,
+      device: isMobile ? 'mobile' : 'desktop',
+    });
   };
 
   return (
