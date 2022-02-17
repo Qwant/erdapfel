@@ -1,9 +1,10 @@
 /* globals _ */
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { ShareMenu } from 'src/components/ui';
 import { IconHeart, IconHeartFill } from 'src/components/ui/icons';
+import { isFromTripAdvisor } from 'src/libs/pois';
 import { PINK_DARK } from 'src/libs/colors';
 import {
   Stack,
@@ -88,13 +89,17 @@ const ActionButtons = ({
   };
 
   const favoriteColor = isPoiInFavorite ? PINK_DARK : null;
+  const directionsButtonVariant = useMemo(
+    () => (isFromTripAdvisor(poi) ? 'secondary' : 'primary'),
+    [poi]
+  );
 
   return (
     <Stack className="poi_panel__actions" horizontal gap="xs">
       {isDirectionActive && (
         <Button
           className="poi_panel__action__direction"
-          variant="primary"
+          variant={directionsButtonVariant}
           onClick={openDirection}
           title={_('Directions', 'poi panel')}
         >
