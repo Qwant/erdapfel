@@ -32,7 +32,7 @@ const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, 
     }}
   >
     {isFromTripAdvisor(poi) ? (
-      <TripAdvisorRating grade={global_grade} count={total_grades_count} />
+      <TripAdvisorRating grade_url={poi.meta.rating_url} count={total_grades_count} />
     ) : (
       <DefaultRating grade={global_grade} count={total_grades_count} showSuffix={!inList} />
     )}
@@ -50,19 +50,12 @@ const DefaultRating = ({ grade, count, showSuffix }) => (
   </>
 );
 
-const TripAdvisorRating = ({ grade, count }) => (
+const TripAdvisorRating = ({ grade_url, count }) => (
   <>
     <Text className="reviewScore-starRating" color="action-link" typo="body-2">
       <Flex alignCenter>
         <div className="reviewScore-TripAdvisor">
-          <img
-            src={`https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/${grade.toFixed(
-              1
-            )}-MCID-66562.svg`}
-            alt=""
-            width={119}
-            height={20}
-          />
+          <img src={grade_url} alt="" width={119} height={20} />
         </div>
         <span>{_n('%d review', '%d reviews', count, 'reviews')}</span>
       </Flex>
