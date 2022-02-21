@@ -10,7 +10,7 @@ const CategoryList = ({ className, limit = Number.MAX_VALUE }) => {
   const handleCategoryClick = useCallback(
     category => {
       if (searchHistoryEnabled && category) {
-        saveQuery(category);
+        saveQuery({ ...category, category });
       }
       Telemetry.add(Telemetry.HOME_CATEGORY, { category: category.name });
       window.app.navigateTo(`/places/?type=${category.name}`);

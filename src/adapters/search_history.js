@@ -36,17 +36,17 @@ export function setHistory(searchHistory) {
 
 function getQueryType(item) {
   switch (true) {
-    case item instanceof Intention:
-    case item instanceof Category:
-      return 'intention';
     case item instanceof Poi:
     case item instanceof BragiPoi:
     case item instanceof IdunnPoi:
     case item instanceof NavigatorGeolocalisationPoi:
     case item instanceof LatLonPoi:
       return 'poi';
+    case item instanceof Intention:
+    case item instanceof Category:
+      return 'intention';
     default:
-      return '';
+      return 'intention';
   }
 }
 
