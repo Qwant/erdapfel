@@ -88,5 +88,8 @@ module.exports = {
     'history_cleared_from_panel',
     'history_item_clicked_suggest',
     'history_item_clicked_panel',
+    /* TripAdvisor */
+    'tripadvisor_check_availability',
+    'poi_tripadvisor_open',
   ],
 };

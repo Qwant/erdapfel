@@ -9,12 +9,13 @@ import {
   IconCalendar,
   Stack,
 } from '@qwant/qwant-ponents';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDatepickerDates } from './useDatepickerDates';
 import { ReservationComposer } from './ReservationComposer';
 import { ReservationDateModal } from './ReservationDateModal';
 import { ReservationDatepickerPopup } from './ReservationPopup';
+import Telemetry from 'src/libs/telemetry';
 
 const DAY = 1000 * 3600 * 24;
 
@@ -85,6 +86,14 @@ export function Reservation({ mobile, url: baseUrl }) {
     ...occupants,
     start: startDate,
     end: endDate,
+  });
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  useEffect(() => {
+    if (initialLoading === true) {
+      Telemetry.add(Telemetry.POI_TRIPADVISOR_OPEN);
+    }
+    setInitialLoading(false);
   });
 
   return (
@@ -187,7 +196,14 @@ export function Reservation({ mobile, url: baseUrl }) {
             onClose={() => setOccupantSelection(false)}
           />
         </Box>
-        <Button as="a" href={url} target="_blank">
+        <Button
+          as="a"
+          href={url}
+          target="_blank"
+          onMouseDown={() => {
+            Telemetry.add(Telemetry.TRIPADVISOR_CHECK_AVAILABILITY);
+          }}
+        >
           {_('Check availability')}
         </Button>
       </Stack>
