@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
@@ -66,23 +66,30 @@ const Suggest = ({
   const [keepHistoryPromptVisible, setkeepHistoryPromptVisible] = useState(
     getHistoryPrompt() === null
   );
-  const historyPromptVisible =
-    withHistoryPrompt &&
-    isOpen &&
-    searchHistoryConfig?.enabled &&
-    value === '' &&
-    keepHistoryPromptVisible;
-  const dropdownVisible = hasFocus && isOpen && outputNode;
   const { isMobile } = useDevice();
+  const displayHistoryPromptCondition = useMemo(
+    () =>
+      withHistoryPrompt &&
+      isOpen &&
+      searchHistoryConfig?.enabled &&
+      value === '' &&
+      keepHistoryPromptVisible,
+    [isOpen, keepHistoryPromptVisible, searchHistoryConfig?.enabled, value, withHistoryPrompt]
+  );
+  const isHistoryPromptVisible = useMemo(
+    () => (isMobile ? hasFocus && displayHistoryPromptCondition : displayHistoryPromptCondition),
+    [isMobile, hasFocus, displayHistoryPromptCondition]
+  );
+  const dropdownVisible = hasFocus && isOpen && outputNode;
   const { _ } = useI18n();
   const dropDownContent = useRef();
 
   const close = useCallback(() => {
-    if (!historyPromptVisible) {
+    if (!isHistoryPromptVisible) {
       setIsOpen(false);
     }
     setItems([]);
-  }, [historyPromptVisible]);
+  }, [isHistoryPromptVisible]);
 
   const historyPrompt = () => {
     if (historyAnswer === null) {
@@ -353,10 +360,10 @@ const Suggest = ({
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
       })}
-      {(dropdownVisible || historyPromptVisible) &&
+      {(dropdownVisible || isHistoryPromptVisible) &&
         ReactDOM.createPortal(
           <div ref={dropDownContent}>
-            {dropdownVisible && !historyPromptVisible && (
+            {dropdownVisible && !isHistoryPromptVisible && (
               <SuggestsDropdown
                 className={className}
                 suggestItems={items}
@@ -365,7 +372,7 @@ const Suggest = ({
                 value={value}
               />
             )}
-            {historyPromptVisible && historyPrompt()}
+            {isHistoryPromptVisible && historyPrompt()}
             {withFeedback && value && items.length > 0 && !items[0].errorLabel && (
               <UserFeedbackYesNo
                 questionId="suggest"
