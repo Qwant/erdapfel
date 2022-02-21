@@ -77,12 +77,12 @@ const Suggest = ({
   const { _ } = useI18n();
   const dropDownContent = useRef();
 
-  const close = () => {
+  const close = useCallback(() => {
     if (!historyPromptVisible) {
       setIsOpen(false);
     }
     setItems([]);
-  };
+  }, [historyPromptVisible]);
 
   const historyPrompt = () => {
     if (historyAnswer === null) {
@@ -272,7 +272,7 @@ const Suggest = ({
     } else {
       document.querySelector('.top_bar').classList.remove('top_bar--history-suggest');
     }
-  }, [hasFocus, fetchItems, value]);
+  }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, close, historyAnswer]);
 
   const selectItem = item => {
     if (item._suggestSource === 'history') {
