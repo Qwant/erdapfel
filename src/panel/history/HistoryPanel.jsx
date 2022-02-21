@@ -106,13 +106,17 @@ const HistoryPanel = () => {
       // With category
       if (item.item.category && item.item.category.name) {
         window.app.navigateTo(
-          `/places/?type=${item.item.category.name}&bbox=${item.item.bbox.join(',')}`
+          `/places/?type=${item.item.category.name}${
+            item?.item?.bbox ? `&bbox=${item.item.bbox.join(',')}` : ''
+          }`
         );
       }
       // Without category (ex: macdonalds nice)
       else {
         window.app.navigateTo(
-          `/places/?q=${item.item.fullTextQuery}&bbox=${item.item.bbox.join(',')}`
+          `/places/?q=${item.item.fullTextQuery}${
+            item?.item?.bbox ? `&bbox=${item.item.bbox.join(',')}` : ''
+          }}`
         );
       }
     }
