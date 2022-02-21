@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   background-color: $background;
-  transition: background-color .2s;
+  transition: background-color 0.2s;
   cursor: pointer;
   line-height: 1.2;
   padding: $spacing-s;
@@ -38,7 +38,7 @@
   flex-grow: 1;
 
   > div {
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 
@@ -69,7 +69,12 @@
 }
 
 .suggestHistoryFooter {
-  padding: 15px;
+  padding: 0 $spacing-s $spacing-s $spacing-s;
+  font-size: 12px;
+
+  a {
+    color: $action-blue-base;
+  }
 }
 
 .historyIcon {
@@ -105,7 +110,6 @@
 
 @media (min-width: 641px) {
   .top_bar--history-suggest {
-
     box-shadow: none;
     overflow: visible;
     background: none;
