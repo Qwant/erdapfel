@@ -168,7 +168,12 @@ function LineAge({ index, value, options, onChange }) {
           {_('Age of child %d').replace('%d', index + 1)}
         </Text>
       </Flex>
-      <Field onChange={handleChange} type="select" options={options} value={age ? age.toString() : '0'} />
+      <Field
+        onChange={handleChange}
+        type="select"
+        options={options}
+        value={age ? age.toString() : '0'}
+      />
     </>
   );
 }
