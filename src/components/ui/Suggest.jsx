@@ -12,6 +12,7 @@ import { PURPLE } from 'src/libs/colors';
 import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
 import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from 'src/libs/customEvents';
+import useDelayedState from 'use-delayed-state';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -56,13 +57,14 @@ const Suggest = ({
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(null);
-  const [hasFocus, setHasFocus] = useState(false);
+  const [hasFocus, setHasFocus, cancelSetHasFocus] = useDelayedState(false);
   const [historyAnswer, setHistoryAnswer] = useState(null);
-  const [keepHistoryPromptVisible, setkeepHistoryPromptVisible] = useState(
+  const [keepHistoryPromptVisible, setKeepHistoryPromptVisible] = useState(
     getHistoryEnabled() === null
   );
   const { isMobile } = useDevice();
-  const displayHistoryPromptCondition = useMemo(
+
+  const displayHistoryPrompt = useMemo(
     () =>
       withHistoryPrompt &&
       isOpen &&
@@ -71,11 +73,16 @@ const Suggest = ({
       keepHistoryPromptVisible,
     [isOpen, keepHistoryPromptVisible, searchHistoryConfig?.enabled, value, withHistoryPrompt]
   );
+
   const isHistoryPromptVisible = useMemo(
-    () => (isMobile ? hasFocus && displayHistoryPromptCondition : displayHistoryPromptCondition),
-    [isMobile, hasFocus, displayHistoryPromptCondition]
+    () => (isMobile ? displayHistoryPrompt && hasFocus : displayHistoryPrompt),
+    [isMobile, hasFocus, displayHistoryPrompt]
   );
-  const dropdownVisible = hasFocus && isOpen && outputNode;
+  const dropdownVisible = useMemo(() => hasFocus && isOpen && outputNode, [
+    hasFocus,
+    isOpen,
+    outputNode,
+  ]);
   const { _ } = useI18n();
   const dropDownContent = useRef();
 
@@ -129,6 +136,7 @@ const Suggest = ({
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
                   setHistoryEnabled(false);
+                  cancelSetHasFocus();
                 }}
               >
                 {_('No thanks', 'history')}
@@ -141,6 +149,8 @@ const Suggest = ({
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
                   setHistoryEnabled(true);
+                  setHasFocus(true);
+                  cancelSetHasFocus();
                 }}
               >
                 {_('Enable history', 'history')}
@@ -216,7 +226,7 @@ const Suggest = ({
 
   useEffect(() => {
     const disableHistoryHandler = listen('hide_history_prompt', () => {
-      setkeepHistoryPromptVisible(false);
+      setKeepHistoryPromptVisible(false);
     });
     return () => {
       unListen(disableHistoryHandler);
@@ -257,14 +267,14 @@ const Suggest = ({
     if (!hasFocus) {
       close();
       if (historyAnswer !== null) {
-        setkeepHistoryPromptVisible(false);
+        setKeepHistoryPromptVisible(false);
       }
     } else {
       setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
       if (value) {
-        setkeepHistoryPromptVisible(false);
+        setKeepHistoryPromptVisible(false);
       }
     }
     if (!value && keepHistoryPromptVisible) {
@@ -272,7 +282,7 @@ const Suggest = ({
     } else {
       document.querySelector('.top_bar').classList.remove('top_bar--history-suggest');
     }
-  }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, close, historyAnswer]);
+  }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, historyAnswer, close]);
 
   const selectItem = item => {
     if (item._suggestSource === 'history') {
@@ -348,7 +358,7 @@ const Suggest = ({
         onBlur: () => {
           // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
           if (!window.mouseLeave) {
-            setHasFocus(false);
+            setHasFocus(false, 10);
           }
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
