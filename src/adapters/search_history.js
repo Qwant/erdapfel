@@ -18,14 +18,6 @@ export function getHistoryEnabled() {
   return get(SEARCH_HISTORY_KEY + '_enabled');
 }
 
-export function setHistoryPrompt(value) {
-  set(SEARCH_HISTORY_KEY + '_prompt', value);
-}
-
-export function getHistoryPrompt() {
-  return get(SEARCH_HISTORY_KEY + '_prompt'); // null by default, true if the prompt has been answered
-}
-
 export function getHistory() {
   return get(SEARCH_HISTORY_KEY) || [];
 }

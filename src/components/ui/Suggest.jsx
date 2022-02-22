@@ -6,12 +6,7 @@ import { useConfig, useDevice, useI18n } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
-import {
-  getHistoryPrompt,
-  setHistoryPrompt,
-  setHistoryEnabled,
-  getHistoryEnabled,
-} from 'src/adapters/search_history';
+import { setHistoryEnabled, getHistoryEnabled } from 'src/adapters/search_history';
 import { Box, Button, Stack, Text } from '@qwant/qwant-ponents';
 import { PURPLE } from 'src/libs/colors';
 import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
@@ -64,7 +59,7 @@ const Suggest = ({
   const [hasFocus, setHasFocus] = useState(false);
   const [historyAnswer, setHistoryAnswer] = useState(null);
   const [keepHistoryPromptVisible, setkeepHistoryPromptVisible] = useState(
-    getHistoryPrompt() === null
+    getHistoryEnabled() === null
   );
   const { isMobile } = useDevice();
   const displayHistoryPromptCondition = useMemo(
@@ -130,7 +125,6 @@ const Suggest = ({
                 variant="secondary"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_DISABLED_FROM_SUGGEST);
-                  setHistoryPrompt(true);
                   setHistoryAnswer(false);
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
@@ -143,7 +137,6 @@ const Suggest = ({
                 ml="xs"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_ENABLED_FROM_SUGGEST);
-                  setHistoryPrompt(true);
                   setHistoryAnswer(true);
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
