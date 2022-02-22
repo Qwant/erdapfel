@@ -28,10 +28,13 @@ const fillArray = (arr, count) => {
   return arr.concat(new Array(count - arr.length).fill(null));
 };
 
-const ageOptions = firstLabel => {
-  return [firstLabel]
-    .concat(new Array(16).fill(1).map((v, k) => k + 1))
-    .reduce((acc, v, k) => ({ ...acc, [k]: v }), {});
+const ageOptions = () => {
+  const list = {};
+  let i;
+  for (i = 0; i < 18; i++) {
+    list[i] = i;
+  }
+  return list;
 };
 
 /**
@@ -44,7 +47,8 @@ export function ReservationComposer({ value: propsValue, onChange, mobile, visib
     onChange(value);
     onClose();
   };
-  const ageOptionsMemo = ageOptions(_('< 1 y old'));
+  const ageOptionsMemo = ageOptions();
+  console.log(ageOptionsMemo, value);
   const hasChildWithNoAge = value.ages.filter(a => a === null).length > 0;
   return (
     <Wrapper mobile={mobile} visible={visible} onClose={handleSubmit}>
@@ -165,7 +169,7 @@ function LineAge({ index, value, options, onChange }) {
           {_('Age of child %d').replace('%d', index + 1)}
         </Text>
       </Flex>
-      <Field onChange={handleChange} type="select" options={options} value={age || ''} />
+      <Field onChange={handleChange} type="select" options={options} value={age ? age.toString() : '0'} />
     </>
   );
 }
