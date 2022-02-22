@@ -48,7 +48,6 @@ export function ReservationComposer({ value: propsValue, onChange, mobile, visib
     onClose();
   };
   const ageOptionsMemo = ageOptions();
-  console.log(ageOptionsMemo, value);
   const hasChildWithNoAge = value.ages.filter(a => a === null).length > 0;
   return (
     <Wrapper mobile={mobile} visible={visible} onClose={handleSubmit}>
