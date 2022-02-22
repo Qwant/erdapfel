@@ -158,17 +158,19 @@ const HistoryPanel = () => {
         >
           <Box>
             <Text typo="body-1" color="primary">
-              {item.item.name}
+              {capitalizeFirst(item.item.name)}
             </Text>
           </Box>
           <Box>
             <Text typo="body-2" color="secondary">
-              {item.item?.address?.label ||
-                item.item?.address?.city ||
-                item.item?.address?.stateDistrict ||
-                item.item?.address?.state ||
-                item.item?.address?.country ||
-                ''}
+              {capitalizeFirst(
+                item.item?.address?.label ||
+                  item.item?.address?.city ||
+                  item.item?.address?.stateDistrict ||
+                  item.item?.address?.state ||
+                  item.item?.address?.country ||
+                  ''
+              )}
             </Text>
           </Box>
         </Flex>
@@ -209,13 +211,16 @@ const HistoryPanel = () => {
         >
           <Box>
             <Text typo="body-1" color="primary">
-              {item.item.category?.name || item.item.fullTextQuery}
+              {capitalizeFirst(
+                item.item.category?.name ? _(item.item.category.name) : item.item.fullTextQuery
+              )}
             </Text>
           </Box>
           <Box>
             <Text typo="body-2" color="secondary">
-              {item.item?.place?.properties?.geocoding?.name ||
-                capitalizeFirst(_('nearby', 'history'))}
+              {capitalizeFirst(
+                item.item?.place?.properties?.geocoding?.name || _('nearby', 'history')
+              )}
             </Text>
           </Box>
         </Flex>
