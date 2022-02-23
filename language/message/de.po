@@ -2000,3 +2000,13 @@ msgstr "Mein Standort"
 
 #~ msgid "Search with Qwant Maps"
 #~ msgstr "Suche mit Qwant Maps"
+
+msgid "My location"
+msgstr "Mein Standort"
+
+msgid "Manage history"
+msgstr ""
+
+msgid "Recent history"
+msgstr ""
+

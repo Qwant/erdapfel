@@ -7,7 +7,7 @@ import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
 import { setHistoryEnabled, getHistoryEnabled } from 'src/adapters/search_history';
-import { Box, Button, Stack, Text } from '@qwant/qwant-ponents';
+import { Box, Button, Stack, Text, Flex } from '@qwant/qwant-ponents';
 import { PURPLE } from 'src/libs/colors';
 import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
 import Telemetry from 'src/libs/telemetry';
@@ -218,6 +218,10 @@ const Suggest = ({
     }
   };
 
+  const navigateToHistoryPanel = useCallback(() => {
+    window.app.navigateTo('/history/');
+  }, []);
+
   useEffect(() => {
     if (onToggle) {
       onToggle(dropdownVisible);
@@ -278,9 +282,9 @@ const Suggest = ({
       }
     }
     if (!value && keepHistoryPromptVisible) {
-      document.querySelector('.top_bar').classList.add('top_bar--history-suggest');
+      document.body.classList.add('top_bar--history-suggest');
     } else {
-      document.querySelector('.top_bar').classList.remove('top_bar--history-suggest');
+      document.body.classList.remove('top_bar--history-suggest');
     }
   }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, historyAnswer, close]);
 
@@ -358,7 +362,7 @@ const Suggest = ({
         onBlur: () => {
           // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
           if (!window.mouseLeave) {
-            setHasFocus(false, isMobile ? 110 : 0);
+            setHasFocus(false, 100);
           }
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
@@ -366,6 +370,16 @@ const Suggest = ({
       {(dropdownVisible || isHistoryPromptVisible) &&
         ReactDOM.createPortal(
           <div ref={dropDownContent}>
+            {!value && items.length > 0 && !items[0].errorLabel && getHistoryEnabled() && (
+              <Flex horizontal between className="manage_history">
+                <Text typo="body-1" color="primary" bold>
+                  {_('Recent history')}
+                </Text>
+                <a href="javascript:;" onClick={() => navigateToHistoryPanel()} target="_self">
+                  {_('Manage history')}
+                </a>
+              </Flex>
+            )}
             {dropdownVisible && !isHistoryPromptVisible && (
               <SuggestsDropdown
                 className={className}

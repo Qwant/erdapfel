@@ -2009,3 +2009,13 @@ msgstr "Ma position"
 
 #~ msgid "Search with Qwant Maps"
 #~ msgstr "Chercher avec Qwant Maps"
+
+msgid "My location"
+msgstr "Ma position"
+
+msgid "Manage history"
+msgstr "Gérer"
+
+msgid "Recent history"
+msgstr "Récents"
+

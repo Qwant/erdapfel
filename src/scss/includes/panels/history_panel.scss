@@ -44,8 +44,9 @@
 .history-list-item {
   min-height: 40px;
   margin: 0 0 5px 0;
-  padding: 5px 14px;
+  padding: 10px 14px;
   cursor: pointer;
+  transition: background-color 0.2s;
 
   .placeIcon {
     background: #f2dbf8 !important;
@@ -54,6 +55,7 @@
 
   &:hover {
     background-color: var(--grey-bright);
+    transition: background-color 0.2s;
   }
 }
 
@@ -87,7 +89,7 @@
 }
 
 .history_panel_switch_line {
-  padding: 0 14px;
+  padding: 0 14px 14px 14px;
 }
 
 .history_panel_switch_label {
