@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
 import { bool, string, func, object } from 'prop-types';
@@ -6,17 +6,13 @@ import { useConfig, useDevice, useI18n } from 'src/hooks';
 import SuggestsDropdown from 'src/components/ui/SuggestsDropdown';
 import { fetchSuggests, getInputValue, modifyList } from 'src/libs/suggest';
 import { UserFeedbackYesNo } from './index';
-import {
-  getHistoryPrompt,
-  setHistoryPrompt,
-  setHistoryEnabled,
-  getHistoryEnabled,
-} from 'src/adapters/search_history';
-import { Box, Button, Stack, Text } from '@qwant/qwant-ponents';
+import { setHistoryEnabled, getHistoryEnabled } from 'src/adapters/search_history';
+import { Box, Button, Stack, Text, Flex } from '@qwant/qwant-ponents';
 import { PURPLE } from 'src/libs/colors';
 import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
 import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from 'src/libs/customEvents';
+import useDelayedState from 'use-delayed-state';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -61,28 +57,41 @@ const Suggest = ({
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(null);
-  const [hasFocus, setHasFocus] = useState(false);
+  const [hasFocus, setHasFocus, cancelSetHasFocus] = useDelayedState(false);
   const [historyAnswer, setHistoryAnswer] = useState(null);
-  const [keepHistoryPromptVisible, setkeepHistoryPromptVisible] = useState(
-    getHistoryPrompt() === null
+  const [keepHistoryPromptVisible, setKeepHistoryPromptVisible] = useState(
+    getHistoryEnabled() === null
   );
-  const historyPromptVisible =
-    withHistoryPrompt &&
-    isOpen &&
-    searchHistoryConfig?.enabled &&
-    value === '' &&
-    keepHistoryPromptVisible;
-  const dropdownVisible = hasFocus && isOpen && outputNode;
   const { isMobile } = useDevice();
+
+  const displayHistoryPrompt = useMemo(
+    () =>
+      withHistoryPrompt &&
+      isOpen &&
+      searchHistoryConfig?.enabled &&
+      value === '' &&
+      keepHistoryPromptVisible,
+    [isOpen, keepHistoryPromptVisible, searchHistoryConfig?.enabled, value, withHistoryPrompt]
+  );
+
+  const isHistoryPromptVisible = useMemo(
+    () => (isMobile ? displayHistoryPrompt && hasFocus : displayHistoryPrompt),
+    [isMobile, hasFocus, displayHistoryPrompt]
+  );
+  const dropdownVisible = useMemo(() => hasFocus && isOpen && outputNode, [
+    hasFocus,
+    isOpen,
+    outputNode,
+  ]);
   const { _ } = useI18n();
   const dropDownContent = useRef();
 
   const close = useCallback(() => {
-    if (!historyPromptVisible) {
+    if (!isHistoryPromptVisible) {
       setIsOpen(false);
     }
     setItems([]);
-  }, [historyPromptVisible]);
+  }, [isHistoryPromptVisible]);
 
   const historyPrompt = () => {
     if (historyAnswer === null) {
@@ -123,11 +132,11 @@ const Suggest = ({
                 variant="secondary"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_DISABLED_FROM_SUGGEST);
-                  setHistoryPrompt(true);
                   setHistoryAnswer(false);
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
                   setHistoryEnabled(false);
+                  cancelSetHasFocus();
                 }}
               >
                 {_('No thanks', 'history')}
@@ -136,11 +145,12 @@ const Suggest = ({
                 ml="xs"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_ENABLED_FROM_SUGGEST);
-                  setHistoryPrompt(true);
                   setHistoryAnswer(true);
                   document.querySelector('#search').focus();
                   document.querySelector('.top_bar').classList.add('top_bar--search_focus');
                   setHistoryEnabled(true);
+                  setHasFocus(true);
+                  cancelSetHasFocus();
                 }}
               >
                 {_('Enable history', 'history')}
@@ -208,6 +218,10 @@ const Suggest = ({
     }
   };
 
+  const navigateToHistoryPanel = useCallback(() => {
+    window.app.navigateTo('/history/');
+  }, []);
+
   useEffect(() => {
     if (onToggle) {
       onToggle(dropdownVisible);
@@ -216,7 +230,7 @@ const Suggest = ({
 
   useEffect(() => {
     const disableHistoryHandler = listen('hide_history_prompt', () => {
-      setkeepHistoryPromptVisible(false);
+      setKeepHistoryPromptVisible(false);
     });
     return () => {
       unListen(disableHistoryHandler);
@@ -257,22 +271,22 @@ const Suggest = ({
     if (!hasFocus) {
       close();
       if (historyAnswer !== null) {
-        setkeepHistoryPromptVisible(false);
+        setKeepHistoryPromptVisible(false);
       }
     } else {
       setHighlighted(null);
       fetchItems(value);
       setIsOpen(true);
       if (value) {
-        setkeepHistoryPromptVisible(false);
+        setKeepHistoryPromptVisible(false);
       }
     }
     if (!value && keepHistoryPromptVisible) {
-      document.querySelector('.top_bar').classList.add('top_bar--history-suggest');
+      document.body.classList.add('top_bar--history-suggest');
     } else {
-      document.querySelector('.top_bar').classList.remove('top_bar--history-suggest');
+      document.body.classList.remove('top_bar--history-suggest');
     }
-  }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, close, historyAnswer]);
+  }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, historyAnswer, close]);
 
   const selectItem = item => {
     if (item._suggestSource === 'history') {
@@ -348,15 +362,25 @@ const Suggest = ({
         onBlur: () => {
           // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
           if (!window.mouseLeave) {
-            setHasFocus(false);
+            setHasFocus(false, 100);
           }
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
       })}
-      {(dropdownVisible || historyPromptVisible) &&
+      {(dropdownVisible || isHistoryPromptVisible) &&
         ReactDOM.createPortal(
           <div ref={dropDownContent}>
-            {dropdownVisible && !historyPromptVisible && (
+            {!value && items.length > 0 && !items[0].errorLabel && getHistoryEnabled() && (
+              <Flex horizontal between className="manage_history">
+                <Text typo="body-1" color="primary" bold>
+                  {_('Recent history')}
+                </Text>
+                <a href="javascript:;" onClick={() => navigateToHistoryPanel()} target="_self">
+                  {_('Manage history')}
+                </a>
+              </Flex>
+            )}
+            {dropdownVisible && !isHistoryPromptVisible && (
               <SuggestsDropdown
                 className={className}
                 suggestItems={items}
@@ -365,7 +389,7 @@ const Suggest = ({
                 value={value}
               />
             )}
-            {historyPromptVisible && historyPrompt()}
+            {isHistoryPromptVisible && historyPrompt()}
             {withFeedback && value && items.length > 0 && !items[0].errorLabel && (
               <UserFeedbackYesNo
                 questionId="suggest"

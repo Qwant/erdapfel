@@ -258,7 +258,7 @@ const HistoryPanel = () => {
         isChecked === false && 'history_panel_disabled'
       )}
     >
-      <Flex mt="xs">
+      <Flex mt="xs" className="history_panel_switch_line">
         <Text typo="body-2" className="history_panel_switch_label">
           {isChecked
             ? _(

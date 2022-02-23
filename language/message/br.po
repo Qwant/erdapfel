@@ -1907,3 +1907,9 @@ msgstr "Ma lec'hiadur"
 
 #~ msgid "Search with Qwant Maps"
 #~ msgstr "Klask gant Qwant Maps"
+
+msgid "Manage history"
+msgstr ""
+
+msgid "Recent history"
+msgstr ""

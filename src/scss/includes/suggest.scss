@@ -4,6 +4,10 @@
   cursor: default;
   padding-bottom: 12px;
 
+  &--empty {
+    padding-bottom: 0;
+  }
+
   .top_bar & {
     border-top: 1px solid $grey-light;
   }
@@ -68,6 +72,14 @@
   }
 }
 
+.manage_history {
+  padding: 10px 14px $spacing-xxs 14px;
+
+  a {
+    color: $action-blue-base;
+  }
+}
+
 .suggestHistoryFooter {
   padding: 0 $spacing-s $spacing-s $spacing-s;
   font-size: 12px;
@@ -109,26 +121,37 @@
 }
 
 @media (min-width: 641px) {
-  .top_bar--history-suggest {
-    box-shadow: none;
-    overflow: visible;
-    background: none;
-
-    .search_form {
-      border-radius: 12px;
-      box-shadow: 0 2px 16px 0 rgb(12 12 14 / 20%), 0 4px 8px 0 rgb(12 12 14 / 12%);
-      background: #fff;
-    }
-
+  .top_bar {
     .historyPromptWrapper {
-      border-radius: 12px;
-      box-shadow: 0 2px 16px 0 rgb(12 12 14 / 20%), 0 4px 8px 0 rgb(12 12 14 / 12%);
-      margin: 16px 0 0;
       padding: 20px 14px;
-      background: #fff;
+      margin: 16px 0 0;
+    }
+  }
 
-      div svg {
-        vertical-align: text-top;
+  .top_bar--history-suggest {
+    .top_bar {
+      box-shadow: none;
+      overflow: visible;
+      background: none;
+
+      .search_form {
+        border-radius: 12px;
+        box-shadow: 0 2px 16px 0 rgb(12 12 14 / 20%), 0 4px 8px 0 rgb(12 12 14 / 12%);
+        background: #fff;
+      }
+
+      .historyPromptWrapper {
+        border-radius: 12px;
+        box-shadow: 0 2px 16px 0 rgb(12 12 14 / 20%), 0 4px 8px 0 rgb(12 12 14 / 12%);
+        background: #fff;
+
+        div svg {
+          vertical-align: text-top;
+        }
+
+        a {
+          color: $action-blue-base;
+        }
       }
     }
   }

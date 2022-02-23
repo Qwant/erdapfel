@@ -1885,3 +1885,9 @@ msgstr "Mi ubicación"
 
 #~ msgid "Search with Qwant Maps"
 #~ msgstr "Busca con Qwant Maps"
+
+msgid "Manage history"
+msgstr ""
+
+msgid "Recent history"
+msgstr ""

@@ -1,4 +1,4 @@
-@media (min-width: 641px){
+@media (min-width: 641px) {
   .history_panel {
     min-height: calc(100vh - (92px + 40px));
   }
@@ -15,21 +15,21 @@
     padding: 20px 14px 4px;
   }
 
-  .panel-content {
-    padding: 0 14px 20px;
-  }
-
   .closeButton {
     top: 10px;
   }
 }
 
-.history_panel_links a {
-  display: inline-block;
-  cursor: pointer;
+.history_panel_links {
+  padding: 0 14px;
 
-  &:first-of-type {
-    margin-right: 32px;
+  a {
+    display: inline-block;
+    cursor: pointer;
+
+    &:first-of-type {
+      margin-right: 32px;
+    }
   }
 }
 
@@ -37,20 +37,25 @@
   hr {
     border: none;
     border-bottom: 1px solid var(--grey-light);
-    width: calc(100% + 28px);
     margin: -14px 0 4px -14px;
   }
 }
 
 .history-list-item {
-  padding: 5px 0;
   min-height: 40px;
   margin: 0 0 5px 0;
+  padding: 10px 14px;
   cursor: pointer;
+  transition: background-color 0.2s;
 
   .placeIcon {
     background: #f2dbf8 !important;
     color: #a125be !important;
+  }
+
+  &:hover {
+    background-color: var(--grey-bright);
+    transition: background-color 0.2s;
   }
 }
 
@@ -74,17 +79,21 @@
   height: 20px;
 
   &:hover {
-    fill: #0C0C0E;
+    fill: #0c0c0e;
   }
 }
 
 .history-list-title {
   margin-bottom: 22px;
+  padding: 0 14px;
+}
+
+.history_panel_switch_line {
+  padding: 0 14px 14px 14px;
 }
 
 .history_panel_switch_label {
   width: calc(100% - 30px);
-  padding: 0 8px 0 0;
 }
 
 .history_panel_switch {
@@ -106,7 +115,8 @@
   justify-content: center;
 }
 
-.modal__history__delete, .modal__history__disable {
+.modal__history__delete,
+.modal__history__disable {
   text-align: center;
 
   .closeButton {

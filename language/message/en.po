@@ -1838,3 +1838,9 @@ msgstr ""
 #: public/build/javascript/map.bundle.js:2639 src/mapbox/locale.js:4
 msgid "My location"
 msgstr ""
+
+msgid "Manage history"
+msgstr "Gérer"
+
+msgid "Recent history"
+msgstr "Recents"

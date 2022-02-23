@@ -9,7 +9,13 @@ const SuggestsDropdown = ({ className = '', suggestItems, onSelect, highlighted 
 
   // Focused and empty field, unanswered prompt, history feature enabled: show history prompt
   return (
-    <ul className={classnames('autocomplete_suggestions', className)}>
+    <ul
+      className={classnames(
+        'autocomplete_suggestions',
+        suggestItems?.length === 0 && 'autocomplete_suggestions--empty',
+        className
+      )}
+    >
       {suggestItems.map((suggestItem, index) => (
         <li
           key={index}

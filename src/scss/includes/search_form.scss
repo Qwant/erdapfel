@@ -30,7 +30,7 @@
 
   &::placeholder {
     color: $secondary_text;
-    opacity: .7;
+    opacity: 0.7;
   }
 
   &::-webkit-search-decoration {
@@ -45,7 +45,7 @@
   }
 }
 
-input[type="search"] {
+input[type='search'] {
   /* Disable default Safari style */
   -webkit-appearance: none;
 
@@ -104,7 +104,7 @@ input[type="search"] {
   height: $spacing-xxl-4;
   flex-shrink: 0;
   cursor: pointer;
-  transition: filter .1s;
+  transition: filter 0.1s;
 
   &:hover {
     filter: brightness(80%);
@@ -113,7 +113,6 @@ input[type="search"] {
 
 // When the search field is focused (empty or not)
 .top_bar--search_focus {
-
   // White background
   .search_form__wrapper {
     background-color: white;
@@ -122,7 +121,10 @@ input[type="search"] {
     &:before {
       content: '';
       position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       z-index: -1;
       margin: -1px;
       border-radius: inherit;
@@ -134,7 +136,6 @@ input[type="search"] {
 
 // When the search field is filled (focused or not)
 .top_bar--search_filled {
-
   // Hide directions icon
   button.search_form__direction_shortcut {
     display: none;
@@ -189,7 +190,7 @@ input[type="search"] {
     margin-right: $spacing-xs;
     cursor: pointer;
     position: absolute;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
     top: 0;
     left: 0;
     width: 30px;
@@ -216,9 +217,10 @@ input[type="search"] {
     width: 100vw;
     background-color: $background;
     overflow-y: auto;
+    // border-top: 1px solid var(--grey-light);
   }
 
-  $formWidthTransitionDuration: .3s;
+  $formWidthTransitionDuration: 0.3s;
 
   // Prepare transition of search field
   .search_form__wrapper {
