@@ -1501,7 +1501,7 @@ msgstr "Afficher les favoris"
 #: public/build/javascript/bundle.js:99757
 #: public/build/javascript/bundle.js:100002
 msgid "My history"
-msgstr "Mon historique de rechercche"
+msgstr "Mon historique de recherche"
 
 #: public/build/javascript/bundle.js:99758
 msgid "Show history"

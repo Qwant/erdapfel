@@ -2,6 +2,11 @@ import { get, set, del } from './store';
 import { findIndexIgnoreCase } from 'src/libs/string';
 import Poi from 'src/adapters/poi/poi';
 import Intention from 'src/adapters/intention';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
+import BragiPoi from 'src/adapters/poi/bragi_poi';
+import LatLonPoi from 'src/adapters/poi/latlon_poi';
+import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
+import Category from 'src/adapters/category';
 
 const SEARCH_HISTORY_KEY = 'search_history_v1';
 
@@ -29,7 +34,23 @@ export function setHistory(searchHistory) {
   set(SEARCH_HISTORY_KEY, searchHistory);
 }
 
-export function saveQuery(item) {
+function getQueryType(item) {
+  switch (true) {
+    case item instanceof Poi:
+    case item instanceof BragiPoi:
+    case item instanceof IdunnPoi:
+    case item instanceof NavigatorGeolocalisationPoi:
+    case item instanceof LatLonPoi:
+      return 'poi';
+    case item instanceof Intention:
+    case item instanceof Category:
+      return 'intention';
+    default:
+      return 'intention';
+  }
+}
+
+export async function saveQuery(item) {
   // Delete query if it's already in the list
   deleteQuery(item);
 
@@ -38,7 +59,7 @@ export function saveQuery(item) {
 
   // Put the query at the end of the array
   searchHistory.push({
-    type: item instanceof Intention ? 'intention' : 'poi',
+    type: getQueryType(item),
     date: Date.now(),
     item,
   });

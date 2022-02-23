@@ -18,6 +18,7 @@ import { BackToQwantButton } from 'src/components/BackToQwantButton';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import { Panel, PanelNav, SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
 import { getListDescription } from 'src/libs/poiList';
+import { saveQuery, getHistoryEnabled } from 'src/adapters/search_history';
 
 const DEBOUNCE_WAIT = 100;
 
@@ -64,6 +65,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const [initialLoading, setInitialLoading] = useState(true);
   const { isMobile } = useDevice();
   const { maxPlaces } = useConfig('category');
+  const searchHistoryEnabled = getHistoryEnabled();
 
   usePageTitle(getListDescription(poiFilters.category, poiFilters.query));
 
@@ -127,6 +129,9 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   }, [comparableFilters]);
 
   const selectPoi = poi => {
+    if (poi && searchHistoryEnabled) {
+      saveQuery(poi);
+    }
     fire('click_category_poi', { poi, poiFilters, pois });
   };
 

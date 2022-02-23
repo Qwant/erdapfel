@@ -110,6 +110,8 @@ const HistoryPanel = () => {
             item?.item?.bbox ? `&bbox=${item.item.bbox.join(',')}` : ''
           }`
         );
+      } else if (item?.item?.type === 'category' && item?.item?.name) {
+        window.app.navigateTo(`/places/?type=${item?.item?.name}`);
       }
       // Without category (ex: macdonalds nice)
       else {
@@ -197,7 +199,7 @@ const HistoryPanel = () => {
         >
           <PlaceIcon
             className="autocomplete_suggestion_icon"
-            category={item.item.category}
+            category={item?.item?.category ?? item?.item}
             withBackground
           />
         </Box>
@@ -212,7 +214,11 @@ const HistoryPanel = () => {
           <Box>
             <Text typo="body-1" color="primary">
               {capitalizeFirst(
-                item.item.category?.name ? _(item.item.category.name) : item.item.fullTextQuery
+                item.item.category?.name
+                  ? _(item.item.category?.name)
+                  : item?.item?.name
+                  ? _(item?.item?.name)
+                  : item?.item?.fullTextQuery ?? ''
               )}
             </Text>
           </Box>
