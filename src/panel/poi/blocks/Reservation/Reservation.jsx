@@ -94,7 +94,7 @@ export function Reservation({ mobile, url: baseUrl }) {
       Telemetry.add(Telemetry.POI_TRIPADVISOR_OPEN);
     }
     setInitialLoading(false);
-  });
+  }, [initialLoading]);
 
   return (
     <Box mt="xl" pb="l">
