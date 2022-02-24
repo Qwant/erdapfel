@@ -372,7 +372,7 @@ const Suggest = ({
         ReactDOM.createPortal(
           <div ref={dropDownContent}>
             {!value && items.length > 0 && !items[0].errorLabel && getHistoryEnabled() && (
-              <Flex horizontal between className="manage_history">
+              <Flex between className="manage_history">
                 <Text typo="body-1" color="primary" bold>
                   {_('Recent history')}
                 </Text>
