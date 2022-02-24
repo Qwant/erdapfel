@@ -1,5 +1,7 @@
 body {
-  background: url("../images/backgrounds/grid.png");
+  background: url('../images/backgrounds/grid.png');
+  // Override @qwant-ponents body { min-height: 100vh } which is buggy on iOS.
+  min-height: -webkit-fill-available !important;
 }
 
 noscript {
@@ -68,7 +70,7 @@ noscript {
   display: none;
 }
 
-.map_container .marker.active ,
+.map_container .marker.active,
 .map_container .marker:hover {
   z-index: 2;
 }
