@@ -376,9 +376,7 @@ const Suggest = ({
                 <Text typo="body-1" color="primary" bold>
                   {_('Recent history')}
                 </Text>
-                <a href="javascript:;" onClick={() => navigateToHistoryPanel()} target="_self">
-                  {_('Manage history')}
-                </a>
+                <button onClick={() => navigateToHistoryPanel()}>{_('Manage history')}</button>
               </Flex>
             )}
             {dropdownVisible && !isHistoryPromptVisible && (

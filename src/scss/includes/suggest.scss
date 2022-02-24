@@ -82,8 +82,12 @@
   padding: $spacing-l 14px $spacing-xxs 14px;
   border-top: 1px solid $grey-light;
 
-  a {
+  button {
     color: $action-blue-base;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
