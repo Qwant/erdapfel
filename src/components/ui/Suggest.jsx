@@ -13,6 +13,7 @@ import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
 import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from 'src/libs/customEvents';
 import useDelayedState from 'use-delayed-state';
+import classnames from 'classnames';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -382,7 +383,11 @@ const Suggest = ({
             )}
             {dropdownVisible && !isHistoryPromptVisible && (
               <SuggestsDropdown
-                className={className}
+                className={classnames(
+                  items.length === 0 && 'autocomplete_suggestions--empty',
+                  items.length > 0 && getHistoryEnabled() && 'autocomplete_suggestions--history',
+                  className
+                )}
                 suggestItems={items}
                 highlighted={highlighted}
                 onSelect={selectItem}

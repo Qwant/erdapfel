@@ -4,12 +4,18 @@
   cursor: default;
   padding-bottom: 12px;
 
+  .top_bar & {
+    border-top: 1px solid $grey-light;
+  }
+
   &--empty {
     padding-bottom: 0;
   }
 
-  .top_bar & {
-    border-top: 1px solid $grey-light;
+  &--history {
+    .top_bar & {
+      border-top: none;
+    }
   }
 }
 
@@ -73,7 +79,8 @@
 }
 
 .manage_history {
-  padding: 10px 14px $spacing-xxs 14px;
+  padding: $spacing-l 14px $spacing-xxs 14px;
+  border-top: 1px solid $grey-light;
 
   a {
     color: $action-blue-base;
