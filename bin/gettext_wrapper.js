@@ -12,8 +12,13 @@ const langMessages = {};
  * @param messagePath message (po) location
  * extract po data from file path given
  */
-function getPoData(baseLangPath, fallbackList, messagePath) {
-  let messageBuffer = fs.readFileSync(baseLangPath);
+function getPoData(language, baseLangPath, fallbackList, messagePath) {
+  let messageBuffer = '';
+
+  if (!language.deprecated) {
+    messageBuffer = fs.readFileSync(baseLangPath);
+  }
+
   if (fallbackList && fallbackList.length > 0) {
     messageBuffer = mergePo(messageBuffer, fallbackList, messagePath);
   }
@@ -30,6 +35,7 @@ module.exports = function (app, languages) {
   const messagePath = path.resolve(path.join(__dirname, '..', 'language', 'message'));
   languages.forEach(language => {
     const poData = getPoData(
+      language,
       `${__dirname}/../language/message/${language.code}.po`,
       language.fallback,
       messagePath

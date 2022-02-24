@@ -23,11 +23,13 @@ languages:
       code: es
     -
       locale: br_FR
+      deprecated: true
       code: br
       fallback:
         - fr
     -
       locale: ca_ES
+      deprecated: true
       code: ca
       fallback:
         - es
