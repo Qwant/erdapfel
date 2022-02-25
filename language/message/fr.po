@@ -1179,7 +1179,7 @@ msgstr ""
 #: public/build/javascript/bundle.js:96373
 #: public/build/javascript/bundle.js:98624
 msgid "Satisfied with the results?"
-msgstr "Satisfait⋅e des résultats proposés ?"
+msgstr "Satisfait·e des résultats proposés ?"
 
 #: public/build/javascript/bundle.js:91901
 msgid "Your history is activated. It is only visible to you on this device."
