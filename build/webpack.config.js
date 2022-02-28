@@ -213,33 +213,54 @@ const webpackChunks = buildMode => {
     sassChunkConfig(buildMode),
   ];
   const constants = yaml.readSync('../config/constants.yml');
+  const availableLangs = constants.languages.supportedLanguages.filter(l => !l.deprecated);
+  const deprecatedLangs = constants.languages.supportedLanguages.filter(l => l.deprecated);
 
-  webpackChunks = webpackChunks.concat(
-    constants.languages.supportedLanguages.map(language => {
-      return {
-        entry: path.join(__dirname, '..', 'language', 'message', language.code + '.po'),
-        module: {
-          rules: [
-            {
-              loader: '@qwant/po-js-loader',
-            },
-            {
-              test: /\.po$/,
-              loader: '@qwant/merge-po-loader',
-              options: {
-                fallbackList: language.fallback,
-                messagePath: path.join(__dirname, '..', 'language', 'message'),
+  webpackChunks = webpackChunks
+    .concat(
+      availableLangs.map(language => {
+        return {
+          entry: path.join(__dirname, '..', 'language', 'message', language.code + '.po'),
+          module: {
+            rules: [
+              {
+                loader: '@qwant/po-js-loader',
               },
-            },
-          ],
-        },
-        output: {
-          path: path.join(__dirname, '..'),
-          filename: `./public/build/javascript/message/${language.locale}.js`,
-        },
-      };
-    })
-  );
+              {
+                test: /\.po$/,
+                loader: '@qwant/merge-po-loader',
+                options: {
+                  fallbackList: language.fallback,
+                  messagePath: path.join(__dirname, '..', 'language', 'message'),
+                },
+              },
+            ],
+          },
+          output: {
+            path: path.join(__dirname, '..'),
+            filename: `./public/build/javascript/message/${language.locale}.js`,
+          },
+        };
+      })
+    )
+    .concat(
+      deprecatedLangs.map(language => {
+        return {
+          entry: path.join(__dirname, '..', 'language', 'message', language.fallback + '.po'),
+          module: {
+            rules: [
+              {
+                loader: '@qwant/po-js-loader',
+              },
+            ],
+          },
+          output: {
+            path: path.join(__dirname, '..'),
+            filename: `./public/build/javascript/message/${language.locale}.js`,
+          },
+        };
+      })
+    );
   return webpackChunks;
 };
 
