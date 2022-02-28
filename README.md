@@ -65,7 +65,7 @@ Pull the docker image from `qwantresearch/erdapfel` [![Docker Pulls](https://img
 
 ## Develop
 
-* [Project structure](./docs/src/project_structure.md)
+* [Project structure](./docs/DEV_fr.md)
 * [Project internationalisation](./docs/src/i18n.md)
 * [Code convention](./docs/src/code_convention.md)
 * [Tests](./docs/src/tests.md)
