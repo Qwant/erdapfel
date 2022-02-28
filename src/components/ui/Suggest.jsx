@@ -13,6 +13,7 @@ import { IconHistory, IconHistoryDisabled, IconMenu } from './icons';
 import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from 'src/libs/customEvents';
 import useDelayedState from 'use-delayed-state';
+import classnames from 'classnames';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -362,7 +363,7 @@ const Suggest = ({
         onBlur: () => {
           // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
           if (!window.mouseLeave) {
-            setHasFocus(false, 100);
+            setHasFocus(false, 150);
           }
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
@@ -371,18 +372,20 @@ const Suggest = ({
         ReactDOM.createPortal(
           <div ref={dropDownContent}>
             {!value && items.length > 0 && !items[0].errorLabel && getHistoryEnabled() && (
-              <Flex horizontal between className="manage_history">
+              <Flex between className="manage_history">
                 <Text typo="body-1" color="primary" bold>
                   {_('Recent history')}
                 </Text>
-                <a href="javascript:;" onClick={() => navigateToHistoryPanel()} target="_self">
-                  {_('Manage history')}
-                </a>
+                <button onClick={() => navigateToHistoryPanel()}>{_('Manage history')}</button>
               </Flex>
             )}
             {dropdownVisible && !isHistoryPromptVisible && (
               <SuggestsDropdown
-                className={className}
+                className={classnames(
+                  items.length === 0 && 'autocomplete_suggestions--empty',
+                  items.length > 0 && getHistoryEnabled() && 'autocomplete_suggestions--history',
+                  className
+                )}
                 suggestItems={items}
                 highlighted={highlighted}
                 onSelect={selectItem}
