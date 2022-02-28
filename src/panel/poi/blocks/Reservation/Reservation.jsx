@@ -149,6 +149,7 @@ export function Reservation({ mobile, url: baseUrl }) {
               onMonthVisible={() => null}
               weekStart={1}
               observerId={datepickerMode}
+              language={window.getLang().code}
             />
             {mobile ? (
               <>
