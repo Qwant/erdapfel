@@ -94,7 +94,7 @@ userFeedback:
   dismissDurationDays: 30
 
 searchHistory:
-  enabled: true
+  enabled: override_by_environment
 
 survey:
   surveyApiUrl: override_by_environment
