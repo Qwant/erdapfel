@@ -153,13 +153,16 @@ export function Reservation({ mobile, url: baseUrl }) {
             />
             {mobile ? (
               <>
-                <hr className="ReservationSeparator" />
-                <Stack horizontal gap="xs" px="xl" pt="m" end>
-                  <Button variant="tertiary" onClick={handleCancel}>
-                    {_('Cancel')}
-                  </Button>
-                  <Button onClick={hideDatepicker}>{_('Ok')}</Button>
-                </Stack>
+                <Box className="ReservationIADatePickerFooterSpacer" />
+                <Box className="ReservationIADatePickerFooter">
+                  <hr className="ReservationSeparator" />
+                  <Stack horizontal gap="xs" px="xl" py="m" end>
+                    <Button variant="tertiary" onClick={handleCancel}>
+                      {_('Cancel')}
+                    </Button>
+                    <Button onClick={hideDatepicker}>{_('Ok')}</Button>
+                  </Stack>
+                </Box>
               </>
             ) : (
               <>
