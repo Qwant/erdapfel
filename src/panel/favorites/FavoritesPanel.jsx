@@ -28,7 +28,6 @@ const FavoritesPanel = () => {
 
   return (
     <Panel
-      resizable={false}
       renderHeader={
         <div className="favorite-header u-text--smallTitle">
           {favorites.length === 0

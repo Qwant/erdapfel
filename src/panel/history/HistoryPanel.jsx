@@ -244,7 +244,6 @@ const HistoryPanel = () => {
 
   return (
     <Panel
-      resizable={false}
       renderHeader={
         <Text bold color="primary">
           {_('My history', 'history panel')}
