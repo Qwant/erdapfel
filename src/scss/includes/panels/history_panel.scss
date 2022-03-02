@@ -100,6 +100,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 0 0 20px;
 }
 
 .historyModalIcon {
@@ -121,5 +122,15 @@
 
   .closeButton {
     margin: 8px;
+  }
+}
+
+// Make the panel fullscreen on mobile
+// (CSS hardcoded until we do a refact of <Panel> that allows it natively)
+@media (max-width: 640px){
+  .history_panel {
+    transform: translate3D(0,0,0) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
 }

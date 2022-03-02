@@ -1,6 +1,6 @@
-@media (min-width: 641px){
-  .favorite-header {
-    margin: 8px 0;
+.favorite_panel {
+  .panel-header {
+    padding: 20px 14px 4px;
   }
 }
 
@@ -10,7 +10,7 @@
 
 .favorite_panel__container__empty {
   color: $secondary_text;
-  padding: 20px;
+  padding: 14px;
 }
 
 .favorite_panel__item {
@@ -54,4 +54,20 @@
   white-space: nowrap;
   color: $primary_text;
   font-weight: bold;
+}
+
+@media (min-width: 641px){
+  .favorite-header {
+    margin: 8px 0;
+  }
+}
+
+// Make the panel fullscreen on mobile
+// (CSS hardcoded until we do a refact of <Panel> that allows it natively)
+@media (max-width: 640px){
+  .favorite_panel {
+    transform: translate3D(0,0,0) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
 }
