@@ -244,13 +244,11 @@ const HistoryPanel = () => {
 
   return (
     <Panel
-      resizable
       renderHeader={
         <Text bold color="primary">
           {_('My history', 'history panel')}
         </Text>
       }
-      minimizedTitle={_('Show history', 'history panel')}
       onClose={close}
       className={classnames(
         'history_panel',

@@ -28,15 +28,13 @@ const FavoritesPanel = () => {
 
   return (
     <Panel
-      resizable
       renderHeader={
-        <div className="favorite-header u-text--smallTitle u-center">
+        <div className="favorite-header u-text--smallTitle">
           {favorites.length === 0
             ? _('Favorite places', 'favorite panel')
             : _('My favorites', 'favorite panel')}
         </div>
       }
-      minimizedTitle={_('Show favorites', 'favorite panel')}
       onClose={close}
       className="favorite_panel"
     >
