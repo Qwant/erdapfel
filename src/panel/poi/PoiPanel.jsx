@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import { shouldShowBackToQwant } from 'src/libs/url_utils';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
-import Poi from 'src/adapters/poi/poi.js';
+import Poi from 'src/adapters/poi/poi';
 import PoiPanelContent from './PoiPanelContent';
 import { fire } from 'src/libs/customEvents';
 import { Panel, PanelNav } from 'src/components/ui';
