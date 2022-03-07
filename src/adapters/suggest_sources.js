@@ -31,7 +31,7 @@ export function suggestResults(
   const historyItems =
     maxHistoryItems > 0
       ? getHistoryItems(term, { withIntentions: withCategories })
-          .filter(item => item.id !== favoriteItems.find(favorite => favorite.id === item.id)?.id)
+          .filter(item => !favoriteItems.find(favorite => favorite.id === item.id))
           .slice(0, maxHistoryItems)
           .map(item => {
             item._suggestSource = 'history';
