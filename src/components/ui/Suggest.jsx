@@ -371,14 +371,18 @@ const Suggest = ({
       {(dropdownVisible || isHistoryPromptVisible) &&
         ReactDOM.createPortal(
           <div ref={dropDownContent}>
-            {!value && items.length > 0 && !items[0].errorLabel && getHistoryEnabled() && (
-              <Flex between className="manage_history">
-                <Text typo="body-1" color="primary" bold>
-                  {_('Recent history')}
-                </Text>
-                <button onClick={() => navigateToHistoryPanel()}>{_('Manage history')}</button>
-              </Flex>
-            )}
+            {!value &&
+              items.length > 0 &&
+              !items[0].errorLabel &&
+              items.some(item => item._suggestSource === 'history') &&
+              getHistoryEnabled() && (
+                <Flex between className="manage_history">
+                  <Text typo="body-1" color="primary" bold>
+                    {_('Recent history')}
+                  </Text>
+                  <button onClick={() => navigateToHistoryPanel()}>{_('Manage history')}</button>
+                </Flex>
+              )}
             {dropdownVisible && !isHistoryPromptVisible && (
               <SuggestsDropdown
                 className={classnames(
@@ -400,23 +404,27 @@ const Suggest = ({
                 question={_('Satisfied with the results?')}
               />
             )}
-            {!value && items.length > 0 && !items[0].errorLabel && getHistoryEnabled() && (
-              <div className="suggestHistoryFooter">
-                {_(
-                  'Your history is activated. It is only visible to you on this device.',
-                  'suggest'
-                )}{' '}
-                <a
-                  href="@TODO"
-                  target="_blank"
-                  onMouseDown={e => {
-                    e.preventDefault();
-                  }}
-                >
-                  {_('Learn more', 'suggest')}
-                </a>
-              </div>
-            )}
+            {!value &&
+              items.length > 0 &&
+              !items[0].errorLabel &&
+              items.some(item => item._suggestSource === 'history') &&
+              getHistoryEnabled() && (
+                <div className="suggestHistoryFooter">
+                  {_(
+                    'Your history is activated. It is only visible to you on this device.',
+                    'suggest'
+                  )}{' '}
+                  <a
+                    href="@TODO"
+                    target="_blank"
+                    onMouseDown={e => {
+                      e.preventDefault();
+                    }}
+                  >
+                    {_('Learn more', 'suggest')}
+                  </a>
+                </div>
+              )}
           </div>,
           outputNode
         )}
