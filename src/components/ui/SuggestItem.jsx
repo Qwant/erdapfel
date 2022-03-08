@@ -3,12 +3,14 @@ import classnames from 'classnames';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import Category from 'src/adapters/category';
 import Intention from 'src/adapters/intention';
-import { Address, CloseButton } from 'src/components/ui';
+import { Address } from 'src/components/ui';
 import PlaceIcon from 'src/components/PlaceIcon';
 import PoiStore from 'src/adapters/poi/poi_store';
 import NoResultMessage from 'src/panel/NoResultMessage';
 import { deleteQuery } from 'src/adapters/search_history';
 import { useI18n } from 'src/hooks';
+import { IconEmpty } from '@qwant/qwant-ponents';
+import { GREY_SEMI_DARKNESS } from '../../libs/colors';
 
 const SuggestItem = ({ item }) => {
   const { _ } = useI18n();
@@ -106,7 +108,12 @@ const SuggestItem = ({ item }) => {
         {secondLabel && <div className="autocomplete_suggestion__second_line">{secondLabel}</div>}
       </div>
       {isHistory && (
-        <CloseButton onMouseDown={removeFromHistory} variant="small" title={_('Delete')} />
+        <IconEmpty
+          width={20}
+          fill={GREY_SEMI_DARKNESS}
+          onMouseDown={removeFromHistory}
+          title={_('Delete')}
+        />
       )}
     </div>
   );
