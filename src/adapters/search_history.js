@@ -102,6 +102,7 @@ const itemMatches = ({ type, item }, term) => {
 
 export function getHistoryItems(term = '', { withIntentions = false } = {}) {
   const searchHistory = getHistory();
+
   return searchHistory
     .reverse() // so it's ordered with most recent items first
     .filter(stored => withIntentions || stored.type !== 'intention')
