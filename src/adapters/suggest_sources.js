@@ -28,18 +28,18 @@ export function suggestResults(
   // - get all the history items
   // - ignore the items that are already present in the favourites list
   // - keep the N first items (where N = maxHistoryItems)
-  const historyItems =
-    maxHistoryItems > 0
-      ? getHistoryItems(term, { withIntentions: withCategories })
-          .slice(0, maxHistoryItems)
-          .map(item => {
-            item._suggestSource = 'history';
-            if (favoriteItems.find(favorite => favorite.id === item.id)) {
-              item._isFavorite = true;
-            }
-            return item;
-          })
-      : [];
+  let historyItems =
+    maxHistoryItems > 0 ? getHistoryItems(term, { withIntentions: withCategories }) : [];
+
+  if (term !== '') {
+    historyItems = historyItems.filter(
+      item => !favoriteItems.find(favorite => favorite.id === item.id)
+    );
+  }
+  historyItems = historyItems.slice(0, maxHistoryItems).map(item => {
+    item._suggestSource = 'history';
+    return item;
+  });
 
   // Field focused and empty: get history + favourite items, but no favourites if history items are present
   if (term === '') {
