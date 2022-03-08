@@ -11,6 +11,7 @@ const mapStyle = require('./middlewares/map_style');
 const getReqSerializer = require('./serializers/request');
 const cookieParser = require('cookie-parser');
 const testGroup = require('./test-group');
+const compilationHash = require('../public/compilationHash');
 
 const app = express();
 app.use(cookieParser());
@@ -136,7 +137,13 @@ function App(config) {
         },
       };
     }
-    localAppConfig.testGroupPer = testGroup(config, req).testGroupPer;
+
+    localAppConfig = {
+      ...localAppConfig,
+      testGroupPer: testGroup(config, req).testGroupPer,
+      compilationHash,
+    };
+
     res.render('index', { config: localAppConfig });
   });
 

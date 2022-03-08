@@ -8,6 +8,7 @@ node_modules/
 
 public/css/
 public/build/
+public/compilationHash.js
 
 #map style
 public/mapstyle/

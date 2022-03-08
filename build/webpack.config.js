@@ -2,6 +2,7 @@ const path = require('path');
 const yaml = require('node-yaml');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const compilationHash = require('../public/compilationHash');
 
 const getBuildMode = function (argv) {
   const isTestMode = process.env.TEST === 'true';
@@ -31,7 +32,7 @@ const sassChunkConfig = () => {
           use: {
             loader: 'file-loader',
             options: {
-              name: 'public/css/[name].css',
+              name: `public/css/[name]-${compilationHash}.css`,
             },
           },
         },
@@ -69,8 +70,8 @@ const mainJsChunkConfig = buildMode => {
     entry: [path.join(__dirname, '..', 'src', 'main.js')],
     output: {
       path: path.join(__dirname, '..', 'public', 'build', 'javascript'),
-      filename: 'bundle.js',
-      chunkFilename: '[name].bundle.js',
+      filename: `bundle-${compilationHash}.js`,
+      chunkFilename: '[name]-[chunkhash].bundle.js',
       publicPath: './statics/build/javascript/',
     },
     resolve: {
@@ -197,7 +198,7 @@ const copyPluginConfig = () => {
           use: {
             loader: 'file-loader',
             options: {
-              name: './public/build/javascript/map_plugins/mapbox-gl-rtl-text.js',
+              name: `./public/build/javascript/map_plugins/mapbox-gl-rtl-text-${compilationHash}.js`,
             },
           },
         },
@@ -238,7 +239,7 @@ const webpackChunks = buildMode => {
           },
           output: {
             path: path.join(__dirname, '..'),
-            filename: `./public/build/javascript/message/${language.locale}.js`,
+            filename: `./public/build/javascript/message/${language.locale}-${compilationHash}.js`,
           },
         };
       })
@@ -256,7 +257,7 @@ const webpackChunks = buildMode => {
           },
           output: {
             path: path.join(__dirname, '..'),
-            filename: `./public/build/javascript/message/${language.locale}.js`,
+            filename: `./public/build/javascript/message/${language.locale}-${compilationHash}.js`,
           },
         };
       })

@@ -18,8 +18,11 @@ function I18n() {
 
 I18n.prototype.setLang = async function () {
   this.language = window.preferedLanguage;
+  const compilationHash = window.__config.compilationHash;
   try {
-    await AsyncFileLoader(`statics/build/javascript/message/${this.language.locale}.js`);
+    await AsyncFileLoader(
+      `statics/build/javascript/message/${this.language.locale}-${compilationHash}.js`
+    );
   } catch (e) {
     Error.send(
       'i18n',
