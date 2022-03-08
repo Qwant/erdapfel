@@ -20,4 +20,4 @@ For a global overview of Qwant Maps and more details about each component, check
 
 This project is licensed under the Apache License 2.0.
 
-Please not that it depends on many other opensource projects that have their own terms and conditions.
+Please note that it depends on many other opensource projects that have their own terms and conditions.
