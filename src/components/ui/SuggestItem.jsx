@@ -36,7 +36,7 @@ const SuggestItem = ({ item }) => {
   const props = {};
   const variants = [];
   const isHistory = item._suggestSource === 'history';
-  const isFavorite = item instanceof PoiStore || item._isFavorite === true;
+  const isFavorite = item instanceof PoiStore === true;
   if (isFavorite) {
     variants.push('favorite');
   } else if (isHistory) {
