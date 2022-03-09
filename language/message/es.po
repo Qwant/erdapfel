@@ -1,38 +1,38 @@
-#
+# 
 # Translators:
-# Adrien Matissart, 2022
 # Charlotte Ziegler <c.ziegler@qwant.com>, 2022
+# Adrien Matissart, 2022
 # maxime euziere <m.euziere@qwant.com>, 2022
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Maps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-09 14:59+0100\n"
-"PO-Revision-Date: 2022-03-09 16:04+0100\n"
+"POT-Creation-Date: 2022-03-09 14:44+0100\n"
+"PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: maxime euziere <m.euziere@qwant.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/qwant-1/teams/89416/es/)\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: views\n"
 "X-Poedit-SearchPath-2: public/build/javascript\n"
 "X-Poedit-SearchPath-3: config\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
-#: config/categories.js:5
+#: config/categories.js:3
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1433
 #: public/build/javascript/bundle.js:1433
 msgid "restaurant"
 msgstr "restaurante"
 
-#: config/categories.js:6
+#: config/categories.js:4
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1250
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1292
 #: public/build/javascript/bundle.js:1250
@@ -40,421 +40,421 @@ msgstr "restaurante"
 msgid "hotel"
 msgstr "hotel"
 
-#: config/categories.js:7 config/categories.js:43
+#: config/categories.js:5 config/categories.js:41
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1502
 #: public/build/javascript/bundle.js:1502
 msgid "supermarket"
 msgstr "supermercado"
 
-#: config/categories.js:8
+#: config/categories.js:6
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:917
 #: public/build/javascript/bundle.js:917
 msgid "bar"
 msgstr "bar"
 
-#: config/categories.js:9 config/categories.js:60
+#: config/categories.js:7 config/categories.js:58
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1388
 #: public/build/javascript/bundle.js:1388
 msgid "pharmacy"
 msgstr "farmacia"
 
-#: config/categories.js:10
+#: config/categories.js:8
 msgid "leisure"
-msgstr ""
+msgstr "ocio"
+
+#: config/categories.js:9
+msgid "administration"
+msgstr "administración"
+
+#: config/categories.js:10 config/categories.js:60
+msgid "health"
+msgstr "salud"
 
 #: config/categories.js:11
-msgid "administration"
-msgstr "estación de carga"
-
-#: config/categories.js:12 config/categories.js:62
-msgid "health"
-msgstr ""
-
-#: config/categories.js:13
 msgid "education"
-msgstr "Indicaciones"
+msgstr "Educación"
 
-#: config/categories.js:14
+#: config/categories.js:12
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:914
 #: public/build/javascript/bundle.js:914
 msgid "bank"
 msgstr "banco"
 
-#: config/categories.js:15
+#: config/categories.js:13
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1340
 #: public/build/javascript/bundle.js:1340
 msgid "museum"
 msgstr "museo"
 
-#: config/categories.js:16 config/categories.js:89
+#: config/categories.js:14 config/categories.js:87
 msgid "sport"
-msgstr "aeropuerto"
+msgstr "deporte"
+
+#: config/categories.js:15
+msgid "service"
+msgstr "servicio"
+
+#: config/categories.js:16
+msgid "french restaurant"
+msgstr "restaurante francés"
 
 #: config/categories.js:17
-msgid "service"
-msgstr "embalse"
+msgid "pizzeria"
+msgstr "pizzería"
 
 #: config/categories.js:18
-msgid "french restaurant"
-msgstr "restaurante"
+msgid "burgers"
+msgstr "hamburguesas"
 
 #: config/categories.js:19
-msgid "pizzeria"
-msgstr ""
+msgid "italian restaurant"
+msgstr "restaurante italiano"
 
 #: config/categories.js:20
-msgid "burgers"
-msgstr ""
+msgid "kebab restaurant"
+msgstr "restaurante kebab"
 
 #: config/categories.js:21
-msgid "italian restaurant"
-msgstr "restaurante"
+msgid "sandwich"
+msgstr "sándwich"
 
 #: config/categories.js:22
-msgid "kebab restaurant"
-msgstr "restaurante"
+msgid "asian restaurant"
+msgstr "restaurante asiático"
 
 #: config/categories.js:23
-msgid "sandwich"
-msgstr ""
+msgid "japanese restaurant"
+msgstr "restaurante japonés"
 
 #: config/categories.js:24
-msgid "asian restaurant"
-msgstr "restaurante"
+msgid "chinese restaurant"
+msgstr "restaurante chino"
 
 #: config/categories.js:25
-msgid "japanese restaurant"
-msgstr "restaurante"
+msgid "creperie"
+msgstr "crepería"
 
 #: config/categories.js:26
-msgid "chinese restaurant"
-msgstr "restaurante"
+msgid "indian restaurant"
+msgstr "restaurante indio"
 
 #: config/categories.js:27
-msgid "creperie"
-msgstr ""
+msgid "thai restaurant"
+msgstr "restaurante tailandés"
 
 #: config/categories.js:28
-msgid "indian restaurant"
-msgstr "restaurante"
+msgid "lebanese restaurant"
+msgstr "restaurante libanés"
 
 #: config/categories.js:29
-msgid "thai restaurant"
-msgstr "restaurante"
+msgid "parking lot"
+msgstr "aparcamiento"
 
 #: config/categories.js:30
-msgid "lebanese restaurant"
-msgstr "restaurante"
+msgid "pitch"
+msgstr "campo de juego"
 
 #: config/categories.js:31
-msgid "parking lot"
-msgstr ""
-
-#: config/categories.js:32
-msgid "pitch"
-msgstr ""
-
-#: config/categories.js:33
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1397
 #: public/build/javascript/bundle.js:1397
 msgid "place of worship"
 msgstr "lugar de culto"
 
-#: config/categories.js:34
+#: config/categories.js:32
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1427
 #: public/build/javascript/bundle.js:1427
 msgid "recycling"
 msgstr "reciclaje"
 
-#: config/categories.js:35
+#: config/categories.js:33
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:944
 #: public/build/javascript/bundle.js:944
 msgid "bicycle parking"
 msgstr "aparcamiento de bicicletas"
 
-#: config/categories.js:36
+#: config/categories.js:34
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1448
 #: public/build/javascript/bundle.js:1448
 msgid "school"
 msgstr "escuela"
 
-#: config/categories.js:37
+#: config/categories.js:35
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1373
 #: public/build/javascript/bundle.js:1373
 msgid "park"
 msgstr "parque"
 
-#: config/categories.js:38
+#: config/categories.js:36
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:911
 #: public/build/javascript/bundle.js:911
 msgid "bakery"
 msgstr "panadería"
 
-#: config/categories.js:39
+#: config/categories.js:37
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1064
 #: public/build/javascript/bundle.js:1064
 msgid "clothes shop"
 msgstr "tienda de ropa"
 
-#: config/categories.js:40
+#: config/categories.js:38
 msgid "toilets"
-msgstr ""
+msgstr "aseos"
 
-#: config/categories.js:41
+#: config/categories.js:39
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1487
 #: public/build/javascript/bundle.js:1487
 msgid "sports centre"
 msgstr "centro deportivo"
 
-#: config/categories.js:42
+#: config/categories.js:40
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1226
 #: public/build/javascript/bundle.js:1226
 msgid "hairdresser"
 msgstr "peluquería"
 
-#: config/categories.js:44
+#: config/categories.js:42
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1160
 #: public/build/javascript/bundle.js:1160
 msgid "fast food"
 msgstr "comida rápida"
 
-#: config/categories.js:45
+#: config/categories.js:43
 msgid "historical place"
-msgstr ""
+msgstr "lugar histórico"
 
-#: config/categories.js:46
+#: config/categories.js:44
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1409
 #: public/build/javascript/bundle.js:1409
 msgid "post office"
 msgstr "oficina de correos"
 
-#: config/categories.js:47
+#: config/categories.js:45
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1181
 #: public/build/javascript/bundle.js:1181
 msgid "fuel station"
 msgstr "gasolinera"
 
-#: config/categories.js:48
+#: config/categories.js:46
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1073
 #: public/build/javascript/bundle.js:1073
 msgid "community centre"
 msgstr "centro comunitario"
 
-#: config/categories.js:49
+#: config/categories.js:47
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1085
 #: public/build/javascript/bundle.js:1085
 msgid "convenience store"
 msgstr "tienda de ultramarinos"
 
-#: config/categories.js:50
+#: config/categories.js:48
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:995
 #: public/build/javascript/bundle.js:995
 msgid "car shop"
 msgstr "concesionario"
 
-#: config/categories.js:51
+#: config/categories.js:49
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1271
 #: public/build/javascript/bundle.js:1271
 msgid "kindergarten or preschool"
 msgstr "guardería"
 
-#: config/categories.js:52
+#: config/categories.js:50
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:989
 #: public/build/javascript/bundle.js:989
 msgid "camp site"
 msgstr "campamento"
 
-#: config/categories.js:53
+#: config/categories.js:51
 msgid "train station"
-msgstr "estación de carga"
+msgstr "estación de ferrocarril"
 
-#: config/categories.js:54
+#: config/categories.js:52
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:983
 #: public/build/javascript/bundle.js:983
 msgid "butcher"
 msgstr "carnicero"
 
-#: config/categories.js:55
+#: config/categories.js:53
 msgid "tourist attraction"
-msgstr "atracción"
+msgstr "atracción turística"
 
-#: config/categories.js:56
+#: config/categories.js:54
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1244
 #: public/build/javascript/bundle.js:1244
 msgid "hospital"
 msgstr "hospital"
 
-#: config/categories.js:57
+#: config/categories.js:55
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1118
 #: public/build/javascript/bundle.js:1118
 msgid "doctors office"
 msgstr "consultorio médico"
 
-#: config/categories.js:58
+#: config/categories.js:56
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1109
 #: public/build/javascript/bundle.js:1109
 msgid "dentist"
 msgstr "dentista"
 
-#: config/categories.js:59
+#: config/categories.js:57
 msgid "physiotherapist"
-msgstr ""
+msgstr "fisioterapeuta"
+
+#: config/categories.js:59
+msgid "psychotherapist"
+msgstr "psicoterapeuta"
 
 #: config/categories.js:61
-msgid "psychotherapist"
-msgstr ""
-
-#: config/categories.js:63
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1289
 #: public/build/javascript/bundle.js:1289
 msgid "library"
 msgstr "biblioteca"
 
-#: config/categories.js:64
+#: config/categories.js:62
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1403
 #: public/build/javascript/bundle.js:1403
 msgid "police"
 msgstr "policía"
 
-#: config/categories.js:65
+#: config/categories.js:63
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1361
 #: public/build/javascript/bundle.js:1361
 msgid "optician"
 msgstr "óptico"
 
-#: config/categories.js:66
+#: config/categories.js:64
 msgid "graveyard"
 msgstr "cementerio"
 
-#: config/categories.js:67
+#: config/categories.js:65
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:929
 #: public/build/javascript/bundle.js:929
 msgid "beauty salon"
 msgstr "salón de belleza"
 
-#: config/categories.js:68
+#: config/categories.js:66
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1169
 #: public/build/javascript/bundle.js:1169
 msgid "florist"
 msgstr "floristería"
 
-#: config/categories.js:69
+#: config/categories.js:67
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1163
 #: public/build/javascript/bundle.js:1163
 msgid "fire station"
 msgstr "parque de bomberos"
 
-#: config/categories.js:70
+#: config/categories.js:68
 msgid "shoes shop"
-msgstr "tienda de deportes"
+msgstr "zapatería"
+
+#: config/categories.js:69
+msgid "DIY store"
+msgstr "tienda de bricolaje"
+
+#: config/categories.js:70
+msgid "bicycle rental"
+msgstr "alquiler de bicicletas"
 
 #: config/categories.js:71
-msgid "DIY store"
-msgstr "tienda de mascotas"
-
-#: config/categories.js:72
-msgid "bicycle rental"
-msgstr "aparcamiento de bicicletas"
-
-#: config/categories.js:73
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1265
 #: public/build/javascript/bundle.js:1265
 msgid "jewelry shop"
 msgstr "joyería"
 
-#: config/categories.js:74
+#: config/categories.js:72
 msgid "newsagent"
-msgstr "tienda de prensa"
+msgstr "kiosco"
 
-#: config/categories.js:75
+#: config/categories.js:73
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1505
 #: public/build/javascript/bundle.js:1505
 msgid "swimming pool"
 msgstr "piscina"
 
-#: config/categories.js:76
+#: config/categories.js:74
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1187
 #: public/build/javascript/bundle.js:1187
 msgid "furniture shop"
 msgstr "tienda de muebles"
 
-#: config/categories.js:77
+#: config/categories.js:75
 msgid "bookshop"
 msgstr "librería"
 
-#: config/categories.js:78
+#: config/categories.js:76
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1283
 #: public/build/javascript/bundle.js:1283
 msgid "laundry"
 msgstr "lavandería"
 
-#: config/categories.js:79
+#: config/categories.js:77
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1484
 #: public/build/javascript/bundle.js:1484
 msgid "sports shop"
 msgstr "tienda de deportes"
 
-#: config/categories.js:80
+#: config/categories.js:78
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1528
 #: public/build/javascript/bundle.js:1528
 msgid "theatre"
 msgstr "teatro"
 
-#: config/categories.js:81
+#: config/categories.js:79
 msgid "veterinarian"
 msgstr "veterinario"
 
-#: config/categories.js:82
+#: config/categories.js:80
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1214
 #: public/build/javascript/bundle.js:1214
 msgid "greengrocer"
 msgstr "frutería"
 
-#: config/categories.js:83
+#: config/categories.js:81
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1196
 #: public/build/javascript/bundle.js:1196
 msgid "garden centre"
 msgstr "centro de jardinería"
 
-#: config/categories.js:84
+#: config/categories.js:82
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:896
 #: public/build/javascript/bundle.js:896
 msgid "arts centre"
 msgstr "centro cultural"
 
-#: config/categories.js:85
+#: config/categories.js:83
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1136
 #: public/build/javascript/bundle.js:1136
 msgid "electronics shop"
 msgstr "tienda de electrónica"
 
-#: config/categories.js:86
+#: config/categories.js:84
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1052
 #: public/build/javascript/bundle.js:1052
 msgid "cinema"
 msgstr "cine"
 
-#: config/categories.js:87
+#: config/categories.js:85
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1555
 #: public/build/javascript/bundle.js:1555
 msgid "university"
 msgstr "universidad"
 
-#: config/categories.js:88
+#: config/categories.js:86
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1552
 #: public/build/javascript/bundle.js:1552
 msgid "travel agency"
 msgstr "agencia de viajes"
 
-#: config/categories.js:90
+#: config/categories.js:88
 msgid "post box"
-msgstr "oficina de correos"
+msgstr "buzón de correos"
 
-#: config/categories.js:91
+#: config/categories.js:89
 msgid "playground"
-msgstr ""
+msgstr "parque infantil"
 
-#: config/categories.js:92
+#: config/categories.js:90
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1304
 #: public/build/javascript/bundle.js:1304
 msgid "marketplace"
@@ -1634,8 +1634,7 @@ msgstr "Activar el historial"
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:91804
 #: public/build/javascript/bundle.js:91805
 msgid "Well done, the <span class=\"historyText\">history</span> is activated"
-msgstr ""
-"Bien hecho, el <span class=\"historyText\">historial</span> está activado"
+msgstr "Bien hecho, el <span class=\"historyText\">historial</span> está activado"
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:91812
 #: public/build/javascript/bundle.js:91813
@@ -1654,11 +1653,11 @@ msgstr "No se preocupe, el historial está desactivado"
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:91835
 #: public/build/javascript/bundle.js:91836
 msgid ""
-"You can change your mind at any time and <a href=\"history\" target=\"_self"
-"\">manage</a> the activation of the history in the menu"
+"You can change your mind at any time and <a href=\"history\" "
+"target=\"_self\">manage</a> the activation of the history in the menu"
 msgstr ""
-"Puede cambiar de opinión en cualquier momento y <a href=\"history\" target="
-"\"_self\">gestionar</a> la activación del historial en el menú"
+"Puede cambiar de opinión en cualquier momento y <a href=\"history\" "
+"target=\"_self\">gestionar</a> la activación del historial en el menú"
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:91999
 #: public/build/javascript/bundle.js:92002
@@ -1734,18 +1733,18 @@ msgid ""
 "privacy policy{closeTag}, we don't store your information because we don't "
 "want to know your whereabouts."
 msgstr ""
-"Siempre respetamos su privacidad.<br>Como se indica en {privacyPolicyLink}"
-"nuestra política de privacidad{closeTag}, no almacenamos su información "
-"porque no queremos saber su ubicación."
+"Siempre respetamos su privacidad.<br>Como se indica en "
+"{privacyPolicyLink}nuestra política de privacidad{closeTag}, no almacenamos "
+"su información porque no queremos saber su ubicación."
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95053
 #: public/build/javascript/bundle.js:95059
 msgid ""
-"We look at your location to show you where you are, and that's it!<br />(See "
-"our {privacyPolicyLink}privacy policy{closeTag})"
+"We look at your location to show you where you are, and that's it!<br />(See"
+" our {privacyPolicyLink}privacy policy{closeTag})"
 msgstr ""
-"Miramos su ubicación únicamente para mostrarle dónde se encuentra.<br /"
-">(Consulte nuestra {privacyPolicyLink}política de privacidad{closeTag})"
+"Miramos su ubicación únicamente para mostrarle dónde se encuentra.<br "
+"/>(Consulte nuestra {privacyPolicyLink}política de privacidad{closeTag})"
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95060
 #: public/build/javascript/bundle.js:95066
@@ -1777,8 +1776,8 @@ msgstr "Houston,<br/> tenemos un problema (de geolocalización)&nbsp;🛰️"
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95073
 #: public/build/javascript/bundle.js:95079
 msgid ""
-"Allow Qwant Maps to access your position so we can better help you find your "
-"way…"
+"Allow Qwant Maps to access your position so we can better help you find your"
+" way…"
 msgstr ""
 "Permita que Qwant Maps acceda a su posición para que podamos ayudarle a "
 "encontrar el camino..."
@@ -1874,8 +1873,8 @@ msgid ""
 "Please try to correct your query or rewrite it with more details about the "
 "location (city, country, …)"
 msgstr ""
-"Intente corregir la consulta o vuelva a escribirla con más detalles sobre la "
-"ubicación (ciudad, país, ...)"
+"Intente corregir la consulta o vuelva a escribirla con más detalles sobre la"
+" ubicación (ciudad, país, ...)"
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95593
 #: public/build/javascript/bundle.js:95599
@@ -1985,7 +1984,8 @@ msgstr "Ay, hemos perdido el norte&nbsp;🧭"
 #: public/build/javascript/bundle.js:98738
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
-"El servicio está temporalmente no disponible. Por favor, inténtelo más tarde."
+"El servicio está temporalmente no disponible. Por favor, inténtelo más "
+"tarde."
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:98732
 #: public/build/javascript/bundle.js:98738
@@ -2054,9 +2054,11 @@ msgstr "Camina {walkDistance}"
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:99438
 #: public/build/javascript/bundle.js:99444
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
-"No tiene lugares favoritos. <br>Puede añadir uno mediante un clic en un lugar"
+"No tiene lugares favoritos. <br>Puede añadir uno mediante un clic en un "
+"lugar"
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:99538
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:100539
@@ -2098,8 +2100,8 @@ msgid ""
 "Your history is disabled. If you enable it, it will only be visible to you "
 "on this device."
 msgstr ""
-"Su historial está desactivado. Si lo activa, solo será visible para usted en "
-"este dispositivo."
+"Su historial está desactivado. Si lo activa, solo será visible para usted en"
+" este dispositivo."
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:99907
 #: public/build/javascript/bundle.js:99913
@@ -2539,9 +2541,3 @@ msgstr "Servicios cercanos"
 #: public/build/javascript/map.bundle.js:2639 src/mapbox/locale.js:4
 msgid "My location"
 msgstr "Mi ubicación"
-
-#~ msgid "Show favorites"
-#~ msgstr "Mostrar favoritos"
-
-#~ msgid "Show history"
-#~ msgstr "Mostrar historial"
