@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Maps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 14:59+0100\n"
-"PO-Revision-Date: 2022-03-09 15:00+0100\n"
+"PO-Revision-Date: 2022-03-09 16:04+0100\n"
 "Last-Translator: maxime euziere <m.euziere@qwant.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/qwant-1/teams/89416/es/)\n"
 "Language: es\n"
@@ -63,8 +63,6 @@ msgid "leisure"
 msgstr ""
 
 #: config/categories.js:11
-#, fuzzy
-#| msgid "charging station"
 msgid "administration"
 msgstr "estación de carga"
 
@@ -73,8 +71,6 @@ msgid "health"
 msgstr ""
 
 #: config/categories.js:13
-#, fuzzy
-#| msgid "Directions"
 msgid "education"
 msgstr "Indicaciones"
 
@@ -91,20 +87,14 @@ msgid "museum"
 msgstr "museo"
 
 #: config/categories.js:16 config/categories.js:89
-#, fuzzy
-#| msgid "airport"
 msgid "sport"
 msgstr "aeropuerto"
 
 #: config/categories.js:17
-#, fuzzy
-#| msgid "reservoir"
 msgid "service"
 msgstr "embalse"
 
 #: config/categories.js:18
-#, fuzzy
-#| msgid "restaurant"
 msgid "french restaurant"
 msgstr "restaurante"
 
@@ -117,14 +107,10 @@ msgid "burgers"
 msgstr ""
 
 #: config/categories.js:21
-#, fuzzy
-#| msgid "restaurant"
 msgid "italian restaurant"
 msgstr "restaurante"
 
 #: config/categories.js:22
-#, fuzzy
-#| msgid "restaurant"
 msgid "kebab restaurant"
 msgstr "restaurante"
 
@@ -133,20 +119,14 @@ msgid "sandwich"
 msgstr ""
 
 #: config/categories.js:24
-#, fuzzy
-#| msgid "restaurant"
 msgid "asian restaurant"
 msgstr "restaurante"
 
 #: config/categories.js:25
-#, fuzzy
-#| msgid "restaurant"
 msgid "japanese restaurant"
 msgstr "restaurante"
 
 #: config/categories.js:26
-#, fuzzy
-#| msgid "restaurant"
 msgid "chinese restaurant"
 msgstr "restaurante"
 
@@ -155,20 +135,14 @@ msgid "creperie"
 msgstr ""
 
 #: config/categories.js:28
-#, fuzzy
-#| msgid "restaurant"
 msgid "indian restaurant"
 msgstr "restaurante"
 
 #: config/categories.js:29
-#, fuzzy
-#| msgid "restaurant"
 msgid "thai restaurant"
 msgstr "restaurante"
 
 #: config/categories.js:30
-#, fuzzy
-#| msgid "restaurant"
 msgid "lebanese restaurant"
 msgstr "restaurante"
 
@@ -291,8 +265,6 @@ msgid "camp site"
 msgstr "campamento"
 
 #: config/categories.js:53
-#, fuzzy
-#| msgid "charging station"
 msgid "train station"
 msgstr "estación de carga"
 
@@ -303,8 +275,6 @@ msgid "butcher"
 msgstr "carnicero"
 
 #: config/categories.js:55
-#, fuzzy
-#| msgid "attraction"
 msgid "tourist attraction"
 msgstr "atracción"
 
@@ -353,8 +323,6 @@ msgid "optician"
 msgstr "óptico"
 
 #: config/categories.js:66
-#, fuzzy
-#| msgid "grave yard"
 msgid "graveyard"
 msgstr "cementerio"
 
@@ -377,20 +345,14 @@ msgid "fire station"
 msgstr "parque de bomberos"
 
 #: config/categories.js:70
-#, fuzzy
-#| msgid "sports shop"
 msgid "shoes shop"
 msgstr "tienda de deportes"
 
 #: config/categories.js:71
-#, fuzzy
-#| msgid "pet store"
 msgid "DIY store"
 msgstr "tienda de mascotas"
 
 #: config/categories.js:72
-#, fuzzy
-#| msgid "bicycle parking"
 msgid "bicycle rental"
 msgstr "aparcamiento de bicicletas"
 
@@ -401,8 +363,6 @@ msgid "jewelry shop"
 msgstr "joyería"
 
 #: config/categories.js:74
-#, fuzzy
-#| msgid "newsagent shop"
 msgid "newsagent"
 msgstr "tienda de prensa"
 
@@ -419,8 +379,6 @@ msgid "furniture shop"
 msgstr "tienda de muebles"
 
 #: config/categories.js:77
-#, fuzzy
-#| msgid "books shop"
 msgid "bookshop"
 msgstr "librería"
 
@@ -443,8 +401,6 @@ msgid "theatre"
 msgstr "teatro"
 
 #: config/categories.js:81
-#, fuzzy
-#| msgid "veterinary"
 msgid "veterinarian"
 msgstr "veterinario"
 
@@ -491,8 +447,6 @@ msgid "travel agency"
 msgstr "agencia de viajes"
 
 #: config/categories.js:90
-#, fuzzy
-#| msgid "post office"
 msgid "post box"
 msgstr "oficina de correos"
 
