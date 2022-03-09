@@ -1,5 +1,5 @@
 body {
-  background: url('../images/backgrounds/grid.png');
+  background: url('../../images/backgrounds/grid.png');
   // Override @qwant-ponents body { min-height: 100vh } which is buggy on iOS.
   min-height: -webkit-fill-available !important;
 }
@@ -60,7 +60,7 @@ noscript {
   justify-content: center;
   width: 35px;
   height: 42px;
-  background-image: url('../images/map/pin_map.svg');
+  background-image: url('../../images/map/pin_map.svg');
   background-size: cover;
   margin: auto;
 }
@@ -97,5 +97,5 @@ noscript {
   width: 26px;
   height: 49px;
   margin-top: 6px;
-  background-image: url('../images/map/pin-maxi.svg');
+  background-image: url('../../images/map/pin-maxi.svg');
 }

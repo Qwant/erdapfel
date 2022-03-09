@@ -66,7 +66,7 @@ input[type='search'] {
   width: 37px;
   height: 36px;
   flex-shrink: 0;
-  background: url(../images/qwant-logo.svg) no-repeat;
+  background: url(../../images/qwant-logo.svg) no-repeat;
   background-size: cover;
   margin: 0 $spacing-s 0 $spacing-s;
 }
@@ -80,7 +80,7 @@ input[type='search'] {
 .search_form__action {
   width: 24px;
   height: 48px;
-  background: url(../images/magnifier-light.svg) center no-repeat;
+  background: url(../../images/magnifier-light.svg) center no-repeat;
   background-size: 16px 16px;
   cursor: pointer;
   position: absolute;
@@ -153,7 +153,7 @@ input[type='search'] {
   }
 
   .search_form__action:hover {
-    background: url(../images/magnifier-blue.svg) center no-repeat;
+    background: url(../../images/magnifier-blue.svg) center no-repeat;
     background-size: 16px 16px;
   }
 }
@@ -161,7 +161,7 @@ input[type='search'] {
 // When the search field is focused and filled
 .top_bar--search_focus.top_bar--search_filled {
   .search_form__action {
-    background: url(../images/magnifier-blue.svg) center no-repeat;
+    background: url(../../images/magnifier-blue.svg) center no-repeat;
     background-size: 16px 16px;
   }
   .search_form__clear {

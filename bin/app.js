@@ -114,7 +114,7 @@ function App(config) {
   }
 
   router.get('/unsupported', (req, res) => {
-    res.render('unsupported', { config });
+    res.render('unsupported', { config: { ...config, compilationHash } });
   });
 
   const redirectUnsupported = new require('./middlewares/unsupported_browser')(config);

@@ -1,9 +1,9 @@
-@import "./direction-panel";
-@import "./direction-form.scss";
-@import "./direction-field.scss";
-@import "./mobileRouteDetails.scss";
-@import "./roadmapIcon.scss";
-@import "./routeLabel.scss";
+@import './direction-panel';
+@import './direction-form.scss';
+@import './direction-field.scss';
+@import './mobileRouteDetails.scss';
+@import './roadmapIcon.scss';
+@import './routeLabel.scss';
 
 @mixin active-border-gradient {
   content: '';
@@ -30,10 +30,10 @@
   padding: 25px 50px;
   color: #5c6f84;
   font-size: 16px;
-  background: #fff
+  background: #fff;
 }
 
-.itinerary_no-result .icon-alert-triangle{
+.itinerary_no-result .icon-alert-triangle {
   color: #c8cbd3;
   font-size: 22px;
   margin: 0 0 11px;
@@ -95,7 +95,7 @@
 }
 
 .itinerary_marker_destination {
-  background-image: url('../images/direction_icons/pin.png');
+  background-image: url('../../images/direction_icons/pin.png');
   background-size: cover;
   width: 30px;
   height: 37px;
@@ -109,13 +109,13 @@
   height: 5px;
   margin: 0;
   border-radius: 50%;
-  box-shadow: 0 0 2px rgba(0,0,0,.5);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-.itinerary_marker_step--highlighted{
+.itinerary_marker_step--highlighted {
   width: 9px;
   height: 9px;
-  border: 2px solid rgba(75,162,234,.5);
+  border: 2px solid rgba(75, 162, 234, 0.5);
 }
 
 .itinerary_roadmap_item_icon {
@@ -221,7 +221,7 @@
   z-index: 1;
 
   &--walk {
-    background: url(../images/direction_icons/walking_bullet_roadmap.png) repeat space;
+    background: url(../../images/direction_icons/walking_bullet_roadmap.png) repeat space;
     background-size: 7px 10px;
   }
 
@@ -231,7 +231,7 @@
   }
 }
 
-@supports (-moz-appearance:none) {
+@supports (-moz-appearance: none) {
   .itinerary_roadmap_line--walk {
     background-repeat: repeat-y;
   }
@@ -251,7 +251,7 @@ button.direction_shortcut {
 
 /* Mobile */
 
-@media (max-width: 640px){
+@media (max-width: 640px) {
   .itinerary_result {
     max-height: none;
 
@@ -284,21 +284,21 @@ button.direction_shortcut {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    box-shadow: rgba(0,0,0,.2) 0 2px 12px 0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 12px 0;
     position: fixed;
     bottom: 75px;
     right: 10px;
     font-size: 25px;
     opacity: 1;
-    transition: opacity .2s;
-    background: $action-blue-base url(../images/direction.svg) center no-repeat;
+    transition: opacity 0.2s;
+    background: $action-blue-base url(../../images/direction.svg) center no-repeat;
 
     &:not(:disabled):hover {
-      background: $action-blue-base url(../images/direction.svg) center no-repeat;
+      background: $action-blue-base url(../../images/direction.svg) center no-repeat;
     }
 
     /* Attempt to fix rare layout bug on iOS */
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
 
     .directions-open & {
       display: none;
@@ -311,7 +311,6 @@ button.direction_shortcut {
 
   // Step by step mobile view
   .itinerary_mobile_step_by_step {
-
     .floatingButton {
       margin-left: $spacing-s;
 

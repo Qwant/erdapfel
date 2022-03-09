@@ -32,7 +32,7 @@ const sassChunkConfig = () => {
           use: {
             loader: 'file-loader',
             options: {
-              name: `public/css/[name]-${compilationHash}.css`,
+              name: `public/build/css/[name]-${compilationHash}.css`,
             },
           },
         },

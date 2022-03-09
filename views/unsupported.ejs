@@ -5,7 +5,7 @@
     <title><%= _('Qwant Maps') %> - <%= _('Unsupported browser', 'unsupported') %></title>
     <meta name="description" content="<%= _('The map that respects your privacy') %>">
     <meta name='viewport' content="width=device-width,initial-scale=1"/>
-    <link href='./statics/css/unsupported.css' rel='stylesheet'/>
+    <link href='./statics/build/css/unsupported-<%= config.compilationHash %>.css' rel='stylesheet'/>
   </head>
   <body class="unsupported">
     <div class="unsupported-dialog">
@@ -21,5 +21,9 @@
         <a class="unsupported-browserLink safari" href="https://www.apple.com/safari/">Safari</a>
       </form>
     </div>
+    <script>
+      <%- `window.__config = ${JSON.stringify(config,
+        (k,v) => k==='server' ? undefined : v)};` %>
+    </script>
   </body>
 </html>
