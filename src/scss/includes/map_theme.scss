@@ -1,9 +1,9 @@
 .mapboxgl-ctrl-top-left,
 .mapboxgl-ctrl-top-right,
 .mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right  {
-  position:absolute;
-  pointer-events:none;
+.mapboxgl-ctrl-bottom-right {
+  position: absolute;
+  pointer-events: none;
 }
 
 .mapboxgl-ctrl-bottom-right {
@@ -44,7 +44,6 @@
   }
 
   &.map_bottom_button_group {
-
     // Since there's no DIV container for the two zoom buttons,
     // each button has a box-shadow placed at z-index: -1 using an :after pseudo attribute,
     // so the shadow of the second button doesn't overlap the first button
@@ -68,13 +67,15 @@
 
     .map-button--zoomIn {
       border-radius: 4px 4px 0 0;
-      &, &:after {
+      &,
+      &:after {
         border-bottom: 1px solid $grey-light;
       }
     }
 
     .map-button--zoomOut {
-      &, &:after {
+      &,
+      &:after {
         border-radius: 0 0 4px 4px;
       }
     }
@@ -102,7 +103,8 @@
   margin: 0 $spacing-m $spacing-s 0;
 }
 
-.mapboxgl-ctrl-geolocate::-moz-focus-inner { /* ff rotating outline fix */
+.mapboxgl-ctrl-geolocate::-moz-focus-inner {
+  /* ff rotating outline fix */
   border: 0;
 }
 
@@ -115,11 +117,11 @@
   width: 30px;
   height: 30px;
   display: block;
-  background: url("../images/map/compass.svg") no-repeat center;
+  background: url('../../images/map/compass.svg') no-repeat center;
 }
 
 .map_control__compass__icon--mobile:after {
-  background: url("../images/map/compass_red.svg") no-repeat center;
+  background: url('../../images/map/compass_red.svg') no-repeat center;
 }
 
 .mapboxgl-ctrl-top-right {
@@ -171,7 +173,7 @@
   @include card_shadow();
 }
 
-@media(max-width: 640px) {
+@media (max-width: 640px) {
   .map_control__scale_attribute_container {
     background: none;
     position: fixed;
@@ -240,7 +242,8 @@
         width: 20px;
         top: 0;
         left: 0;
-        background: url('../images/feather/info.svg') no-repeat center center rgba(255,255,255,0.9);
+        background: url('../../images/feather/info.svg') no-repeat center center
+          rgba(255, 255, 255, 0.9);
       }
 
       &.mapboxgl-compact-show {
@@ -317,7 +320,7 @@
       position: relative;
       bottom: 10px;
       opacity: 1;
-      transition: opacity .2s;
+      transition: opacity 0.2s;
 
       &.hidden {
         opacity: 0;

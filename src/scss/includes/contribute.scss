@@ -14,15 +14,14 @@
   background-size: cover;
 
   .contribute--osm & {
-    background-image: url("../images/openstreetmap.png");
+    background-image: url('../../images/openstreetmap.png');
   }
 
   .contribute--pj & {
-    background-image: url("../images/pagesjaunes.svg");
+    background-image: url('../../images/pagesjaunes.svg');
   }
 
   .contribute--ta & {
-    background-image: url("../images/tripadvisor.svg");
+    background-image: url('../../images/tripadvisor.svg');
   }
 }
-

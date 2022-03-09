@@ -30,7 +30,10 @@
         &::before {
           content: '';
           position: absolute;
-          top: 0; right: 10px; bottom: 0; left: 10px;
+          top: 0;
+          right: 10px;
+          bottom: 0;
+          left: 10px;
           z-index: -1;
           margin: -1px;
           height: 50px;
@@ -43,7 +46,10 @@
           // cover the ::before pseudo-elem
           content: '';
           position: absolute;
-          top: 0; right: 10px; bottom: 0; left: 10px;
+          top: 0;
+          right: 10px;
+          bottom: 0;
+          left: 10px;
           z-index: -1;
           height: 48px;
           border-radius: 50px;
@@ -59,7 +65,7 @@
           display: flex;
           align-items: center;
           height: 48px;
-         }
+        }
 
         input:valid ~ .direction-field-clear {
           margin-top: $spacing-xxs;
@@ -87,11 +93,11 @@
       }
 
       .direction-icon-origin {
-        background-image: url('../images/direction_icons/origin.svg');
+        background-image: url('../../images/direction_icons/origin.svg');
       }
 
       .direction-icon-destination {
-        background-image: url('../images/direction_icons/pin.svg');
+        background-image: url('../../images/direction_icons/pin.svg');
       }
     }
 
@@ -99,22 +105,22 @@
       &:focus {
         ~ .direction-icon-block {
           .direction-icon-origin {
-            background-image: url('../images/direction_icons/origin-focus.svg');
+            background-image: url('../../images/direction_icons/origin-focus.svg');
           }
 
           .direction-icon-destination {
-            background-image: url('../images/direction_icons/pin-focus.svg');
+            background-image: url('../../images/direction_icons/pin-focus.svg');
           }
         }
       }
       &.valid {
         ~ .direction-icon-block {
           .direction-icon-origin {
-            background-image: url('../images/direction_icons/origin-active.svg');
+            background-image: url('../../images/direction_icons/origin-active.svg');
           }
 
           .direction-icon-destination {
-            background-image: url('../images/direction_icons/pin-active.svg');
+            background-image: url('../../images/direction_icons/pin-active.svg');
           }
         }
       }
