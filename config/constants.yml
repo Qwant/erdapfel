@@ -43,17 +43,21 @@ localizedUrls:
     contributing: https://github.com/Qwant/qwantmaps/blob/master/contributing.md
     helpGeolocation: https://help.qwant.com/en/docs/maps/activation-of-geolocation-after-denied-access/
     helpEditData: https://help.qwant.com/en/docs/maps/how-to-add-or-modify-data/
+    helpHistory: https://help.qwant.com/en/docs/maps/about-your-search-history-on-qwant-maps/
     reportBug: https://about.qwant.com/en/contact#contact
   fr:
     helpGeolocation: https://help.qwant.com/docs/maps/activation-de-la-geolocalisation-apres-refus/
     helpEditData: https://help.qwant.com/docs/maps/comment-ajouter-ou-modifier-des-donnees/
+    helpHistory: https://help.qwant.com/docs/maps/a-propos-de-votre-historique-de-recherche-sur-qwant-maps/
     reportBug: https://about.qwant.com/fr/contact#contact
   de:
     helpGeolocation: https://help.qwant.com/de/docs/maps/aktivierung-der-standorterfassung-nach-ablehnung/
     helpEditData: https://help.qwant.com/de/docs/maps/wie-kann-ich-daten-hinzufuegen-oder-bearbeiten/
+    helpHistory: https://help.qwant.com/de/docs/maps/uber-ihren-suchverlauf-auf-qwant-maps/
   it:
     helpGeolocation: https://help.qwant.com/it/docs/maps/attivazione-della-geolocalizzazione-dopo-il-rifiuto/
     helpEditData: https://help.qwant.com/it/docs/maps/come-aggiungere-o-modificare-dati/
+    helpHistory: https://help.qwant.com/it/docs/maps/la-tua-cronologia-di-ricerca-su-qwant-maps/
 
 # Map
 map:
