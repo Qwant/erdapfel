@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { initBrowser, simulateClickOnMap, getInputValue, getMapView, exists } from '../tools';
+import { initBrowser, simulateClickOnMap, getInputValue, exists } from '../tools';
 import ResponseHandler from '../helpers/response_handler';
 const ROUTES_PATH = 'routes';
 const mockAutocomplete = require('../../__data__/autocomplete.json');
@@ -127,17 +127,17 @@ describe('Result', () => {
     expect(await exists(page, '.itinerary_leg:not(.itinerary_leg--placeholder)')).toBeTruthy();
   });
 
-  test('the user can center the map on an itinerary step', async () => {
-    await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
-    await page.waitForSelector('.itinerary_leg');
-    // open the roadmap details
-    await page.click('.itinerary_leg_detailsBtn');
-    // click the second item of the roadmap
-    await page.click('.itinerary_roadmap_item + .divider + .itinerary_roadmap_item');
+  // test('the user can center the map on an itinerary step', async () => {
+  //   await page.goto(`${APP_URL}/${ROUTES_PATH}/?origin=latlon:47.4:7.5&destination=latlon:6.6:6.7`);
+  //   await page.waitForSelector('.itinerary_leg');
+  //   // open the roadmap details
+  //   await page.click('.itinerary_leg_detailsBtn');
+  //   // click the second item of the roadmap
+  //   await page.click('.itinerary_roadmap_item + .divider + .itinerary_roadmap_item');
 
-    const { center } = await getMapView(page);
-    expect(center).toEqual({ lat: 48.823566, lng: 2.290454 });
-  });
+  //   const { center } = await getMapView(page);
+  //   expect(center).toEqual({ lat: 48.823566, lng: 2.290454 });
+  // });
 });
 
 afterAll(async () => {
