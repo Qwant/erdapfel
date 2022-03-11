@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const poiMock = require('../../__data__/poi.json');
 
 import ResponseHandler from '../helpers/response_handler';
@@ -99,11 +103,11 @@ describe('Side effects', () => {
     await page.goto(`${APP_URL}/place/${poiMock.id}`);
     await page.waitForSelector('.poiTitle');
     await page.evaluate(() => {
-      window.MAP_MOCK.flyTo({ center: { lat: 0, lng: 0 }, zoom: 10 });
+      window.map.mb.flyTo({ center: { lat: 0, lng: 0 }, zoom: 10 });
     });
     await page.click('.poi_panel__content .poiItem');
     const center = await page.evaluate(() => {
-      return window.MAP_MOCK.getCenter();
+      return window.map.mb.getCenter();
     });
     expect(center).toEqual({
       lng: poiMock.geometry.coordinates[0],

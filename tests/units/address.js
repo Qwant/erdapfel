@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { normalize } from '../../src/libs/address';
 
 describe('Address utils', () => {

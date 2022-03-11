@@ -96,7 +96,7 @@ test('remove favorite using favorite panel', async () => {
 test('center map after a favorite poi click', async () => {
   await page.goto(APP_URL);
   await page.evaluate(() => {
-    window.MAP_MOCK.flyTo({ center: { lat: 10, lng: 0 }, zoom: 10 });
+    window.map.mb.flyTo({ center: { lat: 10, lng: 0 }, zoom: 10 });
   });
   const favoritePoiCoordinates = { lat: 43.5, lng: 7.18 };
   await storePoi(page, { coords: favoritePoiCoordinates });

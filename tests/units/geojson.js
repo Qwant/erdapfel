@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { poiToGeoJSON, poisToGeoJSON } from '../../src/libs/geojson';
 import IdunnPOI from '../../src/adapters/poi/idunn_poi';
 const mockPoi1 = require('../__data__/poi.json');

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import '../__mocks__/xml_http_mock';
 import Ajax from '../../src/libs/ajax';
 

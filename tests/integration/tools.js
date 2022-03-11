@@ -70,7 +70,7 @@ export async function simulateClickOnMapPoi(page, poi) {
   await page.evaluate(clickedFeature => {
     window.map.clickOnMap({}, clickedFeature);
   }, mapPoiMock);
-  const mockPoiBounds = await page.$('#mock_poi').then(e => e.boundingBox());
+  const mockPoiBounds = { x: 10, y: 20 };
   // Click on the top-left corner
   await page.mouse.click(mockPoiBounds.x, mockPoiBounds.y);
 }
@@ -81,8 +81,8 @@ export async function getInputValue(page, selector) {
 
 export async function getMapView(page) {
   return await page.evaluate(() => ({
-    center: window.MAP_MOCK.getCenter(),
-    zoom: window.MAP_MOCK.getZoom(),
+    center: window.map.mb.getCenter(),
+    zoom: window.map.mb.getZoom(),
   }));
 }
 

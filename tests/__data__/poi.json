@@ -9,7 +9,7 @@
     "subclass_name": "museum",
     "type" : "poi",
     "geometry": {
-        "coordinates": [2.3265827716099623, 48.859917803575875],
+        "coordinates": [2.326582771609992, 48.85991780357588],
         "type": "Point"
     },
     "address": {
