@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import Panel from 'src/components/ui/Panel';
 import { Stack, Box, Flex, Switch, Text, IconEmpty } from '@qwant/qwant-ponents';
+import { useI18n } from 'src/hooks';
 import {
   setHistoryEnabled,
   getHistoryEnabled,
@@ -20,6 +21,7 @@ import classnames from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 
 const HistoryPanel = () => {
+  const { getLocalizedUrl } = useI18n();
   const [isChecked, setIsChecked] = useState(getHistoryEnabled());
   const now = useMemo(() => new Date(), []);
   const lastMidnight = new Date().setUTCHours(0, 0, 0, 0);
@@ -268,7 +270,11 @@ const HistoryPanel = () => {
                 'history panel'
               )}
           &nbsp;
-          {!isChecked && <a href="@TODO">{_('Learn more')}</a>}
+          {!isChecked && (
+            <a href={getLocalizedUrl('helpHistory')} target="_blank" rel="noopener noreferrer">
+              {_('Learn more')}
+            </a>
+          )}
         </Text>
         <Box className="history_panel_switch">
           <Switch
@@ -282,7 +288,11 @@ const HistoryPanel = () => {
       </Flex>
       {isChecked && (
         <Box className="history_panel_links">
-          {isChecked && <a href="@TODO">{_('Learn more')}</a>}
+          {isChecked && (
+            <a href={getLocalizedUrl('helpHistory')} target="_blank" rel="noopener noreferrer">
+              {_('Learn more')}
+            </a>
+          )}
           {isChecked && historyLength() > 0 && (
             <a
               href="#"

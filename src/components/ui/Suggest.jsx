@@ -84,7 +84,7 @@ const Suggest = ({
     isOpen,
     outputNode,
   ]);
-  const { _ } = useI18n();
+  const { _, getLocalizedUrl } = useI18n();
   const dropDownContent = useRef();
 
   const close = useCallback(() => {
@@ -118,8 +118,9 @@ const Suggest = ({
                   'history'
                 )}{' '}
                 <a
-                  href="@TODO"
+                  href={getLocalizedUrl('helpHistory')}
                   target="_blank"
+                  rel="noopener noreferrer"
                   onMouseDown={e => {
                     e.preventDefault();
                   }}
@@ -415,8 +416,9 @@ const Suggest = ({
                     'suggest'
                   )}{' '}
                   <a
-                    href="@TODO"
+                    href={getLocalizedUrl('helpHistory')}
                     target="_blank"
+                    rel="noopener noreferrer"
                     onMouseDown={e => {
                       e.preventDefault();
                     }}
