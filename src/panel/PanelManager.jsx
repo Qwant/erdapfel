@@ -5,7 +5,7 @@ import HistoryPanel from './history/HistoryPanel';
 import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
-import DirectionPanel from 'src/panel/direction/DirectionPanel';
+import Directions from 'src/panel/direction/Directions';
 import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen, unListen } from 'src/libs/customEvents';
@@ -163,17 +163,13 @@ const PanelManager = ({ router }) => {
     });
 
     if (directionConf.enabled) {
-      const isPublicTransportActive =
-        (directionConf.publicTransport && directionConf.publicTransport.enabled) ||
-        parseQueryString(document.location.search)['pt'] === 'true';
-
       router.addRoute('Routes', '/routes(?:/?)(.*)', (routeParams, options) => {
         const params = parseQueryString(routeParams);
-        params.details = params.details === 'true';
+        params.activeDetails = params.details === 'true';
         params.activeRouteId = Number(params.selected) || 0;
         setPanelOptions({
-          ActivePanel: DirectionPanel,
-          options: { ...params, ...options, isPublicTransportActive },
+          ActivePanel: Directions,
+          options: { ...params, ...options },
           panelSize: 'default',
         });
       });

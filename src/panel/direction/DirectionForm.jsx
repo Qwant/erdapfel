@@ -1,29 +1,27 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import DirectionInput from './DirectionInput';
 import VehicleSelector from './VehicleSelector';
 import { Divider } from 'src/components/ui';
 import { IconArrowUpDown } from 'src/components/ui/icons';
 import { Button } from '@qwant/qwant-ponents';
+import * as address from 'src/libs/address';
+import { getInputValue } from 'src/libs/suggest';
+import { isNullOrEmpty } from 'src/libs/object';
 import { useI18n, useDevice } from 'src/hooks';
+import { DirectionContext } from './directionStore';
 
-const DirectionForm = ({
-  isLoading,
-  origin,
-  destination,
-  onChangeDirectionPoint,
-  onReversePoints,
-  vehicles,
-  onSelectVehicle,
-  activeVehicle,
-  isInitializing,
-  originInputText,
-  destinationInputText,
-}) => {
+const DirectionForm = ({ onReversePoints, onSelectVehicle, isInitializing }) => {
   const { _ } = useI18n();
   const { isMobile } = useDevice();
   const originRef = useRef(null);
   const destinationRef = useRef(null);
+  const {
+    state: { origin, destination, vehicles, vehicle, isLoading },
+    setPoint,
+  } = useContext(DirectionContext);
+  const [originInputText, setOriginInputText] = useState('');
+  const [destinationInputText, setDestinationInputText] = useState('');
 
   useEffect(() => {
     if (isMobile || isInitializing) {
@@ -45,6 +43,44 @@ const DirectionForm = ({
     }, 0);
   };
 
+  const onChangePoint = which => (value, point) => {
+    if (which === 'origin') {
+      setOriginInputText(value);
+    } else {
+      setDestinationInputText(value);
+    }
+    if (point || value === '') {
+      setPoint(which, point);
+    }
+  };
+
+  const setText = useCallback((which, point) => {
+    const setter = which === 'origin' ? setOriginInputText : setDestinationInputText;
+
+    async function fetchAddress(poi) {
+      poi.address = await address.fetch(poi);
+      setter(getInputValue(poi));
+    }
+
+    if (point) {
+      if (point.type === 'geoloc') {
+        setter(point.name);
+      } else if (isNullOrEmpty(point.address)) {
+        fetchAddress(point);
+      } else {
+        setter(getInputValue(point));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    setText('origin', origin);
+  }, [origin, setText]);
+
+  useEffect(() => {
+    setText('destination', destination);
+  }, [destination, setText]);
+
   return (
     <div className="direction-form">
       <form className="direction-fields" noValidate>
@@ -55,7 +91,7 @@ const DirectionForm = ({
             point={origin}
             otherPoint={destination}
             pointType="origin"
-            onChangePoint={(input, point) => onChangeDirectionPoint('origin', input, point)}
+            onChangePoint={onChangePoint('origin')}
             ref={originRef}
             withGeoloc={destination ? destination.type !== 'geoloc' : true}
           />
@@ -66,7 +102,7 @@ const DirectionForm = ({
             point={destination}
             otherPoint={origin}
             pointType="destination"
-            onChangePoint={(input, point) => onChangeDirectionPoint('destination', input, point)}
+            onChangePoint={onChangePoint('destination')}
             ref={destinationRef}
             withGeoloc={origin ? origin.type !== 'geoloc' : true}
           />
@@ -85,7 +121,7 @@ const DirectionForm = ({
       </form>
       <VehicleSelector
         vehicles={vehicles}
-        activeVehicle={activeVehicle}
+        activeVehicle={vehicle}
         onSelectVehicle={onSelectVehicle}
       />
     </div>
@@ -93,17 +129,9 @@ const DirectionForm = ({
 };
 
 DirectionForm.propTypes = {
-  isLoading: PropTypes.bool,
-  origin: PropTypes.object,
-  destination: PropTypes.object,
-  onChangeDirectionPoint: PropTypes.func.isRequired,
   onReversePoints: PropTypes.func.isRequired,
-  vehicles: PropTypes.array.isRequired,
   onSelectVehicle: PropTypes.func.isRequired,
-  activeVehicle: PropTypes.string.isRequired,
   isInitializing: PropTypes.bool,
-  originInputText: PropTypes.string,
-  destinationInputText: PropTypes.string,
 };
 
 export default DirectionForm;
