@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 14:48+0100\n"
-"PO-Revision-Date: 2022-03-09 14:48+0100\n"
+"PO-Revision-Date: 2022-03-14 09:31+0100\n"
 "Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
 "Language: fr\n"
@@ -1839,8 +1839,8 @@ msgstr "Vider mon historique de recherche Qwant Maps"
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95286
 #: public/build/javascript/bundle.js:95292
-msgid "This action cannot be reversed"
-msgstr "Cette action ne peut pas être annulée."
+msgid "This action cannot be reversed."
+msgstr "Avec cette action, tout votre historique de recherche sera perdu."
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95288
 #: public/build/javascript/bundle.js:95294
