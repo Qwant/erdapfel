@@ -30,7 +30,7 @@ const openPopup = url => {
   window.open(url, '', style);
 };
 
-const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => {}, children }) => {
+const ShareMenu = ({ url, scrollableParent = 'body', onShare = () => undefined, children }) => {
   const [opened, setOpened] = useState(false);
   const [copied, setCopied] = useState(false);
   const [top, setTop] = useState(0);

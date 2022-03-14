@@ -9,7 +9,9 @@ import { fire, listen } from 'src/libs/customEvents';
 const WAIT_BEFORE_DISPLAY = 350;
 const WAIT_BEFORE_CLOSE = 350;
 
-function PoiPopup() {}
+function PoiPopup() {
+  return undefined;
+}
 
 PoiPopup.prototype.init = function (map) {
   this.map = map;

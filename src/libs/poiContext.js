@@ -2,7 +2,7 @@ import React, { useState, createContext } from 'react';
 
 export const PoiContext = createContext({
   activePoi: null,
-  setActivePoi: () => {},
+  setActivePoi: () => undefined,
 });
 
 export const PoiProvider = ({ children }) => {

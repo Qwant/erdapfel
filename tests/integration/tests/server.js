@@ -162,7 +162,7 @@ describe('Full text queries (?q= param)', () => {
       .expect(307)
       .expect(res => {
         const redirectUrl = res.get('Location');
-        const [_, poiID] = /\/place\/([^?]*)/.exec(redirectUrl) || [];
+        const [, poiID] = /\/place\/([^?]*)/.exec(redirectUrl) || [];
         if (poiID !== 'addr:4.359352;43.84274')
           throw new Error(`Bad POI redirection ${redirectUrl}`);
       })

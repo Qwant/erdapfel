@@ -3,7 +3,9 @@ import Error from './../adapters/error';
 
 const systemConfigs = nconf.get().system;
 
-function Ajax() {}
+function Ajax() {
+  return undefined;
+}
 
 Ajax.get = (url, data, options, headers = {}) => {
   return query(url, data, 'GET', options, headers);

@@ -52,7 +52,7 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
     const cachePromise = new Promise(resolve => {
       resolve(bragiCache[cacheKey]);
     });
-    cachePromise.abort = () => {};
+    cachePromise.abort = () => undefined;
     return cachePromise;
   }
   /* ajax */

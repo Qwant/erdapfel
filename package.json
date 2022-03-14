@@ -21,10 +21,10 @@
     "prebuild": "npm run build:clean && npm run create-compilation-hash",
     "prewatch": "npm run build:clean && npm run create-compilation-hash",
     "prepare": "if [ \"$IGNORE_PREPARE\" != true ]; then node build/before_build.js; fi",
-    "lint": "eslint src bin build tests --ext '.js,.jsx'",
-    "lint-fix": "eslint --fix src bin build tests --ext '.js,.jsx'",
-    "prettier:check": "prettier --check '{src,bin,build,tests}/**/*.{js,jsx}'",
-    "prettier:write": "prettier --write '{src,bin,build,tests}/**/*.{js,jsx}'",
+    "lint": "eslint src bin build tests --ext '.js,.jsx,.ts,.tsx'",
+    "lint-fix": "eslint --fix src bin build tests --ext '.js,.jsx,.ts,.tsx'",
+    "prettier:check": "prettier --check '{src,bin,build,tests}/**/*.{js,jsx,ts,tsx}'",
+    "prettier:write": "prettier --write '{src,bin,build,tests}/**/*.{js,jsx,ts,tsx}'",
     "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript"
   },
   "repository": {
@@ -46,6 +46,8 @@
     "@svgr/webpack": "^5.5.0",
     "@types/react": "^16.14.23",
     "@types/react-dom": "^16.9.14",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
     "autoprefixer": "^9.7.5",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.0.4",

@@ -5,11 +5,14 @@
     "jest": true,
     "node": true
   },
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "settings": {
     "react": {
@@ -36,20 +39,16 @@
       "functions": "never"
     }],
     "comma-style": ["error", "last"],
-    "no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
-      }
-    ],
     "prefer-const": ["error"],
     "no-var": "error",
     "eqeqeq": "error",
     "object-shorthand": "error",
     "react/prop-types": 0,
     "react/jsx-curly-brace-presence": ["error", "never"],
-    "jsx-quotes": ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "@typescript-eslint/no-var-requires": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   },
   "overrides": [
     {

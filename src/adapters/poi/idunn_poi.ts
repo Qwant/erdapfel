@@ -4,15 +4,14 @@ import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
 import { normalize as normalizeAddress } from '../../libs/address';
-import type { components } from '../../../@types/schema';
-import type { BlockTypes } from '../../../@types/blocks';
+import { components } from '../../../@types/schema';
 
 const serviceConfig = nconf.get().services;
 const LNG_INDEX = 0;
 const LAT_INDEX = 1;
 
 export default class IdunnPoi extends Poi {
-  blocks?: BlockTypes[];
+  blocks?: components['schemas']['Place']['blocks'] & { type?: string }[];
   localName?: string;
   meta?: components['schemas']['PlaceMeta'];
   //TODO
@@ -34,7 +33,10 @@ export default class IdunnPoi extends Poi {
 
     this.blocksByType = {};
     if (this.blocks) {
-      this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({ [b.type as string]: b })));
+      this.blocksByType = Object.assign(
+        {},
+        ...this.blocks.map(b => ({ [(b?.type ?? '') as string]: b }))
+      );
       const imagesBlock = this.blocksByType.images;
       if (imagesBlock && imagesBlock.images.length > 0) {
         this.titleImageUrl = imagesBlock.images[0].url;
