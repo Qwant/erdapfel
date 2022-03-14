@@ -10,6 +10,7 @@ import {
   Stack,
 } from '@qwant/qwant-ponents';
 import React, { useEffect, useState } from 'react';
+import { fire } from 'src/libs/customEvents';
 
 import { useDatepickerDates } from './useDatepickerDates';
 import { ReservationComposer } from './ReservationComposer';
@@ -95,6 +96,16 @@ export function Reservation({ mobile, url: baseUrl }) {
     }
     setInitialLoading(false);
   }, [initialLoading]);
+
+  useEffect(() => {
+    if (mobile) {
+      if (showPicker) {
+        fire('set_panel_fixed');
+      } else {
+        fire('unset_panel_fixed');
+      }
+    }
+  }, [showPicker, mobile]);
 
   return (
     <Box mt="xl" pb="l">

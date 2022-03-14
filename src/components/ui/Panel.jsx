@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { fire } from 'src/libs/customEvents';
+import { fire, listen, unListen } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
 import { CloseButton, FloatingItems } from 'src/components/ui';
@@ -75,10 +75,14 @@ class Panel extends React.Component {
       height: this.getHeight(),
       translateY: this.getInitialTranslateY(),
     };
+    this.isPanelFixed = false;
   }
 
   componentDidMount() {
     window.addEventListener('resize', this.handleViewportResize);
+
+    this.panelSetFixedHandler = listen('set_panel_fixed', this.onPanelSetFixed);
+    this.panelUnsetFixedHandler = listen('unset_panel_fixed', this.onPanelUnsetFixed);
 
     // A rerender may be required to fit the panel height to its content
     this.forceUpdate();
@@ -113,7 +117,17 @@ class Panel extends React.Component {
     this.updateMobileMapUI({ closing: true });
     this.removeListeners();
     window.removeEventListener('resize', this.handleViewportResize);
+    unListen(this.panelSetFixedHandler);
+    unListen(this.panelUnsetFixedHandler);
   }
+
+  onPanelSetFixed = () => {
+    this.setState({ isPanelFixed: true });
+  };
+
+  onPanelUnsetFixed = () => {
+    this.setState({ isPanelFixed: false });
+  };
 
   handleViewportResize = () => {
     this.setState({ height: this.getHeight() });
@@ -187,6 +201,14 @@ class Panel extends React.Component {
    * @param {MouseEvent|TouchEvent} e event
    */
   move = event => {
+    /*
+      This flag prevent any move of the panel 
+      (useful when there are multiple scrolling areas)
+    */
+    if (this.state.isPanelFixed) {
+      return;
+    }
+
     const clientY = getEventClientY(event);
     const visibleHeight = Math.ceil(window.innerHeight - clientY + this.startClientYOffset);
     const { scrollTop } = this.panelContentRef.current;
