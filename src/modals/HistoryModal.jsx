@@ -27,7 +27,7 @@ const HistoryModal = ({ status, onClose, onAccept }) => {
     CLEAR: {
       icon: <IconEmpty width={20} fill={GREY_DARK} className="historyModalIcon" />,
       title: _('Clear all my Qwant Maps history', 'history'),
-      text: _('This action cannot be reversed', 'history'),
+      text: _('With this action, all your search history will be lost.', 'history'),
       button1: _('Cancel', 'history'),
       button2: _('Clear my history', 'history'),
       className: 'modal__history__delete',
