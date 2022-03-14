@@ -1811,11 +1811,6 @@ msgstr ""
 msgid "Clear all my Qwant Maps history"
 msgstr ""
 
-#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95286
-#: public/build/javascript/bundle.js:95292
-msgid "This action cannot be reversed"
-msgstr ""
-
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95288
 #: public/build/javascript/bundle.js:95294
 msgid "Clear my history"

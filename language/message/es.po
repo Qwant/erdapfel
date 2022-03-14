@@ -1833,11 +1833,6 @@ msgstr "Desactivar mi historial"
 msgid "Clear all my Qwant Maps history"
 msgstr "Borrar todo mi historial de Qwant Maps"
 
-#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95286
-#: public/build/javascript/bundle.js:95292
-msgid "This action cannot be reversed"
-msgstr "Esta acción no puede ser revertida"
-
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:95288
 #: public/build/javascript/bundle.js:95294
 msgid "Clear my history"
