@@ -10,7 +10,7 @@ import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { isNullOrEmpty } from 'src/libs/object';
-import { PanelContext } from 'src/libs/panelContext.js';
+import { PanelContext } from 'src/libs/panelContext';
 import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar';
 import Survey from 'src/components/Survey';

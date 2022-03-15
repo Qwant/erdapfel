@@ -10,7 +10,7 @@ import DirectionApi, { modes } from 'src/adapters/direction_api';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Error from 'src/adapters/error';
-import Poi from 'src/adapters/poi/poi.js';
+import Poi from 'src/adapters/poi/poi';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import * as address from 'src/libs/address';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';

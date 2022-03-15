@@ -1,4 +1,8 @@
-import { clearStore, initBrowser, getMapView, exists } from '../tools';
+/**
+ * @jest-environment jsdom
+ */
+
+import { clearStore, initBrowser, exists } from '../tools';
 import { storePoi } from '../favorites_tools';
 import AutocompleteHelper from '../helpers/autocomplete';
 import ResponseHandler from '../helpers/response_handler';
@@ -92,7 +96,6 @@ test('keyboard navigation', async () => {
   const expectedLabelName = mockAutocomplete.features[1].properties.geocoding.name;
 
   expect(searchValue.trim()).toEqual(expectedLabelName);
-
   /* got to last item */
   for (let i = 0; i < SUGGEST_MAX_ITEMS - 2; i++) {
     await autocompleteHelper.pressDown();
@@ -138,19 +141,6 @@ test('mouse navigation', async () => {
   const selectedSearchValue = await autocompleteHelper.getSearchInputValue();
   const expectedLabelName = mockAutocomplete.features[0].properties.geocoding.name;
   expect(selectedSearchValue).toEqual(expectedLabelName);
-});
-
-test('move and zoom map when selecting a suggestion', async () => {
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
-  await page.goto(APP_URL);
-  const { center: previousCenter } = await getMapView(page);
-  await autocompleteHelper.typeAndWait('Hello');
-  await page.click('.autocomplete_suggestions li:nth-child(3)');
-  const { center, zoom } = await getMapView(page);
-  const [expectedLng, expectedLat] = mockAutocomplete.features[2].geometry.coordinates;
-  expect(center).not.toEqual(previousCenter);
-  expect(center).toEqual({ lat: expectedLat, lng: expectedLng });
-  expect(zoom).toEqual(16.5);
 });
 
 // @TODO: When a 'bbox' parameter is present in a suggestion, it's used

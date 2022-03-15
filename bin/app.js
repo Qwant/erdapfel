@@ -91,7 +91,7 @@ function App(config) {
     expressStaticGzip(path.join(publicDir), {
       fallthrough: false,
       maxAge: config.statics.maxAge,
-      setHeaders: (res, path, _stat) => {
+      setHeaders: (res, path) => {
         if (path.endsWith('/favicon.png') || path.match(/logo_\d+.png$/)) {
           /* Chrome Mobile reloads favicon on each map move */
           res.set('Cache-Control', 'public, max-age=300');
@@ -103,17 +103,17 @@ function App(config) {
   router.use('/style.json', compression(), ...new mapStyle(config, constants));
 
   if (config.server.enablePrometheus) {
-    router.get('/metrics', (req, res) => {
+    router.get('/metrics', (_req, res) => {
       res.set('Content-Type', promRegistry.contentType);
       res.end(promRegistry.metrics());
     });
   } else {
-    router.get('/metrics', (req, res) => {
+    router.get('/metrics', (_req, res) => {
       res.sendStatus(404);
     });
   }
 
-  router.get('/unsupported', (req, res) => {
+  router.get('/unsupported', (_req, res) => {
     res.render('unsupported', { config: { ...config, compilationHash } });
   });
 
@@ -124,7 +124,7 @@ function App(config) {
 
   router.get('/*', redirectUnsupported, fullTextQuery, preFetchPoi, ogMeta, (req, res) => {
     const disableMenuRule = config.server.disableBurgerMenu.clientRule;
-    const { server: _droppedServerConfig, ...appConfig } = config;
+    const { ...appConfig } = config;
     const regexpRule = new RegExp(`[?&]client=${disableMenuRule}`);
 
     let localAppConfig = appConfig;
@@ -169,7 +169,7 @@ function App(config) {
 
   app.use(config.server.routerBaseUrl, router);
 
-  app.use((err, req, res, _next) => {
+  app.use((err, req, res) => {
     finalhandler(req, res, {
       onerror: req.logger.error({ err }),
     })(err);

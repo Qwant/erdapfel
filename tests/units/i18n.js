@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 /* globals _ */
 import I18n from '../../src/libs/i18n';
 const i18nData = require('../__data__/i18n').i18nData;

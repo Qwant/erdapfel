@@ -270,7 +270,7 @@ class Panel extends React.Component {
    * Triggered on mouse up of the panel resizer
    * @param {MouseEvent|TouchEvent} event
    */
-  stopResize = _ => {
+  stopResize = () => {
     this.removeListeners();
     const rect = this.panelDOMElement.getBoundingClientRect();
     this.stopHeight = window.innerHeight - rect.top;

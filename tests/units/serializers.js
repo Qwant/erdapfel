@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import getReqSerializer from '../../bin/serializers/request';
 import defaultConfig from '../../config/default_config.yml';
 

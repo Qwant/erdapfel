@@ -36,7 +36,7 @@ export default class MobileCompassControl {
       position => {
         this._map.flyTo({ center: [position.coords.longitude, position.coords.latitude] });
       },
-      () => {},
+      () => undefined,
       { maximumAge: 10000 }
     );
   }

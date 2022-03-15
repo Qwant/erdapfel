@@ -10,5 +10,6 @@ module.exports = {
   transform: {
     '\\.yml$': 'yaml-jest',
     '\\.js?$': 'babel-jest',
+    '\\.ts?$': 'ts-jest',
   },
 };

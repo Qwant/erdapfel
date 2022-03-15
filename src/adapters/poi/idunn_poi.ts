@@ -4,17 +4,27 @@ import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
 import { normalize as normalizeAddress } from '../../libs/address';
+import { components } from '../../../@types/schema';
 
 const serviceConfig = nconf.get().services;
 const LNG_INDEX = 0;
 const LAT_INDEX = 1;
 
 export default class IdunnPoi extends Poi {
+  blocks?: components['schemas']['Place']['blocks'] & { type?: string }[];
+  localName?: string;
+  meta?: components['schemas']['PlaceMeta'];
+  //TODO
+  blocksByType?: any;
+  titleImageUrl?: string;
+  address?: components['schemas']['Address'];
+
   constructor(rawPoi) {
     const latLng = {
       lat: rawPoi.geometry.coordinates[LAT_INDEX],
       lng: rawPoi.geometry.coordinates[LNG_INDEX],
-    };
+    } as any; //TODO
+
     super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name);
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
@@ -23,14 +33,18 @@ export default class IdunnPoi extends Poi {
 
     this.blocksByType = {};
     if (this.blocks) {
-      this.blocksByType = Object.assign({}, ...this.blocks.map(b => ({ [b.type]: b })));
+      this.blocksByType = Object.assign(
+        {},
+        ...this.blocks.map(b => ({ [(b?.type ?? '') as string]: b }))
+      );
       const imagesBlock = this.blocksByType.images;
       if (imagesBlock && imagesBlock.images.length > 0) {
         this.titleImageUrl = imagesBlock.images[0].url;
       }
     }
 
-    this.address = normalizeAddress('idunn', rawPoi);
+    //TODO
+    this.address = normalizeAddress('idunn', rawPoi) as components['schemas']['Address'];
   }
 
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
@@ -64,7 +78,7 @@ export default class IdunnPoi extends Poi {
     }
   }
 
-  static async poiApiLoad(obj, options = {}) {
+  static async poiApiLoad(obj, options: any /* TODO */ = {}) {
     let rawPoi = null;
     const url = `${serviceConfig.idunn.url}/v1/places/${obj.id}`;
     let requestParams = {};

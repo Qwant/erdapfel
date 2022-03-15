@@ -380,6 +380,6 @@ const HistoryPanel = () => {
   );
 };
 
-listen('clear_history', () => {});
+listen('clear_history', () => undefined);
 
 export default HistoryPanel;

@@ -5,8 +5,12 @@ import { getLightBackground } from 'src/libs/colors';
 
 const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
-const PoiTitleImage = ({ poi, iconOnly }) => {
-  if (poi.titleImageUrl && !iconOnly) {
+type PoiTitleImageProps = {
+  poi: any;
+};
+
+const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => {
+  if (poi.titleImageUrl) {
     return (
       <div
         className="poiTitleImage poiTitleImage--image"

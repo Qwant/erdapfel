@@ -1,6 +1,10 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const poiMock = require('../../__data__/poi.json');
 import ResponseHandler from '../helpers/response_handler';
-import { initBrowser, clearStore, getMapView, exists, waitForAnimationEnd } from '../tools';
+import { initBrowser, clearStore, exists, waitForAnimationEnd } from '../tools';
 import { toggleFavoritePanel, storePoi, getFavorites } from '../favorites_tools';
 
 let browser;
@@ -91,20 +95,6 @@ test('remove favorite using favorite panel', async () => {
   await page.click('.favorite_panel__item__delete');
 
   expect(await exists(page, '.favorite_panel__container__empty')).toBeTruthy();
-});
-
-test('center map after a favorite poi click', async () => {
-  await page.goto(APP_URL);
-  await page.evaluate(() => {
-    window.MAP_MOCK.flyTo({ center: { lat: 10, lng: 0 }, zoom: 10 });
-  });
-  const favoritePoiCoordinates = { lat: 43.5, lng: 7.18 };
-  await storePoi(page, { coords: favoritePoiCoordinates });
-  await toggleFavoritePanel(page);
-  await page.waitForSelector('.favorite_panel__item__title');
-  await page.click('.favorite_panel__item__title');
-  const { center } = await getMapView(page);
-  expect(center).toEqual(favoritePoiCoordinates);
 });
 
 afterEach(async () => {

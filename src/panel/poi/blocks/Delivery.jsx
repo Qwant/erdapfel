@@ -9,7 +9,7 @@ const modes = ['click_and_collect', 'delivery', 'takeaway'];
 const getActiveModes = delivery =>
   Object.entries(delivery || {})
     .filter(([mode]) => modes.includes(mode))
-    .filter(([_mode, value]) => value === 'yes');
+    .filter(([, value]) => value === 'yes');
 
 const DeliveryBlock = ({ block }) => {
   const { _ } = useI18n();

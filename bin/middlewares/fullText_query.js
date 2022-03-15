@@ -24,7 +24,7 @@ module.exports = function (config) {
   // @TODO: import it from client lib src/libs/url_utils.js when possible
   const removeNullEntries = obj =>
     Object.entries(obj)
-      .filter(([_key, value]) => value !== null && value !== undefined)
+      .filter(([, value]) => value !== null && value !== undefined)
       .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
 
   async function getRedirectUrl(req, res) {

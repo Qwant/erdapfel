@@ -113,7 +113,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     ...this.getMapInitOptions({ locationHash, bbox }),
   });
   // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
-  this.mb.setPadding = this.mb.setPadding || (() => {});
+  this.mb.setPadding = this.mb.setPadding || (() => undefined);
   this.mb.setPadding(getCurrentMapPaddings());
 
   this.popup.init(this.mb);
@@ -133,7 +133,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   this.DOUBLE_TAP_DELAY_MS = 300;
   this.lastDoubleTapTimeStamp = 0;
   this.lastTouchEndTimeStamp = 0;
-  this.mb.on('touchend', _e => {
+  this.mb.on('touchend', () => {
     const timeStamp = Date.now();
     // maybe we should also check the distance between the two touch events…
     if (timeStamp - this.lastTouchEndTimeStamp < this.DOUBLE_TAP_DELAY_MS) {
