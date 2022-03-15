@@ -180,11 +180,13 @@
     left: 0;
     bottom: 0;
     width: auto;
-    height: 48px;
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
     z-index: 1;
+    height: 20px !important;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    font-size: 10px;
 
     .mapboxgl-ctrl.map_control__scale {
       background: none;
@@ -236,7 +238,6 @@
       }
 
       .mapboxgl-ctrl-attrib-button {
-        top: auto;
         right: auto;
         height: 20px;
         width: 20px;
