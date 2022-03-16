@@ -135,7 +135,14 @@ const mainJsChunkConfig = buildMode => {
         },
         {
           test: /\.(ts|tsx)$/,
-          use: [{ loader: 'ts-loader' }],
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                configFile: path.resolve(__dirname, '../tsconfig.json'),
+              },
+            },
+          ],
         },
         {
           test: /\.(css|scss)$/,
