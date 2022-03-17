@@ -139,7 +139,7 @@ const mainJsChunkConfig = buildMode => {
             {
               loader: 'ts-loader',
               options: {
-                configFile: path.resolve(__dirname, '../tsconfig.json'),
+                configFile: path.join(__dirname, '..', 'tsconfig.json'),
               },
             },
           ],
