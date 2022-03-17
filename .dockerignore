@@ -11,3 +11,4 @@
 !language/
 !package*.json
 !babel.config.js
+!tsconfig.json
