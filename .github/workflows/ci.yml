@@ -28,7 +28,10 @@ jobs:
         run: TEST=true npm run build -- --mode=production
 
       - name: Run coverage
-        run: npm run ts-coverage
+        run: npm run ts:coverage
+      
+      - name: Run ts/js files count
+        run: npm run ts:count
 
       - name: Run linter
         run: npm run lint
