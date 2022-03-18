@@ -4,62 +4,62 @@
  */
 
 export interface paths {
-  "/v1/places": {
+  '/v1/places': {
     /** Get all places in a bounding box. */
-    get: operations["get_places_bbox_v1_places_get"];
+    get: operations['get_places_bbox_v1_places_get'];
   };
-  "/v1/places/latlon:{lat}:{lon}": {
+  '/v1/places/latlon:{lat}:{lon}': {
     /** Find the closest place to a point. */
-    get: operations["get_place_latlon_v1_places_latlon__lat___lon__get"];
+    get: operations['get_place_latlon_v1_places_latlon__lat___lon__get'];
   };
-  "/v1/places/{id}": {
+  '/v1/places/{id}': {
     /** Main handler that returns the requested place. */
-    get: operations["get_place_v1_places__id__get"];
+    get: operations['get_place_v1_places__id__get'];
   };
-  "/v1/categories": {
+  '/v1/categories': {
     /** List all available categories. */
-    get: operations["get_all_categories_v1_categories_get"];
+    get: operations['get_all_categories_v1_categories_get'];
   };
-  "/v1/reverse/{lat}:{lon}": {
+  '/v1/reverse/{lat}:{lon}': {
     /** Find the closest address to a point. */
-    get: operations["closest_address_v1_reverse__lat___lon__get"];
+    get: operations['closest_address_v1_reverse__lat___lon__get'];
   };
-  "/v1/directions/{f_lon},{f_lat};{t_lon},{t_lat}": {
+  '/v1/directions/{f_lon},{f_lat};{t_lon},{t_lat}': {
     /** Get directions to get from a point to another. */
-    get: operations["get_directions_with_coordinates_v1_directions__f_lon___f_lat___t_lon___t_lat__get"];
+    get: operations['get_directions_with_coordinates_v1_directions__f_lon___f_lat___t_lon___t_lat__get'];
   };
-  "/v1/directions": {
+  '/v1/directions': {
     /** Get directions to get from a places to another. */
-    get: operations["get_directions_v1_directions_get"];
+    get: operations['get_directions_v1_directions_get'];
   };
-  "/v1/autocomplete": {
-    get: operations["get_autocomplete_response_v1_autocomplete_get"];
-    post: operations["get_autocomplete_response_v1_autocomplete_post"];
+  '/v1/autocomplete': {
+    get: operations['get_autocomplete_response_v1_autocomplete_get'];
+    post: operations['get_autocomplete_response_v1_autocomplete_post'];
   };
-  "/v1/search": {
+  '/v1/search': {
     /**
      * Perform a query which is intended to display a relevant result directly (as
      * opposed to `autocomplete` which gives a list of plausible results).
      *
      * Similarly to `instant_answer`, the result will need some quality checks.
      */
-    get: operations["search_v1_search_get"];
+    get: operations['search_v1_search_get'];
     /**
      * Perform a query which is intended to display a relevant result directly (as
      * opposed to `autocomplete` which gives a list of plausible results).
      *
      * Similarly to `instant_answer`, the result will need some quality checks.
      */
-    post: operations["search_v1_search_post"];
+    post: operations['search_v1_search_post'];
   };
-  "/v1/redirect": {
+  '/v1/redirect': {
     /**
      * Redirect to the same page as provided URL which must have been provided by
      * Idunn together with an hash value.
      */
-    get: operations["follow_redirection_v1_redirect_get"];
+    get: operations['follow_redirection_v1_redirect_get'];
   };
-  "/v1/instant_answer": {
+  '/v1/instant_answer': {
     /**
      * Perform a query with result intended to be displayed as an instant answer
      * on *qwant.com*.
@@ -67,7 +67,7 @@ export interface paths {
      * This should not be confused with "Get Places Bbox" as this endpoint will
      * run more restrictive checks on its results.
      */
-    get: operations["get_instant_answer_v1_instant_answer_get"];
+    get: operations['get_instant_answer_v1_instant_answer_get'];
   };
 }
 
@@ -80,7 +80,7 @@ export interface components {
        * @default accessibility
        * @enum {string}
        */
-      type?: "accessibility";
+      type?: 'accessibility';
       /** Wheelchair */
       wheelchair: string;
       /** Toilets Wheelchair */
@@ -96,12 +96,12 @@ export interface components {
       label?: string;
       /** Housenumber */
       housenumber?: string;
-      street?: components["schemas"]["Street"];
+      street?: components['schemas']['Street'];
       /** Postcode */
       postcode?: string;
       /** Admins */
-      admins?: components["schemas"]["AdministrativeRegion"][];
-      admin?: components["schemas"]["AdministrativeRegionContext"];
+      admins?: components['schemas']['AdministrativeRegion'][];
+      admin?: components['schemas']['AdministrativeRegionContext'];
       /** Country Code */
       country_code?: string;
     };
@@ -129,7 +129,7 @@ export interface components {
        * Categories
        * @description All available categories
        */
-      categories: components["schemas"]["CategoryDescription"][];
+      categories: components['schemas']['CategoryDescription'][];
     };
     /** AssociatedAdmin */
     AssociatedAdmin: {
@@ -145,14 +145,14 @@ export interface components {
       name: string;
       /** Zip Codes */
       zip_codes: string[];
-      coord: components["schemas"]["Coord"];
+      coord: components['schemas']['Coord'];
       /** Bbox */
       bbox?: [number, number, number, number];
-      zone_type?: components["schemas"]["ZoneType"];
+      zone_type?: components['schemas']['ZoneType'];
       /** Parent Id */
       parent_id?: string;
       /** Codes */
-      codes: components["schemas"]["Code"][];
+      codes: components['schemas']['Code'][];
     };
     /** Beer */
     Beer: {
@@ -166,9 +166,9 @@ export interface components {
        * @default brewery
        * @enum {string}
        */
-      type?: "brewery";
+      type?: 'brewery';
       /** Beers */
-      beers: components["schemas"]["Beer"][];
+      beers: components['schemas']['Beer'][];
     };
     /**
      * Category
@@ -176,94 +176,94 @@ export interface components {
      * @enum {string}
      */
     Category:
-      | "leisure"
-      | "health"
-      | "pharmacy"
-      | "supermarket"
-      | "education"
-      | "service"
-      | "fitness"
-      | "food_french"
-      | "food_pizza"
-      | "food_burger"
-      | "food_italian"
-      | "food_kebab"
-      | "food_sandwich"
-      | "food_asian"
-      | "food_japanese"
-      | "food_chinese"
-      | "food_crepe"
-      | "food_indian"
-      | "food_thai"
-      | "food_vietnamese"
-      | "food_lebanese"
-      | "parking"
-      | "pitch"
-      | "restaurant"
-      | "place_of_worship"
-      | "recycling"
-      | "bicycle_parking"
-      | "school"
-      | "park"
-      | "shop_bakery"
-      | "shop_clothes"
-      | "toilets"
-      | "sports_centre"
-      | "shop_hairdresser"
-      | "shop_supermarket"
-      | "bank"
-      | "fast_food"
-      | "bar"
-      | "hotel"
-      | "historic"
-      | "post_office"
-      | "fuel"
-      | "community_centre"
-      | "shop_convenience"
-      | "shop_car"
-      | "kindergarten"
-      | "camp_site"
-      | "station"
-      | "shop_butcher"
-      | "attraction"
-      | "health_hospital"
-      | "health_doctors"
-      | "health_dentist"
-      | "health_physiotherapist"
-      | "health_pharmacy"
-      | "health_psychotherapist"
-      | "library"
-      | "police"
-      | "shop_optician"
-      | "grave_yard"
-      | "shop_beauty"
-      | "shop_florist"
-      | "fire_station"
-      | "shop_shoes"
-      | "shop_doityourself"
-      | "bicycle_rental"
-      | "museum"
-      | "shop_jewelry"
-      | "shop_newsagent"
-      | "swimming"
-      | "shop_furniture"
-      | "shop_books"
-      | "shop_laundry"
-      | "shop_sports"
-      | "theatre"
-      | "veterinary"
-      | "shop_greengrocer"
-      | "shop_garden_centre"
-      | "arts_centre"
-      | "shop_electronics"
-      | "cinema"
-      | "university"
-      | "shop_travel_agency"
-      | "sport_other"
-      | "administrative"
-      | "post_box"
-      | "playground"
-      | "marketplace";
+      | 'leisure'
+      | 'health'
+      | 'pharmacy'
+      | 'supermarket'
+      | 'education'
+      | 'service'
+      | 'fitness'
+      | 'food_french'
+      | 'food_pizza'
+      | 'food_burger'
+      | 'food_italian'
+      | 'food_kebab'
+      | 'food_sandwich'
+      | 'food_asian'
+      | 'food_japanese'
+      | 'food_chinese'
+      | 'food_crepe'
+      | 'food_indian'
+      | 'food_thai'
+      | 'food_vietnamese'
+      | 'food_lebanese'
+      | 'parking'
+      | 'pitch'
+      | 'restaurant'
+      | 'place_of_worship'
+      | 'recycling'
+      | 'bicycle_parking'
+      | 'school'
+      | 'park'
+      | 'shop_bakery'
+      | 'shop_clothes'
+      | 'toilets'
+      | 'sports_centre'
+      | 'shop_hairdresser'
+      | 'shop_supermarket'
+      | 'bank'
+      | 'fast_food'
+      | 'bar'
+      | 'hotel'
+      | 'historic'
+      | 'post_office'
+      | 'fuel'
+      | 'community_centre'
+      | 'shop_convenience'
+      | 'shop_car'
+      | 'kindergarten'
+      | 'camp_site'
+      | 'station'
+      | 'shop_butcher'
+      | 'attraction'
+      | 'health_hospital'
+      | 'health_doctors'
+      | 'health_dentist'
+      | 'health_physiotherapist'
+      | 'health_pharmacy'
+      | 'health_psychotherapist'
+      | 'library'
+      | 'police'
+      | 'shop_optician'
+      | 'grave_yard'
+      | 'shop_beauty'
+      | 'shop_florist'
+      | 'fire_station'
+      | 'shop_shoes'
+      | 'shop_doityourself'
+      | 'bicycle_rental'
+      | 'museum'
+      | 'shop_jewelry'
+      | 'shop_newsagent'
+      | 'swimming'
+      | 'shop_furniture'
+      | 'shop_books'
+      | 'shop_laundry'
+      | 'shop_sports'
+      | 'theatre'
+      | 'veterinary'
+      | 'shop_greengrocer'
+      | 'shop_garden_centre'
+      | 'arts_centre'
+      | 'shop_electronics'
+      | 'cinema'
+      | 'university'
+      | 'shop_travel_agency'
+      | 'sport_other'
+      | 'administrative'
+      | 'post_box'
+      | 'playground'
+      | 'marketplace';
     /** CategoryDescription */
     CategoryDescription: {
       /**
@@ -298,7 +298,7 @@ export interface components {
        * @default contact
        * @enum {string}
        */
-      type?: "contact";
+      type?: 'contact';
       /** Url */
       url: string;
       /** Email */
@@ -309,10 +309,10 @@ export interface components {
      * @description An enumeration.
      * @enum {string}
      */
-    ContainerType: "recyclable" | "glass" | "unknown";
+    ContainerType: 'recyclable' | 'glass' | 'unknown';
     /** Context */
     Context: {
-      explanation?: components["schemas"]["Explanation"];
+      explanation?: components['schemas']['Explanation'];
     };
     /** Coord */
     Coord: {
@@ -328,9 +328,9 @@ export interface components {
        * @default covid19
        * @enum {string}
        */
-      type?: "covid19";
-      status: components["schemas"]["CovidOpeningStatus"];
-      opening_hours?: components["schemas"]["OpeningHourBlock"];
+      type?: 'covid19';
+      status: components['schemas']['CovidOpeningStatus'];
+      opening_hours?: components['schemas']['OpeningHourBlock'];
       /** Note */
       note?: string;
       /** Contribute Url */
@@ -341,12 +341,7 @@ export interface components {
      * @description An enumeration.
      * @enum {string}
      */
-    CovidOpeningStatus:
-      | "open_as_usual"
-      | "open"
-      | "maybe_open"
-      | "closed"
-      | "unknown";
+    CovidOpeningStatus: 'open_as_usual' | 'open' | 'maybe_open' | 'closed' | 'unknown';
     /** Cuisine */
     Cuisine: {
       /** Name */
@@ -359,9 +354,9 @@ export interface components {
        * @default cuisine
        * @enum {string}
        */
-      type?: "cuisine";
+      type?: 'cuisine';
       /** Cuisines */
-      cuisines: components["schemas"]["Cuisine"][];
+      cuisines: components['schemas']['Cuisine'][];
       /** Vegetarian */
       vegetarian: string;
       /** Vegan */
@@ -378,7 +373,7 @@ export interface components {
       /** Status */
       status: string;
       /** Opening Hours */
-      opening_hours: components["schemas"]["OpeningHoursType"][];
+      opening_hours: components['schemas']['OpeningHoursType'][];
     };
     /** DeliveryBlock */
     DeliveryBlock: {
@@ -387,17 +382,17 @@ export interface components {
        * @default delivery
        * @enum {string}
        */
-      type?: "delivery";
-      click_and_collect: components["schemas"]["DeliveryState"];
-      delivery: components["schemas"]["DeliveryState"];
-      takeaway: components["schemas"]["DeliveryState"];
+      type?: 'delivery';
+      click_and_collect: components['schemas']['DeliveryState'];
+      delivery: components['schemas']['DeliveryState'];
+      takeaway: components['schemas']['DeliveryState'];
     };
     /**
      * DeliveryState
      * @description An enumeration.
      * @enum {undefined}
      */
-    DeliveryState: "yes" | "unknown";
+    DeliveryState: 'yes' | 'unknown';
     /** DescriptionBlock */
     DescriptionBlock: {
       /**
@@ -405,10 +400,10 @@ export interface components {
        * @default description
        * @enum {string}
        */
-      type?: "description";
+      type?: 'description';
       /** Description */
       description: string;
-      source: components["schemas"]["DescriptionSources"];
+      source: components['schemas']['DescriptionSources'];
       /** Url */
       url?: string;
     };
@@ -419,7 +414,7 @@ export interface components {
        * @default event_description
        * @enum {string}
        */
-      type?: "event_description";
+      type?: 'event_description';
       /** Description */
       description?: string;
       /** Free Text */
@@ -434,11 +429,11 @@ export interface components {
      * @description An enumeration.
      * @enum {undefined}
      */
-    DescriptionSources: "osm" | "pagesjaunes" | "wikipedia";
+    DescriptionSources: 'osm' | 'pagesjaunes' | 'wikipedia';
     /** DirectionsData */
     DirectionsData: {
       /** Routes */
-      routes: components["schemas"]["DirectionsRoute"][];
+      routes: components['schemas']['DirectionsRoute'][];
       /** Message */
       message?: string;
       /** Code */
@@ -448,7 +443,7 @@ export interface components {
     DirectionsResponse: {
       /** Status */
       status: string;
-      data: components["schemas"]["DirectionsData"];
+      data: components['schemas']['DirectionsData'];
     };
     /** DirectionsRoute */
     DirectionsRoute: {
@@ -468,10 +463,10 @@ export interface components {
        */
       carbon?: number;
       /** Summary */
-      summary?: components["schemas"]["RouteSummaryPart"][];
-      price?: components["schemas"]["RoutePrice"];
+      summary?: components['schemas']['RouteSummaryPart'][];
+      price?: components['schemas']['RoutePrice'];
       /** Legs */
-      legs: components["schemas"]["RouteLeg"][];
+      legs: components['schemas']['RouteLeg'][];
       /**
        * Geometry
        * @description GeoJSON
@@ -490,7 +485,7 @@ export interface components {
       /** Description */
       description: string;
       /** Details */
-      details: components["schemas"]["Explanation"][];
+      details: components['schemas']['Explanation'][];
     };
     /** ExtraParams */
     ExtraParams: {
@@ -499,11 +494,11 @@ export interface components {
        * @description Restrict search inside of a polygon given in geojson format.
        * @example [object Object]
        */
-      shape?: components["schemas"]["geojson_pydantic__features__Feature"];
+      shape?: components['schemas']['geojson_pydantic__features__Feature'];
     };
     /** FeatureProperties */
     FeatureProperties: {
-      geocoding: components["schemas"]["GeocodingPlace"];
+      geocoding: components['schemas']['GeocodingPlace'];
     };
     /** FeedPublished */
     FeedPublished: {
@@ -557,50 +552,50 @@ export interface components {
       /** Level */
       level?: number;
       /** Administrative Regions */
-      administrative_regions: components["schemas"]["AssociatedAdmin"][];
+      administrative_regions: components['schemas']['AssociatedAdmin'][];
       /**
        * Poi Types
        * @default
        */
-      poi_types?: components["schemas"]["PoiType"][];
+      poi_types?: components['schemas']['PoiType'][];
       /**
        * Properties
        * @default
        */
-      properties?: components["schemas"]["GeocodingProperty"][];
-      address?: components["schemas"]["GeocodingPlace"];
+      properties?: components['schemas']['GeocodingProperty'][];
+      address?: components['schemas']['GeocodingPlace'];
       /**
        * Commercial Modes
        * @default
        */
-      commercial_modes?: components["schemas"]["CommercialMode"][];
+      commercial_modes?: components['schemas']['CommercialMode'][];
       /**
        * Comments
        * @default
        */
-      comments?: components["schemas"]["Comment"][];
+      comments?: components['schemas']['Comment'][];
       /**
        * Physical Modes
        * @default
        */
-      physical_modes?: components["schemas"]["PhysicalMode"][];
+      physical_modes?: components['schemas']['PhysicalMode'][];
       /**
        * Lines
        * @default
        */
-      lines?: components["schemas"]["Line"][];
+      lines?: components['schemas']['Line'][];
       /** Timezone */
       timezone?: string;
       /**
        * Codes
        * @default
        */
-      codes?: components["schemas"]["Code"][];
+      codes?: components['schemas']['Code'][];
       /**
        * Feed Publishers
        * @default
        */
-      feed_publishers?: components["schemas"]["FeedPublished"][];
+      feed_publishers?: components['schemas']['FeedPublished'][];
       /** Bbox */
       bbox?: [number, number, number, number];
       /**
@@ -623,7 +618,7 @@ export interface components {
        * @default grades
        * @enum {string}
        */
-      type?: "grades";
+      type?: 'grades';
       /** Total Grades Count */
       total_grades_count: number;
       /** Global Grade */
@@ -634,7 +629,7 @@ export interface components {
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
-      detail?: components["schemas"]["ValidationError"][];
+      detail?: components['schemas']['ValidationError'][];
     };
     /** IdunnAutocomplete */
     IdunnAutocomplete: {
@@ -647,18 +642,18 @@ export interface components {
        * Geocoding
        * @default [object Object]
        */
-      geocoding?: components["schemas"]["Geocoding"];
+      geocoding?: components['schemas']['Geocoding'];
       /**
        * Intentions
        * @description Intentions detected by NLU.
        */
-      intentions?: components["schemas"]["Intention"][];
+      intentions?: components['schemas']['Intention'][];
       /**
        * Features
        * @description Geographic places matching the query.
        * @default
        */
-      features?: components["schemas"]["idunn__geocoder__models__geocodejson__Feature"][];
+      features?: components['schemas']['idunn__geocoder__models__geocodejson__Feature'][];
     };
     /** Image */
     Image: {
@@ -678,9 +673,9 @@ export interface components {
        * @default images
        * @enum {string}
        */
-      type?: "images";
+      type?: 'images';
       /** Images */
-      images: components["schemas"]["Image"][];
+      images: components['schemas']['Image'][];
     };
     /** InformationBlock */
     InformationBlock: {
@@ -689,14 +684,14 @@ export interface components {
        * @default information
        * @enum {string}
        */
-      type?: "information";
+      type?: 'information';
       /** Blocks */
-      blocks: components["schemas"]["ServicesAndInformationBlock"][];
+      blocks: components['schemas']['ServicesAndInformationBlock'][];
     };
     /** InstantAnswerData */
     InstantAnswerData: {
-      query: components["schemas"]["InstantAnswerQuery"];
-      result: components["schemas"]["InstantAnswerResult"];
+      query: components['schemas']['InstantAnswerQuery'];
+      result: components['schemas']['InstantAnswerResult'];
     };
     /** InstantAnswerQuery */
     InstantAnswerQuery: {
@@ -712,7 +707,7 @@ export interface components {
        * @default success
        */
       status?: string;
-      data: components["schemas"]["InstantAnswerData"];
+      data: components['schemas']['InstantAnswerData'];
     };
     /** InstantAnswerResult */
     InstantAnswerResult: {
@@ -720,9 +715,9 @@ export interface components {
        * Places
        * @description List of relevant places to display on the instant answer. At most 1 place is returned if no broad intention has been detected.
        */
-      places: components["schemas"]["Place"][];
+      places: components['schemas']['Place'][];
       /** @description Data source for the returned place, or data provider for the list of results. This field is not provided when the instant answer relates to an admnistrative area or an address. */
-      source?: components["schemas"]["PoiSource"];
+      source?: components['schemas']['PoiSource'];
       /**
        * Intention Bbox
        * @description Bounding box where the results have been searched for, based on the detected intention. Not provided when no detected intention was used to fetch the results.
@@ -744,17 +739,17 @@ export interface components {
     };
     /** Intention */
     Intention: {
-      type: components["schemas"]["IntentionType"];
+      type: components['schemas']['IntentionType'];
       /**
        * Filter
        * @description Filter params that can be passed to /places endpoint
        */
-      filter: components["schemas"]["IntentionFilter"];
+      filter: components['schemas']['IntentionFilter'];
       /**
        * Description
        * @description Details about the detected intention, useful to format a human-readable description
        */
-      description: components["schemas"]["IntentionDescription"];
+      description: components['schemas']['IntentionDescription'];
     };
     /** IntentionDescription */
     IntentionDescription: {
@@ -762,7 +757,7 @@ export interface components {
       query?: string;
       /** Category */
       category?: string;
-      place?: components["schemas"]["idunn__geocoder__models__geocodejson__Feature"];
+      place?: components['schemas']['idunn__geocoder__models__geocodejson__Feature'];
     };
     /** IntentionFilter */
     IntentionFilter: {
@@ -780,7 +775,7 @@ export interface components {
      * @description An enumeration.
      * @enum {undefined}
      */
-    IntentionType: "address" | "brand" | "category" | "poi" | "any_place";
+    IntentionType: 'address' | 'brand' | 'category' | 'poi' | 'any_place';
     /** InternetAccessBlock */
     InternetAccessBlock: {
       /**
@@ -788,7 +783,7 @@ export interface components {
        * @default internet_access
        * @enum {string}
        */
-      type?: "internet_access";
+      type?: 'internet_access';
       /** Wifi */
       wifi: boolean;
     };
@@ -804,9 +799,9 @@ export interface components {
       color?: string;
       /** Text Color */
       text_color?: string;
-      commercial_mode?: components["schemas"]["CommercialMode"];
-      network?: components["schemas"]["Network"];
-      physical_modes?: components["schemas"]["PhysicalMode"];
+      commercial_mode?: components['schemas']['CommercialMode'];
+      network?: components['schemas']['Network'];
+      physical_modes?: components['schemas']['PhysicalMode'];
       /** Sort Order */
       sort_order?: number;
     };
@@ -831,7 +826,7 @@ export interface components {
     };
     /** Link */
     Link: {
-      site: components["schemas"]["Site"];
+      site: components['schemas']['Site'];
       /** Url */
       url: string;
     };
@@ -906,7 +901,7 @@ export interface components {
        * @default event_opening_dates
        * @enum {string}
        */
-      type?: "event_opening_dates";
+      type?: 'event_opening_dates';
       /**
        * Date Start
        * Format: date-time
@@ -920,7 +915,7 @@ export interface components {
       /** Space Time Info */
       space_time_info?: string;
       /** Timetable */
-      timetable: components["schemas"]["TimeTableItem"][];
+      timetable: components['schemas']['TimeTableItem'][];
     };
     /** OpeningHourBlock */
     OpeningHourBlock: {
@@ -929,7 +924,7 @@ export interface components {
        * @default opening_hours
        * @enum {string}
        */
-      type?: "opening_hours";
+      type?: 'opening_hours';
       /** Status */
       status: string;
       /** Next Transition Datetime */
@@ -941,7 +936,7 @@ export interface components {
       /** Raw */
       raw: string;
       /** Days */
-      days: components["schemas"]["DaysType"][];
+      days: components['schemas']['DaysType'][];
     };
     /** OpeningHoursType */
     OpeningHoursType: {
@@ -957,7 +952,7 @@ export interface components {
        * @default phone
        * @enum {string}
        */
-      type?: "phone";
+      type?: 'phone';
       /** Url */
       url: string;
       /** International Format */
@@ -988,31 +983,31 @@ export interface components {
       subclass_name?: string;
       /** Geometry */
       geometry?: { [key: string]: unknown };
-      address?: components["schemas"]["Address"];
+      address?: components['schemas']['Address'];
       /** Blocks */
-      blocks: (Partial<components["schemas"]["OpeningHourBlock"]> &
-        Partial<components["schemas"]["Covid19Block"]> &
-        Partial<components["schemas"]["PhoneBlock"]> &
-        Partial<components["schemas"]["InformationBlock"]> &
-        Partial<components["schemas"]["WebSiteBlock"]> &
-        Partial<components["schemas"]["ContactBlock"]> &
-        Partial<components["schemas"]["ServicesAndInformationBlock"]> &
-        Partial<components["schemas"]["AccessibilityBlock"]> &
-        Partial<components["schemas"]["InternetAccessBlock"]> &
-        Partial<components["schemas"]["BreweryBlock"]> &
-        Partial<components["schemas"]["ImagesBlock"]> &
-        Partial<components["schemas"]["GradesBlock"]> &
-        Partial<components["schemas"]["OpeningDayEvent"]> &
-        Partial<components["schemas"]["DescriptionEvent"]> &
-        Partial<components["schemas"]["CuisineBlock"]> &
-        Partial<components["schemas"]["Weather"]> &
-        Partial<components["schemas"]["RecyclingBlock"]> &
-        Partial<components["schemas"]["TransactionalBlock"]> &
-        Partial<components["schemas"]["SocialBlock"]> &
-        Partial<components["schemas"]["DescriptionBlock"]> &
-        Partial<components["schemas"]["DeliveryBlock"]> &
-        Partial<components["schemas"]["StarsBlock"]>)[];
-      meta: components["schemas"]["PlaceMeta"];
+      blocks: (Partial<components['schemas']['OpeningHourBlock']> &
+        Partial<components['schemas']['Covid19Block']> &
+        Partial<components['schemas']['PhoneBlock']> &
+        Partial<components['schemas']['InformationBlock']> &
+        Partial<components['schemas']['WebSiteBlock']> &
+        Partial<components['schemas']['ContactBlock']> &
+        Partial<components['schemas']['ServicesAndInformationBlock']> &
+        Partial<components['schemas']['AccessibilityBlock']> &
+        Partial<components['schemas']['InternetAccessBlock']> &
+        Partial<components['schemas']['BreweryBlock']> &
+        Partial<components['schemas']['ImagesBlock']> &
+        Partial<components['schemas']['GradesBlock']> &
+        Partial<components['schemas']['OpeningDayEvent']> &
+        Partial<components['schemas']['DescriptionEvent']> &
+        Partial<components['schemas']['CuisineBlock']> &
+        Partial<components['schemas']['Weather']> &
+        Partial<components['schemas']['RecyclingBlock']> &
+        Partial<components['schemas']['TransactionalBlock']> &
+        Partial<components['schemas']['SocialBlock']> &
+        Partial<components['schemas']['DescriptionBlock']> &
+        Partial<components['schemas']['DeliveryBlock']> &
+        Partial<components['schemas']['StarsBlock']>)[];
+      meta: components['schemas']['PlaceMeta'];
     };
     /** PlaceMeta */
     PlaceMeta: {
@@ -1046,12 +1041,12 @@ export interface components {
      * @description An enumeration.
      * @enum {string}
      */
-    PlaceType: "address" | "admin" | "poi" | "street";
+    PlaceType: 'address' | 'admin' | 'poi' | 'street';
     /** PlacesBboxResponse */
     PlacesBboxResponse: {
       /** Places */
       places: unknown[];
-      source: components["schemas"]["PoiSource"];
+      source: components['schemas']['PoiSource'];
       /**
        * Bbox
        * @description Minimal bbox containing all results. `null` if no result is found. May be larger than or outside of the original bbox passed in the query if `?extend_bbox=true` was set.
@@ -1069,7 +1064,7 @@ export interface components {
      * @description An enumeration.
      * @enum {string}
      */
-    PoiSource: "osm" | "pages_jaunes";
+    PoiSource: 'osm' | 'pages_jaunes';
     /** PoiType */
     PoiType: {
       /** Id */
@@ -1083,9 +1078,7 @@ export interface components {
      */
     Point: {
       /** Coordinates */
-      coordinates: Partial<
-        [Partial<number> & Partial<number>, Partial<number> & Partial<number>]
-      > &
+      coordinates: Partial<[Partial<number> & Partial<number>, Partial<number> & Partial<number>]> &
         Partial<
           [
             Partial<number> & Partial<number>,
@@ -1122,9 +1115,9 @@ export interface components {
        * @default recycling
        * @enum {string}
        */
-      type?: "recycling";
+      type?: 'recycling';
       /** Containers */
-      containers: components["schemas"]["RecyclingContainer"][];
+      containers: components['schemas']['RecyclingContainer'][];
     };
     /** RecyclingContainer */
     RecyclingContainer: {
@@ -1135,7 +1128,7 @@ export interface components {
       updated_at: string;
       /** Filling Level */
       filling_level: number;
-      type: components["schemas"]["ContainerType"];
+      type: components['schemas']['ContainerType'];
       /** Place Description */
       place_description: string;
     };
@@ -1157,17 +1150,17 @@ export interface components {
        * Steps
        * @default
        */
-      steps?: components["schemas"]["RouteStep"][];
+      steps?: components['schemas']['RouteStep'][];
       /**
        * Stops
        * @default
        */
-      stops?: components["schemas"]["TransportStop"][];
-      info?: components["schemas"]["TransportInfo"];
+      stops?: components['schemas']['TransportStop'][];
+      info?: components['schemas']['TransportInfo'];
       /** @default UNKNOW */
-      mode?: components["schemas"]["TransportMode"];
-      from?: components["schemas"]["TransportStop"];
-      to?: components["schemas"]["TransportStop"];
+      mode?: components['schemas']['TransportMode'];
+      from?: components['schemas']['TransportStop'];
+      to?: components['schemas']['TransportStop'];
     };
     /** RouteManeuver */
     RouteManeuver: {
@@ -1194,7 +1187,7 @@ export interface components {
     };
     /** RouteStep */
     RouteStep: {
-      maneuver: components["schemas"]["RouteManeuver"];
+      maneuver: components['schemas']['RouteManeuver'];
       /** Duration */
       duration: number;
       /** Distance */
@@ -1204,12 +1197,12 @@ export interface components {
        * @description GeoJSON
        */
       geometry: { [key: string]: unknown };
-      mode: components["schemas"]["TransportMode"];
+      mode: components['schemas']['TransportMode'];
     };
     /** RouteSummaryPart */
     RouteSummaryPart: {
-      mode: components["schemas"]["TransportMode"];
-      info?: components["schemas"]["TransportInfo"];
+      mode: components['schemas']['TransportMode'];
+      info?: components['schemas']['TransportInfo'];
       /**
        * Distance
        * @description distance in meters
@@ -1228,19 +1221,19 @@ export interface components {
        * @default services_and_information
        * @enum {string}
        */
-      type?: "services_and_information";
+      type?: 'services_and_information';
       /** Blocks */
-      blocks: (Partial<components["schemas"]["AccessibilityBlock"]> &
-        Partial<components["schemas"]["InternetAccessBlock"]> &
-        Partial<components["schemas"]["BreweryBlock"]> &
-        Partial<components["schemas"]["CuisineBlock"]>)[];
+      blocks: (Partial<components['schemas']['AccessibilityBlock']> &
+        Partial<components['schemas']['InternetAccessBlock']> &
+        Partial<components['schemas']['BreweryBlock']> &
+        Partial<components['schemas']['CuisineBlock']>)[];
     };
     /**
      * Site
      * @description An enumeration.
      * @enum {string}
      */
-    Site: "facebook" | "twitter" | "instagram" | "youtube";
+    Site: 'facebook' | 'twitter' | 'instagram' | 'youtube';
     /** SocialBlock */
     SocialBlock: {
       /**
@@ -1248,16 +1241,16 @@ export interface components {
        * @default social
        * @enum {string}
        */
-      type?: "social";
+      type?: 'social';
       /** Links */
-      links: components["schemas"]["Link"][];
+      links: components['schemas']['Link'][];
     };
     /**
      * StarsAvailable
      * @description An enumeration.
      * @enum {undefined}
      */
-    StarsAvailable: "yes" | "no";
+    StarsAvailable: 'yes' | 'no';
     /** StarsBlock */
     StarsBlock: {
       /**
@@ -1265,23 +1258,23 @@ export interface components {
        * @default stars
        * @enum {string}
        */
-      type?: "stars";
+      type?: 'stars';
       /** Ratings */
-      ratings: components["schemas"]["StarsDetails"][];
+      ratings: components['schemas']['StarsDetails'][];
     };
     /** StarsDetails */
     StarsDetails: {
-      has_stars: components["schemas"]["StarsAvailable"];
+      has_stars: components['schemas']['StarsAvailable'];
       /** Nb Stars */
       nb_stars?: number;
-      kind: components["schemas"]["StarsKind"];
+      kind: components['schemas']['StarsKind'];
     };
     /**
      * StarsKind
      * @description An enumeration.
      * @enum {undefined}
      */
-    StarsKind: "lodging" | "restaurant";
+    StarsKind: 'lodging' | 'restaurant';
     /** Street */
     Street: {
       /** Id */
@@ -1313,7 +1306,7 @@ export interface components {
        * @default transactional
        * @enum {string}
        */
-      type?: "transactional";
+      type?: 'transactional';
       /** Booking Url */
       booking_url?: string;
       /** Appointment Url */
@@ -1338,29 +1331,29 @@ export interface components {
      * @enum {string}
      */
     TransportMode:
-      | "WALK"
-      | "BICYCLE"
-      | "CAR"
-      | "BOAT"
-      | "PLANE"
-      | "TRAIN"
-      | "CARPOOL"
-      | "BUS"
-      | "BUS_CITY"
-      | "VTC"
-      | "TAXI"
-      | "BIKE"
-      | "TRAM"
-      | "CAR_RENTAL"
-      | "TRANSFERT"
-      | "SUBWAY"
-      | "SUBURBAN_TRAIN"
-      | "SEAPLANE"
-      | "HELICOPTER"
-      | "FUNICULAR"
-      | "SHUTTLE"
-      | "UNKNOW"
-      | "WAIT";
+      | 'WALK'
+      | 'BICYCLE'
+      | 'CAR'
+      | 'BOAT'
+      | 'PLANE'
+      | 'TRAIN'
+      | 'CARPOOL'
+      | 'BUS'
+      | 'BUS_CITY'
+      | 'VTC'
+      | 'TAXI'
+      | 'BIKE'
+      | 'TRAM'
+      | 'CAR_RENTAL'
+      | 'TRANSFERT'
+      | 'SUBWAY'
+      | 'SUBURBAN_TRAIN'
+      | 'SEAPLANE'
+      | 'HELICOPTER'
+      | 'FUNICULAR'
+      | 'SHUTTLE'
+      | 'UNKNOW'
+      | 'WAIT';
     /** TransportStop */
     TransportStop: {
       /** Id */
@@ -1378,7 +1371,7 @@ export interface components {
      * @description An enumeration.
      * @enum {string}
      */
-    Type: "house" | "poi" | "public_transport:stop_area" | "street" | "zone";
+    Type: 'house' | 'poi' | 'public_transport:stop_area' | 'street' | 'zone';
     /** ValidationError */
     ValidationError: {
       /** Location */
@@ -1393,7 +1386,7 @@ export interface components {
      * @description Control the verbosity of the output.
      * @enum {string}
      */
-    Verbosity: "long" | "short" | "list";
+    Verbosity: 'long' | 'short' | 'list';
     /** Weather */
     Weather: {
       /**
@@ -1401,7 +1394,7 @@ export interface components {
        * @default weather
        * @enum {string}
        */
-      type?: "weather";
+      type?: 'weather';
       /** Temperature */
       temperature?: number;
       /** Icon */
@@ -1414,7 +1407,7 @@ export interface components {
        * @default website
        * @enum {string}
        */
-      type?: "website";
+      type?: 'website';
       /**
        * Url
        * Format: uri
@@ -1429,14 +1422,14 @@ export interface components {
      * @enum {string}
      */
     ZoneType:
-      | "suburb"
-      | "city_district"
-      | "city"
-      | "state_district"
-      | "state"
-      | "country_region"
-      | "country"
-      | "non_administrative";
+      | 'suburb'
+      | 'city_district'
+      | 'city'
+      | 'state_district'
+      | 'state'
+      | 'country_region'
+      | 'country'
+      | 'non_administrative';
     /**
      * Feature
      * @description Feature Model
@@ -1445,12 +1438,12 @@ export interface components {
       /** Type */
       type?: string;
       /** Geometry */
-      geometry: Partial<components["schemas"]["Point"]> &
-        Partial<components["schemas"]["MultiPoint"]> &
-        Partial<components["schemas"]["LineString"]> &
-        Partial<components["schemas"]["MultiLineString"]> &
-        Partial<components["schemas"]["Polygon"]> &
-        Partial<components["schemas"]["MultiPolygon"]>;
+      geometry: Partial<components['schemas']['Point']> &
+        Partial<components['schemas']['MultiPoint']> &
+        Partial<components['schemas']['LineString']> &
+        Partial<components['schemas']['MultiLineString']> &
+        Partial<components['schemas']['Polygon']> &
+        Partial<components['schemas']['MultiPolygon']>;
       /** Properties */
       properties?: { [key: string]: unknown };
       /** Id */
@@ -1484,10 +1477,10 @@ export interface components {
       type?: string;
       /** Geometry */
       geometry: { [key: string]: unknown };
-      properties: components["schemas"]["FeatureProperties"];
+      properties: components['schemas']['FeatureProperties'];
       /** Distance */
       distance?: number;
-      context?: components["schemas"]["Context"];
+      context?: components['schemas']['Context'];
     };
   };
 }
@@ -1499,14 +1492,14 @@ export interface operations {
       query: {
         /** Format: left_lon,bottom_lat,right_lon,top_lat */
         bbox: string;
-        category?: components["schemas"]["Category"][];
+        category?: components['schemas']['Category'][];
         raw_filter?: string[];
         source?: string;
         /** Full text query */
         q?: string;
         size?: number;
         lang?: string;
-        verbosity?: components["schemas"]["Verbosity"];
+        verbosity?: components['schemas']['Verbosity'];
         extend_bbox?: boolean;
       };
     };
@@ -1514,7 +1507,7 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["PlacesBboxResponse"];
+          'application/json': components['schemas']['PlacesBboxResponse'];
         };
       };
       /** Client Error in query params */
@@ -1522,7 +1515,7 @@ export interface operations {
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
@@ -1536,20 +1529,20 @@ export interface operations {
       };
       query: {
         lang?: string;
-        verbosity?: components["schemas"]["Verbosity"];
+        verbosity?: components['schemas']['Verbosity'];
       };
     };
     responses: {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["Place"];
+          'application/json': components['schemas']['Place'];
         };
       };
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
@@ -1563,21 +1556,21 @@ export interface operations {
       query: {
         lang?: string;
         /** Restrict the type of documents to search in. */
-        type?: components["schemas"]["PlaceType"];
-        verbosity?: components["schemas"]["Verbosity"];
+        type?: components['schemas']['PlaceType'];
+        verbosity?: components['schemas']['Verbosity'];
       };
     };
     responses: {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["Place"];
+          'application/json': components['schemas']['Place'];
         };
       };
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
@@ -1588,7 +1581,7 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["AllCategoriesResponse"];
+          'application/json': components['schemas']['AllCategoriesResponse'];
         };
       };
     };
@@ -1602,20 +1595,20 @@ export interface operations {
       };
       query: {
         lang?: unknown;
-        verbosity?: components["schemas"]["Verbosity"];
+        verbosity?: components['schemas']['Verbosity'];
       };
     };
     responses: {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["Address"];
+          'application/json': components['schemas']['Address'];
         };
       };
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
@@ -1639,7 +1632,7 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["DirectionsResponse"];
+          'application/json': components['schemas']['DirectionsResponse'];
         };
       };
       /** Requested Path Not Allowed. */
@@ -1664,7 +1657,7 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["DirectionsResponse"];
+          'application/json': components['schemas']['DirectionsResponse'];
         };
       };
       /** Requested Path Not Allowed. */
@@ -1695,9 +1688,9 @@ export interface operations {
         /** Timeout for the queries to the geocoder. */
         timeout?: number;
         /** Filter on type of document. */
-        type?: components["schemas"]["Type"][];
+        type?: components['schemas']['Type'][];
         /** Filter on type of zone. */
-        zone_type?: components["schemas"]["ZoneType"][];
+        zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
         poi_type?: string[];
         /** Perform NLU analysis to extract location and intention from the request. */
@@ -1708,19 +1701,19 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["IdunnAutocomplete"];
+          'application/json': components['schemas']['IdunnAutocomplete'];
         };
       };
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ExtraParams"];
+        'application/json': components['schemas']['ExtraParams'];
       };
     };
   };
@@ -1748,9 +1741,9 @@ export interface operations {
         /** Timeout for the queries to the geocoder. */
         timeout?: number;
         /** Filter on type of document. */
-        type?: components["schemas"]["Type"][];
+        type?: components['schemas']['Type'][];
         /** Filter on type of zone. */
-        zone_type?: components["schemas"]["ZoneType"][];
+        zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
         poi_type?: string[];
         /** Perform NLU analysis to extract location and intention from the request. */
@@ -1761,19 +1754,19 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["IdunnAutocomplete"];
+          'application/json': components['schemas']['IdunnAutocomplete'];
         };
       };
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ExtraParams"];
+        'application/json': components['schemas']['ExtraParams'];
       };
     };
   };
@@ -1807,9 +1800,9 @@ export interface operations {
         /** Timeout for the queries to the geocoder. */
         timeout?: number;
         /** Filter on type of document. */
-        type?: components["schemas"]["Type"][];
+        type?: components['schemas']['Type'][];
         /** Filter on type of zone. */
-        zone_type?: components["schemas"]["ZoneType"][];
+        zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
         poi_type?: string[];
         /** Perform NLU analysis to extract location and intention from the request. */
@@ -1820,7 +1813,7 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["IdunnAutocomplete"];
+          'application/json': components['schemas']['IdunnAutocomplete'];
         };
       };
       /** Empty search provided */
@@ -1828,13 +1821,13 @@ export interface operations {
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ExtraParams"];
+        'application/json': components['schemas']['ExtraParams'];
       };
     };
   };
@@ -1868,9 +1861,9 @@ export interface operations {
         /** Timeout for the queries to the geocoder. */
         timeout?: number;
         /** Filter on type of document. */
-        type?: components["schemas"]["Type"][];
+        type?: components['schemas']['Type'][];
         /** Filter on type of zone. */
-        zone_type?: components["schemas"]["ZoneType"][];
+        zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
         poi_type?: string[];
         /** Perform NLU analysis to extract location and intention from the request. */
@@ -1881,7 +1874,7 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["IdunnAutocomplete"];
+          'application/json': components['schemas']['IdunnAutocomplete'];
         };
       };
       /** Empty search provided */
@@ -1889,13 +1882,13 @@ export interface operations {
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ExtraParams"];
+        'application/json': components['schemas']['ExtraParams'];
       };
     };
   };
@@ -1916,7 +1909,7 @@ export interface operations {
       /** Successful Response */
       307: {
         content: {
-          "application/json": unknown;
+          'application/json': unknown;
         };
       };
       /** Wrong URL hash. */
@@ -1926,7 +1919,7 @@ export interface operations {
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
@@ -1946,14 +1939,14 @@ export interface operations {
         user_country?: string;
       };
       header: {
-        "x-client-hash"?: string;
+        'x-client-hash'?: string;
       };
     };
     responses: {
       /** Details about place(s) to display */
       200: {
         content: {
-          "application/json": components["schemas"]["InstantAnswerResponse"];
+          'application/json': components['schemas']['InstantAnswerResponse'];
         };
       };
       /** No instant answer to display */
@@ -1961,11 +1954,9 @@ export interface operations {
       /** Validation Error */
       422: {
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };
   };
 }
-
-export interface external {}

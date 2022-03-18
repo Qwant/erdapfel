@@ -23,7 +23,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",

@@ -4,31 +4,41 @@ import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
 import { normalize as normalizeAddress } from '../../libs/address';
-import { components } from '../../../@types/schema';
+import { components } from '../../../@types/idunn';
 
 const serviceConfig = nconf.get().services;
-const LNG_INDEX = 0;
-const LAT_INDEX = 1;
 
 export default class IdunnPoi extends Poi {
   blocks?: components['schemas']['Place']['blocks'] & { type?: string }[];
   localName?: string;
   meta?: components['schemas']['PlaceMeta'];
-  //TODO
-  blocksByType?: any;
+  blocksByType: {
+    images?: {
+      images: { url: string }[];
+    };
+  };
   titleImageUrl?: string;
   address?: components['schemas']['Address'];
+  class_name?: string;
+  subclass_name?: string;
 
-  constructor(rawPoi) {
+  constructor(rawPoi: components['schemas']['Place']) {
     const latLng = {
-      lat: rawPoi.geometry.coordinates[LAT_INDEX],
-      lng: rawPoi.geometry.coordinates[LNG_INDEX],
-    } as any; //TODO
+      lat: (rawPoi?.geometry?.coordinates as number[])[1],
+      lng: (rawPoi?.geometry?.coordinates as number[])[0],
+    };
 
-    super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name);
+    super(
+      rawPoi.id,
+      rawPoi.name,
+      rawPoi.type,
+      latLng as any, // TODO: Check why lat/lng and not lat/lon
+      rawPoi.class_name,
+      rawPoi.subclass_name
+    );
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
-    this.bbox = rawPoi.geometry.bbox;
+    this.bbox = rawPoi?.geometry?.bbox as [number, number, number, number]; // TODO: Check if there is always a bbox on Idunn Place
     this.meta = rawPoi.meta || {};
 
     this.blocksByType = {};
@@ -43,20 +53,19 @@ export default class IdunnPoi extends Poi {
       }
     }
 
-    //TODO
     this.address = normalizeAddress('idunn', rawPoi) as components['schemas']['Address'];
   }
 
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
   static async poiCategoryLoad(bbox, size, category, query, extendBbox = false) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
-    const requestParams = { bbox, size, extend_bbox: extendBbox };
-    if (category) {
-      requestParams['category'] = category;
-    }
-    if (query) {
-      requestParams['q'] = query;
-    }
+    const requestParams = {
+      bbox,
+      size,
+      extend_bbox: extendBbox,
+      ...(category ? { category } : {}),
+      ...(query ? { q: query } : {}),
+    };
 
     try {
       const response = await Ajax.getLang(url, requestParams);
@@ -79,7 +88,7 @@ export default class IdunnPoi extends Poi {
   }
 
   static async poiApiLoad(obj, options: any /* TODO */ = {}) {
-    let rawPoi = null;
+    let rawPoi;
     const url = `${serviceConfig.idunn.url}/v1/places/${obj.id}`;
     let requestParams = {};
     if (options.simple) {
