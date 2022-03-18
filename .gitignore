@@ -16,6 +16,9 @@ public/mapstyle/
 #generated i18n messages
 public/message
 
+# Code coverage
+coverage-ts/
+
 bench/trace.json
 bench/report.json
 bench/results.har
