@@ -42,15 +42,7 @@ export default class Poi {
     this.bbox = bbox;
   }
 
-  static deserialize(raw: {
-    id: TPoi['id'];
-    name: TPoi['name'];
-    type: TPoi['type'];
-    latLon: TPoi['latLon'];
-    className: TPoi['className'];
-    subClassName: TPoi['subClassName'];
-    bbox: TPoi['bbox'];
-  }) {
+  static deserialize(raw: TPoi) {
     const { id, name, type, latLon, className, subClassName, bbox } = raw;
     return new Poi(id, name, type, latLon, className, subClassName, bbox);
   }
