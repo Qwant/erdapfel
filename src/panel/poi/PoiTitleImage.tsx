@@ -6,7 +6,12 @@ import { getLightBackground } from 'src/libs/colors';
 const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
 type PoiTitleImageProps = {
-  poi: any;
+  poi: {
+    className: string;
+    subClassName: string;
+    type: string;
+    titleImageUrl: string;
+  };
 };
 
 const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => {
@@ -19,7 +24,7 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => 
     );
   }
 
-  const icon = IconManager.get(poi) || defaultIcon;
+  const icon: { color: string; iconClass: string } = IconManager.get(poi) || defaultIcon;
   return (
     <div
       className="poiTitleImage"

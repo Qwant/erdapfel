@@ -25,7 +25,9 @@
     "lint-fix": "eslint --fix src bin build tests --ext '.js,.jsx,.ts,.tsx'",
     "prettier:check": "prettier --check '{src,bin,build,tests}/**/*.{js,jsx,ts,tsx}'",
     "prettier:write": "prettier --write '{src,bin,build,tests}/**/*.{js,jsx,ts,tsx}'",
-    "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript"
+    "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript",
+    "ts:coverage": "typescript-coverage-report",
+    "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm"
   },
   "repository": {
     "type": "git",
@@ -51,6 +53,7 @@
     "autoprefixer": "^9.7.5",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.0.4",
+    "cloc": "^2.9.0",
     "css-loader": "^5.2.7",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^6.15.0",
@@ -81,6 +84,7 @@
     "supertest": "^3.3.0",
     "ts-jest": "^27.1.3",
     "ts-loader": "^8.3.0",
+    "typescript-coverage-report": "^0.6.4",
     "url-loader": "^4.1.1",
     "url-search-params-polyfill": "^5.1.0",
     "webpack": "^4.42.1",
@@ -136,6 +140,13 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "typeCoverage": {
+    "ignoreFiles": [
+      "*/**/*.jsx",
+      "*/**/*.js"
+    ],
+    "atLeast": 80
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

@@ -1,11 +1,11 @@
 /**
  * simple Poi helper
  */
-import type { components } from '../../../@types/schema';
+import type { components } from '../../../@types/idunn';
 
 export const POI_TYPE = 'poi';
 
-type TPoi = {
+export type TPoi = {
   id?: string;
   name?: string;
   type?: string;
@@ -42,7 +42,7 @@ export default class Poi {
     this.bbox = bbox;
   }
 
-  static deserialize(raw) {
+  static deserialize(raw: TPoi) {
     const { id, name, type, latLon, className, subClassName, bbox } = raw;
     return new Poi(id, name, type, latLon, className, subClassName, bbox);
   }
