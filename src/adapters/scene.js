@@ -92,9 +92,9 @@ Scene.prototype.getMapInitOptions = function ({ locationHash, bbox }) {
 
 Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   window.times.initMapBox = Date.now();
-
+  const compilationHash = window.__config.compilationHash;
   setRTLTextPlugin(
-    `${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text.js`,
+    `${baseUrl}statics/build/javascript/map_plugins/mapbox-gl-rtl-text-${compilationHash}.js`,
     error => {
       if (error) {
         Error.send('scene', 'setRTLTextPlugin', 'Failed to load mapbox RTL plugin', error);
