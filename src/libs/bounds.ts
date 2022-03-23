@@ -1,3 +1,5 @@
+import { LngLatBounds } from 'mapbox-gl';
+
 export const boundsFromFlatArray = (coords = []) => {
   if (coords.length !== 4 || coords.some(coord => typeof coord !== 'number' || isNaN(coord))) {
     throw new Error(`Malformed bounds array: ${JSON.stringify(coords)}`);
@@ -11,7 +13,7 @@ export const boundsFromFlatArray = (coords = []) => {
 export const parseBboxString = bboxString =>
   boundsFromFlatArray(bboxString.split(',').map(coord => Number(coord)));
 
-export const boundsToString = llBounds =>
+export const boundsToString = (llBounds: LngLatBounds) =>
   llBounds
     .toArray()
     .reduce((flatArray, current) => flatArray.concat(current), []) // flatten

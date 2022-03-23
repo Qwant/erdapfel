@@ -46,6 +46,7 @@
     "@babel/runtime": "^7.9.0",
     "@mapbox/mapbox-gl-rtl-text": "^0.2.3",
     "@svgr/webpack": "^5.5.0",
+    "@types/mapbox-gl": "^1.13.1",
     "@types/react": "^16.14.23",
     "@types/react-dom": "^16.9.14",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
