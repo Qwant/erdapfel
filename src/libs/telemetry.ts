@@ -2,30 +2,31 @@ import Ajax from './ajax';
 import nconf from '@qwant/nconf-getter';
 import telemetryModule from '@qwant/telemetry';
 import Error from '../adapters/error';
+import { components } from '../../@types/idunn';
 
 const telemetry = nconf.get().telemetry;
 const system = nconf.get().system;
 const telemetryEventUrl = 'events';
 const uniqEventList: string[] = [];
 const events = {};
-
+const telemetryEvents: string[] = telemetryModule.events;
 /*
   This converts "/src/libs/telemetry.js" events into a map where you can use an event as follow:
   'app_start' event will be accessible like this "Telemetry.APP_START" and its value will be the
   original (so 'app_start').
 */
-telemetryModule.events.forEach(event => {
+telemetryEvents.forEach(event => {
   events[event.toUpperCase()] = event;
 });
 
-function addOnce(event: string) {
+const addOnce = (event: string) => {
   if (uniqEventList.indexOf(event) === -1) {
     uniqEventList.push(event);
     add(event);
   }
-}
+};
 
-function add(event: string, extra_data?: object) {
+const add = (event: string, extra_data?: object) => {
   if (!telemetry.enabled) {
     return;
   }
@@ -44,9 +45,25 @@ function add(event: string, extra_data?: object) {
   }
 
   return Ajax.post(telemetryUrl, data);
-}
+};
 
-function buildInteractionData({ source, template, id, zone, element, category }) {
+type InteractionDataProps = {
+  source: string;
+  template: string;
+  id: string;
+  zone: string;
+  element: string;
+  category: string;
+};
+
+const buildInteractionData = ({
+  source,
+  template,
+  id,
+  zone,
+  element,
+  category,
+}: InteractionDataProps) => {
   const data = {
     event: 'click',
     component: 'local',
@@ -61,16 +78,16 @@ function buildInteractionData({ source, template, id, zone, element, category })
   return {
     front_search_user_interaction_data: data,
   };
-}
+};
 
-function sendPoiEvent(poi, event, data) {
+const sendPoiEvent = (poi: components['schemas']['Place'], event: string, data: object) => {
   if (!poi.meta || !poi.meta.source) {
     return;
   }
 
   const eventName = `poi_${poi.meta?.source}_${event}`.toUpperCase();
   return add(events[eventName], data);
-}
+};
 
 export default {
   add,

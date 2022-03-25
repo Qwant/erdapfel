@@ -4,9 +4,12 @@ import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
 import { normalize as normalizeAddress } from '../../libs/address';
-import { components } from '../../../@types/idunn';
+import { operations, components } from '../../../@types/idunn';
 
 const serviceConfig = nconf.get().services;
+
+type APIGetPlacesPayload = operations['get_places_bbox_v1_places_get']['parameters']['query'];
+type APIGetPlacesResponse = operations['get_places_bbox_v1_places_get']['responses']['200']['content']['application/json'];
 
 export default class IdunnPoi extends Poi {
   blocks?: components['schemas']['Place']['blocks'] & { type?: string }[];
@@ -57,19 +60,28 @@ export default class IdunnPoi extends Poi {
   }
 
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
-  static async poiCategoryLoad(bbox, size, category, query, extendBbox = false) {
+  static async poiCategoryLoad(
+    bbox: APIGetPlacesPayload['bbox'],
+    size: APIGetPlacesPayload['size'],
+    category: APIGetPlacesPayload['category'],
+    q: APIGetPlacesPayload['q'],
+    extendBbox = false
+  ) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
+
     const requestParams = {
       bbox,
       size,
       extend_bbox: extendBbox,
       ...(category ? { category } : {}),
-      ...(query ? { q: query } : {}),
+      ...(q ? { q } : {}),
     };
 
     try {
-      const response = await Ajax.getLang(url, requestParams);
-      response.places = response.places.map(rawPoi => new IdunnPoi(rawPoi));
+      const response: APIGetPlacesResponse = await Ajax.getLang(url, requestParams);
+      response.places = (response.places as components['schemas']['Place'][]).map(
+        rawPoi => new IdunnPoi(rawPoi)
+      );
       return response;
     } catch (err) {
       if (err === 400 || err === 404) {
@@ -87,8 +99,18 @@ export default class IdunnPoi extends Poi {
     }
   }
 
-  static async poiApiLoad(obj, options: any /* TODO */ = {}) {
-    let rawPoi;
+  static async poiApiLoad(
+    obj: {
+      id?: string;
+      queryContext?: {
+        term: string;
+        ranking: number;
+        lang: string;
+        position: { lon: string; lat: string; zoom: string };
+      };
+    },
+    options: { simple?: boolean } = {}
+  ) {
     const url = `${serviceConfig.idunn.url}/v1/places/${obj.id}`;
     let requestParams = {};
     if (options.simple) {
@@ -96,7 +118,12 @@ export default class IdunnPoi extends Poi {
     }
     try {
       const headers = QueryContext.toHeaders(obj.queryContext);
-      rawPoi = await Ajax.getLang(url, requestParams, {}, headers);
+      const rawPoi: components['schemas']['Place'] = await Ajax.getLang(
+        url,
+        requestParams,
+        {},
+        headers
+      );
       return new IdunnPoi(rawPoi);
     } catch (err) {
       if (err === 404) {

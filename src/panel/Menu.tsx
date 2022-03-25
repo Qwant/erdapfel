@@ -15,7 +15,7 @@ export enum MenuType {
   PRODUCTS = 'products',
 }
 
-const Menu = () => {
+const Menu: React.FunctionComponent = () => {
   const {
     isMenuDrawerOpen,
     setMenuDrawerOpen,
@@ -24,11 +24,15 @@ const Menu = () => {
   } = useStore(state => state);
   const { isMobile } = useDevice();
   const { _ } = useI18n();
-  const displayProducts = useConfig('burgerMenu').products;
+  const {
+    burgerMenu: { products: displayProducts },
+  } = useConfig();
 
   const openMenuFromUrl = useCallback(
     (url: string) => {
-      const activeMenuDrawer = parseQueryString(getQueryString(url))['drawer'];
+      const activeMenuDrawer: MenuType | undefined = parseQueryString(getQueryString(url))[
+        'drawer'
+      ];
       if (activeMenuDrawer === MenuType.MENU) {
         setMenuDrawerOpen(true);
       } else if (activeMenuDrawer === MenuType.PRODUCTS) {
