@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getAppRelativePathname, updateQueryString } from 'src/libs/url_utils';
+import { onDrawerChange } from 'src/libs/url_utils';
 import { MenuType } from 'src/panel/Menu';
 import { GetState, State } from 'zustand';
 import { NamedSet } from 'zustand/middleware';
@@ -11,18 +11,6 @@ export interface UiSlice extends State {
   setMenuDrawerOpen: (isOpen: boolean) => void;
   setProductsDrawerOpen: (isOpen: boolean) => void;
 }
-
-// TODO: Put in helpers
-const getDrawerUrl = (drawer: MenuType | null) =>
-  getAppRelativePathname() + updateQueryString({ drawer });
-
-const onDrawerChange = (drawer: MenuType, isOpen: boolean) => {
-  if (isOpen) {
-    window?.app?.navigateTo(getDrawerUrl(drawer), window?.history?.state || {});
-  } else {
-    window?.app?.navigateTo(getDrawerUrl(null), window?.history?.state || {});
-  }
-};
 
 export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>): UiSlice => ({
   isMenuDrawerOpen: false,

@@ -7,7 +7,6 @@ import { CloseButton } from 'src/components/ui';
 import { RootModal } from 'src/components/RootModal';
 import { Flex, IconArrowLeftLine } from '@qwant/qwant-ponents';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
-import { listen, unListen } from 'src/libs/customEvents';
 import { getQueryString, parseQueryString } from 'src/libs/url_utils';
 import { useStore } from '../store';
 
@@ -39,25 +38,22 @@ const Menu = () => {
     [setMenuDrawerOpen, setProductsDrawerOpen]
   );
 
+  const closeDrawers = useCallback(() => {
+    setProductsDrawerOpen(false);
+    setMenuDrawerOpen(false);
+  }, [setMenuDrawerOpen, setProductsDrawerOpen]);
+
+  // Initial render
   useEffect(() => {
     openMenuFromUrl(window.location.href);
-
-    const routeChangeHandler = listen('routeChange', openMenuFromUrl);
-    return () => {
-      unListen(routeChangeHandler);
-    };
   }, [openMenuFromUrl]);
 
+  // Telemetry
   useEffect(() => {
     if (isMenuDrawerOpen) {
       Telemetry.add(Telemetry['MENU_CLICK']);
     }
   }, [isMenuDrawerOpen]);
-
-  const closeDrawers = useCallback(() => {
-    setProductsDrawerOpen(false);
-    setMenuDrawerOpen(false);
-  }, [setMenuDrawerOpen, setProductsDrawerOpen]);
 
   const isMenuOpen = useMemo(() => isMenuDrawerOpen || isProductsDrawerOpen, [
     isMenuDrawerOpen,
