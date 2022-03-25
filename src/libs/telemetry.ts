@@ -6,7 +6,7 @@ import Error from '../adapters/error';
 const telemetry = nconf.get().telemetry;
 const system = nconf.get().system;
 const telemetryEventUrl = 'events';
-const uniqEventList = [];
+const uniqEventList: string[] = [];
 const events = {};
 
 /*
@@ -18,14 +18,14 @@ telemetryModule.events.forEach(event => {
   events[event.toUpperCase()] = event;
 });
 
-function addOnce(event) {
+function addOnce(event: string) {
   if (uniqEventList.indexOf(event) === -1) {
     uniqEventList.push(event);
     add(event);
   }
 }
 
-function add(event, extra_data) {
+function add(event: string, extra_data?: object) {
   if (!telemetry.enabled) {
     return;
   }

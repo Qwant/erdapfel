@@ -24,7 +24,7 @@ const RootComponent = ({ router }) => {
       <PoiProvider>
         <PanelManager router={router} />
       </PoiProvider>
-      {!isMobile && isBurgerMenuEnabled && <Menu />}
+      {isBurgerMenuEnabled && <Menu />}
     </>
   );
 };

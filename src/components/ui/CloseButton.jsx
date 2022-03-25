@@ -24,6 +24,7 @@ const CloseButton = ({ className, position, onClick, onMouseDown, circle, varian
 };
 
 CloseButton.propTypes = {
+  title: PropTypes.string,
   className: PropTypes.string,
   position: PropTypes.oneOf(['topRight']),
   onClick: PropTypes.func,
