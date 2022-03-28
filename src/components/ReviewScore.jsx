@@ -55,7 +55,7 @@ const TripAdvisorRating = ({ grade_url, count }) => (
     <Text className="reviewScore-starRating" color="action-link" typo="body-2">
       <Flex alignCenter>
         <div className="reviewScore-TripAdvisor">
-          <img src={grade_url} alt="" width={119} height={20} />
+          <img src={grade_url} alt="" width={119} height={20} loading="lazy" />
         </div>
         <span>{_n('%d review', '%d reviews', count, 'reviews')}</span>
       </Flex>
