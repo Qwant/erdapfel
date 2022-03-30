@@ -32,7 +32,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     setMenuDrawerOpen,
     isProductsDrawerOpen,
     setProductsDrawerOpen,
-  } = useStore(state => state);
+  } = useStore();
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {

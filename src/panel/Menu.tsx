@@ -21,7 +21,7 @@ const Menu: React.FunctionComponent = () => {
     setMenuDrawerOpen,
     isProductsDrawerOpen,
     setProductsDrawerOpen,
-  } = useStore(state => state);
+  } = useStore();
   const { isMobile } = useDevice();
   const { _ } = useI18n();
   const {
