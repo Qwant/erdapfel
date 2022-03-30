@@ -190,6 +190,10 @@ $productDrawerWidth: 744px;
 }
 
 @media (min-width: 641px) {
+  #react_menu__container {
+    width: 0;
+  }
+
   .menu__button-container {
     position: fixed;
     right: $spacing-s;
