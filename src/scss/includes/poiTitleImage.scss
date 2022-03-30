@@ -2,16 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 65px;
+  height: 65px;
   border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
 
-  &--image {
-    width: 100px;
-    height: 100px;
-    flex-shrink: 0;
-    background-size: cover;
-    background-position: center center;
-    background-color: white;
-    border-radius: 8px;
+  &__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 
   .icon {

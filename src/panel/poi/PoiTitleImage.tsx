@@ -1,26 +1,29 @@
+import { components } from '../../../@types/idunn';
 import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
-import { toCssUrl } from 'src/libs/url_utils';
 import { getLightBackground } from 'src/libs/colors';
 
 const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
 type PoiTitleImageProps = {
-  poi: {
-    className: string;
-    subClassName: string;
-    type: string;
-    titleImageUrl: string;
+  poi: components['schemas']['Place'] & {
+    titleImageUrl?: string;
+    className?: string;
+    subClassName?: string;
   };
 };
 
 const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => {
   if (poi.titleImageUrl) {
     return (
-      <div
-        className="poiTitleImage poiTitleImage--image"
-        style={{ backgroundImage: toCssUrl(poi.titleImageUrl) }}
-      />
+      <div className="poiTitleImage">
+        <img
+          className="poiTitleImage__image"
+          src={poi.titleImageUrl}
+          alt={poi?.name ?? ''}
+          loading="lazy"
+        />
+      </div>
     );
   }
 
