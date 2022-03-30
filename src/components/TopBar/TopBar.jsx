@@ -2,13 +2,20 @@ import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest } from 'src/components/ui';
-import { IconArrowLeftLine, IconDirection, IconClose, Flex } from '@qwant/qwant-ponents';
+import {
+  IconArrowLeftLine,
+  IconDirection,
+  IconClose,
+  Flex,
+  IconMenu,
+  IconApps,
+} from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
-import Menu from 'src/panel/Menu';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
 import { getHistoryEnabled, saveQuery } from 'src/adapters/search_history';
+import { useStore } from 'src/store';
 
 const MAPBOX_RESERVED_KEYS = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', '-', '+', '='];
 
@@ -20,6 +27,12 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const config = useConfig();
   const searchHistoryEnabled = getHistoryEnabled();
   const { _ } = useI18n();
+  const {
+    isMenuDrawerOpen,
+    setMenuDrawerOpen,
+    isProductsDrawerOpen,
+    setProductsDrawerOpen,
+  } = useStore();
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {
@@ -164,11 +177,35 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
           </button>
           <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>
-        {isMobile && config.burgerMenu.enabled && (
-          <div id="react_menu__container">
-            <Menu />
-          </div>
-        )}
+
+        <div id="react_menu__container">
+          <Flex className="menu__button-container">
+            <button
+              type="button"
+              className={cx('menu__button', {
+                'menu__button--active': isMenuDrawerOpen,
+                'menu__button--noShadow': !isMenuDrawerOpen && isProductsDrawerOpen,
+              })}
+              onClick={() => setMenuDrawerOpen(!isMenuDrawerOpen)}
+              title={_('Menu')}
+            >
+              <IconMenu size={isMobile ? 24 : 16} />
+            </button>
+            {!isMobile && config.burgerMenu.products && (
+              <button
+                type="button"
+                className={cx('u-mr-xs', 'menu__button', {
+                  'menu__button--active': isProductsDrawerOpen,
+                  'menu__button--noShadow': !isProductsDrawerOpen && isMenuDrawerOpen,
+                })}
+                onClick={() => setProductsDrawerOpen(!isProductsDrawerOpen)}
+              >
+                <IconApps className="u-mr-xxs" />
+                {_('Products', 'menu')}
+              </button>
+            )}
+          </Flex>
+        </div>
         {config.direction.enabled && (
           <>
             <Flex

@@ -2,14 +2,21 @@
 declare module '@qwant/qwant-ponents' {
   // Hooks
   export const useLockBodyScroll: (enabled: boolean, ref: HTMLElement | null) => void;
-  export const usePushAlert: () => (key: string) => any;
+  export const usePushAlert: () => (key: string) => void;
 
   // Components
   export const Head: React.FunctionComponent;
   export const HeadExtractor: React.FunctionComponent;
   export const Price: React.FunctionComponent;
   export const Box: React.FunctionComponent;
-  export const Flex: React.FunctionComponent;
+  export const Flex: React.FunctionComponent<{
+    className?: string;
+    alignCenter?: boolean;
+    as?: string | object | React.Component;
+    center?: boolean;
+    type?: string;
+    onClick?: () => void;
+  }>;
   export const Stack: React.FunctionComponent;
   export const Alert: React.FunctionComponent;
   export const AlertsProvider: React.FunctionComponent;
@@ -61,12 +68,14 @@ declare module '@qwant/qwant-ponents' {
   export const IconTripAdvisor: React.FunctionComponent;
   export const AiOutlineExclamationCircle: React.FunctionComponent;
   export const IconAppleFill: React.FunctionComponent;
-  export const IconApps: React.FunctionComponent;
+  export const IconApps: React.FunctionComponent<{
+    className?: string;
+  }>;
   export const IconArrowDown: React.FunctionComponent;
   export const IconArrowDownSLine: React.FunctionComponent;
   export const IconArrowDropDownLine: React.FunctionComponent;
   export const IconArrowLeftDownLine: React.FunctionComponent;
-  export const IconArrowLeftLine: React.FunctionComponent;
+  export const IconArrowLeftLine: React.FunctionComponent<{ size?: number }>;
   export const IconArrowLeftRight: React.FunctionComponent;
   export const IconArrowLeftRightFill: React.FunctionComponent;
   export const IconArrowLeftRightLine: React.FunctionComponent;
@@ -114,7 +123,7 @@ declare module '@qwant/qwant-ponents' {
   export const IconMail: React.FunctionComponent;
   export const IconMailSend: React.FunctionComponent;
   export const IconMapPinLine: React.FunctionComponent;
-  export const IconMenu: React.FunctionComponent;
+  export const IconMenu: React.FunctionComponent<{ size?: number }>;
   export const IconMovie: React.FunctionComponent;
   export const IconMusic: React.FunctionComponent;
   export const IconPhone: React.FunctionComponent;

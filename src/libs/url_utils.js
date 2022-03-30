@@ -81,3 +81,13 @@ export function shouldShowBackToQwant() {
   const params = parseQueryString(window.location.search);
   return params.client && params.client === 'search-ia-maps-multi';
 }
+
+const getDrawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });
+
+export const onDrawerChange = (drawer, isOpen) => {
+  if (isOpen) {
+    window?.app?.navigateTo(getDrawerUrl(drawer), window?.history?.state || {});
+  } else {
+    window?.app?.navigateTo(getDrawerUrl(null), window?.history?.state || {});
+  }
+};
