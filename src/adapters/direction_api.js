@@ -1,5 +1,6 @@
 import Ajax from '../libs/ajax';
 import nconf from '@qwant/nconf-getter';
+import Telemetry from 'src/libs/telemetry';
 
 const directionConfig = nconf.get().direction.service;
 const timeout = nconf.get().direction.timeout;
@@ -95,6 +96,7 @@ export default class DirectionApi {
     let response = null;
     try {
       response = await Ajax.get(directionsUrl, directionsParams, { timeout });
+      Telemetry.add(Telemetry.ITINERARY_SEARCH, { mode });
     } catch (e) {
       if (Number.isInteger(e) && e >= 400 && e < 600) {
         // Use the error codes 4xx and 5xx to display different error messages

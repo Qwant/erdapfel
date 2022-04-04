@@ -28,6 +28,7 @@ module.exports = {
     'itinerary_route_toggle_details',
     'itinerary_point_geolocation',
     'itinerary_route_preview_open',
+    'itinerary_search',
     /* Poi */
     'poi_category_open',
     'poi_backtofavorite',
