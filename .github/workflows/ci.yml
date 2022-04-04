@@ -21,7 +21,7 @@ jobs:
 
       - name: Install NPM and npm dependencies
         run: |
-          npm install -g npm@8
+          npm install -g npm@8.5.0
           npm ci
 
       - name: Build
@@ -29,7 +29,7 @@ jobs:
 
       - name: Run coverage
         run: npm run ts:coverage
-      
+
       - name: Run ts/js files count
         run: npm run ts:count
 
