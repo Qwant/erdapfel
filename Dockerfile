@@ -1,4 +1,4 @@
-FROM node:16.14-stretch-slim as base
+FROM node:16.14.2-stretch-slim as base
 
 ENV PROJECT_DIR=/srv/maps-tileview/
 
@@ -6,7 +6,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     gettext git python3 build-essential ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm i npm@">=8.3.1" -g
+RUN npm i npm@"8.5.0" -g
 RUN mkdir -p $PROJECT_DIR
 RUN chown node $PROJECT_DIR
 
