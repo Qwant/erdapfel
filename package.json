@@ -27,7 +27,9 @@
     "prettier:write": "prettier --write '{src,bin,build,tests}/**/*.{js,jsx,ts,tsx}'",
     "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript",
     "ts:coverage": "typescript-coverage-report",
-    "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm"
+    "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -45,6 +47,12 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.9.0",
     "@mapbox/mapbox-gl-rtl-text": "^0.2.3",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-interactions": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/react": "^6.4.20",
+    "@storybook/testing-library": "^0.0.9",
     "@svgr/webpack": "^5.5.0",
     "@types/react": "^16.14.23",
     "@types/react-dom": "^16.9.14",
@@ -55,6 +63,7 @@
     "babel-loader": "^8.0.4",
     "classnames": "^2.3.1",
     "cloc": "^2.9.0",
+    "core-js": "^3.21.1",
     "css-loader": "^5.2.7",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^6.15.0",
