@@ -45,19 +45,21 @@ const getLabelsBbbox = (labelPositions, routesBbox) => {
   return labelsBbbox;
 };
 
-const shiftLabelPosition = ({ lngShift, latShift }) => ({ lngLat, anchor }) => {
-  let [lng, lat] = lngLat;
-  if (anchor === 'top') {
-    lat -= latShift;
-  } else if (anchor === 'bottom') {
-    lat += latShift;
-  } else if (anchor === 'left') {
-    lng += lngShift;
-  } else if (anchor === 'right') {
-    lng -= lngShift;
-  }
-  return [lng, lat];
-};
+const shiftLabelPosition =
+  ({ lngShift, latShift }) =>
+  ({ lngLat, anchor }) => {
+    let [lng, lat] = lngLat;
+    if (anchor === 'top') {
+      lat -= latShift;
+    } else if (anchor === 'bottom') {
+      lat += latShift;
+    } else if (anchor === 'left') {
+      lng += lngShift;
+    } else if (anchor === 'right') {
+      lng -= lngShift;
+    }
+    return [lng, lat];
+  };
 
 export default class SceneDirection {
   constructor(map) {

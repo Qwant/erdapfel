@@ -27,12 +27,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const config = useConfig();
   const searchHistoryEnabled = getHistoryEnabled();
   const { _ } = useI18n();
-  const {
-    isMenuDrawerOpen,
-    setMenuDrawerOpen,
-    isProductsDrawerOpen,
-    setProductsDrawerOpen,
-  } = useStore();
+  const { isMenuDrawerOpen, setMenuDrawerOpen, isProductsDrawerOpen, setProductsDrawerOpen } =
+    useStore();
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {

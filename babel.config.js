@@ -9,7 +9,7 @@ module.exports = function (api) {
           browsers: ['Chrome >= 60', 'Firefox >= 44', 'Safari >= 10', 'Edge >= 17'],
         },
         useBuiltIns: 'entry',
-        corejs: 2,
+        corejs: 3,
       },
     ],
     '@babel/preset-react',

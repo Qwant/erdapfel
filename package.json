@@ -27,7 +27,9 @@
     "prettier:write": "prettier --write '{src,bin,build,tests}/**/*.{js,jsx,ts,tsx}'",
     "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript",
     "ts:coverage": "typescript-coverage-report",
-    "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm"
+    "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -45,6 +47,13 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.9.0",
     "@mapbox/mapbox-gl-rtl-text": "^0.2.3",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-docs": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-interactions": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/react": "^6.4.20",
+    "@storybook/testing-library": "^0.0.9",
     "@svgr/webpack": "^5.5.0",
     "@types/react": "^16.14.23",
     "@types/react-dom": "^16.9.14",
@@ -76,7 +85,7 @@
     "puppeteer": "^2.0.0",
     "puppeteer-har": "^1.1.2",
     "qwant-maps-fonts": "^1.0.0",
-    "regenerator-runtime": "^0.13.5",
+    "regenerator-runtime": "^0.13.9",
     "rimraf": "^3.0.2",
     "sass": "^1.39.0",
     "sass-loader": "^10.2.0",
@@ -95,7 +104,6 @@
     "yaml-loader": "^0.5.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.8.0",
     "@qwant/map-style-builder": "github:Qwant/map-style-builder#81eebb0",
     "@qwant/qwant-basic-gl-style": "^1.4.0",
     "@qwant/qwant-ponents": "^0.1.7",
@@ -114,6 +122,7 @@
     "color": "^3.1.2",
     "compression": "^1.7.3",
     "cookie-parser": "^1.4.5",
+    "core-js": "^3.21.1",
     "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",

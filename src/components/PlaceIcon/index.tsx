@@ -3,25 +3,35 @@ import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import classnames from 'classnames';
 import { IconHeart, IconGeoloc, IconHistory, Magnifier } from 'src/components/ui/icons';
+import type { TPoi } from 'src/adapters/poi/poi';
 
-const PlaceIcon = ({
+type PlaceIconProps = {
+  className?: string;
+  place?: TPoi;
+  category?: any;
+  withBackground?: boolean;
+  isHistory?: boolean;
+  isFavorite?: boolean;
+};
+
+const PlaceIcon: React.FunctionComponent<PlaceIconProps> = ({
+  className,
   place,
   category,
   withBackground,
-  className,
   isFavorite = false,
   isHistory = false,
 }) => {
   if (isFavorite) {
-    return <VariantIcon variant="favorite" IconComponent={IconHeart} className={className} />;
+    return <VariantIcon className={className} variant="favorite" IconComponent={IconHeart} />;
   }
 
   if (isHistory) {
-    return <VariantIcon variant="history" IconComponent={IconHistory} className={className} />;
+    return <VariantIcon className={className} variant="history" IconComponent={IconHistory} />;
   }
 
   if (place?.type === 'geoloc') {
-    return <VariantIcon variant="geoloc" IconComponent={IconGeoloc} className={className} />;
+    return <VariantIcon className={className} variant="geoloc" IconComponent={IconGeoloc} />;
   }
 
   let iconClass = '',
@@ -35,7 +45,7 @@ const PlaceIcon = ({
     iconClass = category.iconName;
     color = category.color;
   } else {
-    return <VariantIcon variant="search" IconComponent={Magnifier} className={className} />;
+    return <VariantIcon className={className} variant="search" IconComponent={Magnifier} />;
   }
 
   return (

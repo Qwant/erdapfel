@@ -79,11 +79,10 @@ const Suggest = ({
     () => (isMobile ? displayHistoryPrompt && hasFocus : displayHistoryPrompt),
     [isMobile, hasFocus, displayHistoryPrompt]
   );
-  const dropdownVisible = useMemo(() => hasFocus && isOpen && outputNode, [
-    hasFocus,
-    isOpen,
-    outputNode,
-  ]);
+  const dropdownVisible = useMemo(
+    () => hasFocus && isOpen && outputNode,
+    [hasFocus, isOpen, outputNode]
+  );
   const { _, getLocalizedUrl } = useI18n();
   const dropDownContent = useRef();
 
