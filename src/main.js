@@ -1,4 +1,5 @@
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import 'url-search-params-polyfill';
 import I18n from './libs/i18n';
 import './libs/sync_manager';
