@@ -37,9 +37,10 @@ function formatOccupants(occupants) {
  * @param {Date} date
  */
 function formatDateForTripadvisor(date) {
-  return `${date.getFullYear()}_${(date.getMonth() + 1)
+  return `${date.getFullYear()}_${(date.getMonth() + 1).toString().padStart(2, '0')}_${date
+    .getDate()
     .toString()
-    .padStart(2, '0')}_${date.getDate().toString().padStart(2, '0')}`;
+    .padStart(2, '0')}`;
 }
 
 /**

@@ -78,7 +78,12 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
         const currentBounds = getVisibleBbox(window.map.mb);
 
         const extendBbox = initialLoading;
-        const { places, source, bbox: contentBbox, bbox_extended } = await IdunnPoi.poiCategoryLoad(
+        const {
+          places,
+          source,
+          bbox: contentBbox,
+          bbox_extended,
+        } = await IdunnPoi.poiCategoryLoad(
           boundsToString(currentBounds),
           maxPlaces,
           category,

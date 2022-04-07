@@ -16,12 +16,8 @@ export enum MenuType {
 }
 
 const Menu: React.FunctionComponent = () => {
-  const {
-    isMenuDrawerOpen,
-    setMenuDrawerOpen,
-    isProductsDrawerOpen,
-    setProductsDrawerOpen,
-  } = useStore();
+  const { isMenuDrawerOpen, setMenuDrawerOpen, isProductsDrawerOpen, setProductsDrawerOpen } =
+    useStore();
   const { isMobile } = useDevice();
   const { _ } = useI18n();
   const {
@@ -59,10 +55,10 @@ const Menu: React.FunctionComponent = () => {
     }
   }, [isMenuDrawerOpen]);
 
-  const isMenuOpen = useMemo(() => isMenuDrawerOpen || isProductsDrawerOpen, [
-    isMenuDrawerOpen,
-    isProductsDrawerOpen,
-  ]);
+  const isMenuOpen = useMemo(
+    () => isMenuDrawerOpen || isProductsDrawerOpen,
+    [isMenuDrawerOpen, isProductsDrawerOpen]
+  );
 
   return (
     <RootModal>
