@@ -53,7 +53,7 @@ type InteractionDataProps = {
   id: string;
   zone: string;
   element: string;
-  category: string;
+  category?: string;
 };
 
 const buildInteractionData = ({
@@ -80,8 +80,12 @@ const buildInteractionData = ({
   };
 };
 
-const sendPoiEvent = (poi: components['schemas']['Place'], event: string, data: object) => {
-  if (!poi.meta || !poi.meta.source) {
+const sendPoiEvent = (
+  poi: components['schemas']['Place'] | undefined,
+  event: string,
+  data: object
+) => {
+  if (!poi?.meta || !poi?.meta.source) {
     return;
   }
 

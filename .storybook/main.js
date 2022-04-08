@@ -27,6 +27,7 @@ module.exports = {
     config.resolve.alias = {
       config: path.resolve(__dirname, '../config/'),
       src: path.resolve(__dirname, '../src/'),
+      appTypes: path.resolve(__dirname, '../@types/'),
     };
 
     config.module.rules.unshift({
