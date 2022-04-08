@@ -4,7 +4,7 @@ import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
 import { normalize as normalizeAddress } from '../../libs/address';
-import { operations, components } from '../../../@types/idunn';
+import { operations, components } from 'appTypes/idunn';
 
 const serviceConfig = nconf.get().services;
 

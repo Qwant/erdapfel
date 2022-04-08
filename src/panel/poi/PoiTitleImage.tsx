@@ -1,4 +1,4 @@
-import { components } from '../../../@types/idunn';
+import { components } from 'appTypes/idunn';
 import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';

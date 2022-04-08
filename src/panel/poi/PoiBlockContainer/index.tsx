@@ -16,7 +16,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
   const { _ } = useI18n();
   const descriptionBlockProps: PoiDescriptionBlockProps = useMemo(
     () => ({
-      block: findBlock(poi?.blocks, 'description'),
+      block: findBlock(poi?.blocks, 'description') as components['schemas']['DescriptionBlock'],
       texts: {
         wikipedia: _('Read more on Wikipedia'),
         pagesjaunes: _('Read more on PagesJaunes'),

@@ -2,7 +2,7 @@ import Ajax from './ajax';
 import nconf from '@qwant/nconf-getter';
 import telemetryModule from '@qwant/telemetry';
 import Error from '../adapters/error';
-import { components } from '../../@types/idunn';
+import { components } from 'appTypes/idunn';
 
 const telemetry = nconf.get().telemetry;
 const system = nconf.get().system;
