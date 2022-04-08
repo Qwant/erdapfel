@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="31" viewBox="0 0 22 31">
+  <defs>
+    <ellipse id="5g4mnr6yib" cx="10" cy="29" rx="4" ry="2"/>
+    <filter id="or8n4twdga" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+      <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="shadowMatrixOuter2"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path fill="#123295" stroke="#0E2877" d="M10 28c.552 0 1-.448 1-1 0-3.495 2.039-6.457 4.27-8.5C18 16 20 13.59 20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 3.59 2 6 4.73 8.5C6.962 20.544 9 23.506 9 27c0 .552.448 1 1 1z"/>
+  </g>
+  <g transform="translate(-0.5 -0.5)">
+    <path fill="#fff" transform="translate(6 6)" d="M3.5,0C3,0,3,0.5,3,0.5L2,5v1c0,1.0244,1,1,1,1h5c0,0,1,0,1-1V5L8,0.5C8,0.5,8,0,7.5,0H3.5z M4,1h3l0.5,3h-4&#xA;&#x9;L4,1z M3.5,5C3.7761,5,4,5.2239,4,5.5S3.7761,6,3.5,6S3,5.7761,3,5.5S3.2239,5,3.5,5z M5.25,5h0.5C5.8885,5,6,5.1115,6,5.25&#xA;&#x9;S5.8885,5.5,5.75,5.5h-0.5C5.1115,5.5,5,5.3885,5,5.25S5.1115,5,5.25,5z M7.5,5C7.7761,5,8,5.2239,8,5.5S7.7761,6,7.5,6&#xA;&#x9;S7,5.7761,7,5.5S7.2239,5,7.5,5z M3,8l-1,3h1.5l0.334-1h3.332L7.5,11H9L8,8H6.5l0.334,1H4.166L4.5,8H3z"/>
+  </g>
+</svg>

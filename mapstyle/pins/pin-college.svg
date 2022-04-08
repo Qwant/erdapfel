@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="31" viewBox="0 0 22 31">
+  <defs>
+    <ellipse id="5g4mnr6yib" cx="10" cy="29" rx="4" ry="2"/>
+    <filter id="or8n4twdga" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+      <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="shadowMatrixOuter2"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path fill="#6d6d76" stroke="#57575E" d="M10 28c.552 0 1-.448 1-1 0-3.495 2.039-6.457 4.27-8.5C18 16 20 13.59 20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 3.59 2 6 4.73 8.5C6.962 20.544 9 23.506 9 27c0 .552.448 1 1 1z"/>
+  </g>
+  <g transform="translate(-0.5 -0.5)">
+    <path fill="#fff" transform="translate(6 6)" d="M2,7.3c0.3-0.2,0.5-0.5,0.5-0.8c0-0.4-0.2-0.7-0.6-0.9V4.4L5.5,6L11,3.5L5.5,1L0,3.5L1.2,4v1.6&#xA;&#x9;&#x9;C0.8,5.8,0.6,6.1,0.6,6.5c0,0.3,0.2,0.6,0.5,0.8L0.6,9c-0.3,1,0.5,1,0.5,1h1c0,0,0.8,0,0.5-1L2,7.3z"/>
+    <path fill="#fff" transform="translate(6 6)" d="M3.5,6.2c0,0.1,0,0.2,0,0.3c0,0.4-0.2,0.8-0.4,1.1C3.3,8,3.5,8.4,3.5,9v0.6C4,9.8,4.7,10,5.5,10&#xA;&#x9;&#x9;C8,10,9,8.5,9,8.5v-3L5.5,7.1L3.5,6.2z"/>
+  </g>
+</svg>

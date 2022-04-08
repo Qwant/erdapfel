@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="31" viewBox="0 0 22 31">
+  <defs>
+    <ellipse id="5g4mnr6yib" cx="10" cy="29" rx="4" ry="2"/>
+    <filter id="or8n4twdga" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+      <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="shadowMatrixOuter2"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path fill="#5d9836" stroke="#4A7A2B" d="M10 28c.552 0 1-.448 1-1 0-3.495 2.039-6.457 4.27-8.5C18 16 20 13.59 20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 3.59 2 6 4.73 8.5C6.962 20.544 9 23.506 9 27c0 .552.448 1 1 1z"/>
+  </g>
+  <g transform="translate(-0.5 -0.5)">
+    <path fill="#fff" transform="translate(6 6)" d="M9.571,8.563,7.425,6.424a.255.255,0,0,1-.069-.174A.25.25,0,0,1,7.6,6h.8a.25.25,0,0,0,.25-.25.246.246,0,0,0-.068-.165l-.008-.008L6.4,3.4a.27.27,0,0,1-.051-.149A.25.25,0,0,1,6.6,3H7.48a.257.257,0,0,0,.25-.258A.234.234,0,0,0,7.68,2.6L5.694.224A.223.223,0,0,0,5.343.186h0C5.327.2,3.352,2.578,3.352,2.578a.246.246,0,0,0-.068.164A.257.257,0,0,0,3.534,3H4.4a.25.25,0,0,1,.25.25.262.262,0,0,1-.066.17L2.431,5.571a.247.247,0,0,0-.077.178A.251.251,0,0,0,2.6,6h.789a.249.249,0,0,1,.25.249.3.3,0,0,1-.063.17L1.43,8.563A.253.253,0,0,0,1.6,9H5v1H6V9H9.4a.255.255,0,0,0,.249-.255A.248.248,0,0,0,9.571,8.563Z"/>
+  </g>
+</svg>

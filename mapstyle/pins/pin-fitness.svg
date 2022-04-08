@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="31" viewBox="0 0 22 31">
+  <defs>
+    <ellipse id="5g4mnr6yib" cx="10" cy="29" rx="4" ry="2"/>
+    <filter id="or8n4twdga" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+      <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="shadowMatrixOuter2"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path fill="#6d6d76" stroke="#57575E" d="M10 28c.552 0 1-.448 1-1 0-3.495 2.039-6.457 4.27-8.5C18 16 20 13.59 20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 3.59 2 6 4.73 8.5C6.962 20.544 9 23.506 9 27c0 .552.448 1 1 1z"/>
+  </g>
+  <g transform="translate(-0.5 -0.5)">
+    <path d="M9.145 5.698v1.02h4.02l-.005-1.02h.98l.008 2.99h-.98l-.003-.95-1.835.007c.408.712 1.172 1.92 1.2 2.504.025.492.194 1.39.508 1.583.298.183.917.75 1.088 1.267s.947 1.748 1.677 3.262c.104.216.015.464-.204.53a.51.51 0 0 1-.57-.208l-2.373-2.913-1.45 1.167-.265 1.792c-.05.35-.578.372-.732.004V15.36c-.007-.45.025-.852.167-1.06.095-.138.317-.322.667-.55 0 0-1.128.14-1.406-.24s.138-1.3.673-2.058l1.146-.874c-.13-.5-.707-2.1-1.063-2.83l-1.248.008v.934h-.983l-.01-2.99h.992zm1.742 6.407c-.028.02-.552.826-.41.952s1.234.02 1.475-.067l-1.066-.885zM10.005 9a1 1 0 1 1 0 2C9.448 11 9 10.55 9 10A1 1 0 0 1 10.005 9zM7.902 5.734L7.91 8.1l-.71.002-.01-2.36h.71zm7.174 0l.01 2.356-.71.002-.01-2.355.708-.003z" fill="#fff"/>
+  </g>
+</svg>

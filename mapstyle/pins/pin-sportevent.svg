@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="31" viewBox="0 0 22 31">
+  <defs>
+    <ellipse id="5g4mnr6yib" cx="10" cy="29" rx="4" ry="2"/>
+    <filter id="or8n4twdga" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+      <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="shadowMatrixOuter2"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path fill="#e2001c" stroke="#B50016" d="M10 28c.552 0 1-.448 1-1 0-3.495 2.039-6.457 4.27-8.5C18 16 20 13.59 20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 3.59 2 6 4.73 8.5C6.962 20.544 9 23.506 9 27c0 .552.448 1 1 1z"/>
+  </g>
+  <g transform="translate(-0.5 -0.5)">
+    <path d="M15.386 8.477c-.7 1-1.658 1.103-2.672.506-.068-.045-.383-.214-.45-.26-1.634-.968-3.27-.585-4.364.946-.462.653.61 1.27 1.07.63.565-.8 1.286-1.025 2.075-.777L9.793 11.91c-.496.98-1.89 2.478-2.938 1.87-.768-.45-1.22.624-.476 1.092 1.256.79 3.452-.245 4.32-1.35.023.023.056.034.1.045.71.247 1.42.728 1.642 1.013.386.5.616 1.293.74 1.93.145.74 1.69.676 1.46-.472-.178-.887-.413-1.717-1.008-2.442-.285-.346-1.126-1-1.7-1.27l1.03-1.894c1.33.405 2.594-.067 3.496-1.328.462-.653-.61-1.272-1.072-.63m-2.1-.154c.637 0 1.156-.522 1.156-1.162A1.16 1.16 0 0 0 13.285 6c-.647 0-1.167.522-1.167 1.16s.52 1.162 1.167 1.162" fill="#fff"/>
+  </g>
+</svg>

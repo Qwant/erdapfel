@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="31" viewBox="0 0 22 31">
+  <defs>
+    <ellipse id="5g4mnr6yib" cx="10" cy="29" rx="4" ry="2"/>
+    <filter id="or8n4twdga" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+      <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="shadowMatrixOuter2"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path fill="#5C6F84" stroke="#4A596A" d="M10 28c.552 0 1-.448 1-1 0-3.495 2.039-6.457 4.27-8.5C18 16 20 13.59 20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 3.59 2 6 4.73 8.5C6.962 20.544 9 23.506 9 27c0 .552.448 1 1 1z"/>
+  </g>
+  <g transform="translate(-0.5 -0.5)">
+    <path fill="#fff" transform="translate(6 6)" d="M4,1A1,1,0,1,1,5,2,1,1,0,0,1,4,1Zm6.88,3.5L9,3V2.5L7,5H6L7,6V7.014a.5.5,0,1,1-1,0V6.5L4,5H3a1,1,0,0,0-.8.446A1.189,1.189,0,0,0,1.247,5,1.076,1.076,0,0,0,0,5.988C0,7.3.635,7.471.635,7.471a.33.33,0,0,0,.115.023A.253.253,0,0,0,1,7.25V6a.49.49,0,0,1,.48-.5H1.5A.5.5,0,0,1,2,6V8.014l-.3.6a1.609,1.609,0,0,0-.2.6v1.542A.244.244,0,0,0,1.744,11,.255.255,0,0,0,2,10.756V9.514a.367.367,0,0,1,.1-.3l.9-1.2V9l.467,1.816A.256.256,0,0,0,3.709,11a.25.25,0,0,0,.25-.25v-.016l-.242-1.61a.6.6,0,0,1,.025-.236L3.8,8.714,4,8H6V9l.466,1.816A.256.256,0,0,0,6.709,11a.25.25,0,0,0,.25-.25L6.718,9.124a.6.6,0,0,1,.025-.236L7,8a.877.877,0,0,0,.934-.661L8.5,4.5a.6.6,0,0,0,.71.454.562.562,0,0,0,.143-.07l.9.116a.721.721,0,0,0,.392.1A.331.331,0,0,0,11,4.784.406.406,0,0,0,10.88,4.5ZM6,3.5A.51.51,0,0,0,5.5,3h-1a.482.482,0,0,0-.5.5V5H6Z"/>
+  </g>
+</svg>

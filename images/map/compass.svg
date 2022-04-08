@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="16px" viewBox="0 0 7 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>boussole</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Components/Qwant/Univers/Maps/Map-tools" transform="translate(-13.000000, -8.000000)" fill-rule="nonzero">
+            <g id="Manip-map">
+                <g id="boussole" transform="translate(13.000000, 8.000000)">
+                    <polygon id="Path-2" fill="#5C6F84" points="3.47074199 0 -2.28261854e-13 6.85151289 6.99418134 6.85151289"></polygon>
+                    <polygon id="Path-2-Copy" fill="#C8CBD3" transform="translate(3.497091, 12.425756) rotate(-180.000000) translate(-3.497091, -12.425756) " points="3.47074199 9 -2.28261854e-13 15.8515129 6.99418134 15.8515129"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

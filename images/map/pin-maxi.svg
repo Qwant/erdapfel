@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="49" viewBox="0 0 26 49">
+    <defs>
+        <ellipse id="xj77o4ovab" cx="12" cy="41" rx="4" ry="2"/>
+        <filter id="ddcndnhopa" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+            <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+            <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+            <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="shadowMatrixOuter2"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+        <use fill="#000" filter="url(#ddcndnhopa)" xlink:href="#xj77o4ovab"/>
+        <path stroke="#900014" d="M12-.5l.369.005c3.305.096 6.289 1.475 8.47 3.656C23.1 5.423 24.5 8.548 24.5 12c0 3.44-1.537 6.222-3.641 8.815C16.468 26.225 13.5 31.922 13.5 39c0 .414-.168.79-.44 1.06-.27.272-.646.44-1.06.44-.414 0-.79-.168-1.06-.44-.272-.27-.44-.646-.44-1.06 0-7.078-2.968-12.776-7.359-18.185C1.037 18.222-.5 15.44-.5 12c0-3.452 1.4-6.577 3.661-8.839C5.423.9 8.548-.5 12-.5h0z"/>
+        <path fill="#E2001C" d="M12 0c6.627 0 12 5.373 12 12 0 3.321-1.5 6-3.53 8.5C16.003 26.003 13 31.803 13 39c0 .552-.448 1-1 1s-1-.448-1-1c0-7.197-3.003-12.997-7.47-18.5C1.5 18 0 15.321 0 12 0 5.373 5.373 0 12 0z"/>
+        <circle cx="12" cy="12" r="4" fill="#FFF"/>
+    </g>
+</svg>

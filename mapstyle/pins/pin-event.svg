@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="31" viewBox="0 0 22 31">
+  <defs>
+    <ellipse id="5g4mnr6yib" cx="10" cy="29" rx="4" ry="2"/>
+    <filter id="or8n4twdga" width="262.5%" height="425%" x="-81.2%" y="-137.5%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="1"/>
+      <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.2 0"/>
+      <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.0470588235 0 0 0 0 0.0470588235 0 0 0 0 0.0549019608 0 0 0 0.12 0"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="shadowMatrixOuter2"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path fill="#e2001c" stroke="#B50016" d="M10 28c.552 0 1-.448 1-1 0-3.495 2.039-6.457 4.27-8.5C18 16 20 13.59 20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 3.59 2 6 4.73 8.5C6.962 20.544 9 23.506 9 27c0 .552.448 1 1 1z"/>
+  </g>
+  <g transform="translate(-0.5 -0.5)">
+    <path d="M11.5 14.3a.5.5 0 0 1 .492.41l.008.1V17a.5.5 0 0 1-.992.09L11 17v-2.2a.5.5 0 0 1 .5-.5zm2.616-.88l.07.058 1.556 1.556a.5.5 0 0 1-.638.765l-.07-.058-1.556-1.556a.5.5 0 0 1 .638-.765zm-4.595.058a.5.5 0 0 1 .058.638l-.058.07-1.556 1.556a.5.5 0 0 1-.765-.638l.058-.07 1.556-1.556a.5.5 0 0 1 .707 0zM11.5 10a1.5 1.5 0 1 1 0 3 1.5 1.5 0 1 1 0-3zm-3.3 1a.5.5 0 0 1 .09.992L8.2 12H6a.5.5 0 0 1-.09-.992L6 11h2.2zm8.8 0a.5.5 0 0 1 .09.992L17 12h-2.2a.5.5 0 0 1-.09-.992l.1-.008H17zM7.896 7.2l.07.058 1.556 1.556a.5.5 0 0 1-.638.765l-.07-.058-1.556-1.556a.5.5 0 0 1 .638-.765zm7.846.058a.5.5 0 0 1 .058.638l-.058.07-1.556 1.556a.5.5 0 0 1-.765-.638l.058-.07 1.556-1.556a.5.5 0 0 1 .707 0zM11.5 5.5a.5.5 0 0 1 .492.41L12 6v2.2a.5.5 0 0 1-.992.09L11 8.2V6a.5.5 0 0 1 .5-.5z" fill="#fff"/>
+  </g>
+</svg>
