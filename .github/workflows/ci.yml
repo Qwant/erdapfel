@@ -38,3 +38,7 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+      - name: Deploy Storybook
+        if: "contains(github.ref_name, 'master')"
+        run: npm run deploy-storybook

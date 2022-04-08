@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Qwant Maps frontend",
   "main": "public/index.html",
+  "homepage": "http://qwant.github.io/erdapfel",
   "scripts": {
     "bench": "node ./bench/performances.js",
     "unit-test": "jest --config=./tests/unit.js",
@@ -29,7 +30,9 @@
     "ts:coverage": "typescript-coverage-report",
     "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "predeploy-storybook": "npm run build-storybook -s public",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "repository": {
     "type": "git",
@@ -72,6 +75,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "2.0.0",
     "fs-extra": "^7.0.0",
+    "gh-pages": "^3.2.3",
     "husky": "^4.3.8",
     "jest": "^27.5.1",
     "jest-extended": "^0.11.2",

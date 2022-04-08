@@ -19,6 +19,9 @@ public/message
 # Code coverage
 coverage-ts/
 
+# Static Storybook Build
+storybook-static/
+
 bench/trace.json
 bench/report.json
 bench/results.har
