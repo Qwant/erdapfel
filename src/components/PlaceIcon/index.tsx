@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { IconHeart, IconGeoloc, IconHistory, Magnifier } from 'src/components/ui/icons';
 import type { TPoi } from 'src/adapters/poi/poi';
 
-type PlaceIconProps = {
+export type PlaceIconProps = {
   className?: string;
   place?: TPoi;
   // TODO: Declare category type in src/adapters/category.js (after ts port) and use it here
