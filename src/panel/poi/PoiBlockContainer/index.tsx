@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import Telemetry from 'src/libs/telemetry';
 import ImagesBlock from '../blocks/Images';
 import { findBlock } from 'src/libs/pois';
-import InformationBlock from '../blocks/Information';
+import PoiInformationBlock, { PoiInformationBlockProps } from '../blocks/Information';
 import DetailsBlock from '../blocks/Details';
-import DescriptionBlock, { PoiDescriptionBlockProps } from '../blocks/Description';
+import PoiDescriptionBlock, { PoiDescriptionBlockProps } from '../blocks/Description';
 import { useI18n } from 'src/hooks';
 import { components } from 'appTypes/idunn';
 
@@ -39,14 +39,28 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
     [_, poi]
   );
 
+  const informationBlockProps: PoiInformationBlockProps = useMemo(
+    () => ({
+      title: _('Information'),
+      hourBlock: findBlock(poi?.blocks, 'opening_hours'),
+      phoneBlock: findBlock(poi?.blocks, 'phone'),
+      websiteBlock: findBlock(poi?.blocks, 'website'),
+      contactBlock: findBlock(poi?.blocks, 'contact'),
+      recyclingBlock: findBlock(poi?.blocks, 'recycling'),
+      socialBlock: findBlock(poi?.blocks, 'social'),
+      poi,
+    }),
+    [_, poi]
+  );
+
   if (!poi) {
     return null;
   }
 
   return (
     <div className="poi_panel__info">
-      {descriptionBlockProps?.block && <DescriptionBlock {...descriptionBlockProps} />}
-      <InformationBlock poi={poi} />
+      {descriptionBlockProps?.block && <PoiDescriptionBlock {...descriptionBlockProps} />}
+      {informationBlockProps && <PoiInformationBlock {...informationBlockProps} />}
       <ImagesBlock poi={poi} />
       <DetailsBlock poi={poi} />
     </div>
