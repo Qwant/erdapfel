@@ -1,4 +1,4 @@
-async function AsyncFileLoader(uri) {
+async function AsyncFileLoader(uri: string) {
   return new Promise(resolve => {
     const sc = document.createElement('script');
     sc.onload = resolve;
