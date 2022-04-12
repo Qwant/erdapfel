@@ -1,6 +1,12 @@
 .direction-panel {
   padding-top: 12px;
 
+  @media (min-width: 641px) {
+    &.panel {
+      max-height: calc(100vh - 92px);
+    }
+  }
+
   @media (max-width: 640px) {
     background-color: $background;
     @include card_shadow();
