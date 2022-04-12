@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-const Block = ({
+export type PoiBlockProps = {
+  icon?: JSX.Element;
+  title?: string;
+  children?: ReactNode;
+  className?: string;
+  onClick?: () => void;
+  href?: string;
+  actionIcon?: ReactNode;
+  tooltip?: string;
+  simple?: boolean;
+};
+
+const PoiBlock: React.FunctionComponent<PoiBlockProps> = ({
   icon,
   title,
   children,
@@ -23,7 +35,7 @@ const Block = ({
       title={tooltip}
       {...rest}
     >
-      {simple ? icon : <div className="block-icon">{icon}</div>}
+      {simple ? <>{icon}</> : <div className="block-icon">{icon}</div>}
       <div className="block-content">
         {title && <div className="u-firstCap u-text--caption u-mb-xxxs">{title}</div>}
         <div className="block-value">{children}</div>
@@ -33,4 +45,4 @@ const Block = ({
   );
 };
 
-export default Block;
+export default PoiBlock;

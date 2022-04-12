@@ -17,7 +17,7 @@ const Address: React.FunctionComponent<AddressProps> = ({
 }) => {
   if (!address) return null;
   const parts: string[] = toArray(address, { omitStreet, omitCountry });
-  if (inline) return <div dangerouslySetInnerHTML={{ __html: parts?.join(', ') ?? '' }} />;
+  if (inline) return <span>{parts?.join(', ') ?? ''}</span>;
 
   return (
     <div>
