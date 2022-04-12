@@ -7,9 +7,10 @@ import DetailsBlock from '../blocks/Details';
 import PoiDescriptionBlock, { PoiDescriptionBlockProps } from '../blocks/Description';
 import { useI18n } from 'src/hooks';
 import { components } from 'appTypes/idunn';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
 
 export type PoiBlockContainerProps = {
-  poi?: components['schemas']['Place'];
+  poi?: IdunnPoi;
 };
 
 const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ poi }) => {
@@ -42,6 +43,10 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
   const informationBlockProps: PoiInformationBlockProps = useMemo(
     () => ({
       title: _('Information'),
+      addressBlock: {
+        title: _('address'),
+        address: poi?.address,
+      },
       hourBlock: findBlock(poi?.blocks, 'opening_hours'),
       phoneBlock: findBlock(poi?.blocks, 'phone'),
       websiteBlock: findBlock(poi?.blocks, 'website'),

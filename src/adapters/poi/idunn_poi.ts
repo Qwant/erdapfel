@@ -3,7 +3,7 @@ import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
-import { normalize as normalizeAddress } from '../../libs/address';
+import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
 import { operations, components } from 'appTypes/idunn';
 
 const serviceConfig = nconf.get().services;
@@ -22,7 +22,7 @@ export default class IdunnPoi extends Poi {
     };
   };
   titleImageUrl?: string;
-  address?: components['schemas']['Address'];
+  address?: NormalizedAddress | null;
   class_name?: string;
   subclass_name?: string;
 
@@ -57,7 +57,7 @@ export default class IdunnPoi extends Poi {
       }
     }
 
-    this.address = normalizeAddress('idunn', rawPoi) as components['schemas']['Address'];
+    this.address = normalizeAddress('idunn', rawPoi);
   }
 
   /* ?bbox={bbox}&category=<category-name>&size={size}&verbosity=long/ */
