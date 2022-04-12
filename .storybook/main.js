@@ -30,6 +30,7 @@ module.exports = {
       appTypes: path.resolve(__dirname, '../@types/'),
     };
 
+    // SVG
     config.module.rules.unshift({
       test: /\.svg$/,
       use: [
@@ -44,9 +45,55 @@ module.exports = {
           },
         },
         'url-loader',
-      ],
+      ]
     })
 
+    // TS/TSX
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      use: [
+        {
+          loader: 'ts-loader',
+          options: {
+            configFile: path.join(__dirname, '..', 'tsconfig.json'),
+          },
+        },
+      ],
+    })    
+    
+    // JS/JSX
+    config.module.rules.push({
+      test: /\.(js|jsx)$/,
+      use: [{ loader: 'babel-loader' }],
+    })
+    
+    // CSS/SCSS
+    config.module.rules.push({
+      test: /\.(css|scss)$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            modules: {
+              auto: true,
+              exportOnlyLocals: false,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+            plugins: [require('autoprefixer')(), require('postcss-import')()],
+          },
+        },
+        'sass-loader',
+      ],
+    })
+  
     return config;
   },
   env: (config) => ({
