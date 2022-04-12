@@ -122,7 +122,7 @@ declare module '@qwant/qwant-ponents' {
   export const IconLogoutCircle: React.FunctionComponent;
   export const IconMail: React.FunctionComponent;
   export const IconMailSend: React.FunctionComponent;
-  export const IconMapPinLine: React.FunctionComponent;
+  export const IconMapPinLine: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconMenu: React.FunctionComponent<{ size?: number }>;
   export const IconMovie: React.FunctionComponent;
   export const IconMusic: React.FunctionComponent;
