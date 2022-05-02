@@ -455,6 +455,118 @@ msgstr ""
 msgid "marketplace"
 msgstr ""
 
+#: config/categories.js:93
+msgid "confectionery"
+msgstr ""
+
+#: config/categories.js:94
+msgid "locksmith"
+msgstr ""
+
+#: config/categories.js:95
+#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1463
+#: public/build/javascript/bundle.js:1463
+msgid "shoemaker"
+msgstr ""
+
+#: config/categories.js:96
+#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:878
+#: public/build/javascript/bundle.js:878
+msgid "liquor store"
+msgstr ""
+
+#: config/categories.js:97
+msgid "Delicatessen"
+msgstr ""
+
+#: config/categories.js:99
+msgid "frozen food shop"
+msgstr ""
+
+#: config/categories.js:100
+msgid "ice-cream shop"
+msgstr ""
+
+#: config/categories.js:101
+msgid "fishmonger"
+msgstr ""
+
+#: config/categories.js:102
+msgid "baby goods shop"
+msgstr ""
+
+#: config/categories.js:103
+msgid "tattoo artist"
+msgstr ""
+
+#: config/categories.js:104
+msgid "sex shop"
+msgstr ""
+
+#: config/categories.js:105
+msgid "watches shop"
+msgstr ""
+
+#: config/categories.js:106
+msgid "discount shop"
+msgstr ""
+
+#: config/categories.js:107
+msgid "well being shop"
+msgstr ""
+
+#: config/categories.js:108
+msgid "DIY clothes shop"
+msgstr ""
+
+#: config/categories.js:109
+msgid "medical supply shop"
+msgstr ""
+
+#: config/categories.js:110
+msgid "furnitures shop"
+msgstr ""
+
+#: config/categories.js:111
+msgid "outdoor activities shop'"
+msgstr ""
+
+#: config/categories.js:112
+msgid "vehicules shop"
+msgstr ""
+
+#: config/categories.js:113
+msgid "boat shop"
+msgstr ""
+
+#: config/categories.js:114
+msgid "hobbies shop"
+msgstr ""
+
+#: config/categories.js:115
+msgid "souvenir shop"
+msgstr ""
+
+#: config/categories.js:116
+msgid "e-cigarette shop"
+msgstr ""
+
+#: config/categories.js:117
+msgid "dry cleaner"
+msgstr ""
+
+#: config/categories.js:118
+msgid "retirement home"
+msgstr ""
+
+#: config/categories.js:119
+msgid "ticketing"
+msgstr ""
+
+#: config/categories.js:120
+msgid "coworking"
+msgstr ""
+
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:872
 #: public/build/javascript/bundle.js:872
 msgid "accessories shop"
@@ -465,10 +577,6 @@ msgstr ""
 msgid "airport"
 msgstr ""
 
-#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:878
-#: public/build/javascript/bundle.js:878
-msgid "liquor store"
-msgstr ""
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:881
 #: public/build/javascript/bundle.js:881
@@ -1228,11 +1336,6 @@ msgstr ""
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1460
 #: public/build/javascript/bundle.js:1460
 msgid "shelter"
-msgstr ""
-
-#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1463
-#: public/build/javascript/bundle.js:1463
-msgid "shoemaker"
 msgstr ""
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1466

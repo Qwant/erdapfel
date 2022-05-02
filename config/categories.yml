@@ -234,7 +234,7 @@
   name: shop_locksmith
 - label: _('shoemaker')
   name: craft_shoemaker
-- label: _('alcohol shop')
+- label: _('liquor store')
   name: shop_alcohol
 - label: _('Delicatessen')
   name: shop_fine_food
@@ -264,7 +264,7 @@
   name: shop_medical_supply
 - label: _('furnitures shop')
   name: shop_furnitures
-- label: _('outdoor activites shop')
+- label: _('outdoor activities shop')
   name: shop_outdoor_activites
 - label: _('vehicules shop')
   name: shop_vehicules
