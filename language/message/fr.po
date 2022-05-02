@@ -489,7 +489,7 @@ msgstr "magasin de surgelés"
 
 #: config/categories.js:100
 msgid "ice-cream shop"
-msgstr "magasin de glaces"
+msgstr "glacier"
 
 #: config/categories.js:101
 msgid "fishmonger"
@@ -505,11 +505,11 @@ msgstr "tatoueur"
 
 #: config/categories.js:104
 msgid "sex shop"
-msgstr "sexe shop"
+msgstr "sex shop"
 
 #: config/categories.js:105
 msgid "watches shop"
-msgstr "horlogier"
+msgstr "horloger"
 
 #: config/categories.js:106
 msgid "discount shop"
@@ -521,7 +521,7 @@ msgstr "institut de bien-être"
 
 #: config/categories.js:108
 msgid "DIY clothes shop"
-msgstr "magasin de confection vetement"
+msgstr "mercerie"
 
 #: config/categories.js:109
 msgid "medical supply shop"
@@ -529,7 +529,7 @@ msgstr "magasin matériel medical"
 
 #: config/categories.js:110
 msgid "furnitures shop"
-msgstr "electroménager"
+msgstr "électroménager"
 
 #: config/categories.js:111
 msgid "outdoor activities shop'"
