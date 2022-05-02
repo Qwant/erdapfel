@@ -1323,11 +1323,6 @@ msgstr ""
 msgid "scuba diving"
 msgstr ""
 
-#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1454
-#: public/build/javascript/bundle.js:1454
-msgid "fishmonger"
-msgstr ""
-
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1457
 #: public/build/javascript/bundle.js:1457
 msgid "resale shop"
@@ -1481,11 +1476,6 @@ msgstr ""
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1573
 #: public/build/javascript/bundle.js:1573
 msgid "viewpoint"
-msgstr ""
-
-#: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1576
-#: public/build/javascript/bundle.js:1576
-msgid "watches shop"
 msgstr ""
 
 #: public/build/javascript/bundle-67483209244d77e4b0143101db177c71.js:1579
