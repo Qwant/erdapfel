@@ -3,6 +3,7 @@ import React from 'react';
 import { useI18n } from 'src/hooks';
 import { findBlock } from 'src/libs/pois';
 import { Divider } from 'src/components/ui';
+import { truncate } from 'src/libs/string';
 
 const UserReviewsBlock = ({ poi }) => {
   const { _ } = useI18n();
@@ -11,17 +12,12 @@ const UserReviewsBlock = ({ poi }) => {
 
   const dateFormatter = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' });
 
-  const truncate = (string, length) => {
-    if (string.length <= length) return string;
-    string = string.substr(0, length);
-    string = string.replace(/\s+\S+?\.*$/, '');
-    return string + '...';
-  };
-
   if (!userReviewsBlock || userReviewsBlock?.reviews?.length === 0) {
     return null;
   } else {
-    userReviewsBlock.reviews.map(item => (item.date = dateFormatter.format(new Date(item.date))));
+    userReviewsBlock.reviews.forEach(
+      item => (item.date = dateFormatter.format(new Date(item.date)))
+    );
 
     return (
       <>
