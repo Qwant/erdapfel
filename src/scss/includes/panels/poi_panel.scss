@@ -49,6 +49,37 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   color: #90750b;
 }
 
+
+.UserReviewCaption {
+  margin: $spacing-xs 0;
+
+  * {
+    display: inline;
+    vertical-align: middle;
+  }
+
+  img {
+    margin-left: -10px;
+    width: 85px;
+  }
+}
+
+.UserReviewDescription {
+  * {
+    display: inline;
+    vertical-align: baseline;
+  }
+  a {
+    display: block;
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.UserReviewReadMore {
+  margin-bottom: $spacing-m;
+}
+
+
 .poi_panel__action__direction {
   flex-grow: 1;
 }

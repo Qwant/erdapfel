@@ -33,3 +33,10 @@ export function htmlEncode(str) {
 export function capitalizeFirst(str = '') {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function truncate(string, length) {
+  if (string.length <= length) return string;
+  string = string.substr(0, length);
+  string = string.replace(/\s+\S+?\.*$/, '');
+  return string + '...';
+}
