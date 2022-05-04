@@ -15,9 +15,9 @@ const UserReviewsBlock = ({ poi }) => {
   if (!userReviewsBlock || userReviewsBlock?.reviews?.length === 0) {
     return null;
   } else {
-    userReviewsBlock.reviews.forEach(
-      item => (item.date = dateFormatter.format(new Date(item.date)))
-    );
+      userReviewsBlock.reviews.forEach(
+          item => item.formattedDate = dateFormatter.format(new Date(item.date))
+      );
 
     return (
       <>
@@ -25,7 +25,7 @@ const UserReviewsBlock = ({ poi }) => {
         <Stack gap="xs">
           <h3 className="u-text--smallTitle">{_('Reviews')}</h3>
           <Stack gap="xs">
-            {userReviewsBlock.reviews.map(({ date, text, url, rating, rating_bubble_star_url }) => (
+            {userReviewsBlock.reviews.map(({ formattedDate, text, url, rating, rating_bubble_star_url }) => (
               <Box key={url}>
                 <Text typo="caption-1" color="secondary" className="UserReviewCaption">
                   <Image
@@ -35,7 +35,7 @@ const UserReviewsBlock = ({ poi }) => {
                     height={15}
                   />
                   <Text typo="caption-1">
-                    {date}
+                    {formattedDate}
                     &nbsp;·&nbsp;{_('TripAdvisor user')}
                   </Text>
                 </Text>
