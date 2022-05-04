@@ -1,4 +1,4 @@
-// This file allows Poedit to translate the category names present in categories.yml
+// This file allows Poedit to translate the category 
 // (The free version of Poedit cannot parse yml files)
 const _ = () => {};
 window.categories = [
@@ -90,4 +90,32 @@ window.categories = [
   _('post box'),
   _('playground'),
   _('marketplace'),
+  _('confectionery'),
+  _('locksmith'),
+  _('shoemaker'),
+  _('liquor store'),
+  _('Delicatessen'),
+  _('greengrocer'),
+  _('frozen food shop'),
+  _('ice-cream shop'),
+  _('fishmonger'),
+  _('baby goods shop'),
+  _('tattoo artist'),
+  _('sex shop'),
+  _('watches shop'),
+  _('discount shop'),
+  _('well being shop'),
+  _('DIY clothes shop'),
+  _('medical supply shop'),
+  _('furnitures shop'),
+  _('outdoor activities shop'),
+  _('vehicules shop'),
+  _('boat shop'),
+  _('hobbies shop'),
+  _('souvenir shop'),
+  _('e-cigarette shop'),
+  _('dry cleaner'),
+  _('retirement home'),
+  _('ticketing'),
+  _('coworking'),
 ];

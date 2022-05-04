@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Maps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-03 15:24+0200\n"
-"PO-Revision-Date: 2022-05-03 15:24+0200\n"
+"PO-Revision-Date: 2022-05-04 16:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: Qwant\n"
 "Language: en_GB\n"
@@ -404,6 +404,106 @@ msgstr ""
 #: config/categories.js:92
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1017
 msgid "marketplace"
+msgstr ""
+
+#: config/categories.js:93
+msgid "confectionery"
+msgstr ""
+
+#: config/categories.js:94
+msgid "locksmith"
+msgstr ""
+
+#: config/categories.js:97
+msgid "Delicatessen"
+msgstr ""
+
+#: config/categories.js:99
+msgid "frozen food shop"
+msgstr ""
+
+#: config/categories.js:100
+msgid "ice-cream shop"
+msgstr ""
+
+#: config/categories.js:101
+msgid "fishmonger"
+msgstr ""
+
+#: config/categories.js:102
+msgid "baby goods shop"
+msgstr ""
+
+#: config/categories.js:103
+msgid "tattoo artist"
+msgstr ""
+
+#: config/categories.js:104
+msgid "sex shop"
+msgstr ""
+
+#: config/categories.js:105
+msgid "watches shop"
+msgstr ""
+
+#: config/categories.js:106
+msgid "discount shop"
+msgstr ""
+
+#: config/categories.js:107
+msgid "well being shop"
+msgstr ""
+
+#: config/categories.js:108
+msgid "DIY clothes shop"
+msgstr ""
+
+#: config/categories.js:109
+msgid "medical supply shop"
+msgstr ""
+
+#: config/categories.js:110
+msgid "furnitures shop"
+msgstr ""
+
+#: config/categories.js:111
+msgid "outdoor activities shop'"
+msgstr ""
+
+#: config/categories.js:112
+msgid "vehicules shop"
+msgstr ""
+
+#: config/categories.js:113
+msgid "boat shop"
+msgstr ""
+
+#: config/categories.js:114
+msgid "hobbies shop"
+msgstr ""
+
+#: config/categories.js:115
+msgid "souvenir shop"
+msgstr ""
+
+#: config/categories.js:116
+msgid "e-cigarette shop"
+msgstr ""
+
+#: config/categories.js:117
+msgid "dry cleaner"
+msgstr ""
+
+#: config/categories.js:118
+msgid "retirement home"
+msgstr ""
+
+#: config/categories.js:119
+msgid "ticketing"
+msgstr ""
+
+#: config/categories.js:120
+msgid "coworking"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
@@ -1014,10 +1114,6 @@ msgstr ""
 msgid "scuba diving"
 msgstr ""
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1067
-msgid "fishmonger"
-msgstr ""
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1068
 msgid "resale shop"
 msgstr ""
@@ -1144,10 +1240,6 @@ msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1108
 msgid "viewpoint"
-msgstr ""
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1109
-msgid "watches shop"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1110
@@ -1327,9 +1419,7 @@ msgid "<span class=\"historyText\">History</span> is available on Qwant Maps"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98691
-msgid ""
-"Convenient and completely private, the history will only be visible to you "
-"on this device 🙈."
+msgid "Convenient and completely private, the history will only be visible to you on this device 🙈."
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98698
@@ -1351,9 +1441,7 @@ msgid "Well done, the <span class=\"historyText\">history</span> is activated"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98744
-msgid ""
-"You can find and <a href=\"history\" target=\"_self\">manage your complete "
-"history</a> at any time in the menu"
+msgid "You can find and <a href=\"history\" target=\"_self\">manage your complete history</a> at any time in the menu"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98761
@@ -1361,9 +1449,7 @@ msgid "No worries, history is disabled"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98767
-msgid ""
-"You can change your mind at any time and <a href=\"history\" target=\"_self"
-"\">manage</a> the activation of the history in the menu"
+msgid "You can change your mind at any time and <a href=\"history\" target=\"_self\">manage</a> the activation of the history in the menu"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98929
@@ -1415,16 +1501,11 @@ msgid "No"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102006
-msgid ""
-"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
-"privacy policy{closeTag}, we don't store your information because we don't "
-"want to know your whereabouts."
+msgid "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don't store your information because we don't want to know your whereabouts."
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102011
-msgid ""
-"We look at your location to show you where you are, and that's it!<br />(See "
-"our {privacyPolicyLink}privacy policy{closeTag})"
+msgid "We look at your location to show you where you are, and that's it!<br />(See our {privacyPolicyLink}privacy policy{closeTag})"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102018
@@ -1449,9 +1530,7 @@ msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102031
-msgid ""
-"Allow Qwant Maps to access your position so we can better help you find your "
-"way…"
+msgid "Allow Qwant Maps to access your position so we can better help you find your way…"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102033
@@ -1460,9 +1539,7 @@ msgid "How to access the geolocation services?"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102040
-msgid ""
-"We can't access your position.<br/> Please check that your geolocation "
-"services are enabled."
+msgid "We can't access your position.<br/> Please check that your geolocation services are enabled."
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102228
@@ -1504,9 +1581,7 @@ msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102466
-msgid ""
-"Please try to correct your query or rewrite it with more details about the "
-"location (city, country, …)"
+msgid "Please try to correct your query or rewrite it with more details about the location (city, country, …)"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102472
@@ -1670,9 +1745,7 @@ msgid "Your history is enabled. It is only visible to you on this device."
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106716
-msgid ""
-"Your history is disabled. If you enable it, it will only be visible to you "
-"on this device."
+msgid "Your history is disabled. If you enable it, it will only be visible to you on this device."
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106727
@@ -2042,3 +2115,4 @@ msgstr ""
 #: src/mapbox/locale.js:4
 msgid "My location"
 msgstr ""
+

@@ -178,8 +178,6 @@
   name: shop_optician
 - label: _('graveyard')
   name: grave_yard
-- label: _('beauty salon')
-  name: shop_beauty
 - label: _('florist')
   name: shop_florist
 - label: _('fire station')
@@ -230,3 +228,59 @@
   name: playground
 - label: _('marketplace')
   name: marketplace
+- label: _('confectionery')
+  name: shop_confectionery
+- label: _('locksmith')
+  name: shop_locksmith
+- label: _('shoemaker')
+  name: craft_shoemaker
+- label: _('liquor store')
+  name: shop_alcohol
+- label: _('Delicatessen')
+  name: shop_fine_food
+- label: _('greengrocer')
+  name: shop_crop
+- label: _('frozen food shop')
+  name: shop_frozen_food
+- label: _('ice-cream shop')
+  name: amenity_ice_cream
+- label: _('fishmonger')
+  name: shop_seafood
+- label: _('baby goods shop ')
+  name: shop_baby_goods
+- label: _('tattoo artist')
+  name: shop_tatoo
+- label: _('sex shop')
+  name: shop_erotic
+- label: _('watches shop')
+  name: shop_watches
+- label: _('discount shop')
+  name: shop_discount
+- label: _('well being shop')
+  name: shop_well_being
+- label: _('DIY clothes shop')
+  name: shop_doityourself_clothes
+- label: _('medical supply shop')
+  name: shop_medical_supply
+- label: _('furnitures shop')
+  name: shop_furnitures
+- label: _('outdoor activities shop')
+  name: shop_outdoor_activites
+- label: _('vehicules shop')
+  name: shop_vehicules
+- label: _('boat shop')
+  name: shop_boat
+- label: _('hobbies shop')
+  name: shop_hobbies
+- label: _('souvenir shop')
+  name: shop_gift
+- label: _('e-cigarette shop')
+  name: shop_e-cigarette
+- label: _('dry cleaner')
+  name: shop_dry_cleaning
+- label: _('retirement home')
+  name: retirement_home
+- label: _('ticketing')
+  name: shop_ticket
+- label: _('coworking')
+  name: coworking

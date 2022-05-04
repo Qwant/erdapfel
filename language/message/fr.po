@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-03 15:25+0200\n"
-"PO-Revision-Date: 2022-05-03 15:27+0200\n"
+"PO-Revision-Date: 2022-05-04 17:11+0200\n"
 "Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
 "Language: fr\n"
@@ -131,7 +131,7 @@ msgstr "restaurant indien"
 
 #: config/categories.js:29
 msgid "thai restaurant"
-msgstr "restaurant thaïlandais "
+msgstr "restaurant thaïlandais"
 
 #: config/categories.js:30
 msgid "lebanese restaurant"
@@ -314,7 +314,7 @@ msgstr "magasin de chaussures"
 
 #: config/categories.js:71
 msgid "DIY store"
-msgstr "magasin de bricolage"
+msgstr "Magasin de bricolage"
 
 #: config/categories.js:72
 msgid "bicycle rental"
@@ -409,6 +409,102 @@ msgstr "terrain de jeu"
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1017
 msgid "marketplace"
 msgstr "marché"
+
+#: config/categories.js:93
+msgid "confectionery"
+msgstr "confiserie"
+
+#: config/categories.js:94
+msgid "locksmith"
+msgstr "serrurier"
+
+#: config/categories.js:97
+msgid "Delicatessen"
+msgstr "Épicerie fine"
+
+#: config/categories.js:99
+msgid "frozen food shop"
+msgstr "magasin de surgelés"
+
+#: config/categories.js:100
+msgid "ice-cream shop"
+msgstr "glacier"
+
+#: config/categories.js:101
+msgid "fishmonger"
+msgstr "poissonnier"
+
+#: config/categories.js:102
+msgid "baby goods shop"
+msgstr "magasin pour bébé"
+
+#: config/categories.js:103
+msgid "tattoo artist"
+msgstr "tatoueur"
+
+#: config/categories.js:104
+msgid "sex shop"
+msgstr "sex shop"
+
+#: config/categories.js:106
+msgid "discount shop"
+msgstr "recyclerie"
+
+#: config/categories.js:107
+msgid "well being shop"
+msgstr "institut de bien-être"
+
+#: config/categories.js:108
+msgid "DIY clothes shop"
+msgstr "Mercerie"
+
+#: config/categories.js:109
+msgid "medical supply shop"
+msgstr "magasin matériel medical"
+
+#: config/categories.js:110
+msgid "furnitures shop"
+msgstr "électroménager"
+
+#: config/categories.js:111
+msgid "outdoor activities shop'"
+msgstr "magasin d'activité extérieur"
+
+#: config/categories.js:112
+msgid "vehicules shop"
+msgstr "concessionaire"
+
+#: config/categories.js:113
+msgid "boat shop"
+msgstr "magasin de bateau"
+
+#: config/categories.js:114
+msgid "hobbies shop"
+msgstr "magasin de divertissement"
+
+#: config/categories.js:115
+msgid "souvenir shop"
+msgstr "magasin de souvenir"
+
+#: config/categories.js:116
+msgid "e-cigarette shop"
+msgstr "magasin de e-cigarette"
+
+#: config/categories.js:117
+msgid "dry cleaner"
+msgstr "pressing"
+
+#: config/categories.js:118
+msgid "retirement home"
+msgstr "maison de retraite"
+
+#: config/categories.js:119
+msgid "ticketing"
+msgstr "billeterie"
+
+#: config/categories.js:120
+msgid "coworking"
+msgstr "espace de coworking"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
 msgid "accessories shop"
@@ -1018,10 +1114,6 @@ msgstr "voile"
 msgid "scuba diving"
 msgstr "plongée sous-marine"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1067
-msgid "fishmonger"
-msgstr "poissonier"
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1068
 msgid "resale shop"
 msgstr "vente d'occasion"
@@ -1328,17 +1420,11 @@ msgstr "Twitter"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98685
 msgid "<span class=\"historyText\">History</span> is available on Qwant Maps"
-msgstr ""
-"<span class=\"historyText\">L'historique de recherche</span> est disponible "
-"sur Qwant Maps"
+msgstr "<span class=\"historyText\">L'historique de recherche</span> est disponible sur Qwant Maps"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98691
-msgid ""
-"Convenient and completely private, the history will only be visible to you "
-"on this device 🙈."
-msgstr ""
-"Pratique et entièrement privé, l'historique ne sera visible que par vous sur "
-"cet appareil 🙈."
+msgid "Convenient and completely private, the history will only be visible to you on this device 🙈."
+msgstr "Pratique et entièrement privé, l'historique ne sera visible que par vous sur cet appareil 🙈."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98698
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107199
@@ -1356,28 +1442,19 @@ msgstr "Activer l'historique"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98736
 msgid "Well done, the <span class=\"historyText\">history</span> is activated"
-msgstr ""
-"Bien joué, <span class=\"historyText\">l'historique</span> est activé !"
+msgstr "Bien joué, <span class=\"historyText\">l'historique</span> est activé !"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98744
-msgid ""
-"You can find and <a href=\"history\" target=\"_self\">manage your complete "
-"history</a> at any time in the menu"
-msgstr ""
-"Vous pouvez trouver et <a href=\"history\" target=\"_self\">gérer votre "
-"historique complet</a> à tout moment depuis le menu"
+msgid "You can find and <a href=\"history\" target=\"_self\">manage your complete history</a> at any time in the menu"
+msgstr "Vous pouvez trouver et <a href=\"history\" target=\"_self\">gérer votre historique complet</a> à tout moment depuis le menu"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98761
 msgid "No worries, history is disabled"
 msgstr "Aucun souci, l'historique est désactivé"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98767
-msgid ""
-"You can change your mind at any time and <a href=\"history\" target=\"_self"
-"\">manage</a> the activation of the history in the menu"
-msgstr ""
-"Vous pouvez à tout moment retrouve et <a href=\"history\" target=\"_self"
-"\">gérer votre historique complet</a> dans le menu"
+msgid "You can change your mind at any time and <a href=\"history\" target=\"_self\">manage</a> the activation of the history in the menu"
+msgstr "Vous pouvez à tout moment retrouve et <a href=\"history\" target=\"_self\">gérer votre historique complet</a> dans le menu"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98929
 msgid "Recent history"
@@ -1417,9 +1494,7 @@ msgstr "Supprimer"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99336
 msgid "Thank you for helping us to improve your experience."
-msgstr ""
-"Merci pour votre contribution, c’est important pour nous aider à nous "
-"améliorer !"
+msgstr "Merci pour votre contribution, c’est important pour nous aider à nous améliorer !"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99347
 msgid "Yes"
@@ -1430,24 +1505,12 @@ msgid "No"
 msgstr "Non"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102006
-msgid ""
-"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
-"privacy policy{closeTag}, we don't store your information because we don't "
-"want to know your whereabouts."
-msgstr ""
-"Toujours dans le respect de votre vie privée.<br>Comme indiqué dans "
-"{privacyPolicyLink}notre politique de protection des données{closeTag}, nous "
-"de stockons pas vos informations car nous ne voulons pas connaître vos "
-"allées et venues."
+msgid "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our privacy policy{closeTag}, we don't store your information because we don't want to know your whereabouts."
+msgstr "Toujours dans le respect de votre vie privée.<br>Comme indiqué dans {privacyPolicyLink}notre politique de protection des données{closeTag}, nous de stockons pas vos informations car nous ne voulons pas connaître vos allées et venues."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102011
-msgid ""
-"We look at your location to show you where you are, and that's it!<br />(See "
-"our {privacyPolicyLink}privacy policy{closeTag})"
-msgstr ""
-"Nous regardons votre localisation pour vous montrer où vous êtes, et c'est "
-"tout !<br />(Voir notre {privacyPolicyLink}Politique de "
-"Confidentialité{closeTag})"
+msgid "We look at your location to show you where you are, and that's it!<br />(See our {privacyPolicyLink}privacy policy{closeTag})"
+msgstr "Nous regardons votre localisation pour vous montrer où vous êtes, et c'est tout !<br />(Voir notre {privacyPolicyLink}Politique de Confidentialité{closeTag})"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102018
 msgid "At Qwant, your whereabouts are part of your privacy"
@@ -1471,12 +1534,8 @@ msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr "Houston,<br/> on a un souci de géolocalisation&nbsp;🛰️"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102031
-msgid ""
-"Allow Qwant Maps to access your position so we can better help you find your "
-"way…"
-msgstr ""
-"Autorisez Qwant Maps à accéder à votre position pour profiter du service de "
-"localisation…"
+msgid "Allow Qwant Maps to access your position so we can better help you find your way…"
+msgstr "Autorisez Qwant Maps à accéder à votre position pour profiter du service de localisation…"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102033
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102042
@@ -1484,12 +1543,8 @@ msgid "How to access the geolocation services?"
 msgstr "Comment accéder aux services de géolocalisation ?"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102040
-msgid ""
-"We can't access your position.<br/> Please check that your geolocation "
-"services are enabled."
-msgstr ""
-"Nous n’arrivons pas à accéder à votre position.<br/> Vérifiez que les "
-"services de localisation sont bien activés."
+msgid "We can't access your position.<br/> Please check that your geolocation services are enabled."
+msgstr "Nous n’arrivons pas à accéder à votre position.<br/> Vérifiez que les services de localisation sont bien activés."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102228
 msgid "Disable Qwant Maps history"
@@ -1530,12 +1585,8 @@ msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr "Oups, nous ne trouvons pas ce lieu 🏝️"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102466
-msgid ""
-"Please try to correct your query or rewrite it with more details about the "
-"location (city, country, …)"
-msgstr ""
-"Essayez avec une autre orthographe ou ajoutez plus de détails à votre "
-"recherche (ville, pays, …)"
+msgid "Please try to correct your query or rewrite it with more details about the location (city, country, …)"
+msgstr "Essayez avec une autre orthographe ou ajoutez plus de détails à votre recherche (ville, pays, …)"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102472
 msgid "Add a missing place on the map"
@@ -1576,8 +1627,7 @@ msgstr "Hum, il n’y a pas un chat ici 🐱"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103461
 msgid "We found no place matching your query in this area."
-msgstr ""
-"Nous ne trouvons aucun lieu correspondant à votre recherche dans cette zone."
+msgstr "Nous ne trouvons aucun lieu correspondant à votre recherche dans cette zone."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103465
 msgid "Get some height"
@@ -1619,13 +1669,11 @@ msgstr "Aïe, nous avons perdu le nord 🧭"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105575
 msgid "The service is temporarily unavailable, please try again later."
-msgstr ""
-"Le service est momentanément indisponible, veuillez réessayer ultérieurement."
+msgstr "Le service est momentanément indisponible, veuillez réessayer ultérieurement."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105575
 msgid "We couldn't find any itinerary, we are really sorry."
-msgstr ""
-"Nous n'avons aucun itinéraire à vous proposer, nous sommes vraiment confus."
+msgstr "Nous n'avons aucun itinéraire à vous proposer, nous sommes vraiment confus."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105596
 msgid "Results in partnership with Combigo"
@@ -1674,9 +1722,7 @@ msgstr "Marchez sur {walkDistance}"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106257
 msgid "You have no favorite places. <br>You can add one by clicking on a place"
-msgstr ""
-"Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un "
-"lieu"
+msgstr "Vous n'avez pas encore de lieux favoris.<br>Ajoutez-en en cliquant sur un lieu"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106356
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107361
@@ -1700,17 +1746,11 @@ msgstr "Mon historique de recherche"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106716
 msgid "Your history is enabled. It is only visible to you on this device."
-msgstr ""
-"Votre historique de recherche est activé. Il n'est visible que par vous sur "
-"cet appareil."
+msgstr "Votre historique de recherche est activé. Il n'est visible que par vous sur cet appareil."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106716
-msgid ""
-"Your history is disabled. If you enable it, it will only be visible to you "
-"on this device."
-msgstr ""
-"Votre historique de recherche est désactivé. Si vous l'activez, il ne sera "
-"visible que par vous sur cet appareil."
+msgid "Your history is disabled. If you enable it, it will only be visible to you on this device."
+msgstr "Votre historique de recherche est désactivé. Si vous l'activez, il ne sera visible que par vous sur cet appareil."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106727
 msgid "Disable"
@@ -2105,9 +2145,7 @@ msgstr "Ma position"
 #~ msgstr "Installez l'un des navigateurs suivants pour utiliser Qwant Maps."
 
 #~ msgid "JavaScript is required to view this application."
-#~ msgstr ""
-#~ "Il est nécessaire que JavaScript soit activé pour afficher cette "
-#~ "application."
+#~ msgstr "Il est nécessaire que JavaScript soit activé pour afficher cette application."
 
 #~ msgid "vietnamese restaurant"
 #~ msgstr "restaurant vietnamien"
