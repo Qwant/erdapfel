@@ -16,7 +16,7 @@ const UserReviewsBlock = ({ poi }) => {
     return null;
   } else {
     userReviewsBlock.reviews.forEach(
-      item => (item.date = dateFormatter.format(new Date(item.date)))
+      item => (item.formattedDate = dateFormatter.format(new Date(item.date)))
     );
 
     return (
@@ -25,31 +25,33 @@ const UserReviewsBlock = ({ poi }) => {
         <Stack gap="xs">
           <h3 className="u-text--smallTitle">{_('Reviews')}</h3>
           <Stack gap="xs">
-            {userReviewsBlock.reviews.map(({ date, text, url, rating, rating_bubble_star_url }) => (
-              <Box key={url}>
-                <Text typo="caption-1" color="secondary" className="UserReviewCaption">
-                  <Image
-                    src={rating_bubble_star_url}
-                    fallbackImageSrc={`./statics/images/tripadvisor/${rating}.svg`}
-                    width={85}
-                    height={15}
-                  />
-                  <Text typo="caption-1">
-                    {date}
-                    &nbsp;·&nbsp;{_('TripAdvisor user')}
-                  </Text>
-                </Text>
-                <Text className="UserReviewDescription" color="primary" typo="body-2">
-                  {truncate(text, 150)}
-                  &nbsp;
-                  <a href={url} target="_blank" rel="noopener noreferrer">
-                    <Text typo="body-2" color="action-link">
-                      {_('Read the full review')}
+            {userReviewsBlock.reviews.map(
+              ({ formattedDate, text, url, rating, rating_bubble_star_url }) => (
+                <Box key={url}>
+                  <Text typo="caption-1" color="secondary" className="UserReviewCaption">
+                    <Image
+                      src={rating_bubble_star_url}
+                      fallbackImageSrc={`./statics/images/tripadvisor/${rating}.svg`}
+                      width={85}
+                      height={15}
+                    />
+                    <Text typo="caption-1">
+                      {formattedDate}
+                      &nbsp;·&nbsp;{_('TripAdvisor user')}
                     </Text>
-                  </a>
-                </Text>
-              </Box>
-            ))}
+                  </Text>
+                  <Text className="UserReviewDescription" color="primary" typo="body-2">
+                    {truncate(text, 150)}
+                    &nbsp;
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                      <Text typo="body-2" color="action-link">
+                        {_('Read the full review')}
+                      </Text>
+                    </a>
+                  </Text>
+                </Box>
+              )
+            )}
           </Stack>
           <a
             className="UserReviewReadMore"
