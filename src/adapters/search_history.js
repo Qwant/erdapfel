@@ -109,10 +109,12 @@ export function getHistoryItems(term = '', { withIntentions = false } = {}) {
     .filter(stored => itemMatches(stored, term))
     .map(stored => {
       if (stored.type === 'intention') {
-        return Object.assign(
+        const res = Object.assign(
           new Intention({ filter: stored.item.filter, description: { place: stored.item.place } }),
           stored.item
         );
+        res.category = Category.create(stored.item.category);
+        return res;
       } else {
         return Object.assign(new Poi(), stored.item);
       }
