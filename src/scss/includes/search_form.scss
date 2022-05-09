@@ -63,12 +63,12 @@ input[type='search'] {
 // Logo
 .search_form__logo__button {
   cursor: pointer;
-  width: 37px;
-  height: 36px;
+  width: 47px;
+  height: 47px;
   flex-shrink: 0;
   background: url(../../images/qwant-logo.svg) no-repeat;
   background-size: cover;
-  margin: 0 $spacing-s 0 $spacing-s;
+  margin: 0 $spacing-xs 0 $spacing-xs;
 }
 
 // Return arrows
