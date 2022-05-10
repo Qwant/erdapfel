@@ -580,7 +580,7 @@ msgid "karting"
 msgstr ""
 
 #: config/categories.js
-msgid "motor"
+msgid "car circuit"
 msgstr ""
 
 #: config/categories.js
@@ -807,10 +807,6 @@ msgstr ""
 msgid "chocolate shop"
 msgstr ""
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:934
-msgid "climbing"
-msgstr ""
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:935
 msgid "climbing adventure"
 msgstr ""
@@ -959,10 +955,6 @@ msgstr ""
 msgid "gift shop"
 msgstr ""
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:984
-msgid "golf"
-msgstr ""
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:985
 msgid "golf course"
 msgstr ""
@@ -1021,10 +1013,6 @@ msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1003
 msgid "interior decoration shop"
-msgstr ""
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1005
-msgid "karting"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1007
@@ -1203,10 +1191,6 @@ msgstr ""
 msgid "running"
 msgstr ""
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1064
-msgid "sailing"
-msgstr ""
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1066
 msgid "scuba diving"
 msgstr ""
@@ -1239,16 +1223,9 @@ msgstr ""
 msgid "skating"
 msgstr ""
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1075
-msgid "skiing"
-msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1076
 msgid "soccer"
-msgstr ""
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1079
-msgid "stadium"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1080
@@ -1335,9 +1312,6 @@ msgstr ""
 msgid "video games shop"
 msgstr ""
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1108
-msgid "viewpoint"
-msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1110
 msgid "water park"

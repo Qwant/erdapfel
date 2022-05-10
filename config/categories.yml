@@ -322,7 +322,7 @@
   name: sport_ice_skating
 - label: _('karting')
   name: sport_karting
-- label: _('motor')
+- label: _('car circuit')
   name: sport_motor
 - label: _('skiing')
   name: sport_skiing

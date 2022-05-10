@@ -580,7 +580,7 @@ msgid "karting"
 msgstr "circuit de karting"
 
 #: config/categories.js
-msgid "motor"
+msgid "car circuit"
 msgstr "circuit automobile"
 
 #: config/categories.js
@@ -601,7 +601,7 @@ msgstr "stade"
 
 #: config/categories.js
 msgid "viewpoint"
-msgstr "panorama"
+msgstr "belvédère"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
 msgid "accessories shop"
@@ -807,9 +807,6 @@ msgstr "crèche"
 msgid "chocolate shop"
 msgstr "chocolaterie"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:934
-msgid "climbing"
-msgstr "escalade"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:935
 msgid "climbing adventure"
@@ -959,10 +956,6 @@ msgstr "magasin"
 msgid "gift shop"
 msgstr "magasin de souvenirs"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:984
-msgid "golf"
-msgstr "golf"
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:985
 msgid "golf course"
 msgstr "parcours de golf"
@@ -1022,10 +1015,6 @@ msgstr "patinoire"
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1003
 msgid "interior decoration shop"
 msgstr "magasin de décoration"
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1005
-msgid "karting"
-msgstr "karting"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1007
 msgid "kiosk"
@@ -1203,9 +1192,6 @@ msgstr "ruines"
 msgid "running"
 msgstr "course à pied"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1064
-msgid "sailing"
-msgstr "voile"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1066
 msgid "scuba diving"
@@ -1239,17 +1225,10 @@ msgstr "skateboard"
 msgid "skating"
 msgstr "piste de ski de fond"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1075
-msgid "skiing"
-msgstr "piste de ski"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1076
 msgid "soccer"
 msgstr "football"
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1079
-msgid "stadium"
-msgstr "stade"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1080
 msgid "station"
@@ -1334,10 +1313,6 @@ msgstr "magasin de vidéo"
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1107
 msgid "video games shop"
 msgstr "magasin de jeux vidéo"
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1108
-msgid "viewpoint"
-msgstr "belvédère"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1109
 msgid "watches shop"
