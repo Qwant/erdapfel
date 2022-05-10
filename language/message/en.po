@@ -73,10 +73,6 @@ msgstr ""
 msgid "museum"
 msgstr ""
 
-#: config/categories.js:16 config/categories.js:89
-msgid "sport"
-msgstr ""
-
 #: config/categories.js:17
 msgid "service"
 msgstr ""
@@ -504,6 +500,107 @@ msgstr ""
 
 #: config/categories.js:120
 msgid "coworking"
+msgstr ""
+
+
+#: config/categories.js
+msgid "soccer pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "boules pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "basketball pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "rugby pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "tennis pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "skateboard pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "table tennis pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "equestrian pitch"
+msgstr ""
+
+#: config/categories.js
+msgid "running track"
+msgstr ""
+
+#: config/categories.js
+msgid "sports hall"
+msgstr ""
+
+#: config/categories.js
+msgid "climbing"
+msgstr ""
+
+#: config/categories.js
+msgid "martial art"
+msgstr ""
+
+#: config/categories.js
+msgid "badminton"
+msgstr ""
+
+#: config/categories.js
+msgid "baseball"
+msgstr ""
+
+#: config/categories.js
+msgid "beach-volley"
+msgstr ""
+
+#: config/categories.js
+msgid "golf"
+msgstr ""
+
+#: config/categories.js
+msgid "handball"
+msgstr ""
+
+#: config/categories.js
+msgid "ice skating"
+msgstr ""
+
+#: config/categories.js
+msgid "karting"
+msgstr ""
+
+#: config/categories.js
+msgid "motor"
+msgstr ""
+
+#: config/categories.js
+msgid "skiing"
+msgstr ""
+
+#: config/categories.js
+msgid "volleyball"
+msgstr ""
+
+#: config/categories.js
+msgid "sailing"
+msgstr ""
+
+#: config/categories.js
+msgid "stadium"
+msgstr ""
+
+#: config/categories.js
+msgid "viewpoint"
 msgstr ""
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
