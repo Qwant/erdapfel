@@ -220,8 +220,6 @@
   name: university
 - label: _('travel agency')
   name: shop_travel_agency
-- label: _('sport')
-  name: sport_other
 - label: _('post box')
   name: post_box
 - label: _('playground')
@@ -246,7 +244,7 @@
   name: amenity_ice_cream
 - label: _('fishmonger')
   name: shop_seafood
-- label: _('baby goods shop ')
+- label: _('baby goods shop')
   name: shop_baby_goods
 - label: _('tattoo artist')
   name: shop_tatoo
@@ -284,3 +282,55 @@
   name: shop_ticket
 - label: _('coworking')
   name: coworking
+- label: _('pitch')
+  name: pitch
+- label: _('soccer pitch')
+  name: football_pitch
+- label: _('boules pitch')
+  name: boules_pitch
+- label: _('basketball pitch')
+  name: basketball_pitch
+- label: _('rugby pitch')
+  name: rugby_pitch
+- label: _('tennis pitch')
+  name: tennis_pitch
+- label: _('skateboard pitch')
+  name: skateboard_pitch
+- label: _('table tennis pitch')
+  name: table_tennis_pitch
+- label: _('equestrian pitch')
+  name: equestrian_pitch
+- label: _('running track')
+  name: running_track
+- label: _('sports hall')
+  name: sports_hall
+- label: _('climbing')
+  name: sport_climbing
+- label: _('martial art')
+  name: sport_martial_art
+- label: _('badminton')
+  name: sport_badminton
+- label: _('baseball')
+  name: sport_baseball
+- label: _('beach-volley')
+  name: sport_beach_volley_ball
+- label: _('golf')
+  name: sport_golf
+- label: _('handball')
+  name: sport_handball
+- label: _('ice skating')
+  name: sport_ice_skating
+- label: _('karting')
+  name: sport_karting
+- label: _('car circuit')
+  name: sport_motor
+- label: _('skiing')
+  name: sport_skiing
+- label: _('volleyball')
+  name: sport_volleyball
+- label: _('sailing')
+  name: sport_sailing
+- label: _('stadium')
+  name: stadium
+- label: _('viewpoint')
+  name: viewpoint

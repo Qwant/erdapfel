@@ -77,9 +77,6 @@ msgstr "banque"
 msgid "museum"
 msgstr "musée"
 
-#: config/categories.js:16 config/categories.js:89
-msgid "sport"
-msgstr "sport"
 
 #: config/categories.js:17
 msgid "service"
@@ -506,6 +503,106 @@ msgstr "billeterie"
 msgid "coworking"
 msgstr "espace de coworking"
 
+#: config/categories.js
+msgid "soccer pitch"
+msgstr "terrain de football"
+
+#: config/categories.js
+msgid "boules pitch"
+msgstr "terrain de pétanque"
+
+#: config/categories.js
+msgid "basketball pitch"
+msgstr "terrain de basketball"
+
+#: config/categories.js
+msgid "rugby pitch"
+msgstr "terrain de rugby"
+
+#: config/categories.js
+msgid "tennis pitch"
+msgstr "court de tennis"
+
+#: config/categories.js
+msgid "skateboard pitch"
+msgstr "skatepark"
+
+#: config/categories.js
+msgid "table tennis pitch"
+msgstr "terrain de tennis de table"
+
+#: config/categories.js
+msgid "equestrian pitch"
+msgstr "centre d'équitation"
+
+#: config/categories.js
+msgid "running track"
+msgstr "piste d'athlétisme"
+
+#: config/categories.js
+msgid "sports hall"
+msgstr "gymnase"
+
+#: config/categories.js
+msgid "climbing"
+msgstr "escalade"
+
+#: config/categories.js
+msgid "martial art"
+msgstr "art martiaux"
+
+#: config/categories.js
+msgid "badminton"
+msgstr "badminton"
+
+#: config/categories.js
+msgid "baseball"
+msgstr "baseball"
+
+#: config/categories.js
+msgid "beach-volley"
+msgstr "beach-volley"
+
+#: config/categories.js
+msgid "golf"
+msgstr "golf"
+
+#: config/categories.js
+msgid "handball"
+msgstr "handball"
+
+#: config/categories.js
+msgid "ice skating"
+msgstr "patinoire"
+
+#: config/categories.js
+msgid "karting"
+msgstr "circuit de karting"
+
+#: config/categories.js
+msgid "car circuit"
+msgstr "circuit automobile"
+
+#: config/categories.js
+msgid "skiing"
+msgstr "piste de ski"
+
+#: config/categories.js
+msgid "volleyball"
+msgstr "volley"
+
+#: config/categories.js
+msgid "sailing"
+msgstr "voile"
+
+#: config/categories.js
+msgid "stadium"
+msgstr "stade"
+
+#: config/categories.js
+msgid "viewpoint"
+msgstr "belvédère"
+
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
 msgid "accessories shop"
 msgstr "magasin d'accessoires"
@@ -710,9 +807,6 @@ msgstr "crèche"
 msgid "chocolate shop"
 msgstr "chocolaterie"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:934
-msgid "climbing"
-msgstr "escalade"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:935
 msgid "climbing adventure"
@@ -862,10 +956,6 @@ msgstr "magasin"
 msgid "gift shop"
 msgstr "magasin de souvenirs"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:984
-msgid "golf"
-msgstr "golf"
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:985
 msgid "golf course"
 msgstr "parcours de golf"
@@ -925,10 +1015,6 @@ msgstr "patinoire"
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1003
 msgid "interior decoration shop"
 msgstr "magasin de décoration"
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1005
-msgid "karting"
-msgstr "karting"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1007
 msgid "kiosk"
@@ -1106,9 +1192,6 @@ msgstr "ruines"
 msgid "running"
 msgstr "course à pied"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1064
-msgid "sailing"
-msgstr "voile"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1066
 msgid "scuba diving"
@@ -1142,17 +1225,10 @@ msgstr "skateboard"
 msgid "skating"
 msgstr "piste de ski de fond"
 
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1075
-msgid "skiing"
-msgstr "piste de ski"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1076
 msgid "soccer"
 msgstr "football"
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1079
-msgid "stadium"
-msgstr "stade"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1080
 msgid "station"
@@ -1237,10 +1313,6 @@ msgstr "magasin de vidéo"
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1107
 msgid "video games shop"
 msgstr "magasin de jeux vidéo"
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1108
-msgid "viewpoint"
-msgstr "belvédère"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1109
 msgid "watches shop"
