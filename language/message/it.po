@@ -1,4 +1,4 @@
-#
+# 
 # Translators:
 # Guglielmo Kaldewey <g.kaldewey@gmail.com>, 2021
 # Alberto Cozzani <a.cozzani6@studenti.unipi.it>, 2022
@@ -6,52 +6,52 @@
 # Michael Moroni <michaelmoroni@disroot.org>, 2022
 # Marco <marcxosm@gmail.com>, 2022
 # maxime euziere <m.euziere@qwant.com>, 2022
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Maps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-04 17:13+0200\n"
-"PO-Revision-Date: 2022-05-04 17:13+0200\n"
+"POT-Creation-Date: 2022-05-03 15:24+0200\n"
+"PO-Revision-Date: 2018-08-27 07:45+0000\n"
 "Last-Translator: maxime euziere <m.euziere@qwant.com>, 2022\n"
 "Language-Team: Italian (https://www.transifex.com/qwant-1/teams/89416/it/)\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: views\n"
 "X-Poedit-SearchPath-2: public/build/javascript\n"
 "X-Poedit-SearchPath-3: config\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: config/categories.js:5
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1141
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1060
 msgid "restaurant"
 msgstr "ristorante"
 
 #: config/categories.js:6
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1080
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1094
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:999
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1013
 msgid "hotel"
 msgstr "hotel"
 
 #: config/categories.js:7 config/categories.js:43
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1164
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1083
 msgid "supermarket"
 msgstr "supermercato"
 
 #: config/categories.js:8
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:969
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:888
 msgid "bar"
 msgstr "bar"
 
 #: config/categories.js:9 config/categories.js:60
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1126
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1045
 msgid "pharmacy"
 msgstr "farmacia"
 
@@ -72,18 +72,14 @@ msgid "education"
 msgstr "istruzione"
 
 #: config/categories.js:14
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:968
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:887
 msgid "bank"
 msgstr "banca"
 
 #: config/categories.js:15
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1110
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1029
 msgid "museum"
 msgstr "museo"
-
-#: config/categories.js:16 config/categories.js:89
-msgid "sport"
-msgstr "sport"
 
 #: config/categories.js:17
 msgid "service"
@@ -150,37 +146,37 @@ msgid "pitch"
 msgstr "campo sportivo"
 
 #: config/categories.js:33
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1129
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1048
 msgid "place of worship"
 msgstr "luogo di culto"
 
 #: config/categories.js:34
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1139
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1058
 msgid "recycling"
 msgstr "riciclaggio"
 
 #: config/categories.js:35
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:978
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:897
 msgid "bicycle parking"
 msgstr "parcheggio bici"
 
 #: config/categories.js:36
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1146
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1065
 msgid "school"
 msgstr "scuola"
 
 #: config/categories.js:37
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1121
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1040
 msgid "park"
 msgstr "parco"
 
 #: config/categories.js:38
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:967
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:886
 msgid "bakery"
 msgstr "panificio"
 
 #: config/categories.js:39
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1018
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:937
 msgid "clothes shop"
 msgstr "negozio di abbigliamento"
 
@@ -189,17 +185,17 @@ msgid "toilets"
 msgstr "servizi igienici"
 
 #: config/categories.js:41
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1159
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1078
 msgid "sports centre"
 msgstr "centro sportivo"
 
 #: config/categories.js:42
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1072
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:991
 msgid "hairdresser"
 msgstr "parrucchiere"
 
 #: config/categories.js:44
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1050
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:969
 msgid "fast food"
 msgstr "fast food"
 
@@ -208,37 +204,37 @@ msgid "historical place"
 msgstr "luogo storico"
 
 #: config/categories.js:46
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1133
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1052
 msgid "post office"
 msgstr "ufficio postale"
 
 #: config/categories.js:47
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1057
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:976
 msgid "fuel station"
 msgstr "stazione di rifornimento"
 
 #: config/categories.js:48
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1021
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:940
 msgid "community centre"
 msgstr "centro comunitario"
 
 #: config/categories.js:49
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1025
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:944
 msgid "convenience store"
 msgstr "discount"
 
 #: config/categories.js:50
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:995
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:914
 msgid "car shop"
 msgstr "concessionario"
 
 #: config/categories.js:51
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1087
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1006
 msgid "kindergarten or preschool"
 msgstr "asilo nido o scuola materna"
 
 #: config/categories.js:52
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:993
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:912
 msgid "camp site"
 msgstr "campeggio"
 
@@ -247,7 +243,7 @@ msgid "train station"
 msgstr "stazione dei treni"
 
 #: config/categories.js:54
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:991
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:910
 msgid "butcher"
 msgstr "macellaio"
 
@@ -256,17 +252,17 @@ msgid "tourist attraction"
 msgstr "attrazione turistica"
 
 #: config/categories.js:56
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1078
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:997
 msgid "hospital"
 msgstr "ospedale"
 
 #: config/categories.js:57
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1036
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:955
 msgid "doctors office"
 msgstr "studio del dottore"
 
 #: config/categories.js:58
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1033
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:952
 msgid "dentist"
 msgstr "dentista"
 
@@ -279,17 +275,17 @@ msgid "psychotherapist"
 msgstr "psicoterapeuta"
 
 #: config/categories.js:63
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1093
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1012
 msgid "library"
 msgstr "biblioteca"
 
 #: config/categories.js:64
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1131
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1050
 msgid "police"
 msgstr "polizia"
 
 #: config/categories.js:65
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1117
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1036
 msgid "optician"
 msgstr "ottico"
 
@@ -298,17 +294,17 @@ msgid "graveyard"
 msgstr "cimitero"
 
 #: config/categories.js:67
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:973
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:892
 msgid "beauty salon"
 msgstr "salone di bellezza"
 
 #: config/categories.js:68
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1053
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:972
 msgid "florist"
 msgstr "fioraio"
 
 #: config/categories.js:69
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1051
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:970
 msgid "fire station"
 msgstr "caserma dei vigili del fuoco"
 
@@ -325,7 +321,7 @@ msgid "bicycle rental"
 msgstr "bike sharing"
 
 #: config/categories.js:73
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1085
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1004
 msgid "jewelry shop"
 msgstr "gioielleria"
 
@@ -334,12 +330,12 @@ msgid "newsagent"
 msgstr "edicola"
 
 #: config/categories.js:75
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1165
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1084
 msgid "swimming pool"
 msgstr "piscina"
 
 #: config/categories.js:76
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1059
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:978
 msgid "furniture shop"
 msgstr "negozio di mobili"
 
@@ -348,17 +344,17 @@ msgid "bookshop"
 msgstr "libreria"
 
 #: config/categories.js:78
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1091
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1010
 msgid "laundry"
 msgstr "lavanderia"
 
 #: config/categories.js:79
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1158
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1077
 msgid "sports shop"
 msgstr "negozio sportivo"
 
 #: config/categories.js:80
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1174
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1093
 msgid "theatre"
 msgstr "teatro"
 
@@ -366,38 +362,38 @@ msgstr "teatro"
 msgid "veterinarian"
 msgstr "veterinario"
 
-#: config/categories.js:82 config/categories.js:98
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1068
+#: config/categories.js:82
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:987
 msgid "greengrocer"
 msgstr "fruttivendolo"
 
 #: config/categories.js:83
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1062
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:981
 msgid "garden centre"
 msgstr "centro del giardino"
 
 #: config/categories.js:84
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:962
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:881
 msgid "arts centre"
 msgstr "belle arti"
 
 #: config/categories.js:85
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1042
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:961
 msgid "electronics shop"
 msgstr "negozio di elettronica"
 
 #: config/categories.js:86
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1014
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:933
 msgid "cinema"
 msgstr "cinema"
 
 #: config/categories.js:87
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1183
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1102
 msgid "university"
 msgstr "università"
 
 #: config/categories.js:88
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1182
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1101
 msgid "travel agency"
 msgstr "agenzia di viaggi"
 
@@ -410,7 +406,7 @@ msgid "playground"
 msgstr "parco giochi"
 
 #: config/categories.js:92
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1098
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1017
 msgid "marketplace"
 msgstr "mercato"
 
@@ -421,16 +417,6 @@ msgstr "dolciumi"
 #: config/categories.js:94
 msgid "locksmith"
 msgstr "fabbro"
-
-#: config/categories.js:95
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1151
-msgid "shoemaker"
-msgstr "calzolaio"
-
-#: config/categories.js:96
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:956
-msgid "liquor store"
-msgstr "negozio di liquori"
 
 #: config/categories.js:97
 msgid "Delicatessen"
@@ -445,7 +431,6 @@ msgid "ice-cream shop"
 msgstr "negozio di gelati"
 
 #: config/categories.js:101
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1148
 msgid "fishmonger"
 msgstr "pescheria"
 
@@ -462,7 +447,6 @@ msgid "sex shop"
 msgstr "sexy shop"
 
 #: config/categories.js:105
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1190
 msgid "watches shop"
 msgstr "negozio di orologi"
 
@@ -487,7 +471,7 @@ msgid "furnitures shop"
 msgstr "negozio di mobili"
 
 #: config/categories.js:111
-msgid "outdoor activities shop"
+msgid "outdoor activities shop'"
 msgstr "negozio per attività all'aperto"
 
 #: config/categories.js:112
@@ -526,912 +510,992 @@ msgstr "biglietteria"
 msgid "coworking"
 msgstr "<SAME> coworking"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:954
-msgid "accessories shop"
-msgstr "negozio di accessori"
+#: config/categories.js
+msgid "soccer pitch"
+msgstr "campo da calcio"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:955
-msgid "airport"
-msgstr "aeroporto"
+#: config/categories.js
+msgid "boules pitch"
+msgstr "campo da bocce"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:957
-msgid "alpine hut"
-msgstr "rifugio alpino"
+#: config/categories.js
+msgid "basketball pitch"
+msgstr "campo da basket"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:958
-msgid "antiques shop"
-msgstr "negozio di antichità"
+#: config/categories.js
+msgid "rugby pitch"
+msgstr "campo da rugby"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:959
-msgid "aquarium"
-msgstr "acquario"
+#: config/categories.js
+msgid "tennis pitch"
+msgstr "campo da tennis"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:960
-msgid "archery"
-msgstr "tiro con l'arco"
+#: config/categories.js
+msgid "skateboard pitch"
+msgstr "campo da skateboard"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:961
-msgid "art shop"
-msgstr "negozio d'arte"
+#: config/categories.js
+msgid "table tennis pitch"
+msgstr "campo da ping pong"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:963
-msgid "athletics"
-msgstr "atletica"
+#: config/categories.js
+msgid "equestrian pitch"
+msgstr "campo di equitazione"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:964
-msgid "ATM"
-msgstr "bancomat"
+#: config/categories.js
+msgid "running track"
+msgstr "pista da corsa"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:965
-msgid "attraction"
-msgstr "attrazione"
+#: config/categories.js
+msgid "sports hall"
+msgstr "palestra"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:966
-msgid "bag shop"
-msgstr "negozio di borse"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:970
-msgid "basin"
-msgstr "bacino"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:971
-msgid "basketball"
-msgstr "basket"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:972
-msgid "bbq"
-msgstr "barbecue"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:974
-msgid "bed shop"
-msgstr "negozio di letti"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:975
-msgid "bed and breakfast"
-msgstr "bed and breakfast"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:976
-msgid "beverages shop"
-msgstr "negozio di bevande"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:977
-msgid "bicycle shop"
-msgstr "negozio di biciclette"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:979
-msgid "biergarten"
-msgstr "birreria all'aperto"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:980
-msgid "billiards"
-msgstr "biliardo"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:981
-msgid "bmx"
-msgstr "bmx"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:982
-msgid "books shop"
-msgstr "negozio di libri"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:983
-msgid "border control"
-msgstr "controllo ai confini"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:984
-msgid "boules"
-msgstr "bocce"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:985
-msgid "boutique"
-msgstr "boutique"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:986
-msgid "bowls"
-msgstr "bocce"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:987
-msgid "brewery"
-msgstr "birreria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:988
-msgid "brownfield"
-msgstr "area dismessa"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:989
-msgid "bus station"
-msgstr "stazione degli autobus"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:990
-msgid "bus stop"
-msgstr "fermata dell'autobus"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:992
-msgid "cafe"
-msgstr "bar"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:994
-msgid "canoe"
-msgstr "canoa"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:996
-msgid "car parts shop"
-msgstr "ricambi auto"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:997
-msgid "car repair"
-msgstr "meccanico"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:998
-msgid "car rental"
-msgstr "autonoleggio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:999
-msgid "car wash station"
-msgstr "auto lavaggio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1000
-msgid "caravan site"
-msgstr "campeggio per caravan"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1001
-msgid "carpenter"
-msgstr "carpentiere"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1002
-msgid "carpet shop"
-msgstr "negozio di tappeti"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1003
-msgid "castle"
-msgstr "castello"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1004
-msgid "catering"
-msgstr "catering"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1005
-msgid "cemetery"
-msgstr "cimitero"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1006
-msgid "holiday cottage"
-msgstr "casa per vacanze"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1007
-msgid "charging station"
-msgstr "punto di ricarica"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1008
-msgid "charity store"
-msgstr "negozio di beneficenza"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1009
-msgid "chemist"
-msgstr "drogheria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1010
-msgid "cheese shop"
-msgstr "negozio di formaggi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1011
-msgid "chess"
-msgstr "scacchi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1012
-msgid "childcare centre"
-msgstr "centro di assistenza per l'infanzia"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1013
-msgid "chocolate shop"
-msgstr "negozio di cioccolato"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1015
+#: config/categories.js
 msgid "climbing"
 msgstr "arrampicata"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1016
-msgid "climbing adventure"
-msgstr "avventura di alpinismo"
+#: config/categories.js
+msgid "martial art"
+msgstr "arti marziali"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1017
-msgid "clinic"
-msgstr "clinica"
+#: config/categories.js
+msgid "badminton"
+msgstr "badminton"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1019
-msgid "coffee shop"
-msgstr "caffetteria"
+#: config/categories.js
+msgid "baseball"
+msgstr "baseball"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1020
-msgid "college"
-msgstr "accademia"
+#: config/categories.js
+msgid "beach-volley"
+msgstr "beach volley\n"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1022
-msgid "computer shop"
-msgstr "negozio di informatica"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1023
-msgid "confectionery shop"
-msgstr "negozio di dolciumi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1024
-msgid "recycling container"
-msgstr "contenitore del riciclaggio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1026
-msgid "copyshop"
-msgstr "copisteria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1027
-msgid "cosmetics shop"
-msgstr "negozio di cosmetici"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1028
-msgid "courthouse"
-msgstr "tribunale"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1029
-msgid "coworking space"
-msgstr "spazio per coworking"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1030
-msgid "cricket"
-msgstr "cricket"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1031
-msgid "cycling"
-msgstr "ciclismo"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1032
-msgid "deli"
-msgstr "gatronomia"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1034
-msgid "department store"
-msgstr "grande magazzino"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1035
-msgid "dock"
-msgstr "molo"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1037
-msgid "dog park"
-msgstr "parco per cani"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1038
-msgid "dog racing"
-msgstr "corse di cani"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1039
-msgid "doityourself store"
-msgstr "negozio del fai-da-te"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1040
-msgid "driving school"
-msgstr "scuola guida"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1041
-msgid "dry cleaning"
-msgstr "lavaggio a secco"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1043
-msgid "embassy"
-msgstr "ambasciata"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1044
-msgid "equestrian"
-msgstr "equitazione"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1045
-msgid "erotic shop"
-msgstr "negozio di articoli erotici"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1046
-msgid "escape game"
-msgstr "gioco di evasione"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1047
-msgid "estate agent"
-msgstr "agente immobiliare"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1048
-msgid "fabric"
-msgstr "negozio di tessuti"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1049
-msgid "farm shop"
-msgstr "spaccio aziendale"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1052
-msgid "fitness centre"
-msgstr "centro fitness"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1054
-msgid "food court"
-msgstr "area ristorazione"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1055
-msgid "free flying"
-msgstr "volo libero"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1056
-msgid "frozen food"
-msgstr "cibo surgelato"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1058
-msgid "funeral home"
-msgstr "pompe funebri"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1060
-msgid "gallery"
-msgstr "galleria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1061
-msgid "garden"
-msgstr "giardino"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1063
-msgid "general store"
-msgstr "negozio di generi vari"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1064
-msgid "gift shop"
-msgstr "negozio di souvenir"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1065
+#: config/categories.js
 msgid "golf"
 msgstr "golf"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1066
-msgid "golf course"
-msgstr "percorso di golf"
+#: config/categories.js
+msgid "handball"
+msgstr "pallamano"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1067
-msgid "grave yard"
-msgstr "cimitero"
+#: config/categories.js
+msgid "ice skating"
+msgstr "pattinaggio su ghiaccio"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1069
-msgid "guest house"
-msgstr "bed and breakfast"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1070
-msgid "gymnastics"
-msgstr "ginnastica"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1071
-msgid "hackerspace"
-msgstr "hackerspace"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1073
-msgid "halt"
-msgstr "alt"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1074
-msgid "hardware shop"
-msgstr "ferramenta"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1075
-msgid "hearing aids shop"
-msgstr "negozio di apparecchi acustici"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1076
-msgid "hifi shop"
-msgstr "negozio di alta fedeltà"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1077
-msgid "horse racing"
-msgstr "corse dei cavalli"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1079
-msgid "hostel"
-msgstr "ostello"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1081
-msgid "houseware shop"
-msgstr "negozio di articoli per la casa"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1082
-msgid "ice cream"
-msgstr "gelataio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1083
-msgid "ice rink"
-msgstr "pista di pattinaggio su ghiaccio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1084
-msgid "interior decoration shop"
-msgstr "negozio di arredo per interni"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1086
+#: config/categories.js
 msgid "karting"
 msgstr "kart"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1088
-msgid "kiosk"
-msgstr "edicola"
+#: config/categories.js
+msgid "car circuit"
+msgstr "circuito automobilistico"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1089
-msgid "kitchen manufacturer"
-msgstr "produzione cucine"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1090
-msgid "lamps shop"
-msgstr "negozio di lampade"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1092
-msgid "left luggage"
-msgstr "deposito bagagli"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1095
-msgid "long jump"
-msgstr "salto in lungo"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1096
-msgid "mall"
-msgstr "centro commerciale"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1097
-msgid "marina"
-msgstr "marina"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1099
-msgid "massage shop"
-msgstr "centro massaggi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1100
-msgid "miniature golf"
-msgstr "mini golf"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1101
-msgid "mobile phone shop"
-msgstr "negozio di telefonia mobile"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1102
-msgid "model aerodrome"
-msgstr "aeroporto per modellini"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1103
-msgid "monument"
-msgstr "monumento"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1104
-msgid "motel"
-msgstr "motel"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1105
-msgid "motocross"
-msgstr "motocross"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1106
-msgid "motor"
-msgstr "motore"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1107
-msgid "motorcycle shop"
-msgstr "negozio di motociclette"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1108
-msgid "motorcycle parking"
-msgstr "parcheggio motocicli"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1109
-msgid "multi"
-msgstr "multi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1111
-msgid "music shop"
-msgstr "negozio musicale"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1112
-msgid "music school"
-msgstr "scuola di musica"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1113
-msgid "musical instrument shop"
-msgstr "negozio di strumenti musicali"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1114
-msgid "newsagent shop"
-msgstr "edicola"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1115
-msgid "nightclub"
-msgstr "discoteca"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1116
-msgid "nursing home"
-msgstr "casa di riposo"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1118
-msgid "orienteering"
-msgstr "orienteering"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1119
-msgid "outdoor"
-msgstr "negozio per sport all’aria aperta"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1120
-msgid "paragliding"
-msgstr "volo con parapendio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1122
-msgid "car park"
-msgstr "parcheggio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1123
-msgid "pastry shop"
-msgstr "pasticceria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1124
-msgid "perfumery"
-msgstr "profumeria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1125
-msgid "pet store"
-msgstr "negozio di animali"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1127
-msgid "photo shop"
-msgstr "negozio di fotografie"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1128
-msgid "picnic site"
-msgstr "zona picnic"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1130
-msgid "plumber"
-msgstr "idraulico"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1132
-msgid "polling station"
-msgstr "ufficio elettorale"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1134
-msgid "parcel pickup"
-msgstr "punto di ritiro dei pacchi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1135
-msgid "prison"
-msgstr "prigione"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1136
-msgid "pub"
-msgstr "pub"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1137
-msgid "public building"
-msgstr "edificio pubblico"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1138
-msgid "rc car"
-msgstr "macchina radiocomandata"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1140
-msgid "reservoir"
-msgstr "serbatoio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1142
-msgid "rowing"
-msgstr "canottaggio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1143
-msgid "ruins"
-msgstr "rovine"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1144
-msgid "running"
-msgstr "corsa"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1145
-msgid "sailing"
-msgstr "vela"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1147
-msgid "scuba diving"
-msgstr "immersione"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1149
-msgid "resale shop"
-msgstr "rivendita"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1150
-msgid "shelter"
-msgstr "riparo"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1152
-msgid "shoes"
-msgstr "scarpe"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1153
-msgid "shooting"
-msgstr "tirassegno"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1154
-msgid "skateboard"
-msgstr "skateboard"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1155
-msgid "skating"
-msgstr "pattinaggio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1156
+#: config/categories.js
 msgid "skiing"
 msgstr "sci"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1157
-msgid "soccer"
-msgstr "calcio"
+#: config/categories.js
+msgid "volleyball"
+msgstr "pallavolo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1160
+#: config/categories.js
+msgid "sailing"
+msgstr "vela"
+
+#: config/categories.js
 msgid "stadium"
 msgstr "stadio"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1161
-msgid "station"
-msgstr "stazione"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1162
-msgid "stationery shop"
-msgstr "negozio di cancelleria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1163
-msgid "subway"
-msgstr "metropolitana"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1167
-msgid "swimming area"
-msgstr "piscina"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1168
-msgid "swimming pool equipment"
-msgstr "accessori per piscina"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1170
-msgid "table tennis"
-msgstr "tennis da tavolo"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1171
-msgid "tailor"
-msgstr "sarto"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1172
-msgid "tattoo salon"
-msgstr "studio di tatuaggi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1173
-msgid "tennis"
-msgstr "tennis"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1175
-msgid "theme park"
-msgstr "parco divertimenti"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1176
-msgid "ticket shop"
-msgstr "biglietteria"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1177
-msgid "tobacco shop"
-msgstr "tabaccaio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1178
-msgid "toll booth"
-msgstr "casello"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1179
-msgid "townhall"
-msgstr "municipio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1180
-msgid "toys shop"
-msgstr "negozio di giocattoli"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1181
-msgid "tram stop"
-msgstr "fermata del tram"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1184
-msgid "variety store"
-msgstr "emporio"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1185
-msgid "vehicle inspection"
-msgstr "centro revisioni"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1186
-msgid "veterinary"
-msgstr "veterinario"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1187
-msgid "videos shop"
-msgstr "videoteca"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1188
-msgid "video games shop"
-msgstr "negozio di videogiochi"
-
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1189
+#: config/categories.js
 msgid "viewpoint"
 msgstr "punto panoramico"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1191
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
+msgid "accessories shop"
+msgstr "negozio di accessori"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:874
+msgid "airport"
+msgstr "aeroporto"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:875
+msgid "liquor store"
+msgstr "negozio di liquori"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:876
+msgid "alpine hut"
+msgstr "rifugio alpino"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:877
+msgid "antiques shop"
+msgstr "negozio di antichità"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:878
+msgid "aquarium"
+msgstr "acquario"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:879
+msgid "archery"
+msgstr "tiro con l'arco"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:880
+msgid "art shop"
+msgstr "negozio d'arte"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:882
+msgid "athletics"
+msgstr "atletica"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:883
+msgid "ATM"
+msgstr "bancomat"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:884
+msgid "attraction"
+msgstr "attrazione"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:885
+msgid "bag shop"
+msgstr "negozio di borse"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:889
+msgid "basin"
+msgstr "bacino"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:890
+msgid "basketball"
+msgstr "basket"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:891
+msgid "bbq"
+msgstr "barbecue"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:893
+msgid "bed shop"
+msgstr "negozio di letti"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:894
+msgid "bed and breakfast"
+msgstr "bed and breakfast"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:895
+msgid "beverages shop"
+msgstr "negozio di bevande"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:896
+msgid "bicycle shop"
+msgstr "negozio di biciclette"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:898
+msgid "biergarten"
+msgstr "birreria all'aperto"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:899
+msgid "billiards"
+msgstr "biliardo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:900
+msgid "bmx"
+msgstr "bmx"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:901
+msgid "books shop"
+msgstr "negozio di libri"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:902
+msgid "border control"
+msgstr "controllo ai confini"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:903
+msgid "boules"
+msgstr "bocce"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:904
+msgid "boutique"
+msgstr "boutique"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:905
+msgid "bowls"
+msgstr "bocce"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:906
+msgid "brewery"
+msgstr "birreria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:907
+msgid "brownfield"
+msgstr "area dismessa"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:908
+msgid "bus station"
+msgstr "stazione degli autobus"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:909
+msgid "bus stop"
+msgstr "fermata dell'autobus"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:911
+msgid "cafe"
+msgstr "bar"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:913
+msgid "canoe"
+msgstr "canoa"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:915
+msgid "car parts shop"
+msgstr "ricambi auto"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:916
+msgid "car repair"
+msgstr "meccanico"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:917
+msgid "car rental"
+msgstr "autonoleggio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:918
+msgid "car wash station"
+msgstr "auto lavaggio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:919
+msgid "caravan site"
+msgstr "campeggio per caravan"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:920
+msgid "carpenter"
+msgstr "carpentiere"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:921
+msgid "carpet shop"
+msgstr "negozio di tappeti"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:922
+msgid "castle"
+msgstr "castello"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:923
+msgid "catering"
+msgstr "catering"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:924
+msgid "cemetery"
+msgstr "cimitero"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:925
+msgid "holiday cottage"
+msgstr "casa per vacanze"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:926
+msgid "charging station"
+msgstr "punto di ricarica"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:927
+msgid "charity store"
+msgstr "negozio di beneficenza"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:928
+msgid "chemist"
+msgstr "drogheria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:929
+msgid "cheese shop"
+msgstr "negozio di formaggi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:930
+msgid "chess"
+msgstr "scacchi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:931
+msgid "childcare centre"
+msgstr "centro di assistenza per l'infanzia"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:932
+msgid "chocolate shop"
+msgstr "negozio di cioccolato"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:935
+msgid "climbing adventure"
+msgstr "avventura di alpinismo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:936
+msgid "clinic"
+msgstr "clinica"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:938
+msgid "coffee shop"
+msgstr "caffetteria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:939
+msgid "college"
+msgstr "accademia"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:941
+msgid "computer shop"
+msgstr "negozio di informatica"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:942
+msgid "confectionery shop"
+msgstr "negozio di dolciumi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:943
+msgid "recycling container"
+msgstr "contenitore del riciclaggio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:945
+msgid "copyshop"
+msgstr "copisteria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:946
+msgid "cosmetics shop"
+msgstr "negozio di cosmetici"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:947
+msgid "courthouse"
+msgstr "tribunale"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:948
+msgid "coworking space"
+msgstr "spazio per coworking"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:949
+msgid "cricket"
+msgstr "cricket"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:950
+msgid "cycling"
+msgstr "ciclismo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:951
+msgid "deli"
+msgstr "gatronomia"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:953
+msgid "department store"
+msgstr "grande magazzino"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:954
+msgid "dock"
+msgstr "molo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:956
+msgid "dog park"
+msgstr "parco per cani"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:957
+msgid "dog racing"
+msgstr "corse di cani"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:958
+msgid "doityourself store"
+msgstr "negozio del fai-da-te"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:959
+msgid "driving school"
+msgstr "scuola guida"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:960
+msgid "dry cleaning"
+msgstr "lavaggio a secco"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:962
+msgid "embassy"
+msgstr "ambasciata"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:963
+msgid "equestrian"
+msgstr "equitazione"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:964
+msgid "erotic shop"
+msgstr "negozio di articoli erotici"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:965
+msgid "escape game"
+msgstr "gioco di evasione"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:966
+msgid "estate agent"
+msgstr "agente immobiliare"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:967
+msgid "fabric"
+msgstr "negozio di tessuti"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:968
+msgid "farm shop"
+msgstr "spaccio aziendale"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:971
+msgid "fitness centre"
+msgstr "centro fitness"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:973
+msgid "food court"
+msgstr "area ristorazione"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:974
+msgid "free flying"
+msgstr "volo libero"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:975
+msgid "frozen food"
+msgstr "cibo surgelato"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:977
+msgid "funeral home"
+msgstr "pompe funebri"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:979
+msgid "gallery"
+msgstr "galleria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:980
+msgid "garden"
+msgstr "giardino"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:982
+msgid "general store"
+msgstr "negozio di generi vari"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:983
+msgid "gift shop"
+msgstr "negozio di souvenir"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:985
+msgid "golf course"
+msgstr "percorso di golf"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:986
+msgid "grave yard"
+msgstr "cimitero"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:988
+msgid "guest house"
+msgstr "bed and breakfast"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:989
+msgid "gymnastics"
+msgstr "ginnastica"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:990
+msgid "hackerspace"
+msgstr "hackerspace"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:992
+msgid "halt"
+msgstr "alt"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:993
+msgid "hardware shop"
+msgstr "ferramenta"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:994
+msgid "hearing aids shop"
+msgstr "negozio di apparecchi acustici"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:995
+msgid "hifi shop"
+msgstr "negozio di alta fedeltà"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:996
+msgid "horse racing"
+msgstr "corse dei cavalli"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:998
+msgid "hostel"
+msgstr "ostello"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1000
+msgid "houseware shop"
+msgstr "negozio di articoli per la casa"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1001
+msgid "ice cream"
+msgstr "gelataio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1002
+msgid "ice rink"
+msgstr "pista di pattinaggio su ghiaccio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1003
+msgid "interior decoration shop"
+msgstr "negozio di arredo per interni"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1007
+msgid "kiosk"
+msgstr "edicola"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1008
+msgid "kitchen manufacturer"
+msgstr "produzione cucine"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1009
+msgid "lamps shop"
+msgstr "negozio di lampade"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1011
+msgid "left luggage"
+msgstr "deposito bagagli"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1014
+msgid "long jump"
+msgstr "salto in lungo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1015
+msgid "mall"
+msgstr "centro commerciale"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1016
+msgid "marina"
+msgstr "marina"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1018
+msgid "massage shop"
+msgstr "centro massaggi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1019
+msgid "miniature golf"
+msgstr "mini golf"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1020
+msgid "mobile phone shop"
+msgstr "negozio di telefonia mobile"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1021
+msgid "model aerodrome"
+msgstr "aeroporto per modellini"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1022
+msgid "monument"
+msgstr "monumento"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1023
+msgid "motel"
+msgstr "motel"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1024
+msgid "motocross"
+msgstr "motocross"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1025
+msgid "motor"
+msgstr "motore"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1026
+msgid "motorcycle shop"
+msgstr "negozio di motociclette"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1027
+msgid "motorcycle parking"
+msgstr "parcheggio motocicli"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1028
+msgid "multi"
+msgstr "multi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1030
+msgid "music shop"
+msgstr "negozio musicale"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1031
+msgid "music school"
+msgstr "scuola di musica"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1032
+msgid "musical instrument shop"
+msgstr "negozio di strumenti musicali"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1033
+msgid "newsagent shop"
+msgstr "edicola"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1034
+msgid "nightclub"
+msgstr "discoteca"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1035
+msgid "nursing home"
+msgstr "casa di riposo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1037
+msgid "orienteering"
+msgstr "orienteering"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1038
+msgid "outdoor"
+msgstr "negozio per sport all’aria aperta"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1039
+msgid "paragliding"
+msgstr "volo con parapendio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1041
+msgid "car park"
+msgstr "parcheggio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1042
+msgid "pastry shop"
+msgstr "pasticceria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1043
+msgid "perfumery"
+msgstr "profumeria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1044
+msgid "pet store"
+msgstr "negozio di animali"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1046
+msgid "photo shop"
+msgstr "negozio di fotografie"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1047
+msgid "picnic site"
+msgstr "zona picnic"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1049
+msgid "plumber"
+msgstr "idraulico"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1051
+msgid "polling station"
+msgstr "ufficio elettorale"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1053
+msgid "parcel pickup"
+msgstr "punto di ritiro dei pacchi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1054
+msgid "prison"
+msgstr "prigione"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1055
+msgid "pub"
+msgstr "pub"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1056
+msgid "public building"
+msgstr "edificio pubblico"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1057
+msgid "rc car"
+msgstr "macchina radiocomandata"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1059
+msgid "reservoir"
+msgstr "serbatoio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1061
+msgid "rowing"
+msgstr "canottaggio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1062
+msgid "ruins"
+msgstr "rovine"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1063
+msgid "running"
+msgstr "corsa"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1066
+msgid "scuba diving"
+msgstr "immersione"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1068
+msgid "resale shop"
+msgstr "rivendita"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1069
+msgid "shelter"
+msgstr "riparo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1070
+msgid "shoemaker"
+msgstr "calzolaio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1071
+msgid "shoes"
+msgstr "scarpe"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1072
+msgid "shooting"
+msgstr "tirassegno"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1073
+msgid "skateboard"
+msgstr "skateboard"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1074
+msgid "skating"
+msgstr "pattinaggio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1076
+msgid "soccer"
+msgstr "calcio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1080
+msgid "station"
+msgstr "stazione"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1081
+msgid "stationery shop"
+msgstr "negozio di cancelleria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1082
+msgid "subway"
+msgstr "metropolitana"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1086
+msgid "swimming area"
+msgstr "piscina"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1087
+msgid "swimming pool equipment"
+msgstr "accessori per piscina"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1089
+msgid "table tennis"
+msgstr "tennis da tavolo"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1090
+msgid "tailor"
+msgstr "sarto"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1091
+msgid "tattoo salon"
+msgstr "studio di tatuaggi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1092
+msgid "tennis"
+msgstr "tennis"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1094
+msgid "theme park"
+msgstr "parco divertimenti"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1095
+msgid "ticket shop"
+msgstr "biglietteria"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1096
+msgid "tobacco shop"
+msgstr "tabaccaio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1097
+msgid "toll booth"
+msgstr "casello"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1098
+msgid "townhall"
+msgstr "municipio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1099
+msgid "toys shop"
+msgstr "negozio di giocattoli"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1100
+msgid "tram stop"
+msgstr "fermata del tram"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1103
+msgid "variety store"
+msgstr "emporio"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1104
+msgid "vehicle inspection"
+msgstr "centro revisioni"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1105
+msgid "veterinary"
+msgstr "veterinario"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1106
+msgid "videos shop"
+msgstr "videoteca"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1107
+msgid "video games shop"
+msgstr "negozio di videogiochi"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1110
 msgid "water park"
 msgstr "parco acquatico"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1192
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1111
 msgid "weapons shop"
 msgstr "armeria"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1193
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1112
 msgid "warehouse club"
 msgstr "vendita all’ingrosso"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1194
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1113
 msgid "wine shop"
 msgstr "enoteca"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1195
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1114
 msgid "winery"
 msgstr "enoteca"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1196
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1115
 msgid "winter sports resort"
 msgstr "villaggio turistico invernale"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1197
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1116
 msgid "yoga"
 msgstr "yoga"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1198
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1117
 msgid "zoo"
 msgstr "zoo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1199
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1118
 msgid "city"
 msgstr "città"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1200
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1119
 msgid "country"
 msgstr "nazione"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1201
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108011
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1120
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107934
 msgid "address"
 msgstr "indirizzo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:1202
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:1121
 msgid "street"
 msgstr "strada"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:94244
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:94163
 #: src/adapters/category.js:16
 msgid "category"
 msgstr "categoria"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:95644
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99150
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:95563
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99069
 #: src/adapters/poi/specials/navigator_geolocalisation_poi.js:15
 msgid "Your position"
 msgstr "La tua posizione"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96357
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96276
 msgid "Back to Qwant.com"
 msgstr "Torna su Qwant.com"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96461
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96380
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa i dati di OpenStreetMap."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96462
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96463
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96381
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96382
 msgid "In partnership with"
 msgstr "In collaborazione con"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96494
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96413
 msgid "View"
 msgstr "Vedi"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96499
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96418
 msgid "Edit"
 msgstr "Modifica"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96530
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96449
 msgid "Open"
 msgstr "Aperto"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96537
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109832
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96456
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109755
 msgid "Closed"
 msgstr "Chiuso"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96568
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96487
 msgid "Open 24/7"
 msgstr "Aperto 24/7"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96581
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96500
 msgid "reopening at {nextTransitionTime}"
 msgstr "riapre alle {nextTransitionTime}"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96581
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96500
 msgid "until {nextTransitionTime}"
 msgstr "fino alle {nextTransitionTime}"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96804
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99166
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96723
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99085
 msgid "Close to"
 msgstr "Vicino a"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96819
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96738
 msgid "Geographic coordinates"
 msgstr "Coordinate geografiche"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96917
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96836
 msgid "on PagesJaunes"
 msgstr "su PagesJaunes"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:96937
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:96856
 #, javascript-format
 msgid "%d review"
 msgid_plural "%d reviews"
 msgstr[0] "%d recensione"
 msgstr[1] "%d recensioni"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:97257
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97176
 msgid "Qwant Maps Home"
 msgstr "Home di Qwant Maps"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:97287
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97206
 msgid "Search on Qwant Maps"
 msgstr "Cerca su Qwant Maps"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:97319
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97238
 msgid "Search"
 msgstr "Cerca"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:97331
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97250
 msgid "Menu"
 msgstr "Menù"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:97343
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102506
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107071
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97262
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102425
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106990
 msgid "Products"
 msgstr "Prodotti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:97348
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104765
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107405
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107406
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110119
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97267
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:104684
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107324
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107325
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110144
 msgid "Directions"
 msgstr "Itinerario"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:97529
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97448
 msgid "Close"
 msgstr "Chiudi"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98504
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98423
 msgid "Copied!"
 msgstr "Copiato!"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98504
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98423
 msgid "Copy link"
 msgstr "Copia link"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98516
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98435
 msgid "Facebook"
 msgstr "Facebook"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98526
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98445
 msgid "Twitter"
 msgstr "Twitter"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98766
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98685
 msgid "<span class=\"historyText\">History</span> is available on Qwant Maps"
 msgstr ""
 "La <span class=\"historyText\">cronologia</span> è disponibile su Qwant Maps"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98772
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98691
 msgid ""
 "Convenient and completely private, the history will only be visible to you "
 "on this device 🙈."
@@ -1439,26 +1503,25 @@ msgstr ""
 "Comoda e completamente privata, la cronologia sarà visibile solamente a te "
 "su questo dispositivo 🙈."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98779
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107280
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108259
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98698
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107199
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108182
 msgid "Read more"
 msgstr "Leggi di più"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98792
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98711
 msgid "No thanks"
 msgstr "No grazie"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98803
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98722
 msgid "Enable history"
 msgstr "Abilita la cronologia"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98817
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98736
 msgid "Well done, the <span class=\"historyText\">history</span> is activated"
-msgstr ""
-"Bene, la <span class=\"historyText\">cronologia</span> è stata attivata"
+msgstr "Bene, la <span class=\"historyText\">cronologia</span> è stata attivata"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98825
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98744
 msgid ""
 "You can find and <a href=\"history\" target=\"_self\">manage your complete "
 "history</a> at any time in the menu"
@@ -1466,121 +1529,122 @@ msgstr ""
 "Puoi trovare e <a href=\"history\" target=\"_self\">gestire la tua "
 "cronologia completa</a> in qualunque momento nel menù"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98842
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98761
 msgid "No worries, history is disabled"
 msgstr "Nessun problema, la cronologia è disattivata"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:98848
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98767
 msgid ""
-"You can change your mind at any time and <a href=\"history\" target=\"_self"
-"\">manage</a> the activation of the history in the menu"
+"You can change your mind at any time and <a href=\"history\" "
+"target=\"_self\">manage</a> the activation of the history in the menu"
 msgstr ""
-"Puoi cambiare idea in qualunque momento e <a href=\"history\" target=\"_self"
-"\">gestire</a> l’attivazione della cronologia nel menù"
+"Puoi cambiare idea in qualunque momento e <a href=\"history\" "
+"target=\"_self\">gestire</a> l’attivazione della cronologia nel menù"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99010
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98929
 msgid "Recent history"
 msgstr "Cronologia recente"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99012
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98931
 msgid "Manage history"
 msgstr "Gestisci la cronologia"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99021
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103457
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105674
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98940
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103376
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105593
 msgid "Satisfied with the results?"
 msgstr "I risultati sono soddisfacenti?"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99024
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98943
 msgid "Your history is activated. It is only visible to you on this device."
 msgstr ""
 "La tua cronologia è attivata. È visibile soltanto a te e su questo "
 "dispositivo."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99031
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106801
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106815
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:98950
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106720
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106734
 msgid "Learn more"
 msgstr "Approfondisci"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99166
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106773
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99085
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106692
 msgid "nearby"
 msgstr "nei dintorni"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99201
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106443
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106744
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106780
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99120
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106362
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106663
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106699
 msgid "Delete"
 msgstr "Cancella"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99417
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99336
 msgid "Thank you for helping us to improve your experience."
 msgstr "Grazie per averci aiutato a migliorare la tua esperienza."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99428
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99347
 msgid "Yes"
 msgstr "Sì"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:99435
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:99354
 msgid "No"
 msgstr "No"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102087
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102006
 msgid ""
 "Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
 "privacy policy{closeTag}, we don't store your information because we don't "
 "want to know your whereabouts."
 msgstr ""
 "Rispettiamo sempre la tua privacy.<br>Come indicato nella  "
-"{privacyPolicyLink}nostra politica sulla privacy{closeTag}, non memorizziamo "
-"le tue informazioni perché non vogliamo sapere dove ti trovi."
+"{privacyPolicyLink}nostra politica sulla privacy{closeTag}, non memorizziamo"
+" le tue informazioni perché non vogliamo sapere dove ti trovi."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102092
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102011
 msgid ""
-"We look at your location to show you where you are, and that's it!<br />(See "
-"our {privacyPolicyLink}privacy policy{closeTag})"
+"We look at your location to show you where you are, and that's it!<br />(See"
+" our {privacyPolicyLink}privacy policy{closeTag})"
 msgstr ""
-"Usiamo la tua posizione soltanto per mostrarti dove ti trovi!<br />(Consulta "
-"la nostra {privacyPolicyLink}informativa sulla privacy{closeTag})"
+"Usiamo la tua posizione soltanto per mostrarti dove ti trovi!<br />(Consulta"
+" la nostra {privacyPolicyLink}informativa sulla privacy{closeTag})"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102099
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102018
 msgid "At Qwant, your whereabouts are part of your privacy"
-msgstr "Con Qwant i tuoi spostamenti sono privati come parte della tua privacy"
+msgstr ""
+"Con Qwant i tuoi spostamenti sono privati come parte della tua privacy"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102101
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102020
 msgid "Continue"
 msgstr "Continua"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102105
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102024
 msgid "Enable your geolocation for better directions"
 msgstr "Abilita la geolocalizzazione per avere migliori indicazioni"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102107
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102026
 msgid "Ok, I've got it"
 msgstr "Ok, capito"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102111
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102120
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102030
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102039
 msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
 msgstr "Houston,<br/> abbiamo un problema (di geolocalizzazione)&nbsp;🛰️"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102112
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102031
 msgid ""
-"Allow Qwant Maps to access your position so we can better help you find your "
-"way…"
+"Allow Qwant Maps to access your position so we can better help you find your"
+" way…"
 msgstr ""
 "Permetti a Qwant Maps di accedere alla tua posizione cosicché possiamo "
 "aiutarti meglio a trovare la tua strada…"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102114
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102123
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102033
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102042
 msgid "How to access the geolocation services?"
 msgstr "Come accedere ai servizi di geolocalizzazione?"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102121
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102040
 msgid ""
 "We can't access your position.<br/> Please check that your geolocation "
 "services are enabled."
@@ -1588,45 +1652,45 @@ msgstr ""
 "Impossibile accedere alla tua posizione.<br/>Verifica che i tuoi servizi di "
 "geolocalizzazione siano abilitati."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102309
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102228
 msgid "Disable Qwant Maps history"
 msgstr "Disabilita la cronologia di Qwant Maps"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102310
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102323
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102229
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102242
 msgid "With this action, all your search history will be lost."
 msgstr "Con questa azione, tutta la tua cronologia di ricerca andrà perduta."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102311
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102324
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108986
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108999
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109169
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109397
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102230
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102243
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108909
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108922
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109092
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109320
 msgid "Cancel"
 msgstr "Annulla"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102312
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102231
 msgid "Disable my history"
 msgstr "Disabilita la mia cronologia"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102322
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102241
 msgid "Clear all my Qwant Maps history"
 msgstr "Cancella tutta la mia cronologia di Qwant Maps"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102325
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102244
 msgid "Clear my history"
 msgstr "Cancella la mia cronologia"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102504
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102423
 msgid "Go back"
 msgstr "Torna indietro"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102543
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102462
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr "Spiacenti, non è stato possibile trovare questo luogo&nbsp;🏝️"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102547
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102466
 msgid ""
 "Please try to correct your query or rewrite it with more details about the "
 "location (city, country, …)"
@@ -1634,526 +1698,543 @@ msgstr ""
 "Prova a correggere la richiesta o a riscriverla aggiungendo dei dettagli "
 "sulla posizione (città, nazione, …)"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102553
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102472
 msgid "Add a missing place on the map"
 msgstr "Aggiungi un luogo mancante sulla mappa"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:102601
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:102520
 msgid "Try a new search query"
 msgstr "Prova una nuova ricerca"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103458
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103377
 msgid "Results in partnership with PagesJaunes"
 msgstr "Risultati in collaborazione con PagesJaunes"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103458
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103377
 msgid "Results in partnership with TripAdvisor"
 msgstr "Risultati in collaborazione con TripAdvisor"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103474
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104921
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103393
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:104840
 msgid "Unfold to show the results"
 msgstr "Aprire per vedere i risultati"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103532
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103451
 msgid "No results found."
 msgstr "Nessun risultato trovato."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103533
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103452
 msgid "Please zoom in the map to see the results for this category."
 msgstr ""
 "Si prega di ingrandire la mappa per vedere i risultati per questa categoria."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103539
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103458
 msgid "Search around my position"
 msgstr "Cerca intorno a me"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103541
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103460
 msgid "Hmm, looks like a no-man's land 🏜️"
 msgstr "Hmm, sembra che qui sia terra di nessuno 🏜️"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103542
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103461
 msgid "We found no place matching your query in this area."
 msgstr ""
 "In quest’area non abbiamo trovato alcun posto che corrisponda alla tua "
 "ricerca."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103546
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103465
 msgid "Get some height"
 msgstr "Prendi quota"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:103779
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103698
 msgid "Invert start and end"
 msgstr "Inverti partenza e destinazione"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104027
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103946
 msgid "Enter a starting point"
 msgstr "Inserisci un punto di partenza"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104027
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103946
 msgid "Enter an end point"
 msgstr "Inserisci un punto di arrivo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104737
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104739
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104928
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:104656
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:104658
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:104847
 msgid "Share itinerary"
 msgstr "Condividi l'itinerario"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:104912
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:104831
 msgid "calculate an itinerary"
 msgstr "calcola un itinerario"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105137
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105056
 msgid "step by step"
 msgstr "passo per passo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105206
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105125
 msgid "Towards {direction}"
 msgstr "Verso {direction}"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105652
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105571
 msgid "Ouch, we've lost the north&nbsp;🧭"
 msgstr "Ahia, abbiamo perso il nord&nbsp;🧭"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105656
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105575
 msgid "The service is temporarily unavailable, please try again later."
 msgstr ""
 "Il servizio è temporaneamente non disponibile, per favore riprova più tardi."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105656
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105575
 msgid "We couldn't find any itinerary, we are really sorry."
 msgstr "Siamo spiacenti, non è stato possibile trovare un itinerario."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105677
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105596
 msgid "Results in partnership with Combigo"
 msgstr "Risultati in collaborazione con Combigo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105798
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105717
 msgid "See less"
 msgstr "Mostra di meno"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105800
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108315
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105719
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108238
 msgid "Details"
 msgstr "Dettagli"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105871
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105790
 msgid "Fastest route"
 msgstr "Strada più veloce"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:105905
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105824
 msgid "Via"
 msgstr "Via"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106179
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110131
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106098
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110156
 msgid "by car"
 msgstr "in automobile"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106180
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110142
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106099
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110167
 msgid "transit"
 msgstr "transito"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106181
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110153
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106100
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110178
 msgid "on foot"
 msgstr "a piedi"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106182
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110164
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106101
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110189
 msgid "by bike"
 msgstr "in bici"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106272
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106191
 msgid "Walk on {walkDistance}"
 msgstr "Cammina per {walkDistance}"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106338
-msgid "You have no favorite places. <br>You can add one by clicking on a place"
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106257
+msgid ""
+"You have no favorite places. <br>You can add one by clicking on a place"
 msgstr ""
 "Non hai alcun luogo tra i preferiti. <br>Puoi aggiungerne uno cliccando su "
 "un luogo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106437
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107442
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106356
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107361
 msgid "Share"
 msgstr "Condividi"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106486
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106505
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106405
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106424
 msgid "Favorite places"
 msgstr "Luoghi preferiti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106505
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107027
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106424
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106946
 msgid "My favorites"
 msgstr "I miei preferiti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106788
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107037
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106707
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106956
 msgid "My history"
 msgstr "La mia cronologia"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106797
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106716
 msgid "Your history is enabled. It is only visible to you on this device."
 msgstr ""
 "La tua cronologia è abilitata. È visibile soltanto a te e solo su questo "
 "dispositivo."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106797
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106716
 msgid ""
 "Your history is disabled. If you enable it, it will only be visible to you "
 "on this device."
 msgstr ""
-"La tua cronologia è disabilitata. Se la abiliti, sarà visibile a te soltanto "
-"su questo dispositivo."
+"La tua cronologia è disabilitata. Se la abiliti, sarà visibile a te soltanto"
+" su questo dispositivo."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106808
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106727
 msgid "Disable"
 msgstr "Disabilita"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106808
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106727
 msgid "Enable"
 msgstr "Abilita"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106825
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106744
 msgid "Delete my history"
 msgstr "Cancella la mia cronologia"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106835
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106754
 msgid "Today"
 msgstr "Oggi"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106842
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106761
 msgid "Last week"
 msgstr "Ultima settimana"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106849
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106768
 msgid "Last month"
 msgstr "Ultimo mese"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106856
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106775
 msgid "Last 6 months"
 msgstr "Ultimi 6 mesi"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106863
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106782
 msgid "Last year"
 msgstr "Ultimo anno"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106870
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106789
 msgid "More than one year ago"
 msgstr "Più di un anno fa"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:106878
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106797
 msgid "As soon as you do a search, you can find it here 👇"
 msgstr "Non appena effettuerai una ricerca, la troverai qua 👇"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107046
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106965
 msgid "Terms of service Qwant&nbsp;Maps"
 msgstr "Termini di utilizzo di Qwant&nbsp;Maps"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107055
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106974
 msgid "How to contribute"
 msgstr "Come contribuire"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107062
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:106981
 msgid "Report a bug"
 msgstr "Segnala un bug"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107235
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107154
 msgid "Products for everyday life."
 msgstr "Prodotti per la vita di ogni giorno."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107238
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107157
 msgid "   Search   "
 msgstr "   Ricerca   "
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107240
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107159
 msgid "Responsible search that respects your privacy."
 msgstr "Ricerca responsabile che rispetta la tua privacy."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107241
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107160
 msgid "Open Search"
 msgstr "Apri Ricerca"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107248
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107167
 msgid "Maps"
 msgstr "Mappe"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107250
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107169
 msgid "The map that does not track you."
 msgstr "La mappa che non ti traccia."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107251
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107170
 msgid "Open Maps"
 msgstr "Apri Mappe"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107254
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107173
 msgid "Junior"
 msgstr "Junior"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107256
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107175
 msgid "Responsible search adapted to 6-12 year olds."
 msgstr "Ricerca responsabile adattata per i bambini di 6-12 anni."
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107257
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107176
 msgid "Open Junior"
 msgstr "Apri Junior"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107278
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107197
 msgid "We believe in an alternate model"
 msgstr "Crediamo in un modello alternativo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107336
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107255
 msgid "Make a booking"
 msgstr "Fai una prenotazione"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107341
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107260
 msgid "Make an appointment"
 msgstr "Prendi un appuntamento"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107346
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107265
 msgid "Request a quote"
 msgstr "Richiedi una quotazione"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107413
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107332
 msgid "Call"
 msgstr "Chiama"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107421
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107340
 msgid "Favorites"
 msgstr "Preferiti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107687
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107610
 msgid "Display all results"
 msgstr "Mostra tutti i risultati"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107855
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110060
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107778
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110085
 msgid "Search around this place"
 msgstr "Cerca nei dintorni di questo luogo"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107941
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107864
 msgid "Wheelchair accessible"
 msgstr "Accessibile con sedia a rotelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107942
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107865
 msgid "Partially wheelchair accessible"
 msgstr "Parzialmente accessibile con sedia a rotelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107943
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107866
 msgid "Not wheelchair accessible"
 msgstr "Non accessibile con sedia a rotelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107946
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107869
 msgid "Wheelchair accessible toilets"
 msgstr "Servizi igienici accessibili con sedia a rotelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107947
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107870
 msgid "Partial wheelchair accessible toilets"
 msgstr "Servizi igienici parzialmente accessibili con sedia a rotelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:107948
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:107871
 msgid "No wheelchair accessible toilets"
 msgstr "Non sono presenti bagni accessibili con sedia a rotelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108113
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108036
 msgid "contact"
 msgstr "contatti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108181
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108104
 msgid "Click & collect"
 msgstr "Click & collect"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108182
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108105
 msgid "Delivery"
 msgstr "Consegna"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108183
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108106
 msgid "Take away"
 msgstr "Asporto"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108249
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108172
 msgid "Read more on Wikipedia"
 msgstr "Leggi di più su Wikipedia"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108250
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108173
 msgid "Read more on PagesJaunes"
 msgstr "Leggi di più su PagesJaunes"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108379
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108302
 msgid "opening hours"
 msgstr "orari di apertura"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108382
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108305
 msgid "See the usual opening hours"
 msgstr "Guarda gli orari di apertura"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108429
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108352
 msgid "Photos"
 msgstr "Foto"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108507
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108430
 msgid "Information"
 msgstr "Informazioni"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108570
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108493
 msgid "Internet access"
 msgstr "Accesso a internet"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108570
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108493
 msgid "WiFi"
 msgstr "WiFi"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108660
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108583
 msgid "phone"
 msgstr "telefono"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108663
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108586
 msgid "Show the number"
 msgstr "Mostra il numero"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108710
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108633
 msgid "Glass"
 msgstr "Vetro"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108711
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108634
 msgid "Recyclable"
 msgstr "Riciclabile"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108712
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108635
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108724
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108647
 msgid "Updated {datetime}"
 msgstr "Aggiornato il {datetime}"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108825
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108748
 #, javascript-format
 msgid "%d room"
 msgid_plural "%d rooms"
 msgstr[0] "%d camera"
 msgstr[1] "%d camere"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108825
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108748
 #, javascript-format
 msgid "%d adult"
 msgid_plural "%d adults"
 msgstr[0] "%d adulto"
 msgstr[1] "%d adulti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108828
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108751
 #, javascript-format
 msgid "%d child"
 msgid_plural "%d children"
 msgstr[0] "%d bambino"
 msgstr[1] "%d bambini"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108925
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108848
 msgid "Make a reservation"
 msgstr "Prenota"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108940
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108863
 msgid "Check in"
 msgstr "Check in"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108950
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108873
 msgid "Check out"
 msgstr "Check out"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:108988
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109001
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109172
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109399
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108911
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108924
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109095
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109322
 msgid "Ok"
 msgstr "Ok"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109010
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109300
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108933
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109223
 msgid "Guests"
 msgstr "Ospiti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109031
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108954
 msgid "Check availability"
 msgstr "Verifica la disponibilità"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109180
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109103
 msgid "Rooms"
 msgstr "Camere"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109181
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109104
 msgid "Adults"
 msgstr "Adulti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109182
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109105
 msgid "Children"
 msgstr "Bambini"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109185
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109108
 msgid "18 years old and more"
 msgstr "18 anni e oltre"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109186
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109109
 msgid "Between 0 and 17 years old"
 msgstr "Tra 0 e 17 anni"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109263
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109186
 #, javascript-format
 msgid "Age of child %d"
 msgstr "Età del bambino %d"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109391
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109314
 msgid "Night"
 msgid_plural "Nights"
 msgstr[0] "Notte"
 msgstr[1] "Notti"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109681
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109604
 msgid "Social networks"
 msgstr "Social network"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109754
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109677
 #, javascript-format
 msgid "%d star"
 msgid_plural "%d stars"
 msgstr[0] "%d stella"
 msgstr[1] "%d stelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109754
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109677
 msgid "Starred"
 msgstr "Stellato"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109764
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109687
 #, javascript-format
 msgid "{subclass} with %d star"
 msgid_plural "{subclass} with %d stars"
 msgstr[0] "{subclass} con %d stella"
 msgstr[1] "{subclass} con %d stelle"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109775
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109698
 msgid "Starred {subclass}"
 msgstr "{subclass} stellato"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:109968
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109887
+msgid "Reviews"
+msgstr "Recensioni"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109908
+msgid "TripAdvisor user"
+msgstr "Utente TripAdvisor"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109919
+msgid "Read the full review"
+msgstr "Leggi la recensione completa"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109928
+msgid "Read more reviews on TripAdvisor"
+msgstr "Leggi altre recensioni su TripAdvisor"
+
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:109993
 msgid "website"
 msgstr "sito web"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110074
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110099
 msgid "See more nearby services"
 msgstr "Visualizza altri servizi in zona"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110077
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110102
 msgid "Reduce"
 msgstr "Riduci"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110115
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110140
 msgid "Unfold to see quick actions"
 msgstr "Apri per vedere le azioni rapide"
 
-#: public/build/javascript/bundle-c643390a69f05865e0639245681e1efb.js:110167
+#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:110192
 msgid "Services nearby"
 msgstr "Servizi vicino a te"
 
