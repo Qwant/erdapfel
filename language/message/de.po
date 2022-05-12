@@ -609,10 +609,6 @@ msgstr "Stadion"
 msgid "viewpoint"
 msgstr "Aussichtspunkt"
 
-#: config/categories.js
-msgid "charging station"
-msgstr "Ladestation"
-
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
 msgid "accessories shop"
 msgstr "Zubehörshop "
