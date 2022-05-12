@@ -334,3 +334,5 @@
   name: stadium
 - label: _('viewpoint')
   name: viewpoint
+- label: _('charging station')
+  name: charging_station

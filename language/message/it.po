@@ -610,6 +610,10 @@ msgstr "stadio"
 msgid "viewpoint"
 msgstr "punto panoramico"
 
+#: config/categories.js
+msgid "charging station"
+msgstr "stazione di ricarica"
+
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:873
 msgid "accessories shop"
 msgstr "negozio di accessori"
@@ -785,10 +789,6 @@ msgstr "cimitero"
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:925
 msgid "holiday cottage"
 msgstr "casa per vacanze"
-
-#: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:926
-msgid "charging station"
-msgstr "punto di ricarica"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:927
 msgid "charity store"

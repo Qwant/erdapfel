@@ -144,4 +144,5 @@ window.categories = [
   _('sailing'),
   _('stadium'),
   _('viewpoint'),
+  _('charging station'),
 ];
