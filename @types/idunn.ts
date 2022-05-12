@@ -314,7 +314,8 @@ export interface components {
       | 'sport_volleyball'
       | 'sport_sailing'
       | 'stadium'
-      | 'viewpoint';
+      | 'viewpoint'
+      | 'charging_station';
 
     /** CategoryDescription */
     CategoryDescription: {
