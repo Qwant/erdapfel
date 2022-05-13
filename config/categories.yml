@@ -336,3 +336,5 @@
   name: viewpoint
 - label: _('charging station')
   name: charging_station
+- label: _('osteopathy')
+  name: health_osteopathy

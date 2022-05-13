@@ -267,6 +267,10 @@ msgstr "cabinet dentaire"
 msgid "physiotherapist"
 msgstr "kinésithérapeute"
 
+#: config/categories.js
+msgid "osteopathy"
+msgstr "Osteopathie"
+
 #: config/categories.js:61
 msgid "psychotherapist"
 msgstr "psychothérapeute"

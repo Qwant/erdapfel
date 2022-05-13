@@ -270,6 +270,10 @@ msgstr "dentista"
 msgid "physiotherapist"
 msgstr "fisioterapista"
 
+#: config/categories.js
+msgid "osteopathy"
+msgstr "osteopatia"
+
 #: config/categories.js:61
 msgid "psychotherapist"
 msgstr "psicoterapeuta"

@@ -315,7 +315,8 @@ export interface components {
       | 'sport_sailing'
       | 'stadium'
       | 'viewpoint'
-      | 'charging_station';
+      | 'charging_station'
+      | 'health_osteopathy';
 
     /** CategoryDescription */
     CategoryDescription: {
