@@ -145,4 +145,5 @@ window.categories = [
   _('stadium'),
   _('viewpoint'),
   _('charging station'),
+  _('osteopathy'),
 ];

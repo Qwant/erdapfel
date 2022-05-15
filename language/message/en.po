@@ -262,6 +262,10 @@ msgstr ""
 msgid "physiotherapist"
 msgstr ""
 
+#: config/categories.js
+msgid "osteopathy"
+msgstr ""
+
 #: config/categories.js:61
 msgid "psychotherapist"
 msgstr ""
