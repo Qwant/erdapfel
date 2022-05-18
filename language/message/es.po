@@ -1721,12 +1721,12 @@ msgid "Unfold to show the results"
 msgstr "Desplegar para mostrar los resultados"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103451
-msgid "No results found."
-msgstr "No se encontraron resultados."
+msgid "Um, you got a little too high 🚀"
+msgstr "Um, te has pasado un poco 🚀"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103452
-msgid "Please zoom in the map to see the results for this category."
-msgstr "Por favor, amplia el mapa para ver los resultados de esta categoría."
+msgid "Zoom in or move around the map to view results."
+msgstr "Acérquese o muévase por el mapa para ver los resultados."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103458
 msgid "Search around my position"

@@ -18,8 +18,8 @@ const CategoryPanelError = ({ zoomIn }) => {
 
   const { title, message, action } = zoomIn
     ? {
-        title: _('No results found.'),
-        message: _('Please zoom in the map to see the results for this category.', 'categories'),
+        title: _('Um, you got a little too high 🚀'),
+        message: _('Zoom in or move around the map to view results.', 'categories'),
         action: (
           <Button onClick={geoloc} variant="secondary">
             <IconGeoloc fill="currentColor" />
