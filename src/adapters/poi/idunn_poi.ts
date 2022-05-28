@@ -5,7 +5,7 @@ import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
 import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
 import { operations, components } from 'appTypes/idunn';
-import {get as getLocalStorageItem} from "../store";
+import { get as getLocalStorageItem } from '../store';
 
 const serviceConfig = nconf.get().services;
 
@@ -71,7 +71,7 @@ export default class IdunnPoi extends Poi {
   ) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
 
-    let requestParams = {
+    const requestParams = {
       bbox,
       size,
       extend_bbox: extendBbox,
