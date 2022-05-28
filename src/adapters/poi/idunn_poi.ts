@@ -5,6 +5,7 @@ import Error from '../../adapters/error';
 import QueryContext from '../../adapters/query_context';
 import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
 import { operations, components } from 'appTypes/idunn';
+import {get as getLocalStorageItem} from "../store";
 
 const serviceConfig = nconf.get().services;
 
@@ -70,13 +71,18 @@ export default class IdunnPoi extends Poi {
   ) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
 
-    const requestParams = {
+    let requestParams = {
       bbox,
       size,
       extend_bbox: extendBbox,
+      only_osm: false,
       ...(category ? { category } : {}),
       ...(q ? { q } : {}),
     };
+
+    if (getLocalStorageItem('only_osm') === true) {
+      requestParams.only_osm = true;
+    }
 
     try {
       const response: APIGetPlacesResponse = await Ajax.getLang(url, requestParams);
