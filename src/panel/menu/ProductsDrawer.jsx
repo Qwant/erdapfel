@@ -8,13 +8,11 @@ const ProductsDrawer = () => {
 
   return (
     <>
-      <h3 className="u-text--heading3 u-mb-xl-2 u-center">
-        {_('Products for everyday life.', 'menu')}
-      </h3>
       <div className="products">
         {/* @HACK: the space characters in title string help create a distinct PO entry,
       as "Search"/"Rechercher" already existed and the context is ignored in our implementation.*/}
         <ProductCard
+          name="productCardSearch"
           title={_('   Search   ', 'products').trim()}
           logo="./statics/images/products/qwant-search.svg"
           desc={_('Responsible search that respects your privacy.', 'products')}
@@ -26,6 +24,7 @@ const ProductsDrawer = () => {
           }}
         />
         <ProductCard
+          name="productCardMaps"
           title={_('Maps', 'products')}
           logo="./statics/images/products/qwant-maps.svg"
           desc={_('The map that does not track you.', 'products')}
@@ -33,6 +32,7 @@ const ProductsDrawer = () => {
           href="https://qwant.com/maps"
         />
         <ProductCard
+          name="productCardJunior"
           title={_('Junior', 'products')}
           logo="./statics/images/products/qwant-junior.svg"
           desc={_('Responsible search adapted to 6-12 year olds.', 'products')}
@@ -58,7 +58,7 @@ const ProductsDrawer = () => {
             <div className="u-color--primary u-text--heading5 u-mb-s">
               {_('We believe in an alternate model', 'products')}
             </div>
-            <div className="card-link">{_('Read more', 'products')}</div>
+            <div className="card-link u-color--primary u-bold">{_('Read more', 'products')}</div>
           </div>
         </Flex>
       </a>
