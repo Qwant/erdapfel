@@ -1692,7 +1692,7 @@ msgstr "Hum, vous avez pris un peu trop de hauteur 🚀"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103452
 msgid "Zoom in or move around the map to view results."
-msgstr "Zoomez ou déplacez vous sur la carte pour afficher des résultats"
+msgstr "Zoomez ou déplacez-vous sur la carte<br>pour afficher des résultats"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:103458
 msgid "Search around my position"

@@ -40,7 +40,7 @@ const CategoryPanelError = ({ zoomIn }) => {
   return (
     <div className="category__panel__error u-center">
       <p className="u-mb-xs u-text--smallTitle">{title}</p>
-      <p className="u-mb-s">{message}</p>
+      <p className="u-mb-s" dangerouslySetInnerHTML={{ __html: message }}></p>
       {action}
     </div>
   );
