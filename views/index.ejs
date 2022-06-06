@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="<%= language.code %>">
   <head>
-    <meta charset="utf-8" />
+    <% metas.forEach((meta) => { %><%- meta %>
+    <% }) %>
+    
     <title><%= _('Qwant Maps') %> <% if(config.envName) { %> - <%= config.envName %><% } %></title>
-    <meta name="description" content="<%= _('The map service that finds the right addresses and guides you around without tracking you.') %>" />
+    
     <base href="<%= config.system.baseUrl %>" target="_blank" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
-    />
-    <meta name="theme-color" content="#FFFFFF" />
 
     <link rel="icon" href="./statics/images/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="./statics/images/logo_192.png" />
@@ -17,24 +14,9 @@
 
     <link href="./statics/build/css/app-<%= config.compilationHash %>.css" rel="stylesheet" />
     <link href="./mapstyle/iconfont/iconfont.css" rel="stylesheet" />
-    <link
-      rel="search"
-      type="application/opensearchdescription+xml"
-      href="<%= config.system.baseUrl %>opensearch.xml"
-      title="Qwant Maps search"
-    />
-
-    <meta name="twitter:title" content="Qwant Maps"/>
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://www.qwant.com/maps/statics/images/twitter.jpg">
-    <meta name="twitter:site" content="@QwantCom">
-    <meta name="twitter:creator" content="@QwantCom">
-    <meta name="twitter:domain" content="https://www.qwant.com/maps">
-    <meta name="twitter:widgets:csp" content="on"/>
+    <link rel="search" type="application/opensearchdescription+xml" href="<%= config.system.baseUrl %>opensearch.xml" title="Qwant Maps search" />
     
-    <% ogMetas.forEach((ogMeta) => { %>
-    <meta property="og:<%= ogMeta.name %>" content="<%= ogMeta.content %>" />
-    <% }) %> <% if(typeof poi !== 'undefined') { %>
+    <% if(typeof poi !== 'undefined') { %>
     <script>
       window.hotLoadPoi = <%- JSON.stringify(poi) %>;
     </script>
