@@ -4,7 +4,7 @@ import { useI18n } from 'src/hooks';
 import ProductCard from './ProductCard';
 
 const ProductsDrawer = () => {
-  const { getLocalizedUrl, _ } = useI18n();
+  const { getLocalizedUrl, getLocalizedString, _ } = useI18n();
 
   return (
     <>
@@ -13,10 +13,10 @@ const ProductsDrawer = () => {
       as "Search"/"Rechercher" already existed and the context is ignored in our implementation.*/}
         <ProductCard
           name="productCardSearch"
-          title={_('   Search   ', 'products').trim()}
+          title={_('Search', 'products').trim()}
           logo="./statics/images/products/qwant-search.svg"
-          desc={_('Responsible search that respects your privacy.', 'products')}
-          link={_('Open Search', 'products')}
+          desc={getLocalizedString('searchDesc')}
+          link={getLocalizedString('searchOpen')}
           href="https://qwant.com"
           mobileApps={{
             android: 'https://play.google.com/store/apps/details?id=com.qwant.liberty',
@@ -27,16 +27,16 @@ const ProductsDrawer = () => {
           name="productCardMaps"
           title={_('Maps', 'products')}
           logo="./statics/images/products/qwant-maps.svg"
-          desc={_('The map that does not track you.', 'products')}
-          link={_('Open Maps', 'products')}
+          desc={getLocalizedString('mapsDesc')}
+          link={getLocalizedString('mapsOpen')}
           href="https://qwant.com/maps"
         />
         <ProductCard
           name="productCardJunior"
           title={_('Junior', 'products')}
           logo="./statics/images/products/qwant-junior.svg"
-          desc={_('Responsible search adapted to 6-12 year olds.', 'products')}
-          link={_('Open Junior', 'products')}
+          desc={getLocalizedString('juniorDesc')}
+          link={getLocalizedString('juniorOpen')}
           href="https://junior.qwant.com"
           mobileApps={{
             android: 'https://play.google.com/store/apps/details?id=com.qwantjunior.mobile',
@@ -56,9 +56,11 @@ const ProductsDrawer = () => {
           </div>
           <div>
             <div className="u-color--primary u-text--heading5 u-mb-s">
-              {_('We believe in an alternate model', 'products')}
+              {getLocalizedString('betterwebDesc')}
             </div>
-            <div className="card-link u-color--primary u-bold">{_('Read more', 'products')}</div>
+            <div className="card-link u-color--primary u-bold">
+              {getLocalizedString('betterwebOpen')}
+            </div>
           </div>
         </Flex>
       </a>

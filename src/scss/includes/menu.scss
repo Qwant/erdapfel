@@ -121,8 +121,12 @@ $productDrawerWidth: 744px;
     border-radius: 8px;
     text-decoration: none;
     border: 2px solid #e9eaec;
+    transition: box-shadow 0.3s, background 0.3s, border 0.3s;
 
     &:hover {
+
+      border-color: #4B5058;
+      box-shadow: 4px 4px #05050529;
 
       .card-link {
         text-decoration: underline;
@@ -144,6 +148,11 @@ $productDrawerWidth: 744px;
       border: 1px solid #050506;
       border-radius: 8px;
       margin-left: 8px;
+
+      &:hover {
+        transition: background-color 0.3s ease-in-out;
+        background-color: #05050529
+      }
     }
   }
 
