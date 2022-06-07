@@ -10,10 +10,18 @@ const ProductCard = ({ name, logo, title, desc, link, href, mobileApps }) => {
 
   return (
     <div className="card-wrapper">
-      <a className={classnames('card', 'productCard', name)} href={href} target="_self">
+      <a
+        className={classnames('card', 'productCard', name)}
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+      >
         <img className="u-mb-xs" src={logo} width="48" height="48" alt="" />
         <div className="u-color--primary u-text--heading5 u-mb-s">{title}</div>
-        <div className="card-desc u-color--primary u-text--body1 u-mb-l">{desc}</div>
+        <div
+          className="card-desc u-color--primary u-text--body1 u-mb-l"
+          dangerouslySetInnerHTML={{ __html: desc }}
+        />
         <div className="card-link u-color--primary u-bold">{link}</div>
       </a>
       {!isMobile && mobileApps && (

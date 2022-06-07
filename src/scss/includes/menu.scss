@@ -110,6 +110,10 @@ $productDrawerWidth: 744px;
   }
 }
 
+.productsDrawer .menu-content {
+  padding: 0 $spacing-xl-2;
+}
+
 .productsDrawer .menu__panel {
   .card-wrapper {
     position: relative;
@@ -170,6 +174,14 @@ $productDrawerWidth: 744px;
     .menu-content {
       padding: $spacing-xxl-3 $spacing-s;
     }
+
+    .card.betterweb {
+      img {
+        width: 50px;
+        height: 50px;
+        max-width: auto;
+      }
+    }
   }
 
   @media (min-width: 641px) {
@@ -190,12 +202,8 @@ $productDrawerWidth: 744px;
 
       .card-desc {
         min-height: 60px;
+        height: 100%;
       }
-    }
-
-    .menu-content {
-      padding-left: $spacing-xl-2;
-      padding-right: $spacing-xl-2;
     }
   }
 }
@@ -242,7 +250,7 @@ $productDrawerWidth: 744px;
   }
 
   .menu-content {
-    padding: 0 $spacing-xl-2;
+    padding: $spacing-xl-2 0;
   }
 }
 

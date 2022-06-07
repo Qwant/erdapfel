@@ -4,7 +4,7 @@ import { useI18n } from 'src/hooks';
 import ProductCard from './ProductCard';
 
 const ProductsDrawer = () => {
-  const { getLocalizedUrl, getLocalizedString, _ } = useI18n();
+  const { getLocalizedUrl, getLocalizedString } = useI18n();
 
   return (
     <>
@@ -13,7 +13,7 @@ const ProductsDrawer = () => {
       as "Search"/"Rechercher" already existed and the context is ignored in our implementation.*/}
         <ProductCard
           name="productCardSearch"
-          title={_('Search', 'products').trim()}
+          title="Search"
           logo="./statics/images/products/qwant-search.svg"
           desc={getLocalizedString('searchDesc')}
           link={getLocalizedString('searchOpen')}
@@ -25,7 +25,7 @@ const ProductsDrawer = () => {
         />
         <ProductCard
           name="productCardMaps"
-          title={_('Maps', 'products')}
+          title="Maps"
           logo="./statics/images/products/qwant-maps.svg"
           desc={getLocalizedString('mapsDesc')}
           link={getLocalizedString('mapsOpen')}
@@ -33,7 +33,7 @@ const ProductsDrawer = () => {
         />
         <ProductCard
           name="productCardJunior"
-          title={_('Junior', 'products')}
+          title="Junior"
           logo="./statics/images/products/qwant-junior.svg"
           desc={getLocalizedString('juniorDesc')}
           link={getLocalizedString('juniorOpen')}
@@ -48,7 +48,7 @@ const ProductsDrawer = () => {
         href={getLocalizedUrl('aboutHome')}
         target="_blank"
         rel="noopener noreferrer"
-        className="card u-mb-l"
+        className="card betterweb u-mb-l"
       >
         <Flex alignCenter>
           <div className="u-mr-l">

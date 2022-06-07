@@ -71,13 +71,13 @@ localizedStrings:
     betterwebOpen: "Know more"
 
   fr:
-    searchDesc: "Le moteur de recherche qui ne sait rien sur vous, et ça change tout !"
+    searchDesc: "Le moteur de recherche qui ne sait rien sur vous, et ça change tout&nbsp;!"
     searchOpen: "Ouvrir Search"
     mapsDesc: "Le service de cartographie qui trouve les bonnes adresses et facilite vos déplacements sans vous tracer."
     mapsOpen: "Ouvrir Maps"
     juniorDesc: "Le seul moteur de recherche sécurisé et conçu pour l'apprentissage des enfants et la sérénité de leurs parents."
     juniorOpen: "Ouvrir Junior"
-    betterwebDesc: "Découvrez Qwant et ses ambitions pour un #betterweb "
+    betterwebDesc: "Découvrez Qwant et ses ambitions pour un #betterweb"
     betterwebOpen: "En savoir plus"
 
   de:
