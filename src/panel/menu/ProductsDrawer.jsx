@@ -4,21 +4,19 @@ import { useI18n } from 'src/hooks';
 import ProductCard from './ProductCard';
 
 const ProductsDrawer = () => {
-  const { getLocalizedUrl, _ } = useI18n();
+  const { getLocalizedUrl, getLocalizedString } = useI18n();
 
   return (
     <>
-      <h3 className="u-text--heading3 u-mb-xl-2 u-center">
-        {_('Products for everyday life.', 'menu')}
-      </h3>
       <div className="products">
         {/* @HACK: the space characters in title string help create a distinct PO entry,
       as "Search"/"Rechercher" already existed and the context is ignored in our implementation.*/}
         <ProductCard
-          title={_('   Search   ', 'products').trim()}
+          name="productCardSearch"
+          title="Search"
           logo="./statics/images/products/qwant-search.svg"
-          desc={_('Responsible search that respects your privacy.', 'products')}
-          link={_('Open Search', 'products')}
+          desc={getLocalizedString('searchDesc')}
+          link={getLocalizedString('searchOpen')}
           href="https://qwant.com"
           mobileApps={{
             android: 'https://play.google.com/store/apps/details?id=com.qwant.liberty',
@@ -26,17 +24,19 @@ const ProductsDrawer = () => {
           }}
         />
         <ProductCard
-          title={_('Maps', 'products')}
+          name="productCardMaps"
+          title="Maps"
           logo="./statics/images/products/qwant-maps.svg"
-          desc={_('The map that does not track you.', 'products')}
-          link={_('Open Maps', 'products')}
+          desc={getLocalizedString('mapsDesc')}
+          link={getLocalizedString('mapsOpen')}
           href="https://qwant.com/maps"
         />
         <ProductCard
-          title={_('Junior', 'products')}
+          name="productCardJunior"
+          title="Junior"
           logo="./statics/images/products/qwant-junior.svg"
-          desc={_('Responsible search adapted to 6-12 year olds.', 'products')}
-          link={_('Open Junior', 'products')}
+          desc={getLocalizedString('juniorDesc')}
+          link={getLocalizedString('juniorOpen')}
           href="https://junior.qwant.com"
           mobileApps={{
             android: 'https://play.google.com/store/apps/details?id=com.qwantjunior.mobile',
@@ -48,7 +48,7 @@ const ProductsDrawer = () => {
         href={getLocalizedUrl('aboutHome')}
         target="_blank"
         rel="noopener noreferrer"
-        className="card u-mb-l"
+        className="card betterweb u-mb-l"
       >
         <Flex alignCenter>
           <div className="u-mr-l">
@@ -56,9 +56,11 @@ const ProductsDrawer = () => {
           </div>
           <div>
             <div className="u-color--primary u-text--heading5 u-mb-s">
-              {_('We believe in an alternate model', 'products')}
+              {getLocalizedString('betterwebDesc')}
             </div>
-            <div className="card-link">{_('Read more', 'products')}</div>
+            <div className="card-link u-color--primary u-bold">
+              {getLocalizedString('betterwebOpen')}
+            </div>
           </div>
         </Flex>
       </a>

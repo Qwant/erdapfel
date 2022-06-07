@@ -120,9 +120,9 @@ function App(config) {
   const redirectUnsupported = new require('./middlewares/unsupported_browser')(config);
   const fullTextQuery = new require('./middlewares/fullText_query')(config);
   const preFetchPoi = new require('./middlewares/prefetch_poi')(config);
-  const ogMeta = new require('./middlewares/og_meta')(config);
+  const meta = new require('./middlewares/meta')(config);
 
-  router.get('/*', redirectUnsupported, fullTextQuery, preFetchPoi, ogMeta, (req, res) => {
+  router.get('/*', redirectUnsupported, fullTextQuery, preFetchPoi, meta, (req, res) => {
     const disableMenuRule = config.server.disableBurgerMenu.clientRule;
     const { ...appConfig } = config;
     const regexpRule = new RegExp(`[?&]client=${disableMenuRule}`);

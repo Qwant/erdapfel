@@ -1,7 +1,11 @@
-import { localizedUrls } from 'config/constants.yml';
+import { localizedUrls, localizedStrings } from 'config/constants.yml';
 
 const getLocalizedUrl = lang => urlName => {
   return localizedUrls?.[lang]?.[urlName] || localizedUrls?.['en']?.[urlName];
+};
+
+const getLocalizedString = lang => urlName => {
+  return localizedStrings?.[lang]?.[urlName] || localizedStrings?.['en']?.[urlName];
 };
 
 export const useI18n = () => {
@@ -13,5 +17,6 @@ export const useI18n = () => {
     locale,
     lang,
     getLocalizedUrl: getLocalizedUrl(lang),
+    getLocalizedString: getLocalizedString(lang),
   };
 };
