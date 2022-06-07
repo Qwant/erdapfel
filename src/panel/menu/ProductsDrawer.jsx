@@ -55,12 +55,10 @@ const ProductsDrawer = () => {
             <img width="100" height="100" src="./statics/images/products/web-internaute.svg" />
           </div>
           <div>
-            <div className="u-color--primary u-text--heading5 u-mb-s">
+            <div className="u-color--primary u-mb-s betterweb-description">
               {getLocalizedString('betterwebDesc')}
             </div>
-            <div className="card-link u-color--primary u-bold">
-              {getLocalizedString('betterwebOpen')}
-            </div>
+            <div className="card-link">{getLocalizedString('betterwebOpen')}</div>
           </div>
         </Flex>
       </a>
