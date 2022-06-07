@@ -45,7 +45,7 @@ $productDrawerWidth: 744px;
   display: flex;
   flex-direction: column;
   animation: appearMenu 0.3s forwards;
-  box-shadow: 0 8px 64px 0 rgba(12, 12, 14, 0.2), 0 16px 32px 0 rgba(12, 12, 14, 0.12);
+  border-left: 2px solid #676e79;
 }
 
 .menu-top {
@@ -95,6 +95,20 @@ $productDrawerWidth: 744px;
   line-height: normal;
 }
 
+.betterweb-description {
+  font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+}
+
+.menu-content {
+  overflow: auto;
+}
+
+.card.betterweb .card-link {
+  color: #0051e0;
+}
+
 @media (max-width: 640px) {
   .menu-content {
     overflow-y: auto;
@@ -111,7 +125,7 @@ $productDrawerWidth: 744px;
 }
 
 .productsDrawer .menu-content {
-  padding: 0 $spacing-xl-2;
+  padding: 0 $spacing-xl;
 }
 
 .productsDrawer .menu__panel {

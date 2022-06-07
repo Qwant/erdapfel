@@ -19,7 +19,7 @@ const ProductCard = ({ name, logo, title, desc, link, href, mobileApps }) => {
         <img className="u-mb-xs" src={logo} width="48" height="48" alt="" />
         <div className="u-color--primary u-text--heading5 u-mb-s">{title}</div>
         <div
-          className="card-desc u-color--primary u-text--body1 u-mb-l"
+          className="card-desc u-color--primary u-text--body1 u-mb-xl"
           dangerouslySetInnerHTML={{ __html: desc }}
         />
         <div className="card-link u-color--primary u-bold">{link}</div>
