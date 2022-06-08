@@ -41,7 +41,7 @@ module.exports = function (config) {
       `<meta property="og:description" content="${description}"/>`,
       `<meta property="og:title" content="${title}"/>`,
       `<meta property="og:site_name" content="Qwant Maps"/>`,
-      `<meta property="og:image" content="https://${getUrl(req)}statics/images/facebook.png"/>`,
+      `<meta property="og:image" content="https://${getUrl(req)}statics/images/facebook.jpg"/>`,
       `<meta property="og:image:width" content="1000" />`,
       `<meta property="og:image:height" content="536" />`,
       `<meta property="og:type" content="website"/>`,
