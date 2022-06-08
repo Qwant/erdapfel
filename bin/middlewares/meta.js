@@ -41,7 +41,7 @@ module.exports = function (config) {
       `<meta property="og:description" content="${description}"/>`,
       `<meta property="og:title" content="${title}"/>`,
       `<meta property="og:site_name" content="Qwant Maps"/>`,
-      `<meta property="og:image" content="https://${getUrl(req)}statics/images/facebook.jpg"/>`,
+      `<meta property="og:image" content="${getUrl(req)}statics/images/facebook.jpg"/>`,
       `<meta property="og:image:width" content="1000" />`,
       `<meta property="og:image:height" content="536" />`,
       `<meta property="og:type" content="website"/>`,
@@ -50,10 +50,10 @@ module.exports = function (config) {
       `<meta name="application-name" content="Qwant Maps"/>`,
       `<meta name="twitter:title" content="${title}"/>`,
       `<meta name="twitter:card" content="summary_large_image">`,
-      `<meta name="twitter:image" content="https://${getUrl(req)}statics/images/twitter.jpg">`,
+      `<meta name="twitter:image" content="${getUrl(req)}statics/images/twitter.jpg">`,
       `<meta name="twitter:site" content="@QwantCom">`,
       `<meta name="twitter:creator" content="@QwantCom">`,
-      `<meta name="twitter:domain" content="https://${url}">`,
+      `<meta name="twitter:domain" content="${url}">`,
       `<meta name="twitter:widgets:csp" content="on"/>`,
     ];
 
