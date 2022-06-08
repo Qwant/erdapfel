@@ -262,7 +262,10 @@ const PanelManager = ({ router }) => {
           mounts and unmounts of the ActivePanel, that would have inappropriate side effects
           on map markers, requests to server, etc.
         */}
-        <div className="panel_container" style={{ display: !isPanelVisible ? 'none' : null }}>
+        <div
+          className="panel_container"
+          style={{ display: !isPanelVisible && window.startedTyping ? 'none' : null }}
+        >
           <ActivePanel {...options} />
         </div>
       </PanelContext.Provider>

@@ -76,7 +76,11 @@ export const modifyList = (items, withGeoloc, query, hideItem) => {
     items = items.filter(item => item.id !== hideItem.id);
   }
 
-  if (query.length > 0 && (items.length === 0 || (items.length === 1 && withGeoloc))) {
+  if (
+    window.startedTyping &&
+    query.length > 0 &&
+    (items.length === 0 || (items.length === 1 && withGeoloc))
+  ) {
     items.push({
       errorLabel: true,
     });

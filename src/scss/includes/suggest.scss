@@ -17,6 +17,10 @@
       border-top: none;
     }
   }
+
+  &.autocomplete_suggestions--empty {
+    border: none;
+  }
 }
 
 .autocomplete_suggestion {
