@@ -38,10 +38,12 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {
     const globalKeyHandler = e => {
-      setSearchInputTyping(true);
       if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
         return;
       }
+
+      setSearchInputTyping(true);
+
       // KeyboardEvent.key is either the printed character representation or a standard value for specials keys
       // See https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key/Key_Values
       if (
