@@ -14,6 +14,7 @@ import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from 'src/libs/customEvents';
 import useDelayedState from 'use-delayed-state';
 import classnames from 'classnames';
+import { useStore } from 'src/store';
 
 const SUGGEST_DEBOUNCE_WAIT = 100;
 
@@ -64,6 +65,8 @@ const Suggest = ({
     getHistoryEnabled() === null
   );
   const { isMobile } = useDevice();
+
+  const { isSearchInputTyping } = useStore();
 
   const displayHistoryPrompt = useMemo(
     () =>
@@ -276,8 +279,10 @@ const Suggest = ({
       }
     } else {
       setHighlighted(null);
-      fetchItems(value);
-      setIsOpen(true);
+      if (!value || isSearchInputTyping) {
+        fetchItems(value);
+        setIsOpen(true);
+      }
       if (value) {
         setKeepHistoryPromptVisible(false);
       }
