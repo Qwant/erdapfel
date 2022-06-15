@@ -27,8 +27,13 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const config = useConfig();
   const searchHistoryEnabled = getHistoryEnabled();
   const { _ } = useI18n();
-  const { isMenuDrawerOpen, setMenuDrawerOpen, isProductsDrawerOpen, setProductsDrawerOpen } =
-    useStore();
+  const {
+    isMenuDrawerOpen,
+    setMenuDrawerOpen,
+    isProductsDrawerOpen,
+    setProductsDrawerOpen,
+    setSearchInputTyping,
+  } = useStore();
 
   // give keyboard focus to the field when typing anywhere
   useEffect(() => {
@@ -36,6 +41,9 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
       if (MAPBOX_RESERVED_KEYS.find(key => key === e.key)) {
         return;
       }
+
+      setSearchInputTyping(true);
+
       // KeyboardEvent.key is either the printed character representation or a standard value for specials keys
       // See https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key/Key_Values
       if (
@@ -151,12 +159,14 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
                   handleFocus(e);
                   setFocused(true);
                   onFocus();
+                  setSearchInputTyping(false);
                 }}
                 onBlur={() => {
                   // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
                   if (!window.mouseLeave) {
                     setFocused(false);
                     onBlur();
+                    setSearchInputTyping(false);
                   }
                 }}
                 onKeyDown={onKeyDown}

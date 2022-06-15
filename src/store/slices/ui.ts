@@ -8,13 +8,16 @@ import { AppState } from '..';
 export interface UiSlice extends State {
   isMenuDrawerOpen: boolean;
   isProductsDrawerOpen: boolean;
+  isSearchInputTyping: boolean;
   setMenuDrawerOpen: (isOpen: boolean) => void;
   setProductsDrawerOpen: (isOpen: boolean) => void;
+  setSearchInputTyping: (isSearchInputTyping: boolean) => void;
 }
 
 export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>): UiSlice => ({
   isMenuDrawerOpen: false,
   isProductsDrawerOpen: false,
+  isSearchInputTyping: false,
   setMenuDrawerOpen: isOpen =>
     set(
       () => {
@@ -32,5 +35,13 @@ export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>):
       },
       false,
       'UI/setProductsDrawerOpen'
+    ),
+  setSearchInputTyping: isSearchInputTyping =>
+    set(
+      () => {
+        return { isSearchInputTyping };
+      },
+      false,
+      'UI/setSearchInputTyping'
     ),
 });
