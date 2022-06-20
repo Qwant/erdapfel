@@ -10,6 +10,7 @@ import {
   historyLength,
   deleteQuery,
   deleteSearchHistory,
+  saveQuery,
 } from 'src/adapters/search_history';
 import PlaceIcon from 'src/components/PlaceIcon';
 import { capitalizeFirst } from 'src/libs/string';
@@ -99,6 +100,9 @@ const HistoryPanel = () => {
   }, [last6Months, lastMidnight, lastMonth, lastWeek, lastYear, now]);
 
   const visit = item => {
+    // Save new visit in history
+    saveQuery(item.item);
+
     // PoI
     if (item.type === 'poi') {
       window.app.navigateTo(`/place/${item.item.id}`);
@@ -120,7 +124,7 @@ const HistoryPanel = () => {
         window.app.navigateTo(
           `/places/?q=${item.item.fullTextQuery}${
             item?.item?.bbox ? `&bbox=${item.item.bbox.join(',')}` : ''
-          }}`
+          }`
         );
       }
     }
@@ -140,10 +144,12 @@ const HistoryPanel = () => {
     openClearHistoryModal();
   };
 
+  let count = 0;
+
   const showItem = item => {
     return item.type === 'poi' ? (
       // poi / city / address
-      <Flex key={item.item.id} className="history-list-item">
+      <Flex key={'item' + count++} className="history-list-item">
         <Box
           onClick={() => {
             Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_PANEL);
@@ -189,10 +195,7 @@ const HistoryPanel = () => {
       </Flex>
     ) : (
       // intention
-      <Flex
-        key={item.item.category?.name + '_' + item.item.place?.properties?.geocoding?.name}
-        className="history-list-item"
-      >
+      <Flex key={'item' + count++} className="history-list-item">
         <Box
           onClick={() => {
             Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_PANEL);
