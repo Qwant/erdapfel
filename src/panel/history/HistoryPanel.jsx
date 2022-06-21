@@ -101,7 +101,7 @@ const HistoryPanel = () => {
 
   const visit = item => {
     // Save new visit in history
-    saveQuery(item.item);
+    saveQuery(item.item, item.type);
 
     // PoI
     if (item.type === 'poi') {

@@ -42,7 +42,9 @@ function getQueryType(item) {
   }
 }
 
-export async function saveQuery(item) {
+// Add a query in History.
+// The type is optional, used to revisit items from the History. Otherwise, it is guessed by getQueryType.
+export async function saveQuery(item, type) {
   // Retrieve the search history
   const searchHistory = getHistory();
 
@@ -51,7 +53,7 @@ export async function saveQuery(item) {
 
   // Put the query at the end of the array
   searchHistory.push({
-    type: getQueryType(item),
+    type: type || getQueryType(item),
     item,
   });
 
