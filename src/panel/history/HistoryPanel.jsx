@@ -144,12 +144,10 @@ const HistoryPanel = () => {
     openClearHistoryModal();
   };
 
-  let count = 0;
-
   const showItem = item => {
     return item.type === 'poi' ? (
       // poi / city / address
-      <Flex key={'item' + count++} className="history-list-item">
+      <Flex key={item.item.date} className="history-list-item">
         <Box
           onClick={() => {
             Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_PANEL);
@@ -195,7 +193,7 @@ const HistoryPanel = () => {
       </Flex>
     ) : (
       // intention
-      <Flex key={'item' + count++} className="history-list-item">
+      <Flex key={item.item.date} className="history-list-item">
         <Box
           onClick={() => {
             Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_PANEL);
