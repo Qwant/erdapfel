@@ -19,7 +19,17 @@ export function getHistoryEnabled() {
 }
 
 export function getHistory() {
-  return get(SEARCH_HISTORY_KEY) || [];
+  const items = get(SEARCH_HISTORY_KEY) || [];
+
+  // Modification of localStorage entry (06/2022):
+  // Date is now stored inside the item, not aside.
+  let item;
+  for (item in items) {
+    if (items[item].date && !items[item].item.date) {
+      items[item].item.date = items[item].date;
+    }
+  }
+  return items;
 }
 
 export function setHistory(searchHistory) {
