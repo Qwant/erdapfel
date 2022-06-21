@@ -8,6 +8,7 @@ import PoiDescriptionBlock, { PoiDescriptionBlockProps } from '../blocks/Descrip
 import { useI18n } from 'src/hooks';
 import { components } from 'appTypes/idunn';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
+import OsmSchedule from 'src/adapters/osm_schedule';
 
 export type PoiBlockContainerProps = {
   poi?: IdunnPoi;
@@ -47,7 +48,17 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         title: _('address'),
         address: poi?.address,
       },
-      hourBlock: findBlock(poi?.blocks, 'opening_hours'),
+      hourBlock: {
+        schedule: new OsmSchedule(findBlock(poi?.blocks, 'opening_hours')),
+        texts: {
+          opening_hours: _('opening hours'),
+          open: _('Open'),
+          closed: _('Closed'),
+          open_24_7: _('Open 24/7'),
+          reopening: _('reopening at {nextTransitionTime}'),
+          until: _('until {nextTransitionTime}'),
+        },
+      },
       phoneBlock: findBlock(poi?.blocks, 'phone'),
       websiteBlock: findBlock(poi?.blocks, 'website'),
       contactBlock: findBlock(poi?.blocks, 'contact'),

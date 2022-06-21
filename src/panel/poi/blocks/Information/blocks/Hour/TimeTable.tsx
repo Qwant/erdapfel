@@ -1,22 +1,21 @@
-/* global _ */
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import OpeningHour from 'src/components/OpeningHour';
-import { Chevron } from 'src/components/ui';
+import Chevron from 'src/components/ui/Chevron';
+import { PoiHourBlockProps } from '.';
 
-function showHour(day) {
+function showHour(day, closedText) {
   if (day.opening && day.opening.length > 0) {
-    return day.opening.map((openingFragment, i) => (
+    return day?.opening?.map((openingFragment, i) => (
       <p key={i}>
         {openingFragment.beginning} - {openingFragment.end}
       </p>
     ));
   }
-  return _('Closed', 'hour block');
+  return closedText;
 }
 
-const Days = ({ days }) => {
+const Days = ({ days, closedText }) => {
   const dayNumber = new Date().getDay();
 
   return (
@@ -25,7 +24,7 @@ const Days = ({ days }) => {
         {days.map((day, i) => (
           <tr key={i} className={classnames({ currentDay: (i + 1) % 7 === dayNumber })}>
             <td className="day u-firstCap">{day.dayName}</td>
-            <td className="hours">{showHour(day)}</td>
+            <td className="hours">{showHour(day, closedText)}</td>
           </tr>
         ))}
       </tbody>
@@ -33,22 +32,28 @@ const Days = ({ days }) => {
   );
 };
 
-const TimeTable = ({ title, schedule }) => {
-  const [isCollapsed, setCollapsed] = useState(true);
+export type PoiTimeTableProps = {
+  title?: string;
+  schedule?: any; // TODO: OsmSchedule type
+  texts?: PoiHourBlockProps['texts'];
+};
 
+const TimeTable: React.FunctionComponent<PoiTimeTableProps> = ({ title, schedule, texts }) => {
+  const [isCollapsed, setCollapsed] = useState(true);
   let header;
   let content;
+
   if (title) {
     header = title;
     content = schedule.isTwentyFourSeven ? (
-      <OpeningHour schedule={schedule} />
+      <OpeningHour schedule={schedule} texts={texts} />
     ) : (
-      <Days days={schedule.displayHours} />
+      <Days days={schedule.displayHours} closedText={texts?.closed} />
     );
   } else {
-    header = <OpeningHour schedule={schedule} />;
+    header = <OpeningHour schedule={schedule} texts={texts} />;
     if (!schedule.isTwentyFourSeven) {
-      content = <Days days={schedule.displayHours} />;
+      content = <Days days={schedule.displayHours} closedText={texts?.closed} />;
     }
   }
 
@@ -74,11 +79,6 @@ const TimeTable = ({ title, schedule }) => {
       {collapsable && <div className={classnames('timetable-table')}>{content}</div>}
     </div>
   );
-};
-
-TimeTable.propTypes = {
-  title: PropTypes.node,
-  opening: PropTypes.object,
 };
 
 export default TimeTable;
