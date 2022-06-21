@@ -43,7 +43,12 @@ export default class Category {
     return matched;
   }
 
-  static create({ name, label, icon, color, matcher }) {
+  static create(options) {
+    const name = options?.name || '';
+    const label = options?.label || '';
+    const icon = options?.icon || null;
+    const color = options?.color || '';
+    const matcher = options?.matcher || '';
     return new Category(name, label, icon, color, matcher);
   }
 }

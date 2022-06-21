@@ -43,16 +43,15 @@ function getQueryType(item) {
 }
 
 export async function saveQuery(item) {
-  // Delete query if it's already in the list
-  deleteQuery(item);
-
   // Retrieve the search history
   const searchHistory = getHistory();
+
+  // Put date in item
+  item.date = Date.now();
 
   // Put the query at the end of the array
   searchHistory.push({
     type: getQueryType(item),
-    date: Date.now(),
     item,
   });
 
@@ -80,10 +79,11 @@ const itemEquals = ({ type, item }, other) => {
   if (type === 'intention') {
     return (
       item.category?.name === other.category?.name &&
-      item.place?.properties?.geocoding?.name === other.place?.properties?.geocoding?.name
+      item.place?.properties?.geocoding?.name === other.place?.properties?.geocoding?.name &&
+      item.date === other.date
     );
   } else if (type === 'poi') {
-    return item.id === other.id;
+    return item.id === other.id && item.date === other.date;
   }
   return false;
 };
@@ -102,9 +102,21 @@ const itemMatches = ({ type, item }, term) => {
 
 export function getHistoryItems(term = '', { withIntentions = false } = {}) {
   const searchHistory = getHistory();
-
   return searchHistory
     .reverse() // so it's ordered with most recent items first
+    .filter(
+      (
+        value,
+        index,
+        self // deduplicate history items by id or category name (but not by date)
+      ) =>
+        index ===
+        self.findIndex(t =>
+          t.item.id
+            ? t.item.id === value.item.id
+            : t.item.category?.name === value.item.category?.name
+        )
+    )
     .filter(stored => withIntentions || stored.type !== 'intention')
     .filter(stored => itemMatches(stored, term))
     .map(stored => {
@@ -124,7 +136,7 @@ export function getHistoryItems(term = '', { withIntentions = false } = {}) {
 export function listHistoryItemsByDate(from, to) {
   return getHistory()
     .reverse() // so it's ordered with most recent items first
-    .filter(item => item.date >= from && item.date < to); // filter by date range
+    .filter(item => item.item.date >= from && item.item.date < to); // filter by date range
 }
 
 export function historyLength() {
