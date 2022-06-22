@@ -2,18 +2,18 @@ import React from 'react';
 import SocialNetworksBlock from './blocks/SocialNetworks';
 import { Divider } from 'src/components/ui';
 import AddressBlock, { PoiAddressBlockProps } from './blocks/Address';
-import PhoneBlock from './blocks/Phone';
 import RecyclingBlock from './blocks/Recycling';
 import HourBlock, { PoiHourBlockProps } from './blocks/Hour';
 import ContactBlock from './blocks/Contact';
 import WebsiteBlock from './blocks/Website';
 import { toArray } from 'src/libs/address';
+import PhoneBlock, { PoiPhoneBlockProps } from './blocks/Phone';
 
 export type PoiInformationBlockProps = {
   title?: string;
   addressBlock?: PoiAddressBlockProps;
   hourBlock?: PoiHourBlockProps;
-  phoneBlock?: any;
+  phoneBlock?: PoiPhoneBlockProps;
   websiteBlock?: any;
   contactBlock?: any;
   recyclingBlock?: any;
@@ -32,6 +32,8 @@ const PoiInformationBlock: React.FunctionComponent<PoiInformationBlockProps> = (
   socialBlock,
   poi,
 }) => {
+  // TODO: Move this check into addressBlock directly
+  // TODO: Remove `poi` prop to PoiInformationBlock
   const hasAddressBlock =
     poi?.address &&
     poi?.subClassName !== 'latlon' &&
@@ -58,7 +60,7 @@ const PoiInformationBlock: React.FunctionComponent<PoiInformationBlockProps> = (
       <div className="poi_panel__fullWidth u-mb-s">
         {hasAddressBlock && addressBlock && <AddressBlock {...addressBlock} />}
         {hourBlock && <HourBlock {...hourBlock} />}
-        {phoneBlock && <PhoneBlock block={phoneBlock} poi={poi} />}
+        {phoneBlock && <PhoneBlock {...phoneBlock} />}
         {websiteBlock && <WebsiteBlock block={websiteBlock} poi={poi} />}
         {socialBlock && <SocialNetworksBlock block={socialBlock} />}
         {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}

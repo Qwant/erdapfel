@@ -10,9 +10,9 @@ export default {
   component: PoiAddressBlock,
 } as ComponentMeta<typeof PoiAddressBlock>;
 
-export const SourceAddress: ComponentStory<typeof PoiAddressBlock> = args => (
+export const Default: ComponentStory<typeof PoiAddressBlock> = args => (
   <PoiAddressBlock {...args} />
 );
-SourceAddress.args = {
+Default.args = {
   ...poiAddressBlockMock,
 };

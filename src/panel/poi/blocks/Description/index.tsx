@@ -18,9 +18,9 @@ const PoiDescriptionBlock: React.FunctionComponent<PoiDescriptionBlockProps> = (
 }) => {
   return (
     <div className="block-description">
-      {block.description && <p>{block.description}</p>}
-      {block.url && (
-        <a rel="noopener noreferrer" target="_blank" href={block.url} onClick={onClick}>
+      {block?.description && <p>{block?.description}</p>}
+      {block?.url && (
+        <a rel="noopener noreferrer" target="_blank" href={block?.url} onClick={onClick}>
           {texts[block.source] || texts.readMore}
         </a>
       )}

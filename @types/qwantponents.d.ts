@@ -126,7 +126,7 @@ declare module '@qwant/qwant-ponents' {
   export const IconMenu: React.FunctionComponent<{ size?: number }>;
   export const IconMovie: React.FunctionComponent;
   export const IconMusic: React.FunctionComponent;
-  export const IconPhone: React.FunctionComponent;
+  export const IconPhone: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconPlaneLanding: React.FunctionComponent;
   export const IconPlaneTakeoff: React.FunctionComponent;
   export const IconPlay: React.FunctionComponent;
