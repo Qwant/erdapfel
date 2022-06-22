@@ -7,7 +7,7 @@ import { Address } from 'src/components/ui';
 import PlaceIcon from 'src/components/PlaceIcon';
 import PoiStore from 'src/adapters/poi/poi_store';
 import NoResultMessage from 'src/panel/NoResultMessage';
-import { deleteQuery } from 'src/adapters/search_history';
+import { deleteQuery, getQueryType } from 'src/adapters/search_history';
 import { useI18n } from 'src/hooks';
 import { IconEmpty } from '@qwant/qwant-ponents';
 import { GREY_SEMI_DARKNESS } from '../../libs/colors';
@@ -48,7 +48,7 @@ const SuggestItem = ({ item }) => {
     e.preventDefault();
     // Prevent triggering the mouse down action on the parent
     e.stopPropagation();
-    deleteQuery(item);
+    deleteQuery({ item, type: getQueryType(item) }, true);
     setRemoved(true);
   };
 

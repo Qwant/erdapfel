@@ -133,7 +133,7 @@ const HistoryPanel = () => {
   // Remove one item from the list
   const remove = item => {
     // Remove the item in localStorage
-    deleteQuery(item.item);
+    deleteQuery(item);
 
     // Refresh lists and re-render the page
     computeHistory();
@@ -147,7 +147,7 @@ const HistoryPanel = () => {
   const showItem = item => {
     return item.type === 'poi' ? (
       // poi / city / address
-      <Flex key={item.item.date} className="history-list-item">
+      <Flex key={item.date} className="history-list-item">
         <Box
           onClick={() => {
             Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_PANEL);
@@ -193,7 +193,7 @@ const HistoryPanel = () => {
       </Flex>
     ) : (
       // intention
-      <Flex key={item.item.date} className="history-list-item">
+      <Flex key={item.date} className="history-list-item">
         <Box
           onClick={() => {
             Telemetry.add(Telemetry.HISTORY_ITEM_CLICKED_PANEL);

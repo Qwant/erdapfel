@@ -19,24 +19,14 @@ export function getHistoryEnabled() {
 }
 
 export function getHistory() {
-  const items = get(SEARCH_HISTORY_KEY) || [];
-
-  // Modification of localStorage entry (06/2022):
-  // Date is now stored inside the item, not aside.
-  let item;
-  for (item in items) {
-    if (items[item].date && !items[item].item.date) {
-      items[item].item.date = items[item].date;
-    }
-  }
-  return items;
+  return get(SEARCH_HISTORY_KEY) || [];
 }
 
 export function setHistory(searchHistory) {
   set(SEARCH_HISTORY_KEY, searchHistory);
 }
 
-function getQueryType(item) {
+export function getQueryType(item) {
   switch (true) {
     case item instanceof Poi:
     case item instanceof BragiPoi:
@@ -58,12 +48,10 @@ export async function saveQuery(item, type) {
   // Retrieve the search history
   const searchHistory = getHistory();
 
-  // Put date in item
-  item.date = Date.now();
-
   // Put the query at the end of the array
   searchHistory.push({
     type: type || getQueryType(item),
+    date: Date.now(),
     item,
   });
 
@@ -71,11 +59,17 @@ export async function saveQuery(item, type) {
   setHistory(searchHistory);
 }
 
-export function deleteQuery(item) {
+// Delete a query from the History
+// if the deletion occurs from the suggest, fromSuggest will be true,
+// in that case the latest occurrence of that item will be deleted.
+// if the deletion occurs from history panel, fromSuggest will be false,
+// in that case an exact date equality will be checked
+export function deleteQuery(item, fromSuggest) {
   const searchHistory = getHistory();
   let index;
+
   for (index = searchHistory.length - 1; index >= 0; index--) {
-    if (itemEquals(searchHistory[index], item)) {
+    if (itemEquals(searchHistory[index], item, fromSuggest)) {
       searchHistory.splice(index, 1);
     }
   }
@@ -87,15 +81,20 @@ export function deleteSearchHistory() {
   del(SEARCH_HISTORY_KEY);
 }
 
-const itemEquals = ({ type, item }, other) => {
-  if (type === 'intention') {
+// Compare two History items
+// - intention: compare category name + place name (+ date)
+// - poi: compare id (+ date)
+// Date is only compared if deleteMostRecent is false.
+const itemEquals = (current, other, deleteMostRecent) => {
+  if (current.type === 'intention') {
     return (
-      item.category?.name === other.category?.name &&
-      item.place?.properties?.geocoding?.name === other.place?.properties?.geocoding?.name &&
-      item.date === other.date
+      current.item.category?.name === other.item.category?.name &&
+      current.item.place?.properties?.geocoding?.name ===
+        other.item.place?.properties?.geocoding?.name &&
+      (deleteMostRecent || current.date === other.date)
     );
-  } else if (type === 'poi') {
-    return item.id === other.id && item.date === other.date;
+  } else if (current.type === 'poi') {
+    return current.item.id === other.item.id && (deleteMostRecent || current.date === other.date);
   }
   return false;
 };
@@ -148,7 +147,7 @@ export function getHistoryItems(term = '', { withIntentions = false } = {}) {
 export function listHistoryItemsByDate(from, to) {
   return getHistory()
     .reverse() // so it's ordered with most recent items first
-    .filter(item => item.item.date >= from && item.item.date < to); // filter by date range
+    .filter(item => item.date >= from && item.date < to); // filter by date range
 }
 
 export function historyLength() {
