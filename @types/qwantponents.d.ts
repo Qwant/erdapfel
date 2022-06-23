@@ -14,6 +14,7 @@ declare module '@qwant/qwant-ponents' {
     alignCenter?: boolean;
     as?: string | object | React.Component;
     center?: boolean;
+    between?: boolean;
     type?: string;
     onClick?: () => void;
     href?: string;
@@ -153,7 +154,11 @@ declare module '@qwant/qwant-ponents' {
   export const IconTemperature: React.FunctionComponent;
   export const IconThumbDown: React.FunctionComponent;
   export const IconThumbUp: React.FunctionComponent;
-  export const IconTime: React.FunctionComponent<{ size?: number; fill?: string }>;
+  export const IconTime: React.FunctionComponent<{
+    className?: string;
+    size?: number;
+    fill?: string;
+  }>;
   export const IconTimerLine: React.FunctionComponent;
   export const IconUmbrellaLine: React.FunctionComponent;
   export const IconUser: React.FunctionComponent;

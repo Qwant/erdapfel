@@ -5,7 +5,7 @@ import { IconTime } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 export type PoiHourBlockProps = {
-  schedule?: any; // TODO: OsmSchedule type
+  schedule?: any; // TODO: Migrate OsmSchedule to TS
   texts?: {
     open_24_7: string;
     opening_hours: string;

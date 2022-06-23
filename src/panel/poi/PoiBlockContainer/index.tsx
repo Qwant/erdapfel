@@ -15,7 +15,7 @@ export type PoiBlockContainerProps = {
 };
 
 const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ poi }) => {
-  const { _ } = useI18n();
+  const { _, locale } = useI18n();
   const { isMobile } = useDevice();
   const descriptionBlockProps: PoiDescriptionBlockProps = useMemo(
     () => ({
@@ -118,7 +118,18 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
             },
           }
         : undefined,
-      recyclingBlock: findBlock(poi?.blocks, 'recycling'),
+      recyclingBlock: findBlock(poi?.blocks, 'recycling')
+        ? {
+            block: findBlock(poi?.blocks, 'recycling'),
+            locale,
+            texts: {
+              glass: _('Glass'),
+              recyclable: _('Recyclable'),
+              unknown: _('Unknown'),
+              updated_at: _('Updated {datetime}'),
+            },
+          }
+        : undefined,
       socialBlock: findBlock(poi?.blocks, 'social')
         ? {
             block: findBlock(poi?.blocks, 'social'),
@@ -129,7 +140,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         : undefined,
       poi,
     }),
-    [_, poi, isMobile]
+    [_, poi, isMobile, locale]
   );
 
   if (!poi) {
