@@ -9,6 +9,7 @@ import { useDevice, useI18n } from 'src/hooks';
 import { components } from 'appTypes/idunn';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import OsmSchedule from 'src/adapters/osm_schedule';
+import { toArray } from 'src/libs/address';
 
 export type PoiBlockContainerProps = {
   poi?: IdunnPoi;
@@ -17,6 +18,7 @@ export type PoiBlockContainerProps = {
 const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ poi }) => {
   const { _, locale } = useI18n();
   const { isMobile } = useDevice();
+
   const descriptionBlockProps: PoiDescriptionBlockProps = useMemo(
     () => ({
       block: findBlock(poi?.blocks, 'description') as components['schemas']['DescriptionBlock'],
@@ -45,12 +47,15 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
   const informationBlockProps: PoiInformationBlockProps = useMemo(
     () => ({
       title: _('Information'),
-      addressBlock: poi?.address
-        ? {
-            title: _('address'),
-            address: poi?.address,
-          }
-        : undefined,
+      addressBlock:
+        poi?.address &&
+        poi?.subClassName !== 'latlon' &&
+        toArray(poi?.address, { omitCountry: true, omitStreet: undefined }).some(part => part)
+          ? {
+              title: _('address'),
+              address: poi?.address,
+            }
+          : undefined,
       hourBlock: findBlock(poi?.blocks, 'opening_hours')
         ? {
             schedule: new OsmSchedule(findBlock(poi?.blocks, 'opening_hours')),
@@ -138,9 +143,8 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
             },
           }
         : undefined,
-      poi,
     }),
-    [_, poi, isMobile, locale]
+    [_, isMobile, locale, poi]
   );
 
   if (!poi) {
