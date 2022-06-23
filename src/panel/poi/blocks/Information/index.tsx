@@ -4,7 +4,7 @@ import { Divider } from 'src/components/ui';
 import AddressBlock, { PoiAddressBlockProps } from './blocks/Address';
 import RecyclingBlock from './blocks/Recycling';
 import HourBlock, { PoiHourBlockProps } from './blocks/Hour';
-import ContactBlock from './blocks/Contact';
+import ContactBlock, { PoiContactBlockProps } from './blocks/Contact';
 import WebsiteBlock, { PoiWebsiteBlockProps } from './blocks/Website';
 import { toArray } from 'src/libs/address';
 import PhoneBlock, { PoiPhoneBlockProps } from './blocks/Phone';
@@ -15,7 +15,7 @@ export type PoiInformationBlockProps = {
   hourBlock?: PoiHourBlockProps;
   phoneBlock?: PoiPhoneBlockProps;
   websiteBlock?: PoiWebsiteBlockProps;
-  contactBlock?: any;
+  contactBlock?: PoiContactBlockProps;
   recyclingBlock?: any;
   socialBlock?: PoiSocialNetworksBlockProps;
   poi?: any;
@@ -64,7 +64,7 @@ const PoiInformationBlock: React.FunctionComponent<PoiInformationBlockProps> = (
         {websiteBlock && <WebsiteBlock {...websiteBlock} />}
         {socialBlock && <SocialNetworksBlock {...socialBlock} />}
         {recyclingBlock && <RecyclingBlock block={recyclingBlock} />}
-        {contactBlock && <ContactBlock block={contactBlock} />}
+        {contactBlock && <ContactBlock {...contactBlock} />}
       </div>
     </div>
   );

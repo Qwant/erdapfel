@@ -125,7 +125,7 @@ declare module '@qwant/qwant-ponents' {
   export const IconLight: React.FunctionComponent;
   export const IconLock: React.FunctionComponent;
   export const IconLogoutCircle: React.FunctionComponent;
-  export const IconMail: React.FunctionComponent;
+  export const IconMail: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconMailSend: React.FunctionComponent;
   export const IconMapPinLine: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconMenu: React.FunctionComponent<{ size?: number }>;
