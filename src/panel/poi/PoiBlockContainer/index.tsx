@@ -88,7 +88,28 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
             },
           }
         : undefined,
-      websiteBlock: findBlock(poi?.blocks, 'website'),
+      websiteBlock: findBlock(poi?.blocks, 'website')
+        ? {
+            block: findBlock(poi?.blocks, 'website'),
+            poi,
+            texts: {
+              website: _('website'),
+            },
+            onClickWebsite: () => {
+              Telemetry.sendPoiEvent(
+                poi,
+                'website',
+                Telemetry.buildInteractionData({
+                  id: poi?.id ?? '',
+                  source: poi?.meta?.source ?? '',
+                  template: 'single',
+                  zone: 'detail',
+                  element: 'website',
+                })
+              );
+            },
+          }
+        : undefined,
       contactBlock: findBlock(poi?.blocks, 'contact'),
       recyclingBlock: findBlock(poi?.blocks, 'recycling'),
       socialBlock: findBlock(poi?.blocks, 'social'),

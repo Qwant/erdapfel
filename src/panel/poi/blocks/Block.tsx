@@ -8,6 +8,8 @@ export type PoiBlockProps = {
   className?: string;
   onClick?: () => void;
   href?: string;
+  rel?: string;
+  target?: string;
   actionIcon?: ReactNode;
   tooltip?: string;
   simple?: boolean;

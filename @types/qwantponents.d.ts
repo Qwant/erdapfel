@@ -97,7 +97,7 @@ declare module '@qwant/qwant-ponents' {
   export const IconCloseCircleFill: React.FunctionComponent;
   export const IconCopy: React.FunctionComponent;
   export const IconDirection: React.FunctionComponent;
-  export const IconEarth: React.FunctionComponent;
+  export const IconEarth: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconEmpty: React.FunctionComponent;
   export const IconEmptyFill: React.FunctionComponent;
   export const IconErrorWarningLine: React.FunctionComponent;
