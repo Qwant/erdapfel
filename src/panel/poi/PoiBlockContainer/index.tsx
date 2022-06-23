@@ -112,7 +112,14 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         : undefined,
       contactBlock: findBlock(poi?.blocks, 'contact'),
       recyclingBlock: findBlock(poi?.blocks, 'recycling'),
-      socialBlock: findBlock(poi?.blocks, 'social'),
+      socialBlock: findBlock(poi?.blocks, 'social')
+        ? {
+            block: findBlock(poi?.blocks, 'social'),
+            texts: {
+              social_networks: _('Social networks'),
+            },
+          }
+        : undefined,
       poi,
     }),
     [_, poi, isMobile]

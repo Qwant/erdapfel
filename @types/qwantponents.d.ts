@@ -16,6 +16,11 @@ declare module '@qwant/qwant-ponents' {
     center?: boolean;
     type?: string;
     onClick?: () => void;
+    href?: string;
+    rel?: string;
+    target?: string;
+    variant?: string;
+    style?: React.CSSProperties;
   }>;
   export const Stack: React.FunctionComponent;
   export const Alert: React.FunctionComponent;
