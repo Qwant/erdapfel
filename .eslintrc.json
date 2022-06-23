@@ -60,6 +60,12 @@
       "globals": {
         "APP_URL": "readonly"
       }
+    },
+    {
+      "files": ["bin/**/*.js", "build/**/*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ]
 }
