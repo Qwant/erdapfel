@@ -10,7 +10,6 @@ import {
   IconMenu,
   IconApps,
 } from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
@@ -223,7 +222,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               type="button"
               onClick={onClickDirections}
             >
-              <IconDirection size={24} fill={ACTION_BLUE_BASE} />
+              <IconDirection size={28} fill="var(--grey-900)" />
             </Flex>
             <button
               id="clear_button_desktop"
