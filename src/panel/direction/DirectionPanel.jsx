@@ -12,7 +12,7 @@ import { toUrl as poiToUrl, fromUrl as poiFromUrl } from 'src/libs/pois';
 import Error from 'src/adapters/error';
 import Poi from 'src/adapters/poi/poi';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import * as address from 'src/libs/address';
+import * as address from 'src/libs/address-fetch';
 import NavigatorGeolocalisationPoi from 'src/adapters/poi/specials/navigator_geolocalisation_poi';
 import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';

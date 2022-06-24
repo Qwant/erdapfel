@@ -81,11 +81,6 @@ export interface Events {
   maxPlaces: number;
 }
 
-export interface Covid19 {
-  enabled: boolean;
-  frInformationUrl: string;
-}
-
 export interface UserFeedback {
   enabled: boolean;
   dismissDurationDays: number;
@@ -113,7 +108,6 @@ export interface QmapsConfig {
   direction: Direction;
   category: Category;
   events: Events;
-  covid19: Covid19;
   userFeedback: UserFeedback;
   searchHistory: SearchHistory;
   survey: Survey;

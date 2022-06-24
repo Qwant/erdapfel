@@ -1,7 +1,7 @@
 /**
  * simple Poi helper
  */
-import type { components } from '../../../@types/idunn';
+import type { components } from 'appTypes/idunn';
 
 export const POI_TYPE = 'poi';
 

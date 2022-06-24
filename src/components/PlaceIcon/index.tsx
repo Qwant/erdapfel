@@ -5,10 +5,22 @@ import classnames from 'classnames';
 import { IconHeart, IconGeoloc, IconHistory, Magnifier } from 'src/components/ui/icons';
 import type { TPoi } from 'src/adapters/poi/poi';
 
-type PlaceIconProps = {
+export type PlaceIconProps = {
   className?: string;
   place?: TPoi;
-  category?: any;
+  // TODO: Declare category type in src/adapters/category.js (after ts port) and use it here
+  category?: {
+    name: string;
+    label: string;
+    iconName: string;
+    color: string;
+    matcher: {
+      regexp: string;
+    };
+    alternativeName: string;
+    type: string;
+    id: string;
+  };
   withBackground?: boolean;
   isHistory?: boolean;
   isFavorite?: boolean;
@@ -59,10 +71,18 @@ const PlaceIcon: React.FunctionComponent<PlaceIconProps> = ({
   );
 };
 
-const VariantIcon = ({ variant, className, IconComponent }) => {
+const VariantIcon = ({
+  variant,
+  className,
+  IconComponent,
+}: {
+  variant?: string;
+  className?: string;
+  IconComponent?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+}) => {
   return (
     <div className={classnames('placeIcon', { [`placeIcon--${variant}`]: variant }, className)}>
-      <IconComponent fill="currentColor" width={20} />
+      {IconComponent && <IconComponent fill="currentColor" width={20} />}
     </div>
   );
 };

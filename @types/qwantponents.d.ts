@@ -14,8 +14,14 @@ declare module '@qwant/qwant-ponents' {
     alignCenter?: boolean;
     as?: string | object | React.Component;
     center?: boolean;
+    between?: boolean;
     type?: string;
     onClick?: () => void;
+    href?: string;
+    rel?: string;
+    target?: string;
+    variant?: string;
+    style?: React.CSSProperties;
   }>;
   export const Stack: React.FunctionComponent;
   export const Alert: React.FunctionComponent;
@@ -97,7 +103,7 @@ declare module '@qwant/qwant-ponents' {
   export const IconCloseCircleFill: React.FunctionComponent;
   export const IconCopy: React.FunctionComponent;
   export const IconDirection: React.FunctionComponent;
-  export const IconEarth: React.FunctionComponent;
+  export const IconEarth: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconEmpty: React.FunctionComponent;
   export const IconEmptyFill: React.FunctionComponent;
   export const IconErrorWarningLine: React.FunctionComponent;
@@ -120,13 +126,13 @@ declare module '@qwant/qwant-ponents' {
   export const IconLight: React.FunctionComponent;
   export const IconLock: React.FunctionComponent;
   export const IconLogoutCircle: React.FunctionComponent;
-  export const IconMail: React.FunctionComponent;
+  export const IconMail: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconMailSend: React.FunctionComponent;
-  export const IconMapPinLine: React.FunctionComponent;
+  export const IconMapPinLine: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconMenu: React.FunctionComponent<{ size?: number }>;
   export const IconMovie: React.FunctionComponent;
   export const IconMusic: React.FunctionComponent;
-  export const IconPhone: React.FunctionComponent;
+  export const IconPhone: React.FunctionComponent<{ size?: number; fill?: string }>;
   export const IconPlaneLanding: React.FunctionComponent;
   export const IconPlaneTakeoff: React.FunctionComponent;
   export const IconPlay: React.FunctionComponent;
@@ -148,7 +154,11 @@ declare module '@qwant/qwant-ponents' {
   export const IconTemperature: React.FunctionComponent;
   export const IconThumbDown: React.FunctionComponent;
   export const IconThumbUp: React.FunctionComponent;
-  export const IconTime: React.FunctionComponent;
+  export const IconTime: React.FunctionComponent<{
+    className?: string;
+    size?: number;
+    fill?: string;
+  }>;
   export const IconTimerLine: React.FunctionComponent;
   export const IconUmbrellaLine: React.FunctionComponent;
   export const IconUser: React.FunctionComponent;

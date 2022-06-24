@@ -88,7 +88,7 @@ const PoiPanelContent = ({ poi }) => {
       </div>
       <div className="poi_panel__fullContent">
         {hasReservation && <Reservation url={poi.meta.source_url} mobile={isMobile} />}
-        <PoiBlockContainer poi={poi} />
+        {poi && <PoiBlockContainer poi={poi} />}
         <Contribution poi={poi} />
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   IconLink,
   IconFacebook,
@@ -11,7 +10,7 @@ import { Flex } from '@qwant/qwant-ponents';
 import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import { capitalizeFirst } from 'src/libs/string';
 import Block from 'src/panel/poi/blocks/Block';
-import { useI18n } from 'src/hooks';
+import { components } from 'appTypes/idunn';
 
 const icons = {
   facebook: IconFacebook,
@@ -20,14 +19,22 @@ const icons = {
   youtube: IconYoutube,
 };
 
-const SocialNetworks = ({ block }) => {
-  const { _ } = useI18n();
+export type PoiSocialNetworksBlockProps = {
+  texts?: {
+    social_networks: string;
+  };
+  block: components['schemas']['SocialBlock'];
+};
 
+const SocialNetworksBlock: React.FunctionComponent<PoiSocialNetworksBlockProps> = ({
+  block,
+  texts,
+}) => {
   return (
     <Block
       className="block-socialNetworks"
       icon={<IconLink fill={ACTION_BLUE_BASE} width={20} />}
-      title={_('Social networks')}
+      title={texts?.social_networks}
     >
       {block.links.map(({ site, url }) => {
         const Icon = icons[site];
@@ -52,8 +59,4 @@ const SocialNetworks = ({ block }) => {
   );
 };
 
-SocialNetworks.propTypes = {
-  block: PropTypes.object.isRequired,
-};
-
-export default SocialNetworks;
+export default SocialNetworksBlock;

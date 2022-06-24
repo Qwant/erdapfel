@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import PlaceIcon from './';
+import PlaceIcon, { PlaceIconProps } from './';
 
 export default {
   title: 'Components/PlaceIcon',
@@ -35,10 +35,12 @@ export const WithPlacePoiTennisWithBackground: ComponentStory<typeof PlaceIcon> 
 );
 export const WithCategoryPoiHotel: ComponentStory<typeof PlaceIcon> = () => (
   <PlaceIcon
-    category={{
-      iconName: 'lodging',
-      color: '#6d6d76',
-    }}
+    category={
+      {
+        iconName: 'lodging',
+        color: '#6d6d76',
+      } as PlaceIconProps['category']
+    }
     withBackground
   />
 );

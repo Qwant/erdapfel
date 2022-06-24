@@ -2,7 +2,7 @@ import Ajax from './ajax';
 import nconf from '@qwant/nconf-getter';
 import telemetryModule from '@qwant/telemetry';
 import Error from '../adapters/error';
-import { components } from '../../@types/idunn';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
 
 const telemetry = nconf.get().telemetry;
 const system = nconf.get().system;
@@ -53,7 +53,7 @@ type InteractionDataProps = {
   id: string;
   zone: string;
   element: string;
-  category: string;
+  category?: string;
 };
 
 const buildInteractionData = ({
@@ -80,8 +80,8 @@ const buildInteractionData = ({
   };
 };
 
-const sendPoiEvent = (poi: components['schemas']['Place'], event: string, data: object) => {
-  if (!poi.meta || !poi.meta.source) {
+const sendPoiEvent = (poi: IdunnPoi | undefined, event: string, data: object) => {
+  if (!poi?.meta || !poi?.meta.source) {
     return;
   }
 
