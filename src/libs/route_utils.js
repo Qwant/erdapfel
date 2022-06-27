@@ -69,8 +69,18 @@ const last = array => array && array[array.length - 1];
 
 export const originDestinationCoords = route => {
   const fc = normalizeToFeatureCollection(route.geometry);
-  return {
-    origin: first(first(fc.features).geometry.coordinates),
-    destination: last(last(fc.features).geometry.coordinates),
-  };
+  const first_geo = first(fc.features).geometry;
+  const last_geo = last(fc.features).geometry;
+
+  const origin =
+    first_geo.type === 'MultiLineString'
+      ? first(first(first_geo.coordinates))
+      : first(first_geo.coordinates);
+
+  const destination =
+    last_geo.type === 'MultiLineString'
+      ? last(last(last_geo.coordinates))
+      : last(last_geo.coordinates);
+
+  return { origin, destination };
 };
