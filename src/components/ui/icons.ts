@@ -26,6 +26,9 @@ export { ReactComponent as IconMinus } from '../../../public/images/remix/subtra
 export { ReactComponent as IconHistory } from '../../../public/images/remix/history-line.svg';
 export { ReactComponent as IconMenu } from '../../../public/images/remix/menu-line.svg';
 export { ReactComponent as IconHistoryDisabled } from '../../../public/images/remix/history-disable-line.svg';
+export { ReactComponent as IconArrowBackward } from '../../../public/images/regular_icons/icons-regular-icon-arrow-backward.svg';
+export { ReactComponent as IconCloseCircled } from '../../../public/images/regular_icons/icons-regular-icon-close-circled.svg';
+export { ReactComponent as IconDirectionsArrow } from '../../../public/images/directions_arrow.svg';
 
 export { ReactComponent as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { ReactComponent as IconApple } from '../../../public/images/mobile/i-os.svg';

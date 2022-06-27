@@ -5,7 +5,7 @@
   padding-bottom: 12px;
 
   .top_bar & {
-    border-top: 1px solid $grey-light;
+    border-top: var(--memphis-border-width) solid var(--grey-900);
   }
 
   &--empty {
@@ -80,7 +80,7 @@
 
 .manage_history {
   padding: $spacing-l 14px $spacing-xxs 14px;
-  border-top: 1px solid $grey-light;
+  border-top: var(--memphis-border-width) solid var(--grey-900);
 
   button {
     color: $action-blue-base;

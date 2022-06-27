@@ -18,12 +18,12 @@
 
 @media (max-width: 640px) {
   .top_bar {
-    top: 0;
-    left: 0;
-    width: 100%;
-    border-radius: 0;
-    box-shadow:
-      0 1px 4px 0 rgba(12, 12, 14, 0.2),
-      0 0 2px 0 rgba(12, 12, 14, 0.12);
+    top: var(--spacing-xxxs);
+    left: var(--spacing-xxxs);
+    width: calc(100% - calc(var(--spacing-xxxs) * 2));
+    border-radius: 8px;
+    box-shadow: 
+      0 2px 16px 0 rgba(12, 12, 14, 0.2),
+      0 4px 8px 0 rgba(12, 12, 14, 0.12);
   }
 }
