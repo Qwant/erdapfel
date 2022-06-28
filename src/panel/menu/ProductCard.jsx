@@ -31,13 +31,18 @@ const ProductCard = ({ name, logo, title, desc, link, href, mobileApps }) => {
               pictoButton
               className="card-appButton"
               href={mobileApps.android}
-              variant="tertiary"
+              variant="tertiary-black"
             >
               <IconAndroid width={16} height={16} color={GREY_SEMI_DARKNESS} />
             </Button>
           )}
           {mobileApps.ios && (
-            <Button pictoButton className="card-appButton" href={mobileApps.ios} variant="tertiary">
+            <Button
+              pictoButton
+              className="card-appButton"
+              href={mobileApps.ios}
+              variant="tertiary-black"
+            >
               <IconApple width={16} height={16} color={GREY_SEMI_DARKNESS} />
             </Button>
           )}

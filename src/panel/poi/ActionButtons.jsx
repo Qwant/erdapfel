@@ -63,7 +63,7 @@ const TransactionalButton = ({ poi }) => {
       rel="noopener noreferrer external"
       title={label}
       onClick={sendTelemetryEvent}
-      variant="secondary"
+      variant="secondary-black"
       pictoButton
     >
       <Icon />
@@ -90,7 +90,7 @@ const ActionButtons = ({
 
   const favoriteColor = isPoiInFavorite ? PINK_DARK : null;
   const directionsButtonVariant = useMemo(
-    () => (isFromTripAdvisor(poi) ? 'secondary' : 'primary'),
+    () => (isFromTripAdvisor(poi) ? 'secondary-black' : 'primary-green'),
     [poi]
   );
 
@@ -111,7 +111,7 @@ const ActionButtons = ({
       {poi?.blocksByType?.phone && (
         <Button
           className="poi_panel__action__phone"
-          variant="secondary"
+          variant="secondary-black"
           pictoButton
           onClick={onClickPhoneNumber}
           href={poi.blocksByType.phone.url}
@@ -126,7 +126,7 @@ const ActionButtons = ({
 
       <Button
         className="poi_panel__action__favorite"
-        variant="secondary"
+        variant="secondary-black"
         pictoButton
         data-active={isPoiInFavorite}
         title={_('Favorites', 'poi panel')}
@@ -148,7 +148,7 @@ const ActionButtons = ({
         {openMenu => (
           <Button
             className="poi_panel__action__share"
-            variant="secondary"
+            variant="secondary-black"
             pictoButton
             title={_('Share', 'poi panel')}
             onClick={e => onShareClick(e, openMenu)}

@@ -35,7 +35,7 @@ const RouteSummary = ({
         <Button
           className="itinerary_leg_detailsBtn"
           onClick={onClickDetails}
-          variant={showDetails ? 'tertiary' : 'secondary'}
+          variant={showDetails ? 'tertiary-black' : 'secondary-black'}
         >
           {showDetails ? (
             _('See less', 'direction')

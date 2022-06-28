@@ -30,7 +30,7 @@ const MobileRouteDetails = ({
               onClick={() => {
                 openPreview(id);
               }}
-              variant="primary"
+              variant="primary-green"
               full
               mt="l"
             >

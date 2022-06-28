@@ -1451,7 +1451,7 @@ msgstr "Accueil de Qwant Maps"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97206
 msgid "Search on Qwant Maps"
-msgstr "Rechercher dans Qwant Maps"
+msgstr "Recherchez en mode privé"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:97238
 msgid "Search"

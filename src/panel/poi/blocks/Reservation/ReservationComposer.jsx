@@ -74,7 +74,7 @@ export function ReservationComposer({ value: propsValue, onChange, mobile, visib
         </>
       )}
       <Stack horizontal gap="xs" end alignCenter py="xs" px="m">
-        <Button variant="tertiary" onClick={onClose}>
+        <Button variant="tertiary-black" onClick={onClose}>
           {_('Cancel')}
         </Button>
         <Button onClick={handleSubmit} disabled={hasChildWithNoAge}>

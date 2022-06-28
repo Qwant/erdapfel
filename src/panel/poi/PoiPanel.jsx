@@ -104,7 +104,7 @@ const PoiPanel = ({ poi, poiId, backAction, inList, centerMap }) => {
     if (onBack !== closeAction) {
       return (
         <PanelNav>
-          <Button variant="tertiary" onClick={onBack}>
+          <Button variant="tertiary-black" onClick={onBack}>
             <IconArrowLeftLine />
             {_('Display all results')}
           </Button>

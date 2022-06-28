@@ -133,7 +133,7 @@ const Suggest = ({
             </Box>
             <Box mt="xl" className="historyButtons">
               <Button
-                variant="secondary"
+                variant="secondary-black"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_DISABLED_FROM_SUGGEST);
                   setHistoryAnswer(false);
@@ -146,6 +146,7 @@ const Suggest = ({
                 {_('No thanks', 'history')}
               </Button>
               <Button
+                variant="primary-green"
                 ml="xs"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_ENABLED_FROM_SUGGEST);

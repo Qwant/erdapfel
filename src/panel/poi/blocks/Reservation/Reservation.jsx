@@ -169,7 +169,7 @@ export function Reservation({ mobile, url: baseUrl }) {
                 <Box className="ReservationIADatePickerFooter">
                   <hr className="ReservationSeparator" />
                   <Stack horizontal gap="xs" px="xl" py="m" end>
-                    <Button variant="tertiary" onClick={handleCancel}>
+                    <Button variant="tertiary-black" onClick={handleCancel}>
                       {_('Cancel')}
                     </Button>
                     <Button onClick={hideDatepicker}>{_('Ok')}</Button>
@@ -180,7 +180,7 @@ export function Reservation({ mobile, url: baseUrl }) {
               <>
                 <hr className="ReservationSeparator" />
                 <Stack horizontal gap="xs" px="xl" pt="m" end>
-                  <Button variant="tertiary" onClick={handleCancel}>
+                  <Button variant="tertiary-black" onClick={handleCancel}>
                     {_('Cancel')}
                   </Button>
                   <Button onClick={hideDatepicker}>{_('Ok')}</Button>
@@ -214,8 +214,10 @@ export function Reservation({ mobile, url: baseUrl }) {
         </Box>
         <Button
           as="a"
+          className="ReservationCheckAvailability"
           href={url}
           target="_blank"
+          variant="primary-green"
           onMouseDown={() => {
             Telemetry.add(Telemetry.TRIPADVISOR_CHECK_AVAILABILITY);
           }}

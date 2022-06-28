@@ -18,7 +18,13 @@ const ServicePanelDesktop = () => {
       </Panel>
       <Flex center>
         <div className="service_panel__category_toggle">
-          <Button variant="tertiary" onMouseDown={() => setCollapsed(!collapsed)}>
+          <Button
+            variant="tertiary-black"
+            onMouseDown={e => {
+              e?.preventDefault();
+              setCollapsed(!collapsed);
+            }}
+          >
             {collapsed ? (
               <>
                 <Chevron size={16} fill="currentColor" up /> {_('See more nearby services')}

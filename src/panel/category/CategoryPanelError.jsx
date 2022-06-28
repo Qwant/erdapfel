@@ -21,7 +21,7 @@ const CategoryPanelError = ({ zoomIn }) => {
         title: _('Um, you got a little too high 🚀'),
         message: _('Zoom in or move around the map to view results.', 'categories'),
         action: (
-          <Button onClick={geoloc} variant="secondary">
+          <Button onClick={geoloc} variant="secondary-black">
             <IconGeoloc fill="currentColor" />
             {_('Search around my position', 'categories')}
           </Button>
