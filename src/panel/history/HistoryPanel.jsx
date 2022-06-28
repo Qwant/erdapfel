@@ -166,7 +166,7 @@ const HistoryPanel = () => {
         >
           <Box>
             <Text typo="body-1" color="primary">
-              {capitalizeFirst(item.item.name)}
+              {capitalizeFirst(item?.item?.name)}
             </Text>
           </Box>
           <Box>

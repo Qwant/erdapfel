@@ -146,6 +146,11 @@ const mainJsChunkConfig = buildMode => {
           ],
         },
         {
+          test: /\.(woff|woff2)$/,
+          include: [path.resolve(__dirname, '../node_modules/@qwant/qwant-ponents/src')],
+          use: ['file-loader'],
+        },
+        {
           test: /\.(css|scss)$/,
           include: [path.resolve(__dirname, '../node_modules/@qwant/qwant-ponents/src')],
           use: [

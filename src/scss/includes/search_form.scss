@@ -1,3 +1,9 @@
+$input-height: 48px;
+
+@mixin memphisDropshadow() {
+  box-shadow: 6px 6px 0 0 var(--yellow-400);
+}
+
 // Form
 .search_form {
   width: 100%;
@@ -6,31 +12,32 @@
   pointer-events: auto;
   display: flex;
   align-items: center;
+  background: var(--green-400);
 }
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused
 .search_form__wrapper {
-  height: $spacing-xxl-4;
+  height: $input-height;
   padding: 0 $spacing-m;
-  border: none;
-  background-color: $surface;
+  background-color: var(--grey-000);
   border-radius: 24px;
   width: 100%;
   position: relative;
+  border: var(--memphis-border-width) solid var(--grey-900);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 // Input
 .search_form__input {
   min-width: 0;
-  width: calc(100% - 30px);
-  height: $spacing-xxl-4;
+  width: 100%;
+  height: 100%;
   font-size: 16px;
   font-weight: normal;
-  color: $grey-black;
 
   &::placeholder {
-    color: $secondary_text;
-    opacity: 0.7;
+    color: var(--grey-600);
+    transition: color 0.3s ease-in-out;
   }
 
   &::-webkit-search-decoration {
@@ -40,9 +47,7 @@
 
 // Hover
 .search_form__wrapper:hover {
-  .search_form__input:not(:focus)::placeholder {
-    opacity: 1;
-  }
+  @include memphisDropshadow();
 }
 
 input[type='search'] {
@@ -63,8 +68,8 @@ input[type='search'] {
 // Logo
 .search_form__logo__button {
   cursor: pointer;
-  width: 47px;
-  height: 47px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   background: url(../../images/qwant-logo.svg) no-repeat;
   background-size: cover;
@@ -79,9 +84,9 @@ input[type='search'] {
 // Magnifying glass
 .search_form__action {
   width: 24px;
-  height: 48px;
-  background: url(../../images/magnifier-light.svg) center no-repeat;
-  background-size: 16px 16px;
+  height: calc($input-height - calc(2 * var(--memphis-border-width)));
+  background: url(../../images/magnifier-dark.svg) center no-repeat;
+  background-size: 32px 32px;
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -92,7 +97,7 @@ input[type='search'] {
 .search_form__clear {
   height: 60px;
   width: 30px;
-  color: $secondary_text;
+  color: var(--grey-900);
   cursor: pointer;
   line-height: initial;
   display: none;
@@ -104,32 +109,15 @@ input[type='search'] {
   height: $spacing-xxl-4;
   flex-shrink: 0;
   cursor: pointer;
-  transition: filter 0.1s;
-
-  &:hover {
-    filter: brightness(80%);
-  }
 }
 
 // When the search field is focused (empty or not)
 .top_bar--search_focus {
-  // White background
   .search_form__wrapper {
-    background-color: white;
+    @include memphisDropshadow();
 
-    // Gradient border trick
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-      margin: -1px;
-      border-radius: inherit;
-      background: $focus-gradient;
-      box-shadow: $shadow-focus;
+    input::placeholder {
+      color: var(--grey-300);
     }
   }
 }
@@ -151,22 +139,6 @@ input[type='search'] {
       color: $grey-black;
     }
   }
-
-  .search_form__action:hover {
-    background: url(../../images/magnifier-blue.svg) center no-repeat;
-    background-size: 16px 16px;
-  }
-}
-
-// When the search field is focused and filled
-.top_bar--search_focus.top_bar--search_filled {
-  .search_form__action {
-    background: url(../../images/magnifier-blue.svg) center no-repeat;
-    background-size: 16px 16px;
-  }
-  .search_form__clear {
-    color: $primary_text;
-  }
 }
 
 .search_form__result {
@@ -179,7 +151,7 @@ input[type='search'] {
     margin-left: $spacing-xxs;
 
     &::placeholder {
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 
@@ -192,7 +164,7 @@ input[type='search'] {
     position: absolute;
     transition: opacity 0.2s;
     top: 0;
-    left: 0;
+    left: 10px;
     width: 30px;
     height: 100%;
     align-items: center;
@@ -201,10 +173,6 @@ input[type='search'] {
     &:hover {
       color: $primary_text;
     }
-  }
-
-  .search_form__action {
-    width: 20px;
   }
 
   button.search_form__direction_shortcut {
@@ -217,7 +185,6 @@ input[type='search'] {
     width: 100vw;
     background-color: $background;
     overflow-y: auto;
-    // border-top: 1px solid var(--grey-light);
   }
 
   $formWidthTransitionDuration: 0.3s;
@@ -253,7 +220,7 @@ input[type='search'] {
       position: absolute;
       right: 10px;
       top: 0;
-      height: 50px;
+      height: $input-height;
     }
   }
 
@@ -269,13 +236,6 @@ input[type='search'] {
     // ... and make room for it
     .search_form__wrapper {
       padding-left: 46px;
-    }
-  }
-
-  .top_bar--search_focus {
-    .search_form__input::placeholder {
-      color: $grey-semi-darkness;
-      opacity: 1;
     }
   }
 

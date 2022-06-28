@@ -110,7 +110,7 @@
   "dependencies": {
     "@qwant/map-style-builder": "github:Qwant/map-style-builder#81eebb0",
     "@qwant/qwant-basic-gl-style": "^1.4.0",
-    "@qwant/qwant-ponents": "^0.1.7",
+    "@qwant/qwant-ponents": "^0.2.0",
     "@turf/along": "^6.0.1",
     "@turf/bbox": "^6.0.1",
     "@turf/bearing": "^6.0.1",
@@ -143,6 +143,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-remove-scroll": "^2.5.4",
     "typescript": "^4.5.5",
     "use-delayed-state": "^1.2.0",
     "zustand": "^3.7.1"
