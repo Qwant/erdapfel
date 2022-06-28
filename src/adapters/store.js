@@ -1,9 +1,9 @@
 import Error from '../adapters/error';
 import { version } from '../../config/constants.yml';
 import { findIndexIgnoreCase } from '../libs/string';
-import { getKey } from 'src/libs/pois';
-import { fire } from 'src/libs/customEvents';
-import { isPoiCompliantKey } from 'src/libs/pois';
+import { getKey } from '../libs/pois';
+import { fire } from '../../src/libs/customEvents';
+import { isPoiCompliantKey } from '../../src/libs/pois';
 
 const prefix = `qmaps_v${version}_`;
 
