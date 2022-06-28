@@ -332,7 +332,7 @@ const Suggest = ({
     // See https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API
     if (isMobile && dropdownVisible && window.visualViewport) {
       const setDropdownFixedHeight = () => {
-        const TOP_BAR_HEIGHT = 60;
+        const TOP_BAR_HEIGHT = 80;
         // visualViewport.height is the real visible height, not including the virtual keyboard.
         // Giving a fixed height to the container makes the content scrollable
         outputNode.style.height = window.visualViewport.height - TOP_BAR_HEIGHT + 'px';

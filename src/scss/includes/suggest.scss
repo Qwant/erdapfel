@@ -13,7 +13,7 @@
   }
 
   &--history {
-    .top_bar & {
+    &:not(:first-child) {
       border-top: none;
     }
   }
