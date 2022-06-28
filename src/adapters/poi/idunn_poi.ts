@@ -1,11 +1,11 @@
 import Poi from './poi';
-import Ajax from '../../libs/ajax';
+import Ajax from 'src/libs/ajax';
 import nconf from '@qwant/nconf-getter';
-import Error from '../../adapters/error';
-import QueryContext from '../../adapters/query_context';
-import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
+import Error from 'src/adapters/error';
+import QueryContext from 'src/adapters/query_context';
+import { normalize as normalizeAddress, NormalizedAddress } from 'src/libs/address';
 import { operations, components } from 'appTypes/idunn';
-import { get as getLocalStorageItem } from '../store';
+import { getIsOnlyOSM } from 'src/adapters/store';
 
 const serviceConfig = nconf.get().services;
 
@@ -75,14 +75,10 @@ export default class IdunnPoi extends Poi {
       bbox,
       size,
       extend_bbox: extendBbox,
-      only_osm: false,
       ...(category ? { category } : {}),
       ...(q ? { q } : {}),
+      ...(getIsOnlyOSM() ? { only_osm: true } : {}),
     };
-
-    if (getLocalStorageItem('only_osm') === true) {
-      requestParams.only_osm = true;
-    }
 
     try {
       const response: APIGetPlacesResponse = await Ajax.getLang(url, requestParams);

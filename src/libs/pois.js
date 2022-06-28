@@ -1,7 +1,7 @@
-import { sources } from '../../config/constants.yml';
-import { slug, htmlEncode } from '../../src/libs/string';
-import IdunnPoi from '../../src/adapters/poi/idunn_poi';
-import LatLonPoi from '../../src/adapters/poi/latlon_poi';
+import { sources } from 'config/constants.yml';
+import { slug, htmlEncode } from 'src/libs/string';
+import IdunnPoi from 'src/adapters/poi/idunn_poi';
+import LatLonPoi from 'src/adapters/poi/latlon_poi';
 
 // POI from/to url functions
 

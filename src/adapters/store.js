@@ -1,9 +1,9 @@
-import Error from '../adapters/error';
-import { version } from '../../config/constants.yml';
-import { findIndexIgnoreCase } from '../libs/string';
-import { getKey } from '../libs/pois';
-import { fire } from '../../src/libs/customEvents';
-import { isPoiCompliantKey } from '../../src/libs/pois';
+import Error from 'src/adapters/error';
+import { version } from 'config/constants.yml';
+import { findIndexIgnoreCase } from 'src/libs/string';
+import { getKey } from 'src/libs/pois';
+import { fire } from 'src/libs/customEvents';
+import { isPoiCompliantKey } from 'src/libs/pois';
 
 const prefix = `qmaps_v${version}_`;
 
@@ -115,5 +115,14 @@ export function setLastLocation(loc) {
   } catch (e) {
     Error.sendOnce('store', 'setLastLocation', 'error setting location', e);
     throw e;
+  }
+}
+
+export function getIsOnlyOSM() {
+  try {
+    return get('only_osm');
+  } catch (e) {
+    Error.sendOnce('store', 'getIsOnlyOSM', 'error checking existing key', e);
+    return false;
   }
 }
