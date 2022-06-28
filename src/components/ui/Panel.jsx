@@ -16,6 +16,7 @@ const MIN_MAX_THRESHOLD_PX = 75;
 const DEFAULT_SIZE = 250;
 const DEFAULT_MINIMIZED_SIZE = 50;
 const FIT_CONTENT_PADDING = 20;
+const TOP_BAR_HEIGHT = 80;
 
 function getTargetSize(previousSize, startHeight, endHeight, maxSize) {
   let size = previousSize;
@@ -57,7 +58,7 @@ class Panel extends React.Component {
   static defaultProps = {
     fitContent: [],
     size: 'default',
-    marginTop: 64, // default top bar size,
+    marginTop: TOP_BAR_HEIGHT, // default top bar size,
     isMapBottomUIDisplayed: true,
   };
 

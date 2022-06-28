@@ -396,7 +396,7 @@ class DirectionPanel extends React.Component {
             {openMenu => (
               <Button
                 className="direction-panel-share-button u-ml-auto u-flex-shrink-0 u-mr-m"
-                variant="tertiary"
+                variant="tertiary-black"
                 title={_('Share itinerary', 'direction')}
                 onClick={e => this.handleShareClick(e, openMenu)}
               >

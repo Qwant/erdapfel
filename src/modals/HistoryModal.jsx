@@ -51,11 +51,11 @@ const HistoryModal = ({ status, onClose, onAccept }) => {
               dangerouslySetInnerHTML={{ __html: text }}
             />
             <Flex mb="xl" className="history_modal_buttons">
-              <Button variant="secondary" onClick={onClose} m="xxs">
+              <Button variant="secondary-black" onClick={onClose} m="xxs">
                 {button1}
               </Button>
               <Button
-                variant="primary"
+                variant="primary-green"
                 m="xxs"
                 onClick={() => {
                   Telemetry.add(telemetry);

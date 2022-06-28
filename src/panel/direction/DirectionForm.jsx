@@ -74,7 +74,7 @@ const DirectionForm = ({
 
         <Button
           pictoButton
-          variant="secondary"
+          variant="secondary-black"
           disabled={originInputText === '' && destinationInputText === ''}
           className="direction-invert-button"
           onClick={onReversePoints}
