@@ -20,19 +20,15 @@ input, button {
   font-size: 14px;
 }
 
-UL {
+ul {
   list-style: none;
 }
 
-A {
-  color: $action-blue-base;
-  text-decoration: none;
+a {
+  color: var(--grey-900) !important;
+  text-decoration: underline !important;
 }
 
-A:hover {
-  text-decoration: underline;
-}
-
-TABLE {
+table {
   border-collapse: collapse;
 }

@@ -104,7 +104,6 @@ const Suggest = ({
           <Text
             typo="body-1"
             color="primary"
-            bold
             dangerouslySetInnerHTML={{
               __html: _(
                 '<span class="historyText">History</span> is available on Qwant Maps',

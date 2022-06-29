@@ -97,6 +97,8 @@
 }
 
 .history_panel_switch {
+  --action-blue-500: var(--green-500);
+  --action-blue-300-alpha20: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;

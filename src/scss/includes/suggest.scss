@@ -10,6 +10,14 @@
 
   &--empty {
     padding-bottom: 0;
+
+    .top_bar & {
+      border-top: none;
+    }
+    
+    &:not(:first-child) {
+      border-top: none;
+    }
   }
 
   &--history {
@@ -81,13 +89,9 @@
 .manage_history {
   padding: $spacing-l 14px $spacing-xxs 14px;
   border-top: var(--memphis-border-width) solid var(--grey-900);
-
-  button {
-    color: $action-blue-base;
-
-    &:hover {
-      text-decoration: underline;
-    }
+ 
+  & button {
+    text-decoration: underline;
   }
 }
 
@@ -104,7 +108,7 @@
   width: 36px;
   height: 36px;
   padding: 8px;
-  background: var(--purple-lighter);
+  border: 1px solid var(--purple-500);
   border-radius: 50%;
   margin-bottom: 4px;
 }
@@ -119,7 +123,7 @@
 }
 
 .historyText {
-  color: #a125be;
+  font-weight: bold;
 }
 
 .historyButtons {

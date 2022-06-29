@@ -70,7 +70,9 @@ export function ReservationDateModal({
             <Button variant="tertiary-black" onClick={onReset}>
               {_('Cancel')}
             </Button>
-            <Button onClick={onSubmit}>{_('Ok')}</Button>
+            <Button variant="primary-green" onClick={onSubmit}>
+              {_('Ok')}
+            </Button>
           </Stack>
         </Box>
       </Flex>

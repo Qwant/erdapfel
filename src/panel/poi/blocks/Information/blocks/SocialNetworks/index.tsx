@@ -7,7 +7,6 @@ import {
   IconYoutube,
 } from 'src/components/ui/icons';
 import { Flex } from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import { capitalizeFirst } from 'src/libs/string';
 import Block from 'src/panel/poi/blocks/Block';
 import { components } from 'appTypes/idunn';
@@ -33,7 +32,7 @@ const SocialNetworksBlock: React.FunctionComponent<PoiSocialNetworksBlockProps> 
   return (
     <Block
       className="block-socialNetworks"
-      icon={<IconLink fill={ACTION_BLUE_BASE} width={20} />}
+      icon={<IconLink fill="var(--green-500)" width={20} />}
       title={texts?.social_networks}
     >
       {block.links.map(({ site, url }) => {
@@ -50,7 +49,7 @@ const SocialNetworksBlock: React.FunctionComponent<PoiSocialNetworksBlockProps> 
             style={{ display: 'inline-flex' }}
             variant="tertiary"
           >
-            <Icon className="u-mr-xxs" fill="currentColor" height={16} width={16} />
+            <Icon className="u-mr-xxs" fill="var(--green-500)" height={16} width={16} />
             {capitalizeFirst(site)}
           </Flex>
         );

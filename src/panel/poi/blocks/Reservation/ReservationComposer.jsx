@@ -77,7 +77,7 @@ export function ReservationComposer({ value: propsValue, onChange, mobile, visib
         <Button variant="tertiary-black" onClick={onClose}>
           {_('Cancel')}
         </Button>
-        <Button onClick={handleSubmit} disabled={hasChildWithNoAge}>
+        <Button variant="primary-green" onClick={handleSubmit} disabled={hasChildWithNoAge}>
           {_('Ok')}
         </Button>
       </Stack>
@@ -128,7 +128,7 @@ function Line({ value, field, onChange }) {
         disabled={fieldValue === minValue}
         onClick={changeHandler(-1)}
       >
-        <Button pictoButton as="span" disabled={fieldValue === minValue}>
+        <Button variant="primary-green" pictoButton as="span" disabled={fieldValue === minValue}>
           <IconMinus size={16} />
         </Button>
       </button>
@@ -142,7 +142,7 @@ function Line({ value, field, onChange }) {
         onClick={changeHandler(1)}
         disabled={fieldValue === maxValue}
       >
-        <Button pictoButton as="span" disabled={fieldValue === maxValue}>
+        <Button variant="primary-green" pictoButton as="span" disabled={fieldValue === maxValue}>
           <IconPlus size={16} />
         </Button>
       </button>

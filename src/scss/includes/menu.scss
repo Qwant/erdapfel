@@ -58,6 +58,7 @@ $productDrawerWidth: 744px;
   display: block;
   padding: $spacing-m $spacing-xl-2;
   color: $grey-black;
+  text-decoration: none !important;
 
   // Needed to ensure icons are visually aligned with the first line of text
   svg {
@@ -97,8 +98,8 @@ $productDrawerWidth: 744px;
 
 .betterweb-description {
   font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.4px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
 }
 
 .menu-content {
@@ -106,7 +107,7 @@ $productDrawerWidth: 744px;
 }
 
 .card.betterweb .card-link {
-  color: #0051e0;
+  color: var(--action-blue-500);
 }
 
 @media (max-width: 640px) {
@@ -137,14 +138,13 @@ $productDrawerWidth: 744px;
     display: block;
     padding: $spacing-l;
     border-radius: 8px;
-    text-decoration: none;
+    text-decoration: none !important;
     border: 2px solid #e9eaec;
     transition: box-shadow 0.3s, background 0.3s, border 0.3s;
 
     &:hover {
-
-      border-color: #4B5058;
-      box-shadow: 4px 4px #05050529;
+      border-color: var(--grey-600);
+      box-shadow: 4px 4px var(--grey-900-alpha16);
 
       .card-link {
         text-decoration: underline;

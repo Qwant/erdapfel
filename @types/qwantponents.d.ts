@@ -22,8 +22,16 @@ declare module '@qwant/qwant-ponents' {
     target?: string;
     variant?: string;
     style?: React.CSSProperties;
+    mt?: string;
+    py?: string;
+    px?: string;
   }>;
-  export const Stack: React.FunctionComponent;
+  export const Stack: React.FunctionComponent<{
+    gap?: string;
+    py?: string;
+    px?: string;
+    alignCenter?: boolean;
+  }>;
   export const Alert: React.FunctionComponent;
   export const AlertsProvider: React.FunctionComponent;
   export const Avatar: React.FunctionComponent;
@@ -61,7 +69,26 @@ declare module '@qwant/qwant-ponents' {
   export const Switch: React.FunctionComponent;
   export const Heading: React.FunctionComponent;
   export const Paragraph: React.FunctionComponent;
-  export const Text: React.FunctionComponent;
+  export const Text: React.FunctionComponent<{
+    center?: boolean;
+    bold?: boolean;
+    typo?:
+      | 'heading-0'
+      | 'heading-0-1'
+      | 'heading-0-2'
+      | 'heading-1'
+      | 'heading-2'
+      | 'heading-3'
+      | 'heading-4'
+      | 'heading-5'
+      | 'heading-6'
+      | 'body-1'
+      | 'body-2'
+      | 'caption-1'
+      | 'caption-2';
+    html?: string;
+    raw?: boolean;
+  }>;
   export const AnimatePresence: React.FunctionComponent;
   export const Slide: React.FunctionComponent;
   export const DateHelpers: React.FunctionComponent;
@@ -107,7 +134,7 @@ declare module '@qwant/qwant-ponents' {
   export const IconEmpty: React.FunctionComponent;
   export const IconEmptyFill: React.FunctionComponent;
   export const IconErrorWarningLine: React.FunctionComponent;
-  export const IconExternalLink: React.FunctionComponent;
+  export const IconExternalLink: React.FunctionComponent<{ style?: React.CSSProperties }>;
   export const IconEye: React.FunctionComponent;
   export const IconEyeClose: React.FunctionComponent;
   export const IconEyeClosed: React.FunctionComponent;
