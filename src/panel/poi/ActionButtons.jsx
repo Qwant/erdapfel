@@ -5,7 +5,6 @@ import Telemetry from 'src/libs/telemetry';
 import { ShareMenu } from 'src/components/ui';
 import { IconHeart, IconHeartFill } from 'src/components/ui/icons';
 import { isFromTripAdvisor } from 'src/libs/pois';
-import { PINK_DARK } from 'src/libs/colors';
 import {
   Stack,
   Button,
@@ -88,7 +87,7 @@ const ActionButtons = ({
     Telemetry.add(Telemetry.POI_SHARE_TO, { target });
   };
 
-  const favoriteColor = isPoiInFavorite ? PINK_DARK : null;
+  const favoriteColor = isPoiInFavorite ? 'var(--red-500)' : null;
   const directionsButtonVariant = useMemo(
     () => (isFromTripAdvisor(poi) ? 'secondary-black' : 'primary-green'),
     [poi]
@@ -131,10 +130,10 @@ const ActionButtons = ({
         data-active={isPoiInFavorite}
         title={_('Favorites', 'poi panel')}
         onClick={toggleStorePoi}
-        style={{ borderColor: favoriteColor }}
+        style={{ borderColor: favoriteColor, color: favoriteColor }}
       >
         {isPoiInFavorite ? (
-          <IconHeartFill width={16} height={16} fill={favoriteColor} />
+          <IconHeartFill width={16} height={16} fill="currentColor" />
         ) : (
           <IconHeart width={16} height={16} fill="currentColor" />
         )}
