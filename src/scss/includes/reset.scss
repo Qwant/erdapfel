@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: $font_system;
+  font-family: var(--font-family);
   font-size: 14px;
   line-height: 18px;
   color: $primary_text;
@@ -16,7 +16,7 @@ body {
 }
 
 input, button {
-  font-family: $font_system;
+  font-family: var(--font-family);
   font-size: 14px;
 }
 
