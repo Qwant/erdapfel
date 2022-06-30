@@ -51,12 +51,12 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
       options={[
         {
           label: `${_('Yes')}`,
-          icon: <IconThumbUp fill="var(--green-500)" width={16} />,
+          icon: <IconThumbUp fill="currentColor" width={16} />,
           callback: onAnswer('yes'),
         },
         {
           label: `${_('No')}`,
-          icon: <IconThumbDown fill="var(--green-500)" width={16} />,
+          icon: <IconThumbDown fill="currentColor" width={16} />,
           callback: onAnswer('no'),
         },
       ]}

@@ -158,19 +158,9 @@ $productDrawerWidth: 744px;
     }
 
     &-appButton {
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      width: 24px;
-      height: 24px;
-      border: 1px solid #050506;
-      border-radius: 8px;
-      margin-left: 8px;
-
-      &:hover {
-        transition: background-color 0.3s ease-in-out;
-        background-color: #05050529
-      }
+      &:not(:first-child) {
+        margin-left: 8px;
+      }     
     }
   }
 

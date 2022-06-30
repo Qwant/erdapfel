@@ -47,7 +47,6 @@ const SocialNetworksBlock: React.FunctionComponent<PoiSocialNetworksBlockProps> 
             rel="noopener noreferrer nofollow"
             target="_blank"
             style={{ display: 'inline-flex' }}
-            variant="tertiary"
           >
             <Icon className="u-mr-xxs" fill="var(--green-500)" height={16} width={16} />
             {capitalizeFirst(site)}
