@@ -129,7 +129,7 @@ const ActionButtons = ({
         pictoButton
         data-active={isPoiInFavorite}
         title={_('Favorites', 'poi panel')}
-        onClick={toggleStorePoi}
+        onMouseDown={toggleStorePoi}
         style={{ borderColor: favoriteColor, color: favoriteColor }}
       >
         {isPoiInFavorite ? (
