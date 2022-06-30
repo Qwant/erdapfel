@@ -172,7 +172,9 @@ export function Reservation({ mobile, url: baseUrl }) {
                     <Button variant="tertiary-black" onClick={handleCancel}>
                       {_('Cancel')}
                     </Button>
-                    <Button onClick={hideDatepicker}>{_('Ok')}</Button>
+                    <Button variant="primary-green" onClick={hideDatepicker}>
+                      {_('Ok')}
+                    </Button>
                   </Stack>
                 </Box>
               </>
@@ -183,7 +185,9 @@ export function Reservation({ mobile, url: baseUrl }) {
                   <Button variant="tertiary-black" onClick={handleCancel}>
                     {_('Cancel')}
                   </Button>
-                  <Button onClick={hideDatepicker}>{_('Ok')}</Button>
+                  <Button variant="primary-green" onClick={hideDatepicker}>
+                    {_('Ok')}
+                  </Button>
                 </Stack>
               </>
             )}

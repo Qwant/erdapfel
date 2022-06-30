@@ -2,26 +2,30 @@
 import React from 'react';
 import { Panel } from 'src/components/ui';
 import NoResultMessage from './NoResultMessage';
+import { Flex, Stack } from '@qwant/qwant-ponents';
 
 const close = () => window.app.navigateTo('/');
 
-const NoResultPanel = ({ resetInput }) => {
-  const tryNewSearch = e => {
-    e.preventDefault();
+type NoResultPanelProps = {
+  resetInput?: () => void;
+};
+
+const NoResultPanel: React.FunctionComponent<NoResultPanelProps> = ({ resetInput }) => {
+  const tryNewSearch = () => {
     close();
-    resetInput();
+    resetInput?.();
   };
 
   return (
     <Panel close={close} fitContent={['default']}>
-      <div style={{ padding: '20px 34px' }}>
+      <Stack alignCenter gap="xs" py="l" px="xl2">
         <NoResultMessage />
-        <p className="u-center u-mt-s">
+        <Flex mt="xs" center>
           <a onClick={tryNewSearch} href="#">
             {_('Try a new search query')}
           </a>
-        </p>
-      </div>
+        </Flex>
+      </Stack>
     </Panel>
   );
 };

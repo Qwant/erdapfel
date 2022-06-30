@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import Block from 'src/panel/poi/blocks/Block';
 import { IconPhone } from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import { components } from 'appTypes/idunn';
 
 export type PoiPhoneBlockProps = {
@@ -32,7 +31,7 @@ const PhoneBlock: React.FunctionComponent<PoiPhoneBlockProps> = ({
   return (
     <Block
       className="block-phone"
-      icon={<IconPhone size={20} fill={ACTION_BLUE_BASE} />}
+      icon={<IconPhone size={20} fill="var(--green-500)" />}
       title={texts?.phone}
       onClick={onBlockPhoneClick}
       {...(!isHidden ? { href: block?.url } : {})}

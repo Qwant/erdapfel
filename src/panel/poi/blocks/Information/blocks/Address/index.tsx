@@ -1,7 +1,6 @@
 import React from 'react';
 import Block from 'src/panel/poi/blocks/Block';
 import { IconMapPinLine } from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import Address from 'src/components/ui/Address';
 import { NormalizedAddress } from 'src/libs/address';
 
@@ -14,7 +13,7 @@ const PoiAddressBlock: React.FunctionComponent<PoiAddressBlockProps> = ({ title,
   return (
     <Block
       className="block-address"
-      icon={<IconMapPinLine size={20} fill={ACTION_BLUE_BASE} />}
+      icon={<IconMapPinLine size={20} fill="var(--green-500)" />}
       title={title ?? ''}
     >
       {address && <Address address={address} inline omitCountry />}

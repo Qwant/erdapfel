@@ -4,7 +4,6 @@ import { UserFeedbackQuestion } from './index';
 import { Alert } from '@qwant/qwant-ponents';
 import { useConfig, useI18n } from 'src/hooks';
 import { IconThumbUp, IconThumbDown } from './icons';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 import { sendAnswer, rememberAnswer, shouldBeDisplayed } from 'src/libs/userFeedback';
 
 const UserFeedbackYesNo = ({ questionId, context, question }) => {
@@ -52,12 +51,12 @@ const UserFeedbackYesNo = ({ questionId, context, question }) => {
       options={[
         {
           label: `${_('Yes')}`,
-          icon: <IconThumbUp fill={ACTION_BLUE_BASE} width={16} />,
+          icon: <IconThumbUp fill="currentColor" width={16} />,
           callback: onAnswer('yes'),
         },
         {
           label: `${_('No')}`,
-          icon: <IconThumbDown fill={ACTION_BLUE_BASE} width={16} />,
+          icon: <IconThumbDown fill="currentColor" width={16} />,
           callback: onAnswer('no'),
         },
       ]}

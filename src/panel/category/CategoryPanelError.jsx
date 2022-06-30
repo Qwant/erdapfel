@@ -31,7 +31,7 @@ const CategoryPanelError = ({ zoomIn }) => {
         title: _("Hmm, looks like a no-man's land 🏜️", 'categories'),
         message: _('We found no place matching your query in this area.', 'categories'),
         action: (
-          <Button onClick={zoomOut} variant="tertiary">
+          <Button onClick={zoomOut} variant="tertiary-black">
             {_('Get some height', 'categories')}
           </Button>
         ),

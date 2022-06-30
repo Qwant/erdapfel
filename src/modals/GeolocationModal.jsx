@@ -91,7 +91,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
             </Button>
           )}
           {link && (
-            <Button href={link.url} variant="tertiary" width={16}>
+            <Button href={link.url} variant="tertiary-black" width={16}>
               <IconExternalLink /> {link.label}
             </Button>
           )}

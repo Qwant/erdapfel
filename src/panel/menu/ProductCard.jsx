@@ -2,7 +2,6 @@ import React from 'react';
 import { useDevice } from 'src/hooks';
 import { Button } from '@qwant/qwant-ponents';
 import { IconAndroid, IconApple } from 'src/components/ui/icons';
-import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 import classnames from 'classnames';
 
 const ProductCard = ({ name, logo, title, desc, link, href, mobileApps }) => {
@@ -31,9 +30,10 @@ const ProductCard = ({ name, logo, title, desc, link, href, mobileApps }) => {
               pictoButton
               className="card-appButton"
               href={mobileApps.android}
-              variant="tertiary-black"
+              variant="secondary-black"
+              size="small"
             >
-              <IconAndroid width={16} height={16} color={GREY_SEMI_DARKNESS} />
+              <IconAndroid />
             </Button>
           )}
           {mobileApps.ios && (
@@ -41,9 +41,10 @@ const ProductCard = ({ name, logo, title, desc, link, href, mobileApps }) => {
               pictoButton
               className="card-appButton"
               href={mobileApps.ios}
-              variant="tertiary-black"
+              variant="secondary-black"
+              size="small"
             >
-              <IconApple width={16} height={16} color={GREY_SEMI_DARKNESS} />
+              <IconApple />
             </Button>
           )}
         </div>

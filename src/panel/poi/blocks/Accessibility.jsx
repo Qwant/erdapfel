@@ -2,7 +2,6 @@
 import React from 'react';
 import Block from './Block';
 import { IconWheelchair } from 'src/components/ui/icons';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 const AccessibilityBlock = ({ block: accessibilityList }) => {
   const labels = {
@@ -24,7 +23,7 @@ const AccessibilityBlock = ({ block: accessibilityList }) => {
 
   return (
     <Block
-      icon={<IconWheelchair fill={ACTION_BLUE_BASE} width={20} height={20} />}
+      icon={<IconWheelchair fill="var(--green-500)" width={20} height={20} />}
       className="block-accessibility"
       simple
     >

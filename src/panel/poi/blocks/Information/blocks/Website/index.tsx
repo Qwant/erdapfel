@@ -3,7 +3,6 @@ import { components } from 'appTypes/idunn';
 import URI from '@qwant/uri';
 import Block from 'src/panel/poi/blocks/Block';
 import { IconEarth } from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 export type PoiWebsiteBlockProps = {
   texts?: {
@@ -21,7 +20,7 @@ const WebsiteBlock: React.FunctionComponent<PoiWebsiteBlockProps> = ({
   return (
     <Block
       className="block-website"
-      icon={<IconEarth size={20} fill={ACTION_BLUE_BASE} />}
+      icon={<IconEarth size={20} fill="var(--green-500)" />}
       title={texts?.website}
       onClick={onClickWebsite}
       href={URI.externalise(block?.url)}

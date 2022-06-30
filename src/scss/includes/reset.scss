@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: $font_system;
+  font-family: var(--font-family);
   font-size: 14px;
   line-height: 18px;
   color: $primary_text;
@@ -16,23 +16,19 @@ body {
 }
 
 input, button {
-  font-family: $font_system;
+  font-family: var(--font-family);
   font-size: 14px;
 }
 
-UL {
+ul {
   list-style: none;
 }
 
-A {
-  color: $action-blue-base;
-  text-decoration: none;
+a {
+  color: var(--grey-900) !important;
+  text-decoration: underline !important;
 }
 
-A:hover {
-  text-decoration: underline;
-}
-
-TABLE {
+table {
   border-collapse: collapse;
 }

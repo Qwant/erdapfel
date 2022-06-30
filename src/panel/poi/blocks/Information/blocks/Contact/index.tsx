@@ -2,7 +2,6 @@ import React from 'react';
 import { components } from 'appTypes/idunn';
 import Block from 'src/panel/poi/blocks/Block';
 import { IconMail } from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 export type PoiContactBlockProps = {
   texts?: {
@@ -16,7 +15,7 @@ const ContactBlock: React.FunctionComponent<PoiContactBlockProps> = ({ block, te
     <Block
       className="block-contact"
       title={texts?.contact}
-      icon={<IconMail size={20} fill={ACTION_BLUE_BASE} />}
+      icon={<IconMail size={20} fill="var(--green-500)" />}
       href={block?.url}
     >
       {block?.email}

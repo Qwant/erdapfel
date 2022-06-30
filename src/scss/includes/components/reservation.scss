@@ -2,8 +2,8 @@
   flex: 1 100px !important;
 }
 
-.ReservationCheckAvailability:hover {
-  text-decoration: none;
+.ReservationCheckAvailability {
+  text-decoration: none !important;
 }
 
 .ReservationDatepickerWrapper {
@@ -55,6 +55,18 @@
   top: var(--spacing-s);
   z-index: 1001;
   transform: translateY(var(--spacing-m));
+  
+  & > div {
+    --cursorBg: var(--green-500);
+    --rangeBg: var(--green-300-alpha20);
+    --cursorColor: var(--grey-000);
+  }
+}
+
+#DatePickerFieldOut,
+#DatePickerFieldIn,
+#OccupantsPicker {
+  border-width: var(--memphis-border-width);
 }
 
 .ReservationIADatePickerFooter {
@@ -63,7 +75,7 @@
   left: 0;
   right: 0;
   z-index: 1002;
-  background: var(--grey-white);
+  background: var(--grey-000);
 }
 
 .ReservationIADatePickerFooterSpacer {
