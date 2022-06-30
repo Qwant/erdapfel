@@ -26,6 +26,7 @@ $bottom-margin: 40px;
   &-close {
     position: absolute;
     right: 9px;
+    top: 9px;
   }
 }
 
@@ -52,10 +53,6 @@ $bottom-margin: 40px;
     border-radius: 12px 12px 0 0;
     bottom: 0;
     overflow: unset;
-
-    .panel-close {
-      top: 9px;
-    }
 
     &:not(.panel--holding) {
       transition: transform 0.2s ease-in-out;
