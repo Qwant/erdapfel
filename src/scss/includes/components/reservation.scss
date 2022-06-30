@@ -24,7 +24,7 @@
 }
 .ReservationDatepickerWrapperHeader {
   flex: none;
-  border-bottom: solid 1px var(--grey-lighter);
+  border-bottom: solid 1px $grey-lighter;
   padding: var(--spacing-s);
   padding-bottom: 0;
 }
@@ -41,7 +41,7 @@
 .ReservationDatepickerWrapperFooter {
   height: 80px;
   flex: none;
-  border-top: solid 1px var(--grey-lighter);
+  border-top: solid 1px $grey-lighter;
 }
 
 .ReservationDatepickerWrapper .ReservationIADatePicker {
@@ -93,7 +93,7 @@
 }
 
 .ReservationSeparator {
-  background: var(--grey-lighter);
+  background: $grey-lighter;
   height: 1px;
   border: none;
   margin: 0;
@@ -103,7 +103,7 @@
 .ReservationComposerModal {
   width: 275px;
   --border: var(--grey-semi-lightness);
-  --separator: var(--grey-lighter);
+  --separator: $grey-lighter;
 }
 
 .ReservationComposerTooltip hr,

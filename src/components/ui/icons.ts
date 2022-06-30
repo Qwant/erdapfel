@@ -1,4 +1,5 @@
 export { ReactComponent as Magnifier } from '../../../public/images/magnifier-dark.svg';
+export { ReactComponent as MagnifierInput } from '../../../public/images/regular_icons/icons-regular-icon-search.svg';
 export { ReactComponent as IconGeoloc } from '../../../public/images/geoloc.svg';
 
 export { ReactComponent as IconEdit } from '../../../public/images/remix/edit-line.svg';

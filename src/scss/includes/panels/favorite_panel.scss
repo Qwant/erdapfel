@@ -29,12 +29,17 @@
 }
 
 .favorite_panel__item__image {
-  width: 48px;
-  font-size: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 28px;
 
   &--small {
     font-size: 22px;
-    padding-left: 10px;
   }
 }
 
@@ -53,13 +58,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: $primary_text;
-  font-weight: bold;
-}
-
-@media (min-width: 641px){
-  .favorite-header {
-    margin: 8px 0;
-  }
 }
 
 // Make the panel fullscreen on mobile
