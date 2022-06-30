@@ -3,6 +3,7 @@ import React from 'react';
 
 import RouteVia from './RouteVia';
 import RouteStartEndTimes from './RouteStartEndTimes';
+import VehicleIcon from './VehicleIcon';
 import { Badge } from 'src/components/ui';
 import { formatDuration, formatDistance } from 'src/libs/route_utils';
 
@@ -13,8 +14,7 @@ const RouteWalkingTime = ({ route }) => {
 
   return (
     <span className="u-text--subtitle u-mr-s">
-      {/* @TODO: replace by SVG icon */}
-      <i className="icon-foot u-mr-xxs" style={{ fontSize: 11 }} />
+      <VehicleIcon vehicle="walking" fill="currentColor" height={11} />
       {formatDuration(walkingTime)}
     </span>
   );

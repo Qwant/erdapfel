@@ -2,6 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PublicTransportLine from './PublicTransportLine';
+import VehicleIcon from './VehicleIcon';
 
 const RouteVia = ({ route, vehicle, className }) => {
   if (vehicle !== 'publicTransport') {
@@ -19,7 +20,7 @@ const RouteVia = ({ route, vehicle, className }) => {
         .map((summaryPart, idx) => (
           <span key={idx} className="routeVia-step">
             {summaryPart.mode === 'WALK' ? (
-              <i className="icon-foot" /> // @TODO: replace by SVG icon
+              <VehicleIcon vehicle="walking" fill="currentColor" />
             ) : (
               <PublicTransportLine mode={summaryPart.mode} info={summaryPart.info} />
             )}
