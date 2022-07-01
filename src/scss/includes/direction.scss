@@ -62,11 +62,14 @@
   padding: 0 $spacing-s $spacing-s;
   cursor: pointer;
   position: relative;
+  transition: background-color 0.2s ease-in-out;
 
   @media (min-width: 641px) {
     padding: $spacing-m;
+
     &:hover {
-      background-color: $grey-bright;
+      background-color: var(--grey-050);
+      transition: background-color 0.2s ease-in-out;
     }
   }
 }
@@ -138,9 +141,11 @@
   .itinerary_roadmap_item {
     position: relative;
     padding: 10px 0;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover {
-      background-color: $grey-bright;
+      background-color: var(--grey-050);
+      transition: background-color 0.2s ease-in-out;
       cursor: pointer;
       position: relative;
 

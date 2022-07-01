@@ -15,10 +15,12 @@
   &-menuItem {
     padding: $spacing-xxs $spacing-s;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover {
       color: $primary_text;
-      background: $action-blue-lighter;
+      background: var(--grey-050);
+      transition: background-color 0.2s ease-in-out;
     }
   }
 

@@ -4,17 +4,10 @@
   cursor: default;
   padding-bottom: 12px;
 
-  .top_bar & {
-    border-top: var(--memphis-border-width) solid var(--grey-900);
-  }
 
   &--empty {
     padding-bottom: 0;
 
-    .top_bar & {
-      border-top: none;
-    }
-    
     &:not(:first-child) {
       border-top: none;
     }
@@ -37,16 +30,20 @@
   padding: $spacing-s;
 
   .selected & {
-    background-color: $background_active;
+    background-color: var(--grey-050);
   }
 
   &--history {
-    color: var(--purple-darker);
+    color: var(--grey-900);
+
+    .autocomplete_suggestion_icon {
+      color: var(--grey-400);
+    }
   }
 
   @media (hover: hover) {
     li:hover & {
-      background-color: $background_active;
+      background-color: var(--grey-050);
     }
   }
 }
@@ -88,7 +85,7 @@
 
 .manage_history {
   padding: $spacing-l 14px $spacing-xxs 14px;
-  border-top: var(--memphis-border-width) solid var(--grey-900);
+  
  
   & button {
     text-decoration: underline;

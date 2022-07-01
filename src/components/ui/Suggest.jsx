@@ -419,6 +419,7 @@ const Suggest = ({
                     'Your history is activated. It is only visible to you on this device.',
                     'suggest'
                   )}{' '}
+                  <br />
                   <a
                     href={getLocalizedUrl('helpHistory')}
                     target="_blank"

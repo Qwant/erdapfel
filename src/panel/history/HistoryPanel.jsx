@@ -184,7 +184,8 @@ const HistoryPanel = () => {
         </Flex>
         <Text color="primary" onClick={() => remove(item)}>
           <IconEmpty
-            width={20}
+            height={16}
+            width={16}
             fill={GREY_SEMI_DARKNESS}
             className="history_panel_trash"
             title={_('Delete', 'history')}
@@ -235,7 +236,8 @@ const HistoryPanel = () => {
         </Flex>
         <Box color="primary" onClick={() => remove(item)}>
           <IconEmpty
-            width={20}
+            height={16}
+            width={16}
             fill={GREY_SEMI_DARKNESS}
             className="history_panel_trash"
             title={_('Delete', 'history')}
