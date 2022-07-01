@@ -111,6 +111,17 @@ input[type='search'] {
   height: $spacing-xxl-4;
   flex-shrink: 0;
   cursor: pointer;
+
+  .directions_arrow_svg__background {
+    fill: var(--grey-000);
+    transition: fill 0.2s ease-in-out;
+  }
+
+  &:hover {
+    .directions_arrow_svg__background {
+      fill: var(--grey-900-alpha16);
+    }
+  }
 }
 
 // When the search field is focused (empty or not)

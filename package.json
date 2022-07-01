@@ -110,7 +110,7 @@
   "dependencies": {
     "@qwant/map-style-builder": "github:Qwant/map-style-builder#81eebb0",
     "@qwant/qwant-basic-gl-style": "^1.4.0",
-    "@qwant/qwant-ponents": "^0.2.3",
+    "@qwant/qwant-ponents": "^0.2.4",
     "@turf/along": "^6.0.1",
     "@turf/bbox": "^6.0.1",
     "@turf/bearing": "^6.0.1",
