@@ -55,11 +55,23 @@
   top: var(--spacing-s);
   z-index: 1001;
   transform: translateY(var(--spacing-m));
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 12px 0 !important;
+  border: none !important;
   
   & > div {
-    --cursorBg: var(--green-500);
+    --cursorBg: var(--green-400);
     --rangeBg: var(--green-300-alpha20);
-    --cursorColor: var(--grey-000);
+    --cursorColor: var(--grey-900);
+
+    button.next,
+    button.prev {
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 2px 12px 0;
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.4) 0 2px 12px 0;
+      }
+    }
   }
 }
 
