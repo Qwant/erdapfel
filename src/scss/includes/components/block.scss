@@ -30,9 +30,11 @@
 
   &--clickable {
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover {
-      background-color: $grey-bright;
+      background-color: var(--grey-050);
+      transition: background-color 0.2s ease-in-out;
       text-decoration: none;
 
       .block-action {

@@ -6,12 +6,12 @@
   position: relative;
 
   &:active {
-    background: $surface;
+    background: var(--grey-050);
   }
 
   @media (min-width: 641px) {
     &:hover {
-      background: $surface;
+      background: var(--grey-050);
     }
   }
 }

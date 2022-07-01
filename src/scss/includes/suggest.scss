@@ -30,7 +30,7 @@
   padding: $spacing-s;
 
   .selected & {
-    background-color: $background_active;
+    background-color: var(--grey-050);
   }
 
   &--history {
@@ -43,7 +43,7 @@
 
   @media (hover: hover) {
     li:hover & {
-      background-color: $background_active;
+      background-color: var(--grey-050);
     }
   }
 }

@@ -19,12 +19,12 @@
   }
 
   &:active {
-    background-color: $grey-bright;
+    background-color: var(--grey-050);
   }
 
   @media (min-width: 641px) {
     &:hover {
-      background-color: $grey-bright;
+      background-color: var(--grey-050);
     }
   }
 }
