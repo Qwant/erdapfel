@@ -42,7 +42,7 @@ export const getFilteredPoisLabelStyle = () => ({
   },
 });
 
-export const setPoiHoverStyle = (map, poiLayer) => {
+export const setPoiHoverStyle = (map: any, poiLayer: any) => {
   if (!map.getPaintProperty) {
     // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
     return;
