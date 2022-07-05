@@ -3,7 +3,7 @@ import React from 'react';
 
 import RouteVia from './RouteVia';
 import RouteStartEndTimes from './RouteStartEndTimes';
-import VehicleIcon from './VehicleIcon';
+import VehicleIcon from '../VehicleIcon';
 import { Badge } from 'src/components/ui';
 import { formatDuration, formatDistance } from 'src/libs/route_utils';
 

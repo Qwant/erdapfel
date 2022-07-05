@@ -1,8 +1,8 @@
 /* global _ */
 import React from 'react';
 import classNames from 'classnames';
-import PublicTransportLine from './PublicTransportLine';
-import VehicleIcon from './VehicleIcon';
+import PublicTransportLine from '../../PublicTransportLine';
+import VehicleIcon from '../../VehicleIcon';
 
 const RouteVia = ({ route, vehicle, className }) => {
   if (vehicle !== 'publicTransport') {

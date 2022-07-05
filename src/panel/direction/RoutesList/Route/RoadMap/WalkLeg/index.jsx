@@ -1,9 +1,9 @@
 /* global _ */
 import React, { useState } from 'react';
 import { formatDistance, formatDuration, getStepIcon } from 'src/libs/route_utils';
-import RoadMapItem from './RoadMapItem';
-import RoadMapIcon from './RoadMapIcon';
-import LegLine from './LegLine';
+import RoadMapItem from '../RoadMapItem';
+import RoadMapIcon from '../RoadMapIcon';
+import LegLine from '../LegLine';
 import classnames from 'classnames';
 import { Chevron } from 'src/components/ui';
 

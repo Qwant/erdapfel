@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import RoadMapStep from './RoadMapStep';
+import RoadMapStep from '../../RoutesList/Route/RoadMap/RoadMapStep';
 import { fire } from 'src/libs/customEvents';
 import classnames from 'classnames';
 import { FloatingButton } from 'src/components/ui';

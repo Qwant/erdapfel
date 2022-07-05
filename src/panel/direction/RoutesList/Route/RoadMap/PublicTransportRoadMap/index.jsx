@@ -1,8 +1,8 @@
 import React from 'react';
-import WalkLeg from './WalkLeg';
-import TransportLineLeg from './TransportLineLeg';
-import RoadMapPoint from './RoadMapPoint';
-import LegLine from './LegLine';
+import WalkLeg from '../WalkLeg';
+import TransportLineLeg from '../TransportLineLeg';
+import RoadMapPoint from '../RoadMapPoint';
+import LegLine from '../LegLine';
 
 const Leg = ({ leg }) => {
   // @TODO: decide what to do with waiting parts. For now just ignore.

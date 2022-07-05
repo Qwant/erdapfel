@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatDistance, getStepIcon } from 'src/libs/route_utils';
-import RoadMapItem from './RoadMapItem';
-import RoadMapIcon from './RoadMapIcon';
+import RoadMapItem from '../RoadMapItem';
+import RoadMapIcon from '../RoadMapIcon';
 
 const RoadMapStep = ({ step, ...rest }) => (
   <RoadMapItem
