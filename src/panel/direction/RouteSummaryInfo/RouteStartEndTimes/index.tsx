@@ -1,9 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { stripTimeZone, getTimeFormatter } from 'src/libs/time';
 
-const RouteStartEndTimes = ({ start, end, className }) => {
+export type RouteStartEndTimesProps = {
+  start: string;
+  end: string;
+  className: string;
+};
+
+const RouteStartEndTimes: React.FunctionComponent<RouteStartEndTimesProps> = ({
+  start,
+  end,
+  className,
+}) => {
   if (!start || !end) {
     return null;
   }
@@ -17,11 +26,6 @@ const RouteStartEndTimes = ({ start, end, className }) => {
       {timeFormatter.format(new Date(stripTimeZone(end)))}
     </div>
   );
-};
-
-RouteStartEndTimes.propTypes = {
-  start: PropTypes.string,
-  end: PropTypes.string,
 };
 
 export default RouteStartEndTimes;
