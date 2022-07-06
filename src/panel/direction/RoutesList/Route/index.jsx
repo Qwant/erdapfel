@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import RouteSummary from './RouteSummary';
 import RoadMap from './RoadMap';
-import { useDevice } from 'src/hooks';
 
 const Route = ({
   id,
@@ -13,9 +12,8 @@ const Route = ({
   isActive,
   toggleDetails,
   selectRoute,
+  isMobile,
 }) => {
-  const { isMobile } = useDevice();
-
   return (
     <Fragment>
       <div className={`itinerary_leg ${isActive ? 'itinerary_leg--active' : ''}`}>

@@ -63,6 +63,7 @@ const RouteResult = ({
     <>
       <div className={`itinerary_result itinerary_result--${vehicle}`}>
         <RoutesList
+          isMobile={isMobile}
           isLoading={isLoading}
           routes={routes}
           activeRouteId={activeRouteId}
