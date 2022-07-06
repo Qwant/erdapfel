@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDevice } from 'src/hooks';
 import { Item, ItemList } from 'src/components/ui/ItemList';
 import { Stack, Ghost } from '@qwant/qwant-ponents';
 import Route from './Route';
@@ -14,12 +13,12 @@ const RoutesList = ({
   toggleRouteDetails,
   selectRoute,
   isLoading,
+  isMobile,
 }) => {
-  const { isMobile } = useDevice();
   const orderedRoutes = isMobile ? moveRouteToTop(routes, activeRouteId) : routes;
 
   return isLoading ? (
-    <Placeholder />
+    <RoutesListPlaceholder />
   ) : (
     <ItemList>
       {orderedRoutes.map(route => (
@@ -34,6 +33,7 @@ const RoutesList = ({
             showDetails={route.id === activeRouteId && activeDetails}
             toggleDetails={toggleRouteDetails}
             selectRoute={selectRoute}
+            isMobile={isMobile}
           />
         </Item>
       ))}
@@ -41,7 +41,7 @@ const RoutesList = ({
   );
 };
 
-const Placeholder = () => {
+const RoutesListPlaceholder = () => {
   return (
     <ItemList>
       <Item>

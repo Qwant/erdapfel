@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { listen, unListen } from 'src/libs/customEvents';
 import Telemetry from 'src/libs/telemetry';
-import RoutesList from './RoutesList';
+import RoutesList from '../RoutesList';
 import { SourceFooter, UserFeedbackYesNo } from 'src/components/ui';
 import { useDevice } from 'src/hooks';
 import { PanelContext } from 'src/libs/panelContext';
@@ -63,6 +63,7 @@ const RouteResult = ({
     <>
       <div className={`itinerary_result itinerary_result--${vehicle}`}>
         <RoutesList
+          isMobile={isMobile}
           isLoading={isLoading}
           routes={routes}
           activeRouteId={activeRouteId}

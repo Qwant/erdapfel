@@ -1,5 +1,5 @@
 import React from 'react';
-import RoadMapItem from './RoadMapItem';
+import RoadMapItem from '../RoadMapItem';
 import { getInputValue } from 'src/libs/suggest';
 import Address from 'src/components/ui/Address';
 import PlaceIcon from 'src/components/PlaceIcon';

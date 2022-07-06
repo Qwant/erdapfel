@@ -1,8 +1,8 @@
 import React from 'react';
-import RoadMap from './RoadMap';
+import RoadMap from '../../RoutesList/Route/RoadMap';
 import { CloseButton, Divider } from 'src/components/ui';
 import { Box, Button, Flex } from '@qwant/qwant-ponents';
-import RouteSummaryInfo from './RouteSummaryInfo';
+import RouteSummaryInfo from '../../RouteSummaryInfo';
 import { useI18n } from 'src/hooks';
 
 const MobileRouteDetails = ({

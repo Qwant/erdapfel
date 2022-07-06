@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatDistance, formatDuration } from 'src/libs/route_utils';
-import VehicleIcon from './VehicleIcon';
+import VehicleIcon from '../VehicleIcon';
 
 const VEHICLES = {
   TRAIN: 'train',

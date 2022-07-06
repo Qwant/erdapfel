@@ -5,7 +5,7 @@ import HistoryPanel from './history/HistoryPanel';
 import PoiPanel from './poi/PoiPanel';
 import ServicePanel from './service/ServicePanel';
 import CategoryPanel from 'src/panel/category/CategoryPanel';
-import DirectionPanel from 'src/panel/direction/DirectionPanel';
+import DirectionPanel from 'src/panel/direction';
 import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen, unListen } from 'src/libs/customEvents';

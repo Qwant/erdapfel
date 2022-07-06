@@ -2,7 +2,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
-import VehicleIcon from './VehicleIcon';
+import VehicleIcon from '../../VehicleIcon';
 import { useDevice } from 'src/hooks';
 
 const VehicleSelectorButton = ({ vehicle, isActive, onClick }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IconList } from 'src/components/ui/icons';
-import RouteSummaryInfo from './RouteSummaryInfo';
+import RouteSummaryInfo from '../../../RouteSummaryInfo';
 import { Flex, Button } from '@qwant/qwant-ponents';
 import { useI18n } from 'src/hooks';
 
