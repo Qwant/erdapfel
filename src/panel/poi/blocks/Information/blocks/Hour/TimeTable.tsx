@@ -4,7 +4,34 @@ import OpeningHour from 'src/components/OpeningHour';
 import Chevron from 'src/components/ui/Chevron';
 import { PoiHourBlockProps } from '.';
 
-function showHour(day, closedText) {
+export type TimeTableDay = {
+  dayofweek: number;
+  local_date: string;
+  status: string;
+  opening_hours: TimeTableOpeningHour[];
+};
+
+export type TimeTableOpeningHour = {
+  beginning: string;
+  end: string;
+};
+
+export type TimeTableDisplayHour = {
+  dayName: string;
+  opening: TimeTableOpening[];
+};
+
+export type TimeTableOpening = {
+  beginning: string;
+  end: string;
+};
+
+export type TimeTableDays = {
+  days: TimeTableDisplayHour[];
+  closedText?: string;
+};
+
+function showHour(day: TimeTableDisplayHour, closedText = '') {
   if (day.opening && day.opening.length > 0) {
     return day?.opening?.map((openingFragment, i) => (
       <p key={i}>
@@ -15,13 +42,13 @@ function showHour(day, closedText) {
   return closedText;
 }
 
-const Days = ({ days, closedText }) => {
+const Days: React.FunctionComponent<TimeTableDays> = ({ days, closedText }) => {
   const dayNumber = new Date().getDay();
 
   return (
     <table>
       <tbody>
-        {days.map((day, i) => (
+        {days?.map((day, i) => (
           <tr key={i} className={classnames({ currentDay: (i + 1) % 7 === dayNumber })}>
             <td className="day u-firstCap">{day.dayName}</td>
             <td className="hours">{showHour(day, closedText)}</td>
@@ -34,21 +61,27 @@ const Days = ({ days, closedText }) => {
 
 export type PoiTimeTableProps = {
   title?: string;
-  schedule?: any; // TODO: OsmSchedule type
+  schedule: {
+    isTwentyFourSeven: boolean;
+    days: TimeTableDay[];
+    displayHours: TimeTableDisplayHour[];
+    nextTransition: string;
+    status: string;
+  };
   texts?: PoiHourBlockProps['texts'];
 };
 
 const TimeTable: React.FunctionComponent<PoiTimeTableProps> = ({ title, schedule, texts }) => {
   const [isCollapsed, setCollapsed] = useState(true);
-  let header;
-  let content;
+  let header: string | JSX.Element;
+  let content: JSX.Element | null = null;
 
   if (title) {
     header = title;
     content = schedule.isTwentyFourSeven ? (
       <OpeningHour schedule={schedule} texts={texts} />
     ) : (
-      <Days days={schedule.displayHours} closedText={texts?.closed} />
+      <Days days={schedule?.displayHours} closedText={texts?.closed} />
     );
   } else {
     header = <OpeningHour schedule={schedule} texts={texts} />;

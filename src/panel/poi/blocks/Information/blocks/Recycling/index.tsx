@@ -21,7 +21,7 @@ const RecyclingBlock: React.FunctionComponent<PoiRecyclingBlockProps> = ({
   locale,
 }) => {
   const containerTypes = useCallback(
-    type => {
+    (type: string) => {
       return (
         {
           glass: texts?.glass,

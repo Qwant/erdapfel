@@ -1,10 +1,10 @@
 import React from 'react';
-import TimeTable from './TimeTable';
+import TimeTable, { PoiTimeTableProps } from './TimeTable';
 import Block from 'src/panel/poi/blocks/Block';
 import { IconTime } from '@qwant/qwant-ponents';
 
 export type PoiHourBlockProps = {
-  schedule?: any; // TODO: Migrate OsmSchedule to TS
+  schedule?: PoiTimeTableProps['schedule']; // TODO: Migrate OsmSchedule to TS
   texts?: {
     open_24_7: string;
     opening_hours: string;

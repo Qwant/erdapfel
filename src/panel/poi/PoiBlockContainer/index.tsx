@@ -10,6 +10,7 @@ import { components } from 'appTypes/idunn';
 import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import { toArray } from 'src/libs/address';
+import { PoiHourBlockProps } from '../blocks/Information/blocks/Hour';
 
 export type PoiBlockContainerProps = {
   poi?: IdunnPoi;
@@ -58,7 +59,9 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
           : undefined,
       hourBlock: findBlock(poi?.blocks, 'opening_hours')
         ? {
-            schedule: new OsmSchedule(findBlock(poi?.blocks, 'opening_hours')),
+            schedule: new OsmSchedule(
+              findBlock(poi?.blocks, 'opening_hours')
+            ) as PoiHourBlockProps['schedule'], // TODO: Use OsmSchedule output type,
             texts: {
               opening_hours: _('opening hours'),
               open: _('Open'),
@@ -71,13 +74,13 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         : undefined,
       phoneBlock: findBlock(poi?.blocks, 'phone')
         ? {
-            block: findBlock(poi?.blocks, 'phone'),
+            block: findBlock(poi?.blocks, 'phone') as components['schemas']['PhoneBlock'],
             poi,
             texts: {
               show_the_number: _('Show the number'),
               phone: _('phone'),
             },
-            isDefaultHidden: !isMobile && isFromPagesJaunes(poi),
+            isDefaultHidden: !isMobile && (isFromPagesJaunes(poi) as boolean),
             onBlockClick: () => {
               Telemetry.sendPoiEvent(
                 poi,
@@ -95,7 +98,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         : undefined,
       websiteBlock: findBlock(poi?.blocks, 'website')
         ? {
-            block: findBlock(poi?.blocks, 'website'),
+            block: findBlock(poi?.blocks, 'website') as components['schemas']['WebSiteBlock'],
             poi,
             texts: {
               website: _('website'),
@@ -117,7 +120,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         : undefined,
       contactBlock: findBlock(poi?.blocks, 'contact')
         ? {
-            block: findBlock(poi?.blocks, 'contact'),
+            block: findBlock(poi?.blocks, 'contact') as components['schemas']['ContactBlock'],
             texts: {
               contact: _('contact'),
             },
@@ -125,7 +128,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         : undefined,
       recyclingBlock: findBlock(poi?.blocks, 'recycling')
         ? {
-            block: findBlock(poi?.blocks, 'recycling'),
+            block: findBlock(poi?.blocks, 'recycling') as components['schemas']['RecyclingBlock'],
             locale,
             texts: {
               glass: _('Glass'),
@@ -137,7 +140,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
         : undefined,
       socialBlock: findBlock(poi?.blocks, 'social')
         ? {
-            block: findBlock(poi?.blocks, 'social'),
+            block: findBlock(poi?.blocks, 'social') as components['schemas']['SocialBlock'],
             texts: {
               social_networks: _('Social networks'),
             },
