@@ -24,7 +24,6 @@ const DirectionForm = ({
   const { isMobile } = useDevice();
   const originRef = useRef(null);
   const destinationRef = useRef(null);
-
   useEffect(() => {
     if (isMobile || isInitializing) {
       return;
