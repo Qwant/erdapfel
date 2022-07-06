@@ -20,6 +20,8 @@ declare global {
     };
 
     getLang: () => { locale: string; code: string; fallback?: string };
+    baseUrl: string;
+    location: Location;
   }
 }
 export {};
