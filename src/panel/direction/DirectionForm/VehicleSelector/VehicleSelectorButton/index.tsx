@@ -1,41 +1,29 @@
 import React from 'react';
-import classnames from 'classnames';
-import { capitalizeFirst } from 'src/libs/string';
+import cx from 'classnames';
 import VehicleIcon from 'src/panel/direction/VehicleIcon';
 
 export type VehicleSelectorButtonProps = {
   vehicle: 'driving' | 'walking' | 'cycling' | 'publicTransport';
   isActive: boolean;
   onClick: React.HTMLProps<HTMLButtonElement>['onClick'];
-  texts?: {
-    driving: string;
-    publicTransport: string;
-    walking: string;
-    cycling: string;
-  };
 };
 
 const VehicleSelectorButton: React.FunctionComponent<VehicleSelectorButtonProps> = ({
   vehicle,
   isActive,
   onClick,
-  texts,
 }) => {
-  const label = capitalizeFirst(texts?.[vehicle]);
   return (
     <button
       type="button"
-      className={classnames('vehicleSelector-button', `vehicleSelector-button--${vehicle}`, {
-        'vehicleSelector-button--active': isActive,
-      })}
+      className={cx('vehicleSelector-button', isActive && 'vehicleSelector-button--active')}
       onClick={onClick}
-      title={label}
+      title={vehicle}
       role="radio"
-      aria-label={label}
+      aria-label={vehicle}
       aria-checked={isActive}
     >
       <VehicleIcon vehicle={vehicle} fill="currentColor" />
-      <div className="vehicleSelector-buttonLabel">{label}</div>
     </button>
   );
 };

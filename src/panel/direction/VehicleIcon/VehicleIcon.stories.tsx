@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import VehicleIcon from './';
 
 export default {
-  title: 'Panels/Direction/VehicleIcon',
+  title: 'Components/Direction/VehicleIcon',
   component: VehicleIcon,
 } as ComponentMeta<typeof VehicleIcon>;
 

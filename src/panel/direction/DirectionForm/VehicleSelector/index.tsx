@@ -1,4 +1,3 @@
-/* global _ */
 import React from 'react';
 import classnames from 'classnames';
 import VehicleSelectorButton from './VehicleSelectorButton';
@@ -26,12 +25,6 @@ const VehicleSelector: React.FunctionComponent<VehicleSelectorProps> = ({
         vehicle={vehicle}
         isActive={vehicle === activeVehicle}
         onClick={() => onSelectVehicle(vehicle)}
-        texts={{
-          driving: _('by car', 'direction'),
-          publicTransport: _('transit', 'direction'),
-          walking: _('on foot', 'direction'),
-          cycling: _('by bike', 'direction'),
-        }}
       />
     ))}
   </div>
