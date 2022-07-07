@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
-import VehicleIcon, { VehicleIconProps } from 'src/panel/direction/VehicleIcon';
+import VehicleIcon from 'src/panel/direction/VehicleIcon';
 
 export type VehicleSelectorButtonProps = {
   vehicle: 'driving' | 'walking' | 'cycling' | 'publicTransport';
@@ -34,7 +34,7 @@ const VehicleSelectorButton: React.FunctionComponent<VehicleSelectorButtonProps>
       aria-label={label}
       aria-checked={isActive}
     >
-      <VehicleIcon vehicle={vehicle as VehicleIconProps['vehicle']} fill="currentColor" />
+      <VehicleIcon vehicle={vehicle} fill="currentColor" />
       <div className="vehicleSelector-buttonLabel">{label}</div>
     </button>
   );
