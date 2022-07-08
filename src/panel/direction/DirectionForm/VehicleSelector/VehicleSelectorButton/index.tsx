@@ -16,6 +16,7 @@ const VehicleSelectorButton: React.FunctionComponent<VehicleSelectorButtonProps>
   return (
     <button
       type="button"
+      data-testid={`vehicleSelector-button-${vehicle}`}
       className={cx('vehicleSelector-button', isActive && 'vehicleSelector-button--active')}
       onClick={onClick}
       title={vehicle}
