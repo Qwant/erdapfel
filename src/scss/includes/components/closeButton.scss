@@ -5,21 +5,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: $primary_text;
+  color: var(--grey-900);
   flex-shrink: 0;
   z-index: 1;
 
   &--topRight {
     margin-top: -9px;
     margin-right: -9px;
-  }
-
-  @media (min-width: 641px) {
-    color: $secondary_text;
-
-    &:hover {
-      color: $primary_text;
-    }
   }
 
   &--small {
