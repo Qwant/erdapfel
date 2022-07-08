@@ -32,8 +32,6 @@
           background-color: var(--grey-000);
           transition: box-shadow 0.3s ease-in-out;
           border-radius: 24px;
-
-          @include memphisDropshadow();
         }
 
         ~ .direction-field-return {
@@ -48,7 +46,7 @@
 
         input:valid ~ .direction-field-clear {
           top: var(--spacing-m);
-          right: 40px;
+          right: 20px;
           pointer-events: all;
           opacity: 1;
         }
@@ -95,11 +93,11 @@
       &.valid {
         ~ .direction-icon-block {
           .direction-icon-origin {
-            background-image: url('../../images/direction_icons/origin-active.svg');
+            background-image: url('../../images/direction_icons/origin-focus.svg');
           }
 
           .direction-icon-destination {
-            background-image: url('../../images/direction_icons/pin-active.svg');
+            background-image: url('../../images/direction_icons/pin-focus.svg');
           }
         }
       }
@@ -108,7 +106,8 @@
     @media (max-width: 640px) {
       input:focus {
         padding-left: 54px;
-        width: calc(100% - 24px);
+        padding-right: 30px;
+        width: 100%;
 
         ~ .direction-icon-block {
           display: none;

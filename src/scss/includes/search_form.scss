@@ -20,7 +20,7 @@ $input-height: 48px;
   border-radius: 24px;
   width: 100%;
   position: relative;
-  border: var(--memphis-border-width) solid var(--grey-900);
+  border: 1px solid var(--grey-900-alpha16);
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -41,11 +41,6 @@ $input-height: 48px;
   &::-webkit-search-decoration {
     -webkit-appearance: none;
   }
-}
-
-// Hover
-.search_form__wrapper:hover {
-  @include memphisDropshadow();
 }
 
 input[type='search'] {
@@ -84,7 +79,7 @@ input[type='search'] {
   width: 24px;
   height: calc($input-height - calc(2 * var(--memphis-border-width)));
   background: url(../../images/regular_icons/icons-regular-icon-search.svg) center no-repeat;
-  background-size: 32px 32px;
+  background-size: 24px 24px;
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -94,7 +89,7 @@ input[type='search'] {
 // Clear X icon
 .search_form__clear {
   height: 60px;
-  width: 30px;
+  width: 24px;
   color: var(--grey-900);
   cursor: pointer;
   line-height: initial;
@@ -123,8 +118,6 @@ input[type='search'] {
 // When the search field is focused (empty or not)
 .top_bar--search_focus {
   .search_form__wrapper {
-    @include memphisDropshadow();
-
     input::placeholder {
       color: var(--grey-300);
     }
@@ -176,8 +169,8 @@ input[type='search'] {
     position: absolute;
     transition: opacity 0.2s;
     top: 0;
-    left: 10px;
-    width: 30px;
+    left: 14px;
+    width: 24px;
     height: 100%;
     align-items: center;
     justify-content: flex-end;
@@ -199,7 +192,7 @@ input[type='search'] {
     overflow-y: auto;
   }
 
-  $formWidthTransitionDuration: 0.3s;
+  $formWidthTransitionDuration: 0.2s;
 
   // Prepare transition of search field
   .search_form__wrapper {
@@ -230,7 +223,7 @@ input[type='search'] {
     #clear_button_mobile {
       display: block;
       position: absolute;
-      right: 10px;
+      right: 15px;
       top: 0;
       height: $input-height;
     }

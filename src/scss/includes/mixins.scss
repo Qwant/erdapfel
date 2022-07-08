@@ -4,7 +4,3 @@
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
-
-@mixin memphisDropshadow() {
-  box-shadow: 6px 6px 0 0 var(--yellow-400);
-}

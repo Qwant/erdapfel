@@ -10,6 +10,7 @@ import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
 import { IconArrowLeftLine, IconClose } from '@qwant/qwant-ponents';
+import { IconCloseCircled } from 'src/components/ui/icons';
 import classnames from 'classnames';
 import { useDevice, useI18n } from 'src/hooks';
 import { getHistoryEnabled, saveQuery } from 'src/adapters/search_history';
@@ -135,11 +136,10 @@ const DirectionInput = ({
           <div className={`direction-icon direction-icon-${pointType}`} />
         </div>
         <button type="button" className="direction-field-clear" onMouseDown={clear}>
-          <IconClose size={24} />
+          {isMobile ? <IconCloseCircled width={24} height={24} /> : <IconClose size={24} />}
         </button>
       </div>
       <button type="button" className="direction-field-return">
-        {/* The only purpose of this button is to unfocus the input */}
         <IconArrowLeftLine size={20} />
       </button>
     </div>

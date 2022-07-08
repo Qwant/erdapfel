@@ -172,7 +172,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             type="button"
             onMouseDown={onClear}
           >
-            <IconCloseCircled />
+            <IconCloseCircled width={24} height={24} />
           </button>
           <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>

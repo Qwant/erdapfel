@@ -19,6 +19,12 @@
     }
   }
 
+  &--form-completed {
+    &::before {
+      height: 112px;
+    }
+  }
+
   .direction-panel-mobile-close {
     position: absolute;
     right: 8px;
