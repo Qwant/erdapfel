@@ -24,7 +24,6 @@ const DirectionForm = ({
   const { isMobile } = useDevice();
   const originRef = useRef(null);
   const destinationRef = useRef(null);
-
   useEffect(() => {
     if (isMobile || isInitializing) {
       return;
@@ -47,6 +46,11 @@ const DirectionForm = ({
 
   return (
     <div className="direction-form">
+      <VehicleSelector
+        vehicles={vehicles}
+        activeVehicle={activeVehicle}
+        onSelectVehicle={onSelectVehicle}
+      />
       <form className="direction-fields" noValidate>
         <div className="direction-fields-block">
           <DirectionInput
@@ -83,11 +87,6 @@ const DirectionForm = ({
           <IconArrowUpDown fill="currentColor" />
         </Button>
       </form>
-      <VehicleSelector
-        vehicles={vehicles}
-        activeVehicle={activeVehicle}
-        onSelectVehicle={onSelectVehicle}
-      />
     </div>
   );
 };

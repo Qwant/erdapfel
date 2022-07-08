@@ -10,6 +10,7 @@
     display: flex;
     // reverse to handle icon active style with css
     flex-direction: row-reverse;
+    transition: box-shadow 0.3s ease-in-out;
 
     @media (max-width: 640px) {
       font-size: 14px;
@@ -18,58 +19,34 @@
         position: fixed;
         display: block;
         z-index: 1;
-        top: 8px;
+        top: 0px;
         left: 0;
         width: 100%;
-        height: 54px;
         line-height: 50px;
-        background-color: $background;
-        margin-left: $spacing-xxs;
+        background-color: var(--green-400);
+        padding: var(--spacing-m) var(--spacing-s);
 
-        /* START Focus-gradient effect */
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 10px;
-          bottom: 0;
-          left: 10px;
-          z-index: -1;
-          margin: -1px;
-          height: 50px;
-          border-radius: 50px;
-          background: $focus-gradient;
-          box-shadow: $shadow-focus;
+        input {
+          background-color: var(--grey-000);
+          padding: 0 var(--spacing-s);
+          background-color: var(--grey-000);
+          transition: box-shadow 0.3s ease-in-out;
+          border-radius: 24px;
         }
-
-        &::after {
-          // cover the ::before pseudo-elem
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 10px;
-          bottom: 0;
-          left: 10px;
-          z-index: -1;
-          height: 48px;
-          border-radius: 50px;
-          background: $background;
-        }
-        /* END Focus-gradient effect */
 
         ~ .direction-field-return {
           position: fixed;
           z-index: 2;
-          left: 24px;
-          top: 8px;
+          left: 25px;
+          top: var(--spacing-m);
           display: flex;
           align-items: center;
-          height: 48px;
+          height: 50px;
         }
 
         input:valid ~ .direction-field-clear {
-          margin-top: $spacing-xxs;
-          margin-right: $spacing-m;
+          top: var(--spacing-m);
+          right: 20px;
           pointer-events: all;
           opacity: 1;
         }
@@ -116,11 +93,11 @@
       &.valid {
         ~ .direction-icon-block {
           .direction-icon-origin {
-            background-image: url('../../images/direction_icons/origin-active.svg');
+            background-image: url('../../images/direction_icons/origin-focus.svg');
           }
 
           .direction-icon-destination {
-            background-image: url('../../images/direction_icons/pin-active.svg');
+            background-image: url('../../images/direction_icons/pin-focus.svg');
           }
         }
       }
@@ -129,7 +106,8 @@
     @media (max-width: 640px) {
       input:focus {
         padding-left: 54px;
-        width: calc(100% - 24px);
+        padding-right: 30px;
+        width: 100%;
 
         ~ .direction-icon-block {
           display: none;
@@ -143,7 +121,7 @@
       right: 0;
       top: 0;
       width: 32px;
-      height: 40px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -153,11 +131,12 @@
 
     input {
       width: calc(100% - 45px);
-      height: 40px;
+      height: 50px;
       border: none;
-      color: $primary_text;
+      color: var(--grey-900);
       font-size: 16px;
-      padding: 0 30px 3px 0;
+      text-overflow: ellipsis;
+      padding: 0 30px 0 0; // To let display clear cross
     }
 
     input:read-only {

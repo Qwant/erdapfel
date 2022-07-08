@@ -10,7 +10,7 @@ const VEHICLE_ICONS = {
 
 export type VehicleIconProps = {
   vehicle: 'driving' | 'walking' | 'cycling' | 'publicTransport';
-};
+} & React.SVGProps<SVGSVGElement>;
 
 const VehicleIcon: React.FunctionComponent<VehicleIconProps> = ({ vehicle, ...rest }) => {
   const Icon = VEHICLE_ICONS?.[vehicle];
