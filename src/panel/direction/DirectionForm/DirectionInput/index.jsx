@@ -9,8 +9,8 @@ import { fire } from 'src/libs/customEvents';
 import { fetchSuggests } from 'src/libs/suggest';
 import Telemetry from 'src/libs/telemetry';
 import { handleFocus } from 'src/libs/input';
-import { IconArrowLeftLine, IconClose } from '@qwant/qwant-ponents';
-import { IconCloseCircled } from 'src/components/ui/icons';
+import { IconClose } from '@qwant/qwant-ponents';
+import { IconArrowBackward, IconCloseCircled } from 'src/components/ui/icons';
 import classnames from 'classnames';
 import { useDevice, useI18n } from 'src/hooks';
 import { getHistoryEnabled, saveQuery } from 'src/adapters/search_history';
@@ -140,7 +140,7 @@ const DirectionInput = ({
         </button>
       </div>
       <button type="button" className="direction-field-return">
-        <IconArrowLeftLine size={20} />
+        <IconArrowBackward />
       </button>
     </div>
   );
