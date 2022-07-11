@@ -5,7 +5,7 @@
 @import './roadmapIcon.scss';
 @import './routeLabel.scss';
 
-@mixin active-border-gradient {
+@mixin active-border {
   content: '';
   position: absolute;
   top: 12px;
@@ -13,7 +13,7 @@
   width: 4px;
   height: calc(100% - 24px);
   border-radius: 0 4px 4px 0;
-  background-image: $active-gradient-vertical;
+  background: var(--green-400);
 }
 
 @mixin icon_origin {
@@ -48,12 +48,12 @@
   &--active .itinerary_leg_summary {
     &:before {
       @media (min-width: 640px) {
-        @include active-border-gradient;
+        @include active-border;
       }
     }
 
     .route-summary-info-duration {
-      color: $action-blue-base;
+      color: var(--green-500);
     }
   }
 }
@@ -150,7 +150,7 @@
       position: relative;
 
       &:before {
-        @include active-border-gradient;
+        @include active-border;
       }
     }
 
@@ -386,11 +386,6 @@ button.direction_shortcut {
           .itinerary_roadmap_instruction:after {
             background: linear-gradient(#e8e8ed77, $grey-lighter);
           }
-        }
-
-        &.active {
-          border: 1px solid $action-blue-dark;
-          box-shadow: $shadow-focus;
         }
 
         &:first-of-type {

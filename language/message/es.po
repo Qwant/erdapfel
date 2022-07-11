@@ -1790,8 +1790,8 @@ msgid "We couldn't find any itinerary, we are really sorry."
 msgstr "Lo sentimos mucho, pero no hemos podido encontrar ningún itinerario."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105596
-msgid "Results in partnership with Combigo"
-msgstr "Resultados en colaboración con Combigo"
+msgid "Results in partnership with Hove"
+msgstr "Resultados en colaboración con Hove"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105717
 msgid "See less"

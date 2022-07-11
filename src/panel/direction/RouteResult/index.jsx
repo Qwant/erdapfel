@@ -84,7 +84,7 @@ const RouteResult = ({
       )}
       {vehicle === 'publicTransport' && routes.length > 0 && (
         <SourceFooter>
-          <a href="https://combigo.com/">{_('Results in partnership with Combigo')}</a>
+          <a href="https://navitia.com/">{_('Results in partnership with Hove')}</a>
         </SourceFooter>
       )}
     </>
