@@ -31,13 +31,13 @@ export default class QueryContext {
     this.position = position || {};
   }
 
-  static toHeaders(queryContext: TQueryContext) {
+  static toHeaders(queryContext: TQueryContext | undefined) {
     if (!sendQueryContextHeaders || !queryContext) {
       return {};
     }
     const headers = {};
-    const { term, ranking, lang, position } = queryContext;
-    if (position.lon !== undefined && position.lat !== undefined && position.zoom !== undefined) {
+    const { term = '', ranking, lang, position } = queryContext;
+    if (position?.lon !== undefined && position?.lat !== undefined && position.zoom !== undefined) {
       const { lon, lat, zoom } = position;
       headers['X-QwantMaps-FocusPosition'] = `${Number(lon).toFixed(4)};${Number(lat).toFixed(
         4
