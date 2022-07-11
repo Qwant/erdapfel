@@ -292,7 +292,15 @@ const Suggest = ({
     } else {
       document.body.classList.remove('top_bar--history-suggest');
     }
-  }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, historyAnswer, close]);
+  }, [
+    hasFocus,
+    fetchItems,
+    value,
+    keepHistoryPromptVisible,
+    historyAnswer,
+    close,
+    isSearchInputTyping,
+  ]);
 
   const selectItem = item => {
     if (item._suggestSource === 'history') {
