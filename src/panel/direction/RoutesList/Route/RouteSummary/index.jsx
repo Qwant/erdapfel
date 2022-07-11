@@ -42,7 +42,7 @@ const RouteSummary = ({
           ) : (
             <>
               <IconList width={16} />
-              {_('Details', 'direction')}
+              {_('Steps', 'steps')}
             </>
           )}
         </Button>

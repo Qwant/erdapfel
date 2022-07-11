@@ -16,15 +16,6 @@
   background: var(--green-400);
 }
 
-@mixin icon_origin {
-  width: 16px;
-  height: 16px;
-  background: #4ba2ea;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
-}
-
 .itinerary_no-result {
   text-align: center;
   padding: 25px 50px;
@@ -88,18 +79,39 @@
 }
 
 .itinerary_marker_origin {
-  @include icon_origin;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  z-index: 2;
+  &::before {
+    display: block;
+    position: absolute;
+    content: "";
+    background: var(--green-400);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
+    transform: translateX(-2px) translateY(-2px);
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    z-index: 2;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    transform: translateX(-17px) translateY(-17px);
+    border-radius: 50%;
+    background-color: rgba(0,0,0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+  }
 }
 
 .itinerary_marker_destination {
   background-image: url('../../images/direction_icons/pin.png');
   background-size: cover;
-  width: 30px;
-  height: 37px;
+  width: 26px;
+  height: 49px;
   cursor: pointer;
   z-index: 2;
 }

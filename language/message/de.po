@@ -1803,8 +1803,8 @@ msgstr "Weniger anzeigen"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105719
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108238
-msgid "Details"
-msgstr "Details"
+msgid "Steps"
+msgstr "Schritte"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105790
 msgid "Fastest route"
