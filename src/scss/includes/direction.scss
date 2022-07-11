@@ -47,9 +47,7 @@
 .itinerary_leg {
   &--active .itinerary_leg_summary {
     &:before {
-      @media (min-width: 640px) {
-        @include active-border;
-      }
+      @include active-border;
     }
 
     .route-summary-info-duration {
