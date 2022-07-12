@@ -55,7 +55,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     return () => {
       document.removeEventListener('keydown', globalKeyHandler);
     };
-  }, [setUserInputValue, inputRef]);
+  }, [setUserInputValue, inputRef, setSearchInputTyping]);
 
   const onClickDirections = () => {
     Telemetry.add(Telemetry.HOME_ITINERARY);

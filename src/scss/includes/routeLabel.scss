@@ -19,7 +19,7 @@
     height: 40px;
     margin-right: 4px;
     color: white;
-    background-color: $action-blue-base;
+    background-color: var(--grey-900);
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -35,7 +35,7 @@
     color: $grey-black;
 
     .active & {
-      color: $action-blue-base;
+      color: var(--grey-900);
     }
   }
 

@@ -1753,8 +1753,8 @@ msgid "We couldn't find any itinerary, we are really sorry."
 msgstr "Nous n'avons aucun itinéraire à vous proposer, nous sommes vraiment confus."
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105596
-msgid "Results in partnership with Combigo"
-msgstr "Résultats en partenariat avec Combigo"
+msgid "Results in partnership with Hove"
+msgstr "Résultats en partenariat avec Hove"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105717
 msgid "See less"
@@ -1762,8 +1762,8 @@ msgstr "Voir moins"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105719
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:108238
-msgid "Details"
-msgstr "Détails"
+msgid "Steps"
+msgstr "Étapes"
 
 #: public/build/javascript/bundle-30a43b5139568d791e2c66fd2266bb81.js:105790
 msgid "Fastest route"

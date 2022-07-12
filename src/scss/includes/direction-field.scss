@@ -27,9 +27,9 @@
         padding: var(--spacing-m) var(--spacing-s);
 
         input {
-          background-color: var(--grey-000);
           padding: 0 var(--spacing-s);
           background-color: var(--grey-000);
+          border: 1px solid var(--grey-900-alpha16);
           transition: box-shadow 0.3s ease-in-out;
           border-radius: 24px;
         }
@@ -42,6 +42,7 @@
           display: flex;
           align-items: center;
           height: 50px;
+          width: 24px;
         }
 
         input:valid ~ .direction-field-clear {
@@ -140,17 +141,16 @@
     }
 
     input:read-only {
-      font-size: 14px;
       color: #dddddd;
     }
 
     input::placeholder {
-      font-size: 14px;
-      color: $grey-grey;
+      color: var(--grey-300);
+      transition: color 0.3s ease-in-out;
     }
 
     input:focus::placeholder {
-      color: $grey-semi-darkness;
+      color: var(--grey-500);
     }
 
     input:valid:focus ~ .direction-field-clear {

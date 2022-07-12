@@ -86,7 +86,7 @@ const GeolocationModal = ({ status, onClose, onAccept }) => {
             dangerouslySetInnerHTML={{ __html: text }}
           />
           {button && (
-            <Button full variant="primary" onClick={onAccept}>
+            <Button full variant="primary-green" onClick={onAccept}>
               {button}
             </Button>
           )}

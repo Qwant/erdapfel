@@ -1,10 +1,5 @@
 import Color from 'color';
-import {
-  ACTION_BLUE_SEMI_LIGHTNESS,
-  ACTION_BLUE_DARK,
-  GREY_GREY,
-  GREY_SEMI_LIGHTNESS,
-} from 'src/libs/colors';
+import { GREY_GREY, GREY_SEMI_LIGHTNESS } from 'src/libs/colors';
 
 const darkenColor = hex => Color(hex).mix(Color('black'), 0.33).hex();
 const safeHexColor = hex => (hex.charAt(0) === '#' ? hex : `#${hex}`);
@@ -15,8 +10,8 @@ export function prepareRouteColor(feature) {
     ...feature,
     properties: {
       ...feature.properties,
-      lineColor: lineColor ? safeHexColor(lineColor) : ACTION_BLUE_SEMI_LIGHTNESS,
-      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : ACTION_BLUE_DARK,
+      lineColor: lineColor ? safeHexColor(lineColor) : 'var(--grey-900)',
+      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : 'var(--grey-900)',
     },
   };
 }
