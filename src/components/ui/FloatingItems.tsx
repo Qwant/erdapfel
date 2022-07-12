@@ -13,7 +13,7 @@ enum Position {
 const FloatingItems: React.FunctionComponent<FloatingItemsProps> = ({ items, position }) => (
   <div
     className="floatingItems"
-    style={position === 'left' ? { paddingLeft: 12 } : { paddingRight: 12, right: 0 }}
+    style={position === Position.left ? { paddingLeft: 12 } : { paddingRight: 12, right: 0 }}
   >
     {items}
   </div>
