@@ -1,7 +1,16 @@
 .survey aside {
+  background: var(--grey-000) !important;
   top: 80px;
   right: 10px;
   bottom: auto;
+  box-shadow: rgb(0 0 0 / 20%) 0 2px 12px 0 !important;
+
+  div + div + div a {
+    background: var(--green-400);
+  }
+  * {
+    color: var(--grey-900);
+  }
 }
 
 @media (max-width: 640px) {

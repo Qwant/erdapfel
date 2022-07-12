@@ -50,7 +50,7 @@ export function ReservationComposer({ value: propsValue, onChange, mobile, visib
   const ageOptionsMemo = ageOptions();
   const hasChildWithNoAge = value.ages.filter(a => a === null).length > 0;
   return (
-    <Wrapper mobile={mobile} visible={visible} onClose={handleSubmit}>
+    <Wrapper mobile={mobile} visible={visible} onClose={handleSubmit} className="toto">
       <Box px="m" py="s" className="ReservationComposerCounter">
         <Line value={value} onChange={setValue} field="rooms" />
         <Line value={value} onChange={setValue} field="adults" />
