@@ -87,7 +87,7 @@ const ActionButtons = ({
     Telemetry.add(Telemetry.POI_SHARE_TO, { target });
   };
 
-  const favoriteColor = isPoiInFavorite ? 'var(--red-400-alpha20)' : null;
+  const favoriteColor = isPoiInFavorite ? 'var(--red-500)' : null;
   const directionsButtonVariant = useMemo(
     () => (isFromTripAdvisor(poi) ? 'secondary-black' : 'primary-green'),
     [poi]

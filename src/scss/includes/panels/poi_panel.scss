@@ -214,6 +214,10 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   min-height: 18px;
 }
 
+.poi_panel__actions .poi_panel__action__favorite:hover {
+  background: var(--red-400-alpha20);
+}
+
 @media (max-width: 640px) {
   .poi_panel__content {
     padding: 0 $spacing-s;

@@ -7,7 +7,17 @@
 
   div + div + div a {
     background: var(--green-400);
+
+    &:hover {
+      background: var(--green-300);
+    }
   }
+
+  button svg {
+    width: 24px;
+    height: 24px;
+  }
+
   * {
     color: var(--grey-900);
   }
