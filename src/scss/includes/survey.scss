@@ -5,6 +5,10 @@
   bottom: auto;
   box-shadow: rgb(0 0 0 / 20%) 0 2px 12px 0 !important;
 
+  div img {
+    border-radius: 8px;
+  }
+
   div + div + div a {
     background: var(--green-400);
 
