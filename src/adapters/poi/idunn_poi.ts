@@ -2,7 +2,7 @@ import Poi from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
-import QueryContext from '../../adapters/query_context';
+import QueryContext, { TQueryContext } from '../../adapters/query_context';
 import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
 import { operations, components } from 'appTypes/idunn';
 
@@ -103,12 +103,7 @@ export default class IdunnPoi extends Poi {
   static async poiApiLoad(
     obj: {
       id?: string;
-      queryContext?: {
-        term: string;
-        ranking: number;
-        lang: string;
-        position: { lon: string; lat: string; zoom: string };
-      };
+      queryContext?: TQueryContext;
     },
     options: { simple?: boolean } = {}
   ) {
@@ -118,7 +113,7 @@ export default class IdunnPoi extends Poi {
       requestParams = { verbosity: 'list' };
     }
     try {
-      const headers = QueryContext.toHeaders(obj.queryContext);
+      const headers = QueryContext.toHeaders(obj?.queryContext);
       const rawPoi: components['schemas']['Place'] = await Ajax.getLang(
         url,
         requestParams,

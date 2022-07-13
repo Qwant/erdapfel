@@ -18,6 +18,10 @@ declare global {
       ) => void;
       updateHash: (hash: string) => void;
     };
+
+    getLang: () => { locale: string; code: string; fallback?: string };
+    baseUrl: string;
+    location: Location;
   }
 }
 export {};

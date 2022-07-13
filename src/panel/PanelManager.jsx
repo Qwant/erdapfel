@@ -9,7 +9,7 @@ import DirectionPanel from 'src/panel/direction';
 import Telemetry from 'src/libs/telemetry';
 import { parseQueryString, buildQueryString } from 'src/libs/url_utils';
 import { fire, listen, unListen } from 'src/libs/customEvents';
-import { isNullOrEmpty } from 'src/libs/object';
+import isEmpty from 'lodash.isempty';
 import { PanelContext } from 'src/libs/panelContext';
 import NoResultPanel from 'src/panel/NoResultPanel';
 import TopBar from 'src/components/TopBar/TopBar';
@@ -203,7 +203,7 @@ const PanelManager = ({ router }) => {
     setTopBarValue(getTopBarAppValue(activePoi, panelOptions.options));
 
     // Not in a "list of PoI" context (options.poiFilters is null)
-    if (isNullOrEmpty(panelOptions.options?.poiFilters)) {
+    if (isEmpty(panelOptions.options?.poiFilters)) {
       // Markers are not persistent
       fire('remove_category_markers');
     }

@@ -18,7 +18,7 @@ import { getInputValue } from 'src/libs/suggest';
 import { geolocationPermissions, getGeolocationPermission } from 'src/libs/geolocation';
 import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import { updateQueryString } from 'src/libs/url_utils';
-import { isNullOrEmpty } from 'src/libs/object';
+import isEmpty from 'lodash.isempty';
 import { usePageTitle, useDevice } from 'src/hooks';
 
 class DirectionPanel extends React.Component {
@@ -120,7 +120,7 @@ class DirectionPanel extends React.Component {
   }
 
   async setTextInput(which, poi) {
-    if (isNullOrEmpty(poi.address)) {
+    if (isEmpty(poi.address)) {
       // fetch missing address
       poi.address = await address.fetch(poi);
     }

@@ -23,9 +23,7 @@ module.exports = function (config) {
 
   // @TODO: import it from client lib src/libs/url_utils.js when possible
   const removeNullEntries = obj =>
-    Object.entries(obj)
-      .filter(([, value]) => value !== null && value !== undefined)
-      .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
+    Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null && v !== undefined));
 
   async function getRedirectUrl(req, res) {
     const { q: query, client = 'direct-search' } = req.query;
