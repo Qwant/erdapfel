@@ -35,6 +35,8 @@ declare module '@qwant/qwant-ponents' {
     mt?: string;
     py?: string;
     px?: string;
+    column?: boolean;
+    takeAvailableSpace?: boolean;
   }>;
   export const Stack: React.FunctionComponent<{
     gap?: string;

@@ -9,7 +9,8 @@
   color: $grey-semi-darkness;
 
   a {
-    color: $grey-semi-darkness;
+    color: $grey-semi-darkness !important;
+    text-decoration: none !important;
   }
 }
 

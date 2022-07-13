@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import RoadMapItem from '../RoadMapItem';
+import PublicTransportRoadMapItem from '../PublicTransportRoadMapItem';
 import RoadMapIcon from '../RoadMapIcon';
 import PublicTransportLine from '../../../../PublicTransportLine';
 import LegLine from '../LegLine';
 import { getTransportTypeIcon, formatDuration } from 'src/libs/route_utils';
 import { Chevron } from 'src/components/ui';
 
-const TransportLineLeg = ({ leg }) => {
+const PublicTransportLineLeg = ({ leg }) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const { mode, info = {}, stops = [], from, to, duration } = leg;
 
   return (
-    <RoadMapItem
+    <PublicTransportRoadMapItem
       icon={<RoadMapIcon iconClass={getTransportTypeIcon(leg)} />}
       className="itinerary_roadmap_item--transportLine"
       line={<LegLine info={info} mode={mode} />}
@@ -25,7 +25,6 @@ const TransportLineLeg = ({ leg }) => {
           <PublicTransportLine mode={mode} info={info} showDirection />
           {!detailsOpen && from.name && to.name && (
             <div>
-              {/* TODO: replace by SVG icon */}
               {from.name} <i className="icon-chevrons-right" /> {to.name}
             </div>
           )}
@@ -45,8 +44,8 @@ const TransportLineLeg = ({ leg }) => {
           ))}
         </div>
       )}
-    </RoadMapItem>
+    </PublicTransportRoadMapItem>
   );
 };
 
-export default TransportLineLeg;
+export default PublicTransportLineLeg;

@@ -141,11 +141,46 @@
 }
 
 .itinerary_roadmap {
+  .oval {
+    width: 14px;
+    height: 14px;
+    border: solid 2px var(--grey-900);
+    padding: 0 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .container-pin {
+    display: flex;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .destination-pin {
+    width: 18px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
   .divider {
     margin: 0 $spacing-s;
 
     &:last-child {
       display: none;
+    }
+  }
+
+  .left-part {
+    width: 95px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+
+    .hour, .container-pin {
+      margin-right: var(--spacing-s);
     }
   }
 
