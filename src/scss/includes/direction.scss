@@ -65,6 +65,7 @@
 
 .itinerary_leg_detailsBtn {
   align-self: flex-end;
+  & svg {flex-shrink: 0;}
 }
 
 .itinerary_leg_via {

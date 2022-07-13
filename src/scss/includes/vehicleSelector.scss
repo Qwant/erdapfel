@@ -22,12 +22,12 @@
   transition: background-color 0.2s ease-in-out;
   
   & svg { width: 20px; height: 20px; }
-
-  &:hover {
+  
+  &:hover:not(&--active) {
     background-color: var(--grey-000-alpha24);
     transition: background-color 0.2s ease-in-out;
   }
-  
+
   &:focus, &--active {
     background-color: var(--grey-000);
     transition: background-color 0.2s ease-in-out;

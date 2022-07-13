@@ -126,16 +126,21 @@
 }
 
 .publicTransportLabelItem {
-
-  display: inline-block;
+  display: inline-flex;
   vertical-align: top;
   width: 30px;
 
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
+
   &:not(:last-child):after {
-    content: '›';
-    padding: 0 0 0 27px;
-    font-size: 24px;
-    color: $grey-grey;
+    display: inline-flex;
+    content: '';
+    background-image: url('../../images/regular_icons/icons-regular-icon-chevron-foward.svg');
+    width: 16px;
+    height: 16px;
+    transform: translateX(30px) translateY(4px);
   }
 
   &.roadmapIcon--inbetween {
