@@ -131,13 +131,14 @@
   width: 30px;
 
   &:not(:last-child) {
-    margin-right: 16px;
+    margin-right: 10px;
   }
 
   &:not(:last-child):after {
     display: inline-flex;
     content: '';
     background-image: url('../../images/regular_icons/icons-regular-icon-chevron-foward.svg');
+    background-repeat: no-repeat;
     width: 16px;
     height: 16px;
     transform: translateX(30px) translateY(4px);
