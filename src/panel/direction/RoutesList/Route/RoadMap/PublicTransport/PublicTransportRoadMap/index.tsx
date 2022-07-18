@@ -6,21 +6,33 @@ import { Address } from 'src/components/ui';
 import { getInputValue } from 'src/libs/suggest';
 import { Flex, Text } from '@qwant/qwant-ponents';
 import { getTimeFormatter } from 'src/libs/time';
+import { components } from 'appTypes/idunn';
+import { TPoi } from 'src/adapters/poi/poi';
+import { NormalizedAddress } from 'src/libs/address';
 
-const Leg = ({ leg }) => {
-  // @TODO: decide what to do with waiting parts. For now just ignore.
-  if (leg.mode === 'WAIT') {
-    return null;
+const PublicTransportLeg = ({ leg }) => {
+  switch (leg.mode) {
+    case 'WAIT':
+      return null;
+    case 'WALK':
+      return <PublicTransportWalkLeg leg={leg} />;
+    default:
+      return <PublicTransportLineLeg leg={leg} />;
   }
-
-  return leg.mode === 'WALK' ? (
-    <PublicTransportWalkLeg leg={leg} />
-  ) : (
-    <PublicTransportLineLeg leg={leg} />
-  );
 };
 
-const PublicTransportRoadMap = ({ route, origin, destination }) => {
+export type PublicTransportRoadMapProps = {
+  route: components['schemas']['DirectionsRoute'];
+  // TODO: Port BragiPoi to TS
+  origin: TPoi & { address: NormalizedAddress };
+  destination: TPoi & { address: NormalizedAddress };
+};
+
+const PublicTransportRoadMap: React.FunctionComponent<PublicTransportRoadMapProps> = ({
+  route,
+  origin,
+  destination,
+}) => {
   const originProps = {
     hour: getTimeFormatter({ hour: '2-digit', minute: '2-digit' }).format(
       new Date(route.start_time)
@@ -68,8 +80,8 @@ const PublicTransportRoadMap = ({ route, origin, destination }) => {
         </Flex>
         <PublicTransportRoadMapPoint {...originProps} />
       </Flex>
-      {route.legs.map((leg, index) => (
-        <Leg key={index} leg={leg} />
+      {route?.legs?.map((leg, index) => (
+        <PublicTransportLeg key={index} leg={leg} />
       ))}
       <Flex takeAvailableSpace my="s">
         <Flex className="left-part">

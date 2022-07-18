@@ -5,6 +5,7 @@ import PublicTransportLine from '../../../../../PublicTransportLine';
 import LegLine from '../../LegLine';
 import { getTransportTypeIcon, formatDuration } from 'src/libs/route_utils';
 import { Chevron } from 'src/components/ui';
+import { Text } from '@qwant/qwant-ponents';
 
 const PublicTransportLineLeg = ({ leg }) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -14,8 +15,8 @@ const PublicTransportLineLeg = ({ leg }) => {
     <PublicTransportRoadMapItem
       icon={<RoadMapIcon iconClass={getTransportTypeIcon(leg)} />}
       className="itinerary_roadmap_item--transportLine"
+      type="TRANSPORT_LINE"
       line={<LegLine info={info} mode={mode} />}
-      distance={formatDuration(duration)}
     >
       <div
         className="itinerary_roadmap_item_summary itinerary_roadmap_item_summary--openable"
@@ -23,11 +24,12 @@ const PublicTransportLineLeg = ({ leg }) => {
       >
         <div>
           <PublicTransportLine mode={mode} info={info} showDirection />
-          {!detailsOpen && from.name && to.name && (
-            <div>
-              {from.name} <i className="icon-chevrons-right" /> {to.name}
-            </div>
-          )}
+          <Text typo="body-2" color="secondary" bold>
+            {from?.name}
+          </Text>
+          <Text typo="caption-1" color="secondary">
+            {formatDuration(duration)}
+          </Text>
         </div>
         <Chevron up={detailsOpen} />
       </div>

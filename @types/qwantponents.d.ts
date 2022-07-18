@@ -34,6 +34,7 @@ declare module '@qwant/qwant-ponents' {
     style?: React.CSSProperties;
     mt?: string;
     py?: string;
+    my?: string;
     px?: string;
     column?: boolean;
     takeAvailableSpace?: boolean;
@@ -82,6 +83,7 @@ declare module '@qwant/qwant-ponents' {
   export const Heading: React.FunctionComponent;
   export const Paragraph: React.FunctionComponent;
   export const Text: React.FunctionComponent<{
+    className?: string;
     center?: boolean;
     bold?: boolean;
     typo?:

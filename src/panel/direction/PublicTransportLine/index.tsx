@@ -3,6 +3,7 @@ import React from 'react';
 import Color from 'color';
 import cx from 'classnames';
 import { components } from 'appTypes/idunn';
+import { Text } from '@qwant/qwant-ponents';
 
 export type PublicTransportLineProps = {
   mode: components['schemas']['TransportMode'];
@@ -42,9 +43,9 @@ const PublicTransportLine: React.FunctionComponent<PublicTransportLineProps> = (
         {type} {info?.num}
       </span>
       {showDirection && (
-        <span className={cx('routePtLine-direction', 'u-text--subtitle')}>
+        <Text typo="body-2">
           {_('Towards {direction}', 'direction')?.replace('{direction}', info?.direction ?? '')}
-        </span>
+        </Text>
       )}
     </>
   );

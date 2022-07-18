@@ -1,6 +1,6 @@
 import React from 'react';
-import classnames from 'classnames';
-import { Flex } from '@qwant/qwant-ponents';
+import cx from 'classnames';
+import { Flex, Text } from '@qwant/qwant-ponents';
 import { Divider } from 'src/components/ui';
 
 const PublicTransportRoadMapItem = ({
@@ -9,17 +9,17 @@ const PublicTransportRoadMapItem = ({
   distance,
   className,
   line,
-  alignTop,
+  type,
   ...rest
 }) => (
   <>
-    <div className={classnames('itinerary_roadmap_item', className)} {...rest}>
+    <div className={cx('itinerary_roadmap_item', className)} {...rest}>
       {line}
-      <Flex alignCenter={!alignTop}>
+      <Flex>
         <div className="itinerary_roadmap_item_icon">{icon}</div>
         <div className="itinerary_roadmap_step_description">
-          <span className="itinerary_roadmap_instruction u-text--smallTitle">{children}</span>
-          <div className="u-text--subtitle">{distance}</div>
+          <Text typo="body-2">{children}</Text>
+          {type === 'WALK' && <Text typo="caption-1">{distance}</Text>}
         </div>
       </Flex>
     </div>

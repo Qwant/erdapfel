@@ -186,7 +186,6 @@
 
   .itinerary_roadmap_item {
     position: relative;
-    padding: 10px 0;
     transition: background-color 0.2s ease-in-out;
 
     &:hover {
@@ -200,9 +199,11 @@
       }
     }
 
-    &--transportLine .itinerary_roadmap_item_icon,
-    &--walk .itinerary_roadmap_item_icon {
-      align-self: flex-start;
+    .itinerary_roadmap_item_icon {
+      align-self: center;
+      justify-content: flex-end;
+      width: 95px;
+      padding-right: 40px;
     }
   }
 
@@ -216,6 +217,10 @@
 .itinerary_roadmap_step_description {
   padding-right: $spacing-s;
   flex-grow: 1;
+
+  &--reverse {
+    flex-direction: column-reverse;
+  }
 }
 
 .itinerary_roadmap_item_summary {
@@ -226,6 +231,10 @@
 
   &--openable {
     cursor: pointer;
+  }
+
+  svg {
+    flex-shrink: 0;
   }
 }
 
@@ -247,7 +256,7 @@
     height: 13px;
     position: absolute;
     top: 6px;
-    left: -36px;
+    left: -31px;
     z-index: 2;
   }
 
@@ -265,9 +274,9 @@
 .itinerary_roadmap_line {
   position: absolute;
   width: 7px;
-  left: 27px;
-  height: calc(100% - 28px);
-  top: 38px;
+  left: 67px;
+  height: calc(100% + 50px);
+  top: -25px;
   border-radius: 3px;
   z-index: 1;
 
@@ -277,7 +286,7 @@
   }
 
   &--transportLine {
-    height: calc(100% - 36px);
+    height: calc(100% + 50px);
     top: 42px;
   }
 }

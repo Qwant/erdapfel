@@ -2,7 +2,7 @@ import React from 'react';
 import RoadMapStep from './RoadMapStep';
 import RoadMapPoint from './RoadMapPoint';
 import { getAllSteps } from 'src/libs/route_utils';
-import PublicTransportRoadMap from './PublicTransportRoadMap';
+import PublicTransportRoadMap from './PublicTransport/PublicTransportRoadMap';
 import { fire } from 'src/libs/customEvents';
 
 const RoadMap = ({ route, origin, destination, vehicle }) => {
