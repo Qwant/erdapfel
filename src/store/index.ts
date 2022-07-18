@@ -12,9 +12,9 @@ export const useStore = create<AppState>(
     })),
     {
       name: 'qmaps-persist',
-      // Store isn't persisted by default - you need to do it case by case
-      // Add here portion of state that should be persisted
-      partialize: () => ({}),
+      // Store isn't persisted by default in localStorage
+      // The partialize method indicates which state entries should persist:
+      partialize: state => ({ defaultVehicle: state.defaultVehicle }),
     }
   )
 );
