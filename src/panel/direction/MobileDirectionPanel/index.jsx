@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Panel, ShareMenu, FloatingButton, CloseButton } from 'src/components/ui';
 import { Flex, IconShare } from '@qwant/qwant-ponents';
 import MobileRouteDetails from './MobileRouteDetails';
-import { Text } from '@qwant/qwant-ponents';
-import cx from 'classnames';
 import MobileRoadMapPreview from './MobileRoadMapPreview';
 import { getAllSteps } from 'src/libs/route_utils';
 import { fire } from 'src/libs/customEvents';
@@ -53,21 +51,9 @@ const MobileDirectionPanel = ({
   return (
     <>
       {!activePreviewRoute && (
-        <div
-          className={cx('direction-panel', isFormCompleted && 'direction-panel--form-completed')}
-          ref={directionPanelRef}
-        >
+        <div className="direction-panel" ref={directionPanelRef}>
           {!isFormCompleted && (
             <Flex alignCenter mx="m" mt="m" takeAvailableSpace>
-              <Text
-                className="direction-panel-mobile-title"
-                typo="heading-4"
-                center
-                bold
-                uppercaseFirstLetter
-              >
-                {_('calculate an itinerary', 'direction')}
-              </Text>
               <CloseButton className="direction-panel-mobile-close" onClick={onClose} />
             </Flex>
           )}

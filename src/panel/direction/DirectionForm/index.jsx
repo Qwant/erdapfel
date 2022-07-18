@@ -63,7 +63,7 @@ const DirectionForm = ({
             ref={originRef}
             withGeoloc={destination ? destination.type !== 'geoloc' : true}
           />
-          <Divider paddingTop={0} paddingBottom={0} />
+          <Divider className="direction-fields-block-divider" paddingTop={0} paddingBottom={0} />
           <DirectionInput
             isLoading={isLoading}
             value={destinationInputText}

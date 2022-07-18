@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PublicTransportRoadMapItem from '../PublicTransportRoadMapItem';
-import RoadMapIcon from '../RoadMapIcon';
-import PublicTransportLine from '../../../../PublicTransportLine';
-import LegLine from '../LegLine';
+import RoadMapIcon from '../../RoadMapIcon';
+import PublicTransportLine from '../../../../../PublicTransportLine';
+import LegLine from '../../LegLine';
 import { getTransportTypeIcon, formatDuration } from 'src/libs/route_utils';
 import { Chevron } from 'src/components/ui';
 

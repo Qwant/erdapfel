@@ -3,7 +3,11 @@
 .direction-form {
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-m);
+  padding: 0 var(--spacing-m) var(--spacing-m) var(--spacing-m);
+  
+  @media (min-width: 641px) {
+    padding: var(--spacing-m);
+  }
 
   .direction-fields {
     background: var(--grey-000);
@@ -46,13 +50,17 @@
         background-position: 26px calc(50% - 7px), 26px calc(50%), 26px calc(50% + 7px);
       }
     }
+
+    .divider-line {
+      height: 2px;
+    }
   }
 
   .divider {
     margin-left: 48px;
 
     @media (min-width: 641px) {
-      margin-left: 55px;
+      margin-left: 64px;
     }
   }
 }
