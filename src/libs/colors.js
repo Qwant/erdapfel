@@ -12,7 +12,6 @@ export const GREY_SEMI_DARKNESS = '#59595f';
 export const GREY_DARK = '#46464c';
 export const GREY_BLACK = '#0c0c0e';
 export const GREEN_BASE = '#83c458';
-export const GREEN_DARK = '#5d9836';
 export const ORANGE_BASE = '#ff851e';
 export const RED_BASE = '#ff1d3c';
 export const RED_DARKER = '#900014';

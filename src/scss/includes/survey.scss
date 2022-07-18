@@ -1,7 +1,30 @@
 .survey aside {
+  background: var(--grey-000) !important;
   top: 80px;
   right: 10px;
   bottom: auto;
+  box-shadow: rgb(0 0 0 / 20%) 0 2px 12px 0 !important;
+
+  div img {
+    border-radius: 8px;
+  }
+
+  div + div + div a {
+    background: var(--green-400);
+
+    &:hover {
+      background: var(--green-300);
+    }
+  }
+
+  button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  * {
+    color: var(--grey-900);
+  }
 }
 
 @media (max-width: 640px) {
