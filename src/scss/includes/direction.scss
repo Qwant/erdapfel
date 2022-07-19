@@ -66,6 +66,7 @@
 .itinerary_leg_detailsBtn {
   align-self: flex-end;
   flex-shrink: 0;
+  border: 1px solid var(--grey-900) !important;
 }
 
 .itinerary_leg_via {
