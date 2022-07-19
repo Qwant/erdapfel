@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-12 11:55+0200\n"
-"PO-Revision-Date: 2022-07-12 11:55+0200\n"
+"POT-Creation-Date: 2022-07-12 14:07+0200\n"
+"PO-Revision-Date: 2022-07-12 14:08+0200\n"
 "Last-Translator: Benjamin Becquet <b.becquet@qwant.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/qwant-1/teams/89416/fr/)\n"
 "Language: fr\n"
@@ -59,10 +59,8 @@ msgstr "banque"
 msgid "museum"
 msgstr "musée"
 
-#, fuzzy
-#| msgid "airport"
 msgid "sport"
-msgstr "aéroport"
+msgstr "sport"
 
 msgid "service"
 msgstr "services"
@@ -331,8 +329,6 @@ msgstr "magasin matériel medical"
 msgid "furnitures shop"
 msgstr "électroménager"
 
-#, fuzzy
-#| msgid "outdoor activities shop'"
 msgid "outdoor activities shop"
 msgstr "magasin d'activité extérieur"
 
@@ -1318,6 +1314,27 @@ msgstr "Via"
 
 msgid "Fastest route"
 msgstr "Itinéraire le plus rapide"
+
+msgid "Turn left"
+msgstr "Tournez à gauche"
+
+msgid "Keep left"
+msgstr "Continuez à gauche"
+
+msgid "Walk"
+msgstr "Marchez"
+
+msgid "Keep right"
+msgstr "Continuez à droite"
+
+msgid "Turn right"
+msgstr "Tournez à droite"
+
+msgid "Turn back"
+msgstr "Faites demi tour"
+
+msgid "{modifier} on {name}"
+msgstr "{modifier} sur {name}"
 
 msgid "Walk on {walkDistance}"
 msgstr "Marchez sur {walkDistance}"
