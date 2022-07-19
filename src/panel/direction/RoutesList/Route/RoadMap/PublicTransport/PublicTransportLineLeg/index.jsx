@@ -24,12 +24,16 @@ const PublicTransportLineLeg = ({ leg }) => {
       >
         <div>
           <PublicTransportLine mode={mode} info={info} showDirection />
-          <Text typo="body-2" color="secondary" bold>
-            {from?.name}
-          </Text>
-          <Text typo="caption-1" color="secondary">
-            {formatDuration(duration)}
-          </Text>
+          {from?.name && (
+            <Text typo="body-2" color="secondary" bold>
+              {from.name}
+            </Text>
+          )}
+          {duration && (
+            <Text typo="caption-1" color="secondary">
+              {formatDuration(duration)}
+            </Text>
+          )}
         </div>
         <Chevron up={detailsOpen} />
       </div>
