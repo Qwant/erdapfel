@@ -20,6 +20,7 @@ import { openPendingDirectionModal } from 'src/modals/GeolocationModal';
 import { updateQueryString } from 'src/libs/url_utils';
 import isEmpty from 'lodash.isempty';
 import { usePageTitle, useDevice } from 'src/hooks';
+import { useStore } from 'src/store';
 
 class DirectionPanel extends React.Component {
   static propTypes = {
@@ -31,6 +32,8 @@ class DirectionPanel extends React.Component {
     activeRouteId: PropTypes.number,
     details: PropTypes.bool,
     isMobile: PropTypes.bool,
+    defaultVehicle: PropTypes.string,
+    setDefaultVehicle: PropTypes.func,
   };
 
   static defaultProps = {
@@ -45,7 +48,7 @@ class DirectionPanel extends React.Component {
       this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
     }
 
-    const activeVehicle = this.vehicles.indexOf(props.mode) !== -1 ? props.mode : modes.DRIVING;
+    const activeVehicle = props.mode || props.defaultVehicle;
 
     this.lastQueryId = 0;
 
@@ -244,6 +247,7 @@ class DirectionPanel extends React.Component {
   onSelectVehicle = vehicle => {
     Telemetry.add(Telemetry[`${('itinerary_mode_' + vehicle).toUpperCase()}`]);
     this.setState({ vehicle, isDirty: true }, this.update);
+    this.props.setDefaultVehicle(vehicle);
   };
 
   onClose = () => {
@@ -416,7 +420,15 @@ class DirectionPanel extends React.Component {
 const DirectionPanelFunc = props => {
   usePageTitle(_('Directions'));
   const { isMobile } = useDevice();
-  return <DirectionPanel isMobile={isMobile} {...props} />;
+  const { defaultVehicle, setDefaultVehicle } = useStore();
+  return (
+    <DirectionPanel
+      isMobile={isMobile}
+      defaultVehicle={defaultVehicle}
+      setDefaultVehicle={setDefaultVehicle}
+      {...props}
+    />
+  );
 };
 
 export default DirectionPanelFunc;
