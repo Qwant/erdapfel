@@ -21,7 +21,7 @@ export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>):
   isMenuDrawerOpen: false,
   isProductsDrawerOpen: false,
   isSearchInputTyping: false,
-  defaultVehicle: modes.WALKING,
+  defaultVehicle: modes.DRIVING,
   setMenuDrawerOpen: isOpen =>
     set(
       () => {
