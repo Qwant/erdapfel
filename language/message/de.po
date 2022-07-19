@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Maps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-12 11:56+0200\n"
-"PO-Revision-Date: 2022-07-12 11:56+0200\n"
+"POT-Creation-Date: 2022-07-19 08:43+0200\n"
+"PO-Revision-Date: 2022-07-19 08:44+0200\n"
 "Last-Translator: maxime euziere <m.euziere@qwant.com>, 2022\n"
 "Language-Team: German (https://www.transifex.com/qwant-1/teams/89416/de/)\n"
 "Language: de\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: ;_;_n:1,2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -1322,6 +1322,29 @@ msgstr "Über"
 
 msgid "Fastest route"
 msgstr "Schnellste Route"
+
+msgid "Turn left"
+msgstr "Links abbiegen"
+
+msgid "Keep left"
+msgstr "Links halten"
+
+msgid "Walk"
+msgstr "Spaziergang"
+
+msgid "Keep right"
+msgstr "Rechts halten"
+
+msgid "Turn right"
+msgstr "Rechts abbiegen"
+
+#, fuzzy
+#| msgid "Go back"
+msgid "Turn back"
+msgstr "Zurück gehen"
+
+msgid "{modifier} on {name}"
+msgstr "{modifier} auf {name}"
 
 msgid "Walk on {walkDistance}"
 msgstr "Lauf über {walkDistance}"
