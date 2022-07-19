@@ -1590,50 +1590,50 @@ msgstr "Servicios cercanos"
 msgid "My location"
 msgstr "Mi ubicación"
 
-#~ msgid "Products for everyday life."
-#~ msgstr "Productos para el día a día."
+msgid "Products for everyday life."
+msgstr "Productos para el día a día."
 
-#~ msgid "   Search   "
-#~ msgstr "Buscar"
+msgid "   Search   "
+msgstr "Buscar"
 
-#~ msgid "Responsible search that respects your privacy."
-#~ msgstr "Búsqueda responsable que respeta su privacidad."
+msgid "Responsible search that respects your privacy."
+msgstr "Búsqueda responsable que respeta su privacidad."
 
-#~ msgid "Open Search"
-#~ msgstr "Abrir búsqueda"
+msgid "Open Search"
+msgstr "Abrir búsqueda"
 
-#~ msgid "Maps"
-#~ msgstr "Mapas"
+msgid "Maps"
+msgstr "Mapas"
 
-#~ msgid "The map that does not track you."
-#~ msgstr "El mapa que no le rastrea."
+msgid "The map that does not track you."
+msgstr "El mapa que no le rastrea."
 
-#~ msgid "Open Maps"
-#~ msgstr "Abrir mapas"
+msgid "Open Maps"
+msgstr "Abrir mapas"
 
-#~ msgid "Junior"
-#~ msgstr "Júnior"
+msgid "Junior"
+msgstr "Júnior"
 
-#~ msgid "Responsible search adapted to 6-12 year olds."
-#~ msgstr "Búsqueda responsable adaptada a niños de 6 a 12 años."
+msgid "Responsible search adapted to 6-12 year olds."
+msgstr "Búsqueda responsable adaptada a niños de 6 a 12 años."
 
-#~ msgid "Open Junior"
-#~ msgstr "Abrir júnior"
+msgid "Open Junior"
+msgstr "Abrir júnior"
 
-#~ msgid "We believe in an alternate model"
-#~ msgstr "Creemos en un modelo alternativo"
+msgid "We believe in an alternate model"
+msgstr "Creemos en un modelo alternativo"
 
-#~ msgid "See the usual opening hours"
-#~ msgstr "Mirar las horas de apertura cotidianas"
+msgid "See the usual opening hours"
+msgstr "Mirar las horas de apertura cotidianas"
 
-#~ msgid "Reviews"
-#~ msgstr "Reseñas"
+msgid "Reviews"
+msgstr "Reseñas"
 
-#~ msgid "TripAdvisor user"
-#~ msgstr "Usuario de TripAdvisor"
+msgid "TripAdvisor user"
+msgstr "Usuario de TripAdvisor"
 
-#~ msgid "Read the full review"
-#~ msgstr "Leer la reseña completa"
+msgid "Read the full review"
+msgstr "Leer la reseña completa"
 
-#~ msgid "Read more reviews on TripAdvisor"
-#~ msgstr "Leer más reseñas en TripAdvisor"
+msgid "Read more reviews on TripAdvisor"
+msgstr "Leer más reseñas en TripAdvisor"
