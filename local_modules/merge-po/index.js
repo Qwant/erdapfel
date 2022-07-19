@@ -1,4 +1,4 @@
-const { exec } = require('child_process');
+const childProcess = require('child_process');
 const path = require('path');
 
 module.exports = function (originalStream, fallbackList, messagePath) {
@@ -7,7 +7,7 @@ module.exports = function (originalStream, fallbackList, messagePath) {
     return fallbackAcc;
   }, []);
 
-  return exec(`msgcat - ${fallbackPaths.join(' ')} --use-first`, {
+  return childProcess.execSync(`msgcat - ${fallbackPaths.join(' ')} --use-first`, {
     input: originalStream,
   });
 };
