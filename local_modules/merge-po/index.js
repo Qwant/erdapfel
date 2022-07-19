@@ -7,7 +7,12 @@ module.exports = function (originalStream, fallbackList, messagePath) {
     return fallbackAcc;
   }, []);
 
-  return childProcess.execSync(`msgcat - ${fallbackPaths.join(' ')} --use-first`, {
-    input: originalStream,
-  });
+  // eslint-disable-next-line no-useless-catch
+  try {
+    return childProcess.execSync(`msgcat - ${fallbackPaths.join(' ')} --use-first`, {
+      input: originalStream,
+    });
+  } catch (e) {
+    throw e;
+  }
 };
