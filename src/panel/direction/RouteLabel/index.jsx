@@ -1,17 +1,13 @@
 import React from 'react';
-import { formatDistance, formatDuration } from 'src/libs/route_utils';
+import { getTransportTypeIcon, formatDistance, formatDuration } from 'src/libs/route_utils';
 import VehicleIcon from '../VehicleIcon';
 
-const VEHICLES = {
-  TRAIN: 'train',
-  SUBWAY: 'metro',
-  SUBURBAN_TRAIN: 'metro',
-  BUS_CITY: 'bus',
-  TRAM: 'tram',
-};
-
 const PublicTransportIcon = ({ mode }) => (
-  <div className={`publicTransportLabelItem roadmapIcon roadmapIcon--${VEHICLES[mode]}`} />
+  <div
+    className={`publicTransportLabelItem roadmapIcon roadmapIcon--${getTransportTypeIcon({
+      mode,
+    })}`}
+  />
 );
 
 const PublicTransportStepIcons = ({ route }) => {
