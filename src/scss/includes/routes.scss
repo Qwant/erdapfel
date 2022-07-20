@@ -30,6 +30,11 @@
   &-step {
     display: inline-block;
 
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
     &:not(:last-child):after {
       display: inline-block;
       content: '';
