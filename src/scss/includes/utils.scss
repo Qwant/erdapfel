@@ -98,6 +98,9 @@
   .u-mr-#{$spacingName} {
     margin-right: $spacingValue;
   }
+  .u-ml-#{$spacingName} {
+    margin-left: $spacingValue;
+  }
 }
 
 .u-flex-shrink-0 {

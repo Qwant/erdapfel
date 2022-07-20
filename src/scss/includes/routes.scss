@@ -3,16 +3,16 @@
   border: 1px solid transparent;
   border-radius: 4px;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 12px;
   text-transform: uppercase;
-  vertical-align: text-bottom;
+  vertical-align: top;
   white-space: nowrap;
   display: inline-block;
-  color: black !important;
+  color: var(--grey-900) !important;
 
   &--dark {
-    color: white !important;
+    color: var(--grey-000) !important;
   }
 
   &__transport-icon {
@@ -28,8 +28,7 @@
   line-height: 24px;
 
   &-step {
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
 
     &:not(:last-child):after {
       display: inline-block;
@@ -38,6 +37,12 @@
       background-repeat: no-repeat;
       background-position: center;
       width: 24px;
+      height: 16px;
+    }
+
+    & > svg {
+      display: inline-block;
+      width: 16px;
       height: 16px;
     }
   }

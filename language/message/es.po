@@ -1660,3 +1660,6 @@ msgstr "Leer la reseña completa"
 
 msgid "Read more reviews on TripAdvisor"
 msgstr "Leer más reseñas en TripAdvisor"
+
+msgid "stops"
+msgstr "paradas"

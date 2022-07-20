@@ -1693,3 +1693,6 @@ msgstr "restaurant vietnamien"
 
 msgid "Search with Qwant Maps"
 msgstr "Chercher avec Qwant Maps"
+
+msgid "stops"
+msgstr "arrêts"

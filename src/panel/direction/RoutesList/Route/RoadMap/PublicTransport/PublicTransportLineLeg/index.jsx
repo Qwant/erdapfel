@@ -7,8 +7,10 @@ import cx from 'classnames';
 import { getTransportTypeIcon, formatDuration } from 'src/libs/route_utils';
 import { Chevron } from 'src/components/ui';
 import { Text, Flex } from '@qwant/qwant-ponents';
+import { useI18n } from 'src/hooks';
 
 const PublicTransportLineLeg = ({ leg }) => {
+  const { _ } = useI18n();
   const [detailsOpen, setDetailsOpen] = useState(false);
   const { mode, info = {}, stops = [], from, to, duration } = leg;
 
@@ -25,16 +27,19 @@ const PublicTransportLineLeg = ({ leg }) => {
       <div className="itinerary_roadmap_item_summary" onClick={() => setDetailsOpen(!detailsOpen)}>
         <div>
           <PublicTransportLine mode={mode} info={info} showDirection />
-          {duration && (
-            <Text typo="caption-1" color="secondary">
-              {/* ADD TRADS */}
-              {formatDuration(duration)} ({stops.length + 1} arrêts)
-            </Text>
+          {duration && stops.length > 0 && (
+            <Flex mt="xxxs">
+              <Text typo="caption-1" color="secondary">
+                {formatDuration(duration)} ({stops.length + 1} {_('stops')})
+              </Text>
+            </Flex>
           )}
           {from?.name && (
-            <Text typo="body-2" bold>
-              {from.name}
-            </Text>
+            <Flex mt="xxxs">
+              <Text typo="body-2" bold>
+                {from.name}
+              </Text>
+            </Flex>
           )}
           {detailsOpen && (
             <div className="itinerary_roadmap_substeps">
