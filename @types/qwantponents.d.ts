@@ -100,6 +100,39 @@ declare module '@qwant/qwant-ponents' {
       | 'body-2'
       | 'caption-1'
       | 'caption-2';
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'action-link'
+      | 'visited-link'
+      | 'serp-link'
+      | 'perma-link'
+      | 'mention'
+      | 'error';
+    as?:
+      | 'h1'
+      | 'h2'
+      | 'h3'
+      | 'h4'
+      | 'h5'
+      | 'h6'
+      | 'p'
+      | 'div'
+      | 'span'
+      | 'li'
+      | 'ul'
+      | 'footer'
+      | 'a'
+      | 'legend'
+      | 'label'
+      | 'cite'
+      | 'button'
+      | 'strong'
+      | 'header'
+      | 'cite'
+      | 'dt'
+      | 'dd'
+      | 'pre';
     html?: string;
     raw?: boolean;
   }>;

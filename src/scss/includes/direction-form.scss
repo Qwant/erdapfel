@@ -1,13 +1,9 @@
-@import "./vehicleSelector.scss";
+@import './vehicleSelector.scss';
 
 .direction-form {
   display: flex;
   flex-direction: column;
-  padding: 0 var(--spacing-m) var(--spacing-m) var(--spacing-m);
-  
-  @media (min-width: 641px) {
-    padding: var(--spacing-m);
-  }
+  padding: var(--spacing-m);
 
   .direction-fields {
     background: var(--grey-000);
@@ -38,8 +34,7 @@
 
     .direction-fields-block {
       width: 100%;
-      background-image:
-        radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
+      background-image: radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
         radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
         radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px);
       background-position: 22px calc(50% - 7px), 22px calc(50%), 22px calc(50% + 7px);
@@ -47,7 +42,7 @@
       background-repeat: no-repeat;
 
       @media (min-width: 641px) {
-        background-position: 26px calc(50% - 7px), 26px calc(50%), 26px calc(50% + 7px);
+        background-position: 30px calc(50% - 7px), 30px 50%, 30px calc(50% + 7px);
       }
     }
 

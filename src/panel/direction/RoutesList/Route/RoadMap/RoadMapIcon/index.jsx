@@ -1,5 +1,8 @@
 import React from 'react';
+import cx from 'classnames';
 
-const RoadMapIcon = ({ iconClass }) => <div className={`roadmapIcon roadmapIcon--${iconClass}`} />;
+const RoadMapIcon = ({ className = '', iconClass }) => (
+  <div className={cx(className, 'roadmapIcon', `roadmapIcon--${iconClass}`)} />
+);
 
 export default RoadMapIcon;

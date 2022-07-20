@@ -10,8 +10,8 @@ export function prepareRouteColor(feature) {
     ...feature,
     properties: {
       ...feature.properties,
-      lineColor: lineColor ? safeHexColor(lineColor) : 'var(--grey-900)',
-      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : 'var(--grey-900)',
+      lineColor: lineColor ? safeHexColor(lineColor) : '#050506',
+      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : '#050506',
     },
   };
 }

@@ -1,5 +1,5 @@
 .routePtLine {
-  padding: 3px 4px 2px;
+  padding: 2px var(--spacing-xxs);
   border: 1px solid transparent;
   border-radius: 4px;
   font-weight: bold;
@@ -13,6 +13,13 @@
 
   &--dark {
     color: white !important;
+  }
+
+  &__transport-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: var(--spacing-xxxs);
   }
 }
 
@@ -29,8 +36,13 @@
       content: '';
       background-image: url('../../images/regular_icons/icons-regular-icon-chevron-foward.svg');
       background-repeat: no-repeat;
-      width: 16px;
+      background-position: center;
+      width: 24px;
       height: 16px;
     }
+  }
+
+  .routePtLine__transport-icon {
+    margin-right: 2px;
   }
 }
