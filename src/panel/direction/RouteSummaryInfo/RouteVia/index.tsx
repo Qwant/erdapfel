@@ -13,7 +13,6 @@ const RouteViaPublicTransport: React.FunctionComponent<RouteViaPublicTransportPr
 }) => {
   const displaySummaryParts = useMemo(() => {
     return (route?.summary ?? []).filter(summaryPart => summaryPart.mode !== 'WAIT');
-    //.filter(summaryPart => summaryPart.mode !== 'WALK' || summaryPart.distance > 100);
   }, [route?.summary]);
 
   return (
