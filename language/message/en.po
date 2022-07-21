@@ -1552,3 +1552,6 @@ msgstr ""
 
 msgid "My location"
 msgstr ""
+
+msgid "stops"
+msgstr "stops"

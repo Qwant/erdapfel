@@ -14,8 +14,8 @@ const RouteWalkingTime = ({ route }) => {
 
   return (
     <span className="u-text--subtitle u-mr-s">
-      <VehicleIcon vehicle="walking" fill="currentColor" height={11} />
-      {formatDuration(walkingTime)}
+      <VehicleIcon vehicle="walking" fill="currentColor" width={12} height={12} />
+      <span className="u-ml-xxs">{formatDuration(walkingTime)}</span>
     </span>
   );
 };

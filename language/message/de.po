@@ -1667,3 +1667,7 @@ msgstr "Komplette Bewertung lesen"
 
 msgid "Read more reviews on TripAdvisor"
 msgstr "Weitere Bewertungen bei TripAdvisor lesen"
+
+msgid "stops"
+msgstr "haltestellen"
+

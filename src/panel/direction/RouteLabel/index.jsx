@@ -5,6 +5,7 @@ import VehicleIcon from '../VehicleIcon';
 const VEHICLES = {
   TRAIN: 'train',
   SUBWAY: 'metro',
+  SUBURBAN_TRAIN: 'metro',
   BUS_CITY: 'bus',
   TRAM: 'tram',
 };

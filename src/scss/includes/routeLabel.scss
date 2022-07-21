@@ -19,7 +19,7 @@
     height: 40px;
     margin-right: 4px;
     color: white;
-    background-color: var(--grey-900);
+    background-color: var(--green-500);
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -35,7 +35,7 @@
     color: $grey-black;
 
     .active & {
-      color: var(--grey-900);
+      color: var(--green-500);
     }
   }
 
@@ -126,16 +126,22 @@
 }
 
 .publicTransportLabelItem {
-
-  display: inline-block;
+  display: inline-flex;
   vertical-align: top;
   width: 30px;
 
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+
   &:not(:last-child):after {
-    content: '›';
-    padding: 0 0 0 27px;
-    font-size: 24px;
-    color: $grey-grey;
+    display: inline-flex;
+    content: '';
+    background-image: url('../../images/regular_icons/icons-regular-icon-chevron-foward.svg');
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    transform: translateX(26px) translateY(4px);
   }
 
   &.roadmapIcon--inbetween {

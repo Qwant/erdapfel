@@ -18,7 +18,7 @@ const RouteViaPublicTransport: React.FunctionComponent<RouteViaPublicTransportPr
   }, [route?.summary]);
 
   return (
-    <div className={cx('routeVia u-text--subtitle', className)}>
+    <div className={cx('routeVia', className)}>
       {displaySummaryParts?.map((summaryPart, idx) => (
         <span key={idx} className="routeVia-step">
           {summaryPart.mode === 'WALK' ? (
@@ -42,7 +42,7 @@ const RouteVia: React.FunctionComponent<RouteViaProps> = ({ route, vehicle, clas
   return vehicle === 'publicTransport' ? (
     <RouteViaPublicTransport className={className} route={route} />
   ) : (
-    <div className={cx('routeVia u-text--subtitle', className)}>
+    <div className={cx('routeVia', className)}>
       {_('Via', 'direction')} {route?.legs[0]?.summary?.replace(/^(.*), (.*)$/, '$1')}
     </div>
   );

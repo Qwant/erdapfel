@@ -7,21 +7,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 162px;
+    height: 112px;
     background: var(--green-400);
     z-index: -1;
 
     @media (min-width: 641px) {
-      height: 112px;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
       z-index: 0;
-    }
-  }
-
-  &--form-completed {
-    &::before {
-      height: 112px;
     }
   }
 
@@ -51,10 +44,6 @@
     top: 0;
     left: 0;
     z-index: 1;
-
-    .direction-panel-mobile-title {
-      width: 100%;
-    }
   
     .direction-autocomplete_suggestions {
       position: fixed;

@@ -7,26 +7,6 @@ import LegLine from '../LegLine';
 import classnames from 'classnames';
 import { Chevron } from 'src/components/ui';
 
-const stringifyManeuver = maneuver => {
-  const stringifyModifier = {
-    'sharp left': _('Turn left', 'direction'),
-    left: _('Turn left', 'direction'),
-    'slight left': _('Keep left', 'direction'),
-    straight: _('Walk', 'direction'),
-    'slight right': _('Keep right', 'direction'),
-    right: _('Turn right', 'direction'),
-    'sharp right': _('Turn right', 'direction'),
-    uturn: _('Turn back', 'direction'),
-  };
-
-  const context = {
-    modifier: stringifyModifier[maneuver.modifier],
-    name: maneuver.detail.name,
-  };
-
-  return maneuver.detail.name ? _('{modifier} on {name}', 'direction', context) : context.modifier;
-};
-
 const WalkLeg = ({ leg }) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const summary = _('Walk on {walkDistance}', 'direction', {
@@ -59,7 +39,7 @@ const WalkLeg = ({ leg }) => {
           {leg.steps.map((step, index) => (
             <div key={index} className="itinerary_roadmap_substep">
               <RoadMapIcon iconClass={getStepIcon(step)} />
-              <div>{step.maneuver.instruction || stringifyManeuver(step.maneuver)}</div>
+              <div>{step.maneuver.instruction}</div>
             </div>
           ))}
         </div>
