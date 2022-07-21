@@ -10,7 +10,7 @@ import { components } from 'appTypes/idunn';
 import { TPoi } from 'src/adapters/poi/poi';
 import { NormalizedAddress } from 'src/libs/address';
 
-const PublicTransportLeg = ({ leg }) => {
+const PublicTransportLeg = ({ leg }: { leg: components['schemas']['RouteLeg'] }) => {
   switch (leg.mode) {
     case 'WAIT':
       return null;
@@ -37,7 +37,7 @@ const PublicTransportRoadMap: React.FunctionComponent<PublicTransportRoadMapProp
     hour: getTimeFormatter({ hour: '2-digit', minute: '2-digit' }).format(
       new Date(route.start_time)
     ),
-    title: getInputValue(origin),
+    title: getInputValue(origin) as string,
     details: (
       <Address
         address={origin?.address}
@@ -52,7 +52,7 @@ const PublicTransportRoadMap: React.FunctionComponent<PublicTransportRoadMapProp
 
   const destinationProps = {
     hour: getTimeFormatter({ hour: '2-digit', minute: '2-digit' }).format(new Date(route.end_time)),
-    title: getInputValue(destination),
+    title: getInputValue(destination) as string,
     details: (
       <Address
         address={destination?.address}
