@@ -50,6 +50,12 @@ const DirectionForm = ({
         vehicles={vehicles}
         activeVehicle={activeVehicle}
         onSelectVehicle={onSelectVehicle}
+        texts={{
+          driving: _('by car'),
+          walking: _('on foot'),
+          cycling: _('by bike'),
+          publicTransport: _('transit'),
+        }}
       />
       <form className="direction-fields" noValidate>
         <div className="direction-fields-block">

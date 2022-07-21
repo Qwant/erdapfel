@@ -2,16 +2,20 @@ import React from 'react';
 import classnames from 'classnames';
 import VehicleSelectorButton from './VehicleSelectorButton';
 
+type VehicleType = 'driving' | 'walking' | 'cycling' | 'publicTransport';
+
 export type VehicleSelectorProps = {
-  vehicles: ('driving' | 'walking' | 'cycling' | 'publicTransport')[];
+  vehicles: VehicleType[];
   activeVehicle: string;
   onSelectVehicle: (vehicle: string) => void;
+  texts: Record<VehicleType, string>;
 };
 
 const VehicleSelector: React.FunctionComponent<VehicleSelectorProps> = ({
   vehicles,
   activeVehicle,
   onSelectVehicle,
+  texts,
 }) => (
   <div
     className={classnames('vehicleSelector', {
@@ -25,6 +29,7 @@ const VehicleSelector: React.FunctionComponent<VehicleSelectorProps> = ({
         vehicle={vehicle}
         isActive={vehicle === activeVehicle}
         onClick={() => onSelectVehicle(vehicle)}
+        title={texts?.[vehicle]}
       />
     ))}
   </div>

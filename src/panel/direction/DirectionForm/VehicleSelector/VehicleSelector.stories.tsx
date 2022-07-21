@@ -23,6 +23,12 @@ export const Default: ComponentStory<typeof VehicleSelector> = () => {
       vehicles={['driving', 'publicTransport', 'walking', 'cycling']}
       activeVehicle={activeVehicle}
       onSelectVehicle={vehicle => setActiveVehicle(vehicle)}
+      texts={{
+        driving: 'Voiture',
+        publicTransport: 'Transport',
+        walking: 'À pied',
+        cycling: 'À vélo',
+      }}
     />
   );
 };

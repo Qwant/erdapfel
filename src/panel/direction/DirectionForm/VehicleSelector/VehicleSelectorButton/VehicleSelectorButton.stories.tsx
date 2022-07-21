@@ -22,6 +22,7 @@ export const Default: ComponentStory<typeof VehicleSelectorButton> = () => (
     isActive={false}
     // eslint-disable-next-line no-console
     onClick={vehicle => console.log(`Just click on ${vehicle}`)}
+    title="À vélo"
   />
 );
 
@@ -30,5 +31,6 @@ export const Activated: ComponentStory<typeof VehicleSelectorButton> = () => (
     vehicle="publicTransport"
     isActive={true} // eslint-disable-next-line no-console
     onClick={vehicle => console.log(`Just click on ${vehicle}`)}
+    title="Transport"
   />
 );
