@@ -31,10 +31,6 @@
   display: inline-block;
 }
 
-.itinerary_result {
-  overflow: auto;
-}
-
 .itinerary_leg {
   &--active .itinerary_leg_summary {
     &:before {
