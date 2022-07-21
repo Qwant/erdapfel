@@ -1,4 +1,4 @@
-import { ScaleControl } from 'mapbox-gl--ENV';
+import { ScaleControl } from 'mapbox-gl';
 
 /**
  * Override default control to pass a container

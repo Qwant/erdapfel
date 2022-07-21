@@ -1,4 +1,4 @@
-import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--ENV';
+import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl';
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';

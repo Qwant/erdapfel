@@ -7,7 +7,7 @@ import renderStaticReact from 'src/libs/renderStaticReact';
 import { IconGeoloc } from 'src/components/ui/icons';
 import { isMobileDevice } from 'src/libs/device';
 
-import { GeolocateControl } from 'mapbox-gl--ENV';
+import { GeolocateControl } from 'mapbox-gl';
 
 /**
  * Override default GeolocateControl

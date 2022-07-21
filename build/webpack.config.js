@@ -83,11 +83,9 @@ const mainJsChunkConfig = buildMode => {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     plugins: [
-      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function (resource) {
+      new webpack.NormalModuleReplacementPlugin(/'mapbox-gl'/, function (resource) {
         if (buildMode === 'test') {
-          resource.request = resource.request.replace('--ENV', '-js-mock');
-        } else {
-          resource.request = resource.request.replace('--ENV', '');
+          resource.request = resource.request.replace('mapbox-gl-js-mock');
         }
       }),
     ],

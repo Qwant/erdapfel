@@ -1,5 +1,5 @@
 import nconf from '@qwant/nconf-getter';
-import { Marker } from 'mapbox-gl--ENV';
+import { Marker } from 'mapbox-gl';
 import constants from '../../config/constants.yml';
 import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';

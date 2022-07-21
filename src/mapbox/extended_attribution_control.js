@@ -1,4 +1,4 @@
-import { AttributionControl } from 'mapbox-gl--ENV';
+import { AttributionControl } from 'mapbox-gl';
 
 /**
  * Override default control to pass a container

@@ -1,7 +1,7 @@
 /**
  * simple Poi helper
  */
-import type { components } from 'appTypes/idunn';
+import { LngLat } from 'mapbox-gl';
 
 export const POI_TYPE = 'poi';
 
@@ -9,7 +9,7 @@ export type TPoi = {
   id?: string;
   name?: string;
   type?: string;
-  latLon?: components['schemas']['Coord'];
+  latLon?: LngLat;
   className?: string;
   subClassName?: string;
   bbox?: [number, number, number, number];
