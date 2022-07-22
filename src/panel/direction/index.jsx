@@ -192,7 +192,6 @@ class DirectionPanel extends React.Component {
       fire('set_origin', origin);
       fire('set_destination', destination);
       const directionResponse = await DirectionApi.search(origin, destination, vehicle);
-
       // A more recent query was done in the meantime, ignore this result silently
       if (currentQueryId !== this.lastQueryId) {
         return;
