@@ -1,43 +1,22 @@
-import React from 'react';
-import RoadMapStep from './RoadMapStep';
-import RoadMapPoint from './RoadMapPoint';
+import React, { useMemo } from 'react';
 import { getAllSteps } from 'src/libs/route_utils';
 import PublicTransportRoadMap from './PublicTransport/PublicTransportRoadMap';
-import { fire } from 'src/libs/customEvents';
+import DefaultRoadMap from './Default/DefaultRoadMap';
 
 const RoadMap = ({ route, origin, destination, vehicle }) => {
-  if (vehicle === 'publicTransport') {
-    return <PublicTransportRoadMap route={route} origin={origin} destination={destination} />;
+  /* Mapbox roadmaps include the destination point as the last maneuver,
+   * but we want a custom format for it, so let's ignore it. */
+  const routeSteps = useMemo(() => {
+    const steps = getAllSteps(route);
+    return steps?.splice(0, steps.length - 1);
+  }, [route]);
+
+  switch (vehicle) {
+    case 'publicTransport':
+      return <PublicTransportRoadMap route={route} origin={origin} destination={destination} />;
+    default:
+      return <DefaultRoadMap routeSteps={routeSteps} origin={origin} destination={destination} />;
   }
-
-  const routeSteps = getAllSteps(route);
-  // Mapbox roadmaps include the destination point as the last maneuver,
-  // but we want a custom format for it, so let's ignore it.
-  routeSteps.pop();
-
-  return (
-    <div className="itinerary_roadmap">
-      <RoadMapPoint point={origin} onClick={() => fire('fit_map', origin)} />
-
-      {routeSteps.map((step, index) => (
-        <RoadMapStep
-          key={index}
-          step={step}
-          onMouseOver={() => {
-            fire('highlight_step', index);
-          }}
-          onMouseOut={() => {
-            fire('unhighlight_step', index);
-          }}
-          onClick={() => {
-            fire('zoom_step', step);
-          }}
-        />
-      ))}
-
-      <RoadMapPoint point={destination} onClick={() => fire('fit_map', destination)} />
-    </div>
-  );
 };
 
 export default RoadMap;

@@ -1,14 +1,14 @@
 import React from 'react';
-import RoadMapItem from '../RoadMapItem';
+import DefaultRoadMapItem from '../DefaultRoadMapItem';
 import { getInputValue } from 'src/libs/suggest';
 import Address from 'src/components/ui/Address';
 import PlaceIcon from 'src/components/PlaceIcon';
 
-const RoadMapPoint = ({ point, ...rest }) => {
+const DefaultRoadMapPoint = ({ point, ...rest }) => {
   const { address, type } = point;
 
   return (
-    <RoadMapItem icon={<PlaceIcon place={point} withBackground />} {...rest}>
+    <DefaultRoadMapItem icon={<PlaceIcon place={point} withBackground />} {...rest}>
       <div className="u-text--smallTitle">{getInputValue(point)}</div>
       {type !== 'geoloc' && (
         <div className="u-text--subtitle">
@@ -20,8 +20,8 @@ const RoadMapPoint = ({ point, ...rest }) => {
           />
         </div>
       )}
-    </RoadMapItem>
+    </DefaultRoadMapItem>
   );
 };
 
-export default RoadMapPoint;
+export default DefaultRoadMapPoint;

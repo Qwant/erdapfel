@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LegLine = ({ mode, info }) => {
+const DefaultLegLine = ({ mode, info }) => {
   if (mode === 'WALK') {
     return <div className="itinerary_roadmap_line itinerary_roadmap_line--walk" />;
   }
@@ -12,4 +12,4 @@ const LegLine = ({ mode, info }) => {
   );
 };
 
-export default LegLine;
+export default DefaultLegLine;

@@ -4,7 +4,7 @@ import Color from 'color';
 import cx from 'classnames';
 import { components } from 'appTypes/idunn';
 import { Text } from '@qwant/qwant-ponents';
-import RoadMapIcon from '../RoutesList/Route/RoadMap/RoadMapIcon';
+import DefaultRoadMapIcon from '../RoutesList/Route/RoadMap/Default/DefaultRoadMapIcon';
 import { getTransportTypeIcon } from 'src/libs/route_utils';
 
 export type PublicTransportLineProps = {
@@ -37,7 +37,7 @@ const PublicTransportLine: React.FunctionComponent<PublicTransportLineProps> = (
     <>
       <div className="oval" />
       {mode && (
-        <RoadMapIcon
+        <DefaultRoadMapIcon
           className="routePtLine__transport-icon"
           iconClass={getTransportTypeIcon({ mode })}
         />

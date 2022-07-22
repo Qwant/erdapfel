@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import RoadMapStep from '../../RoutesList/Route/RoadMap/RoadMapStep';
+import DefaultRoadMapStep from '../../RoutesList/Route/RoadMap/Default/DefaultRoadMapStep';
 import { fire } from 'src/libs/customEvents';
 import classnames from 'classnames';
 import { FloatingButton } from 'src/components/ui';
@@ -61,7 +61,7 @@ const MobileRoadMapPreview = ({ steps, onClose }) => {
               active: index === currentStep,
             })}
           >
-            <RoadMapStep step={step} />
+            <DefaultRoadMapStep step={step} />
           </div>
         ))}
       </div>
