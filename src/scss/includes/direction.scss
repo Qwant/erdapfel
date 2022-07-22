@@ -92,16 +92,19 @@
     z-index: 2;
   }
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    transform: translateX(-17px) translateY(-17px);
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--green-500);
+  &--geoloc {
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      transform: translateX(-17px) translateY(-17px);
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--green-500);
+      z-index: 1;
+    }
   }
 }
 
