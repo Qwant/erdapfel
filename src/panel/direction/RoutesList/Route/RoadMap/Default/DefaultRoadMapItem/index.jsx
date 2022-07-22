@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { Flex } from '@qwant/qwant-ponents';
 import { Divider } from 'src/components/ui';
 
-const RoadMapItem = ({ children, icon, distance, className, line, alignTop, ...rest }) => (
+const DefaultRoadMapItem = ({ children, icon, distance, className, line, alignTop, ...rest }) => (
   <>
     <div className={classnames('itinerary_roadmap_item', className)} {...rest}>
       {line}
@@ -19,4 +19,4 @@ const RoadMapItem = ({ children, icon, distance, className, line, alignTop, ...r
   </>
 );
 
-export default RoadMapItem;
+export default DefaultRoadMapItem;

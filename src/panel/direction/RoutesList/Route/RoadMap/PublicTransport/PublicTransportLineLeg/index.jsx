@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PublicTransportRoadMapItem from '../PublicTransportRoadMapItem';
-import RoadMapIcon from '../../RoadMapIcon';
+import DefaultRoadMapIcon from '../../Default/DefaultRoadMapIcon';
 import PublicTransportLine from '../../../../../PublicTransportLine';
-import LegLine from '../../LegLine';
+import DefaultLegLine from '../../Default/DefaultLegLine';
 import cx from 'classnames';
 import { getTransportTypeIcon, formatDuration } from 'src/libs/route_utils';
 import { Chevron } from 'src/components/ui';
@@ -16,13 +16,13 @@ const PublicTransportLineLeg = ({ leg }) => {
 
   return (
     <PublicTransportRoadMapItem
-      icon={<RoadMapIcon iconClass={getTransportTypeIcon(leg)} />}
+      icon={<DefaultRoadMapIcon iconClass={getTransportTypeIcon(leg)} />}
       className={cx(
         'itinerary_roadmap_item--transportLine',
         stops?.length === 0 && 'itinerary_roadmap_item--no-hover'
       )}
       type="TRANSPORT_LINE"
-      line={<LegLine info={info} mode={mode} />}
+      line={<DefaultLegLine info={info} mode={mode} />}
     >
       <div className="itinerary_roadmap_item_summary" onClick={() => setDetailsOpen(!detailsOpen)}>
         <div>
