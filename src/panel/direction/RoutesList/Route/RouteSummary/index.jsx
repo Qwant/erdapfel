@@ -19,6 +19,7 @@ const RouteSummary = ({
   const onClickDetails = event => {
     event.stopPropagation();
     toggleDetails(id);
+    event.currentTarget.blur();
   };
 
   return (
