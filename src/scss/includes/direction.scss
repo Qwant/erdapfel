@@ -31,10 +31,6 @@
   display: inline-block;
 }
 
-.itinerary_result {
-  overflow: auto;
-}
-
 .itinerary_leg {
   &--active .itinerary_leg_summary {
     &:before {
@@ -66,6 +62,7 @@
 .itinerary_leg_detailsBtn {
   align-self: flex-end;
   flex-shrink: 0;
+  border: 1px solid var(--grey-900) !important;
 }
 
 .itinerary_leg_via {
@@ -104,7 +101,7 @@
     transform: translateX(-17px) translateY(-17px);
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--green-500);
   }
 }
 

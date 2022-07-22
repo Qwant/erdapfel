@@ -65,7 +65,7 @@ const PlaceIcon: React.FunctionComponent<PlaceIconProps> = ({
       className={classnames(`placeIcon icon icon-${iconClass}`, className)}
       style={{
         color,
-        backgroundColor: withBackground ? getLightBackground(color) : null,
+        ...(withBackground ? { backgroundColor: getLightBackground(color) } : {}),
       }}
     />
   );

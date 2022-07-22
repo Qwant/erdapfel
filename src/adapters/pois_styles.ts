@@ -1,6 +1,7 @@
 import { ACTION_BLUE_BASE, RED_DARKER, GREY_BLACK } from 'src/libs/colors';
+import { FilterOptions, Map } from 'mapbox-gl';
 
-export const getFilteredPoisPinStyle = () => ({
+export const FILTERED_POIS_PIN_STYLES = {
   type: 'symbol',
   layout: {
     'icon-image': ['concat', 'pin-', ['get', 'iconName']],
@@ -19,9 +20,9 @@ export const getFilteredPoisPinStyle = () => ({
       1,
     ],
   },
-});
+};
 
-export const getFilteredPoisLabelStyle = () => ({
+export const FILTERED_POIS_LABEL_STYLES = {
   type: 'symbol',
   layout: {
     'text-font': ['Noto Sans Bold'],
@@ -40,16 +41,37 @@ export const getFilteredPoisLabelStyle = () => ({
     'text-halo-width': 1,
     'text-translate': [0, -2],
   },
-});
+};
 
-export const setPoiHoverStyle = (map: any, poiLayer: any) => {
+type SetPaintPropertyValue<T> = T | Array<SetPaintPropertyValue<T>>;
+
+export const setPoiHoverStyle = (
+  map: Map & {
+    /* TODO: Remove this patch
+      PR on DefinetelyTyped
+      URL: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/61382
+    */
+    setPaintProperty(
+      layer: string,
+      name: string,
+      value: SetPaintPropertyValue<string>,
+      options?: FilterOptions
+    ): Map;
+  },
+  layer: string
+) => {
   if (!map.getPaintProperty) {
     // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
     return;
   }
-  const textColorProperty = map.getPaintProperty(poiLayer, 'text-color');
+
+  const textColorProperty: SetPaintPropertyValue<string> = map.getPaintProperty(
+    layer,
+    'text-color'
+  );
+
   map.setPaintProperty(
-    poiLayer,
+    layer,
     'text-color',
     ['case', ['to-boolean', ['feature-state', 'hover']], ACTION_BLUE_BASE, textColorProperty],
     { validate: false }

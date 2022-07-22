@@ -5,7 +5,7 @@ import Telemetry from 'src/libs/telemetry';
 import { toUrl } from 'src/libs/pois';
 import { fire, listen } from 'src/libs/customEvents';
 import { poiToGeoJSON, emptyFeatureCollection } from 'src/libs/geojson';
-import { getFilteredPoisPinStyle, getFilteredPoisLabelStyle } from 'src/adapters/pois_styles';
+import { FILTERED_POIS_PIN_STYLES, FILTERED_POIS_LABEL_STYLES } from 'src/adapters/pois_styles';
 import { isMobileDevice } from 'src/libs/device';
 import { createMapGLIcon, createPinIcon } from 'src/adapters/icon_manager';
 import IconManager from 'src/adapters/icon_manager';
@@ -69,7 +69,7 @@ export default class SceneCategory {
     if (mapStyleConfig.showNamesWithPins) {
       const labelLayerId = `${this.sourceName}_labels`;
       this.map.addLayer({
-        ...getFilteredPoisLabelStyle(),
+        ...FILTERED_POIS_LABEL_STYLES,
         source: this.sourceName,
         id: labelLayerId,
       });
@@ -78,7 +78,7 @@ export default class SceneCategory {
 
     const pinLayerId = `${this.sourceName}_pins`;
     this.map.addLayer({
-      ...getFilteredPoisPinStyle(),
+      ...FILTERED_POIS_PIN_STYLES,
       source: this.sourceName,
       id: pinLayerId,
     });

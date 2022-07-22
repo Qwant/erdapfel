@@ -122,6 +122,7 @@
     "@turf/length": "^6.0.2",
     "@turf/line-slice-along": "^5.1.5",
     "@turf/meta": "^6.0.2",
+    "@types/color": "^3.0.3",
     "alt-route-labeller": "^0.3.1",
     "axios": "^0.21.2",
     "bunyan": "^1.8.12",

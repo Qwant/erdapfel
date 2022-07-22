@@ -1,7 +1,8 @@
 import Poi from './poi';
+import type { LngLat } from 'mapbox-gl';
 
 export default class LatLonPoi extends Poi {
-  constructor(lnglat: any, label: string) {
+  constructor(lnglat: LngLat, label: string) {
     if (typeof lnglat.wrap === 'function') {
       // mapbox-gl LngLat provides a wrap() method to wrap longitude values.
       // These values are out of bounds for points on world copies

@@ -1308,7 +1308,7 @@ msgstr ""
 msgid "We couldn't find any itinerary, we are really sorry."
 msgstr "Lo sentimos mucho, pero no hemos podido encontrar ningún itinerario."
 
-msgid "Results in partnership with Hove"
+msgid "Powered by Hove"
 msgstr "Resultados en colaboración con Hove"
 
 msgid "Via"

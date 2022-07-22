@@ -6,12 +6,14 @@ export type VehicleSelectorButtonProps = {
   vehicle: 'driving' | 'walking' | 'cycling' | 'publicTransport';
   isActive: boolean;
   onClick: React.HTMLProps<HTMLButtonElement>['onClick'];
+  title: string;
 };
 
 const VehicleSelectorButton: React.FunctionComponent<VehicleSelectorButtonProps> = ({
   vehicle,
   isActive,
   onClick,
+  title = '',
 }) => {
   return (
     <button
@@ -19,7 +21,7 @@ const VehicleSelectorButton: React.FunctionComponent<VehicleSelectorButtonProps>
       data-testid={`vehicleSelector-button-${vehicle}`}
       className={cx('vehicleSelector-button', isActive && 'vehicleSelector-button--active')}
       onClick={onClick}
-      title={vehicle}
+      title={title}
       role="radio"
       aria-label={vehicle}
       aria-checked={isActive}

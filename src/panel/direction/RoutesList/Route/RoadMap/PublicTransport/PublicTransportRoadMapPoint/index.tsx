@@ -13,7 +13,7 @@ const PublicTransportRoadMapPoint: React.FunctionComponent<PublicTransportRoadMa
 }) => {
   return (
     <>
-      <Flex column>
+      <Flex className="u-as-center" column>
         {title && (
           <Text typo="body-2" bold>
             {title}

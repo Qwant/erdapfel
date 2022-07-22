@@ -1314,7 +1314,7 @@ msgstr "Das Qwant Dienst ist derzeit nicht verfügbar, bitte versuche später."
 msgid "We couldn't find any itinerary, we are really sorry."
 msgstr "Tut uns leid, wir konnten keine Route finden."
 
-msgid "Results in partnership with Hove"
+msgid "Powered by Hove"
 msgstr "Ergebnisse in Partnerschaft mit Hove"
 
 msgid "Via"

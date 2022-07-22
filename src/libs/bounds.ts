@@ -1,7 +1,7 @@
 import { LngLatBounds } from 'mapbox-gl';
 
-export const boundsFromFlatArray = (coords = []) => {
-  if (coords.length !== 4 || coords.some(coord => typeof coord !== 'number' || isNaN(coord))) {
+export const boundsFromFlatArray = (coords?: number[]): [[number, number], [number, number]] => {
+  if (coords?.length !== 4 || coords?.some(coord => typeof coord !== 'number' || isNaN(coord))) {
     throw new Error(`Malformed bounds array: ${JSON.stringify(coords)}`);
   }
   return [
@@ -10,8 +10,11 @@ export const boundsFromFlatArray = (coords = []) => {
   ];
 };
 
-export const parseBboxString = bboxString =>
-  boundsFromFlatArray(bboxString.split(',').map(coord => Number(coord)));
+export const parseBboxString = (bboxStr: string) => {
+  const portions = bboxStr?.split(',');
+  const numberedPortions = portions?.map(i => parseFloat(i));
+  return boundsFromFlatArray(numberedPortions);
+};
 
 export const boundsToString = (llBounds: LngLatBounds) =>
   llBounds

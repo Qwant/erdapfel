@@ -1275,8 +1275,8 @@ msgstr ""
 msgid "We couldn't find any itinerary, we are really sorry."
 msgstr ""
 
-msgid "Results in partnership with Hove"
-msgstr ""
+msgid "Powered by Hove"
+msgstr "Powered by Hove"
 
 msgid "Via"
 msgstr ""

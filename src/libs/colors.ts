@@ -1,7 +1,6 @@
 import Color from 'color';
 
-// Compute a light, non-transparent background color based on an icon's color
-export const getLightBackground = color => Color(color).mix(Color('white'), 0.85).hex();
+export const getLightBackground = (color: string) => Color(color).mix(Color('white'), 0.85).hex();
 
 export const ACTION_BLUE_BASE = '#1a6aff';
 export const PINK_DARK = '#cd1690';

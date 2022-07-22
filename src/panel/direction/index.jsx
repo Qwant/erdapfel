@@ -43,10 +43,12 @@ class DirectionPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.vehicles = [modes.DRIVING, modes.WALKING, modes.CYCLING];
-    if (this.props.isPublicTransportActive) {
-      this.vehicles.splice(1, 0, modes.PUBLIC_TRANSPORT);
-    }
+    this.vehicles = [
+      modes.DRIVING,
+      ...(this.props.isPublicTransportActive ? [modes.PUBLIC_TRANSPORT] : []),
+      modes.WALKING,
+      modes.CYCLING,
+    ];
 
     const activeVehicle = props.mode || props.defaultVehicle;
 
