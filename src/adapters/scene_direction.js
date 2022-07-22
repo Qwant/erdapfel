@@ -1,6 +1,6 @@
 import React from 'react';
 import RouteLabel from 'src/panel/direction/RouteLabel';
-import { Marker, LngLatBounds } from 'mapbox-gl';
+import { Marker, LngLatBounds } from 'mapbox-gl--ENV';
 import bbox from '@turf/bbox';
 import { normalizeToFeatureCollection } from 'src/libs/geojson';
 import { map } from '../../config/constants.yml';
