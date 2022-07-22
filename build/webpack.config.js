@@ -85,7 +85,7 @@ const mainJsChunkConfig = buildMode => {
     plugins: [
       new webpack.NormalModuleReplacementPlugin(/'mapbox-gl'/, function (resource) {
         if (buildMode === 'test') {
-          resource.request = resource.request.replace('mapbox-gl-js-mock');
+          resource.request = resource.request.replace("'mapbox-gl-js-mock'");
         }
       }),
     ],
