@@ -376,7 +376,7 @@ const Suggest = ({
         onBlur: () => {
           // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
           if (!window.mouseLeave) {
-            setHasFocus(false, 150);
+            setHasFocus(false, isMobile ? 300 : 150);
           }
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
