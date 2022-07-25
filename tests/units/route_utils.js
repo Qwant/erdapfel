@@ -7,7 +7,7 @@ describe('route_utils', () => {
       { seconds: 0, result: '1 min' },
       { seconds: 37, result: '1 min' },
       { seconds: 125, result: '2 min' },
-      { seconds: 3600, result: '1 h' },
+      { seconds: 3600, result: '1 h 00' },
       { seconds: 5100, result: '1 h 25' },
       { seconds: 36000, result: '10 h' },
     ];

@@ -13,8 +13,8 @@ export function formatDuration(sec) {
   const hour = Math.floor(min / 60);
   min = min - 60 * hour;
   let ret = `${hour} h`;
-  if (min > 0 && hour < 10) {
-    ret += ` ${min < 10 ? '0' : ''}${min}`;
+  if (hour < 10) {
+    ret += ' ' + min.toString().padStart(2, '0');
   }
   return ret;
 }
