@@ -21,6 +21,10 @@
   margin: 0 $spacing-xl-2;
 }
 
+.modal__maps {
+  text-align: center;
+}
+
 .modal__maps__pending {
   padding: 272px 0 20px;
   background: url('../../images/backgrounds/geolocation_modal.svg') no-repeat center 12px;
@@ -58,6 +62,10 @@
   height: 1px;
   border-top: solid 1px $separator_color;
   margin: 16px 0;
+}
+
+.modal.geolocationModal {
+  text-align: center;
 }
 
 @media (max-height: 450px) {
