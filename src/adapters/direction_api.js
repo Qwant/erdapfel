@@ -48,18 +48,20 @@ const modeToProfile = {
 };
 
 export default class DirectionApi {
-  static async search(start, end, mode) {
+  static async search(start, end, mode, startAt, arriveBy) {
     if (mode === modes.CYCLING) {
       // Fetch routes without ferry in priority
-      const firstSearch = await DirectionApi._search(start, end, mode, { exclude: 'ferry' });
+      const firstSearch = await DirectionApi._search(start, end, mode, null, null, {
+        exclude: 'ferry',
+      });
       if (firstSearch.data && firstSearch.data.routes && firstSearch.data.routes.length > 0) {
         return firstSearch;
       }
     }
-    return DirectionApi._search(start, end, mode);
+    return DirectionApi._search(start, end, mode, startAt, arriveBy);
   }
 
-  static async _search(start, end, mode, { exclude = '' } = {}) {
+  static async _search(start, end, mode, startAt, arriveBy, { exclude = '' } = {}) {
     const apiProfile = modeToProfile[mode];
     let directionsUrl = directionConfig.apiBaseUrl;
     const userLang = window.getLang();
@@ -92,6 +94,8 @@ export default class DirectionApi {
     }
     const s_start = poiToMapBoxCoordinates(start);
     const s_end = poiToMapBoxCoordinates(end);
+    if (startAt) directionsParams.depart_at = startAt;
+    if (arriveBy) directionsParams.arrive_by = arriveBy;
     directionsUrl = `${directionsUrl}${s_start};${s_end}`;
     let response = null;
     try {
