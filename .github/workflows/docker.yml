@@ -1,3 +1,5 @@
+name: Qwant Maps - Docker image
+
 on:
   push:
     branches:
@@ -9,7 +11,7 @@ env:
   DOCKER_IMAGE_BASENAME: qwantresearch/erdapfel
 
 jobs:
-  build_docker:
+  BuildDockerImage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,5 +34,5 @@ jobs:
 
       - run: docker build --label "org.label-schema.vcs-ref=$GITHUB_SHA" -t $DOCKER_IMAGE .
 
-      - if:  github.event_name == 'push'
+      - if: github.event_name == 'push'
         run: docker push $DOCKER_IMAGE

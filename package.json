@@ -28,7 +28,7 @@
     "prettier:write": "prettier --write '{src,bin,build,tests}/**/*.{js,jsx,ts,tsx}'",
     "analyze": "webpack --config build/webpack.config.js --mode=production --profile --json > stats.json && webpack-bundle-analyzer stats.json public/build/javascript",
     "ts:coverage": "typescript-coverage-report",
-    "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm",
+    "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm --md",
     "ts:codegen-idunn": "node build/generateIdunnTypes.mjs && eslint --fix @types/idunn.ts",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",

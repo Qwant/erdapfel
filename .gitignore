@@ -18,6 +18,7 @@ public/message
 
 # Code coverage
 coverage-ts/
+coverage/
 
 # Static Storybook Build
 storybook-static/
