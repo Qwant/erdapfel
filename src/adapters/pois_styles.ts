@@ -1,5 +1,5 @@
 import { ACTION_BLUE_BASE, RED_DARKER, GREY_BLACK } from 'src/libs/colors';
-import { FilterOptions, Map } from 'mapbox-gl';
+import { Map } from 'mapbox-gl';
 
 export const FILTERED_POIS_PIN_STYLES = {
   type: 'symbol',
@@ -45,21 +45,7 @@ export const FILTERED_POIS_LABEL_STYLES = {
 
 type SetPaintPropertyValue<T> = T | Array<SetPaintPropertyValue<T>>;
 
-export const setPoiHoverStyle = (
-  map: Map & {
-    /* TODO: Remove this patch
-      PR on DefinetelyTyped
-      URL: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/61382
-    */
-    setPaintProperty(
-      layer: string,
-      name: string,
-      value: SetPaintPropertyValue<string>,
-      options?: FilterOptions
-    ): Map;
-  },
-  layer: string
-) => {
+export const setPoiHoverStyle = (map: Map, layer: string) => {
   if (!map.getPaintProperty) {
     // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
     return;
