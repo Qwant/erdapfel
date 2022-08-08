@@ -1343,6 +1343,9 @@ msgstr "Torna indietro"
 msgid "{modifier} on {name}"
 msgstr "{modifier} su {name}"
 
+msgid "{modifier} on {length} m"
+msgstr "{modifier} su {length} m"
+
 msgid "Walk on {walkDistance}"
 msgstr "Cammina per {walkDistance}"
 

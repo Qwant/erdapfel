@@ -101,7 +101,10 @@ export const walkingManeuver = maneuver => {
   const context = {
     modifier: stringifyModifier[maneuver.modifier],
     name: maneuver.detail.name,
+    length: maneuver.detail.length,
   };
 
-  return maneuver.detail.name ? _('{modifier} on {name}', 'direction', context) : context.modifier;
+  return maneuver.detail.name
+    ? _('{modifier} on {name}', 'direction', context)
+    : _('{modifier} on {length} m', 'direction', context);
 };

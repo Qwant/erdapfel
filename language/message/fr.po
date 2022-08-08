@@ -1336,6 +1336,9 @@ msgstr "Faites demi tour"
 msgid "{modifier} on {name}"
 msgstr "{modifier} sur {name}"
 
+msgid "{modifier} on {length} m"
+msgstr "{modifier} sur {length} m"
+
 msgid "Walk on {walkDistance}"
 msgstr "Marchez sur {walkDistance}"
 
