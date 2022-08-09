@@ -1340,6 +1340,12 @@ msgstr "Volver"
 msgid "{modifier} on {name}"
 msgstr "{modifier} en la {name}"
 
+msgid "{modifier} in {length} m"
+msgstr "{modifier} en {length} m"
+
+msgid "{modifier} during {length} m"
+msgstr "{modifier} durante {length} m"
+
 msgid "Walk on {walkDistance}"
 msgstr "Camina {walkDistance}"
 
