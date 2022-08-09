@@ -106,5 +106,9 @@ export const walkingManeuver = maneuver => {
 
   return maneuver.detail.name
     ? _('{modifier} on {name}', 'direction', context)
-    : _('{modifier} on {length} m', 'direction', context);
+    : maneuver.modifier === 'straight' ||
+      maneuver.modifier === 'slight right' ||
+      maneuver.modifier === 'slight left'
+    ? _('{modifier} during {length} m', 'direction', context)
+    : _('{modifier} in {length} m', 'direction', context);
 };
