@@ -3,6 +3,10 @@
   /* core styles should not be changed */
   cursor: default;
   padding-bottom: 12px;
+  
+  li:first-child {
+    margin-top: 8px;
+  }
 
 
   &--empty {

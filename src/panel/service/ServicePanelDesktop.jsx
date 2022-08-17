@@ -10,7 +10,7 @@ const ServicePanelDesktop = () => {
 
   return (
     <Fragment>
-      <Panel className="service_panel u-mb-xs">
+      <Panel className="service_panel u-mb-m">
         <h3 className="u-text--smallTitle u-mb-s">
           {_('Search around this place', 'service panel')}
         </h3>
