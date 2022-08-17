@@ -136,7 +136,7 @@
   display: flex;
   justify-content: center;
   flex-shrink: 0;
-  width: 60px;
+  width: 78px;
   z-index: 1;
 }
 
@@ -238,7 +238,7 @@
 }
 
 .itinerary_roadmap_step_description {
-  padding: 10px 0;
+  padding: 10px 14px 10px 0;
   flex-grow: 1;
 
   &--reverse {
