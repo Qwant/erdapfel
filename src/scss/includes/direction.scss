@@ -303,7 +303,7 @@
 
 .itinerary_roadmap_line {
   position: absolute;
-  width: 7px;
+  width: 6px;
   top: 0;
   border-radius: 3px;
   z-index: 1;
@@ -312,7 +312,7 @@
   &--walk {
     top: -5px;
     background: url(../../images/direction_icons/walking_bullet_roadmap.png) repeat space;
-    background-size: 7px 10px;
+    background-size: 6px 10px;
     height: calc(100% + 15px);
   }
 
