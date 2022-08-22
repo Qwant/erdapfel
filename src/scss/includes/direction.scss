@@ -203,7 +203,6 @@
     .itinerary_roadmap_item_icon {
       align-self: center;
       justify-content: center;
-      opacity: 0.5;
     }
 
     &--walk {
@@ -226,6 +225,10 @@
 
     .itinerary_roadmap_step_description {
       padding: var(--spacing-s) var(--spacing-s) var(--spacing-s) 0;
+    }
+
+    .itinerary_roadmap_step_deistance {
+      color: #4b5058;
     }
 
     .itinerary_roadmap_item_icon {
