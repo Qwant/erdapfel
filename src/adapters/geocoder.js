@@ -71,7 +71,7 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
     }
     suggestsPromise = ajax.get(geocoderUrl, query);
     suggestsPromise
-      .then(({ features, intention }) => {
+      .then(({ features, intentions }) => {
         const pois = features.map((feature, index) => {
           const queryContext = new QueryContext(
             term,
@@ -82,11 +82,10 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
           return new BragiPoi(feature, queryContext);
         });
         const bragiResponse = { pois };
-        if (intention) {
-          const parsed = new Intention(intention);
-          if (parsed.isValid()) {
-            bragiResponse.intentions = [parsed];
-          }
+        if (intentions) {
+          bragiResponse.intentions = intentions
+            .map(intention => new Intention(intention))
+            .filter(intention => intention.isValid());
         }
         bragiCache[cacheKey] = bragiResponse;
         resolve(bragiResponse);
