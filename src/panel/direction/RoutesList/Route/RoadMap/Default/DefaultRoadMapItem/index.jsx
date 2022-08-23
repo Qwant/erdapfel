@@ -11,7 +11,7 @@ const DefaultRoadMapItem = ({ children, icon, distance, className, line, alignTo
         <div className="itinerary_roadmap_item_icon">{icon}</div>
         <div className="itinerary_roadmap_step_description">
           <span className="itinerary_roadmap_instruction u-text--smallTitle">{children}</span>
-          <div className="u-text--subtitle">{distance}</div>
+          <div className="u-text--subtitle itinerary_roadmap_step_deistance">{distance}</div>
         </div>
       </Flex>
     </div>

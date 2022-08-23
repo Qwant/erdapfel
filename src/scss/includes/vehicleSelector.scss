@@ -1,7 +1,7 @@
 .vehicleSelector {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-s);
 
   @media (min-width: 641px) {
     justify-content: flex-start;

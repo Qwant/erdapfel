@@ -8,6 +8,7 @@
   .direction-input {
     position: relative;
     display: flex;
+
     // reverse to handle icon active style with css
     flex-direction: row-reverse;
     transition: box-shadow 0.3s ease-in-out;
@@ -41,7 +42,7 @@
           top: var(--spacing-m);
           display: flex;
           align-items: center;
-          height: 50px;
+          height: 47px;
           width: 24px;
         }
 

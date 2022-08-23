@@ -136,7 +136,7 @@
   display: flex;
   justify-content: center;
   flex-shrink: 0;
-  width: 60px;
+  width: 78px;
   z-index: 1;
 }
 
@@ -198,12 +198,11 @@
       &:before {
         @include active-border;
       }
-    }
+    } 
 
     .itinerary_roadmap_item_icon {
       align-self: center;
       justify-content: center;
-      opacity: 0.5;
     }
 
     &--walk {
@@ -228,6 +227,10 @@
       padding: var(--spacing-s) var(--spacing-s) var(--spacing-s) 0;
     }
 
+    .itinerary_roadmap_step_deistance {
+      color: #4b5058;
+    }
+
     .itinerary_roadmap_item_icon {
       align-self: flex-start !important;
       justify-content: flex-end !important;
@@ -238,7 +241,7 @@
 }
 
 .itinerary_roadmap_step_description {
-  padding: 10px 0;
+  padding: 10px 14px 10px 0;
   flex-grow: 1;
 
   &--reverse {
@@ -303,7 +306,7 @@
 
 .itinerary_roadmap_line {
   position: absolute;
-  width: 7px;
+  width: 6px;
   top: 0;
   border-radius: 3px;
   z-index: 1;
@@ -312,7 +315,7 @@
   &--walk {
     top: -5px;
     background: url(../../images/direction_icons/walking_bullet_roadmap.png) repeat space;
-    background-size: 7px 10px;
+    background-size: 6px 10px;
     height: calc(100% + 15px);
   }
 

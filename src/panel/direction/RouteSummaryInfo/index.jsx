@@ -22,7 +22,7 @@ const RouteWalkingTime = ({ route }) => {
 
 const RouteSummaryInfo = ({ isFastest, route, vehicle }) => (
   <div>
-    <div className="u-text--title u-mb-xxxs route-summary-info-duration">
+    <div className="u-text--title route-summary-info-duration">
       {formatDuration(route.duration)}
     </div>
 
@@ -30,10 +30,10 @@ const RouteSummaryInfo = ({ isFastest, route, vehicle }) => (
       <RouteStartEndTimes className="u-mb-xs" start={route.start_time} end={route.end_time} />
     )}
 
-    <RouteVia className="u-mb-xs" route={route} vehicle={vehicle} />
+    <RouteVia className="u-mb-xxs" route={route} vehicle={vehicle} />
 
     {vehicle !== 'publicTransport' && (
-      <Badge className="u-mr-xs">{formatDistance(route.distance)}</Badge>
+      <Badge className="u-mr-s">{formatDistance(route.distance)}</Badge>
     )}
 
     {vehicle === 'publicTransport' && <RouteWalkingTime route={route} />}

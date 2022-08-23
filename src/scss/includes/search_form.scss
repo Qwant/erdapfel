@@ -66,7 +66,7 @@ input[type='search'] {
   flex-shrink: 0;
   background: url(../../images/qwant-logo.svg) no-repeat;
   background-size: cover;
-  margin: 0 var(--spacing-s) 0 var(--spacing-xs);
+  margin: 0 var(--spacing-m) 0 var(--spacing-xs);
 }
 
 // Return arrows
@@ -102,6 +102,11 @@ input[type='search'] {
   height: $spacing-xxl-4;
   flex-shrink: 0;
   cursor: pointer;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 
   .directions_arrow_svg__background {
     fill: var(--grey-000);

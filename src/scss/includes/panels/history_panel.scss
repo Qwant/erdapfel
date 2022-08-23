@@ -12,7 +12,7 @@
   }
 
   .panel-header {
-    padding: 20px 14px 4px;
+    padding: 20px 14px 0;
   }
 }
 
@@ -82,7 +82,8 @@
 
 .history-list-title {
   margin-bottom: 22px;
-  padding: 0 14px;
+  padding: 0 14px 8px;
+  border-bottom: 1px solid #e9eaec;
 }
 
 .history_panel_switch_line {

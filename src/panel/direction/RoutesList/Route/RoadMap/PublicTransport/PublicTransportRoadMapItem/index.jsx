@@ -19,7 +19,11 @@ const PublicTransportRoadMapItem = ({
         <div className="itinerary_roadmap_item_icon">{icon}</div>
         <div className="itinerary_roadmap_step_description">
           <Text typo="body-2">{children}</Text>
-          {type === 'WALK' && <Text typo="caption-1">{distance}</Text>}
+          {type === 'WALK' && (
+            <Text typo="caption-1" className="itinerary_roadmap_step_deistance">
+              {distance}
+            </Text>
+          )}
         </div>
       </Flex>
     </div>

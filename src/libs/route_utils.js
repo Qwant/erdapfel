@@ -14,7 +14,7 @@ export function formatDuration(sec) {
   min = min - 60 * hour;
   let ret = `${hour} h`;
   if (hour < 10) {
-    ret += ' ' + min.toString().padStart(2, '0');
+    ret += ' ' + min.toString().padStart(2, '0') + ' min';
   }
   return ret;
 }
