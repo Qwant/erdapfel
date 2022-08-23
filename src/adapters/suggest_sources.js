@@ -77,6 +77,11 @@ export function suggestResults(
           }
         }
 
+        // Maximum 1 intention or category in the suggest list
+        if (intentionsOrCategories.length > 1) {
+          intentionsOrCategories.length = 1;
+        }
+
         const suggestList = [
           ...historyItems,
           ...favoriteItems,
