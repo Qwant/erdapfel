@@ -72,8 +72,8 @@ jobs:
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npm run deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
-          echo "- ## 🎨 Storybook
-          echo "- ✅ Successfully deployed to https://qwant.github.io/erdapfel/ 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "- ## 🎨 Storybook"
+          echo "- ✅ Successfully deployed to [https://qwant.github.io/erdapfel/](https://qwant.github.io/erdapfel/) 🚀" >> $GITHUB_STEP_SUMMARY
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
