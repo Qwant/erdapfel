@@ -63,7 +63,7 @@
       }
     },
     {
-      "files": ["bin/**/*.js", "build/**/*.js"],
+      "files": ["bin/**/*.js", "build/**/*.js", "tests/**/*.js"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }

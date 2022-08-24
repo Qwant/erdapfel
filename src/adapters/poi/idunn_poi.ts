@@ -1,4 +1,4 @@
-import Poi from './poi';
+import Poi, { TPoi } from './poi';
 import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
 import Error from '../../adapters/error';
@@ -30,16 +30,9 @@ export default class IdunnPoi extends Poi {
     const latLng = {
       lat: (rawPoi?.geometry?.coordinates as number[])[1],
       lng: (rawPoi?.geometry?.coordinates as number[])[0],
-    };
+    } as TPoi['latLon'];
 
-    super(
-      rawPoi.id,
-      rawPoi.name,
-      rawPoi.type,
-      latLng as any, // TODO: Check why lat/lng and not lat/lon
-      rawPoi.class_name,
-      rawPoi.subclass_name
-    );
+    super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name);
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
     this.bbox = rawPoi?.geometry?.bbox as [number, number, number, number]; // TODO: Check if there is always a bbox on Idunn Place

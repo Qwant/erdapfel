@@ -1,16 +1,19 @@
-name: Erdapfel CI
+name: Qwant Maps - CI
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-18.04
 
     steps:
+      - name: Init summary markown
+        run: echo '# 🗺 Qwant Maps - Build summary' >> $GITHUB_STEP_SUMMARY
+
       - name: Install system dependencies
         run: |
           sudo apt-get update 
-          sudo apt-get install -yq libstdc++6 gettext
+          sudo apt-get install -yq libstdc++6 gettext jq
 
       - uses: actions/checkout@v2
 
@@ -24,25 +27,53 @@ jobs:
           npm install -g npm@8.5.0
           npm ci
 
-      - name: Build
-        run: TEST=true npm run build -- --mode=production
+      - name: Run build
+        run: |
+          TEST=true npm run build -- --mode=production
+          echo "- ## 🤖 Project build" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Success" >> $GITHUB_STEP_SUMMARY
 
-      - name: Run coverage
-        run: npm run ts:coverage
+      - name: Run ESLint
+        run: |
+          npm run lint 
+          echo "- ## 🤖 ESLint" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Success" >> $GITHUB_STEP_SUMMARY
 
-      - name: Run ts/js files count
-        run: npm run ts:count
+      - name: Run TypeScript migration files count
+        run: |
+          echo "- ## 🤖 TypeScript migration" >> $GITHUB_STEP_SUMMARY
+          npm run ts:count >> $GITHUB_STEP_SUMMARY
 
-      - name: Run linter
-        run: npm run lint
+      - name: Run TypeScript coverage
+        id: tscov
+        run: |
+          echo "- ## 🤖 TypeScript coverage" >> $GITHUB_STEP_SUMMARY
+          npm run ts:coverage
+          echo "📊 Total coverage: $(cat coverage-ts/typescript-coverage.json | jq '.percentage')% - Details: $(cat coverage-ts/typescript-coverage.json | jq '.covered')/$(cat coverage-ts/typescript-coverage.json | jq '.total') lines covered" >> $GITHUB_STEP_SUMMARY
 
-      - name: Run tests
-        run: npm run test
+      - name: Run unit tests
+        run: |
+          npm run unit-test
+          echo "- ## 🤖 Unit tests" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Success" >> $GITHUB_STEP_SUMMARY
+          echo "📊 Lines coverage: $(cat coverage/coverage-summary.json | jq '.total.lines.pct')% - Details: $(cat coverage/coverage-summary.json | jq '.total.lines.covered')/$(cat coverage/coverage-summary.json | jq '.total.lines.total') lines covered" >> $GITHUB_STEP_SUMMARY
+          echo "📊 Statements coverage: $(cat coverage/coverage-summary.json | jq '.total.statements.pct')% - Details: $(cat coverage/coverage-summary.json | jq '.total.statements.covered')/$(cat coverage/coverage-summary.json | jq '.total.statements.total') statements covered" >> $GITHUB_STEP_SUMMARY
+          echo "📊 Functions coverage: $(cat coverage/coverage-summary.json | jq '.total.functions.pct')% - Details: $(cat coverage/coverage-summary.json | jq '.total.functions.covered')/$(cat coverage/coverage-summary.json | jq '.total.functions.total') functions covered" >> $GITHUB_STEP_SUMMARY
+          echo "📊 Branches coverage: $(cat coverage/coverage-summary.json | jq '.total.branches.pct')% - Details: $(cat coverage/coverage-summary.json | jq '.total.branches.covered')/$(cat coverage/coverage-summary.json | jq '.total.branches.total') branches covered" >> $GITHUB_STEP_SUMMARY
+
+      - name: Run integration tests
+        run: |
+          npm run integration-test
+          echo "- ## 🤖 Integration tests" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Success" >> $GITHUB_STEP_SUMMARY
 
       - name: Deploy Storybook
         if: "contains(github.ref_name, 'master')"
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npm run deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
+          echo "- ## 🎨 Storybook
+          echo "- ✅ [Successfully deployed](https://qwant.github.io/erdapfel/) 🚀" >> $GITHUB_STEP_SUMMARY
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
