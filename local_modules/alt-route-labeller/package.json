@@ -1,0 +1,43 @@
+{
+  "name": "alt-route-labeller",
+  "version": "0.3.1",
+  "description": "A library to compute the best position to put labels on multiple routes between two points",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "map",
+    "routes",
+    "directions",
+    "itineraries",
+    "ux",
+    "labels"
+  ],
+  "author": "Benjamin Becquet (benjamin@bbecquet.net)",
+  "license": "ISC",
+  "dependencies": {
+    "@turf/along": "^6.0.1",
+    "@turf/bearing": "^6.0.1",
+    "@turf/distance": "^6.0.1",
+    "@turf/helpers": "^6.1.4",
+    "@turf/invariant": "^6.1.2",
+    "@turf/length": "^6.0.2",
+    "@turf/meta": "^6.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "rollup": "^2.35.1",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bbecquet/alt-route-labeller"
+  }
+}
