@@ -1,3 +1,8 @@
+// Alt-route-labeller
+// Original author: Benjamin Becquet
+// Forked from: https://www.npmjs.com/package/alt-route-labeller
+// Altered distinctSegment() to ensure the filtered array passed to lineString() has at least 2 items
+
 import { coordAll } from '@turf/meta';
 import { lineString } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
