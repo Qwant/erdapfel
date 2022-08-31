@@ -10,7 +10,7 @@ $input-height: 48px;
   align-items: center;
   background: var(--green-400) !important;
   border: 1px solid var(--grey-900-alpha16);
-  border-radius: var(--spacing-xs)
+  border-radius: 0 0 var(--spacing-xs) var(--spacing-xs);
 }
 
 // Wrapper around the field and some icons, gets a colored border when the field is focused

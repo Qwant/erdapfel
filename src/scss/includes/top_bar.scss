@@ -21,7 +21,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    border-radius: 0;
+    border-radius: 0 0 var(--spacing-xs) var(--spacing-xs);
     box-shadow: 
       0 2px 16px 0 rgba(12, 12, 14, 0.2),
       0 4px 8px 0 rgba(12, 12, 14, 0.12);
