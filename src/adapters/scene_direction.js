@@ -10,7 +10,7 @@ import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/rout
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 import { fire, listen } from 'src/libs/customEvents';
-import { getLabelPositions } from 'alt-route-labeller';
+import { getLabelPositions } from '/local_modules/alt-route-labeller';
 import { isMobileDevice } from 'src/libs/device';
 import renderStaticReact from 'src/libs/renderStaticReact';
 import cx from 'classnames';
