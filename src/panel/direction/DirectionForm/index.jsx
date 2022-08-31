@@ -97,7 +97,46 @@ const DirectionForm = ({
         </Button>
       </form>
       {activeVehicle === 'publicTransport' && (
-        <div className="poc">
+        <div className="delayed">
+          <select id="delayed_option">
+            <option id="delayed_1">{_('Start now')}</option>
+            <option id="delayed_2">{_('Start at')}</option>
+            <option id="delayed_3">{_('Arrive by')}</option>
+          </select>
+          <select id="delayed_hour">
+            <option id="hour_1">0:00</option>
+            <option id="hour_2">0:30</option>
+            <option id="hour_3">1:00</option>
+            <option id="hour_4">1:30</option>
+            <option id="hour_5">2:00</option>
+            <option id="hour_6">2:30</option>
+            <option id="hour_7">3:00</option>
+            <option id="hour_8">3:30</option>
+            <option id="hour_9">4:00</option>
+            <option id="hour_10">4:30</option>
+            <option id="hour_11">5:00</option>
+            <option id="hour_12">5:30</option>
+            <option id="hour_13">6:00</option>
+            <option id="hour_14">6:30</option>
+            <option id="hour_15">7:00</option>
+            <option id="hour_16">7:30</option>
+            <option id="hour_17">8:00</option>
+            <option id="hour_18">8:30</option>
+            <option id="hour_19">9:00</option>
+            <option id="hour_20">9:30</option>
+            <option id="hour_21">10:00</option>
+            <option id="hour_22">10:30</option>
+            <option id="hour_23">11:00</option>
+            <option id="hour_24">11:30</option>
+            <option id="hour_25">12:00</option>
+            <option id="hour_26">etc</option>
+          </select>
+
+          <input type="date" id="delayed_date" />
+          <button>OK</button>
+          <br />
+          <br />
+          <br />
           <p>
             Start now <button onClick={onStartNow}>GO</button>
           </p>
