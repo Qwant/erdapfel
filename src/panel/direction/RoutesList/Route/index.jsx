@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import RouteSummary from './RouteSummary';
 import RoadMap from './RoadMap';
 
@@ -14,9 +14,19 @@ const Route = ({
   selectRoute,
   isMobile,
 }) => {
+  const itemRef = React.useRef(null);
+
+  useEffect(() => {
+    if (isActive) {
+      itemRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }, [isActive]);
+
   return (
     <Fragment>
-      <div className={`itinerary_leg ${isActive ? 'itinerary_leg--active' : ''}`}>
+      <div className={`itinerary_leg ${isActive ? 'itinerary_leg--active' : ''}`} ref={itemRef}>
         <RouteSummary
           id={id}
           route={route}
