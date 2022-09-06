@@ -1,6 +1,5 @@
 import PoiStore from './poi/poi_store';
 import { getGeocoderSuggestions } from 'src/adapters/geocoder';
-import CategoryService from './category_service';
 import { getHistoryItems } from 'src/adapters/search_history';
 
 // @TODO: Improvement: don't access directly to window.map
@@ -66,14 +65,11 @@ export function suggestResults(
           return resolve(null);
         }
 
-        const { pois, intentions } = geocoderSuggestions;
+        const { pois, intention } = geocoderSuggestions;
         let intentionsOrCategories = [];
         if (withCategories) {
-          if (!intentions) {
-            // no NLU activated
-            intentionsOrCategories = CategoryService.getMatchingCategories(term);
-          } else {
-            intentionsOrCategories = intentions;
+          if (intention) {
+            intentionsOrCategories = intention;
           }
         }
 
