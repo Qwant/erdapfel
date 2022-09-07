@@ -196,27 +196,6 @@ test('check template', async () => {
   expect(lines[3][1]).toEqualCaseInsensitive("Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France");
 });
 
-test('Retrieve restaurant category when we search "restau"', async () => {
-  const searchQuery = 'restau';
-
-  responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=restau/);
-
-  await page.goto(APP_URL);
-  await autocompleteHelper.typeAndWait(searchQuery);
-
-  const [firstLine, suggestionId] = await page.evaluate(() => {
-    return [
-      document.querySelector(
-        '.autocomplete_suggestion:first-child .autocomplete_suggestion__first_line'
-      ).innerText,
-      document.querySelector('.autocomplete_suggestion:first-child').getAttribute('data-id'),
-    ];
-  });
-
-  expect(firstLine).toEqual('Restaurant');
-  expect(suggestionId).toEqual('category:restaurant');
-});
-
 test('Retrieve no category when we search "barcelona", not even "bar"', async () => {
   const searchQuery = 'barcelona';
 

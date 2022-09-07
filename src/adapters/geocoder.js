@@ -85,7 +85,7 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
         if (intention) {
           const parsed = new Intention(intention);
           if (parsed.isValid()) {
-            bragiResponse.intentions = [parsed];
+            bragiResponse.intention = [parsed];
           }
         }
         bragiCache[cacheKey] = bragiResponse;
