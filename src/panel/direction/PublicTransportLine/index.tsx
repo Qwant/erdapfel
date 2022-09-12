@@ -35,7 +35,6 @@ const PublicTransportLine: React.FunctionComponent<PublicTransportLineProps> = (
   const lineColor = info?.lineColor ? Color('#' + info.lineColor) : Color('white');
   return (
     <>
-      <div className="oval" />
       {mode && (
         <DefaultRoadMapIcon
           className="routePtLine__transport-icon"
