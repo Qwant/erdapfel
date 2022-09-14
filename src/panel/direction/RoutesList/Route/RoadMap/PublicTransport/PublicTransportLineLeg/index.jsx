@@ -26,18 +26,22 @@ const PublicTransportLineLeg = ({ leg }) => {
     >
       <div className="itinerary_roadmap_item_summary" onClick={() => setDetailsOpen(!detailsOpen)}>
         <div>
+          <div className="oval" />
+
+          {from?.name && (
+            <Flex mt="xxxs" mb="xxs">
+              <Text typo="body-2" bold>
+                {from.name}
+              </Text>
+            </Flex>
+          )}
+
           <PublicTransportLine mode={mode} info={info} showDirection />
+
           {duration && stops.length > 0 && (
             <Flex mt="xxxs">
               <Text typo="caption-1" color="secondary">
                 {formatDuration(duration)} ({stops.length + 1} {_('stops')})
-              </Text>
-            </Flex>
-          )}
-          {from?.name && (
-            <Flex mt="xxxs">
-              <Text typo="body-2" bold>
-                {from.name}
               </Text>
             </Flex>
           )}
