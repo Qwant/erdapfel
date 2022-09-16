@@ -338,5 +338,15 @@
   name: charging_station
 - label: _('airport')
   name: airport
+- label: _('subway')
+  name: subway
+- label: _('bus stop')
+  name: bus_stop
+- label: _('bus station')
+  name: bus_station
+- label: _('tram stop')
+  name: tram_stop
+- label: _('public transport station')
+  name: public_transport_station
 - label: _('osteopathy')
   name: health_osteopathy
