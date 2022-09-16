@@ -860,6 +860,9 @@ msgstr "pub"
 msgid "public building"
 msgstr "bâtiment public"
 
+msgid "public transport station"
+msgstr "transport en commun"
+
 msgid "rc car"
 msgstr "voiture radio commandée"
 

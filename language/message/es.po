@@ -865,6 +865,9 @@ msgstr "taberna"
 msgid "public building"
 msgstr "edificio público"
 
+msgid "public transport station"
+msgstr "transporte público"
+
 msgid "rc car"
 msgstr "coche de radio control"
 

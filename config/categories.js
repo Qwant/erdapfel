@@ -146,5 +146,10 @@ window.categories = [
   _('viewpoint'),
   _('charging station'),
   _('airport'),
+  _('subway'),
+  _('bus stop'),
+  _('bus station'),
+  _('tram stop'),
+  _('public transport station'),
   _('osteopathy'),
 ];

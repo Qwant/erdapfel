@@ -856,6 +856,9 @@ msgstr ""
 msgid "public building"
 msgstr ""
 
+msgid "public transport station"
+msgstr "public transport station"
+
 msgid "rc car"
 msgstr ""
 
