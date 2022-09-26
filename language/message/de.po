@@ -1680,3 +1680,5 @@ msgstr "Weitere Bewertungen bei TripAdvisor lesen"
 msgid "stops"
 msgstr "haltestellen"
 
+msgid "water place"
+msgstr "See"

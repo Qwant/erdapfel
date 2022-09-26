@@ -1558,3 +1558,6 @@ msgstr ""
 
 msgid "stops"
 msgstr "stops"
+
+msgid "water place"
+msgstr "Lake"

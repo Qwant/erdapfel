@@ -151,5 +151,6 @@ window.categories = [
   _('bus station'),
   _('tram stop'),
   _('public transport station'),
+  _('place_water'),
   _('osteopathy'),
 ];
