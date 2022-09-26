@@ -1672,3 +1672,6 @@ msgstr "Leer más reseñas en TripAdvisor"
 
 msgid "stops"
 msgstr "paradas"
+
+msgid "water place"
+msgstr "Lago"

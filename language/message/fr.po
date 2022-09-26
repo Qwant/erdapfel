@@ -1705,3 +1705,6 @@ msgstr "Chercher avec Qwant Maps"
 
 msgid "stops"
 msgstr "arrêts"
+
+msgid "water place"
+msgstr "Lac"

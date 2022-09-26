@@ -348,5 +348,7 @@
   name: tram_stop
 - label: _('public transport station')
   name: public_transport_station
+- label: _('water place')
+  name: place_water
 - label: _('osteopathy')
   name: health_osteopathy
