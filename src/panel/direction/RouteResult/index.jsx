@@ -84,7 +84,7 @@ const RouteResult = ({
       )}
       {vehicle === 'publicTransport' && routes.length > 0 && (
         <SourceFooter>
-          <a href="https://navitia.com/">{_('Powered by Hove')}</a>
+          <a href="https://navitia.com/">{_('Powered by Navitia')}</a>
         </SourceFooter>
       )}
     </>

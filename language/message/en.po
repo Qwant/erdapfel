@@ -1278,8 +1278,8 @@ msgstr ""
 msgid "We couldn't find any itinerary, we are really sorry."
 msgstr ""
 
-msgid "Powered by Hove"
-msgstr "Powered by Hove"
+msgid "Powered by Navitia"
+msgstr "Powered by Navitia"
 
 msgid "Via"
 msgstr ""
