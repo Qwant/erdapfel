@@ -7,7 +7,7 @@
 
 Erdapfel is [Qwant Maps](https://www.qwant.com/maps/) front end application. It is a javascript single page app that allows to browse the map, search for places, see your position on the map, etc
 
-![Qwant Maps screenshot](https://user-images.githubusercontent.com/442681/158149673-cb6c0450-b5cf-438a-b138-c10917e9b956.png)
+![Qwant Maps screenshot](https://user-images.githubusercontent.com/442681/192721720-1cca02f8-dec2-45b9-af1a-54c5078acec7.png)
 
 The project's documentation is available on the repo's [Wiki](https://github.com/Qwant/erdapfel/wiki).
 
