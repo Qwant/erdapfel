@@ -1,7 +1,7 @@
 # Erdapfel
 
 <h1 align="center">
-  <img src="https://github.com/Qwant/qwantmaps/raw/master/images/logo.png" alt="QwantMaps" width="200" height="200" />
+  <img src="https://github.com/Qwant/qwantmaps/raw/master/images/logo.png" alt="QwantMaps" height="200" />
 </h1>
 
 
