@@ -3,7 +3,7 @@ export interface Geocoder {
   useLang: boolean;
   maxItems: number;
   useFocus: boolean;
-  focusPrecision: string;
+  focusPrecision: Array<[string, string]>;
   focusZoomPrecision: string;
   focusMinZoom: number;
   useNlu: boolean;

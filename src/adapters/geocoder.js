@@ -33,9 +33,16 @@ function getFocusParams({ lat, lon, zoom }) {
   if (zoom < Number(focusMinZoom)) {
     return null;
   }
+  // Get the precision specific to a zoom level
+  const zoomFocusPrecision = focusPrecision
+    .filter(zp => zoom > zp.zoom)
+    .map(zp => zp.precision)
+    .sort()
+    .shift();
+
   return {
-    lat: roundWithPrecision(lat, focusPrecision),
-    lon: roundWithPrecision(lon, focusPrecision),
+    lat: roundWithPrecision(lat, zoomFocusPrecision),
+    lon: roundWithPrecision(lon, zoomFocusPrecision),
     zoom: roundWithPrecision(zoom, focusZoomPrecision),
   };
 }
