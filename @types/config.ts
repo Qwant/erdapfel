@@ -5,7 +5,6 @@ export interface Geocoder {
   useFocus: boolean;
   focusPrecision: Array<[string, string]>;
   focusZoomPrecision: string;
-  focusMinZoom: number;
   useNlu: boolean;
 }
 
