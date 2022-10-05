@@ -3,9 +3,14 @@ export interface Geocoder {
   useLang: boolean;
   maxItems: number;
   useFocus: boolean;
-  focusPrecision: Array<[string, string]>;
+  focusPrecision: Array<ZoomPrecision>;
   focusZoomPrecision: string;
   useNlu: boolean;
+}
+
+export interface ZoomPrecision {
+  zoom: string;
+  precision: string;
 }
 
 export interface Idunn {
