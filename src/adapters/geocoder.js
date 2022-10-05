@@ -6,7 +6,6 @@ import Intention from './intention';
 
 const serviceConfigs = nconf.get().services;
 const {
-  focusMinZoom,
   focusPrecision,
   focusZoomPrecision,
   maxItems,
@@ -30,12 +29,20 @@ function getFocusParams({ lat, lon, zoom }) {
   if (lat === undefined || lon === undefined || zoom === undefined) {
     return null;
   }
-  if (zoom < Number(focusMinZoom)) {
+
+  // Get the precision specific to a zoom level
+  const zoomFocusPrecision = JSON.parse(focusPrecision)
+    .filter(zp => zoom > zp.zoom)
+    .map(zp => zp.precision)
+    .sort()
+    .shift();
+
+  if (zoomFocusPrecision === undefined) {
     return null;
   }
   return {
-    lat: roundWithPrecision(lat, focusPrecision),
-    lon: roundWithPrecision(lon, focusPrecision),
+    lat: roundWithPrecision(lat, zoomFocusPrecision),
+    lon: roundWithPrecision(lon, zoomFocusPrecision),
     zoom: roundWithPrecision(zoom, focusZoomPrecision),
   };
 }
