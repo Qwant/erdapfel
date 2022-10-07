@@ -645,6 +645,9 @@ msgstr "Kai"
 msgid "dog park"
 msgstr "Hundepark"
 
+msgid "dog toilet"
+msgstr "Hunde-WC"
+
 msgid "dog racing"
 msgstr "Hunderennen"
 
@@ -680,6 +683,9 @@ msgstr "Hofladen"
 
 msgid "fitness centre"
 msgstr "Fitnessstudio"
+
+msgid "fitness station"
+msgstr "Fitness-Station"
 
 msgid "food court"
 msgstr "Gastronomiebereich"
@@ -866,6 +872,9 @@ msgstr "Pub"
 
 msgid "public building"
 msgstr "Öffentliches Gebäude"
+
+msgid "public bookcase"
+msgstr "Öffentliches Bücherregal"
 
 msgid "public transport station"
 msgstr "öffentliche Verkehrsmittel"
@@ -1682,3 +1691,9 @@ msgstr "haltestellen"
 
 msgid "water place"
 msgstr "See"
+
+msgid "vacuum cleaner"
+msgstr "Staubsauger"
+
+msgid "dojo"
+msgstr "dojo"

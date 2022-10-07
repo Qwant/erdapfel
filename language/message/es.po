@@ -643,6 +643,9 @@ msgstr "muelle"
 msgid "dog park"
 msgstr "parque para perros"
 
+msgid "dog toilet"
+msgstr "aseo para perros"
+
 msgid "dog racing"
 msgstr "carreras de perros"
 
@@ -678,6 +681,9 @@ msgstr "tienda de productos agrícolas"
 
 msgid "fitness centre"
 msgstr "gimnasio"
+
+msgid "fitness station"
+msgstr "Puesto de trabajo de fitness"
 
 msgid "food court"
 msgstr "zona de comidas"
@@ -864,6 +870,9 @@ msgstr "taberna"
 
 msgid "public building"
 msgstr "edificio público"
+
+msgid "public bookcase"
+msgstr "librería pública"
 
 msgid "public transport station"
 msgstr "transporte público"
@@ -1675,3 +1684,9 @@ msgstr "paradas"
 
 msgid "water place"
 msgstr "Lago"
+
+msgid "vacuum cleaner"
+msgstr "aspiradora"
+
+msgid "dojo"
+msgstr "dojo"

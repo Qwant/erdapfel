@@ -634,6 +634,9 @@ msgstr ""
 msgid "dog park"
 msgstr ""
 
+msgid "dog toilet"
+msgstr ""
+
 msgid "dog racing"
 msgstr ""
 
@@ -668,6 +671,9 @@ msgid "farm shop"
 msgstr ""
 
 msgid "fitness centre"
+msgstr ""
+
+msgid "fitness station"
 msgstr ""
 
 msgid "food court"
@@ -854,6 +860,9 @@ msgid "pub"
 msgstr ""
 
 msgid "public building"
+msgstr ""
+
+msgid "public bookcase"
 msgstr ""
 
 msgid "public transport station"
@@ -1561,3 +1570,9 @@ msgstr "stops"
 
 msgid "water place"
 msgstr "Lake"
+
+msgid "vacuum cleaner"
+msgstr ""
+
+msgid "dojo"
+msgstr ""

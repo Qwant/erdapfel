@@ -646,6 +646,9 @@ msgstr "molo"
 msgid "dog park"
 msgstr "parco per cani"
 
+msgid "dog toilet"
+msgstr "toilette per cani"
+
 msgid "dog racing"
 msgstr "corse di cani"
 
@@ -681,6 +684,9 @@ msgstr "spaccio aziendale"
 
 msgid "fitness centre"
 msgstr "centro fitness"
+
+msgid "fitness station"
+msgstr "Stazione di fitness"
 
 msgid "food court"
 msgstr "area ristorazione"
@@ -867,6 +873,9 @@ msgstr "pub"
 
 msgid "public building"
 msgstr "edificio pubblico"
+
+msgid "public bookcase"
+msgstr "libreria pubblica"
 
 msgid "public transport station"
 msgstr "trasporto pubblico"
@@ -1680,3 +1689,9 @@ msgstr "fermate"
 
 msgid "water place"
 msgstr "Lago"
+
+msgid "vacuum cleaner"
+msgstr "aspirapolvere"
+
+msgid "dojo"
+msgstr "dojo"
