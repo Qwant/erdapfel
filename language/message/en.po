@@ -526,6 +526,9 @@ msgstr ""
 msgid "brownfield"
 msgstr ""
 
+msgid "buddhist"
+msgstr ""
+
 msgid "bus station"
 msgstr ""
 
@@ -905,6 +908,9 @@ msgid "shoes"
 msgstr ""
 
 msgid "shooting"
+msgstr ""
+
+msgid "shower"
 msgstr ""
 
 msgid "skateboard"

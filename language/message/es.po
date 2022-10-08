@@ -535,6 +535,9 @@ msgstr "cervecería"
 msgid "brownfield"
 msgstr "solar abandonado"
 
+msgid "buddhist"
+msgstr "buddhist"
+
 msgid "bus station"
 msgstr "parada de autobuses"
 
@@ -915,6 +918,9 @@ msgstr "zapatos"
 
 msgid "shooting"
 msgstr "tiro"
+
+msgid "shower"
+msgstr "ducha"
 
 msgid "skateboard"
 msgstr "monopatín"

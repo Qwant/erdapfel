@@ -538,6 +538,9 @@ msgstr "birreria"
 msgid "brownfield"
 msgstr "area dismessa"
 
+msgid "buddhist"
+msgstr "buddhist"
+
 msgid "bus station"
 msgstr "stazione degli autobus"
 
@@ -919,6 +922,9 @@ msgstr "scarpe"
 msgid "shooting"
 msgstr "tirassegno"
 
+msgid "shower"
+msgstr "doccia"
+
 msgid "skateboard"
 msgstr "skateboard"
 
@@ -938,7 +944,7 @@ msgid "subway"
 msgstr "metropolitana"
 
 msgid "swimming area"
-msgstr "piscina"
+msgstr "area di balneazione"
 
 msgid "swimming pool equipment"
 msgstr "accessori per piscina"

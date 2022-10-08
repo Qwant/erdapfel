@@ -537,6 +537,9 @@ msgstr "Brauerei"
 msgid "brownfield"
 msgstr "Brachfläche"
 
+msgid "buddhist"
+msgstr "buddhist"
+
 msgid "bus station"
 msgstr "Busbahnhof"
 
@@ -917,6 +920,9 @@ msgstr "Schuhe"
 
 msgid "shooting"
 msgstr "Schießen"
+
+msgid "shower"
+msgstr "Dusche"
 
 msgid "skateboard"
 msgstr "Skateboard"

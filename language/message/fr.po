@@ -530,6 +530,9 @@ msgstr "brasserie artisanale"
 msgid "brownfield"
 msgstr "friche industrielle"
 
+msgid "buddhist"
+msgstr "temple bouddhiste"
+
 msgid "bus station"
 msgstr "gare routière"
 
@@ -911,6 +914,9 @@ msgstr "magasin de chaussures"
 msgid "shooting"
 msgstr "tir"
 
+msgid "shower"
+msgstr "douche"
+
 msgid "skateboard"
 msgstr "skateboard"
 
@@ -930,7 +936,7 @@ msgid "subway"
 msgstr "arrêt de métro"
 
 msgid "swimming area"
-msgstr "piscine"
+msgstr "zone de baignade"
 
 msgid "swimming pool equipment"
 msgstr "pisciniste"
