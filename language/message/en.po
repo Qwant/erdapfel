@@ -202,6 +202,9 @@ msgstr ""
 msgid "beauty salon"
 msgstr ""
 
+msgid "beekeeper"
+msgstr ""
+
 msgid "florist"
 msgstr ""
 
@@ -496,6 +499,9 @@ msgstr ""
 msgid "billiards"
 msgstr ""
 
+msgid "bleachers"
+msgstr ""
+
 msgid "bmx"
 msgstr ""
 
@@ -626,6 +632,9 @@ msgid "deli"
 msgstr ""
 
 msgid "department store"
+msgstr ""
+
+msgid "disc golf course"
 msgstr ""
 
 msgid "dock"

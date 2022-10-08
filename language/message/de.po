@@ -211,6 +211,9 @@ msgstr "Friedhof"
 msgid "beauty salon"
 msgstr "Schönheitssalon"
 
+msgid "beekeeper"
+msgstr "beekeeper"
+
 msgid "florist"
 msgstr "Blumenhändler"
 
@@ -507,6 +510,9 @@ msgstr "Biergarten"
 msgid "billiards"
 msgstr "Billard"
 
+msgid "bleachers"
+msgstr "Tribünen"
+
 msgid "bmx"
 msgstr "BMX"
 
@@ -638,6 +644,9 @@ msgstr "Feinkostladen"
 
 msgid "department store"
 msgstr "Kaufhaus"
+
+msgid "disc golf course"
+msgstr "Discgolf"
 
 msgid "dock"
 msgstr "Kai"

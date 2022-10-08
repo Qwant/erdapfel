@@ -209,6 +209,9 @@ msgstr "cementerio"
 msgid "beauty salon"
 msgstr "salón de belleza"
 
+msgid "beekeeper"
+msgstr "apicultor"
+
 msgid "florist"
 msgstr "floristería"
 
@@ -505,6 +508,9 @@ msgstr "Cervecería en terraza"
 msgid "billiards"
 msgstr "billar"
 
+msgid "bleachers"
+msgstr "tribunas"
+
 msgid "bmx"
 msgstr "BMX"
 
@@ -636,6 +642,9 @@ msgstr "fiambres"
 
 msgid "department store"
 msgstr "grandes almacenes"
+
+msgid "disc golf course"
+msgstr "disc golf"
 
 msgid "dock"
 msgstr "muelle"
