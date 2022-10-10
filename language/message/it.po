@@ -698,7 +698,7 @@ msgid "fitness centre"
 msgstr "centro fitness"
 
 msgid "fitness station"
-msgstr "Stazione di fitness"
+msgstr "stazione di fitness"
 
 msgid "food court"
 msgstr "area ristorazione"

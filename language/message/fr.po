@@ -690,7 +690,7 @@ msgid "fitness centre"
 msgstr "centre de fitness"
 
 msgid "fitness station"
-msgstr "Station de remise en forme"
+msgstr "station de remise en forme"
 
 msgid "food court"
 msgstr "aire de restauration"
@@ -1737,7 +1737,7 @@ msgid "water place"
 msgstr "Lac"
 
 msgid "vacuum cleaner"
-msgstr "Aspirateur"
+msgstr "aspirateur"
 
 msgid "dojo"
-msgstr "Donjon"
+msgstr "donjon"

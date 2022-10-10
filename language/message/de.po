@@ -212,7 +212,7 @@ msgid "beauty salon"
 msgstr "Schönheitssalon"
 
 msgid "beekeeper"
-msgstr "beekeeper"
+msgstr "Imker"
 
 msgid "florist"
 msgstr "Blumenhändler"
@@ -538,7 +538,7 @@ msgid "brownfield"
 msgstr "Brachfläche"
 
 msgid "buddhist"
-msgstr "buddhist"
+msgstr "Buddhist"
 
 msgid "bus station"
 msgstr "Busbahnhof"
@@ -847,7 +847,7 @@ msgid "outdoor"
 msgstr "im Freien"
 
 msgid "paddle"
-msgstr "paddle"
+msgstr "Paddle"
 
 msgid "paragliding"
 msgstr "Paragleiten"
