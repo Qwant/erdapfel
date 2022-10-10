@@ -835,6 +835,9 @@ msgstr ""
 msgid "outdoor"
 msgstr ""
 
+msgid "paddle"
+msgstr ""
+
 msgid "paragliding"
 msgstr ""
 

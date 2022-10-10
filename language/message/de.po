@@ -846,6 +846,9 @@ msgstr "Orientierungslauf"
 msgid "outdoor"
 msgstr "im Freien"
 
+msgid "paddle"
+msgstr "paddle"
+
 msgid "paragliding"
 msgstr "Paragleiten"
 

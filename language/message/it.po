@@ -847,6 +847,9 @@ msgstr "orienteering"
 msgid "outdoor"
 msgstr "negozio per sport all’aria aperta"
 
+msgid "paddle"
+msgstr "paddle"
+
 msgid "paragliding"
 msgstr "volo con parapendio"
 

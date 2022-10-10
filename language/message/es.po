@@ -844,6 +844,9 @@ msgstr "deporte de orientación"
 msgid "outdoor"
 msgstr "al aire libre"
 
+msgid "paddle"
+msgstr "paddle"
+
 msgid "paragliding"
 msgstr "parapente"
 

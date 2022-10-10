@@ -839,6 +839,9 @@ msgstr "course d'orientation"
 msgid "outdoor"
 msgstr "magasin de sports de plein air"
 
+msgid "paddle"
+msgstr "paddle"
+
 msgid "paragliding"
 msgstr "parapente"
 

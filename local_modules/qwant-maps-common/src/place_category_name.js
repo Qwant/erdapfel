@@ -174,6 +174,7 @@ const subClasses = {
   optician: () => _('optician'),
   orienteering: () => _('orienteering'),
   outdoor: () => _('outdoor'),
+  paddle_tennis: () => _('paddle'),
   paragliding: () => _('paragliding'),
   park: () => _('park'),
   parking: () => _('car park'),
