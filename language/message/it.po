@@ -212,6 +212,9 @@ msgstr "cimitero"
 msgid "beauty salon"
 msgstr "salone di bellezza"
 
+msgid "beekeeper"
+msgstr "apicoltore"
+
 msgid "florist"
 msgstr "fioraio"
 
@@ -508,6 +511,9 @@ msgstr "birreria all'aperto"
 msgid "billiards"
 msgstr "biliardo"
 
+msgid "bleachers"
+msgstr "tribune"
+
 msgid "bmx"
 msgstr "bmx"
 
@@ -531,6 +537,9 @@ msgstr "birreria"
 
 msgid "brownfield"
 msgstr "area dismessa"
+
+msgid "buddhist"
+msgstr "buddhist"
 
 msgid "bus station"
 msgstr "stazione degli autobus"
@@ -640,11 +649,17 @@ msgstr "gatronomia"
 msgid "department store"
 msgstr "grande magazzino"
 
+msgid "disc golf course"
+msgstr "disc golf"
+
 msgid "dock"
 msgstr "molo"
 
 msgid "dog park"
 msgstr "parco per cani"
+
+msgid "dog toilet"
+msgstr "toilette per cani"
 
 msgid "dog racing"
 msgstr "corse di cani"
@@ -681,6 +696,9 @@ msgstr "spaccio aziendale"
 
 msgid "fitness centre"
 msgstr "centro fitness"
+
+msgid "fitness station"
+msgstr "stazione di fitness"
 
 msgid "food court"
 msgstr "area ristorazione"
@@ -829,6 +847,9 @@ msgstr "orienteering"
 msgid "outdoor"
 msgstr "negozio per sport all’aria aperta"
 
+msgid "paddle"
+msgstr "paddle"
+
 msgid "paragliding"
 msgstr "volo con parapendio"
 
@@ -868,6 +889,9 @@ msgstr "pub"
 msgid "public building"
 msgstr "edificio pubblico"
 
+msgid "public bookcase"
+msgstr "libreria pubblica"
+
 msgid "public transport station"
 msgstr "trasporto pubblico"
 
@@ -901,6 +925,9 @@ msgstr "scarpe"
 msgid "shooting"
 msgstr "tirassegno"
 
+msgid "shower"
+msgstr "doccia"
+
 msgid "skateboard"
 msgstr "skateboard"
 
@@ -920,7 +947,7 @@ msgid "subway"
 msgstr "metropolitana"
 
 msgid "swimming area"
-msgstr "piscina"
+msgstr "area di balneazione"
 
 msgid "swimming pool equipment"
 msgstr "accessori per piscina"
@@ -1680,3 +1707,9 @@ msgstr "fermate"
 
 msgid "water place"
 msgstr "Lago"
+
+msgid "vacuum cleaner"
+msgstr "aspirapolvere"
+
+msgid "dojo"
+msgstr "dojo"
