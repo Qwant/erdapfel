@@ -882,7 +882,7 @@ msgid "public building"
 msgstr "bâtiment public"
 
 msgid "public bookcase"
-msgstr "Boite à livre"
+msgstr "boite à livre"
 
 msgid "public transport station"
 msgstr "transport en commun"
@@ -1740,4 +1740,4 @@ msgid "vacuum cleaner"
 msgstr "aspirateur"
 
 msgid "dojo"
-msgstr "donjon"
+msgstr "dojo"
