@@ -17,5 +17,7 @@ export default class Intention {
       q: this.fullTextQuery,
       type: this.category?.name,
       bbox: this.bbox?.join(','),
+      place_name: this.place?.name,
+      place_code: this.place?.citycode,
     });
 }
