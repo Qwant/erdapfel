@@ -23,7 +23,7 @@ const DetailsBlock = ({ poi }) => {
   return (
     <>
       <Divider paddingTop={0} />
-      <h3 className="u-text--smallTitle u-mb-xs">{_('Steps')}</h3>
+      <h3 className="u-text--smallTitle u-mb-xs">{_('details')}</h3>
       <div className="poi_panel__fullWidth u-mb-s">
         {stars && <StarsBlock block={stars} subclass={subclass} />}
         {accessibility && <AccessibilityBlock block={accessibility} />}
