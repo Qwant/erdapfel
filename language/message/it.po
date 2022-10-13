@@ -1714,5 +1714,5 @@ msgstr "aspirapolvere"
 msgid "dojo"
 msgstr "dojo"
 
-msgid "details"
-msgstr "dettagli"
+msgid "Details"
+msgstr "Dettagli"

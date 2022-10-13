@@ -1709,5 +1709,5 @@ msgstr "aspiradora"
 msgid "dojo"
 msgstr "dojo"
 
-msgid "details"
-msgstr "detalles"
+msgid "Details"
+msgstr "Detalles"

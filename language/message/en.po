@@ -1595,5 +1595,5 @@ msgstr ""
 msgid "dojo"
 msgstr ""
 
-msgid "details"
+msgid "Details"
 msgstr ""

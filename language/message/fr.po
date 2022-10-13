@@ -1742,5 +1742,5 @@ msgstr "aspirateur"
 msgid "dojo"
 msgstr "dojo"
 
-msgid "details"
-msgstr "details"
+msgid "Details"
+msgstr "Details"

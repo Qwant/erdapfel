@@ -1716,5 +1716,5 @@ msgstr "Staubsauger"
 msgid "dojo"
 msgstr "dojo"
 
-msgid "details"
+msgid "Details"
 msgstr "Details"
