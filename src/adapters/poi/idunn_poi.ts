@@ -5,6 +5,7 @@ import Error from '../../adapters/error';
 import QueryContext, { TQueryContext } from '../../adapters/query_context';
 import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
 import { operations, components } from 'appTypes/idunn';
+import { getIsOnlyOSM } from 'src/adapters/store';
 
 const serviceConfig = nconf.get().services;
 
@@ -69,6 +70,7 @@ export default class IdunnPoi extends Poi {
       extend_bbox: extendBbox,
       ...(category ? { category } : {}),
       ...(q ? { q } : {}),
+      ...(getIsOnlyOSM() ? { only_osm: true } : {}),
     };
 
     try {
