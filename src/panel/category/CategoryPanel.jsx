@@ -74,7 +74,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   useEffect(() => {
     const fetchData = debounce(
       async () => {
-        const { category, query } = poiFilters;
+        const { category, query, place_name, place_code } = poiFilters;
         const currentBounds = getVisibleBbox(window.map.mb);
 
         const extendBbox = initialLoading;
@@ -88,6 +88,8 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
           maxPlaces,
           category,
           query,
+          place_name,
+          place_code,
           extendBbox
         );
 

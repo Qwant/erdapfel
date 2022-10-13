@@ -1548,6 +1548,8 @@ export interface operations {
         source?: string;
         /** Full text query */
         q?: string;
+        place_name?: string;
+        place_code?: string;
         size?: number;
         lang?: string;
         verbosity?: components['schemas']['Verbosity'];
