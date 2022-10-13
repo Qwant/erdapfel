@@ -64,16 +64,26 @@ export default class IdunnPoi extends Poi {
     extendBbox = false
   ) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
-
-    const requestParams = {
-      bbox,
-      size,
-      place_name,
-      place_code,
-      extend_bbox: extendBbox,
-      ...(category ? { category } : {}),
-      ...(q ? { q } : {}),
-    };
+    let requestParams = {};
+    if (extendBbox) {
+      requestParams = {
+        bbox,
+        size,
+        place_name,
+        place_code,
+        extend_bbox: extendBbox,
+        ...(category ? { category } : {}),
+        ...(q ? { q } : {}),
+      };
+    } else {
+      requestParams = {
+        bbox,
+        size,
+        extend_bbox: extendBbox,
+        ...(category ? { category } : {}),
+        ...(q ? { q } : {}),
+      };
+    }
 
     try {
       const response: APIGetPlacesResponse = await Ajax.getLang(url, requestParams);
