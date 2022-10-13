@@ -1,48 +1,24 @@
-@import "./vehicleSelector.scss";
+@import './vehicleSelector.scss';
 
 .direction-form {
   display: flex;
   flex-direction: column;
-  padding: 0 18px 0;
-
-  @media (min-width: 641px) {
-    flex-direction: column-reverse;
-    padding-bottom: 8px;
-
-    .vehicleSelector {
-      margin-left: -4px;
-      margin-bottom: 12px;
-    }
-  }
+  padding: 14px;
+  
 
   .direction-fields {
-    background: $background;
-    margin: 0 0 4px;
+    background: var(--grey-000);
+    margin: 2px 0 4px;
     position: relative;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 16px 0 rgba(12, 12, 14, 0.2), 0 4px 8px 0 rgba(12, 12, 14, 0.12);
+    height: 96px;
 
     @media (min-width: 641px) {
       margin-bottom: 0;
-
-      &:focus-within {
-        &::before {
-          background: $focus-gradient;
-          box-shadow: $shadow-focus;
-        }
-      }
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
-      margin: -1px;
-      border-radius: inherit;
-      z-index: -1;
-      background: $grey-light;
     }
 
     .direction-form-separator {
@@ -52,6 +28,7 @@
 
     .direction-invert-button {
       margin: 0 14px;
+
       @media (max-width: 640px) {
         margin: 0 12px;
       }
@@ -59,8 +36,7 @@
 
     .direction-fields-block {
       width: 100%;
-      background-image:
-        radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
+      background-image: radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
         radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px),
         radial-gradient(circle at center, $grey-grey 1.25px, transparent 1.5px);
       background-position: 22px calc(50% - 7px), 22px calc(50%), 22px calc(50% + 7px);
@@ -68,8 +44,12 @@
       background-repeat: no-repeat;
 
       @media (min-width: 641px) {
-        background-position: 26px calc(50% - 7px), 26px calc(50%), 26px calc(50% + 7px);
+        background-position: 30px calc(50% - 7px), 30px 50%, 30px calc(50% + 7px);
       }
+    }
+
+    .divider-line {
+      background-color: $grey-light;
     }
   }
 
@@ -77,7 +57,7 @@
     margin-left: 48px;
 
     @media (min-width: 641px) {
-      margin-left: 55px;
+      margin-left: 64px;
     }
   }
 }

@@ -10,9 +10,10 @@ import { getAllSteps, getAllStops, originDestinationCoords } from 'src/libs/rout
 import Error from '../adapters/error';
 import nconf from '@qwant/nconf-getter';
 import { fire, listen } from 'src/libs/customEvents';
-import { getLabelPositions } from 'alt-route-labeller';
+import { getLabelPositions } from '/local_modules/alt-route-labeller';
 import { isMobileDevice } from 'src/libs/device';
 import renderStaticReact from 'src/libs/renderStaticReact';
+import cx from 'classnames';
 
 const createMarker = (lngLat, className = '', options = {}) => {
   const element = document.createElement('div');
@@ -115,9 +116,13 @@ export default class SceneDirection {
   }
 
   setOrigin = poi => {
-    const originMarker = createMarker(poi.latLon, 'itinerary_marker_origin', {
-      draggable: !isMobileDevice(),
-    })
+    const originMarker = createMarker(
+      poi.latLon,
+      cx('itinerary_marker_origin', poi.type === 'geoloc' && 'itinerary_marker_origin--geoloc'),
+      {
+        draggable: !isMobileDevice(),
+      }
+    )
       .addTo(this.map)
       .on('dragend', event => {
         this.refreshDirection('origin', event.target.getLngLat());

@@ -3,17 +3,22 @@
   /* core styles should not be changed */
   cursor: default;
   padding-bottom: 12px;
-
-  .top_bar & {
-    border-top: 1px solid $grey-light;
+  
+  li:first-child {
+    margin-top: 8px;
   }
+
 
   &--empty {
     padding-bottom: 0;
+
+    &:not(:first-child) {
+      border-top: none;
+    }
   }
 
   &--history {
-    .top_bar & {
+    &:not(:first-child) {
       border-top: none;
     }
   }
@@ -29,16 +34,20 @@
   padding: $spacing-s;
 
   .selected & {
-    background-color: $background_active;
+    background-color: var(--grey-050);
   }
 
   &--history {
-    color: var(--purple-darker);
+    color: var(--grey-900);
+
+    .autocomplete_suggestion_icon {
+      color: var(--grey-400);
+    }
   }
 
   @media (hover: hover) {
     li:hover & {
-      background-color: $background_active;
+      background-color: var(--grey-050);
     }
   }
 }
@@ -80,14 +89,10 @@
 
 .manage_history {
   padding: $spacing-l 14px $spacing-xxs 14px;
-  border-top: 1px solid $grey-light;
-
-  button {
-    color: $action-blue-base;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  
+ 
+  & button {
+    text-decoration: underline;
   }
 }
 
@@ -104,7 +109,7 @@
   width: 36px;
   height: 36px;
   padding: 8px;
-  background: var(--purple-lighter);
+  border: 1px solid var(--purple-500);
   border-radius: 50%;
   margin-bottom: 4px;
 }
@@ -113,13 +118,13 @@
   width: 36px;
   height: 36px;
   padding: 8px;
-  background: var(--grey-lighter);
+  background: $grey-lighter;
   border-radius: 50%;
   margin-bottom: 4px;
 }
 
 .historyText {
-  color: #a125be;
+  font-weight: bold;
 }
 
 .historyButtons {

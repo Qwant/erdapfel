@@ -1,5 +1,15 @@
 // @TODO: @qwant/qwant-ponents need his own typings in Phoenix
 declare module '@qwant/qwant-ponents' {
+  import React = require('react');
+  type SvgReactComponent = React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & {
+      className?: string;
+      size?: number;
+      color?: string;
+      style?: React.CSSProperties;
+    }
+  >;
+
   // Hooks
   export const useLockBodyScroll: (enabled: boolean, ref: HTMLElement | null) => void;
   export const usePushAlert: () => (key: string) => void;
@@ -22,8 +32,19 @@ declare module '@qwant/qwant-ponents' {
     target?: string;
     variant?: string;
     style?: React.CSSProperties;
+    mt?: string;
+    py?: string;
+    my?: string;
+    px?: string;
+    column?: boolean;
+    takeAvailableSpace?: boolean;
   }>;
-  export const Stack: React.FunctionComponent;
+  export const Stack: React.FunctionComponent<{
+    gap?: string;
+    py?: string;
+    px?: string;
+    alignCenter?: boolean;
+  }>;
   export const Alert: React.FunctionComponent;
   export const AlertsProvider: React.FunctionComponent;
   export const Avatar: React.FunctionComponent;
@@ -61,118 +82,165 @@ declare module '@qwant/qwant-ponents' {
   export const Switch: React.FunctionComponent;
   export const Heading: React.FunctionComponent;
   export const Paragraph: React.FunctionComponent;
-  export const Text: React.FunctionComponent;
+  export const Text: React.FunctionComponent<{
+    className?: string;
+    center?: boolean;
+    bold?: boolean;
+    typo?:
+      | 'heading-0'
+      | 'heading-0-1'
+      | 'heading-0-2'
+      | 'heading-1'
+      | 'heading-2'
+      | 'heading-3'
+      | 'heading-4'
+      | 'heading-5'
+      | 'heading-6'
+      | 'body-1'
+      | 'body-2'
+      | 'caption-1'
+      | 'caption-2';
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'action-link'
+      | 'visited-link'
+      | 'serp-link'
+      | 'perma-link'
+      | 'mention'
+      | 'error';
+    as?:
+      | 'h1'
+      | 'h2'
+      | 'h3'
+      | 'h4'
+      | 'h5'
+      | 'h6'
+      | 'p'
+      | 'div'
+      | 'span'
+      | 'li'
+      | 'ul'
+      | 'footer'
+      | 'a'
+      | 'legend'
+      | 'label'
+      | 'cite'
+      | 'button'
+      | 'strong'
+      | 'header'
+      | 'cite'
+      | 'dt'
+      | 'dd'
+      | 'pre';
+    html?: string;
+    raw?: boolean;
+  }>;
   export const AnimatePresence: React.FunctionComponent;
   export const Slide: React.FunctionComponent;
   export const DateHelpers: React.FunctionComponent;
-  export const IconDoubleChevronDown: React.FunctionComponent;
-  export const IconMinus: React.FunctionComponent;
-  export const IconPlayCircle: React.FunctionComponent;
-  export const IconPlus: React.FunctionComponent;
-  export const IconShoppingBadEmpty: React.FunctionComponent;
-  export const IconSort: React.FunctionComponent;
-  export const IconTripAdvisor: React.FunctionComponent;
-  export const AiOutlineExclamationCircle: React.FunctionComponent;
-  export const IconAppleFill: React.FunctionComponent;
-  export const IconApps: React.FunctionComponent<{
-    className?: string;
-  }>;
-  export const IconArrowDown: React.FunctionComponent;
-  export const IconArrowDownSLine: React.FunctionComponent;
-  export const IconArrowDropDownLine: React.FunctionComponent;
-  export const IconArrowLeftDownLine: React.FunctionComponent;
-  export const IconArrowLeftLine: React.FunctionComponent<{ size?: number }>;
-  export const IconArrowLeftRight: React.FunctionComponent;
-  export const IconArrowLeftRightFill: React.FunctionComponent;
-  export const IconArrowLeftRightLine: React.FunctionComponent;
-  export const IconArrowLeftSLine: React.FunctionComponent;
-  export const IconArrowLeftUpLine: React.FunctionComponent;
-  export const IconArrowRightLine: React.FunctionComponent;
-  export const IconArrowRightSLine: React.FunctionComponent;
-  export const IconArrowUpSLine: React.FunctionComponent;
-  export const IconBell: React.FunctionComponent;
-  export const IconBuilding: React.FunctionComponent;
-  export const IconCalendar: React.FunctionComponent;
-  export const IconCamera: React.FunctionComponent;
-  export const IconCheck: React.FunctionComponent;
-  export const IconCheckCircle: React.FunctionComponent;
-  export const IconCheckCircleFill: React.FunctionComponent;
-  export const IconClock: React.FunctionComponent;
-  export const IconClose: React.FunctionComponent;
-  export const IconCloseCircle: React.FunctionComponent;
-  export const IconCloseCircleFill: React.FunctionComponent;
-  export const IconCopy: React.FunctionComponent;
-  export const IconDirection: React.FunctionComponent;
-  export const IconEarth: React.FunctionComponent<{ size?: number; fill?: string }>;
-  export const IconEmpty: React.FunctionComponent;
-  export const IconEmptyFill: React.FunctionComponent;
-  export const IconErrorWarningLine: React.FunctionComponent;
-  export const IconExternalLink: React.FunctionComponent;
-  export const IconEye: React.FunctionComponent;
-  export const IconEyeClose: React.FunctionComponent;
-  export const IconEyeClosed: React.FunctionComponent;
-  export const IconFileList: React.FunctionComponent;
-  export const IconFileText: React.FunctionComponent;
-  export const IconFilter: React.FunctionComponent;
-  export const IconFlag: React.FunctionComponent;
-  export const IconFlagFill: React.FunctionComponent;
-  export const IconFullScreen: React.FunctionComponent;
-  export const IconGlobe: React.FunctionComponent;
-  export const IconGlobeStand: React.FunctionComponent;
-  export const IconHeart: React.FunctionComponent;
-  export const IconHearts: React.FunctionComponent;
-  export const IconHome: React.FunctionComponent;
-  export const IconInformation: React.FunctionComponent;
-  export const IconLight: React.FunctionComponent;
-  export const IconLock: React.FunctionComponent;
-  export const IconLogoutCircle: React.FunctionComponent;
-  export const IconMail: React.FunctionComponent<{ size?: number; fill?: string }>;
-  export const IconMailSend: React.FunctionComponent;
-  export const IconMapPinLine: React.FunctionComponent<{ size?: number; fill?: string }>;
-  export const IconMenu: React.FunctionComponent<{ size?: number }>;
-  export const IconMovie: React.FunctionComponent;
-  export const IconMusic: React.FunctionComponent;
-  export const IconPhone: React.FunctionComponent<{ size?: number; fill?: string }>;
-  export const IconPlaneLanding: React.FunctionComponent;
-  export const IconPlaneTakeoff: React.FunctionComponent;
-  export const IconPlay: React.FunctionComponent;
-  export const IconPlayFill: React.FunctionComponent;
-  export const IconRiArticleLine: React.FunctionComponent;
-  export const IconRiGlobalLine: React.FunctionComponent;
-  export const IconRiImage2Line: React.FunctionComponent;
-  export const IconRiMapPin2Line: React.FunctionComponent;
-  export const IconRiVideoLine: React.FunctionComponent;
-  export const IconSearch: React.FunctionComponent;
-  export const IconSettings: React.FunctionComponent;
-  export const IconShare: React.FunctionComponent;
-  export const IconShareBox: React.FunctionComponent;
-  export const IconShoppingBag: React.FunctionComponent;
-  export const IconStar: React.FunctionComponent;
-  export const IconStarFill: React.FunctionComponent;
-  export const IconStarHalf: React.FunctionComponent;
-  export const Icontablet: React.FunctionComponent;
-  export const IconTemperature: React.FunctionComponent;
-  export const IconThumbDown: React.FunctionComponent;
-  export const IconThumbUp: React.FunctionComponent;
-  export const IconTime: React.FunctionComponent<{
-    className?: string;
-    size?: number;
-    fill?: string;
-  }>;
-  export const IconTimerLine: React.FunctionComponent;
-  export const IconUmbrellaLine: React.FunctionComponent;
-  export const IconUser: React.FunctionComponent;
-  export const IconVideoPlayer: React.FunctionComponent;
-  export const IconVolumeOffVibrate: React.FunctionComponent;
-  export const IconWater: React.FunctionComponent;
-  export const RiArrowLeftLine: React.FunctionComponent;
-  export const RiArrowLeftSLine: React.FunctionComponent;
-  export const RiArrowRightLine: React.FunctionComponent;
-  export const RiArrowRightSLine: React.FunctionComponent;
-  export const RiCloseCircleLine: React.FunctionComponent;
-  export const RiCloseLine: React.FunctionComponent;
-  export const RiFile3Fill: React.FunctionComponent;
-  export const RiLock2Fill: React.FunctionComponent;
-  export const RiLogoutCircleRLine: React.FunctionComponent;
-  export const RiSettingsLine: React.FunctionComponent;
+  export const IconDoubleChevronDown: SvgReactComponent;
+  export const IconMinus: SvgReactComponent;
+  export const IconPlayCircle: SvgReactComponent;
+  export const IconPlus: SvgReactComponent;
+  export const IconShoppingBadEmpty: SvgReactComponent;
+  export const IconSort: SvgReactComponent;
+  export const IconTripAdvisor: SvgReactComponent;
+  export const AiOutlineExclamationCircle: SvgReactComponent;
+  export const IconAppleFill: SvgReactComponent;
+  export const IconApps: SvgReactComponent;
+  export const IconArrowDown: SvgReactComponent;
+  export const IconArrowDownSLine: SvgReactComponent;
+  export const IconArrowDropDownLine: SvgReactComponent;
+  export const IconArrowLeftDownLine: SvgReactComponent;
+  export const IconArrowLeftLine: SvgReactComponent;
+  export const IconArrowLeftRight: SvgReactComponent;
+  export const IconArrowLeftRightFill: SvgReactComponent;
+  export const IconArrowLeftRightLine: SvgReactComponent;
+  export const IconArrowLeftSLine: SvgReactComponent;
+  export const IconArrowLeftUpLine: SvgReactComponent;
+  export const IconArrowRightLine: SvgReactComponent;
+  export const IconArrowRightSLine: SvgReactComponent;
+  export const IconArrowUpSLine: SvgReactComponent;
+  export const IconBell: SvgReactComponent;
+  export const IconBuilding: SvgReactComponent;
+  export const IconCalendar: SvgReactComponent;
+  export const IconCamera: SvgReactComponent;
+  export const IconCheck: SvgReactComponent;
+  export const IconCheckCircle: SvgReactComponent;
+  export const IconCheckCircleFill: SvgReactComponent;
+  export const IconClock: SvgReactComponent;
+  export const IconClose: SvgReactComponent;
+  export const IconCloseCircle: SvgReactComponent;
+  export const IconCloseCircleFill: SvgReactComponent;
+  export const IconCopy: SvgReactComponent;
+  export const IconDirection: SvgReactComponent;
+  export const IconEarth: SvgReactComponent;
+  export const IconEmpty: SvgReactComponent;
+  export const IconEmptyFill: SvgReactComponent;
+  export const IconErrorWarningLine: SvgReactComponent;
+  export const IconExternalLink: SvgReactComponent;
+  export const IconEye: SvgReactComponent;
+  export const IconEyeClose: SvgReactComponent;
+  export const IconEyeClosed: SvgReactComponent;
+  export const IconFileList: SvgReactComponent;
+  export const IconFileText: SvgReactComponent;
+  export const IconFilter: SvgReactComponent;
+  export const IconFlag: SvgReactComponent;
+  export const IconFlagFill: SvgReactComponent;
+  export const IconFullScreen: SvgReactComponent;
+  export const IconGlobe: SvgReactComponent;
+  export const IconGlobeStand: SvgReactComponent;
+  export const IconHeart: SvgReactComponent;
+  export const IconHearts: SvgReactComponent;
+  export const IconHome: SvgReactComponent;
+  export const IconInformation: SvgReactComponent;
+  export const IconLight: SvgReactComponent;
+  export const IconLock: SvgReactComponent;
+  export const IconLogoutCircle: SvgReactComponent;
+  export const IconMail: SvgReactComponent;
+  export const IconMailSend: SvgReactComponent;
+  export const IconMapPinLine: SvgReactComponent;
+  export const IconMenu: SvgReactComponent;
+  export const IconMovie: SvgReactComponent;
+  export const IconMusic: SvgReactComponent;
+  export const IconPhone: SvgReactComponent;
+  export const IconPlaneLanding: SvgReactComponent;
+  export const IconPlaneTakeoff: SvgReactComponent;
+  export const IconPlay: SvgReactComponent;
+  export const IconPlayFill: SvgReactComponent;
+  export const IconRiArticleLine: SvgReactComponent;
+  export const IconRiGlobalLine: SvgReactComponent;
+  export const IconRiImage2Line: SvgReactComponent;
+  export const IconRiMapPin2Line: SvgReactComponent;
+  export const IconRiVideoLine: SvgReactComponent;
+  export const IconSearch: SvgReactComponent;
+  export const IconSettings: SvgReactComponent;
+  export const IconShare: SvgReactComponent;
+  export const IconShareBox: SvgReactComponent;
+  export const IconShoppingBag: SvgReactComponent;
+  export const IconStar: SvgReactComponent;
+  export const IconStarFill: SvgReactComponent;
+  export const IconStarHalf: SvgReactComponent;
+  export const Icontablet: SvgReactComponent;
+  export const IconTemperature: SvgReactComponent;
+  export const IconThumbDown: SvgReactComponent;
+  export const IconThumbUp: SvgReactComponent;
+  export const IconTime: SvgReactComponent;
+  export const IconTimerLine: SvgReactComponent;
+  export const IconUmbrellaLine: SvgReactComponent;
+  export const IconUser: SvgReactComponent;
+  export const IconVideoPlayer: SvgReactComponent;
+  export const IconVolumeOffVibrate: SvgReactComponent;
+  export const IconWater: SvgReactComponent;
+  export const RiArrowLeftLine: SvgReactComponent;
+  export const RiArrowLeftSLine: SvgReactComponent;
+  export const RiArrowRightLine: SvgReactComponent;
+  export const RiArrowRightSLine: SvgReactComponent;
+  export const RiCloseCircleLine: SvgReactComponent;
+  export const RiCloseLine: SvgReactComponent;
+  export const RiFile3Fill: SvgReactComponent;
+  export const RiLock2Fill: SvgReactComponent;
+  export const RiLogoutCircleRLine: SvgReactComponent;
+  export const RiSettingsLine: SvgReactComponent;
 }

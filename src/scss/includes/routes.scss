@@ -1,37 +1,59 @@
 .routePtLine {
-  padding: 3px 4px 2px;
+  padding: 2px var(--spacing-xxs);
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: 4px;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 12px;
   text-transform: uppercase;
-  vertical-align: text-bottom;
+  vertical-align: top;
   white-space: nowrap;
   display: inline-block;
-  color: black !important;
+  color: var(--grey-900) !important;
 
   &--dark {
-    color: white !important;
+    color: var(--grey-000) !important;
+  }
+
+  &__transport-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: var(--spacing-xxxs);
   }
 }
 
-.routePtLine-direction {
-  margin-left: $spacing-xs;
-}
-
 .routeVia {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #4b5058;
 
   &-step {
     display: inline-block;
 
-    &:not(:last-child):after {
-      content: '›';
-      padding: 0 5px;
-      font-size: 28px;
-      color: silver;
+    svg {
+      width: 20px;
+      height: 20px;
     }
+
+    &:not(:last-child):after {
+      display: inline-block;
+      content: '';
+      background-image: url('../../images/regular_icons/icons-regular-icon-chevron-foward.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 24px;
+      height: 16px;
+    }
+
+    & > svg {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .routePtLine__transport-icon {
+    margin-right: 2px;
   }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import Block from './Block';
 import { useI18n } from 'src/hooks';
 import { IconScooter } from 'src/components/ui/icons';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 const modes = ['click_and_collect', 'delivery', 'takeaway'];
 
@@ -21,7 +20,7 @@ const DeliveryBlock = ({ block }) => {
   };
 
   return (
-    <Block simple icon={<IconScooter fill={ACTION_BLUE_BASE} width={20} />}>
+    <Block simple icon={<IconScooter fill="var(--green-500)" width={20} />}>
       {getActiveModes(block)
         .map(([mode]) => labels[mode])
         .join(' ⋅ ')}

@@ -54,7 +54,8 @@ const PoiPanelContent = ({ poi }) => {
     }
   };
 
-  const toggleStorePoi = () => {
+  const toggleStorePoi = e => {
+    e?.preventDefault();
     Telemetry.sendPoiEvent(poi, 'favorite', { stored: !isInFavorites(poi) });
     if (isInFavorites(poi)) {
       removeFromFavorites(poi);

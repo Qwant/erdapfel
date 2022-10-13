@@ -49,7 +49,8 @@ const FavoritePoi = ({ poi, removeFavorite }) => {
         {openMenu => (
           <Button
             pictoButton
-            variant="tertiary"
+            variant="tertiary-black"
+            size="small"
             title={_('Share')}
             onClick={e => onShareClick(e, openMenu)}
           >
@@ -59,8 +60,9 @@ const FavoritePoi = ({ poi, removeFavorite }) => {
       </ShareMenu>
       <Button
         pictoButton
+        size="small"
         className="favorite_panel__item__delete"
-        variant="tertiary"
+        variant="tertiary-black"
         title={_('Delete')}
         onClick={onDelete}
       >

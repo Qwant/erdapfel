@@ -13,11 +13,15 @@ declare global {
       navigateBack: () => void;
       navigateTo: (
         url: string,
-        state: { [key: string]: any },
+        state?: { [key: string]: any },
         options?: { [key: string]: any }
       ) => void;
       updateHash: (hash: string) => void;
     };
+
+    getLang: () => { locale: string; code: string; fallback?: string };
+    baseUrl: string;
+    location: Location;
   }
 }
 export {};

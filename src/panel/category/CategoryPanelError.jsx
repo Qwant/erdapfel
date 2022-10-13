@@ -21,7 +21,7 @@ const CategoryPanelError = ({ zoomIn }) => {
         title: _('Um, you got a little too high 🚀'),
         message: _('Zoom in or move around the map to view results.', 'categories'),
         action: (
-          <Button onClick={geoloc} variant="secondary">
+          <Button onClick={geoloc} variant="secondary-black">
             <IconGeoloc fill="currentColor" />
             {_('Search around my position', 'categories')}
           </Button>
@@ -31,7 +31,7 @@ const CategoryPanelError = ({ zoomIn }) => {
         title: _("Hmm, looks like a no-man's land 🏜️", 'categories'),
         message: _('We found no place matching your query in this area.', 'categories'),
         action: (
-          <Button onClick={zoomOut} variant="tertiary">
+          <Button onClick={zoomOut} variant="tertiary-black">
             {_('Get some height', 'categories')}
           </Button>
         ),

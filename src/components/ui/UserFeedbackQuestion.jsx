@@ -10,7 +10,7 @@ const UserFeedbackQuestion = ({ question, options, onClose }) => {
       <Flex>
         {options.map(({ label, icon, callback }) => (
           <Button
-            variant="tertiary"
+            variant="tertiary-black"
             key={label}
             onMouseDown={e => {
               e.preventDefault();

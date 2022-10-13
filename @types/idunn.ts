@@ -198,6 +198,7 @@ export interface components {
       | 'food_vietnamese'
       | 'food_lebanese'
       | 'parking'
+      | 'pitch'
       | 'restaurant'
       | 'place_of_worship'
       | 'recycling'
@@ -235,6 +236,7 @@ export interface components {
       | 'police'
       | 'shop_optician'
       | 'grave_yard'
+      | 'shop_beauty'
       | 'shop_florist'
       | 'fire_station'
       | 'shop_shoes'
@@ -257,67 +259,11 @@ export interface components {
       | 'cinema'
       | 'university'
       | 'shop_travel_agency'
+      | 'sport_other'
       | 'administrative'
       | 'post_box'
       | 'playground'
-      | 'marketplace'
-      | 'shop_confectionery'
-      | 'shop_locksmith'
-      | 'craft_shoemaker'
-      | 'shop_alcohol'
-      | 'shop_fine_food'
-      | 'shop_crop'
-      | 'shop_frozen_food'
-      | 'amenity_ice_cream'
-      | 'shop_seafood'
-      | 'shop_baby_goods'
-      | 'shop_tatoo'
-      | 'shop_erotic'
-      | 'shop_watches'
-      | 'shop_discount'
-      | 'shop_well_being'
-      | 'shop_doityourself_clothes'
-      | 'shop_medical_supply'
-      | 'shop_furnitures'
-      | 'shop_outdoor_activites'
-      | 'shop_vehicules'
-      | 'shop_boat'
-      | 'shop_hobbies'
-      | 'shop_gift'
-      | 'shop_e-cigarette'
-      | 'shop_dry_cleaning'
-      | 'retirement_home'
-      | 'shop_ticket'
-      | 'coworking'
-      | 'pitch'
-      | 'football_pitch'
-      | 'boules_pitch'
-      | 'basketball_pitch'
-      | 'rugby_pitch'
-      | 'tennis_pitch'
-      | 'skateboard_pitch'
-      | 'table_tennis_pitch'
-      | 'equestrian_pitch'
-      | 'running_track'
-      | 'sports_hall'
-      | 'sport_climbing'
-      | 'sport_martial_art'
-      | 'sport_badminton'
-      | 'sport_baseball'
-      | 'sport_beach_volley_ball'
-      | 'sport_golf'
-      | 'sport_handball'
-      | 'sport_ice_skating'
-      | 'sport_karting'
-      | 'sport_motor'
-      | 'sport_skiing'
-      | 'sport_volleyball'
-      | 'sport_sailing'
-      | 'stadium'
-      | 'viewpoint'
-      | 'charging_station'
-      | 'health_osteopathy';
-
+      | 'marketplace';
     /** CategoryDescription */
     CategoryDescription: {
       /**
@@ -524,7 +470,7 @@ export interface components {
       /**
        * Geometry
        * @description GeoJSON
-       * @default [object Object]
+       * @default {}
        */
       geometry?: { [key: string]: unknown };
       /** Start Time */
@@ -546,7 +492,37 @@ export interface components {
       /**
        * Shape
        * @description Restrict search inside of a polygon given in geojson format.
-       * @example [object Object]
+       * @example {
+       *   "type": "Feature",
+       *   "properties": {},
+       *   "geometry": {
+       *     "type": "Polygon",
+       *     "coordinates": [
+       *       [
+       *         [
+       *           2.29,
+       *           48.78
+       *         ],
+       *         [
+       *           2.34,
+       *           48.78
+       *         ],
+       *         [
+       *           2.34,
+       *           48.81
+       *         ],
+       *         [
+       *           2.29,
+       *           48.81
+       *         ],
+       *         [
+       *           2.29,
+       *           48.78
+       *         ]
+       *       ]
+       *     ]
+       *   }
+       * }
        */
       shape?: components['schemas']['geojson_pydantic__features__Feature'];
     };
@@ -609,52 +585,52 @@ export interface components {
       administrative_regions: components['schemas']['AssociatedAdmin'][];
       /**
        * Poi Types
-       * @default
+       * @default []
        */
       poi_types?: components['schemas']['PoiType'][];
       /**
        * Properties
-       * @default
+       * @default []
        */
       properties?: components['schemas']['GeocodingProperty'][];
       address?: components['schemas']['GeocodingPlace'];
       /**
        * Commercial Modes
-       * @default
+       * @default []
        */
       commercial_modes?: components['schemas']['CommercialMode'][];
       /**
        * Comments
-       * @default
+       * @default []
        */
       comments?: components['schemas']['Comment'][];
       /**
        * Physical Modes
-       * @default
+       * @default []
        */
       physical_modes?: components['schemas']['PhysicalMode'][];
       /**
        * Lines
-       * @default
+       * @default []
        */
       lines?: components['schemas']['Line'][];
       /** Timezone */
       timezone?: string;
       /**
        * Codes
-       * @default
+       * @default []
        */
       codes?: components['schemas']['Code'][];
       /**
        * Feed Publishers
-       * @default
+       * @default []
        */
       feed_publishers?: components['schemas']['FeedPublished'][];
       /** Bbox */
       bbox?: [number, number, number, number];
       /**
        * Country Codes
-       * @default
+       * @default []
        */
       country_codes?: string[];
     };
@@ -694,7 +670,9 @@ export interface components {
       type?: string;
       /**
        * Geocoding
-       * @default [object Object]
+       * @default {
+       *   "version": "0.1.0"
+       * }
        */
       geocoding?: components['schemas']['Geocoding'];
       /**
@@ -705,7 +683,7 @@ export interface components {
       /**
        * Features
        * @description Geographic places matching the query.
-       * @default
+       * @default []
        */
       features?: components['schemas']['idunn__geocoder__models__geocodejson__Feature'][];
     };
@@ -715,7 +693,10 @@ export interface components {
       url: string;
       /** Alt */
       alt: string;
-      /** Credits */
+      /**
+       * Credits
+       * @default
+       */
       credits?: string;
       /** Source Url */
       source_url: string;
@@ -775,7 +756,12 @@ export interface components {
       /**
        * Intention Bbox
        * @description Bounding box where the results have been searched for, based on the detected intention. Not provided when no detected intention was used to fetch the results.
-       * @example 2.32,48.85,2.367,48.866
+       * @example [
+       *   2.32,
+       *   48.85,
+       *   2.367,
+       *   48.866
+       * ]
        */
       intention_bbox?: [number, number, number, number];
       /**
@@ -1104,7 +1090,12 @@ export interface components {
       /**
        * Bbox
        * @description Minimal bbox containing all results. `null` if no result is found. May be larger than or outside of the original bbox passed in the query if `?extend_bbox=true` was set.
-       * @example 2.32,48.85,2.367,48.866
+       * @example [
+       *   2.32,
+       *   48.85,
+       *   2.367,
+       *   48.866
+       * ]
        */
       bbox?: [number, number, number, number];
       /**
@@ -1202,12 +1193,12 @@ export interface components {
       summary: string;
       /**
        * Steps
-       * @default
+       * @default []
        */
       steps?: components['schemas']['RouteStep'][];
       /**
        * Stops
-       * @default
+       * @default []
        */
       stops?: components['schemas']['TransportStop'][];
       info?: components['schemas']['TransportInfo'];
@@ -1225,7 +1216,10 @@ export interface components {
       location: [number, number];
       /** Modifier */
       modifier?: string;
-      /** Type */
+      /**
+       * Type
+       * @default
+       */
       type?: string;
       /** Instruction */
       instruction: string;
@@ -1236,7 +1230,10 @@ export interface components {
       currency: string;
       /** Value */
       value: string;
-      /** Group */
+      /**
+       * Group
+       * @default false
+       */
       group?: boolean;
     };
     /** RouteStep */
@@ -2014,3 +2011,5 @@ export interface operations {
     };
   };
 }
+
+export interface external {}

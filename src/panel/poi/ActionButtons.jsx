@@ -5,7 +5,6 @@ import Telemetry from 'src/libs/telemetry';
 import { ShareMenu } from 'src/components/ui';
 import { IconHeart, IconHeartFill } from 'src/components/ui/icons';
 import { isFromTripAdvisor } from 'src/libs/pois';
-import { PINK_DARK } from 'src/libs/colors';
 import {
   Stack,
   Button,
@@ -63,7 +62,7 @@ const TransactionalButton = ({ poi }) => {
       rel="noopener noreferrer external"
       title={label}
       onClick={sendTelemetryEvent}
-      variant="secondary"
+      variant="secondary-black"
       pictoButton
     >
       <Icon />
@@ -88,9 +87,9 @@ const ActionButtons = ({
     Telemetry.add(Telemetry.POI_SHARE_TO, { target });
   };
 
-  const favoriteColor = isPoiInFavorite ? PINK_DARK : null;
+  const favoriteColor = isPoiInFavorite ? 'var(--red-500)' : null;
   const directionsButtonVariant = useMemo(
-    () => (isFromTripAdvisor(poi) ? 'secondary' : 'primary'),
+    () => (isFromTripAdvisor(poi) ? 'secondary-black' : 'primary-green'),
     [poi]
   );
 
@@ -111,7 +110,7 @@ const ActionButtons = ({
       {poi?.blocksByType?.phone && (
         <Button
           className="poi_panel__action__phone"
-          variant="secondary"
+          variant="secondary-black"
           pictoButton
           onClick={onClickPhoneNumber}
           href={poi.blocksByType.phone.url}
@@ -126,15 +125,15 @@ const ActionButtons = ({
 
       <Button
         className="poi_panel__action__favorite"
-        variant="secondary"
+        variant="secondary-black"
         pictoButton
         data-active={isPoiInFavorite}
         title={_('Favorites', 'poi panel')}
-        onClick={toggleStorePoi}
-        style={{ borderColor: favoriteColor }}
+        onMouseDown={toggleStorePoi}
+        style={{ borderColor: favoriteColor, color: favoriteColor }}
       >
         {isPoiInFavorite ? (
-          <IconHeartFill width={16} height={16} fill={favoriteColor} />
+          <IconHeartFill width={16} height={16} fill="currentColor" />
         ) : (
           <IconHeart width={16} height={16} fill="currentColor" />
         )}
@@ -148,7 +147,7 @@ const ActionButtons = ({
         {openMenu => (
           <Button
             className="poi_panel__action__share"
-            variant="secondary"
+            variant="secondary-black"
             pictoButton
             title={_('Share', 'poi panel')}
             onClick={e => onShareClick(e, openMenu)}

@@ -5,7 +5,6 @@ import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
 import { IconHeart, IconHistory, IconEdit, IconBug } from 'src/components/ui/icons';
 import { IconLight, IconApps } from '@qwant/qwant-ponents';
-import { PINK_DARK, ACTION_BLUE_BASE, PURPLE } from 'src/libs/colors';
 import { useConfig, useI18n } from 'src/hooks';
 
 const AppMenu = ({ close, openProducts }) => {
@@ -27,7 +26,7 @@ const AppMenu = ({ close, openProducts }) => {
           Telemetry.add(Telemetry.MENU_FAVORITE);
           navTo('/favs/');
         }}
-        icon={<IconHeart width={16} fill={PINK_DARK} />}
+        icon={<IconHeart width={16} fill="var(--green-500)" />}
       >
         {_('My favorites', 'menu')}
       </MenuItem>
@@ -38,7 +37,7 @@ const AppMenu = ({ close, openProducts }) => {
             e.preventDefault();
             navTo('/history/');
           }}
-          icon={<IconHistory width={16} fill={PURPLE} />}
+          icon={<IconHistory width={16} fill="var(--green-500)" />}
         >
           {_('My history', 'menu')}
         </MenuItem>
@@ -46,7 +45,7 @@ const AppMenu = ({ close, openProducts }) => {
       <MenuItem
         href={getLocalizedUrl('aboutMapsToS')}
         outsideLink
-        icon={<IconLight size={16} fill={ACTION_BLUE_BASE} />}
+        icon={<IconLight size={16} fill="var(--green-500)" />}
       >
         <span
           dangerouslySetInnerHTML={{
@@ -57,14 +56,14 @@ const AppMenu = ({ close, openProducts }) => {
       <MenuItem
         href={getLocalizedUrl('contributing')}
         outsideLink
-        icon={<IconEdit width={16} fill={ACTION_BLUE_BASE} />}
+        icon={<IconEdit width={16} fill="var(--green-500)" />}
       >
         {_('How to contribute', 'menu')}
       </MenuItem>
       <MenuItem
         href={getLocalizedUrl('reportBug')}
         outsideLink
-        icon={<IconBug width={16} fill={ACTION_BLUE_BASE} />}
+        icon={<IconBug width={16} fill="var(--green-500)" />}
       >
         {_('Report a bug', 'menu')}
       </MenuItem>
@@ -77,7 +76,7 @@ const AppMenu = ({ close, openProducts }) => {
               e.preventDefault();
               openProducts();
             }}
-            icon={<IconApps size={16} fill={ACTION_BLUE_BASE} />}
+            icon={<IconApps size={16} fill="var(--green-500)" />}
           >
             {_('Products', 'menu')}
           </MenuItem>

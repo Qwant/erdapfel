@@ -1,3 +1,4 @@
+/* global _ */
 /* eslint-disable no-irregular-whitespace */
 import { normalizeToFeatureCollection } from './geojson';
 
@@ -12,8 +13,8 @@ export function formatDuration(sec) {
   const hour = Math.floor(min / 60);
   min = min - 60 * hour;
   let ret = `${hour} h`;
-  if (min > 0 && hour < 10) {
-    ret += ` ${min < 10 ? '0' : ''}${min}`;
+  if (hour < 10) {
+    ret += ' ' + min.toString().padStart(2, '0') + ' min';
   }
   return ret;
 }
@@ -83,4 +84,31 @@ export const originDestinationCoords = route => {
       : last(last_geo.coordinates);
 
   return { origin, destination };
+};
+
+export const walkingManeuver = maneuver => {
+  const stringifyModifier = {
+    'sharp left': _('Turn left', 'direction'),
+    left: _('Turn left', 'direction'),
+    'slight left': _('Keep left', 'direction'),
+    straight: _('Walk', 'direction'),
+    'slight right': _('Keep right', 'direction'),
+    right: _('Turn right', 'direction'),
+    'sharp right': _('Turn right', 'direction'),
+    uturn: _('Turn back', 'direction'),
+  };
+
+  const context = {
+    modifier: stringifyModifier[maneuver.modifier],
+    name: maneuver.detail.name,
+    length: maneuver.detail.length,
+  };
+
+  return maneuver.detail.name
+    ? _('{modifier} on {name}', 'direction', context)
+    : maneuver.modifier === 'straight' ||
+      maneuver.modifier === 'slight right' ||
+      maneuver.modifier === 'slight left'
+    ? _('{modifier} during {length} m', 'direction', context)
+    : _('{modifier} in {length} m', 'direction', context);
 };

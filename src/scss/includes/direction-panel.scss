@@ -1,5 +1,34 @@
 .direction-panel {
-  padding-top: 12px;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    border: 1px solid var(--grey-900-alpha16);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 112px;
+    background: var(--green-400);
+    z-index: -1;
+
+    @media (min-width: 641px) {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      z-index: 0;
+    }
+  }
+
+  .direction-panel-mobile-close {
+    position: absolute;
+    right: 8px;
+    top: 16px;
+    height: 28px;
+
+    & svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
 
   @media (min-width: 641px) {
     &.panel {
@@ -8,20 +37,19 @@
   }
 
   @media (max-width: 640px) {
-    background-color: $background;
     @include card_shadow();
+    box-shadow: none;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    padding-top: 20px;
     z-index: 1;
-
+  
     .direction-autocomplete_suggestions {
       position: fixed;
-      top: 64px;
+      top: calc(50px + calc(var(--spacing-m) * 2));
       width: 100vw;
-      background-color: $background;
+      background-color: var(--grey-000);
       overflow-y: auto;
     }
   }

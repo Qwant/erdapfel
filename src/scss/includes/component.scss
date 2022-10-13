@@ -1,11 +1,10 @@
 // dimensions
-
 $panel_width : 400px;
-$top_bar_height: 64px;
+$top_bar_height: 80px;
 $ui_margin: 12px;
 
 @mixin panel_radius() {
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
 }
 

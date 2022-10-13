@@ -18,7 +18,11 @@ export const BackToQwantButton = ({ isMobile }) => {
   }, [isMobile]);
 
   return (
-    <Button className="backToQwantButton" variant="tertiary" onClick={() => window.history.back()}>
+    <Button
+      className="backToQwantButton"
+      variant="tertiary-black"
+      onClick={() => window.history.back()}
+    >
       <IconArrowLeftLine />
       {_('Back to Qwant.com')}
     </Button>

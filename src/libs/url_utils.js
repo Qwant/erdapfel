@@ -60,10 +60,7 @@ export function toCssUrl(url) {
 }
 
 const removeNullEntries = obj =>
-  Object.keys(obj) // Object.entries is not supported by IE :(
-    .map(key => [key, obj[key]])
-    .filter(([, value]) => value !== null && value !== undefined)
-    .reduce((result, [key, value]) => ({ ...result, [key]: value }), {});
+  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null && v !== undefined));
 
 export function buildQueryString(queriesObject) {
   const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();

@@ -1,9 +1,9 @@
-import Poi from './poi';
-import Ajax from 'src/libs/ajax';
+import Poi, { TPoi } from './poi';
+import Ajax from '../../libs/ajax';
 import nconf from '@qwant/nconf-getter';
-import Error from 'src/adapters/error';
-import QueryContext from 'src/adapters/query_context';
-import { normalize as normalizeAddress, NormalizedAddress } from 'src/libs/address';
+import Error from '../../adapters/error';
+import QueryContext, { TQueryContext } from '../../adapters/query_context';
+import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
 import { operations, components } from 'appTypes/idunn';
 import { getIsOnlyOSM } from 'src/adapters/store';
 
@@ -31,16 +31,9 @@ export default class IdunnPoi extends Poi {
     const latLng = {
       lat: (rawPoi?.geometry?.coordinates as number[])[1],
       lng: (rawPoi?.geometry?.coordinates as number[])[0],
-    };
+    } as TPoi['latLon'];
 
-    super(
-      rawPoi.id,
-      rawPoi.name,
-      rawPoi.type,
-      latLng as any, // TODO: Check why lat/lng and not lat/lon
-      rawPoi.class_name,
-      rawPoi.subclass_name
-    );
+    super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name);
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
     this.bbox = rawPoi?.geometry?.bbox as [number, number, number, number]; // TODO: Check if there is always a bbox on Idunn Place
@@ -105,12 +98,7 @@ export default class IdunnPoi extends Poi {
   static async poiApiLoad(
     obj: {
       id?: string;
-      queryContext?: {
-        term: string;
-        ranking: number;
-        lang: string;
-        position: { lon: string; lat: string; zoom: string };
-      };
+      queryContext?: TQueryContext;
     },
     options: { simple?: boolean } = {}
   ) {
@@ -120,7 +108,7 @@ export default class IdunnPoi extends Poi {
       requestParams = { verbosity: 'list' };
     }
     try {
-      const headers = QueryContext.toHeaders(obj.queryContext);
+      const headers = QueryContext.toHeaders(obj?.queryContext);
       const rawPoi: components['schemas']['Place'] = await Ajax.getLang(
         url,
         requestParams,

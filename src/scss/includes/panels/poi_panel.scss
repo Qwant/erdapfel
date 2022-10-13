@@ -21,6 +21,10 @@ $BLOCK_ICON_FONT_SIZE: 16px;
     margin-left: -$spacing-m;
     margin-right: -$spacing-m;
   }
+
+  .block-icon {
+    margin-right: 26px;
+  }
 }
 
 @keyframes appear {
@@ -124,7 +128,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
     position: absolute;
     background-position: center;
     background-size: cover;
-    border-radius: 3px;
+    border-radius: 8px;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
 
     &:first-child {
@@ -212,6 +216,10 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__pj_logo {
   min-height: 18px;
+}
+
+.poi_panel__actions .poi_panel__action__favorite:hover {
+  background: var(--red-400-alpha20);
 }
 
 @media (max-width: 640px) {

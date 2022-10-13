@@ -31,7 +31,8 @@ const PoiPopup = ({ poi }) => {
     }
   };
 
-  const toggleStorePoi = () => {
+  const toggleStorePoi = e => {
+    e?.preventDefault();
     const isFavorite = isInFavorites(poi);
     Telemetry.sendPoiEvent(poi, 'favorite', { stored: !isFavorite });
     if (isFavorite) {

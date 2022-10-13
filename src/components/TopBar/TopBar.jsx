@@ -2,15 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest } from 'src/components/ui';
-import {
-  IconArrowLeftLine,
-  IconDirection,
-  IconClose,
-  Flex,
-  IconMenu,
-  IconApps,
-} from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
+import { IconArrowBackward, IconCloseCircled, IconDirectionsArrow } from 'src/components/ui/icons';
+import { IconClose, Flex, IconMenu, IconApps } from '@qwant/qwant-ponents';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
@@ -62,7 +55,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     return () => {
       document.removeEventListener('keydown', globalKeyHandler);
     };
-  }, [setUserInputValue, inputRef]);
+  }, [setUserInputValue, inputRef, setSearchInputTyping]);
 
   const onClickDirections = () => {
     Telemetry.add(Telemetry.HOME_ITINERARY);
@@ -129,7 +122,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
         />
         <div className="search_form__wrapper">
           <div className="search_form__return" onMouseDown={backButtonAction}>
-            <IconArrowLeftLine size={20} />
+            <IconArrowBackward />
           </div>
           <Suggest
             value={value}
@@ -179,7 +172,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             type="button"
             onMouseDown={onClear}
           >
-            <IconClose size={24} />
+            <IconCloseCircled width={24} height={24} />
           </button>
           <input className="search_form__action" type="submit" value="" title={_('Search')} />
         </div>
@@ -195,7 +188,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               onClick={() => setMenuDrawerOpen(!isMenuDrawerOpen)}
               title={_('Menu')}
             >
-              <IconMenu size={isMobile ? 24 : 16} />
+              <IconMenu size={isMobile ? 24 : 16} fill="var(--grey-900)" />
             </button>
             {!isMobile && config.burgerMenu.products && (
               <button
@@ -223,7 +216,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               type="button"
               onClick={onClickDirections}
             >
-              <IconDirection size={24} fill={ACTION_BLUE_BASE} />
+              <IconDirectionsArrow />
             </Flex>
             <button
               id="clear_button_desktop"

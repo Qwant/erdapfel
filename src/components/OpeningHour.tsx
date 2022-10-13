@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
-import { GREEN_DARK, RED_DARKER } from 'src/libs/colors';
+import { RED_DARKER } from 'src/libs/colors';
 import { PoiHourBlockProps } from 'src/panel/poi/blocks/Information/blocks/Hour';
+import { PoiTimeTableProps } from 'src/panel/poi/blocks/Information/blocks/Hour/TimeTable';
 
 const getStatusMessage = ({
   status,
@@ -14,7 +15,7 @@ const getStatusMessage = ({
   if (status === 'open') {
     return {
       label: texts?.open ?? '',
-      color: GREEN_DARK,
+      color: 'var(--serpPermaLink)',
     };
   }
 
@@ -30,7 +31,7 @@ const getStatusMessage = ({
 
 export type OpeningHourProps = {
   className?: string;
-  schedule?: any;
+  schedule: PoiTimeTableProps['schedule'];
   showNextOpenOnly?: boolean;
   texts?: PoiHourBlockProps['texts'];
 };

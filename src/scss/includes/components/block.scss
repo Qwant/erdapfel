@@ -3,6 +3,7 @@
   align-items: center;
   padding: $spacing-xs $spacing-s;
   width: 100%;
+  text-decoration: none !important;
 
   &-icon {
     margin-top: $spacing-xs;
@@ -29,13 +30,33 @@
 
   &--clickable {
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover {
-      background-color: $grey-bright;
+      background-color: var(--grey-050);
+      transition: background-color 0.2s ease-in-out;
       text-decoration: none;
 
       .block-action {
         color: $grey-black;
+      }
+    }
+  }
+
+  &.block-website {
+    .block-content {
+      .block-value {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &.block-socialNetworks {
+    .block-content {
+      .block-value {
+        a {
+          text-decoration: none !important;
+        }
       }
     }
   }

@@ -88,10 +88,11 @@ describe('Form', () => {
     const fields = await getInputValues(page);
     expect(fields).toEqual({ origin: originName, destination: destinationName });
 
-    const activeModeLabel = await page.evaluate(() =>
-      Array.from(document.querySelector('.vehicleSelector-button--active').classList).join(',')
+    const activeMode = await page.evaluate(() =>
+      document.querySelector('.vehicleSelector-button--active').getAttribute('data-testid')
     );
-    expect(activeModeLabel).toContain('--walking');
+
+    expect(activeMode).toContain('vehicleSelector-button-walking');
   });
 
   test('an itinerary is searched when both fields contain valid points', async () => {

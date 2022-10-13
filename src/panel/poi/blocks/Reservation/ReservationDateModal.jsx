@@ -67,10 +67,12 @@ export function ReservationDateModal({
         </Text>
         <Box>
           <Stack horizontal gap="xs">
-            <Button variant="tertiary" onClick={onReset}>
+            <Button variant="tertiary-black" onClick={onReset}>
               {_('Cancel')}
             </Button>
-            <Button onClick={onSubmit}>{_('Ok')}</Button>
+            <Button variant="primary-green" onClick={onSubmit}>
+              {_('Ok')}
+            </Button>
           </Stack>
         </Box>
       </Flex>

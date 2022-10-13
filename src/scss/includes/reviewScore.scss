@@ -2,11 +2,7 @@
   color: $secondary_text;
   display: inline-flex;
   align-items: center;
-
-  &:hover {
-    // Only review count should be underline
-    text-decoration: none;
-  }
+  text-decoration: none !important;
 
   &-count {
     margin-left: 3px;
@@ -31,5 +27,12 @@
     height: 16px;
     flex: none;
     margin-left: -6px;
+  }
+}
+
+.reviewScore-starRating {
+  color: #050506;
+  div {
+    font-size: 14px;
   }
 }

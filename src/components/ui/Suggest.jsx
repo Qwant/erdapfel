@@ -104,7 +104,6 @@ const Suggest = ({
           <Text
             typo="body-1"
             color="primary"
-            bold
             dangerouslySetInnerHTML={{
               __html: _(
                 '<span class="historyText">History</span> is available on Qwant Maps',
@@ -133,7 +132,7 @@ const Suggest = ({
             </Box>
             <Box mt="xl" className="historyButtons">
               <Button
-                variant="secondary"
+                variant="secondary-black"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_DISABLED_FROM_SUGGEST);
                   setHistoryAnswer(false);
@@ -146,6 +145,7 @@ const Suggest = ({
                 {_('No thanks', 'history')}
               </Button>
               <Button
+                variant="primary-green"
                 ml="xs"
                 onClick={() => {
                   Telemetry.add(Telemetry.HISTORY_ENABLED_FROM_SUGGEST);
@@ -292,7 +292,15 @@ const Suggest = ({
     } else {
       document.body.classList.remove('top_bar--history-suggest');
     }
-  }, [hasFocus, fetchItems, value, keepHistoryPromptVisible, historyAnswer, close]);
+  }, [
+    hasFocus,
+    fetchItems,
+    value,
+    keepHistoryPromptVisible,
+    historyAnswer,
+    close,
+    isSearchInputTyping,
+  ]);
 
   const selectItem = item => {
     if (item._suggestSource === 'history') {
@@ -331,7 +339,7 @@ const Suggest = ({
     // See https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API
     if (isMobile && dropdownVisible && window.visualViewport) {
       const setDropdownFixedHeight = () => {
-        const TOP_BAR_HEIGHT = 60;
+        const TOP_BAR_HEIGHT = 80;
         // visualViewport.height is the real visible height, not including the virtual keyboard.
         // Giving a fixed height to the container makes the content scrollable
         outputNode.style.height = window.visualViewport.height - TOP_BAR_HEIGHT + 'px';
@@ -368,7 +376,7 @@ const Suggest = ({
         onBlur: () => {
           // The mouseLeave flag allows to keep the suggest open when clicking outside of the browser
           if (!window.mouseLeave) {
-            setHasFocus(false, 150);
+            setHasFocus(false, isMobile ? 300 : 150);
           }
         },
         highlightedValue: highlighted ? getInputValue(highlighted) : null,
@@ -419,6 +427,7 @@ const Suggest = ({
                     'Your history is activated. It is only visible to you on this device.',
                     'suggest'
                   )}{' '}
+                  <br />
                   <a
                     href={getLocalizedUrl('helpHistory')}
                     target="_blank"

@@ -9,7 +9,7 @@ import PoiStore from 'src/adapters/poi/poi_store';
 import NoResultMessage from 'src/panel/NoResultMessage';
 import { deleteQuery, getQueryType } from 'src/adapters/search_history';
 import { useI18n } from 'src/hooks';
-import { IconEmpty } from '@qwant/qwant-ponents';
+import { IconEmpty, Flex } from '@qwant/qwant-ponents';
 import { GREY_SEMI_DARKNESS } from '../../libs/colors';
 
 const SuggestItem = ({ item }) => {
@@ -108,12 +108,14 @@ const SuggestItem = ({ item }) => {
         {secondLabel && <div className="autocomplete_suggestion__second_line">{secondLabel}</div>}
       </div>
       {isHistory && (
-        <IconEmpty
-          width={20}
-          fill={GREY_SEMI_DARKNESS}
-          onMouseDown={removeFromHistory}
-          title={_('Delete')}
-        />
+        <Flex ml="s">
+          <IconEmpty
+            width={20}
+            fill={GREY_SEMI_DARKNESS}
+            onMouseDown={removeFromHistory}
+            title={_('Delete')}
+          />
+        </Flex>
       )}
     </div>
   );

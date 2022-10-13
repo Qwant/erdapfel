@@ -1,10 +1,4 @@
 import Color from 'color';
-import {
-  ACTION_BLUE_SEMI_LIGHTNESS,
-  ACTION_BLUE_DARK,
-  GREY_GREY,
-  GREY_SEMI_LIGHTNESS,
-} from 'src/libs/colors';
 
 const darkenColor = hex => Color(hex).mix(Color('black'), 0.33).hex();
 const safeHexColor = hex => (hex.charAt(0) === '#' ? hex : `#${hex}`);
@@ -15,8 +9,8 @@ export function prepareRouteColor(feature) {
     ...feature,
     properties: {
       ...feature.properties,
-      lineColor: lineColor ? safeHexColor(lineColor) : ACTION_BLUE_SEMI_LIGHTNESS,
-      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : ACTION_BLUE_DARK,
+      lineColor: lineColor ? safeHexColor(lineColor) : '#57C78E',
+      outlineColor: lineColor ? darkenColor(safeHexColor(lineColor)) : '#297A52',
     },
   };
 }
@@ -25,7 +19,7 @@ function getColorExpression(isActive, isOutline) {
   if (isActive) {
     return isOutline ? ['get', 'outlineColor'] : ['get', 'lineColor'];
   }
-  return isOutline ? GREY_GREY : GREY_SEMI_LIGHTNESS;
+  return isOutline ? '#676E79' : '#C7CBD1';
 }
 
 export function getRouteStyle(vehicle, isActive, isOutline) {
@@ -53,7 +47,7 @@ export function getRouteStyle(vehicle, isActive, isOutline) {
     paint: {
       'line-color': getColorExpression(isActive, isOutline),
       'line-color-transition': { duration: 0 },
-      'line-width': isOutline ? 7 : 5,
+      'line-width': isOutline ? 9 : 5,
     },
   };
 }

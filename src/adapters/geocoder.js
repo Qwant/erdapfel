@@ -6,7 +6,6 @@ import Intention from './intention';
 
 const serviceConfigs = nconf.get().services;
 const {
-  focusMinZoom,
   focusPrecision,
   focusZoomPrecision,
   maxItems,
@@ -30,12 +29,20 @@ function getFocusParams({ lat, lon, zoom }) {
   if (lat === undefined || lon === undefined || zoom === undefined) {
     return null;
   }
-  if (zoom < Number(focusMinZoom)) {
+
+  // Get the precision specific to a zoom level
+  const zoomFocusPrecision = JSON.parse(focusPrecision)
+    .filter(zp => zoom > zp.zoom)
+    .map(zp => zp.precision)
+    .sort()
+    .shift();
+
+  if (zoomFocusPrecision === undefined) {
     return null;
   }
   return {
-    lat: roundWithPrecision(lat, focusPrecision),
-    lon: roundWithPrecision(lon, focusPrecision),
+    lat: roundWithPrecision(lat, zoomFocusPrecision),
+    lon: roundWithPrecision(lon, zoomFocusPrecision),
     zoom: roundWithPrecision(zoom, focusZoomPrecision),
   };
 }
@@ -71,7 +78,7 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
     }
     suggestsPromise = ajax.get(geocoderUrl, query);
     suggestsPromise
-      .then(({ features, intentions }) => {
+      .then(({ features, intention }) => {
         const pois = features.map((feature, index) => {
           const queryContext = new QueryContext(
             term,
@@ -82,10 +89,11 @@ export function getGeocoderSuggestions(term, { focus = {}, useNlu = false } = {}
           return new BragiPoi(feature, queryContext);
         });
         const bragiResponse = { pois };
-        if (intentions) {
-          bragiResponse.intentions = intentions
-            .map(intention => new Intention(intention))
-            .filter(intention => intention.isValid());
+        if (intention) {
+          const parsed = new Intention(intention);
+          if (parsed.isValid()) {
+            bragiResponse.intention = [parsed];
+          }
         }
         bragiCache[cacheKey] = bragiResponse;
         resolve(bragiResponse);

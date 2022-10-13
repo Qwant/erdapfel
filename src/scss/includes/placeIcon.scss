@@ -10,7 +10,7 @@
 
   &--geoloc {
     color: var(--action-blue-dark);
-    background-color: var(--action-blue-lighter);
+    background-color: #e0f5eb;
   }
 
   &--favorite {
@@ -24,6 +24,6 @@
   }
 
   &--search {
-    background-color: var(--grey-lighter);
+    background-color: $grey-lighter;
   }
 }

@@ -8,7 +8,7 @@ const Chevron = ({ up, fill = GREY_SEMI_DARKNESS, size = 24 }) => (
     fill={fill}
     style={{
       transition: 'transform .2s',
-      transform: `rotate(${up ? 0 : 180}deg)`,
+      transform: `rotate(${up ? 180 : 0}deg)`,
     }}
   />
 );

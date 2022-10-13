@@ -2,6 +2,10 @@
   flex: 1 100px !important;
 }
 
+.ReservationCheckAvailability {
+  text-decoration: none !important;
+}
+
 .ReservationDatepickerWrapper {
   position: fixed;
   top: 0;
@@ -20,7 +24,7 @@
 }
 .ReservationDatepickerWrapperHeader {
   flex: none;
-  border-bottom: solid 1px var(--grey-lighter);
+  border-bottom: solid 1px $grey-lighter;
   padding: var(--spacing-s);
   padding-bottom: 0;
 }
@@ -37,7 +41,7 @@
 .ReservationDatepickerWrapperFooter {
   height: 80px;
   flex: none;
-  border-top: solid 1px var(--grey-lighter);
+  border-top: solid 1px $grey-lighter;
 }
 
 .ReservationDatepickerWrapper .ReservationIADatePicker {
@@ -51,6 +55,30 @@
   top: var(--spacing-s);
   z-index: 1001;
   transform: translateY(var(--spacing-m));
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 12px 0 !important;
+  border: none !important;
+  
+  & > div {
+    --cursorBg: var(--green-400);
+    --rangeBg: var(--green-300-alpha20);
+    --cursorColor: var(--grey-900);
+
+    button.next,
+    button.prev {
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 2px 12px 0;
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.4) 0 2px 12px 0;
+      }
+    }
+  }
+}
+
+#DatePickerFieldOut,
+#DatePickerFieldIn,
+#OccupantsPicker {
+  border-width: var(--memphis-border-width);
 }
 
 .ReservationIADatePickerFooter {
@@ -59,7 +87,7 @@
   left: 0;
   right: 0;
   z-index: 1002;
-  background: var(--grey-white);
+  background: var(--grey-000);
 }
 
 .ReservationIADatePickerFooterSpacer {
@@ -77,7 +105,7 @@
 }
 
 .ReservationSeparator {
-  background: var(--grey-lighter);
+  background: $grey-lighter;
   height: 1px;
   border: none;
   margin: 0;
@@ -87,7 +115,7 @@
 .ReservationComposerModal {
   width: 275px;
   --border: var(--grey-semi-lightness);
-  --separator: var(--grey-lighter);
+  --separator: $grey-lighter;
 }
 
 .ReservationComposerTooltip hr,
@@ -104,6 +132,7 @@
   top: 50px;
   left: 0;
   z-index: 1050;
+  box-shadow: rgb(0 0 0 / 20%) 0 2px 12px 0 !important;
 }
 
 .ReservationComposerModal {

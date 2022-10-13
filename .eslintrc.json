@@ -47,6 +47,7 @@
     "react/jsx-curly-brace-presence": ["error", "never"],
     "jsx-quotes": ["error", "prefer-double"],
     "@typescript-eslint/no-var-requires": "warn",
+    "@typescript-eslint/no-empty-interface": "warn",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"]
   },
@@ -62,7 +63,7 @@
       }
     },
     {
-      "files": ["bin/**/*.js", "build/**/*.js"],
+      "files": ["bin/**/*.js", "build/**/*.js", "tests/**/*.js"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }

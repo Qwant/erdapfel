@@ -19,12 +19,12 @@
   }
 
   &:active {
-    background-color: $grey-bright;
+    background-color: var(--grey-050);
   }
 
   @media (min-width: 641px) {
     &:hover {
-      background-color: $grey-bright;
+      background-color: var(--grey-050);
     }
   }
 }
@@ -39,9 +39,9 @@
 
 .mainActionButton--directionMode {
   .mainActionButton-icon {
-    background: #1050c5;
+    background: var(--green-400);
     border: none;
-    color: #fff;
+    color: var(--grey-900);
     font-size: 20px;
   }
 }

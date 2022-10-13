@@ -1,4 +1,3 @@
-
 .sourceFooter {
   width: 100%;
   height: 32px;
@@ -9,7 +8,12 @@
   color: $grey-semi-darkness;
 
   a {
-    color: $grey-semi-darkness;
+    color: $grey-semi-darkness !important;
+    text-decoration: none !important;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
   }
 }
 

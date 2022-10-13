@@ -1,11 +1,10 @@
 import React from 'react';
-import TimeTable from './TimeTable';
+import TimeTable, { PoiTimeTableProps } from './TimeTable';
 import Block from 'src/panel/poi/blocks/Block';
 import { IconTime } from '@qwant/qwant-ponents';
-import { ACTION_BLUE_BASE } from 'src/libs/colors';
 
 export type PoiHourBlockProps = {
-  schedule?: any; // TODO: Migrate OsmSchedule to TS
+  schedule?: PoiTimeTableProps['schedule']; // TODO: Migrate OsmSchedule to TS
   texts?: {
     open_24_7: string;
     opening_hours: string;
@@ -22,7 +21,7 @@ const HourBlock: React.FunctionComponent<PoiHourBlockProps> = ({ schedule, texts
   }
 
   return (
-    <Block icon={<IconTime size={20} fill={ACTION_BLUE_BASE} />} title={texts?.opening_hours}>
+    <Block icon={<IconTime size={20} fill="var(--green-500)" />} title={texts?.opening_hours}>
       <TimeTable schedule={schedule} texts={texts} />
     </Block>
   );
