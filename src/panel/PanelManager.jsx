@@ -84,13 +84,22 @@ const PanelManager = ({ router }) => {
   // Definition of url routes to panels
   useEffect(() => {
     router.addRoute('Category', '/places/(.*)', placesParams => {
-      const { type: category, q: query, ...otherOptions } = parseQueryString(placesParams);
+      const {
+        type: category,
+        q: query,
+        place_name: place_name,
+        place_code: place_code,
+        ...otherOptions
+      } = parseQueryString(placesParams);
+
       setPanelOptions({
         ActivePanel: CategoryPanel,
         options: {
           poiFilters: {
             category,
             query,
+            place_name,
+            place_code,
           },
           ...otherOptions,
         },

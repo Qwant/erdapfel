@@ -60,18 +60,34 @@ export default class IdunnPoi extends Poi {
     size: APIGetPlacesPayload['size'],
     category: APIGetPlacesPayload['category'],
     q: APIGetPlacesPayload['q'],
+    place_name: APIGetPlacesPayload['place_name'],
+    place_code: APIGetPlacesPayload['place_code'],
     extendBbox = false
   ) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
 
-    const requestParams = {
-      bbox,
-      size,
-      extend_bbox: extendBbox,
-      ...(category ? { category } : {}),
-      ...(q ? { q } : {}),
-      ...(getIsOnlyOSM() ? { only_osm: true } : {}),
-    };
+    let requestParams = {};
+    if (extendBbox) {
+      requestParams = {
+        bbox,
+        size,
+        place_name,
+        place_code,
+        extend_bbox: extendBbox,
+        ...(category ? { category } : {}),
+        ...(q ? { q } : {}),
+        ...(getIsOnlyOSM() ? { only_osm: true } : {}),
+      };
+    } else {
+      requestParams = {
+        bbox,
+        size,
+        extend_bbox: extendBbox,
+        ...(category ? { category } : {}),
+        ...(q ? { q } : {}),
+        ...(getIsOnlyOSM() ? { only_osm: true } : {}),
+      };
+    }
 
     try {
       const response: APIGetPlacesResponse = await Ajax.getLang(url, requestParams);
