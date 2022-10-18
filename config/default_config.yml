@@ -30,9 +30,8 @@ services:
     useLang: true
     maxItems: 7
     useFocus: true
-    focusPrecision: '0.1' # lat/lon degrees
+    focusPrecision: '[{"zoom":"7","precision":"0.1"},{"zoom":"11","precision":"0.01"},{"zoom":"14","precision":"0.001"}]' # lat/lon degrees
     focusZoomPrecision: '1.0'
-    focusMinZoom: 7
     useNlu: false
   idunn:
     url: override_by_environment

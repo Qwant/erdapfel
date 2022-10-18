@@ -1713,3 +1713,6 @@ msgstr "aspirapolvere"
 
 msgid "dojo"
 msgstr "dojo"
+
+msgid "Details"
+msgstr "Dettagli"

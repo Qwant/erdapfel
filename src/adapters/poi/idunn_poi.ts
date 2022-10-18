@@ -5,6 +5,7 @@ import Error from '../../adapters/error';
 import QueryContext, { TQueryContext } from '../../adapters/query_context';
 import { normalize as normalizeAddress, NormalizedAddress } from '../../libs/address';
 import { operations, components } from 'appTypes/idunn';
+import { getIsOnlyOSM } from 'src/adapters/store';
 
 const serviceConfig = nconf.get().services;
 
@@ -64,6 +65,7 @@ export default class IdunnPoi extends Poi {
     extendBbox = false
   ) {
     const url = `${serviceConfig.idunn.url}/v1/places`;
+
     let requestParams = {};
     if (extendBbox) {
       requestParams = {
@@ -74,6 +76,7 @@ export default class IdunnPoi extends Poi {
         extend_bbox: extendBbox,
         ...(category ? { category } : {}),
         ...(q ? { q } : {}),
+        ...(getIsOnlyOSM() ? { only_osm: true } : {}),
       };
     } else {
       requestParams = {
@@ -82,8 +85,10 @@ export default class IdunnPoi extends Poi {
         extend_bbox: extendBbox,
         ...(category ? { category } : {}),
         ...(q ? { q } : {}),
+        ...(getIsOnlyOSM() ? { only_osm: true } : {}),
       };
     }
+
 
     try {
       const response: APIGetPlacesResponse = await Ajax.getLang(url, requestParams);
