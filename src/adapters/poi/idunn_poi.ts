@@ -89,7 +89,6 @@ export default class IdunnPoi extends Poi {
       };
     }
 
-
     try {
       const response: APIGetPlacesResponse = await Ajax.getLang(url, requestParams);
       response.places = (response.places as components['schemas']['Place'][]).map(
