@@ -350,5 +350,7 @@
   name: public_transport_station
 - label: _('water place')
   name: place_water
+- label: _('public bookcase')
+  name: public_bookcase
 - label: _('osteopathy')
   name: health_osteopathy
