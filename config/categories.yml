@@ -14,8 +14,8 @@
   color: '#108048'
   icon: restaurant
   ecoResponsible: true
-- label: _('book shelf')
-  name: bookshelf
+- label: _('public bookcase')
+  name: public_bookcase
   color: '#108048'
   icon: library
   ecoResponsible: true
