@@ -18,6 +18,14 @@
     margin-bottom: $spacing-xs;
   }
 
+  .eco-responsible-icon:after {
+    content: '🌳';
+    font-size: 20px;
+    position: fixed;
+    margin-top: -15px;
+    margin-left: -5px;
+  }
+
   &:active {
     background-color: var(--grey-050);
   }
