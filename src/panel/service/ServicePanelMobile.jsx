@@ -64,9 +64,13 @@ const ServicePanelMobile = () => {
       )}
 
       <h3 className="u-text--smallTitle u-center u-mb-s">
+        {_('Eco-responsible places', 'eco service panel')}
+      </h3>
+      <CategoryList className="service_panel__categories" ecoResponsible={true} />
+
+      <h3 className="u-text--smallTitle u-center u-mb-s">
         {_('Services nearby', 'service panel')}
       </h3>
-
       <CategoryList className="service_panel__categories" />
     </Panel>
   );
