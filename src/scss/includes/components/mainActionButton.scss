@@ -18,12 +18,12 @@
     margin-bottom: $spacing-xs;
   }
 
-  .eco-responsible-icon:after {
-    content: '🌳';
-    font-size: 20px;
+  .ecoResponsible-icon {
     position: fixed;
-    margin-top: -15px;
-    margin-left: -5px;
+    width: 20px;
+    fill: var(--green-400);
+    margin-top: -10px;
+    margin-left: -10px;
   }
 
   &:active {

@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
 import { Flex } from '@qwant/qwant-ponents';
+import { ReactComponent as IconLeaf } from '../../../public/images/leaf.svg';
 
 const MainActionButton = ({
   variant,
@@ -13,8 +14,6 @@ const MainActionButton = ({
   ecoResponsible,
   ...rest
 }) => {
-  const extraIconClass = ecoResponsible ? 'eco-responsible-icon' : '';
-
   return (
     <button
       type="button"
@@ -29,7 +28,9 @@ const MainActionButton = ({
       {...rest}
     >
       {typeof icon === 'string' ? (
-        <div className={`mainActionButton-icon icon-${icon} ${extraIconClass}`} style={iconStyle} />
+        <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle}>
+          {ecoResponsible && <IconLeaf className="ecoResponsible-icon" />}
+        </div>
       ) : (
         <Flex className="mainActionButton-icon" center>
           {icon}
