@@ -1,22 +1,22 @@
 ---
 - label: _('alimentation')
   name: eco-alimenation
-  color: '#108048'
+  color: '#a125be'
   icon: grocery
   ecoResponsible: true
 - label: _('repair cafe')
   name: repair-cafe
-  color: '#108048'
+  color: '#a125be'
   icon: hardware
   ecoResponsible: true
-- label: _('repair cafe')
-  name: repair-cafe
-  color: '#108048'
+- label: _('Restaurant')
+  name: eco-restaurant
+  color: '#d76600'
   icon: restaurant
   ecoResponsible: true
 - label: _('public bookcase')
   name: public_bookcase
-  color: '#108048'
+  color: '#e2001c'
   icon: library
   ecoResponsible: true
 - label: _('restaurant')

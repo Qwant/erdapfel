@@ -1718,3 +1718,12 @@ msgstr "dojo"
 
 msgid "Details"
 msgstr "Details"
+
+msgid "Eco-responsible places"
+msgstr "Umweltfreundliche Orte"
+
+msgid "alimentation"
+msgstr "ernährung"
+
+msgid "repair cafe"
+msgstr "reparatur-café"
