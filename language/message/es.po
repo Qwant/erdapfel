@@ -1711,3 +1711,12 @@ msgstr "dojo"
 
 msgid "Details"
 msgstr "Detalles"
+
+msgid "Eco-responsible places"
+msgstr "Lugares eco-responsables"
+
+msgid "alimentation"
+msgstr "alimentos"
+
+msgid "repair cafe"
+msgstr "café de reparaciones"

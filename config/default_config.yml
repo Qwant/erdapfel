@@ -2,6 +2,10 @@ PORT: 3000
 
 envName: # optional environment name (ex: 'Local', 'Dev') displayed in the page title. Keep empty for production.
 
+# Feature flags for experimental features
+features:
+  ecoResponsiblePlaces: false
+
 # Server
 server:
   maxBodySize: '5KB' # max request body size on POST

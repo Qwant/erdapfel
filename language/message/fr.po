@@ -1744,3 +1744,12 @@ msgstr "dojo"
 
 msgid "Details"
 msgstr "Details"
+
+msgid "Eco-responsible places"
+msgstr "Lieux éco-responsables"
+
+msgid "alimentation"
+msgstr "alimentation"
+
+msgid "repair cafe"
+msgstr "repair café"

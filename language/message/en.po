@@ -1597,3 +1597,12 @@ msgstr ""
 
 msgid "Details"
 msgstr ""
+
+msgid "Eco-responsible places"
+msgstr ""
+
+msgid "alimentation"
+msgstr ""
+
+msgid "repair cafe"
+msgstr ""

@@ -18,6 +18,14 @@
     margin-bottom: $spacing-xs;
   }
 
+  .ecoResponsible-icon {
+    position: fixed;
+    width: 20px;
+    fill: var(--green-400);
+    margin-top: -10px;
+    margin-left: -10px;
+  }
+
   &:active {
     background-color: var(--grey-050);
   }

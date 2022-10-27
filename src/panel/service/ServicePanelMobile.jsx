@@ -9,6 +9,7 @@ import Telemetry from 'src/libs/telemetry';
 
 const ServicePanelMobile = () => {
   const directionConf = useConfig('direction');
+  const ecoResponsible = useConfig('features').ecoResponsible;
 
   return (
     <Panel
@@ -63,10 +64,18 @@ const ServicePanelMobile = () => {
         </Fragment>
       )}
 
+      {ecoResponsible && (
+        <>
+          <h3 className="u-text--smallTitle u-center u-mb-s">
+            {_('Eco-responsible places', 'eco service panel')}
+          </h3>
+          <CategoryList className="service_panel__categories" ecoResponsible={true} />
+        </>
+      )}
+
       <h3 className="u-text--smallTitle u-center u-mb-s">
         {_('Services nearby', 'service panel')}
       </h3>
-
       <CategoryList className="service_panel__categories" />
     </Panel>
   );
