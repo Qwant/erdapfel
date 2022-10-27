@@ -22,18 +22,16 @@ const ServicePanelDesktop = () => {
         />
       </Panel>
       {ecoResponsible && (
-        <>
-          <Panel className="service_panel u-mb-m">
-            <h3 className="u-text--smallTitle u-mb-s">
-              {_('Eco-responsible places', 'eco service panel')}
-            </h3>
-            <CategoryList
-              className="service_panel__categories"
-              ecoResponsible={true}
-              limit={collapsed ? 4 : undefined}
-            />
-          </Panel>
-        </>
+        <Panel className="service_panel u-mb-m">
+          <h3 className="u-text--smallTitle u-mb-s">
+            {_('Eco-responsible places', 'eco service panel')}
+          </h3>
+          <CategoryList
+            className="service_panel__categories"
+            ecoResponsible={true}
+            limit={collapsed ? 4 : undefined}
+          />
+        </Panel>
       )}
       <Flex center>
         <div className="service_panel__category_toggle">
