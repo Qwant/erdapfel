@@ -7,12 +7,11 @@ import { findIndexIgnoreCase, capitalizeFirst } from '../libs/string';
 import { CATEGORY_TYPE } from '../../config/constants.yml';
 
 export default class Category {
-  constructor(name, label, iconName, color, matcher, ecoResponsible) {
+  constructor(name, label, iconName, color, ecoResponsible) {
     this.name = name;
     this.label = _(label);
     this.iconName = iconName;
     this.color = color;
-    this.matcher = matcher;
     this.ecoResponsible = ecoResponsible;
     this.alternativeName = _('category');
     this.type = CATEGORY_TYPE;
@@ -25,10 +24,6 @@ export default class Category {
 
   isMatching(term) {
     let matched = false;
-
-    if (this.matcher && this.matcher.regex) {
-      matched = new RegExp(`^(${this.matcher.regex})$`, 'i').test(term);
-    }
 
     const prefixLength = Math.min(4, this.label.length);
     // Match label prefix (eg: "supe" for "Supermarché", but not "supel")
@@ -49,8 +44,7 @@ export default class Category {
     const label = options?.label || '';
     const icon = options?.icon || null;
     const color = options?.color || '';
-    const matcher = options?.matcher || '';
     const ecoResponsible = options?.ecoResponsible || false;
-    return new Category(name, label, icon, color, matcher, ecoResponsible);
+    return new Category(name, label, icon, color, ecoResponsible);
   }
 }

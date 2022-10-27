@@ -14,9 +14,6 @@ export type PlaceIconProps = {
     label: string;
     iconName: string;
     color: string;
-    matcher: {
-      regexp: string;
-    };
     alternativeName: string;
     type: string;
     id: string;
