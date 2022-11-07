@@ -1753,3 +1753,12 @@ msgstr "alimentation"
 
 msgid "repair cafe"
 msgstr "repair café"
+
+msgid "Eco-responsible restaurants"
+msgstr "Restaurants éco-responsables"
+
+msgid "Selected in patnership with Écotables"
+msgstr "Sélectionné en partenariat avec Écotables"
+
+msgid "Appears in"
+msgstr "Apparaît dans"

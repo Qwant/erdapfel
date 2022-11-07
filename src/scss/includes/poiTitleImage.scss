@@ -5,7 +5,6 @@
   width: 65px;
   height: 65px;
   border-radius: 8px;
-  overflow: hidden;
   flex-shrink: 0;
 
   &__image {
@@ -16,5 +15,14 @@
 
   .icon {
     font-size: 45px;
+    position: relative;
+
+    .ecoResponsible-icon {
+      position: absolute;
+      width: 20px;
+      fill: var(--green-400);
+      margin-top: -20px;
+      margin-left: -5px;
+    }
   }
 }

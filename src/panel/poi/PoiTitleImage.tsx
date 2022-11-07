@@ -2,6 +2,8 @@ import { components } from 'appTypes/idunn';
 import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
+import { ReactComponent as IconLeaf } from '../../../public/images/leaf.svg';
+import { findBlock } from 'src/libs/pois';
 
 const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
@@ -28,6 +30,8 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => 
   }
 
   const icon: { color: string; iconClass: string } = IconManager.get(poi) || defaultIcon;
+  const ecoResponsible = findBlock(poi.blocks, 'ecoresponsible') !== null;
+
   return (
     <div
       className="poiTitleImage"
@@ -36,7 +40,9 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => 
         backgroundColor: getLightBackground(icon.color),
       }}
     >
-      <div className={`icon icon-${icon.iconClass}`} />
+      <div className={`icon icon-${icon.iconClass}`}>
+        {ecoResponsible && <IconLeaf className="ecoResponsible-icon" />}
+      </div>
     </div>
   );
 };
