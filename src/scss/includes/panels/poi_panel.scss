@@ -53,7 +53,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   color: #90750b;
 }
 
-
 .UserReviewCaption {
   margin: $spacing-xs 0;
 
@@ -82,7 +81,6 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 .UserReviewReadMore {
   margin-bottom: $spacing-m;
 }
-
 
 .poi_panel__action__direction {
   flex-grow: 1;
@@ -202,6 +200,26 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .marker .icon-marker::before {
   content: '';
+}
+
+.poi_panel__category_item {
+  & {
+    display: flex;
+    align-content: center;
+  }
+
+  .mainActionButton--category {
+    margin: auto 16px;
+
+    .mainActionButton-icon {
+      margin: auto;
+    }
+  }
+
+  .label_block {
+    display: inline-block;
+    margin: auto 0;
+  }
 }
 
 .poi_panel__categories {

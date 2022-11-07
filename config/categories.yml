@@ -10,7 +10,7 @@
   icon: hardware
   ecoResponsible: true
 - label: _('Restaurant')
-  name: eco-restaurant
+  name: ecotables
   color: '#d76600'
   icon: restaurant
   ecoResponsible: true

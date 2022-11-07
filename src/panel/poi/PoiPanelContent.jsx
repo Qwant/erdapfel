@@ -5,11 +5,14 @@ import ActionButtons from './ActionButtons';
 import PoiBlockContainer from './PoiBlockContainer';
 import Contribution from 'src/components/Contribution';
 import CategoryList from 'src/components/CategoryList';
+import CategoryItem from 'src/components/CategoryItem';
 import { fire } from 'src/libs/customEvents';
 import PoiItem from 'src/components/PoiItem';
 import { Divider } from 'src/components/ui';
 import { useConfig, useI18n, useFavorites, useDevice } from 'src/hooks';
 import { Reservation } from './blocks/Reservation/Reservation';
+import CategoryService from 'src/adapters/category_service';
+import { findBlock } from 'src/libs/pois';
 
 const PoiPanelContent = ({ poi }) => {
   const { _ } = useI18n();
@@ -17,6 +20,10 @@ const PoiPanelContent = ({ poi }) => {
   const { enabled: isDirectionActive } = useConfig('direction');
   const hasReservation = poi && poi.className === 'hotel' && poi.meta.source === 'tripadvisor';
   const { isMobile } = useDevice();
+
+  const blocks = poi.blocks;
+  const ecoresponsibleBlock = findBlock(blocks, 'ecoresponsible');
+  const ecotablesCategory = CategoryService.getCategoryByName('ecotables');
 
   useEffect(() => {
     fire('set_direction_shortcut_callback', openDirection);
@@ -92,6 +99,12 @@ const PoiPanelContent = ({ poi }) => {
         {poi && <PoiBlockContainer poi={poi} />}
         <Contribution poi={poi} />
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
+        {ecoresponsibleBlock != null && (
+          <>
+            <h3 className="u-text--smallTitle u-mb-s">{_('Appears in', 'poi')}</h3>
+            <CategoryItem category={ecotablesCategory} />
+          </>
+        )}
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>
         <CategoryList className="poi_panel__categories u-mb-s" limit={4} />
       </div>
