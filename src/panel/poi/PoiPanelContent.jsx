@@ -24,6 +24,8 @@ const PoiPanelContent = ({ poi }) => {
   const blocks = poi.blocks;
   const ecoresponsibleBlock = findBlock(blocks, 'ecoresponsible');
   const ecotablesCategory = CategoryService.getCategoryByName('ecotables');
+  const ecotablesEnabled =
+    useConfig('features').ecoResponsible && ecoresponsibleBlock?.source === 'ecotables';
 
   useEffect(() => {
     fire('set_direction_shortcut_callback', openDirection);
@@ -99,7 +101,7 @@ const PoiPanelContent = ({ poi }) => {
         {poi && <PoiBlockContainer poi={poi} />}
         <Contribution poi={poi} />
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
-        {ecoresponsibleBlock != null && (
+        {ecotablesEnabled && (
           <>
             <h3 className="u-text--smallTitle u-mb-s">{_('Appears in', 'poi')}</h3>
             <CategoryItem category={ecotablesCategory} />
