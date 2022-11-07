@@ -103,8 +103,10 @@ const PoiPanelContent = ({ poi }) => {
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
         {ecotablesEnabled && (
           <>
+            <Divider paddingTop={0} />
             <h3 className="u-text--smallTitle u-mb-s">{_('Appears in', 'poi')}</h3>
             <CategoryItem category={ecotablesCategory} />
+            <Divider paddingTop={0} />
           </>
         )}
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>
