@@ -21,7 +21,7 @@ const PoiPanelContent = ({ poi }) => {
   const hasReservation = poi && poi.className === 'hotel' && poi.meta.source === 'tripadvisor';
   const { isMobile } = useDevice();
 
-  const ecoresponsibleBlock = findBlock(poi.blocks, 'ecoresponsible');
+  const ecoresponsibleBlock = poi ? findBlock(poi.blocks, 'ecoresponsible') : null;
   const ecotablesCategory = CategoryService.getCategoryByName('ecotables');
   const ecotablesEnabled =
     useConfig('features').ecoResponsible && ecoresponsibleBlock?.source === 'ecotables';
