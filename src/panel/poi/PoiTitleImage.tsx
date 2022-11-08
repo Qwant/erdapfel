@@ -29,8 +29,8 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => 
     );
   }
 
-  const icon: { color: string; iconClass: string } = IconManager.get(poi) || defaultIcon;
   const ecoResponsible = findBlock(poi.blocks, 'ecoresponsible') !== null;
+  const icon: { color: string; iconClass: string } = IconManager.get(poi) || defaultIcon;
 
   return (
     <div
@@ -40,9 +40,8 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => 
         backgroundColor: getLightBackground(icon.color),
       }}
     >
-      <div className={`icon icon-${icon.iconClass}`}>
-        {ecoResponsible && <IconLeaf className="ecoResponsible-icon" />}
-      </div>
+      <div className={`icon icon-${icon.iconClass}`} />
+      {ecoResponsible && <IconLeaf className="ecoResponsible-icon" />}
     </div>
   );
 };

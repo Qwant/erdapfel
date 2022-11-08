@@ -6,6 +6,7 @@
   height: 65px;
   border-radius: 8px;
   flex-shrink: 0;
+  position: relative;
 
   &__image {
     height: 100%;
@@ -15,14 +16,13 @@
 
   .icon {
     font-size: 45px;
-    position: relative;
+  }
 
-    .ecoResponsible-icon {
-      position: absolute;
-      width: 20px;
-      fill: var(--green-400);
-      margin-top: -20px;
-      margin-left: -5px;
-    }
+  .ecoResponsible-icon {
+    position: absolute;
+    width: 20px;
+    top: -10px;
+    right: -5px;
+    fill: var(--green-400);
   }
 }
