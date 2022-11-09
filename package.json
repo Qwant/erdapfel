@@ -94,7 +94,7 @@
     "rimraf": "^3.0.2",
     "sass": "^1.39.0",
     "sass-loader": "^10.2.0",
-    "selfsigned": "^1.10.8",
+    "selfsigned": "^2.0.1",
     "style-loader": "^2.0.0",
     "supertest": "^3.3.0",
     "ts-jest": "^27.1.3",
