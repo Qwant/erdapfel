@@ -1,4 +1,4 @@
-version : 1
+version: 1
 
 # Language
 languages:
@@ -6,29 +6,22 @@ languages:
     - &default
       locale: en_GB
       code: en
-    -
-      locale: en_US
+    - locale: en_US
       code: en
-    -
-      locale: fr_FR
+    - locale: fr_FR
       code: fr
-    -
-      locale: de_DE
+    - locale: de_DE
       code: de
-    -
-      locale: it_IT
+    - locale: it_IT
       code: it
-    -
-      locale: es_ES
+    - locale: es_ES
       code: es
-    -
-      locale: br_FR
+    - locale: br_FR
       deprecated: true
       code: br
       fallback:
         - fr
-    -
-      locale: ca_ES
+    - locale: ca_ES
       deprecated: true
       code: ca
       fallback:
@@ -62,54 +55,53 @@ localizedUrls:
 localizedStrings:
   en:
     searchDesc: "The search engine that doesn't know anything about you, and that changes everything!"
-    searchOpen: "Open Search"
-    mapsDesc: "The map service that finds the right addresses and guides you around without tracking you."
-    mapsOpen: "Open Maps"
+    searchOpen: 'Open Search'
+    mapsDesc: 'The map service that finds the right addresses and guides you around without tracking you.'
+    mapsOpen: 'Open Maps'
     juniorDesc: "The only reliable, secure and fun search engine designed for children's learning and their parents' peace of mind."
-    juniorOpen: "Open Junior"
-    betterwebDesc: "Discover Qwant and its ambitions for a #betterweb"
-    betterwebOpen: "Know more"
+    juniorOpen: 'Open Junior'
+    betterwebDesc: 'Discover Qwant and its ambitions for a #betterweb'
+    betterwebOpen: 'Know more'
 
   fr:
-    searchDesc: "Le moteur de recherche qui ne sait rien sur vous, et ça change tout&nbsp;!"
-    searchOpen: "Ouvrir Search"
-    mapsDesc: "Le service de cartographie qui trouve les bonnes adresses et facilite vos déplacements sans vous tracer."
-    mapsOpen: "Ouvrir Maps"
+    searchDesc: 'Le moteur de recherche qui ne sait rien sur vous, et ça change tout&nbsp;!'
+    searchOpen: 'Ouvrir Search'
+    mapsDesc: 'Le service de cartographie qui trouve les bonnes adresses et facilite vos déplacements sans vous tracer.'
+    mapsOpen: 'Ouvrir Maps'
     juniorDesc: "Le seul moteur de recherche sécurisé et conçu pour l'apprentissage des enfants et la sérénité de leurs parents."
-    juniorOpen: "Ouvrir Junior"
-    betterwebDesc: "Découvrez Qwant et ses ambitions pour un #betterweb"
-    betterwebOpen: "En savoir plus"
+    juniorOpen: 'Ouvrir Junior'
+    betterwebDesc: 'Découvrez Qwant et ses ambitions pour un #betterweb'
+    betterwebOpen: 'En savoir plus'
 
   de:
-    searchDesc: "Die Suchmaschine, die nichts über Sie weiß - und das ändert alles!"
-    searchOpen: "Search öffnen"
-    mapsDesc: "Der Kartendienst, der die richtigen Adressen findet und Ihre Mobilität vereinfacht, ohne Sie zu tracken."
-    mapsOpen: "Maps öffnen"
-    juniorDesc: "Die einzige sichere Suchmaschine, die für das Lernen von Kindern und den Seelenfrieden ihrer Eltern entwickelt wurde."
-    juniorOpen: "Junior öffnen"
-    betterwebDesc: "Entdecken Sie Qwant und seine Ziele für ein #betterweb"
-    betterwebOpen: "Mehr erfahren"
+    searchDesc: 'Die Suchmaschine, die nichts über Sie weiß - und das ändert alles!'
+    searchOpen: 'Search öffnen'
+    mapsDesc: 'Der Kartendienst, der die richtigen Adressen findet und Ihre Mobilität vereinfacht, ohne Sie zu tracken.'
+    mapsOpen: 'Maps öffnen'
+    juniorDesc: 'Die einzige sichere Suchmaschine, die für das Lernen von Kindern und den Seelenfrieden ihrer Eltern entwickelt wurde.'
+    juniorOpen: 'Junior öffnen'
+    betterwebDesc: 'Entdecken Sie Qwant und seine Ziele für ein #betterweb'
+    betterwebOpen: 'Mehr erfahren'
 
   it:
-    searchDesc: "Il motore di ricerca che non sa niente di te, e questo cambia tutto!"
-    searchOpen: "Apri Search"
-    mapsDesc: "Il servizio di cartografia che trova gli indirizzi giusti e facilita i tuoi spostamenti senza tracciarti."
-    mapsOpen: "Apri Maps"
-    juniorDesc: "L’unico motore di ricerca protetto e concepito per l’apprendimento dei bambini e la tranquillità dei genitori."
-    juniorOpen: "Apri Junior"
-    betterwebDesc: "Scopri Qwant e le sue ambizioni per un #betterweb"
-    betterwebOpen: "Scopri di più"
+    searchDesc: 'Il motore di ricerca che non sa niente di te, e questo cambia tutto!'
+    searchOpen: 'Apri Search'
+    mapsDesc: 'Il servizio di cartografia che trova gli indirizzi giusti e facilita i tuoi spostamenti senza tracciarti.'
+    mapsOpen: 'Apri Maps'
+    juniorDesc: 'L’unico motore di ricerca protetto e concepito per l’apprendimento dei bambini e la tranquillità dei genitori.'
+    juniorOpen: 'Apri Junior'
+    betterwebDesc: 'Scopri Qwant e le sue ambizioni per un #betterweb'
+    betterwebOpen: 'Scopri di più'
 
   es:
-    searchDesc: "El buscador que no sabe nada de ti, ¡y que lo cambia todo!"
-    searchOpen: "Abrir Search"
-    mapsDesc: "El servicio de cartografía que encuentra las direcciones correctas y facilita los desplazamientos sin que te sigan la pista."
-    mapsOpen: "Abrir Maps"
-    juniorDesc: "El único buscador seguro diseñado para el aprendizaje de los niños y la tranquilidad de los padres."
-    juniorOpen: "Abrir Junior"
-    betterwebDesc: "Descubre Qwant y sus objetivos para conseguir una #betterweb"
-    betterwebOpen: "Más información"
-
+    searchDesc: 'El buscador que no sabe nada de ti, ¡y que lo cambia todo!'
+    searchOpen: 'Abrir Search'
+    mapsDesc: 'El servicio de cartografía que encuentra las direcciones correctas y facilita los desplazamientos sin que te sigan la pista.'
+    mapsOpen: 'Abrir Maps'
+    juniorDesc: 'El único buscador seguro diseñado para el aprendizaje de los niños y la tranquilidad de los padres.'
+    juniorOpen: 'Abrir Junior'
+    betterwebDesc: 'Descubre Qwant y sus objetivos para conseguir una #betterweb'
+    betterwebOpen: 'Más información'
 
 # Map
 map:
@@ -118,12 +110,13 @@ map:
     lng: 2.52
     lat: 52.41
   pois_layers: ['poi-level-3', 'poi-level-2', 'poi-level-1', 'poi-level-street-furniture']
-  routes_layer: "poi-level-street-furniture"
+  routes_layer: 'poi-level-street-furniture'
 
 sources:
   osm: 'osm'
   pagesjaunes: 'pages_jaunes'
   tripadvisor: 'tripadvisor'
+  ecotables: 'ecotables'
 
 # Types
 CATEGORY_TYPE: 'category'

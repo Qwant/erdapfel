@@ -17,6 +17,7 @@ const PoiItem = React.memo(
     const { _ } = useI18n();
     const subclass = capitalizeFirst(poiSubClass(poi.subClassName));
     const stars = findBlock(poi.blocks, 'stars');
+    const isEcoResponsible = findBlock(poi.blocks, 'ecoresponsible') !== null;
     const openingHours = withOpeningHours && poi?.blocksByType?.opening_hours;
     const texts = {
       opening_hours: _('opening hours'),
@@ -60,7 +61,7 @@ const PoiItem = React.memo(
         </div>
         {withImage && (
           <div className="poiItem-right">
-            <PoiTitleImage poi={poi} />
+            <PoiTitleImage poi={poi} isEcoResponsible={!!isEcoResponsible} />
           </div>
         )}
       </div>

@@ -15,7 +15,7 @@ const CategoryItem = ({ category }) => {
     }
     Telemetry.add(Telemetry.HOME_CATEGORY, { category: category.name });
     window.app.navigateTo(`/places/?type=${category.name}`);
-  }, [searchHistoryEnabled]);
+  }, [searchHistoryEnabled, category]);
 
   return (
     <div className="poi_panel__category_item u-mb-s">

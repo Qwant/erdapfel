@@ -3,7 +3,6 @@ import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import { ReactComponent as IconLeaf } from '../../../public/images/leaf.svg';
-import { findBlock } from 'src/libs/pois';
 
 const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
@@ -13,9 +12,10 @@ type PoiTitleImageProps = {
     className?: string;
     subClassName?: string;
   };
+  isEcoResponsible?: boolean;
 };
 
-const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => {
+const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi, isEcoResponsible }) => {
   if (poi.titleImageUrl) {
     return (
       <div className="poiTitleImage">
@@ -25,11 +25,11 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => 
           alt={poi?.name ?? ''}
           loading="lazy"
         />
+        {isEcoResponsible && <IconLeaf className="ecoResponsible-icon" />}
       </div>
     );
   }
 
-  const ecoResponsible = findBlock(poi.blocks, 'ecoresponsible') !== null;
   const icon: { color: string; iconClass: string } = IconManager.get(poi) || defaultIcon;
 
   return (
@@ -41,7 +41,7 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi }) => 
       }}
     >
       <div className={`icon icon-${icon.iconClass}`} />
-      {ecoResponsible && <IconLeaf className="ecoResponsible-icon" />}
+      {isEcoResponsible && <IconLeaf className="ecoResponsible-icon" />}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 /* global _ */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Flex, Image } from '@qwant/qwant-ponents';
 import debounce from 'lodash.debounce';
 
 import PoiItemList from './PoiItemList';
@@ -146,6 +147,44 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     fire('highlight_category_marker', poi, highlight);
   };
 
+  const DataSource = ({ source }) => {
+    switch (source) {
+      case sources.pagesjaunes:
+        return _('Results in partnership with PagesJaunes', 'categories');
+      case sources.tripadvisor:
+        return _('Results in partnership with TripAdvisor', 'categories');
+      case sources.ecotables:
+        return (
+          <>
+            <Flex fullWidth alignCenter center={isMobile}>
+              <span>{_('Selected in patnership with Écotables')}</span>
+              <Image
+                className="category__panel__sourceImage"
+                src="./statics/images/logo_ET.png"
+                width={75}
+                height={15}
+              />
+            </Flex>
+            <Flex wrap>
+              <span>
+                {_('Ecotable source details')}
+                <a
+                  className="category__panel__sourceLink"
+                  target="_blank"
+                  href={_('Ecotable source see more link')}
+                  rel="noreferrer"
+                >
+                  {_('Ecotable source see more')}
+                </a>
+              </span>
+            </Flex>
+          </>
+        );
+      default:
+        return;
+    }
+  };
+
   let panelContent;
 
   if (initialLoading) {
@@ -161,12 +200,9 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
           context={document.location.href}
           question={_('Satisfied with the results?')}
         />
-        {dataSource === sources.pagesjaunes && (
-          <SourceFooter>{_('Results in partnership with PagesJaunes', 'categories')}</SourceFooter>
-        )}
-        {dataSource === sources.tripadvisor && (
-          <SourceFooter>{_('Results in partnership with TripAdvisor', 'categories')}</SourceFooter>
-        )}
+        <SourceFooter>
+          <DataSource source={dataSource} />
+        </SourceFooter>
       </>
     );
   }
