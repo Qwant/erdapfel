@@ -194,7 +194,12 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   } else {
     panelContent = (
       <>
-        <PoiItemList pois={pois} selectPoi={selectPoi} highlightMarker={highlightPoiMarker} />
+        <PoiItemList
+          pois={pois}
+          selectPoi={selectPoi}
+          highlightMarker={highlightPoiMarker}
+          source={dataSource}
+        />
         <UserFeedbackYesNo
           questionId="poi-list"
           context={document.location.href}
