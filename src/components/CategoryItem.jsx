@@ -3,10 +3,8 @@ import MainActionButton from 'src/components/ui/MainActionButton';
 import Telemetry from 'src/libs/telemetry';
 import { getLightBackground } from 'src/libs/colors';
 import { saveQuery, getHistoryEnabled } from '../adapters/search_history';
-import { useI18n } from 'src/hooks';
 
-const CategoryItem = ({ category }) => {
-  const { _ } = useI18n();
+const CategoryItem = ({ category, text, subtext }) => {
   const searchHistoryEnabled = getHistoryEnabled();
   const handleCategoryClick = useCallback(() => {
     if (searchHistoryEnabled && category) {
@@ -30,10 +28,12 @@ const CategoryItem = ({ category }) => {
         }}
         ecoResponsible={category.ecoResponsible}
       />
-      <div className="label_block">
-        <h4>{_('Eco-responsible restaurants')}</h4>
-        <span>{_('Selected in patnership with Écotables')}</span>
-      </div>
+      {(text || subtext) && (
+        <div className="label_block">
+          {text && <h4>{text}</h4>}
+          {subtext && <span>{subtext}</span>}
+        </div>
+      )}
     </button>
   );
 };

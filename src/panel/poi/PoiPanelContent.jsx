@@ -13,18 +13,32 @@ import { useConfig, useI18n, useFavorites, useDevice } from 'src/hooks';
 import { Reservation } from './blocks/Reservation/Reservation';
 import CategoryService from 'src/adapters/category_service';
 import { findBlock } from 'src/libs/pois';
+import { sources } from 'config/constants.yml';
 
 const PoiPanelContent = ({ poi }) => {
   const { _ } = useI18n();
   const { isInFavorites, removeFromFavorites, addToFavorites } = useFavorites();
   const { enabled: isDirectionActive } = useConfig('direction');
+  const { ecoResponsible: isEcoResponsibleActive } = useConfig('features');
   const hasReservation = poi && poi.className === 'hotel' && poi.meta.source === 'tripadvisor';
   const { isMobile } = useDevice();
-
   const ecoResponsibleBlock = poi ? findBlock(poi.blocks, 'ecoresponsible') : null;
-  const ecotablesCategory = CategoryService.getCategoryByName('ecotables');
-  const ecotablesEnabled =
-    useConfig('features').ecoResponsible && ecoResponsibleBlock?.source === 'ecotables';
+  const ecoResponsibleCategory = CategoryService.getCategoryByName(ecoResponsibleBlock?.source);
+  const isEcoResponsibleBlock = isEcoResponsibleActive && !!ecoResponsibleBlock;
+  const ecoResponsibleTexts = {
+    [sources.ecotables]: {
+      text: _('Eco-responsible restaurants'),
+      subtext: _('Selected in patnership with Écotables'),
+    },
+    [sources.circuitscourts]: {
+      text: _('Circuit court'),
+      subtext: _('Selected in patnership with ObSat'),
+    },
+    [sources.vrac]: {
+      text: _('Vente en vrac'),
+      subtext: _('Selected in patnership with ReseauVrac'),
+    },
+  };
 
   useEffect(() => {
     fire('set_direction_shortcut_callback', openDirection);
@@ -97,11 +111,15 @@ const PoiPanelContent = ({ poi }) => {
       </div>
       <div className="poi_panel__fullContent">
         {hasReservation && <Reservation url={poi.meta.source_url} mobile={isMobile} />}
-        {ecotablesEnabled && (
+        {isEcoResponsibleBlock && (
           <>
             <Divider paddingTop={0} />
             <h3 className="u-text--smallTitle u-mb-s">{_('Appears in', 'poi')}</h3>
-            <CategoryItem category={ecotablesCategory} />
+            <CategoryItem
+              category={ecoResponsibleCategory}
+              text={ecoResponsibleTexts?.[ecoResponsibleCategory?.name]?.text}
+              subtext={ecoResponsibleTexts?.[ecoResponsibleCategory?.name]?.subtext}
+            />
           </>
         )}
         {poi && <PoiBlockContainer poi={poi} />}
