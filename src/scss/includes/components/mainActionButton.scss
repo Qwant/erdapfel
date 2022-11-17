@@ -54,3 +54,7 @@
     font-size: 20px;
   }
 }
+
+.mainActionButton--no-interaction {
+  pointer-events: none;
+}

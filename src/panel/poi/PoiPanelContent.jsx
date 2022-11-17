@@ -97,17 +97,16 @@ const PoiPanelContent = ({ poi }) => {
       </div>
       <div className="poi_panel__fullContent">
         {hasReservation && <Reservation url={poi.meta.source_url} mobile={isMobile} />}
-        {poi && <PoiBlockContainer poi={poi} />}
-        <Contribution poi={poi} />
-        <Divider paddingTop={0} className="poi_panel__fullWidth" />
         {ecotablesEnabled && (
           <>
             <Divider paddingTop={0} />
             <h3 className="u-text--smallTitle u-mb-s">{_('Appears in', 'poi')}</h3>
             <CategoryItem category={ecotablesCategory} />
-            <Divider paddingTop={0} />
           </>
         )}
+        {poi && <PoiBlockContainer poi={poi} />}
+        <Contribution poi={poi} />
+        <Divider paddingTop={0} className="poi_panel__fullWidth" />
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>
         <CategoryList className="poi_panel__categories u-mb-s" limit={4} />
       </div>

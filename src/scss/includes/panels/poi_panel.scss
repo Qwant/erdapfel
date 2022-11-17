@@ -203,9 +203,15 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .poi_panel__category_item {
-  & {
-    display: flex;
-    align-content: center;
+  display: flex;
+  align-content: center;
+  width: 100%;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--grey-050);
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
   }
 
   .mainActionButton--category {
@@ -219,6 +225,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   .label_block {
     display: inline-block;
     margin: auto 0;
+    text-align: left;
   }
 }
 

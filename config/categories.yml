@@ -1,12 +1,12 @@
 ---
 - label: _('alimentation')
-  name: eco-alimenation
+  name: circuitscourts
   shortLabel: _('Circuit court')
   color: '#a125be'
   icon: florist
   ecoResponsible: true
 - label: _('repair cafe')
-  name: repair-cafe
+  name: vrac
   shortLabel: _('Vente en vrac')
   color: '#a125be'
   icon: shop

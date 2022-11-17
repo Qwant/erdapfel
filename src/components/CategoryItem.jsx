@@ -8,7 +8,6 @@ import { useI18n } from 'src/hooks';
 const CategoryItem = ({ category }) => {
   const { _ } = useI18n();
   const searchHistoryEnabled = getHistoryEnabled();
-
   const handleCategoryClick = useCallback(() => {
     if (searchHistoryEnabled && category) {
       saveQuery({ ...category, category });
@@ -18,15 +17,16 @@ const CategoryItem = ({ category }) => {
   }, [searchHistoryEnabled, category]);
 
   return (
-    <div className="poi_panel__category_item u-mb-s">
+    <button className="poi_panel__category_item u-mb-s" onClick={() => handleCategoryClick()}>
       <MainActionButton
+        className="mainActionButton--no-interaction"
         key={category.name}
-        onClick={() => handleCategoryClick()}
         variant="category"
         icon={category.iconName}
         iconStyle={{
           color: category.color,
           backgroundColor: getLightBackground(category.color),
+          pointerEvents: 'none',
         }}
         ecoResponsible={category.ecoResponsible}
       />
@@ -34,7 +34,7 @@ const CategoryItem = ({ category }) => {
         <h4>{_('Eco-responsible restaurants')}</h4>
         <span>{_('Selected in patnership with Écotables')}</span>
       </div>
-    </div>
+    </button>
   );
 };
 
