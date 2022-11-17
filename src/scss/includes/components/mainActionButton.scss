@@ -24,7 +24,7 @@
     width: 20px;
     fill: var(--green-400);
     top: 0px;
-    right: 10px;
+    transform: translateX(-10px) translateY(0);
   }
 
   &:active {
