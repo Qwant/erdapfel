@@ -3,13 +3,13 @@
   name: eco-alimenation
   shortLabel: _('Circuit court')
   color: '#a125be'
-  icon: grocery
+  icon: florist
   ecoResponsible: true
 - label: _('repair cafe')
   name: repair-cafe
   shortLabel: _('Vente en vrac')
   color: '#a125be'
-  icon: hardware
+  icon: shop
   ecoResponsible: true
 - label: _('Eco-responsible restaurants')
   shortLabel: _('restaurant')

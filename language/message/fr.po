@@ -1773,9 +1773,6 @@ msgid "Appears in"
 msgstr "Apparaît dans"
 
 msgid "Circuit court"
-msgstr "Apparaît dans"
-
-msgid "Circuit court"
 msgstr "Circuit court"
 
 msgid "Vente en vrac"
