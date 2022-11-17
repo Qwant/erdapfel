@@ -1777,3 +1777,9 @@ msgstr "Circuit court"
 
 msgid "Vente en vrac"
 msgstr "Vente en vrac"
+
+msgid "Selected in patnership with ObSat"
+msgstr "Sélection en partenariat avec ObSat"
+
+msgid "Selected in patnership with ReseauVrac"
+msgstr "Sélection en partenariat avec Réseau Vrac"

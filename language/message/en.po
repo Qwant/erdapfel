@@ -1630,3 +1630,9 @@ msgstr "SFSCs"
 
 msgid "Vente en vrac"
 msgstr "Sale in bulk"
+
+msgid "Selected in patnership with ObSat"
+msgstr "Selected in patnership with ObSat"
+
+msgid "Selected in patnership with ReseauVrac"
+msgstr "Selected in patnership with Réseau Vrac"

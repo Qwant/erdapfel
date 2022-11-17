@@ -153,6 +153,10 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
         return _('Results in partnership with PagesJaunes', 'categories');
       case sources.tripadvisor:
         return _('Results in partnership with TripAdvisor', 'categories');
+      case sources.vrac:
+        return _('Selected in patnership with ReseauVrac', 'categories');
+      case sources.circuitscourts:
+        return _('Selected in patnership with ObSat', 'categories');
       case sources.ecotables:
         return (
           <>
@@ -181,7 +185,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
           </>
         );
       default:
-        return;
+        return null;
     }
   };
 
@@ -205,9 +209,11 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
           context={document.location.href}
           question={_('Satisfied with the results?')}
         />
-        <SourceFooter>
-          <DataSource source={dataSource} />
-        </SourceFooter>
+        {dataSource !== sources.osm && (
+          <SourceFooter>
+            <DataSource source={dataSource} />
+          </SourceFooter>
+        )}
       </>
     );
   }
