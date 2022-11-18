@@ -5,7 +5,6 @@ import { poiAddressBlockMock } from './blocks/Address/mock';
 import { poiContactBlockMock } from './blocks/Contact/mock';
 import { poiHourBlockMock } from './blocks/Hour/mock';
 import { poiPhoneBlockMockVisible } from './blocks/Phone/mock';
-import { poiRecyclingBlockMock } from './blocks/Recycling/mock';
 import { poiWebsiteBlockMock } from './blocks/Website/mock';
 import { poiSocialNetworksBlockMock } from './blocks/SocialNetworks/mock';
 
@@ -26,6 +25,5 @@ Default.args = {
   phoneBlock: poiPhoneBlockMockVisible,
   websiteBlock: poiWebsiteBlockMock,
   contactBlock: poiContactBlockMock,
-  recyclingBlock: poiRecyclingBlockMock,
   socialBlock: poiSocialNetworksBlockMock,
 };
