@@ -42,7 +42,9 @@ const sassChunkConfig = () => {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [require('autoprefixer')(), require('postcss-import')()],
+                postcssOptions: {
+                  plugins: [require('autoprefixer')(), require('postcss-import')()],
+                },
               },
             },
           ],
@@ -170,8 +172,10 @@ const mainJsChunkConfig = buildMode => {
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: buildMode !== 'production',
-                plugins: [require('autoprefixer')(), require('postcss-import')()],
+                postcssOptions: {
+                  sourceMap: buildMode !== 'production',
+                  plugins: [require('autoprefixer')(), require('postcss-import')()],
+                },
               },
             },
             'sass-loader',
