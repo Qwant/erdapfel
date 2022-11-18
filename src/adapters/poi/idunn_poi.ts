@@ -9,9 +9,10 @@ import { getIsOnlyOSM } from 'src/adapters/store';
 
 const serviceConfig = nconf.get().services;
 
-type APIGetPlacesPayload = operations['get_places_bbox_v1_places_get']['parameters']['query'];
+type APIGetPlacesPayload =
+  operations['get_places_bbox_maps_detail_v1_places_get']['parameters']['query'];
 type APIGetPlacesResponse =
-  operations['get_places_bbox_v1_places_get']['responses']['200']['content']['application/json'];
+  operations['get_places_bbox_maps_detail_v1_places_get']['responses']['200']['content']['application/json'];
 
 export default class IdunnPoi extends Poi {
   blocks?: components['schemas']['Place']['blocks'] & { type?: string }[];
