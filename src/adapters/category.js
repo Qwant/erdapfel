@@ -7,9 +7,10 @@ import { findIndexIgnoreCase, capitalizeFirst } from '../libs/string';
 import { CATEGORY_TYPE } from '../../config/constants.yml';
 
 export default class Category {
-  constructor(name, label, iconName, color, ecoResponsible) {
+  constructor(name, label, shortLabel, iconName, color, ecoResponsible) {
     this.name = name;
     this.label = _(label);
+    this.shortLabel = _(shortLabel);
     this.iconName = iconName;
     this.color = color;
     this.ecoResponsible = ecoResponsible;
@@ -42,9 +43,10 @@ export default class Category {
   static create(options) {
     const name = options?.name || '';
     const label = options?.label || '';
+    const shortLabel = options?.shortLabel || label;
     const icon = options?.icon || null;
     const color = options?.color || '';
     const ecoResponsible = options?.ecoResponsible || false;
-    return new Category(name, label, icon, color, ecoResponsible);
+    return new Category(name, label, shortLabel, icon, color, ecoResponsible);
   }
 }

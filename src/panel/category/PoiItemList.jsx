@@ -2,12 +2,15 @@ import React from 'react';
 import { ItemList, Item } from 'src/components/ui/ItemList';
 import PoiItem from 'src/components/PoiItem';
 import { useDevice } from 'src/hooks';
+import cx from 'classnames';
 
-const PoiItems = ({ pois, selectPoi, highlightMarker }) => {
+const PoiItems = ({ pois, selectPoi, highlightMarker, source }) => {
   const { isMobile } = useDevice();
-
   return (
-    <ItemList hover className="category__panel__items">
+    <ItemList
+      className={cx('category__panel__items', `category__panel__items--offset-${source}`)}
+      hover
+    >
       {pois.map(poi => (
         <Item
           key={poi.id}

@@ -4,6 +4,14 @@
   @include card_shadow();
   @include card_radius();
   padding: 20px 14px 12px;
+
+  &.ecoResponsible {
+    margin-top: -8px;
+
+    h3 {
+      text-align: center;
+    }
+  }
 }
 
 .service_panel__categories,
@@ -25,7 +33,7 @@
   border-radius: 8px;
 }
 
-@media (max-width: 640px){
+@media (max-width: 640px) {
   .panel.service_panel {
     height: 260px;
     background: #fff;

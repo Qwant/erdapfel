@@ -2,6 +2,7 @@
   cursor: pointer;
   padding: $spacing-xs $spacing-xxxs;
   border-radius: 8px;
+  position: relative;
 
   &-label {
     font-size: 12px;
@@ -19,11 +20,11 @@
   }
 
   .ecoResponsible-icon {
-    position: fixed;
+    position: absolute;
     width: 20px;
     fill: var(--green-400);
-    margin-top: -10px;
-    margin-left: -10px;
+    top: 0px;
+    transform: translateX(-10px) translateY(0);
   }
 
   &:active {
@@ -52,4 +53,8 @@
     color: var(--grey-900);
     font-size: 20px;
   }
+}
+
+.mainActionButton--no-interaction {
+  pointer-events: none;
 }

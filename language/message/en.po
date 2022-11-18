@@ -1606,3 +1606,33 @@ msgstr ""
 
 msgid "repair cafe"
 msgstr ""
+
+msgid "Eco-responsible restaurants"
+msgstr ""
+
+msgid "Selected in patnership with Écotables"
+msgstr "Selected in patnership with Écotables"
+
+msgid "Ecotable source details"
+msgstr "The Ecotable label identifies and promotes eco-responsible restaurants throughout France."
+
+msgid "Ecotable source see more"
+msgstr "See more"
+
+msgid "Ecotable source see more link"
+msgstr "https://ecotable.fr/en"
+
+msgid "Appears in"
+msgstr ""
+
+msgid "Circuit court"
+msgstr "SFSCs"
+
+msgid "Vente en vrac"
+msgstr "Sale in bulk"
+
+msgid "Selected in patnership with ObSat"
+msgstr "Selected in patnership with ObSat"
+
+msgid "Selected in patnership with ReseauVrac"
+msgstr "Selected in patnership with Réseau Vrac"

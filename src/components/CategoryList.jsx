@@ -28,7 +28,7 @@ const CategoryList = ({ className, ecoResponsible = false, limit = Number.MAX_VA
             key={category.name}
             onClick={() => handleCategoryClick(category)}
             variant="category"
-            label={category.label}
+            label={category.shortLabel}
             icon={category.iconName}
             iconStyle={{
               color: category.color,

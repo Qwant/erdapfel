@@ -5,16 +5,25 @@
   width: 65px;
   height: 65px;
   border-radius: 8px;
-  overflow: hidden;
   flex-shrink: 0;
+  position: relative;
 
   &__image {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 8px;
   }
 
   .icon {
     font-size: 45px;
+  }
+
+  .ecoResponsible-icon {
+    position: absolute;
+    width: 20px;
+    top: -10px;
+    right: -5px;
+    fill: var(--green-400);
   }
 }
