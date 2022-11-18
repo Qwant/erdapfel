@@ -4,62 +4,66 @@
  */
 
 export interface paths {
-  '/v1/places': {
+  '/maps/detail/v1/places': {
     /** Get all places in a bounding box. */
-    get: operations['get_places_bbox_v1_places_get'];
+    get: operations['get_places_bbox_maps_detail_v1_places_get'];
   };
-  '/v1/places/latlon:{lat}:{lon}': {
+  '/maps/detail/v1/places/latlon:{lat}:{lon}': {
     /** Find the closest place to a point. */
-    get: operations['get_place_latlon_v1_places_latlon__lat___lon__get'];
+    get: operations['get_place_latlon_maps_detail_v1_places_latlon__lat___lon__get'];
   };
-  '/v1/places/{id}': {
+  '/maps/detail/v1/places/{id}': {
     /** Main handler that returns the requested place. */
-    get: operations['get_place_v1_places__id__get'];
+    get: operations['get_place_maps_detail_v1_places__id__get'];
   };
-  '/v1/categories': {
+  '/maps/detail/v1/categories': {
     /** List all available categories. */
-    get: operations['get_all_categories_v1_categories_get'];
+    get: operations['get_all_categories_maps_detail_v1_categories_get'];
   };
-  '/v1/reverse/{lat}:{lon}': {
+  '/maps/detail/v1/reverse/{lat}:{lon}': {
     /** Find the closest address to a point. */
-    get: operations['closest_address_v1_reverse__lat___lon__get'];
+    get: operations['closest_address_maps_detail_v1_reverse__lat___lon__get'];
   };
-  '/v1/directions/{f_lon},{f_lat};{t_lon},{t_lat}': {
+  '/maps/detail/v1/hotel_pricing': {
+    /** Get availability and price for a given hotel Id with TripAdvisor api */
+    get: operations['get_hotel_pricing_maps_detail_v1_hotel_pricing_get'];
+  };
+  '/maps/detail/v1/directions/{f_lon},{f_lat};{t_lon},{t_lat}': {
     /** Get directions to get from a point to another. */
-    get: operations['get_directions_with_coordinates_v1_directions__f_lon___f_lat___t_lon___t_lat__get'];
+    get: operations['get_directions_with_coordinates_maps_detail_v1_directions__f_lon___f_lat___t_lon___t_lat__get'];
   };
-  '/v1/directions': {
+  '/maps/detail/v1/directions': {
     /** Get directions to get from a places to another. */
-    get: operations['get_directions_v1_directions_get'];
+    get: operations['get_directions_maps_detail_v1_directions_get'];
   };
-  '/v1/autocomplete': {
-    get: operations['get_autocomplete_response_v1_autocomplete_get'];
-    post: operations['get_autocomplete_response_v1_autocomplete_post'];
+  '/maps/detail/v1/autocomplete': {
+    get: operations['get_autocomplete_response_maps_detail_v1_autocomplete_post'];
+    post: operations['get_autocomplete_response_maps_detail_v1_autocomplete_post'];
   };
-  '/v1/search': {
+  '/maps/detail/v1/search': {
     /**
      * Perform a query which is intended to display a relevant result directly (as
      * opposed to `autocomplete` which gives a list of plausible results).
      *
      * Similarly to `instant_answer`, the result will need some quality checks.
      */
-    get: operations['search_v1_search_get'];
+    get: operations['search_maps_detail_v1_search_post'];
     /**
      * Perform a query which is intended to display a relevant result directly (as
      * opposed to `autocomplete` which gives a list of plausible results).
      *
      * Similarly to `instant_answer`, the result will need some quality checks.
      */
-    post: operations['search_v1_search_post'];
+    post: operations['search_maps_detail_v1_search_post'];
   };
-  '/v1/redirect': {
+  '/maps/detail/v1/redirect': {
     /**
      * Redirect to the same page as provided URL which must have been provided by
      * Idunn together with an hash value.
      */
-    get: operations['follow_redirection_v1_redirect_get'];
+    get: operations['follow_redirection_maps_detail_v1_redirect_get'];
   };
-  '/v1/instant_answer': {
+  '/maps/detail/v1/instant_answer': {
     /**
      * Perform a query with result intended to be displayed as an instant answer
      * on *qwant.com*.
@@ -67,7 +71,7 @@ export interface paths {
      * This should not be confused with "Get Places Bbox" as this endpoint will
      * run more restrictive checks on its results.
      */
-    get: operations['get_instant_answer_v1_instant_answer_get'];
+    get: operations['get_instant_answer_maps_detail_v1_instant_answer_get'];
   };
 }
 
@@ -143,16 +147,22 @@ export interface components {
       label: string;
       /** Name */
       name: string;
-      /** Zip Codes */
-      zip_codes: string[];
+      /**
+       * Zip Codes
+       * @default []
+       */
+      zip_codes?: string[];
       coord: components['schemas']['Coord'];
       /** Bbox */
       bbox?: [number, number, number, number];
       zone_type?: components['schemas']['ZoneType'];
       /** Parent Id */
       parent_id?: string;
-      /** Codes */
-      codes: components['schemas']['Code'][];
+      /**
+       * Codes
+       * @default []
+       */
+      codes?: components['schemas']['Code'][];
     };
     /** Beer */
     Beer: {
@@ -185,6 +195,7 @@ export interface components {
       | 'fitness'
       | 'food_french'
       | 'food_pizza'
+      | 'food_western'
       | 'food_burger'
       | 'food_italian'
       | 'food_kebab'
@@ -197,8 +208,21 @@ export interface components {
       | 'food_thai'
       | 'food_vietnamese'
       | 'food_lebanese'
+      | 'food_barbecue'
+      | 'food_german'
+      | 'food_african'
+      | 'food_latin_american'
+      | 'food_mediterranean'
+      | 'food_american'
+      | 'food_caribbean'
+      | 'food_greek'
+      | 'food_mexican'
+      | 'food_pakistani'
+      | 'food_seafood'
+      | 'food_sushi'
+      | 'food_spanish'
+      | 'food_steak_house'
       | 'parking'
-      | 'pitch'
       | 'restaurant'
       | 'place_of_worship'
       | 'recycling'
@@ -230,13 +254,13 @@ export interface components {
       | 'health_doctors'
       | 'health_dentist'
       | 'health_physiotherapist'
+      | 'health_osteopathy'
       | 'health_pharmacy'
       | 'health_psychotherapist'
       | 'library'
       | 'police'
       | 'shop_optician'
       | 'grave_yard'
-      | 'shop_beauty'
       | 'shop_florist'
       | 'fire_station'
       | 'shop_shoes'
@@ -259,11 +283,76 @@ export interface components {
       | 'cinema'
       | 'university'
       | 'shop_travel_agency'
-      | 'sport_other'
       | 'administrative'
       | 'post_box'
       | 'playground'
-      | 'marketplace';
+      | 'marketplace'
+      | 'shop_confectionery'
+      | 'shop_locksmith'
+      | 'craft_shoemaker'
+      | 'shop_alcohol'
+      | 'shop_fine_food'
+      | 'shop_crop'
+      | 'shop_frozen_food'
+      | 'amenity_ice_cream'
+      | 'shop_seafood'
+      | 'shop_baby_goods'
+      | 'shop_tatoo'
+      | 'shop_erotic'
+      | 'shop_watches'
+      | 'shop_discount'
+      | 'shop_well_being'
+      | 'shop_doityourself_clothes'
+      | 'shop_medical_supply'
+      | 'shop_furnitures'
+      | 'shop_outdoor_activites'
+      | 'shop_vehicules'
+      | 'shop_boat'
+      | 'shop_hobbies'
+      | 'shop_gift'
+      | 'shop_e-cigarette'
+      | 'shop_dry_cleaning'
+      | 'retirement_home'
+      | 'shop_ticket'
+      | 'coworking'
+      | 'pitch'
+      | 'football_pitch'
+      | 'boules_pitch'
+      | 'basketball_pitch'
+      | 'rugby_pitch'
+      | 'tennis_pitch'
+      | 'skateboard_pitch'
+      | 'table_tennis_pitch'
+      | 'equestrian_pitch'
+      | 'running_track'
+      | 'sports_hall'
+      | 'sport_climbing'
+      | 'sport_martial_art'
+      | 'sport_badminton'
+      | 'sport_baseball'
+      | 'sport_beach_volley_ball'
+      | 'sport_golf'
+      | 'sport_handball'
+      | 'sport_ice_skating'
+      | 'sport_karting'
+      | 'sport_motor'
+      | 'sport_skiing'
+      | 'sport_volleyball'
+      | 'sport_sailing'
+      | 'stadium'
+      | 'viewpoint'
+      | 'charging_station'
+      | 'airport'
+      | 'subway'
+      | 'bus_stop'
+      | 'bus_station'
+      | 'tram_stop'
+      | 'public_transport_station'
+      | 'place_water'
+      | 'public_bookcase'
+      | 'ecotables'
+      | 'circuitscourts'
+      | 'vrac';
     /** CategoryDescription */
     CategoryDescription: {
       /**
@@ -304,12 +393,6 @@ export interface components {
       /** Email */
       email: string;
     };
-    /**
-     * ContainerType
-     * @description An enumeration.
-     * @enum {string}
-     */
-    ContainerType: 'recyclable' | 'glass' | 'unknown';
     /** Context */
     Context: {
       explanation?: components['schemas']['Explanation'];
@@ -321,27 +404,6 @@ export interface components {
       /** Lat */
       lat: number;
     };
-    /** Covid19Block */
-    Covid19Block: {
-      /**
-       * Type
-       * @default covid19
-       * @enum {string}
-       */
-      type?: 'covid19';
-      status: components['schemas']['CovidOpeningStatus'];
-      opening_hours?: components['schemas']['OpeningHourBlock'];
-      /** Note */
-      note?: string;
-      /** Contribute Url */
-      contribute_url?: string;
-    };
-    /**
-     * CovidOpeningStatus
-     * @description An enumeration.
-     * @enum {string}
-     */
-    CovidOpeningStatus: 'open_as_usual' | 'open' | 'maybe_open' | 'closed' | 'unknown';
     /** Cuisine */
     Cuisine: {
       /** Name */
@@ -477,6 +539,17 @@ export interface components {
       start_time: string;
       /** End Time */
       end_time: string;
+    };
+    /** EcoresponsibleBlock */
+    EcoresponsibleBlock: {
+      /**
+       * Type
+       * @default ecoresponsible
+       * @enum {string}
+       */
+      type?: 'ecoresponsible';
+      /** Source */
+      source: string;
     };
     /** Explanation */
     Explanation: {
@@ -641,6 +714,25 @@ export interface components {
       /** Value */
       value: string;
     };
+    /**
+     * GeometryCollection
+     * @description GeometryCollection Model
+     */
+    GeometryCollection: {
+      /**
+       * Type
+       * @default GeometryCollection
+       * @constant
+       */
+      type?: 'GeometryCollection';
+      /** Geometries */
+      geometries: (Partial<components['schemas']['Point']> &
+        Partial<components['schemas']['MultiPoint']> &
+        Partial<components['schemas']['LineString']> &
+        Partial<components['schemas']['MultiLineString']> &
+        Partial<components['schemas']['Polygon']> &
+        Partial<components['schemas']['MultiPolygon']>)[];
+    };
     /** GradesBlock */
     GradesBlock: {
       /**
@@ -661,6 +753,12 @@ export interface components {
       /** Detail */
       detail?: components['schemas']['ValidationError'][];
     };
+    /**
+     * HotelIdType
+     * @description An enumeration.
+     * @enum {undefined}
+     */
+    HotelIdType: 'TA' | 'EAN' | 'PCLN' | 'BCOM' | 'EXPE';
     /** IdunnAutocomplete */
     IdunnAutocomplete: {
       /**
@@ -676,10 +774,10 @@ export interface components {
        */
       geocoding?: components['schemas']['Geocoding'];
       /**
-       * Intentions
+       * Intention
        * @description Intentions detected by NLU.
        */
-      intentions?: components['schemas']['Intention'][];
+      intention?: components['schemas']['Intention'];
       /**
        * Features
        * @description Geographic places matching the query.
@@ -748,10 +846,10 @@ export interface components {
     InstantAnswerResult: {
       /**
        * Places
-       * @description List of relevant places to display on the instant answer. At most 1 place is returned if no broad intention has been detected.
+       * @description List of relevant places to display on the instant answer.When no place is returned, display the default instant answerAt most 1 place is returned if no broad intention has been detected.
        */
       places: components['schemas']['Place'][];
-      /** @description Data source for the returned place, or data provider for the list of results. This field is not provided when the instant answer relates to an admnistrative area or an address. */
+      /** @description Data source for the returned place, or data provider for the list of results. This field is not provided when the instant answer relates to an administrative area or an address. */
       source?: components['schemas']['PoiSource'];
       /**
        * Intention Bbox
@@ -815,7 +913,7 @@ export interface components {
      * @description An enumeration.
      * @enum {undefined}
      */
-    IntentionType: 'address' | 'brand' | 'category' | 'poi' | 'any_place';
+    IntentionType: 'street' | 'brand' | 'category' | 'poi' | 'any_place';
     /** InternetAccessBlock */
     InternetAccessBlock: {
       /**
@@ -861,8 +959,12 @@ export interface components {
             Partial<number> & Partial<number>
           ]
         >)[];
-      /** Type */
-      type?: string;
+      /**
+       * Type
+       * @default LineString
+       * @constant
+       */
+      type?: 'LineString';
     };
     /** Link */
     Link: {
@@ -870,6 +972,45 @@ export interface components {
       /** Url */
       url: string;
     };
+    /**
+     * ManeuverDetail
+     * @description This is an extension to Mapbox's return format.
+     */
+    ManeuverDetail: {
+      /** Name */
+      name: string;
+      /**
+       * Direction
+       * @description Turn angle, Degrees
+       */
+      direction: number;
+      /**
+       * Duration
+       * @description Seconds
+       */
+      duration: number;
+      /**
+       * Length
+       * @description Meters
+       */
+      length: number;
+    };
+    /**
+     * ManeuverModifier
+     * @description
+     *     See https://docs.mapbox.com/api/navigation/directions/#step-maneuver-object
+     *
+     * @enum {string}
+     */
+    ManeuverModifier:
+      | 'sharp left'
+      | 'left'
+      | 'slight left'
+      | 'straight'
+      | 'slight right'
+      | 'right'
+      | 'sharp right'
+      | 'uturn';
     /**
      * MultiLineString
      * @description MultiLineString Model
@@ -886,8 +1027,12 @@ export interface components {
             Partial<number> & Partial<number>
           ]
         >)[][];
-      /** Type */
-      type?: string;
+      /**
+       * Type
+       * @default MultiLineString
+       * @constant
+       */
+      type?: 'MultiLineString';
     };
     /**
      * MultiPoint
@@ -905,8 +1050,12 @@ export interface components {
             Partial<number> & Partial<number>
           ]
         >)[];
-      /** Type */
-      type?: string;
+      /**
+       * Type
+       * @default MultiPoint
+       * @constant
+       */
+      type?: 'MultiPoint';
     };
     /**
      * MultiPolygon
@@ -924,8 +1073,12 @@ export interface components {
             Partial<number> & Partial<number>
           ]
         >)[][][];
-      /** Type */
-      type?: string;
+      /**
+       * Type
+       * @default MultiPolygon
+       * @constant
+       */
+      type?: 'MultiPolygon';
     };
     /** Network */
     Network: {
@@ -1026,7 +1179,6 @@ export interface components {
       address?: components['schemas']['Address'];
       /** Blocks */
       blocks: (Partial<components['schemas']['OpeningHourBlock']> &
-        Partial<components['schemas']['Covid19Block']> &
         Partial<components['schemas']['PhoneBlock']> &
         Partial<components['schemas']['InformationBlock']> &
         Partial<components['schemas']['WebSiteBlock']> &
@@ -1040,15 +1192,21 @@ export interface components {
         Partial<components['schemas']['OpeningDayEvent']> &
         Partial<components['schemas']['DescriptionEvent']> &
         Partial<components['schemas']['CuisineBlock']> &
-        Partial<components['schemas']['Weather']> &
-        Partial<components['schemas']['RecyclingBlock']> &
         Partial<components['schemas']['TransactionalBlock']> &
         Partial<components['schemas']['SocialBlock']> &
         Partial<components['schemas']['DescriptionBlock']> &
         Partial<components['schemas']['DeliveryBlock']> &
-        Partial<components['schemas']['StarsBlock']>)[];
+        Partial<components['schemas']['StarsBlock']> &
+        Partial<components['schemas']['ReviewsBlock']> &
+        Partial<components['schemas']['EcoresponsibleBlock']>)[];
       meta: components['schemas']['PlaceMeta'];
     };
+    /**
+     * PlaceDocType
+     * @description An enumeration.
+     * @enum {string}
+     */
+    PlaceDocType: 'admin' | 'street' | 'addr' | 'poi';
     /** PlaceMeta */
     PlaceMeta: {
       /** Source */
@@ -1075,6 +1233,18 @@ export interface components {
        * @description Direct URL to the directions on Qwant Maps, with the current place selected as destination.
        */
       maps_directions_url: string;
+      /**
+       * Rating Url
+       * Format: uri
+       * @description Direct URL to the tripadvisor bubble rating image
+       */
+      rating_url?: string;
+      /**
+       * Rating Url Noicon
+       * Format: uri
+       * @description Direct URL to the tripadvisor bubble rating image, without tripadvisor's logo
+       */
+      rating_url_noicon?: string;
     };
     /**
      * PlaceType
@@ -1109,7 +1279,7 @@ export interface components {
      * @description An enumeration.
      * @enum {string}
      */
-    PoiSource: 'osm' | 'pages_jaunes';
+    PoiSource: 'osm' | 'pages_jaunes' | 'tripadvisor' | 'ecotables' | 'circuitscourts' | 'vrac';
     /** PoiType */
     PoiType: {
       /** Id */
@@ -1131,8 +1301,12 @@ export interface components {
             Partial<number> & Partial<number>
           ]
         >;
-      /** Type */
-      type?: string;
+      /**
+       * Type
+       * @default Point
+       * @constant
+       */
+      type?: 'Point';
     };
     /**
      * Polygon
@@ -1150,32 +1324,46 @@ export interface components {
             Partial<number> & Partial<number>
           ]
         >)[][];
-      /** Type */
-      type?: string;
-    };
-    /** RecyclingBlock */
-    RecyclingBlock: {
       /**
        * Type
-       * @default recycling
+       * @default Polygon
+       * @constant
+       */
+      type?: 'Polygon';
+    };
+    /** Review */
+    Review: {
+      /** Date */
+      date: string;
+      /** Rating */
+      rating: string;
+      /** Rating Bubble Star Url */
+      rating_bubble_star_url: string;
+      /** Url */
+      url: string;
+      /** More Reviews Url */
+      more_reviews_url: string;
+      /** Lang */
+      lang: string;
+      /** Title */
+      title: string;
+      /** Text */
+      text: string;
+      /** Trip Type */
+      trip_type?: string;
+      /** Author Name */
+      author_name: string;
+    };
+    /** ReviewsBlock */
+    ReviewsBlock: {
+      /**
+       * Type
+       * @default reviews
        * @enum {string}
        */
-      type?: 'recycling';
-      /** Containers */
-      containers: components['schemas']['RecyclingContainer'][];
-    };
-    /** RecyclingContainer */
-    RecyclingContainer: {
-      /**
-       * Updated At
-       * Format: date-time
-       */
-      updated_at: string;
-      /** Filling Level */
-      filling_level: number;
-      type: components['schemas']['ContainerType'];
-      /** Place Description */
-      place_description: string;
+      type?: 'reviews';
+      /** Reviews */
+      reviews: components['schemas']['Review'][];
     };
     /** RouteLeg */
     RouteLeg: {
@@ -1214,8 +1402,7 @@ export interface components {
        * @description [lon, lat]
        */
       location: [number, number];
-      /** Modifier */
-      modifier?: string;
+      modifier?: components['schemas']['ManeuverModifier'];
       /**
        * Type
        * @default
@@ -1223,13 +1410,17 @@ export interface components {
       type?: string;
       /** Instruction */
       instruction: string;
+      detail?: components['schemas']['ManeuverDetail'];
     };
     /** RoutePrice */
     RoutePrice: {
       /** Currency */
       currency: string;
-      /** Value */
-      value: string;
+      /**
+       * Value
+       * @default
+       */
+      value?: string;
       /**
        * Group
        * @default false
@@ -1248,6 +1439,11 @@ export interface components {
        * @description GeoJSON
        */
       geometry: { [key: string]: unknown };
+      /**
+       * Properties
+       * @default {}
+       */
+      properties?: { [key: string]: unknown };
       mode: components['schemas']['TransportMode'];
     };
     /** RouteSummaryPart */
@@ -1373,6 +1569,8 @@ export interface components {
       direction?: string;
       /** Linecolor */
       lineColor?: string;
+      /** Linetextcolor */
+      lineTextColor?: string;
       /** Network */
       network?: string;
     };
@@ -1426,7 +1624,7 @@ export interface components {
     /** ValidationError */
     ValidationError: {
       /** Location */
-      loc: string[];
+      loc: (Partial<string> & Partial<number>)[];
       /** Message */
       msg: string;
       /** Error Type */
@@ -1434,23 +1632,12 @@ export interface components {
     };
     /**
      * Verbosity
-     * @description Control the verbosity of the output.
+     * @description
+     *     Control the verbosity of the output.
+     *
      * @enum {string}
      */
     Verbosity: 'long' | 'short' | 'list';
-    /** Weather */
-    Weather: {
-      /**
-       * Type
-       * @default weather
-       * @enum {string}
-       */
-      type?: 'weather';
-      /** Temperature */
-      temperature?: number;
-      /** Icon */
-      icon?: string;
-    };
     /** WebSiteBlock */
     WebSiteBlock: {
       /**
@@ -1486,15 +1673,20 @@ export interface components {
      * @description Feature Model
      */
     geojson_pydantic__features__Feature: {
-      /** Type */
-      type?: string;
+      /**
+       * Type
+       * @default Feature
+       * @constant
+       */
+      type?: 'Feature';
       /** Geometry */
-      geometry: Partial<components['schemas']['Point']> &
+      geometry?: Partial<components['schemas']['Point']> &
         Partial<components['schemas']['MultiPoint']> &
         Partial<components['schemas']['LineString']> &
         Partial<components['schemas']['MultiLineString']> &
         Partial<components['schemas']['Polygon']> &
-        Partial<components['schemas']['MultiPolygon']>;
+        Partial<components['schemas']['MultiPolygon']> &
+        Partial<components['schemas']['GeometryCollection']>;
       /** Properties */
       properties?: { [key: string]: unknown };
       /** Id */
@@ -1538,22 +1730,25 @@ export interface components {
 
 export interface operations {
   /** Get all places in a bounding box. */
-  get_places_bbox_v1_places_get: {
+  get_places_bbox_maps_detail_v1_places_get: {
     parameters: {
       query: {
         /** Format: left_lon,bottom_lat,right_lon,top_lat */
         bbox: string;
         category?: components['schemas']['Category'][];
-        raw_filter?: string[];
         source?: string;
         /** Full text query */
         q?: string;
-        place_name?: string;
-        place_code?: string;
         size?: number;
         lang?: string;
         verbosity?: components['schemas']['Verbosity'];
         extend_bbox?: boolean;
+        place_name?: string;
+        place_code?: string;
+        only_osm?: boolean;
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1574,7 +1769,7 @@ export interface operations {
     };
   };
   /** Find the closest place to a point. */
-  get_place_latlon_v1_places_latlon__lat___lon__get: {
+  get_place_latlon_maps_detail_v1_places_latlon__lat___lon__get: {
     parameters: {
       path: {
         lat: number;
@@ -1583,6 +1778,9 @@ export interface operations {
       query: {
         lang?: string;
         verbosity?: components['schemas']['Verbosity'];
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1601,7 +1799,7 @@ export interface operations {
     };
   };
   /** Main handler that returns the requested place. */
-  get_place_v1_places__id__get: {
+  get_place_maps_detail_v1_places__id__get: {
     parameters: {
       path: {
         id: string;
@@ -1611,6 +1809,9 @@ export interface operations {
         /** Restrict the type of documents to search in. */
         type?: components['schemas']['PlaceType'];
         verbosity?: components['schemas']['Verbosity'];
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1629,7 +1830,12 @@ export interface operations {
     };
   };
   /** List all available categories. */
-  get_all_categories_v1_categories_get: {
+  get_all_categories_maps_detail_v1_categories_get: {
+    parameters: {
+      header: {
+        'x-client-hash'?: string;
+      };
+    };
     responses: {
       /** Successful Response */
       200: {
@@ -1637,10 +1843,16 @@ export interface operations {
           'application/json': components['schemas']['AllCategoriesResponse'];
         };
       };
+      /** Validation Error */
+      422: {
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
     };
   };
   /** Find the closest address to a point. */
-  closest_address_v1_reverse__lat___lon__get: {
+  closest_address_maps_detail_v1_reverse__lat___lon__get: {
     parameters: {
       path: {
         lat: number;
@@ -1649,6 +1861,9 @@ export interface operations {
       query: {
         lang?: unknown;
         verbosity?: components['schemas']['Verbosity'];
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1666,8 +1881,44 @@ export interface operations {
       };
     };
   };
+  /** Get availability and price for a given hotel Id with TripAdvisor api */
+  get_hotel_pricing_maps_detail_v1_hotel_pricing_get: {
+    parameters: {
+      query: {
+        key?: string;
+        check_in?: string;
+        check_out?: string;
+        user_agent?: string;
+        ip_address?: string;
+        num_adults?: number;
+        num_rooms?: number;
+        currency?: string;
+        locale?: string;
+        custom_tracking_var1?: string;
+        hotel_ids?: string;
+        hotel_id_type?: components['schemas']['HotelIdType'];
+      };
+      header: {
+        'x-client-hash'?: string;
+      };
+    };
+    responses: {
+      /** Successful Response */
+      200: {
+        content: {
+          'application/json': unknown;
+        };
+      };
+      /** Validation Error */
+      422: {
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
   /** Get directions to get from a point to another. */
-  get_directions_with_coordinates_v1_directions__f_lon___f_lat___t_lon___t_lat__get: {
+  get_directions_with_coordinates_maps_detail_v1_directions__f_lon___f_lat___t_lon___t_lat__get: {
     parameters: {
       path: {
         f_lon: number;
@@ -1679,6 +1930,11 @@ export interface operations {
         /** Transport mode */
         type: string;
         language?: string;
+        arrive_by?: string;
+        depart_at?: string;
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1693,7 +1949,7 @@ export interface operations {
     };
   };
   /** Get directions to get from a places to another. */
-  get_directions_v1_directions_get: {
+  get_directions_maps_detail_v1_directions_get: {
     parameters: {
       query: {
         /** Origin place id. */
@@ -1704,6 +1960,11 @@ export interface operations {
         type: string;
         /** User language. */
         language?: string;
+        arrive_by?: string;
+        depart_at?: string;
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1717,90 +1978,42 @@ export interface operations {
       422: unknown;
     };
   };
-  get_autocomplete_response_v1_autocomplete_get: {
+  get_autocomplete_response_maps_detail_v1_autocomplete_post: {
     parameters: {
       query: {
         q: string;
-        /** Latitude of the focus point. */
-        lon?: number;
         /** Longitude of the focus point. */
         lat?: number;
-        /** Zoom level used to compute how far from the focus point results will typically be. */
-        zoom?: number;
-        lang?: string;
-        /** Maximum number of results. */
-        limit?: number;
-        /** Point dataset name. */
-        pt_dataset?: string[];
-        /** POI dataset name. */
-        poi_dataset?: string[];
-        /** Search through the entire dataset while ignoring the coverage filter of the geocoder. */
-        all_data?: boolean;
-        /** Skip the first results */
-        offset?: number;
-        /** Timeout for the queries to the geocoder. */
-        timeout?: number;
+        /** Latitude of the focus point. */
+        lon?: number;
+        /** Filter type of documents raised from inside of the shape. */
+        shape_scope?: components['schemas']['PlaceDocType'][];
         /** Filter on type of document. */
         type?: components['schemas']['Type'][];
         /** Filter on type of zone. */
         zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
-        poi_type?: string[];
-        /** Perform NLU analysis to extract location and intention from the request. */
-        nlu?: boolean;
-      };
-    };
-    responses: {
-      /** Successful Response */
-      200: {
-        content: {
-          'application/json': components['schemas']['IdunnAutocomplete'];
-        };
-      };
-      /** Validation Error */
-      422: {
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ExtraParams'];
-      };
-    };
-  };
-  get_autocomplete_response_v1_autocomplete_post: {
-    parameters: {
-      query: {
-        q: string;
-        /** Latitude of the focus point. */
-        lon?: number;
-        /** Longitude of the focus point. */
-        lat?: number;
-        /** Zoom level used to compute how far from the focus point results will typically be. */
-        zoom?: number;
-        lang?: string;
+        poi_types?: string[];
         /** Maximum number of results. */
         limit?: number;
+        lang?: string;
+        /** Timeout for the queries to the geocoder. */
+        timeout?: number;
         /** Point dataset name. */
         pt_dataset?: string[];
         /** POI dataset name. */
         poi_dataset?: string[];
-        /** Search through the entire dataset while ignoring the coverage filter of the geocoder. */
-        all_data?: boolean;
+        /** Specify a request ID for debugging purpose. */
+        request_id?: string;
         /** Skip the first results */
         offset?: number;
-        /** Timeout for the queries to the geocoder. */
-        timeout?: number;
-        /** Filter on type of document. */
-        type?: components['schemas']['Type'][];
-        /** Filter on type of zone. */
-        zone_type?: components['schemas']['ZoneType'][];
-        /** Filter on type of POI. */
-        poi_type?: string[];
+        /** Zoom level used to compute how far from the focus point results will typically be. */
+        zoom?: number;
         /** Perform NLU analysis to extract location and intention from the request. */
         nlu?: boolean;
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1829,98 +2042,42 @@ export interface operations {
    *
    * Similarly to `instant_answer`, the result will need some quality checks.
    */
-  search_v1_search_get: {
+  search_maps_detail_v1_search_post: {
     parameters: {
       query: {
         q: string;
-        /** Latitude of the focus point. */
-        lon?: number;
         /** Longitude of the focus point. */
         lat?: number;
-        /** Zoom level used to compute how far from the focus point results will typically be. */
-        zoom?: number;
-        lang?: string;
-        /** Maximum number of results. */
-        limit?: number;
-        /** Point dataset name. */
-        pt_dataset?: string[];
-        /** POI dataset name. */
-        poi_dataset?: string[];
-        /** Search through the entire dataset while ignoring the coverage filter of the geocoder. */
-        all_data?: boolean;
-        /** Skip the first results */
-        offset?: number;
-        /** Timeout for the queries to the geocoder. */
-        timeout?: number;
+        /** Latitude of the focus point. */
+        lon?: number;
+        /** Filter type of documents raised from inside of the shape. */
+        shape_scope?: components['schemas']['PlaceDocType'][];
         /** Filter on type of document. */
         type?: components['schemas']['Type'][];
         /** Filter on type of zone. */
         zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
-        poi_type?: string[];
-        /** Perform NLU analysis to extract location and intention from the request. */
-        nlu?: boolean;
-      };
-    };
-    responses: {
-      /** Successful Response */
-      200: {
-        content: {
-          'application/json': components['schemas']['IdunnAutocomplete'];
-        };
-      };
-      /** Empty search provided */
-      204: never;
-      /** Validation Error */
-      422: {
-        content: {
-          'application/json': components['schemas']['HTTPValidationError'];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ExtraParams'];
-      };
-    };
-  };
-  /**
-   * Perform a query which is intended to display a relevant result directly (as
-   * opposed to `autocomplete` which gives a list of plausible results).
-   *
-   * Similarly to `instant_answer`, the result will need some quality checks.
-   */
-  search_v1_search_post: {
-    parameters: {
-      query: {
-        q: string;
-        /** Latitude of the focus point. */
-        lon?: number;
-        /** Longitude of the focus point. */
-        lat?: number;
-        /** Zoom level used to compute how far from the focus point results will typically be. */
-        zoom?: number;
-        lang?: string;
+        poi_types?: string[];
         /** Maximum number of results. */
         limit?: number;
+        lang?: string;
+        /** Timeout for the queries to the geocoder. */
+        timeout?: number;
         /** Point dataset name. */
         pt_dataset?: string[];
         /** POI dataset name. */
         poi_dataset?: string[];
-        /** Search through the entire dataset while ignoring the coverage filter of the geocoder. */
-        all_data?: boolean;
+        /** Specify a request ID for debugging purpose. */
+        request_id?: string;
         /** Skip the first results */
         offset?: number;
-        /** Timeout for the queries to the geocoder. */
-        timeout?: number;
-        /** Filter on type of document. */
-        type?: components['schemas']['Type'][];
-        /** Filter on type of zone. */
-        zone_type?: components['schemas']['ZoneType'][];
-        /** Filter on type of POI. */
-        poi_type?: string[];
+        /** Zoom level used to compute how far from the focus point results will typically be. */
+        zoom?: number;
         /** Perform NLU analysis to extract location and intention from the request. */
         nlu?: boolean;
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1949,13 +2106,16 @@ export interface operations {
    * Redirect to the same page as provided URL which must have been provided by
    * Idunn together with an hash value.
    */
-  follow_redirection_v1_redirect_get: {
+  follow_redirection_maps_detail_v1_redirect_get: {
     parameters: {
       query: {
         /** An external URL that is expected to redirect. */
         url: string;
         /** Value of the hash provided by Idunn. */
         hash: string;
+      };
+      header: {
+        'x-client-hash'?: string;
       };
     };
     responses: {
@@ -1984,7 +2144,7 @@ export interface operations {
    * This should not be confused with "Get Places Bbox" as this endpoint will
    * run more restrictive checks on its results.
    */
-  get_instant_answer_v1_instant_answer_get: {
+  get_instant_answer_maps_detail_v1_instant_answer_get: {
     parameters: {
       query: {
         q: string;
@@ -2013,5 +2173,3 @@ export interface operations {
     };
   };
 }
-
-export interface external {}
