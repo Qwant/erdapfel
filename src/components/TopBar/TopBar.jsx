@@ -205,8 +205,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
                 })}
                 onClick={() => setProductsDrawerOpen(!isProductsDrawerOpen)}
               >
-                <IconApps className="u-mr-xxs" />
-                {_('Products', 'menu')}
+                <IconApps />
               </button>
             )}
             {!isMobile && (
