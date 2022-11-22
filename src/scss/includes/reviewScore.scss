@@ -31,8 +31,19 @@
 }
 
 .reviewScore-starRating {
-  color: #050506;
   div {
     font-size: 14px;
   }
+
+  &--default {
+    color: var(--green-500);
+
+    div {
+      font-weight: bold;
+    }
+  }
+}
+
+.reviewScore-count {
+  color: var(--grey-900);
 }
