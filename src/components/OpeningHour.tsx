@@ -15,7 +15,7 @@ const getStatusMessage = ({
   if (status === 'open') {
     return {
       label: texts?.open ?? '',
-      color: 'var(--serpPermaLink)',
+      color: 'var(--green-600)',
     };
   }
 

@@ -41,7 +41,7 @@ const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, 
 
 const DefaultRating = ({ grade, count, showSuffix }) => (
   <>
-    <Text className="reviewScore-starRating" bold typo="body-2">
+    <Text className="reviewScore-starRating reviewScore-starRating--default" typo="body-2">
       <StarRating showScore note={grade} />
     </Text>
     <span className="reviewScore-count">
@@ -57,7 +57,7 @@ const TripAdvisorRating = ({ grade_url, count }) => (
         <div className="reviewScore-TripAdvisor">
           <img src={grade_url} alt="" width={119} height={20} loading="lazy" />
         </div>
-        <span>{_n('%d review', '%d reviews', count, 'reviews')}</span>
+        <span className="reviewScore-count">{_n('%d review', '%d reviews', count, 'reviews')}</span>
       </Flex>
     </Text>
   </>
