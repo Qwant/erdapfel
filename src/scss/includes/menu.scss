@@ -160,7 +160,7 @@ $productDrawerWidth: 744px;
     &-appButton {
       &:not(:first-child) {
         margin-left: 8px;
-      }     
+      }
     }
   }
 
@@ -171,7 +171,6 @@ $productDrawerWidth: 744px;
     text-align: center;
     margin-bottom: $spacing-s;
     padding: $spacing-xxl-3 $spacing-l;
-
   }
 
   @media (max-width: 640px) {
@@ -228,6 +227,7 @@ $productDrawerWidth: 744px;
     padding: $spacing-s;
     border-radius: 8px;
     box-shadow: $shadow;
+    text-decoration: none !important;
 
     &:hover {
       color: $grey-black;
@@ -242,6 +242,14 @@ $productDrawerWidth: 744px;
 
     &--noShadow {
       box-shadow: none;
+    }
+
+    &--icon {
+      padding: var(--spacing-xs);
+
+      svg {
+        margin-right: var(--spacing-xxs);
+      }
     }
   }
 
