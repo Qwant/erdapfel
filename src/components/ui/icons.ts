@@ -33,3 +33,4 @@ export { ReactComponent as IconDirectionsArrow } from '../../../public/images/di
 
 export { ReactComponent as IconAndroid } from '../../../public/images/mobile/android.svg';
 export { ReactComponent as IconApple } from '../../../public/images/mobile/i-os.svg';
+export { ReactComponent as QwantLogoBlue } from '../../../public/images/qwant-search-logo.svg';

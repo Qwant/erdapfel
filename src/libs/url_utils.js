@@ -76,7 +76,7 @@ export function updateQueryString(queriesObject) {
 
 export function shouldShowBackToQwant() {
   const params = parseQueryString(window.location.search);
-  return params.client && params.client === 'search-ia-maps-multi';
+  return params?.client === 'search-ia-maps-multi' || params?.client === 'search-ia-maps-single';
 }
 
 const getDrawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });

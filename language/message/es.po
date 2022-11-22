@@ -1040,7 +1040,7 @@ msgid "Your position"
 msgstr "Tu localización"
 
 msgid "Back to Qwant.com"
-msgstr "Volver a Qwant.com"
+msgstr "Search"
 
 msgid "Qwant Maps uses OpenStreetMap data."
 msgstr "Qwant Maps usa datos de OpenStreetMaps."
