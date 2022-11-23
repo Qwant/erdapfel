@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, IconArrowLeftLine } from '@qwant/qwant-ponents';
+import { QwantLogoBlue } from 'src/components/ui/icons';
 import { useI18n } from 'src/hooks';
 
 const hiddenAttributeClassName = 'map_control__scale_attribute_container--hidden';
@@ -24,6 +25,7 @@ export const BackToQwantButton = ({ isMobile }) => {
       onClick={() => window.history.back()}
     >
       <IconArrowLeftLine />
+      <QwantLogoBlue className="qwant-logo" />
       {_('Back to Qwant.com')}
     </Button>
   );

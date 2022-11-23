@@ -2,8 +2,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Suggest } from 'src/components/ui';
-import { IconArrowBackward, IconCloseCircled, IconDirectionsArrow } from 'src/components/ui/icons';
+import {
+  IconArrowBackward,
+  IconCloseCircled,
+  IconDirectionsArrow,
+  QwantLogoBlue,
+} from 'src/components/ui/icons';
 import { IconClose, Flex, IconMenu, IconApps } from '@qwant/qwant-ponents';
+
 import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
 import { selectItem, fetchSuggests } from 'src/libs/suggest';
@@ -199,9 +205,18 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
                 })}
                 onClick={() => setProductsDrawerOpen(!isProductsDrawerOpen)}
               >
-                <IconApps className="u-mr-xxs" />
-                {_('Products', 'menu')}
+                <IconApps />
               </button>
+            )}
+            {!isMobile && (
+              <a
+                className={cx('u-mr-xs', 'menu__button', 'menu__button--icon')}
+                target="_self"
+                href={window.location.origin}
+              >
+                <QwantLogoBlue />
+                {_('Back to Qwant.com')}
+              </a>
             )}
           </Flex>
         </div>
