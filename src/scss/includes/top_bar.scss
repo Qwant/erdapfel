@@ -1,16 +1,24 @@
 .top_bar {
   @include long_shadow();
   @include panel_radius();
+  position: relative;
+  overflow: visible;
   background: #fff;
   width: $panel_width;
   left: $ui_margin;
   top: $ui_margin;
-  position: relative;
+}
+
+.directions-open .search_form,
+.directions-open .search_form__result {
+  position: absolute;
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  transition: none;
 }
 
 .directions-open .top_bar {
-  display: none;
-
   #react_menu__container {
     visibility: visible;
   }

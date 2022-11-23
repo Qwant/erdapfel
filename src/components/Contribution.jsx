@@ -46,7 +46,7 @@ const Contribution = ({ poi }) => {
         isFromOSM(poi) && 'contribute--osm',
         isFromPagesJaunes(poi) && 'contribute--pj',
         isFromTripAdvisor(poi) && 'contribute--ta',
-        (isFromEcotables(poi) || isFromCircuitsCourts(poi) || isFromVrac(poi)) && 'contribute--eco'
+        (isFromCircuitsCourts(poi) || isFromVrac(poi)) && 'contribute--eco'
       )}
     >
       <div className="contribute__logo" />
