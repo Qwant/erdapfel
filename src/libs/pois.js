@@ -51,6 +51,14 @@ export const isPoiCompliantKey = key => key.indexOf(prefix) === 0;
 
 export const isFromPagesJaunes = poi => poi.meta && poi.meta.source === sources.pagesjaunes;
 export const isFromOSM = poi => poi.meta && poi.meta.source === sources.osm;
+export const isFromEcotables = poi =>
+  poi.blocks &&
+  !!poi.blocks?.find(b => b.type === 'ecoresponsible' && b.source === sources.ecotables);
+export const isFromVrac = poi =>
+  poi.blocks && !!poi.blocks?.find(b => b.type === 'ecoresponsible' && b.source === sources.vrac);
+export const isFromCircuitsCourts = poi =>
+  poi.blocks &&
+  !!poi.blocks?.find(b => b.type === 'ecoresponsible' && b.source === sources.circuitscourts);
 export const isFromTripAdvisor = poi => poi.meta && poi.meta.source === sources.tripadvisor;
 
 // POI map util functions
