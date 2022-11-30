@@ -1,5 +1,9 @@
 .routeLabel-marker {
   z-index: 1;
+  
+  & > :not(.active) {
+    transform: scale(.75);
+  }
 }
 
 .routeLabel {
