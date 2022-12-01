@@ -15,9 +15,11 @@ const PoiItem = React.memo(
   ({ poi, withOpeningHours, withImage, withAlternativeName, className, inList, ...rest }) => {
     const reviews = poi.blocksByType?.grades;
     const { _ } = useI18n();
-    const subclass = capitalizeFirst(poiSubClass(poi.subClassName));
-    const stars = findBlock(poi.blocks, 'stars');
     const isEcoResponsible = findBlock(poi.blocks, 'ecoresponsible') !== null;
+    const subclass = capitalizeFirst(
+      isEcoResponsible ? poiSubClass(poi.className) : poiSubClass(poi.subClassName)
+    );
+    const stars = findBlock(poi.blocks, 'stars');
     const openingHours = withOpeningHours && poi?.blocksByType?.opening_hours;
     const texts = {
       opening_hours: _('opening hours'),
