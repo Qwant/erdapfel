@@ -878,7 +878,7 @@ msgid "public building"
 msgstr ""
 
 msgid "public bookcase"
-msgstr ""
+msgstr "Book Exchange"
 
 msgid "public transport station"
 msgstr "public transport station"
@@ -1599,7 +1599,7 @@ msgid "Details"
 msgstr ""
 
 msgid "Eco-responsible places"
-msgstr ""
+msgstr "Eco-responsible Alternatives"
 
 msgid "alimentation"
 msgstr ""
@@ -1611,28 +1611,28 @@ msgid "Eco-responsible restaurants"
 msgstr ""
 
 msgid "Selected in patnership with Écotables"
-msgstr "Selected in patnership with Écotables"
+msgstr "Curated in partnership with écotable"
 
 msgid "Ecotable source details"
-msgstr "The Ecotable label identifies and promotes eco-responsible restaurants throughout France."
+msgstr "Ecotable is a french eco-label who identifies and promotes restaurants with eco-friendly practices."
 
 msgid "Ecotable source see more"
-msgstr "See more"
+msgstr "Learn more"
 
 msgid "Ecotable source see more link"
 msgstr "https://ecotable.fr/en"
 
 msgid "Appears in"
-msgstr ""
+msgstr "Featured in"
 
 msgid "Circuit court"
-msgstr "SFSCs"
+msgstr "Local Food"
 
 msgid "Vente en vrac"
-msgstr "Sale in bulk"
+msgstr "Bulk Store"
 
-msgid "Selected in patnership with ObSat"
-msgstr "Selected in patnership with ObSat"
+msgid "Selected in patnership with INRAE"
+msgstr "Selected in patnership with INRAE"
 
 msgid "Selected in patnership with ReseauVrac"
 msgstr "Selected in patnership with Réseau Vrac"

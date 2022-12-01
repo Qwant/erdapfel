@@ -32,7 +32,7 @@ const PoiPanelContent = ({ poi }) => {
     },
     [sources.circuitscourts]: {
       text: _('Circuit court'),
-      subtext: _('Selected in patnership with ObSat'),
+      subtext: _('Selected in patnership with INRAE'),
     },
     [sources.vrac]: {
       text: _('Vente en vrac'),
@@ -123,7 +123,7 @@ const PoiPanelContent = ({ poi }) => {
           </>
         )}
         {poi && <PoiBlockContainer poi={poi} />}
-        <Contribution poi={poi} />
+        <Contribution poi={poi} isOnlyDisplayed={isEcoResponsibleBlock} />
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>
         <CategoryList className="poi_panel__categories u-mb-s" limit={4} />

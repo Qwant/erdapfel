@@ -3,6 +3,12 @@
   padding: $spacing-s;
   border-radius: 8px;
   background-color: $grey-bright;
+
+  .contribute__text--caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .contribute__logo {
@@ -12,6 +18,14 @@
   height: 32px;
   margin-right: $spacing-s;
   background-size: cover;
+
+  .contribute--inrae & {
+    background: center / contain no-repeat url('../../images/inrae.svg');
+  }
+
+  .contribute--rv & {
+    background: center / contain no-repeat url('../../images/reseau-vrac.svg');
+  }
 
   .contribute--osm & {
     background-image: url('../../images/openstreetmap.png');

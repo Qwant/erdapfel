@@ -21,18 +21,26 @@ const eventName = (poi, suffix) => {
   if (isFromPagesJaunes(poi)) return `pj_${suffix}`;
 };
 
-const sentenceFor = (poi, _) => {
+const sentenceFor = (poi, _, lang) => {
   if (isFromVrac(poi)) return `${_('In partnership with')} Réseau vrac`;
-  if (isFromCircuitsCourts(poi)) return `${_('In partnership with')} ObSat`;
+  if (isFromCircuitsCourts(poi))
+    return `${_('In partnership with')} ${lang === 'fr' ? `l'` : ''}INRAE`;
   if (isFromOSM(poi)) return _('Qwant Maps uses OpenStreetMap data.');
   if (isFromTripAdvisor(poi)) return `${_('In partnership with')} TripAdvisor.`;
   if (isFromPagesJaunes(poi)) return `${_('In partnership with')} PagesJaunes.`;
 };
 
-const Contribution = ({ poi }) => {
-  const { _ } = useI18n();
+const Contribution = ({ poi, isOnlyDisplayed }) => {
+  const { _, lang } = useI18n();
 
-  if ((!isFromOSM(poi) && !isFromPagesJaunes(poi) && !isFromTripAdvisor(poi)) || !poi.meta) {
+  if (
+    (!isFromOSM(poi) &&
+      !isFromPagesJaunes(poi) &&
+      !isFromTripAdvisor(poi) &&
+      !isFromVrac(poi) &&
+      !isFromCircuitsCourts(poi)) ||
+    !poi.meta
+  ) {
     return null;
   }
 
@@ -44,33 +52,36 @@ const Contribution = ({ poi }) => {
       className={classnames(
         'contribute',
         isFromOSM(poi) && 'contribute--osm',
+        isFromCircuitsCourts(poi) && 'contribute--inrae',
+        isFromVrac(poi) && 'contribute--rv',
         isFromPagesJaunes(poi) && 'contribute--pj',
-        isFromTripAdvisor(poi) && 'contribute--ta',
-        (isFromCircuitsCourts(poi) || isFromVrac(poi)) && 'contribute--eco'
+        isFromTripAdvisor(poi) && 'contribute--ta'
       )}
     >
       <div className="contribute__logo" />
-      <div className="u-text--caption">
-        <p>{sentenceFor(poi, _)}</p>
-        <div>
-          <a
-            className="u-mr-xl"
-            href={source_url}
-            rel="noopener noreferrer"
-            target="_blank"
-            onClick={sendTelemetryEvent(eventName(poi, 'view'))}
-          >
-            {_('View')}
-          </a>
-          <a
-            href={contribute_url}
-            rel="noopener noreferrer"
-            target="_blank"
-            onClick={sendTelemetryEvent(eventName(poi, 'edit'))}
-          >
-            {_('Edit')}
-          </a>
-        </div>
+      <div className={`u-text--caption ${isOnlyDisplayed && `contribute__text--caption`}`}>
+        <p>{sentenceFor(poi, _, lang)}</p>
+        {!isOnlyDisplayed && (
+          <div>
+            <a
+              className="u-mr-xl"
+              href={source_url}
+              rel="noopener noreferrer"
+              target="_blank"
+              onClick={sendTelemetryEvent(eventName(poi, 'view'))}
+            >
+              {_('View')}
+            </a>
+            <a
+              href={contribute_url}
+              rel="noopener noreferrer"
+              target="_blank"
+              onClick={sendTelemetryEvent(eventName(poi, 'edit'))}
+            >
+              {_('Edit')}
+            </a>
+          </div>
+        )}
       </div>
     </Flex>
   );

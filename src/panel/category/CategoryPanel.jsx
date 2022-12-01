@@ -156,7 +156,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
       case sources.vrac:
         return _('Selected in patnership with ReseauVrac', 'categories');
       case sources.circuitscourts:
-        return _('Selected in patnership with ObSat', 'categories');
+        return _('Selected in patnership with INRAE', 'categories');
       case sources.ecotables:
         return (
           <>
