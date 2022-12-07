@@ -30,6 +30,7 @@
     "ts:coverage": "typescript-coverage-report",
     "ts:count": "cloc src --fullpath --include-lang TypeScript,JavaScript --force-lang='Javascript',jsx --not-match-d \"(node_modules|coverage-ts|tmp|build)\" --by-percent cm --md",
     "ts:codegen-idunn": "node build/generateIdunnTypes.mjs && eslint --fix @types/idunn.ts",
+    "ts:migration-hint": "find ./src/* -not -path './node_modules/*'  -type f -name '*.js' | xargs grep -H -c 'import' | sort -n -t : -k 2 | cut -d':' -f1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "predeploy-storybook": "npm run build-storybook -s public",
