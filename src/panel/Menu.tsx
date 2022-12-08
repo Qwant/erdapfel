@@ -83,7 +83,9 @@ const Menu: React.FunctionComponent = () => {
                   <IconArrowLeftLine size={24} />
                 </Flex>
               )}
-              <div className="u-text--heading5">{_('Products', 'menu')}</div>
+              {isProductsDrawerOpen && !isMobile && (
+                <div className="u-text--heading5">{_('Products', 'menu')}</div>
+              )}
               <CloseButton
                 circle={false}
                 onClick={closeDrawers}
