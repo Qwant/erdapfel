@@ -1,10 +1,10 @@
 import React from 'react';
-import { Flex } from '@qwant/qwant-ponents';
 import { useI18n } from 'src/hooks';
 import ProductCard from './ProductCard';
+import ProductCardSmall from './ProductCardSmall';
 
 const ProductsDrawer = () => {
-  const { getLocalizedUrl, getLocalizedString } = useI18n();
+  const { getLocalizedUrl, getLocalizedString, _ } = useI18n();
 
   return (
     <>
@@ -44,24 +44,18 @@ const ProductsDrawer = () => {
           }}
         />
       </div>
-      <a
-        href={getLocalizedUrl('aboutHome')}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="card betterweb u-mb-l"
-      >
-        <Flex alignCenter>
-          <div className="u-mr-l">
-            <img width="100" height="100" src="./statics/images/products/web-internaute.svg" />
-          </div>
-          <div>
-            <div className="u-color--primary u-mb-s betterweb-description">
-              {getLocalizedString('betterwebDesc')}
-            </div>
-            <div className="card-link">{getLocalizedString('betterwebOpen')}</div>
-          </div>
-        </Flex>
-      </a>
+      <ProductCardSmall
+        url={getLocalizedUrl('aboutHome')}
+        img="./statics/images/products/web-internaute.svg"
+        title={getLocalizedString('betterwebDesc')}
+        linkText={getLocalizedString('betterwebOpen')}
+      />
+      <ProductCardSmall
+        url={getLocalizedUrl('aboutExtension')}
+        img="./statics/images/products/VIPrivacy.svg"
+        title={_('VIPrivacy Protected Navigation')}
+        linkText={getLocalizedString('betterwebOpen')}
+      />
     </>
   );
 };

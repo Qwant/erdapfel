@@ -68,25 +68,27 @@ const Menu: React.FunctionComponent = () => {
           <div className="menu__panel">
             <Flex alignCenter className="menu-top">
               {isMobile && isProductsDrawerOpen && (
-                <>
-                  <Flex
-                    as="button"
-                    center
-                    alignCenter
-                    type="button"
-                    className="u-mr-s"
-                    onClick={() => {
-                      setProductsDrawerOpen(false);
-                      setMenuDrawerOpen(true);
-                    }}
-                    aria-label={_('Go back')}
-                  >
-                    <IconArrowLeftLine size={24} />
-                  </Flex>
-                  <div className="u-text--heading5">{_('Products', 'menu')}</div>
-                </>
+                <Flex
+                  as="button"
+                  center
+                  alignCenter
+                  type="button"
+                  className="u-mr-s"
+                  onClick={() => {
+                    setProductsDrawerOpen(false);
+                    setMenuDrawerOpen(true);
+                  }}
+                  aria-label={_('Go back')}
+                >
+                  <IconArrowLeftLine size={24} />
+                </Flex>
               )}
-              <CloseButton circle onClick={closeDrawers} />
+              <div className="u-text--heading5">{_('Products', 'menu')}</div>
+              <CloseButton
+                circle={false}
+                onClick={closeDrawers}
+                className="menu-top-close-button"
+              />
             </Flex>
             <div className="menu-content">
               {isMenuDrawerOpen && !isProductsDrawerOpen && (

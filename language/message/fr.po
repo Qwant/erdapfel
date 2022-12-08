@@ -1783,3 +1783,6 @@ msgstr "Sélection en partenariat avec l'INRAE"
 
 msgid "Selected in patnership with ReseauVrac"
 msgstr "Sélection en partenariat avec Réseau Vrac"
+
+msgid "VIPrivacy Protected Navigation"
+msgstr "Qwant VIPrivacy :<br />Navigation protégée, confidentialité renforcée"

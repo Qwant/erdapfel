@@ -45,13 +45,19 @@ $productDrawerWidth: 744px;
   display: flex;
   flex-direction: column;
   animation: appearMenu 0.3s forwards;
-  border-left: 2px solid #676e79;
+  border-radius: 28px 0 0 28px;
 }
 
 .menu-top {
   height: $top_bar_height;
   padding: 0 $spacing-l;
   flex-shrink: 0;
+
+  &-close-button {
+    & svg {
+      fill: var(--grey-600);
+    }
+  }
 }
 
 .menu-item {
@@ -139,12 +145,11 @@ $productDrawerWidth: 744px;
     padding: $spacing-l;
     border-radius: 8px;
     text-decoration: none !important;
-    border: 2px solid #e9eaec;
-    transition: box-shadow 0.3s, background 0.3s, border 0.3s;
+    border: 2px solid var(--grey-900-alpha16);
+    transition: box-shadow 0.3s;
 
     &:hover {
-      border-color: var(--grey-600);
-      box-shadow: 4px 4px var(--grey-900-alpha16);
+      box-shadow: 0 2px 16px 0 rgba(5, 5, 6, 0.04), 0 4px 8px 0 rgba(5, 5, 6, 0.08);
 
       .card-link {
         text-decoration: underline;
@@ -158,6 +163,7 @@ $productDrawerWidth: 744px;
     }
 
     &-appButton {
+      border-radius: 12px;
       &:not(:first-child) {
         margin-left: 8px;
       }
@@ -270,7 +276,11 @@ $productDrawerWidth: 744px;
   }
 
   .menu-top {
-    height: 88px;
+    height: auto;
+    padding: $spacing-l;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 
   .menu__panel {
@@ -283,11 +293,11 @@ $productDrawerWidth: 744px;
 }
 
 .productCard.productCardSearch {
-  background-color: #5c97ff !important;
+  background-color: #5c97ff;
 }
 .productCard.productCardMaps {
-  background-color: #57c78f !important;
+  background-color: #57c78f;
 }
 .productCard.productCardJunior {
-  background-color: #ffd6d7 !important;
+  background-color: #ffd6d7;
 }
