@@ -465,9 +465,21 @@ export interface components {
       type?: 'description';
       /** Description */
       description: string;
+      /**
+       * Claims
+       * @default []
+       */
+      claims?: components['schemas']['DescriptionClaim'][];
       source: components['schemas']['DescriptionSources'];
       /** Url */
       url?: string;
+    };
+    /** DescriptionClaim */
+    DescriptionClaim: {
+      /** Label */
+      label: string;
+      /** Value */
+      value: string;
     };
     /** DescriptionEvent */
     DescriptionEvent: {
@@ -491,7 +503,7 @@ export interface components {
      * @description An enumeration.
      * @enum {undefined}
      */
-    DescriptionSources: 'osm' | 'pagesjaunes' | 'wikipedia';
+    DescriptionSources: 'osm' | 'pagesjaunes' | 'wikipedia' | 'knowledge';
     /** DirectionsData */
     DirectionsData: {
       /** Routes */
@@ -1615,12 +1627,6 @@ export interface components {
        */
       location: [number, number];
     };
-    /**
-     * Type
-     * @description An enumeration.
-     * @enum {string}
-     */
-    Type: 'house' | 'poi' | 'public_transport:stop_area' | 'street' | 'zone';
     /** ValidationError */
     ValidationError: {
       /** Location */
@@ -1989,7 +1995,7 @@ export interface operations {
         /** Filter type of documents raised from inside of the shape. */
         shape_scope?: components['schemas']['PlaceDocType'][];
         /** Filter on type of document. */
-        type?: components['schemas']['Type'][];
+        type?: string[];
         /** Filter on type of zone. */
         zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
@@ -2011,6 +2017,12 @@ export interface operations {
         zoom?: number;
         /** Perform NLU analysis to extract location and intention from the request. */
         nlu?: boolean;
+        /** Search only exact match */
+        is_exact_match?: boolean;
+        /** Filter to get only hotel poi */
+        is_hotel_filter?: boolean;
+        /** Filter famous poi. If it's a OSM, it needs a wikidata field.Still nothing done for tripadvisor */
+        is_famous_poi?: boolean;
       };
       header: {
         'x-client-hash'?: string;
@@ -2053,7 +2065,7 @@ export interface operations {
         /** Filter type of documents raised from inside of the shape. */
         shape_scope?: components['schemas']['PlaceDocType'][];
         /** Filter on type of document. */
-        type?: components['schemas']['Type'][];
+        type?: string[];
         /** Filter on type of zone. */
         zone_type?: components['schemas']['ZoneType'][];
         /** Filter on type of POI. */
@@ -2075,6 +2087,12 @@ export interface operations {
         zoom?: number;
         /** Perform NLU analysis to extract location and intention from the request. */
         nlu?: boolean;
+        /** Search only exact match */
+        is_exact_match?: boolean;
+        /** Filter to get only hotel poi */
+        is_hotel_filter?: boolean;
+        /** Filter famous poi. If it's a OSM, it needs a wikidata field.Still nothing done for tripadvisor */
+        is_famous_poi?: boolean;
       };
       header: {
         'x-client-hash'?: string;
@@ -2173,3 +2191,5 @@ export interface operations {
     };
   };
 }
+
+export interface external {}
