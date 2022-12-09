@@ -5,7 +5,7 @@ import ProductsDrawer from './menu/ProductsDrawer';
 import Telemetry from 'src/libs/telemetry';
 import { CloseButton } from 'src/components/ui';
 import { RootModal } from 'src/components/RootModal';
-import { Flex, IconArrowLeftLine } from '@qwant/qwant-ponents';
+import { Flex } from '@qwant/qwant-ponents';
 import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { getQueryString, parseQueryString } from 'src/libs/url_utils';
 import { useStore } from '../store';
@@ -67,24 +67,8 @@ const Menu: React.FunctionComponent = () => {
           <div className="menu__overlay" onClick={closeDrawers} />
           <div className="menu__panel">
             <Flex alignCenter className="menu-top">
-              {isMobile && isProductsDrawerOpen && (
-                <Flex
-                  as="button"
-                  center
-                  alignCenter
-                  type="button"
-                  className="u-mr-s"
-                  onClick={() => {
-                    setProductsDrawerOpen(false);
-                    setMenuDrawerOpen(true);
-                  }}
-                  aria-label={_('Go back')}
-                >
-                  <IconArrowLeftLine size={24} />
-                </Flex>
-              )}
-              {isProductsDrawerOpen && !isMobile && (
-                <div className="u-text--heading5">{_('Products', 'menu')}</div>
+              {isProductsDrawerOpen && (
+                <div className="u-text--heading6">{_('Products', 'menu')}</div>
               )}
               <CloseButton
                 circle={false}
