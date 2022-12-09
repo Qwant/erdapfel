@@ -89,7 +89,7 @@ $productDrawerWidth: 744px;
 }
 
 .menu__button {
-  background: $var(--grey-000);
+  background: var(--grey-000);
   cursor: pointer;
   display: flex;
   align-items: center;
