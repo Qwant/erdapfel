@@ -61,7 +61,7 @@ $productDrawerWidth: 744px;
 .menu-item {
   display: block;
   padding: var(--spacing-m) var(--spacing-xl-2);
-  color: $grey-black;
+  color: var(--grey-800);
   text-decoration: none !important;
 
   // Needed to ensure icons are visually aligned with the first line of text
@@ -89,7 +89,7 @@ $productDrawerWidth: 744px;
 }
 
 .menu__button {
-  background: $background;
+  background: $var(--grey-000);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -230,14 +230,14 @@ $productDrawerWidth: 744px;
     }
 
     &:hover {
-      color: $grey-black;
-      background-color: $grey-lighter;
+      color: var(--grey-800);
+      background-color: var(--grey-200);
     }
 
     &--active {
       box-shadow: none;
-      color: $grey-black;
-      background-color: $grey-lighter;
+      color: var(--grey-800);
+      background-color: var(--grey-200);
     }
 
     &--noShadow {
@@ -283,11 +283,11 @@ $productDrawerWidth: 744px;
 }
 
 .productCard.productCardSearch {
-  background-color: #5c97ff;
+  background-color: var(--action-blue-300);
 }
 .productCard.productCardMaps {
-  background-color: #57c78f;
+  background-color: var(--green-400);
 }
 .productCard.productCardJunior {
-  background-color: #ffd6d7;
+  background-color: var(--red-100);
 }
