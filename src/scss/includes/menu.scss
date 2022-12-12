@@ -49,16 +49,9 @@ $productDrawerWidth: 744px;
 
 .menu-top {
   padding: var(--spacing-l) var(--spacing-xl);
-  flex-shrink: 0;
-  position: relative;
 
-  &-close-button {
-    position: absolute;
-    right: var(--spacing-m);
-    top: var(--spacing-m);
-    & svg {
-      fill: var(--grey-600);
-    }
+  &-close-button svg {
+    fill: var(--grey-600);
   }
 }
 
@@ -272,7 +265,6 @@ $productDrawerWidth: 744px;
   .menu-top {
     height: auto;
     width: 100%;
-    margin-left: auto;
   }
 
   .menu__panel {

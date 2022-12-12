@@ -66,10 +66,10 @@ const Menu: React.FunctionComponent = () => {
         <div className={cx('menu', { productsDrawer: isProductsDrawerOpen })}>
           <div className="menu__overlay" onClick={closeDrawers} />
           <div className="menu__panel">
-            <Flex alignCenter className="menu-top">
-              {isProductsDrawerOpen && (
-                <div className="u-text--heading6">{_('Products', 'menu')}</div>
-              )}
+            <Flex alignCenter className="menu-top" between>
+              <div className="u-text--heading6">
+                {_(isProductsDrawerOpen ? 'Products' : 'Menu')}
+              </div>
               <CloseButton
                 circle={false}
                 onClick={closeDrawers}
