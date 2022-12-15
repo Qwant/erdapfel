@@ -1,31 +1,8 @@
 .survey aside {
-  background: var(--grey-000) !important;
-  border: none;
-  box-shadow: rgb(0 0 0 / 20%) 0 2px 12px 0;
   top: 80px;
   right: 10px;
   bottom: auto;
-
-  * {
-    color: var(--grey-900);
-  }
-
-  & div > img,
-  div > svg {
-    border-radius: 8px;
-  }
-
-  & > div a {
-    background: var(--green-400);
-
-    &:hover {
-      background: var(--green-300);
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  .survey aside {
+  @media (max-width: 640px) {
     top: 90px;
     max-width: none;
     height: auto;
