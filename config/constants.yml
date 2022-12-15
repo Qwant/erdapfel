@@ -33,6 +33,7 @@ localizedUrls:
     aboutHome: https://about.qwant.com
     aboutPrivacy: https://about.qwant.com/legal/privacy
     aboutMapsToS: https://about.qwant.com/legal/terms-of-service/qwant-maps/
+    aboutExtension: https://about.qwant.com/extension
     contributing: https://github.com/Qwant/qwantmaps/blob/master/contributing.md
     helpGeolocation: https://help.qwant.com/en/docs/maps/activation-of-geolocation-after-denied-access/
     helpEditData: https://help.qwant.com/en/docs/maps/how-to-add-or-modify-data/
@@ -43,6 +44,7 @@ localizedUrls:
     helpEditData: https://help.qwant.com/docs/maps/comment-ajouter-ou-modifier-des-donnees/
     helpHistory: https://help.qwant.com/docs/maps/a-propos-de-votre-historique-de-recherche-sur-qwant-maps/
     reportBug: https://about.qwant.com/fr/contact#contact
+
   de:
     helpGeolocation: https://help.qwant.com/de/docs/maps/aktivierung-der-standorterfassung-nach-ablehnung/
     helpEditData: https://help.qwant.com/de/docs/maps/wie-kann-ich-daten-hinzufuegen-oder-bearbeiten/

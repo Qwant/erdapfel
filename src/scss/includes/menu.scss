@@ -1,6 +1,6 @@
 #react_menu__container {
   width: 42px;
-  height: $spacing-xxl-4;
+  height: var(--spacing-xxl-4);
   flex-shrink: 0;
 }
 
@@ -45,19 +45,20 @@ $productDrawerWidth: 744px;
   display: flex;
   flex-direction: column;
   animation: appearMenu 0.3s forwards;
-  border-left: 2px solid #676e79;
 }
 
 .menu-top {
-  height: $top_bar_height;
-  padding: 0 $spacing-l;
-  flex-shrink: 0;
+  padding: var(--spacing-l) var(--spacing-xl);
+
+  &-close-button svg {
+    fill: var(--grey-600);
+  }
 }
 
 .menu-item {
   display: block;
-  padding: $spacing-m $spacing-xl-2;
-  color: $grey-black;
+  padding: var(--spacing-m) var(--spacing-xl-2);
+  color: var(--grey-800);
   text-decoration: none !important;
 
   // Needed to ensure icons are visually aligned with the first line of text
@@ -80,12 +81,12 @@ $productDrawerWidth: 744px;
 
 .menu {
   .divider {
-    padding: $spacing-l;
+    padding: var(--spacing-l);
   }
 }
 
 .menu__button {
-  background: $background;
+  background: var(--grey-000);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -113,20 +114,16 @@ $productDrawerWidth: 744px;
 @media (max-width: 640px) {
   .menu-content {
     overflow-y: auto;
-    padding: $spacing-xl 0;
+    padding: var(--spacing-xl) 0;
   }
 
   .closeButton {
     margin-left: auto;
   }
-
-  .productsDrawer .menu-top {
-    box-shadow: $shadow-hover;
-  }
 }
 
 .productsDrawer .menu-content {
-  padding: 0 $spacing-xl;
+  padding: 0 var(--spacing-xl);
 }
 
 .productsDrawer .menu__panel {
@@ -136,15 +133,14 @@ $productDrawerWidth: 744px;
 
   .card {
     display: block;
-    padding: $spacing-l;
+    padding: var(--spacing-l);
     border-radius: 8px;
     text-decoration: none !important;
-    border: 2px solid #e9eaec;
-    transition: box-shadow 0.3s, background 0.3s, border 0.3s;
+    border: 2px solid var(--grey-900-alpha16);
+    transition: box-shadow 0.3s;
 
     &:hover {
-      border-color: var(--grey-600);
-      box-shadow: 4px 4px var(--grey-900-alpha16);
+      box-shadow: 0 2px 16px 0 rgba(5, 5, 6, 0.04), 0 4px 8px 0 rgba(5, 5, 6, 0.08);
 
       .card-link {
         text-decoration: underline;
@@ -153,11 +149,12 @@ $productDrawerWidth: 744px;
 
     &-apps {
       position: absolute;
-      bottom: $spacing-m;
-      right: $spacing-l;
+      bottom: var(--spacing-m);
+      right: var(--spacing-l);
     }
 
     &-appButton {
+      border-radius: 20px;
       &:not(:first-child) {
         margin-left: 8px;
       }
@@ -169,15 +166,11 @@ $productDrawerWidth: 744px;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: $spacing-s;
-    padding: $spacing-xxl-3 $spacing-l;
+    margin-bottom: var(--spacing-s);
+    padding: var(--spacing-xxl-3) var(--spacing-l);
   }
 
   @media (max-width: 640px) {
-    .menu-content {
-      padding: $spacing-xxl-3 $spacing-s;
-    }
-
     .card.betterweb {
       img {
         width: 50px;
@@ -193,14 +186,14 @@ $productDrawerWidth: 744px;
 
     .products {
       display: grid;
-      grid-gap: $spacing-s;
+      grid-gap: var(--spacing-s);
       grid-template-columns: 1fr 1fr 1fr;
-      margin-bottom: $spacing-xl-2;
+      margin-bottom: var(--spacing-xl-2);
     }
 
     .productCard {
       margin-bottom: 0;
-      padding-bottom: $spacing-xxl-5;
+      padding-bottom: var(--spacing-xxl-5);
       height: 100%;
 
       .card-desc {
@@ -218,13 +211,13 @@ $productDrawerWidth: 744px;
 
   .menu__button-container {
     position: fixed;
-    right: $spacing-s;
-    top: $spacing-xl;
+    right: var(--spacing-s);
+    top: var(--spacing-xl);
     flex-direction: row-reverse;
   }
 
   .menu__button {
-    padding: $spacing-s;
+    padding: var(--spacing-s);
     border-radius: 8px;
     box-shadow: $shadow;
     text-decoration: none !important;
@@ -234,14 +227,14 @@ $productDrawerWidth: 744px;
     }
 
     &:hover {
-      color: $grey-black;
-      background-color: $grey-lighter;
+      color: var(--grey-800);
+      background-color: var(--grey-200);
     }
 
     &--active {
       box-shadow: none;
-      color: $grey-black;
-      background-color: $grey-lighter;
+      color: var(--grey-800);
+      background-color: var(--grey-200);
     }
 
     &--noShadow {
@@ -270,24 +263,26 @@ $productDrawerWidth: 744px;
   }
 
   .menu-top {
-    height: 88px;
+    height: auto;
+    width: 100%;
   }
 
   .menu__panel {
+    border-radius: 28px 0px 0px 28px;
     width: $menuPanelWidth;
   }
 
   .menu-content {
-    padding: $spacing-xl-2 0;
+    padding: var(--spacing-xl-2) 0;
   }
 }
 
 .productCard.productCardSearch {
-  background-color: #5c97ff !important;
+  background-color: var(--action-blue-300);
 }
 .productCard.productCardMaps {
-  background-color: #57c78f !important;
+  background-color: var(--green-400);
 }
 .productCard.productCardJunior {
-  background-color: #ffd6d7 !important;
+  background-color: var(--red-100);
 }
