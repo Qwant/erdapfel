@@ -36,6 +36,8 @@ $productDrawerWidth: 744px;
 }
 
 .menu__panel {
+  box-shadow: var(--box-shadow-depth-3);
+  border: 1px solid var(--grey-900-alpha12);
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -136,7 +138,7 @@ $productDrawerWidth: 744px;
     padding: var(--spacing-l);
     border-radius: 8px;
     text-decoration: none !important;
-    border: 2px solid var(--grey-900-alpha16);
+    border: 1px solid var(--grey-900-alpha16);
     transition: box-shadow 0.3s;
 
     &:hover {
