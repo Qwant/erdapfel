@@ -7,7 +7,7 @@ import {
 } from '../../src/libs/string';
 
 describe('String utils', () => {
-  test('findIndexIgnoreCase', () => {
+  it('findIndexIgnoreCase', () => {
     const cases = [
       { haystack: '', needle: '', index: 0 },
       { haystack: 'Tomato', needle: '', index: 0 },
@@ -21,7 +21,7 @@ describe('String utils', () => {
     });
   });
 
-  test('normalize', () => {
+  it('normalize', () => {
     const cases = [
       { input: '', normalized: '' },
       { input: 'Tomato', normalized: 'Tomato' },
@@ -32,7 +32,7 @@ describe('String utils', () => {
     });
   });
 
-  test('slug', () => {
+  it('slug', () => {
     const cases = [
       { input: '', asSlug: '' },
       { input: 'Tomato', asSlug: 'Tomato' },
@@ -43,7 +43,7 @@ describe('String utils', () => {
     });
   });
 
-  test('htmlEncode', () => {
+  it('htmlEncode', () => {
     const cases = [
       { input: '', encoded: '' },
       { input: 'Tomato', encoded: 'Tomato' },
@@ -54,7 +54,7 @@ describe('String utils', () => {
     });
   });
 
-  test('capitalizeFirst', () => {
+  it('capitalizeFirst', () => {
     const cases = [
       { input: '', result: '' },
       { input: 'Tomato', result: 'Tomato' },
