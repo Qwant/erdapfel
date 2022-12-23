@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-
+import { MenuType } from '../../src/panel/Menu';
 import {
   buildQueryString,
   parseQueryString,
@@ -102,8 +102,8 @@ describe('url_utils', () => {
 
   describe('getAppRelativePathname()', () => {
     it('should return a pathname ignoring the base url of the app', () => {
-      window.baseUrl = '/maps/';
-      Object.defineProperty(window, 'location', {
+      global.baseUrl = '/maps/';
+      Object.defineProperty(global, 'location', {
         value: {
           pathname: '/maps/yolo',
         },
@@ -116,27 +116,29 @@ describe('url_utils', () => {
   describe('toCssUrl()', () => {
     it('should return an url string escaped for CSS url()', () => {
       // eslint-disable-next-line prettier/prettier, no-useless-escape
-      expect(toCssUrl('http://placeholder.com/"plop"')).toBe("url('http://placeholder.com/\"plop\"')");
+      expect(toCssUrl('http://placeholder.com/"plop"')).toBe(
+        'url(\'http://placeholder.com/"plop"\')'
+      );
     });
   });
 
   describe('updateQueryString()', () => {
-    it('should add to window.location.search the following params', () => {
-      window.location.search = '?uno&two=dos';
+    it('should add to global.location.search the following params', () => {
+      global.location.search = '?uno&two=dos';
       expect(updateQueryString({ three: 'tres' })).toBe('?uno=&two=dos&three=tres');
     });
   });
 
   describe('shouldShowBackToQwant()', () => {
     it('should returns true of user come from IA (multi or single)', () => {
-      window.location.search = '?client=search-ia-maps-multi';
+      global.location.search = '?client=search-ia-maps-multi';
       expect(shouldShowBackToQwant()).toBe(true);
-      window.location.search = '?client=search-ia-maps-single';
+      global.location.search = '?client=search-ia-maps-single';
       expect(shouldShowBackToQwant()).toBe(true);
     });
 
     it('should returns false if client does not match IA', () => {
-      window.location.search = '?client=unknown';
+      global.location.search = '?client=unknown';
       expect(shouldShowBackToQwant()).toBe(false);
     });
   });
@@ -144,11 +146,11 @@ describe('url_utils', () => {
   describe('onDrawerChange()', () => {
     it('should returns true of user come from IA (multi or single)', () => {
       const navigateToMock = jest.fn();
-      window.app = {
+      global.app = {
         navigateTo: navigateToMock,
       };
 
-      onDrawerChange('products', true);
+      onDrawerChange('products' as MenuType, true);
       expect(navigateToMock).toHaveBeenCalled();
       expect(navigateToMock?.mock?.calls[0][0]).toMatch(/drawer=products/);
     });

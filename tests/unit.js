@@ -2,7 +2,7 @@ const commons = require('./commons');
 
 module.exports = {
   ...commons,
-  testMatch: [__dirname + '/units/*.js'],
+  testMatch: [__dirname + '/units/*.js', __dirname + '/units/*.ts'],
   testPathIgnorePatterns: ['/node_modules/'],
   rootDir: __dirname + '/../',
   verbose: true,
