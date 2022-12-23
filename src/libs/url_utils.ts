@@ -1,5 +1,24 @@
 import { MenuType } from 'src/panel/Menu';
 
+export const parseQueryString = (queryString: string): Record<string, string> => {
+  const params = {};
+  new URLSearchParams(queryString).forEach((value, key) => {
+    params[key] = value;
+  });
+  return params;
+};
+
+const removeNullEntries = (obj: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null && v !== undefined)) as {
+    [k: string]: string;
+  };
+
+export const buildQueryString = (queriesObject: Record<string, unknown>): string => {
+  const cleanedParams = removeNullEntries(queriesObject);
+  const params = new URLSearchParams(cleanedParams).toString();
+  return params ? `?${params}` : '';
+};
+
 export const parseMapHash = (hash: string) => {
   const mapHash = hash.replace(/^#/, '');
   if (!mapHash.startsWith('map=')) {
@@ -24,14 +43,6 @@ export const getQueryString = (url: string): string => {
   return url?.split('?')[1]?.split('#')[0];
 };
 
-export const parseQueryString = (queryString: string): Record<string, string> => {
-  const params = {};
-  new URLSearchParams(queryString).forEach((value, key) => {
-    params[key] = value;
-  });
-  return params;
-};
-
 // Join parts of a path, ignoring middle '/'
 // but conserving starting and trailing ones
 export const joinPath = (parts: string[]): string => {
@@ -53,23 +64,12 @@ export const joinPath = (parts: string[]): string => {
 
 export const getAppRelativePathname = () => {
   const appBase = (window.baseUrl || '/').replace(/\/$/, '');
-  return window.location.pathname.replace(new RegExp(`^${appBase}`), '');
+  return window?.location?.pathname?.replace(new RegExp(`^${appBase}`), '');
 };
 
 export const toCssUrl = (url: string): string => {
   const escapedUrl = url.replace(/'/g, "\\'");
   return `url('${escapedUrl}')`;
-};
-
-const removeNullEntries = (obj: Record<string, unknown>) =>
-  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null && v !== undefined)) as {
-    [k: string]: string;
-  };
-
-export const buildQueryString = (queriesObject: Record<string, unknown>): string => {
-  const cleanedParams = removeNullEntries(queriesObject);
-  const params = new URLSearchParams(cleanedParams).toString();
-  return params ? `?${params}` : '';
 };
 
 export const updateQueryString = (queriesObject: Record<string, unknown>) => {
