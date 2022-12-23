@@ -26,9 +26,7 @@ const Menu: React.FunctionComponent = () => {
 
   const openMenuFromUrl = useCallback(
     (url: string) => {
-      const activeMenuDrawer: MenuType | undefined = parseQueryString(getQueryString(url))[
-        'drawer'
-      ];
+      const activeMenuDrawer = parseQueryString(getQueryString(url))['drawer'] as MenuType;
       if (activeMenuDrawer === MenuType.MENU) {
         setMenuDrawerOpen(true);
       } else if (activeMenuDrawer === MenuType.PRODUCTS) {

@@ -1,4 +1,4 @@
-export function parseMapHash(hash) {
+export const parseMapHash = (hash: string) => {
   const mapHash = hash.replace(/^#/, '');
   if (!mapHash.startsWith('map=')) {
     return;
@@ -12,27 +12,27 @@ export function parseMapHash(hash) {
   }
   const [zoom, lat, lng] = zoomLatLng;
   return { zoom, lat, lng };
-}
+};
 
-export function getMapHash(zoom, lat, lng) {
+export const getMapHash = (zoom, lat, lng) => {
   return `map=${zoom.toFixed(2)}/${lat.toFixed(7)}/${lng.toFixed(7)}`;
-}
+};
 
-export function getQueryString(url) {
+export const getQueryString = (url: string): string => {
   return url?.split('?')[1]?.split('#')[0];
-}
+};
 
-export function parseQueryString(queryString) {
+export const parseQueryString = (queryString: string): Record<string, string> => {
   const params = {};
   new URLSearchParams(queryString).forEach((value, key) => {
     params[key] = value;
   });
   return params;
-}
+};
 
 // Join parts of a path, ignoring middle '/'
 // but conserving starting and trailing ones
-export function joinPath(parts) {
+export const joinPath = (parts: string[]): string => {
   return parts
     .map((part, index) => {
       if (index === 0) {
@@ -47,37 +47,37 @@ export function joinPath(parts) {
       return part.replace(/\/$/, '');
     })
     .join('/');
-}
+};
 
-export function getAppRelativePathname() {
+export const getAppRelativePathname = () => {
   const appBase = (window.baseUrl || '/').replace(/\/$/, '');
   return window.location.pathname.replace(new RegExp(`^${appBase}`), '');
-}
+};
 
-export function toCssUrl(url) {
+export const toCssUrl = (url: string): string => {
   const escapedUrl = url.replace(/'/g, "\\'");
   return `url('${escapedUrl}')`;
-}
+};
 
-const removeNullEntries = obj =>
+const removeNullEntries = (obj: Record<string, string>) =>
   Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null && v !== undefined));
 
-export function buildQueryString(queriesObject) {
+export const buildQueryString = (queriesObject: Record<string, string>): string => {
   const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();
   return params ? `?${params}` : '';
-}
+};
 
-export function updateQueryString(queriesObject) {
+export const updateQueryString = (queriesObject: Record<string, string>) => {
   return buildQueryString({
     ...parseQueryString(window.location.search),
     ...queriesObject,
   });
-}
+};
 
-export function shouldShowBackToQwant() {
+export const shouldShowBackToQwant = () => {
   const params = parseQueryString(window.location.search);
   return params?.client === 'search-ia-maps-multi' || params?.client === 'search-ia-maps-single';
-}
+};
 
 const getDrawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });
 

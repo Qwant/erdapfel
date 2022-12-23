@@ -1,8 +1,22 @@
 /* eslint-disable no-irregular-whitespace */
-import { buildQueryString } from '../../src/libs/url_utils';
+import { buildQueryString, parseQueryString } from '../../src/libs/url_utils';
 
 describe('url_utils', () => {
-  describe('buildQueryString', () => {
+  describe('parseQueryString()', () => {
+    it('should extract all the query params into an object', () => {
+      const params = '?foo=foo&bar=bar&size=10';
+      const result = parseQueryString(params);
+      expect(result).toEqual({ foo: 'foo', bar: 'bar', size: '10' });
+    });
+
+    it('should extract all the undefined params', () => {
+      const params = '?baz=';
+      const result = parseQueryString(params);
+      expect(result).toEqual({ baz: '' });
+    });
+  });
+
+  describe('buildQueryString()', () => {
     const cases = [
       {
         param: {},
