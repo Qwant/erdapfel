@@ -1,3 +1,5 @@
+import { MenuType } from 'src/panel/Menu';
+
 export const parseMapHash = (hash: string) => {
   const mapHash = hash.replace(/^#/, '');
   if (!mapHash.startsWith('map=')) {
@@ -14,7 +16,7 @@ export const parseMapHash = (hash: string) => {
   return { zoom, lat, lng };
 };
 
-export const getMapHash = (zoom, lat, lng) => {
+export const getMapHash = (zoom: number, lat: number, lng: number) => {
   return `map=${zoom.toFixed(2)}/${lat.toFixed(7)}/${lng.toFixed(7)}`;
 };
 
@@ -59,15 +61,18 @@ export const toCssUrl = (url: string): string => {
   return `url('${escapedUrl}')`;
 };
 
-const removeNullEntries = (obj: Record<string, string>) =>
-  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null && v !== undefined));
+const removeNullEntries = (obj: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null && v !== undefined)) as {
+    [k: string]: string;
+  };
 
-export const buildQueryString = (queriesObject: Record<string, string>): string => {
-  const params = new URLSearchParams(removeNullEntries(queriesObject)).toString();
+export const buildQueryString = (queriesObject: Record<string, unknown>): string => {
+  const cleanedParams = removeNullEntries(queriesObject);
+  const params = new URLSearchParams(cleanedParams).toString();
   return params ? `?${params}` : '';
 };
 
-export const updateQueryString = (queriesObject: Record<string, string>) => {
+export const updateQueryString = (queriesObject: Record<string, unknown>) => {
   return buildQueryString({
     ...parseQueryString(window.location.search),
     ...queriesObject,
@@ -79,12 +84,10 @@ export const shouldShowBackToQwant = () => {
   return params?.client === 'search-ia-maps-multi' || params?.client === 'search-ia-maps-single';
 };
 
-const getDrawerUrl = drawer => getAppRelativePathname() + updateQueryString({ drawer });
+const getDrawerUrl = (drawer: MenuType | null) =>
+  getAppRelativePathname() + updateQueryString({ drawer });
 
-export const onDrawerChange = (drawer, isOpen) => {
-  if (isOpen) {
-    window?.app?.navigateTo(getDrawerUrl(drawer), window?.history?.state || {});
-  } else {
-    window?.app?.navigateTo(getDrawerUrl(null), window?.history?.state || {});
-  }
+export const onDrawerChange = (drawer: MenuType, isOpen: boolean) => {
+  const historyState = (window?.history?.['state'] ?? {}) as unknown;
+  window?.app?.navigateTo(getDrawerUrl(isOpen ? drawer : null), historyState);
 };

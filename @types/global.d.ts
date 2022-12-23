@@ -13,8 +13,8 @@ declare global {
       navigateBack: () => void;
       navigateTo: (
         url: string,
-        state?: { [key: string]: any },
-        options?: { [key: string]: any }
+        state?: { [key: string]: unknown } | unknown,
+        options?: { [key: string]: unknown } | unknown
       ) => void;
       updateHash: (hash: string) => void;
     };
