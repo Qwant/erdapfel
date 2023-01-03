@@ -48,13 +48,23 @@ export const setPoiHoverStyle = (map: Map, layer: string) => {
     // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
     return;
   }
+  if (layer !== 'mapillary-images') {
+    const textColorProperty: unknown = map.getPaintProperty(
+      layer,
+      'text-color'
+    );
 
-  const textColorProperty: unknown = map.getPaintProperty(layer, 'text-color');
-
-  map.setPaintProperty(
-    layer,
-    'text-color',
-    ['case', ['to-boolean', ['feature-state', 'hover']], ACTION_BLUE_BASE, textColorProperty],
-    { validate: false }
-  );
+    map.setPaintProperty(
+      layer,
+      'text-color',
+      ['case', ['to-boolean', ['feature-state', 'hover']], ACTION_BLUE_BASE, textColorProperty],
+      { validate: false }
+    );
+  } else {
+    map.setPaintProperty(layer, 'circle-color', [
+      'case',
+      ['to-boolean', ['feature-state', 'hover']],
+      ACTION_BLUE_BASE,
+    ]);
+  }
 };

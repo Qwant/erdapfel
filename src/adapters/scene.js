@@ -6,7 +6,7 @@ import { map as mapConfig } from 'config/constants.yml';
 import { getCurrentMapPaddings, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
-import { getLastLocation, setLastLocation } from 'src/adapters/store';
+import { getIsMapillary, getLastLocation, setLastLocation } from 'src/adapters/store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
@@ -123,6 +123,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     'poi-level-1',
     'poi-level-2',
     'poi-level-3',
+    'mapillary-images',
     'poi-level-public-transports-1',
     'poi-level-public-transports-2',
   ];
@@ -145,6 +146,14 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   this.mb.on('load', () => {
     fire('restart_idle_timeout');
     this.onHashChange();
+    if (getIsMapillary()) {
+      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'visible');
+      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'visible');
+    } else {
+      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'none');
+      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'none');
+    }
+
     new SceneDirection(this.mb);
     new SceneCategory(this.mb);
 
