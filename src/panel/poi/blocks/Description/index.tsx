@@ -39,13 +39,15 @@ const PoiDescriptionBlock: React.FunctionComponent<PoiDescriptionBlockProps> = (
           </a>
         )}
       </div>
-      <ul className="block-description-extra">
-        {(block.claims ?? []).map(claim => (
-          <li key={claim.label}>
-            <strong>{claim.label} :</strong> {parseClaimValue(claim.value)}
-          </li>
-        ))}
-      </ul>
+      {block.claims?.length && (
+        <ul className="block-description-extra">
+          {block.claims.map(claim => (
+            <li key={claim.label}>
+              <strong>{claim.label} :</strong> {parseClaimValue(claim.value)}
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
