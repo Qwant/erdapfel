@@ -14,18 +14,26 @@ export enum textType {
 }
 
 export type textLink = {
-  type: textType;
+  type: textType.Link;
   text: string;
   url: string;
 };
 
 export type textRaw = {
-  type: textType;
+  type: textType.Raw;
   text: string;
 };
 
 export type textElement = textLink | textRaw;
 
+// Parse a simple text with markdown formatted links and return an array of `textElement`.
+//
+// For example with text "Hello, [World](https://perdu.com)!" it returns the following array:
+// [
+//     { type: 'Raw', text: 'Hello, ' },
+//     { type: 'Link', text: 'World', url: 'https://perdu.com/' },
+//     { type: 'Raw', text: '!' },
+// ]
 export function parseText(raw: string): textElement[] {
   // Build elements for chunks of the raw value, with specific handling for links
   //
@@ -41,16 +49,18 @@ export function parseText(raw: string): textElement[] {
   //     <a href="https://b">a</a>,
   //     <a href="https://d">c</a>
   // ];
-  const texts = raw.split(urlPattern).map(text => ({
+  const texts: textElement[] = raw.split(urlPattern).map(text => ({
     type: textType.Raw,
     text,
   }));
 
-  const links = Array.from(raw.matchAll(urlPatternWithCapture)).map(([, text, url]) => ({
-    type: textType.Link,
-    text,
-    url,
-  }));
+  const links: textElement[] = Array.from(raw.matchAll(urlPatternWithCapture)).map(
+    ([, text, url]) => ({
+      type: textType.Link,
+      text,
+      url,
+    })
+  );
 
   // Put the elements from texts and links in order to reflect original content.
   const content = Array.from(Array(texts.length + links.length).keys())

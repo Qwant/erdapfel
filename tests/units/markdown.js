@@ -1,6 +1,6 @@
 import { parseText } from '../../src/libs/miniMarkdown';
 
-describe('mini markdown', () => {
+describe('miniMarkdown', () => {
   test('simpleLinks', () => {
     const cases = [
       { input: 'Hello, World!', output: [{ type: 'Raw', text: 'Hello, World!' }] },

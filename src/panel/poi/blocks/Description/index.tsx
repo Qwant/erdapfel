@@ -1,6 +1,6 @@
 import React from 'react';
 import { components } from 'appTypes/idunn';
-import { parseText } from '../../../../libs/miniMarkdown';
+import { textType, parseText } from '../../../../libs/miniMarkdown';
 
 export type PoiDescriptionBlockProps = {
   block: components['schemas']['DescriptionBlock'];
@@ -14,10 +14,11 @@ export type PoiDescriptionBlockProps = {
 
 function parseClaimValue(raw: string): JSX.Element {
   const content = parseText(raw).map(part => {
-    if ('url' in part) {
-      return <a href={part.url}>{part.text}</a>;
-    } else {
-      return <span>{part.text}</span>;
+    switch (part.type) {
+      case textType.Raw:
+        return <span>{part.text}</span>;
+      case textType.Link:
+        return <a href={part.url}>{part.text}</a>;
     }
   });
 
