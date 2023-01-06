@@ -203,8 +203,14 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
       // when clicking on a POI, just trigger the action without delay,
       // as a subsequent double click isn't a problem
       if (pois[0]) {
-        this.clickOnMap(e.lngLat, pois[0]);
-        return;
+        if (pois[0].sourceLayer === 'poi') {
+          this.clickOnMap(e.lngLat, pois[0]);
+          return;
+        } else {
+          fire('set_mapillary_viewer', pois[0]);
+          // console.log(pois[0])
+          return;
+        }
       }
       this.clickDelayHandler = setTimeout(() => {
         // for touch UX we have to make sure a double tap zoom hasn't been made in the meantime

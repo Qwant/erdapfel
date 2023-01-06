@@ -7,10 +7,12 @@ import { modes } from 'src/adapters/direction_api';
 import { AppState } from '..';
 
 export interface UiSlice extends State {
+  isMapillaryViewerOpen: boolean;
   isMenuDrawerOpen: boolean;
   isProductsDrawerOpen: boolean;
   isSearchInputTyping: boolean;
   defaultVehicle: string;
+  setMapillaryViewerOpen: (isOpen: boolean) => void;
   setMenuDrawerOpen: (isOpen: boolean) => void;
   setProductsDrawerOpen: (isOpen: boolean) => void;
   setSearchInputTyping: (isSearchInputTyping: boolean) => void;
@@ -18,10 +20,19 @@ export interface UiSlice extends State {
 }
 
 export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>): UiSlice => ({
+  isMapillaryViewerOpen: false,
   isMenuDrawerOpen: false,
   isProductsDrawerOpen: false,
   isSearchInputTyping: false,
   defaultVehicle: modes.DRIVING,
+  setMapillaryViewerOpen: isMapillaryOpen =>
+    set(
+      () => {
+        return { isMapillaryViewerOpen: isMapillaryOpen };
+      },
+      false,
+      'UI/setMapillaryOpen'
+    ),
   setMenuDrawerOpen: isOpen =>
     set(
       () => {
