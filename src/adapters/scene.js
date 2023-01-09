@@ -10,7 +10,7 @@ import { getIsMapillary, getLastLocation, setLastLocation } from 'src/adapters/s
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
-import { createDefaultPin } from '../adapters/icon_manager';
+import { createDefaultPin, createMapillaryPin } from '../adapters/icon_manager';
 import LatLonPoi from './poi/latlon_poi';
 import { isMobileDevice } from 'src/libs/device';
 import { parseMapHash, getMapHash } from 'src/libs/url_utils';
@@ -208,7 +208,6 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
           return;
         } else {
           fire('set_mapillary_viewer', pois[0]);
-          // console.log(pois[0])
           return;
         }
       }
@@ -298,6 +297,10 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
 
   listen('create_poi_marker', poi => {
     this.addMarker(poi);
+  });
+
+  listen('create_mapillary_marker', coord => {
+    this.addMarkerMapillary(coord);
   });
 
   listen('clean_marker', () => {
@@ -462,6 +465,29 @@ Scene.prototype.addMarker = function (poi) {
 
   const marker = new Marker({ element, anchor: 'bottom', offset: [0, -5] })
     .setLngLat(poi.latLon)
+    .addTo(this.mb);
+  this.currentMarker = marker;
+  return marker;
+};
+
+Scene.prototype.addMarkerMapillary = function (coord) {
+  const element = createMapillaryPin();
+  element.onclick = function (e) {
+    // click event should not be propagated to the map itself;
+    e.stopPropagation();
+  };
+
+  if (this.currentMarker !== null) {
+    this.currentMarker.remove();
+  }
+
+  const latLng = {
+    lat: coord[1],
+    lng: coord[0],
+  };
+
+  const marker = new Marker({ element, anchor: 'bottom', offset: [0, -5] })
+    .setLngLat(latLng)
     .addTo(this.mb);
   this.currentMarker = marker;
   return marker;

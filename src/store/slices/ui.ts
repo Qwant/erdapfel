@@ -8,11 +8,13 @@ import { AppState } from '..';
 
 export interface UiSlice extends State {
   isMapillaryViewerOpen: boolean;
+  mapillaryImageId: string;
   isMenuDrawerOpen: boolean;
   isProductsDrawerOpen: boolean;
   isSearchInputTyping: boolean;
   defaultVehicle: string;
   setMapillaryViewerOpen: (isOpen: boolean) => void;
+  setMapillaryImageId: (mapillaryImageId: string) => void;
   setMenuDrawerOpen: (isOpen: boolean) => void;
   setProductsDrawerOpen: (isOpen: boolean) => void;
   setSearchInputTyping: (isSearchInputTyping: boolean) => void;
@@ -21,6 +23,7 @@ export interface UiSlice extends State {
 
 export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>): UiSlice => ({
   isMapillaryViewerOpen: false,
+  mapillaryImageId: '498763468214164',
   isMenuDrawerOpen: false,
   isProductsDrawerOpen: false,
   isSearchInputTyping: false,
@@ -66,5 +69,13 @@ export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>):
       },
       false,
       'UI/setDefaultVehicle'
+    ),
+  setMapillaryImageId: mapillaryImageId =>
+    set(
+      () => {
+        return { mapillaryImageId };
+      },
+      false,
+      'UI/setmapillaryImageId'
     ),
 });

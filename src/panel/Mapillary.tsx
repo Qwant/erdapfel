@@ -3,17 +3,25 @@ import ViewerComponent from 'src/panel/MapillaryViewer';
 import { CloseButton } from 'src/components/ui';
 import { Flex } from '@qwant/qwant-ponents';
 import { useStore } from 'src/store';
-import { listen } from 'src/libs/customEvents';
+import { fire, listen } from 'src/libs/customEvents';
 
-const Mapillary: React.FunctionComponent = () => {
-  const { isMapillaryViewerOpen, setMapillaryViewerOpen } = useStore();
+const Mapillary = () => {
+  const apiUrl = 'https://graph.mapillary.com/';
+  const accessToken = 'MLY|4100327730013843|5bb78b81720791946a9a7b956c57b7cf';
+  const { isMapillaryViewerOpen, setMapillaryViewerOpen, mapillaryImageId, setMapillaryImageId } =
+    useStore();
 
   const closeMapillary = useCallback(() => {
     setMapillaryViewerOpen(false);
   }, [setMapillaryViewerOpen]);
 
   const setMapillaryViewer = poi => {
-    poi;
+    fetch(`${apiUrl} ${poi['properties']['id']}?access_token=${accessToken}`)
+      .then(response => response.json())
+      .then(response => {
+        fire('create_mapillary_marker', response['geometry']['coordinates']);
+      });
+    setMapillaryImageId(poi['properties']['id']);
     setMapillaryViewerOpen(true);
   };
 
@@ -33,7 +41,7 @@ const Mapillary: React.FunctionComponent = () => {
           </Flex>
           <ViewerComponent
             accessToken="MLY|8504091992994072|0e834b87a0c522b09b7c5fefa868c054"
-            imageId="498763468214164"
+            imageId={mapillaryImageId}
             style={{ width: '30%', height: '350px' }}
           />
         </div>
