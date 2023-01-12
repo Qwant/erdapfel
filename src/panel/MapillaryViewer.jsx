@@ -1,5 +1,4 @@
 import React from 'react';
-import { Viewer } from 'mapillary-js';
 
 class ViewerComponent extends React.Component {
   constructor(props) {
@@ -8,17 +7,16 @@ class ViewerComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.viewer = new Viewer({
-      accessToken: this.props.accessToken,
+    const { init } = this.props;
+    init({
+      accessToken: 'MLY|4100327730013843|5bb78b81720791946a9a7b956c57b7cf',
       container: this.containerRef.current,
-      imageId: this.props.imageId,
     });
   }
 
   componentWillUnmount() {
-    if (this.viewer) {
-      this.viewer.remove();
-    }
+    const { dispose } = this.props;
+    dispose();
   }
 
   render() {

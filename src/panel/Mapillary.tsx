@@ -3,11 +3,11 @@ import ViewerComponent from 'src/panel/MapillaryViewer';
 import { CloseButton } from 'src/components/ui';
 import { Flex } from '@qwant/qwant-ponents';
 import { useStore } from 'src/store';
-import { fire, listen } from 'src/libs/customEvents';
+import { fire, listen, unListen } from 'src/libs/customEvents';
+import { Viewer } from 'mapillary-js';
 
+let viewer;
 const Mapillary = () => {
-  const apiUrl = 'https://graph.mapillary.com/';
-  const accessToken = 'MLY|4100327730013843|5bb78b81720791946a9a7b956c57b7cf';
   const { isMapillaryViewerOpen, setMapillaryViewerOpen, mapillaryImageId, setMapillaryImageId } =
     useStore();
 
@@ -15,18 +15,43 @@ const Mapillary = () => {
     setMapillaryViewerOpen(false);
   }, [setMapillaryViewerOpen]);
 
-  const setMapillaryViewer = poi => {
-    fetch(`${apiUrl} ${poi['properties']['id']}?access_token=${accessToken}`)
-      .then(response => response.json())
-      .then(response => {
-        fire('create_mapillary_marker', response['geometry']['coordinates']);
-      });
+  const setMapillaryViewer = async poi => {
     setMapillaryImageId(poi['properties']['id']);
-    setMapillaryViewerOpen(true);
+    if (!isMapillaryViewerOpen) {
+      setMapillaryViewerOpen(true);
+    } else {
+      viewer.moveTo(mapillaryImageId).catch(error => console.warn(error));
+    }
+    unListen(mapillaryListener);
   };
 
-  // todo unlisten this at component unmount
-  listen('set_mapillary_viewer', setMapillaryViewer);
+  const mapillaryListener = listen('set_mapillary_viewer', setMapillaryViewer);
+
+  function init(opts) {
+    const { accessToken, container } = opts;
+    const viewerOptions = {
+      accessToken,
+      component: {
+        cover: false,
+      },
+      container,
+    };
+    viewer = new Viewer(viewerOptions);
+    viewer.moveTo(mapillaryImageId).catch(error => console.warn(error));
+    const onPosition = async () => {
+      const position = await viewer.getPosition();
+      const pos = [position.lng, position.lat];
+      fire('create_mapillary_marker', pos);
+    };
+
+    viewer.on('position', onPosition);
+  }
+
+  function dispose() {
+    if (viewer) {
+      viewer.remove();
+    }
+  }
 
   return (
     <div>
@@ -40,8 +65,8 @@ const Mapillary = () => {
             />
           </Flex>
           <ViewerComponent
-            accessToken="MLY|8504091992994072|0e834b87a0c522b09b7c5fefa868c054"
-            imageId={mapillaryImageId}
+            init={init}
+            dispose={dispose}
             style={{ width: '30%', height: '350px' }}
           />
         </div>
