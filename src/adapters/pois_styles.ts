@@ -61,10 +61,25 @@ export const setPoiHoverStyle = (map: Map, layer: string) => {
       { validate: false }
     );
   } else {
-    map.setPaintProperty(layer, 'circle-color', [
+    const circleRadiusProperty: SetPaintPropertyValue<string> = map.getPaintProperty(
+      layer,
+      'circle-radius'
+    );
+    const circleOpacityProperty: SetPaintPropertyValue<string> = map.getPaintProperty(
+      layer,
+      'circle-opacity'
+    );
+    map.setPaintProperty(layer, 'circle-radius', [
       'case',
       ['to-boolean', ['feature-state', 'hover']],
-      ACTION_BLUE_BASE,
+      12,
+      circleRadiusProperty,
+    ]);
+    map.setPaintProperty(layer, 'circle-opacity', [
+      'case',
+      ['to-boolean', ['feature-state', 'hover']],
+      0.8,
+      circleOpacityProperty,
     ]);
   }
 };

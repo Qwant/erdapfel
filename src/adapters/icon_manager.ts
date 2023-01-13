@@ -27,18 +27,6 @@ export const createDefaultPin = () => {
   return element.firstElementChild;
 };
 
-export const createMapillaryPin = () => {
-  const element = document.createElement('div');
-  element.innerHTML = `
-    <div class="marker">
-      <div class="marker-mapillarycontainer">
-        <i class="icon icon-circle"></i>
-      </div>
-    </div>
-  `;
-  return element.firstElementChild;
-};
-
 export const createMapGLIcon = (imageFile: string, width: number, height: number) => {
   return new Promise((resolve, reject) => {
     const img = new Image(width, height);

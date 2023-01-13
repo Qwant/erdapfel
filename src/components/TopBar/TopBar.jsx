@@ -196,6 +196,17 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             >
               <IconMenu size={isMobile ? 24 : 16} fill="var(--grey-900)" />
             </button>
+            <button
+              type="button"
+              className={cx('menu__button', {
+                'menu__button--active': isMenuDrawerOpen,
+                'menu__button--noShadow': !isMenuDrawerOpen && isProductsDrawerOpen,
+              })}
+              onClick={() => setMenuDrawerOpen(!isMenuDrawerOpen)}
+              title={_('Mapillary')}
+            >
+              <IconMenu size={isMobile ? 24 : 16} fill="var(--grey-900)" />
+            </button>
             {!isMobile && config.burgerMenu.products && (
               <Tooltip className="product-tooltip" position="bottom" content={_('Products')}>
                 <button
