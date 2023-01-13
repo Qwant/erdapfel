@@ -6,7 +6,7 @@ import { map as mapConfig } from 'config/constants.yml';
 import { getCurrentMapPaddings, isPositionUnderUI } from 'src/panel/layouts';
 import nconf from '@qwant/nconf-getter';
 import MapPoi from './poi/map_poi';
-import { getIsMapillary, getLastLocation, setLastLocation } from 'src/adapters/store';
+import { getLastLocation, setLastLocation } from 'src/adapters/store';
 import getStyle from './scene_config';
 import SceneDirection from './scene_direction';
 import SceneCategory from './scene_category';
@@ -149,13 +149,6 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   this.mb.on('load', () => {
     fire('restart_idle_timeout');
     this.onHashChange();
-    if (getIsMapillary()) {
-      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'visible');
-      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'visible');
-    } else {
-      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'none');
-      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'none');
-    }
 
     new SceneDirection(this.mb);
     new SceneCategory(this.mb);
@@ -301,6 +294,16 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
 
   listen('fit_map', (item, forceAnimate) => {
     this.fitMap(item, forceAnimate);
+  });
+
+  listen('update_mapillary_visible', isMapillaryLayerVisible => {
+    if (isMapillaryLayerVisible) {
+      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'visible');
+      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'visible');
+    } else {
+      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'none');
+      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'none');
+    }
   });
 
   listen('ensure_poi_visible', (poi, options) => {
@@ -577,7 +580,7 @@ function makeCamera(bearing, fov) {
 }
 
 Scene.prototype.addCameraMapillary = function (coord) {
-  const camera = makeCamera(0, 90);
+  const camera = makeCamera(30, 60);
   this.camera = camera;
   const cameraMarker = new mapboxgl.Marker({
     color: '#FFFFFF',

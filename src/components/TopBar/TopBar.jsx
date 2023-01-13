@@ -8,7 +8,7 @@ import {
   IconDirectionsArrow,
   QwantLogoBlue,
 } from 'src/components/ui/icons';
-import { IconClose, Flex, IconMenu, IconApps, Tooltip } from '@qwant/qwant-ponents';
+import { IconClose, Flex, IconMenu, IconApps, Tooltip, IconEye } from '@qwant/qwant-ponents';
 
 import { useConfig, useDevice, useI18n } from 'src/hooks';
 import { handleFocus } from 'src/libs/input';
@@ -29,6 +29,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
   const {
     isMenuDrawerOpen,
     setMenuDrawerOpen,
+    isMapillaryLayerVisible,
+    setMapillaryLayerVisible,
     isProductsDrawerOpen,
     setProductsDrawerOpen,
     setSearchInputTyping,
@@ -199,13 +201,13 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
             <button
               type="button"
               className={cx('menu__button', {
-                'menu__button--active': isMenuDrawerOpen,
-                'menu__button--noShadow': !isMenuDrawerOpen && isProductsDrawerOpen,
+                'menu__button--active': isMapillaryLayerVisible,
+                'menu__button--noShadow': !isMapillaryLayerVisible,
               })}
-              onClick={() => setMenuDrawerOpen(!isMenuDrawerOpen)}
+              onClick={() => setMapillaryLayerVisible(!isMapillaryLayerVisible)}
               title={_('Mapillary')}
             >
-              <IconMenu size={isMobile ? 24 : 16} fill="var(--grey-900)" />
+              <IconEye size={isMobile ? 24 : 16} fill="var(--grey-900)" />
             </button>
             {!isMobile && config.burgerMenu.products && (
               <Tooltip className="product-tooltip" position="bottom" content={_('Products')}>

@@ -5,17 +5,20 @@ import { GetState, State } from 'zustand';
 import { NamedSet } from 'zustand/middleware';
 import { modes } from 'src/adapters/direction_api';
 import { AppState } from '..';
+import { fire } from 'src/libs/customEvents';
 
 export interface UiSlice extends State {
   isMapillaryViewerOpen: boolean;
   mapillaryImageId: string;
   isMenuDrawerOpen: boolean;
+  isMapillaryLayerVisible: boolean;
   isProductsDrawerOpen: boolean;
   isSearchInputTyping: boolean;
   defaultVehicle: string;
   setMapillaryViewerOpen: (isOpen: boolean) => void;
   setMapillaryImageId: (mapillaryImageId: string) => void;
   setMenuDrawerOpen: (isOpen: boolean) => void;
+  setMapillaryLayerVisible: (isVisible: boolean) => void;
   setProductsDrawerOpen: (isOpen: boolean) => void;
   setSearchInputTyping: (isSearchInputTyping: boolean) => void;
   setDefaultVehicle: (defaultVehicle: string) => void;
@@ -23,6 +26,7 @@ export interface UiSlice extends State {
 
 export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>): UiSlice => ({
   isMapillaryViewerOpen: false,
+  isMapillaryLayerVisible: false,
   mapillaryImageId: '498763468214164',
   isMenuDrawerOpen: false,
   isProductsDrawerOpen: false,
@@ -35,6 +39,15 @@ export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>):
       },
       false,
       'UI/setMapillaryOpen'
+    ),
+  setMapillaryLayerVisible: isMapillaryLayerVisible =>
+    set(
+      () => {
+        fire('update_mapillary_visible', isMapillaryLayerVisible);
+        return { isMapillaryLayerVisible };
+      },
+      false,
+      'UI/setMapillaryLayerVisible'
     ),
   setMenuDrawerOpen: isOpen =>
     set(
