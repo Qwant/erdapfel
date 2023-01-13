@@ -481,6 +481,7 @@ Scene.prototype.addMarker = function (poi) {
 
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
+    this.currentCameraMarker.remove();
   }
 
   const marker = new Marker({ element, anchor: 'bottom', offset: [0, -5] })
@@ -505,6 +506,18 @@ function makeMapboxMarker(options) {
 
 Scene.prototype.addMarkerMapillary = function (coord) {
   const mapillaryMarker = makeMapboxMarker({ radius: 14, color: '#f00' });
+  const camera = makeCamera(30, 60);
+  this.camera = camera;
+  const cameraMarker = new mapboxgl.Marker({
+    color: '#FFFFFF',
+    element: camera,
+    rotationAlignment: 'map',
+  });
+
+  cameraMarker.onclick = function (e) {
+    // click event should not be propagated to the map itself;
+    e.stopPropagation();
+  };
   mapillaryMarker.onclick = function (e) {
     // click event should not be propagated to the map itself;
     e.stopPropagation();
@@ -512,6 +525,7 @@ Scene.prototype.addMarkerMapillary = function (coord) {
 
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
+    this.currentCameraMarker.remove();
   }
 
   const latLng = {
@@ -520,7 +534,9 @@ Scene.prototype.addMarkerMapillary = function (coord) {
   };
 
   mapillaryMarker.setLngLat(latLng).addTo(this.mb);
+  cameraMarker.setLngLat(latLng).addTo(this.mb);
   this.currentMarker = mapillaryMarker;
+  this.currentCameraMarker = cameraMarker;
   return mapillaryMarker;
 };
 
@@ -578,33 +594,6 @@ function makeCamera(bearing, fov) {
 
   return container;
 }
-
-Scene.prototype.addCameraMapillary = function (coord) {
-  const camera = makeCamera(30, 60);
-  this.camera = camera;
-  const cameraMarker = new mapboxgl.Marker({
-    color: '#FFFFFF',
-    element: camera,
-    rotationAlignment: 'map',
-  });
-  cameraMarker.onclick = function (e) {
-    // click event should not be propagated to the map itself;
-    e.stopPropagation();
-  };
-
-  if (this.currentCameraMarker !== null) {
-    this.currentCameraMarker.remove();
-  }
-
-  const latLng = {
-    lat: coord[1],
-    lng: coord[0],
-  };
-
-  cameraMarker.setLngLat(latLng).addTo(this.mb);
-  this.currentCameraMarker = cameraMarker;
-  return cameraMarker;
-};
 
 Scene.prototype.updateCameraOrientation = function (pov) {
   const svg = this.camera.querySelector('svg');
