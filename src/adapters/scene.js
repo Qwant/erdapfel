@@ -30,6 +30,7 @@ let MOBILE_IDLE_TIMEOUT;
 function Scene() {
   this.currentMarker = null;
   this.currentCameraMarker = null;
+  this.camera = null;
   this.popup = new PoiPopup();
   this.savedLocation = null;
 }
@@ -315,6 +316,10 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     this.addCameraMapillary(coord);
   });
 
+  listen('change_camera_orientation', pov => {
+    this.updateCameraOrientation(pov);
+  });
+
   listen('clean_marker', () => {
     this.cleanMarker();
   });
@@ -573,6 +578,7 @@ function makeCamera(bearing, fov) {
 
 Scene.prototype.addCameraMapillary = function (coord) {
   const camera = makeCamera(0, 90);
+  this.camera = camera;
   const cameraMarker = new mapboxgl.Marker({
     color: '#FFFFFF',
     element: camera,
@@ -595,6 +601,11 @@ Scene.prototype.addCameraMapillary = function (coord) {
   cameraMarker.setLngLat(latLng).addTo(this.mb);
   this.currentCameraMarker = cameraMarker;
   return cameraMarker;
+};
+
+Scene.prototype.updateCameraOrientation = function (pov) {
+  const svg = this.camera.querySelector('svg');
+  svg.style.transform = rotateArc(pov.bearing);
 };
 
 Scene.prototype.cleanMarker = async function () {

@@ -38,6 +38,10 @@ const Mapillary = () => {
     };
     viewer = new Viewer(viewerOptions);
     viewer.moveTo(mapillaryImageId).catch(error => console.warn(error));
+    const onPov = async () => {
+      const pov = await viewer.getPointOfView();
+      fire('change_camera_orientation', pov);
+    };
     const onPosition = async () => {
       const position = await viewer.getPosition();
       const pos = [position.lng, position.lat];
@@ -45,6 +49,7 @@ const Mapillary = () => {
     };
 
     viewer.on('position', onPosition);
+    viewer.on('pov', onPov);
   }
 
   function dispose() {
