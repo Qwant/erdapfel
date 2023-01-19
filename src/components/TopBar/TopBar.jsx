@@ -31,6 +31,8 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     setMenuDrawerOpen,
     isMapillaryLayerVisible,
     setMapillaryLayerVisible,
+    isMapillaryViewerOpen,
+    setMapillaryViewerOpen,
     isProductsDrawerOpen,
     setProductsDrawerOpen,
     setSearchInputTyping,
@@ -204,7 +206,10 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
                 'menu__button--active': isMapillaryLayerVisible,
                 'menu__button--noShadow': !isMapillaryLayerVisible,
               })}
-              onClick={() => setMapillaryLayerVisible(!isMapillaryLayerVisible)}
+              onClick={() => {
+                setMapillaryLayerVisible(!isMapillaryLayerVisible);
+                setMapillaryViewerOpen(!isMapillaryViewerOpen);
+              }}
               title={_('Mapillary')}
             >
               <IconEye size={isMobile ? 24 : 16} fill="var(--grey-900)" />

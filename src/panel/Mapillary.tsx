@@ -47,7 +47,6 @@ const Mapillary = () => {
       const pos = [position.lng, position.lat];
       fire('create_mapillary_marker', pos);
     };
-
     viewer.on('position', onPosition);
     viewer.on('pov', onPov);
   }

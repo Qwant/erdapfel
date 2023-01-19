@@ -303,6 +303,8 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     } else {
       this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'none');
       this.mb.setLayoutProperty('mapillary-images', 'visibility', 'none');
+      this.currentMarker.remove();
+      this.currentCameraMarker.remove();
     }
   });
 
@@ -316,7 +318,6 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
 
   listen('create_mapillary_marker', coord => {
     this.addMarkerMapillary(coord);
-    this.addCameraMapillary(coord);
   });
 
   listen('change_camera_orientation', pov => {
@@ -525,6 +526,8 @@ Scene.prototype.addMarkerMapillary = function (coord) {
 
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
+  }
+  if (this.currentCameraMarker !== null) {
     this.currentCameraMarker.remove();
   }
 

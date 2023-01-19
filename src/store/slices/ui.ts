@@ -40,7 +40,7 @@ export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>):
       false,
       'UI/setMapillaryOpen'
     ),
-  setMapillaryLayerVisible: isMapillaryLayerVisible =>
+  setMapillaryLayerVisible: isMapillaryLayerVisible => {
     set(
       () => {
         fire('update_mapillary_visible', isMapillaryLayerVisible);
@@ -48,7 +48,8 @@ export const createUiSlice = (set: NamedSet<AppState>, get: GetState<AppState>):
       },
       false,
       'UI/setMapillaryLayerVisible'
-    ),
+    );
+  },
   setMenuDrawerOpen: isOpen =>
     set(
       () => {
