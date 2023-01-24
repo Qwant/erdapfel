@@ -8,19 +8,19 @@ function buildUrlPattern(capture: boolean): RegExp {
 const urlPattern = buildUrlPattern(false);
 const urlPatternWithCapture = buildUrlPattern(true);
 
-export enum textType {
+export enum TextType {
   Raw = 'Raw',
   Link = 'Link',
 }
 
 export type textLink = {
-  type: textType.Link;
+  type: TextType.Link;
   text: string;
   url: string;
 };
 
 export type textRaw = {
-  type: textType.Raw;
+  type: TextType.Raw;
   text: string;
 };
 
@@ -50,13 +50,13 @@ export function parseText(raw: string): textElement[] {
   //     <a href="https://d">c</a>
   // ];
   const texts: textElement[] = raw.split(urlPattern).map(text => ({
-    type: textType.Raw,
+    type: TextType.Raw,
     text,
   }));
 
   const links: textElement[] = Array.from(raw.matchAll(urlPatternWithCapture)).map(
     ([, text, url]) => ({
-      type: textType.Link,
+      type: TextType.Link,
       text,
       url,
     })
