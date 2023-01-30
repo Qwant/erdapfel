@@ -30,7 +30,7 @@ describe('route_utils', () => {
     ];
 
     cases.map(({ meters, result }) =>
-      test(`Formats ${meters} meters as '${result}'`, () => {
+      it(`Formats ${meters} meters as '${result}'`, () => {
         expect(formatDistance(meters)).toEqual(result);
       })
     );
