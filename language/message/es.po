@@ -1720,3 +1720,18 @@ msgstr "alimentos"
 
 msgid "repair cafe"
 msgstr "café de reparaciones"
+
+msgid "healthcare laboratory"
+msgstr "laboratorio sanitario"
+
+msgid "shop funeral directors"
+msgstr "tienda directores de funerarias"
+
+msgid "landuse military"
+msgstr "uso de la tierra militar"
+
+msgid "insurance"
+msgstr "seguro"
+
+msgid "lawyer"
+msgstr "abogado"

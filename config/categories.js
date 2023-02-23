@@ -153,4 +153,9 @@ window.categories = [
   _('public transport station'),
   _('place water'),
   _('osteopathy'),
+  _('healthcare laboratory'),
+  _('shop funeral directors'),
+  _('landuse military'),
+  _('insurance'),
+  _('lawyer'),
 ];
