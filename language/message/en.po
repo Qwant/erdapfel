@@ -1636,3 +1636,18 @@ msgstr "Selected in patnership with INRAE"
 
 msgid "Selected in patnership with ReseauVrac"
 msgstr "Selected in patnership with Réseau Vrac"
+
+msgid "healthcare laboratory"
+msgstr ""
+
+msgid "shop funeral directors"
+msgstr ""
+
+msgid "landuse military"
+msgstr ""
+
+msgid "insurance"
+msgstr ""
+
+msgid "lawyer"
+msgstr ""

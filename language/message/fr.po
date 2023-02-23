@@ -1786,3 +1786,18 @@ msgstr "Sélection en partenariat avec Réseau Vrac"
 
 msgid "VIPrivacy Protected Navigation"
 msgstr "Qwant VIPrivacy :<br />Navigation protégée, confidentialité renforcée"
+
+msgid "healthcare laboratory"
+msgstr "laboratoire d'analyses médicales"
+
+msgid "shop funeral directors"
+msgstr "Pompes funèbres"
+
+msgid "landuse military"
+msgstr "Terrain miliaire"
+
+msgid "insurance"
+msgstr "Assurance"
+
+msgid "lawyer"
+msgstr "Avocat"

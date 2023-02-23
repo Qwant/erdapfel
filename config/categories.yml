@@ -353,3 +353,13 @@
   name: public_bookcase
 - label: _('osteopathy')
   name: health_osteopathy
+- label: _('healthcare laboratory')
+  name: healthcare_laboratory
+- label: _('shop funeral directors')
+  name: shop_funeral_directors
+- label: _('landuse military')
+  name: landuse_military
+- label: _('insurance')
+  name: office_assurance
+- label: _('lawyer')
+  name: lawyer

@@ -65,7 +65,7 @@ msgstr "Museum"
 #, fuzzy
 #| msgid "airport"
 msgid "sport"
-msgstr "Flughafen"
+msgstr "Sport"
 
 msgid "service"
 msgstr "Service"
@@ -1727,3 +1727,18 @@ msgstr "ernährung"
 
 msgid "repair cafe"
 msgstr "reparatur-café"
+
+msgid "healthcare laboratory"
+msgstr "Gesundheitslabor"
+
+msgid "shop funeral directors"
+msgstr "Shop Bestattungsunternehmen"
+
+msgid "landuse military"
+msgstr "Landnutzung Militär"
+
+msgid "insurance"
+msgstr "Versicherung"
+
+msgid "lawyer"
+msgstr "Rechtsanwalt"
