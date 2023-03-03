@@ -18,7 +18,11 @@ function parseClaimValue(raw: string): JSX.Element {
       case TextType.Raw:
         return <span>{part.text}</span>;
       case TextType.Link:
-        return <a href={part.url}>{part.text}</a>;
+        return (
+          <a href={'https://www.qwant.com/?q=' + part.text + '&t=web&sticky=' + part.url}>
+            {part.text}
+          </a>
+        );
     }
   });
 
