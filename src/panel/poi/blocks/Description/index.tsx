@@ -40,7 +40,7 @@ const PoiDescriptionBlock: React.FunctionComponent<PoiDescriptionBlockProps> = (
           </a>
         )}
       </div>
-      {block.claims?.length && (
+      {block?.claims && (
         <ul className="block-description-extra">
           {block.claims.map(claim => (
             <li key={claim.label}>
