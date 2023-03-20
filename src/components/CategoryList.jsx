@@ -5,7 +5,7 @@ import Telemetry from 'src/libs/telemetry';
 import { getLightBackground } from 'src/libs/colors';
 import { saveQuery, getHistoryEnabled } from '../adapters/search_history';
 
-const CategoryList = ({ className, ecoResponsible = false, limit = Number.MAX_VALUE }) => {
+const CategoryList = ({ className, limit = Number.MAX_VALUE }) => {
   const searchHistoryEnabled = getHistoryEnabled();
   const handleCategoryClick = useCallback(
     category => {
@@ -21,7 +21,6 @@ const CategoryList = ({ className, ecoResponsible = false, limit = Number.MAX_VA
   return (
     <div className={className}>
       {CategoryService.getCategories()
-        .filter(c => c.iconName && c.ecoResponsible === ecoResponsible) // ignore categories used on detected intention only
         .slice(0, limit)
         .map(category => (
           <MainActionButton
@@ -34,7 +33,7 @@ const CategoryList = ({ className, ecoResponsible = false, limit = Number.MAX_VA
               color: category.color,
               backgroundColor: getLightBackground(category.color),
             }}
-            ecoResponsible={ecoResponsible}
+            ecoResponsible={category.ecoResponsible}
           />
         ))}
     </div>

@@ -29,7 +29,13 @@ const MainActionButton = ({
     >
       {typeof icon === 'string' ? (
         <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle}>
-          {ecoResponsible && <IconLeaf className="ecoResponsible-icon" />}
+          {ecoResponsible && (
+            <span className="ecoResponsible-leaf">
+              <span className="ecoResponsible-leaf-inner">
+                <IconLeaf className="ecoResponsible-icon" />
+              </span>
+            </span>
+          )}
         </div>
       ) : (
         <Flex className="mainActionButton-icon" center>

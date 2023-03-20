@@ -1754,8 +1754,17 @@ msgstr "alimentation"
 msgid "repair cafe"
 msgstr "repair café"
 
-msgid "Eco-responsible restaurants"
-msgstr "Restaurants éco-responsables"
+msgid "ecotable"
+msgstr "Écotable"
+
+msgid "organic_store"
+msgstr "Magasin bio"
+
+msgid "second_hand"
+msgstr "Seconde main"
+
+msgid "zero_waste"
+msgstr "Vente en vrac"
 
 msgid "Selected in patnership with Écotables"
 msgstr "Sélection en partenariat avec écotable"

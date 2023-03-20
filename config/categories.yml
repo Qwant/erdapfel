@@ -1,39 +1,39 @@
 ---
-- label: _('Circuit court')
-  name: circuitscourts
-  shortLabel: _('Circuit court')
-  color: '#a125be'
-  icon: florist
-  ecoResponsible: true
-- label: _('Vente en vrac')
-  name: vrac
-  shortLabel: _('Vente en vrac')
-  color: '#a125be'
-  icon: shop
-  ecoResponsible: true
-- label: _('Eco-responsible restaurants')
-  shortLabel: _('restaurant')
-  name: ecotables
-  color: '#d76600'
-  icon: restaurant
-  ecoResponsible: true
-- label: _('public bookcase')
-  name: public_bookcase
-  color: '#e2001c'
-  icon: library
-  ecoResponsible: true
 - label: _('restaurant')
   name: restaurant
   color: '#d76600'
   icon: restaurant
+
 - label: _('hotel')
   name: hotel
   color: '#6d6d76'
   icon: lodging
+
+- label: _('organic_store')
+  color: '#297A52'
+  icon: restaurant
+  ecoResponsible: true
+
+- label: _('second_hand')
+  color: '#297A52'
+  icon: restaurant
+  ecoResponsible: true
+
+- label: _('zero_waste')
+  color: '#297A52'
+  icon: restaurant
+  ecoResponsible: true
+
 - label: _('supermarket')
   name: supermarket
   color: '#a125be'
   icon: grocery
+
+- label: _('ecotable')
+  color: '#297A52'
+  icon: restaurant
+  ecoResponsible: true
+
 - label: _('bar')
   name: bar
   color: '#d76600'
