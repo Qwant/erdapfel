@@ -1,74 +1,83 @@
 ---
 - label: _('restaurant')
   name: restaurant
-  color: '#d76600'
+  color: '#e06000'
+  bgColor: '#ffe8d6'
   icon: restaurant
-
 - label: _('hotel')
   name: hotel
-  color: '#6d6d76'
+  color: '#676e79'
+  bgColor: '#e9eaec'
   icon: lodging
-
 - label: _('organic_store')
-  color: '#297A52'
+  color: '#297a52'
+  bgColor: '#e0f5eb'
   icon: restaurant
   ecoResponsible: true
-
 - label: _('second_hand')
-  color: '#297A52'
+  color: '#297a52'
+  bgColor: '#e0f5eb'
   icon: restaurant
   ecoResponsible: true
-
 - label: _('zero_waste')
-  color: '#297A52'
+  color: '#297a52'
+  bgColor: '#e0f5eb'
   icon: restaurant
   ecoResponsible: true
-
 - label: _('supermarket')
   name: supermarket
-  color: '#a125be'
+  color: '#9500e0'
+  bgColor: '#f1d6ff'
   icon: grocery
-
 - label: _('ecotable')
-  color: '#297A52'
+  color: '#297a52'
+  bgColor: '#e0f5eb'
   icon: restaurant
   ecoResponsible: true
-
 - label: _('bar')
   name: bar
-  color: '#d76600'
+  color: '#e06000'
+  bgColor: '#ffe8d6'
   icon: bar
 - label: _('pharmacy')
   name: pharmacy
-  color: '#1777cb'
+  color: '#0051e0'
+  bgColor: '#d6e5ff'
   icon: pharmacy
 - label: _('leisure')
   name: leisure
-  color: '#e2001c'
+  color: '#e00004'
+  bgColor: '#ffd6d7'
   icon: cinema
 - label: _('administration')
   name: administrative
-  color: '#6d6d76'
+  color: '#676e79'
+  bgColor: '#e9eaec'
   icon: town-hall
 - label: _('health')
   name: health
-  color: '#1777cb'
+  color: '#0051e0'
+  bgColor: '#d6e5ff'
   icon: hospital
 - label: _('education')
   name: education
-  color: '#6d6d76'
+  color: '#676e79'
+  bgColor: '#e9eaec'
   icon: school
 - label: _('bank')
   name: bank
-  color: '#6d6d76'
+  color: '#676e79'
+  bgColor: '#e9eaec'
   icon: bank
 - label: _('museum')
   name: museum
-  color: '#e2001c'
+  color: '#e00004'
+  bgColor: '#ffd6d7'
   icon: museum
 - label: _('sport')
   name: fitness
-  color: '#6d6d76'
+  color: '#676e79'
+  bgColor: '#e9eaec'
   icon: basketball
 
 # Only categories with 'icon' are visible as action buttons.

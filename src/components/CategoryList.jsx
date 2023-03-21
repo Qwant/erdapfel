@@ -24,14 +24,14 @@ const CategoryList = ({ className, limit = Number.MAX_VALUE }) => {
         .slice(0, limit)
         .map(category => (
           <MainActionButton
-            key={category.name}
+            key={category.label}
             onClick={() => handleCategoryClick(category)}
             variant="category"
             label={category.shortLabel}
             icon={category.iconName}
             iconStyle={{
               color: category.color,
-              backgroundColor: getLightBackground(category.color),
+              backgroundColor: category?.bgColor ?? getLightBackground(category.color),
             }}
             ecoResponsible={category.ecoResponsible}
           />

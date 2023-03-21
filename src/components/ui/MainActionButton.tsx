@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classnames from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
 import { Flex } from '@qwant/qwant-ponents';
 import { ReactComponent as IconLeaf } from '../../../public/images/leaf.svg';
+
+type MainActionButtonProps = {
+  variant?: string;
+  label?: string;
+  onClick?: React.HTMLProps<HTMLButtonElement>['onClick'];
+  icon?: string | JSX.Element;
+  iconStyle?: CSSProperties;
+  className?: string;
+  ecoResponsible?: string;
+};
 
 const MainActionButton = ({
   variant,
@@ -13,7 +23,7 @@ const MainActionButton = ({
   className,
   ecoResponsible,
   ...rest
-}) => {
+}: MainActionButtonProps) => {
   return (
     <button
       type="button"

@@ -5,7 +5,7 @@ import { useI18n } from 'src/hooks';
 import { Flex, Button } from '@qwant/qwant-ponents';
 
 const ServicePanelDesktop = () => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const { _ } = useI18n();
 
   return (
@@ -14,15 +14,15 @@ const ServicePanelDesktop = () => {
         <h3 className="u-text--smallTitle u-mb-s">
           {_('Search around this place', 'service panel')}
         </h3>
-        <CategoryList className="service_panel__categories" limit={collapsed ? 8 : undefined} />
+        <CategoryList className="service_panel__categories" limit={collapsed ? 8 : 16} />
       </Panel>
       <Flex center>
         <div className="service_panel__category_toggle">
           <Button
-            variant="tertiary-black"
+            variant="primary-white"
             onMouseDown={e => {
               e?.preventDefault();
-              setCollapsed(!collapsed);
+              setCollapsed(isCollapsed => !isCollapsed);
             }}
           >
             {collapsed ? (

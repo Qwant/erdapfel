@@ -48,7 +48,10 @@ declare module '@qwant/qwant-ponents' {
   export const Alert: React.FunctionComponent;
   export const AlertsProvider: React.FunctionComponent;
   export const Avatar: React.FunctionComponent;
-  export const Button: React.FunctionComponent;
+  export const Button: React.FunctionComponent<{
+    variant: string;
+    onMouseDown?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  }>;
   export const CardButton: React.FunctionComponent;
   export const Card: React.FunctionComponent;
   export const CardFooter: React.FunctionComponent;
