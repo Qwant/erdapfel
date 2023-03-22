@@ -3,6 +3,7 @@ import { Panel, Chevron } from 'src/components/ui';
 import CategoryList from 'src/components/CategoryList';
 import { useI18n } from 'src/hooks';
 import { Flex, Button } from '@qwant/qwant-ponents';
+import ServicePanelEcoresponsibleMention from './ServicePanelEcoresponsibleMention';
 
 const ServicePanelDesktop = () => {
   const [collapsed, setCollapsed] = useState<boolean>(true);
@@ -10,11 +11,12 @@ const ServicePanelDesktop = () => {
 
   return (
     <Fragment>
-      <Panel className="service_panel u-mb-m">
+      <Panel className="service_panel u-mb-xs">
         <h3 className="u-text--smallTitle u-mb-s">
           {_('Search around this place', 'service panel')}
         </h3>
         <CategoryList className="service_panel__categories" limit={collapsed ? 8 : 16} />
+        <ServicePanelEcoresponsibleMention />
       </Panel>
       <Flex center>
         <div className="service_panel__category_toggle">
@@ -27,11 +29,11 @@ const ServicePanelDesktop = () => {
           >
             {collapsed ? (
               <>
-                <Chevron size={16} fill="currentColor" up /> {_('See more nearby services')}
+                <Chevron size={16} fill="currentColor" /> {_('See more nearby services')}
               </>
             ) : (
               <>
-                <Chevron size={16} fill="currentColor" />
+                <Chevron size={16} fill="currentColor" up />
                 {_('Reduce')}
               </>
             )}

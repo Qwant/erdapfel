@@ -12,17 +12,17 @@
 - label: _('organic_store')
   color: '#297a52'
   bgColor: '#e0f5eb'
-  icon: restaurant
+  icon: greengrocer
   ecoResponsible: true
 - label: _('second_hand')
   color: '#297a52'
   bgColor: '#e0f5eb'
-  icon: restaurant
+  icon: second-hand
   ecoResponsible: true
 - label: _('zero_waste')
   color: '#297a52'
   bgColor: '#e0f5eb'
-  icon: restaurant
+  icon: deli
   ecoResponsible: true
 - label: _('supermarket')
   name: supermarket

@@ -40,10 +40,13 @@ declare module '@qwant/qwant-ponents' {
     takeAvailableSpace?: boolean;
   }>;
   export const Stack: React.FunctionComponent<{
+    className?: string;
     gap?: string;
     py?: string;
     px?: string;
+    mt?: string;
     alignCenter?: boolean;
+    horizontal?: boolean;
   }>;
   export const Alert: React.FunctionComponent;
   export const AlertsProvider: React.FunctionComponent;

@@ -3,7 +3,7 @@
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
-  padding: 20px 14px 12px;
+  padding: var(--spacing-l) var(--spacing-m) var(--spacing-s);
 
   &.ecoResponsible {
     margin-top: -8px;
@@ -12,6 +12,17 @@
       text-align: center;
     }
   }
+}
+
+.service_panel__ecoresponsibleMention {
+  width: 100% !important;
+}
+
+.service_panel__new {
+  padding: 0 var(--spacing-xs);
+  border-radius: 9px;
+  background-color: var(--green-100);
+  color: var(--green-600);
 }
 
 .service_panel__categories,

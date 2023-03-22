@@ -1260,6 +1260,9 @@ msgstr "Vider mon historique"
 msgid "Go back"
 msgstr "Retour"
 
+msgid "New"
+msgstr "Nouveau"
+
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr "Oups, nous ne trouvons pas ce lieu 🏝️"
 
