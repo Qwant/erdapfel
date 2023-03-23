@@ -1610,6 +1610,9 @@ msgstr ""
 msgid "repair cafe"
 msgstr ""
 
+msgid "ecotables"
+msgstr "Écotables"
+
 msgid "Eco-responsible restaurants"
 msgstr ""
 

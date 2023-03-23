@@ -1,7 +1,6 @@
 /* global _ */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Image } from '@qwant/qwant-ponents';
 import debounce from 'lodash.debounce';
 
 import PoiItemList from './PoiItemList';
@@ -21,6 +20,8 @@ import { Panel, PanelNav, SourceFooter, UserFeedbackYesNo } from 'src/components
 import { getListDescription } from 'src/libs/poiList';
 import { saveQuery, getHistoryEnabled } from 'src/adapters/search_history';
 
+import { isEcoResponsibleCategory } from 'src/libs/eco-responsible';
+import TopPanelMention from '../TopPanelMention';
 const DEBOUNCE_WAIT = 100;
 
 function fitMap(bbox) {
@@ -67,6 +68,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   const { isMobile } = useDevice();
   const { maxPlaces } = useConfig('category');
   const searchHistoryEnabled = getHistoryEnabled();
+  const isEcoResponsible = isEcoResponsibleCategory(poiFilters.category);
 
   usePageTitle(getListDescription(poiFilters.category, poiFilters.query));
 
@@ -158,32 +160,34 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
       case sources.circuitscourts:
         return _('Selected in patnership with INRAE', 'categories');
       case sources.ecotables:
-        return (
-          <>
-            <Flex fullWidth alignCenter center={isMobile}>
-              <span>{_('Selected in patnership with Écotables')}</span>
-              <Image
-                className="category__panel__sourceImage"
-                src="./statics/images/logo_ET.png"
-                width={75}
-                height={15}
-              />
-            </Flex>
-            <Flex wrap>
-              <span>
-                {_('Ecotable source details')}
-                <a
-                  className="category__panel__sourceLink"
-                  target="_blank"
-                  href={_('Ecotable source see more link')}
-                  rel="noreferrer"
-                >
-                  {_('Ecotable source see more')}
-                </a>
-              </span>
-            </Flex>
-          </>
-        );
+        // TODO: Add mention for opening/closing hour from PagesJaunes
+        return null;
+      // return (
+      //   <>
+      //     <Flex fullWidth alignCenter center={isMobile}>
+      //       <span>{_('Selected in patnership with Écotables')}</span>
+      //       <Image
+      //         className="category__panel__sourceImage"
+      //         src="./statics/images/logo_ET.png"
+      //         width={75}
+      //         height={15}
+      //       />
+      //     </Flex>
+      //     <Flex wrap>
+      //       <span>
+      //         {_('Ecotable source details')}
+      //         <a
+      //           className="category__panel__sourceLink"
+      //           target="_blank"
+      //           href={_('Ecotable source see more link')}
+      //           rel="noreferrer"
+      //         >
+      //           {_('Ecotable source see more')}
+      //         </a>
+      //       </span>
+      //     </Flex>
+      //   </>
+      // );
       default:
         return null;
     }
@@ -198,18 +202,27 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   } else {
     panelContent = (
       <>
+        <TopPanelMention
+          image="./statics/images/source-ecotables.png"
+          text={_('Ecotable source details')}
+          link={{
+            text: _('Ecotable source see more'),
+            href: _('Ecotable source see more link'),
+          }}
+        />
         <PoiItemList
           pois={pois}
           selectPoi={selectPoi}
           highlightMarker={highlightPoiMarker}
           source={dataSource}
+          isEcoResponsible={isEcoResponsible}
         />
         <UserFeedbackYesNo
           questionId="poi-list"
           context={document.location.href}
           question={_('Satisfied with the results?')}
         />
-        {dataSource !== sources.osm && (
+        {dataSource !== sources.osm && DataSource({ source: dataSource }) && (
           <SourceFooter>
             <DataSource source={dataSource} />
           </SourceFooter>

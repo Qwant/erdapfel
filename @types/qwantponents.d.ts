@@ -18,7 +18,10 @@ declare module '@qwant/qwant-ponents' {
   export const Head: React.FunctionComponent;
   export const HeadExtractor: React.FunctionComponent;
   export const Price: React.FunctionComponent;
-  export const Box: React.FunctionComponent;
+  export const Box: React.FunctionComponent<{
+    className?: string;
+    ml?: string;
+  }>;
   export const Flex: React.FunctionComponent<{
     className?: string;
     alignCenter?: boolean;
@@ -32,10 +35,13 @@ declare module '@qwant/qwant-ponents' {
     target?: string;
     variant?: string;
     style?: React.CSSProperties;
-    mt?: string;
+    p?: string;
     py?: string;
-    my?: string;
     px?: string;
+    my?: string;
+    m?: string;
+    mt?: string;
+    ml?: string;
     column?: boolean;
     takeAvailableSpace?: boolean;
   }>;
@@ -45,6 +51,8 @@ declare module '@qwant/qwant-ponents' {
     py?: string;
     px?: string;
     mt?: string;
+    m?: string;
+    p?: string;
     alignCenter?: boolean;
     horizontal?: boolean;
   }>;
@@ -62,7 +70,12 @@ declare module '@qwant/qwant-ponents' {
   export const Collapse: React.FunctionComponent;
   export const Drawer: React.FunctionComponent;
   export const Ghost: React.FunctionComponent;
-  export const Image: React.FunctionComponent;
+  export const Image: React.FunctionComponent<{
+    className?: string;
+    src?: string;
+    width?: string | number;
+    height?: string | number;
+  }>;
   export const VideoImage: React.FunctionComponent;
   export const List: React.FunctionComponent;
   export const ListItem: React.FunctionComponent;

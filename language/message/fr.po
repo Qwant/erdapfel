@@ -1757,8 +1757,8 @@ msgstr "alimentation"
 msgid "repair cafe"
 msgstr "repair café"
 
-msgid "ecotable"
-msgstr "Écotable"
+msgid "ecotables"
+msgstr "Écotables"
 
 msgid "organic_store"
 msgstr "Magasin bio"
@@ -1773,7 +1773,7 @@ msgid "Selected in patnership with Écotables"
 msgstr "Sélection en partenariat avec écotable"
 
 msgid "Ecotable source details"
-msgstr "Le label Ecotable identifie et valorise les restaurants eco-responsables dans toute la France."
+msgstr "Restaurants éco-responsables labelisés par Écotable."
 
 msgid "Ecotable source see more"
 msgstr "En savoir plus"

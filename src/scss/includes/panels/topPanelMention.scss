@@ -1,0 +1,23 @@
+.topPanelMention {
+  background: var(--grey-050);
+  border-radius: 12px;
+
+  &__image {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    & > * {
+      display: inline;
+    }
+
+    a {
+      margin-left: var(--spacing-xxs);
+      font-weight: bold;
+    }
+  }
+}

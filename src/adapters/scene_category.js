@@ -9,6 +9,7 @@ import { FILTERED_POIS_PIN_STYLES, FILTERED_POIS_LABEL_STYLES } from 'src/adapte
 import { isMobileDevice } from 'src/libs/device';
 import { createMapGLIcon, createPinIcon } from 'src/adapters/icon_manager';
 import IconManager from 'src/adapters/icon_manager';
+import { isEcoResponsibleCategory } from 'src/libs/eco-responsible';
 
 const mapStyleConfig = nconf.get().mapStyle;
 
@@ -99,6 +100,8 @@ export default class SceneCategory {
   };
 
   selectPoi = ({ poi, poiFilters, pois }) => {
+    const isEcoResponsible = isEcoResponsibleCategory(poiFilters.category);
+
     if (poi.meta && poi.meta.source) {
       Telemetry.sendPoiEvent(
         poi,
@@ -113,7 +116,7 @@ export default class SceneCategory {
         })
       );
     }
-    window.app.navigateTo(`/place/${toUrl(poi)}`, {
+    window.app.navigateTo(`/place/${toUrl(poi)}${isEcoResponsible ? '&isEco=1' : ''}`, {
       poi,
       poiFilters,
       pois,

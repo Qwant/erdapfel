@@ -4,8 +4,9 @@ import PoiItem from 'src/components/PoiItem';
 import { useDevice } from 'src/hooks';
 import cx from 'classnames';
 
-const PoiItems = ({ pois, selectPoi, highlightMarker, source }) => {
+const PoiItems = ({ pois, selectPoi, highlightMarker, source, isEcoResponsible }) => {
   const { isMobile } = useDevice();
+
   return (
     <ItemList
       className={cx('category__panel__items', `category__panel__items--offset-${source}`)}
@@ -24,7 +25,13 @@ const PoiItems = ({ pois, selectPoi, highlightMarker, source }) => {
             !isMobile && highlightMarker(poi, false);
           }}
         >
-          <PoiItem poi={poi} withOpeningHours withImage inList />
+          <PoiItem
+            isEcoResponsible={isEcoResponsible}
+            poi={poi}
+            withOpeningHours
+            withImage
+            inList
+          />
         </Item>
       ))}
     </ItemList>

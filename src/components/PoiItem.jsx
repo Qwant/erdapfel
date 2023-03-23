@@ -12,12 +12,20 @@ import { capitalizeFirst } from 'src/libs/string';
 import { findBlock } from 'src/libs/pois';
 import { useI18n } from 'src/hooks';
 const PoiItem = React.memo(
-  ({ poi, withOpeningHours, withImage, withAlternativeName, className, inList, ...rest }) => {
+  ({
+    poi,
+    withOpeningHours,
+    withImage,
+    withAlternativeName,
+    className,
+    inList,
+    isEcoResponsible,
+    ...rest
+  }) => {
     const reviews = poi.blocksByType?.grades;
     const { _ } = useI18n();
     const subclass = capitalizeFirst(poiSubClass(poi.subClassName));
     const stars = findBlock(poi.blocks, 'stars');
-    const isEcoResponsible = findBlock(poi.blocks, 'ecoresponsible') !== null;
     const openingHours = withOpeningHours && poi?.blocksByType?.opening_hours;
     const texts = {
       opening_hours: _('opening hours'),
@@ -31,9 +39,7 @@ const PoiItem = React.memo(
     return (
       <div className={classnames('poiItem', className)} {...rest}>
         <div className="poiItem-left">
-          <div className="u-mb-xxs">
-            <PoiTitle poi={poi} withAlternativeName={withAlternativeName} inList={inList} />
-          </div>
+          <PoiTitle poi={poi} withAlternativeName={withAlternativeName} inList={inList} />
           {reviews && (
             <div className="poiItem-reviews">
               <ReviewScore reviews={reviews} poi={poi} inList={inList} source={poi?.meta?.source} />
@@ -61,7 +67,7 @@ const PoiItem = React.memo(
         </div>
         {withImage && (
           <div className="poiItem-right">
-            <PoiTitleImage poi={poi} isEcoResponsible={!!isEcoResponsible} />
+            <PoiTitleImage poi={poi} isEcoResponsible={isEcoResponsible} />
           </div>
         )}
       </div>
