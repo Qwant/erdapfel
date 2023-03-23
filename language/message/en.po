@@ -1234,6 +1234,9 @@ msgstr ""
 msgid "Go back"
 msgstr ""
 
+msgid "New"
+msgstr "New"
+
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr ""
 
