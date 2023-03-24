@@ -1,5 +1,5 @@
 import { ACTION_BLUE_BASE, RED_DARKER, GREY_BLACK } from 'src/libs/colors';
-import { Map } from 'mapbox-gl';
+import { Map } from 'maplibre-gl';
 
 export const FILTERED_POIS_PIN_STYLES = {
   type: 'symbol',

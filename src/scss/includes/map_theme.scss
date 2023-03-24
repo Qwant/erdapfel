@@ -1,12 +1,12 @@
-.mapboxgl-ctrl-top-left,
-.mapboxgl-ctrl-top-right,
-.mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right {
+.maplibregl-ctrl-top-left,
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
   position: absolute;
   pointer-events: none;
 }
 
-.mapboxgl-ctrl-bottom-right {
+.maplibregl-ctrl-bottom-right {
   display: flex;
   flex-direction: column;
 }
@@ -32,8 +32,8 @@
     @include card_radius();
   }
 
-  .mapboxgl-ctrl-geolocate-active {
-    .mapboxgl-ctrl-icon {
+  .maplibregl-ctrl-geolocate-active {
+    .maplibregl-ctrl-icon {
       color: $action-blue-base;
     }
   }
@@ -87,23 +87,23 @@
       background-color: $grey-lighter;
     }
 
-    &.mapboxgl-ctrl-geolocate .mapboxgl-ctrl-icon {
+    &.maplibregl-ctrl-geolocate .maplibregl-ctrl-icon {
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    &.mapboxgl-ctrl-geolocate:not(:disabled) .mapboxgl-ctrl-icon {
+    &.maplibregl-ctrl-geolocate:not(:disabled) .maplibregl-ctrl-icon {
       background-image: none;
     }
   }
 }
 
-.mapboxgl-ctrl-bottom-right .map_control_group {
+.maplibregl-ctrl-bottom-right .map_control_group {
   margin: 0 $spacing-m $spacing-s 0;
 }
 
-.mapboxgl-ctrl-geolocate::-moz-focus-inner {
+.maplibregl-ctrl-geolocate::-moz-focus-inner {
   /* ff rotating outline fix */
   border: 0;
 }
@@ -124,11 +124,11 @@
   background: url('../../images/map/compass_red.svg') no-repeat center;
 }
 
-.mapboxgl-ctrl-top-right {
+.maplibregl-ctrl-top-right {
   top: 176px;
 }
 
-.mapboxgl-ctrl-scale {
+.maplibregl-ctrl-scale {
   margin-left: 2px;
   border: solid 2px #353c52;
   border-top: none;
@@ -150,7 +150,7 @@
   height: 20px;
   line-height: 18px;
 
-  .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  .maplibregl-ctrl.maplibregl-ctrl-attrib {
     background: none;
   }
 }
@@ -161,11 +161,11 @@
   }
 }
 
-.map_control__scale_attribute_container .mapboxgl-ctrl.map_control__scale {
+.map_control__scale_attribute_container .maplibregl-ctrl.map_control__scale {
   margin: 0 5px 0 0;
 }
 
-.mapboxgl-ctrl-geolocate {
+.maplibregl-ctrl-geolocate {
   background-color: #fff;
   margin-bottom: 8px;
   font-size: 17px;
@@ -188,7 +188,7 @@
     flex-direction: row-reverse;
     font-size: 10px;
 
-    .mapboxgl-ctrl.map_control__scale {
+    .maplibregl-ctrl.map_control__scale {
       background: none;
       line-height: 10px;
       height: 13px;
@@ -223,7 +223,7 @@
       }
     }
 
-    .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    .maplibregl-ctrl.maplibregl-ctrl-attrib {
       text-align: left;
 
       &.mapboxgl-compact {
@@ -237,7 +237,7 @@
         align-self: flex-end;
       }
 
-      .mapboxgl-ctrl-attrib-button {
+      .maplibregl-ctrl-attrib-button {
         right: auto;
         height: 20px;
         width: 20px;
@@ -251,7 +251,7 @@
         background: rgba(255, 255, 255, 0.8);
         padding: 3px 8px 3px 24px;
 
-        .mapboxgl-ctrl-attrib-button {
+        .maplibregl-ctrl-attrib-button {
           background-color: transparent;
         }
       }
@@ -316,7 +316,7 @@
       box-shadow: none;
     }
 
-    .mapboxgl-ctrl-geolocate {
+    .maplibregl-ctrl-geolocate {
       font-size: 24px;
       position: relative;
       bottom: 10px;
@@ -329,7 +329,7 @@
     }
   }
 
-  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+  .maplibregl-ctrl-bottom-right .maplibregl-ctrl {
     margin-right: 10px;
   }
 }

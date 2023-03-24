@@ -58,7 +58,7 @@ export default class ExtendedControl {
     this._map = map;
     this.topButtonGroup.className = 'map_control_group';
     this.topButtonGroup.textContent = '';
-    this.bottomButtonGroup.className = 'map_control_group map_bottom_button_group mapboxgl-ctrl';
+    this.bottomButtonGroup.className = 'map_control_group map_bottom_button_group maplibregl-ctrl';
     this.bottomButtonGroup.textContent = '';
 
     const geolocControl = new GeolocControl(

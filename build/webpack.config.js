@@ -1,6 +1,5 @@
 const path = require('path');
 const yaml = require('node-yaml');
-const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const compilationHash = require('../public/compilationHash');
 
@@ -84,15 +83,7 @@ const mainJsChunkConfig = buildMode => {
       },
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
-    plugins: [
-      new webpack.NormalModuleReplacementPlugin(/mapbox-gl--ENV/, function (resource) {
-        if (buildMode === 'test') {
-          resource.request = resource.request.replace('--ENV', '-js-mock');
-        } else {
-          resource.request = resource.request.replace('--ENV', '');
-        }
-      }),
-    ],
+    plugins: [],
     optimization: {
       minimize: buildMode === 'production',
       minimizer: [

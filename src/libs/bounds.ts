@@ -1,4 +1,4 @@
-import { LngLatBounds } from 'mapbox-gl';
+import { LngLatBounds } from 'maplibre-gl';
 
 export const boundsFromFlatArray = (coords?: number[]): [[number, number], [number, number]] => {
   if (coords?.length !== 4 || coords?.some(coord => typeof coord !== 'number' || isNaN(coord))) {

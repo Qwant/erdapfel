@@ -1,4 +1,4 @@
-import { LngLat } from 'mapbox-gl--ENV';
+import { LngLat } from 'maplibre-gl';
 import Poi, { POI_TYPE } from './poi';
 
 export default class MapPoi extends Poi {

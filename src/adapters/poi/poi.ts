@@ -1,7 +1,7 @@
 /**
  * simple Poi helper
  */
-import type { LngLat } from 'mapbox-gl';
+import type { LngLat } from 'maplibre-gl';
 
 export const POI_TYPE = 'poi';
 
