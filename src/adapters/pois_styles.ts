@@ -43,18 +43,13 @@ export const FILTERED_POIS_LABEL_STYLES = {
   },
 };
 
-type SetPaintPropertyValue<T> = T | Array<SetPaintPropertyValue<T>>;
-
 export const setPoiHoverStyle = (map: Map, layer: string) => {
   if (!map.getPaintProperty) {
     // @MAPBOX: This method isn't implemented by the Mapbox-GL mock
     return;
   }
 
-  const textColorProperty: SetPaintPropertyValue<string> = map.getPaintProperty(
-    layer,
-    'text-color'
-  );
+  const textColorProperty: unknown = map.getPaintProperty(layer, 'text-color');
 
   map.setPaintProperty(
     layer,
