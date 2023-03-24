@@ -199,10 +199,10 @@ const mainJsChunkConfig = buildMode => {
 
 const copyPluginConfig = () => {
   return {
-    entry: [path.join('@maplibre', 'maplibre-gl-rtl-text', 'maplibre-gl-rtl-text.min.js')],
+    entry: [path.join('@mapbox', 'mapbox-gl-rtl-text', 'mapbox-gl-rtl-text.min.js')],
     output: {
       path: path.join(__dirname, '..'),
-      filename: 'tmp/maplibre-gl-rtl-text.min.js',
+      filename: 'tmp/mapbox-gl-rtl-text.min.js',
     },
     module: {
       rules: [
@@ -210,7 +210,7 @@ const copyPluginConfig = () => {
           use: {
             loader: 'file-loader',
             options: {
-              name: `./public/build/javascript/map_plugins/maplibre-gl-rtl-text-${compilationHash}.js`,
+              name: `./public/build/javascript/map_plugins/mapbox-gl-rtl-text-${compilationHash}.js`,
             },
           },
         },

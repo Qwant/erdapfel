@@ -109,6 +109,7 @@
     "yaml-loader": "^0.5.0"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-rtl-text": "^0.2.3",
     "@qwant/map-style-builder": "github:Qwant/map-style-builder#81eebb0",
     "@qwant/qwant-basic-gl-style": "^1.4.0",
     "@qwant/qwant-ponents": "^0.2.8",
