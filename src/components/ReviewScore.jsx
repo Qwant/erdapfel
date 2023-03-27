@@ -1,8 +1,8 @@
 /* global _ _n */
 import React from 'react';
 import Telemetry from 'src/libs/telemetry';
-import { Flex, StarRating, Text } from '@qwant/qwant-ponents';
-import { isFromTripAdvisor } from 'src/libs/pois';
+import { Flex, IconInformation, StarRating, Text, Tooltip } from '@qwant/qwant-ponents';
+import { isFromEcotables, isFromTripAdvisor } from 'src/libs/pois';
 
 function logGradesClick(poi, inList) {
   const grades = poi.blocksByType.grades;
@@ -21,22 +21,80 @@ function logGradesClick(poi, inList) {
   }
 }
 
-const ReviewScore = ({ poi, reviews: { global_grade, total_grades_count, url }, inList }) => (
-  <a
-    className="reviewScore"
-    rel="noopener noreferrer"
-    href={url}
-    onClick={e => {
-      e.stopPropagation();
-      logGradesClick(poi, inList);
-    }}
-  >
-    {isFromTripAdvisor(poi) ? (
-      <TripAdvisorRating grade_url={poi.meta.rating_url} count={total_grades_count} />
-    ) : (
-      <DefaultRating grade={global_grade} count={total_grades_count} showSuffix={!inList} />
-    )}
-  </a>
+const ReviewScore = ({ poi, inList }) => {
+  const isEcotables = isFromEcotables(poi);
+  const isTripAdvisor = isFromTripAdvisor(poi);
+
+  return (
+    <a
+      className="reviewScore"
+      rel="noopener noreferrer"
+      href={isEcotables ? poi.blocksByType.ecoresponsible.url : poi?.blocksByType?.grades?.url}
+      onClick={e => {
+        e.stopPropagation();
+        logGradesClick(poi, inList);
+      }}
+    >
+      {isTripAdvisor ? (
+        <TripAdvisorRating
+          grade_url={poi.meta.rating_url}
+          count={poi?.blocksByType?.grades?.total_grades_count}
+        />
+      ) : isEcotables ? (
+        <EcotablesRating score={poi.blocksByType.ecoresponsible.score} />
+      ) : (
+        <DefaultRating
+          grade={poi?.blocksByType?.grades?.global_grade}
+          count={poi?.blocksByType?.grades?.total_grades_count}
+          showSuffix={!inList}
+        />
+      )}
+    </a>
+  );
+};
+
+const EcotablesRating = ({ score }) => (
+  <Flex alignCenter>
+    <Text typo="body-2" bold>
+      {score}
+    </Text>
+    <Flex ml="xxs" alignCenter>
+      {new Array(score).fill().map((_, index) => (
+        <img
+          key={index}
+          src="./statics/images/ecotable-rating-filled.svg"
+          alt="Ecotable"
+          width={12}
+          height={12}
+          loading="lazy"
+        />
+      ))}
+      {new Array(3 - score).fill().map((_, index) => (
+        <img
+          key={index}
+          src="./statics/images/ecotable-rating-empty.svg"
+          alt="Ecotable"
+          width={12}
+          height={12}
+          loading="lazy"
+        />
+      ))}
+      <Flex ml="xxs">
+        <Text typo="body-2" color="secondary">
+          {_('Ecotable from rating')}
+        </Text>
+      </Flex>
+      <Tooltip
+        className="reviewScore__ecotable--tooltip"
+        position="bottom"
+        content={_(`Ecotable rating ${score}`)}
+      >
+        <Flex alignCenter ml="xxs">
+          <IconInformation size={12} />
+        </Flex>
+      </Tooltip>
+    </Flex>
+  </Flex>
 );
 
 const DefaultRating = ({ grade, count, showSuffix }) => (

@@ -10,16 +10,19 @@
   bgColor: '#e9eaec'
   icon: lodging
 - label: _('organic_store')
+  name: organic_store
   color: '#297a52'
   bgColor: '#e0f5eb'
   icon: greengrocer
   ecoResponsible: true
 - label: _('second_hand')
+  name: second_hand
   color: '#297a52'
   bgColor: '#e0f5eb'
   icon: second-hand
   ecoResponsible: true
 - label: _('zero_waste')
+  name: zero_waste
   color: '#297a52'
   bgColor: '#e0f5eb'
   icon: deli
@@ -29,7 +32,8 @@
   color: '#9500e0'
   bgColor: '#f1d6ff'
   icon: grocery
-- label: _('ecotable')
+- label: _('ecotables')
+  name: ecotables
   color: '#297a52'
   bgColor: '#e0f5eb'
   icon: restaurant

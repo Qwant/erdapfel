@@ -2,28 +2,55 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 65px;
-  height: 65px;
-  border-radius: 8px;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
   flex-shrink: 0;
   position: relative;
+
+  &--ecoresponsible {
+    background: greenyellow;
+
+    .icon {
+      color: var(--green-600);
+    }
+  }
 
   &__image {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 12px;
   }
 
   .icon {
-    font-size: 45px;
+    font-size: 55px;
+  }
+
+  .ecoResponsible-leaf {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 0;
+  }
+
+  .ecoResponsible-leaf-inner {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    background: var(--grey-000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-5px) translateX(5px);
   }
 
   .ecoResponsible-icon {
     position: absolute;
-    width: 20px;
-    top: -10px;
-    right: -5px;
-    fill: var(--green-400);
+    width: 16px;
+    height: 16px;
+    fill: var(--green-500);
   }
 }
