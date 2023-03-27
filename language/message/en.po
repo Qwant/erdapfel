@@ -1616,9 +1616,6 @@ msgstr "Écotables"
 msgid "Eco-responsible restaurants"
 msgstr ""
 
-msgid "Selected in patnership with Écotables"
-msgstr "Curated in partnership with écotable"
-
 msgid "Ecotable source details"
 msgstr "Ecotable is a french eco-label who identifies and promotes restaurants with eco-friendly practices."
 

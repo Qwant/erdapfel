@@ -116,12 +116,16 @@ export default class SceneCategory {
         })
       );
     }
-    window.app.navigateTo(`/place/${toUrl(poi)}${isEcoResponsible ? '&isEco=1' : ''}`, {
-      poi,
-      poiFilters,
-      pois,
-      centerMap: true,
-    });
+
+    window.app.navigateTo(
+      `/place/${toUrl(poi)}${isEcoResponsible ? `&eco=${poiFilters.category}` : ''}`,
+      {
+        poi,
+        poiFilters,
+        pois,
+        centerMap: true,
+      }
+    );
     this.selectPoiMarker(poi);
   };
 

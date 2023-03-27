@@ -21,7 +21,8 @@ import { getListDescription } from 'src/libs/poiList';
 import { saveQuery, getHistoryEnabled } from 'src/adapters/search_history';
 
 import { isEcoResponsibleCategory } from 'src/libs/eco-responsible';
-import TopPanelMention from '../TopPanelMention';
+import { EcoResponsiblePanelTopMention } from './EcoResponsiblePanelTopMention';
+import { Flex } from '@qwant/qwant-ponents';
 const DEBOUNCE_WAIT = 100;
 
 function fitMap(bbox) {
@@ -149,7 +150,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     fire('highlight_category_marker', poi, highlight);
   };
 
-  const DataSource = ({ source }) => {
+  const DataSource = ({ source, isListHasOpeningHours }) => {
     switch (source) {
       case sources.pagesjaunes:
         return _('Results in partnership with PagesJaunes', 'categories');
@@ -160,34 +161,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
       case sources.circuitscourts:
         return _('Selected in patnership with INRAE', 'categories');
       case sources.ecotables:
-        // TODO: Add mention for opening/closing hour from PagesJaunes
-        return null;
-      // return (
-      //   <>
-      //     <Flex fullWidth alignCenter center={isMobile}>
-      //       <span>{_('Selected in patnership with Écotables')}</span>
-      //       <Image
-      //         className="category__panel__sourceImage"
-      //         src="./statics/images/logo_ET.png"
-      //         width={75}
-      //         height={15}
-      //       />
-      //     </Flex>
-      //     <Flex wrap>
-      //       <span>
-      //         {_('Ecotable source details')}
-      //         <a
-      //           className="category__panel__sourceLink"
-      //           target="_blank"
-      //           href={_('Ecotable source see more link')}
-      //           rel="noreferrer"
-      //         >
-      //           {_('Ecotable source see more')}
-      //         </a>
-      //       </span>
-      //     </Flex>
-      //   </>
-      // );
+        return isListHasOpeningHours ? _('Ecotable opening hour source') : null;
       default:
         return null;
     }
@@ -200,16 +174,15 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
   } else if (!pois || pois.length === 0) {
     panelContent = <CategoryPanelError zoomIn={!pois} />;
   } else {
+    const isListHasOpeningHours = pois.some(p => p.blocksByType.opening_hours);
+
     panelContent = (
       <>
-        <TopPanelMention
-          image="./statics/images/source-ecotables.png"
-          text={_('Ecotable source details')}
-          link={{
-            text: _('Ecotable source see more'),
-            href: _('Ecotable source see more link'),
-          }}
-        />
+        {isEcoResponsible && (
+          <Flex m="m">
+            <EcoResponsiblePanelTopMention category={poiFilters.category} />
+          </Flex>
+        )}
         <PoiItemList
           pois={pois}
           selectPoi={selectPoi}
@@ -222,11 +195,15 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
           context={document.location.href}
           question={_('Satisfied with the results?')}
         />
-        {dataSource !== sources.osm && DataSource({ source: dataSource }) && (
-          <SourceFooter>
-            <DataSource source={dataSource} />
-          </SourceFooter>
-        )}
+        {dataSource !== sources.osm &&
+          DataSource({
+            source: dataSource,
+            isListHasOpeningHours,
+          }) && (
+            <SourceFooter>
+              <DataSource source={dataSource} isListHasOpeningHours={isListHasOpeningHours} />
+            </SourceFooter>
+          )}
       </>
     );
   }

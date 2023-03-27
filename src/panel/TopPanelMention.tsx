@@ -12,7 +12,7 @@ type TopPanelMentionProps = {
 
 const TopPanelMention = ({ image, text, link }: TopPanelMentionProps) => {
   return (
-    <Flex className="topPanelMention" m="m" p="s">
+    <Flex className="topPanelMention" p="s">
       {image && <Image className="topPanelMention__image" width="36" height="36" src={image} />}
       <Box className="topPanelMention__text" ml={image ? 's' : undefined}>
         {text && <Text html={text} color="primary" typo="body-2" />}
