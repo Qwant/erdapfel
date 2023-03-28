@@ -62,7 +62,7 @@ test('search and clear', async () => {
 });
 
 // http://idunn_test.test/v1/pois/osm:node:4872758213?lang=fr
-test('submit key', async () => {
+test('submits key', async () => {
   responseHandler.addPreparedResponse(mockAutocomplete, /autocomplete\?q=Hello/);
   await page.goto(APP_URL);
   /* submit with data already loaded */
