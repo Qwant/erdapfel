@@ -11,8 +11,8 @@ type EcoResponsiblePanelTopMentinProps = {
 
 export const EcoResponsiblePanelTopMention = ({
   category,
-  linkHref,
   isPoiDetails,
+  linkHref,
 }: EcoResponsiblePanelTopMentinProps) => {
   const { _ } = useI18n();
   const isEcoResponsible = isEcoResponsibleCategory(category);
@@ -66,7 +66,7 @@ export const EcoResponsiblePanelTopMention = ({
 
   return (
     <TopPanelMention
-      image={TOP_PANEL_MENTIONS[category].image}
+      image={isPoiDetails ? undefined : TOP_PANEL_MENTIONS[category].image}
       text={
         isPoiDetails
           ? TOP_PANEL_MENTIONS[category].textPoiDetails

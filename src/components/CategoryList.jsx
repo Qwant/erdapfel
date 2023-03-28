@@ -13,7 +13,9 @@ const CategoryList = ({ className, limit = Number.MAX_VALUE }) => {
         saveQuery({ ...category, category });
       }
       Telemetry.add(Telemetry.HOME_CATEGORY, { category: category.name });
-      window.app.navigateTo(`/places/?type=${category.name}`);
+      window.app.navigateTo(
+        `/places/?type=${category.name}${category?.ecoResponsible ? `&eco=${category.name}` : ''}`
+      );
     },
     [searchHistoryEnabled]
   );

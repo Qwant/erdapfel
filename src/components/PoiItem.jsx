@@ -16,16 +16,7 @@ import { getEcoResponsibleCategoryFromURL } from 'src/libs/eco-responsible';
 import { Flex } from '@qwant/qwant-ponents';
 
 const PoiItem = React.memo(
-  ({
-    poi,
-    withOpeningHours,
-    withImage,
-    withAlternativeName,
-    className,
-    inList,
-    isEcoResponsible,
-    ...rest
-  }) => {
+  ({ poi, withOpeningHours, withAlternativeName, className, inList, ...rest }) => {
     const { _ } = useI18n();
     const ecoResponsibleCategory = getEcoResponsibleCategoryFromURL();
     const subclass = capitalizeFirst(poiSubClass(poi.subClassName));
@@ -42,47 +33,50 @@ const PoiItem = React.memo(
 
     return (
       <div className={classnames('poiItem', className)} {...rest}>
-        <div className="poiItem-left">
-          {ecoResponsibleCategory && (
+        <Flex column fullWidth>
+          {ecoResponsibleCategory && !inList && (
             <Flex mb="s">
               <EcoResponsiblePanelTopMention
                 category={ecoResponsibleCategory}
                 isPoiDetails
+                isImageless
                 linkHref={poi?.blocksByType?.ecoresponsible?.url}
               />
             </Flex>
           )}
-          <PoiTitle poi={poi} withAlternativeName={withAlternativeName} inList={inList} />
-          {(poi?.blocksByType?.grades || poi?.blocksByType?.ecoresponsible) && (
-            <div className="poiItem-reviews">
-              <ReviewScore poi={poi} inList={inList} source={poi?.meta?.source} />
-            </div>
-          )}
-          <div className="poiItem-subclassStarsAndHours">
-            <span className="poiItem-subclass">{subclass}</span>
-            {subclass && hasStars(stars) && '\u00A0⋅\u00A0'}
-            <Stars block={stars} inline />
-            {inList && subclass && openingHours && '\u00A0⋅\u00A0'}
-            {openingHours && (
-              <div className="poiItem-openingHour">
-                <OpeningHour
-                  schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
-                  texts={texts}
-                />
+          <Flex>
+            <div className="poiItem-left">
+              <PoiTitle poi={poi} withAlternativeName={withAlternativeName} inList={inList} />
+              {(poi?.blocksByType?.grades || poi?.blocksByType?.ecoresponsible) && (
+                <div className="poiItem-reviews">
+                  <ReviewScore poi={poi} inList={inList} source={poi?.meta?.source} />
+                </div>
+              )}
+              <div className="poiItem-subclassStarsAndHours">
+                <span className="poiItem-subclass">{subclass}</span>
+                {subclass && hasStars(stars) && '\u00A0⋅\u00A0'}
+                <Stars block={stars} inline />
+                {inList && subclass && openingHours && '\u00A0⋅\u00A0'}
+                {openingHours && (
+                  <div className="poiItem-openingHour">
+                    <OpeningHour
+                      schedule={new OsmSchedule(poi.blocksByType.opening_hours)}
+                      texts={texts}
+                    />
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-          {inList && (
-            <div className="poiItem-address u-ellipsis">
-              <Address address={poi.address} inline omitCountry />
+              {inList && (
+                <div className="poiItem-address u-ellipsis">
+                  <Address address={poi.address} inline omitCountry />
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        {withImage && (
-          <div className="poiItem-right">
-            <PoiTitleImage poi={poi} isEcoResponsible={isEcoResponsible} />
-          </div>
-        )}
+            <div className="poiItem-right">
+              <PoiTitleImage poi={poi} isEcoResponsible={ecoResponsibleCategory} />
+            </div>
+          </Flex>
+        </Flex>
       </div>
     );
   }

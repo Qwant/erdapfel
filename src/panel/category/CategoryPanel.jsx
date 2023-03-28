@@ -188,7 +188,6 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
           selectPoi={selectPoi}
           highlightMarker={highlightPoiMarker}
           source={dataSource}
-          isEcoResponsible={isEcoResponsible}
         />
         <UserFeedbackYesNo
           questionId="poi-list"
