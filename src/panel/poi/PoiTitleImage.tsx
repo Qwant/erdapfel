@@ -13,14 +13,19 @@ type PoiTitleImageProps = {
     subClassName?: string;
   };
   isEcoResponsible?: boolean;
+  isDetails?: boolean;
 };
 
-const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi, isEcoResponsible }) => {
+const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({
+  poi,
+  isEcoResponsible,
+  isDetails,
+}) => {
   if (poi.titleImageUrl) {
     return (
       <div className="poiTitleImage">
         <img
-          className="poiTitleImage__image"
+          className={cx('poiTitleImage__image', isDetails && 'poiTitleImage--details')}
           src={poi.titleImageUrl}
           alt={poi?.name ?? ''}
           loading="lazy"
@@ -40,7 +45,11 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi, isEco
 
   return (
     <div
-      className={cx('poiTitleImage', isEcoResponsible && 'poiTitleImage--ecoresponsible')}
+      className={cx(
+        'poiTitleImage',
+        isEcoResponsible && 'poiTitleImage--ecoresponsible',
+        isDetails && 'poiTitleImage--details'
+      )}
       style={{
         color: icon.color,
         backgroundColor: isEcoResponsible ? 'var(--green-100)' : getLightBackground(icon.color),

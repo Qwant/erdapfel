@@ -73,7 +73,11 @@ const PoiItem = React.memo(
               )}
             </div>
             <div className="poiItem-right">
-              <PoiTitleImage poi={poi} isEcoResponsible={ecoResponsibleCategory} />
+              <PoiTitleImage
+                isDetails={!inList}
+                poi={poi}
+                isEcoResponsible={ecoResponsibleCategory}
+              />
             </div>
           </Flex>
         </Flex>

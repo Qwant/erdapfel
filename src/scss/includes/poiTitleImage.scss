@@ -53,4 +53,19 @@
     height: 16px;
     fill: var(--green-500);
   }
+
+  &--details {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    .icon {
+      font-size: 35px;
+    }
+
+    .ecoResponsible-leaf {
+      width: 48px;
+      height: 48px;
+    }
+  }
 }

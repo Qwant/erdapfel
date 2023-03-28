@@ -10,7 +10,7 @@
 
   &-right {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-left: var(--spacing-s);
   }
 }
