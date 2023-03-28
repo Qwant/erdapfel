@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Box, Flex, Text } from '@qwant/qwant-ponents';
 
 type TopPanelMentionProps = {
-  image: string;
+  image?: string;
   text?: string;
   link?: {
     href?: string;

@@ -4,7 +4,7 @@ import PoiItem from 'src/components/PoiItem';
 import { useDevice } from 'src/hooks';
 import cx from 'classnames';
 
-const PoiItems = ({ pois, selectPoi, highlightMarker, source, isEcoResponsible }) => {
+const PoiItems = ({ pois, selectPoi, highlightMarker, source }) => {
   const { isMobile } = useDevice();
 
   return (
@@ -25,13 +25,7 @@ const PoiItems = ({ pois, selectPoi, highlightMarker, source, isEcoResponsible }
             !isMobile && highlightMarker(poi, false);
           }}
         >
-          <PoiItem
-            isEcoResponsible={isEcoResponsible}
-            poi={poi}
-            withOpeningHours
-            withImage
-            inList
-          />
+          <PoiItem poi={poi} withOpeningHours withImage inList />
         </Item>
       ))}
     </ItemList>

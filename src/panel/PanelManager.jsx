@@ -18,6 +18,7 @@ import { useConfig, useDevice } from 'src/hooks';
 import { PoiContext } from 'src/libs/poiContext';
 import { getListDescription } from 'src/libs/poiList';
 import poiSubClass from 'src/mapbox/poi_subclass';
+import { isEcoResponsibleCategory } from 'src/libs/eco-responsible';
 
 function getTopBarAppValue(activePoi, { poiFilters = {}, poi, query } = {}) {
   const currentPoi = poi || activePoi;
@@ -221,9 +222,11 @@ const PanelManager = ({ router }) => {
   const backToList = (e, poiFilters) => {
     e.stopPropagation();
     const { query, category, ...rest } = poiFilters;
+    const eco = isEcoResponsibleCategory(category);
     const queryObject = {
       q: query,
       type: category,
+      ...(eco ? { eco: category } : {}),
       ...rest,
     };
 

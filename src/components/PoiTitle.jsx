@@ -4,11 +4,10 @@ import cx from 'classnames';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
 import Address from 'src/components/ui/Address';
-import { Text } from '@qwant/qwant-ponents';
+import { Flex, Text } from '@qwant/qwant-ponents';
 
 const PoiTitle = ({ poi, withAlternativeName, inList }) => {
   const { name, localName, subClassName, address } = poi;
-
   // LatLon PoI
   if (subClassName === 'latlon') {
     const latLon = name;
@@ -18,9 +17,14 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
       return (
         <div className="poiTitle">
           <div className="u-text--subtitle u-italic u-mb-xxs">{_('Close to', 'poi')}</div>
-          <h2 className="poiTitle-main u-text--smallTitle u-mb-xxs">
+          <Text
+            className={cx('poiTitle-main', inList && 'u-ellipsis')}
+            typo={inList ? 'body-1' : 'heading-4'}
+            color="primary"
+            bold
+          >
             <Address address={address} omitCountry />
-          </h2>
+          </Text>
           <div className="poiTitle-position">{latLon}</div>
         </div>
       );
@@ -43,10 +47,10 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
 
   // Location / address
   return (
-    <div className="poiTitle">
+    <Flex column fullWidth>
       <Text
         className={cx('poiTitle-main', inList && 'u-ellipsis')}
-        typo="body-1"
+        typo={inList ? 'body-1' : 'heading-4'}
         color="primary"
         bold
       >
@@ -55,7 +59,7 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
       {alternative && (
         <div className="poiTitle-alternative u-text--subtitle u-italic">{alternative}</div>
       )}
-    </div>
+    </Flex>
   );
 };
 
