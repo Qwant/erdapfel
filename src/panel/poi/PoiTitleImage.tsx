@@ -21,7 +21,7 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({
   isEcoResponsible,
   isDetails,
 }) => {
-  if (poi.titleImageUrl) {
+  if (poi.titleImageUrl && !isDetails) {
     return (
       <div className="poiTitleImage">
         <img
