@@ -1827,7 +1827,7 @@ msgstr "L'alimentation biologique, en plus d'être bonne pour la santé, est plu
 # Second hand
 
 msgid "Second hand source details"
-msgstr "Consommer de la seconde main prolonge la durée de vie des objets et réduit l'impact environnemental lié à leur fabrication."
+msgstr "Donner une seconde vie aux objets pour réduire l'impact environnemental lié à leur fabrication."
 
 msgid "Second hand source see more"
 msgstr "En savoir plus"
@@ -1839,7 +1839,7 @@ msgid "Second hand source poi see more"
 msgstr "En savoir plus"
 
 msgid "Second hand source poi details"
-msgstr "Consommer de la seconde main prolonge la durée de vie des objets et réduit l'impact environnemental lié à leur fabrication."
+msgstr "Donner une seconde vie aux objets pour réduire l'impact environnemental lié à leur fabrication."
 
 # Zero waste
 
