@@ -14,12 +14,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 .poi_panel__content {
   animation: appear 600ms forwards;
-  padding: $spacing-l $spacing-m 0;
+  padding: var(--spacing-l) var(--spacing-m) 0;
   position: relative;
 
   .poi_panel__fullWidth {
-    margin-left: -$spacing-m;
-    margin-right: -$spacing-m;
+    margin-left: calc(-1 * var(--spacing-m));
+    margin-right: calc(-1 * var(--spacing-m));
   }
 
   .block-icon {
@@ -54,7 +54,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 }
 
 .UserReviewCaption {
-  margin: $spacing-xs 0;
+  margin: var(--spacing-xs) 0;
 
   * {
     display: inline;
@@ -74,12 +74,12 @@ $BLOCK_ICON_FONT_SIZE: 16px;
   }
   a {
     display: block;
-    margin-bottom: $spacing-xs;
+    margin-bottom: var(--spacing-xs);
   }
 }
 
 .UserReviewReadMore {
-  margin-bottom: $spacing-m;
+  margin-bottom: var(--spacing-m);
 }
 
 .poi_panel__action__direction {
@@ -240,7 +240,7 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 .poi_panel__categories {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: $spacing-s;
+  grid-gap: var(--spacing-s);
 }
 
 .marker-anywhere {
@@ -257,11 +257,11 @@ $BLOCK_ICON_FONT_SIZE: 16px;
 
 @media (max-width: 640px) {
   .poi_panel__content {
-    padding: 0 $spacing-s;
+    padding: 0 var(--spacing-s);
 
     .poi_panel__fullWidth {
-      margin-left: -$spacing-s;
-      margin-right: -$spacing-s;
+      margin-left: calc(-1 * var(--spacing-s));
+      margin-right: calc(-1 * var(--spacing-s));
     }
   }
 

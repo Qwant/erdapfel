@@ -48,9 +48,7 @@ const PoiItem = React.memo(
             <div className="poiItem-left">
               <PoiTitle poi={poi} withAlternativeName={withAlternativeName} inList={inList} />
               {(poi?.blocksByType?.grades || poi?.blocksByType?.ecoresponsible) && (
-                <div className="poiItem-reviews">
-                  <ReviewScore poi={poi} inList={inList} source={poi?.meta?.source} />
-                </div>
+                <ReviewScore poi={poi} inList={inList} source={poi?.meta?.source} />
               )}
               <div className="poiItem-subclassStarsAndHours">
                 <span className="poiItem-subclass">{subclass}</span>

@@ -1,6 +1,6 @@
-@import "includes/colors";
-@import "includes/spacing";
-@import "includes/reset";
+@import 'includes/colors';
+@import 'includes/spacing';
+@import 'includes/reset';
 
 html {
   height: 100%;
@@ -17,13 +17,11 @@ html {
   color: $grey-black;
 
   &-dialog {
-    background: $background;
+    background: var(--grey-000);
     max-width: 360px;
     margin: 0 $spacing-xl-2;
     border-radius: 12px;
-    box-shadow:
-      0 8px 64px 0 rgba(12, 12, 14, 0.2),
-      0 16px 32px 0 rgba(12, 12, 14, 0.12);
+    box-shadow: 0 8px 64px 0 rgba(12, 12, 14, 0.2), 0 16px 32px 0 rgba(12, 12, 14, 0.12);
   }
 
   &-header {
@@ -60,19 +58,24 @@ html {
     background-size: 36px, 20px;
 
     &.brave {
-      background-image: url('../../images/logos/brave.png'), url('../../images/remix/external-link-line.svg');
+      background-image: url('../../images/logos/brave.png'),
+        url('../../images/remix/external-link-line.svg');
     }
     &.chrome {
-      background-image: url('../../images/logos/chrome.png'), url('../../images/remix/external-link-line.svg');
+      background-image: url('../../images/logos/chrome.png'),
+        url('../../images/remix/external-link-line.svg');
     }
     &.edge {
-      background-image: url('../../images/logos/edge.png'), url('../../images/remix/external-link-line.svg');
+      background-image: url('../../images/logos/edge.png'),
+        url('../../images/remix/external-link-line.svg');
     }
     &.firefox {
-      background-image: url('../../images/logos/firefox.png'), url('../../images/remix/external-link-line.svg');
+      background-image: url('../../images/logos/firefox.png'),
+        url('../../images/remix/external-link-line.svg');
     }
     &.safari {
-      background-image: url('../../images/logos/safari.png'), url('../../images/remix/external-link-line.svg');
+      background-image: url('../../images/logos/safari.png'),
+        url('../../images/remix/external-link-line.svg');
     }
 
     &:hover {

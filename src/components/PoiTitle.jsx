@@ -47,7 +47,7 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
 
   // Location / address
   return (
-    <Flex column fullWidth>
+    <Flex className="poiTitle" column fullWidth>
       <Text
         className={cx('poiTitle-main', inList && 'u-ellipsis')}
         typo={inList ? 'body-1' : 'heading-4'}
@@ -57,7 +57,9 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
         {title || subclass}
       </Text>
       {alternative && (
-        <div className="poiTitle-alternative u-text--subtitle u-italic">{alternative}</div>
+        <Flex mb="xxs" className="poiTitle-alternative u-text--subtitle u-italic">
+          {alternative}
+        </Flex>
       )}
     </Flex>
   );
