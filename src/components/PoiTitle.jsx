@@ -57,7 +57,9 @@ const PoiTitle = ({ poi, withAlternativeName, inList }) => {
         {title || subclass}
       </Text>
       {alternative && (
-        <div className="poiTitle-alternative u-text--subtitle u-italic">{alternative}</div>
+        <Flex mb="xxs" className="poiTitle-alternative u-text--subtitle u-italic">
+          {alternative}
+        </Flex>
       )}
     </Flex>
   );

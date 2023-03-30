@@ -1076,6 +1076,9 @@ msgstr "Coordonnées géographiques"
 msgid "on PagesJaunes"
 msgstr "sur PagesJaunes"
 
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
 #, javascript-format
 msgid "%d review"
 msgid_plural "%d reviews"
@@ -1770,6 +1773,9 @@ msgid "zero_waste"
 msgstr "Vente en vrac"
 
 # Eco table
+
+msgid "ecotable"
+msgstr "Écotable"
 
 msgid "Ecotable opening hour source"
 msgstr "Horaires fournis par PagesJaunes"
