@@ -6,7 +6,7 @@ import ReviewScore from 'src/components/ReviewScore';
 import PoiTitleImage from 'src/panel/poi/PoiTitleImage';
 import Address from 'src/components/ui/Address';
 import Stars, { hasStars } from 'src/panel/poi/blocks/Stars';
-import classnames from 'classnames';
+import cx from 'classnames';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { capitalizeFirst } from 'src/libs/string';
 import { findBlock } from 'src/libs/pois';
@@ -32,7 +32,7 @@ const PoiItem = React.memo(
     };
 
     return (
-      <div className={classnames('poiItem', className)} {...rest}>
+      <div className={cx('poiItem', className)} {...rest}>
         <Flex column fullWidth>
           {ecoResponsibleCategory && !inList && (
             <Flex mb="s">

@@ -130,7 +130,7 @@ const EcotablesRating = ({ score, isVertical }) => (
         position="bottom"
         content={_(`Ecotable rating ${score}`)}
       >
-        <Flex alignCenter ml="xxs">
+        <Flex className="reviewScore__ecotable--tooltip-element" alignCenter ml="xxs">
           <IconInformation size={12} />
         </Flex>
       </Tooltip>
