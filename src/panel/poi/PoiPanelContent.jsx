@@ -10,7 +10,7 @@ import PoiItem from 'src/components/PoiItem';
 import { Divider } from 'src/components/ui';
 import { useConfig, useI18n, useFavorites, useDevice } from 'src/hooks';
 import { Reservation } from './blocks/Reservation/Reservation';
-import { findBlock } from 'src/libs/pois';
+import { findBlock, isFromEcotables } from 'src/libs/pois';
 
 const PoiPanelContent = ({ poi }) => {
   const { _ } = useI18n();
@@ -94,7 +94,9 @@ const PoiPanelContent = ({ poi }) => {
       <div className="poi_panel__fullContent">
         {hasReservation && <Reservation url={poi.meta.source_url} mobile={isMobile} />}
         {poi && <PoiBlockContainer poi={poi} />}
-        <Contribution poi={poi} isOnlyDisplayed={isEcoResponsibleBlock} />
+        {!isFromEcotables(poi) && (
+          <Contribution poi={poi} isOnlyDisplayed={isEcoResponsibleBlock} />
+        )}
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>
         <CategoryList className="poi_panel__categories u-mb-s" limit={4} />

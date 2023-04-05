@@ -1613,6 +1613,15 @@ msgstr ""
 msgid "ecotables"
 msgstr "Écotables"
 
+msgid "organic_store"
+msgstr "Organic store"
+
+msgid "second_hand"
+msgstr "Second hand"
+
+msgid "zero_waste"
+msgstr "Zero waste"
+
 msgid "Eco-responsible restaurants"
 msgstr ""
 
