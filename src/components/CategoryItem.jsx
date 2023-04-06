@@ -26,7 +26,7 @@ const CategoryItem = ({ category, text, subtext }) => {
           backgroundColor: getLightBackground(category.color),
           pointerEvents: 'none',
         }}
-        ecoResponsible={category.ecoResponsible}
+        ecoResponsible={category?.ecoResponsible}
       />
       {(text || subtext) && (
         <div className="label_block">
