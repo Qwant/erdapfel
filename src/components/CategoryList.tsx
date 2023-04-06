@@ -5,14 +5,24 @@ import Telemetry from 'src/libs/telemetry';
 import { getLightBackground } from 'src/libs/colors';
 import { saveQuery, getHistoryEnabled } from '../adapters/search_history';
 
-const CategoryList = ({ className, limit = Number.MAX_VALUE }) => {
+type CategoryListProps = {
+  className?: string;
+  limit?: number;
+  isLeafAnimated?: boolean;
+};
+
+const CategoryList = ({
+  className,
+  limit = Number.MAX_VALUE,
+  isLeafAnimated,
+}: CategoryListProps) => {
   const searchHistoryEnabled = getHistoryEnabled();
   const handleCategoryClick = useCallback(
     category => {
       if (searchHistoryEnabled && category) {
         saveQuery({ ...category, category });
       }
-      Telemetry.add(Telemetry.HOME_CATEGORY, { category: category.name });
+      Telemetry.add(Telemetry['HOME_CATEGORY'], { category: category.name });
       window.app.navigateTo(
         `/places/?type=${category.name}${category?.ecoResponsible ? `&eco=${category.name}` : ''}`
       );
@@ -27,6 +37,7 @@ const CategoryList = ({ className, limit = Number.MAX_VALUE }) => {
         .map(category => (
           <MainActionButton
             key={category.label}
+            isLeafAnimated={isLeafAnimated}
             onClick={() => handleCategoryClick(category)}
             variant="category"
             label={category.shortLabel}

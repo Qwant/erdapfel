@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import classnames from 'classnames';
+import cx from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
 import { Flex } from '@qwant/qwant-ponents';
 import { ReactComponent as IconLeaf } from '../../../public/images/leaf.svg';
@@ -12,6 +12,7 @@ type MainActionButtonProps = {
   iconStyle?: CSSProperties;
   className?: string;
   ecoResponsible?: string;
+  isLeafAnimated?: boolean;
 };
 
 const MainActionButton = ({
@@ -22,13 +23,14 @@ const MainActionButton = ({
   iconStyle,
   className,
   ecoResponsible,
+  isLeafAnimated,
   ...rest
 }: MainActionButtonProps) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={classnames(
+      className={cx(
         'mainActionButton',
         {
           [`mainActionButton--${variant}`]: variant,
@@ -40,7 +42,12 @@ const MainActionButton = ({
       {typeof icon === 'string' ? (
         <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle}>
           {ecoResponsible && (
-            <span className="ecoResponsible-leaf">
+            <span
+              className={cx(
+                'ecoResponsible-leaf',
+                isLeafAnimated && 'ecoResponsible-leaf--animated'
+              )}
+            >
               <span className="ecoResponsible-leaf-inner">
                 <IconLeaf className="ecoResponsible-icon" />
               </span>

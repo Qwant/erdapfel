@@ -99,7 +99,7 @@ const PoiPanelContent = ({ poi }) => {
         )}
         <Divider paddingTop={0} className="poi_panel__fullWidth" />
         <h3 className="u-text--smallTitle u-mb-s">{_('Search around this place', 'poi')}</h3>
-        <CategoryList className="poi_panel__categories u-mb-s" limit={4} />
+        <CategoryList className="poi_panel__categories u-mb-s" limit={8} />
       </div>
     </div>
   );

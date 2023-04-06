@@ -15,7 +15,11 @@ const ServicePanelDesktop = () => {
         <h3 className="u-text--smallTitle u-mb-s">
           {_('Search around this place', 'service panel')}
         </h3>
-        <CategoryList className="service_panel__categories" limit={collapsed ? 8 : 16} />
+        <CategoryList
+          className="service_panel__categories"
+          limit={collapsed ? 8 : 16}
+          isLeafAnimated
+        />
         <ServicePanelEcoresponsibleMention />
       </Panel>
       <Flex center>

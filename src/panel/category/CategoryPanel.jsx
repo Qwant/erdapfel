@@ -156,10 +156,6 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
         return _('Results in partnership with PagesJaunes', 'categories');
       case sources.tripadvisor:
         return _('Results in partnership with TripAdvisor', 'categories');
-      case sources.vrac:
-        return _('Selected in patnership with ReseauVrac', 'categories');
-      case sources.circuitscourts:
-        return _('Selected in patnership with INRAE', 'categories');
       case sources.ecotables:
         return isListHasOpeningHours ? _('Ecotable opening hour source') : null;
       default:

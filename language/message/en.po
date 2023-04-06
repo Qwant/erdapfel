@@ -1643,12 +1643,6 @@ msgstr "Local Food"
 msgid "Vente en vrac"
 msgstr "Bulk Store"
 
-msgid "Selected in patnership with INRAE"
-msgstr "Selected in patnership with INRAE"
-
-msgid "Selected in patnership with ReseauVrac"
-msgstr "Selected in patnership with Réseau Vrac"
-
 msgid "healthcare laboratory"
 msgstr ""
 

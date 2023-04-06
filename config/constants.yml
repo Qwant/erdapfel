@@ -119,8 +119,6 @@ sources:
   pagesjaunes: 'pages_jaunes'
   tripadvisor: 'tripadvisor'
   ecotables: 'ecotables'
-  circuitscourts: 'circuitscourts'
-  vrac: 'vrac'
 
 # Types
 CATEGORY_TYPE: 'category'
