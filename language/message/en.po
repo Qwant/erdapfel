@@ -1404,10 +1404,13 @@ msgid "Favorites"
 msgstr ""
 
 msgid "Read more on Wikipedia"
-msgstr ""
+msgstr "Read more on Wikipedia"
 
 msgid "Read more on PagesJaunes"
-msgstr ""
+msgstr "Read more on PagesJaunes"
+
+msgid "Read more on ecotables"
+msgstr "Read more on Écotables"
 
 msgid "Information"
 msgstr ""

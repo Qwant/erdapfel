@@ -27,6 +27,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
       texts: {
         wikipedia: _('Read more on Wikipedia'),
         pagesjaunes: _('Read more on PagesJaunes'),
+        ecotables: _('Read more on ecotables'),
         readMore: _('Read more'),
       },
       onClick: () => {

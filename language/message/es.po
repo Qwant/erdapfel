@@ -1472,6 +1472,9 @@ msgstr "Lee más en Wikipedia"
 msgid "Read more on PagesJaunes"
 msgstr "Leer más en PagesJaunes"
 
+msgid "Read more on ecotables"
+msgstr "Leer más en Écotables"
+
 msgid "Information"
 msgstr "Información"
 
