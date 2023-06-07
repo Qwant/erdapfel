@@ -363,3 +363,9 @@
   name: office_assurance
 - label: _('lawyer')
   name: lawyer
+- label: _('electrician')
+  name: electrician
+- label: _('plumber')
+  name: plumber
+- label: _('korean restaurant')
+  name: food_korean

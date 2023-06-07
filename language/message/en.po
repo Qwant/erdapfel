@@ -1651,3 +1651,9 @@ msgstr ""
 
 msgid "lawyer"
 msgstr ""
+
+msgid "korean restaurant"
+msgstr ""
+
+msgid "electrician"
+msgstr ""
