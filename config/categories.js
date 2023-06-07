@@ -158,4 +158,7 @@ window.categories = [
   _('landuse military'),
   _('insurance'),
   _('lawyer'),
+  _('electrician'),
+  _('plumber'),
+  _('korean restaurant'),
 ];

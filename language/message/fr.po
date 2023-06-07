@@ -1801,3 +1801,9 @@ msgstr "Assurance"
 
 msgid "lawyer"
 msgstr "Avocat"
+
+msgid "korean restaurant"
+msgstr "Restaurant coréen"
+
+msgid "electrician"
+msgstr "Electricien"

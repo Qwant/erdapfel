@@ -1735,3 +1735,9 @@ msgstr "seguro"
 
 msgid "lawyer"
 msgstr "abogado"
+
+msgid "korean restaurant"
+msgstr "restaurante coreano"
+
+msgid "electrician"
+msgstr "electricista"
