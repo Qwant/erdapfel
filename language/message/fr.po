@@ -1076,6 +1076,9 @@ msgstr "Coordonnées géographiques"
 msgid "on PagesJaunes"
 msgstr "sur PagesJaunes"
 
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
 #, javascript-format
 msgid "%d review"
 msgid_plural "%d reviews"
@@ -1259,6 +1262,9 @@ msgstr "Vider mon historique"
 
 msgid "Go back"
 msgstr "Retour"
+
+msgid "New"
+msgstr "Nouveau"
 
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr "Oups, nous ne trouvons pas ce lieu 🏝️"
@@ -1469,6 +1475,9 @@ msgstr "Lire la suite sur Wikipédia"
 
 msgid "Read more on PagesJaunes"
 msgstr "Lire la suite sur PagesJaunes"
+
+msgid "Read more on ecotables"
+msgstr "Lire la suite sur Écotables"
 
 msgid "Information"
 msgstr "Informations"
@@ -1754,20 +1763,103 @@ msgstr "alimentation"
 msgid "repair cafe"
 msgstr "repair café"
 
-msgid "Eco-responsible restaurants"
-msgstr "Restaurants éco-responsables"
+msgid "ecotables"
+msgstr "Écotables"
 
-msgid "Selected in patnership with Écotables"
-msgstr "Sélection en partenariat avec écotable"
+msgid "organic_store"
+msgstr "Magasin bio"
+
+msgid "second_hand"
+msgstr "Seconde main"
+
+msgid "zero_waste"
+msgstr "Vente en vrac"
+
+# Eco table
+
+msgid "ecotable"
+msgstr "Écotable"
+
+msgid "Ecotable opening hour source"
+msgstr "Horaires fournis par PagesJaunes"
 
 msgid "Ecotable source details"
-msgstr "Le label Ecotable identifie et valorise les restaurants eco-responsables dans toute la France."
+msgstr "Restaurants éco-responsables labelisés par Écotable."
 
 msgid "Ecotable source see more"
 msgstr "En savoir plus"
 
 msgid "Ecotable source see more link"
 msgstr "https://ecotable.fr/"
+
+msgid "Ecotable source poi see more"
+msgstr "En savoir plus"
+
+msgid "Ecotable source poi details"
+msgstr "Restaurant éco-responsable labelisé par Écotable."
+
+msgid "Ecotable from rating"
+msgstr "sur Écotable"
+
+msgid "Ecotable rating 1"
+msgstr "L'établissement est engagé sur le sujet de l'éco-responsabilité, mais avec une marge de progression."
+
+msgid "Ecotable rating 2"
+msgstr "L'établissement a déjà entamé sa transformation éco-responsable, avec de premiers résultats tangibles."
+
+msgid "Ecotable rating 3"
+msgstr "L'établissement a des pratiques exemplaires en matière d'éco-responsabilité."
+
+# Organic store
+
+msgid "Organic store source details"
+msgstr "L'alimentation biologique, en plus d'être bonne pour la santé, est plus respectueuse de l’environnement et des sols."
+
+msgid "Organic store source see more"
+msgstr "En savoir plus"
+
+msgid "Organic store source see more link"
+msgstr "https://agirpourlatransition.ademe.fr/particuliers/conso/alimentation/comment-choisir-meilleurs-produits"
+
+msgid "Organic store source poi see more"
+msgstr "En savoir plus"
+
+msgid "Organic store source poi details"
+msgstr "L'alimentation biologique, en plus d'être bonne pour la santé, est plus respectueuse de l’environnement et des sols."
+
+# Second hand
+
+msgid "Second hand source details"
+msgstr "Donner une seconde vie aux objets pour réduire l'impact environnemental lié à leur fabrication."
+
+msgid "Second hand source see more"
+msgstr "En savoir plus"
+
+msgid "Second hand source see more link"
+msgstr "https://agirpourlatransition.ademe.fr/particuliers/conso/conso-responsable/acheter-neuf-garder-si-consommait-autrement"
+
+msgid "Second hand source poi see more"
+msgstr "En savoir plus"
+
+msgid "Second hand source poi details"
+msgstr "Donner une seconde vie aux objets pour réduire l'impact environnemental lié à leur fabrication."
+
+# Zero waste
+
+msgid "Zero waste source details"
+msgstr "La vente en vrac limite le gaspillage et les déchets d'emballage."
+
+msgid "Zero waste source see more"
+msgstr "En savoir plus"
+
+msgid "Zero waste source see more link"
+msgstr "https://agirpourlatransition.ademe.fr/particuliers/conso/conso-responsable/vente-vrac-marche-florissant-nen-qua-debuts"
+
+msgid "Zero waste source poi see more"
+msgstr "En savoir plus"
+
+msgid "Zero waste source poi details"
+msgstr "La vente en vrac limite le gaspillage et les déchets d'emballage."
 
 msgid "Appears in"
 msgstr "Apparaît dans"
@@ -1777,12 +1869,6 @@ msgstr "Circuit court"
 
 msgid "Vente en vrac"
 msgstr "Vente en vrac"
-
-msgid "Selected in patnership with INRAE"
-msgstr "Sélection en partenariat avec l'INRAE"
-
-msgid "Selected in patnership with ReseauVrac"
-msgstr "Sélection en partenariat avec Réseau Vrac"
 
 msgid "VIPrivacy Protected Navigation"
 msgstr "Qwant VIPrivacy :<br />Navigation protégée, confidentialité renforcée"

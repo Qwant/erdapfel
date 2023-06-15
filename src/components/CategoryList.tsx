@@ -5,15 +5,27 @@ import Telemetry from 'src/libs/telemetry';
 import { getLightBackground } from 'src/libs/colors';
 import { saveQuery, getHistoryEnabled } from '../adapters/search_history';
 
-const CategoryList = ({ className, ecoResponsible = false, limit = Number.MAX_VALUE }) => {
+type CategoryListProps = {
+  className?: string;
+  limit?: number;
+  isLeafAnimated?: boolean;
+};
+
+const CategoryList = ({
+  className,
+  limit = Number.MAX_VALUE,
+  isLeafAnimated,
+}: CategoryListProps) => {
   const searchHistoryEnabled = getHistoryEnabled();
   const handleCategoryClick = useCallback(
     category => {
       if (searchHistoryEnabled && category) {
         saveQuery({ ...category, category });
       }
-      Telemetry.add(Telemetry.HOME_CATEGORY, { category: category.name });
-      window.app.navigateTo(`/places/?type=${category.name}`);
+      Telemetry.add(Telemetry['HOME_CATEGORY'], { category: category.name });
+      window.app.navigateTo(
+        `/places/?type=${category.name}${category?.ecoResponsible ? `&eco=${category.name}` : ''}`
+      );
     },
     [searchHistoryEnabled]
   );
@@ -21,20 +33,20 @@ const CategoryList = ({ className, ecoResponsible = false, limit = Number.MAX_VA
   return (
     <div className={className}>
       {CategoryService.getCategories()
-        .filter(c => c.iconName && c.ecoResponsible === ecoResponsible) // ignore categories used on detected intention only
         .slice(0, limit)
         .map(category => (
           <MainActionButton
-            key={category.name}
+            key={category.label}
+            isLeafAnimated={isLeafAnimated}
             onClick={() => handleCategoryClick(category)}
             variant="category"
             label={category.shortLabel}
             icon={category.iconName}
             iconStyle={{
               color: category.color,
-              backgroundColor: getLightBackground(category.color),
+              backgroundColor: category?.bgColor ?? getLightBackground(category.color),
             }}
-            ecoResponsible={ecoResponsible}
+            ecoResponsible={category.ecoResponsible}
           />
         ))}
     </div>

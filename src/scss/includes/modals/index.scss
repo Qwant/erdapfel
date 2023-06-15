@@ -14,7 +14,7 @@
   position: relative;
   border-radius: 12px;
   overflow: auto;
-  background: $background;
+  background: var(--grey-000);
   box-shadow: 0 8px 64px 0 rgba(12, 12, 14, 0.12);
   width: 305px;
   padding: 0;

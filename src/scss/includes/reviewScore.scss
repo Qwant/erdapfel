@@ -47,3 +47,29 @@
 .reviewScore-count {
   color: var(--grey-900);
 }
+
+.reviewScore__ecotable--tooltip {
+  text-align: center;
+}
+
+.reviewScore--multi {
+  align-items: flex-start;
+}
+
+.pagesjaunes__rating {
+  &--vertical {
+    flex-direction: column-reverse;
+    margin-right: var(--spacing-s);
+  }
+}
+
+.ecotables__rating {
+  align-items: center;
+
+  &--vertical {
+    align-items: flex-start;
+    padding-left: var(--spacing-s);
+    border-left: 1px solid var(--grey-900-alpha12);
+    flex-direction: column-reverse;
+  }
+}

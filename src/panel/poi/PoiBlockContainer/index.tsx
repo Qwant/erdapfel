@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Telemetry from 'src/libs/telemetry';
 import ImagesBlock from '../blocks/Images';
-import { findBlock, isFromPagesJaunes } from 'src/libs/pois';
+import { findBlock, isFromEcotables, isFromPagesJaunes } from 'src/libs/pois';
 import PoiInformationBlock, { PoiInformationBlockProps } from '../blocks/Information';
 import DetailsBlock from '../blocks/Details';
 import PoiDescriptionBlock, { PoiDescriptionBlockProps } from '../blocks/Description';
@@ -11,6 +11,7 @@ import IdunnPoi from 'src/adapters/poi/idunn_poi';
 import OsmSchedule from 'src/adapters/osm_schedule';
 import { toArray } from 'src/libs/address';
 import { PoiHourBlockProps } from '../blocks/Information/blocks/Hour';
+import Contribution from 'src/components/Contribution';
 
 export type PoiBlockContainerProps = {
   poi?: IdunnPoi;
@@ -26,6 +27,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
       texts: {
         wikipedia: _('Read more on Wikipedia'),
         pagesjaunes: _('Read more on PagesJaunes'),
+        ecotables: _('Read more on ecotables'),
         readMore: _('Read more'),
       },
       onClick: () => {
@@ -146,6 +148,7 @@ const PoiBlockContainer: React.FunctionComponent<PoiBlockContainerProps> = ({ po
     <div className="poi_panel__info">
       {descriptionBlockProps?.block && <PoiDescriptionBlock {...descriptionBlockProps} />}
       {informationBlockProps && <PoiInformationBlock {...informationBlockProps} />}
+      {isFromEcotables(poi) && <Contribution poi={poi} isOnlyDisplayed={true} />}
       <ImagesBlock poi={poi} />
       <DetailsBlock poi={poi} />
     </div>

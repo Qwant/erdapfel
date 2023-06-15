@@ -197,7 +197,7 @@ input[type='search'] {
     max-height: none;
     top: $top_bar_height;
     width: 100vw;
-    background-color: $background;
+    background-color: var(--grey-000);
     overflow-y: auto;
   }
 

@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 const PoiItems = ({ pois, selectPoi, highlightMarker, source }) => {
   const { isMobile } = useDevice();
+
   return (
     <ItemList
       className={cx('category__panel__items', `category__panel__items--offset-${source}`)}

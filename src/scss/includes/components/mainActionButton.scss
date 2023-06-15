@@ -19,12 +19,50 @@
     margin-bottom: $spacing-xs;
   }
 
-  .ecoResponsible-icon {
+  .ecoResponsible-leaf {
+    display: flex;
+    justify-content: flex-end;
     position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    top: 0;
+    transform: translateY(10px);
+  }
+
+  .ecoResponsible-leaf-inner {
+    border-radius: 50%;
     width: 20px;
-    fill: var(--green-400);
-    top: 0px;
-    transform: translateX(-10px) translateY(0);
+    height: 20px;
+    background: var(--grey-000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-5px) translateX(5px);
+  }
+
+  .ecoResponsible-icon {
+    display: block;
+    width: 12px;
+    height: 12.2px;
+    position: relative;
+    fill: var(--green-500);
+  }
+
+  @keyframes revealLeaf {
+    0% {
+      transform: scale(0) translateY(-12.2px) translateX(12px);
+    }
+    100% {
+      transform: scale(1) translateY(-5px) translateX(5px);
+    }
+  }
+
+  .ecoResponsible-leaf--animated {
+    .ecoResponsible-leaf-inner {
+      transform: scale(0) translateY(-10px) translateX(10px);
+      animation: revealLeaf 0.5s cubic-bezier(0.25, 1, 0.5, 1) 1s forwards;
+    }
   }
 
   &:active {

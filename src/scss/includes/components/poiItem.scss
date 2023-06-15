@@ -6,15 +6,11 @@
     min-width: 0;
     flex: 1;
     color: $grey-semi-darkness;
-
-    .poiTitle {
-      color: $grey-black;
-    }
   }
 
   &-right {
-    margin-left: 16px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    margin-left: var(--spacing-s);
   }
 }

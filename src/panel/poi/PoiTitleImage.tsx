@@ -3,7 +3,7 @@ import React from 'react';
 import IconManager from 'src/adapters/icon_manager';
 import { getLightBackground } from 'src/libs/colors';
 import { ReactComponent as IconLeaf } from '../../../public/images/leaf.svg';
-
+import cx from 'classnames';
 const defaultIcon = { iconClass: 'marker2', color: '#444648' };
 
 type PoiTitleImageProps = {
@@ -13,19 +13,30 @@ type PoiTitleImageProps = {
     subClassName?: string;
   };
   isEcoResponsible?: boolean;
+  isDetails?: boolean;
 };
 
-const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi, isEcoResponsible }) => {
-  if (poi.titleImageUrl) {
+const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({
+  poi,
+  isEcoResponsible,
+  isDetails,
+}) => {
+  if (poi.titleImageUrl && !isDetails) {
     return (
       <div className="poiTitleImage">
         <img
-          className="poiTitleImage__image"
+          className={cx('poiTitleImage__image', isDetails && 'poiTitleImage--details')}
           src={poi.titleImageUrl}
           alt={poi?.name ?? ''}
           loading="lazy"
         />
-        {isEcoResponsible && <IconLeaf className="ecoResponsible-icon" />}
+        {isEcoResponsible && (
+          <span className="ecoResponsible-leaf">
+            <span className="ecoResponsible-leaf-inner">
+              <IconLeaf className="ecoResponsible-icon" />
+            </span>
+          </span>
+        )}
       </div>
     );
   }
@@ -34,14 +45,24 @@ const PoiTitleImage: React.FunctionComponent<PoiTitleImageProps> = ({ poi, isEco
 
   return (
     <div
-      className="poiTitleImage"
+      className={cx(
+        'poiTitleImage',
+        isEcoResponsible && 'poiTitleImage--ecoresponsible',
+        isDetails && 'poiTitleImage--details'
+      )}
       style={{
         color: icon.color,
-        backgroundColor: getLightBackground(icon.color),
+        backgroundColor: isEcoResponsible ? 'var(--green-100)' : getLightBackground(icon.color),
       }}
     >
       <div className={`icon icon-${icon.iconClass}`} />
-      {isEcoResponsible && <IconLeaf className="ecoResponsible-icon" />}
+      {isEcoResponsible && (
+        <span className="ecoResponsible-leaf">
+          <span className="ecoResponsible-leaf-inner">
+            <IconLeaf className="ecoResponsible-icon" />
+          </span>
+        </span>
+      )}
     </div>
   );
 };

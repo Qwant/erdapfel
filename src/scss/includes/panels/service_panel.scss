@@ -3,7 +3,7 @@
   background-size: 100% 5px;
   @include card_shadow();
   @include card_radius();
-  padding: 20px 14px 12px;
+  padding: var(--spacing-l) var(--spacing-m) var(--spacing-s);
 
   &.ecoResponsible {
     margin-top: -8px;
@@ -12,6 +12,17 @@
       text-align: center;
     }
   }
+}
+
+.service_panel__ecoresponsibleMention {
+  width: 100% !important;
+}
+
+.service_panel__new {
+  padding: 0 var(--spacing-xs);
+  border-radius: 9px;
+  background-color: var(--green-100);
+  color: var(--green-600);
 }
 
 .service_panel__categories,
@@ -28,9 +39,10 @@
 }
 
 .service_panel__category_toggle {
-  background-color: var(--grey-000);
-  box-shadow: 0 1px 4px 0 rgba(12, 12, 14, 0.2), 0 0 2px 0 rgba(12, 12, 14, 0.12);
-  border-radius: 8px;
+  button {
+    box-shadow: 0 2px 16px 0 rgba(5, 5, 6, 0.04), 0 4px 8px 0 rgba(5, 5, 6, 0.08);
+    border: solid 1px var(--grey-900-alpha12);
+  }
 }
 
 @media (max-width: 640px) {

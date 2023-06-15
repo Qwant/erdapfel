@@ -15,7 +15,7 @@
 .poi_popup {
   width: 300px;
   border-radius: 12px;
-  background: $background;
+  background: var(--grey-000);
   box-shadow: $shadow-hover;
   padding: $spacing-s;
   position: relative;
@@ -24,6 +24,11 @@
     align-items: flex-start;
     font-size: 12px;
     line-height: 1.33;
+  }
+
+  .poiTitleImage {
+    width: 68px;
+    height: 68px;
   }
 
   .poiItem-subclassStarsAndHours {
@@ -36,6 +41,10 @@
     line-height: 1.29;
   }
 
+  .reviewScore__ecotable--tooltip-element {
+    display: none;
+  }
+
   .poi_panel__actions {
     // Directions button
     .poi_panel__action__direction {
@@ -45,7 +54,8 @@
     }
 
     // Call / Book / Like / Share buttons
-    a, button {
+    a,
+    button {
       padding: 4px;
       width: 24px;
       height: 24px;

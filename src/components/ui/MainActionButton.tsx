@@ -1,8 +1,19 @@
-import React from 'react';
-import classnames from 'classnames';
+import React, { CSSProperties } from 'react';
+import cx from 'classnames';
 import { capitalizeFirst } from 'src/libs/string';
 import { Flex } from '@qwant/qwant-ponents';
 import { ReactComponent as IconLeaf } from '../../../public/images/leaf.svg';
+
+type MainActionButtonProps = {
+  variant?: string;
+  label?: string;
+  onClick?: React.HTMLProps<HTMLButtonElement>['onClick'];
+  icon?: string | JSX.Element;
+  iconStyle?: CSSProperties;
+  className?: string;
+  ecoResponsible?: string;
+  isLeafAnimated?: boolean;
+};
 
 const MainActionButton = ({
   variant,
@@ -12,13 +23,14 @@ const MainActionButton = ({
   iconStyle,
   className,
   ecoResponsible,
+  isLeafAnimated,
   ...rest
-}) => {
+}: MainActionButtonProps) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={classnames(
+      className={cx(
         'mainActionButton',
         {
           [`mainActionButton--${variant}`]: variant,
@@ -29,7 +41,18 @@ const MainActionButton = ({
     >
       {typeof icon === 'string' ? (
         <div className={`mainActionButton-icon icon-${icon}`} style={iconStyle}>
-          {ecoResponsible && <IconLeaf className="ecoResponsible-icon" />}
+          {ecoResponsible && (
+            <span
+              className={cx(
+                'ecoResponsible-leaf',
+                isLeafAnimated && 'ecoResponsible-leaf--animated'
+              )}
+            >
+              <span className="ecoResponsible-leaf-inner">
+                <IconLeaf className="ecoResponsible-icon" />
+              </span>
+            </span>
+          )}
         </div>
       ) : (
         <Flex className="mainActionButton-icon" center>
