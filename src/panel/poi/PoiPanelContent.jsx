@@ -81,7 +81,7 @@ const PoiPanelContent = ({ poi }) => {
         withOpeningHours
         onClick={center}
       />
-      <div className="u-mb-l">
+      <div className="u-mb-l spacing-l">
         <ActionButtons
           poi={poi}
           isDirectionActive={isDirectionActive}
