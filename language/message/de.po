@@ -1731,6 +1731,18 @@ msgstr "ernährung"
 msgid "repair cafe"
 msgstr "reparatur-café"
 
+msgid "ecotables"
+msgstr "Écotables"
+
+msgid "organic_store"
+msgstr "Bioladen"
+
+msgid "second_hand"
+msgstr "Sekundenzeiger"
+
+msgid "zero_waste"
+msgstr "Null-Abfall"
+
 msgid "healthcare laboratory"
 msgstr "Gesundheitslabor"
 

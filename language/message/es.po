@@ -1724,6 +1724,18 @@ msgstr "alimentos"
 msgid "repair cafe"
 msgstr "café de reparaciones"
 
+msgid "ecotables"
+msgstr "Écotables"
+
+msgid "organic_store"
+msgstr "tienda ecológica"
+
+msgid "second_hand"
+msgstr "segunda mano"
+
+msgid "zero_waste"
+msgstr "cero residuos"
+
 msgid "healthcare laboratory"
 msgstr "laboratorio sanitario"
 
