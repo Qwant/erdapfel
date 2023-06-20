@@ -4,7 +4,7 @@ ENV PROJECT_DIR=/srv/maps-tileview/
 # Update stretch repositories
 RUN sed -i -e 's/deb.debian.org/archive.debian.org/g' \
            -e 's|security.debian.org|archive.debian.org/|g' \
-           -e '/stretch-updates/d' /etc/apt/sources.list \
+           -e '/stretch-updates/d' /etc/apt/sources.list
 
 RUN apt-get update && apt-get -y install --no-install-recommends \
     gettext git python3 build-essential ca-certificates \
