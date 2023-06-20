@@ -1,1 +1,1 @@
-module.exports = '26450db1d83b314b57ded987cbb3c81c'
+module.exports = '80c27122408911cfb168785fcd37f1f4'
