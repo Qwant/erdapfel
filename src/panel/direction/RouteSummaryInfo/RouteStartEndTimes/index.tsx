@@ -17,10 +17,13 @@ const RouteStartEndTimes: React.FunctionComponent<RouteStartEndTimesProps> = ({
     return null;
   }
 
+  const dateFormatter = getTimeFormatter({ month: '2-digit', day: '2-digit' });
   const timeFormatter = getTimeFormatter({ hour: '2-digit', minute: '2-digit' });
 
   return (
     <div className={cx('u-bold', className)}>
+      {dateFormatter.format(new Date(stripTimeZone(start)))}
+      {' - '}
       {timeFormatter.format(new Date(stripTimeZone(start)))}
       {' - '}
       {timeFormatter.format(new Date(stripTimeZone(end)))}
