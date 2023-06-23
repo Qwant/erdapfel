@@ -1738,10 +1738,10 @@ msgid "organic_store"
 msgstr "Bioladen"
 
 msgid "second_hand"
-msgstr "Sekundenzeiger"
+msgstr "Second Hand"
 
 msgid "zero_waste"
-msgstr "Null-Abfall"
+msgstr "Verpackungsfrei"
 
 msgid "healthcare laboratory"
 msgstr "Gesundheitslabor"
