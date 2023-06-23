@@ -1472,9 +1472,6 @@ msgstr "Lee más en Wikipedia"
 msgid "Read more on PagesJaunes"
 msgstr "Leer más en PagesJaunes"
 
-msgid "Read more on ecotables"
-msgstr "Leer más en Écotables"
-
 msgid "Information"
 msgstr "Información"
 
@@ -1724,12 +1721,6 @@ msgstr "alimentos"
 msgid "repair cafe"
 msgstr "café de reparaciones"
 
-msgid "ecotables"
-msgstr "Écotables"
-
-msgid "organic_store"
-msgstr "tienda ecológica"
-
 msgid "second_hand"
 msgstr "segunda mano"
 
@@ -1756,3 +1747,90 @@ msgstr "restaurante coreano"
 
 msgid "electrician"
 msgstr "electricista"
+
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
+msgid "New"
+msgstr "Nuevo"
+
+msgid "Read more on ecotables"
+msgstr "Leer más en Ecotable"
+
+msgid "ecotables"
+msgstr "Ecotable"
+
+msgid "organic_store"
+msgstr "Tienda orgánica"
+
+msgid "ecotable"
+msgstr "Ecotable"
+
+msgid "Ecotable opening hour source"
+msgstr "Horarios proporcionados por PagesJaunes"
+
+msgid "Ecotable source details"
+msgstr "Restaurantes sostenibles etiquetados por Écotable."
+
+msgid "Ecotable source poi see more"
+msgstr "Más información"
+
+msgid "Ecotable source poi details"
+msgstr "Restaurantes sostenible etiquetados por Écotable."
+
+msgid "Ecotable from rating"
+msgstr "en Ecotable"
+
+msgid "Ecotable rating 1"
+msgstr "El establecimiento está comprometido con el tema de la eco-responsabilidad pero aún necesita adaptar sus prácticas."
+
+msgid "Ecotable rating 2"
+msgstr "El establecimiento ya ha comenzado su transformación eco-responsable, con los primeros resultados tangibles."
+
+msgid "Ecotable rating 3"
+msgstr "La propiedad cuenta con las mejores prácticas en responsabilidad ambiental."
+
+msgid "Organic store source details"
+msgstr "La comida orgánica, además de ser buena para la salud, es más respetuosa con el medio ambiente y el suelo."
+
+msgid "Organic store source see more"
+msgstr "Más información"
+
+msgid "Organic store source see more link"
+msgstr "https://www.un.org/es/actnow/food"
+
+msgid "Organic store source poi see more"
+msgstr "Más información"
+
+msgid "Organic store source poi details"
+msgstr "La comida orgánica, además de ser buena para la salud, es más respetuosa con el medio ambiente y el suelo."
+
+msgid "Second hand source details"
+msgstr "Dar una segunda vida a los objetos para reducir el impacto ambiental relacionado con su fabricación."
+
+msgid "Second hand source see more"
+msgstr "Más información"
+
+msgid "Second hand source see more link"
+msgstr "https://www.un.org/es/actnow/ten-actions#recycle"
+
+msgid "Second hand source poi see more"
+msgstr "Más información"
+
+msgid "Second hand source poi details"
+msgstr "Dar una segunda vida a los objetos para reducir el impacto ambiental relacionado con su fabricación."
+
+msgid "Zero waste source details"
+msgstr "Un modo de venta que limita el desperdicio y el desperdicio de empaques."
+
+msgid "Zero waste source see more"
+msgstr "Más información"
+
+msgid "Zero waste source see more link"
+msgstr "https://zerowasteeurope.eu/library/packaging-free-shops-in-europe-an-initial-report/"
+
+msgid "Zero waste source poi see more"
+msgstr "Más información"
+
+msgid "Zero waste source poi details"
+msgstr "Un modo de venta que limita el desperdicio y el desperdicio de empaques."

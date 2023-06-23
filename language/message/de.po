@@ -1737,12 +1737,6 @@ msgstr "Écotables"
 msgid "organic_store"
 msgstr "Bioladen"
 
-msgid "second_hand"
-msgstr "Second Hand"
-
-msgid "zero_waste"
-msgstr "Verpackungsfrei"
-
 msgid "healthcare laboratory"
 msgstr "Gesundheitslabor"
 
@@ -1763,3 +1757,90 @@ msgstr "Koreanisches Restaurant"
 
 msgid "electrician"
 msgstr "Elektriker"
+
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "ecotables"
+msgstr "Ecotable"
+
+msgid "second_hand"
+msgstr "Second-Hand""
+
+msgid "zero_waste"
+msgstr "Ohne Wrapper
+
+msgid "ecotable"
+msgstr "Ecotable"
+
+msgid "Ecotable opening hour source"
+msgstr "Fahrpläne bereitgestellt von PagesJaunes"
+
+msgid "Ecotable source details"
+msgstr "Nachhaltige Restaurants mit Écotable-Siegel."
+
+msgid "Ecotable source poi see more"
+msgstr "Mehr erfahren"
+
+msgid "Ecotable source poi details"
+msgstr "Nachhaltiges Restaurant mit Écotable-Siegel."
+
+msgid "Ecotable from rating"
+msgstr "auf Ecotable"
+
+msgid "Ecotable rating 1"
+msgstr "Dieses Unternehmen engagiert sich für das Thema Umweltverantwortung, muss aber seine Praktiken noch anpassen."
+
+msgid "Ecotable rating 2"
+msgstr "Dieses Unternehmen hat bereits mit seiner umweltbewussten Transformation begonnen, mit den ersten greifbaren Ergebnissen."
+
+msgid "Ecotable rating 3"
+msgstr "Dieses Unternehmen hat Best Practices für Nachhaltigkeit."
+
+msgid "Organic store source details"
+msgstr "Bio-Lebensmittel sind nicht nur gut für die Gesundheit, sondern auch umwelt- und bodenschonend."
+
+msgid "Organic store source see more"
+msgstr "Mehr erfahren"
+
+msgid "Organic store source see more link"
+msgstr "https://www.un.org/en/actnow/food"
+
+msgid "Organic store source poi see more"
+msgstr "Mehr erfahren"
+
+msgid "Organic store source poi details"
+msgstr "Bio-Lebensmittel sind nicht nur gut für die Gesundheit, sondern auch umwelt- und bodenschonend."
+
+msgid "Second hand source details"
+msgstr "Gegenständen ein zweites Leben geben, um die mit ihrer Herstellung verbundenen Umweltauswirkungen zu reduzieren."
+
+msgid "Second hand source see more"
+msgstr "Mehr erfahren"
+
+msgid "Second hand source see more link"
+msgstr "https://www.un.org/en/actnow/ten-actions#recycle"
+
+msgid "Second hand source poi see more"
+msgstr "Mehr erfahren"
+
+msgid "Second hand source poi details"
+msgstr "Gegenständen ein zweites Leben geben, um die mit ihrer Herstellung verbundenen Umweltauswirkungen zu reduzieren."
+
+msgid "Zero waste source details"
+msgstr "Eine Verkaufsart, die Abfall und Verpackungsabfall begrenzt."
+
+msgid "Zero waste source see more"
+msgstr "Mehr erfahren"
+
+msgid "Zero waste source see more link"
+msgstr "https://zerowasteeurope.eu/library/packaging-free-shops-in-europe-an-initial-report/"
+
+msgid "Zero waste source poi see more"
+msgstr "Mehr erfahren"
+
+msgid "Zero waste source poi details"
+msgstr "Eine Verkaufsart, die Abfall und Verpackungsabfall begrenzt."

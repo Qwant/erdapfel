@@ -1076,9 +1076,6 @@ msgstr "Coordonnées géographiques"
 msgid "on PagesJaunes"
 msgstr "sur PagesJaunes"
 
-msgid "PagesJaunes"
-msgstr "PagesJaunes"
-
 #, javascript-format
 msgid "%d review"
 msgid_plural "%d reviews"
@@ -1262,9 +1259,6 @@ msgstr "Vider mon historique"
 
 msgid "Go back"
 msgstr "Retour"
-
-msgid "New"
-msgstr "Nouveau"
 
 msgid "Sorry, we could not find this place&nbsp;🏝️"
 msgstr "Oups, nous ne trouvons pas ce lieu 🏝️"
@@ -1475,9 +1469,6 @@ msgstr "Lire la suite sur Wikipédia"
 
 msgid "Read more on PagesJaunes"
 msgstr "Lire la suite sur PagesJaunes"
-
-msgid "Read more on ecotables"
-msgstr "Lire la suite sur Écotables"
 
 msgid "Information"
 msgstr "Informations"
@@ -1763,28 +1754,10 @@ msgstr "alimentation"
 msgid "repair cafe"
 msgstr "repair café"
 
-msgid "ecotables"
-msgstr "Écotables"
-
-msgid "organic_store"
-msgstr "Magasin bio"
-
-msgid "second_hand"
-msgstr "Seconde main"
-
-msgid "zero_waste"
-msgstr "Vente en vrac"
-
 # Eco table
 
-msgid "ecotable"
+msgid "ecotables"
 msgstr "Écotable"
-
-msgid "Ecotable opening hour source"
-msgstr "Horaires fournis par PagesJaunes"
-
-msgid "Ecotable source details"
-msgstr "Restaurants éco-responsables labelisés par Écotable."
 
 msgid "Ecotable source see more"
 msgstr "En savoir plus"
@@ -1792,17 +1765,23 @@ msgstr "En savoir plus"
 msgid "Ecotable source see more link"
 msgstr "https://ecotable.fr/"
 
+msgid "Ecotable opening hour source"
+msgstr "Horaires fournis par PagesJaunes"
+
+msgid "Ecotable source details"
+msgstr "Restaurants éco-responsables labellisés par Écotable."
+
 msgid "Ecotable source poi see more"
 msgstr "En savoir plus"
 
 msgid "Ecotable source poi details"
-msgstr "Restaurant éco-responsable labelisé par Écotable."
+msgstr "Restaurant éco-responsable labellisé par Écotable."
 
 msgid "Ecotable from rating"
 msgstr "sur Écotable"
 
 msgid "Ecotable rating 1"
-msgstr "L'établissement est engagé sur le sujet de l'éco-responsabilité, mais avec une marge de progression."
+msgstr "L'établissement est engagé sur le sujet de l'éco-responsabilité mais doit encore adapter ses pratiques."
 
 msgid "Ecotable rating 2"
 msgstr "L'établissement a déjà entamé sa transformation éco-responsable, avec de premiers résultats tangibles."
@@ -1810,7 +1789,7 @@ msgstr "L'établissement a déjà entamé sa transformation éco-responsable, av
 msgid "Ecotable rating 3"
 msgstr "L'établissement a des pratiques exemplaires en matière d'éco-responsabilité."
 
-# Organic store
+# Organic Store 
 
 msgid "Organic store source details"
 msgstr "L'alimentation biologique, en plus d'être bonne pour la santé, est plus respectueuse de l’environnement et des sols."
@@ -1827,7 +1806,7 @@ msgstr "En savoir plus"
 msgid "Organic store source poi details"
 msgstr "L'alimentation biologique, en plus d'être bonne pour la santé, est plus respectueuse de l’environnement et des sols."
 
-# Second hand
+# Second Hand
 
 msgid "Second hand source details"
 msgstr "Donner une seconde vie aux objets pour réduire l'impact environnemental lié à leur fabrication."
@@ -1843,6 +1822,7 @@ msgstr "En savoir plus"
 
 msgid "Second hand source poi details"
 msgstr "Donner une seconde vie aux objets pour réduire l'impact environnemental lié à leur fabrication."
+
 
 # Zero waste
 
@@ -1893,3 +1873,24 @@ msgstr "Restaurant coréen"
 
 msgid "electrician"
 msgstr "Electricien"
+
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Read more on ecotables"
+msgstr "Lire la suite sur Écotable"
+
+msgid "organic_store"
+msgstr "Magasin bio"
+
+msgid "second_hand"
+msgstr "Seconde main"
+
+msgid "zero_waste"
+msgstr "Vente en vrac"
+
+msgid "ecotable"
+msgstr "Écotable"
