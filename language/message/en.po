@@ -1680,7 +1680,7 @@ msgid "Ecotable source poi see more"
 msgstr "Learn more"
 
 msgid "Ecotable source poi details"
-msgstr "Ecotable is a french eco-label who identifies and promotes restaurants with eco-friendly practices."
+msgstr "Ecotable, a French eco-label, is dedicated to identifying and promoting restaurants that embrace eco-friendly practices"
 
 msgid "Ecotable from rating"
 msgstr "on Ecotable"
