@@ -1771,7 +1771,7 @@ msgid "second_hand"
 msgstr "Second-Hand""
 
 msgid "zero_waste"
-msgstr "Ohne Wrapper
+msgstr "Ohne Wrapper"
 
 msgid "ecotable"
 msgstr "Ecotable"
