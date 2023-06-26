@@ -1674,7 +1674,7 @@ msgid "Ecotable opening hour source"
 msgstr "Opening hours provided by PagesJaunes"
 
 msgid "Ecotable source details"
-msgstr "Sustainable restaurants labeled by Ecotable."
+msgstr "Ecotable is a french eco-label who identifies and promotes restaurants with eco-friendly practices."
 
 msgid "Ecotable source poi see more"
 msgstr "Learn more"
